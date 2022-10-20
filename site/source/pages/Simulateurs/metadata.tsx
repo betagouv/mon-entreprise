@@ -130,7 +130,10 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						</RuleLink>{' '}
 						à l'embauche qui ne sont pas toutes prises en compte par notre
 						simulateur, vous pouvez les retrouver sur{' '}
-						<Link href="http://www.aides-entreprises.fr">
+						<Link
+							href="http://www.aides-entreprises.fr"
+							aria-label="le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre"
+						>
 							le portail officiel
 						</Link>
 						.
@@ -669,7 +672,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						<a
 							target="_blank"
 							rel="noreferrer"
-							title="Aller sur le site Service Public sur les dividendes"
+							aria-label="certains critères, en savoir plus sur service-public.fr, nouvelle fenêtre"
 							href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F32963"
 						>
 							certains critères

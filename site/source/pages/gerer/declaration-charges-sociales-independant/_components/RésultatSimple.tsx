@@ -10,10 +10,11 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { utils } from 'publicodes'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default function ResultatsSimples() {
 	const engine = useEngine()
+	const { t } = useTranslation()
 
 	return (
 		<>
@@ -39,6 +40,9 @@ export default function ResultatsSimples() {
 						href="https://www.impots.gouv.fr/portail/www2/minisite/declaration/independants.html?11"
 						target="_blank"
 						rel="noreferrer"
+						aria-label={t(
+							'En savoir plus sur impots.gouv.fr, nouvelle fenêtre'
+						)}
 					>
 						En savoir plus
 					</Link>

@@ -11,7 +11,7 @@ import { H3 } from '@/design-system/typography/heading'
 import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
 import { PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
 	createSearchParams,
 	useLocation,
@@ -33,6 +33,8 @@ export const ExonérationCovid = () => {
 	const params = Object.fromEntries(searchParams.entries()) as {
 		[key in typeof rootDottedNames[number]]?: string
 	}
+
+	const { t } = useTranslation()
 
 	useEffect(() => {
 		window.scrollTo(0, 0)
@@ -81,7 +83,11 @@ export const ExonérationCovid = () => {
 					<Grid item xs={12}>
 						<H3>
 							{engine.getRule('secteur').rawNode.question}
-							<ExplicableRule dottedName="secteur" light />
+							<ExplicableRule
+								dottedName="secteur"
+								aria-label={t('En savoir plus')}
+								light
+							/>
 						</H3>
 					</Grid>
 

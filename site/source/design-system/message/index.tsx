@@ -36,7 +36,6 @@ export function Message({
 				type={type}
 				border={border}
 				light={light}
-				role="alert"
 				aria-atomic
 			>
 				{icon &&

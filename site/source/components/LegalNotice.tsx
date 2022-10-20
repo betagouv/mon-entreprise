@@ -48,7 +48,12 @@ export default function LegalNotice() {
 					<br />
 					San Francisco, CA 94107 <br />
 					Site web :&nbsp;
-					<a href="https://www.netlify.com" target="_blank" rel="noreferrer">
+					<a
+						href="https://www.netlify.com"
+						aria-label="https://www.netlify.com, nouvelle fenêtre"
+						target="_blank"
+						rel="noreferrer"
+					>
 						https://www.netlify.com
 					</a>
 				</Trans>

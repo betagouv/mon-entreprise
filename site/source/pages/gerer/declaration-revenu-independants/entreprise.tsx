@@ -55,7 +55,12 @@ export default function Accueil() {
 						Nous vous proposons une aide pour remplir les revenus issus de votre
 						activité professionnelle dans votre{' '}
 						<Strong>déclaration des revenu de 2021</Strong> sur{' '}
-						<Link href="https://www.impots.gouv.fr/accueil">impot.gouv.fr</Link>
+						<Link
+							href="https://www.impots.gouv.fr/accueil"
+							aria-label="impots.gouv.fr, nouvelle fenêtre"
+						>
+							impots.gouv.fr
+						</Link>
 						.<br />
 					</Intro>
 					<Body>Répondez à ces quelques questions, à la fin vous aurez :</Body>
@@ -156,8 +161,11 @@ export default function Accueil() {
 										<Li>
 											Pour faire votre déclaration de revenu, il faudra vous
 											connecter sur{' '}
-											<Link href="https://www.impots.gouv.fr/accueil">
-												impot.gouv.fr
+											<Link
+												href="https://www.impots.gouv.fr/accueil"
+												aria-label="impots.gouv.fr, nouvelle fenêtre"
+											>
+												impots.gouv.fr
 											</Link>
 											.
 										</Li>

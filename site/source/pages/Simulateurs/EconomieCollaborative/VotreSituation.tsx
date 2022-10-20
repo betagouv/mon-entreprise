@@ -114,7 +114,10 @@ export default function VotreSituation() {
 								Pour ces activités, vous avez uniquement besoin de déclarer vos
 								revenus sur votre feuille d'imposition. Pour en savoir plus,
 								vous pouvez consulter la{' '}
-								<Link href="https://www.impots.gouv.fr/portail/particulier/questions/comment-declarer-mes-revenus-dactivites-annexes-telles-que-le-co-voiturage-la">
+								<Link
+									aria-label="page dédiée sur impots.gouv.fr, nouvelle fenêtre"
+									href="https://www.impots.gouv.fr/portail/particulier/questions/comment-declarer-mes-revenus-dactivites-annexes-telles-que-le-co-voiturage-la"
+								>
 									page dédiée sur impots.gouv.fr
 								</Link>
 								.

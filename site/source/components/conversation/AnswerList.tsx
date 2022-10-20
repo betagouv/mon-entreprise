@@ -134,6 +134,10 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 								'Retrouvez toutes les informations publiques concernant votre entreprise sur'
 							)}{' '}
 							<Link
+								aria-label={t(
+									'gérer.ressources.annuaire-entreprises.aria-label',
+									'Annuaire des Entreprises, nouvelle fenêtre'
+								)}
 								href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
 							>
 								Annuaire des Entreprises.
@@ -177,6 +181,8 @@ function StepsTable({
 	rules: Array<EvaluatedRule>
 	onClose: () => void
 }) {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			{rules
@@ -185,7 +191,11 @@ function StepsTable({
 					<StyledAnswerList container key={rule.dottedName}>
 						<Grid item xs>
 							{rule.title}
-							<ExplicableRule light dottedName={rule.dottedName} />
+							<ExplicableRule
+								aria-label={t('En savoir plus')}
+								light
+								dottedName={rule.dottedName}
+							/>
 						</Grid>
 						<StyledAnswer item xs="auto">
 							<AnswerElement {...rule} />
@@ -199,6 +209,8 @@ function StepsTable({
 function AnswerElement(rule: EvaluatedRule) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
+
+	const { t } = useTranslation()
 
 	const parentDottedName = utils.ruleParent(rule.dottedName) as DottedName
 	const questionDottedName = rule.rawNode.question
@@ -218,7 +230,7 @@ function AnswerElement(rule: EvaluatedRule) {
 		<PopoverWithTrigger
 			small
 			trigger={(buttonProps) => (
-				<Link {...buttonProps} role="button" title="Modifier">
+				<Link {...buttonProps} role="button" aria-label="Modifier">
 					<Value expression={rule.dottedName} linkToRule={false} />{' '}
 					<span className="print-hidden">
 						<Emoji emoji="✏" alt="Modifier" aria-hidden={false} />
@@ -231,7 +243,11 @@ function AnswerElement(rule: EvaluatedRule) {
 					<form onSubmit={onClose}>
 						<H3>
 							{evaluateQuestion(engine, engine.getRule(questionDottedName))}
-							<ExplicableRule light dottedName={questionDottedName} />
+							<ExplicableRule
+								light
+								dottedName={questionDottedName}
+								aria-label={t('En savoir plus')}
+							/>
 						</H3>
 						<RuleInput
 							dottedName={questionDottedName}

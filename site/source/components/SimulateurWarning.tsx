@@ -44,7 +44,10 @@ export default function SimulateurWarning({
 								entreprise (CFE) qui est dûe dès la deuxième année d'exercice.
 								Son montant varie fortement en fonction du chiffre d'affaires et
 								de la domiciliation de l'entreprise.{' '}
-								<Link href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547">
+								<Link
+									aria-label="Plus d'infos, en savoir plus sur service-public.fr, nouvelle fenêtre"
+									href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547"
+								>
 									Plus d'infos.
 								</Link>
 							</Trans>

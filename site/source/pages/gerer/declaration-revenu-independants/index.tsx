@@ -32,6 +32,7 @@ export default function AideDéclarationIndépendant() {
 			.filter((step) => !step.isDisabled)
 			.find((step) => step.progress !== 1) ??
 		steps.find((step) => !step.isDisabled)
+	const { t } = useTranslation()
 
 	return (
 		<>
@@ -57,7 +58,13 @@ export default function AideDéclarationIndépendant() {
 				<div className="print-hidden">
 					<Stepper aria-label="Étapes de l'assistant">
 						{steps.map((step) => (
-							<Step key={step.to} {...omit(step, 'page')} />
+							<Step
+								key={step.to}
+								aria-label={t("Accéder à l'étape {{step}}", {
+									step: step.children,
+								})}
+								{...omit(step, 'page')}
+							/>
 						))}
 					</Stepper>
 				</div>

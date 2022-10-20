@@ -19,7 +19,8 @@ const hrefLangLink = alternateLinks()
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
 	const showFeedback = useShowFeedback()
-	const language = useTranslation().i18n.language as 'fr' | 'en'
+	const { t, i18n } = useTranslation()
+	const language = i18n.language as 'fr' | 'en'
 
 	const currentEnv = import.meta.env.MODE
 	const encodedUri =
@@ -55,8 +56,15 @@ export default function Footer() {
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}
-							<Link href="https://www.urssaf.fr">Urssaf</Link>, the French
-							social security contributions collector.
+							<Link
+								href="https://www.urssaf.fr"
+								aria-label={t(
+									'Urssaf, voir le site urssaf.fr, nouvelle fenêtre'
+								)}
+							>
+								Urssaf
+							</Link>
+							, the French social security contributions collector.
 						</Body>
 					)}
 				</Container>
@@ -127,7 +135,13 @@ export default function Footer() {
 									</li>
 									{language === 'fr' && (
 										<li>
-											<Link to={absoluteSitePaths.accessibilité}>
+											<Link
+												to={absoluteSitePaths.accessibilité}
+												aria-label={t(
+													'footer.accessibilitéAriaLabel',
+													'Accessibilité : non conforme, en savoir plus'
+												)}
+											>
 												<Trans i18nKey="footer.accessibilité">
 													Accessibilité : non conforme
 												</Trans>

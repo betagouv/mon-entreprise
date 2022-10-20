@@ -103,9 +103,9 @@ export default function Déclaration() {
 												Connectez-vous à votre espace professionnel sur{' '}
 												<Link
 													href="https://cfspro.impots.gouv.fr/mire/accueil.do"
-													title="Accéder à mon espace professionnel"
+													aria-label="impots.gouv.fr, nouvelle fenêtre"
 												>
-													impot.gouv.fr
+													impots.gouv.fr
 												</Link>
 											</Li>
 											<Li>

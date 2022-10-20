@@ -148,7 +148,13 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									par une marque, une raison sociale, un nom commercial, un nom
 									de domaine Internet, etc. Vous pouvez vérifier dans la base de
 									données{' '}
-									<Link href="https://bases-marques.inpi.fr/">INPI</Link>.
+									<Link
+										href="https://bases-marques.inpi.fr/"
+										aria-label="INPI, accéder à la base données de marques de l'INPI, nouvelle fenêtre"
+									>
+										INPI
+									</Link>
+									.
 								</SmallBody>
 							</Trans>
 						}
@@ -185,7 +191,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									entreprise sera incorporée. Dans certains lieux et certaines
 									situations, vous pouvez bénéficier d'un financement public
 									important (exonération de charges, de taxes, etc.).{' '}
-									<Link href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160">
+									<Link
+										href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F2160"
+										aria-label="Plus d'infos, voir plus d'informations sur service-public.fr, nouvelle fenêtre"
+									>
 										Plus d'infos
 									</Link>
 								</SmallBody>
@@ -270,7 +279,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								<SmallBody>
 									Le dépôt consiste en un transfert d'une somme d'argent sur un
 									compte bloqué auprès d'une banque ou de la{' '}
-									<Link href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social">
+									<Link
+										href="https://consignations.caissedesdepots.fr/entreprise/creer-votre-entreprise/creation-dentreprise-deposez-votre-capital-social"
+										aria-label="Caisse des dépôts et consignations, en savoir plus sur consignations.caissedesdepots.fr, nouvelle fenêtre"
+									>
 										Caisse des dépôts et consignations
 									</Link>{' '}
 									ou d'un notaire, qui doit alors fournir un certificat de dépôt
@@ -306,7 +318,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									les 30 000 €.
 								</SmallBody>
 								<SmallBody>
-									<Link href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F31538">
+									<Link
+										href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F31538"
+										aria-label="Plus d'infos, voir plus d'informations sur service-public.fr, nouvelle fenêtre"
+									>
 										Plus d'informations
 									</Link>
 								</SmallBody>
@@ -330,7 +345,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 									pratiqués par le journal choisi{' '}
 								</SmallBody>
 								<SmallBody>
-									<Link href="https://actulegales.fr/journaux-annonces-legales">
+									<Link
+										href="https://actulegales.fr/journaux-annonces-legales"
+										aria-label="Trouver un journal d'annonces légales (JAL), nouvelle fenêtre"
+									>
 										Trouver un journal d'annonces légales (JAL)
 									</Link>
 								</SmallBody>
@@ -404,7 +422,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 							<SmallBody>
 								<Trans i18nKey="entreprise.tâches.comptable.description">
 									La gestion d'une entreprise impose un certain nombre d'
-									<Link href="https://www.economie.gouv.fr/entreprises/obligations-comptables">
+									<Link
+										href="https://www.economie.gouv.fr/entreprises/obligations-comptables"
+										aria-label="obligations comptables, voir le détail sur economie.gouv.fr, nouvelle fenêtre"
+									>
 										obligations comptables
 									</Link>
 									. Il est conseillé de faire appel aux services d'un
@@ -431,7 +452,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								ainsi qu'en matière de responsabilité civile de l'entreprise et
 								de ses dirigeants ou en matière de perte d'exploitation.
 							</SmallBody>
-							<Link href="https://www.economie.gouv.fr/entreprises/assurances-obligatoires">
+							<Link
+								href="https://www.economie.gouv.fr/entreprises/assurances-obligatoires"
+								aria-label="Plus d'infos, voir plus d'informations sur economie.gouv.fr, nouvelle fenêtre"
+							>
 								Plus d'infos
 							</Link>
 						</Trans>
@@ -581,6 +605,7 @@ type StatutsExampleProps = {
 }
 
 const StatutsExample = ({ statut }: StatutsExampleProps) => {
+	const { t } = useTranslation()
 	const links = {
 		SARL: 'https://bpifrance-creation.fr/file/109068/download?token=rmc93Ve3',
 		EURL: 'https://bpifrance-creation.fr/file/109070/download?token=Ul-rT6Z0',
@@ -591,7 +616,14 @@ const StatutsExample = ({ statut }: StatutsExampleProps) => {
 	}
 
 	return (
-		<Link href={links[statut as keyof typeof links]}>
+		<Link
+			href={links[statut as keyof typeof links]}
+			aria-label={t(
+				'entreprise.tâches.statuts.aria-label',
+				'Exemples de status pour votre {{statut}}, nouvelle fenêtre',
+				{ statut }
+			)}
+		>
 			<Trans i18nKey="entreprise.tâches.statuts.exemple">
 				Exemple de statuts pour votre
 			</Trans>{' '}

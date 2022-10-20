@@ -86,7 +86,10 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 						<Trans i18nKey="feedback.beta-testeur">
 							Pour continuer à donner votre avis et accéder aux nouveautés en
 							avant-première,{' '}
-							<Link href={INSCRIPTION_LINK}>
+							<Link
+								href={INSCRIPTION_LINK}
+								aria-label="inscrivez-vous sur la liste des beta-testeur, nouvelle fenêtre"
+							>
 								inscrivez-vous sur la liste des beta-testeur
 							</Link>
 						</Trans>

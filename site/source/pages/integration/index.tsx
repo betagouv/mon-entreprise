@@ -4,7 +4,7 @@ import { Banner, InnerBanner } from '@/design-system/banner'
 import { Link } from '@/design-system/typography/link'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { TrackChapter } from '../../ATInternetTracking'
 import API from './API'
@@ -25,6 +25,8 @@ export default function Integration() {
 	const { data: jobOffers } = useFetchData<JobOffer[]>('/data/job-offers.json')
 	const openJobOffer = jobOffers?.[0]
 
+	const { t } = useTranslation()
+
 	return (
 		<TrackChapter chapter1="integration">
 			<ScrollToTop />
@@ -44,7 +46,14 @@ export default function Integration() {
 						<span>
 							<Emoji emoji="📯" />{' '}
 							<strong>
-								<a href={openJobOffer.link}>Mon-entreprise recrute !</a>
+								<a
+									href={openJobOffer.link}
+									aria-label={t(
+										"Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise.urssaf.fr"
+									)}
+								>
+									Mon-entreprise recrute !
+								</a>
 							</strong>{' '}
 							<small>{openJobOffer.title}</small>
 						</span>

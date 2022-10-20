@@ -383,9 +383,9 @@ assistant-DRI:
         below.</1>"
       nombre-déclarations: This is your {{nthDeclaration}} tax return since the
         creation of your company.
-  intro: <0><0>We propose you a help to fill in the income from your professional
+  intro: <0><0>We offer you a help to fill in the income from your professional
     activity in your <2>income tax return of 2021</2> on
-    <5>impot.gouv.fr</5>.<7></7></0><1>Answer these few questions, at the end
+    <5>impots.gouv.fr</5>.<7></7></0><1>Answer these few questions, at the end
     you will have :</1><2><0>The forms that concern you</0><1>The list of the
     boxes that concern you with the amount to be filled</1><2>An estimate of the
     social security contributions to be paid to the Urssaf in 2022</2></2></0>
@@ -394,7 +394,7 @@ assistant-DRI:
     know the <2>amount of social security contributions to be paid in
     2022</2></0><1>This tool is <1>100% confidential</1>: all the information
     you enter will remain in your browser.</1><2>To make your income tax return,
-    you will have to connect to <2>impot.gouv.fr</2>.</2></1>"
+    you will have to connect to <2>impots.gouv.fr</2>.</2></1>"
 associés:
   choix1: Alone
   choix2: Several partners
@@ -626,22 +626,28 @@ déplier: show more
 dû par: owed by
 d’aides: aids
 embauche:
+  cesuAriaLabel: chèque emploi associatif (CEA), see more information on
+    cesu.urssaf.fr, new window
   chaque mois: >
     <0>Then each month</0> <1>
       <0>Compute the individual social contributions (using the chosen payslip software)</0>
       <1>Declare the contributions through the DSN, the new online declaration system</1>
       <2>Deliver the standardised payslip to your employee</2>
     </1> <2>Get an example payslip</2>
+  teseAriaLabel: titre emploi service entreprise (Tese), see more information on
+    letese.urssaf.fr, new window
   tâches:
     contrat:
       titre: Sign an employment contract with your employee
     description: All the necessary steps to hire your first employee.
     dpae:
+      ariaLabel: be done online, access the URSSAF website, new window
       description: >
         This can be done through the form called DPAE, must be completed
         within 8 days before any hiring, and can <2>be done online (Fr)</2>
       titre: Declare your hiring t  o the social administration
     logiciel de paie:
+      ariaLabel: private payroll software, see examples on dsn-info.fr, new window
       description: >
         With fewer than 20 employees, payslips and declarations can be
         handled online by the <2> Tese (Fr)</2>, a tool developped by the french
@@ -655,6 +661,7 @@ embauche:
       description: All the necessary steps to hire your first employee in France.
       titre: The formalities for hiring
     pension:
+      aria-label: Find my pension fund, new window
       description: Find your pension institute (Fr)
       titre: Contact the compulsory supplementary pension institution assigned to you
     prévoyance . santé:
@@ -761,6 +768,7 @@ entreprise:
         deposit of capital.</1>
       titre: Deposit capital funds
     comptable:
+      ariaLabel: ""
       description: Managing a company brings a number of <1>accounting
         obligations</1>. It is advisable to call in a competent person or use a
         website that can handle accounting for you.
@@ -820,6 +828,7 @@ entreprise:
         main activity run. A secondary activity can be registered.
       titre: Write the corporate purpose of the company
     statuts:
+      aria-label: Status examples for your {{status}}, new window
       description: The company's articles of association ( "les statuts"), is an
         official document written in French, describing the status choice,
         naming the associate(s) and the contributed capital. <2>For more than
@@ -862,6 +871,7 @@ feedback:
 fieldRequired: Required field
 footer:
   accessibilité: "Accessibility: not compliant"
+  accessibilitéAriaLabel: "Accessibility : not compliant, learn more"
 formeJuridique:
   EI: Also called company in own name or company in a personal name. No capital
     contribution is necessary. Private wealth and corporate wealth are one.
@@ -973,6 +983,7 @@ gérer:
     minoritaire: Minority director
   ressources:
     annuaire-entreprises:
+      aria-label: Company Directory, new window
       body: Find all public information about your company on
       cta: Visit the site
       title: See your public data
@@ -1231,9 +1242,9 @@ pages:
         cta: Discover
         title: Publicodes
     code:
+      copy-code: Copy the code
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
-      copy-code: Copy the code
     components:
       CasParticuliers: '<0>Learn more about...</0><1><0>How to make a simulation in
         the past?</0><1>Since the end of 2021, the calculation rules of the
@@ -1288,6 +1299,7 @@ pages:
         "Net salary" in the simulator, or by searching for "Net salary" in the
         search box at the top right.</2>
     couleur: "What color? "
+    doc: ""
     home:
       choice:
         api:
@@ -1906,6 +1918,10 @@ privacyContent:
     you can easily retrieve it the next time you visit the site. If you do not
     wish this to be the case, we advise you to use <2>private browsing</2>.</0>
   ok: Your preferences have been saved
+  privateNavAriaLabel: private navigation, see more information on this subject on
+    the CNIL website, new window
+  recommandationsAriaLabel: recommendations of the CNIL, see more information on
+    this subject on the CNIL website, new window
   texte: <0></0><1>We collect anonymous statistics on the use of the site, which
     we use for the sole purpose of improving the service, in accordance with the
     <2>recommendations of the CNIL</2> and the RGPD regulation. This is the only

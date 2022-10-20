@@ -8,7 +8,6 @@ import React, {
 	useCallback,
 	useRef,
 } from 'react'
-import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -79,17 +78,14 @@ export const Link = React.forwardRef<
 })
 
 export function useExternalLinkProps({
-	title,
 	href,
 	children,
 	openInSameWindow,
 }: {
-	title?: string | null
 	href?: string
 	children?: React.ReactNode
 	openInSameWindow?: true
 }) {
-	const { t } = useTranslation()
 	if (
 		openInSameWindow ||
 		!href ||
@@ -99,7 +95,6 @@ export function useExternalLinkProps({
 	}
 
 	return {
-		title: (title ? `${title} - ` : '') + t('Nouvelle fenêtre'),
 		target: '_blank',
 		rel: 'noreferrer',
 		external: true,

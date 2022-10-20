@@ -17,6 +17,7 @@ import { getMeta } from '@/utils'
 import { DottedName } from 'modele-social'
 import { Rule, RuleNode } from 'publicodes'
 import { Fragment, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import styled, { css } from 'styled-components'
 import { SimpleField } from '../../_components/Fields'
@@ -32,6 +33,8 @@ const RuleInputWithTitle = ({
 	dottedName: string
 }) => {
 	const dispatch = useDispatch()
+
+	const { t } = useTranslation()
 
 	const dispatchValue = useCallback(
 		(value, dottedName: DottedName) => {
@@ -49,7 +52,10 @@ const RuleInputWithTitle = ({
 					`}
 				>
 					{title}
-					<ExplicableRule dottedName={dottedName} />
+					<ExplicableRule
+						dottedName={dottedName}
+						aria-label={t('En savoir plus')}
+					/>
 				</H3>
 			)}
 			<RuleInput

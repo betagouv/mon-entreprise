@@ -37,13 +37,19 @@ export default function Autoentrepreneur() {
 				<Body>
 					<strong>Note</strong> : Certaines activités sont exclues de ce statut
 					(
-					<Link href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions">
+					<Link
+						href="https://www.afecreation.fr/pid10375/pour-quelles-activites.html#principales-exclusions"
+						aria-label={t('voir la liste sur afecreation.fr, nouvelle fenêtre')}
+					>
 						{' '}
 						voir la liste
 					</Link>
 					). Certaines activités sont réglementées avec une qualification ou une
 					expérience professionnelle (
-					<Link href="https://www.afecreation.fr/pid316/activites-reglementees.html">
+					<Link
+						href="https://www.afecreation.fr/pid316/activites-reglementees.html"
+						aria-label={t('voir la liste sur afecreation.fr, nouvelle fenêtre')}
+					>
 						voir la liste
 					</Link>
 					).

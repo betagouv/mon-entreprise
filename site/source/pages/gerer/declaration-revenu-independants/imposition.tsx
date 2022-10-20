@@ -191,7 +191,10 @@ export default function Imposition() {
 									vous transmette à nouveau ces informations.
 								</Body>
 								<Body>
-									<Link href="https://www.impots.gouv.fr/contacts">
+									<Link
+										href="https://www.impots.gouv.fr/contacts"
+										aria-label="Contacter le service des impôts sur impots.gouv.fr, nouvelle fenêtre"
+									>
 										Contacter le service des impôts
 									</Link>
 								</Body>
@@ -314,8 +317,11 @@ function ResultSection() {
 							<Body>
 								C'est la déclaration de revenu qui est effectuée chaque année
 								sur{' '}
-								<Link href="https://www.impots.gouv.fr/accueil">
-									impot.gouv.fr
+								<Link
+									href="https://www.impots.gouv.fr/accueil"
+									aria-label="impot.gouv.fr, nouvelle fenêtre"
+								>
+									impots.gouv.fr
 								</Link>
 								. Elle est utilisée pour calculer{' '}
 								<Strong>

@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Link as DesignSystemLink } from '@/design-system/typography/link'
 import { EngineContext } from '@/components/utils/EngineContext'
@@ -14,7 +14,6 @@ const Bold = styled.span<{ bold: boolean }>`
 
 export const SelectSimulationYear = () => {
 	const dispatch = useDispatch()
-	const { t } = useTranslation()
 	const year = useContext(EngineContext).evaluate('date')
 	const choices = [2021, 2022]
 
@@ -38,10 +37,6 @@ export const SelectSimulationYear = () => {
 								onPress={() =>
 									dispatch(updateSituation('date', `01/01/${year}`))
 								}
-								title={t(
-									'pages.simulateurs.select-year.click-to-change-year',
-									"Cliquez pour changer d'année"
-								)}
 							>
 								{actualYear === 2022 ? (
 									<Trans i18nKey="pages.simulateurs.select-year.access">

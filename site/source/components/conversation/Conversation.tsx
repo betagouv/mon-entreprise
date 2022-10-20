@@ -23,7 +23,7 @@ import {
 import { evaluateQuestion } from '@/utils'
 import { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { TrackPage } from '../../ATInternetTracking'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
@@ -48,6 +48,7 @@ export default function Conversation({
 	const situation = useSelector(situationSelector)
 	const currentQuestionIsAnswered = !(currentQuestion in useMissingVariables())
 	const previousAnswers = useSelector(answeredQuestionsSelector)
+	const { t } = useTranslation()
 	useEffect(() => {
 		if (currentQuestion) {
 			dispatch(goToQuestion(currentQuestion))
@@ -100,7 +101,7 @@ export default function Conversation({
 								<H3 id="questionHeader">
 									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
 									<ExplicableRule
-										aria-label="En savoir plus"
+										aria-label={t('En savoir plus')}
 										light
 										dottedName={currentQuestion}
 									/>

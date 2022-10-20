@@ -275,7 +275,7 @@ assistant-DRI:
         la création de votre entreprise.
   intro: <0><0>Nous vous proposons une aide pour remplir les revenus issus de
     votre activité professionnelle dans votre <2>déclaration des revenu de
-    2021</2> sur <5>impot.gouv.fr</5>.<7></7></0><1>Répondez à ces quelques
+    2021</2> sur <5>impots.gouv.fr</5>.<7></7></0><1>Répondez à ces quelques
     questions, à la fin vous aurez :</1><2><0>Les formulaires qui vous
     concernent</0><1>La liste des cases qui vous concernent avec le montant à
     remplir</1><2>Une estimation des cotisations sociales à payer à l'Urssaf en
@@ -286,7 +286,7 @@ assistant-DRI:
     payer en 2022</2></0><1>Cet outil est <1>100 % confidentiel</1> : toutes les
     informations que vous renseignez resteront dans votre navigateur.</1><2>Pour
     faire votre déclaration de revenu, il faudra vous connecter sur
-    <2>impot.gouv.fr</2>.</2></1>"
+    <2>impots.gouv.fr</2>.</2></1>"
 associés:
   choix1: Seul
   choix2: Plusieurs personnes
@@ -437,22 +437,29 @@ domiciliation inconnue: domiciliation inconnue
 domiciliée à: domiciliée à
 d’aides: d’aides
 embauche:
+  cesuAriaLabel: chèque emploi associatif (CEA), voir plus d'informations sur
+    cesu.urssaf.fr, nouvelle fenêtre
   chaque mois: <0>Tous les mois</0><1><0>Utiliser un logiciel de paie pour
     calculer les cotisations sociales et les transmettre via la déclaration
     sociale nominative (DSN).<1></1>Certaines offres de service de l’Urssaf
     comme le <4>titre emploi service entreprise (Tese)</4> ou le <8>chèque
     emploi associatif (CEA)</8> gèrent automatiquement la transmission de la DSN
     pour vous.</0><1>Remettre la fiche de paie à votre employé</1></1>
+  teseAriaLabel: titre emploi service entreprise (Tese), voir plus d'informations
+    sur letese.urssaf.fr, nouvelle fenêtre
   tâches:
     contrat:
       titre: Signer un contrat de travail avec votre employé
     description: Toutes les étapes nécessaires à l'embauche de votre premier employé.
     dpae:
+      ariaLabel: être effectué en ligne, accéder au site de l'URSSAF, nouvelle fenêtre
       description: Ceci peut être fait par le biais du formulaire appelé DPAE, doit
         être complété dans les 8 jours avant toute embauche, et peut <2>être
         effectué en ligne</2>.
       titre: Déclarer l'embauche à l'administration sociale
     logiciel de paie:
+      ariaLabel: logiciel de paie privé, voir des exemples sur dsn-info.fr, nouvelle
+        fenêtre
       description: Les fiches de paie et les déclarations peuvent être traitées en
         ligne gratuitement par le <2>Tese</2>. Vous pouvez aussi utiliser un
         <5>logiciel de paie privé.</5>
@@ -465,6 +472,7 @@ embauche:
       description: Toutes les démarches nécessaires à l'embauche de votre premier salarié.
       titre: Les formalités pour embaucher
     pension:
+      aria-label: Trouver mon institution de prévoyance, nouvelle fenêtre
       description: Trouver mon institution de prévoyance
       titre: Prendre contact avec l'institution de prévoyance complémentaire
         obligatoire qui vous est assignée
@@ -557,6 +565,7 @@ entreprise:
         capital.</1>
       titre: Déposer le capital
     comptable:
+      ariaLabel: obligations comptables, voir le détail sur economie.gouv.fr
       description: La gestion d'une entreprise impose un certain nombre
         d'<1>obligations comptables</1>. Il est conseillé de faire appel aux
         services d'un expert-comptable ou d'un logiciel de comptabilité en
@@ -596,6 +605,7 @@ entreprise:
         Une activité secondaire peut être enregistrée.
       titre: Déterminer l'objet social
     statuts:
+      aria-label: Exemples de status pour votre {{statut}}, nouvelle fenêtre
       description: Il s'agit d'un document officiel qui intègre la forme juridique,
         nomme les associés et leurs contributions au capital. <2>Dans le cas
         d'une création d'entreprise avec plusieurs associés, il est recommandé
@@ -628,6 +638,7 @@ feedback:
 fieldRequired: Champ requis
 footer:
   accessibilité: "Accessibilité : non conforme"
+  accessibilitéAriaLabel: "Accessibilité : non conforme, en savoir plus"
 formeJuridique:
   EI: Aucun apport en capital n'est nécessaire. Le capital privé et le capital de
     l'entreprise ne font qu'un.
@@ -747,6 +758,7 @@ gérer:
     minoritaire: Dirigeant minoritaire
   ressources:
     annuaire-entreprises:
+      aria-label: Annuaire des Entreprises, nouvelle fenêtre
       body: Retrouvez toutes les informations publiques concernant votre entreprise
         sur
       cta: Visiter le site
@@ -994,9 +1006,9 @@ pages:
         cta: Découvrir
         title: Publicodes
     code:
+      copy-code: Copier le code
       description: "Voici le code à copier-coller sur votre site&nbsp;:"
       titre: Code d'intégration
-      copy-code: Copier le code
     components:
       CasParticuliers: "<0>En savoir plus sur...</0><1><0>Comment faire une simulation
         dans le passé ?</0><1>Depuis fin 2021, les règles de calculs des
@@ -1054,6 +1066,7 @@ pages:
         en cliquant sur « Salaire net » dans le simulateur, ou en recherchant «
         Salaire net » dans la recherche en haut à droite.</2>
     couleur: "Quelle couleur ? "
+    doc: documentation en ligne, voir la documentation en ligne
     home:
       choice:
         api:
@@ -1576,6 +1589,10 @@ privacyContent:
     prochaine visite sur le site. Si vous ne souhaitez pas que ce soit le cas,
     nous vous conseillons d'utiliser la <2>navigation privée</2>.</0>
   ok: Vos préférences ont bien été enregistrées
+  privateNavAriaLabel: navigation privée, voir plus d'informations à ce sujet sur
+    le site de la CNIL, nouvelle fenêtre
+  recommandationsAriaLabel: recommandations de la CNIL, voir plus d'informations à
+    ce sujet sur le site de la CNIL, nouvelle fenêtre
   texte: <0></0><1>Nous recueillons des statistiques anonymes sur l'utilisation du
     site, que nous utilisons dans le seul but d'améliorer le service,
     conformément aux <2>recommandations de la CNIL</2> et au règlement RGPD. Ce

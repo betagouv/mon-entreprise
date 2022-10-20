@@ -121,6 +121,8 @@ function ActivitéMixte() {
 		[dispatch, situation]
 	)
 
+	const { t } = useTranslation()
+
 	return (
 		<div key={Boolean(defaultChecked).toString()}>
 			<StyledActivitéMixteContainer>
@@ -134,7 +136,11 @@ function ActivitéMixte() {
 						Activité mixte
 					</Switch>
 				</Trans>
-				<ExplicableRule dottedName={rule.dottedName} light />
+				<ExplicableRule
+					dottedName={rule.dottedName}
+					light
+					aria-label={t('En savoir plus')}
+				/>
 			</StyledActivitéMixteContainer>
 		</div>
 	)
