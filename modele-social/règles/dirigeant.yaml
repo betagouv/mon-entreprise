@@ -470,33 +470,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
     d'acre sur une meme année.
 
 dirigeant . auto-entrepreneur . impôt: oui
-dirigeant . auto-entrepreneur . impôt . revenu imposable:
-  titre: revenu imposable auto-entrepreneur
-  description: |
-    Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle de bénéfices au titre des BNC ou BIC.
-
-    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
-
-  valeur: entreprise . chiffre d'affaires
-  abattement:
-    applicable si: entreprise . imposition . régime . micro-entreprise
-    produit:
-      composantes:
-        - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
-          taux: 71%
-        - assiette: entreprise . chiffre d'affaires . service BIC
-          taux: 50%
-        - assiette: entreprise . chiffre d'affaires . service BNC
-          taux: 34%
-    plancher:
-      variations:
-        - si: entreprise . activité . mixte
-          alors: 610 €/an
-        - sinon: 305 €/an
-
-  références:
-    Légifrance: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
-    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
+dirigeant . auto-entrepreneur . impôt . revenu imposable: entreprise . imposition . régime . micro-entreprise . revenu abattu
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   rend non applicable: revenu imposable
