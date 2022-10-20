@@ -22,7 +22,7 @@ export default function TextAreaField(props: TextAreaFieldProps) {
 
 	return (
 		<StyledContainer>
-			<StyledInputContainer
+			<StyledTextAreaContainer
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label && !props.small}
 			>
@@ -37,7 +37,7 @@ export default function TextAreaField(props: TextAreaFieldProps) {
 						{props.label}
 					</StyledLabel>
 				)}
-			</StyledInputContainer>
+			</StyledTextAreaContainer>
 			{props.errorMessage && (
 				<StyledErrorMessage {...errorMessageProps}>
 					{props.errorMessage}
@@ -121,7 +121,7 @@ export const StyledSuffix = styled.span`
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 
-export const StyledInputContainer = styled.div<{
+export const StyledTextAreaContainer = styled.div<{
 	hasError: boolean
 	hasLabel: boolean
 	small?: boolean
