@@ -15,194 +15,83 @@ protection sociale . retraite:
 
     Le système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.
 
-    ## La retraite en France en quelques chiffres
-      - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE 🥇)
-      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE 🥇)
-      - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein
-
     La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
 
     Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
 
-  références:
-    CNAV: https://www.lassuranceretraite.fr
-    OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/pensions-at-a-glance-2017_pension_glance-2017-en#page135
-    INSEE: https://www.insee.fr/fr/statistiques/fichier/3549496/REVPMEN18_F1.21_niv-pauv-pers-agees.pdf
+protection sociale . retraite . trimestres:
+  titre: trimestres validés
 
-  formule:
-    somme:
-      - base
-      - complémentaire salarié
-      - complémentaire indépendants
-
-  note: |
-    Il s'agit d'une estimation a but purement indicatif, afin de comparer la retraite des différents régimes.
-    On se limite notamment aux hypothèses suivantes :
-      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestres requis (172), ou en partant à l'âge taux plein (67 ans)
-      - On considère que le travailleur a eu le même revenu tout au long de sa carrière
-      - On considère que le travailleur est resté dans le même régime tout au long de sa carrière
-      - On ne prend pas en compte les minorations / majorations
-      - On ne prend pas en compte les caisses de retraite des professions libérales réglementées (les 10 sections de la Cnavpl et la Cnbf)
-      - On ne calcule pas le nombre de trimestres validés par année
-
-protection sociale . retraite . base:
-  # TODO : vérifier les modalités de calcul pour les salariés et les autoentrepreneurs. Il est possible que ce soit le même mécanisme que pour les indépendants.
-  titre: pension de retraite de base
-  produit:
-    taux: taux de la pension
-    plafond: plafond sécurité sociale
-    assiette:
-      variations:
-        - si: dirigeant . indépendant
-          alors: trimestres . indépendant . revenu cotisé
-        - sinon: revenu moyen
-  note: |-
-    Les impatriés bénéficient d'une exonération de cotisation vieillesse. En contrepartie, ils n'acquièrent aucun droit pendant la durée d'exonération.
-
-  références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F21552
-
-protection sociale . retraite . base . taux de la pension:
-  description: Le taux appliqué, avec décote ou surcote en fonction du nombre de trimestres cotisés.
-  formule:
-    variations:
-      - si: trimestres = 0
-        alors: 0%
-      - sinon: 50%
-  note: On ne prend pas en compte la décote du taux suite aux trimestres manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans (ou avant si tous les trimestres sont validés).
-  références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F19666
-
-protection sociale . retraite . base . trimestres:
-  unité: trimestres validés/an
-  somme:
-    - salarié
-    - indépendant
-    - auto-entrepreneur
-  plafond: 4
-
-protection sociale . retraite . base . trimestres . salarié:
-  unité: trimestres validés/an
-  grille: &bareme_trimestre
-    assiette: salarié . rémunération . brut
-    multiplicateur: SMIC . horaire
+  grille:
+    assiette: base cotisée
+    multiplicateur: SMIC . horaire . début d'année
     tranches:
-      - montant: 0
+      - montant: 0 trimestres validés/an
         plafond: 150 heures/an
-      - montant: 1
+      - montant: 1 trimestres validés/an
         plafond: 300 heures/an
-      - montant: 2
+      - montant: 2 trimestres validés/an
         plafond: 450 heures/an
-      - montant: 3
+      - montant: 3 trimestres validés/an
         plafond: 600 heures/an
-      - montant: 4
+      - montant: 4 trimestres validés/an
   références:
-    cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
+    "Durée d'assurance retraite du salarié du secteur privé": https://www.service-public.fr/particuliers/vosdroits/F1761
+    'Salaire validant un trimestre': https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
     Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
 
-protection sociale . retraite . base . trimestres . indépendant:
-  unité: trimestres validés/an
-  variations:
-    - si: dirigeant . indépendant . PL . CNAVPL . exonération incapacité
-      alors: 4
-    - sinon:
-        grille:
-          <<: *bareme_trimestre
-          assiette:
-            nom: revenu cotisé
-            variations:
-              - si: dirigeant . indépendant . PL . CNAVPL . exonération incapacité
-                alors: 0€/an
-              - sinon: dirigeant . indépendant . cotisations et contributions . retraite de base / dirigeant . indépendant . cotisations et contributions . retraite de base . taux
-  références:
-    Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
-    Article R634-1 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038787378
-    Article R551-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/
-    Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=26
-  note: |-
-    Rappel : la validation de trimestres s’effectue, pour les travailleurs indépendants à partir du **revenu cotisé**
-
-    Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel que rendu applicable aux travailleurs indépendants par les articles D634-1 et R634-1 du même code, moyennant adaptations, prévoit que pour la période postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres que le revenu annuel correspondant aux retenues subies par l’assuré représente de fois le montant du salaire minimum de croissance en vigueur au 1er janvier de l'année considérée calculé sur la base de 150 heures, avec un maximum de quatre trimestres par année civile.
-
-    Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
-
-    Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
-
-    Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.
-
-    Cotisation définitive RVB effectivement versée au titre d'une année N (+réductions ou exonérations génératrices de droits)  / taux de cotisation RVB au titre de cette année N (pour la part génératrice de droit applicable au revenu plafonné).
-
-    Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la validation de trimestres d’une année N.
-
-    Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
-
-protection sociale . retraite . base . trimestres . auto-entrepreneur:
-  applicable si: dirigeant . auto-entrepreneur
-  description: Les seuils de chiffre d'affaires minimum pour la validation des trimestres pour la retraite en auto-entrepreneur. En-dessous du montant minimum, vous n'aurez accès qu'à l'allocation de solidarité.
-  unité: trimestres validés/an
-  somme:
-    - grille:
-        assiette: entreprise . chiffre d'affaires . vente restauration hébergement
-        tranches:
-          - montant: 0
-            plafond: 4137 €/an
-          - montant: 1
-            plafond: 7286 €/an
-          - montant: 2
-            plafond: 10426 €/an
-          - montant: 3
-            plafond: 20740 €/an
-          - montant: 4
-    - grille:
-        assiette: entreprise . chiffre d'affaires . service BNC
-        tranches:
-          - montant: 0
-            plafond: 2880 €/an
-          - montant: 1
-            plafond: 5062 €/an
-          - montant: 2
-            plafond: 7266 €/an
-          - montant: 3
-            plafond: 9675 €/an
-          - montant: 4
-    - grille:
-        unité: trimestres validés/an
-        assiette: entreprise . chiffre d'affaires . service BIC
-        tranches:
-          - montant: 0
-            plafond: 2412 €/an
-          - montant: 1
-            plafond: 4239 €/an
-          - montant: 2
-            plafond: 6071 €/an
-          - montant: 3
-            plafond: 12030 €/an
-          - montant: 4
-  références:
-    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23369
-
-protection sociale . revenu moyen:
-  description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
-  notes: Normalement, on prend le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
+protection sociale . retraite . base cotisée:
+  titre: revenu cotisés pour la retraite de base
   unité: €/an
+  arrondi: oui
+  variations:
+    - si: dirigeant . indépendant
+      alors: revenu indépendant
+    - si: dirigeant . auto-entrepreneur
+      alors: revenu auto-entrepreneur
+    - si: salarié
+      alors: revenu salarié
+  plafond: plafond sécurité sociale
+  avec:
+    revenu salarié:
+      valeur: salarié . cotisations . vieillesse . salarié / (salarié . cotisations . vieillesse . salarié . plafonnée . taux + salarié . cotisations . vieillesse . salarié . déplafonnée . taux)
+      références:
+        Article R351-9 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
+        Salaire validant un trimestre: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
+    revenu auto-entrepreneur:
+      recalcul:
+        règle: entreprise . imposition . régime . micro-entreprise . revenu abattu
+        avec:
+          entreprise . imposition . régime . micro-entreprise . revenu abattu . plancher abattement: non
 
-  formule:
-    plancher: 0 €/mois
-    le maximum de:
-      - dirigeant . indépendant . revenu professionnel
-      - dirigeant . auto-entrepreneur . impôt . revenu imposable
-      - salarié . rémunération . brut
+    revenu indépendant:
+      valeur: dirigeant . indépendant . cotisations et contributions . retraite de base / dirigeant . indépendant . cotisations et contributions . retraite de base . taux
+      références:
+        Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
+        Article R634-1 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038787378
+        Article R551-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/
+        Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=26
+      note: |-
+        Rappel : la validation de trimestres s’effectue, pour les travailleurs indépendants à partir du **revenu cotisé**
 
-protection sociale . retraite . mois cotisés:
-  unité: mois
-  formule: 172 trimestres * 3 mois/trimestre
-  notes: On prend l'hypothèse d'une retraite à taux plein pour un travailleur né en 1973 ou après
+        Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel que rendu applicable aux travailleurs indépendants par les articles D634-1 et R634-1 du même code, moyennant adaptations, prévoit que pour la période postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres que le revenu annuel correspondant aux retenues subies par l’assuré représente de fois le montant du salaire minimum de croissance en vigueur au 1er janvier de l'année considérée calculé sur la base de 150 heures, avec un maximum de quatre trimestres par année civile.
+
+        Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
+
+        Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
+
+        Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.
+
+        Cotisation définitive RVB effectivement versée au titre d'une année N (+réductions ou exonérations génératrices de droits)  / taux de cotisation RVB au titre de cette année N (pour la part génératrice de droit applicable au revenu plafonné).
+
+        Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la validation de trimestres d’une année N.
+
+        Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
 
 protection sociale . retraite . CNAVPL:
   applicable si: dirigeant . indépendant . PL . CNAVPL
   remplace:
-    règle: base . trimestres . indépendant . revenu cotisé
-    dans: base . trimestres . indépendant
+    règle: base cotisée . revenu indépendant
     # Bug https://github.com/betagouv/publicodes/issues/207
     par: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1 . revenu cotisé
   description: |-
@@ -243,8 +132,8 @@ protection sociale . retraite . CNAVPL:
     de leur profession pour une durée de plus de 6 mois
   références:
     guide juridique CNAVPL: https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=234211#page=27
-
 protection sociale . retraite . CIPAV:
+protection sociale . retraite . CIPAV . indépendant:
   applicable si: dirigeant . indépendant . PL . CIPAV
   remplace: complémentaire indépendants . points acquis
   unité: points
@@ -268,6 +157,42 @@ protection sociale . retraite . CIPAV:
   références:
     Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
+protection sociale . retraite . CIPAV . auto-entrepreneur:
+  applicable si:
+    toutes ces conditions:
+      - dirigeant . auto-entrepreneur
+      - entreprise . activité . nature . libérale . réglementée
+  avec:
+    trimestres:
+      titre: trimestres validés
+      remplace: retraite . trimestres
+      grille:
+        assiette: entreprise . chiffre d'affaires
+        multiplicateur: 2421 €/an
+        tranches:
+          - montant: 0 trimestres validés/an
+            plafond: 1
+          - montant: 1 trimestres validés/an
+            plafond: 2
+          - montant: 2 trimestres validés/an
+            plafond: 3
+          - montant: 3 trimestres validés/an
+            plafond: 4
+          - montant: 4 trimestres validés/an
+      références:
+        Le régime retraite de base des auto-entrepreneur: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Auto-entrepreneurs%20-%20La%20Cipav_0.pdf?page=10
+
+protection sociale . revenu moyen:
+  description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
+  notes: Normalement, on prend le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
+  unité: €/an
+
+  formule:
+    plancher: 0 €/mois
+    le maximum de:
+      - dirigeant . indépendant . revenu professionnel
+      - dirigeant . auto-entrepreneur . impôt . revenu imposable
+      - salarié . rémunération . brut
 protection sociale . retraite . CNAVPL . cotisation maximum T1:
   recalcul:
     règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1
@@ -279,7 +204,7 @@ protection sociale . retraite . CNAVPL . cotisation maximum T2:
     règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2
     avec:
       dirigeant . indépendant . assiette des cotisations: 5 * plafond sécurité sociale
-
+mois cotisés: 43 an * 12 mois/an
 protection sociale . retraite . complémentaire salarié:
   produit:
     assiette: points acquis * mois cotisés

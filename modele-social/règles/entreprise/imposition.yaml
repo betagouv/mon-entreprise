@@ -276,6 +276,7 @@ entreprise . imposition . régime . micro-entreprise . revenu abattu:
         - assiette: entreprise . chiffre d'affaires . service BNC
           taux: 34%
     plancher:
+      nom: plancher abattement
       variations:
         - si: entreprise . activité . mixte
           alors: 610 €/an
