@@ -7,7 +7,7 @@ import { Item, Select } from '@/design-system/field/Select'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
@@ -37,19 +37,25 @@ const arraySum = (arr: number[]) => arr.reduce((a, b) => a + b, 0)
 
 export default function Budget() {
 	const years = ['2019', '2020', '2021', '2022'] as const
-	const quarters = ['T1', 'T2', 'T3', 'T4']
+	const quarters = [
+		{ label: 'T1', 'aria-label': 'Trimestre 1' },
+		{ label: 'T2', 'aria-label': 'Trimestre 2' },
+		{ label: 'T3', 'aria-label': 'Trimestre 3' },
+		{ label: 'T4', 'aria-label': 'Trimestre 4' },
+	]
 	const [selectedYear, setSelectedYear] = useState<typeof years[number]>(
 		years[years.length - 1]
 	)
 	const categories = [
 		...new Set(
 			quarters
-				.map((q) => Object.keys(budget[selectedYear]?.[q] ?? {}))
+				.map((q) => Object.keys(budget[selectedYear]?.[q.label] ?? {}))
 				.reduce((acc, curr) => [...acc, ...curr], [])
 		),
 	]
+	const { t, i18n } = useTranslation()
 
-	const { language } = useTranslation().i18n
+	const { language } = i18n
 
 	return (
 		<>
@@ -91,31 +97,51 @@ export default function Budget() {
 							overflow: auto;
 						`}
 					>
-						<RessourcesAllocationTable>
+						<RessourcesAllocationTable role="table">
+							<caption className="visually-hidden">
+								{t(
+									'budget.tableCaption',
+									"Tableau affichant le bugdet de l'année {{year}} par poste de dépenses. La première colonne affiche l'année en cours ({{year}}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux HT et TTC agrégés.",
+									{ year: selectedYear }
+								)}
+							</caption>
 							<thead>
 								<tr>
 									<td>{selectedYear}</td>
 									{quarters.map((q) => (
-										<td key={q}>{q}</td>
+										<th
+											role="columnheader"
+											scope="col"
+											key={q.label}
+											aria-label={q['aria-label']}
+										>
+											{q.label}
+										</th>
 									))}
-									<td>Total</td>
+									<th>Total</th>
 								</tr>
 							</thead>
 							<tbody>
 								{categories.map((label) => (
 									<tr key={label}>
-										<td>{label}</td>
+										<th role="rowheader" scope="row">
+											{label}
+										</th>
 										{quarters.map((q) => {
-											const value = budget[selectedYear]?.[q]?.[label]
+											const value = budget[selectedYear]?.[q.label]?.[label]
 
 											return (
-												<td key={q}>
-													{value
-														? formatValue(value, {
-																displayedUnit: '€',
-																language,
-														  })
-														: '-'}
+												<td key={q.label}>
+													{value ? (
+														formatValue(value, {
+															displayedUnit: '€',
+															language,
+														})
+													) : (
+														<span aria-label="Pas de budget alloué">
+															<span aria-hidden>-</span>
+														</span>
+													)}
 												</td>
 											)
 										})}
@@ -123,7 +149,7 @@ export default function Budget() {
 											{formatValue(
 												arraySum(
 													quarters.map(
-														(q) => budget[selectedYear]?.[q]?.[label] ?? 0
+														(q) => budget[selectedYear]?.[q.label]?.[label] ?? 0
 													)
 												),
 												{
@@ -137,14 +163,16 @@ export default function Budget() {
 							</tbody>
 							<tfoot>
 								<tr>
-									<td>Total HT</td>
+									<th role="rowheader" scope="row">
+										Total HT
+									</th>
 									{quarters.map((q) => {
 										const value = arraySum(
-											Object.values(budget[selectedYear]?.[q] ?? {})
+											Object.values(budget[selectedYear]?.[q.label] ?? {})
 										)
 
 										return (
-											<td key={q}>
+											<td key={q.label}>
 												{value
 													? formatValue(value, {
 															displayedUnit: '€',
@@ -159,7 +187,7 @@ export default function Budget() {
 											arraySum(
 												quarters.map((q) =>
 													arraySum(
-														Object.values(budget[selectedYear]?.[q] ?? {})
+														Object.values(budget[selectedYear]?.[q.label] ?? {})
 													)
 												)
 											),
@@ -171,15 +199,18 @@ export default function Budget() {
 									</td>
 								</tr>
 								<tr>
-									<td>Total TTC</td>
+									<th role="rowheader" scope="row">
+										Total TTC
+									</th>
 									{quarters.map((q) => {
 										const value = Math.round(
-											arraySum(Object.values(budget[selectedYear]?.[q] ?? {})) *
-												1.2
+											arraySum(
+												Object.values(budget[selectedYear]?.[q.label] ?? {})
+											) * 1.2
 										)
 
 										return (
-											<td key={q}>
+											<td key={q.label}>
 												{value
 													? formatValue(value, {
 															displayedUnit: '€',
@@ -196,7 +227,9 @@ export default function Budget() {
 													quarters.map(
 														(q) =>
 															arraySum(
-																Object.values(budget[selectedYear]?.[q] ?? {})
+																Object.values(
+																	budget[selectedYear]?.[q.label] ?? {}
+																)
 															) * 1.2
 													)
 												)
@@ -222,12 +255,14 @@ export default function Budget() {
 const RessourcesAllocationTable = styled.table`
 	width: 100%;
 	text-align: left;
-	td {
+	td,
+	th {
 		padding: 6px;
 		font-family: ${({ theme }) => theme.fonts.main};
 	}
 
-	td:not(:first-child) {
+	td:not(:first-child),
+	th:not(:first-child) {
 		width: 100px;
 		text-align: right;
 	}

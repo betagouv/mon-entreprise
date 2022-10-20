@@ -176,6 +176,9 @@ Situation personnelle: Situation personnelle
 Suivant: Suivant
 Supprimer les données sauvegardées.: Supprimer les données sauvegardées.
 Supprimer toute ma situation: Supprimer toute ma situation
+Tableau affichant pour chaque mois de la période précédemment sélectionnée le montant de réductions pour la situation sélectionnée.:
+  Tableau affichant pour chaque mois de la période précédemment sélectionnée le
+  montant de réductions pour la situation sélectionnée.
 Total des retenues: Total des retenues
 Tout effacer: Tout effacer
 Tout le site: Tout le site
@@ -314,6 +317,13 @@ autoentrepreneur:
     titre: Auto-entrepreneur
   titre: Entreprise individuelle ou auto-entrepreneur
 back: Retourner à la simulation
+budget:
+  tableCaption: Tableau affichant le bugdet de l'année {{year}} par poste de
+    dépenses. La première colonne affiche l'année en cours ({{year}}) sur la
+    première ligne puis les postes de dépenses et pour finir le total HT et
+    total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre.
+    La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi
+    que les totaux HT et TTC agrégés.
 cards:
   simulator-resource:
     cta: Accéder au simulateur
@@ -321,6 +331,9 @@ checklist:
   showmore:
     closed: En savoir plus
     open: Masquer les détails
+chomagePartiel:
+  tableCaption: Tableau indiquant le salaire net et le coût pour l'employeur avec
+    ou sans chômage partiel.
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 an <1>(automatique et inconditionnelle)</1></1><2>Entre 3
     et 4 trimestres <2>(sous conditions d'éligibilité)</2></2>
@@ -592,6 +605,15 @@ entreprise:
     titre: À faire pour créer votre entreprise
     titre2: Recommandé avant le début de l'activité
 est un SIREN non diffusible: est un SIREN non diffusible
+explications:
+  tableCaption: Tableau affichant les lignes de votre liasse fiscale associées aux
+    exonérations fiscales en place pour chaque type d'activité. La première
+    colonne affiche les différents types d'activité (BIC, BNC). La deuxième
+    colonne indique les lignes de votre liasse fiscale qui vous permettent de
+    déterminer votre résultat fiscal, et ce pour chaque type d'activité. Les
+    autres colonnes affichent les exonérations en place ainsi que les lignes de
+    liasse fiscale ou ajouter vos exonérations et ce pour chaque type
+    d'activité.
 feedback:
   beta-testeur: Pour continuer à donner votre avis et accéder aux nouveautés en
     avant-première, <2>inscrivez-vous sur la liste des beta-testeur</2>

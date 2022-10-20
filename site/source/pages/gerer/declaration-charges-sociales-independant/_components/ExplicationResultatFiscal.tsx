@@ -1,6 +1,7 @@
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { Li, Ul } from '@/design-system/typography/list'
 import { baseParagraphStyle, Body } from '@/design-system/typography/paragraphs'
+import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
 export const StyledTable = styled.table`
@@ -15,11 +16,22 @@ export const StyledTable = styled.table`
 		background: var(--lightestColor);
 	}
 
-	td {
+	td,
+	th {
 		padding: 0.5rem;
 		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
 	}
+	th {
+		font-weight: initial;
+	}
 `
+
+const exonerationsHeader = 'exonerationsHeader'
+const resultatFiscalHeader = 'resultatFiscalHeader'
+const zonesHeader = 'zonesHeader'
+const madelinHeader = 'madelinHeader'
+const plusValueHeader = 'plusValueHeader'
+const suramortissementHeader = 'suramortissementHeader'
 
 export function ExplicationsResultatFiscal() {
 	return (
@@ -43,110 +55,156 @@ export function ExplicationsResultatFiscal() {
 					Ajoutez les exonérations <strong>(2)</strong>
 				</Li>
 			</Ul>
-			<StyledTable>
-				<tr>
-					<td></td>
-					<td></td>
-					<td className="ui__ light-bg" colSpan={4}>
-						Exonérations <strong>(2)</strong>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td className="ui__ light-bg">
-						Résultat fiscal <strong>(1)</strong>
-					</td>
-					<td className="ui__ light-bg notice">
-						Exonérations liées aux zones / activités
-					</td>
-					<td className="ui__ light-bg notice">
-						Exonérations Madelin et plan d’épargne retraite
-					</td>
-					<td className="ui__ light-bg notice">
-						Exonérations de plus-values à court terme
-					</td>
-					<td className="ui__ light-bg notice">Suramortissement productif</td>
-				</tr>
-				<tr>
-					<td>BIC réel normal</td>
-					<td>
-						<strong>2058-A-SD</strong>
-						<br />
-						Ligne XN (bénéfice) Ligne XO (déficit)
-					</td>
-					<td>
-						<strong>2058-A-SD</strong>
-						<br />
-						Lignes K9 / L6 / ØV / PP / L2 / 1F / PC / L5 / PA / XC / PB
-					</td>
-					<td>
-						<strong>2053-SD</strong>
-						<br />
-						Lignes A7 et A8
-					</td>
-					<td>
-						<strong>2058-A-SD</strong>
-						<br />
-						Ligne XG (montant inclus)
-					</td>
-					<td>
-						<strong>2058-A-SD</strong>
-						<br />
-						Lignes X9 et YA
-					</td>
-				</tr>
-				<tr>
-					<td>BIC réel simplifié</td>
-					<td>
-						<strong>2033-B-SD</strong>
-						<br />
-						Ligne 370 (bénéfice) Ligne 372 (déficit)
-					</td>
-					<td>
-						<strong>2033 B-SD</strong>
-						<br />
-						Lignes 986 / 127 / 991 / 345 / 992 / 987 / 989 / 138 / 990 / 993
-					</td>
-					<td>
-						<strong>2033-SD</strong>
-						<br />
-						Lignes 325 et 327
-					</td>
-					<td>
-						<strong>2033 B-SD</strong>
-						<br />
-						Ligne 350 (montant inclus)
-					</td>
-					<td>
-						<strong>2033 B-SD</strong>
-						<br />
-						Lignes 655 et 643
-					</td>
-				</tr>
-				<tr>
-					<td>BNC déclaration contrôlée</td>
-					<td>
-						<strong>2035-B-SD</strong>
-						<br />
-						Ligne CP (bénéfice) Ligne CR (déficit)
-					</td>
-					<td>
-						<strong>2035-B-SD </strong>
-						<br />
-						Lignes CS / AW / CU / CI / AX / CQ
-					</td>
-					<td>
-						<strong>2035-A-SD </strong>
-						<br />
-						Lignes BZ et BU
-					</td>
-					<td>
-						<strong>2035-A-SD</strong>
-						<br />
-						Ligne CL (montant inclus)
-					</td>
-					<td></td>
-				</tr>
+
+			<StyledTable role="table">
+				<caption className="visually-hidden">
+					<Trans i18nKey="explications.tableCaption">
+						Tableau affichant les lignes de votre liasse fiscale associées aux
+						exonérations fiscales en place pour chaque type d'activité. La
+						première colonne affiche les différents types d'activité (BIC, BNC).
+						La deuxième colonne indique les lignes de votre liasse fiscale qui
+						vous permettent de déterminer votre résultat fiscal, et ce pour
+						chaque type d'activité. Les autres colonnes affichent les
+						exonérations en place ainsi que les lignes de liasse fiscale ou
+						ajouter vos exonérations et ce pour chaque type d'activité.
+					</Trans>
+				</caption>
+				<thead>
+					<tr>
+						<th id="explicationEmptyTh1"></th>
+						<th id="explicationEmptyTh2"></th>
+						<th
+							className="ui__ light-bg"
+							colSpan={4}
+							id={exonerationsHeader}
+							role="columnheader"
+						>
+							Exonérations <strong>(2)</strong>
+						</th>
+					</tr>
+					<tr>
+						<th id="explicationEmptyTh3"></th>
+						<th className="ui__ light-bg" id={resultatFiscalHeader}>
+							Résultat fiscal <strong>(1)</strong>
+						</th>
+						<th
+							className="ui__ light-bg notice"
+							id={zonesHeader}
+							headers={exonerationsHeader}
+						>
+							Exonérations liées aux zones / activités
+						</th>
+						<th
+							className="ui__ light-bg notice"
+							id={madelinHeader}
+							headers={exonerationsHeader}
+						>
+							Exonérations Madelin et plan d’épargne retraite
+						</th>
+						<th
+							className="ui__ light-bg notice"
+							id={plusValueHeader}
+							headers={exonerationsHeader}
+						>
+							Exonérations de plus-values à court terme
+						</th>
+						<th
+							className="ui__ light-bg notice"
+							id={suramortissementHeader}
+							headers={exonerationsHeader}
+						>
+							Suramortissement productif
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th role="rowheader" scope="row">
+							BIC réel normal
+						</th>
+						<td headers={resultatFiscalHeader}>
+							<strong>2058-A-SD</strong>
+							<br />
+							Ligne XN (bénéfice) Ligne XO (déficit)
+						</td>
+						<td headers={`${exonerationsHeader} ${zonesHeader}`}>
+							<strong>2058-A-SD</strong>
+							<br />
+							Lignes K9 / L6 / ØV / PP / L2 / 1F / PC / L5 / PA / XC / PB
+						</td>
+						<td headers={`${exonerationsHeader} ${madelinHeader}`}>
+							<strong>2053-SD</strong>
+							<br />
+							Lignes A7 et A8
+						</td>
+						<td headers={`${exonerationsHeader} ${plusValueHeader}`}>
+							<strong>2058-A-SD</strong>
+							<br />
+							Ligne XG (montant inclus)
+						</td>
+						<td headers={`${exonerationsHeader} ${suramortissementHeader}`}>
+							<strong>2058-A-SD</strong>
+							<br />
+							Lignes X9 et YA
+						</td>
+					</tr>
+					<tr>
+						<th role="rowheader" scope="row">
+							BIC réel simplifié
+						</th>
+						<td headers={resultatFiscalHeader}>
+							<strong>2033-B-SD</strong>
+							<br />
+							Ligne 370 (bénéfice) Ligne 372 (déficit)
+						</td>
+						<td headers={`${exonerationsHeader} ${zonesHeader}`}>
+							<strong>2033 B-SD</strong>
+							<br />
+							Lignes 986 / 127 / 991 / 345 / 992 / 987 / 989 / 138 / 990 / 993
+						</td>
+						<td headers={`${exonerationsHeader} ${madelinHeader}`}>
+							<strong>2033-SD</strong>
+							<br />
+							Lignes 325 et 327
+						</td>
+						<td headers={`${exonerationsHeader} ${plusValueHeader}`}>
+							<strong>2033 B-SD</strong>
+							<br />
+							Ligne 350 (montant inclus)
+						</td>
+						<td headers={`${exonerationsHeader} ${suramortissementHeader}`}>
+							<strong>2033 B-SD</strong>
+							<br />
+							Lignes 655 et 643
+						</td>
+					</tr>
+					<tr>
+						<th role="rowheader" scope="row">
+							BNC déclaration contrôlée
+						</th>
+						<td headers={resultatFiscalHeader}>
+							<strong>2035-B-SD</strong>
+							<br />
+							Ligne CP (bénéfice) Ligne CR (déficit)
+						</td>
+						<td headers={`${exonerationsHeader} ${zonesHeader}`}>
+							<strong>2035-B-SD </strong>
+							<br />
+							Lignes CS / AW / CU / CI / AX / CQ
+						</td>
+						<td headers={`${exonerationsHeader} ${madelinHeader}`}>
+							<strong>2035-A-SD </strong>
+							<br />
+							Lignes BZ et BU
+						</td>
+						<td headers={`${exonerationsHeader} ${plusValueHeader}`}>
+							<strong>2035-A-SD</strong>
+							<br />
+							Ligne CL (montant inclus)
+						</td>
+						<td></td>
+					</tr>
+				</tbody>
 			</StyledTable>
 		</ButtonHelp>
 	)
