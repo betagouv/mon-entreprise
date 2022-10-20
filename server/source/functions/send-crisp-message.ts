@@ -41,8 +41,6 @@ type CrispType = {
 	}
 }
 
-const WEBSITE_ID = 'd8247abb-cac5-4db6-acb2-cea0c00d8524'
-
 export const sendCrispMessage = async (body: BodyType) => {
 	try {
 		const { message, email, subject } = body || {}
@@ -55,6 +53,8 @@ export const sendCrispMessage = async (body: BodyType) => {
 			process.env.CRISP_API_IDENTIFIER,
 			process.env.CRISP_API_KEY
 		)
+
+		const WEBSITE_ID = process.env.CRISP_WEBSITE_ID as string
 
 		const result = await CrispClient.website.createNewConversation(WEBSITE_ID)
 
