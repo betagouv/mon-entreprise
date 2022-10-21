@@ -7,6 +7,8 @@ import { useSitePaths } from '@/sitePaths'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import NewsBanner from './NewsBanner'
+import { Switch } from '@/design-system/switch'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 export default function Header() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -14,6 +16,8 @@ export default function Header() {
 		i18n: { language },
 		t,
 	} = useTranslation()
+
+	const { darkMode, setDarkMode } = useDarkMode()
 
 	return (
 		<header>
@@ -32,6 +36,8 @@ export default function Header() {
 							flex: 1;
 						`}
 					/>
+					<Switch defaultSelected={darkMode} onChange={setDarkMode} />
+
 					{language === 'fr' && <SearchButton />}
 				</StyledHeader>
 				<BrowserOnly>{language === 'fr' && <NewsBanner />}</BrowserOnly>

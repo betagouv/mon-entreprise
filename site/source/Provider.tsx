@@ -25,6 +25,7 @@ import { inIframe } from './utils'
 // ATInternet Tracking
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
+import { DarkModeProvider } from '@/contexts/DarkModeContext'
 
 type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
 
@@ -88,7 +89,7 @@ export default function Provider({
 									<SiteNameContext.Provider value={basename}>
 										<I18nextProvider i18n={i18next}>
 											<BrowserRouterProvider basename={basename}>
-												{children}
+												<DarkModeProvider>{children}</DarkModeProvider>
 											</BrowserRouterProvider>
 										</I18nextProvider>
 									</SiteNameContext.Provider>
