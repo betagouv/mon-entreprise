@@ -1,5 +1,19 @@
 import Crisp from 'crisp-api'
 
+const CRISP_API_IDENTIFIER = process.env.CRISP_API_IDENTIFIER
+const CRISP_API_KEY = process.env.CRISP_API_KEY
+const WEBSITE_ID = process.env.CRISP_WEBSITE_ID
+
+if (!CRISP_API_IDENTIFIER) {
+	throw new Error('Empty CRISP_API_IDENTIFIER env var')
+}
+if (!CRISP_API_KEY) {
+	throw new Error('Empty CRISP_API_KEY env var')
+}
+if (!WEBSITE_ID) {
+	throw new Error('Empty WEBSITE_ID env var')
+}
+
 export type BodyType = {
 	subject: string
 	message: string
@@ -48,13 +62,7 @@ export const sendCrispMessage = async (body: BodyType) => {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 		const CrispClient = new Crisp() as unknown as CrispType
 
-		CrispClient.authenticateTier(
-			'plugin',
-			process.env.CRISP_API_IDENTIFIER,
-			process.env.CRISP_API_KEY
-		)
-
-		const WEBSITE_ID = process.env.CRISP_WEBSITE_ID as string
+		CrispClient.authenticateTier('plugin', CRISP_API_IDENTIFIER, CRISP_API_KEY)
 
 		const result = await CrispClient.website.createNewConversation(WEBSITE_ID)
 

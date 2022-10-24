@@ -1,11 +1,15 @@
 import type { MattermostSendMessage } from './mattermost.js'
 
 if (!process.env.MONGO_URL) {
-	throw new Error('MONGO_URL env var is empty')
+	throw new Error('Empty MONGO_URL env var')
 }
 
-if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET) {
-	throw new Error('Empty env var CLIENT_ID or CLIENT_SECRET')
+if (!process.env.CLIENT_ID) {
+	throw new Error('Empty CLIENT_ID env var')
+}
+
+if (!process.env.CLIENT_SECRET) {
+	throw new Error('Empty CLIENT_SECRET env var')
 }
 
 export const PORT = process.env.PORT || 4000
