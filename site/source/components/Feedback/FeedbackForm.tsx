@@ -1,77 +1,97 @@
 import { ScrollToElement } from '@/components/utils/Scroll'
-import { useEffect } from 'react'
+import { TextAreaField, TextField } from '@/design-system'
+import { Button } from '@/design-system/buttons'
+import { Body } from '@/design-system/typography/paragraphs'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
-declare global {
-	interface JQuery {
-		ZammadForm(options: any): void
-	}
-}
+const SERVER_URL = import.meta.env.DEV
+	? 'http://localhost:4000'
+	: 'https://mon-entreprise-server.osc-fr1.scalingo.io'
 
-// TODO: we could implement the form logic ourselves to avoid including
-// https://mon-entreprise.zammad.com and https://code.jquery.com scripts
+const SHORT_MAX_LENGTH = 254
+
 export default function FeedbackForm() {
-	// const tracker = useContext(TrackerContext)
+	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 	const pathname = useLocation().pathname
 	const page = pathname.split('/').slice(-1)[0]
-	const isSimulateur = pathname.includes('simulateurs')
-	const lang = useTranslation().i18n.language
 
-	useEffect(() => {
-		const script = document.createElement('script')
-		script.src = 'https://code.jquery.com/jquery-2.1.4.min.js'
+	const { t } = useTranslation()
 
-		document.body.appendChild(script)
-		setTimeout(() => {
-			const script = document.createElement('script')
-			script.id = 'zammad_form_script'
-			script.async = true
-			script.onload = () => {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-				$('#feedback-form').ZammadForm({
-					messageTitle: `Remarque sur ${
-						isSimulateur ? 'le simulateur' : 'la page'
-					} ${page}`,
-					messageSubmit: 'Envoyer',
-					messageThankYou: 'Merci de votre retour !',
-					lang,
-					attributes: [
-						{
-							display:
-								"Que pouvons-nous améliorer afin de mieux répondre à vos attentes ? (ne pas mettre d'informations personnelles)",
-							name: 'body',
-							tag: 'textarea',
-							placeholder: 'Your Message...',
-							defaultValue: '',
-							rows: 7,
-						},
-						{
-							display: 'Nom',
-							name: 'name',
-							tag: 'input',
-							type: 'text',
-							defaultValue: '-',
-						},
-						{
-							display: 'Email (pour recevoir une réponse)',
-							name: 'email',
-							tag: 'input',
-							type: 'email',
-							placeholder: 'Your Email',
-						},
-					],
-				})
-			}
-			script.src = 'https://mon-entreprise.zammad.com/assets/form/form.js'
-			document.body.appendChild(script)
-		}, 100)
-	}, [])
+	const sendMessage = async () => {
+		setIsLoading(true)
+		const messageValue = (
+			document.getElementById('message') as HTMLTextAreaElement
+		)?.value
+		const emailValue = (document.getElementById('email') as HTMLInputElement)
+			?.value
+
+		try {
+			await fetch(`${SERVER_URL}/send-crisp-message`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					subject: `Suggestion sur la page : ${page}`,
+					message: messageValue,
+					email: emailValue,
+				}),
+			})
+			setIsSubmittedSuccessfully(true)
+		} catch (e) {
+			// Show error message
+		}
+	}
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
-			<StyledFeedback id="feedback-form"></StyledFeedback>
+			{isSubmittedSuccessfully && (
+				<StyledBody>Merci de votre retour !</StyledBody>
+			)}
+			{!isSubmittedSuccessfully && (
+				<StyledFeedback>
+					<form
+						onSubmit={(e) => {
+							e.preventDefault()
+							void sendMessage()
+						}}
+					>
+						<Body>
+							Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
+						</Body>
+						<StyledTextArea
+							name="message"
+							label={t('Votre message')}
+							description={t(
+								'Éviter de communiquer des informations personnelles'
+							)}
+							id="message"
+							rows={7}
+							isDisabled={isLoading}
+						/>
+						<StyledDiv>
+							<StyledTextField
+								id="email"
+								name="email"
+								type="email"
+								label={t('Votre adresse e-mail')}
+								description={t(
+									'Renseigner une adresse e-mail pour recevoir une réponse'
+								)}
+								isDisabled={isLoading}
+								maxLength={SHORT_MAX_LENGTH}
+							/>
+						</StyledDiv>
+						<StyledButton isDisabled={isLoading} type="submit">
+							{t('Envoyer')}
+						</StyledButton>
+					</form>
+				</StyledFeedback>
+			)}
 		</ScrollToElement>
 	)
 }
@@ -82,15 +102,39 @@ const StyledFeedback = styled.div`
 	font-family: ${({ theme }) => theme.fonts.main};
 	text-align: left;
 
-	textarea,
-	input {
-		width: 100%;
-		font-family: inherit;
-		font-size: inherit;
-		line-height: inherit;
-		padding: ${({ theme }) => theme.spacings.sm};
-		margin-top: ${({ theme }) => theme.spacings.xs};
-		border-radius: ${({ theme }) => theme.box.borderRadius};
-		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
+	label {
+		margin-bottom: 0.5rem;
+		display: block;
 	}
+`
+
+const StyledTextArea = styled(TextAreaField)`
+	width: 100%;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	padding: ${({ theme }) => theme.spacings.sm};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	font-family: ${({ theme }) => theme.fonts.main};
+`
+
+const StyledTextField = styled(TextField)`
+	font-size: 1rem;
+	line-height: 1.5rem;
+	padding: ${({ theme }) => theme.spacings.sm};
+	font-family: ${({ theme }) => theme.fonts.main};
+`
+
+const StyledButton = styled(Button)`
+	margin-top: 1rem;
+`
+
+const StyledBody = styled(Body)`
+	font-size: 1.25rem;
+	font-family: ${({ theme }) => theme.fonts.main};
+	text-align: center;
+	padding: 1rem 0;
+`
+
+const StyledDiv = styled.div`
+	margin-top: 1rem;
 `

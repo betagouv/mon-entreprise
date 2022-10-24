@@ -11,12 +11,12 @@
 		"exoneration-covid",
 		"api",
 		"site",
-		"standup-mattermost-bot"
+		"server"
 	],
 	"scripts": {
 		"scalingo-postbuild": "echo \"$APP_DIR\" ; CI=true ; yarn test:type && yarn \"build:$APP_DIR\" && yarn workspaces focus \"$APP_DIR\" --production",
 		"build:api": "yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test",
-		"build:standup-mattermost-bot": "yarn workspaces focus standup-mattermost-bot && yarn workspace standup-mattermost-bot run build",
+		"build:server": "yarn workspaces focus server && yarn workspace server run build",
 		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
 		"lint:eslint": "NODE_OPTIONS='--max-old-space-size=4096' eslint .",
 		"lint:eslint:fix": "yarn lint:eslint --fix",
@@ -34,7 +34,7 @@
 		"i18n:check": "yarn workspace site i18n:check",
 		"i18n:translate": "yarn workspace site i18n:translate"
 	},
-	"//": "Resolve conflicts with @types/... in api and standup-mattermost-bot",
+	"//": "Resolve conflicts with @types/... in api and server",
 	"resolutions": {
 		"@types/cacheable-request": "8.3.1",
 		"@types/responselike": "^1.0.0",

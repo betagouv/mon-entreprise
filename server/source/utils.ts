@@ -1,3 +1,5 @@
+import { BodyType } from './functions/send-crisp-message.js'
+
 type CamelCase<S extends string> =
 	S extends `${infer P1}_${infer P2}${infer P3}`
 		? `${Lowercase<P1>}${Uppercase<P2>}${CamelCase<P3>}`
@@ -32,4 +34,24 @@ export const shuffleArray = <T>(array: T[]) => {
 	}
 
 	return shuffle
+}
+
+const isStringAndNotEmpty = (value: string) =>
+	value !== undefined && value !== '' && typeof value === 'string'
+
+const SHORT_MAX_LENGTH = 254
+
+export const validateCrispBody = (body: BodyType): BodyType => {
+	const { subject, message, email } = body || {}
+	if (
+		isStringAndNotEmpty(subject) &&
+		subject.length <= SHORT_MAX_LENGTH &&
+		isStringAndNotEmpty(message) &&
+		isStringAndNotEmpty(email) &&
+		email.length <= SHORT_MAX_LENGTH
+	) {
+		return body
+	}
+
+	throw Error('Body validation failed.')
 }

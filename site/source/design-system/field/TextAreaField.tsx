@@ -5,26 +5,30 @@ import styled, { css } from 'styled-components'
 
 const LABEL_HEIGHT = '1rem'
 
-type TextFieldProps = AriaTextFieldOptions<'input'> & {
-	inputRef?: RefObject<HTMLInputElement>
+type TextAreaFieldProps = AriaTextFieldOptions<'textarea'> & {
+	inputRef?: RefObject<HTMLTextAreaElement>
 	small?: boolean
+	rows?: number | undefined
 }
 
-export default function TextField(props: TextFieldProps) {
-	const ref = useRef<HTMLInputElement>(null)
+export default function TextAreaField(props: TextAreaFieldProps) {
+	const ref = useRef<HTMLTextAreaElement>(null)
 
 	const { labelProps, inputProps, descriptionProps, errorMessageProps } =
-		useTextField({ ...props, inputElementType: 'input' }, props.inputRef || ref)
+		useTextField(
+			{ ...props, inputElementType: 'textarea' },
+			props.inputRef || ref
+		)
 
 	return (
 		<StyledContainer>
-			<StyledInputContainer
+			<StyledTextAreaContainer
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label && !props.small}
 			>
-				<StyledInput
-					{...(props as HTMLAttributes<HTMLInputElement>)}
-					{...(inputProps as HTMLAttributes<HTMLInputElement>)}
+				<StyledTextArea
+					{...(props as HTMLAttributes<HTMLTextAreaElement>)}
+					{...(inputProps as HTMLAttributes<HTMLTextAreaElement>)}
 					placeholder={inputProps.placeholder ?? ''}
 					ref={props.inputRef || ref}
 				/>
@@ -33,7 +37,7 @@ export default function TextField(props: TextFieldProps) {
 						{props.label}
 					</StyledLabel>
 				)}
-			</StyledInputContainer>
+			</StyledTextAreaContainer>
 			{props.errorMessage && (
 				<StyledErrorMessage {...errorMessageProps}>
 					{props.errorMessage}
@@ -51,7 +55,7 @@ export default function TextField(props: TextFieldProps) {
 export const StyledContainer = styled.div`
 	width: 100%;
 `
-export const StyledInput = styled.input`
+export const StyledTextArea = styled.textarea`
 	font-size: 1rem;
 	line-height: 1.5rem;
 	border: none;
@@ -117,7 +121,7 @@ export const StyledSuffix = styled.span`
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 
-export const StyledInputContainer = styled.div<{
+export const StyledTextAreaContainer = styled.div<{
 	hasError: boolean
 	hasLabel: boolean
 	small?: boolean
@@ -162,15 +166,15 @@ export const StyledInputContainer = styled.div<{
 	${({ hasLabel }) =>
 		hasLabel &&
 		css`
-			${StyledInput}:not(:focus):placeholder-shown {
+			${StyledTextArea}:not(:focus):placeholder-shown {
 				color: transparent;
 			}
-			${StyledInput}:not(:focus):placeholder-shown + ${StyledSuffix} {
+			${StyledTextArea}:not(:focus):placeholder-shown + ${StyledSuffix} {
 				color: transparent;
 			}
 		`}
 
-	${StyledInput}:not(:focus):placeholder-shown:not(:empty) + ${StyledLabel} {
+	${StyledTextArea}:not(:focus):placeholder-shown:not(:empty) + ${StyledLabel} {
 		font-size: 1rem;
 		line-height: 1.5rem;
 		top: 50%;
@@ -188,7 +192,7 @@ export const StyledInputContainer = styled.div<{
 			}
 		`}
 
-	${StyledInput}, ${StyledSuffix} {
+	${StyledTextArea}, ${StyledSuffix} {
 		padding: ${({ hasLabel, theme, small }) =>
 			small
 				? css`
@@ -202,7 +206,7 @@ export const StyledInputContainer = styled.div<{
 	${({ small }) =>
 		small &&
 		css`
-			${StyledSuffix}, ${StyledInput} {
+			${StyledSuffix}, ${StyledTextArea} {
 				font-size: 1rem;
 				line-height: 1.25rem;
 			}
