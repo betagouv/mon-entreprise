@@ -408,6 +408,7 @@ function IntegrationCode({
 					}
 					color={copied ? 'secondary' : 'primary'}
 					onPress={copyCodeToClipboard}
+					role={copied ? 'status' : ''}
 				>
 					<Emoji emoji={copied ? '✔️' : '📑'} />
 				</Button>
