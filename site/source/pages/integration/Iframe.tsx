@@ -273,7 +273,7 @@ function EnSavoirPlusCSP() {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<Link {...buttonProps}>
+				<Link {...buttonProps} aria-haspopup="dialog">
 					<Trans>En savoir plus</Trans>
 				</Link>
 			)}
@@ -408,6 +408,7 @@ function IntegrationCode({
 					}
 					color={copied ? 'secondary' : 'primary'}
 					onPress={copyCodeToClipboard}
+					role={copied ? 'status' : ''}
 				>
 					<Emoji emoji={copied ? '✔️' : '📑'} />
 				</Button>

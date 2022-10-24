@@ -13,7 +13,7 @@ import revenusSVG from '@/images/revenus.svg'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
 import { useCallback, useMemo, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled, { css } from 'styled-components'
 import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
@@ -39,6 +39,8 @@ export default function SchemeComparaison({
 	})
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const engine = useEngine()
+
+	const { t } = useTranslation()
 
 	const [showMore, setShowMore] = useState(false)
 	const [conversationStarted, setConversationStarted] = useState(
@@ -418,6 +420,10 @@ export default function SchemeComparaison({
 									dispatch(defineDirectorStatus('SALARIED'))
 									!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
 								}}
+								aria-label={t(
+									'comparaisonRégimes.choix.AS',
+									"Assimilé salarié, sélectionner l'option et passer à l'étape suivante"
+								)}
 							>
 								<Trans i18nKey="comparaisonRégimes.choix.AS">
 									Assimilé&nbsp;salarié
@@ -432,6 +438,17 @@ export default function SchemeComparaison({
 									dispatch(defineDirectorStatus('SELF_EMPLOYED'))
 								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
 							}}
+							aria-label={
+								hideAssimiléSalarié
+									? t(
+											'comparaisonRégimes.choix.EI-aria-label',
+											"Entreprise individuelle, sélectionner l'option et passer à l'étape suivante"
+									  )
+									: t(
+											'comparaisonRégimes.choix.indep-aria-label',
+											"Indépendant, sélectionner l'option et passer à l'étape suivante"
+									  )
+							}
 						>
 							{hideAssimiléSalarié ? (
 								<Trans i18nKey="comparaisonRégimes.choix.EI">
@@ -452,6 +469,10 @@ export default function SchemeComparaison({
 										dispatch(defineDirectorStatus('SELF_EMPLOYED'))
 									dispatch(isAutoentrepreneur(true))
 								}}
+								aria-label={t(
+									'comparaisonRégimes.choix.auto-aria-label',
+									"Auto-entrepreneur, sélectionner l'option et passer à l'étape suivante"
+								)}
 							>
 								<Trans i18nKey="comparaisonRégimes.choix.auto">
 									Auto-entrepreneur

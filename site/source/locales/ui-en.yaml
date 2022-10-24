@@ -45,6 +45,7 @@ Accompagnement désactivé: Accompaniment deactivated
 Accueil: Home
 "Activité exercée en ": "Activity carried out in "
 Afficher la description publicodes: Display publicodes description
+Afficher le détail: View details
 Aide à la déclaration de revenu: Income tax return assistance
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
 Aides Covid-19: Covid-19 Aids
@@ -397,7 +398,9 @@ assistant-DRI:
     you will have to connect to <2>impots.gouv.fr</2>.</2></1>"
 associés:
   choix1: Alone
-  choix2: Several partners
+  choix1-aria-label: Alone, select the option and go to the next step
+  choix2: Several people
+  choix2-aria-label: Several people, select the option and go to the next step
   description: >
     <0>
       A company with only one partner is easier to create and manage. A shareholder
@@ -471,8 +474,11 @@ comparaisonRégimes:
   choix:
     AS: '"Assimilé-salarié"'
     EI: Sole proprietorship
-    auto: Auto-entrepreneur
+    EI-aria-label: Sole proprietorship, select the option and go to the next step
+    auto: Self-employed contractor
+    auto-aria-label: Self-employed, select the option and go to the next step
     indep: Independent
+    indep-aria-label: Independent, select the option and go to the next step
   comparaisonDétaillée: |
     <0><0> View more information </0></0>
   complémentaireDeductible: |
@@ -1033,6 +1039,7 @@ landing:
   choice:
     continue: Continue with the company
     create:
+      aria-label: I don't have a business yet, access the business creation guide.
       body: Assistance in choosing a legal status and a complete list of the steps
         involved in setting up a business
       title: I don't have a business yet
@@ -1949,7 +1956,9 @@ replier: show less
 required: Required
 responsabilité:
   bouton1: Limited liability company
+  bouton1-aria-label: Company, select the option and go to the next step
   bouton2: Sole proprietorship
+  bouton2-aria-label: Sole proprietorship, select the option and go to the next step
   description: Limited liability? Sole proprietorship? Each option has legal
     implications and leads to a different status for the creation of your
     company in France. This guide helps you choose between the different forms

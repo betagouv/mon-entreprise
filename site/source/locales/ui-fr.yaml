@@ -49,6 +49,7 @@
 Accompagnement activé: Accompagnement activé
 Accompagnement désactivé: Accompagnement désactivé
 "Activité exercée en ": "Activité exercée en "
+Afficher le détail: Afficher le détail
 Assimilé salarié: Assimilé salarié
 Assistants à la déclaration de revenu 2021 des indépendants: Assistants à la déclaration de revenu 2021 des indépendants
 Assistants à la déclaration de revenu des indépendants: Assistants à la déclaration de revenu des indépendants
@@ -289,7 +290,9 @@ assistant-DRI:
     <2>impots.gouv.fr</2>.</2></1>"
 associés:
   choix1: Seul
+  choix1-aria-label: Seul, sélectionner l'option et passer à l'étape suivante
   choix2: Plusieurs personnes
+  choix2-aria-label: Plusieurs personnes, sélectionner l'option et passer à l'étape suivante
   description: "<0>Une entreprise avec un seul associé est plus simple à créer et
     gérer. Un associé peut-être une personne physique (un individu) ou une
     personne morale (par exemple une société).</0><1>Note : ce choix n'est pas
@@ -347,8 +350,11 @@ comparaisonRégimes:
   choix:
     AS: Assimilé&nbsp;salarié
     EI: Entreprise individuelle
+    EI-aria-label: Entreprise individuelle, sélectionner l'option et passer à l'étape suivante
     auto: Auto-entrepreneur
+    auto-aria-label: Auto-entrepreneur, sélectionner l'option et passer à l'étape suivante
     indep: Indépendant
+    indep-aria-label: Indépendant, sélectionner l'option et passer à l'étape suivante
   comparaisonDétaillée: <0><0>Afficher plus d'informations</0></0>
   complémentaireDeductible: <0>Contrats prévoyance et retraite facultatives
     déductibles</0><1>Oui <1>(sous certaines conditions)</1></1><2>Oui <1>(Loi
@@ -803,6 +809,8 @@ landing:
   choice:
     continue: Continuer avec l'entreprise
     create:
+      aria-label: Je n'ai pas encore d'entreprise, accéder au guide de création
+        d'entreprise.
       body: Un accompagnement au choix du statut juridique et la liste complète des
         démarches de création
       title: Je n'ai pas encore d'entreprise
@@ -1606,7 +1614,9 @@ recherche-globale:
 required: Requis
 responsabilité:
   bouton1: Société
+  bouton1-aria-label: Société, sélectionner l'option et passer à l'étape suivante
   bouton2: Entreprise individuelle
+  bouton2-aria-label: Entreprise individuelle, sélectionner l'option et passer à l'étape suivante
   description: Responsabilité limitée ? entreprise individuelle ? Chaque option a
     des implications juridiques et conduit à un statut différent pour la
     création de votre entreprise en France. Ce guide vous aide à choisir entre

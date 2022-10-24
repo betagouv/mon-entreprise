@@ -7,7 +7,9 @@ export default function Exceptions() {
 		<PopoverWithTrigger
 			title="Liste des cas non pris en compte"
 			trigger={(props) => (
-				<Link {...props}>Voir les cas non pris en compte.</Link>
+				<Link {...props} aria-haspopup="dialog">
+					Voir les cas non pris en compte.
+				</Link>
 			)}
 		>
 			<Markdown>{CONTENT}</Markdown>

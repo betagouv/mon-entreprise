@@ -55,7 +55,7 @@ export const PlaceDesEntreprisesButton = ({
 			<PopoverWithTrigger
 				title={t('Échanger avec un conseiller')}
 				trigger={(props) => (
-					<Button {...props} light size="XS">
+					<Button {...props} light size="XS" aria-haspopup="dialog">
 						<Emoji emoji="📞" />
 						<ButtonLabel>{t('Échanger avec un conseiller')}</ButtonLabel>
 					</Button>

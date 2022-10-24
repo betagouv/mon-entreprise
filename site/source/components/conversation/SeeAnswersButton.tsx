@@ -15,7 +15,12 @@ export default function SeeAnswersButton({
 		<>
 			<PopoverWithTrigger
 				trigger={(buttonProps) => (
-					<Button {...buttonProps} size="XS" color="secondary">
+					<Button
+						{...buttonProps}
+						size="XS"
+						color="secondary"
+						aria-haspopup="dialog"
+					>
 						{label ?? <Trans>Modifier mes réponses</Trans>}
 					</Button>
 				)}

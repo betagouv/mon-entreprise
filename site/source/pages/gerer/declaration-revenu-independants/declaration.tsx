@@ -269,6 +269,7 @@ function MessageComptable() {
 						)
 						setMsgCopied(true)
 					}}
+					role={msgCopied ? 'status' : ''}
 				>
 					{msgCopied ? (
 						<>✅ {t('copied', 'Copié')}</>

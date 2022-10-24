@@ -230,7 +230,12 @@ function AnswerElement(rule: EvaluatedRule) {
 		<PopoverWithTrigger
 			small
 			trigger={(buttonProps) => (
-				<Link {...buttonProps} role="button" aria-label="Modifier">
+				<Link
+					{...buttonProps}
+					role="button"
+					aria-haspopup="dialog"
+					aria-label="Modifier"
+				>
 					<Value expression={rule.dottedName} linkToRule={false} />{' '}
 					<span className="print-hidden">
 						<Emoji emoji="✏" alt="Modifier" aria-hidden={false} />

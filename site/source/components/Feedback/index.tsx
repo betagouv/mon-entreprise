@@ -164,6 +164,7 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 							color="tertiary"
 							size="XS"
 							light
+							aria-haspopup="dialog"
 						>
 							<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
 						</Button>

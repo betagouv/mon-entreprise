@@ -66,7 +66,7 @@ export function Stepper({
 	| { 'aria-labelledby': string }
 )) {
 	return (
-		<div role="group" {...props}>
+		<div role="progressbar" {...props}>
 			<StyledStepper>{children}</StyledStepper>
 		</div>
 	)

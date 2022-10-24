@@ -107,6 +107,7 @@ export default function ShareOrSaveSimulationBanner({
 
 										buttonProps?.onPress?.(e)
 									}}
+									aria-haspopup="dialog"
 								>
 									<Emoji emoji="🔗" />
 									<ButtonLabel>
@@ -125,7 +126,12 @@ export default function ShareOrSaveSimulationBanner({
 
 				{print && typeof window.print === 'function' && (
 					<Grid item xs={12} sm="auto">
-						<Button light size="XS" onPress={() => window.print()}>
+						<Button
+							light
+							size="XS"
+							onPress={() => window.print()}
+							aria-haspopup="dialog"
+						>
 							<Emoji emoji="🖨" />
 							<ButtonLabel>
 								<Trans i18nKey="ExportSimulation.Banner">

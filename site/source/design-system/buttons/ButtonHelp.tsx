@@ -28,6 +28,7 @@ export default function ButtonHelp({
 				<StyledButton
 					$light={light}
 					className={className}
+					aria-haspopup="dialog"
 					{...buttonProps}
 					{...props}
 				>

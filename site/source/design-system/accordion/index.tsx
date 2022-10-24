@@ -117,7 +117,7 @@ interface Chevron {
 const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<Chevron>`
 	transition: transform 0.3s;
 	${({ $isOpen }) =>
-		$isOpen &&
+		!$isOpen &&
 		css`
 			transform: rotate(180deg);
 		`}

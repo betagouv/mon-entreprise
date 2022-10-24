@@ -57,7 +57,7 @@ describe('Landing page', function () {
 		cy.go('back')
 
 		cy.get(currentCompanyPath).should('exist')
-		cy.contains('Continuer avec cette entreprise').click()
+		cy.contains('Voir ma situation').click()
 
 		cy.url().should('include', '/g%C3%A9rer')
 

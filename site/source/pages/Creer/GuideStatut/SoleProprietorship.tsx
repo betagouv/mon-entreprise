@@ -75,6 +75,10 @@ export default function SoleProprietorship() {
 					onPress={() => {
 						dispatch(isSoleProprietorship(true))
 					}}
+					aria-label={t(
+						'responsabilité.bouton2-aria-label',
+						"Entreprise individuelle, sélectionner l'option et passer à l'étape suivante"
+					)}
 				>
 					<Trans i18nKey="responsabilité.bouton2">
 						Entreprise individuelle
@@ -84,6 +88,10 @@ export default function SoleProprietorship() {
 					onPress={() => {
 						dispatch(isSoleProprietorship(false))
 					}}
+					aria-label={t(
+						'responsabilité.bouton1-aria-label',
+						"Société, sélectionner l'option et passer à l'étape suivante"
+					)}
 				>
 					<Trans i18nKey="responsabilité.bouton1">Société</Trans>
 				</Button>
