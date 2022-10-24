@@ -441,11 +441,11 @@ export default function SchemeComparaison({
 							aria-label={
 								hideAssimiléSalarié
 									? t(
-											'comparaisonRégimes.choix.EI.aria-label',
+											'comparaisonRégimes.choix.EI-aria-label',
 											"Entreprise individuelle, sélectionner l'option et passer à l'étape suivante"
 									  )
 									: t(
-											'comparaisonRégimes.choix.indep.aria-label',
+											'comparaisonRégimes.choix.indep-aria-label',
 											"Indépendant, sélectionner l'option et passer à l'étape suivante"
 									  )
 							}

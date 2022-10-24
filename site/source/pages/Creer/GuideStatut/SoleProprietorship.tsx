@@ -76,7 +76,7 @@ export default function SoleProprietorship() {
 						dispatch(isSoleProprietorship(true))
 					}}
 					aria-label={t(
-						'responsabilité.bouton2.aria-label',
+						'responsabilité.bouton2-aria-label',
 						"Entreprise individuelle, sélectionner l'option et passer à l'étape suivante"
 					)}
 				>
@@ -89,7 +89,7 @@ export default function SoleProprietorship() {
 						dispatch(isSoleProprietorship(false))
 					}}
 					aria-label={t(
-						'responsabilité.bouton1.aria-label',
+						'responsabilité.bouton1-aria-label',
 						"Société, sélectionner l'option et passer à l'étape suivante"
 					)}
 				>
