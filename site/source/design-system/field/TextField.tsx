@@ -35,7 +35,7 @@ export default function TextField(props: TextFieldProps) {
 				)}
 			</StyledInputContainer>
 			{props.errorMessage && (
-				<StyledErrorMessage {...errorMessageProps} role="status">
+				<StyledErrorMessage {...errorMessageProps} role="alert">
 					{props.errorMessage}
 				</StyledErrorMessage>
 			)}

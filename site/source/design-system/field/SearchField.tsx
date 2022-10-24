@@ -91,7 +91,7 @@ export default function SearchField(
 				)}
 			</SearchInputContainer>
 			{props.errorMessage && (
-				<StyledErrorMessage {...errorMessageProps} role="status">
+				<StyledErrorMessage {...errorMessageProps} role="alert">
 					{props.errorMessage}
 				</StyledErrorMessage>
 			)}
