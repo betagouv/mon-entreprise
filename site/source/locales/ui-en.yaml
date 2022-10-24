@@ -1955,7 +1955,7 @@ recherche-globale:
 replier: show less
 required: Required
 responsabilité:
-  bouton1: Company
+  bouton1: Limited liability company
   bouton1-aria-label: Company, select the option and go to the next step
   bouton2: Sole proprietorship
   bouton2-aria-label: Sole proprietorship, select the option and go to the next step
