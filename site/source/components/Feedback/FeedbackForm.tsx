@@ -7,10 +7,6 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
-const SERVER_URL = import.meta.env.DEV
-	? 'http://localhost:4000'
-	: 'https://mon-entreprise-server.osc-fr1.scalingo.io'
-
 const SHORT_MAX_LENGTH = 254
 
 export default function FeedbackForm() {
@@ -30,7 +26,7 @@ export default function FeedbackForm() {
 			?.value
 
 		try {
-			await fetch(`${SERVER_URL}/send-crisp-message`, {
+			await fetch(`/server-functions/send-crisp-message`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
