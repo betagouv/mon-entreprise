@@ -26,7 +26,7 @@ export default function FeedbackForm() {
 			?.value
 
 		try {
-			await fetch(`/server-functions/send-crisp-message`, {
+			await fetch(`/server/send-crisp-message`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

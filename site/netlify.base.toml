@@ -13,7 +13,7 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 
 ## Scalingo proxy for server
 [[redirects]]
-  from = "/server-functions/*"
+  from = "/server/*"
   to = ":SERVER_URL/:splat"
   status = 200
 
