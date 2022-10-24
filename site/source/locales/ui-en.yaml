@@ -398,7 +398,9 @@ assistant-DRI:
     you will have to connect to <2>impots.gouv.fr</2>.</2></1>"
 associés:
   choix1: Only
+  choix1-aria-label: Alone, select the option and go to the next step
   choix2: Several people
+  choix2-aria-label: Several people, select the option and go to the next step
   description: >
     <0>
       A company with only one partner is easier to create and manage. A shareholder
@@ -474,6 +476,7 @@ comparaisonRégimes:
     EI: Sole proprietorship
     EI-aria-label: Sole proprietorship, select the option and go to the next step
     auto: Self-employed contractor
+    auto-aria-label: Self-employed, select the option and go to the next step
     indep: Independent
     indep-aria-label: Independent, select the option and go to the next step
   comparaisonDétaillée: |

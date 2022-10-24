@@ -54,7 +54,7 @@ export default function NumberOfAssociates() {
 						dispatch(companyHasMultipleAssociates(false))
 					}}
 					aria-label={t(
-						'associés.choix1.aria-label',
+						'associés.choix1-aria-label',
 						"Seul, sélectionner l'option et passer à l'étape suivante"
 					)}
 				>
@@ -65,7 +65,7 @@ export default function NumberOfAssociates() {
 						dispatch(companyHasMultipleAssociates(true))
 					}}
 					aria-label={t(
-						'associés.choix2.aria-label',
+						'associés.choix2-aria-label',
 						"Plusieurs personnes, sélectionner l'option et passer à l'étape suivante"
 					)}
 				>

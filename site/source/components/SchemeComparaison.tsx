@@ -470,7 +470,7 @@ export default function SchemeComparaison({
 									dispatch(isAutoentrepreneur(true))
 								}}
 								aria-label={t(
-									'comparaisonRégimes.choix.auto.aria-label',
+									'comparaisonRégimes.choix.auto-aria-label',
 									"Auto-entrepreneur, sélectionner l'option et passer à l'étape suivante"
 								)}
 							>
