@@ -273,7 +273,7 @@ function EnSavoirPlusCSP() {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<Link {...buttonProps}>
+				<Link {...buttonProps} aria-haspopup="dialog">
 					<Trans>En savoir plus</Trans>
 				</Link>
 			)}

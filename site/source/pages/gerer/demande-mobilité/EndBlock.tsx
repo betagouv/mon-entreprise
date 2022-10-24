@@ -122,7 +122,11 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 			<PopoverWithTrigger
 				title="Votre demande de mobilité"
 				trigger={(buttonProps) => (
-					<Button {...buttonProps} isDisabled={!isCertified || !place}>
+					<Button
+						{...buttonProps}
+						isDisabled={!isCertified || !place}
+						aria-haspopup="dialog"
+					>
 						Générer la demande
 					</Button>
 				)}
