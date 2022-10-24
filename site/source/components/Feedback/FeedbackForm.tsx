@@ -11,7 +11,7 @@ const SERVER_URL = import.meta.env.DEV
 	? 'http://localhost:4000'
 	: 'https://mon-entreprise-server.osc-fr1.scalingo.io'
 
-const MESSAGE_MAX_LENGTH = 2000
+const SHORT_MAX_LENGTH = 254
 
 export default function FeedbackForm() {
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
@@ -71,7 +71,6 @@ export default function FeedbackForm() {
 							)}
 							id="message"
 							rows={7}
-							maxLength={MESSAGE_MAX_LENGTH}
 							isDisabled={isLoading}
 						/>
 						<StyledDiv>
@@ -84,6 +83,7 @@ export default function FeedbackForm() {
 									'Renseigner une adresse e-mail pour recevoir une réponse'
 								)}
 								isDisabled={isLoading}
+								maxLength={SHORT_MAX_LENGTH}
 							/>
 						</StyledDiv>
 						<StyledButton isDisabled={isLoading} type="submit">

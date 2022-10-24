@@ -311,7 +311,6 @@ async function fetchDailyVisits() {
 }
 
 async function fetchMonthlyVisits() {
-	console.log('fetchMonthlyVisits')
 	const pages = uniformiseData([
 		...flattenPage(await fetchApi(buildSimulateursQuery(last36Months, 'M'))),
 		...flattenPage(await fetchApi(buildCreerQuery(last36Months, 'M'))),
@@ -357,7 +356,6 @@ const getISODatesStartEndPreviousMonth = () => {
 		endISODatePreviousMonth: dateLastDayPreviousMonth.toISOString(),
 	}
 }
-
 async function fetchPaginatedCrispConversations(pageNumber, urlParams) {
 	const response = await fetch(
 		`https://api.crisp.chat/v1/website/d8247abb-cac5-4db6-acb2-cea0c00d8524/conversations/${pageNumber}${
@@ -370,7 +368,6 @@ async function fetchPaginatedCrispConversations(pageNumber, urlParams) {
 					`${process.env.CRISP_API_IDENTIFIER}:${process.env.CRISP_API_KEY}`
 				)}`,
 				'X-Crisp-Tier': 'plugin',
-				'Content-Type': 'application/json',
 			},
 		}
 	)
@@ -391,13 +388,12 @@ async function fetchAllCrispConversations({ urlParams }) {
 				pageCount,
 				urlParams
 			)
-
 			// Array vide : plus rien à fetch de plus
 			if (paginatedData.length === 0) {
 				isEndPagination = true
 			}
 
-			dataConversations.push(...paginatedData)
+			dataConversations.push(...(paginatedData || []))
 			pageCount++
 		}
 
@@ -414,7 +410,7 @@ async function fetchCrispAnsweredConversationsLastMonth() {
 	const conversations = await fetchAllCrispConversations({
 		urlParams: `filter_resolved=1&filter_date_start=${startISODatePreviousMonth}&filter_date_end=${endISODatePreviousMonth}`,
 	})
-	return conversations.length
+	return conversations?.length ?? 0
 }
 
 async function fetchZammadUserAnswersStats() {
@@ -438,6 +434,11 @@ async function fetchAllUserAnswerStats() {
 }
 
 async function fetchGithubIssuesFromTags(tags) {
+	if (!tags || tags?.length === 0) {
+		console.error(`❌ Error: no tags to fetch issues from`)
+		return []
+	}
+
 	const query = `query {
 			repository(owner:"betagouv", name:"mon-entreprise") {${tags
 				.map(
@@ -483,7 +484,7 @@ async function fetchCrispUserFeedbackIssues() {
 	})
 
 	const sortedSegments = conversationsResolved
-		.reduce((acc, conversation) => {
+		?.reduce((acc, conversation) => {
 			const newAcc = [...acc]
 			const conversationSegments = conversation.meta.segments
 
@@ -501,7 +502,7 @@ async function fetchCrispUserFeedbackIssues() {
 				})
 			return newAcc
 		}, [])
-		.sort((t1, t2) => t2.count - t1.count)
+		?.sort((t1, t2) => t2.count - t1.count)
 
 	return fetchGithubIssuesFromTags(sortedSegments)
 }
@@ -526,7 +527,7 @@ async function fetchAllUserFeedbackIssues() {
 	const crispFeedbackIssues = await fetchCrispUserFeedbackIssues()
 	const zammadFeedbackIssues = await fetchZammadUserFeedbackIssues()
 
-	const allIssues = [...crispFeedbackIssues]
+	const allIssues = [...(crispFeedbackIssues || [])]
 
 	zammadFeedbackIssues.forEach((zammadIssue) => {
 		const issueIndex = allIssues.findIndex(

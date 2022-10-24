@@ -73,7 +73,6 @@
 		"@sentry/react": "^6.19.6",
 		"@sentry/tracing": "^6.19.6",
 		"algoliasearch": "^4.10.2",
-		"crisp-api": "^6.3.1",
 		"exoneration-covid": "workspace:^",
 		"fuse.js": "^6.4.6",
 		"iframe-resizer": "^4.3.2",
