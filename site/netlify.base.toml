@@ -11,6 +11,12 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   [headers.values]
     Content-Type = "application/manifest+json"
 
+## Scalingo proxy for server
+[[redirects]]
+  from = "/server-functions/*"
+  to = ":SERVER_URL/:splat"
+  status = 200
+
 ## Scalingo proxy for API
 [[redirects]]
   from = "/api/*"
