@@ -122,7 +122,7 @@ export default function NumberField(props: NumberFieldProps) {
 				)}
 			</StyledInputContainer>
 			{props.errorMessage && (
-				<StyledErrorMessage {...errorMessageProps}>
+				<StyledErrorMessage {...errorMessageProps} role="status">
 					{props.errorMessage}
 				</StyledErrorMessage>
 			)}
