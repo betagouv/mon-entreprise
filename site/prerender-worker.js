@@ -1,4 +1,4 @@
-import { render } from './dist/server/entry-server.js'
+import { render } from './dist/ssr/entry-server.js'
 
 import { promises as fs, readFileSync } from 'node:fs'
 import path from 'node:path'
