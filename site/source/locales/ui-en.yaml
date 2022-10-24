@@ -397,7 +397,7 @@ assistant-DRI:
     you enter will remain in your browser.</1><2>To make your income tax return,
     you will have to connect to <2>impots.gouv.fr</2>.</2></1>"
 associés:
-  choix1: Only
+  choix1: Alone
   choix1-aria-label: Alone, select the option and go to the next step
   choix2: Several people
   choix2-aria-label: Several people, select the option and go to the next step
