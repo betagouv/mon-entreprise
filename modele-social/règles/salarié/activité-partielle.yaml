@@ -79,7 +79,7 @@ salarié . activité partielle . heures chômées:
 
 salarié . activité partielle . heures travaillées:
   titre: heures travaillées restantes
-  question: Quelle est le nombre d'heures travaillées sur le mois ?
+  question: Quel est le nombre d'heures travaillées sur le mois ?
   description: >-
     Dans le cadre du chômage partiel, le nombre d'heure restantes travaillées. Doit être
     inférieur au temps contractuel.

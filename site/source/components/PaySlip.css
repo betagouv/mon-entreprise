@@ -17,7 +17,7 @@
 .payslip__container {
 	line-height: 1.5rem;
 }
-.payslip__container h4 {
+.payslip__container h3 {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.85);
 	color: rgba(0, 0, 0, 0.85);
 	print-color-adjust: exact !important;
@@ -28,8 +28,9 @@
 	padding-left: 0.5rem;
 	align-self: flex-end;
 }
-.payslip__container h4:first-child {
+.payslip__container h3:first-child {
 	padding-left: 0;
+	font-size: 1.125rem;
 }
 
 .payslip__total {
