@@ -321,7 +321,7 @@ dirigeant . indépendant . PL . CIPAV . exonération incapacité:
     votre médecin traitant et adressée à la CIPAV au plus tard le 31 mars de l’année suivante.
   remplace:
     règle: retraite complémentaire . classe
-    dans: protection sociale . retraite . CIPAV
+    dans: protection sociale . retraite . CNAVPL . CIPAV
   valeur: "'Classe A'"
   références:
     Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75

@@ -56,7 +56,6 @@ salarié . cotisations . exonérations:
               - réduction générale
               - lodeom . montant
               - JEI . montant
-              - dirigeant . assimilé salarié . réduction ACRE
         références:
           urssaf.fr (cumul réduction générale): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/les-regles-relatives-au-cumul.html
           urssaf.fr (cumul JEI): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/regles-de-cumul.html
