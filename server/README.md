@@ -3,6 +3,7 @@
 Serveur hébergé sur Scalingo, utilisé pour faire tourner le bot Stand-up ainsi que pour mettre à disposition des fonctions back-end Node.js.
 
 ## Jobs
+
 ### Bot Mattermost pour stand-up asynchrone
 
 Ce bot envoie une notification périodique sur un canal Mattermost dédié afin que chaque membre de l'équipe puisse écrire en réponse où il en est dans ses tâches.
