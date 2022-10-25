@@ -53,16 +53,19 @@ export default function MonEntrepriseRulePage() {
 					!documentationSitePaths[pathname] ? (
 						<Navigate to="/404" replace />
 					) : (
-						<FromBottom>
-							<TrackPage
-								chapter1="documentation"
-								name={documentationSitePaths[pathname]}
-							/>
-							<ScrollToTop key={pathname} />
-							<BackToSimulation />
-							<Spacing xl />
-							<DocumentationPageBody />
-						</FromBottom>
+						<>
+							<div id="mobile-menu-portal-id" />
+							<FromBottom>
+								<TrackPage
+									chapter1="documentation"
+									name={documentationSitePaths[pathname]}
+								/>
+								<ScrollToTop key={pathname} />
+								<BackToSimulation />
+								<Spacing xl />
+								<DocumentationPageBody />
+							</FromBottom>
+						</>
 					)
 				}
 			/>
@@ -122,6 +125,7 @@ function DocumentationPageBody() {
 				apiDocumentationUrl={absoluteSitePaths.développeur.api}
 				apiEvaluateUrl="https://mon-entreprise.urssaf.fr/api/v1/evaluate"
 				npmPackage="modele-social"
+				mobileMenuPortalId="mobile-menu-portal-id"
 			/>
 		</StyledDocumentation>
 	)
