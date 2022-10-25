@@ -20,7 +20,7 @@
 .payslip__container h4 {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.85);
 	color: rgba(0, 0, 0, 0.85);
-	color-adjust: exact !important;
+	print-color-adjust: exact !important;
 	margin: 0;
 	margin-top: 1.5rem;
 	margin-bottom: 0.5rem;
