@@ -19,7 +19,7 @@ export function SASUSimulation() {
 					<SimulationGoal
 						editable={false}
 						small
-						dottedName="salarié . cotisations"
+						dottedName="dirigeant . assimilé salarié . cotisations"
 					/>
 					<SimulationGoal dottedName="salarié . rémunération . net . à payer avant impôt" />
 					<SimulationGoal small editable={false} dottedName="impôt . montant" />

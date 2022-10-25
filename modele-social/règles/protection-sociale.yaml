@@ -26,12 +26,13 @@ protection sociale . retraite:
     Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
   références:
     Panorama des régimes de retraites: https://travail-emploi.gouv.fr/retraite/le-systeme-de-retraite-actuel/
+    'Retraites de base et complémentaire dans le privé : quelles différences ?': https://www.service-public.fr/particuliers/vosdroits/F12389
 
 protection sociale . retraite . trimestres:
   titre: trimestres validés
 
   grille:
-    assiette: base cotisée
+    assiette: base . cotisée
     multiplicateur: SMIC . horaire . début d'année
     tranches:
       - montant: 0 trimestres validés/an
@@ -48,7 +49,13 @@ protection sociale . retraite . trimestres:
     'Salaire validant un trimestre': https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
     Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
 
-protection sociale . retraite . base cotisée:
+protection sociale . retraite . base:
+  description: |
+    La plupart des actifs cotisent à la fois à un régime de base (jusqu’au plafond de la sécurité sociale, soit 3 311 euros par mois) et à un régime complémentaire ou additionnel, sur tout ou une partie de leurs revenus.
+
+    Le montant de votre pension pour la retraite de base est calculé à partir la moyenne de vos revenus des 25 meilleures années.
+
+protection sociale . retraite . base . cotisée:
   titre: revenu cotisés pour la retraite de base
   unité: €/an
   arrondi: oui
@@ -95,126 +102,10 @@ protection sociale . retraite . base cotisée:
 
         Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
 
-protection sociale . retraite . CNAVPL:
-  applicable si: dirigeant . indépendant . PL . CNAVPL
-  remplace:
-    règle: base cotisée . revenu indépendant
-    # Bug https://github.com/betagouv/publicodes/issues/207
-    par: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1 . revenu cotisé
-  description: |-
-    Les professions libérales affiliées à la CNAVPL ont un régime de retraite de base par point.
-
-    Le nombre de points acquis chaque année est déterminé en fonction des revenus
-    professionnels soumis à cotisations :
-
-    - la cotisation maximale sur la tranche T1 permet d’acquérir 525 points (de 0 à un plafond
-    annuel de la sécurité sociale),
-    - la cotisation maximale sur la tranche T2 permet d’acquérir 25 points (de 0 à cinq fois le pla-
-    fond annuel de la sécurité sociale).
-
-    Pour chaque tranche, le nombre de points attribué est calculé au prorata de la cotisation effective
-    sur la cotisation maximale et arrondi à la décimale la plus proche
-
-  somme:
-    - nom: points T1
-      produit:
-        assiette: 525 points
-        taux: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1 / cotisation maximum T1
-      arrondi: 1 décimale
-    - nom: points T2
-      produit:
-        assiette: 25 points
-        taux: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2 / cotisation maximum T2
-      arrondi: 1 décimale
-    - nom: points incapacité
-      applicable si: dirigeant . indépendant . PL . CNAVPL . exonération incapacité
-      valeur: 400 points
-  note: |-
-    Des points supplémentaires peuvent être attribués :
-    - points rachetés ;
-    - 100 points supplémentaires au titre du trimestre civil au cours duquel survient l’accouchement,
-    - 200 points supplémentaires par année civile concernée pour l’assuré atteint d’invalidité l’obli-
-    geant à avoir recours à l’assistance d’une tierce personne ;
-    - 400 points par année civile pour les personnes reconnues atteintes d’une incapacité d’exercice
-    de leur profession pour une durée de plus de 6 mois
-  références:
-    guide juridique CNAVPL: https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=234211#page=27
-protection sociale . retraite . CIPAV:
-protection sociale . retraite . CIPAV . indépendant:
-  applicable si: dirigeant . indépendant . PL . CIPAV
-  remplace: complémentaire indépendants . points acquis
-  unité: points
-  variations:
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe A'
-      alors: 36
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe B'
-      alors: 72
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe C'
-      alors: 108
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe D'
-      alors: 180
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe E'
-      alors: 252
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe F'
-      alors: 396
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe G'
-      alors: 432
-    - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe H'
-      alors: 468
-  références:
-    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
-
-protection sociale . retraite . CIPAV . auto-entrepreneur:
-  applicable si:
-    toutes ces conditions:
-      - dirigeant . auto-entrepreneur
-      - entreprise . activité . nature . libérale . réglementée
-  avec:
-    trimestres:
-      titre: trimestres validés
-      remplace: retraite . trimestres
-      grille:
-        assiette: entreprise . chiffre d'affaires
-        multiplicateur: 2421 €/an
-        tranches:
-          - montant: 0 trimestres validés/an
-            plafond: 1
-          - montant: 1 trimestres validés/an
-            plafond: 2
-          - montant: 2 trimestres validés/an
-            plafond: 3
-          - montant: 3 trimestres validés/an
-            plafond: 4
-          - montant: 4 trimestres validés/an
-      références:
-        Le régime retraite de base des auto-entrepreneur: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Auto-entrepreneurs%20-%20La%20Cipav_0.pdf?page=10
-
-protection sociale . revenu moyen:
-  description: Le revenu utilisé pour le calcul du montant des pensions de retraite et des indemnités journalières de sécurité sociale lors d'un arrêt de travail.
-  notes: Normalement, on prend le revenu moyen des 25 meilleures années pour la retraite et des 3 derniers mois pour les indémnités. Vu qu'on intègre pas la notions de temporalité avec notre simulateur, on simplifie en prenant le même.
-  unité: €/an
-
-  formule:
-    plancher: 0 €/mois
-    le maximum de:
-      - dirigeant . indépendant . revenu professionnel
-      - dirigeant . auto-entrepreneur . impôt . revenu imposable
-      - salarié . rémunération . brut
-protection sociale . retraite . CNAVPL . cotisation maximum T1:
-  recalcul:
-    règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1
-    avec:
-      dirigeant . indépendant . assiette des cotisations: plafond sécurité sociale
-
-protection sociale . retraite . CNAVPL . cotisation maximum T2:
-  recalcul:
-    règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2
-    avec:
-      dirigeant . indépendant . assiette des cotisations: 5 * plafond sécurité sociale
-mois cotisés: 43 an * 12 mois/an
-protection sociale . retraite . complémentaire salarié:
+protection sociale . retraite . complémentaire . AGIRC ARRCO:
+  titre: AGIRC-ARRCO (salarié)
   produit:
-    assiette: points acquis * mois cotisés
+    assiette: points acquis
     facteur:
       nom: valeur du point
       variations:
@@ -230,33 +121,34 @@ protection sociale . retraite . complémentaire salarié:
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
+  avec:
+    points acquis:
+      unité: points/mois
+      note: |
+        On se base sur une valeur constante du point, hors cette dernière change d'année en année, cette valeure est donc une grossière approximation
+      valeur: salarié . cotisations . retraite complémentaire / valeur d'acquisition
+      références:
+        service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
 
-protection sociale . retraite . complémentaire salarié . points acquis:
-  unité: points/mois
-  note: |
-    On se base sur une valeur constante du point, hors cette dernière change d'année en année, cette valeure est donc une grossière approximation
-  valeur: salarié . cotisations . retraite complémentaire / valeur d'acquisition
-  références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
+    valeur d'acquisition:
+      variations:
+        - si: date >= 01/2022
+          alors: 17.4316 €/point
+        - si: date >= 01/2021
+          alors: 17.3982 €/point
+        - si: date >= 01/2020
+          alors: 17.3982 €/point
+        - si: date >= 01/01/2019
+          alors: 17.0571 €/point
+      références:
+        barèmes agirc-arrco: https://www.agirc-arrco.fr/wp-content/uploads/2021/10/Historique_valeur_du_point_salaire_de_reference.pdf
 
-protection sociale . retraite . complémentaire salarié . points acquis . valeur d'acquisition:
-  variations:
-    - si: date >= 01/2022
-      alors: 17.4316 €/point
-    - si: date >= 01/2021
-      alors: 17.3982 €/point
-    - si: date >= 01/2020
-      alors: 17.3982 €/point
-    - si: date >= 01/01/2019
-      alors: 17.0571 €/point
-  références:
-    barèmes agirc-arrco: https://www.agirc-arrco.fr/wp-content/uploads/2021/10/Historique_valeur_du_point_salaire_de_reference.pdf
-
-protection sociale . retraite . complémentaire indépendants:
+protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
+  titre: Retraite complémentaire des indépendants
   non applicable si: dirigeant . indépendant . PL . CNAVPL
   produit:
-    assiette: points acquis * mois cotisés
+    assiette: points acquis
     facteur:
       nom: valeur du point
       variations:
@@ -271,27 +163,141 @@ protection sociale . retraite . complémentaire indépendants:
   références:
     cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
     barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_point_bar
+  avec:
+    points acquis:
+      unité: points/an
+      non applicable si: dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité # Non implémenté (cf règle)
+      arrondi: oui
+      valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / valeur d'acquisition
+      références:
+        cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
 
-protection sociale . retraite . complémentaire indépendants . points acquis:
-  unité: points/an
-  non applicable si: dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité # Non implémenté (cf règle)
-  arrondi: oui
-  valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / valeur d'acquisition
-  références:
-    cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
+    valeur d'acquisition:
+      variations:
+        - si: date >= 01/2022
+          alors: 17.956 €/point
+        - si: date >= 01/2021
+          alors: 17.765 €/point
+        - si: date >= 01/2020
+          alors: 17.691 €/point
+        - si: date >= 01/01/2019
+          alors: 17.515 €/point
+      références:
+        barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_achat_point_bar
 
-protection sociale . retraite . complémentaire indépendants . points acquis . valeur d'acquisition:
-  variations:
-    - si: date >= 01/2022
-      alors: 17.956 €/point
-    - si: date >= 01/2021
-      alors: 17.765 €/point
-    - si: date >= 01/2020
-      alors: 17.691 €/point
-    - si: date >= 01/01/2019
-      alors: 17.515 €/point
+protection sociale . retraite . CNAVPL:
+  applicable si: dirigeant . indépendant . PL . CNAVPL
+  titre: retraite de base CNAVPL
+  remplace: retraite . base
+  description: |-
+    Les professions libérales affiliées à la CNAVPL ont un régime de retraite de base par point.
+
+    Le nombre de points acquis chaque année est déterminé en fonction des revenus
+    professionnels soumis à cotisations :
+
+    - la cotisation maximale sur la tranche T1 permet d’acquérir 525 points (de 0 à un plafond
+    annuel de la sécurité sociale),
+    - la cotisation maximale sur la tranche T2 permet d’acquérir 25 points (de 0 à cinq fois le pla-
+    fond annuel de la sécurité sociale).
+
+    Pour chaque tranche, le nombre de points attribué est calculé au prorata de la cotisation effective
+    sur la cotisation maximale et arrondi à la décimale la plus proche
+  produit:
+    assiette: points acquis
+    facteur:
+      nom: valeur du point
+      variations:
+        - si: date >= 01/2022
+          alors: 0.5795 €/an/point
+  avec:
+    points acquis:
+      somme:
+        - nom: points T1
+          produit:
+            assiette: 525 points
+            taux: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1 / cotisation maximum T1
+          arrondi: 1 décimale
+        - nom: points T2
+          produit:
+            assiette: 25 points
+            taux: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2 / cotisation maximum T2
+          arrondi: 1 décimale
+        - nom: points incapacité
+          applicable si: dirigeant . indépendant . PL . CNAVPL . exonération incapacité
+          valeur: 400 points
+      note: |-
+        Des points supplémentaires peuvent être attribués :
+        - points rachetés ;
+        - 100 points supplémentaires au titre du trimestre civil au cours duquel survient l’accouchement,
+        - 200 points supplémentaires par année civile concernée pour l’assuré atteint d’invalidité l’obli-
+        geant à avoir recours à l’assistance d’une tierce personne ;
+        - 400 points par année civile pour les personnes reconnues atteintes d’une incapacité d’exercice
+        de leur profession pour une durée de plus de 6 mois
+      références:
+        guide juridique CNAVPL: https://www.cnavpl.fr/statuts-et-documents-de-reference/?wpdmdl=234211#page=27
+      avec:
+        cotisation maximum T1:
+          privé: oui
+          recalcul:
+            règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1
+            avec:
+              dirigeant . indépendant . assiette des cotisations: plafond sécurité sociale
+        cotisation maximum T2:
+          privé: oui
+          recalcul:
+            règle: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2
+            avec:
+              dirigeant . indépendant . assiette des cotisations: 5 * plafond sécurité sociale
+
+protection sociale . retraite . CNAVPL . CIPAV:
+protection sociale . retraite . CNAVPL . CIPAV . complémentaire:
+  applicable si: dirigeant . indépendant . PL . CIPAV
+  produit:
+    assiette: points acquis
+    facteur:
+      nom: valeur du point
+      variations:
+        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe A'
+          alors: 36
+        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe B'
+          alors: 72
+        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe C'
+          alors: 108
+        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe D'
+          alors: 180
+        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe E'
+          alors: 252
+        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe F'
+          alors: 396
+        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe G'
+          alors: 432
+        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe H'
+          alors: 468
   références:
-    barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_achat_point_bar
+    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+
+protection sociale . retraite . CNAVPL . CIPAV . trimestres auto-entrepreneur:
+  applicable si:
+    toutes ces conditions:
+      - dirigeant . auto-entrepreneur
+      - entreprise . activité . nature . libérale . réglementée
+  titre: trimestres validés auto-entrepreneur
+  remplace: retraite . trimestres
+  grille:
+    assiette: entreprise . chiffre d'affaires
+    multiplicateur: 2421 €/an
+    tranches:
+      - montant: 0 trimestres validés/an
+        plafond: 1
+      - montant: 1 trimestres validés/an
+        plafond: 2
+      - montant: 2 trimestres validés/an
+        plafond: 3
+      - montant: 3 trimestres validés/an
+        plafond: 4
+      - montant: 4 trimestres validés/an
+  références:
+    Le régime retraite de base des auto-entrepreneur: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Auto-entrepreneurs%20-%20La%20Cipav_0.pdf?page=10
 
 protection sociale . santé:
   icônes: 🏥
@@ -380,7 +386,7 @@ protection sociale . santé . indemnités journalières . salarié:
   applicable si: salarié
   formule:
     produit:
-      assiette: revenu moyen
+      assiette: 5
       taux: 50%
       plafond: 1.8 * SMIC
   reférences:
@@ -453,7 +459,7 @@ protection sociale . accidents du travail et maladies professionnelles:
   formule:
     produit:
       assiette:
-        valeur: revenu moyen
+        valeur: 5
         plafond: 83.4% * plafond sécurité sociale
       taux:
         nom: Pourcentage du salaire journalier de référence
