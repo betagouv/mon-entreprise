@@ -74,85 +74,91 @@ export default function Footer() {
 						<FooterContainer className="print-hidden">
 							<FooterColumn>
 								{language === 'fr' && (
-									<ul>
-										<li>
-											<Link to={absoluteSitePaths.nouveautés}>
-												Nouveautés <Emoji emoji="✨" />
-											</Link>
-										</li>
-										<li>
-											<Link to={absoluteSitePaths.stats}>
-												Stats <Emoji emoji="📊" />
-											</Link>
-										</li>
-										<li>
-											<Link to={absoluteSitePaths.budget}>
-												Budget <Emoji emoji="💶" />
-											</Link>
-										</li>
-									</ul>
+									<nav>
+										<ul>
+											<li>
+												<Link to={absoluteSitePaths.nouveautés}>
+													Nouveautés <Emoji emoji="✨" />
+												</Link>
+											</li>
+											<li>
+												<Link to={absoluteSitePaths.stats}>
+													Stats <Emoji emoji="📊" />
+												</Link>
+											</li>
+											<li>
+												<Link to={absoluteSitePaths.budget}>
+													Budget <Emoji emoji="💶" />
+												</Link>
+											</li>
+										</ul>
+									</nav>
 								)}
 							</FooterColumn>
 							<FooterColumn>
-								<ul>
-									<li>
-										<Link to={absoluteSitePaths.développeur.index}>
-											<Trans>Intégrer nos simulateurs</Trans>
-										</Link>
-									</li>
-									{language === 'fr' && (
+								<nav>
+									<ul>
 										<li>
-											<InscriptionBetaTesteur />
-										</li>
-									)}
-									{hrefLink && (
-										<li key={hrefLink.hrefLang}>
-											<Link
-												href={hrefLink.href}
-												openInSameWindow
-												lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
-											>
-												{hrefLink.hrefLang === 'fr' ? (
-													<>
-														Passer en français <Emoji emoji="🇫🇷" />
-													</>
-												) : hrefLink.hrefLang === 'en' ? (
-													<>
-														Switch to English <Emoji emoji="🇬🇧" />
-													</>
-												) : (
-													hrefLink.hrefLang
-												)}
+											<Link to={absoluteSitePaths.développeur.index}>
+												<Trans>Intégrer nos simulateurs</Trans>
 											</Link>
 										</li>
-									)}
-								</ul>
+										{language === 'fr' && (
+											<li>
+												<InscriptionBetaTesteur />
+											</li>
+										)}
+										{hrefLink && (
+											<li key={hrefLink.hrefLang}>
+												<Link
+													href={hrefLink.href}
+													openInSameWindow
+													lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
+												>
+													{hrefLink.hrefLang === 'fr' ? (
+														<>
+															Passer en français <Emoji emoji="🇫🇷" />
+														</>
+													) : hrefLink.hrefLang === 'en' ? (
+														<>
+															Switch to English <Emoji emoji="🇬🇧" />
+														</>
+													) : (
+														hrefLink.hrefLang
+													)}
+												</Link>
+											</li>
+										)}
+									</ul>
+								</nav>
 							</FooterColumn>
 
 							<FooterColumn>
-								<ul>
-									<li>
-										<LegalNotice />
-									</li>
-									<li>
-										<Privacy />
-									</li>
-									{language === 'fr' && (
+								<nav>
+									<ul>
 										<li>
-											<Link
-												to={absoluteSitePaths.accessibilité}
-												aria-label={t(
-													'footer.accessibilitéAriaLabel',
-													'Accessibilité : non conforme, en savoir plus'
-												)}
-											>
-												<Trans i18nKey="footer.accessibilité">
-													Accessibilité : non conforme
-												</Trans>
-											</Link>
+											<LegalNotice />
 										</li>
-									)}
-								</ul>
+										<li>
+											<Privacy />
+										</li>
+										{language === 'fr' && (
+											<li>
+												<Link
+													to={absoluteSitePaths.accessibilité}
+													aria-label={t(
+														'footer.accessibilitéAriaLabel',
+														'Accessibilité : non conforme, en savoir plus'
+													)}
+												>
+													<Trans i18nKey="footer.accessibilité">
+														Accessibilité : non conforme
+													</Trans>
+												</Link>
+											</li>
+										)}
+									</ul>
+								</nav>
 							</FooterColumn>
 						</FooterContainer>
 					</ThemeProvider>
