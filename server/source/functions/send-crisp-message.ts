@@ -82,8 +82,8 @@ export const sendCrispMessage = async (body: BodyType) => {
 				type: 'text',
 				content: message,
 				subject,
-				from: 'operator',
-				origin: 'chat',
+				from: 'user',
+				origin: 'email',
 			}
 		)
 	} catch (e) {
