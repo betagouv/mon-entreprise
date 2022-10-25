@@ -1053,20 +1053,8 @@ dirigeant . auto-entrepreneur . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
 dirigeant . auto-entrepreneur . impôt . revenu imposable:
-  description.en: >
-    [automatic] The micro-entrepreneur is exempted from making a
-    professional declaration of profits as BNC or BIC.
-
-
-    They only need to declare the annual gross turnover (BIC) or revenue (BNC) on the supplementary income tax return (n°2042-C Pro).
-  description.fr: >
-    Le micro-entrepreneur est dispensé d'établir une déclaration
-    professionnelle de bénéfices au titre des BNC ou BIC.
-
-
-    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
-  titre.en: '[automatic] self-employed taxable income'
-  titre.fr: revenu imposable auto-entrepreneur
+  titre.en: '[automatic] taxable income'
+  titre.fr: revenu imposable
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description.en: >
     [automatic] With the option for the payment in full discharge,
@@ -5190,6 +5178,9 @@ impôt . taux personnalisé:
   question.fr: Quel est votre taux de prélèvement à la source ?
   titre.en: personalized rate
   titre.fr: taux personnalisé
+mois cotisés:
+  titre.en: '[automatic] months of contributions'
+  titre.fr: mois cotisés
 plafond sécurité sociale:
   description.en: '[automatic] The Social Security ceiling is the maximum amount
     of remuneration to be taken into account for the calculation of certain
@@ -5404,63 +5395,47 @@ protection sociale . invalidité et décès:
   titre.fr: invalidité et décès
 protection sociale . retraite:
   description.en: >
-    [automatic] All workers in France contribute throughout their
-    working life to benefit from a pension scheme when they reach retirement
-    age.
+    [automatic] ### A mandatory system ...
+
+    As soon as you work, you and your employer contribute to your pension. This contribution is based on the salary you receive.
 
 
-    The pension system is currently based on the "pay-as-you-go" principle. This means that contributions from working people finance the pensions of retirees.
+    ###Pay-as-you-go
+
+    The total amount of contributions you pay each year is used to pay the pensions of the retirees for that same year. The system thus organizes a direct transfer from working generations to retired generations.
 
 
-    ## Retirement in France in a few figures
-      - ** 2094 € / month**: Average standard of living of the over 65s (compared to the rest of the population, it is the highest in the OECD 🥇)
-      - **25 years**: the average number of years spent in retirement (the highest in the OECD 🥇)
-      - 75%**: the replacement rate as a percentage of full net pay
+    ###... mainly contributory
 
-    The pension is the highest of the social security contributions. It can be considered as deferred salary, since your contributions will ensure you a future income.
+    When you retire, your pension (i.e., your retirement "income") is calculated based on your earnings, your retirement age and the number of years you worked.
+
+
+    **Our retirement system is also based on solidarity**: the unemployed, people on sick leave, people with disabilities, low-income workers and women on maternity leave also acquire rights. No retired person is left without resources.
+
 
 
     Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
   description.fr: >
-    Tous les travailleurs en France cotisent tout au long de leur
-    vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils
-    ont l’âge de cesser leur activité.
+    ### Un système obligatoire …
+
+    Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
 
 
-    Le système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.
+    ###… par répartition
+
+    Le montant total des cotisations que vous versez chaque année sert à payer les pensions des retraités pour cette même année. Le système organise ainsi un transfert direct des générations en activité vers les générations à la retraite.
 
 
-    ## La retraite en France en quelques chiffres
-      - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE 🥇)
-      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE 🥇)
-      - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein
+    ###… principalement contributif
 
-    La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
+    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu » à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à la retraite et du nombre d’années passées à travailler.
+
+
+    **Notre système de retraite est également solidaire** : les chômeurs, les personnes en arrêt maladie, les personnes en situation de handicap, les travailleurs touchant de faibles revenus, les femmes en congé maternité acquièrent également des droits. Aucune personne à la retraite n’est laissée sans ressources.
+
 
 
     Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
-  note.en: >
-    [automatic] This is a purely indicative estimate for the purpose of
-    comparing the pensions of the various schemes.
-
-    We limit ourselves to the following assumptions:
-      - It is assumed that the worker has retired at the full rate, by contributing the required number of quarters (172), or by leaving at the full rate age (67 years)
-      - The worker is considered to have had the same income throughout his career
-      - It is considered that the worker has remained in the same scheme throughout his career
-      - Minorities/increases are not taken into account
-      - We do not take into account the pension funds of the regulated liberal professions (the 10 sections of the Cnavpl and the Cnbf)
-      - The number of quarters validated per year is not calculated
-  note.fr: >
-    Il s'agit d'une estimation a but purement indicatif, afin de comparer
-    la retraite des différents régimes.
-
-    On se limite notamment aux hypothèses suivantes :
-      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestres requis (172), ou en partant à l'âge taux plein (67 ans)
-      - On considère que le travailleur a eu le même revenu tout au long de sa carrière
-      - On considère que le travailleur est resté dans le même régime tout au long de sa carrière
-      - On ne prend pas en compte les minorations / majorations
-      - On ne prend pas en compte les caisses de retraite des professions libérales réglementées (les 10 sections de la Cnavpl et la Cnbf)
-      - On ne calcule pas le nombre de trimestres validés par année
   résumé.en: Guarantees on average 60 to 70% of the last income from employment
     after age 65.
   résumé.fr: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
@@ -5469,6 +5444,12 @@ protection sociale . retraite:
 protection sociale . retraite . CIPAV:
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
+protection sociale . retraite . CIPAV . auto-entrepreneur:
+  titre.en: '[automatic] auto-entrepreneur'
+  titre.fr: auto-entrepreneur
+protection sociale . retraite . CIPAV . indépendant:
+  titre.en: '[automatic] independent'
+  titre.fr: indépendant
 protection sociale . retraite . CNAVPL:
   description.en: >-
     [automatic] The liberal professions affiliated to the CNAVPL
@@ -5550,75 +5531,9 @@ protection sociale . retraite . CNAVPL . cotisation maximum T1:
 protection sociale . retraite . CNAVPL . cotisation maximum T2:
   titre.en: '[automatic] maximum fee T2'
   titre.fr: cotisation maximum T2
-protection sociale . retraite . base:
-  note.en:
-    '[automatic] Impatriates are exempt from paying pension contributions.
-    In return, they do not acquire any rights during the exemption period.'
-  note.fr: Les impatriés bénéficient d'une exonération de cotisation vieillesse.
-    En contrepartie, ils n'acquièrent aucun droit pendant la durée
-    d'exonération.
-  titre.en: basic retirement pension
-  titre.fr: pension de retraite de base
-protection sociale . retraite . base . taux de la pension:
-  description.en:
-    The rate applied, with a discount or surcharge depending on the
-    number of quarters contributed.
-  description.fr: Le taux appliqué, avec décote ou surcote en fonction du nombre
-    de trimestres cotisés.
-  note.en: '[automatic] We do not take into account the discount in the rate
-    following the missing quarters. The contributor is therefore considered to
-    start at full rate, i.e. at age 67 (or earlier if all quarters are
-    validated).'
-  note.fr: On ne prend pas en compte la décote du taux suite aux trimestres
-    manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans
-    (ou avant si tous les trimestres sont validés).
-  titre.en: rate of the pension
-  titre.fr: taux de la pension
-protection sociale . retraite . base . trimestres:
-  titre.en: '[automatic] quarters'
-  titre.fr: trimestres
-protection sociale . retraite . base . trimestres . auto-entrepreneur:
-  description.en:
-    '[automatic] The minimum turnover thresholds for the validation
-    of quarters for retirement as an auto-entrepreneur. Below the minimum
-    amount, you will only have access to the solidarity allowance.'
-  description.fr:
-    Les seuils de chiffre d'affaires minimum pour la validation des
-    trimestres pour la retraite en auto-entrepreneur. En-dessous du montant
-    minimum, vous n'aurez accès qu'à l'allocation de solidarité.
-  titre.en: '[automatic] auto-entrepreneur'
-  titre.fr: auto-entrepreneur
-protection sociale . retraite . base . trimestres . indépendant:
-  note.en: '[automatic] '
-  note.fr: >-
-    Rappel : la validation de trimestres s’effectue, pour les travailleurs
-    indépendants à partir du **revenu cotisé**
-
-
-    Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel que rendu applicable aux travailleurs indépendants par les articles D634-1 et R634-1 du même code, moyennant adaptations, prévoit que pour la période postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres que le revenu annuel correspondant aux retenues subies par l’assuré représente de fois le montant du salaire minimum de croissance en vigueur au 1er janvier de l'année considérée calculé sur la base de 150 heures, avec un maximum de quatre trimestres par année civile.
-
-
-    Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
-
-
-    Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
-
-
-    Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.
-
-
-    Cotisation définitive RVB effectivement versée au titre d'une année N (+réductions ou exonérations génératrices de droits)  / taux de cotisation RVB au titre de cette année N (pour la part génératrice de droit applicable au revenu plafonné).
-
-
-    Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la validation de trimestres d’une année N.
-
-
-    Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
-  titre.en: '[automatic] independent'
-  titre.fr: indépendant
-protection sociale . retraite . base . trimestres . salarié:
-  titre.en: '[automatic] employee'
-  titre.fr: salarié
+protection sociale . retraite . base cotisée:
+  titre.en: '[automatic] income contributed for the basic pension'
+  titre.fr: revenu cotisés pour la retraite de base
 protection sociale . retraite . complémentaire indépendants:
   titre.en: supplementary pension for self-employed
   titre.fr: complémentaire indépendants
@@ -5650,9 +5565,9 @@ protection sociale . retraite . complémentaire salarié . points acquis:
 protection sociale . retraite . complémentaire salarié . points acquis . valeur d'acquisition:
   titre.en: '[automatic] acquisition value'
   titre.fr: valeur d'acquisition
-protection sociale . retraite . mois cotisés:
-  titre.en: contributed months
-  titre.fr: mois cotisés
+protection sociale . retraite . trimestres:
+  titre.en: '[automatic] validated quarters'
+  titre.fr: trimestres validés
 protection sociale . revenu moyen:
   description.en: The income used to calculate the amount of retirement pensions
     and daily social security allowances during a work stoppage.
@@ -6094,6 +6009,35 @@ salarié . contrat . apprentissage . diplôme préparé . niveau supérieur au b
     ...)
   titre.en: '[automatic] Diploma of a higher level than the baccalaureate'
   titre.fr: Diplôme d'un niveau supérieur au bac
+salarié . contrat . apprentissage . durée:
+  description.en: >
+    [automatic] The apprenticeship contract is a written contract
+    under private law.
+
+
+    It can be of limited duration (CDL) from a minimum of 6 months to a maximum of 3 years
+  description.fr: >
+    Le contrat d'apprentissage est un contrat écrit de droit privé.
+
+
+    Il peut être à durée limitée (CDL) d'une durée de 6 mois au minimum à 3 ans au maximum
+  question.en: '[automatic] What is the duration of the contract?'
+  question.fr: Quelle est la durée du contrat ?
+  suggestions.1 an.en: '[automatic] 1 year'
+  suggestions.1 an.fr: 1 an
+  suggestions.2 ans.en: '[automatic] 2 years'
+  suggestions.2 ans.fr: 2 ans
+  suggestions.3 ans.en: '[automatic] 3 years'
+  suggestions.3 ans.fr: 3 ans
+  suggestions.6 mois.en: '[automatic] 6 months'
+  suggestions.6 mois.fr: 6 mois
+  titre.en: '[automatic] duration of the contract'
+  titre.fr: durée du contrat
+salarié . contrat . apprentissage . trimestres validés pour la retraite:
+  note.en: '[automatic] We round down to the unit, hence the subtraction of 0.5'
+  note.fr: On arrondi à l'unité inférieur, d'où la soustraction de 0.5
+  titre.en: '[automatic] validated quarters for retirement'
+  titre.fr: trimestres validés pour la retraite
 salarié . contrat . date d'embauche:
   question.en: "[automatic] What is the employee's date of hire?"
   question.fr: Quelle est la date d'embauche du salarié ?

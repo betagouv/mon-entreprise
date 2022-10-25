@@ -5,6 +5,7 @@ impôt:
   titre: impôt sur le revenu
 
 impôt . montant:
+  titre: Impôt sur le revenu
   somme:
     - produit:
         assiette: revenu imposable
