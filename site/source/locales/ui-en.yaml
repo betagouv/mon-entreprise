@@ -1089,6 +1089,11 @@ mensuel: monthly
 mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
+navbar:
+  logo: Logo My company in France by Urssaf
+  redirect-home: Go to home page
+  activate-darkmode: Activate dark mode
+  deactivate-darkmode: Deactivate dark mode
 nextSteps:
   integration-iframe:
     body: Discover how to add this simulator on your website in one click via a

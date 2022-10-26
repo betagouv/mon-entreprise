@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import NewsBanner from './NewsBanner'
 import { Switch } from '@/design-system/switch'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import Emoji from '@/components/utils/Emoji'
 
 export default function Header() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -36,8 +37,17 @@ export default function Header() {
 							flex: 1;
 						`}
 					/>
-					<Switch defaultSelected={darkMode} onChange={setDarkMode} />
-
+					<Emoji emoji="☀️" aria-hidden />
+					<Switch
+						defaultSelected={darkMode}
+						onChange={setDarkMode}
+						aria-label={t(
+							darkMode
+								? 'navbar.deactivate-darkmode'
+								: 'navbar.activate-darkmode'
+						)}
+					/>
+					<Emoji emoji="🌙" aria-hidden />
 					{language === 'fr' && <SearchButton />}
 				</StyledHeader>
 				<BrowserOnly>{language === 'fr' && <NewsBanner />}</BrowserOnly>

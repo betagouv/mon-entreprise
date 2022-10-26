@@ -15,8 +15,9 @@ export const DarkModeContext = React.createContext<DarkModeContextType>({
 
 export const DarkModeProvider: React.FC = ({ children }) => {
 	const [darkMode, setDarkMode] = React.useState<boolean>(
-		window.matchMedia &&
-			window.matchMedia('(prefers-color-scheme: dark)').matches
+		import.meta.env.DEV && typeof window !== 'undefined' ?
+			(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) :
+			false
 	)
 
 	return (
