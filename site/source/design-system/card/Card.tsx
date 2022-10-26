@@ -50,33 +50,31 @@ export function Card({
 	delete buttonOrLinkProps.title
 
 	return (
-		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
-			<CardContainer $compact={compact} {...buttonOrLinkProps} tabIndex={0}>
-				{icon && <IconContainer>{icon}</IconContainer>}
-				{title &&
-					(compact ? (
-						<CompactStyledHeader {...titleProps} />
-					) : (
-						<StyledHeader {...titleProps} />
-					))}
-				<div
-					css={`
-						flex: 1;
-						text-align: center;
-						width: 100%;
-					`}
-				>
-					<Body as={bodyAs}>{children}</Body>
-				</div>
-				{ctaLabel && (
-					// The button is not selectable with keyboard navigation because the whole card already is
-					<CardButton tabIndex={-1} $size="XS" $light $color="primary" as="div">
-						{ctaLabel}
-						{linkProps.external && <NewWindowLinkIcon />}
-					</CardButton>
-				)}
-			</CardContainer>
-		</ThemeProvider>
+		<CardContainer $compact={compact} {...buttonOrLinkProps} tabIndex={0}>
+			{icon && <IconContainer>{icon}</IconContainer>}
+			{title &&
+				(compact ? (
+					<CompactStyledHeader {...titleProps} />
+				) : (
+					<StyledHeader {...titleProps} />
+				))}
+			<div
+				css={`
+					flex: 1;
+					text-align: center;
+					width: 100%;
+				`}
+			>
+				<Body as={bodyAs}>{children}</Body>
+			</div>
+			{ctaLabel && (
+				// The button is not selectable with keyboard navigation because the whole card already is
+				<CardButton tabIndex={-1} $size="XS" $light $color="primary" as="div">
+					{ctaLabel}
+					{linkProps.external && <NewWindowLinkIcon />}
+				</CardButton>
+			)}
+		</CardContainer>
 	)
 }
 
@@ -128,12 +126,18 @@ export const CardContainer = styled.div<{ $compact?: boolean }>`
 	cursor: pointer;
 	flex-direction: column;
 	align-items: center;
-	background-color: ${({ theme }) => theme.colors.extended.grey[100]};
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.extended.grey[100]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	box-shadow: ${({ theme }) => theme.elevations[2]};
 	&:hover {
 		box-shadow: ${({ theme }) => theme.elevations[3]};
-		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+		background-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.dark[500]
+				: theme.colors.bases.primary[100]};
 	}
 	&:focus,
 	&:focus-visible {

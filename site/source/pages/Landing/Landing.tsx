@@ -101,7 +101,14 @@ export default function Landing() {
 					</Grid>
 					<Spacing xl />
 				</Container>
-				<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
+				<Container
+					backgroundColor={(theme) =>
+						theme.darkMode
+							? theme.colors.extended.dark[700]
+							: theme.colors.bases.primary[100]
+					}
+				>
+					{' '}
 					<Spacing lg />
 					<Grid
 						container

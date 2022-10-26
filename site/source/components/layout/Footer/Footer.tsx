@@ -53,7 +53,11 @@ export default function Footer() {
 			/>
 			<footer>
 				<Container
-					backgroundColor={(theme) => theme.colors.bases.tertiary[100]}
+					backgroundColor={(theme) =>
+						theme.darkMode
+							? theme.colors.extended.dark[600]
+							: theme.colors.bases.tertiary[100]
+					}
 				>
 					{showFeedback && <PageFeedback />}
 					{language === 'en' && (
