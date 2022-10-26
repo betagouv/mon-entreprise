@@ -12,10 +12,10 @@ export const SatisfactionStyle: [
 	SatisfactionLevel,
 	{ emoji: string; color: string }
 ][] = [
-	[SatisfactionLevel.Mauvais, { emoji: '🙁', color: '#ff5959' }],
-	[SatisfactionLevel.Moyen, { emoji: '😐', color: '#fff339' }],
+	[SatisfactionLevel.Mauvais, { emoji: '🙁', color: '#D97C76' }],
+	[SatisfactionLevel.Moyen, { emoji: '😐', color: '#f3dd68' }],
 	[SatisfactionLevel.Bien, { emoji: '🙂', color: '#90e789' }],
-	[SatisfactionLevel.TrèsBien, { emoji: '😀', color: '#0fc700' }],
+	[SatisfactionLevel.TrèsBien, { emoji: '😀', color: '#17B890' }],
 ]
 
 function toPercentage(data: Record<string, number>): Record<string, number> {
