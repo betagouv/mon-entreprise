@@ -40,7 +40,7 @@
 		"koa-static": "^5.0.0",
 		"modele-social": "workspace:^",
 		"nodemon": "^2.0.16",
-		"publicodes": "^1.0.0-beta.55",
+		"publicodes": "^1.0.0-beta.57",
 		"rate-limiter-flexible": "^2.3.8",
 		"swagger-ui-dist": "^4.11.1"
 	},
