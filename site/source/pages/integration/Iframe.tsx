@@ -19,6 +19,8 @@ import cciLogo from './_images/cci.png'
 import minTraLogo from './_images/min-tra.jpg'
 import poleEmploiLogo from './_images/pole-emploi.png'
 import { Button } from '@/design-system/buttons'
+import { useDarkMode } from '@/hooks/useDarkMode'
+
 
 const checkIframe = (obj: SimulatorData[keyof SimulatorData]) =>
 	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)
@@ -319,6 +321,7 @@ function IntegrationCode({
 	color,
 }: IntegrationCodeProps) {
 	const { t } = useTranslation()
+	const [ darkMode ] = useDarkMode()
 
 	const codeRef = useRef<HTMLDivElement>(null)
 	const [copied, setCopied] = useState(false)
@@ -353,7 +356,7 @@ function IntegrationCode({
 				font-size: 80%;
 				padding: 1em;
 				margin: auto auto 1em;
-				background: #f8f8f8;
+				background: ${darkMode ? '#484848' : '#f8f8f8'};
 				overflow: auto;
 				line-height: 1.6em;
 				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05),
@@ -361,7 +364,7 @@ function IntegrationCode({
 
 				em {
 					font-weight: 300;
-					color: black;
+					color: ${darkMode ? 'white' : 'black'};
 				}
 			`}
 		>

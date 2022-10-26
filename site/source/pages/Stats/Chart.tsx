@@ -19,6 +19,7 @@ import {
 	YAxis,
 } from 'recharts'
 import { ThemeContext } from 'styled-components'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 type Period = 'mois' | 'jours'
 
@@ -70,6 +71,7 @@ export default function VisitsChart({
 	startIndex,
 	endIndex,
 }: VisitsChartProps) {
+	const [darkMode] = useDarkMode()
 	const { colors } = useContext(ThemeContext)
 	if (!data.length) {
 		return null
@@ -129,11 +131,13 @@ export default function VisitsChart({
 						textAnchor="end"
 						height={60}
 						minTickGap={-8}
+						stroke={darkMode ? 'lightGrey' : 'darkGray'}
 					/>
 
 					<YAxis
 						tickFormatter={(val: number) => formatValue(val) as string}
 						type="number"
+						stroke={darkMode ? 'lightGrey' : 'darkGray'}
 					/>
 
 					<Tooltip

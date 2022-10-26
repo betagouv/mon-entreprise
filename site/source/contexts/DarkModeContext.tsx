@@ -1,17 +1,14 @@
 import React from 'react'
 
-type DarkModeContextType = {
-	darkMode: boolean
-	setDarkMode: (darkMode: boolean) => void
-}
+type DarkModeContextType = [boolean, (darkMode: boolean) => void]
 
-export const DarkModeContext = React.createContext<DarkModeContextType>({
-	darkMode: false,
-	setDarkMode: () => {
+export const DarkModeContext = React.createContext<DarkModeContextType>([
+	false,
+	() => {
 		// eslint-disable-next-line no-console
 		console.error('No dark mode provider found')
 	},
-})
+])
 
 export const DarkModeProvider: React.FC = ({ children }) => {
 	const [darkMode, _setDarkMode] = React.useState<boolean>(
@@ -29,7 +26,7 @@ export const DarkModeProvider: React.FC = ({ children }) => {
 	}
 
 	return (
-		<DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
+		<DarkModeContext.Provider value={[ darkMode, setDarkMode ]}>
 			{children}
 		</DarkModeContext.Provider>
 	)

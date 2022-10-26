@@ -56,12 +56,12 @@ const Container = styled.div`
 	word-break: break-word;
 	cursor: pointer;
 	align-items: center;
-	background-color: ${({ theme }) => theme.colors.bases.primary[200]};
+	background-color: ${({ theme }) => theme.darkMode ? theme.colors.bases.primary[700] : theme.colors.bases.primary[200]};
 	border-radius: 0.375rem;
-	box-shadow: ${({ theme }) => theme.elevations[2]};
+	box-shadow: ${({ theme }) => theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
 	&:hover {
-		box-shadow: ${({ theme }) => theme.elevations[3]};
-		background-color: ${({ theme }) => theme.colors.bases.primary[400]};
+		box-shadow: ${({ theme }) => theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3]};
+		background-color: ${({ theme }) => theme.darkMode ? theme.colors.bases.primary[600]:theme.colors.bases.primary[400]};
 	}
 	&:focus-visible {
 		${FocusStyle}

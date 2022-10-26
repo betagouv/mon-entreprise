@@ -98,8 +98,8 @@ export const Wrapper = styled.div<WrapperProps>`
 	background-color: ${({ theme, isOpen }) =>
 		theme.darkMode
 			? isOpen
-				? 'rgba(255, 255, 255, 40%)'
-				: 'rgba(255, 255, 255,20%)'
+				? theme.colors.extended.dark[700]
+				: theme.colors.extended.dark[600]
 			: isOpen
 			? theme.colors.extended.grey[200]
 			: theme.colors.extended.grey[100]};

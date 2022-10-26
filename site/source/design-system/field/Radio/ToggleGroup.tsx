@@ -47,13 +47,13 @@ export const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 		position: relative;
 		align-items: center;
 		z-index: 1;
-		border: 1px solid ${({ theme }) => theme.colors.extended.grey[500]};
+		border: 1px solid ${({ theme }) => theme.darkMode ? theme.colors.extended.dark[500] : theme.colors.extended.grey[500]};
 		margin: 0;
 		margin-right: -1px;
 		border-radius: 0;
 		cursor: pointer;
 		padding: ${({ theme: { spacings } }) => spacings.xs + ' ' + spacings.lg};
-		background: ${({ theme }) => theme.colors.extended.grey[100]};
+		background: ${({ theme }) => theme.darkMode ? theme.colors.extended.dark[600] : theme.colors.extended.grey[100]};
 	}
 
 	${LabelBody} {
@@ -74,12 +74,12 @@ export const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 
 	${InputRadio}:checked + ${VisibleRadio} {
 		z-index: 2;
-		border: 1px solid ${({ theme }) => theme.colors.bases.primary[700]};
-		background-color: ${({ theme }) => theme.colors.bases.primary[200]};
+		border: 1px solid ${({ theme }) => theme.darkMode ? theme.colors.bases.primary[400] : theme.colors.bases.primary[700]};
+		background-color: ${({ theme }) => theme.darkMode ? theme.colors.bases.primary[500] : theme.colors.bases.primary[200]};
 	}
 
 	${VisibleRadio}:hover {
-		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+		background-color: ${({ theme }) => theme.darkMode ? theme.colors.bases.primary[700] : theme.colors.bases.primary[100]};
 	}
 	${RadioButton} {
 		${({ hideRadio }) =>

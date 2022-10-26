@@ -269,7 +269,7 @@ const RessourcesAllocationTable = styled.table`
 
 	tbody tr:nth-child(odd),
 	tfoot tr:nth-child(odd) {
-		background: ${({ theme }) => theme.colors.bases.primary[200]};
+		background: ${({ theme }) => theme.darkMode ? theme.colors.extended.dark[600] : theme.colors.bases.primary[200]};
 	}
 
 	thead,

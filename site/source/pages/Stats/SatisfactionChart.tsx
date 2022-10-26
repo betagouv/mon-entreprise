@@ -6,6 +6,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { Bar, BarChart, LabelList, Tooltip, XAxis } from 'recharts'
 import { RealResponsiveContainer } from './Chart'
 import { SatisfactionLevel } from './types'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 export const SatisfactionStyle: [
 	SatisfactionLevel,
@@ -36,6 +37,8 @@ type SatisfactionChartProps = {
 }
 
 export default function SatisfactionChart({ data }: SatisfactionChartProps) {
+	const [darkMode] = useDarkMode()
+
 	if (!data.length) {
 		return null
 	}
@@ -54,6 +57,7 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 						textAnchor="end"
 						height={60}
 						minTickGap={-8}
+						stroke={darkMode ? 'lightGrey' : 'darkGray'}
 					/>
 					<Tooltip content={CustomTooltip} />
 					{SatisfactionStyle.map(([level, { emoji, color }]) => (

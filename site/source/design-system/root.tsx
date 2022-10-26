@@ -29,7 +29,7 @@ const SystemRoot = ({ children }: SystemRootProps) => {
 }
 
 const Background: React.FC = ({ children }) => {
-	const { darkMode } = useDarkMode()
+	const [ darkMode ] = useDarkMode()
 
 	return <BackgroundStyle $darkMode={darkMode}>{children}</BackgroundStyle>
 }
