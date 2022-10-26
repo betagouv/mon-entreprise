@@ -849,6 +849,11 @@ listeformejuridique:
 loading: Chargement en cours...
 mensuel: mensuel
 mois: mois
+navbar:
+  logo: Logo Mon-entreprise, site Urssaf
+  redirect-home: Accéder à la page d'accueil
+  activate-darkmode: Activer le mode sombre
+  deactivate-darkmode: Désactiver le mode sombre
 nextSteps:
   integration-iframe:
     body: Decouvrez comment ajouter ce simulateur sur votre site internet en un clic

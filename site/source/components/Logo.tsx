@@ -8,13 +8,10 @@ import styled from 'styled-components'
 export function Logo() {
 	const {
 		i18n: { language },
+		t
 	} = useTranslation()
 
-	return language === 'fr' ? (
-		<StyledLogo alt="Logo Mon-entreprise, site Urssaf" src={logoSvgFR} />
-	) : (
-		<StyledLogo alt="Logo My company in France by Urssaf" src={logoSvgEN} />
-	)
+	return <StyledLogo alt={t("navbar.logo")} src={language === 'fr' ?logoSvgFR:logoSvgEN} />
 }
 
 const StyledLogo = styled.img.attrs({ 'data-test-id': 'logo img' })`
