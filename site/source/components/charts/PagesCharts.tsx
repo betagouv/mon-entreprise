@@ -13,6 +13,7 @@ import {
 	YAxis,
 } from 'recharts'
 import styled, { css } from 'styled-components'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 type Data =
 	| Array<{ date: string; nombre: number }>
@@ -40,6 +41,8 @@ function getColor(i: number): string {
 }
 
 export default function PagesChart({ data, sync = true }: PagesChartProps) {
+	const [darkMode] = useDarkMode()
+
 	if (!data.length) {
 		return null
 	}
@@ -72,12 +75,14 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 						textAnchor="end"
 						height={60}
 						minTickGap={-8}
+						stroke={darkMode ? 'lightGrey' : 'darkGray'}
 					/>
 
 					<YAxis
 						tickFormatter={(x) => formatValue(x)}
 						domain={['0', 'auto']}
 						type="number"
+						stroke={darkMode ? 'lightGrey' : 'darkGray'}
 					/>
 
 					<Tooltip content={<CustomTooltip />} />
@@ -147,8 +152,11 @@ const ColoredLi = styled(Li)<{ color?: string }>`
 `
 
 export const StyledLegend = styled.div`
-	background-color: white;
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.extended.grey[100]};
 	padding: 0.125rem 1rem;
-	box-shadow: ${({ theme }) => theme.elevations[3]};
+	box-shadow: ${({ theme }) => theme.darkMode? theme.elevationsDarkMode[3] : theme.elevations[3]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 `

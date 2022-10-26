@@ -56,7 +56,7 @@ export default function Container({
 	backgroundColor,
 	children,
 }: ContainerProps) {
-	const { darkMode } = useDarkMode()
+	const [ darkMode ] = useDarkMode()
 
 	return (
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode })}>

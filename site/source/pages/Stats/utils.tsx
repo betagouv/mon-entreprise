@@ -37,7 +37,7 @@ export function formatMonth(date: string | Date) {
 const StyledIndicator = styled.div`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	height: 100%;
-	box-shadow: ${({ theme }) => theme.elevations[2]};
+	box-shadow: ${({ theme }) => theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
 	padding: ${({ theme }) => theme.spacings.xs}
 		${({ theme }) => theme.spacings.md};
 `

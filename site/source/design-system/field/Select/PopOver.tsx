@@ -16,10 +16,10 @@ const Wrapper = styled.div`
 	left: -1px;
 	z-index: 1000;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	border: 1px solid ${({ theme }) => theme.colors.extended.grey[200]};
+	border: 1px solid ${({ theme }) =>  theme.darkMode ? theme.colors.extended.dark[600] :theme.colors.extended.grey[200]};
 	width: calc(100% + 2px);
-	box-shadow: ${({ theme }) => theme.elevations[2]};
-	background: white;
+	box-shadow: ${({ theme }) => theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
+	background: ${({ theme }) => theme.darkMode ? theme.colors.extended.dark[500] : theme.colors.extended.grey[100]};
 `
 
 export function Popover(props: PopoverProps) {

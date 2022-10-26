@@ -78,14 +78,14 @@ type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 const Code = styled.code`
 	overflow: auto;
 	padding: 0.25rem;
-	background-color: ${({ theme }) => theme.colors.extended.grey[300]};
+	background-color: ${({ theme }) => theme.darkMode ? theme.colors.extended.dark[600] : theme.colors.extended.grey[300]};
 	border-radius: 0.25rem;
 `
 
 const Pre = styled.pre`
 	overflow: auto;
 	padding: 0.5rem;
-	background-color: ${({ theme }) => theme.colors.extended.grey[300]};
+	background-color: ${({ theme }) => theme.darkMode ? theme.colors.extended.dark[600] : theme.colors.extended.grey[300]};
 	border-radius: 0.25rem;
 
 	& ${Code} {

@@ -159,7 +159,8 @@ const Underlay = styled.div<UnderlayProps>`
 	left: 0;
 	overflow: auto;
 	z-index: 200; // to be in front of the menu of the Publicodes doc
-	background: rgba(255, 255, 255, 0.5);
+	background: ${({ theme }) =>
+		theme.darkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)'};
 	animation: ${appear} 0.2s;
 	display: flex;
 	${({ $offsetTop }) =>
@@ -175,8 +176,12 @@ const Underlay = styled.div<UnderlayProps>`
 const PopoverContainer = styled.div<{ $offsetTop: number | null }>`
 	max-height: 90vh;
 
-	background: ${({ theme }) => theme.colors.extended.grey[100]};
-	box-shadow: ${({ theme }) => theme.elevations[4]};
+	background: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.extended.grey[100]};
+	box-shadow: ${({ theme }) =>
+		theme.darkMode ? theme.elevationsDarkMode[4] : theme.elevations[4]};
 	display: flex;
 	margin-bottom: 1rem;
 	flex-direction: column;
@@ -212,7 +217,10 @@ const CloseButton = styled.button`
 	background: none;
 	border: none;
 
-	color: ${({ theme }) => theme.colors.bases.primary[700]};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.bases.primary[400]
+			: theme.colors.bases.primary[700]};
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
 	font-size: ${({ theme }) => theme.baseFontSize};

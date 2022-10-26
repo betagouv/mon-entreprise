@@ -89,6 +89,14 @@ declare module 'styled-components' {
 			6: ShadowDefinition
 		}
 
+		elevationsDarkMode: {
+			2: ShadowDefinition
+			3: ShadowDefinition
+			4: ShadowDefinition
+			5: ShadowDefinition
+			6: ShadowDefinition
+		}
+
 		breakpointsWidth: {
 			xl: Metric
 			lg: Metric

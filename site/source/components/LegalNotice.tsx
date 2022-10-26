@@ -3,9 +3,11 @@ import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 export default function LegalNotice() {
 	const { t } = useTranslation()
+	const [ darkMode ] = useDarkMode()
 
 	return (
 		<PopoverWithTrigger
@@ -53,6 +55,7 @@ export default function LegalNotice() {
 						aria-label="https://www.netlify.com, nouvelle fenêtre"
 						target="_blank"
 						rel="noreferrer"
+						style={darkMode ? { color: '#9EBBF1' } : { color: '#2E5FB6' }}
 					>
 						https://www.netlify.com
 					</a>
@@ -67,6 +70,7 @@ export default function LegalNotice() {
 						href="mailto:contact@mon-entreprise.beta.gouv.fr"
 						target="_blank"
 						rel="noreferrer"
+						style={darkMode ? { color: '#9EBBF1' } : { color: '#2E5FB6' }}
 					>
 						contact@mon-entreprise.beta.gouv.fr
 					</a>

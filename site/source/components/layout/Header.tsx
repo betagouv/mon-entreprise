@@ -18,9 +18,10 @@ export default function Header() {
 		t,
 	} = useTranslation()
 
-	const { darkMode, setDarkMode } = useDarkMode()
+	const [ darkMode, setDarkMode ] = useDarkMode()
 
 	return (
+<<<<<<< HEAD
 		<header>
 			<Container>
 				<StyledHeader>
@@ -37,6 +38,11 @@ export default function Header() {
 							flex: 1;
 						`}
 					/>
+					<div style={{
+					display: 'flex',
+					alignItems: 'center',
+					marginRight: '1rem'
+				}}></div>
 					<Emoji emoji="☀️" aria-hidden />
 					<Switch
 						defaultSelected={darkMode}
@@ -48,11 +54,14 @@ export default function Header() {
 						)}
 					/>
 					<Emoji emoji="🌙" aria-hidden />
+				</div>
+
 					{language === 'fr' && <SearchButton />}
 				</StyledHeader>
 				<BrowserOnly>{language === 'fr' && <NewsBanner />}</BrowserOnly>
 			</Container>
 		</header>
+
 	)
 }
 
