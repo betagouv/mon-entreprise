@@ -10141,7 +10141,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^2.0.16
-    publicodes: ^1.0.0-beta.57
+    publicodes: ^1.0.0-beta.58
     rate-limiter-flexible: ^2.3.8
     rimraf: ^3.0.2
     swagger-ui-dist: ^4.11.1
@@ -24135,16 +24135,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.57":
-  version: 1.0.0-beta.57
-  resolution: "publicodes-react@npm:1.0.0-beta.57"
+"publicodes-react@npm:^1.0.0-beta.58":
+  version: 1.0.0-beta.58
+  resolution: "publicodes-react@npm:1.0.0-beta.58"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: 1.0.0-beta.40
     react: ^17 || ^18
     react-dom: ^17 || ^18
-  checksum: 12581b0b12fc44602a5af4bb32450cc83c05e03754aca4ee9d2d48b424e6002d2f72976dc7537c4858e989714271a78bf19466b6b9b5bfcf6987e09c92811a82
+  checksum: d22e76342a43f1c70b06d00d7b6910c1c7f93ecb8d4bbddb3c97e01bcf9bb44aece465ac50751eb16f23a7397058e8f3f2a575e6188537bdb7388c9cd102dceb
   languageName: node
   linkType: hard
 
@@ -24160,15 +24160,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.57":
-  version: 1.0.0-beta.57
-  resolution: "publicodes@npm:1.0.0-beta.57"
+"publicodes@npm:^1.0.0-beta.58":
+  version: 1.0.0-beta.58
+  resolution: "publicodes@npm:1.0.0-beta.58"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 0f1ec0215c01c6acc66292e47f7b601b8231f5c5fb48047d669a0af785b87514b348cebd14ae7168f53a1c50141ca1ee4d28208f2981401a3fa5cce98bea7a09
+  checksum: d84e8f45dad511745632df9566b7b8d4fff50eace8effbd100b90a9018b182bc2f561450de744ccf653793e47e713c0ebb90c197edac74aaf3ffbb4f96172981
   languageName: node
   linkType: hard
 
@@ -26315,8 +26315,8 @@ __metadata:
     markdown-to-jsx: ^7.1.7
     modele-social: "workspace:^"
     netlify-cli: ^10.6.3
-    publicodes: ^1.0.0-beta.57
-    publicodes-react: ^1.0.0-beta.57
+    publicodes: ^1.0.0-beta.58
+    publicodes-react: ^1.0.0-beta.58
     react: ^17.0.0
     react-colorful: ^5.5.1
     react-dom: ^17.0.0
