@@ -19,6 +19,7 @@ import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
 
 export default function SearchOrCreate() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -33,57 +34,59 @@ export default function SearchOrCreate() {
 	const { t } = useTranslation()
 
 	return (
-		<Grid container spacing={3}>
-			<Grid item xl={8} lg={10} md={12}>
-				{companySIREN ? (
-					<>
-						<H3 as="h2">Votre entreprise</H3>
-						<CompanyDetails />
-						<Spacing md />
-						<AnswerGroup>
-							<Button
-								role="link"
-								to={generatePath(absoluteSitePaths.gérer.entreprise, {
-									entreprise: companySIREN as string,
-								})}
-							>
-								Voir ma situation
-							</Button>
-							<Button light onPress={() => dispatch(resetCompany())}>
-								Réinitialiser
-							</Button>
-						</AnswerGroup>
-					</>
-				) : (
-					<>
-						<H3 as="h2">
-							<Trans>Rechercher votre entreprise</Trans>{' '}
-						</H3>
-						<CompanySearchField onSubmit={handleCompanySubmit} />
-						<Spacing md />
+		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+			<Grid container spacing={3}>
+				<Grid item xl={8} lg={10} md={12}>
+					{companySIREN ? (
+						<>
+							<H3 as="h2">Votre entreprise</H3>
+							<CompanyDetails />
+							<Spacing md />
+							<AnswerGroup>
+								<Button
+									role="link"
+									to={generatePath(absoluteSitePaths.gérer.entreprise, {
+										entreprise: companySIREN as string,
+									})}
+								>
+									Voir ma situation
+								</Button>
+								<Button light onPress={() => dispatch(resetCompany())}>
+									Réinitialiser
+								</Button>
+							</AnswerGroup>
+						</>
+					) : (
+						<>
+							<H3 as="h2">
+								<Trans>Rechercher votre entreprise</Trans>{' '}
+							</H3>
+							<CompanySearchField onSubmit={handleCompanySubmit} />
+							<Spacing md />
 
-						<Button
-							size="XL"
-							role="link"
-							to={
-								statutChoisi
-									? absoluteSitePaths.créer[statutChoisi]
-									: absoluteSitePaths.créer.index
-							}
-							aria-label={t(
-								'landing.choice.create.aria-label',
-								"Je n'ai pas encore d'entreprise, accéder au guide de création d'entreprise."
-							)}
-						>
-							<Emoji emoji="💡" />{' '}
-							<Trans i18nKey="landing.choice.create.title">
-								Je n'ai pas encore d'entreprise
-							</Trans>
-						</Button>
-					</>
-				)}
+							<Button
+								size="XL"
+								role="link"
+								to={
+									statutChoisi
+										? absoluteSitePaths.créer[statutChoisi]
+										: absoluteSitePaths.créer.index
+								}
+								aria-label={t(
+									'landing.choice.create.aria-label',
+									"Je n'ai pas encore d'entreprise, accéder au guide de création d'entreprise."
+								)}
+							>
+								<Emoji emoji="💡" />{' '}
+								<Trans i18nKey="landing.choice.create.title">
+									Je n'ai pas encore d'entreprise
+								</Trans>
+							</Button>
+						</>
+					)}
+				</Grid>
 			</Grid>
-		</Grid>
+		</ThemeProvider>
 	)
 }
 
