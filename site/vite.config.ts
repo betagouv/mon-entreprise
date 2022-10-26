@@ -66,7 +66,7 @@ export default defineConfig(({ command, mode }) => ({
 						"mon-entreprise.urssaf.fr : L'assistant officiel du créateur d'entreprise",
 					description:
 						'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
-					shareImage: '/logo-share.png',
+					shareImage: '/source/images/logo-monentreprise.svg',
 					shareImageAlt: 'Logo mon-entreprise, site Urssaf',
 				},
 				infrance: {

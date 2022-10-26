@@ -187,6 +187,13 @@
 			<!--app-html:end-->
 		</div>
 
+		<script>
+			const darkMode = localStorage.getItem('darkMode') === 'true'
+			if (darkMode) {
+				document.body.style.backgroundColor = '#0f172a'
+			}
+		</script>
+
 		<!-- USER AGENT DATA ATTRIBUTE  -->
 		<script>
 			var b = document.documentElement
