@@ -144,7 +144,11 @@ export default function Cotisations() {
 				</Container>
 
 				<Container
-					backgroundColor={(theme) => theme.colors.bases.tertiary[100]}
+					backgroundColor={(theme) =>
+						theme.darkMode
+							? theme.colors.extended.dark[600]
+							: theme.colors.bases.tertiary[100]
+					}
 				>
 					<PageFeedback customMessage="Qu'avez-vous pensé de cet assistant ?" />
 				</Container>
