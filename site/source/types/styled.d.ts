@@ -54,6 +54,7 @@ declare module 'styled-components' {
 				error: SmallPalette
 				success: SmallPalette
 				info: SmallPalette
+				dark: Palette
 			}
 		}
 
