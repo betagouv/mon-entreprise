@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import styled, { DefaultTheme, ThemeProvider } from 'styled-components'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 const InnerContainer = styled.div`
 	margin-right: auto;
@@ -53,13 +54,12 @@ type ContainerProps = {
 
 export default function Container({
 	backgroundColor,
-	darkMode = false,
 	children,
 }: ContainerProps) {
+	const { darkMode } = useDarkMode()
+
 	return (
-		<ThemeProvider
-			theme={(theme) => ({ ...theme, darkMode: darkMode || theme.darkMode })}
-		>
+		<ThemeProvider theme={(theme) => ({ ...theme, darkMode })}>
 			<OuterOuterContainer>
 				<OuterContainer backgroundColor={backgroundColor}>
 					<InnerContainer>{children}</InnerContainer>
