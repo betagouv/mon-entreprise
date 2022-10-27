@@ -393,26 +393,26 @@ function Home() {
 			<H2>
 				<Trans>Ressources utiles</Trans>
 			</H2>
-			<Grid container spacing={3}>
+			<Grid container spacing={3} role="list">
 				{dirigeantSimulateur === 'indépendant' && i18n.language === 'fr' && (
 					<Grid item sm={12} md={4}>
 						<MobiliteCard />
 					</Grid>
 				)}
 				<WhenNotApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
-					<Grid item sm={12} md={4}>
+					<Grid item sm={12} md={4} role="listitem">
 						<DemarcheEmbaucheCard />
 					</Grid>
 				</WhenNotApplicable>
 				<WhenApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
-					<Grid item sm={12} md={4}>
+					<Grid item sm={12} md={4} role="listitem">
 						<AutoEntrepreneurCard />
 					</Grid>
 				</WhenApplicable>
-				<Grid item sm={12} md={4}>
+				<Grid item sm={12} md={4} role="listitem">
 					<SecuriteSocialeCard />
 				</Grid>
-				<Grid item sm={12} md={4}>
+				<Grid item sm={12} md={4} role="listitem">
 					<AnnuaireEntreprises />
 				</Grid>
 			</Grid>

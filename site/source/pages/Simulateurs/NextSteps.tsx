@@ -33,27 +33,27 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 			<H2>
 				<Trans>Ressources utiles</Trans>
 			</H2>
-			<Grid container spacing={3}>
+			<Grid container spacing={3} role="list">
 				<Condition expression="dirigeant . auto-entrepreneur">
-					<Grid item xs={12} sm={6} lg={4}>
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<FAQAutoEntrepreneurArticle />
 					</Grid>
 				</Condition>
 
 				{guideUrssaf && language === 'fr' && (
-					<Grid item xs={12} sm={6} lg={4}>
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<GuideURSSAFCard guideUrssaf={guideUrssaf} />
 					</Grid>
 				)}
 
 				{nextSteps?.map((simulatorId) => (
-					<Grid item xs={12} sm={6} lg={4} key={simulatorId}>
+					<Grid item xs={12} sm={6} lg={4} key={simulatorId} role="listitem">
 						<SimulatorRessourceCard simulatorId={simulatorId} />
 					</Grid>
 				))}
 
 				{iframePath && (
-					<Grid item xs={12} sm={6} lg={4}>
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<IframeIntegrationCard
 							iframePath={iframePath}
 							sitePaths={absoluteSitePaths}

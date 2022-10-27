@@ -72,8 +72,8 @@ export default function Créer() {
 				<Trans>Ressources utiles</Trans>
 			</H2>
 
-			<Grid container spacing={3}>
-				<Grid item xs={12} sm={6} lg={4}>
+			<Grid container spacing={3} role="list">
+				<Grid item xs={12} sm={6} lg={4} role="listitem">
 					<Card
 						title={t(
 							'créer.ressources.listeStatuts.title',
@@ -88,7 +88,7 @@ export default function Créer() {
 						</Trans>
 					</Card>
 				</Grid>
-				<Grid item xs={12} sm={6} lg={4}>
+				<Grid item xs={12} sm={6} lg={4} role="listitem">
 					<Card
 						title={t(
 							'créer.ressources.comparaison.title',
@@ -104,7 +104,7 @@ export default function Créer() {
 						</Trans>
 					</Card>
 				</Grid>
-				<Grid item xs={12} sm={6} lg={4}>
+				<Grid item xs={12} sm={6} lg={4} role="listitem">
 					<Card
 						title={t(
 							'créer.ressources.autoEntrepreneur.title',
