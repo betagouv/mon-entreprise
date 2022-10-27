@@ -23,7 +23,7 @@ export default function Meta({
 	const { t } = useTranslation()
 
 	const meta = {
-		title: t(`${page}.titre`, title) || title,
+		title: t([`${page}.titre`, '%s - Mon-entreprise'], title) || title,
 		description: t(`${page}.description`, description) || description,
 		ogDescription: ogDescription
 			? t(`${page}.ogDescription`, ogDescription) || ogDescription
@@ -33,7 +33,9 @@ export default function Meta({
 	}
 
 	return (
-		<Helmet>
+		<Helmet
+			titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
+		>
 			<title>{meta.title}</title>
 			<meta name="description" content={meta.description} />
 			<meta property="og:type" content="website" />
