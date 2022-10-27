@@ -1,7 +1,7 @@
 import SchemeComparaison from '@/components/SchemeComparaison'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
 
@@ -11,7 +11,7 @@ export default function DefineDirectorStatus() {
 	return (
 		<>
 			<TrackPage name="independant_ou_assimile-salarie" />
-			<Helmet>
+			<DefaultHelmet>
 				<title>
 					{t('statut du dirigeant.titre', 'Définir le statut du dirigeant')}
 				</title>
@@ -22,7 +22,7 @@ export default function DefineDirectorStatus() {
 						"Ce choix est important parce qu'il détermine le régime de sécurité sociale et la couverture sociale de l'administrateur. Chaque option a des implications juridiques et conduit à un statut différent lors de la création de votre entreprise."
 					)}
 				/>
-			</Helmet>
+			</DefaultHelmet>
 			<H2>
 				<Trans i18nKey="statut du dirigeant.titre">
 					Définir le statut du dirigeant

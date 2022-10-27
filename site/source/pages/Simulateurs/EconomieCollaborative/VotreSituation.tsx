@@ -1,5 +1,6 @@
 import PageFeedback from '@/components/Feedback'
 import { FromBottom } from '@/components/ui/animate'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import Emoji from '@/components/utils/Emoji'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Button } from '@/design-system/buttons'
@@ -10,7 +11,6 @@ import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { useContext } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { Navigate } from 'react-router-dom'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -52,9 +52,9 @@ export default function VotreSituation() {
 		<FromBottom>
 			<ScrollToTop />
 			<TrackPage name="simulation terminée" />
-			<Helmet>
+			<DefaultHelmet>
 				<title>{titre}</title>
-			</Helmet>
+			</DefaultHelmet>
 			<H1>{titre}</H1>
 			<div css="text-align: center">
 				<img css="height: 200px" src={illustration} alt="" />

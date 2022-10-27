@@ -1,3 +1,4 @@
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { Button } from '@/design-system/buttons'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -7,7 +8,6 @@ import {
 } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
 import { Fragment } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { TrackPage } from '../../../ATInternetTracking'
@@ -94,14 +94,14 @@ export default function SetMainStatus() {
 	return (
 		<>
 			<TrackPage chapter2="statut" name="liste" />
-			<Helmet>
+			<DefaultHelmet>
 				<title>
 					{t(
 						'listeformejuridique.page.titre',
 						'Liste des statuts juridiques pour la création de votre entreprise'
 					)}
 				</title>
-			</Helmet>
+			</DefaultHelmet>
 			<H2>
 				{Object.keys(possibleStatus).every(Boolean) ? (
 					<Trans>Liste des statuts juridiques</Trans>

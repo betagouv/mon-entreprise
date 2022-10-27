@@ -1,5 +1,6 @@
 import PageHeader from '@/components/PageHeader'
 import { FromBottom } from '@/components/ui/animate'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import Meta from '@/components/utils/Meta'
 import { Button } from '@/design-system/buttons'
 import { Card } from '@/design-system/card'
@@ -9,7 +10,6 @@ import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { TrackPage } from '../../ATInternetTracking'
@@ -34,9 +34,9 @@ export default function Créer() {
 				ogImage={créerSvg}
 			/>
 
-			<Helmet>
+			<DefaultHelmet>
 				<title>{t('créer.titre', 'Créer une entreprise')}</title>
-			</Helmet>
+			</DefaultHelmet>
 			<PageHeader
 				titre={<Trans i18nKey="créer.titre">Créer une entreprise</Trans>}
 				picture={créerSvg}

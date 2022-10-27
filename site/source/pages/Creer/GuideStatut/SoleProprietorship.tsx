@@ -2,12 +2,12 @@ import {
 	isSoleProprietorship,
 	useDispatchAndGoToNextQuestion,
 } from '@/actions/companyStatusActions'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
 
@@ -18,7 +18,7 @@ export default function SoleProprietorship() {
 	return (
 		<>
 			<TrackPage name="societe_ou_entreprise_individuelle" />
-			<Helmet>
+			<DefaultHelmet>
 				<title>
 					{t([
 						'responsabilité.page.titre',
@@ -32,7 +32,7 @@ export default function SoleProprietorship() {
 						'Responsabilité limitée ? entreprise individuelle ? Chaque option a des implications juridiques et conduit à un statut différent pour la création de votre entreprise en France. Ce guide vous aide à choisir entre les différentes forme de responsabilité.'
 					)}
 				/>
-			</Helmet>
+			</DefaultHelmet>
 			<H2>
 				<Trans i18nKey="responsabilité.titre">
 					Entreprise individuelle ou société ?

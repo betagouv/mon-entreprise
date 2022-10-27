@@ -14,6 +14,7 @@ import PageData from '@/components/PageData'
 import PageHeader from '@/components/PageHeader'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { FromTop } from '@/components/ui/animate'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { ScrollToTop } from '@/components/utils/Scroll'
@@ -34,7 +35,6 @@ import { useOverlayTriggerState } from '@react-stately/overlays'
 import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
 import { useEffect, useRef, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -231,9 +231,9 @@ function Home() {
 
 	return (
 		<>
-			<Helmet>
+			<DefaultHelmet>
 				<title>{t('gérer.titre', 'Gérer mon activité')}</title>
-			</Helmet>
+			</DefaultHelmet>
 
 			{param && param !== engineSiren && !overwrite && (
 				<PopoverOverwriteSituation

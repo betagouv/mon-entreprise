@@ -2,11 +2,11 @@ import {
 	companyHasMultipleAssociates,
 	useDispatchAndGoToNextQuestion,
 } from '@/actions/companyStatusActions'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
 
@@ -17,7 +17,7 @@ export default function NumberOfAssociates() {
 	return (
 		<>
 			<TrackPage name="seul_ou_plusieurs" />
-			<Helmet>
+			<DefaultHelmet>
 				<title>
 					{t(
 						'associés.page.titre',
@@ -31,7 +31,7 @@ export default function NumberOfAssociates() {
 						"Découvrez quels status choisir en fonction du nombre d'associés participant à la création de l'entreprise."
 					)}
 				/>
-			</Helmet>
+			</DefaultHelmet>
 			<H2>
 				<Trans i18nKey="associés.titre">Seul ou à plusieurs</Trans>
 			</H2>

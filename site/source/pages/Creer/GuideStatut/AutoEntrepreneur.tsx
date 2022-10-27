@@ -1,8 +1,8 @@
 import SchemeComparaison from '@/components/SchemeComparaison'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
 
@@ -12,7 +12,7 @@ export default function Autoentrepreneur() {
 	return (
 		<>
 			<TrackPage name="auto-entrepreneur_ou_independant" />
-			<Helmet>
+			<DefaultHelmet>
 				<title>{t('autoentrepreneur.page.titre', 'Auto-entrepreneur')}</title>
 				<meta
 					name="description"
@@ -21,7 +21,7 @@ export default function Autoentrepreneur() {
 						"Un auto-entrepreneur bénéficie d'un système simplifié de déclaration et de paiement, pour lesquelles les impôts et cotisations sociales sont basés sur le chiffre d'affaires réalisé chaque mois. C'est un choix intéressant si vous n'avez pas besoin de beaucoup de capital et que vous souhaitez démarrer rapidement."
 					)}
 				/>
-			</Helmet>
+			</DefaultHelmet>
 			<H2>
 				<Trans i18nKey="autoentrepreneur.titre">
 					Entreprise individuelle ou auto-entrepreneur

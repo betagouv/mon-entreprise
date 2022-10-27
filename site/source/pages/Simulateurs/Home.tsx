@@ -11,13 +11,13 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { ThemeProvider } from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
 import useSimulatorsData, { ExtractFromSimuData } from './metadata'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
@@ -34,9 +34,9 @@ export default function Simulateurs() {
 				description="Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives."
 				ogImage={simulatorSvg}
 			/>
-			<Helmet>
+			<DefaultHelmet>
 				<title>{titre}</title>
-			</Helmet>
+			</DefaultHelmet>
 			<PageHeader titre={titre} picture={simulatorSvg}>
 				<Intro>
 					<Trans i18nKey="pages.simulateurs.accueil.header">

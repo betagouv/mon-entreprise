@@ -1,6 +1,6 @@
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
+import DefaultHelmet from './DefaultHelmet'
 
 type PropType = {
 	page: string
@@ -33,9 +33,7 @@ export default function Meta({
 	}
 
 	return (
-		<Helmet
-			titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
-		>
+		<DefaultHelmet>
 			<title>{meta.title}</title>
 			<meta name="description" content={meta.description} />
 			<meta property="og:type" content="website" />
@@ -57,6 +55,6 @@ export default function Meta({
 					}
 				/>
 			)}
-		</Helmet>
+		</DefaultHelmet>
 	)
 }
