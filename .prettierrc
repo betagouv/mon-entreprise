@@ -1,0 +1,10 @@
+{
+  "semi": false,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 120,
+  "bracketSpacing": true,
+  "importOrder": ["^react", "<THIRD_PARTY_MODULES>", "^@(.*)", "^\\.(.*)"],
+  "importOrderSortSpecifiers": true,
+  "importOrderSeparation": true
+}
