@@ -44,8 +44,8 @@ const breakPointCss = (
 }
 
 type GridProps =
-	| ({ item: true; container?: false; as?: string } & GridItemProps)
-	| ({ item?: false; container: true; as?: string } & GridContainerProps)
+	| ({ item: true; container?: false } & GridItemProps)
+	| ({ item?: false; container: true } & GridContainerProps)
 
 /**
  * An hybrid Flexbox/Grid layout component
@@ -69,11 +69,9 @@ const StyledGridContainer = styled.div<GridContainerProps>`
 	width: calc(
 		100% + ${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]}
 	);
-	padding-inline-start: 0;
 `
 
 const StyledGridItem = styled.div<GridItemProps & ContainerContext>`
-	display: block;
 	padding-left: ${({ theme, columnSpacing }) =>
 		theme.spacing[columnSpacing ?? 0]};
 	padding-top: ${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]};
