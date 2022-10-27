@@ -14,8 +14,6 @@ import { ErrorBoundary } from '@sentry/react'
 import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
 import { ComponentProps, StrictMode, useMemo } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'
@@ -91,7 +89,6 @@ const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
 }
 
 const App = () => {
-	const { t } = useTranslation()
 	const { relativeSitePaths } = useSitePaths()
 	const isEmbedded = useIsEmbedded()
 
@@ -105,10 +102,6 @@ const App = () => {
 	return (
 		<StyledLayout isEmbeded={isEmbedded}>
 			{!isEmbedded && <Header />}
-			<Helmet
-				titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
-			/>
-
 			<main>
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>

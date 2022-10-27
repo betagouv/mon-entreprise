@@ -20,7 +20,8 @@ export default function Meta({
 	ogImage,
 }: PropType) {
 	const { pathname } = useLocation()
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
+
 	const meta = {
 		title: t(`${page}.titre`, title) || title,
 		description: t(`${page}.description`, description) || description,
@@ -32,7 +33,7 @@ export default function Meta({
 	}
 
 	return (
-		<Helmet htmlAttributes={{ lang: i18n.language }}>
+		<Helmet>
 			<title>{meta.title}</title>
 			<meta name="description" content={meta.description} />
 			<meta property="og:type" content="website" />
