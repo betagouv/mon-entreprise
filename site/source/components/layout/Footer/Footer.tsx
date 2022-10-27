@@ -29,7 +29,7 @@ export default function Footer() {
 			? `${window.location.protocol}//${window.location.host}`
 			: '') + window.location.pathname
 	const uri = (encodedUri || '').replace(/\/$/, '')
-	const hrefLink = hrefLangLink[language][uri]
+	const hrefLink = hrefLangLink[language][encodedUri]
 
 	return (
 		<>
@@ -107,7 +107,11 @@ export default function Footer() {
 									)}
 									{hrefLink && (
 										<li key={hrefLink.hrefLang}>
-											<Link href={hrefLink.href} openInSameWindow>
+											<Link
+												href={hrefLink.href}
+												openInSameWindow
+												lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
+											>
 												{hrefLink.hrefLang === 'fr' ? (
 													<>
 														Passer en français <Emoji emoji="🇫🇷" />
