@@ -47,6 +47,7 @@ export function Card({
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)
+	delete buttonOrLinkProps.title
 
 	return (
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
@@ -69,7 +70,7 @@ export function Card({
 				</div>
 				{ctaLabel && (
 					// The button is not selectable with keyboard navigation because the whole card already is
-					<CardButton tabIndex={-1} $size="XS" $light $color="primary">
+					<CardButton tabIndex={-1} $size="XS" $light $color="primary" as="div">
 						{ctaLabel}
 						{linkProps.external && <NewWindowLinkIcon />}
 					</CardButton>
