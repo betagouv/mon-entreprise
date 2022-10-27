@@ -44,6 +44,7 @@
 	"devDependencies": {
 		"@actions/core": "^1.9.0",
 		"@actions/github": "^5.0.3",
+		"@trivago/prettier-plugin-sort-imports": "^3.4.0",
 		"@types/got": "^9",
 		"@typescript-eslint/eslint-plugin": "^5.25.0",
 		"@typescript-eslint/parser": "^5.25.0",
