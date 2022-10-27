@@ -107,7 +107,11 @@ export default function Footer() {
 									)}
 									{hrefLink && (
 										<li key={hrefLink.hrefLang}>
-											<Link href={hrefLink.href} openInSameWindow>
+											<Link
+												href={hrefLink.href}
+												openInSameWindow
+												lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
+											>
 												{hrefLink.hrefLang === 'fr' ? (
 													<>
 														Passer en français <Emoji emoji="🇫🇷" />

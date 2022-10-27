@@ -510,201 +510,201 @@ const StyledGrid = styled.div`
 					: 'minmax(20%, 20rem)'}
 				[end];
 		`}
-& > * {
-	width: 100%;
-	border-bottom: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
-	padding: 0.6rem 1.2rem;
-	border-right: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-evenly;
-	text-align: center;
-	flex-wrap: wrap;
-}
-
-& > h2 {
-	margin: 0;
-	border: none;
-	align-self: stretch;
-}
-
-& > h2 img {
-	height: 1.6rem !important;
-	width: 1.6rem !important;
-}
-& > .legend {
-	align-items: flex-end;
-	grid-column: row-legend;
-	text-align: right;
-}
-
-& > .AS-et-indep {
-	grid-column: assimilé-salarié / auto-entrepreneur;
-}
-& > .AS {
-	${(props) =>
-		props.hideAssimiléSalarié &&
-		css`
-			display: none;
-		`}
-	grid-column: assimilé-salarié;
-	min-width: 11rem;
-}
-& > .indep {
-	grid-column: indépendant;
-}
-& > .auto {
-	grid-column: auto-entrepreneur;
-	${(props) =>
-		props.hideAutoEntrepreneur &&
-		css`
-			display: none;
-		`}
-	border-right: none;
-	min-width: 14rem;
-}
-& > .all {
-	border-right: none;
-	border-bottom: none;
-	grid-column: row-legend / end;
-}
-& > .all.colored {
-	background-color: ${({ theme }) => theme.colors.bases.primary[100]};
-}
-
-& > .indep-et-auto {
-	grid-column: indépendant / end;
-	border-right: none;
-}
-& > .AS-indep-et-auto {
-	grid-column: assimilé-salarié / end;
-	border-right: none;
-}
-
-&.hideAutoEntrepreneur > .auto {
-	display: none;
-}
-&.hideAutoEntrepreneur > .indep-et-auto {
-	border-right: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
-}
-
-&.hideAssimiléSalarié > .AS {
-	display: none;
-}
-
-& > .green {
-	font-weight: bold;
-	color: limegreen;
-}
-
-& > .red {
-	font-weight: bold;
-	color: red;
-}
-
-& > .no-border {
-	border: none;
-}
-& .button {
-	align-self: stretch;
-}
-
-@media (max-width: 800px) {
 	& > * {
-		padding: 0.6rem;
-	}
-}
-@media (max-width: 600px) {
-	& {
-		display: block;
-		padding: 0 0.6rem;
-	}
-
-	& h2 {
+		width: 100%;
+		border-bottom: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
+		padding: 0.6rem 1.2rem;
+		border-right: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
+		display: flex;
 		flex-direction: column;
-	}
-	& small {
-		margin-left: 0.2rem;
-	}
-
-	& > *::before {
-		flex: 1;
-		text-align: left;
-		flex-shrink: 0;
-		white-space: nowrap;
-		user-select: text;
-		font-weight: normal;
-	}
-	& > :not(.button)::before {
-		color: ${({ theme }) => theme.colors.bases.primary[700]}; !important;
-		opacity: 0.6;
-	}
-	& > .AS::before {
-		content: 'Assimilé-salarié :';
-	}
-	& > .indep::before,
-	&.hideAutoEntrepreneur > .indep-et-auto::before {
-		content: 'Indépendant :';
+		align-items: center;
+		justify-content: space-evenly;
+		text-align: center;
+		flex-wrap: wrap;
 	}
 
-	&.hideAssimiléSalarié > .AS-et-indep::before,
-	&.hideAssimiléSalarié > .indep::before {
-		content: 'Entreprise individuelle :';
+	& > h2 {
+		margin: 0;
+		border: none;
+		align-self: stretch;
 	}
 
-	& > .auto::before {
-		content: 'Auto-entrepreneur :';
-	}
-	& > .indep-et-auto::before {
-		content: 'Indépendant / auto-entrepreneur :';
-	}
-	& > .AS-et-indep::before {
-		content: 'Assimilé salarié / indépendant ';
-	}
-	& > h2::before {
-		display: none;
-	}
-	& > h2.AS::after,
-	&:not(.hideAutoEntrepreneur) > h2.indep::after {
-		display: block;
-		font-size: 1rem;
-		margin-top: 1rem;
-		content: 'vs';
+	& > h2 img {
+		height: 1.6rem !important;
+		width: 1.6rem !important;
 	}
 	& > .legend {
-		justify-content: flex-start;
-		align-items: baseline;
-		text-align: left;
-	}
-	& > * {
-		border: none;
-		flex-direction: row;
+		align-items: flex-end;
+		grid-column: row-legend;
 		text-align: right;
-		justify-content: right;
 	}
-	& > :not(.all):not(.button) {
-		padding-left: 0;
+
+	& > .AS-et-indep {
+		grid-column: assimilé-salarié / auto-entrepreneur;
+	}
+	& > .AS {
+		${(props) =>
+			props.hideAssimiléSalarié &&
+			css`
+				display: none;
+			`}
+		grid-column: assimilé-salarié;
+		min-width: 11rem;
+	}
+	& > .indep {
+		grid-column: indépendant;
+	}
+	& > .auto {
+		grid-column: auto-entrepreneur;
+		${(props) =>
+			props.hideAutoEntrepreneur &&
+			css`
+				display: none;
+			`}
+		border-right: none;
+		min-width: 14rem;
 	}
 	& > .all {
-		margin: 0 -0.6rem;
-		text-align: center;
-		justify-content: center;
-		margin-top: 2rem;
+		border-right: none;
+		border-bottom: none;
+		grid-column: row-legend / end;
 	}
-	& > .no-border > .button {
-		flex: 1;
+	& > .all.colored {
+		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
 	}
-	& > .no-border::before {
+
+	& > .indep-et-auto {
+		grid-column: indépendant / end;
+		border-right: none;
+	}
+	& > .AS-indep-et-auto {
+		grid-column: assimilé-salarié / end;
+		border-right: none;
+	}
+
+	&.hideAutoEntrepreneur > .auto {
 		display: none;
 	}
-}
-@media (min-width: 600px) {
-	& > h3 {
-		margin: 0;
-		font-weight: normal;
-
-		font-size: 1rem;
+	&.hideAutoEntrepreneur > .indep-et-auto {
+		border-right: 1px solid ${({ theme }) => theme.colors.bases.primary[100]};
 	}
-}
+
+	&.hideAssimiléSalarié > .AS {
+		display: none;
+	}
+
+	& > .green {
+		font-weight: bold;
+		color: limegreen;
+	}
+
+	& > .red {
+		font-weight: bold;
+		color: red;
+	}
+
+	& > .no-border {
+		border: none;
+	}
+	& .button {
+		align-self: stretch;
+	}
+
+	@media (max-width: 800px) {
+		& > * {
+			padding: 0.6rem;
+		}
+	}
+	@media (max-width: 600px) {
+		& {
+			display: block;
+			padding: 0 0.6rem;
+		}
+
+		& h2 {
+			flex-direction: column;
+		}
+		& small {
+			margin-left: 0.2rem;
+		}
+
+		& > *::before {
+			flex: 1;
+			text-align: left;
+			flex-shrink: 0;
+			white-space: nowrap;
+			user-select: text;
+			font-weight: normal;
+		}
+		& > :not(.button)::before {
+			color: ${({ theme }) => theme.colors.bases.primary[700]} !important;
+			opacity: 0.6;
+		}
+		& > .AS::before {
+			content: 'Assimilé-salarié :';
+		}
+		& > .indep::before,
+		&.hideAutoEntrepreneur > .indep-et-auto::before {
+			content: 'Indépendant :';
+		}
+
+		&.hideAssimiléSalarié > .AS-et-indep::before,
+		&.hideAssimiléSalarié > .indep::before {
+			content: 'Entreprise individuelle :';
+		}
+
+		& > .auto::before {
+			content: 'Auto-entrepreneur :';
+		}
+		& > .indep-et-auto::before {
+			content: 'Indépendant / auto-entrepreneur :';
+		}
+		& > .AS-et-indep::before {
+			content: 'Assimilé salarié / indépendant ';
+		}
+		& > h2::before {
+			display: none;
+		}
+		& > h2.AS::after,
+		&:not(.hideAutoEntrepreneur) > h2.indep::after {
+			display: block;
+			font-size: 1rem;
+			margin-top: 1rem;
+			content: 'vs';
+		}
+		& > .legend {
+			justify-content: flex-start;
+			align-items: baseline;
+			text-align: left;
+		}
+		& > * {
+			border: none;
+			flex-direction: row;
+			text-align: right;
+			justify-content: right;
+		}
+		& > :not(.all):not(.button) {
+			padding-left: 0;
+		}
+		& > .all {
+			margin: 0 -0.6rem;
+			text-align: center;
+			justify-content: center;
+			margin-top: 2rem;
+		}
+		& > .no-border > .button {
+			flex: 1;
+		}
+		& > .no-border::before {
+			display: none;
+		}
+	}
+	@media (min-width: 600px) {
+		& > h3 {
+			margin: 0;
+			font-weight: normal;
+
+			font-size: 1rem;
+		}
+	}
 `
