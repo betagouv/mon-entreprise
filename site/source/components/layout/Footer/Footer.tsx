@@ -29,7 +29,7 @@ export default function Footer() {
 			? `${window.location.protocol}//${window.location.host}`
 			: '') + window.location.pathname
 	const uri = (encodedUri || '').replace(/\/$/, '')
-	const hrefLink = hrefLangLink[language][encodedUri]
+	const hrefLink = hrefLangLink[language][uri]
 
 	return (
 		<>
