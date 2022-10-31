@@ -24,6 +24,7 @@ export const StyledLink = styled.a<{ $isDisabled?: boolean }>`
 		$isDisabled
 			? theme.colors.extended.grey[600]
 			: theme.colors.bases.primary[700]};
+	background-color: inherit;
 	${({ theme }) =>
 		theme.darkMode &&
 		css`

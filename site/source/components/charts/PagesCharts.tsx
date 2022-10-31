@@ -148,6 +148,7 @@ const ColoredLi = styled(Li)<{ color?: string }>`
 			color &&
 			css`
 				color: ${color} !important;
+				background-color: inherit;
 			`};
 	}
 `

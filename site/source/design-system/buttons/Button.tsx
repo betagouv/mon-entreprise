@@ -189,6 +189,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 					$light
 					? css`
 							color: rgba(255, 255, 255, 25%);
+							background-color: inherit;
 							opacity: 1;
 					  `
 					: /* White color (dark background mode) */

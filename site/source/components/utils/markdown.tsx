@@ -226,6 +226,7 @@ export function HeadingWithAnchorLink({
 					transform: translateX(-100%);
 					padding-right: 6px;
 					color: var(--lighterTextColor);
+					background-color: inherit;
 					text-decoration: none;
 					font-size: 0.8em;
 				}

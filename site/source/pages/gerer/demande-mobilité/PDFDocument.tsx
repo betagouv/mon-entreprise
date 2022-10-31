@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
 	body: {
 		paddingTop: 35,
 		color: '#18457B',
+		backgroundColor: 'inherit',
 		lineHeight: 1.5,
 		paddingBottom: 65,
 		paddingHorizontal: 35,

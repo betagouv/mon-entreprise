@@ -16,9 +16,6 @@ import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { INSCRIPTION_LINK } from '../layout/Footer/InscriptionBetaTesteur'
-
-import './Feedback.css'
-
 import Form from './FeedbackForm'
 
 type PageFeedbackProps = {

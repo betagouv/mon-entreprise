@@ -284,5 +284,6 @@ const RessourcesAllocationTable = styled.table`
 
 	tfoot tr:last-child {
 		color: ${({ theme }) => theme.colors.bases.primary[500]};
+		background-color: inherit;
 	}
 `

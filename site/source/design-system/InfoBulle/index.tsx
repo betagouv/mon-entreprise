@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const QuestionMark = styled.span`
 	color: var(--color);
+	background-color: inherit;
 	border: 1px solid var(--color);
 	display: inline-block;
 	font-weight: bold;

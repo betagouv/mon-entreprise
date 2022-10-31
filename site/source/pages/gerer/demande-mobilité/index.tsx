@@ -157,6 +157,7 @@ function FormulairePublicodes() {
 											<SmallBody
 												css={`
 													color: #ff2d96;
+													background-color: inherit;
 												`}
 											>
 												{description}

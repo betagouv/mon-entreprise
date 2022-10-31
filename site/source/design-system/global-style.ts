@@ -195,6 +195,18 @@ figure {
 	}
 }
 
+// Ajoute background-color: inherit; aux balises susceptibles de contenir du texte
+span,
+p,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	background-color: inherit;
+}
 `
 
 export const FocusStyle = css`
