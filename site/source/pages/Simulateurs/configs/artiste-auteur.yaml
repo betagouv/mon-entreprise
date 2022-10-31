@@ -4,9 +4,9 @@ situation:
     applicable si: non
 
 unité par défaut: €/an
-objectifs:
-  - artiste-auteur . cotisations
+
 objectifs cachés:
+  - artiste-auteur . cotisations
   - artiste-auteur . revenus
   - artiste-auteur . cotisations . IRCEC
 questions:

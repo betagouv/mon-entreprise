@@ -420,7 +420,7 @@ function Home() {
 	)
 }
 
-const companyDetailsConfig = {
+const configCompanyDetails = {
 	questions: {
 		'liste noire': ['entreprise . imposition . régime'] as DottedName[],
 	},
@@ -441,8 +441,9 @@ const UlInColumns = styled.ul`
 
 export const AskCompanyMissingDetails = () => {
 	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig(companyDetailsConfig, {
+	useSimulationConfig({
 		path: absoluteSitePaths.gérer.index,
+		config: configCompanyDetails,
 	})
 
 	const [questions, onQuestionAnswered] = useQuestionList()

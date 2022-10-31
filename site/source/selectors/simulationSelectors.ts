@@ -7,15 +7,13 @@ import { useSelector } from 'react-redux'
 export const configSelector = (state: RootState): Partial<SimulationConfig> =>
 	state.simulation?.config ?? {}
 
-export const objectifsSelector = (state: RootState) => {
+const objectifsSelector = (state: RootState) => {
 	const config = configSelector(state)
-	const primaryObjectifs = (config.objectifs ?? [])
-		.map((obj: DottedName | { objectifs: Array<DottedName> }) =>
-			typeof obj === 'string' ? [obj] : obj.objectifs
-		)
-		.flat()
 
-	const objectifs = [...primaryObjectifs, ...(config['objectifs cachés'] ?? [])]
+	const objectifs = [
+		...(config.objectifs ?? []),
+		...(config['objectifs cachés'] ?? []),
+	]
 
 	return objectifs
 }

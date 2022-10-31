@@ -1,9 +1,11 @@
-objectifs:
+objectifs: # mutuellement exclusif
   - dirigeant . rémunération . totale
-  - salarié . cotisations
   - salarié . rémunération . net . à payer avant impôt
-  - impôt . montant
   - salarié . rémunération . net . payé après impôt
+
+objectifs cachés:
+  - salarié . cotisations
+  - impôt . montant
 
 questions:
   à l'affiche:

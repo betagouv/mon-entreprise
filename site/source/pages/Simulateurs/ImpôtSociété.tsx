@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
 
-const ISConfig = {
+const configIS = {
 	'unité par défaut': '€/an',
 	situation: {
 		'entreprise . imposition': "'IS'",
@@ -27,7 +27,10 @@ const ISConfig = {
 export default function ISSimulation() {
 	const { absoluteSitePaths } = useSitePaths()
 
-	useSimulationConfig(ISConfig, { path: absoluteSitePaths.simulateurs.is })
+	useSimulationConfig({
+		path: absoluteSitePaths.simulateurs.is,
+		config: configIS,
+	})
 
 	return (
 		<>

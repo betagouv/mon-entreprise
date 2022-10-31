@@ -1,9 +1,11 @@
-objectifs:
+objectifs: # mutuellement exclusif
   - dirigeant . auto-entrepreneur . chiffre d'affaires
-  - dirigeant . auto-entrepreneur . cotisations et contributions
   - dirigeant . auto-entrepreneur . revenu net
-  - dirigeant . rémunération . impôt
   - dirigeant . auto-entrepreneur . revenu net . après impôt
+
+objectifs cachés:
+  - dirigeant . auto-entrepreneur . cotisations et contributions
+  - dirigeant . rémunération . impôt
 
 questions:
   à l'affiche:

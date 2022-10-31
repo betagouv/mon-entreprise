@@ -84,6 +84,15 @@ export function omit<T, K extends keyof T>(obj: T, key: K): Omit<T, K> {
 	return returnObject
 }
 
+/**
+ * Transforms an object into entries which is then passed to the transform function to be
+ * modified as desired with map, filter, etc., then transformed back into an object
+ */
+export const objectTransform = <T, U>(
+	object: Record<string, T>,
+	transform: (entries: [string, T][]) => [string, U][]
+) => Object.fromEntries(transform(Object.entries(object)))
+
 // TODO: This is will be included in the ES spec soon. Remove our custom
 // implementation and rely on browser native support and polyfill when it is
 // available.

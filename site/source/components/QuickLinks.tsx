@@ -2,13 +2,13 @@ import { goToQuestion } from '@/actions/actions'
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
 } from '@/selectors/simulationSelectors'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useNextQuestions } from './utils/useNextQuestion'
 
@@ -26,8 +26,8 @@ export default function QuickLinks() {
 	if (!quickLinks) {
 		return <Spacing sm />
 	}
-	const links = Object.entries(quickLinks).filter(
-		([, dottedName]) =>
+	const links = quickLinks.filter(
+		({ dottedName }) =>
 			nextSteps.includes(dottedName) && !quickLinksToHide.includes(dottedName)
 	)
 
@@ -38,7 +38,7 @@ export default function QuickLinks() {
 	return (
 		<StyledLinks>
 			<span>Aller à la question : </span>
-			{links.map(([label, dottedName]) => (
+			{links.map(({ label, dottedName }) => (
 				<StyledLink
 					key={dottedName}
 					underline={dottedName === currentQuestion}

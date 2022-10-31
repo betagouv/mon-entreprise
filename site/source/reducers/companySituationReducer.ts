@@ -44,7 +44,7 @@ export function companySituation(state: Situation = {}, action: Action) {
 			}
 			break
 		case 'DELETE_FROM_SITUATION': {
-			return omit({ ...state }, action.fieldName) as Situation
+			return omit({ ...state }, action.fieldName)
 		}
 		case 'COMPANY::SET_EXISTING_COMPANY':
 			return getCompanySituation(action.entreprise)

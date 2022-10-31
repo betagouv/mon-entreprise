@@ -4,13 +4,15 @@ import { configSelector } from '@/selectors/simulationSelectors'
 import { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-export default function useSimulationConfig(
-	config: SimulationConfig | undefined,
-	{
-		path,
-		autoloadLastSimulation = false,
-	}: { path: string; autoloadLastSimulation?: boolean }
-) {
+export default function useSimulationConfig({
+	path,
+	config,
+	autoloadLastSimulation = false,
+}: {
+	path: string
+	config?: SimulationConfig
+	autoloadLastSimulation?: boolean
+}) {
 	const dispatch = useDispatch()
 
 	// Initialize redux store in SSR mode

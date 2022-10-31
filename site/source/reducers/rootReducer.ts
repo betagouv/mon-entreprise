@@ -1,14 +1,15 @@
 import { Action } from '@/actions/actions'
+import { SimulationConfig, Situation } from '@/pages/Simulateurs/configs/types'
 import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
+import { objectTransform, omit } from '@/utils'
 import { DottedName } from 'modele-social'
-import { PublicodesExpression } from 'publicodes'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import { objectifsSelector } from '../selectors/simulationSelectors'
-import { omit } from '../utils'
 import choixStatutJuridique from './choixStatutJuridiqueReducer'
 import { companySituation } from './companySituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
+
+export type { SimulationConfig, Situation }
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -34,35 +35,6 @@ function activeTargetInput(state: DottedName | null = null, action: Action) {
 			return state
 	}
 }
-
-type QuestionsKind = 'non prioritaires' | 'liste' | 'liste noire'
-
-export type SimulationConfig = Partial<{
-	objectifs:
-		| Array<DottedName>
-		| Array<{ icône: string; nom: string; objectifs: Array<DottedName> }>
-	'objectifs cachés'?: Array<DottedName>
-	situation: Simulation['situation']
-	bloquant: Array<DottedName>
-	questions: Partial<Record<QuestionsKind, Array<DottedName>>> & {
-		"à l'affiche"?: Record<string, DottedName>
-	}
-	branches: Array<{ nom: string; situation: SimulationConfig['situation'] }>
-	'unité par défaut': string
-	color: string
-}>
-
-type Overwrite<T, U> = { [P in keyof Omit<T, keyof U>]: T[P] } & U
-
-export type Situation = Partial<
-	Overwrite<
-		Record<DottedName, PublicodesExpression>,
-		{
-			'entreprise . imposition': string
-			année: number
-		}
-	>
->
 
 export type Simulation = {
 	config: SimulationConfig
@@ -114,20 +86,22 @@ function simulation(
 			}
 
 		case 'UPDATE_SITUATION': {
-			const objectifs = objectifsSelector({
-				simulation: state,
-			} as RootState).filter((name) => name !== 'entreprise . charges')
 			const situation = state.situation
 			const { fieldName: dottedName, value } = action
+
 			if (value === undefined) {
 				return { ...state, situation: omit(situation, dottedName) }
 			}
+
+			const objectifs = state.config.objectifs ?? []
+
 			if (objectifs.includes(dottedName)) {
 				const objectifsToReset = objectifs.filter((name) => name !== dottedName)
-				const newSituation = Object.fromEntries(
-					Object.entries(situation).filter(
+
+				const newSituation = objectTransform(situation, (entries) =>
+					entries.filter(
 						([dottedName]) =>
-							!objectifsToReset.some((o) => dottedName.startsWith(o))
+							!objectifsToReset.includes(dottedName as DottedName)
 					)
 				)
 

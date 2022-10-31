@@ -1,4 +1,4 @@
-objectifs:
+objectifs: # mutuellement exclusifs
   - entreprise . chiffre d'affaires
   - dirigeant . rémunération . totale
   - dirigeant . rémunération . net

@@ -1,14 +1,17 @@
+import { configRémunérationDirigeant } from '@/pages/Simulateurs/configs/rémunérationDirigeant'
 import { it } from 'vitest'
-import remunerationDirigeantConfig from '../../source/pages/Simulateurs/configs/rémunération-dirigeant.yaml'
 import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
 import { runSimulations } from './utils'
 
 it('calculate assimilé salarié', () => {
 	runSimulations(
 		remunerationDirigeantSituations,
-		remunerationDirigeantConfig.objectifs,
+		[
+			...(configRémunérationDirigeant.objectifs ?? []),
+			...(configRémunérationDirigeant['objectifs cachés'] ?? []),
+		],
 		{
-			...remunerationDirigeantConfig.situation,
+			...configRémunérationDirigeant.situation,
 			'dirigeant . régime social': "'assimilé salarié'",
 		}
 	)
