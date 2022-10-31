@@ -325,14 +325,10 @@ export default function SchemeComparaison({
 						<Simulation
 							hideDetails
 							customEndMessages={
-								<>
-									<SmallBody>
-										Vous pouvez consulter les différentes estimations dans le
-										tableau ci-dessous
-									</SmallBody>
-
-									<SeeAnswersButton />
-								</>
+								<SmallBody as="span">
+									Vous pouvez consulter les différentes estimations dans le
+									tableau ci-dessous
+								</SmallBody>
 							}
 						>
 							<SimulationGoals
