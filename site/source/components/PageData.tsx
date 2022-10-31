@@ -49,7 +49,9 @@ export default function PageData(props: PageDataProps) {
 		path,
 	} = props
 
-	const année = useSelector(situationSelector)['année']
+	const situation = useSelector(situationSelector)
+	const année =
+		typeof situation.date === 'string' && new Date(situation.date).getFullYear()
 	const year =
 		typeof année === 'number' && année !== 2022 ? ` - version ${année}` : ''
 
