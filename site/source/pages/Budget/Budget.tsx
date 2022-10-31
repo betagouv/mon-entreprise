@@ -275,6 +275,7 @@ const RessourcesAllocationTable = styled.table`
 			theme.darkMode
 				? theme.colors.extended.dark[600]
 				: theme.colors.bases.primary[200]};
+		color: inherit;
 	}
 
 	thead,

@@ -366,5 +366,6 @@ const ResultTable = styled.table`
 	td:last-child,
 	th:last-child {
 		background: var(--lighterColor);
+		color: inherit;
 	}
 `

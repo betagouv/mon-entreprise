@@ -84,6 +84,7 @@ const Highlight = styled.strong`
 		theme.darkMode
 			? theme.colors.bases.secondary[600]
 			: theme.colors.bases.secondary[100]};
+	color: inherit;
 `
 
 const CompanyContainer = styled.div`

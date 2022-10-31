@@ -54,6 +54,7 @@ const Button = styled.button<ButtonProps>`
 	border: none;
 	width: 100%;
 	background: none;
+	color: inherit;
 	font-family: ${({ theme }) => theme.fonts.main};
 	height: 100%;
 	outline: none;

@@ -158,6 +158,7 @@ export const StyledLegend = styled.div`
 		theme.darkMode
 			? theme.colors.extended.dark[600]
 			: theme.colors.extended.grey[100]};
+	color: inherit;
 	padding: 0.125rem 1rem;
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3]};
