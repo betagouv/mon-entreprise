@@ -31,6 +31,7 @@ const BaseListStyle = css<ListProps>`
 		position: relative;
 		padding-left: ${({ theme }) => theme.spacings.lg};
 		margin-bottom: ${({ theme }) => theme.spacings.xs};
+		background-color: inherit;
 	}
 `
 
@@ -46,6 +47,9 @@ export const Ul = styled.ul<ListProps>`
 		text-align: center;
 		color: ${({ theme }) => theme.colors.bases.secondary[400]};
 		margin-bottom: ${({ theme }) => theme.spacings.xs};
+	}
+	${Li} {
+		background-color: inherit;
 	}
 `
 
@@ -67,6 +71,7 @@ export const Ol = styled.ol<ListProps>`
 	${Li} {
 		counter-increment: step-counter;
 		padding-left: ${({ theme }) => theme.spacings.xl};
+		background-color: inherit;
 
 		${({ size = 'MD', theme }) =>
 			size === 'XS'
