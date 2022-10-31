@@ -92,16 +92,18 @@ export default function InstitutionsPartenaires() {
 type CotisationsUrssafProps = {
 	rule: DottedName
 	extraNotice?: JSX.Element
+	role?: string
 }
 
 export function CotisationsUrssaf({
 	rule,
 	extraNotice,
+	...props
 }: CotisationsUrssafProps) {
 	const unit = useSelector(targetUnitSelector)
 
 	return (
-		<InstitutionLine>
+		<InstitutionLine {...props}>
 			<InstitutionLogo
 				href="https://www.urssaf.fr/portail/home.html"
 				target="_blank"
@@ -224,7 +226,7 @@ export function InstitutionsPartenairesArtisteAuteur() {
 			<H3>Vos cotisations</H3>
 			<Grid container>
 				<Grid item lg={12}>
-					<Message border={false}>
+					<Message border={false} role="list">
 						<CotisationsUrssaf
 							rule="artiste-auteur . cotisations"
 							extraNotice={
@@ -236,9 +238,10 @@ export function InstitutionsPartenairesArtisteAuteur() {
 									</Trans>
 								</Condition>
 							}
+							role="listitem"
 						/>
 						<Condition expression="artiste-auteur . cotisations . IRCEC > 0">
-							<InstitutionLine>
+							<InstitutionLine role="listitem">
 								<InstitutionLogo
 									href="http://www.ircec.fr/"
 									target="_blank"

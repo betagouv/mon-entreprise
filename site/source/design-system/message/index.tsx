@@ -15,6 +15,7 @@ type MessageProps = {
 	type?: MessageType
 	light?: boolean
 	className?: string
+	role?: string
 }
 
 export function Message({
@@ -24,6 +25,7 @@ export function Message({
 	light = false,
 	children,
 	className,
+	role = undefined,
 }: MessageProps) {
 	if (typeof children !== 'object') {
 		children = <Body>{children}</Body>
@@ -48,7 +50,7 @@ export function Message({
 					) : (
 						<StyledIcon src={baseIcon} alt="" />
 					))}
-				<Wrapper>{children}</Wrapper>
+				<Wrapper role={role}>{children}</Wrapper>
 			</StyledMessage>
 		</ThemeProvider>
 	)
