@@ -79,13 +79,14 @@ function RepartitionCotisations() {
 			<H2>
 				<Trans>À quoi servent mes cotisations ?</Trans>
 			</H2>
-			<div className="distribution-chart__container">
+			<div className="distribution-chart__container" role="list">
 				{cotisations
 					.filter(({ value }) => Boolean(value))
 					.map((cotisation) => (
 						<DistributionBranch
 							key={cotisation.dottedName}
 							maximum={maximum}
+							role="listitem"
 							{...cotisation}
 						/>
 					))}

@@ -30,13 +30,14 @@ export default function Distribution() {
 	const maximum = Math.max(...distribution.map(([, value]) => value))
 
 	return (
-		<div className="distribution-chart__container">
+		<div className="distribution-chart__container" role="list">
 			{distribution.map(([sectionName, value]) => (
 				<DistributionBranch
 					key={sectionName}
 					dottedName={sectionName}
 					value={value}
 					maximum={maximum}
+					role="listitem"
 				/>
 			))}
 		</div>
@@ -48,6 +49,7 @@ type DistributionBranchProps = {
 	value: number
 	maximum: number
 	icon?: string
+	role?: string
 }
 
 export function DistributionBranch({
@@ -55,6 +57,7 @@ export function DistributionBranch({
 	value,
 	icon,
 	maximum,
+	...props
 }: DistributionBranchProps) {
 	const branche = useContext(EngineContext).getRule(dottedName)
 
@@ -66,6 +69,7 @@ export function DistributionBranch({
 			icon={icon ?? branche.rawNode.icônes}
 			description={branche.rawNode.résumé}
 			unit="€"
+			{...props}
 		/>
 	)
 }
