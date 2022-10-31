@@ -22,7 +22,7 @@ export function setupCompanySituationPersistence(
 	store.subscribe(debounce(1000, listener))
 }
 
-export function retrievePersistedCompanySituation(): Situation | undefined {
+export function retrievePersistedCompanySituation() {
 	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 
 	return serializedState && serializedState !== 'undefined'
