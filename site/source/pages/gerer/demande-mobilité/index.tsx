@@ -33,7 +33,7 @@ const LazyEndBlock = import.meta.env.SSR
 const config = { situation: { dirigeant: 'non' } }
 
 export default function PageMobilité() {
-	useSimulationConfig(config, { path: 'page-mobilité' })
+	useSimulationConfig({ path: 'page-mobilité', config })
 	const engine = new Engine(formulaire)
 
 	return (

@@ -6,7 +6,6 @@ import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { SimulationConfig } from '@/reducers/rootReducer'
 import { AbsoluteSitePaths, useSitePaths } from '@/sitePaths'
 import { createContext, useMemo } from 'react'
 import { TFunction, Trans, useTranslation } from 'react-i18next'
@@ -17,13 +16,27 @@ import FormulaireMobilitéIndépendant from '../gerer/demande-mobilité'
 import ArtisteAuteur from './ArtisteAuteur'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import ChômagePartielComponent from './ChômagePartiel'
-import autoEntrepreneurConfig from './configs/auto-entrepreneur.yaml'
-import chômageParielConfig from './configs/chômage-partiel.yaml'
-import sasuConfig from './configs/dirigeant-sasu.yaml'
-import dividendesConfig from './configs/dividendes.yaml'
-import indépendantConfig from './configs/indépendant.yaml'
-import professionLibéraleConfig from './configs/profession-libérale.yaml'
-import salariéConfig from './configs/salarié.yaml'
+import { configAutoEntrepreneur } from './configs/autoEntrepreneur'
+import { configChômagePartiel } from './configs/chômagePartiel'
+import { configSASU } from './configs/dirigeantSASU'
+import { configDividendes } from './configs/dividendes'
+import {
+	configEirl,
+	configEntrepriseIndividuelle,
+	configEurl,
+	configIndépendant,
+} from './configs/indépendant'
+import {
+	configAuxiliaire,
+	configAvocat,
+	configDentiste,
+	configExpertComptable,
+	configMédecin,
+	configPharmacien,
+	configProfessionLibérale,
+	configSageFemme,
+} from './configs/professionLibérale'
+import { configSalarié } from './configs/salarié'
 import DividendesSimulation from './Dividendes'
 import ÉconomieCollaborative from './EconomieCollaborative'
 import ExonérationCovid from './ExonerationCovid'
@@ -57,7 +70,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 	return {
 		salarié: {
 			...pureSimulatorsData['salarié'],
-			config: salariéConfig as SimulationConfig,
+			config: configSalarié,
 			component: SalariéSimulation,
 			meta: {
 				...pureSimulatorsData['salarié'].meta,
@@ -175,7 +188,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		'entreprise-individuelle': {
 			...pureSimulatorsData['entreprise-individuelle'],
-			config: entrepriseIndividuelleConfig as SimulationConfig,
+			config: configEntrepriseIndividuelle,
 			meta: {
 				...pureSimulatorsData['entreprise-individuelle']?.meta,
 				ogImage: AutoEntrepreneurPreview,
@@ -248,7 +261,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		eirl: {
 			...pureSimulatorsData.eirl,
-			config: indépendantConfig as SimulationConfig,
+			config: configEirl,
 			meta: {
 				...pureSimulatorsData.eirl?.meta,
 				ogImage: AutoEntrepreneurPreview,
@@ -259,7 +272,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		sasu: {
 			...pureSimulatorsData.sasu,
-			config: sasuConfig as SimulationConfig,
+			config: configSASU,
 			meta: {
 				...pureSimulatorsData.sasu?.meta,
 				ogImage: RémunérationSASUPreview,
@@ -310,7 +323,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		eurl: {
 			...pureSimulatorsData.eurl,
-			config: eurlConfig as SimulationConfig,
+			config: configEurl,
 			meta: {
 				...pureSimulatorsData.eurl?.meta,
 				ogImage: RémunérationSASUPreview,
@@ -321,7 +334,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		'auto-entrepreneur': {
 			...pureSimulatorsData['auto-entrepreneur'],
 			tracking: 'auto_entrepreneur',
-			config: autoEntrepreneurConfig as SimulationConfig,
+			config: configAutoEntrepreneur,
 			meta: {
 				...pureSimulatorsData['auto-entrepreneur']?.meta,
 				ogImage: AutoEntrepreneurPreview,
@@ -395,7 +408,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		indépendant: {
 			...pureSimulatorsData['indépendant'],
-			config: indépendantConfig as SimulationConfig,
+			config: configIndépendant,
 			path: sitePaths.simulateurs.indépendant,
 			component: IndépendantSimulation,
 		},
@@ -407,7 +420,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		'chômage-partiel': {
 			...pureSimulatorsData['chômage-partiel'],
 			component: ChômagePartielComponent,
-			config: chômageParielConfig as SimulationConfig,
+			config: configChômagePartiel,
 			path: sitePaths.simulateurs['chômage-partiel'],
 			meta: {
 				...pureSimulatorsData['chômage-partiel']?.meta,
@@ -548,56 +561,56 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		pharmacien: {
 			...pureSimulatorsData.pharmacien,
-			config: pharmacienConfig,
+			config: configPharmacien,
 			path: sitePaths.simulateurs['profession-libérale'].pharmacien,
 			component: IndépendantPLSimulation,
 		},
 		médecin: {
 			...pureSimulatorsData['médecin'],
-			config: médecinConfig,
+			config: configMédecin,
 			path: sitePaths.simulateurs['profession-libérale'].médecin,
 			component: IndépendantPLSimulation,
 		},
 		'chirurgien-dentiste': {
 			...pureSimulatorsData['chirurgien-dentiste'],
-			config: dentisteConfig,
+			config: configDentiste,
 			path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
 			component: IndépendantPLSimulation,
 		},
 		'sage-femme': {
 			...pureSimulatorsData['sage-femme'],
-			config: sageFemmeConfig,
+			config: configSageFemme,
 			path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
 			component: IndépendantPLSimulation,
 		},
 		'auxiliaire-médical': {
 			...pureSimulatorsData['auxiliaire-médical'],
-			config: auxiliaireConfig,
+			config: configAuxiliaire,
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
 			component: IndépendantPLSimulation,
 		},
 		avocat: {
 			...pureSimulatorsData.avocat,
-			config: avocatConfig,
+			config: configAvocat,
 			path: sitePaths.simulateurs['profession-libérale'].avocat,
 			component: IndépendantPLSimulation,
 		},
 		'expert-comptable': {
 			...pureSimulatorsData['expert-comptable'],
-			config: expertComptableConfig,
+			config: configExpertComptable,
 			path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
 			component: IndépendantPLSimulation,
 		},
 		'profession-libérale': {
 			...pureSimulatorsData['profession-libérale'],
-			config: professionLibéraleConfig as SimulationConfig,
+			config: configProfessionLibérale,
 			path: sitePaths.simulateurs['profession-libérale'].index,
 			component: IndépendantPLSimulation,
 		},
 		pamc: {
 			...pureSimulatorsData.pamc,
 			path: sitePaths.simulateurs.pamc,
-			config: professionLibéraleConfig as SimulationConfig,
+			config: configProfessionLibérale,
 			component: PAMCHome,
 		},
 		is: {
@@ -642,7 +655,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 			...pureSimulatorsData.dividendes,
 			path: sitePaths.simulateurs.dividendes,
 			component: DividendesSimulation,
-			config: dividendesConfig as SimulationConfig,
+			config: configDividendes,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.dividendes.seo">
 					<H2>Les dividendes et distributions</H2>
@@ -739,34 +752,3 @@ export const CurrentSimulatorDataContext = createContext<Overwrite<
 > | null>(null)
 
 export const CurrentSimulatorDataProvider = CurrentSimulatorDataContext.Provider
-
-const configFromPLMetier = (metier: string): SimulationConfig => ({
-	...(professionLibéraleConfig as SimulationConfig),
-	situation: {
-		...(professionLibéraleConfig as SimulationConfig).situation,
-		'entreprise . activité . nature . libérale . réglementée': 'oui',
-		'dirigeant . indépendant . PL . métier': `'${metier}'`,
-	},
-})
-
-const auxiliaireConfig = configFromPLMetier('santé . auxiliaire médical')
-const dentisteConfig = configFromPLMetier('santé . chirurgien-dentiste')
-const médecinConfig = configFromPLMetier('santé . médecin')
-const pharmacienConfig = configFromPLMetier('santé . pharmacien')
-const sageFemmeConfig = configFromPLMetier('santé . sage-femme')
-const avocatConfig = configFromPLMetier('avocat')
-const expertComptableConfig = configFromPLMetier('expert-comptable')
-const eurlConfig = {
-	...(indépendantConfig as SimulationConfig),
-	situation: {
-		...(indépendantConfig as SimulationConfig).situation,
-		'entreprise . imposition': "'IS'",
-	},
-}
-const entrepriseIndividuelleConfig = {
-	...(indépendantConfig as SimulationConfig),
-	situation: {
-		...(indépendantConfig as SimulationConfig).situation,
-		'entreprise . imposition': "'IR'",
-	},
-}

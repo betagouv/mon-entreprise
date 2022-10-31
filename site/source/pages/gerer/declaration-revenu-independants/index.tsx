@@ -9,6 +9,7 @@ import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { SimulationConfig } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 import { omit } from '@/utils'
 import { useTranslation } from 'react-i18next'
@@ -18,12 +19,35 @@ import Déclaration, { useObjectifs as useStep3Objectifs } from './declaration'
 import Entreprise, { OBJECTIFS as Step1Objectifs } from './entreprise'
 import Imposition, { OBJECTIFS as Step2Objectifs } from './imposition'
 import { useProgress } from './_components/hooks'
-import config from './_config.yaml'
+
+const config: SimulationConfig = {
+	objectifs: ['DRI . cotisations'],
+	questions: {
+		'liste noire': [
+			'dirigeant . indépendant . cotisations facultatives',
+			'entreprise . salariés . effectif . seuil',
+			'entreprise . imposition . régime . micro-entreprise',
+		],
+		liste: [
+			'DRI . cotisations',
+			// pourquois ça ?
+			'',
+		],
+	},
+	'unité par défaut': '€',
+	situation: {
+		DRI: 'oui',
+		impôt: {
+			'non applicable si': 'oui',
+		},
+	},
+}
 
 export default function AideDéclarationIndépendant() {
 	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig(config, {
+	useSimulationConfig({
 		path: absoluteSitePaths.gérer.déclarationIndépendant.beta.index,
+		config,
 		autoloadLastSimulation: true,
 	})
 	const steps = useSteps()

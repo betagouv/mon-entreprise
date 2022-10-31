@@ -10,14 +10,13 @@ import { Button } from '@/design-system/buttons'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import revenusSVG from '@/images/revenus.svg'
+import { configRémunérationDirigeant } from '@/pages/Simulateurs/configs/rémunérationDirigeant'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
 import { useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled, { css } from 'styled-components'
-import dirigeantComparaison from '../pages/Simulateurs/configs/rémunération-dirigeant.yaml'
-import SeeAnswersButton from './conversation/SeeAnswersButton'
 import PeriodSwitch from './PeriodSwitch'
 import { SimulationGoal, SimulationGoals } from './Simulation'
 import Emoji from './utils/Emoji'
@@ -34,8 +33,9 @@ export default function SchemeComparaison({
 	hideAssimiléSalarié = false,
 }: SchemeComparaisonProps) {
 	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig(dirigeantComparaison, {
+	useSimulationConfig({
 		path: absoluteSitePaths.simulateurs.comparaison,
+		config: configRémunérationDirigeant,
 	})
 	const dispatch = useDispatchAndGoToNextQuestion()
 	const engine = useEngine()
@@ -67,6 +67,8 @@ export default function SchemeComparaison({
 			engine.shallowCopy().setSituation({
 				...situation,
 				'dirigeant . régime social': "'auto-entrepreneur'",
+				'entreprise . catégorie juridique': "'EI'",
+				'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
 			}),
 		[situation]
 	)

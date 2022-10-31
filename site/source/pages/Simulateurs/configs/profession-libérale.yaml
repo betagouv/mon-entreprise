@@ -1,10 +1,11 @@
-objectifs:
+objectifs: # mutuellement exclusifs
   - entreprise . chiffre d'affaires
-  - entreprise . charges
-  - dirigeant . indépendant . cotisations et contributions
   - dirigeant . rémunération . net
-  - impôt . montant
   - dirigeant . rémunération . net . après impôt
+
+objectifs cachés:
+  - dirigeant . indépendant . cotisations et contributions
+  - impôt . montant
   - protection sociale . retraite . complémentaire indépendants . points acquis
   - protection sociale . retraite . base . trimestres . indépendant
   - protection sociale . retraite . CNAVPL

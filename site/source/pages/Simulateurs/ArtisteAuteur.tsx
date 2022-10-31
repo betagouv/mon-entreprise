@@ -12,10 +12,10 @@ import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { H2 } from '@/design-system/typography/heading'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import artisteAuteurConfig from './configs/artiste-auteur.yaml'
+import { configArtisteAuteur } from './configs/artisteAuteur'
 
 export default function ArtisteAuteur() {
-	useSimulationConfig(artisteAuteurConfig, { path: 'artiste-auteur' })
+	useSimulationConfig({ path: 'artiste-auteur', config: configArtisteAuteur })
 
 	return (
 		<>

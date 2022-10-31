@@ -10,6 +10,7 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { SimulationConfig } from '@/reducers/rootReducer'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
 import { useCallback } from 'react'
@@ -20,13 +21,30 @@ import { TrackPage } from '../../../ATInternetTracking'
 import { SimpleField, SubSection } from '../_components/Fields'
 import { ExplicationsResultatFiscal } from './_components/ExplicationResultatFiscal'
 import ResultatsSimples from './_components/RésultatSimple'
-import simulationConfig from './_config.yaml'
 import illustration from './_undraw_fill_in_mie5.svg'
+
+const config: SimulationConfig = {
+	objectifs: [
+		'déclaration charge sociales . résultat . cotisations obligatoires',
+		'déclaration charge sociales . résultat . total charges sociales déductible',
+		'déclaration charge sociales . résultat . revenu net fiscal',
+		'déclaration charge sociales . résultat . assiette sociale',
+	],
+	situation: {
+		'déclaration charge sociales': 'oui',
+		'dirigeant . régime social': "'indépendant'",
+		date: '01/01/2021',
+		'dirigeant . indépendant . PL . CIPAV': 'non',
+		impôt: 'non',
+	},
+	'unité par défaut': '€',
+}
 
 export default function AideDéclarationIndépendant() {
 	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig(simulationConfig, {
+	useSimulationConfig({
 		path: absoluteSitePaths.gérer['déclaration-charges-sociales-indépendant'],
+		config,
 		autoloadLastSimulation: true,
 	})
 	const situation = useSelector(situationSelector)
