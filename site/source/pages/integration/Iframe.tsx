@@ -290,7 +290,7 @@ function EnSavoirPlusCSP() {
 					redimensionnement automatique au contenu affiché.
 				</Body>
 			</Trans>
-			<blockquote>
+			<blockquote role="presentation">
 				Failed to execute 'postMessage' on 'DOMWindow': The target origin
 				provided ('https://mon-entreprise.urssaf.fr') does not match the
 				recipient window's origin

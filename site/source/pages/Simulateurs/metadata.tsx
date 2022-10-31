@@ -223,7 +223,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						pour l'option micro-fiscal).
 					</Body>
 					<Body>La formule de calcul complète est donc :</Body>
-					<blockquote>
+					<blockquote role="presentation">
 						<strong>
 							Revenu net = Chiffres d'affaires − Dépenses professionnelles -
 							Cotisations sociales
@@ -368,7 +368,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						économiquement.
 					</Body>
 					<Body>La formule de calcul complète est donc :</Body>
-					<blockquote>
+					<blockquote role="presentation">
 						<strong>
 							Revenu net = Chiffres d'affaires − Cotisations sociales − Dépenses
 							professionnelles

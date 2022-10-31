@@ -163,7 +163,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 				</Condition>
 				<Suspense
 					fallback={
-						<blockquote>
+						<blockquote role="presentation">
 							<small>Génération du pdf en cours...</small>
 						</blockquote>
 					}
@@ -183,7 +183,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 					>
 						{({ url, loading, error }) =>
 							error ? (
-								<blockquote>
+								<blockquote role="presentation">
 									<strong>Erreur lors de la génération du pdf</strong>
 									<br />
 									<small>
@@ -192,7 +192,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 									</small>
 								</blockquote>
 							) : loading ? (
-								<blockquote>
+								<blockquote role="presentation">
 									<small>Génération du pdf en cours...</small>
 								</blockquote>
 							) : (
