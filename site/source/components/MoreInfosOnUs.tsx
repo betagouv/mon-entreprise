@@ -19,9 +19,9 @@ export default function MoreInfosOnUs() {
 	return (
 		<>
 			<H2>Plus d'infos sur mon-entreprise</H2>
-			<Grid container spacing={2}>
+			<Grid container spacing={2} role="list">
 				{!pathname.startsWith(absoluteSitePaths.nouveautés) && (
-					<Grid item xs={12} sm={6} md={4}>
+					<Grid item xs={12} sm={6} md={4} role="listitem">
 						<SmallCard
 							icon={<Emoji emoji={'✨'} />}
 							title={<h3>Les nouveautés</h3>}
@@ -32,7 +32,7 @@ export default function MoreInfosOnUs() {
 					</Grid>
 				)}
 				{!pathname.startsWith(absoluteSitePaths.stats) && (
-					<Grid item xs={12} sm={6} md={4}>
+					<Grid item xs={12} sm={6} md={4} role="listitem">
 						<SmallCard
 							icon={<Emoji emoji="📊" />}
 							to={absoluteSitePaths.stats}
@@ -43,7 +43,7 @@ export default function MoreInfosOnUs() {
 					</Grid>
 				)}
 				{!pathname.startsWith(absoluteSitePaths.budget) && (
-					<Grid item xs={12} sm={6} md={4}>
+					<Grid item xs={12} sm={6} md={4} role="listitem">
 						<SmallCard
 							icon={<Emoji emoji="💶" />}
 							to={absoluteSitePaths.budget}
@@ -53,7 +53,7 @@ export default function MoreInfosOnUs() {
 						</SmallCard>
 					</Grid>
 				)}
-				<Grid item xs={12} sm={6} md={4}>
+				<Grid item xs={12} sm={6} md={4} role="listitem">
 					<SmallCard
 						icon={
 							<svg

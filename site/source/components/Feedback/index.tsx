@@ -110,29 +110,39 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 							flexWrap: 'wrap',
 							justifyContent: 'center',
 						}}
+						role="list"
 					>
-						<EmojiButton onClick={() => handleFeedback('mauvais')}>
+						<EmojiButton
+							onClick={() => handleFeedback('mauvais')}
+							role="listitem"
+						>
 							<Emoji
 								emoji="🙁"
 								aria-label="Pas satisfait, envoyer cette réponse"
 								aria-hidden={false}
 							/>
 						</EmojiButton>
-						<EmojiButton onClick={() => handleFeedback('moyen')}>
+						<EmojiButton
+							onClick={() => handleFeedback('moyen')}
+							role="listitem"
+						>
 							<Emoji
 								emoji="😐"
 								aria-label="Moyennement satisfait, envoyer cette réponse"
 								aria-hidden={false}
 							/>
 						</EmojiButton>
-						<EmojiButton onClick={() => handleFeedback('bien')}>
+						<EmojiButton onClick={() => handleFeedback('bien')} role="listitem">
 							<Emoji
 								emoji="🙂"
 								aria-label="Plutôt satisfait, envoyer cette réponse"
 								aria-hidden={false}
 							/>
 						</EmojiButton>
-						<EmojiButton onClick={() => handleFeedback('très bien')}>
+						<EmojiButton
+							onClick={() => handleFeedback('très bien')}
+							role="listitem"
+						>
 							<Emoji
 								emoji="😀"
 								aria-label="Très satisfait, envoyer cette réponse"

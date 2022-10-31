@@ -11,13 +11,14 @@ export const RadioContext = createContext<RadioGroupState | null>(null)
 type RadioProps = AriaRadioProps & {
 	hideRadio?: boolean
 	className?: string
+	role?: string
 }
 
 export function Radio(props: RadioProps) {
 	const { hideRadio, children } = props
 
 	return (
-		<RadioSkeleton {...props}>
+		<RadioSkeleton role="radio" aria-atomic {...props}>
 			{!hideRadio && <RadioPoint />}
 			<LabelBody $hideRadio={hideRadio}>{children}</LabelBody>
 		</RadioSkeleton>

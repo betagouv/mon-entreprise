@@ -34,17 +34,23 @@ export default function InstitutionsPartenaires() {
 				</H3>
 				<Grid container>
 					<Grid item lg={12} xl={10}>
-						<Message border={false}>
+						<Message border={false} role="list">
 							<WhenApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
-								<CotisationsUrssaf rule="dirigeant . indépendant . PL . cotisations Urssaf" />
-								<CaisseRetraite />
+								<CotisationsUrssaf
+									rule="dirigeant . indépendant . PL . cotisations Urssaf"
+									role="listitem"
+								/>
+								<CaisseRetraite role="listitem" />
 							</WhenApplicable>
 							<WhenNotApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
-								<CotisationsUrssaf rule="dirigeant . indépendant . cotisations et contributions" />
+								<CotisationsUrssaf
+									rule="dirigeant . indépendant . cotisations et contributions"
+									role="listitem"
+								/>
 							</WhenNotApplicable>
-							<ImpôtsDGFIP />
+							<ImpôtsDGFIP role="listitem" />
 							<Condition expression="dirigeant . indépendant . PL . PAMC . participation CPAM > 0">
-								<InstitutionLine>
+								<InstitutionLine role="listitem">
 									<InstitutionLogo
 										href="https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical"
 										target="_blank"
@@ -127,12 +133,12 @@ export function CotisationsUrssaf({
 	)
 }
 
-export function ImpôtsDGFIP() {
+export function ImpôtsDGFIP({ role }: { role?: string }) {
 	const unit = useSelector(targetUnitSelector)
 
 	return (
 		<Condition expression="impôt . montant > 0">
-			<InstitutionLine>
+			<InstitutionLine role={role}>
 				<InstitutionLogo
 					href="https://www.impots.gouv.fr"
 					target="_blank"
@@ -160,7 +166,7 @@ export function ImpôtsDGFIP() {
 	)
 }
 
-function CaisseRetraite() {
+function CaisseRetraite({ role }: { role?: string }) {
 	const engine = useEngine()
 	const unit = useSelector(targetUnitSelector)
 	const caisses = [
@@ -182,7 +188,7 @@ function CaisseRetraite() {
 
 				return (
 					<Condition expression={dottedName} key={caisse}>
-						<InstitutionLine>
+						<InstitutionLine role={role}>
 							<InstitutionLogo
 								href={références && Object.values(références)[0]}
 								target="_blank"

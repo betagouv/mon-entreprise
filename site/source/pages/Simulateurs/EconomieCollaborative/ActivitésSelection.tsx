@@ -94,13 +94,13 @@ export const ActivitéSelection = ({
 
 	return (
 		<>
-			<Grid container spacing={2}>
+			<Grid container spacing={2} role="list">
 				{activités.map((title) => {
 					const selected = state?.[title].effectuée
 					const answered = activitéRépondue.includes(title)
 
 					return (
-						<Grid key={title} item xs={6} sm={4} md={3}>
+						<Grid key={title} item xs={6} sm={4} md={3} role="listitem">
 							<ActiviteCard
 								title={title}
 								interactive

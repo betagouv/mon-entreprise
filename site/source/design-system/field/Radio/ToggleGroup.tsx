@@ -28,7 +28,10 @@ export function ToggleGroup(props: ToggleGroupProps) {
 	return (
 		<div className={className} {...radioGroupProps}>
 			{label && <span {...labelProps}>{label}</span>}
-			<ToggleGroupContainer hideRadio={props.hideRadio ?? false}>
+			<ToggleGroupContainer
+				hideRadio={props.hideRadio ?? false}
+				role="radiogroup"
+			>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
 			</ToggleGroupContainer>
 		</div>
