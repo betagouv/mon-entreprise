@@ -11,10 +11,10 @@ import { Message } from '@/design-system'
 import { Grid } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import urssafSrc from '@/images/Urssaf.svg'
 import assuranceMaladieSrc from '@/images/assurance-maladie.svg'
 import dgfipSrc from '@/images/logo-dgfip.svg'
 import * as logosSrc from '@/images/logos-caisses-retraite'
-import urssafSrc from '@/images/Urssaf.svg'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
@@ -110,14 +110,16 @@ export function CotisationsUrssaf({
 			>
 				<img src={urssafSrc} alt="Logo Urssaf" />
 			</InstitutionLogo>
-			<Body>
-				<Trans i18nKey="simulateurs.explanation.institutions.urssaf">
-					L’Urssaf recouvre les cotisations servant au financement de la
-					sécurité sociale (assurance maladie, allocations familiales,
-					dépendance).
-				</Trans>{' '}
-				{extraNotice}
-			</Body>
+			<div>
+				<Body>
+					<Trans i18nKey="simulateurs.explanation.institutions.urssaf">
+						L’Urssaf recouvre les cotisations servant au financement de la
+						sécurité sociale (assurance maladie, allocations familiales,
+						dépendance).
+					</Trans>
+				</Body>
+				<SmallBody>{extraNotice}</SmallBody>
+			</div>
 			<Value unit={unit} displayedUnit="€" expression={rule} />
 		</InstitutionLine>
 	)
@@ -227,13 +229,11 @@ export function InstitutionsPartenairesArtisteAuteur() {
 							rule="artiste-auteur . cotisations"
 							extraNotice={
 								<Condition expression="artiste-auteur . revenus . traitements et salaires > 0">
-									<SmallBody>
-										<Trans i18nKey="simulateurs.explanation.institutions.précompte-artiste-auteur">
-											Pour vos revenus en traitement et salaires, ces
-											cotisations sont « précomptées », c'est à dire payées à la
-											source par le diffuseur.
-										</Trans>
-									</SmallBody>
+									<Trans i18nKey="simulateurs.explanation.institutions.précompte-artiste-auteur">
+										Pour vos revenus en traitement et salaires, ces cotisations
+										sont « précomptées », c'est à dire payées à la source par le
+										diffuseur.
+									</Trans>
 								</Condition>
 							}
 						/>
