@@ -1,20 +1,23 @@
+import { configAutoEntrepreneur } from '@/pages/Simulateurs/configs/autoEntrepreneur'
 import { expect, it } from 'vitest'
-import autoentrepreneurConfig from '../../source/pages/Simulateurs/configs/auto-entrepreneur.yaml'
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-auto-entrepreneur', () => {
 	runSimulations(
 		autoEntrepreneurSituations,
-		autoentrepreneurConfig.objectifs,
-		autoentrepreneurConfig.situation
+		[
+			...(configAutoEntrepreneur.objectifs ?? []),
+			...(configAutoEntrepreneur['objectifs cachés'] ?? []),
+		],
+		configAutoEntrepreneur.situation
 	)
 
 	expect(
 		getMissingVariables(
 			engine
 				.setSituation({
-					...autoentrepreneurConfig.situation,
+					...configAutoEntrepreneur.situation,
 					"dirigeant . auto-entrepreneur . chiffre d'affaires": '30000 €/an',
 				})
 				.evaluate('dirigeant . auto-entrepreneur . revenu net . après impôt')
