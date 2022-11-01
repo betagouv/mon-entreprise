@@ -1,6 +1,14 @@
 export function SearchIcon({ ...props }) {
 	return (
-		<svg width={24} height={24} fill="white" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden {...props}>
+		<svg
+			width={24}
+			height={24}
+			fill="white"
+			xmlns="http://www.w3.org/2000/svg"
+			role="img"
+			aria-hidden
+			{...props}
+		>
 			<path
 				fillRule="evenodd"
 				clipRule="evenodd"
