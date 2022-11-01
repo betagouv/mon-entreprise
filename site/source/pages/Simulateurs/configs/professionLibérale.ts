@@ -1,3 +1,4 @@
+import { DottedName } from 'modele-social'
 import { SimulationConfig } from './types'
 
 export const configProfessionLibérale: SimulationConfig = {
@@ -18,8 +19,8 @@ export const configProfessionLibérale: SimulationConfig = {
 		liste: [
 			'entreprise . activité . nature',
 			'dirigeant . indépendant . PL . métier',
-			// Pourquoi cette ligne ?
-			'', // Toutes les autres questions
+			// Pourquoi ce dottedName vide ?
+			'' as DottedName, // Toutes les autres questions
 		],
 		'non prioritaires': [
 			'dirigeant . indépendant . cotisations facultatives',
