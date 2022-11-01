@@ -1,21 +1,21 @@
 // Vitest Snapshot v1
 
-exports[`calculate simulations-dividendes > barème couple 2 enfants 1`] = `"[200,166,34,0,106,106,0]"`;
+exports[`calculate simulations-dividendes > barème couple 2 enfants 1`] = `"bénéficiaire . dividendes . bruts: 200 ; bénéficiaire . dividendes . cotisations et contributions: 34 ; bénéficiaire . dividendes . imposables: 106 ; bénéficiaire . dividendes . nets d'impôt: 166 ; impôt . montant: 0 ; impôt . revenu imposable: 106 ; impôt . taux d'imposition: 0"`;
 
-exports[`calculate simulations-dividendes > barème couple 2 enfants 2`] = `"[20000000,11415923,3440000,5144077,10640000,10640000,48]"`;
+exports[`calculate simulations-dividendes > barème couple 2 enfants 2`] = `"bénéficiaire . dividendes . bruts: 20000000 ; bénéficiaire . dividendes . cotisations et contributions: 3440000 ; bénéficiaire . dividendes . imposables: 10640000 ; bénéficiaire . dividendes . nets d'impôt: 11415923 ; impôt . montant: 5144077 ; impôt . revenu imposable: 10640000 ; impôt . taux d'imposition: 48"`;
 
-exports[`calculate simulations-dividendes > barème couple 2 enfants 3`] = `"[200,115,34,38,106,106,36]"`;
+exports[`calculate simulations-dividendes > barème couple 2 enfants 3`] = `"bénéficiaire . dividendes . bruts: 200 ; bénéficiaire . dividendes . cotisations et contributions: 34 ; bénéficiaire . dividendes . imposables: 106 ; bénéficiaire . dividendes . nets d'impôt: 115 ; impôt . montant: 38 ; impôt . revenu imposable: 106 ; impôt . taux d'imposition: 36"`;
 
-exports[`calculate simulations-dividendes > barème couple 2 enfants 4`] = `"[20000,15045,3440,578,10640,10640,5]"`;
+exports[`calculate simulations-dividendes > barème couple 2 enfants 4`] = `"bénéficiaire . dividendes . bruts: 20000 ; bénéficiaire . dividendes . cotisations et contributions: 3440 ; bénéficiaire . dividendes . imposables: 10640 ; bénéficiaire . dividendes . nets d'impôt: 15045 ; impôt . montant: 578 ; impôt . revenu imposable: 10640 ; impôt . taux d'imposition: 5"`;
 
-exports[`calculate simulations-dividendes > barème défauts 1`] = `"[200,166,34,0,106,106,0]"`;
+exports[`calculate simulations-dividendes > barème défauts 1`] = `"bénéficiaire . dividendes . bruts: 200 ; bénéficiaire . dividendes . cotisations et contributions: 34 ; bénéficiaire . dividendes . imposables: 106 ; bénéficiaire . dividendes . nets d'impôt: 166 ; impôt . montant: 0 ; impôt . revenu imposable: 106 ; impôt . taux d'imposition: 0"`;
 
-exports[`calculate simulations-dividendes > barème défauts 2`] = `"[20000000,11379591,3440000,5180409,10640000,10640000,49]"`;
+exports[`calculate simulations-dividendes > barème défauts 2`] = `"bénéficiaire . dividendes . bruts: 20000000 ; bénéficiaire . dividendes . cotisations et contributions: 3440000 ; bénéficiaire . dividendes . imposables: 10640000 ; bénéficiaire . dividendes . nets d'impôt: 11379591 ; impôt . montant: 5180409 ; impôt . revenu imposable: 10640000 ; impôt . taux d'imposition: 49"`;
 
-exports[`calculate simulations-dividendes > barème défauts 3`] = `"[200,113,34,45,106,106,42]"`;
+exports[`calculate simulations-dividendes > barème défauts 3`] = `"bénéficiaire . dividendes . bruts: 200 ; bénéficiaire . dividendes . cotisations et contributions: 34 ; bénéficiaire . dividendes . imposables: 106 ; bénéficiaire . dividendes . nets d'impôt: 113 ; impôt . montant: 45 ; impôt . revenu imposable: 106 ; impôt . taux d'imposition: 42"`;
 
-exports[`calculate simulations-dividendes > barème défauts 4`] = `"[20000,13368,3440,2126,10640,10640,20]"`;
+exports[`calculate simulations-dividendes > barème défauts 4`] = `"bénéficiaire . dividendes . bruts: 20000 ; bénéficiaire . dividendes . cotisations et contributions: 3440 ; bénéficiaire . dividendes . imposables: 10640 ; bénéficiaire . dividendes . nets d'impôt: 13368 ; impôt . montant: 2126 ; impôt . revenu imposable: 10640 ; impôt . taux d'imposition: 20"`;
 
-exports[`calculate simulations-dividendes > pfu 1`] = `"[200,140,34,26,120,120,0]"`;
+exports[`calculate simulations-dividendes > pfu 1`] = `"bénéficiaire . dividendes . bruts: 200 ; bénéficiaire . dividendes . cotisations et contributions: 34 ; bénéficiaire . dividendes . imposables: 120 ; bénéficiaire . dividendes . nets d'impôt: 140 ; impôt . montant: 26 ; impôt . revenu imposable: 120 ; impôt . taux d'imposition: null"`;
 
-exports[`calculate simulations-dividendes > pfu 2`] = `"[20000000,14000000,3440000,2560000,12000000,12000000,0]"`;
+exports[`calculate simulations-dividendes > pfu 2`] = `"bénéficiaire . dividendes . bruts: 20000000 ; bénéficiaire . dividendes . cotisations et contributions: 3440000 ; bénéficiaire . dividendes . imposables: 12000000 ; bénéficiaire . dividendes . nets d'impôt: 14000000 ; impôt . montant: 2560000 ; impôt . revenu imposable: 12000000 ; impôt . taux d'imposition: null"`;

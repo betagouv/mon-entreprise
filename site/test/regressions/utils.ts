@@ -6,13 +6,12 @@
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
 
 import rules, { DottedName } from 'modele-social'
-import { EvaluatedNode } from 'publicodes'
+import { EvaluatedNode, Evaluation } from 'publicodes'
 import { expect } from 'vitest'
 import { engineFactory } from '../../source/components/utils/EngineContext'
 import { Simulation } from '../../source/reducers/rootReducer'
 
 type SituationsSpecs = Record<string, Simulation['situation'][]>
-const roundResult = (arr: number[]) => arr.map((x) => Math.round(x))
 
 export const engine = engineFactory(rules, {
 	logger: {
@@ -29,18 +28,17 @@ export const runSimulations = (
 ) =>
 	Object.entries(situationsSpecs).map(([name, situations]) =>
 		situations.forEach((situation) => {
-			Object.keys(situation).forEach((situationRuleName) => {
-				// TODO: This check may be moved in the `engine.setSituation` method
-				if (!Object.keys(engine.getParsedRules()).includes(situationRuleName)) {
-					throw new Error(
-						`La règle ${situationRuleName} n'existe pas dans la base de règles.`
-					)
-				}
-			})
 			engine.setSituation({ ...baseSituation, ...situation })
-			const res = objectifs.map(
-				(objectif) => engine.evaluate(objectif).nodeValue
-			)
+			const formatValue = (value: Evaluation) =>
+				typeof value === 'number' ? Math.round(value) : JSON.stringify(value)
+
+			const res = objectifs
+				.sort()
+				.map(
+					(objectif) =>
+						`${objectif}: ${formatValue(engine.evaluate(objectif).nodeValue)}`
+				)
+				.join(' ; ')
 
 			const evaluatedNotifications = Object.values(engine.getParsedRules())
 				.filter(
@@ -53,14 +51,11 @@ export const runSimulations = (
 			const snapshotedDisplayedNotifications = evaluatedNotifications.length
 				? `\nNotifications affichées : ${evaluatedNotifications.join(', ')}`
 				: ''
-			// Stringify is not required, but allows the result to be displayed in a single
-			// line in the snapshot, which considerably reduce the number of lines of this snapshot
+			// Display result in a single line in the snapshot,
+			// which reduce the number of lines of this snapshot
 			// and improve its readability.
 			// eslint-disable-next-line jest/no-standalone-expect
-			expect(
-				JSON.stringify(roundResult(res as number[])) +
-					snapshotedDisplayedNotifications
-			).toMatchSnapshot(name)
+			expect(res + snapshotedDisplayedNotifications).toMatchSnapshot(name)
 		})
 	)
 
