@@ -1,12 +1,12 @@
 import algoliasearch from 'algoliasearch'
 import 'dotenv/config.js'
 import rawRules from 'modele-social'
-import { ParsedRules, parsePublicodes } from 'publicodes'
+import Engine, { ParsedRules } from 'publicodes'
 import getSimulationData, {
 	MetadataSrc,
 } from '../../source/pages/Simulateurs/metadata-src.js'
 
-const { parsedRules } = parsePublicodes(rawRules)
+const parsedRules = new Engine(rawRules).getParsedRules()
 
 // @ts-ignore Needed by ts-node/esm
 const env = process.env
