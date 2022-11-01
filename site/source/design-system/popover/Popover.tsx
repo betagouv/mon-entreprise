@@ -158,7 +158,7 @@ const Underlay = styled.div<{
 	bottom: 0;
 	left: 0;
 	overflow: auto;
-	z-index: 10;
+	z-index: 200;
 	background: rgba(255, 255, 255, 0.5);
 	animation: ${appear} 0.2s;
 	display: flex;
