@@ -1,3 +1,4 @@
+import { DottedName } from 'modele-social'
 import BetaBanner from '@/components/BetaBanner'
 import { Condition } from '@/components/EngineValue'
 import PrintExportRecover from '@/components/simulationExplanation/PrintExportRecover'
@@ -30,8 +31,8 @@ const config: SimulationConfig = {
 		],
 		liste: [
 			'DRI . cotisations',
-			// pourquois ça ?
-			'',
+			// Pourquoi ce dottedName vide ?
+			'' as DottedName,
 		],
 	},
 	'unité par défaut': '€',
