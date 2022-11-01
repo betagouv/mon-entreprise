@@ -1,6 +1,6 @@
+import { configIndépendant } from '@/pages/Simulateurs/configs/indépendant'
 import { DottedName } from 'modele-social'
 import { it } from 'vitest'
-import independantConfig from '../../source/pages/Simulateurs/configs/indépendant.yaml'
 import independentSituations from './simulations-indépendant.yaml'
 import { runSimulations } from './utils'
 
@@ -16,5 +16,5 @@ it('calculate simulations-indépendant', () => {
 		"entreprise . chiffre d'affaires",
 		'dirigeant . indépendant . cotisations et contributions . début activité',
 	] as DottedName[]
-	runSimulations(independentSituations, objectifs, independantConfig.situation)
+	runSimulations(independentSituations, objectifs, configIndépendant.situation)
 })

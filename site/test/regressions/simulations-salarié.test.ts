@@ -1,20 +1,23 @@
+import { configSalarié } from '@/pages/Simulateurs/configs/salarié'
 import { expect, it } from 'vitest'
-import employeeConfig from '../../source/pages/Simulateurs/configs/salarié.yaml'
 import employeeSituations from './simulations-salarié.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-salarié', () => {
 	runSimulations(
 		employeeSituations,
-		employeeConfig.objectifs,
-		employeeConfig.situation
+		[
+			...(configSalarié.objectifs ?? []),
+			...(configSalarié['objectifs cachés'] ?? []),
+		],
+		configSalarié.situation
 	)
 
 	expect(
 		getMissingVariables(
 			engine
 				.setSituation({
-					...employeeConfig.situation,
+					...configSalarié.situation,
 					'salarié . contrat . salaire brut': '3000 €/mois',
 				})
 				.evaluate('salarié . rémunération . net . payé après impôt')
