@@ -1,13 +1,12 @@
-import { DottedName } from 'modele-social'
 import { SimulationConfig } from './types'
 
 export const configProfessionLibérale: SimulationConfig = {
-	objectifs: [
+	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",
 		'dirigeant . rémunération . net',
 		'dirigeant . rémunération . net . après impôt',
 	],
-	'objectifs cachés': [
+	objectifs: [
 		'dirigeant . indépendant . cotisations et contributions',
 		'impôt . montant',
 		'protection sociale . retraite . complémentaire indépendants . points acquis',
@@ -19,8 +18,7 @@ export const configProfessionLibérale: SimulationConfig = {
 		liste: [
 			'entreprise . activité . nature',
 			'dirigeant . indépendant . PL . métier',
-			// Pourquoi ce dottedName vide ?
-			'' as DottedName, // Toutes les autres questions
+			'',
 		],
 		'non prioritaires': [
 			'dirigeant . indépendant . cotisations facultatives',

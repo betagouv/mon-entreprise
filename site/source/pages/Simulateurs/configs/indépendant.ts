@@ -1,7 +1,7 @@
 import { SimulationConfig } from './types'
 
 export const configIndépendant: SimulationConfig = {
-	objectifs: [
+	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",
 		'dirigeant . rémunération . totale',
 		'dirigeant . rémunération . net',
@@ -52,7 +52,7 @@ export const configIndépendant: SimulationConfig = {
 			'dirigeant . indépendant . PL . PAMC . IJSS',
 			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',
 			'dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité',
-			// 'entreprise . ZFU',
+			// 'entreprise . ZFU', n'existe plus
 			'entreprise . salariés . effectif',
 			'entreprise . activité . débit de tabac',
 		],

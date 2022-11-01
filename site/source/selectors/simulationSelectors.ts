@@ -1,18 +1,18 @@
 import { useEngine } from '@/components/utils/EngineContext'
-import { RootState, SimulationConfig, Situation } from '@/reducers/rootReducer'
+import { RootState, Situation } from '@/reducers/rootReducer'
 import { DottedName } from 'modele-social'
 import Engine, { utils } from 'publicodes'
 import { useSelector } from 'react-redux'
 
-export const configSelector = (state: RootState): Partial<SimulationConfig> =>
+export const configSelector = (state: RootState) =>
 	state.simulation?.config ?? {}
 
-const objectifsSelector = (state: RootState) => {
+export const configObjectifsSelector = (state: RootState) => {
 	const config = configSelector(state)
 
 	const objectifs = [
+		...(config['objectifs exclusifs'] ?? []),
 		...(config.objectifs ?? []),
-		...(config['objectifs cachés'] ?? []),
 	]
 
 	return objectifs
@@ -21,7 +21,7 @@ const objectifsSelector = (state: RootState) => {
 const emptySituation: Situation = {}
 
 export const useMissingVariables = (): Partial<Record<DottedName, number>> => {
-	const objectifs = useSelector(objectifsSelector)
+	const objectifs = useSelector(configObjectifsSelector)
 	const engine = useEngine()
 
 	return mergeObjectifsMissingVariable(

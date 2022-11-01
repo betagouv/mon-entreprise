@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import BetaBanner from '@/components/BetaBanner'
 import { Condition } from '@/components/EngineValue'
 import PrintExportRecover from '@/components/simulationExplanation/PrintExportRecover'
@@ -22,18 +21,14 @@ import Imposition, { OBJECTIFS as Step2Objectifs } from './imposition'
 import { useProgress } from './_components/hooks'
 
 const config: SimulationConfig = {
-	objectifs: ['DRI . cotisations'],
+	'objectifs exclusifs': ['DRI . cotisations'],
 	questions: {
 		'liste noire': [
 			'dirigeant . indépendant . cotisations facultatives',
 			'entreprise . salariés . effectif . seuil',
 			'entreprise . imposition . régime . micro-entreprise',
 		],
-		liste: [
-			'DRI . cotisations',
-			// Pourquoi ce dottedName vide ?
-			'' as DottedName,
-		],
+		liste: ['DRI . cotisations', ''],
 	},
 	'unité par défaut': '€',
 	situation: {

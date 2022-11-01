@@ -24,7 +24,7 @@ import ResultatsSimples from './_components/RésultatSimple'
 import illustration from './_undraw_fill_in_mie5.svg'
 
 const config: SimulationConfig = {
-	objectifs: [
+	'objectifs exclusifs': [
 		'déclaration charge sociales . résultat . cotisations obligatoires',
 		'déclaration charge sociales . résultat . total charges sociales déductible',
 		'déclaration charge sociales . résultat . revenu net fiscal',

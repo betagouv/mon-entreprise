@@ -1,12 +1,12 @@
 import { SimulationConfig } from './types'
 
 export const configSASU: SimulationConfig = {
-	objectifs: [
+	'objectifs exclusifs': [
 		'dirigeant . rémunération . totale',
 		'salarié . rémunération . net . à payer avant impôt',
 		'salarié . rémunération . net . payé après impôt',
 	],
-	'objectifs cachés': ['impôt . montant', 'salarié . cotisations'],
+	objectifs: ['impôt . montant', 'salarié . cotisations'],
 	questions: {
 		"à l'affiche": [
 			{

@@ -93,10 +93,12 @@ function simulation(
 				return { ...state, situation: omit(situation, dottedName) }
 			}
 
-			const objectifs = state.config.objectifs ?? []
+			const objectifsExclusifs = state.config['objectifs exclusifs'] ?? []
 
-			if (objectifs.includes(dottedName)) {
-				const objectifsToReset = objectifs.filter((name) => name !== dottedName)
+			if (objectifsExclusifs.includes(dottedName)) {
+				const objectifsToReset = objectifsExclusifs.filter(
+					(name) => name !== dottedName
+				)
 
 				const newSituation = objectTransform(situation, (entries) =>
 					entries.filter(

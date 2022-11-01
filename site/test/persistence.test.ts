@@ -19,8 +19,8 @@ function delay(ms: number) {
 }
 
 const simulationConfig: SimulationConfig = {
+	'objectifs exclusifs': [],
 	objectifs: [],
-	'objectifs cachés': [],
 	situation: {},
 	'unité par défaut': '€/mois',
 }

@@ -7,8 +7,8 @@ it('calculate simulations-auto-entrepreneur', () => {
 	runSimulations(
 		autoEntrepreneurSituations,
 		[
+			...(configAutoEntrepreneur['objectifs exclusifs'] ?? []),
 			...(configAutoEntrepreneur.objectifs ?? []),
-			...(configAutoEntrepreneur['objectifs cachés'] ?? []),
 		],
 		configAutoEntrepreneur.situation
 	)

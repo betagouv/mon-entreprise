@@ -7,8 +7,8 @@ it('calculate simulations-professions-libérales', () => {
 	runSimulations(
 		professionsLibéralesSituations,
 		[
+			...(configProfessionLibérale['objectifs exclusifs'] ?? []),
 			...(configProfessionLibérale.objectifs ?? []),
-			...(configProfessionLibérale['objectifs cachés'] ?? []),
 		],
 		{
 			...configProfessionLibérale.situation,

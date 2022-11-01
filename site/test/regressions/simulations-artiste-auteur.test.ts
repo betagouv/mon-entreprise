@@ -7,8 +7,8 @@ it('calculate simulations-artiste-auteur', () => {
 	runSimulations(
 		artisteAuteurSituations,
 		[
+			...(configArtisteAuteur['objectifs exclusifs'] ?? []),
 			...(configArtisteAuteur.objectifs ?? []),
-			...(configArtisteAuteur['objectifs cachés'] ?? []),
 		],
 		configArtisteAuteur.situation
 	)
