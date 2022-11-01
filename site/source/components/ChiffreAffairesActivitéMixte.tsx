@@ -91,7 +91,11 @@ export function useAdjustProportions(CADottedName: DottedName): () => void {
 					})
 				)
 
-				return { ...acc, [proportionName]: newProportion }
+				return {
+					...acc,
+					[proportionName]: newProportion,
+					[valueName]: undefined,
+				}
 			},
 			{ [CADottedName]: nouveauCA }
 		)
