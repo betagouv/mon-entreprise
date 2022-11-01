@@ -27,6 +27,6 @@ describe('Recherche globales', function () {
 		cy.contains('Règles de calculs')
 			.next()
 			.find('li')
-			.should('have.length.of.at.least', 2)
+			.should('have.length.of.at.least', 1)
 	})
 })
