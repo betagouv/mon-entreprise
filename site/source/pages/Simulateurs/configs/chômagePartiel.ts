@@ -1,7 +1,7 @@
 import { SimulationConfig } from './types'
 
 export const configChômagePartiel: SimulationConfig = {
-	'objectifs cachés': [
+	objectifs: [
 		'salarié . contrat . salaire brut',
 		'salarié . rémunération . net . à payer avant impôt',
 		'salarié . activité partielle . net habituel',

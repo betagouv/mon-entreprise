@@ -3,8 +3,8 @@ import { SimulationConfig } from './types'
 export const configRémunérationDirigeant: SimulationConfig = {
 	// titre:
 	// 	"Calcul du revenu du travailleur indépendant ou dirigeant d'entreprise après paiement des cotisations et de l'impôt sur le revenu.\n",
-	objectifs: [],
-	'objectifs cachés': [
+	'objectifs exclusifs': [],
+	objectifs: [
 		'dirigeant . rémunération . net',
 		'entreprise . charges',
 		'dirigeant . auto-entrepreneur . revenu net',

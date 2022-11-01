@@ -7,8 +7,8 @@ it('calculate simulations-salarié', () => {
 	runSimulations(
 		employeeSituations,
 		[
+			...(configSalarié['objectifs exclusifs'] ?? []),
 			...(configSalarié.objectifs ?? []),
-			...(configSalarié['objectifs cachés'] ?? []),
 		],
 		configSalarié.situation
 	)

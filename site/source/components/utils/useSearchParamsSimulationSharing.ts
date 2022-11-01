@@ -1,21 +1,20 @@
 import { batchUpdateSituation, setActiveTarget } from '@/actions/actions'
 import { useEngine } from '@/components/utils/EngineContext'
-import { RootState, SimulationConfig, Situation } from '@/reducers/rootReducer'
-import { configSelector } from '@/selectors/simulationSelectors'
+import { RootState, Situation } from '@/reducers/rootReducer'
+import { configObjectifsSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useSearchParams } from 'react-router-dom'
 
-type Objectifs = (string | { objectifs: string[] })[]
 type ShortName = string
 type ParamName = DottedName | ShortName
 
 export default function useSearchParamsSimulationSharing() {
 	const [urlSituationIsExtracted, setUrlSituationIsExtracted] = useState(false)
 	const [searchParams, setSearchParams] = useSearchParams()
-	const config = useSelector(configSelector)
+	const objectifs = useSelector(configObjectifsSelector)
 	const simulationUrl = useSelector((state: RootState) => state.simulation?.url)
 	const currentUrl = useLocation().pathname
 	const dispatch = useDispatch()
@@ -37,7 +36,6 @@ export default function useSearchParamsSimulationSharing() {
 
 		// On load:
 		if (!urlSituationIsExtracted) {
-			const objectifs = objectifsOfConfig(config)
 			const newSituation = getSituationFromSearchParams(
 				searchParams,
 				dottedNameParamName
@@ -47,7 +45,7 @@ export default function useSearchParamsSimulationSharing() {
 			}
 
 			const newActiveTarget = Object.keys(newSituation).filter((dottedName) =>
-				objectifs.includes(dottedName)
+				objectifs.includes(dottedName as DottedName)
 			)[0]
 			if (newActiveTarget) {
 				dispatch(setActiveTarget(newActiveTarget as DottedName))
@@ -67,7 +65,7 @@ export default function useSearchParamsSimulationSharing() {
 		simulationUrl,
 		dispatch,
 		dottedNameParamName,
-		config,
+		objectifs,
 		searchParams,
 		setSearchParams,
 		urlSituationIsExtracted,
@@ -90,15 +88,6 @@ export const useParamsFromSituation = (situation: Situation) => {
 
 	return getSearchParamsFromSituation(engine, situation, dottedNameParamName)
 }
-
-const objectifsOfConfig = (config: Partial<SimulationConfig>) =>
-	(config.objectifs ?? ([] as Objectifs)).flatMap((objectifOrSection) => {
-		if (typeof objectifOrSection === 'string') {
-			return [objectifOrSection]
-		}
-
-		return objectifOrSection.objectifs
-	})
 
 export const cleanSearchParams = (
 	searchParams: ReturnType<typeof useSearchParams>[0],

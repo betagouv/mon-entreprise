@@ -1,12 +1,12 @@
 import { SimulationConfig } from './types'
 
 export const configAutoEntrepreneur: SimulationConfig = {
-	objectifs: [
+	'objectifs exclusifs': [
 		"dirigeant . auto-entrepreneur . chiffre d'affaires",
 		'dirigeant . auto-entrepreneur . revenu net',
 		'dirigeant . auto-entrepreneur . revenu net . après impôt',
 	],
-	'objectifs cachés': [
+	objectifs: [
 		'dirigeant . auto-entrepreneur . cotisations et contributions',
 		'dirigeant . rémunération . impôt',
 	],

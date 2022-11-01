@@ -1,7 +1,7 @@
 import { SimulationConfig } from './types'
 
 export const configDividendes: SimulationConfig = {
-	objectifs: [
+	'objectifs exclusifs': [
 		'bénéficiaire . dividendes . bruts',
 		"bénéficiaire . dividendes . nets d'impôt",
 	],

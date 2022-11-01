@@ -1,7 +1,7 @@
 import { SimulationConfig } from './types'
 
 export const configArtisteAuteur: SimulationConfig = {
-	'objectifs cachés': [
+	objectifs: [
 		'artiste-auteur . cotisations',
 		'artiste-auteur . revenus',
 		'artiste-auteur . cotisations . IRCEC',

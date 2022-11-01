@@ -7,8 +7,8 @@ it('calculate simulations-dividendes', () => {
 	runSimulations(
 		dividendesSituations,
 		[
+			...(configDividendes['objectifs exclusifs'] ?? []),
 			...(configDividendes.objectifs ?? []),
-			...(configDividendes['objectifs cachés'] ?? []),
 			'bénéficiaire . dividendes . cotisations et contributions',
 			'impôt . montant',
 			'impôt . revenu imposable',

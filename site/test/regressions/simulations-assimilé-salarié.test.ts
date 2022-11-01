@@ -7,8 +7,8 @@ it('calculate assimilé salarié', () => {
 	runSimulations(
 		rémunérationDirigeantSituations,
 		[
+			...(configRémunérationDirigeant['objectifs exclusifs'] ?? []),
 			...(configRémunérationDirigeant.objectifs ?? []),
-			...(configRémunérationDirigeant['objectifs cachés'] ?? []),
 		],
 		{
 			...configRémunérationDirigeant.situation,
