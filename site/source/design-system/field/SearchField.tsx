@@ -33,7 +33,10 @@ const SearchInputContainer = styled(StyledInputContainer)`
 `
 
 const IconContainer = styled.div<{ hasLabel?: boolean }>`
-	padding: calc(${({ hasLabel = false }) => (hasLabel ? '1rem' : '0rem')} + 0.5rem) 0 0.5rem;
+	padding: calc(
+			${({ hasLabel = false }) => (hasLabel ? '1rem' : '0rem')} + 0.5rem
+		)
+		0 0.5rem;
 `
 
 export default function SearchField(
