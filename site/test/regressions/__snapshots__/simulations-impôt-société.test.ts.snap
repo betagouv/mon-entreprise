@@ -1,24 +1,24 @@
 // Vitest Snapshot v1
 
 exports[`calculate simulations-impot-société > bénéfices 1`] = `
-"[0,0]
+"entreprise . imposition . IS . contribution sociale: 0 ; entreprise . imposition . IS . montant: 0
 Notifications affichées : entreprise . imposition . IS . information sur le report de déficit"
 `;
 
-exports[`calculate simulations-impot-société > bénéfices 2`] = `"[0,0]"`;
+exports[`calculate simulations-impot-société > bénéfices 2`] = `"entreprise . imposition . IS . contribution sociale: 0 ; entreprise . imposition . IS . montant: 0"`;
 
-exports[`calculate simulations-impot-société > bénéfices 3`] = `"[300,0]"`;
+exports[`calculate simulations-impot-société > bénéfices 3`] = `"entreprise . imposition . IS . contribution sociale: 0 ; entreprise . imposition . IS . montant: 300"`;
 
-exports[`calculate simulations-impot-société > bénéfices 4`] = `"[3000,0]"`;
+exports[`calculate simulations-impot-société > bénéfices 4`] = `"entreprise . imposition . IS . contribution sociale: 0 ; entreprise . imposition . IS . montant: 3000"`;
 
-exports[`calculate simulations-impot-société > bénéfices 5`] = `"[46198,0]"`;
+exports[`calculate simulations-impot-société > bénéfices 5`] = `"entreprise . imposition . IS . contribution sociale: 0 ; entreprise . imposition . IS . montant: 46198"`;
 
-exports[`calculate simulations-impot-société > bénéfices 6`] = `"[496198,0]"`;
+exports[`calculate simulations-impot-société > bénéfices 6`] = `"entreprise . imposition . IS . contribution sociale: 0 ; entreprise . imposition . IS . montant: 496198"`;
 
-exports[`calculate simulations-impot-société > bénéfices 7`] = `"[4996198,139765]"`;
+exports[`calculate simulations-impot-société > bénéfices 7`] = `"entreprise . imposition . IS . contribution sociale: 139765 ; entreprise . imposition . IS . montant: 4996198"`;
 
-exports[`calculate simulations-impot-société > prorata temporis 1`] = `"[246198,0]"`;
+exports[`calculate simulations-impot-société > prorata temporis 1`] = `"entreprise . imposition . IS . contribution sociale: 0 ; entreprise . imposition . IS . montant: 246198"`;
 
-exports[`calculate simulations-impot-société > prorata temporis 2`] = `"[277936,0]"`;
+exports[`calculate simulations-impot-société > prorata temporis 2`] = `"entreprise . imposition . IS . contribution sociale: 0 ; entreprise . imposition . IS . montant: 277936"`;
 
-exports[`calculate simulations-impot-société > prorata temporis 3`] = `"[272981,0]"`;
+exports[`calculate simulations-impot-société > prorata temporis 3`] = `"entreprise . imposition . IS . contribution sociale: 0 ; entreprise . imposition . IS . montant: 272981"`;

@@ -1,0 +1,41 @@
+// Vitest Snapshot v1
+
+exports[`calculate assimilé salarié > ACRE 1`] = `
+"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 5298 ; protection sociale . retraite: 5256 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 441
+Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
+`;
+
+exports[`calculate assimilé salarié > ACRE 2`] = `
+"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 10996 ; protection sociale . retraite: 10642 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 916
+Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
+`;
+
+exports[`calculate assimilé salarié > ACRE 3`] = `
+"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 16694 ; protection sociale . retraite: 16028 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 1391
+Notifications affichées : dirigeant . assimilé salarié . réduction ACRE . notification taux annuel"
+`;
+
+exports[`calculate assimilé salarié > JEI 1`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 33911 ; protection sociale . retraite: 2677 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 2826"`;
+
+exports[`calculate assimilé salarié > avec charges 1`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 5298 ; protection sociale . retraite: 5256 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 441"`;
+
+exports[`calculate assimilé salarié > avec charges 2`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 10996 ; protection sociale . retraite: 10642 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 916"`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 1`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: undefined ; protection sociale . retraite: undefined ; protection sociale . retraite . base . trimestres: undefined ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: undefined"`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 2`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 170 ; protection sociale . retraite: 135 ; protection sociale . retraite . base . trimestres: 0 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 14"`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 3`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 740 ; protection sociale . retraite: 313 ; protection sociale . retraite . base . trimestres: 0 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 62"`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 4`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 2449 ; protection sociale . retraite: 2564 ; protection sociale . retraite . base . trimestres: 2 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 204"`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 5`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 5298 ; protection sociale . retraite: 5256 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 441"`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 6`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 10996 ; protection sociale . retraite: 10642 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 916"`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 7`] = `"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 28090 ; protection sociale . retraite: 26799 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 2341"`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
+"dirigeant . auto-entrepreneur . revenu net: null ; dirigeant . rémunération . net: 57190 ; protection sociale . retraite: 4312 ; protection sociale . retraite . base . trimestres: 4 ; protection sociale . santé . indemnités journalières: undefined ; salarié . rémunération . net . à payer avant impôt: 4766
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;

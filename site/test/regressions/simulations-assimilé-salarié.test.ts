@@ -1,11 +1,11 @@
 import { configRémunérationDirigeant } from '@/pages/Simulateurs/configs/rémunérationDirigeant'
 import { it } from 'vitest'
-import remunerationDirigeantSituations from './simulations-rémunération-dirigeant.yaml'
+import rémunérationDirigeantSituations from './simulations-assimilé-salarié.yaml'
 import { runSimulations } from './utils'
 
 it('calculate assimilé salarié', () => {
 	runSimulations(
-		remunerationDirigeantSituations,
+		rémunérationDirigeantSituations,
 		[
 			...(configRémunérationDirigeant.objectifs ?? []),
 			...(configRémunérationDirigeant['objectifs cachés'] ?? []),
