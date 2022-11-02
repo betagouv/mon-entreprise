@@ -70,14 +70,14 @@ export const StyledInput = styled.input`
 			`}
 		color: ${({ theme }) =>
 			theme.colors.extended.grey[theme.darkMode ? 200 : 600]};
-		background-color: inherit;
+		background-color: transparent;
 	}
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
-				background-color: inherit;
+				background-color: transparent;
 			}
 		`}
 `
@@ -99,7 +99,7 @@ export const StyledLabel = styled.label`
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
-				background-color: inherit;
+				background-color: transparent;
 			}
 		`}
 `
@@ -154,7 +154,7 @@ export const StyledInputContainer = styled.div<{
 	}
 	:focus-within ${StyledLabel} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
-		background-color: inherit;
+		background-color: transparent;
 	}
 
 	:focus-within + ${StyledDescription} {
@@ -162,7 +162,7 @@ export const StyledInputContainer = styled.div<{
 			!theme.darkMode &&
 			css`
 				color: ${theme.colors.bases.primary[800]};
-				background-color: inherit;
+				background-color: transparent;
 			`}
 	}
 
@@ -171,11 +171,11 @@ export const StyledInputContainer = styled.div<{
 		css`
 			${StyledInput}:not(:focus):placeholder-shown {
 				color: transparent;
-				background-color: inherit;
+				background-color: transparent;
 			}
 			${StyledInput}:not(:focus):placeholder-shown + ${StyledSuffix} {
 				color: transparent;
-				background-color: inherit;
+				background-color: transparent;
 			}
 		`}
 
@@ -194,7 +194,7 @@ export const StyledInputContainer = styled.div<{
 			}
 			&&& label {
 				color: ${theme.colors.extended.error[400]};
-				background-color: inherit;
+				background-color: transparent;
 			}
 		`}
 
