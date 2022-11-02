@@ -1,6 +1,6 @@
 import 'dotenv/config.js'
-import 'isomorphic-fetch'
 import fs from 'fs'
+import 'isomorphic-fetch'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { apiStats } from './fetch-api-stats.js'
@@ -479,32 +479,21 @@ async function fetchGithubIssuesFromTags(tags) {
 }
 
 async function fetchCrispUserFeedbackIssues() {
-	const conversationsResolved = await fetchAllCrispConversations({
-		urlParams: 'filter_resolved=1&search_query=issue&search_type=segment',
+	const conversation = await fetchAllCrispConversations({
+		urlParams: 'search_query=issue&search_type=segment',
 	})
+	const issueCount = conversation?.reduce((acc, conversation) => {
+		conversation.meta.segments
 
-	const sortedSegments = conversationsResolved
-		?.reduce((acc, conversation) => {
-			const newAcc = [...acc]
-			const conversationSegments = conversation.meta.segments
+			.filter((segment) => /#[\d]+/.exec(segment))
+			.forEach((issue) => {
+				acc[issue] ??= 0
+				acc[issue] += 1
+			})
+		return acc
+	}, {})
 
-			conversationSegments
-				.filter((segment) => /#[\d]+/.exec(segment))
-				.forEach((segment) => {
-					const segmentObjectIndex = newAcc.findIndex(
-						(segmentObject) => segmentObject.name === segment
-					)
-					if (segmentObjectIndex < 0) {
-						newAcc.push({ name: segment, count: 1 })
-					} else {
-						newAcc[segmentObjectIndex].count += 1
-					}
-				})
-			return newAcc
-		}, [])
-		?.sort((t1, t2) => t2.count - t1.count)
-
-	return fetchGithubIssuesFromTags(sortedSegments)
+	return issueCount
 }
 
 async function fetchZammadUserFeedbackIssues() {
@@ -516,33 +505,37 @@ async function fetchZammadUserFeedbackIssues() {
 			}),
 		}
 	).then((r) => r.json())
-	const sortedTags = tags
-		.sort((t1, t2) => t2.count - t1.count)
-		.filter(({ name }) => /#[\d]+/.exec(name))
+	const issues = tags.filter(({ name }) => /#[\d]+/.exec(name))
 
-	return fetchGithubIssuesFromTags(sortedTags)
+	return issues.reduce(
+		(acc, { name, count }) => ({ ...acc, [name]: count }),
+		{}
+	)
 }
 
 async function fetchAllUserFeedbackIssues() {
 	const crispFeedbackIssues = await fetchCrispUserFeedbackIssues()
 	const zammadFeedbackIssues = await fetchZammadUserFeedbackIssues()
 
-	const allIssues = [...(crispFeedbackIssues || [])]
-
-	zammadFeedbackIssues.forEach((zammadIssue) => {
-		const issueIndex = allIssues.findIndex(
-			(issue) => issue.number === zammadIssue.number
+	const allIssues = [crispFeedbackIssues, zammadFeedbackIssues]
+		.flatMap((issues) => Object.entries(issues))
+		.reduce(
+			(acc, [issue, count]) => ({
+				...acc,
+				[issue]: (acc[issue] ?? 0) + count,
+			}),
+			{}
 		)
-		if (issueIndex > 0) {
-			allIssues[issueIndex].count += zammadIssue.count
-		} else {
-			allIssues.push(zammadIssue)
-		}
-	})
+
+	const sortedIssues = await fetchGithubIssuesFromTags(
+		Object.entries(allIssues)
+			.sort(([, a], [, b]) => b - a)
+			.map(([name, count]) => ({ name, count }))
+	)
 
 	return {
-		open: allIssues.filter((s) => !s.closedAt),
-		closed: allIssues
+		open: sortedIssues.filter((s) => !s.closedAt),
+		closed: sortedIssues
 			.filter((s) => s.closedAt)
 			.sort((i1, i2) => new Date(i2.closedAt) - new Date(i1.closedAt)),
 	}
