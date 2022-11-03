@@ -20,7 +20,8 @@ writeFileSync(
 				const translation = await fetchTranslation(value)
 				resolved[dottedName][attr] = '[automatic] ' + translation
 			} catch (e) {
-				console.log(e)
+				console.error(e)
+				console.log(value)
 			}
 		})
 	)

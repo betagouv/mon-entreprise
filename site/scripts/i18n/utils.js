@@ -123,6 +123,9 @@ export const getUiMissingTranslations = () => {
 }
 
 export const fetchTranslation = async (text) => {
+	if (typeof text !== 'string') {
+		throw new Error("❌ Can't translate anything other than a string")
+	}
 	const response = await fetch(
 		`https://api.deepl.com/v2/translate?${new URLSearchParams({
 			text,
@@ -133,7 +136,8 @@ export const fetchTranslation = async (text) => {
 		}).toString()}`
 	)
 	if (response.status !== 200) {
-		console.error(`❌ Deepl return status ${response.status} for:\n\t${text}\n`)
+		const msg = JSON.stringify(text, null, 2)
+		console.error(`❌ Deepl return status ${response.status} for:\n\t${msg}\n`)
 		return ''
 	}
 	try {
