@@ -15,7 +15,7 @@ export function RadioGroup(props: RadioGroupProps) {
 	const { radioGroupProps, labelProps } = useRadioGroup(props, state)
 
 	return (
-		<div {...radioGroupProps}>
+		<div {...radioGroupProps} aria-label={props['aria-label']}>
 			{label && <span {...labelProps}>{label}</span>}
 			<RadioGroupContainer orientation={props.orientation ?? 'vertical'}>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>

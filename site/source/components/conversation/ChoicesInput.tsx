@@ -131,6 +131,7 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 
 	return (
 		<Component
+			{...props}
 			onChange={handleChange}
 			value={currentSelection ?? undefined}
 			aria-labelledby={props['aria-labelledby'] || undefined}
