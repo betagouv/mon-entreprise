@@ -1,21 +1,45 @@
 // Vitest Snapshot v1
 
-exports[`calculate simulations-artiste-auteur > bnc 1`] = `"artiste-auteur . cotisations: 1230 ; artiste-auteur . cotisations . IRCEC: 0 ; artiste-auteur . revenus: undefined"`;
+exports[`calculate simulations-artiste-auteur > bnc 1`] = `
+"artiste-auteur . cotisations: 1230
+artiste-auteur . cotisations . IRCEC: 0
+artiste-auteur . revenus: undefined"
+`;
 
-exports[`calculate simulations-artiste-auteur > bnc 2`] = `"artiste-auteur . cotisations: 1863 ; artiste-auteur . cotisations . IRCEC: 920 ; artiste-auteur . revenus: undefined"`;
+exports[`calculate simulations-artiste-auteur > bnc 2`] = `
+"artiste-auteur . cotisations: 1863
+artiste-auteur . cotisations . IRCEC: 920
+artiste-auteur . revenus: undefined"
+`;
 
 exports[`calculate simulations-artiste-auteur > bnc 3`] = `
-"artiste-auteur . cotisations: 932 ; artiste-auteur . cotisations . IRCEC: 0 ; artiste-auteur . revenus: undefined
+"artiste-auteur . cotisations: 932
+artiste-auteur . cotisations . IRCEC: 0
+artiste-auteur . revenus: undefined
 Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
 `;
 
-exports[`calculate simulations-artiste-auteur > option surcotisation 1`] = `"artiste-auteur . cotisations: 447 ; artiste-auteur . cotisations . IRCEC: 0 ; artiste-auteur . revenus: undefined"`;
+exports[`calculate simulations-artiste-auteur > option surcotisation 1`] = `
+"artiste-auteur . cotisations: 447
+artiste-auteur . cotisations . IRCEC: 0
+artiste-auteur . revenus: undefined"
+`;
 
 exports[`calculate simulations-artiste-auteur > salarié 1`] = `
-"artiste-auteur . cotisations: 160 ; artiste-auteur . cotisations . IRCEC: 0 ; artiste-auteur . revenus: undefined
+"artiste-auteur . cotisations: 160
+artiste-auteur . cotisations . IRCEC: 0
+artiste-auteur . revenus: undefined
 Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
 `;
 
-exports[`calculate simulations-artiste-auteur > salarié 2`] = `"artiste-auteur . cotisations: 1603 ; artiste-auteur . cotisations . IRCEC: 800 ; artiste-auteur . revenus: undefined"`;
+exports[`calculate simulations-artiste-auteur > salarié 2`] = `
+"artiste-auteur . cotisations: 1603
+artiste-auteur . cotisations . IRCEC: 800
+artiste-auteur . revenus: undefined"
+`;
 
-exports[`calculate simulations-artiste-auteur > salarié 3`] = `"artiste-auteur . cotisations: 1034 ; artiste-auteur . cotisations . IRCEC: 8000 ; artiste-auteur . revenus: undefined"`;
+exports[`calculate simulations-artiste-auteur > salarié 3`] = `
+"artiste-auteur . cotisations: 1034
+artiste-auteur . cotisations . IRCEC: 8000
+artiste-auteur . revenus: undefined"
+`;

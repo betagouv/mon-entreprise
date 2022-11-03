@@ -1,63 +1,227 @@
 // Vitest Snapshot v1
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 1`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 22962 ; dirigeant . auto-entrepreneur . cotisations et contributions: 247 ; dirigeant . auto-entrepreneur . revenu net: 20000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 20000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 1`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 22962
+dirigeant . auto-entrepreneur . cotisations et contributions: 247
+dirigeant . auto-entrepreneur . revenu net: 20000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 22630 ; dirigeant . auto-entrepreneur . cotisations et contributions: 219 ; dirigeant . auto-entrepreneur . revenu net: 20000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 20000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 22630
+dirigeant . auto-entrepreneur . cotisations et contributions: 219
+dirigeant . auto-entrepreneur . revenu net: 20000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 34443 ; dirigeant . auto-entrepreneur . cotisations et contributions: 370 ; dirigeant . auto-entrepreneur . revenu net: 30000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 30000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 34443
+dirigeant . auto-entrepreneur . cotisations et contributions: 370
+dirigeant . auto-entrepreneur . revenu net: 30000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 30000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 45938 ; dirigeant . auto-entrepreneur . cotisations et contributions: 495 ; dirigeant . auto-entrepreneur . revenu net: 40000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 40000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 45938
+dirigeant . auto-entrepreneur . cotisations et contributions: 495
+dirigeant . auto-entrepreneur . revenu net: 40000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 40000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 21390 ; dirigeant . auto-entrepreneur . cotisations et contributions: 116 ; dirigeant . auto-entrepreneur . revenu net: 20000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 20000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 21390
+dirigeant . auto-entrepreneur . cotisations et contributions: 116
+dirigeant . auto-entrepreneur . revenu net: 20000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 ; dirigeant . auto-entrepreneur . cotisations et contributions: 292 ; dirigeant . auto-entrepreneur . revenu net: 16500 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 16500 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 292
+dirigeant . auto-entrepreneur . revenu net: 16500
+dirigeant . auto-entrepreneur . revenu net . après impôt: 16500
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 ; dirigeant . auto-entrepreneur . cotisations et contributions: 318 ; dirigeant . auto-entrepreneur . revenu net: 16180 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 16180 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 318
+dirigeant . auto-entrepreneur . revenu net: 16180
+dirigeant . auto-entrepreneur . revenu net . après impôt: 16180
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 ; dirigeant . auto-entrepreneur . cotisations et contributions: 301 ; dirigeant . auto-entrepreneur . revenu net: 16388 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 16388 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 301
+dirigeant . auto-entrepreneur . revenu net: 16388
+dirigeant . auto-entrepreneur . revenu net . après impôt: 16388
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: undefined ; dirigeant . auto-entrepreneur . cotisations et contributions: 715 ; dirigeant . auto-entrepreneur . revenu net: undefined ; dirigeant . auto-entrepreneur . revenu net . après impôt: undefined ; dirigeant . rémunération . impôt: undefined"`;
+exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: undefined
+dirigeant . auto-entrepreneur . cotisations et contributions: 715
+dirigeant . auto-entrepreneur . revenu net: undefined
+dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
+dirigeant . rémunération . impôt: undefined"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activités 1`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 ; dirigeant . auto-entrepreneur . cotisations et contributions: 370 ; dirigeant . auto-entrepreneur . revenu net: 15560 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 15560 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > activités 1`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 370
+dirigeant . auto-entrepreneur . revenu net: 15560
+dirigeant . auto-entrepreneur . revenu net . après impôt: 15560
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activités 2`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 ; dirigeant . auto-entrepreneur . cotisations et contributions: 373 ; dirigeant . auto-entrepreneur . revenu net: 15520 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 15520 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > activités 2`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 373
+dirigeant . auto-entrepreneur . revenu net: 15520
+dirigeant . auto-entrepreneur . revenu net . après impôt: 15520
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activités 3`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 ; dirigeant . auto-entrepreneur . cotisations et contributions: 222 ; dirigeant . auto-entrepreneur . revenu net: 17332 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 17332 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > activités 3`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 222
+dirigeant . auto-entrepreneur . revenu net: 17332
+dirigeant . auto-entrepreneur . revenu net . après impôt: 17332
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activités 4`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 ; dirigeant . auto-entrepreneur . cotisations et contributions: 380 ; dirigeant . auto-entrepreneur . revenu net: 15444 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 15444 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > activités 4`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 380
+dirigeant . auto-entrepreneur . revenu net: 15444
+dirigeant . auto-entrepreneur . revenu net . après impôt: 15444
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activités 5`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 ; dirigeant . auto-entrepreneur . cotisations et contributions: 215 ; dirigeant . auto-entrepreneur . revenu net: 17420 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 17420 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > activités 5`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 215
+dirigeant . auto-entrepreneur . revenu net: 17420
+dirigeant . auto-entrepreneur . revenu net . après impôt: 17420
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > activités 6`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 ; dirigeant . auto-entrepreneur . cotisations et contributions: 369 ; dirigeant . auto-entrepreneur . revenu net: 15568 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 15568 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > activités 6`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 369
+dirigeant . auto-entrepreneur . revenu net: 15568
+dirigeant . auto-entrepreneur . revenu net . après impôt: 15568
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > aides 1`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 5741 ; dirigeant . auto-entrepreneur . cotisations et contributions: 62 ; dirigeant . auto-entrepreneur . revenu net: 5000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 5000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > aides 1`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 5741
+dirigeant . auto-entrepreneur . cotisations et contributions: 62
+dirigeant . auto-entrepreneur . revenu net: 5000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > aides 2`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 57419 ; dirigeant . auto-entrepreneur . cotisations et contributions: 618 ; dirigeant . auto-entrepreneur . revenu net: 50000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 49763 ; dirigeant . rémunération . impôt: 237"`;
+exports[`calculate simulations-auto-entrepreneur > aides 2`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 57419
+dirigeant . auto-entrepreneur . cotisations et contributions: 618
+dirigeant . auto-entrepreneur . revenu net: 50000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 49763
+dirigeant . rémunération . impôt: 237"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > impôt sur le revenu 1`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 32134 ; dirigeant . auto-entrepreneur . cotisations et contributions: 594 ; dirigeant . auto-entrepreneur . revenu net: 25000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 24293 ; dirigeant . rémunération . impôt: 707"`;
+exports[`calculate simulations-auto-entrepreneur > impôt sur le revenu 1`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 32134
+dirigeant . auto-entrepreneur . cotisations et contributions: 594
+dirigeant . auto-entrepreneur . revenu net: 25000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 24293
+dirigeant . rémunération . impôt: 707"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 1`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 574 ; dirigeant . auto-entrepreneur . cotisations et contributions: 6 ; dirigeant . auto-entrepreneur . revenu net: 500 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 500 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 1`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 574
+dirigeant . auto-entrepreneur . cotisations et contributions: 6
+dirigeant . auto-entrepreneur . revenu net: 500
+dirigeant . auto-entrepreneur . revenu net . après impôt: 500
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 2`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 1148 ; dirigeant . auto-entrepreneur . cotisations et contributions: 12 ; dirigeant . auto-entrepreneur . revenu net: 1000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 1000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 2`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 1148
+dirigeant . auto-entrepreneur . cotisations et contributions: 12
+dirigeant . auto-entrepreneur . revenu net: 1000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 1000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 3`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 2296 ; dirigeant . auto-entrepreneur . cotisations et contributions: 25 ; dirigeant . auto-entrepreneur . revenu net: 2000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 2000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 3`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 2296
+dirigeant . auto-entrepreneur . cotisations et contributions: 25
+dirigeant . auto-entrepreneur . revenu net: 2000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 2000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 4`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 5741 ; dirigeant . auto-entrepreneur . cotisations et contributions: 62 ; dirigeant . auto-entrepreneur . revenu net: 5000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 5000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 4`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 5741
+dirigeant . auto-entrepreneur . cotisations et contributions: 62
+dirigeant . auto-entrepreneur . revenu net: 5000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 5`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 11481 ; dirigeant . auto-entrepreneur . cotisations et contributions: 123 ; dirigeant . auto-entrepreneur . revenu net: 10000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 10000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 5`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 11481
+dirigeant . auto-entrepreneur . cotisations et contributions: 123
+dirigeant . auto-entrepreneur . revenu net: 10000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 10000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 6`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 22962 ; dirigeant . auto-entrepreneur . cotisations et contributions: 247 ; dirigeant . auto-entrepreneur . revenu net: 20000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 20000 ; dirigeant . rémunération . impôt: 0"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 6`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 22962
+dirigeant . auto-entrepreneur . cotisations et contributions: 247
+dirigeant . auto-entrepreneur . revenu net: 20000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
+dirigeant . rémunération . impôt: 0"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 7`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 57419 ; dirigeant . auto-entrepreneur . cotisations et contributions: 618 ; dirigeant . auto-entrepreneur . revenu net: 50000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 49763 ; dirigeant . rémunération . impôt: 237"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 7`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 57419
+dirigeant . auto-entrepreneur . cotisations et contributions: 618
+dirigeant . auto-entrepreneur . revenu net: 50000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 49763
+dirigeant . rémunération . impôt: 237"
+`;
 
-exports[`calculate simulations-auto-entrepreneur > échelle de revenus 8`] = `"dirigeant . auto-entrepreneur . chiffre d'affaires: 80381 ; dirigeant . auto-entrepreneur . cotisations et contributions: 865 ; dirigeant . auto-entrepreneur . revenu net: 70000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 68699 ; dirigeant . rémunération . impôt: 1301"`;
+exports[`calculate simulations-auto-entrepreneur > échelle de revenus 8`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 80381
+dirigeant . auto-entrepreneur . cotisations et contributions: 865
+dirigeant . auto-entrepreneur . revenu net: 70000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 68699
+dirigeant . rémunération . impôt: 1301"
+`;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 9`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 114824 ; dirigeant . auto-entrepreneur . cotisations et contributions: 1235 ; dirigeant . auto-entrepreneur . revenu net: 100000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 96088 ; dirigeant . rémunération . impôt: 3912
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 114824
+dirigeant . auto-entrepreneur . cotisations et contributions: 1235
+dirigeant . auto-entrepreneur . revenu net: 100000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 96088
+dirigeant . rémunération . impôt: 3912
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 10`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 1148298 ; dirigeant . auto-entrepreneur . cotisations et contributions: 12358 ; dirigeant . auto-entrepreneur . revenu net: 1000000 ; dirigeant . auto-entrepreneur . revenu net . après impôt: 868348 ; dirigeant . rémunération . impôt: 131652
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 1148298
+dirigeant . auto-entrepreneur . cotisations et contributions: 12358
+dirigeant . auto-entrepreneur . revenu net: 1000000
+dirigeant . auto-entrepreneur . revenu net . après impôt: 868348
+dirigeant . rémunération . impôt: 131652
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés, entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés"
 `;

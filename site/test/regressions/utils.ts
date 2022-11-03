@@ -4,12 +4,11 @@
 //
 // We only persist targets values in the file system, in order to be resilient to rule renaming (if a rule is
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
-
+import { engineFactory } from '../../source/components/utils/EngineContext'
+import { Simulation } from '../../source/reducers/rootReducer'
 import rules, { DottedName } from 'modele-social'
 import { EvaluatedNode, Evaluation } from 'publicodes'
 import { expect } from 'vitest'
-import { engineFactory } from '../../source/components/utils/EngineContext'
-import { Simulation } from '../../source/reducers/rootReducer'
 
 type SituationsSpecs = Record<string, Simulation['situation'][]>
 
@@ -38,7 +37,7 @@ export const runSimulations = (
 					(objectif) =>
 						`${objectif}: ${formatValue(engine.evaluate(objectif).nodeValue)}`
 				)
-				.join(' ; ')
+				.join('\n')
 
 			const evaluatedNotifications = Object.values(engine.getParsedRules())
 				.filter(
