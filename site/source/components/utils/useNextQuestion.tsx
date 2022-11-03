@@ -49,7 +49,6 @@ export function getNextQuestions(
 	const score = (question: string) => {
 		const indexList =
 			whitelist.findIndex((name) => question.startsWith(name)) + 1
-		// notPriority ne fonctionne pas comme prévue non ? car il est identique à whitelist
 		const indexNotPriority =
 			notPriority.findIndex((name) => question.startsWith(name)) + 1
 		const differenceCoeff = questionDifference(
@@ -60,6 +59,7 @@ export function getNextQuestions(
 		return indexList + indexNotPriority + differenceCoeff
 	}
 
+	// The higher the score, the less important the question
 	return nextSteps.sort((a, b) => score(a) - score(b))
 }
 

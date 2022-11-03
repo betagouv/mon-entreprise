@@ -3,7 +3,6 @@ import { SimulationConfig } from './types'
 export const configSalarié: SimulationConfig = {
 	'objectifs exclusifs': [
 		'salarié . coût total employeur',
-		// 'salarié . contrat . salaire brut . équivalent temps plein', pas utile ?
 		'salarié . contrat . salaire brut',
 		'salarié . rémunération . net . à payer avant impôt',
 		'salarié . rémunération . net . payé après impôt',

@@ -29,7 +29,6 @@ export const configSASU: SimulationConfig = {
 		'liste noire': [
 			'entreprise . charges',
 			'entreprise . imposition',
-			// 'entreprise . rémunération du dirigeant', n'existe plus
 			'entreprise . association non lucrative',
 		],
 		'non prioritaires': [
