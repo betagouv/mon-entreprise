@@ -1,5 +1,7 @@
-import { Container, Grid } from '@/design-system/layout'
 import React from 'react'
+
+import { Container, Grid } from '@/design-system/layout'
+
 import wipSvg from './undraw_qa_engineers_dg-5-p.svg'
 
 export default function BetaBanner({

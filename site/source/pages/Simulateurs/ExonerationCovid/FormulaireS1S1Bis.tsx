@@ -1,10 +1,3 @@
-import { ExplicableRule } from '@/components/conversation/Explicable'
-import Value from '@/components/EngineValue'
-import { Situation } from '@/components/utils/SituationContext'
-import { Grid, Spacing } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
 import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
 import Engine, {
 	EvaluatedNode,
@@ -13,6 +6,15 @@ import Engine, {
 } from 'publicodes'
 import { Key, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+
+import Value from '@/components/EngineValue'
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import { Situation } from '@/components/utils/SituationContext'
+import { Grid, Spacing } from '@/design-system/layout'
+import { H3 } from '@/design-system/typography/heading'
+import { Li, Ul } from '@/design-system/typography/list'
+import { Body } from '@/design-system/typography/paragraphs'
+
 import { useExoCovidEngine, useExoCovidSituationState } from '.'
 import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
 import { Row, Table, Tbody, Th, Thead, Tr } from './Table'

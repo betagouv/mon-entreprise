@@ -1,5 +1,6 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { RadioCardGroup, RadioCard } from '.'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+
+import { RadioCard, RadioCardGroup } from '.'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

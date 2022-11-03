@@ -1,6 +1,7 @@
-import { SearchField } from '@/design-system/field'
 import { useTranslation } from 'react-i18next'
 import { connectSearchBox } from 'react-instantsearch-dom'
+
+import { SearchField } from '@/design-system/field'
 
 export const SearchBox = connectSearchBox(
 	({ currentRefinement, isSearchStalled, refine, ...props }) => {

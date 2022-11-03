@@ -1,7 +1,8 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import Emoji from '@/components/utils/Emoji'
 import { Card } from '@/design-system/card'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
 
 export function ActivitePartielleCard() {
 	const { t } = useTranslation()

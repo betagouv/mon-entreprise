@@ -1,10 +1,12 @@
+import { ReactNode, useState } from 'react'
+import { Trans } from 'react-i18next'
+
 import { Message, MessageType } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Intro } from '@/design-system/typography/paragraphs'
-import { ReactNode, useState } from 'react'
-import { Trans } from 'react-i18next'
+
 import { FromTop } from './animate'
 
 type FoldingMessageProps = {

@@ -1,4 +1,5 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+
 import { Message } from '@/design-system'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

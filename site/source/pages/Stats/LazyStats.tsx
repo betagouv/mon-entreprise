@@ -1,11 +1,13 @@
-import Privacy from '@/components/layout/Footer/Privacy'
+import { Suspense, lazy } from 'react'
+
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import PageHeader from '@/components/PageHeader'
+import Privacy from '@/components/layout/Footer/Privacy'
 import Emoji from '@/components/utils/Emoji'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Intro } from '@/design-system/typography/paragraphs'
-import { lazy, Suspense } from 'react'
+
 import { TrackPage } from '../../ATInternetTracking'
 import illustrationSvg from './illustration.svg'
 

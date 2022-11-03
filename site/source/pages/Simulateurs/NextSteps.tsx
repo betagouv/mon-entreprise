@@ -1,3 +1,5 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import { Condition } from '@/components/EngineValue'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Grid } from '@/design-system/layout'
@@ -8,7 +10,6 @@ import { IframeIntegrationCard } from '@/pages/Simulateurs/cards/IframeIntegrati
 import { SimulatorRessourceCard } from '@/pages/Simulateurs/cards/SimulatorRessourceCard'
 import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
 
 interface NextStepsProps {
 	iframePath: ExtractFromSimuData<'iframePath'>

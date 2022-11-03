@@ -1,10 +1,11 @@
 import { DottedName } from 'modele-social'
 import Engine, {
-	formatValue,
 	PublicodesExpression,
 	Rule,
 	RuleNode,
+	formatValue,
 } from 'publicodes'
+
 import { Situation } from './reducers/rootReducer'
 
 export function capitalise0(name: undefined): undefined

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import 'isomorphic-fetch'
+
 import { exec } from 'child_process'
 import { promisify } from 'util'
 

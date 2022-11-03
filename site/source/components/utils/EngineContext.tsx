@@ -1,3 +1,14 @@
+import { DottedName } from 'modele-social'
+import Engine, {
+	EvaluatedNode,
+	PublicodesExpression,
+	Rule,
+	RuleNode,
+	isPublicodesError,
+} from 'publicodes'
+import { createContext, useContext, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { deleteFromSituation } from '@/actions/actions'
 import {
 	companySituationSelector,
@@ -5,16 +16,7 @@ import {
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { omit } from '@/utils'
-import { DottedName } from 'modele-social'
-import Engine, {
-	EvaluatedNode,
-	isPublicodesError,
-	PublicodesExpression,
-	Rule,
-	RuleNode,
-} from 'publicodes'
-import { createContext, useContext, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+
 import i18n from '../../locales/i18n'
 
 export type Rules = Record<DottedName, Rule>

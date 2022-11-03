@@ -1,4 +1,5 @@
 import { HTMLAttributes } from 'react'
+
 import { StyledSVG } from './shared'
 
 export const Chevron = (props: HTMLAttributes<SVGElement>) => (

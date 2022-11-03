@@ -1,3 +1,7 @@
+import { Fragment } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { Button } from '@/design-system/buttons'
 import { H2, H3 } from '@/design-system/typography/heading'
@@ -7,9 +11,7 @@ import {
 	possibleStatusSelector,
 } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
-import { Fragment } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+
 import { TrackPage } from '../../../ATInternetTracking'
 import StatutDescription from '../StatutDescription'
 

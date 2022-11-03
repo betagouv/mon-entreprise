@@ -1,19 +1,21 @@
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
+import { ComponentPropsWithoutRef } from 'react'
+import { useSelector } from 'react-redux'
+
 import Meta from '@/components/utils/Meta'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import useSearchParamsSimulationSharing from '@/components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 import { situationSelector } from '@/selectors/simulationSelectors'
-import { ComponentPropsWithoutRef } from 'react'
-import { useSelector } from 'react-redux'
+
 import { TrackChapter } from '../ATInternetTracking'
+import { NextSteps } from '../pages/Simulateurs/NextSteps'
 import {
 	CurrentSimulatorDataProvider,
 	ExtractFromSimuData,
 } from '../pages/Simulateurs/metadata'
-import { NextSteps } from '../pages/Simulateurs/NextSteps'
 
 export interface PageDataProps {
 	meta: ExtractFromSimuData<'meta'>

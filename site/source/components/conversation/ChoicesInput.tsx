@@ -1,3 +1,23 @@
+import { DottedName } from 'modele-social'
+import {
+	EvaluatedNode,
+	Evaluation,
+	RuleNode,
+	serializeEvaluation,
+} from 'publicodes'
+import {
+	Fragment,
+	Key,
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+
 import Emoji from '@/components/utils/Emoji'
 import {
 	Radio,
@@ -9,25 +29,7 @@ import {
 import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { H4 } from '@/design-system/typography/heading'
-import { DottedName } from 'modele-social'
-import {
-	EvaluatedNode,
-	Evaluation,
-	RuleNode,
-	serializeEvaluation,
-} from 'publicodes'
-import {
-	createContext,
-	Fragment,
-	Key,
-	useCallback,
-	useContext,
-	useEffect,
-	useRef,
-	useState,
-} from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+
 import { ExplicableRule } from './Explicable'
 import { InputProps } from './RuleInput'
 

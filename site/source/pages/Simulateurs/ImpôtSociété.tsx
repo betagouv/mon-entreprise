@@ -1,18 +1,20 @@
+import { Trans } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+
 import { updateSituation } from '@/actions/actions'
-import RuleInput from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue'
 import Notifications from '@/components/Notifications'
 import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
-import { FromTop } from '@/components/ui/animate'
+import RuleInput from '@/components/conversation/RuleInput'
 import Warning from '@/components/ui/WarningBlock'
+import { FromTop } from '@/components/ui/animate'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { SimulationConfig } from '@/reducers/rootReducer'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+
 import { TrackPage } from '../../ATInternetTracking'
 
 const configIS = {

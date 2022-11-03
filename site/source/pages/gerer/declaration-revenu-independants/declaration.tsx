@@ -1,3 +1,9 @@
+import { Item } from '@react-stately/collections'
+import { DottedName } from 'modele-social'
+import { RuleNode } from 'publicodes'
+import { useEffect, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+
 import { TrackPage } from '@/ATInternetTracking'
 import { Condition } from '@/components/EngineValue'
 import { FromTop } from '@/components/ui/animate'
@@ -12,11 +18,7 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ol } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { getMeta } from '@/utils'
-import { Item } from '@react-stately/collections'
-import { DottedName } from 'modele-social'
-import { RuleNode } from 'publicodes'
-import { useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+
 import { SimpleField } from '../_components/Fields'
 import {
 	DéclarationRevenuSection,

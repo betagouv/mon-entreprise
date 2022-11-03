@@ -1,6 +1,9 @@
+import { Trans } from 'react-i18next'
+import styled from 'styled-components'
+
+import PageHeader from '@/components/PageHeader'
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
-import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
 import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
@@ -8,14 +11,13 @@ import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+
 import { TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData from '../Simulateurs/metadata'
-import illustrationSvg from './illustration.svg'
-import illustration2Svg from './illustration2.svg'
 import SearchOrCreate from './SearchOrCreate'
+import illustration2Svg from './illustration2.svg'
+import illustrationSvg from './illustration.svg'
 
 export default function Landing() {
 	const simulators = useSimulatorsData()

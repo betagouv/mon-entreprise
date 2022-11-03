@@ -1,15 +1,17 @@
-import { batchUpdateSituation } from '@/actions/actions'
-import { Switch } from '@/design-system/switch'
-import { situationSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import { serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { ExplicableRule } from './conversation/Explicable'
+
+import { batchUpdateSituation } from '@/actions/actions'
+import { Switch } from '@/design-system/switch'
+import { situationSelector } from '@/selectors/simulationSelectors'
+
 import { Condition } from './EngineValue'
 import { SimulationGoal } from './Simulation'
+import { ExplicableRule } from './conversation/Explicable'
 import { useEngine } from './utils/EngineContext'
 
 const proportions = {

@@ -1,7 +1,9 @@
-import { Button } from '@/design-system/buttons'
-import { H2 } from '@/design-system/typography/heading'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { HexColorPicker } from 'react-colorful'
+
+import { Button } from '@/design-system/buttons'
+import { H2 } from '@/design-system/typography/heading'
+
 import useSimulatorsData from '../Simulateurs/metadata'
 
 export default function IntegrationTest() {

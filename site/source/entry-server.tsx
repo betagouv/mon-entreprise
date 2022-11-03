@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
+
 import { AppEn } from './entry-en'
 import { AppFr } from './entry-fr'
 import i18next from './locales/i18n'

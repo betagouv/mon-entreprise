@@ -1,3 +1,8 @@
+import { useCallback, useMemo, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import styled, { css } from 'styled-components'
+
 import {
 	defineDirectorStatus,
 	isAutoentrepreneur,
@@ -13,10 +18,7 @@ import revenusSVG from '@/images/revenus.svg'
 import { configRémunérationDirigeant } from '@/pages/Simulateurs/configs/rémunérationDirigeant'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
-import { useCallback, useMemo, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import styled, { css } from 'styled-components'
+
 import PeriodSwitch from './PeriodSwitch'
 import { SimulationGoal, SimulationGoals } from './Simulation'
 import Emoji from './utils/Emoji'

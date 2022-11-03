@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
+
 import { getValueFrom } from '@/utils'
+
 import { Action } from './actions'
 import {
 	flatActivités,

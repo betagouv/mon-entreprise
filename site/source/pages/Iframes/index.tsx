@@ -1,6 +1,8 @@
-import Route404 from '@/components/Route404'
 import { Helmet } from 'react-helmet-async'
 import { Route, Routes } from 'react-router-dom'
+
+import Route404 from '@/components/Route404'
+
 import SimulateurPage from '../../components/PageData'
 import useSimulatorsData from '../Simulateurs/metadata'
 import IframeFooter from './IframeFooter'

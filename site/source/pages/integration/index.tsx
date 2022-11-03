@@ -1,11 +1,13 @@
+import { Trans, useTranslation } from 'react-i18next'
+import { Route, Routes, useLocation } from 'react-router-dom'
+
 import Emoji from '@/components/utils/Emoji'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Banner, InnerBanner } from '@/design-system/banner'
 import { Link } from '@/design-system/typography/link'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
-import { Route, Routes, useLocation } from 'react-router-dom'
+
 import { TrackChapter } from '../../ATInternetTracking'
 import API from './API'
 import Iframe from './Iframe'

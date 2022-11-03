@@ -1,8 +1,10 @@
-import { Card } from '@/design-system/card'
-import TextField from '@/design-system/field/TextField'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import { Card } from '@/design-system/card'
+import TextField from '@/design-system/field/TextField'
+
 import Worker from './SelectTauxRisque.worker?worker'
 
 const worker = !import.meta.env.SSR ? new Worker() : null

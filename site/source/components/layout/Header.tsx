@@ -1,15 +1,17 @@
+import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+
 import { Logo } from '@/components/Logo'
 import SearchButton from '@/components/SearchButton'
 import BrowserOnly from '@/components/utils/BrowserOnly'
-import { Container } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { useSitePaths } from '@/sitePaths'
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
-import NewsBanner from './NewsBanner'
-import { Switch } from '@/design-system/switch'
-import { useDarkMode } from '@/hooks/useDarkMode'
 import Emoji from '@/components/utils/Emoji'
+import { Container } from '@/design-system/layout'
+import { Switch } from '@/design-system/switch'
+import { Link } from '@/design-system/typography/link'
+import { useDarkMode } from '@/hooks/useDarkMode'
+import { useSitePaths } from '@/sitePaths'
+
+import NewsBanner from './NewsBanner'
 
 export default function Header() {
 	const { absoluteSitePaths } = useSitePaths()

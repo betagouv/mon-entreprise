@@ -1,6 +1,8 @@
-import { Palette, SmallPalette } from '@/types/styled'
 import React from 'react'
-import styled, { css, ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, css } from 'styled-components'
+
+import { Palette, SmallPalette } from '@/types/styled'
+
 import { Body } from '../typography/paragraphs'
 import baseIcon from './baseIcon.svg'
 import errorIcon from './errorIcon.svg'

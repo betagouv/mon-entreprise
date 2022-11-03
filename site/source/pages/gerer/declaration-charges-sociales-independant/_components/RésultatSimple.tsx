@@ -1,3 +1,6 @@
+import { utils } from 'publicodes'
+import { Trans, useTranslation } from 'react-i18next'
+
 import Value, { Condition } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { FromTop } from '@/components/ui/animate'
@@ -9,8 +12,6 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { utils } from 'publicodes'
-import { Trans, useTranslation } from 'react-i18next'
 
 export default function ResultatsSimples() {
 	const engine = useEngine()

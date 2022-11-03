@@ -1,11 +1,13 @@
-import { EngineContext } from '@/components/utils/EngineContext'
-import { NumberField } from '@/design-system/field'
-import { debounce } from '@/utils'
 import { NumberFieldProps } from '@react-types/numberfield'
-import { ASTNode, parseUnit, serializeUnit, Unit } from 'publicodes'
+import { ASTNode, Unit, parseUnit, serializeUnit } from 'publicodes'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import { EngineContext } from '@/components/utils/EngineContext'
+import { NumberField } from '@/design-system/field'
+import { debounce } from '@/utils'
+
 import InputSuggestions from './InputSuggestions'
 import { InputProps } from './RuleInput'
 

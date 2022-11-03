@@ -9,6 +9,7 @@
 // "public repo" authorization when generating the access token.
 import 'dotenv/config.js'
 import 'isomorphic-fetch'
+
 import { createDataDir, writeInDataDir } from './utils.js'
 
 // We use the GitHub API V4 in GraphQL to download the releases. A GraphQL

@@ -1,6 +1,6 @@
 import { Message } from '@/design-system'
 import { Grid } from '@/design-system/layout'
-import { Intro, Body } from '@/design-system/typography/paragraphs'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 
 export default function Offline() {
 	return (

@@ -1,14 +1,15 @@
-import { DisableAnimationContext } from '@/components/utils/DisableAnimationContext'
 import React, { useContext } from 'react'
 import {
+	SpringConfig,
 	animated,
 	config as configPresets,
-	SpringConfig,
 	useSpring,
 	useTrail,
 } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import styled from 'styled-components'
+
+import { DisableAnimationContext } from '@/components/utils/DisableAnimationContext'
 
 type Props = {
 	children: React.ReactNode

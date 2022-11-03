@@ -1,3 +1,7 @@
+import { useContext, useRef } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { ThemeContext } from 'styled-components'
+
 import Distribution from '@/components/Distribution'
 import PaySlip from '@/components/PaySlip'
 import StackedBarChart from '@/components/StackedBarChart'
@@ -8,10 +12,6 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-
-import { useContext, useRef } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { ThemeContext } from 'styled-components'
 
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)

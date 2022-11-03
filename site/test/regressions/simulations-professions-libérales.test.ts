@@ -1,5 +1,7 @@
-import { configProfessionLibérale } from '@/pages/Simulateurs/configs/professionLibérale'
 import { it } from 'vitest'
+
+import { configProfessionLibérale } from '@/pages/Simulateurs/configs/professionLibérale'
+
 import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
 import { runSimulations } from './utils'
 

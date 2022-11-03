@@ -1,6 +1,7 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import { Card } from '@/design-system/card'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
 
 export function DeclarationIndedependantsCard() {
 	const { absoluteSitePaths } = useSitePaths()

@@ -1,9 +1,10 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
 
 export default function Spreadsheet() {
 	const { absoluteSitePaths } = useSitePaths()

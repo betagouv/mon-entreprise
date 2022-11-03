@@ -1,6 +1,10 @@
-import RuleInput from '@/components/conversation/RuleInput'
+import { DottedName } from 'modele-social'
+import Engine, { PublicodesExpression } from 'publicodes'
+import { Fragment, Suspense, lazy, useCallback, useContext } from 'react'
+
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
+import RuleInput from '@/components/conversation/RuleInput'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import Emoji from '@/components/utils/Emoji'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
@@ -18,9 +22,7 @@ import {
 	hash,
 	omit,
 } from '@/utils'
-import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression } from 'publicodes'
-import { Fragment, lazy, Suspense, useCallback, useContext } from 'react'
+
 import { TrackPage } from '../../../ATInternetTracking'
 import formulaire from './demande-mobilité.yaml'
 import picture from './undraw_Traveling_re_weve.svg'

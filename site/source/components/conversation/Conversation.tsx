@@ -1,12 +1,17 @@
+import { PublicodesExpression } from 'publicodes'
+import React, { useContext, useEffect } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+
 import {
 	answerQuestion,
 	goToQuestion,
 	stepAction,
 	updateShouldFocusField,
 } from '@/actions/actions'
-import RuleInput from '@/components/conversation/RuleInput'
 import Notifications from '@/components/Notifications'
 import QuickLinks from '@/components/QuickLinks'
+import RuleInput from '@/components/conversation/RuleInput'
 import Emoji from '@/components/utils/Emoji'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
@@ -21,10 +26,7 @@ import {
 	useMissingVariables,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
-import { PublicodesExpression } from 'publicodes'
-import React, { useContext, useEffect } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+
 import { TrackPage } from '../../ATInternetTracking'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { FromTop } from '../ui/animate'

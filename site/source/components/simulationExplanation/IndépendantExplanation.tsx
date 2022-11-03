@@ -1,5 +1,13 @@
 import BarChartBranch from '@/components/BarChart'
+
 import '@/components/Distribution.css'
+
+import { DottedName } from 'modele-social'
+import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { ThemeContext } from 'styled-components'
+
 import Value, {
 	Condition,
 	WhenApplicable,
@@ -13,11 +21,7 @@ import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
-import { DottedName } from 'modele-social'
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { ThemeContext } from 'styled-components'
+
 import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'
 import CotisationsRégularisation from './IndépendantCotisationsRégularisation'
 import InstitutionsPartenaires from './InstitutionsPartenaires'

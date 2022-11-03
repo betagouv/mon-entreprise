@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next'
+
 import Emoji from '@/components/utils/Emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
-import { useTranslation } from 'react-i18next'
+
 import { SatisfactionStyle } from './SatisfactionChart'
 import { SatisfactionLevel, StatsStruct } from './types'
 import { Indicator, IndicatorProps } from './utils'

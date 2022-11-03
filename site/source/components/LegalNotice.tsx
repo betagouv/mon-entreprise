@@ -1,8 +1,9 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import { PopoverWithTrigger } from '@/design-system'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Trans, useTranslation } from 'react-i18next'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
 export default function LegalNotice() {

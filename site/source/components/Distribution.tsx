@@ -1,10 +1,14 @@
-import { EngineContext, useEngine } from '@/components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import { useContext } from 'react'
 import { useSelector } from 'react-redux'
+
+import { EngineContext, useEngine } from '@/components/utils/EngineContext'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
+
 import BarChartBranch from './BarChart'
+
 import './Distribution.css'
+
 import { getCotisationsBySection } from './PaySlip'
 import RuleLink from './RuleLink'
 

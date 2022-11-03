@@ -1,8 +1,10 @@
-import { getItem, removeItem, setItem } from '@/storage/safeLocalStorage'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useRegisterSW } from 'virtual:pwa-register/react'
+
+import { getItem, removeItem, setItem } from '@/storage/safeLocalStorage'
+
 import { Message } from './design-system'
 import { HideButton } from './design-system/banner'
 import { Button } from './design-system/buttons'

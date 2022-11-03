@@ -1,8 +1,9 @@
 import { DottedName } from 'modele-social'
-import Engine, { ASTNode, formatValue, PublicodesExpression } from 'publicodes'
+import Engine, { ASTNode, PublicodesExpression, formatValue } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { keyframes } from 'styled-components'
+
 import RuleLink from './RuleLink'
 import { useEngine } from './utils/EngineContext'
 

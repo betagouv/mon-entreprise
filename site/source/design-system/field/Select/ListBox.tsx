@@ -1,13 +1,13 @@
-import { useListBox, useOption, AriaListBoxOptions } from '@react-aria/listbox'
+import { AriaListBoxOptions, useListBox, useOption } from '@react-aria/listbox'
 import type { ListState } from '@react-stately/list'
 import type { Node } from '@react-types/shared'
 import {
-	RefObject,
-	useRef,
 	HTMLAttributes,
-	createContext,
 	ReactNode,
+	RefObject,
+	createContext,
 	useContext,
+	useRef,
 } from 'react'
 import styled, { css } from 'styled-components'
 

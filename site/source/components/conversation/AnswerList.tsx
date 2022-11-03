@@ -1,3 +1,10 @@
+import { DottedName } from 'modele-social'
+import { utils } from 'publicodes'
+import { useCallback, useContext, useMemo } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+
 import { answerQuestion, resetSimulation } from '@/actions/actions'
 import { resetCompany } from '@/actions/companyActions'
 import Emoji from '@/components/utils/Emoji'
@@ -10,19 +17,13 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
-import { utils } from 'publicodes'
-
 import {
 	answeredQuestionsSelector,
 	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
-import { DottedName } from 'modele-social'
-import { useCallback, useContext, useMemo } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+
 import Value from '../EngineValue'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { ExplicableRule } from './Explicable'

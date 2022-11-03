@@ -1,4 +1,5 @@
 import { writeFileSync } from 'node:fs'
+
 import { absoluteSitePaths, generateSiteMap } from '../source/sitePaths.js'
 
 const basePathEn =

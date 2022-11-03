@@ -1,7 +1,8 @@
+import styled, { css } from 'styled-components'
+
+import { Grid } from '@/design-system/layout'
 import { Ul } from '@/design-system/typography/list'
 import { baseParagraphStyle } from '@/design-system/typography/paragraphs'
-import { Grid } from '@/design-system/layout'
-import styled, { css } from 'styled-components'
 
 export const Recap = styled.div`
 	background: ${({ theme }) => {

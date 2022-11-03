@@ -1,5 +1,7 @@
-import { configAutoEntrepreneur } from '@/pages/Simulateurs/configs/autoEntrepreneur'
 import { expect, it } from 'vitest'
+
+import { configAutoEntrepreneur } from '@/pages/Simulateurs/configs/autoEntrepreneur'
+
 import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'
 

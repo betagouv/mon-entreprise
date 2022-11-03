@@ -1,5 +1,7 @@
-import { configRémunérationDirigeant } from '@/pages/Simulateurs/configs/rémunérationDirigeant'
 import { it } from 'vitest'
+
+import { configRémunérationDirigeant } from '@/pages/Simulateurs/configs/rémunérationDirigeant'
+
 import rémunérationDirigeantSituations from './simulations-assimilé-salarié.yaml'
 import { runSimulations } from './utils'
 

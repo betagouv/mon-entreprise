@@ -1,3 +1,7 @@
+import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { Navigate } from 'react-router-dom'
+
 import PageFeedback from '@/components/Feedback'
 import { FromBottom } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
@@ -10,11 +14,10 @@ import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { Navigate } from 'react-router-dom'
+
 import { TrackPage } from '../../../ATInternetTracking'
 import { ActiviteCard } from './ActiviteCard'
+import { StoreContext } from './StoreContext'
 import illustration from './images/multitasking.svg'
 import {
 	activitésEffectuéesSelector,
@@ -22,7 +25,6 @@ import {
 	nextActivitéSelector,
 	régimeGénéralDisponibleSelector,
 } from './selectors'
-import { StoreContext } from './StoreContext'
 
 export default function VotreSituation() {
 	const { absoluteSitePaths } = useSitePaths()

@@ -1,6 +1,7 @@
+import styled from 'styled-components'
+
 import { Button } from '@/design-system/buttons'
 import { GenericButtonOrNavLinkProps } from '@/design-system/typography/link'
-import styled from 'styled-components'
 
 export const Banner = styled.div`
 	display: flex;

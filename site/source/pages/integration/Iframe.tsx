@@ -1,3 +1,9 @@
+import { useEffect, useRef, useState } from 'react'
+import { HexColorPicker } from 'react-colorful'
+import { Trans, useTranslation } from 'react-i18next'
+import { useHref, useSearchParams } from 'react-router-dom'
+import styled from 'styled-components'
+
 import Emoji from '@/components/utils/Emoji'
 import { PopoverWithTrigger } from '@/design-system'
 import { Article } from '@/design-system/card'
@@ -7,19 +13,18 @@ import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import urssafLogo from '@/images/Urssaf.svg'
-import { useEffect, useRef, useState } from 'react'
-import { HexColorPicker } from 'react-colorful'
-import { Trans, useTranslation } from 'react-i18next'
-import { useHref, useSearchParams } from 'react-router-dom'
-import styled from 'styled-components'
+
 import { TrackPage } from '../../ATInternetTracking'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
+
 import './iframe.css'
+
+import { Button } from '@/design-system/buttons'
+import { useDarkMode } from '@/hooks/useDarkMode'
+
 import cciLogo from './_images/cci.png'
 import minTraLogo from './_images/min-tra.jpg'
 import poleEmploiLogo from './_images/pole-emploi.png'
-import { Button } from '@/design-system/buttons'
-import { useDarkMode } from '@/hooks/useDarkMode'
 
 const checkIframe = (obj: SimulatorData[keyof SimulatorData]) =>
 	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)

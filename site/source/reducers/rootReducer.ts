@@ -1,10 +1,12 @@
+import { DottedName } from 'modele-social'
+import reduceReducers from 'reduce-reducers'
+import { Reducer, combineReducers } from 'redux'
+
 import { Action } from '@/actions/actions'
 import { SimulationConfig, Situation } from '@/pages/Simulateurs/configs/types'
 import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
 import { objectTransform, omit } from '@/utils'
-import { DottedName } from 'modele-social'
-import reduceReducers from 'reduce-reducers'
-import { combineReducers, Reducer } from 'redux'
+
 import choixStatutJuridique from './choixStatutJuridiqueReducer'
 import { companySituation } from './companySituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'

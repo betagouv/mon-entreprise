@@ -1,9 +1,11 @@
+import styled from 'styled-components'
+
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import styled from 'styled-components'
+
 import notHandled from './undraw_access_denied_re_awnf.svg'
 
 export default function NotHandledCase({

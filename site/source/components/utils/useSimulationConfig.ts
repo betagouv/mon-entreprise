@@ -1,8 +1,9 @@
+import { useEffect, useLayoutEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import { loadPreviousSimulation, setSimulationConfig } from '@/actions/actions'
 import { SimulationConfig } from '@/reducers/rootReducer'
 import { configSelector } from '@/selectors/simulationSelectors'
-import { useEffect, useLayoutEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
 export default function useSimulationConfig({
 	path,

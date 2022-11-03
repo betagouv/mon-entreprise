@@ -1,7 +1,9 @@
 import 'dotenv/config.js'
-import { readFileSync } from 'fs'
 import 'isomorphic-fetch'
+
+import { readFileSync } from 'fs'
 import yaml from 'yaml'
+
 import rules from '../../../modele-social/dist/index.js'
 
 const localesPath = new URL('../../source/locales/', import.meta.url).pathname

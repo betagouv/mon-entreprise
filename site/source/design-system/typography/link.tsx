@@ -1,4 +1,3 @@
-import { FocusStyle } from '@/design-system/global-style'
 import { useButton } from '@react-aria/button'
 import { AriaButtonProps } from '@react-types/button'
 import React, {
@@ -10,6 +9,8 @@ import React, {
 } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
+
+import { FocusStyle } from '@/design-system/global-style'
 
 export const StyledLinkHover = css`
 	text-decoration: underline;

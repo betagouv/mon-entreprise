@@ -1,3 +1,5 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import {
 	companyHasMultipleAssociates,
 	useDispatchAndGoToNextQuestion,
@@ -7,7 +9,7 @@ import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { Trans, useTranslation } from 'react-i18next'
+
 import { TrackPage } from '../../../ATInternetTracking'
 
 export default function NumberOfAssociates() {

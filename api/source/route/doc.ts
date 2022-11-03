@@ -1,6 +1,7 @@
 import Router from '@koa/router'
 import koaStatic from 'koa-static'
 import { absolutePath } from 'swagger-ui-dist'
+
 import { plausibleMiddleware } from '../plausible.js'
 
 export const docRoutes = () => {

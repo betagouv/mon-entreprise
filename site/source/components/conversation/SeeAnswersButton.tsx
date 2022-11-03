@@ -1,7 +1,9 @@
-import { PopoverWithTrigger } from '@/design-system'
-import { Button } from '@/design-system/buttons'
 import React from 'react'
 import { Trans } from 'react-i18next'
+
+import { PopoverWithTrigger } from '@/design-system'
+import { Button } from '@/design-system/buttons'
+
 import Answers from './AnswerList'
 
 export default function SeeAnswersButton({

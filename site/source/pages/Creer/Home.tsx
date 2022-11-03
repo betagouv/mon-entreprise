@@ -1,3 +1,6 @@
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+
 import PageHeader from '@/components/PageHeader'
 import { FromBottom } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
@@ -10,8 +13,7 @@ import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+
 import { TrackPage } from '../../ATInternetTracking'
 import créerSvg from './créer.svg'
 

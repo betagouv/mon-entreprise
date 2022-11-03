@@ -1,12 +1,13 @@
-import { batchUpdateSituation, setActiveTarget } from '@/actions/actions'
-import { useEngine } from '@/components/utils/EngineContext'
-import { RootState, Situation } from '@/reducers/rootReducer'
-import { configObjectifsSelector } from '@/selectors/simulationSelectors'
 import { DottedName } from 'modele-social'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useSearchParams } from 'react-router-dom'
+
+import { batchUpdateSituation, setActiveTarget } from '@/actions/actions'
+import { useEngine } from '@/components/utils/EngineContext'
+import { RootState, Situation } from '@/reducers/rootReducer'
+import { configObjectifsSelector } from '@/selectors/simulationSelectors'
 
 type ShortName = string
 type ParamName = DottedName | ShortName

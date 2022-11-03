@@ -1,7 +1,8 @@
-import { EngineContext } from '@/components/utils/EngineContext'
 import PDFElement from '@react-pdf/renderer'
-import { formatValue, RuleNode } from 'publicodes'
+import { RuleNode, formatValue } from 'publicodes'
 import { useContext } from 'react'
+
+import { EngineContext } from '@/components/utils/EngineContext'
 
 const { StyleSheet, Text, View } = PDFElement
 type FieldsPDFProps = {

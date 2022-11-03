@@ -1,12 +1,14 @@
-import { Button } from '@/design-system/buttons'
-import { FocusStyle } from '@/design-system/global-style'
-import { H3 } from '@/design-system/typography/heading'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { DottedName } from 'modele-social'
 import { Trans, useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
 import { connectInfiniteHits, connectStats } from 'react-instantsearch-dom'
 import styled from 'styled-components'
-import { DottedName } from 'modele-social'
+
+import { Button } from '@/design-system/buttons'
+import { FocusStyle } from '@/design-system/global-style'
+import { H3 } from '@/design-system/typography/heading'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+
 import RuleLink from '../../RuleLink'
 import { Highlight } from '../Hightlight'
 

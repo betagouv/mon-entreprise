@@ -1,3 +1,7 @@
+import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { ThemeContext } from 'styled-components'
+
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { WhenAlreadyDefined } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -7,12 +11,9 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import { InstitutionsPartenairesAutoEntrepreneur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import StackedBarChart from '@/components/StackedBarChart'
+import { InstitutionsPartenairesAutoEntrepreneur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { H2 } from '@/design-system/typography/heading'
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { ThemeContext } from 'styled-components'
 
 export default function AutoEntrepreneur() {
 	return (

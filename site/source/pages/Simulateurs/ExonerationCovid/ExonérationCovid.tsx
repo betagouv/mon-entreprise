@@ -1,3 +1,13 @@
+import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
+import { PublicodesExpression } from 'publicodes'
+import { useCallback, useEffect } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import {
+	createSearchParams,
+	useLocation,
+	useSearchParams,
+} from 'react-router-dom'
+
 import { TrackPage } from '@/ATInternetTracking'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
@@ -8,15 +18,7 @@ import {
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
-import { PublicodesExpression } from 'publicodes'
-import { useCallback, useEffect } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import {
-	createSearchParams,
-	useLocation,
-	useSearchParams,
-} from 'react-router-dom'
+
 import { useExoCovidEngine } from '.'
 import { FormulaireS1S1Bis } from './FormulaireS1S1Bis'
 import { FormulaireS2 } from './FormulaireS2'

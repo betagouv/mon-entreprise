@@ -1,8 +1,10 @@
-import { FocusStyle, SROnly } from '@/design-system/global-style'
+import { useSwitch } from '@react-aria/switch'
+import { useToggleState } from '@react-stately/toggle'
 import { ReactNode, useRef } from 'react'
 import styled, { css } from 'styled-components'
-import { useToggleState } from '@react-stately/toggle'
-import { useSwitch } from '@react-aria/switch'
+
+import { FocusStyle, SROnly } from '@/design-system/global-style'
+
 import { Body } from '../typography/paragraphs'
 
 const HiddenInput = styled.input`

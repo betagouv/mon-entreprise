@@ -1,6 +1,8 @@
-import { TextField } from '@/design-system/field'
 import { Evaluation } from 'publicodes'
 import { useCallback } from 'react'
+
+import { TextField } from '@/design-system/field'
+
 import { debounce } from '../../utils'
 import { InputProps } from './RuleInput'
 

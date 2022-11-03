@@ -1,7 +1,9 @@
-import { Button } from '@/design-system/buttons'
-import { PopoverWithTrigger } from '@/design-system'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import { PopoverWithTrigger } from '@/design-system'
+import { Button } from '@/design-system/buttons'
+
 import SearchRulesAndSimulators from './search/SearchRulesAndSimulators'
 
 export default function SearchButton() {

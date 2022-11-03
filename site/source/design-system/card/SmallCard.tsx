@@ -1,3 +1,8 @@
+import { useButton } from '@react-aria/button'
+import React, { useRef } from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
 import { FocusStyle } from '@/design-system/global-style'
 import { H6 } from '@/design-system/typography/heading'
 import {
@@ -5,10 +10,7 @@ import {
 	useExternalLinkProps,
 } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { useButton } from '@react-aria/button'
-import React, { useRef } from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+
 import { GenericCardProps, getTitleProps } from './Card'
 
 export function SmallCard({

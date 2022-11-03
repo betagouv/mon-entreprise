@@ -1,4 +1,5 @@
 import 'dotenv/config.js'
+
 import algoliasearch from 'algoliasearch'
 
 const {

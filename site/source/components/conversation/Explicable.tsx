@@ -1,9 +1,11 @@
+import { DottedName } from 'modele-social'
+import { useContext } from 'react'
+
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
 import { H3 } from '@/design-system/typography/heading'
-import { DottedName } from 'modele-social'
-import { useContext } from 'react'
+
 import { References } from '../References'
 
 export function ExplicableRule<Names extends string = DottedName>({

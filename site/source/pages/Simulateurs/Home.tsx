@@ -1,7 +1,11 @@
+import { Trans, useTranslation } from 'react-i18next'
+import { ThemeProvider } from 'styled-components'
+
 import PageHeader from '@/components/PageHeader'
-import InfoBulle from '@/design-system/InfoBulle'
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import Emoji from '@/components/utils/Emoji'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
+import InfoBulle from '@/design-system/InfoBulle'
 import { Card } from '@/design-system/card'
 import { SmallCard } from '@/design-system/card/SmallCard'
 import { Grid } from '@/design-system/layout'
@@ -11,13 +15,11 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
-import { ThemeProvider } from 'styled-components'
+
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
 import useSimulatorsData, { ExtractFromSimuData } from './metadata'
-import DefaultHelmet from '@/components/utils/DefaultHelmet'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()

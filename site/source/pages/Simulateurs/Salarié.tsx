@@ -1,3 +1,9 @@
+import { DottedName } from 'modele-social'
+import { ASTNode, reduceAST } from 'publicodes'
+import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components'
+
 import Banner from '@/components/Banner'
 import Value, {
 	Condition,
@@ -19,11 +25,6 @@ import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
-import { DottedName } from 'modele-social'
-import { ASTNode, reduceAST } from 'publicodes'
-import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components'
 
 const ButtonContainer = styled.span`
 	display: block;

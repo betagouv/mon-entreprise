@@ -1,3 +1,5 @@
+import { Trans } from 'react-i18next'
+
 import Value from '@/components/EngineValue'
 import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -7,7 +9,6 @@ import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
-import { Trans } from 'react-i18next'
 
 export default function CotisationsForfaitaires() {
 	const rule = useEngine().getRule(

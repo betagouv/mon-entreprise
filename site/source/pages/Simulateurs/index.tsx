@@ -1,11 +1,13 @@
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
-import { usePersistingState } from '@/components/utils/persistState'
-import { ScrollToTop } from '@/components/utils/Scroll'
-import { Link } from '@/design-system/typography/link'
-import { useSitePaths } from '@/sitePaths'
 import { useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Routes, useLocation } from 'react-router-dom'
+
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { usePersistingState } from '@/components/utils/persistState'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
+import { Link } from '@/design-system/typography/link'
+import { useSitePaths } from '@/sitePaths'
+
 import SimulateurPage from '../../components/PageData'
 import Home from './Home'
 import useSimulatorsData from './metadata'

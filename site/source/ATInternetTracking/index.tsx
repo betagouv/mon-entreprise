@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect } from 'react'
+
 import { ATTracker, Log } from './Tracker'
 
 export const TrackingContext = createContext<ATTracker>(new Log())

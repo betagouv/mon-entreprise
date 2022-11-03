@@ -1,6 +1,7 @@
+import { useDispatch } from 'react-redux'
+
 import { updateSituation } from '@/actions/actions'
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
-import RuleInput from '@/components/conversation/RuleInput'
 import { Condition } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
@@ -9,8 +10,8 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import RuleInput from '@/components/conversation/RuleInput'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
-import { useDispatch } from 'react-redux'
 
 export function IndépendantPLSimulation() {
 	return (

@@ -1,12 +1,13 @@
+import { Evaluation } from 'publicodes'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { Link as DesignSystemLink } from '@/design-system/typography/link'
-import { EngineContext } from '@/components/utils/EngineContext'
-import Banner from '@/components/Banner'
-import { updateSituation } from '@/actions/actions'
 import styled from 'styled-components'
-import { Evaluation } from 'publicodes'
+
+import { updateSituation } from '@/actions/actions'
+import Banner from '@/components/Banner'
+import { EngineContext } from '@/components/utils/EngineContext'
+import { Link as DesignSystemLink } from '@/design-system/typography/link'
 
 const Bold = styled.span<{ bold: boolean }>`
 	${({ bold }) => (bold ? 'font-weight: bold;' : '')}

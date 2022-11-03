@@ -2,6 +2,7 @@ import { DottedName } from '@/../../modele-social'
 import { Action } from '@/actions/actions'
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { buildSituationFromObject, omit } from '@/utils'
+
 import { Situation } from './rootReducer'
 
 const SAVED_NAMESPACES = [

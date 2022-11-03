@@ -1,6 +1,7 @@
+import { createContext, useContext } from 'react'
 import styled, { css } from 'styled-components'
+
 import { SpacingKey } from '../theme'
-import { useContext, createContext } from 'react'
 
 const breakPoints = ['sm', 'md', 'lg', 'xl'] as Array<SpacingKey>
 

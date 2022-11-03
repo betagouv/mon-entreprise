@@ -1,6 +1,7 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Step, Stepper } from '@/design-system'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
+
+import { Step, Stepper } from '@/design-system'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

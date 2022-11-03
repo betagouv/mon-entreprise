@@ -1,10 +1,12 @@
-import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
-import { useSituationState } from '@/components/utils/SituationContext'
 import exonerationCovid, {
 	DottedName as ExoCovidDottedNames,
 } from 'exoneration-covid'
 import Engine from 'publicodes'
 import { useContext, useRef } from 'react'
+
+import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
+import { useSituationState } from '@/components/utils/SituationContext'
+
 import { ExonérationCovid } from './ExonérationCovid'
 
 const exoCovidEngine = new Engine(exonerationCovid)

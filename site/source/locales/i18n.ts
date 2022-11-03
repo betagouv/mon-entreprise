@@ -1,5 +1,6 @@
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
+
 import unitsTranslations from './units.yaml'
 
 export type AvailableLangs = 'fr' | 'en'

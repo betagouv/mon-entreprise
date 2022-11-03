@@ -1,3 +1,9 @@
+import { useCallback, useEffect } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { generatePath, useNavigate } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
+
 import { resetCompany } from '@/actions/companyActions'
 import {
 	FabriqueSocialEntreprise,
@@ -15,11 +21,6 @@ import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
-import { useCallback, useEffect } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { generatePath, useNavigate } from 'react-router-dom'
-import { ThemeProvider } from 'styled-components'
 
 export default function SearchOrCreate() {
 	const { absoluteSitePaths } = useSitePaths()

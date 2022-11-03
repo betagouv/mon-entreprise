@@ -1,12 +1,14 @@
+import { Bar, BarChart, LabelList, Tooltip, XAxis } from 'recharts'
+
 import { StyledLegend } from '@/components/charts/PagesCharts'
 import Emoji from '@/components/utils/Emoji'
 import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Bar, BarChart, LabelList, Tooltip, XAxis } from 'recharts'
+import { useDarkMode } from '@/hooks/useDarkMode'
+
 import { RealResponsiveContainer } from './Chart'
 import { SatisfactionLevel } from './types'
-import { useDarkMode } from '@/hooks/useDarkMode'
 
 export const SatisfactionStyle: [
 	SatisfactionLevel,

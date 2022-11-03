@@ -1,7 +1,8 @@
-import { Grid } from '@/design-system/layout'
-import { H1 } from '@/design-system/typography/heading'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
+
+import { Grid } from '@/design-system/layout'
+import { H1 } from '@/design-system/typography/heading'
 
 const Illustration = styled.img<{ titre: ReactNode }>`
 	height: 100%;

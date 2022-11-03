@@ -1,3 +1,8 @@
+import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components'
+
 import Emoji from '@/components/utils/Emoji'
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
@@ -6,10 +11,7 @@ import {
 	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+
 import { TrackingContext } from '../../ATInternetTracking'
 import { CurrentSimulatorDataContext } from '../../pages/Simulateurs/metadata'
 import { PlaceDesEntreprisesButton } from '../PlaceDesEntreprises'

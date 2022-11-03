@@ -1,13 +1,14 @@
-import React, { ReactNode } from 'react'
 import isbot from 'isbot'
-import urssafTheme from '@/design-system/theme'
+import React, { ReactNode } from 'react'
 import styled, {
 	StyleSheetManager,
 	ThemeProvider,
 	css,
 } from 'styled-components'
-import { useDarkMode } from '@/hooks/useDarkMode'
+
 import { DarkModeProvider } from '@/contexts/DarkModeContext'
+import urssafTheme from '@/design-system/theme'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 type SystemRootProps = {
 	children: ReactNode

@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import replace from '@rollup/plugin-replace'
 import yaml from '@rollup/plugin-yaml'
 import legacy from '@vitejs/plugin-legacy'
@@ -7,9 +6,10 @@ import react from '@vitejs/plugin-react'
 import fs from 'fs/promises'
 import path from 'path'
 import serveStatic from 'serve-static'
-import { defineConfig, loadEnv, Plugin } from 'vite'
+import { Plugin, defineConfig, loadEnv } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import shimReactPdf from 'vite-plugin-shim-react-pdf'
+
 import { runScriptOnFileChange } from './scripts/runScriptOnFileChange'
 import { pwaOptions } from './vite-pwa-options'
 

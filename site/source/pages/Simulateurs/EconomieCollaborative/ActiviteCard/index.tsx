@@ -1,3 +1,8 @@
+import { useButton } from '@react-aria/button'
+import React, { useCallback, useContext, useRef } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+
 import Emoji from '@/components/utils/Emoji'
 import { Button } from '@/design-system/buttons'
 import ButtonHelp from '@/design-system/buttons/ButtonHelp'
@@ -9,13 +14,10 @@ import { H4 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { debounce } from '@/utils'
-import { useButton } from '@react-aria/button'
-import React, { useCallback, useContext, useRef } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+
+import { StoreContext } from '../StoreContext'
 import { toggleActivité } from '../actions'
 import { getTranslatedActivité } from '../activitésData'
-import { StoreContext } from '../StoreContext'
 
 type ActiviteCardProps = {
 	title: string

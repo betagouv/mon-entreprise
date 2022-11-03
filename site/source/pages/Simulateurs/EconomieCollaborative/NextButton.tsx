@@ -1,10 +1,12 @@
-import { Button } from '@/design-system/buttons'
-import { useSitePaths } from '@/sitePaths'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
+
+import { Button } from '@/design-system/buttons'
+import { useSitePaths } from '@/sitePaths'
+
+import { StoreContext } from './StoreContext'
 import { activitéVue } from './actions'
 import { nextActivitéSelector } from './selectors'
-import { StoreContext } from './StoreContext'
 
 type NextButtonProps = {
 	activité: string

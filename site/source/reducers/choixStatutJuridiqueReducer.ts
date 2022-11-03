@@ -1,7 +1,9 @@
+import { combineReducers } from 'redux'
+
 import { Action } from '@/actions/actions'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
 import { LegalStatusRequirements } from '@/types/companyTypes'
-import { combineReducers } from 'redux'
+
 import { omit } from '../utils'
 
 function companyLegalStatus(

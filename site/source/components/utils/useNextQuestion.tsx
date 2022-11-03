@@ -1,3 +1,7 @@
+import { DottedName } from 'modele-social'
+import { useContext, useMemo } from 'react'
+import { useSelector } from 'react-redux'
+
 import { SimulationConfig } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
@@ -5,9 +9,7 @@ import {
 	currentQuestionSelector,
 	useMissingVariables,
 } from '@/selectors/simulationSelectors'
-import { DottedName } from 'modele-social'
-import { useContext, useMemo } from 'react'
-import { useSelector } from 'react-redux'
+
 import { EngineContext } from './EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>

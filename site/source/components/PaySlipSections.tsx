@@ -1,3 +1,6 @@
+import { DottedName } from 'modele-social'
+import { Trans, useTranslation } from 'react-i18next'
+
 import Value, {
 	Condition,
 	ValueProps,
@@ -6,8 +9,6 @@ import Value, {
 } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { H4 } from '@/design-system/typography/heading'
-import { DottedName } from 'modele-social'
-import { Trans, useTranslation } from 'react-i18next'
 
 export const SalaireBrutSection = () => {
 	return (

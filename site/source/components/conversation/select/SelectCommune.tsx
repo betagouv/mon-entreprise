@@ -1,15 +1,16 @@
+import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import styled, { css } from 'styled-components'
+
 import {
 	Commune,
-	fetchCommuneDetails,
 	SearchCommune,
+	fetchCommuneDetails,
 	searchCommunes,
 } from '@/api/commune'
 import { TextField } from '@/design-system/field'
 import { Body } from '@/design-system/typography/paragraphs'
 import { debounce } from '@/utils'
-import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
 
 function formatCommune(value: SearchCommune) {
 	return value && `${value.nom} (${value['code postal']})`

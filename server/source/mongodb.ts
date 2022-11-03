@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb'
+
 import { MONGO_URL } from './config.js'
 
 interface OAuthCollection {

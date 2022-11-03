@@ -1,8 +1,10 @@
-import { Spacing } from '@/design-system/layout'
 import algoliasearch from 'algoliasearch/lite'
 import { useEffect, useRef } from 'react'
 import { Configure, Index } from 'react-instantsearch-dom'
 import { useLocation } from 'react-router-dom'
+
+import { Spacing } from '@/design-system/layout'
+
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'
 import { SearchRoot } from './SearchRoot'

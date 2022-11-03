@@ -1,11 +1,12 @@
+import React, { ForwardedRef, forwardRef } from 'react'
+import styled, { css } from 'styled-components'
+
 import { FocusStyle } from '@/design-system/global-style'
 import {
 	GenericButtonOrNavLinkProps,
 	useButtonOrLink,
 } from '@/design-system/typography/link'
 import { wrapperDebounceEvents } from '@/utils'
-import React, { ForwardedRef, forwardRef } from 'react'
-import styled, { css } from 'styled-components'
 
 type Size = 'XL' | 'MD' | 'XS' | 'XXS'
 type Color = 'primary' | 'secondary' | 'tertiary'

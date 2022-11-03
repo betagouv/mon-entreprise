@@ -1,6 +1,7 @@
 import Router from '@koa/router'
 import { openapi as publicodesOpenapi } from '@publicodes/api'
 import { Context } from 'koa'
+
 import { plausibleMiddleware } from '../plausible.js'
 import { mergeDeep } from '../utils.js'
 

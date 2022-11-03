@@ -1,8 +1,10 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import SchemeComparaison from '@/components/SchemeComparaison'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Trans, useTranslation } from 'react-i18next'
+
 import { TrackPage } from '../../../ATInternetTracking'
 
 export default function DefineDirectorStatus() {
