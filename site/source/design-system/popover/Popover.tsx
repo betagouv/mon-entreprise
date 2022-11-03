@@ -149,16 +149,16 @@ const fromtop = keyframes`
 	from { transform: translateY(-10px)}
 	to { transform: translateY(0px)}
 `
-const Underlay = styled.div<{
-	$offsetTop: number | null
-}>`
+
+type UnderlayProps = { $offsetTop: number | null }
+const Underlay = styled.div<UnderlayProps>`
 	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
 	overflow: auto;
-	z-index: 200;
+	z-index: 200; // to be in front of the menu of the Publicodes doc
 	background: rgba(255, 255, 255, 0.5);
 	animation: ${appear} 0.2s;
 	display: flex;
