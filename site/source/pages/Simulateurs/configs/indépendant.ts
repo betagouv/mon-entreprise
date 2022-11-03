@@ -52,7 +52,6 @@ export const configIndépendant: SimulationConfig = {
 			'dirigeant . indépendant . PL . PAMC . IJSS',
 			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',
 			'dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité',
-			// 'entreprise . ZFU', n'existe plus
 			'entreprise . salariés . effectif',
 			'entreprise . activité . débit de tabac',
 		],

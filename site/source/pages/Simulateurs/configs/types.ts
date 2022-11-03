@@ -15,7 +15,6 @@ export type SimulationConfig = Partial<{
 
 	/**
 	 * Objectifs de la simulation
-	 * TODO
 	 */
 	objectifs?: DottedName[]
 
@@ -27,7 +26,6 @@ export type SimulationConfig = Partial<{
 	questions: {
 		/**
 		 * Question non prioritaires
-		 * TODO
 		 */
 		'non prioritaires'?: DottedName[]
 
