@@ -27,7 +27,11 @@ export function ToggleGroup(props: ToggleGroupProps) {
 	)
 
 	return (
-		<div className={className} {...radioGroupProps}>
+		<div
+			className={className}
+			{...radioGroupProps}
+			aria-label={props['aria-label'] ?? undefined}
+		>
 			{label && <span {...labelProps}>{label}</span>}
 			<ToggleGroupContainer
 				hideRadio={props.hideRadio ?? false}

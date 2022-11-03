@@ -258,9 +258,9 @@ export function OuiNonInput<Names extends string = DottedName>(
 
 	return (
 		<ToggleGroup
+			{...props}
 			onChange={handleChange}
 			value={currentSelection ?? undefined}
-			aria-labelledby={props['aria-labelledby'] || undefined}
 		>
 			{/* eslint-disable-next-line jsx-a11y/no-autofocus */}
 			<Radio value="oui" autoFocus={props.autoFocus && defaultValue === 'oui'}>
