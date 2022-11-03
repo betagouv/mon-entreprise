@@ -22,7 +22,8 @@ import {
 					translatedKeys = assocPath(path, translation, translatedKeys)
 					originalKeys = assocPath(path, originalTranslation, originalKeys)
 				} catch (e) {
-					console.log(e)
+					console.error(e)
+					console.log(originalTranslation)
 				}
 			})
 	)

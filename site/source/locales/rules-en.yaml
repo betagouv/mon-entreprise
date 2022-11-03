@@ -322,7 +322,6 @@ DRI . informations complémentaires . rémunération dirigeant:
 
 
     Si vous ne la connaissez pas, vous pouvez vous renseigner auprès de votre expert-comptable.
-  question.en: '[automatic] [object Object]'
   question.fr:
     texte:
       Quelle a été votre **rémunération** en tant que dirigeant de l'entreprise
@@ -2350,7 +2349,6 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
     Les practicien et auxiliaire médical exerçant une activité de
     remplacement ne sont pas redevables de la contribution aux unions régionales
     des professionnels de santé (CURPS)
-  question.en: '[automatic] [object Object]'
   question.fr:
     texte: Au {{ période . début d'année }}, exerciez-vous votre activité
       exclusivement en tant que remplaçant ?
@@ -4993,7 +4991,6 @@ impôt . foyer fiscal . nombre de parts . rattachées:
   titre.en: '[automatic] related'
   titre.fr: rattachées
 impôt . foyer fiscal . parent isolé:
-  question.en: '[automatic] [object Object]'
   question.fr:
     variations:
       - alors:
@@ -6770,7 +6767,6 @@ salarié . cotisations . exonérations . JEI:
 
 
     Par simplification, le bénéfice de l’exonération au titre d’un salarié sera considéré comme acquis dès lors que la moitié de son temps de travail au moins est consacrée à un ou des projets de recherche et de développement et l’exonération ne pourra être remise en cause.
-  question.en: '[automatic] [object Object]'
   question.fr:
     variations:
       - alors:
@@ -7702,7 +7698,6 @@ situation personnelle . domiciliation fiscale à l'étranger:
 
 
     Une cotisation maladie majorée sera en revanche applicable.
-  question.en: '[automatic] [object Object]'
   question.fr:
     variations:
       - alors:
