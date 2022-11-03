@@ -1,10 +1,11 @@
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components'
+
 import { Link } from '@/design-system/typography/link'
 import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 import { LegalStatusRequirements } from '@/types/companyTypes'
-import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components'
 
 interface RequirementToTextType {
 	props: {

@@ -1,8 +1,10 @@
+import { Trans } from 'react-i18next'
+
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { Trans } from 'react-i18next'
+
 import { TrackPage } from '../ATInternetTracking'
 import Meta from '../components/utils/Meta'
 

@@ -1,11 +1,13 @@
 import { readFileSync, writeFileSync } from 'fs'
 import yaml from 'yaml'
+
 import {
-	fetchTranslation,
-	getUiMissingTranslations,
 	UiOriginalTranslationPath,
 	UiTranslationPath,
+	fetchTranslation,
+	getUiMissingTranslations,
 } from './utils.js'
+
 ;(async function () {
 	const missingTranslations = getUiMissingTranslations()
 	let originalKeys = yaml.parse(

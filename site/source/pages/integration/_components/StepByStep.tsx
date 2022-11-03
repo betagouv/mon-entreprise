@@ -1,8 +1,9 @@
+import { Trans } from 'react-i18next'
+
 import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Li } from '@/design-system/typography/list'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
 
 export default function StepByStep() {
 	return (

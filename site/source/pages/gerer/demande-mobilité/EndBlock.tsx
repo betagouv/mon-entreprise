@@ -1,3 +1,9 @@
+import { BlobProvider } from '@react-pdf/renderer'
+import { RuleNode, utils } from 'publicodes'
+import { Suspense, lazy, useContext, useRef, useState } from 'react'
+import SignaturePad from 'react-signature-pad-wrapper'
+import { ThemeContext } from 'styled-components'
+
 import { Condition } from '@/components/EngineValue'
 import Emoji from '@/components/utils/Emoji'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
@@ -10,12 +16,8 @@ import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
-import { BlobProvider } from '@react-pdf/renderer'
-import { RuleNode, utils } from 'publicodes'
-import { lazy, Suspense, useContext, useRef, useState } from 'react'
-import SignaturePad from 'react-signature-pad-wrapper'
-import { ThemeContext } from 'styled-components'
-import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
+
+import { TrackPage, TrackingContext } from '../../../ATInternetTracking'
 import PDFDocument from './PDFDocument'
 
 const IS_TOUCH_DEVICE = isOnTouchDevice()

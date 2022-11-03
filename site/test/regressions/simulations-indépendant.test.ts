@@ -1,6 +1,8 @@
-import { configIndépendant } from '@/pages/Simulateurs/configs/indépendant'
 import { DottedName } from 'modele-social'
 import { it } from 'vitest'
+
+import { configIndépendant } from '@/pages/Simulateurs/configs/indépendant'
+
 import independentSituations from './simulations-indépendant.yaml'
 import { runSimulations } from './utils'
 

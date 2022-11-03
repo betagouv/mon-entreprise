@@ -1,6 +1,7 @@
+import { useTranslation } from 'react-i18next'
+
 import Emoji from '@/components/utils/Emoji'
 import { Article } from '@/design-system/card'
-import { useTranslation } from 'react-i18next'
 
 type GuideURSSAFCardProps = {
 	guideUrssaf: {

@@ -1,18 +1,19 @@
-import RuleLink from '@/components/RuleLink'
-import Simulation, {
-	SimulationGoal,
-	SimulationGoals,
-} from '@/components/Simulation'
-import { FromTop } from '@/components/ui/animate'
-import Warning from '@/components/ui/WarningBlock'
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
-import { useEngine } from '@/components/utils/EngineContext'
-import { Li, Ul } from '@/design-system/typography/list'
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React, { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import RuleLink from '@/components/RuleLink'
+import Simulation, {
+	SimulationGoal,
+	SimulationGoals,
+} from '@/components/Simulation'
+import Warning from '@/components/ui/WarningBlock'
+import { FromTop } from '@/components/ui/animate'
+import { useEngine } from '@/components/utils/EngineContext'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
+import { Li, Ul } from '@/design-system/typography/list'
 
 declare global {
 	interface Window {

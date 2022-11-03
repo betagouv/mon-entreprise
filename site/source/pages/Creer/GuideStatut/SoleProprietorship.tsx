@@ -1,3 +1,5 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import {
 	isSoleProprietorship,
 	useDispatchAndGoToNextQuestion,
@@ -8,7 +10,7 @@ import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Trans, useTranslation } from 'react-i18next'
+
 import { TrackPage } from '../../../ATInternetTracking'
 
 export default function SoleProprietorship() {

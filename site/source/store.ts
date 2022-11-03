@@ -1,7 +1,9 @@
-import reducers from '@/reducers/rootReducer'
 import { composeWithDevToolsDevelopmentOnly } from '@redux-devtools/extension'
 import { createReduxEnhancer } from '@sentry/react'
-import { applyMiddleware, createStore, StoreEnhancer } from 'redux'
+import { StoreEnhancer, applyMiddleware, createStore } from 'redux'
+
+import reducers from '@/reducers/rootReducer'
+
 import {
 	retrievePersistedChoixStatutJuridique,
 	setupChoixStatutJuridiquePersistence,
@@ -10,7 +12,6 @@ import {
 	retrievePersistedCompanySituation,
 	setupCompanySituationPersistence,
 } from './storage/persistCompanySituation'
-
 import { setupSimulationPersistence } from './storage/persistSimulation'
 
 const initialStore = {

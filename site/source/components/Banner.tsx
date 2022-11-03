@@ -1,8 +1,10 @@
-import { Body } from '@/design-system/typography/paragraphs'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
+
+import { Body } from '@/design-system/typography/paragraphs'
+import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
+
 import { FadeIn } from './ui/animate'
 import Emoji from './utils/Emoji'
 

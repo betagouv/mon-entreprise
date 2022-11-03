@@ -2,6 +2,7 @@ import { createMemoryHistory } from 'history'
 import { DottedName } from 'modele-social'
 import { createStore } from 'redux'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import {
 	loadPreviousSimulation,
 	setSimulationConfig,

@@ -1,6 +1,8 @@
-import { hexToHSL } from '@/hexToHSL'
 import React, { useEffect, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
+
+import { hexToHSL } from '@/hexToHSL'
+
 import { useIsEmbedded } from './useIsEmbedded'
 
 type ProviderProps = {

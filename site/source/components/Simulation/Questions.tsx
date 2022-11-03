@@ -1,10 +1,12 @@
+import { Trans } from 'react-i18next'
+import styled from 'styled-components'
+
 import Conversation, {
 	ConversationProps,
 } from '@/components/conversation/Conversation'
 import Progress from '@/components/ui/Progress'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+
 import { useSimulationProgress } from './../utils/useNextQuestion'
 
 const QuestionsContainer = styled.div`

@@ -1,8 +1,10 @@
 import { I18nProvider } from '@react-aria/i18n'
+import { withProfiler } from '@sentry/react'
 import { render } from 'react-dom'
+
 import App from './App'
 import i18next from './locales/i18n'
-import { withProfiler } from '@sentry/react'
+
 import './sentry'
 
 export const AppFr = () => (

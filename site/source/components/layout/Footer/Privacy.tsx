@@ -1,10 +1,12 @@
-import { Checkbox } from '@/design-system/field'
-import { PopoverWithTrigger } from '@/design-system'
-import { Link } from '@/design-system/typography/link'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useCallback, useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { TrackingContext, TrackPage } from '../../../ATInternetTracking'
+
+import { PopoverWithTrigger } from '@/design-system'
+import { Checkbox } from '@/design-system/field'
+import { Link } from '@/design-system/typography/link'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+
+import { TrackPage, TrackingContext } from '../../../ATInternetTracking'
 import * as safeLocalStorage from '../../../storage/safeLocalStorage'
 
 export default function Privacy({ label }: { label?: string }) {

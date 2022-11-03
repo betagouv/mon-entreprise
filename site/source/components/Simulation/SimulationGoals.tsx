@@ -1,13 +1,15 @@
-import { Grid } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import styled, { css, ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, css } from 'styled-components'
+
+import { Grid } from '@/design-system/layout'
+import { Link } from '@/design-system/typography/link'
+import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
+
 import { Logo } from '../Logo'
-import { useIsEmbedded } from '../utils/useIsEmbedded'
 import { WatchInitialRender } from '../utils/useInitialRender'
+import { useIsEmbedded } from '../utils/useIsEmbedded'
 
 type SimulationGoalsProps = {
 	className?: string

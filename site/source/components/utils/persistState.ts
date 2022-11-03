@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
 
 type Storage = Record<string, unknown> | boolean | number | null

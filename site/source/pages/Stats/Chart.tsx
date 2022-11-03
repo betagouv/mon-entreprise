@@ -1,7 +1,3 @@
-import { StyledLegend } from '@/components/charts/PagesCharts'
-import { Strong } from '@/design-system/typography'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
 import { formatValue } from 'publicodes'
 import { ComponentProps, useContext } from 'react'
 import {
@@ -19,6 +15,11 @@ import {
 	YAxis,
 } from 'recharts'
 import { ThemeContext } from 'styled-components'
+
+import { StyledLegend } from '@/components/charts/PagesCharts'
+import { Strong } from '@/design-system/typography'
+import { Li, Ul } from '@/design-system/typography/list'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
 type Period = 'mois' | 'jours'

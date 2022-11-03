@@ -1,9 +1,14 @@
-import { determinant, useHideNewsBanner } from '@/components/layout/NewsBanner'
+import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Navigate, useMatch, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
+import { determinant, useHideNewsBanner } from '@/components/layout/NewsBanner'
 import Emoji from '@/components/utils/Emoji'
-import { MarkdownWithAnchorLinks } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
+import { MarkdownWithAnchorLinks } from '@/components/utils/markdown'
 import { Item, Select } from '@/design-system/field/Select'
 import { Container, Grid } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
@@ -14,10 +19,7 @@ import {
 import { Body } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
-import { useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Navigate, useMatch, useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
+
 import { TrackPage } from '../../ATInternetTracking'
 
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')

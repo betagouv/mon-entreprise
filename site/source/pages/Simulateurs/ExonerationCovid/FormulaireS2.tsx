@@ -1,13 +1,15 @@
+import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
+import { Evaluation, PublicodesExpression } from 'publicodes'
+import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+
 import Value from '@/components/EngineValue'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Li } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
-import { Evaluation, PublicodesExpression } from 'publicodes'
-import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+
 import { useExoCovidEngine } from '.'
 import { Bold, GridTotal, Italic, Recap, RecapExpert, Total } from './Recap'
 

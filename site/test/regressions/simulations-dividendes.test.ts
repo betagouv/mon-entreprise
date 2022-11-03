@@ -1,5 +1,7 @@
-import { configDividendes } from '@/pages/Simulateurs/configs/dividendes'
 import { it } from 'vitest'
+
+import { configDividendes } from '@/pages/Simulateurs/configs/dividendes'
+
 import dividendesSituations from './simulations-dividendes.yaml'
 import { runSimulations } from './utils'
 

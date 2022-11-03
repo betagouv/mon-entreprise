@@ -1,6 +1,7 @@
+import { useTranslation } from 'react-i18next'
+
 import { useEngine } from '@/components/utils/EngineContext'
 import { Article } from '@/design-system/card'
-import { useTranslation } from 'react-i18next'
 
 export function AnnuaireEntreprises() {
 	const { t } = useTranslation()

@@ -1,5 +1,7 @@
-import { configArtisteAuteur } from '@/pages/Simulateurs/configs/artisteAuteur'
 import { it } from 'vitest'
+
+import { configArtisteAuteur } from '@/pages/Simulateurs/configs/artisteAuteur'
+
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import { runSimulations } from './utils'
 

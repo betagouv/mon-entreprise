@@ -1,6 +1,7 @@
 import chai from 'chai'
 import chaiHttp from 'chai-http'
 import { describe, expect, it } from 'vitest'
+
 import { server } from '../index.js'
 
 chai.use(chaiHttp)

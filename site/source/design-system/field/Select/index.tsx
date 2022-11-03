@@ -1,4 +1,3 @@
-import { CarretDown } from '@/design-system/icons/carret-down'
 import { useButton } from '@react-aria/button'
 import { useFocusRing } from '@react-aria/focus'
 import { HiddenSelect, useSelect } from '@react-aria/select'
@@ -8,6 +7,9 @@ import type { AriaSelectProps } from '@react-types/select'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
+
+import { CarretDown } from '@/design-system/icons/carret-down'
+
 import { ListBox } from './ListBox'
 import { Popover } from './PopOver'
 

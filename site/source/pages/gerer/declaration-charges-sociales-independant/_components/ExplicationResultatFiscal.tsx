@@ -1,8 +1,9 @@
-import ButtonHelp from '@/design-system/buttons/ButtonHelp'
-import { Li, Ul } from '@/design-system/typography/list'
-import { baseParagraphStyle, Body } from '@/design-system/typography/paragraphs'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
+
+import ButtonHelp from '@/design-system/buttons/ButtonHelp'
+import { Li, Ul } from '@/design-system/typography/list'
+import { Body, baseParagraphStyle } from '@/design-system/typography/paragraphs'
 
 export const StyledTable = styled.table`
 	${baseParagraphStyle}

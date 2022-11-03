@@ -1,19 +1,21 @@
-import { Grid } from '@/design-system/layout'
-import MoreInfosOnUs from '@/components/MoreInfosOnUs'
-import Emoji from '@/components/utils/Emoji'
-import { Markdown } from '@/components/utils/markdown'
-import { ScrollToTop } from '@/components/utils/Scroll'
-import { Item, Select } from '@/design-system/field/Select'
-import { H1, H2 } from '@/design-system/typography/heading'
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import MoreInfosOnUs from '@/components/MoreInfosOnUs'
+import Emoji from '@/components/utils/Emoji'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { Markdown } from '@/components/utils/markdown'
+import { Item, Select } from '@/design-system/field/Select'
+import { Grid } from '@/design-system/layout'
+import { H1, H2 } from '@/design-system/typography/heading'
+import { Body } from '@/design-system/typography/paragraphs'
+
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import prose from './budget.md?raw'
 import budget from './budget.yaml'
-import { Body } from '@/design-system/typography/paragraphs'
 
 // Splitting the markdown file to insert React components in-between is a bit
 // arcane, we may consider MDX in the future https://github.com/mdx-js/mdx.

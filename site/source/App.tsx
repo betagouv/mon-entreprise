@@ -1,40 +1,42 @@
-import Footer from '@/components/layout/Footer/Footer'
-import Header from '@/components/layout/Header'
-import Route404 from '@/components/Route404'
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
-import {
-	engineFactory,
-	EngineProvider,
-	Rules,
-	useEngine,
-	useSetupSafeSituation,
-} from '@/components/utils/EngineContext'
-import { Container, Spacing } from '@/design-system/layout'
 import { ErrorBoundary } from '@sentry/react'
 import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
 import { ComponentProps, StrictMode, useMemo } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
-import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'
+
+import Route404 from '@/components/Route404'
+import Footer from '@/components/layout/Footer/Footer'
+import Header from '@/components/layout/Header'
+import {
+	EngineProvider,
+	Rules,
+	engineFactory,
+	useEngine,
+	useSetupSafeSituation,
+} from '@/components/utils/EngineContext'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
+import { Container, Spacing } from '@/design-system/layout'
+
+import Provider, { ProviderProps } from './Provider'
 import { useAxeCoreAnalysis } from './hooks/useAxeCoreAnalysis'
+import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Creer'
 import IntegrationTest from './pages/Dev/IntegrationTest'
 import Personas from './pages/Dev/Personas'
 import Documentation from './pages/Documentation'
-import Gérer from './pages/gerer'
 import Iframes from './pages/Iframes'
-import Integration from './pages/integration/index'
 import Landing from './pages/Landing/Landing'
 import Nouveautés from './pages/Nouveautes/Nouveautes'
 import Offline from './pages/Offline'
+import Plan from './pages/Plan'
 import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
-import Provider, { ProviderProps } from './Provider'
+import Gérer from './pages/gerer'
+import Integration from './pages/integration/index'
 import { useSitePaths } from './sitePaths'
-import Plan from './pages/Plan'
 
 type RootProps = {
 	basename: ProviderProps['basename']

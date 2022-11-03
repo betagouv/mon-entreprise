@@ -1,7 +1,8 @@
 import { AriaTextFieldOptions, useTextField } from '@react-aria/textfield'
-import { ExtraSmallBody } from '@/design-system/typography/paragraphs'
 import { HTMLAttributes, RefObject, useRef } from 'react'
 import styled, { css } from 'styled-components'
+
+import { ExtraSmallBody } from '@/design-system/typography/paragraphs'
 
 const LABEL_HEIGHT = '1rem'
 

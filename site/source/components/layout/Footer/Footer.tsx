@@ -1,3 +1,7 @@
+import { Helmet } from 'react-helmet-async'
+import { Trans, useTranslation } from 'react-i18next'
+import { ThemeProvider } from 'styled-components'
+
 import PageFeedback from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
 import Emoji from '@/components/utils/Emoji'
@@ -7,9 +11,7 @@ import { Container } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { alternateLinks, useSitePaths } from '@/sitePaths'
-import { Helmet } from 'react-helmet-async'
-import { Trans, useTranslation } from 'react-i18next'
-import { ThemeProvider } from 'styled-components'
+
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
 import { useShowFeedback } from './useShowFeedback'

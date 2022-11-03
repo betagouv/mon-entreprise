@@ -1,4 +1,5 @@
 import 'isomorphic-fetch'
+
 import { writeInDataDir } from './utils.js'
 
 const CURRENT_YEAR = 2022

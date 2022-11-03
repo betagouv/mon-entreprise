@@ -1,10 +1,12 @@
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import Emoji from '@/components/utils/Emoji'
 import { Banner, HideButton, InnerBanner } from '@/design-system/banner'
 import { Link } from '@/design-system/typography/link'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+
 import { getItem, setItem } from '../../storage/safeLocalStorage'
 
 const localStorageKey = 'last-viewed-release'

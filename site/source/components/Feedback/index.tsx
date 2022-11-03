@@ -1,3 +1,9 @@
+import React, { useCallback, useContext, useState } from 'react'
+import { Trans } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
+import styled from 'styled-components'
+
+import { TrackingContext } from '@/ATInternetTracking'
 import Emoji from '@/components/utils/Emoji'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -6,15 +12,13 @@ import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
-import React, { useCallback, useContext, useState } from 'react'
-import { Trans } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
-import { TrackingContext } from '@/ATInternetTracking'
+
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { INSCRIPTION_LINK } from '../layout/Footer/InscriptionBetaTesteur'
+
 import './Feedback.css'
+
 import Form from './FeedbackForm'
 
 type PageFeedbackProps = {

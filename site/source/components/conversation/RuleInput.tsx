@@ -1,24 +1,26 @@
-import NumberInput from '@/components/conversation/NumberInput'
-import SelectCommune from '@/components/conversation/select/SelectCommune'
-import { EngineContext } from '@/components/utils/EngineContext'
-import { useShouldFocusField } from '@/hooks/useShouldFocusField'
-import { getMeta } from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
 	EvaluatedNode,
 	Evaluation,
 	PublicodesExpression,
-	reduceAST,
 	RuleNode,
+	reduceAST,
 } from 'publicodes'
 import React, { useContext } from 'react'
+
+import NumberInput from '@/components/conversation/NumberInput'
+import SelectCommune from '@/components/conversation/select/SelectCommune'
+import { EngineContext } from '@/components/utils/EngineContext'
+import { useShouldFocusField } from '@/hooks/useShouldFocusField'
+import { getMeta } from '@/utils'
+
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
+import TextInput from './TextInput'
 import SelectPaysDétachement from './select/SelectPaysDétachement'
 import SelectAtmp from './select/SelectTauxRisque'
-import TextInput from './TextInput'
 
 type Props<Names extends string = DottedName> = Omit<
 	React.HTMLAttributes<HTMLInputElement>,

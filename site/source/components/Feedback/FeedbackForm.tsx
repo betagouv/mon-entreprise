@@ -1,11 +1,12 @@
-import { ScrollToElement } from '@/components/utils/Scroll'
-import { TextAreaField, TextField } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Body } from '@/design-system/typography/paragraphs'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { ScrollToElement } from '@/components/utils/Scroll'
+import { TextAreaField, TextField } from '@/design-system'
+import { Button } from '@/design-system/buttons'
+import { Body } from '@/design-system/typography/paragraphs'
 
 const SHORT_MAX_LENGTH = 254
 

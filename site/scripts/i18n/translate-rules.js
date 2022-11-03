@@ -1,6 +1,7 @@
 import { writeFileSync } from 'fs'
 import prettier from 'prettier'
 import yaml from 'yaml'
+
 import {
 	fetchTranslation,
 	getRulesMissingTranslations,

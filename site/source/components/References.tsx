@@ -1,10 +1,11 @@
+import { DottedName } from 'modele-social'
+import { useContext } from 'react'
+import styled from 'styled-components'
+
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { capitalise0 } from '@/utils'
-import { DottedName } from 'modele-social'
-import { useContext } from 'react'
-import styled from 'styled-components'
 
 export function References({
 	references,

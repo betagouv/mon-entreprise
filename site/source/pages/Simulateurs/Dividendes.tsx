@@ -1,5 +1,10 @@
+import { DottedName } from 'modele-social'
+import { useContext, useEffect, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { ThemeContext } from 'styled-components'
+
 import { updateSituation } from '@/actions/actions'
-import { HiddenOptionContext } from '@/components/conversation/ChoicesInput'
 import { Condition } from '@/components/EngineValue'
 import Notifications from '@/components/Notifications'
 import Simulation, {
@@ -7,16 +12,12 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import StackedBarChart from '@/components/StackedBarChart'
+import { HiddenOptionContext } from '@/components/conversation/ChoicesInput'
 import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { DottedName } from 'modele-social'
-import { useContext, useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { ThemeContext } from 'styled-components'
 
 export default function DividendesSimulation() {
 	return (

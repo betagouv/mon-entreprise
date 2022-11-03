@@ -1,7 +1,9 @@
-import { SimulationConfig } from '@/reducers/rootReducer'
-import { buildSituationFromObject } from '@/utils'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
+
+import { SimulationConfig } from '@/reducers/rootReducer'
+import { buildSituationFromObject } from '@/utils'
+
 import { CompanyActions } from './companyActions'
 import { CompanyCreationAction } from './companyCreationChecklistActions'
 import { CompanyStatusAction } from './companyStatusActions'

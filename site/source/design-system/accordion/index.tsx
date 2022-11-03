@@ -1,4 +1,3 @@
-import { FocusStyle } from '@/design-system/global-style'
 import { useAccordion, useAccordionItem } from '@react-aria/accordion'
 import { TreeState, useTreeState } from '@react-stately/tree'
 import { AriaAccordionProps } from '@react-types/accordion'
@@ -7,6 +6,9 @@ import { useRef } from 'react'
 import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import styled, { css } from 'styled-components'
+
+import { FocusStyle } from '@/design-system/global-style'
+
 import chevronImg from './chevron.svg'
 
 export const Accordion = <T extends object>(props: AriaAccordionProps<T>) => {

@@ -1,5 +1,7 @@
-import { configSalarié } from '@/pages/Simulateurs/configs/salarié'
 import { expect, it } from 'vitest'
+
+import { configSalarié } from '@/pages/Simulateurs/configs/salarié'
+
 import employeeSituations from './simulations-salarié.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'
 

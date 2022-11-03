@@ -1,14 +1,16 @@
+import { Trans } from 'react-i18next'
+import { Hit } from 'react-instantsearch-core'
+import { connectHits } from 'react-instantsearch-dom'
+
 import Emoji from '@/components/utils/Emoji'
-import { SmallCard } from '@/design-system/card'
 import InfoBulle from '@/design-system/InfoBulle'
+import { SmallCard } from '@/design-system/card'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
 import { MetadataSrc } from '@/pages/Simulateurs/metadata-src'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
-import { Hit } from 'react-instantsearch-core'
-import { connectHits } from 'react-instantsearch-dom'
+
 import { Highlight } from './Hightlight'
 
 type AlgoliaSimulatorHit = Hit<{

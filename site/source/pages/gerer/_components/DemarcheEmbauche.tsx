@@ -1,6 +1,7 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import { Article } from '@/design-system/card'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
 
 export function DemarcheEmbaucheCard() {
 	const { absoluteSitePaths } = useSitePaths()

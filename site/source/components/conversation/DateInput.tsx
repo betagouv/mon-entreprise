@@ -1,6 +1,8 @@
+import { useCallback, useMemo } from 'react'
+
 import { InputProps } from '@/components/conversation/RuleInput'
 import { DateField } from '@/design-system/field'
-import { useCallback, useMemo } from 'react'
+
 import InputSuggestions from './InputSuggestions'
 
 export default function DateInput({

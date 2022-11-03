@@ -1,4 +1,5 @@
 import { it } from 'vitest'
+
 import impotSocieteSituations from './simulations-impôt-société.yaml'
 import { runSimulations } from './utils'
 

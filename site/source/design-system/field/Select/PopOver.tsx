@@ -1,6 +1,6 @@
 import { FocusScope } from '@react-aria/focus'
 import { DismissButton, useOverlay } from '@react-aria/overlays'
-import { RefObject, ReactNode, useRef } from 'react'
+import { ReactNode, RefObject, useRef } from 'react'
 import styled from 'styled-components'
 
 interface PopoverProps {

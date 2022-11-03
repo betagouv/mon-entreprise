@@ -2,6 +2,7 @@ import rules from 'modele-social'
 import Engine, { parsePublicodes } from 'publicodes'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import yaml from 'yaml'
+
 import {
 	cleanSearchParams,
 	getRulesParamNames,

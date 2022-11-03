@@ -1,7 +1,7 @@
 import { ExpirationPlugin } from 'workbox-expiration'
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching'
 import { offlineFallback } from 'workbox-recipes'
-import { registerRoute, Route, setDefaultHandler } from 'workbox-routing'
+import { Route, registerRoute, setDefaultHandler } from 'workbox-routing'
 import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
 
 declare let self: ServiceWorkerGlobalScope

@@ -1,6 +1,7 @@
 import rules from 'modele-social'
 import Engine from 'publicodes'
 import { describe, expect, it } from 'vitest'
+
 import { getNextQuestions } from '../source/components/utils/useNextQuestion'
 
 describe('conversation', function () {

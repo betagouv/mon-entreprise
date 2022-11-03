@@ -1,3 +1,6 @@
+import { createContext, useMemo } from 'react'
+import { TFunction, Trans, useTranslation } from 'react-i18next'
+
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
 import Emoji from '@/components/utils/Emoji'
@@ -7,8 +10,7 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { AbsoluteSitePaths, useSitePaths } from '@/sitePaths'
-import { createContext, useMemo } from 'react'
-import { TFunction, Trans, useTranslation } from 'react-i18next'
+
 import Créer from '../Creer/Home'
 import DéclarationChargeSocialeIndépendant from '../gerer/declaration-charges-sociales-independant'
 import DéclarationRevenuIndépendant from '../gerer/declaration-revenu-independants'
@@ -16,6 +18,18 @@ import FormulaireMobilitéIndépendant from '../gerer/demande-mobilité'
 import ArtisteAuteur from './ArtisteAuteur'
 import AutoEntrepreneur from './AutoEntrepreneur'
 import ChômagePartielComponent from './ChômagePartiel'
+import DividendesSimulation from './Dividendes'
+import ÉconomieCollaborative from './EconomieCollaborative'
+import ExonérationCovid from './ExonerationCovid'
+import ISSimulation from './ImpôtSociété'
+import IndépendantSimulation, {
+	EntrepriseIndividuelle,
+	IndépendantPLSimulation,
+} from './Indépendant'
+import PAMCHome from './PAMCHome'
+import { SASUSimulation } from './SASU'
+import SalariéSimulation from './Salarié'
+import SchemeComparaisonPage from './SchemeComparaison'
 import { configAutoEntrepreneur } from './configs/autoEntrepreneur'
 import { configChômagePartiel } from './configs/chômagePartiel'
 import { configSASU } from './configs/dirigeantSASU'
@@ -37,26 +51,14 @@ import {
 	configSageFemme,
 } from './configs/professionLibérale'
 import { configSalarié } from './configs/salarié'
-import DividendesSimulation from './Dividendes'
-import ÉconomieCollaborative from './EconomieCollaborative'
-import ExonérationCovid from './ExonerationCovid'
 import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
-import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
-import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
 import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
-import ISSimulation from './ImpôtSociété'
-import IndépendantSimulation, {
-	EntrepriseIndividuelle,
-	IndépendantPLSimulation,
-} from './Indépendant'
+import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
+import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import getData from './metadata-src.js'
-import PAMCHome from './PAMCHome'
-import SalariéSimulation from './Salarié'
-import { SASUSimulation } from './SASU'
-import SchemeComparaisonPage from './SchemeComparaison'
 
 interface SimulatorsDataParams {
 	t: TFunction<'translation', string>

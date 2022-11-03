@@ -1,8 +1,9 @@
-import { useEngine } from '@/components/utils/EngineContext'
-import { RootState, Situation } from '@/reducers/rootReducer'
 import { DottedName } from 'modele-social'
 import Engine, { utils } from 'publicodes'
 import { useSelector } from 'react-redux'
+
+import { useEngine } from '@/components/utils/EngineContext'
+import { RootState, Situation } from '@/reducers/rootReducer'
 
 export const configSelector = (state: RootState) =>
 	state.simulation?.config ?? {}

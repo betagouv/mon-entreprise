@@ -1,7 +1,3 @@
-import { Strong } from '@/design-system/typography'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
-import { RealResponsiveContainer } from '@/pages/Stats/Chart'
 import { formatValue } from 'publicodes'
 import {
 	Bar,
@@ -13,7 +9,12 @@ import {
 	YAxis,
 } from 'recharts'
 import styled, { css } from 'styled-components'
+
+import { Strong } from '@/design-system/typography'
+import { Li, Ul } from '@/design-system/typography/list'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { RealResponsiveContainer } from '@/pages/Stats/Chart'
 
 type Data =
 	| Array<{ date: string; nombre: number }>

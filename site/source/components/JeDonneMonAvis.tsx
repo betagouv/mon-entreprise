@@ -1,5 +1,6 @@
-import { Link } from '@/design-system/typography/link'
 import { useTranslation } from 'react-i18next'
+
+import { Link } from '@/design-system/typography/link'
 
 export const JeDonneMonAvis = () => {
 	const { t } = useTranslation()

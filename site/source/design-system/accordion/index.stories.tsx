@@ -1,7 +1,8 @@
-import { Accordion } from '@/design-system'
-import { Body } from '@/design-system/typography/paragraphs'
 import { Item } from '@react-stately/collections'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+
+import { Accordion } from '@/design-system'
+import { Body } from '@/design-system/typography/paragraphs'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

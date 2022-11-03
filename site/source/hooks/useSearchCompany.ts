@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react'
+
 import {
 	FabriqueSocialEntreprise,
 	searchDenominationOrSiren,
 } from '@/api/fabrique-social'
-import { useEffect, useState } from 'react'
+
 import { useDebounce } from './useDebounce'
 
 export default function useSearchCompany(

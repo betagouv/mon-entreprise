@@ -1,3 +1,5 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import RuleLink from '@/components/RuleLink'
 import { Message } from '@/design-system'
 import { Code, Strong } from '@/design-system/typography'
@@ -6,7 +8,6 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
 
 export function CasParticuliers() {
 	const { t } = useTranslation()

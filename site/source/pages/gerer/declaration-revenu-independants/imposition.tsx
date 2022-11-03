@@ -1,6 +1,12 @@
+import { Item } from '@react-stately/collections'
+import { formatValue } from 'publicodes'
+import { useCallback } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+
 import { DottedName } from '@/../../modele-social'
-import { updateSituation } from '@/actions/actions'
 import { TrackPage } from '@/ATInternetTracking'
+import { updateSituation } from '@/actions/actions'
 import {
 	Condition,
 	WhenAlreadyDefined,
@@ -21,15 +27,11 @@ import { Link } from '@/design-system/typography/link'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { getMeta } from '@/utils'
-import { Item } from '@react-stately/collections'
-import { formatValue } from 'publicodes'
-import { useCallback } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+
 import { SimpleField } from '../_components/Fields'
 import FormulaireTitle from './_components/FormulaireTitle'
-import { useProgress } from './_components/hooks'
 import ModeAccompagnement from './_components/ModeAccompagnement'
+import { useProgress } from './_components/hooks'
 
 export const OBJECTIFS: Array<DottedName> = [
 	'entreprise . imposition',

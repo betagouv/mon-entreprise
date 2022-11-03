@@ -1,3 +1,6 @@
+import { useContext } from 'react'
+import { Trans } from 'react-i18next'
+
 import { DistributionBranch } from '@/components/Distribution'
 import { Condition } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -10,8 +13,7 @@ import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExp
 import { EngineContext } from '@/components/utils/EngineContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { H2 } from '@/design-system/typography/heading'
-import { useContext } from 'react'
-import { Trans } from 'react-i18next'
+
 import { configArtisteAuteur } from './configs/artisteAuteur'
 
 export default function ArtisteAuteur() {

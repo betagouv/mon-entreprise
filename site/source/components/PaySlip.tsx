@@ -1,22 +1,26 @@
+import { DottedName } from 'modele-social'
+import {
+	ASTNode,
+	ParsedRules,
+	Rule,
+	RuleNode,
+	formatValue,
+	reduceAST,
+} from 'publicodes'
+import { Fragment, useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+
 import Value from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { EngineContext, useEngine } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system/typography'
 import { H4, H5 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { DottedName } from 'modele-social'
-import {
-	ASTNode,
-	formatValue,
-	ParsedRules,
-	reduceAST,
-	Rule,
-	RuleNode,
-} from 'publicodes'
-import { Fragment, useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+
 import { ExplicableRule } from './conversation/Explicable'
+
 import './PaySlip.css'
+
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 
 export const SECTION_ORDER = [

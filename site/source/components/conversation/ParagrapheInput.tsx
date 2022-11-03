@@ -1,6 +1,7 @@
 import { Evaluation } from 'publicodes'
 import { useCallback } from 'react'
 import styled from 'styled-components'
+
 import { debounce } from '../../utils'
 import { InputProps } from './RuleInput'
 

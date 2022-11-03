@@ -1,7 +1,10 @@
 import algoliasearch from 'algoliasearch'
+
 import 'dotenv/config.js'
+
 import rawRules from 'modele-social'
 import Engine, { ParsedRules } from 'publicodes'
+
 import getSimulationData, {
 	MetadataSrc,
 } from '../../source/pages/Simulateurs/metadata-src.js'

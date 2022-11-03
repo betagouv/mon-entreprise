@@ -1,9 +1,11 @@
+import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+
 import { H1 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+
 import { TrackPage } from '../ATInternetTracking'
 import Meta from '../components/utils/Meta'
 import getMetadataSrc from './Simulateurs/metadata-src'

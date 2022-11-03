@@ -1,16 +1,18 @@
 import {
-	useSafeLocaleStorage,
-	getInitialState,
-} from '@/components/utils/persistState'
-import {
 	Dispatch,
+	ReactNode,
 	ReducerAction,
 	ReducerState,
 	createContext,
 	useCallback,
 	useReducer,
-	ReactNode,
 } from 'react'
+
+import {
+	getInitialState,
+	useSafeLocaleStorage,
+} from '@/components/utils/persistState'
+
 import reducer, { State } from './reducer'
 
 interface Context {

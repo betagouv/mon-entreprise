@@ -1,13 +1,15 @@
-import RuleLink from '@/components/RuleLink'
-import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { animated, useSpring } from 'react-spring'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import styled from 'styled-components'
+
+import RuleLink from '@/components/RuleLink'
+import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
+import { targetUnitSelector } from '@/selectors/simulationSelectors'
+
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
 import { useEngine } from './utils/EngineContext'
 

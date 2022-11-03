@@ -1,6 +1,7 @@
-import { useEngine } from '@/components/utils/EngineContext'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
+
+import { useEngine } from '@/components/utils/EngineContext'
 
 export function useProgress(objectifs: DottedName[]): number {
 	const engine = useEngine()

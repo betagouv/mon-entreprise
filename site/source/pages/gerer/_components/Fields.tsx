@@ -1,3 +1,11 @@
+import { useSSRSafeId } from '@react-aria/ssr'
+import { DottedName } from 'modele-social'
+import { RuleNode } from 'publicodes'
+import { useCallback, useContext } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+
 import { updateSituation } from '@/actions/actions'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
@@ -13,13 +21,6 @@ import {
 	targetUnitSelector,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion, getMeta } from '@/utils'
-import { useSSRSafeId } from '@react-aria/ssr'
-import { DottedName } from 'modele-social'
-import { RuleNode } from 'publicodes'
-import { useCallback, useContext } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
 
 type SubSectionProp = {
 	dottedName: DottedName

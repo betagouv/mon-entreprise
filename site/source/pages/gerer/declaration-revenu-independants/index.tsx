@@ -1,3 +1,6 @@
+import { useTranslation } from 'react-i18next'
+import { Navigate, Route, Routes } from 'react-router-dom'
+
 import BetaBanner from '@/components/BetaBanner'
 import { Condition } from '@/components/EngineValue'
 import PrintExportRecover from '@/components/simulationExplanation/PrintExportRecover'
@@ -12,13 +15,12 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { SimulationConfig } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 import { omit } from '@/utils'
-import { useTranslation } from 'react-i18next'
-import { Navigate, Route, Routes } from 'react-router-dom'
+
+import { useProgress } from './_components/hooks'
 import Cotisations from './cotisations'
 import Déclaration, { useObjectifs as useStep3Objectifs } from './declaration'
 import Entreprise, { OBJECTIFS as Step1Objectifs } from './entreprise'
 import Imposition, { OBJECTIFS as Step2Objectifs } from './imposition'
-import { useProgress } from './_components/hooks'
 
 const config: SimulationConfig = {
 	'objectifs exclusifs': ['DRI . cotisations'],

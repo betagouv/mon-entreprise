@@ -1,17 +1,20 @@
+import { Trans } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+
 import { DottedName } from '@/../../modele-social'
+import { TrackPage } from '@/ATInternetTracking'
 import { resetSimulation } from '@/actions/actions'
 import { resetCompany } from '@/actions/companyActions'
-import { TrackPage } from '@/ATInternetTracking'
-import { CompanyDetails } from '@/components/company/Details'
-import { CompanySearchField } from '@/components/company/SearchField'
 import {
 	WhenAlreadyDefined,
 	WhenApplicable,
 	WhenNotAlreadyDefined,
 } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
-import { FromTop } from '@/components/ui/animate'
+import { CompanyDetails } from '@/components/company/Details'
+import { CompanySearchField } from '@/components/company/SearchField'
 import Warning from '@/components/ui/WarningBlock'
+import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { Message } from '@/design-system'
@@ -24,12 +27,11 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+
 import { SimpleField } from '../_components/Fields'
 import Exceptions from './_components/Exceptions'
-import { useProgress } from './_components/hooks'
 import NotHandledCase from './_components/NotHandledCase'
+import { useProgress } from './_components/hooks'
 import illustration from './_components/undraw_fill_in_mie5.svg'
 
 export const OBJECTIFS: DottedName[] = [

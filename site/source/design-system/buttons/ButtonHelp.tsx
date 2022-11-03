@@ -1,7 +1,9 @@
-import { PopoverWithTrigger } from '@/design-system'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
+
+import { PopoverWithTrigger } from '@/design-system'
+
 import { Button } from '.'
 
 type ButtonHelpProps = {

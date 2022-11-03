@@ -1,6 +1,7 @@
-import { SmallBody } from '@/design-system/typography/paragraphs'
 import React from 'react'
 import styled from 'styled-components'
+
+import { SmallBody } from '@/design-system/typography/paragraphs'
 
 export default function FormulaireTitle({
 	formulaire,

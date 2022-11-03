@@ -1,4 +1,5 @@
 import { getValueFrom } from '@/utils'
+
 import activitésEn from './activités.en.yaml'
 import activités from './activités.yaml'
 

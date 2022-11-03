@@ -1,3 +1,5 @@
+import { Trans } from 'react-i18next'
+
 import PageHeader from '@/components/PageHeader'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Button } from '@/design-system/buttons'
@@ -6,7 +8,7 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ol, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { Trans } from 'react-i18next'
+
 import { CasParticuliers } from './_components/CasParticuliers'
 import StepByStep from './_components/StepByStep'
 import illustration from './_images/API_illustration.svg'

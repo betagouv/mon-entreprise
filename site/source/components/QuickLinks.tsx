@@ -1,3 +1,7 @@
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+
 import { goToQuestion } from '@/actions/actions'
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
@@ -7,9 +11,7 @@ import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
 } from '@/selectors/simulationSelectors'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+
 import { useNextQuestions } from './utils/useNextQuestion'
 
 export default function QuickLinks() {

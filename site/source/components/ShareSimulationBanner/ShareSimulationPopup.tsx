@@ -1,11 +1,13 @@
+import { useContext, useEffect, useRef, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+
 import { Button } from '@/design-system/buttons'
 import { TextField } from '@/design-system/field'
+import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
-import { Grid } from '@/design-system/layout'
-import { useContext, useEffect, useRef, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+
 import { TrackingContext } from '../../ATInternetTracking'
 
 export function ShareSimulationPopup({ url }: { url: string }) {

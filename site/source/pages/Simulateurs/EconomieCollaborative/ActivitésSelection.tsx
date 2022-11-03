@@ -1,21 +1,23 @@
+import { useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+
 import { FromBottom } from '@/components/ui/animate'
 import Emoji from '@/components/utils/Emoji'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+
 import { TrackPage } from '../../../ATInternetTracking'
 import { ActiviteCard } from './ActiviteCard'
 import { Activity } from './Activité'
-import { activités } from './activitésData'
 import NextButton from './NextButton'
+import { StoreContext } from './StoreContext'
+import { activités } from './activitésData'
 import {
 	activitésEffectuéesSelector,
 	activitésRéponduesSelector,
 } from './selectors'
-import { StoreContext } from './StoreContext'
 
 export default function ActivitésSelection() {
 	const { t } = useTranslation()

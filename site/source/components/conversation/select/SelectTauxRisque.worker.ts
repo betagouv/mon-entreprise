@@ -1,4 +1,5 @@
 import Fuse from 'fuse.js'
+
 import { Result } from './SelectTauxRisque'
 
 let fuse: Fuse<Result> | null = null

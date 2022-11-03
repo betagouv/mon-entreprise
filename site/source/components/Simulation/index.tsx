@@ -1,6 +1,11 @@
-import { ConversationProps } from '@/components/conversation/Conversation'
+import React from 'react'
+import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components'
+
 import PageFeedback from '@/components/Feedback'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
+import { ConversationProps } from '@/components/conversation/Conversation'
 import { PopoverWithTrigger } from '@/design-system'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
@@ -8,10 +13,7 @@ import {
 	companySituationSelector,
 	firstStepCompletedSelector,
 } from '@/selectors/simulationSelectors'
-import React from 'react'
-import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+
 import { TrackPage } from '../../ATInternetTracking'
 import Banner from '../Banner'
 import AnswerList from '../conversation/AnswerList'

@@ -1,9 +1,10 @@
-import { Link } from '@/design-system/typography/link'
-import { SmallBody } from '@/design-system/typography/paragraphs'
 import { ASTNode } from 'publicodes'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import { Link } from '@/design-system/typography/link'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 
 type InputSuggestionsProps = {
 	suggestions?: Record<string, ASTNode>

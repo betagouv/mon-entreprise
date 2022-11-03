@@ -1,7 +1,8 @@
-import logoSvgFR from '@/images/logo-monentreprise.svg'
-import logoSvgEN from '@/images/logo-mycompany.svg'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+
+import logoSvgFR from '@/images/logo-monentreprise.svg'
+import logoSvgEN from '@/images/logo-mycompany.svg'
 
 /* Figma source: https://www.figma.com/file/YJUpRNO12lcPUDsEYEXzT9/logo-monentreprisee-urssaf-edition */
 

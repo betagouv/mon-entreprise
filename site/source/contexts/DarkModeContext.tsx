@@ -1,6 +1,7 @@
+import React, { useEffect } from 'react'
+
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { getItem, setItem } from '@/storage/safeLocalStorage'
-import React, { useEffect } from 'react'
 
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]
 

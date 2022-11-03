@@ -1,5 +1,6 @@
-import { Article } from '@/design-system/card'
 import { Trans, useTranslation } from 'react-i18next'
+
+import { Article } from '@/design-system/card'
 
 export function AutoEntrepreneurCard() {
 	const { t } = useTranslation()

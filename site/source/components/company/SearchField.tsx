@@ -1,17 +1,19 @@
-import { Grid } from '@/design-system/layout'
 import { useSearchFieldState } from '@react-stately/searchfield'
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
-import { Card } from '@/design-system/card'
-import { SearchField } from '@/design-system/field'
-import { Body } from '@/design-system/typography/paragraphs'
-import useSearchCompany from '@/hooks/useSearchCompany'
 import { ReactNode, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import CompanySearchDetails from './SearchDetails'
-import { FromTop } from '../ui/animate'
+
+import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { Message } from '@/design-system'
+import { Card } from '@/design-system/card'
+import { SearchField } from '@/design-system/field'
+import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
+import { Body } from '@/design-system/typography/paragraphs'
+import useSearchCompany from '@/hooks/useSearchCompany'
+
+import { FromTop } from '../ui/animate'
+import CompanySearchDetails from './SearchDetails'
 
 const StyledCard = styled(Card)`
 	flex-direction: row; // for Safari <= 13

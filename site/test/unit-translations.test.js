@@ -1,6 +1,7 @@
-import { it, expect, describe } from 'vitest'
-import { parsePublicodes } from 'publicodes'
 import rawRules from 'modele-social'
+import { parsePublicodes } from 'publicodes'
+import { describe, expect, it } from 'vitest'
+
 import unitsTranslations from '../source/locales/units.yaml'
 
 describe('Tests units', function () {

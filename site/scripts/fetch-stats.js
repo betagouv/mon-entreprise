@@ -1,8 +1,10 @@
 import 'dotenv/config.js'
-import fs from 'fs'
 import 'isomorphic-fetch'
+
+import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+
 import { apiStats } from './fetch-api-stats.js'
 import { createDataDir, writeInDataDir } from './utils.js'
 

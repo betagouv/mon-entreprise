@@ -1,10 +1,13 @@
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+
 import {
 	checkCompanyCreationItem,
 	initializeCompanyCreationChecklist,
 } from '@/actions/companyCreationChecklistActions'
 import { resetCompanyStatusChoice } from '@/actions/companyStatusActions'
-import { FromBottom } from '@/components/ui/animate'
 import { CheckItem, Checklist } from '@/components/ui/Checklist'
+import { FromBottom } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import Emoji from '@/components/utils/Emoji'
 import Scroll from '@/components/utils/Scroll'
@@ -18,8 +21,7 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+
 import { TrackPage } from '../../ATInternetTracking'
 import StatutDescription from './StatutDescription'
 

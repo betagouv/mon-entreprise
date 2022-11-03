@@ -1,8 +1,10 @@
+import { Trans } from 'react-i18next'
+import { Route, Routes } from 'react-router-dom'
+
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Link } from '@/design-system/typography/link'
 import { useSitePaths } from '@/sitePaths'
-import { Trans } from 'react-i18next'
-import { Route, Routes } from 'react-router-dom'
+
 import { TrackChapter } from '../../../ATInternetTracking'
 import useSimulatorsData from '../metadata'
 import Activité from './Activité'
