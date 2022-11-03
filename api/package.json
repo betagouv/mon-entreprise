@@ -30,7 +30,7 @@
 		"@apidevtools/swagger-cli": "^4.0.4",
 		"@koa/cors": "^3.3.0",
 		"@koa/router": "^10.1.1",
-		"@publicodes/api": "^1.0.0-beta.59",
+		"@publicodes/api": "^1.0.0-beta.60",
 		"@sentry/node": "^7.1.1",
 		"@sentry/tracing": "^7.1.1",
 		"got": "^12.5.1",
@@ -40,7 +40,7 @@
 		"koa-static": "^5.0.0",
 		"modele-social": "workspace:^",
 		"nodemon": "^2.0.16",
-		"publicodes": "^1.0.0-beta.59",
+		"publicodes": "^1.0.0-beta.60",
 		"rate-limiter-flexible": "^2.3.8",
 		"swagger-ui-dist": "^4.11.1"
 	},
