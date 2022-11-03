@@ -1,10 +1,11 @@
 {
-  "semi": false,
-  "trailingComma": "all",
-  "singleQuote": true,
-  "printWidth": 120,
-  "bracketSpacing": true,
-  "importOrder": ["^react", "<THIRD_PARTY_MODULES>", "^@(.*)", "^\\.(.*)"],
-  "importOrderSortSpecifiers": true,
-  "importOrderSeparation": true
+	"bracketSpacing": true,
+	"semi": false,
+	"singleQuote": true,
+	"importOrder": ["<THIRD_PARTY_MODULES>", "^@/(.*)", "^\\.(.*)"],
+	"importOrderSortSpecifiers": true,
+	"importOrderSeparation": true,
+	"importOrderParserPlugins": ["typescript", "jsx", "importAssertions"],
+	"importOrderMergeDuplicateImports": true,
+	"importOrderCombineTypeAndValueImports": true
 }
