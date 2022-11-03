@@ -190,6 +190,7 @@ function FormulairePublicodes() {
 											id={dottedName}
 											dottedName={dottedName as DottedName}
 											onChange={(value) => onChange(dottedName, value)}
+											aria-label={engine?.getRule(dottedName)?.title}
 										/>
 										{question && type === undefined && description && (
 											<Markdown>{description}</Markdown>

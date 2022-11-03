@@ -65,6 +65,7 @@ function SelectComponent({
 			<TextField
 				type="search"
 				placeholder={t("Saisissez votre domaine d'activité")}
+				aria-label={t("Votre domaine d'activité")}
 				// eslint-disable-next-line jsx-a11y/no-autofocus
 				autoFocus={autoFocus}
 				errorMessage={
