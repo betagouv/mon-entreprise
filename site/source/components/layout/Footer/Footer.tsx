@@ -106,10 +106,22 @@ export default function Footer() {
 								<nav>
 									<ul>
 										<li>
+											<Link to={absoluteSitePaths.plan as string}>
+												<Trans>Plan du site</Trans>
+											</Link>
+										</li>
+										<li>
 											<Link to={absoluteSitePaths.développeur.index}>
 												<Trans>Intégrer nos simulateurs</Trans>
 											</Link>
 										</li>
+										{language === 'fr' && (
+											<li>
+												<Link to={absoluteSitePaths.développeur.index}>
+													<Trans>Intégrer nos simulateurs</Trans>
+												</Link>
+											</li>
+										)}
 										{language === 'fr' && (
 											<li>
 												<InscriptionBetaTesteur />

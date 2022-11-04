@@ -98,6 +98,7 @@ const rawSitePathsFr = {
 	documentation: {
 		index: 'documentation',
 	},
+	plan: 'plan-de-site',
 } as const
 
 const rawSitePathsEn = {
@@ -175,6 +176,7 @@ const rawSitePathsEn = {
 		api: 'api',
 		spreadsheet: 'spreadsheet',
 	},
+	plan: 'site-map',
 } as const
 
 /**

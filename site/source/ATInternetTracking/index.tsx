@@ -26,6 +26,7 @@ type Chapter1 =
 	| 'gerer'
 	| 'documentation'
 	| 'integration'
+	| 'navigation'
 
 type Chapters = {
 	chapter1?: Chapter1
