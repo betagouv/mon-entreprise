@@ -9,7 +9,7 @@ import {
 	firstStepCompletedSelector,
 } from '@/selectors/simulationSelectors'
 import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
@@ -54,7 +54,6 @@ export default function Simulation({
 	const existingCompany = !!useSelector(companySituationSelector)[
 		'entreprise . SIREN'
 	]
-	const { t } = useTranslation()
 
 	return (
 		<>
