@@ -22,7 +22,8 @@ export default function Plan() {
 				description="Page détaillant l'arborescence du site Mon-Entreprise."
 			/>
 			<TrackPage chapter1="navigation" name="plan-du-site" />
-			<StyledUl>
+
+			<StyledUl role="main">
 				<Li as="h2">
 					<Link to={absoluteSitePaths.index}>Page d'accueil</Link>
 				</Li>
