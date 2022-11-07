@@ -104,7 +104,7 @@ export default function Nouveautés() {
 						</Select>
 					</MobileGridItem>
 					<DesktopGridItem>
-						<Sidebar>
+						<Sidebar role="navigation">
 							{data.map(({ name }, index) => (
 								<li key={name}>
 									<SidebarLink to={getPath(index)}>{name}</SidebarLink>

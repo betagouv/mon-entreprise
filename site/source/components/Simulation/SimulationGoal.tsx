@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import { updateSituation } from '@/actions/actions'
 import { Grid } from '@/design-system/layout'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 
 import RuleLink from '../RuleLink'
@@ -124,9 +124,7 @@ export function SimulationGoal({
 						</Grid>
 					) : (
 						<Grid item>
-							<RuleLink dottedName={dottedName} excludeFromTabOrder>
-								{formatValue(evaluation, { displayedUnit: '€' })}
-							</RuleLink>
+							<Body>{formatValue(evaluation, { displayedUnit: '€' })}</Body>
 						</Grid>
 					)}
 				</Grid>
