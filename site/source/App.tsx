@@ -106,7 +106,8 @@ const App = () => {
 	return (
 		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
-			<main>
+
+			<main role="main">
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>
 						<Routes>

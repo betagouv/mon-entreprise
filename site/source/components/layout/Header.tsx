@@ -23,7 +23,7 @@ export default function Header() {
 	const [darkMode, setDarkMode] = useDarkMode()
 
 	return (
-		<header>
+		<header role="banner">
 			<Container>
 				<StyledHeader role="banner">
 					<Link

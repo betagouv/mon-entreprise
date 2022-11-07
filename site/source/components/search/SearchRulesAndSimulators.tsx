@@ -37,6 +37,7 @@ export default function SearchRulesAndSimulators({
 		<SearchRoot
 			indexName={`${ALGOLIA_INDEX_PREFIX}rules`}
 			searchClient={searchClient}
+			role="search"
 		>
 			<SearchBox {...searchProps} />
 

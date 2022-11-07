@@ -53,7 +53,7 @@ export default function Footer() {
 					flex: 1;
 				`}
 			/>
-			<footer>
+			<footer role="contentinfo">
 				<Container
 					backgroundColor={(theme) =>
 						theme.darkMode
@@ -80,7 +80,7 @@ export default function Footer() {
 
 				<Container backgroundColor={(theme) => theme.colors.bases.primary[700]}>
 					<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-						<FooterContainer className="print-hidden">
+						<FooterContainer className="print-hidden" role="navigation">
 							<FooterColumn>
 								{language === 'fr' && (
 									<nav>
