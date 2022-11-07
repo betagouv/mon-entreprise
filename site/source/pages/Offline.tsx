@@ -4,7 +4,11 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 
 export default function Offline() {
 	return (
-		<Grid container css={{ justifyContent: 'center', margin: '10rem 0' }}>
+		<Grid
+			container
+			css={{ justifyContent: 'center', margin: '10rem 0' }}
+			role="main"
+		>
 			<Grid item md={8} sm={12}>
 				<Message type="info" css={{ margin: '1rem 0' }}>
 					<Intro>Vous êtes actuellement hors ligne.</Intro>
