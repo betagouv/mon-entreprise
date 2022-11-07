@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
@@ -22,6 +22,7 @@ import illustrationSvg from './illustration.svg'
 export default function Landing() {
 	const simulators = useSimulatorsData()
 	const { absoluteSitePaths } = useSitePaths()
+	const { t } = useTranslation()
 
 	return (
 		<>
@@ -33,7 +34,10 @@ export default function Landing() {
 				ogImage="/logo-share.png"
 			/>
 			<Header />
-			<main>
+			<main role="main" id="main">
+				<Link href="#footer" className="skip-link">
+					{t('Passer le contenu')}
+				</Link>
 				<Container>
 					<PageHeader
 						titre={

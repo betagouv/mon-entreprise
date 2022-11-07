@@ -37,6 +37,7 @@ import Stats from './pages/Stats/LazyStats'
 import Gérer from './pages/gerer'
 import Integration from './pages/integration/index'
 import { useSitePaths } from './sitePaths'
+import { Link } from './design-system/typography/link'
 
 type RootProps = {
 	basename: ProviderProps['basename']
@@ -107,7 +108,10 @@ const App = () => {
 		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
 
-			<main role="main">
+			<Link href="#footer" className="skip-link">
+				{t('Passer le contenu')}
+			</Link>
+			<main role="main" id="main">
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>
 						<Routes>

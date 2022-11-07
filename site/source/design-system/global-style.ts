@@ -150,6 +150,25 @@ button:enabled {
 	border: 0 !important;
 }
 
+.skip-link {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: 0;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+.skip-link:focus {
+	z-index: 999;
+	width: auto;
+	height: auto;
+	clip: auto;
+	background-color: #2E5FB6;
+	color: #FFFFFF;
+	padding: 1rem;
+}
+
 figure {
 	margin: 0;
 	padding: 0;

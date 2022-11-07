@@ -53,7 +53,7 @@ export default function Footer() {
 					flex: 1;
 				`}
 			/>
-			<footer role="contentinfo">
+			<footer role="contentinfo" id="footer">
 				<Container
 					backgroundColor={(theme) =>
 						theme.darkMode

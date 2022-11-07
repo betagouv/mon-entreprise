@@ -24,6 +24,9 @@ export default function Header() {
 
 	return (
 		<header role="banner">
+			<Link href="#main" className="skip-link">
+				{t('Aller au contenu')}
+			</Link>
 			<Container>
 				<StyledHeader role="banner">
 					<Link
