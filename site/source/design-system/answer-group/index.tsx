@@ -2,18 +2,25 @@ import { Children, FunctionComponent, ReactNode } from 'react'
 
 type AnswerGroupProps = {
 	children: ReactNode
+	role?: string
 }
 
-const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({ children }) => {
+const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({
+	children,
+	...props
+}) => {
 	return (
 		<div
 			css={`
 				display: flex;
 				gap: 18px;
 			`}
+			{...props}
 		>
 			{Children.map(children, (c, i) => (
-				<div key={`answerGroup-${i}`}>{c}</div>
+				<div key={`answerGroup-${i}`} role="listitem">
+					{c}
+				</div>
 			))}
 		</div>
 	)

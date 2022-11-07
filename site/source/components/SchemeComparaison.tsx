@@ -409,7 +409,7 @@ export default function SchemeComparaison({
 						Créer mon entreprise en tant que :
 					</Trans>
 				</H3>
-				<AnswerGroup>
+				<AnswerGroup role="list">
 					{[
 						!hideAssimiléSalarié && (
 							<Button

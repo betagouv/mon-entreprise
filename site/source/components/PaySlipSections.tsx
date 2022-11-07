@@ -12,7 +12,7 @@ import { Trans, useTranslation } from 'react-i18next'
 export const SalaireBrutSection = () => {
 	return (
 		<div className="payslip__salarySection">
-			<H4 className="payslip__salaryTitle">
+			<H4 className="payslip__salaryTitle" as="h3">
 				<Trans>Salaire</Trans>
 			</H4>
 			<Line rule="salarié . contrat . salaire brut" />
@@ -36,7 +36,7 @@ export const SalaireNetSection = () => {
 
 	return (
 		<div className="payslip__salarySection">
-			<H4 className="payslip__salaryTitle">
+			<H4 className="payslip__salaryTitle" as="h3">
 				<Trans>Salaire net</Trans>
 			</H4>
 			<Line rule="salarié . rémunération . net . imposable" />

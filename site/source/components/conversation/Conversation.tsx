@@ -98,7 +98,7 @@ export default function Conversation({
 									align-items: baseline;
 								`}
 							>
-								<H3 id="questionHeader">
+								<H3 id="questionHeader" as="h2">
 									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
 									<ExplicableRule
 										aria-label={t('En savoir plus')}
@@ -166,7 +166,7 @@ export default function Conversation({
 				) : (
 					<div style={{ textAlign: 'center' }}>
 						<TrackPage name="simulation terminée" />
-						<H3>
+						<H3 as="h2">
 							<Emoji emoji="🌟" />{' '}
 							<Trans i18nKey="simulation-end.title">
 								Vous avez complété cette simulation

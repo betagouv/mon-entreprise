@@ -466,9 +466,9 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				<Trans>Ressources utiles</Trans> <Emoji emoji="🧰" />
 			</H2>
 
-			<Grid container>
+			<Grid container role="list">
 				{isAutoentrepreneur && (
-					<Grid item xs={12} sm={6} lg={4}>
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<Article
 							title={
 								<h3>
@@ -495,7 +495,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					</Grid>
 				)}
 				{['EI', 'EIRL', 'EURL'].includes(statut) && (
-					<Grid item xs={12} sm={6} lg={4}>
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<Article
 							title={
 								<h3>
@@ -520,7 +520,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					</Grid>
 				)}
 				{['SAS', 'SASU'].includes(statut) && (
-					<Grid item xs={12} sm={6} lg={4}>
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<Article
 							title={
 								<h3>
@@ -544,7 +544,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						</Article>
 					</Grid>
 				)}
-				<Grid item xs={12} sm={6} lg={4}>
+				<Grid item xs={12} sm={6} lg={4} role="listitem">
 					<Article
 						title={
 							<h3>
@@ -564,7 +564,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				</Grid>
 
 				{i18n.language === 'fr' && isAutoentrepreneur && (
-					<Grid item xs={12} sm={6} lg={4}>
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<Article
 							title={<h3>Guide pratique Urssaf</h3>}
 							href="https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf"
@@ -578,12 +578,12 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				)}
 
 				{isAutoentrepreneur && (
-					<Grid item xs={12} sm={6} lg={4}>
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<FAQAutoEntrepreneurArticle />
 					</Grid>
 				)}
 				{i18n.language === 'fr' && ['EI', 'EIRL', 'EURL'].includes(statut) && (
-					<Grid item xs={12} sm={6} lg={4}>
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<Article
 							title={<h3>Guide Urssaf pour les travailleur indépendant</h3>}
 							href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf"

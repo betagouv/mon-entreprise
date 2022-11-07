@@ -215,8 +215,8 @@ export default function Integration() {
 				<H2>
 					<Trans>Liste des intégrations</Trans>
 				</H2>
-				<Grid container id="integrationList" spacing={2}>
-					<Grid item xs={12} md={6} xl={4}>
+				<Grid role="list" container id="integrationList" spacing={2}>
+					<Grid role="listitem" item xs={12} md={6} xl={4}>
 						<Article
 							title="Urssaf"
 							href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
@@ -225,7 +225,7 @@ export default function Integration() {
 							<Logo src={urssafLogo} alt="Logo urssaf.fr" />
 						</Article>
 					</Grid>
-					<Grid item xs={12} md={6} xl={4}>
+					<Grid role="listitem" item xs={12} md={6} xl={4}>
 						<Article
 							title="CCI de France"
 							href="http://les-aides.fr/embauche"
@@ -234,7 +234,7 @@ export default function Integration() {
 							<Logo src={cciLogo} alt="Logo Les-aides.fr" />
 						</Article>
 					</Grid>
-					<Grid item xs={12} md={6} xl={4}>
+					<Grid role="listitem" item xs={12} md={6} xl={4}>
 						<Article
 							title="Code du travail numérique"
 							href="https://code.travail.gouv.fr/outils/simulateur-embauche"
@@ -243,7 +243,7 @@ export default function Integration() {
 							<Logo src={minTraLogo} alt="Logo Ministère du travail" />
 						</Article>
 					</Grid>
-					<Grid item xs={12} md={6} xl={4}>
+					<Grid role="listitem" item xs={12} md={6} xl={4}>
 						<Article
 							title="Pôle Emploi"
 							href="https://entreprise.pole-emploi.fr/cout-salarie/"
@@ -252,7 +252,7 @@ export default function Integration() {
 							<Logo src={poleEmploiLogo} alt="" />
 						</Article>
 					</Grid>
-					<Grid item xs={12} md={6} xl={4}>
+					<Grid role="listitem" item xs={12} md={6} xl={4}>
 						<Article
 							title="Une idée&nbsp;?"
 							href="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation"
@@ -290,7 +290,7 @@ function EnSavoirPlusCSP() {
 					redimensionnement automatique au contenu affiché.
 				</Body>
 			</Trans>
-			<blockquote>
+			<blockquote role="presentation">
 				Failed to execute 'postMessage' on 'DOMWindow': The target origin
 				provided ('https://mon-entreprise.urssaf.fr') does not match the
 				recipient window's origin

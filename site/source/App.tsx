@@ -109,48 +109,53 @@ const App = () => {
 				titleTemplate={`${t(['site.titleTemplate', '%s - Mon-entreprise'])}`}
 			/>
 
-			<Container>
-				<ErrorBoundary fallback={CatchOffline}>
-					<Routes>
-						<Route
-							path={relativeSitePaths.créer.index + '/*'}
-							element={<Créer />}
-						/>
-						<Route
-							path={relativeSitePaths.gérer.index + '/*'}
-							element={<Gérer />}
-						/>
-						<Route
-							path={relativeSitePaths.simulateurs.index + '/*'}
-							element={<Simulateurs />}
-						/>
-						<Route
-							path={relativeSitePaths.documentation.index + '/*'}
-							element={<Documentation />}
-						/>
-						<Route
-							path={relativeSitePaths.développeur.index + '/*'}
-							element={<Integration />}
-						/>
-						<Route
-							path={relativeSitePaths.nouveautés + '/*'}
-							element={<Nouveautés />}
-						/>
-						<Route path={relativeSitePaths.stats} element={<Stats />} />
-						<Route path={relativeSitePaths.budget} element={<Budget />} />
-						<Route
-							path={relativeSitePaths.accessibilité}
-							element={<Accessibilité />}
-						/>
+			<main>
+				<Container>
+					<ErrorBoundary fallback={CatchOffline}>
+						<Routes>
+							<Route
+								path={relativeSitePaths.créer.index + '/*'}
+								element={<Créer />}
+							/>
+							<Route
+								path={relativeSitePaths.gérer.index + '/*'}
+								element={<Gérer />}
+							/>
+							<Route
+								path={relativeSitePaths.simulateurs.index + '/*'}
+								element={<Simulateurs />}
+							/>
+							<Route
+								path={relativeSitePaths.documentation.index + '/*'}
+								element={<Documentation />}
+							/>
+							<Route
+								path={relativeSitePaths.développeur.index + '/*'}
+								element={<Integration />}
+							/>
+							<Route
+								path={relativeSitePaths.nouveautés + '/*'}
+								element={<Nouveautés />}
+							/>
+							<Route path={relativeSitePaths.stats} element={<Stats />} />
+							<Route path={relativeSitePaths.budget} element={<Budget />} />
+							<Route
+								path={relativeSitePaths.accessibilité}
+								element={<Accessibilité />}
+							/>
 
-						<Route path="/dev/integration-test" element={<IntegrationTest />} />
-						<Route path="/dev/personas" element={<Personas />} />
+							<Route
+								path="/dev/integration-test"
+								element={<IntegrationTest />}
+							/>
+							<Route path="/dev/personas" element={<Personas />} />
 
-						<Route path="*" element={<Route404 />} />
-					</Routes>
-					<Spacing xxl />
-				</ErrorBoundary>
-			</Container>
+							<Route path="*" element={<Route404 />} />
+						</Routes>
+						<Spacing xxl />
+					</ErrorBoundary>
+				</Container>
+			</main>
 
 			{!isEmbedded && <Footer />}
 		</StyledLayout>

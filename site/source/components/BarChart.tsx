@@ -96,6 +96,7 @@ export default function BarChartBranch({
 	maximum,
 	description,
 	unit,
+	...props
 }: BarChartBranchProps) {
 	const [intersectionRef, brancheInViewport] = useDisplayOnIntersecting({
 		threshold: 0.5,
@@ -124,7 +125,7 @@ export default function BarChartBranch({
 	return disableAnimation ? (
 		innerBarChartBranch
 	) : (
-		<animated.div ref={intersectionRef} style={style}>
+		<animated.div ref={intersectionRef} style={style} {...props}>
 			{innerBarChartBranch}
 		</animated.div>
 	)

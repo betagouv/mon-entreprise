@@ -46,73 +46,132 @@ export default function Simulateurs() {
 				</Intro>
 			</PageHeader>
 			<section>
-				<H2>
+				<H2 id="salarie-employeurs">
 					<Trans>Salariés et employeurs</Trans>
 				</H2>
-				<Grid container spacing={3}>
-					<SimulateurCard {...simulators.salarié} />
-					<SimulateurCard {...simulators['chômage-partiel']} />
+				<Grid
+					role="list"
+					container
+					spacing={3}
+					aria-labelledby="salarie-employeurs"
+				>
+					<SimulateurCard {...simulators.salarié} role="listitem" />
+					<SimulateurCard {...simulators['chômage-partiel']} role="listitem" />
 				</Grid>
 
-				<H3>
+				<H3 id="revenu-dirigeant">
 					<Trans>Revenu du dirigeant par statut</Trans>
 				</H3>
-				<Grid container spacing={3}>
-					<SimulateurCard small {...simulators['auto-entrepreneur']} />
-					<SimulateurCard small {...simulators['entreprise-individuelle']} />
-					<SimulateurCard small {...simulators.eirl} />
-					<SimulateurCard small {...simulators.sasu} />
-					<SimulateurCard small {...simulators.eurl} />
-					<SimulateurCard small {...simulators['comparaison-statuts']} />
+				<Grid
+					container
+					spacing={3}
+					role="list"
+					aria-labelledby="revenu-dirigeant"
+				>
+					<SimulateurCard
+						small
+						{...simulators['auto-entrepreneur']}
+						role="listitem"
+					/>
+					<SimulateurCard
+						small
+						{...simulators['entreprise-individuelle']}
+						role="listitem"
+					/>
+					<SimulateurCard small {...simulators.eirl} role="listitem" />
+					<SimulateurCard small {...simulators.sasu} role="listitem" />
+					<SimulateurCard small {...simulators.eurl} role="listitem" />
+					<SimulateurCard
+						small
+						{...simulators['comparaison-statuts']}
+						role="listitem"
+					/>
 				</Grid>
 
-				<H2>
+				<H2 id="travailleurs-ns">
 					<Trans>Travailleurs Non Salariés (TNS)</Trans>
 				</H2>
 
-				<Grid container spacing={3}>
-					<SimulateurCard {...simulators.indépendant} />
-					<SimulateurCard {...simulators['artiste-auteur']} />
-					<SimulateurCard {...simulators['profession-libérale']} />
+				<Grid
+					container
+					spacing={3}
+					role="list"
+					aria-labelledby="travailleurs-ns"
+				>
+					<SimulateurCard {...simulators.indépendant} role="listitem" />
+					<SimulateurCard {...simulators['artiste-auteur']} role="listitem" />
+					<SimulateurCard
+						{...simulators['profession-libérale']}
+						role="listitem"
+					/>
 				</Grid>
 				<>
-					<H3>
+					<H3 id="professions-lib">
 						<Trans>Professions libérales</Trans>
 					</H3>
-					<Grid container spacing={3}>
-						<SimulateurCard small {...simulators['auxiliaire-médical']} />
-						<SimulateurCard small {...simulators['chirurgien-dentiste']} />
-						<SimulateurCard small {...simulators.médecin} />
-						<SimulateurCard small {...simulators['sage-femme']} />
-						<SimulateurCard small {...simulators.pharmacien} />
-						<SimulateurCard small {...simulators.avocat} />
-						<SimulateurCard small {...simulators['expert-comptable']} />
+					<Grid
+						container
+						spacing={3}
+						role="list"
+						aria-labelledby="professions-lib"
+					>
+						<SimulateurCard
+							small
+							{...simulators['auxiliaire-médical']}
+							role="listitem"
+						/>
+						<SimulateurCard
+							small
+							{...simulators['chirurgien-dentiste']}
+							role="listitem"
+						/>
+						<SimulateurCard small {...simulators.médecin} role="listitem" />
+						<SimulateurCard
+							small
+							{...simulators['sage-femme']}
+							role="listitem"
+						/>
+						<SimulateurCard small {...simulators.pharmacien} role="listitem" />
+						<SimulateurCard small {...simulators.avocat} role="listitem" />
+						<SimulateurCard
+							small
+							{...simulators['expert-comptable']}
+							role="listitem"
+						/>
 					</Grid>
 				</>
 
-				<H3>
+				<H3 id="assistants">
 					<Trans>
 						Assistants à la déclaration de revenu 2021 des indépendants
 					</Trans>
 				</H3>
-				<Grid container spacing={3}>
+				<Grid container spacing={3} role="list" aria-labelledby="assistants">
 					<SimulateurCard
 						{...simulators['déclaration-charges-sociales-indépendant']}
+						role="listitem"
 					/>
-					<SimulateurCard {...simulators['exonération-covid']} />
+					<SimulateurCard
+						{...simulators['exonération-covid']}
+						role="listitem"
+					/>
 					<SimulateurCard
 						{...simulators['déclaration-revenu-indépendant-beta']}
+						role="listitem"
 					/>
 				</Grid>
 
-				<H2>
+				<H2 id="autres-outils">
 					<Trans>Autres outils</Trans>
 				</H2>
-				<Grid container spacing={3}>
-					<SimulateurCard {...simulators.is} />
-					<SimulateurCard {...simulators.dividendes} />
-					<SimulateurCard {...simulators['économie-collaborative']} />
-					<SimulateurCard {...simulators['demande-mobilité']} />
+				<Grid container spacing={3} role="list" aria-labelledby="autres-outils">
+					<SimulateurCard {...simulators.is} role="listitem" />
+					<SimulateurCard {...simulators.dividendes} role="listitem" />
+					<SimulateurCard
+						{...simulators['économie-collaborative']}
+						role="listitem"
+					/>
+					<SimulateurCard {...simulators['demande-mobilité']} role="listitem" />
 				</Grid>
 			</section>
 			<section>
@@ -151,6 +210,7 @@ export function SimulateurCard({
 	iframePath,
 	fromGérer = false,
 	icône,
+	...props
 }: {
 	shortName: ExtractFromSimuData<'shortName'>
 	meta: ExtractFromSimuData<'meta'>
@@ -160,6 +220,7 @@ export function SimulateurCard({
 	icône: ExtractFromSimuData<'icône'>
 	small?: boolean
 	fromGérer?: boolean
+	role?: string
 }) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
@@ -167,7 +228,7 @@ export function SimulateurCard({
 	return (
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
 			{small ? (
-				<Grid item xs={12} sm={6} md={6} lg={4}>
+				<Grid item xs={12} sm={6} md={6} lg={4} {...props}>
 					<SmallCard
 						icon={<Emoji emoji={icône} />}
 						to={{
@@ -183,7 +244,7 @@ export function SimulateurCard({
 					/>
 				</Grid>
 			) : (
-				<Grid item xs={12} sm={6} md={6} lg={4}>
+				<Grid item xs={12} sm={6} md={6} lg={4} {...props}>
 					<Card
 						title={shortName}
 						icon={<Emoji emoji={icône} />}

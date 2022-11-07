@@ -16,25 +16,27 @@ export default function Header() {
 	} = useTranslation()
 
 	return (
-		<Container>
-			<StyledHeader>
-				<Link
-					to={absoluteSitePaths.index}
-					aria-label={t("Logo mon entreprise, accéder à la page d'accueil")}
-				>
-					<StyledLogo>
-						<Logo />
-					</StyledLogo>
-				</Link>
-				<div
-					css={`
-						flex: 1;
-					`}
-				/>
-				{language === 'fr' && <SearchButton />}
-			</StyledHeader>
-			<BrowserOnly>{language === 'fr' && <NewsBanner />}</BrowserOnly>
-		</Container>
+		<header>
+			<Container>
+				<StyledHeader>
+					<Link
+						to={absoluteSitePaths.index}
+						aria-label={t("Logo mon entreprise, accéder à la page d'accueil")}
+					>
+						<StyledLogo>
+							<Logo />
+						</StyledLogo>
+					</Link>
+					<div
+						css={`
+							flex: 1;
+						`}
+					/>
+					{language === 'fr' && <SearchButton />}
+				</StyledHeader>
+				<BrowserOnly>{language === 'fr' && <NewsBanner />}</BrowserOnly>
+			</Container>
+		</header>
 	)
 }
 

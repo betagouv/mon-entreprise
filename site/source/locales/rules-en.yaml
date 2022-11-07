@@ -5830,7 +5830,7 @@ salarié . activité partielle . heures travaillées:
   description.fr: Dans le cadre du chômage partiel, le nombre d'heure restantes
     travaillées. Doit être inférieur au temps contractuel.
   question.en: '[automatic] What is the number of hours worked during the month?'
-  question.fr: Quelle est le nombre d'heures travaillées sur le mois ?
+  question.fr: Quel est le nombre d'heures travaillées sur le mois ?
   suggestions.10 h/semaine.en: '[automatic] 10 hrs/week'
   suggestions.10 h/semaine.fr: 10 h/semaine
   suggestions.20 h/semaine.en: '[automatic] 20 hrs/week'

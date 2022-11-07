@@ -10,11 +10,19 @@ export default function SalariéSimulation() {
 		<>
 			<TrackPage chapter1="simulateurs" name="accueil_pamc" />
 			<H2>Quelle profession exercez-vous ?</H2>
-			<div className="ui__ small box-container">
-				<SimulateurCard small {...simulators['auxiliaire-médical']} />
-				<SimulateurCard small {...simulators['chirurgien-dentiste']} />
-				<SimulateurCard small {...simulators.médecin} />
-				<SimulateurCard small {...simulators['sage-femme']} />
+			<div className="ui__ small box-container" role="list">
+				<SimulateurCard
+					small
+					{...simulators['auxiliaire-médical']}
+					role="listitem"
+				/>
+				<SimulateurCard
+					small
+					{...simulators['chirurgien-dentiste']}
+					role="listitem"
+				/>
+				<SimulateurCard small {...simulators.médecin} role="listitem" />
+				<SimulateurCard small {...simulators['sage-femme']} role="listitem" />
 			</div>
 		</>
 	)
