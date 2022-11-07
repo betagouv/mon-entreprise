@@ -15,6 +15,7 @@ import NewsBanner from './NewsBanner'
 
 export default function Header() {
 	const { absoluteSitePaths } = useSitePaths()
+
 	const {
 		i18n: { language },
 		t,
@@ -24,7 +25,7 @@ export default function Header() {
 
 	return (
 		<header role="banner">
-			<Link href="#main" className="skip-link">
+			<Link href={`${window.location.pathname}#main`} className="skip-link">
 				{t('Aller au contenu')}
 			</Link>
 			<Container>
