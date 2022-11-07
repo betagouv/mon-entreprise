@@ -156,6 +156,8 @@ export const StyledTextAreaContainer = styled.div<{
 				: theme.darkMode
 				? theme.colors.bases.primary[100]
 				: theme.colors.bases.primary[700]};
+		outline-offset: ${({ theme }) => theme.spacings.xxs};
+		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
 	:focus-within ${StyledLabel} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};

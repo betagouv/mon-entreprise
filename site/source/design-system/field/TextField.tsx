@@ -149,8 +149,10 @@ export const StyledInputContainer = styled.div<{
 			hasError
 				? theme.colors.extended.error[400]
 				: theme.darkMode
-				? theme.colors.bases.primary[100]
+				? theme.colors.bases.primary[400]
 				: theme.colors.bases.primary[700]};
+		outline-offset: ${({ theme }) => theme.spacings.xxs};
+		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
 	:focus-within ${StyledLabel} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};

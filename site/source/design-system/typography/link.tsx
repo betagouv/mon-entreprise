@@ -39,11 +39,11 @@ export const StyledLink = styled.a<{ $isDisabled?: boolean }>`
 		`}
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
+	text-decoration: underline;
 	padding: 0;
 	font-size: inherit;
 	background: none;
 	border: none;
-	text-decoration: none;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	&:hover {
 		${({ $isDisabled }) => !$isDisabled && StyledLinkHover}
