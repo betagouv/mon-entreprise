@@ -51,7 +51,9 @@ export default defineConfig(({ command, mode }) => ({
 				preventAssignment: false,
 			}),
 		react({
-			babel: { plugins: ['babel-plugin-styled-components'] },
+			babel: {
+				plugins: [['babel-plugin-styled-components', { pure: true }]],
+			},
 		}),
 		yaml(),
 		shimReactPdf(),
