@@ -83,6 +83,8 @@ module.exports = {
 					{ multiline: { delimiter: 'none' } },
 				],
 
+				'react/no-unknown-property': ['error', { ignore: ['css'] }],
+
 				// Auto fixable lint error
 				'prefer-const': 'error',
 				'padding-line-between-statements': [
