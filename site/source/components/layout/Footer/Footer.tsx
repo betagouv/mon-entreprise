@@ -30,10 +30,15 @@ export default function Footer() {
 		(currentEnv === 'production' || currentEnv === 'development'
 			? `${window.location.protocol}//${window.location.host}`
 			: '') + window.location.pathname
+<<<<<<< HEAD
 	const uri =
 		currentEnv === 'production'
 			? (encodedUri || '').replace(/\/$/, '')
 			: encodedUri || ''
+=======
+
+	const uri = (encodedUri || '').replace(/\/$/, '')
+>>>>>>> 70c957b2a (feat: Ajoute le hook useGetFullPath)
 	const hrefLink = hrefLangLink[language][uri]
 
 	return (

@@ -38,6 +38,7 @@ import Gérer from './pages/gerer'
 import Integration from './pages/integration/index'
 import { useSitePaths } from './sitePaths'
 import { Link } from './design-system/typography/link'
+import { useGetFullPath } from './hooks/useGetFullPath'
 
 type RootProps = {
 	basename: ProviderProps['basename']
@@ -95,6 +96,8 @@ const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
 const App = () => {
 	const { relativeSitePaths } = useSitePaths()
 
+	const fullPath = useGetFullPath()
+
 	useSaveAndRestoreScrollPosition()
 	const isEmbedded = useIsEmbedded()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
@@ -107,8 +110,7 @@ const App = () => {
 	return (
 		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
-
-			<Link href={`${window.location.pathname}#footer`} className="skip-link">
+			<Link href={`${fullPath}#footer`} className="skip-link">
 				{t('Passer le contenu')}
 			</Link>
 			<main role="main" id="main">
