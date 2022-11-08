@@ -14,7 +14,9 @@ const QuestionsContainer = styled.div`
 	background: ${({ theme }) => {
 		const colorPalette = theme.colors.bases.primary
 
-		return `linear-gradient(60deg, ${colorPalette[200]} 0%, ${colorPalette[100]} 100%);`
+		return theme.darkMode
+			? `linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[700]} 100%);`
+			: `linear-gradient(60deg, ${colorPalette[200]} 0%, ${colorPalette[100]} 100%);`
 	}};
 `
 

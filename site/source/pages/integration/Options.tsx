@@ -1,3 +1,5 @@
+import Meta from '../../components/utils/Meta'
+import illustration from './_images/illustration_code.svg'
 import PageHeader from '@/components/PageHeader'
 import { icons } from '@/components/ui/SocialIcon'
 import Emoji from '@/components/utils/Emoji'
@@ -6,8 +8,6 @@ import { Grid } from '@/design-system/layout'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { Trans, useTranslation } from 'react-i18next'
-import Meta from '../../components/utils/Meta'
-import illustration from './_images/illustration.png'
 
 export default function Options() {
 	const { absoluteSitePaths } = useSitePaths()
