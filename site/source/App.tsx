@@ -39,6 +39,7 @@ import Integration from './pages/integration/index'
 import { useSitePaths } from './sitePaths'
 import { Link } from './design-system/typography/link'
 import { useGetFullPath } from './hooks/useGetFullPath'
+import { useTranslation } from 'react-i18next'
 
 type RootProps = {
 	basename: ProviderProps['basename']
@@ -95,6 +96,8 @@ const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
 
 const App = () => {
 	const { relativeSitePaths } = useSitePaths()
+
+	const { t } = useTranslation()
 
 	const fullPath = useGetFullPath()
 
