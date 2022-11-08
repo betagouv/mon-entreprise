@@ -62,7 +62,6 @@ export default function PageHeader({
 
 const InnerGrid = styled(Grid)`
 	align-self: flex-end;
-	//z-index: -1;
 	display: none;
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {

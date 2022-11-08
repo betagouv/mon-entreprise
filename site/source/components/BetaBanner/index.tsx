@@ -8,7 +8,13 @@ export default function BetaBanner({
 	children: React.ReactNode
 }) {
 	return (
-		<Container backgroundColor={(theme) => theme.colors.bases.tertiary[100]}>
+		<Container
+			backgroundColor={(theme) =>
+				theme.darkMode
+					? theme.colors.bases.secondary[700]
+					: theme.colors.bases.tertiary[100]
+			}
+		>
 			<Grid
 				container
 				spacing={4}

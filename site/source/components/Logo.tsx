@@ -11,7 +11,12 @@ export function Logo() {
 		t
 	} = useTranslation()
 
-	return <StyledLogo alt={t("navbar.logo")} src={language === 'fr' ?logoSvgFR:logoSvgEN} />
+	return (
+		<StyledLogo
+			alt={t('navbar.logo')}
+			src={language === 'fr' ? logoSvgFR : logoSvgEN}
+		/>
+	)
 }
 
 const StyledLogo = styled.img.attrs({ 'data-test-id': 'logo img' })`
