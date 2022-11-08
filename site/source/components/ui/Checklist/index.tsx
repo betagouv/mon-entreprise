@@ -131,7 +131,7 @@ export function Checklist({
 	}, [])
 
 	return (
-		<StyledList>
+		<StyledList role="group">
 			{checklist.map((checkItem) => (
 				<StyledListItem key={checkItem.props.name}>{checkItem}</StyledListItem>
 			))}
