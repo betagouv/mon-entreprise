@@ -5,6 +5,7 @@ import {
 import { resetCompanyStatusChoice } from '@/actions/companyStatusActions'
 import { FromBottom } from '@/components/ui/animate'
 import { CheckItem, Checklist } from '@/components/ui/Checklist'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import Emoji from '@/components/utils/Emoji'
 import Scroll from '@/components/utils/Scroll'
 import { Button } from '@/design-system/buttons'
@@ -17,7 +18,6 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { TrackPage } from '../../ATInternetTracking'
@@ -57,7 +57,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 	return (
 		<FromBottom>
 			<TrackPage chapter2="statut" name={statut} />
-			<Helmet>
+			<DefaultHelmet>
 				<title>{titre}</title>
 				<meta
 					name="description"
@@ -79,7 +79,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 							  )
 					}
 				/>
-			</Helmet>
+			</DefaultHelmet>
 			<Scroll.toTop />
 			<Link
 				to={absoluteSitePaths.créer.index}

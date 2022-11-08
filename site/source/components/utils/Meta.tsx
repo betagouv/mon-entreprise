@@ -1,6 +1,6 @@
-import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
+import DefaultHelmet from './DefaultHelmet'
 
 type PropType = {
 	page: string
@@ -20,9 +20,10 @@ export default function Meta({
 	ogImage,
 }: PropType) {
 	const { pathname } = useLocation()
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
+
 	const meta = {
-		title: t(`${page}.titre`, title) || title,
+		title: t([`${page}.titre`, '%s - Mon-entreprise'], title) || title,
 		description: t(`${page}.description`, description) || description,
 		ogDescription: ogDescription
 			? t(`${page}.ogDescription`, ogDescription) || ogDescription
@@ -32,7 +33,7 @@ export default function Meta({
 	}
 
 	return (
-		<Helmet htmlAttributes={{ lang: i18n.language }}>
+		<DefaultHelmet>
 			<title>{meta.title}</title>
 			<meta name="description" content={meta.description} />
 			<meta property="og:type" content="website" />
@@ -54,6 +55,6 @@ export default function Meta({
 					}
 				/>
 			)}
-		</Helmet>
+		</DefaultHelmet>
 	)
 }

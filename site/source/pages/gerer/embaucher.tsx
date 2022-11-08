@@ -4,12 +4,12 @@ import {
 } from '@/actions/hiringChecklistAction'
 import { FromBottom } from '@/components/ui/animate'
 import { CheckItem, Checklist, ChecklistProps } from '@/components/ui/Checklist'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { connect, useSelector } from 'react-redux'
 import { TrackPage } from '../../ATInternetTracking'
@@ -29,7 +29,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 	return (
 		<FromBottom>
 			<TrackPage name="embaucher" />
-			<Helmet>
+			<DefaultHelmet>
 				<title>
 					{t('embauche.tâches.page.titre', {
 						defaultValue: 'Les formalités pour embaucher',
@@ -42,7 +42,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						"Toutes les démarches nécessaires à l'embauche de votre premier salarié."
 					)}
 				/>
-			</Helmet>
+			</DefaultHelmet>
 			<H1>
 				<Trans i18nKey="embauche.tâches.titre">
 					Les formalités pour embaucher

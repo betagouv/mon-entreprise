@@ -1,8 +1,8 @@
 import { FromBottom } from '@/components/ui/animate'
 import FoldingMessage from '@/components/ui/FoldingMessage'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackPage } from '../../ATInternetTracking'
@@ -13,9 +13,9 @@ export default function SocialSecurity() {
 
 	return (
 		<>
-			<Helmet>
+			<DefaultHelmet>
 				<title>{t('sécu.page.titre', 'Sécurité sociale')}</title>
-			</Helmet>
+			</DefaultHelmet>
 
 			<FromBottom>
 				<TrackPage name="securite_social" />

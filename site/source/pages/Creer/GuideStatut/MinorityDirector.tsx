@@ -2,12 +2,12 @@ import {
 	directorIsInAMinority,
 	useDispatchAndGoToNextQuestion,
 } from '@/actions/companyStatusActions'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '../../../ATInternetTracking'
 
@@ -18,7 +18,7 @@ export default function MinorityDirector() {
 	return (
 		<>
 			<TrackPage name="majoritaire_ou_minoritaire" />
-			<Helmet>
+			<DefaultHelmet>
 				<title>
 					{t(
 						'gérant minoritaire.page.titre',
@@ -32,7 +32,7 @@ export default function MinorityDirector() {
 						"Certaines règles particulières s'appliquent en fonction du nombre d'actions détenues par l'administrateur, ce qui peut conduire à un statut différent lors de la création de votre société"
 					)}
 				/>
-			</Helmet>
+			</DefaultHelmet>
 			<H2>
 				<Trans i18nKey="gérant minoritaire.titre">
 					Gérant majoritaire ou minoritaire
