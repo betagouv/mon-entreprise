@@ -52,7 +52,11 @@ export default function SearchOrCreate() {
 								>
 									Voir ma situation
 								</Button>
-								<Button light onPress={() => dispatch(resetCompany())}>
+								<Button
+									light
+									onPress={() => dispatch(resetCompany())}
+									aria-label="Réinitialiser la situation enregistrée"
+								>
 									Réinitialiser
 								</Button>
 							</AnswerGroup>

@@ -11,6 +11,7 @@ import { ConversationProps } from '@/components/conversation/Conversation'
 import { PopoverWithTrigger } from '@/design-system'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
+import { Body } from '@/design-system/typography/paragraphs'
 import {
 	companySituationSelector,
 	firstStepCompletedSelector,
@@ -75,6 +76,10 @@ export default function Simulation({
 			>
 				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
 					<PrintExportRecover />
+					<Body className="visually-hidden">
+						Les données de simulations se mettront automatiquement à jour après
+						la modification d'un champ.
+					</Body>
 					{children}
 					<FromTop>
 						<div className="print-hidden">

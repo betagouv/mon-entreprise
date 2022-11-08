@@ -15,8 +15,6 @@ import StepByStep from './_components/StepByStep'
 import illustration from './_images/illustration_library.svg'
 
 export default function Library() {
-	const { t } = useTranslation()
-
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
