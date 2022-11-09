@@ -103,6 +103,7 @@ export default function FeedbackForm() {
 								)}
 								isDisabled={isLoading}
 								maxLength={SHORT_MAX_LENGTH}
+								autoComplete="email"
 							/>
 						</StyledDiv>
 						<StyledButton isDisabled={isLoading} type="submit">
