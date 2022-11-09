@@ -1,4 +1,4 @@
-import { useIsEmbedded } from '@/components/utils/embeddedContext'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Link } from '@/design-system/typography/link'
 import { useSitePaths } from '@/sitePaths'
 import { Trans } from 'react-i18next'

@@ -1,7 +1,7 @@
 import { hexToHSL } from '@/hexToHSL'
 import React, { useEffect, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { useIsEmbedded } from './embeddedContext'
+import { useIsEmbedded } from './useIsEmbedded'
 
 type ProviderProps = {
 	color?: [number, number, number]
@@ -60,9 +60,8 @@ export function ThemeColorsProvider({ children }: ProviderProps) {
 			`${saturation}%`
 		)
 	}, [hue, saturation])
-	const isEmbedded = useIsEmbedded()
-
-	if (!themeColor && !isEmbedded) {
+	const isEmbeded = useIsEmbedded()
+	if (!themeColor && !isEmbeded) {
 		return <>{children}</>
 	}
 

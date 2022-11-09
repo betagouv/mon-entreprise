@@ -5,7 +5,7 @@ import Simulation, {
 } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
 import Warning from '@/components/ui/WarningBlock'
-import { useIsEmbedded } from '@/components/utils/embeddedContext'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Li, Ul } from '@/design-system/typography/list'
 import { DottedName } from 'modele-social'

@@ -1,4 +1,4 @@
-import { useIsEmbedded } from '@/components/utils/embeddedContext'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import React, { useEffect } from 'react'
 
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]
@@ -7,20 +7,15 @@ const persistDarkMode = (darkMode: boolean) => {
 	localStorage.setItem('darkMode', darkMode.toString())
 }
 
-const useDefaultDarkMode = () => {
-	const isEmbeded = useIsEmbedded()
-
-	if (isEmbeded) {
+const getDefaultDarkMode = () => {
+	if (import.meta.env.SSR) {
 		return false
 	}
-	if (localStorage.getItem('darkMode')) {
+	if (localStorage?.getItem('darkMode')) {
 		return localStorage.getItem('darkMode') === 'true'
 	}
 
-	return (
-		window.matchMedia &&
-		window.matchMedia('(prefers-color-scheme: dark)').matches
-	)
+	return matchMedia?.('(prefers-color-scheme: dark)').matches
 }
 
 export const DarkModeContext = React.createContext<DarkModeContextType>([
@@ -32,7 +27,7 @@ export const DarkModeContext = React.createContext<DarkModeContextType>([
 ])
 
 export const DarkModeProvider: React.FC = ({ children }) => {
-	const [darkMode, _setDarkMode] = React.useState<boolean>(useDefaultDarkMode())
+	const [darkMode, _setDarkMode] = React.useState<boolean>(getDefaultDarkMode())
 
 	const setDarkMode = (darkMode: boolean) => {
 		_setDarkMode(darkMode)
@@ -57,7 +52,9 @@ export const DarkModeProvider: React.FC = ({ children }) => {
 	})
 
 	return (
-		<DarkModeContext.Provider value={[darkMode, setDarkMode]}>
+		<DarkModeContext.Provider
+			value={[!useIsEmbedded() && darkMode, setDarkMode]}
+		>
 			{children}
 		</DarkModeContext.Provider>
 	)

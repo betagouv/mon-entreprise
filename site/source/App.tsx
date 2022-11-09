@@ -1,7 +1,7 @@
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
 import Route404 from '@/components/Route404'
-import { useIsEmbedded } from '@/components/utils/embeddedContext'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import {
 	engineFactory,
 	EngineProvider,
@@ -90,17 +90,16 @@ const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
 
 const App = () => {
 	const { relativeSitePaths } = useSitePaths()
-	const isEmbedded = useIsEmbedded()
 
 	useSaveAndRestoreScrollPosition()
-
+	const isEmbedded = useIsEmbedded()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useAxeCoreAnalysis()
 	}
 
 	return (
-		<StyledLayout isEmbeded={isEmbedded}>
+		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
 			<main>
 				<Container>
@@ -156,10 +155,10 @@ const App = () => {
 }
 
 const StyledLayout = styled.div<{
-	isEmbeded: boolean
+	isEmbedded: boolean
 }>`
-	${({ isEmbeded }) =>
-		!isEmbeded &&
+	${({ isEmbedded }) =>
+		!isEmbedded &&
 		css`
 			flex-direction: column;
 			display: flex;

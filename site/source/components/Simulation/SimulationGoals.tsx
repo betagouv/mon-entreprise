@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled, { css, ThemeProvider } from 'styled-components'
 import { Logo } from '../Logo'
-import { useIsEmbedded } from '../utils/embeddedContext'
+import { useIsEmbedded } from '../utils/useIsEmbedded'
 import { WatchInitialRender } from '../utils/useInitialRender'
 
 type SimulationGoalsProps = {

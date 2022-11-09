@@ -7,7 +7,7 @@ import { useDarkMode } from '@/hooks/useDarkMode'
 
 export default function LegalNotice() {
 	const { t } = useTranslation()
-	const [ darkMode ] = useDarkMode()
+	const [darkMode] = useDarkMode()
 
 	return (
 		<PopoverWithTrigger

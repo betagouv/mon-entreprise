@@ -1,4 +1,4 @@
-import { useIsEmbedded } from '@/components/utils/embeddedContext'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { usePersistingState } from '@/components/utils/persistState'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Link } from '@/design-system/typography/link'
@@ -29,7 +29,6 @@ export default function Simulateurs() {
 		}
 	}, [setLastState, state])
 	const simulatorsData = useSimulatorsData()
-	const isEmbedded = useIsEmbedded()
 	const simulatorRoutes = useMemo(
 		() =>
 			Object.values(simulatorsData)
@@ -47,6 +46,7 @@ export default function Simulateurs() {
 				)),
 		[simulatorsData, absoluteSitePaths]
 	)
+	const isEmbedded = useIsEmbedded()
 
 	return (
 		<>

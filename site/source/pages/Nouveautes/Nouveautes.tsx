@@ -168,7 +168,10 @@ const SidebarLink = styled(Link)<GenericButtonOrNavLinkProps>`
 	padding: 0.5rem 1rem;
 	border-bottom: 1px solid #e6e9ec;
 	&:hover {
-		background-color: ${({ theme }) => theme.darkMode ? theme.colors.bases.primary[700] : theme.colors.bases.primary[100]};
+		background-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[700]
+				: theme.colors.bases.primary[100]};
 	}
 `
 

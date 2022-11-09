@@ -131,9 +131,11 @@ export const CardContainer = styled.div<{ $compact?: boolean }>`
 			? theme.colors.extended.dark[600]
 			: theme.colors.extended.grey[100]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	box-shadow: ${({ theme }) => theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
+	box-shadow: ${({ theme }) =>
+		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
 	&:hover {
-		box-shadow: ${({ theme }) => theme.darkMode? theme.elevationsDarkMode[3] : theme.elevations[3]};
+		box-shadow: ${({ theme }) =>
+			theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3]};
 		background-color: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.dark[500]
