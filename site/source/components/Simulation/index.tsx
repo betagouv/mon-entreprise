@@ -109,7 +109,11 @@ export default function Simulation({
 									entreprise.{' '}
 									<PopoverWithTrigger
 										trigger={(buttonProps) => (
-											<Link {...buttonProps} aria-haspopup="dialog">
+											<Link
+												{...buttonProps}
+												aria-haspopup="dialog"
+												aria-label="Voir ma situation, accéder à la page de gestion de mon entreprise"
+											>
 												<Trans>Voir ma situation</Trans>
 											</Link>
 										)}

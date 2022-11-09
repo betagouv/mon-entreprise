@@ -503,9 +503,12 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 					</Body>
 					<Body>
 						👉{' '}
-						<a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001">
+						<Link
+							href="https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001"
+							aria-label="Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre"
+						>
 							Effectuer la demande de chômage partiel
-						</a>
+						</Link>
 					</Body>
 					<H2>
 						{' '}
@@ -516,9 +519,12 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						L'indemnité d'activité partielle est soumise à la CSG/CRDS et à une
 						contribution maladie dans certains cas. Pour en savoir plus, voir la
 						page explicative sur{' '}
-						<a href="https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d/le-regime-social-de-lindemnite-d.html">
+						<Link
+							aria-label="le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre"
+							href="https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d/le-regime-social-de-lindemnite-d.html"
+						>
 							le site de l'Urssaf
-						</a>
+						</Link>
 						.
 					</Body>
 				</Trans>

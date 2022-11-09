@@ -143,6 +143,11 @@ export default function Conversation({
 										size="XS"
 										onPress={goToNextQuestion}
 										light={!currentQuestionIsAnswered}
+										aria-label={
+											currentQuestionIsAnswered
+												? t('Suivant, passer à la question suivante')
+												: t('Passer, passer la question sans répondre')
+										}
 									>
 										{currentQuestionIsAnswered ? (
 											<Trans>Suivant</Trans>

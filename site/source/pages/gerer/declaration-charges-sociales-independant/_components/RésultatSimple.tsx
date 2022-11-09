@@ -135,12 +135,13 @@ export default function ResultatsSimples() {
 												displayedUnit="€"
 												unit="€/an"
 												precision={0}
+												linkToRule={false}
 											/>
 										</Intro>
 									}
 									title={
 										<>
-											<RuleLink dottedName={r.dottedName} />
+											<span>{r.title}</span>
 											&nbsp;
 											<small>{r.rawNode.résumé}</small>
 										</>

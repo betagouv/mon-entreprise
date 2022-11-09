@@ -49,6 +49,7 @@ export default function SearchOrCreate() {
 									to={generatePath(absoluteSitePaths.gérer.entreprise, {
 										entreprise: companySIREN as string,
 									})}
+									aria-label="Voir ma situation, accéder à la page de gestion de mon entreprise"
 								>
 									Voir ma situation
 								</Button>

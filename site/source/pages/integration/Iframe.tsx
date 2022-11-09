@@ -414,10 +414,13 @@ function IntegrationCode({
 				<Button
 					size="XXS"
 					type="button"
-					title={
+					aria-label={
 						copied
 							? t('copied', 'Copié')
-							: t('pages.développeur.code.copy-code', 'Copier le code')
+							: t(
+									'pages.développeur.code.copy-code',
+									'Copier le code dans le presse-papier'
+							  )
 					}
 					color={copied ? 'secondary' : 'primary'}
 					onPress={copyCodeToClipboard}
