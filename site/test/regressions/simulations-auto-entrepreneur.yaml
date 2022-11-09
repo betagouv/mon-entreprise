@@ -39,21 +39,21 @@ ACRE:
     dirigeant . exonérations . ACRE: oui
 
 activités:
-  - dirigeant . rémunération . totale: 20000 €/an
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'libérale'"
-  - dirigeant . rémunération . totale: 20000 €/an
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'libérale'"
     entreprise . activité . nature . libérale . réglementée: oui
-  - dirigeant . rémunération . totale: 20000 €/an
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'artisanale'"
     entreprise . activité . service ou vente: "'vente'"
-  - dirigeant . rémunération . totale: 20000 €/an
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'artisanale'"
     entreprise . activité . service ou vente: "'service'"
-  - dirigeant . rémunération . totale: 20000 €/an
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'commerciale'"
     entreprise . activité . service ou vente: "'vente'"
-  - dirigeant . rémunération . totale: 20000 €/an
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'commerciale'"
     entreprise . activité . service ou vente: "'service'"
 

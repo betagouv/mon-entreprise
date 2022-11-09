@@ -80,7 +80,7 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 		'dirigeant . indépendant . cotisations et contributions . retraite complémentaire',
 		'dirigeant . indépendant . cotisations et contributions . PCV',
 	],
-	'protection sociale . santé': [
+	'protection sociale . maladie': [
 		'dirigeant . indépendant . cotisations et contributions . maladie',
 		'dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie',
 		'dirigeant . indépendant . cotisations et contributions . CSG-CRDS * 5.95 / 9.2',
@@ -152,6 +152,8 @@ function DistributionBranch({
 	maximum,
 	...props
 }: DistributionBranchProps) {
+	console.log('zouzou', dottedName)
+
 	const branche = useEngine().getRule(dottedName)
 
 	return (
@@ -176,9 +178,9 @@ function DroitsRetraite() {
 			<Ul>
 				<Li>
 					Retraite de base :{' '}
-					<RuleLink dottedName="protection sociale . retraite . base . trimestres . indépendant">
+					<RuleLink dottedName="protection sociale . retraite . trimestres">
 						<Value
-							expression="protection sociale . retraite . base . trimestres . indépendant"
+							expression="protection sociale . retraite . trimestres"
 							displayedUnit={t('trimestres acquis')}
 						/>
 					</RuleLink>
@@ -195,16 +197,16 @@ function DroitsRetraite() {
 				</WhenApplicable>
 				<Li>
 					Points de retraite complémentaire acquis :{' '}
-					<WhenApplicable dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
-						<RuleLink dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
+					<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
+						<RuleLink dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
 							<Value
-								expression="protection sociale . retraite . complémentaire indépendants . points acquis"
+								expression="protection sociale . retraite . complémentaire . RCI . points acquis"
 								displayedUnit=""
 							/>{' '}
 							points acquis
 						</RuleLink>
 					</WhenApplicable>
-					<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire indépendants . points acquis">
+					<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
 						<Strong>non connue</Strong>
 						<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité">
 							<SmallBody>

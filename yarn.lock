@@ -4949,9 +4949,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.60":
-  version: 1.0.0-beta.60
-  resolution: "@publicodes/api@npm:1.0.0-beta.60"
+"@publicodes/api@npm:^1.0.0-beta.61":
+  version: 1.0.0-beta.61
+  resolution: "@publicodes/api@npm:1.0.0-beta.61"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -4960,7 +4960,7 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.47
-  checksum: 329a27264687c09c3ad56f1184482337d068f525ae9893fcd361a31ac7f65665e4f85012caf552dabebce25e873882b26bfa7972cf7eb14646f4ecb818e7b9cd
+  checksum: 28c178815d588f27f920a720c8a5f4544ede51d9606f74f8463fc0d746344eed1745456d1a3d4f3913946cd1e3f5c6bf48534a79478f9fb5926f18a6dbc26599
   languageName: node
   linkType: hard
 
@@ -10334,7 +10334,7 @@ __metadata:
     "@apidevtools/swagger-cli": ^4.0.4
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
-    "@publicodes/api": ^1.0.0-beta.60
+    "@publicodes/api": ^1.0.0-beta.61
     "@sentry/node": ^7.1.1
     "@sentry/tracing": ^7.1.1
     "@types/koa": ^2.13.4
@@ -10351,7 +10351,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^2.0.16
-    publicodes: ^1.0.0-beta.60
+    publicodes: ^1.0.0-beta.61
     rate-limiter-flexible: ^2.3.8
     rimraf: ^3.0.2
     swagger-ui-dist: ^4.11.1
@@ -13709,9 +13709,9 @@ __metadata:
   linkType: hard
 
 "decimal.js@npm:^10.3.1":
-  version: 10.3.1
-  resolution: "decimal.js@npm:10.3.1"
-  checksum: 0351ac9f05fe050f23227aa6a4573bee2d58fa7378fcf28d969a8c789525032effb488a90320fd3fe86a66e17b4bc507d811b15eada5b7f0e7ec5d2af4c24a59
+  version: 10.4.2
+  resolution: "decimal.js@npm:10.4.2"
+  checksum: 536cd6816a3197f2e1aa3da4860856cb5a2db73f6fafe8cb3b924ccc63f9b7d78296acc13dccbd419bd958ccc6357921fb15467f883b37cab04bfba7044cada2
   languageName: node
   linkType: hard
 
@@ -21978,9 +21978,9 @@ __metadata:
   linkType: hard
 
 "moo@npm:^0.5.0, moo@npm:^0.5.1":
-  version: 0.5.1
-  resolution: "moo@npm:0.5.1"
-  checksum: 2d8c013f1f9aad8e5c7a9d4a03dbb4eecd91b9fe5e9446fbc7561fd38d4d161c742434acff385722542fe7b360fce9c586da62442379e62e4158ad49c7e1a6b7
+  version: 0.5.2
+  resolution: "moo@npm:0.5.2"
+  checksum: 5a41ddf1059fd0feb674d917c4774e41c877f1ca980253be4d3aae1a37f4bc513f88815041243f36f5cf67a62fb39324f3f997cf7fb17b6cb00767c165e7c499
   languageName: node
   linkType: hard
 
@@ -22063,9 +22063,9 @@ __metadata:
   linkType: hard
 
 "nano-memoize@npm:^1.2.1":
-  version: 1.3.0
-  resolution: "nano-memoize@npm:1.3.0"
-  checksum: 2ece19b674da68db3f7ab449981182737babec0cb1c5804620535f0fa2aa12d965fe22b95a24723640bf738658ca5b284c9f323d3005fec0536e67dce589ab89
+  version: 1.3.1
+  resolution: "nano-memoize@npm:1.3.1"
+  checksum: b2a25d1593d0df97eb9803ceb7ec4d0153649a87f29df08a1484ce5b3eed59e03fd812e6723fbeff10fee8b59ed0d18f62c3405e0f44d736f25e501fd6910ee3
   languageName: node
   linkType: hard
 
@@ -24421,16 +24421,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.60":
-  version: 1.0.0-beta.60
-  resolution: "publicodes-react@npm:1.0.0-beta.60"
+"publicodes-react@npm:^1.0.0-beta.61":
+  version: 1.0.0-beta.61
+  resolution: "publicodes-react@npm:1.0.0-beta.61"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: 1.0.0-beta.40
     react: ^17 || ^18
     react-dom: ^17 || ^18
-  checksum: ba08deebdc883782c5f2f621402b4d26122f0b100c1ae834e0ac312dc434c321c364cb570b5da4e7ab6a3b11483c49f93b5b8ec2ed47822b1acadfc902a1a4fd
+  checksum: 34806c08377faec8ef3092eb0d871312c14f4531b769093a9770cec727abc272c1bef7b6a177cefea47e01542d89126a70acf99489cab3420d6aa03d3b1e69e0
   languageName: node
   linkType: hard
 
@@ -24446,15 +24446,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.55, publicodes@npm:^1.0.0-beta.60":
-  version: 1.0.0-beta.60
-  resolution: "publicodes@npm:1.0.0-beta.60"
+"publicodes@npm:^1.0.0-beta.55, publicodes@npm:^1.0.0-beta.61":
+  version: 1.0.0-beta.61
+  resolution: "publicodes@npm:1.0.0-beta.61"
   dependencies:
     moo: ^0.5.1
     nearley: ^2.19.2
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 2cbe33b207ac0b93fb77a63a0682f4ce06fa3f5d22a23a644300b05e9ea1f36526644efce492511aeb7fd2e09faaaa0c713d99ee18de89d0f99811b77c8fc92f
+  checksum: a479e59a1b497fba9bd6b4e946cac6c1ea8ea46ccc6ea6f350dc5322694e32b415be8e48fb06cc0b6819ee81a09c716ee99d9b5b2db37b40bf0e2cf60e5c6b6a
   languageName: node
   linkType: hard
 
@@ -26602,8 +26602,8 @@ __metadata:
     markdown-to-jsx: ^7.1.7
     modele-social: "workspace:^"
     netlify-cli: ^10.6.3
-    publicodes: ^1.0.0-beta.60
-    publicodes-react: ^1.0.0-beta.60
+    publicodes: ^1.0.0-beta.61
+    publicodes-react: ^1.0.0-beta.61
     react: ^17.0.0
     react-colorful: ^5.5.1
     react-dom: ^17.0.0
@@ -27536,29 +27536,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"styled-components@npm:^5.1.0":
-  version: 5.3.5
-  resolution: "styled-components@npm:5.3.5"
-  dependencies:
-    "@babel/helper-module-imports": ^7.0.0
-    "@babel/traverse": ^7.4.5
-    "@emotion/is-prop-valid": ^1.1.0
-    "@emotion/stylis": ^0.8.4
-    "@emotion/unitless": ^0.7.4
-    babel-plugin-styled-components: ">= 1.12.0"
-    css-to-react-native: ^3.0.0
-    hoist-non-react-statics: ^3.0.0
-    shallowequal: ^1.1.0
-    supports-color: ^5.5.0
-  peerDependencies:
-    react: ">= 16.8.0"
-    react-dom: ">= 16.8.0"
-    react-is: ">= 16.8.0"
-  checksum: 05a664dfe423c2906959a0f3f47f9b1ad630e493eb2e06deea0dc0906af33ba5ca17277b98948a6c9642e73894d6533391aebf45576489f5afe920c974e9f8eb
-  languageName: node
-  linkType: hard
-
-"styled-components@npm:^5.3.6":
+"styled-components@npm:^5.3.5":
   version: 5.3.6
   resolution: "styled-components@npm:5.3.6"
   dependencies:
@@ -28324,9 +28302,9 @@ __metadata:
   linkType: hard
 
 "traverse@npm:~0.6.6":
-  version: 0.6.6
-  resolution: "traverse@npm:0.6.6"
-  checksum: e2afa72f11efa9ba31ed763d2d9d2aa244612f22015d16c0ea3ba5f6ca8bf071de87f8108b721885cce06ea4a36ef4605d9228c67e431d9015ea4685cb364420
+  version: 0.6.7
+  resolution: "traverse@npm:0.6.7"
+  checksum: 21018085ab72f717991597e12e2b52446962ed59df591502e4d7e1a709bc0a989f7c3d451aa7d882666ad0634f1546d696c5edecda1f2fc228777df7bb529a1e
   languageName: node
   linkType: hard
 
@@ -30650,7 +30628,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"z-schema@npm:^5.0.1, z-schema@npm:~5.0.2":
+"z-schema@npm:^5.0.1":
+  version: 5.0.4
+  resolution: "z-schema@npm:5.0.4"
+  dependencies:
+    commander: ^2.20.3
+    lodash.get: ^4.4.2
+    lodash.isequal: ^4.5.0
+    validator: ^13.7.0
+  dependenciesMeta:
+    commander:
+      optional: true
+  bin:
+    z-schema: bin/z-schema
+  checksum: afa4e0039a104a53eeb6977bf754ef44e32042aecbf3b5eb18b82649763abd5c2608e47d6d6902291359b41e76130594d7f2b6132316d819c3529f17d4d3464d
+  languageName: node
+  linkType: hard
+
+"z-schema@npm:~5.0.2":
   version: 5.0.3
   resolution: "z-schema@npm:5.0.3"
   dependencies:

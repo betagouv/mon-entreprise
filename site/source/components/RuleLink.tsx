@@ -7,11 +7,13 @@ import { useSitePaths } from '@/sitePaths'
 
 import { EngineContext } from './utils/EngineContext'
 
+// TODO : quicklink -> en cas de variations ou de somme avec un seul élément actif, faire un lien vers cet élément
 export default function RuleLink(
 	props: {
 		dottedName: DottedName
 		displayIcon?: boolean
 		children?: React.ReactNode
+		documentationPath?: string
 	} & Omit<React.ComponentProps<typeof Link>, 'to' | 'children'>
 ) {
 	const { absoluteSitePaths } = useSitePaths()
@@ -31,7 +33,9 @@ export default function RuleLink(
 			{...props}
 			linkComponent={Link as React.ComponentType<{ to: string }>}
 			engine={engine}
-			documentationPath={absoluteSitePaths.documentation.index}
+			documentationPath={
+				props.documentationPath ?? absoluteSitePaths.documentation.index
+			}
 		/>
 	)
 }

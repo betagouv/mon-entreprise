@@ -56,21 +56,24 @@ entreprise . durée d'activité . en début d'année:
 
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
-
+  identifiant court: CA
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
-  somme:
-    - dirigeant . rémunération . net . après impôt
-    - dirigeant . rémunération . impôt
-    - dirigeant . rémunération . cotisations
-    - charges
-    - applicable si: imposition . IS
-      somme:
-        - imposition . IS . résultat net
-        - imposition . IS
-  plancher: 0€/an
-  arrondi: oui
-  identifiant court: CA
+  variations:
+    - si: dirigeant . auto-entrepreneur
+      alors: dirigeant . auto-entrepreneur . chiffre d'affaires
+    - sinon:
+        somme:
+          - dirigeant . rémunération . net . après impôt
+          - dirigeant . rémunération . impôt
+          - dirigeant . rémunération . cotisations
+          - charges
+          - applicable si: imposition . IS
+            somme:
+              - imposition . IS . résultat net
+              - imposition . IS
+        plancher: 0€/an
+        arrondi: oui
 
 entreprise . chiffre d'affaires . vente restauration hébergement:
   titre: Vente de biens, restauration, hébergement (BIC)

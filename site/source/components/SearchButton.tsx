@@ -40,7 +40,6 @@ export default function SearchButton() {
 					<Trans>Rechercher</Trans>
 				</StyledButton>
 			)}
-			small
 		>
 			{(closePopover) => (
 				<SearchRulesAndSimulators

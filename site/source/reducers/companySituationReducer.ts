@@ -1,4 +1,5 @@
-import { DottedName } from '@/../../modele-social'
+import { DottedName } from 'modele-social'
+
 import { Action } from '@/actions/actions'
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { buildSituationFromObject, omit } from '@/utils'

@@ -59,8 +59,7 @@ function Explanation() {
 			<StackedBarChart
 				data={[
 					{
-						dottedName:
-							'dirigeant . auto-entrepreneur . revenu net . après impôt',
+						dottedName: 'dirigeant . rémunération . net . après impôt',
 						title: t("Revenu (incluant les dépenses liées à l'activité)"),
 						color: colors.bases.primary[600],
 					},

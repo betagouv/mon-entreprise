@@ -1,6 +1,5 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import styled, { css } from 'styled-components'
 
 import {
@@ -8,22 +7,16 @@ import {
 	isAutoentrepreneur,
 	useDispatchAndGoToNextQuestion,
 } from '@/actions/companyStatusActions'
-import Value from '@/components/EngineValue'
-import Simulation from '@/components/Simulation'
+import { Message } from '@/design-system'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
+import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { Intro } from '@/design-system/typography/paragraphs'
 import revenusSVG from '@/images/revenus.svg'
-import { configRémunérationDirigeant } from '@/pages/Simulateurs/configs/rémunérationDirigeant'
-import { situationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
 
-import PeriodSwitch from './PeriodSwitch'
-import { SimulationGoal, SimulationGoals } from './Simulation'
 import Emoji from './utils/Emoji'
-import { useEngine } from './utils/EngineContext'
-import useSimulationConfig from './utils/useSimulationConfig'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
@@ -35,60 +28,84 @@ export default function SchemeComparaison({
 	hideAssimiléSalarié = false,
 }: SchemeComparaisonProps) {
 	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig({
-		path: absoluteSitePaths.simulateurs.comparaison,
-		config: configRémunérationDirigeant,
-	})
+
 	const dispatch = useDispatchAndGoToNextQuestion()
-	const engine = useEngine()
-
 	const { t } = useTranslation()
-
 	const [showMore, setShowMore] = useState(false)
-	const [conversationStarted, setConversationStarted] = useState(
-		!!Object.keys(useSelector(situationSelector)).length
-	)
-	const startConversation = useCallback(
-		() => setConversationStarted(true),
-		[setConversationStarted]
-	)
-
-	const situation = useSelector(situationSelector)
-	const displayResult =
-		useSelector(situationSelector)['dirigeant . rémunération . totale'] != null
-	const assimiléEngine = useMemo(
-		() =>
-			engine.shallowCopy().setSituation({
-				...situation,
-				'dirigeant . régime social': "'assimilé salarié'",
-			}),
-		[situation]
-	)
-	const autoEntrepreneurEngine = useMemo(
-		() =>
-			engine.shallowCopy().setSituation({
-				...situation,
-				'dirigeant . régime social': "'auto-entrepreneur'",
-				'entreprise . catégorie juridique': "'EI'",
-				'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
-			}),
-		[situation]
-	)
-	const indépendantEngine = useMemo(
-		() =>
-			engine.shallowCopy().setSituation({
-				...situation,
-				'dirigeant . régime social': "'indépendant'",
-			}),
-		[situation]
-	)
-	const plafondAutoEntrepreneurDépassé =
-		autoEntrepreneurEngine.evaluate(
-			"entreprise . chiffre d'affaires . seuil micro dépassé"
-		).nodeValue === true
 
 	return (
 		<>
+			<AnswerGroup role="list">
+				{[
+					!hideAssimiléSalarié && (
+						<Button
+							key="assimiléSalarié"
+							onPress={() => {
+								dispatch(defineDirectorStatus('SALARIED'))
+								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
+							}}
+							aria-label={t(
+								'comparaisonRégimes.choix.AS',
+								"Assimilé salarié, sélectionner l'option et passer à l'étape suivante"
+							)}
+						>
+							<Trans i18nKey="comparaisonRégimes.choix.AS">
+								Assimilé&nbsp;salarié
+							</Trans>
+						</Button>
+					),
+
+					<Button
+						key="EI"
+						onPress={() => {
+							!hideAssimiléSalarié &&
+								dispatch(defineDirectorStatus('SELF_EMPLOYED'))
+							!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
+						}}
+						aria-label={
+							hideAssimiléSalarié
+								? t(
+										'comparaisonRégimes.choix.EI-aria-label',
+										"Entreprise individuelle, sélectionner l'option et passer à l'étape suivante"
+								  )
+								: t(
+										'comparaisonRégimes.choix.indep-aria-label',
+										"Indépendant, sélectionner l'option et passer à l'étape suivante"
+								  )
+						}
+					>
+						{hideAssimiléSalarié ? (
+							<Trans i18nKey="comparaisonRégimes.choix.EI">
+								Entreprise individuelle
+							</Trans>
+						) : (
+							<Trans i18nKey="comparaisonRégimes.choix.indep">
+								Indépendant
+							</Trans>
+						)}
+					</Button>,
+
+					!hideAutoEntrepreneur && (
+						<Button
+							key="auto-entrepreneur"
+							onPress={() => {
+								!hideAssimiléSalarié &&
+									dispatch(defineDirectorStatus('SELF_EMPLOYED'))
+								dispatch(isAutoentrepreneur(true))
+							}}
+							aria-label={t(
+								'comparaisonRégimes.choix.auto-aria-label',
+								"Auto-entrepreneur, sélectionner l'option et passer à l'étape suivante"
+							)}
+						>
+							<Trans i18nKey="comparaisonRégimes.choix.auto">
+								Auto-entrepreneur
+							</Trans>
+						</Button>
+					),
+				].filter(Boolean)}
+			</AnswerGroup>
+			<Spacing md />
 			<StyledGrid
 				hideAutoEntrepreneur={hideAutoEntrepreneur}
 				hideAssimiléSalarié={hideAssimiléSalarié}
@@ -310,178 +327,36 @@ export default function SchemeComparaison({
 						</div>
 					</Trans>
 				)}
-				<div className="legend" />
-
-				<div className="AS-indep-et-auto">
-					{!conversationStarted ? (
-						<>
-							<Trans i18nKey="comparaisonRégimes.simulationText">
-								<H3>
-									Comparer mes revenus, pension de retraite et indemnité maladie
-								</H3>
-								<img src={revenusSVG} css="height: 8rem" alt="" />
-								<Button onPress={startConversation}>
-									Lancer la simulation
-								</Button>
-							</Trans>
-						</>
-					) : (
-						<Simulation
-							hideDetails
-							customEndMessages={
-								<SmallBody as="span">
-									Vous pouvez consulter les différentes estimations dans le
-									tableau ci-dessous
-								</SmallBody>
-							}
-						>
-							<SimulationGoals
-								toggles={<PeriodSwitch />}
-								legend={
-									'Estimations sur votre rémunération brute et vos charges'
-								}
-							>
-								<SimulationGoal dottedName="dirigeant . rémunération . totale" />
-								<SimulationGoal dottedName="entreprise . charges" />
-							</SimulationGoals>
-						</Simulation>
-					)}
-				</div>
-				{displayResult && (
-					<>
-						<div className="legend" />
-
-						<H3 className="AS">
-							<Emoji emoji="☂" /> <Trans>Assimilé salarié</Trans>
-						</H3>
-						<H3 className="indep">
-							<Emoji emoji="👩‍🔧" />{' '}
-							{hideAssimiléSalarié ? (
-								<Trans>Entreprise Individuelle</Trans>
-							) : (
-								<Trans>Indépendant</Trans>
-							)}
-						</H3>
-						<H3 className="auto">
-							<Emoji emoji="🚶‍♂️" /> <Trans>Auto-entrepreneur</Trans>
-						</H3>
-						<Trans i18nKey="comparaisonRégimes.revenuNetAvantImpot">
-							<H3 className="legend">
-								Revenu net de cotisations <small>(avant impôts)</small>
-							</H3>
-						</Trans>
-						<div className="AS">
-							<Value
-								linkToRule={false}
-								engine={assimiléEngine}
-								precision={0}
-								unit="€/an"
-								expression="dirigeant . rémunération . net"
-							/>
-						</div>
-						<div className="indep">
-							<Value
-								linkToRule={false}
-								engine={indépendantEngine}
-								precision={0}
-								expression="dirigeant . rémunération . net"
-							/>
-						</div>
-						<div className="auto">
-							<>
-								{plafondAutoEntrepreneurDépassé && 'Plafond de CA dépassé'}
-								<Value
-									linkToRule={false}
-									engine={autoEntrepreneurEngine}
-									precision={0}
-									className={''}
-									unit="€/an"
-									expression="dirigeant . rémunération . net - entreprise . charges"
-								/>
-							</>
-						</div>
-					</>
-				)}
 			</StyledGrid>
 
-			<div className="">
-				<br />
-				<H3>
-					<Trans i18nKey="comparaisonRégimes.titreSelection">
-						Créer mon entreprise en tant que :
-					</Trans>
-				</H3>
-				<AnswerGroup role="list">
-					{[
-						!hideAssimiléSalarié && (
-							<Button
-								key="assimiléSalarié"
-								onPress={() => {
-									dispatch(defineDirectorStatus('SALARIED'))
-									!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
-								}}
-								aria-label={t(
-									'comparaisonRégimes.choix.AS',
-									"Assimilé salarié, sélectionner l'option et passer à l'étape suivante"
-								)}
-							>
-								<Trans i18nKey="comparaisonRégimes.choix.AS">
-									Assimilé&nbsp;salarié
-								</Trans>
-							</Button>
-						),
+			<Spacing lg />
 
-						<Button
-							key="EI"
-							onPress={() => {
-								!hideAssimiléSalarié &&
-									dispatch(defineDirectorStatus('SELF_EMPLOYED'))
-								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
-							}}
-							aria-label={
-								hideAssimiléSalarié
-									? t(
-											'comparaisonRégimes.choix.EI-aria-label',
-											"Entreprise individuelle, sélectionner l'option et passer à l'étape suivante"
-									  )
-									: t(
-											'comparaisonRégimes.choix.indep-aria-label',
-											"Indépendant, sélectionner l'option et passer à l'étape suivante"
-									  )
-							}
-						>
-							{hideAssimiléSalarié ? (
-								<Trans i18nKey="comparaisonRégimes.choix.EI">
-									Entreprise individuelle
-								</Trans>
-							) : (
-								<Trans i18nKey="comparaisonRégimes.choix.indep">
-									Indépendant
-								</Trans>
-							)}
-						</Button>,
-
-						!hideAutoEntrepreneur && (
-							<Button
-								key="auto-entrepreneur"
-								onPress={() => {
-									!hideAssimiléSalarié &&
-										dispatch(defineDirectorStatus('SELF_EMPLOYED'))
-									dispatch(isAutoentrepreneur(true))
-								}}
-								aria-label={t(
-									'comparaisonRégimes.choix.auto-aria-label',
-									"Auto-entrepreneur, sélectionner l'option et passer à l'étape suivante"
-								)}
-							>
-								<Trans i18nKey="comparaisonRégimes.choix.auto">
-									Auto-entrepreneur
-								</Trans>
-							</Button>
-						),
-					]}
-				</AnswerGroup>
-			</div>
+			<Message>
+				<Grid
+					spacing={4}
+					container
+					css={`
+						justify-content: center;
+						align-items: center;
+					`}
+				>
+					<Grid item sm={4} lg={3} xl={2} xs={6}>
+						<img src={revenusSVG} css="width: 100%; padding: 1rem;" alt="" />
+					</Grid>
+					<Grid item sm={8} lg={9} xl={10}>
+						<H3>Comparateur de statuts</H3>
+						<Intro>
+							Découvrez les différence en terme de revenus, pensions de retraite
+							et indemnités maladie à partir d'une estimation de votre futurs
+							chiffre d'affaires et charges de fonctionnement.
+						</Intro>
+						<Button to={absoluteSitePaths.simulateurs.comparaison}>
+							Ouvrir le comparateur
+						</Button>
+						<Spacing md />
+					</Grid>
+				</Grid>
+			</Message>
 		</>
 	)
 }
@@ -491,7 +366,7 @@ type StyledGridProps = {
 	hideAutoEntrepreneur?: boolean
 }
 
-const StyledGrid = styled.div`
+export const StyledGrid = styled.div`
 	display: grid;
 	font-family: ${({ theme }) => theme.fonts.main};
 	justify-items: stretch;

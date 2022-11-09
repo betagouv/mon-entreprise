@@ -1,3 +1,5 @@
+import { DottedName } from 'modele-social'
+import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -28,8 +30,10 @@ const Notice = styled(Body)`
 
 export function Questions({
 	customEndMessages,
+	engines,
 }: {
 	customEndMessages?: ConversationProps['customEndMessages']
+	engines?: Array<Engine<DottedName>>
 }) {
 	const { numberCurrentStep, numberSteps } = useSimulationProgress()
 
@@ -46,7 +50,7 @@ export function Questions({
 						</Notice>
 					)}
 				</div>
-				<Conversation customEndMessages={customEndMessages} />
+				<Conversation customEndMessages={customEndMessages} engines={engines} />
 			</QuestionsContainer>
 		</>
 	)

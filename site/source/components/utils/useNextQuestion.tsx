@@ -1,5 +1,6 @@
 import { DottedName } from 'modele-social'
-import { useContext, useMemo } from 'react'
+import Engine from 'publicodes'
+import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
 import { SimulationConfig } from '@/reducers/rootReducer'
@@ -10,7 +11,7 @@ import {
 	useMissingVariables,
 } from '@/selectors/simulationSelectors'
 
-import { EngineContext } from './EngineContext'
+import { useEngine } from './EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 
@@ -65,16 +66,18 @@ export function getNextQuestions(
 	return nextSteps.sort((a, b) => score(a) - score(b))
 }
 
-export const useNextQuestions = function (): Array<DottedName> {
+export const useNextQuestions = function (
+	engines?: Array<Engine<DottedName>>
+): Array<DottedName> {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
-	const questionsConfig = useSelector(configSelector).questions
-	const engine = useContext(EngineContext)
-	const missingVariables = useMissingVariables()
+	const config = useSelector(configSelector)
+	const engine = useEngine()
+	const missingVariables = useMissingVariables({ engines: engines ?? [engine] })
 	const nextQuestions = useMemo(() => {
 		let next = getNextQuestions(
 			missingVariables,
-			questionsConfig ?? {},
+			config.questions ?? {},
 			answeredQuestions
 		)
 		if (currentQuestion && currentQuestion !== next[0]) {
@@ -82,17 +85,10 @@ export const useNextQuestions = function (): Array<DottedName> {
 		}
 
 		return next.filter(
-			(question) =>
-				engine.evaluate(question).nodeValue !== null &&
-				engine.getRule(question).rawNode.question !== undefined
+			(question) => engine.getRule(question).rawNode.question !== undefined
 		)
-	}, [
-		missingVariables,
-		questionsConfig,
-		answeredQuestions,
-		engine,
-		currentQuestion,
-	])
+	}, [missingVariables, config, answeredQuestions, engine, currentQuestion])
+	console.log({ nextQuestions })
 
 	return nextQuestions
 }

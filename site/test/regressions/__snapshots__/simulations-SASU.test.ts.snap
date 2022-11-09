@@ -1,0 +1,114 @@
+// Vitest Snapshot v1
+
+exports[`calculate assimilé salarié > ACRE 1`] = `
+"dirigeant . rémunération . totale: 10000
+impôt . montant: 0
+salarié . cotisations: 519
+salarié . rémunération . net . payé après impôt: 596
+salarié . rémunération . net . à payer avant impôt: 596"
+`;
+
+exports[`calculate assimilé salarié > ACRE 2`] = `
+"dirigeant . rémunération . totale: 20000
+impôt . montant: 0
+salarié . cotisations: 1008
+salarié . rémunération . net . payé après impôt: 1228
+salarié . rémunération . net . à payer avant impôt: 1228"
+`;
+
+exports[`calculate assimilé salarié > ACRE 3`] = `
+"dirigeant . rémunération . totale: 30000
+impôt . montant: 1004
+salarié . cotisations: 1497
+salarié . rémunération . net . payé après impôt: 1777
+salarié . rémunération . net . à payer avant impôt: 1861"
+`;
+
+exports[`calculate assimilé salarié > JEI 1`] = `
+"dirigeant . rémunération . totale: 48000
+impôt . montant: 3534
+salarié . cotisations: 1208
+salarié . rémunération . net . payé après impôt: 2497
+salarié . rémunération . net . à payer avant impôt: 2792"
+`;
+
+exports[`calculate assimilé salarié > avec charges 1`] = `
+"dirigeant . rémunération . totale: 10000
+impôt . montant: 0
+salarié . cotisations: 396
+salarié . rémunération . net . payé après impôt: 437
+salarié . rémunération . net . à payer avant impôt: 437"
+`;
+
+exports[`calculate assimilé salarié > avec charges 2`] = `
+"dirigeant . rémunération . totale: 20000
+impôt . montant: 0
+salarié . cotisations: 760
+salarié . rémunération . net . payé après impôt: 907
+salarié . rémunération . net . à payer avant impôt: 907"
+`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 1`] = `
+"dirigeant . rémunération . totale: 100
+impôt . montant: undefined
+salarié . cotisations: undefined
+salarié . rémunération . net . payé après impôt: undefined
+salarié . rémunération . net . à payer avant impôt: undefined"
+`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 2`] = `
+"dirigeant . rémunération . totale: 1000
+impôt . montant: 0
+salarié . cotisations: 70
+salarié . rémunération . net . payé après impôt: 14
+salarié . rémunération . net . à payer avant impôt: 14"
+`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 3`] = `
+"dirigeant . rémunération . totale: 2000
+impôt . montant: 0
+salarié . cotisations: 106
+salarié . rémunération . net . payé après impôt: 61
+salarié . rémunération . net . à payer avant impôt: 61"
+`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 4`] = `
+"dirigeant . rémunération . totale: 5000
+impôt . montant: 0
+salarié . cotisations: 215
+salarié . rémunération . net . payé après impôt: 202
+salarié . rémunération . net . à payer avant impôt: 202"
+`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 5`] = `
+"dirigeant . rémunération . totale: 10000
+impôt . montant: 0
+salarié . cotisations: 396
+salarié . rémunération . net . payé après impôt: 437
+salarié . rémunération . net . à payer avant impôt: 437"
+`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 6`] = `
+"dirigeant . rémunération . totale: 20000
+impôt . montant: 0
+salarié . cotisations: 760
+salarié . rémunération . net . payé après impôt: 907
+salarié . rémunération . net . à payer avant impôt: 907"
+`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 7`] = `
+"dirigeant . rémunération . totale: 50000
+impôt . montant: 1918
+salarié . cotisations: 1849
+salarié . rémunération . net . payé après impôt: 2157
+salarié . rémunération . net . à payer avant impôt: 2317"
+`;
+
+exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
+"dirigeant . rémunération . totale: 100000
+impôt . montant: 9993
+salarié . cotisations: 3616
+salarié . rémunération . net . payé après impôt: 3884
+salarié . rémunération . net . à payer avant impôt: 4717
+Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+`;

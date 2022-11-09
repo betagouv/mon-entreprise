@@ -9,9 +9,9 @@ export const configProfessionLibérale: SimulationConfig = {
 	objectifs: [
 		'dirigeant . indépendant . cotisations et contributions',
 		'impôt . montant',
-		'protection sociale . retraite . complémentaire indépendants . points acquis',
-		'protection sociale . retraite . base . trimestres . indépendant',
-		'protection sociale . retraite . CNAVPL',
+		'protection sociale . retraite . trimestres',
+		'protection sociale . retraite . complémentaire',
+		'protection sociale . retraite . CNAVPL . points acquis',
 	],
 	questions: {
 		'liste noire': ['entreprise . charges', 'entreprise . imposition . régime'],

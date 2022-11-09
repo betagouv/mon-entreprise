@@ -16,6 +16,7 @@ import {
 	CurrentSimulatorDataProvider,
 	ExtractFromSimuData,
 } from '../pages/Simulateurs/metadata'
+import BetaBanner from './BetaBanner'
 
 export interface PageDataProps {
 	meta: ExtractFromSimuData<'meta'>
@@ -25,6 +26,7 @@ export interface PageDataProps {
 	description?: ExtractFromSimuData<'description'>
 	iframePath?: ExtractFromSimuData<'iframePath'>
 	seoExplanations?: ExtractFromSimuData<'seoExplanations'>
+	beta?: ExtractFromSimuData<'beta'>
 	nextSteps?: ExtractFromSimuData<'nextSteps'>
 	path: ExtractFromSimuData<'path'>
 	title: ExtractFromSimuData<'title'>
@@ -42,6 +44,7 @@ export default function PageData(props: PageDataProps) {
 		title,
 		tracking,
 		tooltip,
+		beta,
 		description,
 		iframePath,
 		private: privateIframe,
@@ -73,6 +76,7 @@ export default function PageData(props: PageDataProps) {
 		<CurrentSimulatorDataProvider value={props}>
 			<TrackChapter {...trackInfo}>
 				{meta && <Meta page={`simulateur.${title ?? ''}`} {...meta} />}
+
 				{title && !inIframe && (
 					<>
 						<H1>
@@ -83,6 +87,7 @@ export default function PageData(props: PageDataProps) {
 					</>
 				)}
 				{description && !inIframe && description}
+				{beta && <BetaBanner />}
 
 				<Component />
 

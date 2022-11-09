@@ -13,6 +13,7 @@ export type ValueProps<Names extends string> = {
 	engine?: Engine<Names>
 	displayedUnit?: string
 	precision?: number
+	documentationPath?: string
 	linkToRule?: boolean
 	flashOnChange?: boolean
 } & React.HTMLAttributes<HTMLSpanElement>
@@ -24,6 +25,7 @@ export default function Value<Names extends string>({
 	displayedUnit,
 	flashOnChange = false,
 	precision,
+	documentationPath,
 	linkToRule = true,
 	...props
 }: ValueProps<Names>) {
@@ -63,7 +65,10 @@ export default function Value<Names extends string>({
 		}
 
 		return (
-			<RuleLink dottedName={expression as DottedName}>
+			<RuleLink
+				dottedName={expression as DottedName}
+				documentationPath={documentationPath}
+			>
 				<StyledValue {...props} key={value} $flashOnChange={flashOnChange}>
 					{value}
 				</StyledValue>

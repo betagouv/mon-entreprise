@@ -100,6 +100,8 @@ const App = () => {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useAxeCoreAnalysis()
 	}
+	const documentationPath = useSitePaths().absoluteSitePaths.documentation.index
+	const engine = useEngine()
 
 	return (
 		<StyledLayout isEmbedded={isEmbedded}>
@@ -122,7 +124,12 @@ const App = () => {
 							/>
 							<Route
 								path={relativeSitePaths.documentation.index + '/*'}
-								element={<Documentation />}
+								element={
+									<Documentation
+										documentationPath={documentationPath}
+										engine={engine}
+									/>
+								}
 							/>
 							<Route
 								path={relativeSitePaths.développeur.index + '/*'}

@@ -346,6 +346,7 @@ salarié . rémunération . heures complémentaires:
 salarié . rémunération . frais professionnels:
   titre: remboursement de frais
   unité: €/mois
+  possiblement non applicable: oui
   description: >-
     Les frais professionnels correspondent à des dépenses engagées par le
     salarié pour les besoins de son activité professionnelle. Ces frais sont

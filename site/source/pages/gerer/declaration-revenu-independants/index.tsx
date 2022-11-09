@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import BetaBanner from '@/components/BetaBanner'
 import { Condition } from '@/components/EngineValue'
 import PrintExportRecover from '@/components/simulationExplanation/PrintExportRecover'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -9,9 +8,6 @@ import { useSimulationProgress } from '@/components/utils/useNextQuestion'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Step, Stepper } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H3 } from '@/design-system/typography/heading'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { SimulationConfig } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 import { omit } from '@/utils'
@@ -60,22 +56,6 @@ export default function AideDéclarationIndépendant() {
 		<>
 			<PrintExportRecover />
 			<Condition expression="DRI">
-				<BetaBanner>
-					<H3 as="h2">
-						<Strong>Cet assistant est en version beta</Strong>
-					</H3>
-					<Intro>
-						Nous travaillons à valider les informations et les calculs, mais des{' '}
-						<Strong>erreurs peuvent être présentes</Strong>.
-					</Intro>
-					<Body>
-						Bien qu'il ne soit pas terminé, nous avons choisi de publier cet
-						outil pour avoir vos retours. Si vous pensez avoir trouvé un
-						problème ou si vous voulez nous partager une remarque, vous pouvez
-						nous contacter via le bouton « Faire une suggestion » en bas de
-						page.
-					</Body>
-				</BetaBanner>
 				<Spacing lg />
 				<div className="print-hidden">
 					<Stepper aria-label="Étapes de l'assistant">

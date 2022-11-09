@@ -68,7 +68,6 @@ describe('Test prerender', function () {
 					cy.contains('Charges')
 					cy.get('input[id="entreprise . charges"]').should('exist')
 
-					cy.contains('Revenu net')
 					cy.get('input[id="dirigeant . rémunération . net"]').should('exist')
 
 					cy.contains('Revenu après impôt')

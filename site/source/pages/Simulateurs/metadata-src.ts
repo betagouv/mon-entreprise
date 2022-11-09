@@ -302,8 +302,9 @@ const getMetadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'simulateurs.comparaison',
 			title: t(
 				'pages.simulateurs.comparaison.title',
-				'Assistant au choix du statut juridique'
+				'Comparateur de statut juridique'
 			),
+			beta: true,
 			meta: {
 				description: t(
 					'pages.simulateurs.comparaison.meta.description',
@@ -321,6 +322,7 @@ const getMetadataSrc = (t: TFunction<'translation', string>) => {
 		},
 		'économie-collaborative': {
 			tracking: 'economie_collaborative',
+
 			meta: {
 				title: t(
 					'pages.économie-collaborative.meta.title',
@@ -430,6 +432,7 @@ const getMetadataSrc = (t: TFunction<'translation', string>) => {
 		},
 
 		'déclaration-revenu-indépendant-beta': {
+			beta: true,
 			tracking: {
 				chapter1: 'gerer',
 				chapter2: 'declaration_revenu_independant',
@@ -449,7 +452,7 @@ const getMetadataSrc = (t: TFunction<'translation', string>) => {
 			pathId: 'gérer.déclarationIndépendant.beta.index',
 			shortName: t(
 				'pages.gérer.declaration_revenu_indépendant.shortname',
-				'Assistant déclaration de revenu [beta]'
+				'Assistant déclaration de revenu'
 			),
 			title: t(
 				'pages.gérer.declaration_revenu_indépendant.title',

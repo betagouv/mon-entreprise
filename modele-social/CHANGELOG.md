@@ -1,5 +1,27 @@
 # Journal des modifications
 
+## 1.2.0
+
+### Fix et réecritures
+
+- Répare l’ACRE qui ne fonctionnait plus pour les SASU, en ajoutant une règle `dirigeant . assimilé salarié . cotisations`
+- La règle `dirigeant . auto-entrepreneur . impôt . revenu imposable` est maintenant une simple indirection vers `entreprise . imposition . régime . micro-entreprise . revenu abattu` (auparavant, elle réimplémentait la même logique)
+- La règles `dirigeant . auto-entrepreneur . chiffres d'affaires` ne remplace plus `entreprise . chiffre d'affaires`. On peut donc utiliser de manière indiférenciée `entreprise . chiffre d'affaires` ou `dirigeant . auto-entrepreneur . chiffres d'affaires` pour spécifier le chiffre d’affaires de l’auto-entrepreneur
+
+
+### Nouveautés legislatives
+- L’assiette minimale retraite pour les indépendant a été modifiée courant de l’année pour pouvoir assurer 3 trimestres validés (ce n’était pas le cas avec la valeur par défaut). Création de la règle `dirigeant . indépendant . assiette minimale . retraite . en 2022`
+- Le taux de cotisation indemnité maladie des conjoints collaborateur AC/PLNR est de 0,50% desormais (au lieu d’être aligné sur celui du gérant)
+
+### Protection sociale : implémentation de la retraite et des IJSS en `experimental`
+- Suppression du montant estimé de la retraite, au profit de deux nouvelles règles, plus representative : 
+  - `protection sociale . retraite . base . cotisée` qui correspond au revenu pris en compte pour les 25 meilleures années dans le calcul de la pension de la retraite de base
+  - `protection sociale . retraite . complémentaire` qui correspond au supplément de pension de retraite acquis grâce à une année complète de cotisation retraite complémentaire
+- Uniformisation du calcul de `protection sociale . retraite . trimestres` entre les salariés et les indépendants
+- Renommage de `protection sociale . santé` en `protection sociale . maladie` qui est le nom « officiel » de la branche
+- Ajout de `protection sociale . maladie . arrêt maladie . indemnités` pour le montant des indemnités journalière versées par la CPAM en cas d’arrêt maladie.
+
+
 ## 1.1.0
 
 ### Loi du 16 août 2022 portant mesures d’urgence pour la protection du pouvoir d’achat

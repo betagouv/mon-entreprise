@@ -852,7 +852,7 @@ salarié . cotisations . formation professionnelle:
 salarié . cotisations . maladie:
   description: La cotisation d’assurance maladie-maternité-invalidité finance les prestations versées par le régime général de Sécurité sociale en cas d’incapacité de travail. Elle permet le versement des prestations en nature et en espèces.
   cotisation:
-    branche: santé
+    branche: maladie
   synonymes: [Cotisation maladie - maternité - invalidité - décès]
   références:
     Fiche Urssaf sur la cotisation maladie: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
@@ -894,7 +894,7 @@ salarié . cotisations . maladie:
 salarié . cotisations . CSA:
   titre: Contribution solidarité autonomie
   cotisation:
-    branche: santé
+    branche: maladie
   acronyme: CSA
   produit:
     assiette: cotisations . assiette
@@ -926,7 +926,7 @@ salarié . cotisations . prévoyances:
   titre: prévoyances complémentaires
   possiblement non applicable: oui
   cotisation:
-    branche: santé
+    branche: maladie
   somme:
     - nom: employeur
       titre: part employeur

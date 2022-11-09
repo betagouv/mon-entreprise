@@ -124,6 +124,7 @@ Découvrir: Discover
 Démarches de création: Creation process checklist
 Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
+EI / EURL: EI / EURL
 Effacer: Reset
 Effacer mes réponses: Delete my answers
 "Eligibilité LFR : ": "LFR Eligibility: "
@@ -265,6 +266,7 @@ Rémunération du dirigeant: Director's remuneration
 Répartition du chiffre d'affaires: Breakdown of turnover
 Résultat: Result
 S'inscrire: Register
+SASU: SASU
 Saisissez le nom d'une commune: Enter the name of a municipality
 Saisissez votre domaine d'activité: Enter your business area
 Salaire: Salary
@@ -460,6 +462,12 @@ autoentrepreneur:
   titre: Auto-entrepeneur
 back: Return to the simulation
 barème: scale
+betawarning: <0><0>This tool is in beta version</0></0><1>We are working to
+  validate the information and calculations, but <1>errors may be
+  present</1>.</1><2>Although it is not finished, we chose to publish it to take
+  into account your feedback as soon as possible. If you think you have found a
+  problem or if you want to share a remark, you can contact us via the "Make a
+  suggestion" button at the bottom of the page.</2>
 budget:
   tableCaption: Table showing the budget for the year {{year}} by expense item.
     The first column shows the current year ({{year}}) on the first line, then
@@ -1111,10 +1119,10 @@ mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
 navbar:
-  logo: Logo My company in France by Urssaf
-  redirect-home: Go to home page
   activate-darkmode: Activate dark mode
   deactivate-darkmode: Deactivate dark mode
+  logo: Logo My company in France by Urssaf
+  redirect-home: Go to home page
 nextSteps:
   integration-iframe:
     body: Discover how to add this simulator on your website in one click via a
@@ -1395,7 +1403,7 @@ pages:
       meta:
         description: Find out which amounts to fill in and get an estimate of your 2022 dues
         title: Income tax return assistant for self-employed people
-      shortname: Income tax return wizard [beta]
+      shortname: Income Tax Wizard
       title: Income tax return assistant for self-employed people
     demande-mobilité:
       meta:
@@ -1403,6 +1411,38 @@ pages:
         title: "Self-employed: demand for mobility in Europe"
       shortname: Demand for mobility in Europe
       title: Mobility request simulator
+  simulateu rs:
+    salarié:
+      seo: "<0>How to calculate the net salary?</0><1>During the job interview, the
+        employer generally proposes a \"gross\" salary. This amount includes the
+        employee's social security contributions, which are deducted from the
+        \"net\" salary received by the employee.</1><2>You can use our simulator
+        to convert the <2>gross salary into net salary</2>: simply enter the
+        advertised salary in the gross salary box. The simulation can be refined
+        by answering different questions (fixed-term contract, executive status,
+        overtime, part-time work, meal vouchers, etc.).</2><3></3><4>In
+        addition, since 2019,<1>income tax</1> is deducted at source. To do
+        this, the Directorate General of Public Finance (DGFiP) sends the
+        employer the tax rate calculated from the employee's tax return. If this
+        rate is unknown, for example during a first year of activity, the
+        employer uses the <4>neutral rate</4>.</4><5>How to calculate the cost
+        of hiring?</5><6>If you are looking to hire, you can calculate the total
+        cost of your employee's remuneration, as well as the corresponding
+        employer and employee contributions. This allows you to define the level
+        of remuneration by knowing the overall amount of expense that this
+        represents for your company.</6><7>In addition to the salary, our
+        simulator takes into account the calculation of benefits in kind
+        (telephone, company car, etc.), as well as the mandatory health
+        insurance.</7><8>There are <2>deferred</2> hiring <2>aids</2> that are
+        not all taken into account by our simulator. You can find them on <6>the
+        official portal</6>.</8><9><0>Discuss your recruitment project with a
+        consultant</0><1>You want :<1><0>Be advised on the hiring aids available
+        for your recruitment</0><1>Find out about apprenticeships,
+        professionalization contracts, free jobs in priority neighborhoods, the
+        <2>VTE</2>, etc.</1><2>Find candidates</2><3>Recruiting a person with a
+        disability</3></1><2>Simple and fast public service: you are called back
+        by the advisor who can help you.</2></1><2>Mobilized partners: Pôle
+        emploi, APEC, Cap Emploi, local missions...</2><3></3></9>"
   simulateurs:
     EI:
       meta:
@@ -1608,7 +1648,7 @@ pages:
           comparison, find the plan that suits you best
         title: "Starting a business: a comparison of social schemes"
       shortname: Status Comparison
-      title: Legal form choice assistant
+      title: Legal status comparator
     dirigean sasu:
       explication seo: "<0>How to calculate the salary of a SASU executive? </0><1>As
         for a conventional employee, the SASU <1>manager</1> pays social
