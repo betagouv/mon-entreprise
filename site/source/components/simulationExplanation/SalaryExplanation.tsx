@@ -36,7 +36,13 @@ export default function SalaryExplanation() {
 
 			<DistributionSection />
 
-			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
+			<Container
+				backgroundColor={(theme) =>
+					theme.darkMode
+						? theme.colors.extended.dark[700]
+						: theme.colors.bases.primary[100]
+				}
+			>
 				<div ref={payslipRef} />
 				<Grid
 					container
