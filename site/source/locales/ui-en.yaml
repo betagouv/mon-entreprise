@@ -1284,7 +1284,7 @@ pages:
         cta: Discover
         title: Publicodes
     code:
-      copy-code: Copy the code
+      copy-code: Copy the code to the clipboard
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
     components:

@@ -1050,7 +1050,7 @@ pages:
         cta: Découvrir
         title: Publicodes
     code:
-      copy-code: Copier le code
+      copy-code: Copier le code dans le presse-papier
       description: "Voici le code à copier-coller sur votre site&nbsp;:"
       titre: Code d'intégration
     components:
