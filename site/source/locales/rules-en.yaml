@@ -906,22 +906,15 @@ dirigeant . assimilé salarié:
   note.fr: Nous ne gérons pas le cas des SAS(U) à l'IR pour l'instant
   titre.en: '[automatic] assimilated employee'
   titre.fr: assimilé salarié
+dirigeant . assimilé salarié . cotisations:
+  titre.en: '[automatic] contributions'
+  titre.fr: cotisations
 dirigeant . assimilé salarié . réduction ACRE:
   titre.en: '[automatic] ACRE reduction'
   titre.fr: réduction ACRE
-dirigeant . assimilé salarié . réduction ACRE . assiette taux réduit:
-  titre.en: '[automatic] base reduced rate'
-  titre.fr: assiette taux réduit
-dirigeant . assimilé salarié . réduction ACRE . notification taux annuel:
-  description.en: >
-    [automatic] The ACRE rate used is an annual average. The
-
-    simulator does not yet take into account the calculation of the ACRE month by month.
-  description.fr: |
-    Le taux ACRE utilisé est une moyenne annuelle. Le
-    simulateur ne prend pas encore en compte le calcul de l'ACRE mois par mois.
-  titre.en: '[automatic] notification annual rate'
-  titre.fr: notification taux annuel
+dirigeant . assimilé salarié . réduction ACRE . montant:
+  titre.en: '[automatic] amount'
+  titre.fr: montant
 dirigeant . auto-entrepreneur:
   description.en: >
     [automatic] The auto-entrepreneur is a simplified individual
@@ -1052,20 +1045,8 @@ dirigeant . auto-entrepreneur . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
 dirigeant . auto-entrepreneur . impôt . revenu imposable:
-  description.en: >
-    [automatic] The micro-entrepreneur is exempted from making a
-    professional declaration of profits as BNC or BIC.
-
-
-    They only need to declare the annual gross turnover (BIC) or revenue (BNC) on the supplementary income tax return (n°2042-C Pro).
-  description.fr: >
-    Le micro-entrepreneur est dispensé d'établir une déclaration
-    professionnelle de bénéfices au titre des BNC ou BIC.
-
-
-    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
-  titre.en: '[automatic] self-employed taxable income'
-  titre.fr: revenu imposable auto-entrepreneur
+  titre.en: '[automatic] taxable income'
+  titre.fr: revenu imposable
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description.en: >
     [automatic] With the option for the payment in full discharge,
@@ -2717,6 +2698,24 @@ dirigeant . indépendant . assiette minimale . retraite:
     trimestres de retraite, quel que soit le revenu.
   titre.en: '[automatic] retirement'
   titre.fr: retraite
+dirigeant . indépendant . assiette minimale . retraite . en 2022:
+  description.en: >
+    [automatic] The minimum base of 11.50% was not sufficient to
+    validate 3 quarters. Therefore, this minimum base has been revised during
+    the year and will be applied retroactively from January 1, 2022.
+
+
+    The minimum base is €4,758 for 2022 only. For 2023, the minimum base will be 11.5% of the PASS.
+  description.fr: >
+    L’assiette minimale de 11,50% n’était pas suffisante pour
+    valider 3 trimestres. Par conséquent cette assiette minimale a été révisée
+    en cours d’année et sera appliquée de manière rétroactive à compté du 1er
+    janvier 2022.
+
+
+    L’assiette minimale est de 4 758 €  pour 2022 uniquement. Pour 2023, on repasse à une assiette minimale de 11,5% du PASS.
+  titre.en: '[automatic] in 2022'
+  titre.fr: en 2022
 dirigeant . indépendant . conjoint collaborateur:
   description.en: >
     [automatic] As an employee, the spouse of a self-employed person
@@ -3569,12 +3568,12 @@ dirigeant . rémunération . impôt:
   titre.en: '[automatic] income tax'
   titre.fr: impôt sur le revenu
 dirigeant . rémunération . net:
-  question.en: '[automatic] What is your net income?'
-  question.fr: Quelle est votre revenu net ?
+  question.en: '[automatic] What is your net pay?'
+  question.fr: Quelle est votre rémunération nette ?
   résumé.en: '[automatic] After deduction of contributions and expenses'
   résumé.fr: Après déduction des cotisations, contributions et charges
-  titre.en: '[automatic] net income'
-  titre.fr: revenu net
+  titre.en: '[automatic] Net remuneration'
+  titre.fr: Rémunération nette
 dirigeant . rémunération . net . après impôt:
   description.en: '[automatic] The net income after deduction of income tax and
     social security contributions.'
@@ -5399,72 +5398,144 @@ protection sociale . invalidité et décès:
     à vos proches en cas de décès.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
+protection sociale . maladie:
+  description.en: >
+    [automatic] Health insurance protects the health of everyone in
+    their personal and professional lives.
+
+
+    In concrete terms, it supports 60 million insured persons throughout their lives, by paying for their care regardless of their resources, their situation or their state of health. It thus guarantees universal access to rights and enables access to care.
+
+
+    Thanks to it, you are covered for most health care. In case of serious or long term illness, 100% of the care is reimbursed.
+
+
+    ## Health insurance in France in a few figures
+      - 92%** of health expenses are reimbursed on average by health insurance and supplementary health insurance
+      - 30,000 € / year / patient**: example of full coverage for a person with cystic fibrosis
+      - 82.4 years** average life expectancy in France (in the top 10 worldwide 🏅)
+  description.fr: >
+    L’Assurance Maladie protège durablement la santé de chacun dans
+    sa vie personnelle ou professionnelle.
+
+
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
+
+
+    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+
+    ## L'assurance maladie en France en quelques chiffres
+      - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
+      - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
+      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+  résumé.en: Covers most everyday health care and 100% of serious illnesses such
+    as hospital stays.
+  résumé.fr: Couvre la plupart des soins de santé de la vie quotidienne et 100 %
+    des maladies graves comme les séjours à l'hôpital.
+  titre.en: '[automatic] health insurance'
+  titre.fr: assurance maladie
+protection sociale . maladie . arrêt maladie:
+  description.en: >-
+    [automatic] If you are off work due to illness, you are entitled
+    to daily allowances (IJ) paid by your health insurance scheme (CPAM,
+    MSA,...).
+
+    The conditions of compensation vary according to your social protection scheme.
+  description.fr: >-
+    Si vous êtes en arrêt de travail pour maladie, vous avez droit à
+    des indemnités journalières (IJ) versées par votre régime d'assurance
+    maladie (CPAM, MSA,...).
+
+    Les conditions d'indemnisation varient en fonction de votre régime de protection sociale.
+  note.en: >
+    [automatic] We have only implemented the allowances of the special
+    schemes of the
+
+    regulated professions. For an exhaustive list of
+
+    compensation, please consult [this
+
+    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
+  note.fr: >
+    Nous n'avons implémenté les indemnités des régimes particuliers des
+
+    professions libérales réglementées. Pour une liste exaustive des
+
+    indemnisation, consultez [ce
+
+    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
+  titre.en: '[automatic] sick leave'
+  titre.fr: arrêt maladie
+protection sociale . maladie . arrêt maladie . indemnités:
+  description.en: >
+    [automatic] The daily allowances are paid to you by the Health
+    Insurance to compensate your income during the work stoppage. Under certain
+    conditions, you can receive daily allowances after a waiting period of 3
+    days. They are calculated on the basis of your contributed income and are
+    paid every 14 days on average.
+
+
+    Please note: your daily allowance statements also validate your pension rights. Keep them for an unlimited period of time.
+  description.fr: >
+    Les indemnités journalières vous sont versées par l'Assurance
+    Maladie pour compenser votre revenu pendant l’arrêt de travail. Sous
+    certaines conditions, vous pouvez percevoir des indemnités journalières
+    après un délai de carence de 3 jours. Elles sont calculées à partir de vos
+    revenus cotisés et elles sont versées tous les 14 jours en moyenne.
+
+
+    À noter : vos relevés d'indemnités journalières valident également vos droits à la retraite. Conservez-les sans limitation de durée.
+  titre.en: '[automatic] allowances'
+  titre.fr: indemnités
 protection sociale . retraite:
   description.en: >
-    [automatic] All workers in France contribute throughout their
-    working life to a pension scheme once they are old enough to stop working.
+    [automatic] ### A mandatory system ...
+
+    As soon as you work, you and your employer contribute to your pension. This contribution is based on the salary you receive.
 
 
-    The pension system is currently based on the principle of "distribution". This means that the contributions of the working population finance the pensions of the retired population.
+    ###Pay-as-you-go
+
+    The total amount of contributions you pay each year is used to pay the pensions of the retirees for that same year. The system thus organizes a direct transfer from working generations to retired generations.
 
 
-    ## Retirement in France in a few figures
-      - 2094 € / month** : Average standard of living of the over 65s (compared to the rest of the population, it is the highest in the OECD 🥇)
-      - **25 years**: the average number of years spent in retirement (the highest in the OECD 🥇)
-      - **75%**: the replacement rate as a percentage of net salary at full rate
+    ###... mainly contributory
 
-    Retirement is the highest social contribution. It can be considered a deferred wage, since your contributions will provide you with future income.
+    When you retire, your pension (i.e., your retirement "income") is calculated based on your earnings, your retirement age and the number of years you worked.
+
+
+    **Our retirement system is also based on solidarity**: the unemployed, people on sick leave, people with disabilities, low-income workers and women on maternity leave also acquire rights. No retired person is left without resources.
+
 
 
     Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
   description.fr: >
-    Tous les travailleurs en France cotisent tout au long de leur
-    vie professionnelle pour bénéficier d’un régime de retraite dès lors qu’ils
-    ont l’âge de cesser leur activité.
+    ### Un système obligatoire …
+
+    Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
 
 
-    Le système des retraites est actuellement fondé sur le principe de la « répartition ». Cela veut dire que les cotisations des actifs financent les pensions des retraités.
+    ###… par répartition
+
+    Le montant total des cotisations que vous versez chaque année sert à payer les pensions des retraités pour cette même année. Le système organise ainsi un transfert direct des générations en activité vers les générations à la retraite.
 
 
-    ## La retraite en France en quelques chiffres
-      - ** 2094 € / mois** :  Niveau de vie moyen des plus de 65 ans (en comparaison du reste de la population, c'est le plus élevé de l'OCDE 🥇)
-      - **25 ans** : le nombre d'années passées en moyenne à la retraite (le plus élevé de l'OCDE 🥇)
-      - **75 %** : le taux de remplacement en pourcentage du salaire net à taux plein
+    ###… principalement contributif
 
-    La retraite est la plus élevée des cotisations sociales. Elle peut être considérée comme un salaire différé, puisque vos cotisations vous assurerons un revenu futur.
+    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu » à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à la retraite et du nombre d’années passées à travailler.
+
+
+    **Notre système de retraite est également solidaire** : les chômeurs, les personnes en arrêt maladie, les personnes en situation de handicap, les travailleurs touchant de faibles revenus, les femmes en congé maternité acquièrent également des droits. Aucune personne à la retraite n’est laissée sans ressources.
+
 
 
     Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
-  note.en: >
-    [automatic] This is a purely indicative estimate for the purpose of
-    comparing the retirement of the various schemes.
-
-    We limit ourselves to the following assumptions:
-      - It is assumed that the worker has retired at the full rate, by contributing the required number of quarters (172), or by leaving at the full rate age (67 years)
-      - The worker is considered to have had the same income throughout his career
-      - We consider that the worker has remained in the same system throughout his career
-      - We do not take into account the minorities/increases
-      - We do not take into account the pension funds of the regulated liberal professions (the 10 sections of the Cnavpl and the Cnbf)
-      - We do not calculate the number of quarters validated per year
-  note.fr: >
-    Il s'agit d'une estimation a but purement indicatif, afin de comparer
-    la retraite des différents régimes.
-
-    On se limite notamment aux hypothèses suivantes :
-      - On considère que le travailleur a pris sa retraite à taux plein, en cotisant le nombre de trimestres requis (172), ou en partant à l'âge taux plein (67 ans)
-      - On considère que le travailleur a eu le même revenu tout au long de sa carrière
-      - On considère que le travailleur est resté dans le même régime tout au long de sa carrière
-      - On ne prend pas en compte les minorations / majorations
-      - On ne prend pas en compte les caisses de retraite des professions libérales réglementées (les 10 sections de la Cnavpl et la Cnbf)
-      - On ne calcule pas le nombre de trimestres validés par année
   résumé.en: Guarantees on average 60 to 70% of the last income from employment
     after age 65.
   résumé.fr: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   titre.en: pensions
   titre.fr: retraite
-protection sociale . retraite . CIPAV:
-  titre.en: '[automatic] CIPAV'
-  titre.fr: CIPAV
 protection sociale . retraite . CNAVPL:
   description.en: >-
     [automatic] The liberal professions affiliated to the CNAVPL
@@ -5510,250 +5581,68 @@ protection sociale . retraite . CNAVPL:
     Pour chaque tranche, le nombre de points attribué est calculé au prorata de la cotisation effective
 
     sur la cotisation maximale et arrondi à la décimale la plus proche
-  note.en: >-
-    [automatic] Additional points may be awarded:
-
-    - redeemed points;
-
-    - 100 additional points for the calendar quarter in which childbirth occurs,
-
-    - 200 additional points per calendar year for the insured person suffering from a disability requiring the assistance of a third party
-
-    200 additional points per calendar year concerned for insured persons suffering from a disability that requires them to have recourse to the assistance of a third party;
-
-    - 400 points per calendar year for persons recognized as being unable to exercise their profession for a
-
-    of their profession for a period of more than 6 months
-  note.fr: >-
-    Des points supplémentaires peuvent être attribués :
-
-    - points rachetés ;
-
-    - 100 points supplémentaires au titre du trimestre civil au cours duquel survient l’accouchement,
-
-    - 200 points supplémentaires par année civile concernée pour l’assuré atteint d’invalidité l’obli-
-
-    geant à avoir recours à l’assistance d’une tierce personne ;
-
-    - 400 points par année civile pour les personnes reconnues atteintes d’une incapacité d’exercice
-
-    de leur profession pour une durée de plus de 6 mois
-  titre.en: '[automatic] CNAVPL'
-  titre.fr: CNAVPL
-protection sociale . retraite . CNAVPL . cotisation maximum T1:
-  titre.en: '[automatic] maximum contribution T1'
-  titre.fr: cotisation maximum T1
-protection sociale . retraite . CNAVPL . cotisation maximum T2:
-  titre.en: '[automatic] maximum fee T2'
-  titre.fr: cotisation maximum T2
+  titre.en: '[automatic] basic pension CNAVPL'
+  titre.fr: retraite de base CNAVPL
+protection sociale . retraite . CNAVPL . CIPAV:
+  titre.en: '[automatic] CIPAV'
+  titre.fr: CIPAV
+protection sociale . retraite . CNAVPL . CIPAV . complémentaire:
+  titre.en: '[automatic] complementary'
+  titre.fr: complémentaire
+protection sociale . retraite . CNAVPL . CIPAV . trimestres auto-entrepreneur:
+  titre.en: '[automatic] validated quarters as an auto-entrepreneur'
+  titre.fr: trimestres validés auto-entrepreneur
 protection sociale . retraite . base:
-  note.en:
-    '[automatic] Impatriates benefit from an exemption from old-age pension
-    contributions. In return, they do not acquire any rights during the
-    exemption period.'
-  note.fr: Les impatriés bénéficient d'une exonération de cotisation vieillesse.
-    En contrepartie, ils n'acquièrent aucun droit pendant la durée
-    d'exonération.
-  titre.en: '[automatic] basic retirement pension'
-  titre.fr: pension de retraite de base
-protection sociale . retraite . base . taux de la pension:
-  description.en: '[automatic] The rate applied, with a discount or surcote
-    depending on the number of quarters contributed.'
-  description.fr: Le taux appliqué, avec décote ou surcote en fonction du nombre
-    de trimestres cotisés.
-  note.en:
-    '[automatic] We do not take into account the reduction in the rate due
-    to the missing quarters. It is therefore considered that the contributor
-    leaves at the full rate, i.e. at age 67 (or earlier if all quarters are
-    validated).'
-  note.fr: On ne prend pas en compte la décote du taux suite aux trimestres
-    manquant. On considère donc que le cotisant part à taux plein, donc à 67 ans
-    (ou avant si tous les trimestres sont validés).
-  titre.en: '[automatic] pension rate'
-  titre.fr: taux de la pension
-protection sociale . retraite . base . trimestres:
-  titre.en: '[automatic] quarters'
-  titre.fr: trimestres
-protection sociale . retraite . base . trimestres . auto-entrepreneur:
-  description.en:
-    '[automatic] The minimum turnover thresholds for the validation
-    of quarters for retirement as an auto-entrepreneur. Below the minimum
-    amount, you will only have access to the solidarity allowance.'
-  description.fr:
-    Les seuils de chiffre d'affaires minimum pour la validation des
-    trimestres pour la retraite en auto-entrepreneur. En-dessous du montant
-    minimum, vous n'aurez accès qu'à l'allocation de solidarité.
-  titre.en: '[automatic] auto-entrepreneur'
-  titre.fr: auto-entrepreneur
-protection sociale . retraite . base . trimestres . indépendant:
-  note.en: >-
-    [automatic] Reminder: for self-employed workers, the validation of
-    quarters is based on the **contributed income**.
+  description.en: >
+    [automatic] Most working people contribute to both a basic
+    scheme (up to the social security ceiling, i.e. 3,311 euros per month) and a
+    complementary or additional scheme, on all or part of their income.
 
 
-    The last paragraph of article R351-9 of the Social Security Code, as made applicable to self-employed workers by articles D634-1 and R634-1 of the same code, with adaptations, provides that for the period after December 31, 2013, as many quarters are to be retained as the annual income corresponding to the deductions made by the insured person represents times the amount of the minimum growth wage in force on January 1 of the year in question, calculated on the basis of 150 hours, with a maximum of four quarters per calendar year.
+    The amount of your basic retirement pension is calculated from the average of your earnings over the best 25 years.
+  description.fr: >
+    La plupart des actifs cotisent à la fois à un régime de base
+    (jusqu’au plafond de la sécurité sociale, soit 3 311 euros par mois) et à un
+    régime complémentaire ou additionnel, sur tout ou une partie de leurs
+    revenus.
 
 
-    By deductions made by the insured, the text refers (in the case of a self-employed person who is not necessarily up to date with his or her contributions) to the basic old-age pension scheme contributions actually paid by him or her (and not to the contributions called for).
+    Le montant de votre pension pour la retraite de base est calculé à partir la moyenne de vos revenus des 25 meilleures années.
+  titre.en: '[automatic] base'
+  titre.fr: base
+protection sociale . retraite . base . cotisée:
+  titre.en: '[automatic] income contributed for the basic pension'
+  titre.fr: revenu cotisés pour la retraite de base
+protection sociale . retraite . complémentaire:
+  description.en: >
+    [automatic] Supplemental pension earned through a full year of
+    supplemental pension contributions.
 
 
-    The annual income corresponding to the deductions made by the insured (so-called "contributed income") is the income reconstituted from the basic old-age pension scheme contributions ("RVB") actually paid by the insured.
+    &gt; This amount is likely to vary between now and your retirement, depending on the update of the point value. Nevertheless, it offers an order of magnitude, and allows you to compare the complementary pension schemes between them
+  description.fr: >
+    Supplément de pension de retraite acquis grâce à une année
+    complète de cotisation retraite complémentaire.
 
 
-    The contributed income is therefore the basic old-age pension contribution actually paid for the year N divided by the basic old-age pension contribution rate for that year N.
-
-
-    Final RVB contribution actually paid for a year N (+ deductions or exemptions generating rights) / RVB contribution rate for this year N (for the part generating rights applicable to the capped income).
-
-
-    This income (known as "contributed income" for a year N) is used to validate quarters for a year N.
-
-
-    It is compared to the threshold of 150 smic/hour to determine the number of quarters to be validated (contributed income of year N /150 smic h).
-  note.fr: >-
-    Rappel : la validation de trimestres s’effectue, pour les travailleurs
-    indépendants à partir du **revenu cotisé**
-
-
-    Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel que rendu applicable aux travailleurs indépendants par les articles D634-1 et R634-1 du même code, moyennant adaptations, prévoit que pour la période postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres que le revenu annuel correspondant aux retenues subies par l’assuré représente de fois le montant du salaire minimum de croissance en vigueur au 1er janvier de l'année considérée calculé sur la base de 150 heures, avec un maximum de quatre trimestres par année civile.
-
-
-    Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
-
-
-    Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
-
-
-    Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.
-
-
-    Cotisation définitive RVB effectivement versée au titre d'une année N (+réductions ou exonérations génératrices de droits)  / taux de cotisation RVB au titre de cette année N (pour la part génératrice de droit applicable au revenu plafonné).
-
-
-    Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la validation de trimestres d’une année N.
-
-
-    Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
-  titre.en: '[automatic] independent'
-  titre.fr: indépendant
-protection sociale . retraite . base . trimestres . salarié:
-  titre.en: '[automatic] employee'
-  titre.fr: salarié
-protection sociale . retraite . complémentaire indépendants:
-  titre.en: supplementary pension for self-employed
-  titre.fr: complémentaire indépendants
-protection sociale . retraite . complémentaire indépendants . points acquis:
-  titre.en: acquired points
-  titre.fr: points acquis
-protection sociale . retraite . complémentaire indépendants . points acquis . valeur d'acquisition:
-  titre.en: '[automatic] acquisition value'
-  titre.fr: valeur d'acquisition
-protection sociale . retraite . complémentaire salarié:
+    > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
+  titre.en: '[automatic] Earned supplementary pension bonus'
+  titre.fr: Bonus retraite complémentaire acquis
+protection sociale . retraite . complémentaire . AGIRC ARRCO:
   note.en:
     '[automatic] The revaluation of the point value takes place on November
     1, not January 1.'
   note.fr:
     La revalorisation de la valeur du point a lieu au 1er novembre, et non
     au 1er janvier.
-  titre.en: supplementary pension for employees
-  titre.fr: complémentaire salarié
-protection sociale . retraite . complémentaire salarié . points acquis:
-  note.en: >
-    [automatic] It is based on a constant value of the point, except that
-    this value changes from year to year, so this value is a rough
-    approximation.
-  note.fr: >
-    On se base sur une valeur constante du point, hors cette dernière
-    change d'année en année, cette valeure est donc une grossière approximation
-  titre.en: acquired points
-  titre.fr: points acquis
-protection sociale . retraite . complémentaire salarié . points acquis . valeur d'acquisition:
-  titre.en: '[automatic] acquisition value'
-  titre.fr: valeur d'acquisition
-protection sociale . retraite . mois cotisés:
-  titre.en: '[automatic] months of contributions'
-  titre.fr: mois cotisés
-protection sociale . revenu moyen:
-  description.en: The income used to calculate the amount of retirement pensions
-    and daily social security allowances during a work stoppage.
-  description.fr: Le revenu utilisé pour le calcul du montant des pensions de
-    retraite et des indemnités journalières de sécurité sociale lors d'un arrêt
-    de travail.
-  titre.en: average income
-  titre.fr: revenu moyen
-protection sociale . santé:
-  description.en: >
-    Health Insurance protects the health of everyone on a long-term
-    basis - in their personal or professional life - by acting on behalf of
-    everyone.
-
-
-    In concrete terms, it supports 60 million insured throughout their lives, by taking charge of their care regardless of their resources, situation or state of health. It thus guarantees universal access to rights and allows access to health care.
-
-
-    Thanks to it, you are covered on most health care services. In the event of a serious or long-term illness, 100% of the care is reimbursed.
-
-
-    ## Health insurance in France in a few figures
-      - **92%** of health expenses reimbursed by health and supplementary insurance (one of the highest in the world)
-      - **€30,000 / year / patient** : health expenditure of a person with [cystic fibrosis](https://en.wikipedia.org/wiki/Cystic_fibrosis), **fully covered by social security**
-      - **11.7%** of GDP spent on health expenditure, the 5th of the OECD
-      - **82.4 years** of average life expectancy in France (in the top 10 worldwide 🏅)
-      - **€1,468 / month** : allowance paid by the social security system for maternity leave (average salary)
-  description.fr: >
-    L’Assurance Maladie protège durablement la santé de chacun dans
-    sa vie personnelle ou professionnelle.
-
-
-    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
-
-
-    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
-
-
-    ## L'assurance maladie en France en quelques chiffres
-      - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
-      - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
-      - **1 468 € / mois** : indémnité versée par la sécurité sociale pour un congé maternité (salaire moyen)
-      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
-  résumé.en: Covers most everyday health care and 100% of serious illnesses such
-    as hospital stays.
-  résumé.fr: Couvre la plupart des soins de santé de la vie quotidienne et 100 %
-    des maladies graves comme les séjours à l'hôpital.
-  titre.en: healthcare
-  titre.fr: santé
-protection sociale . santé . indemnités journalières:
-  description.en: Daily allowances are paid to you by the Health Insurance to
-    compensate for your income during a work stoppage. They are calculated on
-    the basis of your gross income and paid every 14 days on average.
-  description.fr: Les indemnités journalières vous sont versées par l'Assurance
-    Maladie pour compenser votre revenu pendant un arrêt de travail. Elles sont
-    calculées à partir de votre revenu brut et versées tous les 14 jours en
-    moyenne.
-  note.en: >
-    [automatic] We have not implemented the benefits of the
-
-    regulated professions. For an exhaustive list of
-
-    compensation, see [this
-
-    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
-  note.fr: >
-    Nous n'avons implémenté les indemnités des régimes particuliers des
-
-    professions libérales réglementées. Pour une liste exaustive des
-
-    indemnisation, consultez [ce
-
-    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
-  titre.en: Daily allowances
-  titre.fr: indemnités journalières
-protection sociale . santé . indemnités journalières . TNS:
-  titre.en: '[automatic] TNS'
-  titre.fr: TNS
-protection sociale . santé . indemnités journalières . salarié:
-  titre.en: employee
-  titre.fr: salarié
+  titre.en: '[automatic] AGIRC-ARRCO pension (employee) acquired for one year'
+  titre.fr: Pension AGIRC-ARRCO (salarié) acquise pour un an
+protection sociale . retraite . complémentaire . RCI:
+  titre.en: '[automatic] Supplementary pension for the self-employed'
+  titre.fr: Retraite complémentaire des indépendants
+protection sociale . retraite . trimestres:
+  titre.en: '[automatic] validated quarters'
+  titre.fr: trimestres validés
 protection sociale . transport:
   description.en: >
     This contribution is paid in full to the [mobility
@@ -6114,6 +6003,35 @@ salarié . contrat . apprentissage . diplôme préparé . niveau supérieur au b
     ...)
   titre.en: '[automatic] Diploma of a higher level than the baccalaureate'
   titre.fr: Diplôme d'un niveau supérieur au bac
+salarié . contrat . apprentissage . durée:
+  description.en: >
+    [automatic] The apprenticeship contract is a written contract
+    under private law.
+
+
+    It can be of limited duration (CDL) from a minimum of 6 months to a maximum of 3 years
+  description.fr: >
+    Le contrat d'apprentissage est un contrat écrit de droit privé.
+
+
+    Il peut être à durée limitée (CDL) d'une durée de 6 mois au minimum à 3 ans au maximum
+  question.en: '[automatic] What is the duration of the contract?'
+  question.fr: Quelle est la durée du contrat ?
+  suggestions.1 an.en: '[automatic] 1 year'
+  suggestions.1 an.fr: 1 an
+  suggestions.2 ans.en: '[automatic] 2 years'
+  suggestions.2 ans.fr: 2 ans
+  suggestions.3 ans.en: '[automatic] 3 years'
+  suggestions.3 ans.fr: 3 ans
+  suggestions.6 mois.en: '[automatic] 6 months'
+  suggestions.6 mois.fr: 6 mois
+  titre.en: '[automatic] duration of the contract'
+  titre.fr: durée du contrat
+salarié . contrat . apprentissage . trimestres validés pour la retraite:
+  note.en: '[automatic] We round down to the unit, hence the subtraction of 0.5'
+  note.fr: On arrondi à l'unité inférieur, d'où la soustraction de 0.5
+  titre.en: '[automatic] validated quarters for retirement'
+  titre.fr: trimestres validés pour la retraite
 salarié . contrat . date d'embauche:
   question.en: "[automatic] What is the employee's date of hire?"
   question.fr: Quelle est la date d'embauche du salarié ?

@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
@@ -212,6 +212,7 @@ export function SimulateurCard({
 	iframePath,
 	fromGérer = false,
 	icône,
+	beta,
 	...props
 }: {
 	shortName: ExtractFromSimuData<'shortName'>
@@ -219,6 +220,7 @@ export function SimulateurCard({
 	path: ExtractFromSimuData<'path'>
 	tooltip?: ExtractFromSimuData<'tooltip'>
 	iframePath?: ExtractFromSimuData<'iframePath'>
+	beta?: ExtractFromSimuData<'beta'>
 	icône: ExtractFromSimuData<'icône'>
 	small?: boolean
 	fromGérer?: boolean
@@ -241,6 +243,12 @@ export function SimulateurCard({
 						title={
 							<h4>
 								{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
+								{beta && (
+									<Badge>
+										<Emoji emoji="" />
+										🚧 Beta
+									</Badge>
+								)}
 							</h4>
 						}
 					/>
@@ -248,7 +256,17 @@ export function SimulateurCard({
 			) : (
 				<Grid item xs={12} sm={6} md={6} lg={4} {...props}>
 					<Card
-						title={shortName}
+						title={
+							<>
+								{shortName}
+								{beta && (
+									<Badge>
+										<Emoji emoji="" />
+										🚧 Beta
+									</Badge>
+								)}
+							</>
+						}
 						icon={<Emoji emoji={icône} />}
 						ctaLabel={t('.cta', 'Lancer le simulateur')}
 						to={{ pathname: (isIframe && iframePath) || path }}
@@ -261,3 +279,11 @@ export function SimulateurCard({
 		</ThemeProvider>
 	)
 }
+
+const Badge = styled.small`
+	border-radius: 0.5rem;
+	padding: 0.25rem 0.5rem;
+	margin: 0.25rem;
+	white-space: nowrap;
+	background-color: ${({ theme }) => theme.colors.extended.info[300]};
+`

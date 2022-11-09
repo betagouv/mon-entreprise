@@ -16,8 +16,8 @@ export default function Distribution() {
 	const targetUnit = useSelector(targetUnitSelector)
 	const engine = useContext(EngineContext)
 	const distribution = (
-		getCotisationsBySection(useEngine().getParsedRules()).map(
-			([section, cotisations]) => [
+		getCotisationsBySection(useEngine().getParsedRules())
+			.map(([section, cotisations]) => [
 				section,
 				cotisations
 					.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
@@ -25,12 +25,9 @@ export default function Distribution() {
 						(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
 						0
 					),
-			]
-		) as Array<[DottedName, number]>
-	)
-		.filter(([, value]) => value > 0)
-		.sort(([, a], [, b]) => b - a)
-
+			])
+			.filter(([, value]) => value > 0) as Array<[DottedName, number]>
+	).sort(([, a], [, b]) => b - a)
 	const maximum = Math.max(...distribution.map(([, value]) => value))
 
 	return (

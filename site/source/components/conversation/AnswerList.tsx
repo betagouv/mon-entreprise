@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import { utils } from 'publicodes'
+import { RuleNode, utils } from 'publicodes'
 import { useCallback, useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -54,10 +54,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					(dottedName) =>
 						engine.getRule(dottedName).rawNode.question !== undefined
 				)
-				.map(
-					(dottedName) =>
-						engine.evaluate(engine.getRule(dottedName)) as EvaluatedRule
-				),
+				.map((dottedName) => engine.getRule(dottedName)),
 		[engine, passedQuestions, situation, companySituation]
 	)
 	const nextSteps = useNextQuestions().map((dottedName) =>
@@ -179,7 +176,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 function StepsTable({
 	rules,
 }: {
-	rules: Array<EvaluatedRule>
+	rules: Array<EvaluatedRule | RuleNode>
 	onClose: () => void
 }) {
 	const { t } = useTranslation()
@@ -187,7 +184,7 @@ function StepsTable({
 	return (
 		<>
 			{rules
-				.filter((rule) => rule.nodeValue !== null)
+				.filter((rule) => !('nodeValue' in rule) || rule.nodeValue !== null)
 				.map((rule) => (
 					<StyledAnswerList container key={rule.dottedName}>
 						<Grid item xs>
@@ -207,7 +204,7 @@ function StepsTable({
 	)
 }
 
-function AnswerElement(rule: EvaluatedRule) {
+function AnswerElement(rule: RuleNode) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
@@ -215,7 +212,7 @@ function AnswerElement(rule: EvaluatedRule) {
 
 	const parentDottedName = utils.ruleParent(rule.dottedName) as DottedName
 	const questionDottedName = rule.rawNode.question
-		? rule.dottedName
+		? (rule.dottedName as DottedName)
 		: parentDottedName && engine.getRule(parentDottedName).rawNode.API
 		? parentDottedName
 		: undefined

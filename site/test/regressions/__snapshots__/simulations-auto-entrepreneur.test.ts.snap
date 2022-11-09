@@ -69,7 +69,7 @@ exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `
 dirigeant . auto-entrepreneur . cotisations et contributions: 715
 dirigeant . auto-entrepreneur . revenu net: undefined
 dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
-dirigeant . rémunération . impôt: undefined"
+dirigeant . rémunération . impôt: 924"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 1`] = `

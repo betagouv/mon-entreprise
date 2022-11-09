@@ -39,6 +39,7 @@
 		"@types/cacheable-request": "8.3.1",
 		"@types/responselike": "^1.0.0",
 		"@types/styled-components": "^5.1.26",
+		"styled-components": "^5.3.5",
 		"@types/chai": "^4.3.3"
 	},
 	"devDependencies": {

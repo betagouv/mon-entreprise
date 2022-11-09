@@ -82,7 +82,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 			},
 			path: sitePaths.simulateurs.salarié,
 			seoExplanations: (
-				<Trans i18nKey="pages.simulateurs.salarié.seo">
+				<Trans i18nKey="pages.simulateu rs.salarié.seo">
 					<H2>Comment calculer le salaire net ?</H2>
 					<Body>
 						Lors de l'entretien d'embauche l'employeur propose en général une
@@ -528,6 +528,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		'comparaison-statuts': {
 			...pureSimulatorsData['comparaison-statuts'],
 			component: SchemeComparaisonPage,
+
 			path: sitePaths.simulateurs.comparaison,
 		},
 		'économie-collaborative': {

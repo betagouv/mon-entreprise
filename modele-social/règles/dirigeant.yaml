@@ -60,8 +60,10 @@ dirigeant . rémunération . totale:
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
 
 dirigeant . rémunération . net:
-  titre: revenu net
-  question: Quelle est votre revenu net ?
+  titre: Rémunération nette
+  arrondi: oui
+  unité: €/mois
+  question: Quelle est votre rémunération nette ?
   résumé: Après déduction des cotisations, contributions et charges
   somme:
     - rémunération . totale
@@ -98,7 +100,7 @@ dirigeant . rémunération . impôt:
 
 dirigeant . rémunération . net . après impôt:
   titre: Revenu après impôt
-  unité: €/an
+  unité: €/mois
   arrondi: oui
   question: Quel est le revenu net après impôt souhaité ?
   description: >-
@@ -203,6 +205,7 @@ dirigeant . assimilé salarié . cotisations:
   abattement: réduction ACRE . montant
 
 dirigeant . assimilé salarié . réduction ACRE:
+  experimental: oui
   applicable si: dirigeant . exonérations . ACRE
   non applicable si: salarié . cotisations . assiette > 100% * plafond sécurité sociale
   avec:
@@ -277,7 +280,6 @@ dirigeant . auto-entrepreneur:
 dirigeant . auto-entrepreneur . revenu net:
   arrondi: oui
   unité: €/an
-  remplace: rémunération . net
   identifiant court: auto-entrepreneur-net
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
@@ -542,7 +544,6 @@ dirigeant . auto-entrepreneur . revenu net . après impôt:
   identifiant court: auto-entrepreneur-net-apres-impot
   résumé: Avant déduction des dépenses liées à l'activité
   unité: €/an
-  remplace: rémunération . net . après impôt
   arrondi: oui
   question: Quel est le revenu net après impôt souhaité ?
   description: >-
@@ -568,12 +569,10 @@ dirigeant . auto-entrepreneur . revenu net . après impôt:
 dirigeant . auto-entrepreneur . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires ?
   résumé: Montant total des recettes (hors taxe)
-  remplace: entreprise . chiffre d'affaires
   inversion numérique:
     avec:
-      - rémunération . totale
-      - revenu net . après impôt
       - revenu net
+      - revenu net . après impôt
 
 dirigeant . indépendant:
   applicable si: régime social = 'indépendant'
@@ -826,7 +825,11 @@ dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités jo
     assiette:
       unité: €/an
       valeur: 40% * plafond sécurité sociale
-    taux: cotisations et contributions . indemnités journalières maladie . taux
+    taux:
+      variations:
+        - si: date >= 01/2022
+          alors: 0.50%
+        - sinon: cotisations et contributions . indemnités journalières maladie . taux
   arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . cotisations:
@@ -892,6 +895,18 @@ dirigeant . indépendant . assiette minimale . retraite:
   arrondi: oui
   références:
     cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
+
+dirigeant . indépendant . assiette minimale . retraite . en 2022:
+  description: |
+    L’assiette minimale de 11,50% n’était pas suffisante pour valider 3 trimestres. Par conséquent cette assiette minimale a été révisée en cours d’année et sera appliquée de manière rétroactive à compté du 1er janvier 2022.
+
+    L’assiette minimale est de 4 758 €  pour 2022 uniquement. Pour 2023, on repasse à une assiette minimale de 11,5% du PASS.
+  remplace: assiette minimale . retraite
+  applicable si:
+    toutes ces conditions:
+      - date >= 01/2022
+      - date < 01/2023
+  valeur: 4758 €/an
 
 dirigeant . indépendant . cotisations et contributions . contributions spéciales:
   description: |

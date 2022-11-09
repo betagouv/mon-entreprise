@@ -1,5 +1,6 @@
 import { Item } from '@react-stately/collections'
 import rules, { DottedName } from 'modele-social'
+import Engine from 'publicodes'
 import { RulePage, getDocumentationSiteMap } from 'publicodes-react'
 import { ComponentProps, useMemo, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -17,7 +18,6 @@ import styled from 'styled-components'
 import { References } from '@/components/References'
 import SearchRules from '@/components/search/SearchRules'
 import { FromBottom } from '@/components/ui/animate'
-import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Markdown } from '@/components/utils/markdown'
@@ -34,10 +34,13 @@ import { useSitePaths } from '@/sitePaths'
 import { TrackPage } from '../ATInternetTracking'
 import RuleLink from '../components/RuleLink'
 
-export default function MonEntrepriseRulePage() {
-	const engine = useEngine()
-	const { absoluteSitePaths } = useSitePaths()
-	const documentationPath = absoluteSitePaths.documentation.index
+export default function Documentation({
+	documentationPath,
+	engine,
+}: {
+	documentationPath: string
+	engine: Engine
+}) {
 	const location = useLocation()
 	const pathname = decodeURI(location?.pathname ?? '')
 	const documentationSitePaths = useMemo(
@@ -65,7 +68,10 @@ export default function MonEntrepriseRulePage() {
 								<ScrollToTop key={pathname} />
 								<BackToSimulation />
 								<Spacing xl />
-								<DocumentationPageBody />
+								<DocumentationPageBody
+									engine={engine}
+									documentationPath={documentationPath}
+								/>
 							</FromBottom>
 						</>
 					)
@@ -99,13 +105,16 @@ const CustomAccordion = ({ items }: AccordionProps) => (
 	</StyledAccordion>
 )
 
-function DocumentationPageBody() {
-	const engine = useEngine()
+function DocumentationPageBody({
+	documentationPath,
+	engine,
+}: {
+	documentationPath: string
+	engine: Engine
+}) {
 	const { absoluteSitePaths } = useSitePaths()
-	const documentationPath = absoluteSitePaths.documentation.index
 	const { i18n } = useTranslation()
 	const params = useParams<{ '*': string }>()
-	const situation = useRawSituation()
 
 	const { current: renderers } = useRef({
 		Head: Helmet,
@@ -121,7 +130,6 @@ function DocumentationPageBody() {
 				language={i18n.language as 'fr' | 'en'}
 				rulePath={params['*'] ?? ''}
 				engine={engine}
-				situation={situation}
 				documentationPath={documentationPath}
 				renderers={renderers}
 				apiDocumentationUrl={absoluteSitePaths.développeur.api}

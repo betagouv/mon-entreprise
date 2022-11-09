@@ -9,14 +9,13 @@ dirigeant . indépendant . PL . métier:
   applicable si: entreprise . activité . nature . libérale . réglementée
   par défaut: "'rattaché CIPAV'"
   question: A quelle catégorie appartient votre profession ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - santé
-        - avocat
-        - expert-comptable
-        - rattaché CIPAV
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - santé
+      - avocat
+      - expert-comptable
+      - rattaché CIPAV
 
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   titre: Autre métier rattaché à la CIPAV
@@ -52,15 +51,14 @@ dirigeant . indépendant . PL . métier . santé:
     > *Exceptions* : Les ostéopathe, psychologue, psychothérapeute, ergothérapeute,
     diététicien et chiropracteur ne dépendent pas du régime PAMC mais de la
     CIPAV pour leur retraite et invalidité.
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - médecin
-        - chirurgien-dentiste
-        - sage-femme
-        - auxiliaire médical
-        - pharmacien
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - médecin
+      - chirurgien-dentiste
+      - sage-femme
+      - auxiliaire médical
+      - pharmacien
 
 dirigeant . indépendant . PL . métier . santé . auxiliaire médical:
   description: |
@@ -517,7 +515,7 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
     En conséquence une nouvelle cotisation est créée.
   remplace:
     - cotisations et contributions . indemnités journalières maladie
-    - règle: protection sociale . santé . indemnités journalières . TNS . raam . plafond
+    - règle: protection sociale . maladie . arrêt maladie . indemnités . indépendant . raam . plafond
       par: assiette . plafond
   non applicable si: PL . CNBF
   produit:
@@ -529,6 +527,7 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
         valeur: 3 * plafond sécurité sociale
       plancher: 40% * plafond sécurité sociale
     taux:
+      nom: taux
       variations:
         - si: date >= 01/2022
           alors: 0.30%
@@ -602,10 +601,11 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
   non applicable si: date < 01/01/2022
   remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
-  recalcul:
-    règle: indemnités journalières maladie
-    avec:
-      assiette des cotisations: 40% * plafond sécurité sociale
+  produit:
+    assiette: 40% * plafond sécurité sociale
+    taux: indemnités journalières maladie . taux
+  unité: €/an
+  arrondi: oui
 
 dirigeant . indépendant . PL . PAMC:
   applicable si:

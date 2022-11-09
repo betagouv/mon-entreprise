@@ -1,3 +1,5 @@
+import { DottedName } from 'modele-social'
+import Engine from 'publicodes'
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -28,10 +30,12 @@ export { SimulationGoals } from './SimulationGoals'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
+	engines?: Array<Engine<DottedName>>
 	results?: React.ReactNode
 	children?: React.ReactNode
 	afterQuestionsSlot?: React.ReactNode
 	hideDetails?: boolean
+	showQuestionsFromBeginning?: boolean
 	customEndMessages?: ConversationProps['customEndMessages']
 }
 
@@ -50,6 +54,8 @@ export default function Simulation({
 	children,
 	afterQuestionsSlot,
 	customEndMessages,
+	showQuestionsFromBeginning,
+	engines,
 	hideDetails = false,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
@@ -72,19 +78,22 @@ export default function Simulation({
 					{children}
 					<FromTop>
 						<div className="print-hidden">
-							{!firstStepCompleted && (
+							{!showQuestionsFromBeginning && !firstStepCompleted && (
 								<>
 									<Spacing sm />
 									<PreviousSimulationBanner />
 								</>
 							)}
 						</div>
-						{firstStepCompleted && (
+						{(firstStepCompleted || showQuestionsFromBeginning) && (
 							<>
 								<div className="print-hidden">
 									<FromTop>{results}</FromTop>
 								</div>
-								<Questions customEndMessages={customEndMessages} />
+								<Questions
+									engines={engines}
+									customEndMessages={customEndMessages}
+								/>
 							</>
 						)}
 						<div className="print-hidden">

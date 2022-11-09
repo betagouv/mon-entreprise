@@ -24,7 +24,7 @@ import './PaySlip.css'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 
 export const SECTION_ORDER = [
-	'protection sociale . santé',
+	'protection sociale . maladie',
 	'protection sociale . accidents du travail et maladies professionnelles',
 	'protection sociale . retraite',
 	'protection sociale . famille',
@@ -32,7 +32,7 @@ export const SECTION_ORDER = [
 	'protection sociale . formation',
 	'protection sociale . transport',
 	'protection sociale . autres',
-] as const
+] as Array<DottedName>
 
 type Section = typeof SECTION_ORDER[number]
 

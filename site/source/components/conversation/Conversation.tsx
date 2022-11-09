@@ -1,4 +1,5 @@
-import { PublicodesExpression } from 'publicodes'
+import { DottedName } from 'modele-social'
+import Engine, { PublicodesExpression } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,7 +14,7 @@ import Notifications from '@/components/Notifications'
 import QuickLinks from '@/components/QuickLinks'
 import RuleInput from '@/components/conversation/RuleInput'
 import Emoji from '@/components/utils/Emoji'
-import { EngineContext } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -37,22 +38,26 @@ import SeeAnswersButton from './SeeAnswersButton'
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
 	customSituationVisualisation?: React.ReactNode
+	engines?: Array<Engine<DottedName>>
 }
 
 export default function Conversation({
 	customEndMessages,
 	customSituationVisualisation,
+	engines,
 }: ConversationProps) {
 	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
 	const dispatch = useDispatch()
-	const engine = useContext(EngineContext)
-	const currentQuestion = useNextQuestions()[0]
+	const engine = useEngine()
+	const currentQuestion = useNextQuestions(engines)[0]
 	const situation = useSelector(situationSelector)
-	const currentQuestionIsAnswered = !(currentQuestion in useMissingVariables())
+	const currentQuestionIsAnswered = !(
+		currentQuestion in useMissingVariables({ engines: engines ?? [engine] })
+	)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 	const { t } = useTranslation()
 	useEffect(() => {
-		if (currentQuestion) {
+		if (currentQuestion && !currentQuestionIsAnswered) {
 			dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion])

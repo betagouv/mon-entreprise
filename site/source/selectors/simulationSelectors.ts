@@ -21,15 +21,20 @@ export const configObjectifsSelector = (state: RootState) => {
 
 const emptySituation: Situation = {}
 
-export const useMissingVariables = (): Partial<Record<DottedName, number>> => {
+export const useMissingVariables = ({
+	engines,
+}: {
+	engines: Array<Engine<DottedName>>
+}): Partial<Record<DottedName, number>> => {
 	const objectifs = useSelector(configObjectifsSelector)
-	const engine = useEngine()
 
-	return mergeObjectifsMissingVariable(
-		objectifs.map(
-			(objectif) => engine.evaluate(objectif).missingVariables ?? {}
-		),
-		engine
+	return treatAPIMissingVariables(
+		objectifs
+			.flatMap((objectif) =>
+				engines.map((e) => e.evaluate(objectif).missingVariables ?? {})
+			)
+			.reduce(mergeMissing, {}),
+		useEngine()
 	)
 }
 export const situationSelector = (state: RootState) =>
@@ -69,23 +74,32 @@ export const shouldFocusFieldSelector = (state: RootState) =>
  *
  * For instance, the commune field (API) will fill `commune . nom` `commune . taux versement transport`, `commune . département`, etc.
  */
-function mergeObjectifsMissingVariable<Name extends string>(
-	missingVariables: Array<Partial<Record<Name, number>>>,
+function treatAPIMissingVariables<Name extends string>(
+	missingVariables: Partial<Record<Name, number>>,
 	engine: Engine<Name>
 ): Partial<Record<Name, number>> {
-	return (
-		missingVariables.flatMap((missings) => Object.entries(missings)) as Array<
-			[Name, number]
-		>
-	).reduce((missings, [name, value]: [Name, number]) => {
-		const parentName = utils.ruleParent(name) as Name
-		if (parentName && engine.getRule(parentName).rawNode.API) {
-			missings[parentName] = (missings[parentName] ?? 0) + value
+	return (Object.entries(missingVariables) as Array<[Name, number]>).reduce(
+		(missings, [name, value]: [Name, number]) => {
+			const parentName = utils.ruleParent(name) as Name
+			if (parentName && engine.getRule(parentName).rawNode.API) {
+				missings[parentName] = (missings[parentName] ?? 0) + value
+
+				return missings
+			}
+			missings[name] = value
 
 			return missings
-		}
-		missings[name] = value
-
-		return missings
-	}, {} as Partial<Record<Name, number>>)
+		},
+		{} as Partial<Record<Name, number>>
+	)
 }
+const mergeMissing = (
+	left: Record<string, number> | undefined = {},
+	right: Record<string, number> | undefined = {}
+): Record<string, number> =>
+	Object.fromEntries(
+		[...Object.keys(left), ...Object.keys(right)].map((key) => [
+			key,
+			(left[key] ?? 0) + (right[key] ?? 0),
+		])
+	)

@@ -4,6 +4,8 @@ protection sociale:
     La protection sociale est composée de 5 branches principales : maladie, famille, accidents
     du travail et maladies professionnelles, retraite et chômage. A cela s'ajoutent
     aussi les cotisations pour la formation professionnelle et le transport.
+  références:
+    securite-sociale.fr: https://www.securite-sociale.fr/accueil
 
 protection sociale . retraite:
   icônes: 👵
@@ -57,7 +59,7 @@ protection sociale . retraite . base:
 
 protection sociale . retraite . base . cotisée:
   titre: revenu cotisés pour la retraite de base
-  unité: €/an
+  unité: €/mois
   arrondi: oui
   variations:
     - si: dirigeant . indépendant
@@ -102,21 +104,36 @@ protection sociale . retraite . base . cotisée:
 
         Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
 
+protection sociale . retraite . complémentaire:
+  titre: Bonus retraite complémentaire acquis
+  non applicable si: dirigeant . auto-entrepreneur
+  description: |
+    Supplément de pension de retraite acquis grâce à une année complète de cotisation retraite complémentaire.
+
+    > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
+  arrondi: oui
+  unité: € de pension annuelle
+  somme:
+    - RCI
+    - AGIRC ARRCO
+
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
-  titre: AGIRC-ARRCO (salarié)
+  titre: Pension AGIRC-ARRCO (salarié) acquise pour un an
+  par défaut: 0
   produit:
     assiette: points acquis
+    taux: 1 an
     facteur:
       nom: valeur du point
       variations:
         - si: date >= 01/11/2022
-          alors: 1.2841 €/an/point
+          alors: 1.2841 € de pension annuelle/point
         - si: date >= 01/11/2021
-          alors: 1.2714 €/an/point
+          alors: 1.2714 € de pension annuelle/point
         - si: date >= 01/11/2020
-          alors: 1.2714 €/an/point
+          alors: 1.2714 € de pension annuelle/point
         - si: date >= 01/11/2019
-          alors: 1.2588 €/an/point
+          alors: 1.2588 € de pension annuelle/point
   note: La revalorisation de la valeur du point a lieu au 1er novembre, et non au 1er janvier.
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
@@ -141,7 +158,7 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         - si: date >= 01/01/2019
           alors: 17.0571 €/point
       références:
-        barèmes agirc-arrco: https://www.agirc-arrco.fr/wp-content/uploads/2021/10/Historique_valeur_du_point_salaire_de_reference.pdf
+        barèmes agirc-arrco: https://www.agirc-arrco.fr/wp-content/uploads/2021/10/Compilation_valeurs_de_point_novembre-2022.pdf
 
 protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
@@ -149,17 +166,18 @@ protection sociale . retraite . complémentaire . RCI:
   non applicable si: dirigeant . indépendant . PL . CNAVPL
   produit:
     assiette: points acquis
+    taux: 1 an
     facteur:
       nom: valeur du point
       variations:
         - si: date >= 01/2022
-          alors: 1.221 €/an/point
+          alors: 1.221 € de pension annuelle/point
         - si: date >= 01/2021
-          alors: 1.208 €/an/point
+          alors: 1.208 € de pension annuelle/point
         - si: date >= 01/2020
-          alors: 1.203 €/an/point
+          alors: 1.203 € de pension annuelle/point
         - si: date >= 01/01/2019
-          alors: 1.191 €/an/point
+          alors: 1.191 € de pension annuelle/point
   références:
     cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
     barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_point_bar
@@ -208,7 +226,7 @@ protection sociale . retraite . CNAVPL:
       nom: valeur du point
       variations:
         - si: date >= 01/2022
-          alors: 0.5795 €/an/point
+          alors: 0.5795 € de pension annuelle/point
   avec:
     points acquis:
       somme:
@@ -252,6 +270,7 @@ protection sociale . retraite . CNAVPL:
 protection sociale . retraite . CNAVPL . CIPAV:
 protection sociale . retraite . CNAVPL . CIPAV . complémentaire:
   applicable si: dirigeant . indépendant . PL . CIPAV
+  remplace: retraite . complémentaire
   produit:
     assiette: points acquis
     facteur:
@@ -299,8 +318,9 @@ protection sociale . retraite . CNAVPL . CIPAV . trimestres auto-entrepreneur:
   références:
     Le régime retraite de base des auto-entrepreneur: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Auto-entrepreneurs%20-%20La%20Cipav_0.pdf?page=10
 
-protection sociale . santé:
+protection sociale . maladie:
   icônes: 🏥
+  titre: assurance maladie
   type: branche
   résumé: Couvre la plupart des soins de santé de la vie quotidienne et 100 % des maladies graves comme les séjours à l'hôpital.
   description: |
@@ -313,12 +333,91 @@ protection sociale . santé:
     ## L'assurance maladie en France en quelques chiffres
       - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
       - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
-      - **1 468 € / mois** : indémnité versée par la sécurité sociale pour un congé maternité (salaire moyen)
       - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
 
   références:
-    ameli.fr: https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
-    OCDE: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
+    À quel organisme de sécurité sociale est-on rattaché pour l'assurance maladie ?: https://www.service-public.fr/particuliers/vosdroits/F648
+    Ce qui est remboursé pour tout le monde: https://www.ameli.fr/assure/remboursements/rembourse
+    Rapport d'activité de l'assurance maladie 2017 (PDF): https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
+    Rapport OCDE sur l'esperance de vie dans les différents pays: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
+
+protection sociale . maladie . arrêt maladie:
+  titre:
+  description: >-
+    Si vous êtes en arrêt de travail pour maladie, vous avez droit à des indemnités journalières (IJ) versées par votre régime d'assurance maladie (CPAM, MSA,...).
+
+    Les conditions d'indemnisation varient en fonction de votre régime de protection sociale.
+  non applicable si:
+    toutes ces conditions:
+      - entreprise . activité . nature . libérale . réglementée
+      - dirigeant . indépendant . PL . régime général = non
+  note: |
+    Nous n'avons implémenté les indemnités des régimes particuliers des
+    professions libérales réglementées. Pour une liste exaustive des
+    indemnisation, consultez [ce
+    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
+  avec:
+    délai de carence:
+      description: |
+        Pendant les 3 premiers jours de votre arrêt de travail, aucune indemnité journalière ne vous est versée ; c'est ce que l'on appelle le délai de carence. Il s'applique au début de chaque arrêt de travail.
+      valeur: 3 jour
+      références:
+        Délai de carence pour les salarié: https://www.service-public.fr/particuliers/vosdroits/F3053#fiche-item-aria-3
+        Délai de carence pour les indépendants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124978
+    conditions:
+      titre: condition d'indemnisation
+
+protection sociale . maladie . arrêt maladie . indemnités:
+  description: |
+    Les indemnités journalières vous sont versées par l'Assurance Maladie pour compenser votre revenu pendant l’arrêt de travail. Sous certaines conditions, vous pouvez percevoir des indemnités journalières après un délai de carence de 3 jours. Elles sont calculées à partir de vos revenus cotisés et elles sont versées tous les 14 jours en moyenne.
+
+    À noter : vos relevés d'indemnités journalières valident également vos droits à la retraite. Conservez-les sans limitation de durée.
+
+  somme:
+    - indemnités . salarié
+    - indépendant
+  avec:
+    indépendant:
+      applicable si:
+        une de ces conditions:
+          - dirigeant . indépendant
+          - dirigeant . auto-entrepreneur
+      unité: €/jour
+      produit:
+        assiette: raam
+        facteur: 1 an / 730 jour
+      avec:
+        raam:
+          titre: Revenu d’activité annuel moyen
+          valeur:
+            variations:
+              - si: dirigeant . indépendant
+                alors: dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie . assiette
+              - si: dirigeant . auto-entrepreneur
+                alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
+          plafond:
+            nom: plafond
+            valeur: plafond sécurité sociale
+
+        références:
+          Quelles indemnités journalières pour les artisans/commerçants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
+          Quelles indemnités journalières pour les professions libérales: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
+    salarié:
+      unité: €/jour
+      par défaut: 0
+      description: |
+        L'indemnité journalière que vous recevrez pendant votre arrêt de travail est égale à 50 % de votre salaire journalier de base. Celui-ci est calculé sur la moyenne des salaires bruts des 3 derniers mois précédant votre arrêt de travail (12 mois en cas d'activité saisonnière).
+
+        **À noter :** votre entreprise est peut-être soumise à une convention collective de branche professionnelle qui assure le maintien de votre salaire intégral ou partiel pendant votre arrêt de travail pour maladie. Elle peut aussi avoir conclu un accord interne à l’entreprise qui prévoit ce maintien, appelé subrogation. Renseignez-vous auprès du service qui gère la paye dans votre entreprise.
+      notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
+      produit:
+        assiette:
+          valeur: salarié . rémunération . brut / 91.25 jour/trimestre
+          plafond: 1.8 * SMIC
+        taux: 50%
+      références:
+        'Arrêt de travail pour maladie : les indemnités journalières du salarié': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
+        'Arrêt maladie : indemnités journalières versées au salarié': https://www.service-public.fr/particuliers/vosdroits/F3053
 
 protection sociale . invalidité et décès:
   icônes: 🦽
@@ -332,65 +431,6 @@ protection sociale . invalidité et décès:
     capital décès (amelie.fr): https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces
     capital décès (salarié privé): https://www.service-public.fr/particuliers/vosdroits/F3005
     pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
-
-protection sociale . santé . indemnités journalières:
-  description: >-
-    Les indemnités journalières vous sont versées par l'Assurance Maladie pour compenser
-    votre revenu pendant un arrêt de travail. Elles sont calculées à partir de votre revenu
-    brut et versées tous les 14 jours en moyenne.
-  non applicable si:
-    toutes ces conditions:
-      - entreprise . activité . nature . libérale . réglementée
-      - dirigeant . indépendant . PL . régime général = non
-  unité: €/jour
-  note: |
-    Nous n'avons implémenté les indemnités des régimes particuliers des
-    professions libérales réglementées. Pour une liste exaustive des
-    indemnisation, consultez [ce
-    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
-  formule:
-    somme:
-      - indemnités journalières . TNS
-      - indemnités journalières . salarié
-
-protection sociale . santé . indemnités journalières . TNS:
-  applicable si:
-    une de ces conditions:
-      - dirigeant . indépendant
-      - dirigeant . auto-entrepreneur
-  unité: €/jour
-  produit:
-    assiette: raam
-    facteur: 1 an / 730 jour
-  avec:
-    raam:
-      titre: Revenu d’activité annuel moyen
-      valeur:
-        variations:
-          - si: dirigeant . indépendant
-            alors: dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie . assiette
-          - si: dirigeant . auto-entrepreneur
-            alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
-      plafond:
-        nom: plafond
-        valeur: plafond sécurité sociale
-
-  reférences:
-    Quelles indemnités journalières pour les artisans/commerçants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
-    Quelles indemnités journalières pour les professions libérales: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
-
-protection sociale . santé . indemnités journalières . salarié:
-  unité: €/jour
-
-  notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
-  applicable si: salarié
-  formule:
-    produit:
-      assiette: 5
-      taux: 50%
-      plafond: 1.8 * SMIC
-  reférences:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F3053
 
 protection sociale . assurance chômage:
   icônes: 💸
