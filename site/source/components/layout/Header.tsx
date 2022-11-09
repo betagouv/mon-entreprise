@@ -46,7 +46,7 @@ export default function Header() {
 					>
 						<Emoji emoji="☀️" aria-hidden />
 						<Switch
-							defaultSelected={darkMode}
+							isSelected={darkMode}
 							onChange={setDarkMode}
 							aria-label={t(
 								darkMode

@@ -188,7 +188,12 @@
 		</div>
 
 		<script>
-			const darkMode = localStorage.getItem('darkMode') === 'true'
+			const isIframe = (new URLSearchParams(
+					document.location.search.substring(1)
+				).get('iframe'))
+			const darkMode = localStorage.getItem('darkMode') === 'true' && !isIframe
+			console.log(isIframe, darkMode)
+
 			if (darkMode) {
 				document.body.style.backgroundColor = '#0f172a'
 			}
