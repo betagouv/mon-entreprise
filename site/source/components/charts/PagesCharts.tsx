@@ -157,6 +157,7 @@ export const StyledLegend = styled.div`
 			? theme.colors.extended.dark[600]
 			: theme.colors.extended.grey[100]};
 	padding: 0.125rem 1rem;
-	box-shadow: ${({ theme }) => theme.darkMode? theme.elevationsDarkMode[3] : theme.elevations[3]};
+	box-shadow: ${({ theme }) =>
+		theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 `

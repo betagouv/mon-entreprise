@@ -1,4 +1,4 @@
-import { useIsEmbedded } from '@/components/utils/embeddedContext'
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import Meta from '@/components/utils/Meta'
 import useSearchParamsSimulationSharing from '@/components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'

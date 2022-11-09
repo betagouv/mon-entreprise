@@ -191,8 +191,7 @@
 			const isIframe = (new URLSearchParams(
 					document.location.search.substring(1)
 				).get('iframe'))
-			const darkMode = localStorage.getItem('darkMode') === 'true' && !isIframe
-			console.log(isIframe, darkMode)
+			const darkMode = window.localStorage && window.localStorage.getItem('darkMode') === 'true' && !isIframe
 
 			if (darkMode) {
 				document.body.style.backgroundColor = '#0f172a'

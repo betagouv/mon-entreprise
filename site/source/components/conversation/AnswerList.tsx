@@ -284,13 +284,23 @@ const StyledAnswerList = styled(Grid)`
 	align-items: baseline;
 	justify-content: flex-end;
 	gap: ${({ theme }) => theme.spacings.sm};
-	color: ${({ theme }) => theme.darkMode ? theme.colors.bases.primary[100] : theme.colors.extended.dark[500]};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.bases.primary[100]
+			: theme.colors.extended.dark[500]};
 	font-family: ${({ theme }) => theme.fonts.main};
 	:nth-child(2n) {
-		background-color: ${({ theme }) => theme.darkMode ? theme.colors.extended.dark[500] : theme.colors.bases.primary[100]};
+		background-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.dark[500]
+				: theme.colors.bases.primary[100]};
 		color-adjust: exact !important;
 		outline: solid
 			${({ theme }) =>
-				`calc(${theme.spacings.md} / 2) ${theme.darkMode ? theme.colors.extended.dark[500] : theme.colors.bases.primary[100]}`};
+				`calc(${theme.spacings.md} / 2) ${
+					theme.darkMode
+						? theme.colors.extended.dark[500]
+						: theme.colors.bases.primary[100]
+				}`};
 	}
 `

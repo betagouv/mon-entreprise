@@ -1,5 +1,4 @@
 import Route404 from '@/components/Route404'
-import { IsEmbeded } from '@/components/utils/embeddedContext'
 import { Helmet } from 'react-helmet-async'
 import { Route, Routes } from 'react-router-dom'
 import SimulateurPage from '../../components/PageData'
@@ -10,7 +9,7 @@ export default function Iframes() {
 	const simulators = useSimulatorsData()
 
 	return (
-		<IsEmbeded>
+		<>
 			{/** Open external links in the parent frame.
 			This behavior can be configured on individual link, eg <a target="_blank" />.
 			Our own link are handled in-app by the router, and aren't affected by this directive.
@@ -40,6 +39,6 @@ export default function Iframes() {
 				<Route path="*" element={<Route404 />} />
 			</Routes>
 			<IframeFooter />
-		</IsEmbeded>
+		</>
 	)
 }

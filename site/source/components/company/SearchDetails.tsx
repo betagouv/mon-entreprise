@@ -79,7 +79,10 @@ function highlightLabelToJSX(highlightLabel: string) {
 }
 
 const Highlight = styled.strong`
-	background-color: ${({ theme }) => theme.darkMode ? theme.colors.bases.secondary[600] : theme.colors.bases.secondary[100]};
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.bases.secondary[600]
+			: theme.colors.bases.secondary[100]};
 `
 
 const CompanyContainer = styled.div`

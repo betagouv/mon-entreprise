@@ -73,7 +73,10 @@ const StyledArticle = styled.div`
 	display: block;
 	text-decoration: none;
 	&:hover {
-		background-color: ${({ theme }) => theme.darkMode ? theme.colors.bases.secondary[600] : theme.colors.bases.secondary[100]};
+		background-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.secondary[600]
+				: theme.colors.bases.secondary[100]};
 	}
 	&:hover ${StyledLink} {
 		${StyledLinkHover}
@@ -84,7 +87,10 @@ const StyledArticle = styled.div`
 `
 
 const StyledHeader = styled(H4)`
-	color: ${({ theme }) => theme.darkMode ? theme.colors.bases.primary[200] : theme.colors.bases.primary[600]};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.bases.primary[200]
+			: theme.colors.bases.primary[600]};
 `
 
 const StyledChevron = styled(Chevron)`

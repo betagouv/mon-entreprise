@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import isbot from 'isbot'
 import urssafTheme from '@/design-system/theme'
-import { ReactNode } from 'react'
 import styled, {
 	StyleSheetManager,
 	ThemeProvider,
@@ -29,7 +28,7 @@ const SystemRoot = ({ children }: SystemRootProps) => {
 }
 
 const Background: React.FC = ({ children }) => {
-	const [ darkMode ] = useDarkMode()
+	const [darkMode] = useDarkMode()
 
 	return <BackgroundStyle $darkMode={darkMode}>{children}</BackgroundStyle>
 }

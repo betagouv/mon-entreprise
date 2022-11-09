@@ -33,7 +33,9 @@ const List = styled.ul`
 
 const FocusedOption = css`
 	background-color: ${({ theme }) =>
-		theme.darkMode ? theme.colors.bases.primary[600] : theme.colors.bases.primary[100]} !important;
+		theme.darkMode
+			? theme.colors.bases.primary[600]
+			: theme.colors.bases.primary[100]} !important;
 	border-color: ${({ theme }) => theme.colors.bases.primary[500]} !important;
 `
 
@@ -46,14 +48,17 @@ const ListItem = styled.li<{ isFocused?: boolean; isSelected?: boolean }>`
 	text-align: left;
 	display: block;
 	color: ${({ theme, isSelected }) =>
-		theme.darkMode ? isSelected
+		theme.darkMode
+			? isSelected
 				? theme.colors.bases.primary[200]
 				: theme.colors.extended.dark[100]
 			: isSelected
-				? theme.colors.bases.primary[600]
-				: theme.colors.extended.grey[700]};
+			? theme.colors.bases.primary[600]
+			: theme.colors.extended.grey[700]};
 	background-color: ${({ theme }) =>
-		theme.darkMode ? theme.colors.extended.dark[500] : theme.colors.extended.grey[100]} !important;
+		theme.darkMode
+			? theme.colors.extended.dark[500]
+			: theme.colors.extended.grey[100]} !important;
 	width: 100%;
 
 	border-radius: 0.3rem;

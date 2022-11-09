@@ -1,5 +1,4 @@
 import { Button } from '@/design-system/buttons'
-import { SROnly } from '@/design-system/global-style'
 import { PopoverWithTrigger } from '@/design-system'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -13,6 +12,7 @@ export default function SearchButton() {
 			title={t('Que cherchez-vous ?')}
 			trigger={(buttonProps) => (
 				<StyledButton
+					size="XS"
 					className="print-hidden"
 					light
 					{...buttonProps}
@@ -34,9 +34,8 @@ export default function SearchButton() {
 							d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
 						/>
 					</StyledIcon>
-					<StyledLabel>
-						<Trans>Rechercher</Trans>
-					</StyledLabel>
+
+					<Trans>Rechercher</Trans>
 				</StyledButton>
 			)}
 			small
@@ -64,13 +63,10 @@ const StyledButton = styled(Button)`
 const StyledIcon = styled.svg`
 	height: ${({ theme }) => theme.spacings.md};
 	margin-right: ${({ theme }) => theme.spacings.xs};
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		margin-right: 0;
-	}
 `
 
-const StyledLabel = styled.span`
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		${SROnly}
-	}
-`
+// const StyledLabel = styled.span`
+// 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+// 		${SROnly}
+// 	}
+// `

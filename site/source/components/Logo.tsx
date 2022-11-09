@@ -8,7 +8,7 @@ import styled from 'styled-components'
 export function Logo() {
 	const {
 		i18n: { language },
-		t
+		t,
 	} = useTranslation()
 
 	return (

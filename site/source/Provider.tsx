@@ -1,6 +1,5 @@
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
-import { IsEmbeddedProvider } from '@/components/utils/embeddedContext'
 import { GlobalStyle } from '@/design-system/global-style'
 import { Container } from '@/design-system/layout'
 import DesignSystemThemeProvider from '@/design-system/root'
@@ -82,19 +81,17 @@ export default function Provider({
 					!inIframe() && <ServiceWorker />}
 				<OverlayProvider>
 					<ReduxProvider store={store}>
-						<IsEmbeddedProvider>
-							<ThemeColorsProvider>
-								<DisableAnimationOnPrintProvider>
-									<SiteNameContext.Provider value={basename}>
-										<I18nextProvider i18n={i18next}>
-											<BrowserRouterProvider basename={basename}>
-												{children}
-											</BrowserRouterProvider>
-										</I18nextProvider>
-									</SiteNameContext.Provider>
-								</DisableAnimationOnPrintProvider>
-							</ThemeColorsProvider>
-						</IsEmbeddedProvider>
+						<ThemeColorsProvider>
+							<DisableAnimationOnPrintProvider>
+								<SiteNameContext.Provider value={basename}>
+									<I18nextProvider i18n={i18next}>
+										<BrowserRouterProvider basename={basename}>
+											{children}
+										</BrowserRouterProvider>
+									</I18nextProvider>
+								</SiteNameContext.Provider>
+							</DisableAnimationOnPrintProvider>
+						</ThemeColorsProvider>
 					</ReduxProvider>
 				</OverlayProvider>
 			</ErrorBoundary>

@@ -66,10 +66,13 @@ export default function Header() {
 }
 
 const StyledHeader = styled.div`
-	height: ${({ theme }) => theme.spacings.xxxl};
+	min-height: ${({ theme }) => theme.spacings.xxxl};
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
-	gap: ${({ theme }) => theme.spacings.xs};
+	justify-content: center;
+	column-gap: ${({ theme }) => theme.spacings.xs};
+	row-gap: ${({ theme }) => theme.spacings.md};
 	a {
 		height: 100%;
 		display: flex;
