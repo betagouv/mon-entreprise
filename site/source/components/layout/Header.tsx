@@ -28,7 +28,7 @@ export default function Header() {
 
 	return (
 		<header role="banner">
-			<Link href={`${fullPath}#main`} className="skip-link">
+			<Link href={`${fullPath}#main`} className="skip-link print-hidden">
 				{t('Aller au contenu')}
 			</Link>
 			<Container>

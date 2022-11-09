@@ -113,7 +113,7 @@ const App = () => {
 	return (
 		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
-			<Link href={`${fullPath}#footer`} className="skip-link">
+			<Link href={`${fullPath}#footer`} className="skip-link print-hidden">
 				{t('Passer le contenu')}
 			</Link>
 			<main role="main" id="main">
