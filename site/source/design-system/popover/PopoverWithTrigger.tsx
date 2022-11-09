@@ -20,7 +20,7 @@ type ButtonBuilderProps = AriaButtonProps & {
 	ref: Ref<HTMLButtonElement>
 }
 
-type PopoverWithTriggerProps = {
+export type PopoverWithTriggerProps = {
 	trigger: (
 		propsToDispatch: ButtonBuilderProps
 	) => ReactElement<typeof Button> | ReactElement<typeof Link>
