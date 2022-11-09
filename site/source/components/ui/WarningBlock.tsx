@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { usePersistingState } from '@/components/utils/persistState'
 import { Message } from '@/design-system'
@@ -18,6 +18,8 @@ type WarningProps = {
 export default function Warning({ localStorageKey, children }: WarningProps) {
 	const [folded, fold] = usePersistingState<boolean>(localStorageKey, false)
 
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<Message type="info">
@@ -28,9 +30,13 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 						</Trans>{' '}
 						{folded && (
 							<Link
+								role="button"
 								onPress={() => fold(false)}
 								aria-expanded={false}
 								aria-controls="warning-text"
+								aria-label={t(
+									'Lire les précisions, ouvrir le message condensé.'
+								)}
 							>
 								<Trans i18nKey="simulateurs.warning.plus">
 									Lire les précisions
@@ -49,6 +55,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 									light
 									color="tertiary"
 									onPress={() => fold(true)}
+									aria-label={t("J'ai compris, fermer le message condensé.")}
 								>
 									<Trans>J'ai compris</Trans>
 								</Button>
