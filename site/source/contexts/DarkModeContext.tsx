@@ -1,4 +1,5 @@
-import React from 'react'
+import { useIsEmbedded } from '@/components/utils/embeddedContext'
+import React, { useEffect } from 'react'
 
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]
 
@@ -6,19 +7,20 @@ const persistDarkMode = (darkMode: boolean) => {
 	localStorage.setItem('darkMode', darkMode.toString())
 }
 
-const getDefaultDarkMode = () => {
+const useDefaultDarkMode = () => {
+	const isEmbeded = useIsEmbedded()
+
+	if (isEmbeded) {
+		return false
+	}
 	if (localStorage.getItem('darkMode')) {
 		return localStorage.getItem('darkMode') === 'true'
 	}
 
-	if (import.meta.env.DEV && typeof window !== 'undefined') {
-		return (
-			window.matchMedia &&
-			window.matchMedia('(prefers-color-scheme: dark)').matches
-		)
-	}
-
-	return false
+	return (
+		window.matchMedia &&
+		window.matchMedia('(prefers-color-scheme: dark)').matches
+	)
 }
 
 export const DarkModeContext = React.createContext<DarkModeContextType>([
@@ -30,7 +32,7 @@ export const DarkModeContext = React.createContext<DarkModeContextType>([
 ])
 
 export const DarkModeProvider: React.FC = ({ children }) => {
-	const [darkMode, _setDarkMode] = React.useState<boolean>(getDefaultDarkMode())
+	const [darkMode, _setDarkMode] = React.useState<boolean>(useDefaultDarkMode())
 
 	const setDarkMode = (darkMode: boolean) => {
 		_setDarkMode(darkMode)
@@ -40,6 +42,19 @@ export const DarkModeProvider: React.FC = ({ children }) => {
 		// eslint-disable-next-line no-console
 		console.log(darkMode ? 'Nuit' : 'Jour')
 	}
+
+	useEffect(() => {
+		if (!window.matchMedia) {
+			return
+		}
+		const onDarkModeChange = (e: MediaQueryListEvent) => {
+			setDarkMode(e.matches)
+		}
+		const matchDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+		matchDarkMode.addEventListener('change', onDarkModeChange)
+
+		return () => matchDarkMode.removeEventListener('change', onDarkModeChange)
+	})
 
 	return (
 		<DarkModeContext.Provider value={[darkMode, setDarkMode]}>

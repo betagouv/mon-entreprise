@@ -21,7 +21,6 @@ import poleEmploiLogo from './_images/pole-emploi.png'
 import { Button } from '@/design-system/buttons'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
-
 const checkIframe = (obj: SimulatorData[keyof SimulatorData]) =>
 	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)
 
@@ -67,7 +66,7 @@ function IntegrationCustomizer() {
 		''
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
-	const iframeSrc = useHref(`/iframes/${currentIframePath}`)
+	const iframeSrc = useHref(`/iframes/${currentIframePath}?iframe=true`)
 
 	useEffect(() => {
 		window.addEventListener(
@@ -178,8 +177,8 @@ const PreviewIframe = styled.iframe`
 const PrevisualisationContainer = styled.div`
 	outline: 2px solid ${({ theme }) => theme.colors.extended.grey[300]};
 	margin-top: 2rem;
-	overflow: hidden;
 	background-color: white;
+	overflow: hidden;
 	outline-offset: 1rem;
 `
 
@@ -321,7 +320,7 @@ function IntegrationCode({
 	color,
 }: IntegrationCodeProps) {
 	const { t } = useTranslation()
-	const [ darkMode ] = useDarkMode()
+	const [darkMode] = useDarkMode()
 
 	const codeRef = useRef<HTMLDivElement>(null)
 	const [copied, setCopied] = useState(false)
