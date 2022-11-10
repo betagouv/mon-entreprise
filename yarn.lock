@@ -3797,6 +3797,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@leeoniya/ufuzzy@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@leeoniya/ufuzzy@npm:0.8.0"
+  checksum: 15c2c944beafcd97da8487ea7c0f5b59268ac080e492aa8ad6a53719f02164677725ef228211290433a13efaf4c1abd99b6f286c37c469872863e7e2fee90385
+  languageName: node
+  linkType: hard
+
 "@mapbox/node-pre-gyp@npm:^1.0.5":
   version: 1.0.10
   resolution: "@mapbox/node-pre-gyp@npm:1.0.10"
@@ -26263,6 +26270,7 @@ __metadata:
     "@atomik-color/core": ^1.0.13
     "@axe-core/react": ^4.5.2
     "@internationalized/number": ^3.1.1
+    "@leeoniya/ufuzzy": ^0.8.0
     "@publicodes/api": ^1.0.0-beta.66
     "@react-aria/accordion": ^3.0.0-alpha.13
     "@react-aria/button": ^3.6.3
