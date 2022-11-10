@@ -1,0 +1,37 @@
+{
+	"compilerOptions": {
+		/* Basic Options */
+		"incremental": true,
+		"target": "ES2020",
+		"module": "NodeNext",
+		"outDir": "dist",
+		"declaration": true,
+
+		/* Strict Type-Checking Options */
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitThis": true,
+		"alwaysStrict": true,
+
+		/* Additional Checks */
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+
+		/* Module Resolution Options */
+		"moduleResolution": "NodeNext",
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+
+		/* Advanced Options */
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": ["test.ts"],
+	"exclude": ["**/node_modules"]
+}
