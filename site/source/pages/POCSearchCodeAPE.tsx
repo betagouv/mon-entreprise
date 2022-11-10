@@ -1,5 +1,5 @@
 import UFuzzy from '@leeoniya/ufuzzy'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, Fragment } from 'react'
 
 import { TextField } from '@/design-system'
 import { CardContainer } from '@/design-system/card/Card'
@@ -37,84 +37,16 @@ type Data =
 	| Catégorie
 	| SousCatégorie
 
-const fuzzy = new UFuzzy({})
-
-// interface Data {
-// 	level_1: string
-// 	level_2: string
-// 	level_3: string
-// 	level_4: string
-// 	specific_word: string
-// 	generic_word: string
-// 	other_word: string
-// 	excluded_word: string
-// 	code: string
-// 	code_ape_compatible: string
-// }
-
-// const witelist = {
-// 	// CodeN1: '',
-// 	"Niv. 1 \n(Domaine d'activité général)": 'level_1',
-// 	// CodeN2: '',
-// 	"Niv. 2\n(précision sur le domaine d'activité)": 'level_2',
-// 	// CodeN3: '',
-// 	"Niv. 3\n(précision du type d'exercice professionnel si besoin)": 'level_3',
-// 	// CodeN4: '',
-// 	'Niv. 4\n(précision détaillée du type de profession si besoin)': 'level_4',
-// 	'MOT SPECIFIQUE': 'specific_word',
-// 	'MOT GENERIQUE': 'generic_word',
-// 	Autres: 'other_word',
-// 	"mot d'exclusion": 'excluded_word',
-// 	'Code final': 'code',
-// 	// 'Affiliation si principale (hors prolongement agricole)': '',
-// 	// 'Caisse de retraite spéciale': '',
-// 	// 'Forme exercice Activité si  effectif < 11 (hors prolongement agricole)': '',
-// 	// "Forme exercice d'activité si JQPA non revendiquée (hors proongement agricole)":
-// 	// 	'',
-// 	// 'Forme exercice Activité si prolongement agricole': '',
-// 	// 'RESEAU ASSISTANCE': '',
-// 	'Codes APE compatibles': 'code_ape_compatible',
-// 	// 'déduction de precisionActivite': '',
-// 	// 'si microEntreprise = true, déduction de regimeImpositionBenefices': '',
-// 	// Affiliateur: '',
-// 	// "Forme d'activité": '',
-// 	// 'Encodage ACOSS': '',
-// }
-
-// const data = Untitled.map((obj) =>
-// 	objectTransform(obj, (entries) =>
-// 		entries
-// 			.filter(([key]) => Object.keys(witelist).includes(key))
-// 			.map(([key, val]) => [witelist[key as keyof typeof witelist], val])
-// 			.map(([key, val]) =>
-// 				key === 'code_ape_compatible'
-// 					? [key, val.replace(/\s/g, '')]
-// 					: [key, val]
-// 			)
-// 	)
-// ) as unknown as Data[]
-
-// console.log({ xxx: JSON.stringify(data, null, 2) })
+const fuzzy = new UFuzzy({
+	intraIns: 2,
+})
 
 const filteredData = (testData as Data[]).filter(
 	({ type }) => type === 'sousClasse'
 )
 
 const { specificList, genericList, excludedList } = filteredData.reduce(
-	(
-		prev,
-		{
-			// generic_word: genericWord,
-			// specific_word: specificWord,
-			// excluded_word: excludedWord,
-			// type,
-			contenuCentral,
-			contenuAnnexe,
-			contenuExclu,
-			title,
-			code,
-		}
-	) => ({
+	(prev, { contenuCentral, contenuAnnexe, contenuExclu, title, code }) => ({
 		specificList: [
 			...(prev.specificList ?? []),
 			[title, ...contenuCentral, code].join(', '),
@@ -173,12 +105,15 @@ export default function POCSearchCodeAPE() {
 			const generic = search(latinizedGenericList, latinizedValue)
 			const excluded = search(latinizedExcludedList, latinizedValue)
 
-			// const customOrder = [...specific.info.idx, ...generic.info.idx].filter(
-			// 	(id) => !excluded.info.idx.includes(id)
-			// )
-			const specificResults = specific.info.idx.map((id) => filteredData[id])
-			const genericResults = generic.info.idx.map((id) => filteredData[id])
-			const excludedResults = excluded.idxs.map((id) => filteredData[id])
+			const specificResults = specific.order.map(
+				(i) => filteredData[specific.info.idx[i]]
+			)
+			const genericResults = generic.order.map(
+				(i) => filteredData[generic.info.idx[i]]
+			)
+			const excludedResults = excluded.order.map(
+				(i) => filteredData[excluded.info.idx[i]]
+			)
 
 			const results = [
 				...new Set([...specificResults, ...genericResults]),
@@ -234,11 +169,11 @@ export default function POCSearchCodeAPE() {
 											<br />
 										</>
 									) : null}
-									{contenuCentral.map((contenu) => (
-										<>
+									{contenuCentral.map((contenu, i) => (
+										<Fragment key={i}>
 											{contenu}
 											<br />
-										</>
+										</Fragment>
 									))}
 									{contenuAnnexe.length ? (
 										<>
@@ -249,11 +184,11 @@ export default function POCSearchCodeAPE() {
 											<br />
 										</>
 									) : null}
-									{contenuAnnexe.map((contenu) => (
-										<>
+									{contenuAnnexe.map((contenu, i) => (
+										<Fragment key={i}>
 											{contenu}
 											<br />
-										</>
+										</Fragment>
 									))}
 									{contenuExclu.length ? (
 										<>
@@ -264,11 +199,11 @@ export default function POCSearchCodeAPE() {
 											<br />
 										</>
 									) : null}
-									{contenuExclu.map((contenu) => (
-										<>
+									{contenuExclu.map((contenu, i) => (
+										<Fragment key={i}>
 											{contenu}
 											<br />
-										</>
+										</Fragment>
 									))}
 									{/* {elems.map((el, i) => {
 										return i % 2 === 0 ? (
