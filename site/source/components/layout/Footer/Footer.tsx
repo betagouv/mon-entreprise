@@ -83,6 +83,9 @@ export default function Footer() {
 								{language === 'fr' && (
 									<nav>
 										<ul>
+											<Link to={absoluteSitePaths.plan as string}>
+												<Trans>Plan du site</Trans>
+											</Link>
 											<li>
 												<Link to={absoluteSitePaths.nouveautés}>
 													Nouveautés <Emoji emoji="✨" />
@@ -105,9 +108,6 @@ export default function Footer() {
 							<FooterColumn>
 								<nav>
 									<ul>
-										<Link to={absoluteSitePaths.plan as string}>
-											<Trans>Plan du site</Trans>
-										</Link>
 										{language === 'fr' && (
 											<li>
 												<Link to={absoluteSitePaths.développeur.index}>
