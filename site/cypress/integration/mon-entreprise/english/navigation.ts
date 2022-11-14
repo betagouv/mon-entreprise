@@ -66,7 +66,10 @@ describe(`Navigation to income simulator using company name (${
 			fr ? 'Rechercher votre entreprise ' : 'Search for your company '
 		).click()
 
-		cy.get('input').first().type('menoz').wait('@search')
+		cy.get('input[data-test-id="company-search-input"]')
+			.first()
+			.type('menoz')
+			.wait('@search')
 
 		cy.contains('834364291').click()
 		cy.contains('SAS(U)').click()
@@ -86,7 +89,9 @@ describe(`Navigation to income simulator using company name (${
 			fr ? 'Rechercher votre entreprise ' : 'Search for your company '
 		).click()
 
-		cy.get('input').first().type('johan girod').wait('@search')
+		cy.get('input[data-test-id="company-search-input"]')
+			.type('johan girod')
+			.wait('@search')
 
 		cy.contains('834825614').click()
 		// ask if auto-entrepreneur
