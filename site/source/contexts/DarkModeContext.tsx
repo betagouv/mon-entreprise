@@ -1,21 +1,21 @@
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
+import { getItem, setItem } from '@/storage/safeLocalStorage'
 import React, { useEffect } from 'react'
 
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]
 
 const persistDarkMode = (darkMode: boolean) => {
-	localStorage.setItem('darkMode', darkMode.toString())
+	setItem('darkMode', darkMode.toString())
 }
 
 const getDefaultDarkMode = () => {
 	if (import.meta.env.SSR) {
 		return false
 	}
-	if (localStorage?.getItem('darkMode')) {
-		return localStorage.getItem('darkMode') === 'true'
-	}
 
-	return matchMedia?.('(prefers-color-scheme: dark)').matches
+	return getItem('darkMode')
+		? getItem('darkMode') === 'true'
+		: matchMedia?.('(prefers-color-scheme: dark)').matches
 }
 
 export const DarkModeContext = React.createContext<DarkModeContextType>([

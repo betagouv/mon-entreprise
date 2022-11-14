@@ -188,10 +188,26 @@
 		</div>
 
 		<script>
-			const isIframe = (new URLSearchParams(
-					document.location.search.substring(1)
-				).get('iframe'))
-			const darkMode = window.localStorage && window.localStorage.getItem('darkMode') === 'true' && !isIframe
+			const isIframe = new URLSearchParams(
+				document.location.search.substring(1)
+			).get('iframe')
+
+			function getItem(key) {
+				try {
+					return window.localStorage.getItem(key)
+				} catch (error) {
+					if (error instanceof Error && error.name === 'SecurityError') {
+						// eslint-disable-next-line no-console
+						console.warn(
+							'[localStorage] Unable to set item due to security settings'
+						)
+					}
+
+					return null
+				}
+			}
+
+			const darkMode = !isIframe && getItem('darkMode') === 'true'
 
 			if (darkMode) {
 				document.body.style.backgroundColor = '#0f172a'
