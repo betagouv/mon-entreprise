@@ -258,13 +258,13 @@ Pour déployer une version preview de mon-entreprise utilisant une version de pu
 
 Nous gérons les retours utilisateurs avec plusieurs outils :
 
--   [Zammad](https://zammad.com) pour reçevoir et répondre aux messages
+-   [Crisp](https://crisp.chat/fr) pour reçevoir et répondre aux messages
 -   Github pour suivre le développement des demandes
 -   et ATInternet, notre outil de statistiques, pour suivre la notation des pages
 
-Nous recevons les messages des utilisateurs sur Zammad. Si la demande concerne une nouvelle fonctionnalité, nous ouvrons un ticket sur Github avec l'étiquette [retour utilisateur](https://github.com/betagouv/mon-entreprise/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%8F%93+retour+utilisateur%22). Cela nous permet de récupérer la liste des demandes avec l'API Github pour l'afficher sur le site.
+Nous recevons les messages des utilisateurs sur Crisp. Si la demande concerne une nouvelle fonctionnalité, nous ouvrons un ticket sur Github avec l'étiquette [retour utilisateur](https://github.com/betagouv/mon-entreprise/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%8F%93+retour+utilisateur%22). Cela nous permet de récupérer la liste des demandes avec l'API Github pour l'afficher sur le site.
 
-Zammad permet également d'ajouter une étiquette au message, ce qui nous permet de l'associer au ticket Github correspondant. Avec l'API Zammad, nous pouvons ainsi compter le nombre de demandes sur une fonctionnalité donnée. Enfin quand le ticket est fermé sur Github un petit robot nous rappelle de prévenir les utilisateurs qui nous on fait le retour, ainsi on peut revenir vers eux même plusieurs mois après pour leur indiquer que leur demande a été intégrée.
+Crisp permet également d'ajouter une étiquette au message, ce qui nous permet de l'associer au ticket Github correspondant. Avec l'API Crisp, nous pouvons ainsi compter le nombre de demandes sur une fonctionnalité donnée. Enfin quand le ticket est fermé sur Github un petit robot nous rappelle de prévenir les utilisateurs qui nous on fait le retour, ainsi on peut revenir vers eux même plusieurs mois après pour leur indiquer que leur demande a été intégrée.
 
 Quant à la notation des pages avec des smileys, elle fonctionne via des événements personnalisés remontés sur notre outil de statistiques. Nous récupérons le nombre d'événements par page avec l'API fournie pour la présenter sur notre [page statistique dédiée](https://mon-entreprise.urssaf.fr/stats).
 
