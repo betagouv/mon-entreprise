@@ -83,7 +83,7 @@ export default function Footer() {
 								{language === 'fr' && (
 									<nav>
 										<ul>
-											<Link to={absoluteSitePaths.plan as string}>
+											<Link to={absoluteSitePaths.plan}>
 												<Trans>Plan du site</Trans>
 											</Link>
 											<li>
@@ -108,13 +108,11 @@ export default function Footer() {
 							<FooterColumn>
 								<nav>
 									<ul>
-										{language === 'fr' && (
-											<li>
-												<Link to={absoluteSitePaths.développeur.index}>
-													<Trans>Intégrer nos simulateurs</Trans>
-												</Link>
-											</li>
-										)}
+										<li>
+											<Link to={absoluteSitePaths.développeur.index}>
+												<Trans>Intégrer nos simulateurs</Trans>
+											</Link>
+										</li>
 										{language === 'fr' && (
 											<li>
 												<InscriptionBetaTesteur />
