@@ -14,8 +14,10 @@ export default function Plan() {
 	const metadata = getMetadataSrc(t)
 
 	return (
-		<Trans i18nKey="pages.plan-du-site">
-			<H1>Plan du site</H1>
+		<>
+			<H1>
+				<Trans>Plan du site</Trans>
+			</H1>
 			<Meta
 				page="plan-du-site"
 				title="Plan du site"
@@ -25,19 +27,23 @@ export default function Plan() {
 
 			<StyledUl role="main">
 				<Li as="h2">
-					<Link to={absoluteSitePaths.index}>Page d'accueil</Link>
+					<Link to={absoluteSitePaths.index}>
+						<Trans>Page d'accueil</Trans>
+					</Link>
 				</Li>
 				<Li as="h2">
 					<HeaderLink to={absoluteSitePaths.créer.index}>
-						Créer une entreprise
+						<Trans>Créer une entreprise</Trans>
 					</HeaderLink>
 					<Ul>
 						<Li>
-							<Link to={absoluteSitePaths.créer.après}>Après la création</Link>
+							<Link to={absoluteSitePaths.créer.après}>
+								<Trans>Après la création</Trans>
+							</Link>
 						</Li>
 						<Li>
 							<Link to={absoluteSitePaths.créer.guideStatut.index}>
-								Choix du statut juridique
+								<Trans>Choix du statut juridique</Trans>
 							</Link>
 						</Li>
 					</Ul>
@@ -45,32 +51,36 @@ export default function Plan() {
 
 				<Li as="h2">
 					<HeaderLink to={absoluteSitePaths.gérer.index}>
-						Gérer mon activité
+						<Trans>Gérer mon activité</Trans>
 					</HeaderLink>
 					<Ul>
 						<Li>
-							<Link to={absoluteSitePaths.gérer.embaucher}>Embaucher</Link>
+							<Link to={absoluteSitePaths.gérer.embaucher}>
+								<Trans>Embaucher</Trans>
+							</Link>
 						</Li>
 						<Li>
 							<Link to={absoluteSitePaths.gérer.sécuritéSociale}>
-								Protection sociale
+								<Trans>Protection sociale</Trans>
 							</Link>
 						</Li>
 						<Li>
 							<Link to={absoluteSitePaths.gérer.déclarationIndépendant.index}>
-								Assistant à la détermination des charges sociales déductibles
+								<Trans>
+									Assistant à la détermination des charges sociales déductibles
+								</Trans>
 							</Link>
 						</Li>
 						<Li>
 							<Link to={absoluteSitePaths.gérer.formulaireMobilité}>
-								Simulateur de demande de mobilité
+								<Trans>Simulateur de demande de mobilité</Trans>
 							</Link>
 						</Li>
 					</Ul>
 				</Li>
 				<Li as="h2">
 					<HeaderLink to={absoluteSitePaths.simulateurs.index}>
-						Simulateurs disponibles
+						<Trans>Simulateurs disponibles</Trans>
 					</HeaderLink>
 					<Ul>
 						{Object.entries(absoluteSitePaths.simulateurs)
@@ -96,62 +106,77 @@ export default function Plan() {
 							})}
 						<Li key="list-item-comparaison">
 							<Link to={absoluteSitePaths.simulateurs.comparaison}>
-								Assistant au choix du statut juridique
+								<Trans>Assistant au choix du statut juridique</Trans>
 							</Link>
 						</Li>
 						<Li key="list-item-economie-collaborative">
 							<Link
 								to={absoluteSitePaths.simulateurs.économieCollaborative.index}
 							>
-								Assistant à la déclaration des revenus des plateformes en ligne
+								<Trans>
+									Assistant à la déclaration des revenus des plateformes en
+									ligne
+								</Trans>
 							</Link>
 						</Li>
 					</Ul>
 				</Li>
 				<Li as="h2">
-					<Link to={absoluteSitePaths.nouveautés}>Nouveautés</Link>
+					<Link to={absoluteSitePaths.nouveautés}>
+						<Trans>Nouveautés</Trans>
+					</Link>
 				</Li>
 				<Li as="h2">
-					<Link to={absoluteSitePaths.budget}>Budget</Link>
+					<Link to={absoluteSitePaths.budget}>
+						<Trans>Budget</Trans>
+					</Link>
 				</Li>
 				<Li as="h2">
-					<Link to={absoluteSitePaths.accessibilité}>Accessibilité</Link>
+					<Link to={absoluteSitePaths.accessibilité}>
+						<Trans>Accessibilité</Trans>
+					</Link>
 				</Li>
 				<Li as="h2">
-					<Link to={absoluteSitePaths.stats}>Statistiques</Link>
+					<Link to={absoluteSitePaths.stats}>
+						<Trans>Statistiques</Trans>
+					</Link>
 				</Li>
 				<Li as="h2">
 					<HeaderLink to={absoluteSitePaths.développeur.index}>
-						Outils pour les développeurs
+						<Trans>Outils pour les développeurs</Trans>
 					</HeaderLink>
 					<Ul>
 						<Li key="list-item-développeur-api">
 							<Link to={absoluteSitePaths.développeur.api}>
-								API REST de simulation
+								<Trans>API REST de simulation</Trans>
 							</Link>
 						</Li>
 						<Li key="list-item-développeur-iframe">
 							<Link to={absoluteSitePaths.développeur.iframe}>
-								Intégrer le module Web
+								<Trans>Intégrer le module Web</Trans>
 							</Link>
 						</Li>
 						<Li key="list-item-développeur-library">
 							<Link to={absoluteSitePaths.développeur.library}>
-								Utiliser les calculs des simulateurs dans votre application
+								<Trans>
+									Utiliser les calculs des simulateurs dans votre application
+								</Trans>
 							</Link>
 						</Li>
 						<Li key="list-item-développeur-library">
 							<Link to={absoluteSitePaths.développeur.spreadsheet}>
-								Utiliser avec un tableur
+								<Trans>Utiliser avec un tableur</Trans>
 							</Link>
 						</Li>
 					</Ul>
 				</Li>
 				<Li as="h2">
-					<Link to={absoluteSitePaths.documentation.index}>Documentation</Link>
+					<Link to={absoluteSitePaths.documentation.index}>
+						<Trans>Documentation</Trans>
+					</Link>
 				</Li>
 			</StyledUl>
-		</Trans>
+		</>
 	)
 }
 

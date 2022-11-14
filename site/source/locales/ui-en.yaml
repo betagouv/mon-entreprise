@@ -40,6 +40,8 @@
   <0>You are not concerned by the exemption of Covid contributions for the
   self-employed.</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
+API REST de simulation: Simulation REST API
+Accessibilité: Accessibility
 Accompagnement activé: Accompaniment activated
 Accompagnement désactivé: Accompaniment deactivated
 Accueil: Home
@@ -52,8 +54,12 @@ Aides Covid-19: Covid-19 Aids
 Alors: Then
 Annuel: Yearly
 Année d'activité: Years of activity
+Après la création: After the creation
 Artiste-auteur: Artist-author
 Assimilé salarié: '"Assimilé-salarié"'
+Assistant au choix du statut juridique: Assistance in choosing a legal status
+Assistant à la déclaration des revenus des plateformes en ligne: Assistant to the declaration of income of online platforms
+Assistant à la détermination des charges sociales déductibles: Assistance in determining deductible social charges
 Assistants à la déclaration de revenu 2021 des indépendants: Self-employed 2021 tax return assistants
 Assistants à la déclaration de revenu des indépendants: Self-employed tax return assistants
 Assistants à la déclaration de revenus 2021 des indépendants: Assistants to the 2021 tax return for the self-employed
@@ -66,6 +72,7 @@ Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 Autres exonérations: Other exemptions
 Autres outils: Other tools
 Avec chômage partiel: With partial unemployment
+Budget: Budget
 Calcul: Formula
 Cette commune n'existe pas: This commune does not exist
 Cette règle ne s'applique pas pour: This rule does not apply for
@@ -73,6 +80,7 @@ Changer: Change
 Chercher dans la documentation: Search the documentation
 Choisir la forme juridique: Choose your legal status
 Choisir plus tard: Choose later
+Choix du statut juridique: Choice of legal status
 Chômage partiel: Partial unemployment
 Code d'intégration: Integration Code
 Commencer: Get started
@@ -98,10 +106,12 @@ Crée le: Created on
 "Crée le :": "Created on :"
 Créee le <2><0></0></2> et domiciliée à <6><0></0></6>: Created on <2><0></0></2> and domiciled at <6><0></0></6>
 Créer une: Create a
+Créer une entreprise: Create a company
 De: From
 Demande de mobilité: Demand for mobility
 Destinataire: Levied by
 Devenir: Become
+Documentation: Documentation
 "Domiciliée à l'adresse :": "Domiciled at the address :"
 "Début d'activité : ": "Start of activity: "
 Déclenchement: Applicability
@@ -119,6 +129,7 @@ Effacer mes réponses: Delete my answers
 "Eligibilité LFR : ": "LFR Eligibility: "
 "Eligibilité LFSS : ": "LFSS Eligibility: "
 Embauche: Hiring process
+Embaucher: Hire
 Employeur: Employer
 En incluant l'indemnité de chômage partiel: Including short-time working allowance
 En savoir plus: Learn more
@@ -143,6 +154,7 @@ Gérant majoritaire: Chairman
 "Gérant majoritaire ": "Majority Manager "
 Gérant minoritaire: Managing director
 Gérant minoritaire ou égalitaire: Minority or equal manager
+Gérer mon activité: Manage my business
 Habituellement: Usually
 Imprimer: Print
 Impôt au barème: Tax on the scale
@@ -154,6 +166,7 @@ Insérer la suggestion: Insert the suggestion
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
+Intégrer le module Web: Integrate the Web module
 Intégrer nos simulateurs: Integrate our simulators
 Intégrer un simulateur: Integrating a simulator
 J'ai compris: understood
@@ -186,10 +199,12 @@ Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité: Nu
 Non: No
 Nous n'avons rien trouvé: We didn't find any matching registered company.
 "Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.": New content available, click reload to update the page.
+Nouveautés: News
 Oui: Yes
 Outils pour les développeurs: Tools for developers
 Outils pour les indépendants: Tools for the self-employed
 PFU (<1>"flat tax"</1>): Flat tax
+Page d'accueil: Home page
 Pages associées: Related pages
 Par statut: By status
 Part du salaire net maintenue: Share of net salary maintained
@@ -200,6 +215,7 @@ Passer: Skip
 Personnalisez l'intégration: Customize the integration
 "Perte de revenu net :": "Loss of net income :"
 Plafonds des tranches: Wafer ceilings
+Plan du site: Site Map
 Plein écran: Fullscreen
 Plus d'informations: More information (fr)
 Plusieurs associés: Several partners
@@ -211,7 +227,7 @@ Prochaines questions: Next questions
 Professionnels de santé: Health Care Professionals
 Professions: Professions
 Professions libérales: By job
-Protection sociale: Social security
+Protection sociale: Social protection
 Précédent: Previous
 Prévisualisation: Preview
 Que cherchez-vous ?: What are you looking for?
@@ -260,13 +276,16 @@ Salariés et employeurs: Employees and employers
 Sans responsabilité limitée: Without limited liability
 "Secteur d'activité dont relève l'activité principale : ": "Sector of activity to which the main activity belongs : "
 Si: If
+Simulateur de demande de mobilité: Mobility request simulator
 Simulateur de salaire: Employee salary simulation
 Simulateurs: Simulations
+Simulateurs disponibles: Available simulators
 Simulation en cours: Simulation in progress
 Simulations personnalisées: Customized simulations
 Sinon: Else
 Situation personnelle: Personal situation
 "Siège :": "Headquarters:"
+Statistiques: Statistics
 Suivant: Next
 Supprimer les données sauvegardées.: Delete saved data.
 Supprimer toute ma situation: Delete my entire situation
@@ -284,6 +303,8 @@ Tranche de l'assiette: Scale bracket
 Travailleurs Non Salariés (TNS): Non-salaried workers (TNS)
 Un seul associé: Only one partner
 Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!: Any ideas?<1></1>Contact us!
+Utiliser avec un tableur: Use with a spreadsheet
+Utiliser les calculs des simulateurs dans votre application: Use the simulator calculations in your application
 "Versement : ": "Payment : "
 Vie privée: Privacy
 Voir la fiche Urssaf: See the Urssaf sheet
@@ -1117,46 +1138,47 @@ page:
         of devices considered</1><2><0>Easily and freely integrates</0> on any
         website. <3>Learn more about</3> it.</2></1>
 pages:
-  accessibilité: <0>Accessibility</0><1></1><2></2><3>This page is not a help
+  accessibilité: <0>Accessibility</0><1></1><2></2><3><0>This page is not a help
     page, but a declaration of compliance with the <2>RGAA</2> 4.0 which aims to
     define the general level of accessibility found on the site in accordance
     with the regulations. This page is mandatory to be compliant with the RGAA
-    4.0.</3><4>What is digital accessibility?</4><5>An accessible website is one
-    that allows all Internet users to access its content without difficulty,
-    including people with disabilities who use specialised software or
-    hardware.</5><6>An accessible website allows, for example,
-    to:</6><7><0>Navigate with voice synthesizers or Braille displays
+    4.0.</0><1>What is digital accessibility?</1><2>An accessible website is a
+    website that allows all Internet users to access its content without
+    difficulty, including people with disabilities who use specialized software
+    or hardware.</2><3>An accessible website allows for example
+    to:</3><4><0>Navigate with voice synthesizers or Braille displays
     (particularly used by blind or visually impaired Internet
-    users).</0><1>Customize the display of the site according to their needs
-    (enlarging the characters, changing the colours, etc.).</1><2>Navigate
-    without using the mouse, with the keyboard only or via a touch
-    screen.</2></7><8>Accessibility statement</8><9>Acoss undertakes to make its
-    websites accessible in accordance with article 47 of law n° 2005-102 of 11
-    February 2005.</9><10>To this end, it is drafting <2>the strategy and action
-    plan to be</2> implemented.</10><11>This declaration of accessibility
-    applies to <2>https://mon-entreprise.urssaf.fr</2>.</11><12>Compliance
-    status</12><13><0>https://mon-entreprise.urssaf.fr</0> is not currently
-    compliant with the <4>General Accessibility Improvement Framework (GA</4>F).
-    The compliance audit will be scheduled soon. Corrections will be taken into
-    account following the audit.</13><14>Right to compensation</14><15>While
-    waiting for full compliance, you can obtain an accessible version of the
-    documents or information contained therein by sending an e-mail to
-    <2>accessibilite@acoss.fr</2> indicating the name of the document concerned
-    and/or the information you would like to obtain. The requested information
-    will be sent to you as soon as possible.</15><16>Improvement and
-    contact</16><17>You can help us to improve the accessibility of the site by
-    reporting any problems you encounter. To do so, send us an e-mail to
-    <2>accessibilite@acoss.fr</2>.</17><18>Rights defender</18><19>This
-    procedure should be used in the following case.</19><20>You have notified
-    the website operator of a lack of accessibility that prevents you from
-    accessing the content or services of the portal and you have not received a
-    satisfactory response.</20><21><0>Write a message to the Human Rights
-    Defender<1>(https://formulaire.defenseurdesdroits.fr/</1>)</0><1>Contact the
-    delegate of the Human Rights Defender in your
-    area<1>(https://www.defenseurdesdroits.fr/saisir/delegues</1>)</1><2>Send a
+    users).</0><1>Customize the display of the site according to your needs
+    (enlarging characters, changing colors, etc.).</1><2>Navigate without using
+    the mouse, with the keyboard only or via a touch
+    screen.</2></4><5>Accessibility statement</5><6>Acoss is committed to making
+    its websites accessible in accordance with article 47 of law n° 2005-102 of
+    11 February 2005.</6><7>To this end, it draws up <2>the strategy and action
+    plan to be</2> implemented.</7><8>This declaration of accessibility applies
+    to <2>https://mon-entreprise.urssaf.fr.</2></8><9>Compliance
+    status</9><10><0>https://mon-entreprise.urssaf.fr</0> is currently not in
+    compliance with the <4>General Accessibility Improvement Framework
+    (GA</4>I). The compliance audit will be scheduled soon. Corrections will be
+    taken into account following the audit.</10><11>Right to
+    compensation</11><12>While waiting for full compliance, you can obtain an
+    accessible version of the documents or information contained therein by
+    sending an e-mail to <2>accessibilite@acoss.fr</2> indicating the name of
+    the document concerned and/or the information you would like to obtain. The
+    requested information will be sent to you as soon as
+    possible.</12><13>Improvement and contact</13><14>You can help us to improve
+    the accessibility of the site by reporting any problems you encounter. To do
+    so, send us an e-mail to <2>accessibilite@acoss.fr.</2></14><15>Rights
+    Defender</15><16>This procedure is to be used in the following
+    case.</16><17>You have reported to the webmaster a lack of accessibility
+    that prevents you from accessing content or services on the portal and you
+    have not received a satisfactory response.</17><18><0>Write a message to the
+    Human Rights
+    Defender<1>(https://formulaire.defenseurdesdroits.fr/)</1></0><1>Contact the
+    delegate of the Defender of Rights in your
+    area<1>(https://www.defenseurdesdroits.fr/saisir/delegues)</1></1><2>Send a
     letter by post (free of charge, do not put a stamp on it)
-    to:<1></1>Défenseur des droits<3></3>Free reply 71120<5></5>75342 Paris
-    CEDEX 07</2></21><22>Updated on 29/01/2021</22>
+    to:<1></1>Défenseur des droits<3></3>Libre réponse 71120<5></5>75342 Paris
+    CEDEX 07</2></18><19>Updated on 29/01/2021</19></3>
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL: choose the status that suits

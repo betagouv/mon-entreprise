@@ -46,11 +46,17 @@
 <0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les indépendants.</0>:
   <0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les
   indépendants.</0>
+API REST de simulation: API REST de simulation
+Accessibilité: Accessibilité
 Accompagnement activé: Accompagnement activé
 Accompagnement désactivé: Accompagnement désactivé
 "Activité exercée en ": "Activité exercée en "
 Afficher le détail: Afficher le détail
+Après la création: Après la création
 Assimilé salarié: Assimilé salarié
+Assistant au choix du statut juridique: Assistant au choix du statut juridique
+Assistant à la déclaration des revenus des plateformes en ligne: Assistant à la déclaration des revenus des plateformes en ligne
+Assistant à la détermination des charges sociales déductibles: Assistant à la détermination des charges sociales déductibles
 Assistants à la déclaration de revenu 2021 des indépendants: Assistants à la déclaration de revenu 2021 des indépendants
 Assistants à la déclaration de revenu des indépendants: Assistants à la déclaration de revenu des indépendants
 Assistants à la déclaration de revenus 2021 des indépendants: Assistants à la déclaration de revenus 2021 des indépendants
@@ -60,8 +66,10 @@ Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur en EIRL
 Autres exonérations: Autres exonérations
 Autres outils: Autres outils
+Budget: Budget
 Cette commune n'existe pas: Cette commune n'existe pas
 Chercher dans la documentation: Chercher dans la documentation
+Choix du statut juridique: Choix du statut juridique
 Commencer: Commencer
 CompanySearchField:
   ariaClearLabel: Effacer la recherche
@@ -75,7 +83,9 @@ Crée le: Crée le
 "Crée le :": "Crée le :"
 Créee le <2><0></0></2> et domiciliée à <6><0></0></6>: Créee le <2><0></0></2> et domiciliée à <6><0></0></6>
 Créer une: Créer une
+Créer une entreprise: Créer une entreprise
 Devenir: Devenir
+Documentation: Documentation
 "Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
 "Début d'activité : ": "Début d'activité : "
 Découvrir: Découvrir
@@ -88,6 +98,7 @@ Découvrir: Découvrir
 Effacer mes réponses: Effacer mes réponses
 "Eligibilité LFR : ": "Eligibilité LFR : "
 "Eligibilité LFSS : ": "Eligibilité LFSS : "
+Embaucher: Embaucher
 En savoir plus: En savoir plus
 Entreprise Individuelle: Entreprise Individuelle
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
@@ -100,10 +111,12 @@ Gestion des données personnelles: Gestion des données personnelles
 Gérant majoritaire: Gérant majoritaire
 Gérant minoritaire: Gérant minoritaire
 Gérant minoritaire ou égalitaire: Gérant minoritaire ou égalitaire
+Gérer mon activité: Gérer mon activité
 Impôt au barème: Impôt au barème
 Indépendant: Indépendant
 Indépendants et dirigeants: Indépendants et dirigeants
 International: International
+Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
 J'ai compris: J'ai compris
 Jusqu’au: Jusqu’au
@@ -130,13 +143,16 @@ Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité: No
 "Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : ": "Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : "
 Non: Non
 "Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.": Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
+Nouveautés: Nouveautés
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
 Outils pour les indépendants: Outils pour les indépendants
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
+Page d'accueil: Page d'accueil
 Pas en auto-entrepreneur: Pas en auto-entrepreneur
 Passer: Passer
 Personnalisez l'intégration: Personnalisez l'intégration
+Plan du site: Plan du site
 Plus d'informations: Plus d'informations
 Plusieurs associés: Plusieurs associés
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
@@ -145,6 +161,7 @@ Plusieurs associés: Plusieurs associés
       <2>aquoiserventlescotisations.urssaf.fr</2>
 Prochaines questions: Prochaines questions
 Professions libérales: Professions libérales
+Protection sociale: Protection sociale
 Précédent: Précédent
 Prévisualisation: Prévisualisation
 Que cherchez-vous ?: Que cherchez-vous ?
@@ -170,10 +187,13 @@ Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Salariés et employeurs: Salariés et employeurs
 "Secteur d'activité dont relève l'activité principale : ": "Secteur d'activité dont relève l'activité principale : "
+Simulateur de demande de mobilité: Simulateur de demande de mobilité
 Simulateurs: Simulateurs
+Simulateurs disponibles: Simulateurs disponibles
 Simulation en cours: Simulation en cours
 Situation personnelle: Situation personnelle
 "Siège :": "Siège :"
+Statistiques: Statistiques
 Suivant: Suivant
 Supprimer les données sauvegardées.: Supprimer les données sauvegardées.
 Supprimer toute ma situation: Supprimer toute ma situation
@@ -186,6 +206,8 @@ Tout le site: Tout le site
 Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
 Un seul associé: Un seul associé
 Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!: Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!
+Utiliser avec un tableur: Utiliser avec un tableur
+Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
 "Versement : ": "Versement : "
 Voir la fiche Urssaf: Voir la fiche Urssaf
 Voir la fiche de paie: Voir la fiche de paie
@@ -873,52 +895,52 @@ page:
         compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
         quel site internet. <3>En savoir plus</3>.</2></1>
 pages:
-  accessibilité: <0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
+  accessibilité: <0>Accessibilité</0><1></1><2></2><3><0>Cette page n'est pas une
     page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui
     vise à définir le niveau d'accessibilité général constaté sur le site
     conformément à la réglementation. Cette page est obligatoire pour être
-    conforme au RGAA 4.0.</3><4>Qu’est-ce que l’accessibilité
-    numérique&nbsp;?</4><5>Un site web accessible est un site qui permet à tous
+    conforme au RGAA 4.0.</0><1>Qu’est-ce que l’accessibilité
+    numérique&nbsp;?</1><2>Un site web accessible est un site qui permet à tous
     les internautes d’accéder à ses contenus sans difficulté, y compris aux
     personnes qui présentent un handicap et utilisent des logiciels ou matériels
-    spécialisés.</5><6>Un site accessible permet par exemple
-    de&nbsp;:</6><7><0>Naviguer avec des synthèses vocales ou des plages braille
+    spécialisés.</2><3>Un site accessible permet par exemple
+    de&nbsp;:</3><4><0>Naviguer avec des synthèses vocales ou des plages braille
     (notamment utilisées par les internautes aveugles ou
     malvoyants).</0><1>Personnaliser l’affichage du site selon ses besoins
     (grossissement des caractères, modification des couleurs,
     etc.).</1><2>Naviguer sans utiliser la souris, avec le clavier uniquement ou
-    via un écran tactile.</2></7><8>Déclaration d’accessibilité</8><9>L'Acoss
+    via un écran tactile.</2></4><5>Déclaration d’accessibilité</5><6>L'Acoss
     s’engage à rendre ses sites internet accessibles conformément à l’article 47
-    de la loi n° 2005-102 du 11 février 2005.</9><10>À cette fin, elle rédige
-    <2>la stratégie et le plan d’action à mettre en œuvre</2>.</10><11>Cette
+    de la loi n° 2005-102 du 11 février 2005.</6><7>À cette fin, elle rédige
+    <2>la stratégie et le plan d’action à mettre en œuvre</2>.</7><8>Cette
     déclaration d’accessibilité s’applique à
-    <2>https://mon-entreprise.urssaf.fr</2>.</11><12>État de
-    conformité</12><13><0>https://mon-entreprise.urssaf.fr</0> n’est
-    actuellement pas en conformité avec le <4>référentiel général d’amélioration
-    de l’accessibilité (RGAA)</4>. L’audit de conformité sera prochainement
+    <2>https://mon-entreprise.urssaf.fr</2>.</8><9>État de
+    conformité</9><10><0>https://mon-entreprise.urssaf.fr</0> n’est actuellement
+    pas en conformité avec le <4>référentiel général d’amélioration de
+    l’accessibilité (RGAA)</4>. L’audit de conformité sera prochainement
     planifié. Les corrections seront prises en compte suite à
-    l’audit.</13><14>Droit à la compensation</14><15>Dans l’attente d’une mise
+    l’audit.</10><11>Droit à la compensation</11><12>Dans l’attente d’une mise
     en conformité totale, vous pouvez obtenir une version accessible des
     documents ou des informations qui y seraient contenues en envoyant un
     courriel à <2>accessibilite@acoss.fr</2> en indiquant le nom du document
     concerné et/ou les informations que vous souhaiteriez obtenir. Les
     informations demandées vous seront transmises dans les meilleurs
-    délais.</15><16>Amélioration et contact</16><17>Vous pouvez nous aider à
+    délais.</12><13>Amélioration et contact</13><14>Vous pouvez nous aider à
     améliorer l’accessibilité du site en nous signalant les problèmes éventuels
     que vous rencontrez. Pour ce faire, envoyez-nous un courriel à
-    <2>accessibilite@acoss.fr</2>.</17><18>Défenseur des droits</18><19>Cette
-    procédure est à utiliser dans le cas suivant.</19><20>Vous avez signalé au
+    <2>accessibilite@acoss.fr</2>.</14><15>Défenseur des droits</15><16>Cette
+    procédure est à utiliser dans le cas suivant.</16><17>Vous avez signalé au
     responsable du site internet un défaut d’accessibilité qui vous empêche
     d’accéder à un contenu ou à un des services du portail et vous n’avez pas
-    obtenu de réponse satisfaisante.</20><21><0>Écrire un message au Défenseur
+    obtenu de réponse satisfaisante.</17><18><0>Écrire un message au Défenseur
     des droits
     (<1>https://formulaire.defenseurdesdroits.fr/</1>)</0><1>Contacter le
     délégué du Défenseur des droits dans votre région
     (<1>https://www.defenseurdesdroits.fr/saisir/delegues</1>)</1><2>Envoyer un
     courrier par la poste (gratuit, ne pas mettre de timbre)
     à&nbsp;:<1></1>Défenseur des droits<3></3>Libre réponse
-    71120<5></5>75342&nbsp;Paris CEDEX 07</2></21><22>Mis à jour le
-    29/01/2021</22>
+    71120<5></5>75342&nbsp;Paris CEDEX 07</2></18><19>Mis à jour le
+    29/01/2021</19></3>
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui
