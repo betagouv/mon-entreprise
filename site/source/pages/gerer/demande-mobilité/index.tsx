@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { Fragment, Suspense, lazy, useCallback, useContext } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
@@ -13,6 +14,7 @@ import { usePersistingState } from '@/components/utils/persistState'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
+import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import {
@@ -83,6 +85,8 @@ function FormulairePublicodes() {
 	const [situation, setSituation] = usePersistingState<
 		Record<string, PublicodesExpression>
 	>(`formulaire-détachement:${VERSION}`, {})
+
+	const { t } = useTranslation()
 
 	const onChange = useCallback(
 		(dottedName, value) => {
@@ -220,9 +224,18 @@ function FormulairePublicodes() {
 						text-align: right;
 					`}
 				>
-					<Button size="XS" light onPress={handleClear}>
-						<Emoji emoji={'🗑️'} /> Effacer mes réponses
-					</Button>
+					<PopoverConfirm
+						small
+						trigger={(buttonProps) => (
+							<Button size="XS" light {...buttonProps}>
+								<Emoji emoji="🗑" /> <Trans>Effacer mes réponses</Trans>
+							</Button>
+						)}
+						onConfirm={handleClear}
+						title={t('Êtes-vous sûr de vouloir effacer vos réponses ?')}
+					>
+						<Trans>Cette opération n'est pas réversible.</Trans>
+					</PopoverConfirm>
 				</div>
 			)}
 			{!Object.keys(situation).length ? (

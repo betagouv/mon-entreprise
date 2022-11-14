@@ -28,6 +28,7 @@ import Value from '../EngineValue'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { ExplicableRule } from './Explicable'
 import RuleInput from './RuleInput'
+import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 
 type AnswerListProps = {
 	onClose: () => void
@@ -93,15 +94,20 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 							text-align: center;
 						`}
 					>
-						<Button
-							size="XS"
-							light
-							onPress={() => {
+						<PopoverConfirm
+							small
+							trigger={(buttonProps) => (
+								<Button size="XS" light {...buttonProps}>
+									<Emoji emoji="🗑" /> <Trans>Effacer mes réponses</Trans>
+								</Button>
+							)}
+							onConfirm={() => {
 								dispatch(resetSimulation())
 							}}
+							title={t('Êtes-vous sûr de vouloir effacer vos réponses ?')}
 						>
-							<Emoji emoji="🗑" /> <Trans>Effacer mes réponses</Trans>
-						</Button>
+							Cette opération n'est pas réversible.
+						</PopoverConfirm>
 					</div>
 				</>
 			)}

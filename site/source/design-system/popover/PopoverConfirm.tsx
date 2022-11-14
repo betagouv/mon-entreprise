@@ -81,8 +81,8 @@ export default function PopoverConfirm({
 							<Grid item>
 								<Button
 									onPress={() => {
-										onConfirm()
 										state.close()
+										onConfirm()
 									}}
 								>
 									{confirmLabel}
