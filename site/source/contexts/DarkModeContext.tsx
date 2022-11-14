@@ -46,9 +46,18 @@ export const DarkModeProvider: React.FC = ({ children }) => {
 			setDarkMode(e.matches)
 		}
 		const matchDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
-		matchDarkMode.addEventListener('change', onDarkModeChange)
 
-		return () => matchDarkMode.removeEventListener('change', onDarkModeChange)
+		// safari 13 doesn't have addEventListener
+		matchDarkMode.addEventListener
+			? matchDarkMode.addEventListener('change', onDarkModeChange)
+			: matchDarkMode.addListener(onDarkModeChange)
+
+		return () => {
+			// safari 13 doesn't have removeEventListener
+			matchDarkMode.removeEventListener
+				? matchDarkMode.removeEventListener('change', onDarkModeChange)
+				: matchDarkMode.removeListener(onDarkModeChange)
+		}
 	})
 
 	return (
