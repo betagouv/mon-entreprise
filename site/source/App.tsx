@@ -34,6 +34,7 @@ import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
 import Provider, { ProviderProps } from './Provider'
 import { useSitePaths } from './sitePaths'
+import Plan from './pages/Plan'
 
 type RootProps = {
 	basename: ProviderProps['basename']
@@ -141,6 +142,8 @@ const App = () => {
 								element={<IntegrationTest />}
 							/>
 							<Route path="/dev/personas" element={<Personas />} />
+
+							<Route path={relativeSitePaths.plan} element={<Plan />} />
 
 							<Route path="*" element={<Route404 />} />
 						</Routes>

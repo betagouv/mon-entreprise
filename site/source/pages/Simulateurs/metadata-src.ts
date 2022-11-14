@@ -5,7 +5,7 @@ import { TFunction } from 'react-i18next'
  * sans dépendance qui compliquerait leur import dans le script de mise à jour
  * des données pour Algolia.
  */
-const metadataSrc = (t: TFunction<'translation', string>) => {
+const getMetadataSrc = (t: TFunction<'translation', string>) => {
 	const data = {
 		salarié: {
 			tracking: 'salarie',
@@ -791,5 +791,5 @@ const metadataSrc = (t: TFunction<'translation', string>) => {
 	return data
 }
 
-export type MetadataSrc = ReturnType<typeof metadataSrc>
-export default metadataSrc
+export type MetadataSrc = ReturnType<typeof getMetadataSrc>
+export default getMetadataSrc

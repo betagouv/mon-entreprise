@@ -23,7 +23,7 @@ export default function Header() {
 	return (
 		<header>
 			<Container>
-				<StyledHeader>
+				<StyledHeader role="banner">
 					<Link
 						to={absoluteSitePaths.index}
 						aria-label={t("Logo mon entreprise, accéder à la page d'accueil")}
