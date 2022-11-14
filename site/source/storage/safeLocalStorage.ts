@@ -12,6 +12,7 @@ export function removeItem(key: string) {
 		return null
 	}
 }
+
 export function getItem(key: string) {
 	try {
 		return window.localStorage.getItem(key)
@@ -24,6 +25,7 @@ export function getItem(key: string) {
 		return null
 	}
 }
+
 export function setItem(key: string, value: string) {
 	try {
 		return window.localStorage.setItem(key, value)
