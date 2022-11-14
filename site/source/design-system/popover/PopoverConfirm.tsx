@@ -1,10 +1,11 @@
 import { Button } from '@/design-system/buttons'
 import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
-import { useEffect, useMemo, useRef } from 'react'
+import { ReactElement, useEffect, useMemo, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { Grid } from '../layout'
+import { H3 } from '../typography/heading'
 import { Body } from '../typography/paragraphs'
 import Popover from './Popover'
 import { PopoverWithTriggerProps } from './PopoverWithTrigger'
@@ -13,7 +14,7 @@ type PopoverConfirm = Omit<PopoverWithTriggerProps, 'children'> & {
 	cancelLabel?: string
 	confirmLabel?: string
 	onConfirm: () => void
-	children?: Element
+	children?: ReactElement | string
 }
 
 export default function PopoverConfirm({
@@ -61,7 +62,6 @@ export default function PopoverConfirm({
 			{state.isOpen && (
 				<Popover
 					{...overlayProps}
-					title={title}
 					onClose={() => state.close()}
 					isDismissable
 					role="dialog"
@@ -69,6 +69,7 @@ export default function PopoverConfirm({
 					contentRef={contentRef}
 				>
 					<StyledContainer>
+						<H3>{title}</H3>
 						<Body>{children}</Body>
 
 						<StyledGrid container>
@@ -98,7 +99,8 @@ export default function PopoverConfirm({
 const StyledGrid = styled(Grid)`
 	display: flex;
 	justify-content: center;
-	gap: ${({ theme }) => theme.spacings.xl};
+	gap: ${({ theme }) => theme.spacings.md};
+	margin-top: ${({ theme }) => theme.spacings.xl};
 `
 
 const StyledContainer = styled.div`
