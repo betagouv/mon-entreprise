@@ -1,15 +1,16 @@
-import { debounce } from '@/utils'
+import { debounce, getSessionStorage } from '@/utils'
 import { useEffect } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
 
 const POP_ACTION_LABEL = 'POP'
+const sessionStorage = getSessionStorage()
 
 export const useSaveAndRestoreScrollPosition = () => {
 	const location = useLocation()
 	const navigationType = useNavigationType()
 
 	useEffect(() => {
-		const scrollPosition = sessionStorage.getItem(location.pathname)
+		const scrollPosition = sessionStorage?.getItem(location.pathname)
 
 		if (scrollPosition && navigationType === POP_ACTION_LABEL) {
 			window.scrollTo(0, parseInt(scrollPosition))
@@ -18,7 +19,7 @@ export const useSaveAndRestoreScrollPosition = () => {
 
 	useEffect(() => {
 		const saveScrollYPosition = debounce(100, () => {
-			sessionStorage.setItem(location.pathname, String(window.scrollY))
+			sessionStorage?.setItem(location.pathname, String(window.scrollY))
 		}) as (this: Window, ev: Event) => any
 
 		window.addEventListener('scroll', saveScrollYPosition)
