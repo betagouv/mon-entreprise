@@ -1,12 +1,12 @@
-import 'dotenv/config.js'
-import 'isomorphic-fetch'
-
+import dotenv from 'dotenv'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { apiStats } from './fetch-api-stats.js'
 import { createDataDir, writeInDataDir } from './utils.js'
+
+dotenv.config()
 
 const matomoSiteVisitsHistory = JSON.parse(
 	fs.readFileSync(

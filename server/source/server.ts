@@ -1,8 +1,6 @@
 import cors from '@koa/cors'
 import Router from '@koa/router'
-
-import 'dotenv/config'
-
+import dotenv from 'dotenv'
 import Koa from 'koa'
 import koaBody from 'koa-body'
 
@@ -18,6 +16,8 @@ import { bree } from './jobs.js'
 import { initMongodb } from './mongodb.js'
 import { getAccessToken } from './oauth.js'
 import { snakeToCamelCaseKeys, validateCrispBody } from './utils.js'
+
+dotenv.config()
 
 const mongo = await initMongodb()
 

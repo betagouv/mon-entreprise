@@ -1,12 +1,13 @@
 // We publish our job offers on https://beta.gouv.fr/recrutement/. To augment
 // their reach, we also publish a banner on our website automatically by using
 // the beta.gouv.fr API.
-import 'isomorphic-fetch'
-
+import dotenv from 'dotenv'
 import { promisify } from 'util'
 import { parseString } from 'xml2js'
 
 import { createDataDir, writeInDataDir } from './utils.js'
+
+dotenv.config()
 
 const parseXML = promisify(parseString)
 

@@ -1,10 +1,10 @@
-import 'dotenv/config.js'
-import 'isomorphic-fetch'
-
+import dotenv from 'dotenv'
 import { readFileSync } from 'fs'
 import yaml from 'yaml'
 
 import rules from '../../../modele-social/dist/index.js'
+
+dotenv.config()
 
 const localesPath = new URL('../../source/locales/', import.meta.url).pathname
 export let UiStaticAnalysisPath = localesPath + 'static-analysis-fr.json'
