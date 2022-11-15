@@ -35,6 +35,7 @@
 		"test": "vitest",
 		"test:dev-e2e:mon-entreprise": "cypress open --e2e --config \"baseUrl=http://localhost:8888\"",
 		"test:dev-e2e:mycompanyinfrance": "cypress open --e2e --config \"baseUrl=http://localhost:8889,specPattern=cypress/integration/mon-entreprise/english/**/*.{js,jsx,ts,tsx}\" --env language=en",
+		"test:a11y": "node a11y/puppeteer/test.cjs",
 		"test:record-http-calls:mon-entreprise": "cypress run --env record_http=",
 		"algolia:update": "node --loader ts-node/esm scripts/search/update-data.ts",
 		"algolia:clean": "node scripts/search/clean.js",
@@ -101,6 +102,7 @@
 		"whatwg-fetch": "^3.0.0"
 	},
 	"devDependencies": {
+		"@axe-core/puppeteer": "^4.5.1",
 		"@react-types/accordion": "^3.0.0-alpha.4",
 		"@react-types/numberfield": "^3.1.0",
 		"@react-types/searchfield": "^3.1.2",
@@ -133,6 +135,7 @@
 		"i18next-parser": "^6.0.0",
 		"isomorphic-fetch": "^2.2.1",
 		"netlify-cli": "^10.6.3",
+		"puppeteer": "^19.2.2",
 		"rimraf": "^3.0.2",
 		"rollup-plugin-toml": "^1.0.0",
 		"serve-static": "^1.14.2",
