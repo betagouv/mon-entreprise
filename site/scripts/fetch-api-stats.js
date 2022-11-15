@@ -1,5 +1,6 @@
-import 'dotenv/config.js'
-import 'isomorphic-fetch'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const fetchApiStats = async (page, start, end, interval) => {
 	if (!process.env.PLAUSIBLE_API_KEY) {

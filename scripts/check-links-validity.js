@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
-import 'isomorphic-fetch'
-
 import { exec } from 'child_process'
+import dotenv from 'dotenv'
 import { promisify } from 'util'
+
+dotenv.config()
 
 // Extrait la liste des liens référencés dans la base de code
 const { stdout, stderr } = await promisify(exec)(
