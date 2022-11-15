@@ -8,7 +8,6 @@ import path from 'path'
 import serveStatic from 'serve-static'
 import { Plugin, defineConfig, loadEnv } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import shimReactPdf from 'vite-plugin-shim-react-pdf'
 
 import { runScriptOnFileChange } from './scripts/runScriptOnFileChange'
 import { pwaOptions } from './vite-pwa-options'
@@ -56,7 +55,6 @@ export default defineConfig(({ command, mode }) => ({
 			},
 		}),
 		yaml(),
-		shimReactPdf(),
 		multipleSPA({
 			defaultSite: 'mon-entreprise',
 			templatePath: './source/template.html',
@@ -88,10 +86,8 @@ export default defineConfig(({ command, mode }) => ({
 			targets: ['defaults', 'not IE 11'],
 		}),
 	],
-	esbuild: {
-		logOverride: { 'this-is-undefined-in-esm': 'silent' }, // will be fixed in next version of @vitejs/plugin-react (actualy 1.3.2), issue https://github.com/vitejs/vite/pull/8674
-	},
 	server: {
+		port: 3000,
 		hmr: {
 			clientPort:
 				typeof env(mode).HMR_CLIENT_PORT !== 'undefined'
@@ -121,7 +117,7 @@ export default defineConfig(({ command, mode }) => ({
 		entries: ['./source/entry-fr.tsx', './source/entry-en.tsx'],
 		exclude: ['publicodes-react', 'publicodes'],
 		// Optimize cjs deps from publicodes
-		include: ['publicodes > moo', 'publicodes > nearley', 'yaml'],
+		include: ['publicodes > moo', 'publicodes > nearley'],
 	},
 }))
 
