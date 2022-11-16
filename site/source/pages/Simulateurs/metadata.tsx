@@ -146,7 +146,9 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						simulateur, vous pouvez les retrouver sur{' '}
 						<Link
 							href="http://www.aides-entreprises.fr"
-							aria-label="le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre"
+							aria-label={t(
+								'le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre'
+							)}
 						>
 							le portail officiel
 						</Link>
@@ -505,7 +507,9 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						👉{' '}
 						<Link
 							href="https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001"
-							aria-label="Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre"
+							aria-label={t(
+								'Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre'
+							)}
 						>
 							Effectuer la demande de chômage partiel
 						</Link>
@@ -520,7 +524,9 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						contribution maladie dans certains cas. Pour en savoir plus, voir la
 						page explicative sur{' '}
 						<Link
-							aria-label="le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre"
+							aria-label={t(
+								"le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre"
+							)}
 							href="https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d/le-regime-social-de-lindemnite-d.html"
 						>
 							le site de l'Urssaf
@@ -693,7 +699,9 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						<a
 							target="_blank"
 							rel="noreferrer"
-							aria-label="certains critères, en savoir plus sur service-public.fr, nouvelle fenêtre"
+							aria-label={t(
+								'certains critères, en savoir plus sur service-public.fr, nouvelle fenêtre'
+							)}
 							href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F32963"
 						>
 							certains critères

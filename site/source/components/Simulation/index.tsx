@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import React from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -64,6 +64,8 @@ export default function Simulation({
 		'entreprise . SIREN'
 	]
 
+	const { t } = useTranslation()
+
 	return (
 		<>
 			{!firstStepCompleted && <TrackPage name="accueil" />}
@@ -77,8 +79,10 @@ export default function Simulation({
 				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
 					<PrintExportRecover />
 					<Body className="visually-hidden">
-						Les données de simulations se mettront automatiquement à jour après
-						la modification d'un champ.
+						<Trans>
+							Les données de simulations se mettront automatiquement à jour
+							après la modification d'un champ.
+						</Trans>
 					</Body>
 					{children}
 					<FromTop>
@@ -105,14 +109,18 @@ export default function Simulation({
 							{afterQuestionsSlot}
 							{existingCompany && (
 								<Banner icon="✏">
-									Ce simulateur a été prérempli avec la situation de votre
-									entreprise.{' '}
+									<Trans>
+										Ce simulateur a été prérempli avec la situation de votre
+										entreprise.
+									</Trans>{' '}
 									<PopoverWithTrigger
 										trigger={(buttonProps) => (
 											<Link
 												{...buttonProps}
 												aria-haspopup="dialog"
-												aria-label="Voir ma situation, accéder à la page de gestion de mon entreprise"
+												aria-label={t(
+													'Voir ma situation, accéder à la page de gestion de mon entreprise'
+												)}
 											>
 												<Trans>Voir ma situation</Trans>
 											</Link>

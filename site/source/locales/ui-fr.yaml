@@ -67,6 +67,7 @@ Auto-entrepreneur en EIRL: Auto-entrepreneur en EIRL
 Autres exonérations: Autres exonérations
 Autres outils: Autres outils
 Budget: Budget
+Ce simulateur a été prérempli avec la situation de votre entreprise.: Ce simulateur a été prérempli avec la situation de votre entreprise.
 Cette commune n'existe pas: Cette commune n'existe pas
 Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
 Chercher dans la documentation: Chercher dans la documentation
@@ -123,6 +124,9 @@ Intégrer nos simulateurs: Intégrer nos simulateurs
 J'ai compris: J'ai compris
 Jusqu’au: Jusqu’au
 L'application est prête à fonctionner hors ligne.: L'application est prête à fonctionner hors ligne.
+Les données de simulations se mettront automatiquement à jour après la modification d'un champ.:
+  Les données de simulations se mettront automatiquement à jour après la
+  modification d'un champ.
 Liste des intégrations: Liste des intégrations
 Liste des statuts juridiques: Liste des statuts juridiques
 Ma situation: Ma situation

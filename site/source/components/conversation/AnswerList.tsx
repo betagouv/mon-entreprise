@@ -13,6 +13,7 @@ import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import { Message, PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
+import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -28,7 +29,6 @@ import Value from '../EngineValue'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { ExplicableRule } from './Explicable'
 import RuleInput from './RuleInput'
-import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 
 type AnswerListProps = {
 	onClose: () => void
@@ -106,7 +106,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 							}}
 							title={t('Êtes-vous sûr de vouloir effacer vos réponses ?')}
 						>
-							Cette opération n'est pas réversible.
+							<Trans>Cette opération n'est pas réversible.</Trans>
 						</PopoverConfirm>
 					</div>
 				</>

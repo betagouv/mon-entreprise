@@ -85,9 +85,11 @@ export default function Footer() {
 								{language === 'fr' && (
 									<nav>
 										<ul>
-											<Link to={absoluteSitePaths.plan}>
-												<Trans>Plan du site</Trans>
-											</Link>
+											<li>
+												<Link to={absoluteSitePaths.plan}>
+													<Trans>Plan du site</Trans>
+												</Link>
+											</li>
 											<li>
 												<Link to={absoluteSitePaths.nouveautés}>
 													Nouveautés <Emoji emoji="✨" />

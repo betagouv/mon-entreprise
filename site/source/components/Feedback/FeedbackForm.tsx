@@ -61,20 +61,21 @@ export default function FeedbackForm() {
 					<form
 						onSubmit={(e) => {
 							e.preventDefault()
-							const messageValue = (
+							const message = (
 								document.getElementById('message') as HTMLTextAreaElement
 							)?.value
-							const emailValue = (
+							const email = (
 								document.getElementById('email') as HTMLInputElement
 							)?.value
 
-							if (!messageValue || messageValue === '') {
+							// Message est requis
+							if (!message || message === '') {
 								setIsError(true)
 
 								return
 							}
 
-							void sendMessage({ message: messageValue, email: emailValue })
+							void sendMessage({ message, email })
 						}}
 					>
 						<Body>

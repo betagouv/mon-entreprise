@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
 import Emoji from '@/components/utils/Emoji'

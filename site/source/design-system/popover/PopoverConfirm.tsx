@@ -1,9 +1,12 @@
-import { Button } from '@/design-system/buttons'
 import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { ReactElement, useEffect, useMemo, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+
+import { Button } from '@/design-system/buttons'
+
 import { Grid } from '../layout'
 import { H3 } from '../typography/heading'
 import { Body } from '../typography/paragraphs'
@@ -23,8 +26,8 @@ export default function PopoverConfirm({
 	trigger,
 	small,
 	contentRef,
-	cancelLabel = 'Annuler',
-	confirmLabel = 'Confirmer',
+	cancelLabel: cancelLabelProp,
+	confirmLabel: confirmLabelProp,
 	onConfirm,
 }: PopoverConfirm) {
 	const state = useOverlayTriggerState({})
@@ -34,6 +37,11 @@ export default function PopoverConfirm({
 		state,
 		openButtonRef
 	)
+
+	const { t } = useTranslation()
+
+	const cancelLabel = cancelLabelProp || t('Annuler')
+	const confirmLabel = confirmLabelProp || t('Confirmer')
 
 	const triggerButton = useMemo(
 		() =>

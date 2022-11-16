@@ -58,14 +58,17 @@ export default function SearchOrCreate() {
 									trigger={(buttonProps) => (
 										<Button
 											light
-											aria-label="Réinitialiser la situation enregistrée"
+											aria-label={t('Réinitialiser la situation enregistrée')}
 											{...buttonProps}
 										>
 											Réinitialiser
 										</Button>
 									)}
 									onConfirm={() => dispatch(resetCompany())}
-									title="Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?"
+									small
+									title={t(
+										'Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?'
+									)}
 								/>
 							</AnswerGroup>
 						</>

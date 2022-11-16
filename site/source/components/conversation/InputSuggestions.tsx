@@ -40,7 +40,7 @@ export default function InputSuggestions({
 							}
 						}}
 						role="button"
-						aria-label={`${t('Insérer dans le champ la valeur du')} ${text}`}
+						aria-label={t('Insérer dans le champ la valeur du {{text}}', text)}
 					>
 						{text}
 					</Link>
