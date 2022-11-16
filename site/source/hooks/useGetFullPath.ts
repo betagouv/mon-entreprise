@@ -1,6 +1,7 @@
-import { isDevelopment } from './../utils'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
+
+import { isDevelopment } from './../utils'
 
 const DEVELOPMENT_BASE_PATHS = {
 	fr: '/mon-entreprise',
@@ -15,5 +16,5 @@ export const useGetFullPath = () => {
 
 	const pathStart = isDevelopment() ? DEVELOPMENT_BASE_PATHS[language] : '/'
 
-	return `${pathStart}${pathname}`
+	return `${pathStart}${pathname !== '/' ? pathname : ''}`
 }
