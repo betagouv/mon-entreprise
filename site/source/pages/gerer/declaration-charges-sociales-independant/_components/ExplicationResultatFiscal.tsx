@@ -58,7 +58,7 @@ export function ExplicationsResultatFiscal() {
 			</Ul>
 
 			<StyledTable role="table">
-				<caption className="visually-hidden">
+				<caption className="sr-only">
 					<Trans i18nKey="explications.tableCaption">
 						Tableau affichant les lignes de votre liasse fiscale associées aux
 						exonérations fiscales en place pour chaque type d'activité. La
