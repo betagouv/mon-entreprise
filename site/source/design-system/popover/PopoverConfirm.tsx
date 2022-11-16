@@ -1,8 +1,5 @@
-import { useOverlayTrigger } from '@react-aria/overlays'
-import { useOverlayTriggerState } from '@react-stately/overlays'
-import { ReactElement, useEffect, useMemo, useRef } from 'react'
+import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
@@ -10,8 +7,9 @@ import { Button } from '@/design-system/buttons'
 import { Grid } from '../layout'
 import { H3 } from '../typography/heading'
 import { Body } from '../typography/paragraphs'
-import Popover from './Popover'
-import { PopoverWithTriggerProps } from './PopoverWithTrigger'
+import PopoverWithTrigger, {
+	PopoverWithTriggerProps,
+} from './PopoverWithTrigger'
 
 type PopoverConfirm = Omit<PopoverWithTriggerProps, 'children'> & {
 	cancelLabel?: string
@@ -25,82 +23,46 @@ export default function PopoverConfirm({
 	title,
 	trigger,
 	small,
-	contentRef,
 	cancelLabel: cancelLabelProp,
 	confirmLabel: confirmLabelProp,
 	onConfirm,
 }: PopoverConfirm) {
-	const state = useOverlayTriggerState({})
-	const openButtonRef = useRef<HTMLButtonElement>(null)
-	const { triggerProps, overlayProps } = useOverlayTrigger(
-		{ type: 'dialog' },
-		state,
-		openButtonRef
-	)
-
 	const { t } = useTranslation()
 
 	const cancelLabel = cancelLabelProp || t('Annuler')
 	const confirmLabel = confirmLabelProp || t('Confirmer')
 
-	const triggerButton = useMemo(
-		() =>
-			trigger({
-				onPress: () => {
-					state.open()
-				},
-				ref: openButtonRef,
-				...triggerProps,
-			}),
-		[openButtonRef, triggerProps, trigger, state]
-	)
-
-	const { pathname } = useLocation()
-	const pathnameRef = useRef(pathname)
-	useEffect(() => {
-		if (pathname !== pathnameRef.current) {
-			pathnameRef.current = pathname
-			state.close()
-		}
-	}, [pathname, state])
-
 	return (
-		<>
-			{triggerButton}
-			{state.isOpen && (
-				<Popover
-					{...overlayProps}
-					onClose={() => state.close()}
-					isDismissable
-					role="dialog"
-					small={small}
-					contentRef={contentRef}
-				>
-					<StyledContainer>
-						<H3>{title}</H3>
-						<Body>{children}</Body>
+		<PopoverWithTrigger
+			trigger={trigger}
+			title={t('legalNotice.title', 'Mentions légales')}
+			small={small}
+		>
+			{(closePopover) => (
+				<StyledContainer>
+					<H3>{title}</H3>
+					<Body>{children}</Body>
 
-						<StyledGrid container>
-							<Grid item>
-								<Button light onPress={() => state.close()}>
-									{cancelLabel}
-								</Button>
-							</Grid>
-							<Grid item>
-								<Button
-									onPress={() => {
-										state.close()
-										onConfirm()
-									}}
-								>
-									{confirmLabel}
-								</Button>
-							</Grid>
-						</StyledGrid>
-					</StyledContainer>
-				</Popover>
+					<StyledGrid container>
+						<Grid item>
+							<Button light onPress={() => closePopover()}>
+								{cancelLabel}
+							</Button>
+						</Grid>
+						<Grid item>
+							<Button
+								onPress={() => {
+									closePopover()
+									onConfirm()
+								}}
+							>
+								{confirmLabel}
+							</Button>
+						</Grid>
+					</StyledGrid>
+				</StyledContainer>
 			)}
-		</>
+		</PopoverWithTrigger>
 	)
 }
 
