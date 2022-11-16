@@ -103,7 +103,6 @@
 	.payslip__cotisationsSection > h4:nth-child(1),
 	.payslip__cotisationsSection > a,
 	div.payslip__total {
-		width: 50%;
 		display: inline-block;
 	}
 	.payslip__cotisationsSection > h4:not(:nth-child(1)) {
