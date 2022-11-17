@@ -26,6 +26,7 @@ export const pagesToPrerender: {
 		sitePathFr.simulateurs.sasu,
 		sitePathFr.simulateurs['artiste-auteur'],
 		'/iframes/simulateur-embauche',
+		'/iframes/simulateur-independant',
 		'/iframes/pamc',
 	],
 	infrance: [
