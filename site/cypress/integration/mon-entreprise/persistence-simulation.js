@@ -13,7 +13,7 @@ describe('Persistence (simulateur salarié)', function () {
 
 	it('should persist the current simulation (persistSimulation)', function () {
 		cy.get(inputSelector).first().type('{selectall}42')
-		cy.contains('button', 'Passer', { timeout: 10000 }).click()
+		cy.contains('button', 'Passer').click()
 		cy.contains('button', 'Passer').click()
 		cy.contains('button', 'Passer').click()
 		cy.get('body').should(() => {
