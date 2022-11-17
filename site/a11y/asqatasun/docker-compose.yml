@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+    asqatasun-db:
+        platform: linux/amd64
+        image: mysql:5.7
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+            MYSQL_USER: "${DB_USER:-asqatasunDatabaseUserLogin}"
+            MYSQL_PASSWORD: "${DB_PASSWORD:-asqatasunDatabaseUserP4ssword}"
+            MYSQL_DATABASE: "${DB_DATABASE:-asqatasun}"
+        ports:
+            - "${DB_HOST_IP:-0.0.0.0}:${DB_HOST_PORT:-3306}:${DB_PORT:-3306}"
+
+    asqatasun:
+        image: asqatasun/asqatasun:latest
+        links:
+            - asqatasun-db
+        depends_on:
+            - asqatasun-db
+        environment:
+            DB_DRIVER: "${DB_DRIVER:-mysql}"
+            DB_PORT: "${DB_PORT:-3306}"
+            DB_HOST: "${DB_HOST:-asqatasun-db}"
+            DB_USER: "${DB_USER:-asqatasunDatabaseUserLogin}"
+            DB_PASSWORD: "${DB_PASSWORD:-asqatasunDatabaseUserP4ssword}"
+            DB_DATABASE: "${DB_DATABASE:-asqatasun}"
+        ports:
+            - "${APP_HOST_IP:-0.0.0.0}:${APP_HOST_PORT:-8080}:8080"
+        expose:
+            - "8080"
