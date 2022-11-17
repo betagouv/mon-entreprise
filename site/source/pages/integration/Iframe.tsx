@@ -5,7 +5,7 @@ import { useHref, useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Emoji from '@/components/utils/Emoji'
-import { PopoverWithTrigger } from '@/design-system'
+import { PopoverWithTrigger, TextField } from '@/design-system'
 import { Article } from '@/design-system/card'
 import { Item, Select } from '@/design-system/field/Select'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -139,6 +139,12 @@ function IntegrationCustomizer() {
 						<Trans i18nKey="pages.développeur.couleur">Quelle couleur ? </Trans>
 						<Emoji emoji="🎨" />
 					</H3>
+					<TextField
+						aria-label="Code hexadécimal de la couleur du simulateur"
+						value={color}
+						onChange={setColor}
+					/>
+					<Spacing md />
 					<HexColorPicker color={color} onChange={setColor} />
 				</Grid>
 				<Grid item xs>
