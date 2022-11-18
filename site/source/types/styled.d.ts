@@ -57,6 +57,12 @@ declare module 'styled-components' {
 				info: SmallPalette
 				dark: Palette
 			}
+
+			theme: {
+				textColorDefault: string
+				backgroundColorLight: string
+				backgroundColorDark: string
+			}
 		}
 
 		spacings: {

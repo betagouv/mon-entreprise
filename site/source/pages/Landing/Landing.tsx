@@ -51,10 +51,7 @@ export default function Landing() {
 						</Intro>
 					</PageHeader>
 				</Container>
-				<Container
-					darkMode
-					backgroundColor={(theme) => theme.colors.bases.primary[600]}
-				>
+				<Container backgroundColor={(theme) => theme.colors.bases.primary[600]}>
 					<SearchOrCreate />
 					<Spacing xl />
 				</Container>
@@ -187,4 +184,8 @@ const HideOnMobile = styled(Grid)`
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
 		display: block;
 	}
+`
+
+const SearchContainer = styled(Container)`
+	background: ${({ theme }) => theme.colors.theme.backgroundColorDark};
 `

@@ -6,8 +6,7 @@ import styled, {
 	css,
 } from 'styled-components'
 
-import { DarkModeProvider } from '@/contexts/DarkModeContext'
-import urssafTheme from '@/design-system/theme'
+import urssafTheme, { getThemeColorsValues } from '@/design-system/theme'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
 type SystemRootProps = {
@@ -17,12 +16,17 @@ type SystemRootProps = {
 const SystemRoot = ({ children }: SystemRootProps) => {
 	const userAgent = typeof navigator !== 'undefined' && navigator.userAgent
 
+	const [isDarkMode] = useDarkMode()
+
+	const darkModeColorValues = getThemeColorsValues(
+		isDarkMode,
+		urssafTheme
+	) as object
+
 	return (
 		<StyleSheetManager disableCSSOMInjection={isbot(userAgent)}>
-			<ThemeProvider theme={urssafTheme}>
-				<DarkModeProvider>
-					<Background>{children}</Background>
-				</DarkModeProvider>
+			<ThemeProvider theme={{ ...urssafTheme, ...darkModeColorValues }}>
+				<Background>{children}</Background>
 			</ThemeProvider>
 		</StyleSheetManager>
 	)

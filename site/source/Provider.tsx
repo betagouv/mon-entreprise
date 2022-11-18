@@ -22,6 +22,7 @@ import logo from '@/images/logo-monentreprise.svg'
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
 import { ServiceWorker } from './ServiceWorker'
+import { DarkModeProvider } from './contexts/DarkModeContext'
 import * as safeLocalStorage from './storage/safeLocalStorage'
 import { store } from './store'
 import { inIframe } from './utils'
@@ -44,59 +45,62 @@ export default function Provider({
 	const { t } = useTranslation()
 
 	return (
-		<DesignSystemThemeProvider>
-			<GlobalStyle />
-			<ErrorBoundary
-				showDialog
-				fallback={
-					<Container>
-						<Link href="/" aria-label={t("Retourner à la page d'accueil")}>
-							<img
-								src={logo}
-								alt="Logo mon-entreprise"
-								style={{
-									maxWidth: '200px',
-									width: '100%',
-									marginTop: '1rem',
-								}}
-							></img>
-						</Link>
-						<H1>Une erreur est survenue</H1>
-						<Intro>
-							L'équipe technique mon-entreprise a été automatiquement prévenue.
-						</Intro>
-						<Body>
-							Vous pouvez également nous contacter directement à l'adresse{' '}
-							<Link href="mailto:contact@mon-entreprise.beta.gouv.fr">
-								contact@mon-entreprise.beta.gouv.fr
-							</Link>{' '}
-							si vous souhaitez partager une remarque. Veuillez nous excuser
-							pour la gêne occasionnée.
-						</Body>
-					</Container>
-				}
-			>
-				{!import.meta.env.SSR &&
-					import.meta.env.MODE === 'production' &&
-					'serviceWorker' in navigator &&
-					!inIframe() && <ServiceWorker />}
-				<OverlayProvider>
-					<ReduxProvider store={store}>
-						<ThemeColorsProvider>
-							<DisableAnimationOnPrintProvider>
-								<SiteNameContext.Provider value={basename}>
-									<I18nextProvider i18n={i18next}>
-										<BrowserRouterProvider basename={basename}>
-											{children}
-										</BrowserRouterProvider>
-									</I18nextProvider>
-								</SiteNameContext.Provider>
-							</DisableAnimationOnPrintProvider>
-						</ThemeColorsProvider>
-					</ReduxProvider>
-				</OverlayProvider>
-			</ErrorBoundary>
-		</DesignSystemThemeProvider>
+		<DarkModeProvider>
+			<DesignSystemThemeProvider>
+				<GlobalStyle />
+				<ErrorBoundary
+					showDialog
+					fallback={
+						<Container>
+							<Link href="/" aria-label={t("Retourner à la page d'accueil")}>
+								<img
+									src={logo}
+									alt="Logo mon-entreprise"
+									style={{
+										maxWidth: '200px',
+										width: '100%',
+										marginTop: '1rem',
+									}}
+								></img>
+							</Link>
+							<H1>Une erreur est survenue</H1>
+							<Intro>
+								L'équipe technique mon-entreprise a été automatiquement
+								prévenue.
+							</Intro>
+							<Body>
+								Vous pouvez également nous contacter directement à l'adresse{' '}
+								<Link href="mailto:contact@mon-entreprise.beta.gouv.fr">
+									contact@mon-entreprise.beta.gouv.fr
+								</Link>{' '}
+								si vous souhaitez partager une remarque. Veuillez nous excuser
+								pour la gêne occasionnée.
+							</Body>
+						</Container>
+					}
+				>
+					{!import.meta.env.SSR &&
+						import.meta.env.MODE === 'production' &&
+						'serviceWorker' in navigator &&
+						!inIframe() && <ServiceWorker />}
+					<OverlayProvider>
+						<ReduxProvider store={store}>
+							<ThemeColorsProvider>
+								<DisableAnimationOnPrintProvider>
+									<SiteNameContext.Provider value={basename}>
+										<I18nextProvider i18n={i18next}>
+											<BrowserRouterProvider basename={basename}>
+												{children}
+											</BrowserRouterProvider>
+										</I18nextProvider>
+									</SiteNameContext.Provider>
+								</DisableAnimationOnPrintProvider>
+							</ThemeColorsProvider>
+						</ReduxProvider>
+					</OverlayProvider>
+				</ErrorBoundary>
+			</DesignSystemThemeProvider>
+		</DarkModeProvider>
 	)
 }
 

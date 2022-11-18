@@ -183,6 +183,31 @@ const baseTheme = {
 	},
 }
 
+const themeColorsDefaultValues = {
+	theme: {
+		textColorDefault: baseTheme.colors.bases.primary[800],
+		backgroundColorLight: baseTheme.colors.extended.grey[100],
+		backgroundColorDark: baseTheme.colors.bases.primary[800],
+	},
+}
+
+export const getThemeColorsValues = (
+	isDarkMode: boolean,
+	theme: typeof baseTheme
+) => {
+	if (isDarkMode) {
+		return {
+			mode: {
+				textColorDefault: theme.colors.bases.primary[100],
+				backgroundColorLight: theme.colors.bases.primary[800],
+				backgroundColorDark: baseTheme.colors.extended.grey[100],
+			},
+		}
+	}
+
+	return themeColorsDefaultValues
+}
+
 // We use the Grid from material-ui, we need to uniformise
 // breakpoints and spacing with the Urssaf design system
 export type SpacingKey = keyof typeof baseTheme.breakpointsWidth
@@ -193,6 +218,14 @@ const breakpoints = Object.fromEntries(
 	])
 ) as Record<SpacingKey, number>
 
+const baseThemeWithThemeColors = {
+	...baseTheme,
+	colors: {
+		...baseTheme.colors,
+		...themeColorsDefaultValues,
+	},
+}
+
 const theme: DefaultTheme = {
 	breakpoints: {
 		values: {
@@ -202,7 +235,7 @@ const theme: DefaultTheme = {
 	},
 	spacing: Object.values(baseTheme.spacings),
 
-	...baseTheme,
+	...baseThemeWithThemeColors,
 }
 
 export default theme
