@@ -60,12 +60,13 @@ export const DarkModeProvider: React.FC = ({ children }) => {
 				: matchDarkMode.removeListener(onDarkModeChange)
 		}
 	})
+	const finalDarkMode = !useIsEmbedded() && darkMode
 
 	return (
-		<DarkModeContext.Provider
-			value={[!useIsEmbedded() && darkMode, setDarkMode]}
-		>
+		<DarkModeContext.Provider value={[finalDarkMode, setDarkMode]}>
+			{/* <ThemeProvider theme={(theme) => ({ ...theme, darkMode: finalDarkMode })}> */}
 			{children}
+			{/* </ThemeProvider> */}
 		</DarkModeContext.Provider>
 	)
 }
