@@ -55,12 +55,18 @@ type ContainerProps = {
 
 export default function Container({
 	backgroundColor,
+	darkMode,
 	children,
 }: ContainerProps) {
-	const [darkMode] = useDarkMode()
+	const [defaultDarkMode] = useDarkMode()
 
 	return (
-		<ThemeProvider theme={(theme) => ({ ...theme, darkMode })}>
+		<ThemeProvider
+			theme={(theme) => ({
+				...theme,
+				darkMode: darkMode ?? defaultDarkMode ?? theme?.darkMode,
+			})}
+		>
 			<OuterOuterContainer>
 				<OuterContainer backgroundColor={backgroundColor}>
 					<InnerContainer>{children}</InnerContainer>

@@ -1,5 +1,6 @@
 import { createContext, useMemo } from 'react'
 import { TFunction, Trans, useTranslation } from 'react-i18next'
+import styled, { css } from 'styled-components'
 
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
@@ -98,7 +99,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						(CDD, statut cadre, heures supplémentaires, temps partiel,
 						titre-restaurants, etc.).
 					</Body>
-					<img
+					<StyledImage
 						src={
 							language === 'fr'
 								? urlIllustrationNetBrut
@@ -108,9 +109,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 							'pages.simulateurs.salarié.alt-image1',
 							'Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit dans le contrat de travail) moins cotisations salariales (retraite, csg, etc)'
 						)}
-						css={`
-							width: 100%;
-						`}
+						css={``}
 					/>
 					<Body>
 						Par ailleurs depuis 2019, l'
@@ -754,3 +753,12 @@ export const CurrentSimulatorDataContext = createContext<Overwrite<
 > | null>(null)
 
 export const CurrentSimulatorDataProvider = CurrentSimulatorDataContext.Provider
+
+const StyledImage = styled.img`
+	width: 100%;
+	${({ theme }) =>
+		theme.darkMode &&
+		css`
+			filter: invert() brightness(150%);
+		`}
+`
