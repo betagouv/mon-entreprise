@@ -179,47 +179,6 @@ export const wrapperDebounceEvents = <T>(
 	return props
 }
 
-/**
- * Return git branch name
- * @returns string
- */
-export const getBranch = () => {
-	let branch: string | undefined = import.meta.env.VITE_GITHUB_REF?.split(
-		'/'
-	)?.slice(-1)?.[0]
-
-	if (branch === 'merge') {
-		branch = import.meta.env.VITE_GITHUB_HEAD_REF
-	}
-
-	return branch ?? ''
-}
-
-/**
- * We use this function to hide some features in production while keeping them
- * in feature-branches. In case we do A/B testing with several branches served
- * in production, we should add the public faced branch names in the test below.
- * This is different from the import.meta.env.MODE in that a feature branch may
- * be build in production mode (with the NODE_ENV) but we may still want to show
- * or hide some features.
- * @returns boolean
- */
-export const isProduction = () => {
-	return import.meta.env.PROD && ['master', 'next'].includes(getBranch())
-}
-
-/**
- * Is a feature branche
- * @returns boolean
- */
-export const isStaging = () => {
-	return import.meta.env.PROD && !isProduction()
-}
-
-export const isDevelopment = () => {
-	return import.meta.env.DEV
-}
-
 export async function getIframeOffset(): Promise<number> {
 	return new Promise<number>((resolve, reject) => {
 		const returnOffset = (evt: MessageEvent) => {

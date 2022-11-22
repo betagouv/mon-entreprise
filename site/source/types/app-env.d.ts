@@ -19,15 +19,36 @@ interface ImportMetaEnv {
 	VITE_REDUX_TRACE?: string
 
 	/**
-	 * @deprecated Use isProduction(), isStaging() or isDevelopment() from utils.ts instead
+	 * @deprecated Use global variable IS_PRODUCTION, IS_STAGING or IS_DEVELOPMENT instead
 	 */
 	MODE: string
 	/**
-	 * @deprecated Use isDevelopment() from utils.ts instead
+	 * @deprecated Use global variable IS_DEVELOPMENT instead
 	 */
 	DEV: boolean
 	/**
-	 * @deprecated Use isProduction() from utils.ts instead
+	 * @deprecated Use global variable IS_PRODUCTION instead
 	 */
 	PROD: boolean
 }
+
+/**
+ * Git branch name
+ * This variable is statically replaced during the build
+ */
+declare const BRANCH_NAME: string
+
+/**
+ * This variable is statically replaced during the build
+ */
+declare const IS_PRODUCTION: boolean
+
+/**
+ * This variable is statically replaced during the build
+ */
+declare const IS_STAGING: boolean
+
+/**
+ * This variable is statically replaced during the build
+ */
+declare const IS_DEVELOPMENT: boolean
