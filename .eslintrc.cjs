@@ -85,6 +85,13 @@ module.exports = {
 
 				'react/no-unknown-property': ['error', { ignore: ['css'] }],
 
+				/**
+				 * Warning on props spreading cause typescript doesn't check type on it:
+				 * https://github.com/microsoft/TypeScript/issues/18801#issuecomment-332610604
+				 * Explicit spread is allow, example: <img {...{ prop1, prop2, prop3 }} />
+				 */
+				'react/jsx-props-no-spreading': ['warn', { explicitSpread: 'ignore' }],
+
 				// Auto fixable lint error
 				'prefer-const': 'error',
 				'padding-line-between-statements': [
