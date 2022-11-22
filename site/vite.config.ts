@@ -34,6 +34,12 @@ export default defineConfig(({ command, mode }) => ({
 			},
 		},
 	},
+	define: {
+		BRANCH_NAME: JSON.stringify(getBranch(mode)),
+		IS_DEVELOPMENT: mode === 'development',
+		IS_STAGING: mode === 'production' && !isProductionBranch(mode),
+		IS_PRODUCTION: mode === 'production' && isProductionBranch(mode),
+	},
 	plugins: [
 		{
 			name: 'run-script-on-file-change',
@@ -248,4 +254,31 @@ function multipleSPA(options: MultipleSPAOptions): Plugin {
 			}
 		},
 	}
+}
+
+/**
+ * Git branch name
+ */
+export const getBranch = (mode: string) => {
+	let branch: string | undefined = env(mode)
+		.VITE_GITHUB_REF?.split('/')
+		?.slice(-1)?.[0]
+
+	if (branch === 'merge') {
+		branch = env(mode).VITE_GITHUB_HEAD_REF
+	}
+
+	return branch ?? ''
+}
+
+/**
+ * We use this function to hide some features in production while keeping them
+ * in feature-branches. In case we do A/B testing with several branches served
+ * in production, we should add the public faced branch names in the test below.
+ * This is different from the import.meta.env.MODE in that a feature branch may
+ * be build in production mode (with the NODE_ENV) but we may still want to show
+ * or hide some features.
+ */
+export const isProductionBranch = (mode: string) => {
+	return ['master', 'next'].includes(getBranch(mode))
 }

@@ -6,7 +6,6 @@ import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Loader } from '@/design-system/icons/Loader'
 import { Body } from '@/design-system/typography/paragraphs'
-import { isProduction } from '@/utils'
 
 import Emoji from './utils/Emoji'
 
@@ -37,7 +36,7 @@ export const PlaceDesEntreprisesButton = ({
 	const { t } = useTranslation()
 	const baseURL =
 		'https://' +
-		(isProduction()
+		(IS_PRODUCTION
 			? 'place-des-entreprises.beta.gouv.fr'
 			: 'reso-staging.osc-fr1.scalingo.io')
 	const url = new URL(baseURL + pathname)
