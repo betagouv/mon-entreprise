@@ -44,8 +44,8 @@
 		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
 		"i18n:ui:check": "i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation.js",
 		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && i18next -c scripts/i18n/parser.config.js && node scripts/i18n/translate-ui.js",
-		"storybook": "start-storybook -p 6006",
-		"build:storybook": "build-storybook"
+		"storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
+		"build:storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook"
 	},
 	"dependencies": {
 		"@axe-core/react": "^4.5.2",
