@@ -13,18 +13,20 @@ const SHORT_MAX_LENGTH = 254
 export default function FeedbackForm() {
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+	const [isError, setIsError] = useState(false)
 	const pathname = useLocation().pathname
 	const page = pathname.split('/').slice(-1)[0]
 
 	const { t } = useTranslation()
 
-	const sendMessage = async () => {
+	const sendMessage = async ({
+		message,
+		email,
+	}: {
+		message: string
+		email: string
+	}) => {
 		setIsLoading(true)
-		const messageValue = (
-			document.getElementById('message') as HTMLTextAreaElement
-		)?.value
-		const emailValue = (document.getElementById('email') as HTMLInputElement)
-			?.value
 
 		try {
 			await fetch(`/server/send-crisp-message`, {
@@ -34,8 +36,8 @@ export default function FeedbackForm() {
 				},
 				body: JSON.stringify({
 					subject: `Suggestion sur la page : ${page}`,
-					message: messageValue,
-					email: emailValue,
+					message,
+					email,
 				}),
 			})
 			setIsSubmittedSuccessfully(true)
@@ -43,6 +45,11 @@ export default function FeedbackForm() {
 			// Show error message
 		}
 	}
+	const resetIsError = () => setIsError(false)
+
+	const requiredErrorMessage = t(
+		'Veuillez entrer un message avant de soumettre le formulaire.'
+	)
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
@@ -54,7 +61,21 @@ export default function FeedbackForm() {
 					<form
 						onSubmit={(e) => {
 							e.preventDefault()
-							void sendMessage()
+							const message = (
+								document.getElementById('message') as HTMLTextAreaElement
+							)?.value
+							const email = (
+								document.getElementById('email') as HTMLInputElement
+							)?.value
+
+							// Message est requis
+							if (!message || message === '') {
+								setIsError(true)
+
+								return
+							}
+
+							void sendMessage({ message, email })
 						}}
 					>
 						<Body>
@@ -62,13 +83,15 @@ export default function FeedbackForm() {
 						</Body>
 						<StyledTextArea
 							name="message"
-							label={t('Votre message')}
+							label={t('Votre message (requis)')}
+							onChange={isError ? () => resetIsError() : undefined}
 							description={t(
 								'Éviter de communiquer des informations personnelles'
 							)}
 							id="message"
 							rows={7}
 							isDisabled={isLoading}
+							errorMessage={isError && requiredErrorMessage}
 						/>
 						<StyledDiv>
 							<StyledTextField
@@ -81,6 +104,7 @@ export default function FeedbackForm() {
 								)}
 								isDisabled={isLoading}
 								maxLength={SHORT_MAX_LENGTH}
+								autoComplete="email"
 							/>
 						</StyledDiv>
 						<StyledButton isDisabled={isLoading} type="submit">

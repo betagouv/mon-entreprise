@@ -30,6 +30,7 @@ export default function TextAreaField(props: TextAreaFieldProps) {
 				<StyledTextArea
 					{...(props as HTMLAttributes<HTMLTextAreaElement>)}
 					{...(inputProps as HTMLAttributes<HTMLTextAreaElement>)}
+					required={props?.isRequired || false}
 					placeholder={inputProps.placeholder ?? ''}
 					ref={props.inputRef || ref}
 				/>
@@ -40,7 +41,7 @@ export default function TextAreaField(props: TextAreaFieldProps) {
 				)}
 			</StyledTextAreaContainer>
 			{props.errorMessage && (
-				<StyledErrorMessage {...errorMessageProps}>
+				<StyledErrorMessage {...errorMessageProps} aria-live="polite">
 					{props.errorMessage}
 				</StyledErrorMessage>
 			)}

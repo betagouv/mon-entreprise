@@ -136,6 +136,7 @@ export const ExonérationCovid = () => {
 								search: '',
 							}}
 							onClick={setStep1Situation}
+							aria-label={t("Précédent, revenir à l'étape précédente")}
 						>
 							<span aria-hidden>←</span> <Trans>Précédent</Trans>
 						</Button>
@@ -160,6 +161,7 @@ export const ExonérationCovid = () => {
 										},
 								  }
 								: null)}
+							aria-label={t("Suivant, passer à l'étape suivante")}
 						>
 							<Trans>Suivant</Trans> <span aria-hidden>→</span>
 						</Button>

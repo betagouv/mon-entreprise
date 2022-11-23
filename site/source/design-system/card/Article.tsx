@@ -9,7 +9,6 @@ import { H4 } from '@/design-system/typography/heading'
 import {
 	NewWindowLinkIcon,
 	StyledLink,
-	StyledLinkHover,
 	useExternalLinkProps,
 } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -51,8 +50,7 @@ export function Article({
 				{titleProps.children} {icon}
 			</StyledHeader>
 			<Body>{children}</Body>
-			<StyledLink
-				as="span"
+			<StyledBody
 				css={`
 					display: flex;
 					align-items: center;
@@ -61,7 +59,7 @@ export function Article({
 				{ctaLabel}
 				{linkProps.external && <NewWindowLinkIcon />}
 				<StyledChevron aria-hidden />
-			</StyledLink>
+			</StyledBody>
 		</StyledArticle>
 	)
 }
@@ -80,9 +78,6 @@ const StyledArticle = styled.div`
 				? theme.colors.bases.secondary[600]
 				: theme.colors.bases.secondary[100]};
 	}
-	&:hover ${StyledLink} {
-		${StyledLinkHover}
-	}
 	&:focus-visible {
 		${FocusStyle}
 	}
@@ -97,4 +92,16 @@ const StyledHeader = styled(H4)`
 
 const StyledChevron = styled(Chevron)`
 	margin-left: ${({ theme }) => theme.spacings.xxs};
+`
+
+const StyledBody = styled(Body)`
+	&,
+	& * {
+		color: ${({ theme }) => theme.colors.bases.primary[700]};
+		font-weight: 700;
+	}
+
+	&:hover {
+		text-decoration: none;
+	}
 `

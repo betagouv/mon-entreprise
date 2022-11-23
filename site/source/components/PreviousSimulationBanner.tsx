@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { loadPreviousSimulation } from '@/actions/actions'
@@ -15,6 +15,8 @@ export default function PreviousSimulationBanner() {
 	const newSimulationStarted = useSelector(firstStepCompletedSelector)
 	const dispatch = useDispatch()
 
+	const { t } = useTranslation()
+
 	return (
 		<Banner
 			className="print-hidden"
@@ -24,7 +26,13 @@ export default function PreviousSimulationBanner() {
 			<Trans i18nKey="previousSimulationBanner.info">
 				Votre précédente simulation a été sauvegardée :
 			</Trans>{' '}
-			<Link onPress={() => dispatch(loadPreviousSimulation())}>
+			<Link
+				onPress={() => dispatch(loadPreviousSimulation())}
+				aria-label={t(
+					'Retrouver ma simulation, charger les données de ma précédente simulation.'
+				)}
+				role="button"
+			>
 				<Trans i18nKey="previousSimulationBanner.retrieveButton">
 					Retrouver ma simulation
 				</Trans>

@@ -74,7 +74,9 @@ Autres outils: Other tools
 Avec chômage partiel: With partial unemployment
 Budget: Budget
 Calcul: Formula
+Ce simulateur a été prérempli avec la situation de votre entreprise.: This simulator has been pre-filled with your company's situation.
 Cette commune n'existe pas: This commune does not exist
+Cette opération n'est pas réversible.: This operation is not reversible.
 Cette règle ne s'applique pas pour: This rule does not apply for
 Changer: Change
 Chercher dans la documentation: Search the documentation
@@ -175,6 +177,7 @@ Janvier 2019: January 2019
 Jusqu’au: Until
 L'application est prête à fonctionner hors ligne.: The application is ready to work offline.
 La somme de: This rule is the sum of
+Les données de simulations se mettront automatiquement à jour après la modification d'un champ.: The simulation data will automatically update after a field is changed.
 Liste des intégrations: List of integrations
 Liste des statuts juridiques: List of legal statutes
 Ma situation: My situation
@@ -1284,7 +1287,7 @@ pages:
         cta: Discover
         title: Publicodes
     code:
-      copy-code: Copy the code
+      copy-code: Copy the code to the clipboard
       description: "Here is the code to copy and paste on your site:"
       titre: Integration Code
     components:

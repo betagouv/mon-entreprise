@@ -16,6 +16,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
+import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { H3 } from '@/design-system/typography/heading'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { RootState } from '@/reducers/rootReducer'
@@ -49,12 +50,26 @@ export default function SearchOrCreate() {
 									to={generatePath(absoluteSitePaths.gérer.entreprise, {
 										entreprise: companySIREN as string,
 									})}
+									aria-label="Voir ma situation, accéder à la page de gestion de mon entreprise"
 								>
 									Voir ma situation
 								</Button>
-								<Button light onPress={() => dispatch(resetCompany())}>
-									Réinitialiser
-								</Button>
+								<PopoverConfirm
+									trigger={(buttonProps) => (
+										<Button
+											light
+											aria-label={t('Réinitialiser la situation enregistrée')}
+											{...buttonProps}
+										>
+											Réinitialiser
+										</Button>
+									)}
+									onConfirm={() => dispatch(resetCompany())}
+									small
+									title={t(
+										'Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?'
+									)}
+								/>
 							</AnswerGroup>
 						</>
 					) : (

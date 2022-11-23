@@ -39,7 +39,8 @@ export default function InputSuggestions({
 								onSecondClick && onSecondClick(value)
 							}
 						}}
-						aria-label={`${t('Insérer la suggestion')} : ${text}`}
+						role="button"
+						aria-label={t('Insérer dans le champ la valeur du {{text}}', text)}
 					>
 						{text}
 					</Link>

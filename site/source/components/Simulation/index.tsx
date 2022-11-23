@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import React from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -11,6 +11,7 @@ import { ConversationProps } from '@/components/conversation/Conversation'
 import { PopoverWithTrigger } from '@/design-system'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
+import { Body } from '@/design-system/typography/paragraphs'
 import {
 	companySituationSelector,
 	firstStepCompletedSelector,
@@ -63,6 +64,8 @@ export default function Simulation({
 		'entreprise . SIREN'
 	]
 
+	const { t } = useTranslation()
+
 	return (
 		<>
 			{!firstStepCompleted && <TrackPage name="accueil" />}
@@ -75,6 +78,12 @@ export default function Simulation({
 			>
 				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
 					<PrintExportRecover />
+					<Body className="visually-hidden">
+						<Trans>
+							Les données de simulations se mettront automatiquement à jour
+							après la modification d'un champ.
+						</Trans>
+					</Body>
 					{children}
 					<FromTop>
 						<div className="print-hidden">
@@ -100,11 +109,19 @@ export default function Simulation({
 							{afterQuestionsSlot}
 							{existingCompany && (
 								<Banner icon="✏">
-									Ce simulateur a été prérempli avec la situation de votre
-									entreprise.{' '}
+									<Trans>
+										Ce simulateur a été prérempli avec la situation de votre
+										entreprise.
+									</Trans>{' '}
 									<PopoverWithTrigger
 										trigger={(buttonProps) => (
-											<Link {...buttonProps} aria-haspopup="dialog">
+											<Link
+												{...buttonProps}
+												aria-haspopup="dialog"
+												aria-label={t(
+													'Voir ma situation, accéder à la page de gestion de mon entreprise'
+												)}
+											>
 												<Trans>Voir ma situation</Trans>
 											</Link>
 										)}

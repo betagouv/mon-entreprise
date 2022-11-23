@@ -321,7 +321,12 @@ export default function SchemeComparaison({
 				) : (
 					<Trans i18nKey="comparaisonRégimes.comparaisonDétaillée">
 						<div className="all">
-							<Button light size="XS" onPress={() => setShowMore(true)}>
+							<Button
+								light
+								size="XS"
+								onPress={() => setShowMore(true)}
+								aria-expanded={false}
+							>
 								Afficher plus d'informations
 							</Button>
 						</div>
