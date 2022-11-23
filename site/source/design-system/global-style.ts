@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components'
+import { DefaultTheme, createGlobalStyle, css } from 'styled-components'
 
 export const SROnly = css`
 	position: absolute;
@@ -201,4 +201,20 @@ export const FocusStyle = css`
 	outline: ${({ theme }) => theme.spacings.xxs} solid
 		${({ theme }) => theme.colors.bases.primary[400]};
 	outline-offset: ${({ theme }) => theme.spacings.xxs};
+`
+
+export const CustomizeBlockStyle = css`
+	${({
+		theme,
+		backgroundColor,
+		color,
+	}: {
+		theme: DefaultTheme
+		backgroundColor?: (theme: DefaultTheme) => string
+		color?: (theme: DefaultTheme) => string
+	}) =>
+		`
+		${backgroundColor ? `background-color: ${backgroundColor(theme)};` : ''}
+		${color ? `color: ${color(theme)};` : ''}
+		`}
 `

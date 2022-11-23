@@ -18,14 +18,19 @@ const SystemRoot = ({ children }: SystemRootProps) => {
 
 	const [isDarkMode] = useDarkMode()
 
-	const darkModeColorValues = getThemeColorsValues(
-		isDarkMode,
-		urssafTheme
-	) as object
+	const darkModeColorValues = getThemeColorsValues(isDarkMode) as object
 
 	return (
 		<StyleSheetManager disableCSSOMInjection={isbot(userAgent)}>
-			<ThemeProvider theme={{ ...urssafTheme, ...darkModeColorValues }}>
+			<ThemeProvider
+				theme={{
+					...urssafTheme,
+					colors: {
+						...urssafTheme.colors,
+						...darkModeColorValues,
+					},
+				}}
+			>
 				<Background>{children}</Background>
 			</ThemeProvider>
 		</StyleSheetManager>

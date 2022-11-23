@@ -185,21 +185,20 @@ const baseTheme = {
 
 const themeColorsDefaultValues = {
 	theme: {
-		textColorDefault: baseTheme.colors.bases.primary[800],
+		headingColor: baseTheme.colors.bases.primary[800],
+		textColor: baseTheme.colors.extended.grey[800],
 		backgroundColorLight: baseTheme.colors.extended.grey[100],
 		backgroundColorDark: baseTheme.colors.bases.primary[800],
 	},
 }
 
-export const getThemeColorsValues = (
-	isDarkMode: boolean,
-	theme: typeof baseTheme
-) => {
+export const getThemeColorsValues = (isDarkMode: boolean) => {
 	if (isDarkMode) {
 		return {
-			mode: {
-				textColorDefault: theme.colors.bases.primary[100],
-				backgroundColorLight: theme.colors.bases.primary[800],
+			theme: {
+				headingColor: baseTheme.colors.extended.grey[100],
+				textColor: baseTheme.colors.extended.grey[100],
+				backgroundColorLight: baseTheme.colors.bases.primary[800],
 				backgroundColorDark: baseTheme.colors.extended.grey[100],
 			},
 		}

@@ -59,7 +59,8 @@ declare module 'styled-components' {
 			}
 
 			theme: {
-				textColorDefault: string
+				headingColor: string
+				textColor: string
 				backgroundColorLight: string
 				backgroundColorDark: string
 			}

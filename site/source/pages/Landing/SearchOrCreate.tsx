@@ -2,6 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
+import { DefaultTheme } from 'styled-components'
 
 import { resetCompany } from '@/actions/companyActions'
 import {
@@ -38,7 +39,12 @@ export default function SearchOrCreate() {
 			<Grid item xl={8} lg={10} md={12}>
 				{companySIREN ? (
 					<>
-						<H3 as="h2">Votre entreprise</H3>
+						<H3
+							as="h2"
+							color={(theme: DefaultTheme) => theme.colors.extended.grey[100]}
+						>
+							Votre entreprise
+						</H3>
 						<CompanyDetails />
 						<Spacing md />
 						<AnswerGroup>

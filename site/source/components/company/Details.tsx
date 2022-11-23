@@ -31,7 +31,7 @@ export function CompanyDetails({
 						<Value expression="entreprise . nom" linkToRule={false} />{' '}
 						<Value expression="entreprise . SIREN" linkToRule={false} />
 					</H4>
-					<Body>
+					<Body color={(theme) => theme.colors.extended.grey[800]}>
 						<Trans>
 							Entreprise créée le{' '}
 							<Strong>
