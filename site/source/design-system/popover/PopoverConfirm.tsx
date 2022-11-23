@@ -33,11 +33,7 @@ export default function PopoverConfirm({
 	const confirmLabel = confirmLabelProp || t('Confirmer')
 
 	return (
-		<PopoverWithTrigger
-			trigger={trigger}
-			title={t('legalNotice.title', 'Mentions légales')}
-			small={small}
-		>
+		<PopoverWithTrigger trigger={trigger} small={small}>
 			{(closePopover) => (
 				<StyledContainer>
 					<H3>{title}</H3>
