@@ -13,6 +13,7 @@ interface Units {
 i18next
 	.use(initReactI18next)
 	.init({
+		returnNull: false,
 		resources: {
 			fr: { units: (unitsTranslations as Units).fr },
 			en: { units: (unitsTranslations as Units).en },

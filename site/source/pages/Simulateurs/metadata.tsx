@@ -1,5 +1,6 @@
+import type { TFunction } from 'i18next'
 import { createContext, useMemo } from 'react'
-import { TFunction, Trans, useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
@@ -62,7 +63,7 @@ import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import getData from './metadata-src.js'
 
 interface SimulatorsDataParams {
-	t: TFunction<'translation', string>
+	t: TFunction
 	sitePaths: AbsoluteSitePaths
 	language: string
 }
@@ -109,7 +110,6 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 							'pages.simulateurs.salarié.alt-image1',
 							'Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit dans le contrat de travail) moins cotisations salariales (retraite, csg, etc)'
 						)}
-						css={``}
 					/>
 					<Body>
 						Par ailleurs depuis 2019, l'
@@ -746,7 +746,7 @@ export type ExtractFromSimuData<T extends string> = ExtractOrUndefined<
 >[T]
 
 export default function useSimulatorsData(): SimulatorData {
-	const { t, i18n } = useTranslation()
+	const [t, i18n] = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
 
 	return useMemo(
