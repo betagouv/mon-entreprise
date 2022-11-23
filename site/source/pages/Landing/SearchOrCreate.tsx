@@ -63,7 +63,7 @@ export default function SearchOrCreate() {
 					</>
 				) : (
 					<>
-						<H3 as="h2">
+						<H3 as="h2" color={(theme) => theme.colors.extended.grey[100]}>
 							<Trans>Rechercher votre entreprise</Trans>{' '}
 						</H3>
 						<CompanySearchField onSubmit={handleCompanySubmit} />
