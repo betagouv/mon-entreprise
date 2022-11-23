@@ -67,7 +67,12 @@ export default function Provider({
 						</Intro>
 						<Body>
 							Vous pouvez également nous contacter directement à l'adresse{' '}
-							<Link href="mailto:contact@mon-entreprise.beta.gouv.fr">
+							<Link
+								href="mailto:contact@mon-entreprise.beta.gouv.fr"
+								aria-label={t(
+									'Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre'
+								)}
+							>
 								contact@mon-entreprise.beta.gouv.fr
 							</Link>{' '}
 							si vous souhaitez partager une remarque. Veuillez nous excuser

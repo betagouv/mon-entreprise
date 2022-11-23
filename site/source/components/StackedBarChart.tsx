@@ -47,6 +47,7 @@ const BarStackLegend = styled.div`
 const BarStackLegendItem = styled.div`
 	font-family: ${({ theme }) => theme.fonts.main};
 	color: #555;
+	background-color: inherit;
 	strong {
 		display: inline-block;
 		color: #111;

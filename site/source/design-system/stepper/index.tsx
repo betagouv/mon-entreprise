@@ -125,6 +125,7 @@ const StyledStep = styled(Link)<{ $active: boolean }>`
 		$active
 			? css`
 					color: ${theme.colors.bases.primary[800]};
+					background-color: inherit;
 			  `
 			: css`
 					font-weight: inherit;

@@ -476,11 +476,13 @@ export const StyledGrid = styled.div`
 	& > .green {
 		font-weight: bold;
 		color: limegreen;
+		background-color: inherit;
 	}
 
 	& > .red {
 		font-weight: bold;
 		color: red;
+		background-color: inherit;
 	}
 
 	& > .no-border {
@@ -518,6 +520,7 @@ export const StyledGrid = styled.div`
 		}
 		& > :not(.button)::before {
 			color: ${({ theme }) => theme.colors.bases.primary[700]} !important;
+			background-color: inherit;
 			opacity: 0.6;
 		}
 		& > .AS::before {

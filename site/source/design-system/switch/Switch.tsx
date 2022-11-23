@@ -35,6 +35,7 @@ const StyledSpan = styled.span<StyledProps>`
 	border-radius: inherit;
 	box-shadow: 0px 3px 1px 0px #0000000f, 0px 3px 8px 0px #00000026;
 	background-color: #ffffff;
+	color: inherit;
 `
 
 const StyledSwitch = styled.span<StyledProps>`
@@ -45,6 +46,7 @@ const StyledSwitch = styled.span<StyledProps>`
 		checked
 			? theme.colors.bases.primary[700]
 			: theme.colors.extended.grey[500]};
+	color: inherit;
 	font-family: ${({ theme }) => theme.fonts.main};
 	padding: 0.2rem;
 	margin: 0 ${({ theme }) => theme.spacings.xxs};

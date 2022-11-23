@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const QuestionMark = styled.span`
 	color: var(--color);
+	background-color: inherit;
 	border: 1px solid var(--color);
 	display: inline-block;
 	font-weight: bold;
@@ -32,6 +33,7 @@ const InfoBulleText = styled.span`
 	border-radius: 3px;
 	font-family: 'Roboto';
 	background-color: white;
+	color: inherit;
 	transition: opacity 0.2s, transform 0.2s;
 	opacity: 0;
 	box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2),

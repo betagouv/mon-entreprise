@@ -13,6 +13,7 @@ export const U = styled.u`
 `
 export const Code = styled.code`
 	background-color: #eee;
+	color: inherit;
 	padding: 0.25rem;
 	border-radius: 0.25rem;
 `

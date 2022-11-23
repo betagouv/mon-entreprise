@@ -375,6 +375,7 @@ function IntegrationCode({
 				em {
 					font-weight: 300;
 					color: ${darkMode ? 'white' : 'black'};
+					background-color: inherit;
 				}
 			`}
 		>

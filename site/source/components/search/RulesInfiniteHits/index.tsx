@@ -18,11 +18,13 @@ const StyledRuleLink = styled(RuleLink)`
 	${SmallBody}, ${Body} {
 		margin: 0;
 		color: inherit;
+		background-color: inherit;
 	}
 
 	${Body} {
 		font-weight: 600;
 		color: inherit;
+		background-color: inherit;
 	}
 `
 

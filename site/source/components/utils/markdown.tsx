@@ -84,6 +84,7 @@ const Code = styled.code`
 		theme.darkMode
 			? theme.colors.extended.dark[600]
 			: theme.colors.extended.grey[300]};
+	color: inherit;
 	border-radius: 0.25rem;
 `
 
@@ -94,12 +95,14 @@ const Pre = styled.pre`
 		theme.darkMode
 			? theme.colors.extended.dark[600]
 			: theme.colors.extended.grey[300]};
+	color: inherit;
 	border-radius: 0.25rem;
 
 	& ${Code} {
 		overflow: initial;
 		padding: 0;
 		background-color: initial;
+		color: inherit;
 		border-radius: initial;
 	}
 `
@@ -226,6 +229,7 @@ export function HeadingWithAnchorLink({
 					transform: translateX(-100%);
 					padding-right: 6px;
 					color: var(--lighterTextColor);
+					background-color: inherit;
 					text-decoration: none;
 					font-size: 0.8em;
 				}

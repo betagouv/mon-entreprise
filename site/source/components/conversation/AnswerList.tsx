@@ -298,6 +298,7 @@ const StyledAnswerList = styled(Grid)`
 			theme.darkMode
 				? theme.colors.extended.dark[500]
 				: theme.colors.bases.primary[100]};
+		color: inherit;
 		color-adjust: exact !important;
 		outline: solid
 			${({ theme }) =>

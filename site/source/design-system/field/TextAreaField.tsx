@@ -75,12 +75,14 @@ export const StyledTextArea = styled.textarea`
 			`}
 		color: ${({ theme }) =>
 			theme.colors.extended.grey[theme.darkMode ? 200 : 600]};
+		background-color: inherit;
 	}
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
+				background-color: inherit;
 			}
 		`}
 `
@@ -102,6 +104,7 @@ export const StyledLabel = styled.label`
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
+				background-color: inherit;
 			}
 		`}
 `
@@ -115,6 +118,7 @@ export const StyledDescription = styled(ExtraSmallBody)`
 
 export const StyledErrorMessage = styled(StyledDescription)`
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
+	background-color: inherit;
 `
 
 export const StyledSuffix = styled.span`
@@ -152,9 +156,12 @@ export const StyledTextAreaContainer = styled.div<{
 				: theme.darkMode
 				? theme.colors.bases.primary[100]
 				: theme.colors.bases.primary[700]};
+		outline-offset: ${({ theme }) => theme.spacings.xxs};
+		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
 	:focus-within ${StyledLabel} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
+		background-color: inherit;
 	}
 
 	:focus-within + ${StyledDescription} {
@@ -162,6 +169,7 @@ export const StyledTextAreaContainer = styled.div<{
 			!theme.darkMode &&
 			css`
 				color: ${theme.colors.bases.primary[800]};
+				background-color: inherit;
 			`}
 	}
 
@@ -170,9 +178,11 @@ export const StyledTextAreaContainer = styled.div<{
 		css`
 			${StyledTextArea}:not(:focus):placeholder-shown {
 				color: transparent;
+				background-color: inherit;
 			}
 			${StyledTextArea}:not(:focus):placeholder-shown + ${StyledSuffix} {
 				color: transparent;
+				background-color: inherit;
 			}
 		`}
 
@@ -191,6 +201,7 @@ export const StyledTextAreaContainer = styled.div<{
 			}
 			&&& label {
 				color: ${theme.colors.extended.error[400]};
+				background-color: inherit;
 			}
 		`}
 

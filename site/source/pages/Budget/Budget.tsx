@@ -100,7 +100,7 @@ export default function Budget() {
 						`}
 					>
 						<RessourcesAllocationTable role="table">
-							<caption className="visually-hidden">
+							<caption className="sr-only">
 								{t(
 									'budget.tableCaption',
 									"Tableau affichant le bugdet de l'année {{year}} par poste de dépenses. La première colonne affiche l'année en cours ({{year}}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux HT et TTC agrégés.",
@@ -275,6 +275,7 @@ const RessourcesAllocationTable = styled.table`
 			theme.darkMode
 				? theme.colors.extended.dark[600]
 				: theme.colors.bases.primary[200]};
+		color: inherit;
 	}
 
 	thead,
@@ -284,5 +285,6 @@ const RessourcesAllocationTable = styled.table`
 
 	tfoot tr:last-child {
 		color: ${({ theme }) => theme.colors.bases.primary[500]};
+		background-color: inherit;
 	}
 `

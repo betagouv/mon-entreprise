@@ -181,7 +181,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 	return (
 		<>
 			<ResultTable className="ui__ mobile-version">
-				<caption className="visually-hidden">{captionText}</caption>
+				<caption className="sr-only">{captionText}</caption>
 				<thead>
 					<tr>
 						<th id="emptyTh1"></th>
@@ -215,7 +215,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				</tbody>
 			</ResultTable>
 			<ResultTable>
-				<caption className="visually-hidden">{captionText}</caption>
+				<caption className="sr-only">{captionText}</caption>
 				<thead>
 					<tr>
 						{head.map((label, i) => (
@@ -366,5 +366,6 @@ const ResultTable = styled.table`
 	td:last-child,
 	th:last-child {
 		background: var(--lighterColor);
+		color: inherit;
 	}
 `

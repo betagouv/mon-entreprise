@@ -34,6 +34,7 @@ export const Label = styled.label`
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
+				background-color: inherit;
 			}
 		`}
 `
@@ -53,6 +54,7 @@ const Button = styled.button<ButtonProps>`
 	border: none;
 	width: 100%;
 	background: none;
+	color: inherit;
 	font-family: ${({ theme }) => theme.fonts.main};
 	height: 100%;
 	outline: none;
@@ -63,6 +65,7 @@ const Button = styled.button<ButtonProps>`
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
+				background-color: inherit;
 			}
 		`}
 `
@@ -118,10 +121,12 @@ export const Wrapper = styled.div<WrapperProps>`
 	}
 	:focus-within ${Button} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
+		background-color: inherit;
 	}
 
 	:focus-within + ${Button} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
+		background-color: inherit;
 	}
 
 	${({ hasLabel }) =>
@@ -129,9 +134,11 @@ export const Wrapper = styled.div<WrapperProps>`
 		css`
 			${Button}:not(:focus):placeholder-shown {
 				color: transparent;
+				background-color: inherit;
 			}
 			${Button}:not(:focus):placeholder-shown + ${Button} {
 				color: transparent;
+				background-color: inherit;
 			}
 		`}
 
@@ -150,6 +157,7 @@ export const Wrapper = styled.div<WrapperProps>`
 			}
 			&&& label {
 				color: ${theme.colors.extended.error[400]};
+				background-color: inherit;
 			}
 		`}
 

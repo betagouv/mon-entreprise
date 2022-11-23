@@ -119,6 +119,7 @@ export default function AideDéclarationIndépendant() {
 								<SmallBody
 									css={`
 										color: #ff2d96;
+										background-color: inherit;
 									`}
 								>
 									Cette aide à la déclaration concerne uniquement les

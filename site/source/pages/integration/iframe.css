@@ -56,6 +56,7 @@ section#integrations a {
 #contribution article h2 {
 	font-weight: 600;
 	color: #3c4963;
+	background-color: inherit;
 }
 
 #contribution article p {

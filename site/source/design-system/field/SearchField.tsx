@@ -112,5 +112,6 @@ const StyledClearButton = styled.button`
 		darkMode &&
 		css`
 			color: white !important;
+			background-color: inherit;
 		`}
 `

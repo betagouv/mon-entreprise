@@ -10,14 +10,16 @@ const StyledGrid = styled(Grid)`
 type FooterContainerProps = {
 	children: ReactNode
 	className?: string
+	role?: string
 }
 
 export const FooterContainer = ({
 	children,
 	className,
+	role,
 }: FooterContainerProps) => {
 	return (
-		<StyledGrid className={className} container>
+		<StyledGrid className={className} container role={role}>
 			{children}
 		</StyledGrid>
 	)

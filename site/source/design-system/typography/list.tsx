@@ -45,6 +45,7 @@ export const Ul = styled.ul<ListProps>`
 		width: ${({ theme }) => theme.spacings.lg};
 		text-align: center;
 		color: ${({ theme }) => theme.colors.bases.secondary[400]};
+		background-color: inherit;
 		margin-bottom: ${({ theme }) => theme.spacings.xs};
 	}
 `

@@ -90,6 +90,7 @@ const StyledEvaporate = styled.div`
 	z-index: 3;
 	right: ${({ theme }) => theme.spacings.sm};
 	color: ${({ theme }) => theme.colors.bases.secondary[400]};
+	background-color: inherit;
 	top: 0;
 	opacity: 0;
 	animation: ${evaporateAnimation} 2.5s linear;

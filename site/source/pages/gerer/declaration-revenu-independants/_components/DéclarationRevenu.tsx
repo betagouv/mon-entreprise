@@ -311,6 +311,7 @@ const StyledCase = styled.span`
 	border: 1px solid ${({ theme }) => theme.colors.bases.primary[800]};
 	border-top: none;
 	background-color: white;
+	color: inherit;
 	padding: ${({ theme }) =>
 		css`
 			${theme.spacings.xxs} ${theme.spacings.sm}

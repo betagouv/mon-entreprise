@@ -88,6 +88,7 @@ const StyledHeader = styled(H4)`
 		theme.darkMode
 			? theme.colors.bases.primary[200]
 			: theme.colors.bases.primary[600]};
+	background-color: inherit;
 `
 
 const StyledChevron = styled(Chevron)`

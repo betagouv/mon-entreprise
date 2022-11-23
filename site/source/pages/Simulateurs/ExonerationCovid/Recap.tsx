@@ -10,6 +10,7 @@ export const Recap = styled.div`
 
 		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
 	}};
+	color: inherit;
 	border-radius: 0.25rem;
 	padding: 1.5rem;
 	${baseParagraphStyle}

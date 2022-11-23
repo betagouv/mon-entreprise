@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
@@ -10,6 +10,7 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { useGetFullPath } from '@/hooks/useGetFullPath'
 import { useSitePaths } from '@/sitePaths'
 
 import { TrackPage } from '../../ATInternetTracking'
@@ -22,6 +23,9 @@ import illustrationSvg from './illustration.svg'
 export default function Landing() {
 	const simulators = useSimulatorsData()
 	const { absoluteSitePaths } = useSitePaths()
+	const { t } = useTranslation()
+
+	const fullPath = useGetFullPath()
 
 	return (
 		<>
@@ -33,7 +37,10 @@ export default function Landing() {
 				ogImage="/logo-share.png"
 			/>
 			<Header />
-			<main>
+			<Link href={`${fullPath}#footer`} className="skip-link print-hidden">
+				{t('Passer le contenu')}
+			</Link>
+			<main role="main" id="main">
 				<Container>
 					<PageHeader
 						titre={

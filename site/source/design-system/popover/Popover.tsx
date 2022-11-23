@@ -216,7 +216,7 @@ const CloseButton = styled.button`
 	display: inline-flex;
 	align-items: center;
 
-	background: none;
+	background: inherit;
 	border: none;
 
 	color: ${({ theme }) =>

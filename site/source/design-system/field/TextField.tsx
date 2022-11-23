@@ -70,12 +70,14 @@ export const StyledInput = styled.input`
 			`}
 		color: ${({ theme }) =>
 			theme.colors.extended.grey[theme.darkMode ? 200 : 600]};
+		background-color: transparent;
 	}
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
+				background-color: transparent;
 			}
 		`}
 `
@@ -97,6 +99,7 @@ export const StyledLabel = styled.label`
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
+				background-color: transparent;
 			}
 		`}
 `
@@ -110,6 +113,7 @@ export const StyledDescription = styled(ExtraSmallBody)`
 
 export const StyledErrorMessage = styled(StyledDescription)`
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
+	background-color: inherit;
 `
 
 export const StyledSuffix = styled.span`
@@ -145,11 +149,14 @@ export const StyledInputContainer = styled.div<{
 			hasError
 				? theme.colors.extended.error[400]
 				: theme.darkMode
-				? theme.colors.bases.primary[100]
+				? theme.colors.bases.primary[400]
 				: theme.colors.bases.primary[700]};
+		outline-offset: ${({ theme }) => theme.spacings.xxs};
+		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
 	:focus-within ${StyledLabel} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
+		background-color: transparent;
 	}
 
 	:focus-within + ${StyledDescription} {
@@ -157,6 +164,7 @@ export const StyledInputContainer = styled.div<{
 			!theme.darkMode &&
 			css`
 				color: ${theme.colors.bases.primary[800]};
+				background-color: transparent;
 			`}
 	}
 
@@ -165,9 +173,11 @@ export const StyledInputContainer = styled.div<{
 		css`
 			${StyledInput}:not(:focus):placeholder-shown {
 				color: transparent;
+				background-color: transparent;
 			}
 			${StyledInput}:not(:focus):placeholder-shown + ${StyledSuffix} {
 				color: transparent;
+				background-color: transparent;
 			}
 		`}
 
@@ -186,6 +196,7 @@ export const StyledInputContainer = styled.div<{
 			}
 			&&& label {
 				color: ${theme.colors.extended.error[400]};
+				background-color: transparent;
 			}
 		`}
 

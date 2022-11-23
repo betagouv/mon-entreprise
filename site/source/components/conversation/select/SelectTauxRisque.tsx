@@ -106,6 +106,7 @@ function SelectComponent({
 							css={`
 								flex: 2;
 								color: #333;
+								background-color: inherit;
 								font-size: 1rem;
 							`}
 						>

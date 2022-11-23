@@ -2,6 +2,7 @@ import { ErrorBoundary } from '@sentry/react'
 import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
 import { ComponentProps, StrictMode, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -19,7 +20,9 @@ import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Container, Spacing } from '@/design-system/layout'
 
 import Provider, { ProviderProps } from './Provider'
+import { Link } from './design-system/typography/link'
 import { useAxeCoreAnalysis } from './hooks/useAxeCoreAnalysis'
+import { useGetFullPath } from './hooks/useGetFullPath'
 import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
@@ -94,6 +97,10 @@ const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
 const App = () => {
 	const { relativeSitePaths } = useSitePaths()
 
+	const { t } = useTranslation()
+
+	const fullPath = useGetFullPath()
+
 	useSaveAndRestoreScrollPosition()
 	const isEmbedded = useIsEmbedded()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
@@ -106,7 +113,10 @@ const App = () => {
 	return (
 		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
-			<main>
+			<Link href={`${fullPath}#footer`} className="skip-link print-hidden">
+				{t('Passer le contenu')}
+			</Link>
+			<main role="main" id="main">
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>
 						<Routes>

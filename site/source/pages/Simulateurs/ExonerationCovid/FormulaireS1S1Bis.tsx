@@ -100,7 +100,7 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 				/>
 			</H3>
 			<Table>
-				<caption className="visually-hidden">
+				<caption className="sr-only">
 					<Trans>
 						Tableau affichant pour chaque mois de la période précédemment
 						sélectionnée le montant de réductions pour la situation

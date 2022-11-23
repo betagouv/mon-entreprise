@@ -84,6 +84,7 @@ const StyledMessage = styled.div<
 			h5,
 			h6 {
 				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
+				background-color: inherit;
 			}
 		`
 	}}
