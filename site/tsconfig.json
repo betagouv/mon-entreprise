@@ -14,7 +14,7 @@
 		"paths": {
 			"@/*": ["*"]
 		},
-		"types": ["vite/client"],
+		"types": ["vite/client", "vite-plugin-pwa/client"],
 		"typeRoots": ["./node_modules/@types", "./types/"],
 		"noEmit": true,
 		"strict": true

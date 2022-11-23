@@ -1,6 +1,6 @@
 import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
-import { RuleNode } from 'publicodes'
+import { PublicodesExpression, RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -88,7 +88,7 @@ export function SimpleField({
 	const rule = engine.getRule(dottedName)
 	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
 	const dispatchValue = useCallback(
-		(value, dottedName: DottedName) => {
+		(value: PublicodesExpression | undefined, dottedName: DottedName) => {
 			dispatch(updateSituation(dottedName, value))
 		},
 		[dispatch]

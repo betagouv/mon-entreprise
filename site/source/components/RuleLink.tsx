@@ -31,7 +31,8 @@ export default function RuleLink(
 	return (
 		<EngineRuleLink
 			{...props}
-			linkComponent={Link as React.ComponentType<{ to: string }>}
+			// @ts-ignore
+			linkComponent={Link}
 			engine={engine}
 			documentationPath={
 				props.documentationPath ?? absoluteSitePaths.documentation.index

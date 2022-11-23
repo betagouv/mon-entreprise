@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import { Rule, RuleNode } from 'publicodes'
+import { PublicodesExpression, Rule, RuleNode } from 'publicodes'
 import { Fragment, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -39,7 +39,7 @@ const RuleInputWithTitle = ({
 	const { t } = useTranslation()
 
 	const dispatchValue = useCallback(
-		(value, dottedName: DottedName) => {
+		(value: PublicodesExpression | undefined, dottedName: DottedName) => {
 			dispatch(updateSituation(dottedName, value))
 		},
 		[dispatch]

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { getItem, setItem } from '@/storage/safeLocalStorage'
@@ -17,7 +17,7 @@ const getDefaultDarkMode = () => {
 	return getItem('darkMode') ? getItem('darkMode') === 'true' : false
 }
 
-export const DarkModeContext = React.createContext<DarkModeContextType>([
+export const DarkModeContext = createContext<DarkModeContextType>([
 	false,
 	() => {
 		// eslint-disable-next-line no-console
@@ -25,8 +25,8 @@ export const DarkModeContext = React.createContext<DarkModeContextType>([
 	},
 ])
 
-export const DarkModeProvider: React.FC = ({ children }) => {
-	const [darkMode, _setDarkMode] = React.useState<boolean>(getDefaultDarkMode())
+export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
+	const [darkMode, _setDarkMode] = useState<boolean>(getDefaultDarkMode())
 
 	const setDarkMode = (darkMode: boolean) => {
 		_setDarkMode(darkMode)

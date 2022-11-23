@@ -4,8 +4,10 @@ import { useNumberField } from '@react-aria/numberfield'
 import { NumberFieldState } from '@react-stately/numberfield'
 import { AriaNumberFieldProps } from '@react-types/numberfield'
 import {
+	ChangeEvent,
 	HTMLAttributes,
 	InputHTMLAttributes,
+	KeyboardEvent,
 	RefObject,
 	useCallback,
 	useEffect,
@@ -168,31 +170,37 @@ function useKeepCursorPositionOnUpdate(
 	const [rerenderSwitch, toggle] = useState(false)
 	const { onChange: inputOnChange, onKeyDown: inputOnKeyDown } = inputProps
 	const onChange = useCallback(
-		(e) => {
+		(e: ChangeEvent<HTMLInputElement>) => {
 			const input = e.target
 			setValue(input.value)
-			setSelection(Math.max(0, input.selectionStart, input.selectionEnd))
+			setSelection(
+				Math.max(0, input.selectionStart ?? 0, input.selectionEnd ?? 0)
+			)
 			toggle(!rerenderSwitch)
 			inputOnChange?.(e)
 		},
 		[inputOnChange, rerenderSwitch]
 	)
 	const onKeyDown = useCallback(
-		(e) => {
+		(e: KeyboardEvent<HTMLInputElement>) => {
 			inputOnKeyDown?.(e)
-			const input = e.target
+			const input = e.target as HTMLInputElement | undefined
 			if (
 				!(
 					e.key === 'Backspace' &&
-					input.value
-						?.slice(input.selectionStart - 1, input.selectionStart)
+					input?.value
+						?.slice((input.selectionStart ?? 0) - 1, input.selectionStart ?? 0)
 						.match(/[\s]/)
 				)
 			) {
 				return
 			}
 			setSelection(
-				Math.max(0, e.target.selectionStart - 2, e.target.selectionEnd - 2)
+				Math.max(
+					0,
+					(input.selectionStart ?? 0) - 2,
+					(input.selectionEnd ?? 0) - 2
+				)
 			)
 			toggle(!rerenderSwitch)
 		},

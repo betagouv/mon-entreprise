@@ -63,10 +63,8 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 					<ChevronRightMedium aria-hidden $isOpen={isOpen} alt="" />
 				</StyledButton>
 			</StyledTitle>
-			<StyledContent
-				{...(regionProps as Omit<typeof regionProps, 'css'>)}
-				style={animatedStyle}
-			>
+			{/* @ts-ignore: https://github.com/pmndrs/react-spring/issues/1515 */}
+			<StyledContent {...regionProps} style={animatedStyle}>
 				<div ref={regionRef}>{item.props.children}</div>
 			</StyledContent>
 		</StyledAccordionItem>

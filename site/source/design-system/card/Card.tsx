@@ -49,6 +49,7 @@ export function Card({
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)
+	// @ts-ignore
 	delete buttonOrLinkProps.title
 
 	return (

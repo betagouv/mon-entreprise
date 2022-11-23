@@ -15,7 +15,7 @@ export default function Privacy({ label }: { label?: string }) {
 	const { t } = useTranslation()
 
 	const handleChange = useCallback(
-		(checked) => {
+		(checked: boolean) => {
 			if (checked) {
 				tracker.privacy.setVisitorOptout()
 				safeLocalStorage.setItem('tracking:do_not_track', '1')

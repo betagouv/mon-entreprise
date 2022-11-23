@@ -204,18 +204,20 @@ export const FormulaireS2 = ({
 							<Trans>
 								Secteur d'activité dont relève l'activité principale :{' '}
 							</Trans>
-							<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold>
+							<Bold as="span">
+								{engine.evaluate('secteur').nodeValue as string}
+							</Bold>
 						</Li>
 						<Li>
 							<Trans>Activité exercée en </Trans>
 							<Bold as="span">
-								{engine.evaluate("lieu d'exercice").nodeValue}
+								{engine.evaluate("lieu d'exercice").nodeValue as string}
 							</Bold>
 						</Li>
 						<Li>
 							<Trans>Début d'activité : </Trans>
 							<Bold as="span">
-								{engine.evaluate("début d'activité").nodeValue}
+								{engine.evaluate("début d'activité").nodeValue as string}
 							</Bold>
 						</Li>
 						<Li>
@@ -244,26 +246,26 @@ export const FormulaireS2 = ({
 						</Body>
 					</Trans>
 
+					{engine.evaluate('code . secteur').nodeValue as string}
 					<RecapExpert>
 						<Li>
 							<Trans>
 								Secteur d'activité dont relève l'activité principale :{' '}
 							</Trans>
-							<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold> (
 							<Bold as="span">
-								{engine.evaluate('code . secteur').nodeValue}
-							</Bold>
-							)
+								{engine.evaluate('secteur').nodeValue as string}
+							</Bold>{' '}
+							(<Bold as="span"></Bold>)
 						</Li>
 
 						<Li>
 							<Trans>Activité exercée en </Trans>
 							<Bold as="span">
-								{engine.evaluate("lieu d'exercice").nodeValue}
+								{engine.evaluate("lieu d'exercice").nodeValue as string}
 							</Bold>{' '}
 							(
 							<Bold as="span">
-								{engine.evaluate("code . lieu d'exercice").nodeValue}
+								{engine.evaluate("code . lieu d'exercice").nodeValue as string}
 							</Bold>
 							)
 						</Li>
@@ -271,11 +273,11 @@ export const FormulaireS2 = ({
 						<Li>
 							<Trans>Début d'activité : </Trans>
 							<Bold as="span">
-								{engine.evaluate("début d'activité").nodeValue}
+								{engine.evaluate("début d'activité").nodeValue as string}
 							</Bold>{' '}
 							(
 							<Bold as="span">
-								{engine.evaluate("code . début d'activité").nodeValue}
+								{engine.evaluate("code . début d'activité").nodeValue as string}
 							</Bold>
 							)
 						</Li>
@@ -306,7 +308,10 @@ export const FormulaireS2 = ({
 									engine.evaluate('code . LFR1').nodeValue?.toString()
 								)}
 							</Bold>{' '}
-							(<Bold as="span">{engine.evaluate('code . LFR1').nodeValue}</Bold>
+							(
+							<Bold as="span">
+								{engine.evaluate('code . LFR1').nodeValue as string}
+							</Bold>
 							)
 						</Li>
 

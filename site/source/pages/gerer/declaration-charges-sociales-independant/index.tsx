@@ -1,3 +1,5 @@
+import { DottedName } from 'modele-social'
+import { PublicodesExpression } from 'publicodes'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -197,7 +199,7 @@ function ImpositionSection() {
 	const { t } = useTranslation()
 
 	const setSituation = useCallback(
-		(value, dottedName) => {
+		(value: PublicodesExpression | undefined, dottedName: DottedName) => {
 			dispatch(updateSituation(dottedName, value))
 		},
 		[dispatch]
