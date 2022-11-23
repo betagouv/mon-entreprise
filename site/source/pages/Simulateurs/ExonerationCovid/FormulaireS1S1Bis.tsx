@@ -1,9 +1,5 @@
 import { DottedName as ExoCovidDottedNames } from 'exoneration-covid'
-import Engine, {
-	EvaluatedNode,
-	Evaluation,
-	PublicodesExpression,
-} from 'publicodes'
+import Engine, { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { Key, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -298,18 +294,20 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 							<Trans>
 								Secteur d'activité dont relève l'activité principale :{' '}
 							</Trans>
-							<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold>
+							<Bold as="span">
+								{engine.evaluate('secteur').nodeValue as string}
+							</Bold>
 						</Li>
 						<Li>
 							<Trans>Activité exercée en </Trans>
 							<Bold as="span">
-								{engine.evaluate("lieu d'exercice").nodeValue}
+								{engine.evaluate("lieu d'exercice").nodeValue as string}
 							</Bold>
 						</Li>
 						<Li>
 							<Trans>Début d'activité : </Trans>
 							<Bold as="span">
-								{engine.evaluate("début d'activité").nodeValue}
+								{engine.evaluate("début d'activité").nodeValue as string}
 							</Bold>
 						</Li>
 						<Li>
@@ -359,9 +357,12 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 							<Trans>
 								Secteur d'activité dont relève l'activité principale :{' '}
 							</Trans>
-							<Bold as="span">{engine.evaluate('secteur').nodeValue}</Bold> (
 							<Bold as="span">
-								{engine.evaluate('code . secteur').nodeValue}
+								{engine.evaluate('secteur').nodeValue as string}
+							</Bold>
+							(
+							<Bold as="span">
+								{engine.evaluate('code . secteur').nodeValue as string}
 							</Bold>
 							)
 						</Li>
@@ -369,11 +370,11 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						<Li>
 							<Trans>Activité exercée en </Trans>
 							<Bold as="span">
-								{engine.evaluate("lieu d'exercice").nodeValue}
-							</Bold>{' '}
+								{engine.evaluate("lieu d'exercice").nodeValue as string}
+							</Bold>
 							(
 							<Bold as="span">
-								{engine.evaluate("code . lieu d'exercice").nodeValue}
+								{engine.evaluate("code . lieu d'exercice").nodeValue as string}
 							</Bold>
 							)
 						</Li>
@@ -381,11 +382,11 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 						<Li>
 							<Trans>Début d'activité : </Trans>
 							<Bold as="span">
-								{engine.evaluate("début d'activité").nodeValue}
-							</Bold>{' '}
+								{engine.evaluate("début d'activité").nodeValue as string}
+							</Bold>
 							(
 							<Bold as="span">
-								{engine.evaluate("code . début d'activité").nodeValue}
+								{engine.evaluate("code . début d'activité").nodeValue as string}
 							</Bold>
 							)
 						</Li>
@@ -394,7 +395,7 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 							<Trans>Eligibilité LFSS : </Trans>
 							<Bold as="span">
 								{formatYesNo(
-									engine.evaluate('code . LFSS').nodeValue as Evaluation<string>
+									engine.evaluate('code . LFSS').nodeValue as string
 								)}
 							</Bold>{' '}
 							(
@@ -413,16 +414,15 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 							<Trans>Eligibilité LFR : </Trans>
 							<Bold as="span">
 								{formatYesNo(
-									engine.evaluate('code . LFR1').nodeValue as Evaluation<string>
+									engine.evaluate('code . LFR1').nodeValue as string
 								)}
 							</Bold>{' '}
 							(
 							<Bold as="span">
 								{
-									(
-										engine.evaluate('code . LFR1')
-											.nodeValue as Evaluation<string>
-									)?.split(';')[0]
+									(engine.evaluate('code . LFR1').nodeValue as string)?.split(
+										';'
+									)[0]
 								}
 							</Bold>
 							)

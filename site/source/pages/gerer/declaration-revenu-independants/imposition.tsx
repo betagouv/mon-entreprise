@@ -294,7 +294,7 @@ function ResultSection() {
 	const dispatch = useDispatch()
 
 	const dispatchValue = useCallback(
-		(value, dottedName: DottedName) => {
+		(value: string, dottedName: DottedName) => {
 			dispatch(updateSituation(dottedName, value))
 		},
 		[dispatch]

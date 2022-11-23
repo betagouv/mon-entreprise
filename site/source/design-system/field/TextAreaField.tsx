@@ -31,7 +31,10 @@ export default function TextAreaField(props: TextAreaFieldProps) {
 					{...(props as HTMLAttributes<HTMLTextAreaElement>)}
 					{...(inputProps as HTMLAttributes<HTMLTextAreaElement>)}
 					required={props?.isRequired || false}
-					placeholder={inputProps.placeholder ?? ''}
+					placeholder={
+						(inputProps as HTMLAttributes<HTMLTextAreaElement>).placeholder ??
+						''
+					}
 					ref={props.inputRef || ref}
 				/>
 				{props.label && (

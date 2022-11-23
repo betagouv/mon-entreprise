@@ -39,6 +39,9 @@ export default function Popover(
 			title?: string
 			small?: boolean
 			contentRef?: RefObject<HTMLDivElement>
+			onClose?: () => void
+			isDismissable?: boolean
+			isOpen?: boolean
 		}
 ) {
 	const { title, children, small, contentRef } = props

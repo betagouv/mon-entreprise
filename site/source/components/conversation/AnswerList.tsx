@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import { RuleNode, utils } from 'publicodes'
+import { PublicodesExpression, RuleNode, utils } from 'publicodes'
 import { useCallback, useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -224,7 +224,7 @@ function AnswerElement(rule: RuleNode) {
 		: undefined
 
 	const handleChange = useCallback(
-		(value) => {
+		(value: PublicodesExpression | undefined) => {
 			questionDottedName && dispatch(answerQuestion(questionDottedName, value))
 		},
 		[dispatch, questionDottedName]

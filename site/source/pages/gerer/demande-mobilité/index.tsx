@@ -89,13 +89,19 @@ function FormulairePublicodes() {
 	const { t } = useTranslation()
 
 	const onChange = useCallback(
-		(dottedName, value) => {
+		(dottedName: string, value?: PublicodesExpression) => {
 			if (value === undefined) {
 				setSituation((situation) => omit(situation, dottedName))
 			} else if (engine.getRule(dottedName).rawNode.API === 'commune') {
+				type Value = {
+					batchUpdate: {
+						nom: PublicodesExpression
+						'code postal': PublicodesExpression
+					}
+				}
 				const commune = {
-					nom: value.batchUpdate.nom,
-					'code postal': value.batchUpdate['code postal'],
+					nom: (value as Value).batchUpdate.nom,
+					'code postal': (value as Value).batchUpdate['code postal'],
 				}
 				setSituation((situation) => ({
 					...buildSituationFromObject(dottedName, commune),

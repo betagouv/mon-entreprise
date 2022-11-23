@@ -85,9 +85,9 @@ export default function PreviousAnswers() {
 		<PreviousAnswersList>
 			{Object.entries(legalStatus).map(([key, value]) => {
 				const textObject = requirementToText(
-					key as any,
-					value as any
-				) as RequirementToTextType
+					key as keyof LegalStatusRequirements,
+					value as string
+				)
 
 				return (
 					value !== undefined && (
@@ -99,7 +99,9 @@ export default function PreviousAnswers() {
 									]
 								}
 								aria-label={t("Revenir à l'étape {{step}}", {
-									step: textObject?.props?.children || '',
+									step:
+										(textObject as RequirementToTextType)?.props?.children ||
+										'',
 								})}
 							>
 								{textObject}
