@@ -3,8 +3,7 @@
 		"target": "es5",
 		"module": "ESNext",
 		"lib": ["es5", "dom"],
-		"types": ["cypress", "cypress-plugin-tab/src", "node"],
-		"allowSyntheticDefaultImports": true
+		"types": ["cypress", "cypress-plugin-tab/src", "node"]
 	},
 	"include": ["**/*.ts", "../cypress.config.ts"]
 }
