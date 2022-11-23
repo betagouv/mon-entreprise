@@ -29,9 +29,9 @@ type SendMessageParamsType = {
 }
 
 type ConversationMetaType = {
-	email: string
+	email?: string
 	subject: string
-	nickname: string
+	nickname?: string
 }
 
 type CrispType = {
@@ -68,11 +68,21 @@ export const sendCrispMessage = async (body: BodyType) => {
 
 		const { session_id: sessionId } = result
 
-		await CrispClient.website.updateConversationMetas(WEBSITE_ID, sessionId, {
-			email,
-			nickname: email,
+		const metas: ConversationMetaType = {
 			subject,
-		})
+			nickname: 'Utilisateur inconnu (email non renseigné)', // Default value if no email
+		}
+
+		if (email) {
+			metas.email = email
+			metas.nickname = email
+		}
+
+		await CrispClient.website.updateConversationMetas(
+			WEBSITE_ID,
+			sessionId,
+			metas
+		)
 
 		CrispClient.website.sendMessageInConversation(
 			WEBSITE_ID,
