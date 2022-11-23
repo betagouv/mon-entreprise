@@ -220,6 +220,8 @@ const encodeRelativeSitePaths = <T extends GenericSitePath>(base: T): T => {
 		(obj, [key, val]) => ({
 			...obj,
 			[key]:
+				// Remove encodeURI next release of react router
+				// Wait next version after v6.4.3, cf https://github.com/remix-run/react-router/issues/9580
 				typeof val === 'string' ? encodeURI(val) : encodeRelativeSitePaths(val),
 		}),
 		{} as T
