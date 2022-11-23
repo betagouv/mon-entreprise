@@ -1,6 +1,6 @@
 import { I18nProvider } from '@react-aria/i18n'
 import { withProfiler } from '@sentry/react'
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import App from './App'
 import i18next from './locales/i18n'
@@ -30,5 +30,8 @@ if (!import.meta.env.SSR) {
 		// eslint-disable-next-line no-console
 		console.error(err)
 	)
-	render(<AppEnWithProfiler />, document.querySelector('#js'))
+
+	const container = document.querySelector('#js') as Element
+	const root = createRoot(container)
+	root.render(<AppEnWithProfiler />)
 }
