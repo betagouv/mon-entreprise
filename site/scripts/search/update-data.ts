@@ -1,5 +1,6 @@
 import algoliasearch from 'algoliasearch'
 import dotenv from 'dotenv'
+import { TFunction } from 'i18next'
 import rawRules from 'modele-social'
 import Engine, { ParsedRules } from 'publicodes'
 
@@ -152,7 +153,9 @@ try {
 	console.log('Uploading: simulateurs')
 	await simulateursIndex
 		.saveObjects(
-			formatSimulationDataToAlgolia(getSimulationData((_, text) => text))
+			formatSimulationDataToAlgolia(
+				getSimulationData(((_: string, text: string) => text) as TFunction)
+			)
 		)
 		.wait()
 

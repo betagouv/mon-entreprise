@@ -1,11 +1,11 @@
-import { TFunction } from 'react-i18next'
+import { TFunction } from 'i18next'
 
 /**
  * Contient l'intégralité des données concernant les différents simulateurs
  * sans dépendance qui compliquerait leur import dans le script de mise à jour
  * des données pour Algolia.
  */
-const getMetadataSrc = (t: TFunction<'translation', string>) => {
+const getMetadataSrc = (t: TFunction) => {
 	const data = {
 		salarié: {
 			tracking: 'salarie',
