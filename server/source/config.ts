@@ -1,4 +1,8 @@
+import dotenv from 'dotenv'
+
 import type { MattermostSendMessage } from './mattermost.js'
+
+dotenv.config()
 
 if (!process.env.MONGO_URL) {
 	throw new Error('Empty MONGO_URL env var')
