@@ -19,7 +19,7 @@ export function hexToHSL(hex: string): [number, number, number] {
 		s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
 		switch (max) {
 			case r:
-				h = (g - b) / d + (g < b ? 6 : 0)
+				h = (g - b) / d + (g <= b ? 6 : 0)
 				break
 			case g:
 				h = (b - r) / d + 2
