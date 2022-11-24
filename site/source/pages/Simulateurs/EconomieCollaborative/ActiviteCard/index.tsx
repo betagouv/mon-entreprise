@@ -79,7 +79,7 @@ export const ActiviteCard = ({
 				</div>
 			)}
 			<ActiviteContent>
-				<H4>{titre}</H4>
+				<H4 as="h3">{titre}</H4>
 				<ButtonHelp title={titre} type="aide">
 					<Body>{explication}</Body>
 				</ButtonHelp>

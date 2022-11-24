@@ -127,7 +127,7 @@ export function CotisationsUrssaf({
 						dépendance).
 					</Trans>
 				</Body>
-				<SmallBody>{extraNotice}</SmallBody>
+				{extraNotice && <SmallBody>{extraNotice}</SmallBody>}
 			</div>
 			<Value unit={unit} displayedUnit="€" expression={rule} />
 		</InstitutionLine>

@@ -80,15 +80,17 @@ export function SimulationGoal({
 								{label}
 							</RuleLink>
 
-							<SmallBody
-								css={`
-									margin-bottom: 0;
-								`}
-								className={small ? 'sr-only' : ''}
-								id={`${dottedName}-description`}
-							>
-								{rule.rawNode.résumé}
-							</SmallBody>
+							{rule.rawNode.résumé && (
+								<SmallBody
+									css={`
+										margin-bottom: 0;
+									`}
+									className={small ? 'sr-only' : ''}
+									id={`${dottedName}-description`}
+								>
+									{rule.rawNode.résumé}
+								</SmallBody>
+							)}
 						</StyledGoalHeader>
 					</Grid>
 					<StyledGuideLectureContainer>
