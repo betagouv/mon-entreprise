@@ -207,7 +207,7 @@ figure {
 `
 
 export const FocusStyle = css`
-	outline: ${({ theme }) => theme.spacings.xxs} solid
-		${({ theme }) => theme.colors.bases.primary[400]};
-	outline-offset: ${({ theme }) => theme.spacings.xxs};
+	// outline: ${({ theme }) => theme.spacings.xxs} solid
+	// ${({ theme }) => theme.colors.bases.primary[400]};
+	// outline-offset: ${({ theme }) => theme.spacings.xxs};
 `
