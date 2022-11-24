@@ -11,13 +11,9 @@ dotenv.config()
 
 const parseXML = promisify(parseString)
 
-main()
-
-async function main() {
-	createDataDir()
-	const jobOffers = await fetchJobOffers()
-	writeInDataDir('job-offers.json', jobOffers)
-}
+createDataDir()
+const jobOffers = await fetchJobOffers()
+writeInDataDir('job-offers.json', jobOffers)
 
 async function fetchJobOffers() {
 	let jobOffers = []

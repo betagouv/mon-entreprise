@@ -71,14 +71,13 @@ function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-;(async () => {
-	await Promise.allSettled(
-		Array.from({ length: simultaneousItems }).map(processNextQueueItem)
-	)
-	if (detectedErrors.length > 0) {
-		// Formattage spécifique pour récupérer le résultat avec l'action Github
-		if (process.argv.slice(2).includes('--ci')) {
-			const message = `
+await Promise.allSettled(
+	Array.from({ length: simultaneousItems }).map(processNextQueueItem)
+)
+if (detectedErrors.length > 0) {
+	// Formattage spécifique pour récupérer le résultat avec l'action Github
+	if (process.argv.slice(2).includes('--ci')) {
+		const message = `
 
 			Certains liens référencés ne semblent plus fonctionner :
 
@@ -88,22 +87,21 @@ function sleep(ms) {
 				.map(({ status, link }) => `| ${status} | ${link} |`)
 				.join('\n')}`
 
-			const format = (msg) =>
-				msg
-					.trim()
-					.split('\n')
-					.map((line) => line.trim())
-					.join('<br />')
-			console.log(`::set-output name=comment::${format(message)}`)
-		} else if (detectedErrors) {
-			console.log(
-				'Liens invalides :' +
-					detectedErrors
-						.map(({ status, link }) => `\n- [${status}] ${link}`)
-						.join('')
-			)
-		}
-
-		console.log('Terminé')
+		const format = (msg) =>
+			msg
+				.trim()
+				.split('\n')
+				.map((line) => line.trim())
+				.join('<br />')
+		console.log(`::set-output name=comment::${format(message)}`)
+	} else if (detectedErrors) {
+		console.log(
+			'Liens invalides :' +
+				detectedErrors
+					.map(({ status, link }) => `\n- [${status}] ${link}`)
+					.join('')
+		)
 	}
-})()
+
+	console.log('Terminé')
+}
