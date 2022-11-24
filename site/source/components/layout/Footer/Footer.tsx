@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 import PageFeedback from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
@@ -86,24 +86,24 @@ export default function Footer() {
 									<nav>
 										<ul>
 											<li>
-												<Link to={absoluteSitePaths.plan}>
+												<StyledLink to={absoluteSitePaths.plan}>
 													<Trans>Plan du site</Trans>
-												</Link>
+												</StyledLink>
 											</li>
 											<li>
-												<Link to={absoluteSitePaths.nouveautés}>
+												<StyledLink to={absoluteSitePaths.nouveautés}>
 													Nouveautés <Emoji emoji="✨" />
-												</Link>
+												</StyledLink>
 											</li>
 											<li>
-												<Link to={absoluteSitePaths.stats}>
+												<StyledLink to={absoluteSitePaths.stats}>
 													Stats <Emoji emoji="📊" />
-												</Link>
+												</StyledLink>
 											</li>
 											<li>
-												<Link to={absoluteSitePaths.budget}>
+												<StyledLink to={absoluteSitePaths.budget}>
 													Budget <Emoji emoji="💶" />
-												</Link>
+												</StyledLink>
 											</li>
 										</ul>
 									</nav>
@@ -113,9 +113,9 @@ export default function Footer() {
 								<nav>
 									<ul>
 										<li>
-											<Link to={absoluteSitePaths.développeur.index}>
+											<StyledLink to={absoluteSitePaths.développeur.index}>
 												<Trans>Intégrer nos simulateurs</Trans>
-											</Link>
+											</StyledLink>
 										</li>
 										{language === 'fr' && (
 											<li>
@@ -124,7 +124,7 @@ export default function Footer() {
 										)}
 										{hrefLink && (
 											<li key={hrefLink.hrefLang}>
-												<Link
+												<StyledLink
 													href={hrefLink.href}
 													openInSameWindow
 													lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
@@ -140,7 +140,7 @@ export default function Footer() {
 													) : (
 														hrefLink.hrefLang
 													)}
-												</Link>
+												</StyledLink>
 											</li>
 										)}
 									</ul>
@@ -158,7 +158,7 @@ export default function Footer() {
 										</li>
 										{language === 'fr' && (
 											<li>
-												<Link
+												<StyledLink
 													to={absoluteSitePaths.accessibilité}
 													aria-label={t(
 														'footer.accessibilitéAriaLabel',
@@ -168,7 +168,7 @@ export default function Footer() {
 													<Trans i18nKey="footer.accessibilité">
 														Accessibilité : non conforme
 													</Trans>
-												</Link>
+												</StyledLink>
 											</li>
 										)}
 									</ul>
@@ -181,3 +181,7 @@ export default function Footer() {
 		</>
 	)
 }
+
+const StyledLink = styled(Link)`
+	text-decoration: none;
+`
