@@ -395,6 +395,10 @@ async function fetchAllCrispConversations({ urlParams }) {
 				isEndPagination = true
 			}
 
+			if (paginatedData.message) {
+				console.error('Crisp error : ' + JSON.stringify(paginatedData))
+			}
+
 			dataConversations.push(...(paginatedData || []))
 			pageCount++
 		}
@@ -507,6 +511,11 @@ async function fetchZammadUserFeedbackIssues() {
 			}),
 		}
 	).then((r) => r.json())
+
+	if (tags.error) {
+		console.error('Zammad error: ' + JSON.stringify(tags))
+	}
+
 	const issues = tags.filter(({ name }) => /#[\d]+/.exec(name))
 
 	return issues.reduce(
