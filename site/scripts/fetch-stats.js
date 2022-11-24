@@ -543,62 +543,59 @@ async function fetchAllUserFeedbackIssues() {
 	}
 }
 
-async function main() {
-	createDataDir()
-	// In case we cannot fetch the release (the API is down or the Authorization
-	// token isn't valid) we fallback to some fake data -- it would be better to
-	// have a static ressource accessible without authentification.
-	writeInDataDir('stats.json', {
-		retoursUtilisateurs: {
-			open: [],
-			closed: [],
-		},
-		nbAnswersLast30days: 0,
-	})
+createDataDir()
+// In case we cannot fetch the release (the API is down or the Authorization
+// token isn't valid) we fallback to some fake data -- it would be better to
+// have a static ressource accessible without authentification.
+writeInDataDir('stats.json', {
+	retoursUtilisateurs: {
+		open: [],
+		closed: [],
+	},
+	nbAnswersLast30days: 0,
+})
 
-	try {
-		if (
-			!process.env.ATINTERNET_API_ACCESS_KEY ||
-			!process.env.ATINTERNET_API_SECRET_KEY ||
-			!process.env.ZAMMAD_API_SECRET_KEY
-		) {
-			console.log(
-				"Variables d'environnement manquantes : nous ne récupérons pas les statistiques d'usage"
-			)
-			return
-		}
-		const [
-			visitesJours,
-			visitesMois,
-			rawSatisfaction,
-			retoursUtilisateurs,
-			nbAnswersLast30days,
-		] = await Promise.all([
-			fetchDailyVisits(),
-			fetchMonthlyVisits(),
-			fetchApi(buildSatisfactionQuery()),
-			fetchAllUserFeedbackIssues(),
-			fetchAllUserAnswerStats(),
-		])
-		const satisfaction = uniformiseData(flattenPage(await rawSatisfaction)).map(
-			(page) => {
-				// eslint-disable-next-line no-unused-vars
-				const { date, ...satisfactionPage } = {
-					month: new Date(new Date(page.date).setDate(1)),
-					...page,
-				}
-				return satisfactionPage
-			}
+try {
+	if (
+		!process.env.ATINTERNET_API_ACCESS_KEY ||
+		!process.env.ATINTERNET_API_SECRET_KEY ||
+		!process.env.ZAMMAD_API_SECRET_KEY
+	) {
+		console.log(
+			"Variables d'environnement manquantes : nous ne récupérons pas les statistiques d'usage"
 		)
-		writeInDataDir('stats.json', {
-			visitesJours,
-			visitesMois,
-			satisfaction,
-			retoursUtilisateurs,
-			nbAnswersLast30days,
-		})
-	} catch (e) {
-		console.error(e)
+		process.exit(1)
 	}
+	const [
+		visitesJours,
+		visitesMois,
+		rawSatisfaction,
+		retoursUtilisateurs,
+		nbAnswersLast30days,
+	] = await Promise.all([
+		fetchDailyVisits(),
+		fetchMonthlyVisits(),
+		fetchApi(buildSatisfactionQuery()),
+		fetchAllUserFeedbackIssues(),
+		fetchAllUserAnswerStats(),
+	])
+	const satisfaction = uniformiseData(flattenPage(await rawSatisfaction)).map(
+		(page) => {
+			// eslint-disable-next-line no-unused-vars
+			const { date, ...satisfactionPage } = {
+				month: new Date(new Date(page.date).setDate(1)),
+				...page,
+			}
+			return satisfactionPage
+		}
+	)
+	writeInDataDir('stats.json', {
+		visitesJours,
+		visitesMois,
+		satisfaction,
+		retoursUtilisateurs,
+		nbAnswersLast30days,
+	})
+} catch (e) {
+	console.error(e)
 }
-main()

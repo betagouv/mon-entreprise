@@ -55,16 +55,14 @@ const fakeData = [
 	},
 ]
 
-async function main() {
-	createDataDir()
-	const releases = await fetchReleases()
-	// The last release name is fetched on all pages (to display the banner)
-	// whereas the full release data is used only in the dedicated page, that why
-	// we deduplicate the releases data in two separated files that can be
-	// bundled/fetched separately.
-	writeInDataDir('releases.json', releases)
-	writeInDataDir('last-release.json', { name: releases[0].name })
-}
+createDataDir()
+const releases = await fetchReleases()
+// The last release name is fetched on all pages (to display the banner)
+// whereas the full release data is used only in the dedicated page, that why
+// we deduplicate the releases data in two separated files that can be
+// bundled/fetched separately.
+writeInDataDir('releases.json', releases)
+writeInDataDir('last-release.json', { name: releases[0].name })
 
 async function fetchReleases(after = 'null') {
 	if (!githubAuthToken) {
@@ -100,5 +98,3 @@ async function fetchReleases(after = 'null') {
 		return fakeData
 	}
 }
-
-main()
