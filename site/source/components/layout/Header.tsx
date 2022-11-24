@@ -57,11 +57,11 @@ export default function Header() {
 						<Switch
 							isSelected={darkMode}
 							onChange={setDarkMode}
-							aria-label={t(
+							aria-label={
 								darkMode
-									? 'navbar.deactivate-darkmode'
-									: 'navbar.activate-darkmode'
-							)}
+									? t('navbar.activate-darkmode', 'Désactiver le mode sombre')
+									: t('navbar.deactivate-darkmode', 'Activer le mode sombre')
+							}
 						/>
 						<Emoji emoji="🌙" aria-hidden />
 					</div>
