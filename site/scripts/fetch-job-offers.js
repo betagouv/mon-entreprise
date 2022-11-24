@@ -24,7 +24,9 @@ async function fetchJobOffers() {
 
 		// The XML API isn't the most ergonomic, we ought to have a JSON API.
 		// cf. https://github.com/betagouv/beta.gouv.fr/issues/6343
-		jobOffers = (await parseXML(content)).feed.entry
+		const xml = await parseXML(content)
+
+		jobOffers = xml.feed.entry
 			.map((entry) => ({
 				title: entry.title[0]['_'].trim(),
 				link: entry.link[0].$.href,
@@ -36,6 +38,7 @@ async function fetchJobOffers() {
 				title: title.replace(' - Offre de Mon-entreprise', ''),
 			}))
 	} catch (err) {
+		console.error('Beta.gouv.fr/jobs error : ')
 		console.error(err)
 	}
 
