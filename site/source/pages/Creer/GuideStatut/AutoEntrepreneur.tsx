@@ -15,7 +15,9 @@ export default function Autoentrepreneur() {
 		<>
 			<TrackPage name="auto-entrepreneur_ou_independant" />
 			<DefaultHelmet>
-				<title>{t('autoentrepreneur.page.titre', 'Auto-entrepreneur')}</title>
+				<title data-rh="true">
+					{t('autoentrepreneur.page.titre', 'Auto-entrepreneur')}
+				</title>
 				<meta
 					name="description"
 					content={t(

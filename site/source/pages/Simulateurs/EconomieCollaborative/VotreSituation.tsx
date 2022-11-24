@@ -55,7 +55,7 @@ export default function VotreSituation() {
 			<ScrollToTop />
 			<TrackPage name="simulation terminée" />
 			<DefaultHelmet>
-				<title>{titre}</title>
+				<title data-rh="true">{titre}</title>
 			</DefaultHelmet>
 			<H1>{titre}</H1>
 			<div css="text-align: center">

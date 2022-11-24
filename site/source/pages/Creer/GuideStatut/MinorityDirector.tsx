@@ -21,7 +21,7 @@ export default function MinorityDirector() {
 		<>
 			<TrackPage name="majoritaire_ou_minoritaire" />
 			<DefaultHelmet>
-				<title>
+				<title data-rh="true">
 					{t(
 						'gérant minoritaire.page.titre',
 						'Gérant majoritaire ou minoritaire'

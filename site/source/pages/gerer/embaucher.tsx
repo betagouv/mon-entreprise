@@ -32,7 +32,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 		<FromBottom>
 			<TrackPage name="embaucher" />
 			<DefaultHelmet>
-				<title>
+				<title data-rh="true">
 					{t('embauche.tâches.page.titre', {
 						defaultValue: 'Les formalités pour embaucher',
 					})}

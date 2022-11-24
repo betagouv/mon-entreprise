@@ -14,7 +14,7 @@ export default function DefineDirectorStatus() {
 		<>
 			<TrackPage name="independant_ou_assimile-salarie" />
 			<DefaultHelmet>
-				<title>
+				<title data-rh="true">
 					{t('statut du dirigeant.titre', 'Définir le statut du dirigeant')}
 				</title>
 				<meta
