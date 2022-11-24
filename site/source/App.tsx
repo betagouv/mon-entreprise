@@ -61,13 +61,15 @@ export default function Root({
 	)
 
 	return (
-		<StrictMode>
-			<Provider basename={basename}>
-				<EngineProvider value={engine}>
-					<Router />
-				</EngineProvider>
-			</Provider>
-		</StrictMode>
+		// Disable react strict mode cause react-spectrum doesn't support it
+		// issue https://github.com/adobe/react-spectrum/issues/779
+		// <StrictMode>
+		<Provider basename={basename}>
+			<EngineProvider value={engine}>
+				<Router />
+			</EngineProvider>
+		</Provider>
+		// </StrictMode>
 	)
 }
 
