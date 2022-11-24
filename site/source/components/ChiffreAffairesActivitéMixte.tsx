@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import { serializeEvaluation } from 'publicodes'
+import { PublicodesExpression, serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -64,45 +64,67 @@ export default function ChiffreAffairesActivitéMixte({
 		</fieldset>
 	)
 }
-export function useAdjustProportions(CADottedName: DottedName): () => void {
+
+function useAdjustProportions(CADottedName: DottedName) {
 	const engine = useEngine()
 	const dispatch = useDispatch()
 
-	return useCallback(() => {
-		const nouveauCA = serializeEvaluation(
-			engine.evaluate({
-				somme: Object.values(proportions)
-					.map((chiffreAffaire) =>
-						serializeEvaluation(engine.evaluate(chiffreAffaire))
-					)
-					.filter(Boolean),
-			})
-		)
-		if (nouveauCA === '0€/an') {
-			return // Avoid division by 0
-		}
-		const situation = Object.entries(proportions).reduce(
-			(acc, [proportionName, valueName]) => {
-				const value = serializeEvaluation(
-					engine.evaluate({ valeur: valueName, 'par défaut': '0€/an' })
-				)
-				const newProportion = serializeEvaluation(
-					engine.evaluate({
-						valeur: `${value ?? ''} / ${nouveauCA ?? ''}`,
-						unité: '%',
-					})
-				)
+	return useCallback(
+		(name: DottedName, value?: PublicodesExpression) => {
+			const checkValue = (
+				val: unknown
+			): val is { valeur: number; unité: string } =>
+				val != null &&
+				typeof val === 'object' &&
+				'valeur' in val &&
+				'unité' in val &&
+				typeof val.valeur === 'number' &&
+				typeof val.unité === 'string'
 
-				return {
-					...acc,
-					[proportionName]: newProportion,
-					[valueName]: undefined,
-				}
-			},
-			{ [CADottedName]: nouveauCA }
-		)
-		dispatch(batchUpdateSituation(situation))
-	}, [engine, dispatch])
+			const old = Object.values(proportions).map((chiffreAffaire) =>
+				serializeEvaluation(
+					engine.evaluate(
+						name === chiffreAffaire && checkValue(value)
+							? value
+							: chiffreAffaire
+					)
+				)
+			)
+			const nouveauCA = serializeEvaluation(
+				engine.evaluate({ somme: old.filter(Boolean) })
+			)
+
+			if (nouveauCA === '0€/an') {
+				return // Avoid division by 0
+			}
+			const situation = Object.entries(proportions).reduce(
+				(acc, [proportionName, valueName]) => {
+					const newValue = serializeEvaluation(
+						engine.evaluate(
+							valueName === name && checkValue(value)
+								? value
+								: { valeur: valueName, 'par défaut': '0€/an' }
+						)
+					)
+					const newProportion = serializeEvaluation(
+						engine.evaluate({
+							valeur: `${newValue ?? ''} / ${nouveauCA ?? ''}`,
+							unité: '%',
+						})
+					)
+
+					return {
+						...acc,
+						[proportionName]: newProportion,
+						[valueName]: undefined,
+					}
+				},
+				{ [CADottedName]: nouveauCA }
+			)
+			dispatch(batchUpdateSituation(situation))
+		},
+		[CADottedName, engine, dispatch]
+	)
 }
 
 function ActivitéMixte() {
