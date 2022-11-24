@@ -273,8 +273,8 @@ const RessourcesAllocationTable = styled.table`
 	tfoot tr:nth-child(odd) {
 		background: ${({ theme }) =>
 			theme.darkMode
-				? theme.colors.extended.dark[600]
-				: theme.colors.bases.primary[200]};
+				? theme.colors.extended.dark[700]
+				: theme.colors.bases.primary[100]};
 		color: inherit;
 	}
 
@@ -284,7 +284,10 @@ const RessourcesAllocationTable = styled.table`
 	}
 
 	tfoot tr:last-child {
-		color: ${({ theme }) => theme.colors.bases.primary[500]};
+		color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[300]
+				: theme.colors.bases.primary[700]};
 		background-color: inherit;
 	}
 `
