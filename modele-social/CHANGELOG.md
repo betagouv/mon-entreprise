@@ -19,7 +19,7 @@
   - `protection sociale . retraite . complémentaire` qui correspond au supplément de pension de retraite acquis grâce à une année complète de cotisation retraite complémentaire
 - Uniformisation du calcul de `protection sociale . retraite . trimestres` entre les salariés et les indépendants
 - Renommage de `protection sociale . santé` en `protection sociale . maladie` qui est le nom « officiel » de la branche
-- Ajout de `protection sociale . maladie . arrêt maladie . indemnités` pour le montant des indemnités journalière versées par la CPAM en cas d’arrêt maladie.
+- Ajout de `protection sociale . maladie . arrêt maladie` pour le montant des indemnités journalière versées par la CPAM en cas d’arrêt maladie.
 
 
 ## 1.1.0

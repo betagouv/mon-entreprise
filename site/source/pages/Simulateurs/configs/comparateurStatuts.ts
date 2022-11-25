@@ -8,7 +8,9 @@ export const configComparateurStatuts: SimulationConfig = {
 		'protection sociale . retraite . trimestres',
 		'protection sociale . retraite . base . cotisée',
 		'protection sociale . retraite . complémentaire',
-		'protection sociale . maladie . arrêt maladie . indemnités',
+		'protection sociale . maladie . arrêt maladie',
+		'protection sociale . maladie . arrêt maladie . délai de carence',
+		"protection sociale . maladie . arrêt maladie . délai d'attente",
 	],
 	questions: {
 		'liste noire': [

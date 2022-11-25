@@ -88,7 +88,6 @@ export const useNextQuestions = function (
 			(question) => engine.getRule(question).rawNode.question !== undefined
 		)
 	}, [missingVariables, config, answeredQuestions, engine, currentQuestion])
-	console.log({ nextQuestions })
 
 	return nextQuestions
 }
