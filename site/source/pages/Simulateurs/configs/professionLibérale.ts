@@ -21,9 +21,6 @@ export const configProfessionLibérale: SimulationConfig = {
 			'',
 		],
 		'non prioritaires': [
-			'dirigeant . indépendant . cotisations facultatives',
-			// 'dirigeant . indépendant . PL . PAMC . IJSS',
-			// 'dirigeant . indépendant . IJSS',
 			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',
 			'dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité',
 		],

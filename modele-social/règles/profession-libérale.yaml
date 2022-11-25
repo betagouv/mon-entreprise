@@ -67,15 +67,7 @@ dirigeant . indépendant . PL . métier . santé . auxiliaire médical:
 dirigeant . indépendant . PL . métier . santé . pharmacien:
 dirigeant . indépendant . PL . métier . santé . chirurgien-dentiste:
 dirigeant . indépendant . PL . métier . santé . sage-femme:
-# dirigeant . indépendant . PL . métier . santé . médecin remplaçant:
-#   description: |
-#     Les médecin remplaçant généraliste ou spécialiste (étudiant, salarié ou
-#     retraité) sont les honoraires rétrocédés ne dépassent pas 19 000 € par année
-#     civile peuvent bénéficier d'un dispositif particulier pour le paiement de
-#     leur cotisation de sécurité sociale.
 
-#     Cela consiste en un taux unique de cotisations à 13,30%
-#   références: https://www.calcul.urssaf.fr/medecin_remplacant.html
 dirigeant . indépendant . PL . métier . santé . médecin:
 dirigeant . indépendant . PL . métier . santé . médecin . secteur:
   applicable si: métier = 'santé . médecin'
@@ -670,6 +662,15 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
   description: |
     Les practicien et auxiliaire médical exerçant une activité de remplacement ne sont pas redevables de la contribution aux unions régionales des professionnels de santé (CURPS)
   par défaut: non
+  avec:
+    offre simplifiée:
+      toutes ces conditions:
+        - entreprise . chiffre d'affaires < 19000 €/an
+        - métier = 'santé . médecin'
+      type: notification
+      description: Vous exercez une activité de médecins régulateurs ? Vous pouvez adhérer à l’offre simplifiée. [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
+      références:
+        Site de l'offre simplifié dédiée aux médecins remplaçant: https://www.medecins-remplacants.urssaf.fr/accueil
 
 dirigeant . indépendant . PL . PAMC . CURPS:
   titre: Contribution aux unions régionales des professionnels de santé
