@@ -147,8 +147,7 @@ salarié . temps de travail . heures complémentaires . majoration:
       - taux: 25%
 
 salarié . temps de travail . durée légale:
-  valeur: 35 heures/semaine
+  déprécié: oui
+  valeur: durée légale du travail
   avec:
-    mensuelle: durée légale * période . semaines par mois
-  références:
-    Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/la-duree-legale-du-travail
+    mensuelle: durée légale du travail . mensuelle

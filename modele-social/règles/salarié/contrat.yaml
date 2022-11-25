@@ -466,11 +466,11 @@ salarié . contrat . temps de travail:
       variations:
         - si: temps partiel
           alors: temps partiel . heures par semaine
-        - sinon: temps de travail . durée légale
+        - sinon: durée légale du travail
     facteur: période . semaines par mois
   avec:
     quotité:
-      valeur: temps de travail / temps de travail . durée légale . mensuelle
+      valeur: temps de travail / durée légale du travail . mensuelle
       unité: '%'
     SMIC: SMIC * quotité
 
@@ -486,8 +486,8 @@ salarié . contrat . temps de travail . temps partiel:
       par défaut: 32 heures/semaine
       question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
       suggestions:
-        4 jours / semaine: temps de travail . durée légale * 4 / 5
-        mi-temps: temps de travail . durée légale / 2
+        4 jours / semaine: durée légale du travail * 4 / 5
+        mi-temps: durée légale du travail / 2
 
     contrôle temps min:
       type: notification
@@ -498,7 +498,7 @@ salarié . contrat . temps de travail . temps partiel:
     contrôle temps max:
       type: notification
       sévérité: avertissement
-      formule: heures par semaine >= temps de travail . durée légale
+      formule: heures par semaine >= durée légale du travail
       description: Un temps partiel doit être en dessous de la durée de travail légale (35h)
 
 salarié . contrat . statut cadre:

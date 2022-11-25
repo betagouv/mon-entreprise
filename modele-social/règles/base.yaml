@@ -27,7 +27,7 @@ plafond sécurité sociale:
 SMIC:
   unité: €/mois
   produit:
-    assiette: salarié . temps de travail . durée légale . mensuelle
+    assiette: durée légale du travail . mensuelle
     facteur: SMIC . horaire
   références:
     décret: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042677359?r=s75zUOEVpR
@@ -38,6 +38,7 @@ SMIC . net imposable:
   recalcul:
     règle: salarié . rémunération . net . imposable . sans déductions
     avec:
+      salarié: oui
       salarié . contrat . salaire brut: SMIC
   références:
     barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
@@ -85,3 +86,10 @@ SMIC . horaire:
         règle: SMIC . horaire
         avec:
           date: période . début d'année
+
+durée légale du travail:
+  valeur: 35 heures/semaine
+  avec:
+    mensuelle: durée légale du travail * période . semaines par mois
+  références:
+    Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/la-duree-legale-du-travail
