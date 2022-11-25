@@ -163,17 +163,43 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
           plafond: 4
     arrondi: oui
 
+dirigeant . indépendant . PL . PAMC . maladie:
+  remplace: cotisations et contributions . maladie
+  # remplace: PL . maladie doesn't work because of https://github.com/betagouv/publicodes/issues/55
+  # So we need to put this bloc before PL . maladie, in order for this replace to take precedence over the next (the first replace of the file win it all)
+  titre: maladie (après participation CPAM)
+  somme:
+    - variations:
+        - si: date >= 01/2022
+          alors: PL . maladie
+        - sinon:
+            produit:
+              assiette: assiette des cotisations
+              taux: 6.50%
+            arrondi: oui
+    - contribution additionnelle
+    - (- participation CPAM)
+  avec:
+    participation CPAM:
+      non applicable si: métier . santé . médecin . secteur = 'S2'
+      produit:
+        assiette: assiette participation CPAM
+        taux:
+          variations:
+            - si: date >= 01/2022
+              alors: PL . maladie . taux - 0.1%
+            - sinon: 6.40%
+      arrondi: oui
+
 dirigeant . indépendant . PL . maladie:
-  non applicable si:
-    une de ces conditions:
-      - régime général
-      - PAMC
+  non applicable si: régime général
   remplace: cotisations et contributions . maladie
   produit:
     assiette:
       valeur: assiette des cotisations
       plancher: assiette minimale . maladie
     taux:
+      nom: taux
       taux progressif:
         assiette: assiette des cotisations
         multiplicateur: plafond sécurité sociale
@@ -663,7 +689,7 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
     Les practicien et auxiliaire médical exerçant une activité de remplacement ne sont pas redevables de la contribution aux unions régionales des professionnels de santé (CURPS)
   par défaut: non
   avec:
-    offre simplifiée:
+    offre simplifiée médecins:
       toutes ces conditions:
         - entreprise . chiffre d'affaires < 19000 €/an
         - métier = 'santé . médecin'
@@ -712,18 +738,6 @@ dirigeant . indépendant . PL . PAMC . CURPS:
     unité: €/an
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html
-
-dirigeant . indépendant . PL . PAMC . maladie:
-  remplace: cotisations et contributions . maladie
-  titre: maladie (après participation CPAM)
-  formule:
-    somme:
-      - produit:
-          assiette: assiette des cotisations
-          taux: 6.50%
-        arrondi: oui
-      - contribution additionnelle
-      - (- participation CPAM)
 
 dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   non applicable si: métier . santé . médecin . secteur = 'S1'
@@ -777,14 +791,6 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
 
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-medecin-du-secteur-1/assiette-de-participation-de-la.html
-
-dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
-  non applicable si: métier . santé . médecin . secteur = 'S2'
-  formule:
-    produit:
-      assiette: assiette participation CPAM
-      taux: 6.40%
-    arrondi: oui
 
 dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   formule:
