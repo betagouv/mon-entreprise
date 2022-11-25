@@ -14,7 +14,7 @@ export const useGetFullPath = () => {
 
 	const language = i18n.language as 'fr' | 'en'
 
-	const pathStart = isDevelopment() ? DEVELOPMENT_BASE_PATHS[language] : '/'
+	const pathStart = isDevelopment() ? DEVELOPMENT_BASE_PATHS[language] : ''
 
 	return `${pathStart}${pathname !== '/' ? pathname : ''}`
 }
