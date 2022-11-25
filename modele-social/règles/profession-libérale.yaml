@@ -461,13 +461,15 @@ dirigeant . indépendant . PL . CNAVPL:
     l'organisme qui fédère les différentes caisses existantes (CIPAV, CARPIMKO,
     CARCDSF, CAVEC etc..)
   non applicable si: régime général
+  rend non applicable:
+    règle: situation personnelle . RSA
+    dans: dirigeant . indépendant . cotisations et contributions
   valeur: oui
   références:
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf
 
 dirigeant . indépendant . PL . CNAVPL . retraite:
-  non applicable si: exonération incapacité
   titre: retraite de base
   description: |
     Toutes les professions libérale (à l'exception des avocats)
@@ -482,7 +484,9 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
           nom: tranche T1
           arrondi: oui
           unité: €/an
-        taux: 8.23%
+        taux:
+          nom: taux
+          valeur: 8.23%
         plafond: plafond sécurité sociale
       - attributs:
           nom: tranche T2
@@ -490,20 +494,20 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
           unité: €/an
         taux: 1.87%
         plafond: 5 * plafond sécurité sociale
+  abattement: CARMF . participation CPAM retraite
   références:
     cnavpl.fr: https://www.cnavpl.fr/preparer-sa-retraite/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=24
 
 #TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
 dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
-  titre: retraite de base
-  non applicable si:
-    une de ces conditions:
-      - PL . CNBF
-      - PL . CARMF
+  titre: Remplacement de la retraite de base
+  non applicable si: PL . CNBF
   remplace:
-    règle: cotisations et contributions . retraite de base
-    par: retraite
+    - règle: cotisations et contributions . retraite de base
+      par: retraite
+    - règle: cotisations et contributions . retraite de base . taux
+      par: retraite . tranche T1 . taux
   valeur: oui
 
 dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
@@ -541,6 +545,15 @@ dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
   description: |-
     Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois,
     vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
+  rend non applicable:
+    - CAVP
+    - CARMF
+    - CARPIMKO
+    - CARCDSF
+    - CNAVPL . retraite
+    - cotisations et contributions . PCV
+    - cotisations et contributions . retraite de base
+    - cotisations et contributions . retraite complémentaire
 
   références:
     Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75
@@ -857,7 +870,7 @@ dirigeant . indépendant . PL . PAMC . participation CPAM:
       - CARPIMKO . ASV . participation CPAM
       - CARCDSF . chirurgien-dentiste . PCV . participation CPAM
       - CARCDSF . sage-femme . PCV . participation CPAM
-      - CARMF . retraite CNAVPL . participation CPAM
+      - CARMF . participation CPAM retraite
     arrondi: oui
   références:
     amelie.fr: https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical
@@ -1110,18 +1123,17 @@ dirigeant . indépendant . PL . CARMF:
     métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
 
 dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
+  déprécié: oui
   titre: retraite de base CNAVPL (après participation CPAM)
+  valeur: CNAVPL . retraite
+  abattement:
+    nom: participation CPAM
+    valeur: participation CPAM retraite
+
+dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
   applicable si: métier . santé . médecin . secteur = 'S1'
   description: |
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
-  remplace: cotisations et contributions . retraite de base
-  formule:
-    valeur: CNAVPL . retraite
-    abattement: participation CPAM
-  références:
-    Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
-
-dirigeant . indépendant . PL . CARMF . retraite CNAVPL . participation CPAM:
   unité: €/an
   produit:
     assiette: assiette des cotisations
@@ -1207,18 +1219,18 @@ dirigeant . indépendant . PL . CARMF . ASV:
     Les deux tiers de la cotisation des médecins en secteur 1 sont financés
     par les Caisses maladie.
   non applicable si: métier . santé . médecin . secteur = 'non conventionné'
-  formule:
-    valeur:
-      nom: assiette
-      somme:
-        - 5136 €/an
-        - produit:
-            assiette: PAMC . revenus activité conventionnée
-            plafond: 5 * plafond sécurité sociale
-            taux: 3.80%
-      unité: €/an
-    abattement: participation CPAM
-    arrondi: oui
+  valeur:
+    nom: assiette
+    somme:
+      - 5136 €/an
+      - produit:
+          assiette: PAMC . revenus activité conventionnée
+          plafond: 5 * plafond sécurité sociale
+          taux: 3.80%
+    unité: €/an
+  abattement: participation CPAM
+  arrondi: oui
+
   références:
     Taux 2021: http://www.carmf.fr/page.php?page=chiffrescles/stats/2021/taux2021.htm
     Taux 2022: http://www.carmf.fr/page.php?page=chiffrescles/stats/2022/taux2022.htm

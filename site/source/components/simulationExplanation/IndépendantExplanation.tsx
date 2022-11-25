@@ -152,8 +152,6 @@ function DistributionBranch({
 	maximum,
 	...props
 }: DistributionBranchProps) {
-	console.log('zouzou', dottedName)
-
 	const branche = useEngine().getRule(dottedName)
 
 	return (
@@ -187,7 +185,7 @@ function DroitsRetraite() {
 				</Li>
 				<WhenApplicable dottedName="protection sociale . retraite . CNAVPL">
 					<Li>
-						Points de retraite de base acquis :{' '}
+						Points de retraite de base acquis (CNAVPL) :{' '}
 						<Value
 							linkToRule
 							expression="protection sociale . retraite . CNAVPL"
@@ -195,6 +193,16 @@ function DroitsRetraite() {
 						/>
 					</Li>
 				</WhenApplicable>
+				<WhenNotApplicable dottedName="protection sociale . retraite . CNAVPL">
+					<Li>
+						Revenu cotisé pris en compte pour la retraite de base :{' '}
+						<Value
+							linkToRule
+							unit="€/an"
+							expression="protection sociale . retraite . base . cotisée"
+						/>
+					</Li>
+				</WhenNotApplicable>
 				<Li>
 					Points de retraite complémentaire acquis :{' '}
 					<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
@@ -208,7 +216,7 @@ function DroitsRetraite() {
 					</WhenApplicable>
 					<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
 						<Strong>non connue</Strong>
-						<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité">
+						<Condition expression="dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité">
 							<SmallBody>
 								Le nombre de "points gratuits" reçus pendant votre pension
 								d'invalidité dépend de vos revenus antérieurs.{' '}
@@ -216,7 +224,7 @@ function DroitsRetraite() {
 									En savoir plus.
 								</RuleLink>
 							</SmallBody>
-						</WhenApplicable>
+						</Condition>
 						<WhenApplicable dottedName="dirigeant . indépendant . PL">
 							<SmallBody>
 								Ce simulateur ne gère pas les droits acquis de retraite

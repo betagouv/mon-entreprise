@@ -220,6 +220,7 @@ protection sociale . retraite . CNAVPL:
 
     Pour chaque tranche, le nombre de points attribué est calculé au prorata de la cotisation effective
     sur la cotisation maximale et arrondi à la décimale la plus proche
+  arrondi: oui
   produit:
     assiette: points acquis
     facteur:
