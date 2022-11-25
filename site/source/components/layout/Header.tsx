@@ -59,8 +59,8 @@ export default function Header() {
 							onChange={setDarkMode}
 							aria-label={
 								darkMode
-									? t('navbar.activate-darkmode', 'Désactiver le mode sombre')
-									: t('navbar.deactivate-darkmode', 'Activer le mode sombre')
+									? t('navbar.deactivate-darkmode', 'Désactiver le mode sombre')
+									: t('navbar.activate-darkmode', 'Activer le mode sombre')
 							}
 						/>
 						<Emoji emoji="🌙" aria-hidden />

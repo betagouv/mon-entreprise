@@ -909,52 +909,52 @@ page:
         compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
         quel site internet. <3>En savoir plus</3>.</2></1>
 pages:
-  accessibilité: <0>Accessibilité</0><1></1><2></2><3><0>Cette page n'est pas une
+  accessibilité: <0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
     page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui
     vise à définir le niveau d'accessibilité général constaté sur le site
     conformément à la réglementation. Cette page est obligatoire pour être
-    conforme au RGAA 4.0.</0><1>Qu’est-ce que l’accessibilité
-    numérique&nbsp;?</1><2>Un site web accessible est un site qui permet à tous
+    conforme au RGAA 4.0.</3><4>Qu’est-ce que l’accessibilité
+    numérique&nbsp;?</4><5>Un site web accessible est un site qui permet à tous
     les internautes d’accéder à ses contenus sans difficulté, y compris aux
     personnes qui présentent un handicap et utilisent des logiciels ou matériels
-    spécialisés.</2><3>Un site accessible permet par exemple
-    de&nbsp;:</3><4><0>Naviguer avec des synthèses vocales ou des plages braille
+    spécialisés.</5><6>Un site accessible permet par exemple
+    de&nbsp;:</6><7><0>Naviguer avec des synthèses vocales ou des plages braille
     (notamment utilisées par les internautes aveugles ou
     malvoyants).</0><1>Personnaliser l’affichage du site selon ses besoins
     (grossissement des caractères, modification des couleurs,
     etc.).</1><2>Naviguer sans utiliser la souris, avec le clavier uniquement ou
-    via un écran tactile.</2></4><5>Déclaration d’accessibilité</5><6>L'Acoss
+    via un écran tactile.</2></7><8>Déclaration d’accessibilité</8><9>L'Acoss
     s’engage à rendre ses sites internet accessibles conformément à l’article 47
-    de la loi n° 2005-102 du 11 février 2005.</6><7>À cette fin, elle rédige
-    <2>la stratégie et le plan d’action à mettre en œuvre</2>.</7><8>Cette
+    de la loi n° 2005-102 du 11 février 2005.</9><10>À cette fin, elle rédige
+    <2>la stratégie et le plan d’action à mettre en œuvre</2>.</10><11>Cette
     déclaration d’accessibilité s’applique à
-    <2>https://mon-entreprise.urssaf.fr</2>.</8><9>État de
-    conformité</9><10><0>https://mon-entreprise.urssaf.fr</0> n’est actuellement
-    pas en conformité avec le <4>référentiel général d’amélioration de
-    l’accessibilité (RGAA)</4>. L’audit de conformité sera prochainement
+    <2>https://mon-entreprise.urssaf.fr</2>.</11><12>État de
+    conformité</12><13><0>https://mon-entreprise.urssaf.fr</0> n’est
+    actuellement pas en conformité avec le <4>référentiel général d’amélioration
+    de l’accessibilité (RGAA)</4>. L’audit de conformité sera prochainement
     planifié. Les corrections seront prises en compte suite à
-    l’audit.</10><11>Droit à la compensation</11><12>Dans l’attente d’une mise
+    l’audit.</13><14>Droit à la compensation</14><15>Dans l’attente d’une mise
     en conformité totale, vous pouvez obtenir une version accessible des
     documents ou des informations qui y seraient contenues en envoyant un
     courriel à <2>accessibilite@acoss.fr</2> en indiquant le nom du document
     concerné et/ou les informations que vous souhaiteriez obtenir. Les
     informations demandées vous seront transmises dans les meilleurs
-    délais.</12><13>Amélioration et contact</13><14>Vous pouvez nous aider à
+    délais.</15><16>Amélioration et contact</16><17>Vous pouvez nous aider à
     améliorer l’accessibilité du site en nous signalant les problèmes éventuels
     que vous rencontrez. Pour ce faire, envoyez-nous un courriel à
-    <2>accessibilite@acoss.fr</2>.</14><15>Défenseur des droits</15><16>Cette
-    procédure est à utiliser dans le cas suivant.</16><17>Vous avez signalé au
+    <2>accessibilite@acoss.fr</2>.</17><18>Défenseur des droits</18><19>Cette
+    procédure est à utiliser dans le cas suivant.</19><20>Vous avez signalé au
     responsable du site internet un défaut d’accessibilité qui vous empêche
     d’accéder à un contenu ou à un des services du portail et vous n’avez pas
-    obtenu de réponse satisfaisante.</17><18><0>Écrire un message au Défenseur
+    obtenu de réponse satisfaisante.</20><21><0>Écrire un message au Défenseur
     des droits
     (<1>https://formulaire.defenseurdesdroits.fr/</1>)</0><1>Contacter le
     délégué du Défenseur des droits dans votre région
     (<1>https://www.defenseurdesdroits.fr/saisir/delegues</1>)</1><2>Envoyer un
     courrier par la poste (gratuit, ne pas mettre de timbre)
     à&nbsp;:<1></1>Défenseur des droits<3></3>Libre réponse
-    71120<5></5>75342&nbsp;Paris CEDEX 07</2></18><19>Mis à jour le
-    29/01/2021</19></3>
+    71120<5></5>75342&nbsp;Paris CEDEX 07</2></21><22>Mis à jour le
+    29/01/2021</22>
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui
@@ -985,9 +985,9 @@ pages:
       calculer la valeur</0><1><0>situation</0> : la situation pour le
       paramétrage du calcul</1></3><4><0>Voir l'exemple dans le
       Swagger</0></4><5>Comment reproduire un calcul d'un simulateur
-      ?</5><6><0>Pour répliquer un calcul d'un simulateur de mon-entreprise dans
-      la bibliothèque, voici la marche à suivre : </0></6><7><0></0><1><0>Dans
-      la section « Règle et situation », vous trouverez le nom de la règle et la
+      ?</5><6>Pour répliquer un calcul d'un simulateur de mon-entreprise dans la
+      bibliothèque, voici la marche à suivre : </6><7><0></0><1><0>Dans la
+      section « Règle et situation », vous trouverez le nom de la règle et la
       situation à utiliser comme paramètres d'appel
       à<1>/evaluate</1>.</0><1></1>Vous pouvez également retrouver la requête
       API à copier-coller sous forme d'appel <3>curl</3> ou de
