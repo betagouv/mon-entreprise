@@ -33,10 +33,7 @@ export function ToggleGroup(props: ToggleGroupProps) {
 			aria-label={props['aria-label'] ?? undefined}
 		>
 			{label && <span {...labelProps}>{label}</span>}
-			<ToggleGroupContainer
-				hideRadio={props.hideRadio ?? false}
-				role="radiogroup"
-			>
+			<ToggleGroupContainer hideRadio={props.hideRadio ?? false}>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
 			</ToggleGroupContainer>
 		</div>

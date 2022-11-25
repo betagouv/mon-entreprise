@@ -80,7 +80,11 @@ export default function Footer() {
 
 				<Container backgroundColor={(theme) => theme.colors.bases.primary[700]}>
 					<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-						<FooterContainer className="print-hidden" role="navigation">
+						<FooterContainer
+							className="print-hidden"
+							role="navigation"
+							aria-label={t('Menu de navigation')}
+						>
 							<FooterColumn>
 								{language === 'fr' && (
 									<nav>

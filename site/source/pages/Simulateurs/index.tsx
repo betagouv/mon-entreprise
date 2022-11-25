@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Routes, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { usePersistingState } from '@/components/utils/persistState'
@@ -56,22 +57,22 @@ export default function Simulateurs() {
 
 			{pathname !== absoluteSitePaths.simulateurs.index &&
 				(lastState?.fromGérer ? (
-					<Link to={absoluteSitePaths.gérer.index}>
+					<StyledLink to={absoluteSitePaths.gérer.index}>
 						<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
-					</Link>
+					</StyledLink>
 				) : lastState?.fromCréer ? (
-					<Link to={absoluteSitePaths.créer.index}>
+					<StyledLink to={absoluteSitePaths.créer.index}>
 						<span aria-hidden>←</span> <Trans>Retour à la création</Trans>
-					</Link>
+					</StyledLink>
 				) : !isEmbedded ? (
 					(!lastState || lastState?.fromSimulateurs) && (
-						<Link
+						<StyledLink
 							className="print-hidden"
 							to={absoluteSitePaths.simulateurs.index}
 						>
 							<span aria-hidden>←</span>{' '}
 							<Trans>Voir les autres simulateurs</Trans>
-						</Link>
+						</StyledLink>
 					)
 				) : null)}
 			<Routes>
@@ -81,3 +82,7 @@ export default function Simulateurs() {
 		</>
 	)
 }
+
+const StyledLink = styled(Link)`
+	text-decoration: none;
+`

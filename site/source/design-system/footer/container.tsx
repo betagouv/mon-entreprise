@@ -17,9 +17,10 @@ export const FooterContainer = ({
 	children,
 	className,
 	role,
+	...props
 }: FooterContainerProps) => {
 	return (
-		<StyledGrid className={className} container role={role}>
+		<StyledGrid className={className} container role={role} {...props}>
 			{children}
 		</StyledGrid>
 	)
