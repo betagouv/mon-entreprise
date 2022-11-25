@@ -1485,13 +1485,14 @@ pages:
         title: "Indépendant : simulateur de revenus"
       retraite-droits-acquis: "<0>Retraite : droits acquis sur
         l'année</0><1><0>Retraite de base : <2><0></0></2></0><1><0>Points de
-        retraite de base acquis : <2></2></0></1><2>Points de retraite
-        complémentaire acquis : <2><0><0></0> points acquis</0></2><3><0>non
-        connue</0><1><0>Le nombre de \"points gratuits\" reçus pendant votre
-        pension d'invalidité dépend de vos revenus antérieurs. <2>En savoir
-        plus.</2></0></1><2><0>Ce simulateur ne gère pas les droits acquis de
-        retraite complémentaire pour les professions
-        libérales</0></2></3></2></1>"
+        retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
+        pris en compte pour la retraite de base : <2></2></0></2><3>Points de
+        retraite complémentaire acquis : <2><0><0></0> points
+        acquis</0></2><3><0>non connue</0><1><0>Le nombre de \"points gratuits\"
+        reçus pendant votre pension d'invalidité dépend de vos revenus
+        antérieurs. <2>En savoir plus.</2></0></1><2><0>Ce simulateur ne gère
+        pas les droits acquis de retraite complémentaire pour les professions
+        libérales</0></2></3></3></1>"
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
     is:

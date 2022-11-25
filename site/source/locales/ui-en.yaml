@@ -1785,15 +1785,16 @@ pages:
         description: Calculation of net income after tax and contributions based on
           turnover and vice versa
         title: "Self-employed: income simulator"
-      retraite-droits-acquis: '<0>Retirement: rights acquired over the
+      retraite-droits-acquis: '<0>Retirement: rights acquired during the
         year</0><1><0>Basic pension : <2><0></0></2></0><1><0>Basic pension
-        points earned : <2></2></0></1><2>Acquired complementary pension points
-        : <2><0><0></0> points acquired</0></2><3><0>not known</0><1><0>The
-        number of "free points" received during your disability pension depends
-        on your previous income. <2>To find out more, click
-        here.</2></0></1><2><0>This simulator does not manage the acquired
+        points acquired (CNAVPL) : <2></2></0></1><2><0>Income taken into
+        account for the basic pension : <2></2></0></2><3>Acquired complementary
+        pension points : <2><0><0></0> points acquired</0></2><3><0>not
+        known</0><1><0>The number of "free points" received during your
+        disability pension depends on your previous income. <2>To find out more,
+        click here.</2></0></1><2><0>This simulator does not manage the acquired
         rights of complementary pension for liberal
-        professions</0></2></3></2></1>'
+        professions</0></2></3></3></1>'
       shortname: Independent
       title: Income simulator for the self-employed
     is:
