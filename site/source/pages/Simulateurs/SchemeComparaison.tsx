@@ -6,7 +6,6 @@ import { Route, Routes } from 'react-router-dom'
 
 import Value from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
-import RuleLink from '@/components/RuleLink'
 import { StyledGrid } from '@/components/SchemeComparaison'
 import Simulation, {
 	SimulationGoal,
@@ -173,7 +172,15 @@ function Comparateur({ engines }: ComparateurProps) {
 					<Spacing lg /> Santé
 				</H2>
 				<TableRow
-					dottedName="protection sociale . maladie . arrêt maladie . indemnités"
+					dottedName="protection sociale . maladie . arrêt maladie"
+					engines={engines}
+				/>
+				<TableRow
+					dottedName="protection sociale . maladie . arrêt maladie . délai d'attente"
+					engines={engines}
+				/>
+				<TableRow
+					dottedName="protection sociale . maladie . arrêt maladie . délai de carence"
 					engines={engines}
 				/>
 			</StyledGrid>
@@ -190,9 +197,7 @@ function TableRow({
 }) {
 	return (
 		<>
-			<H3 className="legend">
-				<RuleLink dottedName={dottedName} />
-			</H3>
+			<H3 className="legend">{assimiléEngine.getRule(dottedName).title}</H3>
 			<div className="AS">
 				<Value
 					engine={assimiléEngine}

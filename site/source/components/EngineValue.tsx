@@ -1,5 +1,11 @@
 import { DottedName } from 'modele-social'
-import Engine, { ASTNode, PublicodesExpression, formatValue } from 'publicodes'
+import Engine, {
+	ASTNode,
+	EvaluatedNode,
+	PublicodesExpression,
+	RuleNode,
+	formatValue,
+} from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { keyframes } from 'styled-components'
@@ -53,22 +59,21 @@ export default function Value<Names extends string>({
 		let dottedName = expression as DottedName
 		if (ruleEvaluation.sourceMap?.mecanismName === 'replacement') {
 			dottedName =
-				(
+				((
 					ruleEvaluation as {
 						explanation: Array<{
-							satisfied: boolean
-							consequence: { dottedName: DottedName }
+							condition: EvaluatedNode
+							consequence: RuleNode
 						}>
 					}
-				).explanation.find(({ satisfied }) => satisfied === true)?.consequence
-					.dottedName ?? dottedName
+				).explanation
+					// eslint-disable-next-line eqeqeq
+					.find(({ condition }) => !!condition.nodeValue)?.consequence
+					.dottedName as DottedName) ?? dottedName
 		}
 
 		return (
-			<RuleLink
-				dottedName={expression as DottedName}
-				documentationPath={documentationPath}
-			>
+			<RuleLink dottedName={dottedName} documentationPath={documentationPath}>
 				<StyledValue {...props} key={value} $flashOnChange={flashOnChange}>
 					{value}
 				</StyledValue>

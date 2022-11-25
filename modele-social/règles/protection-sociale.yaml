@@ -105,7 +105,7 @@ protection sociale . retraite . base . cotisée:
         Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
 
 protection sociale . retraite . complémentaire:
-  titre: Bonus retraite complémentaire acquis
+  titre: Bonus retraite complémentaire
   non applicable si: dirigeant . auto-entrepreneur
   description: |
     Supplément de pension de retraite acquis grâce à une année complète de cotisation retraite complémentaire.
@@ -347,77 +347,118 @@ protection sociale . maladie . arrêt maladie:
     Si vous êtes en arrêt de travail pour maladie, vous avez droit à des indemnités journalières (IJ) versées par votre régime d'assurance maladie (CPAM, MSA,...).
 
     Les conditions d'indemnisation varient en fonction de votre régime de protection sociale.
-  non applicable si:
-    toutes ces conditions:
-      - entreprise . activité . nature . libérale . réglementée
-      - dirigeant . indépendant . PL . régime général = non
-  note: |
-    Nous n'avons implémenté les indemnités des régimes particuliers des
-    professions libérales réglementées. Pour une liste exaustive des
-    indemnisation, consultez [ce
-    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
+
+  somme:
+    - salarié . indemnités
+    - indépendant . indemnités
   avec:
     délai de carence:
+      non applicable si: arrêt maladie = 0
       description: |
         Pendant les 3 premiers jours de votre arrêt de travail, aucune indemnité journalière ne vous est versée ; c'est ce que l'on appelle le délai de carence. Il s'applique au début de chaque arrêt de travail.
       valeur: 3 jour
       références:
         Délai de carence pour les salarié: https://www.service-public.fr/particuliers/vosdroits/F3053#fiche-item-aria-3
         Délai de carence pour les indépendants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124978
-    conditions:
-      titre: condition d'indemnisation
+    délai d'attente:
+      non applicable si: arrêt maladie = 0
 
-protection sociale . maladie . arrêt maladie . indemnités:
-  description: |
-    Les indemnités journalières vous sont versées par l'Assurance Maladie pour compenser votre revenu pendant l’arrêt de travail. Sous certaines conditions, vous pouvez percevoir des indemnités journalières après un délai de carence de 3 jours. Elles sont calculées à partir de vos revenus cotisés et elles sont versées tous les 14 jours en moyenne.
+protection sociale . maladie . arrêt maladie . salarié:
+  références:
+    'Arrêt de travail pour maladie : les indemnités journalières du salarié': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
+    'Arrêt maladie : indemnités journalières versées au salarié': https://www.service-public.fr/particuliers/vosdroits/F3053
+  non applicable si:
+    une de ces conditions:
+      - dirigeant . indépendant
+      - dirigeant . auto-entrepreneur
 
-    À noter : vos relevés d'indemnités journalières valident également vos droits à la retraite. Conservez-les sans limitation de durée.
-
-  somme:
-    - indemnités . salarié
-    - indépendant
   avec:
-    indépendant:
-      applicable si:
-        une de ces conditions:
-          - dirigeant . indépendant
-          - dirigeant . auto-entrepreneur
+    conditions:
+      avec:
+        revenu:
+          valeur: salarié . cotisations . assiette * 6 mois > plancher
+        délai d'attente:
+          description: |
+            Pour pouvoir prétendre à une indemnisation pour maladie au titre de votre activité professionnelle, vous devez justifier d’un délai d’affiliation continus dans cette activité. Ce dernier dépend de votre rémunération des mois précédents.
+
+          remplace: arrêt maladie . délai d'attente
+          applicable si: conditions . revenu
+          valeur: (plancher / salarié . cotisations . assiette) + 0.5
+          arrondi: oui
+        '[privé] plancher': 1015 heure * SMIC . horaire
+
+      références:
+        Quels sont les critères pour être indemnisé en cas de maladie ?: https://www.ameli.fr/tarn/assure/remboursements/indemnites-journalieres/arret-maladie-salarie#text_2632
+
+    indemnités:
+      applicable si: conditions . revenu
+      unité: €/jour
+      description: |
+        L'indemnité journalière que vous recevrez pendant votre arrêt de travail est égale à 50 % de votre salaire journalier de base. Celui-ci est calculé sur la moyenne des salaires bruts des 3 derniers mois précédant votre arrêt de travail (12 mois en cas d'activité saisonnière).
+      produit:
+        assiette:
+          valeur: salarié . cotisations . assiette / 91.25 jour/trimestre
+          plafond: 1.8 * SMIC
+        taux: 50%
+      notes: |
+        - Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
+        - Pour les salarié, votre entreprise est peut-être soumise à une convention collective de branche professionnelle qui assure le maintien de votre salaire intégral ou partiel pendant votre arrêt de travail pour maladie. Elle peut aussi avoir conclu un accord interne à l’entreprise qui prévoit ce maintien, appelé subrogation. Renseignez-vous auprès du service qui gère la paye dans votre entreprise.
+
+protection sociale . maladie . arrêt maladie . indépendant:
+  applicable si:
+    une de ces conditions:
+      - dirigeant . indépendant
+      - dirigeant . auto-entrepreneur
+  avec:
+    conditions:
+      description:
+        En cas de revenu d’activité indépendante faible, le montant de l’indemnité journalière (IJ) perçu par le travailleur indépendant peut être nul. De même en début d'activité, il faut attendre un certain nombre de mois avant de pouvoir bénéficier d'indemnités.
+
+        Depuis le 1er janvier 2022, il est donc possible de percevoir des indemnités journalières pour maladie et/ou pour maternité au titre de son ancienne activité (quel que soit le régime auquel on était affilié).
+      référence:
+        Comment bénéficier d'indemnités liées à son ancien régime: https://www.ameli.fr/tarn/assure/actualites/indemnites-maladie-et-maternite-du-nouveau-pour-certains-travailleurs-independants
+      avec:
+        revenu: raam > 10% * plafond sécurité sociale
+        délai d'attente:
+          description: |
+            Pour pouvoir prétendre à une indemnisation pour maladie au titre de votre activité professionnelle, vous devez justifier d’un délai d’affiliation continus dans cette activité.
+
+            > **À noter** : si les droits ne sont pas réunis, votre arrêt de travail peut, sous certaines conditions, être indemnisable au titre du maintien de droits de votre activité précédente. Renseignez-vous auprès de votre caisse primaire d'assurance maladie (CPAM).
+          valeur: 12 mois
+          remplace: arrêt maladie . délai d'attente
+          références:
+            'Artisan/commerçant : quels sont les critères pour être indemnisé en cas de maladie ?': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972#text_124921
+            'Profession libérale : quels sont les critères pour être indemnisé en cas de maladie ?': 'https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170646'
+    indemnités:
+      applicable si: conditions . revenu
+      description: |
+        L'indemnité journalière que vous recevrez pendant votre arrêt de travail est égale à 1/730e de votre revenu d’activité annuel moyen (Raam) (1). Celui-ci est calculé sur la moyenne de vos revenus cotisés des 3 années civiles précédant la date de votre arrêt de travail.
+
       unité: €/jour
       produit:
         assiette: raam
         facteur: 1 an / 730 jour
-      avec:
-        raam:
-          titre: Revenu d’activité annuel moyen
-          valeur:
-            variations:
-              - si: dirigeant . indépendant
-                alors: dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie . assiette
-              - si: dirigeant . auto-entrepreneur
-                alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
-          plafond:
-            nom: plafond
-            valeur: plafond sécurité sociale
 
-        références:
-          Quelles indemnités journalières pour les artisans/commerçants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
-          Quelles indemnités journalières pour les professions libérales: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
-    salarié:
-      unité: €/jour
-      par défaut: 0
-      description: |
-        L'indemnité journalière que vous recevrez pendant votre arrêt de travail est égale à 50 % de votre salaire journalier de base. Celui-ci est calculé sur la moyenne des salaires bruts des 3 derniers mois précédant votre arrêt de travail (12 mois en cas d'activité saisonnière).
+    '[privé] raam':
+      titre: Revenu d’activité annuel moyen
+      valeur:
+        variations:
+          - si: dirigeant . indépendant
+            alors: dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie . assiette
+          - si: dirigeant . auto-entrepreneur
+            alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
+      plafond:
+        variations:
+          - si: entreprise . activité . nature . libérale . réglementée
+            alors: 3 * plafond sécurité sociale
+          - sinon: plafond sécurité sociale
 
-        **À noter :** votre entreprise est peut-être soumise à une convention collective de branche professionnelle qui assure le maintien de votre salaire intégral ou partiel pendant votre arrêt de travail pour maladie. Elle peut aussi avoir conclu un accord interne à l’entreprise qui prévoit ce maintien, appelé subrogation. Renseignez-vous auprès du service qui gère la paye dans votre entreprise.
-      notes: Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
-      produit:
-        assiette:
-          valeur: salarié . rémunération . brut / 91.25 jour/trimestre
-          plafond: 1.8 * SMIC
-        taux: 50%
-      références:
-        'Arrêt de travail pour maladie : les indemnités journalières du salarié': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
-        'Arrêt maladie : indemnités journalières versées au salarié': https://www.service-public.fr/particuliers/vosdroits/F3053
+  références:
+    Quelles indemnités journalières pour les artisans/commerçants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
+    Quelles indemnités journalières pour les professions libérales: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
+
+protection sociale . maladie . ATMP:
+  titre: Accident du travail et maladie professionnelle
 
 protection sociale . invalidité et décès:
   icônes: 🦽

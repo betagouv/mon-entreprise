@@ -5435,6 +5435,9 @@ protection sociale . maladie:
     des maladies graves comme les séjours à l'hôpital.
   titre.en: '[automatic] health insurance'
   titre.fr: assurance maladie
+protection sociale . maladie . ATMP:
+  titre.en: '[automatic] Workplace injury and occupational disease'
+  titre.fr: Accident du travail et maladie professionnelle
 protection sociale . maladie . arrêt maladie:
   description.en: >-
     [automatic] If you are off work due to illness, you are entitled
@@ -5448,46 +5451,14 @@ protection sociale . maladie . arrêt maladie:
     maladie (CPAM, MSA,...).
 
     Les conditions d'indemnisation varient en fonction de votre régime de protection sociale.
-  note.en: >
-    [automatic] We have only implemented the allowances of the special
-    schemes of the
-
-    regulated professions. For an exhaustive list of
-
-    compensation, please consult [this
-
-    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
-  note.fr: >
-    Nous n'avons implémenté les indemnités des régimes particuliers des
-
-    professions libérales réglementées. Pour une liste exaustive des
-
-    indemnisation, consultez [ce
-
-    site](https://www.coover.fr/prevoyance/tns/arret-maladie-profession-liberale)
   titre.en: '[automatic] sick leave'
   titre.fr: arrêt maladie
-protection sociale . maladie . arrêt maladie . indemnités:
-  description.en: >
-    [automatic] The daily allowances are paid to you by the Health
-    Insurance to compensate your income during the work stoppage. Under certain
-    conditions, you can receive daily allowances after a waiting period of 3
-    days. They are calculated on the basis of your contributed income and are
-    paid every 14 days on average.
-
-
-    Please note: your daily allowance statements also validate your pension rights. Keep them for an unlimited period of time.
-  description.fr: >
-    Les indemnités journalières vous sont versées par l'Assurance
-    Maladie pour compenser votre revenu pendant l’arrêt de travail. Sous
-    certaines conditions, vous pouvez percevoir des indemnités journalières
-    après un délai de carence de 3 jours. Elles sont calculées à partir de vos
-    revenus cotisés et elles sont versées tous les 14 jours en moyenne.
-
-
-    À noter : vos relevés d'indemnités journalières valident également vos droits à la retraite. Conservez-les sans limitation de durée.
-  titre.en: '[automatic] allowances'
-  titre.fr: indemnités
+protection sociale . maladie . arrêt maladie . indépendant:
+  titre.en: '[automatic] independent'
+  titre.fr: indépendant
+protection sociale . maladie . arrêt maladie . salarié:
+  titre.en: '[automatic] employee'
+  titre.fr: salarié
 protection sociale . retraite:
   description.en: >
     [automatic] ### A mandatory system ...
@@ -5626,8 +5597,8 @@ protection sociale . retraite . complémentaire:
 
 
     > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
-  titre.en: '[automatic] Earned supplementary pension bonus'
-  titre.fr: Bonus retraite complémentaire acquis
+  titre.en: '[automatic] Supplementary pension bonus'
+  titre.fr: Bonus retraite complémentaire
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
   note.en:
     '[automatic] The revaluation of the point value takes place on November
@@ -6003,35 +5974,6 @@ salarié . contrat . apprentissage . diplôme préparé . niveau supérieur au b
     ...)
   titre.en: '[automatic] Diploma of a higher level than the baccalaureate'
   titre.fr: Diplôme d'un niveau supérieur au bac
-salarié . contrat . apprentissage . durée:
-  description.en: >
-    [automatic] The apprenticeship contract is a written contract
-    under private law.
-
-
-    It can be of limited duration (CDL) from a minimum of 6 months to a maximum of 3 years
-  description.fr: >
-    Le contrat d'apprentissage est un contrat écrit de droit privé.
-
-
-    Il peut être à durée limitée (CDL) d'une durée de 6 mois au minimum à 3 ans au maximum
-  question.en: '[automatic] What is the duration of the contract?'
-  question.fr: Quelle est la durée du contrat ?
-  suggestions.1 an.en: '[automatic] 1 year'
-  suggestions.1 an.fr: 1 an
-  suggestions.2 ans.en: '[automatic] 2 years'
-  suggestions.2 ans.fr: 2 ans
-  suggestions.3 ans.en: '[automatic] 3 years'
-  suggestions.3 ans.fr: 3 ans
-  suggestions.6 mois.en: '[automatic] 6 months'
-  suggestions.6 mois.fr: 6 mois
-  titre.en: '[automatic] duration of the contract'
-  titre.fr: durée du contrat
-salarié . contrat . apprentissage . trimestres validés pour la retraite:
-  note.en: '[automatic] We round down to the unit, hence the subtraction of 0.5'
-  note.fr: On arrondi à l'unité inférieur, d'où la soustraction de 0.5
-  titre.en: '[automatic] validated quarters for retirement'
-  titre.fr: trimestres validés pour la retraite
 salarié . contrat . date d'embauche:
   question.en: "[automatic] What is the employee's date of hire?"
   question.fr: Quelle est la date d'embauche du salarié ?

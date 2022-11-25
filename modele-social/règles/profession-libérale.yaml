@@ -513,10 +513,7 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
     maladie.
 
     En conséquence une nouvelle cotisation est créée.
-  remplace:
-    - cotisations et contributions . indemnités journalières maladie
-    - règle: protection sociale . maladie . arrêt maladie . indemnités . indépendant . raam . plafond
-      par: assiette . plafond
+  remplace: cotisations et contributions . indemnités journalières maladie
   non applicable si: PL . CNBF
   produit:
     assiette:
