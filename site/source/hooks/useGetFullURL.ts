@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
@@ -16,7 +17,11 @@ export const useGetFullURL = () => {
 
 	const pathStart = isDevelopment() ? DEVELOPMENT_BASE_PATHS[language] : ''
 
-	return `${window.location.origin}${pathStart}${
-		pathname !== '/' ? pathname : ''
-	}`
+	const originRef = useRef('')
+
+	useEffect(() => {
+		originRef.current = window?.location?.origin || ''
+	}, [])
+
+	return `${originRef.current}${pathStart}${pathname !== '/' ? pathname : ''}`
 }
