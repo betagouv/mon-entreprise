@@ -17,8 +17,8 @@ export const useGetFullURL = () => {
 
 	const pathStart = isDevelopment() ? DEVELOPMENT_BASE_PATHS[language] : ''
 
+	// Rustine : permet d'utiliser window en SSR
 	const originRef = useRef('')
-
 	useEffect(() => {
 		originRef.current = window?.location?.origin || ''
 	}, [])
