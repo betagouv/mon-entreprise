@@ -146,6 +146,8 @@ button:enabled {
 	margin: 0;
 	overflow: hidden;
 	clip: rect(1px, 1px, 1px, 1px);
+	font-family: 'Roboto';
+	font-weight: bold;
 }
 
 .skip-link:focus {
