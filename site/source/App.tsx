@@ -20,7 +20,9 @@ import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Container, Spacing } from '@/design-system/layout'
 
 import Provider, { ProviderProps } from './Provider'
+import { Link } from './design-system/typography/link'
 import { useAxeCoreAnalysis } from './hooks/useAxeCoreAnalysis'
+import { useGetFullPath } from './hooks/useGetFullPath'
 import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
@@ -97,6 +99,8 @@ const App = () => {
 
 	const { t } = useTranslation()
 
+	const fullPath = useGetFullPath()
+
 	useSaveAndRestoreScrollPosition()
 	const isEmbedded = useIsEmbedded()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
@@ -109,9 +113,9 @@ const App = () => {
 	return (
 		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
-			<a href="#footer" className="skip-link print-hidden">
+			<Link href={`${fullPath}#footer`} className="skip-link print-hidden">
 				{t('Passer le contenu')}
-			</a>
+			</Link>
 			<main role="main" id="main">
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>

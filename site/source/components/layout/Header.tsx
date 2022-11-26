@@ -9,12 +9,15 @@ import { Container } from '@/design-system/layout'
 import { Switch } from '@/design-system/switch'
 import { Link } from '@/design-system/typography/link'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { useGetFullPath } from '@/hooks/useGetFullPath'
 import { useSitePaths } from '@/sitePaths'
 
 import NewsBanner from './NewsBanner'
 
 export default function Header() {
 	const { absoluteSitePaths } = useSitePaths()
+
+	const fullPath = useGetFullPath()
 
 	const {
 		i18n: { language },
@@ -25,9 +28,9 @@ export default function Header() {
 
 	return (
 		<header role="banner">
-			<a href="#main" className="skip-link print-hidden">
+			<Link href={`${fullPath}#main`} className="skip-link">
 				{t('Aller au contenu')}
-			</a>
+			</Link>
 			<Container>
 				<StyledHeader role="banner">
 					<Link

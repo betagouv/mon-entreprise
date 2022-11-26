@@ -10,6 +10,7 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { useGetFullPath } from '@/hooks/useGetFullPath'
 import { useSitePaths } from '@/sitePaths'
 
 import { TrackPage } from '../../ATInternetTracking'
@@ -24,6 +25,8 @@ export default function Landing() {
 	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
+	const fullPath = useGetFullPath()
+
 	return (
 		<>
 			<TrackPage chapter1="informations" name="accueil" />
@@ -34,9 +37,9 @@ export default function Landing() {
 				ogImage="/logo-share.png"
 			/>
 			<Header />
-			<a href="#footer" className="skip-link print-hidden">
+			<Link href={`${fullPath}#footer`} className="skip-link print-hidden">
 				{t('Passer le contenu')}
-			</a>
+			</Link>
 			<main role="main" id="main">
 				<Container>
 					<PageHeader
