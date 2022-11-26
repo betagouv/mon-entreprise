@@ -20,9 +20,8 @@ import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Container, Spacing } from '@/design-system/layout'
 
 import Provider, { ProviderProps } from './Provider'
-import { Link } from './design-system/typography/link'
 import { useAxeCoreAnalysis } from './hooks/useAxeCoreAnalysis'
-import { useGetFullPath } from './hooks/useGetFullPath'
+import { useGetFullURL } from './hooks/useGetFullURL'
 import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'
 import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
@@ -99,7 +98,7 @@ const App = () => {
 
 	const { t } = useTranslation()
 
-	const fullPath = useGetFullPath()
+	const fullURL = useGetFullURL()
 
 	useSaveAndRestoreScrollPosition()
 	const isEmbedded = useIsEmbedded()
@@ -113,9 +112,9 @@ const App = () => {
 	return (
 		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
-			<Link href={`${fullPath}#footer`} className="skip-link print-hidden">
+			<a href={`${fullURL}#footer`} className="skip-link print-hidden">
 				{t('Passer le contenu')}
-			</Link>
+			</a>
 			<main role="main" id="main">
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>
