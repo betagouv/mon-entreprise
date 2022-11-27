@@ -72,7 +72,7 @@ export default function SoleProprietorship() {
 					</Trans>
 				</Li>
 			</Ul>
-			<AnswerGroup>
+			<AnswerGroup role="list">
 				<Button
 					onPress={() => {
 						dispatch(isSoleProprietorship(true))

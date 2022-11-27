@@ -59,7 +59,7 @@ export default function MinorityDirector() {
 				</Ul>
 			</Trans>
 
-			<AnswerGroup>
+			<AnswerGroup role="list">
 				<Button
 					onPress={() => {
 						dispatch(directorIsInAMinority(false))

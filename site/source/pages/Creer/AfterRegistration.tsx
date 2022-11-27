@@ -58,7 +58,7 @@ export default function AfterRegistration() {
 			<H2>
 				<Trans i18nKey="après.ape.titre">Le code APE</Trans>
 			</H2>
-			<Body>
+			<Body as="div">
 				<Trans i18nKey="après.ape.description">
 					Le code APE correspond au <strong>secteur d'activité</strong> de votre
 					entreprise. Il classifie la branche principale de votre entreprise

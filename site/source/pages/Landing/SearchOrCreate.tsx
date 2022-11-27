@@ -44,7 +44,7 @@ export default function SearchOrCreate() {
 							<H3 as="h2">Votre entreprise</H3>
 							<CompanyDetails />
 							<Spacing md />
-							<AnswerGroup>
+							<AnswerGroup role="list">
 								<Button
 									role="link"
 									to={generatePath(absoluteSitePaths.gérer.entreprise, {
