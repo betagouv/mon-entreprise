@@ -140,8 +140,11 @@ export default function Budget() {
 															language,
 														})
 													) : (
-														<span aria-label="Pas de budget alloué">
-															<span aria-hidden>-</span>
+														<span
+															role="paragraph"
+															aria-label="Pas de budget alloué"
+														>
+															-
 														</span>
 													)}
 												</td>
