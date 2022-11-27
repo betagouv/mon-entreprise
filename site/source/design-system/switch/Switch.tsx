@@ -98,6 +98,7 @@ export type SwitchProps = AriaSwitchProps & {
 	light?: boolean
 	children?: ReactNode
 	className?: string
+	role?: string
 }
 
 export const Switch = (props: SwitchProps) => {
@@ -124,7 +125,13 @@ export const Switch = (props: SwitchProps) => {
 				checked={isSelected}
 				disabled={isDisabled}
 			>
-				<HiddenInput {...inputProps} type="checkbox" tabIndex={0} ref={ref} />
+				<HiddenInput
+					{...inputProps}
+					type="checkbox"
+					tabIndex={0}
+					ref={ref}
+					role={props?.role}
+				/>
 				<StyledSpan
 					light={light}
 					size={size}

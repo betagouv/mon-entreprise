@@ -87,7 +87,7 @@ export default function Footer() {
 						>
 							<FooterColumn>
 								{language === 'fr' && (
-									<nav>
+									<nav title="firstColumnNav">
 										<ul>
 											<li>
 												<StyledLink to={absoluteSitePaths.plan}>
@@ -114,7 +114,7 @@ export default function Footer() {
 								)}
 							</FooterColumn>
 							<FooterColumn>
-								<nav>
+								<nav title="secondColumnNav">
 									<ul>
 										<li>
 											<StyledLink to={absoluteSitePaths.développeur.index}>
@@ -152,7 +152,7 @@ export default function Footer() {
 							</FooterColumn>
 
 							<FooterColumn>
-								<nav>
+								<nav title="thirdColumnNav">
 									<ul>
 										<li>
 											<LegalNotice />

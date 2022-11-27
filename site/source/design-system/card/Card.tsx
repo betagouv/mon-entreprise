@@ -1,7 +1,7 @@
 import { AriaButtonProps } from '@react-types/button'
 import React, { ComponentPropsWithRef, ReactHTML, useRef } from 'react'
 import { Link as BaseLink } from 'react-router-dom'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { StyledButton } from '@/design-system/buttons/Button'
 import { FocusStyle } from '@/design-system/global-style'
@@ -70,7 +70,7 @@ export function Card({
 			</div>
 			{ctaLabel && (
 				// The button is not selectable with keyboard navigation because the whole card already is
-				<CardButton tabIndex={-1} $size="XS" $light $color="primary" as="div">
+				<CardButton $size="XS" $light $color="primary" as="div">
 					{ctaLabel}
 					{linkProps.external && <NewWindowLinkIcon />}
 				</CardButton>
