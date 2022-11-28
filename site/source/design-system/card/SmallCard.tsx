@@ -3,7 +3,6 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
 import { H6 } from '@/design-system/typography/heading'
 import {
 	NewWindowLinkIcon,
@@ -73,9 +72,7 @@ const Container = styled.div`
 				? theme.colors.bases.primary[600]
 				: theme.colors.bases.primary[400]};
 	}
-	&:focus-visible {
-		${FocusStyle}
-	}
+
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.md}`};
 	width: 100%;
 	height: 100%;

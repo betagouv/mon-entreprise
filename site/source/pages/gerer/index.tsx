@@ -39,7 +39,7 @@ import { Message, Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
-import { H2, H4 } from '@/design-system/typography/heading'
+import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
@@ -67,7 +67,7 @@ export default function Gérer() {
 	const simulateurs = useSimulatorsData()
 
 	const back = (
-		<Link to={absoluteSitePaths.gérer.index}>
+		<Link style={{ textDecoration: 'none' }} to={absoluteSitePaths.gérer.index}>
 			<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 		</Link>
 	)
@@ -467,11 +467,11 @@ export const AskCompanyMissingDetails = () => {
 
 					{questions.map((question) => (
 						<FromTop key={question.dottedName}>
-							<H4>
+							<H3>
 								<Markdown options={{ forceInline: true }}>
 									{evaluateQuestion(engine, question) ?? ''}
 								</Markdown>
-							</H4>
+							</H3>
 							<RuleInput
 								dottedName={question.dottedName}
 								onChange={onQuestionAnswered(question.dottedName)}

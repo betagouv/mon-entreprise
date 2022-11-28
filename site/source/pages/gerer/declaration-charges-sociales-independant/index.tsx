@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -194,6 +194,8 @@ export default function AideDéclarationIndépendant() {
 function ImpositionSection() {
 	const dispatch = useDispatch()
 
+	const { t } = useTranslation()
+
 	const setSituation = useCallback(
 		(value, dottedName) => {
 			dispatch(updateSituation(dottedName, value))
@@ -245,6 +247,7 @@ function ImpositionSection() {
 										onChange={setSituation}
 										autoFocus
 										displayedUnit=""
+										aria-label={t('Résultat fiscal')}
 									/>
 								</BigInput>
 							</Condition>

@@ -4,7 +4,6 @@ import { Link as BaseLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import { StyledButton } from '@/design-system/buttons/Button'
-import { FocusStyle } from '@/design-system/global-style'
 import { H3, H4, HeadingUnderline } from '@/design-system/typography/heading'
 import {
 	NewWindowLinkIcon,
@@ -141,10 +140,6 @@ export const CardContainer = styled.div<{ $compact?: boolean }>`
 			theme.darkMode
 				? theme.colors.extended.dark[500]
 				: theme.colors.bases.primary[100]};
-	}
-	&:focus,
-	&:focus-visible {
-		${FocusStyle}
 	}
 	padding: ${({ theme: { spacings }, $compact = false }) =>
 		$compact

@@ -1,5 +1,6 @@
 import { Trans } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
+import styled from 'styled-components'
 
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Link } from '@/design-system/typography/link'
@@ -24,7 +25,7 @@ export default function ÉconomieCollaborative() {
 	return (
 		<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative">
 			<div css="transform: translateY(2rem)">
-				<Link
+				<StyledLink
 					to={indexPath}
 					end
 					style={({ isActive }) => (isActive ? { display: 'none' } : {})}
@@ -33,7 +34,7 @@ export default function ÉconomieCollaborative() {
 					<Trans i18nKey="économieCollaborative.retourAccueil">
 						Retour à la selection d'activités
 					</Trans>
-				</Link>
+				</StyledLink>
 			</div>
 			<StoreProvider localStorageKey="app::économie-collaborative:v1">
 				<Routes>
@@ -50,3 +51,7 @@ export default function ÉconomieCollaborative() {
 		</TrackChapter>
 	)
 }
+
+const StyledLink = styled(Link)`
+	text-decoration: none;
+`

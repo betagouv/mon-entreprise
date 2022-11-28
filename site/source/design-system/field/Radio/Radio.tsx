@@ -4,7 +4,6 @@ import { AriaRadioProps } from '@react-types/radio'
 import { createContext, useContext, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
 import { Body } from '@/design-system/typography/paragraphs'
 
 export const RadioContext = createContext<RadioGroupState | null>(null)
@@ -146,10 +145,6 @@ export const InputRadio = styled.input`
 		+ ${VisibleRadio}
 		${OutsideCircle} {
 		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
-	}
-	:focus-visible + ${VisibleRadio} {
-		${FocusStyle}
-		outline-offset: 0;
 	}
 
 	:checked + ${VisibleRadio} ${InsideCircle} {

@@ -42,7 +42,7 @@ export default function SearchOrCreate() {
 					{companySIREN ? (
 						<>
 							<H3 as="h2">Votre entreprise</H3>
-							<CompanyDetails />
+							<CompanyDetails headingTag="h3" />
 							<Spacing md />
 							<AnswerGroup role="list">
 								<Button

@@ -10,8 +10,6 @@ import React, {
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
-
 export const StyledLinkHover = css`
 	text-decoration: underline;
 	color: ${({ theme }) =>
@@ -54,7 +52,7 @@ export const StyledLink = styled.a<{ $isDisabled?: boolean }>`
 				? css`
 						outline: none;
 				  `
-				: FocusStyle}
+				: ''}
 	}
 `
 

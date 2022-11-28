@@ -3,7 +3,7 @@ import { useToggleState } from '@react-stately/toggle'
 import { ReactNode, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
-import { FocusStyle, SROnly } from '@/design-system/global-style'
+import { SROnly } from '@/design-system/global-style'
 
 import { Body } from '../typography/paragraphs'
 
@@ -58,10 +58,6 @@ const StyledSwitch = styled.span<StyledProps>`
 					border: 2px #ffffffbf solid;
 			  `
 			: ''}
-
-	&:focus-within {
-		${FocusStyle}
-	}
 
 	&:hover ${StyledSpan} {
 		box-shadow: 0 0 0 0.5rem

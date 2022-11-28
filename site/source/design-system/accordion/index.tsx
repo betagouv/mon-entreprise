@@ -7,8 +7,6 @@ import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import styled, { css } from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
-
 import chevronImg from './chevron.svg'
 
 export const Accordion = <T extends object>(props: AriaAccordionProps<T>) => {
@@ -106,9 +104,6 @@ const StyledButton = styled.button`
 	}
 	:focus {
 		outline: none;
-	}
-	:focus > span {
-		${FocusStyle}
 	}
 `
 
