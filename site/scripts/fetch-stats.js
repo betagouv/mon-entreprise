@@ -570,10 +570,16 @@ try {
 		!process.env.ATINTERNET_API_SECRET_KEY ||
 		!process.env.ZAMMAD_API_SECRET_KEY
 	) {
-		console.log(
-			"Variables d'environnement manquantes : nous ne récupérons pas les statistiques d'usage"
+		const missingEnvVar = (name) => (!process.env[name] ? name : null)
+		throw new Error(
+			`Variables d'environnement manquantes : ${[
+				missingEnvVar('ATINTERNET_API_ACCESS_KEY'),
+				missingEnvVar('ATINTERNET_API_SECRET_KEY'),
+				missingEnvVar('ZAMMAD_API_SECRET_KEY'),
+			]
+				.filter(Boolean)
+				.join(', ')}, nous ne récupérons pas les statistiques d'usage`
 		)
-		process.exit(1)
 	}
 	const [
 		visitesJours,
