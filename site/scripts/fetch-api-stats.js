@@ -5,7 +5,7 @@ dotenv.config()
 const fetchApiStats = async (page, start, end, interval) => {
 	if (!process.env.PLAUSIBLE_API_KEY) {
 		throw new Error(
-			"Variables d'environnement manquantes : nous ne récupérons pas les statistiques d'usage"
+			"Variables d'environnement manquantes : PLAUSIBLE_API_KEY, nous ne récupérons pas les statistiques d'usage"
 		)
 	}
 
