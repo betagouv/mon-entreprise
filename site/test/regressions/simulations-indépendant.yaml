@@ -10,11 +10,13 @@
 
 inversions:
   - dirigeant . rémunération . totale: 2000 €/an
-  - dirigeant . rémunération . totale: 50000 €/an
+  - dirigeant . rémunération . totale: 5000 €/mois
+    entreprise . imposition: "'IS'"
   - dirigeant . rémunération . net . après impôt: 10000 €/an
-  - dirigeant . rémunération . net . après impôt: 40000 €/an
   - dirigeant . rémunération . net . après impôt: 10000 €/an
     entreprise . charges: 1000 €/an
+  - dirigeant . rémunération . net . après impôt: 3000 €/mois
+    entreprise . imposition: "'IS'"
   - entreprise . chiffre d'affaires: 20000 €/an
     entreprise . charges: 1000 €/an
   - entreprise . chiffre d'affaires: 20000 €/an
