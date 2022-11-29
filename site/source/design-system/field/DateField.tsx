@@ -10,8 +10,7 @@ export default function DateField(props: AriaTextFieldOptions<'input'>) {
 				text-transform: uppercase;
 			`}
 			type="date"
-			placeholder="JJ/MM/AAAA"
-			maxLength={11}
+			label={undefined}
 		/>
 	)
 }

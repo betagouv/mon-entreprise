@@ -26,7 +26,7 @@ export default function TextField(props: TextFieldProps) {
 				<StyledInput
 					{...(props as HTMLAttributes<HTMLInputElement>)}
 					{...(inputProps as HTMLAttributes<HTMLInputElement>)}
-					placeholder={inputProps.placeholder ?? ''}
+					placeholder={inputProps.placeholder ?? undefined}
 					ref={props.inputRef || ref}
 				/>
 				{props.label && (

@@ -57,11 +57,11 @@ export default function DateInput({
 					/>
 				)}
 				<DateField
-					label={title}
 					value={missing ? undefined : dateValue}
 					autoFocus={autoFocus}
 					isRequired={required}
 					onChange={handleDateChange}
+					aria-label={title}
 				/>
 			</div>
 		</div>

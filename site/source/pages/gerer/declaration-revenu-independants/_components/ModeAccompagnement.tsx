@@ -123,7 +123,6 @@ const AccompagnementSwitch = styled.div`
 		margin-bottom: ${theme.spacings.md};
 		* {
 			color: ${theme.colors.bases.primary[800]};
-			background-color: inherit;
 		}
 	`}
 `

@@ -63,13 +63,14 @@ export const Link = React.forwardRef<
 		isDisabled?: boolean
 	}
 >(function Link(props, forwardedRef) {
-	const { isDisabled, role = 'link', ...ariaButtonProps } = props
+	const { isDisabled, role, ...ariaButtonProps } = props
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
 
 	return (
 		<StyledLink
 			{...buttonOrLinkProps}
-			role={role}
+			role={role || buttonOrLinkProps?.role}
+			type={undefined}
 			$isDisabled={isDisabled}
 			tabIndex={isDisabled ? -1 : buttonOrLinkProps.tabIndex}
 			as={isDisabled ? 'span' : buttonOrLinkProps.as}

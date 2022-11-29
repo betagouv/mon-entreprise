@@ -116,7 +116,7 @@ export default function Nouveautés() {
 					</DesktopGridItem>
 					<Grid item xs={12} lg={9}>
 						<MainBlock>
-							<MarkdownWithAnchorLinks renderers={{ text: TextRenderer }}>
+							<MarkdownWithAnchorLinks>
 								{data[selectedRelease].description}
 							</MarkdownWithAnchorLinks>
 

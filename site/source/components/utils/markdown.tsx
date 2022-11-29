@@ -113,7 +113,6 @@ export const Markdown = ({
 	...otherProps
 }: MarkdownProps) => (
 	<MarkdownToJsx
-		{...otherProps}
 		options={{
 			forceBlock: true,
 			...otherProps.options,

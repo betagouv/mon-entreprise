@@ -245,7 +245,6 @@ function ImpositionSection() {
 									<RuleInput
 										dottedName="dirigeant . rémunération . totale"
 										onChange={setSituation}
-										autoFocus
 										displayedUnit=""
 										aria-label={t('Résultat fiscal')}
 									/>
@@ -262,7 +261,6 @@ function ImpositionSection() {
 								<RuleInput
 									dottedName="dirigeant . rémunération . net"
 									onChange={setSituation}
-									autoFocus
 								/>
 							</BigInput>
 						</Condition>
