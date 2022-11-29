@@ -93,7 +93,7 @@ if (detectedErrors.length > 0) {
 				.split('\n')
 				.map((line) => line.trim())
 				.join('<br />')
-		console.log(`::set-output name=comment::${format(message)}`)
+		console.log(`comment=${format(message)} >> $GITHUB_OUTPUT`)
 	} else if (detectedErrors) {
 		console.log(
 			'Liens invalides :' +
