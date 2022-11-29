@@ -400,7 +400,7 @@ salarié . cotisations . CEG:
             plafond: 8
 
   références:
-    calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+    Comment calculer les cotisations de retraite complémentaire: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
 
 salarié . cotisations . CET:
   titre: contribution d'équilibre technique
@@ -423,7 +423,7 @@ salarié . cotisations . CET:
           titre: part salarié
         taux: 0.14%
   références:
-    calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+    Comment calculer les cotisations de retraite complémentaire: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
 
 salarié . cotisations . retraite complémentaire:
   cotisation:
@@ -459,7 +459,7 @@ salarié . cotisations . retraite complémentaire:
               nom: taux T2
             plafond: 8
   références:
-    calcul des cotisations: https://www.agirc-arrco.fr/ce-qui-change-au-1er-janvier-2019/vous-etes-une-entreprise-tiers-declarant/
+    Comment calculer les cotisations de retraite complémentaire: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
     régimes des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
 
 # TODO : ajouter le forfait social pour les cotisations de retraite supplémentaire
@@ -548,9 +548,7 @@ salarié . cotisations . chômage:
     branche: assurance chômage
   description: Cotisation d’assurance chômage
   références:
-    calcul: http://www.pole-emploi.fr/employeur/taux-des-contributions-de-l-assurance-chomage-et-cotisations-ags-@/article.jspz?id=61567
-    urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
-    changements 2017: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/contributions-patronales-dassura.html
+    Taux de l'assurance chômage et de l'AGS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
   produit:
     assiette: cotisations . assiette
     plafond: 4 * temps de travail . plafond sécurité sociale
@@ -859,7 +857,6 @@ salarié . cotisations . maladie:
     Cas particuliers: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit/cas-particuliers.html
     Le régime local Alsace-Moselle: https://regime-local.fr
     Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
-    Réduction 2019: https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/une-reduction-des-cotisations-pa.html
   produit:
     assiette: cotisations . assiette
     composantes:
@@ -1062,7 +1059,7 @@ salarié . cotisations . vieillesse:
               valeur: 8.55%
             plafond: temps de travail . plafond sécurité sociale
   références:
-    Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCode.do;jsessionid=F5CFB7C90D1D1F529A2CDC9FFD20BD6E.tplgfr34s_3?idSectionTA=LEGISCTA000038510929&cidTexte=LEGITEXT000006073189&dateTexte=20190626
+    Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000038510929
 
 salarié . cotisations . taxe d'apprentissage:
   cotisation:
@@ -1165,7 +1162,7 @@ salarié . cotisations . forfait social:
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
-    Code du travail - Article L137-15: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000019950196&cidTexte=LEGITEXT000006073189
+    Code du travail - Article L137-15: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000019950196
   produit:
     assiette: prévoyances . employeur
     taux: 8%
@@ -1212,7 +1209,8 @@ salarié . cotisations . assiette forfaitaire:
       références:
         exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
         CSG-CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
-        plafond de sécurité sociale (urssaf.fr): https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-maximale/salarie-a-temps-partiel.html#FilAriane
+        'Cas particuliers : bases forfaitaires et franchises de cotisations ': https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/cas-particuliers--bases-forfaita.html
+        'Montant des assiettes forfaitaires': https://www.urssaf.fr/portail/home/taux-et-baremes/assiettes-forfaitaires-et-franch.html
       note: |
         Il existe une règle générale d'encadrement des assiettes forfaitaires. Lorsque la rémunération est supérieure ou égale à
         1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération

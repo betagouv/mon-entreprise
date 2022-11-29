@@ -52,7 +52,7 @@ salarié . activité partielle:
     déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
     economie.gouv.fr: https://www.economie.gouv.fr/entreprises/activite-partielle
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d.html
 
 salarié . activité partielle . rémunération mensuelle minimale:
   acronyme: RMM
@@ -116,7 +116,7 @@ salarié . activité partielle . indemnités:
       - base
       - complémentaire
   références:
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/lactivite-partielle.html
+    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d.html
 
 salarié . activité partielle . indemnités . base:
   multiplication:
