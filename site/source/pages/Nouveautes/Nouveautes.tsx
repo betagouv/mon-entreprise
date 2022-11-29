@@ -143,13 +143,6 @@ export default function Nouveautés() {
 	)
 }
 
-const removeGithubIssuesReferences = (text: string) =>
-	text.replace(/#[0-9]{1,5}/g, '')
-
-const TextRenderer = ({ children }: { children: string }) => (
-	<Emoji emoji={removeGithubIssuesReferences(children)} />
-)
-
 const MobileGridItem = styled(Grid).attrs({ item: true, xs: 12 })`
 	display: block;
 
