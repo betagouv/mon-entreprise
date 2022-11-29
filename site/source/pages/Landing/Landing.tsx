@@ -158,7 +158,7 @@ export default function Landing() {
 									. Nous avons à cœur d’être au près de vos besoins afin
 									d’améliorer en permanence ce site conformément à l'approche{' '}
 									<Link
-										href="https://beta.gouv.fr/approche/manifeste"
+										href="https://beta.gouv.fr/manifeste"
 										aria-label="beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre"
 									>
 										beta.gouv.fr

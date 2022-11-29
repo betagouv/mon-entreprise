@@ -97,7 +97,6 @@ export const objectTransform = <T, U>(
 // TODO: This is will be included in the ES spec soon. Remove our custom
 // implementation and rely on browser native support and polyfill when it is
 // available.
-// https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/groupBy
 // https://caniuse.com/?search=groupby
 export function groupBy<E, G extends string>(
 	arr: Array<E>,

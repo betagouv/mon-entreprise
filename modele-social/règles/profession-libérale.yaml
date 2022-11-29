@@ -1683,7 +1683,7 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
               - si: date >= 01/2021
                 alors: 20250
   références:
-    Site CAVEC: https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62
+    'CAVEC : Les cotisations retraite, prévoyance et options': https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62
 
 dirigeant . indépendant . PL . CAVEC . invalidité et décès:
   titre: invalidité et décès
@@ -1701,4 +1701,4 @@ dirigeant . indépendant . PL . CAVEC . invalidité et décès:
           plafond: 79040 €/an
         - montant: 828
   références:
-    Site CAVEC: https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62
+    'CAVEC : Les cotisations retraite, prévoyance et options': https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62

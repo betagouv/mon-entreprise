@@ -4,7 +4,7 @@ employées.
 
 ## Principes
 
-Nous suivons le [manifeste beta.gouv](https://beta.gouv.fr/approche/manifeste)
+Nous suivons le [manifeste beta.gouv](https://beta.gouv.fr/manifeste)
 dont nous rappelons les principes ici&nbsp;:
 
 > -   Les besoins des utilisateurs sont prioritaires sur les besoins de l’administration
@@ -39,29 +39,29 @@ fournit des ressources métier expertes provenant du réseau des Urssaf.
 
 Une enveloppe est allouée pour expérimenter la transformation du moteur de
 simulations en moteur de paie complète. La solution proposée ne sera finalement
-pas retenue pour la refonte des offres de service de l'Urssaf. Voir le
-[compte-rendu de l'expérimentation](https://pad.incubateur.net/s/ulS0EWvxK#).
+pas retenue pour la refonte des offres de service de l’Urssaf. Voir le
+[compte-rendu de l’expérimentation](https://pad.incubateur.net/s/ulS0EWvxK#).
 
 Au quatrième trimestre mon-entreprise rejoint le [programme
 Gamma](https://blog.beta.gouv.fr/dinsic/2020/08/20/acceleration-des-startups-d-etat-d-un-retour-d-experience-a-l-experimentation-d-un-programme-d-accompagnement-cible-1/)
-qui accompagne l'accélération des services publics crées par beta.gouv. Ce
+qui accompagne l’accélération des services publics crées par beta.gouv. Ce
 programme est financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
 
 ---
 
-En 2021 l'[Urssaf Caisse Nationale](https://www.acoss.fr) prend en charge à 100%
+En 2021 l’[Urssaf Caisse Nationale](https://www.acoss.fr) prend en charge à 100%
 le financement de mon-entreprise.
 
-Au premier trimestre 2021, l'équipe mon-entreprise continue de bénéficier de
-l'accompagnement du [programme
+Au premier trimestre 2021, l’équipe mon-entreprise continue de bénéficier de
+l’accompagnement du [programme
 Gamma](https://beta.gouv.fr/approche/acceleration) financé par la
 [DINUM](https://www.numerique.gouv.fr/dinum/).
 
 ---
 
-En 2022 le projet devient mieux intégré au sein de l'[Urssaf Caisse Nationale](https://www.acoss.fr).
+En 2022 le projet devient mieux intégré au sein de l’[Urssaf Caisse Nationale](https://www.acoss.fr).
 
-En complément du financement apporté par l'Urssaf, le projet bénéficie du programme [France Relance](https://france-relance.transformation.gouv.fr/).
+En complément du financement apporté par l’Urssaf, le projet bénéficie du programme [France Relance](https://france-relance.transformation.gouv.fr/).
 
 ---
 
@@ -105,5 +105,5 @@ En complément du financement apporté par l'Urssaf, le projet bénéficie du pr
 >
 > Le montant TTC inclut la TVA au taux de 20%.
 >
-> La TVA est collectée et reversée à l'État et diminue donc le montant du budget
+> La TVA est collectée et reversée à l’État et diminue donc le montant du budget
 > utilisable sur le projet.
