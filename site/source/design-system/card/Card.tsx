@@ -31,6 +31,7 @@ type CardProps = GenericCardProps & {
 	children: React.ReactNode
 	compact?: boolean
 	bodyAs?: React.ComponentProps<typeof Body>['as']
+	role?: string
 }
 
 export function Card({
@@ -40,6 +41,7 @@ export function Card({
 	ctaLabel,
 	compact = false,
 	bodyAs,
+	role,
 	...ariaButtonProps
 }: CardProps) {
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
@@ -50,7 +52,12 @@ export function Card({
 	delete buttonOrLinkProps.title
 
 	return (
-		<CardContainer $compact={compact} {...buttonOrLinkProps} tabIndex={0}>
+		<CardContainer
+			$compact={compact}
+			{...buttonOrLinkProps}
+			role={role || buttonOrLinkProps?.role}
+			tabIndex={0}
+		>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			{title &&
 				(compact ? (

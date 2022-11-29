@@ -3,6 +3,7 @@ import { HTMLAttributes, RefObject, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
 import { ExtraSmallBody } from '@/design-system/typography/paragraphs'
+import { omit } from '@/utils'
 
 const LABEL_HEIGHT = '1rem'
 
@@ -24,7 +25,7 @@ export default function TextField(props: TextFieldProps) {
 				hasLabel={!!props.label && !props.small}
 			>
 				<StyledInput
-					{...(props as HTMLAttributes<HTMLInputElement>)}
+					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
 					{...(inputProps as HTMLAttributes<HTMLInputElement>)}
 					placeholder={inputProps.placeholder ?? undefined}
 					ref={props.inputRef || ref}

@@ -97,11 +97,11 @@ export default function RuleInput<Names extends string = DottedName>({
 		onSubmit,
 		title: rule.title,
 		description: rule.rawNode.description,
-		id: props?.id?.replace(/\s/g, '') ?? dottedName.replace(/\s/g, ''),
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},
 		autoFocus: shouldFocusField,
 		...props,
+		id: props?.id?.replace(/\s/g, '') ?? dottedName.replace(/\s/g, ''),
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
@@ -163,7 +163,13 @@ export default function RuleInput<Names extends string = DottedName>({
 	}
 
 	if (rule.rawNode.type === 'texte') {
-		return <TextInput {...commonProps} value={value as Evaluation<string>} />
+		return (
+			<TextInput
+				{...commonProps}
+				label={undefined}
+				value={value as Evaluation<string>}
+			/>
+		)
 	}
 	if (rule.rawNode.type === 'paragraphe') {
 		return (

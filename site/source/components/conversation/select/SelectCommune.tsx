@@ -138,7 +138,6 @@ export default function Select({
 				onBlur={submitFocusedElem}
 				aria-readonly="true"
 				onKeyDown={handleKeyDown}
-				aria-controls="liste-commune"
 				label={t('Commune ou code postal')}
 				value={name}
 				onChange={handleChange}

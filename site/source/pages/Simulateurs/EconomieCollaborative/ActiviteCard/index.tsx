@@ -75,6 +75,7 @@ export const ActiviteCard = ({
 						excludeFromTabOrder
 						onChange={toggle}
 						aria-label={titre}
+						aria-disabled
 					/>
 				</div>
 			)}

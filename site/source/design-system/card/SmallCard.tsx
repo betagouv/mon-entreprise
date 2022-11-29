@@ -16,8 +16,9 @@ export function SmallCard({
 	icon,
 	children,
 	title,
+	role,
 	...ariaButtonProps
-}: GenericCardProps & { icon: React.ReactNode }) {
+}: GenericCardProps & { icon: React.ReactNode; role?: string }) {
 	const elementType: 'a' | 'div' | typeof Link =
 		'href' in ariaButtonProps ? 'a' : 'to' in ariaButtonProps ? Link : 'div'
 
@@ -31,6 +32,7 @@ export function SmallCard({
 			{...ariaButtonProps}
 			{...buttonProps}
 			{...linkProps}
+			role={role || buttonProps?.role}
 			as={elementType}
 		>
 			<IconPlaceholder>{icon}</IconPlaceholder>
