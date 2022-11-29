@@ -1,9 +1,9 @@
-import { it } from 'vitest'
+import { expect, it } from 'vitest'
 
 import { configArtisteAuteur } from '@/pages/Simulateurs/configs/artisteAuteur'
 
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
-import { runSimulations } from './utils'
+import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-artiste-auteur', () => {
 	runSimulations(
@@ -14,4 +14,19 @@ it('calculate simulations-artiste-auteur', () => {
 		],
 		configArtisteAuteur.situation
 	)
+
+	expect(
+		getMissingVariables(
+			engine
+				.setSituation(configArtisteAuteur.situation)
+				.evaluate('artiste-auteur . cotisations')
+		)
+	).toMatchInlineSnapshot(`
+		[
+		  "artiste-auteur . revenus . BNC . recettes",
+		  "artiste-auteur . revenus . traitements et salaires",
+		  "salarié . contrat",
+		  "salarié . régimes spécifiques . DFS",
+		]
+	`)
 })

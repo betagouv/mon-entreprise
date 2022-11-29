@@ -1,9 +1,9 @@
-import { it } from 'vitest'
+import { expect, it } from 'vitest'
 
 import { configProfessionLibérale } from '@/pages/Simulateurs/configs/professionLibérale'
 
 import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
-import { runSimulations } from './utils'
+import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-professions-libérales', () => {
 	runSimulations(
@@ -17,4 +17,39 @@ it('calculate simulations-professions-libérales', () => {
 			'entreprise . activité . nature . libérale . réglementée': 'oui',
 		}
 	)
+
+	expect(
+		getMissingVariables(
+			engine
+				.setSituation({
+					...configProfessionLibérale.situation,
+					'entreprise . activité . nature . libérale . réglementée': 'oui',
+				})
+				.evaluate('dirigeant . rémunération . net')
+		)
+	).toMatchInlineSnapshot(`
+		[
+		  "dirigeant . indépendant . IJSS",
+		  "dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation",
+		  "dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation",
+		  "dirigeant . indépendant . PL . CNAVPL . exonération incapacité",
+		  "dirigeant . indépendant . PL . métier",
+		  "dirigeant . indépendant . conjoint collaborateur",
+		  "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
+		  "dirigeant . indépendant . cotisations facultatives",
+		  "dirigeant . indépendant . revenus étrangers",
+		  "dirigeant . rémunération . net",
+		  "entreprise . charges",
+		  "entreprise . chiffre d'affaires",
+		  "entreprise . date de création",
+		  "entreprise . imposition . régime",
+		  "entreprise . imposition . régime . micro-entreprise",
+		  "impôt . foyer fiscal . enfants à charge",
+		  "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
+		  "impôt . foyer fiscal . situation de famille",
+		  "impôt . méthode de calcul",
+		  "situation personnelle . RSA",
+		  "situation personnelle . domiciliation fiscale à l'étranger",
+		]
+	`)
 })
