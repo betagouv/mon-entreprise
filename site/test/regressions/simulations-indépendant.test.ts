@@ -1,10 +1,10 @@
 import { DottedName } from 'modele-social'
-import { it } from 'vitest'
+import { expect, it } from 'vitest'
 
 import { configIndépendant } from '@/pages/Simulateurs/configs/indépendant'
 
 import independentSituations from './simulations-indépendant.yaml'
-import { runSimulations } from './utils'
+import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-indépendant', () => {
 	const objectifs = [
@@ -19,4 +19,35 @@ it('calculate simulations-indépendant', () => {
 		'dirigeant . indépendant . cotisations et contributions . début activité',
 	] as DottedName[]
 	runSimulations(independentSituations, objectifs, configIndépendant.situation)
+
+	expect(
+		getMissingVariables(
+			engine
+				.setSituation(configIndépendant.situation)
+				.evaluate('dirigeant . rémunération . net')
+		)
+	).toMatchInlineSnapshot(`
+		[
+		  "dirigeant . indépendant . IJSS",
+		  "dirigeant . indépendant . conjoint collaborateur",
+		  "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
+		  "dirigeant . indépendant . cotisations facultatives",
+		  "dirigeant . indépendant . revenus étrangers",
+		  "dirigeant . rémunération . net",
+		  "entreprise . activité . débit de tabac",
+		  "entreprise . activité . nature",
+		  "entreprise . catégorie juridique",
+		  "entreprise . charges",
+		  "entreprise . chiffre d'affaires",
+		  "entreprise . date de création",
+		  "entreprise . imposition . régime",
+		  "entreprise . imposition . régime . micro-entreprise",
+		  "impôt . foyer fiscal . enfants à charge",
+		  "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
+		  "impôt . foyer fiscal . situation de famille",
+		  "impôt . méthode de calcul",
+		  "situation personnelle . RSA",
+		  "situation personnelle . domiciliation fiscale à l'étranger",
+		]
+	`)
 })
