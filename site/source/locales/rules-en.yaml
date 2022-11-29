@@ -4805,8 +4805,8 @@ entreprise . résultat fiscal . rémunération dirigeant déductible:
     tax deductible.'
   description.fr: Les montants liés à la rémunération du dirigeant qui sont
     déductibles d'impôt.
-  titre.en: '[automatic] deductible executive compensation'
-  titre.fr: rémunération dirigeant déductible
+  titre.en: '[automatic] deductible expenses manager'
+  titre.fr: charges déductibles dirigeant
 entreprise . salariés:
   titre.en: '[automatic] employees'
   titre.fr: salariés
@@ -5314,23 +5314,16 @@ protection sociale . autres:
   titre.fr: autres
 protection sociale . famille:
   description.en: >
-    Created in 1945, the Family branch is one of the main actors of
-    French family policy. Currently, it has two priority missions:
-      - Helping families in their daily lives, facilitating, in particular, the reconciliation of family and professional life;
-      - Develop solidarity with the most vulnerable, including people with disabilities.
+    [automatic] Created in 1945, the Family branch is one of the
+    main actors of the French family policy. Currently, it has two priority
+    missions:
+      - To help families in their daily life, facilitating, in particular, the reconciliation of family and professional life
+      - To develop solidarity with the most vulnerable, including the disabled
 
-    To fulfil these missions, it relies on two levers:
-      - The payment of financial benefits to families (family and social benefits, housing subsidies and minimum social benefits such as assistance for disabled adults and active solidarity income)
-      - Support for families and the setting up or co-financing of various
-      community services and facilities for them (such as nurseries)
-
-    Its objective is to provide a global offer of services, as close as possible to the inhabitants, by fighting against territorial and social inequalities
-
-
-    ## Family allowances in France in a few figures:
-      - **900 € / month**: amount of the allowance for disabled adults
-      - **19%** share of expenditure allocated to early childhood
-      - **75%** of mothers with a dependent child work (only 30% part-time)
+    To fulfill these missions, it relies on two levers:
+      - The payment of financial benefits to families (family and social benefits, housing assistance and minimum social benefits such as assistance to disabled adults and the active solidarity income)
+      - Supporting families and setting up or co-financing various services and community
+      services and community facilities for them (such as day care centers)
   description.fr: >
     Créée en 1945, la branche Famille est l’un des principaux
     acteurs de la politique familiale française. Actuellement, elle a deux
@@ -5342,11 +5335,6 @@ protection sociale . famille:
       - Le versement de prestations financières aux familles (prestations familiales et sociales, aides au logement et minima sociaux comme l’aide aux adultes handicapés et le revenu de solidarité active)
       - L’accompagnement des familles et la mise en place ou le cofinancement de différents
       services et équipements collectifs qui leur sont destinés (comme les crèches)
-
-    ## Les allocations familiales en France en quelques chiffres
-      - **19 %** part des dépenses allouées à la petite enfance
-      - **860 € / mois** : montant de l'allocation aux adultes handicapés
-      - **75 %** des mères avec un enfant à charge travaillent (dont 70% à temps plein)
   résumé.en: >
     Provides services in support of families: childcare, housing assistance, etc.
   résumé.fr: >
@@ -6967,14 +6955,14 @@ salarié . régimes spécifiques . alsace moselle:
     located in these departments.
 
 
-    Attention: this is a **simplification**: the affiliation is more complicated than that, see the exact conditions [on the website of the scheme](http://regime-local.fr/salaries/).
+    Attention: this is a **simplification**: the affiliation is more complicated than that, see the exact conditions [on the scheme's website](https://regime-local.fr/affiliation/).
   description.fr: >
     Nous considérons qu'un salarié est affilié au régime
     Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans
     ces départements.
 
 
-    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](http://regime-local.fr/salaries/).
+    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](https://regime-local.fr/affiliation/).
   titre.en: Alsace-Moselle scheme
   titre.fr: Régime Alsace-Moselle
 salarié . régimes spécifiques . alsace moselle . ATMP:
