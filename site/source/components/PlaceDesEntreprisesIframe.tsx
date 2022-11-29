@@ -6,6 +6,7 @@ const Iframe = styled.iframe`
 	width: 1px;
 	min-width: 100%;
 	height: 80vh;
+	border: 0;
 `
 
 const IframeContainer = styled.div`
@@ -28,7 +29,6 @@ export const PlaceDesEntreprisesIframe = ({
 			<Iframe
 				title="Formulaire de demande entreprise"
 				src={src}
-				frameBorder="0"
 				id="pdeIframe"
 				onLoad={onLoad}
 			/>

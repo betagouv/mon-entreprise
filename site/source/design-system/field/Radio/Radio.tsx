@@ -20,7 +20,9 @@ export function Radio(props: RadioProps) {
 	return (
 		<RadioSkeleton role="radio" aria-atomic {...props}>
 			{!hideRadio && <RadioPoint />}
-			<LabelBody $hideRadio={hideRadio}>{children}</LabelBody>
+			<LabelBody as="span" $hideRadio={hideRadio}>
+				{children}
+			</LabelBody>
 		</RadioSkeleton>
 	)
 }
@@ -109,7 +111,7 @@ export const RadioButton = styled.span`
 	}
 `
 
-export const VisibleRadio = styled.div`
+export const VisibleRadio = styled.span`
 	display: inline-flex;
 	align-items: center;
 	text-align: initial;

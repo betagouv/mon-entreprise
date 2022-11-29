@@ -212,24 +212,42 @@ export function Select<T extends Record<string, unknown>>(
 
 	const { focusProps, isFocusVisible } = useFocusRing()
 
+	const wrapperRef = useRef<HTMLDivElement>(null)
+
+	// Fix : W3C Validator marque l'ajout d'une balise option vide comme étant une erreur
+	useEffect(() => {
+		const hiddenSelect = wrapperRef?.current?.querySelector('select')
+
+		hiddenSelect?.childNodes.forEach((childNode) => {
+			if (childNode.textContent === '') {
+				hiddenSelect?.removeChild(childNode)
+			}
+		})
+	}, [])
+
 	return (
-		<Wrapper isOpen={state.isOpen} hasError={false} hasLabel={false}>
+		<Wrapper
+			ref={wrapperRef}
+			isOpen={state.isOpen}
+			hasError={false}
+			hasLabel={false}
+		>
 			<HiddenSelect
 				state={state}
 				triggerRef={ref}
 				label={props.label}
 				name={props.name}
 			/>
+			{props.label && (
+				<Label className={props.small ? 'sr-only' : ''} {...labelProps}>
+					{props.label}
+				</Label>
+			)}
 			<Button
 				{...mergeProps(buttonProps, focusProps)}
 				ref={ref}
 				isFocusVisible={isFocusVisible}
 			>
-				{props.label && (
-					<Label className={props.small ? 'sr-only' : ''} {...labelProps}>
-						{props.label}
-					</Label>
-				)}
 				<Value {...valueProps}>
 					{state.selectedItem != null
 						? state.selectedItem.rendered

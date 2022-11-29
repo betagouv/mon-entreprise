@@ -267,7 +267,7 @@ export default function Integration() {
 					<Grid role="listitem" item xs={12} md={6} xl={4}>
 						<Article
 							title="Une idée&nbsp;?"
-							href="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation"
+							href="mailto:contact@mon-entreprise.beta.gouv.fr"
 							ctaLabel="Contactez-nous"
 						>
 							Vous avez un projet ou une idée à nous partager?
@@ -425,7 +425,7 @@ function IntegrationCode({
 					}
 					color={copied ? 'secondary' : 'primary'}
 					onPress={copyCodeToClipboard}
-					role={copied ? 'status' : ''}
+					role={copied ? 'status' : undefined}
 				>
 					<Emoji emoji={copied ? '✔️' : '📑'} />
 				</Button>

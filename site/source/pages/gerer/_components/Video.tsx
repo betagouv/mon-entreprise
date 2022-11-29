@@ -18,11 +18,11 @@ export default function Video() {
 					left: 0,
 					width: '100%',
 					height: '100%',
+					border: '0',
 				}}
 				src={`https://www.youtube-nocookie.com/embed/${
 					i18n.language === 'fr' ? 'EMQ3fNyMxBE' : 'dN9ZVazSmpc'
 				}?rel=0&amp;showinfo=0;disablekb=1`}
-				frameBorder="0"
 				allow="autoplay; encrypted-media"
 				allowFullScreen
 				title={

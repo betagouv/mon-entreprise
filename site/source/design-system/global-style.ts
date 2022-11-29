@@ -174,7 +174,6 @@ figure {
 	}
 }
 
-
 @media print {
 	.print-hidden {
 		display: none !important;
@@ -204,10 +203,4 @@ figure {
 		font-size: 0.9rem;
 	}
 }
-`
-
-export const FocusStyle = css`
-	// outline: ${({ theme }) => theme.spacings.xxs} solid
-	// ${({ theme }) => theme.colors.bases.primary[400]};
-	// outline-offset: ${({ theme }) => theme.spacings.xxs};
 `

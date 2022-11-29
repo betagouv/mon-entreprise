@@ -37,7 +37,7 @@ export function Message({
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
 			<StyledMessage
 				className={className}
-				type={type}
+				messageType={type}
 				border={border}
 				light={light}
 				aria-atomic
@@ -60,17 +60,17 @@ export function Message({
 
 const StyledMessage = styled.div<
 	Pick<MessageProps, 'border' | 'light'> & {
-		type: NonNullable<MessageProps['type']>
+		messageType: NonNullable<MessageProps['type']>
 	}
 >`
 	display: flex;
 	position: relative;
 	align-items: baseline;
-	${({ theme, type, border, light }) => {
+	${({ theme, messageType, border, light }) => {
 		const colorSpace: Palette | SmallPalette =
-			type === 'secondary' || type === 'primary'
-				? theme.colors.bases[type]
-				: theme.colors.extended[type]
+			messageType === 'secondary' || messageType === 'primary'
+				? theme.colors.bases[messageType]
+				: theme.colors.extended[messageType]
 
 		return css`
 			padding: ${theme.spacings.xs} ${theme.spacings.lg};

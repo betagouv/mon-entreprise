@@ -33,11 +33,7 @@ export default function FoldingMessage({
 				<Intro as="h2">
 					<Trans>{title}</Trans>{' '}
 					{isFolded && (
-						<Link
-							onPress={() => setIsFolded(false)}
-							aria-expanded={false}
-							aria-controls="warning-text"
-						>
+						<Link onPress={() => setIsFolded(false)} aria-expanded={false}>
 							<Trans i18nKey="simulateurs.warning.plus">
 								{unfoldButtonLabel}
 							</Trans>
@@ -51,7 +47,6 @@ export default function FoldingMessage({
 							<Button
 								size="XS"
 								aria-expanded
-								aria-controls="warning-text"
 								light
 								color="primary"
 								onPress={() => setIsFolded(true)}

@@ -97,7 +97,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		onSubmit,
 		title: rule.title,
 		description: rule.rawNode.description,
-		id: props.id ?? dottedName,
+		id: props?.id?.replace(/\s/g, '') ?? dottedName.replace(/\s/g, ''),
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},
 		autoFocus: shouldFocusField,

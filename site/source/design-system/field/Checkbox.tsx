@@ -34,7 +34,7 @@ export default function Checkbox(
 						<polyline points="1 9 7 14 15 4" />
 					</CheckboxVisual>
 				</CheckboxVisualContainer>
-				{label && <LabelBody> {label}</LabelBody>}
+				{label && <LabelBody as="span"> {label}</LabelBody>}
 			</VisibleContainer>
 		</CheckboxContainer>
 	)

@@ -8,7 +8,7 @@ export const SearchBox = connectSearchBox(
 		const { t } = useTranslation()
 
 		return (
-			<form noValidate action="" role="search">
+			<form noValidate role="search">
 				<SearchField
 					type="search"
 					autoFocus
