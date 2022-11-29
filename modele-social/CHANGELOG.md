@@ -1,5 +1,14 @@
 # Journal des modifications
+
 ## 1.3.0
+
+- Déprécie `salarié . temps de travail . durée légale` au profit de `durée légale du travail` au même niveau que SMIC. Cela permet de désactiver l’espace de nom salarié tout en pouvant utiliser la durée légale dans d’autres règles (comme pour le SMIC)
+- Répare les bugs d’arrondi dans le calcul des rémunération mensuelle / annuelles chez les indeps
+- Déprécie `dirigeant . indépendant . PL . CARMF . retraite CNAVPL` au profit de `dirigeant . indépendant . PL . CARMF . participation CPAM retraite`
+- Modifie le calcul du taux de retraite des PL PAMC (aligné sur celui des autres PLR à partir de 2022)
+- Ajoute une notice d’information pour l’offre simplifié médecin remplaçant quand les conditions sont remplies
+- Enlève la question RSA pour les PAMC (non concernées)
+- Met à jour les liens morts dans les références
 
 ## 1.2.0
 
