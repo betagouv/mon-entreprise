@@ -10,7 +10,7 @@ jobs:
       env-name: ${{ steps.deploy-env.outputs.name }}
     steps:
       - id: deploy-env
-        run: echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}"
+        run: echo "name=${{ github.event.number || '${GITHUB_REF#refs/*/}' }}" >> $GITHUB_OUTPUT
 
   algolia-rm-temp-index:
     needs: deploy-context

@@ -27,13 +27,13 @@ jobs:
       en_url: ${{ steps.base-urls.outputs.en }}
     steps:
       - id: deploy-env
-        run: echo "::set-output name=name::${{ github.event.number || '${GITHUB_REF#refs/*/}' }}"
+        run: echo "name=${{ github.event.number || '${GITHUB_REF#refs/*/}' }}" >> $GITHUB_OUTPUT
       - id: base-urls
         run:
-          echo "::set-output name=server::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise-server.osc-fr1.scalingo.io' || format('https://mon-entreprise-server-pr{0}.osc-fr1.scalingo.io', steps.deploy-env.outputs.name) }}";
-          echo "::set-output name=api::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise-api.osc-fr1.scalingo.io' || format('https://mon-entreprise-api-pr{0}.osc-fr1.scalingo.io', steps.deploy-env.outputs.name) }}";
-          echo "::set-output name=fr::${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.urssaf.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
-          echo "::set-output name=en::${{ steps.deploy-env.outputs.name == 'master' && 'https://mycompanyinfrance.urssaf.fr' || format('https://{0}-en--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}";
+          echo "server=${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise-server.osc-fr1.scalingo.io' || format('https://mon-entreprise-server-pr{0}.osc-fr1.scalingo.io', steps.deploy-env.outputs.name) }}" >> $GITHUB_OUTPUT;
+          echo "api=${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise-api.osc-fr1.scalingo.io' || format('https://mon-entreprise-api-pr{0}.osc-fr1.scalingo.io', steps.deploy-env.outputs.name) }}" >> $GITHUB_OUTPUT;
+          echo "fr=${{ steps.deploy-env.outputs.name == 'master' && 'https://mon-entreprise.urssaf.fr' || format('https://{0}--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}" >> $GITHUB_OUTPUT;
+          echo "en=${{ steps.deploy-env.outputs.name == 'master' && 'https://mycompanyinfrance.urssaf.fr' || format('https://{0}-en--mon-entreprise.netlify.app', steps.deploy-env.outputs.name) }}" >> $GITHUB_OUTPUT;
 
   build:
     needs: deploy-context
