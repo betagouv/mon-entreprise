@@ -2,9 +2,8 @@
 	"compilerOptions": {
 		/* Basic Options */
 		"incremental": true,
-		"target": "ESNext",
+		"target": "ES2020",
 		"module": "NodeNext",
-		"rootDir": "./",
 		"outDir": "dist",
 		"declaration": true,
 
@@ -39,6 +38,6 @@
 	"ts-node": {
 		"esm": true
 	},
-	"include": ["source", "vitest.config.ts"],
-	"exclude": ["**/dist"]
+	"include": ["source"],
+	"exclude": ["**/dist", "vitest.config.ts"]
 }
