@@ -60,9 +60,8 @@ dirigeant . rémunération . totale:
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
 
 dirigeant . rémunération . net:
+  unité: €/an
   titre: Rémunération nette
-  arrondi: oui
-  unité: €/mois
   question: Quelle est votre rémunération nette ?
   résumé: Après déduction des cotisations, contributions et charges
   somme:
@@ -96,12 +95,9 @@ dirigeant . rémunération . impôt:
         assiette: net . imposable
         taux: impôt . taux d'imposition
     - auto-entrepreneur . impôt . versement libératoire . montant
-  arrondi: oui
 
 dirigeant . rémunération . net . après impôt:
   titre: Revenu après impôt
-  unité: €/mois
-  arrondi: oui
   question: Quel est le revenu net après impôt souhaité ?
   description: >-
     Le revenu net après déduction de l'impôt
@@ -580,7 +576,6 @@ dirigeant . indépendant:
 dirigeant . indépendant . revenu professionnel:
   description: rémunération du dirigeant au régime des indépendant
   unité: €/an
-  arrondi: oui
   résoudre la référence circulaire: oui
   variations:
     - si: entreprise . imposition = 'IS'

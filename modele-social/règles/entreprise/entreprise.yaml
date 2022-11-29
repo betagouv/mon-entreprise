@@ -233,6 +233,7 @@ entreprise . résultat fiscal:
     - (- rémunération dirigeant déductible)
 
 entreprise . résultat fiscal . rémunération dirigeant déductible:
+  titre: charges déductibles dirigeant
   description: Les montants liés à la rémunération du dirigeant qui sont déductibles d'impôt.
   variations:
     - si: imposition . IS

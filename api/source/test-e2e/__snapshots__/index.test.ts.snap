@@ -610,7 +610,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département": 18,
         "établissement . commune . département . outre-mer": 7,
       },
-      "nodeValue": 1469,
+      "nodeValue": 1469.1600000000062,
       "traversedVariables": [
         "dirigeant . rémunération . impôt",
         "dirigeant . rémunération",
