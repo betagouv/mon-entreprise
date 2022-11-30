@@ -1,6 +1,6 @@
 import { fr } from '../../support/utils'
 
-describe('Page covid-19', function () {
+describe('Page covid-19', { testIsolation: 'off' }, function () {
 	if (!fr) {
 		return
 	}

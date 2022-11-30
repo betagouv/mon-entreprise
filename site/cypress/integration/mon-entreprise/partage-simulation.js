@@ -13,15 +13,17 @@ describe('Partage (simulateur salarié)', function () {
 	if (!fr) {
 		return
 	}
+
 	it('should set input value from URL', function () {
 		cy.visit(urlWithState)
-		cy.get(brutInputSelector)
+		cy.get(brutInputSelector, { timeout: 30 * 1000 })
 			.invoke('val')
 			.should('match', /1[\s]539[\s]€/)
 
 		cy.contains('Modifier mes réponses').click()
 		cy.contains('CDD')
 	})
+
 	it('should set URL from input value', function () {
 		cy.visit(simulatorUrl)
 		cy.get(brutInputSelector).first().type('{selectall}1539')

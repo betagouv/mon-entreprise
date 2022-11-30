@@ -280,6 +280,8 @@ jobs:
       - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
         uses: cypress-io/github-action@v4
         with:
+          # Hack to use local node version, issue : https://github.com/cypress-io/github-action/issues/489#issuecomment-1021379037
+          command-prefix: '--'
           install: false
           working-directory: site
           record: true

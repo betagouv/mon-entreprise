@@ -77,7 +77,9 @@ describe(`Formulaire demande mobilité (${
 			.focused()
 		cy.contains('65100').type('{enter}').focused().tab().type('{downarrow}')
 
-		cy.focused().tab().type('Brest').wait('@communes')
+		cy.focused().tab().type('Brest')
+
+		cy.wait('@communes')
 
 		cy.contains('29200')
 			.type('{enter}')
