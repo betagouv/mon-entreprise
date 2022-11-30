@@ -37,7 +37,7 @@ export default function Simulateurs() {
 				ogImage={simulatorSvg}
 			/>
 			<DefaultHelmet>
-				<title data-rh="true">{titre}</title>
+				<title>{titre}</title>
 			</DefaultHelmet>
 			<PageHeader titre={titre} picture={simulatorSvg}>
 				<Intro>

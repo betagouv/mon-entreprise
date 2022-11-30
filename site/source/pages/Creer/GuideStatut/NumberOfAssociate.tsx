@@ -20,7 +20,7 @@ export default function NumberOfAssociates() {
 		<>
 			<TrackPage name="seul_ou_plusieurs" />
 			<DefaultHelmet>
-				<title data-rh="true">
+				<title>
 					{t(
 						'associés.page.titre',
 						"Nombre d'associés pour créer une entreprise"

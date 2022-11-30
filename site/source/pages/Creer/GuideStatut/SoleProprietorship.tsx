@@ -21,7 +21,7 @@ export default function SoleProprietorship() {
 		<>
 			<TrackPage name="societe_ou_entreprise_individuelle" />
 			<DefaultHelmet>
-				<title data-rh="true">
+				<title>
 					{t([
 						'responsabilité.page.titre',
 						'Choisir entre société ou entreprise individuelle',

@@ -16,7 +16,7 @@ export default function SocialSecurity() {
 	return (
 		<>
 			<DefaultHelmet>
-				<title data-rh="true">{t('sécu.page.titre', 'Sécurité sociale')}</title>
+				<title>{t('sécu.page.titre', 'Sécurité sociale')}</title>
 			</DefaultHelmet>
 
 			<FromBottom>

@@ -97,7 +97,7 @@ export default function SetMainStatus() {
 		<>
 			<TrackPage chapter2="statut" name="liste" />
 			<DefaultHelmet>
-				<title data-rh="true">
+				<title>
 					{t(
 						'listeformejuridique.page.titre',
 						'Liste des statuts juridiques pour la création de votre entreprise'

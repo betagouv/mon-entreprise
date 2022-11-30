@@ -37,7 +37,7 @@ export default function Créer() {
 			/>
 
 			<DefaultHelmet>
-				<title data-rh="true">{t('créer.titre', 'Créer une entreprise')}</title>
+				<title>{t('créer.titre', 'Créer une entreprise')}</title>
 			</DefaultHelmet>
 			<PageHeader
 				titre={<Trans i18nKey="créer.titre">Créer une entreprise</Trans>}

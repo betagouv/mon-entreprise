@@ -267,7 +267,7 @@ export default function Integration() {
 					<Grid role="listitem" item xs={12} md={6} xl={4}>
 						<Article
 							title="Une idée&nbsp;?"
-							href="mailto:contact@mon-entreprise.beta.gouv.fr"
+							href="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation"
 							ctaLabel="Contactez-nous"
 						>
 							Vous avez un projet ou une idée à nous partager?

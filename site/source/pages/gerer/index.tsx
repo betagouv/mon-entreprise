@@ -234,7 +234,7 @@ function Home() {
 	return (
 		<>
 			<DefaultHelmet>
-				<title data-rh="true">{t('gérer.titre', 'Gérer mon activité')}</title>
+				<title>{t('gérer.titre', 'Gérer mon activité')}</title>
 			</DefaultHelmet>
 
 			{param && param !== engineSiren && !overwrite && (

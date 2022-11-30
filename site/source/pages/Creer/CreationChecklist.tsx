@@ -60,7 +60,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 		<FromBottom>
 			<TrackPage chapter2="statut" name={statut} />
 			<DefaultHelmet>
-				<title data-rh="true">{titre}</title>
+				<title>{titre}</title>
 				<meta
 					name="description"
 					content={
