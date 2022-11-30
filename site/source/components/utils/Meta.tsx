@@ -35,7 +35,7 @@ export default function Meta({
 
 	return (
 		<DefaultHelmet>
-			<title data-rh="true">{meta.title}</title>
+			<title>{meta.title}</title>
 			<meta name="description" content={meta.description} />
 			<meta property="og:type" content="website" />
 			<meta property="og:title" content={meta.ogTitle ?? meta.title} />
