@@ -166,6 +166,8 @@ dirigeant . assimilé salarié:
   applicable si: régime social = 'assimilé salarié'
   valeur: oui
   remplace:
+    - règle: salarié
+      par: oui
     - règle: salarié . contrat
       par: "'CDI'"
     - règle: salarié . contrat . statut cadre
