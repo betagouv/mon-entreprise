@@ -24,10 +24,7 @@ export default function AfterRegistration() {
 		<FromBottom>
 			<ScrollToTop />
 			<TrackPage name="apres_la_creation" />
-			<Link
-				style={{ textDecoration: 'none' }}
-				to={absoluteSitePaths.créer.index}
-			>
+			<Link noUnderline to={absoluteSitePaths.créer.index}>
 				<span aria-hidden>←</span> <Trans>Retour à la création</Trans>
 			</Link>
 			<H1>

@@ -17,7 +17,10 @@ export const StyledLinkHover = css`
 			? theme.colors.bases.primary[100]
 			: theme.colors.bases.primary[800]};
 `
-export const StyledLink = styled.a<{ $isDisabled?: boolean }>`
+export const StyledLink = styled.a<{
+	$isDisabled?: boolean
+	noUnderline?: boolean
+}>`
 	color: ${({ theme, $isDisabled }) =>
 		$isDisabled
 			? theme.colors.extended.grey[600]
@@ -37,7 +40,7 @@ export const StyledLink = styled.a<{ $isDisabled?: boolean }>`
 		`}
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
-	text-decoration: underline;
+	text-decoration: ${({ noUnderline }) => (noUnderline ? 'none' : 'underline')};
 	padding: 0;
 	font-size: inherit;
 	background: none;
@@ -61,9 +64,10 @@ export const Link = React.forwardRef<
 	GenericButtonOrNavLinkProps & {
 		children: React.ReactNode
 		isDisabled?: boolean
+		noUnderline?: boolean
 	}
 >(function Link(props, forwardedRef) {
-	const { isDisabled, role, ...ariaButtonProps } = props
+	const { isDisabled, role, noUnderline, ...ariaButtonProps } = props
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
 
 	return (
@@ -72,6 +76,7 @@ export const Link = React.forwardRef<
 			role={role || buttonOrLinkProps?.role}
 			type={undefined}
 			$isDisabled={isDisabled}
+			noUnderline={noUnderline}
 			tabIndex={isDisabled ? -1 : buttonOrLinkProps.tabIndex}
 			as={isDisabled ? 'span' : buttonOrLinkProps.as}
 		/>

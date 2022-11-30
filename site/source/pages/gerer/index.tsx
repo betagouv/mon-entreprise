@@ -67,7 +67,7 @@ export default function Gérer() {
 	const simulateurs = useSimulatorsData()
 
 	const back = (
-		<Link style={{ textDecoration: 'none' }} to={absoluteSitePaths.gérer.index}>
+		<Link noUnderline to={absoluteSitePaths.gérer.index}>
 			<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 		</Link>
 	)
