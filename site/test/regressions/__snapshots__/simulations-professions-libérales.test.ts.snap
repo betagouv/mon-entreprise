@@ -337,9 +337,9 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 exports[`calculate simulations-professions-libérales > médecin 1`] = `
 "dirigeant . indépendant . cotisations et contributions: 14395
 dirigeant . rémunération . net: 35605
-dirigeant . rémunération . net . après impôt: 30597
+dirigeant . rémunération . net . après impôt: 30596
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 5008
+impôt . montant: 5009
 protection sociale . retraite . CNAVPL . points acquis: 476
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
@@ -393,9 +393,9 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 exports[`calculate simulations-professions-libérales > médecin 6`] = `
 "dirigeant . indépendant . cotisations et contributions: 14395
 dirigeant . rémunération . net: 35605
-dirigeant . rémunération . net . après impôt: 30597
+dirigeant . rémunération . net . après impôt: 30596
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 5008
+impôt . montant: 5009
 protection sociale . retraite . CNAVPL . points acquis: 476
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
@@ -413,11 +413,11 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 5219
-dirigeant . rémunération . net: 14781
-dirigeant . rémunération . net . après impôt: 14757
+"dirigeant . indépendant . cotisations et contributions: 5190
+dirigeant . rémunération . net: 14810
+dirigeant . rémunération . net . après impôt: 14781
 entreprise . chiffre d'affaires: 20000
-impôt . montant: 24
+impôt . montant: 29
 protection sociale . retraite . CNAVPL . points acquis: 198
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
@@ -425,9 +425,9 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 1548
-dirigeant . rémunération . net: 2452
-dirigeant . rémunération . net . après impôt: 2452
+"dirigeant . indépendant . cotisations et contributions: 1319
+dirigeant . rémunération . net: 2681
+dirigeant . rémunération . net . après impôt: 2681
 entreprise . chiffre d'affaires: 4000
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 61
@@ -437,11 +437,11 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 4`] = `
-"dirigeant . indépendant . cotisations et contributions: 5219
-dirigeant . rémunération . net: 14781
-dirigeant . rémunération . net . après impôt: 14757
+"dirigeant . indépendant . cotisations et contributions: 5190
+dirigeant . rémunération . net: 14810
+dirigeant . rémunération . net . après impôt: 14781
 entreprise . chiffre d'affaires: 20000
-impôt . montant: 24
+impôt . montant: 29
 protection sociale . retraite . CNAVPL . points acquis: 198
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
@@ -449,24 +449,24 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 5`] = `
-"dirigeant . indépendant . cotisations et contributions: 5298
-dirigeant . rémunération . net: 14702
-dirigeant . rémunération . net . après impôt: 14690
+"dirigeant . indépendant . cotisations et contributions: 5266
+dirigeant . rémunération . net: 14734
+dirigeant . rémunération . net . après impôt: 14717
 entreprise . chiffre d'affaires: 20000
-impôt . montant: 12
-protection sociale . retraite . CNAVPL . points acquis: 196
+impôt . montant: 17
+protection sociale . retraite . CNAVPL . points acquis: 197
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 6`] = `
-"dirigeant . indépendant . cotisations et contributions: 5378
-dirigeant . rémunération . net: 14622
-dirigeant . rémunération . net . après impôt: 14622
+"dirigeant . indépendant . cotisations et contributions: 5343
+dirigeant . rémunération . net: 14657
+dirigeant . rémunération . net . après impôt: 14653
 entreprise . chiffre d'affaires: 20000
-impôt . montant: 0
-protection sociale . retraite . CNAVPL . points acquis: 195
+impôt . montant: 4
+protection sociale . retraite . CNAVPL . points acquis: 196
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
