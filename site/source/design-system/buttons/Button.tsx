@@ -1,7 +1,6 @@
 import React, { ForwardedRef, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
 import {
 	GenericButtonOrNavLinkProps,
 	useButtonOrLink,
@@ -107,7 +106,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 				? css`
 						outline: initial;
 				  `
-				: FocusStyle}
+				: ''}
 	}
 
 	/* Primary, secondary & tertiary colors */
@@ -115,7 +114,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		!theme.darkMode &&
 		css`
 			border-color: ${theme.colors.bases[$color][
-				$color === 'primary' ? 700 : 300
+				$color === 'primary' ? 700 : $color === 'tertiary' ? 600 : 300
 			]};
 
 			background-color: ${theme.colors.bases[$color][

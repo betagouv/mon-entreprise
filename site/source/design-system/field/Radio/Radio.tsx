@@ -4,7 +4,6 @@ import { AriaRadioProps } from '@react-types/radio'
 import { createContext, useContext, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
 import { Body } from '@/design-system/typography/paragraphs'
 
 export const RadioContext = createContext<RadioGroupState | null>(null)
@@ -21,7 +20,9 @@ export function Radio(props: RadioProps) {
 	return (
 		<RadioSkeleton role="radio" aria-atomic {...props}>
 			{!hideRadio && <RadioPoint />}
-			<LabelBody $hideRadio={hideRadio}>{children}</LabelBody>
+			<LabelBody as="span" $hideRadio={hideRadio}>
+				{children}
+			</LabelBody>
 		</RadioSkeleton>
 	)
 }
@@ -110,7 +111,7 @@ export const RadioButton = styled.span`
 	}
 `
 
-export const VisibleRadio = styled.div`
+export const VisibleRadio = styled.span`
 	display: inline-flex;
 	align-items: center;
 	text-align: initial;
@@ -146,10 +147,6 @@ export const InputRadio = styled.input`
 		+ ${VisibleRadio}
 		${OutsideCircle} {
 		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
-	}
-	:focus-visible + ${VisibleRadio} {
-		${FocusStyle}
-		outline-offset: 0;
 	}
 
 	:checked + ${VisibleRadio} ${InsideCircle} {

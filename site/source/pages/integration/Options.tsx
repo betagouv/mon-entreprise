@@ -53,6 +53,7 @@ export default function Options() {
 							'pages.développeur.home.choice.iframe.cta',
 							'Commencer'
 						)}
+						bodyAs="div"
 					>
 						<Body>
 							<Trans i18nKey="pages.développeur.home.choice.iframe.body">
@@ -72,6 +73,7 @@ export default function Options() {
 						)}
 						to={absoluteSitePaths.développeur.api}
 						ctaLabel={t('pages.développeur.home.choice.api.cta', 'Commencer')}
+						bodyAs="div"
 					>
 						<Body>
 							<Trans i18nKey="pages.développeur.home.choice.api.body">
@@ -94,6 +96,7 @@ export default function Options() {
 							'pages.développeur.home.choice.spreadsheet.cta',
 							'Commencer'
 						)}
+						bodyAs="div"
 					>
 						<Body>
 							<Trans i18nKey="pages.développeur.home.choice.spreadsheet.body">

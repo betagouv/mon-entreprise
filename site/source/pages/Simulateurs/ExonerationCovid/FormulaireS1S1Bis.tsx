@@ -90,7 +90,7 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 
 	return (
 		<>
-			<H3>
+			<H3 as="h2">
 				{engine.getRule('secteur . S1 ou S1bis').rawNode.question}
 				<ExplicableRule
 					aria-label={t('En savoir plus')}
@@ -290,7 +290,7 @@ export const FormulaireS1S1Bis = ({ onChange }: Props) => {
 			<Grid container>
 				<Grid item md={6}>
 					<Trans>
-						<H3>Résumé</H3>
+						<H3 as="h2">Résumé</H3>
 					</Trans>
 
 					<RecapExpert>

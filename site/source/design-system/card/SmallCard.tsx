@@ -3,7 +3,6 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
 import { H6 } from '@/design-system/typography/heading'
 import {
 	NewWindowLinkIcon,
@@ -17,8 +16,9 @@ export function SmallCard({
 	icon,
 	children,
 	title,
+	role,
 	...ariaButtonProps
-}: GenericCardProps & { icon: React.ReactNode }) {
+}: GenericCardProps & { icon: React.ReactNode; role?: string }) {
 	const elementType: 'a' | 'div' | typeof Link =
 		'href' in ariaButtonProps ? 'a' : 'to' in ariaButtonProps ? Link : 'div'
 
@@ -32,6 +32,7 @@ export function SmallCard({
 			{...ariaButtonProps}
 			{...buttonProps}
 			{...linkProps}
+			role={role || buttonProps?.role}
 			as={elementType}
 		>
 			<IconPlaceholder>{icon}</IconPlaceholder>
@@ -73,9 +74,7 @@ const Container = styled.div`
 				? theme.colors.bases.primary[600]
 				: theme.colors.bases.primary[400]};
 	}
-	&:focus-visible {
-		${FocusStyle}
-	}
+
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.md}`};
 	width: 100%;
 	height: 100%;

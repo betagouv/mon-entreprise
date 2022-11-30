@@ -1,3 +1,4 @@
+import { ComponentType } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -12,8 +13,10 @@ import SeeAnswersButton from '../conversation/SeeAnswersButton'
 
 export function CompanyDetails({
 	showSituation = false,
+	headingTag = 'h2',
 }: {
 	showSituation?: boolean
+	headingTag?: string | ComponentType<any> | undefined
 }) {
 	return (
 		<StyledCompanyContainer>
@@ -26,8 +29,7 @@ export function CompanyDetails({
 				spacing={3}
 			>
 				<Grid item xs={12} lg>
-					<H4 data-test-id="currently-selected-company" as="h3">
-						{' '}
+					<H4 data-test-id="currently-selected-company" as={headingTag}>
 						<Value expression="entreprise . nom" linkToRule={false} />{' '}
 						<Value expression="entreprise . SIREN" linkToRule={false} />
 					</H4>

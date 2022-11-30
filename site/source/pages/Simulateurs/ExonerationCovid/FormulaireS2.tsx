@@ -79,7 +79,7 @@ export const FormulaireS2 = ({
 			{exoS2Applicable ? (
 				<>
 					<Trans>
-						<H3>
+						<H3 as="h2">
 							Entre début {{ firstMonth: monthNames[firstMonth - 1] }}{' '}
 							{{ firstYear: firstYear.toString() }} et fin{' '}
 							{{ lastMonth: monthNames[lastMonth - 1] }}{' '}
@@ -196,7 +196,7 @@ export const FormulaireS2 = ({
 			<Grid container>
 				<Grid item md={6}>
 					<Trans>
-						<H3>Résumé</H3>
+						<H3 as="h2">Résumé</H3>
 					</Trans>
 
 					<RecapExpert>
@@ -237,7 +237,7 @@ export const FormulaireS2 = ({
 
 				<Grid item md={6}>
 					<Trans>
-						<H3>Résumé pour les tiers-déclarants</H3>
+						<H3 as="h2">Résumé pour les tiers-déclarants</H3>
 						<Body>
 							Reportez les éléments entre parenthèses dans la déclaration EDI de
 							votre client

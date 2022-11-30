@@ -51,10 +51,8 @@ export default function API() {
 
 				<H3>Comment reproduire un calcul d'un simulateur ?</H3>
 				<Body>
-					<Body>
-						Pour répliquer un calcul d'un simulateur de mon-entreprise dans la
-						bibliothèque, voici la marche à suivre :{' '}
-					</Body>
+					Pour répliquer un calcul d'un simulateur de mon-entreprise dans la
+					bibliothèque, voici la marche à suivre :{' '}
 				</Body>
 				<Ol>
 					<StepByStep />

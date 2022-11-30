@@ -3,7 +3,7 @@ import { useToggleState } from '@react-stately/toggle'
 import { ReactNode, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
-import { FocusStyle, SROnly } from '@/design-system/global-style'
+import { SROnly } from '@/design-system/global-style'
 
 import { Body } from '../typography/paragraphs'
 
@@ -59,10 +59,6 @@ const StyledSwitch = styled.span<StyledProps>`
 			  `
 			: ''}
 
-	&:focus-within {
-		${FocusStyle}
-	}
-
 	&:hover ${StyledSpan} {
 		box-shadow: 0 0 0 0.5rem
 			${({ disabled, checked, theme }) =>
@@ -98,6 +94,7 @@ export type SwitchProps = AriaSwitchProps & {
 	light?: boolean
 	children?: ReactNode
 	className?: string
+	role?: string
 }
 
 export const Switch = (props: SwitchProps) => {
@@ -124,7 +121,13 @@ export const Switch = (props: SwitchProps) => {
 				checked={isSelected}
 				disabled={isDisabled}
 			>
-				<HiddenInput {...inputProps} type="checkbox" tabIndex={0} ref={ref} />
+				<HiddenInput
+					{...inputProps}
+					type="checkbox"
+					tabIndex={0}
+					ref={ref}
+					role={props?.role}
+				/>
 				<StyledSpan
 					light={light}
 					size={size}

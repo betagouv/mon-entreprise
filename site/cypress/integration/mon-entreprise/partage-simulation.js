@@ -1,7 +1,7 @@
 const fr = Cypress.env('language') === 'fr'
 
 describe('Partage (simulateur salarié)', function () {
-	const brutInputSelector = '#salarié\\ \\.\\ contrat\\ \\.\\ salaire\\ brut'
+	const brutInputSelector = '#salariécontratsalairebrut'
 	const simulatorUrl = '/simulateurs/salaire-brut-net'
 	const searchParams = new URLSearchParams({
 		'salaire-brut': '1539€/mois',
@@ -16,7 +16,6 @@ describe('Partage (simulateur salarié)', function () {
 	it('should set input value from URL', function () {
 		cy.visit(urlWithState)
 		cy.get(brutInputSelector)
-			.first()
 			.invoke('val')
 			.should('match', /1[\s]539[\s]€/)
 

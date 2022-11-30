@@ -251,6 +251,7 @@ export function SimulateurCard({
 								)}
 							</h4>
 						}
+						role="link"
 					/>
 				</Grid>
 			) : (
@@ -271,6 +272,7 @@ export function SimulateurCard({
 						ctaLabel={t('.cta', 'Lancer le simulateur')}
 						to={{ pathname: (isIframe && iframePath) || path }}
 						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
+						role="link"
 					>
 						{meta?.description}
 					</Card>

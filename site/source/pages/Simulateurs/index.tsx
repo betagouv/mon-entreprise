@@ -56,11 +56,11 @@ export default function Simulateurs() {
 
 			{pathname !== absoluteSitePaths.simulateurs.index &&
 				(lastState?.fromGérer ? (
-					<Link to={absoluteSitePaths.gérer.index}>
+					<Link to={absoluteSitePaths.gérer.index} noUnderline>
 						<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 					</Link>
 				) : lastState?.fromCréer ? (
-					<Link to={absoluteSitePaths.créer.index}>
+					<Link to={absoluteSitePaths.créer.index} noUnderline>
 						<span aria-hidden>←</span> <Trans>Retour à la création</Trans>
 					</Link>
 				) : !isEmbedded ? (
@@ -68,6 +68,7 @@ export default function Simulateurs() {
 						<Link
 							className="print-hidden"
 							to={absoluteSitePaths.simulateurs.index}
+							noUnderline
 						>
 							<span aria-hidden>←</span>{' '}
 							<Trans>Voir les autres simulateurs</Trans>

@@ -7,8 +7,6 @@ import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import styled, { css } from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
-
 import chevronImg from './chevron.svg'
 
 export const Accordion = <T extends object>(props: AriaAccordionProps<T>) => {
@@ -62,7 +60,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 			<StyledTitle>
 				<StyledButton {...buttonProps} ref={ref}>
 					<span>{item.props.title}</span>
-					<ChevronRightMedium aria-hidden $isOpen={isOpen} />
+					<ChevronRightMedium aria-hidden $isOpen={isOpen} alt="" />
 				</StyledButton>
 			</StyledTitle>
 			<StyledContent
@@ -106,9 +104,6 @@ const StyledButton = styled.button`
 	}
 	:focus {
 		outline: none;
-	}
-	:focus > span {
-		${FocusStyle}
 	}
 `
 

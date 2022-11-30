@@ -3,7 +3,6 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
 import { Chevron } from '@/design-system/icons'
 import { H4 } from '@/design-system/typography/heading'
 import {
@@ -77,9 +76,6 @@ const StyledArticle = styled.div`
 			theme.darkMode
 				? theme.colors.bases.secondary[600]
 				: theme.colors.bases.secondary[100]};
-	}
-	&:focus-visible {
-		${FocusStyle}
 	}
 `
 

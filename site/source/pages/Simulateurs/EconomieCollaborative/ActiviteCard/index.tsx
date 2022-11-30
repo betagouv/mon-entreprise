@@ -58,8 +58,15 @@ export const ActiviteCard = ({
 		ref
 	)
 
+	delete buttonProps.role
+
 	return (
-		<CardContainer {...(interactive ? buttonProps : {})} ref={ref}>
+		<CardContainer
+			{...(interactive ? buttonProps : {})}
+			role="checkbox"
+			aria-checked={selected}
+			ref={ref}
+		>
 			{selected !== undefined && (
 				<div
 					css={`
@@ -70,16 +77,17 @@ export const ActiviteCard = ({
 				>
 					<Checkbox
 						name={title}
-						id={title}
+						id={title.replace(/\s/g, '')}
 						isSelected={selected}
 						excludeFromTabOrder
 						onChange={toggle}
 						aria-label={titre}
+						aria-disabled
 					/>
 				</div>
 			)}
 			<ActiviteContent>
-				<H4>{titre}</H4>
+				<H4 as="h3">{titre}</H4>
 				<ButtonHelp title={titre} type="aide">
 					<Body>{explication}</Body>
 				</ButtonHelp>

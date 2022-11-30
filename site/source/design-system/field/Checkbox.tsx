@@ -4,7 +4,6 @@ import { AriaCheckboxProps } from '@react-types/checkbox'
 import { useRef } from 'react'
 import styled from 'styled-components'
 
-import { FocusStyle } from '@/design-system/global-style'
 import { Body } from '@/design-system/typography/paragraphs'
 
 export default function Checkbox(
@@ -35,7 +34,7 @@ export default function Checkbox(
 						<polyline points="1 9 7 14 15 4" />
 					</CheckboxVisual>
 				</CheckboxVisualContainer>
-				{label && <LabelBody> {label}</LabelBody>}
+				{label && <LabelBody as="span"> {label}</LabelBody>}
 			</VisibleContainer>
 		</CheckboxContainer>
 	)
@@ -124,10 +123,6 @@ const LabelBody = styled(Body)`
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 `
 const CheckboxContainer = styled.label`
-	input:focus-visible + ${VisibleContainer} {
-		${FocusStyle}
-		outline-offset: 0;
-	}
 	input :focus + ${VisibleContainer} ${CheckboxVisualContainer} {
 		opacity: 1;
 	}

@@ -81,11 +81,13 @@ export default function Budget() {
 						setSelectedYear(year as typeof years[number])
 					}}
 				>
-					{years.map((year) => (
-						<Item key={year} textValue={year}>
-							{year}
-						</Item>
-					))}
+					{years
+						.filter((year) => !!year)
+						.map((year) => (
+							<Item key={year} textValue={year}>
+								{year}
+							</Item>
+						))}
 				</Select>
 			</Grid>
 
@@ -109,14 +111,9 @@ export default function Budget() {
 							</caption>
 							<thead>
 								<tr>
-									<td>{selectedYear}</td>
+									<th>{selectedYear}</th>
 									{quarters.map((q) => (
-										<th
-											role="columnheader"
-											scope="col"
-											key={q.label}
-											aria-label={q['aria-label']}
-										>
+										<th scope="col" key={q.label} aria-label={q['aria-label']}>
 											{q.label}
 										</th>
 									))}
@@ -126,9 +123,7 @@ export default function Budget() {
 							<tbody>
 								{categories.map((label) => (
 									<tr key={label}>
-										<th role="rowheader" scope="row">
-											{label}
-										</th>
+										<th scope="row">{label}</th>
 										{quarters.map((q) => {
 											const value = budget[selectedYear]?.[q.label]?.[label]
 
@@ -140,9 +135,7 @@ export default function Budget() {
 															language,
 														})
 													) : (
-														<span aria-label="Pas de budget alloué">
-															<span aria-hidden>-</span>
-														</span>
+														<span aria-label="Pas de budget alloué">-</span>
 													)}
 												</td>
 											)
@@ -165,9 +158,7 @@ export default function Budget() {
 							</tbody>
 							<tfoot>
 								<tr>
-									<th role="rowheader" scope="row">
-										Total HT
-									</th>
+									<th scope="row">Total HT</th>
 									{quarters.map((q) => {
 										const value = arraySum(
 											Object.values(budget[selectedYear]?.[q.label] ?? {})
@@ -201,9 +192,7 @@ export default function Budget() {
 									</td>
 								</tr>
 								<tr>
-									<th role="rowheader" scope="row">
-										Total TTC
-									</th>
+									<th scope="row">Total TTC</th>
 									{quarters.map((q) => {
 										const value = Math.round(
 											arraySum(
@@ -273,8 +262,8 @@ const RessourcesAllocationTable = styled.table`
 	tfoot tr:nth-child(odd) {
 		background: ${({ theme }) =>
 			theme.darkMode
-				? theme.colors.extended.dark[600]
-				: theme.colors.bases.primary[200]};
+				? theme.colors.extended.dark[700]
+				: theme.colors.bases.primary[100]};
 		color: inherit;
 	}
 
@@ -284,7 +273,10 @@ const RessourcesAllocationTable = styled.table`
 	}
 
 	tfoot tr:last-child {
-		color: ${({ theme }) => theme.colors.bases.primary[500]};
+		color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[300]
+				: theme.colors.bases.primary[700]};
 		background-color: inherit;
 	}
 `

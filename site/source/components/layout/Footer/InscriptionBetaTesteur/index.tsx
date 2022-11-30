@@ -12,7 +12,7 @@ export default function InscriptionBetaTesteur() {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<Link {...buttonProps} aria-haspopup="dialog">
+				<Link {...buttonProps} aria-haspopup="dialog" noUnderline>
 					Devenir beta-testeur
 				</Link>
 			)}

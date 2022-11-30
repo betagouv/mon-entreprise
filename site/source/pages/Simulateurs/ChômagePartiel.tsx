@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -12,7 +12,6 @@ import Simulation, {
 import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Li, Ul } from '@/design-system/typography/list'
 
 declare global {
@@ -31,27 +30,7 @@ declare global {
 }
 
 export default function ChômagePartiel() {
-	const inIframe = useIsEmbedded()
 	const { t } = useTranslation()
-	useEffect(() => {
-		if (inIframe) {
-			return
-		}
-		if (!window.StonlyWidget) {
-			const script = document.createElement('script')
-			window.STONLY_WID = '0128ae02-6780-11ea-ac13-0a4250848ba4'
-			script.src = 'https://stonly.com/js/widget/stonly-widget.js'
-			script.async = true
-			document.body.appendChild(script)
-		} else {
-			window.StonlyWidget?.launcherShow()
-		}
-
-		return () => {
-			window.StonlyWidget?.stopURLWatcher()
-			window.StonlyWidget?.launcherHide()
-		}
-	}, [inIframe])
 
 	return (
 		<>
@@ -185,7 +164,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				<thead>
 					<tr>
 						<th id="emptyTh1"></th>
-						<th role="columnheader" scope="col">
+						<th scope="col">
 							<select
 								onChange={(evt) =>
 									setCurrentColumnIndex(Number(evt.target.value))
@@ -204,7 +183,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				<tbody>
 					{body.map(([label, ...line], i) => (
 						<tr key={i}>
-							<th role="rowheader" scope="row">
+							<th scope="row">
 								<RowLabel {...label} />
 							</th>
 							<td>
@@ -219,7 +198,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				<thead>
 					<tr>
 						{head.map((label, i) => (
-							<th key={i} role="columnheader" scope="column">
+							<th key={i} scope="col">
 								{label}
 							</th>
 						))}
@@ -228,7 +207,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 				<tbody>
 					{body.map(([label, ...line], i) => (
 						<tr key={i}>
-							<th role="rowheader" scope="row">
+							<th scope="row">
 								<RowLabel {...label} />
 							</th>
 							{line.map((cell, j) => (

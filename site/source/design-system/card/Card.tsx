@@ -1,10 +1,9 @@
 import { AriaButtonProps } from '@react-types/button'
 import React, { ComponentPropsWithRef, ReactHTML, useRef } from 'react'
 import { Link as BaseLink } from 'react-router-dom'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { StyledButton } from '@/design-system/buttons/Button'
-import { FocusStyle } from '@/design-system/global-style'
 import { H3, H4, HeadingUnderline } from '@/design-system/typography/heading'
 import {
 	NewWindowLinkIcon,
@@ -32,6 +31,7 @@ type CardProps = GenericCardProps & {
 	children: React.ReactNode
 	compact?: boolean
 	bodyAs?: React.ComponentProps<typeof Body>['as']
+	role?: string
 }
 
 export function Card({
@@ -41,6 +41,7 @@ export function Card({
 	ctaLabel,
 	compact = false,
 	bodyAs,
+	role,
 	...ariaButtonProps
 }: CardProps) {
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
@@ -51,7 +52,12 @@ export function Card({
 	delete buttonOrLinkProps.title
 
 	return (
-		<CardContainer $compact={compact} {...buttonOrLinkProps} tabIndex={0}>
+		<CardContainer
+			$compact={compact}
+			{...buttonOrLinkProps}
+			role={role || buttonOrLinkProps?.role}
+			tabIndex={0}
+		>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			{title &&
 				(compact ? (
@@ -69,8 +75,7 @@ export function Card({
 				<Body as={bodyAs}>{children}</Body>
 			</div>
 			{ctaLabel && (
-				// The button is not selectable with keyboard navigation because the whole card already is
-				<CardButton tabIndex={-1} $size="XS" $light $color="primary" as="div">
+				<CardButton $size="XS" $light $color="primary" as="div">
 					{ctaLabel}
 					{linkProps.external && <NewWindowLinkIcon />}
 				</CardButton>
@@ -141,10 +146,6 @@ export const CardContainer = styled.div<{ $compact?: boolean }>`
 			theme.darkMode
 				? theme.colors.extended.dark[500]
 				: theme.colors.bases.primary[100]};
-	}
-	&:focus,
-	&:focus-visible {
-		${FocusStyle}
 	}
 	padding: ${({ theme: { spacings }, $compact = false }) =>
 		$compact

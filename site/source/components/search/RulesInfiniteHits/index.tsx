@@ -5,7 +5,6 @@ import { connectInfiniteHits, connectStats } from 'react-instantsearch-dom'
 import styled from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
-import { FocusStyle } from '@/design-system/global-style'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
@@ -39,10 +38,6 @@ const HitContainer = styled.li`
 	&:first-child {
 		border-top: transparent;
 		padding-top: 0;
-	}
-
-	&:focus-within {
-		${FocusStyle}
 	}
 `
 

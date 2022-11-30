@@ -80,28 +80,32 @@ export default function Footer() {
 
 				<Container backgroundColor={(theme) => theme.colors.bases.primary[700]}>
 					<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-						<FooterContainer className="print-hidden" role="navigation">
+						<FooterContainer
+							className="print-hidden"
+							role="navigation"
+							aria-label={t('Menu de navigation')}
+						>
 							<FooterColumn>
 								{language === 'fr' && (
-									<nav>
+									<nav title="firstColumnNav">
 										<ul>
 											<li>
-												<Link to={absoluteSitePaths.plan}>
+												<Link to={absoluteSitePaths.plan} noUnderline>
 													<Trans>Plan du site</Trans>
 												</Link>
 											</li>
 											<li>
-												<Link to={absoluteSitePaths.nouveautés}>
+												<Link to={absoluteSitePaths.nouveautés} noUnderline>
 													Nouveautés <Emoji emoji="✨" />
 												</Link>
 											</li>
 											<li>
-												<Link to={absoluteSitePaths.stats}>
+												<Link to={absoluteSitePaths.stats} noUnderline>
 													Stats <Emoji emoji="📊" />
 												</Link>
 											</li>
 											<li>
-												<Link to={absoluteSitePaths.budget}>
+												<Link to={absoluteSitePaths.budget} noUnderline>
 													Budget <Emoji emoji="💶" />
 												</Link>
 											</li>
@@ -110,10 +114,13 @@ export default function Footer() {
 								)}
 							</FooterColumn>
 							<FooterColumn>
-								<nav>
+								<nav title="secondColumnNav">
 									<ul>
 										<li>
-											<Link to={absoluteSitePaths.développeur.index}>
+											<Link
+												to={absoluteSitePaths.développeur.index}
+												noUnderline
+											>
 												<Trans>Intégrer nos simulateurs</Trans>
 											</Link>
 										</li>
@@ -128,6 +135,7 @@ export default function Footer() {
 													href={hrefLink.href}
 													openInSameWindow
 													lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
+													noUnderline
 												>
 													{hrefLink.hrefLang === 'fr' ? (
 														<>
@@ -148,7 +156,7 @@ export default function Footer() {
 							</FooterColumn>
 
 							<FooterColumn>
-								<nav>
+								<nav title="thirdColumnNav">
 									<ul>
 										<li>
 											<LegalNotice />
@@ -164,6 +172,7 @@ export default function Footer() {
 														'footer.accessibilitéAriaLabel',
 														'Accessibilité : non conforme, en savoir plus'
 													)}
+													noUnderline
 												>
 													<Trans i18nKey="footer.accessibilité">
 														Accessibilité : non conforme

@@ -42,9 +42,9 @@ export default function SearchOrCreate() {
 					{companySIREN ? (
 						<>
 							<H3 as="h2">Votre entreprise</H3>
-							<CompanyDetails />
+							<CompanyDetails headingTag="h3" />
 							<Spacing md />
-							<AnswerGroup>
+							<AnswerGroup role="list">
 								<Button
 									role="link"
 									to={generatePath(absoluteSitePaths.gérer.entreprise, {

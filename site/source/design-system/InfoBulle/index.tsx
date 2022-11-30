@@ -58,7 +58,7 @@ const Container = styled.span`
 export default function InfoBulle({ children }: { children: React.ReactNode }) {
 	return (
 		<Container>
-			<QuestionMark tabIndex={0}>?</QuestionMark>
+			<QuestionMark>?</QuestionMark>
 			<InfoBulleText>{children}</InfoBulleText>
 		</Container>
 	)

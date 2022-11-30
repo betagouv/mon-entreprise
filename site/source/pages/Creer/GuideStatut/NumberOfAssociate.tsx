@@ -50,7 +50,7 @@ export default function NumberOfAssociates() {
 				</SmallBody>
 			</Trans>
 
-			<AnswerGroup>
+			<AnswerGroup role="list">
 				<Button
 					onPress={() => {
 						dispatch(companyHasMultipleAssociates(false))

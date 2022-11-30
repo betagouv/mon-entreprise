@@ -33,7 +33,6 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 								role="button"
 								onPress={() => fold(false)}
 								aria-expanded={false}
-								aria-controls="warning-text"
 								aria-label={t(
 									'Lire les précisions, ouvrir le message condensé.'
 								)}
@@ -51,7 +50,6 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 								<Button
 									size="XS"
 									aria-expanded
-									aria-controls="warning-text"
 									light
 									color="tertiary"
 									onPress={() => fold(true)}

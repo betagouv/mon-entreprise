@@ -14,9 +14,7 @@ const getDefaultDarkMode = () => {
 		return false
 	}
 
-	return getItem('darkMode')
-		? getItem('darkMode') === 'true'
-		: matchMedia?.('(prefers-color-scheme: dark)').matches
+	return getItem('darkMode') ? getItem('darkMode') === 'true' : false
 }
 
 export const DarkModeContext = React.createContext<DarkModeContextType>([

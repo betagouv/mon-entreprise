@@ -113,43 +113,42 @@ export default function PageFeedback({ customMessage }: PageFeedbackProps) {
 						}}
 						role="list"
 					>
-						<EmojiButton
-							onClick={() => handleFeedback('mauvais')}
-							role="listitem"
-						>
-							<Emoji
-								emoji="🙁"
-								aria-label="Pas satisfait, envoyer cette réponse"
-								aria-hidden={false}
-							/>
-						</EmojiButton>
-						<EmojiButton
-							onClick={() => handleFeedback('moyen')}
-							role="listitem"
-						>
-							<Emoji
-								emoji="😐"
-								aria-label="Moyennement satisfait, envoyer cette réponse"
-								aria-hidden={false}
-							/>
-						</EmojiButton>
-						<EmojiButton onClick={() => handleFeedback('bien')} role="listitem">
-							<Emoji
-								emoji="🙂"
-								aria-label="Plutôt satisfait, envoyer cette réponse"
-								aria-hidden={false}
-							/>
-						</EmojiButton>
-						<EmojiButton
-							onClick={() => handleFeedback('très bien')}
-							role="listitem"
-						>
-							<Emoji
-								emoji="😀"
-								aria-label="Très satisfait, envoyer cette réponse"
-								aria-hidden={false}
-							/>
-						</EmojiButton>
+						<div role="listitem">
+							<EmojiButton onClick={() => handleFeedback('mauvais')}>
+								<Emoji
+									emoji="🙁"
+									aria-label="Pas satisfait, envoyer cette réponse"
+									aria-hidden={false}
+								/>
+							</EmojiButton>
+						</div>
+						<div role="listitem">
+							<EmojiButton onClick={() => handleFeedback('moyen')}>
+								<Emoji
+									emoji="😐"
+									aria-label="Moyennement satisfait, envoyer cette réponse"
+									aria-hidden={false}
+								/>
+							</EmojiButton>
+						</div>
+						<div role="listitem">
+							<EmojiButton onClick={() => handleFeedback('bien')}>
+								<Emoji
+									emoji="🙂"
+									aria-label="Plutôt satisfait, envoyer cette réponse"
+									aria-hidden={false}
+								/>
+							</EmojiButton>
+						</div>
+						<div role="listitem">
+							<EmojiButton onClick={() => handleFeedback('très bien')}>
+								<Emoji
+									emoji="😀"
+									aria-label="Très satisfait, envoyer cette réponse"
+									aria-hidden={false}
+								/>
+							</EmojiButton>
+						</div>
 					</div>
 				</>
 			)}

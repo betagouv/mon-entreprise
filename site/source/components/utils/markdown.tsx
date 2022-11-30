@@ -75,6 +75,7 @@ type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	className?: string
 	components?: MarkdownToJSX.Overrides
 	renderers?: Record<string, unknown>
+	as?: string
 }
 
 const Code = styled.code`
@@ -110,10 +111,11 @@ const Pre = styled.pre`
 export const Markdown = ({
 	children,
 	components = {},
+	as,
 	...otherProps
 }: MarkdownProps) => (
 	<MarkdownToJsx
-		{...otherProps}
+		as={as}
 		options={{
 			forceBlock: true,
 			...otherProps.options,

@@ -1122,8 +1122,8 @@ mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
 navbar:
-  activate-darkmode: Activate dark mode
-  deactivate-darkmode: Deactivate dark mode
+  activate-darkmode: Enable dark mode
+  deactivate-darkmode: Disable dark mode
   logo: Logo My company in France by Urssaf
   redirect-home: Go to home page
 nextSteps:
@@ -1149,47 +1149,47 @@ page:
         of devices considered</1><2><0>Easily and freely integrates</0> on any
         website. <3>Learn more about</3> it.</2></1>
 pages:
-  accessibilité: <0>Accessibility</0><1></1><2></2><3><0>This page is not a help
+  accessibilité: <0>Accessibility</0><1></1><2></2><3>This page is not a help
     page, but a declaration of compliance with the <2>RGAA</2> 4.0 which aims to
     define the general level of accessibility found on the site in accordance
     with the regulations. This page is mandatory to be compliant with the RGAA
-    4.0.</0><1>What is digital accessibility?</1><2>An accessible website is a
+    4.0.</3><4>What is digital accessibility?</4><5>An accessible website is a
     website that allows all Internet users to access its content without
     difficulty, including people with disabilities who use specialized software
-    or hardware.</2><3>An accessible website allows for example
-    to:</3><4><0>Navigate with voice synthesizers or Braille displays
+    or hardware.</5><6>An accessible website allows for example
+    to:</6><7><0>Navigate with voice synthesizers or Braille displays
     (particularly used by blind or visually impaired Internet
     users).</0><1>Customize the display of the site according to your needs
     (enlarging characters, changing colors, etc.).</1><2>Navigate without using
     the mouse, with the keyboard only or via a touch
-    screen.</2></4><5>Accessibility statement</5><6>Acoss is committed to making
+    screen.</2></7><8>Accessibility statement</8><9>Acoss is committed to making
     its websites accessible in accordance with article 47 of law n° 2005-102 of
-    11 February 2005.</6><7>To this end, it draws up <2>the strategy and action
-    plan to be</2> implemented.</7><8>This declaration of accessibility applies
-    to <2>https://mon-entreprise.urssaf.fr.</2></8><9>Compliance
-    status</9><10><0>https://mon-entreprise.urssaf.fr</0> is currently not in
+    11 February 2005.</9><10>To this end, it draws up <2>the strategy and action
+    plan to be</2> implemented.</10><11>This declaration of accessibility
+    applies to <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance
+    status</12><13><0>https://mon-entreprise.urssaf.fr</0> is currently not in
     compliance with the <4>General Accessibility Improvement Framework
     (GA</4>I). The compliance audit will be scheduled soon. Corrections will be
-    taken into account following the audit.</10><11>Right to
-    compensation</11><12>While waiting for full compliance, you can obtain an
+    taken into account following the audit.</13><14>Right to
+    compensation</14><15>While waiting for full compliance, you can obtain an
     accessible version of the documents or information contained therein by
     sending an e-mail to <2>accessibilite@acoss.fr</2> indicating the name of
     the document concerned and/or the information you would like to obtain. The
     requested information will be sent to you as soon as
-    possible.</12><13>Improvement and contact</13><14>You can help us to improve
+    possible.</15><16>Improvement and contact</16><17>You can help us to improve
     the accessibility of the site by reporting any problems you encounter. To do
-    so, send us an e-mail to <2>accessibilite@acoss.fr.</2></14><15>Rights
-    Defender</15><16>This procedure is to be used in the following
-    case.</16><17>You have reported to the webmaster a lack of accessibility
+    so, send us an e-mail to <2>accessibilite@acoss.fr.</2></17><18>Rights
+    Defender</18><19>This procedure is to be used in the following
+    case.</19><20>You have reported to the webmaster a lack of accessibility
     that prevents you from accessing content or services on the portal and you
-    have not received a satisfactory response.</17><18><0>Write a message to the
+    have not received a satisfactory response.</20><21><0>Write a message to the
     Human Rights
     Defender<1>(https://formulaire.defenseurdesdroits.fr/)</1></0><1>Contact the
     delegate of the Defender of Rights in your
     area<1>(https://www.defenseurdesdroits.fr/saisir/delegues)</1></1><2>Send a
     letter by post (free of charge, do not put a stamp on it)
     to:<1></1>Défenseur des droits<3></3>Libre réponse 71120<5></5>75342 Paris
-    CEDEX 07</2></18><19>Updated on 29/01/2021</19></3>
+    CEDEX 07</2></21><22>Updated on 29/01/2021</22>
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL: choose the status that suits
@@ -1218,15 +1218,15 @@ pages:
       parameters:</2><3><0><0>expressions</0>: the name of the rules whose value
       you want to calculate</0><1><0>situation</0>: the situation for the
       calculation</1></3><4><0>See the example in the Swagger</0></4><5>How to
-      replicate a calculation of a simulator ?</5><6><0>To replicate a
-      calculation from a simulator in my-company in the library, here is the
-      procedure: </0></6><7><0></0><1><0>In the "Rule and situation" section,
-      you will find the name of the rule and the situation to use as parameters
-      for calling/evaluate.</0><1></1>You can also find the API request to copy
-      and paste as a <3>curl</3> call or <5>fetchJavaScript</5>in the "Reuse
-      this calculation" section.<7></7></1></7><8></8><9>Example</9><10>Here is
-      an example of how to use the different routes, you can explore their code
-      in the <1>example</1> folder</10><11><0></0></11>'
+      replicate a calculation of a simulator ?</5><6>To replicate a calculation
+      from a simulator in my-company in the library, here is the procedure:
+      </6><7><0></0><1><0>In the "Rule and situation" section, you will find the
+      name of the rule and the situation to use as parameters for
+      calling/evaluate.</0><1></1>You can also find the API request to copy and
+      paste as a <3>curl</3> call or <5>fetchJavaScript</5>in the "Reuse this
+      calculation" section.<7></7></1></7><8></8><9>Example</9><10>Here is an
+      example of how to use the different routes, you can explore their code in
+      the <1>example</1> folder</10><11><0></0></11>'
     bibliothèque: '<0><0>You can reuse the calculations of my-company on your site
       or service very easily thanks to the open-source JavaScript library
       available on npm.</0></0><1>How to use this library

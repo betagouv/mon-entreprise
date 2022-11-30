@@ -83,7 +83,7 @@ export const ExonérationCovid = () => {
 				<>
 					<TrackPage name="accueil" />
 					<Grid item xs={12}>
-						<H3>
+						<H3 as="h2">
 							{engine.getRule('secteur').rawNode.question}
 							<ExplicableRule
 								dottedName="secteur"
@@ -101,7 +101,9 @@ export const ExonérationCovid = () => {
 					</Grid>
 
 					<Grid item xs={12}>
-						<H3>{engine.getRule("début d'activité").rawNode.question}</H3>
+						<H3 as="h2">
+							{engine.getRule("début d'activité").rawNode.question}
+						</H3>
 					</Grid>
 
 					<Grid item xs={12} sm={6}>
@@ -112,7 +114,9 @@ export const ExonérationCovid = () => {
 					</Grid>
 
 					<Grid item xs={12}>
-						<H3>{engine.getRule("lieu d'exercice").rawNode.question}</H3>
+						<H3 as="h2">
+							{engine.getRule("lieu d'exercice").rawNode.question}
+						</H3>
 					</Grid>
 
 					<Grid item xs={12}>

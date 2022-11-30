@@ -6,9 +6,8 @@ import { Markdown } from '@/components/utils/markdown'
 
 import { LabelBody, RadioPoint, RadioSkeleton, VisibleRadio } from './Radio'
 
-const Label = styled.span``
-
-const Description = styled.p`
+const Description = styled.span`
+	display: block;
 	margin: 0;
 	margin-top: ${({ theme }) => theme.spacings.sm};
 `
@@ -51,10 +50,10 @@ export function RadioCard({
 	return (
 		<StyledRadioSkeleton {...props}>
 			{!props.hideRadio && <StyledRadioPoint />}
-			<LabelBody as="div" $hideRadio={props.hideRadio}>
-				<Label>
+			<LabelBody as="span" $hideRadio={props.hideRadio}>
+				<span>
 					{label} {emoji && <Emoji emoji={emoji} />}
-				</Label>
+				</span>
 				{description && (
 					<Markdown as={Description}>{description ?? ''}</Markdown>
 				)}

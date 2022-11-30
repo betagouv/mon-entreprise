@@ -32,7 +32,7 @@ export default function Header() {
 				{t('Aller au contenu')}
 			</a>
 			<Container>
-				<StyledHeader role="banner">
+				<StyledHeader>
 					<Link
 						to={absoluteSitePaths.index}
 						aria-label={t("Logo mon entreprise, accéder à la page d'accueil")}
@@ -57,11 +57,12 @@ export default function Header() {
 						<Switch
 							isSelected={darkMode}
 							onChange={setDarkMode}
-							aria-label={t(
+							role="checkbox"
+							aria-label={
 								darkMode
-									? 'navbar.deactivate-darkmode'
-									: 'navbar.activate-darkmode'
-							)}
+									? t('navbar.deactivate-darkmode', 'Désactiver le mode sombre')
+									: t('navbar.activate-darkmode', 'Activer le mode sombre')
+							}
 						/>
 						<Emoji emoji="🌙" aria-hidden />
 					</div>

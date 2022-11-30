@@ -123,7 +123,7 @@ export function CasParticuliers() {
 					, il suffit de renseigner la commune et le taux versement mobilité
 					correspondant est automatiquement déterminé.
 				</Body>
-				<Body>
+				<Body as="div">
 					Il vous faudra préciser le taux vous-même pour refaire le calcul. Vous
 					pouvez le retrouver :
 					<Ul>
@@ -151,7 +151,7 @@ export function CasParticuliers() {
 						</RuleLink>
 					</Code>
 				</Body>
-				<Body>
+				<Body as="div">
 					Ce taux collectif doit être retrouvé manuellement. Vous pouvez
 					utiliser :
 					<Ul>

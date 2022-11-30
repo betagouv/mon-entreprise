@@ -15,6 +15,8 @@ import {
 } from 'react'
 import styled, { css } from 'styled-components'
 
+import { omit } from '@/utils'
+
 import {
 	StyledContainer,
 	StyledDescription,
@@ -90,6 +92,8 @@ export default function NumberField(props: NumberFieldProps) {
 		ref.current.setSelectionRange(0, length * 2)
 	}, [])
 
+	delete inputWithCursorHandlingProps.autoCorrect
+
 	return (
 		<StyledNumberFieldContainer>
 			<StyledInputContainer
@@ -99,7 +103,7 @@ export default function NumberField(props: NumberFieldProps) {
 				small={props.small}
 			>
 				<StyledNumberInput
-					{...(props as HTMLAttributes<HTMLInputElement>)}
+					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
 					{...inputWithCursorHandlingProps}
 					placeholder={
 						props.placeholder != null

@@ -76,19 +76,24 @@ export function SimulationGoal({
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
-							<RuleLink id={`${dottedName}-label`} dottedName={dottedName}>
+							<RuleLink
+								id={`${dottedName.replace(/\s|\./g, '')}-label`}
+								dottedName={dottedName}
+							>
 								{label}
 							</RuleLink>
 
-							<SmallBody
-								css={`
-									margin-bottom: 0;
-								`}
-								className={small ? 'sr-only' : ''}
-								id={`${dottedName}-description`}
-							>
-								{rule.rawNode.résumé}
-							</SmallBody>
+							{rule.rawNode.résumé && (
+								<SmallBody
+									css={`
+										margin-bottom: 0;
+									`}
+									className={small ? 'sr-only' : ''}
+									id={`${dottedName.replace(/\s|\./g, '')}-description`}
+								>
+									{rule.rawNode.résumé}
+								</SmallBody>
+							)}
 						</StyledGoalHeader>
 					</Grid>
 					<StyledGuideLectureContainer>
@@ -109,7 +114,10 @@ export function SimulationGoal({
 										: undefined
 								}
 								aria-label={engine.getRule(dottedName)?.title}
-								aria-describedby={`${dottedName}-description`}
+								aria-describedby={`${dottedName.replace(
+									/\s|\./g,
+									''
+								)}-description`}
 								displayedUnit="€"
 								dottedName={dottedName}
 								onFocus={() => setFocused(true)}

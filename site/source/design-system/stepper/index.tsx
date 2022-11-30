@@ -36,18 +36,22 @@ export function Step({
 
 	return (
 		<StyledStepContainer {...(active && { 'aria-current': 'step' })}>
-			<StyledStep $active={active} isDisabled={isDisabled} {...props}>
-				<div id={labelId}>
+			<StyledStep
+				$active={active}
+				isDisabled={isDisabled}
+				{...(!isDisabled ? props : {})}
+			>
+				<span style={{ display: 'block' }} id={labelId}>
 					<StyledStepNumber $active={active} $disabled={isDisabled} />
 					{children}
-				</div>
-				<div className="sr-only">
+				</span>
+				<span style={{ display: 'block' }} className="sr-only">
 					{progress > 0 ? (
 						<Trans>Étape non complétée</Trans>
 					) : (
 						progress === 1 && <Trans>Étape complétée</Trans>
 					)}
-				</div>
+				</span>
 				<StyledProgressBar
 					$active={active}
 					$progress={progress}
@@ -67,7 +71,7 @@ export function Stepper({
 	| { 'aria-labelledby': string }
 )) {
 	return (
-		<div role="progressbar" {...props}>
+		<div {...props}>
 			<StyledStepper>{children}</StyledStepper>
 		</div>
 	)
@@ -131,11 +135,12 @@ const StyledStep = styled(Link)<{ $active: boolean }>`
 					font-weight: inherit;
 			  `};
 `
-const StyledProgressBar = styled.div<{
+const StyledProgressBar = styled.span<{
 	$active: boolean
 	$progress: number
 	$isDisabled: boolean
 }>`
+	display: block;
 	width: 10.115rem;
 	height: 0.375rem;
 	margin-top: ${({ theme }) => theme.spacings.md};

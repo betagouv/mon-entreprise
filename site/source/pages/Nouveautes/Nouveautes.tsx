@@ -104,17 +104,19 @@ export default function Nouveautés() {
 						</Select>
 					</MobileGridItem>
 					<DesktopGridItem>
-						<Sidebar role="navigation">
-							{data.map(({ name }, index) => (
-								<li key={name}>
-									<SidebarLink to={getPath(index)}>{name}</SidebarLink>
-								</li>
-							))}
+						<Sidebar>
+							<StyledUl>
+								{data.map(({ name }, index) => (
+									<li key={name}>
+										<SidebarLink to={getPath(index)}>{name}</SidebarLink>
+									</li>
+								))}
+							</StyledUl>
 						</Sidebar>
 					</DesktopGridItem>
 					<Grid item xs={12} lg={9}>
 						<MainBlock>
-							<MarkdownWithAnchorLinks renderers={{ text: TextRenderer }}>
+							<MarkdownWithAnchorLinks>
 								{data[selectedRelease].description}
 							</MarkdownWithAnchorLinks>
 
@@ -140,13 +142,6 @@ export default function Nouveautés() {
 		</>
 	)
 }
-
-const removeGithubIssuesReferences = (text: string) =>
-	text.replace(/#[0-9]{1,5}/g, '')
-
-const TextRenderer = ({ children }: { children: string }) => (
-	<Emoji emoji={removeGithubIssuesReferences(children)} />
-)
 
 const MobileGridItem = styled(Grid).attrs({ item: true, xs: 12 })`
 	display: block;
@@ -177,7 +172,7 @@ const SidebarLink = styled(Link)<GenericButtonOrNavLinkProps>`
 	}
 `
 
-const Sidebar = styled.ul`
+const Sidebar = styled.nav`
 	display: flex;
 	flex-direction: column;
 	position: sticky;
@@ -193,6 +188,10 @@ const Sidebar = styled.ul`
 		padding: 0;
 		margin: 0;
 	}
+`
+
+const StyledUl = styled.ul`
+	padding-left: 0;
 `
 
 const MainBlock = styled.div`
