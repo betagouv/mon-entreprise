@@ -48,6 +48,7 @@ export default function Value<Names extends string>({
 		valeur: expression,
 		...(unit && { unité: unit }),
 	})
+
 	const value = formatValue(evaluation, {
 		displayedUnit,
 		language,

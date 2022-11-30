@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import { useMemo } from 'react'
+import { ComponentProps, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
@@ -148,6 +148,8 @@ function Comparateur({ engines }: ComparateurProps) {
 
 				<TableRow
 					dottedName="dirigeant . rémunération . net . après impôt"
+					unit="€/mois"
+					precision={0}
 					engines={engines}
 				/>
 
@@ -191,10 +193,12 @@ function Comparateur({ engines }: ComparateurProps) {
 function TableRow({
 	dottedName,
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
+	precision,
+	unit,
 }: {
 	dottedName: DottedName
 	engines: readonly [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
-}) {
+} & Pick<ComponentProps<typeof Value>, 'precision' | 'unit'>) {
 	return (
 		<>
 			<H3 className="legend">{assimiléEngine.getRule(dottedName).title}</H3>
@@ -203,6 +207,8 @@ function TableRow({
 					engine={assimiléEngine}
 					expression={dottedName}
 					documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
+					precision={precision}
+					unit={unit}
 				/>
 			</div>
 			<div className="indep">
@@ -210,6 +216,8 @@ function TableRow({
 					engine={indépendantEngine}
 					expression={dottedName}
 					documentationPath="/simulateurs/comparaison-régimes-sociaux/EI"
+					precision={precision}
+					unit={unit}
 				/>
 			</div>
 			<div className="auto">
@@ -217,6 +225,8 @@ function TableRow({
 					engine={autoEntrepreneurEngine}
 					expression={dottedName}
 					documentationPath="/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur"
+					precision={precision}
+					unit={unit}
 				/>
 			</div>
 		</>
