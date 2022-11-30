@@ -192,7 +192,7 @@ function FormulairePublicodes() {
 										)}
 
 										<RuleInput
-											id={dottedName.replace(/\s/g, '')}
+											id={dottedName.replace(/\s|\./g, '')}
 											dottedName={dottedName as DottedName}
 											onChange={(value) => onChange(dottedName, value)}
 											aria-label={

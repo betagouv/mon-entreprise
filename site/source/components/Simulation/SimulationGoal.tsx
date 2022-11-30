@@ -77,7 +77,7 @@ export function SimulationGoal({
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
 							<RuleLink
-								id={`${dottedName.replace(/\s/g, '')}-label`}
+								id={`${dottedName.replace(/\s|\./g, '')}-label`}
 								dottedName={dottedName}
 							>
 								{label}
@@ -89,7 +89,7 @@ export function SimulationGoal({
 										margin-bottom: 0;
 									`}
 									className={small ? 'sr-only' : ''}
-									id={`${dottedName.replace(/\s/g, '')}-description`}
+									id={`${dottedName.replace(/\s|\./g, '')}-description`}
 								>
 									{rule.rawNode.résumé}
 								</SmallBody>
@@ -115,7 +115,7 @@ export function SimulationGoal({
 								}
 								aria-label={engine.getRule(dottedName)?.title}
 								aria-describedby={`${dottedName.replace(
-									/\s/g,
+									/\s|\./g,
 									''
 								)}-description`}
 								displayedUnit="€"

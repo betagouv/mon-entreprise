@@ -101,7 +101,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		suggestions: showSuggestions ? rule.suggestions : {},
 		autoFocus: shouldFocusField,
 		...props,
-		id: props?.id?.replace(/\s/g, '') ?? dottedName.replace(/\s/g, ''),
+		id: props?.id?.replace(/\s|\./g, '') ?? dottedName.replace(/\s|\./g, ''),
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 

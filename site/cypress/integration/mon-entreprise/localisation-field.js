@@ -10,7 +10,7 @@ describe('Champs localisation (simulateur salarié)', function () {
 
 	it('should not crash when selecting localisation', function () {
 		cy.contains('SMIC').click()
-		cy.contains('[type=button]', 'Commune').click()
+		cy.contains('button', 'Commune').click()
 		cy.contains('Commune ou code postal')
 			.click({ force: true })
 			.focused()
