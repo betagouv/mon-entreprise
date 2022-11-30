@@ -2,11 +2,11 @@ import { DottedName } from 'modele-social'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 import { batchUpdateSituation, setActiveTarget } from '@/actions/actions'
 import { useEngine } from '@/components/utils/EngineContext'
-import { RootState, Situation } from '@/reducers/rootReducer'
+import { Situation } from '@/reducers/rootReducer'
 import { configObjectifsSelector } from '@/selectors/simulationSelectors'
 
 type ShortName = string
@@ -16,8 +16,6 @@ export default function useSearchParamsSimulationSharing() {
 	const [urlSituationIsExtracted, setUrlSituationIsExtracted] = useState(false)
 	const [searchParams, setSearchParams] = useSearchParams()
 	const objectifs = useSelector(configObjectifsSelector)
-	const simulationUrl = useSelector((state: RootState) => state.simulation?.url)
-	const currentUrl = useLocation().pathname
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
@@ -27,14 +25,6 @@ export default function useSearchParamsSimulationSharing() {
 	)
 
 	useEffect(() => {
-		// const hasConfig = Object.keys(config).length > 0
-
-		// // TODO: this check is specific to `useSimulationConfig` and
-		// // `setSimulationConfig`, so we'd prefer not doing it here. Other ideas
-		// // include having the config in a provider rather than in state.
-		// const configLoadedInState = simulationUrl === currentUrl
-		// if (!hasConfig || !configLoadedInState) return
-
 		// On load:
 		if (!urlSituationIsExtracted) {
 			const newSituation = getSituationFromSearchParams(
@@ -61,16 +51,8 @@ export default function useSearchParamsSimulationSharing() {
 
 			setUrlSituationIsExtracted(true)
 		}
-	}, [
-		currentUrl,
-		simulationUrl,
-		dispatch,
-		dottedNameParamName,
-		objectifs,
-		searchParams,
-		setSearchParams,
-		urlSituationIsExtracted,
-	])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	// Cleanup:
 	useEffect(() => {

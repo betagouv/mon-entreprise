@@ -25011,6 +25011,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"reselect@npm:^4.1.7":
+  version: 4.1.7
+  resolution: "reselect@npm:4.1.7"
+  checksum: 738d8e2b8f0dca154ad29de6a209c9fbca2d70ae6788fd85df87f2c74b95a65bbf2d16d43a9e2faff39de34d17a29d706ba08a6b2ee5660c09589edbd19af7e1
+  languageName: node
+  linkType: hard
+
 "resolve-alpn@npm:^1.2.0":
   version: 1.2.1
   resolution: "resolve-alpn@npm:1.2.1"
@@ -25963,6 +25970,7 @@ __metadata:
     recharts: 2.1.16
     reduce-reducers: ^1.0.4
     redux: ^4.2.0
+    reselect: ^4.1.7
     rimraf: ^3.0.2
     rollup-plugin-toml: ^1.0.0
     serve-static: ^1.15.0

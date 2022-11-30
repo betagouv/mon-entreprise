@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine, { utils } from 'publicodes'
 import { useSelector } from 'react-redux'
+import { createSelector } from 'reselect'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { RootState, Situation } from '@/reducers/rootReducer'
@@ -8,16 +9,16 @@ import { RootState, Situation } from '@/reducers/rootReducer'
 export const configSelector = (state: RootState) =>
 	state.simulation?.config ?? {}
 
-export const configObjectifsSelector = (state: RootState) => {
-	const config = configSelector(state)
-
-	const objectifs = [
-		...(config['objectifs exclusifs'] ?? []),
-		...(config.objectifs ?? []),
+export const configObjectifsSelector = createSelector(
+	[
+		(state: RootState) => configSelector(state)['objectifs exclusifs'],
+		(state: RootState) => configSelector(state).objectifs,
+	],
+	(objectifsExclusifs, objectifs) => [
+		...(objectifsExclusifs ?? []),
+		...(objectifs ?? []),
 	]
-
-	return objectifs
-}
+)
 
 const emptySituation: Situation = {}
 
