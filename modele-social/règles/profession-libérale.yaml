@@ -164,9 +164,9 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
     arrondi: oui
 
 dirigeant . indépendant . PL . PAMC . maladie:
-  remplace: cotisations et contributions . maladie
   # remplace: PL . maladie doesn't work because of https://github.com/betagouv/publicodes/issues/55
   # So we need to put this bloc before PL . maladie, in order for this replace to take precedence over the next (the first replace of the file win it all)
+  remplace: cotisations et contributions . maladie
   titre: maladie (après participation CPAM)
   somme:
     - variations:
@@ -650,6 +650,8 @@ dirigeant . indépendant . PL . PAMC:
     - entreprise . TVA . franchise de TVA
     - dirigeant . indépendant . revenus étrangers
     - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
+    - assiette minimale . maladie
+
   formule: oui
 
 dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée:
@@ -694,7 +696,7 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
         - entreprise . chiffre d'affaires < 19000 €/an
         - métier = 'santé . médecin'
       type: notification
-      description: Vous exercez une activité de médecins régulateurs ? Vous pouvez adhérer à l’offre simplifiée. [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
+      description: Vous exercez une activité de médecin exclusivement en tant que remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée. [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
       références:
         Site de l'offre simplifié dédiée aux médecins remplaçant: https://www.medecins-remplacants.urssaf.fr/accueil
 

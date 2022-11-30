@@ -1399,7 +1399,11 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
 
 dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
   acronyme: PI
-  question: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
+  question:
+    variations:
+      - si: PL . PAMC
+        alors: Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse retraite ?
+      - sinon: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
   description: |-
     Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
     non agricoles, vous bénécifiez d’une exonération totale des cotisations de retraite complémentaire et
