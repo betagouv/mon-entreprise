@@ -10,9 +10,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { GlobalStyle } from '@/design-system/global-style'
-import { Container } from '@/design-system/layout'
+import { Container, Grid } from '@/design-system/layout'
 import DesignSystemThemeProvider from '@/design-system/root'
-import { H1 } from '@/design-system/typography/heading'
+import { H1, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useIframeResizer } from '@/hooks/useIframeResizer'
@@ -22,6 +22,7 @@ import logo from '@/images/logo-monentreprise.svg'
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
 import { ServiceWorker } from './ServiceWorker'
+import { Message } from './design-system'
 import * as safeLocalStorage from './storage/safeLocalStorage'
 import { store } from './store'
 import { inIframe } from './utils'
@@ -48,7 +49,7 @@ export default function Provider({
 			<GlobalStyle />
 			<ErrorBoundary
 				showDialog
-				fallback={
+				fallback={(errorData) => (
 					<main style={{ height: '100vh' }}>
 						<Container>
 							<Link href="/" aria-label={t("Retourner à la page d'accueil")}>
@@ -80,9 +81,19 @@ export default function Provider({
 								si vous souhaitez partager une remarque. Veuillez nous excuser
 								pour la gêne occasionnée.
 							</Body>
+							<Grid container>
+								<Grid item xs={12} lg={6}>
+									<Message type="info">
+										<H4>Cause de l'erreur :</H4>
+										<Body>
+											{errorData.error.name} : {errorData.error.message}
+										</Body>
+									</Message>
+								</Grid>
+							</Grid>
 						</Container>
 					</main>
-				}
+				)}
 			>
 				{!import.meta.env.SSR &&
 					import.meta.env.MODE === 'production' &&
