@@ -40,5 +40,5 @@ export default function useSearchCompany(
 			})
 	}, [debouncedValue, setResult, setSearchPending])
 
-	return [searchPending && result.length <= 0, result.slice(0, 6)]
+	return [searchPending || value !== debouncedValue, result.slice(0, 6)]
 }
