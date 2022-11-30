@@ -75,7 +75,6 @@ export function Card({
 				<Body as={bodyAs}>{children}</Body>
 			</div>
 			{ctaLabel && (
-				// The button is not selectable with keyboard navigation because the whole card already is
 				<CardButton $size="XS" $light $color="primary" as="div">
 					{ctaLabel}
 					{linkProps.external && <NewWindowLinkIcon />}
