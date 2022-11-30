@@ -1,6 +1,6 @@
 const inputSelector =
-	'div[id="simulator-legend"] input[inputmode="numeric"]:not([id="entreprise . charges"])'
-const chargeInputSelector = 'input[id="entreprise . charges"]'
+	'div[id="simulator-legend"] input[inputmode="numeric"]:not([id="entreprisecharges"])'
+const chargeInputSelector = 'input[id="entreprisecharges"]'
 const fr = Cypress.env('language') === 'fr'
 
 export const runSimulateurTest = (simulateur) => {
