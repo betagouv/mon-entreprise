@@ -10,7 +10,6 @@ export default function DateField(props: AriaTextFieldOptions<'input'>) {
 				text-transform: uppercase;
 			`}
 			type="date"
-			label={undefined}
 		/>
 	)
 }

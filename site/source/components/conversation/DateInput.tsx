@@ -62,6 +62,7 @@ export default function DateInput({
 					isRequired={required}
 					onChange={handleDateChange}
 					aria-label={title}
+					label={title}
 				/>
 			</div>
 		</div>
