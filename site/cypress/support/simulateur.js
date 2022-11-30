@@ -4,7 +4,7 @@ const chargeInputSelector = 'input[id="entreprisecharges"]'
 const fr = Cypress.env('language') === 'fr'
 
 export const runSimulateurTest = (simulateur) => {
-	describe(`Simulateur ${simulateur}`, function () {
+	describe(`Simulateur ${simulateur}`, { testIsolation: 'off' }, function () {
 		before(function () {
 			return cy.visit(
 				encodeURI(`/${fr ? 'simulateurs' : 'calculators'}/${simulateur}`)

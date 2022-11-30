@@ -45,9 +45,7 @@ describe('Landing page', function () {
 
 		cy.get(searchInputPath).should('have.attr', 'placeholder')
 		cy.get(searchInputPath).invoke('attr', 'type').should('equal', 'search')
-		cy.get(searchInputPath).focus().type('noima')
-
-		cy.wait('@entreprises')
+		cy.get(searchInputPath).focus().type('noima').wait('@entreprises')
 
 		cy.get(searchResultsPath).children().should('have.length', 6)
 		cy.get(searchResultsPath).children().first().click()

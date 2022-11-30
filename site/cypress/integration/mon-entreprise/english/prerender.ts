@@ -115,6 +115,7 @@ describe('Test prerender', function () {
 			cy.visit(path || '/', { script: false })
 				.get('#loading', { timeout: 200 })
 				.should('not.exist')
+
 			test(cy)
 		})
 	})

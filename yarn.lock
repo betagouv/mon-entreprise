@@ -12876,9 +12876,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^11.2.0":
-  version: 11.2.0
-  resolution: "cypress@npm:11.2.0"
+"cypress@https://cdn.cypress.io/beta/npm/12.0.0/linux-arm64/release/12.0.0-e8898d2f6b65a11f36ceb2dd32ce7f1d87b103bc/cypress.tgz":
+  version: 12.0.0
+  resolution: "cypress@https://cdn.cypress.io/beta/npm/12.0.0/linux-arm64/release/12.0.0-e8898d2f6b65a11f36ceb2dd32ce7f1d87b103bc/cypress.tgz"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -12924,7 +12924,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: e13649fb4b62a3c9dff7cc571f4e01dba009d8179b05c4f885c5ceb4ed76b78a7323fec491d992da35527708b54e596bfc9edb1d702f788317889f794d8c1e76
+  checksum: d6e0d5c3325e915406981a487caf4413fbf84a92991e570378d4d911b19d8b0bde71a7fb5c8f0417e236c3e5c4f6077e6ec14e056646d38771a5607ac4096436
   languageName: node
   linkType: hard
 
@@ -25933,7 +25933,7 @@ __metadata:
     "@vitejs/plugin-legacy": ^2.3.1
     "@vitejs/plugin-react": ^2.2.0
     algoliasearch: ^4.14.2
-    cypress: ^11.2.0
+    cypress: "https://cdn.cypress.io/beta/npm/12.0.0/linux-arm64/release/12.0.0-e8898d2f6b65a11f36ceb2dd32ce7f1d87b103bc/cypress.tgz"
     cypress-plugin-tab: ^1.0.5
     cypress-wait-until: ^1.7.2
     dotenv: ^16.0.3
