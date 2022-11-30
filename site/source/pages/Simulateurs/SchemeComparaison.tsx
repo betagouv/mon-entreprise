@@ -175,6 +175,7 @@ function Comparateur({ engines }: ComparateurProps) {
 				</H2>
 				<TableRow
 					dottedName="protection sociale . maladie . arrêt maladie"
+					precision={0}
 					engines={engines}
 				/>
 				<TableRow
