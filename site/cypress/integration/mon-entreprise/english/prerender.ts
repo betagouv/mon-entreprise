@@ -61,17 +61,17 @@ describe('Test prerender', function () {
 					cy.contains('Annuel')
 
 					cy.contains("Chiffre d'affaires")
-					cy.get('input[id="entreprise . chiffre d\'affaires"]').should('exist')
+					cy.get('input[id="entreprisechiffre d\'affaires"]').should('exist')
 
 					cy.contains('Charges')
-					cy.get('input[id="entreprise . charges"]').should('exist')
+					cy.get('input[id="entreprisecharges"]').should('exist')
 
-					cy.get('input[id="dirigeant . rémunération . net"]').should('exist')
+					cy.get('input[id="dirigeantrémunérationnet"]').should('exist')
 
 					cy.contains('Revenu après impôt')
-					cy.get(
-						'input[id="dirigeant . rémunération . net . après impôt"]'
-					).should('exist')
+					cy.get('input[id="dirigeantrémunérationnetaprèsimpôt"]').should(
+						'exist'
+					)
 				},
 				path: '/simulateurs/indépendant',
 			},
