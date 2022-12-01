@@ -30,7 +30,8 @@ export default function Nouveautés() {
 	const { data } = useFetchData<Releases>('/data/releases.json')
 	const navigate = useNavigate()
 	const { absoluteSitePaths } = useSitePaths()
-	const slug = useMatch(`${absoluteSitePaths.nouveautés}/:slug`)?.params?.slug
+	const slug = useMatch(`${encodeURI(absoluteSitePaths.nouveautés)}/:slug`)
+		?.params?.slug
 	useHideNewsBanner()
 
 	const { t } = useTranslation()

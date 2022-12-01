@@ -219,10 +219,7 @@ const encodeRelativeSitePaths = <T extends GenericSitePath>(base: T): T => {
 	const sitepaths = Object.entries(base).reduce(
 		(obj, [key, val]) => ({
 			...obj,
-			[key]:
-				// Remove encodeURI next release of react router
-				// Wait next version after v6.4.3, cf https://github.com/remix-run/react-router/issues/9580
-				typeof val === 'string' ? encodeURI(val) : encodeRelativeSitePaths(val),
+			[key]: typeof val === 'string' ? val : encodeRelativeSitePaths(val),
 		}),
 		{} as T
 	)
@@ -286,7 +283,7 @@ function constructAbsoluteSitePaths<T extends SitePath>(
 		entries.map(([k, value]) => [
 			k,
 			typeof value === 'string'
-				? encodeURI(root + (k === 'index' ? value : index + '/' + value)) || '/'
+				? root + (k === 'index' ? value : index + '/' + value) || '/'
 				: constructAbsoluteSitePaths(value, root + index + '/'),
 		])
 	) as SitePathBuilt<T>
@@ -329,10 +326,10 @@ export const alternateLinks = () => {
 			: import.meta.env.VITE_EN_BASE_URL ?? ''
 
 	const enSiteMap = generateSiteMap(absoluteSitePaths.en).map(
-		(path) => basePathEn + path
+		(path) => basePathEn + encodeURI(path)
 	)
 	const frSiteMap = generateSiteMap(absoluteSitePaths.fr).map(
-		(path) => basePathFr + path
+		(path) => basePathFr + encodeURI(path)
 	)
 
 	return {
