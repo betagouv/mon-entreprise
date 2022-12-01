@@ -5569,7 +5569,7 @@ protection sociale . retraite . base:
     Le montant de votre pension pour la retraite de base est calculé à partir la moyenne de vos revenus des 25 meilleures années.
   titre.en: '[automatic] base'
   titre.fr: base
-protection sociale . retraite . base . cotisée:
+protection sociale . retraite . base:
   titre.en: '[automatic] income contributed for the basic pension'
   titre.fr: revenu cotisés pour la retraite de base
 protection sociale . retraite . complémentaire:

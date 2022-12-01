@@ -162,7 +162,7 @@ function Comparateur({ engines }: ComparateurProps) {
 					engines={engines}
 				/>
 				<TableRow
-					dottedName="protection sociale . retraite . base . cotisée"
+					dottedName="protection sociale . retraite . base"
 					engines={engines}
 				/>
 				<TableRow

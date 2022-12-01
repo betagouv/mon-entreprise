@@ -25,7 +25,7 @@
 
 ### Protection sociale : implémentation de la retraite et des IJSS en `experimental`
 - Suppression du montant estimé de la retraite, au profit de deux nouvelles règles, plus representative : 
-  - `protection sociale . retraite . base . cotisée` qui correspond au revenu pris en compte pour les 25 meilleures années dans le calcul de la pension de la retraite de base
+  - `protection sociale . retraite . base` qui correspond au revenu pris en compte pour les 25 meilleures années dans le calcul de la pension de la retraite de base
   - `protection sociale . retraite . complémentaire` qui correspond au supplément de pension de retraite acquis grâce à une année complète de cotisation retraite complémentaire
 - Uniformisation du calcul de `protection sociale . retraite . trimestres` entre les salariés et les indépendants
 - Renommage de `protection sociale . santé` en `protection sociale . maladie` qui est le nom « officiel » de la branche
