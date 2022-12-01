@@ -48,6 +48,7 @@
 		"build:storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook"
 	},
 	"dependencies": {
+		"@atomik-color/component": "^1.0.16",
 		"@axe-core/react": "^4.5.2",
 		"@internationalized/number": "^3.1.1",
 		"@react-aria/accordion": "^3.0.0-alpha.13",

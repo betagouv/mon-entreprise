@@ -1,5 +1,6 @@
+import ColorPicker from '@atomik-color/component'
+import { str2Color } from '@atomik-color/core'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { HexColorPicker } from 'react-colorful'
 
 import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
@@ -44,7 +45,10 @@ export default function IntegrationTest() {
 			</select>
 
 			<H2>Quelle couleur ?</H2>
-			<HexColorPicker color={color} onChange={setColor} />
+			<ColorPicker
+				value={str2Color(color)}
+				onChange={({ hex }: { hex: string }) => setColor(`#${hex}`)}
+			/>
 
 			<Button onPress={() => setVersion(version + 1)}>
 				{!version ? 'Visualiser le module' : 'Valider les changements'}

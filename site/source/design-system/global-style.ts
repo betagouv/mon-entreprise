@@ -203,4 +203,17 @@ figure {
 		font-size: 0.9rem;
 	}
 }
+
+// Cache le slider opacité du ColorPicker
+#color-rectangle1 + div {
+	&:first-child {
+		align-items: center;
+	}
+	& div[aria-label='Hue slider'] {
+		margin-bottom: 0!important;
+	}
+	& div[aria-label='Alpha slider'] {
+		display: none;
+	}
+}
 `

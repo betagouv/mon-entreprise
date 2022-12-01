@@ -1,5 +1,6 @@
+import ColorPicker from '@atomik-color/component'
+import { str2Color } from '@atomik-color/core'
 import { useEffect, useRef, useState } from 'react'
-import { HexColorPicker } from 'react-colorful'
 import { Trans, useTranslation } from 'react-i18next'
 import { useHref, useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
@@ -90,6 +91,7 @@ function IntegrationCustomizer() {
 			value: color,
 		})
 	}, [iframeRef, color])
+	console.log(color)
 
 	return (
 		<>
@@ -145,7 +147,10 @@ function IntegrationCustomizer() {
 						onChange={setColor}
 					/>
 					<Spacing md />
-					<HexColorPicker color={color} onChange={setColor} />
+					<ColorPicker
+						value={str2Color(color)}
+						onChange={({ hex }: { hex: string }) => setColor(`#${hex}`)}
+					/>
 				</Grid>
 				<Grid item xs>
 					<H3>

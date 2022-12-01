@@ -282,6 +282,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@atomik-color/component@npm:^1.0.16":
+  version: 1.0.16
+  resolution: "@atomik-color/component@npm:1.0.16"
+  dependencies:
+    "@atomik-color/core": ^1.0.12
+  peerDependencies:
+    react: 16.x
+  checksum: da85cc375f6d40ac887fae525bce79825191feb3c5eb9ddf3b616c58759f9e4271f36d3d2b71448bf7faa059164648f1310d6a253a50550a466460289367e6a6
+  languageName: node
+  linkType: hard
+
+"@atomik-color/core@npm:^1.0.12":
+  version: 1.0.12
+  resolution: "@atomik-color/core@npm:1.0.12"
+  peerDependencies:
+    react: 16.x
+  checksum: bc5c44793f401b10c7780811e35652ab5f3fb6ff9999f11c8dd0f5577d5710f563acca27349dfbbd2c2da3c909b458e817c96a748ccd87dba00db49366e5bfa4
+  languageName: node
+  linkType: hard
+
 "@aws-crypto/ie11-detection@npm:^2.0.0":
   version: 2.0.2
   resolution: "@aws-crypto/ie11-detection@npm:2.0.2"
@@ -25877,6 +25897,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "site@workspace:site"
   dependencies:
+    "@atomik-color/component": ^1.0.16
     "@axe-core/react": ^4.5.2
     "@internationalized/number": ^3.1.1
     "@react-aria/accordion": ^3.0.0-alpha.13
