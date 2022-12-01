@@ -13,6 +13,7 @@ import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Li, Ul } from '@/design-system/typography/list'
+import { catchDivideByZeroError } from '@/utils'
 
 declare global {
 	interface Window {
@@ -94,11 +95,13 @@ function ExplanationSection() {
 										Soit{' '}
 										<strong>
 											{formatValue(
-												engine.evaluate({
-													valeur: `${net} / ${netHabituel}`,
-													unité: '%',
-													arrondi: 'oui',
-												})
+												catchDivideByZeroError(() =>
+													engine.evaluate({
+														valeur: `${net} / ${netHabituel}`,
+														unité: '%',
+														arrondi: 'oui',
+													})
+												)
 											)}
 										</strong>{' '}
 										du revenu net
@@ -116,11 +119,13 @@ function ExplanationSection() {
 										Soit{' '}
 										<strong>
 											{formatValue(
-												engine.evaluate({
-													valeur: `${totalEntreprise} / ${totalEntrepriseHabituel}`,
-													unité: '%',
-													arrondi: 'oui',
-												})
+												catchDivideByZeroError(() =>
+													engine.evaluate({
+														valeur: `${totalEntreprise} / ${totalEntrepriseHabituel}`,
+														unité: '%',
+														arrondi: 'oui',
+													})
+												)
 											)}
 										</strong>{' '}
 										du coût habituel

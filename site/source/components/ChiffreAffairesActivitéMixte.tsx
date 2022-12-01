@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import { batchUpdateSituation } from '@/actions/actions'
 import { Switch } from '@/design-system/switch'
 import { situationSelector } from '@/selectors/simulationSelectors'
+import { catchDivideByZeroError } from '@/utils'
 
 import { Condition } from './EngineValue'
 import { SimulationGoal } from './Simulation'
@@ -107,10 +108,12 @@ function useAdjustProportions(CADottedName: DottedName) {
 						)
 					)
 					const newProportion = serializeEvaluation(
-						engine.evaluate({
-							valeur: `${newValue ?? ''} / ${nouveauCA ?? ''}`,
-							unité: '%',
-						})
+						catchDivideByZeroError(() =>
+							engine.evaluate({
+								valeur: `${newValue ?? ''} / ${nouveauCA ?? ''}`,
+								unité: '%',
+							})
+						)
 					)
 
 					return {
