@@ -6,7 +6,7 @@ export const configComparateurStatuts: SimulationConfig = {
 		'dirigeant . rémunération . net',
 		'dirigeant . rémunération . net . après impôt',
 		'protection sociale . retraite . trimestres',
-		'protection sociale . retraite . base . cotisée',
+		'protection sociale . retraite . base',
 		'protection sociale . retraite . complémentaire',
 		'protection sociale . maladie . arrêt maladie',
 		'protection sociale . maladie . arrêt maladie . délai de carence',

@@ -52,10 +52,18 @@ protection sociale . retraite . trimestres:
     Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
 
 protection sociale . retraite . base:
+  titre: Retraite de base maximum
+  résumé: Pension de retraite de base à taux plein en partant du principe que votre rémunération est restée la même pendant toute votre vie active.
   description: |
-    La plupart des actifs cotisent à la fois à un régime de base (jusqu’au plafond de la sécurité sociale, soit 3 311 euros par mois) et à un régime complémentaire ou additionnel, sur tout ou une partie de leurs revenus.
-
     Le montant de votre pension pour la retraite de base est calculé à partir la moyenne de vos revenus des 25 meilleures années.
+
+    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants : 
+    - La rémunération calculée correspond à celle de vos 25 meilleures années
+    - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
+  arrondi: oui
+  produit:
+    assiette: base . cotisée
+    taux: 50%
 
 protection sociale . retraite . base . cotisée:
   titre: revenu cotisés pour la retraite de base
@@ -105,42 +113,40 @@ protection sociale . retraite . base . cotisée:
         Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
 
 protection sociale . retraite . complémentaire:
-  titre: Bonus retraite complémentaire
+  titre: Retraite complémentaire gagnée en 10 ans
   non applicable si: dirigeant . auto-entrepreneur
+  arrondi: oui
   description: |
     Supplément de pension de retraite acquis grâce à une année complète de cotisation retraite complémentaire.
 
     > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
-  arrondi: oui
-  unité: € de pension annuelle
+  unité: €/mois
   somme:
-    - RCI
-    - AGIRC ARRCO
+    - RCI * 10 ans
+    - AGIRC ARRCO * 10 ans
 
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
-  titre: Pension AGIRC-ARRCO (salarié) acquise pour un an
-  par défaut: 0
+  titre: Pension AGIRC-ARRCO
+  applicable si: salarié
   produit:
     assiette: points acquis
-    taux: 1 an
     facteur:
       nom: valeur du point
       variations:
-        - si: date >= 01/11/2022
-          alors: 1.2841 € de pension annuelle/point
-        - si: date >= 01/11/2021
-          alors: 1.2714 € de pension annuelle/point
-        - si: date >= 01/11/2020
-          alors: 1.2714 € de pension annuelle/point
-        - si: date >= 01/11/2019
-          alors: 1.2588 € de pension annuelle/point
+        - si: date >= 11/2022
+          alors: 1.3498 €/an/point
+        - si: date >= 11/2021
+          alors: 1.2841 €/an/point
+        - si: date >= 11/2019
+          alors: 1.2714 €/an/point
+        - si: date >= 01/2019
+          alors: 1.2588 €/an/point
   note: La revalorisation de la valeur du point a lieu au 1er novembre, et non au 1er janvier.
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
     agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
   avec:
     points acquis:
-      unité: points/mois
       note: |
         On se base sur une valeur constante du point, hors cette dernière change d'année en année, cette valeure est donc une grossière approximation
       valeur: salarié . cotisations . retraite complémentaire / valeur d'acquisition
@@ -162,28 +168,26 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 
 protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
-  titre: Retraite complémentaire des indépendants
+  titre: Pension retraite complémentaire des indépendants
   non applicable si: dirigeant . indépendant . PL . CNAVPL
   produit:
     assiette: points acquis
-    taux: 1 an
     facteur:
       nom: valeur du point
       variations:
         - si: date >= 01/2022
-          alors: 1.221 € de pension annuelle/point
+          alors: 1.221 €/an/point
         - si: date >= 01/2021
-          alors: 1.208 € de pension annuelle/point
+          alors: 1.208 €/an/point
         - si: date >= 01/2020
-          alors: 1.203 € de pension annuelle/point
+          alors: 1.203 €/an/point
         - si: date >= 01/01/2019
-          alors: 1.191 € de pension annuelle/point
+          alors: 1.191 €/an/point
   références:
     cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
     barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_point_bar
   avec:
     points acquis:
-      unité: points/an
       non applicable si: dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité # Non implémenté (cf règle)
       arrondi: oui
       valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / valeur d'acquisition
@@ -227,7 +231,7 @@ protection sociale . retraite . CNAVPL:
       nom: valeur du point
       variations:
         - si: date >= 01/2022
-          alors: 0.5795 € de pension annuelle/point
+          alors: 0.5795 €/an/point
   avec:
     points acquis:
       somme:
