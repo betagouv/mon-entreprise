@@ -28,12 +28,12 @@ export const pagesToPrerender: {
 		'/iframes/simulateur-embauche',
 		'/iframes/simulateur-independant',
 		'/iframes/pamc',
-	],
+	].map((val) => encodeURI(val)),
 	infrance: [
 		sitePathEn.index,
 		sitePathEn.simulateurs.salarié,
 		'/iframes/simulateur-embauche',
-	],
+	].map((val) => encodeURI(val)),
 }
 
 const dev = argv.findIndex((val) => val === '--dev') > -1
