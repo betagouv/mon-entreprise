@@ -17,10 +17,13 @@ export const StyledLinkHover = css`
 			? theme.colors.bases.primary[100]
 			: theme.colors.bases.primary[800]};
 `
-export const StyledLink = styled.a<{
+
+interface StyledLinkProps {
 	$isDisabled?: boolean
-	noUnderline?: boolean
-}>`
+	$noUnderline?: boolean
+}
+
+export const StyledLink = styled.a<StyledLinkProps>`
 	color: ${({ theme, $isDisabled }) =>
 		$isDisabled
 			? theme.colors.extended.grey[600]
@@ -40,7 +43,8 @@ export const StyledLink = styled.a<{
 		`}
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
-	text-decoration: ${({ noUnderline }) => (noUnderline ? 'none' : 'underline')};
+	text-decoration: ${({ $noUnderline }) =>
+		$noUnderline ? 'none' : 'underline'};
 	padding: 0;
 	font-size: inherit;
 	background: none;
@@ -76,7 +80,7 @@ export const Link = React.forwardRef<
 			role={role || buttonOrLinkProps?.role}
 			type={undefined}
 			$isDisabled={isDisabled}
-			noUnderline={noUnderline}
+			$noUnderline={noUnderline}
 			tabIndex={isDisabled ? -1 : buttonOrLinkProps.tabIndex}
 			as={isDisabled ? 'span' : buttonOrLinkProps.as}
 		/>

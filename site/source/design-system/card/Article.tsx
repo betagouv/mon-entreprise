@@ -7,7 +7,6 @@ import { Chevron } from '@/design-system/icons'
 import { H4 } from '@/design-system/typography/heading'
 import {
 	NewWindowLinkIcon,
-	StyledLink,
 	useExternalLinkProps,
 } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
