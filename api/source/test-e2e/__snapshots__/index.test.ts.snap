@@ -5,8 +5,8 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
   "evaluate": [
     {
       "missingVariables": {
-        "dirigeant . gérant minoritaire": 4530728,
-        "entreprise . catégorie juridique": 32658640,
+        "dirigeant . gérant minoritaire": 11856115,
+        "entreprise . catégorie juridique": 90042641,
         "salarié . activité partielle": 149408,
         "salarié . contrat": 1112382,
         "salarié . contrat . statut cadre": 3596,
@@ -31,13 +31,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
       "nodeValue": 2749.50805,
       "traversedVariables": [
         "salarié . rémunération . net . à payer avant impôt",
-        "salarié",
-        "salarié . rémunération . net",
-        "salarié . rémunération . net . sans revenus de remplacement",
-        "salarié . rémunération . brut",
-        "salarié . contrat . salaire brut",
-        "salarié . rémunération . avantages en nature . montant",
-        "salarié . rémunération . avantages en nature",
         "dirigeant . assimilé salarié",
         "dirigeant",
         "dirigeant . régime social",
@@ -52,6 +45,13 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "dirigeant . gérant minoritaire",
         "entreprise . catégorie juridique . SARL . unipersonnelle",
         "entreprise . catégorie juridique . SAS . unipersonnelle",
+        "salarié",
+        "salarié . rémunération . net",
+        "salarié . rémunération . net . sans revenus de remplacement",
+        "salarié . rémunération . brut",
+        "salarié . contrat . salaire brut",
+        "salarié . rémunération . avantages en nature . montant",
+        "salarié . rémunération . avantages en nature",
         "salarié . rémunération . primes",
         "salarié . rémunération . primes . activité",
         "salarié . rémunération . primes . activité . base",
@@ -264,10 +264,10 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
     },
     {
       "missingVariables": {
-        "dirigeant . gérant minoritaire": 798693,
+        "dirigeant . gérant minoritaire": 2076668,
         "entreprise . TVA": 5,
         "entreprise . association non lucrative": 11,
-        "entreprise . catégorie juridique": 5750385,
+        "entreprise . catégorie juridique": 15765586,
         "entreprise . salariés . effectif . seuil": 515,
         "salarié . activité partielle": 24153,
         "salarié . contrat": 193409,
@@ -298,7 +298,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
       "nodeValue": 4751.7952000000005,
       "traversedVariables": [
         "salarié . coût total employeur",
-        "salarié",
         "salarié . rémunération . brut",
         "salarié . contrat . salaire brut",
         "salarié . rémunération . avantages en nature . montant",
