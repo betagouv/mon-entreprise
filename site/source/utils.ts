@@ -4,6 +4,7 @@ import Engine, {
 	Rule,
 	RuleNode,
 	formatValue,
+	isPublicodesError,
 } from 'publicodes'
 
 import { Situation } from './reducers/rootReducer'
@@ -223,4 +224,19 @@ export function buildSituationFromObject<Names extends string = DottedName>(
 			]
 		)
 	)
+}
+
+export const catchDivideByZeroError = <T>(func: () => T) => {
+	try {
+		return func()
+	} catch (err) {
+		if (
+			isPublicodesError(err, 'EvaluationError') &&
+			err.message === 'Division by zero'
+		) {
+			// eslint-disable-next-line no-console
+			console.error(err)
+		}
+		throw err
+	}
 }
