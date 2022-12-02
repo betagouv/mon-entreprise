@@ -114,7 +114,6 @@ protection sociale . retraite . base . cotisée:
 
 protection sociale . retraite . complémentaire:
   titre: Retraite complémentaire gagnée en 10 ans
-  non applicable si: dirigeant . auto-entrepreneur
   arrondi: oui
   description: |
     Supplément de pension de retraite acquis grâce à une année complète de cotisation retraite complémentaire.
@@ -206,6 +205,27 @@ protection sociale . retraite . complémentaire . RCI:
           alors: 17.515 €/point
       références:
         barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_achat_point_bar
+
+    revenu cotisé auto-entrepreneur:
+      privé: oui
+      applicable si: dirigeant . auto-entrepreneur
+      remplace:
+        règle: dirigeant . indépendant . cotisations et contributions . retraite complémentaire
+        dans: points acquis
+      somme:
+        - produit:
+            assiette: entreprise . chiffre d'affaires . vente restauration hébergement
+            taux:
+              variations:
+                - si: date >= 10/2022
+                  alors: 2.03%
+                - sinon: 2.04%
+        - produit:
+            assiette: entreprise . chiffre d'affaires . service BIC
+            taux: 3.50%
+        - produit:
+            assiette: entreprise . chiffre d'affaires . service BIC
+            taux: 0%
 
 protection sociale . retraite . CNAVPL:
   applicable si: dirigeant . indépendant . PL . CNAVPL
