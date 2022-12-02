@@ -5221,42 +5221,25 @@ protection sociale:
   titre.fr: protection sociale
 protection sociale . accidents du travail et maladies professionnelles:
   description.en: >
-    [automatic] Occupational injury and disease insurance is the
-    oldest branch of Social Security: it is based on principles dating back to
-    1898 and included in the law of December 31, 1946.
+    [automatic] Have you suffered an accident at work or an
+    occupational disease? 
+
+    Your medical expenses are covered at 100%. 
 
 
-    [🎞️ See the video](https://www.youtube.com/watch?v=NaGI_deZJD8 )
+    To compensate for your loss of salary, you can receive a daily allowance. 
 
-
-    The AT/MP contribution covers the risks of accidents at work, commuting accidents and occupational diseases for employees under the general scheme.
-
-
-    To find out about occupational risks and set up prevention actions, the [AT/MP account](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) is a service open to all companies under the general Social Security scheme.
-
-
-    In the event of an occupational injury, medical and surgical care is fully reimbursed within the limits of the Social Security rates.
+    If you are declared unfit as a result of your accident/illness, you may receive a temporary incapacity benefit.
   description.fr: >
-    L’assurance AT/MP (accident du travail et maladie
-    professionnelle) est la plus ancienne branche de la Sécurité sociale : elle
-    relève de principes qui remontent à l’année 1898 et qui ont été repris dans
-    la loi du 31 décembre 1946.
+    Vous avez subi un accident du travail ou êtes atteint d’une
+    maladie professionnelle ? 
+
+    Vos frais médicaux sont pris en charge à 100 %. 
 
 
-    [🎞️ Voir la vidéo](https://www.youtube.com/watch?v=NaGI_deZJD8 )
+    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités journalières. 
 
-
-    La cotisation AT/MP couvre les risques accidents du travail, accidents de trajet et maladies professionnelles pour les salariés relevant du régime général.
-
-
-    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
-
-
-    En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
-  note.en: |
-    [automatic] The rate is 80% from the 29th day of the stoppage.
-  note.fr: |
-    Le taux est de 80% à partir du 29e jour d'arrêt.
+    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez recevoir une indemnité temporaire d'inaptitude.
   résumé.en: Provides comprehensive coverage for occupational diseases or accidents.
   résumé.fr: Offre une couverture complète des maladies ou accidents du travail.
   titre.en: Work accidents / occupational diseases
@@ -5425,9 +5408,9 @@ protection sociale . maladie:
     des maladies graves comme les séjours à l'hôpital.
   titre.en: '[automatic] health insurance'
   titre.fr: assurance maladie
-protection sociale . maladie . ATMP:
-  titre.en: '[automatic] Workplace injury and occupational disease'
-  titre.fr: Accident du travail et maladie professionnelle
+protection sociale . maladie . adoption:
+  titre.en: '[automatic] adoption'
+  titre.fr: adoption
 protection sociale . maladie . arrêt maladie:
   description.en: >-
     [automatic] If you are off work due to illness, you are entitled
@@ -5449,6 +5432,9 @@ protection sociale . maladie . arrêt maladie . indépendant:
 protection sociale . maladie . arrêt maladie . salarié:
   titre.en: '[automatic] employee'
   titre.fr: salarié
+protection sociale . maladie . maternité paternité:
+  titre.en: '[automatic] maternity and paternity leave benefits'
+  titre.fr: indemnités congé maternité paternité
 protection sociale . retraite:
   description.en: >
     [automatic] ### A mandatory system ...
@@ -5561,9 +5547,9 @@ protection sociale . retraite . base:
 
     This estimate of your retirement pension is calculated based on the following principles: 
 
-    - Your earnings are calculated on the basis of your best 25 years
+    - The earnings calculated in the simulator correspond to your best 25 years
 
-    - You have contributed enough quarters and you leave at the age required to benefit from the full rate
+    - You have contributed enough quarters and you are leaving at the age required to benefit from the full rate
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé
     à partir la moyenne de vos revenus des 25 meilleures années.
@@ -5571,7 +5557,7 @@ protection sociale . retraite . base:
 
     Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants : 
 
-    - La rémunération calculée correspond à celle de vos 25 meilleures années
+    - La rémunération calculée dans le simulateur correspond à celle de vos 25 meilleures années
 
     - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
   résumé.en: '[automatic] Full basic retirement pension assuming your earnings
