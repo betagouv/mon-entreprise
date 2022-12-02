@@ -1404,8 +1404,10 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
   question:
     variations:
       - si: PL . PAMC
-        alors: Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse retraite ?
-      - sinon: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
+        alors:
+          texte: Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse retraite ?
+      - sinon:
+          texte: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
   description: |-
     Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
     non agricoles, vous bénécifiez d’une exonération totale des cotisations de retraite complémentaire et

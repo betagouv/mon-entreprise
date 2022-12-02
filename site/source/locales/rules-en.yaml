@@ -3223,9 +3223,17 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
     > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points,
 
     > le nombre de points gratuits reçu chaque mois sera de : `588 / (6 * 12 + 11) = 7,08`
-  question.en: '[automatic] Are you a self-employed disability pensioner?'
-  question.fr: Êtes-vous titulaire d’une pension d’invalidité à titre de
-    travailleur indépendant ?
+  question.fr:
+    variations:
+      - alors:
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse
+            retraite ?
+        si: PL . PAMC
+      - sinon:
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur
+            indépendant ?
   titre.en: '[automatic] disability pension'
   titre.fr: pension invalidité
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
@@ -5224,10 +5232,7 @@ protection sociale . accidents du travail et maladies professionnelles:
     The AT/MP contribution covers the risks of accidents at work, commuting accidents and occupational diseases for employees under the general scheme.
 
 
-    This contribution is compulsory and is paid exclusively by the employer.
-
-
-    In order to know the occupational risks and to set up prevention actions, the [AT/MP account](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) is a service open to all companies of the general Social Security system.
+    To find out about occupational risks and set up prevention actions, the [AT/MP account](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) is a service open to all companies under the general Social Security scheme.
 
 
     In the event of an occupational injury, medical and surgical care is fully reimbursed within the limits of the Social Security rates.
@@ -5242,9 +5247,6 @@ protection sociale . accidents du travail et maladies professionnelles:
 
 
     La cotisation AT/MP couvre les risques accidents du travail, accidents de trajet et maladies professionnelles pour les salariés relevant du régime général.
-
-
-    Cette cotisation est obligatoire et à la charge exclusive de l’employeur.
 
 
     Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
@@ -5553,23 +5555,32 @@ protection sociale . retraite . CNAVPL . CIPAV . trimestres auto-entrepreneur:
   titre.fr: trimestres validés auto-entrepreneur
 protection sociale . retraite . base:
   description.en: >
-    [automatic] Most working people contribute to both a basic
-    scheme (up to the social security ceiling, i.e. 3,311 euros per month) and a
-    complementary or additional scheme, on all or part of their income.
+    [automatic] The amount of your basic retirement pension is
+    calculated from the average of your earnings over the best 25 years.
 
 
-    The amount of your basic retirement pension is calculated from the average of your earnings over the best 25 years.
+    This estimate of your retirement pension is calculated based on the following principles: 
+
+    - Your earnings are calculated on the basis of your best 25 years
+
+    - You have contributed enough quarters and you leave at the age required to benefit from the full rate
   description.fr: >
-    La plupart des actifs cotisent à la fois à un régime de base
-    (jusqu’au plafond de la sécurité sociale, soit 3 311 euros par mois) et à un
-    régime complémentaire ou additionnel, sur tout ou une partie de leurs
-    revenus.
+    Le montant de votre pension pour la retraite de base est calculé
+    à partir la moyenne de vos revenus des 25 meilleures années.
 
 
-    Le montant de votre pension pour la retraite de base est calculé à partir la moyenne de vos revenus des 25 meilleures années.
-  titre.en: '[automatic] base'
-  titre.fr: base
-protection sociale . retraite . base:
+    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants : 
+
+    - La rémunération calculée correspond à celle de vos 25 meilleures années
+
+    - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
+  résumé.en: '[automatic] Full basic retirement pension assuming your earnings
+    have remained the same throughout your working life.'
+  résumé.fr: Pension de retraite de base à taux plein en partant du principe que
+    votre rémunération est restée la même pendant toute votre vie active.
+  titre.en: '[automatic] Maximum basic pension'
+  titre.fr: Retraite de base maximum
+protection sociale . retraite . base . cotisée:
   titre.en: '[automatic] income contributed for the basic pension'
   titre.fr: revenu cotisés pour la retraite de base
 protection sociale . retraite . complémentaire:
@@ -5585,8 +5596,8 @@ protection sociale . retraite . complémentaire:
 
 
     > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
-  titre.en: '[automatic] Supplementary pension bonus'
-  titre.fr: Bonus retraite complémentaire
+  titre.en: '[automatic] Supplementary pension earned in 10 years'
+  titre.fr: Retraite complémentaire gagnée en 10 ans
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
   note.en:
     '[automatic] The revaluation of the point value takes place on November
@@ -5594,11 +5605,11 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
   note.fr:
     La revalorisation de la valeur du point a lieu au 1er novembre, et non
     au 1er janvier.
-  titre.en: '[automatic] AGIRC-ARRCO pension (employee) acquired for one year'
-  titre.fr: Pension AGIRC-ARRCO (salarié) acquise pour un an
+  titre.en: '[automatic] AGIRC-ARRCO pension'
+  titre.fr: Pension AGIRC-ARRCO
 protection sociale . retraite . complémentaire . RCI:
   titre.en: '[automatic] Supplementary pension for the self-employed'
-  titre.fr: Retraite complémentaire des indépendants
+  titre.fr: Pension retraite complémentaire des indépendants
 protection sociale . retraite . trimestres:
   titre.en: '[automatic] validated quarters'
   titre.fr: trimestres validés
