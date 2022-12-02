@@ -529,8 +529,6 @@ protection sociale . accidents du travail et maladies professionnelles:
 
     La cotisation AT/MP couvre les risques accidents du travail, accidents de trajet et maladies professionnelles pour les salariés relevant du régime général.
 
-    Cette cotisation est obligatoire et à la charge exclusive de l’employeur.
-
     Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
 
     En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
@@ -538,14 +536,13 @@ protection sociale . accidents du travail et maladies professionnelles:
   unité: €/jour
 
   applicable si: salarié
-  formule:
-    produit:
-      assiette:
-        valeur: 5
-        plafond: 83.4% * plafond sécurité sociale
-      taux:
-        nom: Pourcentage du salaire journalier de référence
-        valeur: 60%
+  produit:
+    assiette:
+      valeur: 5
+      plafond: 83.4% * plafond sécurité sociale
+    taux:
+      nom: Pourcentage du salaire journalier de référence
+      valeur: 60%
   note: |
     Le taux est de 80% à partir du 29e jour d'arrêt.
   références:
