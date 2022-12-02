@@ -186,32 +186,36 @@ function Comparateur({ engines }: ComparateurProps) {
 					<Spacing lg /> Accident du travail et maladie professionnelle
 				</H3>
 				<TableRow
-					dottedName="protection sociale . accidents du travail et maladies professionnelles . indemmnités"
+					dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités"
 					engines={engines}
 				/>
 				<TableRow
-					dottedName="protection sociale . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
+					dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
 					engines={engines}
 				/>
 				<H2 className="all">
 					<Spacing lg /> Maternité, paternité et adoption
 				</H2>{' '}
-				<H3 className="all">Maternité et paternité</H3>
 				<TableRow
-					dottedName="protection sociale . maladie . maternité paternité"
+					dottedName="protection sociale . maladie . maternité paternité adoption"
 					engines={engines}
 				/>
 				<TableRow
-					dottedName="protection sociale . maladie . maternité paternité . délai d'attente"
+					dottedName="protection sociale . maladie . maternité paternité adoption . délai d'attente"
 					engines={engines}
 				/>
+				<H3 className="all">
+					<Spacing lg /> Maternité
+				</H3>
 				<TableRow
-					dottedName="protection sociale . maladie . maternité paternité . allocation forfaitaire de repos maternel"
+					dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
 					engines={engines}
 				/>
-				<H3 className="all">Adoption</H3>
+				<H3 className="all">
+					<Spacing lg /> Adoption
+				</H3>
 				<TableRow
-					dottedName="protection sociale . maladie . adoption"
+					dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
 					engines={engines}
 				/>
 			</StyledGrid>
