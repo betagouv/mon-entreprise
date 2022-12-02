@@ -366,7 +366,21 @@ protection sociale . maladie:
     Ce qui est remboursé pour tout le monde: https://www.ameli.fr/assure/remboursements/rembourse
     Rapport d'activité de l'assurance maladie 2017 (PDF): https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
     Rapport OCDE sur l'esperance de vie dans les différents pays: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
-
+  avec:
+    '[privé] plancher indemnités salarié': 1015 heure * SMIC . horaire
+    '[privé] raam':
+      titre: Revenu d’activité annuel moyen
+      valeur:
+        variations:
+          - si: dirigeant . indépendant
+            alors: dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie . assiette
+          - si: dirigeant . auto-entrepreneur
+            alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
+      plafond:
+        variations:
+          - si: entreprise . activité . nature . libérale . réglementée
+            alors: 3 * plafond sécurité sociale
+          - sinon: plafond sécurité sociale
 protection sociale . maladie . arrêt maladie:
   titre:
   description: >-
@@ -390,45 +404,41 @@ protection sociale . maladie . arrêt maladie:
       non applicable si: arrêt maladie = 0
 
 protection sociale . maladie . arrêt maladie . salarié:
-  références:
-    'Arrêt de travail pour maladie : les indemnités journalières du salarié': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
-    'Arrêt maladie : indemnités journalières versées au salarié': https://www.service-public.fr/particuliers/vosdroits/F3053
   non applicable si:
     une de ces conditions:
       - dirigeant . indépendant
       - dirigeant . auto-entrepreneur
-
   avec:
     conditions:
       avec:
-        revenu:
-          valeur: salarié . cotisations . assiette * 6 mois > plancher
+        revenu: salarié . cotisations . assiette * 6 mois > plancher indemnités salarié
         délai d'attente:
           description: |
             Pour pouvoir prétendre à une indemnisation pour maladie au titre de votre activité professionnelle, vous devez justifier d’un délai d’affiliation continus dans cette activité. Ce dernier dépend de votre rémunération des mois précédents.
 
           remplace: arrêt maladie . délai d'attente
           applicable si: conditions . revenu
-          valeur: (plancher / salarié . cotisations . assiette) + 0.5
+          valeur: (plancher indemnités salarié / salarié . cotisations . assiette) + 0.5
           arrondi: oui
-        '[privé] plancher': 1015 heure * SMIC . horaire
 
       références:
         Quels sont les critères pour être indemnisé en cas de maladie ?: https://www.ameli.fr/tarn/assure/remboursements/indemnites-journalieres/arret-maladie-salarie#text_2632
 
     indemnités:
+      titre: indemnités journalières
       applicable si: conditions . revenu
       unité: €/jour
       description: |
         L'indemnité journalière que vous recevrez pendant votre arrêt de travail est égale à 50 % de votre salaire journalier de base. Celui-ci est calculé sur la moyenne des salaires bruts des 3 derniers mois précédant votre arrêt de travail (12 mois en cas d'activité saisonnière).
       produit:
         assiette:
-          valeur: salarié . cotisations . assiette / 91.25 jour/trimestre
+          valeur: salarié . cotisations . assiette
+          unité: €/jour
           plafond: 1.8 * SMIC
         taux: 50%
-      notes: |
-        - Vu que le simulateur ne permet pas encore la conversion de période vers le jour, on multiplie le salaire moyen par 3 pour avoir le salaire trimestriel, puis on le divise par 91.25, conformément à la fiche service-public.fr
-        - Pour les salarié, votre entreprise est peut-être soumise à une convention collective de branche professionnelle qui assure le maintien de votre salaire intégral ou partiel pendant votre arrêt de travail pour maladie. Elle peut aussi avoir conclu un accord interne à l’entreprise qui prévoit ce maintien, appelé subrogation. Renseignez-vous auprès du service qui gère la paye dans votre entreprise.
+      références:
+        'Arrêt de travail pour maladie : les indemnités journalières du salarié': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
+        'Arrêt maladie : indemnités journalières versées au salarié': https://www.service-public.fr/particuliers/vosdroits/F3053
 
 protection sociale . maladie . arrêt maladie . indépendant:
   applicable si:
@@ -456,6 +466,7 @@ protection sociale . maladie . arrêt maladie . indépendant:
             'Artisan/commerçant : quels sont les critères pour être indemnisé en cas de maladie ?': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972#text_124921
             'Profession libérale : quels sont les critères pour être indemnisé en cas de maladie ?': 'https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170646'
     indemnités:
+      titre: indemnités journalières
       applicable si: conditions . revenu
       description: |
         L'indemnité journalière que vous recevrez pendant votre arrêt de travail est égale à 1/730e de votre revenu d’activité annuel moyen (Raam) (1). Celui-ci est calculé sur la moyenne de vos revenus cotisés des 3 années civiles précédant la date de votre arrêt de travail.
@@ -465,26 +476,84 @@ protection sociale . maladie . arrêt maladie . indépendant:
         assiette: raam
         facteur: 1 an / 730 jour
 
-    '[privé] raam':
-      titre: Revenu d’activité annuel moyen
-      valeur:
-        variations:
-          - si: dirigeant . indépendant
-            alors: dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie . assiette
-          - si: dirigeant . auto-entrepreneur
-            alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
-      plafond:
-        variations:
-          - si: entreprise . activité . nature . libérale . réglementée
-            alors: 3 * plafond sécurité sociale
-          - sinon: plafond sécurité sociale
-
   références:
     Quelles indemnités journalières pour les artisans/commerçants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
     Quelles indemnités journalières pour les professions libérales: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
 
-protection sociale . maladie . ATMP:
-  titre: Accident du travail et maladie professionnelle
+protection sociale . maladie . maternité paternité:
+  titre: indemnités congé maternité paternité
+  références:
+    'Paternité et accueil de l’enfant : vos indemnités journalières': https://www.ameli.fr/tarn/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant
+    'Les prestations maternité des travailleuses indépendantes et des conjointes collaboratrices': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric
+    'Simulateur maternité paternité adoption': https://www.ameli.fr/assure/simulateur-maternite-paternite
+  somme:
+    - salarié . indemnités
+    - indépendant . indemnités
+
+  avec:
+    délai d'attente:
+      description: |
+        ## Maternité 
+        Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre accouchement,
+        et cesser toute activité professionnelle pendant la période de perception et au moins pendant 8 semaines dont 6 après l’accouchement
+        ## Paternité
+
+      valeur: 10 mois
+
+    indemnité de remplacement maximum: non
+    allocation forfaitaire de repos maternel: non
+    salarié:
+      applicable si: salarié
+      avec:
+        indemnités:
+          titre: indemnités journalières
+          applicable si: arrêt maladie . salarié . conditions . revenu
+          unité: €/jour
+          description: |
+            L'indemnité journalière que vous recevrez pendant votre arrêt de travail est égale à 50 % de votre salaire journalier de base. Celui-ci est calculé sur la moyenne des salaires bruts des 3 derniers mois précédant votre arrêt de travail (12 mois en cas d'activité saisonnière).
+          produit:
+            assiette:
+              valeur: salarié . cotisations . assiette
+              unité: €/jour
+              plafond: plafond sécurité sociale
+              plancher: invalidité et décès . montant minimum pension invalidité
+          références:
+            'Congé maternité : les indemnités journalières pour les salariées ': https://www.ameli.fr/tarn/assure/remboursements/indemnites-journalieres/conge-maternite-salariee
+
+    indépendant:
+      applicable si:
+        une de ces conditions:
+          - dirigeant . indépendant
+          - dirigeant . auto-entrepreneur
+      avec:
+        allocation forfaitaire de repos maternel:
+          remplace: allocation forfaitaire de repos maternel
+          description: |
+            Elle est versée pour moitié au début du congé et pour moitié à la fin de la période obligatoire de cessation d’activité de 8 semaines. La totalité du montant de l’allocation est versée après l’accouchement lorsque celui-ci a lieu avant la fin du 7e mois de la grossesse.
+          produit:
+            assiette:
+              variations:
+                - si: raam < 10% * plafond sécurité sociale
+                  alors: 10% * plafond sécurité sociale
+                - sinon: plafond sécurité sociale
+            facteur: 1 mois
+          référence:
+            'L’allocation forfaitaire de repos maternel': https://www.ameli.fr/tarn/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric#text_125689
+
+        indemnités:
+          titre: indemnités journalières forfaitaires
+          unité: €/jour
+          produit:
+            assiette: plafond sécurité sociale
+            facteur: 50%
+          abattement:
+            applicable si: raam < 10% * plafond sécurité sociale
+            valeur: 90%
+          références:
+            'Les indemnités journalières forfaitaires maternité des travailleuses indépendantes': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric#text_125695
+            'Paternité et accueil de l’enfant : les indemnités journalières pour les travailleurs indépendants': https://www.ameli.fr/tarn/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant#text_114763
+
+protection sociale . maladie . adoption:
 
 protection sociale . invalidité et décès:
   icônes: 🦽
@@ -498,6 +567,11 @@ protection sociale . invalidité et décès:
     capital décès (amelie.fr): https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces
     capital décès (salarié privé): https://www.service-public.fr/particuliers/vosdroits/F3005
     pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
+  avec:
+    montant minimum pension invalidité:
+      valeur: 297.20 €/mois
+      références:
+        "Les pensions d'invalidité : catégories et montants": https://www.ameli.fr/entreprise/vos-salaries/montants-reference/pension-invalidite
 
 protection sociale . assurance chômage:
   icônes: 💸
@@ -544,34 +618,40 @@ protection sociale . accidents du travail et maladies professionnelles:
   icônes: ☣️
   résumé: Offre une couverture complète des maladies ou accidents du travail.
   description: |
-    L’assurance AT/MP (accident du travail et maladie professionnelle) est la plus ancienne branche de la Sécurité sociale : elle relève de principes qui remontent à l’année 1898 et qui ont été repris dans la loi du 31 décembre 1946.
+    Vous avez subi un accident du travail ou êtes atteint d’une maladie professionnelle ? 
+    Vos frais médicaux sont pris en charge à 100 %. 
 
-    [🎞️ Voir la vidéo](https://www.youtube.com/watch?v=NaGI_deZJD8 )
-
-    La cotisation AT/MP couvre les risques accidents du travail, accidents de trajet et maladies professionnelles pour les salariés relevant du régime général.
-
-    Pour connaître les risques professionnels et mettre en place des actions de prévention, le [compte AT/MP](https://www.ameli.fr/entreprise/votre-entreprise/compte-atmp/ouvrir-compte-atmp) est un service ouvert à toutes les entreprises du régime général de la Sécurité sociale.
-
-    En cas d’AT/MP, les soins médicaux et chirurgicaux sont remboursés intégralement dans la limite des tarifs de la Sécurité sociale.
-
+    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités journalières. 
+    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez recevoir une indemnité temporaire d'inaptitude.
   unité: €/jour
-
   applicable si: salarié
-  produit:
-    assiette:
-      valeur: 5
-      plafond: 83.4% * plafond sécurité sociale
-    taux:
-      nom: Pourcentage du salaire journalier de référence
-      valeur: 60%
-  note: |
-    Le taux est de 80% à partir du 29e jour d'arrêt.
+  avec:
+    indemmnités:
+      produit:
+        assiette:
+          nom: salaire journalier de référence
+          privé: oui
+          valeur: salarié . cotisations . assiette
+          unité: €/jour
+          plafond:
+            valeur: 0.834% * plafond sécurité sociale * 1 an/jour
+            arrondi: 2 décimales
+        taux: 60%
+      avec:
+        à partir du 29ème jour:
+          produit:
+            assiette: salaire journalier de référence
+            taux: 80%
+
   références:
-    ameli.fr: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
-    service-public.fr (AT): https://www.service-public.fr/particuliers/vosdroits/F31881
-    service-public.fr (MP): https://www.service-public.fr/particuliers/vosdroits/F31880
-    Calcul de l'indemnité: https://www.service-public.fr/particuliers/vosdroits/F32148
-    Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156659/2020-12-10/
+    "Comprendre l'assurance AT/MP": https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
+    'Maladie professionnelle : prise en charge et indemnités journalières': https://www.ameli.fr/tarn/assure/remboursements/indemnites-journalieres/maladie-professionnelle
+    'Accident du travail : prise en charge et indemnités journalières': https://www.ameli.fr/tarn/assure/remboursements/indemnites-journalieres/accident-travail
+    "Qu'est-ce qu'un accident de trajet ?": https://www.service-public.fr/particuliers/vosdroits/F31881
+    "Qu'est-ce qu'une maladie professionnelle ?": https://www.service-public.fr/particuliers/vosdroits/F31880
+    "Accident du travail : indemnités journalières pendant l'arrêt de travail": https://www.service-public.fr/particuliers/vosdroits/F175
+    "Maladie professionnelle : indemnités journalières pendant l'arrêt de travail": https://www.service-public.fr/particuliers/vosdroits/F32148
+    Articles R433-1 à R433-17 du Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156659/2020-12-10/
 
 protection sociale . formation:
   icônes: 👩‍🎓

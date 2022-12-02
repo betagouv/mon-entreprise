@@ -145,18 +145,15 @@ function Comparateur({ engines }: ComparateurProps) {
 				<H3 className="auto">
 					<Emoji emoji="🚶‍♂️" /> <Trans>Auto-entrepreneur</Trans>
 				</H3>
-
 				<TableRow
 					dottedName="dirigeant . rémunération . net . après impôt"
 					unit="€/mois"
 					precision={0}
 					engines={engines}
 				/>
-
 				<H2 className="all">
 					<Spacing lg /> Retraite
 				</H2>
-
 				<TableRow
 					dottedName="protection sociale . retraite . trimestres"
 					engines={engines}
@@ -169,7 +166,6 @@ function Comparateur({ engines }: ComparateurProps) {
 					dottedName="protection sociale . retraite . complémentaire"
 					engines={engines}
 				/>
-
 				<H2 className="all">
 					<Spacing lg /> Santé
 				</H2>
@@ -184,6 +180,38 @@ function Comparateur({ engines }: ComparateurProps) {
 				/>
 				<TableRow
 					dottedName="protection sociale . maladie . arrêt maladie . délai de carence"
+					engines={engines}
+				/>
+				<H3 className="all">
+					<Spacing lg /> Accident du travail et maladie professionnelle
+				</H3>
+				<TableRow
+					dottedName="protection sociale . accidents du travail et maladies professionnelles . indemmnités"
+					engines={engines}
+				/>
+				<TableRow
+					dottedName="protection sociale . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
+					engines={engines}
+				/>
+				<H2 className="all">
+					<Spacing lg /> Maternité, paternité et adoption
+				</H2>{' '}
+				<H3 className="all">Maternité et paternité</H3>
+				<TableRow
+					dottedName="protection sociale . maladie . maternité paternité"
+					engines={engines}
+				/>
+				<TableRow
+					dottedName="protection sociale . maladie . maternité paternité . délai d'attente"
+					engines={engines}
+				/>
+				<TableRow
+					dottedName="protection sociale . maladie . maternité paternité . allocation forfaitaire de repos maternel"
+					engines={engines}
+				/>
+				<H3 className="all">Adoption</H3>
+				<TableRow
+					dottedName="protection sociale . maladie . adoption"
 					engines={engines}
 				/>
 			</StyledGrid>
