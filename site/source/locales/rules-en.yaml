@@ -3229,7 +3229,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
           texte:
             Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse
             retraite ?
-        si: PL . PAMC
+        si: dirigeant . indépendant . PL . PAMC
       - sinon:
           texte:
             Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur

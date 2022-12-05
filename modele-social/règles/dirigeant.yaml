@@ -1403,7 +1403,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
   acronyme: PI
   question:
     variations:
-      - si: PL . PAMC
+      - si: dirigeant . indépendant . PL . PAMC #TODO demande Urssaf implémentée sans reflechir : il faudra regarder de plus près le pourquoi du comment de cette variations
         alors:
           texte: Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse retraite ?
       - sinon:
