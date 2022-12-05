@@ -11,6 +11,8 @@ export default defineConfig({
 		setupNodeEvents(on, config) {},
 		baseUrl: 'http://localhost:3000/mon-entreprise',
 		specPattern: 'cypress/integration/mon-entreprise/**/*.{js,jsx,ts,tsx}',
+		experimentalRunAllSpecs: true,
+		experimentalStudio: true,
 	},
 	retries: {
 		// Configure retry attempts for `cypress run`
