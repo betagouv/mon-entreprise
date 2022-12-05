@@ -146,12 +146,10 @@ function IntegrationCustomizer() {
 						onChange={setColor}
 					/>
 					<Spacing md />
-					<div onScroll={(event) => event.stopPropagation()}>
-						<ColorPicker
-							value={str2Color(color)}
-							onChange={({ hex }: { hex: string }) => setColor(`#${hex}`)}
-						/>
-					</div>
+					<ColorPicker
+						value={str2Color(color)}
+						onChange={({ hex }: { hex: string }) => setColor(`#${hex}`)}
+					/>
 				</Grid>
 				<Grid item xs>
 					<H3>
