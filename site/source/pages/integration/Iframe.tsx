@@ -146,6 +146,10 @@ function IntegrationCustomizer() {
 						onChange={setColor}
 					/>
 					<Spacing md />
+					{/*
+						Conflit de scrolling sur Firefox sur mobile
+						Issue ouverte : https://github.com/deebov/atomik-color-picker/issues/2
+					*/}
 					<ColorPicker
 						value={str2Color(color)}
 						onChange={({ hex }: { hex: string }) => setColor(`#${hex}`)}
