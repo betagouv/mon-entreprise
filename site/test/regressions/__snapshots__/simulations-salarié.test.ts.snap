@@ -659,9 +659,9 @@ Notifications affichées : salarié . contrat . salaire brut . contrôle salaire
 
 exports[`calculate simulations-salarié > impôt sur le revenu 3`] = `
 "salarié . contrat . salaire brut: 3000
-salarié . coût total employeur: 4959
-salarié . rémunération . net . payé après impôt: 2564
-salarié . rémunération . net . à payer avant impôt: 2851
+salarié . coût total employeur: 4508
+salarié . rémunération . net . payé après impôt: 2392
+salarié . rémunération . net . à payer avant impôt: 2590
 Notifications affichées : salarié . contrat . CDD . information"
 `;
 

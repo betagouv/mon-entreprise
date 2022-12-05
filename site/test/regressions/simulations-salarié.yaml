@@ -136,7 +136,7 @@ impôt sur le revenu:
     impôt . méthode de calcul: "'taux neutre'"
   - salarié . contrat: "'CDD'"
     salarié . contrat . salaire brut: 3000 €/mois
-    salarié . contrat . CDD . durée: 2
+    salarié . contrat . CDD . durée: 2 mois
     impôt . méthode de calcul: "'taux neutre'"
   - salarié . contrat . salaire brut: 3000 €/mois
     impôt . méthode de calcul: "'taux neutre'"

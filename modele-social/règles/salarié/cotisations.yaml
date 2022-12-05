@@ -67,6 +67,7 @@ salarié . cotisations . exonérations:
 salarié . cotisations . exonérations . heures supplémentaires:
   somme:
     - nom: salarié
+      non applicable si: assiette = 0
       titre: réduction de cotisations heures supplémentaires
       produit:
         assiette: rémunération . heures supplémentaires
@@ -186,6 +187,7 @@ salarié . cotisations . exonérations . lodeom . montant:
     facteur: coefficient
   avec:
     coefficient:
+      non applicable si: cotisations . assiette = 0
       privé: oui
       variations:
         - si: barème compétitivité
@@ -277,6 +279,7 @@ salarié . cotisations . exonérations . réduction générale:
     assiette: cotisations . assiette
     facteur: coefficient
   plafond: plafond avec application de la DFS
+  non applicable si: cotisations . assiette = 0
 
   avec:
     coefficient:

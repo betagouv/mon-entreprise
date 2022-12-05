@@ -16,6 +16,7 @@ salarié . convention collective . sport . cotisations . employeur:
 
 salarié . convention collective . sport . cotisations . financement du paritarisme:
   # TODO
+  non applicable si: entreprise . salariés . effectif = 0
   note: se calcule sur la masse salariale
   formule:
     produit:

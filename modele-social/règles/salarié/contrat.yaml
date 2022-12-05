@@ -323,6 +323,8 @@ salarié . contrat . CDD . durée:
     3 mois: 3 mois
   # 70% des contrats signés ont concerné, en 2015, des durées inférieures à un mois
   par défaut: 1 mois
+  # plancher: 1 jour
+  unité: mois
 
 salarié . contrat . CDD . indemnité de fin de contrat:
   alias: prime de précarité
@@ -484,6 +486,7 @@ salarié . contrat . temps de travail . temps partiel:
   avec:
     heures par semaine:
       par défaut: 32 heures/semaine
+      plancher: 1 heures/semaine
       question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
       suggestions:
         4 jours / semaine: durée légale du travail * 4 / 5

@@ -28,6 +28,7 @@ salarié . convention collective . SVP . FCAP:
 
   # TODO :
   note: les minimum et maximum sont fixé par entreprise, et non par salarié
+  non applicable si: entreprise . salariés . effectif = 0
   formule:
     produit:
       plafond: plafond sécurité sociale
