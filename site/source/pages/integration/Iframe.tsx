@@ -91,7 +91,6 @@ function IntegrationCustomizer() {
 			value: color,
 		})
 	}, [iframeRef, color])
-	console.log(color)
 
 	return (
 		<>
@@ -147,10 +146,12 @@ function IntegrationCustomizer() {
 						onChange={setColor}
 					/>
 					<Spacing md />
-					<ColorPicker
-						value={str2Color(color)}
-						onChange={({ hex }: { hex: string }) => setColor(`#${hex}`)}
-					/>
+					<div onScroll={(event) => event.stopPropagation()}>
+						<ColorPicker
+							value={str2Color(color)}
+							onChange={({ hex }: { hex: string }) => setColor(`#${hex}`)}
+						/>
+					</div>
 				</Grid>
 				<Grid item xs>
 					<H3>
