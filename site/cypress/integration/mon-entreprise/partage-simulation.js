@@ -16,6 +16,8 @@ describe('Partage (simulateur salarié)', function () {
 
 	it('should set input value from URL', function () {
 		cy.visit(urlWithState)
+		cy.contains('Modifier mes réponses')
+
 		cy.get(brutInputSelector, { timeout: 30 * 1000 })
 			.invoke('val')
 			.should('match', /1[\s]539[\s]€/)
