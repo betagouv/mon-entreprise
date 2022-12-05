@@ -6,6 +6,22 @@ import { server } from '../index.js'
 
 chai.use(chaiHttp)
 
+const transformResult = (obj: Record<string, unknown>) => {
+	if (obj && Array.isArray(obj.evaluate) && obj.evaluate.length > 0) {
+		return {
+			...obj,
+			evaluate: obj.evaluate.map(
+				(elem: { missingVariables: Record<string, unknown> }) => ({
+					...elem,
+					missingVariables: Object.keys(elem.missingVariables).sort(),
+				})
+			),
+		}
+	}
+
+	return obj
+}
+
 describe('e2e test mon-entreprise api', () => {
 	it('Test evaluate brut => net + super brut', async () => {
 		await expect(
@@ -24,7 +40,9 @@ describe('e2e test mon-entreprise api', () => {
 				.then((res) => {
 					expect(res.status).toMatchInlineSnapshot('200')
 
-					return JSON.parse(res.text) as Record<string, unknown>
+					return transformResult(
+						JSON.parse(res.text) as Record<string, unknown>
+					)
 				})
 		).resolves.toMatchSnapshot()
 	})
@@ -59,7 +77,9 @@ describe('e2e test mon-entreprise api', () => {
 				.then((res) => {
 					expect(res.status).toMatchInlineSnapshot('200')
 
-					return JSON.parse(res.text) as Record<string, unknown>
+					return transformResult(
+						JSON.parse(res.text) as Record<string, unknown>
+					)
 				})
 		).resolves.toMatchSnapshot()
 	})
@@ -72,7 +92,9 @@ describe('e2e test mon-entreprise api', () => {
 				.then((res) => {
 					expect(res.status).toMatchInlineSnapshot('200')
 
-					return JSON.parse(res.text) as Record<string, unknown>
+					return transformResult(
+						JSON.parse(res.text) as Record<string, unknown>
+					)
 				})
 		).resolves.toMatchSnapshot()
 	})
