@@ -1,3 +1,5 @@
+import { checkA11Y } from '../../support/utils'
+
 const searchInputPath = '[data-test-id=company-search-input]'
 const searchResultsPath = '[data-test-id=company-search-results]'
 const currentCompanyPath = '[data-test-id=currently-selected-company]'
@@ -61,4 +63,6 @@ describe('Landing page', function () {
 
 		cy.writeInterceptResponses(pendingRequests, responses, FIXTURES_FOLDER)
 	})
+
+	checkA11Y()
 })

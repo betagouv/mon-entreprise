@@ -12881,6 +12881,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cypress-axe@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "cypress-axe@npm:1.1.0"
+  peerDependencies:
+    axe-core: ^3 || ^4
+    cypress: ^10 || ^11
+  checksum: a86b4ff0d35eab82ac5cfd40bbe4077aaf5e7f075b40a49efa949e2c40c60d0f78c1b43d65f98e255c1675d8492b674933da12e11ff71b1f670bd6cfa03b363c
+  languageName: node
+  linkType: hard
+
 "cypress-plugin-tab@npm:^1.0.5":
   version: 1.0.5
   resolution: "cypress-plugin-tab@npm:1.0.5"
@@ -25992,6 +26002,7 @@ __metadata:
     "@vitejs/plugin-react": ^2.2.0
     algoliasearch: ^4.14.2
     cypress: "https://cdn.cypress.io/beta/npm/12.0.0/linux-arm64/release/12.0.0-e8898d2f6b65a11f36ceb2dd32ce7f1d87b103bc/cypress.tgz"
+    cypress-axe: ^1.1.0
     cypress-plugin-tab: ^1.0.5
     cypress-wait-until: ^1.7.2
     dotenv: ^16.0.3

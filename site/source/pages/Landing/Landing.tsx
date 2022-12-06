@@ -37,10 +37,11 @@ export default function Landing() {
 				ogImage="/logo-share.png"
 			/>
 			<Header />
-			<a href={`${fullURL}#footer`} className="skip-link print-hidden">
-				{t('Passer le contenu')}
-			</a>
+
 			<main role="main" id="main">
+				<a href={`${fullURL}#footer`} className="skip-link print-hidden">
+					{t('Passer le contenu')}
+				</a>
 				<Container>
 					<PageHeader
 						titre={

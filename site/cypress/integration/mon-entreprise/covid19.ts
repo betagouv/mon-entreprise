@@ -1,4 +1,4 @@
-import { fr } from '../../support/utils'
+import { checkA11Y, fr } from '../../support/utils'
 
 describe('Page covid-19', { testIsolation: 'off' }, function () {
 	if (!fr) {
@@ -36,4 +36,6 @@ describe('Page covid-19', { testIsolation: 'off' }, function () {
 			/Soit [\d]{1} % du coût habituel/
 		)
 	})
+
+	checkA11Y()
 })
