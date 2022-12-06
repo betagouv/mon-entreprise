@@ -155,6 +155,8 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 		columns.length - 1
 	)
 
+	const { t } = useTranslation()
+
 	const captionText = (
 		<Trans i18nKey="chomagePartiel.tableCaption">
 			Tableau indiquant le salaire net et le coût pour l'employeur avec ou sans
@@ -204,7 +206,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 					<tr>
 						{head.map((label, i) => (
 							<th key={i} scope="col">
-								{label}
+								{label || t('Type')}
 							</th>
 						))}
 					</tr>
