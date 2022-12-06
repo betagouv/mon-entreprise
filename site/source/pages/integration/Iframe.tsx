@@ -1,5 +1,6 @@
+import ColorPicker from '@atomik-color/component'
+import { str2Color } from '@atomik-color/core'
 import { useEffect, useRef, useState } from 'react'
-import { HexColorPicker } from 'react-colorful'
 import { Trans, useTranslation } from 'react-i18next'
 import { useHref, useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
@@ -145,7 +146,14 @@ function IntegrationCustomizer() {
 						onChange={setColor}
 					/>
 					<Spacing md />
-					<HexColorPicker color={color} onChange={setColor} />
+					{/*
+						Conflit de scrolling sur Firefox sur mobile
+						Issue ouverte : https://github.com/deebov/atomik-color-picker/issues/2
+					*/}
+					<ColorPicker
+						value={str2Color(color)}
+						onChange={({ hex }: { hex: string }) => setColor(`#${hex}`)}
+					/>
 				</Grid>
 				<Grid item xs>
 					<H3>
