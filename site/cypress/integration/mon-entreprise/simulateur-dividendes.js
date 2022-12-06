@@ -13,7 +13,7 @@ describe('Simulateur dividendes', function () {
 		cy.get(inputSelector).first().type('{selectall}5000')
 		cy.contains(/[cC]otisations\s+17,2\s*%/)
 		cy.contains(/[Ii]mpôt\s+12,8\s*%/)
-	})
 
-	checkA11Y()
+		checkA11Y()
+	})
 })

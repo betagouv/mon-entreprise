@@ -9,6 +9,8 @@ const FIXTURES_FOLDER = 'cypress/fixtures/landing'
 describe('Landing page', function () {
 	it('should not crash', function () {
 		cy.visit('/')
+
+		checkA11Y()
 	})
 
 	it('should display logo', function () {
@@ -63,6 +65,4 @@ describe('Landing page', function () {
 
 		cy.writeInterceptResponses(pendingRequests, responses, FIXTURES_FOLDER)
 	})
-
-	checkA11Y()
 })

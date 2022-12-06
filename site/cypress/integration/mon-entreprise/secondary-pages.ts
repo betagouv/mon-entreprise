@@ -8,15 +8,15 @@ describe('Secondary pages', function () {
 	it("page stats doesn't crash", function () {
 		cy.visit('/stats')
 		cy.contains('Statistiques détaillées')
-	})
 
-	checkA11Y()
+		checkA11Y()
+	})
 
 	it('navigate in the news section', function () {
 		cy.visit('/nouveautés')
 		cy.contains('←').click()
 		cy.url({ decode: true }).should('match', /\/nouveautés\/[^/]*$/)
-	})
 
-	checkA11Y()
+		checkA11Y()
+	})
 })

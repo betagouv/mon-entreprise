@@ -50,7 +50,7 @@ describe('Simulateur salarié : part time contract', function () {
 				.replace(/[\s,.€]/g, '')
 			expect(parseInt(val)).to.be.below(1000)
 		})
-	})
 
-	checkA11Y()
+		checkA11Y()
+	})
 })

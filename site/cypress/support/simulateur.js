@@ -71,8 +71,7 @@ export const runSimulateurTest = (simulateur) => {
 				.first()
 				.invoke('val')
 				.should('match', /2[\s,]000/)
+			checkA11Y()
 		})
-
-		checkA11Y()
 	})
 }

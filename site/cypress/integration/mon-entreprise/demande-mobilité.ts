@@ -176,7 +176,7 @@ describe(`Formulaire demande mobilité (${
 		cy.focused().type('Plougastel')
 		cy.contains('Générer la demande').click()
 		cy.contains('Télécharger le fichier').click()
-	})
 
-	checkA11Y()
+		checkA11Y()
+	})
 })
