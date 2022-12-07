@@ -147,7 +147,7 @@ function FormulairePublicodes() {
 					}) => {
 						const meta = getMeta<{ affichage?: string }>(rawNode, {})
 
-						const headerLevel = Math.min(dottedName.split(' . ').length + 1, 6)
+						const headerLevel = Math.min(dottedName.split(' . ').length + 1, 4)
 						const HeaderComponent = headings.fromLevel(headerLevel)
 
 						return (
