@@ -4754,6 +4754,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@publicodes/api@npm:^1.0.0-beta.63":
+  version: 1.0.0-beta.63
+  resolution: "@publicodes/api@npm:1.0.0-beta.63"
+  dependencies:
+    "@koa/cors": ^3.3.0
+    "@koa/router": ^10.1.1
+    koa: ^2.13.4
+    koa-body: ^5.0.0
+    openapi-validator-middleware: ^3.2.6
+  peerDependencies:
+    publicodes: ^1.0.0-beta.47
+  checksum: 53d0cf908e787e6299224547dd5b345fb24dbf092625410b245c9bb2e66cd7084bfb2fd5f215eb98796c4200f65395f88003c5c13eaccd4cb0bcf37eb8061183
+  languageName: node
+  linkType: hard
+
 "@react-aria/accordion@npm:^3.0.0-alpha.13":
   version: 3.0.0-nightly.3598
   resolution: "@react-aria/accordion@npm:3.0.0-nightly.3598"
@@ -23778,16 +23793,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.62":
-  version: 1.0.0-beta.62
-  resolution: "publicodes-react@npm:1.0.0-beta.62"
+"publicodes-react@npm:^1.0.0-beta.63":
+  version: 1.0.0-beta.63
+  resolution: "publicodes-react@npm:1.0.0-beta.63"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: ^1.0.0-beta.40
     react: ^17 || ^18
     react-dom: ^17 || ^18
-  checksum: 71e73059a9509b7741b6c308bbd8a740cc9daf0c2afba45d6c2db9f3bde735840d94c31cd38a730fce3aee3c5d5d590d9a9d8b84907ee6cb44123deca9ece2e6
+  checksum: c3078deed199de42eb5a65cecc5db12696e93a4ae5c082e38c3edea959be734e0d574acc240ebb7da9ba35d7126b3991d1d6daf41b1647aac7736a06bafe8701
   languageName: node
   linkType: hard
 
@@ -23800,6 +23815,18 @@ __metadata:
   peerDependencies:
     "@types/mocha": ^9.0.0
   checksum: cb17bfdf5ebcfa557c86d82d231f7660ef2202a50007b02bcc129d854015babde62cb0851ea3e3a4e9746407b49337de5aaeeca9f0ce3a2599617b537e35a7a9
+  languageName: node
+  linkType: hard
+
+"publicodes@npm:^1.0.0-beta.63":
+  version: 1.0.0-beta.63
+  resolution: "publicodes@npm:1.0.0-beta.63"
+  dependencies:
+    moo: ^0.5.1
+    nearley: ^2.19.2
+  peerDependencies:
+    "@types/mocha": ^9.0.0
+  checksum: 7aff3e841735582737b0d89bb763c49c4bc8ddd5806ff5c7c32fa79d7b49d2b2ba29ad86a3eaa28c25bc28007ba49f068856cefe6e5430d405e0f51f0637e163
   languageName: node
   linkType: hard
 
@@ -25953,6 +25980,7 @@ __metadata:
     "@atomik-color/component": ^1.0.16
     "@axe-core/react": ^4.5.2
     "@internationalized/number": ^3.1.1
+    "@publicodes/api": ^1.0.0-beta.63
     "@react-aria/accordion": ^3.0.0-alpha.13
     "@react-aria/button": ^3.6.3
     "@react-aria/checkbox": ^3.7.0
@@ -26014,8 +26042,8 @@ __metadata:
     markdown-to-jsx: ^7.1.7
     modele-social: "workspace:^"
     netlify-cli: ^12.2.8
-    publicodes: ^1.0.0-beta.62
-    publicodes-react: ^1.0.0-beta.62
+    publicodes: ^1.0.0-beta.63
+    publicodes-react: ^1.0.0-beta.63
     react: ^18.2.0
     react-colorful: ^5.6.1
     react-dom: ^18.2.0
