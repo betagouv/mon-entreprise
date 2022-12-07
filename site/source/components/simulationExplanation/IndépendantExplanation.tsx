@@ -176,12 +176,10 @@ function DroitsRetraite() {
 			<Ul>
 				<Li>
 					Retraite de base :{' '}
-					<RuleLink dottedName="protection sociale . retraite . trimestres">
-						<Value
-							expression="protection sociale . retraite . trimestres"
-							displayedUnit={t('trimestres acquis')}
-						/>
-					</RuleLink>
+					<Value
+						expression="protection sociale . retraite . trimestres"
+						displayedUnit={t('trimestres acquis')}
+					/>
 				</Li>
 				<WhenApplicable dottedName="protection sociale . retraite . CNAVPL">
 					<Li>
@@ -206,13 +204,11 @@ function DroitsRetraite() {
 				<Li>
 					Points de retraite complémentaire acquis :{' '}
 					<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
-						<RuleLink dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
-							<Value
-								expression="protection sociale . retraite . complémentaire . RCI . points acquis"
-								displayedUnit=""
-							/>{' '}
-							points acquis
-						</RuleLink>
+						<Value
+							expression="protection sociale . retraite . complémentaire . RCI . points acquis"
+							displayedUnit=""
+						/>{' '}
+						points acquis
 					</WhenApplicable>
 					<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
 						<Strong>non connue</Strong>
