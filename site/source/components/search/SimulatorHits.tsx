@@ -38,10 +38,10 @@ const SimulateurCardHit = ({
 			to={{ pathname: path }}
 			state={{ fromSimulateurs: true }}
 			title={
-				<h4>
+				<h3>
 					<Highlight hit={hit} attribute="title" />{' '}
 					{tooltip && <InfoBulle>{tooltip}</InfoBulle>}
-				</h4>
+				</h3>
 			}
 		/>
 	)
