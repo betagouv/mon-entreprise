@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		/* Basic Options */
 		"incremental": true,
-		"target": "ES2020",
+		"target": "ESNext",
 		"module": "NodeNext",
 		"outDir": "dist",
 		"declaration": true,
@@ -18,8 +18,8 @@
 		"alwaysStrict": true,
 
 		/* Additional Checks */
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
+		// "noUnusedLocals": true,
+		// "noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
 
@@ -32,6 +32,10 @@
 		/* Advanced Options */
 		"forceConsistentCasingInFileNames": true
 	},
-	"include": ["test.ts"],
+	"include": [
+		"données-code-APE/reduce-json.ts",
+		"données-NAF-CPF-APE/convert.ts",
+		"nombre-etablissements-par-code-ape-et-departement/convert-json.ts"
+	],
 	"exclude": ["**/node_modules"]
 }
