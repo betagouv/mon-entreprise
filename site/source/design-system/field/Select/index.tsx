@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 
 import { CarretDown } from '@/design-system/icons/carret-down'
+import { omit } from '@/utils'
 
 import { ListBox } from './ListBox'
 import { Popover } from './PopOver'
@@ -225,6 +226,17 @@ export function Select<T extends Record<string, unknown>>(
 		})
 	}, [])
 
+	// Fix : Asqatasun détecte 2 violations au niveau du hidden select
+	// pas moyen d'accéder aux props de manière plus propre rapidement
+	useEffect(() => {
+		const selectInput = wrapperRef?.current?.querySelector('input')
+
+		if (selectInput) {
+			selectInput.setAttribute('id', buttonProps.id || '')
+			selectInput.setAttribute('aria-label', 'Hidden select input')
+		}
+	}, [])
+
 	return (
 		<Wrapper
 			ref={wrapperRef}
@@ -244,7 +256,7 @@ export function Select<T extends Record<string, unknown>>(
 				</Label>
 			)}
 			<Button
-				{...mergeProps(buttonProps, focusProps)}
+				{...mergeProps(omit(buttonProps, 'id'), focusProps)}
 				ref={ref}
 				isFocusVisible={isFocusVisible}
 			>

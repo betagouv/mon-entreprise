@@ -490,6 +490,7 @@ function SimulateursChoice(props: {
 			}}
 			defaultSelectedKey={props.value}
 			label={'Sélectionner la fonctionnalité'}
+			id="simulator-choice-input"
 		>
 			{[
 				<Item key={''} textValue="Tout le site">
