@@ -243,3 +243,15 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
   from=":SITE_FR/documentation/contrat-salari%C3%A9/*"
   to=":SITE_FR/documentation/salari%C3%A9/:splat"
   status=301
+
+
+
+
+####################
+# Various redirect following change in codebase
+##################""
+
+[[redirects]]
+  from=":SITE_FR/iframes/m%C3%A9decin"
+  to=":SITE_FR/iframes/medecin"
+  status=301

@@ -531,7 +531,7 @@ const getMetadataSrc = (t: TFunction) => {
 				),
 			},
 			icône: '🩺',
-			iframePath: 'médecin',
+			iframePath: 'medecin',
 			pathId: 'simulateurs.profession-libérale.médecin',
 			shortName: t('pages.simulateurs.médecin.shortname', 'Médecin'),
 			title: t(
