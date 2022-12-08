@@ -49,7 +49,7 @@ export default function PopoverConfirm({
 							<Button
 								onPress={() => {
 									closePopover()
-									onConfirm()
+									setTimeout(() => onConfirm())
 								}}
 							>
 								{confirmLabel}

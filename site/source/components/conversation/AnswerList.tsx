@@ -152,14 +152,21 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 							<Body>
 								Les réponses liées à l'entreprise sont automatiquement
 								sauvegardées d'une simulation à l'autre.{' '}
-								<Link
-									onPress={() => {
+								<PopoverConfirm
+									small
+									trigger={(buttonProps) => (
+										<Link {...buttonProps}>
+											<Trans>Supprimer les données sauvegardées.</Trans>{' '}
+										</Link>
+									)}
+									onConfirm={() => {
 										dispatch(resetSimulation())
 										dispatch(resetCompany())
 									}}
-								>
-									<Trans>Supprimer les données sauvegardées.</Trans>{' '}
-								</Link>
+									title={t(
+										'Attention, vos données sauvegardées seront supprimées de manière définitive.'
+									)}
+								></PopoverConfirm>
 							</Body>
 						</Message>
 					</div>
