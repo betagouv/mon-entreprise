@@ -32,13 +32,10 @@ export default function Simulateurs() {
 			<TrackPage chapter1="simulateurs" name="accueil" />
 			<Meta
 				page="simulateurs"
-				title="simulateurs"
+				title={titre}
 				description="Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives."
 				ogImage={simulatorSvg}
 			/>
-			<DefaultHelmet>
-				<title>{titre}</title>
-			</DefaultHelmet>
 			<PageHeader titre={titre} picture={simulatorSvg}>
 				<Intro>
 					<Trans i18nKey="pages.simulateurs.accueil.header">

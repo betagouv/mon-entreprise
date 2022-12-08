@@ -31,14 +31,11 @@ export default function Créer() {
 			<TrackPage name="accueil" />
 			<Meta
 				page="créer"
-				title="Créer"
+				title={t('créer.titre', 'Créer une entreprise')}
 				description="Créer une entreprise"
 				ogImage={créerSvg}
 			/>
 
-			<DefaultHelmet>
-				<title>{t('créer.titre', 'Créer une entreprise')}</title>
-			</DefaultHelmet>
 			<PageHeader
 				titre={<Trans i18nKey="créer.titre">Créer une entreprise</Trans>}
 				picture={créerSvg}

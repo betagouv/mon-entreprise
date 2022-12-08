@@ -37,7 +37,6 @@ export const RadioSkeleton = (props: RadioProps) => {
 
 	const ref = useRef(null)
 	const { inputProps } = useRadio(ariaProps, state, ref)
-	console.log(props)
 
 	return (
 		<Label $hideRadio={hideRadio} for={id} className={props.className}>
