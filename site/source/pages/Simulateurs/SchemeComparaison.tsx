@@ -218,6 +218,19 @@ function Comparateur({ engines }: ComparateurProps) {
 					dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
 					engines={engines}
 				/>
+				<H2 className="all">
+					<Spacing lg /> Invalidité et décès
+				</H2>{' '}
+				<TableRow
+					dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
+					precision={0}
+					engines={engines}
+				/>
+				<TableRow
+					dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
+					precision={0}
+					engines={engines}
+				/>
 			</StyledGrid>
 		</>
 	)
