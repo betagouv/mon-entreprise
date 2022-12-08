@@ -13,6 +13,8 @@ type RadioProps = AriaRadioProps & {
 	hideRadio?: boolean
 	className?: string
 	role?: string
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	visibleRadioAs?: string | React.ComponentType<any>
 }
 
 export function Radio(props: RadioProps) {
@@ -29,7 +31,7 @@ export function Radio(props: RadioProps) {
 }
 
 export const RadioSkeleton = (props: RadioProps) => {
-	const { hideRadio, id, ...ariaProps } = props
+	const { hideRadio, visibleRadioAs, id, ...ariaProps } = props
 	const { children } = ariaProps
 	const state = useContext(RadioContext)
 	if (!state) {
@@ -42,7 +44,7 @@ export const RadioSkeleton = (props: RadioProps) => {
 	return (
 		<Label $hideRadio={hideRadio} htmlFor={id} className={props.className}>
 			<InputRadio {...inputProps} className="sr-only" ref={ref} id={id} />
-			<VisibleRadio>{children}</VisibleRadio>
+			<VisibleRadio as={visibleRadioAs}>{children}</VisibleRadio>
 		</Label>
 	)
 }

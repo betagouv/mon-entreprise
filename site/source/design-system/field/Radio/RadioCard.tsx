@@ -17,7 +17,7 @@ const StyledRadioPoint = styled(RadioPoint)`
 	margin-top: 0.2rem;
 `
 
-const StyledRadioSkeleton = styled(RadioSkeleton)`
+export const StyledRadioSkeleton = styled(RadioSkeleton)`
 	flex: 1 100%;
 	margin-bottom: ${({ theme }) => theme.spacings.xs};
 

@@ -1,55 +1,31 @@
 import UFuzzy from '@leeoniya/ufuzzy'
 import { Fragment, useEffect, useRef, useState } from 'react'
+import styled from 'styled-components'
 
-import { TextField } from '@/design-system'
+import { FromTop } from '@/components/ui/animate'
+import { RadioCardGroup, TextField } from '@/design-system'
+import { Button } from '@/design-system/buttons'
 import { CardContainer } from '@/design-system/card/Card'
-import { H3, H4 } from '@/design-system/typography/heading'
+import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
+import { Grid } from '@/design-system/layout'
+import { H3 } from '@/design-system/typography/heading'
 import { Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 
-import testData from './test.json'
-
-interface CommonData<Type extends string> {
-	type: Type
-	code: string
-	title: string
-	data: string[]
-	contenuCentral: string[]
-	contenuAnnexe: string[]
-	contenuExclu: string[]
-	parent?: number
-}
-
-type Section = CommonData<'section'>
-type Division = CommonData<'division'>
-type Groupe = CommonData<'groupe'>
-type Classe = CommonData<'classe'>
-type SousClasse = CommonData<'sousClasse'>
-type Catégorie = CommonData<'catégorie'>
-type SousCatégorie = CommonData<'sousCatégorie'>
-
-type Data =
-	| Section
-	| Division
-	| Groupe
-	| Classe
-	| SousClasse
-	| Catégorie
-	| SousCatégorie
+import data from '../../../converters/données-code-APE/output.min.json'
+import { Output as Data } from '../../../converters/données-code-APE/reduce-json'
 
 const fuzzy = new UFuzzy({
 	intraIns: 2,
 })
 
-const filteredData = (testData as Data[]).filter(
-	({ type }) => type === 'sousClasse'
-)
+const filteredData = (data as Data).apeData
 
 const { specificList, genericList, excludedList } = filteredData.reduce(
-	(prev, { contenuCentral, contenuAnnexe, contenuExclu, title, code }) => ({
+	(prev, { contenuCentral, contenuAnnexe, contenuExclu, title, codeApe }) => ({
 		specificList: [
 			...(prev.specificList ?? []),
-			[title, ...contenuCentral, code].join(', '),
+			[title, ...contenuCentral, codeApe].join(', '),
 		],
 		genericList: [...(prev.genericList ?? []), contenuAnnexe.join(', ')],
 		excludedList: [...(prev.excludedList ?? []), contenuExclu.join(', ')],
@@ -65,28 +41,101 @@ const latinizedSpecificList = UFuzzy.latinize(specificList)
 const latinizedGenericList = UFuzzy.latinize(genericList)
 const latinizedExcludedList = UFuzzy.latinize(excludedList)
 
+const Test = ({
+	title,
+	codeApe,
+	selected,
+	contenuCentral,
+	contenuAnnexe,
+	contenuExclu,
+}) => {
+	const [open, setOpen] = useState(false)
+
+	return (
+		<Grid container style={{ alignItems: 'center' }}>
+			<Grid item xs={12} md={10}>
+				<H3 style={{ marginTop: 0, marginBottom: '.5rem' }}>{title}</H3>
+				<p style={{ fontWeight: 'bold', marginTop: 0 }}>
+					Code : <span>{codeApe}</span>
+					<br />
+					[selected : <span>{selected}</span>]
+				</p>
+			</Grid>
+
+			<Grid item xs={12} md={2}>
+				<Button size="XS" onClick={() => setOpen((x) => !x)}>
+					En savoir plus
+				</Button>
+			</Grid>
+
+			{open && (
+				<FromTop>
+					<Grid item xs={12}>
+						<p style={{ marginTop: 0 }}>
+							{contenuCentral.length ? (
+								<>
+									<span style={{ fontWeight: 'bold' }}>
+										Contenu central de cette activité :
+									</span>
+									<br />
+								</>
+							) : null}
+							{contenuCentral.map((contenu, i) => (
+								<Fragment key={i}>
+									{contenu}
+									<br />
+								</Fragment>
+							))}
+							{contenuAnnexe.length ? (
+								<>
+									<br />
+									<span style={{ fontWeight: 'bold' }}>
+										Contenu annexe de cette activité :
+									</span>
+									<br />
+								</>
+							) : null}
+							{contenuAnnexe.map((contenu, i) => (
+								<Fragment key={i}>
+									{contenu}
+									<br />
+								</Fragment>
+							))}
+							{contenuExclu.length ? (
+								<>
+									<br />
+									<span style={{ fontWeight: 'bold' }}>
+										Contenu exclu de cette activité :
+									</span>
+									<br />
+								</>
+							) : null}
+							{contenuExclu.map((contenu, i) => (
+								<Fragment key={i}>
+									{contenu}
+									<br />
+								</Fragment>
+							))}
+						</p>
+					</Grid>
+				</FromTop>
+			)}
+		</Grid>
+	)
+}
+
 export default function POCSearchCodeAPE() {
 	const [value, setValue] = useState('')
+	const [selected, setSelected] = useState('')
 	// const [list, setList] = useState<[number, ...string[]][]>([])
-	const [list, setList] = useState<Data[]>([])
+	const [list, setList] = useState<Data['apeData']>([])
 
 	const lastIdxs = useRef<Record<string, UFuzzy.HaystackIdxs>>({})
 	const prevValue = useRef<string>(value)
 
-	const highlight = (str: string, range: number[]) => [
-		str.slice(0, range[0]),
-		...range
-			.map((a, i) =>
-				range[i + 1] !== undefined ? ([a, range[i + 1]] as const) : null
-			)
-			.filter(<T,>(x: T | null): x is T => x != null)
-			.map(([a, b]) => str.slice(a, b)),
-		str.slice(range[range.length - 1]),
-	]
-
 	useEffect(() => {
 		if (value.length) {
-			console.time('bench')
+			console.time('effect')
 			const latinizedValue = UFuzzy.latinize([value])[0]
 
 			const search = (
@@ -119,17 +168,7 @@ export default function POCSearchCodeAPE() {
 				...new Set([...specificResults, ...genericResults]),
 			].filter((result) => !excludedResults.includes(result))
 
-			console.log({
-				generic,
-				specific,
-				excluded,
-				genericResults,
-				specificResults,
-				excludedResults,
-				results,
-			})
-
-			console.timeEnd('bench')
+			console.timeEnd('effect')
 
 			setList(results)
 		} else {
@@ -139,93 +178,151 @@ export default function POCSearchCodeAPE() {
 		prevValue.current = value
 	}, [value])
 
-	return (
+	console.time('render')
+	const test = list
+		.slice(0, 25)
+		.map(({ codeApe, title, contenuCentral, contenuAnnexe, contenuExclu }) => {
+			return (
+				<StyledRadioSkeleton value={codeApe} key={codeApe} visibleRadioAs="div">
+					<Test
+						{...{
+							title,
+							codeApe,
+							selected,
+							contenuCentral,
+							contenuAnnexe,
+							contenuExclu,
+						}}
+					/>
+				</StyledRadioSkeleton>
+			)
+		})
+
+	const ret = (
 		<Body as="div">
 			<TextField value={value} onChange={setValue} />
-			<Ul style={{ height: '800px', overflow: 'auto' }}>
-				{list.map(
-					({ code, title, contenuCentral, contenuAnnexe, contenuExclu }) => {
-						return (
-							<CardContainer
-								as="li"
-								key={`${code}`}
-								style={{
-									overflow: 'auto',
-									marginBottom: '1rem',
-									alignItems: 'flex-start',
-									height: 'initial',
-								}}
-							>
-								<H3 style={{ marginTop: 0 }}>{title}</H3>
-								<H4 style={{ marginTop: 0, color: 'grey' }}>
-									Code : <span>{code}</span>
-								</H4>
-								<p style={{ marginTop: 0 }}>
-									{contenuCentral.length ? (
-										<>
-											<span style={{ fontWeight: 'bold' }}>
-												Contenu central de cette activité :
-											</span>
-											<br />
-										</>
-									) : null}
-									{contenuCentral.map((contenu, i) => (
-										<Fragment key={i}>
-											{contenu}
-											<br />
-										</Fragment>
-									))}
-									{contenuAnnexe.length ? (
-										<>
-											<br />
-											<span style={{ fontWeight: 'bold' }}>
-												Contenu annexe de cette activité :
-											</span>
-											<br />
-										</>
-									) : null}
-									{contenuAnnexe.map((contenu, i) => (
-										<Fragment key={i}>
-											{contenu}
-											<br />
-										</Fragment>
-									))}
-									{contenuExclu.length ? (
-										<>
-											<br />
-											<span style={{ fontWeight: 'bold' }}>
-												Contenu exclu de cette activité :
-											</span>
-											<br />
-										</>
-									) : null}
-									{contenuExclu.map((contenu, i) => (
-										<Fragment key={i}>
-											{contenu}
-											<br />
-										</Fragment>
-									))}
-									{/* {elems.map((el, i) => {
-										return i % 2 === 0 ? (
-											el
-										) : (
-											<span style={{ color: 'red' }}>{el}</span>
-										)
-									})} */}
-								</p>
-								{/* <pre>{JSON.stringify(filteredData[index], null, 2)}</pre> */}
-								{/* <pre>
+
+			<StyledRadioCardGroup value={selected} onChange={setSelected}>
+				<Grid container>{test}</Grid>
+			</StyledRadioCardGroup>
+
+			<Ul>
+				{list
+					.slice(0, 5)
+					.map(
+						({
+							codeApe,
+							title,
+							contenuCentral,
+							contenuAnnexe,
+							contenuExclu,
+						}) => {
+							return (
+								<StyledCardContainer as="li" key={`${codeApe}`}>
+									{/* <Accordion>
+									<Item
+										title="Récupérer le formulaire complété sur «&nbsp;impot.gouv.fr&nbsp;»"
+										key="impot.gouv.fr"
+										hasChildItems={false}
+									></Item>
+								</Accordion> */}
+
+									<Grid item xs={12} md={10}>
+										<H3 style={{ marginTop: 0, marginBottom: '.5rem' }}>
+											{title}
+										</H3>
+										<p style={{ fontWeight: 'bold', marginTop: 0 }}>
+											Code : <span>{codeApe}</span>
+										</p>
+
+										{/* <pre>{JSON.stringify(filteredData[index], null, 2)}</pre> */}
+										{/* <pre>
 									{JSON.stringify(
 										{ code, contenuCentral, contenuAnnexe, contenuExclu },
 										null,
 										2
 									)}
 								</pre> */}
-							</CardContainer>
-						)
-					}
-				)}
+									</Grid>
+									<Grid item xs={12} md={2}>
+										En savoir plus
+									</Grid>
+									<Grid item xs={12}>
+										<p style={{ marginTop: 0 }}>
+											{contenuCentral.length ? (
+												<>
+													<span style={{ fontWeight: 'bold' }}>
+														Contenu central de cette activité :
+													</span>
+													<br />
+												</>
+											) : null}
+											{contenuCentral.map((contenu, i) => (
+												<Fragment key={i}>
+													{contenu}
+													<br />
+												</Fragment>
+											))}
+											{contenuAnnexe.length ? (
+												<>
+													<br />
+													<span style={{ fontWeight: 'bold' }}>
+														Contenu annexe de cette activité :
+													</span>
+													<br />
+												</>
+											) : null}
+											{contenuAnnexe.map((contenu, i) => (
+												<Fragment key={i}>
+													{contenu}
+													<br />
+												</Fragment>
+											))}
+											{contenuExclu.length ? (
+												<>
+													<br />
+													<span style={{ fontWeight: 'bold' }}>
+														Contenu exclu de cette activité :
+													</span>
+													<br />
+												</>
+											) : null}
+											{contenuExclu.map((contenu, i) => (
+												<Fragment key={i}>
+													{contenu}
+													<br />
+												</Fragment>
+											))}
+											{/* {elems.map((el, i) => {
+										return i % 2 === 0 ? (
+											el
+										) : (
+											<span style={{ color: 'red' }}>{el}</span>
+										)
+									})} */}
+										</p>
+									</Grid>
+								</StyledCardContainer>
+							)
+						}
+					)}
 			</Ul>
 		</Body>
 	)
+	console.timeEnd('render')
+
+	return ret
 }
+
+const StyledRadioCardGroup = styled(RadioCardGroup)`
+	margin-top: 1rem;
+	flex-direction: row;
+	flex-wrap: wrap;
+`
+
+const StyledCardContainer = styled(CardContainer)`
+	height: initial;
+	margin-bottom: 1rem;
+	flex-direction: row;
+	flex-wrap: wrap;
+`
