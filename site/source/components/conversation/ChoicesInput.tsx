@@ -212,6 +212,10 @@ function RadioChoice<Names extends string = DottedName>({
 									rootDottedName,
 									node.dottedName
 								)}'`}
+								id={`radio-input-${relativeDottedName(
+									rootDottedName,
+									node.dottedName
+								).replace(/\s|\./g, '')}`}
 							>
 								{node.title}{' '}
 								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
@@ -264,11 +268,19 @@ export function OuiNonInput<Names extends string = DottedName>(
 			value={currentSelection ?? undefined}
 		>
 			{/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-			<Radio value="oui" autoFocus={props.autoFocus && defaultValue === 'oui'}>
+			<Radio
+				value="oui"
+				id={`input-oui-${props.id || ''}`}
+				autoFocus={props.autoFocus && defaultValue === 'oui'}
+			>
 				<Trans>Oui</Trans>
 			</Radio>
 			{/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-			<Radio value="non" autoFocus={props.autoFocus && defaultValue === 'non'}>
+			<Radio
+				value="non"
+				id={`input-non-${props.id || ''}`}
+				autoFocus={props.autoFocus && defaultValue === 'non'}
+			>
 				<Trans>Non</Trans>
 			</Radio>
 		</ToggleGroup>

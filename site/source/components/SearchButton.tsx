@@ -28,6 +28,8 @@ export default function SearchButton() {
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"
+						aria-hidden
+						role="img"
 					>
 						<path
 							strokeLinecap="square"
