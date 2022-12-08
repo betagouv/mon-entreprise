@@ -1,3 +1,5 @@
+import { checkA11Y } from '../../support/utils'
+
 const searchInputPath = '[data-test-id=company-search-input]'
 const searchResultsPath = '[data-test-id=company-search-results]'
 const currentCompanyPath = '[data-test-id=currently-selected-company]'
@@ -7,6 +9,8 @@ const FIXTURES_FOLDER = 'cypress/fixtures/landing'
 describe('Landing page', function () {
 	it('should not crash', function () {
 		cy.visit('/')
+
+		checkA11Y()
 	})
 
 	it('should display logo', function () {

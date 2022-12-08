@@ -1,3 +1,5 @@
+import { checkA11Y } from './utils'
+
 const inputSelector =
 	'div[id="simulator-legend"] input[inputmode="numeric"]:not([id="entreprisecharges"])'
 const chargeInputSelector = 'input[id="entreprisecharges"]'
@@ -69,6 +71,7 @@ export const runSimulateurTest = (simulateur) => {
 				.first()
 				.invoke('val')
 				.should('match', /2[\s,]000/)
+			checkA11Y()
 		})
 	})
 }

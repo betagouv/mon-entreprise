@@ -1,4 +1,4 @@
-import { fr } from '../../support/utils'
+import { checkA11Y, fr } from '../../support/utils'
 
 describe('Recherche globales', function () {
 	if (!fr) {
@@ -28,5 +28,7 @@ describe('Recherche globales', function () {
 			.next()
 			.find('li')
 			.should('have.length.of.at.least', 1)
+
+		checkA11Y()
 	})
 })

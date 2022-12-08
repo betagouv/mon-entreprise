@@ -158,7 +158,7 @@ notification signature:
   valeur: oui
   type: groupe
   description: |
-    #### Ce document doit être signé ✍️
+    ### Ce document doit être signé ✍️
 
     Nous vous invitons à utiliser un écran tactile pour le compléter (téléphone, tablette, etc.). Sinon, vous devrez l’imprimer, le signer et le scanner avant envoi par mail.
 

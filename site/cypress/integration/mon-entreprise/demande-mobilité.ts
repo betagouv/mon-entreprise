@@ -1,4 +1,4 @@
-import { fr } from '../../support/utils'
+import { checkA11Y, fr } from '../../support/utils'
 
 const writeFixtures = Cypress.env('record_http') !== undefined
 
@@ -176,5 +176,7 @@ describe(`Formulaire demande mobilité (${
 		cy.focused().type('Plougastel')
 		cy.contains('Générer la demande').click()
 		cy.contains('Télécharger le fichier').click()
+
+		checkA11Y()
 	})
 })
