@@ -653,6 +653,29 @@ protection sociale . invalidité et décès:
           références:
             "Montant et versement de la pension d'invalidité": https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
 
+    capital décès:
+      variations:
+        - si: salarié
+          alors: 3681 €
+        - si:
+            une de ces conditions:
+              - dirigeant . indépendant
+              - dirigeant . auto-entrepreneur
+          alors: 20% * plafond sécurité sociale * 1 an
+    capital décès . orphelin:
+      applicable si:
+        une de ces conditions:
+          - dirigeant . indépendant
+          - dirigeant . auto-entrepreneur
+      description: |
+        Un capital « orphelin » est versé aux enfants des travailleurs indépendants décédés. Il concerne :
+
+        - les enfants âgés de moins de 16 ans au jour du décès de l’assuré et à sa charge ;
+        - les enfants à la charge du défunt de plus de 16 ans, et de moins de 20 ans, poursuivant leurs études ou leur apprentissage ;
+        - les enfants, quel que soit leur âge, bénéficiaires des allocations instituées en faveur des handicapés.
+      références:
+        'Le capital orphelin pour les enfants des travailleurs indépendants': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces#text_76987
+      valeur: 5% * plafond sécurité sociale * 1 an / 1 enfant
 protection sociale . assurance chômage:
   icônes: 💸
   type: assurance
