@@ -6,7 +6,7 @@ describe('Iframe pamc', function () {
 	if (!fr) {
 		return
 	}
-	before(function () {
+	this.beforeEach(function () {
 		return cy.visit('/iframes/pamc')
 	})
 
