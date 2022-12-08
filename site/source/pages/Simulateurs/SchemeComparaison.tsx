@@ -221,6 +221,9 @@ function Comparateur({ engines }: ComparateurProps) {
 				<H2 className="all">
 					<Spacing lg /> Invalidité et décès
 				</H2>{' '}
+				<H3 className="all">
+					<Spacing lg /> Pensions d'invalidité
+				</H3>
 				<TableRow
 					dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
 					precision={0}
@@ -228,6 +231,19 @@ function Comparateur({ engines }: ComparateurProps) {
 				/>
 				<TableRow
 					dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
+					precision={0}
+					engines={engines}
+				/>
+				<H3 className="all">
+					<Spacing lg /> Décès
+				</H3>
+				<TableRow
+					dottedName="protection sociale . invalidité et décès . capital décès"
+					precision={0}
+					engines={engines}
+				/>
+				<TableRow
+					dottedName="protection sociale . invalidité et décès . capital décès . orphelin"
 					precision={0}
 					engines={engines}
 				/>
