@@ -31,6 +31,7 @@ export const Label = styled.label`
 	position: absolute;
 	will-change: transform top font-size line-height color;
 	transition: all 0.1s;
+	transition: color 0s, background-color 0s;
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
@@ -96,6 +97,7 @@ interface WrapperProps {
 }
 
 export const Wrapper = styled.div<WrapperProps>`
+	overflow: hidden;
 	display: flex;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>
@@ -243,40 +245,47 @@ export function Select<T extends Record<string, unknown>>(
 	}, [])
 
 	return (
-		<Wrapper
-			ref={wrapperRef}
-			isOpen={state.isOpen}
-			hasError={false}
-			hasLabel={false}
-		>
-			<HiddenSelect
-				state={state}
-				triggerRef={ref}
-				label={props.label}
-				name={props.name}
-			/>
-			{props.label && (
-				<Label className={props.small ? 'sr-only' : ''} {...labelProps}>
-					{props.label}
-				</Label>
-			)}
-			<Button
-				{...mergeProps(omit(buttonProps, 'id'), focusProps)}
-				ref={ref}
-				isFocusVisible={isFocusVisible}
+		<Container>
+			<Wrapper
+				ref={wrapperRef}
+				isOpen={state.isOpen}
+				hasError={false}
+				hasLabel={false}
 			>
-				<Value {...valueProps}>
-					{state.selectedItem != null
-						? state.selectedItem.rendered
-						: t('select.value.default', 'Choisissez une option')}
-				</Value>
-				<StyledIcon />
-			</Button>
+				<HiddenSelect
+					state={state}
+					triggerRef={ref}
+					label={props.label}
+					name={props.name}
+				/>
+				{props.label && (
+					<Label className={props.small ? 'sr-only' : ''} {...labelProps}>
+						{props.label}
+					</Label>
+				)}
+				<Button
+					{...mergeProps(omit(buttonProps, 'id'), focusProps)}
+					ref={ref}
+					isFocusVisible={isFocusVisible}
+				>
+					<Value {...valueProps}>
+						{state.selectedItem != null
+							? state.selectedItem.rendered
+							: t('select.value.default', 'Choisissez une option')}
+					</Value>
+					<StyledIcon />
+				</Button>
+			</Wrapper>
+
 			{state.isOpen && (
 				<Popover isOpen={state.isOpen} onClose={() => state.close()}>
 					<ListBox {...menuProps} state={state} />
 				</Popover>
 			)}
-		</Wrapper>
+		</Container>
 	)
 }
+
+const Container = styled.div`
+	position: relative;
+`

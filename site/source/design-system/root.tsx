@@ -37,6 +37,7 @@ type BackgroundProps = {
 }
 
 const BackgroundStyle = styled.div<BackgroundProps>`
+	transition: color 0.15s, background-color 0.15s;
 	${({ $darkMode }) => {
 		if ($darkMode) {
 			return css`

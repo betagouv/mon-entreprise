@@ -1,5 +1,5 @@
 import UFuzzy from '@leeoniya/ufuzzy'
-import { useEffect, useRef, useState, Fragment } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 
 import { TextField } from '@/design-system'
 import { CardContainer } from '@/design-system/card/Card'

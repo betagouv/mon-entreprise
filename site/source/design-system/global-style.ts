@@ -127,12 +127,10 @@ html, body, #js, #js > *, [data-overlay-container] {
 *:before,
 *:after {
 	box-sizing: inherit;
-	transition: color 0.15s, background-color 0.15s;
 }
 
 body {
 	margin: 0;
-
 }
 
 
