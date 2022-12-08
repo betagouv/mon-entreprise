@@ -234,6 +234,11 @@ function Comparateur({ engines }: ComparateurProps) {
 					precision={0}
 					engines={engines}
 				/>
+				<TableRow
+					dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité"
+					precision={0}
+					engines={engines}
+				/>
 				<H3 className="all">
 					<Spacing lg /> Décès
 				</H3>
@@ -244,6 +249,16 @@ function Comparateur({ engines }: ComparateurProps) {
 				/>
 				<TableRow
 					dottedName="protection sociale . invalidité et décès . capital décès . orphelin"
+					precision={0}
+					engines={engines}
+				/>{' '}
+				<TableRow
+					dottedName="protection sociale . invalidité et décès . pension de reversion"
+					precision={0}
+					engines={engines}
+				/>
+				<TableRow
+					dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
 					precision={0}
 					engines={engines}
 				/>
