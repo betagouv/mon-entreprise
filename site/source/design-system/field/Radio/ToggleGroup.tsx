@@ -88,7 +88,7 @@ export const ToggleGroupContainer = styled.div<{
 		position: relative;
 		align-items: center;
 		z-index: 1;
-		border: 1px solid
+		border: 2px solid
 			${({ theme }) =>
 				theme.darkMode
 					? theme.colors.extended.dark[500]
@@ -124,15 +124,15 @@ export const ToggleGroupContainer = styled.div<{
 
 	${InputRadio}:checked + ${VisibleRadio} {
 		z-index: 2;
-		border: 1px solid
+		border: 2px solid
 			${({ theme }) =>
 				theme.darkMode
-					? theme.colors.bases.primary[400]
-					: theme.colors.bases.primary[700]};
+					? theme.colors.bases.primary[300]
+					: theme.colors.bases.primary[600]};
 		background-color: ${({ theme }) =>
 			theme.darkMode
-				? theme.colors.bases.primary[500]
-				: theme.colors.bases.primary[200]};
+				? theme.colors.bases.primary[600]
+				: theme.colors.bases.primary[100]};
 		${({ mode }) => mode === 'tab' && TabModeCheckedStyle}
 	}
 
