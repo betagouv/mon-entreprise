@@ -653,6 +653,51 @@ protection sociale . invalidité et décès:
           références:
             "Montant et versement de la pension d'invalidité": https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
 
+    accidents du travail et maladies professionnelles:
+      applicable si: salarié
+      références:
+        'Incapacité permanente suite à un accident du travail : indemnités et rente': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-accident-travail
+        'Incapacité permanente suite à une maladie professionnelle : indemnités et rentes': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-maladie-professionnelle
+      avec:
+        rente incapacité:
+          titre: Rente incapacité AT/MP
+          description: |
+            Si votre taux d'incapacité permanente suite à un accident du travail ou une maladie professionnelle est supérieur à 10 %, vous percevrez une rente d'incapacité permanente.
+          produit:
+            assiette:
+              barème:
+                assiette: salarié . cotisations . assiette
+                multiplicateur: SMIC
+                tranches:
+                  - taux: 100%
+                    plafond: 2
+                  - taux: 1 / 3
+                    plafond: 8
+            taux:
+              barème:
+                assiette:
+                  nom: taux incapacité
+                  question: Quel taux d'incapacité voulez-vous simuler pour la rente accidents du travail et maladie professionnelle ?
+                  plancher: 10%
+                  plafond: 100%
+                  par défaut: 50%
+                tranches:
+                  - taux: 50%
+                    plafond: 50%
+                  - taux: 150%
+          références:
+            "Accident du travail : indemnisation en cas d'incapacité permanente": https://www.service-public.fr/particuliers/vosdroits/F14840
+
+        rente décès:
+          titre: Rente décès AT/MP
+          description: |
+            Si l'accident du travail entraîne le décès de l'assuré, les proches (conjoint, concubin, partenaire lié par un pacte civil de solidarité (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier d'une rente.
+          produit:
+            assiette: salarié . cotisations . assiette
+            taux: 40%
+          références:
+            "Décès d'un salarié suite à un accident de travail ou de trajet : indemnisation des ayants droit": https://www.service-public.fr/particuliers/vosdroits/F14868
+
     capital décès:
       variations:
         - si: salarié
@@ -662,6 +707,7 @@ protection sociale . invalidité et décès:
               - dirigeant . indépendant
               - dirigeant . auto-entrepreneur
           alors: 20% * plafond sécurité sociale * 1 an
+
     capital décès . orphelin:
       applicable si:
         une de ces conditions:
@@ -676,6 +722,26 @@ protection sociale . invalidité et décès:
       références:
         'Le capital orphelin pour les enfants des travailleurs indépendants': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces#text_76987
       valeur: 5% * plafond sécurité sociale * 1 an / 1 enfant
+
+    pension de reversion:
+      titre: pension de reversion maximum
+      unité: €/mois
+      description: |
+        Au décès de votre époux(se) ou ex-époux(se), vous pouvez percevoir une pension de réversion. 
+        Le versement de la pension est possible, sous certaines conditions, lorsque le défunt exerçait une activité salariée ou non salariée (travailleur indépendant, professionnel libéral, agriculteur).
+
+        La pension est égale à 54 % de la retraite que votre époux(se) ou ex-époux(se) percevait ou aurait pu percevoir (majorations non comprises).
+      références:
+        Pension de réversion: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/veuvage/pension-reversion-veuvage.html
+        Montants minimums de la pension de reversion: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=retraite_reversion_montant_minimum_bar
+        Pension de réversion - Défunt ayant travaillé dans le privé: https://www.service-public.fr/particuliers/vosdroits/F35774/0?idFicheParent=N378#0
+      plancher:
+        variations:
+          - si: date >= 07/2022
+            alors: 3672.01 €/an
+          - sinon: 3530.78 €/an
+      valeur: 54 % * retraite . base
+
 protection sociale . assurance chômage:
   icônes: 💸
   type: assurance
