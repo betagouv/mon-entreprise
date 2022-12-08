@@ -1304,6 +1304,7 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
 dirigeant . indépendant . cotisations et contributions . invalidité et décès:
   produit:
     assiette:
+      nom: assiette
       valeur: assiette des cotisations
       plancher: assiette minimale . retraite
       plafond: plafond sécurité sociale
