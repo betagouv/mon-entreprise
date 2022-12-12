@@ -608,6 +608,8 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
       produit:
         assiette:
           variations:
+            - si: date >= 01/2022
+              alors: 1592 €/demi-part/an
             - si: date >= 01/2021
               alors: 1570 €/demi-part/an
             - si: date >= 01/2020
@@ -624,14 +626,18 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
         contribuables célibataires ou divorcés vivant seuls.
       applicable si: nombre de parts . majoration personne seule avec enfant
       variations:
+        - si: date >= 01/2022
+          alors: 3756 €/an
         - si: date >= 01/2021
           alors: 3704 €/an
         - si: date >= 01/2020
           alors: 3697 €/an
 
   références:
+    Bofip 2022: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20220516#III._Niveau_du_plafonnement_16
+    Bofip 2021: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20210330#III._Niveau_du_plafonnement_12
+    Bofip 2020: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20200515#III._Niveau_du_plafonnement_12
     Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041464047&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20190608
-    Bofip: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20200515#III._Niveau_du_plafonnement_12
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
   description: |
