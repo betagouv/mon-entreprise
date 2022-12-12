@@ -1,6 +1,6 @@
 import 'styled-components'
 
-import theme from '@/design-system/theme'
+import theme, { SpacingKey } from '@/design-system/theme'
 
 type Color = string
 
@@ -55,6 +55,13 @@ export interface Theme {
 			success: SmallPalette
 			info: SmallPalette
 			dark: Palette
+		}
+
+		theme: {
+			headingColor: string
+			textColor: string
+			backgroundColorLight: string
+			backgroundColorDark: string
 		}
 	}
 

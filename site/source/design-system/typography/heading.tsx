@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components'
 
+import { CustomizeBlockStyle } from '../global-style'
+
 const baseHeading = css`
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
@@ -9,6 +11,11 @@ const baseHeading = css`
 			? theme.colors.extended.grey[100]
 			: theme.colors.bases.primary[700]};
 	background-color: inherit;
+	color: ${({ theme }) => theme.colors.theme.headingColor};
+	${({ theme, isDarkMode }) => {
+		console.log(isDarkMode, theme)
+	}}
+	${CustomizeBlockStyle as any} // TODO: Fix ts issue
 `
 
 export const HeadingUnderline = css`

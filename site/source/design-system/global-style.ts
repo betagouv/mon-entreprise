@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components'
+import { DefaultTheme, createGlobalStyle, css } from 'styled-components'
 
 export const SROnly = css`
 	position: absolute !important;
@@ -216,4 +216,20 @@ figure {
 		display: none;
 	}
 }
+`
+
+export const CustomizeBlockStyle = css`
+	${({
+		theme,
+		backgroundColor,
+		color,
+	}: {
+		theme: DefaultTheme
+		backgroundColor?: (theme: DefaultTheme) => string
+		color?: (theme: DefaultTheme) => string
+	}) =>
+		`
+		${backgroundColor ? `background-color: ${backgroundColor(theme)};` : ''}
+		${color ? `color: ${color(theme)};` : ''}
+		`}
 `
