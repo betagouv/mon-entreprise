@@ -273,4 +273,14 @@ const StyledDocumentation = styled.div`
 	font-size: 1rem;
 	font-family: ${({ theme }) => theme.fonts.main};
 	line-height: 1.5rem;
+
+	#documentation-rule-root nav ul li span button,
+	#documentation-rule-root nav ul li.active .content {
+		background-color: hsl(0deg 0% 90% / 50%);
+	}
+	#documentation-rule-root .node-value-pointer,
+	#documentation-rule-root pre {
+		background-color: ${({ theme }) =>
+			theme.darkMode && theme.colors.extended.dark[600]};
+	}
 `
