@@ -25978,6 +25978,7 @@ __metadata:
   resolution: "site@workspace:site"
   dependencies:
     "@atomik-color/component": ^1.0.17
+    "@atomik-color/core": ^1.0.13
     "@axe-core/react": ^4.5.2
     "@internationalized/number": ^3.1.1
     "@publicodes/api": ^1.0.0-beta.63
