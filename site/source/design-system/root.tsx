@@ -6,7 +6,6 @@ import styled, {
 	css,
 } from 'styled-components'
 
-import { DarkModeProvider } from '@/contexts/DarkModeContext'
 import urssafTheme, { getThemeColorsValues } from '@/design-system/theme'
 import { useDarkMode } from '@/hooks/useDarkMode'
 

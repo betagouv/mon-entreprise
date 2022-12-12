@@ -13,7 +13,12 @@ export default function LegalNotice() {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<Link {...buttonProps} aria-haspopup="dialog" noUnderline>
+				<Link
+					{...buttonProps}
+					aria-haspopup="dialog"
+					noUnderline
+					textColor={(theme) => theme.colors.extended.grey[100]}
+				>
 					<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
 				</Link>
 			)}

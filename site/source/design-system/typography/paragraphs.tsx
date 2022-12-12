@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components'
 
+import { CustomizeBlockStyle } from '../global-style'
+
 export const baseParagraphStyle = css`
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: normal;
@@ -20,6 +22,8 @@ export const baseParagraphStyle = css`
 					: theme.colors.extended.grey[800]};
 		}
 	}
+
+	${CustomizeBlockStyle}
 `
 
 export const Intro = styled.p`

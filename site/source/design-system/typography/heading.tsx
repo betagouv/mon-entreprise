@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { DefaultTheme, css } from 'styled-components'
 
 import { CustomizeBlockStyle } from '../global-style'
 
@@ -12,10 +12,8 @@ const baseHeading = css`
 			: theme.colors.bases.primary[700]};
 	background-color: inherit;
 	color: ${({ theme }) => theme.colors.theme.headingColor};
-	${({ theme, isDarkMode }) => {
-		console.log(isDarkMode, theme)
-	}}
-	${CustomizeBlockStyle as any} // TODO: Fix ts issue
+
+	${CustomizeBlockStyle}// TODO: Fix ts issue
 `
 
 export const HeadingUnderline = css`
@@ -28,7 +26,11 @@ export const HeadingUnderline = css`
 	}
 `
 
-export const H1 = styled.h1<{ noUnderline?: boolean }>`
+export const H1 = styled.h1<{
+	noUnderline?: boolean
+	backgroundColor?: (theme: DefaultTheme) => string
+	color?: (theme: DefaultTheme) => string
+}>`
 	${baseHeading}
 	font-size: 2rem;
 	margin: ${({ theme }) =>
@@ -43,7 +45,11 @@ export const H1 = styled.h1<{ noUnderline?: boolean }>`
 	}
 `
 
-export const H2 = styled.h2<{ noUnderline?: boolean }>`
+export const H2 = styled.h2<{
+	noUnderline?: boolean
+	backgroundColor?: (theme: DefaultTheme) => string
+	color?: (theme: DefaultTheme) => string
+}>`
 	${baseHeading}
 	font-size: 1.625rem;
 	line-height: 2rem;
@@ -54,7 +60,10 @@ export const H2 = styled.h2<{ noUnderline?: boolean }>`
 	${({ noUnderline }) => (!noUnderline ? HeadingUnderline : '')}
 `
 
-export const H3 = styled.h3`
+export const H3 = styled.h3<{
+	backgroundColor?: (theme: DefaultTheme) => string
+	textColor?: (theme: DefaultTheme) => string
+}>`
 	${baseHeading}
 	margin: ${({ theme }) =>
 		css`
@@ -64,7 +73,10 @@ export const H3 = styled.h3`
 	line-height: 1.75rem;
 `
 
-export const H4 = styled.h4`
+export const H4 = styled.h4<{
+	backgroundColor?: (theme: DefaultTheme) => string
+	color?: (theme: DefaultTheme) => string
+}>`
 	${baseHeading}
 	margin: ${({ theme }) =>
 		css`
@@ -74,7 +86,10 @@ export const H4 = styled.h4`
 	line-height: 1.5rem;
 `
 
-export const H5 = styled.h5`
+export const H5 = styled.h5<{
+	backgroundColor?: (theme: DefaultTheme) => string
+	color?: (theme: DefaultTheme) => string
+}>`
 	${baseHeading}
 	font-size: 1rem;
 	margin: ${({ theme }) =>
@@ -84,7 +99,10 @@ export const H5 = styled.h5`
 	line-height: 1.5rem;
 `
 
-export const H6 = styled.h6`
+export const H6 = styled.h6<{
+	backgroundColor?: (theme: DefaultTheme) => string
+	color?: (theme: DefaultTheme) => string
+}>`
 	${baseHeading}
 	margin: ${({ theme }) =>
 		css`

@@ -90,22 +90,38 @@ export default function Footer() {
 									<nav title="firstColumnNav">
 										<ul>
 											<li>
-												<Link to={absoluteSitePaths.plan} noUnderline>
+												<Link
+													to={absoluteSitePaths.plan}
+													noUnderline
+													textColor={(theme) => theme.colors.extended.grey[100]}
+												>
 													<Trans>Plan du site</Trans>
 												</Link>
 											</li>
 											<li>
-												<Link to={absoluteSitePaths.nouveautés} noUnderline>
+												<Link
+													to={absoluteSitePaths.nouveautés}
+													noUnderline
+													textColor={(theme) => theme.colors.extended.grey[100]}
+												>
 													Nouveautés <Emoji emoji="✨" />
 												</Link>
 											</li>
 											<li>
-												<Link to={absoluteSitePaths.stats} noUnderline>
+												<Link
+													to={absoluteSitePaths.stats}
+													noUnderline
+													textColor={(theme) => theme.colors.extended.grey[100]}
+												>
 													Stats <Emoji emoji="📊" />
 												</Link>
 											</li>
 											<li>
-												<Link to={absoluteSitePaths.budget} noUnderline>
+												<Link
+													to={absoluteSitePaths.budget}
+													noUnderline
+													textColor={(theme) => theme.colors.extended.grey[100]}
+												>
 													Budget <Emoji emoji="💶" />
 												</Link>
 											</li>
@@ -120,6 +136,7 @@ export default function Footer() {
 											<Link
 												to={absoluteSitePaths.développeur.index}
 												noUnderline
+												textColor={(theme) => theme.colors.extended.grey[100]}
 											>
 												<Trans>Intégrer nos simulateurs</Trans>
 											</Link>
@@ -136,6 +153,7 @@ export default function Footer() {
 													openInSameWindow
 													lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
 													noUnderline
+													textColor={(theme) => theme.colors.extended.grey[100]}
 												>
 													{hrefLink.hrefLang === 'fr' ? (
 														<>
@@ -173,6 +191,7 @@ export default function Footer() {
 														'Accessibilité : non conforme, en savoir plus'
 													)}
 													noUnderline
+													textColor={(theme) => theme.colors.extended.grey[100]}
 												>
 													<Trans i18nKey="footer.accessibilité">
 														Accessibilité : non conforme

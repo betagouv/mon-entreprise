@@ -227,7 +227,7 @@ export function SimulateurCard({
 	const { t } = useTranslation()
 
 	return (
-		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
+		<>
 			{small ? (
 				<Grid item xs={12} sm={6} md={6} lg={4} {...props}>
 					<SmallCard
@@ -275,7 +275,7 @@ export function SimulateurCard({
 					</Card>
 				</Grid>
 			)}
-		</ThemeProvider>
+		</>
 	)
 }
 

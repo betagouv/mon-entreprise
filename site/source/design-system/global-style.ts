@@ -222,14 +222,14 @@ export const CustomizeBlockStyle = css`
 	${({
 		theme,
 		backgroundColor,
-		color,
+		textColor,
 	}: {
 		theme: DefaultTheme
 		backgroundColor?: (theme: DefaultTheme) => string
-		color?: (theme: DefaultTheme) => string
+		textColor?: (theme: DefaultTheme) => string
 	}) =>
 		`
 		${backgroundColor ? `background-color: ${backgroundColor(theme)};` : ''}
-		${color ? `color: ${color(theme)};` : ''}
+		${textColor ? `color: ${textColor(theme)};` : ''}
 		`}
 `

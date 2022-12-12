@@ -3,6 +3,8 @@ import styled, { DefaultTheme, ThemeProvider } from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
 
+import { CustomizeBlockStyle } from '../global-style'
+
 const InnerContainer = styled.div`
 	margin-right: auto;
 	margin-left: auto;
@@ -45,6 +47,7 @@ const InnerContainer = styled.div`
 
 type OuterContainerProps = {
 	backgroundColor?: (theme: DefaultTheme) => string
+	color?: (theme: DefaultTheme) => string
 }
 
 type ContainerProps = {
@@ -79,8 +82,7 @@ export default function Container({
 const OuterContainer = styled.div<OuterContainerProps>`
 	flex: 1;
 	min-width: 100vw;
-	background-color: ${({ theme, backgroundColor }) =>
-		backgroundColor ? backgroundColor(theme) : theme.colors};
+	background-color: ${({ theme }) => theme.colors.theme.backgroundColorLight};
 	@media print {
 		min-width: initial;
 	}
@@ -91,6 +93,7 @@ const OuterContainer = styled.div<OuterContainerProps>`
 			padding: 0.5em;
 		}
 	}
+	${CustomizeBlockStyle}
 `
 
 const OuterOuterContainer = styled.div`

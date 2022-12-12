@@ -8,7 +8,9 @@ import React, {
 	useRef,
 } from 'react'
 import { NavLink } from 'react-router-dom'
-import styled, { css } from 'styled-components'
+import styled, { DefaultTheme, css } from 'styled-components'
+
+import { CustomizeBlockStyle } from '../global-style'
 
 export const StyledLinkHover = css`
 	text-decoration: underline;
@@ -21,6 +23,8 @@ export const StyledLinkHover = css`
 interface StyledLinkProps {
 	$isDisabled?: boolean
 	$noUnderline?: boolean
+	backgroundColor?: (theme: DefaultTheme) => string
+	textColor?: (theme: DefaultTheme) => string
 }
 
 export const StyledLink = styled.a<StyledLinkProps>`
@@ -29,13 +33,6 @@ export const StyledLink = styled.a<StyledLinkProps>`
 			? theme.colors.extended.grey[600]
 			: theme.colors.bases.primary[700]};
 	background-color: inherit;
-	${({ theme }) =>
-		theme.darkMode &&
-		css`
-			@media not print {
-				color: ${theme.colors.extended.grey[100]};
-			}
-		`}
 	${({ $isDisabled }) =>
 		$isDisabled &&
 		css`
@@ -61,6 +58,7 @@ export const StyledLink = styled.a<StyledLinkProps>`
 				  `
 				: ''}
 	}
+	${CustomizeBlockStyle}
 `
 
 export const Link = React.forwardRef<
@@ -69,9 +67,18 @@ export const Link = React.forwardRef<
 		children: React.ReactNode
 		isDisabled?: boolean
 		noUnderline?: boolean
+		backgroundColor?: (theme: DefaultTheme) => string
+		textColor?: (theme: DefaultTheme) => string
 	}
 >(function Link(props, forwardedRef) {
-	const { isDisabled, role, noUnderline, ...ariaButtonProps } = props
+	const {
+		isDisabled,
+		role,
+		noUnderline,
+		backgroundColor,
+		textColor,
+		...ariaButtonProps
+	} = props
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
 
 	return (
@@ -83,6 +90,8 @@ export const Link = React.forwardRef<
 			$noUnderline={noUnderline}
 			tabIndex={isDisabled ? -1 : buttonOrLinkProps.tabIndex}
 			as={isDisabled ? 'span' : buttonOrLinkProps.as}
+			backgroundColor={backgroundColor}
+			textColor={textColor}
 		/>
 	)
 })

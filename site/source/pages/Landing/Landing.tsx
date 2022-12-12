@@ -146,6 +146,7 @@ export default function Landing() {
 									<Link
 										aria-label="équipe, accéder à notre page de présentation d'équipe, nouvelle fenêtre"
 										href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe"
+										textColor={(theme) => theme.colors.bases.primary[400]}
 									>
 										équipe
 									</Link>{' '}
@@ -153,6 +154,7 @@ export default function Landing() {
 									<Link
 										href="https://www.urssaf.fr"
 										aria-label="l'URSSAF, accéder au site urssaf.fr, nouvelle fenêtre"
+										textColor={(theme) => theme.colors.bases.primary[400]}
 									>
 										l’Urssaf
 									</Link>
@@ -161,6 +163,7 @@ export default function Landing() {
 									<Link
 										href="https://beta.gouv.fr/manifeste"
 										aria-label="beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre"
+										textColor={(theme) => theme.colors.bases.primary[400]}
 									>
 										beta.gouv.fr
 									</Link>
