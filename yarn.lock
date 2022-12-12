@@ -282,23 +282,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@atomik-color/component@npm:^1.0.16":
-  version: 1.0.16
-  resolution: "@atomik-color/component@npm:1.0.16"
+"@atomik-color/component@npm:^1.0.17":
+  version: 1.0.17
+  resolution: "@atomik-color/component@npm:1.0.17"
   dependencies:
-    "@atomik-color/core": ^1.0.12
+    "@atomik-color/core": ^1.0.13
   peerDependencies:
     react: 16.x
-  checksum: da85cc375f6d40ac887fae525bce79825191feb3c5eb9ddf3b616c58759f9e4271f36d3d2b71448bf7faa059164648f1310d6a253a50550a466460289367e6a6
+  checksum: 248ac3defa9c9826460e11a18823f9ac6f7b3c3edb11ec287e43fce43f422705cadb5d76fc6b0c74eceb614b2c00ab8865a2c2e93a61643a4c682866be4b56f3
   languageName: node
   linkType: hard
 
-"@atomik-color/core@npm:^1.0.12":
-  version: 1.0.12
-  resolution: "@atomik-color/core@npm:1.0.12"
+"@atomik-color/core@npm:^1.0.13":
+  version: 1.0.13
+  resolution: "@atomik-color/core@npm:1.0.13"
   peerDependencies:
     react: 16.x
-  checksum: bc5c44793f401b10c7780811e35652ab5f3fb6ff9999f11c8dd0f5577d5710f563acca27349dfbbd2c2da3c909b458e817c96a748ccd87dba00db49366e5bfa4
+  checksum: 61263f873bc250f4b8bd6d137289e0dd9c38cc8a60553adbfab28f8d35d8eb4a2376b533e04885d7c83fd6b5daeb5302a829e36e4bd67cbde314f84bcad2ab4d
   languageName: node
   linkType: hard
 
@@ -25977,7 +25977,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "site@workspace:site"
   dependencies:
-    "@atomik-color/component": ^1.0.16
+    "@atomik-color/component": ^1.0.17
     "@axe-core/react": ^4.5.2
     "@internationalized/number": ^3.1.1
     "@publicodes/api": ^1.0.0-beta.63
