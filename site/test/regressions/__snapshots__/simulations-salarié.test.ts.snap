@@ -637,7 +637,7 @@ Notifications affichées : salarié . contrat . salaire brut . contrôle salaire
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 12`] = `
 "salarié . contrat . salaire brut: 20000
 salarié . coût total employeur: 28340
-salarié . rémunération . net . payé après impôt: 11045
+salarié . rémunération . net . payé après impôt: 11049
 salarié . rémunération . net . à payer avant impôt: 15997
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
