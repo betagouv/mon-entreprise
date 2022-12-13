@@ -113,6 +113,7 @@
 		"@rollup/plugin-replace": "^4.0.0",
 		"@rollup/plugin-yaml": "^3.1.0",
 		"@rushstack/package-deps-hash": "^3.2.64",
+		"@storybook/addon-a11y": "^6.5.14",
 		"@storybook/addon-actions": "^6.5.13",
 		"@storybook/addon-essentials": "^6.5.13",
 		"@storybook/addon-interactions": "^6.5.13",

@@ -3,11 +3,8 @@ import styled, { ThemeProvider, css } from 'styled-components'
 
 import { Palette, SmallPalette } from '@/types/styled'
 
+import { ErrorIcon, InfoIcon, ReturnIcon, SuccessIcon } from '../icons'
 import { Body } from '../typography/paragraphs'
-import baseIcon from './baseIcon.svg'
-import errorIcon from './errorIcon.svg'
-import infoIcon from './infoIcon.svg'
-import successIcon from './successIcon.svg'
 
 export type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type MessageProps = {
@@ -42,21 +39,44 @@ export function Message({
 				light={light}
 				aria-atomic
 			>
-				{icon &&
-					(type === 'success' ? (
-						<StyledIcon src={successIcon} alt="" />
-					) : type === 'error' ? (
-						<StyledIcon src={errorIcon} alt="" />
-					) : type === 'info' ? (
-						<StyledIcon src={infoIcon} alt="" />
-					) : (
-						<StyledIcon src={baseIcon} alt="" />
-					))}
+				{icon && (
+					<StyledIconWrapper type={type}>
+						{type === 'success' ? (
+							<SuccessIcon />
+						) : type === 'error' ? (
+							<ErrorIcon />
+						) : type === 'info' ? (
+							<InfoIcon />
+						) : (
+							<ReturnIcon />
+						)}
+					</StyledIconWrapper>
+				)}
 				<Wrapper role={role}>{children}</Wrapper>
 			</StyledMessage>
 		</ThemeProvider>
 	)
 }
+const StyledIconWrapper = styled.div<{
+	type: MessageProps['type']
+}>`
+	display: flex;
+	position: relative;
+	top: ${({ theme }) => theme.spacings.xxs};
+	width: ${({ theme }) => theme.spacings.xl};
+	svg {
+		fill: ${({ theme, type }) =>
+			type === 'success'
+				? theme.colors.extended.success[600]
+				: type === 'error'
+				? theme.colors.extended.error[600]
+				: type === 'info'
+				? theme.colors.extended.info[600]
+				: type === 'secondary'
+				? theme.colors.bases.secondary[700]
+				: theme.colors.bases.primary[700]};
+	}
+`
 
 type StyledMessageProps = Pick<MessageProps, 'border' | 'light'> & {
 	messageType: NonNullable<MessageProps['type']>
@@ -73,7 +93,7 @@ const StyledMessage = styled.div<StyledMessageProps>`
 				: theme.colors.extended[messageType]
 
 		return css`
-			padding: ${theme.spacings.xs} ${theme.spacings.lg};
+			padding: 0px ${theme.spacings.lg};
 			background-color: ${light ? 'rgba(255,255,255,0.75)' : colorSpace[100]};
 			border: 2px solid ${colorSpace[border ? 500 : 100]};
 			border-radius: ${theme.box.borderRadius};
@@ -88,19 +108,6 @@ const StyledMessage = styled.div<StyledMessageProps>`
 			}
 		`
 	}}
-`
-
-const StyledIcon = styled.img`
-	padding-right: ${({ theme }) => theme.spacings.md};
-	${({ theme, title }) =>
-		title !== 'paragraph'
-			? css`
-					margin-top: calc(${theme.spacings.md} + ${theme.spacings.xxs} / 2);
-					height: calc(${theme.spacings.md} + ${theme.spacings.xxs});
-			  `
-			: css`
-					margin-top: calc(${theme.spacings.lg});
-			  `}
 `
 
 const Wrapper = styled.div`
