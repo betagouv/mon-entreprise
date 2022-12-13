@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components'
+import { Theme } from '@/types/styled'
 
 const baseTheme = {
 	colors: {
@@ -193,7 +193,7 @@ const breakpoints = Object.fromEntries(
 	])
 ) as Record<SpacingKey, number>
 
-const theme: DefaultTheme = {
+const theme = {
 	breakpoints: {
 		values: {
 			xs: 0,
@@ -203,6 +203,6 @@ const theme: DefaultTheme = {
 	spacing: Object.values(baseTheme.spacings),
 
 	...baseTheme,
-}
+} satisfies Theme
 
 export default theme
