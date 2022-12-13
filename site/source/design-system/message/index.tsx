@@ -58,11 +58,11 @@ export function Message({
 	)
 }
 
-const StyledMessage = styled.div<
-	Pick<MessageProps, 'border' | 'light'> & {
-		messageType: NonNullable<MessageProps['type']>
-	}
->`
+type StyledMessageProps = Pick<MessageProps, 'border' | 'light'> & {
+	messageType: NonNullable<MessageProps['type']>
+}
+
+const StyledMessage = styled.div<StyledMessageProps>`
 	display: flex;
 	position: relative;
 	align-items: baseline;
@@ -79,10 +79,10 @@ const StyledMessage = styled.div<
 			border-radius: ${theme.box.borderRadius};
 			margin-bottom: ${theme.spacings.md};
 
-			h3,
-			h4,
-			h5,
-			h6 {
+			&& h3,
+			&& h4,
+			&& h5,
+			&& h6 {
 				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
 				background-color: inherit;
 			}
