@@ -62,6 +62,7 @@ const StyledChip = styled.strong<
 		type: NonNullable<ChipProps['type']>
 	}
 >`
+	vertical-align: middle;
 	white-space: nowrap;
 	${({ theme, type }) => {
 		const colorSpace: Palette | SmallPalette =
@@ -71,7 +72,6 @@ const StyledChip = styled.strong<
 
 		return css`
 			margin: 0 ${theme.spacings.xxs};
-
 			border-radius: ${theme.spacings.md};
 			font-family: ${theme.fonts.main};
 			padding: ${theme.spacings.xxs} ${theme.spacings.xs};

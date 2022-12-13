@@ -7,7 +7,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 
 export default function BetaBanner() {
 	return (
-		<Message type="info" icon="🚧" border={false} mini>
+		<Message type="info" icon="🚧" border={false}>
 			<Trans i18nKey="betawarning">
 				<Body>
 					<StyledStrong>Cet outil est en version bêta</StyledStrong> : nous
