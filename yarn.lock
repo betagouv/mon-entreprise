@@ -4739,9 +4739,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.62":
-  version: 1.0.0-beta.62
-  resolution: "@publicodes/api@npm:1.0.0-beta.62"
+"@publicodes/api@npm:^1.0.0-beta.65":
+  version: 1.0.0-beta.65
+  resolution: "@publicodes/api@npm:1.0.0-beta.65"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -4750,22 +4750,7 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.47
-  checksum: 4b65e6a04a9fa2f5e0a8e60ca7e657548dbf1e1d19289efaab87a1ba9f1c35c96cf616dbd02b9cdd414b1303a74c2d8393a6b129bf1e87bfd0d36e1f81698ea7
-  languageName: node
-  linkType: hard
-
-"@publicodes/api@npm:^1.0.0-beta.63":
-  version: 1.0.0-beta.63
-  resolution: "@publicodes/api@npm:1.0.0-beta.63"
-  dependencies:
-    "@koa/cors": ^3.3.0
-    "@koa/router": ^10.1.1
-    koa: ^2.13.4
-    koa-body: ^5.0.0
-    openapi-validator-middleware: ^3.2.6
-  peerDependencies:
-    publicodes: ^1.0.0-beta.47
-  checksum: 53d0cf908e787e6299224547dd5b345fb24dbf092625410b245c9bb2e66cd7084bfb2fd5f215eb98796c4200f65395f88003c5c13eaccd4cb0bcf37eb8061183
+  checksum: eba637afa79445c62f7d1365cb34cf37fcb5033b93a34ac2422cb2ecf6c3378b7bd97a1a6193e3567858bab59118dd3d9d355dc62adc5123f028fda45cf4ca19
   languageName: node
   linkType: hard
 
@@ -9802,7 +9787,7 @@ __metadata:
     "@apidevtools/swagger-cli": ^4.0.4
     "@koa/cors": ^4.0.0
     "@koa/router": ^12.0.0
-    "@publicodes/api": ^1.0.0-beta.62
+    "@publicodes/api": ^1.0.0-beta.65
     "@sentry/node": ^7.22.0
     "@sentry/tracing": ^7.22.0
     "@types/koa": ^2.13.5
@@ -9819,7 +9804,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^2.0.20
-    publicodes: ^1.0.0-beta.62
+    publicodes: ^1.0.0-beta.65
     rate-limiter-flexible: ^2.4.1
     rimraf: ^3.0.2
     swagger-ui-dist: ^4.15.5
@@ -13701,13 +13686,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discontinuous-range@npm:1.0.0":
-  version: 1.0.0
-  resolution: "discontinuous-range@npm:1.0.0"
-  checksum: 8ee88d7082445b6eadc7c03bebe6dc978f96760c45e9f65d16ca66174d9e086a9e3855ee16acf65625e1a07a846a17de674f02a5964a6aebe5963662baf8b5c8
-  languageName: node
-  linkType: hard
-
 "doctrine@npm:^2.1.0":
   version: 2.1.0
   resolution: "doctrine@npm:2.1.0"
@@ -15419,7 +15397,7 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.62
+    publicodes: ^1.0.0-beta.65
   peerDependencies:
     publicodes: ^1.0.0-beta.55
   languageName: unknown
@@ -21332,7 +21310,7 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.62
+    publicodes: ^1.0.0-beta.65
   peerDependencies:
     publicodes: ^1.0.0-beta.55
   languageName: unknown
@@ -21385,13 +21363,6 @@ __metadata:
     saslprep:
       optional: true
   checksum: 84590484b2c93bce849ec1e334b064e983444ed73942061c91e09556348c80db9d4a40544b927cd795bdfbfc51d1b713a7df5ced4ecf13cd00fab5e3c3e32ada
-  languageName: node
-  linkType: hard
-
-"moo@npm:^0.5.0, moo@npm:^0.5.1":
-  version: 0.5.2
-  resolution: "moo@npm:0.5.2"
-  checksum: 5a41ddf1059fd0feb674d917c4774e41c877f1ca980253be4d3aae1a37f4bc513f88815041243f36f5cf67a62fb39324f3f997cf7fb17b6cb00767c165e7c499
   languageName: node
   linkType: hard
 
@@ -21526,23 +21497,6 @@ __metadata:
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
   checksum: 23ad088b08f898fc9b53011d7bb78ec48e79de7627e01ab5518e806033861bef68d5b0cd0e2205c2f36690ac9571ff6bcb05eb777ced2eeda8d4ac5b44592c3d
-  languageName: node
-  linkType: hard
-
-"nearley@npm:^2.19.2":
-  version: 2.20.1
-  resolution: "nearley@npm:2.20.1"
-  dependencies:
-    commander: ^2.19.0
-    moo: ^0.5.0
-    railroad-diagrams: ^1.0.0
-    randexp: 0.4.6
-  bin:
-    nearley-railroad: bin/nearley-railroad.js
-    nearley-test: bin/nearley-test.js
-    nearley-unparse: bin/nearley-unparse.js
-    nearleyc: bin/nearleyc.js
-  checksum: 42c2c330c13c7991b48221c5df00f4352c2f8851636ae4d1f8ca3c8e193fc1b7668c78011d1cad88cca4c1c4dc087425420629c19cc286d7598ec15533aaef26
   languageName: node
   linkType: hard
 
@@ -23793,40 +23747,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.63":
-  version: 1.0.0-beta.63
-  resolution: "publicodes-react@npm:1.0.0-beta.63"
+"publicodes-react@npm:^1.0.0-beta.65":
+  version: 1.0.0-beta.65
+  resolution: "publicodes-react@npm:1.0.0-beta.65"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: ^1.0.0-beta.40
     react: ^17 || ^18
     react-dom: ^17 || ^18
-  checksum: c3078deed199de42eb5a65cecc5db12696e93a4ae5c082e38c3edea959be734e0d574acc240ebb7da9ba35d7126b3991d1d6daf41b1647aac7736a06bafe8701
+  checksum: 9c7afaa1516f2b555d91d7a74d9f8ad40c914d8d40531761d7ce71cfd0cbbbbdf0f9574107470c906879a1a0f8c9346f02feee5fd3144efe29db208b67337d06
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.62":
-  version: 1.0.0-beta.62
-  resolution: "publicodes@npm:1.0.0-beta.62"
-  dependencies:
-    moo: ^0.5.1
-    nearley: ^2.19.2
+"publicodes@npm:^1.0.0-beta.65":
+  version: 1.0.0-beta.65
+  resolution: "publicodes@npm:1.0.0-beta.65"
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: cb17bfdf5ebcfa557c86d82d231f7660ef2202a50007b02bcc129d854015babde62cb0851ea3e3a4e9746407b49337de5aaeeca9f0ce3a2599617b537e35a7a9
-  languageName: node
-  linkType: hard
-
-"publicodes@npm:^1.0.0-beta.63":
-  version: 1.0.0-beta.63
-  resolution: "publicodes@npm:1.0.0-beta.63"
-  dependencies:
-    moo: ^0.5.1
-    nearley: ^2.19.2
-  peerDependencies:
-    "@types/mocha": ^9.0.0
-  checksum: 7aff3e841735582737b0d89bb763c49c4bc8ddd5806ff5c7c32fa79d7b49d2b2ba29ad86a3eaa28c25bc28007ba49f068856cefe6e5430d405e0f51f0637e163
+  checksum: 562365420f6b8ae2292af3a9ae672569375196c57df0bde962f692f25dfc17d04f2d8a66e7f12ce3fb980363219c6256d0ed1387a0ca08b4f01c311f07681be3
   languageName: node
   linkType: hard
 
@@ -24006,27 +23945,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"railroad-diagrams@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "railroad-diagrams@npm:1.0.0"
-  checksum: 9e312af352b5ed89c2118edc0c06cef2cc039681817f65266719606e4e91ff6ae5374c707cc9033fe29a82c2703edf3c63471664f97f0167c85daf6f93496319
-  languageName: node
-  linkType: hard
-
 "ramda@npm:^0.28.0":
   version: 0.28.0
   resolution: "ramda@npm:0.28.0"
   checksum: 44ea6e5010bba70151b6a92d8114a91915e8b5a16105cce65fae58c9d7386b812c429645e35f21141d7087568550ce383bc10ee1a65cdec951f4b69ea457e6a4
-  languageName: node
-  linkType: hard
-
-"randexp@npm:0.4.6":
-  version: 0.4.6
-  resolution: "randexp@npm:0.4.6"
-  dependencies:
-    discontinuous-range: 1.0.0
-    ret: ~0.1.10
-  checksum: 3c0d440a3f89d6d36844aa4dd57b5cdb0cab938a41956a16da743d3a3578ab32538fc41c16cc0984b6938f2ae4cbc0216967e9829e52191f70e32690d8e3445d
   languageName: node
   linkType: hard
 
@@ -25981,7 +25903,7 @@ __metadata:
     "@atomik-color/core": ^1.0.13
     "@axe-core/react": ^4.5.2
     "@internationalized/number": ^3.1.1
-    "@publicodes/api": ^1.0.0-beta.63
+    "@publicodes/api": ^1.0.0-beta.65
     "@react-aria/accordion": ^3.0.0-alpha.13
     "@react-aria/button": ^3.6.3
     "@react-aria/checkbox": ^3.7.0
@@ -26043,8 +25965,8 @@ __metadata:
     markdown-to-jsx: ^7.1.7
     modele-social: "workspace:^"
     netlify-cli: ^12.2.8
-    publicodes: ^1.0.0-beta.63
-    publicodes-react: ^1.0.0-beta.63
+    publicodes: ^1.0.0-beta.65
+    publicodes-react: ^1.0.0-beta.65
     react: ^18.2.0
     react-colorful: ^5.6.1
     react-dom: ^18.2.0
