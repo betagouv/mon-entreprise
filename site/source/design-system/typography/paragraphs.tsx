@@ -5,13 +5,21 @@ export const baseParagraphStyle = css`
 	font-weight: normal;
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
 	background-color: inherit;
-	${({ theme }) =>
-		theme.darkMode &&
-		css`
-			@media not print {
+
+	@media not print {
+		${({ theme }) =>
+			theme.darkMode &&
+			css`
 				color: ${theme.colors.extended.grey[100]};
-			}
-		`}
+			`}
+		/* Hack for text color in Message component in documentation */
+		&& {
+			color: ${({ theme }) =>
+				theme.darkMode
+					? theme.colors.extended.grey[100]
+					: theme.colors.extended.grey[800]};
+		}
+	}
 `
 
 export const Intro = styled.p`
