@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 import Meta from '@/components/utils/Meta'
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
@@ -77,6 +78,11 @@ export default function PageData(props: PageDataProps) {
 			<TrackChapter {...trackInfo}>
 				{meta && <Meta page={`simulateur.${title ?? ''}`} {...meta} />}
 
+				{beta && (
+					<StyledBetaContainer>
+						<BetaBanner />
+					</StyledBetaContainer>
+				)}
 				{title && !inIframe && (
 					<>
 						<H1>
@@ -87,7 +93,6 @@ export default function PageData(props: PageDataProps) {
 					</>
 				)}
 				{description && !inIframe && description}
-				{beta && <BetaBanner />}
 
 				<Component />
 
@@ -106,3 +111,15 @@ export default function PageData(props: PageDataProps) {
 		</CurrentSimulatorDataProvider>
 	)
 }
+
+const StyledBetaContainer = styled.div`
+	padding-top: ${({ theme }) => theme.spacings.xl};
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		padding-top: ${({ theme }) => theme.spacings.md};
+	}
+	margin-bottom: -${({ theme }) => theme.spacings.xl};
+	position: sticky;
+	top: 0;
+	z-index: 3;
+	background-color: rgba(255, 255, 255, 0.7);
+`
