@@ -1,13 +1,16 @@
 import React from 'react'
 
+import { DarkModeProvider } from '@/contexts/DarkModeContext'
 import { GlobalStyle } from '@/design-system/index'
 import DesignSystemThemeProvider from '@/design-system/root'
 
 export const decorators = [
 	(Story) => (
 		<DesignSystemThemeProvider>
+			<DarkModeProvider value={false}>
 			<GlobalStyle />
 			<Story />
+			</DarkModeProvider>
 		</DesignSystemThemeProvider>
 	),
 ]

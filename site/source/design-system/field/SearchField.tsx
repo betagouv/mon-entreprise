@@ -8,8 +8,8 @@ import { AriaSearchFieldProps } from '@react-types/searchfield'
 import { useRef } from 'react'
 import styled, { css } from 'styled-components'
 
+import { SearchIcon } from '@/design-system/icons'
 import { Loader } from '@/design-system/icons/Loader'
-import { SearchIcon } from '@/design-system/icons/SearchIcon'
 
 import {
 	StyledContainer,

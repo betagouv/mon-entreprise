@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Chevron } from '@/design-system/icons'
+import { ChevronIcon } from '@/design-system/icons'
 import { H4 } from '@/design-system/typography/heading'
 import {
 	NewWindowLinkIcon,
@@ -86,7 +86,7 @@ const StyledHeader = styled(H4)`
 	background-color: inherit;
 `
 
-const StyledChevron = styled(Chevron)`
+const StyledChevron = styled(ChevronIcon)`
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 `
 

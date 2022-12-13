@@ -8,7 +8,7 @@ import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 
-import { CarretDown } from '@/design-system/icons/carret-down'
+import { CarretDownIcon } from '@/design-system/icons'
 import { omit } from '@/utils'
 
 import { ListBox } from './ListBox'
@@ -79,7 +79,7 @@ const Value = styled.span`
 	margin-top: 1rem;
 `
 
-const StyledIcon = styled(CarretDown)`
+const StyledIcon = styled(CarretDownIcon)`
 	margin: 0 4px;
 `
 
