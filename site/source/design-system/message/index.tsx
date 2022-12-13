@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { ThemeProvider, css } from 'styled-components'
 
+import Emoji from '@/components/utils/Emoji'
 import { Palette, SmallPalette } from '@/types/styled'
 
 import { ErrorIcon, InfoIcon, ReturnIcon, SuccessIcon } from '../icons'
@@ -9,9 +10,10 @@ import { Body } from '../typography/paragraphs'
 export type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type MessageProps = {
 	children: React.ReactNode
-	icon?: boolean
+	icon?: boolean | string
 	border?: boolean
 	type?: MessageType
+	mini?: boolean
 	light?: boolean
 	className?: string
 	role?: string
@@ -20,6 +22,7 @@ type MessageProps = {
 export function Message({
 	type = 'primary',
 	icon = false,
+	mini = false,
 	border = true,
 	light = false,
 	children,
@@ -36,12 +39,15 @@ export function Message({
 				className={className}
 				messageType={type}
 				border={border}
+				mini={mini}
 				light={light}
 				aria-atomic
 			>
 				{icon && (
 					<StyledIconWrapper type={type}>
-						{type === 'success' ? (
+						{typeof icon === 'string' ? (
+							<Emoji emoji={icon} aria-hidden />
+						) : type === 'success' ? (
 							<SuccessIcon />
 						) : type === 'error' ? (
 							<ErrorIcon />
@@ -78,7 +84,7 @@ const StyledIconWrapper = styled.div<{
 	}
 `
 
-type StyledMessageProps = Pick<MessageProps, 'border' | 'light'> & {
+type StyledMessageProps = Pick<MessageProps, 'border' | 'light' | 'mini'> & {
 	messageType: NonNullable<MessageProps['type']>
 }
 
@@ -86,16 +92,16 @@ const StyledMessage = styled.div<StyledMessageProps>`
 	display: flex;
 	position: relative;
 	align-items: baseline;
-	${({ theme, messageType, border, light }) => {
+	${({ theme, messageType, border, light, mini }) => {
 		const colorSpace: Palette | SmallPalette =
 			messageType === 'secondary' || messageType === 'primary'
 				? theme.colors.bases[messageType]
 				: theme.colors.extended[messageType]
 
 		return css`
-			padding: 0px ${theme.spacings.lg};
+			padding: 0px ${mini ? theme.spacings.md : theme.spacings.lg};
 			background-color: ${light ? 'rgba(255,255,255,0.75)' : colorSpace[100]};
-			border: 2px solid ${colorSpace[border ? 500 : 100]};
+			border: ${mini ? '1px' : '2px'} solid ${colorSpace[border ? 500 : 100]};
 			border-radius: ${theme.box.borderRadius};
 			margin-bottom: ${theme.spacings.md};
 
@@ -105,6 +111,9 @@ const StyledMessage = styled.div<StyledMessageProps>`
 			&& h6 {
 				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
 				background-color: inherit;
+			}
+			> * {
+				margin: -${mini ? theme.spacings.xs : 0} 0;
 			}
 		`
 	}}

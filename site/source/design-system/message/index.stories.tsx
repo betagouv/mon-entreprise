@@ -1,6 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import styled from 'styled-components'
 
 import { Message } from '@/design-system'
+
+import { Strong } from '../typography'
+import { Body } from '../typography/paragraphs'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -20,8 +24,6 @@ AccompanyingMessage.args = {
 	children:
 		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
 	type: 'primary',
-	icon: true,
-	border: true,
 }
 
 const AlertTemplate: ComponentStory<typeof Message> = (args) => (
@@ -40,7 +42,19 @@ const AlertTemplate: ComponentStory<typeof Message> = (args) => (
 
 export const Alert = AlertTemplate.bind({})
 Alert.args = {
-	children: 'Votre message a bien été envoyé',
 	icon: true,
-	border: true,
 }
+
+export const MessageWithCustomIcon = () => (
+	<Message type="info" icon="🚧" border={false} mini>
+		<Body>
+			<StyledStrong>Cet outil est en version bêta</StyledStrong> : nous
+			travaillons à <Strong>valider les informations et les calculs</Strong>,
+			mais des <Strong>erreurs peuvent être présentes.</Strong>
+		</Body>
+	</Message>
+)
+
+const StyledStrong = styled(Strong)`
+	color: ${({ theme }) => theme.colors.extended.info[600]};
+`
