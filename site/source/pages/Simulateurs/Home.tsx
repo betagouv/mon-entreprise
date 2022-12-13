@@ -1,10 +1,11 @@
 import { Trans, useTranslation } from 'react-i18next'
-import styled, { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import Emoji from '@/components/utils/Emoji'
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
+import { Chip } from '@/design-system'
 import InfoBulle from '@/design-system/InfoBulle'
 import { Card } from '@/design-system/card'
 import { SmallCard } from '@/design-system/card/SmallCard'
@@ -241,10 +242,9 @@ export function SimulateurCard({
 							<h4>
 								{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
 								{beta && (
-									<Badge>
-										<Emoji emoji="" />
-										🚧 Beta
-									</Badge>
+									<Chip type="info" icon="🚧">
+										Bêta
+									</Chip>
 								)}
 							</h4>
 						}
@@ -258,10 +258,9 @@ export function SimulateurCard({
 							<>
 								{shortName}
 								{beta && (
-									<Badge>
-										<Emoji emoji="" />
-										🚧 Beta
-									</Badge>
+									<Chip type="info" icon="🚧">
+										Bêta
+									</Chip>
 								)}
 							</>
 						}
@@ -278,11 +277,3 @@ export function SimulateurCard({
 		</ThemeProvider>
 	)
 }
-
-const Badge = styled.small`
-	border-radius: 0.5rem;
-	padding: 0.25rem 0.5rem;
-	margin: 0.25rem;
-	white-space: nowrap;
-	background-color: ${({ theme }) => theme.colors.extended.info[300]};
-`

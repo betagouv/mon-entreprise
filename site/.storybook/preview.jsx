@@ -8,8 +8,8 @@ export const decorators = [
 	(Story) => (
 		<DesignSystemThemeProvider>
 			<DarkModeProvider value={false}>
-			<GlobalStyle />
-			<Story />
+				<GlobalStyle />
+				<Story />
 			</DarkModeProvider>
 		</DesignSystemThemeProvider>
 	),

@@ -6,6 +6,7 @@ import Meta from '@/components/utils/Meta'
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import useSearchParamsSimulationSharing from '@/components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
+import { Chip } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
@@ -59,7 +60,7 @@ export default function PageData(props: PageDataProps) {
 	const année =
 		typeof situation.date === 'string' && new Date(situation.date).getFullYear()
 	const year =
-		typeof année === 'number' && année !== 2022 ? ` - version ${année}` : ''
+		typeof année === 'number' && année !== 2022 ? `Année ${année}` : ''
 
 	const inIframe = useIsEmbedded()
 	useSimulationConfig({ path, config })
@@ -86,8 +87,17 @@ export default function PageData(props: PageDataProps) {
 				{title && !inIframe && (
 					<>
 						<H1>
-							{title}
-							{year}
+							<StyledSpan>{title}</StyledSpan>
+							{year && (
+								<Chip type="secondary" icon="📆">
+									{year}
+								</Chip>
+							)}
+							{beta && (
+								<Chip type="info" icon="🚧">
+									Version bêta
+								</Chip>
+							)}
 						</H1>
 						{tooltip && <Intro>{tooltip}</Intro>}
 					</>
@@ -111,7 +121,9 @@ export default function PageData(props: PageDataProps) {
 		</CurrentSimulatorDataProvider>
 	)
 }
-
+const StyledSpan = styled.span`
+	margin-right: ${({ theme }) => theme.spacings.sm};
+`
 const StyledBetaContainer = styled.div`
 	padding-top: ${({ theme }) => theme.spacings.xl};
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
@@ -121,5 +133,6 @@ const StyledBetaContainer = styled.div`
 	position: sticky;
 	top: 0;
 	z-index: 3;
-	background-color: rgba(255, 255, 255, 0.7);
+	background-color: ${({ theme }) =>
+		!theme.darkMode ? 'rgba(255, 255, 255, 0.7)' : 'inherit'};
 `
