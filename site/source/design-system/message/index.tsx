@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled, { DefaultTheme, ThemeProvider, css } from 'styled-components'
 
 import Emoji from '@/components/utils/Emoji'
 import { Palette, SmallPalette } from '@/types/styled'
@@ -71,16 +71,7 @@ const StyledIconWrapper = styled.div<{
 	top: ${({ theme }) => theme.spacings.xxs};
 	width: ${({ theme }) => theme.spacings.xl};
 	svg {
-		fill: ${({ theme, type }) =>
-			type === 'success'
-				? theme.colors.extended.success[600]
-				: type === 'error'
-				? theme.colors.extended.error[600]
-				: type === 'info'
-				? theme.colors.extended.info[600]
-				: type === 'secondary'
-				? theme.colors.bases.secondary[700]
-				: theme.colors.bases.primary[700]};
+		fill: ${({ theme, type }) => textColorFromType(type, theme)};
 	}
 `
 
@@ -124,3 +115,18 @@ const Wrapper = styled.div`
 `
 
 Message.Wrapper = Wrapper
+
+export function textColorFromType(
+	type: MessageProps['type'],
+	theme: DefaultTheme
+) {
+	return type === 'success'
+		? theme.colors.extended.success[600]
+		: type === 'error'
+		? theme.colors.extended.error[600]
+		: type === 'info'
+		? theme.colors.extended.info[600]
+		: type === 'secondary'
+		? theme.colors.bases.secondary[700]
+		: theme.colors.bases.primary[700]
+}
