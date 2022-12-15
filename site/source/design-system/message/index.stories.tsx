@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { Message } from '@/design-system'
 
+import { Emoji } from '../emoji'
 import { Strong } from '../typography'
 import { Body } from '../typography/paragraphs'
 
@@ -47,7 +48,7 @@ Alert.args = {
 }
 
 export const MessageWithCustomIcon = () => (
-	<Message type="info" icon="🚧" border={false} mini>
+	<Message type="info" icon={<Emoji emoji="🚧" />} border={false} mini>
 		<Body>
 			<StyledStrong>Cet outil est en version bêta</StyledStrong> : nous
 			travaillons à <Strong>valider les informations et les calculs</Strong>,

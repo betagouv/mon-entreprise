@@ -1,16 +1,16 @@
 import React from 'react'
 import styled, { DefaultTheme, ThemeProvider, css } from 'styled-components'
 
-import Emoji from '@/components/utils/Emoji'
 import { Palette, SmallPalette } from '@/types/styled'
 
+import { Emoji } from '../emoji'
 import { ErrorIcon, InfoIcon, ReturnIcon, SuccessIcon } from '../icons'
 import { Body } from '../typography/paragraphs'
 
 export type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type MessageProps = {
 	children: React.ReactNode
-	icon?: boolean | string
+	icon?: boolean | React.ReactElement<typeof Emoji>
 	border?: boolean
 	type?: MessageType
 	mini?: boolean
@@ -45,8 +45,8 @@ export function Message({
 			>
 				{icon && (
 					<StyledIconWrapper type={type}>
-						{typeof icon === 'string' ? (
-							<Emoji emoji={icon} aria-hidden />
+						{typeof icon !== 'boolean' ? (
+							icon
 						) : type === 'success' ? (
 							<SuccessIcon />
 						) : type === 'error' ? (

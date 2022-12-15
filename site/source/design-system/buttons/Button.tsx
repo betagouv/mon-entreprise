@@ -95,8 +95,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		${({ $isDisabled }) =>
 			!$isDisabled &&
 			css`
-				position: relative;
-				top: 3px;
+				transform: translateY(3px);
 			`}
 	}
 

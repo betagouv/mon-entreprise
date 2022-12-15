@@ -1,16 +1,16 @@
 import React from 'react'
 import styled, { ThemeProvider, css } from 'styled-components'
 
-import Emoji from '@/components/utils/Emoji'
 import { Palette, SmallPalette } from '@/types/styled'
 
+import { Emoji } from '../emoji'
 import { ErrorIcon, InfoIcon, SuccessIcon } from '../icons'
 import { textColorFromType } from '../message'
 
 export type ChipType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type ChipProps = {
 	children: React.ReactNode
-	icon?: boolean | string
+	icon?: boolean | React.ReactElement<typeof Emoji>
 	type?: ChipType
 	className?: string
 }
@@ -26,8 +26,8 @@ export function Chip({
 			<StyledChip className={className} type={type}>
 				{icon && (
 					<StyledIconWrapper type={type}>
-						{typeof icon === 'string' ? (
-							<Emoji emoji={icon} aria-hidden />
+						{typeof icon !== 'boolean' ? (
+							icon
 						) : type === 'success' ? (
 							<SuccessIcon />
 						) : type === 'error' ? (

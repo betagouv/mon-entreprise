@@ -1,9 +1,9 @@
 import { Trans } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
-import Emoji from '@/components/utils/Emoji'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Message } from '@/design-system'
+import { Emoji } from '@/design-system/emoji'
 import { Code, Strong } from '@/design-system/typography'
 import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'

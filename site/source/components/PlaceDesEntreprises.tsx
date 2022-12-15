@@ -4,10 +4,9 @@ import styled from 'styled-components'
 
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Emoji } from '@/design-system/emoji'
 import { Loader } from '@/design-system/icons/Loader'
 import { Body } from '@/design-system/typography/paragraphs'
-
-import Emoji from './utils/Emoji'
 
 const LazyIframe = lazy(async () => {
 	return import('./PlaceDesEntreprisesIframe').then(

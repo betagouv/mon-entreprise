@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import Emoji from '@/components/utils/Emoji'
+import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 

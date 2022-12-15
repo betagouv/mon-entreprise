@@ -11,9 +11,9 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import Emoji from '@/components/utils/Emoji'
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
+import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'

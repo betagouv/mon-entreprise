@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
-import ButtonHelp from '@/design-system/buttons/ButtonHelp'
+import HelpButton from '@/design-system/buttons/HelpButton'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, baseParagraphStyle } from '@/design-system/typography/paragraphs'
 
@@ -36,7 +36,7 @@ const suramortissementHeader = 'suramortissementHeader'
 
 export function ExplicationsResultatFiscal() {
 	return (
-		<ButtonHelp title="Quelles exonérations inclure ?" type="aide" bigPopover>
+		<HelpButton title="Quelles exonérations inclure ?" type="aide" bigPopover>
 			<Body>
 				Pour calculer le montant du résultat fiscal avant déduction des
 				exonérations et des charges sociales à indiquer dans ce simulateur, vous
@@ -207,6 +207,6 @@ export function ExplicationsResultatFiscal() {
 					</tr>
 				</tbody>
 			</StyledTable>
-		</ButtonHelp>
+		</HelpButton>
 	)
 }

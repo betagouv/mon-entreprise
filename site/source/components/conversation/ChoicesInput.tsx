@@ -18,7 +18,6 @@ import {
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import Emoji from '@/components/utils/Emoji'
 import {
 	Radio,
 	RadioCard,
@@ -26,6 +25,7 @@ import {
 	RadioGroup,
 	ToggleGroup,
 } from '@/design-system'
+import { Emoji } from '@/design-system/emoji'
 import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { H3, H4 } from '@/design-system/typography/heading'

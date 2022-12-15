@@ -3,7 +3,7 @@ import { useContext } from 'react'
 
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
-import ButtonHelp from '@/design-system/buttons/ButtonHelp'
+import HelpButton from '@/design-system/buttons/HelpButton'
 import { H3 } from '@/design-system/typography/heading'
 
 import { References } from '../References'
@@ -33,7 +33,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 	// TODO montrer les variables de type 'une possibilité'
 
 	return (
-		<ButtonHelp
+		<HelpButton
 			key={rule.dottedName}
 			type="info"
 			title={rule.title}
@@ -50,6 +50,6 @@ export function ExplicableRule<Names extends string = DottedName>({
 					<References references={rule.rawNode.références} />
 				</>
 			)}
-		</ButtonHelp>
+		</HelpButton>
 	)
 }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import Emoji from '@/components/utils/Emoji'
-import { Banner, HideButton, InnerBanner } from '@/design-system/banner'
+import { Message } from '@/design-system'
+import { CloseButton } from '@/design-system/buttons'
+import { Emoji } from '@/design-system/emoji'
 import { Link } from '@/design-system/typography/link'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
@@ -50,29 +51,26 @@ function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
 	}
 
 	return (
-		<Banner className="print-hidden" onClick={() => setShowBanner(false)}>
-			<InnerBanner>
-				<span>
-					<Emoji emoji="✨" /> Découvrez les nouveautés{' '}
-					{determinant(lastRelease.name)}
-					<Link
-						to={absoluteSitePaths.nouveautés}
-						aria-label={t(
-							'Voir les nouveautés apportées par la version {{release}}',
-							{ release: lastRelease.name.toLowerCase() }
-						)}
-					>
-						{lastRelease.name.toLowerCase()}
-					</Link>
-				</span>
-				<HideButton
-					onPress={() => setShowBanner(false)}
-					aria-label={t('Fermer')}
-				>
-					&times;
-				</HideButton>
-			</InnerBanner>
-		</Banner>
+		<Message className="print-hidden" icon={<Emoji emoji="✨" />}>
+			Découvrez les nouveautés
+			{determinant(lastRelease.name)}
+			<Link
+				to={absoluteSitePaths.nouveautés}
+				aria-label={t(
+					'Voir les nouveautés apportées par la version {{release}}',
+					{ release: lastRelease.name.toLowerCase() }
+				)}
+			>
+				{lastRelease.name.toLowerCase()}
+			</Link>
+			<CloseButton
+				onPress={() => {
+					setShowBanner(false)
+					setItem(localStorageKey, lastRelease.name)
+				}}
+				aria-label={t('Fermer')}
+			/>
+		</Message>
 	)
 }
 

@@ -1,8 +1,8 @@
 import { AriaRadioProps } from '@react-types/radio'
 import styled from 'styled-components'
 
-import Emoji from '@/components/utils/Emoji'
 import { Markdown } from '@/components/utils/markdown'
+import { Emoji } from '@/design-system/emoji'
 
 import { LabelBody, RadioPoint, RadioSkeleton, VisibleRadio } from './Radio'
 

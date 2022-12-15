@@ -2,6 +2,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { Chip } from '@/design-system'
 
+import { Emoji } from '../emoji'
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
 	component: Chip,
@@ -47,10 +49,10 @@ DifferentChips.args = {
 
 export const ChipWithCustomIcon: ComponentStory<typeof Chip> = (args) => (
 	<>
-		<Chip {...args} icon="🚧" type="info">
+		<Chip {...args} icon={<Emoji emoji="🚧" />} type="info">
 			Bêta
 		</Chip>
-		<Chip {...args} type="secondary" icon="😃">
+		<Chip {...args} type="secondary" icon={<Emoji emoji="😃" />}>
 			Everything is awesome
 		</Chip>
 	</>

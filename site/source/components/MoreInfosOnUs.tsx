@@ -2,12 +2,12 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
 import { SmallCard } from '@/design-system/card'
+import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { useSitePaths } from '@/sitePaths'
 
 import { icons } from './ui/SocialIcon'
-import Emoji from './utils/Emoji'
 
 export default function MoreInfosOnUs() {
 	const { pathname } = useLocation()
