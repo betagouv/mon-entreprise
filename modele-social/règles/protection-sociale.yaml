@@ -207,7 +207,6 @@ protection sociale . retraite . complémentaire . RCI:
         barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_achat_point_bar
 
     revenu cotisé auto-entrepreneur:
-      privé: oui
       applicable si: dirigeant . auto-entrepreneur
       remplace:
         règle: dirigeant . indépendant . cotisations et contributions . retraite complémentaire
@@ -226,6 +225,8 @@ protection sociale . retraite . complémentaire . RCI:
         - produit:
             assiette: entreprise . chiffre d'affaires . service BIC
             taux: 0%
+      références:
+        Article D613-6 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714699/2022-12-10/
 
 protection sociale . retraite . CNAVPL:
   applicable si: dirigeant . indépendant . PL . CNAVPL

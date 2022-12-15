@@ -291,7 +291,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions:
     - TFC
     - CFP
   références:
-    Imposition du micro-entrepreneur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
+    Imposition du micro-entrepreneur (régime micro-fiscal et social): https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
+    Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
   titre: Taxes pour frais de chambre
@@ -369,6 +370,13 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
 
+dirigeant . auto-entrepreneur . affiliation CIPAV:
+  une de ces conditions:
+    - entreprise . activité . nature . libérale . réglementée
+    - toutes ces conditions:
+        - entreprise . activité . nature = 'libérale'
+        - entreprise . date de création < 01/2018
+
 dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
   titre: Contribution à la formation professionnelle
   description: |
@@ -387,27 +395,25 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
     Les taux implémentés sont ceux prélevés par l'Urssaf.
   produit:
     composantes:
-      - attributs:
-          nom: revenus BIC
-        assiette: entreprise . chiffre d'affaires . BIC
+      - assiette: entreprise . chiffre d'affaires . BIC
         taux:
           variations:
             - si: entreprise . activité . nature = 'artisanale'
               alors: 0.3%
             - sinon: 0.1%
-      - attributs:
-          nom: revenus BNC
-        assiette: entreprise . chiffre d'affaires . service BNC
+      - assiette: entreprise . chiffre d'affaires . service BNC
         taux:
           variations:
-            - si:
-                une de ces conditions:
-                  - entreprise . activité . nature . libérale . réglementée
-                  - toutes ces conditions:
-                      - date >= 01/2022
-                      - entreprise . activité . nature = 'libérale'
+            - si: affiliation CIPAV
               alors: 0.2%
             - sinon: 0.1%
+  avec:
+    revenus BIC:
+      valeur: entreprise . chiffre d'affaires . BIC
+      déprécié: oui
+    revenus BNC:
+      valeur: entreprise . chiffre d'affaires . service BNC
+      déprécié: oui
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description: |
@@ -420,31 +426,55 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     taux dépend de la catégorie d'activité.
   produit:
     composantes:
-      - assiette: entreprise . chiffre d'affaires . service
-        taux:
-          nom:
-            taux prestation de service
-            # Historique : avant le 01/07/21 : 22%
-          variations:
-            - si: entreprise . activité . nature . libérale . réglementée
-              alors: 22.20%
-            - sinon: 22%
       - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
         taux:
           nom: taux vente restauration hébergement
-          valeur: 12.8%
+          variations:
+            - si: date >= 10/2022
+              alors: 12.3%
+            - sinon: 12.8%
+
+      - assiette: entreprise . chiffre d'affaires . service BIC
+        taux:
+          nom: taux service BIC
+          variations:
+            - si: date >= 10/2022
+              alors: 21.2%
+            - sinon: 22%
+
+      - assiette: entreprise . chiffre d'affaires . service BNC
+        taux:
+          nom: taux service BNC
+          variations:
+            - si: date >= 10/2022
+              alors: 21.1%
+            - sinon: 22%
 
   références:
-    guide urssaf (PDF): https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
-    La protection sociale du micro-entrepreneur: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/protection-sociale
-    economie.gouv.fr: https://www.economie.gouv.fr/entreprises/micro-entreprise-auto-entreprise-charges-sociales
+    Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
+    'Cotisations et contributions sociales : montant et déclaration': https://entreprendre.service-public.fr/vosdroits/F36232#fiche-item-aria-2
+    'Auto-entrepreneur: ce qu’il faut savoir (PDF)': https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
+
+  avec:
+    cotisations CIPAV:
+      remplace: cotisations
+      description: |
+        Pour les professions libérales relevant de la CIPAV, le taux est le même quelle que soit la catégorie d’imposition/activité (BIC ou BNC, service ou vente).
+      applicable si: affiliation CIPAV
+      rend non applicable: entreprise . activité . mixte
+      produit:
+        assiette: entreprise . chiffre d'affaires
+        taux:
+          nom: taux
+          valeur: 21.2%
+    taux prestation de service:
+      déprécié: oui
+      note: Il y a maintenant un taux différent pour les prestations de service BIC ou BNC.
+      valeur: taux service BIC
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   privé: oui
   applicable si: dirigeant . exonérations . ACRE
-  remplace:
-    règle: taux vente restauration hébergement
-    par: taux ACRE * taux vente restauration hébergement
   description: |
     Ce taux correspond à la réduction de cotisations qui s'applique pour
     l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 75% signifie que
@@ -482,18 +512,36 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
     FAQ Urssaf avant 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#quest-ce-qui-change-pour-moi-si
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
 
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service:
-  remplace: taux prestation de service
-  titre: taux prestation de service avec ACRE
-  variations:
-    - si:
-        toutes ces conditions:
-          - entreprise . activité . nature . libérale . réglementée
-          - entreprise . date de création >= 01/04/2020
-      alors: 12.10%
-    - sinon: taux ACRE * taux prestation de service
-  références:
-    urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
+  avec:
+    CIPAV:
+      remplace: cotisations CIPAV . taux
+      titre:
+      variations:
+        - si: entreprise . date de création >= 01/04/2020
+          alors: 12.10%
+        - sinon: cotisations CIPAV . taux * taux ACRE
+    références:
+      urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
+
+    vente restauration hébergement:
+      remplace: taux vente restauration hébergement
+      valeur: taux ACRE * taux vente restauration hébergement
+      arrondi: 1 décimale
+
+    service BIC:
+      remplace: taux service BIC
+      valeur: taux ACRE * taux service BIC
+      arrondi: 1 décimale
+
+    service BNC:
+      remplace: taux service BNC
+      valeur: taux ACRE * taux service BNC
+      arrondi: 1 décimale
+
+    prestation de service:
+      déprécié: oui
+      note: Il y a maintenant des taux différents pour les prestations de service BIC et BNC
+      valeur: service BIC
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel:
   experimental: oui

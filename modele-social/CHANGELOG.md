@@ -1,5 +1,26 @@
 # Journal des modifications
 
+
+## 1.4.0
+
+Implémente les nouveaux taux de cotisation pour les auto-entrepreneurs à partir du 1ᵉʳ octobre 2023, suite au [décret n° 2022-1529 du 7 décembre 2022](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000046710841).
+
+### ➕ Ajoute les nouvelles règles suivantes :
+  - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . CIPAV
+  - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux vente restauration hébergement
+  - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux service BIC
+  - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux service BNC
+  - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . vente restauration hébergement
+  - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . service BIC
+  - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . service BNC
+  - dirigeant . auto-entrepreneur . affiliation CIPAV
+
+### ➖ Déprécie les règles suivantes : 
+  - dirigeant . auto-entrepreneur . cotisations et contributions . CFP . revenus BNC
+  - dirigeant . auto-entrepreneur . cotisations et contributions . CFP . revenus BIC
+  - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux prestation de service
+  - dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service
+
 ## 1.3.0
 
 - Déprécie `salarié . temps de travail . durée légale` au profit de `durée légale du travail` au même niveau que SMIC. Cela permet de désactiver l’espace de nom salarié tout en pouvant utiliser la durée légale dans d’autres règles (comme pour le SMIC)
@@ -8,7 +29,7 @@
 - Modifie le calcul du taux de retraite des PL PAMC (aligné sur celui des autres PLR à partir de 2022)
 - Ajoute une notice d’information pour l’offre simplifié médecin remplaçant quand les conditions sont remplies
 - Enlève la question RSA pour les PAMC (non concernées)
-- Met à jour les liens morts dans les références
+- Actualise les liens morts dans les références
 
 ## 1.2.0
 
