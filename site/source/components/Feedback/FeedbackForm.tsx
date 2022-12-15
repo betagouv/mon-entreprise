@@ -8,12 +8,19 @@ import { TextAreaField, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Body } from '@/design-system/typography/paragraphs'
 
+type SubmitError = {
+	message?: string
+	email?: string
+}
+
 const SHORT_MAX_LENGTH = 254
 
 export default function FeedbackForm() {
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
-	const [isError, setIsError] = useState(false)
+	const [submitError, setSubmitError] = useState<SubmitError | undefined>(
+		undefined
+	)
 	const pathname = useLocation().pathname
 	const page = pathname.split('/').slice(-1)[0]
 
@@ -45,11 +52,21 @@ export default function FeedbackForm() {
 			// Show error message
 		}
 	}
-	const resetIsError = () => setIsError(false)
 
 	const requiredErrorMessage = t(
 		'Veuillez entrer un message avant de soumettre le formulaire.'
 	)
+
+	const requiredErrorEmail = t('Veuillez renseigner votre adresse email.')
+
+	const resetSubmitErrorField = (field: keyof SubmitError) =>
+		submitError?.[field]
+			? () =>
+					setSubmitError((previousValue) => ({
+						...previousValue,
+						[field]: '',
+					}))
+			: undefined
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
@@ -68,9 +85,15 @@ export default function FeedbackForm() {
 								document.getElementById('email') as HTMLInputElement
 							)?.value
 
-							// Message est requis
-							if (!message || message === '') {
-								setIsError(true)
+							// message et email sont requis
+							const isMessageEmpty = !message || message === ''
+							const isEmailEmpty = !email || email === ''
+
+							if (isMessageEmpty || isEmailEmpty) {
+								setSubmitError({
+									message: isMessageEmpty ? requiredErrorMessage : '',
+									email: isEmailEmpty ? requiredErrorEmail : '',
+								})
 
 								return
 							}
@@ -84,27 +107,29 @@ export default function FeedbackForm() {
 						<StyledTextArea
 							name="message"
 							label={t('Votre message (requis)')}
-							onChange={isError ? () => resetIsError() : undefined}
+							onChange={resetSubmitErrorField('message')}
 							description={t(
 								'Éviter de communiquer des informations personnelles'
 							)}
 							id="message"
 							rows={7}
 							isDisabled={isLoading}
-							errorMessage={isError && requiredErrorMessage}
+							errorMessage={submitError?.message}
 						/>
 						<StyledDiv>
 							<StyledTextField
 								id="email"
 								name="email"
 								type="email"
-								label={t('Votre adresse e-mail')}
+								label={t('Votre adresse e-mail (requise)')}
 								description={t(
 									'Renseigner une adresse e-mail pour recevoir une réponse'
 								)}
 								isDisabled={isLoading}
 								maxLength={SHORT_MAX_LENGTH}
 								autoComplete="email"
+								errorMessage={submitError?.email}
+								onChange={resetSubmitErrorField('email')}
 							/>
 						</StyledDiv>
 						<StyledButton isDisabled={isLoading} type="submit">
