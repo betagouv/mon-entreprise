@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components'
 
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
+import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
@@ -226,12 +227,17 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						pour l'option micro-fiscal).
 					</Body>
 					<Body>La formule de calcul complète est donc :</Body>
-					<blockquote role="presentation">
-						<strong>
-							Revenu net = Chiffres d'affaires − Dépenses professionnelles -
-							Cotisations sociales
-						</strong>
-					</blockquote>
+					<Message
+						role="presentation"
+						mini
+						border={false}
+						css={`
+							width: fit-content;
+						`}
+					>
+						Revenu net = Chiffres d'affaires − Dépenses professionnelles -
+						Cotisations sociales
+					</Message>
 					<H2>
 						Comment calculer les cotisations sociales d'une entreprise
 						individuelle ?
@@ -371,12 +377,17 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 						économiquement.
 					</Body>
 					<Body>La formule de calcul complète est donc :</Body>
-					<blockquote role="presentation">
-						<strong>
-							Revenu net = Chiffres d'affaires − Cotisations sociales − Dépenses
-							professionnelles
-						</strong>
-					</blockquote>
+					<Message
+						role="presentation"
+						mini
+						border={false}
+						css={`
+							width: fit-content;
+						`}
+					>
+						Revenu net = Chiffres d'affaires − Cotisations sociales − Dépenses
+						professionnelles
+					</Message>
 					<H2>
 						Comment calculer l'impôt sur le revenu pour un auto-entrepreneur ?
 					</H2>

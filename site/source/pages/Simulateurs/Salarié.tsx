@@ -160,7 +160,8 @@ function AidesGlimpse() {
 							displayedUnit="€"
 							unit={targetUnit}
 						/>{' '}
-						<Trans>d'aides</Trans> <Emoji emoji={aides.rawNode.icônes} />
+						<Trans>d'aides</Trans>{' '}
+						<Emoji emoji={aides.rawNode.icônes as string} />
 					</RuleLink>
 				</FromTop>
 			</StyledInfo>

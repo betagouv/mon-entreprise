@@ -5,6 +5,7 @@ import { Message } from '@/design-system'
 import { CloseButton } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Link } from '@/design-system/typography/link'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
 
@@ -51,26 +52,41 @@ function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
 	}
 
 	return (
-		<Message className="print-hidden" icon={<Emoji emoji="✨" />}>
-			Découvrez les nouveautés
-			{determinant(lastRelease.name)}
-			<Link
-				to={absoluteSitePaths.nouveautés}
-				aria-label={t(
-					'Voir les nouveautés apportées par la version {{release}}',
-					{ release: lastRelease.name.toLowerCase() }
-				)}
+		<div
+			css={`
+				display: flex;
+				justify-content: center;
+			`}
+		>
+			<Message
+				className="print-hidden"
+				type="secondary"
+				icon={<Emoji emoji="✨" />}
+				mini
+				border={false}
 			>
-				{lastRelease.name.toLowerCase()}
-			</Link>
-			<CloseButton
-				onPress={() => {
-					setShowBanner(false)
-					setItem(localStorageKey, lastRelease.name)
-				}}
-				aria-label={t('Fermer')}
-			/>
-		</Message>
+				<Body>
+					Découvrez les nouveautés {determinant(lastRelease.name)}
+					<Link
+						to={absoluteSitePaths.nouveautés}
+						aria-label={t(
+							'Voir les nouveautés apportées par la version {{release}}',
+							{ release: lastRelease.name.toLowerCase() }
+						)}
+					>
+						{lastRelease.name.toLowerCase()}
+					</Link>
+					<CloseButton
+						color="secondary"
+						onPress={() => {
+							setShowBanner(false)
+							setItem(localStorageKey, lastRelease.name)
+						}}
+						aria-label={t('Fermer')}
+					/>
+				</Body>
+			</Message>
+		</div>
 	)
 }
 

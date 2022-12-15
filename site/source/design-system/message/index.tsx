@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled, { DefaultTheme, ThemeProvider, css } from 'styled-components'
 
 import { Palette, SmallPalette } from '@/types/styled'
@@ -29,7 +30,12 @@ export function Message({
 	className,
 	role = undefined,
 }: MessageProps) {
-	if (typeof children !== 'object') {
+	const { t } = useTranslation()
+	if (
+		Array.isArray(children) &&
+		children.length === 1 &&
+		typeof children[0] === 'string'
+	) {
 		children = <Body>{children}</Body>
 	}
 
@@ -48,11 +54,11 @@ export function Message({
 						{typeof icon !== 'boolean' ? (
 							icon
 						) : type === 'success' ? (
-							<SuccessIcon />
+							<SuccessIcon aria-label={t('Réussite')} />
 						) : type === 'error' ? (
-							<ErrorIcon />
+							<ErrorIcon aria-label={t('Échec')} />
 						) : type === 'info' ? (
-							<InfoIcon />
+							<InfoIcon aria-label={t('Attention')} />
 						) : (
 							<ReturnIcon />
 						)}
