@@ -35,9 +35,8 @@ export function SimulationGoals({
 
 	return (
 		<WatchInitialRender>
+			<TopSection toggles={toggles} />
 			<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
-				<TopSection toggles={toggles} />
-
 				<StyledSimulationGoals
 					isEmbeded={isEmbeded}
 					isFirstStepCompleted={isFirstStepCompleted}
