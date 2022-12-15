@@ -136,13 +136,11 @@ export default defineConfig(({ command, mode }) => ({
 		 * react-spectrum: https://github.com/adobe/react-spectrum/pull/3630
 		 * markdown-to-jsx: https://github.com/probablyup/markdown-to-jsx/pull/414
 		 * styled-components: https://github.com/styled-components/styled-components/issues/3601
-		 * publicodes-react: Add type module
 		 */
 		noExternal: [
 			/react-aria|react-stately|internationalized/,
 			/markdown-to-jsx/,
 			/styled-components|emotion/,
-			/publicodes-react/, // TODO remove this after publicodes-react upgrade
 		],
 	},
 }))
