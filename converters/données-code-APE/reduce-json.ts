@@ -34,7 +34,7 @@ export interface Output {
 
 	/**
 	 * Nombre d'établissement par département et par code APE,
-	 * l'index de ce tableau correspond au index dans indexByCodeApe, indexByCodeDepartement et sortByEffectif.
+	 * l'index de ce tableau correspond au index dans indexByCodeApe et indexByCodeDepartement.
 	 * Cela permet de trouver le nombre d'établissement en 2021 avec un couple code APE + code d'un département.
 	 */
 	nbEtablissements2021: number[]
@@ -42,7 +42,6 @@ export interface Output {
 	indexByCodeDepartement: {
 		[codeDepartement: string]: NbEtablissement2021Index[]
 	}
-	sortByEffectif: NbEtablissement2021Index[]
 }
 
 const output: Output = {
@@ -73,7 +72,6 @@ const output: Output = {
 	),
 	indexByCodeApe: etablissementsData.indexByCodeApe,
 	indexByCodeDepartement: etablissementsData.indexByCodeDepartement,
-	sortByEffectif: etablissementsData.sortByEffectif,
 }
 
 writeFileSync(OUTPUT_JSON_PATH, JSON.stringify(output, null, 2))

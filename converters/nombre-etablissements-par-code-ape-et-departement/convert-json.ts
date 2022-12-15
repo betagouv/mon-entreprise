@@ -29,14 +29,12 @@ export interface Data {
 
 export interface Out {
 	data: Data[]
-	sortByEffectif: number[]
 	indexByCodeApe: { [codeAPE: string]: number[] }
 	indexByCodeDepartement: { [codeDepartement: string]: number[] }
 }
 
 const out: Out = {
 	data: [],
-	sortByEffectif: [],
 	indexByCodeApe: {},
 	indexByCodeDepartement: {},
 }
@@ -146,21 +144,13 @@ const stream = got
 		})
 	)
 
-stream.on('error', (err) => {
+stream.on('error', (err: Error) => {
 	console.error(err)
 	throw err
 })
 
 stream.on('close', () => {
 	console.log('close')
-
-	out.sortByEffectif = out.data
-		.map(({ nombre_d_etablissements_2021 }, index) => [
-			index,
-			nombre_d_etablissements_2021,
-		])
-		.sort(([, a], [, b]) => b - a)
-		.map(([index]) => index)
 
 	writeFileSync(join(__dirname, OUTPUT_JSON_PATH), JSON.stringify(out, null, 1))
 })
