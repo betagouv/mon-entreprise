@@ -242,7 +242,7 @@ export function SimulateurCard({
 							<h4>
 								{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
 								{beta && (
-									<Chip type="info" icon="🚧">
+									<Chip type="info" icon={<Emoji emoji="🚧" />}>
 										Bêta
 									</Chip>
 								)}
@@ -258,7 +258,7 @@ export function SimulateurCard({
 							<>
 								{shortName}
 								{beta && (
-									<Chip type="info" icon="🚧">
+									<Chip type="info" icon={<Emoji emoji="🚧" />}>
 										Bêta
 									</Chip>
 								)}

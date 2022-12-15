@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled, { ThemeProvider, css } from 'styled-components'
 
 import { Palette, SmallPalette } from '@/types/styled'
@@ -21,6 +22,8 @@ export function Chip({
 	children,
 	className,
 }: ChipProps) {
+	const { t } = useTranslation()
+
 	return (
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
 			<StyledChip className={className} type={type}>
@@ -29,11 +32,11 @@ export function Chip({
 						{typeof icon !== 'boolean' ? (
 							icon
 						) : type === 'success' ? (
-							<SuccessIcon />
+							<SuccessIcon aria-label={t('Réussite')} />
 						) : type === 'error' ? (
-							<ErrorIcon />
+							<ErrorIcon aria-label={t('Échec')} />
 						) : type === 'info' ? (
-							<InfoIcon />
+							<InfoIcon aria-label={t('Information')} />
 						) : (
 							<></>
 						)}

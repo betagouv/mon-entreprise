@@ -7,6 +7,7 @@ import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import useSearchParamsSimulationSharing from '@/components/utils/useSearchParamsSimulationSharing'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Chip } from '@/design-system'
+import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
@@ -85,12 +86,12 @@ export default function PageData(props: PageDataProps) {
 						<H1>
 							<StyledSpan>{title}</StyledSpan>
 							{year && (
-								<Chip type="secondary" icon="📆">
+								<Chip type="secondary" icon={<Emoji emoji="📆" />}>
 									{year}
 								</Chip>
 							)}
 							{beta && (
-								<Chip type="info" icon="🚧">
+								<Chip type="info" icon={<Emoji emoji="🚧" />}>
 									Version bêta
 								</Chip>
 							)}

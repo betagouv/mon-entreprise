@@ -8,6 +8,7 @@ import { hideNotification } from '@/actions/actions'
 import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { CloseButton } from '@/design-system/buttons'
+import { Body } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 
 import RuleLink from './RuleLink'
@@ -77,14 +78,17 @@ export default function Notifications() {
 						key={dottedName}
 					>
 						<Markdown>{résumé ?? description ?? ''}</Markdown>{' '}
-						{résumé && (
-							<RuleLink dottedName={dottedName as DottedName}>
-								<Trans>En savoir plus</Trans>
-							</RuleLink>
-						)}
+						<Body>
+							{résumé && (
+								<RuleLink dottedName={dottedName as DottedName}>
+									<Trans>En savoir plus</Trans>
+								</RuleLink>
+							)}
+						</Body>
 						<AbsoluteCloseButton
 							aria-label={t('Fermer')}
 							onPress={() => dispatch(hideNotification(dottedName))}
+							color={sévérité === 'avertissement' ? 'tertiary' : 'primary'}
 						/>
 					</Message>
 				))}
