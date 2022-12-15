@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+import styled, { DefaultTheme } from 'styled-components'
 
 import { Message } from '@/design-system'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -32,7 +32,7 @@ export function CompanyDetails({
 					<H4
 						data-test-id="currently-selected-company"
 						as={headingTag}
-						textColor={(theme) => theme.colors.bases.primary[700]}
+						textColor={(theme: DefaultTheme) => theme.colors.bases.primary[700]}
 					>
 						<Value expression="entreprise . nom" linkToRule={false} />{' '}
 						<Value expression="entreprise . SIREN" linkToRule={false} />
