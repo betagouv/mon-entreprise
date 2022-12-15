@@ -47,7 +47,7 @@ export const validateCrispBody = (body: BodyType): BodyType => {
 		isStringAndNotEmpty(subject) &&
 		subject.length <= SHORT_MAX_LENGTH &&
 		isStringAndNotEmpty(message) &&
-		typeof email === 'string' &&
+		isStringAndNotEmpty(email) &&
 		email.length <= SHORT_MAX_LENGTH
 	) {
 		return body
