@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import styled, { css } from 'styled-components'
+import styled, { ThemeProvider, css } from 'styled-components'
 
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
@@ -35,22 +35,24 @@ export function SimulationGoals({
 
 	return (
 		<WatchInitialRender>
-			<TopSection toggles={toggles} />
+			<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
+				<TopSection toggles={toggles} />
 
-			<StyledSimulationGoals
-				isEmbeded={isEmbeded}
-				isFirstStepCompleted={isFirstStepCompleted}
-				publique={publique}
-				role="group"
-				id="simulator-legend"
-				aria-labelledby="simulator-legend-label"
-				aria-live="polite"
-			>
-				<div className="sr-only" aria-hidden id="simulator-legend-label">
-					{legend}
-				</div>
-				{children}
-			</StyledSimulationGoals>
+				<StyledSimulationGoals
+					isEmbeded={isEmbeded}
+					isFirstStepCompleted={isFirstStepCompleted}
+					publique={publique}
+					role="group"
+					id="simulator-legend"
+					aria-labelledby="simulator-legend-label"
+					aria-live="polite"
+				>
+					<div className="sr-only" aria-hidden id="simulator-legend-label">
+						{legend}
+					</div>
+					{children}
+				</StyledSimulationGoals>
+			</ThemeProvider>
 		</WatchInitialRender>
 	)
 }

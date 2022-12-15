@@ -7,6 +7,8 @@ import {
 } from '@/design-system/typography/link'
 import { wrapperDebounceEvents } from '@/utils'
 
+import { FocusStyle } from '../global-style'
+
 type Size = 'XL' | 'MD' | 'XS' | 'XXS'
 type Color = 'primary' | 'secondary' | 'tertiary'
 
@@ -176,6 +178,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
 							$color === 'primary' ? 800 : 400
 						]};
 				  `}
+	}
+
+	:focus {
+		${FocusStyle}
 	}
 
 	/* Dark mode */

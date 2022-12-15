@@ -4,6 +4,7 @@ import { AriaRadioProps } from '@react-types/radio'
 import { createContext, useContext, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
+import { FocusStyle } from '@/design-system/global-style'
 import { Body } from '@/design-system/typography/paragraphs'
 
 export const RadioContext = createContext<RadioGroupState | null>(null)
@@ -52,14 +53,6 @@ export const RadioPoint = ({ className }: { className?: string }) => (
 		<InsideCircle />
 	</RadioButton>
 )
-
-const Label = styled.label<{ $hideRadio?: boolean; for?: string }>`
-	${({ $hideRadio }) =>
-		$hideRadio &&
-		css`
-			margin-top: -1px;
-		`}
-`
 
 const OutsideCircle = styled.span`
 	position: absolute;
@@ -151,5 +144,16 @@ export const InputRadio = styled.input`
 
 	:checked + ${VisibleRadio} ${InsideCircle} {
 		transform: scale(1);
+	}
+`
+
+const Label = styled.label<{ $hideRadio?: boolean; for?: string }>`
+	${({ $hideRadio }) =>
+		$hideRadio &&
+		css`
+			margin-top: -1px;
+		`}
+	:focus-within ${VisibleRadio} {
+		${FocusStyle}
 	}
 `

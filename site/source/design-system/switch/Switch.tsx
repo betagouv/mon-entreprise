@@ -1,9 +1,13 @@
 import { useSwitch } from '@react-aria/switch'
 import { useToggleState } from '@react-stately/toggle'
 import { ReactNode, useRef } from 'react'
-import styled, { css } from 'styled-components'
+import styled, { DefaultTheme, css } from 'styled-components'
 
-import { SROnly } from '@/design-system/global-style'
+import {
+	CustomizeBlockStyle,
+	FocusStyle,
+	SROnly,
+} from '@/design-system/global-style'
 
 import { Body } from '../typography/paragraphs'
 
@@ -75,6 +79,9 @@ const StyledSwitch = styled.span<StyledProps>`
 					color: ${theme.colors.extended.grey[500]};
 			  `
 			: ''}
+	:focus-within {
+		${FocusStyle}
+	}
 `
 
 const LabelBody = styled(Body)`
@@ -83,8 +90,9 @@ const LabelBody = styled(Body)`
 	cursor: pointer;
 `
 
-const Text = styled.span`
+const Text = styled.span<{ textColor?: (theme: DefaultTheme) => string }>`
 	margin-right: ${({ theme }) => theme.spacings.xxs};
+	${CustomizeBlockStyle}
 `
 
 type AriaSwitchProps = Parameters<typeof useSwitch>[0]
@@ -95,6 +103,7 @@ export type SwitchProps = AriaSwitchProps & {
 	children?: ReactNode
 	className?: string
 	role?: string
+	textColor?: (theme: DefaultTheme) => string
 }
 
 export const Switch = (props: SwitchProps) => {
@@ -114,7 +123,7 @@ export const Switch = (props: SwitchProps) => {
 
 	return (
 		<LabelBody as="label" className={className}>
-			{children && <Text>{children}</Text>}
+			{children && <Text textColor={props?.textColor}>{children}</Text>}
 			<StyledSwitch
 				light={light}
 				size={size}

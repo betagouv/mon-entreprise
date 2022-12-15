@@ -233,3 +233,9 @@ export const CustomizeBlockStyle = css`
 		${textColor ? `color: ${textColor(theme)};` : ''}
 		`}
 `
+
+export const FocusStyle = css`
+	outline: 2px solid -webkit-focus-ring-color;
+	outline-offset: 1px;
+	box-shadow: 0 0 0 2px #ffffff;
+`

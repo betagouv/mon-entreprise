@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { FocusStyle } from '@/design-system/global-style'
 
 import SearchRulesAndSimulators from './search/SearchRulesAndSimulators'
 
