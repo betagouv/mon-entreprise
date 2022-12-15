@@ -5,11 +5,15 @@ import styled, { css } from 'styled-components'
 import { ExtraSmallBody } from '@/design-system/typography/paragraphs'
 import { omit } from '@/utils'
 
+import { CustomizeBlockStyle } from '../global-style'
+
 const LABEL_HEIGHT = '1rem'
 
 type TextFieldProps = AriaTextFieldOptions<'input'> & {
 	inputRef?: RefObject<HTMLInputElement>
 	small?: boolean
+	hasDarkBackground?: boolean
+	hasLightBackground?: boolean
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -23,6 +27,8 @@ export default function TextField(props: TextFieldProps) {
 			<StyledInputContainer
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label && !props.small}
+				hasDarkBackground={props?.hasDarkBackground}
+				hasLightBackground={props?.hasLightBackground}
 			>
 				<StyledInput
 					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
@@ -66,10 +72,6 @@ export const StyledInput = styled.input`
 	height: 100%;
 	outline: none;
 	transition: color 0.2s;
-	color: ${({ theme }) =>
-		theme.darkMode
-			? theme.colors.extended.grey[100]
-			: theme.colors.extended.grey[800]};
 	::placeholder {
 		${({ theme }) =>
 			theme.darkMode &&
@@ -105,8 +107,10 @@ export const StyledLabel = styled.label`
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
-			color: ${theme.colors.extended.grey[100]} !important;
-			background-color: transparent;
+			@media not print {
+				color: ${theme.colors.extended.grey[100]} !important;
+				background-color: transparent;
+			}
 		`}
 `
 
@@ -140,9 +144,9 @@ export const StyledInputContainer = styled.div<{
 		`${theme.box.borderWidth} solid 
 		${
 			hasLightBackground
-				? `${theme.box.borderWidth} solid ${theme.colors.extended.grey[800]}`
+				? `${theme.colors.extended.grey[800]}`
 				: hasDarkBackground
-				? `${theme.box.borderWidth} solid ${theme.colors.extended.grey[100]}`
+				? `${theme.colors.extended.grey[100]}`
 				: theme.darkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.extended.grey[700]
@@ -150,7 +154,14 @@ export const StyledInputContainer = styled.div<{
 	outline: transparent solid 1px;
 	position: relative;
 	display: flex;
-	background-color: rgba(255, 255, 255, 20%);
+	background-color: ${({ theme, hasLightBackground, hasDarkBackground }) =>
+		hasLightBackground
+			? 'rgba(255, 255, 255, 20%)'
+			: hasDarkBackground
+			? 'rgba(255, 255, 255, 20%)'
+			: theme.darkMode
+			? 'rgba(255, 255, 255, 20%)'
+			: theme.colors.extended.grey[100]};
 	align-items: center;
 	transition: all 0.2s;
 	:focus-within {
@@ -228,6 +239,14 @@ export const StyledInputContainer = styled.div<{
 				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
 				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
+		color: ${({ theme, hasDarkBackground, hasLightBackground }) =>
+			hasDarkBackground
+				? theme.colors.extended.grey[100]
+				: hasLightBackground
+				? theme.colors.extended.grey[800]
+				: theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.extended.grey[800]};
 	}
 
 	${({ small }) =>
@@ -238,4 +257,6 @@ export const StyledInputContainer = styled.div<{
 				line-height: 1.25rem;
 			}
 		`}
+
+	${CustomizeBlockStyle}
 `

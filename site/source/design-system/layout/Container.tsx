@@ -47,7 +47,6 @@ const InnerContainer = styled.div`
 
 type OuterContainerProps = {
 	backgroundColor?: (theme: DefaultTheme) => string
-	color?: (theme: DefaultTheme) => string
 }
 
 type ContainerProps = {

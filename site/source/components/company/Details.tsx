@@ -29,7 +29,11 @@ export function CompanyDetails({
 				spacing={3}
 			>
 				<Grid item xs={12} lg>
-					<H4 data-test-id="currently-selected-company" as={headingTag}>
+					<H4
+						data-test-id="currently-selected-company"
+						as={headingTag}
+						textColor={(theme) => theme.colors.bases.primary[700]}
+					>
 						<Value expression="entreprise . nom" linkToRule={false} />{' '}
 						<Value expression="entreprise . SIREN" linkToRule={false} />
 					</H4>
