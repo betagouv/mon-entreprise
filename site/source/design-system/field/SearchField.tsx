@@ -11,6 +11,7 @@ import styled, { css } from 'styled-components'
 import { Loader } from '@/design-system/icons/Loader'
 import { SearchIcon } from '@/design-system/icons/SearchIcon'
 
+import { FocusStyle } from '../global-style'
 import {
 	StyledContainer,
 	StyledDescription,
@@ -32,6 +33,9 @@ const SearchInput = styled(StyledInput)`
 
 const SearchInputContainer = styled(StyledInputContainer)`
 	padding-left: 0.5rem;
+	:focus-within {
+		outline-color: ${({ theme }) => theme.colors.extended.grey[100]};
+	}
 `
 
 const IconContainer = styled.div<{ hasLabel?: boolean }>`

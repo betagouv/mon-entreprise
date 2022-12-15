@@ -66,7 +66,10 @@ export const StyledInput = styled.input`
 	height: 100%;
 	outline: none;
 	transition: color 0.2s;
-	color: ${({ theme }) => theme.colors.extended.grey[100]};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.extended.grey[800]};
 	::placeholder {
 		${({ theme }) =>
 			theme.darkMode &&
@@ -133,8 +136,17 @@ export const StyledInputContainer = styled.div<{
 	hasDarkBackground?: boolean
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	border: ${({ theme }) =>
-		`${theme.box.borderWidth} solid ${theme.colors.extended.grey[100]}`};
+	border: ${({ theme, hasLightBackground, hasDarkBackground }) =>
+		`${theme.box.borderWidth} solid 
+		${
+			hasLightBackground
+				? `${theme.box.borderWidth} solid ${theme.colors.extended.grey[800]}`
+				: hasDarkBackground
+				? `${theme.box.borderWidth} solid ${theme.colors.extended.grey[100]}`
+				: theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.extended.grey[700]
+		}`};
 	outline: transparent solid 1px;
 	position: relative;
 	display: flex;
