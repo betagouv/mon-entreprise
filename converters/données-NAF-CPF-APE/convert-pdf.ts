@@ -76,7 +76,7 @@ const transformText = (pages: PdfData['text']) => {
 
 		for (let j = 0; j < lines.length; j++) {
 			// eslint-disable-next-line no-console
-			console.log('###', '>' + lines[j] + '<')
+			console.log('###', `>${lines[j]}<`)
 
 			const line = lines[j].trim()
 			const passLine = line.match(
