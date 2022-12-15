@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { ThemeProvider } from 'styled-components'
 
 import PageFeedback from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
@@ -79,131 +78,129 @@ export default function Footer() {
 				</Container>
 
 				<Container backgroundColor={(theme) => theme.colors.bases.primary[700]}>
-					<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-						<FooterContainer
-							className="print-hidden"
-							role="navigation"
-							aria-label={t('Menu de navigation')}
-						>
-							<FooterColumn>
-								{language === 'fr' && (
-									<nav title="firstColumnNav">
-										<ul>
-											<li>
-												<Link
-													to={absoluteSitePaths.plan}
-													noUnderline
-													textColor={(theme) => theme.colors.extended.grey[100]}
-												>
-													<Trans>Plan du site</Trans>
-												</Link>
-											</li>
-											<li>
-												<Link
-													to={absoluteSitePaths.nouveautés}
-													noUnderline
-													textColor={(theme) => theme.colors.extended.grey[100]}
-												>
-													Nouveautés <Emoji emoji="✨" />
-												</Link>
-											</li>
-											<li>
-												<Link
-													to={absoluteSitePaths.stats}
-													noUnderline
-													textColor={(theme) => theme.colors.extended.grey[100]}
-												>
-													Stats <Emoji emoji="📊" />
-												</Link>
-											</li>
-											<li>
-												<Link
-													to={absoluteSitePaths.budget}
-													noUnderline
-													textColor={(theme) => theme.colors.extended.grey[100]}
-												>
-													Budget <Emoji emoji="💶" />
-												</Link>
-											</li>
-										</ul>
-									</nav>
-								)}
-							</FooterColumn>
-							<FooterColumn>
-								<nav title="secondColumnNav">
+					<FooterContainer
+						className="print-hidden"
+						role="navigation"
+						aria-label={t('Menu de navigation')}
+					>
+						<FooterColumn>
+							{language === 'fr' && (
+								<nav title="firstColumnNav">
 									<ul>
 										<li>
 											<Link
-												to={absoluteSitePaths.développeur.index}
+												to={absoluteSitePaths.plan}
 												noUnderline
 												textColor={(theme) => theme.colors.extended.grey[100]}
 											>
-												<Trans>Intégrer nos simulateurs</Trans>
+												<Trans>Plan du site</Trans>
 											</Link>
 										</li>
-										{language === 'fr' && (
-											<li>
-												<InscriptionBetaTesteur />
-											</li>
-										)}
-										{hrefLink && (
-											<li key={hrefLink.hrefLang}>
-												<Link
-													href={hrefLink.href}
-													openInSameWindow
-													lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
-													noUnderline
-													textColor={(theme) => theme.colors.extended.grey[100]}
-												>
-													{hrefLink.hrefLang === 'fr' ? (
-														<>
-															Passer en français <Emoji emoji="🇫🇷" />
-														</>
-													) : hrefLink.hrefLang === 'en' ? (
-														<>
-															Switch to English <Emoji emoji="🇬🇧" />
-														</>
-													) : (
-														hrefLink.hrefLang
-													)}
-												</Link>
-											</li>
-										)}
+										<li>
+											<Link
+												to={absoluteSitePaths.nouveautés}
+												noUnderline
+												textColor={(theme) => theme.colors.extended.grey[100]}
+											>
+												Nouveautés <Emoji emoji="✨" />
+											</Link>
+										</li>
+										<li>
+											<Link
+												to={absoluteSitePaths.stats}
+												noUnderline
+												textColor={(theme) => theme.colors.extended.grey[100]}
+											>
+												Stats <Emoji emoji="📊" />
+											</Link>
+										</li>
+										<li>
+											<Link
+												to={absoluteSitePaths.budget}
+												noUnderline
+												textColor={(theme) => theme.colors.extended.grey[100]}
+											>
+												Budget <Emoji emoji="💶" />
+											</Link>
+										</li>
 									</ul>
 								</nav>
-							</FooterColumn>
+							)}
+						</FooterColumn>
+						<FooterColumn>
+							<nav title="secondColumnNav">
+								<ul>
+									<li>
+										<Link
+											to={absoluteSitePaths.développeur.index}
+											noUnderline
+											textColor={(theme) => theme.colors.extended.grey[100]}
+										>
+											<Trans>Intégrer nos simulateurs</Trans>
+										</Link>
+									</li>
+									{language === 'fr' && (
+										<li>
+											<InscriptionBetaTesteur />
+										</li>
+									)}
+									{hrefLink && (
+										<li key={hrefLink.hrefLang}>
+											<Link
+												href={hrefLink.href}
+												openInSameWindow
+												lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
+												noUnderline
+												textColor={(theme) => theme.colors.extended.grey[100]}
+											>
+												{hrefLink.hrefLang === 'fr' ? (
+													<>
+														Passer en français <Emoji emoji="🇫🇷" />
+													</>
+												) : hrefLink.hrefLang === 'en' ? (
+													<>
+														Switch to English <Emoji emoji="🇬🇧" />
+													</>
+												) : (
+													hrefLink.hrefLang
+												)}
+											</Link>
+										</li>
+									)}
+								</ul>
+							</nav>
+						</FooterColumn>
 
-							<FooterColumn>
-								<nav title="thirdColumnNav">
-									<ul>
+						<FooterColumn>
+							<nav title="thirdColumnNav">
+								<ul>
+									<li>
+										<LegalNotice />
+									</li>
+									<li>
+										<Privacy />
+									</li>
+									{language === 'fr' && (
 										<li>
-											<LegalNotice />
+											<Link
+												to={absoluteSitePaths.accessibilité}
+												aria-label={t(
+													'footer.accessibilitéAriaLabel',
+													'Accessibilité : non conforme, en savoir plus'
+												)}
+												noUnderline
+												textColor={(theme) => theme.colors.extended.grey[100]}
+											>
+												<Trans i18nKey="footer.accessibilité">
+													Accessibilité : non conforme
+												</Trans>
+											</Link>
 										</li>
-										<li>
-											<Privacy />
-										</li>
-										{language === 'fr' && (
-											<li>
-												<Link
-													to={absoluteSitePaths.accessibilité}
-													aria-label={t(
-														'footer.accessibilitéAriaLabel',
-														'Accessibilité : non conforme, en savoir plus'
-													)}
-													noUnderline
-													textColor={(theme) => theme.colors.extended.grey[100]}
-												>
-													<Trans i18nKey="footer.accessibilité">
-														Accessibilité : non conforme
-													</Trans>
-												</Link>
-											</li>
-										)}
-									</ul>
-								</nav>
-							</FooterColumn>
-						</FooterContainer>
-					</ThemeProvider>
+									)}
+								</ul>
+							</nav>
+						</FooterColumn>
+					</FooterContainer>
 				</Container>
 			</footer>
 		</>

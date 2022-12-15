@@ -31,7 +31,7 @@ export const StyledLink = styled.a<StyledLinkProps>`
 	color: ${({ theme, $isDisabled }) =>
 		$isDisabled
 			? theme.colors.extended.grey[600]
-			: theme.colors.bases.primary[700]};
+			: theme.colors.theme.linkColor};
 	background-color: inherit;
 	${({ $isDisabled }) =>
 		$isDisabled &&

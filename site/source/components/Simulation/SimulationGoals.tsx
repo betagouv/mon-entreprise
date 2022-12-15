@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
@@ -46,12 +46,10 @@ export function SimulationGoals({
 				aria-labelledby="simulator-legend-label"
 				aria-live="polite"
 			>
-				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-					<div className="sr-only" aria-hidden id="simulator-legend-label">
-						{legend}
-					</div>
-					{children}
-				</ThemeProvider>
+				<div className="sr-only" aria-hidden id="simulator-legend-label">
+					{legend}
+				</div>
+				{children}
 			</StyledSimulationGoals>
 		</WatchInitialRender>
 	)

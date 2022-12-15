@@ -60,6 +60,7 @@ export interface Theme {
 		theme: {
 			headingColor: string
 			textColor: string
+			linkColor: string
 			backgroundColorLight: string
 			backgroundColorDark: string
 		}
