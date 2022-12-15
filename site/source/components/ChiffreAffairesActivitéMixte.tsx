@@ -10,9 +10,10 @@ import { Switch } from '@/design-system/switch'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { catchDivideByZeroError } from '@/utils'
 
-import { Condition } from './EngineValue'
+import { Condition, WhenApplicable } from './EngineValue'
 import { SimulationGoal } from './Simulation'
 import { ExplicableRule } from './conversation/Explicable'
+import { FromTop } from './ui/animate'
 import { useEngine } from './utils/EngineContext'
 
 const proportions = {
@@ -51,18 +52,21 @@ export default function ChiffreAffairesActivitéMixte({
 				onUpdateSituation={clearChiffreAffaireMixte}
 				dottedName={dottedName}
 			/>
-			<ActivitéMixte />
-
-			<Condition expression="entreprise . activité . mixte">
-				{Object.values(proportions).map((chiffreAffaires) => (
-					<SimulationGoal
-						small
-						key={chiffreAffaires}
-						onUpdateSituation={adjustProportions}
-						dottedName={chiffreAffaires}
-					/>
-				))}
-			</Condition>
+			<WhenApplicable dottedName="entreprise . activité . mixte">
+				<FromTop>
+					<ActivitéMixte />
+					<Condition expression="entreprise . activité . mixte">
+						{Object.values(proportions).map((chiffreAffaires) => (
+							<SimulationGoal
+								small
+								key={chiffreAffaires}
+								onUpdateSituation={adjustProportions}
+								dottedName={chiffreAffaires}
+							/>
+						))}
+					</Condition>
+				</FromTop>
+			</WhenApplicable>
 		</fieldset>
 	)
 }

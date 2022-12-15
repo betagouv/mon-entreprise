@@ -930,6 +930,9 @@ dirigeant . auto-entrepreneur:
     cotisations sociales par un prélèvement unique mensuel.
   titre.en: '[automatic] auto-entrepreneur'
   titre.fr: auto-entrepreneur
+dirigeant . auto-entrepreneur . affiliation CIPAV:
+  titre.en: '[automatic] CIPAV affiliation'
+  titre.fr: affiliation CIPAV
 dirigeant . auto-entrepreneur . chiffre d'affaires:
   question.en: '[automatic] What is your turnover?'
   question.fr: Quel est votre chiffre d'affaires ?
@@ -1038,9 +1041,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
     d'acre sur une meme année.
   titre.en: '[automatic] notification calculation ACRE annual'
   titre.fr: notification calcul ACRE annuel
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service:
-  titre.en: '[automatic] service rate with ACRE'
-  titre.fr: taux prestation de service avec ACRE
 dirigeant . auto-entrepreneur . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
