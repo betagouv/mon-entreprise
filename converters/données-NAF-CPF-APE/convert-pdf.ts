@@ -63,14 +63,15 @@ const transformText = (pages: PdfData['text']) => {
 		contenuType: null,
 	}
 
-	return pages.reduce((arr, page, pageIndex) => {
+	const data = pages.reduce((arr, page, pageIndex) => {
 		const passPage = pageIndex === 0 || page.match(/Table des matières/)
 		if (passPage) {
 			return arr
 		}
 
 		const lines = page
-			.replace(/([A-Z])\s\n([A-Z])|([^A-Z])\s\n([^A-Z0-9\s])/g, '$1$3 $2$4')
+			.replace(/\s+2+\n\s+1+/g, '')
+			.replace(/([A-Z])\s\n([A-Z])|([^A-Z])\s\n([^A-Z0-9\s•-])/g, '$1$3 $2$4')
 			.split('\n')
 
 		for (let j = 0; j < lines.length; j++) {
@@ -79,7 +80,7 @@ const transformText = (pages: PdfData['text']) => {
 
 			const line = lines[j].trim()
 			const passLine = line.match(
-				/Nomenclature d’Activités Française NAF|Classification des Produits Française CPF/
+				/Nomenclature d’Activités Française NAF|(Classification|Classifi cation) des Produits Française CPF/
 			)
 			if (line === '' || passLine) {
 				// eslint-disable-next-line no-console
@@ -97,9 +98,9 @@ const transformText = (pages: PdfData['text']) => {
 			const catégorie = line.match(/^(\d{2}\.\d{2}\.\d)\s+([^\n]+)$/)
 			const sousCatégorie = line.match(/^(\d{2}\.\d{2}\.\d{2})\s+([^\n]+)$/)
 
-			const contenuCentral = line.match(/^(CC) :[•-\s]*([^\n]+)$/)
-			const contenuAnnexe = line.match(/^(CA) :[•-\s]*([^\n]+)$/)
-			const contenuExclu = line.match(/^(NC) :[•-\s]*([^\n]+)$/)
+			const contenuCentral = line.match(/^(CC)\s+:[•-\s]*([^\n]+)$/)
+			const contenuAnnexe = line.match(/^(CA)\s+:[•-\s]*([^\n]+)$/)
+			const contenuExclu = line.match(/^(NC)\s+:[•-\s]*([^\n]+)$/)
 
 			const comprend = line.match(/^Cette .+ comprend :$/)
 			const comprendAussi = line.match(/^Cette .+ comprend aussi :$/)
@@ -162,7 +163,7 @@ const transformText = (pages: PdfData['text']) => {
 				previous.contenuType
 			) {
 				previousElement[previous.contenuType].push(
-					normalize('# ' + line),
+					normalize(line),
 					...(DEBUG_DATA === true ? [line] : [])
 				)
 			} else if (!item) {
@@ -244,20 +245,15 @@ const transformText = (pages: PdfData['text']) => {
 				console.log(`[${type}]:`, match[1], '-', normalize(match[2]))
 
 				const code = match[1]
-				const {
-					contenuCentral = [],
-					contenuAnnexe = [],
-					contenuExclu = [],
-				} = customTags[code] ?? {}
 
 				arr.push({
 					type,
 					code,
 					title: normalize(match[2]),
 					data: [],
-					contenuCentral,
-					contenuAnnexe,
-					contenuExclu,
+					contenuCentral: [],
+					contenuAnnexe: [],
+					contenuExclu: [],
 					parent: (parentType && previous.index[parentType]) ?? undefined,
 				})
 			}
@@ -273,6 +269,20 @@ const transformText = (pages: PdfData['text']) => {
 
 		return arr
 	}, [] as Data[])
+
+	return data.map((data) => {
+		const {
+			contenuCentral = [],
+			contenuAnnexe = [],
+			contenuExclu = [],
+		} = customTags[data.code] ?? {}
+
+		data.contenuCentral.push(...contenuCentral)
+		data.contenuAnnexe.push(...contenuAnnexe)
+		data.contenuExclu.push(...contenuExclu)
+
+		return data
+	})
 }
 
 interface CommonData<Type extends string> {
