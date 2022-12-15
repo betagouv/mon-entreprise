@@ -10,11 +10,9 @@ import styled from 'styled-components'
 import { FromTop } from '@/components/ui/animate'
 import { RadioCardGroup, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { CardContainer } from '@/design-system/card/Card'
 import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import data from '../../../converters/données-code-APE/output.min.json'
@@ -22,16 +20,16 @@ import { Output as Data } from '../../../converters/données-code-APE/reduce-jso
 
 const {
 	apeData,
-	sortByEffectif,
+	// sortByEffectif,
 	indexByCodeApe,
 	indexByCodeDepartement,
 	nbEtablissements2021,
 } = data as Data
 
-const normalize = (term: string) =>
-	term.normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+// const normalize = (term: string) =>
+// 	term.normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
 
-const filteredData = apeData.map((el, id) => ({ ...el, id }))
+// const filteredData = apeData.map((el, id) => ({ ...el, id }))
 // .map((obj) => ({
 // 	...obj,
 // 	title: obj.title,
