@@ -128,8 +128,6 @@ export default defineConfig(({ command, mode }) => ({
 	optimizeDeps: {
 		entries: ['./source/entry-fr.tsx', './source/entry-en.tsx'],
 		exclude: ['publicodes-react', 'publicodes'],
-		// Optimize cjs deps from publicodes
-		include: ['publicodes > moo', 'publicodes > nearley'],
 	},
 	ssr: {
 		/**
