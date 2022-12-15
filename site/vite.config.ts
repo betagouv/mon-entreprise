@@ -141,6 +141,7 @@ export default defineConfig(({ command, mode }) => ({
 			/react-aria|react-stately|internationalized/,
 			/markdown-to-jsx/,
 			/styled-components|emotion/,
+			/publicodes-react/, // TODO remove this after publicodes-react upgrade
 		],
 	},
 }))
