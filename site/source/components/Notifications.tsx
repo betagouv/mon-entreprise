@@ -7,8 +7,7 @@ import styled from 'styled-components'
 import { hideNotification } from '@/actions/actions'
 import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { GenericButtonOrNavLinkProps } from '@/design-system/typography/link'
+import { CloseButton } from '@/design-system/buttons'
 import { RootState } from '@/reducers/rootReducer'
 
 import RuleLink from './RuleLink'
@@ -83,13 +82,10 @@ export default function Notifications() {
 								<Trans>En savoir plus</Trans>
 							</RuleLink>
 						)}
-						<HideButton
-							className="hide"
+						<AbsoluteCloseButton
 							aria-label={t('Fermer')}
 							onPress={() => dispatch(hideNotification(dottedName))}
-						>
-							×
-						</HideButton>
+						/>
 					</Message>
 				))}
 			</Appear>
@@ -97,25 +93,8 @@ export default function Notifications() {
 	)
 }
 
-const HideButton = styled(Button)<GenericButtonOrNavLinkProps>`
-	&& {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 1.5rem;
-		width: 1.5rem;
-		padding: 0;
-		background: ${({ theme }) => theme.colors.extended.grey[100]};
-		color: ${({ theme }) => theme.colors.bases.primary[600]};
-		font-weight: bold;
-		margin-left: 1rem;
-
-		position: absolute;
-		top: 0.375rem;
-		right: 0.375rem;
-
-		&:hover {
-			background: ${({ theme }) => theme.colors.bases.primary[300]};
-		}
-	}
+const AbsoluteCloseButton = styled(CloseButton)`
+	position: absolute;
+	top: ${({ theme }) => theme.spacings.xs};
+	right: ${({ theme }) => theme.spacings.sm};
 `

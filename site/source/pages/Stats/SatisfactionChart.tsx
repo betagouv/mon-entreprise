@@ -1,7 +1,7 @@
 import { Bar, BarChart, LabelList, Tooltip, XAxis } from 'recharts'
 
 import { StyledLegend } from '@/components/charts/PagesCharts'
-import Emoji from '@/components/utils/Emoji'
+import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'

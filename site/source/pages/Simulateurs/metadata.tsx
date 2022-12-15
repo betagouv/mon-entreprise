@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
-import Emoji from '@/components/utils/Emoji'
+import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'

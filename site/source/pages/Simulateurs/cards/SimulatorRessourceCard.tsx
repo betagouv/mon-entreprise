@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 
-import Emoji from '@/components/utils/Emoji'
 import { Article } from '@/design-system/card'
+import { Emoji } from '@/design-system/emoji'
 
 import useSimulatorsData, { SimulatorData } from '../metadata'
 

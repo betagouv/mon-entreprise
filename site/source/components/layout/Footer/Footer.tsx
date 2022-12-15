@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 
 import PageFeedback from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
-import Emoji from '@/components/utils/Emoji'
+import { Emoji } from '@/design-system/emoji'
 import { FooterContainer } from '@/design-system/footer'
 import { FooterColumn } from '@/design-system/footer/column'
 import { Container } from '@/design-system/layout'

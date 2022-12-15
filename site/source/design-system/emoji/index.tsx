@@ -1,7 +1,7 @@
 import emojiFn from 'react-easy-emoji'
 
 type PropType = {
-	emoji: string | undefined
+	emoji: string
 	alt?: string
 	title?: string
 	'aria-hidden'?: boolean
@@ -11,7 +11,7 @@ type PropType = {
 // `emojiFn` provided by `react-easy-emoji` :
 // - allow to configure the URL to self host twemoji images in production
 // - using a real React component works better with the translation scripts
-export default function Emoji({ emoji, alt, title, ...props }: PropType) {
+export function Emoji({ emoji, alt, title, ...props }: PropType) {
 	alt ??= emoji
 
 	if (!emoji) {

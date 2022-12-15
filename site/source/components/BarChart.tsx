@@ -5,11 +5,11 @@ import { animated, config, useSpring } from 'react-spring'
 import styled, { ThemeContext } from 'styled-components'
 
 import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
+import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
-import Emoji from './utils/Emoji'
 
 type ChartItemBarProps = {
 	numberToPlot: number

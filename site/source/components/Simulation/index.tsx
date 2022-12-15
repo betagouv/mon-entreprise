@@ -86,14 +86,6 @@ export default function Simulation({
 					</Body>
 					{children}
 					<FromTop>
-						<div className="print-hidden">
-							{!showQuestionsFromBeginning && !firstStepCompleted && (
-								<>
-									<Spacing sm />
-									<PreviousSimulationBanner />
-								</>
-							)}
-						</div>
 						{(firstStepCompleted || showQuestionsFromBeginning) && (
 							<>
 								<div className="print-hidden">
@@ -105,42 +97,41 @@ export default function Simulation({
 								/>
 							</>
 						)}
-						<div className="print-hidden">
-							{afterQuestionsSlot}
-							{existingCompany && (
-								<Banner icon="✏">
-									<Trans>
-										Ce simulateur a été prérempli avec la situation de votre
-										entreprise.
-									</Trans>{' '}
-									<PopoverWithTrigger
-										trigger={(buttonProps) => (
-											<Link
-												{...buttonProps}
-												aria-haspopup="dialog"
-												aria-label={t(
-													'Voir ma situation, accéder à la page de gestion de mon entreprise'
-												)}
-											>
-												<Trans>Voir ma situation</Trans>
-											</Link>
-										)}
-									>
-										{(close) => <AnswerList onClose={close} />}
-									</PopoverWithTrigger>
-								</Banner>
-							)}
-							{firstStepCompleted && !hideDetails && (
-								<>
-									<ShareOrSaveSimulationBanner
-										share
-										print
-										placeDesEntreprises
-									/>
-									<Spacing lg />
-								</>
-							)}
-						</div>
+						<Spacing md />
+
+						{!showQuestionsFromBeginning && !firstStepCompleted && (
+							<PreviousSimulationBanner />
+						)}
+						{afterQuestionsSlot}
+						{existingCompany && (
+							<Banner icon="✏">
+								<Trans>
+									Ce simulateur a été prérempli avec la situation de votre
+									entreprise.
+								</Trans>{' '}
+								<PopoverWithTrigger
+									trigger={(buttonProps) => (
+										<Link
+											{...buttonProps}
+											aria-haspopup="dialog"
+											aria-label={t(
+												'Voir ma situation, accéder à la page de gestion de mon entreprise'
+											)}
+										>
+											<Trans>Voir ma situation</Trans>
+										</Link>
+									)}
+								>
+									{(close) => <AnswerList onClose={close} />}
+								</PopoverWithTrigger>
+							</Banner>
+						)}
+						{firstStepCompleted && !hideDetails && (
+							<>
+								<ShareOrSaveSimulationBanner share print placeDesEntreprises />
+								<Spacing lg />
+							</>
+						)}
 					</FromTop>
 				</StyledGrid>
 			</Grid>

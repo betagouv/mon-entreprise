@@ -4,9 +4,9 @@ import styled from 'styled-components'
 
 import { PopoverWithTrigger } from '@/design-system'
 
-import { Button } from '.'
+import { Button } from './Button'
 
-type ButtonHelpProps = {
+type HelpButtonProps = {
 	type: 'aide' | 'info'
 	title: string
 	children: React.ReactNode
@@ -15,7 +15,7 @@ type ButtonHelpProps = {
 	className?: string
 }
 
-export default function ButtonHelp({
+export default function HelpButton({
 	children,
 	title,
 	type,
@@ -23,7 +23,7 @@ export default function ButtonHelp({
 	bigPopover,
 	className,
 	...props
-}: ButtonHelpProps) {
+}: HelpButtonProps) {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (

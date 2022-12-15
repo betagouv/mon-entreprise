@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Message } from '@/design-system'
+import { Emoji } from '@/design-system/emoji'
 import { Strong, U } from '@/design-system/typography'
 import { H1, H2, H3, H4, H5, H6 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -12,7 +13,6 @@ import { Body } from '@/design-system/typography/paragraphs'
 
 import { SiteNameContext } from '../../Provider'
 import { isIterable } from '../../utils'
-import Emoji from './Emoji'
 
 const internalURLs = {
 	'mon-entreprise.urssaf.fr': 'mon-entreprise',

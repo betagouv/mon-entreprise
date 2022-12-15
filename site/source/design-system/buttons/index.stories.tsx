@@ -28,3 +28,5 @@ Secondary.args = {
 	color: 'secondary',
 	children: 'Secondary XS button',
 }
+
+export { CloseButton, HelpButton } from '@/design-system/buttons'

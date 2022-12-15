@@ -6,8 +6,7 @@ import { useRegisterSW } from 'virtual:pwa-register/react'
 import { getItem, removeItem, setItem } from '@/storage/safeLocalStorage'
 
 import { Message } from './design-system'
-import { HideButton } from './design-system/banner'
-import { Button } from './design-system/buttons'
+import { Button, CloseButton } from './design-system/buttons'
 import { Body } from './design-system/typography/paragraphs'
 
 const PromptContainer = styled.div`
@@ -33,7 +32,7 @@ const StyledMessage = styled(Message)`
 	}
 `
 
-const StyledHideButton = styled.div`
+const StyledClosedButton = styled(CloseButton)`
 	position: absolute;
 	top: 0.375rem;
 	right: 0.375rem;
@@ -105,14 +104,10 @@ export const ServiceWorker = () => {
 						</Button>
 					</StyledSmallBody>
 
-					<StyledHideButton>
-						<HideButton
-							onClick={() => setNeedRefresh(false)}
-							aria-label={t('Fermer')}
-						>
-							&times;
-						</HideButton>
-					</StyledHideButton>
+					<StyledClosedButton
+						onClick={() => setNeedRefresh(false)}
+						aria-label={t('Fermer')}
+					/>
 				</StyledMessage>
 			)}
 		</PromptContainer>

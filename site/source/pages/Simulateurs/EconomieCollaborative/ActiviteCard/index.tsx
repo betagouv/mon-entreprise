@@ -3,10 +3,10 @@ import React, { useCallback, useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import Emoji from '@/components/utils/Emoji'
 import { Button } from '@/design-system/buttons'
-import ButtonHelp from '@/design-system/buttons/ButtonHelp'
+import HelpButton from '@/design-system/buttons/HelpButton'
 import { CardContainer } from '@/design-system/card/Card'
+import { Emoji } from '@/design-system/emoji'
 import { Checkbox } from '@/design-system/field'
 import { Spacing } from '@/design-system/layout'
 import { Tag } from '@/design-system/tag'
@@ -88,9 +88,9 @@ export const ActiviteCard = ({
 			)}
 			<ActiviteContent>
 				<H4 as="h3">{titre}</H4>
-				<ButtonHelp title={titre} type="aide">
+				<HelpButton title={titre} type="aide">
 					<Body>{explication}</Body>
-				</ButtonHelp>
+				</HelpButton>
 				<SmallBody
 					css={`
 						flex: 1;

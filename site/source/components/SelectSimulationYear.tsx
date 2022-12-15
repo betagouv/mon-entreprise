@@ -23,6 +23,8 @@ export const SelectSimulationYear = () => {
 			new Date().getFullYear()
 	)
 
+	// return null // Waiting for next year.
+
 	return (
 		<Banner hideAfterFirstStep={false} icon={'📅'}>
 			<Trans i18nKey="pages.simulateurs.select-year.info">

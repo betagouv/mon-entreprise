@@ -79,11 +79,7 @@ export default function PageData(props: PageDataProps) {
 			<TrackChapter {...trackInfo}>
 				{meta && <Meta page={`simulateur.${title ?? ''}`} {...meta} />}
 
-				{beta && (
-					<StyledBetaContainer>
-						<BetaBanner />
-					</StyledBetaContainer>
-				)}
+				{beta && <BetaBanner />}
 				{title && !inIframe && (
 					<>
 						<H1>
@@ -123,16 +119,4 @@ export default function PageData(props: PageDataProps) {
 }
 const StyledSpan = styled.span`
 	margin-right: ${({ theme }) => theme.spacings.sm};
-`
-const StyledBetaContainer = styled.div`
-	padding-top: ${({ theme }) => theme.spacings.xl};
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		padding-top: ${({ theme }) => theme.spacings.md};
-	}
-	margin-bottom: -${({ theme }) => theme.spacings.xl};
-	position: sticky;
-	top: 0;
-	z-index: 3;
-	background-color: ${({ theme }) =>
-		!theme.darkMode ? 'rgba(255, 255, 255, 0.7)' : 'inherit'};
 `
