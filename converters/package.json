@@ -1,8 +1,14 @@
 {
-	"name": "pdf",
+	"name": "converters",
 	"version": "1.0.0",
 	"description": "",
 	"type": "module",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/mon-entreprise.git",
+		"directory": "converters"
+	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start:données-NAF-CPF-APE": "ts-node-esm ./données-NAF-CPF-APE/convert-pdf.ts",
@@ -12,16 +18,10 @@
 		"start:watch:nombre-etablissements-par-code-ape-et-departement": "nodemon -x 'yarn start:nombre-etablissements-par-code-ape-et-departement' -e 'ts'",
 		"start:watch:données-code-APE": "nodemon -x 'yarn start:données-code-APE' -e 'ts'"
 	},
-	"author": "",
-	"license": "ISC",
 	"dependencies": {
-		"@types/stream-chain": "^2.0.1",
 		"@types/stream-json": "^1.7.2",
-		"bfj": "^7.0.2",
-		"big-json": "^3.2.0",
 		"got": "^12.5.3",
 		"pdfdataextract": "^3.2.0",
-		"stream-chain": "^2.2.5",
 		"stream-json": "^1.7.5",
 		"ts-node": "^10.9.1"
 	},
