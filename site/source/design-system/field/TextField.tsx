@@ -66,6 +66,7 @@ export const StyledInput = styled.input`
 	height: 100%;
 	outline: none;
 	transition: color 0.2s;
+	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	::placeholder {
 		${({ theme }) =>
 			theme.darkMode &&
@@ -101,10 +102,8 @@ export const StyledLabel = styled.label`
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
-			@media not print {
-				color: ${theme.colors.extended.grey[100]} !important;
-				background-color: transparent;
-			}
+			color: ${theme.colors.extended.grey[100]} !important;
+			background-color: transparent;
 		`}
 `
 
@@ -130,31 +129,35 @@ export const StyledInputContainer = styled.div<{
 	hasError: boolean
 	hasLabel: boolean
 	small?: boolean
+	hasLightBackground?: boolean
+	hasDarkBackground?: boolean
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>
-		`${theme.box.borderWidth} solid ${
-			theme.darkMode
-				? theme.colors.extended.grey[100]
-				: theme.colors.extended.grey[700]
-		}`};
+		`${theme.box.borderWidth} solid ${theme.colors.extended.grey[100]}`};
 	outline: transparent solid 1px;
 	position: relative;
 	display: flex;
-	background-color: ${({ theme }) =>
-		theme.darkMode
-			? 'rgba(255, 255, 255, 20%)'
-			: theme.colors.extended.grey[100]};
+	background-color: rgba(255, 255, 255, 20%);
 	align-items: center;
 	transition: all 0.2s;
-
 	:focus-within {
+		${({ theme, hasDarkBackground }) =>
+			hasDarkBackground &&
+			css`
+				outline-color: ${theme.colors.bases.primary[200]}!important;
+			`}
+		${({ theme, hasLightBackground }) =>
+			hasLightBackground &&
+			css`
+				outline-color: ${theme.colors.bases.primary[700]}!important;
+			`}
 		outline-color: ${({ theme, hasError }) =>
 			hasError
 				? theme.colors.extended.error[400]
 				: theme.darkMode
-				? theme.colors.bases.primary[400]
-				: theme.colors.bases.primary[700]};
+				? theme.colors.bases.primary[300]
+				: theme.colors.bases.primary[800]};
 		outline-offset: ${({ theme }) => theme.spacings.xxs};
 		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}

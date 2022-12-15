@@ -46,6 +46,7 @@ type Props<Names extends string = DottedName> = Omit<
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
 	modifiers?: Record<string, string>
+	hasDarkBackground?: boolean
 }
 
 export type InputProps<Name extends string = string> = Omit<
