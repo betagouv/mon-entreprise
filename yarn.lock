@@ -3797,10 +3797,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@leeoniya/ufuzzy@npm:^0.8.0":
-  version: 0.8.0
-  resolution: "@leeoniya/ufuzzy@npm:0.8.0"
-  checksum: 15c2c944beafcd97da8487ea7c0f5b59268ac080e492aa8ad6a53719f02164677725ef228211290433a13efaf4c1abd99b6f286c37c469872863e7e2fee90385
+"@leeoniya/ufuzzy@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@leeoniya/ufuzzy@npm:1.0.2"
+  checksum: 5460378a8c32d121b0bc7c8e95cde995316516655528e248051b1bf360cdca0311ef3275de14b802587748231333cee6183c931b3abba26f9e4236ecc4959aa3
   languageName: node
   linkType: hard
 
@@ -26270,7 +26270,7 @@ __metadata:
     "@atomik-color/core": ^1.0.13
     "@axe-core/react": ^4.5.2
     "@internationalized/number": ^3.1.1
-    "@leeoniya/ufuzzy": ^0.8.0
+    "@leeoniya/ufuzzy": ^1.0.2
     "@publicodes/api": ^1.0.0-beta.66
     "@react-aria/accordion": ^3.0.0-alpha.13
     "@react-aria/button": ^3.6.3
