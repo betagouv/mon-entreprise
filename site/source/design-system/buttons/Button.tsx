@@ -122,7 +122,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			background-color: ${theme.colors.bases[$color][
 				$color === 'primary' ? 700 : 300
 			]};
-			color: ${theme.colors.extended.grey[$color === 'primary' ? 100 : 800]};
+			color: ${theme.colors.extended.grey[
+				$color === 'primary' ? 100 : 800
+			]} !important;
 		`}
 
 	/* Primary, secondary & tertiary light colors */
@@ -130,7 +132,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		$light &&
 		!theme.darkMode &&
 		css`
-			color: ${theme.colors.bases[$color][$color === 'primary' ? 700 : 700]};
+			color: ${theme.colors.bases[$color][
+				$color === 'primary' ? 700 : 700
+			]} !important;
 			background-color: ${theme.colors.extended.grey[100]};
 			${$color === 'secondary' &&
 			css`
@@ -154,7 +158,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			css`
 				background-color: transparent;
 				border-color: ${theme.colors.extended.grey[100]};
-				color: ${theme.colors.extended.grey[100]};
+				color: ${theme.colors.extended.grey[100]}!important;
 			`}
 	}
 	/* HOVER STYLE */

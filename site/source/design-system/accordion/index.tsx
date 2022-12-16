@@ -45,18 +45,20 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 	const { buttonProps, regionProps } = useAccordionItem<T>(props, state, ref)
 
 	const isOpen = state.expandedKeys.has(item.key)
-	// const isDisabled = state.disabledKeys.has(item.key)
 
 	const [regionRef, { height }] = useMeasure()
 	const animatedStyle = useSpring({
 		reset: false,
 		to: isOpen
-			? { opacity: 1, height: height + 48 } // We add 48px that corresponds to the margin
+			? { opacity: 1, height: height + 48, display: 'block' } // We add 48px that corresponds to the margin
 			: { opacity: 0, height: 0 },
 	})
 
 	return (
-		<StyledAccordionItem onMouseDown={(x) => x.stopPropagation()}>
+		<StyledAccordionItem
+			onMouseDown={(x) => x.stopPropagation()}
+			isOpen={isOpen}
+		>
 			<StyledTitle>
 				<StyledButton {...buttonProps} ref={ref}>
 					<span>{item.props.title}</span>
@@ -64,7 +66,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 				</StyledButton>
 			</StyledTitle>
 			{/* @ts-ignore: https://github.com/pmndrs/react-spring/issues/1515 */}
-			<StyledContent {...regionProps} style={animatedStyle}>
+			<StyledContent {...regionProps} style={animatedStyle} isOpen>
 				<div ref={regionRef}>{item.props.children}</div>
 			</StyledContent>
 		</StyledAccordionItem>
@@ -75,10 +77,18 @@ const StyledTitle = styled.h3`
 	margin: 0;
 `
 
-const StyledAccordionItem = styled.div`
+const StyledAccordionItem = styled.div<{ isOpen?: boolean }>`
 	:not(:first-child) {
 		border-top: 1px solid ${({ theme }) => theme.colors.bases.primary[400]};
 	}
+
+	${({ isOpen }) =>
+		!isOpen &&
+		`
+		& ${StyledContent} > div {
+			visibility: hidden;
+		}
+	`}
 `
 
 const StyledButton = styled.button`
@@ -99,9 +109,6 @@ const StyledButton = styled.button`
 	`}
 	:hover {
 		text-decoration: underline;
-	}
-	:focus {
-		outline: none;
 	}
 `
 

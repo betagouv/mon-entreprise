@@ -3,6 +3,7 @@ import styled, { ThemeProvider, css } from 'styled-components'
 
 import { Palette, SmallPalette } from '@/types/styled'
 
+import { Button } from '../buttons'
 import { Body } from '../typography/paragraphs'
 import baseIcon from './baseIcon.svg'
 import errorIcon from './errorIcon.svg'
@@ -85,6 +86,9 @@ const StyledMessage = styled.div<StyledMessageProps>`
 			&& h6 {
 				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
 				background-color: inherit;
+			}
+			& a {
+				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
 			}
 		`
 	}}
