@@ -46,17 +46,17 @@ const InnerContainer = styled.div`
 `
 
 type OuterContainerProps = {
-	backgroundColor?: (theme: DefaultTheme) => string
+	$backgroundColor?: (theme: DefaultTheme) => string
 }
 
 type ContainerProps = {
 	children: ReactNode
 	darkMode?: boolean
-	backgroundColor?: (theme: DefaultTheme) => string
+	$backgroundColor?: (theme: DefaultTheme) => string
 }
 
 export default function Container({
-	backgroundColor,
+	$backgroundColor,
 	darkMode,
 	children,
 }: ContainerProps) {
@@ -70,7 +70,7 @@ export default function Container({
 			})}
 		>
 			<OuterOuterContainer>
-				<OuterContainer $backgroundColor={backgroundColor}>
+				<OuterContainer $backgroundColor={$backgroundColor}>
 					<InnerContainer>{children}</InnerContainer>
 				</OuterContainer>
 			</OuterOuterContainer>

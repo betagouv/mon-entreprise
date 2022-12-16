@@ -23,7 +23,7 @@ export const StyledLinkHover = css`
 interface StyledLinkProps {
 	$isDisabled?: boolean
 	$noUnderline?: boolean
-	backgroundColor?: (theme: DefaultTheme) => string
+	$backgroundColor?: (theme: DefaultTheme) => string
 	$textColor?: (theme: DefaultTheme) => string
 }
 
@@ -67,7 +67,7 @@ export const Link = React.forwardRef<
 		children: React.ReactNode
 		isDisabled?: boolean
 		noUnderline?: boolean
-		backgroundColor?: (theme: DefaultTheme) => string
+		$backgroundColor?: (theme: DefaultTheme) => string
 		$textColor?: (theme: DefaultTheme) => string
 	}
 >(function Link(props, forwardedRef) {
@@ -75,7 +75,7 @@ export const Link = React.forwardRef<
 		isDisabled,
 		role,
 		noUnderline,
-		backgroundColor,
+		$backgroundColor,
 		$textColor,
 		...ariaButtonProps
 	} = props
@@ -90,7 +90,7 @@ export const Link = React.forwardRef<
 			$noUnderline={noUnderline}
 			tabIndex={isDisabled ? -1 : buttonOrLinkProps.tabIndex}
 			as={isDisabled ? 'span' : buttonOrLinkProps.as}
-			$backgroundColor={backgroundColor}
+			$backgroundColor={$backgroundColor}
 			$textColor={$textColor}
 		/>
 	)
