@@ -11,8 +11,8 @@ const baseHeading = css`
 			? theme.colors.extended.grey[100]
 			: theme.colors.bases.primary[700]};
 	background-color: inherit;
-	color: ${({ theme }) => theme.colors.theme.headingColor};
-
+	color: ${({ theme }: { theme: DefaultTheme }) =>
+		theme.colors.theme.headingColor};
 	${CustomizeBlockStyle}// TODO: Fix ts issue
 `
 
@@ -29,7 +29,7 @@ export const HeadingUnderline = css`
 export const H1 = styled.h1<{
 	noUnderline?: boolean
 	backgroundColor?: (theme: DefaultTheme) => string
-	color?: (theme: DefaultTheme) => string
+	textColor?: (theme: DefaultTheme) => string
 }>`
 	${baseHeading}
 	font-size: 2rem;
@@ -48,7 +48,7 @@ export const H1 = styled.h1<{
 export const H2 = styled.h2<{
 	noUnderline?: boolean
 	backgroundColor?: (theme: DefaultTheme) => string
-	color?: (theme: DefaultTheme) => string
+	textColor?: (theme: DefaultTheme) => string
 }>`
 	${baseHeading}
 	font-size: 1.625rem;
@@ -75,7 +75,7 @@ export const H3 = styled.h3<{
 
 export const H4 = styled.h4<{
 	backgroundColor?: (theme: DefaultTheme) => string
-	color?: (theme: DefaultTheme) => string
+	textColor?: (theme: DefaultTheme) => string
 }>`
 	${baseHeading}
 	margin: ${({ theme }) =>
@@ -88,7 +88,7 @@ export const H4 = styled.h4<{
 
 export const H5 = styled.h5<{
 	backgroundColor?: (theme: DefaultTheme) => string
-	color?: (theme: DefaultTheme) => string
+	textColor?: (theme: DefaultTheme) => string
 }>`
 	${baseHeading}
 	font-size: 1rem;
@@ -101,7 +101,7 @@ export const H5 = styled.h5<{
 
 export const H6 = styled.h6<{
 	backgroundColor?: (theme: DefaultTheme) => string
-	color?: (theme: DefaultTheme) => string
+	textColor?: (theme: DefaultTheme) => string
 }>`
 	${baseHeading}
 	margin: ${({ theme }) =>

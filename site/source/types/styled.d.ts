@@ -58,11 +58,11 @@ export interface Theme {
 		}
 
 		theme: {
-			headingColor: string
-			textColor: string
-			linkColor: string
-			backgroundColorLight: string
-			backgroundColorDark: string
+			headingColor: Color
+			textColor: Color
+			linkColor: Color
+			backgroundColorLight: Color
+			backgroundColorDark: Color
 		}
 	}
 
