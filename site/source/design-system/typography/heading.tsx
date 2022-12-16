@@ -13,7 +13,7 @@ const baseHeading = css`
 	background-color: inherit;
 	color: ${({ theme }: { theme: DefaultTheme }) =>
 		theme.colors.theme.headingColor};
-	${CustomizeBlockStyle}// TODO: Fix ts issue
+	${CustomizeBlockStyle}
 `
 
 export const HeadingUnderline = css`
