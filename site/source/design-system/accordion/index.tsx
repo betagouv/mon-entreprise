@@ -50,7 +50,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 	const animatedStyle = useSpring({
 		reset: false,
 		to: isOpen
-			? { opacity: 1, height: height + 48, display: 'block' } // We add 48px that corresponds to the margin
+			? { opacity: 1, height: height + 48 } // We add 48px that corresponds to the margin
 			: { opacity: 0, height: 0 },
 	})
 
@@ -66,7 +66,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 				</StyledButton>
 			</StyledTitle>
 			{/* @ts-ignore: https://github.com/pmndrs/react-spring/issues/1515 */}
-			<StyledContent {...regionProps} style={animatedStyle} isOpen>
+			<StyledContent {...regionProps} style={animatedStyle}>
 				<div ref={regionRef}>{item.props.children}</div>
 			</StyledContent>
 		</StyledAccordionItem>
@@ -82,6 +82,8 @@ const StyledAccordionItem = styled.div<{ isOpen?: boolean }>`
 		border-top: 1px solid ${({ theme }) => theme.colors.bases.primary[400]};
 	}
 
+	// Empêche le focus sur les éléments enfants de StyledContent
+	// en état fermé
 	${({ isOpen }) =>
 		!isOpen &&
 		`

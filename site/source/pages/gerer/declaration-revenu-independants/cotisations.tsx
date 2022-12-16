@@ -1,3 +1,5 @@
+import styled from 'styled-components'
+
 import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import PageFeedback from '@/components/Feedback'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
@@ -79,7 +81,7 @@ export default function Cotisations() {
 											<Strong>l'année 2021</Strong> :
 										</Body>
 									</div>
-									<Message border={false}>
+									<StyledMessage border={false}>
 										<div
 											css={`
 												margin: -0.75rem 0;
@@ -107,7 +109,7 @@ export default function Cotisations() {
 												/>
 											</div>
 										</div>
-									</Message>
+									</StyledMessage>
 								</FromTop>
 							</Grid>
 
@@ -157,3 +159,9 @@ export default function Cotisations() {
 		</FromTop>
 	)
 }
+
+const StyledMessage = styled(Message)`
+	& h2 {
+		color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
+`

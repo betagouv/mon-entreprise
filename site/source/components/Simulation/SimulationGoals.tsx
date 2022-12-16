@@ -36,22 +36,23 @@ export function SimulationGoals({
 	return (
 		<WatchInitialRender>
 			<TopSection toggles={toggles} />
-			<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
-				<StyledSimulationGoals
-					isEmbeded={isEmbeded}
-					isFirstStepCompleted={isFirstStepCompleted}
-					publique={publique}
-					role="group"
-					id="simulator-legend"
-					aria-labelledby="simulator-legend-label"
-					aria-live="polite"
-				>
+
+			<StyledSimulationGoals
+				isEmbeded={isEmbeded}
+				isFirstStepCompleted={isFirstStepCompleted}
+				publique={publique}
+				role="group"
+				id="simulator-legend"
+				aria-labelledby="simulator-legend-label"
+				aria-live="polite"
+			>
+				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
 					<div className="sr-only" aria-hidden id="simulator-legend-label">
 						{legend}
 					</div>
 					{children}
-				</StyledSimulationGoals>
-			</ThemeProvider>
+				</ThemeProvider>
+			</StyledSimulationGoals>
 		</WatchInitialRender>
 	)
 }
