@@ -123,7 +123,7 @@ export const VisibleRadio = styled.span`
 				? theme.colors.bases.primary[200]
 				: theme.colors.bases.primary[700]};
 	}
-	& span {
+	& > span {
 		background-color: transparent;
 	}
 `
