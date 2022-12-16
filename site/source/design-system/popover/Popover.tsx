@@ -9,6 +9,7 @@ import {
 	usePreventScroll,
 } from '@react-aria/overlays'
 import { AriaDialogProps } from '@react-types/dialog'
+import FocusTrap from 'focus-trap-react'
 import React, { RefObject, useEffect, useRef, useState } from 'react'
 import styled, { ThemeProvider, css, keyframes } from 'styled-components'
 
@@ -92,14 +93,14 @@ export default function Popover(
 									min-width: 0;
 								`}
 							>
-								<PopoverContainer
-									{...dialogProps}
-									{...modalProps}
-									{...overlayProps}
-									$offsetTop={offsetTop}
-									ref={ref}
-								>
-									<FocusScope contain restoreFocus autoFocus>
+								<FocusTrap>
+									<PopoverContainer
+										{...dialogProps}
+										{...modalProps}
+										{...overlayProps}
+										$offsetTop={offsetTop}
+										ref={ref}
+									>
 										{props.isDismissable && (
 											<CloseButtonContainer>
 												{/* TODO : replace with Link when in design system */}
@@ -127,7 +128,7 @@ export default function Popover(
 											</CloseButtonContainer>
 										)}
 										{/* tabIndex -1 is for text selection in popover, see https://github.com/adobe/react-spectrum/issues/1604#issuecomment-781574668 */}
-										<PopoverContent tabIndex={-1} ref={contentRef}>
+										<PopoverContent ref={contentRef}>
 											{title && (
 												<H2 as="h1" {...titleProps}>
 													{title}
@@ -135,8 +136,8 @@ export default function Popover(
 											)}
 											{children}
 										</PopoverContent>
-									</FocusScope>
-								</PopoverContainer>
+									</PopoverContainer>
+								</FocusTrap>
 							</Grid>
 						</Grid>
 					</Container>
