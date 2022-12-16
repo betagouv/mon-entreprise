@@ -118,7 +118,13 @@ export const VisibleRadio = styled.span`
 	}
 
 	:hover ${OutsideCircle} {
-		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+		border-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[200]
+				: theme.colors.bases.primary[700]};
+	}
+	& span {
+		background-color: transparent;
 	}
 `
 
@@ -139,7 +145,10 @@ export const InputRadio = styled.input`
 		:checked
 		+ ${VisibleRadio}
 		${OutsideCircle} {
-		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+		border-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[200]
+				: theme.colors.bases.primary[700]};
 	}
 
 	:checked + ${VisibleRadio} ${InsideCircle} {

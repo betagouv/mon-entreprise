@@ -8,6 +8,7 @@ import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 
+import { FocusStyle } from '@/design-system/global-style'
 import { CarretDown } from '@/design-system/icons/carret-down'
 import { omit } from '@/utils'
 
@@ -69,6 +70,10 @@ const Button = styled.button<ButtonProps>`
 				background-color: inherit;
 			}
 		`}
+
+	&:focus {
+		${FocusStyle}
+	}
 `
 
 const Value = styled.span`
