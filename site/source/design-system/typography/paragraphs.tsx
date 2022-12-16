@@ -9,18 +9,8 @@ export const baseParagraphStyle = css`
 	background-color: inherit;
 
 	@media not print {
-		${({ theme }) =>
-			theme.darkMode &&
-			css`
-				color: ${theme.colors.extended.grey[100]};
-			`}
-		/* Hack for text color in Message component in documentation */
-		&& {
-			color: ${({ theme }) =>
-				theme.darkMode
-					? theme.colors.extended.grey[100]
-					: theme.colors.extended.grey[800]};
-		}
+		color: ${({ theme }) =>
+			theme.darkMode ? `${theme.colors.extended.grey[100]}` : ''};
 	}
 
 	${CustomizeBlockStyle}
