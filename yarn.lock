@@ -2877,10 +2877,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/standalone@npm:^7.20.0":
-  version: 7.20.4
-  resolution: "@babel/standalone@npm:7.20.4"
-  checksum: cfc549333b0e779b7b33e3fe491912562818d4b2fab82e475fd51c92302a03265bb845e8a9c95c765bb5f33625e4d3c24d33075694221241c5555060102721e8
+"@babel/standalone@npm:^7.20.6":
+  version: 7.20.6
+  resolution: "@babel/standalone@npm:7.20.6"
+  checksum: 92f9d23e8ecfff74f659cdddcb2568e0b7f01272809ae5d350181310fda7cb98df5a2d5e1dbedecec3efd4f8488a199b9474a9125f285c3dd988db14ef9b4637
   languageName: node
   linkType: hard
 
@@ -8997,19 +8997,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-legacy@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "@vitejs/plugin-legacy@npm:2.3.1"
+"@vitejs/plugin-legacy@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@vitejs/plugin-legacy@npm:3.0.1"
   dependencies:
-    "@babel/standalone": ^7.20.0
-    core-js: ^3.26.0
-    magic-string: ^0.26.7
-    regenerator-runtime: ^0.13.10
+    "@babel/standalone": ^7.20.6
+    core-js: ^3.26.1
+    magic-string: ^0.27.0
+    regenerator-runtime: ^0.13.11
     systemjs: ^6.13.0
   peerDependencies:
     terser: ^5.4.0
-    vite: ^3.0.0
-  checksum: ade1495ac289ab15a87c788e11d6c043d60ddc834ad04e6976b81932e4a85d448d2c9fb6eec9e835ca4ae8c585ca1bb0b064ca898571d6dcc821cdf26fde70aa
+    vite: ^4.0.0
+  checksum: e02785e84f66e62b5710aa28069bf43199eb464f0bd19ff72b58808735ba85f6b947ad8a33d562edaa651f89275310a69409dc199b66ebbd807b5861188d8240
   languageName: node
   linkType: hard
 
@@ -12579,7 +12579,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.0.4, core-js@npm:^3.26.0, core-js@npm:^3.6.5, core-js@npm:^3.8.2":
+"core-js@npm:^3.0.4, core-js@npm:^3.26.1, core-js@npm:^3.6.5, core-js@npm:^3.8.2":
   version: 3.26.1
   resolution: "core-js@npm:3.26.1"
   checksum: 0a01149f51ff1e9f41d1ea49cc4c9222047949ea597189ede7c4cf8cde3b097766b9c7615acc77c86fe65b4002f20b638a133dfba7b41dba830d707aeeed45ad
@@ -24799,7 +24799,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:^0.13.10, regenerator-runtime@npm:^0.13.2, regenerator-runtime@npm:^0.13.4, regenerator-runtime@npm:^0.13.7":
+"regenerator-runtime@npm:^0.13.10, regenerator-runtime@npm:^0.13.11, regenerator-runtime@npm:^0.13.2, regenerator-runtime@npm:^0.13.4, regenerator-runtime@npm:^0.13.7":
   version: 0.13.11
   resolution: "regenerator-runtime@npm:0.13.11"
   checksum: 27481628d22a1c4e3ff551096a683b424242a216fee44685467307f14d58020af1e19660bf2e26064de946bad7eff28950eae9f8209d55723e2d9351e632bbb4
@@ -26056,7 +26056,7 @@ __metadata:
     "@types/recharts": ^1.8.24
     "@types/serve-static": ^1.15.0
     "@types/styled-components": ^5.1.26
-    "@vitejs/plugin-legacy": ^2.3.1
+    "@vitejs/plugin-legacy": ^3.0.1
     "@vitejs/plugin-react": ^3.0.0
     algoliasearch: ^4.14.2
     cypress: "https://cdn.cypress.io/beta/npm/12.0.0/linux-arm64/release/12.0.0-e8898d2f6b65a11f36ceb2dd32ce7f1d87b103bc/cypress.tgz"
