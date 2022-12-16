@@ -32,7 +32,7 @@ export default function Plan() {
 					<h2>
 						<Link
 							to={absoluteSitePaths.index}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Page d'accueil</Trans>
 						</Link>
@@ -42,7 +42,7 @@ export default function Plan() {
 					<h2>
 						<HeaderLink
 							to={absoluteSitePaths.créer.index}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Créer une entreprise</Trans>
 						</HeaderLink>
@@ -53,7 +53,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.créer.après}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>Après la création</Trans>
 								</Link>
@@ -63,7 +63,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.créer.guideStatut.index}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>Choix du statut juridique</Trans>
 								</Link>
@@ -75,7 +75,7 @@ export default function Plan() {
 					<h2>
 						<HeaderLink
 							to={absoluteSitePaths.gérer.index}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Gérer mon activité</Trans>
 						</HeaderLink>
@@ -86,7 +86,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.gérer.embaucher}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>Embaucher</Trans>
 								</Link>
@@ -96,7 +96,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.gérer.sécuritéSociale}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>Protection sociale</Trans>
 								</Link>
@@ -106,7 +106,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.gérer.déclarationIndépendant.index}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>
 										Assistant à la détermination des charges sociales
@@ -119,7 +119,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.gérer.formulaireMobilité}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>Simulateur de demande de mobilité</Trans>
 								</Link>
@@ -131,7 +131,7 @@ export default function Plan() {
 					<h2>
 						<HeaderLink
 							to={absoluteSitePaths.simulateurs.index}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Simulateurs disponibles</Trans>
 						</HeaderLink>
@@ -151,7 +151,7 @@ export default function Plan() {
 										<h3>
 											<Link
 												to={simulateurPath}
-												textColor={(theme) => theme.colors.theme.headingColor}
+												$textColor={(theme) => theme.colors.theme.headingColor}
 											>
 												{
 													metadata[
@@ -168,7 +168,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.simulateurs.comparaison}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>Assistant au choix du statut juridique</Trans>
 								</Link>
@@ -178,7 +178,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.simulateurs.économieCollaborative.index}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>
 										Assistant à la déclaration des revenus des plateformes en
@@ -193,7 +193,7 @@ export default function Plan() {
 					<h2>
 						<Link
 							to={absoluteSitePaths.nouveautés}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Nouveautés</Trans>
 						</Link>
@@ -204,7 +204,7 @@ export default function Plan() {
 					<h2>
 						<Link
 							to={absoluteSitePaths.budget}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Budget</Trans>
 						</Link>
@@ -214,7 +214,7 @@ export default function Plan() {
 					<h2>
 						<Link
 							to={absoluteSitePaths.accessibilité}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Accessibilité</Trans>
 						</Link>
@@ -224,7 +224,7 @@ export default function Plan() {
 					<h2>
 						<Link
 							to={absoluteSitePaths.stats}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Statistiques</Trans>
 						</Link>
@@ -234,7 +234,7 @@ export default function Plan() {
 					<h2>
 						<HeaderLink
 							to={absoluteSitePaths.développeur.index}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Outils pour les développeurs</Trans>
 						</HeaderLink>
@@ -245,7 +245,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.développeur.api}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>API REST de simulation</Trans>
 								</Link>
@@ -255,7 +255,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.développeur.iframe}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>Intégrer le module Web</Trans>
 								</Link>
@@ -265,7 +265,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.développeur.library}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>
 										Utiliser les calculs des simulateurs dans votre application
@@ -277,7 +277,7 @@ export default function Plan() {
 							<h3>
 								<Link
 									to={absoluteSitePaths.développeur.spreadsheet}
-									textColor={(theme) => theme.colors.theme.headingColor}
+									$textColor={(theme) => theme.colors.theme.headingColor}
 								>
 									<Trans>Utiliser avec un tableur</Trans>
 								</Link>
@@ -290,7 +290,7 @@ export default function Plan() {
 					<h2>
 						<Link
 							to={absoluteSitePaths.documentation.index}
-							textColor={(theme) => theme.colors.theme.headingColor}
+							$textColor={(theme) => theme.colors.theme.headingColor}
 						>
 							<Trans>Documentation</Trans>
 						</Link>

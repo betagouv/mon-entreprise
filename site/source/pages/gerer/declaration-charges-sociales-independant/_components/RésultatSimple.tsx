@@ -22,7 +22,7 @@ export default function ResultatsSimples() {
 
 			<Container
 				darkMode
-				backgroundColor={(theme) => theme.colors.bases.primary[600]}
+				$backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
 				{' '}
 				<H2>

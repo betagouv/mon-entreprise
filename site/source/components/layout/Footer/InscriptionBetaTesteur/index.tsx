@@ -16,7 +16,7 @@ export default function InscriptionBetaTesteur() {
 					{...buttonProps}
 					aria-haspopup="dialog"
 					noUnderline
-					textColor={(theme) => theme.colors.extended.grey[100]}
+					$textColor={(theme) => theme.colors.extended.grey[100]}
 				>
 					Devenir beta-testeur
 				</Link>

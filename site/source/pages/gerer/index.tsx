@@ -271,7 +271,7 @@ function Home() {
 			</PageHeader>
 
 			<Container
-				backgroundColor={(theme) => theme.colors.bases.primary[600]}
+				$backgroundColor={(theme) => theme.colors.bases.primary[600]}
 				darkMode
 			>
 				<FromTop>

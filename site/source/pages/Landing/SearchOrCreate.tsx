@@ -39,7 +39,7 @@ export default function SearchOrCreate() {
 			<Grid item xl={8} lg={10} md={12}>
 				{companySIREN ? (
 					<>
-						<H3 as="h2" textColor={(theme) => theme.colors.extended.grey[100]}>
+						<H3 as="h2" $textColor={(theme) => theme.colors.extended.grey[100]}>
 							Votre entreprise
 						</H3>
 						<CompanyDetails headingTag="h3" />
@@ -74,7 +74,7 @@ export default function SearchOrCreate() {
 					</>
 				) : (
 					<>
-						<H3 as="h2" textColor={(theme) => theme.colors.extended.grey[100]}>
+						<H3 as="h2" $textColor={(theme) => theme.colors.extended.grey[100]}>
 							<Trans>Rechercher votre entreprise</Trans>{' '}
 						</H3>
 						<CompanySearchField onSubmit={handleCompanySubmit} />

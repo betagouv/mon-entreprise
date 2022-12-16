@@ -37,7 +37,7 @@ export default function SalaryExplanation() {
 			<DistributionSection />
 
 			<Container
-				backgroundColor={(theme) =>
+				$backgroundColor={(theme) =>
 					theme.darkMode
 						? theme.colors.extended.dark[700]
 						: theme.colors.bases.primary[100]

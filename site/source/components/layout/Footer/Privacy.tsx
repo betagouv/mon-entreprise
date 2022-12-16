@@ -35,7 +35,7 @@ export default function Privacy({ label }: { label?: string }) {
 					{...buttonProps}
 					aria-haspopup="dialog"
 					noUnderline
-					textColor={(theme) => theme.colors.extended.grey[100]}
+					$textColor={(theme) => theme.colors.extended.grey[100]}
 				>
 					{label ?? <Trans>Gestion des données personnelles</Trans>}
 				</Link>

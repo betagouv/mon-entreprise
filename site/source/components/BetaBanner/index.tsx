@@ -15,7 +15,7 @@ export default function BetaBanner({
 }) {
 	return (
 		<Container
-			backgroundColor={(theme) =>
+			$backgroundColor={(theme) =>
 				theme.darkMode
 					? theme.colors.bases.tertiary[700]
 					: theme.colors.bases.tertiary[100]

@@ -61,7 +61,7 @@ export default function Landing() {
 				</Container>
 				<Container
 					darkMode
-					backgroundColor={(theme) => theme.colors.bases.primary[600]}
+					$backgroundColor={(theme) => theme.colors.bases.primary[600]}
 				>
 					<SearchOrCreate />
 					<Spacing xl />
@@ -112,7 +112,7 @@ export default function Landing() {
 					<Spacing xl />
 				</Container>
 				<Container
-					backgroundColor={(theme) =>
+					$backgroundColor={(theme) =>
 						theme.darkMode
 							? theme.colors.extended.dark[700]
 							: theme.colors.bases.primary[100]

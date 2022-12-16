@@ -304,7 +304,7 @@ function ResultSection() {
 		<FromTop>
 			<Container
 				darkMode
-				backgroundColor={(theme) => theme.colors.bases.primary[600]}
+				$backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
 				<H2>Vos déclarations fiscales</H2>
 

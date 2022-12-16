@@ -15,7 +15,7 @@ export default function LegalNotice() {
 					{...buttonProps}
 					aria-haspopup="dialog"
 					noUnderline
-					textColor={(theme) => theme.colors.extended.grey[100]}
+					$textColor={(theme) => theme.colors.extended.grey[100]}
 				>
 					<Trans i18nKey="legalNotice.title">Mentions légales</Trans>
 				</Link>
@@ -59,7 +59,7 @@ export default function LegalNotice() {
 						aria-label="https://www.netlify.com, nouvelle fenêtre"
 						target="_blank"
 						rel="noreferrer"
-						textColor={(theme) => theme.colors.theme.linkColor}
+						$textColor={(theme) => theme.colors.theme.linkColor}
 					>
 						https://www.netlify.com
 					</StyledLink>
@@ -74,7 +74,7 @@ export default function LegalNotice() {
 						href="mailto:contact@mon-entreprise.beta.gouv.fr"
 						target="_blank"
 						rel="noreferrer"
-						textColor={(theme) => theme.colors.theme.linkColor}
+						$textColor={(theme) => theme.colors.theme.linkColor}
 					>
 						contact@mon-entreprise.beta.gouv.fr
 					</StyledLink>

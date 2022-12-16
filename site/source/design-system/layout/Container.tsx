@@ -70,7 +70,7 @@ export default function Container({
 			})}
 		>
 			<OuterOuterContainer>
-				<OuterContainer backgroundColor={backgroundColor}>
+				<OuterContainer $backgroundColor={backgroundColor}>
 					<InnerContainer>{children}</InnerContainer>
 				</OuterContainer>
 			</OuterOuterContainer>

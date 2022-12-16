@@ -36,7 +36,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 								aria-label={t(
 									'Lire les précisions, ouvrir le message condensé.'
 								)}
-								textColor={(theme) => theme.colors.bases.tertiary[700]}
+								$textColor={(theme) => theme.colors.bases.tertiary[700]}
 							>
 								<Trans i18nKey="simulateurs.warning.plus">
 									Lire les précisions

@@ -32,7 +32,9 @@ export function CompanyDetails({
 					<H4
 						data-test-id="currently-selected-company"
 						as={headingTag}
-						textColor={(theme: DefaultTheme) => theme.colors.bases.primary[700]}
+						$textColor={(theme: DefaultTheme) =>
+							theme.colors.bases.primary[700]
+						}
 					>
 						<Value expression="entreprise . nom" linkToRule={false} />{' '}
 						<Value expression="entreprise . SIREN" linkToRule={false} />

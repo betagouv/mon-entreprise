@@ -221,16 +221,16 @@ figure {
 export const CustomizeBlockStyle = css`
 	${({
 		theme,
-		backgroundColor,
-		textColor,
+		$backgroundColor,
+		$textColor,
 	}: {
 		theme: DefaultTheme
-		backgroundColor?: (theme: DefaultTheme) => string
-		textColor?: (theme: DefaultTheme) => string
+		$backgroundColor?: (theme: DefaultTheme) => string
+		$textColor?: (theme: DefaultTheme) => string
 	}) =>
 		`
-		${backgroundColor ? `background-color: ${backgroundColor(theme)};` : ''}
-		${textColor ? `color: ${textColor(theme)};` : ''}
+		${$backgroundColor ? `background-color: ${$backgroundColor(theme)};` : ''}
+		${$textColor ? `color: ${$textColor(theme)};` : ''}
 		`}
 `
 

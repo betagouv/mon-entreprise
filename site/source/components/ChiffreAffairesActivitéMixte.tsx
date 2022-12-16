@@ -164,7 +164,7 @@ function ActivitéMixte() {
 						defaultSelected={defaultChecked}
 						onChange={onMixteChecked}
 						light
-						textColor={(theme) => theme.colors.extended.grey[100]}
+						$textColor={(theme) => theme.colors.extended.grey[100]}
 					>
 						Activité mixte
 					</Switch>

@@ -90,7 +90,7 @@ const LabelBody = styled(Body)`
 	cursor: pointer;
 `
 
-const Text = styled.span<{ textColor?: (theme: DefaultTheme) => string }>`
+const Text = styled.span<{ $textColor?: (theme: DefaultTheme) => string }>`
 	margin-right: ${({ theme }) => theme.spacings.xxs};
 	${CustomizeBlockStyle}
 `
@@ -103,7 +103,7 @@ export type SwitchProps = AriaSwitchProps & {
 	children?: ReactNode
 	className?: string
 	role?: string
-	textColor?: (theme: DefaultTheme) => string
+	$textColor?: (theme: DefaultTheme) => string
 }
 
 export const Switch = (props: SwitchProps) => {
@@ -123,7 +123,7 @@ export const Switch = (props: SwitchProps) => {
 
 	return (
 		<LabelBody as="label" className={className}>
-			{children && <Text textColor={props?.textColor}>{children}</Text>}
+			{children && <Text $textColor={props?.$textColor}>{children}</Text>}
 			<StyledSwitch
 				light={light}
 				size={size}

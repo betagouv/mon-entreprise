@@ -77,7 +77,7 @@ export default function Popover(
 		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
 			<OverlayContainer>
 				<Underlay {...underlayProps} $offsetTop={offsetTop}>
-					<Container backgroundColor={() => 'transparent'}>
+					<Container $backgroundColor={() => 'transparent'}>
 						<Grid
 							container
 							css={`

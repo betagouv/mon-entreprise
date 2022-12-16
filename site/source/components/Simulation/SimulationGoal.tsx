@@ -130,7 +130,7 @@ export function SimulationGoal({
 						</Grid>
 					) : (
 						<Grid item>
-							<Body textColor={(theme) => theme.colors.extended.grey[100]}>
+							<Body $textColor={(theme) => theme.colors.extended.grey[100]}>
 								{formatValue(evaluation, { displayedUnit: '€' })}
 							</Body>
 						</Grid>

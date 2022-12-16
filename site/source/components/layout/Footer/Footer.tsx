@@ -54,7 +54,7 @@ export default function Footer() {
 			/>
 			<footer role="contentinfo" id="footer">
 				<Container
-					backgroundColor={(theme) =>
+					$backgroundColor={(theme) =>
 						theme.darkMode
 							? theme.colors.extended.dark[600]
 							: theme.colors.bases.tertiary[100]
@@ -77,7 +77,9 @@ export default function Footer() {
 					)}
 				</Container>
 
-				<Container backgroundColor={(theme) => theme.colors.bases.primary[700]}>
+				<Container
+					$backgroundColor={(theme) => theme.colors.bases.primary[700]}
+				>
 					<FooterContainer
 						className="print-hidden"
 						role="navigation"
@@ -91,7 +93,7 @@ export default function Footer() {
 											<Link
 												to={absoluteSitePaths.plan}
 												noUnderline
-												textColor={(theme) => theme.colors.extended.grey[100]}
+												$textColor={(theme) => theme.colors.extended.grey[100]}
 											>
 												<Trans>Plan du site</Trans>
 											</Link>
@@ -100,7 +102,7 @@ export default function Footer() {
 											<Link
 												to={absoluteSitePaths.nouveautés}
 												noUnderline
-												textColor={(theme) => theme.colors.extended.grey[100]}
+												$textColor={(theme) => theme.colors.extended.grey[100]}
 											>
 												Nouveautés <Emoji emoji="✨" />
 											</Link>
@@ -109,7 +111,7 @@ export default function Footer() {
 											<Link
 												to={absoluteSitePaths.stats}
 												noUnderline
-												textColor={(theme) => theme.colors.extended.grey[100]}
+												$textColor={(theme) => theme.colors.extended.grey[100]}
 											>
 												Stats <Emoji emoji="📊" />
 											</Link>
@@ -118,7 +120,7 @@ export default function Footer() {
 											<Link
 												to={absoluteSitePaths.budget}
 												noUnderline
-												textColor={(theme) => theme.colors.extended.grey[100]}
+												$textColor={(theme) => theme.colors.extended.grey[100]}
 											>
 												Budget <Emoji emoji="💶" />
 											</Link>
@@ -134,7 +136,7 @@ export default function Footer() {
 										<Link
 											to={absoluteSitePaths.développeur.index}
 											noUnderline
-											textColor={(theme) => theme.colors.extended.grey[100]}
+											$textColor={(theme) => theme.colors.extended.grey[100]}
 										>
 											<Trans>Intégrer nos simulateurs</Trans>
 										</Link>
@@ -151,7 +153,7 @@ export default function Footer() {
 												openInSameWindow
 												lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
 												noUnderline
-												textColor={(theme) => theme.colors.extended.grey[100]}
+												$textColor={(theme) => theme.colors.extended.grey[100]}
 											>
 												{hrefLink.hrefLang === 'fr' ? (
 													<>
@@ -189,7 +191,7 @@ export default function Footer() {
 													'Accessibilité : non conforme, en savoir plus'
 												)}
 												noUnderline
-												textColor={(theme) => theme.colors.extended.grey[100]}
+												$textColor={(theme) => theme.colors.extended.grey[100]}
 											>
 												<Trans i18nKey="footer.accessibilité">
 													Accessibilité : non conforme

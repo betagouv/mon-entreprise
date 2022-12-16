@@ -40,7 +40,7 @@ export default function Cotisations() {
 			<WhenAlreadyDefined dottedName="DRI . cotisations . appelées en 2021">
 				<Container
 					darkMode
-					backgroundColor={(theme) => theme.colors.bases.primary[600]}
+					$backgroundColor={(theme) => theme.colors.bases.primary[600]}
 				>
 					<FromTop>
 						<Grid container columnSpacing={4} rowSpacing={2}>
@@ -147,7 +147,7 @@ export default function Cotisations() {
 				</Container>
 
 				<Container
-					backgroundColor={(theme) =>
+					$backgroundColor={(theme) =>
 						theme.darkMode
 							? theme.colors.extended.dark[600]
 							: theme.colors.bases.tertiary[100]

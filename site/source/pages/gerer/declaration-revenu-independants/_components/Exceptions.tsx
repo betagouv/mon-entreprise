@@ -10,7 +10,7 @@ export default function Exceptions() {
 				<Link
 					{...props}
 					aria-haspopup="dialog"
-					textColor={(theme) => theme.colors.bases.primary[700]}
+					$textColor={(theme) => theme.colors.bases.primary[700]}
 				>
 					Voir les cas non pris en compte.
 				</Link>
