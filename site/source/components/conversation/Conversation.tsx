@@ -105,7 +105,11 @@ export default function Conversation({
 									align-items: baseline;
 								`}
 							>
-								<H3 id="questionHeader" as="h2">
+								<H3
+									id="questionHeader"
+									as="h2"
+									textColor={(theme) => theme.colors.bases.primary[700]}
+								>
 									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
 									<ExplicableRule
 										aria-label={t('En savoir plus')}
