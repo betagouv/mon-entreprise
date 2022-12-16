@@ -215,6 +215,10 @@ figure {
 		display: none;
 	}
 }
+
+body #mobile-menu-portal-id nav {
+	background: ${({ theme }) => theme.colors.theme.backgroundColorLight}
+}
 `
 
 export const CustomizeBlockStyle = css`

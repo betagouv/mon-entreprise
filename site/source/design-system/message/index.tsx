@@ -87,11 +87,17 @@ const StyledMessage = styled.div<StyledMessageProps>`
 				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
 				background-color: inherit;
 			}
+			& p,
+			& span,
+			& li {
+				color: ${({ theme }) => theme.colors.extended.grey[800]}!important;
+			}
 			& a {
 				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
 			}
 		`
 	}}
+	color: red;
 `
 
 const StyledIcon = styled.img`
