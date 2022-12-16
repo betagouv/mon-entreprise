@@ -1,0 +1,40 @@
+name: Add A11Y checklist
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches: [master, demo, next]
+jobs:
+  add-a11y-check-if-necessary:
+    name: Add A11Y check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get changed files in the docs folder
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v34
+        with:
+          files: |
+            site/**
+      - name: Find Comment
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        uses: peter-evans/find-comment@v1
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: accessibilité
+      - name: Create comment
+        if: steps.find-comment.outputs.comment-id == ''
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          body: |
+            Des modifications ont été apportées sur la partie site du dépôt,
+            - [ ] test
+            - [ ] test 2
+            - [ ] test 3
+            - [ ] test 4
