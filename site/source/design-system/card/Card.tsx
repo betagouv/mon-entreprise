@@ -157,7 +157,4 @@ export const CardContainer = styled.div<{ $compact?: boolean }>`
 					${spacings.md} ${spacings.lg}
 			  `};
 	transition: box-shadow 0.15s, background-color 0.15s;
-	& h2 {
-		background-color: transparent;
-	}
 `

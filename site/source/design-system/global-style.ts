@@ -109,7 +109,6 @@ html, body, #js, #js > * {
 *:before,
 *:after {
 	box-sizing: inherit;
-	transition: color 0.15s, background-color 0.15s;
 }
 
 body {

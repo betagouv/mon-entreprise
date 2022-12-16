@@ -221,6 +221,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 												})
 											}}
 											download="demande-mobilité-internationale.pdf"
+											id="button-download"
 										>
 											Télécharger le fichier
 										</Button>

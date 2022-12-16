@@ -123,9 +123,6 @@ export const VisibleRadio = styled.span`
 				? theme.colors.bases.primary[500]
 				: theme.colors.bases.primary[700]};
 	}
-	& > span {
-		background-color: transparent;
-	}
 `
 
 export const LabelBody = styled(Body)<{ $hideRadio?: boolean; for?: string }>`
