@@ -133,7 +133,6 @@ export default function Conversation({
 								aria-hidden
 								aria-label={t('Valider')}
 								className="sr-only"
-								aria-label={t('Valider')}
 								type="submit"
 								tabIndex={-1}
 							/>
