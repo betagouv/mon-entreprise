@@ -115,6 +115,11 @@ export default function Conversation({
 								</H3>
 							</div>
 							<fieldset>
+								<legend className="sr-only">
+									{t(
+										'Répondez à quelques questions additionnelles afin de préciser votre résultat.'
+									)}
+								</legend>
 								<RuleInput
 									dottedName={currentQuestion}
 									onChange={onChange}
@@ -127,6 +132,7 @@ export default function Conversation({
 							<button
 								aria-hidden
 								className="sr-only"
+								aria-label={t('Valider')}
 								type="submit"
 								tabIndex={-1}
 							/>

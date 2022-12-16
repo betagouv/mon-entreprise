@@ -15,12 +15,12 @@ type RadioProps = AriaRadioProps & {
 }
 
 export function Radio(props: RadioProps) {
-	const { hideRadio, children } = props
+	const { hideRadio, children, id } = props
 
 	return (
 		<RadioSkeleton role="radio" aria-atomic {...props}>
 			{!hideRadio && <RadioPoint />}
-			<LabelBody as="span" $hideRadio={hideRadio}>
+			<LabelBody as="span" for={id} $hideRadio={hideRadio}>
 				{children}
 			</LabelBody>
 		</RadioSkeleton>
@@ -28,7 +28,7 @@ export function Radio(props: RadioProps) {
 }
 
 export const RadioSkeleton = (props: RadioProps) => {
-	const { hideRadio, ...ariaProps } = props
+	const { hideRadio, id, ...ariaProps } = props
 	const { children } = ariaProps
 	const state = useContext(RadioContext)
 	if (!state) {
@@ -39,8 +39,8 @@ export const RadioSkeleton = (props: RadioProps) => {
 	const { inputProps } = useRadio(ariaProps, state, ref)
 
 	return (
-		<Label $hideRadio={hideRadio} className={props.className}>
-			<InputRadio {...inputProps} className="sr-only" ref={ref} />
+		<Label $hideRadio={hideRadio} for={id} className={props.className}>
+			<InputRadio {...inputProps} className="sr-only" ref={ref} id={id} />
 			<VisibleRadio>{children}</VisibleRadio>
 		</Label>
 	)
@@ -53,7 +53,7 @@ export const RadioPoint = ({ className }: { className?: string }) => (
 	</RadioButton>
 )
 
-const Label = styled.label<{ $hideRadio?: boolean }>`
+const Label = styled.label<{ $hideRadio?: boolean; for?: string }>`
 	${({ $hideRadio }) =>
 		$hideRadio &&
 		css`
@@ -129,7 +129,7 @@ export const VisibleRadio = styled.span`
 	}
 `
 
-export const LabelBody = styled(Body)<{ $hideRadio?: boolean }>`
+export const LabelBody = styled(Body)<{ $hideRadio?: boolean; for?: string }>`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 	${({ $hideRadio }) =>

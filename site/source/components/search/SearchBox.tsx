@@ -19,6 +19,8 @@ export const SearchBox = connectSearchBox(
 						'recherche-globale.placeholder',
 						'Mot-clé ou acronyme (ex : CSG)'
 					)}
+					aria-label={t('Rechercher une règle de calcul dans la documentation')}
+					id="input-recherche-globale"
 					isSearchStalled={isSearchStalled}
 					{...props}
 				/>

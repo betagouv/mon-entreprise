@@ -44,7 +44,8 @@ export default function ChiffreAffairesActivitéMixte({
 	}, [dispatch])
 
 	return (
-		<fieldset aria-label={t("Chiffre d'affaires")}>
+		<fieldset>
+			<legend className="sr-only">{t("Chiffre d'affaires")}</legend>
 			<SimulationGoal
 				appear={false}
 				onUpdateSituation={clearChiffreAffaireMixte}

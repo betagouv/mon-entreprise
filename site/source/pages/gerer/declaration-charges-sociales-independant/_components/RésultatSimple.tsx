@@ -2,7 +2,6 @@ import { utils } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 
 import Value, { Condition } from '@/components/EngineValue'
-import RuleLink from '@/components/RuleLink'
 import { FromTop } from '@/components/ui/animate'
 import Emoji from '@/components/utils/Emoji'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -80,14 +79,12 @@ export default function ResultatsSimples() {
 								</Condition>{' '}
 							</H3>
 							<Intro>
-								<RuleLink dottedName={r.dottedName}>
-									<Value
-										expression={r.dottedName}
-										displayedUnit="€"
-										unit="€/an"
-										precision={0}
-									/>
-								</RuleLink>
+								<Value
+									expression={r.dottedName}
+									displayedUnit="€"
+									unit="€/an"
+									precision={0}
+								/>
 							</Intro>
 
 							{r.rawNode.description && (

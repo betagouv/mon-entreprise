@@ -28,7 +28,7 @@ import {
 } from '@/design-system'
 import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
-import { H4 } from '@/design-system/typography/heading'
+import { H3, H4 } from '@/design-system/typography/heading'
 
 import { ExplicableRule } from './Explicable'
 import { InputProps } from './RuleInput'
@@ -174,12 +174,16 @@ function RadioChoice<Names extends string = DottedName>({
 					) ? null : 'children' in node ? (
 						<div
 							role="group"
-							aria-labelledby={node.dottedName + '-legend'}
+							aria-labelledby={
+								node.dottedName.replace(/\s|\./g, '') + '-legend'
+							}
 							css={`
 								margin-top: -1rem;
 							`}
 						>
-							<H4 id={node.dottedName + '-legend'}>{node.title}</H4>
+							<H4 as={H3} id={node.dottedName + '-legend'}>
+								{node.title}
+							</H4>
 							<Spacing lg />
 							<StyledSubRadioGroup>
 								<RadioChoice
@@ -212,6 +216,10 @@ function RadioChoice<Names extends string = DottedName>({
 									rootDottedName,
 									node.dottedName
 								)}'`}
+								id={`radio-input-${relativeDottedName(
+									rootDottedName,
+									node.dottedName
+								).replace(/\s|\./g, '')}`}
 							>
 								{node.title}{' '}
 								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
@@ -264,11 +272,19 @@ export function OuiNonInput<Names extends string = DottedName>(
 			value={currentSelection ?? undefined}
 		>
 			{/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-			<Radio value="oui" autoFocus={props.autoFocus && defaultValue === 'oui'}>
+			<Radio
+				value="oui"
+				id={`input-oui-${props.id || ''}`}
+				autoFocus={props.autoFocus && defaultValue === 'oui'}
+			>
 				<Trans>Oui</Trans>
 			</Radio>
 			{/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-			<Radio value="non" autoFocus={props.autoFocus && defaultValue === 'non'}>
+			<Radio
+				value="non"
+				id={`input-non-${props.id || ''}`}
+				autoFocus={props.autoFocus && defaultValue === 'non'}
+			>
 				<Trans>Non</Trans>
 			</Radio>
 		</ToggleGroup>
