@@ -90,7 +90,7 @@ const StyledMessage = styled.div<StyledMessageProps>`
 			& p,
 			& span,
 			& li {
-				color: ${({ theme }) => theme.colors.extended.grey[800]}!important;
+				color: ${({ theme }) => theme.colors.extended.grey[800]};
 			}
 			& a {
 				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};

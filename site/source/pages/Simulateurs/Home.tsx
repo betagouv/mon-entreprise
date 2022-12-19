@@ -1,8 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
-import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import Emoji from '@/components/utils/Emoji'
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import InfoBulle from '@/design-system/InfoBulle'

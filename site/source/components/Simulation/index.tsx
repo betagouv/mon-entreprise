@@ -121,6 +121,7 @@ export default function Simulation({
 												aria-label={t(
 													'Voir ma situation, accéder à la page de gestion de mon entreprise'
 												)}
+												$textColor={(theme) => theme.colors.theme.linkColor}
 											>
 												<Trans>Voir ma situation</Trans>
 											</Link>

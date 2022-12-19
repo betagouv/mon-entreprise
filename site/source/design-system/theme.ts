@@ -186,7 +186,7 @@ const baseTheme = {
 const themeColorsDefaultValues = {
 	theme: {
 		headingColor: baseTheme.colors.bases.primary[700],
-		$textColor: baseTheme.colors.extended.grey[800],
+		textColor: baseTheme.colors.extended.grey[800],
 		linkColor: baseTheme.colors.bases.primary[700],
 		linkDarkColor: baseTheme.colors.bases.primary[100],
 		backgroundColorLight: baseTheme.colors.extended.grey[100],
@@ -199,7 +199,8 @@ export const getThemeColorsValues = (isDarkMode: boolean) => {
 		return {
 			theme: {
 				headingColor: baseTheme.colors.extended.grey[100],
-				$textColor: baseTheme.colors.extended.grey[100],
+				headingDarkColor: baseTheme.colors.extended.grey[100],
+				textColor: baseTheme.colors.extended.grey[100],
 				linkColor: baseTheme.colors.bases.primary[100],
 				linkDarkColor: baseTheme.colors.bases.primary[700],
 				backgroundColorLight: baseTheme.colors.extended.dark[800],

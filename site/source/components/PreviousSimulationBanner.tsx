@@ -32,6 +32,7 @@ export default function PreviousSimulationBanner() {
 					'Retrouver ma simulation, charger les données de ma précédente simulation.'
 				)}
 				role="button"
+				$textColor={(theme) => theme.colors.theme.linkColor}
 			>
 				<Trans i18nKey="previousSimulationBanner.retrieveButton">
 					Retrouver ma simulation

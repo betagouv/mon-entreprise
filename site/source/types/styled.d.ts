@@ -59,7 +59,7 @@ export interface Theme {
 
 		theme: {
 			headingColor: Color
-			$textColor: Color
+			textColor: Color
 			linkColor: Color
 			backgroundColorLight: Color
 			backgroundColorDark: Color

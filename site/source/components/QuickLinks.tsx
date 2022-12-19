@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import styled, { DefaultTheme, ThemeProvider } from 'styled-components'
 
 import { goToQuestion } from '@/actions/actions'
 import { Spacing } from '@/design-system/layout'
@@ -62,6 +62,8 @@ const StyledLinks = styled(SmallBody)`
 	gap: ${({ theme }) => theme.spacings.sm};
 `
 
-const StyledLink = styled(Link)<{ underline: boolean }>`
+const StyledLink = styled(Link)<{
+	underline: boolean
+}>`
 	text-decoration: ${({ underline }) => (underline ? 'underline' : '')};
 `

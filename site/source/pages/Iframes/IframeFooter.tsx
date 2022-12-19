@@ -10,7 +10,7 @@ export default function IframeFooter() {
 				}}
 			>
 				<Spacing xl />
-				<Privacy />
+				<Privacy noUnderline={false} />
 				<Spacing lg />
 			</div>
 		</>

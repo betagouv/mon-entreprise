@@ -53,6 +53,7 @@ export function Article({
 					display: flex;
 					align-items: center;
 				`}
+				$textColor={(theme) => theme.colors.theme.linkColor}
 			>
 				{ctaLabel}
 				{linkProps.external && <NewWindowLinkIcon />}
@@ -98,7 +99,7 @@ const StyledBody = styled(Body)`
 	background-color: transparent;
 	&,
 	& * {
-		color: ${({ theme }) => theme.colors.bases.primary[700]};
+		color: ${({ theme }) => theme.colors.theme.linkColor};
 		font-weight: 700;
 	}
 

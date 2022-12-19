@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import { hexToHSL } from '@/hexToHSL'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 import { useIsEmbedded } from './useIsEmbedded'
 
@@ -63,6 +64,9 @@ export function ThemeColorsProvider({ children }: ProviderProps) {
 		)
 	}, [hue, saturation])
 	const isEmbeded = useIsEmbedded()
+
+	const [isDarkMode] = useDarkMode()
+
 	if (!themeColor && !isEmbeded) {
 		return <>{children}</>
 	}
@@ -74,6 +78,21 @@ export function ThemeColorsProvider({ children }: ProviderProps) {
 				colors: {
 					...theme.colors,
 					bases: { ...theme.colors.bases, primary: PALETTE },
+					...(IFRAME_COLOR
+						? {
+								theme: {
+									...theme.colors.theme,
+									headingColor: isDarkMode
+										? theme.colors.extended.grey[100]
+										: PALETTE[700],
+									$textColor: theme.colors.extended.grey[800],
+									linkColor: isDarkMode
+										? theme.colors.extended.grey[100]
+										: PALETTE[700],
+									linkDarkColor: PALETTE[100],
+								},
+						  }
+						: {}),
 				},
 			})}
 		>

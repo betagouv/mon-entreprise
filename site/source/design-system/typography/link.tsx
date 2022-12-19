@@ -16,7 +16,7 @@ export const StyledLinkHover = css`
 	text-decoration: underline;
 	color: ${({ theme }) =>
 		theme.darkMode
-			? theme.colors.bases.primary[100]
+			? theme.colors.bases.primary[300]
 			: theme.colors.bases.primary[800]};
 `
 

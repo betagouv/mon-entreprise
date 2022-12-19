@@ -13,7 +13,11 @@ import { H4 } from '@/design-system/typography/heading'
 export const SalaireBrutSection = () => {
 	return (
 		<div className="payslip__salarySection">
-			<H4 className="payslip__salaryTitle" as="h3">
+			<H4
+				className="payslip__salaryTitle"
+				as="h3"
+				$textColor={(theme) => theme.colors.theme.headingColor}
+			>
 				<Trans>Salaire</Trans>
 			</H4>
 			<Line rule="salarié . contrat . salaire brut" />

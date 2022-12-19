@@ -9,7 +9,13 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { TrackPage, TrackingContext } from '../../../ATInternetTracking'
 import * as safeLocalStorage from '../../../storage/safeLocalStorage'
 
-export default function Privacy({ label }: { label?: string }) {
+export default function Privacy({
+	label,
+	noUnderline = true,
+}: {
+	label?: string
+	noUnderline?: boolean
+}) {
 	const tracker = useContext(TrackingContext)
 	const [valueChanged, setValueChanged] = useState(false)
 	const { t } = useTranslation()
@@ -34,7 +40,7 @@ export default function Privacy({ label }: { label?: string }) {
 				<Link
 					{...buttonProps}
 					aria-haspopup="dialog"
-					noUnderline
+					noUnderline={noUnderline}
 					$textColor={(theme) => theme.colors.extended.grey[100]}
 				>
 					{label ?? <Trans>Gestion des données personnelles</Trans>}
