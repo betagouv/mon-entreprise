@@ -94,7 +94,7 @@ export default function Plan() {
 						<Li>
 							<h3>
 								<Link to={absoluteSitePaths.gérer.formulaireMobilité}>
-									<Trans>Simulateur de demande de mobilité</Trans>
+									<Trans>Demande de mobilité internationale</Trans>
 								</Link>
 							</h3>
 						</Li>
