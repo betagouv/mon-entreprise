@@ -111,6 +111,7 @@ const FeedbackButton = () => {
 						)}
 						onPressCallback={() => setIsShowingSuggestionForm(true)}
 						onCloseCallback={() => setIsShowingSuggestionForm(false)}
+						small
 					>
 						<FeedbackForm />
 					</PopoverWithTrigger>
