@@ -10,6 +10,7 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ol } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 
+import Meta from '../../components/utils/Meta'
 import { CasParticuliers } from './_components/CasParticuliers'
 import StepByStep from './_components/StepByStep'
 import illustration from './_images/illustration_library.svg'
@@ -17,6 +18,11 @@ import illustration from './_images/illustration_library.svg'
 export default function Library() {
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
+			<Meta
+				page="library"
+				title="Librairie de calcul"
+				description="Outils pour les développeurs"
+			/>
 			<ScrollToTop />
 			<Trans i18nKey="pages.développeur.bibliothèque">
 				<PageHeader

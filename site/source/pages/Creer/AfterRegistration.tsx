@@ -2,6 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { FromBottom } from '@/components/ui/animate'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -22,6 +23,9 @@ export default function AfterRegistration() {
 
 	return (
 		<FromBottom>
+			<DefaultHelmet>
+				<title>Après la création de votre entreprise</title>
+			</DefaultHelmet>
 			<ScrollToTop />
 			<TrackPage name="apres_la_creation" />
 			<Link noUnderline to={absoluteSitePaths.créer.index}>

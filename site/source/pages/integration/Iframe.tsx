@@ -16,6 +16,7 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import urssafLogo from '@/images/Urssaf.svg'
 
 import { TrackPage } from '../../ATInternetTracking'
+import Meta from '../../components/utils/Meta'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 
 import './iframe.css'
@@ -97,7 +98,11 @@ function IntegrationCustomizer() {
 			<H2>
 				<Trans>Personnalisez l'intégration</Trans>
 			</H2>
-
+			<Meta
+				page="iframe"
+				title="Intégrer un simulateur"
+				description="Outils pour les développeurs"
+			/>
 			<Grid
 				container
 				spacing={4}
