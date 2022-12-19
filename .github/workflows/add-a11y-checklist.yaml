@@ -14,7 +14,7 @@ jobs:
           fetch-depth: 0
       - name: Get changed files in the docs folder
         id: changed-files-specific
-        uses: tj-actions/changed-files@v34
+        uses: tj-actions/changed-files@v35
         with:
           files: |
             site/**
