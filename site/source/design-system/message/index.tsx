@@ -92,7 +92,8 @@ const StyledMessage = styled.div<StyledMessageProps>`
 			& li {
 				color: ${({ theme }) => theme.colors.extended.grey[800]};
 			}
-			& a {
+			& a,
+			& button {
 				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
 			}
 		`

@@ -102,9 +102,13 @@ const StyledButton = styled.button`
 	${({ theme }) => css`
 		font-family: ${theme.fonts.main};
 		font-size: ${theme.baseFontSize};
-		color: ${theme.colors.bases.primary[700]};
+		color: ${theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.bases.primary[700]};
 		padding: ${theme.spacings.lg};
-		background-color: ${theme.colors.bases.primary[100]};
+		background-color: ${theme.darkMode
+			? theme.colors.extended.grey[700]
+			: theme.colors.bases.primary[100]};
 		> span {
 			border-radius: ${theme.box.borderRadius};
 		}
@@ -124,7 +128,7 @@ const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<Chevron>`
 		!$isOpen &&
 		css`
 			transform: rotate(180deg);
-		`}
+		`};
 `
 
 const StyledContent = styled(animated.div)`

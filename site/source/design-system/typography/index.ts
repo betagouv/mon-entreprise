@@ -12,7 +12,8 @@ export const U = styled.u`
 	text-decoration: underline;
 `
 export const Code = styled.code`
-	background-color: #eee;
+	background-color: ${({ theme }) =>
+		theme.darkMode ? theme.colors.extended.grey[600] : '#eee'};
 	color: inherit;
 	padding: 0.25rem;
 	border-radius: 0.25rem;

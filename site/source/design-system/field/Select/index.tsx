@@ -36,7 +36,7 @@ export const Label = styled.label`
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
-				background-color: inherit;
+				background-color: transparent;
 			}
 		`}
 `
@@ -67,7 +67,7 @@ const Button = styled.button<ButtonProps>`
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
-				background-color: inherit;
+				background-color: transparent;
 			}
 		`}
 

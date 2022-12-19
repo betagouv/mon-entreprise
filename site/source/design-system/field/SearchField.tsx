@@ -11,7 +11,6 @@ import styled, { css } from 'styled-components'
 import { Loader } from '@/design-system/icons/Loader'
 import { SearchIcon } from '@/design-system/icons/SearchIcon'
 
-import { FocusStyle } from '../global-style'
 import {
 	StyledContainer,
 	StyledDescription,
@@ -106,7 +105,7 @@ export default function SearchField(
 const StyledClearButton = styled.button`
 	position: absolute;
 	right: 0;
-	background: none;
+	background: transparent;
 	border: none;
 	font-size: 2rem;
 	line-height: 2rem;
@@ -116,6 +115,5 @@ const StyledClearButton = styled.button`
 		darkMode &&
 		css`
 			color: white !important;
-			background-color: inherit;
 		`}
 `

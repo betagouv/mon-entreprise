@@ -270,14 +270,13 @@ function Home() {
 				<Spacing xl />
 			</PageHeader>
 
-			<Container
-				$backgroundColor={(theme) => theme.colors.bases.primary[600]}
-				darkMode
-			>
+			<Container $backgroundColor={(theme) => theme.colors.bases.primary[600]}>
 				<FromTop>
 					<FormsImage src={forms} alt="" />
 					<Spacing xs />
-					<H2>Simulateurs pour votre entreprise</H2>
+					<H2 $textColor={(theme) => theme.colors.extended.grey[100]}>
+						Simulateurs pour votre entreprise
+					</H2>
 					<Grid
 						container
 						spacing={3}

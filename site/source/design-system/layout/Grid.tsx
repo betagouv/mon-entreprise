@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react'
 import styled, { css } from 'styled-components'
 
+import { CustomizeBlockStyle } from '../global-style'
 import { SpacingKey } from '../theme'
 
 const breakPoints = ['sm', 'md', 'lg', 'xl'] as Array<SpacingKey>
@@ -70,6 +71,7 @@ const StyledGridContainer = styled.div<GridContainerProps>`
 	width: calc(
 		100% + ${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]}
 	);
+	${CustomizeBlockStyle}
 `
 
 const StyledGridItem = styled.div<GridItemProps & ContainerContext>`
@@ -88,6 +90,8 @@ const StyledGridItem = styled.div<GridItemProps & ContainerContext>`
 					}
 				`
 			)}
+
+	${CustomizeBlockStyle}
 `
 type GridContainerProps = {
 	columns?: number

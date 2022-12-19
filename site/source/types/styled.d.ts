@@ -59,8 +59,10 @@ export interface Theme {
 
 		theme: {
 			headingColor: Color
+			headingDarkColor: Color
 			textColor: Color
 			linkColor: Color
+			linkDarkColor: Color
 			backgroundColorLight: Color
 			backgroundColorDark: Color
 		}
