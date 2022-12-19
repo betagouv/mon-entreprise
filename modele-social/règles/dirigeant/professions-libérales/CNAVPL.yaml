@@ -1,0 +1,163 @@
+dirigeant . indépendant . PL . CNAVPL:
+  description: |
+    La caisse nationale d'assurance vieillesse des professions libérales est
+    l'organisme qui fédère les différentes caisses existantes (CIPAV, CARPIMKO,
+    CARCDSF, CAVEC etc..)
+  non applicable si: régime général
+  valeur: oui
+  rend non applicable:
+    règle: situation personnelle . RSA
+    dans: dirigeant . indépendant . cotisations et contributions
+  références:
+    liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
+    Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf
+
+dirigeant . indépendant . PL . CNAVPL . retraite:
+  titre: retraite de base
+  description: |
+    Toutes les professions libérale (à l'exception des avocats)
+    ont les mêmes taux de cotisations pour leur retraite de base.
+  valeur:
+    produit:
+      assiette:
+        nom: revenu cotisé
+        valeur: assiette des cotisations
+        plancher: assiette minimale . retraite
+        unité: €/an
+      composantes:
+        - attributs:
+            nom: tranche T1
+            arrondi: oui
+            unité: €/an
+          taux:
+            nom: taux
+            valeur: 8.23%
+          plafond: plafond sécurité sociale
+        - attributs:
+            nom: tranche T2
+            arrondi: oui
+            unité: €/an
+          taux: 1.87%
+          plafond: 5 * plafond sécurité sociale
+    abattement: CARMF . participation CPAM retraite
+
+  abattement:
+    applicable si: exonération incapacité
+    valeur: 100%
+
+  références:
+    cnavpl.fr: https://www.cnavpl.fr/preparer-sa-retraite/
+    Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=24
+
+#TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
+dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
+  titre: Remplacement de la retraite de base
+  non applicable si: PL . CNBF
+  remplace:
+    - règle: cotisations et contributions . retraite de base
+      par: retraite
+    - règle: cotisations et contributions . retraite de base . taux
+      par: retraite . tranche T1 . taux
+  valeur: oui
+
+dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
+  description: |
+    Depuis le 1er juillet 2021 les affiliés à l’une des caisses de retraite de
+    la CNAVPL peuvent bénéficier des indemnités journalières lors d’un arrêt
+    maladie.
+
+    En conséquence une nouvelle cotisation est créée.
+  remplace: cotisations et contributions . indemnités journalières maladie
+  non applicable si: PL . CNBF
+  produit:
+    assiette:
+      nom: assiette
+      valeur: assiette des cotisations
+      plafond:
+        nom: plafond
+        valeur: 3 * plafond sécurité sociale
+      plancher:
+        applicable si: assiette minimale
+        valeur: 40% * plafond sécurité sociale
+    taux:
+      nom: taux
+      variations:
+        - si: date >= 01/2022
+          alors: 0.30%
+        - si: date >= 01/2021
+          alors: 0.15%
+  arrondi: oui
+  unité: €/an
+  références:
+    Communiqué de la CNAVPL: https://www.cnavpl.fr/les-pl-indemnises-des-ij/
+
+dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
+  question: Avez-vous été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois consécutifs cette année ?
+  par défaut: non
+  description: |-
+    Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois,
+    vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
+
+  références:
+    Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur:
+  applicable si: conjoint collaborateur
+  valeur: oui
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
+  question: À quelle proportion du revenu le conjoint cotise-t'il pour le régime de base ?
+  par défaut: "'quart'"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - quart
+        - moitié
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . quart:
+  formule: proportion = 'quart'
+  titre: '25 %'
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . moitié:
+  formule: proportion = 'moitié'
+  titre: '50 %'
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
+  remplace: conjoint collaborateur . cotisations . assiette
+  unité: €/an
+  arrondi: oui
+  produit:
+    assiette: assiette des cotisations
+    taux: 50 %
+    variations:
+      - si: conjoint collaborateur . assiette . forfaitaire
+        alors:
+          assiette: plafond sécurité sociale
+      - si: proportion . quart
+        alors:
+          taux: 25%
+      - sinon: {}
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
+  remplace: dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base
+  recalcul:
+    règle: CNAVPL . retraite
+    avec:
+      CNAVPL . retraite . tranche T1 . revenu cotisé:
+        valeur: conjoint collaborateur . assiette
+        plancher: assiette minimale . retraite
+      CNAVPL . retraite . tranche T2 . revenu cotisé:
+        valeur: conjoint collaborateur . assiette
+        plancher: assiette minimale . retraite
+
+dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
+  applicable si: date >= 01/2022
+  remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
+  produit:
+    assiette: 40% * plafond sécurité sociale
+    taux: 0.3%
+  unité: €/an
+  arrondi: oui
+  référence:
+    Article D621-6 du Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038789007

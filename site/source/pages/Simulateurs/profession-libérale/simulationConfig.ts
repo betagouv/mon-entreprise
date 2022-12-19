@@ -1,4 +1,5 @@
 import { SimulationConfig } from '../configs/types'
+import { configIndépendant } from '../indépendant/simulationConfig'
 
 export const configProfessionLibérale: SimulationConfig = {
 	'objectifs exclusifs': [
@@ -11,7 +12,7 @@ export const configProfessionLibérale: SimulationConfig = {
 		'impôt . montant',
 		'protection sociale . retraite . trimestres',
 		'protection sociale . retraite . complémentaire',
-		'protection sociale . retraite . CNAVPL . points acquis',
+		'protection sociale . retraite . base',
 	],
 	questions: {
 		'liste noire': [
@@ -25,10 +26,7 @@ export const configProfessionLibérale: SimulationConfig = {
 			'dirigeant . indépendant . PL . métier',
 			'',
 		],
-		'non prioritaires': [
-			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',
-			'dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité',
-		],
+		'non prioritaires': configIndépendant.questions?.['non prioritaires'],
 	},
 	'unité par défaut': '€/an',
 	situation: {

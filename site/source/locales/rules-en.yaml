@@ -1884,7 +1884,7 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . pourcentage:
   titre.fr: pourcentage
 dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion:
   question.en: '[automatic] What proportion of income does the spouse contribute
-    to the CIPAV supplementary plan and the CIPAV disability-death plan?'
+    to the CIPAV supplementary plan and the disability-death plan?'
   question.fr: À quelle proportion du revenu le conjoint cotise-t'il pour le
     régime complémentaire et le régime d'invalidité-décès CIPAV ?
   titre.en: '[automatic] proportion'
@@ -1912,12 +1912,12 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation:
-  description.en: '[automatic] The Cipav manages a pension scheme that pays a
-    pension in the event of permanent disability and a lump-sum death benefit as
-    well as a pension for surviving spouses and children in the event of the
-    death of the insured. By default, members contribute in "class A" but it is
-    possible to contribute in class B or C in order to benefit from better
-    disability and death cover.'
+  description.en: '[automatic] Cipav manages a provident scheme that pays a
+    pension in case of permanent disability and a death benefit as well as an
+    annuity for the surviving spouses and children in case of death of the
+    insured. By default, affiliates contribute in "class A" but it is possible
+    to contribute in class B or C in order to benefit from a better
+    disability-death coverage.'
   description.fr:
     La Cipav gère un régime de prévoyance versant une pension en cas
     d'invalidité permanente et un capital décès ainsi qu’une rente pour les
@@ -1925,7 +1925,7 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotis
     affiliés cotisent en « classe A » mais il est possible de cotiser en classe
     B ou C afin de bénéficier d'une meilleure couverture invalidité-décès.
   question.en: '[automatic] In which class do you contribute to the CIPAV
-    Disability Death Plan?'
+    disability-death plan?'
   question.fr: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
   titre.en: '[automatic] contribution class'
   titre.fr: classe de cotisation
@@ -2477,10 +2477,10 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
   titre.fr: cotisations caisse de retraite
 dirigeant . indépendant . PL . maladie:
   note.en: >
-    [automatic] The regulated professions do not contribute the
-    corresponding share to the
+    [automatic] The regulated liberal professions do not contribute for the
+    corresponding part of the
 
-    per diems and are therefore not entitled to these allowances in the event of
+    daily allowances and are therefore not entitled to these allowances in case of
 
     illness.
   note.fr: >
@@ -2527,7 +2527,7 @@ dirigeant . indépendant . PL . métier . juridique:
   avec:
     avocat:
       description.en: |
-        [automatic] Lawyers contribute to the CNBF for their retirement and
+        [automatic] Lawyers contribute to the CNBF for retirement and provident
         retirement and provident fund.
       description.fr: |
         Les avocats cotisent auprès de la CNBF pour la retraite et la
@@ -4252,7 +4252,7 @@ entreprise . activité . nature:
 
     ### Multiple activities
 
-    In the case of multiple activities, the main activity is deemed to be the oldest activity.
+    In case of multiple activities, the main activity is deemed to be the oldest activity.
 
 
     However, as of the third calendar year following the year in which the pluriactivity situation began, the persons concerned may request that the activity that provided the highest amount of turnover or revenue excluding taxes over the last three years be considered their main activity.
@@ -4620,7 +4620,7 @@ entreprise . catégorie juridique . EI:
       titre.en: '[automatic] EI'
       titre.fr: EI
     auto-entrepreneur:
-      question.en: Are you an auto-entrepreneur?
+      question.en: '[automatic] Are you an auto-entrepreneur?'
       question.fr: Êtes-vous auto-entrepreneur ?
       titre.en: '[automatic] auto-entrepreneur'
       titre.fr: auto-entrepreneur
@@ -4687,7 +4687,7 @@ entreprise . catégorie juridique . SARL:
 
         - Share capital** : Free, depending on the size and needs of the company
 
-        - Social regime** : A majority manager is considered as a self-employed person, an equal or minority manager is considered as an employee
+        - Social regime** : A majority manager is considered as a self-employed person, an equal or minority manager is considered as a salaried employee
 
         - Taxation of profits**: Corporate income tax, with the possibility of opting for income tax in certain cases (SARL "de famille" or certain SARLs less than five years old).
       description.fr: >
@@ -5126,10 +5126,10 @@ entreprise . coût formalités . annonce légale:
       titre.fr: Tarif forfaitaire
   description.en: >
     [automatic] The publication of a legal announcement is mandatory
-    to inform the public of the major stages in the life of a company: the
-    creation, modification or cessation of activity. It must be inserted in a
-    medium authorized to receive legal announcements (SHAL): either a newspaper
-    of legal announcements (JAL), or an online press service (SPEL).
+    to inform the public of the major stages in the life of a company: creation,
+    modification or cessation of activity. It must be inserted in a medium
+    authorized to receive legal announcements (SHAL): either a newspaper of
+    legal announcements (JAL), or an online press service (SPEL).
 
 
     There are 2 types of pricing for legal announcements:
@@ -6432,7 +6432,7 @@ protection sociale . maladie . maternité paternité adoption:
         allocation forfaitaire de repos maternel:
           description.en: >
             [automatic] Half of the allowance is paid at the beginning of
-            the leave and half at the end of the compulsory 8-week period of
+            the leave and half at the end of the mandatory 8-week period of
             cessation of activity. The full amount of the allowance is paid
             after the birth if it takes place before the end of the 7th month of
             pregnancy.
@@ -6513,11 +6513,9 @@ protection sociale . retraite:
 
 
     Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
-  résumé.en: '[automatic] Guarantees an average of 60-70% of your last working
-    income for your retirement pension.'
-  résumé.fr:
-    Garantit en moyenne 60 à 70 % du dernier revenu d'activité pour votre
-    pension de retraite.
+  résumé.en: Guarantees on average 60 to 70% of the last income from employment
+    after age 65.
+  résumé.fr: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   titre.en: pensions
   titre.fr: retraite
 protection sociale . retraite . CNAVPL:
@@ -6570,7 +6568,7 @@ protection sociale . retraite . CNAVPL:
     income subject to contributions:
 
 
-    - the maximum contribution on bracket T1 allows the acquisition of 525 points (from 0 to an annual social security
+    - the maximum contribution on bracket T1 allows the acquisition of 525 points (from 0 to an annual social security ceiling)
 
     annual social security ceiling),
 
@@ -6579,7 +6577,7 @@ protection sociale . retraite . CNAVPL:
     the annual social security ceiling).
 
 
-    For each bracket, the number of points allocated is calculated in proportion to the effective contribution
+    For each bracket, the number of points awarded is calculated in proportion to the effective contribution
 
     the maximum contribution and rounded to the nearest decimal place
   description.fr: >-
@@ -7124,7 +7122,7 @@ salarié . contrat . CDD . congés pris:
       description.en:
         '[automatic] The number of days of leave taken is greater than
         the total number of days of leave acquired over the duration of the
-        contract (by default 25 days / year)'
+        contract (by default 25 days/year)'
       description.fr:
         Le nombre de jours de congés pris est supérieur à la totalité
         des jours de congés acquis sur la durée du contrat (par défaut 25 jours
@@ -7197,7 +7195,7 @@ salarié . contrat . CDD . indemnité de fin de contrat:
         Pour être dans ce cas, le contrat doit se terminer avant les vacances scolaires ou universitaires, et que le jeune reprenne effectivement ses études lors de la prochaine rentrée.
       question.en:
         '[automatic] Is it a fixed-term contract concluded with a young
-        person during his or her school or university vacations ("summer job")?'
+        person during his school or university vacations ("summer job")?'
       question.fr:
         Est-ce un CDD conclu avec un jeune pendant ses vacances scolaires
         ou universitaires (« job d’été ») ?
@@ -7249,7 +7247,7 @@ salarié . contrat . CDD . motif:
 
             - The conditions under which employees on fixed-term contracts with a defined purpose benefit from guarantees relating to redeployment assistance, validation of acquired experience, priority for re-employment and access to continuing vocational training, and may, during the notice period, mobilize the means available to organize the rest of their career path;
 
-            - The conditions under which employees on fixed-term contracts with a defined purpose have priority of access to jobs on open-ended contracts in the company.
+            - The conditions under which employees on fixed-term contracts with a defined purpose have priority of access to jobs with open-ended contracts in the company.
           description.fr: >
             > Aussi appelé contrat à objet défini.
 
@@ -7301,7 +7299,7 @@ salarié . contrat . CDD . motif:
           description.en:
             '[automatic] Jobs of a seasonal nature, whose tasks are called
             upon to be repeated each year according to a more or less fixed
-            periodicity, according to the rhythm of the seasons or collective
+            periodicity, depending on the rhythm of the seasons or collective
             lifestyles.'
           description.fr:
             Emplois à caractère saisonnier, dont les tâches sont appelées à
@@ -8598,7 +8596,7 @@ salarié . cotisations . taxe d'apprentissage:
     contribution supplémentaire:
       avec:
         CSA au taux majoré:
-          titre.en: '[automatic] CSA at the increased rate'
+          titre.en: '[automatic] CSA at increased rate'
           titre.fr: CSA au taux majoré
       titre.en: '[automatic] additional contribution'
       titre.fr: contribution supplémentaire
@@ -8807,8 +8805,9 @@ salarié . régimes spécifiques . DFS . profession:
       titre.en: '[automatic] journalist'
       titre.fr: journaliste
     ouvrier du bâtiment:
-      description.en: '[automatic] Concerns construction workers referred to in
-        paragraphs 1 and 2 of Article 1 of the Decree of November 17, 1936,
+      description.en:
+        '[automatic] Concerns the construction workers referred to in
+        paragraphs 1 and 2 of Article 1 of the decree of November 17, 1936,
         excluding those working in factories or workshops.'
       description.fr:
         Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2
@@ -8819,9 +8818,9 @@ salarié . régimes spécifiques . DFS . profession:
     pilote de ligne ou personnel navigant:
       description.en:
         '[automatic] Concerns pilots, radios, flight mechanics of air
-        transport companies; pilots and mechanics employed by aircraft and
+        transport companies; pilots and mechanics employed by airplane and
         engine manufacturing companies for the testing of prototypes; pilot
-        instructors of aeroclubs and civil aviation schools'
+        instructors of flying clubs and civil aviation schools'
       description.fr: Concerne les pilotes, radios, mécaniciens navigants des
         compagnies de transports aériens ; pilotes et mécaniciens employés par
         les maisons de construction d’avions et de moteurs pour l’essai de
@@ -9525,7 +9524,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
         If the employer (private or public) sets it up, it must benefit all employees according to the same terms and conditions and depending on the distance between home and work.
 
 
-        The amount, terms and conditions as well as the criteria for awarding the transport bonus must be provided for by a company agreement or an inter-company agreement, or failing that, by an industry agreement.
+        The amount, terms and conditions as well as the criteria for awarding the transport bonus must be provided for by a company agreement or an inter-company agreement, or failing that, by a branch agreement.
 
         In the absence of an agreement, the employer may provide for the payment of the transport bonus by unilateral decision, after consulting the social and economic committee (CSE), if it exists.
 
@@ -9738,7 +9737,7 @@ salarié . rémunération . indemnités CDD:
 
         This method of calculation will most often be favorable to the employee when the employee
 
-        has worked overtime. An indemnity equal to one tenth of the
+        has worked overtime. An indemnity equal to one tenth of the total
 
         gross remuneration received by the employee during the reference period.
 

@@ -1,0 +1,146 @@
+dirigeant . indépendant . PL . CNBF:
+  valeur: oui
+  applicable si:
+    une de ces conditions:
+      - métier = 'avocat' # deprecated / déprécié
+      - métier = 'juridique . avocat'
+  description: |
+    La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
+    sociale des avocats.
+  rend non applicable:
+    - cotisations et contributions . indemnités journalières maladie
+    # Applicable mais pas encore supporté
+    - conjoint collaborateur
+  références:
+    Site CNBF: https://www.cnbf.fr
+    Barème 2020: https://www.cnbf.fr/wp-content/uploads/2020/08/CNBF-bareme-des-cotisations-et-prestations-2020.pdf
+
+dirigeant . indépendant . PL . CNBF . retraite de base:
+  remplace: cotisations et contributions . retraite de base
+  formule:
+    somme:
+      - nom: cotisation forfaitaire
+        grille:
+          assiette: entreprise . durée d'activité . en fin d'année
+          tranches:
+            - montant:
+                variations:
+                  - si: date >= 01/2022
+                    alors: 303 €/an
+                  - si: date >= 01/2021
+                    alors: 290 €/an
+              plafond: 1 an
+            - montant:
+                variations:
+                  - si: date >= 01/2022
+                    alors: 608 €/an
+                  - si: date >= 01/2021
+                    alors: 581 €/an
+              plafond: 2 ans
+            - montant:
+                variations:
+                  - si: date >= 01/2022
+                    alors: 954 €/an
+                  - si: date >= 01/2021
+                    alors: 912 €/an
+              plafond: 3 ans
+            - montant:
+                variations:
+                  - si: date >= 01/2022
+                    alors: 1299 €/an
+                  - si: date >= 01/2021
+                    alors: 1242 €/an
+              plafond: 5 ans
+            - montant:
+                variations:
+                  - si: date >= 01/2022
+                    alors: 1658 €/an
+                  - si: date >= 01/2021
+                    alors: 1586 €/an
+      - nom: cotisation proportionnelle
+        produit:
+          taux: 3.1%
+          assiette: assiette des cotisations
+          plafond:
+            variations:
+              - si: date >= 01/2022
+                alors: 297549 €/an
+              - si: date >= 01/2021
+                alors: 291718 €/an
+  références:
+    barème 2022: https://www.cnbf.fr/wp-content/uploads/2021/12/Bareme-CNBF-2022.pdf
+
+dirigeant . indépendant . PL . CNBF . retraite complémentaire:
+  remplace: cotisations et contributions . retraite complémentaire
+  barème:
+    assiette: assiette des cotisations
+    multiplicateur:
+      variations:
+        - si: date >= 01/2022
+          alors: 42507 €/an
+        - si: date >= 01/2021
+          alors: 41674 €/an
+    tranches:
+      - taux:
+          variations:
+            - si: date >= 01/2022
+              alors: 4.60%
+            - si: date >= 01/2021
+              alors: 4%
+        plafond: 1
+      - taux:
+          variations:
+            - si: date >= 01/2022
+              alors: 8.80%
+            - si: date >= 01/2021
+              alors: 8%
+        plafond: 2
+      - taux:
+          variations:
+            - si: date >= 01/2022
+              alors: 10.20%
+            - si: date >= 01/2021
+              alors: 9.2%
+        plafond: 3
+      - taux:
+          variations:
+            - si: date >= 01/2022
+              alors: 11.60%
+            - si: date >= 01/2021
+              alors: 10.4%
+        plafond: 4
+      - taux:
+          variations:
+            - si: date >= 01/2022
+              alors: 13%
+            - si: date >= 01/2021
+              alors: 11.6%
+        plafond: 5
+  arrondi: oui
+  note: |
+    Il existe plusieurs classes de cotisations, qui permettent de cotiser
+    d'avantage pour acquérir d'avantages de points. Seule la première classe est
+    implémentée pour l'instant.
+  références:
+    barème 2022: https://www.cnbf.fr/wp-content/uploads/2021/12/Bareme-CNBF-2022.pdf
+
+dirigeant . indépendant . PL . CNBF . RID:
+  titre: invalidité et décès
+  remplace: cotisations et contributions . invalidité et décès
+  formule:
+    variations:
+      - si: entreprise . durée d'activité . en fin d'année < 5 ans
+        alors:
+          variations:
+            - si: date >= 01/2022
+              alors: 58 €/an
+            - si: date >= 01/2021
+              alors: 55 €/an
+      - sinon:
+          variations:
+            - si: date >= 01/2022
+              alors: 145 €/an
+            - si: date >= 01/2021
+              alors: 137 €/an
+  références:
+    barème 2022: https://www.cnbf.fr/wp-content/uploads/2021/12/Bareme-CNBF-2022.pdf

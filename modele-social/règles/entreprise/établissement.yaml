@@ -70,7 +70,7 @@
     avertissement taux minimum:
       type: notification
       si: taux ATMP < salarié . cotisations . ATMP . taux minimum
-      niveau: avertissement
+      sévérité: avertissement
       description: Le taux renseigné est inférieur au taux minimum légal
 
 établissement . ZFU:

@@ -1,0 +1,350 @@
+dirigeant . auto-entrepreneur:
+  valeur: régime social = 'auto-entrepreneur'
+  par défaut: non
+  icônes: 🚶
+  description: |
+    L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
+
+dirigeant . auto-entrepreneur . revenu net:
+  arrondi: oui
+  unité: €/an
+  identifiant court: auto-entrepreneur-net
+  résumé: Avant impôt
+  question: Quel revenu avant impôt voulez-vous toucher ?
+  description: Il s'agit du revenu après déductions des cotisations, avant le paiement de l'impôt sur le revenu.
+  valeur: entreprise . chiffre d'affaires - cotisations et contributions
+
+dirigeant . auto-entrepreneur . cotisations et contributions:
+  unité: €/mois
+  somme:
+    - cotisations
+    - TFC
+    - CFP
+  références:
+    Imposition du micro-entrepreneur (régime micro-fiscal et social): https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
+    Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
+
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
+  titre: Taxes pour frais de chambre
+  unité: €/mois
+  note: |
+    Nous n'avons pas intégré les exceptions suivantes :
+    - Artisans en double immatriculation CCI-CMA
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+  somme:
+    - commerce
+    - métiers
+
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
+  applicable si: entreprise . activité . nature = 'commerciale'
+  produit:
+    composantes:
+      - assiette: entreprise . chiffre d'affaires . service BIC
+        taux: 0.044%
+        attributs:
+          unité: €/mois
+          arrondi: oui
+      - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
+        taux: 0.015%
+        attributs:
+          unité: €/mois
+          arrondi: oui
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
+  unité: €/mois
+  applicable si: entreprise . activité . nature = 'artisanale'
+  produit:
+    composantes:
+      - assiette: entreprise . chiffre d'affaires . service BIC
+        taux:
+          nom: taux service
+          valeur: 0.48%
+        attributs:
+          unité: €/mois
+          arrondi: oui
+      - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
+        taux:
+          nom: taux vente
+          valeur: 0.22%
+        attributs:
+          unité: €/mois
+          arrondi: oui
+
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace:
+  remplace:
+    - règle: taux service
+      par: 0.65%
+    - règle: taux vente
+      par: 0.29%
+  par défaut: non
+  une de ces conditions:
+    - établissement . commune . département = 'Bas-Rhin'
+    - établissement . commune . département = 'Haut-Rhin'
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Moselle:
+  remplace:
+    - règle: taux service
+      par: 0.83%
+    - règle: taux vente
+      par: 0.37%
+  par défaut: non
+  valeur: établissement . commune . département = 'Moselle'
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+
+dirigeant . auto-entrepreneur . affiliation CIPAV:
+  une de ces conditions:
+    - entreprise . activité . nature . libérale . réglementée
+    - toutes ces conditions:
+        - entreprise . activité . nature = 'libérale'
+        - entreprise . date de création < 01/2018
+
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
+  titre: Contribution à la formation professionnelle
+  description: |
+    En plus des charges sociales, les auto-entrepreneurs sont redevables d’une
+    contribution à la formation professionnelle leur permettant de bénéficier du
+    droit à la formation professionnelle (à condition d’avoir déclaré un chiffre
+    d’affaires positif au cours des 12 derniers mois).
+  acronyme: CFP
+  unité: €/mois
+  références:
+    Article L6331-48 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006904325
+    autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
+    shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/
+  note: |
+    Les taux implémentés sont ceux prélevés par l'Urssaf.
+  produit:
+    composantes:
+      - assiette: entreprise . chiffre d'affaires . BIC
+        taux:
+          variations:
+            - si: entreprise . activité . nature = 'artisanale'
+              alors: 0.3%
+            - sinon: 0.1%
+      - assiette: entreprise . chiffre d'affaires . service BNC
+        taux:
+          variations:
+            - si: affiliation CIPAV
+              alors: 0.2%
+            - sinon: 0.1%
+  avec:
+    revenus BIC:
+      valeur: entreprise . chiffre d'affaires . BIC
+      déprécié: oui
+    revenus BNC:
+      valeur: entreprise . chiffre d'affaires . service BNC
+      déprécié: oui
+
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
+  description: |
+    Les cotisations sociales donnent à l'auto-entrepreneur accès à une
+    protection sociale minimale : une retraite, des soins de santé, des
+    allocations familiales, etc.
+
+    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie
+    complexe, toutes les cotisations sont regroupées dans un *forfait* dont le
+    taux dépend de la catégorie d'activité.
+  produit:
+    composantes:
+      - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
+        taux:
+          nom: taux vente restauration hébergement
+          variations:
+            - si: date >= 10/2022
+              alors: 12.3%
+            - sinon: 12.8%
+
+      - assiette: entreprise . chiffre d'affaires . service BIC
+        taux:
+          nom: taux service BIC
+          variations:
+            - si: date >= 10/2022
+              alors: 21.2%
+            - sinon: 22%
+
+      - assiette: entreprise . chiffre d'affaires . service BNC
+        taux:
+          nom: taux service BNC
+          variations:
+            - si: date >= 10/2022
+              alors: 21.1%
+            - sinon: 22%
+
+  références:
+    Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
+    'Cotisations et contributions sociales : montant et déclaration': https://entreprendre.service-public.fr/vosdroits/F36232#fiche-item-aria-2
+    'Auto-entrepreneur: ce qu’il faut savoir (PDF)': https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
+
+  avec:
+    cotisations CIPAV:
+      remplace: cotisations
+      description: |
+        Pour les professions libérales relevant de la CIPAV, le taux est le même quelle que soit la catégorie d’imposition/activité (BIC ou BNC, service ou vente).
+      applicable si: affiliation CIPAV
+      rend non applicable: entreprise . activités . revenus mixtes
+      produit:
+        assiette: entreprise . chiffre d'affaires
+        taux:
+          nom: taux
+          valeur: 21.2%
+    taux prestation de service:
+      déprécié: oui
+      note: Il y a maintenant un taux différent pour les prestations de service BIC ou BNC.
+      valeur: taux service BIC
+
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
+  privé: oui
+  applicable si: dirigeant . exonérations . ACRE
+  description: |
+    Ce taux correspond à la réduction de cotisations qui s'applique pour
+    l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 75% signifie que
+    l'auto-entrepreneur doit s'acquitter de 75% du montant d'origine des
+    cotisations.
+  unité: '%'
+  variations:
+    - si: entreprise . date de création < 01/04/2019
+      alors:
+        grille:
+          assiette: entreprise . durée d'activité
+          tranches:
+            - montant: 25%
+              plafond: 1 an
+            - montant: 50%
+              plafond: 2 ans
+            - montant: 90%
+              plafond: 3 ans
+    - si: entreprise . date de création < 01/04/2020
+      alors:
+        grille:
+          assiette: entreprise . durée d'activité
+          tranches:
+            - montant: 25%
+              plafond: 1 an
+            - montant: 75%
+              plafond: 2 ans
+            - montant: 90%
+              plafond: 3 ans
+    - si: entreprise . durée d'activité < 1 an
+      alors: 50%
+
+  références:
+    FAQ Urssaf depuis 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#jai-cree-mon-auto-entreprise-en
+    FAQ Urssaf avant 04/2020: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#quest-ce-qui-change-pour-moi-si
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32318
+
+  avec:
+    CIPAV:
+      remplace: cotisations CIPAV . taux
+      titre:
+      variations:
+        - si: entreprise . date de création >= 01/04/2020
+          alors: 12.10%
+        - sinon: cotisations CIPAV . taux * taux ACRE
+      références:
+        urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
+
+    vente restauration hébergement:
+      remplace: taux vente restauration hébergement
+      valeur: taux ACRE * taux vente restauration hébergement
+      arrondi: 1 décimale
+
+    service BIC:
+      remplace: taux service BIC
+      valeur: taux ACRE * taux service BIC
+      arrondi: 1 décimale
+
+    service BNC:
+      remplace: taux service BNC
+      valeur: taux ACRE * taux service BNC
+      arrondi: 1 décimale
+
+    prestation de service:
+      déprécié: oui
+      note: Il y a maintenant des taux différents pour les prestations de service BIC et BNC
+      valeur: service BIC
+
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel:
+  experimental: oui
+  formule: dirigeant . exonérations . ACRE
+  type: notification
+  description: |
+    Le taux ACRE utilisé est celui correspondant au mois courant. Le
+    simulateur ne prend pas encore en compte le chevauchement de deux périodes
+    d'acre sur une meme année.
+
+dirigeant . auto-entrepreneur . impôt: oui
+dirigeant . auto-entrepreneur . impôt . revenu imposable: entreprise . imposition . régime . micro-entreprise . revenu abattu
+
+dirigeant . auto-entrepreneur . impôt . versement libératoire:
+  rend non applicable: revenu imposable
+  description: >
+    Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité.
+    Pour en bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en 2018
+  question: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
+  par défaut: non
+
+dirigeant . auto-entrepreneur . impôt . versement libératoire . seuil dépassé:
+  type: notification
+  valeur: impôt . foyer fiscal . revenu fiscal de référence > 27519 €/an
+  description: |
+    Le versement libératoire n'est pas disponible si le revenu fiscal de
+    référence de votre ménage est supérieur à 27 519 € par part en 2018
+
+dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
+  titre: versement libératoire auto-entrepreneur
+  description: |
+    Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est
+    payé en même temps que vos cotisations (par mois ou par trimestre) avec
+    application d’un taux spécifique en fonction de votre activité
+  produit:
+    composantes:
+      - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
+        taux: 1%
+      - assiette: entreprise . chiffre d'affaires . service BIC
+        taux: 1.7%
+      - assiette: entreprise . chiffre d'affaires . service BNC
+        taux: 2.2%
+
+dirigeant . auto-entrepreneur . revenu net . après impôt:
+  identifiant court: auto-entrepreneur-net-apres-impot
+  résumé: Avant déduction des dépenses liées à l'activité
+  unité: €/an
+  arrondi: oui
+  question: Quel est le revenu net après impôt souhaité ?
+  description: >-
+    Le revenu net de l'auto-entrepreneur après déduction de l'impôt
+    sur le revenu et des cotisations sociales.
+
+
+    **Attention :** Pour bien évaluer la rentabilité de l'entreprise, il ne faut pas
+    oublier de retrancher à ce montant les dépenses engagées dans le cadre de
+    l'activité. Cela peut inclure par exemple :
+
+    - L'achat des matière premières
+
+    - L'achat des outils / materiel
+
+    - L'abonnement à des services payants
+
+    - La location d'un local
+
+    - etc...
+  valeur: revenu net - rémunération . impôt
+
+dirigeant . auto-entrepreneur . chiffre d'affaires:
+  question: Quel est votre chiffre d'affaires ?
+  résumé: Montant total des recettes (hors taxe)
+  inversion numérique:
+    avec:
+      - revenu net
+      - revenu net . après impôt

@@ -1,0 +1,136 @@
+dirigeant . indépendant . PL . CAVP:
+  description: La CAVP est la caisse de retraite des pharmaciens.
+  formule: oui
+  applicable si: métier = 'santé . pharmacien'
+  références:
+    Site CAVP: https://www.cavp.fr/
+
+dirigeant . indépendant . PL . CAVP . directeur non médecin:
+  applicable si: métier = 'santé . pharmacien'
+  par défaut: non
+  question: Êtes-vous biologiste médical conventionné ?
+
+dirigeant . indépendant . PL . CAVP . demande reduction:
+  type: notification
+  applicable si:
+    est défini: assiette des cotisations
+  une de ces conditions:
+    - assiette des cotisations < 1.8125 * plafond sécurité sociale
+    - entreprise . durée d'activité <= 2 an
+  résumé: |
+    Une réduction de cotisations peut être demandée les 2 premières années, ou
+    en cas de revenus faibles. Ainsi, si vos revenus de l'avant-dernière année,
+    ou de l'année précédente s'ils sont connus (soit 2018 ou 2019 pour les cotisations
+    2020), étaient :
+      - inférieurs à 1/3 du PASS (13 712 € en 2020), vous pouvez demander une réduction de 75 % ;
+      - entre 1/3 et 2/3 du PASS (entre 13 712 et 27 423 € en 2020), vous pouvez demander une réduction de 50 % ;
+      - entre 2/3 du PASS et le PASS (entre 27 424 € et 41 135 € en 2020), vous pouvez demander une réduction de 25 %.
+
+    Cette possibilité est réservée aux pharmaciens qui cotisent en classe 3 (la plus basse).
+  références:
+    CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/quelles-possibilit%C3%A9s-en-cas-de-difficult%C3%A9s
+
+dirigeant . indépendant . PL . CAVP . cotisation de référence:
+  valeur:
+    variations:
+      - si: date >= 01/2022
+        alors: 1232 €
+      - si: date >= 01/2021
+        alors: 1200 €
+  reference:
+    site cavp.fr: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
+
+dirigeant . indépendant . PL . CAVP . retraite complémentaire:
+  remplace: cotisations et contributions . retraite complémentaire
+  formule: part géré par répartition + part géré par capitalisation
+  références:
+    Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
+    Legifrance: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039357705
+
+dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré par répartition:
+  formule: 5 * cotisation de référence
+  références:
+    Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
+    Legifrance: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039357705
+
+dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré par capitalisation:
+  formule:
+    grille:
+      assiette: assiette des cotisations
+      multiplicateur: plafond sécurité sociale
+      tranches:
+        - montant: 2 * cotisation de référence
+          plafond: 1.8125
+        - montant: 3 * cotisation de référence
+          plafond: 2.1875
+        - montant: 4 * cotisation de référence
+          plafond: 2.5625
+        - montant: 5 * cotisation de référence
+          plafond: 2.9375
+        - montant: 6 * cotisation de référence
+          plafond: 3.3125
+        - montant: 7 * cotisation de référence
+          plafond: 3.6875
+        - montant: 8 * cotisation de référence
+          plafond: 4.0625
+        - montant: 9 * cotisation de référence
+          plafond: 4.4375
+        - montant: 10 * cotisation de référence
+          plafond: 4.8125
+        - montant: 11 * cotisation de référence
+          plafond: 5.1875
+        - montant: 12 * cotisation de référence
+  références:
+    Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
+    Legifrance: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039357705
+
+dirigeant . indépendant . PL . CAVP . invalidité et décès:
+  titre: invalidité et décès
+  remplace: cotisations et contributions . invalidité et décès
+  formule: 608 €/an
+  références:
+    Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations
+
+dirigeant . indépendant . PL . CAVP . PCV:
+  titre: Prestation complémentaire de vieillesse (CAVP)
+  remplace: cotisations et contributions . PCV
+  applicable si: dirigeant . indépendant . PL . CAVP . directeur non médecin
+  formule:
+    somme:
+      - cotisations forfaitaire
+      - cotisations proportionnelle
+      - (- aide CPAM)
+    arrondi: oui
+  référence:
+    Taux 2021 (CAVP): https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
+    La retraite en claire: https://www.la-retraite-en-clair.fr/parcours-professionnel-regimes-retraite/retraite-travailleurs-independants/retraite-complementaire-pharmaciens-cavp
+
+dirigeant . indépendant . PL . CAVP . PCV . cotisations forfaitaire:
+  variations:
+    - si: date >= 01/2022
+      alors: 1788 €/an
+    - si: date >= 01/2021
+      alors: 1728 €/an
+  références:
+    site cavp.fr: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
+
+dirigeant . indépendant . PL . CAVP . PCV . cotisations proportionnelle:
+  formule:
+    produit:
+      assiette: assiette des cotisations
+      taux: 0.30%
+      plafond: 5 * plafond sécurité sociale
+
+dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
+  somme:
+    - aide CPAM forfaitaire
+    - aide CPAM proportionnelle
+  référence:
+    CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
+    La retraite en claire: https://www.la-retraite-en-clair.fr/parcours-professionnel-regimes-retraite/retraite-travailleurs-independants/retraite-complementaire-pharmaciens-cavp
+
+dirigeant . indépendant . PL . CAVP . PCV . aide CPAM forfaitaire:
+  formule: 66% * cotisations forfaitaire
+
+dirigeant . indépendant . PL . CAVP . PCV . aide CPAM proportionnelle:
+  formule: 50% * cotisations proportionnelle
