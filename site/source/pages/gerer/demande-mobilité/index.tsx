@@ -4,7 +4,6 @@ import { Fragment, Suspense, lazy, useCallback, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
-import PageHeader from '@/components/PageHeader'
 import RuleInput from '@/components/conversation/RuleInput'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
@@ -28,7 +27,6 @@ import {
 
 import { TrackPage } from '../../../ATInternetTracking'
 import formulaire from './demande-mobilité.yaml'
-import picture from './undraw_Traveling_re_weve.svg'
 
 const LazyEndBlock = import.meta.env.SSR
 	? () => null
@@ -43,19 +41,14 @@ export default function PageMobilité() {
 
 	return (
 		<>
-			<PageHeader
-				titre={'Demande de mobilité internationale'}
-				picture={picture}
-			>
-				<Intro>
-					Vous trouverez ici toutes les informations pour remplir une demande de
-					certificat A1 afin d'être couverts pendant la période de travail à
-					l'étranger.
-				</Intro>
-				<DefaultHelmet>
-					<title>Demande de mobilité internationale</title>
-				</DefaultHelmet>
-			</PageHeader>
+			<Intro>
+				Vous trouverez ici toutes les informations pour remplir une demande de
+				certificat A1 afin d'être couverts pendant la période de travail à
+				l'étranger.
+			</Intro>
+			<DefaultHelmet>
+				<title>Demande de mobilité internationale</title>
+			</DefaultHelmet>
 			<EngineProvider value={engine}>
 				<FormulairePublicodes />
 			</EngineProvider>

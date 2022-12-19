@@ -6,7 +6,7 @@ import { ThemeContext } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
-import { PopoverWithTrigger } from '@/design-system'
+import { Message, PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Checkbox, TextField } from '@/design-system/field'
@@ -40,18 +40,24 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 	const { colors } = useContext(ThemeContext)
 	if (missingValues.length) {
 		return (
-			<>
+			<Message type="info" icon>
 				<Body>
 					<strong>Certains champs ne sont pas renseignés.</strong>
 				</Body>
-				<SmallBody>
+				<Body>
 					Vous devez compléter l'intégralité du formulaire avant de pouvoir le
 					signer et générer votre demande.
-				</SmallBody>
+				</Body>
 				<PopoverWithTrigger
 					title="Champs manquants"
 					trigger={(props) => (
-						<Button {...props} light size="XS" aria-haspopup="dialog">
+						<Button
+							{...props}
+							light
+							size="XS"
+							aria-haspopup="dialog"
+							color="tertiary"
+						>
 							Voir les champs manquants
 						</Button>
 					)}
@@ -66,7 +72,8 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 						))}
 					</Ul>
 				</PopoverWithTrigger>
-			</>
+				<Spacing md />
+			</Message>
 		)
 	}
 

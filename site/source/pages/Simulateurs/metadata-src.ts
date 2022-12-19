@@ -486,7 +486,7 @@ const getMetadataSrc = (t: TFunction) => {
 			),
 			title: t(
 				'pages.gérer.demande-mobilité.title',
-				'Simulateur de demande de mobilité'
+				'Demande de mobilité internationale'
 			),
 			private: true,
 			iframePath: 'demande-mobilite',
