@@ -1,7 +1,7 @@
 import { ErrorBoundary } from '@sentry/react'
 import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
-import { ComponentProps, StrictMode, useMemo } from 'react'
+import { ComponentProps, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
@@ -20,6 +20,7 @@ import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Container, Spacing } from '@/design-system/layout'
 
 import Provider, { ProviderProps } from './Provider'
+import FeedbackButton from './components/Feedback/FeedbackButton'
 import { useAxeCoreAnalysis } from './hooks/useAxeCoreAnalysis'
 import { useGetFullURL } from './hooks/useGetFullURL'
 import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'
@@ -114,6 +115,7 @@ const App = () => {
 	return (
 		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
+
 			<main role="main" id="main">
 				<a href={`${fullURL}#footer`} className="skip-link print-hidden">
 					{t('Passer le contenu')}
