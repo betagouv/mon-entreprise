@@ -204,10 +204,8 @@ const Section = styled.section`
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-`
-
-const CenteredContainer = styled.div`
-	text-align: center;
+	box-shadow: ${({ theme }) =>
+		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
 `
 
 const ThankYouText = styled(Body)`
