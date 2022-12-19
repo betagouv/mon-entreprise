@@ -1,11 +1,4 @@
-import {
-	MutableRefObject,
-	RefObject,
-	useCallback,
-	useContext,
-	useRef,
-	useState,
-} from 'react'
+import { useCallback, useContext, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -13,13 +6,16 @@ import styled from 'styled-components'
 import { TrackingContext } from '@/ATInternetTracking'
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
+import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useOnClickOutside } from '@/hooks/useClickOutside'
+import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
+import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { INSCRIPTION_LINK } from '../layout/Footer/InscriptionBetaTesteur'
 import Emoji from '../utils/Emoji'
 import FeedbackForm from './FeedbackForm'
@@ -41,6 +37,7 @@ const FeedbackButton = () => {
 	const url = useLocation().pathname
 	const tag = useContext(TrackingContext)
 	const containerRef = useRef<HTMLElement | null>(null)
+	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
 
 	useOnClickOutside(
 		containerRef,
@@ -70,50 +67,53 @@ const FeedbackButton = () => {
 								<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>
 							</Strong>
 						</Body>
-						<Body>
+						<ThankYouText>
 							<Trans i18nKey="feedback.beta-testeur">
 								Pour continuer à donner votre avis et accéder aux nouveautés en
 								avant-première,{' '}
-								<Link
+								<StyledLink
 									href={INSCRIPTION_LINK}
 									aria-label="inscrivez-vous sur la liste des beta-testeur, nouvelle fenêtre"
+									style={{ color: '#FFF' }}
 								>
 									inscrivez-vous sur la liste des beta-testeur
-								</Link>
+								</StyledLink>
 							</Trans>
-						</Body>
+						</ThankYouText>
 					</>
 				) : (
 					<>
-						<CenteredContainer>
-							<StyledH4>
-								<Trans>Un avis sur cette page ?</Trans>
-							</StyledH4>
-							<StyledBody>On vous écoute.</StyledBody>
-						</CenteredContainer>
-
+						<StyledH4>
+							<Trans>Un avis sur cette page ?</Trans>
+						</StyledH4>
+						<StyledBody>On vous écoute.</StyledBody>
+						<Spacing lg />
 						<FeedbackRating submitFeedback={submitFeedback} />
-
-						<PopoverWithTrigger
-							trigger={(buttonProps) => (
-								<Button
-									{...buttonProps}
-									color="tertiary"
-									size="XXS"
-									light
-									aria-haspopup="dialog"
-								>
-									<Trans i18nKey="feedback.reportError">
-										Faire une suggestion
-									</Trans>
-								</Button>
-							)}
-							onPressCallback={() => setIsShowingSuggestionForm(true)}
-							onCloseCallback={() => setIsShowingSuggestionForm(false)}
-						>
-							<FeedbackForm />
-						</PopoverWithTrigger>
 					</>
+				)}
+				<Spacing lg />
+				{currentSimulatorData?.pathId === 'simulateurs.salarié' ? (
+					<JeDonneMonAvis />
+				) : (
+					<PopoverWithTrigger
+						trigger={(buttonProps) => (
+							<Button
+								{...buttonProps}
+								color="tertiary"
+								size="XXS"
+								light
+								aria-haspopup="dialog"
+							>
+								<Trans i18nKey="feedback.reportError">
+									Faire une suggestion
+								</Trans>
+							</Button>
+						)}
+						onPressCallback={() => setIsShowingSuggestionForm(true)}
+						onCloseCallback={() => setIsShowingSuggestionForm(false)}
+					>
+						<FeedbackForm />
+					</PopoverWithTrigger>
 				)}
 			</Section>
 		)
@@ -193,7 +193,6 @@ const Section = styled.section`
 	top: 10.5rem;
 	right: 0;
 	width: 16.375rem;
-	height: 12.75rem;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 	border-radius: 2rem 0 0 2rem;
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
@@ -209,6 +208,10 @@ const Section = styled.section`
 
 const CenteredContainer = styled.div`
 	text-align: center;
+`
+
+const ThankYouText = styled(Body)`
+	font-size: 14px;
 `
 
 export default FeedbackButton
