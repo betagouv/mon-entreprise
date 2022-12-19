@@ -16,8 +16,6 @@ import { SmallBody } from '@/design-system/typography/paragraphs'
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
 
-	const { t } = useTranslation()
-
 	if (useInversionFail()) {
 		return null
 	}

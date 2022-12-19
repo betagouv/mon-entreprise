@@ -1,6 +1,6 @@
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'

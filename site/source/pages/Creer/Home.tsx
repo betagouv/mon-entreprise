@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 
 import PageHeader from '@/components/PageHeader'
 import { FromBottom } from '@/components/ui/animate'
-import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import Meta from '@/components/utils/Meta'
 import { Button } from '@/design-system/buttons'
 import { Card } from '@/design-system/card'
