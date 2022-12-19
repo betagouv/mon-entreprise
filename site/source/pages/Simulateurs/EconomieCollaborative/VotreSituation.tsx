@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Navigate } from 'react-router-dom'
 
-import PageFeedback from '@/components/Feedback'
 import { FromBottom } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { ScrollToTop } from '@/components/utils/Scroll'
@@ -142,9 +141,7 @@ export default function VotreSituation() {
 					</>
 				)}
 			</section>
-			<PageFeedback
-				customMessage={<Trans>Êtes vous satisfait de cet assistant ?</Trans>}
-			/>
+
 			<SmallBody>
 				<Emoji emoji="🏗️" />{' '}
 				<Trans i18nKey="économieCollaborative.WIP">

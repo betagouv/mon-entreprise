@@ -20,7 +20,6 @@ import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Container, Spacing } from '@/design-system/layout'
 
 import Provider, { ProviderProps } from './Provider'
-import FeedbackButton from './components/Feedback/FeedbackButton'
 import { useAxeCoreAnalysis } from './hooks/useAxeCoreAnalysis'
 import { useGetFullURL } from './hooks/useGetFullURL'
 import { useSaveAndRestoreScrollPosition } from './hooks/useSaveAndRestoreScrollPosition'

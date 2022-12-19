@@ -1,7 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import FeedbackButton from '@/components/Feedback/FeedbackButton'
 import PageHeader from '@/components/PageHeader'
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
@@ -43,7 +42,6 @@ export default function Landing() {
 				<a href={`${fullURL}#footer`} className="skip-link print-hidden">
 					{t('Passer le contenu')}
 				</a>
-				<FeedbackButton />
 				<Container>
 					<PageHeader
 						titre={

@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { ThemeProvider } from 'styled-components'
 
-import PageFeedback from '@/components/Feedback'
+import FeedbackButton from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
@@ -65,7 +65,7 @@ export default function Footer() {
 							: theme.colors.bases.tertiary[100]
 					}
 				>
-					{showFeedback && <PageFeedback />}
+					{showFeedback && <FeedbackButton />}
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}
