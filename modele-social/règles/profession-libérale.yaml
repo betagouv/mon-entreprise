@@ -205,18 +205,29 @@ dirigeant . indépendant . PL . maladie:
         assiette: assiette des cotisations
         multiplicateur: plafond sécurité sociale
         tranches:
-          - plafond: 0%
-            taux: 1.5%
+          - plafond: 40%
+            taux: 0%
+          - plafond: 60%
+            taux: 4%
           - plafond: 110%
             taux: 6.5%
   arrondi: oui
   références:
-    secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/taux-de-cotisations
-    guide urssaf (pdf): https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf
-  note: |
-    Les professions libérales réglementée ne cotisent pour la part correspondante aux
-    indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
-    maladie.
+    Article D621-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656764
+
+  avec:
+    taux avant 2022:
+      privé: oui
+      applicable si: date <= 01/2022
+      remplace: taux
+      taux progressif:
+        assiette: assiette des cotisations
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - plafond: 0%
+            taux: 1.5%
+          - plafond: 110%
+            taux: 6.5%
 
 dirigeant . indépendant . PL . cotisations Urssaf:
   description: |

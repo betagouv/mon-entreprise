@@ -14,26 +14,26 @@ impôt . montant: 9189"
 
 exports[`calculate simulations-indépendant > activité 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 20786
-dirigeant . rémunération . cotisations: 9059
+dirigeant . indépendant . revenu professionnel: 20771
+dirigeant . rémunération . cotisations: 8503
 dirigeant . rémunération . net: 20000
-dirigeant . rémunération . net . après impôt: 19234
-dirigeant . rémunération . totale: 29059
+dirigeant . rémunération . net . après impôt: 19236
+dirigeant . rémunération . totale: 28503
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 29059
-impôt . montant: 766"
+entreprise . chiffre d'affaires: 28503
+impôt . montant: 764"
 `;
 
 exports[`calculate simulations-indépendant > activité 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 20786
-dirigeant . rémunération . cotisations: 9077
+dirigeant . indépendant . revenu professionnel: 20771
+dirigeant . rémunération . cotisations: 8521
 dirigeant . rémunération . net: 20000
-dirigeant . rémunération . net . après impôt: 19234
-dirigeant . rémunération . totale: 29077
+dirigeant . rémunération . net . après impôt: 19236
+dirigeant . rémunération . totale: 28521
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 29077
-impôt . montant: 766"
+entreprise . chiffre d'affaires: 28521
+impôt . montant: 764"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 1`] = `
@@ -111,46 +111,46 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 
 exports[`calculate simulations-indépendant > contrats madelin 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 17707
-dirigeant . rémunération . cotisations: 13161
-dirigeant . rémunération . net: 16839
-dirigeant . rémunération . net . après impôt: 16565
+dirigeant . indépendant . revenu professionnel: 18032
+dirigeant . rémunération . cotisations: 12825
+dirigeant . rémunération . net: 17175
+dirigeant . rémunération . net . après impôt: 16849
 dirigeant . rémunération . totale: 30000
 entreprise . charges: 10000
 entreprise . chiffre d'affaires: 40000
-impôt . montant: 274"
+impôt . montant: 326"
 `;
 
 exports[`calculate simulations-indépendant > contrats madelin 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 17707
-dirigeant . rémunération . cotisations: 14361
-dirigeant . rémunération . net: 15639
-dirigeant . rémunération . net . après impôt: 15365
+dirigeant . indépendant . revenu professionnel: 18031
+dirigeant . rémunération . cotisations: 14025
+dirigeant . rémunération . net: 15975
+dirigeant . rémunération . net . après impôt: 15649
 dirigeant . rémunération . totale: 30000
 entreprise . charges: 10000
 entreprise . chiffre d'affaires: 40000
-impôt . montant: 274"
+impôt . montant: 326"
 `;
 
 exports[`calculate simulations-indépendant > contrats madelin 3`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 20451
-dirigeant . rémunération . cotisations: 10361
-dirigeant . rémunération . net: 19639
-dirigeant . rémunération . net . après impôt: 18926
+dirigeant . indépendant . revenu professionnel: 20787
+dirigeant . rémunération . cotisations: 10025
+dirigeant . rémunération . net: 19975
+dirigeant . rémunération . net . après impôt: 19209
 dirigeant . rémunération . totale: 30000
 entreprise . charges: 10000
 entreprise . chiffre d'affaires: 40000
-impôt . montant: 713"
+impôt . montant: 766"
 `;
 
 exports[`calculate simulations-indépendant > contrats madelin 4`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 13797
-dirigeant . rémunération . cotisations: 6743
-dirigeant . rémunération . net: 13257
-dirigeant . rémunération . net . après impôt: 13257
+dirigeant . indépendant . revenu professionnel: 14206
+dirigeant . rémunération . cotisations: 6334
+dirigeant . rémunération . net: 13666
+dirigeant . rémunération . net . après impôt: 13666
 dirigeant . rémunération . totale: 20000
 entreprise . charges: 1000
 entreprise . chiffre d'affaires: 21000
@@ -159,10 +159,10 @@ impôt . montant: 0"
 
 exports[`calculate simulations-indépendant > contrats madelin 5`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 227122
-dirigeant . rémunération . cotisations: 81021
-dirigeant . rémunération . net: 218979
-dirigeant . rémunération . net . après impôt: 138583
+dirigeant . indépendant . revenu professionnel: 227123
+dirigeant . rémunération . cotisations: 81020
+dirigeant . rémunération . net: 218980
+dirigeant . rémunération . net . après impôt: 138584
 dirigeant . rémunération . totale: 300000
 entreprise . charges: 15000
 entreprise . chiffre d'affaires: 315000
@@ -172,10 +172,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 
 exports[`calculate simulations-indépendant > contrats madelin 6`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 13697
-dirigeant . rémunération . cotisations: 6843
-dirigeant . rémunération . net: 13157
-dirigeant . rémunération . net . après impôt: 13157
+dirigeant . indépendant . revenu professionnel: 14106
+dirigeant . rémunération . cotisations: 6434
+dirigeant . rémunération . net: 13566
+dirigeant . rémunération . net . après impôt: 13566
 dirigeant . rémunération . totale: 20000
 entreprise . charges: 500
 entreprise . chiffre d'affaires: 20500
@@ -184,10 +184,10 @@ impôt . montant: 0"
 
 exports[`calculate simulations-indépendant > contrats madelin 7`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 9398
-dirigeant . rémunération . cotisations: 13143
-dirigeant . rémunération . net: 6857
-dirigeant . rémunération . net . après impôt: 6857
+dirigeant . indépendant . revenu professionnel: 9806
+dirigeant . rémunération . cotisations: 12734
+dirigeant . rémunération . net: 7266
+dirigeant . rémunération . net . après impôt: 7266
 dirigeant . rémunération . totale: 20000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 20000
@@ -196,46 +196,46 @@ impôt . montant: 0"
 
 exports[`calculate simulations-indépendant > cotisations facultatives 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 17707
-dirigeant . rémunération . cotisations: 13161
-dirigeant . rémunération . net: 16839
-dirigeant . rémunération . net . après impôt: 16565
+dirigeant . indépendant . revenu professionnel: 18032
+dirigeant . rémunération . cotisations: 12825
+dirigeant . rémunération . net: 17175
+dirigeant . rémunération . net . après impôt: 16849
 dirigeant . rémunération . totale: 30000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 30000
-impôt . montant: 274"
+impôt . montant: 326"
 `;
 
 exports[`calculate simulations-indépendant > cotisations facultatives 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 17707
-dirigeant . rémunération . cotisations: 14361
-dirigeant . rémunération . net: 15639
-dirigeant . rémunération . net . après impôt: 15365
+dirigeant . indépendant . revenu professionnel: 18031
+dirigeant . rémunération . cotisations: 14025
+dirigeant . rémunération . net: 15975
+dirigeant . rémunération . net . après impôt: 15649
 dirigeant . rémunération . totale: 30000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 30000
-impôt . montant: 274"
+impôt . montant: 326"
 `;
 
 exports[`calculate simulations-indépendant > cotisations facultatives 3`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 20451
-dirigeant . rémunération . cotisations: 10361
-dirigeant . rémunération . net: 19639
-dirigeant . rémunération . net . après impôt: 18926
+dirigeant . indépendant . revenu professionnel: 20787
+dirigeant . rémunération . cotisations: 10025
+dirigeant . rémunération . net: 19975
+dirigeant . rémunération . net . après impôt: 19209
 dirigeant . rémunération . totale: 30000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 30000
-impôt . montant: 713"
+impôt . montant: 766"
 `;
 
 exports[`calculate simulations-indépendant > cotisations facultatives 4`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 13797
-dirigeant . rémunération . cotisations: 6743
-dirigeant . rémunération . net: 13257
-dirigeant . rémunération . net . après impôt: 13257
+dirigeant . indépendant . revenu professionnel: 14206
+dirigeant . rémunération . cotisations: 6334
+dirigeant . rémunération . net: 13666
+dirigeant . rémunération . net . après impôt: 13666
 dirigeant . rémunération . totale: 20000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 20000
@@ -244,10 +244,10 @@ impôt . montant: 0"
 
 exports[`calculate simulations-indépendant > cotisations facultatives 5`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 227122
-dirigeant . rémunération . cotisations: 81021
-dirigeant . rémunération . net: 218979
-dirigeant . rémunération . net . après impôt: 138583
+dirigeant . indépendant . revenu professionnel: 227123
+dirigeant . rémunération . cotisations: 81020
+dirigeant . rémunération . net: 218980
+dirigeant . rémunération . net . après impôt: 138584
 dirigeant . rémunération . totale: 300000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 300000
@@ -257,10 +257,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 
 exports[`calculate simulations-indépendant > cotisations facultatives 6`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 223622
-dirigeant . rémunération . cotisations: 84521
-dirigeant . rémunération . net: 215479
-dirigeant . rémunération . net . après impôt: 136658
+dirigeant . indépendant . revenu professionnel: 223623
+dirigeant . rémunération . cotisations: 84520
+dirigeant . rémunération . net: 215480
+dirigeant . rémunération . net . après impôt: 136659
 dirigeant . rémunération . totale: 300000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 300000
@@ -270,62 +270,62 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 
 exports[`calculate simulations-indépendant > cotisations minimales 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 137
-dirigeant . rémunération . cotisations: 1361
+dirigeant . indépendant . revenu professionnel: 135
+dirigeant . rémunération . cotisations: 1287
 dirigeant . rémunération . net: 100
 dirigeant . rémunération . net . après impôt: 100
-dirigeant . rémunération . totale: 1461
+dirigeant . rémunération . totale: 1387
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 1461
+entreprise . chiffre d'affaires: 1387
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > cotisations minimales 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 104
-dirigeant . rémunération . cotisations: 151
+dirigeant . rémunération . cotisations: 150
 dirigeant . rémunération . net: 100
 dirigeant . rémunération . net . après impôt: 100
-dirigeant . rémunération . totale: 251
+dirigeant . rémunération . totale: 250
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 251
+entreprise . chiffre d'affaires: 250
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > exonération covid 1`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: 103
-dirigeant . indépendant . revenu professionnel: 51815
-dirigeant . rémunération . cotisations: 21347
+"dirigeant . indépendant . cotisations et contributions . début activité: undefined
+dirigeant . indépendant . revenu professionnel: undefined
+dirigeant . rémunération . cotisations: undefined
 dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: 40450
-dirigeant . rémunération . totale: 71347
+dirigeant . rémunération . net . après impôt: undefined
+dirigeant . rémunération . totale: undefined
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 71347
-impôt . montant: 9550"
+entreprise . chiffre d'affaires: undefined
+impôt . montant: undefined"
 `;
 
 exports[`calculate simulations-indépendant > exonération covid 2`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: 103
-dirigeant . indépendant . revenu professionnel: 51032
-dirigeant . rémunération . cotisations: 12977
+"dirigeant . indépendant . cotisations et contributions . début activité: undefined
+dirigeant . indépendant . revenu professionnel: undefined
+dirigeant . rémunération . cotisations: undefined
 dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: 40685
+dirigeant . rémunération . net . après impôt: undefined
 dirigeant . rémunération . totale: 500
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 62977
-impôt . montant: 9315"
+entreprise . chiffre d'affaires: undefined
+impôt . montant: undefined"
 `;
 
 exports[`calculate simulations-indépendant > exonération covid 3`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: 140
-dirigeant . indépendant . revenu professionnel: 51440
-dirigeant . rémunération . cotisations: 17475
+"dirigeant . indépendant . cotisations et contributions . début activité: undefined
+dirigeant . indépendant . revenu professionnel: undefined
+dirigeant . rémunération . cotisations: undefined
 dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: 40562
+dirigeant . rémunération . net . après impôt: undefined
 dirigeant . rémunération . totale: 50000
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 67475
-impôt . montant: 9438"
+entreprise . chiffre d'affaires: undefined
+impôt . montant: undefined"
 `;
 
 exports[`calculate simulations-indépendant > exonération pension invalidité 1`] = `
@@ -343,10 +343,10 @@ Notifications affichées : dirigeant . indépendant . cotisations et contributio
 
 exports[`calculate simulations-indépendant > imposition à l'IS 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 72164
-dirigeant . rémunération . cotisations: 30548
-dirigeant . rémunération . net: 69452
-dirigeant . rémunération . net . après impôt: 56374
+dirigeant . indépendant . revenu professionnel: 72163
+dirigeant . rémunération . cotisations: 30549
+dirigeant . rémunération . net: 69451
+dirigeant . rémunération . net . après impôt: 56373
 dirigeant . rémunération . totale: 100000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 100000
@@ -356,10 +356,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 
 exports[`calculate simulations-indépendant > imposition à l'IS 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 72164
-dirigeant . rémunération . cotisations: 30548
-dirigeant . rémunération . net: 69452
-dirigeant . rémunération . net . après impôt: 56374
+dirigeant . indépendant . revenu professionnel: 72163
+dirigeant . rémunération . cotisations: 30549
+dirigeant . rémunération . net: 69451
+dirigeant . rémunération . net . après impôt: 56373
 dirigeant . rémunération . totale: 100000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 100000
@@ -369,14 +369,14 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 
 exports[`calculate simulations-indépendant > impôt sur le revenu 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 20786
-dirigeant . rémunération . cotisations: 9059
+dirigeant . indépendant . revenu professionnel: 20771
+dirigeant . rémunération . cotisations: 8503
 dirigeant . rémunération . net: 20000
-dirigeant . rémunération . net . après impôt: 19397
-dirigeant . rémunération . totale: 29059
+dirigeant . rémunération . net . après impôt: 19398
+dirigeant . rémunération . totale: 28503
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 29059
-impôt . montant: 603"
+entreprise . chiffre d'affaires: 28503
+impôt . montant: 602"
 `;
 
 exports[`calculate simulations-indépendant > impôt sur le revenu 2`] = `
@@ -393,22 +393,22 @@ impôt . montant: 8213"
 
 exports[`calculate simulations-indépendant > impôt sur le revenu 3`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 20786
-dirigeant . rémunération . cotisations: 9059
+dirigeant . indépendant . revenu professionnel: 20771
+dirigeant . rémunération . cotisations: 8503
 dirigeant . rémunération . net: 20000
-dirigeant . rémunération . net . après impôt: 17921
-dirigeant . rémunération . totale: 29059
+dirigeant . rémunération . net . après impôt: 17923
+dirigeant . rémunération . totale: 28503
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 29059
-impôt . montant: 2079"
+entreprise . chiffre d'affaires: 28503
+impôt . montant: 2077"
 `;
 
 exports[`calculate simulations-indépendant > inversions 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 595
-dirigeant . rémunération . cotisations: 1456
-dirigeant . rémunération . net: 544
-dirigeant . rémunération . net . après impôt: 544
+dirigeant . indépendant . revenu professionnel: 671
+dirigeant . rémunération . cotisations: 1380
+dirigeant . rémunération . net: 620
+dirigeant . rémunération . net . après impôt: 620
 dirigeant . rémunération . totale: 2000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 2000
@@ -417,58 +417,58 @@ impôt . montant: 0"
 
 exports[`calculate simulations-indépendant > inversions 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 42259
-dirigeant . rémunération . cotisations: 19367
-dirigeant . rémunération . net: 40633
-dirigeant . rémunération . net . après impôt: 35629
+dirigeant . indépendant . revenu professionnel: 42296
+dirigeant . rémunération . cotisations: 19330
+dirigeant . rémunération . net: 40670
+dirigeant . rémunération . net . après impôt: 35656
 dirigeant . rémunération . totale: 60000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 60001
-impôt . montant: 5004"
+impôt . montant: 5014"
 `;
 
 exports[`calculate simulations-indépendant > inversions 3`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 10394
-dirigeant . rémunération . cotisations: 4614
+dirigeant . indépendant . revenu professionnel: 10382
+dirigeant . rémunération . cotisations: 4181
 dirigeant . rémunération . net: 10000
 dirigeant . rémunération . net . après impôt: 10000
-dirigeant . rémunération . totale: 14614
+dirigeant . rémunération . totale: 14181
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 14614
+entreprise . chiffre d'affaires: 14181
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > inversions 4`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 10394
-dirigeant . rémunération . cotisations: 4614
+dirigeant . indépendant . revenu professionnel: 10382
+dirigeant . rémunération . cotisations: 4181
 dirigeant . rémunération . net: 10000
 dirigeant . rémunération . net . après impôt: 10000
-dirigeant . rémunération . totale: 14614
+dirigeant . rémunération . totale: 14181
 entreprise . charges: 1000
-entreprise . chiffre d'affaires: 15614
+entreprise . chiffre d'affaires: 15181
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > inversions 5`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 42797
-dirigeant . rémunération . cotisations: 19643
-dirigeant . rémunération . net: 41149
+dirigeant . indépendant . revenu professionnel: 42794
+dirigeant . rémunération . cotisations: 19588
+dirigeant . rémunération . net: 41148
 dirigeant . rémunération . net . après impôt: 3000
-dirigeant . rémunération . totale: 60792
+dirigeant . rémunération . totale: 60736
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 60792
-impôt . montant: 5149"
+entreprise . chiffre d'affaires: 60732
+impôt . montant: 5148"
 `;
 
 exports[`calculate simulations-indépendant > inversions 6`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 13573
-dirigeant . rémunération . cotisations: 5940
-dirigeant . rémunération . net: 13060
-dirigeant . rémunération . net . après impôt: 13060
+dirigeant . indépendant . revenu professionnel: 13962
+dirigeant . rémunération . cotisations: 5551
+dirigeant . rémunération . net: 13449
+dirigeant . rémunération . net . après impôt: 13449
 dirigeant . rémunération . totale: 19000
 entreprise . charges: 1000
 entreprise . chiffre d'affaires: 20000
@@ -477,10 +477,10 @@ impôt . montant: 0"
 
 exports[`calculate simulations-indépendant > inversions 7`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 12848
-dirigeant . rémunération . cotisations: 5638
-dirigeant . rémunération . net: 12362
-dirigeant . rémunération . net . après impôt: 12362
+dirigeant . indépendant . revenu professionnel: 13220
+dirigeant . rémunération . cotisations: 5266
+dirigeant . rémunération . net: 12734
+dirigeant . rémunération . net . après impôt: 12734
 dirigeant . rémunération . totale: 18000
 entreprise . charges: 2000
 entreprise . chiffre d'affaires: 20000
@@ -489,85 +489,85 @@ impôt . montant: 0"
 
 exports[`calculate simulations-indépendant > échelle de revenus 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 550
-dirigeant . rémunération . cotisations: 1448
+dirigeant . indépendant . revenu professionnel: 547
+dirigeant . rémunération . cotisations: 1358
 dirigeant . rémunération . net: 500
 dirigeant . rémunération . net . après impôt: 500
-dirigeant . rémunération . totale: 1948
+dirigeant . rémunération . totale: 1858
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 1948
+entreprise . chiffre d'affaires: 1858
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > échelle de revenus 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 1066
-dirigeant . rémunération . cotisations: 1554
+dirigeant . indépendant . revenu professionnel: 1063
+dirigeant . rémunération . cotisations: 1448
 dirigeant . rémunération . net: 1000
 dirigeant . rémunération . net . après impôt: 1000
-dirigeant . rémunération . totale: 2554
+dirigeant . rémunération . totale: 2448
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 2554
+entreprise . chiffre d'affaires: 2448
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > échelle de revenus 3`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 1583
-dirigeant . rémunération . cotisations: 1663
+dirigeant . indépendant . revenu professionnel: 1580
+dirigeant . rémunération . cotisations: 1540
 dirigeant . rémunération . net: 1500
 dirigeant . rémunération . net . après impôt: 1500
-dirigeant . rémunération . totale: 3163
+dirigeant . rémunération . totale: 3040
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 3163
+entreprise . chiffre d'affaires: 3040
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > échelle de revenus 4`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 2099
-dirigeant . rémunération . cotisations: 1770
+dirigeant . indépendant . revenu professionnel: 2096
+dirigeant . rémunération . cotisations: 1629
 dirigeant . rémunération . net: 2000
 dirigeant . rémunération . net . après impôt: 2000
-dirigeant . rémunération . totale: 3770
+dirigeant . rémunération . totale: 3629
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 3770
+entreprise . chiffre d'affaires: 3629
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > échelle de revenus 5`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 5199
-dirigeant . rémunération . cotisations: 2446
+dirigeant . indépendant . revenu professionnel: 5192
+dirigeant . rémunération . cotisations: 2193
 dirigeant . rémunération . net: 5000
 dirigeant . rémunération . net . après impôt: 5000
-dirigeant . rémunération . totale: 7446
+dirigeant . rémunération . totale: 7193
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 7446
+entreprise . chiffre d'affaires: 7193
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > échelle de revenus 6`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 10394
-dirigeant . rémunération . cotisations: 4615
+dirigeant . indépendant . revenu professionnel: 10382
+dirigeant . rémunération . cotisations: 4181
 dirigeant . rémunération . net: 10000
 dirigeant . rémunération . net . après impôt: 10000
-dirigeant . rémunération . totale: 14615
+dirigeant . rémunération . totale: 14181
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 14615
+entreprise . chiffre d'affaires: 14181
 impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > échelle de revenus 7`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 103803
-dirigeant . rémunération . cotisations: 40176
+dirigeant . rémunération . cotisations: 40177
 dirigeant . rémunération . net: 100000
 dirigeant . rémunération . net . après impôt: 72490
-dirigeant . rémunération . totale: 140176
+dirigeant . rémunération . totale: 140177
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 140176
+entreprise . chiffre d'affaires: 140177
 impôt . montant: 27510
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
 `;

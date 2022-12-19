@@ -1,10 +1,10 @@
 // Vitest Snapshot v1
 
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 2444
+"dirigeant . indépendant . cotisations et contributions: 2389
 dirigeant . rémunération . net: 5000
 dirigeant . rémunération . net . après impôt: 5000
-entreprise . chiffre d'affaires: 7444
+entreprise . chiffre d'affaires: 7389
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 63
 protection sociale . retraite . complémentaire: 2257
@@ -12,10 +12,10 @@ protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 4245
+"dirigeant . indépendant . cotisations et contributions: 4173
 dirigeant . rémunération . net: 20000
 dirigeant . rémunération . net . après impôt: 19255
-entreprise . chiffre d'affaires: 24245
+entreprise . chiffre d'affaires: 24173
 impôt . montant: 745
 protection sociale . retraite . CNAVPL . points acquis: 249
 protection sociale . retraite . complémentaire: 8957
@@ -95,10 +95,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 6`] = `
-"dirigeant . indépendant . cotisations et contributions: 4008
+"dirigeant . indépendant . cotisations et contributions: 3694
 dirigeant . rémunération . net: 1000
 dirigeant . rémunération . net . après impôt: 1000
-entreprise . chiffre d'affaires: 5008
+entreprise . chiffre d'affaires: 4694
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 122
 protection sociale . retraite . complémentaire: 4388
@@ -118,10 +118,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV exonération incapacité 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 6943
+"dirigeant . indépendant . cotisations et contributions: 6910
 dirigeant . rémunération . net: 40000
 dirigeant . rémunération . net . après impôt: 34025
-entreprise . chiffre d'affaires: 46943
+entreprise . chiffre d'affaires: 46910
 impôt . montant: 5975
 protection sociale . retraite . CNAVPL . points acquis: 400
 protection sociale . retraite . complémentaire: 14400
@@ -130,13 +130,13 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 6270
+"dirigeant . indépendant . cotisations et contributions: 5769
 dirigeant . rémunération . net: 10000
 dirigeant . rémunération . net . après impôt: 10000
-entreprise . chiffre d'affaires: 16270
+entreprise . chiffre d'affaires: 15769
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 126
-protection sociale . retraite . complémentaire: 9050
+protection sociale . retraite . complémentaire: 9043
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -165,10 +165,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 2846
+"dirigeant . indépendant . cotisations et contributions: 2544
 dirigeant . rémunération . net: 500
 dirigeant . rémunération . net . après impôt: 500
-entreprise . chiffre d'affaires: 3346
+entreprise . chiffre d'affaires: 3044
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 61
 protection sociale . retraite . complémentaire: 2192
@@ -176,10 +176,10 @@ protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 2906
+"dirigeant . indépendant . cotisations et contributions: 2594
 dirigeant . rémunération . net: 1000
 dirigeant . rémunération . net . après impôt: 1000
-entreprise . chiffre d'affaires: 3906
+entreprise . chiffre d'affaires: 3594
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 61
 protection sociale . retraite . complémentaire: 2192
@@ -187,10 +187,10 @@ protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 2965
+"dirigeant . indépendant . cotisations et contributions: 2644
 dirigeant . rémunération . net: 1500
 dirigeant . rémunération . net . après impôt: 1500
-entreprise . chiffre d'affaires: 4465
+entreprise . chiffre d'affaires: 4144
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 61
 protection sociale . retraite . complémentaire: 2192
@@ -198,10 +198,10 @@ protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 4`] = `
-"dirigeant . indépendant . cotisations et contributions: 3026
+"dirigeant . indépendant . cotisations et contributions: 2693
 dirigeant . rémunération . net: 2000
 dirigeant . rémunération . net . après impôt: 2000
-entreprise . chiffre d'affaires: 5026
+entreprise . chiffre d'affaires: 4693
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 61
 protection sociale . retraite . complémentaire: 2192
@@ -209,24 +209,24 @@ protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 5`] = `
-"dirigeant . indépendant . cotisations et contributions: 3406
+"dirigeant . indépendant . cotisations et contributions: 3011
 dirigeant . rémunération . net: 5000
 dirigeant . rémunération . net . après impôt: 5000
-entreprise . chiffre d'affaires: 8406
+entreprise . chiffre d'affaires: 8011
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 63
-protection sociale . retraite . complémentaire: 2264
+protection sociale . retraite . complémentaire: 2261
 protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 6`] = `
-"dirigeant . indépendant . cotisations et contributions: 4582
+"dirigeant . indépendant . cotisations et contributions: 4083
 dirigeant . rémunération . net: 10000
 dirigeant . rémunération . net . après impôt: 10000
-entreprise . chiffre d'affaires: 14582
+entreprise . chiffre d'affaires: 14083
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 125
-protection sociale . retraite . complémentaire: 4507
+protection sociale . retraite . complémentaire: 4500
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -266,12 +266,12 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 8314
-dirigeant . rémunération . net: 21686
-dirigeant . rémunération . net . après impôt: 20646
+"dirigeant . indépendant . cotisations et contributions: 8263
+dirigeant . rémunération . net: 21737
+dirigeant . rémunération . net . après impôt: 20689
 entreprise . chiffre d'affaires: 30000
-impôt . montant: 1040
-protection sociale . retraite . CNAVPL . points acquis: 271
+impôt . montant: 1048
+protection sociale . retraite . CNAVPL . points acquis: 272
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -288,47 +288,47 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > avocat 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 11042
-dirigeant . rémunération . net: 38958
-dirigeant . rémunération . net . après impôt: 33270
+"dirigeant . indépendant . cotisations et contributions: 11305
+dirigeant . rémunération . net: 38695
+dirigeant . rémunération . net . après impôt: 33086
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 5688
-protection sociale . retraite . CNAVPL . points acquis: 486
+impôt . montant: 5609
+protection sociale . retraite . CNAVPL . points acquis: 483
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
 `;
 
 exports[`calculate simulations-professions-libérales > avocat 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 11715
-dirigeant . rémunération . net: 38285
-dirigeant . rémunération . net . après impôt: 32799
+"dirigeant . indépendant . cotisations et contributions: 11685
+dirigeant . rémunération . net: 38315
+dirigeant . rémunération . net . après impôt: 32820
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 5486
-protection sociale . retraite . CNAVPL . points acquis: 477
+impôt . montant: 5495
+protection sociale . retraite . CNAVPL . points acquis: 478
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
 `;
 
 exports[`calculate simulations-professions-libérales > expert-comptable 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 5039
-dirigeant . rémunération . net: 14961
-dirigeant . rémunération . net . après impôt: 14961
+"dirigeant . indépendant . cotisations et contributions: 4543
+dirigeant . rémunération . net: 15457
+dirigeant . rémunération . net . après impôt: 15456
 entreprise . chiffre d'affaires: 20000
-impôt . montant: 0
-protection sociale . retraite . CNAVPL . points acquis: 187
+impôt . montant: 1
+protection sociale . retraite . CNAVPL . points acquis: 193
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > expert-comptable 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 14742
-dirigeant . rémunération . net: 35258
-dirigeant . rémunération . net . après impôt: 30680
+"dirigeant . indépendant . cotisations et contributions: 14704
+dirigeant . rémunération . net: 35296
+dirigeant . rémunération . net . après impôt: 30707
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 4578
-protection sociale . retraite . CNAVPL . points acquis: 441
+impôt . montant: 4589
+protection sociale . retraite . CNAVPL . points acquis: 442
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -346,11 +346,11 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 19845
-dirigeant . rémunération . net: 30155
-dirigeant . rémunération . net . après impôt: 27110
+"dirigeant . indépendant . cotisations et contributions: 19804
+dirigeant . rémunération . net: 30196
+dirigeant . rémunération . net . après impôt: 27138
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 3045
+impôt . montant: 3058
 protection sociale . retraite . CNAVPL . points acquis: 380
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
@@ -425,9 +425,9 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 1342
-dirigeant . rémunération . net: 2658
-dirigeant . rémunération . net . après impôt: 2658
+"dirigeant . indépendant . cotisations et contributions: 1343
+dirigeant . rémunération . net: 2657
+dirigeant . rémunération . net . après impôt: 2657
 entreprise . chiffre d'affaires: 4000
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 61

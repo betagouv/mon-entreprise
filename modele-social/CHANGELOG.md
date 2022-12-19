@@ -1,5 +1,14 @@
 # Journal des modifications
 
+## 1.4.2
+
+Mise à jour des modalités de calcul de la cotisation maladie pour les indépendant, suite à la loi portant les mesures d’urgence pour la protection du pouvoir d’achat d’août 2022.
+
+### Détails : 
+- Déprécie la règle : `dirigeant . indépendant . cotisations et contributions . maladie . réduction supplémentaire`
+- Met à jour les descriptions des cotisation indépendant
+- Met à jour les formules de `dirigeant . indépendant . cotisations et contributions . maladie`, `dirigeant . indépendant . PL . maladie` et `dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie`
+
 ## 1.4.1
 
 Mise à jour des montants qui changent au 1ᵉʳ janvier 2023 :

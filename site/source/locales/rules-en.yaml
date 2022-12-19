@@ -2380,20 +2380,6 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
   titre.en: '[automatic] pension fund contributions'
   titre.fr: cotisations caisse de retraite
 dirigeant . indépendant . PL . maladie:
-  note.en: >
-    [automatic] The regulated professions do not contribute the
-    corresponding share to the
-
-    per diems and are therefore not entitled to these allowances in the event of
-
-    illness.
-  note.fr: >
-    Les professions libérales réglementée ne cotisent pour la part
-    correspondante aux
-
-    indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
-
-    maladie.
   titre.en: '[automatic] disease'
   titre.fr: maladie
 dirigeant . indépendant . PL . métier:
@@ -2949,6 +2935,34 @@ dirigeant . indépendant . cotisations et contributions . PSS proratisé:
   titre.en: '[automatic] prorated social security ceiling'
   titre.fr: plafond de la sécurité sociale proratisé
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
+  description.en: >
+    [automatic] This contribution allows you to benefit from family
+    allowances paid by the family allowance fund under the same conditions as
+    employees:
+
+
+    - compensation for family expenses (birth, dependent children, childcare, back to school);
+
+    - benefits related to housing, disability, precariousness (RSA...).
+
+
+    Most of these benefits are means-tested.
+
+    The amount of the allowances allocated from the 2nd child onwards varies according to the family's income.
+  description.fr: >
+    Cette cotisation permet de bénéficier des allocations familiales
+    versées par la caisse d’allocations familiales dans les mêmes conditions que
+    les salariés :
+
+
+    - compensation des charges familiales (naissance, enfant à charge, garde, rentrée scolaire) ;
+
+    - prestations liées au logement, handicap, précarité (RSA...).
+
+
+    Le versement de la plupart de ces prestations est soumis à des conditions de ressources.
+
+    Le montant des allocations attribuées à partir du 2ème enfant varie en fonction des revenus de la famille.
   titre.en: '[automatic] family allowances'
   titre.fr: allocations familiales
 dirigeant . indépendant . cotisations et contributions . contributions spéciales:
@@ -3259,55 +3273,57 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
   titre.fr: formation professionnelle
 dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
   description.en: >
-    [automatic] Contributions for daily allowances for the
-    self-employed. If the state of health of
+    [automatic] This contribution allows the payment of daily
+    allowances in case of work stoppage due to illness or accident.
 
-    health of craftsmen, traders, industrialists and collaborating spouses
 
-    need to stop working, a part of their former income will be paid to them.
+    The benefits are calculated on the basis of the average income subject to contributions over the last three years.
+  description.fr: >
+    Cette cotisation permet d'obtenir le versement d'indemnités
+    journalières en cas d'arrêt de travail pour cause de maladie ou d'accident.
 
-    paid.
-  description.fr: |
-    Cotisations pour les indemnités journalières des indépendants. Si l'état de
-    santé des artisans, commerçants, industriels et conjoints collaborateurs
-    nécessite un arrêt de travail, une part de leur ancien revenu leur sera
-    versé.
+
+    Les indemnités sont calculées sur la base du revenu moyen soumis à cotisations des trois dernières années.
   titre.en: '[automatic] daily sickness benefits'
   titre.fr: indemnités journalières maladie
 dirigeant . indépendant . cotisations et contributions . invalidité et décès:
+  description.en: >
+    [automatic] Under certain conditions, this contribution allows
+    you to receive a disability pension before retirement age.
+
+
+    Death insurance guarantees the payment of a death benefit to the beneficiaries, regardless of the status of the deceased insured: insured contributor or insured retiree.
+  description.fr: >
+    Cette cotisation permet de bénéficier, sous certaines
+    conditions, d’une pension d’invalidité avant l’âge de départ à la retraite.
+
+
+    L’assurance décès garantit le versement aux ayants droit d’un capital décès quel que soit le statut de l'assuré décédé : assuré cotisant ou assuré retraité.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 dirigeant . indépendant . cotisations et contributions . maladie:
-  note.en: >
-    [automatic] The following sentence is found in the decree below:
+  description.en: >
+    [automatic] This contribution allows you to benefit from all the
+    health and maternity benefits managed by the health insurance and the Cpam:
 
 
-    &gt; I.-As an exception to the first paragraph, the contribution rate is set at 6.5% when the activity income is greater than five times the annual value of the social security ceiling determined in accordance with Article D. 613-2.
+    - health coverage for the insured and the members of his/her family, identical to that of employees (same rates and same conditions of reimbursement);
+
+    - a complete maternity insurance in case of pregnancy or adoption;
+
+    - supplementary health insurance in case of low income or assistance to subscribe to supplementary health insurance.
+  description.fr: >
+    Cette cotisation permet de bénéficier de l'ensemble des
+    prestations maladie-maternité géré par l'assurance maladie et les Cpam :
 
 
-    The term "when" implies that if the 5xPSS threshold is exceeded, all income is subject to 6.5%. It would seem that the opposite interpretation is to be preferred: only the part above this threshold is subject to this rate, and it is this implementation that we have chosen.
-  note.fr: >
-    On retrouve dans le décret ci-dessous la phrase suivante :
+    - une couverture maladie pour l’assuré et les membres de sa famille, identique à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
 
+    - une assurance maternité complète en cas de grossesse ou d’adoption ;
 
-    > I.-Par dérogation au premier alinéa, le taux de la cotisation est fixé à 6,5 % lorsque le revenu d'activité est supérieur à cinq fois la valeur annuelle du plafond de la sécurité sociale déterminée conformément à l'article D. 613-2.
-
-
-    Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
+    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour souscrire une assurance maladie complémentaire.
   titre.en: '[automatic] disease'
   titre.fr: maladie
-dirigeant . indépendant . cotisations et contributions . maladie . taux progressif:
-  titre.en: '[automatic] progressive rate'
-  titre.fr: taux progressif
-dirigeant . indépendant . cotisations et contributions . maladie . taux progressif . réduction supplémentaire:
-  description.en: >
-    [automatic] Additional reduction of the health rate for income
-    below 40% of the social security ceiling
-  description.fr: >
-    La réduction supplémentaire du taux maladie pour les revenu
-    inférieurs à 40% du plafond de la sécurité sociale
-  titre.en: '[automatic] additional discount'
-  titre.fr: réduction supplémentaire
 dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger:
   description.en: '[automatic] In return for the CSG exemption, the contributors
     have a higher health insurance rate. Unlike the other insured
@@ -3323,9 +3339,45 @@ dirigeant . indépendant . cotisations et contributions . non déductibles:
   titre.en: '[automatic] Non-deductible portion'
   titre.fr: Part non déductibles fiscalement
 dirigeant . indépendant . cotisations et contributions . retraite complémentaire:
+  description.en: >
+    [automatic] Since January 1, 2013, artisans and shopkeepers have
+    had identical rights to a supplementary pension.
+
+    Since 2020, this joint scheme has been managed by the insurance company and the Carsat, according to the principle of distribution with the constitution of a security reserve that guarantees its long-term balance.
+
+
+    It operates according to the same principles as the supplementary pension schemes for employees.
+  description.fr: >
+    Depuis le 1er janvier 2013, les artisans et les commerçants
+    bénéficient de droits identiques en matière de retraite complémentaire.
+
+    Ce régime commun est géré, depuis 2020 par l'assurance et les Carsat, suivant le principe de répartition avec la constitution d'une réserve de sécurité qui garantit à long terme son équilibre.
+
+
+    Il fonctionne selon les mêmes principes que les régimes de retraite complémentaire des salariés.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . cotisations et contributions . retraite de base:
+  description.en: >
+    [automatic] Since 1973, the contribution paid for the basic old
+    age insurance allows craftsmen and traders to benefit from a basic pension
+    calculated in the same way as employees.
+
+
+    The scheme has been managed since 2020 by the pension insurance and the Carsat and is based on national solidarity.
+
+
+    It guarantees pensions equal to those of non-managerial employees in the private sector for an identical duration and level of contributions.
+  description.fr: >
+    Depuis 1973, la cotisation versée au titre de l'assurance
+    vieillesse de base permet aux artisans et commerçants de bénéficier d'une
+    retraite de base calculée de la même manière que les salariés.
+
+
+    Le régime est géré depuis 2020 par l'assurance retraite et les Carsat et se fonde sur la solidarité nationale.
+
+
+    Il garantit des pensions égales à celles des salariés non cadres du secteur privé pour une durée et un niveau de cotisation identique.
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
 dirigeant . indépendant . cotisations et contributions . régularisation:
