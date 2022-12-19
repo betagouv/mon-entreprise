@@ -36,13 +36,9 @@ jobs:
             ## ♿ Checklist accessibilité :
 
             - [ ] les labels des boutons et des liens sont descriptifs
-
             - [ ] un aria-label est ajouté pour préciser l'action d'un bouton ou d'un lien pour les lecteurs d'écran
-
             - [ ] les couleurs du texte est suffisamment constratée par rapport à la couleur de background
-
             - [ ] la fonctionnalité ajoutée est utilisable en navigant au clavier et avec un lecteur d'écran (fonctionnalités avancées)
-
             - [ ] les changements de contexte sont évités ou au minimum annoncés
 
-            Se référer au [guide](https://www.notion.so/mon-entreprise/Checklist-du-d-veloppeur-M-E-9822f6c477414a7c975b2394a6db16cd).
+            Plus d'informations sur chaque poins sur le [guide](https://www.notion.so/mon-entreprise/Checklist-du-d-veloppeur-M-E-9822f6c477414a7c975b2394a6db16cd) Notion.
