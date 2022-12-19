@@ -11,6 +11,7 @@ import PageHeader from '@/components/PageHeader'
 import RuleInput from '@/components/conversation/RuleInput'
 import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
@@ -56,6 +57,9 @@ export default function AideDéclarationIndépendant() {
 	return (
 		<>
 			<Trans i18nKey="aide-déclaration-indépendant.description">
+				<DefaultHelmet>
+					<title>Déclaration charges sociales indépendants</title>
+				</DefaultHelmet>
 				<PageHeader picture={illustration}>
 					<Intro>
 						Cet outil est une aide à la déclaration de revenus à destination des{' '}

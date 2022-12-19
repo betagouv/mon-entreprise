@@ -1,3 +1,4 @@
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { Message } from '@/design-system'
 import { Grid } from '@/design-system/layout'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
@@ -10,6 +11,9 @@ export default function Offline() {
 			role="main"
 		>
 			<Grid item md={8} sm={12}>
+				<DefaultHelmet>
+					<title>Hors ligne</title>
+				</DefaultHelmet>
 				<Message type="info" css={{ margin: '1rem 0' }}>
 					<Intro>Vous êtes actuellement hors ligne.</Intro>
 					<Body>

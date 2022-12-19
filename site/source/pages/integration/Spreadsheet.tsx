@@ -6,6 +6,8 @@ import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 
+import Meta from '../../components/utils/Meta'
+
 export default function Spreadsheet() {
 	const { absoluteSitePaths } = useSitePaths()
 
@@ -14,6 +16,11 @@ export default function Spreadsheet() {
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
+			<Meta
+				page="spreadsheet"
+				title="Utiliser avec un tableur"
+				description="Outils pour les développeurs"
+			/>
 			<Trans i18nKey="pages.développeur.spreadsheet">
 				<H1>Utiliser avec un tableur</H1>
 				<Body>

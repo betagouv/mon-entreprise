@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { Condition } from '@/components/EngineValue'
 import PrintExportRecover from '@/components/simulationExplanation/PrintExportRecover'
+import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { useEngine } from '@/components/utils/EngineContext'
 import { useSimulationProgress } from '@/components/utils/useNextQuestion'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
@@ -54,6 +55,9 @@ export default function AideDéclarationIndépendant() {
 
 	return (
 		<>
+			<DefaultHelmet>
+				<title>Déclaration de revenu indépendants</title>
+			</DefaultHelmet>
 			<PrintExportRecover />
 			<Condition expression="DRI">
 				<Spacing lg />
