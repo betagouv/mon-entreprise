@@ -1,13 +1,28 @@
-import { useCallback, useContext, useState } from 'react'
+import {
+	MutableRefObject,
+	RefObject,
+	useCallback,
+	useContext,
+	useRef,
+	useState,
+} from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { TrackingContext } from '@/ATInternetTracking'
+import { PopoverWithTrigger } from '@/design-system'
+import { Button } from '@/design-system/buttons'
+import { Strong } from '@/design-system/typography'
+import { H4 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { useOnClickOutside } from '@/hooks/useClickOutside'
 
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
+import { INSCRIPTION_LINK } from '../layout/Footer/InscriptionBetaTesteur'
 import Emoji from '../utils/Emoji'
+import FeedbackForm from './FeedbackForm'
 import FeedbackRating, { Feedback } from './FeedbackRating'
 
 const localStorageKey = (url: string) => `app::feedback::v3::${url}`
@@ -25,6 +40,12 @@ const FeedbackButton = () => {
 	const { t } = useTranslation()
 	const url = useLocation().pathname
 	const tag = useContext(TrackingContext)
+	const containerRef = useRef<HTMLElement | null>(null)
+
+	useOnClickOutside(
+		containerRef,
+		() => !isShowingSuggestionForm && setIsFormOpen(false)
+	)
 
 	const submitFeedback = useCallback(
 		(rating: Feedback) => {
@@ -39,17 +60,62 @@ const FeedbackButton = () => {
 		},
 		[tag, url]
 	)
-
 	if (isFormOpen) {
 		return (
-			<Container>
-				<h4>
-					<Trans>Un avis sur cette page ?</Trans>
-				</h4>
-				<Body>On vous écoute.</Body>
+			<Section ref={containerRef}>
+				{isShowingThankMessage ? (
+					<>
+						<Body>
+							<Strong>
+								<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>
+							</Strong>
+						</Body>
+						<Body>
+							<Trans i18nKey="feedback.beta-testeur">
+								Pour continuer à donner votre avis et accéder aux nouveautés en
+								avant-première,{' '}
+								<Link
+									href={INSCRIPTION_LINK}
+									aria-label="inscrivez-vous sur la liste des beta-testeur, nouvelle fenêtre"
+								>
+									inscrivez-vous sur la liste des beta-testeur
+								</Link>
+							</Trans>
+						</Body>
+					</>
+				) : (
+					<>
+						<CenteredContainer>
+							<StyledH4>
+								<Trans>Un avis sur cette page ?</Trans>
+							</StyledH4>
+							<StyledBody>On vous écoute.</StyledBody>
+						</CenteredContainer>
 
-				<FeedbackRating submitFeedback={submitFeedback} />
-			</Container>
+						<FeedbackRating submitFeedback={submitFeedback} />
+
+						<PopoverWithTrigger
+							trigger={(buttonProps) => (
+								<Button
+									{...buttonProps}
+									color="tertiary"
+									size="XXS"
+									light
+									aria-haspopup="dialog"
+								>
+									<Trans i18nKey="feedback.reportError">
+										Faire une suggestion
+									</Trans>
+								</Button>
+							)}
+							onPressCallback={() => setIsShowingSuggestionForm(true)}
+							onCloseCallback={() => setIsShowingSuggestionForm(false)}
+						>
+							<FeedbackForm />
+						</PopoverWithTrigger>
+					</>
+				)}
+			</Section>
 		)
 	}
 
@@ -64,21 +130,17 @@ const FeedbackButton = () => {
 }
 
 const StyledButton = styled.button`
+	position: fixed;
+	top: 10.5rem;
+	right: 0;
 	width: 4.75rem;
 	height: 4.75rem;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 	border-radius: 2.5rem 0 0 2.5rem;
-	position: -webkit-sticky; /* Safari */
-	position: sticky;
-	top: 10.5rem;
-	right: 0;
-	left: 100%;
-	z-index: 1;
 	font-size: 2rem;
 	border: none;
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
-
 	&:hover {
 		background-color: ${({ theme }) => theme.colors.bases.primary[800]};
 
@@ -116,10 +178,37 @@ const StyledButton = styled.button`
 	}
 `
 
-const Container = styled.div`
+const StyledH4 = styled(H4)`
+	margin: 0;
+	color: ${({ theme }) => theme.colors.extended.grey[100]};
+	font-size: 1rem;
+`
+
+const StyledBody = styled(Body)`
+	margin: 0;
+`
+
+const Section = styled.section`
+	position: fixed;
+	top: 10.5rem;
+	right: 0;
 	width: 16.375rem;
 	height: 12.75rem;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
+	border-radius: 2rem 0 0 2rem;
+	color: ${({ theme }) => theme.colors.extended.grey[100]};
+	& ${Body} {
+		color: ${({ theme }) => theme.colors.extended.grey[100]};
+	}
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+`
+
+const CenteredContainer = styled.div`
+	text-align: center;
 `
 
 export default FeedbackButton

@@ -12,6 +12,7 @@ import React, {
 import { useLocation } from 'react-router-dom'
 
 import { Button } from '@/design-system/buttons'
+import { omit } from '@/utils'
 
 import { Link } from '../typography/link'
 import Popover from './Popover'
@@ -28,6 +29,8 @@ export type PopoverWithTriggerProps = {
 	title?: string
 	small?: boolean
 	contentRef?: RefObject<HTMLDivElement>
+	onPressCallback?: () => void
+	onCloseCallback?: () => void
 }
 
 export default function PopoverWithTrigger({
@@ -36,6 +39,8 @@ export default function PopoverWithTrigger({
 	trigger,
 	small,
 	contentRef,
+	onPressCallback,
+	onCloseCallback,
 }: PopoverWithTriggerProps) {
 	const state = useOverlayTriggerState({})
 	const openButtonRef = useRef<HTMLButtonElement>(null)
@@ -45,17 +50,17 @@ export default function PopoverWithTrigger({
 		openButtonRef
 	)
 
-	const triggerButton = useMemo(
-		() =>
-			trigger({
-				onPress: () => {
-					state.open()
-				},
-				ref: openButtonRef,
-				...triggerProps,
-			}),
-		[openButtonRef, triggerProps, trigger, state]
-	)
+	const triggerButton = trigger({
+		onPress: () => {
+			state.open()
+
+			if (onPressCallback) {
+				onPressCallback()
+			}
+		},
+		ref: openButtonRef,
+		...omit(triggerProps, 'onPress'),
+	})
 
 	const { pathname } = useLocation()
 	const pathnameRef = useRef(pathname)
@@ -63,6 +68,9 @@ export default function PopoverWithTrigger({
 		if (pathname !== pathnameRef.current) {
 			pathnameRef.current = pathname
 			state.close()
+			if (onCloseCallback) {
+				onCloseCallback()
+			}
 		}
 	}, [pathname, state])
 
@@ -73,14 +81,24 @@ export default function PopoverWithTrigger({
 				<Popover
 					{...overlayProps}
 					title={title}
-					onClose={() => state.close()}
+					onClose={() => {
+						state.close()
+						if (onCloseCallback) {
+							onCloseCallback()
+						}
+					}}
 					isDismissable
 					role="dialog"
 					small={small}
 					contentRef={contentRef}
 				>
 					{typeof children === 'function'
-						? children(() => state.close())
+						? children(() => {
+								state.close()
+								if (onCloseCallback) {
+									onCloseCallback()
+								}
+						  })
 						: children}
 				</Popover>
 			)}
