@@ -1,0 +1,93 @@
+dirigeant . indépendant . PL . CAVEC:
+  formule: oui
+  applicable si: métier = 'expert-comptable'
+  description: |
+    La CAVEC est l’organisme de sécurité sociale des experts-comptables et des
+    commissaires aux comptes.
+  rend non applicable:
+    # Applicable mais pas encore supporté
+    - conjoint collaborateur
+  références:
+    Site CAVEC: https://www.cavec.fr
+
+dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
+  remplace: cotisations et contributions . retraite complémentaire
+  grille:
+    assiette: assiette des cotisations
+    unité: €/an
+    tranches:
+      - montant:
+          variations:
+            - si: date >= 01/2022
+              alors: 670
+            - si: date >= 01/2021
+              alors: 648
+        plafond: 16190 €/an
+      - montant:
+          variations:
+            - si: date >= 01/2022
+              alors: 2511
+            - si: date >= 01/2021
+              alors: 2430
+        plafond: 32350 €/an
+      - montant:
+          variations:
+            - si: date >= 01/2022
+              alors: 3962
+            - si: date >= 01/2021
+              alors: 3834
+        plafond: 44790 €/an
+      - montant:
+          variations:
+            - si: date >= 01/2022
+              alors: 6194
+            - si: date >= 01/2021
+              alors: 5994
+        plafond: 64560 €/an
+      - montant:
+          variations:
+            - si: date >= 01/2022
+              alors: 9877
+            - si: date >= 01/2021
+              alors: 9558
+        plafond: 79040 €/an
+      - montant:
+          variations:
+            - si: date >= 01/2022
+              alors: 15066
+            - si: date >= 01/2021
+              alors: 14580
+        plafond: 94850 €/an
+      - montant:
+          variations:
+            - si: date >= 01/2022
+              alors: 16740
+            - si: date >= 01/2021
+              alors: 16200
+        plafond: 132780 €/an
+      - montant:
+          variations:
+            - si: date >= 01/2022
+              alors: 20925
+            - si: date >= 01/2021
+              alors: 20250
+  références:
+    'CAVEC : Les cotisations retraite, prévoyance et options': https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62
+
+dirigeant . indépendant . PL . CAVEC . invalidité et décès:
+  titre: invalidité et décès
+  remplace: cotisations et contributions . invalidité et décès
+  formule:
+    grille:
+      assiette: assiette des cotisations
+      unité: €/an
+      tranches:
+        - montant: 288
+          plafond: 16190 €/an
+        - montant: 396
+          plafond: 44790 €/an
+        - montant: 612
+          plafond: 79040 €/an
+        - montant: 828
+  références:
+    'CAVEC : Les cotisations retraite, prévoyance et options': https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62

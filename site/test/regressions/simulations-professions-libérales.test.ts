@@ -30,15 +30,15 @@ it('calculate simulations-professions-libérales', () => {
 	).toMatchInlineSnapshot(`
 		[
 		  "dirigeant . indépendant . IJSS",
-		  "dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation",
-		  "dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation",
 		  "dirigeant . indépendant . PL . CNAVPL . exonération incapacité",
 		  "dirigeant . indépendant . PL . métier",
 		  "dirigeant . indépendant . conjoint collaborateur",
 		  "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
+		  "dirigeant . indépendant . cotisations et contributions . exonérations . âge",
 		  "dirigeant . indépendant . cotisations facultatives",
 		  "dirigeant . indépendant . revenus étrangers",
 		  "dirigeant . rémunération . net",
+		  "entreprise . activité . saisonnière",
 		  "entreprise . charges",
 		  "entreprise . chiffre d'affaires",
 		  "entreprise . date de création",

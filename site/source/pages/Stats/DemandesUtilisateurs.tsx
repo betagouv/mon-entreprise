@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { Chip } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -82,7 +83,7 @@ function Issue({ title, number, count, closedAt }: IssueProps) {
 
 	return (
 		<Li>
-			{count > 1 && <span>{count} demandes</span>}{' '}
+			{count > 1 && <Chip>{count} demandes</Chip>}{' '}
 			<Link
 				href={`https://github.com/betagouv/mon-entreprise/issues/${number}`}
 				aria-label={t(

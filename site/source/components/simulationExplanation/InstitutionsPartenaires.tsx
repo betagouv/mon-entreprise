@@ -82,15 +82,6 @@ export default function InstitutionsPartenaires() {
 						</Message>
 					</Grid>
 				</Grid>
-
-				<Condition expression="dirigeant . indépendant . cotisations et contributions . exonérations . ACRE > 0">
-					<SmallBody>
-						<Trans i18nKey="simulateurs.explanation.institutions.notice acre">
-							Les montants indiqués ci-dessus sont calculés sans prendre en
-							compte l'exonération de début d'activité ACRE
-						</Trans>
-					</SmallBody>
-				</Condition>
 			</FromBottom>
 		</section>
 	)
