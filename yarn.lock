@@ -16099,6 +16099,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"focus-trap-react@npm:^10.0.2":
+  version: 10.0.2
+  resolution: "focus-trap-react@npm:10.0.2"
+  dependencies:
+    focus-trap: ^7.2.0
+    tabbable: ^6.0.1
+  peerDependencies:
+    prop-types: ^15.8.1
+    react: ">=16.3.0"
+    react-dom: ">=16.3.0"
+  checksum: 9bd33883764ef78b6aae3314814ff0eab48477d045acae7eef0246df563c7d0db0b3935cc9bd25d261ec272322b424d8d3e8581ef0bcccdfdd65ee72d8916d0b
+  languageName: node
+  linkType: hard
+
+"focus-trap@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "focus-trap@npm:7.2.0"
+  dependencies:
+    tabbable: ^6.0.1
+  checksum: 181138fab2f82b66e0b8efaf30ef0c4adf691526b85b2171d780c0d3a5918021d305ebbf907343401fafcc369c904a9bf71a25f1f05223ca28217054955fab43
+  languageName: node
+  linkType: hard
+
 "folder-walker@npm:^3.2.0":
   version: 3.2.0
   resolution: "folder-walker@npm:3.2.0"
@@ -25958,6 +25981,7 @@ __metadata:
     cypress-wait-until: ^1.7.2
     dotenv: ^16.0.3
     exoneration-covid: "workspace:^"
+    focus-trap-react: ^10.0.2
     fuse.js: ^6.6.2
     i18next-parser: ^7.0.3
     iframe-resizer: ^4.3.2
@@ -27082,6 +27106,13 @@ __metadata:
   version: 6.13.0
   resolution: "systemjs@npm:6.13.0"
   checksum: df8d7374249778291f3a85278fdb3e1b9d81ac07767b0a7f9edeca0ee45d847c19bceb01522c817605e2908d32a4fcfed6bacd707bfb7bd577774ab900d3707d
+  languageName: node
+  linkType: hard
+
+"tabbable@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "tabbable@npm:6.0.1"
+  checksum: 65e378ad69a97416f2fdce34ade11b8ff68b33d9b2d978920a9d285c77e1bb88cb35113a8f00af8c4f0163d788d451a48840a216fa918d6a3f0c554951deb984
   languageName: node
   linkType: hard
 
