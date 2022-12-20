@@ -109,7 +109,7 @@ export default function Popover(
 														role="img"
 														aria-hidden
 														viewBox="0 0 24 24"
-														fill="none"
+														fill="red"
 														xmlns="http://www.w3.org/2000/svg"
 													>
 														<path
@@ -224,7 +224,7 @@ const CloseButton = styled.button`
 
 	color: ${({ theme }) =>
 		theme.darkMode
-			? theme.colors.bases.primary[400]
+			? theme.colors.bases.primary[100]
 			: theme.colors.bases.primary[700]};
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
@@ -232,7 +232,7 @@ const CloseButton = styled.button`
 	line-height: 24px;
 	padding: ${({ theme }) => theme.spacings.sm};
 	path {
-		fill: ${({ theme }) => theme.colors.bases.primary[700]};
+		fill: ${({ theme }) => theme.colors.theme.linkColor};
 	}
 	svg {
 		width: ${({ theme }) => theme.spacings.lg};

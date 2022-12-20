@@ -1,5 +1,6 @@
 import { utils } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
 import Value, { Condition } from '@/components/EngineValue'
 import { FromTop } from '@/components/ui/animate'
@@ -25,7 +26,7 @@ export default function ResultatsSimples() {
 				$backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
 				{' '}
-				<H2>
+				<H2 $textColor={(theme) => theme.colors.extended.grey[100]}>
 					<Emoji emoji="📄" />{' '}
 					<Trans i18nKey="aide-déclaration-indépendant.results.title">
 						Montants à reporter dans votre déclaration de revenus
@@ -43,6 +44,7 @@ export default function ResultatsSimples() {
 						aria-label={t(
 							'En savoir plus sur impots.gouv.fr, nouvelle fenêtre'
 						)}
+						$textColor={(theme) => theme.colors.extended.grey[100]}
 					>
 						En savoir plus
 					</Link>
@@ -64,7 +66,7 @@ export default function ResultatsSimples() {
 
 					return (
 						<FromTop key={dottedName}>
-							<H3>
+							<H3 $textColor={(theme) => theme.colors.extended.grey[100]}>
 								{r.title}
 								<Condition
 									expression={{
@@ -78,14 +80,14 @@ export default function ResultatsSimples() {
 									<small>{r.rawNode.résumé}</small>
 								</Condition>{' '}
 							</H3>
-							<Intro>
+							<StyledIntro>
 								<Value
 									expression={r.dottedName}
 									displayedUnit="€"
 									unit="€/an"
 									precision={0}
 								/>
-							</Intro>
+							</StyledIntro>
 
 							{r.rawNode.description && (
 								<Markdown>{r.rawNode.description}</Markdown>
@@ -156,3 +158,9 @@ export default function ResultatsSimples() {
 		</>
 	)
 }
+
+const StyledIntro = styled(Intro)`
+	& a {
+		color: ${({ theme }) => theme.colors.extended.grey[100]};
+	}
+`

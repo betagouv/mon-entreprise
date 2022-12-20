@@ -12,9 +12,11 @@ import * as safeLocalStorage from '../../../storage/safeLocalStorage'
 export default function Privacy({
 	label,
 	noUnderline = true,
+	isDark,
 }: {
 	label?: string
 	noUnderline?: boolean
+	isDark?: boolean
 }) {
 	const tracker = useContext(TrackingContext)
 	const [valueChanged, setValueChanged] = useState(false)
@@ -41,7 +43,11 @@ export default function Privacy({
 					{...buttonProps}
 					aria-haspopup="dialog"
 					noUnderline={noUnderline}
-					$textColor={(theme) => theme.colors.extended.grey[100]}
+					$textColor={(theme) =>
+						isDark
+							? theme.colors.extended.grey[100]
+							: theme.colors.theme.linkColor
+					}
 				>
 					{label ?? <Trans>Gestion des données personnelles</Trans>}
 				</Link>

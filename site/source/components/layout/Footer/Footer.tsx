@@ -192,7 +192,7 @@ export default function Footer() {
 											<LegalNotice />
 										</li>
 										<li>
-											<Privacy />
+											<Privacy isDark />
 										</li>
 										{language === 'fr' && (
 											<li>
