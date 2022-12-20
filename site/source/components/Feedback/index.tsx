@@ -39,6 +39,7 @@ const FeedbackButton = ({
 	const [isFormOpen, setIsFormOpen] = useState(false)
 	const [isShowingThankMessage, setIsShowingThankMessage] = useState(false)
 	const [isShowingSuggestionForm, setIsShowingSuggestionForm] = useState(false)
+	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
 	const url = useLocation().pathname
 	const tag = useContext(TrackingContext)
@@ -57,10 +58,13 @@ const FeedbackButton = ({
 				click_chapter1: 'satisfaction',
 				click: rating,
 			})
-			const askDetails = ['mauvais', 'moyen'].includes(rating)
+			const isNotSatisfiedValue = ['mauvais', 'moyen'].includes(rating)
+			if (isNotSatisfiedValue) {
+				setIsNotSatisfied(true)
+			}
 
-			setIsShowingThankMessage(!askDetails)
-			setIsShowingSuggestionForm(askDetails)
+			setIsShowingThankMessage(!isNotSatisfiedValue)
+			setIsShowingSuggestionForm(isNotSatisfiedValue)
 		},
 		[tag, url]
 	)
@@ -123,9 +127,13 @@ const FeedbackButton = ({
 							setIsShowingSuggestionForm(false)
 							setTimeout(() => setIsFormOpen(false))
 						}}
-						title={t('Votre avis nous intéresse')}
+						title={
+							isNotSatisfied
+								? t('Vos attentes ne sont pas remplies')
+								: t('Votre avis nous intéresse')
+						}
 					>
-						<FeedbackForm />
+						<FeedbackForm isNotSatisfied={isNotSatisfied} />
 					</Popover>
 				)}
 			</Section>

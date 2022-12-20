@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { ScrollToElement } from '@/components/utils/Scroll'
 import { TextAreaField, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Strong } from '@/design-system/typography'
 import { Body } from '@/design-system/typography/paragraphs'
 
 type SubmitError = {
@@ -15,7 +16,11 @@ type SubmitError = {
 
 const SHORT_MAX_LENGTH = 254
 
-export default function FeedbackForm() {
+export default function FeedbackForm({
+	isNotSatisfied,
+}: {
+	isNotSatisfied: boolean
+}) {
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const [submitError, setSubmitError] = useState<SubmitError | undefined>(
@@ -101,8 +106,19 @@ export default function FeedbackForm() {
 							void sendMessage({ message, email })
 						}}
 					>
+						{isNotSatisfied && (
+							<>
+								<Body>
+									Vous n’avez pas été satisfait(e) de votre expérience, nous en
+									sommes désolé(e)s.
+								</Body>
+							</>
+						)}
+
 						<Body>
-							Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
+							<Strong>
+								Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
+							</Strong>
 						</Body>
 						<StyledTextArea
 							name="message"
@@ -115,6 +131,9 @@ export default function FeedbackForm() {
 							rows={7}
 							isDisabled={isLoading}
 							errorMessage={submitError?.message}
+							placeholder={t(
+								'Ex : Des informations plus claires, un calcul détaillé...'
+							)}
 						/>
 						<StyledDiv>
 							<StyledTextField
