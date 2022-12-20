@@ -1,7 +1,7 @@
 import { useSearchFieldState } from '@react-stately/searchfield'
 import { ReactNode, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { Message } from '@/design-system'
@@ -62,13 +62,15 @@ export function CompanySearchField(props: {
 	return (
 		<Grid container>
 			<Grid item xs={12}>
-				<SearchField
-					data-test-id="company-search-input"
-					state={state}
-					isSearchStalled={searchPending}
-					onClear={onClear}
-					{...searchFieldProps}
-				/>
+				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+					<SearchField
+						data-test-id="company-search-input"
+						state={state}
+						isSearchStalled={searchPending}
+						onClear={onClear}
+						{...searchFieldProps}
+					/>
+				</ThemeProvider>
 			</Grid>
 			<Grid item xs={12}>
 				{state.value && !searchPending && (

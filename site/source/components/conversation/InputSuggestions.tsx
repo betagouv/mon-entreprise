@@ -41,7 +41,7 @@ export default function InputSuggestions({
 						}}
 						role="button"
 						aria-label={t('Insérer dans le champ la valeur du {{text}}', text)}
-						$textColor={(theme) => theme.colors.extended.grey[100]}
+						$textColor={(theme) => theme.colors.theme.linkColor}
 					>
 						{text}
 					</Link>

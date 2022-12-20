@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import styled, { DefaultTheme, ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 
 import { goToQuestion } from '@/actions/actions'
 import { Spacing } from '@/design-system/layout'
