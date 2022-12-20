@@ -194,6 +194,12 @@ const StyledButton = styled.button`
 		display: none;
 	}
 
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		width: 3.25rem;
+		height: 3.25rem;
+		font-size: 1.5rem;
+	}
+
 	@keyframes wiggle {
 		0% {
 			transform: rotate(0deg);
