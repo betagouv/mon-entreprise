@@ -172,11 +172,11 @@ const StyledButton = styled.button`
 	position: fixed;
 	top: 10.5rem;
 	right: 0;
-	width: 4.75rem;
-	height: 4.75rem;
+	width: 3.75rem;
+	height: 3.75rem;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 	border-radius: 2.5rem 0 0 2.5rem;
-	font-size: 2rem;
+	font-size: 1.75rem;
 	border: none;
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
