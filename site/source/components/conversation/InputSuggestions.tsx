@@ -11,6 +11,7 @@ type InputSuggestionsProps = {
 	onFirstClick: (val: ASTNode) => void
 	onSecondClick?: (val: ASTNode) => void
 	className?: string
+	isLight?: boolean
 }
 
 export default function InputSuggestions({
@@ -18,6 +19,7 @@ export default function InputSuggestions({
 	onSecondClick = (x) => x,
 	onFirstClick,
 	className,
+	isLight,
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<ASTNode>()
 	const { t } = useTranslation()
@@ -41,7 +43,11 @@ export default function InputSuggestions({
 						}}
 						role="button"
 						aria-label={t('Insérer dans le champ la valeur du {{text}}', text)}
-						$textColor={(theme) => theme.colors.theme.linkColor}
+						$textColor={(theme) =>
+							isLight
+								? theme.colors.extended.grey[100]
+								: theme.colors.theme.linkColor
+						}
 					>
 						{text}
 					</Link>

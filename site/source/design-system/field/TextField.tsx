@@ -12,8 +12,8 @@ const LABEL_HEIGHT = '1rem'
 type TextFieldProps = AriaTextFieldOptions<'input'> & {
 	inputRef?: RefObject<HTMLInputElement>
 	small?: boolean
-	hasDarkBackground?: boolean
-	hasLightBackground?: boolean
+	isDark?: boolean
+	isLight?: boolean
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -27,8 +27,8 @@ export default function TextField(props: TextFieldProps) {
 			<StyledInputContainer
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label && !props.small}
-				hasDarkBackground={props?.hasDarkBackground}
-				hasLightBackground={props?.hasLightBackground}
+				isLight={props?.isLight}
+				isDark={props?.isDark}
 			>
 				<StyledInput
 					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
@@ -136,28 +136,28 @@ export const StyledInputContainer = styled.div<{
 	hasError: boolean
 	hasLabel: boolean
 	small?: boolean
-	hasLightBackground?: boolean
-	hasDarkBackground?: boolean
+	isDark?: boolean
+	isLight?: boolean
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	border: ${({ theme, hasLightBackground, hasDarkBackground }) =>
+	border: ${({ theme, isDark, isLight }) =>
 		`${theme.box.borderWidth} solid 
 		${
-			hasLightBackground
+			isDark
 				? `${theme.colors.extended.grey[800]}`
-				: hasDarkBackground
+				: isLight
 				? `${theme.colors.extended.grey[100]}`
 				: theme.darkMode
-				? theme.colors.extended.grey[100]
+				? theme.colors.extended.grey[300]
 				: theme.colors.extended.grey[700]
 		}`};
 	outline: transparent solid 1px;
 	position: relative;
 	display: flex;
-	background-color: ${({ theme, hasLightBackground, hasDarkBackground }) =>
-		hasLightBackground
+	background-color: ${({ theme, isDark, isLight }) =>
+		isDark
 			? 'rgba(255, 255, 255, 20%)'
-			: hasDarkBackground
+			: isLight
 			? 'rgba(255, 255, 255, 20%)'
 			: theme.darkMode
 			? 'rgba(255, 255, 255, 20%)'
@@ -165,19 +165,13 @@ export const StyledInputContainer = styled.div<{
 	align-items: center;
 	transition: all 0.2s;
 	:focus-within {
-		${({ theme, hasDarkBackground }) =>
-			hasDarkBackground &&
-			css`
-				outline-color: ${theme.colors.bases.primary[200]}!important;
-			`}
-		${({ theme, hasLightBackground }) =>
-			hasLightBackground &&
-			css`
-				outline-color: ${theme.colors.bases.primary[700]}!important;
-			`}
-		outline-color: ${({ theme, hasError }) =>
+		outline-color: ${({ theme, hasError, isLight, isDark }) =>
 			hasError
 				? theme.colors.extended.error[400]
+				: isLight
+				? theme.colors.extended.grey[100]
+				: isDark
+				? theme.colors.bases.primary[700]
 				: theme.darkMode
 				? theme.colors.bases.primary[300]
 				: theme.colors.bases.primary[800]};
@@ -239,10 +233,10 @@ export const StyledInputContainer = styled.div<{
 				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
 				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
-		color: ${({ theme, hasDarkBackground, hasLightBackground }) =>
-			hasDarkBackground
+		color: ${({ theme, isLight, isDark }) =>
+			isLight
 				? theme.colors.extended.grey[100]
-				: hasLightBackground
+				: isDark
 				? theme.colors.extended.grey[800]
 				: theme.darkMode
 				? theme.colors.extended.grey[100]

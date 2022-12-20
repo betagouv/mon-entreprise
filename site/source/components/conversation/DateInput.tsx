@@ -14,7 +14,8 @@ export default function DateInput({
 	required,
 	autoFocus,
 	value,
-}: InputProps) {
+	isLight,
+}: InputProps & { isLight?: boolean }) {
 	const dateValue = useMemo(() => {
 		if (!value || typeof value !== 'string') {
 			return undefined
@@ -54,6 +55,7 @@ export default function DateInput({
 							onChange(value)
 						}}
 						onSecondClick={() => onSubmit?.('suggestion')}
+						isLight={isLight}
 					/>
 				)}
 				<DateField
@@ -63,6 +65,7 @@ export default function DateInput({
 					onChange={handleDateChange}
 					aria-label={title}
 					label={title}
+					isLight={isLight}
 				/>
 			</div>
 		</div>

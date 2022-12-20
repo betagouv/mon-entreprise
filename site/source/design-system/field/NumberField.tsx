@@ -35,7 +35,7 @@ type NumberFieldProps = Omit<AriaNumberFieldProps, 'placeholder'> & {
 	small?: boolean
 	placeholder?: number
 	onChange?: (n?: number) => void
-	hasDarkBackground?: boolean
+	isLight?: boolean
 }
 
 export default function NumberField(props: NumberFieldProps) {
@@ -104,7 +104,7 @@ export default function NumberField(props: NumberFieldProps) {
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label}
 				small={props.small}
-				hasDarkBackground={props?.hasDarkBackground}
+				isLight={props?.isLight}
 			>
 				<StyledNumberInput
 					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
@@ -159,7 +159,7 @@ const StyledUnit = styled(StyledSuffix)`
 
 const StyledNumberInput = styled(StyledInput)<{
 	withUnit: boolean
-	hasDarkBackground?: boolean
+	isLight?: boolean
 }>`
 	${({ withUnit }) =>
 		withUnit &&

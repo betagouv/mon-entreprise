@@ -23,6 +23,7 @@ export default function NumberInput({
 	...fieldProps
 }: InputProps & {
 	unit?: Unit
+	isLight?: boolean
 }) {
 	const unité = serializeUnit(unit)
 	const [currentValue, setCurrentValue] = useState<number | undefined>(
@@ -102,6 +103,7 @@ export default function NumberInput({
 					onChange(node)
 				}}
 				onSecondClick={() => onSubmit?.('suggestion')}
+				isLight={fieldProps?.isLight}
 			/>
 		</StyledNumberInput>
 	)
