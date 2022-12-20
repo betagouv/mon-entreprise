@@ -71,7 +71,8 @@ const FeedbackButton = ({
 					<>
 						<Body>
 							<Strong>
-								<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>
+								<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>{' '}
+								<Emoji emoji="🙌" />
 							</Strong>
 						</Body>
 						<ThankYouText>
