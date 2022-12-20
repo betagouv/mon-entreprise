@@ -24,6 +24,7 @@ export function CompanySearchField(props: {
 	onValue?: () => void
 	onClear?: () => void
 	onSubmit?: (search: FabriqueSocialEntreprise | null) => void
+	isDark?: boolean
 }) {
 	const { t } = useTranslation()
 	const refResults = useRef<FabriqueSocialEntreprise[] | null>(null)
@@ -62,7 +63,12 @@ export function CompanySearchField(props: {
 	return (
 		<Grid container>
 			<Grid item xs={12}>
-				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+				<ThemeProvider
+					theme={(theme) => ({
+						...theme,
+						darkMode: props?.isDark ?? theme.darkMode,
+					})}
+				>
 					<SearchField
 						data-test-id="company-search-input"
 						state={state}

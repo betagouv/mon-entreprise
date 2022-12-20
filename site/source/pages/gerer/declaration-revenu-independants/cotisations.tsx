@@ -46,7 +46,9 @@ export default function Cotisations() {
 						<Grid container columnSpacing={4} rowSpacing={2}>
 							<Grid item lg={10} xl={8}>
 								<FromTop>
-									<H2>Estimation des cotisations à payer</H2>
+									<H2 $textColor={(theme) => theme.colors.extended.grey[100]}>
+										Estimation des cotisations à payer
+									</H2>
 
 									<Message icon border={false}>
 										<Intro>
@@ -113,11 +115,11 @@ export default function Cotisations() {
 								</FromTop>
 							</Grid>
 
-							<Grid item md={6} sm={12}>
-								<H3>
+							<StyledGrid item md={6} sm={12}>
+								<H3 $textColor={(theme) => theme.colors.extended.grey[100]}>
 									{engine.getRule('DRI . cotisations . provisionnelles').title}
 								</H3>
-								<Intro>
+								<Intro $textColor={(theme) => theme.colors.extended.grey[100]}>
 									<Value
 										expression="dirigeant . indépendant . cotisations et contributions"
 										displayedUnit="€"
@@ -127,9 +129,9 @@ export default function Cotisations() {
 									{engine.getRule('DRI . cotisations . provisionnelles').rawNode
 										.description ?? ''}
 								</Markdown>{' '}
-							</Grid>
-							<Grid item md={6} sm={12}>
-								<H3>
+							</StyledGrid>
+							<StyledGrid item md={6} sm={12}>
+								<H3 $textColor={(theme) => theme.colors.extended.grey[100]}>
 									{engine.getRule('DRI . cotisations . régularisation').title}
 								</H3>
 								<Intro>
@@ -139,7 +141,7 @@ export default function Cotisations() {
 									{engine.getRule('DRI . cotisations . régularisation').rawNode
 										.description ?? ''}
 								</Markdown>{' '}
-							</Grid>
+							</StyledGrid>
 						</Grid>
 						<ShareOrSaveSimulationBanner share print />
 						<Spacing xl />
@@ -163,5 +165,11 @@ export default function Cotisations() {
 const StyledMessage = styled(Message)`
 	& h2 {
 		color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
+`
+
+const StyledGrid = styled(Grid)`
+	& a {
+		color: ${({ theme }) => theme.colors.extended.grey[100]} !important;
 	}
 `

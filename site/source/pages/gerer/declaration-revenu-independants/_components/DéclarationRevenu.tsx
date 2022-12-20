@@ -127,7 +127,9 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 						éléments de votre déclaration de revenu.
 					</Body>
 				)}
-				<H2>Votre déclaration de revenu</H2>
+				<H2 $textColor={(theme) => theme.colors.extended.grey[100]}>
+					Votre déclaration de revenu
+				</H2>
 				<Grid
 					container
 					spacing={3}

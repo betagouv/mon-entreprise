@@ -306,11 +306,15 @@ function ResultSection() {
 				darkMode
 				$backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
-				<H2>Vos déclarations fiscales</H2>
+				<H2 $textColor={(theme) => theme.colors.extended.grey[100]}>
+					Vos déclarations fiscales
+				</H2>
 
 				<Grid container spacing={4}>
 					<Grid item lg={6}>
-						<H3>Pour vous</H3>
+						<H3 $textColor={(theme) => theme.colors.extended.grey[100]}>
+							Pour vous
+						</H3>
 
 						<Message border={false}>
 							<FormulaireTitle formulaire="Formulaire 2042">
@@ -440,7 +444,9 @@ function ResultSection() {
 						</WhenNotApplicable>
 					</Grid>
 					<Grid item lg={6}>
-						<H3>Pour votre entreprise</H3>
+						<H3 $textColor={(theme) => theme.colors.extended.grey[100]}>
+							Pour votre entreprise
+						</H3>
 						<WhenApplicable dottedName="DRI . liasse">
 							<Message border={false}>
 								<LiasseFiscaleTitle />
