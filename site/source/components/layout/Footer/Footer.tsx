@@ -15,13 +15,13 @@ import { alternateLinks, useSitePaths } from '@/sitePaths'
 
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
-import { useShowFeedback } from './useShowFeedback'
+import { useFeedback } from './useFeedback'
 
 const hrefLangLink = alternateLinks()
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
-	const showFeedback = useShowFeedback()
+	const { shouldShowRater, customTitle } = useFeedback()
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
 
@@ -65,7 +65,10 @@ export default function Footer() {
 							: theme.colors.bases.tertiary[100]
 					}
 				>
-					{showFeedback && <FeedbackButton />}
+					<FeedbackButton
+						customTitle={customTitle}
+						shouldShowRater={shouldShowRater}
+					/>
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}

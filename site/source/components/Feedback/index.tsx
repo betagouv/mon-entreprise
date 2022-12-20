@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { TrackingContext } from '@/ATInternetTracking'
-import { PopoverWithTrigger } from '@/design-system'
+import { Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
@@ -29,7 +29,13 @@ const setFeedbackGivenForUrl = (url: string) => {
 	)
 }
 
-const FeedbackButton = () => {
+const FeedbackButton = ({
+	customTitle,
+	shouldShowRater,
+}: {
+	customTitle: string
+	shouldShowRater: boolean
+}) => {
 	const [isFormOpen, setIsFormOpen] = useState(false)
 	const [isShowingThankMessage, setIsShowingThankMessage] = useState(false)
 	const [isShowingSuggestionForm, setIsShowingSuggestionForm] = useState(false)
@@ -52,6 +58,7 @@ const FeedbackButton = () => {
 				click: rating,
 			})
 			const askDetails = ['mauvais', 'moyen'].includes(rating)
+
 			setIsShowingThankMessage(!askDetails)
 			setIsShowingSuggestionForm(askDetails)
 		},
@@ -84,37 +91,41 @@ const FeedbackButton = () => {
 				) : (
 					<>
 						<StyledH4>
-							<Trans>Un avis sur cette page ?</Trans>
+							{customTitle || <Trans>Un avis sur cette page ?</Trans>}
 						</StyledH4>
 						<StyledBody>On vous écoute.</StyledBody>
 						<Spacing lg />
-						<FeedbackRating submitFeedback={submitFeedback} />
+						{shouldShowRater && (
+							<FeedbackRating submitFeedback={submitFeedback} />
+						)}
 					</>
 				)}
 				<Spacing lg />
 				{currentSimulatorData?.pathId === 'simulateurs.salarié' ? (
 					<JeDonneMonAvis />
 				) : (
-					<PopoverWithTrigger
-						trigger={(buttonProps) => (
-							<Button
-								{...buttonProps}
-								color="tertiary"
-								size="XXS"
-								light
-								aria-haspopup="dialog"
-							>
-								<Trans i18nKey="feedback.reportError">
-									Faire une suggestion
-								</Trans>
-							</Button>
-						)}
-						onPressCallback={() => setIsShowingSuggestionForm(true)}
-						onCloseCallback={() => setIsShowingSuggestionForm(false)}
-						small
+					<Button
+						color="tertiary"
+						size="XXS"
+						light
+						aria-haspopup="dialog"
+						onPress={() => setIsShowingSuggestionForm(true)}
+					>
+						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
+					</Button>
+				)}
+				{isShowingSuggestionForm && (
+					<Popover
+						isOpen
+						isDismissable
+						onClose={() => {
+							setIsShowingSuggestionForm(false)
+							setTimeout(() => setIsFormOpen(false))
+						}}
+						title={t('Votre avis nous intéresse')}
 					>
 						<FeedbackForm />
-					</PopoverWithTrigger>
+					</Popover>
 				)}
 			</Section>
 		)
@@ -142,6 +153,7 @@ const StyledButton = styled.button`
 	border: none;
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
+	z-index: 5;
 	&:hover {
 		background-color: ${({ theme }) => theme.colors.bases.primary[800]};
 
@@ -149,6 +161,10 @@ const StyledButton = styled.button`
 			animation: wiggle 2.5s infinite;
 			transform-origin: 70% 70%;
 		}
+	}
+
+	@media print {
+		display: none;
 	}
 
 	@keyframes wiggle {
@@ -193,7 +209,7 @@ const Section = styled.section`
 	position: fixed;
 	top: 10.5rem;
 	right: 0;
-	width: 16.375rem;
+	width: 17.375rem;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 	border-radius: 2rem 0 0 2rem;
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
@@ -207,6 +223,10 @@ const Section = styled.section`
 	align-items: center;
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
+	z-index: 5;
+	@media print {
+		display: none;
+	}
 `
 
 const ThankYouText = styled(Body)`

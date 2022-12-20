@@ -1,14 +1,7 @@
 import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { AriaButtonProps } from '@react-types/button'
-import React, {
-	ReactElement,
-	Ref,
-	RefObject,
-	useEffect,
-	useMemo,
-	useRef,
-} from 'react'
+import React, { ReactElement, Ref, RefObject, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { Button } from '@/design-system/buttons'
@@ -29,8 +22,6 @@ export type PopoverWithTriggerProps = {
 	title?: string
 	small?: boolean
 	contentRef?: RefObject<HTMLDivElement>
-	onPressCallback?: () => void
-	onCloseCallback?: () => void
 }
 
 export default function PopoverWithTrigger({
@@ -39,8 +30,6 @@ export default function PopoverWithTrigger({
 	trigger,
 	small,
 	contentRef,
-	onPressCallback,
-	onCloseCallback,
 }: PopoverWithTriggerProps) {
 	const state = useOverlayTriggerState({})
 	const openButtonRef = useRef<HTMLButtonElement>(null)
@@ -53,10 +42,6 @@ export default function PopoverWithTrigger({
 	const triggerButton = trigger({
 		onPress: () => {
 			state.open()
-
-			if (onPressCallback) {
-				onPressCallback()
-			}
 		},
 		ref: openButtonRef,
 		...omit(triggerProps, 'onPress'),
@@ -68,9 +53,6 @@ export default function PopoverWithTrigger({
 		if (pathname !== pathnameRef.current) {
 			pathnameRef.current = pathname
 			state.close()
-			if (onCloseCallback) {
-				onCloseCallback()
-			}
 		}
 	}, [pathname, state])
 
@@ -83,9 +65,6 @@ export default function PopoverWithTrigger({
 					title={title}
 					onClose={() => {
 						state.close()
-						if (onCloseCallback) {
-							onCloseCallback()
-						}
 					}}
 					isDismissable
 					role="dialog"
@@ -95,9 +74,6 @@ export default function PopoverWithTrigger({
 					{typeof children === 'function'
 						? children(() => {
 								state.close()
-								if (onCloseCallback) {
-									onCloseCallback()
-								}
 						  })
 						: children}
 				</Popover>
