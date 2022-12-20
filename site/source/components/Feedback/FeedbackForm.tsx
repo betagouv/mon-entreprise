@@ -6,12 +6,11 @@ import styled from 'styled-components'
 import { ScrollToElement } from '@/components/utils/Scroll'
 import { TextAreaField, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H1 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-
-import Emoji from '../utils/Emoji'
 
 type SubmitError = {
 	message?: string
