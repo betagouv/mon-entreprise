@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import styled, { ThemeProvider } from 'styled-components'
 
 import FeedbackButton from '@/components/Feedback'
@@ -8,7 +9,7 @@ import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { FooterContainer } from '@/design-system/footer'
 import { FooterColumn } from '@/design-system/footer/column'
-import { Container, Grid, Spacing } from '@/design-system/layout'
+import { Container, Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { alternateLinks, useSitePaths } from '@/sitePaths'
@@ -24,6 +25,8 @@ export default function Footer() {
 	const { shouldShowRater, customTitle } = useFeedback()
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
+
+	const currentPath = useLocation().pathname
 
 	const currentEnv = import.meta.env.MODE
 	const encodedUri =
@@ -68,6 +71,7 @@ export default function Footer() {
 					<FeedbackButton
 						customTitle={customTitle}
 						shouldShowRater={shouldShowRater}
+						key={`${currentPath}-feedback-key`}
 					/>
 					{language === 'en' && (
 						<Body>

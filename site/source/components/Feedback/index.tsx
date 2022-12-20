@@ -29,6 +29,19 @@ const setFeedbackGivenForUrl = (url: string) => {
 	)
 }
 
+// Ask for feedback again after 4 months
+const getShouldAskFeedback = (url: string) => {
+	const previousFeedbackDate = safeLocalStorage.getItem(localStorageKey(url))
+	if (!previousFeedbackDate) {
+		return true
+	}
+
+	return (
+		new Date(previousFeedbackDate) <
+		new Date(new Date().setMonth(new Date().getMonth() - 4))
+	)
+}
+
 const FeedbackButton = ({
 	customTitle,
 	shouldShowRater,
@@ -68,10 +81,13 @@ const FeedbackButton = ({
 		},
 		[tag, url]
 	)
+
+	const shouldAskFeedback = getShouldAskFeedback(url)
+
 	if (isFormOpen) {
 		return (
 			<Section ref={containerRef}>
-				{isShowingThankMessage ? (
+				{isShowingThankMessage || !shouldAskFeedback ? (
 					<>
 						<Body>
 							<Strong>
@@ -127,13 +143,15 @@ const FeedbackButton = ({
 							setIsShowingSuggestionForm(false)
 							setTimeout(() => setIsFormOpen(false))
 						}}
-						title={
-							isNotSatisfied
-								? t('Vos attentes ne sont pas remplies')
-								: t('Votre avis nous intéresse')
-						}
 					>
-						<FeedbackForm isNotSatisfied={isNotSatisfied} />
+						<FeedbackForm
+							isNotSatisfied={isNotSatisfied}
+							title={
+								isNotSatisfied
+									? t('Vos attentes ne sont pas remplies')
+									: t('Votre avis nous intéresse')
+							}
+						/>
 					</Popover>
 				)}
 			</Section>

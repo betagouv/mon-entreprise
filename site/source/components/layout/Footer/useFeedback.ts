@@ -15,10 +15,25 @@ export const useFeedback = () => {
 
 	useEffect(() => {
 		if (
-			![absoluteSitePaths.index, '', '/'].includes(currentPath) &&
-			!['/documentation', '/gérer', '/créer'].some((path) =>
-				currentPath.includes(path)
-			)
+			// Exclure les pages exactes
+			![
+				absoluteSitePaths.index,
+				'',
+				'/',
+				'/simulateurs',
+				'/plan-de-site',
+				'/budget',
+				'/accessibilit%C3%A9',
+			].includes(currentPath) &&
+			// Exclure les pages et sous-pages
+			![
+				'/documentation',
+				'/g%C3%A9rer',
+				'/cr%C3%A9er',
+				'/nouveaut%C3%A9s',
+				'/stats',
+				'/d%C3%A9veloppeur',
+			].some((path) => currentPath.includes(path))
 		) {
 			setShouldShowRater(true)
 		} else {
