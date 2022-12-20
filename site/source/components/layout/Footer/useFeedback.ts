@@ -20,19 +20,19 @@ export const useFeedback = () => {
 				absoluteSitePaths.index,
 				'',
 				'/',
-				'/simulateurs',
-				'/plan-de-site',
-				'/budget',
-				'/accessibilit%C3%A9',
+				`${absoluteSitePaths.index}simulateurs`,
+				`${absoluteSitePaths.index}plan-de-site`,
+				`${absoluteSitePaths.index}budget`,
+				`${absoluteSitePaths.index}accessibilit%C3%A9`,
 			].includes(currentPath) &&
 			// Exclure les pages et sous-pages
 			![
-				'/documentation',
-				'/g%C3%A9rer',
-				'/cr%C3%A9er',
-				'/nouveaut%C3%A9s',
-				'/stats',
-				'/d%C3%A9veloppeur',
+				`${absoluteSitePaths.index}documentation`,
+				`${absoluteSitePaths.index}g%C3%A9rer`,
+				`${absoluteSitePaths.index}cr%C3%A9er`,
+				`${absoluteSitePaths.index}nouveaut%C3%A9s`,
+				`${absoluteSitePaths.index}stats`,
+				`${absoluteSitePaths.index}d%C3%A9veloppeur`,
 			].some((path) => currentPath.includes(path))
 		) {
 			setShouldShowRater(true)
