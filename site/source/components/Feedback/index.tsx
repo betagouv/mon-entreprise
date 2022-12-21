@@ -18,6 +18,7 @@ import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { INSCRIPTION_LINK } from '../layout/Footer/InscriptionBetaTesteur'
+import { useFeedback } from '../layout/Footer/useFeedback'
 import FeedbackForm from './FeedbackForm'
 import FeedbackRating, { Feedback } from './FeedbackRating'
 
@@ -42,13 +43,7 @@ const getShouldAskFeedback = (url: string) => {
 	)
 }
 
-const FeedbackButton = ({
-	customTitle,
-	shouldShowRater,
-}: {
-	customTitle: string
-	shouldShowRater: boolean
-}) => {
+const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 	const [isFormOpen, setIsFormOpen] = useState(false)
 	const [isShowingThankMessage, setIsShowingThankMessage] = useState(false)
 	const [isShowingSuggestionForm, setIsShowingSuggestionForm] = useState(false)
@@ -58,6 +53,8 @@ const FeedbackButton = ({
 	const tag = useContext(TrackingContext)
 	const containerRef = useRef<HTMLElement | null>(null)
 	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
+
+	const { shouldShowRater, customTitle } = useFeedback()
 
 	useOnClickOutside(
 		containerRef,
@@ -86,7 +83,7 @@ const FeedbackButton = ({
 
 	if (isFormOpen) {
 		return (
-			<Section ref={containerRef}>
+			<Section ref={containerRef} isEmbedded={isEmbedded}>
 				{isShowingThankMessage || !shouldAskFeedback ? (
 					<>
 						<Body>
@@ -162,15 +159,17 @@ const FeedbackButton = ({
 		<StyledButton
 			aria-label={t('Noter la simulation')}
 			onClick={() => setIsFormOpen(true)}
+			isEmbedded={isEmbedded}
 		>
 			<Emoji emoji="👋" />
 		</StyledButton>
 	)
 }
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ isEmbedded?: boolean }>`
 	position: fixed;
 	top: 10.5rem;
+	${({ isEmbedded }) => (isEmbedded ? `top: 40rem;` : '')}
 	right: 0;
 	width: 3.75rem;
 	height: 3.75rem;
@@ -238,9 +237,10 @@ const StyledBody = styled(Body)`
 	margin: 0;
 `
 
-const Section = styled.section`
+const Section = styled.section<{ isEmbedded?: boolean }>`
 	position: fixed;
 	top: 10.5rem;
+	${({ isEmbedded }) => (isEmbedded ? `top: 40rem;` : '')}
 	right: 0;
 	width: 17.375rem;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};

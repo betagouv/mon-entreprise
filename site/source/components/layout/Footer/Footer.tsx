@@ -16,13 +16,11 @@ import { alternateLinks, useSitePaths } from '@/sitePaths'
 
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
-import { useFeedback } from './useFeedback'
 
 const hrefLangLink = alternateLinks()
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
-	const { shouldShowRater, customTitle } = useFeedback()
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
 
@@ -68,11 +66,7 @@ export default function Footer() {
 							: theme.colors.bases.tertiary[100]
 					}
 				>
-					<FeedbackButton
-						customTitle={customTitle}
-						shouldShowRater={shouldShowRater}
-						key={`${currentPath}-feedback-key`}
-					/>
+					<FeedbackButton key={`${currentPath}-feedback-key`} />
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}
