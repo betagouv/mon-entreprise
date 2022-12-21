@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
+import { Strong } from '@/design-system/typography'
 import { Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 
@@ -98,10 +99,13 @@ export default function SchemeComparaisonPage() {
 						<Intro>
 							<Trans i18nKey="comparaisonRégimes.description">
 								Lorsque vous créez votre société, le choix du statut juridique
-								va déterminer à quel régime social le dirigeant est affilié. Il
-								en existe trois différents, avec chacun ses avantages et
-								inconvénients. Avec ce comparatif, trouvez celui qui vous
-								correspond le mieux.
+								va{' '}
+								<Strong>
+									déterminer à quel régime social le dirigeant est affilié
+								</Strong>
+								. Il en existe <Strong>trois différents</Strong>, avec chacun
+								ses avantages et inconvénients. Avec ce comparatif, trouvez
+								celui qui vous correspond le mieux.
 							</Trans>
 						</Intro>
 						<Comparateur engines={engines} />

@@ -41,6 +41,7 @@ export const Button = forwardRef(function Button(
 
 	return (
 		<StyledButton
+			// eslint-disable-next-line react/jsx-props-no-spreading
 			{...buttonOrLinkProps}
 			$size={size}
 			$light={light}
@@ -143,7 +144,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			${$color === 'secondary' &&
 			css`
 				border-color: ${theme.colors.bases[$color][500]};
-			`}
+			`};
 		`}
 
 	@media not print {

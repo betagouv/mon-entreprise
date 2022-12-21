@@ -1,11 +1,12 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled, { css } from 'styled-components'
 
 import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
+import { Body } from '@/design-system/typography/paragraphs'
 import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
 
 import { Logo } from '../Logo'
@@ -30,35 +31,46 @@ export function SimulationGoals({
 	legend,
 	toggles,
 	children,
+	className,
 }: SimulationGoalsProps) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const isEmbeded = useIsEmbedded()
 
 	return (
 		<WatchInitialRender>
-			<TopSection toggles={toggles} />
+			<div className={className}>
+				<TopSection toggles={toggles} />
 
-			<StyledSimulationGoals
-				isEmbeded={isEmbeded}
-				isFirstStepCompleted={isFirstStepCompleted}
-				publique={publique}
-				role="group"
-				id="simulator-legend"
-				aria-labelledby="simulator-legend-label"
-				aria-live="polite"
-			>
-				<ForceThemeProvider forceTheme="dark">
-					<div className="sr-only" aria-hidden id="simulator-legend-label">
-						{legend}
-					</div>
-					{children}
-				</ForceThemeProvider>
-			</StyledSimulationGoals>
+				<SimulationGoalsContainer
+					isEmbeded={isEmbeded}
+					isFirstStepCompleted={isFirstStepCompleted}
+					publique={publique}
+					role="group"
+					id="simulator-legend"
+					aria-labelledby="simulator-legend-label"
+					aria-live="polite"
+				>
+					<ForceThemeProvider forceTheme="dark">
+						<div className="sr-only" aria-hidden id="simulator-legend-label">
+							{legend}
+						</div>
+						<Body className="visually-hidden">
+							<em>
+								<Trans>
+									Les données de simulations se mettront automatiquement à jour
+									après la modification d'un champ.
+								</Trans>
+							</em>
+						</Body>
+						{children}
+					</ForceThemeProvider>
+				</SimulationGoalsContainer>
+			</div>
 		</WatchInitialRender>
 	)
 }
 
-const StyledSimulationGoals = styled.div<
+export const SimulationGoalsContainer = styled.div<
 	Pick<SimulationGoalsProps, 'publique'> & {
 		isFirstStepCompleted: boolean
 		isEmbeded: boolean
@@ -81,7 +93,9 @@ const StyledSimulationGoals = styled.div<
 				? theme.colors.publics[publique]
 				: theme.colors.bases.primary
 
-		return css`linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[600]} 100%);`
+		return css`
+			${colorPalette[600]};
+		`
 	}};
 
 	@media print {
@@ -129,7 +143,7 @@ const Section = styled(Grid).attrs({ container: true })`
 	gap: ${({ theme }) => theme.spacings.xs};
 `
 
-const ToggleSection = styled.div`
+export const ToggleSection = styled.div`
 	padding: ${({ theme }) => theme.spacings.sm} 0;
 
 	display: flex;

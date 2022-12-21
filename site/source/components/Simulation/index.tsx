@@ -77,12 +77,6 @@ export default function Simulation({
 			>
 				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
 					<PrintExportRecover />
-					<Body className="visually-hidden">
-						<Trans>
-							Les données de simulations se mettront automatiquement à jour
-							après la modification d'un champ.
-						</Trans>
-					</Body>
 					{children}
 					<FromTop>
 						{(firstStepCompleted || showQuestionsFromBeginning) && (

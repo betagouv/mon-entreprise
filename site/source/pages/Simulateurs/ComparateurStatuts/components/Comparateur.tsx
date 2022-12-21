@@ -1,5 +1,6 @@
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
+import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -8,6 +9,10 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import {
+	SimulationGoalsContainer,
+	ToggleSection,
+} from '@/components/Simulation/SimulationGoals'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
@@ -22,13 +27,13 @@ function Comparateur({ engines }: ComparateurProps) {
 	return (
 		<>
 			<Simulation engines={engines} hideDetails showQuestionsFromBeginning>
-				<SimulationGoals
-					toggles={<PeriodSwitch />}
+				<StyledSimulationGoals
+					toggles={<PeriodSwitch mode="tab" />}
 					legend={'Estimations sur votre rémunération brute et vos charges'}
 				>
 					<SimulationGoal dottedName="entreprise . chiffre d'affaires" />
 					<SimulationGoal dottedName="entreprise . charges" />
-				</SimulationGoals>
+				</StyledSimulationGoals>
 			</Simulation>
 			<Spacing md />
 			<StyledGrid>
@@ -88,3 +93,14 @@ function Comparateur({ engines }: ComparateurProps) {
 }
 
 export default Comparateur
+
+const StyledSimulationGoals = styled(SimulationGoals)`
+	${SimulationGoalsContainer} {
+		border-start-end-radius: 0;
+		border-end-start-radius: 0;
+		border-end-end-radius: 0;
+	}
+	${ToggleSection} {
+		padding-bottom: 0;
+	}
+`

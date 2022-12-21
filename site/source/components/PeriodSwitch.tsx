@@ -3,20 +3,21 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { updateUnit } from '@/actions/actions'
 import { Radio, ToggleGroup } from '@/design-system/field'
+import { Tab, Toggle } from '@/design-system/field/Radio/ToggleGroup'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 
-export default function PeriodSwitch() {
+export default function PeriodSwitch({ mode }: { mode?: Toggle | Tab }) {
 	const dispatch = useDispatch()
 
 	const currentUnit = useSelector(targetUnitSelector)
 	const { t } = useTranslation()
 	const periods = [
 		{
-			label: t('Mensuel'),
+			label: t('Montant mensuel'),
 			unit: '€/mois',
 		},
 		{
-			label: t('Annuel'),
+			label: t('Montant annuel'),
 			unit: '€/an',
 		},
 	]
@@ -26,6 +27,8 @@ export default function PeriodSwitch() {
 			<ToggleGroup
 				value={currentUnit}
 				onChange={(unit: string) => dispatch(updateUnit(unit))}
+				mode={mode || 'toggle'}
+				hideRadio={mode === 'tab'}
 			>
 				{periods.map(({ label, unit }) => (
 					<span
