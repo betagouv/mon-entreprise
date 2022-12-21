@@ -7,6 +7,8 @@ import {
 } from '@/design-system/typography/link'
 import { wrapperDebounceEvents } from '@/utils'
 
+import { FocusStyle } from '../global-style'
+
 type Size = 'XL' | 'MD' | 'XS' | 'XXS'
 type Color = 'primary' | 'secondary' | 'tertiary'
 
@@ -106,6 +108,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
 						outline: initial;
 				  `
 				: ''}
+	}
+
+	:focus {
+		${FocusStyle}
 	}
 
 	/* Primary, secondary & tertiary colors */

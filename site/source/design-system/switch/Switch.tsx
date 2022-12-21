@@ -3,7 +3,7 @@ import { useToggleState } from '@react-stately/toggle'
 import { ReactNode, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
-import { SROnly } from '@/design-system/global-style'
+import { FocusStyle, SROnly } from '@/design-system/global-style'
 
 import { Body } from '../typography/paragraphs'
 
@@ -67,6 +67,9 @@ const StyledSwitch = styled.span<StyledProps>`
 					: checked
 					? theme.colors.bases.primary[700]
 					: theme.colors.extended.grey[500]}42; // 42 is alpha
+	}
+	:focus-within {
+		${FocusStyle}
 	}
 	${({ disabled, theme }) =>
 		disabled

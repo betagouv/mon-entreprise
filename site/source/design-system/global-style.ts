@@ -11,6 +11,13 @@ export const SROnly = css`
 	white-space: nowrap !important; /* added line */
 	border: 0 !important;
 `
+
+export const FocusStyle = css`
+	outline: 3px solid ${({ theme }) => theme.colors.bases.primary[700]};
+	outline-offset: 2px;
+	box-shadow: 0 0 0 2px #ffffff;
+`
+
 /*
  * Les @font-face sont généré avec https://google-webfonts-helper.herokuapp.com/
  * Les fonts sont stockées dans source/static/fonts
@@ -215,5 +222,9 @@ figure {
 	& div[aria-label='Alpha slider'] {
 		display: none;
 	}
+}
+
+a:focus {
+	${FocusStyle}
 }
 `

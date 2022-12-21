@@ -129,13 +129,6 @@ export default function Conversation({
 								/>
 							</fieldset>
 							<Spacing md />
-							<button
-								aria-hidden
-								className="sr-only"
-								aria-label={t('Valider')}
-								type="submit"
-								tabIndex={-1}
-							/>
 							<Grid container spacing={2}>
 								{previousAnswers.length > 0 && (
 									<Grid item xs={6} sm="auto">
