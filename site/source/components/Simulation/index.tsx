@@ -10,7 +10,6 @@ import { ConversationProps } from '@/components/conversation/Conversation'
 import { PopoverWithTrigger } from '@/design-system'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
 import {
 	companySituationSelector,
 	firstStepCompletedSelector,
@@ -37,9 +36,11 @@ type SimulationProps = {
 	hideDetails?: boolean
 	showQuestionsFromBeginning?: boolean
 	customEndMessages?: ConversationProps['customEndMessages']
+	fullWidth?: boolean
 }
 
 const StyledGrid = styled(Grid)`
+	width: 100%;
 	@media print {
 		max-width: initial;
 		flex-basis: initial;
@@ -57,6 +58,7 @@ export default function Simulation({
 	showQuestionsFromBeginning,
 	engines,
 	hideDetails = false,
+	fullWidth,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const existingCompany = !!useSelector(companySituationSelector)[
@@ -75,7 +77,18 @@ export default function Simulation({
 					justify-content: center;
 				`}
 			>
-				<StyledGrid item xl={9} lg={10} md={11} sm={12}>
+				<StyledGrid
+					item
+					css={`
+						${fullWidth
+							? `width: 100%; max-width: none; flex-basis: auto;`
+							: ''}
+					`}
+					xl={9}
+					lg={10}
+					md={11}
+					sm={12}
+				>
 					<PrintExportRecover />
 					{children}
 					<FromTop>

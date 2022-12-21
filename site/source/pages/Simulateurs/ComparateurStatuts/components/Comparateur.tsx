@@ -26,7 +26,12 @@ type ComparateurProps = {
 function Comparateur({ engines }: ComparateurProps) {
 	return (
 		<>
-			<Simulation engines={engines} hideDetails showQuestionsFromBeginning>
+			<Simulation
+				engines={engines}
+				hideDetails
+				showQuestionsFromBeginning
+				fullWidth
+			>
 				<StyledSimulationGoals
 					toggles={<PeriodSwitch mode="tab" />}
 					legend={'Estimations sur votre rémunération brute et vos charges'}
