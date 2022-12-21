@@ -8,6 +8,7 @@ import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 
+import { FocusStyle } from '@/design-system/global-style'
 import { CarretDownIcon } from '@/design-system/icons'
 import { omit } from '@/utils'
 
@@ -60,6 +61,10 @@ const Button = styled.button<ButtonProps>`
 	height: 100%;
 	outline: none;
 	transition: color 0.2s;
+
+	&:focus {
+		${FocusStyle}
+	}
 
 	${({ theme }) =>
 		theme.darkMode &&

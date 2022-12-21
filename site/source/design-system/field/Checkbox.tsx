@@ -6,6 +6,8 @@ import styled from 'styled-components'
 
 import { Body } from '@/design-system/typography/paragraphs'
 
+import { FocusStyle } from '../global-style'
+
 export default function Checkbox(
 	props: AriaCheckboxProps &
 		(
@@ -153,5 +155,9 @@ const CheckboxContainer = styled.label`
 			theme.darkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.bases.primary[700]};
+	}
+
+	&:focus-within {
+		${FocusStyle}
 	}
 `
