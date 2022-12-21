@@ -38,8 +38,7 @@ export default function Footer() {
 	const hrefLink =
 		hrefLangLink[language][uri] ?? hrefLangLink[language][uri + '/']
 
-	// hrefLink.hrefLang ne représente pas la langue actuelle mais l'autre à activer
-	const isFrenchMode = hrefLink.hrefLang === 'en'
+	const isFrenchMode = language === 'fr'
 
 	return (
 		<>
