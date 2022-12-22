@@ -151,3 +151,20 @@ export const ReturnIcon = (props: HTMLAttributes<SVGElement>) => (
 		/>
 	</SvgIcon>
 )
+
+export const EditIcon = (props: HTMLAttributes<SVGElement>) => (
+	<svg
+		{...props}
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			fillRule="evenodd"
+			clipRule="evenodd"
+			d="M17.6713 4.34045C17.1223 3.79142 16.1035 3.9201 15.3957 4.62786L14.0118 6.01178L17.9882 9.98822L19.3721 8.6043C20.0799 7.89653 20.2086 6.8777 19.6595 6.32867L17.6713 4.34045ZM16.4882 11.4882L12.5118 7.51178L5.26693 14.7566C4.94924 15.0743 4.73441 15.4722 4.66412 15.8732L4.00634 19.625C3.96438 19.8643 4.13568 20.0356 4.37496 19.9937L8.12685 19.3359C8.52777 19.2656 8.92567 19.0508 9.24336 18.7331L16.4882 11.4882Z"
+		/>
+	</svg>
+)

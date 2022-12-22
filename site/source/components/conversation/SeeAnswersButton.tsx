@@ -6,6 +6,7 @@ import { PopoverWithTrigger, button } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { FocusStyle } from '@/design-system/global-style'
+import { EditIcon } from '@/design-system/icons'
 import { StyledLink } from '@/design-system/typography/link'
 
 import Answers from './AnswerList'
@@ -27,7 +28,7 @@ export default function SeeAnswersButton({
 						<StyledButton {...buttonProps} aria-haspopup="dialog">
 							{label ?? (
 								<>
-									<Emoji emoji="✏️" /> <Trans>Modifier mes réponses</Trans>
+									<EditIcon /> <Trans>Modifier mes réponses</Trans>
 								</>
 							)}
 						</StyledButton>
@@ -44,8 +45,14 @@ const StyledButton = styled(Button)`
 	background-color: transparent;
 	padding: 0;
 	border: none;
-	color: ${({ theme }) => theme.colors.bases.primary[800]};
+	color: ${({ theme }) => theme.colors.bases.primary[700]};
 	border-radius: 0;
+	display: flex;
+	align-items: center;
+	svg {
+		margin-right: ${({ theme }) => theme.spacings.xxs};
+		fill: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
 	&:hover {
 		border: none;
 		background-color: transparent;
