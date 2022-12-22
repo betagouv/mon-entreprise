@@ -125,12 +125,15 @@ const IconContainer = styled.div`
 	margin-top: ${({ theme }) => theme.spacings.md};
 `
 
-export const CardContainer = styled.div<{ $compact?: boolean }>`
+export const CardContainer = styled.div<{
+	$compact?: boolean
+	$inert?: boolean
+}>`
 	display: flex;
 	width: 100%;
 	height: 100%;
 	text-decoration: none;
-	cursor: pointer;
+	cursor: ${({ $inert }) => ($inert ? 'auto' : 'pointer')};
 	flex-direction: column;
 	align-items: center;
 	background-color: ${({ theme }) =>
@@ -141,12 +144,14 @@ export const CardContainer = styled.div<{ $compact?: boolean }>`
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
 	&:hover {
-		box-shadow: ${({ theme }) =>
-			theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3]};
-		background-color: ${({ theme }) =>
-			theme.darkMode
+		box-shadow: ${({ theme, $inert }) =>
+			!$inert &&
+			(theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3])};
+		background-color: ${({ theme, $inert }) =>
+			!$inert &&
+			(theme.darkMode
 				? theme.colors.extended.dark[500]
-				: theme.colors.bases.primary[100]};
+				: theme.colors.bases.primary[100])};
 	}
 	padding: ${({ theme: { spacings }, $compact = false }) =>
 		$compact

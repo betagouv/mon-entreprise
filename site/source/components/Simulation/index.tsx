@@ -37,6 +37,7 @@ type SimulationProps = {
 	showQuestionsFromBeginning?: boolean
 	customEndMessages?: ConversationProps['customEndMessages']
 	fullWidth?: boolean
+	id?: string
 }
 
 const StyledGrid = styled(Grid)`
@@ -59,6 +60,7 @@ export default function Simulation({
 	engines,
 	hideDetails = false,
 	fullWidth,
+	id,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const existingCompany = !!useSelector(companySituationSelector)[
@@ -76,6 +78,7 @@ export default function Simulation({
 				css={`
 					justify-content: center;
 				`}
+				id={id}
 			>
 				<StyledGrid
 					item

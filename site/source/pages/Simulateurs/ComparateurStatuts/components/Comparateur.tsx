@@ -17,6 +17,7 @@ import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 
+import Résultats from './Résultats'
 import TableRow from './TableRow'
 
 type ComparateurProps = {
@@ -31,6 +32,7 @@ function Comparateur({ engines }: ComparateurProps) {
 				hideDetails
 				showQuestionsFromBeginning
 				fullWidth
+				id="simulation-comparateur"
 			>
 				<StyledSimulationGoals
 					toggles={<PeriodSwitch mode="tab" />}
@@ -44,6 +46,7 @@ function Comparateur({ engines }: ComparateurProps) {
 				</StyledSimulationGoals>
 			</Simulation>
 			<Spacing md />
+			<Résultats />
 			<StyledGrid>
 				<H3 className="AS">
 					<Emoji emoji="☂" /> <Trans>SASU</Trans>

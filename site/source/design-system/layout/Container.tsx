@@ -51,17 +51,22 @@ type ContainerProps = {
 	children: ReactNode
 	forceTheme?: ThemeType
 	backgroundColor?: (theme: DefaultTheme) => string
+	className?: string
 }
 
 export default function Container({
 	backgroundColor,
 	forceTheme,
 	children,
+	className,
 }: ContainerProps) {
 	return (
 		<ForceThemeProvider forceTheme={forceTheme}>
 			<OuterOuterContainer>
-				<OuterContainer $backgroundColor={backgroundColor}>
+				<OuterContainer
+					$backgroundColor={backgroundColor}
+					className={className}
+				>
 					<InnerContainer>{children}</InnerContainer>
 				</OuterContainer>
 			</OuterOuterContainer>

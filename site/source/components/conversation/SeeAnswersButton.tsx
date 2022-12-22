@@ -2,12 +2,10 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
-import { PopoverWithTrigger, button } from '@/design-system'
+import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
 import { FocusStyle } from '@/design-system/global-style'
 import { EditIcon } from '@/design-system/icons'
-import { StyledLink } from '@/design-system/typography/link'
 
 import Answers from './AnswerList'
 
@@ -21,19 +19,15 @@ export default function SeeAnswersButton({
 	return (
 		<>
 			<PopoverWithTrigger
-				trigger={(buttonProps) => {
-					console.log(buttonProps)
-
-					return (
-						<StyledButton {...buttonProps} aria-haspopup="dialog">
-							{label ?? (
-								<>
-									<EditIcon /> <Trans>Modifier mes réponses</Trans>
-								</>
-							)}
-						</StyledButton>
-					)
-				}}
+				trigger={(buttonProps) => (
+					<StyledButton {...buttonProps} aria-haspopup="dialog">
+						{label ?? (
+							<>
+								<EditIcon /> <Trans>Modifier mes réponses</Trans>
+							</>
+						)}
+					</StyledButton>
+				)}
 			>
 				{(close) => <Answers onClose={close}>{children}</Answers>}
 			</PopoverWithTrigger>
