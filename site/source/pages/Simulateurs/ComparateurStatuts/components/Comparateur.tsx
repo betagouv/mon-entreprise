@@ -46,7 +46,7 @@ function Comparateur({ engines }: ComparateurProps) {
 				</StyledSimulationGoals>
 			</Simulation>
 			<Spacing md />
-			<Résultats />
+			<Résultats engines={engines} />
 			<StyledGrid>
 				<H3 className="AS">
 					<Emoji emoji="☂" /> <Trans>SASU</Trans>

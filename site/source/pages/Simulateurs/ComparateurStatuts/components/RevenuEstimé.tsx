@@ -1,10 +1,10 @@
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
+import Value from '@/components/EngineValue'
 import { CardContainer } from '@/design-system/card/Card'
 import { EditIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
 import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
@@ -24,18 +24,17 @@ const RevenuEstimé = () => {
 					<Label>
 						<Trans>Votre chiffre d'affaires estimé</Trans>
 					</Label>
-					<Value>
-						<Strong>Test</Strong>
-					</Value>
+					<StyledValue
+						linkToRule={false}
+						expression="entreprise . chiffre d'affaires"
+					/>
 				</Grid>
 
 				<StyledGrid item xs={12} lg={5}>
 					<Label>
 						<Trans>Vos charges estimées</Trans>
 					</Label>
-					<Value>
-						<Strong>Test</Strong>
-					</Value>
+					<StyledValue linkToRule={false} expression="entreprise . charges" />
 				</StyledGrid>
 				<Grid
 					item
@@ -69,10 +68,12 @@ const Label = styled(Body)`
 	font-size: 0.875rem;
 `
 
-const Value = styled(Body)`
+const StyledValue = styled(Value)`
 	margin: 0;
 	color: ${({ theme }) => theme.colors.bases.primary[700]}!important;
 	font-size: 1.25rem;
+	font-weight: 700;
+	font-family: ${({ theme }) => theme.fonts.main};
 `
 
 const StyledGrid = styled(Grid)`
