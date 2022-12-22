@@ -179,6 +179,7 @@ dirigeant . indépendant . PL . PAMC . maladie:
             arrondi: oui
     - contribution additionnelle
     - (- participation CPAM)
+
   avec:
     participation CPAM:
       non applicable si: métier . santé . médecin . secteur = 'S2'
