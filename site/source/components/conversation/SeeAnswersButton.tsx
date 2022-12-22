@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { PopoverWithTrigger, button } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
+import { FocusStyle } from '@/design-system/global-style'
 import { StyledLink } from '@/design-system/typography/link'
 
 import Answers from './AnswerList'
@@ -44,9 +45,14 @@ const StyledButton = styled(Button)`
 	padding: 0;
 	border: none;
 	color: ${({ theme }) => theme.colors.bases.primary[800]};
+	border-radius: 0;
 	&:hover {
 		border: none;
 		background-color: transparent;
 		text-decoration: underline;
+	}
+
+	&:focus {
+		${FocusStyle}
 	}
 `
