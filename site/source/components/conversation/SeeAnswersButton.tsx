@@ -1,8 +1,11 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
+import styled from 'styled-components'
 
-import { PopoverWithTrigger } from '@/design-system'
+import { PopoverWithTrigger, button } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Emoji } from '@/design-system/emoji'
+import { StyledLink } from '@/design-system/typography/link'
 
 import Answers from './AnswerList'
 
@@ -16,19 +19,34 @@ export default function SeeAnswersButton({
 	return (
 		<>
 			<PopoverWithTrigger
-				trigger={(buttonProps) => (
-					<Button
-						{...buttonProps}
-						size="XS"
-						color="secondary"
-						aria-haspopup="dialog"
-					>
-						{label ?? <Trans>Modifier mes réponses</Trans>}
-					</Button>
-				)}
+				trigger={(buttonProps) => {
+					console.log(buttonProps)
+
+					return (
+						<StyledButton {...buttonProps} aria-haspopup="dialog">
+							{label ?? (
+								<>
+									<Emoji emoji="✏️" /> <Trans>Modifier mes réponses</Trans>
+								</>
+							)}
+						</StyledButton>
+					)
+				}}
 			>
 				{(close) => <Answers onClose={close}>{children}</Answers>}
 			</PopoverWithTrigger>
 		</>
 	)
 }
+
+const StyledButton = styled(Button)`
+	background-color: transparent;
+	padding: 0;
+	border: none;
+	color: ${({ theme }) => theme.colors.bases.primary[800]};
+	&:hover {
+		border: none;
+		background-color: transparent;
+		text-decoration: underline;
+	}
+`

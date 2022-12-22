@@ -66,7 +66,6 @@ export function SimulationGoal({
 	if (small && !editable && evaluation.nodeValue === undefined) {
 		return null
 	}
-	console.log(rule)
 
 	return (
 		<Appear unless={!appear || initialRender}>

@@ -141,7 +141,8 @@ export default function Conversation({
 									<Button
 										size="XS"
 										onPress={goToNextQuestion}
-										light={!currentQuestionIsAnswered}
+										light={!currentQuestionIsAnswered ? true : undefined}
+										color={!currentQuestionIsAnswered ? 'secondary' : undefined}
 										aria-label={
 											currentQuestionIsAnswered
 												? t('Suivant, passer à la question suivante')
