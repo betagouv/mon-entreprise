@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import { RuleLink as EngineRuleLink } from 'publicodes-react'
-import React, { useContext } from 'react'
+import React, { ReactNode, useContext } from 'react'
 
 import { Link } from '@/design-system/typography/link'
 import { useSitePaths } from '@/sitePaths'
@@ -14,6 +14,7 @@ export default function RuleLink(
 		displayIcon?: boolean
 		children?: React.ReactNode
 		documentationPath?: string
+		linkComponent?: ReactNode
 	} & Omit<React.ComponentProps<typeof Link>, 'to' | 'children'>
 ) {
 	const { absoluteSitePaths } = useSitePaths()
@@ -32,7 +33,7 @@ export default function RuleLink(
 		<EngineRuleLink
 			{...props}
 			// @ts-ignore
-			linkComponent={Link}
+			linkComponent={props?.linkComponent || Link}
 			engine={engine}
 			documentationPath={
 				props.documentationPath ?? absoluteSitePaths.documentation.index

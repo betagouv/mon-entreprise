@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
-import HelpButton from '@/design-system/buttons/HelpButton'
+import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 import { Checkbox } from '@/design-system/field'
@@ -88,9 +88,9 @@ export const ActiviteCard = ({
 			)}
 			<ActiviteContent>
 				<H4 as="h3">{titre}</H4>
-				<HelpButton title={titre} type="aide">
+				<HelpButtonWithPopover title={titre} type="aide">
 					<Body>{explication}</Body>
-				</HelpButton>
+				</HelpButtonWithPopover>
 				<SmallBody
 					css={`
 						flex: 1;

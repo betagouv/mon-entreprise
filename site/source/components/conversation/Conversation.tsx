@@ -132,7 +132,7 @@ export default function Conversation({
 							<Grid container spacing={2}>
 								{previousAnswers.length > 0 && (
 									<Grid item xs={6} sm="auto">
-										<Button light onPress={goToPrevious} size="XS">
+										<Button color="secondary" onPress={goToPrevious} size="XS">
 											<span aria-hidden>←</span> <Trans>Précédent</Trans>
 										</Button>
 									</Grid>

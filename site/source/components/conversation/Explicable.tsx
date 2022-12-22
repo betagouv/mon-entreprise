@@ -3,10 +3,12 @@ import { useContext } from 'react'
 
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
-import HelpButton from '@/design-system/buttons/HelpButton'
+import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover'
+import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 
 import { References } from '../References'
+import RuleLink from '../RuleLink'
 
 export function ExplicableRule<Names extends string = DottedName>({
 	dottedName,
@@ -33,7 +35,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 	// TODO montrer les variables de type 'une possibilité'
 
 	return (
-		<HelpButton
+		<HelpButtonWithPopover
 			key={rule.dottedName}
 			type="info"
 			title={rule.title}
@@ -44,12 +46,18 @@ export function ExplicableRule<Names extends string = DottedName>({
 			{...props}
 		>
 			<Markdown>{rule.rawNode.description}</Markdown>
+
+			<RuleLink dottedName={dottedName as DottedName}>
+				Lire la documentation
+			</RuleLink>
+
 			{rule.rawNode.références && (
 				<>
 					<H3>Liens utiles</H3>
 					<References references={rule.rawNode.références} />
 				</>
 			)}
-		</HelpButton>
+			<Spacing xxl />
+		</HelpButtonWithPopover>
 	)
 }

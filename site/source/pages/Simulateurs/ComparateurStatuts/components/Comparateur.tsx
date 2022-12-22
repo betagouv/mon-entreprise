@@ -36,8 +36,11 @@ function Comparateur({ engines }: ComparateurProps) {
 					toggles={<PeriodSwitch mode="tab" />}
 					legend={'Estimations sur votre rémunération brute et vos charges'}
 				>
-					<SimulationGoal dottedName="entreprise . chiffre d'affaires" />
-					<SimulationGoal dottedName="entreprise . charges" />
+					<SimulationGoal
+						dottedName="entreprise . chiffre d'affaires"
+						isInfoMode
+					/>
+					<SimulationGoal dottedName="entreprise . charges" isInfoMode />
 				</StyledSimulationGoals>
 			</Simulation>
 			<Spacing md />

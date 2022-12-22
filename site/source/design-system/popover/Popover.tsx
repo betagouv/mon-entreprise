@@ -127,13 +127,9 @@ export default function Popover(
 											</CloseButton>
 										</CloseButtonContainer>
 									)}
-									{/* tabIndex -1 is for text selection in popover, see https://github.com/adobe/react-spectrum/issues/1604#issuecomment-781574668 */}
+
 									<PopoverContent ref={contentRef}>
-										{title && (
-											<H2 as="h1" {...titleProps}>
-												{title}
-											</H2>
-										)}
+										{title && <H2 {...titleProps}>{title}</H2>}
 										{children}
 									</PopoverContent>
 								</PopoverContainer>

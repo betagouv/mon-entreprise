@@ -29,4 +29,4 @@ Secondary.args = {
 	children: 'Secondary XS button',
 }
 
-export { CloseButton, HelpButton } from '@/design-system/buttons'
+export { CloseButton, HelpButtonWithPopover } from '@/design-system/buttons'
