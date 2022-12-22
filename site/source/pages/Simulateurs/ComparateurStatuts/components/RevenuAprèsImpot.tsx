@@ -3,7 +3,6 @@ import { Trans } from 'react-i18next'
 
 import { DottedName } from '@/../../modele-social'
 import Value from '@/components/EngineValue'
-import { CardContainer } from '@/design-system/card/Card'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 
@@ -21,32 +20,34 @@ const RevenuAprèsImpot = ({
 			</H2>
 
 			<Grid container>
-				<Grid item xs={12} lg={3}>
-					<StatusCard status="sasu">
+				<Grid item xs={12} lg={4}>
+					<StatusCard status={['sasu']}>
 						<Value
 							linkToRule={false}
 							expression="dirigeant . rémunération . net . après impôt"
 							engine={assimiléEngine}
 							precision={0}
 							unit="€/mois"
-						/>
+						/>{' '}
+						la première année
 					</StatusCard>
 				</Grid>
 
-				<Grid item xs={12} lg={3}>
-					<StatusCard status="ei">
+				<Grid item xs={12} lg={4}>
+					<StatusCard status={['ei']}>
 						<Value
 							linkToRule={false}
 							expression="dirigeant . rémunération . net . après impôt"
 							engine={indépendantEngine}
 							precision={0}
 							unit="€/mois"
-						/>
+						/>{' '}
+						la première année
 					</StatusCard>{' '}
 				</Grid>
 
-				<Grid item xs={12} lg={3}>
-					<StatusCard status="ae">
+				<Grid item xs={12} lg={4}>
+					<StatusCard status={['ae']} isBestOption>
 						<Value
 							linkToRule={false}
 							expression="dirigeant . rémunération . net . après impôt"
