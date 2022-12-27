@@ -183,12 +183,18 @@ export const baseTheme = {
 	},
 }
 
-export const getColorGroup = (color: string) => {
+export const getColorGroup = (
+	color: keyof typeof baseTheme.colors.bases &
+		keyof typeof baseTheme.colors.extended
+) => {
 	const colorGroups = Object.keys(baseTheme.colors).map(
 		(colorGroup) => colorGroup
 	) as Array<keyof typeof baseTheme.colors>
 
-	return colorGroups.find((colorGroup) => baseTheme.colors[colorGroup]?.[color])
+	return colorGroups.find(
+		(colorGroup: keyof typeof baseTheme.colors) =>
+			baseTheme.colors[colorGroup]?.[color]
+	)
 }
 
 // We use the Grid from material-ui, we need to uniformise

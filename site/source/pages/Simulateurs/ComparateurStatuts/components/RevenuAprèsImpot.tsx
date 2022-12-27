@@ -27,7 +27,7 @@ const RevenuAprèsImpot = ({
 			</H2>
 
 			<Grid container>
-				<Grid item xs={12} lg={4}>
+				<StyledGridItem item xs={12} lg={4}>
 					<StatusCard
 						status={['sasu']}
 						footerContent={
@@ -59,9 +59,9 @@ const RevenuAprèsImpot = ({
 							<HelpIcon />
 						</StyledRuleLink>
 					</StatusCard>
-				</Grid>
+				</StyledGridItem>
 
-				<Grid item xs={12} lg={4}>
+				<StyledGridItem item xs={12} lg={4}>
 					<StatusCard
 						status={['ei']}
 						footerContent={
@@ -93,9 +93,9 @@ const RevenuAprèsImpot = ({
 							<HelpIcon />
 						</StyledRuleLink>
 					</StatusCard>{' '}
-				</Grid>
+				</StyledGridItem>
 
-				<Grid item xs={12} lg={4}>
+				<StyledGridItem item>
 					<StatusCard
 						status={['ae']}
 						isBestOption
@@ -138,7 +138,7 @@ const RevenuAprèsImpot = ({
 							<HelpIcon />
 						</StyledRuleLink>
 					</StatusCard>
-				</Grid>
+				</StyledGridItem>
 			</Grid>
 		</>
 	)
@@ -160,4 +160,8 @@ const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
 
 const BlackColoredLink = styled(StyledLink)`
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
+`
+
+const StyledGridItem = styled(Grid)`
+	padding: 0.5rem;
 `

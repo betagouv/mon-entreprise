@@ -19,18 +19,14 @@ export const Accordion = <T extends object>(
 	const state = useTreeState<T>(props)
 	const ref = useRef<HTMLDivElement>(null)
 	const { accordionProps } = useAccordion(props, state, ref)
-	console.log(props?.shouldToggleAll)
-	const keys = state.collection.getKeys()
-	console.log(state)
-	for (const value of keys) {
-		console.log(value)
-	}
+
 	useEffect(() => {
 		if (props?.shouldToggleAll) {
 			const keys = state.collection.getKeys()
 
 			for (const value of keys) {
 				state.toggleKey(value)
+				console.log('MARCHE PO')
 			}
 		}
 	}, [props?.shouldToggleAll])

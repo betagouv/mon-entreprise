@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
 import PeriodSwitch from '@/components/PeriodSwitch'
-import { StyledGrid } from '@/components/SchemeComparaison'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
@@ -13,13 +12,10 @@ import {
 	SimulationGoalsContainer,
 	ToggleSection,
 } from '@/components/Simulation/SimulationGoals'
-import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
-import { H2, H3 } from '@/design-system/typography/heading'
 
 import Détails from './Détails'
 import Résultats from './Résultats'
-import TableRow from './TableRow'
 
 type ComparateurProps = {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]

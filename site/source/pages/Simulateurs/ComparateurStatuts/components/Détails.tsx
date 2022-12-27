@@ -75,7 +75,7 @@ const Détails = ({
 						avez cotisé suffisamment de trimestres (4 trimestres par an) et que
 						vous partez en retraite à l’âge requis pour obtenir un taux plein.
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={8}>
 							<StatusCard status={['sasu', 'ei']} isBestOption>
 								<span>
@@ -126,7 +126,7 @@ const Détails = ({
 						avez cotisé suffisamment de trimestres (4 trimestres par an) et que
 						vous partez en retraite à l’âge requis pour obtenir un taux plein.
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>
 								<span>
@@ -195,15 +195,19 @@ const Détails = ({
 					key="santé"
 					hasChildItems={false}
 				>
-					<Body>
+					<Body
+						css={`
+							margin-bottom: 0;
+						`}
+					>
 						Tous les statuts vous ouvrent le droit au{' '}
 						<Strong>remboursement des soins.</Strong>
 					</Body>
-					<Body>
+					<BodyNoMargin>
 						Pour tous les statuts, il est conseillé de souscrire à une{' '}
 						<Strong>prévoyance complémentaire (mutuelle)</Strong> pour améliorer
 						le remboursement des frais de santé.
-					</Body>
+					</BodyNoMargin>
 
 					<StyledH4>
 						<Trans>Arrêt maladie</Trans>
@@ -215,7 +219,7 @@ const Détails = ({
 						avez cotisé suffisamment de trimestres (4 trimestres par an) et que
 						vous partez en retraite à l’âge requis pour obtenir un taux plein.
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard
 								status={['sasu']}
@@ -325,7 +329,7 @@ const Détails = ({
 						<Strong>accident sur le trajet domicile-travail</Strong>, vous serez
 						indemnisé(e) à hauteur de :
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={8}>
 							<StatusCard status={['sasu']} isBestOption>
 								<span>
@@ -393,7 +397,7 @@ const Détails = ({
 						<Strong>au moins 10 mois</Strong>.
 					</Body>
 
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']} isBestOption>
 								<span>
@@ -452,7 +456,7 @@ const Détails = ({
 						</Strong>
 						.
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>
 								<span>
@@ -505,7 +509,7 @@ const Détails = ({
 						</Strong>
 						.
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>
 								<span>
@@ -586,7 +590,7 @@ const Détails = ({
 						</BlackColoredLink>
 						.
 					</BodyNoMargin>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={8}>
 							<StatusCard status={['sasu', 'ei']} isBestOption>
 								<span>
@@ -627,7 +631,7 @@ const Détails = ({
 						</Grid>
 					</Grid>
 					<Spacing md />
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={8}>
 							<StatusCard status={['sasu', 'ei']} isBestOption>
 								<span>
@@ -675,7 +679,7 @@ const Détails = ({
 						Pour une invalidité causée par un accident professionnel, vous
 						pouvez bénéficier d’une <Strong>rente d’incapacité</Strong>.
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']} isBestOption>
 								<span>
@@ -725,7 +729,7 @@ const Détails = ({
 						<Strong>capital décès pour vos ayants droits</Strong>
 						(personnes qui sont à votre charge) sous certaines conditions.
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>
 								<span>
@@ -802,7 +806,7 @@ const Détails = ({
 						Pour un décès survenu dans le cadre d’un accident professionnel,
 						vous pouvez bénéficier d’une <Strong>rente de décès</Strong>.
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']} isBestOption>
 								<span>
@@ -851,7 +855,7 @@ const Détails = ({
 						Un <Strong>capital « orphelin »</Strong> est versé aux enfants des
 						travailleurs indépendants décédés, sous certaines conditions.
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>
 								<DisabledLabel>
@@ -899,7 +903,7 @@ const Détails = ({
 						les <Strong>procédures obligatoires</Strong> (immatriculation,
 						annonces légales, rédaction des statuts...).
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>
 								<span>
@@ -955,7 +959,7 @@ const Détails = ({
 							<Strong>1 €</Strong>.
 						</Trans>
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>1 € minimum</StatusCard>
 						</Grid>
@@ -975,7 +979,7 @@ const Détails = ({
 						<Strong>conjoint associé</Strong> ou{' '}
 						<Strong>conjoint salarié</Strong>).
 					</Body>
-					<Grid container>
+					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>
 								Conjoint associé ou salarié
