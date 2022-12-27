@@ -32,7 +32,6 @@ const RevenuAprèsImpot = ({
 						status={['sasu']}
 						footerContent={
 							<CheckList
-								id="checklist-sasu"
 								items={[
 									{ isChecked: true, label: t("Tient compte de l'ACRE") },
 									{
@@ -67,7 +66,6 @@ const RevenuAprèsImpot = ({
 						status={['ei']}
 						footerContent={
 							<CheckList
-								id="checklist-ei"
 								items={[
 									{ isChecked: true, label: t("Tient compte de l'ACRE") },
 									{
@@ -103,7 +101,6 @@ const RevenuAprèsImpot = ({
 						isBestOption
 						footerContent={
 							<CheckList
-								id="checklist-ae"
 								items={[
 									{
 										isChecked: false,
@@ -121,7 +118,7 @@ const RevenuAprèsImpot = ({
 									},
 									{
 										isChecked: true,
-										label: t("Choix d'imposition : impôt sur les sociétés"),
+										label: t("Versement libératoire de l'impôt sur le revenu"),
 									},
 								]}
 							/>
@@ -150,7 +147,7 @@ const RevenuAprèsImpot = ({
 export default RevenuAprèsImpot
 
 const StyledRuleLink = styled(RuleLink)`
-	display: inline-block;
+	display: inline-flex;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 	&:hover {
 		opacity: 0.8;
