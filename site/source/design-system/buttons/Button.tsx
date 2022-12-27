@@ -20,6 +20,7 @@ type ButtonProps = GenericButtonOrNavLinkProps & {
 	role?: string
 	['aria-disabled']?: boolean
 	lang?: string
+	underline?: boolean
 }
 
 export const Button = forwardRef(function Button(
@@ -27,6 +28,7 @@ export const Button = forwardRef(function Button(
 		size = 'MD',
 		light = false,
 		color = 'primary' as const,
+		underline,
 		isDisabled,
 		role,
 		lang,
@@ -47,6 +49,7 @@ export const Button = forwardRef(function Button(
 			$light={light}
 			$color={color}
 			$isDisabled={isDisabled}
+			$underline={underline}
 			role={role}
 			aria-disabled={ariaButtonProps?.['aria-disabled']}
 			lang={lang}
@@ -59,6 +62,7 @@ type StyledButtonProps = {
 	$size: Size
 	$light: boolean
 	$isDisabled?: boolean
+	$underline?: boolean
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -208,4 +212,30 @@ export const StyledButton = styled.button<StyledButtonProps>`
 					  `}
 		}
 	}
+
+	${({ $underline }) =>
+		$underline &&
+		css`
+			background-color: transparent;
+			padding: 0;
+			border: none;
+			color: ${({ theme }) => theme.colors.bases.primary[700]};
+			border-radius: 0;
+			display: flex;
+			align-items: center;
+			text-decoration: underline;
+			svg {
+				margin-right: ${({ theme }) => theme.spacings.xxs};
+				fill: ${({ theme }) => theme.colors.bases.primary[700]};
+			}
+			&:hover {
+				border: none;
+				background-color: transparent;
+				text-decoration: underline;
+			}
+
+			&:focus {
+				${FocusStyle}
+			}
+		`}
 `

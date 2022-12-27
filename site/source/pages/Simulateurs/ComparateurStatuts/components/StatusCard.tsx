@@ -16,7 +16,7 @@ type StatusCardType = {
 
 const STATUS_DATA = {
 	sasu: {
-		color: 'employeur',
+		color: 'secondary',
 		label: 'Société (SASU)',
 	},
 	ei: {
@@ -39,7 +39,7 @@ const StatusCard = ({
 		<StyledCardContainer $inert>
 			<CardBody>
 				{status.map((statusString) => (
-					<Tag
+					<StyledTag
 						key={statusString}
 						$color={STATUS_DATA[statusString].color as TagType}
 						$size="sm"
@@ -49,7 +49,7 @@ const StatusCard = ({
 							status={statusString}
 						/>
 						{STATUS_DATA[statusString].label}
-					</Tag>
+					</StyledTag>
 				))}
 
 				<StyledBody>{children}</StyledBody>
@@ -68,6 +68,13 @@ const StyledCardContainer = styled(CardContainer)`
 	padding: 0;
 `
 
+const StyledTag = styled(Tag)`
+	display: inline-flex;
+	&:not(:last-child) {
+		margin-right: 0.5rem;
+	}
+`
+
 const StyledEmoji = styled(Emoji)`
 	position: absolute;
 	top: 0;
@@ -77,7 +84,7 @@ const StyledEmoji = styled(Emoji)`
 
 const StyledBody = styled(Body)`
 	font-size: 1.25rem;
-	display: inline-flex;
+	display: flex;
 	align-items: center;
 	font-weight: 700;
 	margin: 0;

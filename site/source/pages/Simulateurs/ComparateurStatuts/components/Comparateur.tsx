@@ -17,6 +17,7 @@ import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 
+import Détails from './Détails'
 import Résultats from './Résultats'
 import TableRow from './TableRow'
 
@@ -47,6 +48,7 @@ function Comparateur({ engines }: ComparateurProps) {
 			</Simulation>
 			<Spacing md />
 			<Résultats engines={engines} />
+			<Détails engines={engines} />
 			<StyledGrid>
 				<H3 className="AS">
 					<Emoji emoji="☂" /> <Trans>SASU</Trans>
