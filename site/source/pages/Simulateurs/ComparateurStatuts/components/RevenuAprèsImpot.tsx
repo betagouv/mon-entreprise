@@ -26,8 +26,8 @@ const RevenuAprèsImpot = ({
 				<Trans>Revenu après impôt</Trans>
 			</H2>
 
-			<Grid container>
-				<StyledGridItem item xs={12} lg={4}>
+			<Grid container spacing={4}>
+				<Grid item xs={12} lg={4}>
 					<StatusCard
 						status={['sasu']}
 						footerContent={
@@ -59,9 +59,9 @@ const RevenuAprèsImpot = ({
 							<HelpIcon />
 						</StyledRuleLink>
 					</StatusCard>
-				</StyledGridItem>
+				</Grid>
 
-				<StyledGridItem item xs={12} lg={4}>
+				<Grid item xs={12} lg={4}>
 					<StatusCard
 						status={['ei']}
 						footerContent={
@@ -93,9 +93,9 @@ const RevenuAprèsImpot = ({
 							<HelpIcon />
 						</StyledRuleLink>
 					</StatusCard>{' '}
-				</StyledGridItem>
+				</Grid>
 
-				<StyledGridItem item>
+				<Grid item xs={12} lg={4}>
 					<StatusCard
 						status={['ae']}
 						isBestOption
@@ -138,7 +138,7 @@ const RevenuAprèsImpot = ({
 							<HelpIcon />
 						</StyledRuleLink>
 					</StatusCard>
-				</StyledGridItem>
+				</Grid>
 			</Grid>
 		</>
 	)
@@ -160,8 +160,4 @@ const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
 
 const BlackColoredLink = styled(StyledLink)`
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
-`
-
-const StyledGridItem = styled(Grid)`
-	padding: 0.5rem;
 `
