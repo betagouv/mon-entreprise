@@ -37,22 +37,24 @@ const StatusCard = ({
 }: StatusCardType) => {
 	return (
 		<StyledCardContainer $inert>
-			{status.map((statusString) => (
-				<Tag
-					key={statusString}
-					$color={STATUS_DATA[statusString].color as TagType}
-					$size="sm"
-				>
-					<StatusTagIcon
-						style={{ marginRight: '0.25rem' }}
-						status={statusString}
-					/>
-					{STATUS_DATA[statusString].label}
-				</Tag>
-			))}
+			<CardBody>
+				{status.map((statusString) => (
+					<Tag
+						key={statusString}
+						$color={STATUS_DATA[statusString].color as TagType}
+						$size="sm"
+					>
+						<StatusTagIcon
+							style={{ marginRight: '0.25rem' }}
+							status={statusString}
+						/>
+						{STATUS_DATA[statusString].label}
+					</Tag>
+				))}
 
+				<StyledBody>{children}</StyledBody>
+			</CardBody>
 			{isBestOption && <StyledEmoji emoji="🥇" />}
-			<StyledBody>{children}</StyledBody>
 			{footerContent && <CardFooter>{footerContent}</CardFooter>}
 		</StyledCardContainer>
 	)
@@ -63,6 +65,7 @@ export default StatusCard
 const StyledCardContainer = styled(CardContainer)`
 	position: relative;
 	align-items: flex-start;
+	padding: 0;
 `
 
 const StyledEmoji = styled(Emoji)`
@@ -77,11 +80,19 @@ const StyledBody = styled(Body)`
 	display: inline-flex;
 	align-items: center;
 	font-weight: 700;
+	margin: 0;
+	margin-top: 0.5rem;
 `
 
-const CardFooter = styled.section`
-	border-top: ${({ theme }) => theme.colors.extended.grey[200]};
-	padding: 0.25rem 1.5rem;
+const CardBody = styled.div`
+	padding: 1.5rem;
+	width: 100%;
+`
+
+const CardFooter = styled.div`
+	width: 100%;
+	border-top: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
+	padding: 1.5rem;
 `
 
 const StatusTagIcon = ({

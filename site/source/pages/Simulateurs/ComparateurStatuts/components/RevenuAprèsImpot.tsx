@@ -1,14 +1,15 @@
 import Engine from 'publicodes'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
 import Value from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
-import { ExplicableRule } from '@/components/conversation/Explicable'
-import { HelpIcon } from '@/design-system/icons'
+import { CheckList } from '@/design-system'
+import { ExternalLinkIcon, HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
+import { StyledLink } from '@/design-system/typography/link'
 
 import StatusCard from './StatusCard'
 
@@ -17,6 +18,8 @@ const RevenuAprèsImpot = ({
 }: {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
 }) => {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<H2>
@@ -25,7 +28,21 @@ const RevenuAprèsImpot = ({
 
 			<Grid container>
 				<Grid item xs={12} lg={4}>
-					<StatusCard status={['sasu']}>
+					<StatusCard
+						status={['sasu']}
+						footerContent={
+							<CheckList
+								id="checklist-sasu"
+								items={[
+									{ isChecked: true, label: t("Tient compte de l'ACRE") },
+									{
+										isChecked: true,
+										label: t("Choix d'imposition : impôt sur les sociétés"),
+									},
+								]}
+							/>
+						}
+					>
 						<span>
 							<Value
 								linkToRule={false}
@@ -46,7 +63,21 @@ const RevenuAprèsImpot = ({
 				</Grid>
 
 				<Grid item xs={12} lg={4}>
-					<StatusCard status={['ei']}>
+					<StatusCard
+						status={['ei']}
+						footerContent={
+							<CheckList
+								id="checklist-ei"
+								items={[
+									{ isChecked: true, label: t("Tient compte de l'ACRE") },
+									{
+										isChecked: true,
+										label: t("Choix d'imposition : impôt sur les sociétés"),
+									},
+								]}
+							/>
+						}
+					>
 						<span>
 							<Value
 								linkToRule={false}
@@ -67,7 +98,35 @@ const RevenuAprèsImpot = ({
 				</Grid>
 
 				<Grid item xs={12} lg={4}>
-					<StatusCard status={['ae']} isBestOption>
+					<StatusCard
+						status={['ae']}
+						isBestOption
+						footerContent={
+							<CheckList
+								id="checklist-ae"
+								items={[
+									{
+										isChecked: false,
+										label: (
+											<Trans>
+												<span>
+													ACRE sous{' '}
+													<BlackColoredLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html">
+														certaines conditions
+														<StyledExternalLinkIcon />
+													</BlackColoredLink>
+												</span>
+											</Trans>
+										),
+									},
+									{
+										isChecked: true,
+										label: t("Choix d'imposition : impôt sur les sociétés"),
+									},
+								]}
+							/>
+						}
+					>
 						<Value
 							linkToRule={false}
 							expression="dirigeant . rémunération . net . après impôt"
@@ -96,4 +155,12 @@ const StyledRuleLink = styled(RuleLink)`
 	&:hover {
 		opacity: 0.8;
 	}
+`
+
+const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
+	margin-left: 0.25rem;
+`
+
+const BlackColoredLink = styled(StyledLink)`
+	color: ${({ theme }) => theme.colors.extended.grey[800]};
 `

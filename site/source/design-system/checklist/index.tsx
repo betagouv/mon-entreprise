@@ -1,23 +1,31 @@
+import { ReactNode } from 'react'
 import styled from 'styled-components'
 
 import { CheckmarkIcon, CrossIcon } from '../icons'
 
 export const CheckList = ({
 	items,
+	id,
 }: {
-	items: { label: string; isChecked: boolean }[]
+	items: { label: ReactNode; isChecked: boolean }[]
+	id: string
 }) => {
 	return (
-		<ul>
+		<StyledUl>
 			{items.map(({ isChecked, label }, index) => (
-				<StyledLi key={`checklist-item-${label}-${index}`}>
+				<StyledLi key={`checklist-item-${id}-${index}`}>
 					{isChecked ? <CheckmarkIcon /> : <CrossIcon />}
 					{label}
 				</StyledLi>
 			))}
-		</ul>
+		</StyledUl>
 	)
 }
+
+const StyledUl = styled.ul`
+	margin: 0;
+	padding: 0;
+`
 
 const StyledLi = styled.li<{ $isChecked?: boolean }>`
 	list-style: none;
@@ -28,6 +36,6 @@ const StyledLi = styled.li<{ $isChecked?: boolean }>`
 	align-items: center;
 	font-family: ${({ theme }) => theme.fonts.main};
 	&:not(:last-child) {
-		margin-bottom: 0.375rem;
+		margin-bottom: 1rem;
 	}
 `
