@@ -232,7 +232,7 @@ const Détails = ({
 										expression="protection sociale . maladie . arrêt maladie"
 										engine={assimiléEngine}
 										precision={0}
-										unit="€/mois"
+										unit="€/jour"
 									/>
 								</span>
 								<StyledRuleLink
@@ -264,7 +264,7 @@ const Détails = ({
 										expression="protection sociale . maladie . arrêt maladie"
 										engine={indépendantEngine}
 										precision={0}
-										unit="€/mois"
+										unit="€/jour"
 									/>
 								</span>
 								<StyledRuleLink
@@ -297,11 +297,62 @@ const Détails = ({
 										expression="protection sociale . maladie . arrêt maladie"
 										engine={autoEntrepreneurEngine}
 										precision={0}
-										unit="€/mois"
+										unit="€/jour"
 									/>
 								</span>
 								<StyledRuleLink
 									dottedName="protection sociale . maladie . arrêt maladie"
+									engine={assimiléEngine}
+								>
+									<HelpIcon />
+								</StyledRuleLink>
+							</StatusCard>
+						</Grid>
+					</Grid>
+
+					<StyledH4>
+						<Trans>Accident du travail et maladie professionnelle</Trans>
+						<ExplicableRule dottedName="protection sociale . accidents du travail et maladies professionnelles" />
+					</StyledH4>
+					<Body>
+						En cas d’<Strong>accident de travail</Strong>, de{' '}
+						<Strong>maladie professionnelle</Strong> ou d’un{' '}
+						<Strong>accident sur le trajet domicile-travail</Strong>, vous serez
+						indemnisé(e) à hauteur de :
+					</Body>
+					<Grid container>
+						<Grid item xs={12} lg={8}>
+							<StatusCard status={['sasu']} isBestOption>
+								<span>
+									<Value
+										linkToRule={false}
+										expression="protection sociale . accidents du travail et maladies professionnelles"
+										engine={assimiléEngine}
+										precision={0}
+										unit="€/mois"
+									/>
+								</span>
+								<StyledRuleLink
+									dottedName="protection sociale . accidents du travail et maladies professionnelles"
+									engine={assimiléEngine}
+								>
+									<HelpIcon />
+								</StyledRuleLink>
+							</StatusCard>
+						</Grid>
+						<Grid item xs={12} lg={4}>
+							<StatusCard status={['ei', 'ae']}>
+								<span>
+									<Value
+										linkToRule={false}
+										expression="protection sociale . accidents du travail et maladies professionnelles"
+										engine={indépendantEngine}
+										precision={0}
+										unit="€/mois"
+									/>
+								</span>
+								<StyledRuleLink
+									dottedName="protection sociale . accidents du travail et maladies professionnelles"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
