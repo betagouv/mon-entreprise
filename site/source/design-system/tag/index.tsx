@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { getColorGroup } from '../theme'
 
-type TagType =
+export type TagType =
 	| 'employeur'
 	| 'particulier'
 	| 'independant'

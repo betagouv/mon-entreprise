@@ -4,8 +4,7 @@ import styled from 'styled-components'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 import { CircleIcon, HexagonIcon, TriangleIcon } from '@/design-system/icons'
-import { Tag } from '@/design-system/tag'
-import { Strong } from '@/design-system/typography'
+import { Tag, TagType } from '@/design-system/tag'
 import { Body } from '@/design-system/typography/paragraphs'
 
 type StatusCardType = {
@@ -39,20 +38,22 @@ const StatusCard = ({
 	return (
 		<StyledCardContainer $inert>
 			{status.map((statusString) => (
-				<StyledTag
+				<Tag
 					key={statusString}
-					$color={STATUS_DATA[statusString].color}
+					$color={STATUS_DATA[statusString].color as TagType}
 					$size="sm"
 				>
-					<StatusTagIcon status={statusString} />
+					<StatusTagIcon
+						style={{ marginRight: '0.25rem' }}
+						status={statusString}
+					/>
 					{STATUS_DATA[statusString].label}
-				</StyledTag>
+				</Tag>
 			))}
 
 			{isBestOption && <StyledEmoji emoji="🥇" />}
-			<StyledBody>
-				<Strong>{children}</Strong>
-			</StyledBody>
+			<StyledBody>{children}</StyledBody>
+			{footerContent && <CardFooter>{footerContent}</CardFooter>}
 		</StyledCardContainer>
 	)
 }
@@ -71,20 +72,24 @@ const StyledEmoji = styled(Emoji)`
 	font-size: 1.5rem;
 `
 
-const StyledTag = styled(Tag)<{ $color: string }>`
-	svg {
-	}
-`
-
 const StyledBody = styled(Body)`
 	font-size: 1.25rem;
+	display: inline-flex;
+	align-items: center;
+	font-weight: 700;
+`
+
+const CardFooter = styled.section`
+	border-top: ${({ theme }) => theme.colors.extended.grey[200]};
+	padding: 0.25rem 1.5rem;
 `
 
 const StatusTagIcon = ({
 	status,
 	...props
 }: {
-	status: StatusCardType['status']
+	status: 'sasu' | 'ei' | 'ae'
+	style?: { marginRight: string }
 }) => {
 	switch (true) {
 		case status.includes('sasu'):
@@ -95,6 +100,6 @@ const StatusTagIcon = ({
 			return <CircleIcon {...props} />
 
 		default:
-			return ''
+			return null
 	}
 }
