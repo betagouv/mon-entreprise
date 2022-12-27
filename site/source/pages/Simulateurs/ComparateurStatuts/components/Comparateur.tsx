@@ -49,58 +49,6 @@ function Comparateur({ engines }: ComparateurProps) {
 			<Spacing md />
 			<Résultats engines={engines} />
 			<Détails engines={engines} />
-			<StyledGrid>
-				<H3 className="AS">
-					<Emoji emoji="☂" /> <Trans>SASU</Trans>
-				</H3>
-				<H3 className="indep">
-					<Emoji emoji="👩‍🔧" /> <Trans>EI / EURL</Trans>
-				</H3>
-				<H3 className="auto">
-					<Emoji emoji="🚶‍♂️" /> <Trans>Auto-entrepreneur</Trans>
-				</H3>
-
-				<TableRow
-					dottedName="dirigeant . rémunération . net . après impôt"
-					unit="€/mois"
-					precision={0}
-					engines={engines}
-				/>
-
-				<H2 className="all">
-					<Spacing lg /> Retraite
-				</H2>
-
-				<TableRow
-					dottedName="protection sociale . retraite . trimestres"
-					engines={engines}
-				/>
-				<TableRow
-					dottedName="protection sociale . retraite . base"
-					engines={engines}
-				/>
-				<TableRow
-					dottedName="protection sociale . retraite . complémentaire"
-					engines={engines}
-				/>
-
-				<H2 className="all">
-					<Spacing lg /> Santé
-				</H2>
-				<TableRow
-					dottedName="protection sociale . maladie . arrêt maladie"
-					precision={0}
-					engines={engines}
-				/>
-				<TableRow
-					dottedName="protection sociale . maladie . arrêt maladie . délai d'attente"
-					engines={engines}
-				/>
-				<TableRow
-					dottedName="protection sociale . maladie . arrêt maladie . délai de carence"
-					engines={engines}
-				/>
-			</StyledGrid>
 		</>
 	)
 }

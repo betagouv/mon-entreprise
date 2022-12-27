@@ -85,6 +85,7 @@ const StyledEmoji = styled(Emoji)`
 const StyledBody = styled(Body)`
 	font-size: 1.25rem;
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	font-weight: 700;
 	margin: 0;
