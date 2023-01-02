@@ -132,7 +132,8 @@ const StyledButton = styled.button<{ variant?: 'light' }>`
 		}
 	`}
 	:hover {
-		text-decoration: underline;
+		text-decoration: ${({ variant }) =>
+			variant === 'light' ? 'none' : 'underline'};
 	}
 	:focus {
 		${FocusStyle}
