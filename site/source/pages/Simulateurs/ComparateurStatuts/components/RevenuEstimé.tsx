@@ -34,7 +34,11 @@ const RevenuEstimé = () => {
 					<Label>
 						<Trans>Vos charges estimées</Trans>
 					</Label>
-					<StyledValue linkToRule={false} expression="entreprise . charges" />
+					<StyledValue
+						linkToRule={false}
+						unit="€/an"
+						expression="entreprise . charges"
+					/>
 				</StyledGrid>
 				<Grid
 					item

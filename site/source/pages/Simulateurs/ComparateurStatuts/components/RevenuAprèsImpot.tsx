@@ -5,19 +5,27 @@ import styled from 'styled-components'
 import { DottedName } from '@/../../modele-social'
 import Value from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
-import { CheckList } from '@/design-system'
-import { ExternalLinkIcon, HelpIcon } from '@/design-system/icons'
+import { CheckList, PopoverWithTrigger } from '@/design-system'
+import { Button } from '@/design-system/buttons'
+import {
+	ArrowRightIcon,
+	ExternalLinkIcon,
+	HelpIcon,
+} from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
+import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { H2 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
 
+import AllerPlusLoinRevenus from './AllerPlusLoinRevenus'
 import StatusCard from './StatusCard'
 
 const RevenuAprèsImpot = ({
-	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
+	engines,
 }: {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
 }) => {
+	const [assimiléEngine, autoEntrepreneurEngine, indépendantEngine] = engines
 	const { t } = useTranslation()
 
 	return (
@@ -140,6 +148,20 @@ const RevenuAprèsImpot = ({
 					</StatusCard>
 				</Grid>
 			</Grid>
+			<DivAlignRight>
+				<PopoverConfirm
+					small
+					trigger={(buttonsProps) => (
+						<Button {...buttonsProps} color="secondary" light size="XS">
+							<Trans>Aller plus loin</Trans> <StyledArrowRightIcon />
+						</Button>
+					)}
+					onConfirm={() => console.log('QUE FAIRE')}
+					confirmLabel="Enregistrer les options"
+				>
+					<AllerPlusLoinRevenus engines={engines} />
+				</PopoverConfirm>
+			</DivAlignRight>
 		</>
 	)
 }
@@ -160,4 +182,13 @@ const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
 
 const BlackColoredLink = styled(StyledLink)`
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
+`
+
+const DivAlignRight = styled.div`
+	margin-top: ${({ theme }) => theme.spacings.lg};
+	text-align: right;
+`
+
+const StyledArrowRightIcon = styled(ArrowRightIcon)`
+	margin-left: ${({ theme }) => theme.spacings.sm};
 `
