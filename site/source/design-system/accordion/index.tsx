@@ -7,6 +7,7 @@ import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import styled, { css } from 'styled-components'
 
+import { FocusStyle } from '../global-style'
 import chevronImg from './chevron.svg'
 
 export const Accordion = <T extends object>(props: AriaAccordionProps<T>) => {
@@ -24,7 +25,6 @@ export const Accordion = <T extends object>(props: AriaAccordionProps<T>) => {
 }
 
 const StyledAccordionGroup = styled.div`
-	overflow: hidden;
 	max-width: 100%;
 	${({ theme }) =>
 		css`
@@ -64,7 +64,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 				</StyledButton>
 			</StyledTitle>
 			{/* @ts-ignore: https://github.com/pmndrs/react-spring/issues/1515 */}
-			<StyledContent {...regionProps} style={animatedStyle}>
+			<StyledContent {...regionProps} style={animatedStyle} hidden={!isOpen}>
 				<div ref={regionRef}>{item.props.children}</div>
 			</StyledContent>
 		</StyledAccordionItem>
@@ -101,7 +101,7 @@ const StyledButton = styled.button`
 		text-decoration: underline;
 	}
 	:focus {
-		outline: none;
+		${FocusStyle}
 	}
 `
 
@@ -118,7 +118,7 @@ const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<Chevron>`
 		`}
 `
 
-const StyledContent = styled(animated.div)`
+const StyledContent = styled(animated.div)<{ $isOpen: boolean }>`
 	overflow: hidden;
 	> div {
 		margin: ${({ theme }) => theme.spacings.lg};
