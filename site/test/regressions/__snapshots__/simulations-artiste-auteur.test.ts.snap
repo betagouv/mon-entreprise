@@ -20,7 +20,7 @@ Notifications affichées : artiste-auteur . cotisations . avertissement trimestr
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 1`] = `
-"artiste-auteur . cotisations: 447
+"artiste-auteur . cotisations: 473
 artiste-auteur . cotisations . IRCEC: 0
 artiste-auteur . revenus: undefined"
 `;
@@ -39,7 +39,7 @@ artiste-auteur . revenus: undefined"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 3`] = `
-"artiste-auteur . cotisations: 1034
+"artiste-auteur . cotisations: 1049
 artiste-auteur . cotisations . IRCEC: 8000
 artiste-auteur . revenus: undefined"
 `;

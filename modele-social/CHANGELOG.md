@@ -1,5 +1,16 @@
 # Journal des modifications
 
+## 1.4.1
+
+Mise à jour des montants qui changent au 1ᵉʳ janvier 2023 :
+
+- SMIC
+- plafond sécurité sociale
+- tranches de l’impôt sur le revenu
+- plafonds et planchers de l’abattement forfaitaire
+- plafonds de la décote de l’impôt sur le revenu
+
+Mise à jour de `période . début d'année`, `période . fin d'année` et de `date`.
 
 ## 1.4.0
 

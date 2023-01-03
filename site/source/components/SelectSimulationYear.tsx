@@ -16,7 +16,7 @@ const Bold = styled.span<{ bold: boolean }>`
 export const SelectSimulationYear = () => {
 	const dispatch = useDispatch()
 	const year = useContext(EngineContext).evaluate('date')
-	const choices = [2021, 2022]
+	const choices = [2022, 2023]
 
 	const actualYear = Number(
 		(year.nodeValue?.toString().slice(-4) as Evaluation<number> | undefined) ||
@@ -29,7 +29,7 @@ export const SelectSimulationYear = () => {
 		<Banner hideAfterFirstStep={false} icon={'📅'}>
 			<Trans i18nKey="pages.simulateurs.select-year.info">
 				Cette simulation concerne l'année{' '}
-				<Bold bold={actualYear !== 2022}>{{ actualYear }}</Bold>.{' '}
+				<Bold bold={actualYear !== 2023}>{{ actualYear }}</Bold>.{' '}
 			</Trans>
 			<>
 				{choices
@@ -41,7 +41,7 @@ export const SelectSimulationYear = () => {
 									dispatch(updateSituation('date', `01/01/${year}`))
 								}
 							>
-								{actualYear === 2022 ? (
+								{actualYear === 2023 ? (
 									<Trans i18nKey="pages.simulateurs.select-year.access">
 										Accéder au simulateur {{ year }}
 									</Trans>
