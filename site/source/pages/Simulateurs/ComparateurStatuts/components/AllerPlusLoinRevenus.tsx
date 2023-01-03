@@ -129,7 +129,7 @@ const AllerPlusLoinRevenus = ({
 								<Grid item xs={12} lg={4}>
 									<StyledTag $color="secondary">
 										<Value
-											expression="entreprise . imposition . IS . montant"
+											expression="impôt . montant"
 											engine={assimiléEngine}
 											unit="€/an"
 											displayedUnit="€"
@@ -140,7 +140,7 @@ const AllerPlusLoinRevenus = ({
 								<Grid item xs={12} lg={4}>
 									<StyledTag $color="independant">
 										<Value
-											expression="entreprise . imposition . IS . montant"
+											expression="impôt . montant"
 											engine={indépendantEngine}
 											unit="€/an"
 											displayedUnit="€"
@@ -151,7 +151,7 @@ const AllerPlusLoinRevenus = ({
 								<Grid item xs={12} lg={4}>
 									<StyledTag $color="tertiary">
 										<Value
-											expression="entreprise . imposition . régime . micro-entreprise"
+											expression="dirigeant . rémunération . impôt"
 											engine={autoEntrepreneurEngine}
 											unit="€/an"
 											displayedUnit="€"

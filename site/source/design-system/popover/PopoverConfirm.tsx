@@ -35,9 +35,10 @@ export default function PopoverConfirm({
 	return (
 		<PopoverWithTrigger trigger={trigger} small={small}>
 			{(closePopover) => (
-				<StyledContainer>
-					<H3>{title}</H3>
-					<Body>{children}</Body>
+				<div>
+					{title && <H3>{title}</H3>}
+
+					<div>{children}</div>
 
 					<StyledGrid container>
 						<Grid item>
@@ -56,7 +57,7 @@ export default function PopoverConfirm({
 							</Button>
 						</Grid>
 					</StyledGrid>
-				</StyledContainer>
+				</div>
 			)}
 		</PopoverWithTrigger>
 	)
@@ -67,8 +68,4 @@ const StyledGrid = styled(Grid)`
 	justify-content: center;
 	gap: ${({ theme }) => theme.spacings.md};
 	margin-top: ${({ theme }) => theme.spacings.xl};
-`
-
-const StyledContainer = styled.div`
-	padding: ${({ theme }) => theme.spacings.xxl};
 `
