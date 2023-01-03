@@ -5202,31 +5202,6 @@ protection sociale:
     formation professionnelle et le transport.
   titre.en: social welfare
   titre.fr: protection sociale
-protection sociale . accidents du travail et maladies professionnelles:
-  description.en: >
-    [automatic] Have you suffered an accident at work or an
-    occupational disease? 
-
-    Your medical expenses are covered at 100%. 
-
-
-    To compensate for your loss of salary, you can receive a daily allowance. 
-
-    If you are declared unfit as a result of your accident/illness, you may receive a temporary incapacity benefit.
-  description.fr: >
-    Vous avez subi un accident du travail ou êtes atteint d’une
-    maladie professionnelle ? 
-
-    Vos frais médicaux sont pris en charge à 100 %. 
-
-
-    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités journalières. 
-
-    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez recevoir une indemnité temporaire d'inaptitude.
-  résumé.en: Provides comprehensive coverage for occupational diseases or accidents.
-  résumé.fr: Offre une couverture complète des maladies ou accidents du travail.
-  titre.en: Work accidents / occupational diseases
-  titre.fr: accidents du travail et maladies professionnelles
 protection sociale . assurance chômage:
   description.en: >
     Since 1958, the Unemployment Insurance has been protecting all
@@ -5391,9 +5366,33 @@ protection sociale . maladie:
     des maladies graves comme les séjours à l'hôpital.
   titre.en: '[automatic] health insurance'
   titre.fr: assurance maladie
-protection sociale . maladie . adoption:
-  titre.en: '[automatic] adoption'
-  titre.fr: adoption
+protection sociale . maladie . accidents du travail et maladies professionnelles:
+  description.en: >
+    [automatic] Have you suffered an accident at work or an
+    occupational disease? 
+
+    Your medical expenses are covered at 100%. 
+
+
+    To compensate for your loss of salary, you can receive a daily allowance. 
+
+    If you are declared unfit as a result of your accident/illness, you may receive a temporary incapacity benefit.
+  description.fr: >
+    Vous avez subi un accident du travail ou êtes atteint d’une
+    maladie professionnelle ? 
+
+    Vos frais médicaux sont pris en charge à 100 %. 
+
+
+    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités journalières. 
+
+    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez recevoir une indemnité temporaire d'inaptitude.
+  résumé.en:
+    '[automatic] Provides comprehensive coverage for work-related illness
+    or injury.'
+  résumé.fr: Offre une couverture complète des maladies ou accidents du travail.
+  titre.en: '[automatic] work accidents and occupational diseases'
+  titre.fr: accidents du travail et maladies professionnelles
 protection sociale . maladie . arrêt maladie:
   description.en: >-
     [automatic] If you are off work due to illness, you are entitled
@@ -5415,9 +5414,9 @@ protection sociale . maladie . arrêt maladie . indépendant:
 protection sociale . maladie . arrêt maladie . salarié:
   titre.en: '[automatic] employee'
   titre.fr: salarié
-protection sociale . maladie . maternité paternité:
+protection sociale . maladie . maternité paternité adoption:
   titre.en: '[automatic] maternity and paternity leave benefits'
-  titre.fr: indemnités congé maternité paternité
+  titre.fr: indemnités congé maternité paternité adoption
 protection sociale . retraite:
   description.en: >
     [automatic] ### A mandatory system ...
