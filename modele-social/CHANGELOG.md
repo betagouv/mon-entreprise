@@ -1,5 +1,39 @@
 # Journal des modifications
 
+## 1.5.0
+
+Ajoute les droits ouverts à la protection sociale pour les régimes suivants :
+- indépendants AC/PLNR
+- auto-entrepreneur hors CIPAV
+- assimilé salarié
+
+Les droits suivants ont été implémentés : 
+- Indemnités journalières et délai d’attente en cad d’arrêt maladie
+- Indemnités journalières pour les accidents du travail et maladie professionnelle
+- Indemnités journalières et forfaitaire pour les congés maternité paternité adoption
+- Rentes, capital décès, pension de reversion et d’invalidité
+
+
+### Détails 
+
+Ajout des règles suivantes : 
+- dirigeant . indépendant . cotisations et contributions . invalidité et décès
+- protection sociale . maladie . raam
+- protection sociale . maladie . maternité paternité adoption . *
+- protection sociale . maladie . arrêt maladie . *
+- protection sociale . invalidité et décès . *
+
+Renomme les règles suivantes : 
+- protection sociale . retraite . base . cotisée . revenu salarié -> protection sociale . retraite . base . cotisée . salarié
+- protection sociale . retraite . base . cotisée . revenu indépendant -> protection sociale . retraite . base . cotisée . indépendant
+-  protection sociale . accidents du travail et maladies professionnelles -> protection sociale . maladie . accidents du travail et maladies professionnelles
+
+
+Supression des règles suivantes : 
+-  protection sociale . maladie . ATMP
+
+*Note : l’espace de nom `protection social` étant taggué comme « experimental », ces changements cassants ne provoquent pas de montée de version majeure.
+
 ## 1.4.1
 
 Mise à jour des montants qui changent au 1ᵉʳ janvier 2023 :
