@@ -20,7 +20,15 @@ const RevenuEstimé = () => {
 			$inert
 		>
 			<Grid container>
-				<Grid item xs={12} lg={3}>
+				<Grid
+					css={`
+						padding-right: 1.5rem;
+					`}
+					item
+					xs={12}
+					sm={6}
+					lg={3}
+				>
 					<Label>
 						<Trans>Votre chiffre d'affaires estimé</Trans>
 					</Label>
@@ -30,7 +38,7 @@ const RevenuEstimé = () => {
 					/>
 				</Grid>
 
-				<StyledGrid item xs={12} lg={5}>
+				<StyledGrid item xs={12} sm={6} lg={5}>
 					<Label>
 						<Trans>Vos charges estimées</Trans>
 					</Label>
@@ -40,16 +48,7 @@ const RevenuEstimé = () => {
 						expression="entreprise . charges"
 					/>
 				</StyledGrid>
-				<Grid
-					item
-					css={`
-						justify-content: flex-end;
-						align-items: center;
-						display: flex;
-					`}
-					xs={12}
-					lg={3}
-				>
+				<GridEditLink item xs={12} lg={3}>
 					<StyledLink
 						href={`${fullURL}#simulation-comparateur`}
 						$noUnderline
@@ -60,7 +59,7 @@ const RevenuEstimé = () => {
 					>
 						<StyledEditIcon /> Modifier les informations
 					</StyledLink>
-				</Grid>
+				</GridEditLink>
 			</Grid>
 		</CardContainer>
 	)
@@ -82,12 +81,27 @@ const StyledValue = styled(Value)`
 
 const StyledGrid = styled(Grid)`
 	border-left: 1px solid ${({ theme }) => theme.colors.extended.grey[400]};
-	margin-left: 1.5rem;
 	padding-left: 1.5rem;
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		border-left: none;
+		padding-left: 0;
+		margin-top: ${({ theme }) => theme.spacings.md};
+	}
 `
 
 const StyledEditIcon = styled(EditIcon)`
 	margin-right: ${({ theme }) => theme.spacings.xxs};
+`
+
+const GridEditLink = styled(Grid)`
+	justify-content: flex-end;
+	align-items: center;
+	display: flex;
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		padding-top: ${({ theme }) => theme.spacings.lg};
+		justify-content: center;
+	}
 `
 
 export default RevenuEstimé
