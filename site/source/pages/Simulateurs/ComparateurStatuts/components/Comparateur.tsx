@@ -31,8 +31,8 @@ function Comparateur({ engines }: ComparateurProps) {
 				fullWidth
 				id="simulation-comparateur"
 			>
-				<StyledSimulationGoals
-					toggles={<PeriodSwitch mode="tab" />}
+				<SimulationGoals
+					toggles={<PeriodSwitch />}
 					legend={'Estimations sur votre rémunération brute et vos charges'}
 				>
 					<SimulationGoal
@@ -40,7 +40,7 @@ function Comparateur({ engines }: ComparateurProps) {
 						isInfoMode
 					/>
 					<SimulationGoal dottedName="entreprise . charges" isInfoMode />
-				</StyledSimulationGoals>
+				</SimulationGoals>
 			</Simulation>
 			<Spacing md />
 			<Résultats engines={engines} />
@@ -50,14 +50,3 @@ function Comparateur({ engines }: ComparateurProps) {
 }
 
 export default Comparateur
-
-const StyledSimulationGoals = styled(SimulationGoals)`
-	${SimulationGoalsContainer} {
-		border-start-end-radius: 0;
-		border-end-start-radius: 0;
-		border-end-end-radius: 0;
-	}
-	${ToggleSection} {
-		padding-bottom: 0;
-	}
-`

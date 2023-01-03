@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { updateUnit } from '@/actions/actions'
 import { Radio, ToggleGroup } from '@/design-system/field'
-import { Tab, Toggle } from '@/design-system/field/Radio/ToggleGroup'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 
-export default function PeriodSwitch({ mode }: { mode?: Toggle | Tab }) {
+export default function PeriodSwitch() {
 	const dispatch = useDispatch()
 
 	const currentUnit = useSelector(targetUnitSelector)
@@ -27,8 +26,8 @@ export default function PeriodSwitch({ mode }: { mode?: Toggle | Tab }) {
 			<ToggleGroup
 				value={currentUnit}
 				onChange={(unit: string) => dispatch(updateUnit(unit))}
-				mode={mode || 'toggle'}
-				hideRadio={mode === 'tab'}
+				mode="tab"
+				hideRadio
 			>
 				{periods.map(({ label, unit }) => (
 					<span

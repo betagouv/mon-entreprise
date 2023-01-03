@@ -14,7 +14,6 @@ import { WatchInitialRender } from '../utils/useInitialRender'
 import { useIsEmbedded } from '../utils/useIsEmbedded'
 
 type SimulationGoalsProps = {
-	className?: string
 	legend: string
 	publique?:
 		| 'employeur'
@@ -31,41 +30,38 @@ export function SimulationGoals({
 	legend,
 	toggles,
 	children,
-	className,
 }: SimulationGoalsProps) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const isEmbeded = useIsEmbedded()
 
 	return (
 		<WatchInitialRender>
-			<div className={className}>
-				<TopSection toggles={toggles} />
+			<TopSection toggles={toggles} />
 
-				<SimulationGoalsContainer
-					isEmbeded={isEmbeded}
-					isFirstStepCompleted={isFirstStepCompleted}
-					publique={publique}
-					role="group"
-					id="simulator-legend"
-					aria-labelledby="simulator-legend-label"
-					aria-live="polite"
-				>
-					<ForceThemeProvider forceTheme="dark">
-						<div className="sr-only" aria-hidden id="simulator-legend-label">
-							{legend}
-						</div>
-						<Body className="visually-hidden">
-							<em>
-								<Trans>
-									Les données de simulations se mettront automatiquement à jour
-									après la modification d'un champ.
-								</Trans>
-							</em>
-						</Body>
-						{children}
-					</ForceThemeProvider>
-				</SimulationGoalsContainer>
-			</div>
+			<SimulationGoalsContainer
+				isEmbeded={isEmbeded}
+				isFirstStepCompleted={isFirstStepCompleted}
+				publique={publique}
+				role="group"
+				id="simulator-legend"
+				aria-labelledby="simulator-legend-label"
+				aria-live="polite"
+			>
+				<ForceThemeProvider forceTheme="dark">
+					<div className="sr-only" aria-hidden id="simulator-legend-label">
+						{legend}
+					</div>
+					<Body className="visually-hidden">
+						<em>
+							<Trans>
+								Les données de simulations se mettront automatiquement à jour
+								après la modification d'un champ.
+							</Trans>
+						</em>
+					</Body>
+					{children}
+				</ForceThemeProvider>
+			</SimulationGoalsContainer>
 		</WatchInitialRender>
 	)
 }
@@ -79,7 +75,10 @@ export const SimulationGoalsContainer = styled.div<
 	z-index: 1;
 	position: relative;
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
-	border-radius: ${({ theme }) => theme.box.borderRadius};
+	border-start-end-radius: 0;
+	border-end-start-radius: 0;
+	border-end-end-radius: 0;
+	border-start-start-radius: ${({ theme }) => theme.box.borderRadius};
 	${({ isFirstStepCompleted }) =>
 		isFirstStepCompleted &&
 		css`
@@ -145,7 +144,7 @@ const Section = styled(Grid).attrs({ container: true })`
 
 export const ToggleSection = styled.div`
 	padding: ${({ theme }) => theme.spacings.sm} 0;
-
+	padding-bottom: 0;
 	display: flex;
 	justify-content: right;
 	text-align: right;
