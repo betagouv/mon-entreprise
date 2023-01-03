@@ -26,10 +26,10 @@ ACRE:
     entreprise . date de création: 01/01/2021
     dirigeant . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
-    entreprise . date de création: 01/01/2020
+    entreprise . date de création: 01/01/2023
     dirigeant . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . revenu net: 30000 €/an
-    entreprise . date de création: 01/06/2021
+    entreprise . date de création: 01/06/2022
     dirigeant . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . revenu net: 40000 €/an
     entreprise . date de création: 01/06/2020

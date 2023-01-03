@@ -1,4 +1,4 @@
-date: 01/11/2022
+date: 01/01/2023
 période: oui
 période . jours ouvrés moyen par mois:
   formule: 21 jour ouvré/mois
@@ -12,6 +12,8 @@ période . semaines par mois:
 # calculating the beginning and the end of the year of a given date.
 période . début d'année:
   variations:
+    - si: date >= 01/2023
+      alors: 01/01/2023
     - si: date >= 01/2022
       alors: 01/01/2022
     - si: date >= 01/2021
@@ -23,3 +25,5 @@ période . fin d'année:
       alors: 31/12/2021
     - si: date <= 31/12/2022
       alors: 31/12/2022
+    - si: date <= 31/12/2023
+      alors: 31/12/2023

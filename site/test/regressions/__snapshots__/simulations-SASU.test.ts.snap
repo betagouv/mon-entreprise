@@ -18,18 +18,18 @@ salarié . rémunération . net . à payer avant impôt: 1228"
 
 exports[`calculate assimilé salarié > ACRE 3`] = `
 "dirigeant . rémunération . totale: 30000
-impôt . montant: 1004
+impôt . montant: 873
 salarié . cotisations: 1497
-salarié . rémunération . net . payé après impôt: 1777
+salarié . rémunération . net . payé après impôt: 1788
 salarié . rémunération . net . à payer avant impôt: 1861"
 `;
 
 exports[`calculate assimilé salarié > JEI 1`] = `
 "dirigeant . rémunération . totale: 48000
-impôt . montant: 3534
-salarié . cotisations: 1208
-salarié . rémunération . net . payé après impôt: 2497
-salarié . rémunération . net . à payer avant impôt: 2792"
+impôt . montant: 3247
+salarié . cotisations: 1198
+salarié . rémunération . net . payé après impôt: 2531
+salarié . rémunération . net . à payer avant impôt: 2802"
 `;
 
 exports[`calculate assimilé salarié > avec charges 1`] = `
@@ -98,17 +98,17 @@ salarié . rémunération . net . à payer avant impôt: 907"
 
 exports[`calculate assimilé salarié > échelle de rémunération 7`] = `
 "dirigeant . rémunération . totale: 50000
-impôt . montant: 1918
+impôt . montant: 1704
 salarié . cotisations: 1849
-salarié . rémunération . net . payé après impôt: 2157
+salarié . rémunération . net . payé après impôt: 2175
 salarié . rémunération . net . à payer avant impôt: 2317"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
 "dirigeant . rémunération . totale: 100000
-impôt . montant: 9993
-salarié . cotisations: 3616
-salarié . rémunération . net . payé après impôt: 3884
-salarié . rémunération . net . à payer avant impôt: 4717
+impôt . montant: 9659
+salarié . cotisations: 3622
+salarié . rémunération . net . payé après impôt: 3907
+salarié . rémunération . net . à payer avant impôt: 4712
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
 `;

@@ -60,8 +60,7 @@ export default function PageData(props: PageDataProps) {
 	const situation = useSelector(situationSelector)
 	const année =
 		typeof situation.date === 'string' && new Date(situation.date).getFullYear()
-	const year =
-		typeof année === 'number' && année !== 2022 ? `Année ${année}` : ''
+	const year = typeof année === 'number' ? `Année ${année}` : ''
 
 	const inIframe = useIsEmbedded()
 	useSimulationConfig({ path, config })

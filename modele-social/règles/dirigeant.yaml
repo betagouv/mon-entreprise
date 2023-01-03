@@ -150,9 +150,9 @@ dirigeant . exonérations . ACRE:
   avec:
     ACRE par défaut:
       privé: oui
-      # Pour l'année 2019, l'acre était automatiquement accordée aux auto-entrepreneur
-      toutes ces conditions:
-        - auto-entrepreneur
+      une de ces conditions:
+        - auto-entrepreneur = non
+        # Pour l'année 2019, l'acre était automatiquement accordée aux auto-entrepreneur
         - une de ces conditions:
             - entreprise . date de création < 01/01/2019
             - entreprise . date de création > 31/12/2019
