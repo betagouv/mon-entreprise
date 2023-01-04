@@ -1819,45 +1819,11 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . retraite compl�
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . PL . CIPAV . exonération incapacité:
-  description.en: '[automatic] To be eligible, your request for exemption for
-    disability must be accompanied by a form to be filled out by your attending
-    physician and sent to CIPAV no later than March 31 of the following year.'
-  description.fr:
-    Pour être recevable, votre demande d’exonération pour incapacité
-    doit-être accompagnée du formulaire à faire remplir par votre médecin
-    traitant et adressée à la CIPAV au plus tard le 31 mars de l’année suivante.
   titre.en: '[automatic] disability exemption'
   titre.fr: exonération incapacité
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation:
-  description.en: '[automatic] The Cipav manages a pension scheme that pays a
-    pension in the event of permanent disability and a lump-sum death benefit as
-    well as a pension for surviving spouses and children in the event of the
-    death of the insured. By default, members contribute in "class A" but it is
-    possible to contribute in class B or C in order to benefit from better
-    disability and death cover.'
-  description.fr:
-    La Cipav gère un régime de prévoyance versant une pension en cas
-    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-    conjoints et enfants survivants en cas de décès de l'assuré. Par défaut les
-    affiliés cotisent en « classe A » mais il est possible de cotiser en classe
-    B ou C afin de bénéficier d'une meilleure couverture invalidité-décès.
-  question.en: '[automatic] In which class do you contribute to the CIPAV
-    Disability Death Plan?'
-  question.fr: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
-  titre.en: '[automatic] contribution class'
-  titre.fr: classe de cotisation
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . A:
-  titre.en: '[automatic] class A'
-  titre.fr: classe A
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . B:
-  titre.en: '[automatic] class B'
-  titre.fr: classe B
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
-  titre.en: '[automatic] class C'
-  titre.fr: classe C
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
   description.en: >-
     [automatic] A member who can prove that he or she has received,
@@ -1884,9 +1850,6 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération in
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe:
-  titre.en: '[automatic] Contribution class'
-  titre.fr: Classe de cotisation
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation:
   description.en: '[automatic] '
   description.fr: |-
@@ -1910,9 +1873,6 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
     retraite complémentaire ?
   titre.en: '[automatic] optional extra contribution'
   titre.fr: option surcotisation
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation . classe:
-  titre.en: '[automatic] class'
-  titre.fr: classe
 dirigeant . indépendant . PL . CNAVPL:
   description.en: >
     [automatic] The National Old Age Insurance Fund for the liberal
@@ -5546,7 +5506,34 @@ protection sociale . retraite:
   résumé.fr: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
   titre.en: pensions
   titre.fr: retraite
-protection sociale . retraite . CNAVPL:
+protection sociale . retraite . base:
+  description.en: >
+    [automatic] The amount of your basic retirement pension is
+    calculated from the average of your earnings over the best 25 years.
+
+
+    This estimate of your retirement pension is calculated based on the following principles: 
+
+    - Your earnings are calculated on the basis of your best 25 years
+
+    - You have contributed enough quarters and you leave at the age required to benefit from the full rate
+  description.fr: >
+    Le montant de votre pension pour la retraite de base est calculé
+    à partir la moyenne de vos revenus des 25 meilleures années.
+
+
+    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants : 
+
+    - La rémunération calculée correspond à celle de vos 25 meilleures années
+
+    - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
+  résumé.en: '[automatic] Full basic retirement pension assuming your earnings
+    have remained the same throughout your working life.'
+  résumé.fr: Pension de retraite de base à taux plein en partant du principe que
+    votre rémunération est restée la même pendant toute votre vie active.
+  titre.en: '[automatic] Maximum basic pension'
+  titre.fr: Retraite de base maximum
+protection sociale . retraite . base . CNAVPL:
   description.en: >-
     [automatic] The liberal professions affiliated to the CNAVPL
     have a basic pension plan based on points.
@@ -5593,60 +5580,24 @@ protection sociale . retraite . CNAVPL:
     sur la cotisation maximale et arrondi à la décimale la plus proche
   titre.en: '[automatic] basic pension CNAVPL'
   titre.fr: retraite de base CNAVPL
-protection sociale . retraite . CNAVPL . CIPAV:
-  titre.en: '[automatic] CIPAV'
-  titre.fr: CIPAV
-protection sociale . retraite . CNAVPL . CIPAV . complémentaire:
-  titre.en: '[automatic] complementary'
-  titre.fr: complémentaire
-protection sociale . retraite . CNAVPL . CIPAV . trimestres auto-entrepreneur:
-  titre.en: '[automatic] validated quarters as an auto-entrepreneur'
-  titre.fr: trimestres validés auto-entrepreneur
-protection sociale . retraite . base:
-  description.en: >
-    [automatic] The amount of your basic retirement pension is
-    calculated from the average of your earnings over the best 25 years.
-
-
-    This estimate of your retirement pension is calculated based on the following principles: 
-
-    - Your earnings are calculated on the basis of your best 25 years
-
-    - You have contributed enough quarters and you leave at the age required to benefit from the full rate
-  description.fr: >
-    Le montant de votre pension pour la retraite de base est calculé
-    à partir la moyenne de vos revenus des 25 meilleures années.
-
-
-    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants : 
-
-    - La rémunération calculée correspond à celle de vos 25 meilleures années
-
-    - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
-  résumé.en: '[automatic] Full basic retirement pension assuming your earnings
-    have remained the same throughout your working life.'
-  résumé.fr: Pension de retraite de base à taux plein en partant du principe que
-    votre rémunération est restée la même pendant toute votre vie active.
-  titre.en: '[automatic] Maximum basic pension'
-  titre.fr: Retraite de base maximum
 protection sociale . retraite . base . cotisée:
   titre.en: '[automatic] income contributed for the basic pension'
   titre.fr: revenu cotisés pour la retraite de base
 protection sociale . retraite . complémentaire:
   description.en: >
-    [automatic] Supplemental pension earned through a full year of
+    [automatic] Supplemental pension earned through 10 full years of
     supplemental pension contributions.
 
 
     &gt; This amount is likely to vary between now and your retirement, depending on the update of the point value. Nevertheless, it offers an order of magnitude, and allows you to compare the complementary pension schemes between them
   description.fr: >
-    Supplément de pension de retraite acquis grâce à une année
-    complète de cotisation retraite complémentaire.
+    Supplément de pension de retraite acquis grâce à 10 années
+    complètes de cotisation retraite complémentaire.
 
 
     > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
-  titre.en: '[automatic] Supplementary pension earned in 10 years'
-  titre.fr: Retraite complémentaire gagnée en 10 ans
+  titre.en: '[automatic] Supplementary pension'
+  titre.fr: Retraite complémentaire
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
   note.en:
     '[automatic] The revaluation of the point value takes place on November
@@ -5654,14 +5605,20 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
   note.fr:
     La revalorisation de la valeur du point a lieu au 1er novembre, et non
     au 1er janvier.
-  titre.en: '[automatic] AGIRC-ARRCO pension'
-  titre.fr: Pension AGIRC-ARRCO
+  titre.en: '[automatic] AGIRC ARRCO'
+  titre.fr: AGIRC ARRCO
+protection sociale . retraite . complémentaire . CIPAV:
+  titre.en: '[automatic] CIPAV'
+  titre.fr: CIPAV
 protection sociale . retraite . complémentaire . RCI:
-  titre.en: '[automatic] Supplementary pension for the self-employed'
-  titre.fr: Pension retraite complémentaire des indépendants
+  titre.en: '[automatic] supplementary pension for the self-employed'
+  titre.fr: retraite complémentaire des indépendants
 protection sociale . retraite . trimestres:
   titre.en: '[automatic] validated quarters'
   titre.fr: trimestres validés
+protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
+  titre.en: '[automatic] auto-entrepreneur CIPAV'
+  titre.fr: auto-entrepreneur CIPAV
 protection sociale . transport:
   description.en: >
     This contribution is paid in full to the [mobility

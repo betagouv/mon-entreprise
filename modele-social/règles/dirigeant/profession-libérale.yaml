@@ -274,87 +274,105 @@ dirigeant . indépendant . PL . CIPAV:
           - entreprise . activité . nature . libérale . réglementée = non
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
-  non applicable si: exonération incapacité
   unité: €/an
+  arrondi: oui
   variations:
-    - si: date >= 01/2022
-      alors:
-        variations:
-          - si: classe = 'Classe A'
-            alors: 1527
-          - si: classe = 'Classe B'
-            alors: 3055
-          - si: classe = 'Classe C'
-            alors: 4582
-          - si: classe = 'Classe D'
-            alors: 7637
-          - si: classe = 'Classe E'
-            alors: 10692
-          - si: classe = 'Classe F'
-            alors: 16802
-          - si: classe = 'Classe G'
-            alors: 18329
-          - si: classe = 'Classe H'
-            alors: 19857
-    - si: date >= 01/2021
-      alors:
-        variations:
-          - si: classe = 'Classe A'
-            alors: 1457
-          - si: classe = 'Classe B'
-            alors: 2913
-          - si: classe = 'Classe C'
-            alors: 4370
-          - si: classe = 'Classe D'
-            alors: 7283
-          - si: classe = 'Classe E'
-            alors: 10196
-          - si: classe = 'Classe F'
-            alors: 16023
-          - si: classe = 'Classe G'
-            alors: 17479
-          - si: classe = 'Classe H'
-            alors: 18936
+    - si: date < 01/2023
+      alors: avant 2023
+    - sinon:
+        barème:
+          multiplicateur: plafond sécurité sociale
+          assiette: assiette des cotisations
+          tranches:
+            - plafond: 1
+              taux: 9%
+            - plafond: 3
+              taux: 22%
   références:
-    Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+    'L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023': https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
 
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe:
-  titre: Classe de cotisation
-  grille:
-    assiette: assiette des cotisations
-    tranches:
-      - montant: "'Classe A'"
-        plafond: 26581 €/an
-      - montant: "'Classe B'"
-        plafond: 49281 €/an
-      - montant: "'Classe C'"
-        plafond: 57851 €/an
-      - montant: "'Classe D'"
-        plafond: 66401 €/an
-      - montant: "'Classe E'"
-        plafond: 83061 €/an
-      - montant: "'Classe F'"
-        plafond: 103181 €/an
-      - montant: "'Classe G'"
-        plafond: 123301 €/an
-      - montant: "'Classe H'"
-  références:
-    Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+  avec:
+    avant 2023:
+      privé: oui
+      applicable si: date < 01/2023
+      remplace: retraite complémentaire
+      non applicable si: exonération incapacité
+      unité: €/an
+      variations:
+        - si: date >= 01/2022
+          alors:
+            variations:
+              - si: classe = 'Classe A'
+                alors: 1527
+              - si: classe = 'Classe B'
+                alors: 3055
+              - si: classe = 'Classe C'
+                alors: 4582
+              - si: classe = 'Classe D'
+                alors: 7637
+              - si: classe = 'Classe E'
+                alors: 10692
+              - si: classe = 'Classe F'
+                alors: 16802
+              - si: classe = 'Classe G'
+                alors: 18329
+              - si: classe = 'Classe H'
+                alors: 19857
+        - si: date >= 01/2021
+          alors:
+            variations:
+              - si: classe = 'Classe A'
+                alors: 1457
+              - si: classe = 'Classe B'
+                alors: 2913
+              - si: classe = 'Classe C'
+                alors: 4370
+              - si: classe = 'Classe D'
+                alors: 7283
+              - si: classe = 'Classe E'
+                alors: 10196
+              - si: classe = 'Classe F'
+                alors: 16023
+              - si: classe = 'Classe G'
+                alors: 17479
+              - si: classe = 'Classe H'
+                alors: 18936
+      références:
+        Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+
+    classe:
+      applicable si: date < 01/2023
+      titre: Classe de cotisation (avant 2023)
+      grille:
+        assiette: assiette des cotisations
+        tranches:
+          - montant: "'Classe A'"
+            plafond: 26581 €/an
+          - montant: "'Classe B'"
+            plafond: 49281 €/an
+          - montant: "'Classe C'"
+            plafond: 57851 €/an
+          - montant: "'Classe D'"
+            plafond: 66401 €/an
+          - montant: "'Classe E'"
+            plafond: 83061 €/an
+          - montant: "'Classe F'"
+            plafond: 103181 €/an
+          - montant: "'Classe G'"
+            plafond: 123301 €/an
+          - montant: "'Classe H'"
+      références:
+        Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
 dirigeant . indépendant . PL . CIPAV . exonération incapacité:
-  applicable si: CNAVPL . exonération incapacité
-  notification: info
-  description:
-    Pour être recevable, votre demande d’exonération pour incapacité doit-être accompagnée du formulaire à faire remplir par
-    votre médecin traitant et adressée à la CIPAV au plus tard le 31 mars de l’année suivante.
-  remplace:
-    règle: retraite complémentaire . classe
-    dans: protection sociale . retraite . CNAVPL . CIPAV
-  valeur: "'Classe A'"
-  références:
-    Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75
+  déprécié: oui
+  applicable si:
+    toutes ces conditions:
+      - date < 01/2023
+      - CNAVPL . exonération incapacité
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation:
+  applicable si: date < 01/2023
   question: Avez-vous choisi de surcotiser pour améliorer vos droits à la retraite complémentaire ?
   non applicable si: retraite complémentaire . classe = 'Classe H'
   remplace:
@@ -379,58 +397,78 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
   par défaut: non
   références:
     Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=15
-
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation . classe:
-  variations:
-    - si: classe = 'Classe A'
-      alors: "'Classe B'"
-    - si: classe = 'Classe B'
-      alors: "'Classe C'"
-    - si: classe = 'Classe C'
-      alors: "'Classe D'"
-    - si: classe = 'Classe D'
-      alors: "'Classe E'"
-    - si: classe = 'Classe E'
-      alors: "'Classe F'"
-    - si: classe = 'Classe F'
-      alors: "'Classe G'"
-    - si: classe = 'Classe G'
-      alors: "'Classe H'"
+  avec:
+    classe:
+      variations:
+        - si: classe = 'Classe A'
+          alors: "'Classe B'"
+        - si: classe = 'Classe B'
+          alors: "'Classe C'"
+        - si: classe = 'Classe C'
+          alors: "'Classe D'"
+        - si: classe = 'Classe D'
+          alors: "'Classe E'"
+        - si: classe = 'Classe E'
+          alors: "'Classe F'"
+        - si: classe = 'Classe F'
+          alors: "'Classe G'"
+        - si: classe = 'Classe G'
+          alors: "'Classe H'"
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
-  formule:
-    variations:
-      - si: classe de cotisation = 'A'
-        alors: 76 €/an
-      - si: classe de cotisation = 'B'
-        alors: 228 €/an
-      - si: classe de cotisation = 'C'
-        alors: 380 €/an
+  unité: €/an
+  arrondi: oui
+  # TODO : while https://github.com/betagouv/publicodes/issues/55 is not implemented
+  variations:
+    - si: date < 01/2023
+      alors: avant 2023
+    - sinon:
+        produit:
+          assiette:
+            valeur: assiette des cotisations
+            plancher: 37% * plafond sécurité sociale
+            plafond: 1.85 * plafond sécurité sociale
+          taux: 0.5%
+  références:
+    L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023: https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
 
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation:
-  question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
-  description: >-
-    La Cipav gère un régime de prévoyance versant une pension en cas
-    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-    conjoints et enfants survivants en cas de décès de l'assuré. Par défaut les
-    affiliés cotisent en « classe A » mais il est possible de cotiser en classe
-    B ou C afin de bénéficier d'une meilleure couverture invalidité-décès.
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - A
-        - B
-        - C
-  par défaut: "'A'"
+  avec:
+    avant 2023:
+      privé: oui
+      applicable si: date < 01/2023
+      variations:
+        - si: classe de cotisation = 'A'
+          alors: 76 €/an
+        - si: classe de cotisation = 'B'
+          alors: 228 €/an
+        - si: classe de cotisation = 'C'
+          alors: 380 €/an
 
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . A:
-  titre: classe A
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . B:
-  titre: classe B
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
-  titre: classe C
+    classe de cotisation:
+      applicable si: date < 01/2023
+      question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
+      description: >-
+        La Cipav gère un régime de prévoyance versant une pension en cas
+        d'invalidité permanente et un capital décès ainsi qu’une rente pour les
+        conjoints et enfants survivants en cas de décès de l'assuré. Par défaut les
+        affiliés cotisent en « classe A » mais il est possible de cotiser en classe
+        B ou C afin de bénéficier d'une meilleure couverture invalidité-décès.
+      formule:
+        une possibilité:
+          choix obligatoire: oui
+          possibilités:
+            - A
+            - B
+            - C
+      par défaut: "'A'"
+      avec:
+        A:
+          titre: classe A
+        B:
+          titre: classe B
+        C:
+          titre: classe C
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
   question: Avez-vous demandé à être exonéré de la cotisations invalidité-décès CIPAV ? (revenus de l'année précédente inférieurs à 6 170€)
