@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -29,13 +29,19 @@ const FeedbackThankYouContent = () => {
 					<Emoji emoji="🙌" />
 				</span>
 			</StyledEmojiContainer>
-			<H1>{t('Merci pour votre message !')}</H1>
+			<H1>
+				<Trans>Merci pour votre message !</Trans>
+			</H1>
 			<Body>
-				<Strong>Notre équipe prend en charge votre retour.</Strong>
+				<Strong>
+					<Trans>Notre équipe prend en charge votre retour.</Trans>
+				</Strong>
 			</Body>
 			<Body>
-				Nous avons à cœur d'améliorer en continu notre site,vos remarques nous
-				sont donc très précieuses.
+				<Trans>
+					Nous avons à cœur d'améliorer en continu notre site,vos remarques nous
+					sont donc très précieuses.
+				</Trans>
 			</Body>
 			<Spacing lg />
 		</>
@@ -138,16 +144,20 @@ export default function FeedbackForm({
 							{isNotSatisfied && (
 								<>
 									<Body>
-										Vous n’avez pas été satisfait(e) de votre expérience, nous
-										en sommes désolé(e)s.
+										<Trans>
+											Vous n’avez pas été satisfait(e) de votre expérience, nous
+											en sommes désolé(e)s.
+										</Trans>
 									</Body>
 								</>
 							)}
 
 							<Body>
 								<Strong>
-									Que pouvons-nous améliorer pour mieux répondre à vos attentes
-									?
+									<Trans>
+										Que pouvons-nous améliorer pour mieux répondre à vos
+										attentes ?
+									</Trans>
 								</Strong>
 							</Body>
 							<StyledTextArea
