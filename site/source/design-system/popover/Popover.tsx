@@ -158,7 +158,7 @@ const Underlay = styled.div<UnderlayProps>`
 	right: 0;
 	bottom: 0;
 	left: 0;
-	overflow: auto;
+	overflow: visible;
 	z-index: 200; // to be in front of the menu of the Publicodes doc
 	background: rgba(0, 0, 0, 0.5);
 	animation: ${appear} 0.2s;

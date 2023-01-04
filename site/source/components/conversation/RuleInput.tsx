@@ -15,12 +15,19 @@ import { EngineContext } from '@/components/utils/EngineContext'
 import { useShouldFocusField } from '@/hooks/useShouldFocusField'
 import { getMeta } from '@/utils'
 
-import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
+import {
+	Choice,
+	MultipleAnswerInput,
+	OuiNonInput,
+	SwitchInput,
+} from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import TextInput from './TextInput'
 import SelectPaysDétachement from './select/SelectPaysDétachement'
 import SelectAtmp from './select/SelectTauxRisque'
+
+type InputType = 'radio' | 'card' | 'toggle' | 'select'
 
 type Props<Names extends string = DottedName> = Omit<
 	React.HTMLAttributes<HTMLInputElement>,
@@ -42,10 +49,11 @@ type Props<Names extends string = DottedName> = Omit<
 	// cf .https://github.com/betagouv/mon-entreprise/issues/1489#issuecomment-823058710
 	showDefaultDateValue?: boolean
 	onSubmit?: (source?: string) => void
-	inputType?: 'radio' | 'card' | 'toggle' | 'select'
+	inputType?: InputType | 'switch'
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
 	modifiers?: Record<string, string>
+	engine?: Engine<DottedName>
 }
 
 export type InputProps<Name extends string = string> = Omit<
@@ -77,11 +85,15 @@ export default function RuleInput<Names extends string = DottedName>({
 	missing,
 	inputType,
 	modifiers = {},
+	engine,
 	...props
 }: Props<Names>) {
-	const engine = useContext(EngineContext)
-	const rule = engine.getRule(dottedName)
-	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
+	const defaultEngine = useContext(EngineContext)
+
+	const engineValue = engine ?? defaultEngine
+
+	const rule = engineValue.getRule(dottedName)
+	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
 
 	const shouldFocusField = useShouldFocusField()
@@ -106,7 +118,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
-	if (getVariant(engine.getRule(dottedName))) {
+	if (getVariant(engineValue.getRule(dottedName))) {
 		const type =
 			inputType ??
 			(meta.affichage &&
@@ -117,8 +129,8 @@ export default function RuleInput<Names extends string = DottedName>({
 		return (
 			<MultipleAnswerInput
 				{...commonProps}
-				choice={buildVariantTree(engine, dottedName)}
-				type={type}
+				choice={buildVariantTree(engineValue, dottedName)}
+				type={type as InputType}
 			/>
 		)
 	}
@@ -153,6 +165,10 @@ export default function RuleInput<Names extends string = DottedName>({
 
 	if (rule.rawNode.type === 'date') {
 		return <DateInput {...commonProps} />
+	}
+
+	if (inputType === 'switch') {
+		return <SwitchInput {...commonProps} />
 	}
 
 	if (
