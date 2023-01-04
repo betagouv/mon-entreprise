@@ -83,7 +83,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 
 	if (isFormOpen) {
 		return (
-			<Section ref={containerRef} isEmbedded={isEmbedded}>
+			<Section ref={containerRef} $isEmbedded={isEmbedded}>
 				{isShowingThankMessage || !shouldAskFeedback ? (
 					<>
 						<Body>
@@ -159,17 +159,17 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 		<StyledButton
 			aria-label={t('Donner votre avis')}
 			onClick={() => setIsFormOpen(true)}
-			isEmbedded={isEmbedded}
+			$isEmbedded={isEmbedded}
 		>
 			<Emoji emoji="👋" />
 		</StyledButton>
 	)
 }
 
-const StyledButton = styled.button<{ isEmbedded?: boolean }>`
+const StyledButton = styled.button<{ $isEmbedded?: boolean }>`
 	position: fixed;
 	top: 10.5rem;
-	${({ isEmbedded }) => (isEmbedded ? `top: 40rem;` : '')}
+	${({ $isEmbedded }) => ($isEmbedded ? `top: 40rem;` : '')}
 	right: 0;
 	width: 3.75rem;
 	height: 3.75rem;
@@ -237,10 +237,10 @@ const StyledBody = styled(Body)`
 	margin: 0;
 `
 
-const Section = styled.section<{ isEmbedded?: boolean }>`
+const Section = styled.section<{ $isEmbedded?: boolean }>`
 	position: fixed;
 	top: 10.5rem;
-	${({ isEmbedded }) => (isEmbedded ? `top: 40rem;` : '')}
+	${({ $isEmbedded }) => ($isEmbedded ? `top: 40rem;` : '')}
 	right: 0;
 	width: 17.375rem;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
