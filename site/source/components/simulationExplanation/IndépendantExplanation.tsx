@@ -181,17 +181,17 @@ function DroitsRetraite() {
 						displayedUnit={t('trimestres acquis')}
 					/>
 				</Li>
-				<WhenApplicable dottedName="protection sociale . retraite . CNAVPL">
+				<WhenApplicable dottedName="protection sociale . retraite . base . CNAVPL">
 					<Li>
 						Points de retraite de base acquis (CNAVPL) :{' '}
 						<Value
 							linkToRule
-							expression="protection sociale . retraite . CNAVPL"
+							expression="protection sociale . retraite . base . CNAVPL"
 							displayedUnit={t('points')}
 						/>
 					</Li>
 				</WhenApplicable>
-				<WhenNotApplicable dottedName="protection sociale . retraite . CNAVPL">
+				<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
 					<Li>
 						Revenu cotisé pris en compte pour la retraite de base :{' '}
 						<Value

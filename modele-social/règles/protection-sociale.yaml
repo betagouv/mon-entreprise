@@ -113,19 +113,22 @@ protection sociale . retraite . base . cotisée:
         Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
 
 protection sociale . retraite . complémentaire:
-  titre: Retraite complémentaire gagnée en 10 ans
+  titre: Retraite complémentaire
   arrondi: oui
   description: |
-    Supplément de pension de retraite acquis grâce à une année complète de cotisation retraite complémentaire.
+    Supplément de pension de retraite acquis grâce à 10 années complètes de cotisation retraite complémentaire.
 
     > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
   unité: €/mois
-  somme:
-    - RCI * 10 ans
-    - AGIRC ARRCO * 10 ans
+  produit:
+    assiette:
+      somme:
+        - RCI
+        - AGIRC ARRCO
+        - CIPAV
+    facteur: 10 ans
 
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
-  titre: Pension AGIRC-ARRCO
   applicable si: salarié
   produit:
     assiette: points acquis
@@ -167,7 +170,7 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 
 protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
-  titre: Pension retraite complémentaire des indépendants
+  titre: retraite complémentaire des indépendants
   non applicable si: dirigeant . indépendant . PL . CNAVPL
   produit:
     assiette: points acquis
@@ -228,7 +231,7 @@ protection sociale . retraite . complémentaire . RCI:
       références:
         Article D613-6 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714699/2022-12-10/
 
-protection sociale . retraite . CNAVPL:
+protection sociale . retraite . base . CNAVPL:
   applicable si: dirigeant . indépendant . PL . CNAVPL
   titre: retraite de base CNAVPL
   remplace: retraite . base
@@ -293,40 +296,29 @@ protection sociale . retraite . CNAVPL:
             avec:
               dirigeant . indépendant . assiette des cotisations: 5 * plafond sécurité sociale
 
-protection sociale . retraite . CNAVPL . CIPAV:
-protection sociale . retraite . CNAVPL . CIPAV . complémentaire:
+protection sociale . retraite . complémentaire . CIPAV:
   applicable si: dirigeant . indépendant . PL . CIPAV
-  remplace: retraite . complémentaire
   produit:
     assiette: points acquis
     facteur:
-      nom: valeur du point
+      unité: €/an/point
       variations:
-        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe A'
-          alors: 36
-        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe B'
-          alors: 72
-        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe C'
-          alors: 108
-        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe D'
-          alors: 180
-        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe E'
-          alors: 252
-        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe F'
-          alors: 396
-        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe G'
-          alors: 432
-        - si: dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe = 'Classe H'
-          alors: 468
-  références:
-    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+        - si: date >= 01/2023
+          alors: 2.77 €/an/point
+        - si: date >= 01/2022
+          alors: 2.63 €/an/point
 
-protection sociale . retraite . CNAVPL . CIPAV . trimestres auto-entrepreneur:
+  avec:
+    points acquis: dirigeant . indépendant . PL . CIPAV . retraite complémentaire / valeur d'acquisition
+    valeur d'acquisition: 45.30 €/point
+  références:
+    Évolutions relatives aux droits et aux prestations de la CIPAV: https://www.lacipav.fr/evolutiondroitsetprestationsCipav
+
+protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
   applicable si:
     toutes ces conditions:
       - dirigeant . auto-entrepreneur
       - entreprise . activité . nature . libérale . réglementée
-  titre: trimestres validés auto-entrepreneur
   remplace: retraite . trimestres
   grille:
     assiette: entreprise . chiffre d'affaires
