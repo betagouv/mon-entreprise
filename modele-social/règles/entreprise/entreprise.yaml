@@ -59,6 +59,11 @@ entreprise . chiffre d'affaires:
   identifiant court: CA
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
+  description: |
+    ### Chiffre d'affaires estimé
+    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées 
+    pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités 
+    vendues.
   variations:
     - si: dirigeant . auto-entrepreneur
       alors: dirigeant . auto-entrepreneur . chiffre d'affaires
@@ -74,11 +79,6 @@ entreprise . chiffre d'affaires:
               - imposition . IS
         plancher: 0€/an
         arrondi: oui
-  description: |
-    ### Chiffre d'affaires estimé
-    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées 
-    pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités 
-    vendues.
 
 entreprise . chiffre d'affaires . vente restauration hébergement:
   titre: Vente de biens, restauration, hébergement (BIC)

@@ -153,7 +153,7 @@ export default RevenuAprèsImpot
 
 const StyledRuleLink = styled(RuleLink)`
 	display: inline-flex;
-	margin-left: ${({ theme }) => theme.spacings.xxs};
+	margin-left: 0.15rem;
 	&:hover {
 		opacity: 0.8;
 	}

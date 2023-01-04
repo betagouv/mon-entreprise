@@ -1,5 +1,5 @@
 import Engine from 'publicodes'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
@@ -22,6 +22,8 @@ type ComparateurProps = {
 }
 
 function Comparateur({ engines }: ComparateurProps) {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<Simulation
@@ -38,6 +40,7 @@ function Comparateur({ engines }: ComparateurProps) {
 					<SimulationGoal
 						dottedName="entreprise . chiffre d'affaires"
 						isInfoMode
+						label={t("Chiffre d'affaires estimé")}
 					/>
 					<SimulationGoal dottedName="entreprise . charges" isInfoMode />
 				</SimulationGoals>
