@@ -21,7 +21,7 @@ export function Radio(props: RadioProps) {
 	return (
 		<RadioSkeleton role="radio" aria-atomic {...props}>
 			{!hideRadio && <RadioPoint />}
-			<LabelBody as="span" for={id} $hideRadio={hideRadio}>
+			<LabelBody as="span" htmlFor={id} $hideRadio={hideRadio}>
 				{children}
 			</LabelBody>
 		</RadioSkeleton>
@@ -40,7 +40,7 @@ export const RadioSkeleton = (props: RadioProps) => {
 	const { inputProps } = useRadio(ariaProps, state, ref)
 
 	return (
-		<Label $hideRadio={hideRadio} for={id} className={props.className}>
+		<Label $hideRadio={hideRadio} htmlFor={id} className={props.className}>
 			<InputRadio {...inputProps} className="sr-only" ref={ref} id={id} />
 			<VisibleRadio>{children}</VisibleRadio>
 		</Label>
@@ -122,7 +122,7 @@ export const VisibleRadio = styled.span`
 	}
 `
 
-const Label = styled.label<{ $hideRadio?: boolean; for?: string }>`
+const Label = styled.label<{ $hideRadio?: boolean; htmlFor?: string }>`
 	${({ $hideRadio }) =>
 		$hideRadio &&
 		css`
@@ -133,7 +133,10 @@ const Label = styled.label<{ $hideRadio?: boolean; for?: string }>`
 	}
 `
 
-export const LabelBody = styled(Body)<{ $hideRadio?: boolean; for?: string }>`
+export const LabelBody = styled(Body)<{
+	$hideRadio?: boolean
+	htmlFor?: string
+}>`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 	${({ $hideRadio }) =>
