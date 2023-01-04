@@ -52,28 +52,33 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							La retraite <Emoji emoji="🧐" />
+							<Trans>La retraite</Trans> <Emoji emoji="🧐" />
 						</ItemTitle>
 					}
 					key="retraite"
 					hasChildItems={false}
 				>
 					<Body>
-						Le montant de votre retraite est constitué de{' '}
-						<Strong>
-							votre retraite de base + votre retraite complémentaire
-						</Strong>
-						.
+						<Trans>
+							Le montant de votre retraite est constitué de{' '}
+							<Strong>
+								votre retraite de base + votre retraite complémentaire
+							</Strong>
+							.
+						</Trans>
 					</Body>
 					<StyledH4>
 						<Trans>Retraite de base</Trans>
 						<ExplicableRule dottedName="protection sociale . retraite . base" />
 					</StyledH4>
 					<Body>
-						La pension calculée correspond à celle de{' '}
-						<Strong>vos 25 meilleures années</Strong>, en considérant que vous
-						avez cotisé suffisamment de trimestres (4 trimestres par an) et que
-						vous partez en retraite à l’âge requis pour obtenir un taux plein.
+						<Trans>
+							La pension calculée correspond à celle de{' '}
+							<Strong>vos 25 meilleures années</Strong>, en considérant que vous
+							avez cotisé suffisamment de trimestres (4 trimestres par an) et
+							que vous partez en retraite à l’âge requis pour obtenir un taux
+							plein.
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={8}>
@@ -121,10 +126,13 @@ const Détails = ({
 						<ExplicableRule dottedName="protection sociale . retraite . complémentaire" />
 					</StyledH4>
 					<Body>
-						La pension calculée correspond à celle de{' '}
-						<Strong>vos 25 meilleures années</Strong>, en considérant que vous
-						avez cotisé suffisamment de trimestres (4 trimestres par an) et que
-						vous partez en retraite à l’âge requis pour obtenir un taux plein.
+						<Trans>
+							La pension calculée correspond à celle de{' '}
+							<Strong>vos 25 meilleures années</Strong>, en considérant que vous
+							avez cotisé suffisamment de trimestres (4 trimestres par an) et
+							que vous partez en retraite à l’âge requis pour obtenir un taux
+							plein.
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
@@ -189,7 +197,7 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							La santé <Emoji emoji="😷" />
+							<Trans>La santé</Trans> <Emoji emoji="😷" />
 						</ItemTitle>
 					}
 					key="santé"
@@ -200,13 +208,17 @@ const Détails = ({
 							margin-bottom: 0;
 						`}
 					>
-						Tous les statuts vous ouvrent le droit au{' '}
-						<Strong>remboursement des soins.</Strong>
+						<Trans>
+							Tous les statuts vous ouvrent le droit au{' '}
+							<Strong>remboursement des soins.</Strong>
+						</Trans>
 					</Body>
 					<BodyNoMargin>
-						Pour tous les statuts, il est conseillé de souscrire à une{' '}
-						<Strong>prévoyance complémentaire (mutuelle)</Strong> pour améliorer
-						le remboursement des frais de santé.
+						<Trans>
+							Pour tous les statuts, il est conseillé de souscrire à une{' '}
+							<Strong>prévoyance complémentaire (mutuelle)</Strong> pour
+							améliorer le remboursement des frais de santé.
+						</Trans>
 					</BodyNoMargin>
 
 					<StyledH4>
@@ -214,10 +226,13 @@ const Détails = ({
 						<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
 					</StyledH4>
 					<Body>
-						La pension calculée correspond à celle de{' '}
-						<Strong>vos 25 meilleures années</Strong>, en considérant que vous
-						avez cotisé suffisamment de trimestres (4 trimestres par an) et que
-						vous partez en retraite à l’âge requis pour obtenir un taux plein.
+						<Trans>
+							La pension calculée correspond à celle de{' '}
+							<Strong>vos 25 meilleures années</Strong>, en considérant que vous
+							avez cotisé suffisamment de trimestres (4 trimestres par an) et
+							que vous partez en retraite à l’âge requis pour obtenir un taux
+							plein.
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
@@ -321,13 +336,15 @@ const Détails = ({
 
 					<StyledH4>
 						<Trans>Accident du travail et maladie professionnelle</Trans>
-						<ExplicableRule dottedName="protection sociale . accidents du travail et maladies professionnelles" />
+						<ExplicableRule dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités" />
 					</StyledH4>
 					<Body>
-						En cas d’<Strong>accident de travail</Strong>, de{' '}
-						<Strong>maladie professionnelle</Strong> ou d’un{' '}
-						<Strong>accident sur le trajet domicile-travail</Strong>, vous serez
-						indemnisé(e) à hauteur de :
+						<Trans>
+							En cas d’<Strong>accident de travail</Strong>, de{' '}
+							<Strong>maladie professionnelle</Strong> ou d’un{' '}
+							<Strong>accident sur le trajet domicile-travail</Strong>, vous
+							serez indemnisé(e) à hauteur de :
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={8}>
@@ -335,37 +352,33 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . accidents du travail et maladies professionnelles"
+										expression="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités"
 										engine={assimiléEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . accidents du travail et maladies professionnelles"
+									dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
 								</StyledRuleLink>
+								<Precisions>
+									<Value
+										linkToRule={false}
+										expression="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
+										engine={assimiléEngine}
+										precision={0}
+										unit="€/mois"
+									/>{' '}
+									<Trans>à partir du 29ème jour</Trans>
+								</Precisions>
 							</StatusCard>
 						</Grid>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['ei', 'ae']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . accidents du travail et maladies professionnelles"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . accidents du travail et maladies professionnelles"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
+								<DisabledLabel>Ne s'applique pas</DisabledLabel>
 							</StatusCard>
 						</Grid>
 					</Grid>
@@ -373,7 +386,8 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							La maternité, paternité et adoption <Emoji emoji="🤗" />
+							<Trans>La maternité, paternité et adoption</Trans>{' '}
+							<Emoji emoji="🤗" />
 						</ItemTitle>
 					}
 					key="enfants"
@@ -384,17 +398,21 @@ const Détails = ({
 							margin-bottom: 0;
 						`}
 					>
-						Tous les statuts vous ouvrent le droit aux{' '}
-						<Strong>indemnités journalières</Strong> de congé maternité,
-						paternité, adoption.
+						<Trans>
+							Tous les statuts vous ouvrent le droit aux{' '}
+							<Strong>indemnités journalières</Strong> de congé maternité,
+							paternité, adoption.
+						</Trans>
 					</Body>
 					<Body
 						css={`
 							margin-top: 0;
 						`}
 					>
-						Pour y prétendre, vous devez avoir cotisé{' '}
-						<Strong>au moins 10 mois</Strong>.
+						<Trans>
+							Pour y prétendre, vous devez avoir cotisé{' '}
+							<Strong>au moins 10 mois</Strong>.
+						</Trans>
 					</Body>
 
 					<Grid container spacing={4}>
@@ -403,14 +421,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . accidents du travail et maladies professionnelles"
+										expression="protection sociale . maladie . maternité paternité adoption"
 										engine={assimiléEngine}
 										precision={0}
 										unit="€/jour"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . accidents du travail et maladies professionnelles"
+									dottedName="protection sociale . maladie . maternité paternité adoption"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -425,14 +443,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . accidents du travail et maladies professionnelles"
+										expression="protection sociale . maladie . maternité paternité adoption"
 										engine={indépendantEngine}
 										precision={0}
 										unit="€/jour"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . accidents du travail et maladies professionnelles"
+									dottedName="protection sociale . maladie . maternité paternité adoption"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -446,15 +464,17 @@ const Détails = ({
 
 					<StyledH4>
 						<Trans>Maternité</Trans>
-						<ExplicableRule dottedName="protection sociale . accidents du travail et maladies professionnelles" />
+						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel" />
 					</StyledH4>
 					<Body>
-						En plus des indemnités journalières, vous pouvez aussi prétendre à
-						une{' '}
-						<Strong>
-							allocation forfaitaire de repos maternel supplémentaire
-						</Strong>
-						.
+						<Trans>
+							En plus des indemnités journalières, vous pouvez aussi prétendre à
+							une{' '}
+							<Strong>
+								allocation forfaitaire de repos maternel supplémentaire
+							</Strong>
+							.
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
@@ -462,14 +482,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . accidents du travail et maladies professionnelles"
+										expression="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
 										engine={assimiléEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . accidents du travail et maladies professionnelles"
+									dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -481,14 +501,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . accidents du travail et maladies professionnelles"
+										expression="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
 										engine={indépendantEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . accidents du travail et maladies professionnelles"
+									dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -499,15 +519,17 @@ const Détails = ({
 
 					<StyledH4>
 						<Trans>Adoption</Trans>
-						<ExplicableRule dottedName="protection sociale . accidents du travail et maladies professionnelles" />
+						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption" />
 					</StyledH4>
 					<Body>
-						En plus des indemnités journalières, vous pouvez aussi prétendre à
-						une{' '}
-						<Strong>
-							allocation forfaitaire de repos parental supplémentaire
-						</Strong>
-						.
+						<Trans>
+							En plus des indemnités journalières, vous pouvez aussi prétendre à
+							une{' '}
+							<Strong>
+								allocation forfaitaire de repos parental supplémentaire
+							</Strong>
+							.
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
@@ -515,14 +537,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . accidents du travail et maladies professionnelles"
+										expression="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
 										engine={assimiléEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . accidents du travail et maladies professionnelles"
+									dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -534,14 +556,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . accidents du travail et maladies professionnelles"
+										expression="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
 										engine={indépendantEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . accidents du travail et maladies professionnelles"
+									dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -553,42 +575,51 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							L'invalidité et le décès <Emoji emoji="🤕" />
+							<Trans>L'invalidité et le décès</Trans> <Emoji emoji="🤕" />
 						</ItemTitle>
 					}
 					key="maladie"
 					hasChildItems={false}
 				>
 					<Body>
-						Tous les statuts cotisent pour une{' '}
-						<Strong>pension invalidité-décès</Strong> qui les{' '}
-						<Strong>protège en cas d’invalidité</Strong> et assure à leurs
-						proches une{' '}
-						<Strong>pension de réversion et un capital en cas de décès</Strong>.
+						<Trans>
+							Tous les statuts cotisent pour une{' '}
+							<Strong>pension invalidité-décès</Strong> qui les{' '}
+							<Strong>protège en cas d’invalidité</Strong> et assure à leurs
+							proches une{' '}
+							<Strong>
+								pension de réversion et un capital en cas de décès
+							</Strong>
+							.
+						</Trans>
 					</Body>
 					<StyledH4>
 						<Trans>Invalidité</Trans>
 						<ExplicableRule dottedName="protection sociale . invalidité et décès" />
 					</StyledH4>
 					<BodyNoMargin>
-						Vous pouvez bénéficier d’une pension invalidité{' '}
-						<Strong>
-							en cas de maladie ou d’accident conduisant à une incapacité à
-							poursuivre votre activité professionnelle
-						</Strong>
-						.
+						<Trans>
+							Vous pouvez bénéficier d’une pension invalidité{' '}
+							<Strong>
+								en cas de maladie ou d’accident conduisant à une incapacité à
+								poursuivre votre activité professionnelle
+							</Strong>
+							.
+						</Trans>
 					</BodyNoMargin>
 					<BodyNoMargin
 						css={`
 							margin-bottom: 1rem;
 						`}
 					>
-						Pour y prétendre, vous devez respecter{' '}
-						<BlackColoredLink href="https://www.service-public.fr/particuliers/vosdroits/F672">
-							certaines règles
-							<StyledExternalLinkIcon />
-						</BlackColoredLink>
-						.
+						<Trans>
+							Pour y prétendre, vous devez respecter{' '}
+							<BlackColoredLink href="https://www.service-public.fr/particuliers/vosdroits/F672">
+								certaines règles
+								<StyledExternalLinkIcon />
+							</BlackColoredLink>
+							.
+						</Trans>
 					</BodyNoMargin>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={8}>
@@ -596,14 +627,15 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
 										engine={assimiléEngine}
 										precision={0}
 										unit="€/mois"
-									/>
+									/>{' '}
+									<Trans>(invalidité partielle)</Trans>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -615,14 +647,15 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
 										engine={indépendantEngine}
 										precision={0}
 										unit="€/mois"
-									/>
+									/>{' '}
+									<Trans>(invalidité partielle)</Trans>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -637,14 +670,15 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
 										engine={assimiléEngine}
 										precision={0}
 										unit="€/mois"
-									/>
+									/>{' '}
+									<Trans>(invalidité totale)</Trans>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -656,14 +690,15 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
 										engine={indépendantEngine}
 										precision={0}
 										unit="€/mois"
-									/>
+									/>{' '}
+									<Trans>(invalidité totale)</Trans>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -676,8 +711,10 @@ const Détails = ({
 							margin-top: 2rem;
 						`}
 					>
-						Pour une invalidité causée par un accident professionnel, vous
-						pouvez bénéficier d’une <Strong>rente d’incapacité</Strong>.
+						<Trans>
+							Pour une invalidité causée par un accident professionnel, vous
+							pouvez bénéficier d’une <Strong>rente d’incapacité</Strong>.
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
@@ -685,14 +722,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité"
 										engine={assimiléEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -701,33 +738,23 @@ const Détails = ({
 						</Grid>
 						<Grid item xs={12} lg={8}>
 							<StatusCard status={['ei', 'ae']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
+								<DisabledLabel>
+									<Trans>Ne s'applique pas</Trans>
+								</DisabledLabel>
 							</StatusCard>
 						</Grid>
 					</Grid>
 
 					<StyledH4>
 						<Trans>Décès</Trans>
-						<ExplicableRule dottedName="protection sociale . invalidité et décès" />
+						<ExplicableRule dottedName="protection sociale . invalidité et décès . capital décès" />
 					</StyledH4>
 					<Body>
-						La Sécurité Sociale garantit un{' '}
-						<Strong>capital décès pour vos ayants droits</Strong>
-						(personnes qui sont à votre charge) sous certaines conditions.
+						<Trans>
+							La Sécurité Sociale garantit un{' '}
+							<Strong>capital décès pour vos ayants droits</Strong>
+							(personnes qui sont à votre charge) sous certaines conditions.
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
@@ -735,14 +762,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . capital décès"
 										engine={assimiléEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . capital décès"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -754,14 +781,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . capital décès"
 										engine={indépendantEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . capital décès"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -775,23 +802,26 @@ const Détails = ({
 							margin-top: 2rem;
 						`}
 					>
-						En plus du capital décès, une <Strong>pension de réversion</Strong>{' '}
-						peut être versée au conjoint survivant. Elle correspond aux{' '}
-						<Strong>droits à la retraite acquis par le défunt</Strong> durant sa
-						vie professionnelle.
+						<Trans>
+							En plus du capital décès, une{' '}
+							<Strong>pension de réversion</Strong> peut être versée au conjoint
+							survivant. Elle correspond aux{' '}
+							<Strong>droits à la retraite acquis par le défunt</Strong> durant
+							sa vie professionnelle.
+						</Trans>
 					</Body>
 					<StatusCard status={['sasu', 'ei', 'ae']}>
 						<span>
 							<Value
 								linkToRule={false}
-								expression="protection sociale . invalidité et décès"
+								expression="protection sociale . invalidité et décès . pension de reversion"
 								engine={indépendantEngine}
 								precision={0}
 								unit="€/mois"
 							/>
 						</span>
 						<StyledRuleLink
-							dottedName="protection sociale . invalidité et décès"
+							dottedName="protection sociale . invalidité et décès . pension de reversion"
 							engine={assimiléEngine}
 						>
 							<HelpIcon />
@@ -803,8 +833,10 @@ const Détails = ({
 							margin-top: 2rem;
 						`}
 					>
-						Pour un décès survenu dans le cadre d’un accident professionnel,
-						vous pouvez bénéficier d’une <Strong>rente de décès</Strong>.
+						<Trans>
+							Pour un décès survenu dans le cadre d’un accident professionnel,
+							vous pouvez bénéficier d’une <Strong>rente de décès</Strong>.
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
@@ -812,14 +844,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
 										engine={assimiléEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -831,14 +863,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
 										engine={indépendantEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -852,8 +884,10 @@ const Détails = ({
 							margin-top: 2rem;
 						`}
 					>
-						Un <Strong>capital « orphelin »</Strong> est versé aux enfants des
-						travailleurs indépendants décédés, sous certaines conditions.
+						<Trans>
+							Un <Strong>capital « orphelin »</Strong> est versé aux enfants des
+							travailleurs indépendants décédés, sous certaines conditions.
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
@@ -868,14 +902,14 @@ const Détails = ({
 								<span>
 									<Value
 										linkToRule={false}
-										expression="protection sociale . invalidité et décès"
+										expression="protection sociale . invalidité et décès . capital décès . orphelin"
 										engine={indépendantEngine}
 										precision={0}
 										unit="€/mois"
 									/>
 								</span>
 								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès"
+									dottedName="protection sociale . invalidité et décès . capital décès . orphelin"
 									engine={assimiléEngine}
 								>
 									<HelpIcon />
@@ -887,7 +921,8 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							La gestion juridique et comptable <Emoji emoji="🤓" />
+							<Trans>La gestion juridique et comptable</Trans>{' '}
+							<Emoji emoji="🤓" />
 						</ItemTitle>
 					}
 					key="administratif"
@@ -898,10 +933,12 @@ const Détails = ({
 						<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
 					</StyledH4>
 					<Body>
-						Les formalités de création d'une entreprise diffèrent selon les
-						statuts et la nature de l'activité. Le calcul se concentre ici sur
-						les <Strong>procédures obligatoires</Strong> (immatriculation,
-						annonces légales, rédaction des statuts...).
+						<Trans>
+							Les formalités de création d'une entreprise diffèrent selon les
+							statuts et la nature de l'activité. Le calcul se concentre ici sur
+							les <Strong>procédures obligatoires</Strong> (immatriculation,
+							annonces légales, rédaction des statuts...).
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
@@ -943,7 +980,9 @@ const Détails = ({
 							</StatusCard>
 						</Grid>
 						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ae']}>Aucun</StatusCard>
+							<StatusCard status={['ae']}>
+								<Trans>Aucun</Trans>
+							</StatusCard>
 						</Grid>
 					</Grid>
 
@@ -961,10 +1000,16 @@ const Détails = ({
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']}>1 € minimum</StatusCard>
+							<StatusCard status={['sasu']}>
+								<Trans>1 € minimum</Trans>
+							</StatusCard>
 						</Grid>
 						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']}>Aucun</StatusCard>
+							<StatusCard status={['ei', 'ae']}>
+								<DisabledLabel>
+									<Trans>Aucun</Trans>
+								</DisabledLabel>
+							</StatusCard>
 						</Grid>
 					</Grid>
 
@@ -973,25 +1018,29 @@ const Détails = ({
 						<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
 					</StyledH4>
 					<Body>
-						Vous êtes marié(e), pacsé(e) ou en union libre avec un chef
-						d’entreprise : il existe <Strong>3 statuts possibles</Strong> pour
-						vous (<Strong>conjoint collaborateur</Strong>,{' '}
-						<Strong>conjoint associé</Strong> ou{' '}
-						<Strong>conjoint salarié</Strong>).
+						<Trans>
+							Vous êtes marié(e), pacsé(e) ou en union libre avec un chef
+							d’entreprise : il existe <Strong>3 statuts possibles</Strong> pour
+							vous (<Strong>conjoint collaborateur</Strong>,{' '}
+							<Strong>conjoint associé</Strong> ou{' '}
+							<Strong>conjoint salarié</Strong>).
+						</Trans>
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>
-								Conjoint associé ou salarié
+								<Trans>Conjoint associé ou salarié</Trans>
 							</StatusCard>
 						</Grid>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['ei']}>
-								Conjoint collaborateur ou salarié
+								<Trans>Conjoint collaborateur ou salarié</Trans>
 							</StatusCard>
 						</Grid>
 						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ae']}>Conjoint collaborateur</StatusCard>
+							<StatusCard status={['ae']}>
+								<Trans>Conjoint collaborateur</Trans>
+							</StatusCard>
 						</Grid>
 					</Grid>
 				</Item>
@@ -1032,10 +1081,14 @@ const StyledDiv = styled.div`
 	}
 `
 
-const Precisions = styled(Body)`
+const Precisions = styled.span`
 	display: block;
+	font-family: ${({ theme }) => theme.fonts.main};
+	font-weight: normal;
+	font-size: 1rem;
 	color: ${({ theme }) => theme.colors.extended.grey[700]};
 	margin: 0;
+	margin-top: 0.5rem;
 	width: 100%;
 `
 
@@ -1052,7 +1105,15 @@ const BlackColoredLink = styled(StyledLink)`
 `
 
 const DisabledLabel = styled(Body)`
-	color: ${({ theme }) => theme.colors.extended.grey[400]};
+	color: ${({ theme }) => theme.colors.extended.grey[600]}!important;
+	font-size: 1.25rem;
+	font-weight: 700;
+	font-style: italic;
+`
+
+const SubInfo = styled.span`
+	font-family: ${({ theme }) => theme.fonts.main};
+	color: ${({ theme }) => theme.colors.extended.grey[700]};
 `
 
 export default Détails
