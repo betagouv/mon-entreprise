@@ -93,26 +93,26 @@ export default function Footer() {
 								{language === 'fr' && (
 									<nav title="Première colonne du menu">
 										<ul>
-											<li>
+											<StyledLi>
 												<Link to={absoluteSitePaths.plan} noUnderline>
 													<Trans>Plan du site</Trans> <Emoji emoji="🧭" />
 												</Link>
-											</li>
-											<li>
+											</StyledLi>
+											<StyledLi>
 												<Link to={absoluteSitePaths.nouveautés} noUnderline>
 													Nouveautés <Emoji emoji="✨" />
 												</Link>
-											</li>
-											<li>
+											</StyledLi>
+											<StyledLi>
 												<Link to={absoluteSitePaths.budget} noUnderline>
 													Budget <Emoji emoji="🔦" />
 												</Link>
-											</li>
-											<li>
+											</StyledLi>
+											<StyledLi>
 												<Link to={absoluteSitePaths.stats} noUnderline>
 													Statistiques <Emoji emoji="📊" />
 												</Link>
-											</li>
+											</StyledLi>
 										</ul>
 									</nav>
 								)}
@@ -120,7 +120,7 @@ export default function Footer() {
 							<FooterColumn>
 								<nav title="Deuxième colonne du menu">
 									<ul>
-										<li>
+										<StyledLi>
 											<Link
 												to={absoluteSitePaths.développeur.index}
 												noUnderline
@@ -128,50 +128,47 @@ export default function Footer() {
 												<Trans>Intégrer nos simulateurs</Trans>{' '}
 												<Emoji emoji="📥" />
 											</Link>
-										</li>
+										</StyledLi>
 										{language === 'fr' && (
-											<li>
+											<StyledLi>
 												<InscriptionBetaTesteur /> <Emoji emoji="💌" />
-											</li>
+											</StyledLi>
 										)}
 										{hrefLink && (
-											<>
-												<Spacing md />
-												<li key={hrefLink.hrefLang}>
-													<Grid container>
-														<Grid item>
-															<StyledButton
-																openInSameWindow
-																href={hrefLink.href}
-																aria-disabled={isFrenchMode}
-																aria-label={t(
-																	isFrenchMode
-																		? 'Version française du site activée.'
-																		: 'Passer à la version française du site'
-																)}
-																lang="fr"
-															>
-																FR <Emoji emoji="🇫🇷" />
-															</StyledButton>
-														</Grid>
-														<Grid item>
-															<StyledButton
-																href={hrefLink.href}
-																openInSameWindow
-																lang="en"
-																aria-disabled={!isFrenchMode}
-																aria-label={t(
-																	!isFrenchMode
-																		? 'English version of the website enabled.'
-																		: 'Switch to the english version of the website'
-																)}
-															>
-																EN <Emoji emoji="🇬🇧" />
-															</StyledButton>
-														</Grid>
+											<StyledLi key={hrefLink.hrefLang}>
+												<Grid container spacing={2}>
+													<Grid item>
+														<StyledButton
+															openInSameWindow
+															href={hrefLink.href}
+															aria-disabled={isFrenchMode}
+															aria-label={t(
+																isFrenchMode
+																	? 'Version française du site activée.'
+																	: 'Passer à la version française du site'
+															)}
+															lang="fr"
+														>
+															FR <Emoji emoji="🇫🇷" />
+														</StyledButton>
 													</Grid>
-												</li>
-											</>
+													<Grid item>
+														<StyledButton
+															href={hrefLink.href}
+															openInSameWindow
+															lang="en"
+															aria-disabled={!isFrenchMode}
+															aria-label={t(
+																!isFrenchMode
+																	? 'English version of the website enabled.'
+																	: 'Switch to the english version of the website'
+															)}
+														>
+															EN <Emoji emoji="🇬🇧" />
+														</StyledButton>
+													</Grid>
+												</Grid>
+											</StyledLi>
 										)}
 									</ul>
 								</nav>
@@ -180,14 +177,14 @@ export default function Footer() {
 							<FooterColumn>
 								<nav title="Troisième colonne du menu">
 									<ul>
-										<li>
+										<StyledLi>
 											<LegalNotice />
-										</li>
-										<li>
+										</StyledLi>
+										<StyledLi>
 											<Privacy />
-										</li>
+										</StyledLi>
 										{language === 'fr' && (
-											<li>
+											<StyledLi>
 												<Link
 													to={absoluteSitePaths.accessibilité}
 													aria-label={t(
@@ -200,7 +197,7 @@ export default function Footer() {
 														Accessibilité : non conforme
 													</Trans>
 												</Link>
-											</li>
+											</StyledLi>
 										)}
 									</ul>
 								</nav>
@@ -221,4 +218,8 @@ const StyledButton = styled(Button)`
 		background-color: ${({ theme }) => theme.colors.bases.primary[300]};
 		pointer-events: none;
 	}
+`
+
+const StyledLi = styled.li`
+	margin-top: ${({ theme }) => theme.spacings.sm};
 `
