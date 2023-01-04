@@ -148,6 +148,7 @@ export default function Footer() {
 																	: 'Passer à la version française du site'
 															)}
 															lang="fr"
+															data-test-id="fr-switch-button"
 														>
 															FR <Emoji emoji="🇫🇷" />
 														</StyledButton>
@@ -163,6 +164,7 @@ export default function Footer() {
 																	? 'English version of the website enabled.'
 																	: 'Switch to the english version of the website'
 															)}
+															data-test-id="en-switch-button"
 														>
 															EN <Emoji emoji="🇬🇧" />
 														</StyledButton>
