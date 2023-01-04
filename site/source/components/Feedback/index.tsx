@@ -157,7 +157,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 
 	return (
 		<StyledButton
-			aria-label={t('Noter la simulation')}
+			aria-label={t('Donner votre avis')}
 			onClick={() => setIsFormOpen(true)}
 			isEmbedded={isEmbedded}
 		>
