@@ -179,9 +179,6 @@ figure {
 	.print-only {
 		display: initial;
 	}
-}
-
-@media print {
 	.print-hidden {
 		display: none !important;
 	}

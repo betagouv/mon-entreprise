@@ -5,7 +5,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import PageFeedback from '@/components/Feedback'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { ConversationProps } from '@/components/conversation/Conversation'
 import { PopoverWithTrigger } from '@/design-system'
@@ -135,22 +134,7 @@ export default function Simulation({
 					</FromTop>
 				</StyledGrid>
 			</Grid>
-			{firstStepCompleted && !hideDetails && (
-				<>
-					<div className="print-hidden">
-						<FadeIn>
-							<PageFeedback
-								customMessage={
-									<Trans i18nKey="feedback.simulator">
-										Êtes-vous satisfait de ce simulateur&nbsp;?
-									</Trans>
-								}
-							/>
-						</FadeIn>
-					</div>
-					{explanations}
-				</>
-			)}
+			{firstStepCompleted && !hideDetails && explanations}
 		</>
 	)
 }

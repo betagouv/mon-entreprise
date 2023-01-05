@@ -1,6 +1,5 @@
 import { useButton } from '@react-aria/button'
 import { useDialog } from '@react-aria/dialog'
-import { FocusScope } from '@react-aria/focus'
 import {
 	OverlayContainer,
 	OverlayProps,
@@ -208,7 +207,8 @@ const PopoverContainer = styled.div<{ $offsetTop: number | null }>`
 					}
 			  `}
 `
-const CloseButtonContainer = styled.div`
+
+export const CloseButtonContainer = styled.div`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
 
 	display: flex;
@@ -216,7 +216,7 @@ const CloseButtonContainer = styled.div`
 	height: ${({ theme }) => theme.spacings.xxl};
 	justify-content: flex-end;
 `
-const CloseButton = styled.button`
+export const CloseButton = styled.button`
 	display: inline-flex;
 	align-items: center;
 

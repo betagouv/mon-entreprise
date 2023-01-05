@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { ScrollToElement } from '@/components/utils/Scroll'
 import { TextAreaField, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Emoji } from '@/design-system/emoji'
+import { Spacing } from '@/design-system/layout'
+import { Strong } from '@/design-system/typography'
+import { H1 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 
 type SubmitError = {
@@ -15,7 +19,42 @@ type SubmitError = {
 
 const SHORT_MAX_LENGTH = 254
 
-export default function FeedbackForm() {
+const FeedbackThankYouContent = () => {
+	const { t } = useTranslation()
+
+	return (
+		<>
+			<StyledEmojiContainer role="img" aria-hidden>
+				<span>
+					<Emoji emoji="🙌" />
+				</span>
+			</StyledEmojiContainer>
+			<H1>
+				<Trans>Merci pour votre message !</Trans>
+			</H1>
+			<Body>
+				<Strong>
+					<Trans>Notre équipe prend en charge votre retour.</Trans>
+				</Strong>
+			</Body>
+			<Body>
+				<Trans>
+					Nous avons à cœur d'améliorer en continu notre site,vos remarques nous
+					sont donc très précieuses.
+				</Trans>
+			</Body>
+			<Spacing lg />
+		</>
+	)
+}
+
+export default function FeedbackForm({
+	isNotSatisfied,
+	title,
+}: {
+	isNotSatisfied: boolean
+	title: string
+}) {
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const [submitError, setSubmitError] = useState<SubmitError | undefined>(
@@ -70,73 +109,94 @@ export default function FeedbackForm() {
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
-			{isSubmittedSuccessfully && (
-				<StyledBody>Merci de votre retour !</StyledBody>
-			)}
+			{isSubmittedSuccessfully && <FeedbackThankYouContent />}
 			{!isSubmittedSuccessfully && (
-				<StyledFeedback>
-					<form
-						onSubmit={(e) => {
-							e.preventDefault()
-							const message = (
-								document.getElementById('message') as HTMLTextAreaElement
-							)?.value
-							const email = (
-								document.getElementById('email') as HTMLInputElement
-							)?.value
+				<>
+					<H1>{title}</H1>
 
-							// message et email sont requis
-							const isMessageEmpty = !message || message === ''
-							const isEmailEmpty = !email || email === ''
+					<StyledFeedback>
+						<form
+							onSubmit={(e) => {
+								e.preventDefault()
+								const message = (
+									document.getElementById('message') as HTMLTextAreaElement
+								)?.value
+								const email = (
+									document.getElementById('email') as HTMLInputElement
+								)?.value
 
-							if (isMessageEmpty || isEmailEmpty) {
-								setSubmitError({
-									message: isMessageEmpty ? requiredErrorMessage : '',
-									email: isEmailEmpty ? requiredErrorEmail : '',
-								})
+								// message et email sont requis
+								const isMessageEmpty = !message || message === ''
+								const isEmailEmpty = !email || email === ''
 
-								return
-							}
+								if (isMessageEmpty || isEmailEmpty) {
+									setSubmitError({
+										message: isMessageEmpty ? requiredErrorMessage : '',
+										email: isEmailEmpty ? requiredErrorEmail : '',
+									})
 
-							void sendMessage({ message, email })
-						}}
-					>
-						<Body>
-							Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
-						</Body>
-						<StyledTextArea
-							name="message"
-							label={t('Votre message (requis)')}
-							onChange={resetSubmitErrorField('message')}
-							description={t(
-								'Éviter de communiquer des informations personnelles'
+									return
+								}
+
+								void sendMessage({ message, email })
+							}}
+						>
+							{isNotSatisfied && (
+								<>
+									<Body>
+										<Trans>
+											Vous n’avez pas été satisfait(e) de votre expérience, nous
+											en sommes désolé(e)s.
+										</Trans>
+									</Body>
+								</>
 							)}
-							id="message"
-							rows={7}
-							isDisabled={isLoading}
-							errorMessage={submitError?.message}
-						/>
-						<StyledDiv>
-							<StyledTextField
-								id="email"
-								name="email"
-								type="email"
-								label={t('Votre adresse e-mail (requise)')}
+
+							<Body>
+								<Strong>
+									<Trans>
+										Que pouvons-nous améliorer pour mieux répondre à vos
+										attentes ?
+									</Trans>
+								</Strong>
+							</Body>
+							<StyledTextArea
+								name="message"
+								label={t('Votre message (requis)')}
+								onChange={resetSubmitErrorField('message')}
 								description={t(
-									'Renseigner une adresse e-mail pour recevoir une réponse'
+									'Éviter de communiquer des informations personnelles'
 								)}
+								id="message"
+								rows={7}
 								isDisabled={isLoading}
-								maxLength={SHORT_MAX_LENGTH}
-								autoComplete="email"
-								errorMessage={submitError?.email}
-								onChange={resetSubmitErrorField('email')}
+								errorMessage={submitError?.message}
+								placeholder={t(
+									'Ex : Des informations plus claires, un calcul détaillé...'
+								)}
 							/>
-						</StyledDiv>
-						<StyledButton isDisabled={isLoading} type="submit">
-							{t('Envoyer')}
-						</StyledButton>
-					</form>
-				</StyledFeedback>
+							<StyledDiv>
+								<StyledTextField
+									id="email"
+									name="email"
+									type="email"
+									label={t('Votre adresse e-mail (requise)')}
+									description={t(
+										'Renseigner une adresse e-mail pour recevoir une réponse'
+									)}
+									isDisabled={isLoading}
+									maxLength={SHORT_MAX_LENGTH}
+									autoComplete="email"
+									errorMessage={submitError?.email}
+									onChange={resetSubmitErrorField('email')}
+								/>
+							</StyledDiv>
+							<StyledButton isDisabled={isLoading} type="submit">
+								{t('Envoyer')}
+							</StyledButton>
+						</form>
+					</StyledFeedback>
+				</>
 			)}
 		</ScrollToElement>
 	)
@@ -174,13 +234,25 @@ const StyledButton = styled(Button)`
 	margin-top: 1rem;
 `
 
-const StyledBody = styled(Body)`
-	font-size: 1.25rem;
-	font-family: ${({ theme }) => theme.fonts.main};
-	text-align: center;
-	padding: 1rem 0;
-`
-
 const StyledDiv = styled.div`
 	margin-top: 1rem;
+`
+
+const StyledEmojiContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 3rem;
+	& > span {
+		background-color: ${({ theme }) => theme.colors.extended.grey[200]};
+		border-radius: 100%;
+		width: 7.5rem;
+		padding: 2rem;
+		font-size: 3rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
 `

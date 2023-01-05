@@ -1,29 +1,30 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import styled, { ThemeProvider } from 'styled-components'
 
-import PageFeedback from '@/components/Feedback'
+import FeedbackButton from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { FooterContainer } from '@/design-system/footer'
 import { FooterColumn } from '@/design-system/footer/column'
-import { Container, Grid, Spacing } from '@/design-system/layout'
+import { Container, Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { alternateLinks, useSitePaths } from '@/sitePaths'
 
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
-import { useShowFeedback } from './useShowFeedback'
 
 const hrefLangLink = alternateLinks()
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
-	const showFeedback = useShowFeedback()
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
+
+	const currentPath = useLocation().pathname
 
 	const currentEnv = import.meta.env.MODE
 	const encodedUri =
@@ -65,7 +66,7 @@ export default function Footer() {
 							: theme.colors.bases.tertiary[100]
 					}
 				>
-					{showFeedback && <PageFeedback />}
+					<FeedbackButton key={`${currentPath}-feedback-key`} />
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}

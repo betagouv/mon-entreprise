@@ -1,5 +1,4 @@
 import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
-import PageFeedback from '@/components/Feedback'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import Conversation from '@/components/conversation/Conversation'
 import Progress from '@/components/ui/Progress'
@@ -142,16 +141,6 @@ export default function Cotisations() {
 						<ShareOrSaveSimulationBanner share print />
 						<Spacing xl />
 					</FromTop>
-				</Container>
-
-				<Container
-					backgroundColor={(theme) =>
-						theme.darkMode
-							? theme.colors.extended.dark[600]
-							: theme.colors.bases.tertiary[100]
-					}
-				>
-					<PageFeedback customMessage="Qu'avez-vous pensé de cet assistant ?" />
 				</Container>
 			</WhenAlreadyDefined>
 		</FromTop>
