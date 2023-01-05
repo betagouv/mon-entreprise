@@ -28,6 +28,7 @@ export default function SchemeComparaisonPage() {
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
+				'entreprise . imposition': "'IS'",
 				'entreprise . catégorie juridique': "'SAS'",
 				'entreprise . catégorie juridique . SAS . unipersonnelle': 'oui',
 			}),
@@ -48,7 +49,8 @@ export default function SchemeComparaisonPage() {
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				'entreprise . imposition': "'IS'",
+				'entreprise . imposition':
+					situation['entreprise . imposition'] ?? "'IS'",
 				'entreprise . catégorie juridique': "'EI'",
 				'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
 			}),

@@ -1,6 +1,5 @@
 import Engine from 'publicodes'
-import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 import { DottedName } from '@/../../modele-social'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -8,10 +7,6 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import {
-	SimulationGoalsContainer,
-	ToggleSection,
-} from '@/components/Simulation/SimulationGoals'
 import { Spacing } from '@/design-system/layout'
 
 import Détails from './Détails'

@@ -72,7 +72,15 @@ const RevenuAprèsImpot = ({
 									{ isChecked: true, label: t("Tient compte de l'ACRE") },
 									{
 										isChecked: true,
-										label: t("Choix d'imposition : impôt sur les sociétés"),
+										label: t(
+											`Choix d'imposition : impôt sur ${
+												indépendantEngine.evaluate({
+													valeur: 'entreprise . imposition',
+												}).nodeValue === 'IS'
+													? 'les sociétés'
+													: 'le revenu'
+											}`
+										),
 									},
 								]}
 							/>
@@ -119,7 +127,10 @@ const RevenuAprèsImpot = ({
 										),
 									},
 									{
-										isChecked: true,
+										isChecked: autoEntrepreneurEngine.evaluate({
+											valeur:
+												'dirigeant . auto-entrepreneur . impôt . versement libératoire',
+										}).nodeValue as boolean,
 										label: t("Versement libératoire de l'impôt sur le revenu"),
 									},
 								]}

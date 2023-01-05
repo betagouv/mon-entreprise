@@ -11,8 +11,9 @@ import { SwitchInput } from '@/components/conversation/ChoicesInput'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { useEngine } from '@/components/utils/EngineContext'
+import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { ArrowRightIcon } from '@/design-system/icons'
+import { ArrowRightIcon, InfoIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { Tag } from '@/design-system/tag'
@@ -293,7 +294,41 @@ const AllerPlusLoinRevenus = ({
 					<Strong>impôt sur le revenu</Strong> qui est appliqué automatiquement.
 				</Body>
 				<Spacing xxs />
-				<H5 as="h3">Choisir mon option de simulation</H5>
+				<Message type="secondary">
+					<Grid
+						container
+						css={`
+							flex-wrap: nowrap;
+							align-items: baseline;
+						`}
+						spacing={3}
+					>
+						<Grid item>
+							<InfoIcon
+								css={`
+									padding-top: 0.15rem;
+									display: inline-block;
+								`}
+								aria-label={t('Message à caractère informatif')}
+							/>
+						</Grid>
+						<Grid item>
+							<Body
+								css={`
+									font-size: 0.875rem;
+								`}
+							>
+								<Trans>
+									À ce jour, ce comparateur ne prend pas en compte le calcul de
+									l'impôt sur le revenu pour les SASU. La modification du
+									paramètre ci-dessous influera donc uniquement les calculs liés
+									au statut d'entreprise individuelle (EI).
+								</Trans>
+							</Body>
+						</Grid>
+					</Grid>
+				</Message>
+				<H5 as="h3">Choisir mon option de simulation (pour EI)</H5>
 				<RuleInput
 					dottedName={DOTTEDNAME_SOCIETE_IMPOT}
 					onChange={(value: PublicodesExpression | undefined) => {
