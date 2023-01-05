@@ -1,13 +1,14 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 import PageFeedback from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
+import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { FooterContainer } from '@/design-system/footer'
 import { FooterColumn } from '@/design-system/footer/column'
-import { Container } from '@/design-system/layout'
+import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { alternateLinks, useSitePaths } from '@/sitePaths'
@@ -34,7 +35,10 @@ export default function Footer() {
 		currentEnv === 'production'
 			? (encodedUri || '').replace(/\/$/, '')
 			: encodedUri || ''
-	const hrefLink = hrefLangLink[language][uri]
+	const hrefLink =
+		hrefLangLink[language][uri] ?? hrefLangLink[language][uri + '/']
+
+	const isFrenchMode = language === 'fr'
 
 	return (
 		<>
@@ -87,85 +91,102 @@ export default function Footer() {
 						>
 							<FooterColumn>
 								{language === 'fr' && (
-									<nav title="firstColumnNav">
+									<nav title="Première colonne du menu">
 										<ul>
-											<li>
+											<StyledLi>
 												<Link to={absoluteSitePaths.plan} noUnderline>
-													<Trans>Plan du site</Trans>
+													<Trans>Plan du site</Trans> <Emoji emoji="🧭" />
 												</Link>
-											</li>
-											<li>
+											</StyledLi>
+											<StyledLi>
 												<Link to={absoluteSitePaths.nouveautés} noUnderline>
 													Nouveautés <Emoji emoji="✨" />
 												</Link>
-											</li>
-											<li>
-												<Link to={absoluteSitePaths.stats} noUnderline>
-													Stats <Emoji emoji="📊" />
-												</Link>
-											</li>
-											<li>
+											</StyledLi>
+											<StyledLi>
 												<Link to={absoluteSitePaths.budget} noUnderline>
-													Budget <Emoji emoji="💶" />
+													Budget <Emoji emoji="🔦" />
 												</Link>
-											</li>
+											</StyledLi>
+											<StyledLi>
+												<Link to={absoluteSitePaths.stats} noUnderline>
+													Statistiques <Emoji emoji="📊" />
+												</Link>
+											</StyledLi>
 										</ul>
 									</nav>
 								)}
 							</FooterColumn>
 							<FooterColumn>
-								<nav title="secondColumnNav">
+								<nav title="Deuxième colonne du menu">
 									<ul>
-										<li>
+										<StyledLi>
 											<Link
 												to={absoluteSitePaths.développeur.index}
 												noUnderline
 											>
-												<Trans>Intégrer nos simulateurs</Trans>
+												<Trans>Intégrer nos simulateurs</Trans>{' '}
+												<Emoji emoji="📥" />
 											</Link>
-										</li>
+										</StyledLi>
 										{language === 'fr' && (
-											<li>
-												<InscriptionBetaTesteur />
-											</li>
+											<StyledLi>
+												<InscriptionBetaTesteur /> <Emoji emoji="💌" />
+											</StyledLi>
 										)}
 										{hrefLink && (
-											<li key={hrefLink.hrefLang}>
-												<Link
-													href={hrefLink.href}
-													openInSameWindow
-													lang={hrefLink.hrefLang === 'en' ? 'en' : 'fr'}
-													noUnderline
-												>
-													{hrefLink.hrefLang === 'fr' ? (
-														<>
-															Passer en français <Emoji emoji="🇫🇷" />
-														</>
-													) : hrefLink.hrefLang === 'en' ? (
-														<>
-															Switch to English <Emoji emoji="🇬🇧" />
-														</>
-													) : (
-														hrefLink.hrefLang
-													)}
-												</Link>
-											</li>
+											<StyledLi key={hrefLink.hrefLang}>
+												<Grid container spacing={2}>
+													<Grid item>
+														<StyledButton
+															openInSameWindow
+															href={hrefLink.href}
+															aria-disabled={isFrenchMode}
+															aria-label={t(
+																isFrenchMode
+																	? 'Version française du site activée.'
+																	: 'Passer à la version française du site'
+															)}
+															lang="fr"
+															data-test-id="fr-switch-button"
+														>
+															FR <Emoji emoji="🇫🇷" />
+														</StyledButton>
+													</Grid>
+													<Grid item>
+														<StyledButton
+															href={hrefLink.href}
+															openInSameWindow
+															lang="en"
+															aria-disabled={!isFrenchMode}
+															aria-label={t(
+																!isFrenchMode
+																	? 'English version of the website enabled.'
+																	: 'Switch to the english version of the website'
+															)}
+															data-test-id="en-switch-button"
+														>
+															EN <Emoji emoji="🇬🇧" />
+														</StyledButton>
+													</Grid>
+												</Grid>
+											</StyledLi>
 										)}
 									</ul>
 								</nav>
 							</FooterColumn>
 
 							<FooterColumn>
-								<nav title="thirdColumnNav">
+								<nav title="Troisième colonne du menu">
 									<ul>
-										<li>
+										<StyledLi>
 											<LegalNotice />
-										</li>
-										<li>
+										</StyledLi>
+										<StyledLi>
 											<Privacy />
-										</li>
+										</StyledLi>
 										{language === 'fr' && (
-											<li>
+											<StyledLi>
 												<Link
 													to={absoluteSitePaths.accessibilité}
 													aria-label={t(
@@ -178,7 +199,7 @@ export default function Footer() {
 														Accessibilité : non conforme
 													</Trans>
 												</Link>
-											</li>
+											</StyledLi>
 										)}
 									</ul>
 								</nav>
@@ -190,3 +211,17 @@ export default function Footer() {
 		</>
 	)
 }
+
+const StyledButton = styled(Button)`
+	padding: 10px 16px 10px 16px;
+	border-radius: 4px;
+
+	&[aria-disabled='true'] {
+		background-color: ${({ theme }) => theme.colors.bases.primary[300]};
+		pointer-events: none;
+	}
+`
+
+const StyledLi = styled.li`
+	margin-top: ${({ theme }) => theme.spacings.sm};
+`

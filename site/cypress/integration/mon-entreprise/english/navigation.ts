@@ -7,7 +7,9 @@ describe('General navigation', function () {
 		cy.visit(
 			fr ? encodeURI('/créer/auto-entrepreneur') : '/create/auto-entrepreneur'
 		)
-		cy.contains(fr ? 'Switch to English' : 'Passer en français').click()
+		cy.get(
+			fr ? '[data-test-id=en-switch-button]' : '[data-test-id=fr-switch-button]'
+		).click()
 		cy.url().should(
 			'include',
 			fr ? '/create/auto-entrepreneur' : encodeURI('/créer/auto-entrepreneur')

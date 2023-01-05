@@ -50,9 +50,11 @@ export default function SearchOrCreate() {
 									to={generatePath(absoluteSitePaths.gérer.entreprise, {
 										entreprise: companySIREN as string,
 									})}
-									aria-label="Voir ma situation, accéder à la page de gestion de mon entreprise"
+									aria-label={t(
+										'Voir ma situation, accéder à la page de gestion de mon entreprise'
+									)}
 								>
-									Voir ma situation
+									{t('Voir ma situation')}
 								</Button>
 								<PopoverConfirm
 									trigger={(buttonProps) => (
@@ -61,7 +63,7 @@ export default function SearchOrCreate() {
 											aria-label={t('Réinitialiser la situation enregistrée')}
 											{...buttonProps}
 										>
-											Réinitialiser
+											{t('Réinitialiser')}
 										</Button>
 									)}
 									onConfirm={() => dispatch(resetCompany())}

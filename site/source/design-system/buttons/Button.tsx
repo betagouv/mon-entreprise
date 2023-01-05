@@ -18,6 +18,8 @@ type ButtonProps = GenericButtonOrNavLinkProps & {
 	size?: Size
 	light?: boolean
 	role?: string
+	['aria-disabled']?: boolean
+	lang?: string
 }
 
 export const Button = forwardRef(function Button(
@@ -27,6 +29,7 @@ export const Button = forwardRef(function Button(
 		color = 'primary' as const,
 		isDisabled,
 		role,
+		lang,
 		...ariaButtonProps
 	}: ButtonProps,
 	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement | null>
@@ -44,6 +47,8 @@ export const Button = forwardRef(function Button(
 			$color={color}
 			$isDisabled={isDisabled}
 			role={role}
+			aria-disabled={ariaButtonProps?.['aria-disabled']}
+			lang={lang}
 		/>
 	)
 })
