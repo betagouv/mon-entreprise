@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { DottedName } from '@/../../modele-social'
 import { answerQuestion } from '@/actions/actions'
 import Value from '@/components/EngineValue'
+import { SwitchInput } from '@/components/conversation/ChoicesInput'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -58,7 +59,6 @@ const AllerPlusLoinRevenus = ({
 			)}
 			confirmLabel="Enregistrer les options"
 			onConfirm={() => {
-				console.log({ impotValue, versementLiberatoireValue })
 				dispatch(
 					answerQuestion(
 						DOTTEDNAME_SOCIETE_IMPOT,
@@ -302,6 +302,7 @@ const AllerPlusLoinRevenus = ({
 					key="imposition"
 					aria-labelledby="questionHeader"
 					inputType="toggle"
+					engine={indépendantEngine}
 				/>
 				<Body>
 					En auto-entreprise, dans certaines situations, vous pouvez opter pour
@@ -314,15 +315,13 @@ const AllerPlusLoinRevenus = ({
 					.
 				</Body>
 				<FlexCentered>
-					<RuleInput
-						dottedName={DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE}
+					<SwitchInput
 						key="versement-liberatoire"
 						id="versement-liberatoire"
-						inputType="switch"
-						onChange={(value: PublicodesExpression | undefined) => {
+						onChange={(value: boolean) => {
 							setVersementLiberatoireValue(value ? 'oui' : 'non')
 						}}
-						engine={autoEntrepreneurEngine}
+						defaultSelected={versementLiberatoireValue === 'oui'}
 					/>
 					<Label htmlFor="versement-liberatoire">
 						Activer le versement libératoire dans la simulation.

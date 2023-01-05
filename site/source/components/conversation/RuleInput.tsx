@@ -15,12 +15,7 @@ import { EngineContext } from '@/components/utils/EngineContext'
 import { useShouldFocusField } from '@/hooks/useShouldFocusField'
 import { getMeta } from '@/utils'
 
-import {
-	Choice,
-	MultipleAnswerInput,
-	OuiNonInput,
-	SwitchInput,
-} from './ChoicesInput'
+import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import ParagrapheInput from './ParagrapheInput'
 import TextInput from './TextInput'
@@ -49,7 +44,7 @@ type Props<Names extends string = DottedName> = Omit<
 	// cf .https://github.com/betagouv/mon-entreprise/issues/1489#issuecomment-823058710
 	showDefaultDateValue?: boolean
 	onSubmit?: (source?: string) => void
-	inputType?: InputType | 'switch'
+	inputType?: InputType
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
 	modifiers?: Record<string, string>
@@ -95,7 +90,6 @@ export default function RuleInput<Names extends string = DottedName>({
 	const rule = engineValue.getRule(dottedName)
 	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
-
 	const shouldFocusField = useShouldFocusField()
 
 	const commonProps: InputProps<Names> = {
@@ -130,7 +124,7 @@ export default function RuleInput<Names extends string = DottedName>({
 			<MultipleAnswerInput
 				{...commonProps}
 				choice={buildVariantTree(engineValue, dottedName)}
-				type={type as InputType}
+				type={type}
 			/>
 		)
 	}
@@ -165,10 +159,6 @@ export default function RuleInput<Names extends string = DottedName>({
 
 	if (rule.rawNode.type === 'date') {
 		return <DateInput {...commonProps} />
-	}
-
-	if (inputType === 'switch') {
-		return <SwitchInput {...commonProps} />
 	}
 
 	if (

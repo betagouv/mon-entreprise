@@ -48,6 +48,7 @@ export default function SchemeComparaisonPage() {
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
+				'entreprise . imposition': "'IS'",
 				'entreprise . catégorie juridique': "'EI'",
 				'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
 			}),

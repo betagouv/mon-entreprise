@@ -1,9 +1,7 @@
-import { Types } from '@storybook/addons'
 import { DottedName } from 'modele-social'
 import {
 	EvaluatedNode,
 	Evaluation,
-	PublicodesExpression,
 	RuleNode,
 	serializeEvaluation,
 } from 'publicodes'
@@ -344,19 +342,22 @@ export function useSelection<Names extends string = DottedName>({
 	return { currentSelection, handleChange, defaultValue }
 }
 
-export const SwitchInput = <Names extends string = DottedName>(
-	props: InputProps<Names>
-) => {
-	const { onChange } = props
+export const SwitchInput = (props: {
+	onChange?: (isSelected: boolean) => void
+	defaultSelected?: boolean
+	label?: string
+	id?: string
+}) => {
+	const { onChange, id, label, defaultSelected } = props
 
 	return (
 		<Switch
-			onChange={(isSelected: boolean) =>
-				onChange(isSelected as unknown as PublicodesExpression | undefined)
-			}
+			defaultSelected={defaultSelected}
+			onChange={(isSelected: boolean) => onChange && onChange(isSelected)}
 			light
+			id={id}
 		>
-			{props?.label}
+			{label}
 		</Switch>
 	)
 }
