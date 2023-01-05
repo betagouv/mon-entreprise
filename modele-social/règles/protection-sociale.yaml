@@ -510,8 +510,10 @@ protection sociale . maladie . maternité paternité adoption:
         Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la naissance / à l’adoption.
       valeur: 10 mois
 
-    allocation forfaitaire de repos maternel: non
-    allocation forfaitaire de repos adoption: non
+    allocation forfaitaire de repos maternel:
+      non applicable si: oui
+    allocation forfaitaire de repos adoption:
+      non applicable si: oui
 
     salarié:
       applicable si: salarié

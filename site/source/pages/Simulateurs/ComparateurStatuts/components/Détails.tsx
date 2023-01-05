@@ -216,7 +216,6 @@ const Détails = ({
 							serez indemnisé(e) à hauteur de :
 						</Trans>
 					</Body>
-					<div>new</div>
 					<DetailsRowCards
 						dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités"
 						engines={[
@@ -229,43 +228,6 @@ const Détails = ({
 						evolutionDottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
 						evolutionLabel={<Trans>à partir du 29ème jour</Trans>}
 					/>
-					<div>old</div>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-								<Precisions>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>{' '}
-									<Trans>à partir du 29ème jour</Trans>
-								</Precisions>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']}>
-								<DisabledLabel>Ne s'applique pas</DisabledLabel>
-							</StatusCard>
-						</Grid>
-					</Grid>
 				</Item>
 				<Item
 					title={
@@ -333,6 +295,7 @@ const Détails = ({
 						]}
 						bestOption="ei"
 						unit="€/mois"
+						label={<Trans>versé en deux fois</Trans>}
 					/>
 
 					<StyledH4>
@@ -442,7 +405,6 @@ const Détails = ({
 							pouvez bénéficier d’une <Strong>rente d’incapacité</Strong>.
 						</Trans>
 					</Body>
-					<div>new</div>
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité"
 						engines={[
@@ -453,35 +415,6 @@ const Détails = ({
 						bestOption="sasu"
 						unit="€/mois"
 					/>
-					<div>old</div>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']}>
-								<DisabledLabel>
-									<Trans>Ne s'applique pas</Trans>
-								</DisabledLabel>
-							</StatusCard>
-						</Grid>
-					</Grid>
 
 					<StyledH4>
 						<Trans>Décès</Trans>
@@ -539,7 +472,7 @@ const Détails = ({
 							vous pouvez bénéficier d’une <Strong>rente de décès</Strong>.
 						</Trans>
 					</Body>
-					<div>new</div>
+
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
 						engines={[
@@ -550,47 +483,6 @@ const Détails = ({
 						unit="€/mois"
 						bestOption="sasu"
 					/>
-					<div>old</div>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
 
 					<Body
 						css={`
@@ -602,7 +494,7 @@ const Détails = ({
 							travailleurs indépendants décédés, sous certaines conditions.
 						</Trans>
 					</Body>
-					<div>new</div>
+
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . capital décès . orphelin"
 						engines={[
@@ -613,35 +505,6 @@ const Détails = ({
 						unit="€/mois"
 						bestOption="ei"
 					/>
-					<div>old</div>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']}>
-								<DisabledLabel>
-									<Trans>Ne s'applique pas</Trans>
-								</DisabledLabel>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . capital décès . orphelin"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . capital décès . orphelin"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
 				</Item>
 				<Item
 					title={

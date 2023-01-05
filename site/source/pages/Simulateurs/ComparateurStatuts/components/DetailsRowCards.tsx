@@ -47,10 +47,10 @@ const DetailsRowCards = ({
 						isBestOption={bestOption === 'sasu'}
 						footerContent={footers?.sasu}
 					>
-						<WhenNotApplicable dottedName={dottedName}>
+						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
 						</WhenNotApplicable>
-						<WhenApplicable dottedName={dottedName}>
+						<WhenApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<span>
 								<Value
 									linkToRule={false}
@@ -86,10 +86,16 @@ const DetailsRowCards = ({
 						footerContent={footers?.ei}
 						isBestOption={bestOption === 'ae'}
 					>
-						<WhenNotApplicable dottedName={dottedName}>
+						<WhenNotApplicable
+							dottedName={dottedName}
+							engine={autoEntrepreneurEngine}
+						>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
 						</WhenNotApplicable>
-						<WhenApplicable dottedName={dottedName}>
+						<WhenApplicable
+							dottedName={dottedName}
+							engine={autoEntrepreneurEngine}
+						>
 							<span>
 								<Value
 									linkToRule={false}
@@ -132,10 +138,10 @@ const DetailsRowCards = ({
 						footerContent={footers?.sasu}
 						isBestOption={bestOption === 'sasu'}
 					>
-						<WhenNotApplicable dottedName={dottedName}>
+						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
 						</WhenNotApplicable>
-						<WhenApplicable dottedName={dottedName}>
+						<WhenApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<span>
 								<Value
 									linkToRule={false}
@@ -171,10 +177,13 @@ const DetailsRowCards = ({
 						footerContent={footers?.ei}
 						isBestOption={bestOption === 'ei'}
 					>
-						<WhenNotApplicable dottedName={dottedName}>
+						<WhenNotApplicable
+							dottedName={dottedName}
+							engine={indépendantEngine}
+						>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
 						</WhenNotApplicable>
-						<WhenApplicable dottedName={dottedName}>
+						<WhenApplicable dottedName={dottedName} engine={indépendantEngine}>
 							<span>
 								<Value
 									linkToRule={false}
@@ -219,20 +228,37 @@ const DetailsRowCards = ({
 					footerContent={footers?.sasu}
 					isBestOption={bestOption === 'sasu'}
 				>
-					<span>
-						<Value
-							linkToRule={false}
-							expression={dottedName}
-							engine={assimiléEngine}
-							precision={0}
-							unit={unit}
-						/>
-						{label && ' '}
-						{label && label}
-					</span>
-					<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
-						<HelpIcon />
-					</StyledRuleLink>
+					<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
+						<DisabledLabel>Ne s'applique pas</DisabledLabel>
+					</WhenNotApplicable>
+					<WhenApplicable dottedName={dottedName} engine={assimiléEngine}>
+						<span>
+							<Value
+								linkToRule={false}
+								expression={dottedName}
+								engine={assimiléEngine}
+								precision={0}
+								unit={unit}
+							/>
+							{label && ' '}
+							{label && label}
+						</span>
+						<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
+							<HelpIcon />
+						</StyledRuleLink>
+						{evolutionDottedName && (
+							<Precisions>
+								<Value
+									linkToRule={false}
+									expression={evolutionDottedName}
+									engine={assimiléEngine}
+									precision={0}
+									unit={unit}
+								/>{' '}
+								{evolutionLabel}
+							</Precisions>
+						)}
+					</WhenApplicable>
 				</StatusCard>
 			</Grid>
 			<Grid item xs={12} lg={4}>
@@ -241,20 +267,37 @@ const DetailsRowCards = ({
 					footerContent={footers?.ei}
 					isBestOption={bestOption === 'ei'}
 				>
-					<span>
-						<Value
-							linkToRule={false}
-							expression={dottedName}
-							engine={indépendantEngine}
-							precision={0}
-							unit={unit}
-						/>
-						{label && ' '}
-						{label && label}
-					</span>
-					<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
-						<HelpIcon />
-					</StyledRuleLink>
+					<WhenNotApplicable dottedName={dottedName} engine={indépendantEngine}>
+						<DisabledLabel>Ne s'applique pas</DisabledLabel>
+					</WhenNotApplicable>
+					<WhenApplicable dottedName={dottedName} engine={indépendantEngine}>
+						<span>
+							<Value
+								linkToRule={false}
+								expression={dottedName}
+								engine={indépendantEngine}
+								precision={0}
+								unit={unit}
+							/>
+							{label && ' '}
+							{label && label}
+						</span>
+						<StyledRuleLink dottedName={dottedName} engine={indépendantEngine}>
+							<HelpIcon />
+						</StyledRuleLink>
+						{evolutionDottedName && (
+							<Precisions>
+								<Value
+									linkToRule={false}
+									expression={evolutionDottedName}
+									engine={indépendantEngine}
+									precision={0}
+									unit={unit}
+								/>{' '}
+								{evolutionLabel}
+							</Precisions>
+						)}
+					</WhenApplicable>
 				</StatusCard>
 			</Grid>
 			<Grid item xs={12} lg={4}>
@@ -263,20 +306,46 @@ const DetailsRowCards = ({
 					footerContent={footers?.ae}
 					isBestOption={bestOption === 'ae'}
 				>
-					<span>
-						<Value
-							linkToRule={false}
-							expression={dottedName}
+					<WhenNotApplicable
+						dottedName={dottedName}
+						engine={autoEntrepreneurEngine}
+					>
+						<DisabledLabel>Ne s'applique pas</DisabledLabel>
+					</WhenNotApplicable>
+					<WhenApplicable
+						dottedName={dottedName}
+						engine={autoEntrepreneurEngine}
+					>
+						<span>
+							<Value
+								linkToRule={false}
+								expression={dottedName}
+								engine={autoEntrepreneurEngine}
+								precision={0}
+								unit={unit}
+							/>
+							{label && ' '}
+							{label && label}
+						</span>
+						<StyledRuleLink
+							dottedName={dottedName}
 							engine={autoEntrepreneurEngine}
-							precision={0}
-							unit={unit}
-						/>{' '}
-						{label && ' '}
-						{label && label}
-					</span>
-					<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
-						<HelpIcon />
-					</StyledRuleLink>
+						>
+							<HelpIcon />
+						</StyledRuleLink>
+						{evolutionDottedName && (
+							<Precisions>
+								<Value
+									linkToRule={false}
+									expression={evolutionDottedName}
+									engine={autoEntrepreneurEngine}
+									precision={0}
+									unit={unit}
+								/>{' '}
+								{evolutionLabel}
+							</Precisions>
+						)}
+					</WhenApplicable>
 				</StatusCard>
 			</Grid>
 		</Grid>

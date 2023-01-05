@@ -125,12 +125,19 @@ export function Condition({ expression, children }: ConditionProps) {
 export function WhenApplicable({
 	dottedName,
 	children,
+	engine,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
+	engine?: Engine<DottedName>
 }) {
-	const engine = useEngine()
-	if (engine.evaluate({ 'est applicable': dottedName }).nodeValue !== true) {
+	const defaultEngine = useEngine()
+
+	const engineValue = engine ?? defaultEngine
+
+	if (
+		engineValue.evaluate({ 'est applicable': dottedName }).nodeValue !== true
+	) {
 		return null
 	}
 
@@ -140,13 +147,19 @@ export function WhenApplicable({
 export function WhenNotApplicable({
 	dottedName,
 	children,
+	engine,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
+	engine?: Engine<DottedName>
 }) {
-	const engine = useEngine()
+	const defaultEngine = useEngine()
+
+	const engineValue = engine ?? defaultEngine
+
 	if (
-		engine.evaluate({ 'est non applicable': dottedName }).nodeValue !== true
+		engineValue.evaluate({ 'est non applicable': dottedName }).nodeValue !==
+		true
 	) {
 		return null
 	}
