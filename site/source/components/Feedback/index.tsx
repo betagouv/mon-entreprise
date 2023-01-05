@@ -7,6 +7,7 @@ import { TrackingContext } from '@/ATInternetTracking'
 import { Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
+import { FocusStyle } from '@/design-system/global-style'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
@@ -83,7 +84,33 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 
 	if (isFormOpen) {
 		return (
-			<Section ref={containerRef} $isEmbedded={isEmbedded}>
+			<Section ref={containerRef} $isEmbedded={isEmbedded} aria-expanded={true}>
+				<CloseButtonContainer>
+					<CloseButton
+						onClick={() => setIsFormOpen(false)}
+						aria-label={t('Fermer le module "Donner son avis"')}
+					>
+						Fermer
+						<svg
+							role="img"
+							aria-hidden
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								fillRule="evenodd"
+								clipRule="evenodd"
+								d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
+							/>
+							<path
+								fillRule="evenodd"
+								clipRule="evenodd"
+								d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
+							/>
+						</svg>
+					</CloseButton>
+				</CloseButtonContainer>
 				{isShowingThankMessage || !shouldAskFeedback ? (
 					<>
 						<Body>
@@ -127,7 +154,9 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 						size="XXS"
 						light
 						aria-haspopup="dialog"
-						onPress={() => setIsShowingSuggestionForm(true)}
+						onPress={() => {
+							setIsShowingSuggestionForm(true)
+						}}
 					>
 						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
 					</Button>
@@ -160,6 +189,8 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 			aria-label={t('Donner votre avis')}
 			onClick={() => setIsFormOpen(true)}
 			$isEmbedded={isEmbedded}
+			aria-haspopup="dialog"
+			aria-expanded={false}
 		>
 			<Emoji emoji="👋" />
 		</StyledButton>
@@ -225,6 +256,9 @@ const StyledButton = styled.button<{ $isEmbedded?: boolean }>`
 			transform: rotate(0deg);
 		}
 	}
+	&:focus {
+		${FocusStyle}
+	}
 `
 
 const StyledH4 = styled(H4)`
@@ -264,6 +298,28 @@ const Section = styled.section<{ $isEmbedded?: boolean }>`
 
 const ThankYouText = styled(Body)`
 	font-size: 14px;
+`
+
+const CloseButtonContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	background-color: transparent;
+	width: 100%;
+	margin-bottom: ${({ theme }) => theme.spacings.sm};
+`
+
+const CloseButton = styled.button`
+	display: flex;
+	align-items: center;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	color: ${({ theme }) => theme.colors.extended.grey[100]};
+
+	svg {
+		fill: ${({ theme }) => theme.colors.extended.grey[100]};
+		width: 1.5rem;
+	}
 `
 
 export default FeedbackButton
