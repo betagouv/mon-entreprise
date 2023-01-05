@@ -1,4 +1,5 @@
 import Engine from 'publicodes'
+import { ReactNode } from 'react'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
@@ -20,13 +21,17 @@ const DetailsRowCards = ({
 	bestOption,
 	evolutionDottedName,
 	evolutionLabel,
+	footers,
+	label,
 }: {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
 	dottedName: DottedName
 	unit?: string
 	bestOption?: 'sasu' | 'ei' | 'ae'
 	evolutionDottedName?: DottedName
-	evolutionLabel?: string
+	evolutionLabel?: ReactNode | string
+	footers?: { sasu: ReactNode; ei: ReactNode; ae: ReactNode }
+	label?: ReactNode | string
 }) => {
 	const assimiléValue = assimiléEngine.evaluate(dottedName).nodeValue
 	const indépendantValue = indépendantEngine.evaluate(dottedName).nodeValue
@@ -40,6 +45,7 @@ const DetailsRowCards = ({
 					<StatusCard
 						status={['sasu', 'ei']}
 						isBestOption={bestOption === 'sasu'}
+						footerContent={footers?.sasu}
 					>
 						<WhenNotApplicable dottedName={dottedName}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -53,6 +59,8 @@ const DetailsRowCards = ({
 									precision={0}
 									unit={unit}
 								/>
+								{label && ' '}
+								{label && label}
 							</span>
 							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 								<HelpIcon />
@@ -73,7 +81,11 @@ const DetailsRowCards = ({
 					</StatusCard>
 				</Grid>
 				<Grid item xs={12} lg={4}>
-					<StatusCard status={['ae']} isBestOption={bestOption === 'ae'}>
+					<StatusCard
+						status={['ae']}
+						footerContent={footers?.ei}
+						isBestOption={bestOption === 'ae'}
+					>
 						<WhenNotApplicable dottedName={dottedName}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
 						</WhenNotApplicable>
@@ -86,6 +98,8 @@ const DetailsRowCards = ({
 									precision={0}
 									unit={unit}
 								/>
+								{label && ' '}
+								{label && label}
 							</span>
 							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 								<HelpIcon />
@@ -113,7 +127,11 @@ const DetailsRowCards = ({
 		return (
 			<Grid container spacing={4}>
 				<Grid item xs={12} lg={4}>
-					<StatusCard status={['sasu']} isBestOption={bestOption === 'sasu'}>
+					<StatusCard
+						status={['sasu']}
+						footerContent={footers?.sasu}
+						isBestOption={bestOption === 'sasu'}
+					>
 						<WhenNotApplicable dottedName={dottedName}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
 						</WhenNotApplicable>
@@ -126,6 +144,8 @@ const DetailsRowCards = ({
 									precision={0}
 									unit={unit}
 								/>
+								{label && ' '}
+								{label && label}
 							</span>
 							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 								<HelpIcon />
@@ -146,7 +166,11 @@ const DetailsRowCards = ({
 					</StatusCard>
 				</Grid>
 				<Grid item xs={12} lg={8}>
-					<StatusCard status={['ei', 'ae']} isBestOption={bestOption === 'ei'}>
+					<StatusCard
+						status={['ei', 'ae']}
+						footerContent={footers?.ei}
+						isBestOption={bestOption === 'ei'}
+					>
 						<WhenNotApplicable dottedName={dottedName}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
 						</WhenNotApplicable>
@@ -155,12 +179,17 @@ const DetailsRowCards = ({
 								<Value
 									linkToRule={false}
 									expression={dottedName}
-									engine={assimiléEngine}
+									engine={indépendantEngine}
 									precision={0}
 									unit={unit}
 								/>
+								{label && ' '}
+								{label && label}
 							</span>
-							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
+							<StyledRuleLink
+								dottedName={dottedName}
+								engine={indépendantEngine}
+							>
 								<HelpIcon />
 							</StyledRuleLink>
 							{evolutionDottedName && (
@@ -168,7 +197,7 @@ const DetailsRowCards = ({
 									<Value
 										linkToRule={false}
 										expression={evolutionDottedName}
-										engine={assimiléEngine}
+										engine={indépendantEngine}
 										precision={0}
 										unit={unit}
 									/>{' '}
@@ -185,7 +214,11 @@ const DetailsRowCards = ({
 	return (
 		<Grid container spacing={4}>
 			<Grid item xs={12} lg={4}>
-				<StatusCard status={['sasu']} isBestOption={bestOption === 'sasu'}>
+				<StatusCard
+					status={['sasu']}
+					footerContent={footers?.sasu}
+					isBestOption={bestOption === 'sasu'}
+				>
 					<span>
 						<Value
 							linkToRule={false}
@@ -194,6 +227,8 @@ const DetailsRowCards = ({
 							precision={0}
 							unit={unit}
 						/>
+						{label && ' '}
+						{label && label}
 					</span>
 					<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 						<HelpIcon />
@@ -201,7 +236,11 @@ const DetailsRowCards = ({
 				</StatusCard>
 			</Grid>
 			<Grid item xs={12} lg={4}>
-				<StatusCard status={['ei']} isBestOption={bestOption === 'ei'}>
+				<StatusCard
+					status={['ei']}
+					footerContent={footers?.ei}
+					isBestOption={bestOption === 'ei'}
+				>
 					<span>
 						<Value
 							linkToRule={false}
@@ -210,6 +249,8 @@ const DetailsRowCards = ({
 							precision={0}
 							unit={unit}
 						/>
+						{label && ' '}
+						{label && label}
 					</span>
 					<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 						<HelpIcon />
@@ -217,7 +258,11 @@ const DetailsRowCards = ({
 				</StatusCard>
 			</Grid>
 			<Grid item xs={12} lg={4}>
-				<StatusCard status={['ae']} isBestOption={bestOption === 'ae'}>
+				<StatusCard
+					status={['ae']}
+					footerContent={footers?.ae}
+					isBestOption={bestOption === 'ae'}
+				>
 					<span>
 						<Value
 							linkToRule={false}
@@ -225,7 +270,9 @@ const DetailsRowCards = ({
 							engine={autoEntrepreneurEngine}
 							precision={0}
 							unit={unit}
-						/>
+						/>{' '}
+						{label && ' '}
+						{label && label}
 					</span>
 					<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 						<HelpIcon />

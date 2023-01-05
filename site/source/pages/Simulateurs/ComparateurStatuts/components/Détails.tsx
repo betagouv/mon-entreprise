@@ -22,6 +22,7 @@ import { H2, H4 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 
+import DetailsRowCards from './DetailsRowCards'
 import ItemTitle from './ItemTitle'
 import StatusCard from './StatusCard'
 
@@ -80,46 +81,17 @@ const Détails = ({
 							plein.
 						</Trans>
 					</Body>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['sasu', 'ei']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . retraite . base"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . retraite . base"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ae']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . retraite . base"
-										engine={autoEntrepreneurEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . retraite . base"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
+
+					<DetailsRowCards
+						dottedName="protection sociale . retraite . base"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="sasu"
+						unit="€/mois"
+					/>
 
 					<StyledH4>
 						<Trans>Retraite complémentaire</Trans>
@@ -134,65 +106,17 @@ const Détails = ({
 							plein.
 						</Trans>
 					</Body>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . retraite . complémentaire"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . retraite . complémentaire"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ei']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . retraite . complémentaire"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . retraite . complémentaire"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ae']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . retraite . complémentaire"
-										engine={autoEntrepreneurEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . retraite . complémentaire"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
+
+					<DetailsRowCards
+						dottedName="protection sociale . retraite . complémentaire"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="ae"
+						unit="€/mois"
+					/>
 				</Item>
 				<Item
 					title={
@@ -234,105 +158,51 @@ const Détails = ({
 							plein.
 						</Trans>
 					</Body>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard
-								status={['sasu']}
-								footerContent={
-									<StyledDiv>
-										<PlusCircleIcon />
-										<Body>
-											<Trans>
-												Pour y prétendre, vous devez voir cotisé au moins{' '}
-												<Strong>3 mois</Strong>
-											</Trans>
-										</Body>
-									</StyledDiv>
-								}
-							>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . arrêt maladie"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/jour"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . arrêt maladie"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard
-								status={['ei']}
-								footerContent={
-									<StyledDiv>
-										<PlusCircleIcon />
-										<Body>
-											<Trans>
-												Pour y prétendre, vous devez voir cotisé au moins{' '}
-												<Strong>12 mois</Strong>
-											</Trans>
-										</Body>
-									</StyledDiv>
-								}
-							>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . arrêt maladie"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/jour"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . arrêt maladie"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard
-								status={['ae']}
-								isBestOption
-								footerContent={
-									<StyledDiv>
-										<PlusCircleIcon />
-										<Body>
-											<Trans>
-												Pour y prétendre, vous devez voir cotisé au moins{' '}
-												<Strong>12 mois</Strong>
-											</Trans>
-										</Body>
-									</StyledDiv>
-								}
-							>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . arrêt maladie"
-										engine={autoEntrepreneurEngine}
-										precision={0}
-										unit="€/jour"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . arrêt maladie"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
+					<DetailsRowCards
+						dottedName="protection sociale . maladie . arrêt maladie"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="ae"
+						unit="€/jour"
+						footers={{
+							sasu: (
+								<StyledDiv>
+									<PlusCircleIcon />
+									<Body>
+										<Trans>
+											Pour y prétendre, vous devez voir cotisé au moins{' '}
+											<Strong>3 mois</Strong>
+										</Trans>
+									</Body>
+								</StyledDiv>
+							),
+							ei: (
+								<StyledDiv>
+									<PlusCircleIcon />
+									<Body>
+										<Trans>
+											Pour y prétendre, vous devez voir cotisé au moins{' '}
+											<Strong>12 mois</Strong>
+										</Trans>
+									</Body>
+								</StyledDiv>
+							),
+							ae: (
+								<StyledDiv>
+									<PlusCircleIcon />
+									<Body>
+										<Trans>
+											Pour y prétendre, vous devez voir cotisé au moins{' '}
+											<Strong>12 mois</Strong>
+										</Trans>
+									</Body>
+								</StyledDiv>
+							),
+						}}
+					/>
 
 					<StyledH4>
 						<Trans>Accident du travail et maladie professionnelle</Trans>
@@ -346,6 +216,20 @@ const Détails = ({
 							serez indemnisé(e) à hauteur de :
 						</Trans>
 					</Body>
+					<div>new</div>
+					<DetailsRowCards
+						dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="sasu"
+						unit="€/mois"
+						evolutionDottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
+						evolutionLabel={<Trans>à partir du 29ème jour</Trans>}
+					/>
+					<div>old</div>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']} isBestOption>
@@ -415,52 +299,16 @@ const Détails = ({
 						</Trans>
 					</Body>
 
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . maternité paternité adoption"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/jour"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . maternité paternité adoption"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-								<Precisions>
-									<Trans>pendant 8 à 16 semaines.</Trans>
-								</Precisions>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . maternité paternité adoption"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/jour"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . maternité paternité adoption"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-								<Precisions>
-									<Trans>pendant 8 à 16 semaines.</Trans>
-								</Precisions>
-							</StatusCard>
-						</Grid>
-					</Grid>
+					<DetailsRowCards
+						dottedName="protection sociale . maladie . maternité paternité adoption"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="sasu"
+						unit="€/jour"
+					/>
 
 					<StyledH4>
 						<Trans>Maternité</Trans>
@@ -476,46 +324,16 @@ const Détails = ({
 							.
 						</Trans>
 					</Body>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
+					<DetailsRowCards
+						dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="ei"
+						unit="€/mois"
+					/>
 
 					<StyledH4>
 						<Trans>Adoption</Trans>
@@ -531,46 +349,16 @@ const Détails = ({
 							.
 						</Trans>
 					</Body>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
+					<DetailsRowCards
+						dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="ei"
+						unit="€/mois"
+					/>
 				</Item>
 				<Item
 					title={
@@ -621,91 +409,29 @@ const Détails = ({
 							.
 						</Trans>
 					</BodyNoMargin>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['sasu', 'ei']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>{' '}
-									<Trans>(invalidité partielle)</Trans>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ae']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>{' '}
-									<Trans>(invalidité partielle)</Trans>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
+					<DetailsRowCards
+						dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="sasu"
+						unit="€/mois"
+						label={<Trans>(invalidité partielle)</Trans>}
+					/>
 					<Spacing md />
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['sasu', 'ei']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>{' '}
-									<Trans>(invalidité totale)</Trans>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ae']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>{' '}
-									<Trans>(invalidité totale)</Trans>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
+					<DetailsRowCards
+						dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="sasu"
+						unit="€/mois"
+						label={<Trans>(invalidité totale)</Trans>}
+					/>
 					<Body
 						css={`
 							margin-top: 2rem;
@@ -716,6 +442,18 @@ const Détails = ({
 							pouvez bénéficier d’une <Strong>rente d’incapacité</Strong>.
 						</Trans>
 					</Body>
+					<div>new</div>
+					<DetailsRowCards
+						dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="sasu"
+						unit="€/mois"
+					/>
+					<div>old</div>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']} isBestOption>
@@ -756,46 +494,16 @@ const Détails = ({
 							(personnes qui sont à votre charge) sous certaines conditions.
 						</Trans>
 					</Body>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . capital décès"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . capital décès"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']} isBestOption>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . invalidité et décès . capital décès"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€/mois"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . invalidité et décès . capital décès"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-					</Grid>
+					<DetailsRowCards
+						dottedName="protection sociale . invalidité et décès . capital décès"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						bestOption="ei"
+						unit="€/mois"
+					/>
 
 					<Body
 						css={`
@@ -810,23 +518,16 @@ const Détails = ({
 							sa vie professionnelle.
 						</Trans>
 					</Body>
-					<StatusCard status={['sasu', 'ei', 'ae']}>
-						<span>
-							<Value
-								linkToRule={false}
-								expression="protection sociale . invalidité et décès . pension de reversion"
-								engine={indépendantEngine}
-								precision={0}
-								unit="€/mois"
-							/>
-						</span>
-						<StyledRuleLink
-							dottedName="protection sociale . invalidité et décès . pension de reversion"
-							engine={assimiléEngine}
-						>
-							<HelpIcon />
-						</StyledRuleLink>
-					</StatusCard>
+					<DetailsRowCards
+						dottedName="protection sociale . invalidité et décès . pension de reversion"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						unit="€/mois"
+						bestOption="sasu"
+					/>
 
 					<Body
 						css={`
@@ -838,6 +539,18 @@ const Détails = ({
 							vous pouvez bénéficier d’une <Strong>rente de décès</Strong>.
 						</Trans>
 					</Body>
+					<div>new</div>
+					<DetailsRowCards
+						dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						unit="€/mois"
+						bestOption="sasu"
+					/>
+					<div>old</div>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']} isBestOption>
@@ -889,6 +602,18 @@ const Détails = ({
 							travailleurs indépendants décédés, sous certaines conditions.
 						</Trans>
 					</Body>
+					<div>new</div>
+					<DetailsRowCards
+						dottedName="protection sociale . invalidité et décès . capital décès . orphelin"
+						engines={[
+							assimiléEngine,
+							autoEntrepreneurEngine,
+							indépendantEngine,
+						]}
+						unit="€/mois"
+						bestOption="ei"
+					/>
+					<div>old</div>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']}>
@@ -988,7 +713,7 @@ const Détails = ({
 
 					<StyledH4>
 						<Trans>Dépôt de capital</Trans>
-						<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
+						<ExplicableRule dottedName="entreprise . capital social" />
 					</StyledH4>
 					<Body>
 						<Trans>
@@ -1109,11 +834,6 @@ const DisabledLabel = styled(Body)`
 	font-size: 1.25rem;
 	font-weight: 700;
 	font-style: italic;
-`
-
-const SubInfo = styled.span`
-	font-family: ${({ theme }) => theme.fonts.main};
-	color: ${({ theme }) => theme.colors.extended.grey[700]};
 `
 
 export default Détails
