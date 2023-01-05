@@ -347,7 +347,7 @@ const Détails = ({
 						</Trans>
 					</Body>
 					<Grid container spacing={4}>
-						<Grid item xs={12} lg={8}>
+						<Grid item xs={12} lg={4}>
 							<StatusCard status={['sasu']} isBestOption>
 								<span>
 									<Value
@@ -376,7 +376,7 @@ const Détails = ({
 								</Precisions>
 							</StatusCard>
 						</Grid>
-						<Grid item xs={12} lg={4}>
+						<Grid item xs={12} lg={8}>
 							<StatusCard status={['ei', 'ae']}>
 								<DisabledLabel>Ne s'applique pas</DisabledLabel>
 							</StatusCard>
