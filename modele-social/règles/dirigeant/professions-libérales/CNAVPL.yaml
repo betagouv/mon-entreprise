@@ -3,11 +3,11 @@ dirigeant . indépendant . PL . CNAVPL:
     La caisse nationale d'assurance vieillesse des professions libérales est
     l'organisme qui fédère les différentes caisses existantes (CIPAV, CARPIMKO,
     CARCDSF, CAVEC etc..)
+  valeur: oui
   non applicable si: régime général
   rend non applicable:
     règle: situation personnelle . RSA
     dans: dirigeant . indépendant . cotisations et contributions
-  valeur: oui
   références:
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf

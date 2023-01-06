@@ -48,6 +48,7 @@ export const configIndépendant: SimulationConfig = {
 		],
 		'non prioritaires': [
 			'dirigeant . indépendant . cotisations facultatives',
+			'entreprise . activité . saisonnière',
 			'dirigeant . indépendant . IJSS',
 			'dirigeant . indépendant . PL . PAMC . IJSS',
 			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',

@@ -36,6 +36,7 @@ it('calculate simulations-indépendant', () => {
 		  "dirigeant . rémunération . net",
 		  "entreprise . activité . débit de tabac",
 		  "entreprise . activité . nature",
+		  "entreprise . activité . saisonnière",
 		  "entreprise . catégorie juridique",
 		  "entreprise . charges",
 		  "entreprise . chiffre d'affaires",

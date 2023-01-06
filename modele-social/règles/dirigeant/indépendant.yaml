@@ -117,7 +117,12 @@ dirigeant . indépendant . cotisations et contributions:
     réduction ACRE.
 
 dirigeant . indépendant . assiette minimale:
-  non applicable si: situation personnelle . RSA
+  non applicable si:
+    une de ces conditions:
+      - une de ces conditions:
+          - situation personnelle . RSA
+          - entreprise . activité . saisonnière
+      - entreprise . activité . saisonnière
   valeur: oui
   description: |
     Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de calcul, certaines cotisations seront portées à un montant minimum.
@@ -487,7 +492,10 @@ dirigeant . indépendant . cotisations et contributions . maladie:
       arrondi: 2 décimales
 
     réduction supplémentaire:
-      non applicable si: situation personnelle . RSA
+      non applicable si:
+        une de ces conditions:
+          - situation personnelle . RSA
+          - entreprise . activité . saisonnière
       applicable si: date < 01/2022
       titre: réduction supplémentaire (avant 2022)
       déprécié: oui

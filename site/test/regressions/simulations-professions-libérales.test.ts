@@ -38,6 +38,7 @@ it('calculate simulations-professions-libérales', () => {
 		  "dirigeant . indépendant . cotisations facultatives",
 		  "dirigeant . indépendant . revenus étrangers",
 		  "dirigeant . rémunération . net",
+		  "entreprise . activité . saisonnière",
 		  "entreprise . charges",
 		  "entreprise . chiffre d'affaires",
 		  "entreprise . date de création",
