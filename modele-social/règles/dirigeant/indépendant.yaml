@@ -403,13 +403,23 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
       valeur: assiette des cotisations
       plancher: assiette minimale . maladie
       plafond: 5 * plafond sécurité sociale
+
     taux:
       nom: taux
-      variations:
-        - si: date >= 01/2022
-          alors: 0.50%
-        - sinon: 0.85%
+      déprécié: oui
+      valeur: 0.85%
+
   arrondi: oui
+  plafond:
+    # Le taux indemnité est de 0.5%, dans la loi.
+    # Mais parce que l'Urssaf regorge d'inventivité et qu'ils n'ont pas envie de se baser
+    # sur la loi - non, non, ça sera trop simple - ils ont choisi de continuer d'appliquer
+    # le taux de 0.85% tout en abaissant la cotisation maladie 1.
+    #
+    # Pour les revenu ou le taux de la cotisation total (maladie 1 + 2) est inférieur à 0.85, on
+    # plafonne donc la cotis maladie 2 à ce total
+    applicable si: date > 01/2022
+    valeur: maladie . total
   unité: €/an
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
@@ -424,16 +434,21 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour souscrire une assurance maladie complémentaire.
   synonymes: [maladie 1]
   arrondi: oui
-  barème:
-    assiette:
-      valeur: assiette des cotisations
-      plancher: assiette minimale . maladie
-    multiplicateur: plafond sécurité sociale
-    tranches:
-      - taux: taux progressif
-        plafond: 5
-      - taux: 6.50 %
-    abattement:
+  valeur:
+    nom: total
+    barème:
+      assiette:
+        valeur: assiette des cotisations
+        plancher: assiette minimale . maladie
+      multiplicateur: plafond sécurité sociale
+      tranches:
+        - taux: taux progressif
+          plafond: 5
+        - taux: 6.50 %
+  abattement:
+    applicable si: date >= 01/2022
+    valeur: indemnités journalières maladie
+
   unité: €/an
   références:
     Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747
@@ -442,19 +457,19 @@ dirigeant . indépendant . cotisations et contributions . maladie:
 
   avec:
     taux progressif:
+      arrondi: 2 décimales
       taux progressif:
         assiette:
           nom: assiette
           valeur: assiette des cotisations
         multiplicateur: plafond sécurité sociale
         tranches:
-          - taux: 0%
+          - taux: 0.5%
             plafond: 40%
-          - taux: 4%
+          - taux: 4.5%
             plafond: 60%
-          - taux: 6.70%
+          - taux: 7.20%
             plafond: 110%
-      arrondi: 2 décimales
 
     taux progressif avant 2022:
       privé: oui

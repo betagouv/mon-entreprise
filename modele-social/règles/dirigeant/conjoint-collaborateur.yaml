@@ -138,5 +138,5 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
           variations:
             - si: date >= 01/2022
               alors: 0.50%
-            - sinon: cotisations et contributions . indemnités journalières maladie . taux
+            - sinon: 0.85%
       arrondi: oui

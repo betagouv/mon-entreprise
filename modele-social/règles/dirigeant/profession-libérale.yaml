@@ -643,7 +643,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités jo
   remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
   produit:
     assiette: 40% * plafond sécurité sociale
-    taux: indemnités journalières maladie . taux
+    taux: 0.5%
   unité: €/an
   arrondi: oui
 

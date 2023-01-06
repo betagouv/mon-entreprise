@@ -35,10 +35,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 31320
+"dirigeant . indépendant . cotisations et contributions: 31358
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47663
-entreprise . chiffre d'affaires: 91320
+entreprise . chiffre d'affaires: 91358
 impôt . montant: 12337
 protection sociale . retraite . CNAVPL . points acquis: 532
 protection sociale . retraite . complémentaire: 95778
@@ -47,10 +47,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 30606
+"dirigeant . indépendant . cotisations et contributions: 30645
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47669
-entreprise . chiffre d'affaires: 90606
+entreprise . chiffre d'affaires: 90645
 impôt . montant: 12331
 protection sociale . retraite . CNAVPL . points acquis: 532
 protection sociale . retraite . complémentaire: 95778
@@ -59,10 +59,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 30284
+"dirigeant . indépendant . cotisations et contributions: 30323
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47672
-entreprise . chiffre d'affaires: 90284
+entreprise . chiffre d'affaires: 90323
 impôt . montant: 12328
 protection sociale . retraite . CNAVPL . points acquis: 707
 protection sociale . retraite . complémentaire: 127314
@@ -71,10 +71,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
-"dirigeant . indépendant . cotisations et contributions: 32352
+"dirigeant . indépendant . cotisations et contributions: 32390
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47655
-entreprise . chiffre d'affaires: 92352
+entreprise . chiffre d'affaires: 92390
 impôt . montant: 12345
 protection sociale . retraite . CNAVPL . points acquis: 532
 protection sociale . retraite . complémentaire: 95778
@@ -83,11 +83,11 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 5`] = `
-"dirigeant . indépendant . cotisations et contributions: 30546
+"dirigeant . indépendant . cotisations et contributions: 30584
 dirigeant . rémunération . net: 60000
-dirigeant . rémunération . net . après impôt: 47670
-entreprise . chiffre d'affaires: 90546
-impôt . montant: 12330
+dirigeant . rémunération . net . après impôt: 47669
+entreprise . chiffre d'affaires: 90584
+impôt . montant: 12331
 protection sociale . retraite . CNAVPL . points acquis: 753
 protection sociale . retraite . complémentaire: 135450
 protection sociale . retraite . trimestres: 4
@@ -95,10 +95,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépass�
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 6`] = `
-"dirigeant . indépendant . cotisations et contributions: 3694
+"dirigeant . indépendant . cotisations et contributions: 3733
 dirigeant . rémunération . net: 1000
 dirigeant . rémunération . net . après impôt: 1000
-entreprise . chiffre d'affaires: 4694
+entreprise . chiffre d'affaires: 4733
 impôt . montant: 0
 protection sociale . retraite . CNAVPL . points acquis: 122
 protection sociale . retraite . complémentaire: 4388
@@ -106,10 +106,10 @@ protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 7`] = `
-"dirigeant . indépendant . cotisations et contributions: 33449
+"dirigeant . indépendant . cotisations et contributions: 33488
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47646
-entreprise . chiffre d'affaires: 93449
+entreprise . chiffre d'affaires: 93488
 impôt . montant: 12354
 protection sociale . retraite . CNAVPL . points acquis: 532
 protection sociale . retraite . complémentaire: 95778
