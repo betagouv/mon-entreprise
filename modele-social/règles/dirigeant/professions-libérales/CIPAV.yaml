@@ -24,6 +24,13 @@ dirigeant . indépendant . PL . option régime général:
   par défaut: non
 
 dirigeant . indépendant . PL . CIPAV:
+  une de ces conditions:
+    - métier = 'rattaché CIPAV'
+    - toutes ces conditions:
+        - entreprise . date de création < 01/2019
+        - option régime général = non
+        - entreprise . activité . nature . libérale . réglementée = non
+
   description: |
     La CIPAV est la caisse de retraite autonomes des professions libérales réglementées.
   remplace:
@@ -33,17 +40,11 @@ dirigeant . indépendant . PL . CIPAV:
     Site web: https://www.lacipav.fr/
     article de loi (chercher "travailleurs indépendants créant leur activité"): https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
     guide pratique CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf
-  formule:
-    une de ces conditions:
-      - métier = 'rattaché CIPAV'
-      - toutes ces conditions:
-          - entreprise . date de création < 01/2019
-          - option régime général = non
-          - entreprise . activité . nature . libérale . réglementée = non
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   unité: €/an
   arrondi: oui
+  non applicable si: CNAVPL . exonération incapacité
   variations:
     - si: date < 01/2023
       alors: avant 2023
@@ -63,7 +64,6 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
     avant 2023:
       privé: oui
       applicable si: date < 01/2023
-      remplace: retraite complémentaire
       non applicable si: exonération incapacité
       unité: €/an
       variations:

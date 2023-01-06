@@ -7,6 +7,7 @@ dirigeant . indépendant . PL . CARPIMKO:
 
 dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
+  non applicable si: CNAVPL . exonération incapacité
   formule:
     somme:
       - variations:

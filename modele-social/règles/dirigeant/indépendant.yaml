@@ -117,7 +117,12 @@ dirigeant . indépendant . cotisations et contributions:
     réduction ACRE.
 
 dirigeant . indépendant . assiette minimale:
-  non applicable si: situation personnelle . RSA
+  non applicable si:
+    une de ces conditions:
+      - une de ces conditions:
+          - situation personnelle . RSA
+          - entreprise . activité . saisonnière
+      - entreprise . activité . saisonnière
   valeur: oui
   description: |
     Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de calcul, certaines cotisations seront portées à un montant minimum.
@@ -487,7 +492,10 @@ dirigeant . indépendant . cotisations et contributions . maladie:
       arrondi: 2 décimales
 
     réduction supplémentaire:
-      non applicable si: situation personnelle . RSA
+      non applicable si:
+        une de ces conditions:
+          - situation personnelle . RSA
+          - entreprise . activité . saisonnière
       applicable si: date < 01/2022
       titre: réduction supplémentaire (avant 2022)
       déprécié: oui
@@ -749,14 +757,16 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
 
   avec:
     retraite complémentaire:
-      non applicable: PL . CNAVPL # Non applicable pour les professions libérales reglementées
+      non applicable si: PL . CNAVPL # Non applicable pour les professions libérales reglementées
       remplace: retraite complémentaire
       valeur: retraite complémentaire * prorata
 
     indemnités journalières maladie:
-      non applicable: PL . CNAVPL
       remplace: indemnités journalières maladie
-      valeur: indemnités journalières maladie * prorata
+      variations:
+        - si: PL . CNAVPL . indemnités journalières maladie
+          alors: PL . CNAVPL . indemnités journalières maladie * prorata
+        - sinon: indemnités journalières maladie * prorata
 
     maladie:
       remplace: maladie
@@ -768,7 +778,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
 
     prorata:
       privé: oui
-      valeur: durée / 1 an
+      valeur: 100% - durée / 1 an
       unité: '%'
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:

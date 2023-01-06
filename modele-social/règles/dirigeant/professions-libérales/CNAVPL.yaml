@@ -4,10 +4,10 @@ dirigeant . indépendant . PL . CNAVPL:
     l'organisme qui fédère les différentes caisses existantes (CIPAV, CARPIMKO,
     CARCDSF, CAVEC etc..)
   non applicable si: régime général
+  valeur: oui
   rend non applicable:
     règle: situation personnelle . RSA
     dans: dirigeant . indépendant . cotisations et contributions
-  valeur: oui
   références:
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf
@@ -89,13 +89,7 @@ dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
     Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois,
     vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
   rend non applicable:
-    - CAVP
-    - CARMF
-    - CARPIMKO
-    - CARCDSF
-    - CIPAV
     - CNAVPL . retraite
-    - cotisations et contributions . PCV
     - cotisations et contributions . retraite de base
     - cotisations et contributions . retraite complémentaire
 

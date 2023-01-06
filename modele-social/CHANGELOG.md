@@ -1,13 +1,19 @@
 # Journal des modifications
 
-## 1.4.2
+## 1.5.0
 
-Mise à jour des modalités de calcul de la cotisation maladie pour les indépendant, suite à la loi portant les mesures d’urgence pour la protection du pouvoir d’achat d’août 2022.
+- Mise à jour des modalités de calcul de la cotisation maladie pour les indépendant, suite à la loi portant les mesures d’urgence pour la protection du pouvoir d’achat d’août 2022.
+- Correction des calculs des assiette du conjoint collaborateur
+- Mise à jour des modalités de calcul des cotisations CIPAV en 2023 suite au passage du recouvrement à l’Urssaf
+- Ajoute la question sur les activités saisonnières pour le calcul des cotisations sans assiette minimale pour les indeps
+
 
 ### Détails : 
 - Déprécie la règle : `dirigeant . indépendant . cotisations et contributions . maladie . réduction supplémentaire`
 - Met à jour les descriptions des cotisation indépendant
 - Met à jour les formules de `dirigeant . indépendant . cotisations et contributions . maladie`, `dirigeant . indépendant . PL . maladie` et `dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie`
+- Correction de l’exonération incapacité de la CNAVPL
+- Ajoute la règle : `entreprise . activité . saisonière`
 
 ## 1.4.1
 

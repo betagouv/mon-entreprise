@@ -108,10 +108,9 @@ dirigeant . indépendant . PL . régime général:
     C'est le cas des professions libérales non règlementées crées avant le
     01/2019, ou celles ayant exercé leur [droit
     d'option](/documentation/dirigeant/indépendant/PL/option-régime-général)
-  formule:
-    toutes ces conditions:
-      - CIPAV = non
-      - entreprise . activité . nature . libérale . réglementée = non
+  toutes ces conditions:
+    - CIPAV = non
+    - entreprise . activité . nature . libérale . réglementée = non
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite complémentaire ?
