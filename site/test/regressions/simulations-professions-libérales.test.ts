@@ -32,6 +32,7 @@ it('calculate simulations-professions-libérales', () => {
 		  "dirigeant . indépendant . IJSS",
 		  "dirigeant . indépendant . PL . CNAVPL . exonération incapacité",
 		  "dirigeant . indépendant . PL . métier",
+		  "dirigeant . indépendant . PL . régime général",
 		  "dirigeant . indépendant . conjoint collaborateur",
 		  "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
 		  "dirigeant . indépendant . cotisations facultatives",

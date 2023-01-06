@@ -1,0 +1,135 @@
+dirigeant . indépendant . PL . CARMF:
+  formule: oui
+  description: |
+    La CARMF est la caisse de retraite autonome des médecins de France.
+  applicable si: métier = 'santé . médecin'
+  références:
+    Site CARMF: http://www.carmf.fr
+  note: |
+    L’affiliation est obligatoire pour les médecins titulaires du diplôme de
+    docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité
+    libérale (installation, remplacements, expertises pour les compagnies
+    d’assurance ou les laboratoires privés, secteur privé à l’hôpital, en
+    société d’exercice libéral ou toute autre activité rémunérée sous forme
+    d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
+    métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
+
+dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
+  déprécié: oui
+  titre: retraite de base CNAVPL (après participation CPAM)
+  valeur: CNAVPL . retraite
+  abattement:
+    nom: participation CPAM
+    valeur: participation CPAM retraite
+
+dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
+  applicable si: métier . santé . médecin . secteur = 'S1'
+  description: |
+    Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
+  unité: €/an
+  produit:
+    assiette: assiette des cotisations
+    taux:
+      grille:
+        assiette: assiette des cotisations
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - montant: 2.15%
+            plafond: 140%
+          - montant: 1.51%
+            plafond: 250%
+          - montant: 1.12%
+    arrondi: oui
+  références:
+    Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
+
+dirigeant . indépendant . PL . CARMF . retraite complémentaire:
+  remplace: cotisations et contributions . retraite complémentaire
+  description: >-
+    La CARMF gère le régime de retraite complémentaire.
+
+    Le montant des cotisations est déterminé en fonction des revenus
+    nets d’activité indépendante de l’avant-dernière année.
+
+    Les cotisations des deux premières années d’affiliation ne sont
+    pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre
+    activité libérale. Dans ce cas, la cotisation est proportionnelle
+    aux revenus nets d'activité indépendante de 2018 plafonnés, sans
+    régularisation ultérieure, avec une cotisation maximale de 14 110 €.
+  arrondi: oui
+  variations:
+    - si: entreprise . durée d'activité . en fin d'année < 2 ans
+      alors: 0€/an
+    - sinon:
+        produit:
+          assiette: assiette des cotisations
+          plafond: 3.5 * plafond sécurité sociale
+          taux: 10%
+  unité: €/an
+  références:
+    Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm
+
+dirigeant . indépendant . PL . CARMF . invalidité décès:
+  remplace: cotisations et contributions . invalidité et décès
+  description: >-
+    La CARMF gère un régime de prévoyance versant une pension en cas
+    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
+    conjoints et enfants survivants en cas de décès de l'assuré.
+
+    La cotisation comporte trois classes forfaitaires dont le montant est
+    déterminé en fonction de vos revenus nets d'activité indépendante de
+    l’avant-dernière année.
+
+    Sans communication des revenus professionnels non salariés et de l’avis
+    d’imposition de l’avant dernière année, le taux d’indemnisation ne peut être
+    fixé. Dans l’attente de la réception de ce document l’indemnisation sera
+    basée sur le taux prévu pour la classe A.
+  formule:
+    grille:
+      assiette: assiette des cotisations
+      multiplicateur: plafond sécurité sociale
+      tranches:
+        - montant: 631 €/an
+          plafond: 1
+        - montant: 738 €/an
+          plafond: 3
+        - montant: 863 €/an
+  références:
+    Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm#base
+    Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
+
+dirigeant . indépendant . PL . CARMF . ASV:
+  titre: Allocations supplémentaires de vieillesse
+  remplace: cotisations et contributions . PCV
+  description: >-
+    Le régime des allocations supplémentaires de vieillesse (ASV) s'applique
+    pour les médecins conventionnés.
+
+    Il fonctionne en points et comprend une part forfaitaire et une part
+    d’ajustement calculée sur le revenu conventionnel de N-2.
+
+    Les deux tiers de la cotisation des médecins en secteur 1 sont financés
+    par les Caisses maladie.
+  non applicable si: métier . santé . médecin . secteur = 'non conventionné'
+  valeur:
+    nom: assiette
+    somme:
+      - 5136 €/an
+      - produit:
+          assiette: PAMC . revenus activité conventionnée
+          plafond: 5 * plafond sécurité sociale
+          taux: 3.80%
+    unité: €/an
+  abattement: participation CPAM
+  arrondi: oui
+
+  références:
+    Taux 2021: http://www.carmf.fr/page.php?page=chiffrescles/stats/2021/taux2021.htm
+    Taux 2022: http://www.carmf.fr/page.php?page=chiffrescles/stats/2022/taux2022.htm
+
+dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
+  applicable si: métier . santé . médecin . secteur = 'S1'
+  formule:
+    produit:
+      assiette: assiette
+      taux: 2 / 3
