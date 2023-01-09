@@ -14,7 +14,7 @@ import { H4 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useOnClickOutside } from '@/hooks/useClickOutside'
-import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
+import { useSitePaths } from '@/sitePaths'
 
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
@@ -44,6 +44,8 @@ const getShouldAskFeedback = (url: string) => {
 	)
 }
 
+const IFRAME_SIMULATEUR_EMBAUCHE_PATH = '/iframes/simulateur-embauche'
+
 const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 	const [isFormOpen, setIsFormOpen] = useState(false)
 	const [isShowingThankMessage, setIsShowingThankMessage] = useState(false)
@@ -53,7 +55,12 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 	const url = useLocation().pathname
 	const tag = useContext(TrackingContext)
 	const containerRef = useRef<HTMLElement | null>(null)
-	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
+
+	const { absoluteSitePaths } = useSitePaths()
+	const currentPath = useLocation().pathname
+	const isSimulateurSalaire =
+		currentPath.includes(absoluteSitePaths.simulateurs.salarié) ||
+		currentPath.includes(IFRAME_SIMULATEUR_EMBAUCHE_PATH)
 
 	const { shouldShowRater, customTitle } = useFeedback()
 
@@ -146,8 +153,8 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 					</>
 				)}
 				<Spacing lg />
-				{currentSimulatorData?.pathId === 'simulateurs.salarié' ? (
-					<JeDonneMonAvis />
+				{isSimulateurSalaire ? (
+					<JeDonneMonAvis light />
 				) : (
 					<Button
 						color="tertiary"
@@ -200,7 +207,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 const StyledButton = styled.button<{ $isEmbedded?: boolean }>`
 	position: fixed;
 	top: 10.5rem;
-	${({ $isEmbedded }) => ($isEmbedded ? `top: 40rem;` : '')}
+	${({ $isEmbedded }) => ($isEmbedded ? `top: 2rem;` : '')}
 	right: 0;
 	width: 3.75rem;
 	height: 3.75rem;
@@ -274,7 +281,7 @@ const StyledBody = styled(Body)`
 const Section = styled.section<{ $isEmbedded?: boolean }>`
 	position: fixed;
 	top: 10.5rem;
-	${({ $isEmbedded }) => ($isEmbedded ? `top: 40rem;` : '')}
+	${({ $isEmbedded }) => ($isEmbedded ? `top: 2rem;` : '')}
 	right: 0;
 	width: 17.375rem;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
@@ -284,6 +291,7 @@ const Section = styled.section<{ $isEmbedded?: boolean }>`
 		color: ${({ theme }) => theme.colors.extended.grey[100]};
 	}
 	padding: 1.5rem;
+	padding-top: 0.75rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
