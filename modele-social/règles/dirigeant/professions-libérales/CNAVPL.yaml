@@ -22,6 +22,7 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
       nom: revenu cotisé
       valeur: assiette des cotisations
       plancher: assiette minimale . retraite
+      unité: €/mois
     composantes:
       - attributs:
           nom: tranche T1
@@ -89,9 +90,15 @@ dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
     Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois,
     vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
   rend non applicable:
-    - CNAVPL . retraite
-    - cotisations et contributions . retraite de base
-    - cotisations et contributions . retraite complémentaire
+    règle: retraite
+    dans: cotisations et contributions . exonérations . ACRE
+
+  avec:
+    montant:
+      remplace: cotisations et contributions . exonérations . caisse de retraite PL
+      somme:
+        - CNAVPL . retraite
+        - cotisations et contributions . retraite complémentaire
 
   références:
     Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75

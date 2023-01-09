@@ -215,6 +215,7 @@ dirigeant . indépendant . PL . cotisations Urssaf:
       - cotisations et contributions . indemnités journalières maladie
       - cotisations et contributions . allocations familiales
       - cotisations et contributions . formation professionnelle
+      - cotisations et contributions . exonérations . caisse de retraite PL - cotisations et contributions . exonérations
       - PAMC . CURPS
     arrondi: oui
 
@@ -227,4 +228,5 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
       - cotisations et contributions . retraite complémentaire
       - cotisations et contributions . invalidité et décès
       - cotisations et contributions . PCV
+      - (- cotisations et contributions . exonérations . caisse de retraite PL)
     arrondi: oui

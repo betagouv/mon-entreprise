@@ -32,17 +32,16 @@ dirigeant . indépendant . cotisations et contributions . non déductibles:
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: dirigeant . exonérations . ACRE
-  formule:
-    produit:
-      assiette:
-        somme:
-          - maladie
-          - retraite de base
-          - indemnités journalières maladie
-          - invalidité et décès
-          - allocations familiales
-      taux: taux
-      facteur: prorata sur l'année
+  produit:
+    assiette:
+      somme:
+        - maladie
+        - retraite de base
+        - indemnités journalières maladie
+        - invalidité et décès
+        - allocations familiales
+    taux: taux
+    facteur: prorata sur l'année
     arrondi: oui
   références:
     Fiche secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-cotisations/acre/
@@ -698,11 +697,15 @@ dirigeant . indépendant . cotisations et contributions . allocations familiales
     Liste des cotisations: https://www.urssaf.fr/portail/home/artisan-commercant/comment-sont-calculees-les-cotis/liste-des-cotisations.html
 
 dirigeant . indépendant . cotisations et contributions . exonérations:
-  formule:
-    somme:
-      - ZFU
-      - ACRE
-
+  somme:
+    - ZFU
+    - ACRE
+    - pension invalidité . montant
+    - caisse de retraite PL
+  avec:
+    caisse de retraite PL:
+      valeur: non
+      experimental: oui
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   applicable si: établissement . ZFU
   produit:
@@ -724,6 +727,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   rend non applicable: invalidité et décès
 
 dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
+  titre: exonération invalidité
   acronyme: PI
   question:
     variations:
@@ -756,30 +760,28 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
     Circulaire RSI 2013/004 du 17/01/2013: https://www.legislation.cnav.fr/Documents/circulaire_rsi_2013_004_17012013.pdf#page=24
 
   avec:
-    retraite complémentaire:
-      non applicable si: PL . CNAVPL # Non applicable pour les professions libérales reglementées
-      remplace: retraite complémentaire
-      valeur: retraite complémentaire * prorata
+    montant:
+      description: |-
+        Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
+        non agricoles, vous bénécifiez d’une exonération totale des cotisations de retraite complémentaire et
+        des cotisations maladie.
 
-    indemnités journalières maladie:
-      remplace: indemnités journalières maladie
-      variations:
-        - si: PL . CNAVPL . indemnités journalières maladie
-          alors: PL . CNAVPL . indemnités journalières maladie * prorata
-        - sinon: indemnités journalières maladie * prorata
-
-    maladie:
-      remplace: maladie
-      valeur: maladie * prorata
+      produit:
+        assiette:
+          somme:
+            - valeur: retraite complémentaire
+              non applicable si: PL . CNAVPL # Non applicable pour les professions libérales reglementées
+            - indemnités journalières maladie
+            - maladie
+        taux:
+          nom: prorata
+          privé: oui
+          valeur: durée / 1 an
+          unité: '%'
 
     durée:
       question: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
       par défaut: 12 mois
-
-    prorata:
-      privé: oui
-      valeur: 100% - durée / 1 an
-      unité: '%'
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
   taux progressif:

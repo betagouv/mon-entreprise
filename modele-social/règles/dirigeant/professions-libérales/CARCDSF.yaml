@@ -11,7 +11,6 @@ dirigeant . indépendant . PL . CARCDSF:
     Site Web: http://www.carcdsf.fr
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
-  non applicable si: CNAVPL . exonération incapacité
   remplace: cotisations et contributions . retraite complémentaire
   formule:
     somme:

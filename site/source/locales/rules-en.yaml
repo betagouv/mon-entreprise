@@ -3112,8 +3112,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
           texte:
             Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur
             indépendant ?
-  titre.en: '[automatic] disability pension'
-  titre.fr: pension invalidité
+  titre.en: '[automatic] disability exemption'
+  titre.fr: exonération invalidité
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   description.en:
     '[automatic] This scheme was discontinued in 2015, but is still
@@ -3522,8 +3522,8 @@ dirigeant . rémunération . totale:
     travail du dirigeant.
   question.en: '[automatic] What is the total amount you expect to earn in compensation?'
   question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
-  résumé.en: '[automatic] Including dues and contributions'
-  résumé.fr: Incluant les cotisations et contributions
+  résumé.en: "[automatic] Total paid by the company for the executive's compensation"
+  résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale
 durée légale du travail:

@@ -44,7 +44,7 @@ dirigeant . indépendant . PL . CIPAV:
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
   unité: €/an
   arrondi: oui
-  non applicable si: CNAVPL . exonération incapacité
+
   variations:
     - si: date < 01/2023
       alors: avant 2023
@@ -195,6 +195,7 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
         produit:
           assiette:
             valeur: assiette des cotisations
+            unité: €/an
             plancher: 37% * plafond sécurité sociale
             plafond: 1.85 * plafond sécurité sociale
           taux: 0.5%

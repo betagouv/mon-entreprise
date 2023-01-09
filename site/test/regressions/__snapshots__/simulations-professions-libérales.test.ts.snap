@@ -6,6 +6,7 @@ dirigeant . rémunération . net: 5000
 dirigeant . rémunération . net . après impôt: 5000
 entreprise . chiffre d'affaires: 6222
 impôt . montant: 0
+protection sociale . retraite . base: 36
 protection sociale . retraite . complémentaire: 24
 protection sociale . retraite . trimestres: 3"
 `;
@@ -13,9 +14,10 @@ protection sociale . retraite . trimestres: 3"
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 2`] = `
 "dirigeant . indépendant . cotisations et contributions: 4544
 dirigeant . rémunération . net: 20000
-dirigeant . rémunération . net . après impôt: 19253
+dirigeant . rémunération . net . après impôt: 19254
 entreprise . chiffre d'affaires: 24544
-impôt . montant: 747
+impôt . montant: 746
+protection sociale . retraite . base: 144
 protection sociale . retraite . complémentaire: 95
 protection sociale . retraite . trimestres: 4"
 `;
@@ -26,6 +28,7 @@ dirigeant . rémunération . net: 50000
 dirigeant . rémunération . net . après impôt: 40828
 entreprise . chiffre d'affaires: 71074
 impôt . montant: 9172
+protection sociale . retraite . base: 308
 protection sociale . retraite . complémentaire: 291
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -37,6 +40,7 @@ dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47656
 entreprise . chiffre d'affaires: 92227
 impôt . montant: 12344
+protection sociale . retraite . base: 308
 protection sociale . retraite . complémentaire: 409
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -48,6 +52,7 @@ dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47662
 entreprise . chiffre d'affaires: 91510
 impôt . montant: 12338
+protection sociale . retraite . base: 308
 protection sociale . retraite . complémentaire: 409
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -59,6 +64,7 @@ dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47665
 entreprise . chiffre d'affaires: 91185
 impôt . montant: 12335
+protection sociale . retraite . base: 410
 protection sociale . retraite . complémentaire: 409
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -70,6 +76,7 @@ dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47648
 entreprise . chiffre d'affaires: 93267
 impôt . montant: 12352
+protection sociale . retraite . base: 308
 protection sociale . retraite . complémentaire: 410
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -81,6 +88,7 @@ dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47663
 entreprise . chiffre d'affaires: 91448
 impôt . montant: 12337
+protection sociale . retraite . base: 436
 protection sociale . retraite . complémentaire: 409
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -92,6 +100,7 @@ dirigeant . rémunération . net: 1000
 dirigeant . rémunération . net . après impôt: 1000
 entreprise . chiffre d'affaires: 2772
 impôt . montant: 0
+protection sociale . retraite . base: 71
 protection sociale . retraite . complémentaire: 5
 protection sociale . retraite . trimestres: 3"
 `;
@@ -102,6 +111,7 @@ dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 47637
 entreprise . chiffre d'affaires: 94556
 impôt . montant: 12363
+protection sociale . retraite . base: 308
 protection sociale . retraite . complémentaire: 410
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -113,8 +123,9 @@ dirigeant . rémunération . net: 40000
 dirigeant . rémunération . net . après impôt: 34024
 entreprise . chiffre d'affaires: 47053
 impôt . montant: 5976
-protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: 0
+protection sociale . retraite . base: 520
+protection sociale . retraite . complémentaire: 189
+protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
 `;
 
@@ -124,6 +135,7 @@ dirigeant . rémunération . net: 10000
 dirigeant . rémunération . net . après impôt: 10000
 entreprise . chiffre d'affaires: 13434
 impôt . montant: 0
+protection sociale . retraite . base: 72
 protection sociale . retraite . complémentaire: 48
 protection sociale . retraite . trimestres: 4"
 `;
@@ -134,6 +146,7 @@ dirigeant . rémunération . net: 50000
 dirigeant . rémunération . net . après impôt: 40828
 entreprise . chiffre d'affaires: 71074
 impôt . montant: 9172
+protection sociale . retraite . base: 308
 protection sociale . retraite . complémentaire: 291
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -145,6 +158,7 @@ dirigeant . rémunération . net: 100000
 dirigeant . rémunération . net . après impôt: 72415
 entreprise . chiffre d'affaires: 146865
 impôt . montant: 27585
+protection sociale . retraite . base: 311
 protection sociale . retraite . complémentaire: 874
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -156,6 +170,7 @@ dirigeant . rémunération . net: 500
 dirigeant . rémunération . net . après impôt: 500
 entreprise . chiffre d'affaires: 1423
 impôt . montant: 0
+protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 2
 protection sociale . retraite . trimestres: 3"
 `;
@@ -166,6 +181,7 @@ dirigeant . rémunération . net: 1000
 dirigeant . rémunération . net . après impôt: 1000
 entreprise . chiffre d'affaires: 2024
 impôt . montant: 0
+protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 5
 protection sociale . retraite . trimestres: 3"
 `;
@@ -176,6 +192,7 @@ dirigeant . rémunération . net: 1500
 dirigeant . rémunération . net . après impôt: 1500
 entreprise . chiffre d'affaires: 2624
 impôt . montant: 0
+protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 7
 protection sociale . retraite . trimestres: 3"
 `;
@@ -186,6 +203,7 @@ dirigeant . rémunération . net: 2000
 dirigeant . rémunération . net . après impôt: 2000
 entreprise . chiffre d'affaires: 3226
 impôt . montant: 0
+protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 10
 protection sociale . retraite . trimestres: 3"
 `;
@@ -196,6 +214,7 @@ dirigeant . rémunération . net: 5000
 dirigeant . rémunération . net . après impôt: 5000
 entreprise . chiffre d'affaires: 6846
 impôt . montant: 0
+protection sociale . retraite . base: 36
 protection sociale . retraite . complémentaire: 24
 protection sociale . retraite . trimestres: 3"
 `;
@@ -206,6 +225,7 @@ dirigeant . rémunération . net: 10000
 dirigeant . rémunération . net . après impôt: 10000
 entreprise . chiffre d'affaires: 13434
 impôt . montant: 0
+protection sociale . retraite . base: 72
 protection sociale . retraite . complémentaire: 48
 protection sociale . retraite . trimestres: 4"
 `;
@@ -216,6 +236,7 @@ dirigeant . rémunération . net: 100000
 dirigeant . rémunération . net . après impôt: 72415
 entreprise . chiffre d'affaires: 146865
 impôt . montant: 27585
+protection sociale . retraite . base: 311
 protection sociale . retraite . complémentaire: 874
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -227,6 +248,7 @@ dirigeant . rémunération . net: 1000000
 dirigeant . rémunération . net . après impôt: 527756
 entreprise . chiffre d'affaires: 1244199
 impôt . montant: 472244
+protection sociale . retraite . base: 319
 protection sociale . retraite . complémentaire: 1188
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -238,6 +260,7 @@ dirigeant . rémunération . net: 21916
 dirigeant . rémunération . net . après impôt: 20840
 entreprise . chiffre d'affaires: 30000
 impôt . montant: 1076
+protection sociale . retraite . base: 159
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -248,6 +271,7 @@ dirigeant . rémunération . net: 21737
 dirigeant . rémunération . net . après impôt: 20689
 entreprise . chiffre d'affaires: 30000
 impôt . montant: 1048
+protection sociale . retraite . base: 157
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -258,6 +282,7 @@ dirigeant . rémunération . net: 236610
 dirigeant . rémunération . net . après impôt: 148282
 entreprise . chiffre d'affaires: 300000
 impôt . montant: 88328
+protection sociale . retraite . base: 319
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -268,6 +293,7 @@ dirigeant . rémunération . net: 38695
 dirigeant . rémunération . net . après impôt: 33086
 entreprise . chiffre d'affaires: 50000
 impôt . montant: 5609
+protection sociale . retraite . base: 280
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -279,6 +305,7 @@ dirigeant . rémunération . net: 38315
 dirigeant . rémunération . net . après impôt: 32820
 entreprise . chiffre d'affaires: 50000
 impôt . montant: 5495
+protection sociale . retraite . base: 277
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -290,6 +317,7 @@ dirigeant . rémunération . net: 15457
 dirigeant . rémunération . net . après impôt: 15456
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 1
+protection sociale . retraite . base: 112
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -300,6 +328,7 @@ dirigeant . rémunération . net: 35296
 dirigeant . rémunération . net . après impôt: 30707
 entreprise . chiffre d'affaires: 50000
 impôt . montant: 4589
+protection sociale . retraite . base: 256
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -311,6 +340,7 @@ dirigeant . rémunération . net: 35598
 dirigeant . rémunération . net . après impôt: 30920
 entreprise . chiffre d'affaires: 50000
 impôt . montant: 4678
+protection sociale . retraite . base: 258
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -321,6 +351,7 @@ dirigeant . rémunération . net: 30196
 dirigeant . rémunération . net . après impôt: 27138
 entreprise . chiffre d'affaires: 50000
 impôt . montant: 3058
+protection sociale . retraite . base: 220
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -331,6 +362,7 @@ dirigeant . rémunération . net: 211175
 dirigeant . rémunération . net . après impôt: 134293
 entreprise . chiffre d'affaires: 300000
 impôt . montant: 76882
+protection sociale . retraite . base: 319
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -341,6 +373,7 @@ dirigeant . rémunération . net: 291966
 dirigeant . rémunération . net . après impôt: 175922
 entreprise . chiffre d'affaires: 400000
 impôt . montant: 116044
+protection sociale . retraite . base: 319
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -351,6 +384,7 @@ dirigeant . rémunération . net: 85353
 dirigeant . rémunération . net . après impôt: 64073
 entreprise . chiffre d'affaires: 120000
 impôt . montant: 21280
+protection sociale . retraite . base: 310
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
@@ -362,6 +396,7 @@ dirigeant . rémunération . net: 35598
 dirigeant . rémunération . net . après impôt: 30920
 entreprise . chiffre d'affaires: 50000
 impôt . montant: 4678
+protection sociale . retraite . base: 258
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -372,6 +407,7 @@ dirigeant . rémunération . net: 37729
 dirigeant . rémunération . net . après impôt: 32411
 entreprise . chiffre d'affaires: 50000
 impôt . montant: 5318
+protection sociale . retraite . base: 273
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
@@ -382,6 +418,7 @@ dirigeant . rémunération . net: 14874
 dirigeant . rémunération . net . après impôt: 14874
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
+protection sociale . retraite . base: 108
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
@@ -393,6 +430,7 @@ dirigeant . rémunération . net: 2657
 dirigeant . rémunération . net . après impôt: 2657
 entreprise . chiffre d'affaires: 4000
 impôt . montant: 0
+protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 3
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
@@ -404,6 +442,7 @@ dirigeant . rémunération . net: 14874
 dirigeant . rémunération . net . après impôt: 14874
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
+protection sociale . retraite . base: 108
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
@@ -415,6 +454,7 @@ dirigeant . rémunération . net: 14797
 dirigeant . rémunération . net . après impôt: 14797
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
+protection sociale . retraite . base: 107
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
@@ -426,6 +466,7 @@ dirigeant . rémunération . net: 14720
 dirigeant . rémunération . net . après impôt: 14720
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
+protection sociale . retraite . base: 107
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"

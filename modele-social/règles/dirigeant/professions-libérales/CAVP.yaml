@@ -40,7 +40,6 @@ dirigeant . indépendant . PL . CAVP . cotisation de référence:
     site cavp.fr: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
 dirigeant . indépendant . PL . CAVP . retraite complémentaire:
-  non applicable si: CNAVPL . exonération incapacité
   remplace: cotisations et contributions . retraite complémentaire
   formule: part géré par répartition + part géré par capitalisation
   références:
