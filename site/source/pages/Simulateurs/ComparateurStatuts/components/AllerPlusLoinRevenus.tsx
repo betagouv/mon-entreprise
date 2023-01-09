@@ -270,7 +270,10 @@ const AllerPlusLoinRevenus = ({
 				<Spacing md />
 				<Flex>
 					<H4 as="h2">Bénéficier de l'ACRE</H4>
-					<ExplicableRule dottedName="dirigeant . exonérations . ACRE" />
+					<ExplicableRule
+						dottedName="dirigeant . exonérations . ACRE"
+						title="Bénéficier de l'ACRE"
+					/>
 				</Flex>
 
 				<Body>
@@ -278,9 +281,15 @@ const AllerPlusLoinRevenus = ({
 					en une <Strong>exonération partielle de charges sociales</Strong>,
 					dite exonération de début d'activité <Strong>pendant 12 mois</Strong>.
 				</Body>
-				<Button color="secondary" light>
-					Tester mon éligibilité
-				</Button>
+				{
+					// TODO : décommenter une fois le simulateur créé
+					/*
+					<Button color="secondary" light>
+						Tester mon éligibilité
+					</Button>
+					*/
+				}
+
 				<Spacing md />
 				<H4 as="h2">
 					Impôt sur le revenu, impôt sur les sociétés : que choisir ?
