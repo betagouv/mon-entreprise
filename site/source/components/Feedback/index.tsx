@@ -154,7 +154,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 				)}
 				<Spacing lg />
 				{isSimulateurSalaire ? (
-					<JeDonneMonAvis />
+					<JeDonneMonAvis light />
 				) : (
 					<Button
 						color="tertiary"
