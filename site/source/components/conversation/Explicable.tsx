@@ -14,11 +14,13 @@ export function ExplicableRule<Names extends string = DottedName>({
 	dottedName,
 	light,
 	bigPopover,
+	title,
 	...props
 }: {
 	dottedName: Names
 	light?: boolean
 	bigPopover?: boolean
+	title?: string
 }) {
 	const engine = useContext(EngineContext)
 
@@ -38,7 +40,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 		<HelpButtonWithPopover
 			key={rule.dottedName}
 			type="info"
-			title={rule.title}
+			title={title ?? rule.title}
 			light={light}
 			bigPopover={bigPopover}
 			className="print-hidden"

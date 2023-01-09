@@ -3188,6 +3188,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@floating-ui/core@npm:^1.0.5":
+  version: 1.1.0
+  resolution: "@floating-ui/core@npm:1.1.0"
+  checksum: ac48969915247320e52d173480c224e2ded94d557ba4cc504547bb314d126348dcc0aeef05686673e1b289596e6ce15118edc84900dd310c613d805f83b4e27d
+  languageName: node
+  linkType: hard
+
+"@floating-ui/dom@npm:^1.0.4":
+  version: 1.1.0
+  resolution: "@floating-ui/dom@npm:1.1.0"
+  dependencies:
+    "@floating-ui/core": ^1.0.5
+  checksum: 717551da6f470101cd1de0edc449b229fade7f94c2ff98d09e14ced041e27092aac94bd78756c4247a42b57129f187292f145f0001a81ece399a89b20b4be60b
+  languageName: node
+  linkType: hard
+
 "@formatjs/ecma402-abstract@npm:1.13.0":
   version: 1.13.0
   resolution: "@formatjs/ecma402-abstract@npm:1.13.0"
@@ -11905,7 +11921,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.5":
+"classnames@npm:^2.2.5, classnames@npm:^2.3.2":
   version: 2.3.2
   resolution: "classnames@npm:2.3.2"
   checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
@@ -24676,6 +24692,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-tooltip@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "react-tooltip@npm:5.4.0"
+  dependencies:
+    "@floating-ui/dom": ^1.0.4
+    classnames: ^2.3.2
+  peerDependencies:
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: d6947e849a2d89ae9dca6211b9750217ffcd76778a9a66dbfaf745420d1412512a86343a36c81136d3122b368f90899a150fcc94107f9e68ba89ffbe8b426e6e
+  languageName: node
+  linkType: hard
+
 "react-transition-group@npm:2.9.0":
   version: 2.9.0
   resolution: "react-transition-group@npm:2.9.0"
@@ -26231,6 +26260,7 @@ __metadata:
     react-router-dom: ^6.4.4
     react-signature-pad-wrapper: ^3.3.1
     react-spring: ^9.5.5
+    react-tooltip: ^5.4.0
     react-use-measure: ^2.1.1
     recharts: 2.3.2
     reduce-reducers: ^1.0.4

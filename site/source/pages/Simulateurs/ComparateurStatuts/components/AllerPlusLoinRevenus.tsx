@@ -283,11 +283,14 @@ const AllerPlusLoinRevenus = ({
 				</Body>
 				{
 					// TODO : décommenter une fois le simulateur créé
-					/*
-					<Button color="secondary" light>
-						Tester mon éligibilité
+					<Button
+						href="https://entreprendre.service-public.fr/vosdroits/F23282"
+						aria-label={t('En savoir plus, nouvelle fenêtre')}
+						color="secondary"
+						light
+					>
+						<Trans>En savoir plus</Trans>
 					</Button>
-					*/
 				}
 
 				<Spacing md />
