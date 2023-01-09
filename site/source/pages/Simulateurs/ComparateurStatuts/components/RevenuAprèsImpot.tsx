@@ -152,12 +152,32 @@ const RevenuAprèsImpot = ({
 						>
 							<HelpIcon />
 						</StyledRuleLink>
-						<WhenAlreadyDefined dottedName="entreprise . activité">
-							prout
-						</WhenAlreadyDefined>
-						<Condition expression="entreprise . TVA . franchise de TVA . seuils dépassés">
+
+						<Condition
+							engine={autoEntrepreneurEngine}
+							expression="entreprise . chiffre d'affaires . seuil micro dépassé"
+						>
 							<Tooltip
-								tooltip={`Vous allez dépasser le plafond de la micro-entreprise (72 500 € de chiffre d’affaires).`}
+								tooltip={
+									<StyledBody id="warning-ae-tooltip">
+										Vous allez dépasser le plafond de la micro-entreprise{' '}
+										{!autoEntrepreneurEngine.evaluate(
+											'entreprise . activité . mixte'
+										).nodeValue ? (
+											<span>
+												(
+												<Value
+													linkToRule={false}
+													displayedUnit="€"
+													expression="entreprise . chiffre d'affaires . seuil micro"
+												/>{' '}
+												de chiffre d’affaires).
+											</span>
+										) : (
+											'.'
+										)}
+									</StyledBody>
+								}
 								id="tooltip-ae"
 							>
 								<StyledWarningIcon

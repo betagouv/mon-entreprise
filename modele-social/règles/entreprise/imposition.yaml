@@ -291,6 +291,13 @@ entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   formule: chiffre d'affaires . seuil micro dépassé
   description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro-dépassé)
 
+entreprise . chiffre d'affaires . seuil micro:
+  unité: €/an
+  variations:
+    - si: entreprise . chiffre d'affaires . service
+      alors: 72600 €/an
+    - sinon: 176200 €/an
+
 entreprise . chiffre d'affaires . seuil micro dépassé:
   experimental: oui
   applicable si: imposition . IR
@@ -329,9 +336,7 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
   # revenus . BNC . contrôle micro-bnc, tableau de la comparaison de régime,
   # économie collaborative). Il faudrait référencer la même valeur partout où
   # elle est utilisée.
-  une de ces conditions:
-    - entreprise . chiffre d'affaires > 176200 €/an
-    - entreprise . chiffre d'affaires . service > 72600 €/an
+  valeur: entreprise . chiffre d'affaires . seuil micro
 
 entreprise . imposition . régime . déclaration contrôlée:
   applicable si: IR . type de bénéfices . BNC

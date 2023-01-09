@@ -109,10 +109,16 @@ const StyledValue = styled.span<{ $flashOnChange: boolean }>`
 type ConditionProps = {
 	expression: PublicodesExpression | ASTNode
 	children: React.ReactNode
+	engine?: Engine<DottedName>
 }
 
-export function Condition({ expression, children }: ConditionProps) {
-	const engine = useEngine()
+export function Condition({
+	expression,
+	children,
+	engine: engineFromProps,
+}: ConditionProps) {
+	const defaultEngine = useEngine()
+	const engine = engineFromProps ?? defaultEngine
 	const nodeValue = engine.evaluate({ '!=': [expression, 'non'] }).nodeValue
 
 	if (!nodeValue) {
