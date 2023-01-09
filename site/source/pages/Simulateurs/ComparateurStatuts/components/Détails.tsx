@@ -11,11 +11,7 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Accordion } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
-import {
-	ExternalLinkIcon,
-	HelpIcon,
-	PlusCircleIcon,
-} from '@/design-system/icons'
+import { ExternalLinkIcon, PlusCircleIcon } from '@/design-system/icons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H4 } from '@/design-system/typography/heading'
@@ -114,8 +110,9 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="ae"
+						bestOption="sasu"
 						unit="€/mois"
+						evolutionLabel={<Trans>au bout de 10 ans</Trans>}
 					/>
 				</Item>
 				<Item
@@ -165,7 +162,7 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="ae"
+						bestOption="sasu"
 						unit="€/jour"
 						footers={{
 							sasu: (
@@ -294,8 +291,7 @@ const Détails = ({
 							indépendantEngine,
 						]}
 						bestOption="ei"
-						unit="€/mois"
-						label={<Trans>versé en deux fois</Trans>}
+						label={<Trans>versés en deux fois</Trans>}
 					/>
 
 					<StyledH4>
@@ -320,7 +316,7 @@ const Détails = ({
 							indépendantEngine,
 						]}
 						bestOption="ei"
-						unit="€/mois"
+						label={<Trans>versés en une fois</Trans>}
 					/>
 				</Item>
 				<Item
@@ -435,7 +431,6 @@ const Détails = ({
 							indépendantEngine,
 						]}
 						bestOption="ei"
-						unit="€/mois"
 					/>
 
 					<Body
@@ -451,16 +446,18 @@ const Détails = ({
 							sa vie professionnelle.
 						</Trans>
 					</Body>
-					<DetailsRowCards
-						dottedName="protection sociale . invalidité et décès . pension de reversion"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
-						unit="€/mois"
-						bestOption="sasu"
-					/>
+					<StatusCard status={['sasu', 'ei', 'ae']}>
+						<span>
+							<Value
+								linkToRule={false}
+								expression="protection sociale . invalidité et décès . pension de reversion"
+								engine={assimiléEngine}
+								precision={0}
+								unit="€/mois"
+							/>{' '}
+							<Trans>maximum</Trans>
+						</span>
+					</StatusCard>
 
 					<Body
 						css={`
@@ -502,7 +499,7 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						unit="€/mois"
+						unit="€/enfant"
 						bestOption="ei"
 					/>
 				</Item>
@@ -516,63 +513,69 @@ const Détails = ({
 					key="administratif"
 					hasChildItems={false}
 				>
-					<StyledH4>
-						<Trans>Coût de création</Trans>
-						<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
-					</StyledH4>
-					<Body>
-						<Trans>
-							Les formalités de création d'une entreprise diffèrent selon les
-							statuts et la nature de l'activité. Le calcul se concentre ici sur
-							les <Strong>procédures obligatoires</Strong> (immatriculation,
-							annonces légales, rédaction des statuts...).
-						</Trans>
-					</Body>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . arrêt maladie"
-										engine={assimiléEngine}
-										precision={0}
-										unit="€"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . arrêt maladie"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ei']}>
-								<span>
-									<Value
-										linkToRule={false}
-										expression="protection sociale . maladie . arrêt maladie"
-										engine={indépendantEngine}
-										precision={0}
-										unit="€"
-									/>
-								</span>
-								<StyledRuleLink
-									dottedName="protection sociale . maladie . arrêt maladie"
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ae']}>
-								<Trans>Aucun</Trans>
-							</StatusCard>
-						</Grid>
-					</Grid>
+					{
+						// TODO : implémenter les valeurs correspondantes dans modèle-social
+						// Ressource : https://entreprendre.service-public.fr/vosdroits/F23282
+						/*
+							<StyledH4>
+								<Trans>Coût de création</Trans>
+								<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
+							</StyledH4>
+							<Body>
+								<Trans>
+									Les formalités de création d'une entreprise diffèrent selon les
+									statuts et la nature de l'activité. Le calcul se concentre ici sur
+									les <Strong>procédures obligatoires</Strong> (immatriculation,
+									annonces légales, rédaction des statuts...).
+								</Trans>
+							</Body>
+							<Grid container spacing={4}>
+								<Grid item xs={12} lg={4}>
+									<StatusCard status={['sasu']}>
+										<span>
+											<Value
+												linkToRule={false}
+												expression="protection sociale . maladie . arrêt maladie"
+												engine={assimiléEngine}
+												precision={0}
+												unit="€"
+											/>
+										</span>
+										<StyledRuleLink
+											dottedName="protection sociale . maladie . arrêt maladie"
+											engine={assimiléEngine}
+										>
+											<HelpIcon />
+										</StyledRuleLink>
+									</StatusCard>
+								</Grid>
+								<Grid item xs={12} lg={4}>
+									<StatusCard status={['ei']}>
+										<span>
+											<Value
+												linkToRule={false}
+												expression="protection sociale . maladie . arrêt maladie"
+												engine={indépendantEngine}
+												precision={0}
+												unit="€"
+											/>
+										</span>
+										<StyledRuleLink
+											dottedName="protection sociale . maladie . arrêt maladie"
+											engine={assimiléEngine}
+										>
+											<HelpIcon />
+										</StyledRuleLink>
+									</StatusCard>
+								</Grid>
+								<Grid item xs={12} lg={4}>
+									<StatusCard status={['ae']}>
+										<Trans>Aucun</Trans>
+									</StatusCard>
+								</Grid>
+							</Grid>
+						*/
+					}
 
 					<StyledH4>
 						<Trans>Dépôt de capital</Trans>
@@ -697,6 +700,7 @@ const DisabledLabel = styled(Body)`
 	font-size: 1.25rem;
 	font-weight: 700;
 	font-style: italic;
+	margin: 0;
 `
 
 export default Détails

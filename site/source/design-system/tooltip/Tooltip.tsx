@@ -23,7 +23,11 @@ export const Tooltip = ({
 					return React.cloneElement(child, { id } as { id: string })
 				}
 			})}
-			<StyledRTooltip anchorId={id} className={className}>
+			<StyledRTooltip
+				anchorId={id}
+				className={className}
+				id={`${id}-description`}
+			>
 				{tooltip}
 			</StyledRTooltip>
 		</>

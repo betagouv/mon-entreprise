@@ -77,6 +77,9 @@ const DetailsRowCards = ({
 									{evolutionLabel}
 								</Precisions>
 							)}
+							{!evolutionDottedName && evolutionLabel && (
+								<Precisions>{evolutionLabel}</Precisions>
+							)}
 						</WhenApplicable>
 					</StatusCard>
 				</Grid>
@@ -121,6 +124,9 @@ const DetailsRowCards = ({
 									/>{' '}
 									{evolutionLabel}
 								</Precisions>
+							)}
+							{!evolutionDottedName && evolutionLabel && (
+								<Precisions>{evolutionLabel}</Precisions>
 							)}
 						</WhenApplicable>
 					</StatusCard>
@@ -168,6 +174,9 @@ const DetailsRowCards = ({
 									{evolutionLabel}
 								</Precisions>
 							)}
+							{!evolutionDottedName && evolutionLabel && (
+								<Precisions>{evolutionLabel}</Precisions>
+							)}
 						</WhenApplicable>
 					</StatusCard>
 				</Grid>
@@ -206,12 +215,15 @@ const DetailsRowCards = ({
 									<Value
 										linkToRule={false}
 										expression={evolutionDottedName}
-										engine={indépendantEngine}
+										engine={assimiléEngine}
 										precision={0}
 										unit={unit}
 									/>{' '}
 									{evolutionLabel}
 								</Precisions>
+							)}
+							{!evolutionDottedName && evolutionLabel && (
+								<Precisions>{evolutionLabel}</Precisions>
 							)}
 						</WhenApplicable>
 					</StatusCard>
@@ -258,6 +270,9 @@ const DetailsRowCards = ({
 								{evolutionLabel}
 							</Precisions>
 						)}
+						{!evolutionDottedName && evolutionLabel && (
+							<Precisions>{evolutionLabel}</Precisions>
+						)}
 					</WhenApplicable>
 				</StatusCard>
 			</Grid>
@@ -290,12 +305,15 @@ const DetailsRowCards = ({
 								<Value
 									linkToRule={false}
 									expression={evolutionDottedName}
-									engine={indépendantEngine}
+									engine={assimiléEngine}
 									precision={0}
 									unit={unit}
 								/>{' '}
 								{evolutionLabel}
 							</Precisions>
+						)}
+						{!evolutionDottedName && evolutionLabel && (
+							<Precisions>{evolutionLabel}</Precisions>
 						)}
 					</WhenApplicable>
 				</StatusCard>
@@ -338,12 +356,15 @@ const DetailsRowCards = ({
 								<Value
 									linkToRule={false}
 									expression={evolutionDottedName}
-									engine={autoEntrepreneurEngine}
+									engine={assimiléEngine}
 									precision={0}
 									unit={unit}
 								/>{' '}
 								{evolutionLabel}
 							</Precisions>
+						)}
+						{!evolutionDottedName && evolutionLabel && (
+							<Precisions>{evolutionLabel}</Precisions>
 						)}
 					</WhenApplicable>
 				</StatusCard>
@@ -365,6 +386,7 @@ const DisabledLabel = styled(Body)`
 	font-size: 1.25rem;
 	font-weight: 700;
 	font-style: italic;
+	margin: 0 !important;
 `
 
 const Precisions = styled.span`
@@ -373,7 +395,7 @@ const Precisions = styled.span`
 	font-weight: normal;
 	font-size: 1rem;
 	color: ${({ theme }) => theme.colors.extended.grey[700]};
-	margin: 0;
+	margin: 0 !important;
 	margin-top: 0.5rem;
 	width: 100%;
 `

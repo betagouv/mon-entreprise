@@ -89,7 +89,7 @@ const StyledBody = styled(Body)`
 	align-items: center;
 	font-weight: 700;
 	margin: 0;
-	margin-top: 0.5rem;
+	margin-top: 0.75rem;
 `
 
 const CardBody = styled.div`

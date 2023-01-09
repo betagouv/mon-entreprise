@@ -3,18 +3,18 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
-import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
+import Value, { Condition } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { CheckList } from '@/design-system'
-import { ExternalLinkIcon, HelpIcon, WarningIcon } from '@/design-system/icons'
+import { ExternalLinkIcon, HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
-import { Tooltip } from '@/design-system/tooltip'
 import { H2 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import AllerPlusLoinRevenus from './AllerPlusLoinRevenus'
 import StatusCard from './StatusCard'
+import WarningTooltip from './WarningTooltip'
 
 const RevenuAprèsImpot = ({
 	engines,
@@ -157,7 +157,7 @@ const RevenuAprèsImpot = ({
 							engine={autoEntrepreneurEngine}
 							expression="entreprise . chiffre d'affaires . seuil micro dépassé"
 						>
-							<Tooltip
+							<WarningTooltip
 								tooltip={
 									<StyledBody id="warning-ae-tooltip">
 										Vous allez dépasser le plafond de la micro-entreprise{' '}
@@ -179,13 +179,7 @@ const RevenuAprèsImpot = ({
 									</StyledBody>
 								}
 								id="tooltip-ae"
-							>
-								<StyledWarningIcon
-									id="warning-ae"
-									aria-label="Attention"
-									aria-describedby="warning-ae-tooltip"
-								/>
-							</Tooltip>
+							/>
 						</Condition>
 					</StatusCard>
 				</Grid>
@@ -218,10 +212,6 @@ const BlackColoredLink = styled(StyledLink)`
 const DivAlignRight = styled.div`
 	margin-top: ${({ theme }) => theme.spacings.lg};
 	text-align: right;
-`
-
-const StyledWarningIcon = styled(WarningIcon)`
-	margin-left: ${({ theme }) => theme.spacings.sm};
 `
 
 const StyledBody = styled(Body)`
