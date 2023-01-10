@@ -28,7 +28,7 @@ const Détails = ({
 }: {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
 }) => {
-	const [shouldToggleAll, setShouldToggleAll] = useState(false)
+	const [shouldOpenAll, setShouldOpenAll] = useState(false)
 
 	return (
 		<StyledContainer
@@ -41,12 +41,12 @@ const Détails = ({
 					</H2>
 				</Grid>
 				<Grid item>
-					<Button underline onClick={() => setShouldToggleAll(true)}>
-						<Trans>Tout déplier</Trans>
+					<Button underline onClick={() => setShouldOpenAll((value) => !value)}>
+						<Trans>{shouldOpenAll ? 'Tout plier' : 'Tout déplier'}</Trans>
 					</Button>
 				</Grid>
 			</StyledGrid>
-			<Accordion variant="light" shouldToggleAll={shouldToggleAll}>
+			<Accordion variant="light" shouldOpenAll={shouldOpenAll}>
 				<Item
 					title={
 						<ItemTitle>

@@ -2,10 +2,10 @@ import { useAccordion, useAccordionItem } from '@react-aria/accordion'
 import { TreeState, useTreeState } from '@react-stately/tree'
 import { AriaAccordionProps } from '@react-types/accordion'
 import { Node } from '@react-types/shared'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { FocusStyle } from '../global-style'
 import chevronImg from './chevron.svg'
@@ -13,34 +13,26 @@ import chevronImg from './chevron.svg'
 export const Accordion = <T extends object>(
 	props: AriaAccordionProps<T> & {
 		variant?: 'light'
-		shouldToggleAll?: boolean
+		shouldOpenAll?: boolean
 	}
 ) => {
 	const state = useTreeState<T>(props)
 	const ref = useRef<HTMLDivElement>(null)
 	const { accordionProps } = useAccordion(props, state, ref)
 
-	useEffect(() => {
-		if (props?.shouldToggleAll) {
-			const keys = state.collection.getKeys()
-
-			for (const value of keys) {
-				state.toggleKey(value)
-				console.log('MARCHE PO')
-			}
-		}
-	}, [props?.shouldToggleAll])
-
 	return (
 		<StyledAccordionGroup {...props} {...accordionProps} ref={ref}>
-			{[...state.collection].map((item) => (
-				<AccordionItem<T>
-					key={item.key}
-					item={item}
-					state={state}
-					variant={props?.variant}
-				/>
-			))}
+			{[...state.collection].map((item) => {
+				return (
+					<AccordionItem<T>
+						key={item.key}
+						item={item}
+						state={state}
+						variant={props?.variant}
+						isOpen={props?.shouldOpenAll}
+					/>
+				)
+			})}
 		</StyledAccordionGroup>
 	)
 }
@@ -66,6 +58,7 @@ interface AccordionItemProps<T> {
 	item: Node<T>
 	state: TreeState<T>
 	variant?: 'light'
+	isOpen?: boolean
 }
 
 function AccordionItem<T>(props: AccordionItemProps<T>) {
@@ -73,8 +66,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 	const { state, item, variant } = props
 	const { buttonProps, regionProps } = useAccordionItem<T>(props, state, ref)
 
-	const isOpen = state.expandedKeys.has(item.key)
-	// const isDisabled = state.disabledKeys.has(item.key)
+	const isOpen = props?.isOpen ?? state.expandedKeys.has(item.key)
 
 	const [regionRef, { height }] = useMeasure()
 	const animatedStyle = useSpring({
