@@ -152,30 +152,31 @@ const RevenuAprèsImpot = ({
 						>
 							<HelpIcon />
 						</StyledRuleLink>
-
 						<Condition
 							engine={autoEntrepreneurEngine}
-							expression="entreprise . chiffre d'affaires . seuil micro dépassé"
+							expression="entreprise . chiffre d'affaires . seuil micro . dépassé"
 						>
 							<WarningTooltip
 								tooltip={
 									<StyledBody id="warning-ae-tooltip">
 										Vous allez dépasser le plafond de la micro-entreprise{' '}
-										{!autoEntrepreneurEngine.evaluate(
-											'entreprise . activité . mixte'
-										).nodeValue ? (
-											<span>
-												(
-												<Value
-													linkToRule={false}
-													displayedUnit="€"
-													expression="entreprise . chiffre d'affaires . seuil micro"
-												/>{' '}
-												de chiffre d’affaires).
-											</span>
-										) : (
-											'.'
-										)}
+										<span>
+											(
+											<Value
+												linkToRule={false}
+												displayedUnit="€"
+												expression={
+													String(
+														autoEntrepreneurEngine.evaluate(
+															'entreprise . activité . nature'
+														).nodeValue
+													) === 'libérale'
+														? "entreprise . chiffre d'affaires . seuil micro . service"
+														: "entreprise . chiffre d'affaires . seuil micro . total"
+												}
+											/>{' '}
+											de chiffre d’affaires).
+										</span>
 									</StyledBody>
 								}
 								id="tooltip-ae"

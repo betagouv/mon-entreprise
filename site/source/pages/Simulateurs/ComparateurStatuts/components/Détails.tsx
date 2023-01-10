@@ -5,7 +5,7 @@ import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
-import Value from '@/components/EngineValue'
+import Value, { WhenValueEquals } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Accordion } from '@/design-system'
@@ -21,6 +21,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import DetailsRowCards from './DetailsRowCards'
 import ItemTitle from './ItemTitle'
 import StatusCard from './StatusCard'
+import WarningTooltip from './WarningTooltip'
 
 const Détails = ({
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
@@ -164,6 +165,32 @@ const Détails = ({
 						]}
 						bestOption="sasu"
 						unit="€/jour"
+						warnings={{
+							sasu: (
+								<WhenValueEquals
+									engine={assimiléEngine}
+									expression="protection sociale . maladie . arrêt maladie"
+									value={0}
+								>
+									<WarningTooltip
+										tooltip={
+											<span
+												css={`
+													font-weight: normal;
+												`}
+											>
+												<Trans>
+													Votre <Strong>rémunération</Strong> est{' '}
+													<Strong>trop faible</Strong> pour bénéficier d’arrêt
+													maladie en SASU.
+												</Trans>
+											</span>
+										}
+										id="tooltip-sasu-arrêt-maladie"
+									/>
+								</WhenValueEquals>
+							),
+						}}
 						footers={{
 							sasu: (
 								<StyledDiv>

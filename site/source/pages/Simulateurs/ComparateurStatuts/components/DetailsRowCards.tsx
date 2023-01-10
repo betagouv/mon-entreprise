@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
 import Value, {
+	Condition,
 	WhenApplicable,
 	WhenNotApplicable,
 } from '@/components/EngineValue'
@@ -13,6 +14,7 @@ import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import StatusCard from './StatusCard'
+import WarningTooltip from './WarningTooltip'
 
 const DetailsRowCards = ({
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
@@ -23,6 +25,7 @@ const DetailsRowCards = ({
 	evolutionLabel,
 	footers,
 	label,
+	warnings,
 }: {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
 	dottedName: DottedName
@@ -32,6 +35,7 @@ const DetailsRowCards = ({
 	evolutionLabel?: ReactNode | string
 	footers?: { sasu: ReactNode; ei: ReactNode; ae: ReactNode }
 	label?: ReactNode | string
+	warnings?: { sasu?: ReactNode; ei?: ReactNode; ae?: ReactNode }
 }) => {
 	const assimiléValue = assimiléEngine.evaluate(dottedName).nodeValue
 	const indépendantValue = indépendantEngine.evaluate(dottedName).nodeValue
@@ -65,6 +69,11 @@ const DetailsRowCards = ({
 							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 								<HelpIcon />
 							</StyledRuleLink>
+							{warnings?.sasu || warnings?.ei
+								? warnings?.sasu
+									? warnings?.sasu
+									: warnings?.ei
+								: ''}
 							{evolutionDottedName && (
 								<Precisions>
 									<Value
@@ -113,6 +122,7 @@ const DetailsRowCards = ({
 							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 								<HelpIcon />
 							</StyledRuleLink>
+							{warnings?.ae && warnings?.ae}
 							{evolutionDottedName && (
 								<Precisions>
 									<Value
@@ -162,6 +172,7 @@ const DetailsRowCards = ({
 							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 								<HelpIcon />
 							</StyledRuleLink>
+							{warnings?.sasu && warnings?.sasu}
 							{evolutionDottedName && (
 								<Precisions>
 									<Value
@@ -210,6 +221,11 @@ const DetailsRowCards = ({
 							>
 								<HelpIcon />
 							</StyledRuleLink>
+							{warnings?.ei || warnings?.ae
+								? warnings?.ei
+									? warnings?.ei
+									: warnings?.ae
+								: ''}
 							{evolutionDottedName && (
 								<Precisions>
 									<Value
@@ -258,6 +274,7 @@ const DetailsRowCards = ({
 						<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
 							<HelpIcon />
 						</StyledRuleLink>
+						{warnings?.sasu && warnings?.sasu}
 						{evolutionDottedName && (
 							<Precisions>
 								<Value
@@ -300,6 +317,7 @@ const DetailsRowCards = ({
 						<StyledRuleLink dottedName={dottedName} engine={indépendantEngine}>
 							<HelpIcon />
 						</StyledRuleLink>
+						{warnings?.ei && warnings?.ei}
 						{evolutionDottedName && (
 							<Precisions>
 								<Value
@@ -351,6 +369,7 @@ const DetailsRowCards = ({
 						>
 							<HelpIcon />
 						</StyledRuleLink>
+						{warnings?.ae && warnings?.ae}
 						{evolutionDottedName && (
 							<Precisions>
 								<Value

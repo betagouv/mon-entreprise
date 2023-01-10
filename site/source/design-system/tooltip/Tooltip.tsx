@@ -17,7 +17,7 @@ export const Tooltip = ({
 	className?: string
 }) => {
 	return (
-		<>
+		<StyledSpan>
 			{React.Children.map(children, (child) => {
 				if (React.isValidElement(child)) {
 					return React.cloneElement(child, { id } as { id: string })
@@ -30,11 +30,18 @@ export const Tooltip = ({
 			>
 				{tooltip}
 			</StyledRTooltip>
-		</>
+		</StyledSpan>
 	)
 }
 
 const StyledRTooltip = styled(RTooltip)`
 	max-width: 20rem;
 	font-size: 0.75rem;
+`
+const StyledSpan = styled.span`
+	.react-tooltip {
+		opacity: 1 !important;
+		background: ${({ theme }) => theme.colors.extended.grey[800]};
+		color: ${({ theme }) => theme.colors.extended.grey[100]};
+	}
 `

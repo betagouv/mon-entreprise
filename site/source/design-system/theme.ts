@@ -1,5 +1,7 @@
 import { Theme } from '@/types/styled'
 
+import { TagType } from './tag'
+
 export const baseTheme = {
 	colors: {
 		bases: {
@@ -183,18 +185,17 @@ export const baseTheme = {
 	},
 }
 
-export const getColorGroup = (
-	color: keyof typeof baseTheme.colors.bases &
-		keyof typeof baseTheme.colors.extended
-) => {
-	const colorGroups = Object.keys(baseTheme.colors).map(
-		(colorGroup) => colorGroup
-	) as Array<keyof typeof baseTheme.colors>
+export type ColorGroups = Array<keyof typeof baseTheme.colors>
+
+export const getColorGroup = (color: TagType) => {
+	const colorGroups: ColorGroups = Object.keys(baseTheme.colors).map(
+		(colorGroup) => colorGroup as keyof typeof baseTheme.colors
+	)
 
 	return colorGroups.find(
 		(colorGroup: keyof typeof baseTheme.colors) =>
 			baseTheme.colors[colorGroup]?.[color]
-	)
+	) as keyof typeof baseTheme.colors
 }
 
 // We use the Grid from material-ui, we need to uniformise
