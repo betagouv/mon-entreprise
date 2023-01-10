@@ -28,7 +28,7 @@ export const Accordion = <T extends object>(
 						key={item.key}
 						item={item}
 						state={state}
-						variant={props?.variant}
+						$variant={props?.variant}
 						isOpen={props?.shouldOpenAll}
 					/>
 				)
@@ -57,13 +57,13 @@ const StyledAccordionGroup = styled.div<{ variant?: 'light' }>`
 interface AccordionItemProps<T> {
 	item: Node<T>
 	state: TreeState<T>
-	variant?: 'light'
+	$variant?: 'light'
 	isOpen?: boolean
 }
 
 function AccordionItem<T>(props: AccordionItemProps<T>) {
 	const ref = useRef<HTMLButtonElement>(null)
-	const { state, item, variant } = props
+	const { state, item, $variant } = props
 	const { buttonProps, regionProps } = useAccordionItem<T>(props, state, ref)
 
 	const isOpen = props?.isOpen ?? state.expandedKeys.has(item.key)
@@ -79,17 +79,18 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 	return (
 		<StyledAccordionItem onMouseDown={(x) => x.stopPropagation()}>
 			<StyledTitle>
-				<StyledButton {...buttonProps} ref={ref} variant={variant}>
+				<StyledButton {...buttonProps} ref={ref} $variant={$variant}>
 					<span>{item.props.title}</span>
 					<ChevronRightMedium aria-hidden $isOpen={isOpen} alt="" />
 				</StyledButton>
 			</StyledTitle>
 			{/* @ts-ignore: https://github.com/pmndrs/react-spring/issues/1515 */}
 			<StyledContent
+				// @ts-ignore
 				{...regionProps}
 				style={animatedStyle}
 				hidden={!isOpen}
-				variant={variant}
+				$variant={$variant}
 			>
 				<div ref={regionRef}>{item.props.children}</div>
 			</StyledContent>
@@ -107,7 +108,7 @@ const StyledAccordionItem = styled.div`
 	}
 `
 
-const StyledButton = styled.button<{ variant?: 'light' }>`
+const StyledButton = styled.button<{ $variant?: 'light' }>`
 	display: flex;
 	width: 100%;
 	background: none;
@@ -124,15 +125,15 @@ const StyledButton = styled.button<{ variant?: 'light' }>`
 		}
 	`}
 	:hover {
-		text-decoration: ${({ variant }) =>
-			variant === 'light' ? 'none' : 'underline'};
+		text-decoration: ${({ $variant }) =>
+			$variant === 'light' ? 'none' : 'underline'};
 	}
 	:focus {
 		${FocusStyle}
 	}
 
-	${({ theme, variant }) =>
-		variant === 'light' &&
+	${({ theme, $variant }) =>
+		$variant === 'light' &&
 		css`
 			background-color: transparent;
 			padding: 1.5rem;
@@ -160,11 +161,12 @@ const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<Chevron>`
 
 const StyledContent = styled(animated.div)<{
 	$isOpen: boolean
-	variant?: 'light'
+	$variant?: 'light'
 }>`
 	overflow: hidden;
 	> div {
-		margin: ${({ theme, variant }) => variant !== 'light' && theme.spacings.lg};
+		margin: ${({ theme, $variant }) =>
+			$variant !== 'light' && theme.spacings.lg};
 	}
 `
 
