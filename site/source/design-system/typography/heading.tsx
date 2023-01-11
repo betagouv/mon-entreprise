@@ -8,7 +8,7 @@ const baseHeading = css`
 		theme.darkMode
 			? theme.colors.extended.grey[100]
 			: theme.colors.bases.primary[700]};
-	background-color: inherit;
+	background-color: transparent;
 `
 
 export const HeadingUnderline = css`
