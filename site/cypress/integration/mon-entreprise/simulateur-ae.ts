@@ -20,7 +20,7 @@ describe('Simulateur auto-entrepreneur', { testIsolation: 'off' }, function () {
 	})
 
 	it('should not have negative value', function () {
-		cy.contains('Mensuel').click()
+		cy.contains('Montant mensuel').click()
 		cy.get(inputSelector).first().type('{selectall}5000')
 		cy.get(inputSelector).each(($input) => {
 			cy.wrap($input).should(($i) => {
