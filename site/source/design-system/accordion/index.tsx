@@ -2,37 +2,48 @@ import { useAccordion, useAccordionItem } from '@react-aria/accordion'
 import { TreeState, useTreeState } from '@react-stately/tree'
 import { AriaAccordionProps } from '@react-types/accordion'
 import { Node } from '@react-types/shared'
-import { useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
+import { Trans } from 'react-i18next'
 import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import styled, { css } from 'styled-components'
 
+import { omit } from '@/utils'
+
+import { Button } from '../buttons'
 import { FocusStyle } from '../global-style'
+import { Grid } from '../layout'
 import chevronImg from './chevron.svg'
 
 export const Accordion = <T extends object>(
 	props: AriaAccordionProps<T> & {
 		variant?: 'light'
-		shouldOpenAll?: boolean
-		shouldCloseAll?: boolean
+		shouldToggleAll?: boolean
+		title?: ReactNode
 	}
 ) => {
+	const { title } = props
 	const state = useTreeState<T>(props)
 	const ref = useRef<HTMLDivElement>(null)
 	const { accordionProps } = useAccordion(props, state, ref)
-	const [isAllOpen, setIsAllOpen] = useState(false)
-	const [isAllClosed, setIsAllClosed] = useState(false)
+	const [shouldOpenAll, setShouldOpenAll] = useState(false)
+	const [shouldCloseAll, setShouldCloseAll] = useState(false)
 
-	useEffect(() => {
-		if (props?.shouldOpenAll) {
-			setIsAllOpen(true)
-			setTimeout(() => {
-				setIsAllOpen(false)
-			}, 100)
-		}
-	}, [props?.shouldOpenAll])
+	const openAll = () => {
+		setShouldOpenAll(true)
+		setTimeout(() => {
+			setShouldOpenAll(false)
+		}, 100)
+	}
 
-	if (isAllOpen) {
+	const closeAll = () => {
+		setShouldCloseAll(true)
+		setTimeout(() => {
+			setShouldCloseAll(false)
+		})
+	}
+
+	if (shouldOpenAll) {
 		const keys = state.collection.getKeys()
 		for (const key of keys) {
 			if (!state.expandedKeys.has(key)) {
@@ -41,16 +52,7 @@ export const Accordion = <T extends object>(
 		}
 	}
 
-	useEffect(() => {
-		if (props?.shouldOpenAll) {
-			setIsAllClosed(true)
-			setTimeout(() => {
-				setIsAllClosed(false)
-			}, 100)
-		}
-	}, [props?.shouldOpenAll])
-
-	if (isAllClosed) {
+	if (shouldCloseAll) {
 		const keys = state.collection.getKeys()
 		for (const key of keys) {
 			if (state.expandedKeys.has(key)) {
@@ -59,19 +61,42 @@ export const Accordion = <T extends object>(
 		}
 	}
 
+	const allItemsOpen = Array.from(state.collection.getKeys()).every((key) =>
+		state.expandedKeys.has(key)
+	)
+
 	return (
-		<StyledAccordionGroup {...props} {...accordionProps} ref={ref}>
-			{[...state.collection].map((item) => {
-				return (
-					<AccordionItem<T>
-						key={item.key}
-						item={item}
-						state={state}
-						$variant={props?.variant}
-					/>
-				)
-			})}
-		</StyledAccordionGroup>
+		<>
+			{title && (
+				<StyledGrid container>
+					<Grid item>{title}</Grid>
+					<Grid item>
+						<Button
+							underline
+							onClick={() => (allItemsOpen ? closeAll() : openAll())}
+						>
+							<Trans>{allItemsOpen ? 'Tout plier' : 'Tout déplier'}</Trans>
+						</Button>
+					</Grid>
+				</StyledGrid>
+			)}
+			<StyledAccordionGroup
+				{...omit(props, 'title')}
+				{...accordionProps}
+				ref={ref}
+			>
+				{[...state.collection].map((item) => {
+					return (
+						<AccordionItem<T>
+							key={item.key}
+							item={item}
+							state={state}
+							$variant={props?.variant}
+						/>
+					)
+				})}
+			</StyledAccordionGroup>
+		</>
 	)
 }
 
@@ -205,6 +230,11 @@ const StyledContent = styled(animated.div)<{
 		margin: ${({ theme, $variant }) =>
 			$variant !== 'light' && theme.spacings.lg};
 	}
+`
+
+const StyledGrid = styled(Grid)`
+	justify-content: space-between;
+	align-items: center;
 `
 
 Accordion.StyledTitle = StyledTitle

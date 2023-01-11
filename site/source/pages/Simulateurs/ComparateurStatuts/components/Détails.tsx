@@ -28,30 +28,17 @@ const Détails = ({
 }: {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
 }) => {
-	const [shouldOpenAll, setShouldOpenAll] = useState<boolean | undefined>(
-		undefined
-	)
-
 	return (
 		<StyledContainer
 			backgroundColor={(theme) => theme.colors.bases.primary[200]}
 		>
-			<StyledGrid container>
-				<Grid item>
+			<Accordion
+				variant="light"
+				title={
 					<H2>
 						<Trans>Zoom sur...</Trans>
 					</H2>
-				</Grid>
-				<Grid item>
-					<Button underline onClick={() => setShouldOpenAll((value) => !value)}>
-						<Trans>{shouldOpenAll ? 'Tout plier' : 'Tout déplier'}</Trans>
-					</Button>
-				</Grid>
-			</StyledGrid>
-			<Accordion
-				variant="light"
-				shouldOpenAll={shouldOpenAll === true}
-				shouldCloseAll={shouldOpenAll === false}
+				}
 			>
 				<Item
 					title={
@@ -675,11 +662,6 @@ const Détails = ({
 
 const StyledContainer = styled(Container)`
 	padding: ${({ theme }) => theme.spacings.lg};
-`
-
-const StyledGrid = styled(Grid)`
-	justify-content: space-between;
-	align-items: center;
 `
 
 const StyledH4 = styled(H4)`
