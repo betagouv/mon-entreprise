@@ -21,7 +21,7 @@ export default function DateInput({
 		}
 		const [day, month, year] = value.split('/')
 
-		return `${year}-${month}-${day}-toto`
+		return `${year}-${month}-${day}-tata`
 	}, [value])
 	// const [currentValue, setCurrentValue] = useState(dateValue)
 	const handleDateChange = useCallback(
