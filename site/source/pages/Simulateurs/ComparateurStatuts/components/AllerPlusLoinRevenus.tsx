@@ -16,7 +16,7 @@ import { Button } from '@/design-system/buttons'
 import { ArrowRightIcon, InfoIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
-import { Tag } from '@/design-system/tag'
+import { Tag, TagType } from '@/design-system/tag'
 import { Strong } from '@/design-system/typography'
 import { H1, H4, H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -97,7 +97,7 @@ const AllerPlusLoinRevenus = ({
 								<Trans>Chiffre d'affaires</Trans>
 							</Grid>
 							<Grid item xs={6}>
-								<StyledTag $color="grey">
+								<StyledTag $color={'grey' as TagType}>
 									<Value
 										expression="entreprise . chiffre d'affaires"
 										displayedUnit="€"
@@ -114,7 +114,7 @@ const AllerPlusLoinRevenus = ({
 								<Trans>Charges</Trans>
 							</Grid>
 							<Grid item xs={6}>
-								<StyledTag $color="grey">
+								<StyledTag $color={'grey' as TagType}>
 									<Value
 										expression="entreprise . charges"
 										unit="€/an"
@@ -134,7 +134,7 @@ const AllerPlusLoinRevenus = ({
 							<Grid item xs={6}>
 								<Grid container>
 									<Grid item xs={12} lg={4}>
-										<StyledTag $color="secondary">
+										<StyledTag $color={'secondary' as TagType}>
 											<Value
 												expression="dirigeant . rémunération . cotisations"
 												engine={assimiléEngine}
@@ -145,7 +145,7 @@ const AllerPlusLoinRevenus = ({
 										</StyledTag>
 									</Grid>
 									<Grid item xs={12} lg={4}>
-										<StyledTag $color="independant">
+										<StyledTag $color={'independant' as TagType}>
 											<Value
 												expression="dirigeant . rémunération . cotisations"
 												engine={indépendantEngine}
@@ -156,7 +156,7 @@ const AllerPlusLoinRevenus = ({
 										</StyledTag>
 									</Grid>
 									<Grid item xs={12} lg={4}>
-										<StyledTag $color="tertiary">
+										<StyledTag $color={'tertiary' as TagType}>
 											<Value
 												expression="dirigeant . rémunération . cotisations"
 												engine={autoEntrepreneurEngine}
@@ -179,7 +179,7 @@ const AllerPlusLoinRevenus = ({
 							<Grid item xs={6}>
 								<Grid container>
 									<Grid item xs={12} lg={4}>
-										<StyledTag $color="secondary">
+										<StyledTag $color={'secondary' as TagType}>
 											<Value
 												expression="impôt . montant"
 												engine={assimiléEngine}
@@ -190,7 +190,7 @@ const AllerPlusLoinRevenus = ({
 										</StyledTag>
 									</Grid>
 									<Grid item xs={12} lg={4}>
-										<StyledTag $color="independant">
+										<StyledTag $color={'independant' as TagType}>
 											<Value
 												expression="impôt . montant"
 												engine={indépendantEngine}
@@ -201,7 +201,7 @@ const AllerPlusLoinRevenus = ({
 										</StyledTag>
 									</Grid>
 									<Grid item xs={12} lg={4}>
-										<StyledTag $color="tertiary">
+										<StyledTag $color={'tertiary' as TagType}>
 											<Value
 												expression="dirigeant . rémunération . impôt"
 												engine={autoEntrepreneurEngine}
@@ -226,7 +226,7 @@ const AllerPlusLoinRevenus = ({
 					<Grid item xs={6}>
 						<Grid container>
 							<Grid item xs={12} lg={4}>
-								<StyledTag $color="secondary">
+								<StyledTag $color={'secondary' as TagType}>
 									<Strong>
 										<Value
 											expression="dirigeant . rémunération . net . après impôt"
@@ -239,7 +239,7 @@ const AllerPlusLoinRevenus = ({
 								</StyledTag>
 							</Grid>
 							<Grid item xs={12} lg={4}>
-								<StyledTag $color="independant">
+								<StyledTag $color={'independant' as TagType}>
 									<Strong>
 										<Value
 											expression="dirigeant . rémunération . net . après impôt"
@@ -252,7 +252,7 @@ const AllerPlusLoinRevenus = ({
 								</StyledTag>
 							</Grid>
 							<Grid item xs={12} lg={4}>
-								<StyledTag $color="tertiary">
+								<StyledTag $color={'tertiary' as TagType}>
 									<Strong>
 										<Value
 											expression="dirigeant . rémunération . net . après impôt"
@@ -392,7 +392,7 @@ const StyledLi = styled(Li)`
 	}
 `
 
-const StyledTag = styled(Tag)`
+const StyledTag = styled(Tag)<{ $color: TagType }>`
 	width: 100%;
 	justify-content: center;
 	font-size: 0.75rem;

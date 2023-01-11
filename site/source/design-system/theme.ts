@@ -194,7 +194,7 @@ export const getColorGroup = (color: TagType) => {
 
 	return colorGroups.find(
 		(colorGroup: keyof typeof baseTheme.colors) =>
-			baseTheme.colors[colorGroup]?.[color]
+			!!baseTheme.colors[colorGroup]?.[color]
 	) as keyof typeof baseTheme.colors
 }
 

@@ -28,7 +28,9 @@ const Détails = ({
 }: {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
 }) => {
-	const [shouldOpenAll, setShouldOpenAll] = useState(false)
+	const [shouldOpenAll, setShouldOpenAll] = useState<boolean | undefined>(
+		undefined
+	)
 
 	return (
 		<StyledContainer
@@ -46,7 +48,11 @@ const Détails = ({
 					</Button>
 				</Grid>
 			</StyledGrid>
-			<Accordion variant="light" shouldOpenAll={shouldOpenAll}>
+			<Accordion
+				variant="light"
+				shouldOpenAll={shouldOpenAll === true}
+				shouldCloseAll={shouldOpenAll === false}
+			>
 				<Item
 					title={
 						<ItemTitle>

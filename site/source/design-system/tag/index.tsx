@@ -4,14 +4,13 @@ import { baseTheme, getColorGroup } from '../theme'
 
 export type TagType = keyof typeof baseTheme.colors.bases &
 	keyof typeof baseTheme.colors.extended &
-	keyof typeof baseTheme.colors.publics &
-	undefined
+	keyof typeof baseTheme.colors.publics
 
 type SizeType = 'sm' | 'md' | 'lg'
 
 const lightColors = ['grey']
 
-export const Tag = styled.div<{ $color: TagType; $size?: SizeType }>`
+export const Tag = styled.div<{ $color?: TagType; $size?: SizeType }>`
 	font-family: ${({ theme }) => theme.fonts.main};
 
 	display: flex;

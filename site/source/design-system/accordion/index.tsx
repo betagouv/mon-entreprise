@@ -2,7 +2,7 @@ import { useAccordion, useAccordionItem } from '@react-aria/accordion'
 import { TreeState, useTreeState } from '@react-stately/tree'
 import { AriaAccordionProps } from '@react-types/accordion'
 import { Node } from '@react-types/shared'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import styled, { css } from 'styled-components'
@@ -14,11 +14,50 @@ export const Accordion = <T extends object>(
 	props: AriaAccordionProps<T> & {
 		variant?: 'light'
 		shouldOpenAll?: boolean
+		shouldCloseAll?: boolean
 	}
 ) => {
 	const state = useTreeState<T>(props)
 	const ref = useRef<HTMLDivElement>(null)
 	const { accordionProps } = useAccordion(props, state, ref)
+	const [isAllOpen, setIsAllOpen] = useState(false)
+	const [isAllClosed, setIsAllClosed] = useState(false)
+
+	useEffect(() => {
+		if (props?.shouldOpenAll) {
+			setIsAllOpen(true)
+			setTimeout(() => {
+				setIsAllOpen(false)
+			}, 100)
+		}
+	}, [props?.shouldOpenAll])
+
+	if (isAllOpen) {
+		const keys = state.collection.getKeys()
+		for (const key of keys) {
+			if (!state.expandedKeys.has(key)) {
+				state.expandedKeys.add(key)
+			}
+		}
+	}
+
+	useEffect(() => {
+		if (props?.shouldOpenAll) {
+			setIsAllClosed(true)
+			setTimeout(() => {
+				setIsAllClosed(false)
+			}, 100)
+		}
+	}, [props?.shouldOpenAll])
+
+	if (isAllClosed) {
+		const keys = state.collection.getKeys()
+		for (const key of keys) {
+			if (state.expandedKeys.has(key)) {
+				state.expandedKeys.delete(key)
+			}
+		}
+	}
 
 	return (
 		<StyledAccordionGroup {...props} {...accordionProps} ref={ref}>
@@ -29,7 +68,6 @@ export const Accordion = <T extends object>(
 						item={item}
 						state={state}
 						$variant={props?.variant}
-						isOpen={props?.shouldOpenAll}
 					/>
 				)
 			})}
@@ -58,7 +96,6 @@ interface AccordionItemProps<T> {
 	item: Node<T>
 	state: TreeState<T>
 	$variant?: 'light'
-	isOpen?: boolean
 }
 
 function AccordionItem<T>(props: AccordionItemProps<T>) {
@@ -66,7 +103,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 	const { state, item, $variant } = props
 	const { buttonProps, regionProps } = useAccordionItem<T>(props, state, ref)
 
-	const isOpen = props?.isOpen ?? state.expandedKeys.has(item.key)
+	const isOpen = state.expandedKeys.has(item.key)
 
 	const [regionRef, { height }] = useMeasure()
 	const animatedStyle = useSpring({
