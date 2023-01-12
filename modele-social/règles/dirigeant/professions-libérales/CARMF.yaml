@@ -65,6 +65,9 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
           assiette: assiette des cotisations
           plafond: 3.5 * plafond sécurité sociale
           taux: 10%
+  abattement:
+    applicable si: CNAVPL . exonération incapacité
+    valeur: 100%
   unité: €/an
   références:
     Site CARMF: http://www.carmf.fr/page.php?page=cdrom/coti/coti-chiffre.htm

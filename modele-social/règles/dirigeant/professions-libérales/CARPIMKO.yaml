@@ -7,27 +7,28 @@ dirigeant . indépendant . PL . CARPIMKO:
 
 dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
-
-  formule:
-    somme:
-      - variations:
-          - si: date >= 01/2022
-            alors: 1840 €/an
-          - si: date >= 01/2021
-            alors: 1648 €/an
-      - barème:
-          assiette: assiette des cotisations
-          tranches:
-            - taux: 0%
-              plafond: 25246 €/an
-            - taux: 3%
-              plafond:
-                variations:
-                  - si: date >= 01/2022
-                    alors: 193913 €/an
-                  - si: date >= 01/2021
-                    alors: 176413 €/an
-        arrondi: oui
+  somme:
+    - variations:
+        - si: date >= 01/2022
+          alors: 1840 €/an
+        - si: date >= 01/2021
+          alors: 1648 €/an
+    - barème:
+        assiette: assiette des cotisations
+        tranches:
+          - taux: 0%
+            plafond: 25246 €/an
+          - taux: 3%
+            plafond:
+              variations:
+                - si: date >= 01/2022
+                  alors: 193913 €/an
+                - si: date >= 01/2021
+                  alors: 176413 €/an
+      arrondi: oui
+  abattement:
+    applicable si: CNAVPL . exonération incapacité
+    valeur: 100%
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 

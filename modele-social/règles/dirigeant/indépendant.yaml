@@ -32,19 +32,56 @@ dirigeant . indépendant . cotisations et contributions . non déductibles:
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: dirigeant . exonérations . ACRE
-  produit:
-    assiette:
-      somme:
-        - maladie
-        - retraite de base
-        - indemnités journalières maladie
-        - invalidité et décès
-        - allocations familiales
-    taux: taux
-    facteur: prorata sur l'année
-    arrondi: oui
+
+  somme:
+    - ACRE . maladie
+    - ACRE . indemnités journalières maladie
+    - ACRE . retraite de base
+    - ACRE . invalidité et décès
+    - ACRE . allocations familiales
   références:
-    Fiche secu-independants.fr: https://www.secu-independants.fr/cotisations/calcul-cotisations/acre/
+    'L’Acre pour les indépendants: quel avantages ?': https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/quels-avantages/travailleurs-independants-ne-rel.html
+
+  avec:
+    maladie:
+      # On préfère l'exonération pension invalidité si elle est plus avantageuse
+      non applicable si: pension invalidité . prorata > taux * prorata sur l'année
+      remplace: maladie
+      valeur: maladie
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    indemnités journalières maladie:
+      # On préfère l'exonération pension invalidité si elle est plus avantageuse
+      non applicable si: pension invalidité . prorata > taux * prorata sur l'année
+      remplace: indemnités journalières maladie
+      valeur: indemnités journalières maladie
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    retraite de base:
+      non applicable si:
+        une de ces conditions:
+          # On préfère l'exonération incapacité car cette dernière est plus avantageuse
+          - PL . CNAVPL . exonération incapacité
+          # On préfère l'exonération pension invalidité si elle est plus avantageuse
+          - pension invalidité . prorata > taux * prorata sur l'année
+      remplace: retraite de base
+      valeur: retraite de base
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    invalidité et décès:
+      remplace: invalidité et décès
+      valeur: invalidité et décès
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    allocations familiales:
+      remplace: allocations familiales
+      valeur: allocations familiales
+      abattement: taux * prorata sur l'année
+      arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . PSS proratisé:
   titre: plafond de la sécurité sociale proratisé
@@ -85,7 +122,9 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
 
 dirigeant . indépendant . cotisations et contributions . cotisations:
   références:
-    assiettes et taux: https://www.secu-independants.fr/baremes/cotisations-et-contributions
+    'Professions libérales réglementées: Bases de calcul et taux des cotisations': https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-professions-liberales-reglem/bases-de-calcul-et-taux-des-coti.html
+    'Artisans, commerçants et professions libérales non réglementées : Bases de calcul et taux des cotisations': https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/artisans-commercants-et-professi/bases-de-calcul-et-taux-des-coti.html
+    'Practiciens et auxiliaires médicaux : Bases de calcul et taux des cotisations': https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me.html
   formule:
     somme:
       - maladie
@@ -697,15 +736,8 @@ dirigeant . indépendant . cotisations et contributions . allocations familiales
     Liste des cotisations: https://www.urssaf.fr/portail/home/artisan-commercant/comment-sont-calculees-les-cotis/liste-des-cotisations.html
 
 dirigeant . indépendant . cotisations et contributions . exonérations:
-  somme:
-    - ZFU
-    - ACRE
-    - pension invalidité . montant
-    - caisse de retraite PL
-  avec:
-    caisse de retraite PL:
-      valeur: non
-      experimental: oui
+  valeur: ZFU
+
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   applicable si: établissement . ZFU
   produit:
@@ -721,10 +753,28 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
 
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
   question: Bénéficiez-vous du dispositif d’exonération « âge pour la retraite » de la cotisation invalidité-décès ?
-  description: Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient avant son abbrogation.
+  description: |
+    ### Artisans, commerçants, et professions libérales hors CIPAV
+    Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient
+    avant son abrogation.
+
+    #### Professions libérales relevants de la CIPAV
+    L'exonération s'applique automatique à partir de l'année de vos 68 ans.
+    Vous pouvez cependant cotiser volontairement entre 68 et 80 ans, si :
+    - vous poursuivez votre activité ;
+    - vous avez un conjoint de moins de 67 ans ou des enfants à charge de moins de 21 ans ;
+    - vous avez une personne à charge ayant un handicap majeur.
+
   par défaut: non
-  applicable si: entreprise . date de création < 01/2016
-  rend non applicable: invalidité et décès
+  applicable si:
+    une de ces conditions:
+      - entreprise . date de création < 01/2016
+      - PL . CIPAV
+  avec:
+    invalidité et décès:
+      valeur: invalidité et décès
+      remplace: invalidité et décès
+      abattement: 100%
 
 dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
   titre: exonération invalidité
@@ -738,8 +788,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
           texte: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
   description: |-
     Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
-    non agricoles, vous bénécifiez d’une exonération totale des cotisations de retraite complémentaire et
-    des cotisations maladie.
+    non agricoles, vous bénéficiez d’une exonération totale des cotisations de retraite de base, de
+    retraite complémentaire et maladie.
 
     Pour que vous puissiez continuer à accumuler des points de retraite complémentaire comme les autres travailleurs,
     il vous est attribué des "points gratuits".
@@ -760,28 +810,48 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
     Circulaire RSI 2013/004 du 17/01/2013: https://www.legislation.cnav.fr/Documents/circulaire_rsi_2013_004_17012013.pdf#page=24
 
   avec:
-    montant:
-      description: |-
-        Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
-        non agricoles, vous bénécifiez d’une exonération totale des cotisations de retraite complémentaire et
-        des cotisations maladie.
+    retraite de base:
+      non applicable si:
+        une de ces conditions:
+          - profession libérale réglementées hors Urssaf
+          - PL . CNAVPL . exonération incapacité
+      remplace: retraite de base
+      valeur: retraite de base
+      abattement: prorata
 
-      produit:
-        assiette:
-          somme:
-            - valeur: retraite complémentaire
-              non applicable si: PL . CNAVPL # Non applicable pour les professions libérales reglementées
-            - indemnités journalières maladie
-            - maladie
-        taux:
-          nom: prorata
-          privé: oui
-          valeur: durée / 1 an
-          unité: '%'
+    retraite complémentaire:
+      non applicable si:
+        une de ces conditions:
+          - profession libérale réglementées hors Urssaf
+          - PL . CNAVPL . exonération incapacité
+      remplace: retraite complémentaire
+      valeur: retraite complémentaire
+      abattement: prorata
+
+    indemnités journalières maladie:
+      remplace: indemnités journalières maladie
+      valeur: indemnités journalières maladie
+      abattement: prorata
+
+    maladie:
+      remplace: maladie
+      valeur: maladie
+      abattement: prorata
 
     durée:
       question: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
       par défaut: 12 mois
+
+    prorata:
+      valeur: durée / 1 an
+      unité: '%'
+    profession libérale réglementées hors Urssaf:
+      privé: oui
+      toutes ces conditions:
+        - PL . CNAVPL
+        - une de ces conditions:
+            - PL . CIPAV = non
+            - date < 01/2023
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
   taux progressif:

@@ -57,6 +57,10 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
               taux: 9%
             - plafond: 3
               taux: 22%
+  abattement:
+    applicable si: CNAVPL . exonération incapacité
+    valeur: 100%
+
   références:
     'L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023': https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
 
@@ -240,6 +244,7 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
           titre: classe C
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
+  non applicable si: date >= 01/2023
   question: Avez-vous demandé à être exonéré de la cotisations invalidité-décès CIPAV ? (revenus de l'année précédente inférieurs à 6 170€)
   par défaut: non
   description: |-
@@ -269,7 +274,7 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
       arrondi: oui
 
     proportion:
-      question: À quelle proportion du revenu le conjoint cotise-t'il pour le régime complémentaire et le régime d'invalidité-décès CIPAV ?
+      question: A quelle proportion le cotisant cotise-t’il pour le régime complémentaire et le régime d’invalidité-décès CIPAV ?
       par défaut: "'quart'"
       une possibilité:
         choix obligatoire: oui

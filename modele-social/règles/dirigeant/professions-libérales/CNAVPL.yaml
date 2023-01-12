@@ -17,28 +17,34 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
   description: |
     Toutes les professions libérale (à l'exception des avocats)
     ont les mêmes taux de cotisations pour leur retraite de base.
-  produit:
-    assiette:
-      nom: revenu cotisé
-      valeur: assiette des cotisations
-      plancher: assiette minimale . retraite
-      unité: €/mois
-    composantes:
-      - attributs:
-          nom: tranche T1
-          arrondi: oui
-          unité: €/an
-        taux:
-          nom: taux
-          valeur: 8.23%
-        plafond: plafond sécurité sociale
-      - attributs:
-          nom: tranche T2
-          arrondi: oui
-          unité: €/an
-        taux: 1.87%
-        plafond: 5 * plafond sécurité sociale
-  abattement: CARMF . participation CPAM retraite
+  valeur:
+    produit:
+      assiette:
+        nom: revenu cotisé
+        valeur: assiette des cotisations
+        plancher: assiette minimale . retraite
+        unité: €/an
+      composantes:
+        - attributs:
+            nom: tranche T1
+            arrondi: oui
+            unité: €/an
+          taux:
+            nom: taux
+            valeur: 8.23%
+          plafond: plafond sécurité sociale
+        - attributs:
+            nom: tranche T2
+            arrondi: oui
+            unité: €/an
+          taux: 1.87%
+          plafond: 5 * plafond sécurité sociale
+    abattement: CARMF . participation CPAM retraite
+
+  abattement:
+    applicable si: exonération incapacité
+    valeur: 100%
+
   références:
     cnavpl.fr: https://www.cnavpl.fr/preparer-sa-retraite/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=24
@@ -70,7 +76,12 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
       plafond:
         nom: plafond
         valeur: 3 * plafond sécurité sociale
-      plancher: 40% * plafond sécurité sociale
+      plancher:
+        non applicable si:
+          une de ces conditions:
+            - entreprise . activité . saisonnière
+            - situation personnelle . RSA
+        valeur: 40% * plafond sécurité sociale
     taux:
       nom: taux
       variations:
@@ -89,16 +100,10 @@ dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
   description: |-
     Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois,
     vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
-  rend non applicable:
-    règle: retraite
-    dans: cotisations et contributions . exonérations . ACRE
 
-  avec:
-    montant:
-      remplace: cotisations et contributions . exonérations . caisse de retraite PL
-      somme:
-        - CNAVPL . retraite
-        - cotisations et contributions . retraite complémentaire
+  rend non applicable:
+    - règle: retraite
+      dans: cotisations et contributions . exonérations . ACRE
 
   références:
     Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75
@@ -154,10 +159,12 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
         plancher: assiette minimale . retraite
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
-  non applicable si: date < 01/01/2022
+  applicable si: date >= 01/2022
   remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
   produit:
     assiette: 40% * plafond sécurité sociale
-    taux: 0.5%
+    taux: 0.3%
   unité: €/an
   arrondi: oui
+  référence:
+    Article D621-6 du Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038789007

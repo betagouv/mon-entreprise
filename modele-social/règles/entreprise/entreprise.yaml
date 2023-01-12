@@ -205,13 +205,17 @@ entreprise . TVA . franchise de TVA . seuil service:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
 entreprise . TVA . franchise de TVA . seuils dépassés:
-  type: notification
+  déprécié: oui
   une de ces conditions:
     - chiffre d'affaires > seuil vente + seuil service
     - chiffre d'affaires . vente restauration hébergement > seuil vente
     - chiffre d'affaires . service > seuil service
+
+entreprise . TVA . franchise de TVA . notification:
+  type: notification
+  valeur: seuils dépassés = non
   résumé: |
-    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
+    Vous êtes en dessous du seuil de déclaration de TVA.
   description: |
     La franchise de TVA est un dispositif qui exonère les entreprises de la
     déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
@@ -223,7 +227,7 @@ entreprise . TVA . franchise de TVA . seuils dépassés:
     On prend compte ici des seuils majorés (qui s'appliquent si le seuil
     "minoré" n'a pas été dépassé en année `n - 2`)
   références:
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
+    Franchise en base de TVA: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
 entreprise . résultat fiscal:
   unité: €/an

@@ -12,10 +12,12 @@ dirigeant . indépendant . PL . CARCDSF:
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
-  formule:
-    somme:
-      - cotisation forfaitaire
-      - cotisation proportionnelle
+  somme:
+    - cotisation forfaitaire
+    - cotisation proportionnelle
+  abattement:
+    applicable si: CNAVPL . exonération incapacité
+    valeur: 100%
   références:
     Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 

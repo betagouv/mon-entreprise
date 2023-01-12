@@ -43,13 +43,13 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
     forfaitaire:
       description: |
         Le conjoint collaborateur paiera des cotisations équivalentes à un revenu
-        professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale,
+        professionnel forfaitaire, fixé à un pourcentage du plafond de la sécurité sociale,
         à l’exception de la cotisation indemnités journalières qui est calculée sur
         une assiette équivalente à 40% du PASS.
       valeur: assiette = 'forfaitaire'
 
     revenu sans partage:
-      description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une base d'un pourcentage du assiette des cotisations du gérant de l'entreprise.
+      description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une part du revenu professionnel du gérant de l’entreprise.
       formule: assiette = 'revenu sans partage'
 
     revenu avec partage:

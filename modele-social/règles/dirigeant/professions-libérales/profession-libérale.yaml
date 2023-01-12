@@ -169,6 +169,7 @@ dirigeant . indépendant . PL . PAMC . maladie:
 dirigeant . indépendant . PL . maladie:
   non applicable si: régime général
   remplace: cotisations et contributions . maladie
+  unité: €/an
   produit:
     assiette:
       valeur: assiette des cotisations
@@ -215,11 +216,25 @@ dirigeant . indépendant . PL . cotisations Urssaf:
       - cotisations et contributions . indemnités journalières maladie
       - cotisations et contributions . allocations familiales
       - cotisations et contributions . formation professionnelle
-      - cotisations et contributions . exonérations . caisse de retraite PL - cotisations et contributions . exonérations
       - PAMC . CURPS
+      - applicable si:
+          # Depuis 2023 les cotisations des PL affiliés à la CIPAV sont recouvrées par l'Urssaf
+          toutes ces conditions:
+            - CIPAV
+            - date > 01/2023
+        somme:
+          - cotisations et contributions . retraite de base
+          - cotisations et contributions . retraite complémentaire
+          - cotisations et contributions . invalidité et décès
     arrondi: oui
 
 dirigeant . indépendant . PL . cotisations caisse de retraite:
+  non applicable si:
+    # Depuis 2023 les cotisations des PL affiliés à la CIPAV sont recouvrées par l'Urssaf
+    toutes ces conditions:
+      - CIPAV
+      - date > 01/2023
+
   description: |
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la profession libérale effectuée.
   formule:
@@ -228,5 +243,4 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
       - cotisations et contributions . retraite complémentaire
       - cotisations et contributions . invalidité et décès
       - cotisations et contributions . PCV
-      - (- cotisations et contributions . exonérations . caisse de retraite PL)
     arrondi: oui
