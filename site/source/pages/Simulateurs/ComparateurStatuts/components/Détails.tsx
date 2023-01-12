@@ -1,15 +1,16 @@
 import { Item } from '@react-stately/collections'
 import Engine from 'publicodes'
-import { useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
-import Value, { WhenValueEquals } from '@/components/EngineValue'
+import Value, {
+	WhenAlreadyDefined,
+	WhenValueEquals,
+} from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Accordion } from '@/design-system'
-import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { ExternalLinkIcon, PlusCircleIcon } from '@/design-system/icons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
@@ -475,7 +476,12 @@ const Détails = ({
 								precision={0}
 								unit="€/mois"
 							/>{' '}
-							<Trans>maximum</Trans>
+							<WhenAlreadyDefined
+								engine={assimiléEngine}
+								dottedName="protection sociale . invalidité et décès . pension de reversion"
+							>
+								<Trans>maximum</Trans>
+							</WhenAlreadyDefined>
 						</span>
 					</StatusCard>
 

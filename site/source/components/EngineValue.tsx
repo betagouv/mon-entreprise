@@ -193,12 +193,17 @@ export function WhenNotApplicable({
 export function WhenAlreadyDefined({
 	dottedName,
 	children,
+	engine,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
+	engine?: Engine<DottedName>
 }) {
-	const engine = useEngine()
-	if (engine.evaluate({ 'est non défini': dottedName }).nodeValue) {
+	const defaultEngine = useEngine()
+
+	const engineValue = engine ?? defaultEngine
+
+	if (engineValue.evaluate({ 'est non défini': dottedName }).nodeValue) {
 		return null
 	}
 

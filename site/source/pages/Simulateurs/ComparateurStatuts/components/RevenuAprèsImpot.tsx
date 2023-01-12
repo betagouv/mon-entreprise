@@ -3,7 +3,11 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
-import Value, { Condition } from '@/components/EngineValue'
+import Value, {
+	Condition,
+	WhenAlreadyDefined,
+	WhenApplicable,
+} from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { CheckList } from '@/design-system'
 import { ExternalLinkIcon, HelpIcon } from '@/design-system/icons'
@@ -54,7 +58,12 @@ const RevenuAprèsImpot = ({
 								precision={0}
 								unit="€/mois"
 							/>{' '}
-							la première année
+							<WhenAlreadyDefined
+								dottedName="dirigeant . rémunération . net . après impôt"
+								engine={assimiléEngine}
+							>
+								<Trans>la première année</Trans>
+							</WhenAlreadyDefined>
 						</span>
 						<StyledRuleLink
 							dottedName="dirigeant . rémunération . net . après impôt"

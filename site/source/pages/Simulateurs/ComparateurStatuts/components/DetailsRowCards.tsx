@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
 import Value, {
-	Condition,
 	WhenApplicable,
 	WhenNotApplicable,
 } from '@/components/EngineValue'
@@ -14,7 +13,6 @@ import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import StatusCard from './StatusCard'
-import WarningTooltip from './WarningTooltip'
 
 const DetailsRowCards = ({
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
@@ -41,6 +39,12 @@ const DetailsRowCards = ({
 	const indépendantValue = indépendantEngine.evaluate(dottedName).nodeValue
 	const autoEntrepreneurValue =
 		autoEntrepreneurEngine.evaluate(dottedName).nodeValue
+
+	const dynamicBestOption = [
+		{ type: 'sasu', value: assimiléValue },
+		{ type: 'ei', value: indépendantValue },
+		{ type: 'ae', value: autoEntrepreneurValue },
+	]
 
 	if (assimiléValue === indépendantValue) {
 		return (
