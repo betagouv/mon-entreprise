@@ -115,6 +115,19 @@ entreprise . imposition . IS . montant:
     assiette: résultat imposable
     multiplicateur: prorata temporis
     variations:
+      - si: exercice . début >= 01/2023
+        alors:
+          tranches:
+            - taux:
+                nom: taux réduit
+                valeur: 15%
+              plafond:
+                nom: plafond taux réduit 1
+                applicable si: éligible taux réduit
+                valeur: 42500 €/an
+            - taux:
+                nom: taux normal
+                valeur: 25%
       - si: exercice . début >= 01/2022
         alors:
           tranches:
