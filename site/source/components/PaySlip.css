@@ -19,7 +19,6 @@
 }
 .payslip__container h3 {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.85);
-	color: #1D458C;
 	background-color: inherit;
 	print-color-adjust: exact !important;
 	margin: 0;
@@ -43,7 +42,6 @@
 
 .payslip__container h5 {
 	margin: 0;
-	color: #1D458C;
 	background-color: inherit;
 	margin-bottom: 0.5rem;
 	margin-top: 0.5rem;

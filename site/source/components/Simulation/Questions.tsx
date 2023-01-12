@@ -16,11 +16,12 @@ const QuestionsContainer = styled.div`
 	border-radius: ${({ theme }) =>
 		`0 0 ${theme.box.borderRadius} ${theme.box.borderRadius}`};
 	background: ${({ theme }) => {
-		const colorPalette = theme.colors.bases.primary
+		const palettePrimary = theme.colors.bases.primary
+		const paletteGrey = theme.colors.extended.grey
 
 		return theme.darkMode
-			? `linear-gradient(60deg, ${colorPalette[800]} 0%, ${colorPalette[700]} 100%);`
-			: `linear-gradient(60deg, ${colorPalette[200]} 0%, ${colorPalette[100]} 100%);`
+			? `linear-gradient(60deg, ${paletteGrey[800]} 0%, ${paletteGrey[700]} 100%);`
+			: `linear-gradient(60deg, ${palettePrimary[200]} 0%, ${palettePrimary[100]} 100%);`
 	}};
 `
 

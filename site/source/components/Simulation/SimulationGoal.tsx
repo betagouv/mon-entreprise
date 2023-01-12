@@ -76,23 +76,20 @@ export function SimulationGoal({
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
-							<RuleLink
+							<StyledRuleLink
 								id={`${dottedName.replace(/\s|\./g, '')}-label`}
 								dottedName={dottedName}
 							>
 								{label}
-							</RuleLink>
+							</StyledRuleLink>
 
 							{rule.rawNode.résumé && (
-								<SmallBody
-									css={`
-										margin-bottom: 0;
-									`}
+								<StyledSmallBody
 									className={small ? 'sr-only' : ''}
 									id={`${dottedName.replace(/\s|\./g, '')}-description`}
 								>
 									{rule.rawNode.résumé}
-								</SmallBody>
+								</StyledSmallBody>
 							)}
 						</StyledGoalHeader>
 					</Grid>
@@ -133,7 +130,9 @@ export function SimulationGoal({
 						</Grid>
 					) : (
 						<Grid item>
-							<Body>{formatValue(evaluation, { displayedUnit: '€' })}</Body>
+							<Body forceTheme="dark">
+								{formatValue(evaluation, { displayedUnit: '€' })}
+							</Body>
 						</Grid>
 					)}
 				</Grid>
@@ -171,4 +170,13 @@ const StyledGoal = styled.div`
 	@media print {
 		padding: 0;
 	}
+`
+
+const StyledRuleLink = styled(RuleLink)`
+	color: ${({ theme }) => theme.colors.bases.primary[100]};
+`
+
+const StyledSmallBody = styled(SmallBody)`
+	margin-bottom: 0;
+	color: ${({ theme }) => theme.colors.bases.primary[100]};
 `
