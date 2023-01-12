@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
-import styled, { DefaultTheme, ThemeProvider } from 'styled-components'
+import styled, { DefaultTheme } from 'styled-components'
 
-import { useDarkMode } from '@/hooks/useDarkMode'
+import { ForceThemeProvider, ThemeType } from '@/contexts/DarkModeContext'
 
 const InnerContainer = styled.div`
 	margin-right: auto;
@@ -44,43 +44,36 @@ const InnerContainer = styled.div`
 `
 
 type OuterContainerProps = {
-	backgroundColor?: (theme: DefaultTheme) => string
+	$backgroundColor?: (theme: DefaultTheme) => string
 }
 
 type ContainerProps = {
 	children: ReactNode
-	darkMode?: boolean
+	forceTheme?: ThemeType
 	backgroundColor?: (theme: DefaultTheme) => string
 }
 
 export default function Container({
 	backgroundColor,
-	darkMode,
+	forceTheme,
 	children,
 }: ContainerProps) {
-	const [defaultDarkMode] = useDarkMode()
-
 	return (
-		<ThemeProvider
-			theme={(theme) => ({
-				...theme,
-				darkMode: darkMode ?? defaultDarkMode ?? theme?.darkMode,
-			})}
-		>
+		<ForceThemeProvider forceTheme={forceTheme}>
 			<OuterOuterContainer>
-				<OuterContainer backgroundColor={backgroundColor}>
+				<OuterContainer $backgroundColor={backgroundColor}>
 					<InnerContainer>{children}</InnerContainer>
 				</OuterContainer>
 			</OuterOuterContainer>
-		</ThemeProvider>
+		</ForceThemeProvider>
 	)
 }
 
 const OuterContainer = styled.div<OuterContainerProps>`
 	flex: 1;
 	min-width: 100vw;
-	background-color: ${({ theme, backgroundColor }) =>
-		backgroundColor ? backgroundColor(theme) : theme.colors};
+	background-color: ${({ theme, $backgroundColor }) =>
+		$backgroundColor ? $backgroundColor(theme) : theme.colors};
 	@media print {
 		min-width: initial;
 	}
