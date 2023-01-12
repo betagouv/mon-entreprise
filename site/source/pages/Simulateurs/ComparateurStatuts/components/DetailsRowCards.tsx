@@ -14,6 +14,11 @@ import { Body } from '@/design-system/typography/paragraphs'
 
 import StatusCard from './StatusCard'
 
+type BestOption = {
+	type: 'sasu' | 'ei' | 'ae'
+	value?: string | number | boolean | null | Record<string, unknown>
+}
+
 const DetailsRowCards = ({
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
 	dottedName,
@@ -40,11 +45,33 @@ const DetailsRowCards = ({
 	const autoEntrepreneurValue =
 		autoEntrepreneurEngine.evaluate(dottedName).nodeValue
 
-	const dynamicBestOption = [
-		{ type: 'sasu', value: assimiléValue },
-		{ type: 'ei', value: indépendantValue },
-		{ type: 'ae', value: autoEntrepreneurValue },
+	const options: BestOption[] = [
+		{
+			type: 'sasu',
+			value: assimiléValue,
+		},
+		{
+			type: 'ei',
+			value: indépendantValue,
+		},
+		{
+			type: 'ae',
+			value: autoEntrepreneurValue,
+		},
 	]
+
+	const bestOptionValue =
+		bestOption ??
+		options.sort((option1: BestOption, option2: BestOption) => {
+			if (option1.value === null || option1.value === undefined) {
+				return 1
+			}
+			if (option2.value === null || option2.value === undefined) {
+				return -1
+			}
+
+			return option1.value > option2.value ? 1 : 0
+		})?.[0]?.type
 
 	if (assimiléValue === indépendantValue) {
 		return (
@@ -52,7 +79,7 @@ const DetailsRowCards = ({
 				<Grid item xs={12} lg={8}>
 					<StatusCard
 						status={['sasu', 'ei']}
-						isBestOption={bestOption === 'sasu'}
+						isBestOption={bestOptionValue === 'sasu'}
 						footerContent={footers?.sasu}
 					>
 						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
@@ -100,7 +127,7 @@ const DetailsRowCards = ({
 					<StatusCard
 						status={['ae']}
 						footerContent={footers?.ei}
-						isBestOption={bestOption === 'ae'}
+						isBestOption={bestOptionValue === 'ae'}
 					>
 						<WhenNotApplicable
 							dottedName={dottedName}
@@ -156,7 +183,7 @@ const DetailsRowCards = ({
 					<StatusCard
 						status={['sasu']}
 						footerContent={footers?.sasu}
-						isBestOption={bestOption === 'sasu'}
+						isBestOption={bestOptionValue === 'sasu'}
 					>
 						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -199,7 +226,7 @@ const DetailsRowCards = ({
 					<StatusCard
 						status={['ei', 'ae']}
 						footerContent={footers?.ei}
-						isBestOption={bestOption === 'ei'}
+						isBestOption={bestOptionValue === 'ei'}
 					>
 						<WhenNotApplicable
 							dottedName={dottedName}
@@ -258,7 +285,7 @@ const DetailsRowCards = ({
 				<StatusCard
 					status={['sasu']}
 					footerContent={footers?.sasu}
-					isBestOption={bestOption === 'sasu'}
+					isBestOption={bestOptionValue === 'sasu'}
 				>
 					<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 						<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -301,7 +328,7 @@ const DetailsRowCards = ({
 				<StatusCard
 					status={['ei']}
 					footerContent={footers?.ei}
-					isBestOption={bestOption === 'ei'}
+					isBestOption={bestOptionValue === 'ei'}
 				>
 					<WhenNotApplicable dottedName={dottedName} engine={indépendantEngine}>
 						<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -344,7 +371,7 @@ const DetailsRowCards = ({
 				<StatusCard
 					status={['ae']}
 					footerContent={footers?.ae}
-					isBestOption={bestOption === 'ae'}
+					isBestOption={bestOptionValue === 'ae'}
 				>
 					<WhenNotApplicable
 						dottedName={dottedName}

@@ -3,11 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
-import Value, {
-	Condition,
-	WhenAlreadyDefined,
-	WhenApplicable,
-} from '@/components/EngineValue'
+import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { CheckList } from '@/design-system'
 import { ExternalLinkIcon, HelpIcon } from '@/design-system/icons'

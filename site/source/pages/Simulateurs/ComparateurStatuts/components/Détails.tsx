@@ -80,7 +80,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="sasu"
 						unit="€/mois"
 					/>
 
@@ -105,7 +104,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="sasu"
 						unit="€/mois"
 						evolutionLabel={<Trans>au bout de 10 ans</Trans>}
 					/>
@@ -157,7 +155,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="sasu"
 						unit="€/jour"
 						warnings={{
 							sasu: (
@@ -241,7 +238,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="sasu"
 						unit="€/mois"
 						evolutionDottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
 						evolutionLabel={<Trans>à partir du 29ème jour</Trans>}
@@ -286,7 +282,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="sasu"
 						unit="€/jour"
 					/>
 
@@ -311,7 +306,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="ei"
 						label={<Trans>versés en deux fois</Trans>}
 					/>
 
@@ -336,7 +330,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="ei"
 						label={<Trans>versés en une fois</Trans>}
 					/>
 				</Item>
@@ -396,7 +389,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="sasu"
 						unit="€/mois"
 						label={<Trans>(invalidité partielle)</Trans>}
 					/>
@@ -408,7 +400,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="sasu"
 						unit="€/mois"
 						label={<Trans>(invalidité totale)</Trans>}
 					/>
@@ -429,7 +420,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="sasu"
 						unit="€/mois"
 					/>
 
@@ -451,7 +441,6 @@ const Détails = ({
 							autoEntrepreneurEngine,
 							indépendantEngine,
 						]}
-						bestOption="ei"
 					/>
 
 					<Body
@@ -504,7 +493,6 @@ const Détails = ({
 							indépendantEngine,
 						]}
 						unit="€/mois"
-						bestOption="sasu"
 					/>
 
 					<Body
@@ -526,7 +514,6 @@ const Détails = ({
 							indépendantEngine,
 						]}
 						unit="€/enfant"
-						bestOption="ei"
 					/>
 				</Item>
 				<Item
@@ -674,7 +661,9 @@ const StyledH4 = styled(H4)`
 	font-size: 1.25rem;
 	color: ${({ theme }) => theme.colors.bases.primary[600]};
 `
-
+// TODO : décommenter une fois l'implémentation du calcul des coûts de créations
+// ajouté à modèle-social
+/*
 const StyledRuleLink = styled(RuleLink)`
 	display: inline-flex;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
@@ -682,17 +671,6 @@ const StyledRuleLink = styled(RuleLink)`
 		opacity: 0.8;
 	}
 `
-
-const StyledDiv = styled.div`
-	display: flex;
-
-	svg {
-		width: 2.5rem;
-		margin-right: 1rem;
-		margin-top: 1rem;
-	}
-`
-
 const Precisions = styled.span`
 	display: block;
 	font-family: ${({ theme }) => theme.fonts.main};
@@ -702,6 +680,17 @@ const Precisions = styled.span`
 	margin: 0;
 	margin-top: 0.5rem;
 	width: 100%;
+`
+*/
+
+const StyledDiv = styled.div`
+	display: flex;
+
+	svg {
+		width: 2.5rem;
+		margin-right: 1rem;
+		margin-top: 1rem;
+	}
 `
 
 const BodyNoMargin = styled(Body)`
