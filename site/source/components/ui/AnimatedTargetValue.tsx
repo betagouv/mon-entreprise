@@ -1,5 +1,5 @@
 import { formatValue } from 'publicodes'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled, { keyframes } from 'styled-components'

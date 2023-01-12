@@ -118,7 +118,10 @@ export const VisibleRadio = styled.span`
 	}
 
 	:hover ${OutsideCircle} {
-		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+		border-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[500]
+				: theme.colors.bases.primary[700]};
 	}
 `
 
