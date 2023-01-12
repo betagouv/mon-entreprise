@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useEffect, useState } from 'react'
+import { ReactNode, createContext, useState } from 'react'
 
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { getItem, setItem } from '@/storage/safeLocalStorage'
@@ -37,34 +37,11 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
 		console.log(darkMode ? 'Nuit' : 'Jour')
 	}
 
-	useEffect(() => {
-		if (!window.matchMedia) {
-			return
-		}
-		const onDarkModeChange = (e: MediaQueryListEvent) => {
-			setDarkMode(e.matches)
-		}
-		const matchDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
-
-		// safari 13 doesn't have addEventListener
-		matchDarkMode.addEventListener
-			? matchDarkMode.addEventListener('change', onDarkModeChange)
-			: matchDarkMode.addListener(onDarkModeChange)
-
-		return () => {
-			// safari 13 doesn't have removeEventListener
-			matchDarkMode.removeEventListener
-				? matchDarkMode.removeEventListener('change', onDarkModeChange)
-				: matchDarkMode.removeListener(onDarkModeChange)
-		}
-	})
 	const finalDarkMode = !useIsEmbedded() && darkMode
 
 	return (
 		<DarkModeContext.Provider value={[finalDarkMode, setDarkMode]}>
-			{/* <ThemeProvider theme={(theme) => ({ ...theme, darkMode: finalDarkMode })}> */}
 			{children}
-			{/* </ThemeProvider> */}
 		</DarkModeContext.Provider>
 	)
 }
