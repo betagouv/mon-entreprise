@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { H1 } from '@/design-system/typography/heading'
+import { H1, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { useSitePaths } from '@/sitePaths'
@@ -29,11 +29,11 @@ export default function Plan() {
 
 			<StyledUl>
 				<Li>
-					<h2>
+					<H3 as="h2">
 						<Link to={absoluteSitePaths.index}>
 							<Trans>Page d'accueil</Trans>
 						</Link>
-					</h2>
+					</H3>
 				</Li>
 				<Li>
 					<h2>

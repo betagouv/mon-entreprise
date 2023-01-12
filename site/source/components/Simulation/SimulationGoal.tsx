@@ -128,6 +128,7 @@ export function SimulationGoal({
 								formatOptions={{
 									maximumFractionDigits: 0,
 								}}
+								forceTheme="dark"
 							/>
 						</Grid>
 					) : (

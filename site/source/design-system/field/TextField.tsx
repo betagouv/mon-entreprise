@@ -3,6 +3,7 @@ import { HTMLAttributes, RefObject, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
 import { ExtraSmallBody } from '@/design-system/typography/paragraphs'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { omit } from '@/utils'
 
 const LABEL_HEIGHT = '1rem'
@@ -10,6 +11,7 @@ const LABEL_HEIGHT = '1rem'
 type TextFieldProps = AriaTextFieldOptions<'input'> & {
 	inputRef?: RefObject<HTMLInputElement>
 	small?: boolean
+	forceTheme?: 'dark' | 'light'
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -17,16 +19,23 @@ export default function TextField(props: TextFieldProps) {
 
 	const { labelProps, inputProps, descriptionProps, errorMessageProps } =
 		useTextField({ ...props, inputElementType: 'input' }, props.inputRef || ref)
+	const [defaultDarkMode] = useDarkMode()
+	const isDarkMode =
+		props.forceTheme === undefined
+			? defaultDarkMode
+			: props.forceTheme === 'dark'
 
 	return (
 		<StyledContainer>
 			<StyledInputContainer
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label && !props.small}
+				$isDarkMode={isDarkMode}
 			>
 				<StyledInput
 					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
 					{...(inputProps as HTMLAttributes<HTMLInputElement>)}
+					$isDarkMode={isDarkMode}
 					placeholder={
 						(inputProps as HTMLAttributes<HTMLInputElement>).placeholder ??
 						undefined
@@ -34,7 +43,11 @@ export default function TextField(props: TextFieldProps) {
 					ref={props.inputRef || ref}
 				/>
 				{props.label && (
-					<StyledLabel className={props.small ? 'sr-only' : ''} {...labelProps}>
+					<StyledLabel
+						$isDarkMode={isDarkMode}
+						className={props.small ? 'sr-only' : ''}
+						{...labelProps}
+					>
 						{props.label}
 					</StyledLabel>
 				)}
@@ -56,7 +69,7 @@ export default function TextField(props: TextFieldProps) {
 export const StyledContainer = styled.div`
 	width: 100%;
 `
-export const StyledInput = styled.input`
+export const StyledInput = styled.input<{ $isDarkMode: boolean }>`
 	font-size: 1rem;
 	line-height: 1.5rem;
 	border: none;
@@ -67,17 +80,17 @@ export const StyledInput = styled.input`
 	outline: none;
 	transition: color 0.2s;
 	::placeholder {
-		${({ theme }) =>
-			theme.darkMode &&
+		${({ $isDarkMode }) =>
+			$isDarkMode &&
 			css`
 				opacity: 0.6;
 			`}
-		color: ${({ theme }) =>
-			theme.colors.extended.grey[theme.darkMode ? 200 : 600]};
+		color: ${({ theme, $isDarkMode }) =>
+			theme.colors.extended.grey[$isDarkMode ? 200 : 600]};
 		background-color: transparent;
 	}
-	${({ theme }) =>
-		theme.darkMode &&
+	${({ theme, $isDarkMode }) =>
+		$isDarkMode &&
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
@@ -86,7 +99,7 @@ export const StyledInput = styled.input`
 		`}
 `
 
-export const StyledLabel = styled.label`
+export const StyledLabel = styled.label<{ $isDarkMode: boolean }>`
 	top: 0%;
 	left: 0;
 	pointer-events: none;
@@ -98,8 +111,8 @@ export const StyledLabel = styled.label`
 	position: absolute;
 	will-change: transform top font-size line-height color;
 	transition: all 0.1s;
-	${({ theme }) =>
-		theme.darkMode &&
+	${({ theme, $isDarkMode }) =>
+		$isDarkMode &&
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
@@ -130,29 +143,29 @@ export const StyledInputContainer = styled.div<{
 	hasError: boolean
 	hasLabel: boolean
 	small?: boolean
+	$isDarkMode?: boolean
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	border: ${({ theme }) =>
-		`${theme.box.borderWidth} solid ${
-			theme.darkMode
+	border: ${({ theme, $isDarkMode }) =>
+		`${theme.box.borderWidth} solid 
+		${
+			$isDarkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.extended.grey[700]
 		}`};
 	outline: transparent solid 1px;
 	position: relative;
 	display: flex;
-	background-color: ${({ theme }) =>
-		theme.darkMode
-			? 'rgba(255, 255, 255, 20%)'
-			: theme.colors.extended.grey[100]};
+	background-color: ${({ theme, $isDarkMode }) =>
+		$isDarkMode ? 'rgba(255, 255, 255, 20%)' : theme.colors.extended.grey[100]};
 	align-items: center;
 	transition: all 0.2s;
 
 	:focus-within {
-		outline-color: ${({ theme, hasError }) =>
+		outline-color: ${({ theme, hasError, $isDarkMode }) =>
 			hasError
 				? theme.colors.extended.error[400]
-				: theme.darkMode
+				: $isDarkMode
 				? theme.colors.bases.primary[100]
 				: theme.colors.bases.primary[700]};
 		outline-offset: ${({ theme }) => theme.spacings.xxs};
@@ -164,8 +177,8 @@ export const StyledInputContainer = styled.div<{
 	}
 
 	:focus-within + ${StyledDescription} {
-		${({ theme }) =>
-			!theme.darkMode &&
+		${({ theme, $isDarkMode }) =>
+			!$isDarkMode &&
 			css`
 				color: ${theme.colors.bases.primary[800]};
 				background-color: transparent;
@@ -213,6 +226,10 @@ export const StyledInputContainer = styled.div<{
 				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
 				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
+		color: ${({ theme, $isDarkMode }) =>
+			$isDarkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.extended.grey[800]};
 	}
 
 	${({ small }) =>

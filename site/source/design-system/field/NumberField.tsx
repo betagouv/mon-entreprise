@@ -17,6 +17,7 @@ import {
 } from 'react'
 import styled, { css } from 'styled-components'
 
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { omit } from '@/utils'
 
 import {
@@ -35,6 +36,7 @@ type NumberFieldProps = Omit<AriaNumberFieldProps, 'placeholder'> & {
 	small?: boolean
 	placeholder?: number
 	onChange?: (n?: number) => void
+	forceTheme?: 'dark' | 'light'
 }
 
 export default function NumberField(props: NumberFieldProps) {
@@ -95,6 +97,11 @@ export default function NumberField(props: NumberFieldProps) {
 	}, [])
 
 	delete inputWithCursorHandlingProps.autoCorrect
+	const [defaultDarkMode] = useDarkMode()
+	const isDarkMode =
+		props.forceTheme === undefined
+			? defaultDarkMode
+			: props.forceTheme === 'dark'
 
 	return (
 		<StyledNumberFieldContainer>
@@ -103,8 +110,10 @@ export default function NumberField(props: NumberFieldProps) {
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label}
 				small={props.small}
+				$isDarkMode={isDarkMode}
 			>
 				<StyledNumberInput
+					$isDarkMode={isDarkMode}
 					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
 					{...inputWithCursorHandlingProps}
 					placeholder={
@@ -125,7 +134,9 @@ export default function NumberField(props: NumberFieldProps) {
 				)}
 
 				{props.label && (
-					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
+					<StyledLabel $isDarkMode={isDarkMode} {...labelProps}>
+						{props.label}
+					</StyledLabel>
 				)}
 			</StyledInputContainer>
 			{props.errorMessage && (

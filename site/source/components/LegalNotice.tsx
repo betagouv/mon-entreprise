@@ -56,7 +56,6 @@ export default function LegalNotice() {
 						aria-label="https://www.netlify.com, nouvelle fenêtre"
 						target="_blank"
 						rel="noreferrer"
-						style={darkMode ? { color: '#9EBBF1' } : { color: '#2E5FB6' }}
 					>
 						https://www.netlify.com
 					</a>
@@ -71,7 +70,6 @@ export default function LegalNotice() {
 						href="mailto:contact@mon-entreprise.beta.gouv.fr"
 						target="_blank"
 						rel="noreferrer"
-						style={darkMode ? { color: '#9EBBF1' } : { color: '#2E5FB6' }}
 					>
 						contact@mon-entreprise.beta.gouv.fr
 					</a>
