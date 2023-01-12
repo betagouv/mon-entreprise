@@ -1,5 +1,4 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { ThemeProvider } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
@@ -227,7 +226,7 @@ export function SimulateurCard({
 	const { t } = useTranslation()
 
 	return (
-		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
+		<>
 			{small ? (
 				<Grid item xs={12} sm={6} md={6} lg={4} {...props}>
 					<SmallCard
@@ -273,6 +272,6 @@ export function SimulateurCard({
 					</Card>
 				</Grid>
 			)}
-		</ThemeProvider>
+		</>
 	)
 }

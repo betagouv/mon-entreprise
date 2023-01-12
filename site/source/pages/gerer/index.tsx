@@ -272,7 +272,7 @@ function Home() {
 
 			<Container
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
-				darkMode
+				forceTheme="dark"
 			>
 				<FromTop>
 					<FormsImage src={forms} alt="" />

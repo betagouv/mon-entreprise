@@ -36,7 +36,7 @@ export default function Cotisations() {
 			<Spacing lg />
 			<WhenAlreadyDefined dottedName="DRI . cotisations . appelées en 2021">
 				<Container
-					darkMode
+					forceTheme="dark"
 					backgroundColor={(theme) => theme.colors.bases.primary[600]}
 				>
 					<FromTop>

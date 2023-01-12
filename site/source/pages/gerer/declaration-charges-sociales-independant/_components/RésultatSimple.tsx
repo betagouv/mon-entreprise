@@ -21,7 +21,7 @@ export default function ResultatsSimples() {
 			<Spacing lg />
 
 			<Container
-				darkMode
+				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
 				{' '}

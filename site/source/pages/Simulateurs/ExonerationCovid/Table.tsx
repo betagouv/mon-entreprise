@@ -82,7 +82,8 @@ export const Thead = styled.thead`
 
 export const Tbody = styled.tbody`
 	${Tr}:nth-child(odd) {
-		background: ${({ theme }) => theme.colors.extended.grey[200]};
+		background: ${({ theme }) =>
+			theme.darkMode ? 'transparent' : theme.colors.extended.grey[200]};
 	}
 `
 
