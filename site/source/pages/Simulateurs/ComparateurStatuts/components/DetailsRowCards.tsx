@@ -14,9 +14,23 @@ import { Body } from '@/design-system/typography/paragraphs'
 
 import StatusCard from './StatusCard'
 
+type ValueType = string | number | boolean | null | Record<string, unknown>
 type BestOption = {
 	type: 'sasu' | 'ei' | 'ae'
-	value?: string | number | boolean | null | Record<string, unknown>
+	value?: ValueType
+}
+
+const getBestOption = (options: BestOption[]) => {
+	return options.sort((option1: BestOption, option2: BestOption) => {
+		if (option1.value === null || option1.value === undefined) {
+			return 1
+		}
+		if (option2.value === null || option2.value === undefined) {
+			return -1
+		}
+
+		return option1.value > option2.value ? 1 : 0
+	})?.[0]?.type
 }
 
 const DetailsRowCards = ({
@@ -60,18 +74,7 @@ const DetailsRowCards = ({
 		},
 	]
 
-	const bestOptionValue =
-		bestOption ??
-		options.sort((option1: BestOption, option2: BestOption) => {
-			if (option1.value === null || option1.value === undefined) {
-				return 1
-			}
-			if (option2.value === null || option2.value === undefined) {
-				return -1
-			}
-
-			return option1.value > option2.value ? 1 : 0
-		})?.[0]?.type
+	const bestOptionValue = bestOption ?? getBestOption(options)
 
 	if (assimiléValue === indépendantValue) {
 		return (
