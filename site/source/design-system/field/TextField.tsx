@@ -19,23 +19,16 @@ export default function TextField(props: TextFieldProps) {
 
 	const { labelProps, inputProps, descriptionProps, errorMessageProps } =
 		useTextField({ ...props, inputElementType: 'input' }, props.inputRef || ref)
-	const [defaultDarkMode] = useDarkMode()
-	const isDarkMode =
-		props.forceTheme === undefined
-			? defaultDarkMode
-			: props.forceTheme === 'dark'
 
 	return (
 		<StyledContainer>
 			<StyledInputContainer
 				hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				hasLabel={!!props.label && !props.small}
-				$isDarkMode={isDarkMode}
 			>
 				<StyledInput
 					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
 					{...(inputProps as HTMLAttributes<HTMLInputElement>)}
-					$isDarkMode={isDarkMode}
 					placeholder={
 						(inputProps as HTMLAttributes<HTMLInputElement>).placeholder ??
 						undefined
@@ -43,11 +36,7 @@ export default function TextField(props: TextFieldProps) {
 					ref={props.inputRef || ref}
 				/>
 				{props.label && (
-					<StyledLabel
-						$isDarkMode={isDarkMode}
-						className={props.small ? 'sr-only' : ''}
-						{...labelProps}
-					>
+					<StyledLabel className={props.small ? 'sr-only' : ''} {...labelProps}>
 						{props.label}
 					</StyledLabel>
 				)}
@@ -69,7 +58,7 @@ export default function TextField(props: TextFieldProps) {
 export const StyledContainer = styled.div`
 	width: 100%;
 `
-export const StyledInput = styled.input<{ $isDarkMode: boolean }>`
+export const StyledInput = styled.input`
 	font-size: 1rem;
 	line-height: 1.5rem;
 	border: none;
@@ -80,17 +69,17 @@ export const StyledInput = styled.input<{ $isDarkMode: boolean }>`
 	outline: none;
 	transition: color 0.2s;
 	::placeholder {
-		${({ $isDarkMode }) =>
-			$isDarkMode &&
+		${({ theme }) =>
+			theme.darkMode &&
 			css`
 				opacity: 0.6;
 			`}
-		color: ${({ theme, $isDarkMode }) =>
-			theme.colors.extended.grey[$isDarkMode ? 200 : 600]};
+		color: ${({ theme }) =>
+			theme.colors.extended.grey[theme.darkMode ? 200 : 600]};
 		background-color: transparent;
 	}
-	${({ theme, $isDarkMode }) =>
-		$isDarkMode &&
+	${({ theme }) =>
+		theme.darkMode &&
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
@@ -99,7 +88,7 @@ export const StyledInput = styled.input<{ $isDarkMode: boolean }>`
 		`}
 `
 
-export const StyledLabel = styled.label<{ $isDarkMode: boolean }>`
+export const StyledLabel = styled.label`
 	top: 0%;
 	left: 0;
 	pointer-events: none;
@@ -111,8 +100,8 @@ export const StyledLabel = styled.label<{ $isDarkMode: boolean }>`
 	position: absolute;
 	will-change: transform top font-size line-height color;
 	transition: all 0.1s;
-	${({ theme, $isDarkMode }) =>
-		$isDarkMode &&
+	${({ theme }) =>
+		theme.darkMode &&
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
@@ -143,29 +132,30 @@ export const StyledInputContainer = styled.div<{
 	hasError: boolean
 	hasLabel: boolean
 	small?: boolean
-	$isDarkMode?: boolean
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	border: ${({ theme, $isDarkMode }) =>
+	border: ${({ theme }) =>
 		`${theme.box.borderWidth} solid 
 		${
-			$isDarkMode
+			theme.darkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.extended.grey[700]
 		}`};
 	outline: transparent solid 1px;
 	position: relative;
 	display: flex;
-	background-color: ${({ theme, $isDarkMode }) =>
-		$isDarkMode ? 'rgba(255, 255, 255, 20%)' : theme.colors.extended.grey[100]};
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? 'rgba(255, 255, 255, 20%)'
+			: theme.colors.extended.grey[100]};
 	align-items: center;
 	transition: all 0.2s;
 
 	:focus-within {
-		outline-color: ${({ theme, hasError, $isDarkMode }) =>
+		outline-color: ${({ theme, hasError }) =>
 			hasError
 				? theme.colors.extended.error[400]
-				: $isDarkMode
+				: theme.darkMode
 				? theme.colors.bases.primary[100]
 				: theme.colors.bases.primary[700]};
 		outline-offset: ${({ theme }) => theme.spacings.xxs};
@@ -177,8 +167,8 @@ export const StyledInputContainer = styled.div<{
 	}
 
 	:focus-within + ${StyledDescription} {
-		${({ theme, $isDarkMode }) =>
-			!$isDarkMode &&
+		${({ theme }) =>
+			!theme.darkMode &&
 			css`
 				color: ${theme.colors.bases.primary[800]};
 				background-color: transparent;
@@ -226,8 +216,8 @@ export const StyledInputContainer = styled.div<{
 				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
 				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
-		color: ${({ theme, $isDarkMode }) =>
-			$isDarkMode
+		color: ${({ theme }) =>
+			theme.darkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.extended.grey[800]};
 	}

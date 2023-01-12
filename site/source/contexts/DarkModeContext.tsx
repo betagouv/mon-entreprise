@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useState } from 'react'
+import { ThemeProvider } from 'styled-components'
 
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { getItem, setItem } from '@/storage/safeLocalStorage'
@@ -43,5 +44,27 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
 		<DarkModeContext.Provider value={[finalDarkMode, setDarkMode]}>
 			{children}
 		</DarkModeContext.Provider>
+	)
+}
+
+export type ThemeType = 'light' | 'dark'
+
+export const ForceThemeProvider = ({
+	children,
+	forceTheme,
+}: {
+	children: ReactNode
+	forceTheme?: ThemeType
+}) => {
+	return (
+		<ThemeProvider
+			theme={(theme) => ({
+				...theme,
+				darkMode:
+					forceTheme === undefined ? theme.darkMode : forceTheme === 'dark',
+			})}
+		>
+			{children}
+		</ThemeProvider>
 	)
 }

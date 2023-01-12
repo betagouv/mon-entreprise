@@ -79,7 +79,10 @@ export default function SearchOrCreate() {
 							<H3 as="h2">
 								<Trans>Rechercher votre entreprise</Trans>{' '}
 							</H3>
-							<CompanySearchField onSubmit={handleCompanySubmit} />
+							<CompanySearchField
+								onSubmit={handleCompanySubmit}
+								forceTheme="dark"
+							/>
 							<Spacing md />
 
 							<Button

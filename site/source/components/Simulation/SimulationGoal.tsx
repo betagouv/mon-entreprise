@@ -125,14 +125,11 @@ export function SimulationGoal({
 								formatOptions={{
 									maximumFractionDigits: 0,
 								}}
-								forceTheme="dark"
 							/>
 						</Grid>
 					) : (
 						<Grid item>
-							<Body forceTheme="dark">
-								{formatValue(evaluation, { displayedUnit: '€' })}
-							</Body>
+							<Body>{formatValue(evaluation, { displayedUnit: '€' })}</Body>
 						</Grid>
 					)}
 				</Grid>
