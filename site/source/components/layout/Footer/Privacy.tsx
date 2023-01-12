@@ -9,7 +9,13 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { TrackPage, TrackingContext } from '../../../ATInternetTracking'
 import * as safeLocalStorage from '../../../storage/safeLocalStorage'
 
-export default function Privacy({ label }: { label?: string }) {
+export default function Privacy({
+	label,
+	noUnderline = true,
+}: {
+	label?: string
+	noUnderline?: boolean
+}) {
 	const tracker = useContext(TrackingContext)
 	const [valueChanged, setValueChanged] = useState(false)
 	const { t } = useTranslation()
@@ -31,7 +37,7 @@ export default function Privacy({ label }: { label?: string }) {
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
-				<Link {...buttonProps} aria-haspopup="dialog" noUnderline>
+				<Link {...buttonProps} aria-haspopup="dialog" noUnderline={noUnderline}>
 					{label ?? <Trans>Gestion des données personnelles</Trans>}
 				</Link>
 			)}

@@ -4,13 +4,21 @@ export const baseParagraphStyle = css`
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: normal;
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
-	background-color: inherit;
+	background-color: transparent;
 
 	@media not print {
-		color: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.extended.grey[100]
-				: theme.colors.extended.grey[800]};
+		${({ theme }) =>
+			theme.darkMode &&
+			css`
+				color: ${theme.colors.extended.grey[100]};
+			`}
+		/* Hack for text color in Message component in documentation */
+		&& {
+			color: ${({ theme }) =>
+				theme.darkMode
+					? theme.colors.extended.grey[100]
+					: theme.colors.extended.grey[800]};
+		}
 	}
 `
 

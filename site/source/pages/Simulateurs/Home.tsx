@@ -2,7 +2,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { ThemeProvider } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
-import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Chip } from '@/design-system'
 import InfoBulle from '@/design-system/InfoBulle'

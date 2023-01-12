@@ -12,7 +12,7 @@ export default function IframeFooter() {
 			>
 				<FeedbackButton isEmbedded />
 				<Spacing xl />
-				<Privacy />
+				<Privacy noUnderline={false} />
 				<Spacing lg />
 			</div>
 		</>
