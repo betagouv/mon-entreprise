@@ -1,3 +1,4 @@
+import { configIndépendant } from './indépendant'
 import { SimulationConfig } from './types'
 
 export const configProfessionLibérale: SimulationConfig = {
@@ -20,10 +21,7 @@ export const configProfessionLibérale: SimulationConfig = {
 			'dirigeant . indépendant . PL . métier',
 			'',
 		],
-		'non prioritaires': [
-			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',
-			'dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité',
-		],
+		'non prioritaires': configIndépendant.questions?.['non prioritaires'],
 	},
 	'unité par défaut': '€/an',
 	situation: {

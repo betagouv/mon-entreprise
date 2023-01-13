@@ -57,7 +57,7 @@ protection sociale . retraite . base:
   description: |
     Le montant de votre pension pour la retraite de base est calculé à partir la moyenne de vos revenus des 25 meilleures années.
 
-    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants : 
+    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants :
     - La rémunération calculée correspond à celle de vos 25 meilleures années
     - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
   arrondi: oui

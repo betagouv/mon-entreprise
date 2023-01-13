@@ -77,10 +77,7 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
         nom: plafond
         valeur: 3 * plafond sécurité sociale
       plancher:
-        non applicable si:
-          une de ces conditions:
-            - entreprise . activité . saisonnière
-            - situation personnelle . RSA
+        applicable si: assiette minimale
         valeur: 40% * plafond sécurité sociale
     taux:
       nom: taux
@@ -100,10 +97,6 @@ dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
   description: |-
     Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois,
     vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
-
-  rend non applicable:
-    - règle: retraite
-      dans: cotisations et contributions . exonérations . ACRE
 
   références:
     Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75

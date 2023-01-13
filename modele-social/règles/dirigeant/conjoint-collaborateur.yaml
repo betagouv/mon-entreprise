@@ -140,3 +140,10 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
               alors: 0.50%
             - sinon: 0.85%
       arrondi: oui
+
+dirigeant . indépendant . conjoint collaborateur . notification exonérations non pris en compte:
+  experimental: oui
+  valeur: oui
+  description: |
+    Ce simulateur ne prend pas encore en compte les différentes exonérations de cotisations pour les conjoints collaborateurs (ACRE, âge, invalidité, incapacité, etc.)
+  type: avertissement

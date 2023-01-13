@@ -75,32 +75,49 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
 
   avec:
     retraite de base:
-      non applicable si:
-        une de ces conditions:
-          - profession libérale réglementées hors Urssaf
-          # l'exonération incapacité est plus avantageuse
-          - PL . CNAVPL . exonération incapacité
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
       remplace: retraite de base
       valeur: retraite de base
-      abattement: prorata
+      abattement:
+        valeur: prorata
+        non applicable si:
+          une de ces conditions:
+            - profession libérale réglementées hors Urssaf
+            # l'exonération incapacité est plus avantageuse
+            - PL . CNAVPL . exonération incapacité
 
     retraite complémentaire:
-      non applicable si:
-        une de ces conditions:
-          - profession libérale réglementées hors Urssaf
-          # l'exonération incapacité est plus avantageuse
-          - PL . CNAVPL . exonération incapacité
+      arrondi: oui
       remplace: retraite complémentaire
       valeur: retraite complémentaire
-      abattement: prorata
+      abattement:
+        valeur: prorata
+        non applicable si:
+          une de ces conditions:
+            - profession libérale réglementées hors Urssaf
+            # l'exonération incapacité est plus avantageuse
+            - PL . CNAVPL . exonération incapacité
 
     indemnités journalières maladie:
-      remplace: indemnités journalières maladie
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
       valeur: indemnités journalières maladie
+      remplace:
+        règle: indemnités journalières maladie
+        sauf dans:
+          - cotisations et contributions . maladie
+          - cotisations et contributions . indemnités journalières maladie . assiette
       abattement: prorata
 
     maladie:
-      remplace: maladie
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
+      remplace:
+        règle: maladie
+        sauf dans:
+          - cotisations et contributions . maladie . total
+          - cotisations et contributions . maladie . taux progressif
       valeur: maladie
       abattement: prorata
 
@@ -122,6 +139,86 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
         - une de ces conditions:
             - PL . CIPAV = non
             - date < 01/2023
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
+  applicable si: dirigeant . exonérations . ACRE
+  valeur: oui
+  références:
+    'L’Acre pour les indépendants: quel avantages ?': https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/quels-avantages/travailleurs-independants-ne-rel.html
+
+  avec:
+    maladie:
+      # On préfère l'exonération pension invalidité si elle est plus avantageuse
+      non applicable si: pension invalidité . prorata >= prorata sur l'année
+      remplace:
+        règle: maladie
+        sauf dans:
+          - cotisations et contributions . maladie . total
+          - cotisations et contributions . maladie . taux progressif
+      valeur: cotisations et contributions . maladie
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    indemnités journalières maladie:
+      # On préfère l'exonération pension invalidité si elle est plus avantageuse
+      non applicable si: pension invalidité . prorata >= prorata sur l'année
+      remplace:
+        règle: indemnités journalières maladie
+        sauf dans:
+          - cotisations et contributions . maladie
+          - cotisations et contributions . indemnités journalières maladie . assiette
+      valeur: cotisations et contributions . indemnités journalières maladie
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    retraite de base:
+      non applicable si:
+        une de ces conditions:
+          # On préfère l'exonération incapacité car cette dernière est plus avantageuse
+          - PL . CNAVPL . exonération incapacité
+          # On préfère l'exonération pension invalidité si elle est plus avantageuse
+          - pension invalidité . prorata >= prorata sur l'année
+      remplace: retraite de base
+      valeur: cotisations et contributions . retraite de base
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    invalidité et décès:
+      # On préfère l'exonération âge car elle est plus avantageuse
+      non applicable si: exonérations . âge
+      remplace: invalidité et décès
+      valeur: cotisations et contributions . invalidité et décès
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    allocations familiales:
+      remplace: allocations familiales
+      valeur: cotisations et contributions . allocations familiales
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
+  description: |
+    Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
+    l'exonération est proratisée en fonction de la durée effective de l'ACRE sur l'année courante.
+
+    Par exemple, pour une entreprise crée le 1 fevrier 2018, le calcul du prorata pour les
+    cotisations 2019 sera le suivant :
+
+    `31 jours d'acre restant en 2019 / 365 jours = 8,5%`
+  unité: '%'
+  arrondi: oui
+  valeur: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
+  taux progressif:
+    assiette: assiette des cotisations
+    multiplicateur: PSS proratisé
+    tranches:
+      - taux: 100%
+        plafond: 75%
+      - taux: 0%
+        plafond: 100%
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
   taux progressif:
@@ -159,86 +256,3 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
               taux: 20%
             - plafond: 9 ans
               taux: 0%
-
-dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
-  applicable si: dirigeant . exonérations . ACRE
-  valeur: oui
-  références:
-    'L’Acre pour les indépendants: quel avantages ?': https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/quels-avantages/travailleurs-independants-ne-rel.html
-
-  avec:
-    maladie:
-      # On préfère l'exonération pension invalidité si elle est plus avantageuse
-      # non applicable si: pension invalidité . prorata >= prorata sur l'année
-      remplace:
-        règle: cotisations et contributions . maladie
-        sauf dans: exonérations . ACRE . maladie
-      valeur: cotisations et contributions . maladie
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    indemnités journalières maladie:
-      # On préfère l'exonération pension invalidité si elle est plus avantageuse
-      # non applicable si: pension invalidité . prorata >= prorata sur l'année
-      remplace:
-        règle: cotisations et contributions . indemnités journalières maladie
-        sauf dans: exonérations . ACRE . indemnités journalières maladie
-      valeur: cotisations et contributions . indemnités journalières maladie
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    retraite de base:
-      # non applicable si:
-      #   une de ces conditions:
-      #     # On préfère l'exonération incapacité car cette dernière est plus avantageuse
-      #     - PL . CNAVPL . exonération incapacité
-      #     # On préfère l'exonération pension invalidité si elle est plus avantageuse
-      #     - pension invalidité . prorata >= prorata sur l'année
-      remplace:
-        règle: cotisations et contributions . retraite de base
-        sauf dans: exonérations . ACRE . retraite de base
-      valeur: cotisations et contributions . retraite de base
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    invalidité et décès:
-      # On préfère l'exonération âge car elle est plus avantageuse
-      # non applicable si: exonérations . âge
-      remplace:
-        règle: cotisations et contributions . invalidité et décès
-        sauf dans: exonérations . ACRE . invalidité et décès
-      valeur: cotisations et contributions . invalidité et décès
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    allocations familiales:
-      remplace:
-        règle: cotisations et contributions . allocations familiales
-        sauf dans: exonérations . ACRE . allocations familiales
-      valeur: cotisations et contributions . allocations familiales
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
-  description: |
-    Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
-    l'exonération est proratisée en fonction de la durée effective de l'ACRE sur l'année courante.
-
-    Par exemple, pour une entreprise crée le 1 fevrier 2018, le calcul du prorata pour les
-    cotisations 2019 sera le suivant :
-
-    `31 jours d'acre restant en 2019 / 365 jours = 8,5%`
-  unité: '%'
-  arrondi: oui
-  valeur: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
-
-dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
-  100%
-  # taux progressif:
-  #   assiette: assiette des cotisations
-  #   multiplicateur: PSS proratisé
-  #   tranches:
-  #     - taux: 100%
-  #       plafond: 75%
-  #     - taux: 0%
-  #       plafond: 100%

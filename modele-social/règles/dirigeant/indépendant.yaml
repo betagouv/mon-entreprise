@@ -383,7 +383,7 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
     #
     # Pour les revenu ou le taux de la cotisation total (maladie 1 + 2) est inférieur à 0.85, on
     # plafonne donc la cotis maladie 2 à ce total
-    applicable si: date > 01/2022
+    applicable si: date >= 01/2022
     valeur: maladie . total
   unité: €/an
   références:
@@ -452,11 +452,10 @@ dirigeant . indépendant . cotisations et contributions . maladie:
       arrondi: 2 décimales
 
     réduction supplémentaire:
-      non applicable si:
-        une de ces conditions:
-          - situation personnelle . RSA
-          - entreprise . activité . saisonnière
-      applicable si: date < 01/2022
+      applicable si:
+        toutes ces conditions:
+          - date < 01/2022
+          - assiette minimale
       titre: réduction supplémentaire (avant 2022)
       déprécié: oui
       description: |
