@@ -5,7 +5,8 @@ exports[`calculate assimilé salarié > ACRE 1`] = `
 impôt . montant: 0
 salarié . cotisations: 519
 salarié . rémunération . net . payé après impôt: 596
-salarié . rémunération . net . à payer avant impôt: 596"
+salarié . rémunération . net . à payer avant impôt: 596
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > ACRE 2`] = `
@@ -13,7 +14,8 @@ exports[`calculate assimilé salarié > ACRE 2`] = `
 impôt . montant: 0
 salarié . cotisations: 1008
 salarié . rémunération . net . payé après impôt: 1228
-salarié . rémunération . net . à payer avant impôt: 1228"
+salarié . rémunération . net . à payer avant impôt: 1228
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > ACRE 3`] = `
@@ -21,7 +23,8 @@ exports[`calculate assimilé salarié > ACRE 3`] = `
 impôt . montant: 873
 salarié . cotisations: 1497
 salarié . rémunération . net . payé après impôt: 1788
-salarié . rémunération . net . à payer avant impôt: 1861"
+salarié . rémunération . net . à payer avant impôt: 1861
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > JEI 1`] = `
@@ -29,7 +32,8 @@ exports[`calculate assimilé salarié > JEI 1`] = `
 impôt . montant: 3247
 salarié . cotisations: 1198
 salarié . rémunération . net . payé après impôt: 2531
-salarié . rémunération . net . à payer avant impôt: 2802"
+salarié . rémunération . net . à payer avant impôt: 2802
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > avec charges 1`] = `
@@ -37,7 +41,8 @@ exports[`calculate assimilé salarié > avec charges 1`] = `
 impôt . montant: 0
 salarié . cotisations: 396
 salarié . rémunération . net . payé après impôt: 437
-salarié . rémunération . net . à payer avant impôt: 437"
+salarié . rémunération . net . à payer avant impôt: 437
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > avec charges 2`] = `
@@ -45,7 +50,8 @@ exports[`calculate assimilé salarié > avec charges 2`] = `
 impôt . montant: 0
 salarié . cotisations: 760
 salarié . rémunération . net . payé après impôt: 907
-salarié . rémunération . net . à payer avant impôt: 907"
+salarié . rémunération . net . à payer avant impôt: 907
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 1`] = `
@@ -61,7 +67,8 @@ exports[`calculate assimilé salarié > échelle de rémunération 2`] = `
 impôt . montant: 0
 salarié . cotisations: 70
 salarié . rémunération . net . payé après impôt: 14
-salarié . rémunération . net . à payer avant impôt: 14"
+salarié . rémunération . net . à payer avant impôt: 14
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 3`] = `
@@ -69,7 +76,8 @@ exports[`calculate assimilé salarié > échelle de rémunération 3`] = `
 impôt . montant: 0
 salarié . cotisations: 106
 salarié . rémunération . net . payé après impôt: 61
-salarié . rémunération . net . à payer avant impôt: 61"
+salarié . rémunération . net . à payer avant impôt: 61
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 4`] = `
@@ -77,7 +85,8 @@ exports[`calculate assimilé salarié > échelle de rémunération 4`] = `
 impôt . montant: 0
 salarié . cotisations: 215
 salarié . rémunération . net . payé après impôt: 202
-salarié . rémunération . net . à payer avant impôt: 202"
+salarié . rémunération . net . à payer avant impôt: 202
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 5`] = `
@@ -85,7 +94,8 @@ exports[`calculate assimilé salarié > échelle de rémunération 5`] = `
 impôt . montant: 0
 salarié . cotisations: 396
 salarié . rémunération . net . payé après impôt: 437
-salarié . rémunération . net . à payer avant impôt: 437"
+salarié . rémunération . net . à payer avant impôt: 437
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 6`] = `
@@ -93,7 +103,8 @@ exports[`calculate assimilé salarié > échelle de rémunération 6`] = `
 impôt . montant: 0
 salarié . cotisations: 760
 salarié . rémunération . net . payé après impôt: 907
-salarié . rémunération . net . à payer avant impôt: 907"
+salarié . rémunération . net . à payer avant impôt: 907
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 7`] = `
@@ -101,7 +112,8 @@ exports[`calculate assimilé salarié > échelle de rémunération 7`] = `
 impôt . montant: 1704
 salarié . cotisations: 1849
 salarié . rémunération . net . payé après impôt: 2175
-salarié . rémunération . net . à payer avant impôt: 2317"
+salarié . rémunération . net . à payer avant impôt: 2317
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
@@ -109,6 +121,5 @@ exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
 impôt . montant: 9659
 salarié . cotisations: 3622
 salarié . rémunération . net . payé après impôt: 3907
-salarié . rémunération . net . à payer avant impôt: 4712
-Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+salarié . rémunération . net . à payer avant impôt: 4712"
 `;

@@ -34,6 +34,7 @@ it('calculate simulations-professions-libérales', () => {
 		  "dirigeant . indépendant . PL . métier",
 		  "dirigeant . indépendant . conjoint collaborateur",
 		  "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
+		  "dirigeant . indépendant . cotisations et contributions . exonérations . âge",
 		  "dirigeant . indépendant . cotisations facultatives",
 		  "dirigeant . indépendant . revenus étrangers",
 		  "dirigeant . rémunération . net",
