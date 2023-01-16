@@ -26,7 +26,7 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 ## Twemoji proxy for client privacy #1219
 [[redirects]]
   from = "/twemoji/*"
-  to = "https://twemoji.maxcdn.com/:splat"
+  to = "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/:splat"
   status = 200
 
 

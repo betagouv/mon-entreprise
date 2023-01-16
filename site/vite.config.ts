@@ -112,7 +112,7 @@ export default defineConfig(({ command, mode }) => ({
 		proxy: {
 			'/api': 'http://localhost:3004',
 			'/twemoji': {
-				target: 'https://twemoji.maxcdn.com',
+				target: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/',
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/twemoji/, ''),
 				timeout: 3 * 1000,
