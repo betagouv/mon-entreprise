@@ -201,12 +201,27 @@ function CaisseRetraite({ role }: { role?: string }) {
 									alt={caisse}
 								/>
 							</InstitutionLogo>
+
 							<Body>
-								{description}{' '}
-								<Trans i18nKey="simulateurs.explanation.CNAPL">
-									Elle recouvre les cotisations liées à votre retraite et au
-									régime d'invalidité-décès.
-								</Trans>
+								<Condition expression="dirigeant . indépendant . PL . CIPAV">
+									{description}{' '}
+									<SmallBody>
+										<Trans i18nKey="simulateurs.explanation.CIPAV">
+											Depuis le 1er janvier 2023, l’Urssaf recouvre les
+											cotisations de retraite de base, de retraite
+											complémentaire et d’invalidité-décès des professionnels
+											libéraux relevant de la Cipav. La Cipav conserve la
+											gestion du dossier de retraite ou de prévoyance.
+										</Trans>
+									</SmallBody>
+								</Condition>
+								<Condition expression="dirigeant . indépendant . PL . CIPAV = non">
+									{description}{' '}
+									<Trans i18nKey="simulateurs.explanation.CNAPL">
+										Elle recouvre les cotisations liées à votre retraite et au
+										régime d'invalidité-décès.
+									</Trans>
+								</Condition>
 							</Body>
 
 							<Value

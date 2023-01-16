@@ -4517,38 +4517,21 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   titre.en: '[automatic] Sale of goods, catering, accommodation (BIC)'
   titre.fr: Vente de biens, restauration, hébergement (BIC)
 entreprise . date de création:
-  description.en: >
-    [automatic] The date of commencement of activity (or date of
-    creation) is set when you declare your
-
-    declaration of your company.
-
-
-    You can [fill in your company](/manage), to pre-fill this information
-
-    this information automatically.
-
-
-    If you do not have the exact day, the month is usually enough for a good
-
-    approximation.
   description.fr: |
     La date de début d'activité (ou date de création) est fixée lors de la
     déclaration de votre entreprise.
 
-    Vous pouvez [renseigner votre entreprise](/gérer), pour préremplir
+    Vous pouvez [renseigner votre entreprise](/), pour préremplir
     automatiquement cette information.
 
     Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
     approximation.
   question.en: '[automatic] What is your start date?'
   question.fr: Quelle est votre date de début d'activité ?
-  suggestions.Début 2021.en: '[automatic] Early 2021'
-  suggestions.Début 2021.fr: Début 2021
   suggestions.Début 2022.en: '[automatic] Early 2022'
   suggestions.Début 2022.fr: Début 2022
-  suggestions.Il y a 10 ans.en: '[automatic] 10 years ago'
-  suggestions.Il y a 10 ans.fr: Il y a 10 ans
+  suggestions.Début 2023.fr: Début 2023
+  suggestions.Il y a plus de 10 ans.fr: Il y a plus de 10 ans
   titre.en: Creation date
   titre.fr: date de création
 entreprise . date de création . contrôle date future:
