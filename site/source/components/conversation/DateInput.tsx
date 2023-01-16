@@ -14,8 +14,7 @@ export default function DateInput({
 	required,
 	autoFocus,
 	value,
-	forceTheme,
-}: InputProps & { forceTheme?: string }) {
+}: InputProps) {
 	const dateValue = useMemo(() => {
 		if (!value || typeof value !== 'string') {
 			return undefined

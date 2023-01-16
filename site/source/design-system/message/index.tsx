@@ -1,7 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { DefaultTheme, ThemeProvider, css } from 'styled-components'
+import styled, { DefaultTheme, css } from 'styled-components'
 
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Palette, SmallPalette } from '@/types/styled'
 
 import { Emoji } from '../emoji'
@@ -40,7 +41,7 @@ export function Message({
 	}
 
 	return (
-		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
+		<ForceThemeProvider forceTheme="light">
 			<StyledMessage
 				className={className}
 				messageType={type}
@@ -66,7 +67,7 @@ export function Message({
 				)}
 				<Wrapper role={role}>{children}</Wrapper>
 			</StyledMessage>
-		</ThemeProvider>
+		</ForceThemeProvider>
 	)
 }
 const StyledIconWrapper = styled.div<{

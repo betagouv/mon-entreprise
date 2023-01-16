@@ -2,7 +2,6 @@ import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
-import { ThemeProvider } from 'styled-components'
 
 import { resetCompany } from '@/actions/companyActions'
 import {
@@ -12,6 +11,7 @@ import {
 import { CompanyDetails } from '@/components/company/Details'
 import { CompanySearchField } from '@/components/company/SearchField'
 import { useEngine } from '@/components/utils/EngineContext'
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
@@ -36,7 +36,7 @@ export default function SearchOrCreate() {
 	const { t } = useTranslation()
 
 	return (
-		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+		<ForceThemeProvider forceTheme="dark">
 			<Grid container spacing={3}>
 				<Grid item xl={8} lg={10} md={12}>
 					{companySIREN ? (
@@ -107,7 +107,7 @@ export default function SearchOrCreate() {
 					)}
 				</Grid>
 			</Grid>
-		</ThemeProvider>
+		</ForceThemeProvider>
 	)
 }
 

@@ -225,6 +225,7 @@ a:focus {
 	${FocusStyle}
 }
 
+// Corrige l'affichage du menu mobile de la documentation
 #mobile-menu-portal-id {
 	& nav {
 		background: ${({ theme }) => theme.darkMode && theme.colors.extended.dark[800]};

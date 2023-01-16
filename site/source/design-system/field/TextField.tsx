@@ -3,7 +3,6 @@ import { HTMLAttributes, RefObject, useRef } from 'react'
 import styled, { css } from 'styled-components'
 
 import { ExtraSmallBody } from '@/design-system/typography/paragraphs'
-import { useDarkMode } from '@/hooks/useDarkMode'
 import { omit } from '@/utils'
 
 const LABEL_HEIGHT = '1rem'
@@ -11,7 +10,6 @@ const LABEL_HEIGHT = '1rem'
 type TextFieldProps = AriaTextFieldOptions<'input'> & {
 	inputRef?: RefObject<HTMLInputElement>
 	small?: boolean
-	forceTheme?: 'dark' | 'light'
 }
 
 export default function TextField(props: TextFieldProps) {

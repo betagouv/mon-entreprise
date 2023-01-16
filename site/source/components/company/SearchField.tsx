@@ -1,7 +1,7 @@
 import { useSearchFieldState } from '@react-stately/searchfield'
 import { ReactNode, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { ForceThemeProvider, ThemeType } from '@/contexts/DarkModeContext'
@@ -64,7 +64,7 @@ export function CompanySearchField(props: {
 	return (
 		<Grid container>
 			<Grid item xs={12}>
-				<ForceThemeProvider forceTheme="dark">
+				<ForceThemeProvider forceTheme={props?.forceTheme}>
 					<SearchField
 						data-test-id="company-search-input"
 						state={state}

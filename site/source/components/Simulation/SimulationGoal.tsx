@@ -76,12 +76,12 @@ export function SimulationGoal({
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
-							<StyledRuleLink
+							<RuleLink
 								id={`${dottedName.replace(/\s|\./g, '')}-label`}
 								dottedName={dottedName}
 							>
 								{label}
-							</StyledRuleLink>
+							</RuleLink>
 
 							{rule.rawNode.résumé && (
 								<StyledSmallBody
@@ -169,11 +169,6 @@ const StyledGoal = styled.div`
 	}
 `
 
-const StyledRuleLink = styled(RuleLink)`
-	color: ${({ theme }) => theme.colors.bases.primary[100]};
-`
-
 const StyledSmallBody = styled(SmallBody)`
 	margin-bottom: 0;
-	color: ${({ theme }) => theme.colors.bases.primary[100]};
 `

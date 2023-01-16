@@ -1,8 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
@@ -46,12 +47,12 @@ export function SimulationGoals({
 				aria-labelledby="simulator-legend-label"
 				aria-live="polite"
 			>
-				<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+				<ForceThemeProvider forceTheme="dark">
 					<div className="sr-only" aria-hidden id="simulator-legend-label">
 						{legend}
 					</div>
 					{children}
-				</ThemeProvider>
+				</ForceThemeProvider>
 			</StyledSimulationGoals>
 		</WatchInitialRender>
 	)
