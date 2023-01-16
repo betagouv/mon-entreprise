@@ -122,7 +122,7 @@ const RevenuAprèsImpot = ({
 									{
 										isChecked: false,
 										label: (
-											<Trans>
+											<Trans i18nKey="revenu_après_impots.acre">
 												<span>
 													ACRE sous{' '}
 													<BlackColoredLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre.html">
@@ -164,7 +164,9 @@ const RevenuAprèsImpot = ({
 							<WarningTooltip
 								tooltip={
 									<StyledBody id="warning-ae-tooltip">
-										Vous allez dépasser le plafond de la micro-entreprise{' '}
+										<Trans>
+											Vous allez dépasser le plafond de la micro-entreprise
+										</Trans>{' '}
 										<span>
 											(
 											<Value
@@ -180,7 +182,7 @@ const RevenuAprèsImpot = ({
 														: "entreprise . chiffre d'affaires . seuil micro . total"
 												}
 											/>{' '}
-											de chiffre d’affaires).
+											<Trans>de chiffre d’affaires</Trans>).
 										</span>
 									</StyledBody>
 								}
