@@ -143,7 +143,7 @@ dirigeant . exonérations . ACRE:
     une de ces conditions:
       - toutes ces conditions:
           - auto-entrepreneur
-          - entreprise . durée d'activité < 3 ans
+          - entreprise . durée d'activité < 3 an
           - entreprise . date de création < 04/2020
       - entreprise . durée d'activité . en début d'année < 1 an
   par défaut: ACRE par défaut
@@ -490,9 +490,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
             - montant: 25%
               plafond: 1 an
             - montant: 50%
-              plafond: 2 ans
+              plafond: 2 an
             - montant: 90%
-              plafond: 3 ans
+              plafond: 3 an
     - si: entreprise . date de création < 01/04/2020
       alors:
         grille:
@@ -501,9 +501,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
             - montant: 25%
               plafond: 1 an
             - montant: 75%
-              plafond: 2 ans
+              plafond: 2 an
             - montant: 90%
-              plafond: 3 ans
+              plafond: 3 an
     - si: entreprise . durée d'activité < 1 an
       alors: 50%
 
@@ -1491,33 +1491,33 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
       - si: entreprise . salariés . effectif < 5
         alors:
           tranches:
-            - plafond: 5 ans
+            - plafond: 5 an
               taux: 100%
-            - plafond: 6 ans
+            - plafond: 6 an
               taux: 60%
-            - plafond: 10 ans
+            - plafond: 10 an
               taux: 60%
-            - plafond: 11 ans
+            - plafond: 11 an
               taux: 40%
-            - plafond: 12 ans
+            - plafond: 12 an
               taux: 40%
-            - plafond: 13 ans
+            - plafond: 13 an
               taux: 20%
-            - plafond: 14 ans
+            - plafond: 14 an
               taux: 20%
-            - plafond: 15 ans
+            - plafond: 15 an
               taux: 0%
       - sinon:
           tranches:
-            - plafond: 5 ans
+            - plafond: 5 an
               taux: 100%
-            - plafond: 6 ans
+            - plafond: 6 an
               taux: 60%
-            - plafond: 7 ans
+            - plafond: 7 an
               taux: 40%
-            - plafond: 8 ans
+            - plafond: 8 an
               taux: 20%
-            - plafond: 9 ans
+            - plafond: 9 an
               taux: 0%
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid:

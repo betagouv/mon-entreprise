@@ -3,7 +3,7 @@ plafond sécurité sociale:
   acronyme: PSS
   variations:
     - si: date >= 01/2023
-      alors: 3666 €/mois
+      alors: 3666 €/mois
     - sinon: 3428 €/mois
   références:
     Montants du plafond de Sécurité sociale: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
@@ -21,7 +21,7 @@ plafond sécurité sociale:
 
     journalier:
       acronyme: PJSS
-      valeur: plafond sécurité sociale / 218 jours/an
+      valeur: plafond sécurité sociale / 218 jour/an
       arrondi: oui
       unité: €/jour
       références:
