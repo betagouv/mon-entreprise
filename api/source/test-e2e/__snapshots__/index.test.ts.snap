@@ -829,11 +829,6 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-⚠️  Dans l'expression '<', la partie gauche (unité: jour) n'est pas compatible avec la partie droite (unité: ans)",
-    },
-    {
-      "message": "
-[ Avertissement ]
 ➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
