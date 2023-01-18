@@ -121,8 +121,8 @@ protection sociale . retraite . complémentaire:
     > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
   unité: €/mois
   somme:
-    - RCI * 10 ans
-    - AGIRC ARRCO * 10 ans
+    - RCI * 10 an
+    - AGIRC ARRCO * 10 an
 
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
   titre: Pension AGIRC-ARRCO

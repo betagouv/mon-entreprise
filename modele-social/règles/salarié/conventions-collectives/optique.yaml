@@ -11,15 +11,15 @@ salarié . convention collective . optique . prime d'ancienneté:
       assiette: salaire minimum conventionnel
       taux:
         variations:
-          - si: ancienneté >= 15 ans
+          - si: ancienneté >= 15 an
             alors: 15%
-          - si: ancienneté >= 12 ans
+          - si: ancienneté >= 12 an
             alors: 12%
-          - si: ancienneté >= 9 ans
+          - si: ancienneté >= 9 an
             alors: 9%
-          - si: ancienneté >= 6 ans
+          - si: ancienneté >= 6 an
             alors: 6%
-          - si: ancienneté >= 3 ans
+          - si: ancienneté >= 3 an
             alors: 3%
           - sinon: 0%
   références:

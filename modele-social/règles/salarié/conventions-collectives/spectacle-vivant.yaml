@@ -201,7 +201,7 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . réduc
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste . nombre jours travaillés:
   question: Pour combien de jours continus l'artiste est-il engagé ?
-  par défaut: 5 jours
+  par défaut: 5 jour
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste . plafond proratisé:
   applicable si: nombre jours travaillés < 5
