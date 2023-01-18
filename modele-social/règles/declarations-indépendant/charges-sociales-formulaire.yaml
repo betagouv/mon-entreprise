@@ -9,7 +9,7 @@ déclaration charge sociales:
       par: ACRE
 
     - # Par défaut on  considère que l'entreprise est mixte et on affiche tous les champs
-      règle: entreprise . activité . mixte
+      règle: entreprise . activités . revenus mixtes
       par: oui
 
 déclaration charge sociales . comptabilité:

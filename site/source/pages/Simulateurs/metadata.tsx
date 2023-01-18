@@ -62,6 +62,7 @@ import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
 import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import getData from './metadata-src.js'
+import { coutCreationEntreprise } from './metadata/coutCreationEntreprise'
 
 interface SimulatorsDataParams {
 	t: TFunction
@@ -737,6 +738,10 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 			path: sitePaths.simulateurs['exonération-covid'],
 			component: ExonérationCovid,
 		},
+		'coût-création-entreprise': coutCreationEntreprise(
+			pureSimulatorsData,
+			sitePaths
+		),
 	} as const
 }
 

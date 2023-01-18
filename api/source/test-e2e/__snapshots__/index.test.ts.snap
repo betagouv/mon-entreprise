@@ -531,7 +531,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
   "evaluate": [
     {
       "missingVariables": [
-        "entreprise . activité . mixte",
+        "entreprise . activités . revenus mixtes",
       ],
       "nodeValue": 8904,
       "traversedVariables": [
@@ -563,7 +563,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux vente restauration hébergement",
         "entreprise . chiffre d'affaires . vente restauration hébergement",
         "dirigeant . indépendant . PL",
-        "entreprise . activité . mixte",
+        "entreprise . activités . revenus mixtes",
         "entreprise . imposition . régime . micro-entreprise",
         "entreprise . imposition . IS",
         "DRI . accompagnement imposition . régime memento fiscal . RSI",
@@ -572,7 +572,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "DRI . accompagnement imposition . régime memento fiscal . DECC",
         "DRI . accompagnement imposition . régime memento fiscal . SPECIAL",
         "DRI . accompagnement imposition . régime memento fiscal . MICROE",
-        "entreprise . activité . service ou vente",
+        "entreprise . activités . service ou vente",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux service BIC",
         "entreprise . chiffre d'affaires . service BIC",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux service BNC",
@@ -596,7 +596,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     },
     {
       "missingVariables": [
-        "entreprise . activité . mixte",
+        "entreprise . activités . revenus mixtes",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
@@ -654,7 +654,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     },
     {
       "missingVariables": [
-        "entreprise . activité . mixte",
+        "entreprise . activités . revenus mixtes",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
@@ -692,7 +692,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux vente restauration hébergement",
         "entreprise . chiffre d'affaires . vente restauration hébergement",
         "dirigeant . indépendant . PL",
-        "entreprise . activité . mixte",
+        "entreprise . activités . revenus mixtes",
         "entreprise . imposition . régime . micro-entreprise",
         "entreprise . imposition . IS",
         "DRI . accompagnement imposition . régime memento fiscal . RSI",
@@ -701,7 +701,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "DRI . accompagnement imposition . régime memento fiscal . DECC",
         "DRI . accompagnement imposition . régime memento fiscal . SPECIAL",
         "DRI . accompagnement imposition . régime memento fiscal . MICROE",
-        "entreprise . activité . service ou vente",
+        "entreprise . activités . service ou vente",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux service BIC",
         "entreprise . chiffre d'affaires . service BIC",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux service BNC",

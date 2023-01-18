@@ -135,7 +135,7 @@ export default function AideDéclarationIndépendant() {
 
 							<SubSection dottedName="déclaration charge sociales . nature de l'activité" />
 							{/* PLNR */}
-							<SimpleField dottedName="entreprise . activité . débit de tabac" />
+							<SimpleField dottedName="entreprise . activités . commerciale . débit de tabac" />
 							<SimpleField dottedName="dirigeant . indépendant . cotisations et contributions . déduction tabac" />
 							<SimpleField dottedName="dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire" />
 

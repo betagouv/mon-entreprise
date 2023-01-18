@@ -5,16 +5,7 @@ import {
 	RuleNode,
 	serializeEvaluation,
 } from 'publicodes'
-import {
-	Fragment,
-	Key,
-	createContext,
-	useCallback,
-	useContext,
-	useEffect,
-	useRef,
-	useState,
-} from 'react'
+import { Fragment, Key, useCallback, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -57,12 +48,6 @@ export type Choice = RuleNode & {
 	children: Array<RuleNode | Choice>
 	canGiveUp?: boolean
 }
-
-// TODO : This is hacky, the logic to hide/disable some of the possible answer
-// to a mutliple-choice question must be handled by Publicodes. We use a React
-// context instead of passing down props to avoid polluting to much code with
-// this undesirable option.
-export const HiddenOptionContext = createContext<Array<DottedName>>([])
 
 export function MultipleAnswerInput<Names extends string = DottedName>({
 	choice,
@@ -162,89 +147,84 @@ function RadioChoice<Names extends string = DottedName>({
 	rootDottedName: Names
 	type: 'radio' | 'toggle'
 }) {
-	const hiddenOptions = useContext(HiddenOptionContext)
 	const { t } = useTranslation()
 
 	return (
 		<>
-			{choice.children.map((node) => {
-				return (
-					<Fragment key={node.dottedName}>
-						{' '}
-						{hiddenOptions.includes(
-							node.dottedName as DottedName
-						) ? null : 'children' in node ? (
-							<div
-								role="group"
-								aria-labelledby={
-									node.dottedName.replace(/\s|\./g, '') + '-legend'
+			{choice.children.map((node) => (
+				<Fragment key={node.dottedName}>
+					{' '}
+					{'children' in node ? (
+						<div
+							role="group"
+							aria-labelledby={
+								node.dottedName.replace(/\s|\./g, '') + '-legend'
+							}
+							id={`radio-input-${node.dottedName.replace(
+								/\s|\./g,
+								''
+							)}-${rootDottedName.replace(/\s|\./g, '')}`}
+							css={`
+								margin-top: -1rem;
+							`}
+						>
+							<H4 as={H3} id={node.dottedName + '-legend'}>
+								{node.title}
+							</H4>
+							<Spacing lg />
+							<StyledSubRadioGroup>
+								<RadioChoice
+									// eslint-disable-next-line jsx-a11y/no-autofocus
+									autoFocus={autoFocus}
+									defaultValue={defaultValue}
+									choice={node}
+									rootDottedName={rootDottedName}
+									type={type}
+								/>
+							</StyledSubRadioGroup>
+						</div>
+					) : (
+						<span>
+							<Radio
+								// eslint-disable-next-line jsx-a11y/no-autofocus
+								autoFocus={
+									// Doit autoFocus si correspond à la valeur par défaut
+									(defaultValue &&
+										defaultValue ===
+											`'${relativeDottedName(
+												rootDottedName,
+												node.dottedName
+											)}'` &&
+										autoFocus) ||
+									// Sinon doit autoFocus automatiquement
+									autoFocus
 								}
-								id={`radio-input-${node.dottedName.replace(
+								value={`'${relativeDottedName(
+									rootDottedName,
+									node.dottedName
+								)}'`}
+								id={`radio-input-${relativeDottedName(
+									rootDottedName,
+									node.dottedName
+								).replace(/\s|\./g, '')}-${rootDottedName.replace(
 									/\s|\./g,
 									''
-								)}-${rootDottedName.replace(/\s|\./g, '')}`}
-								css={`
-									margin-top: -1rem;
-								`}
+								)}`}
 							>
-								<H4 as={H3} id={node.dottedName + '-legend'}>
-									{node.title}
-								</H4>
-								<Spacing lg />
-								<StyledSubRadioGroup>
-									<RadioChoice
-										// eslint-disable-next-line jsx-a11y/no-autofocus
-										autoFocus={autoFocus}
-										defaultValue={defaultValue}
-										choice={node}
-										rootDottedName={rootDottedName}
-										type={type}
-									/>
-								</StyledSubRadioGroup>
-							</div>
-						) : (
-							<span>
-								<Radio
-									// eslint-disable-next-line jsx-a11y/no-autofocus
-									autoFocus={
-										// Doit autoFocus si correspond à la valeur par défaut
-										(defaultValue &&
-											defaultValue ===
-												`'${relativeDottedName(
-													rootDottedName,
-													node.dottedName
-												)}'` &&
-											autoFocus) ||
-										// Sinon doit autoFocus automatiquement
-										autoFocus
-									}
-									value={`'${relativeDottedName(
-										rootDottedName,
-										node.dottedName
-									)}'`}
-									id={`radio-input-${relativeDottedName(
-										rootDottedName,
-										node.dottedName
-									).replace(/\s|\./g, '')}-${rootDottedName.replace(
-										/\s|\./g,
-										''
-									)}`}
-								>
-									{node.title}{' '}
-									{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
-								</Radio>{' '}
-								{type !== 'toggle' && (
-									<ExplicableRule
-										light
-										dottedName={node.dottedName as DottedName}
-										aria-label={`En savoir plus sur ${node.title}`}
-									/>
-								)}
-							</span>
-						)}
-					</Fragment>
-				)
-			})}
+								{node.title}{' '}
+								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
+							</Radio>{' '}
+							{type !== 'toggle' && (
+								<ExplicableRule
+									light
+									dottedName={node.dottedName as DottedName}
+									aria-label={`En savoir plus sur ${node.title}`}
+								/>
+							)}
+						</span>
+					)}
+				</Fragment>
+			))}
 			{choice.canGiveUp && (
 				<>
 					<Radio value={'non'}>{t('Aucun')}</Radio>

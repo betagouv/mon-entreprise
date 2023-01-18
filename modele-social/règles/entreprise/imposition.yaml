@@ -281,7 +281,7 @@ entreprise . imposition . régime . micro-entreprise . revenu abattu:
     plancher:
       nom: plancher abattement
       variations:
-        - si: entreprise . activité . mixte
+        - si: entreprise . activités . revenus mixtes
           alors: 610 €/an
         - sinon: 305 €/an
 

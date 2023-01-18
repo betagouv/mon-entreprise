@@ -17,6 +17,7 @@ import { getMeta } from '@/utils'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
+import { MultipleChoicesInput } from './MulipleChoicesInput'
 import ParagrapheInput from './ParagrapheInput'
 import TextInput from './TextInput'
 import SelectPaysDétachement from './select/SelectPaysDétachement'
@@ -53,13 +54,14 @@ type Props<Names extends string = DottedName> = Omit<
 
 export type InputProps<Name extends string = string> = Omit<
 	Props<Name>,
-	'onChange'
+	'onChange' | 'engine'
 > &
 	Pick<RuleNode, 'suggestions'> & {
 		question: RuleNode['rawNode']['question']
 		description: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
 		onChange: (value: PublicodesExpression | undefined) => void
+		engine: Engine<Name>
 	}
 
 export const binaryQuestion = [
@@ -85,7 +87,7 @@ export default function RuleInput<Names extends string = DottedName>({
 }: Props<Names>) {
 	const defaultEngine = useContext(EngineContext)
 
-	const engineValue = engine ?? defaultEngine
+	const engineValue = (engine ?? defaultEngine) as Engine<Names>
 
 	const rule = engineValue.getRule(dottedName)
 	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
@@ -106,13 +108,24 @@ export default function RuleInput<Names extends string = DottedName>({
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},
 		autoFocus: shouldFocusField,
+		engine: engineValue,
 		...props,
 		// Les espaces ne sont pas autorisés dans un id, les points sont assimilés à une déclaration de class CSS par Cypress
 		id: props?.id?.replace(/\s|\./g, '') ?? dottedName.replace(/\s|\./g, ''),
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
-	if (getVariant(engineValue.getRule(dottedName))) {
+	if (isMultiplePossibilities(engineValue, dottedName)) {
+		return (
+			<MultipleChoicesInput
+				{...commonProps}
+				choices={getMultiplePossibilitiesOptions(engineValue, dottedName)}
+				onChange={onChange}
+			/>
+		)
+	}
+
+	if (isOnePossibility(engineValue.getRule(dottedName))) {
 		const type =
 			inputType ??
 			(meta.affichage &&
@@ -123,7 +136,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		return (
 			<MultipleAnswerInput
 				{...commonProps}
-				choice={buildVariantTree(engineValue, dottedName)}
+				choice={getOnePossibilityOptions(engineValue, dottedName)}
 				type={type}
 			/>
 		)
@@ -197,7 +210,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	)
 }
 
-const getVariant = (node: RuleNode) =>
+const isOnePossibility = (node: RuleNode) =>
 	reduceAST<false | (ASTNode & { nodeKind: 'une possibilité' })>(
 		(_, node) => {
 			if (node.nodeKind === 'une possibilité') {
@@ -208,7 +221,7 @@ const getVariant = (node: RuleNode) =>
 		node
 	)
 
-export const buildVariantTree = <Name extends string>(
+export const getOnePossibilityOptions = <Name extends string>(
 	engine: Engine<Name>,
 	path: Name
 ): Choice => {
@@ -216,7 +229,7 @@ export const buildVariantTree = <Name extends string>(
 	if (!node) {
 		throw new Error(`La règle ${path} est introuvable`)
 	}
-	const variant = getVariant(node)
+	const variant = isOnePossibility(node)
 	const canGiveUp =
 		variant &&
 		(!variant['choix obligatoire'] || variant['choix obligatoire'] === 'non')
@@ -233,9 +246,33 @@ export const buildVariantTree = <Name extends string>(
 					)
 						.filter((node) => engine.evaluate(node).nodeValue !== null)
 						.map(({ dottedName }) =>
-							buildVariantTree(engine, dottedName as Name)
+							getOnePossibilityOptions(engine, dottedName as Name)
 						),
 			  }
 			: null
 	) as Choice
+}
+
+type RuleWithMultiplePossibilities = RuleNode & {
+	rawNode: RuleNode['rawNode'] & {
+		'plusieurs possibilités'?: Array<string>
+	}
+}
+function isMultiplePossibilities<Name extends string>(
+	engine: Engine<Name>,
+	dottedName: Name
+): boolean {
+	return !!(engine.getRule(dottedName) as RuleWithMultiplePossibilities)
+		.rawNode['plusieurs possibilités']
+}
+
+function getMultiplePossibilitiesOptions<Name extends string>(
+	engine: Engine<Name>,
+	dottedName: Name
+): Array<RuleNode> {
+	return (
+		(engine.getRule(dottedName) as RuleWithMultiplePossibilities).rawNode[
+			'plusieurs possibilités'
+		] ?? []
+	).map((name) => engine.getRule(`${dottedName} . ${name}` as Name))
 }

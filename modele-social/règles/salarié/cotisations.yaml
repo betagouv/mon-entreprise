@@ -500,7 +500,7 @@ salarié . cotisations . AGS:
     Cette cotisations permet de garantir les salaires des employés en cas de difficultés de l'entreprise (sauvegarde, redressement, liquidation). Elle paie les salaires sur les 60 derniers jours de travail. Elle permet de payer des préavis et des indemnités de fin de contrat.
   cotisation:
     branche: assurance chômage
-  references:
+  références:
     calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
   produit:
     assiette: cotisations . assiette

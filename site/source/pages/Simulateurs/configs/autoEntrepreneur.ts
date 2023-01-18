@@ -41,7 +41,7 @@ export const configAutoEntrepreneur: SimulationConfig = {
 		'liste noire': [
 			'entreprise . charges',
 			"entreprise . chiffre d'affaires",
-			'entreprise . activité . mixte',
+			'entreprise . activités . revenus mixtes',
 		],
 	},
 	'unité par défaut': '€/an',

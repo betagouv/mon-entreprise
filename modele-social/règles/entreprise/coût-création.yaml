@@ -1,0 +1,104 @@
+entreprise . coût formalités . création:
+  titre: Coût de création d'une entreprise
+  somme:
+    - RCS . création
+    - CMA . création
+    - RSAC . création
+
+entreprise . coût formalités . RCS:
+  titre: Les tarifs liés au Registre du commerce et des sociétés
+  avec:
+    création:
+      variations:
+        - si: catégorie juridique . EI . auto-entrepreneur
+          alors: 0€
+        - si: catégorie juridique . EI
+          alors:
+            applicable si: activités . commerciale
+            valeur: 20.07 €
+        - si:
+            une de ces conditions:
+              - catégorie juridique . SARL
+              - catégorie juridique . SAS
+              # TODO ???
+          alors: 24.52 €
+        - sinon: 49.04 €
+  références:
+    Article A743-10 du Code de commerce: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041675936
+
+entreprise . coût formalités . CMA:
+  titre: Les tarifs liés au Chambre des Métiers et de l'Artisanat
+  applicable si: activités . artisanale
+  avec:
+    création:
+      variations:
+        - si: RCS . création > 0€
+          alors: 15 €
+        - sinon: 45 €
+  références:
+    Prestation délivrée par la chambre de métiers et de l’artisanat: https://formalites.entreprises.gouv.fr/tarifs.php#art19
+
+entreprise . coût formalités . RSAC:
+  titre: Les tarifs liés au Registre Spécial des Agents Commerciaux
+  applicable si: activités . commerciale . agent commercial
+  avec:
+    création: 6.69 €
+
+entreprise . coût formalités . création . JAL:
+  titre: Les tarifs liés au Journal d'annonce légal
+# Les JAL ont une logique qui dépend beaucoup du prestataire.
+# Les montant forfaitaires existent dans la loi, mais aucun moyen de savoir si ils sont beaucoup utilisés.
+# Peut-être mettre une fourchette dans un premier temps (comme sur service-public) ?
+# Fun fact : la presse quotidienne régionale est financée à 50% par cette mane
+
+entreprise . coût formalités . création . BODACC:
+  titre: Les tarifs liés au Bulletin officiel des annonces civiles et commerciales
+#
+# entreprise . coût formalités . création . x:
+
+# RCS:
+# Différence entre immatriculation principale et immatriculation par création d'une entreprise (39 vs 41) :
+# la deuxième est une réduction de la formalité pour la création de société commerciale (pas concernée les sociétés agricole, SELARL, etc)
+# Société civile, société agricole, SELARL, etc -> pas de réduction pour la création, seulement société commerciale et artisanale ;
+# toute société doit être immatriculée au RCS
+
+# Pas de JAL pour les sociétés agricoles ;
+# Pas de frais de BODACC pour la création ;
+# Pas de frais liés à l'INPI pour la création ;
+# Uniquement frais de greffe + JAL ;
+
+# coût HT ;
+
+# Plus de déclarations d'affectation du patrimoine d'EIRL.
+
+# Bénéficiaire effectif :
+# montant à payer en plus ;
+# détenir un pourcentage minimale de droit de vote ou de capital social de 25% ;
+# ou si personne ne dépasse le seul, c'est le représentant ;
+
+# Agents commerciaux :
+# A la fois personne physique non immatriculé au RCS et société imatriculé au RCS
+
+# Agents commerciaux :
+# A la fois personne physique non immatriculé au RCS
+
+entreprise . coût formalités . création . frais de transmissions:
+  # description:
+# Frais de transmissions
+# Désormais, tout est sur guichet unique, dématerialisé, donc pas de frais transmission possible
+# Par contre, le greffe peut envoyer des pièces, facture débourt postaux, 0.97€ HT (à vérifier)
+# Si RCS est un succès, le greffe doit vous envoyer des kbis, ces frais postaux sont inclus dans la prestation principale
+# Demande de complément facturé en cas de pièce manquante chez le RCS mais pas chez les artisans.
+
+# Auto-entreprise
+# pas de frais de création
+# plus de formation obligatoire
+# frais d'immatriculation de cessation et radiation sont gratuit
+# Mais
+# frais de rejet en cas de mauvaise déclaration (3 €)
+# normalement pas censé arrivé via le guichet unique
+# mais ça peut arriver pour les micro entrepreneur réglementée (hors libérale)
+# exemple : taxi
+
+# Autre
+# Double immatriculation possible (artisan + commerçant), dans ce cas, réduction artisan
