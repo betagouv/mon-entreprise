@@ -50,11 +50,13 @@ export default function Conversation({
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const currentQuestion = useNextQuestions(engines)[0]
+
 	const situation = useSelector(situationSelector)
 	const currentQuestionIsAnswered = !(
 		currentQuestion in useMissingVariables({ engines: engines ?? [engine] })
 	)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
+
 	const { t } = useTranslation()
 	useEffect(() => {
 		if (currentQuestion && !currentQuestionIsAnswered) {
@@ -72,8 +74,11 @@ export default function Conversation({
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
 	}
 
-	const onChange = (value: PublicodesExpression | undefined) => {
-		dispatch(answerQuestion(currentQuestion, value))
+	const onChange = (
+		value: PublicodesExpression | undefined,
+		dottedName: DottedName
+	) => {
+		dispatch(answerQuestion(dottedName, value))
 	}
 
 	return (

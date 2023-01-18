@@ -2,7 +2,7 @@ DRI:
   experimental: oui
   valeur: non
   remplace:
-    - règle: entreprise . catégorie juridique . EI . auto-entrepreneur . défaut
+    - règle: entreprise . catégorie juridique . EI . auto-entrepreneur
       par: non
 
 DRI . cas exclus:

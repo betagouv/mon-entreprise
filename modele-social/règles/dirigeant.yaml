@@ -461,7 +461,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       description: |
         Pour les professions libérales relevant de la CIPAV, le taux est le même quelle que soit la catégorie d’imposition/activité (BIC ou BNC, service ou vente).
       applicable si: affiliation CIPAV
-      rend non applicable: entreprise . activité . mixte
+      rend non applicable: entreprise . activités . revenus mixtes
       produit:
         assiette: entreprise . chiffre d'affaires
         taux:
@@ -973,7 +973,7 @@ dirigeant . indépendant . cotisations et contributions . PCV:
     conventionnel.
 
 dirigeant . indépendant . cotisations et contributions . déduction tabac:
-  applicable si: entreprise . activité . débit de tabac
+  applicable si: entreprise . activités . commerciale . débit de tabac
   question: Quel est le montant des revenus issus de la vente de tabac que vous souhaitez exonérer de cotisation vieillesse ?
   description: |
     Si vous exercez une activité de débit de tabac simultanément à une activité commerciale, vous avez la possibilité d’opter pour le calcul de votre cotisation d’assurance vieillesse sur le seul revenu tiré de votre activité commerciale (en effet, les remises pour débit de tabac sont soumises par ailleurs à un prélèvement vieillesse particulier). Nous attirons cependant votre attention sur le fait qu’en cotisant sur une base moins importante, excluant les revenus de débit de tabac, vos droits à retraite pour l’assurance vieillesse des commerçants en seront diminués.

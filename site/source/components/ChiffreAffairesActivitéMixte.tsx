@@ -17,11 +17,11 @@ import { FromTop } from './ui/animate'
 import { useEngine } from './utils/EngineContext'
 
 const proportions = {
-	'entreprise . activité . mixte . proportions . service BIC':
+	'entreprise . activités . revenus mixtes . proportions . service BIC':
 		"entreprise . chiffre d'affaires . service BIC",
-	'entreprise . activité . mixte . proportions . service BNC':
+	'entreprise . activités . revenus mixtes . proportions . service BNC':
 		"entreprise . chiffre d'affaires . service BNC",
-	'entreprise . activité . mixte . proportions . vente restauration hébergement':
+	'entreprise . activités . revenus mixtes . proportions . vente restauration hébergement':
 		"entreprise . chiffre d'affaires . vente restauration hébergement",
 } as const
 
@@ -52,10 +52,10 @@ export default function ChiffreAffairesActivitéMixte({
 				onUpdateSituation={clearChiffreAffaireMixte}
 				dottedName={dottedName}
 			/>
-			<WhenApplicable dottedName="entreprise . activité . mixte">
+			<WhenApplicable dottedName="entreprise . activités . revenus mixtes">
 				<FromTop>
 					<ActivitéMixte />
-					<Condition expression="entreprise . activité . mixte">
+					<Condition expression="entreprise . activités . revenus mixtes">
 						{Object.values(proportions).map((chiffreAffaires) => (
 							<SimulationGoal
 								small
@@ -138,9 +138,10 @@ function useAdjustProportions(CADottedName: DottedName) {
 function ActivitéMixte() {
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
-	const rule = useEngine().getRule('entreprise . activité . mixte')
+	const rule = useEngine().getRule('entreprise . activités . revenus mixtes')
 	const defaultChecked =
-		useEngine().evaluate('entreprise . activité . mixte').nodeValue === true
+		useEngine().evaluate('entreprise . activités . revenus mixtes')
+			.nodeValue === true
 	const onMixteChecked = useCallback(
 		(checked: boolean) => {
 			dispatch(
@@ -148,7 +149,9 @@ function ActivitéMixte() {
 					Object.values(proportions).reduce(
 						(acc, dottedName) => ({ ...acc, [dottedName]: undefined }),
 						{
-							'entreprise . activité . mixte': checked ? 'oui' : 'non',
+							'entreprise . activités . revenus mixtes': checked
+								? 'oui'
+								: 'non',
 						}
 					)
 				)

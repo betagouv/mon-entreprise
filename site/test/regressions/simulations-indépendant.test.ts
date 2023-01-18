@@ -34,7 +34,7 @@ it('calculate simulations-indépendant', () => {
 		  "dirigeant . indépendant . cotisations facultatives",
 		  "dirigeant . indépendant . revenus étrangers",
 		  "dirigeant . rémunération . net",
-		  "entreprise . activité . débit de tabac",
+		  "entreprise . activités . commerciale . débit de tabac",
 		  "entreprise . activité . nature",
 		  "entreprise . catégorie juridique",
 		  "entreprise . charges",

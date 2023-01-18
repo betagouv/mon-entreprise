@@ -86,13 +86,13 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   question: Quel est le chiffre d'affaires issu de la vente de biens, restauration ou hébergement ?
   unité: €/an
   variations:
-    - si: activité . mixte
+    - si: activités . revenus mixtes
       alors:
         produit:
           assiette: chiffre d'affaires
-          taux: activité . mixte . proportions . vente restauration hébergement
+          taux: activités . revenus mixtes . proportions . vente restauration hébergement
     - sinon:
-        applicable si: activité . service ou vente = 'vente'
+        applicable si: activités . service ou vente = 'vente'
         valeur: chiffre d'affaires
   arrondi: oui
   plancher: 0€/an
@@ -132,13 +132,13 @@ entreprise . chiffre d'affaires . service BIC:
     **Exemples** : transports, service à la personne, réparation etc.
   par défaut: 0€/an
   variations:
-    - si: activité . mixte
+    - si: activités . revenus mixtes
       alors:
         produit:
           assiette: chiffre d'affaires
-          taux: activité . mixte . proportions . service BIC
+          taux: activités . revenus mixtes . proportions . service BIC
     - sinon:
-        applicable si: activité . service ou vente = 'service'
+        applicable si: activités . service ou vente = 'service'
         valeur: chiffre d'affaires
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
@@ -159,13 +159,13 @@ entreprise . chiffre d'affaires . service BNC:
 
     Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
   variations:
-    - si: activité . mixte
+    - si: activités . revenus mixtes
       alors:
         produit:
           assiette: chiffre d'affaires
-          taux: activité . mixte . proportions . service BNC
+          taux: activités . revenus mixtes . proportions . service BNC
     - sinon:
-        applicable si: activité . nature = 'libérale'
+        applicable si: activité . nature . libérale
         valeur: chiffre d'affaires
 
   références:
@@ -411,7 +411,7 @@ entreprise . TVA:
 
     **À noter** : il ne faut pas confondre l'exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d'affaires).
 
-  references:
+  références:
     Les régimes d'imposition à la TVA: https://www.impots.gouv.fr/professionnel/les-regimes-dimposition-la-tva
     Tout savoir sur la TVA: https://entreprendre.service-public.fr/vosdroits/N13445
     Liste des activités exonérées (Article 61 du Code général des impôts): https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179649/

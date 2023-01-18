@@ -47,7 +47,7 @@ débit de tabac:
   - <<: *base
     déclaration charge sociales . nature de l'activité: "'commerciale'"
     dirigeant . rémunération . totale: 50000 €/an
-    entreprise . activité . débit de tabac: oui
+    entreprise . activités . commerciale . débit de tabac: oui
     dirigeant . indépendant . cotisations et contributions . déduction tabac: 30000 €/an
 
 RSA:

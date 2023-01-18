@@ -12,7 +12,6 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import StackedBarChart from '@/components/StackedBarChart'
-import { HiddenOptionContext } from '@/components/conversation/ChoicesInput'
 import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
@@ -38,25 +37,23 @@ export default function DividendesSimulation() {
 				</Trans>
 			</Warning>
 			<Notifications />
-			<HiddenOptionContext.Provider value={['dirigeant . auto-entrepreneur']}>
-				<Simulation explanations={<DividendesExplanation />}>
-					<div
-						css={`
-							display: flex;
-							flex-wrap: wrap-reverse;
-							> * {
-								margin-top: 0.6rem;
-							}
-							justify-content: center;
+			<Simulation explanations={<DividendesExplanation />}>
+				<div
+					css={`
+						display: flex;
+						flex-wrap: wrap-reverse;
+						> * {
+							margin-top: 0.6rem;
+						}
+						justify-content: center;
 
-							@media (min-width: 590px) {
-								justify-content: space-between;
-							}
-						`}
-					></div>
-					<DividendesSimulationGoals />
-				</Simulation>
-			</HiddenOptionContext.Provider>
+						@media (min-width: 590px) {
+							justify-content: space-between;
+						}
+					`}
+				></div>
+				<DividendesSimulationGoals />
+			</Simulation>
 		</>
 	)
 }

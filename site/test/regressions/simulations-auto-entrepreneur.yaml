@@ -46,31 +46,31 @@ activités:
     entreprise . activité . nature . libérale . réglementée: oui
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'artisanale'"
-    entreprise . activité . service ou vente: "'vente'"
+    entreprise . activités . service ou vente: "'vente'"
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'artisanale'"
-    entreprise . activité . service ou vente: "'service'"
+    entreprise . activités . service ou vente: "'service'"
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'commerciale'"
-    entreprise . activité . service ou vente: "'vente'"
+    entreprise . activités . service ou vente: "'vente'"
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
     entreprise . activité . nature: "'commerciale'"
-    entreprise . activité . service ou vente: "'service'"
+    entreprise . activités . service ou vente: "'service'"
 
 activité mixte:
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    entreprise . activité . mixte: oui
+    entreprise . activités . revenus mixtes: oui
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    entreprise . activité . mixte: oui
+    entreprise . activités . revenus mixtes: oui
     entreprise . activité . nature: "'libérale'"
   - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    entreprise . activité . mixte: oui
+    entreprise . activités . revenus mixtes: oui
     entreprise . activité . nature: "'artisanale'"
   - entreprise . chiffre d'affaires . service BIC: 20000 €/an
     entreprise . chiffre d'affaires . service BNC: 10000 €/an
     entreprise . chiffre d'affaires . vente restauration hébergement: 15000 €/an
-    entreprise . activité . mixte . proportions . service BIC: 44.44%
-    entreprise . activité . mixte . proportions . service BNC: 22.22%
-    entreprise . activité . mixte . proportions . vente restauration hébergement: 33.33%
-    entreprise . activité . mixte: oui
+    entreprise . activités . revenus mixtes . proportions . service BIC: 44.44%
+    entreprise . activités . revenus mixtes . proportions . service BNC: 22.22%
+    entreprise . activités . revenus mixtes . proportions . vente restauration hébergement: 33.33%
+    entreprise . activités . revenus mixtes: oui
     entreprise . activité . nature: "'commerciale'"

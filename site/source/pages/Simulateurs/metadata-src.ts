@@ -789,6 +789,31 @@ const getMetadataSrc = (t: TFunction) => {
 
 			nextSteps: ['déclaration-charges-sociales-indépendant'],
 		},
+		'coût-création-entreprise': {
+			icône: '💰',
+			tracking: 'cout_création_entreprise',
+			iframePath: 'coût-création-entreprise',
+			pathId: 'simulateurs.coût-création-entreprise',
+			meta: {
+				title: t(
+					'pages.simulateurs.coût-création-entreprise.meta.title',
+					"Coût de création d'une entreprise"
+				),
+				description: t(
+					'pages.simulateurs.coût-création-entreprise.meta.description',
+					"Estimer les coûts lors de la création d'une entreprise"
+				),
+			},
+			shortName: t(
+				'pages.simulateurs.coût-création-entreprise.shortName',
+				"Coût de création d'une entreprise"
+			),
+			title: t(
+				'pages.simulateurs.coût-création-entreprise.title',
+				"Simulateur du coût de création d'une entreprise"
+			),
+			// nextSteps: ['déclaration-charges-sociales-indépendant'],
+		},
 	} as const
 
 	return data

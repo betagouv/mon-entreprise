@@ -78,8 +78,6 @@ lieu d'exercice . outre-mer:
 début d'activité:
   titre: Période de début d’activité
   question: À quelle période avez-vous débuté votre activité ?
-  formulaire:
-    type: select
   une possibilité:
     choix obligatoire: oui
     possibilités:

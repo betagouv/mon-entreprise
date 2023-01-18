@@ -53,7 +53,7 @@ export const configIndépendant: SimulationConfig = {
 			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',
 			'dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité',
 			'entreprise . salariés . effectif',
-			'entreprise . activité . débit de tabac',
+			'entreprise . activités . commerciale . débit de tabac',
 		],
 	},
 	'unité par défaut': '€/an',

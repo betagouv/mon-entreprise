@@ -3969,7 +3969,7 @@ entreprise . activité . débit de tabac:
   question.fr: Exercez-vous une activité de vente de tabac ?
   titre.en: '[automatic] tobacco shop'
   titre.fr: débit de tabac
-entreprise . activité . mixte:
+entreprise . activités . revenus mixtes:
   description.en: >
     [automatic] It is possible to have several activities with
     different types of income for the same
@@ -4028,7 +4028,7 @@ entreprise . activité . mixte:
   question.fr: Votre entreprise a-t-elle plusieurs types d'activités ?
   titre.en: '[automatic] Mixed activities'
   titre.fr: Activités mixtes
-entreprise . activité . mixte . proportions:
+entreprise . activités . revenus mixtes . proportions:
   description.en: '[automatic] Share of the different activities in the turnover'
   description.fr: Part des différentes activités dans le chiffre d'affaires
   note.en: '[automatic] It is up to the user to check that the sum of the three
@@ -4147,12 +4147,12 @@ entreprise . activité . nature . libérale . réglementée:
   question.fr: Est-ce une activité libérale réglementée ?
   titre.en: '[automatic] regulated'
   titre.fr: réglementée
-entreprise . activité . service ou vente:
+entreprise . activités . service ou vente:
   question.en: '[automatic] What type of business is the company in?'
   question.fr: Quelle est le type d'activité de l'entreprise ?
   titre.en: '[automatic] service or sale'
   titre.fr: service ou vente
-entreprise . activité . service ou vente . service:
+entreprise . activités . service ou vente . service:
   description.en: >
     [automatic] This is any transaction that does not involve the
     transfer of ownership of tangible
@@ -4163,7 +4163,7 @@ entreprise . activité . service ou vente . service:
     biens corporels (c'est-à-dire ayant une existence matérielle).
   titre.en: '[automatic] service delivery'
   titre.fr: prestation de service
-entreprise . activité . service ou vente . vente:
+entreprise . activités . service ou vente . vente:
   description.en: >
     [automatic] It is any transaction involving the transfer of
     ownership of a tangible asset (i.e., an asset with a physical existence), as

@@ -56,6 +56,7 @@ const rawSitePathsFr = {
 	},
 	simulateurs: {
 		index: 'simulateurs',
+		'coût-création-entreprise': 'coût-création-entreprise',
 		'auto-entrepreneur': 'auto-entrepreneur',
 		'entreprise-individuelle': 'entreprise-individuelle',
 		eirl: 'eirl',
@@ -139,6 +140,7 @@ const rawSitePathsEn = {
 	},
 	simulateurs: {
 		index: 'calculators',
+		'coût-création-entreprise': 'coût-création-entreprise',
 		indépendant: 'independant',
 		'entreprise-individuelle': 'sole-proprietorship',
 		'auto-entrepreneur': 'auto-entrepreneur',

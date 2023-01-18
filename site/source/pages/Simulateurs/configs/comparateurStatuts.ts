@@ -32,7 +32,7 @@ export const configComparateurStatuts: SimulationConfig = {
 	},
 	'unité par défaut': '€/mois',
 	situation: {
-		'entreprise . activité . mixte': 'non',
+		'entreprise . activités . revenus mixtes': 'non',
 		salarié: 'non',
 		'salarié . cotisations . ATMP . taux fonctions support': 'oui',
 		"entreprise . chiffre d'affaires": '4000 €/mois',
