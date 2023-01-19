@@ -5725,13 +5725,13 @@
     "data": [
       "Les industries extractives comprennent l'extraction de produits minéraux présents à l'état naturel sous forme solide (houille et minerais), liquide (pétrole) ou gazeuse (gaz naturel). L'extraction peut se faire de différentes manières, notamment sous terre, en surface, par le creusement de puits ou par l'exploitation minière des fonds marins.",
       "Les activités minières sont classées en divisions, groupes et classes sur la base du principal minéral produit.",
-      "Les divisions 05 et 06 concernent l'extraction de combustibles fossiles (houille, lignite, pétrole, gaz); les divi-sions 07 et 08 concernent l'extraction de minerais métalliques, de minéraux divers et de produits de carrière.",
+      "Les divisions 05 et 06 concernent l'extraction de combustibles fossiles (houille, lignite, pétrole, gaz); les divisions 07 et 08 concernent l'extraction de minerais métalliques, de minéraux divers et de produits de carrière.",
       "Certaines opérations techniques de cette section, notamment pour l'extraction d'hydrocarbures, peuvent être réalisées pour compte de tiers par des unités spécialisées en tant qu'activités de services industriels relevant de la division 09. Les opérations complémentaires nécessaires à la préparation des matières brutes pour leur commercialisation sont également classées en division 09 lorsqu'elles sont effectuées pour compte de tiers."
     ],
     "contenuCentral": [
       "les opérations complémentaires nécessaires à la préparation des matières brutes pour leur commercialisation, telles que concassage, broyage, nettoyage, séchage, triage, concentration des minerais, liquéfaction du gaz naturel. Ces opérations sont souvent réalisées par les unités qui pratiquent l'ex-traction et/ou situées à proximité du site.",
       "Les activités minières sont classées en divisions, groupes et classes sur la base du principal minéral produit.",
-      "Les divisions 05 et 06 concernent l'extraction de combustibles fossiles (houille, lignite, pétrole, gaz); les divi-sions 07 et 08 concernent l'extraction de minerais métalliques, de minéraux divers et de produits de carrière.",
+      "Les divisions 05 et 06 concernent l'extraction de combustibles fossiles (houille, lignite, pétrole, gaz); les divisions 07 et 08 concernent l'extraction de minerais métalliques, de minéraux divers et de produits de carrière.",
       "Certaines opérations techniques de cette section, notamment pour l'extraction d'hydrocarbures, peuvent être réalisées pour compte de tiers par des unités spécialisées en tant qu'activités de services industriels relevant de la division 09. Les opérations complémentaires nécessaires à la préparation des matières brutes pour leur commercialisation sont également classées en division 09 lorsqu'elles sont effectuées pour compte de tiers."
     ],
     "contenuAnnexe": [],
@@ -7340,10 +7340,8 @@
   {
     "type": "groupe",
     "code": "09.1",
-    "title": "SERVICES DE SOUTIEN À L'EXTRACTION",
-    "data": [
-      "D'HYDROCARBURES"
-    ],
+    "title": "SERVICES DE SOUTIEN À L'EXTRACTION D'HYDROCARBURES",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -7420,10 +7418,8 @@
   {
     "type": "groupe",
     "code": "09.9",
-    "title": "SERVICES DE SOUTIEN AUX AUTRES INDUSTRIES",
-    "data": [
-      "EXTRACTIVES"
-    ],
+    "title": "SERVICES DE SOUTIEN AUX AUTRES INDUSTRIES EXTRACTIVES",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -7500,8 +7496,7 @@
       "Les unités manufacturières peuvent :",
       "Le produit résultant d'une opération de transformation peut être fini, c'est-à-dire qu'il est prêt à être utilisé ou consommé ou il peut être semi-fini, c'est-à-dire qu'il entre dans la composition d'une autre fabrication.",
       "Par exemple, le produit du raffinage de l'alumine est la matière de base utilisée dans la production primaire d'aluminium; l'aluminium primaire est la matière de base pour la fabrication du fil d'aluminium et le fil d'aluminium est la matière de base utilisée pour la fabrication de produits manufacturés à partir de ce fil.",
-      "La fabrication de composants spécialisés et de pièces, accessoires et fixations de machines et équipements relève, en règle générale, de la même classe que la fabrication des machines et équipements auxquels les pièces et accessoires sont destinés. La fabrication de composants et pièces non spécialisés de machines et équipements, tels que moteurs, pistons, générateurs, assemblages électriques, valves, engrenages, roulements, relève de la classe d'activité manufacturière appropriée, sans tenir compte des machines et équipements auxquels ces éléments pourraient être intégrés. Toutefois, la fabrication de composants spécialisés et d'accessoires par moulage ou extrusion de matières plastiques est comprise dans le groupe",
-      "22.2.",
+      "La fabrication de composants spécialisés et de pièces, accessoires et fixations de machines et équipements relève, en règle générale, de la même classe que la fabrication des machines et équipements auxquels les pièces et accessoires sont destinés. La fabrication de composants et pièces non spécialisés de machines et équipements, tels que moteurs, pistons, générateurs, assemblages électriques, valves, engrenages, roulements, relève de la classe d'activité manufacturière appropriée, sans tenir compte des machines et équipements auxquels ces éléments pourraient être intégrés. Toutefois, la fabrication de composants spécialisés et d'accessoires par moulage ou extrusion de matières plastiques est comprise dans le groupe 22.2.",
       "L'assemblage des composants de produits manufacturés est considéré comme une activité manufacturière.",
       "Celle-ci comprend l'assemblage des produits manufacturés à partir de composants fabriqués par l'unité qui l'exécute ou de composants achetés ou fournis.",
       "La récupération des déchets, c'est-à-dire la transformation de déchets en matières premières secondaires est classée en section E « Production et distribution d'eau; assainissement, gestion des déchets et dépollution » dans le groupe 38.3 car l'objectif premier de ces activités est le traitement des déchets. Toutefois, la fabrication de nouveaux produits finals, par opposition aux matières premières secondaires, relève de la section C « Industrie manufacturière », même si ces procédés utilisent des déchets comme matière de base. À titre d'exemple, la production d'argent à partir de déchets de films est considérée comme une opération de transformation.",
@@ -7522,7 +7517,7 @@
       "effectuer les opérations de transformation sous-traitées évoquées ci-dessus.",
       "Le produit résultant d'une opération de transformation peut être fini, c'est-à-dire qu'il est prêt à être utilisé ou consommé ou il peut être semi-fini, c'est-à-dire qu'il entre dans la composition d'une autre fabrication.",
       "Par exemple, le produit du raffinage de l'alumine est la matière de base utilisée dans la production primaire d'aluminium; l'aluminium primaire est la matière de base pour la fabrication du fil d'aluminium et le fil d'aluminium est la matière de base utilisée pour la fabrication de produits manufacturés à partir de ce fil.",
-      "La fabrication de composants spécialisés et de pièces, accessoires et fixations de machines et équipements relève, en règle générale, de la même classe que la fabrication des machines et équipements auxquels les pièces et accessoires sont destinés. La fabrication de composants et pièces non spécialisés de machines et équipements, tels que moteurs, pistons, générateurs, assemblages électriques, valves, engrenages, roulements, relève de la classe d'activité manufacturière appropriée, sans tenir compte des machines et équipements auxquels ces éléments pourraient être intégrés. Toutefois, la fabrication de composants spécialisés et d'accessoires par moulage ou extrusion de matières plastiques est comprise dans le groupe",
+      "La fabrication de composants spécialisés et de pièces, accessoires et fixations de machines et équipements relève, en règle générale, de la même classe que la fabrication des machines et équipements auxquels les pièces et accessoires sont destinés. La fabrication de composants et pièces non spécialisés de machines et équipements, tels que moteurs, pistons, générateurs, assemblages électriques, valves, engrenages, roulements, relève de la classe d'activité manufacturière appropriée, sans tenir compte des machines et équipements auxquels ces éléments pourraient être intégrés. Toutefois, la fabrication de composants spécialisés et d'accessoires par moulage ou extrusion de matières plastiques est comprise dans le groupe 22.2.",
       "L'assemblage des composants de produits manufacturés est considéré comme une activité manufacturière.",
       "Celle-ci comprend l'assemblage des produits manufacturés à partir de composants fabriqués par l'unité qui l'exécute ou de composants achetés ou fournis.",
       "La récupération des déchets, c'est-à-dire la transformation de déchets en matières premières secondaires est classée en section E « Production et distribution d'eau; assainissement, gestion des déchets et dépollution » dans le groupe 38.3 car l'objectif premier de ces activités est le traitement des déchets. Toutefois, la fabrication de nouveaux produits finals, par opposition aux matières premières secondaires, relève de la section C « Industrie manufacturière », même si ces procédés utilisent des déchets comme matière de base. À titre d'exemple, la production d'argent à partir de déchets de films est considérée comme une opération de transformation.",
@@ -35228,10 +35223,8 @@
   {
     "type": "groupe",
     "code": "26.1",
-    "title": "FABRICATION DE COMPOSANTS ET CARTES",
-    "data": [
-      "ÉLECTRONIQUES"
-    ],
+    "title": "FABRICATION DE COMPOSANTS ET CARTES ÉLECTRONIQUES",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -37366,10 +37359,8 @@
   {
     "type": "groupe",
     "code": "26.6",
-    "title": "FABRICATION D'ÉQUIPEMENTS D'IRRADIATION MÉDICALE, D'ÉQUIPEMENTS ÉLECTROMÉDICAUX ET",
-    "data": [
-      "ÉLECTROTHÉRAPEUTIQUES"
-    ],
+    "title": "FABRICATION D'ÉQUIPEMENTS D'IRRADIATION MÉDICALE, D'ÉQUIPEMENTS ÉLECTROMÉDICAUX ET ÉLECTROTHÉRAPEUTIQUES",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -38241,10 +38232,8 @@
   {
     "type": "groupe",
     "code": "27.1",
-    "title": "MOTEURS, GÉNÉRATRICES ET TRANSFORMATEURS",
-    "data": [
-      "ÉLECTRIQUES ET MATÉRIEL DE DISTRIBUTION ET DE COMMANDE ÉLECTRIQUE"
-    ],
+    "title": "MOTEURS, GÉNÉRATRICES ET TRANSFORMATEURS ÉLECTRIQUES ET MATÉRIEL DE DISTRIBUTION ET DE COMMANDE ÉLECTRIQUE",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -38686,10 +38675,8 @@
   {
     "type": "groupe",
     "code": "27.2",
-    "title": "FABRICATION DE PILES ET D'ACCUMULATEURS",
-    "data": [
-      "ÉLECTRIQUES"
-    ],
+    "title": "FABRICATION DE PILES ET D'ACCUMULATEURS ÉLECTRIQUES",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -76363,10 +76350,8 @@
   {
     "type": "division",
     "code": "65",
-    "title": "SERVICES D'ASSURANCE, DE RÉASSURANCE ET DE CAISSES DE RETRAITE, À L'EXCLUSION DE LA SÉCURITÉ",
-    "data": [
-      "SOCIALE OBLIGATOIRE"
-    ],
+    "title": "SERVICES D'ASSURANCE, DE RÉASSURANCE ET DE CAISSES DE RETRAITE, À L'EXCLUSION DE LA SÉCURITÉ SOCIALE OBLIGATOIRE",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -83603,10 +83588,8 @@
   {
     "type": "groupe",
     "code": "77.4",
-    "title": "LOCATION-BAIL DE PROPRIÉTÉ INTELLECTUELLE ET DE",
-    "data": [
-      "PRODUITS SIMILAIRES, À L'EXCEPTION DES ŒUVRES SOUMISES À COPYRIGHT"
-    ],
+    "title": "LOCATION-BAIL DE PROPRIÉTÉ INTELLECTUELLE ET DE PRODUITS SIMILAIRES, À L'EXCEPTION DES ŒUVRES SOUMISES À COPYRIGHT",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -83726,10 +83709,8 @@
   {
     "type": "groupe",
     "code": "77.4",
-    "title": "SERVICES DE LICENCE POUR L'UTILISATION DE",
-    "data": [
-      "PRODUITS DE LA PROPRIÉTÉ INTELLECTUELLE ET SIMILAIRES, À L'EXCLUSION DES OEUVRES PROTÉGÉES PAR DES DROITS D'AUTEUR"
-    ],
+    "title": "SERVICES DE LICENCE POUR L'UTILISATION DE PRODUITS DE LA PROPRIÉTÉ INTELLECTUELLE ET SIMILAIRES, À L'EXCLUSION DES OEUVRES PROTÉGÉES PAR DES DROITS D'AUTEUR",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -86392,10 +86373,8 @@
   {
     "type": "division",
     "code": "84",
-    "title": "ADMINISTRATION PUBLIQUE ET DÉFENSE; SÉCURITÉ",
-    "data": [
-      "SOCIALE OBLIGATOIRE"
-    ],
+    "title": "ADMINISTRATION PUBLIQUE ET DÉFENSE; SÉCURITÉ SOCIALE OBLIGATOIRE",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -86457,10 +86436,8 @@
   {
     "type": "section",
     "code": "O",
-    "title": "SERVICES D'ADMINISTRATION PUBLIQUE ET DE DÉFENSE; SERVICES DE SÉCURITÉ",
-    "data": [
-      "SOCIALE OBLIGATOIRE"
-    ],
+    "title": "SERVICES D'ADMINISTRATION PUBLIQUE ET DE DÉFENSE; SERVICES DE SÉCURITÉ SOCIALE OBLIGATOIRE",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": []
@@ -87637,7 +87614,7 @@
       "La ventilation des catégories dans cette section repose sur le niveau d'enseignement dispensé en concordance avec les niveaux de la CITE 1997. Les activités des établissements d'enseignement dispensant des cours au niveau 0 de la CITE sont incluses dans la classe 85.10, au niveau 1 dans la classe 85.20, aux niveaux 2-3 dans le groupe 85.3, au niveau 4 dans la classe 85.41 et aux niveaux 5-6 dans la classe 85.42."
     ],
     "contenuCentral": [
-      "l'enseignement à tous les niveaux et pour toutes les disciplines. Les cours peuvent être donnés oralement ou par écrit et être diff usés à la radio, à la télévision, sur Internet ou par correspondance. Elle englobe non seulement l'enseignement délivré par les différentes institutions composant le système scolaire traditionnel à ses diff érents niveaux, mais aussi l'enseignement pour adultes, les programmes d'alphabétisation, etc. Sont incluses également les écoles et académies militaires, les activités éducatives organisées dans les prisons, etc. à leurs niveaux respectifs. Cette section comprend l'enseignement public et privé.",
+      "l'enseignement à tous les niveaux et pour toutes les disciplines. Les cours peuvent être donnés oralement ou par écrit et être diff usés à la radio, à la télévision, sur Internet ou par correspondance. Elle englobe non seulement l'enseignement délivré par les différentes institutions composant le système scolaire traditionnel à ses différents niveaux, mais aussi l'enseignement pour adultes, les programmes d'alphabétisation, etc. Sont incluses également les écoles et académies militaires, les activités éducatives organisées dans les prisons, etc. à leurs niveaux respectifs. Cette section comprend l'enseignement public et privé.",
       "Pour chaque niveau d'enseignement initial, est également inclus l'enseignement spécialisé pour élèves handicapés physiquement ou mentalement.",
       "La ventilation des catégories dans cette section repose sur le niveau d'enseignement dispensé en concordance avec les niveaux de la CITE 1997. Les activités des établissements d'enseignement dispensant des cours au niveau 0 de la CITE sont incluses dans la classe 85.10, au niveau 1 dans la classe 85.20, aux niveaux 2-3 dans le groupe 85.3, au niveau 4 dans la classe 85.41 et aux niveaux 5-6 dans la classe 85.42.",
       "également l'enseignement relatif à des activités sportives et récréatives, telles que le tennis et le golf, et les activités de soutien à l'enseignement."
@@ -88117,10 +88094,8 @@
   {
     "type": "groupe",
     "code": "85.4",
-    "title": "ENSEIGNEMENT SUPÉRIEUR ET POST-SECONDAIRE NON",
-    "data": [
-      "SUPÉRIEUR"
-    ],
+    "title": "ENSEIGNEMENT SUPÉRIEUR ET POST-SECONDAIRE NON SUPÉRIEUR",
+    "data": [],
     "contenuCentral": [
       "l'enseignement post-secondaire non supérieur et l'enseignement supérieur, avec la délivrance de diplômes au niveau licence, mastère ou doctorat. La condition préalable pour être admis est d'être titulaire au minimum d'un diplôme du deuxième cycle de l'enseignement secondaire."
     ],
@@ -90101,10 +90076,8 @@
   {
     "type": "groupe",
     "code": "87.3",
-    "title": "SERVICES D'HÉBERGEMENT SOCIAL POUR PERSONNES",
-    "data": [
-      "ÂGÉES OU HANDICAPÉES PHYSIQUES"
-    ],
+    "title": "SERVICES D'HÉBERGEMENT SOCIAL POUR PERSONNES ÂGÉES OU HANDICAPÉES PHYSIQUES",
+    "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [],

@@ -31,6 +31,51 @@ void PdfData.extract(fileData, {
 	writeFileSync(OUTPUT_JSON_PATH, JSON.stringify(transformText(text), null, 2))
 })
 
+const specialCase = new RegExp(
+	[
+		// remove space
+		'fi lm',
+		'fi nal',
+		'iff érent',
+		'spécifi que',
+		'infi rmeries',
+		'artifi ciellement',
+
+		// keep -
+		'sports-|amateurs-',
+
+		// remove \n and -
+		'(divi)\\s*-\n(sions)',
+		'(termi)\\s*-\n(naux)',
+		'(enseigne)\\s*-\n(ment)',
+
+		// remove space and \n
+		'(est-)\\s*\n(à)',
+
+		// remove \n
+		'(de\\s+)\n(DVD)',
+		'(en\\s+)\n(France)',
+		'(DVD\\s+)\n(\\(cf.)',
+		'(entre\\s+)\n(400)',
+		'(niveau\\s*)\n(2)',
+		'(groupe\\s*)\n(22.2.)',
+		'(métier\\s+)\n(Rachel)',
+		'(ciments\\s+)\n(Portland)',
+		'(divisions\\s+)\n(05, 07 et 08)',
+
+		// remove \n
+		'(\\w+\\s+)\n(\\d+\\s+%)',
+		'([a-zA-Z]+-)\n([a-z]+)',
+
+		// remove space after -
+		"([0-9a-z\u00E0-\u00FCA-Z\u00C0-\u00DC]{3,}-)\\s+([0-9a-z\u00E0-\u00FCA-Z\u00C0-\u00DC'Œ]{3,})",
+
+		// remove \n after parentis open and close next line
+		"(\\([0-9a-z\u00E0-\u00FCA-Z\u00C0-\u00DC'., -]+)\n([0-9a-z\u00E0-\u00FCA-Z\u00C0-\u00DC'., -]+\\))",
+	].join('|'),
+	'g'
+)
+
 const transformText = (pages: PdfData['text']) => {
 	if (!pages) {
 		throw new Error('No text found')
@@ -70,8 +115,20 @@ const transformText = (pages: PdfData['text']) => {
 		}
 
 		const lines = page
-			.replace(/\s+2+\n\s+1+/g, '')
-			.replace(/([A-Z])\s\n([A-Z])|([^A-Z])\s\n([^A-Z0-9\s•-])/g, '$1$3 $2$4')
+			.replace(/\s+[21]{4,}/g, '')
+			.replace(
+				/([A-Z\u00C0-\u00DC()';]{2,}[\s;,-]+)\n([A-Z\u00C0-\u00DC()';]{2,})|([^A-Z])\s\n([^A-Z0-9\s•-])/g,
+				'$1$3 $2$4'
+			)
+			.replace(
+				/-\s+séchées,\s+cuites,\s+etc\.\)la/g,
+				' séchées, cuites, etc.)\n- la'
+			)
+			.replace(
+				specialCase,
+				(removeSpace, ...rest) =>
+					rest.slice(0, -2).join('') || removeSpace.replace(/\s+/, '')
+			)
 			.split('\n')
 
 		for (let j = 0; j < lines.length; j++) {
@@ -90,7 +147,7 @@ const transformText = (pages: PdfData['text']) => {
 			}
 
 			const section = line.match(/^Section ([A-Z]) :\s+([^\n]+)$/)
-			const division = line.match(/^(\d{2})\s+(\w[^\n]+)$/)
+			const division = line.match(/^(\d{2})\s+([A-Z\u00C0-\u00DC][^\n]+)$/)
 			const groupe = line.match(/^(\d{2}\.\d)\s+([^\n]+)$/)
 			const classe = line.match(/^(\d{2}\.\d{2})\s+([^\n]+)$/)
 			const sousClasse = line.match(/^(\d{2}\.\d{2}[A-Z])\s+([^\n]+)$/)
@@ -102,12 +159,21 @@ const transformText = (pages: PdfData['text']) => {
 			const contenuAnnexe = line.match(/^(CA)\s+:[•-\s]*([^\n]+)$/)
 			const contenuExclu = line.match(/^(NC)\s+:[•-\s]*([^\n]+)$/)
 
-			const comprend = line.match(/^Cette .+ comprend :$/)
-			const comprendAussi = line.match(/^Cette .+ comprend aussi :$/)
-			const comprendPas = line.match(/^Cette .+ ne comprend pas :$/)
-			const produitsAssociés = line.match(/^Produits associés :\s+(.*)$/)
+			const comprend = line.match(
+				/^(?:Ce|Cette)\s+[^\s]+\s+(?:comprend|couvre)\s+(?::|([^\n]+))$/
+			)
+			const comprendAussi = line.match(
+				/^(?:Ce|Cette)\s+[^\s]+\s+(?:comprend|couvre)\s+aussi\s+(?::|([^\n]+))$/
+			)
+			const comprendPas = line.match(
+				/^(?:Ce|Cette)\s+[^\s]+\s+ne\s+(?:comprend|couvre)\s+pas\s+(?::|([^\n]+))$/
+			)
+			const produitsAssociés = line.match(
+				/^(?:Produits associés :\s+(.*)|[0-9p,. ]+)$/
+			)
 
-			const item = line.match(/^(•|-)\s+(.+)$/)
+			const parExemple = line.match(/^Par exemple :$/)
+			const item = line.match(/^(•|-|\d+\))\s+(.+)$/)
 
 			// - CC : contenu central. Représente une part importante de l'activité de l’un ou de l’autre poste.
 			// - CA : contenu annexe. Représente une part accessoire de l'activité des deux postes.
@@ -132,6 +198,7 @@ const transformText = (pages: PdfData['text']) => {
 				!comprend &&
 				!comprendAussi &&
 				!comprendPas &&
+				!parExemple &&
 				(!item || (item && !previous.contenuType))
 			) {
 				if (previous.index.section === null) {
@@ -166,7 +233,7 @@ const transformText = (pages: PdfData['text']) => {
 					normalize(line),
 					...(DEBUG_DATA === true ? [line] : [])
 				)
-			} else if (!item) {
+			} else if (!item && !produitsAssociés) {
 				previous.contenuType = null
 			}
 
@@ -184,15 +251,33 @@ const transformText = (pages: PdfData['text']) => {
 				)
 			}
 
-			if (comprend) {
+			if (comprend && !comprendAussi && !comprendPas) {
+				if (comprend[1]) {
+					previousElement.contenuCentral.push(
+						normalize(comprend[1]),
+						...(DEBUG_DATA === true ? [comprend[1]] : [])
+					)
+				}
 				previous.contenuType = 'contenuCentral'
 				continue
 			}
 			if (comprendAussi) {
+				if (comprendAussi[1]) {
+					previousElement.contenuAnnexe.push(
+						normalize(comprendAussi[1]),
+						...(DEBUG_DATA === true ? [comprendAussi[1]] : [])
+					)
+				}
 				previous.contenuType = 'contenuAnnexe'
 				continue
 			}
 			if (comprendPas) {
+				if (comprendPas[1]) {
+					previousElement.contenuExclu.push(
+						normalize(comprendPas[1]),
+						...(DEBUG_DATA === true ? [comprendPas[1]] : [])
+					)
+				}
 				previous.contenuType = 'contenuExclu'
 				continue
 			}
