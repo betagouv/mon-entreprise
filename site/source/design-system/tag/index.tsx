@@ -27,9 +27,7 @@ export const Tag = styled.div<{ $color?: TagType; $size?: SizeType }>`
 			: theme.colors.bases.primary[100]};
 	color: ${({ theme, $color }) =>
 		$color
-			? theme.colors[getColorGroup($color)][$color][
-					lightColors.includes($color) ? 800 : 600
-			  ]
+			? theme.colors[getColorGroup($color)][$color][600]
 			: theme.colors.extended.grey[800]};
 	font-size: ${({ $size }) => {
 		switch ($size) {

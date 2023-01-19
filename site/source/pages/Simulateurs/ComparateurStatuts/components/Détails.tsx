@@ -40,6 +40,7 @@ const Détails = ({
 						<Trans>Zoom sur...</Trans>
 					</H2>
 				}
+				isFoldable
 			>
 				<Item
 					title={

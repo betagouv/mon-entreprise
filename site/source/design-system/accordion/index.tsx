@@ -12,6 +12,7 @@ import { omit } from '@/utils'
 
 import { Button } from '../buttons'
 import { FocusStyle } from '../global-style'
+import { ChevronIcon } from '../icons'
 import { Grid } from '../layout'
 import chevronImg from './chevron.svg'
 
@@ -20,9 +21,10 @@ export const Accordion = <T extends object>(
 		variant?: 'light'
 		shouldToggleAll?: boolean
 		title?: ReactNode
+		isFoldable?: boolean
 	}
 ) => {
-	const { title } = props
+	const { title, isFoldable } = props
 	const state = useTreeState<T>(props)
 	const ref = useRef<HTMLDivElement>(null)
 	const { accordionProps } = useAccordion(props, state, ref)
@@ -70,14 +72,17 @@ export const Accordion = <T extends object>(
 			{title && (
 				<StyledGrid container>
 					<Grid item>{title}</Grid>
-					<Grid item>
-						<Button
-							underline
-							onClick={() => (allItemsOpen ? closeAll() : openAll())}
-						>
-							<Trans>{allItemsOpen ? 'Tout plier' : 'Tout déplier'}</Trans>
-						</Button>
-					</Grid>
+					{isFoldable && (
+						<Grid item>
+							<StyledFoldButton
+								underline
+								onClick={() => (allItemsOpen ? closeAll() : openAll())}
+							>
+								<StyledChevronIcon $isOpen={allItemsOpen} />
+								<Trans>{allItemsOpen ? 'Tout plier' : 'Tout déplier'}</Trans>
+							</StyledFoldButton>
+						</Grid>
+					)}
 				</StyledGrid>
 			)}
 			<StyledAccordionGroup
@@ -235,6 +240,18 @@ const StyledContent = styled(animated.div)<{
 const StyledGrid = styled(Grid)`
 	justify-content: space-between;
 	align-items: center;
+`
+
+const StyledFoldButton = styled(Button)`
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+	}
+`
+
+const StyledChevronIcon = styled(ChevronIcon)<{ $isOpen?: boolean }>`
+	transition: transform 0.15s ease-in-out;
+	transform: ${({ $isOpen }) => ($isOpen ? 'rotate(-90deg)' : 'rotate(90deg)')};
 `
 
 Accordion.StyledTitle = StyledTitle

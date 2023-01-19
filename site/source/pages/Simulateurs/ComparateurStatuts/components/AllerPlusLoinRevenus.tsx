@@ -288,6 +288,7 @@ const AllerPlusLoinRevenus = ({
 						aria-label={t('En savoir plus, nouvelle fenêtre')}
 						color="secondary"
 						light
+						size="XS"
 					>
 						<Trans>En savoir plus</Trans>
 					</Button>
@@ -302,10 +303,17 @@ const AllerPlusLoinRevenus = ({
 					<Strong>
 						choisir entre l’imposition sur les sociétés et sur le revenu
 					</Strong>{' '}
-					durant les 5 premières années. En auto-entreprise, c’est l’
-					<Strong>impôt sur le revenu</Strong> qui est appliqué automatiquement.
+					durant les 5 premières années. En auto-entreprise (AE), c’est l’
+					<Strong>impôt sur le revenu</Strong> qui est appliqué automatiquement
+					; dans certaines situations, vous pouvez aussi opter pour le{' '}
+					<Strong>
+						<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
+							versement libératoire
+						</Link>
+					</Strong>
+					.
 				</Body>
-				<Spacing xxs />
+				<H5 as="h3">Choisir mon option de simulation (pour EI)</H5>
 				<Message type="secondary">
 					<Grid
 						container
@@ -340,7 +348,6 @@ const AllerPlusLoinRevenus = ({
 						</Grid>
 					</Grid>
 				</Message>
-				<H5 as="h3">Choisir mon option de simulation (pour EI)</H5>
 				<RuleInput
 					dottedName={DOTTEDNAME_SOCIETE_IMPOT}
 					onChange={(value: PublicodesExpression | undefined) => {
@@ -351,16 +358,8 @@ const AllerPlusLoinRevenus = ({
 					inputType="toggle"
 					engine={indépendantEngine}
 				/>
-				<Body>
-					En auto-entreprise, dans certaines situations, vous pouvez opter pour
-					le{' '}
-					<Strong>
-						<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
-							versement libératoire
-						</Link>
-					</Strong>
-					.
-				</Body>
+
+				<H5 as="h3">Choisir mon option de versement libératoire (pour AE)</H5>
 				<FlexCentered>
 					<SwitchInput
 						key="versement-liberatoire"
