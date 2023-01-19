@@ -97,6 +97,7 @@ const DetailsRowCards = ({
 					<StatusCard
 						status={['sasu', 'ei', 'ae']}
 						footerContent={footers?.sasu}
+						dottedName={dottedName}
 					>
 						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -177,6 +178,7 @@ const DetailsRowCards = ({
 						status={['sasu', 'ei']}
 						isBestOption={bestOptionValue === 'sasu'}
 						footerContent={footers?.sasu}
+						dottedName={dottedName}
 					>
 						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -224,6 +226,7 @@ const DetailsRowCards = ({
 						status={['ae']}
 						footerContent={footers?.ei}
 						isBestOption={bestOptionValue === 'ae'}
+						dottedName={dottedName}
 					>
 						<WhenNotApplicable
 							dottedName={dottedName}
@@ -280,6 +283,7 @@ const DetailsRowCards = ({
 						status={['sasu']}
 						footerContent={footers?.sasu}
 						isBestOption={bestOptionValue === 'sasu'}
+						dottedName={dottedName}
 					>
 						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -323,6 +327,7 @@ const DetailsRowCards = ({
 						status={['ei', 'ae']}
 						footerContent={footers?.ei}
 						isBestOption={bestOptionValue === 'ei'}
+						dottedName={dottedName}
 					>
 						<WhenNotApplicable
 							dottedName={dottedName}
@@ -382,6 +387,7 @@ const DetailsRowCards = ({
 					status={['sasu']}
 					footerContent={footers?.sasu}
 					isBestOption={bestOptionValue === 'sasu'}
+					dottedName={dottedName}
 				>
 					<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 						<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -425,6 +431,7 @@ const DetailsRowCards = ({
 					status={['ei']}
 					footerContent={footers?.ei}
 					isBestOption={bestOptionValue === 'ei'}
+					dottedName={dottedName}
 				>
 					<WhenNotApplicable dottedName={dottedName} engine={indépendantEngine}>
 						<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -468,6 +475,7 @@ const DetailsRowCards = ({
 					status={['ae']}
 					footerContent={footers?.ae}
 					isBestOption={bestOptionValue === 'ae'}
+					dottedName={dottedName}
 				>
 					<WhenNotApplicable
 						dottedName={dottedName}

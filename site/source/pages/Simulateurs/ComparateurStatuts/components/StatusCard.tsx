@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
+import { DottedName } from '@/../../modele-social'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 import { CircleIcon, HexagonIcon, TriangleIcon } from '@/design-system/icons'
@@ -14,6 +15,7 @@ type StatusCardType = {
 	footerContent?: ReactNode
 	isBestOption?: boolean
 	children: ReactNode
+	dottedName: DottedName
 }
 
 const STATUS_DATA = {
@@ -36,6 +38,7 @@ const StatusCard = ({
 	children,
 	footerContent,
 	isBestOption,
+	dottedName,
 }: StatusCardType) => {
 	return (
 		<StyledCardContainer $inert>
@@ -67,11 +70,13 @@ const StatusCard = ({
 							<Trans>Option la plus avantageuse.</Trans>
 						</StyledBodyTooltip>
 					}
-					id={`tooltip-option-avantageuse`}
+					id={`tooltip-option-avantageuse-${String(dottedName)}`}
 				>
 					<StyledEmoji
 						emoji="🥇"
-						aria-describedby={`tooltip-option-avantageuse`}
+						aria-describedby={`tooltip-option-avantageuse-${String(
+							dottedName
+						)}`}
 					/>
 				</Tooltip>
 			)}
