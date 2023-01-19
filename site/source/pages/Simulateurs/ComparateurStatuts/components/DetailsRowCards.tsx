@@ -43,26 +43,23 @@ const getBestOption = (options: BestOption[]) => {
 const DetailsRowCards = ({
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
 	dottedName,
-	secondLineDottedName,
 	unit,
 	bestOption,
 	evolutionDottedName,
 	evolutionLabel,
 	footers,
 	label,
-	secondLineLabel,
 	warnings,
 }: {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
 	dottedName: DottedName
-	secondLineDottedName?: DottedName
 	unit?: string
 	bestOption?: 'sasu' | 'ei' | 'ae'
 	evolutionDottedName?: DottedName
 	evolutionLabel?: ReactNode | string
 	footers?: { sasu: ReactNode; ei: ReactNode; ae: ReactNode }
 	label?: ReactNode | string
-	secondLineLabel?: ReactNode | string
+
 	warnings?: { sasu?: ReactNode; ei?: ReactNode; ae?: ReactNode }
 }) => {
 	const assimiléValue = assimiléEngine.evaluate(dottedName).nodeValue
@@ -97,7 +94,6 @@ const DetailsRowCards = ({
 					<StatusCard
 						status={['sasu', 'ei', 'ae']}
 						footerContent={footers?.sasu}
-						dottedName={dottedName}
 					>
 						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -120,34 +116,6 @@ const DetailsRowCards = ({
 								</StyledRuleLink>
 								{warnings?.sasu && warnings?.sasu}
 							</StyledDiv>
-							{secondLineDottedName && (
-								<>
-									<StyledDiv
-										css={`
-											margin-top: 1rem;
-										`}
-									>
-										<span>
-											<Value
-												linkToRule={false}
-												expression={dottedName}
-												engine={assimiléEngine}
-												precision={0}
-												unit={unit}
-											/>
-											{secondLineLabel && ' '}
-											{secondLineLabel && secondLineLabel}
-										</span>
-										<StyledRuleLink
-											dottedName={dottedName}
-											engine={assimiléEngine}
-										>
-											<HelpIcon />
-										</StyledRuleLink>
-										{warnings?.sasu && warnings?.sasu}
-									</StyledDiv>
-								</>
-							)}
 							{evolutionDottedName && (
 								<Precisions>
 									<Value
@@ -178,7 +146,6 @@ const DetailsRowCards = ({
 						status={['sasu', 'ei']}
 						isBestOption={bestOptionValue === 'sasu'}
 						footerContent={footers?.sasu}
-						dottedName={dottedName}
 					>
 						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -226,7 +193,6 @@ const DetailsRowCards = ({
 						status={['ae']}
 						footerContent={footers?.ei}
 						isBestOption={bestOptionValue === 'ae'}
-						dottedName={dottedName}
 					>
 						<WhenNotApplicable
 							dottedName={dottedName}
@@ -283,7 +249,6 @@ const DetailsRowCards = ({
 						status={['sasu']}
 						footerContent={footers?.sasu}
 						isBestOption={bestOptionValue === 'sasu'}
-						dottedName={dottedName}
 					>
 						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 							<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -327,7 +292,6 @@ const DetailsRowCards = ({
 						status={['ei', 'ae']}
 						footerContent={footers?.ei}
 						isBestOption={bestOptionValue === 'ei'}
-						dottedName={dottedName}
 					>
 						<WhenNotApplicable
 							dottedName={dottedName}
@@ -387,7 +351,6 @@ const DetailsRowCards = ({
 					status={['sasu']}
 					footerContent={footers?.sasu}
 					isBestOption={bestOptionValue === 'sasu'}
-					dottedName={dottedName}
 				>
 					<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
 						<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -431,7 +394,6 @@ const DetailsRowCards = ({
 					status={['ei']}
 					footerContent={footers?.ei}
 					isBestOption={bestOptionValue === 'ei'}
-					dottedName={dottedName}
 				>
 					<WhenNotApplicable dottedName={dottedName} engine={indépendantEngine}>
 						<DisabledLabel>Ne s'applique pas</DisabledLabel>
@@ -475,7 +437,6 @@ const DetailsRowCards = ({
 					status={['ae']}
 					footerContent={footers?.ae}
 					isBestOption={bestOptionValue === 'ae'}
-					dottedName={dottedName}
 				>
 					<WhenNotApplicable
 						dottedName={dottedName}

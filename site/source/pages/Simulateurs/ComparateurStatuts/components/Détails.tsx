@@ -388,7 +388,7 @@ const Détails = ({
 					</BodyNoMargin>
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
-						secondLineDottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
+						evolutionDottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
 						engines={[
 							assimiléEngine,
 							autoEntrepreneurEngine,
@@ -396,7 +396,7 @@ const Détails = ({
 						]}
 						unit="€/mois"
 						label={<Trans>(invalidité partielle)</Trans>}
-						secondLineLabel={<Trans>(invalidité totale)</Trans>}
+						evolutionLabel={<Trans>(invalidité totale)</Trans>}
 					/>
 					<Spacing md />
 

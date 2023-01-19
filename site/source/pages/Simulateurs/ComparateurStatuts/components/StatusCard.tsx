@@ -1,21 +1,20 @@
-import { ReactNode } from 'react'
+import { ReactNode, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
-import { DottedName } from '@/../../modele-social'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 import { CircleIcon, HexagonIcon, TriangleIcon } from '@/design-system/icons'
 import { Tag, TagType } from '@/design-system/tag'
 import { Tooltip } from '@/design-system/tooltip'
 import { Body } from '@/design-system/typography/paragraphs'
+import { generateUuid } from '@/utils'
 
 type StatusCardType = {
 	status: ('sasu' | 'ei' | 'ae')[]
 	footerContent?: ReactNode
 	isBestOption?: boolean
 	children: ReactNode
-	dottedName: DottedName
 }
 
 const STATUS_DATA = {
@@ -38,8 +37,9 @@ const StatusCard = ({
 	children,
 	footerContent,
 	isBestOption,
-	dottedName,
 }: StatusCardType) => {
+	const tooltipIdRef = useRef(generateUuid)
+
 	return (
 		<StyledCardContainer $inert>
 			<CardBody>
@@ -70,12 +70,12 @@ const StatusCard = ({
 							<Trans>Option la plus avantageuse.</Trans>
 						</StyledBodyTooltip>
 					}
-					id={`tooltip-option-avantageuse-${String(dottedName)}`}
+					id={`tooltip-option-avantageuse-${String(tooltipIdRef.current)}`}
 				>
 					<StyledEmoji
 						emoji="🥇"
 						aria-describedby={`tooltip-option-avantageuse-${String(
-							dottedName
+							tooltipIdRef.current
 						)}`}
 					/>
 				</Tooltip>
