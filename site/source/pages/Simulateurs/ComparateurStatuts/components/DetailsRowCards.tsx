@@ -21,37 +21,48 @@ type BestOption = {
 }
 
 const getBestOption = (options: BestOption[]) => {
-	return options.sort((option1: BestOption, option2: BestOption) => {
-		if (option1.value === null || option1.value === undefined) {
-			return 1
-		}
-		if (option2.value === null || option2.value === undefined) {
-			return -1
-		}
+	const sortedOptions = options.sort(
+		(option1: BestOption, option2: BestOption) => {
+			if (option1.value === null || option1.value === undefined) {
+				return 1
+			}
+			if (option2.value === null || option2.value === undefined) {
+				return -1
+			}
 
-		return option1.value > option2.value ? 1 : 0
-	})?.[0]?.type
+			if (option1.value === option2.value) return 0
+			// console.log(option1.value, option2.value, option1.value > option2.value)
+
+			return option1.value > option2.value ? -1 : 1
+		}
+	)
+
+	return sortedOptions?.[0]?.type
 }
 
 const DetailsRowCards = ({
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
 	dottedName,
+	secondLineDottedName,
 	unit,
 	bestOption,
 	evolutionDottedName,
 	evolutionLabel,
 	footers,
 	label,
+	secondLineLabel,
 	warnings,
 }: {
 	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
 	dottedName: DottedName
+	secondLineDottedName?: DottedName
 	unit?: string
 	bestOption?: 'sasu' | 'ei' | 'ae'
 	evolutionDottedName?: DottedName
 	evolutionLabel?: ReactNode | string
 	footers?: { sasu: ReactNode; ei: ReactNode; ae: ReactNode }
 	label?: ReactNode | string
+	secondLineLabel?: ReactNode | string
 	warnings?: { sasu?: ReactNode; ei?: ReactNode; ae?: ReactNode }
 }) => {
 	const assimiléValue = assimiléEngine.evaluate(dottedName).nodeValue
@@ -75,6 +86,88 @@ const DetailsRowCards = ({
 	]
 
 	const bestOptionValue = bestOption ?? getBestOption(options)
+
+	if (
+		assimiléValue === indépendantValue &&
+		indépendantValue === autoEntrepreneurValue
+	) {
+		return (
+			<Grid container spacing={4}>
+				<Grid item xs={12} lg={12}>
+					<StatusCard
+						status={['sasu', 'ei', 'ae']}
+						footerContent={footers?.sasu}
+					>
+						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
+							<DisabledLabel>Ne s'applique pas</DisabledLabel>
+						</WhenNotApplicable>
+						<WhenApplicable dottedName={dottedName} engine={assimiléEngine}>
+							<StyledDiv>
+								<span>
+									<Value
+										linkToRule={false}
+										expression={dottedName}
+										engine={assimiléEngine}
+										precision={0}
+										unit={unit}
+									/>
+									{label && ' '}
+									{label && label}
+								</span>
+								<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
+									<HelpIcon />
+								</StyledRuleLink>
+								{warnings?.sasu && warnings?.sasu}
+							</StyledDiv>
+							{secondLineDottedName && (
+								<>
+									<StyledDiv
+										css={`
+											margin-top: 1rem;
+										`}
+									>
+										<span>
+											<Value
+												linkToRule={false}
+												expression={dottedName}
+												engine={assimiléEngine}
+												precision={0}
+												unit={unit}
+											/>
+											{secondLineLabel && ' '}
+											{secondLineLabel && secondLineLabel}
+										</span>
+										<StyledRuleLink
+											dottedName={dottedName}
+											engine={assimiléEngine}
+										>
+											<HelpIcon />
+										</StyledRuleLink>
+										{warnings?.sasu && warnings?.sasu}
+									</StyledDiv>
+								</>
+							)}
+							{evolutionDottedName && (
+								<Precisions>
+									<Value
+										linkToRule={false}
+										expression={evolutionDottedName}
+										engine={assimiléEngine}
+										precision={0}
+										unit={unit}
+									/>{' '}
+									{evolutionLabel}
+								</Precisions>
+							)}
+							{!evolutionDottedName && evolutionLabel && (
+								<Precisions>{evolutionLabel}</Precisions>
+							)}
+						</WhenApplicable>
+					</StatusCard>
+				</Grid>
+			</Grid>
+		)
+	}
 
 	if (assimiléValue === indépendantValue) {
 		return (
@@ -451,6 +544,12 @@ const Precisions = styled.span`
 	margin: 0 !important;
 	margin-top: 0.5rem;
 	width: 100%;
+`
+
+const StyledDiv = styled.div`
+	width: 100%;
+	display: flex;
+	align-items: center;
 `
 
 export default DetailsRowCards

@@ -2,7 +2,7 @@ import { useAccordion, useAccordionItem } from '@react-aria/accordion'
 import { TreeState, useTreeState } from '@react-stately/tree'
 import { AriaAccordionProps } from '@react-types/accordion'
 import { Node } from '@react-types/shared'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
@@ -106,7 +106,6 @@ export const Accordion = <T extends object>(
 }
 
 const StyledAccordionGroup = styled.div<{ variant?: 'light' }>`
-	overflow: hidden;
 	max-width: 100%;
 	${({ theme }) =>
 		css`

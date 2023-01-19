@@ -8,19 +8,22 @@ import styled from 'styled-components'
 export const Tooltip = ({
 	children,
 	tooltip,
-	id,
 	className,
+	id,
 }: {
 	children: ReactNode
 	tooltip: ReactNode
-	id: string
 	className?: string
+	// A11y : préciser un aria-describedby sur l'élément visé par le tooltip
+	id: string
 }) => {
 	return (
 		<StyledSpan>
 			{React.Children.map(children, (child) => {
 				if (React.isValidElement(child)) {
-					return React.cloneElement(child, { id } as { id: string })
+					return React.cloneElement(child, { id } as {
+						id: string
+					})
 				}
 			})}
 			<StyledRTooltip
@@ -43,5 +46,6 @@ const StyledSpan = styled.span`
 		opacity: 1 !important;
 		background: ${({ theme }) => theme.colors.extended.grey[800]};
 		color: ${({ theme }) => theme.colors.extended.grey[100]};
+		z-index: 100;
 	}
 `

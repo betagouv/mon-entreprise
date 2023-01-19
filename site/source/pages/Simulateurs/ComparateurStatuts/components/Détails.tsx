@@ -8,7 +8,6 @@ import Value, {
 	WhenAlreadyDefined,
 	WhenValueEquals,
 } from '@/components/EngineValue'
-import RuleLink from '@/components/RuleLink'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Accordion } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
@@ -90,11 +89,17 @@ const Détails = ({
 					</StyledH4>
 					<Body>
 						<Trans>
-							La pension calculée correspond à celle de{' '}
-							<Strong>vos 25 meilleures années</Strong>, en considérant que vous
-							avez cotisé suffisamment de trimestres (4 trimestres par an) et
-							que vous partez en retraite à l’âge requis pour obtenir un taux
-							plein.
+							Tous les ans, selon votre rémunération,{' '}
+							<Strong>
+								vous gagnez des points qui constituent votre pension de retraite
+								complémentaire
+							</Strong>
+							. En fin de carrière, vos points sont transformés en{' '}
+							<Strong>
+								un montant qui s’ajoute chaque mois à votre retraite de base
+							</Strong>
+							. Cette valeur se calcule sur le long terme. Par exemple, au bout
+							de 10 ans, vous auriez droit à :
 						</Trans>
 					</Body>
 
@@ -142,11 +147,9 @@ const Détails = ({
 					</StyledH4>
 					<Body>
 						<Trans>
-							La pension calculée correspond à celle de{' '}
-							<Strong>vos 25 meilleures années</Strong>, en considérant que vous
-							avez cotisé suffisamment de trimestres (4 trimestres par an) et
-							que vous partez en retraite à l’âge requis pour obtenir un taux
-							plein.
+							Pour tous les statuts, vous aurez un{' '}
+							<Strong>délai de carence de 3 jours</Strong>. En cas d’arrêt
+							maladie, l’assurance maladie vous versera :
 						</Trans>
 					</Body>
 					<DetailsRowCards
@@ -385,6 +388,7 @@ const Détails = ({
 					</BodyNoMargin>
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
+						secondLineDottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
 						engines={[
 							assimiléEngine,
 							autoEntrepreneurEngine,
@@ -392,18 +396,10 @@ const Détails = ({
 						]}
 						unit="€/mois"
 						label={<Trans>(invalidité partielle)</Trans>}
+						secondLineLabel={<Trans>(invalidité totale)</Trans>}
 					/>
 					<Spacing md />
-					<DetailsRowCards
-						dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
-						unit="€/mois"
-						label={<Trans>(invalidité totale)</Trans>}
-					/>
+
 					<Body
 						css={`
 							margin-top: 2rem;
@@ -431,8 +427,8 @@ const Détails = ({
 					<Body>
 						<Trans>
 							La Sécurité Sociale garantit un{' '}
-							<Strong>capital décès pour vos ayants droits</Strong>
-							(personnes qui sont à votre charge) sous certaines conditions.
+							<Strong>capital décès pour vos ayants droits</Strong> (personnes
+							qui sont à votre charge) sous certaines conditions.
 						</Trans>
 					</Body>
 					<DetailsRowCards
