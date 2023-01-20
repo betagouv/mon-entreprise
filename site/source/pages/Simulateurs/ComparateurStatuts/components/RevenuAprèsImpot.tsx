@@ -12,6 +12,7 @@ import { H2 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 
+import { BestOption, getBestOption } from '../utils'
 import AllerPlusLoinRevenus from './AllerPlusLoinRevenus'
 import StatusCard from './StatusCard'
 import WarningTooltip from './WarningTooltip'
@@ -24,6 +25,38 @@ const RevenuAprèsImpot = ({
 	const [assimiléEngine, autoEntrepreneurEngine, indépendantEngine] = engines
 	const { t } = useTranslation()
 
+	const assimiléValue = assimiléEngine.evaluate({
+		valeur: 'dirigeant . rémunération . net . après impôt',
+		unité: '€/mois',
+	}).nodeValue
+
+	const indépendantValue = indépendantEngine.evaluate({
+		valeur: 'dirigeant . rémunération . net . après impôt',
+		unité: '€/mois',
+	}).nodeValue
+
+	const autoEntrepreneurValue = autoEntrepreneurEngine.evaluate({
+		valeur: 'dirigeant . rémunération . net . après impôt',
+		unité: '€/mois',
+	}).nodeValue
+
+	const options: BestOption[] = [
+		{
+			type: 'sasu',
+			value: assimiléValue,
+		},
+		{
+			type: 'ei',
+			value: indépendantValue,
+		},
+		{
+			type: 'ae',
+			value: autoEntrepreneurValue,
+		},
+	]
+
+	const bestOption = getBestOption(options)
+
 	return (
 		<>
 			<H2>
@@ -34,6 +67,7 @@ const RevenuAprèsImpot = ({
 				<Grid item xs={12} lg={4}>
 					<StatusCard
 						status={['sasu']}
+						isBestOption={bestOption === 'sasu'}
 						footerContent={
 							<CheckList
 								items={[
@@ -67,12 +101,22 @@ const RevenuAprèsImpot = ({
 						>
 							<HelpIcon />
 						</StyledRuleLink>
+						<div>
+							<Value
+								linkToRule={false}
+								expression="dirigeant . assimilé salarié . réduction ACRE . montant"
+								engine={assimiléEngine}
+								precision={0}
+								unit="€/mois"
+							/>
+						</div>
 					</StatusCard>
 				</Grid>
 
 				<Grid item xs={12} lg={4}>
 					<StatusCard
 						status={['ei']}
+						isBestOption={bestOption === 'ei'}
 						footerContent={
 							<CheckList
 								items={[
@@ -115,7 +159,7 @@ const RevenuAprèsImpot = ({
 				<Grid item xs={12} lg={4}>
 					<StatusCard
 						status={['ae']}
-						isBestOption
+						isBestOption={bestOption === 'ae'}
 						footerContent={
 							<CheckList
 								items={[

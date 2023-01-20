@@ -11,33 +11,8 @@ import RuleLink from '@/components/RuleLink'
 import { HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 
+import { BestOption, getBestOption } from '../utils'
 import StatusCard from './StatusCard'
-
-type ValueType = string | number | boolean | null | Record<string, unknown>
-type BestOption = {
-	type: 'sasu' | 'ei' | 'ae'
-	value?: ValueType
-}
-
-const getBestOption = (options: BestOption[]) => {
-	const sortedOptions = options.sort(
-		(option1: BestOption, option2: BestOption) => {
-			if (option1.value === null || option1.value === undefined) {
-				return 1
-			}
-			if (option2.value === null || option2.value === undefined) {
-				return -1
-			}
-
-			if (option1.value === option2.value) return 0
-			// console.log(option1.value, option2.value, option1.value > option2.value)
-
-			return option1.value > option2.value ? -1 : 1
-		}
-	)
-
-	return sortedOptions?.[0]?.type
-}
 
 const DetailsRowCards = ({
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
@@ -107,7 +82,7 @@ const DetailsRowCards = ({
 			value: autoEntrepreneurEvaluation.nodeValue,
 		},
 	]
-	console.log(options)
+
 	const bestOptionValue = bestOption ?? getBestOption(options)
 
 	if (
