@@ -1,4 +1,4 @@
-import Engine from 'publicodes'
+import Engine, { formatValue } from 'publicodes'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 
@@ -10,7 +10,6 @@ import Value, {
 import RuleLink from '@/components/RuleLink'
 import { HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
-import { Body } from '@/design-system/typography/paragraphs'
 
 import StatusCard from './StatusCard'
 
@@ -62,26 +61,53 @@ const DetailsRowCards = ({
 
 	warnings?: { sasu?: ReactNode; ei?: ReactNode; ae?: ReactNode }
 }) => {
-	const assimiléValue = assimiléEngine.evaluate(dottedName).nodeValue
-	const indépendantValue = indépendantEngine.evaluate(dottedName).nodeValue
-	const autoEntrepreneurValue =
-		autoEntrepreneurEngine.evaluate(dottedName).nodeValue
+	const assimiléEvaluation = assimiléEngine.evaluate({
+		valeur: dottedName,
+		...(unit && { unité: unit }),
+	})
+	const assimiléValue = formatValue(assimiléEvaluation, {
+		precision: 0,
+	}) as string
 
+	const indépendantEvaluation = indépendantEngine.evaluate({
+		valeur: dottedName,
+		...(unit && { unité: unit }),
+	})
+	const indépendantValue = formatValue(indépendantEvaluation, {
+		precision: 0,
+	}) as string
+
+	const autoEntrepreneurEvaluation = autoEntrepreneurEngine.evaluate({
+		valeur: dottedName,
+		...(unit && { unité: unit }),
+	})
+
+	const autoEntrepreneurValue = formatValue(autoEntrepreneurEvaluation, {
+		precision: 0,
+	}) as string
+	/*
+	console.log({
+		assimiléEvaluation,
+		indépendantEvaluation,
+		autoEntrepreneurEvaluation,
+	})
+	console.log(assimiléValue, indépendantValue, autoEntrepreneurValue)
+*/
 	const options: BestOption[] = [
 		{
 			type: 'sasu',
-			value: assimiléValue,
+			value: assimiléEvaluation.nodeValue,
 		},
 		{
 			type: 'ei',
-			value: indépendantValue,
+			value: indépendantEvaluation.nodeValue,
 		},
 		{
 			type: 'ae',
-			value: autoEntrepreneurValue,
+			value: autoEntrepreneurEvaluation.nodeValue,
 		},
 	]
-
+	console.log(options)
 	const bestOptionValue = bestOption ?? getBestOption(options)
 
 	if (
