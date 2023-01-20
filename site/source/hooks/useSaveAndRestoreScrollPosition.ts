@@ -14,7 +14,9 @@ export const useSaveAndRestoreScrollPosition = () => {
 		const scrollPosition = sessionStorage?.getItem(location.pathname)
 
 		if (scrollPosition && navigationType === POP_ACTION_LABEL) {
-			window.scrollTo(0, parseInt(scrollPosition))
+			setTimeout(() => {
+				window.scrollTo(0, parseInt(scrollPosition))
+			}, 500)
 		}
 	}, [location, navigationType])
 
