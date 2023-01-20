@@ -332,7 +332,7 @@ const AllerPlusLoinRevenus = ({
 						<Trans>En savoir plus</Trans>
 					</Button>
 				}
-				<H5 as="h3">Choisir mon option de versement libératoire (pour AE)</H5>
+				<H5 as="h3">Choisir mon option de simulation (pour AE)</H5>
 				<FlexCentered>
 					<SwitchInput
 						key="activation-acre"
@@ -343,7 +343,7 @@ const AllerPlusLoinRevenus = ({
 						defaultSelected={acreValue === 'oui'}
 					/>
 					<Label htmlFor="activation-acre">
-						Activer l'ACRE dans la simulation (pour AE)
+						Activer l'ACRE dans la simulation
 					</Label>
 				</FlexCentered>
 

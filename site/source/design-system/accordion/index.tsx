@@ -2,7 +2,7 @@ import { useAccordion, useAccordionItem } from '@react-aria/accordion'
 import { TreeState, useTreeState } from '@react-stately/tree'
 import { AriaAccordionProps } from '@react-types/accordion'
 import { Node } from '@react-types/shared'
-import { ReactNode, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
@@ -16,15 +16,18 @@ import { ChevronIcon } from '../icons'
 import { Grid } from '../layout'
 import chevronImg from './chevron.svg'
 
+const SAVE_STATE_LOCALSTORAGE_KEY = 'accordion-state'
+
 export const Accordion = <T extends object>(
 	props: AriaAccordionProps<T> & {
 		variant?: 'light'
 		shouldToggleAll?: boolean
 		title?: ReactNode
 		isFoldable?: boolean
+		shouldSaveState?: boolean
 	}
 ) => {
-	const { title, isFoldable } = props
+	const { title, isFoldable, shouldSaveState } = props
 	const state = useTreeState<T>(props)
 	const ref = useRef<HTMLDivElement>(null)
 	const { accordionProps } = useAccordion(props, state, ref)
@@ -66,6 +69,34 @@ export const Accordion = <T extends object>(
 	const allItemsOpen = Array.from(state.collection.getKeys()).every((key) =>
 		state.expandedKeys.has(key)
 	)
+
+	useEffect(() => {
+		if (shouldSaveState && localStorage?.getItem(SAVE_STATE_LOCALSTORAGE_KEY)) {
+			const arrayExpandedKeys = JSON.parse(
+				localStorage.getItem(SAVE_STATE_LOCALSTORAGE_KEY) || ''
+			) as string[]
+
+			const keys = state.collection.getKeys()
+
+			for (const key of keys) {
+				if (arrayExpandedKeys.includes(key as string)) {
+					state.expandedKeys.add(key)
+				}
+			}
+			localStorage.removeItem(SAVE_STATE_LOCALSTORAGE_KEY)
+		}
+	}, [])
+
+	useEffect(() => {
+		if (!shouldSaveState) return
+
+		return () => {
+			localStorage.setItem(
+				SAVE_STATE_LOCALSTORAGE_KEY,
+				JSON.stringify(Array.from(state.expandedKeys))
+			)
+		}
+	}, [state])
 
 	return (
 		<>

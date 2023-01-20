@@ -496,7 +496,7 @@ const StyledRuleLink = styled(RuleLink)`
 	}
 `
 
-const DisabledLabel = styled(Body)`
+const DisabledLabel = styled.span`
 	color: ${({ theme }) => theme.colors.extended.grey[600]}!important;
 	font-size: 1.25rem;
 	font-weight: 700;
