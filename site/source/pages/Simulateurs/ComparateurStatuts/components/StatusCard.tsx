@@ -38,7 +38,7 @@ const StatusCard = ({
 	footerContent,
 	isBestOption,
 }: StatusCardType) => {
-	const tooltipIdRef = useRef(generateUuid)
+	const tooltipIdRef = useRef(generateUuid())
 
 	return (
 		<StyledCardContainer $inert>
