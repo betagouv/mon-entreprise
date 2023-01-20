@@ -134,7 +134,7 @@ const StyledBodyTooltip = styled(Body)`
 	margin: 0;
 `
 
-const StatusTagIcon = ({
+export const StatusTagIcon = ({
 	status,
 	...props
 }: {
