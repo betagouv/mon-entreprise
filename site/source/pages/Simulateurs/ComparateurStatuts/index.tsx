@@ -28,6 +28,7 @@ export default function SchemeComparaisonPage() {
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
+				'dirigeant . exonérations . ACRE': 'oui',
 				'entreprise . imposition': "'IS'",
 				'entreprise . catégorie juridique': "'SAS'",
 				'entreprise . catégorie juridique . SAS . unipersonnelle': 'oui',
@@ -49,6 +50,7 @@ export default function SchemeComparaisonPage() {
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
+				'dirigeant . exonérations . ACRE': 'oui',
 				'entreprise . imposition':
 					situation['entreprise . imposition'] ?? "'IS'",
 				'entreprise . catégorie juridique': "'EI'",

@@ -120,7 +120,9 @@ const RevenuAprèsImpot = ({
 							<CheckList
 								items={[
 									{
-										isChecked: false,
+										isChecked: autoEntrepreneurEngine.evaluate({
+											valeur: 'dirigeant . exonérations . ACRE',
+										}).nodeValue as boolean,
 										label: (
 											<Trans i18nKey="revenu_après_impots.acre">
 												<span>

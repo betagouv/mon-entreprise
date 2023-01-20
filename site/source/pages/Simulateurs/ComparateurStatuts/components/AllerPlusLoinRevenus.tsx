@@ -21,7 +21,6 @@ import { Tooltip } from '@/design-system/tooltip'
 import { Strong } from '@/design-system/typography'
 import { H1, H4, H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import { StatusTagIcon } from './StatusCard'
@@ -29,6 +28,8 @@ import { StatusTagIcon } from './StatusCard'
 const DOTTEDNAME_SOCIETE_IMPOT = 'entreprise . imposition'
 const DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE =
 	'dirigeant . auto-entrepreneur . impôt . versement libératoire'
+const DOTTEDNAME_ACRE = 'dirigeant . exonérations . ACRE'
+
 const AllerPlusLoinRevenus = ({
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
 }: {
@@ -42,12 +43,16 @@ const AllerPlusLoinRevenus = ({
 		DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE
 	).nodeValue
 
+	const defaultValueACRE =
+		autoEntrepreneurEngine.evaluate(DOTTEDNAME_ACRE).nodeValue
+
 	const [impotValue, setImpotValue] = useState(
 		`'${String(defaultValueImpot)}'` || "'IS'"
 	)
 	const [versementLiberatoireValue, setVersementLiberatoireValue] = useState(
 		defaultValueVersementLiberatoire ? 'oui' : 'non'
 	)
+	const [acreValue, setAcreValue] = useState(defaultValueACRE ? 'oui' : 'non')
 
 	const { t } = useTranslation()
 
@@ -75,6 +80,10 @@ const AllerPlusLoinRevenus = ({
 						DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE,
 						versementLiberatoireValue as PublicodesExpression
 					)
+				)
+
+				dispatch(
+					answerQuestion(DOTTEDNAME_ACRE, acreValue as PublicodesExpression)
 				)
 			}}
 		>
@@ -323,6 +332,20 @@ const AllerPlusLoinRevenus = ({
 						<Trans>En savoir plus</Trans>
 					</Button>
 				}
+				<H5 as="h3">Choisir mon option de versement libératoire (pour AE)</H5>
+				<FlexCentered>
+					<SwitchInput
+						key="activation-acre"
+						id="activation-acre"
+						onChange={(value: boolean) => {
+							setAcreValue(value ? 'oui' : 'non')
+						}}
+						defaultSelected={acreValue === 'oui'}
+					/>
+					<Label htmlFor="activation-acre">
+						Activer l'ACRE dans la simulation (pour AE)
+					</Label>
+				</FlexCentered>
 
 				<Spacing md />
 				<H4 as="h2">
@@ -408,19 +431,6 @@ const AllerPlusLoinRevenus = ({
 	)
 }
 
-const StyledGrid = styled(Grid)`
-	justify-content: space-between;
-	width: 100%;
-`
-
-const StyledLi = styled(Li)`
-	display: flex;
-	padding: 0 !important;
-	&::before {
-		content: '' !important;
-	}
-`
-
 const StyledTag = styled(Tag)<{ $color: TagType }>`
 	width: 100%;
 	justify-content: center;
@@ -430,13 +440,6 @@ const StyledTag = styled(Tag)<{ $color: TagType }>`
 const Minus = styled.span`
 	color: ${({ theme }) => theme.colors.bases.secondary[500]};
 	margin-right: ${({ theme }) => theme.spacings.sm};
-`
-
-const Spacer = styled.div`
-	width: 100%;
-	height: 1px;
-	background-color: ${({ theme }) => theme.colors.extended.grey[500]};
-	margin: ${({ theme }) => theme.spacings.xl} 0;
 `
 
 const StyledStrong = styled(Strong)`
