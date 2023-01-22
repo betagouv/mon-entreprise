@@ -13,9 +13,9 @@ import RuleInput from '@/components/conversation/RuleInput'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Drawer } from '@/design-system/drawer'
 import { ArrowRightIcon, InfoIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
-import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { Tag, TagType } from '@/design-system/tag'
 import { Tooltip } from '@/design-system/tooltip'
 import { Strong } from '@/design-system/typography'
@@ -50,22 +50,21 @@ const AllerPlusLoinRevenus = ({
 		`'${String(defaultValueImpot)}'` || "'IS'"
 	)
 	const [versementLiberatoireValue, setVersementLiberatoireValue] = useState(
-		defaultValueVersementLiberatoire ? 'oui' : 'non'
+		defaultValueVersementLiberatoire
 	)
-	const [acreValue, setAcreValue] = useState(defaultValueACRE ? 'oui' : 'non')
+	const [acreValue, setAcreValue] = useState(defaultValueACRE)
 
 	const { t } = useTranslation()
 
 	const dispatch = useDispatch()
 
 	return (
-		<PopoverConfirm
-			small
-			trigger={(buttonsProps) => (
-				<Button {...buttonsProps} color="secondary" light size="XS">
+		<Drawer
+			trigger={
+				<Button color="secondary" light size="XS" aria-haspopup="dialog">
 					<Trans>Aller plus loin</Trans> <StyledArrowRightIcon />
 				</Button>
-			)}
+			}
 			confirmLabel="Enregistrer les options"
 			onConfirm={() => {
 				dispatch(
@@ -340,7 +339,7 @@ const AllerPlusLoinRevenus = ({
 						onChange={(value: boolean) => {
 							setAcreValue(value ? 'oui' : 'non')
 						}}
-						defaultSelected={acreValue === 'oui'}
+						defaultSelected={acreValue ? 'oui' : 'non'}
 					/>
 					<Label htmlFor="activation-acre">
 						Activer l'ACRE dans la simulation
@@ -427,7 +426,7 @@ const AllerPlusLoinRevenus = ({
 					</Label>
 				</FlexCentered>
 			</>
-		</PopoverConfirm>
+		</Drawer>
 	)
 }
 

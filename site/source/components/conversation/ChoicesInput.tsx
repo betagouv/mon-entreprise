@@ -347,8 +347,9 @@ export const SwitchInput = (props: {
 	defaultSelected?: boolean
 	label?: string
 	id?: string
+	key?: string
 }) => {
-	const { onChange, id, label, defaultSelected } = props
+	const { onChange, id, label, defaultSelected, key } = props
 
 	return (
 		<Switch
@@ -356,6 +357,7 @@ export const SwitchInput = (props: {
 			onChange={(isSelected: boolean) => onChange && onChange(isSelected)}
 			light
 			id={id}
+			key={key}
 		>
 			{label}
 		</Switch>
