@@ -337,7 +337,7 @@ const AllerPlusLoinRevenus = ({
 						<Trans>En savoir plus</Trans>
 					</Button>
 				}
-				<H5 as="h3">Choisir mon option de simulation (pour AE)</H5>
+				<H5 as="h3">Choisir mon option de simulation</H5>
 				<FlexCentered>
 					<SwitchInput
 						id="activation-acre"

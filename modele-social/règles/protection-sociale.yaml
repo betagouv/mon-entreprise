@@ -701,6 +701,7 @@ protection sociale . invalidité et décès:
             "Décès d'un salarié suite à un accident de travail ou de trajet : indemnisation des ayants droit": https://www.service-public.fr/particuliers/vosdroits/F14868
 
     capital décès:
+      unité: €
       variations:
         - si: salarié
           alors: 3681 €

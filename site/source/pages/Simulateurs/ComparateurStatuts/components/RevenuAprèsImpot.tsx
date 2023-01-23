@@ -71,7 +71,12 @@ const RevenuAprèsImpot = ({
 						footerContent={
 							<CheckList
 								items={[
-									{ isChecked: true, label: t("Tient compte de l'ACRE") },
+									{
+										isChecked: assimiléEngine.evaluate({
+											valeur: 'dirigeant . exonérations . ACRE',
+										}).nodeValue as boolean,
+										label: t("Tient compte de l'ACRE"),
+									},
 									{
 										isChecked: true,
 										label: t("Choix d'imposition : impôt sur les sociétés"),
@@ -88,28 +93,25 @@ const RevenuAprèsImpot = ({
 								precision={0}
 								unit="€/mois"
 							/>{' '}
-							<WhenAlreadyDefined
-								dottedName="dirigeant . rémunération . net . après impôt"
+							<Condition
 								engine={assimiléEngine}
+								expression="dirigeant . exonérations . ACRE"
 							>
-								<Trans>la première année</Trans>
-							</WhenAlreadyDefined>
+								<WhenAlreadyDefined
+									dottedName="dirigeant . rémunération . net . après impôt"
+									engine={assimiléEngine}
+								>
+									<Trans>la première année</Trans>
+								</WhenAlreadyDefined>
+							</Condition>
 						</span>
 						<StyledRuleLink
 							dottedName="dirigeant . rémunération . net . après impôt"
 							engine={assimiléEngine}
+							documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
 						>
 							<HelpIcon />
 						</StyledRuleLink>
-						<div>
-							<Value
-								linkToRule={false}
-								expression="dirigeant . assimilé salarié . réduction ACRE . montant"
-								engine={assimiléEngine}
-								precision={0}
-								unit="€/mois"
-							/>
-						</div>
 					</StatusCard>
 				</Grid>
 
@@ -120,7 +122,12 @@ const RevenuAprèsImpot = ({
 						footerContent={
 							<CheckList
 								items={[
-									{ isChecked: true, label: t("Tient compte de l'ACRE") },
+									{
+										isChecked: assimiléEngine.evaluate({
+											valeur: 'dirigeant . exonérations . ACRE',
+										}).nodeValue as boolean,
+										label: t("Tient compte de l'ACRE"),
+									},
 									{
 										isChecked: true,
 										label: t(
@@ -145,11 +152,22 @@ const RevenuAprèsImpot = ({
 								precision={0}
 								unit="€/mois"
 							/>{' '}
-							la première année
+							<Condition
+								engine={indépendantEngine}
+								expression="dirigeant . exonérations . ACRE"
+							>
+								<WhenAlreadyDefined
+									dottedName="dirigeant . rémunération . net . après impôt"
+									engine={indépendantEngine}
+								>
+									<Trans>la première année</Trans>
+								</WhenAlreadyDefined>
+							</Condition>
 						</span>
 						<StyledRuleLink
 							dottedName="dirigeant . rémunération . net . après impôt"
 							engine={indépendantEngine}
+							documentationPath="/simulateurs/comparaison-régimes-sociaux/EI"
 						>
 							<HelpIcon />
 						</StyledRuleLink>
@@ -201,17 +219,23 @@ const RevenuAprèsImpot = ({
 							engine={autoEntrepreneurEngine}
 							expression="dirigeant . exonérations . ACRE"
 						>
-							<span
-								css={`
-									margin-left: 0.25rem;
-								`}
+							<WhenAlreadyDefined
+								dottedName="dirigeant . rémunération . net . après impôt"
+								engine={assimiléEngine}
 							>
-								la première année
-							</span>
+								<span
+									css={`
+										margin-left: 0.25rem;
+									`}
+								>
+									<Trans>la première année</Trans>
+								</span>
+							</WhenAlreadyDefined>
 						</Condition>
 						<StyledRuleLink
 							dottedName="dirigeant . rémunération . net . après impôt"
 							engine={autoEntrepreneurEngine}
+							documentationPath="/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur"
 						>
 							<HelpIcon />
 						</StyledRuleLink>

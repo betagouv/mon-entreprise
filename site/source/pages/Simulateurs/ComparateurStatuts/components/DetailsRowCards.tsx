@@ -60,14 +60,7 @@ const DetailsRowCards = ({
 	const autoEntrepreneurValue = formatValue(autoEntrepreneurEvaluation, {
 		precision: 0,
 	}) as string
-	/*
-	console.log({
-		assimiléEvaluation,
-		indépendantEvaluation,
-		autoEntrepreneurEvaluation,
-	})
-	console.log(assimiléValue, indépendantValue, autoEntrepreneurValue)
-*/
+
 	const options: BestOption[] = [
 		{
 			type: 'sasu',
@@ -112,7 +105,11 @@ const DetailsRowCards = ({
 									{label && ' '}
 									{label && label}
 								</span>
-								<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
+								<StyledRuleLink
+									documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
+									dottedName={dottedName}
+									engine={assimiléEngine}
+								>
 									<HelpIcon />
 								</StyledRuleLink>
 								{warnings?.sasu && warnings?.sasu}
@@ -163,7 +160,11 @@ const DetailsRowCards = ({
 								{label && ' '}
 								{label && label}
 							</span>
-							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
+							<StyledRuleLink
+								documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
+								dottedName={dottedName}
+								engine={assimiléEngine}
+							>
 								<HelpIcon />
 							</StyledRuleLink>
 							{warnings?.sasu || warnings?.ei
@@ -216,7 +217,11 @@ const DetailsRowCards = ({
 								{label && ' '}
 								{label && label}
 							</span>
-							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
+							<StyledRuleLink
+								documentationPath="/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur"
+								dottedName={dottedName}
+								engine={assimiléEngine}
+							>
 								<HelpIcon />
 							</StyledRuleLink>
 							{warnings?.ae && warnings?.ae}
@@ -266,7 +271,11 @@ const DetailsRowCards = ({
 								{label && ' '}
 								{label && label}
 							</span>
-							<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
+							<StyledRuleLink
+								dottedName={dottedName}
+								engine={assimiléEngine}
+								documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
+							>
 								<HelpIcon />
 							</StyledRuleLink>
 							{warnings?.sasu && warnings?.sasu}
@@ -315,6 +324,7 @@ const DetailsRowCards = ({
 							<StyledRuleLink
 								dottedName={dottedName}
 								engine={indépendantEngine}
+								documentationPath="/simulateurs/comparaison-régimes-sociaux/EI"
 							>
 								<HelpIcon />
 							</StyledRuleLink>
@@ -368,7 +378,11 @@ const DetailsRowCards = ({
 							{label && ' '}
 							{label && label}
 						</span>
-						<StyledRuleLink dottedName={dottedName} engine={assimiléEngine}>
+						<StyledRuleLink
+							dottedName={dottedName}
+							engine={assimiléEngine}
+							documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
+						>
 							<HelpIcon />
 						</StyledRuleLink>
 						{warnings?.sasu && warnings?.sasu}
@@ -411,7 +425,11 @@ const DetailsRowCards = ({
 							{label && ' '}
 							{label && label}
 						</span>
-						<StyledRuleLink dottedName={dottedName} engine={indépendantEngine}>
+						<StyledRuleLink
+							dottedName={dottedName}
+							engine={indépendantEngine}
+							documentationPath="/simulateurs/comparaison-régimes-sociaux/EI"
+						>
 							<HelpIcon />
 						</StyledRuleLink>
 						{warnings?.ei && warnings?.ei}
@@ -463,6 +481,7 @@ const DetailsRowCards = ({
 						<StyledRuleLink
 							dottedName={dottedName}
 							engine={autoEntrepreneurEngine}
+							documentationPath="/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur"
 						>
 							<HelpIcon />
 						</StyledRuleLink>
