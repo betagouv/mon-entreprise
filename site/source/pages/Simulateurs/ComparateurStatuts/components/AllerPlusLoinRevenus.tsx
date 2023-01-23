@@ -58,11 +58,11 @@ const AllerPlusLoinRevenus = ({
 
 	return (
 		<Drawer
-			trigger={
-				<Button color="secondary" light size="XS" aria-haspopup="dialog">
+			trigger={(buttonProps: { onClick: () => void }) => (
+				<Button color="secondary" light size="XS" {...buttonProps}>
 					<Trans>Aller plus loin</Trans> <StyledArrowRightIcon />
 				</Button>
-			}
+			)}
 			confirmLabel="Enregistrer les options"
 			onConfirm={() => {
 				dispatch(

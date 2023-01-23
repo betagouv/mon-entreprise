@@ -3,6 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { Drawer } from '@/design-system/drawer'
 
 import { Button } from '../buttons'
+import { DrawerButtonProps } from './Drawer'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -13,6 +14,18 @@ export default {
 			type: 'string',
 		},
 		trigger: {
+			type: 'function',
+		},
+		isDismissable: {
+			type: 'boolean',
+		},
+		onConfirm: {
+			type: 'function',
+		},
+		confirmLabel: {
+			type: 'string',
+		},
+		cancelLabel: {
 			type: 'string',
 		},
 	},
@@ -24,6 +37,15 @@ const Template: ComponentStory<typeof Drawer> = (args) => <Drawer {...args} />
 export const Basic = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Basic.args = {
-	children: 'Coucou !',
-	trigger: <Button>Ouvrir le tiroir</Button>,
+	children: <div>Coucou, je suis ouvert !</div>,
+	trigger: (buttonProps: DrawerButtonProps) => (
+		<Button color="primary" light {...buttonProps}>
+			Ouvrir le tiroir
+		</Button>
+	),
+	isDismissable: true,
+	// eslint-disable-next-line no-console
+	onConfirm: () => console.log('onConfirm appelé !'),
+	confirmLabel: 'Sauvegarder',
+	cancelLabel: 'Annuler',
 }
