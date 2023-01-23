@@ -75,7 +75,11 @@ export const Drawer = ({
 						<FocusTrap
 							focusTrapOptions={{
 								clickOutsideDeactivates: true,
-								onDeactivate: closeDrawer,
+								onDeactivate: () => {
+									if (isOpen) {
+										closeDrawer()
+									}
+								},
 							}}
 						>
 							<DrawerPanel $isOpen={isOpen} role="dialog">
@@ -126,8 +130,8 @@ export const Drawer = ({
 											<Grid item>
 												<Button
 													onPress={() => {
-														closeDrawer()
-														setTimeout(() => onConfirm())
+														onConfirm()
+														setTimeout(() => closeDrawer(), 200)
 													}}
 												>
 													{confirmLabel ?? <Trans>Confirmer</Trans>}
