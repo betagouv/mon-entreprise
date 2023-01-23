@@ -6,8 +6,6 @@ import { DottedName } from '@/../../modele-social'
 import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { CheckList } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Drawer } from '@/design-system/drawer'
 import { ExternalLinkIcon, HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
@@ -199,6 +197,18 @@ const RevenuAprèsImpot = ({
 							precision={0}
 							unit="€/mois"
 						/>
+						<Condition
+							engine={autoEntrepreneurEngine}
+							expression="dirigeant . exonérations . ACRE"
+						>
+							<span
+								css={`
+									margin-left: 0.25rem;
+								`}
+							>
+								la première année
+							</span>
+						</Condition>
 						<StyledRuleLink
 							dottedName="dirigeant . rémunération . net . après impôt"
 							engine={autoEntrepreneurEngine}
