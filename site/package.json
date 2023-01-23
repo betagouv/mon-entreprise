@@ -98,7 +98,7 @@
 		"react-signature-pad-wrapper": "^3.3.1",
 		"react-spring": "^9.5.5",
 		"react-use-measure": "^2.1.1",
-		"recharts": "2.1.16",
+		"recharts": "2.3.2",
 		"reduce-reducers": "^1.0.4",
 		"redux": "^4.2.0",
 		"reselect": "^4.1.7",
