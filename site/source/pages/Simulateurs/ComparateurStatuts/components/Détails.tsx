@@ -40,7 +40,6 @@ const Détails = ({
 					</H2>
 				}
 				isFoldable
-				shouldSaveState
 			>
 				<Item
 					title={

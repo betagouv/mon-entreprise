@@ -48,6 +48,7 @@ export const Accordion = <T extends object>(
 		})
 	}
 
+	// State and useEffect ne fonctionnent pas ensemble
 	if (shouldOpenAll) {
 		const keys = state.collection.getKeys()
 		for (const key of keys) {
@@ -70,22 +71,20 @@ export const Accordion = <T extends object>(
 		state.expandedKeys.has(key)
 	)
 
-	useEffect(() => {
-		if (shouldSaveState && localStorage?.getItem(SAVE_STATE_LOCALSTORAGE_KEY)) {
-			const arrayExpandedKeys = JSON.parse(
-				localStorage.getItem(SAVE_STATE_LOCALSTORAGE_KEY) || ''
-			) as string[]
+	// Save opening state of Accordion between pages
+	if (shouldSaveState && localStorage?.getItem(SAVE_STATE_LOCALSTORAGE_KEY)) {
+		const arrayExpandedKeys = JSON.parse(
+			localStorage.getItem(SAVE_STATE_LOCALSTORAGE_KEY) || ''
+		) as string[]
 
-			const keys = state.collection.getKeys()
-
-			for (const key of keys) {
-				if (arrayExpandedKeys.includes(key as string)) {
-					state.expandedKeys.add(key)
-				}
+		const keys = state.collection.getKeys()
+		for (const key of keys) {
+			if (arrayExpandedKeys.includes(key as string)) {
+				state.expandedKeys.add(key)
 			}
-			localStorage.removeItem(SAVE_STATE_LOCALSTORAGE_KEY)
 		}
-	}, [])
+		localStorage.removeItem(SAVE_STATE_LOCALSTORAGE_KEY)
+	}
 
 	useEffect(() => {
 		if (!shouldSaveState) return
