@@ -38,11 +38,9 @@ const AllerPlusLoinRevenus = ({
 	const defaultValueImpot = useEngine().evaluate(
 		DOTTEDNAME_SOCIETE_IMPOT
 	).nodeValue
-
 	const defaultValueVersementLiberatoire = autoEntrepreneurEngine.evaluate(
 		DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE
 	).nodeValue
-
 	const defaultValueACRE =
 		autoEntrepreneurEngine.evaluate(DOTTEDNAME_ACRE).nodeValue
 
@@ -74,15 +72,21 @@ const AllerPlusLoinRevenus = ({
 					)
 				)
 
+				const versementLibératoireValuePassed =
+					versementLiberatoireValue === null
+						? defaultValueVersementLiberatoire
+						: versementLiberatoireValue
 				dispatch(
 					answerQuestion(
 						DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE,
-						versementLiberatoireValue as PublicodesExpression
+						versementLibératoireValuePassed ? 'oui' : 'non'
 					)
 				)
 
+				const acreValuePassed =
+					acreValue === null ? defaultValueACRE : acreValue
 				dispatch(
-					answerQuestion(DOTTEDNAME_ACRE, acreValue as PublicodesExpression)
+					answerQuestion(DOTTEDNAME_ACRE, acreValuePassed ? 'oui' : 'non')
 				)
 			}}
 		>
@@ -251,58 +255,60 @@ const AllerPlusLoinRevenus = ({
 						</tr>
 					</tbody>
 					<tfoot>
-						<th scope="row">
-							<Minus
-								css={`
-									opacity: 0;
-								`}
-								aria-hidden
-							>
-								-
-							</Minus>{' '}
-							<StyledStrong>
-								<Trans>Revenu net</Trans>
-							</StyledStrong>
-						</th>
-						<td>
-							<StyledTag $color={'secondary' as TagType}>
-								<Strong>
-									<Value
-										expression="dirigeant . rémunération . net . après impôt"
-										engine={assimiléEngine}
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</Strong>
-							</StyledTag>
-						</td>
-						<td>
-							<StyledTag $color={'independant' as TagType}>
-								<Strong>
-									<Value
-										expression="dirigeant . rémunération . net . après impôt"
-										engine={indépendantEngine}
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</Strong>
-							</StyledTag>
-						</td>
-						<td>
-							<StyledTag $color={'tertiary' as TagType}>
-								<Strong>
-									<Value
-										expression="dirigeant . rémunération . net . après impôt"
-										engine={autoEntrepreneurEngine}
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</Strong>
-							</StyledTag>
-						</td>
+						<tr>
+							<th scope="row">
+								<Minus
+									css={`
+										opacity: 0;
+									`}
+									aria-hidden
+								>
+									-
+								</Minus>{' '}
+								<StyledStrong>
+									<Trans>Revenu net</Trans>
+								</StyledStrong>
+							</th>
+							<td>
+								<StyledTag $color={'secondary' as TagType}>
+									<Strong>
+										<Value
+											expression="dirigeant . rémunération . net . après impôt"
+											engine={assimiléEngine}
+											unit="€/an"
+											displayedUnit="€"
+											linkToRule={false}
+										/>
+									</Strong>
+								</StyledTag>
+							</td>
+							<td>
+								<StyledTag $color={'independant' as TagType}>
+									<Strong>
+										<Value
+											expression="dirigeant . rémunération . net . après impôt"
+											engine={indépendantEngine}
+											unit="€/an"
+											displayedUnit="€"
+											linkToRule={false}
+										/>
+									</Strong>
+								</StyledTag>
+							</td>
+							<td>
+								<StyledTag $color={'tertiary' as TagType}>
+									<Strong>
+										<Value
+											expression="dirigeant . rémunération . net . après impôt"
+											engine={autoEntrepreneurEngine}
+											unit="€/an"
+											displayedUnit="€"
+											linkToRule={false}
+										/>
+									</Strong>
+								</StyledTag>
+							</td>
+						</tr>
 					</tfoot>
 				</StyledTable>
 				<Spacing md />
@@ -334,12 +340,9 @@ const AllerPlusLoinRevenus = ({
 				<H5 as="h3">Choisir mon option de simulation (pour AE)</H5>
 				<FlexCentered>
 					<SwitchInput
-						key="activation-acre"
 						id="activation-acre"
-						onChange={(value: boolean) => {
-							setAcreValue(value ? 'oui' : 'non')
-						}}
-						defaultSelected={acreValue ? 'oui' : 'non'}
+						onChange={(value: boolean) => setAcreValue(value)}
+						defaultSelected={defaultValueACRE as boolean}
 					/>
 					<Label htmlFor="activation-acre">
 						Activer l'ACRE dans la simulation
@@ -414,12 +417,9 @@ const AllerPlusLoinRevenus = ({
 				<H5 as="h3">Choisir mon option de versement libératoire (pour AE)</H5>
 				<FlexCentered>
 					<SwitchInput
-						key="versement-liberatoire"
 						id="versement-liberatoire"
-						onChange={(value: boolean) => {
-							setVersementLiberatoireValue(value ? 'oui' : 'non')
-						}}
-						defaultSelected={versementLiberatoireValue === 'oui'}
+						onChange={setVersementLiberatoireValue}
+						defaultSelected={defaultValueVersementLiberatoire as boolean}
 					/>
 					<Label htmlFor="versement-liberatoire">
 						Activer le versement libératoire dans la simulation.
