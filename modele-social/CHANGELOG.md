@@ -1,5 +1,8 @@
 # Journal des modifications
 
+## 1.4.2
+- Augmentation du plafond de taux réduit pour l'impôt sur les sociétés (merci @fmata)
+
 ## 1.4.1
 
 Mise à jour des montants qui changent au 1ᵉʳ janvier 2023 :
