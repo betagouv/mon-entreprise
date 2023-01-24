@@ -39,13 +39,19 @@ const StyledButton = styled(Button)`
 	background-color: transparent;
 	padding: 0;
 	border: none;
-	color: ${({ theme }) => theme.colors.bases.primary[700]};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.bases.primary[700]};
 	border-radius: 0;
 	display: flex;
 	align-items: center;
 	svg {
 		margin-right: ${({ theme }) => theme.spacings.xxs};
-		fill: ${({ theme }) => theme.colors.bases.primary[700]};
+		fill: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[700]};
 	}
 	&:hover {
 		border: none;

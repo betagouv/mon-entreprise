@@ -273,6 +273,7 @@ const StyledGrid = styled(Grid)`
 
 const StyledFoldButton = styled(Button)`
 	text-decoration: none;
+	background-color: transparent;
 	&:hover {
 		text-decoration: none;
 	}

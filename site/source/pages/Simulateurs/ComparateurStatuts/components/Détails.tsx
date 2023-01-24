@@ -30,7 +30,11 @@ const Détails = ({
 }) => {
 	return (
 		<StyledContainer
-			backgroundColor={(theme) => theme.colors.bases.primary[200]}
+			backgroundColor={(theme) =>
+				theme.darkMode
+					? theme.colors.bases.primary[800]
+					: theme.colors.bases.primary[200]
+			}
 		>
 			<Accordion
 				variant="light"

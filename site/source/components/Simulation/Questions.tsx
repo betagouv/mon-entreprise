@@ -17,7 +17,7 @@ const QuestionsContainer = styled.div`
 		`0 0 ${theme.box.borderRadius} ${theme.box.borderRadius}`};
 	background-color: ${({ theme }) =>
 		theme.darkMode
-			? theme.colors.bases.primary[700]
+			? theme.colors.extended.grey[700]
 			: theme.colors.extended.grey[100]};
 	box-shadow: ${({ theme }) => theme.elevations[2]};
 `
