@@ -20,9 +20,10 @@ import { Tag, TagType } from '@/design-system/tag'
 import { Tooltip } from '@/design-system/tooltip'
 import { Strong } from '@/design-system/typography'
 import { H1, H4, H5 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
+import { Link, StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 
+import { useCasParticuliers } from '../contexts/CasParticuliers'
 import { StatusTagIcon } from './StatusCard'
 
 const DOTTEDNAME_SOCIETE_IMPOT = 'entreprise . imposition'
@@ -41,8 +42,7 @@ const AllerPlusLoinRevenus = ({
 	const defaultValueVersementLiberatoire = autoEntrepreneurEngine.evaluate(
 		DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE
 	).nodeValue
-	const defaultValueACRE =
-		autoEntrepreneurEngine.evaluate(DOTTEDNAME_ACRE).nodeValue
+	const defaultValueACRE = assimiléEngine.evaluate(DOTTEDNAME_ACRE).nodeValue
 
 	const [impotValue, setImpotValue] = useState(
 		`'${String(defaultValueImpot)}'` || "'IS'"
@@ -51,6 +51,10 @@ const AllerPlusLoinRevenus = ({
 		defaultValueVersementLiberatoire
 	)
 	const [acreValue, setAcreValue] = useState(defaultValueACRE)
+	const { isAutoEntrepreneurACREEnabled, setIsAutoEntrepreneurACREEnabled } =
+		useCasParticuliers()
+
+	const [AEAcreValue, setAEAcreValue] = useState<boolean | null>(null)
 
 	const { t } = useTranslation()
 
@@ -88,6 +92,14 @@ const AllerPlusLoinRevenus = ({
 				dispatch(
 					answerQuestion(DOTTEDNAME_ACRE, acreValuePassed ? 'oui' : 'non')
 				)
+
+				if (AEAcreValue !== null) {
+					setIsAutoEntrepreneurACREEnabled(AEAcreValue)
+				}
+			}}
+			onCancel={() => {
+				setAcreValue(null)
+				setVersementLiberatoireValue(null)
 			}}
 		>
 			<>
@@ -348,6 +360,29 @@ const AllerPlusLoinRevenus = ({
 						Activer l'ACRE dans la simulation
 					</Label>
 				</FlexCentered>
+
+				{acreValue ||
+					(defaultValueACRE && (
+						<>
+							<Body>
+								Les{' '}
+								<StyledLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
+									conditions d'accès
+								</StyledLink>{' '}
+								à l'ACRE sont plus restrictives pour les auto-entrepreneurs.
+							</Body>
+							<FlexCentered>
+								<SwitchInput
+									id="activation-acre"
+									onChange={(value: boolean) => setAEAcreValue(value)}
+									defaultSelected={isAutoEntrepreneurACREEnabled}
+								/>
+								<Label htmlFor="activation-acre">
+									Je suis éligible à l'ACRE pour mon auto-entreprise
+								</Label>
+							</FlexCentered>
+						</>
+					))}
 
 				<Spacing md />
 				<H4 as="h2">

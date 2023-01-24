@@ -13,10 +13,16 @@ import { useSitePaths } from '@/sitePaths'
 import Documentation from '../../Documentation'
 import { configComparateurStatuts } from '../configs/comparateurStatuts'
 import Comparateur from './components/Comparateur'
+import {
+	CasParticuliersProvider,
+	useCasParticuliers,
+} from './contexts/CasParticuliers'
 
-export default function SchemeComparaisonPage() {
+function ComparateurStatutsUI() {
 	const engine = useEngine()
 	const situation = useRawSituation()
+
+	const { isAutoEntrepreneurACREEnabled } = useCasParticuliers()
 
 	const { absoluteSitePaths } = useSitePaths()
 	useSimulationConfig({
@@ -41,10 +47,14 @@ export default function SchemeComparaisonPage() {
 				...situation,
 				'entreprise . catégorie juridique': "'EI'",
 				'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
+				...(isAutoEntrepreneurACREEnabled
+					? { 'dirigeant . exonérations . ACRE': 'oui' }
+					: { 'dirigeant . exonérations . ACRE': 'non' }),
 			}),
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[situation]
+		[situation, isAutoEntrepreneurACREEnabled]
 	)
+
 	const indépendantEngine = useMemo(
 		() =>
 			engine.shallowCopy().setSituation({
@@ -116,5 +126,13 @@ export default function SchemeComparaisonPage() {
 				}
 			/>
 		</Routes>
+	)
+}
+
+export default function ComparateurStatuts() {
+	return (
+		<CasParticuliersProvider>
+			<ComparateurStatutsUI />
+		</CasParticuliersProvider>
 	)
 }

@@ -27,6 +27,7 @@ export const Drawer = ({
 	trigger,
 	children,
 	onConfirm,
+	onCancel,
 	confirmLabel,
 	cancelLabel,
 	isDismissable = true,
@@ -36,6 +37,7 @@ export const Drawer = ({
 	confirmLabel?: string
 	cancelLabel?: string
 	onConfirm: () => void
+	onCancel?: () => void
 	isDismissable?: boolean
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -70,6 +72,9 @@ export const Drawer = ({
 
 		setTimeout(() => {
 			setIsMounted(false)
+			if (onCancel) {
+				onCancel()
+			}
 		}, 500)
 	}
 
