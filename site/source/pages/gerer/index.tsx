@@ -35,6 +35,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Markdown } from '@/components/utils/markdown'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Message, Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
@@ -270,14 +271,13 @@ function Home() {
 				<Spacing xl />
 			</PageHeader>
 
-			<Container
-				backgroundColor={(theme) => theme.colors.bases.primary[600]}
-				forceTheme="dark"
-			>
+			<Container backgroundColor={(theme) => theme.colors.bases.primary[600]}>
 				<FromTop>
 					<FormsImage src={forms} alt="" />
 					<Spacing xs />
-					<H2>Simulateurs pour votre entreprise</H2>
+					<ForceThemeProvider forceTheme="dark">
+						<H2>Simulateurs pour votre entreprise</H2>
+					</ForceThemeProvider>
 					<Grid
 						container
 						spacing={3}
