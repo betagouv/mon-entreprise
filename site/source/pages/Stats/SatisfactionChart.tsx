@@ -49,15 +49,16 @@ type SatisfactionChartProps = {
 	}>
 }
 
-type DataType = 'original' | 'percentage'
+type DataType = 'nombres' | 'pourcentage'
 
 export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 	const [darkMode] = useDarkMode()
+	const [dataType, setDataType] = useState<DataType>('nombres')
 
-	const [type, setType] = useState<DataType>('original')
 	if (!data.length) {
 		return null
 	}
+
 	const flattenData = data
 		.map((d) => ({
 			...d,
@@ -74,13 +75,13 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 	return (
 		<Body as="div">
 			<ToggleGroup
-				onChange={(val) => setType(val as DataType)}
-				defaultValue={type}
+				onChange={(val) => setDataType(val as DataType)}
+				defaultValue={dataType}
 			>
-				<Radio value="original">
-					<Trans>original</Trans>
+				<Radio value="nombres">
+					<Trans>nombres</Trans>
 				</Radio>
-				<Radio value="percentage">
+				<Radio value="pourcentage">
 					<Trans>pourcentage</Trans>
 				</Radio>
 			</ToggleGroup>
@@ -98,18 +99,20 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 						minTickGap={-8}
 						stroke={darkMode ? 'lightGrey' : 'darkGray'}
 					/>
-					<Tooltip content={<CustomTooltip type={type} />} />
+					<Tooltip content={<CustomTooltip dataType={dataType} />} />
 
 					{SatisfactionStyle.map(([level, { emoji, color }]) => (
 						<Bar
 							key={level}
-							dataKey={`${type === 'original' ? 'nombre' : 'percent'}.${level}`}
+							dataKey={`${
+								dataType === 'nombres' ? 'nombre' : 'percent'
+							}.${level}`}
 							stackId="1"
 							fill={color}
 							maxBarSize={50}
 						>
 							<LabelList
-								dataKey={`${type === 'original' ? 'nombre' : 'percent'}`}
+								dataKey={`${dataType === 'nombres' ? 'nombre' : 'percent'}`}
 								content={() => emoji}
 								position="left"
 							/>
@@ -168,7 +171,7 @@ interface Stat {
 }
 
 type CustomTooltipProps = {
-	type: DataType
+	dataType: DataType
 	active?: boolean
 	payload?: {
 		payload?: {
@@ -181,10 +184,10 @@ type CustomTooltipProps = {
 	}[]
 }
 
-const CustomTooltip = ({ payload, active, type }: CustomTooltipProps) => {
+const CustomTooltip = ({ payload, active, dataType }: CustomTooltipProps) => {
 	const { date, nombre, percent, total, info } =
 		(payload && payload.length > 0 && payload[0].payload) || {}
-	const data = type === 'percentage' ? percent : nombre
+	const data = dataType === 'pourcentage' ? percent : nombre
 
 	if (!active || !data || !date || typeof total !== 'number') {
 		return null
@@ -202,27 +205,27 @@ const CustomTooltip = ({ payload, active, type }: CustomTooltipProps) => {
 				<Li>
 					<Strong>
 						{Math.round((data['très bien'] ?? 0) + (data.bien ?? 0))}
-						{type === 'percentage' ? '%' : ''}
+						{dataType === 'pourcentage' ? '%' : ''}
 					</Strong>{' '}
 					satisfaits{' '}
 					<small>
 						({Math.round(data['très bien'] ?? 0)}
-						{type === 'percentage' ? '%' : ''} <Emoji emoji="😀" /> /{' '}
+						{dataType === 'pourcentage' ? '%' : ''} <Emoji emoji="😀" /> /{' '}
 						{Math.round(data.bien ?? 0)}
-						{type === 'percentage' ? '%' : ''} <Emoji emoji="🙂" />)
+						{dataType === 'pourcentage' ? '%' : ''} <Emoji emoji="🙂" />)
 					</small>
 				</Li>
 				<Li>
 					<Strong>
 						{Math.round((data.moyen ?? 0) + (data.mauvais ?? 0))}
-						{type === 'percentage' ? '%' : ''}
+						{dataType === 'pourcentage' ? '%' : ''}
 					</Strong>{' '}
 					négatifs{' '}
 					<small>
 						({Math.round(data.moyen ?? 0)}
-						{type === 'percentage' ? '%' : ''} <Emoji emoji="😐" /> /{' '}
+						{dataType === 'pourcentage' ? '%' : ''} <Emoji emoji="😐" /> /{' '}
 						{Math.round(data.mauvais ?? 0)}
-						{type === 'percentage' ? '%' : ''} <Emoji emoji="🙁" />)
+						{dataType === 'pourcentage' ? '%' : ''} <Emoji emoji="🙁" />)
 					</small>
 					<Emoji emoji="" />
 				</Li>
