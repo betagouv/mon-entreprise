@@ -361,28 +361,27 @@ const AllerPlusLoinRevenus = ({
 					</Label>
 				</FlexCentered>
 
-				{acreValue ||
-					(defaultValueACRE && (
-						<>
-							<Body>
-								Les{' '}
-								<StyledLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
-									conditions d'accès
-								</StyledLink>{' '}
-								à l'ACRE sont plus restrictives pour les auto-entrepreneurs.
-							</Body>
-							<FlexCentered>
-								<SwitchInput
-									id="activation-acre"
-									onChange={(value: boolean) => setAEAcreValue(value)}
-									defaultSelected={isAutoEntrepreneurACREEnabled}
-								/>
-								<Label htmlFor="activation-acre">
-									Je suis éligible à l'ACRE pour mon auto-entreprise
-								</Label>
-							</FlexCentered>
-						</>
-					))}
+				{(acreValue || defaultValueACRE) && (
+					<>
+						<Body>
+							Les{' '}
+							<StyledLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
+								conditions d'accès
+							</StyledLink>{' '}
+							à l'ACRE sont plus restrictives pour les auto-entrepreneurs.
+						</Body>
+						<FlexCentered>
+							<SwitchInput
+								id="activation-acre"
+								onChange={(value: boolean) => setAEAcreValue(value)}
+								defaultSelected={isAutoEntrepreneurACREEnabled}
+							/>
+							<Label htmlFor="activation-acre">
+								Je suis éligible à l'ACRE pour mon auto-entreprise
+							</Label>
+						</FlexCentered>
+					</>
+				)}
 
 				<Spacing md />
 				<H4 as="h2">
