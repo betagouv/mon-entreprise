@@ -1,10 +1,11 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 
 import FeedbackButton from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { FooterContainer } from '@/design-system/footer'
@@ -84,7 +85,7 @@ export default function Footer() {
 				</Container>
 
 				<Container backgroundColor={(theme) => theme.colors.bases.primary[700]}>
-					<ThemeProvider theme={(theme) => ({ ...theme, darkMode: true })}>
+					<ForceThemeProvider forceTheme="dark">
 						<FooterContainer
 							className="print-hidden"
 							role="navigation"
@@ -206,7 +207,7 @@ export default function Footer() {
 								</nav>
 							</FooterColumn>
 						</FooterContainer>
-					</ThemeProvider>
+					</ForceThemeProvider>
 				</Container>
 			</footer>
 		</>

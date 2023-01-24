@@ -133,7 +133,8 @@ export const StyledInputContainer = styled.div<{
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>
-		`${theme.box.borderWidth} solid ${
+		`${theme.box.borderWidth} solid 
+		${
 			theme.darkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.extended.grey[700]
@@ -213,6 +214,10 @@ export const StyledInputContainer = styled.div<{
 				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
 				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
+		color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.extended.grey[800]};
 	}
 
 	${({ small }) =>

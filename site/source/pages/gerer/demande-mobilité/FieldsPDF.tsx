@@ -15,7 +15,7 @@ export default function FieldsPDF({ fields }: FieldsPDFProps) {
 	return (
 		<>
 			{fields.map(
-				({ rawNode: { type, question, note, API }, title, dottedName }) => (
+				({ rawNode: { type, question, note }, title, dottedName }) => (
 					<View style={styles.field} key={dottedName} wrap={false}>
 						{type === 'groupe' ? (
 							<>

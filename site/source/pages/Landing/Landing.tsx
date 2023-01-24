@@ -60,7 +60,7 @@ export default function Landing() {
 					</PageHeader>
 				</Container>
 				<Container
-					darkMode
+					forceTheme="dark"
 					backgroundColor={(theme) => theme.colors.bases.primary[600]}
 				>
 					<SearchOrCreate />

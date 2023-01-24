@@ -1,7 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Palette, SmallPalette } from '@/types/styled'
 
 import { Emoji } from '../emoji'
@@ -25,7 +26,7 @@ export function Chip({
 	const { t } = useTranslation()
 
 	return (
-		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
+		<ForceThemeProvider forceTheme="light">
 			<StyledChip className={className} type={type}>
 				{icon && (
 					<StyledIconWrapper type={type}>
@@ -44,7 +45,7 @@ export function Chip({
 				)}
 				{children}
 			</StyledChip>
-		</ThemeProvider>
+		</ForceThemeProvider>
 	)
 }
 const StyledIconWrapper = styled.span<{

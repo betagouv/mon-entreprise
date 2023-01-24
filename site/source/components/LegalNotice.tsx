@@ -2,13 +2,11 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { PopoverWithTrigger } from '@/design-system'
 import { H2 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
+import { Link, StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useDarkMode } from '@/hooks/useDarkMode'
 
 export default function LegalNotice() {
 	const { t } = useTranslation()
-	const [darkMode] = useDarkMode()
 
 	return (
 		<PopoverWithTrigger
@@ -51,15 +49,14 @@ export default function LegalNotice() {
 					<br />
 					San Francisco, CA 94107 <br />
 					Site web :&nbsp;
-					<a
+					<StyledLink
 						href="https://www.netlify.com"
 						aria-label="https://www.netlify.com, nouvelle fenêtre"
 						target="_blank"
 						rel="noreferrer"
-						style={darkMode ? { color: '#9EBBF1' } : { color: '#2E5FB6' }}
 					>
 						https://www.netlify.com
-					</a>
+					</StyledLink>
 				</Trans>
 			</Body>
 			<H2>
@@ -67,14 +64,13 @@ export default function LegalNotice() {
 			</H2>
 			<Body>
 				<Trans i18nKey="legalNotice.contact.content">
-					<a
+					<StyledLink
 						href="mailto:contact@mon-entreprise.beta.gouv.fr"
 						target="_blank"
 						rel="noreferrer"
-						style={darkMode ? { color: '#9EBBF1' } : { color: '#2E5FB6' }}
 					>
 						contact@mon-entreprise.beta.gouv.fr
-					</a>
+					</StyledLink>
 				</Trans>
 			</Body>{' '}
 		</PopoverWithTrigger>

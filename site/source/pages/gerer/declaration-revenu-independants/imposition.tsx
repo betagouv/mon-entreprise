@@ -303,7 +303,7 @@ function ResultSection() {
 	return (
 		<FromTop>
 			<Container
-				darkMode
+				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
 				<H2>Vos déclarations fiscales</H2>

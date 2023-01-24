@@ -29,10 +29,10 @@ export function CompanyDetails({
 				spacing={3}
 			>
 				<Grid item xs={12} lg>
-					<H4 data-test-id="currently-selected-company" as={headingTag}>
+					<StyledH4 data-test-id="currently-selected-company" as={headingTag}>
 						<Value expression="entreprise . nom" linkToRule={false} />{' '}
 						<Value expression="entreprise . SIREN" linkToRule={false} />
-					</H4>
+					</StyledH4>
 					<Body>
 						<Trans>
 							Entreprise créée le{' '}
@@ -64,3 +64,9 @@ export function CompanyDetails({
 }
 
 const StyledCompanyContainer = styled(Message).attrs({ border: false })``
+
+const StyledH4 = styled(H4)`
+	& span {
+		color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
+`

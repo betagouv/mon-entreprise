@@ -12,7 +12,9 @@ import FocusTrap from 'focus-trap-react'
 import React, { RefObject, useEffect, useRef, useState } from 'react'
 import styled, { ThemeProvider, css, keyframes } from 'styled-components'
 
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Grid } from '@/design-system/layout'
+import { useDarkMode } from '@/hooks/useDarkMode'
 import { getIframeOffset, wrapperDebounceEvents } from '@/utils'
 
 import { Container } from '../layout'
@@ -74,75 +76,73 @@ export default function Popover(
 	}
 
 	return (
-		<ThemeProvider theme={(theme) => ({ ...theme, darkMode: false })}>
-			<OverlayContainer>
-				<Underlay {...underlayProps} $offsetTop={offsetTop}>
-					<Container>
+		<OverlayContainer>
+			<Underlay {...underlayProps} $offsetTop={offsetTop}>
+				<Container>
+					<Grid
+						container
+						css={`
+							justify-content: center;
+						`}
+					>
 						<Grid
-							container
+							item
+							sm={small ? 10 : 12}
+							md={small ? 8 : 12}
 							css={`
-								justify-content: center;
+								min-width: 0;
 							`}
 						>
-							<Grid
-								item
-								sm={small ? 10 : 12}
-								md={small ? 8 : 12}
-								css={`
-									min-width: 0;
-								`}
-							>
-								<FocusTrap>
-									<PopoverContainer
-										{...dialogProps}
-										{...modalProps}
-										{...overlayProps}
-										$offsetTop={offsetTop}
-										ref={ref}
-									>
-										{props.isDismissable && (
-											<CloseButtonContainer>
-												{/* TODO : replace with Link when in design system */}
-												<CloseButton {...closeButtonProps} ref={closeButtonRef}>
-													Fermer
-													<svg
-														role="img"
-														aria-hidden
-														viewBox="0 0 24 24"
-														fill="none"
-														xmlns="http://www.w3.org/2000/svg"
-													>
-														<path
-															fillRule="evenodd"
-															clipRule="evenodd"
-															d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
-														/>
-														<path
-															fillRule="evenodd"
-															clipRule="evenodd"
-															d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
-														/>
-													</svg>
-												</CloseButton>
-											</CloseButtonContainer>
+							<FocusTrap>
+								<PopoverContainer
+									{...dialogProps}
+									{...modalProps}
+									{...overlayProps}
+									$offsetTop={offsetTop}
+									ref={ref}
+								>
+									{props.isDismissable && (
+										<CloseButtonContainer>
+											{/* TODO : replace with Link when in design system */}
+											<CloseButton {...closeButtonProps} ref={closeButtonRef}>
+												Fermer
+												<svg
+													role="img"
+													aria-hidden
+													viewBox="0 0 24 24"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														fillRule="evenodd"
+														clipRule="evenodd"
+														d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
+													/>
+													<path
+														fillRule="evenodd"
+														clipRule="evenodd"
+														d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
+													/>
+												</svg>
+											</CloseButton>
+										</CloseButtonContainer>
+									)}
+									{/* tabIndex -1 is for text selection in popover, see https://github.com/adobe/react-spectrum/issues/1604#issuecomment-781574668 */}
+									<PopoverContent ref={contentRef}>
+										{title && (
+											<H2 as="h1" {...titleProps}>
+												{title}
+											</H2>
 										)}
-										{/* tabIndex -1 is for text selection in popover, see https://github.com/adobe/react-spectrum/issues/1604#issuecomment-781574668 */}
-										<PopoverContent ref={contentRef}>
-											{title && (
-												<H2 as="h1" {...titleProps}>
-													{title}
-												</H2>
-											)}
-											{children}
-										</PopoverContent>
-									</PopoverContainer>
-								</FocusTrap>
-							</Grid>
+										{children}
+									</PopoverContent>
+								</PopoverContainer>
+							</FocusTrap>
 						</Grid>
-					</Container>
-				</Underlay>
-			</OverlayContainer>
-		</ThemeProvider>
+					</Grid>
+				</Container>
+			</Underlay>
+		</OverlayContainer>
 	)
 }
 
@@ -164,8 +164,7 @@ const Underlay = styled.div<UnderlayProps>`
 	left: 0;
 	overflow: auto;
 	z-index: 200; // to be in front of the menu of the Publicodes doc
-	background: ${({ theme }) =>
-		theme.darkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)'};
+	background: rgba(0, 0, 0, 0.5);
 	animation: ${appear} 0.2s;
 	display: flex;
 	${({ $offsetTop }) =>
@@ -185,8 +184,7 @@ const PopoverContainer = styled.div<{ $offsetTop: number | null }>`
 		theme.darkMode
 			? theme.colors.extended.dark[600]
 			: theme.colors.extended.grey[100]};
-	box-shadow: ${({ theme }) =>
-		theme.darkMode ? theme.elevationsDarkMode[4] : theme.elevations[4]};
+	box-shadow: ${({ theme }) => theme.elevations[4]};
 	display: flex;
 	margin-bottom: 1rem;
 	flex-direction: column;
@@ -210,7 +208,11 @@ const PopoverContainer = styled.div<{ $offsetTop: number | null }>`
 
 export const CloseButtonContainer = styled.div`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
-
+	${({ theme }) =>
+		theme.darkMode &&
+		css`
+			color: ${theme.colors.extended.grey[100]};
+		`}
 	display: flex;
 	align-items: center;
 	height: ${({ theme }) => theme.spacings.xxl};
@@ -225,19 +227,20 @@ export const CloseButton = styled.button`
 
 	color: ${({ theme }) =>
 		theme.darkMode
-			? theme.colors.bases.primary[400]
+			? theme.colors.bases.primary[100]
 			: theme.colors.bases.primary[700]};
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
 	font-size: ${({ theme }) => theme.baseFontSize};
 	line-height: 24px;
 	padding: ${({ theme }) => theme.spacings.sm};
-	path {
-		fill: ${({ theme }) => theme.colors.bases.primary[700]};
-	}
 	svg {
 		width: ${({ theme }) => theme.spacings.lg};
 		height: ${({ theme }) => theme.spacings.lg};
+		fill: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[700]};
 	}
 	:hover {
 		text-decoration: underline;

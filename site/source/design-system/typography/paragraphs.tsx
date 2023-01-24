@@ -4,7 +4,7 @@ export const baseParagraphStyle = css`
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: normal;
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
-	background-color: inherit;
+	background-color: transparent;
 
 	@media not print {
 		${({ theme }) =>

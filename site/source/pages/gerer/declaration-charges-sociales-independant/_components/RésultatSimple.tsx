@@ -1,5 +1,6 @@
 import { utils } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
 import Value, { Condition } from '@/components/EngineValue'
 import { FromTop } from '@/components/ui/animate'
@@ -21,7 +22,7 @@ export default function ResultatsSimples() {
 			<Spacing lg />
 
 			<Container
-				darkMode
+				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
 				{' '}
@@ -126,7 +127,7 @@ export default function ResultatsSimples() {
 								<Article
 									to={`/documentation/${utils.encodeRuleName(dottedName)}`}
 									ctaLabel={
-										<Intro>
+										<StyledIntro>
 											<Value
 												expression={r.dottedName}
 												displayedUnit="€"
@@ -134,7 +135,7 @@ export default function ResultatsSimples() {
 												precision={0}
 												linkToRule={false}
 											/>
-										</Intro>
+										</StyledIntro>
 									}
 									title={
 										<>
@@ -156,3 +157,9 @@ export default function ResultatsSimples() {
 		</>
 	)
 }
+
+const StyledIntro = styled(Intro)`
+	& a {
+		color: ${({ theme }) => theme.colors.extended.grey[100]};
+	}
+`

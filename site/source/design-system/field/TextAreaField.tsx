@@ -78,14 +78,14 @@ export const StyledTextArea = styled.textarea`
 			`}
 		color: ${({ theme }) =>
 			theme.colors.extended.grey[theme.darkMode ? 200 : 600]};
-		background-color: inherit;
+		background-color: transparent;
 	}
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
-				background-color: inherit;
+				background-color: transparent;
 			}
 		`}
 `
@@ -107,7 +107,7 @@ export const StyledLabel = styled.label`
 		css`
 			@media not print {
 				color: ${theme.colors.extended.grey[100]} !important;
-				background-color: inherit;
+				background-color: transparent;
 			}
 		`}
 `
@@ -121,7 +121,7 @@ export const StyledDescription = styled(ExtraSmallBody)`
 
 export const StyledErrorMessage = styled(StyledDescription)`
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
-	background-color: inherit;
+	background-color: transparent;
 `
 
 export const StyledSuffix = styled.span`

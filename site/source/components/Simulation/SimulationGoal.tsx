@@ -84,15 +84,12 @@ export function SimulationGoal({
 							</RuleLink>
 
 							{rule.rawNode.résumé && (
-								<SmallBody
-									css={`
-										margin-bottom: 0;
-									`}
+								<StyledSmallBody
 									className={small ? 'sr-only' : ''}
 									id={`${dottedName.replace(/\s|\./g, '')}-description`}
 								>
 									{rule.rawNode.résumé}
-								</SmallBody>
+								</StyledSmallBody>
 							)}
 						</StyledGoalHeader>
 					</Grid>
@@ -170,4 +167,8 @@ const StyledGoal = styled.div`
 	@media print {
 		padding: 0;
 	}
+`
+
+const StyledSmallBody = styled(SmallBody)`
+	margin-bottom: 0;
 `

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import { ForceThemeProvider, ThemeType } from '@/contexts/DarkModeContext'
 import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
 import { SearchField } from '@/design-system/field'
@@ -24,6 +25,7 @@ export function CompanySearchField(props: {
 	onValue?: () => void
 	onClear?: () => void
 	onSubmit?: (search: FabriqueSocialEntreprise | null) => void
+	forceTheme?: ThemeType
 }) {
 	const { t } = useTranslation()
 	const refResults = useRef<FabriqueSocialEntreprise[] | null>(null)
@@ -62,14 +64,17 @@ export function CompanySearchField(props: {
 	return (
 		<Grid container>
 			<Grid item xs={12}>
-				<SearchField
-					data-test-id="company-search-input"
-					state={state}
-					isSearchStalled={searchPending}
-					onClear={onClear}
-					{...searchFieldProps}
-				/>
+				<ForceThemeProvider forceTheme={props?.forceTheme}>
+					<SearchField
+						data-test-id="company-search-input"
+						state={state}
+						isSearchStalled={searchPending}
+						onClear={onClear}
+						{...searchFieldProps}
+					/>
+				</ForceThemeProvider>
 			</Grid>
+
 			<Grid item xs={12}>
 				{state.value && !searchPending && (
 					<Results results={results} onSubmit={onSubmit} />

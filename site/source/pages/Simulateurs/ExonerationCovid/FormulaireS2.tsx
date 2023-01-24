@@ -18,6 +18,7 @@ const Info = styled(Body)`
 	padding: 1rem;
 	border: 2px solid ${({ theme }) => theme.colors.extended.info['300']};
 	border-radius: 0.35rem;
+	color: ${({ theme }) => theme.colors.bases.tertiary[700]};
 `
 
 export const FormulaireS2 = ({

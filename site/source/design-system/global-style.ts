@@ -224,4 +224,29 @@ figure {
 a:focus {
 	${FocusStyle}
 }
+
+// Corrige l'affichage du menu mobile de la documentation
+#mobile-menu-portal-id {
+	& nav {
+		background: ${({ theme }) => theme.darkMode && theme.colors.extended.dark[800]};
+	}
+	& svg {
+		fill: ${({ theme }) => theme.darkMode && theme.colors.extended.grey[100]};
+	}
+
+	li.active .content {
+		background-color: ${({ theme }) =>
+			theme.darkMode && theme.colors.extended.dark[600]};
+	}
+}
+#rules-nav-open-nav-button button {
+	color: ${({ theme }) => theme.darkMode && theme.colors.extended.grey[100]};
+	border-color: ${({ theme }) =>
+		theme.darkMode && theme.colors.extended.grey[100]};
+	&:hover {
+		color: ${({ theme }) => theme.darkMode && theme.colors.extended.grey[800]};
+		border-color: ${({ theme }) =>
+			theme.darkMode && theme.colors.extended.grey[800]};
+	}
+}
 `

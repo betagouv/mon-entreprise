@@ -112,7 +112,7 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 
 	return (
 		<Container
-			darkMode={!déclarationRevenusManuel}
+			forceTheme={!déclarationRevenusManuel ? 'dark' : undefined}
 			backgroundColor={
 				!déclarationRevenusManuel
 					? (theme) => theme.colors.bases.primary[600]

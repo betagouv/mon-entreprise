@@ -146,8 +146,11 @@ const StyledNumberFieldContainer = styled(StyledContainer)`
 `
 
 const StyledUnit = styled(StyledSuffix)`
-	color: ${({ theme }) => theme.colors.extended.grey[600]};
-	background-color: inherit;
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[200]
+			: theme.colors.extended.grey[600]};
+	background-color: transparent;
 	padding-left: 0 !important;
 	white-space: nowrap;
 `

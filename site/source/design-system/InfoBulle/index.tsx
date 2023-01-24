@@ -33,7 +33,7 @@ const InfoBulleText = styled.span`
 	border-radius: 3px;
 	font-family: 'Roboto';
 	background-color: white;
-	color: inherit;
+	color: ${({ theme }) => theme.colors.extended.grey[800]};
 	transition: opacity 0.2s, transform 0.2s;
 	opacity: 0;
 	box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2),
