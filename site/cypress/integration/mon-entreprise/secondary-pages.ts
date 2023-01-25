@@ -7,11 +7,12 @@ describe('Secondary pages', function () {
 
 	it("page stats doesn't crash", function () {
 		cy.visit('/stats')
-		cy.contains('Statistiques détaillées')
+		cy.contains('Statistiques')
 	})
 
 	it('Statistics page should be RGAA compliant', function () {
 		cy.visit('/stats')
+		cy.contains('Statistiques')
 		checkA11Y()
 	})
 
@@ -22,6 +23,8 @@ describe('Secondary pages', function () {
 	})
 	it('News page should be RGAA compliant', function () {
 		cy.visit('/nouveautés')
+		cy.contains('←').click()
+		cy.url({ decode: true }).should('match', /\/nouveautés\/[^/]*$/)
 		checkA11Y()
 	})
 })
