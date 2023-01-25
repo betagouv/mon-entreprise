@@ -35,7 +35,9 @@ describe('Page covid-19', { testIsolation: 'off' }, function () {
 		cy.get('[data-test-id=comparaison-total]').contains(
 			/Soit [\d]{1} % du coût habituel/
 		)
+	})
 
+	it('should be RGAA compliant', function () {
 		checkA11Y()
 	})
 })

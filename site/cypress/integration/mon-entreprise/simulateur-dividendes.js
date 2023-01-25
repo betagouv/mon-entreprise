@@ -3,7 +3,7 @@ import { checkA11Y } from '../../support/utils'
 const inputSelector = 'div[id="simulator-legend"] input'
 const fr = Cypress.env('language') === 'fr'
 
-describe('Simulateur dividendes', function () {
+describe('Simulateur dividendes', { testIsolation: 'off' }, function () {
 	if (!fr) {
 		return
 	}
@@ -13,7 +13,9 @@ describe('Simulateur dividendes', function () {
 		cy.get(inputSelector).first().type('{selectall}5000')
 		cy.contains(/[cC]otisations\s+17,2\s*%/)
 		cy.contains(/[Ii]mpôt\s+12,8\s*%/)
+	})
 
+	it('should be RGAA compliant', function () {
 		checkA11Y()
 	})
 })

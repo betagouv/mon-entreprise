@@ -73,7 +73,9 @@ describe('Simulateur auto-entrepreneur', { testIsolation: 'off' }, function () {
 			expect(activitéMixtes[0]).to.be.equal(activitéMixtes[2])
 			expect(activitéMixtes[1]).to.be.equal(activitéMixtes[0] * 2)
 		})
+	})
 
+	it('should be RGAA compliant', function () {
 		checkA11Y()
 	})
 })
