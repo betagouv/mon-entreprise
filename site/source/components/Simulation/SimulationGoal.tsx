@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { updateSituation } from '@/actions/actions'
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
@@ -95,7 +96,9 @@ export function SimulationGoal({
 										</StyledBody>
 									</Grid>
 									<Grid item>
-										<ExplicableRule dottedName={dottedName} light />
+										<ForceThemeProvider forceTheme="default">
+											<ExplicableRule dottedName={dottedName} light />
+										</ForceThemeProvider>
 									</Grid>
 								</Grid>
 							) : (
