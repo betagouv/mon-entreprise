@@ -225,7 +225,10 @@ function RadioChoice<Names extends string = DottedName>({
 									id={`radio-input-${relativeDottedName(
 										rootDottedName,
 										node.dottedName
-									).replace(/\s|\./g, '')}`}
+									).replace(/\s|\./g, '')}-${rootDottedName.replace(
+										/\s|\./g,
+										''
+									)}`}
 								>
 									{node.title}{' '}
 									{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
