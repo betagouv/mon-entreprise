@@ -13,16 +13,26 @@ const ItemTitle = ({ children }: { children: ReactNode }) => {
 }
 
 const StyledCircledArrowIcon = styled(CircledArrowIcon)`
-	margin-right: 1rem;
+	width: 40px;
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		min-width: 1rem;
+		max-width: 1rem;
+	}
 `
 
 const StyledH3 = styled(H3)`
-	display: flex;
+	display: inline-flex;
 	align-items: center;
+	justify-content: flex-start;
 	font-size: 1.625rem;
 	margin: 0;
-	& img {
-		margin-left: 0.5rem !important;
+	gap: 1rem;
+	text-align: left;
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		font-size: 1.25rem;
+	}
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		font-size: 1rem;
 	}
 `
 
