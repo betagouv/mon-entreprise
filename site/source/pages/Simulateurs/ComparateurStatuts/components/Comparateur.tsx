@@ -22,7 +22,7 @@ type ComparateurProps = {
 function Comparateur({ engines }: ComparateurProps) {
 	const { t } = useTranslation()
 	const navigate = useNavigate()
-	const [assimiléEngine, indépendantEngine, autoEntrepreneurEngine] = engines
+	const [assimiléEngine, autoEntrepreneurEngine, indépendantEngine] = engines
 
 	return (
 		<>

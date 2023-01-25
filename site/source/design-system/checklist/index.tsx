@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { CheckmarkIcon, CrossIcon } from '../icons'
 
@@ -14,7 +14,10 @@ export const CheckList = ({
 				const { isChecked, label } = item
 
 				return (
-					<StyledLi key={`checklist-item-${item.toString()}-${index}`}>
+					<StyledLi
+						$isChecked={isChecked}
+						key={`checklist-item-${item.toString()}-${index}`}
+					>
 						{isChecked ? <CheckmarkIcon /> : <CrossIcon />}
 						{label}
 					</StyledLi>
@@ -33,6 +36,14 @@ const StyledLi = styled.li<{ $isChecked?: boolean }>`
 	list-style: none;
 	svg {
 		margin-right: 0.5rem;
+		flex-shrink: 0;
+		${({ theme, $isChecked }) =>
+			!$isChecked &&
+			css`
+				fill: ${theme.darkMode
+					? theme.colors.extended.grey[100]
+					: theme.colors.extended.grey[600]}!important;
+			`}
 	}
 	display: flex;
 	align-items: center;

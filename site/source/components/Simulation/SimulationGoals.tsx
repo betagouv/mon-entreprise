@@ -36,32 +36,32 @@ export function SimulationGoals({
 
 	return (
 		<WatchInitialRender>
-			<TopSection toggles={toggles} />
+			<div role="group" aria-labelledby="simulator-legend-label">
+				<TopSection toggles={toggles} />
 
-			<SimulationGoalsContainer
-				isEmbeded={isEmbeded}
-				isFirstStepCompleted={isFirstStepCompleted}
-				publique={publique}
-				role="group"
-				id="simulator-legend"
-				aria-labelledby="simulator-legend-label"
-				aria-live="polite"
-			>
-				<ForceThemeProvider forceTheme="dark">
-					<div className="sr-only" aria-hidden id="simulator-legend-label">
-						{legend}
-					</div>
-					<Body className="visually-hidden">
-						<em>
-							<Trans>
-								Les données de simulations se mettront automatiquement à jour
-								après la modification d'un champ.
-							</Trans>
-						</em>
-					</Body>
-					{children}
-				</ForceThemeProvider>
-			</SimulationGoalsContainer>
+				<SimulationGoalsContainer
+					isEmbeded={isEmbeded}
+					isFirstStepCompleted={isFirstStepCompleted}
+					publique={publique}
+					id="simulator-legend"
+					aria-live="polite"
+				>
+					<ForceThemeProvider forceTheme="dark">
+						<div className="sr-only" aria-hidden id="simulator-legend-label">
+							{legend}
+						</div>
+						<Body className="visually-hidden">
+							<em>
+								<Trans>
+									Les données de simulations se mettront automatiquement à jour
+									après la modification d'un champ.
+								</Trans>
+							</em>
+						</Body>
+						{children}
+					</ForceThemeProvider>
+				</SimulationGoalsContainer>
+			</div>
 		</WatchInitialRender>
 	)
 }

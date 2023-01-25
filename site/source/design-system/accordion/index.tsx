@@ -274,6 +274,10 @@ const StyledGrid = styled(Grid)`
 const StyledFoldButton = styled(Button)`
 	text-decoration: none;
 	background-color: transparent;
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.bases.primary[700]};
 	&:hover {
 		text-decoration: none;
 	}
@@ -282,6 +286,10 @@ const StyledFoldButton = styled(Button)`
 const StyledChevronIcon = styled(ChevronIcon)<{ $isOpen?: boolean }>`
 	transition: transform 0.15s ease-in-out;
 	transform: ${({ $isOpen }) => ($isOpen ? 'rotate(-90deg)' : 'rotate(90deg)')};
+	fill: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.bases.primary[700]}!important;
 `
 
 Accordion.StyledTitle = StyledTitle

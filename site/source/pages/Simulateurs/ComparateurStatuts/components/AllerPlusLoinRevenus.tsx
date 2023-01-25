@@ -350,38 +350,40 @@ const AllerPlusLoinRevenus = ({
 					</Button>
 				}
 				<H5 as="h3">Choisir mon option de simulation</H5>
-				<FlexCentered>
-					<SwitchInput
-						id="activation-acre"
-						onChange={(value: boolean) => setAcreValue(value)}
-						defaultSelected={defaultValueACRE as boolean}
-					/>
-					<Label htmlFor="activation-acre">
-						Activer l'ACRE dans la simulation
-					</Label>
-				</FlexCentered>
+				<div aria-live="polite">
+					<FlexCentered>
+						<SwitchInput
+							id="activation-acre"
+							onChange={(value: boolean) => setAcreValue(value)}
+							defaultSelected={defaultValueACRE as boolean}
+						/>
+						<Label htmlFor="activation-acre">
+							Activer l'ACRE dans la simulation
+						</Label>
+					</FlexCentered>
 
-				{(acreValue || defaultValueACRE) && (
-					<>
-						<Body>
-							Les{' '}
-							<StyledLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
-								conditions d'accès
-							</StyledLink>{' '}
-							à l'ACRE sont plus restrictives pour les auto-entrepreneurs.
-						</Body>
-						<FlexCentered>
-							<SwitchInput
-								id="activation-acre"
-								onChange={(value: boolean) => setAEAcreValue(value)}
-								defaultSelected={isAutoEntrepreneurACREEnabled}
-							/>
-							<Label htmlFor="activation-acre">
-								Je suis éligible à l'ACRE pour mon auto-entreprise
-							</Label>
-						</FlexCentered>
-					</>
-				)}
+					{(acreValue || defaultValueACRE) && (
+						<>
+							<Body>
+								Les{' '}
+								<StyledLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
+									conditions d'accès
+								</StyledLink>{' '}
+								à l'ACRE sont plus restrictives pour les auto-entrepreneurs.
+							</Body>
+							<FlexCentered>
+								<SwitchInput
+									id="activation-acre-ae"
+									onChange={(value: boolean) => setAEAcreValue(value)}
+									defaultSelected={isAutoEntrepreneurACREEnabled}
+								/>
+								<Label htmlFor="activation-acre-ae">
+									Je suis éligible à l'ACRE pour mon auto-entreprise
+								</Label>
+							</FlexCentered>
+						</>
+					)}
+				</div>
 
 				<Spacing md />
 				<H4 as="h2">
@@ -444,11 +446,15 @@ const AllerPlusLoinRevenus = ({
 					}}
 					key="imposition"
 					aria-labelledby="questionHeader"
-					inputType="toggle"
 					engine={indépendantEngine}
 				/>
 
-				<H5 as="h3">Choisir mon option de versement libératoire (pour AE)</H5>
+				<H5 as="h3">
+					Choisir mon option de versement libératoire (pour AE){' '}
+					<ExplicableRule
+						dottedName={DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE}
+					/>
+				</H5>
 				<FlexCentered>
 					<SwitchInput
 						id="versement-liberatoire"

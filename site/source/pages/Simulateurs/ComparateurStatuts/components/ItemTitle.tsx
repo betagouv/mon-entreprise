@@ -13,10 +13,10 @@ const ItemTitle = ({ children }: { children: ReactNode }) => {
 }
 
 const StyledCircledArrowIcon = styled(CircledArrowIcon)`
-	width: 40px;
+	flex-shrink: 0;
+	width: 2.5rem;
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		min-width: 1rem;
-		max-width: 1rem;
+		width: 1.5rem;
 	}
 `
 

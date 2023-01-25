@@ -220,7 +220,7 @@ const DetailsRowCards = ({
 							<StyledRuleLink
 								documentationPath="/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur"
 								dottedName={dottedName}
-								engine={assimiléEngine}
+								engine={autoEntrepreneurEngine}
 							>
 								<HelpIcon />
 							</StyledRuleLink>
