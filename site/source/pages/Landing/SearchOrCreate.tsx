@@ -18,6 +18,7 @@ import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { H3 } from '@/design-system/typography/heading'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
@@ -79,30 +80,54 @@ export default function SearchOrCreate() {
 							<H3 as="h2">
 								<Trans>Rechercher votre entreprise</Trans>{' '}
 							</H3>
+							<Body>
+								Pour accéder à nos simulateurs les plus pertinents pour votre
+								activité
+							</Body>
 							<CompanySearchField
 								onSubmit={handleCompanySubmit}
 								forceTheme="dark"
 							/>
 							<Spacing md />
-
-							<Button
-								size="XL"
-								role="link"
-								to={
-									statutChoisi
-										? absoluteSitePaths.créer[statutChoisi]
-										: absoluteSitePaths.créer.index
-								}
-								aria-label={t(
-									'landing.choice.create.aria-label',
-									"Je n'ai pas encore d'entreprise, accéder au guide de création d'entreprise."
-								)}
-							>
-								<Emoji emoji="💡" />{' '}
-								<Trans i18nKey="landing.choice.create.title">
-									Je n'ai pas encore d'entreprise
-								</Trans>
-							</Button>
+							<Grid container spacing={2}>
+								<Grid item>
+									<Button
+										size="XL"
+										role="link"
+										to={
+											statutChoisi
+												? absoluteSitePaths.créer[statutChoisi]
+												: absoluteSitePaths.créer.index
+										}
+										aria-label={t(
+											'landing.choice.create.aria-label',
+											"Je n'ai pas encore d'entreprise, accéder au guide de création d'entreprise."
+										)}
+									>
+										<Emoji emoji="💡" />{' '}
+										<Trans i18nKey="landing.choice.create.title">
+											J'aimerais créer mon entreprise
+										</Trans>
+									</Button>
+								</Grid>
+								<Grid item>
+									<Button
+										size="XL"
+										role="link"
+										light
+										to={absoluteSitePaths.simulateurs.index}
+										aria-label={t(
+											'landing.choice.create.aria-label',
+											"Je n'ai pas encore d'entreprise, accéder au guide de création d'entreprise."
+										)}
+										color="secondary"
+									>
+										<Trans i18nKey="landing.choice.create.title">
+											Consulter la liste de nos simulateurs
+										</Trans>
+									</Button>
+								</Grid>
+							</Grid>
 						</>
 					)}
 				</Grid>
