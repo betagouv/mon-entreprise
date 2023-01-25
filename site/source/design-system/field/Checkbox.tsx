@@ -116,8 +116,8 @@ const VisibleContainer = styled.span`
 	display: inline-flex;
 	z-index: 1;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	padding: 0 ${({ theme }) => theme.spacings.xs};
-	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.xs});
+	padding: 0 ${({ theme }) => theme.spacings.sm};
+	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.sm});
 	align-items: center;
 `
 const LabelBody = styled(Body)`
@@ -157,7 +157,7 @@ const CheckboxContainer = styled.label`
 				: theme.colors.bases.primary[700]};
 	}
 
-	&:focus-within {
+	&:focus-within ${VisibleContainer} {
 		${FocusStyle}
 	}
 `
