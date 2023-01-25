@@ -2,8 +2,6 @@ name: Add A11Y checklist
 on:
   pull_request:
     types: [opened, synchronize]
-  push:
-    branches: [master, demo, next]
 jobs:
   add-a11y-check-if-necessary:
     name: Add A11Y check
