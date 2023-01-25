@@ -1,6 +1,6 @@
 import { useSearchFieldState } from '@react-stately/searchfield'
 import { ReactNode, useEffect, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
@@ -10,6 +10,7 @@ import { Card } from '@/design-system/card'
 import { SearchField } from '@/design-system/field'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
+import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import useSearchCompany from '@/hooks/useSearchCompany'
 
@@ -91,15 +92,37 @@ function Results({
 	results: Array<FabriqueSocialEntreprise>
 	onSubmit?: (établissement: FabriqueSocialEntreprise) => void
 }) {
+	const { t } = useTranslation()
+
 	return !results.length ? (
 		<FromTop>
 			<Message type="info" icon>
 				<Body>
-					<Strong>Aucune entreprise correspondante trouvée</Strong>
+					<Strong>
+						<Trans>Aucune entreprise correspondante trouvée</Trans>
+					</Strong>
 				</Body>
 				<Body>
-					Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
-					résultat
+					<Trans>
+						Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un
+						meilleur résultat.
+					</Trans>
+				</Body>
+				<Body>
+					<Trans>
+						Vous pouvez également vérifier le{' '}
+						<Strong>statut de diffusion</Strong> de votre entreprise sur{' '}
+						<StyledLink
+							aria-label={t("l'annuaire des entreprises, nouvelle fenêtre")}
+							href="https://annuaire-entreprises.data.gouv.fr/"
+						>
+							l'annuaire des entreprises
+						</StyledLink>
+						. Une entreprise ne diffusant pas ses informations{' '}
+						<Strong>n'apparaitra pas dans les résultats de recherche</Strong>,
+						auquel cas vous pouvez tout de même consulter nos simulateurs
+						ci-dessous.
+					</Trans>
 				</Body>
 			</Message>
 		</FromTop>
