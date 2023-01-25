@@ -20,7 +20,7 @@ import Banner from '../Banner'
 import AnswerList from '../conversation/AnswerList'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import PreviousSimulationBanner from './../PreviousSimulationBanner'
-import { FadeIn, FromTop } from './../ui/animate'
+import { FromTop } from './../ui/animate'
 import { Questions } from './Questions'
 
 export { Questions } from './Questions'
