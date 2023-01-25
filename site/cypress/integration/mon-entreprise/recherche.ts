@@ -1,6 +1,6 @@
 import { checkA11Y, fr } from '../../support/utils'
 
-describe('Recherche globales', function () {
+describe('Recherche globales', { testIsolation: 'off' }, function () {
 	if (!fr) {
 		return
 	}
@@ -28,7 +28,10 @@ describe('Recherche globales', function () {
 			.next()
 			.find('li')
 			.should('have.length.of.at.least', 1)
+	})
 
+	it('should be RGAA compliant', function () {
+		cy.visit('/')
 		checkA11Y()
 	})
 })

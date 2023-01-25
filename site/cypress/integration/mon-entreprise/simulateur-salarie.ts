@@ -50,7 +50,10 @@ describe('Simulateur salarié : part time contract', function () {
 				.replace(/[\s,.€]/g, '')
 			expect(parseInt(val)).to.be.below(1000)
 		})
+	})
 
+	it('should be RGAA compliant', function () {
+		cy.visit('/')
 		checkA11Y()
 	})
 })

@@ -71,6 +71,9 @@ export const runSimulateurTest = (simulateur) => {
 				.first()
 				.invoke('val')
 				.should('match', /2[\s,]000/)
+		})
+
+		it('should be RGAA compliant', function () {
 			checkA11Y()
 		})
 	})
