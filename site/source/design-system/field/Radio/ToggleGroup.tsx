@@ -56,6 +56,9 @@ const TabModeStyle = css`
 			? theme.colors.extended.dark[600]
 			: theme.colors.bases.primary[200]};
 	padding: 0.875rem 2rem;
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		padding: 0.875rem 0.875rem;
+	}
 `
 
 const TabModeCheckedStyle = css`
@@ -75,6 +78,11 @@ export const ToggleGroupContainer = styled.div<{
 	--radius: 0.25rem;
 	display: inline-flex;
 	flex-wrap: wrap;
+	${({ mode }) =>
+		mode === 'tab' &&
+		css`
+			flex-wrap: nowrap;
+		`}
 
 	${VisibleRadio} {
 		position: relative;

@@ -101,6 +101,10 @@ export const SimulationGoalsContainer = styled.div<
 		background: initial;
 		padding: 0;
 	}
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		border-start-start-radius: ${({ theme }) => theme.box.borderRadius};
+		border-start-end-radius: ${({ theme }) => theme.box.borderRadius};
+	}
 `
 
 function TopSection({ toggles }: { toggles?: React.ReactNode }) {
