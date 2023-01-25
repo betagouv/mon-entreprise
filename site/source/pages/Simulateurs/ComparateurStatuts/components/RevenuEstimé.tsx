@@ -67,13 +67,19 @@ const RevenuEstimé = () => {
 
 const Label = styled(Body)`
 	margin: 0;
-	color: ${({ theme }) => theme.colors.extended.grey[600]}!important;
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[200]
+			: theme.colors.extended.grey[600]}!important;
 	font-size: 0.875rem;
 `
 
 const StyledValue = styled(Value)`
 	margin: 0;
-	color: ${({ theme }) => theme.colors.bases.primary[700]}!important;
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.bases.primary[700]}!important;
 	font-size: 1.25rem;
 	font-weight: 700;
 	font-family: ${({ theme }) => theme.fonts.main};
@@ -92,6 +98,10 @@ const StyledGrid = styled(Grid)`
 
 const StyledEditIcon = styled(EditIcon)`
 	margin-right: ${({ theme }) => theme.spacings.xxs};
+	fill: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.bases.primary[700]}!important;
 `
 
 const GridEditLink = styled(Grid)`

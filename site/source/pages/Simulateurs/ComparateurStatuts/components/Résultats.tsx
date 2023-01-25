@@ -16,7 +16,7 @@ const Résultats = ({
 		<StyledContainer
 			backgroundColor={(theme) =>
 				theme.darkMode
-					? theme.colors.bases.primary[800]
+					? theme.colors.extended.dark[700]
 					: theme.colors.bases.primary[200]
 			}
 		>
