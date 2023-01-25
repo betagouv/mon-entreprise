@@ -90,7 +90,7 @@ export function SimulationGoal({
 								>
 									<Grid item>
 										<StyledBody
-											id={`${dottedName.replace(/\s|\./g, '')}-label`}
+											id={`${dottedName.replace(/\s|\./g, '_')}-label`}
 										>
 											<Strong>{label || rule.title}</Strong>
 										</StyledBody>
@@ -103,7 +103,7 @@ export function SimulationGoal({
 								</Grid>
 							) : (
 								<RuleLink
-									id={`${dottedName.replace(/\s|\./g, '')}-label`}
+									id={`${dottedName.replace(/\s|\./g, '_')}-label`}
 									dottedName={dottedName}
 								>
 									{label}
@@ -113,7 +113,7 @@ export function SimulationGoal({
 							{rule.rawNode.résumé && (
 								<StyledSmallBody
 									className={small ? 'sr-only' : ''}
-									id={`${dottedName.replace(/\s|\./g, '')}-description`}
+									id={`${dottedName.replace(/\s|\./g, '_')}-description`}
 								>
 									{rule.rawNode.résumé}
 								</StyledSmallBody>
@@ -140,7 +140,7 @@ export function SimulationGoal({
 								aria-label={engine.getRule(dottedName)?.title}
 								aria-describedby={`${dottedName.replace(
 									/\s|\./g,
-									''
+									'_'
 								)}-description`}
 								displayedUnit="€"
 								dottedName={dottedName}

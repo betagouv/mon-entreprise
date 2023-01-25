@@ -158,12 +158,12 @@ function RadioChoice<Names extends string = DottedName>({
 						<div
 							role="group"
 							aria-labelledby={
-								node.dottedName.replace(/\s|\./g, '') + '-legend'
+								node.dottedName.replace(/\s|\./g, '_') + '-legend'
 							}
 							id={`radio-input-${node.dottedName.replace(
 								/\s|\./g,
-								''
-							)}-${rootDottedName.replace(/\s|\./g, '')}`}
+								'_'
+							)}-${rootDottedName.replace(/\s|\./g, '_')}`}
 							css={`
 								margin-top: -1rem;
 							`}
@@ -206,9 +206,9 @@ function RadioChoice<Names extends string = DottedName>({
 								id={`radio-input-${relativeDottedName(
 									rootDottedName,
 									node.dottedName
-								).replace(/\s|\./g, '')}-${rootDottedName.replace(
+								).replace(/\s|\./g, '_')}-${rootDottedName.replace(
 									/\s|\./g,
-									''
+									'_'
 								)}`}
 							>
 								{node.title}{' '}

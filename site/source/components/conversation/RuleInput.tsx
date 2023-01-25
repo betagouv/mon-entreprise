@@ -111,7 +111,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		engine: engineValue,
 		...props,
 		// Les espaces ne sont pas autorisés dans un id, les points sont assimilés à une déclaration de class CSS par Cypress
-		id: props?.id?.replace(/\s|\./g, '') ?? dottedName.replace(/\s|\./g, ''),
+		id: props?.id?.replace(/\s|\.]/g, '_') ?? dottedName.replace(/\s|\./g, '_'),
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 

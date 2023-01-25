@@ -58,7 +58,7 @@ function CheckBoxRule({ node, engine, onChange }: CheckBoxRuleProps) {
 		<>
 			<Checkbox
 				defaultSelected={evaluation.nodeValue === true}
-				id={`checkbox-input-${node.dottedName.replace(/\s|\./g, '')}`}
+				id={`checkbox-input-${node.dottedName.replace(/\s|\./g, '_')}`}
 				label={node.title}
 				onChange={(isSelected) => onChange(isSelected)}
 			/>
