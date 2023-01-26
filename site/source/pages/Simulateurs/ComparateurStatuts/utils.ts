@@ -11,11 +11,11 @@ export type ValueType =
 export type OptionType = {
 	type: 'sasu' | 'ei' | 'ae'
 	value?: ValueType
-	engine: Engine<DottedName>
-	documentationPath: string
+	engine?: Engine<DottedName>
+	documentationPath?: string
 }
 export const getBestOption = (options: OptionType[]) => {
-	const sortedOptions = options.sort(
+	const sortedOptions = [...options].sort(
 		(option1: OptionType, option2: OptionType) => {
 			if (option1.value === null || option1.value === undefined) {
 				return 1

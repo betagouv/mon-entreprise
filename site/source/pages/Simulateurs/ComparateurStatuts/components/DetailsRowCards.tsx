@@ -1,4 +1,4 @@
-import Engine, { formatValue } from 'publicodes'
+import Engine from 'publicodes'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 
@@ -47,42 +47,33 @@ const DetailsRowCards = ({
 		valeur: dottedName,
 		...(unit && { unité: unit }),
 	})
-	const assimiléValue = formatValue(assimiléEvaluation, {
-		precision: 0,
-	}) as string
 
 	const indépendantEvaluation = indépendantEngine.evaluate({
 		valeur: dottedName,
 		...(unit && { unité: unit }),
 	})
-	const indépendantValue = formatValue(indépendantEvaluation, {
-		precision: 0,
-	}) as string
+
 	const autoEntrepreneurEvaluation = autoEntrepreneurEngine.evaluate({
 		valeur: dottedName,
 		...(unit && { unité: unit }),
 	})
 
-	const autoEntrepreneurValue = formatValue(autoEntrepreneurEvaluation, {
-		precision: 0,
-	}) as string
-
 	const options: OptionType[] = [
 		{
 			type: 'sasu',
-			value: Math.round(assimiléEvaluation.nodeValue),
+			value: Math.round(assimiléEvaluation.nodeValue as number),
 			engine: assimiléEngine,
 			documentationPath: '/simulateurs/comparaison-régimes-sociaux/SASU',
 		},
 		{
 			type: 'ei',
-			value: Math.round(indépendantEvaluation.nodeValue),
+			value: Math.round(indépendantEvaluation.nodeValue as number),
 			engine: indépendantEngine,
 			documentationPath: '/simulateurs/comparaison-régimes-sociaux/EI',
 		},
 		{
 			type: 'ae',
-			value: Math.round(autoEntrepreneurEvaluation.nodeValue),
+			value: Math.round(autoEntrepreneurEvaluation.nodeValue as number),
 			engine: autoEntrepreneurEngine,
 			documentationPath:
 				'/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur',
@@ -91,8 +82,8 @@ const DetailsRowCards = ({
 
 	const bestOptionValue = bestOption ?? getBestOption(options)
 
-	const sortedStatus = options
-		.reduce((acc: any[], option: OptionType) => {
+	const sortedStatus = [...options]
+		.reduce((acc: OptionType[][], option: OptionType) => {
 			const newAcc = [...acc]
 			const sameValues = options.filter(
 				(optionFiltered) => optionFiltered.value === option.value
@@ -109,9 +100,8 @@ const DetailsRowCards = ({
 			}
 
 			return newAcc
-		}, [])
-		.filter((arrayOfStatus: [OptionType[]]) => arrayOfStatus.length > 0)
-	console.log(sortedStatus)
+		}, [] as OptionType[][])
+		.filter((arrayOfStatus: OptionType[]) => arrayOfStatus.length > 0)
 
 	return (
 		<Grid container spacing={4}>
@@ -181,436 +171,6 @@ const DetailsRowCards = ({
 			})}
 		</Grid>
 	)
-	/*
-	if (
-		assimiléValue === indépendantValue &&
-		indépendantValue === autoEntrepreneurValue
-	) {
-		return (
-			<Grid container spacing={4}>
-				<Grid item xs={12} lg={12}>
-					<StatusCard
-						status={['sasu', 'ei', 'ae']}
-						footerContent={footers?.sasu}
-					>
-						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
-							<DisabledLabel>Ne s'applique pas</DisabledLabel>
-						</WhenNotApplicable>
-						<WhenApplicable dottedName={dottedName} engine={assimiléEngine}>
-							<StyledDiv>
-								<span>
-									<Value
-										linkToRule={false}
-										expression={dottedName}
-										engine={assimiléEngine}
-										precision={0}
-										unit={unit}
-									/>
-									{label && ' '}
-									{label && label}
-								</span>
-								<StyledRuleLink
-									documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
-									dottedName={dottedName}
-									engine={assimiléEngine}
-								>
-									<HelpIcon />
-								</StyledRuleLink>
-								{warnings?.sasu && warnings?.sasu}
-							</StyledDiv>
-							{evolutionDottedName && (
-								<Precisions>
-									<Value
-										linkToRule={false}
-										expression={evolutionDottedName}
-										engine={assimiléEngine}
-										precision={0}
-										unit={unit}
-									/>{' '}
-									{evolutionLabel}
-								</Precisions>
-							)}
-							{!evolutionDottedName && evolutionLabel && (
-								<Precisions>{evolutionLabel}</Precisions>
-							)}
-						</WhenApplicable>
-					</StatusCard>
-				</Grid>
-			</Grid>
-		)
-	}
-
-	if (assimiléValue === indépendantValue) {
-		return (
-			<Grid container spacing={4}>
-				<Grid item xs={12} lg={8}>
-					<StatusCard
-						status={['sasu', 'ei']}
-						isBestOption={bestOptionValue === 'sasu'}
-						footerContent={footers?.sasu}
-					>
-						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
-							<DisabledLabel>Ne s'applique pas</DisabledLabel>
-						</WhenNotApplicable>
-						<WhenApplicable dottedName={dottedName} engine={assimiléEngine}>
-							<span>
-								<Value
-									linkToRule={false}
-									expression={dottedName}
-									engine={assimiléEngine}
-									precision={0}
-									unit={unit}
-								/>
-								{label && ' '}
-								{label && label}
-							</span>
-							<StyledRuleLink
-								documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
-								dottedName={dottedName}
-								engine={assimiléEngine}
-							>
-								<HelpIcon />
-							</StyledRuleLink>
-							{warnings?.sasu || warnings?.ei
-								? warnings?.sasu
-									? warnings?.sasu
-									: warnings?.ei
-								: ''}
-							{evolutionDottedName && (
-								<Precisions>
-									<Value
-										linkToRule={false}
-										expression={evolutionDottedName}
-										engine={assimiléEngine}
-										precision={0}
-										unit={unit}
-									/>{' '}
-									{evolutionLabel}
-								</Precisions>
-							)}
-							{!evolutionDottedName && evolutionLabel && (
-								<Precisions>{evolutionLabel}</Precisions>
-							)}
-						</WhenApplicable>
-					</StatusCard>
-				</Grid>
-				<Grid item xs={12} lg={4}>
-					<StatusCard
-						status={['ae']}
-						footerContent={footers?.ei}
-						isBestOption={bestOptionValue === 'ae'}
-					>
-						<WhenNotApplicable
-							dottedName={dottedName}
-							engine={autoEntrepreneurEngine}
-						>
-							<DisabledLabel>Ne s'applique pas</DisabledLabel>
-						</WhenNotApplicable>
-						<WhenApplicable
-							dottedName={dottedName}
-							engine={autoEntrepreneurEngine}
-						>
-							<span>
-								<Value
-									linkToRule={false}
-									expression={dottedName}
-									engine={autoEntrepreneurEngine}
-									precision={0}
-									unit={unit}
-								/>
-								{label && ' '}
-								{label && label}
-							</span>
-							<StyledRuleLink
-								documentationPath="/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur"
-								dottedName={dottedName}
-								engine={autoEntrepreneurEngine}
-							>
-								<HelpIcon />
-							</StyledRuleLink>
-							{warnings?.ae && warnings?.ae}
-							{evolutionDottedName && (
-								<Precisions>
-									<Value
-										linkToRule={false}
-										expression={evolutionDottedName}
-										engine={autoEntrepreneurEngine}
-										precision={0}
-										unit={unit}
-									/>{' '}
-									{evolutionLabel}
-								</Precisions>
-							)}
-							{!evolutionDottedName && evolutionLabel && (
-								<Precisions>{evolutionLabel}</Precisions>
-							)}
-						</WhenApplicable>
-					</StatusCard>
-				</Grid>
-			</Grid>
-		)
-	}
-
-	if (indépendantValue === autoEntrepreneurValue) {
-		return (
-			<Grid container spacing={4}>
-				<Grid item xs={12} lg={4}>
-					<StatusCard
-						status={['sasu']}
-						footerContent={footers?.sasu}
-						isBestOption={bestOptionValue === 'sasu'}
-					>
-						<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
-							<DisabledLabel>Ne s'applique pas</DisabledLabel>
-						</WhenNotApplicable>
-						<WhenApplicable dottedName={dottedName} engine={assimiléEngine}>
-							<span>
-								<Value
-									linkToRule={false}
-									expression={dottedName}
-									engine={assimiléEngine}
-									precision={0}
-									unit={unit}
-								/>
-								{label && ' '}
-								{label && label}
-							</span>
-							<StyledRuleLink
-								dottedName={dottedName}
-								engine={assimiléEngine}
-								documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
-							>
-								<HelpIcon />
-							</StyledRuleLink>
-							{warnings?.sasu && warnings?.sasu}
-							{evolutionDottedName && (
-								<Precisions>
-									<Value
-										linkToRule={false}
-										expression={evolutionDottedName}
-										engine={assimiléEngine}
-										precision={0}
-										unit={unit}
-									/>{' '}
-									{evolutionLabel}
-								</Precisions>
-							)}
-							{!evolutionDottedName && evolutionLabel && (
-								<Precisions>{evolutionLabel}</Precisions>
-							)}
-						</WhenApplicable>
-					</StatusCard>
-				</Grid>
-				<Grid item xs={12} lg={8}>
-					<StatusCard
-						status={['ei', 'ae']}
-						footerContent={footers?.ei}
-						isBestOption={bestOptionValue === 'ei'}
-					>
-						<WhenNotApplicable
-							dottedName={dottedName}
-							engine={indépendantEngine}
-						>
-							<DisabledLabel>Ne s'applique pas</DisabledLabel>
-						</WhenNotApplicable>
-						<WhenApplicable dottedName={dottedName} engine={indépendantEngine}>
-							<span>
-								<Value
-									linkToRule={false}
-									expression={dottedName}
-									engine={indépendantEngine}
-									precision={0}
-									unit={unit}
-								/>
-								{label && ' '}
-								{label && label}
-							</span>
-							<StyledRuleLink
-								dottedName={dottedName}
-								engine={indépendantEngine}
-								documentationPath="/simulateurs/comparaison-régimes-sociaux/EI"
-							>
-								<HelpIcon />
-							</StyledRuleLink>
-							{warnings?.ei || warnings?.ae
-								? warnings?.ei
-									? warnings?.ei
-									: warnings?.ae
-								: ''}
-							{evolutionDottedName && (
-								<Precisions>
-									<Value
-										linkToRule={false}
-										expression={evolutionDottedName}
-										engine={indépendantEngine}
-										precision={0}
-										unit={unit}
-									/>{' '}
-									{evolutionLabel}
-								</Precisions>
-							)}
-							{!evolutionDottedName && evolutionLabel && (
-								<Precisions>{evolutionLabel}</Precisions>
-							)}
-						</WhenApplicable>
-					</StatusCard>
-				</Grid>
-			</Grid>
-		)
-	}
-
-	return (
-		<Grid container spacing={4}>
-			<Grid item xs={12} lg={4}>
-				<StatusCard
-					status={['sasu']}
-					footerContent={footers?.sasu}
-					isBestOption={bestOptionValue === 'sasu'}
-				>
-					<WhenNotApplicable dottedName={dottedName} engine={assimiléEngine}>
-						<DisabledLabel>Ne s'applique pas</DisabledLabel>
-					</WhenNotApplicable>
-					<WhenApplicable dottedName={dottedName} engine={assimiléEngine}>
-						<span>
-							<Value
-								linkToRule={false}
-								expression={dottedName}
-								engine={assimiléEngine}
-								precision={0}
-								unit={unit}
-							/>
-							{label && ' '}
-							{label && label}
-						</span>
-						<StyledRuleLink
-							dottedName={dottedName}
-							engine={assimiléEngine}
-							documentationPath="/simulateurs/comparaison-régimes-sociaux/SASU"
-						>
-							<HelpIcon />
-						</StyledRuleLink>
-						{warnings?.sasu && warnings?.sasu}
-						{evolutionDottedName && (
-							<Precisions>
-								<Value
-									linkToRule={false}
-									expression={evolutionDottedName}
-									engine={assimiléEngine}
-									precision={0}
-									unit={unit}
-								/>{' '}
-								{evolutionLabel}
-							</Precisions>
-						)}
-						{!evolutionDottedName && evolutionLabel && (
-							<Precisions>{evolutionLabel}</Precisions>
-						)}
-					</WhenApplicable>
-				</StatusCard>
-			</Grid>
-			<Grid item xs={12} lg={4}>
-				<StatusCard
-					status={['ei']}
-					footerContent={footers?.ei}
-					isBestOption={bestOptionValue === 'ei'}
-				>
-					<WhenNotApplicable dottedName={dottedName} engine={indépendantEngine}>
-						<DisabledLabel>Ne s'applique pas</DisabledLabel>
-					</WhenNotApplicable>
-					<WhenApplicable dottedName={dottedName} engine={indépendantEngine}>
-						<span>
-							<Value
-								linkToRule={false}
-								expression={dottedName}
-								engine={indépendantEngine}
-								precision={0}
-								unit={unit}
-							/>
-							{label && ' '}
-							{label && label}
-						</span>
-						<StyledRuleLink
-							dottedName={dottedName}
-							engine={indépendantEngine}
-							documentationPath="/simulateurs/comparaison-régimes-sociaux/EI"
-						>
-							<HelpIcon />
-						</StyledRuleLink>
-						{warnings?.ei && warnings?.ei}
-						{evolutionDottedName && (
-							<Precisions>
-								<Value
-									linkToRule={false}
-									expression={evolutionDottedName}
-									engine={indépendantEngine}
-									precision={0}
-									unit={unit}
-								/>{' '}
-								{evolutionLabel}
-							</Precisions>
-						)}
-						{!evolutionDottedName && evolutionLabel && (
-							<Precisions>{evolutionLabel}</Precisions>
-						)}
-					</WhenApplicable>
-				</StatusCard>
-			</Grid>
-			<Grid item xs={12} lg={4}>
-				<StatusCard
-					status={['ae']}
-					footerContent={footers?.ae}
-					isBestOption={bestOptionValue === 'ae'}
-				>
-					<WhenNotApplicable
-						dottedName={dottedName}
-						engine={autoEntrepreneurEngine}
-					>
-						<DisabledLabel>Ne s'applique pas</DisabledLabel>
-					</WhenNotApplicable>
-					<WhenApplicable
-						dottedName={dottedName}
-						engine={autoEntrepreneurEngine}
-					>
-						<span>
-							<Value
-								linkToRule={false}
-								expression={dottedName}
-								engine={autoEntrepreneurEngine}
-								precision={0}
-								unit={unit}
-							/>
-							{label && ' '}
-							{label && label}
-						</span>
-						<StyledRuleLink
-							dottedName={dottedName}
-							engine={autoEntrepreneurEngine}
-							documentationPath="/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur"
-						>
-							<HelpIcon />
-						</StyledRuleLink>
-						{warnings?.ae && warnings?.ae}
-						{evolutionDottedName && (
-							<Precisions>
-								<Value
-									linkToRule={false}
-									expression={evolutionDottedName}
-									engine={autoEntrepreneurEngine}
-									precision={0}
-									unit={unit}
-								/>{' '}
-								{evolutionLabel}
-							</Precisions>
-						)}
-						{!evolutionDottedName && evolutionLabel && (
-							<Precisions>{evolutionLabel}</Precisions>
-						)}
-					</WhenApplicable>
-				</StatusCard>
-			</Grid>
-		</Grid>
-	)
-	*/
 }
 
 const StyledRuleLink = styled(RuleLink)`
