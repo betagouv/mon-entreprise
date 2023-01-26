@@ -25,5 +25,5 @@ const WarningTooltip = ({
 export default WarningTooltip
 
 const StyledWarningIcon = styled(WarningIcon)`
-	margin-left: ${({ theme }) => theme.spacings.sm};
+	margin-left: 0.5rem;
 `

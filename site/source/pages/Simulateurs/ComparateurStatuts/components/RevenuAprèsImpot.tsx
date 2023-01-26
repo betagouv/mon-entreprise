@@ -75,7 +75,11 @@ const RevenuAprèsImpot = ({
 										isChecked: assimiléEngine.evaluate({
 											valeur: 'dirigeant . exonérations . ACRE',
 										}).nodeValue as boolean,
-										label: t("Tient compte de l'ACRE"),
+										label: assimiléEngine.evaluate({
+											valeur: 'dirigeant . exonérations . ACRE',
+										}).nodeValue
+											? t("Tient compte de l'ACRE")
+											: t("Ne prends pas l'ACRE en compte"),
 									},
 									{
 										isChecked: true,
@@ -123,10 +127,14 @@ const RevenuAprèsImpot = ({
 							<CheckList
 								items={[
 									{
-										isChecked: assimiléEngine.evaluate({
+										isChecked: indépendantEngine.evaluate({
 											valeur: 'dirigeant . exonérations . ACRE',
 										}).nodeValue as boolean,
-										label: t("Tient compte de l'ACRE"),
+										label: indépendantEngine.evaluate({
+											valeur: 'dirigeant . exonérations . ACRE',
+										}).nodeValue
+											? t("Tient compte de l'ACRE")
+											: t("Ne prends pas l'ACRE en compte"),
 									},
 									{
 										isChecked: true,

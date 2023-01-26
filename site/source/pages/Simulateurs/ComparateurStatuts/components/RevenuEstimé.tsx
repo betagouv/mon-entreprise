@@ -49,7 +49,8 @@ const RevenuEstimé = () => {
 					/>
 				</StyledGrid>
 				<GridEditLink item xs={12} lg={3}>
-					<StyledLink
+					<StyledA
+						as={StyledLink}
 						href={`${fullURL}#simulation-comparateur`}
 						$noUnderline
 						css={`
@@ -58,7 +59,7 @@ const RevenuEstimé = () => {
 						`}
 					>
 						<StyledEditIcon /> Modifier les informations
-					</StyledLink>
+					</StyledA>
 				</GridEditLink>
 			</Grid>
 		</CardContainer>
@@ -112,6 +113,10 @@ const GridEditLink = styled(Grid)`
 		padding-top: ${({ theme }) => theme.spacings.lg};
 		justify-content: center;
 	}
+`
+
+const StyledA = styled.a`
+	text-decoration: none;
 `
 
 export default RevenuEstimé

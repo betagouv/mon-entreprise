@@ -42,6 +42,9 @@ const StyledRTooltip = styled(RTooltip)`
 	font-size: 0.75rem;
 `
 const StyledSpan = styled.span`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	.react-tooltip {
 		opacity: 1 !important;
 		background: ${({ theme }) => theme.colors.extended.grey[800]};

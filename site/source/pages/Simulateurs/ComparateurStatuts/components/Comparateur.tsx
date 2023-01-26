@@ -1,6 +1,6 @@
 import Engine from 'publicodes'
 import { useTranslation } from 'react-i18next'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { Route, Routes, redirect, useNavigate } from 'react-router-dom'
 
 import { DottedName } from '@/../../modele-social'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -11,6 +11,7 @@ import Simulation, {
 import { Spacing } from '@/design-system/layout'
 import Popover from '@/design-system/popover/Popover'
 import Documentation from '@/pages/Documentation'
+import { useSitePaths } from '@/sitePaths'
 
 import Détails from './Détails'
 import Résultats from './Résultats'
@@ -23,6 +24,8 @@ function Comparateur({ engines }: ComparateurProps) {
 	const { t } = useTranslation()
 	const navigate = useNavigate()
 	const [assimiléEngine, autoEntrepreneurEngine, indépendantEngine] = engines
+
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<>
@@ -57,7 +60,9 @@ function Comparateur({ engines }: ComparateurProps) {
 								isOpen
 								isDismissable
 								onClose={() => {
-									navigate(-1)
+									navigate(absoluteSitePaths.simulateurs.comparaison, {
+										replace: true,
+									})
 								}}
 							>
 								<Documentation
@@ -76,7 +81,9 @@ function Comparateur({ engines }: ComparateurProps) {
 								isOpen
 								isDismissable
 								onClose={() => {
-									navigate(-1)
+									navigate(absoluteSitePaths.simulateurs.comparaison, {
+										replace: true,
+									})
 								}}
 							>
 								<Documentation
@@ -95,7 +102,9 @@ function Comparateur({ engines }: ComparateurProps) {
 								isOpen
 								isDismissable
 								onClose={() => {
-									navigate(-1)
+									navigate(absoluteSitePaths.simulateurs.comparaison, {
+										replace: true,
+									})
 								}}
 							>
 								<Documentation
