@@ -106,34 +106,41 @@ const DetailsRowCards = ({
 	return (
 		<Grid container spacing={4}>
 			{sortedStatus.map((statusArray: OptionType[]) => {
-				const option = statusArray[0]
+				const statusObject: OptionType = statusArray[0]
 
 				const { sizeXs, sizeLg } = getGridSizes(statusArray)
 
 				return (
 					<Grid
-						key={`${dottedName}-${option.type}`}
+						key={`${dottedName}-${statusObject.type}`}
 						item
 						xs={sizeXs}
 						lg={sizeLg}
 					>
 						<StatusCard
 							status={getStatusLabelsArray(statusArray)}
-							footerContent={footers?.[option.type]}
+							footerContent={footers?.[statusObject.type]}
 							isBestOption={
-								statusArray.length !== 3 && bestOptionValue === option.type
+								statusArray.length !== 3 &&
+								bestOptionValue === statusObject.type
 							}
 						>
-							<WhenNotApplicable dottedName={dottedName} engine={option.engine}>
+							<WhenNotApplicable
+								dottedName={dottedName}
+								engine={statusObject.engine}
+							>
 								<DisabledLabel>Ne s'applique pas</DisabledLabel>
 							</WhenNotApplicable>
-							<WhenApplicable dottedName={dottedName} engine={option.engine}>
+							<WhenApplicable
+								dottedName={dottedName}
+								engine={statusObject.engine}
+							>
 								<StyledDiv>
 									<span>
 										<Value
 											linkToRule={false}
 											expression={dottedName}
-											engine={option.engine}
+											engine={statusObject.engine}
 											precision={0}
 											unit={unit}
 										/>
@@ -141,20 +148,21 @@ const DetailsRowCards = ({
 										{label && label}
 									</span>
 									<StyledRuleLink
-										documentationPath={option.documentationPath}
+										documentationPath={statusObject.documentationPath}
 										dottedName={dottedName}
-										engine={option.engine}
+										engine={statusObject.engine}
 									>
 										<HelpIcon />
 									</StyledRuleLink>
-									{warnings?.[option.type] && warnings?.[option.type]}
+									{warnings?.[statusObject.type] &&
+										warnings?.[statusObject.type]}
 								</StyledDiv>
 								{evolutionDottedName && (
 									<Precisions>
 										<Value
 											linkToRule={false}
 											expression={evolutionDottedName}
-											engine={option.engine}
+											engine={statusObject.engine}
 											precision={0}
 											unit={unit}
 										/>{' '}
