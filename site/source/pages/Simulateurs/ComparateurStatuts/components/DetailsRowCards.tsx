@@ -147,7 +147,7 @@ const DetailsRowCards = ({
 									>
 										<HelpIcon />
 									</StyledRuleLink>
-									{warnings?.sasu && warnings?.sasu}
+									{warnings?.[option.type] && warnings?.[option.type]}
 								</StyledDiv>
 								{evolutionDottedName && (
 									<Precisions>
