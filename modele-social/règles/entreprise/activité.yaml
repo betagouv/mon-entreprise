@@ -131,7 +131,6 @@ entreprise . activités:
       par défaut:
         variable manquante: entreprise . activités
         valeur: non
-
       question: Avez-vous une activité commerciale ?
       description: |
         Votre activité est commerciale si vous êtes dans l'un des cas suivants :
@@ -147,7 +146,6 @@ entreprise . activités:
       par défaut:
         variable manquante: entreprise . activités
         valeur: non
-
       question: Avez-vous une activité artisanale ?
       description: |
         Pour être artisan, vous devez répondre aux 3 critères suivants :
@@ -180,6 +178,7 @@ entreprise . activités:
         Comment savoir si votre activité est agricole ?: 'https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-4situation1'
 
     libérale . réglementée:
+      applicable si: activité . nature . libérale
       question: Est-ce une activité libérale réglementée ?
       par défaut: non
       description: |
@@ -194,6 +193,7 @@ entreprise . activités:
         Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
     commerciale . agent commercial:
+      applicable si: activité . nature . commerciale
       description: |
         L’agent commercial négocie et/ou conclut des contrats de vente, d’achat, de location ou de prestation de services pour le compte d’un tiers (producteur, industriel, commerçant, etc.). Il s’agit donc d’un intermédiaire de commerce qui, contrairement au VRP (vendeur, représentant et placier), est un professionnel indépendant.
       question: Exercez-vous votre activité en tant qu'agent commercial ?
@@ -273,8 +273,8 @@ entreprise . activités . service ou vente:
   non applicable si: revenus mixtes
   applicable si:
     une de ces conditions:
-      - activités . artisanale
-      - activités . commerciale
+      - activités . nature . artisanale
+      - activités . nature . commerciale
   question: Quelle est le type d'activité principale de l'entreprise ?
   formule:
     une possibilité:
@@ -303,6 +303,7 @@ entreprise . activités . service ou vente:
         page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
 
 entreprise . activités . commerciale . débit de tabac:
+  applicable si: activité . nature . commerciale
   experimental: oui
   question: Exercez-vous une activité de vente de tabac ?
   par défaut: non

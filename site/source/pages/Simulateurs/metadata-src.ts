@@ -452,7 +452,7 @@ const getMetadataSrc = (t: TFunction) => {
 			pathId: 'gérer.déclarationIndépendant.beta.index',
 			shortName: t(
 				'pages.gérer.declaration_revenu_indépendant.shortname',
-				'Assistant déclaration de revenu'
+				'Aide au remplissage de la déclaration de revenu'
 			),
 			title: t(
 				'pages.gérer.declaration_revenu_indépendant.title',

@@ -65,7 +65,6 @@ export default function IndépendantSimulation() {
 									)
 								}}
 							/>
-
 							<PeriodSwitch />
 						</>
 					}

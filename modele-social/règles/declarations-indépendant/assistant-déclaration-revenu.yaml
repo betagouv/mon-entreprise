@@ -2,7 +2,7 @@ DRI:
   experimental: oui
   valeur: non
   remplace:
-    - règle: entreprise . catégorie juridique . EI . auto-entrepreneur
+    - règle: entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut
       par: non
 
 DRI . cas exclus:
@@ -11,10 +11,8 @@ DRI . cas exclus:
       - entreprise . catégorie juridique . EI . auto-entrepreneur
       - entreprise . catégorie juridique . SAS
       - entreprise . catégorie juridique . autre
-      - toutes ces conditions:
-          - entreprise . catégorie juridique . SARL
-          - entreprise . catégorie juridique . SARL . unipersonnelle = non
-      - entreprise . date de création >= 01/2022
+      - entreprise . catégorie juridique . SARL . SARL
+      - entreprise . date de création >= 01/2023
       - entreprise . imposition . IR . type de bénéfices . BA
 
   variations:
@@ -49,9 +47,7 @@ DRI . cas exclus:
           {{ textes . autres outils }}
     - si:
         une de ces conditions:
-          - toutes ces conditions:
-              - entreprise . catégorie juridique . SARL
-              - entreprise . catégorie juridique . SARL . unipersonnelle = non
+          - entreprise . catégorie juridique . SARL . SARL
           - entreprise . catégorie juridique . SELARL
           - entreprise . catégorie juridique . SELAS
       alors:
@@ -61,10 +57,10 @@ DRI . cas exclus:
           {{ textes . désolé }}
 
           {{ textes . autres outils }}
-    - si: entreprise . date de création >= 01/2022
+    - si: entreprise . date de création >= 01/2023
       alors:
         texte: |-
-          ### Vous avez créé votre entreprise en 2022
+          ### Vous avez créé votre entreprise en 2023
 
           Les revenus de cette entreprise seront à déclarer l'année prochaine.
 
@@ -107,7 +103,7 @@ DRI . accompagnement imposition . type:
       alors:
         texte: |-
           Votre entreprise est une **entreprise individuelle**. {{ situation }}
-    - si: entreprise . catégorie juridique . SARL . unipersonnelle
+    - si: entreprise . catégorie juridique . SARL . EURL
       alors:
         texte: |-
           Votre entreprise est une **EURL**. {{ situation }}
@@ -122,7 +118,7 @@ DRI . accompagnement imposition . type . situation:
         texte: |-
           Par défaut, ce type d'entreprise est imposée à l'**impôt sur le revenu** (IR),
           mais il y a souvent des exceptions.
-    - si: entreprise . catégorie juridique . SARL . unipersonnelle
+    - si: entreprise . catégorie juridique . SARL . EURL
       alors:
         texte: |-
           Par défaut, ce type d'entreprise est imposée à l'**impôt sur le revenu** (IR),
@@ -143,7 +139,7 @@ DRI . accompagnement imposition . type . exceptions:
           {{ textes . comptable }}
 
           [En savoir plus](https://entreprendre.service-public.fr/vosdroits/F36380)
-    - si: entreprise . catégorie juridique . SARL . unipersonnelle
+    - si: entreprise . catégorie juridique . SARL . EURL
       alors:
         texte: |-
           Par défaut les EURL sont imposées à l'impôt sur le revenu.

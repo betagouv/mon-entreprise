@@ -14,9 +14,10 @@ import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
+import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 import {
 	answeredQuestionsSelector,
@@ -97,8 +98,8 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 						<PopoverConfirm
 							small
 							trigger={(buttonProps) => (
-								<Button size="XS" light {...buttonProps}>
-									<Emoji emoji="🗑" /> <Trans>Effacer mes réponses</Trans>
+								<Button {...buttonProps}>
+									<Trans>Effacer mes réponses</Trans>
 								</Button>
 							)}
 							onConfirm={() => {
@@ -106,7 +107,9 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 							}}
 							title={t('Êtes-vous sûr de vouloir effacer vos réponses ?')}
 						>
-							<Trans>Cette opération n'est pas réversible.</Trans>
+							<Intro>
+								<Trans>Cette opération n'est pas réversible.</Trans>
+							</Intro>
 						</PopoverConfirm>
 					</div>
 				</>
@@ -129,6 +132,63 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					<H3>
 						<Trans>Mon entreprise</Trans>
 					</H3>
+					<div className="print-hidden">
+						<Message type="secondary" border={false} icon>
+							<Body>
+								<div
+									css={`
+										display: flex;
+										align-items: center;
+									`}
+								>
+									<span
+										css={`
+											flex-shrink: 1;
+										`}
+									>
+										Les réponses liées à l'entreprise sont{' '}
+										<Strong>automatiquement sauvegardées</Strong> entre les
+										simulations.
+									</span>
+									<div
+										css={`
+											flex: 1;
+											min-width: fit-content;
+											text-align: right;
+										`}
+									>
+										<PopoverConfirm
+											small
+											trigger={(buttonProps) => (
+												<Button
+													light
+													color="secondary"
+													size="XS"
+													{...buttonProps}
+												>
+													<Trans>Tout réinitialiser</Trans>{' '}
+												</Button>
+											)}
+											onConfirm={() => {
+												dispatch(resetSimulation())
+												dispatch(resetCompany())
+											}}
+											title={t(
+												'Attention, vos données sauvegardées seront supprimées de manière définitive.'
+											)}
+										></PopoverConfirm>
+									</div>
+								</div>
+							</Body>
+						</Message>
+						<Spacing xs />
+					</div>
+					<div
+						className="print-hidden"
+						css={`
+							text-align: center;
+						`}
+					></div>
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
 					<Spacing md />
 					<div className="print-hidden">
@@ -147,28 +207,6 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 								Annuaire des Entreprises.
 							</Link>
 						</Body>
-
-						<Message type="info" border={false}>
-							<Body>
-								Les réponses liées à l'entreprise sont automatiquement
-								sauvegardées d'une simulation à l'autre.{' '}
-								<PopoverConfirm
-									small
-									trigger={(buttonProps) => (
-										<Link {...buttonProps}>
-											<Trans>Supprimer les données sauvegardées.</Trans>{' '}
-										</Link>
-									)}
-									onConfirm={() => {
-										dispatch(resetSimulation())
-										dispatch(resetCompany())
-									}}
-									title={t(
-										'Attention, vos données sauvegardées seront supprimées de manière définitive.'
-									)}
-								></PopoverConfirm>
-							</Body>
-						</Message>
 					</div>
 				</>
 			)}

@@ -7,6 +7,7 @@ import { Palette, SmallPalette } from '@/types/styled'
 
 import { Emoji } from '../emoji'
 import { ErrorIcon, InfoIcon, ReturnIcon, SuccessIcon } from '../icons'
+import { StyledLink } from '../typography/link'
 import { Body } from '../typography/paragraphs'
 
 export type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
@@ -118,8 +119,7 @@ const StyledMessage = styled.div<StyledMessageProps>`
 			& li {
 				color: ${({ theme }) => theme.colors.extended.grey[800]};
 			}
-			& a,
-			& button {
+			& ${StyledLink} {
 				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
 			}
 		`

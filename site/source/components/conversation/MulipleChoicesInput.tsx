@@ -1,5 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, RuleNode } from 'publicodes'
+import { Fragment } from 'react'
 
 import { Checkbox } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
@@ -9,7 +10,7 @@ import { InputProps } from './RuleInput'
 
 export function MultipleChoicesInput<Names extends string = DottedName>(
 	props: Omit<InputProps<Names>, 'onChange'> & {
-		choices: Array<RuleNode>
+		choices: Array<RuleNode<Names>>
 		onChange: (value: PublicodesExpression, name: Names) => void
 	}
 ) {
@@ -27,17 +28,13 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 	return (
 		<>
 			{props.choices.map((node) => (
-				<>
+				<Fragment key={node.dottedName}>
 					<CheckBoxRule
-						key={node.dottedName}
 						node={node}
-						onChange={(isSelected) =>
-							handleChange(isSelected, node.dottedName as Names)
-						}
+						onChange={(isSelected) => handleChange(isSelected, node.dottedName)}
 						engine={props.engine}
 					/>
-					<br />
-				</>
+				</Fragment>
 			))}
 		</>
 	)
@@ -68,6 +65,7 @@ function CheckBoxRule({ node, engine, onChange }: CheckBoxRuleProps) {
 				dottedName={node.dottedName as DottedName}
 				aria-label={`En savoir plus sur ${node.title}`}
 			/>
+			<br />
 		</>
 	)
 }

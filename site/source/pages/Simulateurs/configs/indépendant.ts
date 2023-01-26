@@ -45,6 +45,8 @@ export const configIndépendant: SimulationConfig = {
 			'entreprise . exercice . fin',
 			'entreprise . catégorie juridique',
 			'entreprise . imposition . régime',
+			'entreprise . activités',
+			'entreprise . activités . revenus mixtes',
 		],
 		'non prioritaires': [
 			'dirigeant . indépendant . cotisations facultatives',

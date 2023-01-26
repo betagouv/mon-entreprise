@@ -150,10 +150,6 @@ export default function Simulateurs() {
 						role="listitem"
 					/>
 					<SimulateurCard
-						{...simulators['exonération-covid']}
-						role="listitem"
-					/>
-					<SimulateurCard
 						{...simulators['déclaration-revenu-indépendant-beta']}
 						role="listitem"
 					/>

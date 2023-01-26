@@ -3,11 +3,7 @@ dirigeant . gérant minoritaire:
   experimental: oui
   titre: Gérant minoritaire ou égalitaire
   question: Êtes-vous gérant minoritaire ou égalitaire de votre entreprise ?
-  non applicable si:
-    une de ces conditions:
-      - entreprise . catégorie juridique . EI
-      - entreprise . catégorie juridique . SARL . unipersonnelle
-      - entreprise . catégorie juridique . SAS . unipersonnelle
+  applicable si: entreprise . associés . multiples
   par défaut: non
 
 dirigeant . régime social:

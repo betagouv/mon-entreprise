@@ -7,7 +7,9 @@ import { MetadataSrc } from '../metadata-src'
 const config: SimulationConfig = {
 	'objectifs exclusifs': [],
 	objectifs: ['entreprise . coût formalités . création'],
-	questions: {},
+	questions: {
+		'liste noire': ['entreprise . activité . nature'],
+	},
 	// 'unité par défaut': '€/mois',
 	situation: {},
 }
@@ -20,13 +22,8 @@ export const coutCreationEntreprise = (
 	config,
 	meta: {
 		...pureSimulatorsData['coût-création-entreprise']?.meta,
-		// ogImage: ,
 	},
 	path: sitePaths.simulateurs['coût-création-entreprise'],
 	component: CoutCreationEntreprise,
-	seoExplanations: (
-		<>Vive le SEO</>
-		// 	<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
-		// 	</Trans>
-	),
+	seoExplanations: <></>,
 })
