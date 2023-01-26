@@ -100,7 +100,9 @@ function Results({
 			<Message type="info" icon>
 				<Body>
 					<Strong>
-						<Trans>Aucune entreprise correspondante trouvée</Trans>
+						<Trans>
+							Nous n’avons pas trouvé de résultat pour cette entreprise.
+						</Trans>
 					</Strong>
 				</Body>
 				<Body>
