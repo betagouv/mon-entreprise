@@ -93,7 +93,7 @@ describe('Test prerender', function () {
 
 					cy.contains('a', 'Employee')
 					cy.contains('a', 'Auto-entrepreneur')
-					cy.contains('a', 'Liberal profession')
+					cy.contains('a', 'Status Comparison')
 					cy.contains('a', 'Discover all the simulators and assistants')
 				},
 			},
