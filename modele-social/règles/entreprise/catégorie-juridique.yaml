@@ -45,6 +45,8 @@ entreprise . catégorie juridique . EI . auto-entrepreneur:
       par: "'micro-entreprise'"
     - règle: entreprise . imposition
       par: "'IR'"
+  meta:
+    visible si non applicable: oui
 
 ### (niveau 1 code 5)	Société commerciale ###
 
@@ -63,6 +65,8 @@ entreprise . catégorie juridique . SARL . unipersonnelle:
   question: Votre entreprise est-elle une EURL ?
   # par défaut: oui
   valeur: catégorie juridique = 'SARL . unipersonnelle'
+  meta:
+    visible si non applicable: oui
 
 entreprise . catégorie juridique . SA à conseil d'administration:
   titre: Société Anonyme à conseil d'administration
@@ -89,6 +93,8 @@ entreprise . catégorie juridique . SAS . unipersonnelle:
   question: Votre entreprise est-elle une SASU ?
   # par défaut: oui
   valeur: catégorie juridique = 'SAS . unipersonnelle'
+  meta:
+    visible si non applicable: oui
 
 ### (niveau 1 code 6)	Autre personne morale immatriculée au RCS ###
 
