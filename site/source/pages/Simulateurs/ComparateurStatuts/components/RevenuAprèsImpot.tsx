@@ -268,7 +268,7 @@ const RevenuAprèsImpot = ({
 															'entreprise . activité . nature'
 														).nodeValue
 													) === 'libérale'
-														? "entreprise . chiffre d'affaires . seuil micro . service"
+														? "entreprise . chiffre d'affaires . seuil micro . libérale"
 														: "entreprise . chiffre d'affaires . seuil micro . total"
 												}
 											/>{' '}
