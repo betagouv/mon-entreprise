@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 import { CircleIcon, HexagonIcon, TriangleIcon } from '@/design-system/icons'
+import { Grid } from '@/design-system/layout'
 import { Tag, TagType } from '@/design-system/tag'
 import { Tooltip } from '@/design-system/tooltip'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -43,19 +44,23 @@ const StatusCard = ({
 	return (
 		<StyledCardContainer $inert>
 			<CardBody>
-				{status.map((statusString) => (
-					<StyledTag
-						key={statusString}
-						$color={STATUS_DATA[statusString].color as TagType}
-						$size="sm"
-					>
-						<StatusTagIcon
-							style={{ marginRight: '0.25rem' }}
-							status={statusString}
-						/>
-						{STATUS_DATA[statusString].label}
-					</StyledTag>
-				))}
+				<Grid container spacing={1}>
+					{status.map((statusString) => (
+						<Grid item key={statusString}>
+							<StyledTag
+								key={statusString}
+								$color={STATUS_DATA[statusString].color as TagType}
+								$size="sm"
+							>
+								<StatusTagIcon
+									style={{ marginRight: '0.25rem' }}
+									status={statusString}
+								/>
+								{STATUS_DATA[statusString].label}
+							</StyledTag>
+						</Grid>
+					))}
+				</Grid>
 
 				<StyledBody>{children}</StyledBody>
 			</CardBody>
