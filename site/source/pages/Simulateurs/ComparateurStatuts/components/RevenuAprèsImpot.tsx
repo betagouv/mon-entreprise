@@ -12,7 +12,7 @@ import { H2 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 
-import { BestOption, getBestOption } from '../utils'
+import { OptionType, getBestOption } from '../utils'
 import AllerPlusLoinRevenus from './AllerPlusLoinRevenus'
 import StatusCard from './StatusCard'
 import WarningTooltip from './WarningTooltip'
@@ -40,7 +40,7 @@ const RevenuAprèsImpot = ({
 		unité: '€/mois',
 	}).nodeValue
 
-	const options: BestOption[] = [
+	const options: OptionType[] = [
 		{
 			type: 'sasu',
 			value: assimiléValue,

@@ -93,7 +93,9 @@ const AllerPlusLoinRevenus = ({
 					answerQuestion(DOTTEDNAME_ACRE, acreValuePassed ? 'oui' : 'non')
 				)
 
-				if (AEAcreValue !== null) {
+				if (!acreValuePassed) {
+					setIsAutoEntrepreneurACREEnabled(false)
+				} else if (AEAcreValue !== null) {
 					setIsAutoEntrepreneurACREEnabled(AEAcreValue)
 				}
 			}}
