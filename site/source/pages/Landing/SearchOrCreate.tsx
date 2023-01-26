@@ -101,7 +101,7 @@ export default function SearchOrCreate() {
 										}
 										aria-label={t(
 											'landing.choice.create.aria-label',
-											"Je n'ai pas encore d'entreprise, accéder au guide de création d'entreprise."
+											"J'aimerais créer mon entreprise, accéder au guide de création d'entreprise."
 										)}
 									>
 										<Emoji emoji="💡" />{' '}
@@ -116,10 +116,6 @@ export default function SearchOrCreate() {
 										role="link"
 										light
 										to={absoluteSitePaths.simulateurs.index}
-										aria-label={t(
-											'landing.choice.create.aria-label',
-											"Je n'ai pas encore d'entreprise, accéder au guide de création d'entreprise."
-										)}
 										color="secondary"
 									>
 										<Trans i18nKey="landing.choice.create.title">
