@@ -7,6 +7,7 @@ import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { ForceThemeProvider, ThemeType } from '@/contexts/DarkModeContext'
 import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
+import { Emoji } from '@/design-system/emoji'
 import { SearchField } from '@/design-system/field'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
@@ -110,18 +111,26 @@ function Results({
 				</Body>
 				<Body>
 					<Trans>
-						Vous pouvez également vérifier le{' '}
-						<Strong>statut de diffusion</Strong> de votre entreprise sur{' '}
+						Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET,
+						il se peut que vous ayez opté pour que{' '}
+						<Strong>
+							les informations de votre entreprise ne soient pas rendues
+							publiques
+						</Strong>
+						, auquel cas elle n'apparaitra pas dans les résultats de recherche.
+						Vous pouvez le vérifier sur{' '}
 						<StyledLink
 							aria-label={t("l'annuaire des entreprises, nouvelle fenêtre")}
 							href="https://annuaire-entreprises.data.gouv.fr/"
 						>
 							l'annuaire des entreprises
 						</StyledLink>
-						. Une entreprise ne diffusant pas ses informations{' '}
-						<Strong>n'apparaitra pas dans les résultats de recherche</Strong>,
-						auquel cas vous pouvez tout de même consulter nos simulateurs
-						ci-dessous.
+						.
+						<Body>
+							Si tel est le cas, pas d'inquiétude, vous pouvez tout de même
+							consulter et utiliser nos simulateurs ci-dessous.{' '}
+							<Emoji emoji="👇" />
+						</Body>
 					</Trans>
 				</Body>
 			</Message>
