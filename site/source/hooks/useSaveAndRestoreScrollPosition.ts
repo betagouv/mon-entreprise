@@ -4,6 +4,7 @@ import { useLocation, useNavigationType } from 'react-router-dom'
 import { debounce, getSessionStorage } from '@/utils'
 
 const POP_ACTION_LABEL = 'POP'
+const REPLACE_ACTION_LABEL = 'REPLACE'
 const sessionStorage = getSessionStorage()
 
 export const useSaveAndRestoreScrollPosition = () => {
@@ -13,7 +14,11 @@ export const useSaveAndRestoreScrollPosition = () => {
 	useEffect(() => {
 		const scrollPosition = sessionStorage?.getItem(location.pathname)
 
-		if (scrollPosition && navigationType === POP_ACTION_LABEL) {
+		if (
+			scrollPosition &&
+			(navigationType === POP_ACTION_LABEL ||
+				navigationType === REPLACE_ACTION_LABEL)
+		) {
 			window.scrollTo(0, parseInt(scrollPosition))
 		}
 	}, [location, navigationType])

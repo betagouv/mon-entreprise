@@ -127,13 +127,9 @@ export default function Popover(
 											</CloseButton>
 										</CloseButtonContainer>
 									)}
-									{/* tabIndex -1 is for text selection in popover, see https://github.com/adobe/react-spectrum/issues/1604#issuecomment-781574668 */}
+
 									<PopoverContent ref={contentRef}>
-										{title && (
-											<H2 as="h1" {...titleProps}>
-												{title}
-											</H2>
-										)}
+										{title && <H2 {...titleProps}>{title}</H2>}
 										{children}
 									</PopoverContent>
 								</PopoverContainer>
@@ -162,7 +158,7 @@ const Underlay = styled.div<UnderlayProps>`
 	right: 0;
 	bottom: 0;
 	left: 0;
-	overflow: auto;
+	overflow: visible;
 	z-index: 200; // to be in front of the menu of the Publicodes doc
 	background: rgba(0, 0, 0, 0.5);
 	animation: ${appear} 0.2s;

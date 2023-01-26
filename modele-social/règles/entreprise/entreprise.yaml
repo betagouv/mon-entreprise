@@ -59,6 +59,11 @@ entreprise . chiffre d'affaires:
   identifiant court: CA
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
+  description: |
+    ### Chiffre d'affaires estimé
+    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées 
+    pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités 
+    vendues.
   variations:
     - si: dirigeant . auto-entrepreneur
       alors: dirigeant . auto-entrepreneur . chiffre d'affaires

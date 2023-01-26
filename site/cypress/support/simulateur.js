@@ -17,7 +17,7 @@ export const runSimulateurTest = (simulateur) => {
 		})
 
 		it('should display a result when entering a value in any of the currency input', function () {
-			cy.contains(fr ? 'Annuel' : 'Yearly').click()
+			cy.contains(fr ? 'Montant annuel' : 'Yearly amount').click()
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type(1000)
 			}
@@ -40,13 +40,13 @@ export const runSimulateurTest = (simulateur) => {
 		})
 
 		it('should allow to change period', function () {
-			cy.contains(fr ? 'Annuel' : 'Yearly').click()
+			cy.contains(fr ? 'Montant annuel' : 'Yearly amount').click()
 			cy.get(inputSelector).first().type('{selectall}12000')
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type('{selectall}6000')
 			}
 			cy.get(inputSelector).eq(1).invoke('val').should('not.be.empty')
-			cy.contains(fr ? 'Mensuel' : 'Monthly').click()
+			cy.contains(fr ? 'Montant mensuel' : 'Monthly amount').click()
 			cy.get(inputSelector)
 				.first()
 				.invoke('val')
@@ -54,7 +54,7 @@ export const runSimulateurTest = (simulateur) => {
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).first().invoke('val').should('match', /500/)
 			}
-			cy.contains(fr ? 'Annuel' : 'Yearly').click()
+			cy.contains(fr ? 'Montant annuel' : 'Yearly amount').click()
 		})
 
 		it('should allow to navigate to a documentation page', function () {

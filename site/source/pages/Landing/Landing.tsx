@@ -86,7 +86,7 @@ export default function Landing() {
 					>
 						<SimulateurCard {...simulators.salarié} />
 						<SimulateurCard {...simulators['auto-entrepreneur']} />
-						<SimulateurCard {...simulators['profession-libérale']} />
+						<SimulateurCard {...simulators['comparaison-statuts']} />
 
 						<Grid
 							item

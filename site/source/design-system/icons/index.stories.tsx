@@ -15,4 +15,8 @@ export {
 	ReturnIcon,
 	SearchIcon,
 	SuccessIcon,
+	EditIcon,
+	HexagonIcon,
+	TriangleIcon,
+	CircleIcon,
 } from '@/design-system/icons'

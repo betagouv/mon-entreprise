@@ -109,10 +109,16 @@ const StyledValue = styled.span<{ $flashOnChange: boolean }>`
 type ConditionProps = {
 	expression: PublicodesExpression | ASTNode
 	children: React.ReactNode
+	engine?: Engine<DottedName>
 }
 
-export function Condition({ expression, children }: ConditionProps) {
-	const engine = useEngine()
+export function Condition({
+	expression,
+	children,
+	engine: engineFromProps,
+}: ConditionProps) {
+	const defaultEngine = useEngine()
+	const engine = engineFromProps ?? defaultEngine
 	const nodeValue = engine.evaluate({ '!=': [expression, 'non'] }).nodeValue
 
 	if (!nodeValue) {
@@ -122,15 +128,39 @@ export function Condition({ expression, children }: ConditionProps) {
 	return <>{children}</>
 }
 
+export function WhenValueEquals({
+	expression,
+	value,
+	children,
+	engine: engineFromProps,
+}: ConditionProps & { value: string | number }) {
+	const defaultEngine = useEngine()
+	const engine = engineFromProps ?? defaultEngine
+	const nodeValue = engine.evaluate(expression).nodeValue
+
+	if (nodeValue !== value) {
+		return null
+	}
+
+	return <>{children}</>
+}
+
 export function WhenApplicable({
 	dottedName,
 	children,
+	engine,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
+	engine?: Engine<DottedName>
 }) {
-	const engine = useEngine()
-	if (engine.evaluate({ 'est applicable': dottedName }).nodeValue !== true) {
+	const defaultEngine = useEngine()
+
+	const engineValue = engine ?? defaultEngine
+
+	if (
+		engineValue.evaluate({ 'est applicable': dottedName }).nodeValue !== true
+	) {
 		return null
 	}
 
@@ -140,13 +170,19 @@ export function WhenApplicable({
 export function WhenNotApplicable({
 	dottedName,
 	children,
+	engine,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
+	engine?: Engine<DottedName>
 }) {
-	const engine = useEngine()
+	const defaultEngine = useEngine()
+
+	const engineValue = engine ?? defaultEngine
+
 	if (
-		engine.evaluate({ 'est non applicable': dottedName }).nodeValue !== true
+		engineValue.evaluate({ 'est non applicable': dottedName }).nodeValue !==
+		true
 	) {
 		return null
 	}
@@ -157,12 +193,17 @@ export function WhenNotApplicable({
 export function WhenAlreadyDefined({
 	dottedName,
 	children,
+	engine,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
+	engine?: Engine<DottedName>
 }) {
-	const engine = useEngine()
-	if (engine.evaluate({ 'est non défini': dottedName }).nodeValue) {
+	const defaultEngine = useEngine()
+
+	const engineValue = engine ?? defaultEngine
+
+	if (engineValue.evaluate({ 'est non défini': dottedName }).nodeValue) {
 		return null
 	}
 

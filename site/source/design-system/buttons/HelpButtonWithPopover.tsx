@@ -15,7 +15,7 @@ type HelpButtonProps = {
 	className?: string
 }
 
-export default function HelpButton({
+export default function HelpButtonWithPopover({
 	children,
 	title,
 	type,

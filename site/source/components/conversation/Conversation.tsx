@@ -132,7 +132,7 @@ export default function Conversation({
 							<Grid container spacing={2}>
 								{previousAnswers.length > 0 && (
 									<Grid item xs={6} sm="auto">
-										<Button light onPress={goToPrevious} size="XS">
+										<Button color="secondary" onPress={goToPrevious} size="XS">
 											<span aria-hidden>←</span> <Trans>Précédent</Trans>
 										</Button>
 									</Grid>
@@ -141,7 +141,8 @@ export default function Conversation({
 									<Button
 										size="XS"
 										onPress={goToNextQuestion}
-										light={!currentQuestionIsAnswered}
+										light={!currentQuestionIsAnswered ? true : undefined}
+										color={!currentQuestionIsAnswered ? 'secondary' : undefined}
 										aria-label={
 											currentQuestionIsAnswered
 												? t('Suivant, passer à la question suivante')

@@ -240,3 +240,7 @@ export const catchDivideByZeroError = <T>(func: () => T) => {
 		throw err
 	}
 }
+
+export const generateUuid = () => {
+	return Math.floor(Math.random() * Date.now()).toString(16)
+}

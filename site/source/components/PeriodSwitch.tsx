@@ -12,11 +12,11 @@ export default function PeriodSwitch() {
 	const { t } = useTranslation()
 	const periods = [
 		{
-			label: t('Mensuel'),
+			label: t('Montant mensuel'),
 			unit: '€/mois',
 		},
 		{
-			label: t('Annuel'),
+			label: t('Montant annuel'),
 			unit: '€/an',
 		},
 	]
@@ -26,6 +26,8 @@ export default function PeriodSwitch() {
 			<ToggleGroup
 				value={currentUnit}
 				onChange={(unit: string) => dispatch(updateUnit(unit))}
+				mode="tab"
+				hideRadio
 			>
 				{periods.map(({ label, unit }) => (
 					<span

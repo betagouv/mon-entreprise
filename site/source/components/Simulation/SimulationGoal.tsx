@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { updateSituation } from '@/actions/actions'
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Grid } from '@/design-system/layout'
+import { Strong } from '@/design-system/typography'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 
 import RuleLink from '../RuleLink'
+import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput, { InputProps } from '../conversation/RuleInput'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { Appear } from '../ui/animate'
@@ -23,6 +26,7 @@ type SimulationGoalProps = {
 	appear?: boolean
 	editable?: boolean
 	isTypeBoolean?: boolean
+	isInfoMode?: boolean
 
 	onUpdateSituation?: (
 		name: DottedName,
@@ -38,6 +42,7 @@ export function SimulationGoal({
 	appear = true,
 	editable = true,
 	isTypeBoolean = false, // TODO : remove when type inference works in publicodes
+	isInfoMode = false,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
@@ -76,12 +81,34 @@ export function SimulationGoal({
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<StyledGoalHeader>
-							<RuleLink
-								id={`${dottedName.replace(/\s|\./g, '')}-label`}
-								dottedName={dottedName}
-							>
-								{label}
-							</RuleLink>
+							{isInfoMode ? (
+								<Grid
+									container
+									css={`
+										align-items: center;
+									`}
+								>
+									<Grid item>
+										<StyledBody
+											id={`${dottedName.replace(/\s|\./g, '')}-label`}
+										>
+											<Strong>{label || rule.title}</Strong>
+										</StyledBody>
+									</Grid>
+									<Grid item>
+										<ForceThemeProvider forceTheme="default">
+											<ExplicableRule dottedName={dottedName} light />
+										</ForceThemeProvider>
+									</Grid>
+								</Grid>
+							) : (
+								<RuleLink
+									id={`${dottedName.replace(/\s|\./g, '')}-label`}
+									dottedName={dottedName}
+								>
+									{label}
+								</RuleLink>
+							)}
 
 							{rule.rawNode.résumé && (
 								<StyledSmallBody
@@ -171,4 +198,8 @@ const StyledGoal = styled.div`
 
 const StyledSmallBody = styled(SmallBody)`
 	margin-bottom: 0;
+`
+const StyledBody = styled(Body)`
+	color: ${({ theme }) => theme.colors.extended.grey[100]};
+	margin: 0;
 `

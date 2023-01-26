@@ -11,11 +11,15 @@ import {
 	VisibleRadio,
 } from './Radio'
 
+export type Toggle = 'toggle'
+export type Tab = 'tab'
+
 type ToggleGroupProps = AriaRadioGroupProps & {
 	label?: string
 	hideRadio?: boolean
 	children: React.ReactNode
 	className?: string
+	mode?: Toggle | Tab
 }
 
 export function ToggleGroup(props: ToggleGroupProps) {
@@ -33,17 +37,52 @@ export function ToggleGroup(props: ToggleGroupProps) {
 			aria-label={props['aria-label'] ?? undefined}
 		>
 			{label && <span {...labelProps}>{label}</span>}
-			<ToggleGroupContainer hideRadio={props.hideRadio ?? false}>
+			<ToggleGroupContainer
+				hideRadio={props.hideRadio ?? false}
+				mode={props?.mode}
+			>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
 			</ToggleGroupContainer>
 		</div>
 	)
 }
 
-export const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
+const TabModeStyle = css`
+	border: none !important;
+	border-radius: ${({ theme }) =>
+		`${theme.spacings.md} ${theme.spacings.md} 0 0`}!important;
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.bases.primary[200]};
+	padding: 0.875rem 2rem;
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		padding: 0.875rem 0.875rem;
+	}
+`
+
+const TabModeCheckedStyle = css`
+	z-index: 2;
+	border: none !important;
+	background-color: ${({ theme }) => theme.colors.bases.primary[600]};
+
+	${LabelBody} {
+		color: ${({ theme }) => theme.colors.extended.grey[100]}!important;
+	}
+`
+
+export const ToggleGroupContainer = styled.div<{
+	hideRadio: boolean
+	mode?: Toggle | Tab
+}>`
 	--radius: 0.25rem;
 	display: inline-flex;
 	flex-wrap: wrap;
+	${({ mode }) =>
+		mode === 'tab' &&
+		css`
+			flex-wrap: nowrap;
+		`}
 
 	${VisibleRadio} {
 		position: relative;
@@ -63,6 +102,8 @@ export const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 			theme.darkMode
 				? theme.colors.extended.dark[600]
 				: theme.colors.extended.grey[100]};
+
+		${({ mode }) => mode === 'tab' && TabModeStyle}
 	}
 
 	${LabelBody} {
@@ -92,6 +133,7 @@ export const ToggleGroupContainer = styled.div<{ hideRadio: boolean }>`
 			theme.darkMode
 				? theme.colors.bases.primary[500]
 				: theme.colors.bases.primary[200]};
+		${({ mode }) => mode === 'tab' && TabModeCheckedStyle}
 	}
 
 	${VisibleRadio}:hover {

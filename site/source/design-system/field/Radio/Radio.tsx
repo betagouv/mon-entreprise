@@ -142,6 +142,7 @@ export const LabelBody = styled(Body)<{
 }>`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
+	background-color: transparent;
 	${({ $hideRadio }) =>
 		$hideRadio &&
 		css`

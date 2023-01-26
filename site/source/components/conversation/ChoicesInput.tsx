@@ -28,6 +28,7 @@ import {
 import { Emoji } from '@/design-system/emoji'
 import { Item, Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
+import { Switch } from '@/design-system/switch'
 import { H3, H4 } from '@/design-system/typography/heading'
 
 import { ExplicableRule } from './Explicable'
@@ -166,75 +167,84 @@ function RadioChoice<Names extends string = DottedName>({
 
 	return (
 		<>
-			{choice.children.map((node) => (
-				<Fragment key={node.dottedName}>
-					{' '}
-					{hiddenOptions.includes(
-						node.dottedName as DottedName
-					) ? null : 'children' in node ? (
-						<div
-							role="group"
-							aria-labelledby={
-								node.dottedName.replace(/\s|\./g, '') + '-legend'
-							}
-							css={`
-								margin-top: -1rem;
-							`}
-						>
-							<H4 as={H3} id={node.dottedName + '-legend'}>
-								{node.title}
-							</H4>
-							<Spacing lg />
-							<StyledSubRadioGroup>
-								<RadioChoice
-									// eslint-disable-next-line jsx-a11y/no-autofocus
-									autoFocus={autoFocus}
-									defaultValue={defaultValue}
-									choice={node}
-									rootDottedName={rootDottedName}
-									type={type}
-								/>
-							</StyledSubRadioGroup>
-						</div>
-					) : (
-						<span>
-							<Radio
-								// eslint-disable-next-line jsx-a11y/no-autofocus
-								autoFocus={
-									// Doit autoFocus si correspond à la valeur par défaut
-									(defaultValue &&
-										defaultValue ===
-											`'${relativeDottedName(
-												rootDottedName,
-												node.dottedName
-											)}'` &&
-										autoFocus) ||
-									// Sinon doit autoFocus automatiquement
-									autoFocus
+			{choice.children.map((node) => {
+				return (
+					<Fragment key={node.dottedName}>
+						{' '}
+						{hiddenOptions.includes(
+							node.dottedName as DottedName
+						) ? null : 'children' in node ? (
+							<div
+								role="group"
+								aria-labelledby={
+									node.dottedName.replace(/\s|\./g, '') + '-legend'
 								}
-								value={`'${relativeDottedName(
-									rootDottedName,
-									node.dottedName
-								)}'`}
 								id={`radio-input-${node.dottedName.replace(
 									/\s|\./g,
 									''
 								)}-${rootDottedName.replace(/\s|\./g, '')}`}
+								css={`
+									margin-top: -1rem;
+								`}
 							>
-								{node.title}{' '}
-								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
-							</Radio>{' '}
-							{type !== 'toggle' && (
-								<ExplicableRule
-									light
-									dottedName={node.dottedName as DottedName}
-									aria-label={`En savoir plus sur ${node.title}`}
-								/>
-							)}
-						</span>
-					)}
-				</Fragment>
-			))}
+								<H4 as={H3} id={node.dottedName + '-legend'}>
+									{node.title}
+								</H4>
+								<Spacing lg />
+								<StyledSubRadioGroup>
+									<RadioChoice
+										// eslint-disable-next-line jsx-a11y/no-autofocus
+										autoFocus={autoFocus}
+										defaultValue={defaultValue}
+										choice={node}
+										rootDottedName={rootDottedName}
+										type={type}
+									/>
+								</StyledSubRadioGroup>
+							</div>
+						) : (
+							<span>
+								<Radio
+									// eslint-disable-next-line jsx-a11y/no-autofocus
+									autoFocus={
+										// Doit autoFocus si correspond à la valeur par défaut
+										(defaultValue &&
+											defaultValue ===
+												`'${relativeDottedName(
+													rootDottedName,
+													node.dottedName
+												)}'` &&
+											autoFocus) ||
+										// Sinon doit autoFocus automatiquement
+										autoFocus
+									}
+									value={`'${relativeDottedName(
+										rootDottedName,
+										node.dottedName
+									)}'`}
+									id={`radio-input-${relativeDottedName(
+										rootDottedName,
+										node.dottedName
+									).replace(/\s|\./g, '')}-${rootDottedName.replace(
+										/\s|\./g,
+										''
+									)}`}
+								>
+									{node.title}{' '}
+									{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
+								</Radio>{' '}
+								{type !== 'toggle' && (
+									<ExplicableRule
+										light
+										dottedName={node.dottedName as DottedName}
+										aria-label={`En savoir plus sur ${node.title}`}
+									/>
+								)}
+							</span>
+						)}
+					</Fragment>
+				)
+			})}
 			{choice.canGiveUp && (
 				<>
 					<Radio value={'non'}>{t('Aucun')}</Radio>
@@ -333,4 +343,26 @@ export function useSelection<Names extends string = DottedName>({
 	}, [currentSelection, handleChange, value, missing])
 
 	return { currentSelection, handleChange, defaultValue }
+}
+
+export const SwitchInput = (props: {
+	onChange?: (isSelected: boolean) => void
+	defaultSelected?: boolean
+	label?: string
+	id?: string
+	key?: string
+}) => {
+	const { onChange, id, label, defaultSelected, key } = props
+
+	return (
+		<Switch
+			defaultSelected={defaultSelected}
+			onChange={(isSelected: boolean) => onChange && onChange(isSelected)}
+			light
+			id={id}
+			key={key}
+		>
+			{label}
+		</Switch>
+	)
 }

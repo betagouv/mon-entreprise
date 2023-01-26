@@ -10,8 +10,8 @@ const salaireNetApresImpot = 'input[id="salariérémunérationnetpayéaprèsimp�
 
 describe('Test prerender', function () {
 	const testSimuSalaire = (cy: cyType) => {
-		cy.contains('Mensuel')
-		cy.contains('Annuel')
+		cy.contains('Montant mensuel')
+		cy.contains('Montant annuel')
 
 		cy.contains('Coût total')
 		cy.get(coutTotalSelector).should('exist')
@@ -57,8 +57,8 @@ describe('Test prerender', function () {
 					cy.contains('Impôt sur le revenu')
 					cy.contains('Impôt sur les sociétés')
 
-					cy.contains('Mensuel')
-					cy.contains('Annuel')
+					cy.contains('Montant mensuel')
+					cy.contains('Montant annuel')
 
 					cy.contains("Chiffre d'affaires")
 					cy.get('input[id="entreprisechiffred\'affaires"]').should('exist')
@@ -93,7 +93,7 @@ describe('Test prerender', function () {
 
 					cy.contains('a', 'Employee')
 					cy.contains('a', 'Auto-entrepreneur')
-					cy.contains('a', 'Liberal profession')
+					cy.contains('a', 'Status Comparison')
 					cy.contains('a', 'Discover all the simulators and assistants')
 				},
 			},

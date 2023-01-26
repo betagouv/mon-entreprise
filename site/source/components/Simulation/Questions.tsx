@@ -15,14 +15,11 @@ const QuestionsContainer = styled.div`
 	padding: ${({ theme }) => ` ${theme.spacings.xs} ${theme.spacings.lg}`};
 	border-radius: ${({ theme }) =>
 		`0 0 ${theme.box.borderRadius} ${theme.box.borderRadius}`};
-	background: ${({ theme }) => {
-		const palettePrimary = theme.colors.bases.primary
-		const paletteGrey = theme.colors.extended.grey
-
-		return theme.darkMode
-			? `linear-gradient(60deg, ${paletteGrey[800]} 0%, ${paletteGrey[700]} 100%);`
-			: `linear-gradient(60deg, ${palettePrimary[200]} 0%, ${palettePrimary[100]} 100%);`
-	}};
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[700]
+			: theme.colors.extended.grey[100]};
+	box-shadow: ${({ theme }) => theme.elevations[2]};
 `
 
 const Notice = styled(Body)`
