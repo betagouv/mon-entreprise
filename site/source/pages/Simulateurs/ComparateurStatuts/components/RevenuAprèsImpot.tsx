@@ -79,7 +79,7 @@ const RevenuAprèsImpot = ({
 											valeur: 'dirigeant . exonérations . ACRE',
 										}).nodeValue
 											? t("Tient compte de l'ACRE")
-											: t("Ne prends pas l'ACRE en compte"),
+											: t("Ne prend pas l'ACRE en compte"),
 									},
 									{
 										isChecked: true,
@@ -134,7 +134,7 @@ const RevenuAprèsImpot = ({
 											valeur: 'dirigeant . exonérations . ACRE',
 										}).nodeValue
 											? t("Tient compte de l'ACRE")
-											: t("Ne prends pas l'ACRE en compte"),
+											: t("Ne prend pas l'ACRE en compte"),
 									},
 									{
 										isChecked: true,

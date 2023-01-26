@@ -51,7 +51,6 @@ const DetailsRowCards = ({
 	const indépendantValue = formatValue(indépendantEvaluation, {
 		precision: 0,
 	}) as string
-
 	const autoEntrepreneurEvaluation = autoEntrepreneurEngine.evaluate({
 		valeur: dottedName,
 		...(unit && { unité: unit }),
@@ -210,7 +209,7 @@ const DetailsRowCards = ({
 								<Value
 									linkToRule={false}
 									expression={dottedName}
-									engine={assimiléEngine}
+									engine={autoEntrepreneurEngine}
 									precision={0}
 									unit={unit}
 								/>
@@ -230,7 +229,7 @@ const DetailsRowCards = ({
 									<Value
 										linkToRule={false}
 										expression={evolutionDottedName}
-										engine={assimiléEngine}
+										engine={autoEntrepreneurEngine}
 										precision={0}
 										unit={unit}
 									/>{' '}
@@ -338,7 +337,7 @@ const DetailsRowCards = ({
 									<Value
 										linkToRule={false}
 										expression={evolutionDottedName}
-										engine={assimiléEngine}
+										engine={indépendantEngine}
 										precision={0}
 										unit={unit}
 									/>{' '}
@@ -438,7 +437,7 @@ const DetailsRowCards = ({
 								<Value
 									linkToRule={false}
 									expression={evolutionDottedName}
-									engine={assimiléEngine}
+									engine={indépendantEngine}
 									precision={0}
 									unit={unit}
 								/>{' '}
@@ -491,7 +490,7 @@ const DetailsRowCards = ({
 								<Value
 									linkToRule={false}
 									expression={evolutionDottedName}
-									engine={assimiléEngine}
+									engine={autoEntrepreneurEngine}
 									precision={0}
 									unit={unit}
 								/>{' '}

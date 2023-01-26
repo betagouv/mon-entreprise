@@ -193,8 +193,16 @@ const Détails = ({
 						footers={{
 							sasu: (
 								<StyledDiv>
-									<PlusCircleIcon />
-									<Body>
+									<PlusCircleIcon
+										css={`
+											margin-top: 0 !important;
+										`}
+									/>
+									<Body
+										css={`
+											margin: 0;
+										`}
+									>
 										<Trans>
 											Pour y prétendre, vous devez voir cotisé au moins{' '}
 											<Strong>3 mois</Strong>
@@ -204,8 +212,16 @@ const Détails = ({
 							),
 							ei: (
 								<StyledDiv>
-									<PlusCircleIcon />
-									<Body>
+									<PlusCircleIcon
+										css={`
+											margin-top: 0 !important;
+										`}
+									/>
+									<Body
+										css={`
+											margin: 0;
+										`}
+									>
 										<Trans>
 											Pour y prétendre, vous devez voir cotisé au moins{' '}
 											<Strong>12 mois</Strong>
@@ -215,8 +231,16 @@ const Détails = ({
 							),
 							ae: (
 								<StyledDiv>
-									<PlusCircleIcon />
-									<Body>
+									<PlusCircleIcon
+										css={`
+											margin-top: 0 !important;
+										`}
+									/>
+									<Body
+										css={`
+											margin: 0;
+										`}
+									>
 										<Trans>
 											Pour y prétendre, vous devez voir cotisé au moins{' '}
 											<Strong>12 mois</Strong>
@@ -399,8 +423,16 @@ const Détails = ({
 							indépendantEngine,
 						]}
 						unit="€/mois"
-						label={<Trans>(invalidité partielle)</Trans>}
-						evolutionLabel={<Trans>(invalidité totale)</Trans>}
+						label={
+							<span style={{ fontSize: '1rem' }}>
+								<Trans>(invalidité partielle)</Trans>
+							</span>
+						}
+						evolutionLabel={
+							<span style={{ fontSize: '0.75rem' }}>
+								<Trans>(invalidité totale)</Trans>
+							</span>
+						}
 					/>
 					<Spacing md />
 
