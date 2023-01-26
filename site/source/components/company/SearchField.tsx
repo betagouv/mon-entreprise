@@ -1,15 +1,17 @@
 import { useSearchFieldState } from '@react-stately/searchfield'
 import { ReactNode, useEffect, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { ForceThemeProvider, ThemeType } from '@/contexts/DarkModeContext'
 import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
+import { Emoji } from '@/design-system/emoji'
 import { SearchField } from '@/design-system/field'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
+import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import useSearchCompany from '@/hooks/useSearchCompany'
 
@@ -91,15 +93,47 @@ function Results({
 	results: Array<FabriqueSocialEntreprise>
 	onSubmit?: (établissement: FabriqueSocialEntreprise) => void
 }) {
+	const { t } = useTranslation()
+
 	return !results.length ? (
 		<FromTop>
 			<Message type="info" icon>
 				<Body>
-					<Strong>Aucune entreprise correspondante trouvée</Strong>
+					<Strong>
+						<Trans>
+							Nous n’avons pas trouvé de résultat pour cette entreprise.
+						</Trans>
+					</Strong>
 				</Body>
 				<Body>
-					Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
-					résultat
+					<Trans>
+						Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un
+						meilleur résultat.
+					</Trans>
+				</Body>
+				<Body>
+					<Trans>
+						Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET,
+						il se peut que vous ayez opté pour que{' '}
+						<Strong>
+							les informations de votre entreprise ne soient pas rendues
+							publiques
+						</Strong>
+						, auquel cas elle n'apparaitra pas dans les résultats de recherche.
+						Vous pouvez le vérifier sur{' '}
+						<StyledLink
+							aria-label={t("l'annuaire des entreprises, nouvelle fenêtre")}
+							href="https://annuaire-entreprises.data.gouv.fr/"
+						>
+							l'annuaire des entreprises
+						</StyledLink>
+						.
+						<Body>
+							Si tel est le cas, pas d'inquiétude, vous pouvez tout de même
+							consulter et utiliser nos simulateurs ci-dessous.{' '}
+							<Emoji emoji="👇" />
+						</Body>
+					</Trans>
 				</Body>
 			</Message>
 		</FromTop>
