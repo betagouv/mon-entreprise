@@ -52,10 +52,10 @@ export default function SearchOrCreate() {
 										entreprise: companySIREN as string,
 									})}
 									aria-label={t(
-										'Voir ma situation, accéder à la page de gestion de mon entreprise'
+										'Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise'
 									)}
 								>
-									{t('Voir ma situation')}
+									{t('Voir les simulateurs personnalisés')}
 								</Button>
 								<PopoverConfirm
 									trigger={(buttonProps) => (

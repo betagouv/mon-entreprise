@@ -1,25 +1,38 @@
+entreprise . associés:
+  par défaut: "'unique'"
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - unique
+      - multiples
+
+  question: Je possède cette entreprise...
+  avec:
+    unique:
+      titre: seul(e)
+      valeur: associés = 'unique'
+    multiples:
+      titre: à plusieurs
+      valeur: associés = 'multiples'
+
+### ()	La nomenclature des catégories juridiques retenue est celle du niveau III du répertoire Sirene géré par l'Insee ###
+### https://www.insee.fr/fr/information/2028129
+
 entreprise . catégorie juridique:
-  question: Quelle est la catégorie juridique ?
-  # description: Les catégories juridiques accessibles via l'API SIRENE
-  # par défaut: non
+  question: Quelle est la catégorie juridique de l'entreprise ?
   note: On se base ici sur les catégories juridiques définies par l'INSEE
   références:
-    liste des catégories juridique de l'INSEE: https://www.insee.fr/fr/information/2028129
+    Liste des catégories juridique de l'INSEE: https://www.insee.fr/fr/information/2028129
+  par défaut: "'SARL'"
   une possibilité:
     choix obligatoire: oui
     possibilités:
       - EI
-      - EI . auto-entrepreneur
       - SARL
-      - SARL . unipersonnelle
-      - SA à conseil d'administration
-      - SA à directoire
-      - SNC
       - SAS
-      - SAS . unipersonnelle
-      - SELARL
       - SELAS
-      - autre personne morale immatriculée au RCS
+      - SELARL
+      - SNC
       - autre
   meta:
     affichage: radio
@@ -27,98 +40,143 @@ entreprise . catégorie juridique:
 ### (niveau 1 code 1)	Entrepreneur individuel ###
 
 entreprise . catégorie juridique . EI:
-  titre: Entreprise Individuelle
-  valeur:
-    une de ces conditions:
-      - catégorie juridique = 'EI'
-      - catégorie juridique = 'EI . auto-entrepreneur'
-
-entreprise . catégorie juridique . EI . auto-entrepreneur:
-  titre: Micro/Auto-Entrepreneur
-  question: Êtes-vous auto-entrepreneur ?
-  valeur: catégorie juridique = 'EI . auto-entrepreneur'
-  # par défaut:
-  #   nom: défaut
-  #   valeur: oui
-  remplace:
-    - règle: imposition . régime
-      par: "'micro-entreprise'"
-    - règle: entreprise . imposition
-      par: "'IR'"
   meta:
-    visible si non applicable: oui
+    code insee: 1000
+  titre: Entreprise individuelle (y compris auto-entrepreneurs)
+  valeur: catégorie juridique = 'EI'
+  remplace:
+    règle: associés
+    par: "'unique'"
+  avec:
+    auto-entrepreneur:
+      non applicable si: associés . multiples
+      question: Êtes-vous auto-entrepreneur ?
+      remplace:
+        - règle: imposition . régime
+          par: "'micro-entreprise'"
+        - règle: entreprise . imposition
+          par: "'IR'"
+      par défaut:
+        nom: par défaut
+        experimental: oui
+        valeur: oui
+    EI:
+      valeur: auto-entrepreneur = non
+      non applicable si: associés . multiples
 
 ### (niveau 1 code 5)	Société commerciale ###
 
 entreprise . catégorie juridique . SARL:
-  titre: Société À Responsabilité Limitée (SARL)
-  # titre: EURL ou SARL
-  valeur:
-    une de ces conditions:
-      - catégorie juridique = 'SARL'
-      - catégorie juridique = 'SARL . unipersonnelle'
-
-entreprise . catégorie juridique . SARL . unipersonnelle:
-  titre: Entreprise Unipersonnelle à Responsabilité Limitée (EURL ou SARL unipersonnelle)
-  description: |-
-    Une EURL est une entreprise avec un seul associé. Cela signifie que vous êtes le seul et unique propriétaire de l'entreprise.
-  question: Votre entreprise est-elle une EURL ?
-  # par défaut: oui
-  valeur: catégorie juridique = 'SARL . unipersonnelle'
   meta:
-    visible si non applicable: oui
+    code insee: 5499
+  titre: EURL ou SARL
+  valeur: catégorie juridique = 'SARL'
+  avec:
+    SARL:
+      titre: Société à responsabilité limitée
+      acronyme: SARL
+      valeur: associés . multiples
+      description: |
+        La société à responsabilité limitée (SARL) comprend au minimum deux associés. Cette forme juridique est la plus répandue pour les sociétés. En revanche, elle ne peut être choisie pour les professions juridiques, judiciaires ou de santé (hors pharmaciens).
 
-entreprise . catégorie juridique . SA à conseil d'administration:
-  titre: Société Anonyme à conseil d'administration
-  valeur: catégorie juridique = 'SA à conseil d'administration'
+        - **Associé(s)** : De deux à 100 (personnes physiques ou morales)
+        - **Responsabilité de l’associé ou des associés** : Limitée à leur apport, sauf fautes de gestion si les associés sont aussi gérants de la société
+        - **Dirigeant(s)** : Un ou plusieurs gérants (personnes physiques), qui peuvent être (ou non) les associés
+        - **Responsabilité du ou des dirigeant(s)** : Responsabilité civile et pénale
+        - **Capital social** : Libre, en fonction de la taille et des besoins de la société
+        - **Régime social** : Un gérant majoritaire est considéré comme travailleur non salarié, un gérant égalitaire ou minoritaire est assimilé-salarié
+        - **Imposition des bénéfices** : Impôt sur les sociétés, avec possibilité d’opter pour l'impôt sur le revenu dans certains cas (SARL « de famille » ou certaines SARL de moins de cinq ans).
 
-entreprise . catégorie juridique . SA à directoire:
-  titre: Société Anonyme à directoire
-  valeur: catégorie juridique = 'SA à directoire'
+      références:
+        'La société à responsabilité limitée (SARL), un statut avec un apport minimum flexible': https://www.economie.gouv.fr/entreprises/societe-responsabilite-limitee-sarl
+        'Prise de décision dans une société à responsabilité limitée (SARL)': https://entreprendre.service-public.fr/vosdroits/F36714
+        "Tout ce qu'il faut savoir sur la fiscalité d'une société à responsabilité limitée (SARL)": https://entreprendre.service-public.fr/vosdroits/F36211
+        "Tout ce qu'il faut savoir sur les cotisations sociales d'une société à responsabilité limitée (SARL)": https://entreprendre.service-public.fr/vosdroits/F36235
+        'SARL - Société à responsabilité limitée': https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-a-plusieurs/sarl-societe-a-responsabilite-limitee
+        "Modèle de statuts d'une SARL": https://entreprendre.service-public.fr/vosdroits/R39954
+
+    EURL:
+      titre: Entreprise unipersonnelle à responsabilité limitée
+      acronyme: EURL
+      valeur: associés . unique
+      description: |
+        L'entreprise unipersonnelle à responsabilité limitée (EURL) est une société à responsabilité limitée (SARL) constituée d'un seul associé. Elle est également appelée SARL unipersonnelle.
+
+        - **Associé(s)** : Un seul (personne physique ou morale)
+        - **Responsabilité de l’associé ou des associés** : Limitée à ses apports, sauf fautes de gestion si l'associé est aussi gérant de l'entreprise
+        - **Dirigeant(s)** : Un ou plusieurs gérants (personnes physiques), dont l’associé peut (ou non) faire partie
+        - **Responsabilité du ou des dirigeant(s)** : Responsabilité civile et pénale
+        - **Capital social** : Libre, en fonction de la taille et des besoins de l'entreprise
+        - **Régime social** : Si le gérant est aussi l’associé unique, il est considéré comme travailleur non-salarié. Sinon, le gérant est assimilé-salarié
+        - **Imposition des bénéfices** : Impôt sur le revenu de l’associé unique s’il s’agit d’une personne physique (avec possibilité de choisir l’impôt sur les sociétés). Si l’associé est une personne morale, impôt sur les sociétés.
+
+      références:
+        'L’entreprise unipersonnelle à responsabilité limitée (EURL), un statut à associé unique à fort potentiel d’évolution': https://www.economie.gouv.fr/entreprises/entreprise-unipersonnelle-responsabilite-limitee-EURL
+        'Prise de décision dans une société à responsabilité limitée (SARL)': https://entreprendre.service-public.fr/vosdroits/F36714
+        "Tout ce qu'il faut savoir sur la fiscalité d'une entreprise unipersonnelle à responsabilité limitée (EURL)": https://entreprendre.service-public.fr/vosdroits/F36212
+        "Tout ce qu'il faut savoir sur les cotisations sociales d'une entreprise unipersonnelle à responsabilité limitée (EURL)": https://entreprendre.service-public.fr/vosdroits/F36239
+        'EURL ou SARL à associé unique': https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/eurl-ou-sarl-a-associe-unique
+
+    unipersonnelle:
+      déprécié: oui
+      valeur: EURL
 
 entreprise . catégorie juridique . SNC:
-  titre: Société en Nom Collectif (SNC)
+  titre: Société en nom collectif
+  acronyme: SNC
   valeur: catégorie juridique = 'SNC'
+  non applicable si: associés . unique
+  meta:
+    code insee: 5202
 
 entreprise . catégorie juridique . SAS:
-  titre: Société par Actions Simplifiée (SAS)
-  # titre: SASU ou SAS
-  valeur:
-    une de ces conditions:
-      - catégorie juridique = 'SAS'
-      - catégorie juridique = 'SAS . unipersonnelle'
-
-entreprise . catégorie juridique . SAS . unipersonnelle:
-  titre: Société par Actions Simplifiée Unipersonnelle (SASU)
-  question: Votre entreprise est-elle une SASU ?
-  # par défaut: oui
-  valeur: catégorie juridique = 'SAS . unipersonnelle'
+  titre: SASU ou SAS
+  valeur: catégorie juridique = 'SAS'
   meta:
-    visible si non applicable: oui
+    code insee: 5710
+  avec:
+    SASU:
+      titre: Société par actions simplifiée unipersonnelle
+      acronyme: SASU
+      valeur: associés . unique
+
+    SAS:
+      titre: Société par actions simplifiée
+      acronyme: SAS
+      valeur: associés . multiples
+
+    unipersonnelle:
+      déprécié: oui
+      valeur: SASU
 
 ### (niveau 1 code 6)	Autre personne morale immatriculée au RCS ###
 
 entreprise . catégorie juridique . SELARL:
-  titre: Société d'Exercice Libéral A Responsabilité Limitée (SELARL)
+  titre: Société d'exercice libéral à responsabilité limitée
+  acronyme: SELARL(U)
   valeur: catégorie juridique = 'SELARL'
   remplace:
     - règle: entreprise . activité . nature
       par: "'libérale'"
     - règle: entreprise . activité . nature . libérale . réglementée
       par: oui
+  meta:
+    code insee: 5485
 
 entreprise . catégorie juridique . SELAS:
-  titre: Société d'Exercice Libéral par Actions Simplifiées (SELAS)
+  titre: Société d'exercice libéral par actions simplifiées
+  acronyme: SELAS(U)
   valeur: catégorie juridique = 'SELAS'
   remplace:
     - règle: entreprise . activité . nature
       par: "'libérale'"
     - règle: entreprise . activité . nature . libérale . réglementée
       par: oui
-
-entreprise . catégorie juridique . autre personne morale immatriculée au RCS:
-  titre: autre personne morale immatriculée au RCS
-  valeur: catégorie juridique = 'autre personne morale immatriculée au RCS'
+  meta:
+    code insee: 5785
 
 entreprise . catégorie juridique . autre:
   valeur: catégorie juridique = 'autre'
+  type: notification
+  description: |
+    Ce simulateur ne gère pas encore tout les types d'entreprises.

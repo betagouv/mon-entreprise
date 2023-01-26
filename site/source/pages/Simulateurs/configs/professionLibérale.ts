@@ -14,7 +14,12 @@ export const configProfessionLibérale: SimulationConfig = {
 		'protection sociale . retraite . CNAVPL . points acquis',
 	],
 	questions: {
-		'liste noire': ['entreprise . charges', 'entreprise . imposition . régime'],
+		'liste noire': [
+			'entreprise . charges',
+			'entreprise . imposition . régime',
+			'entreprise . activités',
+			'entreprise . activités . revenus mixtes',
+		],
 		liste: [
 			'entreprise . activité . nature',
 			'dirigeant . indépendant . PL . métier',

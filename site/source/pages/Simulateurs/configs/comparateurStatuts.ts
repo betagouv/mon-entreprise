@@ -22,6 +22,8 @@ export const configComparateurStatuts: SimulationConfig = {
 			'entreprise . imposition . régime . micro-entreprise',
 			'entreprise . salariés . effectif . seuil',
 			'salarié . rémunération . avantages en nature',
+			'entreprise . activités',
+			'entreprise . activités . revenus mixtes',
 		],
 		liste: [
 			'entreprise . activité',

@@ -9,7 +9,7 @@ entreprise . imposition:
     variations:
       - si:
           une de ces conditions:
-            - catégorie juridique . SARL . unipersonnelle
+            - catégorie juridique . SARL . EURL
             - catégorie juridique . EI
         alors: "'IR'"
       - sinon: "'IS'"
@@ -312,7 +312,7 @@ entreprise . chiffre d'affaires . seuil micro . dépassé:
 
     À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité.
 
-    Exemple :
+    > ##### Exemple :
     > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation.
     > Les recettes de cette première année civile sont ajustées *prorata temporis* pour les comparer au plafond :
     >

@@ -6,6 +6,7 @@ import { TrackPage } from '@/ATInternetTracking'
 import { resetSimulation } from '@/actions/actions'
 import { resetCompany } from '@/actions/companyActions'
 import {
+	Condition,
 	WhenAlreadyDefined,
 	WhenApplicable,
 	WhenNotAlreadyDefined,
@@ -37,7 +38,7 @@ import illustration from './_components/undraw_fill_in_mie5.svg'
 export const OBJECTIFS: DottedName[] = [
 	'entreprise . SIREN',
 	'entreprise . catégorie juridique . EI . auto-entrepreneur',
-	'entreprise . catégorie juridique . SARL . unipersonnelle',
+	'entreprise . catégorie juridique . SARL . EURL',
 ]
 
 export default function Accueil() {
@@ -122,11 +123,20 @@ export default function Accueil() {
 						>
 							<Trans>Modifier l'entreprise</Trans>
 						</Button>
+						<Condition expression="entreprise . catégorie juridique . EI">
+							<SimpleField dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur" />
+						</Condition>
+						<Condition
+							expression={{
+								'une de ces conditions': [
+									'entreprise . catégorie juridique . SARL',
+									'entreprise . catégorie juridique . SAS',
+								],
+							}}
+						>
+							<SimpleField dottedName="entreprise . associés" />
+						</Condition>
 					</WhenAlreadyDefined>
-
-					<SimpleField dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur" />
-					<SimpleField dottedName="entreprise . catégorie juridique . SARL . unipersonnelle" />
-
 					<Spacing xxl />
 				</Grid>
 			</Grid>

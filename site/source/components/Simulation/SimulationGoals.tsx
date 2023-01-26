@@ -118,6 +118,7 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 				<Grid
 					item
 					css={`
+						display: flex;
 						justify-content: center;
 						align-items: flex-end;
 					`}
@@ -153,7 +154,7 @@ export const ToggleSection = styled.div`
 	justify-content: right;
 	text-align: right;
 
-	flex-wrap: wrap-reverse;
+	flex-wrap: wrap;
 	align-items: flex-start;
 	white-space: nowrap;
 	gap: ${({ theme }) => theme.spacings.sm};

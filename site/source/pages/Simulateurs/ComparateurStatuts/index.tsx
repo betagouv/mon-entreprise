@@ -34,7 +34,7 @@ function ComparateurStatutsUI() {
 				...situation,
 				'entreprise . imposition': "'IS'",
 				'entreprise . catégorie juridique': "'SAS'",
-				'entreprise . catégorie juridique . SAS . unipersonnelle': 'oui',
+				'entreprise . associés': "'unique'",
 			}),
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[situation]

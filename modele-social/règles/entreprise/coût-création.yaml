@@ -1,28 +1,36 @@
 entreprise . coût formalités . création:
-  titre: Coût de création d'une entreprise
-  somme:
-    - RCS . création
-    - CMA . création
-    - RSAC . création
+  titre: Coût de création
+  résumé: Tous les frais liés à l'enregistrement (greffe, BODACC, chambres)
+  variations:
+    - si: catégorie juridique . EI . auto-entrepreneur
+      alors: 0€
+    - sinon:
+        somme:
+          - RCS . création
+          - CMA . création
+          - RSAC . création
 
 entreprise . coût formalités . RCS:
   titre: Les tarifs liés au Registre du commerce et des sociétés
   avec:
     création:
       variations:
-        - si: catégorie juridique . EI . auto-entrepreneur
-          alors: 0€
         - si: catégorie juridique . EI
           alors:
             applicable si: activités . commerciale
             valeur: 20.07 €
-        - si:
-            une de ces conditions:
-              - catégorie juridique . SARL
-              - catégorie juridique . SAS
-              # TODO ???
+        - si: sociétés commerciales
           alors: 24.52 €
         - sinon: 49.04 €
+    sociétés commerciales:
+      # TODO : déplacer dans entreprise . catégorie juridique ?
+      privé: oui
+      une de ces conditions:
+        - catégorie juridique . SARL
+        - catégorie juridique . SAS
+        - catégorie juridique . SELARL
+        - catégorie juridique . SELAS
+
   références:
     Article A743-10 du Code de commerce: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041675936
 
