@@ -4,6 +4,7 @@ import { AriaButtonProps } from '@react-types/button'
 import React, { ReactElement, Ref, RefObject, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
+import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Button } from '@/design-system/buttons'
 import { omit } from '@/utils'
 
@@ -60,23 +61,25 @@ export default function PopoverWithTrigger({
 		<>
 			{triggerButton}
 			{state.isOpen && (
-				<Popover
-					{...overlayProps}
-					title={title}
-					onClose={() => {
-						state.close()
-					}}
-					isDismissable
-					role="dialog"
-					small={small}
-					contentRef={contentRef}
-				>
-					{typeof children === 'function'
-						? children(() => {
-								state.close()
-						  })
-						: children}
-				</Popover>
+				<ForceThemeProvider forceTheme="default">
+					<Popover
+						{...overlayProps}
+						title={title}
+						onClose={() => {
+							state.close()
+						}}
+						isDismissable
+						role="dialog"
+						small={small}
+						contentRef={contentRef}
+					>
+						{typeof children === 'function'
+							? children(() => {
+									state.close()
+							  })
+							: children}
+					</Popover>
+				</ForceThemeProvider>
 			)}
 		</>
 	)
