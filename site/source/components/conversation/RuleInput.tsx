@@ -234,6 +234,12 @@ export const getOnePossibilityOptions = <Name extends string>(
 		variant &&
 		(!variant['choix obligatoire'] || variant['choix obligatoire'] === 'non')
 
+	const isVisibleSiNonApplicable = (dottedName: Name) =>
+		getMeta<{ 'visible si non applicable'?: string } | null>(
+			engine.getRule(dottedName).rawNode,
+			null
+		)?.['visible si non applicable'] === 'oui'
+
 	return Object.assign(
 		node,
 		variant
@@ -244,7 +250,11 @@ export const getOnePossibilityOptions = <Name extends string>(
 							nodeKind: 'reference'
 						})[]
 					)
-						.filter((node) => engine.evaluate(node).nodeValue !== null)
+						.filter(
+							(explanation) =>
+								isVisibleSiNonApplicable(explanation.dottedName as Name) ||
+								engine.evaluate(explanation).nodeValue !== null
+						)
 						.map(({ dottedName }) =>
 							getOnePossibilityOptions(engine, dottedName as Name)
 						),
@@ -269,7 +279,7 @@ function isMultiplePossibilities<Name extends string>(
 function getMultiplePossibilitiesOptions<Name extends string>(
 	engine: Engine<Name>,
 	dottedName: Name
-): Array<RuleNode> {
+): RuleNode<Name>[] {
 	return (
 		(engine.getRule(dottedName) as RuleWithMultiplePossibilities).rawNode[
 			'plusieurs possibilités'
