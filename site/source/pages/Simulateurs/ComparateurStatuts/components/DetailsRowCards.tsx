@@ -11,8 +11,15 @@ import RuleLink from '@/components/RuleLink'
 import { HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 
-import { BestOption, getBestOption } from '../utils'
+import { OptionType, getBestOption } from '../utils'
 import StatusCard from './StatusCard'
+
+const getStatusLabelsArray = (statusArray: OptionType[]) =>
+	statusArray.map((statusOption) => statusOption.type)
+
+const getGridSizes = (statusArray: OptionType[]) => {
+	return { sizeXs: 12, sizeLg: 4 * statusArray.length }
+}
 
 const DetailsRowCards = ({
 	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
@@ -60,23 +67,121 @@ const DetailsRowCards = ({
 		precision: 0,
 	}) as string
 
-	const options: BestOption[] = [
+	const options: OptionType[] = [
 		{
 			type: 'sasu',
-			value: assimiléEvaluation.nodeValue,
+			value: Math.round(assimiléEvaluation.nodeValue),
+			engine: assimiléEngine,
+			documentationPath: '/simulateurs/comparaison-régimes-sociaux/SASU',
 		},
 		{
 			type: 'ei',
-			value: indépendantEvaluation.nodeValue,
+			value: Math.round(indépendantEvaluation.nodeValue),
+			engine: indépendantEngine,
+			documentationPath: '/simulateurs/comparaison-régimes-sociaux/EI',
 		},
 		{
 			type: 'ae',
-			value: autoEntrepreneurEvaluation.nodeValue,
+			value: Math.round(autoEntrepreneurEvaluation.nodeValue),
+			engine: autoEntrepreneurEngine,
+			documentationPath:
+				'/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur',
 		},
 	]
 
 	const bestOptionValue = bestOption ?? getBestOption(options)
 
+	const sortedStatus = options
+		.reduce((acc: any[], option: OptionType) => {
+			const newAcc = [...acc]
+			const sameValues = options.filter(
+				(optionFiltered) => optionFiltered.value === option.value
+			)
+			// Avoid duplicates
+			if (
+				!newAcc.find((arrayOfStatus) =>
+					arrayOfStatus.some(
+						(statusObject: OptionType) => statusObject.value === option.value
+					)
+				)
+			) {
+				return [...newAcc, sameValues]
+			}
+
+			return newAcc
+		}, [])
+		.filter((arrayOfStatus: [OptionType[]]) => arrayOfStatus.length > 0)
+	console.log(sortedStatus)
+
+	return (
+		<Grid container spacing={4}>
+			{sortedStatus.map((statusArray: OptionType[]) => {
+				const option = statusArray[0]
+
+				const { sizeXs, sizeLg } = getGridSizes(statusArray)
+
+				return (
+					<Grid
+						key={`${dottedName}-${option.type}`}
+						item
+						xs={sizeXs}
+						lg={sizeLg}
+					>
+						<StatusCard
+							status={getStatusLabelsArray(statusArray)}
+							footerContent={footers?.[option.type]}
+							isBestOption={
+								statusArray.length !== 3 && bestOptionValue === option.type
+							}
+						>
+							<WhenNotApplicable dottedName={dottedName} engine={option.engine}>
+								<DisabledLabel>Ne s'applique pas</DisabledLabel>
+							</WhenNotApplicable>
+							<WhenApplicable dottedName={dottedName} engine={option.engine}>
+								<StyledDiv>
+									<span>
+										<Value
+											linkToRule={false}
+											expression={dottedName}
+											engine={option.engine}
+											precision={0}
+											unit={unit}
+										/>
+										{label && ' '}
+										{label && label}
+									</span>
+									<StyledRuleLink
+										documentationPath={option.documentationPath}
+										dottedName={dottedName}
+										engine={option.engine}
+									>
+										<HelpIcon />
+									</StyledRuleLink>
+									{warnings?.sasu && warnings?.sasu}
+								</StyledDiv>
+								{evolutionDottedName && (
+									<Precisions>
+										<Value
+											linkToRule={false}
+											expression={evolutionDottedName}
+											engine={option.engine}
+											precision={0}
+											unit={unit}
+										/>{' '}
+										{evolutionLabel}
+									</Precisions>
+								)}
+								{!evolutionDottedName && evolutionLabel && (
+									<Precisions>{evolutionLabel}</Precisions>
+								)}
+							</WhenApplicable>
+						</StatusCard>
+					</Grid>
+				)
+			})}
+		</Grid>
+	)
+	/*
 	if (
 		assimiléValue === indépendantValue &&
 		indépendantValue === autoEntrepreneurValue
@@ -505,6 +610,7 @@ const DetailsRowCards = ({
 			</Grid>
 		</Grid>
 	)
+	*/
 }
 
 const StyledRuleLink = styled(RuleLink)`

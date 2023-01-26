@@ -1,16 +1,22 @@
+import Engine from 'publicodes'
+
+import { DottedName } from '@/../../modele-social'
+
 export type ValueType =
 	| string
 	| number
 	| boolean
 	| null
 	| Record<string, unknown>
-export type BestOption = {
+export type OptionType = {
 	type: 'sasu' | 'ei' | 'ae'
 	value?: ValueType
+	engine: Engine<DottedName>
+	documentationPath: string
 }
-export const getBestOption = (options: BestOption[]) => {
+export const getBestOption = (options: OptionType[]) => {
 	const sortedOptions = options.sort(
-		(option1: BestOption, option2: BestOption) => {
+		(option1: OptionType, option2: OptionType) => {
 			if (option1.value === null || option1.value === undefined) {
 				return 1
 			}
@@ -19,7 +25,6 @@ export const getBestOption = (options: BestOption[]) => {
 			}
 
 			if (option1.value === option2.value) return 0
-			// console.log(option1.value, option2.value, option1.value > option2.value)
 
 			return option1.value > option2.value ? -1 : 1
 		}
