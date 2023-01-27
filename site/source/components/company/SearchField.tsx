@@ -130,8 +130,7 @@ function Results({
 						.
 						<Body>
 							Si tel est le cas, pas d'inquiétude, vous pouvez tout de même
-							consulter et utiliser nos simulateurs ci-dessous.{' '}
-							<Emoji emoji="👇" />
+							consulter et utiliser nos simulateurs.
 						</Body>
 					</Trans>
 				</Body>
