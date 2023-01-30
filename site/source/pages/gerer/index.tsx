@@ -5,33 +5,35 @@ import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-	generatePath, Navigate,
+	Navigate,
 	Route,
-	Routes, useLocation,
-	useParams
+	Routes,
+	generatePath,
+	useLocation,
+	useParams,
 } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { resetCompany } from '@/actions/companyActions'
 import {
 	FabriqueSocialEntreprise,
-	searchDenominationOrSiren
+	searchDenominationOrSiren,
 } from '@/api/fabrique-social'
-import { CompanyDetails } from '@/components/company/Details'
-import RuleInput from '@/components/conversation/RuleInput'
 import {
 	Condition,
 	WhenApplicable,
-	WhenNotApplicable
+	WhenNotApplicable,
 } from '@/components/EngineValue'
 import PageData from '@/components/PageData'
 import PageHeader from '@/components/PageHeader'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
+import { CompanyDetails } from '@/components/company/Details'
+import RuleInput from '@/components/conversation/RuleInput'
 import { FromTop } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Markdown } from '@/components/utils/markdown'
 import { ScrollToTop } from '@/components/utils/Scroll'
+import { Markdown } from '@/components/utils/markdown'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Message, Popover } from '@/design-system'
@@ -50,15 +52,15 @@ import { evaluateQuestion } from '@/utils'
 import { TrackChapter, TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
-import Embaucher from './embaucher'
-import SocialSecurity from './sécurité-sociale'
 import { AnnuaireEntreprises } from './_components/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from './_components/AutoEntrepeneurCard'
 import { DemarcheEmbaucheCard } from './_components/DemarcheEmbauche'
-import forms from './_components/forms.svg'
-import growth from './_components/growth.svg'
 import { MobiliteCard } from './_components/MobiliteCard'
 import { SecuriteSocialeCard } from './_components/SecuriteSocialeCard'
+import forms from './_components/forms.svg'
+import growth from './_components/growth.svg'
+import Embaucher from './embaucher'
+import SocialSecurity from './sécurité-sociale'
 
 export default function Gérer() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
@@ -131,14 +133,12 @@ const infereSimulateurRevenuFromSituation = (
 	}
 
 	if (
-		engine.evaluate('entreprise . catégorie juridique . SARL . EURL')
-			.nodeValue
+		engine.evaluate('entreprise . catégorie juridique . SARL . EURL').nodeValue
 	) {
 		return 'eurl'
 	}
 	if (
-		engine.evaluate('entreprise . catégorie juridique . SAS . SASU')
-			.nodeValue
+		engine.evaluate('entreprise . catégorie juridique . SAS . SASU').nodeValue
 	) {
 		return 'sasu'
 	}

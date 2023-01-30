@@ -98,7 +98,11 @@ entreprise . activités:
     Il est possible d'avoir plusieurs activités différente pour une même entreprise. 
 
     Par exemple, une boulangerie (activité artisanale) peut avoir un rayon épicerie (activité commerciale).
-
+  texte: |
+    Commerciale : {{ commerciale }} ;
+    Artisanale : {{ artisanale }} ;
+    Libérale : {{ libérale }} ;
+    Agricole : {{ agricole }}
   plusieurs possibilités:
     - artisanale
     - commerciale
@@ -111,10 +115,10 @@ entreprise . activités:
 
   avec:
     libérale:
-      variable manquante: entreprise . activités
       par défaut:
         valeur: non
-      question: Avez-vous une activité libérale ?
+        variable manquante: entreprise . activités
+      # question: Avez-vous une activité libérale ?
       description: |
         Une activité libérale consiste en des prestations de services de nature principalement intellectuelles.
 
@@ -128,10 +132,10 @@ entreprise . activités:
         liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
     commerciale:
-      variable manquante: entreprise . activités
       par défaut:
         valeur: non
-      question: Avez-vous une activité commerciale ?
+        variable manquante: entreprise . activités
+      # question: Avez-vous une activité commerciale ?
       description: |
         Votre activité est commerciale si vous êtes dans l'un des cas suivants :
 
@@ -143,10 +147,10 @@ entreprise . activités:
         Comment savoir si votre activité est commerciale: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-1situation1
 
     artisanale:
-      variable manquante: entreprise . activités
       par défaut:
         valeur: non
-      question: Avez-vous une activité artisanale ?
+        variable manquante: entreprise . activités
+      # question: Avez-vous une activité artisanale ?
       description: |
         Pour être artisan, vous devez répondre aux 3 critères suivants :
 
@@ -159,10 +163,10 @@ entreprise . activités:
 
     agricole:
       non applicable si: catégorie juridique . EI . auto-entrepreneur
-      variable manquante: entreprise . activités
       par défaut:
         valeur: non
-      question: Avez-vous une activité agricole ?
+        variable manquante: entreprise . activités
+      # question: Avez-vous une activité agricole ?
       description: |
         Une activité est agricole si elle dépend du cycle biologique végétal ou animal dans le cadre d'une exploitation ou d'une production.
 

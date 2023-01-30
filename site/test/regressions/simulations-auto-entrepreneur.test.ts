@@ -27,8 +27,8 @@ it('calculate simulations-auto-entrepreneur', () => {
 	).toMatchInlineSnapshot(`
 		[
 		  "dirigeant . auto-entrepreneur . impôt . versement libératoire",
-		  "entreprise . activités . revenus mixtes",
 		  "entreprise . activité . nature",
+		  "entreprise . activités . revenus mixtes",
 		  "entreprise . activités . service ou vente",
 		  "entreprise . date de création",
 		  "impôt . foyer fiscal . enfants à charge",
