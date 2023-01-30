@@ -3962,24 +3962,76 @@ entreprise . TVA . franchise de TVA . seuils dépassés:
   titre.en: '[automatic] thresholds exceeded'
   titre.fr: seuils dépassés
 entreprise . activité:
-  titre.en: '[automatic] main activity'
-  titre.fr: activité principale
-entreprise . activité . débit de tabac:
+  titre.en: '[automatic] activity'
+  titre.fr: activité
+entreprise . activité . nature:
+  description.en: >
+    [automatic] Your type of activity will determine a large part of
+    the calculations of contributions and taxes.
+
+
+    ### Multiple activities
+
+    In the case of multiple activities, the main activity is deemed to be the oldest activity.
+
+
+    However, as of the third calendar year following the year in which the pluriactivity situation began, the persons concerned may request that the activity that provided the highest amount of turnover or revenue excluding taxes over the last three years be considered their main activity.
+  description.fr: >
+    Votre type d'activité va déterminer une grande partie des
+    calculs de cotisations, contributions et impôt.
+
+
+    ### Pluri-activité
+
+    En cas d'activité multiples, m'activité principale est réputée être l'activité la plus ancienne.
+
+
+    Toutefois, à partir de la troisième année civile suivant celle au cours de laquelle la situation de pluriactivité a débuté, les personnes intéressées peuvent demander que l'activité qui a procuré le montant de chiffre d'affaires ou de recettes hors taxes le plus élevé sur les trois dernières années soit considérée comme leur activité principale.
+  question.en: '[automatic] What is the nature of your main activity?'
+  question.fr: Quelle est la nature de votre activité principale ?
+  titre.en: '[automatic] nature of the activity'
+  titre.fr: nature de l'activité
+entreprise . activités:
+  description.en: >
+    [automatic] Your type of activity will determine a large part of
+    the calculations of contributions and taxes.
+
+
+    ### Multi-activity
+
+    It is possible to have several different activities for the same company. 
+
+
+    For example, a bakery (artisanal activity) can have a grocery department (commercial activity).
+  description.fr: >
+    Votre type d'activité va déterminer une grande partie des
+    calculs de cotisations, contributions et impôt.
+
+
+    ### Pluri-activité
+
+    Il est possible d'avoir plusieurs activités différente pour une même entreprise. 
+
+
+    Par exemple, une boulangerie (activité artisanale) peut avoir un rayon épicerie (activité commerciale).
+  question.en: '[automatic] What are the activities of your company?'
+  question.fr: Quelle(s) sont les activité(s) de votre entreprise ?
+  titre.en: '[automatic] nature of the activity'
+  titre.fr: nature de l'activité
+entreprise . activités . commerciale . débit de tabac:
   question.en: '[automatic] Do you sell tobacco products?'
   question.fr: Exercez-vous une activité de vente de tabac ?
   titre.en: '[automatic] tobacco shop'
   titre.fr: débit de tabac
 entreprise . activités . revenus mixtes:
   description.en: >
-    [automatic] It is possible to have several activities with
-    different types of income for the same
-
-    for the same company.
+    [automatic] It is possible to have activities with different
+    types of income for the same company.
 
 
     For example, a plumbing company that charges for the purchase and installation of a faucet
 
-    faucet has a part of its turnover in sale of material (the faucet) and a part in service
+    for the purchase and installation of a faucet has a part of its turnover in the sale of the material (the faucet)
 
     and a part in service provision (the installation).
 
@@ -3998,9 +4050,7 @@ entreprise . activités . revenus mixtes:
 
     answer yes to this question.
   description.fr: >
-    Il est possible d'avoir plusieurs activités avec des types de
-    revenus
-
+    Il est possible des activités avec des types de revenus
     différents pour une même entreprise.
 
 
@@ -4024,160 +4074,18 @@ entreprise . activités . revenus mixtes:
     Si votre entreprise a des activités correspondants à plusieurs catégories de
 
     revenus, répondez oui à cette question.
-  question.en: '[automatic] Does your company have several types of activities?'
-  question.fr: Votre entreprise a-t-elle plusieurs types d'activités ?
+  question.en:
+    '[automatic] Does your company have activities with different types
+    of revenues?'
+  question.fr: Votre entreprise a-t-elle des activités avec des types de revenus
+    différents ?
   titre.en: '[automatic] Mixed activities'
   titre.fr: Activités mixtes
-entreprise . activités . revenus mixtes . proportions:
-  description.en: '[automatic] Share of the different activities in the turnover'
-  description.fr: Part des différentes activités dans le chiffre d'affaires
-  note.en: '[automatic] It is up to the user to check that the sum of the three
-    percentages is 100%.'
-  note.fr: Il appartient à l'utilisateur de bien vérifier que la somme des trois
-    pourcentages renseignés vaut 100%.
-  titre.en: '[automatic] proportion activity'
-  titre.fr: proportion activité
-entreprise . activité . nature:
-  description.en: '[automatic] Your type of activity will determine a large part
-    of the calculations of contributions and taxes.'
-  description.fr: Votre type d'activité va déterminer une grande partie des
-    calculs de cotisations, contributions et impôt.
-  question.en: '[automatic] What is the nature of your main activity?'
-  question.fr: Quelle est la nature de votre activité principale ?
-  titre.en: '[automatic] nature of the activity'
-  titre.fr: nature de l'activité
-entreprise . activité . nature . artisanale:
-  description.en: >
-    [automatic] To be a craftsman, you must meet the following 3
-    criteria:
-
-
-    - Your activity must be part of the official list of crafts or the official list of arts and crafts
-
-    - Your company must have less than 11 employees at its creation
-
-    - You must have a specific know-how and prove it by a diploma (CAP, BEP, etc.) or a professional qualification
-  description.fr: >
-    Pour être artisan, vous devez répondre aux 3 critères suivants :
-
-
-    - Votre activité doit faire partie de la liste officielle des métiers de l'artisanat ou de la liste officielle des métiers d'artisanat d'art
-
-    - Votre entreprise doit compter moins de 11 salariés à sa création
-
-    - Vous devez détenir un savoir-faire spécifique et le prouver par un diplôme (CAP, BEP, etc.) ou une qualification professionnelle
-  titre.en: '[automatic] artisanal'
-  titre.fr: artisanale
-entreprise . activité . nature . commerciale:
-  description.en: >
-    [automatic] Your activity is commercial if you are in one of the
-    following cases:
-
-
-    - You buy goods or merchandise to resell them for profit: that brings in money, profit, or earnings
-
-    - You sell services in the fields of hotels, restaurants, transportation, entertainment, security, computers, design, etc.
-
-    - You have an activity of renting goods, merchandise or services
-  description.fr: >
-    Votre activité est commerciale si vous êtes dans l'un des cas
-    suivants :
-
-
-    - Vous achetez des biens ou des marchandises pour les revendre dans un but lucratif : Qui rapporte de l'argent, du profit, des bénéfices
-
-    - Vous vendez des services dans les domaines de l'hôtellerie, la restauration, les transports, les spectacles, la sécurité, l'informatique, le design, etc.
-
-    - Vous avez une activité de location de biens, de marchandises ou de services
-  titre.en: '[automatic] commercial'
-  titre.fr: commerciale
-entreprise . activité . nature . libérale:
-  description.en: >
-    [automatic] A liberal activity consists of services of a mainly
-    intellectual nature.
-
-
-    You render a paid service.
-
-
-    You must have a diploma or a professional qualification in the field.
-  description.fr: >
-    Une activité libérale consiste en des prestations de services de
-    nature principalement intellectuelles.
-
-
-    Vous rendez un service payant.
-
-
-    Vous devez avoir un diplôme ou une qualification professionnelle dans le domaine.
-  question.en: '[automatic] Is your activity a liberal profession?'
-  question.fr: Votre activité est-elle une profession libérale ?
-  titre.en: '[automatic] liberal'
-  titre.fr: libérale
-entreprise . activité . nature . libérale . réglementée:
-  description.en: >
-    [automatic] Some liberal professions have been classified as
-    liberal by law and their title is protected. Their members must respect
-    strict ethical rules and are subject to the control of their professional
-    bodies (order, chamber, or union).
-
-
-    &gt; Examples of regulated professions: architect, lawyer, nurse, doctor...
-
-
-    These are other people who practice a science or an art and whose intellectual activity plays the main role. Their income must represent the remuneration of a personal work, without subordination, while engaging their technical and moral responsibility.
-
-
-    &gt; Examples of non-regulated professions: developer, historian, urban planner...
-  description.fr: >
-    Certaines professions libérales ont été classées dans le domaine
-    libéral par la loi et leur titre est protégé. Leurs membres doivent
-    respecter des règles déontologiques strictes et sont soumis au contrôle de
-    leurs instances professionnelles (ordre, chambre, ou syndicat).
-
-
-    > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
-
-
-    Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
-
-
-    > Exemples de professions non-règlementées : développeur, historien, urbaniste...
-  question.en: '[automatic] Is it a regulated liberal activity?'
-  question.fr: Est-ce une activité libérale réglementée ?
-  titre.en: '[automatic] regulated'
-  titre.fr: réglementée
 entreprise . activités . service ou vente:
-  question.en: '[automatic] What type of business is the company in?'
-  question.fr: Quelle est le type d'activité de l'entreprise ?
+  question.en: "[automatic] What is the company's main activity?"
+  question.fr: Quelle est le type d'activité principale de l'entreprise ?
   titre.en: '[automatic] service or sale'
   titre.fr: service ou vente
-entreprise . activités . service ou vente . service:
-  description.en: >
-    [automatic] This is any transaction that does not involve the
-    transfer of ownership of tangible
-
-    tangible goods (i.e. having a material existence).
-  description.fr: |
-    Il s’agit de toute opération ne comportant pas de transfert de propriété de
-    biens corporels (c'est-à-dire ayant une existence matérielle).
-  titre.en: '[automatic] service delivery'
-  titre.fr: prestation de service
-entreprise . activités . service ou vente . vente:
-  description.en: >
-    [automatic] It is any transaction involving the transfer of
-    ownership of a tangible asset (i.e., an asset with a physical existence), as
-    well as any transaction
-
-    property (i.e. property with a physical existence), as well as all
-
-    all catering and accommodation activities.
-  description.fr: |
-    Il s’agit de toute opération comportant transfert de propriété d'un bien
-    corporel (c'est-à-dire un bien ayant une existence matérielle), ainsi que
-    toutes les activités de restauration et d'hébergement.
-  titre.en: '[automatic] sale of goods, catering or accommodation'
-  titre.fr: vente de biens, restauration ou hébergement
 entreprise . association non lucrative:
   description.en: The company is a non-profit organisation
   description.fr: L'entreprise est une association non lucrative
@@ -4185,6 +4093,11 @@ entreprise . association non lucrative:
   question.fr: S'agit-il d'une association à but non lucratif ?
   titre.en: non-profit organisation
   titre.fr: association non lucrative
+entreprise . associés:
+  question.en: '[automatic] I own this company...'
+  question.fr: Je possède cette entreprise...
+  titre.en: '[automatic] associates'
+  titre.fr: associés
 entreprise . capital social:
   description.en: |
     [automatic] This value must include the value of the share premiums.
@@ -4195,50 +4108,36 @@ entreprise . capital social:
   titre.en: '[automatic] Share capital'
   titre.fr: Capital social
 entreprise . catégorie juridique:
-  description.en: |
-    [automatic] Legal categories accessible via the SIRENE API
-  description.fr: |
-    Les catégories juridiques accessibles via l'API SIRENE
   note.en: '[automatic] We base ourselves here on the legal categories defined by INSEE'
   note.fr: On se base ici sur les catégories juridiques définies par l'INSEE
+  question.en: '[automatic] What is the legal category of the company?'
+  question.fr: Quelle est la catégorie juridique de l'entreprise ?
   titre.en: '[automatic] legal category'
   titre.fr: catégorie juridique
 entreprise . catégorie juridique . EI:
-  titre.en: '[automatic] EI or EIRL'
-  titre.fr: EI ou EIRL
-entreprise . catégorie juridique . EI . auto-entrepreneur:
-  question.en: '[automatic] Are you an auto-entrepreneur?'
-  question.fr: Êtes-vous auto-entrepreneur ?
-  titre.en: '[automatic] auto-entrepreneur'
-  titre.fr: auto-entrepreneur
+  titre.en: '[automatic] Sole proprietorship (including auto-entrepreneurs)'
+  titre.fr: Entreprise individuelle (y compris auto-entrepreneurs)
 entreprise . catégorie juridique . SARL:
   titre.en: '[automatic] EURL or SARL'
   titre.fr: EURL ou SARL
-entreprise . catégorie juridique . SARL . unipersonnelle:
-  description.en: '[automatic] An EURL is a company with only one partner. This
-    means that you are the sole owner of the company.'
-  description.fr:
-    Une EURL est une entreprise avec un seul associé. Cela signifie
-    que vous êtes le seul et unique propriétaire de l'entreprise.
-  question.en: '[automatic] Is your company an EURL?'
-  question.fr: Votre entreprise est-elle une EURL ?
-  titre.en: '[automatic] EURL'
-  titre.fr: EURL
 entreprise . catégorie juridique . SAS:
   titre.en: '[automatic] SASU or SAS'
   titre.fr: SASU ou SAS
-entreprise . catégorie juridique . SAS . unipersonnelle:
-  question.en: '[automatic] Is your company a SASU?'
-  question.fr: Votre entreprise est-elle une SASU ?
-  titre.en: '[automatic] SASU'
-  titre.fr: SASU
 entreprise . catégorie juridique . SELARL:
-  titre.en: '[automatic] SELARL'
-  titre.fr: SELARL
+  titre.en: "[automatic] Limited Liability Company (Société d'exercice libéral à
+    responsabilité limitée)"
+  titre.fr: Société d'exercice libéral à responsabilité limitée
 entreprise . catégorie juridique . SELAS:
-  titre.en: '[automatic] SELAS'
-  titre.fr: SELAS
+  titre.en: '[automatic] Liberal practice company by simplified shares'
+  titre.fr: Société d'exercice libéral par actions simplifiées
+entreprise . catégorie juridique . SNC:
+  titre.en: '[automatic] General partnership'
+  titre.fr: Société en nom collectif
 entreprise . catégorie juridique . autre:
+  description.en: |
+    [automatic] This simulator does not yet manage all types of companies.
+  description.fr: |
+    Ce simulateur ne gère pas encore tout les types d'entreprises.
   titre.en: '[automatic] other'
   titre.fr: autre
 entreprise . charges:
@@ -4294,6 +4193,22 @@ entreprise . charges:
   titre.en: '[automatic] expenses (excluding management remuneration)'
   titre.fr: charges (hors rémunération dirigeant)
 entreprise . chiffre d'affaires:
+  description.en: >
+    [automatic] ### Estimated turnover
+
+    The turnover is the <strong>sum of the amounts of the sales realized 
+
+    during your accounting period</strong> (one year): Sales = sales price x quantities sold. 
+
+    quantities sold.
+  description.fr: >
+    ### Chiffre d'affaires estimé
+
+    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées 
+
+    pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités 
+
+    vendues.
   question.en: What is your expected turnover ?
   question.fr: Quel est votre chiffre d'affaires envisagé ?
   résumé.en: '[automatic] Total gross revenues (excluding tax)'
@@ -4385,24 +4300,27 @@ entreprise . chiffre d'affaires . service BNC:
   résumé.fr: Recettes hors taxes
   titre.en: '[automatic] Other services and liberal activities (BNC)'
   titre.fr: Autres prestations de service et activités libérales (BNC)
-entreprise . chiffre d'affaires . seuil micro dépassé:
+entreprise . chiffre d'affaires . seuil micro:
+  titre.en: '[automatic] micro threshold'
+  titre.fr: seuil micro
+entreprise . chiffre d'affaires . seuil micro . dépassé:
   description.en: >
     [automatic] The status of micro-enterprise applies as long as
-    the annual turnover (actually received during the calendar year) does not
-    exceed the thresholds of the micro-enterprise tax regime.
+    the annual turnover (effectively collected during the calendar year) does
+    not exceed the thresholds of the micro-enterprise tax regime.
 
 
-    If the thresholds are exceeded **over two consecutive years**, the company automatically switches to the [sole proprietorship](/simulator/self-employed) regime.
+    In case of exceeding **over two consecutive years**, the company automatically switches to the [sole proprietorship](/simulator/self-employed) regime.
 
 
     At the end of the first year of activity, the turnover is prorated according to the duration of activity.
 
 
-    Example:
+    ##### Example:
 
-    &gt; A taxpayer sets up a business on August 1 and collects revenues (excluding VAT) of `50,000` during the five months of activity of his first calendar year of operation.
+    &gt; A taxpayer creates a company on August 1 and collects revenues of €50,000 before tax during the five months of activity of his first calendar year of operation.
 
-    The receipts of this first calendar year are adjusted *prorata temporis* to compare them to the ceiling:
+    &gt; The receipts of this first calendar year are adjusted *prorata temporis* to compare them to the ceiling:
 
     &gt;
 
@@ -4410,16 +4328,16 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
 
 
 
-    Charges are not deductible for the calculation of the ceiling (as for the calculation of the contributions)
+    The expenses are not deductible for the calculation of the ceiling (as for the calculation of the contributions)
 
 
 
-    Multi-activity
+    ### Multi-activity
 
 
-    When an entrepreneur carries out 2 activities within his micro-enterprise, the turnover
+    When an entrepreneur carries out 2 activities within his or her micro-enterprise, the
 
-    turnover threshold is not doubled. In
+    the turnover threshold is not doubled. In
 
     Indeed, the exercise of several activities with the same micro-enterprise
 
@@ -4436,7 +4354,7 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
     À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité.
 
 
-    Exemple :
+    > ##### Exemple :
 
     > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation.
 
@@ -4462,8 +4380,14 @@ entreprise . chiffre d'affaires . seuil micro dépassé:
     effet l'exercice de plusieurs activités avec la même micro-entreprise
 
     n’augmente pas les seuils.
-  titre.en: '[automatic] micro threshold exceeded'
-  titre.fr: seuil micro dépassé
+  titre.en: '[automatic] exceeded'
+  titre.fr: dépassé
+entreprise . chiffre d'affaires . seuil micro . libérale:
+  titre.en: '[automatic] liberal'
+  titre.fr: libérale
+entreprise . chiffre d'affaires . seuil micro . total:
+  titre.en: '[automatic] total'
+  titre.fr: total
 entreprise . chiffre d'affaires . vente restauration hébergement:
   description.en: >
     [automatic] Sale of goods
@@ -4516,7 +4440,48 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   résumé.fr: Chiffre d'affaires hors taxe
   titre.en: '[automatic] Sale of goods, catering, accommodation (BIC)'
   titre.fr: Vente de biens, restauration, hébergement (BIC)
+entreprise . coût formalités . CMA:
+  titre.en: '[automatic] Rates related to the Chamber of Trades and Crafts'
+  titre.fr: Les tarifs liés au Chambre des Métiers et de l'Artisanat
+entreprise . coût formalités . RCS:
+  titre.en: '[automatic] Fees related to the Trade and Companies Register'
+  titre.fr: Les tarifs liés au Registre du commerce et des sociétés
+entreprise . coût formalités . RSAC:
+  titre.en: '[automatic] Fees related to the Special Register of Commercial Agents'
+  titre.fr: Les tarifs liés au Registre Spécial des Agents Commerciaux
+entreprise . coût formalités . création:
+  résumé.en:
+    '[automatic] All costs related to the registration (registry, BODACC,
+    chambers)'
+  résumé.fr: Tous les frais liés à l'enregistrement (greffe, BODACC, chambres)
+  titre.en: '[automatic] Creation cost'
+  titre.fr: Coût de création
+entreprise . coût formalités . création . BODACC:
+  titre.en: '[automatic] Rates for the Official Bulletin of Civil and Commercial
+    Announcements'
+  titre.fr: Les tarifs liés au Bulletin officiel des annonces civiles et commerciales
+entreprise . coût formalités . création . JAL:
+  titre.en: '[automatic] The rates related to the legal notice newspaper'
+  titre.fr: Les tarifs liés au Journal d'annonce légal
+entreprise . coût formalités . création . frais de transmissions:
+  titre.en: '[automatic] transmission costs'
+  titre.fr: frais de transmissions
 entreprise . date de création:
+  description.en: >
+    [automatic] The date of commencement of activity (or date of
+    creation) is determined when you declare your
+
+    declaration of your company.
+
+
+    You can [fill in your company](/), to pre-fill this information
+
+    this information automatically.
+
+
+    If you do not have the exact day, the month is usually enough for a good
+
+    approximation.
   description.fr: |
     La date de début d'activité (ou date de création) est fixée lors de la
     déclaration de votre entreprise.
@@ -4530,7 +4495,9 @@ entreprise . date de création:
   question.fr: Quelle est votre date de début d'activité ?
   suggestions.Début 2022.en: '[automatic] Early 2022'
   suggestions.Début 2022.fr: Début 2022
+  suggestions.Début 2023.en: '[automatic] Early 2023'
   suggestions.Début 2023.fr: Début 2023
+  suggestions.Il y a plus de 10 ans.en: '[automatic] More than 10 years ago'
   suggestions.Il y a plus de 10 ans.fr: Il y a plus de 10 ans
   titre.en: Creation date
   titre.fr: date de création
