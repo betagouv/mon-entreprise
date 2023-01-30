@@ -111,8 +111,8 @@ entreprise . activités:
 
   avec:
     libérale:
+      variable manquante: entreprise . activités
       par défaut:
-        variable manquante: entreprise . activités
         valeur: non
       question: Avez-vous une activité libérale ?
       description: |
@@ -128,8 +128,8 @@ entreprise . activités:
         liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
     commerciale:
+      variable manquante: entreprise . activités
       par défaut:
-        variable manquante: entreprise . activités
         valeur: non
       question: Avez-vous une activité commerciale ?
       description: |
@@ -143,8 +143,8 @@ entreprise . activités:
         Comment savoir si votre activité est commerciale: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-1situation1
 
     artisanale:
+      variable manquante: entreprise . activités
       par défaut:
-        variable manquante: entreprise . activités
         valeur: non
       question: Avez-vous une activité artisanale ?
       description: |
@@ -159,8 +159,8 @@ entreprise . activités:
 
     agricole:
       non applicable si: catégorie juridique . EI . auto-entrepreneur
+      variable manquante: entreprise . activités
       par défaut:
-        variable manquante: entreprise . activités
         valeur: non
       question: Avez-vous une activité agricole ?
       description: |
@@ -273,8 +273,8 @@ entreprise . activités . service ou vente:
   non applicable si: revenus mixtes
   applicable si:
     une de ces conditions:
-      - activités . nature . artisanale
-      - activités . nature . commerciale
+      - activité . nature . artisanale
+      - activité . nature . commerciale
   question: Quelle est le type d'activité principale de l'entreprise ?
   formule:
     une possibilité:

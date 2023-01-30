@@ -7,7 +7,6 @@ import { SimulationConfig } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	configSelector,
-	currentQuestionSelector,
 	useMissingVariables,
 } from '@/selectors/simulationSelectors'
 
@@ -70,24 +69,20 @@ export const useNextQuestions = function (
 	engines?: Array<Engine<DottedName>>
 ): Array<DottedName> {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
-	const currentQuestion = useSelector(currentQuestionSelector)
 	const config = useSelector(configSelector)
 	const engine = useEngine()
 	const missingVariables = useMissingVariables({ engines: engines ?? [engine] })
 	const nextQuestions = useMemo(() => {
-		let next = getNextQuestions(
+		const next = getNextQuestions(
 			missingVariables,
 			config.questions ?? {},
 			answeredQuestions
 		)
-		if (currentQuestion && currentQuestion !== next[0]) {
-			next = [currentQuestion, ...next.filter((val) => val !== currentQuestion)]
-		}
 
 		return next.filter(
 			(question) => engine.getRule(question).rawNode.question !== undefined
 		)
-	}, [missingVariables, config, answeredQuestions, engine, currentQuestion])
+	}, [missingVariables, config, answeredQuestions, engine])
 
 	return nextQuestions
 }

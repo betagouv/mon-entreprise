@@ -1,20 +1,14 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import {
-	answerQuestion,
-	goToQuestion,
-	stepAction,
-	updateShouldFocusField,
-} from '@/actions/actions'
+import { answerQuestion } from '@/actions/actions'
 import Notifications from '@/components/Notifications'
 import QuickLinks from '@/components/QuickLinks'
 import RuleInput from '@/components/conversation/RuleInput'
 import { useEngine } from '@/components/utils/EngineContext'
-import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -24,7 +18,6 @@ import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
-	useMissingVariables,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
@@ -34,6 +27,7 @@ import { FromTop } from '../ui/animate'
 import AnswerList from './AnswerList'
 import { ExplicableRule } from './Explicable'
 import SeeAnswersButton from './SeeAnswersButton'
+import { useNavigateQuestions } from './useNavigateQuestions'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -49,30 +43,15 @@ export default function Conversation({
 	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const currentQuestion = useNextQuestions(engines)[0]
 
 	const situation = useSelector(situationSelector)
-	const currentQuestionIsAnswered = !(
-		currentQuestion in useMissingVariables({ engines: engines ?? [engine] })
-	)
+
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 
 	const { t } = useTranslation()
-	useEffect(() => {
-		if (currentQuestion && !currentQuestionIsAnswered) {
-			dispatch(goToQuestion(currentQuestion))
-		}
-	}, [dispatch, currentQuestion])
 
-	const goToNextQuestion = () => {
-		dispatch(updateShouldFocusField(true))
-		dispatch(stepAction(currentQuestion))
-	}
-
-	const goToPrevious = () => {
-		dispatch(updateShouldFocusField(true))
-		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
-	}
+	const { currentQuestion, currentQuestionIsAnswered, goToPrevious, goToNext } =
+		useNavigateQuestions(engines)
 
 	const onChange = (
 		value: PublicodesExpression | undefined,
@@ -101,7 +80,7 @@ export default function Conversation({
 						<form
 							onSubmit={(e) => {
 								e.preventDefault()
-								goToNextQuestion()
+								goToNext()
 							}}
 						>
 							<div
@@ -129,7 +108,7 @@ export default function Conversation({
 									dottedName={currentQuestion}
 									onChange={onChange}
 									key={currentQuestion}
-									onSubmit={goToNextQuestion}
+									onSubmit={goToNext}
 									aria-labelledby="questionHeader"
 								/>
 							</fieldset>
@@ -145,7 +124,7 @@ export default function Conversation({
 								<Grid item xs={6} sm="auto">
 									<Button
 										size="XS"
-										onPress={goToNextQuestion}
+										onPress={goToNext}
 										light={!currentQuestionIsAnswered ? true : undefined}
 										color={!currentQuestionIsAnswered ? 'secondary' : undefined}
 										aria-label={
