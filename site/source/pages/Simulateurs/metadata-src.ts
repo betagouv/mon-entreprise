@@ -1,11 +1,21 @@
 import { TFunction } from 'i18next'
 
+import { PageConfig } from './configs/types'
+import {
+	Immutable,
+	configCoûtCréationEntreprise,
+} from './cout-creation-entreprise/config.js'
+import { SimulatorsDataParams } from './metadata'
+
 /**
  * Contient l'intégralité des données concernant les différents simulateurs
  * sans dépendance qui compliquerait leur import dans le script de mise à jour
  * des données pour Algolia.
  */
-const getMetadataSrc = (t: TFunction) => {
+const getMetadataSrc = (
+	t: TFunction,
+	sitePaths: SimulatorsDataParams['sitePaths']
+) => {
 	const data = {
 		salarié: {
 			tracking: 'salarie',
@@ -300,6 +310,7 @@ const getMetadataSrc = (t: TFunction) => {
 			tracking: 'comparaison_statut',
 			icône: '📊',
 			pathId: 'simulateurs.comparaison',
+			iframePath: 'comparaison-statuts',
 			title: t(
 				'pages.simulateurs.comparaison.title',
 				'Comparateur de statut juridique'
@@ -322,7 +333,6 @@ const getMetadataSrc = (t: TFunction) => {
 		},
 		'économie-collaborative': {
 			tracking: 'economie_collaborative',
-
 			meta: {
 				title: t(
 					'pages.économie-collaborative.meta.title',
@@ -789,34 +799,11 @@ const getMetadataSrc = (t: TFunction) => {
 
 			nextSteps: ['déclaration-charges-sociales-indépendant'],
 		},
-		'coût-création-entreprise': {
-			icône: '💰',
-			tracking: 'cout_création_entreprise',
-			iframePath: 'coût-création-entreprise',
-			pathId: 'simulateurs.coût-création-entreprise',
-			meta: {
-				title: t(
-					'pages.simulateurs.coût-création-entreprise.meta.title',
-					"Coût de création d'une entreprise"
-				),
-				description: t(
-					'pages.simulateurs.coût-création-entreprise.meta.description',
-					"Estimer les coûts lors de la création d'une entreprise"
-				),
-			},
-			shortName: t(
-				'pages.simulateurs.coût-création-entreprise.shortName',
-				"Coût de création d'une entreprise"
-			),
-			title: t(
-				'pages.simulateurs.coût-création-entreprise.title',
-				"Simulateur du coût de création d'une entreprise"
-			),
-			// nextSteps: ['déclaration-charges-sociales-indépendant'],
-		},
+
+		...configCoûtCréationEntreprise({ t, sitePaths }),
 	} as const
 
-	return data
+	return data satisfies Immutable<{ [key: string]: PageConfig }>
 }
 
 export type MetadataSrc = ReturnType<typeof getMetadataSrc>

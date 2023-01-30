@@ -6,7 +6,7 @@ import Simulation, {
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 
-export const CoutCreationEntreprise = () => {
+const CoutCreationEntreprise = () => {
 	return (
 		<>
 			<Simulation
@@ -56,3 +56,5 @@ export const CoutCreationEntreprise = () => {
 		</>
 	)
 }
+
+export default CoutCreationEntreprise

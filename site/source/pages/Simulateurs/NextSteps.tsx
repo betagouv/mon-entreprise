@@ -12,7 +12,7 @@ import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
 import { useSitePaths } from '@/sitePaths'
 
 interface NextStepsProps {
-	iframePath: ExtractFromSimuData<'iframePath'>
+	iframePath?: ExtractFromSimuData<'iframePath'>
 	nextSteps: ExtractFromSimuData<'nextSteps'>
 }
 

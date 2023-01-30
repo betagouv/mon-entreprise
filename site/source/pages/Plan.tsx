@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
 import { H1, H3 } from '@/design-system/typography/heading'
@@ -8,12 +8,11 @@ import { useSitePaths } from '@/sitePaths'
 
 import { TrackPage } from '../ATInternetTracking'
 import Meta from '../components/utils/Meta'
-import getMetadataSrc from './Simulateurs/metadata-src'
+import useSimulatorsData from './Simulateurs/metadata'
 
 export default function Plan() {
 	const { absoluteSitePaths } = useSitePaths()
-	const { t } = useTranslation()
-	const metadata = getMetadataSrc(t)
+	const simulatorData = useSimulatorsData()
 
 	return (
 		<>
@@ -109,21 +108,15 @@ export default function Plan() {
 
 					<Ul>
 						{Object.entries(absoluteSitePaths.simulateurs)
-							.filter(([key]) => {
-								return !!metadata[
-									key as keyof typeof absoluteSitePaths.simulateurs &
-										keyof typeof metadata
-								]
-							})
+							.filter(([key]) => key in simulatorData)
 							.map(([simulateurKey, simulateurPath]: [string, string]) => {
 								return (
 									<Li key={`list-item-${simulateurKey}`}>
 										<H3>
 											<Link to={simulateurPath}>
 												{
-													metadata[
-														simulateurKey as keyof typeof absoluteSitePaths.simulateurs &
-															keyof typeof metadata
+													simulatorData[
+														simulateurKey as keyof typeof simulatorData
 													].title
 												}
 											</Link>

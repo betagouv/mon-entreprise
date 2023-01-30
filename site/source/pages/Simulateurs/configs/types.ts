@@ -1,5 +1,6 @@
 import { DottedName } from 'modele-social'
 import { ASTNode, PublicodesExpression } from 'publicodes'
+import { FC, LazyExoticComponent } from 'react'
 
 export type Situation = Partial<
 	Record<DottedName, PublicodesExpression | ASTNode>
@@ -50,5 +51,38 @@ export type SimulationConfig = Partial<{
 		}[]
 	}
 
-	'unité par défaut': string
+	'unité par défaut'?: string
 }>
+
+export interface PageConfig {
+	path?: string
+	iframePath: string
+	pathId: string
+	icône: string
+	shortName: string
+	title: string
+	tracking:
+		| string
+		| {
+				chapter1?: string
+				chapter2?: string
+				chapter3?: string
+		  }
+	meta: {
+		title: string
+		description: string
+		ogDescription?: string
+		ogTitle?: string
+		ogImage?: string
+		color?: string
+	}
+	private?: boolean
+	beta?: boolean
+	tooltip?: string
+	nextSteps?: string[]
+
+	simulation?: SimulationConfig
+	component?: () => JSX.Element
+	lazyComponent?: LazyExoticComponent<FC<unknown>>
+	seoExplanations?: JSX.Element
+}

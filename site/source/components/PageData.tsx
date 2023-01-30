@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -11,6 +11,7 @@ import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
+import { DeepWriteable } from '@/pages/Simulateurs/cout-creation-entreprise/config'
 import { situationSelector } from '@/selectors/simulationSelectors'
 
 import { TrackChapter } from '../ATInternetTracking'
@@ -23,18 +24,18 @@ import BetaBanner from './BetaBanner'
 
 export interface PageDataProps {
 	meta: ExtractFromSimuData<'meta'>
-	config?: ExtractFromSimuData<'config'>
+	simulation?: ExtractFromSimuData<'simulation'>
 	tracking: ExtractFromSimuData<'tracking'>
 	tooltip?: ExtractFromSimuData<'tooltip'>
-	description?: ExtractFromSimuData<'description'>
-	iframePath?: ExtractFromSimuData<'iframePath'>
+	iframePath: ExtractFromSimuData<'iframePath'>
 	seoExplanations?: ExtractFromSimuData<'seoExplanations'>
 	beta?: ExtractFromSimuData<'beta'>
 	nextSteps?: ExtractFromSimuData<'nextSteps'>
 	path: ExtractFromSimuData<'path'>
 	title: ExtractFromSimuData<'title'>
 	private?: ExtractFromSimuData<'private'>
-	component: ExtractFromSimuData<'component'>
+	component?: ExtractFromSimuData<'component'>
+	lazyComponent?: ExtractFromSimuData<'lazyComponent'>
 	icône: ExtractFromSimuData<'icône'>
 	pathId: ExtractFromSimuData<'pathId'>
 	shortName: ExtractFromSimuData<'shortName'>
@@ -43,15 +44,15 @@ export interface PageDataProps {
 export default function PageData(props: PageDataProps) {
 	const {
 		meta,
-		config,
+		simulation,
 		title,
 		tracking,
 		tooltip,
 		beta,
-		description,
 		iframePath,
 		private: privateIframe,
 		component: Component,
+		lazyComponent: LazyComponent,
 		seoExplanations,
 		nextSteps,
 		path,
@@ -63,14 +64,15 @@ export default function PageData(props: PageDataProps) {
 	const year = typeof année === 'number' ? `Année ${année}` : ''
 
 	const inIframe = useIsEmbedded()
+	const config = simulation as DeepWriteable<typeof simulation>
 	useSimulationConfig({ path, config })
 	useSearchParamsSimulationSharing()
 
 	const trackInfo = {
 		chapter1:
-			typeof tracking === 'string' || !('chapter1' in tracking)
-				? ('simulateurs' as const)
-				: tracking.chapter1,
+			typeof tracking !== 'string' && tracking && 'chapter1' in tracking
+				? tracking.chapter1
+				: ('simulateurs' as const),
 		...(typeof tracking === 'string' ? { chapter2: tracking } : tracking),
 	} as ComponentPropsWithoutRef<typeof TrackChapter>
 
@@ -98,9 +100,14 @@ export default function PageData(props: PageDataProps) {
 						{tooltip && <Intro>{tooltip}</Intro>}
 					</>
 				)}
-				{description && !inIframe && description}
 
-				<Component />
+				{Component ? (
+					<Component />
+				) : LazyComponent ? (
+					<Suspense fallback={<>Loading</>}>
+						<LazyComponent />
+					</Suspense>
+				) : null}
 
 				{!inIframe && (
 					<>

@@ -54,6 +54,8 @@ import {
 	configSageFemme,
 } from './configs/professionLibérale'
 import { configSalarié } from './configs/salarié'
+import { PageConfig } from './configs/types'
+import { Immutable } from './cout-creation-entreprise/config'
 import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
@@ -62,28 +64,27 @@ import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
 import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from './images/illustration-net-brut.png'
 import getData from './metadata-src.js'
-import { coutCreationEntreprise } from './metadata/coutCreationEntreprise'
 
-interface SimulatorsDataParams {
+export interface SimulatorsDataParams {
 	t: TFunction
 	sitePaths: AbsoluteSitePaths
 	language: string
 }
 
 function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
-	const pureSimulatorsData = getData(t)
+	const pureSimulatorsData = getData(t, sitePaths)
 
-	return {
+	const data = {
 		salarié: {
 			...pureSimulatorsData['salarié'],
-			config: configSalarié,
-			component: SalariéSimulation,
+			path: sitePaths.simulateurs.salarié,
 			meta: {
 				...pureSimulatorsData['salarié'].meta,
 				ogImage:
 					language === 'fr' ? salaireBrutNetPreviewFR : salaireBrutNetPreviewEN,
 			},
-			path: sitePaths.simulateurs.salarié,
+			simulation: configSalarié,
+			component: SalariéSimulation,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateu rs.salarié.seo">
 					<H2>Comment calculer le salaire net ?</H2>
@@ -193,13 +194,13 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		'entreprise-individuelle': {
 			...pureSimulatorsData['entreprise-individuelle'],
-			config: configEntrepriseIndividuelle,
+			path: sitePaths.simulateurs['entreprise-individuelle'],
 			meta: {
 				...pureSimulatorsData['entreprise-individuelle']?.meta,
 				ogImage: AutoEntrepreneurPreview,
 			},
+			simulation: configEntrepriseIndividuelle,
 			component: EntrepriseIndividuelle,
-			path: sitePaths.simulateurs['entreprise-individuelle'],
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.ei.seo explanation">
 					<H2>
@@ -271,23 +272,23 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		eirl: {
 			...pureSimulatorsData.eirl,
-			config: configEirl,
+			path: sitePaths.simulateurs.eirl,
 			meta: {
 				...pureSimulatorsData.eirl?.meta,
 				ogImage: AutoEntrepreneurPreview,
 			},
-			component: IndépendantSimulation,
-			path: sitePaths.simulateurs.eirl,
 			nextSteps: ['comparaison-statuts'],
+			simulation: configEirl,
+			component: IndépendantSimulation,
 		},
 		sasu: {
 			...pureSimulatorsData.sasu,
-			config: configSASU,
+			path: sitePaths.simulateurs.sasu,
 			meta: {
 				...pureSimulatorsData.sasu?.meta,
 				ogImage: RémunérationSASUPreview,
 			},
-			path: sitePaths.simulateurs.sasu,
+			simulation: configSASU,
 			component: SASUSimulation,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
@@ -333,25 +334,24 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		eurl: {
 			...pureSimulatorsData.eurl,
-			config: configEurl,
+			path: sitePaths.simulateurs.eurl,
 			meta: {
 				...pureSimulatorsData.eurl?.meta,
 				ogImage: RémunérationSASUPreview,
 			},
-			path: sitePaths.simulateurs.eurl,
+			simulation: configEurl,
 			component: IndépendantSimulation,
 		},
 		'auto-entrepreneur': {
 			...pureSimulatorsData['auto-entrepreneur'],
+			path: sitePaths.simulateurs['auto-entrepreneur'],
 			tracking: 'auto_entrepreneur',
-			config: configAutoEntrepreneur,
 			meta: {
 				...pureSimulatorsData['auto-entrepreneur']?.meta,
 				ogImage: AutoEntrepreneurPreview,
 			},
+			simulation: configAutoEntrepreneur,
 			component: AutoEntrepreneur,
-			path: sitePaths.simulateurs['auto-entrepreneur'],
-
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.auto-entrepreneur.seo explanation">
 					<H2>Comment calculer le revenu net d'un auto-entrepreneur ?</H2>
@@ -423,8 +423,8 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		indépendant: {
 			...pureSimulatorsData['indépendant'],
-			config: configIndépendant,
 			path: sitePaths.simulateurs.indépendant,
+			simulation: configIndépendant,
 			component: IndépendantSimulation,
 		},
 		'artiste-auteur': {
@@ -434,13 +434,14 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		},
 		'chômage-partiel': {
 			...pureSimulatorsData['chômage-partiel'],
-			component: ChômagePartielComponent,
-			config: configChômagePartiel,
 			path: sitePaths.simulateurs['chômage-partiel'],
 			meta: {
 				...pureSimulatorsData['chômage-partiel']?.meta,
 				ogImage: ChômagePartielPreview,
 			},
+			nextSteps: ['salarié'],
+			simulation: configChômagePartiel,
+			component: ChômagePartielComponent,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.chômage-partiel.seo">
 					<H2>Comment calculer l'indemnité d'activité partielle ?</H2>
@@ -547,96 +548,94 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 					</Body>
 				</Trans>
 			),
-			nextSteps: ['salarié'],
 		},
 		'comparaison-statuts': {
 			...pureSimulatorsData['comparaison-statuts'],
-			component: SchemeComparaisonPage,
-
 			path: sitePaths.simulateurs.comparaison,
+			component: SchemeComparaisonPage,
 		},
 		'économie-collaborative': {
 			...pureSimulatorsData['économie-collaborative'],
-			component: ÉconomieCollaborative,
 			path: sitePaths.simulateurs.économieCollaborative.index,
+			component: ÉconomieCollaborative,
 		},
 		'choix-statut': {
 			...pureSimulatorsData['choix-statut'],
-			component: Créer,
 			path: sitePaths.créer.guideStatut.index,
+			component: Créer,
 		},
 		'déclaration-charges-sociales-indépendant': {
 			...pureSimulatorsData['déclaration-charges-sociales-indépendant'],
-			component: DéclarationChargeSocialeIndépendant,
 			path: sitePaths.gérer['déclaration-charges-sociales-indépendant'],
+			component: DéclarationChargeSocialeIndépendant,
 		},
 		'déclaration-revenu-indépendant': {
 			...pureSimulatorsData['déclaration-revenu-indépendant'],
-			component: DéclarationChargeSocialeIndépendant,
 			path: sitePaths.gérer.déclarationIndépendant.index,
+			component: DéclarationChargeSocialeIndépendant,
 		},
 		'déclaration-revenu-indépendant-beta': {
 			...pureSimulatorsData['déclaration-revenu-indépendant-beta'],
-			component: DéclarationRevenuIndépendant,
 			path: sitePaths.gérer.déclarationIndépendant.beta.index,
+			component: DéclarationRevenuIndépendant,
 		},
 		'demande-mobilité': {
 			...pureSimulatorsData['demande-mobilité'],
-			component: FormulaireMobilitéIndépendant,
 			path: sitePaths.gérer.formulaireMobilité,
+			component: FormulaireMobilitéIndépendant,
 		},
 		pharmacien: {
 			...pureSimulatorsData.pharmacien,
-			config: configPharmacien,
 			path: sitePaths.simulateurs['profession-libérale'].pharmacien,
+			simulation: configPharmacien,
 			component: IndépendantPLSimulation,
 		},
 		médecin: {
 			...pureSimulatorsData['médecin'],
-			config: configMédecin,
 			path: sitePaths.simulateurs['profession-libérale'].médecin,
+			simulation: configMédecin,
 			component: IndépendantPLSimulation,
 		},
 		'chirurgien-dentiste': {
 			...pureSimulatorsData['chirurgien-dentiste'],
-			config: configDentiste,
 			path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
+			simulation: configDentiste,
 			component: IndépendantPLSimulation,
 		},
 		'sage-femme': {
 			...pureSimulatorsData['sage-femme'],
-			config: configSageFemme,
 			path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
+			simulation: configSageFemme,
 			component: IndépendantPLSimulation,
 		},
 		'auxiliaire-médical': {
 			...pureSimulatorsData['auxiliaire-médical'],
-			config: configAuxiliaire,
 			path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
+			simulation: configAuxiliaire,
 			component: IndépendantPLSimulation,
 		},
 		avocat: {
 			...pureSimulatorsData.avocat,
-			config: configAvocat,
 			path: sitePaths.simulateurs['profession-libérale'].avocat,
+			simulation: configAvocat,
 			component: IndépendantPLSimulation,
 		},
 		'expert-comptable': {
 			...pureSimulatorsData['expert-comptable'],
-			config: configExpertComptable,
 			path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
+			simulation: configExpertComptable,
 			component: IndépendantPLSimulation,
 		},
 		'profession-libérale': {
 			...pureSimulatorsData['profession-libérale'],
-			config: configProfessionLibérale,
 			path: sitePaths.simulateurs['profession-libérale'].index,
+			simulation: configProfessionLibérale,
 			component: IndépendantPLSimulation,
 		},
 		pamc: {
 			...pureSimulatorsData.pamc,
 			path: sitePaths.simulateurs.pamc,
-			config: configProfessionLibérale,
+			simulation: configProfessionLibérale,
 			component: PAMCHome,
 		},
 		is: {
@@ -680,8 +679,8 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		dividendes: {
 			...pureSimulatorsData.dividendes,
 			path: sitePaths.simulateurs.dividendes,
+			simulation: configDividendes,
 			component: DividendesSimulation,
-			config: configDividendes,
 			seoExplanations: (
 				<Trans i18nKey="pages.simulateurs.dividendes.seo">
 					<H2>Les dividendes et distributions</H2>
@@ -738,11 +737,11 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 			path: sitePaths.simulateurs['exonération-covid'],
 			component: ExonérationCovid,
 		},
-		'coût-création-entreprise': coutCreationEntreprise(
-			pureSimulatorsData,
-			sitePaths
-		),
+
+		'coût-création-entreprise': pureSimulatorsData['coût-création-entreprise'],
 	} as const
+
+	return data satisfies Immutable<{ [key: string]: PageConfig }>
 }
 
 export type SimulatorData = ReturnType<typeof getSimulatorsData>
