@@ -11,6 +11,7 @@ export const CoutCreationEntreprise = () => {
 					<SimulationGoal
 						dottedName="entreprise . coût formalités . création"
 						editable={false}
+						round={false}
 					/>
 				</SimulationGoals>
 			</Simulation>

@@ -27,7 +27,7 @@ type SimulationGoalProps = {
 	editable?: boolean
 	isTypeBoolean?: boolean
 	isInfoMode?: boolean
-
+	round?: boolean
 	onUpdateSituation?: (
 		name: DottedName,
 		...rest: Parameters<InputProps['onChange']>
@@ -39,6 +39,7 @@ export function SimulationGoal({
 	label,
 	small = false,
 	onUpdateSituation,
+	round = true,
 	appear = true,
 	editable = true,
 	isTypeBoolean = false, // TODO : remove when type inference works in publicodes
@@ -49,7 +50,7 @@ export function SimulationGoal({
 	const currentUnit = useSelector(targetUnitSelector)
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		...(!isTypeBoolean ? { unité: currentUnit, arrondi: 'oui' } : {}),
+		...(!isTypeBoolean ? { unité: currentUnit } : {}),
 	})
 	const rule = engine.getRule(dottedName)
 	const initialRender = useInitialRender()
@@ -67,6 +68,7 @@ export function SimulationGoal({
 	if (small && !editable && evaluation.nodeValue === undefined) {
 		return null
 	}
+	console.log({ round })
 
 	return (
 		<Appear unless={!appear || initialRender}>
@@ -133,7 +135,6 @@ export function SimulationGoal({
 									!isTypeBoolean
 										? {
 												unité: currentUnit,
-												arrondi: 'oui',
 										  }
 										: undefined
 								}
@@ -150,13 +151,18 @@ export function SimulationGoal({
 								missing={dottedName in evaluation.missingVariables}
 								small={small}
 								formatOptions={{
-									maximumFractionDigits: 0,
+									maximumFractionDigits: round ? 0 : 2,
 								}}
 							/>
 						</Grid>
 					) : (
 						<Grid item>
-							<Body>{formatValue(evaluation, { displayedUnit: '€' })}</Body>
+							<Body>
+								{formatValue(evaluation, {
+									displayedUnit: '€',
+									precision: round ? 0 : 2,
+								})}
+							</Body>
 						</Grid>
 					)}
 				</Grid>
