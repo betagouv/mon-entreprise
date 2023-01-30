@@ -1,6 +1,6 @@
 entreprise . coût formalités . création:
-  titre: Coût de création
-  résumé: Tous les frais liés à l'enregistrement (greffe, BODACC, chambres)
+  titre: Total des coûts de création
+  résumé: Tous les frais liés à l'enregistrement (greffe, annonces, chambres)
   variations:
     - si: catégorie juridique . EI . auto-entrepreneur
       alors: 0€
@@ -9,11 +9,15 @@ entreprise . coût formalités . création:
           - RCS . création
           - CMA . création
           - RSAC . création
+          - JAL . forfaitaire
+  références:
+    Combien coûtent les formalités de création d'une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F23282
 
 entreprise . coût formalités . RCS:
   titre: Les tarifs liés au Registre du commerce et des sociétés
   avec:
     création:
+      titre: Registre du commerce et des sociétés (création)
       variations:
         - si: catégorie juridique . EI
           alors:
@@ -39,22 +43,117 @@ entreprise . coût formalités . CMA:
   applicable si: activités . artisanale
   avec:
     création:
+      titre: Chambre des Métiers et de l'Artisanat (création)
       variations:
         - si: RCS . création > 0€
           alors: 15 €
         - sinon: 45 €
-  références:
-    Prestation délivrée par la chambre de métiers et de l’artisanat: https://formalites.entreprises.gouv.fr/tarifs.php#art19
+      références:
+        Prestation délivrée par la chambre de métiers et de l’artisanat: https://formalites.entreprises.gouv.fr/tarifs.php#art19
 
 entreprise . coût formalités . RSAC:
   titre: Les tarifs liés au Registre Spécial des Agents Commerciaux
   applicable si: activités . commerciale . agent commercial
   avec:
-    création: 6.69 €
+    création:
+      titre: Registre Spécial des Agents Commerciaux (création)
+      valeur: 6.69 €
 
-entreprise . coût formalités . création . JAL:
-  titre: Les tarifs liés au Journal d'annonce légal
-# Les JAL ont une logique qui dépend beaucoup du prestataire.
+entreprise . coût formalités . JAL:
+  titre: Les tarifs des annonces légales
+  description: |
+    Il existe 2 types de tarification des annonces légales :
+
+    - soit au forfait pour les annonces de constitution, de dissolution et de clôture de liquidation
+    - soit en fonction du nombre de caractères dans les autres cas
+  avec:
+    forfaitaire:
+      titre: Annonce légale (tarif forfaitaire)
+      description: |
+        La publication d'une annonce légale est obligatoire pour informer le public de la création d'une société. 
+        Elle doit être insérée dans un support habilité à recevoir des annonces légales (SHAL) : 
+        il s'agit soit d'un journal d'annonces légales (JAL), soit d'un service de presse en ligne (SPEL).
+
+      variations:
+        - si:
+            une de ces conditions:
+              - catégorie juridique . SAS . SAS
+              - catégorie juridique . SELAS
+          alors:
+            nom: SAS
+            valeur: 193 €
+        - si: catégorie juridique . SAS . SASU
+          alors:
+            nom: SASU
+            valeur: 138 €
+        - si:
+            une de ces conditions:
+              - catégorie juridique . SARL . SARL
+              - catégorie juridique . SELARL
+          alors:
+            nom: SARL
+            valeur: 144 €
+        - si: catégorie juridique . SARL . EURL
+          alors:
+            nom: EURL
+            valeur: 121 €
+      références:
+        Comment publier une annonce légale ?: https://entreprendre.service-public.fr/vosdroits/F31972
+
+    départements groupe 2:
+      par défaut: non
+      une de ces conditions:
+        - établissement . commune . département = 'Ardèche'
+        - établissement . commune . département = 'Ardennes'
+        - établissement . commune . département = 'Drôme'
+        - établissement . commune . département = 'Eure'
+        - établissement . commune . département = 'Isère'
+        - établissement . commune . département = 'Nord'
+        - établissement . commune . département = 'Oise'
+        - établissement . commune . département = 'Pas-de-Calais'
+        - établissement . commune . département = 'Rhône'
+        - établissement . commune . département = 'Paris'
+        - établissement . commune . département = 'Seine-Maritime'
+        - établissement . commune . département = 'Seine-et-Marne'
+        - établissement . commune . département = 'Yvelines'
+        - établissement . commune . département = 'Somme'
+        - établissement . commune . département = 'Yonne'
+        - établissement . commune . département = 'Essonne'
+        - établissement . commune . département = 'Hauts-de-Seine'
+        - établissement . commune . département = 'Seine-Saint-Denis'
+        - établissement . commune . département = 'Val-de-Marne'
+        - établissement . commune . département = 'Val-d'Oise'
+        - établissement . commune . département = 'Guadeloupe'
+        - établissement . commune . département = 'Martinique'
+        - établissement . commune . département = 'Guyane'
+        - établissement . commune . département = 'Saint-Barthélemy'
+        - établissement . commune . département = 'Saint-Martin'
+        - établissement . commune . département = 'Wallis-et-Futuna'
+      remplace:
+        - règle: forfaitaire . SAS
+          par: 189 €
+        - règle: forfaitaire . SASU
+          par: 135 €
+        - règle: forfaitaire . SARL
+          par: 141 €
+        - règle: forfaitaire . EURL
+          par: 118 €
+    départements groupe 3:
+      par défaut: non
+      une de ces conditions:
+        - établissement . commune . département = 'La Réunion'
+        - établissement . commune . département = 'Mayotte'
+      remplace:
+        - règle: forfaitaire . SAS
+          par: 226 €
+        - règle: forfaitaire . SASU
+          par: 162 €
+        - règle: forfaitaire . SARL
+          par: 168 €
+        - règle: forfaitaire . EURL
+          par: 143 €
+
+  # Les JAL ont une logique qui dépend beaucoup du prestataire.
 # Les montant forfaitaires existent dans la loi, mais aucun moyen de savoir si ils sont beaucoup utilisés.
 # Peut-être mettre une fourchette dans un premier temps (comme sur service-public) ?
 # Fun fact : la presse quotidienne régionale est financée à 50% par cette mane

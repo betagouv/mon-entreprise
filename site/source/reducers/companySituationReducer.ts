@@ -20,6 +20,7 @@ const SAVED_NAMESPACES = [
 	'entreprise . imposition',
 	'entreprise . SIREN',
 	'entreprise . nom',
+	'entreprise . associés',
 	'établissement',
 	'salarié . convention collective',
 	// Titre restaurant

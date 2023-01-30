@@ -72,7 +72,7 @@ export function SimulationGoal({
 
 	return (
 		<Appear unless={!appear || initialRender}>
-			<StyledGoal>
+			<StyledGoal $small={small && !editable}>
 				<Grid
 					container
 					css={`
@@ -185,17 +185,21 @@ const StyledGuideLectureContainer = styled(Grid).attrs({
 const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
 	small: boolean
 }>`
-	border-bottom: 1px dashed ${({ theme }) => theme.colors.extended.grey[100]};
+	border-bottom: 1px dashed
+		${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.extended.grey[700]};
 	align-self: baseline;
 	opacity: 50%;
 	flex: 1;
 `
 const StyledGoalHeader = styled.div``
 
-const StyledGoal = styled.div`
+const StyledGoal = styled.div<{ $small: bolean }>`
 	position: relative;
 	z-index: 1;
-	padding: ${({ theme }) => theme.spacings.sm} 0;
+	padding: ${({ theme, $small }) => theme.spacings[$small ? 'xxs' : 'sm']} 0;
 
 	@media print {
 		padding: 0;

@@ -178,5 +178,6 @@ entreprise . catégorie juridique . SELAS:
 entreprise . catégorie juridique . autre:
   valeur: catégorie juridique = 'autre'
   type: notification
+  sévérité: avertissement
   description: |
-    Ce simulateur ne gère pas encore tout les types d'entreprises.
+    Ce simulateur ne gère pas encore tout les types d'entreprises, le montant affiché pourrait être incorrect.
