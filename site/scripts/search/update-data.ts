@@ -7,6 +7,7 @@ import Engine, { ParsedRules } from 'publicodes'
 import getSimulationData, {
 	MetadataSrc,
 } from '../../source/pages/Simulateurs/metadata-src.js'
+import { absoluteSitePaths } from '../../source/sitePaths.js'
 
 dotenv.config()
 
@@ -154,7 +155,10 @@ try {
 	await simulateursIndex
 		.saveObjects(
 			formatSimulationDataToAlgolia(
-				getSimulationData(((_: string, text: string) => text) as TFunction)
+				getSimulationData(
+					((_: string, text: string) => text) as TFunction,
+					absoluteSitePaths.fr
+				)
 			)
 		)
 		.wait()

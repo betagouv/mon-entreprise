@@ -68,7 +68,6 @@ export function SimulationGoal({
 	if (small && !editable && evaluation.nodeValue === undefined) {
 		return null
 	}
-	console.log({ round })
 
 	return (
 		<Appear unless={!appear || initialRender}>
@@ -196,7 +195,7 @@ const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
 `
 const StyledGoalHeader = styled.div``
 
-const StyledGoal = styled.div<{ $small: bolean }>`
+const StyledGoal = styled.div<{ $small: boolean }>`
 	position: relative;
 	z-index: 1;
 	padding: ${({ theme, $small }) => theme.spacings[$small ? 'xxs' : 'sm']} 0;

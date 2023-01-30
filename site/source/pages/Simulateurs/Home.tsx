@@ -18,7 +18,10 @@ import { useSitePaths } from '@/sitePaths'
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
-import useSimulatorsData, { ExtractFromSimuData } from './metadata'
+import useSimulatorsData, {
+	ExtractFromSimuData,
+	SimulatorData,
+} from './metadata'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
@@ -195,29 +198,27 @@ export default function Simulateurs() {
 	)
 }
 
+type SimulateurCardProps = SimulatorData[keyof SimulatorData] & {
+	simulation?: ExtractFromSimuData<'simulation'>
+	tooltip?: ExtractFromSimuData<'tooltip'>
+	beta?: ExtractFromSimuData<'beta'>
+	small?: boolean
+	fromGérer?: boolean
+	role?: string
+}
+
 export function SimulateurCard({
-	small = false,
 	shortName,
 	meta,
 	path,
 	tooltip,
 	iframePath,
-	fromGérer = false,
 	icône,
 	beta,
+	small = false,
+	fromGérer = false,
 	...props
-}: {
-	shortName: ExtractFromSimuData<'shortName'>
-	meta: ExtractFromSimuData<'meta'>
-	path: ExtractFromSimuData<'path'>
-	tooltip?: ExtractFromSimuData<'tooltip'>
-	iframePath?: ExtractFromSimuData<'iframePath'>
-	beta?: ExtractFromSimuData<'beta'>
-	icône: ExtractFromSimuData<'icône'>
-	small?: boolean
-	fromGérer?: boolean
-	role?: string
-}) {
+}: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
 
