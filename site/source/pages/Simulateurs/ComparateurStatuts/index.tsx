@@ -76,7 +76,7 @@ function ComparateurStatutsUI() {
 		<>
 			<Intro>
 				<Trans i18nKey="comparaisonRégimes.description">
-					Lorsque vous créez votre société, le choix du statut juridique va{' '}
+					Lorsque vous créez votre entreprise, le choix du statut juridique va{' '}
 					<Strong>
 						déterminer à quel régime social le dirigeant est affilié
 					</Strong>
