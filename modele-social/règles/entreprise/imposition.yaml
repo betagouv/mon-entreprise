@@ -296,11 +296,17 @@ entreprise . chiffre d'affaires . seuil micro:
 
 entreprise . chiffre d'affaires . seuil micro . libérale:
   unité: €/an
-  valeur: 72600 €/an
+  variations:
+    - si: date >= 01/2023
+      alors: 77700 €/an
+    - sinon: 72600 €/an
 
 entreprise . chiffre d'affaires . seuil micro . total:
   unité: €/an
-  valeur: 176200 €/an
+  variations:
+    - si: date >= 01/2023
+      alors: 188700 €/an
+    - sinon: 176200 €/an
 
 entreprise . chiffre d'affaires . seuil micro . dépassé:
   experimental: oui
