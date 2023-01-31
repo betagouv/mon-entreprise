@@ -13120,9 +13120,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@https://cdn.cypress.io/beta/npm/12.0.0/linux-arm64/release/12.0.0-e8898d2f6b65a11f36ceb2dd32ce7f1d87b103bc/cypress.tgz":
-  version: 12.0.0
-  resolution: "cypress@https://cdn.cypress.io/beta/npm/12.0.0/linux-arm64/release/12.0.0-e8898d2f6b65a11f36ceb2dd32ce7f1d87b103bc/cypress.tgz"
+"cypress@npm:^12.4.1":
+  version: 12.4.1
+  resolution: "cypress@npm:12.4.1"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -13168,7 +13168,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: d6e0d5c3325e915406981a487caf4413fbf84a92991e570378d4d911b19d8b0bde71a7fb5c8f0417e236c3e5c4f6077e6ec14e056646d38771a5607ac4096436
+  checksum: 92693734e2a2e044effae8319315e2bd66a53e4c590caad36199f8b3b92a56189dcc41cbb2636b8a8a88ac20b91dd899897f873af4b26f106c9ea2e3d47caf35
   languageName: node
   linkType: hard
 
@@ -23740,12 +23740,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.8.0":
-  version: 2.8.0
-  resolution: "prettier@npm:2.8.0"
+"prettier@npm:^2.8.3":
+  version: 2.8.3
+  resolution: "prettier@npm:2.8.3"
   bin:
     prettier: bin-prettier.js
-  checksum: 72004ce0cc9bb097daf3e3833f62495768724392c1d5b178dd47372337616e9e50ecbb0804f236596223f7b5eb1bbe69cefc8957dca21112c5777e77ef73a564
+  checksum: 92f2ceb522d454370e02082aa74ad27388672f7cee8975028b59517c069fe643bdc73e322675c8faf2ff173d7a626d1a6389f26b474000308e793aa25fff46e5
   languageName: node
   linkType: hard
 
@@ -25622,7 +25622,7 @@ __metadata:
     eslint-plugin-promise: ^6.1.1
     eslint-plugin-react: ^7.31.11
     eslint-plugin-react-hooks: ^4.6.0
-    prettier: ^2.8.0
+    prettier: ^2.8.3
     rimraf: ^3.0.2
   languageName: unknown
   linkType: soft
@@ -26232,7 +26232,7 @@ __metadata:
     "@vitejs/plugin-legacy": ^2.3.1
     "@vitejs/plugin-react": ^2.2.0
     algoliasearch: ^4.14.2
-    cypress: "https://cdn.cypress.io/beta/npm/12.0.0/linux-arm64/release/12.0.0-e8898d2f6b65a11f36ceb2dd32ce7f1d87b103bc/cypress.tgz"
+    cypress: ^12.4.1
     cypress-axe: ^1.1.0
     cypress-plugin-tab: ^1.0.5
     cypress-wait-until: ^1.7.2
