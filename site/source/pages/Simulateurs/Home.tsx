@@ -169,6 +169,10 @@ export default function Simulateurs() {
 						role="listitem"
 					/>
 					<SimulateurCard {...simulators['demande-mobilité']} role="listitem" />
+					<SimulateurCard
+						{...simulators['coût-création-entreprise']}
+						role="listitem"
+					/>
 				</Grid>
 			</section>
 			<section>
