@@ -8,9 +8,10 @@ import useSearchParamsSimulationSharing from '@/components/utils/useSearchParams
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Chip } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
+import { Loader } from '@/design-system/icons/Loader'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
-import { Intro } from '@/design-system/typography/paragraphs'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { DeepWriteable } from '@/pages/Simulateurs/cout-creation-entreprise/config'
 import { situationSelector } from '@/selectors/simulationSelectors'
 
@@ -104,7 +105,7 @@ export default function PageData(props: PageDataProps) {
 				{Component ? (
 					<Component />
 				) : LazyComponent ? (
-					<Suspense fallback={<>Loading</>}>
+					<Suspense fallback={<LoaderFallback />}>
 						<LazyComponent />
 					</Suspense>
 				) : null}
@@ -124,6 +125,37 @@ export default function PageData(props: PageDataProps) {
 		</CurrentSimulatorDataProvider>
 	)
 }
+
+const LoaderFallback = () => (
+	<StyledBody>
+		<div
+			css={`
+				height: 300px;
+				align-items: center;
+			`}
+		>
+			<span>Chargement en cours</span>
+			<Loader />
+		</div>
+	</StyledBody>
+)
+
+const StyledBody = styled(Body)`
+	height: 500px;
+
+	div {
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+
+		span {
+			margin-right: ${({ theme }) => theme.spacings.sm};
+		}
+	}
+`
+
 const StyledSpan = styled.span`
 	margin-right: ${({ theme }) => theme.spacings.sm};
 `
