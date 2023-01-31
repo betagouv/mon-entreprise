@@ -127,7 +127,7 @@ export default function PageData(props: PageDataProps) {
 }
 
 const LoaderFallback = () => (
-	<StyledBody>
+	<StyledBody as="div">
 		<div
 			css={`
 				height: 300px;

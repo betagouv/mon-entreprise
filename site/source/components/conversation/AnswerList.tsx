@@ -134,7 +134,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					</H3>
 					<div className="print-hidden">
 						<Message type="secondary" border={false} icon>
-							<Body>
+							<Body as="div">
 								<div
 									css={`
 										display: flex;
