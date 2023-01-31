@@ -45,7 +45,7 @@ export default function Budget() {
 		{ label: 'T3', 'aria-label': 'Trimestre 3' },
 		{ label: 'T4', 'aria-label': 'Trimestre 4' },
 	]
-	const [selectedYear, setSelectedYear] = useState<typeof years[number]>(
+	const [selectedYear, setSelectedYear] = useState<(typeof years)[number]>(
 		years[years.length - 1]
 	)
 	const categories = [
@@ -78,7 +78,7 @@ export default function Budget() {
 					label={'Année'}
 					defaultSelectedKey={selectedYear}
 					onSelectionChange={(year) => {
-						setSelectedYear(year as typeof years[number])
+						setSelectedYear(year as (typeof years)[number])
 					}}
 				>
 					{years

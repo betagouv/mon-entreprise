@@ -33,7 +33,7 @@ export const ExonérationCovid = () => {
 	const location = useLocation()
 	const [searchParams] = useSearchParams()
 	const params = Object.fromEntries(searchParams.entries()) as {
-		[key in typeof rootDottedNames[number]]?: string
+		[key in (typeof rootDottedNames)[number]]?: string
 	}
 
 	const { t } = useTranslation()
