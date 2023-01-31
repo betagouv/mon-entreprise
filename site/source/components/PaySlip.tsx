@@ -34,7 +34,7 @@ export const SECTION_ORDER = [
 	'protection sociale . autres',
 ] as Array<DottedName>
 
-type Section = typeof SECTION_ORDER[number]
+type Section = (typeof SECTION_ORDER)[number]
 
 function getSection(rule: RuleNode): Section {
 	const section = `protection sociale . ${

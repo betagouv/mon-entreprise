@@ -5,7 +5,7 @@ import activités from './activités.yaml'
 
 export { activités }
 
-export type Activitée = typeof activités[number]
+export type Activitée = (typeof activités)[number]
 type ActivitésEn = typeof activitésEn
 
 export const flatActivités = activités.flatMap((el) => [
