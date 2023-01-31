@@ -14,6 +14,7 @@ export const configCoûtCréationEntreprise = function <
 	const ret = config(
 		'coût-création-entreprise',
 		{
+			beta: true,
 			path: sitePaths.simulateurs['coût-création-entreprise'],
 			iframePath: 'coût-création-entreprise',
 			icône: '💰',
