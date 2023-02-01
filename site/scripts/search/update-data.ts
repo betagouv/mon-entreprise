@@ -9,8 +9,9 @@ dotenv.config()
 
 const path = '../../dist/simulation-data.json'
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-const simuData = (await import(path, { assert: { type: 'json' } }))
-	.default as unknown as Omit<MetadataSrc, 'component'>
+const simuData = (await import(path, {
+	assert: { type: 'json' },
+})) as unknown as Omit<MetadataSrc, 'component'>
 
 console.log(simuData)
 
