@@ -195,7 +195,12 @@ entreprise . TVA . franchise de TVA . seuil vente:
   variations:
     - si: établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique
       alors: 110000 €/an
-    - sinon: 94300 €/an
+    - sinon:
+        variations:
+          - si: date >= 01/2023
+            alors: 101000 €/an
+          - sinon: 94300 €/an
+
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
@@ -204,8 +209,16 @@ entreprise . TVA . franchise de TVA . seuil service:
     - si: établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique
       alors: 60000 €/an
     - si: dirigeant . indépendant . PL . métier = 'avocat'
-      alors: 44500 €
-    - sinon: 36500 €/an
+      alors:
+        variations:
+          - si: date >= 01/2023
+            alors: 58600 €/an
+          - sinon: 54700 €/an
+    - sinon:
+        variations:
+          - si: date >= 01/2023
+            alors: 39100 €/an
+          - sinon: 36500 €/an
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
