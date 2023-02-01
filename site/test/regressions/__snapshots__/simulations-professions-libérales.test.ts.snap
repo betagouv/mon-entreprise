@@ -295,8 +295,7 @@ entreprise . chiffre d'affaires: 50000
 impôt . montant: 5688
 protection sociale . retraite . CNAVPL . points acquis: 486
 protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: 4
-Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > avocat 2`] = `
@@ -307,8 +306,7 @@ entreprise . chiffre d'affaires: 50000
 impôt . montant: 5486
 protection sociale . retraite . CNAVPL . points acquis: 477
 protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: 4
-Notifications affichées : entreprise . TVA . franchise de TVA . seuils dépassés"
+protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > expert-comptable 1`] = `
