@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 
-function isIframe() {
+/**
+ * @deprecated Prefer the use of useIsEmbedded() if possible  */
+export function isIframe() {
 	try {
 		return window.self !== window.top
 	} catch (e) {

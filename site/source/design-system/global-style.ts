@@ -1,5 +1,7 @@
 import { createGlobalStyle, css } from 'styled-components'
 
+import { isIframe } from '@/hooks/useIframeResizer'
+
 export const SROnly = css`
 	position: absolute !important;
 	width: 1px !important;
@@ -109,7 +111,16 @@ html {
 }
 
 html, body, #js, #js > *, [data-overlay-container] {
-	min-height: 100%;
+	${
+		isIframe()
+			? css`
+					min-height: 100%;
+			  `
+			: css`
+					height: 100%;
+			  `
+	}
+	
 }
 
 *,

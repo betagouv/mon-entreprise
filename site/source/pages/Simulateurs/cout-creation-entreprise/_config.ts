@@ -16,7 +16,7 @@ export const configCoûtCréationEntreprise = function <
 			beta: true,
 			path: sitePaths.simulateurs['coût-création-entreprise'],
 			iframePath: 'cout-creation-entreprise',
-			icône: '💰',
+			icône: '✨',
 			tracking: 'cout_creation_entreprise',
 			pathId: 'simulateurs.coût-création-entreprise',
 			meta: {
@@ -31,7 +31,7 @@ export const configCoûtCréationEntreprise = function <
 			},
 			shortName: t(
 				'pages.simulateurs.coût-création-entreprise.shortName',
-				"Coût de création d'une entreprise"
+				'Coût de création'
 			),
 			title: t(
 				'pages.simulateurs.coût-création-entreprise.title',
