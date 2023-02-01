@@ -63,7 +63,7 @@ import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
 import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from './images/illustration-net-brut.png'
-import getData from './metadata-src.js'
+import getData from './metadata-src'
 
 export interface SimulatorsDataParams {
 	t: TFunction
