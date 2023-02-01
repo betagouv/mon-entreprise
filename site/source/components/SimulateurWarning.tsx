@@ -22,6 +22,8 @@ export default function SimulateurWarning({
 		.nodeValue?.toString()
 		.slice(-4) as Evaluation<number> | undefined
 
+	console.log(simulateur)
+
 	return (
 		<Warning
 			localStorageKey={'app::simulateurs:warning-folded:v1:' + simulateur}
@@ -110,6 +112,24 @@ export default function SimulateurWarning({
 							manuellement dans la case « charges de fonctionnement ».
 						</Trans>
 					</StyledLi>
+				)}
+				{simulateur === 'coût-création-entreprise' && (
+					<>
+						<StyledLi>
+							<Trans i18nKey="simulateurs.warning.coût-création-entreprise.greffe">
+								Des frais de greffe peuvent être facturés en raison de documents
+								manquants ou incorrects.
+							</Trans>
+						</StyledLi>
+						<StyledLi>
+							<Trans i18nKey="simulateurs.warning.coût-création-entreprise.JAL">
+								Des frais de publication dans le Journal Officiel des Annonces
+								Légales (qui sont dépendent de la taille de l'annonce) peuvent
+								être requis lors de la création ou modification de votre
+								entreprise.
+							</Trans>
+						</StyledLi>
+					</>
 				)}
 			</Ul>
 		</Warning>

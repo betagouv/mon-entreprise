@@ -12,7 +12,7 @@ import { Loader } from '@/design-system/icons/Loader'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { DeepWriteable } from '@/pages/Simulateurs/cout-creation-entreprise/config'
+import { DeepWriteable } from '@/pages/Simulateurs/cout-creation-entreprise/_config'
 import { situationSelector } from '@/selectors/simulationSelectors'
 
 import { TrackChapter } from '../ATInternetTracking'

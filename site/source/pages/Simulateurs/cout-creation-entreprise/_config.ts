@@ -47,7 +47,7 @@ export const configCoûtCréationEntreprise = function <
 				// 'unité par défaut': '€/mois',
 				situation: {},
 			},
-			lazyComponent: lazy(async () => await import('./CoutCreationEntreprise')),
+			lazyComponent: lazy(async () => await import('.')),
 
 			// Remove this "as const" when we upgrade to typescript v5:
 		} as const,

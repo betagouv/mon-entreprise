@@ -1,4 +1,5 @@
 import { Condition } from '@/components/EngineValue'
+import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
@@ -45,6 +46,7 @@ const CoutCreationEntreprise = () => {
 					</Condition>
 				}
 			>
+				<SimulateurWarning simulateur="coût-création-entreprise" />
 				<SimulationGoals legend="Simulateur du coût de création d'une entreprise">
 					<SimulationGoal
 						dottedName="entreprise . coût formalités . création"

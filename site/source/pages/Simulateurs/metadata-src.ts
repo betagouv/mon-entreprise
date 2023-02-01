@@ -4,7 +4,7 @@ import { PageConfig } from './configs/types'
 import {
 	Immutable,
 	configCoûtCréationEntreprise,
-} from './cout-creation-entreprise/config.js'
+} from './cout-creation-entreprise/_config.js'
 import { SimulatorsDataParams } from './metadata'
 
 /**
