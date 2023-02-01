@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Message } from '@/design-system'
 import { CloseButton } from '@/design-system/buttons'
@@ -8,7 +8,10 @@ import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
 import { Body } from '@/design-system/typography/paragraphs'
 
+import { useIsEmbedded } from '../utils/useIsEmbedded'
+
 export default function BetaBanner() {
+	const isEmbedded = useIsEmbedded()
 	const [showBetaBanner, toggleBetaBanner] = useState(true)
 	const { t } = useTranslation()
 	if (!showBetaBanner) {
@@ -16,7 +19,7 @@ export default function BetaBanner() {
 	}
 
 	return (
-		<StyledBetaContainer>
+		<StyledBetaContainer $isEmbedded={isEmbedded}>
 			<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
 				<Trans i18nKey="betawarning">
 					<Body>
@@ -53,13 +56,20 @@ const AbsoluteHideButton = styled(CloseButton)`
 	right: ${({ theme }) => theme.spacings.sm};
 `
 
-const StyledBetaContainer = styled.div`
+const StyledBetaContainer = styled.div<{ $isEmbedded: boolean }>`
 	padding-top: ${({ theme }) => theme.spacings.xl};
+	${({ $isEmbedded, theme }) =>
+		$isEmbedded
+			? css`
+					margin-bottom: ${theme.spacings.md};
+			  `
+			: css`
+					position: sticky;
+					margin-bottom: -${theme.spacings.xl};
+			  `}
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		padding-top: ${({ theme }) => theme.spacings.md};
 	}
-	margin-bottom: -${({ theme }) => theme.spacings.xl};
-	position: sticky;
 	top: 0;
 	z-index: 3;
 	background-color: ${({ theme }) =>
