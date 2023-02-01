@@ -1,6 +1,12 @@
+import yaml from '@rollup/plugin-yaml'
+import path from 'path'
 import { defineConfig } from 'vite'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+	resolve: {
+		alias: [{ find: '@', replacement: path.resolve('./source') }],
+	},
 	build: {
 		lib: {
 			entry: './source/iframe-integration-script.js',
@@ -10,4 +16,5 @@ export default defineConfig({
 		},
 		emptyOutDir: false,
 	},
+	plugins: [yaml(), VitePWA({ disable: true })],
 })

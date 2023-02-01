@@ -1,7 +1,11 @@
 import { hexToHSL } from './hexToHSL'
 import getSimulationData from './pages/Simulateurs/metadata-src'
+import { absoluteSitePaths } from './sitePaths'
 
-const simulationData = getSimulationData((_, text) => text)
+const simulationData = getSimulationData(
+	(_, text) => text,
+	absoluteSitePaths.fr
+)
 
 const script = document.currentScript
 const moduleName = script.dataset.module || 'simulateur-embauche'

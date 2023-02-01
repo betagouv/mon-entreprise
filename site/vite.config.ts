@@ -16,7 +16,7 @@ const env = (mode: string) => loadEnv(mode, process.cwd(), '')
 
 export default defineConfig(({ command, mode }) => ({
 	resolve: {
-		alias: { '@': path.resolve('./source') },
+		alias: [{ find: '@', replacement: path.resolve('./source') }],
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
 	},
 	publicDir: 'source/public',

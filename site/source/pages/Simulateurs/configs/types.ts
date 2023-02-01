@@ -83,6 +83,7 @@ export interface PageConfig {
 
 	simulation?: SimulationConfig
 	component?: () => JSX.Element
-	lazyComponent?: LazyExoticComponent<FC<unknown>>
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	lazyComponent?: LazyExoticComponent<FC<any>>
 	seoExplanations?: JSX.Element
 }
