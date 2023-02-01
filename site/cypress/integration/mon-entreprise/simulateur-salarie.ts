@@ -23,7 +23,7 @@ describe('Simulateur salarié : part time contract', function () {
 	})
 
 	it('should permit selecting the smic before part-time contrat', function () {
-		cy.get('#salariécontratsalairebrut').should(($input) => {
+		cy.get('#salarié___contrat___salaire_brut').should(($input) => {
 			const val = $input
 				.val()
 				.toString()
@@ -43,13 +43,15 @@ describe('Simulateur salarié : part time contract', function () {
 		cy.focused().type('25')
 		cy.contains('Fermer').click()
 
-		cy.get('#salariérémunérationnetpayéaprèsimpôt').should(($input) => {
-			const val = $input
-				.val()
-				.toString()
-				.replace(/[\s,.€]/g, '')
-			expect(parseInt(val)).to.be.below(1000)
-		})
+		cy.get('#salarié___rémunération___net___payé_après_impôt').should(
+			($input) => {
+				const val = $input
+					.val()
+					.toString()
+					.replace(/[\s,.€]/g, '')
+				expect(parseInt(val)).to.be.below(1000)
+			}
+		)
 	})
 
 	it('should be RGAA compliant', function () {
