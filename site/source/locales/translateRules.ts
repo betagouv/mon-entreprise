@@ -1,6 +1,8 @@
 import { Rule } from 'publicodes'
 
-type Translation = Record<string, string>
+type Translation = Record<string, string> & {
+	avec?: Record<string, Translation>
+}
 type translateAttribute = (
 	prop: string,
 	rule: Rule,
@@ -37,14 +39,25 @@ export const attributesToTranslate = [
 ]
 
 const translateProp =
-	(lang: string, translation: Translation) => (rule: Rule, prop: string) => {
+	(lang: string, translation: Translation) =>
+	(rule: Rule & { avec?: Record<string, Rule> }, prop: string) => {
 		if (prop === 'suggestions' && rule?.suggestions) {
 			return translateSuggestion(prop, rule, translation, lang)
 		}
 		let propTrans = translation[prop + '.' + lang]
 		propTrans = propTrans?.replace(/^\[automatic\] /, '')
 
-		return propTrans ? { ...rule, [prop]: propTrans } : rule
+		let avec
+		if (
+			'avec' in rule &&
+			rule.avec &&
+			'avec' in translation &&
+			translation.avec
+		) {
+			avec = { avec: translateRules(lang, translation.avec, rule.avec) }
+		}
+
+		return propTrans ? { ...rule, [prop]: propTrans, ...avec } : rule
 	}
 
 function translateRule<Names extends string>(
