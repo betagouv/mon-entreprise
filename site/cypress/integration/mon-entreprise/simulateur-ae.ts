@@ -1,6 +1,6 @@
 import { checkA11Y, fr } from '../../support/utils'
 
-describe('Simulateur auto-entrepreneur', { testIsolation: 'off' }, function () {
+describe('Simulateur auto-entrepreneur', { testIsolation: false }, function () {
 	if (!fr) {
 		return
 	}

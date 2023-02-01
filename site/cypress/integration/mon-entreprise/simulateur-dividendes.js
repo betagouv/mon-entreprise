@@ -3,7 +3,7 @@ import { checkA11Y } from '../../support/utils'
 const inputSelector = 'div[id="simulator-legend"] input'
 const fr = Cypress.env('language') === 'fr'
 
-describe('Simulateur dividendes', { testIsolation: 'off' }, function () {
+describe('Simulateur dividendes', { testIsolation: false }, function () {
 	if (!fr) {
 		return
 	}
