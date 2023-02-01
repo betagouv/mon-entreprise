@@ -1,6 +1,6 @@
 import { checkA11Y, fr } from '../../support/utils'
 
-describe('Recherche globales', { testIsolation: 'off' }, function () {
+describe('Recherche globales', { testIsolation: false }, function () {
 	if (!fr) {
 		return
 	}

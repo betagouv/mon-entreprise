@@ -6,7 +6,7 @@ describe(
 	`Formulaire demande mobilité (${
 		writeFixtures ? 'record mode' : 'stubbed mode'
 	})`,
-	{ testIsolation: 'off' },
+	{ testIsolation: false },
 	function () {
 		if (!fr) {
 			return
