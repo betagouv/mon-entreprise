@@ -12,6 +12,8 @@ const path = '../../dist/simulation-data.json'
 const simuData = (await import(path, { assert: { type: 'json' } }))
 	.default as unknown as Omit<MetadataSrc, 'component'>
 
+console.log(simuData)
+
 const parsedRules = new Engine(rawRules).getParsedRules()
 
 const env = process.env
