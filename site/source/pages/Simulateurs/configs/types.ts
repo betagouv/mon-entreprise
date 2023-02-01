@@ -55,6 +55,7 @@ export type SimulationConfig = Partial<{
 }>
 
 export interface PageConfig {
+	id: string
 	path?: string
 	iframePath: string
 	pathId: string
@@ -83,7 +84,5 @@ export interface PageConfig {
 
 	simulation?: SimulationConfig
 	component?: () => JSX.Element
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	lazyComponent?: LazyExoticComponent<FC<any>>
 	seoExplanations?: JSX.Element
 }

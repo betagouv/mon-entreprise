@@ -29,6 +29,7 @@
 		"vite.config.ts",
 		"cypress.config.ts",
 		"vite-iframe-script.config.ts",
+		"vite-build-simulation-data.config.ts",
 		"prerender.ts",
 		"vite-pwa-options.ts"
 	]

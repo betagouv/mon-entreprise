@@ -36,7 +36,7 @@
 		"test:dev-e2e:mon-entreprise": "cypress open --e2e --config \"baseUrl=http://localhost:8888\"",
 		"test:dev-e2e:mycompanyinfrance": "cypress open --e2e --config \"baseUrl=http://localhost:8889,specPattern=cypress/integration/mon-entreprise/english/**/*.{js,jsx,ts,tsx}\" --env language=en",
 		"test:record-http-calls:mon-entreprise": "cypress run --env record_http=",
-		"algolia:update": "node --loader ts-node/esm scripts/search/update-data.ts",
+		"algolia:update": "vite build --config vite-build-simulation-data.config.ts && ts-node-esm ./scripts/search/update-data.ts",
 		"algolia:clean": "node scripts/search/clean.js",
 		"i18n:check": "yarn i18n:rules:check && yarn i18n:ui:check",
 		"i18n:translate": "yarn i18n:rules:translate && yarn i18n:ui:translate",

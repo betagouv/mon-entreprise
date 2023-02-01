@@ -1,10 +1,7 @@
-import { TFunction } from 'i18next'
+import { ImmutableType } from '@/types/utils'
 
 import { PageConfig } from './configs/types'
-import {
-	Immutable,
-	configCoûtCréationEntreprise,
-} from './cout-creation-entreprise/_config.js'
+import { configCoûtCréationEntreprise } from './cout-creation-entreprise/_config.js'
 import { SimulatorsDataParams } from './metadata'
 
 /**
@@ -12,10 +9,9 @@ import { SimulatorsDataParams } from './metadata'
  * sans dépendance qui compliquerait leur import dans le script de mise à jour
  * des données pour Algolia.
  */
-const getMetadataSrc = (
-	t: TFunction,
-	sitePaths: SimulatorsDataParams['sitePaths']
-) => {
+const getMetadataSrc = (params: SimulatorsDataParams) => {
+	const { t } = params
+
 	const data = {
 		salarié: {
 			tracking: 'salarie',
@@ -800,10 +796,13 @@ const getMetadataSrc = (
 			nextSteps: ['déclaration-charges-sociales-indépendant'],
 		},
 
-		...configCoûtCréationEntreprise({ t, sitePaths }),
+		...configCoûtCréationEntreprise(params),
 	} as const
 
-	return data satisfies Immutable<{ [key: string]: PageConfig }>
+	return data satisfies ImmutableType<{
+		// TODO: remove this Omit
+		[key: string]: Omit<PageConfig, 'id'>
+	}>
 }
 
 export type MetadataSrc = ReturnType<typeof getMetadataSrc>

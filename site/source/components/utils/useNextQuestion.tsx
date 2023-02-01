@@ -9,6 +9,7 @@ import {
 	configSelector,
 	useMissingVariables,
 } from '@/selectors/simulationSelectors'
+import { ImmutableType } from '@/types/utils'
 
 import { useEngine } from './EngineContext'
 
@@ -28,7 +29,7 @@ const questionDifference = (ruleA = '', ruleB = '') => {
 
 export function getNextQuestions(
 	missingVariables: MissingVariables,
-	questionConfig: SimulationConfig['questions'] = {},
+	questionConfig: ImmutableType<SimulationConfig['questions']> = {},
 	answeredQuestions: Array<DottedName> = []
 ): Array<DottedName> {
 	const {

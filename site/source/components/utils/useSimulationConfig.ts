@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadPreviousSimulation, setSimulationConfig } from '@/actions/actions'
 import { SimulationConfig } from '@/reducers/rootReducer'
 import { configSelector } from '@/selectors/simulationSelectors'
+import { ImmutableType } from '@/types/utils'
 
 export default function useSimulationConfig({
 	path,
@@ -11,7 +12,7 @@ export default function useSimulationConfig({
 	autoloadLastSimulation = false,
 }: {
 	path: string
-	config?: SimulationConfig
+	config?: ImmutableType<SimulationConfig>
 	autoloadLastSimulation?: boolean
 }) {
 	const dispatch = useDispatch()
