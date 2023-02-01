@@ -57,7 +57,7 @@ describe('Landing page', function () {
 		cy.go('back')
 
 		cy.get(currentCompanyPath).should('exist')
-		cy.contains('Voir ma situation').click()
+		cy.get('[data-test-id="cta-see-custom-simulators"]').click()
 
 		cy.url().should('include', '/g%C3%A9rer')
 

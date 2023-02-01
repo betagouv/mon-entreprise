@@ -108,7 +108,7 @@ html {
 	overflow-x: hidden;
 }
 
-html, body, #js, #js > * {
+html, body, #js, #js > *, [data-overlay-container] {
 	min-height: 100%;
 }
 

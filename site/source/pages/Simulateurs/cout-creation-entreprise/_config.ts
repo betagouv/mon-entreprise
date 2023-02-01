@@ -26,7 +26,7 @@ export const configCoûtCréationEntreprise = function <
 				),
 				description: t(
 					'pages.simulateurs.coût-création-entreprise.meta.description',
-					"Estimer les coûts lors de la création d'une entreprise"
+					"Estimez les coûts des formalités administratives obligatoires à la création d'une entreprise"
 				),
 			},
 			shortName: t(
@@ -35,7 +35,7 @@ export const configCoûtCréationEntreprise = function <
 			),
 			title: t(
 				'pages.simulateurs.coût-création-entreprise.title',
-				"Simulateur du coût de création d'une entreprise"
+				"Simulateur de coût de création d'une entreprise"
 			),
 			simulation: {
 				'objectifs exclusifs': [],

@@ -51,6 +51,7 @@ export default function SearchOrCreate() {
 									to={generatePath(absoluteSitePaths.gérer.entreprise, {
 										entreprise: companySIREN as string,
 									})}
+									data-test-id="cta-see-custom-simulators"
 									aria-label={t(
 										'Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise'
 									)}

@@ -3,11 +3,10 @@ import { useSelector } from 'react-redux'
 
 import PageHeader from '@/components/PageHeader'
 import { FromBottom } from '@/components/ui/animate'
-import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import Meta from '@/components/utils/Meta'
 import { Button } from '@/design-system/buttons'
 import { Card } from '@/design-system/card'
-import { Grid } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
@@ -15,6 +14,8 @@ import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
 
 import { TrackPage } from '../../ATInternetTracking'
+import { SimulateurCard } from '../Simulateurs/Home'
+import useSimulatorsData from '../Simulateurs/metadata'
 import créerSvg from './créer.svg'
 
 export default function Créer() {
@@ -25,6 +26,7 @@ export default function Créer() {
 		(state: RootState) =>
 			!!Object.keys(state.choixStatutJuridique.companyLegalStatus).length
 	)
+	const simulateurData = useSimulatorsData()
 
 	return (
 		<FromBottom>
@@ -66,45 +68,24 @@ export default function Créer() {
 					</Trans>
 				</SmallBody>
 			</PageHeader>
+			<Spacing xl />
 
 			<H2 className="sr-only">
 				<Trans>Ressources utiles</Trans>
 			</H2>
 
 			<Grid container spacing={3} role="list">
+				<SimulateurCard
+					role="listitem"
+					{...simulateurData['coût-création-entreprise']}
+				/>
+				<SimulateurCard
+					role="listitem"
+					{...simulateurData['comparaison-statuts']}
+				/>
 				<Grid item xs={12} sm={6} lg={4} role="listitem">
 					<Card
-						title={t(
-							'créer.ressources.listeStatuts.title',
-							'Liste des statuts juridiques'
-						)}
-						to={absoluteSitePaths.créer.guideStatut.liste}
-						ctaLabel={t('créer.ressources.listeStatuts.cta', 'Voir la liste')}
-					>
-						<Trans i18nKey="créer.ressources.listeStatuts.body">
-							Vous savez déjà quel statut choisir ? Accédez directement à la
-							liste des démarches associées
-						</Trans>
-					</Card>
-				</Grid>
-				<Grid item xs={12} sm={6} lg={4} role="listitem">
-					<Card
-						title={t(
-							'créer.ressources.comparaison.title',
-							'Comparateur de régimes'
-						)}
-						to={{ pathname: absoluteSitePaths.simulateurs.comparaison }}
-						state={{ fromCréer: true }}
-						ctaLabel={t('créer.ressources.comparaison.cta', 'Comparer')}
-					>
-						<Trans i18nKey="créer.ressources.comparaison.body">
-							Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
-							différences en terme de revenus, cotisations, retraite, etc
-						</Trans>
-					</Card>
-				</Grid>
-				<Grid item xs={12} sm={6} lg={4} role="listitem">
-					<Card
+						icon="🚶"
 						title={t(
 							'créer.ressources.autoEntrepreneur.title',
 							'Démarche auto-entrepreneur'
