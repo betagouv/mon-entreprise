@@ -1,8 +1,18 @@
+/**
+ * Ce script contient la logique pour créer l'iframe et gérer son redimensionnement
+ * Il doit rester très léger (<1ko), car il est inclus directement sur les sites hôtes
+ * Par ailleurs, la config de bundling est spécifique (vite-iframe-script.config.ts).
+ *  
+ * 🚨🚨🚨 POUR CES RAISONS, NE PAS FAIRE D'IMPORT DE FICHIERS DE L'APP ICI 🚨🚨🚨
+ * 
+ * Cela pourrait faire grossir l'abre de dépendance de manière incontrollée et 
+ * aboutir à des bugs liés à une config de bundling différentes.
+ **/
+
 import { hexToHSL } from './hexToHSL'
 
 const script = document.currentScript
 const moduleName = script.dataset.module || 'simulateur-embauche'
-
 
 const couleur =
 	script.dataset.couleur &&

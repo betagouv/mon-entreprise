@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, Suspense } from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -8,7 +8,6 @@ import useSearchParamsSimulationSharing from '@/components/utils/useSearchParams
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Chip } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
-import { Loader } from '@/design-system/icons/Loader'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
@@ -35,8 +34,7 @@ export interface PageDataProps {
 	path: ExtractFromSimuData<'path'>
 	title: ExtractFromSimuData<'title'>
 	private?: ExtractFromSimuData<'private'>
-	component?: ExtractFromSimuData<'component'>
-	lazyComponent?: ExtractFromSimuData<'lazyComponent'>
+	component: ExtractFromSimuData<'component'>
 	icône: ExtractFromSimuData<'icône'>
 	pathId: ExtractFromSimuData<'pathId'>
 	shortName: ExtractFromSimuData<'shortName'>
@@ -53,7 +51,6 @@ export default function PageData(props: PageDataProps) {
 		iframePath,
 		private: privateIframe,
 		component: Component,
-		lazyComponent: LazyComponent,
 		seoExplanations,
 		nextSteps,
 		path,
@@ -102,13 +99,7 @@ export default function PageData(props: PageDataProps) {
 					</>
 				)}
 
-				{Component ? (
-					<Component />
-				) : LazyComponent ? (
-					<Suspense fallback={<LoaderFallback />}>
-						<LazyComponent />
-					</Suspense>
-				) : null}
+				<Component />
 
 				{!inIframe && (
 					<>
@@ -125,20 +116,6 @@ export default function PageData(props: PageDataProps) {
 		</CurrentSimulatorDataProvider>
 	)
 }
-
-const LoaderFallback = () => (
-	<StyledBody as="div">
-		<div
-			css={`
-				height: 300px;
-				align-items: center;
-			`}
-		>
-			<span>Chargement en cours</span>
-			<Loader />
-		</div>
-	</StyledBody>
-)
 
 const StyledBody = styled(Body)`
 	height: 500px;

@@ -4094,6 +4094,18 @@ entreprise . association non lucrative:
   titre.en: non-profit organisation
   titre.fr: association non lucrative
 entreprise . associés:
+  description.en: >
+    [automatic] If you are the only partner of your company, then
+    you are in the case of a "one person company".
+
+
+    Thus, a SARL with only one partner is called EURL (Entreprise Unipersonnelle à Responsabilité Limitée). The same goes for the SASU, the SELASU and the SERLARLU which are the respective single-member forms of the SAS, the SELAS and the SELARL.
+  description.fr: >
+    Si vous êtes le seul associé de votre société, alors vous êtes
+    dans le cas d'une « société unipersonnelle ».
+
+
+    Ainsi, une SARL avec un seul associé est appelée EURL (Entreprise Unipersonnelle à Responsabilité Limité). De même pour la SASU, la SELASU et la SERLARLU qui sont les formes unipersonnelles respectives de la SAS, la SELAS et la SELARL.
   question.en: '[automatic] I own this company...'
   question.fr: Je possède cette entreprise...
   titre.en: '[automatic] associates'
@@ -4134,10 +4146,12 @@ entreprise . catégorie juridique . SNC:
   titre.en: '[automatic] General partnership'
   titre.fr: Société en nom collectif
 entreprise . catégorie juridique . autre:
-  description.en: |
-    [automatic] This simulator does not yet manage all types of companies.
-  description.fr: |
-    Ce simulateur ne gère pas encore tout les types d'entreprises.
+  description.en: >
+    [automatic] This simulator does not yet manage all types of
+    companies, the amount displayed could be incorrect.
+  description.fr: >
+    Ce simulateur ne gère pas encore tout les types d'entreprises,
+    le montant affiché pourrait être incorrect.
   titre.en: '[automatic] other'
   titre.fr: autre
 entreprise . charges:
@@ -4440,32 +4454,56 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   résumé.fr: Chiffre d'affaires hors taxe
   titre.en: '[automatic] Sale of goods, catering, accommodation (BIC)'
   titre.fr: Vente de biens, restauration, hébergement (BIC)
+entreprise . coût formalités:
+  titre.en: '[automatic] cost formalities'
+  titre.fr: coût formalités
 entreprise . coût formalités . CMA:
-  titre.en: '[automatic] Rates related to the Chamber of Trades and Crafts'
-  titre.fr: Les tarifs liés au Chambre des Métiers et de l'Artisanat
+  titre.en: '[automatic] Chamber of Trades and Crafts'
+  titre.fr: Chambre des Métiers et de l'Artisanat
 entreprise . coût formalités . RCS:
-  titre.en: '[automatic] Fees related to the Trade and Companies Register'
-  titre.fr: Les tarifs liés au Registre du commerce et des sociétés
+  titre.en: '[automatic] Trade and company register'
+  titre.fr: Registre du commerce et des sociétés
 entreprise . coût formalités . RSAC:
-  titre.en: '[automatic] Fees related to the Special Register of Commercial Agents'
-  titre.fr: Les tarifs liés au Registre Spécial des Agents Commerciaux
+  titre.en: '[automatic] Special Register of Commercial Agents'
+  titre.fr: Registre Spécial des Agents Commerciaux
+entreprise . coût formalités . annonce légale:
+  description.en: >
+    [automatic] The publication of a legal announcement is mandatory
+    to inform the public of the major stages in the life of a company: the
+    creation, modification or cessation of activity. It must be inserted in a
+    medium authorized to receive legal announcements (SHAL): either a newspaper
+    of legal announcements (JAL), or an online press service (SPEL).
+
+
+    There are 2 types of pricing for legal announcements:
+
+
+    - either at a flat rate for the announcements of incorporation, dissolution and closure of liquidation
+
+    - or according to the number of characters in the other cases
+  description.fr: >
+    La publication d'une annonce légale est obligatoire pour
+    informer le public des grandes étapes de la vie d'une société : la création,
+    la modification ou la cessation d'activité. Elle doit être insérée dans un
+    support habilité à recevoir des annonces légales (SHAL) : il s'agit soit
+    d'un journal d'annonces légales (JAL), soit d'un service de presse en ligne
+    (SPEL).
+
+
+    Il existe 2 types de tarification des annonces légales :
+
+
+    - soit au forfait pour les annonces de constitution, de dissolution et de clôture de liquidation
+
+    - soit en fonction du nombre de caractères dans les autres cas
+  titre.en: '[automatic] legal notice'
+  titre.fr: annonce légale
 entreprise . coût formalités . création:
-  résumé.en:
-    '[automatic] All costs related to the registration (registry, BODACC,
-    chambers)'
-  résumé.fr: Tous les frais liés à l'enregistrement (greffe, BODACC, chambres)
-  titre.en: '[automatic] Creation cost'
-  titre.fr: Coût de création
-entreprise . coût formalités . création . BODACC:
-  titre.en: '[automatic] Rates for the Official Bulletin of Civil and Commercial
-    Announcements'
-  titre.fr: Les tarifs liés au Bulletin officiel des annonces civiles et commerciales
-entreprise . coût formalités . création . JAL:
-  titre.en: '[automatic] The rates related to the legal notice newspaper'
-  titre.fr: Les tarifs liés au Journal d'annonce légal
-entreprise . coût formalités . création . frais de transmissions:
-  titre.en: '[automatic] transmission costs'
-  titre.fr: frais de transmissions
+  résumé.en: '[automatic] All costs related to the registration (registry,
+    announcements, chambers)'
+  résumé.fr: Tous les frais liés à l'enregistrement (greffe, annonces, chambres)
+  titre.en: '[automatic] Total creation costs'
+  titre.fr: Total des coûts de création
 entreprise . date de création:
   description.en: >
     [automatic] The date of commencement of activity (or date of

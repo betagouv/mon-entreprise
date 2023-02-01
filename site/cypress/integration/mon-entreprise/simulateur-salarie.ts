@@ -55,7 +55,6 @@ describe('Simulateur salarié : part time contract', function () {
 	})
 
 	it('should be RGAA compliant', function () {
-		cy.visit('/')
 		checkA11Y()
 	})
 })

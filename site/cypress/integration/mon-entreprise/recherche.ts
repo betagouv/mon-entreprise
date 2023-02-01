@@ -31,7 +31,6 @@ describe('Recherche globales', { testIsolation: false }, function () {
 	})
 
 	it('should be RGAA compliant', function () {
-		cy.visit('/')
 		checkA11Y()
 	})
 })
