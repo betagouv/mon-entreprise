@@ -1,18 +1,8 @@
 import { hexToHSL } from './hexToHSL'
-import getSimulationData from './pages/Simulateurs/metadata-src'
-import { absoluteSitePaths } from './sitePaths'
-
-const simulationData = getSimulationData(
-	(_, text) => text,
-	absoluteSitePaths.fr
-)
 
 const script = document.currentScript
 const moduleName = script.dataset.module || 'simulateur-embauche'
 
-const moduleData = simulationData[moduleName]
-
-const moduleIframeTitle = moduleData?.title || ''
 
 const couleur =
 	script.dataset.couleur &&
@@ -24,8 +14,8 @@ const src = new URL(
 	(lang === 'fr'
 		? import.meta.env.VITE_FR_BASE_URL
 		: import.meta.env.VITE_EN_BASE_URL) +
-		'/iframes/' +
-		moduleName
+	'/iframes/' +
+	moduleName
 )
 
 src.searchParams.set('iframe', true)
@@ -40,6 +30,7 @@ if (couleur) {
 
 const iframe = document.createElement('iframe')
 const iframeAttributes = {
+	title: 'Simulateur',
 	id: 'simulateurEmbauche',
 	src: src.toString(),
 	style: 'border: none; width: 100%; display: block; height: 700px',
@@ -47,7 +38,6 @@ const iframeAttributes = {
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
 	mozallowfullscreen: true,
-	title: moduleIframeTitle,
 }
 for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])

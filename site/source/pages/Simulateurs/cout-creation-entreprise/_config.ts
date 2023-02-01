@@ -1,5 +1,4 @@
-import { lazy } from 'react'
-
+import CoutCreationEntreprise from '.'
 import { PageConfig } from '../configs/types'
 import { SimulatorsDataParams } from '../metadata'
 
@@ -46,7 +45,7 @@ export const configCoûtCréationEntreprise = function <
 				},
 				situation: {},
 			},
-			lazyComponent: lazy(async () => await import('.')),
+			component: CoutCreationEntreprise,
 
 			// Remove this "as const" when we upgrade to typescript v5:
 		} as const,
