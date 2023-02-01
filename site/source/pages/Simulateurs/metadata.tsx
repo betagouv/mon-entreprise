@@ -13,6 +13,7 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { AbsoluteSitePaths, useSitePaths } from '@/sitePaths'
+import { ImmutableType } from '@/types/utils'
 
 import Créer from '../Creer/Home'
 import DéclarationChargeSocialeIndépendant from '../gerer/declaration-charges-sociales-independant'
@@ -55,7 +56,6 @@ import {
 } from './configs/professionLibérale'
 import { configSalarié } from './configs/salarié'
 import { PageConfig } from './configs/types'
-import { Immutable } from './cout-creation-entreprise/_config'
 import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
@@ -71,8 +71,9 @@ export interface SimulatorsDataParams {
 	language: string
 }
 
-function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
-	const pureSimulatorsData = getData(t, sitePaths)
+function getSimulatorsData(params: SimulatorsDataParams) {
+	const { t, sitePaths, language } = params
+	const pureSimulatorsData = getData(params)
 
 	const data = {
 		salarié: {
@@ -741,7 +742,7 @@ function getSimulatorsData({ t, sitePaths, language }: SimulatorsDataParams) {
 		'coût-création-entreprise': pureSimulatorsData['coût-création-entreprise'],
 	} as const
 
-	return data satisfies Immutable<{ [key: string]: PageConfig }>
+	return data satisfies ImmutableType<{ [key: string]: Omit<PageConfig, 'id'> }>
 }
 
 export type SimulatorData = ReturnType<typeof getSimulatorsData>

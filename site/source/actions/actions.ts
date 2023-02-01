@@ -2,6 +2,7 @@ import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 
 import { SimulationConfig } from '@/reducers/rootReducer'
+import { ImmutableType } from '@/types/utils'
 import { buildSituationFromObject } from '@/utils'
 
 import { CompanyActions } from './companyActions'
@@ -50,7 +51,10 @@ export const stepAction = (step: DottedName, source?: string) =>
 		source,
 	} as const)
 
-export const setSimulationConfig = (config: SimulationConfig, url: string) =>
+export const setSimulationConfig = (
+	config: ImmutableType<SimulationConfig>,
+	url: string
+) =>
 	({
 		type: 'SET_SIMULATION',
 		url,

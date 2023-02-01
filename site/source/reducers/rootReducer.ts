@@ -5,6 +5,7 @@ import { Reducer, combineReducers } from 'redux'
 import { Action } from '@/actions/actions'
 import { SimulationConfig, Situation } from '@/pages/Simulateurs/configs/types'
 import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
+import { ImmutableType } from '@/types/utils'
 import { objectTransform, omit } from '@/utils'
 
 import choixStatutJuridique from './choixStatutJuridiqueReducer'
@@ -39,7 +40,7 @@ function activeTargetInput(state: DottedName | null = null, action: Action) {
 }
 
 export type Simulation = {
-	config: SimulationConfig
+	config: ImmutableType<SimulationConfig>
 	url: string
 	hiddenNotifications: Array<string>
 	situation: Situation

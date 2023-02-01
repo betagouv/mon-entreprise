@@ -1,19 +1,18 @@
 import algoliasearch from 'algoliasearch'
 import dotenv from 'dotenv'
-import { TFunction } from 'i18next'
 import rawRules from 'modele-social'
 import Engine, { ParsedRules } from 'publicodes'
 
-import getSimulationData, {
-	MetadataSrc,
-} from '../../source/pages/Simulateurs/metadata-src.js'
-import { absoluteSitePaths } from '../../source/sitePaths.js'
+import { MetadataSrc } from '@/pages/Simulateurs/metadata-src'
 
 dotenv.config()
 
+const simuData = (
+	await import('../../dist/simulation-data.json', { assert: { type: 'json' } })
+).default as unknown as Omit<MetadataSrc, 'component'>
+
 const parsedRules = new Engine(rawRules).getParsedRules()
 
-// @ts-ignore Needed by ts-node/esm
 const env = process.env
 
 const ALGOLIA_APP_ID = env.ALGOLIA_APP_ID || ''
@@ -55,11 +54,17 @@ const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
 		})
 		.filter(falsy)
 
-const formatSimulationDataToAlgolia = (simulations: MetadataSrc) =>
+const formatSimulationDataToAlgolia = (
+	simulations: Omit<MetadataSrc, 'component'>
+) =>
 	Object.entries(simulations)
 		.filter(
 			([, simulation]) =>
-				!('private' in simulation && simulation.private === true)
+				!(
+					typeof simulation === 'object' &&
+					'private' in simulation &&
+					simulation.private === true
+				)
 		)
 		.map(([id, simulation]) => ({
 			...simulation,
@@ -152,15 +157,9 @@ try {
 		})
 		.wait()
 	console.log('Uploading: simulateurs')
+
 	await simulateursIndex
-		.saveObjects(
-			formatSimulationDataToAlgolia(
-				getSimulationData(
-					((_: string, text: string) => text) as TFunction,
-					absoluteSitePaths.fr
-				)
-			)
-		)
+		.saveObjects(formatSimulationDataToAlgolia(simuData))
 		.wait()
 
 	console.log('Algolia update DONE')

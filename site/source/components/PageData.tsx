@@ -10,8 +10,7 @@ import { Chip } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { DeepWriteable } from '@/pages/Simulateurs/cout-creation-entreprise/_config'
+import { Intro } from '@/design-system/typography/paragraphs'
 import { situationSelector } from '@/selectors/simulationSelectors'
 
 import { TrackChapter } from '../ATInternetTracking'
@@ -62,8 +61,7 @@ export default function PageData(props: PageDataProps) {
 	const year = typeof année === 'number' ? `Année ${année}` : ''
 
 	const inIframe = useIsEmbedded()
-	const config = simulation as DeepWriteable<typeof simulation>
-	useSimulationConfig({ path, config })
+	useSimulationConfig({ path, config: simulation })
 	useSearchParamsSimulationSharing()
 
 	const trackInfo = {
@@ -116,22 +114,6 @@ export default function PageData(props: PageDataProps) {
 		</CurrentSimulatorDataProvider>
 	)
 }
-
-const StyledBody = styled(Body)`
-	height: 500px;
-
-	div {
-		text-align: center;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100%;
-
-		span {
-			margin-right: ${({ theme }) => theme.spacings.sm};
-		}
-	}
-`
 
 const StyledSpan = styled.span`
 	margin-right: ${({ theme }) => theme.spacings.sm};
