@@ -56,7 +56,7 @@ const rawSitePathsFr = {
 	},
 	simulateurs: {
 		index: 'simulateurs',
-		'coût-création-entreprise': 'coût-création-entreprise',
+		'coût-création-entreprise': 'cout-creation-entreprise',
 		'auto-entrepreneur': 'auto-entrepreneur',
 		'entreprise-individuelle': 'entreprise-individuelle',
 		eirl: 'eirl',
@@ -243,9 +243,9 @@ export const relativeSitePaths = encodedRelativeSitePaths
 export const absoluteSitePaths = encodedAbsoluteSitePaths
 
 export type RelativeSitePaths =
-	(typeof relativeSitePaths)[keyof typeof relativeSitePaths]
+	typeof relativeSitePaths[keyof typeof relativeSitePaths]
 export type AbsoluteSitePaths =
-	(typeof absoluteSitePaths)[keyof typeof absoluteSitePaths]
+	typeof absoluteSitePaths[keyof typeof absoluteSitePaths]
 
 export const useSitePaths = <T extends 'fr' | 'en'>(lang?: T) => {
 	const { language } = useTranslation().i18n

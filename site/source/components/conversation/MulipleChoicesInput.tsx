@@ -26,7 +26,7 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 	}
 
 	return (
-		<>
+		<div aria-labelledby="questionHeader" role="group">
 			{props.choices.map((node) => (
 				<Fragment key={node.dottedName}>
 					<CheckBoxRule
@@ -36,7 +36,7 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 					/>
 				</Fragment>
 			))}
-		</>
+		</div>
 	)
 }
 

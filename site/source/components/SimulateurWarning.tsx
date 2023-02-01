@@ -22,8 +22,6 @@ export default function SimulateurWarning({
 		.nodeValue?.toString()
 		.slice(-4) as Evaluation<number> | undefined
 
-	console.log(simulateur)
-
 	return (
 		<Warning
 			localStorageKey={'app::simulateurs:warning-folded:v1:' + simulateur}
@@ -118,15 +116,16 @@ export default function SimulateurWarning({
 						<StyledLi>
 							<Trans i18nKey="simulateurs.warning.coût-création-entreprise.greffe">
 								Des frais de greffe peuvent être facturés en raison de documents
-								manquants ou incorrects.
+								manquants ou incorrects. Par ailleurs, en cas d'envoie de
+								courrier, le greffe facture les frais postaux.
 							</Trans>
 						</StyledLi>
 						<StyledLi>
 							<Trans i18nKey="simulateurs.warning.coût-création-entreprise.JAL">
-								Des frais de publication dans le Journal Officiel des Annonces
-								Légales (qui sont dépendent de la taille de l'annonce) peuvent
-								être requis lors de la création ou modification de votre
-								entreprise.
+								Ce simulateur calcule les frais de créations uniquement pour les
+								SARL, EURL, SAS, SASU, EI et SEL. Il prends pas encore en compte
+								les autres formes de société (SA, SCA, SCS, SCI, SCP, SNC, SCM,
+								coopératives, GIE, GAEC, etc.)
 							</Trans>
 						</StyledLi>
 					</>

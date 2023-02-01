@@ -5,7 +5,10 @@ entreprise . associés:
     possibilités:
       - unique
       - multiples
+  description: |
+    Si vous êtes le seul associé de votre société, alors vous êtes dans le cas d'une « société unipersonnelle ».
 
+    Ainsi, une SARL avec un seul associé est appelée EURL (Entreprise Unipersonnelle à Responsabilité Limité). De même pour la SASU, la SELASU et la SERLARLU qui sont les formes unipersonnelles respectives de la SAS, la SELAS et la SELARL.
   question: Je possède cette entreprise...
   avec:
     unique:

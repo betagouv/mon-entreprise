@@ -44,7 +44,6 @@ export const configCoûtCréationEntreprise = function <
 				questions: {
 					'liste noire': ['entreprise . activité . nature'],
 				},
-				// 'unité par défaut': '€/mois',
 				situation: {},
 			},
 			lazyComponent: lazy(async () => await import('.')),

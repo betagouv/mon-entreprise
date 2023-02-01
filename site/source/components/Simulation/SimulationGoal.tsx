@@ -26,6 +26,7 @@ type SimulationGoalProps = {
 	appear?: boolean
 	editable?: boolean
 	isTypeBoolean?: boolean
+	displayedUnit?: string
 	isInfoMode?: boolean
 	round?: boolean
 	onUpdateSituation?: (
@@ -37,8 +38,9 @@ type SimulationGoalProps = {
 export function SimulationGoal({
 	dottedName,
 	label,
-	small = false,
 	onUpdateSituation,
+	displayedUnit = '€',
+	small = false,
 	round = true,
 	appear = true,
 	editable = true,
@@ -142,7 +144,7 @@ export function SimulationGoal({
 									/\s|\./g,
 									'_'
 								)}-description`}
-								displayedUnit="€"
+								displayedUnit={displayedUnit}
 								dottedName={dottedName}
 								onFocus={() => setFocused(true)}
 								onBlur={() => setFocused(false)}
@@ -158,7 +160,7 @@ export function SimulationGoal({
 						<Grid item>
 							<Body>
 								{formatValue(evaluation, {
-									displayedUnit: '€',
+									displayedUnit,
 									precision: round ? 0 : 2,
 								})}
 							</Body>

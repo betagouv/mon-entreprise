@@ -4,29 +4,31 @@ entreprise . coût formalités . création:
   résumé: Tous les frais liés à l'enregistrement (greffe, annonces, chambres)
   variations:
     - si: catégorie juridique . EI . auto-entrepreneur
-      alors: 0€
+      alors: 0 €HT
     - sinon:
         somme:
           - RCS . création
           - CMA . création
           - RSAC . création
-          - JAL . forfaitaire
+          - annonce légale . forfaitaire
   références:
     Combien coûtent les formalités de création d'une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F23282
-
+    Comment créer une société: https://entreprendre.service-public.fr/vosdroits/F32886
+    "Création d'entreprise : formalités d'immatriculation d'une société": https://entreprendre.service-public.fr/vosdroits/F35934
 entreprise . coût formalités . RCS:
-  titre: Les tarifs liés au Registre du commerce et des sociétés
+  titre: Registre du commerce et des sociétés
+  acronyme: RCS
   avec:
     création:
-      titre: Registre du commerce et des sociétés (création)
+      titre: Tarif création
       variations:
         - si: catégorie juridique . EI
           alors:
             applicable si: activités . commerciale
-            valeur: 20.07 €
+            valeur: 20.07 €HT
         - si: sociétés commerciales
-          alors: 24.52 €
-        - sinon: 49.04 €
+          alors: 24.52 €HT
+        - sinon: 49.04 €HT
     sociétés commerciales:
       # TODO : déplacer dans entreprise . catégorie juridique ?
       privé: oui
@@ -40,40 +42,48 @@ entreprise . coût formalités . RCS:
     Article A743-10 du Code de commerce: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041675936
 
 entreprise . coût formalités . CMA:
-  titre: Les tarifs liés au Chambre des Métiers et de l'Artisanat
+  titre: Chambre des Métiers et de l'Artisanat
+  acronyme: CMA
   applicable si: activités . artisanale
   avec:
     création:
-      titre: Chambre des Métiers et de l'Artisanat (création)
+      titre: Tarif création
       variations:
-        - si: RCS . création > 0€
-          alors: 15 €
-        - sinon: 45 €
+        - si: RCS . création > 0€HT
+          alors: 15 €HT
+        - sinon: 45 €HT
       références:
         Prestation délivrée par la chambre de métiers et de l’artisanat: https://formalites.entreprises.gouv.fr/tarifs.php#art19
 
 entreprise . coût formalités . RSAC:
-  titre: Les tarifs liés au Registre Spécial des Agents Commerciaux
+  titre: Registre Spécial des Agents Commerciaux
+  acronyme: RSAC
   applicable si: activités . commerciale . agent commercial
   avec:
     création:
-      titre: Registre Spécial des Agents Commerciaux (création)
-      valeur: 6.69 €
+      titre: Tarif création
+      valeur: 6.69 €HT
 
-entreprise . coût formalités . JAL:
-  titre: Les tarifs des annonces légales
+entreprise . coût formalités . annonce légale:
   description: |
+    La publication d'une annonce légale est obligatoire pour informer le public des grandes étapes de la vie d'une société : la création, la modification ou la cessation d'activité. Elle doit être insérée dans un support habilité à recevoir des annonces légales (SHAL) : il s'agit soit d'un journal d'annonces légales (JAL), soit d'un service de presse en ligne (SPEL).
+
     Il existe 2 types de tarification des annonces légales :
 
     - soit au forfait pour les annonces de constitution, de dissolution et de clôture de liquidation
     - soit en fonction du nombre de caractères dans les autres cas
+  références:
+    Comment publier une annonce légale ?: https://entreprendre.service-public.fr/vosdroits/F31972
   avec:
     forfaitaire:
-      titre: Annonce légale (tarif forfaitaire)
+      titre: Tarif forfaitaire
+
       description: |
         La publication d'une annonce légale est obligatoire pour informer le public de la création d'une société. 
         Elle doit être insérée dans un support habilité à recevoir des annonces légales (SHAL) : 
         il s'agit soit d'un journal d'annonces légales (JAL), soit d'un service de presse en ligne (SPEL).
+      références:
+        Comment publier une annonce légale ?: https://entreprendre.service-public.fr/vosdroits/F31972
 
       variations:
         - si:
@@ -82,24 +92,22 @@ entreprise . coût formalités . JAL:
               - catégorie juridique . SELAS
           alors:
             nom: SAS
-            valeur: 193 €
+            valeur: 193 €HT
         - si: catégorie juridique . SAS . SASU
           alors:
             nom: SASU
-            valeur: 138 €
+            valeur: 138 €HT
         - si:
             une de ces conditions:
               - catégorie juridique . SARL . SARL
               - catégorie juridique . SELARL
           alors:
             nom: SARL
-            valeur: 144 €
+            valeur: 144 €HT
         - si: catégorie juridique . SARL . EURL
           alors:
             nom: EURL
-            valeur: 121 €
-      références:
-        Comment publier une annonce légale ?: https://entreprendre.service-public.fr/vosdroits/F31972
+            valeur: 121 €HT
 
     départements groupe 2:
       par défaut: non
@@ -132,13 +140,14 @@ entreprise . coût formalités . JAL:
         - établissement . commune . département = 'Wallis-et-Futuna'
       remplace:
         - règle: forfaitaire . SAS
-          par: 189 €
+          par: 189 €HT
         - règle: forfaitaire . SASU
-          par: 135 €
+          par: 135 €HT
         - règle: forfaitaire . SARL
-          par: 141 €
+          par: 141 €HT
         - règle: forfaitaire . EURL
-          par: 118 €
+          par: 118 €HT
+
     départements groupe 3:
       par défaut: non
       une de ces conditions:
@@ -146,67 +155,10 @@ entreprise . coût formalités . JAL:
         - établissement . commune . département = 'Mayotte'
       remplace:
         - règle: forfaitaire . SAS
-          par: 226 €
+          par: 226 €HT
         - règle: forfaitaire . SASU
-          par: 162 €
+          par: 162 €HT
         - règle: forfaitaire . SARL
-          par: 168 €
+          par: 168 €HT
         - règle: forfaitaire . EURL
-          par: 143 €
-
-  # Les JAL ont une logique qui dépend beaucoup du prestataire.
-# Les montant forfaitaires existent dans la loi, mais aucun moyen de savoir si ils sont beaucoup utilisés.
-# Peut-être mettre une fourchette dans un premier temps (comme sur service-public) ?
-# Fun fact : la presse quotidienne régionale est financée à 50% par cette mane
-
-entreprise . coût formalités . création . BODACC:
-  titre: Les tarifs liés au Bulletin officiel des annonces civiles et commerciales
-#
-# entreprise . coût formalités . création . x:
-
-# RCS:
-# Différence entre immatriculation principale et immatriculation par création d'une entreprise (39 vs 41) :
-# la deuxième est une réduction de la formalité pour la création de société commerciale (pas concernée les sociétés agricole, SELARL, etc)
-# Société civile, société agricole, SELARL, etc -> pas de réduction pour la création, seulement société commerciale et artisanale ;
-# toute société doit être immatriculée au RCS
-
-# Pas de JAL pour les sociétés agricoles ;
-# Pas de frais de BODACC pour la création ;
-# Pas de frais liés à l'INPI pour la création ;
-# Uniquement frais de greffe + JAL ;
-
-# coût HT ;
-
-# Plus de déclarations d'affectation du patrimoine d'EIRL.
-
-# Bénéficiaire effectif :
-# montant à payer en plus ;
-# détenir un pourcentage minimale de droit de vote ou de capital social de 25% ;
-# ou si personne ne dépasse le seul, c'est le représentant ;
-
-# Agents commerciaux :
-# A la fois personne physique non immatriculé au RCS et société imatriculé au RCS
-
-# Agents commerciaux :
-# A la fois personne physique non immatriculé au RCS
-
-entreprise . coût formalités . création . frais de transmissions:
-  # description:
-# Frais de transmissions
-# Désormais, tout est sur guichet unique, dématerialisé, donc pas de frais transmission possible
-# Par contre, le greffe peut envoyer des pièces, facture débourt postaux, 0.97€ HT (à vérifier)
-# Si RCS est un succès, le greffe doit vous envoyer des kbis, ces frais postaux sont inclus dans la prestation principale
-# Demande de complément facturé en cas de pièce manquante chez le RCS mais pas chez les artisans.
-
-# Auto-entreprise
-# pas de frais de création
-# plus de formation obligatoire
-# frais d'immatriculation de cessation et radiation sont gratuit
-# Mais
-# frais de rejet en cas de mauvaise déclaration (3 €)
-# normalement pas censé arrivé via le guichet unique
-# mais ça peut arriver pour les micro entrepreneur réglementée (hors libérale)
-# exemple : taxi
-
-# Autre
-# Double immatriculation possible (artisan + commerçant), dans ce cas, réduction artisan
+          par: 143 €HT
