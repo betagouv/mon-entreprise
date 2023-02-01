@@ -7,9 +7,10 @@ import { MetadataSrc } from '@/pages/Simulateurs/metadata-src'
 
 dotenv.config()
 
-const simuData = (
-	await import('../../dist/simulation-data.json', { assert: { type: 'json' } })
-).default as unknown as Omit<MetadataSrc, 'component'>
+const path = '../../dist/simulation-data.json'
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+const simuData = (await import(path, { assert: { type: 'json' } }))
+	.default as unknown as Omit<MetadataSrc, 'component'>
 
 const parsedRules = new Engine(rawRules).getParsedRules()
 
