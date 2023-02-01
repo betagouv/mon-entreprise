@@ -55,7 +55,7 @@ import {
 } from './configs/professionLibérale'
 import { configSalarié } from './configs/salarié'
 import { PageConfig } from './configs/types'
-import { Immutable } from './cout-creation-entreprise/config'
+import { Immutable } from './cout-creation-entreprise/_config'
 import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
 import ChômagePartielPreview from './images/ChômagePartielPreview.png'
 import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
