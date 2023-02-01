@@ -3,10 +3,12 @@ import { fr } from '../../../support/utils'
 type cyType = typeof cy
 type Obj = Record<string, { test: (cy: cyType) => unknown; path: string }[]>
 
-const coutTotalSelector = 'input[id="salariécoûttotalemployeur"]'
-const salaireBrutSelector = 'input[id="salariécontratsalairebrut"]'
-const salaireNetSelector = 'input[id="salariérémunérationnetàpayeravantimpôt"]'
-const salaireNetApresImpot = 'input[id="salariérémunérationnetpayéaprèsimpôt"]'
+const coutTotalSelector = 'input[id="salarié___coût_total_employeur"]'
+const salaireBrutSelector = 'input[id="salarié___contrat___salaire_brut"]'
+const salaireNetSelector =
+	'input[id="salarié___rémunération___net___à_payer_avant_impôt"]'
+const salaireNetApresImpot =
+	'input[id="salarié___rémunération___net___payé_après_impôt"]'
 
 describe('Test prerender', function () {
 	const testSimuSalaire = (cy: cyType) => {
@@ -61,17 +63,17 @@ describe('Test prerender', function () {
 					cy.contains('Montant annuel')
 
 					cy.contains("Chiffre d'affaires")
-					cy.get('input[id="entreprisechiffred\'affaires"]').should('exist')
+					cy.get('input[id="entreprise___chiffre_d\'affaires"]').should('exist')
 
 					cy.contains('Charges')
-					cy.get('input[id="entreprisecharges"]').should('exist')
+					cy.get('input[id="entreprise___charges"]').should('exist')
 
-					cy.get('input[id="dirigeantrémunérationnet"]').should('exist')
+					cy.get('input[id="dirigeant___rémunération___net"]').should('exist')
 
 					cy.contains('Revenu après impôt')
-					cy.get('input[id="dirigeantrémunérationnetaprèsimpôt"]').should(
-						'exist'
-					)
+					cy.get(
+						'input[id="dirigeant___rémunération___net___après_impôt"]'
+					).should('exist')
 				},
 				path: '/simulateurs/indépendant',
 			},
