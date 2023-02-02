@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
 import Simulation, {
 	SimulationGoal,
@@ -12,8 +13,13 @@ import Simulation, {
 import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
+import { H2 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
+import { Body } from '@/design-system/typography/paragraphs'
 import { catchDivideByZeroError } from '@/utils'
+
+import { SimulatorsDataParams } from './configs/types'
 
 declare global {
 	interface Window {
@@ -57,6 +63,115 @@ export default function ChômagePartiel() {
 				</SimulationGoals>
 			</Simulation>
 		</>
+	)
+}
+
+export const SeoExplanations = () => {
+	const { t } = useTranslation()
+
+	return (
+		<Trans i18nKey="pages.simulateurs.chômage-partiel.seo">
+			<H2>Comment calculer l'indemnité d'activité partielle ?</H2>
+			<Body>
+				L'indemnité d'activité partielle de base est fixée par la loi à{' '}
+				<strong>70% du brut</strong>. Elle est proratisée en fonction du nombre
+				d'heures chômées. Pour un salarié à 2300 € brut mensuel, qui travaille à
+				50% de son temps usuel, cela donne{' '}
+				<strong>2300 € × 50% × 70% = 805 €</strong>
+			</Body>
+			<Body>
+				A cette indemnité de base s'ajoute l'indemnité complémentaire pour les
+				salaires proches du SMIC. Ce complément intervient lorsque le cumul de
+				la rémunération et de l'indemnité de base est en dessous d'un SMIC net.
+				Ces indemnités sont prises en charge par l'employeur, qui sera ensuite
+				remboursé en parti ou en totalité par l'État.
+			</Body>
+			<Body>
+				👉{' '}
+				<RuleLink dottedName="salarié . activité partielle . indemnités">
+					Voir le détail du calcul de l'indemnité
+				</RuleLink>
+			</Body>
+			<H2>Comment calculer la part remboursée par l'État ?</H2>
+			<Body>
+				L'État prend en charge une partie de l'indemnité partielle pour les
+				salaires allant jusqu'à <strong>4,5 SMIC</strong>, avec un minimum à
+				8,03€ par heures chômée. Concrètement, cela abouti à une prise en charge
+				à<strong>100%</strong> pour les salaires proches du SMIC. Celle-ci
+				diminue progressivement jusqu'à se stabiliser à <strong>93%</strong>{' '}
+				pour les salaires compris <strong>entre 2000 € et 7000 €</strong>{' '}
+				(salaire correspondant à la limite de 4,5 SMIC).
+			</Body>
+			<Body>
+				👉{' '}
+				<RuleLink dottedName="salarié . activité partielle . indemnisation entreprise">
+					Voir le détail du calcul du remboursement de l'indemnité
+				</RuleLink>
+			</Body>
+			<H2>Échanger avec un conseiller sur l'activité partielle</H2>
+			<Body as="div">
+				Vous souhaitez :
+				<Ul>
+					<Li>vérifier l'allocation perçue, le reste à charge</Li>
+					<Li>
+						connaître la procédure de consultation du{' '}
+						<abbr title="Comité social et économique">CSE</abbr>, la demande
+						d'autorisation préalable
+					</Li>
+					<Li>vous informer sur l'activité partielle longue durée</Li>
+					<Li>
+						former vos salariés en activité partielle à de nouvelles compétences
+						(coûts pédagogique pris en charge)
+					</Li>
+				</Ul>
+				<Body>
+					Service public simple et rapide : vous êtes rappelé(e) par le
+					conseiller qui peut vous aider. Partenaires mobilisés : les directions
+					départementales de l'emploi, du travail et des solidarités.
+				</Body>
+				<PlaceDesEntreprisesButton pathname="/aide-entreprise/activite-partielle-mon-entreprise-urssaf-fr/demande/activite-partielle" />
+			</Body>
+			<H2>Comment déclarer une activité partielle ?</H2>
+			<Body>
+				Face à la crise du coronavirus, les modalités de passage en activité
+				partielle ont été allégées. L'employeur est autorisé a placer ses
+				salariés en activité partielle avant que la demande officielle ne soit
+				déposée. Celui-ci dispose ensuite d'un délai de{' '}
+				<strong>30 jours</strong> pour se mettre en règle. Les indemnités seront
+				versées avec un effet rétro-actif débutant à la mise en place du chômage
+				partiel.
+			</Body>
+			<Body>
+				👉{' '}
+				<Link
+					href="https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001"
+					aria-label={t(
+						'Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre'
+					)}
+				>
+					Effectuer la demande de chômage partiel
+				</Link>
+			</Body>
+			<H2>
+				{' '}
+				Quelles sont les cotisations sociales à payer pour l'indemnité
+				d'activité partielle ?
+			</H2>
+			<Body>
+				L'indemnité d'activité partielle est soumise à la CSG/CRDS et à une
+				contribution maladie dans certains cas. Pour en savoir plus, voir la
+				page explicative sur{' '}
+				<Link
+					aria-label={t(
+						"le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre"
+					)}
+					href="https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d/le-regime-social-de-lindemnite-d.html"
+				>
+					le site de l'Urssaf
+				</Link>
+				.
+			</Body>
+		</Trans>
 	)
 }
 

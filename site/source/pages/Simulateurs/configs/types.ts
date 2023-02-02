@@ -1,5 +1,8 @@
+import type { TFunction } from 'i18next'
 import { DottedName } from 'modele-social'
 import { ASTNode, PublicodesExpression } from 'publicodes'
+
+import { AbsoluteSitePaths } from '@/sitePaths'
 
 export type Situation = Partial<
 	Record<DottedName, PublicodesExpression | ASTNode>
@@ -87,5 +90,11 @@ export interface PageConfig {
 	 * example: `component: MyComponent,`
 	 */
 	component?: () => JSX.Element
-	seoExplanations?: JSX.Element
+	seoExplanations?: () => JSX.Element
+}
+
+export interface SimulatorsDataParams {
+	t: TFunction
+	sitePaths: AbsoluteSitePaths
+	language: string
 }

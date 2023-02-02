@@ -113,7 +113,7 @@ function Explanations() {
 	)
 }
 
-export const SeoExplanations = (
+export const SeoExplanations = () => (
 	<Trans i18nKey="pages.simulateurs.is.seo">
 		<H2>Comment est calculé l’impôt sur les sociétés ?</H2>
 		<Body>

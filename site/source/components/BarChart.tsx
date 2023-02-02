@@ -127,6 +127,7 @@ export default function BarChartBranch({
 	return disableAnimation ? (
 		innerBarChartBranch
 	) : (
+		// @ts-ignore Ignore type instantiation is excessively deep and possibly infinite.
 		<animated.div ref={intersectionRef} style={style} {...props}>
 			{innerBarChartBranch}
 		</animated.div>
