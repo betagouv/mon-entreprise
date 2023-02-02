@@ -2,6 +2,8 @@ import { unlinkSync, writeFileSync } from 'fs'
 import path from 'path'
 import { defineConfig } from 'vite'
 
+import { PageConfig } from '@/pages/Simulateurs/configs/types'
+
 export default defineConfig({
 	resolve: {
 		alias: [{ find: '@', replacement: path.resolve('./source') }],
@@ -21,9 +23,9 @@ export default defineConfig({
 			name: 'remove-component-from-config',
 			enforce: 'pre',
 			transform(code, id) {
-				// Remove Component from config
+				// Remove `component` and `seoExplanations` from config
 				return /Simulateurs\/.+\/_config\.ts$/.test(id)
-					? code.replace(/component: [^,]+,/, '')
+					? code.replace(/(component|seoExplanations):[^,]+,/g, '')
 					: code
 			},
 		},
@@ -31,14 +33,28 @@ export default defineConfig({
 			name: 'postbuild-commands',
 			closeBundle: async () => {
 				const path = './builded-simulation-data.js'
-				type algoliaUpdateType = () => Record<string, unknown>
-				const algoliaUpdate = (await import(path)) as algoliaUpdateType
+				type PageConfigType = {
+					default: Record<string, Omit<PageConfig, 'component'>>
+				}
+				const algoliaUpdate = ((await import(path)) as PageConfigType).default
 
 				unlinkSync(path)
 				writeFileSync(
-					'./dist/simulation-data.json',
+					'./source/public/simulation-data.json',
 					JSON.stringify(algoliaUpdate)
 				)
+				writeFileSync(
+					'./source/public/simulation-data-title.json',
+					JSON.stringify(
+						Object.fromEntries(
+							Object.entries(algoliaUpdate).map(([id, { title }]) => [
+								id,
+								{ title },
+							])
+						)
+					)
+				)
+				// eslint-disable-next-line no-console
 				console.log('done!')
 			},
 		},

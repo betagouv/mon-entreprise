@@ -799,10 +799,8 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...configCoûtCréationEntreprise(params),
 	} as const
 
-	return data satisfies ImmutableType<{
-		// TODO: remove this Omit
-		[key: string]: Omit<PageConfig, 'id'>
-	}>
+	// TODO: remove this Omit
+	return data satisfies ImmutableType<Record<string, Omit<PageConfig, 'id'>>>
 }
 
 export type MetadataSrc = ReturnType<typeof getMetadataSrc>
