@@ -26,7 +26,6 @@ entreprise . catégorie juridique:
   note: On se base ici sur les catégories juridiques définies par l'INSEE
   références:
     Liste des catégories juridique de l'INSEE: https://www.insee.fr/fr/information/2028129
-  # par défaut: "'SARL'"
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -58,6 +57,10 @@ entreprise . catégorie juridique . EI:
           par: "'micro-entreprise'"
         - règle: entreprise . imposition
           par: "'IR'"
+        - règle: entreprise . imposition . IR
+          par: oui
+        - règle: entreprise . imposition . IS
+          par: non
       par défaut:
         nom: par défaut
         experimental: oui

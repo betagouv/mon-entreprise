@@ -1,13 +1,13 @@
 bénéficiaire:
   experimental: oui
   applicable si: entreprise . imposition . IS
+  valeur: non
   description: |
     Un bénéficiaire est un actionnaire dans une SAS ou un associé dans une
     SARL/EURL.
 
     Attention: nous ne prenons en compte ici que le cas de figure de l'associé
       unique (SASU et EURL).
-  valeur: non
 
 # [TODO] [dividendes-indep]
 bénéficiaire . compte courant d'associé:
@@ -36,8 +36,6 @@ bénéficiaire . compte courant d'associé:
     Circulaire RSI C2014-001: https://www.secu-independants.fr/uploads/tx_rsirss/C2014-001.pdf
 
 bénéficiaire . dividendes:
-  valeur: oui
-  applicable si: entreprise . imposition = 'IS'
 
 bénéficiaire . dividendes . bruts:
   unité: €/an

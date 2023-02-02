@@ -1,5 +1,7 @@
 import { it } from 'vitest'
 
+import ISSimulationConfig from '@/pages/Simulateurs/impot-societe/_simulationConfig'
+
 import impotSocieteSituations from './simulations-impôt-société.yaml'
 import { runSimulations } from './utils'
 
@@ -10,9 +12,6 @@ it('calculate simulations-impot-société', () => {
 			'entreprise . imposition . IS . montant',
 			'entreprise . imposition . IS . contribution sociale',
 		],
-		{
-			'entreprise . imposition': "'IS'",
-			'entreprise . imposition . IS . éligible taux réduit': 'oui',
-		}
+		ISSimulationConfig.situation
 	)
 })

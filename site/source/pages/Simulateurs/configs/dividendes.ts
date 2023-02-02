@@ -14,7 +14,8 @@ export const configDividendes: SimulationConfig = {
 	'unité par défaut': '€/an',
 	situation: {
 		bénéficiaire: 'oui',
-		salarié: 'non',
+		'entreprise . catégorie juridique': "'SAS'",
+		'entreprise . associés': "'unique'",
 		'entreprise . imposition': "'IS'",
 		'impôt . méthode de calcul': "'PFU'",
 		'dirigeant . rémunération . net . imposable': '0 €/an',

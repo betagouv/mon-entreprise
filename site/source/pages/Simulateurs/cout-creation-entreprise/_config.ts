@@ -1,10 +1,8 @@
-import { ImmutableType } from '@/types/utils'
-
 import CoutCreationEntreprise from '.'
-import { PageConfig } from '../configs/types'
+import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../metadata'
 
-export function configCoûtCréationEntreprise({
+export function coûtCréationEntrepriseConfig({
 	t,
 	sitePaths,
 }: SimulatorsDataParams) {
@@ -47,14 +45,4 @@ export function configCoûtCréationEntreprise({
 
 		// Remove this "as const" when we upgrade to typescript v5:
 	} as const)
-}
-
-// Replace type by commented line when we upgrade to typescript v5:
-function config<
-	// const	Base extends ImmutableType<PageConfig>
-	Base extends ImmutableType<PageConfig>
->(base: ImmutableType<PageConfig> & Base) {
-	return {
-		[base.id]: base,
-	} as ImmutableType<{ [k in Base['id']]: Base }>
 }
