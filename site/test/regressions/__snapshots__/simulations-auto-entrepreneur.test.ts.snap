@@ -45,6 +45,41 @@ dirigeant . rémunération . impôt: 0
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
+exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 281
+dirigeant . auto-entrepreneur . revenu net: 16630
+dirigeant . auto-entrepreneur . revenu net . après impôt: 16630
+dirigeant . rémunération . impôt: 0
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 304
+dirigeant . auto-entrepreneur . revenu net: 16347
+dirigeant . auto-entrepreneur . revenu net . après impôt: 16347
+dirigeant . rémunération . impôt: 0
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 290
+dirigeant . auto-entrepreneur . revenu net: 16518
+dirigeant . auto-entrepreneur . revenu net . après impôt: 16518
+dirigeant . rémunération . impôt: 0
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: undefined
+dirigeant . auto-entrepreneur . cotisations et contributions: 688
+dirigeant . auto-entrepreneur . revenu net: undefined
+dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
+dirigeant . rémunération . impôt: 792"
+`;
+
 exports[`calculate simulations-auto-entrepreneur > activités 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 353
@@ -59,6 +94,42 @@ exports[`calculate simulations-auto-entrepreneur > activités 2`] = `
 dirigeant . auto-entrepreneur . cotisations et contributions: 357
 dirigeant . auto-entrepreneur . revenu net: 15720
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15720
+dirigeant . rémunération . impôt: 0
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-auto-entrepreneur > activités 3`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 214
+dirigeant . auto-entrepreneur . revenu net: 17432
+dirigeant . auto-entrepreneur . revenu net . après impôt: 17432
+dirigeant . rémunération . impôt: 0
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-auto-entrepreneur > activités 4`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 366
+dirigeant . auto-entrepreneur . revenu net: 15604
+dirigeant . auto-entrepreneur . revenu net . après impôt: 15604
+dirigeant . rémunération . impôt: 0
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-auto-entrepreneur > activités 5`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 207
+dirigeant . auto-entrepreneur . revenu net: 17520
+dirigeant . auto-entrepreneur . revenu net . après impôt: 17520
+dirigeant . rémunération . impôt: 0
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-auto-entrepreneur > activités 6`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 356
+dirigeant . auto-entrepreneur . revenu net: 15728
+dirigeant . auto-entrepreneur . revenu net . après impôt: 15728
 dirigeant . rémunération . impôt: 0
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;

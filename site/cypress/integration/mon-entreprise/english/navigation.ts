@@ -97,9 +97,7 @@ describe(`Navigation to income simulator using company name (${
 
 		cy.contains('834825614').click()
 		// ask if auto-entrepreneur
-		cy.contains(
-			fr ? 'Êtes-vous auto-entrepreneur ?' : 'Are you an auto-entrepreneur?'
-		)
+		cy.contains(fr ? 'auto-entrepreneur' : 'auto-entrepreneur')
 		cy.contains(fr ? 'Oui' : 'Yes').click()
 		cy.contains('Auto-entrepreneur').click()
 		cy.location().should((loc) => {

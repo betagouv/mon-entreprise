@@ -65,20 +65,6 @@ conjoint collaborateur:
     dirigeant . rémunération . net: 500000 €/an
     dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
 
-exonération covid:
-  - &exoneration-covid
-    date: 01/01/2021
-    dirigeant . rémunération . net: 50000 €/an
-    dirigeant . indépendant . cotisations et contributions . exonérations . covid: oui
-    dirigeant . indépendant . cotisations et contributions . exonérations . covid . montant: 1500
-  - <<: *exoneration-covid
-    dirigeant . rémunération . totale: 500 €/an
-    dirigeant . indépendant . cotisations et contributions . exonérations . covid . montant: 9000
-  - <<: *exoneration-covid
-    dirigeant . rémunération . totale: 50000 €/an
-    dirigeant . indépendant . cotisations et contributions . exonérations . covid . montant: 5000
-    dirigeant . indépendant . conjoint collaborateur: oui
-
 cotisations facultatives:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
   # cotisations (résultat comptable) n'est pas affecté car l'assiette des

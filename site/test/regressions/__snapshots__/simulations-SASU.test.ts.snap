@@ -121,5 +121,6 @@ exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
 impôt . montant: 9659
 salarié . cotisations: 3622
 salarié . rémunération . net . payé après impôt: 3907
-salarié . rémunération . net . à payer avant impôt: 4712"
+salarié . rémunération . net . à payer avant impôt: 4712
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;

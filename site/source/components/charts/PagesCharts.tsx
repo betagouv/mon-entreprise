@@ -29,7 +29,6 @@ const Palette = [
 	'#697ad5',
 	'#b453b6',
 	'#ff2d96',
-	'#fd667f',
 	'#fc9e67',
 	'#fad750',
 	'#bed976',
