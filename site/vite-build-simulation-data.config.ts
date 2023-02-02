@@ -24,7 +24,13 @@ export default defineConfig({
 			enforce: 'pre',
 			transform(code, id) {
 				// Remove `component` and `seoExplanations` from config
-				return /Simulateurs\/.+\/_config\.ts$/.test(id)
+				const isConfigFile = /Simulateurs\/.+\/_config\.tsx?$/.test(id)
+				if (isConfigFile) {
+					// eslint-disable-next-line no-console
+					console.log('transform:', id)
+				}
+
+				return isConfigFile
 					? code.replace(/(component|seoExplanations):[^,]+,/g, '')
 					: code
 			},
