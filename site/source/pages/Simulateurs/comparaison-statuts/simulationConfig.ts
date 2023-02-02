@@ -24,6 +24,7 @@ export const configComparateurStatuts: SimulationConfig = {
 			'salarié . rémunération . avantages en nature',
 			'entreprise . activités',
 			'entreprise . activités . revenus mixtes',
+			'entreprise . activités . saisonnière',
 		],
 		liste: [
 			'entreprise . activité',

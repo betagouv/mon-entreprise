@@ -115,7 +115,7 @@ const statsCreer = (pages: Pageish[], creer: Pageish[]) => {
 }
 
 function groupByDate(data: Pageish[]) {
-	return Object.entries(
+	const topTenPageByMonth = Object.entries(
 		groupBy(
 			data.filter((d) => 'page' in d && d.page === 'accueil'),
 			(p) => ('date' in p ? p.date : p.month)
@@ -125,13 +125,34 @@ function groupByDate(data: Pageish[]) {
 		nombre: Object.fromEntries(
 			Object.entries(
 				groupBy(values, (x) => x.page_chapter1 + ' / ' + x.page_chapter2)
+			).map(
+				([k, v]) =>
+					[k, v.map((v) => v.nombre).reduce((a, b) => a + b, 0)] as const
 			)
-				.map(
-					([k, v]) =>
-						[k, v.map((v) => v.nombre).reduce((a, b) => a + b, 0)] as const
-				)
-				.sort((a, b) => b[1] - a[1])
-				.slice(0, 7)
+		),
+	}))
+
+	const topPagesOfAllTime = Object.entries(
+		topTenPageByMonth.reduce((acc, { nombre }) => {
+			Object.entries(nombre).forEach(([page, visits]) => {
+				acc[page] ??= 0
+				acc[page] += visits
+			})
+
+			return acc
+		}, {} as Record<string, number>)
+	)
+		.sort((a, b) => b[1] - a[1])
+		.slice(0, 8)
+		.map(([page]) => page)
+	console.log(topPagesOfAllTime)
+
+	return topTenPageByMonth.map(({ date, nombre }) => ({
+		date,
+		nombre: Object.fromEntries(
+			Object.entries(nombre).filter(([page]) =>
+				topPagesOfAllTime.includes(page)
+			)
 		),
 	}))
 }

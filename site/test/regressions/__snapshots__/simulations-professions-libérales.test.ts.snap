@@ -293,7 +293,8 @@ entreprise . chiffre d'affaires: 50000
 impôt . montant: 5609
 protection sociale . retraite . base: 280
 protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: 4"
+protection sociale . retraite . trimestres: 4
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-professions-libérales > avocat 2`] = `
@@ -304,7 +305,8 @@ entreprise . chiffre d'affaires: 50000
 impôt . montant: 5495
 protection sociale . retraite . base: 277
 protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: 4"
+protection sociale . retraite . trimestres: 4
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-professions-libérales > expert-comptable 1`] = `

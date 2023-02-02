@@ -357,3 +357,18 @@ entreprise . activités . revenus mixtes:
               alors: 1 / 3
             - sinon: 50%
       note: Il appartient à l'utilisateur de bien vérifier que la somme des trois pourcentages renseignés vaut 100%.
+
+entreprise . activités . saisonnière:
+  question: Exercez-vous une activité saisonnière ?
+  par défaut: non
+  description: |
+    Les professionnels exerçant une activité saisonnière peuvent bénéficier
+    d’une dispense de minimale pour les cotisations d’indeminités journalières,
+    de retraite de base et d’invalidité-décès. 
+
+    Ainsi, si votre revenu est inférieur à l’assiette minimale de cotisations,
+    vous cotisez sur votre revenu réel.
+
+    Vous pouvez demander l‘application de cette dispense depuis votre espace en urssaf: Messagerie > Nouveau message > Un autre sujet (informations, documents ou justificatifs) > Demander des informations sur mon compte ou un récapitulatif > Faire une demande ou un complément de demande »
+
+    > À noter : l’assiette minimale pour la retraite de base permet de garantir la validation de 3 trimestres d’assurance vieillesse.

@@ -308,43 +308,6 @@ impôt . montant: 0
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
-exports[`calculate simulations-indépendant > exonération covid 1`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: undefined
-dirigeant . indépendant . revenu professionnel: undefined
-dirigeant . rémunération . cotisations: undefined
-dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: undefined
-dirigeant . rémunération . totale: undefined
-entreprise . charges: 0
-entreprise . chiffre d'affaires: undefined
-impôt . montant: undefined"
-`;
-
-exports[`calculate simulations-indépendant > exonération covid 2`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: undefined
-dirigeant . indépendant . revenu professionnel: undefined
-dirigeant . rémunération . cotisations: undefined
-dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: undefined
-dirigeant . rémunération . totale: 500
-entreprise . charges: 0
-entreprise . chiffre d'affaires: undefined
-impôt . montant: undefined"
-`;
-
-exports[`calculate simulations-indépendant > exonération covid 3`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: undefined
-dirigeant . indépendant . revenu professionnel: undefined
-dirigeant . rémunération . cotisations: undefined
-dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: undefined
-dirigeant . rémunération . totale: 50000
-entreprise . charges: 0
-entreprise . chiffre d'affaires: undefined
-impôt . montant: undefined
-Notifications affichées : dirigeant . indépendant . conjoint collaborateur . notification exonérations non pris en compte"
-`;
-
 exports[`calculate simulations-indépendant > exonération pension invalidité 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 41493
@@ -367,7 +330,8 @@ dirigeant . rémunération . net . après impôt: 56373
 dirigeant . rémunération . totale: 100000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 100000
-impôt . montant: 13078"
+impôt . montant: 13078
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-indépendant > imposition à l'IS 2`] = `
@@ -379,7 +343,8 @@ dirigeant . rémunération . net . après impôt: 56373
 dirigeant . rémunération . totale: 100000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 100000
-impôt . montant: 13078"
+impôt . montant: 13078
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-indépendant > impôt sur le revenu 1`] = `

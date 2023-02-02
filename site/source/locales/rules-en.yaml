@@ -2478,7 +2478,7 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
 dirigeant . indépendant . PL . maladie:
   note.en: >
     [automatic] The regulated liberal professions do not contribute for the
-    corresponding part of the
+    corresponding part of the daily allowances
 
     daily allowances and are therefore not entitled to these allowances in case of
 
@@ -2527,7 +2527,7 @@ dirigeant . indépendant . PL . métier . juridique:
   avec:
     avocat:
       description.en: |
-        [automatic] Lawyers contribute to the CNBF for retirement and provident
+        [automatic] Lawyers contribute to the CNBF for their retirement and
         retirement and provident fund.
       description.fr: |
         Les avocats cotisent auprès de la CNBF pour la retraite et la
@@ -3138,7 +3138,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
       titre.en: '[automatic] lump-sum basis'
       titre.fr: assiette forfaitaire
     assiette forfaitaire maladie:
-      titre.en: '[automatic] sickness lump sum'
+      titre.en: '[automatic] flat-rate health insurance'
       titre.fr: assiette forfaitaire maladie
   description.en: '[automatic] '
   description.fr: >
@@ -4119,7 +4119,7 @@ entreprise . TVA . franchise de TVA . seuils dépassés:
     annual turnover depending on the activity.
 
 
-    The professional who falls under this system invoices his services or sales without tax, and cannot
+    The professional who falls under this system invoices his services or his sales without tax, and cannot
 
     and cannot deduct VAT from their purchases.
   description.fr: |
@@ -4252,7 +4252,7 @@ entreprise . activité . nature:
 
     ### Multiple activities
 
-    In case of multiple activities, the main activity is deemed to be the oldest activity.
+    In the case of multiple activities, the main activity is deemed to be the oldest activity.
 
 
     However, as of the third calendar year following the year in which the pluriactivity situation began, the persons concerned may request that the activity that provided the highest amount of turnover or revenue excluding taxes over the last three years be considered their main activity.
@@ -4485,7 +4485,7 @@ entreprise . activités . revenus mixtes:
     and a part in service provision (the installation).
 
 
-    There are three categories with different standard expense allowance rates:
+    There are three categories with different expense allowance rates:
 
 
     - Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restoration-accommodation) (71% allowance)
@@ -4713,7 +4713,7 @@ entreprise . catégorie juridique . SARL:
       titre.en: '[automatic] Limited liability company'
       titre.fr: Société à responsabilité limitée
     unipersonnelle:
-      titre.en: '[automatic] one-person'
+      titre.en: '[automatic] unipersonal'
       titre.fr: unipersonnelle
   titre.en: '[automatic] SARL or EURL'
   titre.fr: SARL ou EURL
@@ -5126,10 +5126,10 @@ entreprise . coût formalités . annonce légale:
       titre.fr: Tarif forfaitaire
   description.en: >
     [automatic] The publication of a legal announcement is mandatory
-    to inform the public of the major stages in the life of a company: creation,
-    modification or cessation of activity. It must be inserted in a medium
-    authorized to receive legal announcements (SHAL): either a newspaper of
-    legal announcements (JAL), or an online press service (SPEL).
+    to inform the public of the major stages in the life of a company: the
+    creation, modification or cessation of activity. It must be inserted in a
+    medium authorized to receive legal announcements (SHAL): either a newspaper
+    of legal announcements (JAL), or an online press service (SPEL).
 
 
     There are 2 types of pricing for legal announcements:
@@ -6153,7 +6153,8 @@ protection sociale . invalidité et décès:
             disability pension: either from your salaried activity or from your
             activity as a craftsman/trader. However, the amount of the pension
             takes into account all your income received whether it comes from
-            your salaried activity or your activity as a self-employed person.
+            your salaried activity or from your activity as a self-employed
+            person.
           description.fr: >
             Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une
             seule pension d’invalidité : soit au titre de votre activité
@@ -7195,7 +7196,7 @@ salarié . contrat . CDD . indemnité de fin de contrat:
         Pour être dans ce cas, le contrat doit se terminer avant les vacances scolaires ou universitaires, et que le jeune reprenne effectivement ses études lors de la prochaine rentrée.
       question.en:
         '[automatic] Is it a fixed-term contract concluded with a young
-        person during his school or university vacations ("summer job")?'
+        person during his or her school or university vacations ("summer job")?'
       question.fr:
         Est-ce un CDD conclu avec un jeune pendant ses vacances scolaires
         ou universitaires (« job d’été ») ?
@@ -7236,18 +7237,6 @@ salarié . contrat . CDD . motif:
           titre.en: '[automatic] Temporary increase in activity'
           titre.fr: Accroissement temporaire d'activité
         mission:
-          description.en: >
-            [automatic] &gt; Also known as a defined purpose contract.
-
-
-            Recruitment of engineers and managers, within the meaning of the collective agreements, with a view to achieving a defined objective when an extended branch agreement or, failing that, a company agreement so provides and defines :
-
-
-            - The economic needs to which these contracts are likely to provide an appropriate response;
-
-            - The conditions under which employees on fixed-term contracts with a defined purpose benefit from guarantees relating to redeployment assistance, validation of acquired experience, priority for re-employment and access to continuing vocational training, and may, during the notice period, mobilize the means available to organize the rest of their career path;
-
-            - The conditions under which employees on fixed-term contracts with a defined purpose have priority of access to jobs with open-ended contracts in the company.
           description.fr: >
             > Aussi appelé contrat à objet défini.
 
@@ -7263,21 +7252,6 @@ salarié . contrat . CDD . motif:
           titre.en: '[automatic] Mission contract'
           titre.fr: Contrat de mission
         remplacement:
-          description.en: >
-            [automatic] We group the following cases in this category.
-
-
-            - Replacement of an employee in case of :
-              - Absence;
-              - Temporary change to part-time work, concluded by an amendment to the employment contract or by a written exchange between the employee and his employer;
-              - Suspension of the employment contract;
-              - Permanent departure preceding the elimination of his workstation after consultation of the works council or, failing that, of the staff representatives, if any;
-              - Waiting for the employee recruited on a permanent contract to replace him/her to take up his/her duties;
-
-            - Replacement of the head of a craft, industrial or commercial company, of a person practicing a liberal profession, of his or her spouse effectively participating in the activity of the company on a professional and usual basis, or of a non-salaried partner of a professional partnership, a partnership of means, a liberal practice partnership or any other legal person practicing a liberal profession;
-
-
-            - Replacement of the head of a farm or a company mentioned in 1° to 4° of article L. 722-1 of the rural and maritime fishing code, of a family helper, of a partner in the farm, or of their spouse mentioned in article L. 722-10 of the same code, provided that he or she is effectively participating in the activity of the farm or company;
           description.fr: >
             Nous regroupons dans cette catégorie les cas suivants.
 
@@ -7299,7 +7273,7 @@ salarié . contrat . CDD . motif:
           description.en:
             '[automatic] Jobs of a seasonal nature, whose tasks are called
             upon to be repeated each year according to a more or less fixed
-            periodicity, depending on the rhythm of the seasons or collective
+            periodicity, according to the rhythm of the seasons or collective
             lifestyles.'
           description.fr:
             Emplois à caractère saisonnier, dont les tâches sont appelées à
@@ -8355,7 +8329,7 @@ salarié . cotisations . exonérations . lodeom:
           - publishing of internet portals and software;
           - computer graphics, including visual and digital content design;
           - design of connected objects.
-        - If these conditions are met, the exemption applies to remunerations paid to employees who are mainly involved in the realization of innovative projects.
+        - If these conditions are met, the exemption applies to remunerations paid to employees who are mainly engaged in the realization of innovative projects.
 
         - Support functions are therefore excluded: administrative, financial, logistical and human resources tasks.
       description.fr: >
@@ -8805,8 +8779,7 @@ salarié . régimes spécifiques . DFS . profession:
       titre.en: '[automatic] journalist'
       titre.fr: journaliste
     ouvrier du bâtiment:
-      description.en:
-        '[automatic] Concerns the construction workers referred to in
+      description.en: '[automatic] Concerns construction workers referred to in
         paragraphs 1 and 2 of Article 1 of the decree of November 17, 1936,
         excluding those working in factories or workshops.'
       description.fr:
@@ -9524,7 +9497,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
         If the employer (private or public) sets it up, it must benefit all employees according to the same terms and conditions and depending on the distance between home and work.
 
 
-        The amount, terms and conditions as well as the criteria for awarding the transport bonus must be provided for by a company agreement or an inter-company agreement, or failing that, by a branch agreement.
+        The amount, terms and conditions as well as the criteria for awarding the transport bonus must be provided for by a company agreement or an inter-company agreement, or failing that, by an industry agreement.
 
         In the absence of an agreement, the employer may provide for the payment of the transport bonus by unilateral decision, after consulting the social and economic committee (CSE), if it exists.
 
@@ -9630,7 +9603,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
         costs is mandatory.
 
 
-        Employers (private or public) must pay 50% of the cost of subscriptions taken out by their employees for the entire journey between their usual place of residence and their place of work using public transport services, even if more than one subscription is needed to make the journey (e.g. train + bus).
+        Employers (private or public) must pay 50% of the cost of subscriptions taken out by their employees for the entire journey between their usual place of residence and their place of work using public transport services, even if more than one subscription is required to make this journey (e.g. train + bus).
 
         This also applies to public bicycle rental services.
 
@@ -9737,7 +9710,7 @@ salarié . rémunération . indemnités CDD:
 
         This method of calculation will most often be favorable to the employee when the employee
 
-        has worked overtime. An indemnity equal to one tenth of the total
+        has worked overtime. An indemnity equal to one tenth of the
 
         gross remuneration received by the employee during the reference period.
 
