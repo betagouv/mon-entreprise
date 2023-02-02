@@ -8,12 +8,12 @@ dirigeant . gérant minoritaire:
 
 dirigeant . régime social:
   experimental: oui
+
   non applicable si:
     une de ces conditions:
       - entreprise . catégorie juridique . SELARL #TODO NON IMPLEMENTE
       - entreprise . catégorie juridique . SELAS #TODO NON IMPLEMENTE
       - entreprise . catégorie juridique . autre
-  par défaut: non
   variations:
     - si: entreprise . catégorie juridique . EI . auto-entrepreneur
       alors: "'auto-entrepreneur'"
@@ -159,8 +159,8 @@ dirigeant . exonérations . ACRE:
 dirigeant . assimilé salarié:
   description: |
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
-  applicable si: régime social = 'assimilé salarié'
-  valeur: oui
+  valeur: régime social = 'assimilé salarié'
+  par défaut: non
   remplace:
     - règle: salarié
       par: oui
@@ -265,8 +265,8 @@ dirigeant . assimilé salarié . réduction ACRE . montant:
       arrondi: oui
 
 dirigeant . auto-entrepreneur:
-  applicable si: régime social = 'auto-entrepreneur'
-  valeur: oui
+  valeur: régime social = 'auto-entrepreneur'
+  par défaut: non
   icônes: 🚶
   description: |
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine connu sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est un régime de travailleur indépendant créé pour simplifier la gestion administrative, notamment en remplaçant toutes les cotisations sociales par un prélèvement unique mensuel.
@@ -616,8 +616,8 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
       - revenu net . après impôt
 
 dirigeant . indépendant:
-  applicable si: régime social = 'indépendant'
-  valeur: oui
+  valeur: régime social = 'indépendant'
+  par défaut: non
 
 dirigeant . indépendant . revenu professionnel:
   description: rémunération du dirigeant au régime des indépendant

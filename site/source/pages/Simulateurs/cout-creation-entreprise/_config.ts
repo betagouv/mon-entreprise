@@ -39,6 +39,7 @@ export function configCoûtCréationEntreprise({
 			objectifs: ['entreprise . coût formalités . création'],
 			questions: {
 				'liste noire': ['entreprise . activité . nature'],
+				'non prioritaires': ['établissement . commune'],
 			},
 			situation: {},
 		},

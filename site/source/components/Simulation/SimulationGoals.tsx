@@ -6,7 +6,7 @@ import styled, { css } from 'styled-components'
 import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
 
 import { Logo } from '../Logo'
@@ -50,14 +50,14 @@ export function SimulationGoals({
 						<div className="sr-only" aria-hidden id="simulator-legend-label">
 							{legend}
 						</div>
-						<Body className="visually-hidden">
+						<SmallBody>
 							<em>
 								<Trans>
 									Les données de simulations se mettront automatiquement à jour
-									après la modification d'un champ.
+									après la modification d'un champ
 								</Trans>
 							</em>
-						</Body>
+						</SmallBody>
 						{children}
 					</ForceThemeProvider>
 				</SimulationGoalsContainer>

@@ -19,9 +19,9 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
+import { isCompanyDottedName } from '@/reducers/companySituationReducer'
 import {
 	answeredQuestionsSelector,
-	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
@@ -42,7 +42,6 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
-	const companySituation = useSelector(companySituationSelector)
 	const passedQuestions = useSelector(answeredQuestionsSelector)
 	const answeredAndPassedQuestions = useMemo(
 		() =>
@@ -51,25 +50,30 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					(answered) => !passedQuestions.some((passed) => answered === passed)
 				)
 				.concat(passedQuestions)
-				.filter((answered) => !(answered in companySituation))
 				.filter(
 					(dottedName) =>
 						engine.getRule(dottedName).rawNode.question !== undefined
 				)
 				.map((dottedName) => engine.getRule(dottedName)),
-		[engine, passedQuestions, situation, companySituation]
+		[engine, passedQuestions, situation]
 	)
 	const nextSteps = useNextQuestions().map((dottedName) =>
 		engine.evaluate(engine.getRule(dottedName))
 	) as Array<EvaluatedRule>
+
+	const situationQuestions = useMemo(
+		() =>
+			answeredAndPassedQuestions.filter(
+				({ dottedName }) => !isCompanyDottedName(dottedName)
+			),
+		[answeredAndPassedQuestions]
+	)
 	const companyQuestions = useMemo(
 		() =>
-			(
-				(Object.keys(companySituation) as DottedName[]).map((dottedName) =>
-					engine.evaluate(engine.getRule(dottedName))
-				) as Array<EvaluatedRule>
-			).sort((a, b) => (a.title < b.title ? -1 : 1)),
-		[engine, companySituation]
+			answeredAndPassedQuestions.filter(({ dottedName }) =>
+				isCompanyDottedName(dottedName)
+			),
+		[answeredAndPassedQuestions]
 	)
 
 	const siret = engine.evaluate('établissement . SIRET').nodeValue as string
@@ -81,13 +85,13 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 				<Trans>Ma situation</Trans>
 			</H2>
 
-			{!!answeredAndPassedQuestions.length && (
+			{!!situationQuestions.length && (
 				<>
 					<H3>
 						<Trans>Simulation en cours</Trans>
 					</H3>
 
-					<StepsTable {...{ rules: answeredAndPassedQuestions, onClose }} />
+					<StepsTable {...{ rules: situationQuestions, onClose }} />
 					{children}
 					<div
 						className="print-hidden"
@@ -134,8 +138,8 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					</H3>
 					<div className="print-hidden">
 						<Message type="secondary" border={false} icon>
-							<Body as="div">
-								<div
+							<Body>
+								<span
 									css={`
 										display: flex;
 										align-items: center;
@@ -150,7 +154,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 										<Strong>automatiquement sauvegardées</Strong> entre les
 										simulations.
 									</span>
-									<div
+									<span
 										css={`
 											flex: 1;
 											min-width: fit-content;
@@ -177,8 +181,8 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 												'Attention, vos données sauvegardées seront supprimées de manière définitive.'
 											)}
 										></PopoverConfirm>
-									</div>
-								</div>
+									</span>
+								</span>
 							</Body>
 						</Message>
 						<Spacing xs />

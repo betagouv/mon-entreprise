@@ -10,6 +10,7 @@ const SAVED_NAMESPACES = [
 	'dirigeant . gérant minoritaire',
 	'dirigeant . indépendant . PL . métier',
 	'entreprise . activité . nature',
+	'entreprise . activités',
 	'entreprise . catégorie juridique',
 	'entreprise . date de création',
 	'entreprise . salariés',
@@ -30,16 +31,16 @@ const SAVED_NAMESPACES = [
 	'salarié . cotisations . prévoyances . santé',
 ] as Array<DottedName>
 
+export function isCompanyDottedName(dottedName: DottedName) {
+	return SAVED_NAMESPACES.some((namespace) => dottedName.startsWith(namespace))
+}
+
 export type Company = Omit<FabriqueSocialEntreprise, 'highlightLabel'>
 
 export function companySituation(state: Situation = {}, action: Action) {
 	switch (action.type) {
 		case 'UPDATE_SITUATION':
-			if (
-				SAVED_NAMESPACES.some((namespace) =>
-					action.fieldName.startsWith(namespace)
-				)
-			) {
+			if (isCompanyDottedName(action.fieldName)) {
 				return {
 					...state,
 					[action.fieldName]: action.value,
