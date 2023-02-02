@@ -37,6 +37,7 @@ export interface PageDataProps {
 	icône: ExtractFromSimuData<'icône'>
 	pathId: ExtractFromSimuData<'pathId'>
 	shortName: ExtractFromSimuData<'shortName'>
+	id: ExtractFromSimuData<'id'>
 }
 
 export default function PageData(props: PageDataProps) {
@@ -50,7 +51,7 @@ export default function PageData(props: PageDataProps) {
 		iframePath,
 		private: privateIframe,
 		component: Component,
-		seoExplanations,
+		seoExplanations: SeoExplanations,
 		nextSteps,
 		path,
 	} = props
@@ -101,7 +102,11 @@ export default function PageData(props: PageDataProps) {
 
 				{!inIframe && (
 					<>
-						<section>{seoExplanations}</section>
+						{SeoExplanations && (
+							<section>
+								<SeoExplanations />
+							</section>
+						)}
 						<NextSteps
 							iframePath={privateIframe ? undefined : iframePath}
 							nextSteps={nextSteps}

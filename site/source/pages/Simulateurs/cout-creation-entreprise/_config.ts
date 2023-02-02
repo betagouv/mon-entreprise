@@ -1,6 +1,6 @@
 import CoutCreationEntreprise from '.'
 import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../metadata'
+import { SimulatorsDataParams } from '../configs/types'
 
 export function coûtCréationEntrepriseConfig({
 	t,
