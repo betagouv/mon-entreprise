@@ -4129,23 +4129,23 @@ entreprise . catégorie juridique:
 entreprise . catégorie juridique . EI:
   titre.en: '[automatic] Sole proprietorship (including auto-entrepreneurs)'
   titre.fr: Entreprise individuelle (y compris auto-entrepreneurs)
-  avec:
-    auto-entrepreneur:
-      question.en: '[automatic] Are you an auto-entrepreneur?'
-      question.fr: Êtes-vous auto-entrepreneur ?
 entreprise . catégorie juridique . SARL:
-  titre.en: '[automatic] EURL or SARL'
-  titre.fr: EURL ou SARL
+  titre.en: '[automatic] SARL or EURL'
+  titre.fr: SARL ou EURL
 entreprise . catégorie juridique . SAS:
-  titre.en: '[automatic] SASU or SAS'
-  titre.fr: SASU ou SAS
+  titre.en: '[automatic] SAS or SASU'
+  titre.fr: SAS ou SASU
 entreprise . catégorie juridique . SELARL:
-  titre.en: "[automatic] Limited Liability Company (Société d'exercice libéral à
-    responsabilité limitée)"
-  titre.fr: Société d'exercice libéral à responsabilité limitée
+  description.en: "[automatic] Limited Liability Company (Société d'exercice
+    libéral à responsabilité limitée)"
+  description.fr: Société d'exercice libéral à responsabilité limitée
+  titre.en: '[automatic] SELARL or SELARLU'
+  titre.fr: SELARL ou SELARLU
 entreprise . catégorie juridique . SELAS:
-  titre.en: '[automatic] Liberal practice company by simplified shares'
-  titre.fr: Société d'exercice libéral par actions simplifiées
+  description.en: '[automatic] Liberal practice company by simplified shares'
+  description.fr: Société d'exercice libéral par actions simplifiées
+  titre.en: '[automatic] SELAS or SELASU'
+  titre.fr: SELAS ou SELASU
 entreprise . catégorie juridique . SNC:
   titre.en: '[automatic] General partnership'
   titre.fr: Société en nom collectif

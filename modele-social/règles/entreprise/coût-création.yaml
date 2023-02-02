@@ -89,22 +89,28 @@ entreprise . coût formalités . annonce légale:
         - si:
             une de ces conditions:
               - catégorie juridique . SAS . SAS
-              - catégorie juridique . SELAS
+              - catégorie juridique . SELAS . SELAS
           alors:
             nom: SAS
             valeur: 193 €HT
-        - si: catégorie juridique . SAS . SASU
+        - si:
+            une de ces conditions:
+              - catégorie juridique . SAS . SASU
+              - catégorie juridique . SELAS . SELASU
           alors:
             nom: SASU
             valeur: 138 €HT
         - si:
             une de ces conditions:
               - catégorie juridique . SARL . SARL
-              - catégorie juridique . SELARL
+              - catégorie juridique . SELARL . SELARL
           alors:
             nom: SARL
             valeur: 144 €HT
-        - si: catégorie juridique . SARL . EURL
+        - si:
+            une de ces conditions:
+              - catégorie juridique . SARL . EURL
+              - catégorie juridique . SELARL . SELARLU
           alors:
             nom: EURL
             valeur: 121 €HT

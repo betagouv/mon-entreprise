@@ -26,16 +26,15 @@ entreprise . catégorie juridique:
   note: On se base ici sur les catégories juridiques définies par l'INSEE
   références:
     Liste des catégories juridique de l'INSEE: https://www.insee.fr/fr/information/2028129
-  par défaut: "'SARL'"
+  # par défaut: "'SARL'"
   une possibilité:
     choix obligatoire: oui
     possibilités:
       - EI
       - SARL
       - SAS
-      - SELAS
       - SELARL
-      - SNC
+      - SELAS
       - autre
   meta:
     affichage: radio
@@ -72,7 +71,7 @@ entreprise . catégorie juridique . EI:
 entreprise . catégorie juridique . SARL:
   meta:
     code insee: 5499
-  titre: EURL ou SARL
+  titre: SARL ou EURL
   valeur: catégorie juridique = 'SARL'
   avec:
     SARL:
@@ -133,7 +132,8 @@ entreprise . catégorie juridique . SNC:
     code insee: 5202
 
 entreprise . catégorie juridique . SAS:
-  titre: SASU ou SAS
+  titre: SAS ou SASU
+  acronyme: SAS(U)
   valeur: catégorie juridique = 'SAS'
   meta:
     code insee: 5710
@@ -155,32 +155,70 @@ entreprise . catégorie juridique . SAS:
 ### (niveau 1 code 6)	Autre personne morale immatriculée au RCS ###
 
 entreprise . catégorie juridique . SELARL:
-  titre: Société d'exercice libéral à responsabilité limitée
   acronyme: SELARL(U)
+  titre: SELARL ou SELARLU
+  description: Société d'exercice libéral à responsabilité limitée
   valeur: catégorie juridique = 'SELARL'
-  remplace:
-    - règle: entreprise . activité . nature
-      par: "'libérale'"
-    - règle: entreprise . activité . nature . libérale . réglementée
-      par: oui
+  rend non applicable:
+    - activités . commerciale
+    - activités . agricole
+    - activités . artisanale
   meta:
     code insee: 5485
-
-entreprise . catégorie juridique . SELAS:
-  titre: Société d'exercice libéral par actions simplifiées
-  acronyme: SELAS(U)
-  valeur: catégorie juridique = 'SELAS'
   remplace:
+    - règle: activités . libérale
+      par: oui
+    - règle: activités . libérale . réglementée
+      par: oui
+    # TODO : remove when old activity modele is not used anymore :
     - règle: entreprise . activité . nature
       par: "'libérale'"
     - règle: entreprise . activité . nature . libérale . réglementée
       par: oui
+  avec:
+    SELARLU:
+      acronyme: SELARLU
+      titre: Société d'exercice libéral à responsabilité limitée unipersonnelle
+      valeur: associés . unique
+    SELARL:
+      acronyme: SELARL
+      titre: Société d'exercice libéral à responsabilité limitée
+      valeur: associés . multiples
+
+entreprise . catégorie juridique . SELAS:
+  acronyme: SELAS(U)
+  titre: SELAS ou SELASU
+  description: Société d'exercice libéral par actions simplifiées
+  valeur: catégorie juridique = 'SELAS'
   meta:
     code insee: 5785
+  rend non applicable:
+    - activités . commerciale
+    - activités . agricole
+    - activités . artisanale
+  remplace:
+    - règle: activités . libérale
+      par: oui
+    - règle: activités . libérale . réglementée
+      par: oui
+    # TODO : remove when old activity modele is not used anymore :
+    - règle: entreprise . activité . nature
+      par: "'libérale'"
+    - règle: entreprise . activité . nature . libérale . réglementée
+      par: oui
+  avec:
+    SELASU:
+      acronyme: SELASU
+      titre: Société d'exercice libéral par action simplifiée unipersonnelle
+      valeur: associés . unique
+    SELAS:
+      acronyme: SELAS
+      titre: Société d'exercice libéral par action simplifiée
+      valeur: associés . multiples
 
 entreprise . catégorie juridique . autre:
   valeur: catégorie juridique = 'autre'
-  type: notification
+  type: notificationSELAS(U)
   sévérité: avertissement
   description: |
     Ce simulateur ne gère pas encore tout les types d'entreprises, le montant affiché pourrait être incorrect.
