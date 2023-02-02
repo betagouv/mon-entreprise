@@ -22,6 +22,7 @@ import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
 import { isCompanyDottedName } from '@/reducers/companySituationReducer'
 import {
 	answeredQuestionsSelector,
+	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
@@ -42,6 +43,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
+	const companySituation = useSelector(companySituationSelector)
 	const passedQuestions = useSelector(answeredQuestionsSelector)
 	const answeredAndPassedQuestions = useMemo(
 		() =>
@@ -70,9 +72,17 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 	)
 	const companyQuestions = useMemo(
 		() =>
-			answeredAndPassedQuestions.filter(({ dottedName }) =>
-				isCompanyDottedName(dottedName)
-			),
+			Array.from(
+				new Set(
+					(
+						[
+							...answeredAndPassedQuestions.map(({ dottedName }) => dottedName),
+							...Object.keys(situation),
+							...Object.keys(companySituation),
+						] as Array<DottedName>
+					).filter(isCompanyDottedName)
+				)
+			).map((dottedName) => engine.getRule(dottedName)),
 		[answeredAndPassedQuestions]
 	)
 

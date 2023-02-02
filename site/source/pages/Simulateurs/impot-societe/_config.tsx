@@ -5,7 +5,7 @@ import ISSimulationConfig from './_simulationConfig'
 
 export function impôtSociétéConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
-		id: 'coût-création-entreprise',
+		id: 'is',
 		beta: true,
 		icône: '🗓',
 		tracking: 'impot-societe',
@@ -29,5 +29,5 @@ export function impôtSociétéConfig({ t, sitePaths }: SimulatorsDataParams) {
 		component: ISSimulation,
 		seoExplanations: SeoExplanations,
 		simulation: ISSimulationConfig,
-	})
+	} as const)
 }

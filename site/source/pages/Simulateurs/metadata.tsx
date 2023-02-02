@@ -704,7 +704,7 @@ function getSimulatorsData(params: SimulatorsDataParams) {
 		},
 
 		'coût-création-entreprise': pureSimulatorsData['coût-création-entreprise'],
-		is: pureSimulatorsData['coût-création-entreprise'],
+		is: pureSimulatorsData.is,
 	} as const
 
 	return data satisfies ImmutableType<{ [key: string]: Omit<PageConfig, 'id'> }>
