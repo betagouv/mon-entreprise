@@ -43,7 +43,6 @@ export const configIndépendant: SimulationConfig = {
 			"entreprise . chiffre d'affaires",
 			'entreprise . exercice . début',
 			'entreprise . exercice . fin',
-			'entreprise . catégorie juridique',
 			'entreprise . imposition . régime',
 			'entreprise . activités',
 			'entreprise . activités . revenus mixtes',
@@ -62,6 +61,7 @@ export const configIndépendant: SimulationConfig = {
 	situation: {
 		'dirigeant . régime social': "'indépendant'",
 		'entreprise . imposition': "'IR'",
+		'entreprise . catégorie juridique': "''",
 		salarié: 'non',
 	},
 }
@@ -69,19 +69,24 @@ export const configIndépendant: SimulationConfig = {
 export const configEntrepriseIndividuelle: SimulationConfig = {
 	...configIndépendant,
 	situation: {
-		...configIndépendant.situation,
-		'entreprise . imposition': "'IR'",
+		'entreprise . catégorie juridique': "'EI'",
+		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
 	},
 }
 
 export const configEirl: SimulationConfig = {
 	...configIndépendant,
+	situation: {
+		'entreprise . catégorie juridique': "'EI'",
+		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
+	},
 }
 
 export const configEurl: SimulationConfig = {
 	...configIndépendant,
 	situation: {
-		...configIndépendant.situation,
+		'entreprise . catégorie juridique': "'SARL'",
+		'entreprise . associés': "'unique'",
 		'entreprise . imposition': "'IS'",
 	},
 }

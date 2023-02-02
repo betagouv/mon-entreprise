@@ -1,7 +1,8 @@
 import { ImmutableType } from '@/types/utils'
 
 import { PageConfig } from './configs/types'
-import { configCoûtCréationEntreprise } from './cout-creation-entreprise/_config.js'
+import { coûtCréationEntrepriseConfig } from './cout-creation-entreprise/_config.js'
+import { impôtSociétéConfig } from './impot-societe/_config'
 import { SimulatorsDataParams } from './metadata'
 
 /**
@@ -727,27 +728,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 			},
 			shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),
 		},
-		is: {
-			icône: '🗓',
-			tracking: 'impot-societe',
-			pathId: 'simulateurs.is',
-			iframePath: 'impot-societe',
-			meta: {
-				title: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
-				description: t(
-					'pages.simulateurs.is.meta.description',
-					'Calculez votre impôt sur les sociétés'
-				),
-				color: '#E71D66',
-			},
-			shortName: t('pages.simulateurs.is.meta.title', 'Impôt sur les sociétés'),
-			title: t(
-				'pages.simulateurs.is.title',
-				"Simulateur d'impôt sur les sociétés"
-			),
 
-			nextSteps: ['salarié', 'comparaison-statuts'],
-		},
 		dividendes: {
 			icône: '🎩',
 			tracking: 'dividendes',
@@ -796,7 +777,8 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 			nextSteps: ['déclaration-charges-sociales-indépendant'],
 		},
 
-		...configCoûtCréationEntreprise(params),
+		...coûtCréationEntrepriseConfig(params),
+		...impôtSociétéConfig(params),
 	} as const
 
 	// TODO: remove this Omit

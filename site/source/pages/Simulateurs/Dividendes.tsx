@@ -38,20 +38,6 @@ export default function DividendesSimulation() {
 			</Warning>
 			<Notifications />
 			<Simulation explanations={<DividendesExplanation />}>
-				<div
-					css={`
-						display: flex;
-						flex-wrap: wrap-reverse;
-						> * {
-							margin-top: 0.6rem;
-						}
-						justify-content: center;
-
-						@media (min-width: 590px) {
-							justify-content: space-between;
-						}
-					`}
-				></div>
 				<DividendesSimulationGoals />
 			</Simulation>
 		</>
@@ -110,12 +96,10 @@ const DividendesSimulationGoals = () => (
 					dottedName="impôt . foyer fiscal . revenu imposable . autres revenus imposables"
 				/>
 			</Condition>
-			<Condition expression="oui">
-				<SimulationGoal
-					appear={false}
-					dottedName="bénéficiaire . dividendes . nets d'impôt"
-				/>
-			</Condition>
+			<SimulationGoal
+				appear={false}
+				dottedName="bénéficiaire . dividendes . nets d'impôt"
+			/>
 		</Condition>
 	</SimulationGoals>
 )

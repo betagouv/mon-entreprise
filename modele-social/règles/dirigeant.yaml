@@ -8,12 +8,6 @@ dirigeant . gérant minoritaire:
 
 dirigeant . régime social:
   experimental: oui
-
-  non applicable si:
-    une de ces conditions:
-      - entreprise . catégorie juridique . SELARL #TODO NON IMPLEMENTE
-      - entreprise . catégorie juridique . SELAS #TODO NON IMPLEMENTE
-      - entreprise . catégorie juridique . autre
   variations:
     - si: entreprise . catégorie juridique . EI . auto-entrepreneur
       alors: "'auto-entrepreneur'"

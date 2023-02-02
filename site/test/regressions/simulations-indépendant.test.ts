@@ -37,7 +37,6 @@ it('calculate simulations-indépendant', () => {
 		  "entreprise . activité . nature",
 		  "entreprise . activités",
 		  "entreprise . activités . commerciale",
-		  "entreprise . catégorie juridique",
 		  "entreprise . charges",
 		  "entreprise . chiffre d'affaires",
 		  "entreprise . date de création",

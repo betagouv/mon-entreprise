@@ -5,15 +5,16 @@ entreprise . imposition:
     possibilités:
       - IR
       - IS
+
   par défaut:
     variations:
       - si:
           une de ces conditions:
             - catégorie juridique . SARL . EURL
+            - catégorie juridique . SELARL . SELARL
             - catégorie juridique . EI
         alors: "'IR'"
       - sinon: "'IS'"
-
   références:
     Comment seront imposés mes bénéfices ?: https://bpifrance-creation.fr/moment-de-vie/comment-seront-imposes-mes-benefices?block_id=186
     Quelle imposition selon mon statut ?: https://www.economie.gouv.fr/entreprises/impot-revenu-impot-societe-statut
