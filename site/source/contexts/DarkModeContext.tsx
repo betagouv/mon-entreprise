@@ -34,6 +34,8 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
 		_setDarkMode(darkMode)
 		persistDarkMode(darkMode)
 
+		document.body.style.backgroundColor = darkMode ? '#0f172a' : ''
+
 		// https://www.youtube.com/watch?v=Pr8ETbGz35Q
 		// eslint-disable-next-line no-console
 		console.log(darkMode ? 'Nuit' : 'Jour')
