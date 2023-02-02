@@ -4129,6 +4129,10 @@ entreprise . catégorie juridique:
 entreprise . catégorie juridique . EI:
   titre.en: '[automatic] Sole proprietorship (including auto-entrepreneurs)'
   titre.fr: Entreprise individuelle (y compris auto-entrepreneurs)
+  avec:
+    auto-entrepreneur:
+      question.en: 'Are you an auto-entrepreneur?'
+      question.fr: Êtes-vous auto-entrepreneur ?
 entreprise . catégorie juridique . SARL:
   titre.en: '[automatic] SARL or EURL'
   titre.fr: SARL ou EURL
