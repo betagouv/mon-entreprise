@@ -51,9 +51,9 @@ export function configCoûtCréationEntreprise({
 
 // Replace type by commented line when we upgrade to typescript v5:
 function config<
-	// const	Base extends Immutable<PageConfig>
+	// const	Base extends ImmutableType<PageConfig>
 	Base extends ImmutableType<PageConfig>
->(base: Base) {
+>(base: ImmutableType<PageConfig> & Base) {
 	return {
 		[base.id]: base,
 	} as ImmutableType<{ [k in Base['id']]: Base }>

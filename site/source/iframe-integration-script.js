@@ -10,9 +10,14 @@
  **/
 
 import { hexToHSL } from './hexToHSL'
+import simulationData from './public/simulation-data-title.json'
 
 const script = document.currentScript
 const moduleName = script.dataset.module || 'simulateur-embauche'
+
+const moduleData = simulationData[moduleName]
+
+const moduleIframeTitle = moduleData?.title || ''
 
 const couleur =
 	script.dataset.couleur &&
@@ -40,7 +45,6 @@ if (couleur) {
 
 const iframe = document.createElement('iframe')
 const iframeAttributes = {
-	title: 'Simulateur',
 	id: 'simulateurEmbauche',
 	src: src.toString(),
 	style: 'border: none; width: 100%; display: block; height: 700px',
@@ -48,6 +52,7 @@ const iframeAttributes = {
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
 	mozallowfullscreen: true,
+	title: moduleIframeTitle,
 }
 for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])

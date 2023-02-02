@@ -1,6 +1,5 @@
 import { DottedName } from 'modele-social'
 import { ASTNode, PublicodesExpression } from 'publicodes'
-import { FC, LazyExoticComponent } from 'react'
 
 export type Situation = Partial<
 	Record<DottedName, PublicodesExpression | ASTNode>
@@ -83,6 +82,10 @@ export interface PageConfig {
 	nextSteps?: string[]
 
 	simulation?: SimulationConfig
+	/**
+	 * `component` must be followed by a one-word component for the `yarn build:simulator-data` script to work
+	 * example: `component: MyComponent,`
+	 */
 	component?: () => JSX.Element
 	seoExplanations?: JSX.Element
 }
