@@ -8,6 +8,12 @@
   - dirigeant . rémunération . net: 100000 €/an
   - dirigeant . rémunération . net: 1000000 €/an
 
+années précédentes:
+  - dirigeant . rémunération . net: 50000 €/an
+    date: 01/2022
+  - dirigeant . rémunération . net: 40000 €/an
+    date: 01/2021
+
 inversions:
   - dirigeant . rémunération . totale: 2000 €/an
   - dirigeant . rémunération . totale: 5000 €/mois
@@ -26,6 +32,8 @@ cotisations minimales:
   - dirigeant . rémunération . net: 100 €/an
   - dirigeant . rémunération . net: 100 €/an
     situation personnelle . RSA: oui
+  - dirigeant . rémunération . net: 800 €/an
+    entreprise . activités . saisonnière: oui
 
 activité:
   - dirigeant . rémunération . net: 20000 €/an
@@ -108,47 +116,23 @@ imposition à l'IS:
 exonération pension invalidité:
   - dirigeant . rémunération . totale: 45000 €/an
     dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité: oui
+  # Partielle
+  - dirigeant . rémunération . totale: 9000 €/an
+    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité: oui
+    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . durée: 4 mois
+  # Cumul ACRE
+  - dirigeant . rémunération . totale: 10000 €/an
+    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité: oui
+    entreprise . date de création: 01/01/2023
+    dirigeant . exonérations . ACRE: oui
+  # Cumul âge
+  - dirigeant . rémunération . totale: 15000 €/an
+    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité: oui
+    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . durée: 10 mois
+    entreprise . date de création: 01/01/2010
+    dirigeant . indépendant . cotisations et contributions . exonérations . âge: oui
 
-contrats madelin:
-  # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
-  # cotisations (résultat comptable) n'est pas affecté car l'assiette des
-  # cotisations ne change pas:
-  - dirigeant . rémunération . totale: 30000 €/an
-    entreprise . charges: 10000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 3800 €/an # plafond: 10% PSS donc environ 4100
-  # Cas retraite: la cotisation Madelin est supérieure au plafond => le revenu net de
-  # cotisations est affecté car l'assiette des cotisations est plus élevée
-  - dirigeant . rémunération . totale: 30000 €/an
-    entreprise . charges: 10000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 5000 €/an # plafond: 10% PSS donc environ 4100
-  # Cas mutuelle
-  - dirigeant . rémunération . totale: 30000 €/an
-    entreprise . charges: 10000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 1000 €/an
-  # Cas global madelin faible
-  - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . charges: 1000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 200 €/an
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 300 €/an
-  # Cas global madelin grand (plafonds calculés différemment)
-  - dirigeant . rémunération . totale: 300000 €/an
-    entreprise . charges: 15000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 1500 €/an
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 5000 €/an
-  # Cas charges plus faibles que total madelin
-  - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . charges: 500 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 300 €/an
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 300 €/an
-  # PER
-  - dirigeant . rémunération . totale: 20000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . PER: 5500 €/an
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 500 €/an
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 900 €/an
+exonération âge:
+  - dirigeant . rémunération . totale: 55000 €/an
+    entreprise . date de création: 01/01/2010
+    dirigeant . indépendant . cotisations et contributions . exonérations . âge: oui

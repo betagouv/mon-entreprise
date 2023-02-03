@@ -1687,6 +1687,13 @@ pages:
         la page explicative sur <2>le site de l'Urssaf</2>.</13>"
       shortname: Chômage partiel
       title: Simulateur du calcul de l'indemnité chômage partiel (Covid-19)
+    cipav:
+      meta:
+        description: Calcul du revenu net après déduction des cotisations à partir du
+          total des recettes pour professions libérales rattaché à la CIPAV
+        title: "Professions libérales rattachées à la Cipav : simulateur de revenus"
+      shortname: Cipav
+      title: Simulateur de revenus pour professions libérales Cipav
     comparaison:
       meta:
         description: Auto-entrepreneur, indépendant ou dirigeant de SASU ? Avec ce
@@ -1822,16 +1829,16 @@ pages:
         description: Calcul du revenu net après impôt et des cotisations à partir du
           chiffre d'affaires et inversement
         title: "Indépendant : simulateur de revenus"
-      retraite-droits-acquis: "<0>Retraite : droits acquis sur
-        l'année</0><1><0>Retraite de base : <2></2></0><1><0>Points de retraite
-        de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé pris en
-        compte pour la retraite de base : <2></2></0></2><3>Points de retraite
-        complémentaire acquis : <2><0></0> points acquis</2><3><0>non
-        connue</0><1><0>Le nombre de \"points gratuits\" reçus pendant votre
-        pension d'invalidité dépend de vos revenus antérieurs. <2>En savoir
-        plus.</2></0></1><2><0>Ce simulateur ne gère pas les droits acquis de
-        retraite complémentaire pour les professions
-        libérales</0></2></3></3></1>"
+      retraite-droits-acquis: "<0>Retraite : droits acquis sur l'année</0><1><0>Le
+        calcul des droits ouverts à la retraite n'est pas encore implémenté pour
+        les cas incluants des d'exonérations de cotisations (ACRE, pension
+        invalidité, etc).</0></1><2><0><0>Retraite de base :
+        <2></2></0><1><0>Points de retraite de base acquis (CNAVPL) :
+        <2></2></0></1><2><0>Revenu cotisé pris en compte pour la retraite de
+        base : <2></2></0></2><3>Points de retraite complémentaire acquis :
+        <2><0></0> points acquis</2><3><0>non connue</0><1><0>Ce simulateur ne
+        gère pas les droits acquis de retraite complémentaire pour les
+        professions libérales</0></1></3></3></0></2>"
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
     is:

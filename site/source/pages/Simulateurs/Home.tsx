@@ -142,6 +142,7 @@ export default function Simulateurs() {
 							{...simulators['expert-comptable']}
 							role="listitem"
 						/>
+						<SimulateurCard small {...simulators.cipav} role="listitem" />
 					</Grid>
 				</>
 

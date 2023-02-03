@@ -1,5 +1,5 @@
 entreprise . activité:
-  déprécié: oui
+  experimental: oui
   type: texte
 
   références:

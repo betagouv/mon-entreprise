@@ -1874,70 +1874,73 @@ dirigeant . indépendant . PL . CIPAV:
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
 dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
+  avec:
+    invalidité et décès:
+      titre.en: '[automatic] disability and death'
+      titre.fr: invalidité et décès
+    pourcentage:
+      titre.en: '[automatic] percentage'
+      titre.fr: pourcentage
+    proportion:
+      avec:
+        moitié:
+          titre.en: '[automatic] 50 %'
+          titre.fr: 50 %
+        quart:
+          titre.en: '[automatic] 25 %'
+          titre.fr: 25 %
+      question.en: '[automatic] How much does the spouse contribute to the
+        complementary plan and the CIPAV disability-death plan?'
+      question.fr: A quelle proportion le conjoint cotise-t’il pour le régime
+        complémentaire et le régime d’invalidité-décès CIPAV ?
+      titre.en: '[automatic] proportion'
+      titre.fr: proportion
+    retraite complémentaire:
+      titre.en: '[automatic] supplementary pension'
+      titre.fr: retraite complémentaire
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
-dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . invalidité et décès:
-  titre.en: '[automatic] disability and death'
-  titre.fr: invalidité et décès
-dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . pourcentage:
-  titre.en: '[automatic] percentage'
-  titre.fr: pourcentage
-dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion:
-  question.en: '[automatic] What proportion of income does the spouse contribute
-    to the CIPAV supplementary plan and the disability-death plan?'
-  question.fr: À quelle proportion du revenu le conjoint cotise-t'il pour le
-    régime complémentaire et le régime d'invalidité-décès CIPAV ?
-  titre.en: '[automatic] proportion'
-  titre.fr: proportion
-dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion . moitié:
-  titre.en: '[automatic] 50 %'
-  titre.fr: 50 %
-dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion . quart:
-  titre.en: '[automatic] 25 %'
-  titre.fr: 25 %
-dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . retraite complémentaire:
-  titre.en: '[automatic] supplementary pension'
-  titre.fr: retraite complémentaire
 dirigeant . indépendant . PL . CIPAV . exonération incapacité:
-  description.en: '[automatic] To be eligible, your request for exemption for
-    disability must be accompanied by a form to be filled out by your attending
-    physician and sent to CIPAV no later than March 31 of the following year.'
-  description.fr:
-    Pour être recevable, votre demande d’exonération pour incapacité
-    doit-être accompagnée du formulaire à faire remplir par votre médecin
-    traitant et adressée à la CIPAV au plus tard le 31 mars de l’année suivante.
   titre.en: '[automatic] disability exemption'
   titre.fr: exonération incapacité
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
+  avec:
+    avant 2023:
+      titre.en: '[automatic] before 2023'
+      titre.fr: avant 2023
+    classe de cotisation:
+      avec:
+        A:
+          titre.en: '[automatic] class A'
+          titre.fr: classe A
+        B:
+          titre.en: '[automatic] class B'
+          titre.fr: classe B
+        C:
+          titre.en: '[automatic] class C'
+          titre.fr: classe C
+      description.en: '[automatic] Cipav manages a provident scheme that pays a
+        pension in case of permanent disability and a death benefit as well as
+        an annuity for the surviving spouses and children in case of death of
+        the insured. By default, affiliates contribute in "class A" but it is
+        possible to contribute in class B or C in order to benefit from a better
+        disability-death coverage.'
+      description.fr:
+        La Cipav gère un régime de prévoyance versant une pension en cas
+        d'invalidité permanente et un capital décès ainsi qu’une rente pour les
+        conjoints et enfants survivants en cas de décès de l'assuré. Par défaut
+        les affiliés cotisent en « classe A » mais il est possible de cotiser en
+        classe B ou C afin de bénéficier d'une meilleure couverture
+        invalidité-décès.
+      question.en: '[automatic] In which class do you contribute to the CIPAV
+        disability-death plan?'
+      question.fr:
+        Dans quelle classe cotisez-vous pour le régime invalidité-décès de
+        la CIPAV ?
+      titre.en: '[automatic] contribution class'
+      titre.fr: classe de cotisation
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation:
-  description.en: '[automatic] Cipav manages a provident scheme that pays a
-    pension in case of permanent disability and a death benefit as well as an
-    annuity for the surviving spouses and children in case of death of the
-    insured. By default, affiliates contribute in "class A" but it is possible
-    to contribute in class B or C in order to benefit from a better
-    disability-death coverage.'
-  description.fr:
-    La Cipav gère un régime de prévoyance versant une pension en cas
-    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-    conjoints et enfants survivants en cas de décès de l'assuré. Par défaut les
-    affiliés cotisent en « classe A » mais il est possible de cotiser en classe
-    B ou C afin de bénéficier d'une meilleure couverture invalidité-décès.
-  question.en: '[automatic] In which class do you contribute to the CIPAV
-    disability-death plan?'
-  question.fr: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CIPAV ?
-  titre.en: '[automatic] contribution class'
-  titre.fr: classe de cotisation
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . A:
-  titre.en: '[automatic] class A'
-  titre.fr: classe A
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . B:
-  titre.en: '[automatic] class B'
-  titre.fr: classe B
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . classe de cotisation . C:
-  titre.en: '[automatic] class C'
-  titre.fr: classe C
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
   description.en: >-
     [automatic] A member who can prove that he or she has received,
@@ -1962,37 +1965,18 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération in
   titre.en: '[automatic] disability and death exemption'
   titre.fr: exonération invalidité et décès
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
+  avec:
+    avant 2023:
+      titre.en: '[automatic] before 2023'
+      titre.fr: avant 2023
+    classe:
+      titre.en: '[automatic] Contribution class (before 2023)'
+      titre.fr: Classe de cotisation (avant 2023)
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . classe:
-  titre.en: '[automatic] Contribution class'
-  titre.fr: Classe de cotisation
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation:
-  description.en: '[automatic] '
-  description.fr: |-
-    Afin d’améliorer vos droits, vous pouvez choisir de
-    cotiser dans la classe immédiatement supérieure
-    à celle qui correspond à votre tranche de revenus
-    professionnels.
-
-    Cette option vous permettra d’acquérir davantage
-    de points et donc d’augmenter le montant de
-    votre future pension de retraite.
-
-    Pour cotiser en classe supérieure au régime
-    complémentaire, rendez-vous sur votre espace
-    personnel Cipav :
-    - onglet « Services en ligne » ;
-    - rubrique « Demander à cotiser en classe supérieure ».
-  question.en: '[automatic] Have you chosen to make additional contributions to
-    improve your supplementary pension rights?'
-  question.fr: Avez-vous choisi de surcotiser pour améliorer vos droits à la
-    retraite complémentaire ?
   titre.en: '[automatic] optional extra contribution'
   titre.fr: option surcotisation
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation . classe:
-  titre.en: '[automatic] class'
-  titre.fr: classe
 dirigeant . indépendant . PL . CNAVPL:
   description.en: >
     [automatic] The National Old Age Insurance Fund for the liberal
@@ -2017,18 +2001,29 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités jo
   titre.en: '[automatic] daily sickness benefits'
   titre.fr: indemnités journalières maladie
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
-  question.en: '[automatic] What proportion of income does the spouse contribute
-    to the basic plan?'
-  question.fr: À quelle proportion du revenu le conjoint cotise-t'il pour le
-    régime de base ?
+  avec:
+    moitié:
+      titre.en: '[automatic] 50 %'
+      titre.fr: 50 %
+    quart:
+      titre.en: '[automatic] 25 %'
+      titre.fr: 25 %
+  question.fr:
+    variations:
+      - alors:
+          texte:
+            À quelle proportion le conjoint cotise-t'il pour la retraite de base, la
+            retraite complémentaire et l'invalidité-décès ?
+        si:
+          toutes ces conditions:
+            - date >= 01/2023
+            - dirigeant . indépendant . PL . CIPAV
+      - sinon:
+          texte:
+            À quelle proportion du revenu le conjoint cotise-t'il pour le régime de
+            base ?
   titre.en: '[automatic] proportion'
   titre.fr: proportion
-dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . moitié:
-  titre.en: '[automatic] 50 %'
-  titre.fr: 50 %
-dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . quart:
-  titre.en: '[automatic] 25 %'
-  titre.fr: 25 %
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
   titre.en: '[automatic] retirement'
   titre.fr: retraite
@@ -2476,20 +2471,10 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
   titre.en: '[automatic] pension fund contributions'
   titre.fr: cotisations caisse de retraite
 dirigeant . indépendant . PL . maladie:
-  note.en: >
-    [automatic] The regulated liberal professions do not contribute for the
-    corresponding part of the daily allowances
-
-    daily allowances and are therefore not entitled to these allowances in case of
-
-    illness.
-  note.fr: >
-    Les professions libérales réglementée ne cotisent pour la part
-    correspondante aux
-
-    indemnités journalières et n'ont donc pas le droit à ces indemnités en cas de
-
-    maladie.
+  avec:
+    taux avant 2022:
+      titre.en: '[automatic] rate before 2022'
+      titre.fr: taux avant 2022
   titre.en: '[automatic] disease'
   titre.fr: maladie
 dirigeant . indépendant . PL . métier:
@@ -2527,7 +2512,7 @@ dirigeant . indépendant . PL . métier . juridique:
   avec:
     avocat:
       description.en: |
-        [automatic] Lawyers contribute to the CNBF for their retirement and
+        [automatic] Lawyers contribute to the CNBF for retirement and provident
         retirement and provident fund.
       description.fr: |
         Les avocats cotisent auprès de la CNBF pour la retraite et la
@@ -2938,6 +2923,67 @@ dirigeant . indépendant . conjoint collaborateur:
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
 dirigeant . indépendant . conjoint collaborateur . assiette:
+  avec:
+    forfaitaire:
+      description.en: >
+        [automatic] The collaborating spouse will pay contributions
+        equivalent to a lump sum professional income
+
+        fixed at a percentage of the social security ceiling,
+
+        with the exception of the daily allowance contribution which is calculated on
+
+        a base equivalent to 40% of the PASS.
+      description.fr: >
+        Le conjoint collaborateur paiera des cotisations équivalentes à
+        un revenu
+
+        professionnel forfaitaire, fixé à un pourcentage du plafond de la sécurité sociale,
+
+        à l’exception de la cotisation indemnités journalières qui est calculée sur
+
+        une assiette équivalente à 40% du PASS.
+      titre.en: '[automatic] lump sum'
+      titre.fr: forfaitaire
+    pourcentage:
+      avec:
+        moitié:
+          titre.en: '[automatic] 1/2'
+          titre.fr: 1/2
+        tiers:
+          titre.en: '[automatic] 1/3'
+          titre.fr: 1/3
+      question.en: '[automatic] What proportion of income does the spouse contribute?'
+      question.fr: À quelle proportion du revenu le conjoint cotise-t'il ?
+      titre.en: '[automatic] Proportion of income'
+      titre.fr: Proportion revenu
+    revenu avec partage:
+      avec:
+        assiette gérant:
+          titre.en: "[automatic] manager's plate"
+          titre.fr: assiette gérant
+      description.en: >
+        [automatic] The collaborating spouse and the manager will each
+        pay social contributions on a share of the professional income.
+
+        **This option reduces the amount of contributions to be paid by the manager, but it also reduces his social counterparts (retirement pension, death benefit, etc.)**.
+      description.fr: >
+        Le conjoint collaborateur et le gérant paieront des cotisations
+        sociales chacun sur une part du revenu professionnel.
+
+        **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
+      titre.en: '[automatic] split income'
+      titre.fr: revenu avec partage
+    revenu sans partage:
+      description.en:
+        '[automatic] The collaborating spouse will pay social security
+        contributions calculated on a share of the professional income of the
+        manager of the company.'
+      description.fr: Le conjoint collaborateur paiera des cotisations sociales
+        calculées sur une part du revenu professionnel du gérant de
+        l’entreprise.
+      titre.en: '[automatic] undivided income'
+      titre.fr: revenu sans partage
   description.en: >
     [automatic] The collaborating spouse has three choices for the
     calculation of these contributions:
@@ -2960,83 +3006,36 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
   question.fr: Sur quelle base le conjoint cotise-t'il ?
   titre.en: '[automatic] Choice of plate'
   titre.fr: Choix assiette
-dirigeant . indépendant . conjoint collaborateur . assiette . forfaitaire:
-  description.en: >
-    [automatic] The collaborating spouse will pay contributions
-    equivalent to a lump sum professional income
-
-    fixed at 1/3 of the social security ceiling,
-
-    with the exception of the daily allowance contribution which is calculated on
-
-    a base equivalent to 40% of the PASS.
-  description.fr: |
-    Le conjoint collaborateur paiera des cotisations équivalentes à un revenu
-    professionnel forfaitaire, fixé à 1/3 du plafond de la sécurité sociale,
-    à l’exception de la cotisation indemnités journalières qui est calculée sur
-    une assiette équivalente à 40% du PASS.
-  titre.en: '[automatic] lump sum'
-  titre.fr: forfaitaire
-dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage:
-  question.en: '[automatic] What proportion of income does the spouse contribute?'
-  question.fr: À quelle proportion du revenu le conjoint cotise-t'il ?
-  titre.en: '[automatic] Proportion of income'
-  titre.fr: Proportion revenu
-dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . moitié:
-  titre.en: '[automatic] 1/2'
-  titre.fr: 1/2
-dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage . tiers:
-  titre.en: '[automatic] 1/3'
-  titre.fr: 1/3
-dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage:
-  description.en: >
-    [automatic] The collaborating spouse and the manager will each
-    pay social contributions on a share of the professional income.
-
-    **This option reduces the amount of contributions to be paid by the manager, but it also reduces his social counterparts (retirement pension, death benefit, etc.)**.
-  description.fr: >
-    Le conjoint collaborateur et le gérant paieront des cotisations
-    sociales chacun sur une part du revenu professionnel.
-
-    **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
-  titre.en: '[automatic] split income'
-  titre.fr: revenu avec partage
-dirigeant . indépendant . conjoint collaborateur . assiette . revenu avec partage . assiette gérant:
-  titre.en: "[automatic] manager's plate"
-  titre.fr: assiette gérant
-dirigeant . indépendant . conjoint collaborateur . assiette . revenu sans partage:
-  description.en: '[automatic] The collaborating spouse will pay social security
-    contributions calculated on a percentage basis of the contribution base of
-    the manager of the company.'
-  description.fr: Le conjoint collaborateur paiera des cotisations sociales
-    calculées sur une base d'un pourcentage du assiette des cotisations du
-    gérant de l'entreprise.
-  titre.en: '[automatic] undivided income'
-  titre.fr: revenu sans partage
 dirigeant . indépendant . conjoint collaborateur . cotisations:
+  avec:
+    assiette:
+      titre.en: '[automatic] base collaborating spouse'
+      titre.fr: assiette conjoint collaborateur
+    indemnités journalières maladie:
+      titre.en: '[automatic] daily sickness benefits'
+      titre.fr: indemnités journalières maladie
+    invalidité et décès:
+      titre.en: '[automatic] disability and death'
+      titre.fr: invalidité et décès
+    retraite complémentaire:
+      titre.en: '[automatic] supplementary pension'
+      titre.fr: retraite complémentaire
+    retraite de base:
+      titre.en: '[automatic] basic retirement'
+      titre.fr: retraite de base
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
-dirigeant . indépendant . conjoint collaborateur . cotisations . assiette:
-  titre.en: '[automatic] plate'
-  titre.fr: assiette
-dirigeant . indépendant . conjoint collaborateur . cotisations . assiette retraite:
-  titre.en: '[automatic] pension base'
-  titre.fr: assiette retraite
-dirigeant . indépendant . conjoint collaborateur . cotisations . indemnités journalières maladie:
-  titre.en: '[automatic] daily sickness benefits'
-  titre.fr: indemnités journalières maladie
-dirigeant . indépendant . conjoint collaborateur . cotisations . invalidité et décès:
-  titre.en: '[automatic] disability and death'
-  titre.fr: invalidité et décès
-dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
-  titre.en: '[automatic] supplementary pension'
-  titre.fr: retraite complémentaire
-dirigeant . indépendant . conjoint collaborateur . cotisations . retraite complémentaire . assiette:
-  titre.en: '[automatic] plate'
-  titre.fr: assiette
-dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base:
-  titre.en: '[automatic] basic retirement'
-  titre.fr: retraite de base
+dirigeant . indépendant . conjoint collaborateur . notification exonérations non pris en compte:
+  description.en: >
+    [automatic] This simulator does not yet take into account the
+    various **exemptions from contributions** for **employee spouses** (ACRE,
+    age, disability, etc.)
+  description.fr: >
+    Ce simulateur ne prend pas encore en compte les différentes
+    **exonérations de cotisations** pour les **conjoints collaborateurs** (ACRE,
+    âge, invalidité, incapacité, etc.)
+  titre.en: '[automatic] notification exemptions not taken into account'
+  titre.fr: notification exonérations non pris en compte
 dirigeant . indépendant . cotisations et contributions:
   description.en: >
     [automatic] This is the total amount due by the self-employed
@@ -3118,6 +3117,34 @@ dirigeant . indépendant . cotisations et contributions . PSS proratisé:
   titre.en: '[automatic] prorated social security ceiling'
   titre.fr: plafond de la sécurité sociale proratisé
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
+  description.en: >
+    [automatic] This contribution allows you to benefit from family
+    allowances paid by the family allowance fund under the same conditions as
+    employees:
+
+
+    - compensation for family expenses (birth, dependent children, childcare, back to school);
+
+    - benefits related to housing, disability, precariousness (RSA...).
+
+
+    Most of these benefits are means-tested.
+
+    The amount of the allowances allocated from the 2nd child onwards varies according to the family's income.
+  description.fr: >
+    Cette cotisation permet de bénéficier des allocations familiales
+    versées par la caisse d’allocations familiales dans les mêmes conditions que
+    les salariés :
+
+
+    - compensation des charges familiales (naissance, enfant à charge, garde, rentrée scolaire) ;
+
+    - prestations liées au logement, handicap, précarité (RSA...).
+
+
+    Le versement de la plupart de ces prestations est soumis à des conditions de ressources.
+
+    Le montant des allocations attribuées à partir du 2ème enfant varie en fonction des revenus de la famille.
   titre.en: '[automatic] family allowances'
   titre.fr: allocations familiales
 dirigeant . indépendant . cotisations et contributions . contributions spéciales:
@@ -3138,7 +3165,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
       titre.en: '[automatic] lump-sum basis'
       titre.fr: assiette forfaitaire
     assiette forfaitaire maladie:
-      titre.en: '[automatic] flat-rate health insurance'
+      titre.en: '[automatic] sickness lump sum'
       titre.fr: assiette forfaitaire maladie
   description.en: '[automatic] '
   description.fr: >
@@ -3210,6 +3237,22 @@ dirigeant . indépendant . cotisations et contributions . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
+  avec:
+    allocations familiales:
+      titre.en: '[automatic] family allowances'
+      titre.fr: allocations familiales
+    indemnités journalières maladie:
+      titre.en: '[automatic] daily sickness benefits'
+      titre.fr: indemnités journalières maladie
+    invalidité et décès:
+      titre.en: '[automatic] disability and death'
+      titre.fr: invalidité et décès
+    maladie:
+      titre.en: '[automatic] disease'
+      titre.fr: maladie
+    retraite de base:
+      titre.en: '[automatic] basic retirement'
+      titre.fr: retraite de base
   titre.en: '[automatic] ACRE'
   titre.fr: ACRE
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
@@ -3354,51 +3397,56 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid 
   titre.en: '[automatic] total'
   titre.fr: total
 dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
+  avec:
+    durée:
+      question.en:
+        '[automatic] For how many months of the year do you receive this
+        pension?'
+      question.fr: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
+      titre.en: '[automatic] duration'
+      titre.fr: durée
+    indemnités journalières maladie:
+      titre.en: '[automatic] daily sickness benefits'
+      titre.fr: indemnités journalières maladie
+    maladie:
+      titre.en: '[automatic] disease'
+      titre.fr: maladie
+    profession libérale réglementées hors Urssaf:
+      titre.en: '[automatic] regulated liberal professions outside Urssaf'
+      titre.fr: profession libérale réglementées hors Urssaf
+    prorata:
+      titre.en: '[automatic] pro rata'
+      titre.fr: prorata
+    retraite complémentaire:
+      titre.en: '[automatic] supplementary pension'
+      titre.fr: retraite complémentaire
+    retraite de base:
+      titre.en: '[automatic] basic retirement'
+      titre.fr: retraite de base
   description.en: >-
     [automatic] If you are the holder of a disability pension paid
-    by a non-agricultural non-salaried workers' scheme, you benefit from a total
-    exemption from
+    by a non-agricultural non-salaried worker's scheme, you are exempt from
 
-    agricultural workers, you benefit from a total exemption from supplementary pension contributions and
+    agricultural workers, you benefit from an exemption from basic pension, supplementary pension and
 
-    health contributions.
-
-
-    So that you can continue to accumulate supplementary pension points like other workers
-
-    you are awarded "free points".
+    supplementary pension and sickness contributions. 
 
 
-    As a rule, the number of points received corresponds to the monthly average of the points contributed
+    This exemption is prorated to the number of months your disability was recognized. 
 
-    during the period of self-employment before the pension is paid.
-
-
-    &gt; For example, if you have contributed for 6 years and 11 months for a total of 588 points, you will receive
-
-    &gt; the number of free points received each month will be: `588 / (6 * 12 + 11) = 7.08
+    If you have received a disability pension for the whole year, then the exemption is total.
   description.fr: >-
     Si vous êtes titulaire d’une pension d’invalidité versée par un
     régime des travailleurs non-salariés
 
-    non agricoles, vous bénécifiez d’une exonération totale des cotisations de retraite complémentaire et
+    non agricoles, vous bénéficiez d’une exonération des cotisations de retraite de base, de
 
-    des cotisations maladie.
-
-
-    Pour que vous puissiez continuer à accumuler des points de retraite complémentaire comme les autres travailleurs,
-
-    il vous est attribué des "points gratuits".
+    retraite complémentaire et maladie. 
 
 
-    En règle générale, le nombre de points reçu correspond à la moyenne mensuelle des points cotisés
+    Cette exonération est au prorata du nombre de mois où votre invalidité a été reconnue. 
 
-    pendant la période d'activité indépendante avant versement de la pension.
-
-
-    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points,
-
-    > le nombre de points gratuits reçu chaque mois sera de : `588 / (6 * 12 + 11) = 7,08`
+    Si vous avez reçu une pension d'invalidité sur l'année complète, alors l'exonération est totale.
   question.fr:
     variations:
       - alors:
@@ -3410,15 +3458,52 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
           texte:
             Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur
             indépendant ?
-  titre.en: '[automatic] disability pension'
-  titre.fr: pension invalidité
+  titre.en: '[automatic] disability exemption'
+  titre.fr: exonération invalidité
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
-  description.en:
-    '[automatic] This scheme was discontinued in 2015, but is still
-    active for those who benefited from it prior to its repeal.'
-  description.fr:
-    Ce dispositif a été arrêté en 2015, mais est toujours actif pour
-    les personnes qui en bénéficiaient avant son abbrogation.
+  avec:
+    invalidité et décès:
+      titre.en: '[automatic] disability and death'
+      titre.fr: invalidité et décès
+  description.en: >
+    [automatic] ### Craftsmen, merchants, and self-employed
+    professionals outside the CIPAV
+
+    This scheme was stopped in 2015, but is still active for people who benefited from it before it was
+
+    before its abrogation.
+
+
+    #### Liberal professions under the CIPAV
+
+    The exemption applies automatically from the year you turn 68.
+
+    However, you may contribute voluntarily between the ages of 68 and 80 if:
+
+    - you continue your activity ;
+
+    - you have a spouse under 67 or dependent children under 21;
+
+    - you have a dependent with a major disability.
+  description.fr: >
+    ### Artisans, commerçants, et professions libérales hors CIPAV
+
+    Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient
+
+    avant son abrogation.
+
+
+    #### Professions libérales relevants de la CIPAV
+
+    L'exonération s'applique automatique à partir de l'année de vos 68 ans.
+
+    Vous pouvez cependant cotiser volontairement entre 68 et 80 ans, si :
+
+    - vous poursuivez votre activité ;
+
+    - vous avez un conjoint de moins de 67 ans ou des enfants à charge de moins de 21 ans ;
+
+    - vous avez une personne à charge ayant un handicap majeur.
   question.en:
     '[automatic] Do you benefit from the "age for retirement" exemption
     from the disability-death contribution?'
@@ -3435,55 +3520,76 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
   titre.fr: formation professionnelle
 dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
   description.en: >
-    [automatic] Contributions for daily allowances for the
-    self-employed. If the state of health of
+    [automatic] This contribution allows the payment of daily
+    allowances in case of work stoppage due to illness or accident.
 
-    health of craftsmen, traders, industrialists and collaborating spouses
 
-    need to stop working, a part of their former income will be paid to them.
+    The benefits are calculated on the basis of the average income subject to contributions over the last three years.
+  description.fr: >
+    Cette cotisation permet d'obtenir le versement d'indemnités
+    journalières en cas d'arrêt de travail pour cause de maladie ou d'accident.
 
-    paid.
-  description.fr: |
-    Cotisations pour les indemnités journalières des indépendants. Si l'état de
-    santé des artisans, commerçants, industriels et conjoints collaborateurs
-    nécessite un arrêt de travail, une part de leur ancien revenu leur sera
-    versé.
+
+    Les indemnités sont calculées sur la base du revenu moyen soumis à cotisations des trois dernières années.
   titre.en: '[automatic] daily sickness benefits'
   titre.fr: indemnités journalières maladie
 dirigeant . indépendant . cotisations et contributions . invalidité et décès:
+  description.en: >
+    [automatic] Under certain conditions, this contribution allows
+    you to receive a disability pension before retirement age.
+
+
+    Death insurance guarantees the payment of a death benefit to the beneficiaries, regardless of the status of the deceased insured: insured contributor or insured retiree.
+  description.fr: >
+    Cette cotisation permet de bénéficier, sous certaines
+    conditions, d’une pension d’invalidité avant l’âge de départ à la retraite.
+
+
+    L’assurance décès garantit le versement aux ayants droit d’un capital décès quel que soit le statut de l'assuré décédé : assuré cotisant ou assuré retraité.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 dirigeant . indépendant . cotisations et contributions . maladie:
-  note.en: >
-    [automatic] The following sentence is found in the decree below:
+  avec:
+    réduction supplémentaire:
+      description.en: >
+        [automatic] Additional reduction of the health rate for income
+        below 40% of the social security ceiling
+      description.fr: >
+        La réduction supplémentaire du taux maladie pour les revenu
+        inférieurs à 40% du plafond de la sécurité sociale
+      titre.en: '[automatic] additional reduction (before 2022)'
+      titre.fr: réduction supplémentaire (avant 2022)
+    références:
+      titre.en: '[automatic] references'
+      titre.fr: références
+    taux progressif:
+      titre.en: '[automatic] progressive rate'
+      titre.fr: taux progressif
+    taux progressif avant 2022:
+      titre.en: '[automatic] progressive rate before 2022'
+      titre.fr: taux progressif avant 2022
+  description.en: >
+    [automatic] This contribution allows you to benefit from all the
+    health and maternity benefits managed by the health insurance and the Cpam:
 
 
-    &gt; I.-As an exception to the first paragraph, the contribution rate is set at 6.5% when the activity income is greater than five times the annual value of the social security ceiling determined in accordance with Article D. 613-2.
+    - health coverage for the insured and the members of his/her family, identical to that of employees (same rates and same conditions of reimbursement);
+
+    - a complete maternity insurance in case of pregnancy or adoption;
+
+    - supplementary health insurance in case of low income or assistance to subscribe to supplementary health insurance.
+  description.fr: >
+    Cette cotisation permet de bénéficier de l'ensemble des
+    prestations maladie-maternité géré par l'assurance maladie et les Cpam :
 
 
-    The term "when" implies that if the 5xPSS threshold is exceeded, all income is subject to 6.5%. It would seem that the opposite interpretation is to be preferred: only the part above this threshold is subject to this rate, and it is this implementation that we have chosen.
-  note.fr: >
-    On retrouve dans le décret ci-dessous la phrase suivante :
+    - une couverture maladie pour l’assuré et les membres de sa famille, identique à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
 
+    - une assurance maternité complète en cas de grossesse ou d’adoption ;
 
-    > I.-Par dérogation au premier alinéa, le taux de la cotisation est fixé à 6,5 % lorsque le revenu d'activité est supérieur à cinq fois la valeur annuelle du plafond de la sécurité sociale déterminée conformément à l'article D. 613-2.
-
-
-    Le terme "lorsque" laisse entendre qu'en cas de dépassement du seuil 5xPSS, tout le revenu est soumis à 6.5%. Il semblerait qu'une interprétation inverse soit à privilégier : seule la part supérieure à ce seuil est soumise à ce taux, et c'est cette implémentation que nous avons retenue.
+    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour souscrire une assurance maladie complémentaire.
   titre.en: '[automatic] disease'
   titre.fr: maladie
-dirigeant . indépendant . cotisations et contributions . maladie . taux progressif:
-  titre.en: '[automatic] progressive rate'
-  titre.fr: taux progressif
-dirigeant . indépendant . cotisations et contributions . maladie . taux progressif . réduction supplémentaire:
-  description.en: >
-    [automatic] Additional reduction of the health rate for income
-    below 40% of the social security ceiling
-  description.fr: >
-    La réduction supplémentaire du taux maladie pour les revenu
-    inférieurs à 40% du plafond de la sécurité sociale
-  titre.en: '[automatic] additional discount'
-  titre.fr: réduction supplémentaire
 dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger:
   description.en: '[automatic] In return for the CSG exemption, the contributors
     have a higher health insurance rate. Unlike the other insured
@@ -3499,9 +3605,45 @@ dirigeant . indépendant . cotisations et contributions . non déductibles:
   titre.en: '[automatic] Non-deductible portion'
   titre.fr: Part non déductibles fiscalement
 dirigeant . indépendant . cotisations et contributions . retraite complémentaire:
+  description.en: >
+    [automatic] Since January 1, 2013, artisans and shopkeepers have
+    had identical rights to a supplementary pension.
+
+    Since 2020, this joint scheme has been managed by the insurance company and the Carsat, according to the principle of distribution with the constitution of a security reserve that guarantees its long-term balance.
+
+
+    It operates according to the same principles as the supplementary pension schemes for employees.
+  description.fr: >
+    Depuis le 1er janvier 2013, les artisans et les commerçants
+    bénéficient de droits identiques en matière de retraite complémentaire.
+
+    Ce régime commun est géré, depuis 2020 par l'assurance et les Carsat, suivant le principe de répartition avec la constitution d'une réserve de sécurité qui garantit à long terme son équilibre.
+
+
+    Il fonctionne selon les mêmes principes que les régimes de retraite complémentaire des salariés.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . cotisations et contributions . retraite de base:
+  description.en: >
+    [automatic] Since 1973, the contribution paid for the basic old
+    age insurance allows craftsmen and traders to benefit from a basic pension
+    calculated in the same way as employees.
+
+
+    The scheme has been managed since 2020 by the pension insurance and the Carsat and is based on national solidarity.
+
+
+    It guarantees pensions equal to those of non-managerial employees in the private sector for an identical duration and level of contributions.
+  description.fr: >
+    Depuis 1973, la cotisation versée au titre de l'assurance
+    vieillesse de base permet aux artisans et commerçants de bénéficier d'une
+    retraite de base calculée de la même manière que les salariés.
+
+
+    Le régime est géré depuis 2020 par l'assurance retraite et les Carsat et se fonde sur la solidarité nationale.
+
+
+    Il garantit des pensions égales à celles des salariés non cadres du secteur privé pour une durée et un niveau de cotisation identique.
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
 dirigeant . indépendant . cotisations et contributions . régularisation:
@@ -3782,8 +3924,8 @@ dirigeant . rémunération . totale:
     travail du dirigeant.
   question.en: '[automatic] What is the total amount you expect to earn in compensation?'
   question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
-  résumé.en: '[automatic] Including dues and contributions'
-  résumé.fr: Incluant les cotisations et contributions
+  résumé.en: "[automatic] Total paid by the company for the executive's compensation"
+  résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale
 durée légale du travail:
@@ -4103,13 +4245,7 @@ entreprise . TVA:
 entreprise . TVA . franchise de TVA:
   titre.en: '[automatic] VAT exemption'
   titre.fr: franchise de TVA
-entreprise . TVA . franchise de TVA . seuil service:
-  titre.en: '[automatic] threshold service'
-  titre.fr: seuil service
-entreprise . TVA . franchise de TVA . seuil vente:
-  titre.en: '[automatic] sales threshold'
-  titre.fr: seuil vente
-entreprise . TVA . franchise de TVA . seuils dépassés:
+entreprise . TVA . franchise de TVA . notification:
   description.en: >
     [automatic] The VAT exemption is a device that exempts companies
     from the declaration and payment of
@@ -4119,7 +4255,7 @@ entreprise . TVA . franchise de TVA . seuils dépassés:
     annual turnover depending on the activity.
 
 
-    The professional who falls under this system invoices his services or his sales without tax, and cannot
+    The professional who falls under this system invoices his services or sales without tax, and cannot
 
     and cannot deduct VAT from their purchases.
   description.fr: |
@@ -4136,9 +4272,18 @@ entreprise . TVA . franchise de TVA . seuils dépassés:
     On prend compte ici des seuils majorés (qui s'appliquent si le seuil
     "minoré" n'a pas été dépassé en année `n - 2`)
   résumé.en: |
-    [automatic] The annual turnover threshold for the VAT exemption is exceeded.
+    [automatic] You are below the VAT declaration threshold.
   résumé.fr: |
-    Le seuil annuel de chiffre d'affaires pour la franchise de TVA est dépassé.
+    Vous êtes en dessous du seuil de déclaration de TVA.
+  titre.en: '[automatic] notification'
+  titre.fr: notification
+entreprise . TVA . franchise de TVA . seuil service:
+  titre.en: '[automatic] threshold service'
+  titre.fr: seuil service
+entreprise . TVA . franchise de TVA . seuil vente:
+  titre.en: '[automatic] sales threshold'
+  titre.fr: seuil vente
+entreprise . TVA . franchise de TVA . seuils dépassés:
   titre.en: '[automatic] thresholds exceeded'
   titre.fr: seuils dépassés
 entreprise . activité:
@@ -4530,6 +4675,47 @@ entreprise . activités . revenus mixtes:
     différents ?
   titre.en: '[automatic] Mixed activities'
   titre.fr: Activités mixtes
+entreprise . activités . saisonnière:
+  description.en: >
+    [automatic] Professionals working in a seasonal activity can
+    benefit from
+
+    an exemption from the minimum daily allowance contributions,
+
+    basic pension and disability-death contributions. 
+
+
+    Thus, if your income is lower than the minimum contribution base
+
+    you contribute on your actual income.
+
+
+    You can request the application of this exemption from your space in urssaf: Messaging &gt; New message &gt; Another subject (information, documents or proofs) &gt; Request information on my account or a summary &gt; Make a request or a complementary request "
+
+
+    &gt; Note: the minimum base for the basic pension guarantees the validation of 3 quarters of old age insurance.
+  description.fr: >
+    Les professionnels exerçant une activité saisonnière peuvent
+    bénéficier
+
+    d’une dispense de minimale pour les cotisations d’indeminités journalières,
+
+    de retraite de base et d’invalidité-décès. 
+
+
+    Ainsi, si votre revenu est inférieur à l’assiette minimale de cotisations,
+
+    vous cotisez sur votre revenu réel.
+
+
+    Vous pouvez demander l‘application de cette dispense depuis votre espace en urssaf: Messagerie > Nouveau message > Un autre sujet (informations, documents ou justificatifs) > Demander des informations sur mon compte ou un récapitulatif > Faire une demande ou un complément de demande »
+
+
+    > À noter : l’assiette minimale pour la retraite de base permet de garantir la validation de 3 trimestres d’assurance vieillesse.
+  question.en: '[automatic] Do you have a seasonal activity?'
+  question.fr: Exercez-vous une activité saisonnière ?
+  titre.en: '[automatic] seasonal'
+  titre.fr: saisonnière
 entreprise . activités . service ou vente:
   avec:
     service:
@@ -4548,8 +4734,8 @@ entreprise . activités . service ou vente:
     vente:
       description.en: >
         [automatic] It is any transaction involving the transfer of
-        ownership of a tangible asset (i.e., an asset that has a physical
-        existence), as well as any transaction involving the
+        ownership of a tangible asset (i.e., an asset with a physical
+        existence), as well as any transaction
 
         property (i.e. property with a physical existence), as well as all
 
@@ -4713,7 +4899,7 @@ entreprise . catégorie juridique . SARL:
       titre.en: '[automatic] Limited liability company'
       titre.fr: Société à responsabilité limitée
     unipersonnelle:
-      titre.en: '[automatic] unipersonal'
+      titre.en: '[automatic] one-person'
       titre.fr: unipersonnelle
   titre.en: '[automatic] SARL or EURL'
   titre.fr: SARL ou EURL
@@ -5190,8 +5376,8 @@ entreprise . date de création:
   question.fr: Quelle est votre date de début d'activité ?
   suggestions.Début 2022.en: '[automatic] Early 2022'
   suggestions.Début 2022.fr: Début 2022
-  suggestions.Début 2023.en: '[automatic] Early 2023'
-  suggestions.Début 2023.fr: Début 2023
+  suggestions.Début d'année.en: '[automatic] Beginning of the year'
+  suggestions.Début d'année.fr: Début d'année
   suggestions.Il y a plus de 10 ans.en: '[automatic] More than 10 years ago'
   suggestions.Il y a plus de 10 ans.fr: Il y a plus de 10 ans
   titre.en: Creation date
@@ -6069,7 +6255,7 @@ protection sociale . invalidité et décès:
             Si votre taux d'incapacité permanente suite à un accident du
             travail ou une maladie professionnelle est supérieur à 10 %, vous
             percevrez une rente d'incapacité permanente.
-          titre.en: '[automatic] AT/MP disability pension'
+          titre.en: '[automatic] Disability pension AT/MP'
           titre.fr: Rente incapacité AT/MP
       titre.en: '[automatic] work accidents and occupational diseases'
       titre.fr: accidents du travail et maladies professionnelles
@@ -6361,11 +6547,7 @@ protection sociale . maladie . arrêt maladie . salarié:
     conditions:
       avec:
         délai d'attente:
-          description.en: >
-            [automatic] In order to be entitled to sickness benefit from
-            your professional activity, you must have a continuous period of
-            affiliation in this activity. This period depends on your earnings
-            in the previous months.
+          description.en: '[automatic] '
           description.fr: >
             Pour pouvoir prétendre à une indemnisation pour maladie au titre
             de votre activité professionnelle, vous devez justifier d’un délai
@@ -6514,12 +6696,41 @@ protection sociale . retraite:
 
 
     Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
-  résumé.en: Guarantees on average 60 to 70% of the last income from employment
-    after age 65.
-  résumé.fr: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
+  résumé.en: '[automatic] Guarantees an average of 60-70% of your last working
+    income for your retirement pension.'
+  résumé.fr:
+    Garantit en moyenne 60 à 70 % du dernier revenu d'activité pour votre
+    pension de retraite.
   titre.en: pensions
   titre.fr: retraite
-protection sociale . retraite . CNAVPL:
+protection sociale . retraite . base:
+  description.en: >
+    [automatic] The amount of your basic retirement pension is
+    calculated from the average of your earnings over the best 25 years.
+
+
+    This estimate of your retirement pension is calculated based on the following principles:
+
+    - Your earnings are calculated on the basis of your best 25 years
+
+    - You have contributed enough quarters and you leave at the age required to benefit from the full rate
+  description.fr: >
+    Le montant de votre pension pour la retraite de base est calculé
+    à partir la moyenne de vos revenus des 25 meilleures années.
+
+
+    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants :
+
+    - La rémunération calculée correspond à celle de vos 25 meilleures années
+
+    - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
+  résumé.en: '[automatic] Full basic retirement pension assuming your earnings
+    have remained the same throughout your working life.'
+  résumé.fr: Pension de retraite de base à taux plein en partant du principe que
+    votre rémunération est restée la même pendant toute votre vie active.
+  titre.en: '[automatic] Maximum basic pension'
+  titre.fr: Retraite de base maximum
+protection sociale . retraite . base . CNAVPL:
   avec:
     points acquis:
       avec:
@@ -6569,7 +6780,7 @@ protection sociale . retraite . CNAVPL:
     income subject to contributions:
 
 
-    - the maximum contribution on bracket T1 allows the acquisition of 525 points (from 0 to an annual social security ceiling)
+    - the maximum contribution on bracket T1 allows the acquisition of 525 points (from 0 to an annual social security
 
     annual social security ceiling),
 
@@ -6605,42 +6816,6 @@ protection sociale . retraite . CNAVPL:
     sur la cotisation maximale et arrondi à la décimale la plus proche
   titre.en: '[automatic] basic pension CNAVPL'
   titre.fr: retraite de base CNAVPL
-protection sociale . retraite . CNAVPL . CIPAV:
-  titre.en: '[automatic] CIPAV'
-  titre.fr: CIPAV
-protection sociale . retraite . CNAVPL . CIPAV . complémentaire:
-  titre.en: '[automatic] complementary'
-  titre.fr: complémentaire
-protection sociale . retraite . CNAVPL . CIPAV . trimestres auto-entrepreneur:
-  titre.en: '[automatic] validated quarters as an auto-entrepreneur'
-  titre.fr: trimestres validés auto-entrepreneur
-protection sociale . retraite . base:
-  description.en: >
-    [automatic] The amount of your basic retirement pension is
-    calculated from the average of your earnings over the best 25 years.
-
-
-    This estimate of your retirement pension is calculated based on the following principles: 
-
-    - The earnings calculated in the simulator correspond to your best 25 years
-
-    - You have contributed enough quarters and you are leaving at the age required to benefit from the full rate
-  description.fr: >
-    Le montant de votre pension pour la retraite de base est calculé
-    à partir la moyenne de vos revenus des 25 meilleures années.
-
-
-    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants : 
-
-    - La rémunération calculée dans le simulateur correspond à celle de vos 25 meilleures années
-
-    - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
-  résumé.en: '[automatic] Full basic retirement pension assuming your earnings
-    have remained the same throughout your working life.'
-  résumé.fr: Pension de retraite de base à taux plein en partant du principe que
-    votre rémunération est restée la même pendant toute votre vie active.
-  titre.en: '[automatic] Maximum basic pension'
-  titre.fr: Retraite de base maximum
 protection sociale . retraite . base . cotisée:
   avec:
     indépendant:
@@ -6704,19 +6879,19 @@ protection sociale . retraite . base . cotisée:
   titre.fr: revenu cotisés pour la retraite de base
 protection sociale . retraite . complémentaire:
   description.en: >
-    [automatic] Supplemental pension earned through a full year of
+    [automatic] Supplemental pension earned through 10 full years of
     supplemental pension contributions.
 
 
     &gt; This amount is likely to vary between now and your retirement, depending on the update of the point value. Nevertheless, it offers an order of magnitude, and allows you to compare the complementary pension schemes between them
   description.fr: >
-    Supplément de pension de retraite acquis grâce à une année
-    complète de cotisation retraite complémentaire.
+    Supplément de pension de retraite acquis grâce à 10 années
+    complètes de cotisation retraite complémentaire.
 
 
     > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
-  titre.en: '[automatic] Supplementary pension earned in 10 years'
-  titre.fr: Retraite complémentaire gagnée en 10 ans
+  titre.en: '[automatic] Supplementary pension'
+  titre.fr: Retraite complémentaire
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
   avec:
     points acquis:
@@ -6738,8 +6913,18 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
   note.fr:
     La revalorisation de la valeur du point a lieu au 1er novembre, et non
     au 1er janvier.
-  titre.en: '[automatic] AGIRC-ARRCO pension'
-  titre.fr: Pension AGIRC-ARRCO
+  titre.en: '[automatic] AGIRC ARRCO'
+  titre.fr: AGIRC ARRCO
+protection sociale . retraite . complémentaire . CIPAV:
+  avec:
+    points acquis:
+      titre.en: '[automatic] points acquired'
+      titre.fr: points acquis
+    valeur d'acquisition:
+      titre.en: '[automatic] acquisition value'
+      titre.fr: valeur d'acquisition
+  titre.en: '[automatic] CIPAV'
+  titre.fr: CIPAV
 protection sociale . retraite . complémentaire . RCI:
   avec:
     points acquis:
@@ -6751,11 +6936,14 @@ protection sociale . retraite . complémentaire . RCI:
     valeur d'acquisition:
       titre.en: '[automatic] acquisition value'
       titre.fr: valeur d'acquisition
-  titre.en: '[automatic] Supplementary pension for the self-employed'
-  titre.fr: Pension retraite complémentaire des indépendants
+  titre.en: '[automatic] supplementary pension for the self-employed'
+  titre.fr: retraite complémentaire des indépendants
 protection sociale . retraite . trimestres:
   titre.en: '[automatic] validated quarters'
   titre.fr: trimestres validés
+protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
+  titre.en: '[automatic] auto-entrepreneur CIPAV'
+  titre.fr: auto-entrepreneur CIPAV
 protection sociale . transport:
   description.en: >
     This contribution is paid in full to the [mobility
@@ -7033,7 +7221,7 @@ salarié . contrat:
 
         It can take the form of a fixed-term contract (CDD) or an open-ended
 
-        (CDI), with the professionalisation period itself lasting between 6 and 12 months.
+        (CDI), with the professionalization period itself lasting between 6 and 12 months.
 
         should last between 6 and 12 months. In some cases, this period can be extended to 36 months.
 
@@ -7123,7 +7311,7 @@ salarié . contrat . CDD . congés pris:
       description.en:
         '[automatic] The number of days of leave taken is greater than
         the total number of days of leave acquired over the duration of the
-        contract (by default 25 days/year)'
+        contract (by default 25 days / year)'
       description.fr:
         Le nombre de jours de congés pris est supérieur à la totalité
         des jours de congés acquis sur la durée du contrat (par défaut 25 jours
@@ -7137,7 +7325,7 @@ salarié . contrat . CDD . congés pris:
       titre.en: '[automatic] proportion'
       titre.fr: proportion
     proportion par rapport aux jours ouvrés:
-      titre.en: '[automatic] proportion to the number of working days'
+      titre.en: '[automatic] '
       titre.fr: proportion par rapport aux jours ouvrés
   description.en: >
     [automatic] As the contract is for a fixed term, the employee
@@ -7196,7 +7384,7 @@ salarié . contrat . CDD . indemnité de fin de contrat:
         Pour être dans ce cas, le contrat doit se terminer avant les vacances scolaires ou universitaires, et que le jeune reprenne effectivement ses études lors de la prochaine rentrée.
       question.en:
         '[automatic] Is it a fixed-term contract concluded with a young
-        person during his or her school or university vacations ("summer job")?'
+        person during his school or university vacations ("summer job")?'
       question.fr:
         Est-ce un CDD conclu avec un jeune pendant ses vacances scolaires
         ou universitaires (« job d’été ») ?
@@ -7237,6 +7425,18 @@ salarié . contrat . CDD . motif:
           titre.en: '[automatic] Temporary increase in activity'
           titre.fr: Accroissement temporaire d'activité
         mission:
+          description.en: >
+            [automatic] &gt; Also known as a defined purpose contract.
+
+
+            Recruitment of engineers and managers, within the meaning of the collective agreements, with a view to achieving a defined objective when an extended branch agreement or, failing that, a company agreement so provides and defines :
+
+
+            - The economic needs to which these contracts are likely to provide an appropriate response;
+
+            - The conditions under which employees on fixed-term contracts with a defined purpose benefit from guarantees relating to redeployment assistance, validation of acquired experience, priority for re-employment and access to continuing vocational training, and may, during the notice period, mobilize the means available to organize the rest of their career path;
+
+            - The conditions under which employees on fixed-term contracts with a defined purpose have priority access to jobs on open-ended contracts in the company.
           description.fr: >
             > Aussi appelé contrat à objet défini.
 
@@ -7273,7 +7473,7 @@ salarié . contrat . CDD . motif:
           description.en:
             '[automatic] Jobs of a seasonal nature, whose tasks are called
             upon to be repeated each year according to a more or less fixed
-            periodicity, according to the rhythm of the seasons or collective
+            periodicity, depending on the rhythm of the seasons or collective
             lifestyles.'
           description.fr:
             Emplois à caractère saisonnier, dont les tâches sont appelées à
@@ -7964,35 +8164,14 @@ salarié . cotisations . APEC:
 salarié . cotisations . ATMP:
   avec:
     seuil taux mixte ou individuel:
-      titre.en: '[automatic] threshold mixed or individual rate'
+      titre.en: '[automatic] '
       titre.fr: seuil taux mixte ou individuel
     taux fonctions support:
       avec:
         montant:
-          titre.en: '[automatic] amount'
+          titre.en: '[automatic] '
           titre.fr: montant
-      description.en: >
-        [automatic] The "support functions" rate allows the employer who
-        requests it to benefit from a reduced rate of occupational injury
-        contribution for employees not exposed to the main risk of the
-        establishment. It is reserved for employees whose main function is
-        administrative.
-
-
-        The following are considered to be support functions of an administrative nature:
-
-
-        - secretarial work
-
-        - reception ;
-
-        - accounting
-
-        - legal affairs
-
-        - financial management
-
-        - human resources.
+      description.en: '[automatic] '
       description.fr: >
         Le taux « fonctions support » permet à l’employeur qui le
         demande de bénéficier d’un taux de cotisation AT/MP réduit pour les
@@ -8015,9 +8194,9 @@ salarié . cotisations . ATMP:
         - la gestion financière ;
 
         - les ressources humaines.
-      question.en: '[automatic] Does the employee have an administrative support function?'
+      question.en: '[automatic] '
       question.fr: Le salarié occupe-t-il une fonction support de nature administrative ?
-      titre.en: '[automatic] support function rates'
+      titre.en: '[automatic] '
       titre.fr: taux fonctions support
     taux minimum:
       description.en: '[automatic] The existing minimum rate for the ATMP
@@ -8028,7 +8207,7 @@ salarié . cotisations . ATMP:
       titre.en: '[automatic] minimum rate'
       titre.fr: taux minimum
     taux moyen:
-      titre.en: '[automatic] average rate'
+      titre.en: '[automatic] '
       titre.fr: taux moyen
   description.en: '[automatic] Contribution due in respect of accidents at work
     and occupational diseases.'
@@ -8107,7 +8286,7 @@ salarié . cotisations . CSG-CRDS . CSG:
 salarié . cotisations . CSG-CRDS . assiette de base:
   avec:
     assiette abattue:
-      titre.en: '[automatic] knocked down plate'
+      titre.en: '[automatic] '
       titre.fr: assiette abattue
   titre.en: '[automatic] base plate'
   titre.fr: assiette de base
@@ -8135,7 +8314,7 @@ salarié . cotisations . CSG-CRDS . revenus de remplacement:
 salarié . cotisations . FNAL:
   avec:
     privé:
-      titre.en: '[automatic] private'
+      titre.en: '[automatic] '
       titre.fr: privé
     éligible taux réduit:
       titre.en: '[automatic] eligible for reduced rate'
@@ -8185,17 +8364,13 @@ salarié . cotisations . assiette:
 salarié . cotisations . assiette forfaitaire:
   avec:
     montant:
-      note.en: >
-        [automatic] There is a general rule for lump-sum bases. When the
-        remuneration is equal to or higher than
-
-        1.5 times the social security ceiling, the lump-sum base cannot be less than 70% of the remuneration
+      note.en: '[automatic] '
       note.fr: >
         Il existe une règle générale d'encadrement des assiettes forfaitaires.
         Lorsque la rémunération est supérieure ou égale à
 
         1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
-      titre.en: '[automatic] flat-rate contribution base'
+      titre.en: '[automatic] '
       titre.fr: assiette forfaitaire de cotisations
     rémunération réelle:
       question.en: '[automatic] Do you want to calculate contributions on actual
@@ -8329,7 +8504,7 @@ salarié . cotisations . exonérations . lodeom:
           - publishing of internet portals and software;
           - computer graphics, including visual and digital content design;
           - design of connected objects.
-        - If these conditions are met, the exemption applies to remunerations paid to employees who are mainly engaged in the realization of innovative projects.
+        - If these conditions are met, the exemption applies to remunerations paid to employees who are mainly involved in the realization of innovative projects.
 
         - Support functions are therefore excluded: administrative, financial, logistical and human resources tasks.
       description.fr: >
@@ -8780,7 +8955,7 @@ salarié . régimes spécifiques . DFS . profession:
       titre.fr: journaliste
     ouvrier du bâtiment:
       description.en: '[automatic] Concerns construction workers referred to in
-        paragraphs 1 and 2 of Article 1 of the decree of November 17, 1936,
+        paragraphs 1 and 2 of Article 1 of the Decree of November 17, 1936,
         excluding those working in factories or workshops.'
       description.fr:
         Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2
@@ -8789,17 +8964,13 @@ salarié . régimes spécifiques . DFS . profession:
       titre.en: '[automatic] construction worker'
       titre.fr: ouvrier du bâtiment
     pilote de ligne ou personnel navigant:
-      description.en:
-        '[automatic] Concerns pilots, radios, flight mechanics of air
-        transport companies; pilots and mechanics employed by airplane and
-        engine manufacturing companies for the testing of prototypes; pilot
-        instructors of flying clubs and civil aviation schools'
+      description.en: '[automatic] '
       description.fr: Concerne les pilotes, radios, mécaniciens navigants des
         compagnies de transports aériens ; pilotes et mécaniciens employés par
         les maisons de construction d’avions et de moteurs pour l’essai de
         prototypes ; pilotes moniteurs d’aéro-clubs et des écoles d’aviation
         civile
-      titre.en: '[automatic] airline pilot or flight attendant'
+      titre.en: '[automatic] '
       titre.fr: pilote de ligne ou personnel navigant
   question.en:
     "[automatic] What is the employee's occupation for the application
@@ -9047,9 +9218,9 @@ salarié . rémunération:
 salarié . rémunération . assiette de vérification du SMIC:
   avec:
     contrôle:
-      description.en: '[automatic] The salary entered is less than the minimum wage.'
+      description.en: '[automatic] '
       description.fr: Le salaire saisi est inférieur au SMIC.
-      titre.en: '[automatic] control'
+      titre.en: '[automatic] '
       titre.fr: contrôle
   description.en: >
     [automatic] This is the salary taken into account to verify that
@@ -9710,7 +9881,7 @@ salarié . rémunération . indemnités CDD:
 
         This method of calculation will most often be favorable to the employee when the employee
 
-        has worked overtime. An indemnity equal to one tenth of the
+        has worked overtime. An indemnity equal to one tenth of the total
 
         gross remuneration received by the employee during the reference period.
 
@@ -9823,24 +9994,21 @@ salarié . rémunération . net:
 salarié . rémunération . net . imposable:
   avec:
     exonération prime d'impatriation:
-      description.en: '[automatic] The impatriation bonus is a part of the
-        remuneration that is exempt from income tax.'
+      description.en: '[automatic] '
       description.fr: La prime d'impatriation est une partie de la rémunération
         exonérée d'impôt sur le revenu.
-      titre.en: '[automatic] impatriation bonus exemption'
+      titre.en: '[automatic] '
       titre.fr: exonération prime d'impatriation
     exonération stagiaires et apprentis:
-      description.en: >
-        [automatic] Salaries paid to apprentices as well as internship
-        bonuses are exempt from income tax up to the annual minimum wage.
+      description.en: '[automatic] '
       description.fr: >
         Les salaires versés aux apprentis ainsi que les gratifications
         de stages sont exonérés d'impôt sur le revenu dans la limite d'un SMIC
         annuel.
-      titre.en: '[automatic] exemption for trainees and apprentices'
+      titre.en: '[automatic] '
       titre.fr: exonération stagiaires et apprentis
     heures supplémentaires et complémentaires défiscalisées:
-      titre.en: '[automatic] tax-free overtime and complementary hours'
+      titre.en: '[automatic] '
       titre.fr: heures supplémentaires et complémentaires défiscalisées
   description.en: >
     The net salary less tax deductible social contributions and more
@@ -9886,13 +10054,7 @@ salarié . rémunération . net . à payer avant impôt:
 salarié . rémunération . primes:
   avec:
     activité:
-      description.en: >
-        [automatic] Bonuses and gratuities paid in return for, or in
-        connection with, work, directly related to the performance of the
-        employee's work. This is the case, for example, of a sales bonus based
-        exclusively on the employee's results.
-
-        These bonuses are taken into account for the calculation of the minimum wage
+      description.en: '[automatic] '
       description.fr: >
         Primes et gratifications versées en contrepartie, ou à
         l’occasion du travail, directement liées à l’exécution par le salarié de
@@ -9900,7 +10062,7 @@ salarié . rémunération . primes:
         vente exclusivement basée sur les résultats du salarié.
 
         Ces primes sont prises en compte pour le calcul du salaire minimum
-      titre.en: '[automatic] activity bonuses'
+      titre.en: '[automatic] '
       titre.fr: primes d'activité
     ancienneté:
       titre.en: '[automatic] seniority'
@@ -10062,7 +10224,7 @@ salarié . temps de travail:
     quotité:
       description.en: '[automatic] Working time in proportion to the legal full time.'
       description.fr: Temps de travail en proportion du temps complet légal.
-      titre.en: '[automatic] quotient'
+      titre.en: '[automatic] '
       titre.fr: quotité
   description.en: "[automatic] In France, the legal working time is 35 hours per
     week. However, a large number of existing provisions allow this number to be
@@ -10080,7 +10242,7 @@ salarié . temps de travail:
 salarié . temps de travail . durée légale:
   avec:
     mensuelle:
-      titre.en: '[automatic] monthly'
+      titre.en: '[automatic] '
       titre.fr: mensuelle
   titre.en: '[automatic] legal duration'
   titre.fr: durée légale
@@ -10099,37 +10261,29 @@ salarié . temps de travail . effectif:
 salarié . temps de travail . heures complémentaires:
   avec:
     contrôle heures complémentaires 10 pourcents:
-      description.en:
-        '[automatic] Unless otherwise agreed, the number of overtime
-        hours may not exceed one tenth of the contractual part-time duration.'
+      description.en: '[automatic] '
       description.fr: Sauf disposition conventionnelle, le nombre d'heures
         complémentaires ne peut être supérieur à un dixième de la durée
         contractuelle du temps partiel.
-      titre.en: '[automatic] control overtime 10 percent'
+      titre.en: '[automatic] '
       titre.fr: contrôle heures complémentaires 10 pourcents
     contrôle heures complémentaires max:
-      description.en:
-        '[automatic] The overtime must not lead the employee to work
-        more than or equal to the legal working time (35 hours)'
+      description.en: '[automatic] '
       description.fr:
         Les heures complémentaires ne doivent pas amener le salarié à
         travailler pour une durée supérieure ou égale à la durée légale du
         travail (35h)
-      titre.en: '[automatic] control overtime max'
+      titre.en: '[automatic] '
       titre.fr: contrôle heures complémentaires max
     seuil légal:
-      description.en: >-
-        [automatic] Unless otherwise agreed, the number of overtime
-        hours may not exceed one tenth of the contractual part-time duration.
-
-        If the agreement allows it, overtime beyond this threshold is paid with an increase of 25%.
+      description.en: '[automatic] '
       description.fr: >-
         Sauf disposition conventionnelle, le nombre d'heures
         complémentaires ne peut être supérieur à un dixième de la durée
         contractuelle du temps partiel.
 
         Si la convention le permet, les heures complémentaire au delà de ce seuil sont rémunérée avec une majoration de 25%
-      titre.en: '[automatic] legal threshold'
+      titre.en: '[automatic] '
       titre.fr: seuil légal
   description.en: >
     [automatic] Overtime is the time worked by a part-time employee
@@ -10171,7 +10325,7 @@ salarié . temps de travail . heures supplémentaires:
     contrôle 48h max:
       description.en: '[automatic] The maximum weekly working time cannot exceed 48 hours'
       description.fr: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
-      titre.en: '[automatic] control 48h max'
+      titre.en: '[automatic] '
       titre.fr: contrôle 48h max
   description.en:
     "[automatic] Any hour worked, at the employer's request, beyond

@@ -21,7 +21,7 @@ entreprise . date de création:
     Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
     approximation.
   suggestions:
-    Début 2023: 01/01/2023
+    Début d'année: période . début d'année
     Début 2022: 01/01/2022
     Il y a plus de 10 ans: 01/01/2013
   type: date

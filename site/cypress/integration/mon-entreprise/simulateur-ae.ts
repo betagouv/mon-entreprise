@@ -15,7 +15,7 @@ describe('Simulateur auto-entrepreneur', { testIsolation: false }, function () {
 		cy.get(inputSelector).first().type('{selectall}50000')
 		cy.contains('button', 'Passer').click()
 		cy.contains('button', 'Passer').click()
-		cy.contains('Début 2023').click()
+		cy.contains("Début d'année").click()
 		cy.contains('ACRE')
 	})
 

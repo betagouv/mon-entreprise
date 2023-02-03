@@ -8,7 +8,7 @@ import { Palette, SmallPalette } from '@/types/styled'
 import { Emoji } from '../emoji'
 import { ErrorIcon, InfoIcon, ReturnIcon, SuccessIcon } from '../icons'
 import { StyledLink } from '../typography/link'
-import { Body } from '../typography/paragraphs'
+import { Body, SmallBody } from '../typography/paragraphs'
 
 export type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type MessageProps = {
@@ -38,7 +38,11 @@ export function Message({
 		children.length === 1 &&
 		typeof children[0] === 'string'
 	) {
-		children = <Body>{children}</Body>
+		children = mini ? (
+			<SmallBody>{children}</SmallBody>
+		) : (
+			<Body>{children}</Body>
+		)
 	}
 
 	return (
@@ -98,7 +102,8 @@ const StyledMessage = styled.div<StyledMessageProps>`
 				: theme.colors.extended[messageType]
 
 		return css`
-			padding: 0px ${mini ? theme.spacings.md : theme.spacings.lg};
+			padding: ${mini ? theme.spacings.xxs : '0px'}
+				${mini ? theme.spacings.md : theme.spacings.lg};
 			background-color: ${light ? 'rgba(255,255,255,0.75)' : colorSpace[100]};
 			border: ${mini ? '1px' : '2px'} solid ${colorSpace[border ? 500 : 100]};
 			border-radius: ${theme.box.borderRadius};

@@ -13,6 +13,7 @@ import { auxiliaireMédicalConfig } from './auxiliaire-médical/config'
 import { avocatConfig } from './avocat/config'
 import { chirurgienDentisteConfig } from './chirurgien-dentiste/config'
 import { chômagePartielConfig } from './chômage-partiel/config'
+import { cipavConfig } from './cipav/config'
 import { comparaisonStatutsConfig } from './comparaison-statuts/config'
 import { PageConfig, SimulatorsDataParams } from './configs/types'
 import { coûtCréationEntrepriseConfig } from './cout-creation-entreprise/config.js'
@@ -70,6 +71,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...exonérationCovidConfig(params),
 		...coûtCréationEntrepriseConfig(params),
 		...impôtSociétéConfig(params),
+		...cipavConfig(params),
 	} as const
 
 	return data satisfies ImmutableType<Record<string, PageConfig>>
