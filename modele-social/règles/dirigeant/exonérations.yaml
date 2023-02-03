@@ -52,8 +52,11 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
           texte: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
   description: |-
     Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
-    non agricoles, vous bénéficiez d’une exonération totale des cotisations de retraite de base, de
-    retraite complémentaire et maladie.
+    non agricoles, vous bénéficiez d’une exonération des cotisations de retraite de base, de
+    retraite complémentaire et maladie. 
+
+    Cette exonération est au prorata du nombre de mois où votre invalidité a été reconnue. 
+    Si vous avez reçu une pension d'invalidité sur l'année complète, alors l'exonération est totale.
 
     Pour que vous puissiez continuer à accumuler des points de retraite complémentaire comme les autres travailleurs,
     il vous est attribué des "points gratuits".
