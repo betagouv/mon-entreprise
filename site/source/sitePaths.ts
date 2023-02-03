@@ -76,6 +76,7 @@ const rawSitePathsFr = {
 			'sage-femme': 'sage-femme',
 			avocat: 'avocat',
 			'expert-comptable': 'expert-comptable',
+			cipav: 'cipav',
 		},
 		'chômage-partiel': 'chômage-partiel',
 		économieCollaborative: {
@@ -161,6 +162,7 @@ const rawSitePathsEn = {
 			'sage-femme': 'midwife',
 			avocat: 'lawyer',
 			'expert-comptable': 'accountant',
+			cipav: 'cipav',
 		},
 		économieCollaborative: {
 			index: 'sharing-economy',

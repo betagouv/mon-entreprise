@@ -1937,6 +1937,13 @@ pages:
         website</2>.</13>"
       shortname: Partial unemployment
       title: Allowance for short-time work simulator (Covid-19)
+    cipav:
+      meta:
+        description: Calculation of the net income after deduction of contributions from
+          the total income for liberal professions attached to the CIPAV
+        title: "Liberal professions attached to the Cipav: income simulator"
+      shortname: Cipav
+      title: Income simulator for liberal professions Cipav
     comparaison:
       meta:
         description: Self-employed, self-employed or similarly employed? With this
@@ -2084,16 +2091,16 @@ pages:
         description: Calculation of net income after tax and contributions based on
           turnover and vice versa
         title: "Self-employed: income simulator"
-      retraite-droits-acquis: '<0>Retirement: rights acquired during the
-        year</0><1><0>Basic pension : <2></2></0><1><0>Basic pension points
-        acquired (CNAVPL) : <2></2></0></1><2><0>Contributed income taken into
-        account for the basic pension : <2></2></0></2><3>Supplementary pension
-        points acquired: <2><0></0> points acquired</2><3><0>not
-        known</0><1><0>The number of "free points" received during your
-        disability pension depends on your previous income. <2>To find out more,
-        click here.</2></0></1><2><0>This simulator does not manage the acquired
-        complementary pension rights for liberal
-        professions</0></2></3></3></1>'
+      retraite-droits-acquis: "<0>Retirement: rights acquired during the
+        year</0><1><0>The calculation of open pension rights is not yet
+        implemented for cases including exemptions from contributions (ACRE,
+        disability pension, etc).</0></1><2><0><0>Basic pension :
+        <2></2></0><1><0>Basic pension points acquired (CNAVPL):
+        <2></2></0></1><2><0>Contributed income taken into account for the basic
+        pension : <2></2></0></2><3>Supplementary pension points acquired:
+        <2><0></0> points acquired</2><3><0>not known</0><1><0>This simulator
+        does not manage the acquired rights of complementary pension for the
+        liberal professions</0></1></3></3></0></2>"
       shortname: Independent
       title: Income simulator for the self-employed
     is:

@@ -34,6 +34,9 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
     une de ces conditions:
       - entreprise . date de création < 01/2016
       - PL . CIPAV
+  # L'exonération s'est arreté en 2015 pour les AC / PLNR, soit après la possibilité d'opter pour le régime général pour les PLNR CIPAV
+  non applicable si: PL . option régime général
+
   avec:
     invalidité et décès:
       valeur: invalidité et décès
@@ -58,18 +61,18 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
     Cette exonération est au prorata du nombre de mois où votre invalidité a été reconnue. 
     Si vous avez reçu une pension d'invalidité sur l'année complète, alors l'exonération est totale.
 
-    Vous validez des trimestres de retraite pour chaque trimestre civil de perception d'une pension d'invalidité.
+  # A faire valider par la CNAV
+  # Vous validez des trimestres de retraite pour chaque trimestre civil de perception d'une pension d'invalidité.
 
-    Pour que vous puissiez continuer à accumuler des points de retraite complémentaire comme les autres travailleurs,
-    il vous est attribué des "points gratuits".
+  # Pour que vous puissiez continuer à accumuler des points de retraite complémentaire comme les autres travailleurs,
+  # il vous est attribué des "points gratuits".
 
-    En règle générale, le nombre de points reçu correspond à la moyenne mensuelle des points cotisés
-    pendant la période d'activité indépendante avant versement de la pension.
+  # En règle générale, le nombre de points reçu correspond à la moyenne mensuelle des points cotisés
+  # pendant la période d'activité indépendante avant versement de la pension.
 
-    > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points,
-    > le nombre de points gratuits reçu chaque mois sera de : `588 / (6 * 12 + 11) = 7,08`
-  type: notification
-  niveau: info
+  # > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points,
+  # > le nombre de points gratuits reçu chaque mois sera de : `588 / (6 * 12 + 11) = 7,08`
+
   par défaut: non
   rend non applicable: exonérations . ZFU
   référence:

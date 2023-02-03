@@ -106,7 +106,16 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur:
   valeur: oui
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
-  question: À quelle proportion du revenu le conjoint cotise-t'il pour le régime de base ?
+  question:
+    variations:
+      - si:
+          toutes ces conditions:
+            - date >= 01/2023
+            - dirigeant . indépendant . PL . CIPAV
+        alors:
+          texte: À quelle proportion le conjoint cotise-t'il pour la retraite de base, la retraite complémentaire et l'invalidité-décès ?
+      - sinon:
+          texte: À quelle proportion du revenu le conjoint cotise-t'il pour le régime de base ?
   par défaut: "'quart'"
   formule:
     une possibilité:
@@ -114,14 +123,13 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
       possibilités:
         - quart
         - moitié
-
-dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . quart:
-  formule: proportion = 'quart'
-  titre: '25 %'
-
-dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion . moitié:
-  formule: proportion = 'moitié'
-  titre: '50 %'
+  avec:
+    quart:
+      valeur: proportion = 'quart'
+      titre: '25 %'
+    moitié:
+      valeur: proportion = 'moitié'
+      titre: '50 %'
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
   remplace: conjoint collaborateur . cotisations . assiette

@@ -125,3 +125,9 @@ CIPAV ACRE:
     dirigeant . rémunération . net: 20000 €/an
   - <<: *CNAVPL-ACRE
     dirigeant . rémunération . net: 50000 €/an
+
+CIPAV années précédentes:
+  - dirigeant . rémunération . net: 50000 €/an
+    date: 01/2022
+  - dirigeant . rémunération . net: 40000 €/an
+    date: 01/2021

@@ -2,19 +2,61 @@
 
 ## 1.6.0
 
+- Ajoute les règles de coût de création d’une entreprise
+- Nouvelle implémentation de la nature d’activité pour préparer les entreprises avec activités multiples
+- Ajoute les entreprises unipersonnelles dans la catégorie juridique
 - Mise à jour des modalités de calcul de la cotisation maladie pour les indépendant, suite à la loi portant les mesures d’urgence pour la protection du pouvoir d’achat d’août 2022.
 - Correction des calculs des assiette du conjoint collaborateur
 - Mise à jour des modalités de calcul des cotisations CIPAV en 2023 suite au passage du recouvrement à l’Urssaf
 - Ajoute la question sur les activités saisonnières pour le calcul des cotisations sans assiette minimale pour les indeps
+- Réimplémentation des exonérations pour indépendants pour mieux gérer le cumul
+- Ajout d’une question sur la durée d’exonération pour la pension invalidité indépendant
+- La notification sur la franchise de TVA s’affiche uniquement pour les entreprises qui peuvent en bénéficier
 
 
 ### Détails : 
-- Déprécie la règle : `dirigeant . indépendant . cotisations et contributions . maladie . réduction supplémentaire`
+#### Règles dépréciées
+- `dirigeant . indépendant . cotisations et contributions . maladie . réduction supplémentaire`
+- `entreprise . activité`
+- `dirigeant . indépendant . PL . métier . avocat`
+- `dirigeant . indépendant . PL . CARMF . retraite CNAVPL`
+- `dirigeant . indépendant . PL . CIPAV . exonération incapacité` 
+- `dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation`
+- `entreprise . TVA . franchise de TVA . seuils dépassés`
+
+#### Règles supprimées 
+- `protection sociale . retraite . CNAVPL`
+- `protection sociale . retraite . CNAVPL . CIPAV . trimestres auto-entrepreneur`
+
+#### Règles ajoutées 
+- `entreprise . activités . *`
+- `entreprise . associés . `
+- `entreprise . catégorie juridique . EI . EI`
+- `entreprise . catégorie juridique . SARL . EURL`
+- `entreprise . catégorie juridique . SARL . SARL`
+- `entreprise . catégorie juridique . SAS . SASU`
+- `entreprise . catégorie juridique . SAS . SAS`
+- `entreprise . catégorie juridique . SELARL . SELARL`
+- `entreprise . catégorie juridique . SELARL . SELARLU`
+- `entreprise . catégorie juridique . SELAS . SELAS`
+- `entreprise . catégorie juridique . SELAS . SELASU`
+- `entreprise . TVA . franchise de TVA . notification`
+- `protection sociale . retraite . base . CNAVPL`
+- `protection sociale . retraite . complémentaire . CIPAV`
+- `protection sociale . retraite . trimestres . auto-entrepreneur CIPAV`
+- `dirigeant . indépendant . PL . métier . juridique . *`
+- `dirigeant . indépendant . PL . métier . agents généraux d'assurances`
+- `dirigeant . indépendant . conjoint collaborateur . notification exonérations non pris en compte`
+- `dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . *`
+- `dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . *`
+- `dirigeant . indépendant . cotisations et contributions . exonérations . âge . *`
+
+#### Divers
+- Correction de l’exonération incapacité de la CNAVPL
 - Met à jour les descriptions des cotisation indépendant
 - Met à jour les formules de `dirigeant . indépendant . cotisations et contributions . maladie`, `dirigeant . indépendant . PL . maladie` et `dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie`
-- Correction de l’exonération incapacité de la CNAVPL
-- Ajoute la règle : `entreprise . activité . saisonière`
-
+- Découpage du fichier `independant.yaml` et `profession libérale.yaml`
+- Ajoute des nouveaux métier pour les PLR
 
 ## 1.5.0
 

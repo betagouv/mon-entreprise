@@ -144,48 +144,7 @@ dirigeant . indépendant . PL . CIPAV . exonération incapacité:
       - CNAVPL . exonération incapacité
 
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation:
-  applicable si: date < 01/2023
-  question: Avez-vous choisi de surcotiser pour améliorer vos droits à la retraite complémentaire ?
-  non applicable si: retraite complémentaire . classe = 'Classe H'
-  remplace:
-    règle: retraite complémentaire . classe
-    par: option surcotisation . classe
-    sauf dans: option surcotisation
-  description: |-
-    Afin d’améliorer vos droits, vous pouvez choisir de
-    cotiser dans la classe immédiatement supérieure
-    à celle qui correspond à votre tranche de revenus
-    professionnels.
-
-    Cette option vous permettra d’acquérir davantage
-    de points et donc d’augmenter le montant de
-    votre future pension de retraite.
-
-    Pour cotiser en classe supérieure au régime
-    complémentaire, rendez-vous sur votre espace
-    personnel Cipav :
-    - onglet « Services en ligne » ;
-    - rubrique « Demander à cotiser en classe supérieure ».
-  par défaut: non
-  références:
-    Guide CIPAV: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=15
-  avec:
-    classe:
-      variations:
-        - si: classe = 'Classe A'
-          alors: "'Classe B'"
-        - si: classe = 'Classe B'
-          alors: "'Classe C'"
-        - si: classe = 'Classe C'
-          alors: "'Classe D'"
-        - si: classe = 'Classe D'
-          alors: "'Classe E'"
-        - si: classe = 'Classe E'
-          alors: "'Classe F'"
-        - si: classe = 'Classe F'
-          alors: "'Classe G'"
-        - si: classe = 'Classe G'
-          alors: "'Classe H'"
+  déprécié: oui
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
@@ -244,7 +203,7 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
           titre: classe C
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
-  non applicable si: date >= 01/2023
+  applicable si: date < 01/2023
   question: Avez-vous demandé à être exonéré de la cotisations invalidité-décès CIPAV ? (revenus de l'année précédente inférieurs à 6 170€)
   par défaut: non
   description: |-
@@ -274,7 +233,7 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
       arrondi: oui
 
     proportion:
-      question: A quelle proportion le cotisant cotise-t’il pour le régime complémentaire et le régime d’invalidité-décès CIPAV ?
+      question: A quelle proportion le conjoint cotise-t’il pour le régime complémentaire et le régime d’invalidité-décès CIPAV ?
       par défaut: "'quart'"
       une possibilité:
         choix obligatoire: oui
@@ -291,7 +250,19 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
 
     pourcentage:
       variations:
-        - si: proportion . quart
-          alors: 25 %
-        - si: proportion . moitié
-          alors: 50 %
+        # A partir de 2023, le pourcentage dépend de l'option choisie pour la retraite de base CNAVPL
+        - si: date >= 01/2023
+          alors:
+            variations:
+              - si:
+                  une de ces conditions:
+                    - conjoint collaborateur . assiette . forfaitaire
+                    - CNAVPL . conjoint collaborateur . proportion . quart
+                alors: 25%
+              - sinon: 50%
+
+        - sinon:
+            variations:
+              - si: proportion . quart
+                alors: 25 %
+              - sinon: 50%
