@@ -32,20 +32,27 @@ protection sociale . retraite:
     'Régime de retraite des travailleurs indépendants': 'https://entreprendre.service-public.fr/vosdroits/F33841'
 protection sociale . retraite . trimestres:
   titre: trimestres validés
-
-  grille:
-    assiette: base . cotisée
-    multiplicateur: SMIC . horaire . début d'année
-    tranches:
-      - montant: 0 trimestres validés/an
-        plafond: 150 heures/an
-      - montant: 1 trimestres validés/an
-        plafond: 300 heures/an
-      - montant: 2 trimestres validés/an
-        plafond: 450 heures/an
-      - montant: 3 trimestres validés/an
-        plafond: 600 heures/an
-      - montant: 4 trimestres validés/an
+  somme:
+    - grille:
+        assiette: base . cotisée
+        multiplicateur: SMIC . horaire . début d'année
+        tranches:
+          - montant: 0 trimestres validés/an
+            plafond: 150 heures/an
+          - montant: 1 trimestres validés/an
+            plafond: 300 heures/an
+          - montant: 2 trimestres validés/an
+            plafond: 450 heures/an
+          - montant: 3 trimestres validés/an
+            plafond: 600 heures/an
+          - montant: 4 trimestres validés/an
+    - applicable si: dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité
+      nom: exonération invalidité indépendant
+      privé: oui
+      produit:
+        assiette: 4 trimestres validés/an
+        facteur: dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . prorata
+  plafond: 4 trimestres validés/an
   références:
     "Durée d'assurance retraite du salarié du secteur privé": https://www.service-public.fr/particuliers/vosdroits/F1761
     'Salaire validant un trimestre': https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=salaire_validant_un_trimestre_montant_bar
