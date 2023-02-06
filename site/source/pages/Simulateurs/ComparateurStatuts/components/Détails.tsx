@@ -652,7 +652,6 @@ const Détails = ({
 
 					<StyledH4>
 						<Trans>Statut du conjoint</Trans>
-						<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
 					</StyledH4>
 					<Body>
 						<Trans>
