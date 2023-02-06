@@ -4,6 +4,24 @@ import { defineConfig } from 'vite'
 
 import { PageConfig } from '@/pages/Simulateurs/configs/types'
 
+import { objectTransform } from './source/utils'
+
+const filterOgImage = (obj: Record<string, Omit<PageConfig, 'component'>>) =>
+	objectTransform(obj, (entries) => {
+		return entries.map(([key, val]) => {
+			if (
+				'meta' in val &&
+				val.meta != null &&
+				typeof val.meta === 'object' &&
+				'ogImage' in val.meta
+			) {
+				delete val.meta.ogImage
+			}
+
+			return [key, val]
+		})
+	})
+
 export default defineConfig({
 	resolve: {
 		alias: [{ find: '@', replacement: path.resolve('./source') }],
@@ -25,13 +43,14 @@ export default defineConfig({
 			transform(code, id) {
 				// Remove `component` and `seoExplanations` from config
 				const isConfigFile = /Simulateurs\/.+\/_config\.tsx?$/.test(id)
+
 				if (isConfigFile) {
 					// eslint-disable-next-line no-console
 					console.log('transform:', id)
 				}
 
 				return isConfigFile
-					? code.replace(/(component|seoExplanations):[^,]+,/g, '')
+					? code.replace(/^\s+(component|seoExplanations):?[^,]*,/gm, '')
 					: code
 			},
 		},
@@ -49,7 +68,7 @@ export default defineConfig({
 					unlinkSync(path)
 					writeFileSync(
 						'./source/public/simulation-data.json',
-						JSON.stringify(algoliaUpdate)
+						JSON.stringify(filterOgImage(algoliaUpdate))
 					)
 					writeFileSync(
 						'./source/public/simulation-data-title.json',
