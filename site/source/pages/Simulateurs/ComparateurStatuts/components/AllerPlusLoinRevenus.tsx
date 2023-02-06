@@ -236,7 +236,7 @@ const AllerPlusLoinRevenus = ({
 							<td>
 								<StyledTag $color={'secondary' as TagType}>
 									<Value
-										expression="dirigeant . rémunération . cotisations"
+										expression="dirigeant . rémunération . impôt"
 										engine={assimiléEngine}
 										unit="€/an"
 										displayedUnit="€"
@@ -247,7 +247,7 @@ const AllerPlusLoinRevenus = ({
 							<td>
 								<StyledTag $color={'independant' as TagType}>
 									<Value
-										expression="dirigeant . rémunération . cotisations"
+										expression="dirigeant . rémunération . impôt"
 										engine={indépendantEngine}
 										unit="€/an"
 										displayedUnit="€"
@@ -258,7 +258,7 @@ const AllerPlusLoinRevenus = ({
 							<td>
 								<StyledTag $color={'tertiary' as TagType}>
 									<Value
-										expression="dirigeant . rémunération . cotisations"
+										expression="dirigeant . rémunération . impôt"
 										engine={autoEntrepreneurEngine}
 										unit="€/an"
 										displayedUnit="€"
