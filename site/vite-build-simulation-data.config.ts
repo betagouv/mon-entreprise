@@ -37,31 +37,34 @@ export default defineConfig({
 		},
 		{
 			name: 'postbuild-commands',
-			closeBundle: async () => {
-				const path = './builded-simulation-data.js'
-				type PageConfigType = {
-					default: Record<string, Omit<PageConfig, 'component'>>
-				}
-				const algoliaUpdate = ((await import(path)) as PageConfigType).default
+			closeBundle: () => {
+				// eslint-disable-next-line @typescript-eslint/no-misused-promises
+				setTimeout(async () => {
+					const path = './builded-simulation-data.js'
+					type PageConfigType = {
+						default: Record<string, Omit<PageConfig, 'component'>>
+					}
+					const algoliaUpdate = ((await import(path)) as PageConfigType).default
 
-				unlinkSync(path)
-				writeFileSync(
-					'./source/public/simulation-data.json',
-					JSON.stringify(algoliaUpdate)
-				)
-				writeFileSync(
-					'./source/public/simulation-data-title.json',
-					JSON.stringify(
-						Object.fromEntries(
-							Object.entries(algoliaUpdate).map(([id, { title }]) => [
-								id,
-								{ title },
-							])
+					unlinkSync(path)
+					writeFileSync(
+						'./source/public/simulation-data.json',
+						JSON.stringify(algoliaUpdate)
+					)
+					writeFileSync(
+						'./source/public/simulation-data-title.json',
+						JSON.stringify(
+							Object.fromEntries(
+								Object.entries(algoliaUpdate).map(([id, { title }]) => [
+									id,
+									{ title },
+								])
+							)
 						)
 					)
-				)
-				// eslint-disable-next-line no-console
-				console.log('done!')
+					// eslint-disable-next-line no-console
+					console.log('done!')
+				}, 1000)
 			},
 		},
 	],
