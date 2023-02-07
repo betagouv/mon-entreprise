@@ -19,10 +19,13 @@ dirigeant . régime social:
               - gérant minoritaire
       alors: "'assimilé salarié'"
     - si:
-        non applicable si: gérant minoritaire
         une de ces conditions:
-          - entreprise . catégorie juridique . EI
-          - entreprise . catégorie juridique . SARL
+          - non applicable si: gérant minoritaire
+            une de ces conditions:
+              - entreprise . catégorie juridique . EI
+              - entreprise . catégorie juridique . SARL
+          - entreprise . catégorie juridique . SELARL
+          - entreprise . catégorie juridique . SELAS
       alors: "'indépendant'"
 
 dirigeant . rémunération: oui
