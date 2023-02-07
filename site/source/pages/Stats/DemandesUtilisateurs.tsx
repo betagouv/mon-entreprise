@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { Emoji } from '@/design-system/emoji'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -18,8 +19,8 @@ export default function DemandeUtilisateurs() {
 		<section>
 			<H2 id="demandes-utilisateurs">Demandes utilisateurs</H2>
 			<Body>
-				Demandes formulées en utilisant le bouton "faire une suggestion" présent
-				sur toutes les pages.{' '}
+				Demandes formulées en utilisant le bouton "<Emoji emoji="👋" />" à
+				droite de votre écran.
 				<Link
 					href="https://github.com/betagouv/mon-entreprise/blob/master/CONTRIBUTING.md#retours-utilisateurs"
 					target="_blank"
