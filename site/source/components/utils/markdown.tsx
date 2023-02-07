@@ -143,7 +143,7 @@ export const Markdown = ({
 			},
 		}}
 	>
-		{children}
+		{children ?? ''}
 	</MarkdownToJsx>
 )
 
