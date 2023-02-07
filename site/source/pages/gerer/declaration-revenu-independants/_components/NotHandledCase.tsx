@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
@@ -47,8 +48,8 @@ export default function NotHandledCase({
 				<Grid item>
 					<SmallBody>
 						Si vous souhaitez que cet assistant à la déclaration gère votre cas
-						dans le futur, laissez-nous message en cliquant sur le bouton "Faire
-						une suggestion" en bas de la page.
+						dans le futur, laissez-nous message en cliquant sur le bouton "
+						<Emoji emoji="👋" />" à droite de votre écran.
 					</SmallBody>
 				</Grid>
 			</Grid>

@@ -38,6 +38,7 @@ import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Message, Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Emoji } from '@/design-system/emoji'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
@@ -303,7 +304,7 @@ function Home() {
 										<Body>
 											Si vous souhaitez que nous développions un nouveau
 											simulateur, laissez-nous message en cliquant sur le bouton
-											"Faire une suggestion" en bas de cette page.
+											"<Emoji emoji="👋" />" à droite de votre écran.
 										</Body>
 									</Trans>
 								</Message>
