@@ -30,8 +30,8 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
 
-import urlIllustrationNetBrutEn from './images/illustration-net-brut-en.png'
-import urlIllustrationNetBrut from './images/illustration-net-brut.png'
+import urlIllustrationNetBrutEn from './illustration-net-brut-en.png'
+import urlIllustrationNetBrut from './illustration-net-brut.png'
 
 const ButtonContainer = styled.span`
 	display: block;

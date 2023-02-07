@@ -7,7 +7,7 @@ import { LANDING_LEGAL_STATUS_LIST, useSitePaths } from '../../sitePaths'
 import AfterRegistration from './AfterRegistration'
 import CreationChecklist from './CreationChecklist'
 import GuideStatut from './GuideStatut'
-import Home from './Home'
+import Home from './choix-statut/Home'
 
 export default function CreateMyCompany() {
 	const { relativeSitePaths } = useSitePaths()

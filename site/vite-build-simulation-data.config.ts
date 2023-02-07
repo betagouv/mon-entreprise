@@ -42,7 +42,7 @@ export default defineConfig({
 			enforce: 'pre',
 			transform(code, id) {
 				// Remove `component` and `seoExplanations` from config
-				const isConfigFile = /Simulateurs\/.+\/_config\.tsx?$/.test(id)
+				const isConfigFile = /pages\/.+\/_config\.tsx?$/.test(id)
 
 				if (isConfigFile) {
 					// eslint-disable-next-line no-console

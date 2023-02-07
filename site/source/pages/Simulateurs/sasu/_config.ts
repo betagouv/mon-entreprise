@@ -1,8 +1,8 @@
-import { SASUSimulation, SeoExplanations } from '../SASU'
 import { config } from '../configs/config'
-import { configSASU } from '../configs/dirigeantSASU'
 import { SimulatorsDataParams } from '../configs/types'
-import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
+import RémunérationSASUPreview from '../images/RémunérationSASUPreview.png'
+import { SASUSimulation, SeoExplanations } from './SASU'
+import { configSASU } from './_simulationConfig'
 
 export function sasuConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

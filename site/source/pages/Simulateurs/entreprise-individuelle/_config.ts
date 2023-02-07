@@ -1,8 +1,11 @@
-import { EntrepriseIndividuelle, SeoExplanationsEI } from '../Indépendant'
 import { config } from '../configs/config'
-import { configEntrepriseIndividuelle } from '../configs/indépendant'
 import { SimulatorsDataParams } from '../configs/types'
-import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
+import AutoEntrepreneurPreview from '../images/AutoEntrepreneurPreview.png'
+import {
+	EntrepriseIndividuelle,
+	SeoExplanationsEI,
+} from '../indépendant/Indépendant'
+import { configEntrepriseIndividuelle } from '../indépendant/_simulationConfig'
 
 export function entrepriseIndividuelleConfig({
 	t,

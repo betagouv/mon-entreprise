@@ -1,8 +1,8 @@
 import { H2 } from '@/design-system/typography/heading'
 
-import { TrackPage } from '../../ATInternetTracking'
-import { SimulateurCard } from './Home'
-import useSimulatorsData from './metadata'
+import { TrackPage } from '../../../ATInternetTracking'
+import { SimulateurCard } from '../Home'
+import useSimulatorsData from '../metadata'
 
 export default function SalariéSimulation() {
 	const simulators = useSimulatorsData()

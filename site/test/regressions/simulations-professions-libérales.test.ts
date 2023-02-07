@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest'
 
-import { configProfessionLibérale } from '@/pages/Simulateurs/configs/professionLibérale'
+import { configProfessionLibérale } from '@/pages/Simulateurs/profession-libérale/_simulationConfig'
 
 import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'

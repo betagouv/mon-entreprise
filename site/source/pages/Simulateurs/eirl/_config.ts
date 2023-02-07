@@ -1,8 +1,8 @@
-import IndépendantSimulation from '../Indépendant'
 import { config } from '../configs/config'
-import { configEirl } from '../configs/indépendant'
 import { SimulatorsDataParams } from '../configs/types'
-import AutoEntrepreneurPreview from './images/AutoEntrepreneurPreview.png'
+import AutoEntrepreneurPreview from '../images/AutoEntrepreneurPreview.png'
+import IndépendantSimulation from '../indépendant/Indépendant'
+import { configEirl } from '../indépendant/_simulationConfig'
 
 export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

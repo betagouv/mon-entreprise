@@ -4,12 +4,9 @@ import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
 
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
-import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Strong } from '@/design-system/typography'
 import { Intro } from '@/design-system/typography/paragraphs'
-import { useSitePaths } from '@/sitePaths'
 
-import { configComparateurStatuts } from '../configs/comparateurStatuts'
 import Comparateur from './components/Comparateur'
 import {
 	CasParticuliersProvider,
@@ -21,12 +18,6 @@ function ComparateurStatutsUI() {
 	const situation = useRawSituation()
 
 	const { isAutoEntrepreneurACREEnabled } = useCasParticuliers()
-
-	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig({
-		path: absoluteSitePaths.simulateurs.comparaison,
-		config: configComparateurStatuts,
-	})
 
 	const assimiléEngine = useMemo(
 		() =>

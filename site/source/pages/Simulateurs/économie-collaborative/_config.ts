@@ -1,4 +1,4 @@
-import ÉconomieCollaborative from '../EconomieCollaborative'
+import ÉconomieCollaborative from '.'
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 

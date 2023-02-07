@@ -1,6 +1,7 @@
-import SchemeComparaisonPage from '../ComparateurStatuts'
+import SchemeComparaisonPage from '.'
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
+import { configComparateurStatuts } from './_simulationConfig'
 
 export function comparaisonStatutsConfig({
 	t,
@@ -32,6 +33,7 @@ export function comparaisonStatutsConfig({
 			'Comparaison des statuts'
 		),
 		path: sitePaths.simulateurs.comparaison,
+		simulation: configComparateurStatuts,
 		component: SchemeComparaisonPage,
 	} as const)
 }

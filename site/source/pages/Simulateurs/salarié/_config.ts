@@ -1,9 +1,9 @@
-import SalariéSimulation, { SeoExplanations } from '../Salarié'
 import { config } from '../configs/config'
-import { configSalarié } from '../configs/salarié'
 import { SimulatorsDataParams } from '../configs/types'
-import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
-import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
+import salaireBrutNetPreviewEN from './SalaireBrutNetPreviewEN.png'
+import salaireBrutNetPreviewFR from './SalaireBrutNetPreviewFR.png'
+import SalariéSimulation, { SeoExplanations } from './Salarié'
+import { configSalarié } from './_simulationConfig'
 
 export function salariéConfig(params: SimulatorsDataParams) {
 	const { t, sitePaths, language } = params

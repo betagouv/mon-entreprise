@@ -62,7 +62,7 @@ const StatusCard = ({
 					))}
 				</Grid>
 
-				<StyledBody>{children}</StyledBody>
+				<StyledBody as="div">{children}</StyledBody>
 			</CardBody>
 			{isBestOption && (
 				<Tooltip
