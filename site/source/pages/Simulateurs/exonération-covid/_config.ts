@@ -1,4 +1,4 @@
-import ExonérationCovid from '../ExonerationCovid'
+import ExonérationCovid from '.'
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 

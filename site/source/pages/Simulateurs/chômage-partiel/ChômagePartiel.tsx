@@ -19,8 +19,6 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { catchDivideByZeroError } from '@/utils'
 
-import { SimulatorsDataParams } from './configs/types'
-
 declare global {
 	interface Window {
 		STONLY_WID: string

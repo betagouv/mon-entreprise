@@ -1,8 +1,8 @@
-import ChômagePartielComponent, { SeoExplanations } from '../ChômagePartiel'
-import { configChômagePartiel } from '../configs/chômagePartiel'
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
-import ChômagePartielPreview from './images/ChômagePartielPreview.png'
+import ChômagePartielComponent, { SeoExplanations } from './ChômagePartiel'
+import ChômagePartielPreview from './ChômagePartielPreview.png'
+import { configChômagePartiel } from './_simulationConfig'
 
 export function chômagePartielConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

@@ -1,8 +1,8 @@
-import IndépendantSimulation from '../Indépendant'
 import { config } from '../configs/config'
-import { configEurl } from '../configs/indépendant'
 import { SimulatorsDataParams } from '../configs/types'
-import RémunérationSASUPreview from './images/RémunérationSASUPreview.png'
+import RémunérationSASUPreview from '../images/RémunérationSASUPreview.png'
+import IndépendantSimulation from '../indépendant/Indépendant'
+import { configEurl } from '../indépendant/_simulationConfig'
 
 export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

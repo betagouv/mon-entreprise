@@ -1,6 +1,6 @@
-import DéclarationRevenuIndépendant from '../../gerer/declaration-revenu-independants'
-import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../configs/types'
+import DéclarationRevenuIndépendant from '.'
+import { config } from '../../Simulateurs/configs/config'
+import { SimulatorsDataParams } from '../../Simulateurs/configs/types'
 
 export function déclarationRevenuIndépendantBetaConfig({
 	t,

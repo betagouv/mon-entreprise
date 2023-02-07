@@ -13,9 +13,9 @@ import { RootState } from '@/reducers/rootReducer'
 import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../../ATInternetTracking'
-import { SimulateurCard } from '../Simulateurs/Home'
-import useSimulatorsData from '../Simulateurs/metadata'
+import { TrackPage } from '../../../ATInternetTracking'
+import { SimulateurCard } from '../../Simulateurs/Home'
+import useSimulatorsData from '../../Simulateurs/metadata'
 import créerSvg from './créer.svg'
 
 export default function Créer() {

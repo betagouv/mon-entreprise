@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest'
 
-import { configArtisteAuteur } from '@/pages/Simulateurs/configs/artisteAuteur'
+import { configArtisteAuteur } from '@/pages/Simulateurs/artiste-auteur/artisteAuteur'
 
 import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'

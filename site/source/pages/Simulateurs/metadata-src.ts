@@ -1,20 +1,22 @@
 import { ImmutableType } from '@/types/utils'
 
+import { choixStatutConfig } from '../Creer/choix-statut/_config'
+import {
+	déclarationChargesSocialesIndépendantConfig,
+	déclarationRevenuIndépendantConfig,
+} from '../gerer/declaration-charges-sociales-independant/_config'
+import { déclarationRevenuIndépendantBetaConfig } from '../gerer/declaration-revenu-independants/_config'
+import { demandeMobilitéConfig } from '../gerer/demande-mobilité/_config'
 import { artisteAuteurConfig } from './artiste-auteur/_config'
 import { autoEntrepreneurConfig } from './auto-entrepreneur/_config'
 import { auxiliaireMédicalConfig } from './auxiliaire-médical/_config'
 import { avocatConfig } from './avocat/_config'
 import { chirurgienDentisteConfig } from './chirurgien-dentiste/_config'
-import { choixStatutConfig } from './choix-statut/_config'
 import { chômagePartielConfig } from './chômage-partiel/_config'
 import { comparaisonStatutsConfig } from './comparaison-statuts/_config'
 import { PageConfig, SimulatorsDataParams } from './configs/types'
 import { coûtCréationEntrepriseConfig } from './cout-creation-entreprise/_config.js'
-import { demandeMobilitéConfig } from './demande-mobilité/_config'
 import { dividendesConfig } from './dividendes/_config'
-import { déclarationChargesSocialesIndépendantConfig } from './déclaration-charges-sociales-indépendant/_config'
-import { déclarationRevenuIndépendantBetaConfig } from './déclaration-revenu-indépendant-beta/_config'
-import { déclarationRevenuIndépendantConfig } from './déclaration-revenu-indépendant/_config'
 import { eirlConfig } from './eirl/_config'
 import { entrepriseIndividuelleConfig } from './entreprise-individuelle/_config'
 import { eurlConfig } from './eurl/_config'

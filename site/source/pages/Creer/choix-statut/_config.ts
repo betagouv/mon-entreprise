@@ -1,6 +1,6 @@
-import Créer from '../../Creer/Home'
-import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../configs/types'
+import { config } from '../../Simulateurs/configs/config'
+import { SimulatorsDataParams } from '../../Simulateurs/configs/types'
+import Créer from './Home'
 
 export function choixStatutConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

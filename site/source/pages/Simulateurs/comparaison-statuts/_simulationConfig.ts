@@ -1,4 +1,4 @@
-import { SimulationConfig } from './types'
+import { SimulationConfig } from '../configs/types'
 
 export const configComparateurStatuts: SimulationConfig = {
 	'objectifs exclusifs': [],

@@ -1,6 +1,6 @@
-import ArtisteAuteur from '../ArtisteAuteur'
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
+import ArtisteAuteur from './ArtisteAuteur'
 
 export function artisteAuteurConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
