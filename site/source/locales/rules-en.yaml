@@ -505,6 +505,10 @@ SMIC:
   titre.en: '[automatic] SMIC'
   titre.fr: SMIC
 SMIC . horaire:
+  avec:
+    début d'année:
+      titre.en: '[automatic] at the beginning of the year'
+      titre.fr: en début d'année
   note.en: >
     [automatic] In principle, and unless there is a "boost", the SMIC is
     revalued on January 1 each year.
@@ -910,9 +914,25 @@ dirigeant . assimilé salarié . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
 dirigeant . assimilé salarié . réduction ACRE:
+  avec:
+    notification taux annuel:
+      description.en: >
+        [automatic] The ACRE rate used is an annual average. The
+
+        simulator does not yet take into account the calculation of the ACRE month by month.
+      description.fr: >
+        Le taux ACRE utilisé est une moyenne annuelle. Le
+
+        simulateur ne prend pas encore en compte le calcul de l'ACRE mois par mois.
+      titre.en: '[automatic] notification annual rate'
+      titre.fr: notification taux annuel
   titre.en: '[automatic] ACRE reduction'
   titre.fr: réduction ACRE
 dirigeant . assimilé salarié . réduction ACRE . montant:
+  avec:
+    cotisations exonérées:
+      titre.en: '[automatic] Exempt contributions'
+      titre.fr: cotisations exonérées
   titre.en: '[automatic] amount'
   titre.fr: montant
 dirigeant . auto-entrepreneur:
@@ -944,6 +964,13 @@ dirigeant . auto-entrepreneur . cotisations et contributions:
   titre.en: '[automatic] contributions and fees'
   titre.fr: cotisations et contributions
 dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
+  avec:
+    revenus BIC:
+      titre.en: '[automatic] BIC revenues'
+      titre.fr: revenus BIC
+    revenus BNC:
+      titre.en: '[automatic] BNC revenues'
+      titre.fr: revenus BNC
   description.en: >
     [automatic] In addition to the social security charges,
     auto-entrepreneurs are liable for a
@@ -986,6 +1013,25 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
   titre.en: '[automatic] Moselle rate'
   titre.fr: taux Moselle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
+  avec:
+    cotisations CIPAV:
+      description.en: >
+        [automatic] For the liberal professions under the CIPAV, the
+        rate is the same regardless of the category of taxation/activity (BIC or
+        BNC, service or sales).
+      description.fr: >
+        Pour les professions libérales relevant de la CIPAV, le taux est
+        le même quelle que soit la catégorie d’imposition/activité (BIC ou BNC,
+        service ou vente).
+      titre.en: '[automatic] CIPAV contributions'
+      titre.fr: cotisations CIPAV
+    taux prestation de service:
+      note.en: '[automatic] There is now a different rate for BIC or BNC services.'
+      note.fr:
+        Il y a maintenant un taux différent pour les prestations de service BIC
+        ou BNC.
+      titre.en: '[automatic] service delivery rate'
+      titre.fr: taux prestation de service
   description.en: >
     [automatic] The social contributions give the auto-entrepreneur
     access to a
@@ -1011,6 +1057,29 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
+  avec:
+    CIPAV:
+      titre.en: '[automatic] CIPAV'
+      titre.fr: CIPAV
+    prestation de service:
+      note.en: '[automatic] There are now different rates for BIC and BNC services'
+      note.fr:
+        Il y a maintenant des taux différents pour les prestations de service
+        BIC et BNC
+      titre.en: '[automatic] service delivery'
+      titre.fr: prestation de service
+    références:
+      titre.en: '[automatic] references'
+      titre.fr: références
+    service BIC:
+      titre.en: '[automatic] BIC service'
+      titre.fr: service BIC
+    service BNC:
+      titre.en: '[automatic] BNC service'
+      titre.fr: service BNC
+    vente restauration hébergement:
+      titre.en: '[automatic] sales catering accommodation'
+      titre.fr: vente restauration hébergement
   description.en: >
     [automatic] This rate corresponds to the reduction in
     contributions that applies to
@@ -1144,6 +1213,10 @@ dirigeant . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
 dirigeant . exonérations . ACRE:
+  avec:
+    ACRE par défaut:
+      titre.en: '[automatic] Default ACRE'
+      titre.fr: ACRE par défaut
   description.en: >-
     [automatic] The aid for creating or taking over a business
     (Acre) consists of a partial exemption from social security charges, known
@@ -1352,6 +1425,13 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
   titre.en: '[automatic] dental surgeon'
   titre.fr: chirurgien-dentiste
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
+  avec:
+    forfaitaire:
+      titre.en: '[automatic] lump sum'
+      titre.fr: forfaitaire
+    proportionnelle:
+      titre.en: '[automatic] proportional'
+      titre.fr: proportionnelle
   note.en: >-
     [automatic] An exemption can be granted when the 2019 professional
     income is less than or equal to C 500 (value on 1 January of the year in
@@ -2245,6 +2325,10 @@ dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   titre.en: '[automatic] average overpayment'
   titre.fr: dépassement d'honoraire moyen
 dirigeant . indépendant . PL . PAMC . maladie:
+  avec:
+    participation CPAM:
+      titre.en: '[automatic] CPAM participation'
+      titre.fr: participation CPAM
   titre.en: '[automatic] disease (after CPAM participation)'
   titre.fr: maladie (après participation CPAM)
 dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
@@ -2319,6 +2403,18 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
   titre.en: '[automatic] notification'
   titre.fr: notification
 dirigeant . indépendant . PL . PAMC . remplaçant:
+  avec:
+    offre simplifiée médecins:
+      description.en:
+        '[automatic] Are you a physician working exclusively as a locum
+        tenens or dispatcher? You can join the simplified offer. [Learn
+        more](https://www.medecins-remplacants.urssaf.fr/accueil)'
+      description.fr:
+        Vous exercez une activité de médecin exclusivement en tant que
+        remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée.
+        [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
+      titre.en: '[automatic] simplified offer doctors'
+      titre.fr: offre simplifiée médecins
   description.en: >
     [automatic] Practitioners and medical auxiliaries exercising a
     substitute activity are not liable for the contribution to the regional
@@ -2549,6 +2645,16 @@ dirigeant . indépendant . PL . métier . santé . médecin:
   titre.en: '[automatic] doctor'
   titre.fr: médecin
 dirigeant . indépendant . PL . métier . santé . médecin . secteur:
+  avec:
+    S1:
+      titre.en: '[automatic] Sector 1'
+      titre.fr: Secteur 1
+    S2:
+      titre.en: '[automatic] Sector 2'
+      titre.fr: Secteur 2
+    non conventionné:
+      titre.en: '[automatic] non conventioned'
+      titre.fr: non conventionné
   description.en: |
     [automatic] The rates of contributions and CPAM refunds are not the same in
     depending on the pricing regime chosen by the practitioner.
@@ -2964,6 +3070,13 @@ dirigeant . indépendant . cotisations et contributions . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
 dirigeant . indépendant . cotisations et contributions . début activité:
+  avec:
+    assiette forfaitaire:
+      titre.en: '[automatic] lump-sum basis'
+      titre.fr: assiette forfaitaire
+    assiette forfaitaire maladie:
+      titre.en: '[automatic] sickness lump sum'
+      titre.fr: assiette forfaitaire maladie
   description.en: '[automatic] '
   description.fr: >
     Lorsque vous commencez votre activité, vos **revenus
@@ -3611,6 +3724,10 @@ dirigeant . rémunération . totale:
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale
 durée légale du travail:
+  avec:
+    mensuelle:
+      titre.en: '[automatic] monthly'
+      titre.fr: mensuelle
   titre.en: '[automatic] legal working hours'
   titre.fr: durée légale du travail
 déclaration charge sociales:
@@ -3965,6 +4082,106 @@ entreprise . activité:
   titre.en: '[automatic] activity'
   titre.fr: activité
 entreprise . activité . nature:
+  avec:
+    artisanale:
+      description.en: >
+        [automatic] To be a craftsman, you must meet the following 3
+        criteria:
+
+
+        - Your activity must be part of the official list of crafts or the official list of arts and crafts
+
+        - Your company must have less than 11 employees at its creation
+
+        - You must have a specific know-how and prove it by a diploma (CAP, BEP, etc.) or a professional qualification
+      description.fr: >
+        Pour être artisan, vous devez répondre aux 3 critères suivants :
+
+
+        - Votre activité doit faire partie de la liste officielle des métiers de l'artisanat ou de la liste officielle des métiers d'artisanat d'art
+
+        - Votre entreprise doit compter moins de 11 salariés à sa création
+
+        - Vous devez détenir un savoir-faire spécifique et le prouver par un diplôme (CAP, BEP, etc.) ou une qualification professionnelle
+      titre.en: '[automatic] artisanal'
+      titre.fr: artisanale
+    commerciale:
+      description.en: >
+        [automatic] Your activity is commercial if you are in one of the
+        following cases:
+
+
+        - You buy goods or merchandise to resell them for profit: that brings in money, profit, or earnings
+
+        - You sell services in the fields of hotels, restaurants, transportation, entertainment, security, computers, design, etc.
+
+        - You have an activity of renting goods, merchandise or services
+      description.fr: >
+        Votre activité est commerciale si vous êtes dans l'un des cas
+        suivants :
+
+
+        - Vous achetez des biens ou des marchandises pour les revendre dans un but lucratif : Qui rapporte de l'argent, du profit, des bénéfices
+
+        - Vous vendez des services dans les domaines de l'hôtellerie, la restauration, les transports, les spectacles, la sécurité, l'informatique, le design, etc.
+
+        - Vous avez une activité de location de biens, de marchandises ou de services
+      titre.en: '[automatic] commercial'
+      titre.fr: commerciale
+    libérale:
+      description.en: >
+        [automatic] A liberal activity consists of services of a mainly
+        intellectual nature.
+
+
+        You render a paid service.
+
+
+        You must have a diploma or a professional qualification in the field.
+      description.fr: >
+        Une activité libérale consiste en des prestations de services de
+        nature principalement intellectuelles.
+
+
+        Vous rendez un service payant.
+
+
+        Vous devez avoir un diplôme ou une qualification professionnelle dans le domaine.
+      titre.en: '[automatic] liberal'
+      titre.fr: libérale
+    libérale . réglementée:
+      description.en: >
+        [automatic] Some liberal professions have been classified as
+        liberal by law and their title is protected. Their members must respect
+        strict ethical rules and are subject to the control of their
+        professional bodies (order, chamber, or union).
+
+
+        &gt; Examples of regulated professions: architect, lawyer, nurse, doctor...
+
+
+        These are other people who practice a science or an art and whose intellectual activity plays the main role. Their income must represent the remuneration of a personal work, without subordination, while engaging their technical and moral responsibility.
+
+
+        &gt; Examples of non-regulated professions: developer, historian, urban planner...
+      description.fr: >
+        Certaines professions libérales ont été classées dans le domaine
+        libéral par la loi et leur titre est protégé. Leurs membres doivent
+        respecter des règles déontologiques strictes et sont soumis au contrôle
+        de leurs instances professionnelles (ordre, chambre, ou syndicat).
+
+
+        > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
+
+
+        Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
+
+
+        > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+      question.en: '[automatic] Is it a regulated liberal activity?'
+      question.fr: Est-ce une activité libérale réglementée ?
+      titre.en: '[automatic] regulated'
+      titre.fr: réglementée
   description.en: >
     [automatic] Your type of activity will determine a large part of
     the calculations of contributions and taxes.
@@ -3992,6 +4209,163 @@ entreprise . activité . nature:
   titre.en: '[automatic] nature of the activity'
   titre.fr: nature de l'activité
 entreprise . activités:
+  avec:
+    agricole:
+      description.en: >
+        [automatic] An activity is agricultural if it depends on the
+        plant or animal biological cycle within the framework of a farm or
+        production.
+
+
+        This criterion is decisive and applies regardless of the legal form of your farm (sole proprietorship, company, agricultural group).
+
+
+        It can also be an activity that extends the agricultural production activity. Thus the following activities are considered as agricultural:
+
+
+        - Activities of "tourism on the farm" (gites, guest houses, tables d'hôtes, farm inns, etc.) that are based on the farm
+
+        - Activities of preparation and training of domestic horses and ponies for their exploitation: races, competitions, courses, etc.
+
+        - Production and marketing of biogas, electricity and heat through methanization, when the majority (more than 50%) of the material comes from farms
+
+        - Transformation and direct sale of products from
+      description.fr: >
+        Une activité est agricole si elle dépend du cycle biologique
+        végétal ou animal dans le cadre d'une exploitation ou d'une production.
+
+
+        Ce critère est déterminant et s'applique quelle que soit la forme juridique de votre exploitation (entreprise individuelle, société, groupement agricole).
+
+
+        Il peut s'agir également d'une activité qui prolonge l'activité de production agricole. Ainsi les activités suivantes sont considérées comme agricoles :
+
+
+        - Activités de "tourisme à la ferme" (gîtes, chambres d'hôtes, tables d'hôtes, fermes auberges, etc.) ayant pour support l'exploitation agricole
+
+        - Activités de préparation et d'entraînement des chevaux et poneys domestiques en vue de leur exploitation : courses, concours, cours, etc.
+
+        - Production et commercialisation de biogaz, d'électricité et de chaleur par la méthanisation, lorsqu'elle est issue en majorité (plus de 50 %) de matières provenant d'exploitations agricoles
+
+        - Transformation et vente directe des produits issus
+      titre.en: '[automatic] agricultural'
+      titre.fr: agricole
+    artisanale:
+      description.en: >
+        [automatic] To be a craftsman, you must meet the following 3
+        criteria:
+
+
+        - Your activity must be part of the official list of crafts or the official list of arts and crafts
+
+        - Your company must have less than 11 employees at its creation
+
+        - You must have a specific know-how and prove it by a diploma (CAP, BEP, etc.) or a professional qualification
+      description.fr: >
+        Pour être artisan, vous devez répondre aux 3 critères suivants :
+
+
+        - Votre activité doit faire partie de la liste officielle des métiers de l'artisanat ou de la liste officielle des métiers d'artisanat d'art
+
+        - Votre entreprise doit compter moins de 11 salariés à sa création
+
+        - Vous devez détenir un savoir-faire spécifique et le prouver par un diplôme (CAP, BEP, etc.) ou une qualification professionnelle
+      titre.en: '[automatic] artisanal'
+      titre.fr: artisanale
+    commerciale:
+      description.en: >
+        [automatic] Your activity is commercial if you are in one of the
+        following cases:
+
+
+        - You buy goods or merchandise to resell them for profit: that brings in money, profit, or earnings
+
+        - You sell services in the fields of hotels, restaurants, transportation, entertainment, security, computers, design, etc.
+
+        - You have an activity of renting goods, merchandise or services
+      description.fr: >
+        Votre activité est commerciale si vous êtes dans l'un des cas
+        suivants :
+
+
+        - Vous achetez des biens ou des marchandises pour les revendre dans un but lucratif : Qui rapporte de l'argent, du profit, des bénéfices
+
+        - Vous vendez des services dans les domaines de l'hôtellerie, la restauration, les transports, les spectacles, la sécurité, l'informatique, le design, etc.
+
+        - Vous avez une activité de location de biens, de marchandises ou de services
+      titre.en: '[automatic] commercial'
+      titre.fr: commerciale
+    commerciale . agent commercial:
+      description.en: >
+        [automatic] The commercial agent negotiates and/or concludes
+        sales, purchase, rental or service contracts on behalf of a third party
+        (producer, industrialist, trader, etc.). He is therefore a commercial
+        intermediary who, unlike the VRP (salesman, representative and
+        salesman), is an independent professional.
+      description.fr: >
+        L’agent commercial négocie et/ou conclut des contrats de vente,
+        d’achat, de location ou de prestation de services pour le compte d’un
+        tiers (producteur, industriel, commerçant, etc.). Il s’agit donc d’un
+        intermédiaire de commerce qui, contrairement au VRP (vendeur,
+        représentant et placier), est un professionnel indépendant.
+      question.en: '[automatic] Do you operate as a commercial agent?'
+      question.fr: Exercez-vous votre activité en tant qu'agent commercial ?
+      titre.en: '[automatic] sales agent'
+      titre.fr: agent commercial
+    libérale:
+      description.en: >
+        [automatic] A liberal activity consists of services of a mainly
+        intellectual nature.
+
+
+        You render a paid service.
+
+
+        You must have a diploma or a professional qualification in the field.
+      description.fr: >
+        Une activité libérale consiste en des prestations de services de
+        nature principalement intellectuelles.
+
+
+        Vous rendez un service payant.
+
+
+        Vous devez avoir un diplôme ou une qualification professionnelle dans le domaine.
+      titre.en: '[automatic] liberal'
+      titre.fr: libérale
+    libérale . réglementée:
+      description.en: >
+        [automatic] Some liberal professions have been classified as
+        liberal by law and their title is protected. Their members must respect
+        strict ethical rules and are subject to the control of their
+        professional bodies (order, chamber, or union).
+
+
+        &gt; Examples of regulated professions: architect, lawyer, nurse, doctor...
+
+
+        These are other people who practice a science or an art and whose intellectual activity plays the main role. Their income must represent the remuneration of a personal work, without subordination, while engaging their technical and moral responsibility.
+
+
+        &gt; Examples of non-regulated professions: developer, historian, urban planner...
+      description.fr: >
+        Certaines professions libérales ont été classées dans le domaine
+        libéral par la loi et leur titre est protégé. Leurs membres doivent
+        respecter des règles déontologiques strictes et sont soumis au contrôle
+        de leurs instances professionnelles (ordre, chambre, ou syndicat).
+
+
+        > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
+
+
+        Il s'agit des autres personnes qui pratiquent, une science ou un art et dont l'activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d'un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
+
+
+        > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+      question.en: '[automatic] Is it a regulated liberal activity?'
+      question.fr: Est-ce une activité libérale réglementée ?
+      titre.en: '[automatic] regulated'
+      titre.fr: réglementée
   description.en: >
     [automatic] Your type of activity will determine a large part of
     the calculations of contributions and taxes.
@@ -4024,6 +4398,18 @@ entreprise . activités . commerciale . débit de tabac:
   titre.en: '[automatic] tobacco shop'
   titre.fr: débit de tabac
 entreprise . activités . revenus mixtes:
+  avec:
+    proportions:
+      description.en: '[automatic] Share of the different activities in the turnover'
+      description.fr: Part des différentes activités dans le chiffre d'affaires
+      note.en:
+        '[automatic] It is up to the user to check that the sum of the three
+        percentages is 100%.'
+      note.fr:
+        Il appartient à l'utilisateur de bien vérifier que la somme des trois
+        pourcentages renseignés vaut 100%.
+      titre.en: '[automatic] proportion activity'
+      titre.fr: proportion activité
   description.en: >
     [automatic] It is possible to have activities with different
     types of income for the same company.
@@ -4082,6 +4468,38 @@ entreprise . activités . revenus mixtes:
   titre.en: '[automatic] Mixed activities'
   titre.fr: Activités mixtes
 entreprise . activités . service ou vente:
+  avec:
+    service:
+      description.en: >
+        [automatic] This is any transaction that does not involve the
+        transfer of ownership of tangible
+
+        tangible goods (i.e. having a material existence).
+      description.fr: >
+        Il s’agit de toute opération ne comportant pas de transfert de
+        propriété de
+
+        biens corporels (c'est-à-dire ayant une existence matérielle).
+      titre.en: '[automatic] service delivery'
+      titre.fr: prestation de service
+    vente:
+      description.en: >
+        [automatic] It is any transaction involving the transfer of
+        ownership of a tangible asset (i.e., an asset that has a physical
+        existence), as well as any transaction involving the
+
+        property (i.e. property with a physical existence), as well as all
+
+        all catering and accommodation activities.
+      description.fr: >
+        Il s’agit de toute opération comportant transfert de propriété
+        d'un bien
+
+        corporel (c'est-à-dire un bien ayant une existence matérielle), ainsi que
+
+        toutes les activités de restauration et d'hébergement.
+      titre.en: '[automatic] sale of goods, catering or accommodation'
+      titre.fr: vente de biens, restauration ou hébergement
   question.en: "[automatic] What is the company's main activity?"
   question.fr: Quelle est le type d'activité principale de l'entreprise ?
   titre.en: '[automatic] service or sale'
@@ -4094,6 +4512,13 @@ entreprise . association non lucrative:
   titre.en: non-profit organisation
   titre.fr: association non lucrative
 entreprise . associés:
+  avec:
+    multiples:
+      titre.en: '[automatic] with several'
+      titre.fr: à plusieurs
+    unique:
+      titre.en: '[automatic] alone'
+      titre.fr: seul(e)
   description.en: >
     [automatic] If you are the only partner of your company, then
     you are in the case of a "one person company".
@@ -4127,25 +4552,147 @@ entreprise . catégorie juridique:
   titre.en: '[automatic] legal category'
   titre.fr: catégorie juridique
 entreprise . catégorie juridique . EI:
+  avec:
+    EI:
+      titre.en: '[automatic] EI'
+      titre.fr: EI
+    auto-entrepreneur:
+      question.en: Are you an auto-entrepreneur?
+      question.fr: Êtes-vous auto-entrepreneur ?
+      titre.en: '[automatic] auto-entrepreneur'
+      titre.fr: auto-entrepreneur
   titre.en: '[automatic] Sole proprietorship (including auto-entrepreneurs)'
   titre.fr: Entreprise individuelle (y compris auto-entrepreneurs)
-  avec:
-    auto-entrepreneur:
-      question.en: 'Are you an auto-entrepreneur?'
-      question.fr: Êtes-vous auto-entrepreneur ?
 entreprise . catégorie juridique . SARL:
+  avec:
+    EURL:
+      description.en: >
+        [automatic] The single-member limited liability company (EURL)
+        is a limited liability company (SARL) made up of a single partner. It is
+        also known as a one-person LLC.
+
+
+        - Partner(s)** : Only one (natural or legal person)
+
+        - Liability of the partner or partners** : Limited to his or her contributions, except for mismanagement if the partner is also the manager of the company
+
+        - Manager(s)** : One or several managers (natural persons), of which the partner may (or may not) be a member
+
+        - Liability of the manager(s)** : Civil and criminal liability
+
+        - Share capital** : Free, depending on the size and needs of the company
+
+        - Social regime** : If the manager is also the sole partner, he is considered as a non-salaried worker. Otherwise, the manager is considered as an employee.
+
+        - Taxation of profits** : Income tax of the sole partner if he is a natural person (with the possibility to choose the corporate tax). If the partner is a legal entity, corporate income tax.
+      description.fr: >
+        L'entreprise unipersonnelle à responsabilité limitée (EURL) est
+        une société à responsabilité limitée (SARL) constituée d'un seul
+        associé. Elle est également appelée SARL unipersonnelle.
+
+
+        - **Associé(s)** : Un seul (personne physique ou morale)
+
+        - **Responsabilité de l’associé ou des associés** : Limitée à ses apports, sauf fautes de gestion si l'associé est aussi gérant de l'entreprise
+
+        - **Dirigeant(s)** : Un ou plusieurs gérants (personnes physiques), dont l’associé peut (ou non) faire partie
+
+        - **Responsabilité du ou des dirigeant(s)** : Responsabilité civile et pénale
+
+        - **Capital social** : Libre, en fonction de la taille et des besoins de l'entreprise
+
+        - **Régime social** : Si le gérant est aussi l’associé unique, il est considéré comme travailleur non-salarié. Sinon, le gérant est assimilé-salarié
+
+        - **Imposition des bénéfices** : Impôt sur le revenu de l’associé unique s’il s’agit d’une personne physique (avec possibilité de choisir l’impôt sur les sociétés). Si l’associé est une personne morale, impôt sur les sociétés.
+      titre.en: '[automatic] One-man business with limited liability'
+      titre.fr: Entreprise unipersonnelle à responsabilité limitée
+    SARL:
+      description.en: >
+        [automatic] The limited liability company (LLC) has a minimum of
+        two partners. This legal form is the most common for companies. However,
+        it cannot be chosen for the legal, judicial or health professions
+        (except for pharmacists).
+
+
+        - Partner(s)** : From two to 100 (natural or legal persons)
+
+        - Liability of the partner or partners** : Limited to their contribution, except for mismanagement if the partners are also managers of the company
+
+        - Manager(s)** : One or more managers (natural persons), who may or may not be the partners
+
+        - Liability of the manager(s)** : Civil and criminal liability
+
+        - Share capital** : Free, depending on the size and needs of the company
+
+        - Social regime** : A majority manager is considered as a self-employed person, an equal or minority manager is considered as an employee
+
+        - Taxation of profits**: Corporate income tax, with the possibility of opting for income tax in certain cases (SARL "de famille" or certain SARLs less than five years old).
+      description.fr: >
+        La société à responsabilité limitée (SARL) comprend au minimum
+        deux associés. Cette forme juridique est la plus répandue pour les
+        sociétés. En revanche, elle ne peut être choisie pour les professions
+        juridiques, judiciaires ou de santé (hors pharmaciens).
+
+
+        - **Associé(s)** : De deux à 100 (personnes physiques ou morales)
+
+        - **Responsabilité de l’associé ou des associés** : Limitée à leur apport, sauf fautes de gestion si les associés sont aussi gérants de la société
+
+        - **Dirigeant(s)** : Un ou plusieurs gérants (personnes physiques), qui peuvent être (ou non) les associés
+
+        - **Responsabilité du ou des dirigeant(s)** : Responsabilité civile et pénale
+
+        - **Capital social** : Libre, en fonction de la taille et des besoins de la société
+
+        - **Régime social** : Un gérant majoritaire est considéré comme travailleur non salarié, un gérant égalitaire ou minoritaire est assimilé-salarié
+
+        - **Imposition des bénéfices** : Impôt sur les sociétés, avec possibilité d’opter pour l'impôt sur le revenu dans certains cas (SARL « de famille » ou certaines SARL de moins de cinq ans).
+      titre.en: '[automatic] Limited liability company'
+      titre.fr: Société à responsabilité limitée
+    unipersonnelle:
+      titre.en: '[automatic] one-person'
+      titre.fr: unipersonnelle
   titre.en: '[automatic] SARL or EURL'
   titre.fr: SARL ou EURL
 entreprise . catégorie juridique . SAS:
+  avec:
+    SAS:
+      titre.en: '[automatic] Simplified joint stock company'
+      titre.fr: Société par actions simplifiée
+    SASU:
+      titre.en: '[automatic] Single-member simplified joint stock company'
+      titre.fr: Société par actions simplifiée unipersonnelle
+    unipersonnelle:
+      titre.en: '[automatic] one-person'
+      titre.fr: unipersonnelle
   titre.en: '[automatic] SAS or SASU'
   titre.fr: SAS ou SASU
 entreprise . catégorie juridique . SELARL:
+  avec:
+    SELARL:
+      titre.en:
+        "[automatic] Limited Liability Company (Société d'exercice libéral à
+        responsabilité limitée)"
+      titre.fr: Société d'exercice libéral à responsabilité limitée
+    SELARLU:
+      titre.en: "[automatic] Single-member limited liability company (Société
+        d'exercice libéral à responsabilité limitée unipersonnelle)"
+      titre.fr: Société d'exercice libéral à responsabilité limitée unipersonnelle
   description.en: "[automatic] Limited Liability Company (Société d'exercice
     libéral à responsabilité limitée)"
   description.fr: Société d'exercice libéral à responsabilité limitée
   titre.en: '[automatic] SELARL or SELARLU'
   titre.fr: SELARL ou SELARLU
 entreprise . catégorie juridique . SELAS:
+  avec:
+    SELAS:
+      titre.en: '[automatic] Liberal practice company by simplified action'
+      titre.fr: Société d'exercice libéral par action simplifiée
+    SELASU:
+      titre.en:
+        "[automatic] Single-member simplified joint stock company (Société
+        d'exercice libéral par action simplifiée unipersonnelle)"
+      titre.fr: Société d'exercice libéral par action simplifiée unipersonnelle
   description.en: '[automatic] Liberal practice company by simplified shares'
   description.fr: Société d'exercice libéral par actions simplifiées
   titre.en: '[automatic] SELAS or SELASU'
@@ -4466,15 +5013,54 @@ entreprise . coût formalités:
   titre.en: '[automatic] cost formalities'
   titre.fr: coût formalités
 entreprise . coût formalités . CMA:
+  avec:
+    création:
+      titre.en: '[automatic] Creation rate'
+      titre.fr: Tarif création
   titre.en: '[automatic] Chamber of Trades and Crafts'
   titre.fr: Chambre des Métiers et de l'Artisanat
 entreprise . coût formalités . RCS:
+  avec:
+    création:
+      titre.en: '[automatic] Creation rate'
+      titre.fr: Tarif création
+    sociétés commerciales:
+      titre.en: '[automatic] commercial companies'
+      titre.fr: sociétés commerciales
   titre.en: '[automatic] Trade and company register'
   titre.fr: Registre du commerce et des sociétés
 entreprise . coût formalités . RSAC:
+  avec:
+    création:
+      titre.en: '[automatic] Creation rate'
+      titre.fr: Tarif création
   titre.en: '[automatic] Special Register of Commercial Agents'
   titre.fr: Registre Spécial des Agents Commerciaux
 entreprise . coût formalités . annonce légale:
+  avec:
+    départements groupe 2:
+      titre.en: '[automatic] departments group 2'
+      titre.fr: départements groupe 2
+    départements groupe 3:
+      titre.en: '[automatic] departments group 3'
+      titre.fr: départements groupe 3
+    forfaitaire:
+      description.en: >
+        [automatic] The publication of a legal announcement is mandatory
+        to inform the public of the creation of a company. 
+
+        It must be inserted in a medium authorized to receive legal notices (SHAL): 
+
+        it is either a newspaper of legal announcements (JAL), or an online press service (SPEL).
+      description.fr: >
+        La publication d'une annonce légale est obligatoire pour
+        informer le public de la création d'une société. 
+
+        Elle doit être insérée dans un support habilité à recevoir des annonces légales (SHAL) : 
+
+        il s'agit soit d'un journal d'annonces légales (JAL), soit d'un service de presse en ligne (SPEL).
+      titre.en: '[automatic] Flat rate'
+      titre.fr: Tarif forfaitaire
   description.en: >
     [automatic] The publication of a legal announcement is mandatory
     to inform the public of the major stages in the life of a company: the
@@ -4573,6 +5159,37 @@ entreprise . durée d'activité . en fin d'année:
   titre.en: '[automatic] at the end of the year'
   titre.fr: en fin d'année
 entreprise . exercice:
+  avec:
+    date trop ancienne:
+      description.en:
+        '[automatic] The date entered is too old. The simulator does not
+        integrate the scales before 2018.'
+      description.fr:
+        La date saisie est trop ancienne. Le simulateur n'intègre pas
+        les barèmes avant 2018.
+      titre.en: '[automatic] date too old'
+      titre.fr: date trop ancienne
+    durée:
+      titre.en: '[automatic] duration of the exercise'
+      titre.fr: durée de l'exercice
+    durée maximale:
+      description.en: '[automatic] The maximum duration of an accounting period is 24 months.'
+      description.fr: La durée maximale d'un exercice comptable est de 24 mois.
+      titre.en: '[automatic] maximum duration'
+      titre.fr: durée maximale
+    début:
+      titre.en: '[automatic] start'
+      titre.fr: début
+    début après la fin:
+      description.en:
+        '[automatic] The end of the fiscal year must be later than the
+        beginning.'
+      description.fr: La fin de l'exercice doit être postérieure à son début.
+      titre.en: '[automatic] beginning after the end'
+      titre.fr: début après la fin
+    fin:
+      titre.en: '[automatic] end'
+      titre.fr: fin
   titre.en: '[automatic] exercise'
   titre.fr: exercice
 entreprise . imposition:
@@ -4815,6 +5432,44 @@ entreprise . salariés:
   titre.en: '[automatic] employees'
   titre.fr: salariés
 entreprise . salariés . effectif:
+  avec:
+    seuil:
+      avec:
+        moins de 11:
+          titre.en: '[automatic] between 5 and 10'
+          titre.fr: entre 5 et 10
+        moins de 150:
+          titre.en: '[automatic] between 50 and 149'
+          titre.fr: entre 50 et 149
+        moins de 20:
+          titre.en: '[automatic] between 11 and 19'
+          titre.fr: entre 11 et 19
+        moins de 250:
+          titre.en: '[automatic] between 150 and 250'
+          titre.fr: entre 150 et 250
+        moins de 5:
+          titre.en: '[automatic] less than 5'
+          titre.fr: moins de 5
+        moins de 50:
+          titre.en: '[automatic] between 20 and 49'
+          titre.fr: entre 20 et 49
+        plus de 250:
+          titre.en: '[automatic] 251 and more'
+          titre.fr: 251 et plus
+      description.en: >
+        [automatic] Many employer contributions vary depending on the
+        size of the company's workforce.
+
+        The crossing of a threshold is only taken into account if it is reached or exceeded during 5 consecutive calendar years.
+      description.fr: >
+        De nombreuses cotisations patronales varient selon l'effectif de
+        l'entreprise.
+
+        Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est atteint ou dépassé pendant 5 années civiles consécutives.
+      question.en: '[automatic] How many employees does the company have?'
+      question.fr: Quel est l'effectif de l'entreprise ?
+      titre.en: '[automatic] staffing threshold'
+      titre.fr: seuil d'effectif
   titre.en: '[automatic] workforce'
   titre.fr: effectif
 entreprise . salariés . ratio alternants:
@@ -5191,6 +5846,13 @@ impôt . taux personnalisé:
   titre.en: personalized rate
   titre.fr: taux personnalisé
 plafond sécurité sociale:
+  avec:
+    horaire:
+      titre.en: '[automatic] schedule'
+      titre.fr: horaire
+    journalier:
+      titre.en: '[automatic] daily'
+      titre.fr: journalier
   description.en: '[automatic] The Social Security ceiling is the maximum amount
     of remuneration to be taken into account for the calculation of certain
     contributions.'
@@ -5319,6 +5981,127 @@ protection sociale . formation:
   titre.en: training
   titre.fr: formation
 protection sociale . invalidité et décès:
+  avec:
+    accidents du travail et maladies professionnelles:
+      avec:
+        rente décès:
+          description.en: >
+            [automatic] If the accident at work results in the death of the
+            insured, the next of kin (spouse, partner in a civil solidarity pact
+            (Pacs) - not divorced or separated - children, etc.) may receive an
+            annuity.
+          description.fr: >
+            Si l'accident du travail entraîne le décès de l'assuré, les
+            proches (conjoint, concubin, partenaire lié par un pacte civil de
+            solidarité (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent
+            bénéficier d'une rente.
+          titre.en: '[automatic] Death pension AT/MP'
+          titre.fr: Rente décès AT/MP
+        rente incapacité:
+          description.en: >
+            [automatic] If your permanent disability rate following an
+            accident at work or an occupational disease is greater than 10%, you
+            will receive a permanent disability pension.
+          description.fr: >
+            Si votre taux d'incapacité permanente suite à un accident du
+            travail ou une maladie professionnelle est supérieur à 10 %, vous
+            percevrez une rente d'incapacité permanente.
+          titre.en: '[automatic] AT/MP disability pension'
+          titre.fr: Rente incapacité AT/MP
+      titre.en: '[automatic] work accidents and occupational diseases'
+      titre.fr: accidents du travail et maladies professionnelles
+    capital décès:
+      titre.en: '[automatic] death benefit'
+      titre.fr: capital décès
+    capital décès . orphelin:
+      description.en: >
+        [automatic] An "orphan" capital is paid to the children of
+        deceased self-employed workers. It concerns :
+
+
+        - children under 16 years of age on the day of the insured's death and dependent on him/her;
+
+        - dependent children of the deceased over 16 and under 20 years of age who are still studying or in training;
+
+        - children, regardless of age, who are beneficiaries of allowances for the disabled.
+      description.fr: >
+        Un capital « orphelin » est versé aux enfants des travailleurs
+        indépendants décédés. Il concerne :
+
+
+        - les enfants âgés de moins de 16 ans au jour du décès de l’assuré et à sa charge ;
+
+        - les enfants à la charge du défunt de plus de 16 ans, et de moins de 20 ans, poursuivant leurs études ou leur apprentissage ;
+
+        - les enfants, quel que soit leur âge, bénéficiaires des allocations instituées en faveur des handicapés.
+      titre.en: '[automatic] orphan'
+      titre.fr: orphelin
+    pension de reversion:
+      description.en: >
+        [automatic] When your spouse or ex-spouse dies, you can receive
+        a reversionary pension. 
+
+        The payment of the pension is possible, under certain conditions, when the deceased exercised an employed or self-employed activity (self-employed, liberal professional, farmer).
+
+
+        The pension is equal to 54% of the pension that your spouse or ex-spouse was receiving or could have received (not including increases).
+      description.fr: >
+        Au décès de votre époux(se) ou ex-époux(se), vous pouvez
+        percevoir une pension de réversion. 
+
+        Le versement de la pension est possible, sous certaines conditions, lorsque le défunt exerçait une activité salariée ou non salariée (travailleur indépendant, professionnel libéral, agriculteur).
+
+
+        La pension est égale à 54 % de la retraite que votre époux(se) ou ex-époux(se) percevait ou aurait pu percevoir (majorations non comprises).
+      titre.en: '[automatic] maximum reversionary pension'
+      titre.fr: pension de reversion maximum
+    pension invalidité:
+      avec:
+        '[privé] minimum':
+          titre.en: '[automatic] [private] minimum'
+          titre.fr: '[privé] minimum'
+        '[privé] minimum indépendant':
+          titre.en: '[automatic] [private] minimum independent'
+          titre.fr: '[privé] minimum indépendant'
+        invalidité partielle:
+          description.en:
+            '[automatic] If you are able to engage in gainful employment,
+            you are classified as Category 1.'
+          description.fr:
+            Si vous êtes capable d'exercer une activité professionnelle
+            rémunérée, vous êtes classé en 1re catégorie.
+          titre.en: '[automatic] partial disability'
+          titre.fr: invalidité partielle
+        invalidité totale:
+          description.en:
+            '[automatic] If you are no longer able to work, you are
+            classified in the 2nd category.'
+          description.fr:
+            Si vous ne pouvez plus exercer d'activité professionnelle, vous
+            êtes classé en 2e catégorie.
+          titre.en: '[automatic] total disability'
+          titre.fr: invalidité totale
+        minimum salarié:
+          titre.en: '[automatic] minimum wage'
+          titre.fr: minimum salarié
+        revenu annuel moyen des 10 meilleures années:
+          description.en: >
+            [automatic] Since July 1, 2016, you can only receive one
+            disability pension: either from your salaried activity or from your
+            activity as a craftsman/trader. However, the amount of the pension
+            takes into account all your income received whether it comes from
+            your salaried activity or your activity as a self-employed person.
+          description.fr: >
+            Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une
+            seule pension d’invalidité : soit au titre de votre activité
+            salariée, soit au titre de votre activité d’artisan/commerçant.
+            Toutefois, le montant de la pension tient compte de tous vos revenus
+            perçus qu’ils proviennent de votre activité salariée ou de votre
+            activité comme indépendant.
+          titre.en: '[automatic] average annual income for the 10 best years'
+          titre.fr: revenu annuel moyen des 10 meilleures années
+      titre.en: '[automatic] disability pension'
+      titre.fr: pension invalidité
   description.en: >
     [automatic] You may be recognised as disabled if your capacity
     for work and earning is reduced by at least 2/3 as a result of an accident
@@ -5343,6 +6126,16 @@ protection sociale . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 protection sociale . maladie:
+  avec:
+    '[privé] abattement forfaitaire salarié':
+      titre.en: '[automatic] [private] employee lump-sum allowance'
+      titre.fr: '[privé] abattement forfaitaire salarié'
+    '[privé] plancher indemnités salarié':
+      titre.en: '[automatic] [private] floor indemnities employee'
+      titre.fr: '[privé] plancher indemnités salarié'
+    raam:
+      titre.en: '[automatic] Average annual activity income'
+      titre.fr: Revenu d’activité annuel moyen
   description.en: >
     [automatic] Health insurance protects the health of everyone in
     their personal and professional lives.
@@ -5380,6 +6173,14 @@ protection sociale . maladie:
   titre.en: '[automatic] health insurance'
   titre.fr: assurance maladie
 protection sociale . maladie . accidents du travail et maladies professionnelles:
+  avec:
+    indemmnités:
+      avec:
+        à partir du 29ème jour:
+          titre.en: '[automatic] from the 29th day'
+          titre.fr: à partir du 29ème jour
+      titre.en: '[automatic] benefits'
+      titre.fr: indemmnités
   description.en: >
     [automatic] Have you suffered an accident at work or an
     occupational disease? 
@@ -5407,6 +6208,21 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
   titre.en: '[automatic] work accidents and occupational diseases'
   titre.fr: accidents du travail et maladies professionnelles
 protection sociale . maladie . arrêt maladie:
+  avec:
+    délai d'attente:
+      titre.en: '[automatic] waiting period'
+      titre.fr: délai d'attente
+    délai de carence:
+      description.en: >
+        [automatic] During the first 3 days of your work stoppage, no
+        daily allowance is paid to you; this is called the waiting period. It
+        applies at the beginning of each work stoppage.
+      description.fr: >
+        Pendant les 3 premiers jours de votre arrêt de travail, aucune
+        indemnité journalière ne vous est versée ; c'est ce que l'on appelle le
+        délai de carence. Il s'applique au début de chaque arrêt de travail.
+      titre.en: '[automatic] waiting period'
+      titre.fr: délai de carence
   description.en: >-
     [automatic] If you are off work due to illness, you are entitled
     to daily allowances (IJ) paid by your health insurance scheme (CPAM,
@@ -5422,12 +6238,173 @@ protection sociale . maladie . arrêt maladie:
   titre.en: '[automatic] sick leave'
   titre.fr: arrêt maladie
 protection sociale . maladie . arrêt maladie . indépendant:
+  avec:
+    conditions:
+      avec:
+        délai d'attente:
+          description.en: >
+            [automatic] In order to be eligible for sickness compensation
+            for your professional activity, you must have a continuous period of
+            affiliation in this activity.
+
+
+            &gt; Note**: if you do not have the necessary entitlements, you may, under certain conditions, be able to receive compensation for your absence from work by maintaining your entitlements for your previous activity. Contact your primary health insurance fund (CPAM) for more information.
+          description.fr: >
+            Pour pouvoir prétendre à une indemnisation pour maladie au titre
+            de votre activité professionnelle, vous devez justifier d’un délai
+            d’affiliation continus dans cette activité.
+
+
+            > **À noter** : si les droits ne sont pas réunis, votre arrêt de travail peut, sous certaines conditions, être indemnisable au titre du maintien de droits de votre activité précédente. Renseignez-vous auprès de votre caisse primaire d'assurance maladie (CPAM).
+          titre.en: '[automatic] waiting period'
+          titre.fr: délai d'attente
+        revenu:
+          titre.en: '[automatic] income'
+          titre.fr: revenu
+      description.en: >-
+        [automatic] In case of low self-employed income, the amount of
+        the daily allowance (IJ) received by the self-employed person may be
+        zero. Also at the beginning of the activity, it is necessary to wait a
+        certain number of months before being able to receive benefits.
+
+        Since 1 January 2022, it is therefore possible to receive daily sickness and/or maternity benefits for your former activity (regardless of the scheme you were affiliated to).
+      description.fr: >-
+        En cas de revenu d’activité indépendante faible, le montant de
+        l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
+        être nul. De même en début d'activité, il faut attendre un certain
+        nombre de mois avant de pouvoir bénéficier d'indemnités.
+
+        Depuis le 1er janvier 2022, il est donc possible de percevoir des indemnités journalières pour maladie et/ou pour maternité au titre de son ancienne activité (quel que soit le régime auquel on était affilié).
+      titre.en: '[automatic] conditions'
+      titre.fr: conditions
+    indemnités:
+      description.en: >
+        [automatic] The daily allowance you will receive during your
+        work stoppage is equal to 1/730th of your average annual activity income
+        (Raam) (1). This is calculated on the average of your income during the
+        3 calendar years preceding the date of your work stoppage.
+      description.fr: >
+        L'indemnité journalière que vous recevrez pendant votre arrêt de
+        travail est égale à 1/730e de votre revenu d’activité annuel moyen
+        (Raam) (1). Celui-ci est calculé sur la moyenne de vos revenus cotisés
+        des 3 années civiles précédant la date de votre arrêt de travail.
+      titre.en: '[automatic] daily allowances'
+      titre.fr: indemnités journalières
   titre.en: '[automatic] independent'
   titre.fr: indépendant
 protection sociale . maladie . arrêt maladie . salarié:
+  avec:
+    conditions:
+      avec:
+        délai d'attente:
+          description.en: >
+            [automatic] In order to be entitled to sickness benefit from
+            your professional activity, you must have a continuous period of
+            affiliation in this activity. This period depends on your earnings
+            in the previous months.
+          description.fr: >
+            Pour pouvoir prétendre à une indemnisation pour maladie au titre
+            de votre activité professionnelle, vous devez justifier d’un délai
+            d’affiliation continus dans cette activité. Ce dernier dépend de
+            votre rémunération des mois précédents.
+          titre.en: '[automatic] waiting period'
+          titre.fr: délai d'attente
+        revenu:
+          titre.en: '[automatic] income'
+          titre.fr: revenu
+      titre.en: '[automatic] conditions'
+      titre.fr: conditions
+    indemnités:
+      description.en: >
+        [automatic] The daily allowance you will receive during your
+        work stoppage is equal to 50% of your basic daily salary. This is
+        calculated on the average of the gross salaries of the last 3 months
+        preceding your work stoppage (12 months in case of seasonal activity).
+      description.fr: >
+        L'indemnité journalière que vous recevrez pendant votre arrêt de
+        travail est égale à 50 % de votre salaire journalier de base. Celui-ci
+        est calculé sur la moyenne des salaires bruts des 3 derniers mois
+        précédant votre arrêt de travail (12 mois en cas d'activité
+        saisonnière).
+      titre.en: '[automatic] daily allowances'
+      titre.fr: indemnités journalières
   titre.en: '[automatic] employee'
   titre.fr: salarié
 protection sociale . maladie . maternité paternité adoption:
+  avec:
+    allocation forfaitaire de repos adoption:
+      titre.en: '[automatic] lump-sum adoption rest allowance'
+      titre.fr: allocation forfaitaire de repos adoption
+    allocation forfaitaire de repos maternel:
+      titre.en: '[automatic] lump-sum maternal rest allowance'
+      titre.fr: allocation forfaitaire de repos maternel
+    délai d'attente:
+      description.en: >
+        [automatic] ## Maternity 
+
+        You must have 10 months of affiliation on the expected date of delivery,
+
+        and cease all professional activity during the collection period and for at least 8 weeks, including 6 weeks after delivery
+
+        ## Paternity / Adoption
+
+        To benefit from this benefit, you must have 10 months of affiliation at the time of the birth/adoption.
+      description.fr: >
+        ## Maternité 
+
+        Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre accouchement,
+
+        et cesser toute activité professionnelle pendant la période de perception et au moins pendant 8 semaines dont 6 après l’accouchement
+
+        ## Paternité / Adoption
+
+        Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la naissance / à l’adoption.
+      titre.en: '[automatic] waiting period'
+      titre.fr: délai d'attente
+    indépendant:
+      avec:
+        allocation forfaitaire de repos adoption:
+          titre.en: '[automatic] lump-sum adoption rest allowance'
+          titre.fr: allocation forfaitaire de repos adoption
+        allocation forfaitaire de repos maternel:
+          description.en: >
+            [automatic] Half of the allowance is paid at the beginning of
+            the leave and half at the end of the compulsory 8-week period of
+            cessation of activity. The full amount of the allowance is paid
+            after the birth if it takes place before the end of the 7th month of
+            pregnancy.
+          description.fr: >
+            Elle est versée pour moitié au début du congé et pour moitié à
+            la fin de la période obligatoire de cessation d’activité de 8
+            semaines. La totalité du montant de l’allocation est versée après
+            l’accouchement lorsque celui-ci a lieu avant la fin du 7e mois de la
+            grossesse.
+          titre.en: '[automatic] lump-sum maternal rest allowance'
+          titre.fr: allocation forfaitaire de repos maternel
+        indemnités:
+          titre.en: '[automatic] lump sum daily allowances'
+          titre.fr: indemnités journalières forfaitaires
+      titre.en: '[automatic] independent'
+      titre.fr: indépendant
+    salarié:
+      avec:
+        indemnités:
+          description.en: >
+            [automatic] The daily allowance you will receive during your
+            work stoppage is equal to 50% of your basic daily salary. This is
+            calculated on the average of the gross salaries of the last 3 months
+            preceding your work stoppage (12 months in case of seasonal
+            activity).
+          description.fr: >
+            L'indemnité journalière que vous recevrez pendant votre arrêt de
+            travail est égale à 50 % de votre salaire journalier de base.
+            Celui-ci est calculé sur la moyenne des salaires bruts des 3
+            derniers mois précédant votre arrêt de travail (12 mois en cas
+            d'activité saisonnière).
+          titre.en: '[automatic] daily allowances'
+          titre.fr: indemnités journalières
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
   titre.en: '[automatic] maternity and paternity leave benefits'
   titre.fr: indemnités congé maternité paternité adoption
 protection sociale . retraite:
@@ -5473,12 +6450,53 @@ protection sociale . retraite:
 
 
     Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
-  résumé.en: Guarantees on average 60 to 70% of the last income from employment
-    after age 65.
-  résumé.fr: Garantit en moyenne 60 à 70 % du dernier revenu d'activité après 65 ans.
+  résumé.en: '[automatic] Guarantees an average of 60-70% of your last working
+    income for your retirement pension.'
+  résumé.fr:
+    Garantit en moyenne 60 à 70 % du dernier revenu d'activité pour votre
+    pension de retraite.
   titre.en: pensions
   titre.fr: retraite
 protection sociale . retraite . CNAVPL:
+  avec:
+    points acquis:
+      avec:
+        cotisation maximum T1:
+          titre.en: '[automatic] maximum contribution T1'
+          titre.fr: cotisation maximum T1
+        cotisation maximum T2:
+          titre.en: '[automatic] maximum fee T2'
+          titre.fr: cotisation maximum T2
+      note.en: >-
+        [automatic] Additional points may be awarded:
+
+        - redeemed points;
+
+        - 100 additional points for the calendar quarter in which childbirth occurs,
+
+        - 200 additional points per calendar year for the insured person suffering from a disability requiring the assistance of a third party
+
+        200 additional points per calendar year concerned for insured persons suffering from a disability that requires them to have recourse to the assistance of a third party;
+
+        - 400 points per calendar year for persons recognized as being unable to practice their profession for a
+
+        of their profession for a period of more than 6 months
+      note.fr: >-
+        Des points supplémentaires peuvent être attribués :
+
+        - points rachetés ;
+
+        - 100 points supplémentaires au titre du trimestre civil au cours duquel survient l’accouchement,
+
+        - 200 points supplémentaires par année civile concernée pour l’assuré atteint d’invalidité l’obli-
+
+        geant à avoir recours à l’assistance d’une tierce personne ;
+
+        - 400 points par année civile pour les personnes reconnues atteintes d’une incapacité d’exercice
+
+        de leur profession pour une durée de plus de 6 mois
+      titre.en: '[automatic] points acquired'
+      titre.fr: points acquis
   description.en: >-
     [automatic] The liberal professions affiliated to the CNAVPL
     have a basic pension plan based on points.
@@ -5562,6 +6580,64 @@ protection sociale . retraite . base:
   titre.en: '[automatic] Maximum basic pension'
   titre.fr: Retraite de base maximum
 protection sociale . retraite . base . cotisée:
+  avec:
+    indépendant:
+      note.en: >-
+        [automatic] Reminder: for self-employed workers, the validation of
+        quarters is based on the **contributed income**.
+
+
+        The last paragraph of article R351-9 of the Social Security Code, as made applicable to self-employed workers by articles D634-1 and R634-1 of the same code, with adaptations, provides that for the period after December 31, 2013, as many quarters are to be retained as the annual income corresponding to the deductions made by the insured person represents times the amount of the minimum growth wage in force on January 1 of the year in question, calculated on the basis of 150 hours, with a maximum of four quarters per calendar year.
+
+
+        By deductions made by the insured, the text refers (in the case of a self-employed person who is not necessarily up to date with his or her contributions) to the basic old-age pension scheme contributions actually paid by him or her (and not to the contributions called for).
+
+
+        The annual income corresponding to the deductions made by the insured (so-called "contributed income") is the income reconstituted from the basic old-age pension scheme contributions ("RVB") actually paid by the insured.
+
+
+        The contributed income is therefore the basic old-age pension contribution actually paid for the year N divided by the basic old-age pension contribution rate for that year N.
+
+
+        Final RVB contribution actually paid for a year N (+ deductions or exemptions generating rights) / RVB contribution rate for this year N (for the part generating rights applicable to the capped income).
+
+
+        This income (known as "contributed income" for a year N) is used to validate quarters for a year N.
+
+
+        It is compared to the threshold of 150 smic/hour to determine the number of quarters to be validated (contributed income of year N /150 smic h).
+      note.fr: >-
+        Rappel : la validation de trimestres s’effectue, pour les travailleurs
+        indépendants à partir du **revenu cotisé**
+
+
+        Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel que rendu applicable aux travailleurs indépendants par les articles D634-1 et R634-1 du même code, moyennant adaptations, prévoit que pour la période postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres que le revenu annuel correspondant aux retenues subies par l’assuré représente de fois le montant du salaire minimum de croissance en vigueur au 1er janvier de l'année considérée calculé sur la base de 150 heures, avec un maximum de quatre trimestres par année civile.
+
+
+        Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
+
+
+        Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
+
+
+        Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.
+
+
+        Cotisation définitive RVB effectivement versée au titre d'une année N (+réductions ou exonérations génératrices de droits)  / taux de cotisation RVB au titre de cette année N (pour la part génératrice de droit applicable au revenu plafonné).
+
+
+        Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la validation de trimestres d’une année N.
+
+
+        Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
+      titre.en: '[automatic] independent income'
+      titre.fr: revenu indépendant
+    revenu auto-entrepreneur:
+      titre.en: '[automatic] auto-entrepreneur income'
+      titre.fr: revenu auto-entrepreneur
+    salarié:
+      titre.en: '[automatic] salaried income'
+      titre.fr: revenu salarié
   titre.en: '[automatic] income contributed for the basic pension'
   titre.fr: revenu cotisés pour la retraite de base
 protection sociale . retraite . complémentaire:
@@ -5580,6 +6656,20 @@ protection sociale . retraite . complémentaire:
   titre.en: '[automatic] Supplementary pension earned in 10 years'
   titre.fr: Retraite complémentaire gagnée en 10 ans
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
+  avec:
+    points acquis:
+      note.en: >
+        [automatic] We base ourselves on a constant value of the point, but it
+        changes from year to year, so this value is a rough approximation
+      note.fr: >
+        On se base sur une valeur constante du point, hors cette dernière
+        change d'année en année, cette valeure est donc une grossière
+        approximation
+      titre.en: '[automatic] points acquired'
+      titre.fr: points acquis
+    valeur d'acquisition:
+      titre.en: '[automatic] acquisition value'
+      titre.fr: valeur d'acquisition
   note.en:
     '[automatic] The revaluation of the point value takes place on November
     1, not January 1.'
@@ -5589,6 +6679,16 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
   titre.en: '[automatic] AGIRC-ARRCO pension'
   titre.fr: Pension AGIRC-ARRCO
 protection sociale . retraite . complémentaire . RCI:
+  avec:
+    points acquis:
+      titre.en: '[automatic] points acquired'
+      titre.fr: points acquis
+    revenu cotisé auto-entrepreneur:
+      titre.en: '[automatic] contributed income auto-entrepreneur'
+      titre.fr: revenu cotisé auto-entrepreneur
+    valeur d'acquisition:
+      titre.en: '[automatic] acquisition value'
+      titre.fr: valeur d'acquisition
   titre.en: '[automatic] Supplementary pension for the self-employed'
   titre.fr: Pension retraite complémentaire des indépendants
 protection sociale . retraite . trimestres:
@@ -5812,6 +6912,136 @@ salarié . ancienneté:
   titre.en: '[automatic] seniority'
   titre.fr: ancienneté
 salarié . contrat:
+  avec:
+    CDD:
+      avec:
+        information:
+          description.en:
+            "[automatic] Remember that a fixed-term contract must always
+            correspond to a temporary need of the company. [Labor Code - Article
+            L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArti\
+            cle=LEGIARTI000006901194&amp;cidTexte=LEGITEXT000006072050)"
+          description.fr:
+            Rappelez-vous qu'un CDD doit toujours correspondre à un besoin
+            temporaire de l'entreprise. [Code du travail - Article
+            L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
+          titre.en: '[automatic] information'
+          titre.fr: information
+      description.en: >
+        [automatic] By default, having someone work in France
+        automatically establishes a full-time CDI.
+
+        Certain exceptional situations allow employers to provide an end date. The contract, which is then necessary, mentions this end date.
+      description.fr: >
+        Par défaut, faire travailler quelqu'un en France établit
+        automatiquement un CDI à temps plein.
+
+        Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date de fin.
+      titre.en: '[automatic] CDD'
+      titre.fr: CDD
+    CDI:
+      titre.en: '[automatic] CDI'
+      titre.fr: CDI
+    apprentissage:
+      description.en: >
+        [automatic] The apprenticeship contract is a written employment
+        contract of limited duration (CDD) or unlimited duration (CDI) between
+        an employee and an employer. It allows the apprentice to follow a
+        sandwich course in a company under the responsibility of an apprentice
+        master and in an apprentice training center (CFA) for 1 to 3 years.
+      description.fr: >
+        Le contrat d'apprentissage est un contrat de travail écrit à
+        durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un
+        employeur. Il permet à l'apprenti de suivre une formation en alternance
+        en entreprise sous la responsabilité d'un maître d'apprentissage et en
+        centre de formation des apprentis (CFA) pendant 1 à 3 ans.
+      titre.en: '[automatic] learning'
+      titre.fr: apprentissage
+    professionnalisation:
+      description.en: >
+        [automatic] The professionalization contract is a work-study
+        contract
+
+        reserved for a priority audience: young people aged 16 to 25 as part of their initial
+
+        their initial training, job seekers, beneficiaries of the RSA, ASS or AAH, and
+
+        AAH, and people who have benefited from a single integration contract.
+
+
+        It can take the form of a fixed-term contract (CDD) or an open-ended
+
+        (CDI), with the professionalisation period itself lasting between 6 and 12 months.
+
+        should last between 6 and 12 months. In some cases, this period can be extended to 36 months.
+
+        extended to 36 months.
+      description.fr: >
+        Le contrat de professionnalisation est un contrat de travail en
+        alternance
+
+        réservé à un public prioritaire : jeunes de 16 à 25 ans dans le cadre de
+
+        leur formation initiale, demandeurs d'emplois, bénéficiaires du RSA, ASS ou
+
+        AAH, et les personnes ayant bénéficié d'un contrat unique d'insertion.
+
+
+        Il peut prendre la forme d'un contrat à durée déterminée (CDD) ou
+
+        indéterminée (CDI), la période de professionnalisation proprement-dite
+
+        devant durer entre 6 et 12 mois. Dans certains cas cette période peut être
+
+        prolongée jusqu'à 36 mois.
+      titre.en: '[automatic] professionalization'
+      titre.fr: professionnalisation
+    stage:
+      avec:
+        avertissement:
+          description.en: >-
+            [automatic] An internship agreement **is not an employment
+            contract**, and cannot be concluded to perform a regular task
+            corresponding to a permanent job, or to a temporary increase in the
+            company's activity. [Education Code - Article
+            L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&amp;cidTexte=LEGITEXT000006071191)
+
+            In addition, a company with less than 20 employees may not host more than **3 trainees**, and no more than **15% of the workforce** for companies with more than 20 employees.
+          description.fr: >-
+            Une convention de stage **n'est pas un contrat de travail**, et
+            ne peut pas être conclue pour réaliser une tâche régulière
+            correspondant à un poste de travail permanent, ou à un accroissement
+            temporaire de l'activité de l'entreprise. [Code de l'éducation -
+            Article
+            L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
+
+            Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
+          titre.en: '[automatic] warning'
+          titre.fr: avertissement
+        contrôle gratification minimale:
+          description.en:
+            "[automatic] The remuneration for the internship is less than
+            the [minimum
+            fee](https://www.service-public.fr/professionnels-entreprises/vosdr\
+            oits/F32131)."
+          description.fr:
+            La rémunération du stage est inférieure à la [gratification
+            minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
+          titre.en: '[automatic] control minimum gratification'
+          titre.fr: contrôle gratification minimale
+        gratification minimale:
+          titre.en: '[automatic] minimum gratuity'
+          titre.fr: gratification minimale
+      description.en: >
+        [automatic] An employer who takes on an intern must pay him or
+        her a minimum gratuity. This is partly exempt from social security
+        contributions.
+      description.fr: >
+        Un employeur qui accueille un stagiaire doit lui verser une
+        gratification minimale. Celle-ci est en partie exonérée de cotisations
+        sociales.
+      titre.en: '[automatic] internship'
+      titre.fr: stage
   description.en: >
     [automatic] The contract that binds a company (via its
     establishment) to an individual, who is then its employee.
@@ -5823,6 +7053,30 @@ salarié . contrat:
   titre.en: '[automatic] contract'
   titre.fr: contrat
 salarié . contrat . CDD . congés pris:
+  avec:
+    congés dus sur la durée du contrat:
+      titre.en: '[automatic] leave due during the term of the contract'
+      titre.fr: congés dus sur la durée du contrat
+    contrôle congés non pris max:
+      description.en:
+        '[automatic] The number of days of leave taken is greater than
+        the total number of days of leave acquired over the duration of the
+        contract (by default 25 days / year)'
+      description.fr:
+        Le nombre de jours de congés pris est supérieur à la totalité
+        des jours de congés acquis sur la durée du contrat (par défaut 25 jours
+        / an)
+      titre.en: '[automatic] control of untaken leave max'
+      titre.fr: contrôle congés non pris max
+    jours ouvrés sur la durée du contrat:
+      titre.en: '[automatic] working days over the duration of the contract'
+      titre.fr: jours ouvrés sur la durée du contrat
+    proportion:
+      titre.en: '[automatic] proportion'
+      titre.fr: proportion
+    proportion par rapport aux jours ouvrés:
+      titre.en: '[automatic] proportion to the number of working days'
+      titre.fr: proportion par rapport aux jours ouvrés
   description.en: >
     [automatic] As the contract is for a fixed term, the employee
     does not necessarily have time to take all the days of leave that he/she has
@@ -5869,6 +7123,39 @@ salarié . contrat . CDD . durée:
   titre.en: '[automatic] duration of the contract'
   titre.fr: durée du contrat
 salarié . contrat . CDD . indemnité de fin de contrat:
+  avec:
+    CDD jeune vacances:
+      description.en: >-
+        [automatic] 
+
+        To be in this case, the contract must end before the school or university vacations, and the young person must effectively resume his or her studies at the beginning of the next school year.
+      description.fr: >-
+
+        Pour être dans ce cas, le contrat doit se terminer avant les vacances scolaires ou universitaires, et que le jeune reprenne effectivement ses études lors de la prochaine rentrée.
+      question.en:
+        '[automatic] Is it a fixed-term contract concluded with a young
+        person during his or her school or university vacations ("summer job")?'
+      question.fr:
+        Est-ce un CDD conclu avec un jeune pendant ses vacances scolaires
+        ou universitaires (« job d’été ») ?
+      titre.en: '[automatic] CDD young vacation'
+      titre.fr: CDD jeune vacances
+    rupture sans indemnité:
+      description.en:
+        '[automatic] In these cases, no surcharge or compensation on the
+        fixed-term contract will be payable.'
+      description.fr: Dans ces cas, aucune majoration ou indemnité sur le CDD ne sera à verser.
+      question.en:
+        '[automatic] Was the fixed-term contract terminated during the
+        trial period, for serious misconduct, force majeure, or in advance by
+        the employee?'
+      question.fr:
+        Le contrat CDD a-t-il été rompu pendant la période d'essai, pour
+        faute grave, force majeure, ou de manière anticipée par le salarié ?
+      titre.en:
+        '[automatic] Termination for serious fault, force majeure, or by the
+        employee.'
+      titre.fr: Rupture pour faute grave, force majeure, ou par le salarié.
   description.en: '[automatic] If you don''t know, click on "Skip".'
   description.fr: Si vous ne savez pas, cliquez sur « Passer »
   question.en: '[automatic] Is the employee entitled to the end of contract
@@ -5879,6 +7166,130 @@ salarié . contrat . CDD . indemnité de fin de contrat:
   titre.en: '[automatic] end of contract indemnity'
   titre.fr: indemnité de fin de contrat
 salarié . contrat . CDD . motif:
+  avec:
+    classique:
+      avec:
+        accroissement activité:
+          description.en: "[automatic] Temporary increase of the company's activity"
+          description.fr: Accroissement temporaire de l'activité de l'entreprise
+          titre.en: '[automatic] Temporary increase in activity'
+          titre.fr: Accroissement temporaire d'activité
+        mission:
+          description.en: >
+            [automatic] &gt; Also known as a defined purpose contract.
+
+
+            Recruitment of engineers and managers, within the meaning of the collective agreements, with a view to achieving a defined objective when an extended branch agreement or, failing that, a company agreement so provides and defines :
+
+
+            - The economic needs to which these contracts are likely to provide an appropriate response;
+
+            - The conditions under which employees on fixed-term contracts with a defined purpose benefit from guarantees relating to redeployment assistance, validation of acquired experience, priority for re-employment and access to continuing vocational training, and may, during the notice period, mobilize the means available to organize the rest of their career path;
+
+            - The conditions under which employees on fixed-term contracts with a defined purpose have priority of access to jobs on open-ended contracts in the company.
+          description.fr: >
+            > Aussi appelé contrat à objet défini.
+
+
+            Recrutement d'ingénieurs et de cadres, au sens des conventions collectives, en vue de la réalisation d'un objet défini lorsqu'un accord de branche étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
+
+
+            - Les nécessités économiques auxquelles ces contrats sont susceptibles d'apporter une réponse adaptée ;
+
+            - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini bénéficient de garanties relatives à l'aide au reclassement, à la validation des acquis de l'expérience, à la priorité de réembauche et à l'accès à la formation professionnelle continue et peuvent, au cours du délai de prévenance, mobiliser les moyens disponibles pour organiser la suite de leur parcours professionnel ;
+
+            - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini ont priorité d'accès aux emplois en contrat à durée indéterminée dans l'entreprise.
+          titre.en: '[automatic] Mission contract'
+          titre.fr: Contrat de mission
+        remplacement:
+          description.en: >
+            [automatic] We group the following cases in this category.
+
+
+            - Replacement of an employee in case of :
+              - Absence;
+              - Temporary change to part-time work, concluded by an amendment to the employment contract or by a written exchange between the employee and his employer;
+              - Suspension of the employment contract;
+              - Permanent departure preceding the elimination of his workstation after consultation of the works council or, failing that, of the staff representatives, if any;
+              - Waiting for the employee recruited on a permanent contract to replace him/her to take up his/her duties;
+
+            - Replacement of the head of a craft, industrial or commercial company, of a person practicing a liberal profession, of his or her spouse effectively participating in the activity of the company on a professional and usual basis, or of a non-salaried partner of a professional partnership, a partnership of means, a liberal practice partnership or any other legal person practicing a liberal profession;
+
+
+            - Replacement of the head of a farm or a company mentioned in 1° to 4° of article L. 722-1 of the rural and maritime fishing code, of a family helper, of a partner in the farm, or of their spouse mentioned in article L. 722-10 of the same code, provided that he or she is effectively participating in the activity of the farm or company;
+          description.fr: >
+            Nous regroupons dans cette catégorie les cas suivants.
+
+
+            - Remplacement d'un salarié en cas :
+              - D'absence ;
+              - De passage provisoire à temps partiel, conclu par avenant à son contrat de travail ou par échange écrit entre ce salarié et son employeur ;
+              - De suspension de son contrat de travail ;
+              - De départ définitif précédant la suppression de son poste de travail après consultation du comité d'entreprise ou, à défaut, des délégués du personnel, s'il en existe ;
+              - D'attente de l'entrée en service effective du salarié recruté par contrat à durée indéterminée appelé à le remplacer ;
+
+            - Remplacement d'un chef d'entreprise artisanale, industrielle ou commerciale, d'une personne exerçant une profession libérale, de son conjoint participant effectivement à l'activité de l'entreprise à titre professionnel et habituel ou d'un associé non salarié d'une société civile professionnelle, d'une société civile de moyens d'une société d'exercice libéral ou de toute autre personne morale exerçant une profession libérale ;
+
+
+            - Remplacement du chef d'une exploitation agricole ou d'une entreprise mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche maritime, d'un aide familial, d'un associé d'exploitation, ou de leur conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il participe effectivement à l'activité de l'exploitation agricole ou de l'entreprise ;
+          titre.en: '[automatic] Replacement contract'
+          titre.fr: Contrat de remplacement
+        saisonnier:
+          description.en:
+            '[automatic] Jobs of a seasonal nature, whose tasks are called
+            upon to be repeated each year according to a more or less fixed
+            periodicity, according to the rhythm of the seasons or collective
+            lifestyles.'
+          description.fr:
+            Emplois à caractère saisonnier, dont les tâches sont appelées à
+            se répéter chaque année selon une périodicité à peu près fixe, en
+            fonction du rythme des saisons ou des modes de vie collectifs.
+          titre.en: '[automatic] seasonal'
+          titre.fr: saisonnier
+        usage:
+          description.en:
+            '[automatic] Jobs for which, in certain sectors of activity
+            defined by decree or by agreement or extended collective labor
+            agreement, it is customary not to use a permanent employment
+            contract due to the nature of the activity carried out and the
+            temporary nature of these jobs;'
+          description.fr:
+            Emplois pour lesquels, dans certains secteurs d'activité définis
+            par décret ou par convention ou accord collectif de travail étendu,
+            il est d'usage constant de ne pas recourir au contrat de travail à
+            durée indéterminée en raison de la nature de l'activité exercée et
+            du caractère par nature temporaire de ces emplois ;
+          titre.en: '[automatic] Contract of use'
+          titre.fr: Contrat d'usage
+      titre.en: '[automatic] classic designs'
+      titre.fr: motifs classiques
+    complément formation:
+      description.en:
+        '[automatic] The employer undertakes, for a period of time and
+        under conditions determined by decree, to provide additional
+        professional training to the employee.'
+      description.fr:
+        L'employeur s'engage, pour une durée et dans des conditions
+        déterminées par décret, à assurer un complément de formation
+        professionnelle au salarié.
+      titre.en: '[automatic] Complementary professional training'
+      titre.fr: Complément de formation professionnelle
+    contrat aidé:
+      titre.en: '[automatic] Subsidized contract (CUI, work-study, etc.)'
+      titre.fr: Contrat aidé (CUI, alternance, ...)
+    issue d'apprentissage:
+      description.en: >
+        [automatic] At the end of an apprenticeship contract, a
+        fixed-term employment contract may be concluded when the apprentice is
+        required to fulfill national service obligations within a period of less
+        than one year after the expiration of the apprenticeship contract.
+      description.fr: >
+        A l'issue d'un contrat d'apprentissage, un contrat de travail à
+        durée déterminée peut être conclu lorsque l'apprenti doit satisfaire aux
+        obligations du service national dans un délai de moins d'un an après
+        l'expiration du contrat d'apprentissage.
+      titre.en: '[automatic] At the end of an apprenticeship contract'
+      titre.fr: À l'issue d'un contrat d'apprentissage
   description.en: >
     [automatic] The fixed-term contract is an exceptional contract:
     its use must be authorized by one of the reasons specified in the law.
@@ -5976,6 +7387,23 @@ salarié . contrat . professionnalisation . salarié de 45 ans et plus:
   titre.en: '[automatic] employee aged 45 and over'
   titre.fr: salarié de 45 ans et plus
 salarié . contrat . salaire brut:
+  avec:
+    contrôle salaire élevé:
+      description.en:
+        "[automatic] The monthly salary entered is high. Didn't you make
+        a mistake in the calculation period?"
+      description.fr:
+        Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé
+        de période de calcul ?
+      titre.en: '[automatic] high salary control'
+      titre.fr: contrôle salaire élevé
+    équivalent temps plein:
+      question.en: '[automatic] What is the full-time equivalent salary?'
+      question.fr: Quel est le salaire en équivalent temps plein ?
+      résumé.en: '[automatic] Salary if hired full time'
+      résumé.fr: Le salaire si l'embauche se faisait à temps plein
+      titre.en: '[automatic] Full-time equivalent gross salary'
+      titre.fr: Salaire brut équivalent temps plein
   description.en: >
     [automatic] This is the regular *gross* salary written into the
     employment contract. It never changes between months and cannot be changed
@@ -6052,9 +7480,47 @@ salarié . contrat . statut cadre:
   titre.en: '[automatic] framework statute'
   titre.fr: statut cadre
 salarié . contrat . temps de travail:
+  avec:
+    SMIC:
+      titre.en: '[automatic] SMIC'
+      titre.fr: SMIC
+    quotité:
+      titre.en: '[automatic] quotient'
+      titre.fr: quotité
   titre.en: '[automatic] working time'
   titre.fr: temps de travail
 salarié . contrat . temps de travail . temps partiel:
+  avec:
+    contrôle temps max:
+      description.en:
+        '[automatic] A part-time job must be below the legal working
+        time (35 hours)'
+      description.fr: Un temps partiel doit être en dessous de la durée de travail légale (35h)
+      titre.en: '[automatic] max time control'
+      titre.fr: contrôle temps max
+    contrôle temps min:
+      description.en:
+        '[automatic] The minimum number of hours per week is 24. It is
+        possible to go lower in certain cases only. [More
+        info](https://www.service-public.fr/particuliers/vosdroits/F32428).'
+      description.fr:
+        Le nombre minimum d'heures par semaine est 24. Il est possible
+        de descendre plus bas dans certains cas seulement. [Plus
+        d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+      titre.en: '[automatic] control time min'
+      titre.fr: contrôle temps min
+    heures par semaine:
+      question.en: '[automatic] What is the number of hours worked per week for
+        part-time work?'
+      question.fr:
+        Quel est le nombre d'heures travaillées par semaine dans le cadre
+        du temps partiel ?
+      suggestions.4 jours / semaine.en: '[automatic] 4 days / week'
+      suggestions.4 jours / semaine.fr: 4 jours / semaine
+      suggestions.mi-temps.en: '[automatic] half-time'
+      suggestions.mi-temps.fr: mi-temps
+      titre.en: '[automatic] hours per week'
+      titre.fr: heures par semaine
   description.en: >
     [automatic] Two contracts with the same salary, one part-time
     and one full-time, may result in different contribution amounts.
@@ -6072,6 +7538,20 @@ salarié . contrat . temps de travail . temps partiel:
   titre.en: '[automatic] part-time'
   titre.fr: temps partiel
 salarié . convention collective:
+  avec:
+    contrôle décharge:
+      description.en: '[automatic] Attention: the implementation of collective
+        agreements is still partial and not verified. Nevertheless, it allows us
+        to obtain a first estimate, more precise than the general scheme.'
+      description.fr:
+        "Attention : l'implémentation des conventions collective est
+        encore partielle et non vérifiée. Néanmoins, cela permet d'obtenir une
+        première estimation, plus précise que le régime général."
+      titre.en: '[automatic] control discharge'
+      titre.fr: contrôle décharge
+    droit commun:
+      titre.en: '[automatic] common law'
+      titre.fr: droit commun
   question.en: '[automatic] Which collective agreement is applicable to the company?'
   question.fr: Quelle convention collective est applicable à l'entreprise ?
   titre.en: convention collective
@@ -6124,6 +7604,34 @@ salarié . convention collective . BTP . congés intempéries:
   titre.en: '[automatic] bad weather leave'
   titre.fr: congés intempéries
 salarié . convention collective . BTP . congés intempéries . caisse de rattachement:
+  avec:
+    centre:
+      titre.en: '[automatic] center'
+      titre.fr: centre
+    centre ouest:
+      titre.en: '[automatic] western center'
+      titre.fr: centre ouest
+    grand est:
+      titre.en: '[automatic] big east'
+      titre.fr: grand est
+    grand ouest:
+      titre.en: '[automatic] great west'
+      titre.fr: grand ouest
+    idf:
+      titre.en: '[automatic] Île-de-France'
+      titre.fr: Île-de-France
+    méditerranée:
+      titre.en: '[automatic] Mediterranean'
+      titre.fr: méditerranée
+    nord ouest:
+      titre.en: '[automatic] northwest'
+      titre.fr: nord ouest
+    rhône alpes auvergne:
+      titre.en: '[automatic] rhône alpes auvergne'
+      titre.fr: rhône alpes auvergne
+    sud ouest:
+      titre.en: '[automatic] south west'
+      titre.fr: sud ouest
   question.en: '[automatic] To which fund is the company affiliated for the
     payment of the bad weather contribution?'
   question.fr: À quelle caisse l'entreprise est-elle rattachée pour le versement
@@ -6235,6 +7743,13 @@ salarié . convention collective . optique . prime d'ancienneté:
   titre.en: '[automatic] seniority bonus'
   titre.fr: prime d'ancienneté
 salarié . convention collective . optique . prévoyance:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
   titre.en: '[automatic] providence'
   titre.fr: prévoyance
 salarié . convention collective . optique . salaire minimum conventionnel:
@@ -6412,6 +7927,74 @@ salarié . cotisations . APEC:
   titre.en: '[automatic] Association for the employment of executives'
   titre.fr: Association pour l’emploi des cadres
 salarié . cotisations . ATMP:
+  avec:
+    seuil taux mixte ou individuel:
+      titre.en: '[automatic] threshold mixed or individual rate'
+      titre.fr: seuil taux mixte ou individuel
+    taux fonctions support:
+      avec:
+        montant:
+          titre.en: '[automatic] amount'
+          titre.fr: montant
+      description.en: >
+        [automatic] The "support functions" rate allows the employer who
+        requests it to benefit from a reduced rate of occupational injury
+        contribution for employees not exposed to the main risk of the
+        establishment. It is reserved for employees whose main function is
+        administrative.
+
+
+        The following are considered to be support functions of an administrative nature:
+
+
+        - secretarial work
+
+        - reception ;
+
+        - accounting
+
+        - legal affairs
+
+        - financial management
+
+        - human resources.
+      description.fr: >
+        Le taux « fonctions support » permet à l’employeur qui le
+        demande de bénéficier d’un taux de cotisation AT/MP réduit pour les
+        salariés non exposés au risque principal de l’établissement. Il est
+        réservé aux salariés occupant à titre principal une fonction support de
+        nature administrative.
+
+
+        Sont considérées comme fonctions supports de nature administrative :
+
+
+        - le secrétariat ;
+
+        - l’accueil ;
+
+        - la comptabilité ;
+
+        - les affaires juridiques ;
+
+        - la gestion financière ;
+
+        - les ressources humaines.
+      question.en: '[automatic] Does the employee have an administrative support function?'
+      question.fr: Le salarié occupe-t-il une fonction support de nature administrative ?
+      titre.en: '[automatic] support function rates'
+      titre.fr: taux fonctions support
+    taux minimum:
+      description.en: '[automatic] The existing minimum rate for the ATMP
+        contribution. Used in particular for the calculation of the general
+        reduction of contributions'
+      description.fr: Le taux minimum existant pour la cotisation ATMP. Utilisé
+        notamment pour le calcul de la réduction générale de cotisations
+      titre.en: '[automatic] minimum rate'
+      titre.fr: taux minimum
+    taux moyen:
+      titre.en: '[automatic] average rate'
+      titre.fr: taux moyen
   description.en: '[automatic] Contribution due in respect of accidents at work
     and occupational diseases.'
   description.fr: Cotisation due au titre des Accidents du Travail et Maladies
@@ -6487,6 +8070,10 @@ salarié . cotisations . CSG-CRDS . CSG:
   titre.en: '[automatic] CSG'
   titre.fr: CSG
 salarié . cotisations . CSG-CRDS . assiette de base:
+  avec:
+    assiette abattue:
+      titre.en: '[automatic] knocked down plate'
+      titre.fr: assiette abattue
   titre.en: '[automatic] base plate'
   titre.fr: assiette de base
 salarié . cotisations . CSG-CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
@@ -6511,6 +8098,13 @@ salarié . cotisations . CSG-CRDS . revenus de remplacement:
   titre.en: '[automatic] CSG-CRDS replacement income'
   titre.fr: CSG-CRDS revenus de remplacement
 salarié . cotisations . FNAL:
+  avec:
+    privé:
+      titre.en: '[automatic] private'
+      titre.fr: privé
+    éligible taux réduit:
+      titre.en: '[automatic] eligible for reduced rate'
+      titre.fr: éligible taux réduit
   description.en: >
     [automatic] The National Housing Assistance Fund (Fnal) is a
     contribution that ensures the financing of the housing allowance.
@@ -6534,6 +8128,10 @@ salarié . cotisations . PEEC:
   titre.en: '[automatic] Participation in the construction effort'
   titre.fr: Participation à l'effort de construction
 salarié . cotisations . allocations familiales:
+  avec:
+    taux réduit:
+      titre.en: '[automatic] reduced rate'
+      titre.fr: taux réduit
   titre.en: Family allowances
   titre.fr: allocations familiales
 salarié . cotisations . assiette:
@@ -6550,6 +8148,28 @@ salarié . cotisations . assiette:
   titre.en: '[automatic] plate'
   titre.fr: assiette
 salarié . cotisations . assiette forfaitaire:
+  avec:
+    montant:
+      note.en: >
+        [automatic] There is a general rule for lump-sum bases. When the
+        remuneration is equal to or higher than
+
+        1.5 times the social security ceiling, the lump-sum base cannot be less than 70% of the remuneration
+      note.fr: >
+        Il existe une règle générale d'encadrement des assiettes forfaitaires.
+        Lorsque la rémunération est supérieure ou égale à
+
+        1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
+      titre.en: '[automatic] flat-rate contribution base'
+      titre.fr: assiette forfaitaire de cotisations
+    rémunération réelle:
+      question.en: '[automatic] Do you want to calculate contributions on actual
+        earnings (instead of the flat rate basis)?'
+      question.fr:
+        Voulez-vous calculer les cotisations sur la rémunération réelle (au
+        lieu de la base forfaitaire) ?
+      titre.en: '[automatic] actual compensation'
+      titre.fr: rémunération réelle
   titre.en: '[automatic] lump-sum basis'
   titre.fr: assiette forfaitaire
 salarié . cotisations . chômage:
@@ -6626,12 +8246,77 @@ salarié . cotisations . exonérations . JEI . montant:
   titre.en: '[automatic] JEI exemption'
   titre.fr: Exonération JEI
 salarié . cotisations . exonérations . T:
+  avec:
+    sécurité sociale et chômage:
+      titre.en: '[automatic] social security and unemployment'
+      titre.fr: sécurité sociale et chômage
   titre.en: '[automatic] Coefficient T'
   titre.fr: Coefficient T
 salarié . cotisations . exonérations . heures supplémentaires:
   titre.en: '[automatic] overtime'
   titre.fr: heures supplémentaires
 salarié . cotisations . exonérations . lodeom:
+  avec:
+    barème compétitivité:
+      titre.en: '[automatic] Eligibility for the competitiveness scale'
+      titre.fr: Eligibilité au barème de compétitivité
+    barème compétitivité renforcée:
+      description.en: >
+        [automatic] - Turnover of less than 50 million euros
+
+        - Employers in the sectors of industry, catering, environment, agri-nutrition, renewable energies, new information and communication technologies and call centers, fisheries, marine cultures, aquaculture, agriculture, tourism including related leisure activities, boating, hotel business, research and development ;
+
+        - Companies benefiting from the inward processing regime defined in Article 256 of Regulation (EU) No 952/2013 of the European Parliament and of the Council of 9 October 2013 establishing the Customs Code of the Union
+
+        - In French Guiana, employers whose main activity falls within one of the sectors of activity eligible for the tax reduction provided for in Article 199 undecies B of the General Tax Code, or corresponding to one of the following activities: accounting, business consulting, engineering or technical studies.
+      description.fr: >
+        - Chiffre d'affaires de moins de 50 millions d'euros
+
+        - Les employeurs relevant des secteurs de l’industrie, de la restauration, de l’environnement, de l’agro nutrition, des énergies renouvelables, des nouvelles technologies de l’information et de la communication et des centres d’appel, de la pêche, des cultures marines, de l’aquaculture, de l’agriculture, du tourisme y compris les activités de loisirs s’y rapportant, du nautisme, de l’hôtellerie, de la recherche et du développement ;
+
+        - Les entreprises bénéficiaires du régime de perfectionnement actif défini à l’article 256 du règlement (UE) n° 952/2013 du parlement européen et du conseil du 9 octobre 2013 établissant le code des douanes de l’Union
+
+        - En Guyane, les employeurs ayant une activité principale relevant de l’un des secteurs d’activité éligibles à la réduction d’impôt prévue à l’article 199 undecies B du code général des impôts, ou correspondant à l’une des activités suivantes : comptabilité, conseil aux entreprises, ingénierie ou études techniques.
+      question.en: '[automatic] Are you eligible for the enhanced competitiveness scale?'
+      question.fr: Êtes-vous éligibles au barème compétitivité renforcée ?
+      titre.en: '[automatic] enhanced competitiveness scale'
+      titre.fr: barème compétitivité renforcée
+    barème innovation et croissance:
+      description.en: >
+        [automatic] - Employers with fewer than 250 employees and annual
+        sales of less than 50 million euros are eligible for this scale for the
+        remuneration of employees working mainly on innovative projects in the
+        field of information and communication technologies.
+
+        - Innovative projects are defined as projects whose purpose is to introduce a new or significantly improved good, service, production or distribution method in terms of its characteristics and intended use. These projects must be in the following areas:
+          - 📱 telecommunications ;
+          - computer science, including programming, systems and software consulting, third-party maintenance of systems and applications, facilities management, data processing, hosting and related activities ;
+          - publishing of internet portals and software;
+          - computer graphics, including visual and digital content design;
+          - design of connected objects.
+        - If these conditions are met, the exemption applies to remunerations paid to employees who are mainly involved in the realization of innovative projects.
+
+        - Support functions are therefore excluded: administrative, financial, logistical and human resources tasks.
+      description.fr: >
+        - Sont éligibles à ce barème les employeurs occupant moins de
+        250 salariés et ayant réalisé un chiffre d’affaires annuel inférieur à
+        50 millions d’euros, au titre de la rémunération des salariés concourant
+        essentiellement à la réalisation de projets innovants dans le domaine
+        des technologies de l’information et de la communication.
+
+        - Les projets innovants se définissent comme des projets ayant pour but l’introduction d’un bien, d’un service, d’une méthode de production ou de distribution nouveau ou sensiblement amélioré sur le plan des caractéristiques et de l’usage auquel il est destiné. Ces projets doivent être réalisés dans les domaines suivants :
+          - 📱 télécommunication ;
+          - informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance de systèmes et d’applications, gestion d‘installations, traitement des données, hébergement et activités connexes ;
+          - édition de portails internet et de logiciels;
+          - infographie, notamment conception de contenus visuels et numériques ;
+          - conception d’objets connectés.
+        - Si ces conditions sont réunies, l’exonération s’applique aux rémunérations versées aux salariés occupés principalement à la réalisation de projets innovants.
+
+        - Sont donc exclues les fonctions supports : tâches administratives financières, logistiques et de ressources humaines.
+      question.en: '[automatic] Are you eligible for the innovation and growth scale?'
+      question.fr: Êtes-vous éligibles au barème innovation et croissance ?
+      titre.en: '[automatic] innovation and growth scale'
+      titre.fr: barème innovation et croissance
   description.en: >
     [automatic] A fairly complex set of contribution reductions is
     available for overseas employees.
@@ -6649,9 +8334,32 @@ salarié . cotisations . exonérations . lodeom:
   titre.en: '[automatic] lodeom'
   titre.fr: lodeom
 salarié . cotisations . exonérations . lodeom . montant:
+  avec:
+    coefficient:
+      titre.en: '[automatic] coefficient'
+      titre.fr: coefficient
+    imputation retraite complémentaire:
+      titre.en: '[automatic] imputation of supplementary pension'
+      titre.fr: imputation retraite complémentaire
+    imputation sécurité sociale:
+      titre.en: '[automatic] social security charge'
+      titre.fr: imputation sécurité sociale
   titre.en: '[automatic] amount'
   titre.fr: montant
 salarié . cotisations . exonérations . réduction générale:
+  avec:
+    coefficient:
+      titre.en: '[automatic] coefficient'
+      titre.fr: coefficient
+    imputation retraite complémentaire:
+      titre.en: '[automatic] imputation of supplementary pension'
+      titre.fr: imputation retraite complémentaire
+    imputation sécurité sociale:
+      titre.en: '[automatic] social security charge'
+      titre.fr: imputation sécurité sociale
+    plafond avec application de la DFS:
+      titre.en: '[automatic] ceiling with application of the DFS'
+      titre.fr: plafond avec application de la DFS
   description.en: >
     [automatic] As part of the Responsibility and Solidarity Pact,
     the zero contribution Urssaf scheme allows the employer of an employee
@@ -6734,9 +8442,75 @@ salarié . cotisations . maladie:
   titre.en: health insurance
   titre.fr: maladie
 salarié . cotisations . prévoyances:
+  avec:
+    conventionnelle:
+      titre.en: '[automatic] conventional'
+      titre.fr: conventionnelle
   titre.en: '[automatic] supplementary benefits'
   titre.fr: prévoyances complémentaires
 salarié . cotisations . prévoyances . santé:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    montant:
+      description.en: >
+        [automatic] In addition to the basic Social Security coverage,
+        an employee can receive benefits from the company's (or the
+        association's) complementary health insurance. It is the employer who
+        negotiates the contract and monitors it with the insurance company. The
+        company's complementary health insurance must provide a minimum level of
+        coverage.
+      description.fr: >
+        En complément des garanties de base de la Sécurité sociale, un
+        salarié peut bénéficier de prestations de la complémentaire santé de son
+        entreprise (ou de l'association qui l'emploie). C'est l'employeur qui
+        négocie le contrat et assure son suivi auprès de l'organisme assureur.
+        La complémentaire santé d'entreprise doit prendre en charge un minimum
+        de garanties.
+      question.en: "[automatic] What is the total monthly amount (employee and
+        employer) of the company's complementary health insurance?"
+      question.fr:
+        Quel est le montant mensuel total (salarié et employeur) de la
+        complémentaire santé de l'entreprise (mutuelle) ?
+      suggestions.alsace moselle basique.en: '[automatic] alsace moselle basic'
+      suggestions.alsace moselle basique.fr: alsace moselle basique
+      suggestions.basique.en: '[automatic] basic'
+      suggestions.basique.fr: basique
+      suggestions.élevé.en: '[automatic] high'
+      suggestions.élevé.fr: élevé
+      titre.en: '[automatic] complementary health insurance (mutual insurance)'
+      titre.fr: prévoyance complémentaire santé (mutuelle)
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
+    taux employeur:
+      avec:
+        contrôle min:
+          description.en:
+            "[automatic] The employer's share of the complementary health
+            insurance must be at least 50%."
+          description.fr:
+            La part employeur de la complémentaire santé doit être de 50% au
+            minimum
+          titre.en: '[automatic] minimum control'
+          titre.fr: contrôle min
+      description.en:
+        '[automatic] Portion of the complementary health insurance paid
+        by the employer. Must be at least 50%.'
+      description.fr:
+        Part de la complémentaire santé payée par l'employeur. Doit être
+        de 50% minimum
+      question.en:
+        '[automatic] How much of the complementary health insurance is paid
+        by the employer?'
+      question.fr: Quelle est la part de la complémentaire santé payée par l'employeur ?
+      suggestions.100%.en: '[automatic] 100%'
+      suggestions.100%.fr: 100%
+      suggestions.50%.en: '[automatic] 50%'
+      suggestions.50%.fr: 50%
+      titre.en: '[automatic] employer rate'
+      titre.fr: taux employeur
   titre.en: '[automatic] health'
   titre.fr: santé
 salarié . cotisations . retraite complémentaire:
@@ -6748,6 +8522,23 @@ salarié . cotisations . retraite complémentaire:
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
 salarié . cotisations . taxe d'apprentissage:
+  avec:
+    assiette:
+      description.en:
+        '[automatic] The salary of apprentices is partially exempted in
+        the calculation of the apprenticeship tax.'
+      description.fr:
+        Le salaire des apprentis est partiellement exonéré dans la base
+        de calcul de la taxe d'apprentissage.
+      titre.en: '[automatic] basis for the apprenticeship tax'
+      titre.fr: assiette de la taxe d'apprentissage
+    contribution supplémentaire:
+      avec:
+        CSA au taux majoré:
+          titre.en: '[automatic] CSA at the increased rate'
+          titre.fr: CSA au taux majoré
+      titre.en: '[automatic] additional contribution'
+      titre.fr: contribution supplémentaire
   description.en:
     '[automatic] The apprenticeship tax allows companies to finance
     the expenses of apprenticeship and technological and professional training'
@@ -6906,6 +8697,13 @@ salarié . régimes spécifiques:
   titre.en: '[automatic] specific regimes'
   titre.fr: régimes spécifiques
 salarié . régimes spécifiques . DFS:
+  avec:
+    assiette minimale:
+      titre.en: '[automatic] minimum base'
+      titre.fr: assiette minimale
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: >-
     [automatic] For a specific list of professions, the employer can
     apply a specific fixed deduction (DFS) for professional expenses on the
@@ -6927,6 +8725,47 @@ salarié . régimes spécifiques . DFS:
   titre.en: '[automatic] specific flat-rate deduction'
   titre.fr: déduction forfaitaire spécifique
 salarié . régimes spécifiques . DFS . profession:
+  avec:
+    artiste musicien:
+      description.en:
+        '[automatic] Concerns musicians, chorus members, conductors,
+        theater managers'
+      description.fr:
+        Concerne les artistes musiciens, choristes, chefs d’orchestre,
+        régisseurs de théâtre
+      titre.en: '[automatic] artist musician'
+      titre.fr: artiste musicien
+    journaliste:
+      description.en: '[automatic] Concerns journalists, editors, photographers,
+        newspaper editors Drama and music critics.'
+      description.fr:
+        Concerne les journalistes, rédacteurs, photographes, directeurs
+        de journaux Critiques dramatiques et musicaux.
+      titre.en: '[automatic] journalist'
+      titre.fr: journaliste
+    ouvrier du bâtiment:
+      description.en: '[automatic] Concerns construction workers referred to in
+        paragraphs 1 and 2 of Article 1 of the Decree of November 17, 1936,
+        excluding those working in factories or workshops.'
+      description.fr:
+        Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2
+        de l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux
+        qui travaillent en usine ou en atelier.
+      titre.en: '[automatic] construction worker'
+      titre.fr: ouvrier du bâtiment
+    pilote de ligne ou personnel navigant:
+      description.en:
+        '[automatic] Concerns pilots, radios, flight mechanics of air
+        transport companies; pilots and mechanics employed by aircraft and
+        engine manufacturing companies for the testing of prototypes; pilot
+        instructors of aeroclubs and civil aviation schools'
+      description.fr: Concerne les pilotes, radios, mécaniciens navigants des
+        compagnies de transports aériens ; pilotes et mécaniciens employés par
+        les maisons de construction d’avions et de moteurs pour l’essai de
+        prototypes ; pilotes moniteurs d’aéro-clubs et des écoles d’aviation
+        civile
+      titre.en: '[automatic] airline pilot or flight attendant'
+      titre.fr: pilote de ligne ou personnel navigant
   question.en:
     "[automatic] What is the employee's occupation for the application
     of the specific flat-rate deduction?"
@@ -6958,9 +8797,40 @@ salarié . régimes spécifiques . alsace moselle:
   titre.en: Alsace-Moselle scheme
   titre.fr: Régime Alsace-Moselle
 salarié . régimes spécifiques . alsace moselle . ATMP:
+  avec:
+    seuil taux mixte ou individuel:
+      titre.en: '[automatic] threshold mixed or individual rate'
+      titre.fr: seuil taux mixte ou individuel
+    taux fonctions support:
+      titre.en: '[automatic] support function rates'
+      titre.fr: taux fonctions support
   titre.en: '[automatic] ATMP'
   titre.fr: ATMP
 salarié . régimes spécifiques . impatriés:
+  avec:
+    information:
+      description.en: >-
+        [automatic] In order to benefit from the exemption from old-age
+        contributions, the following conditions must be met:
+
+        - Be able to justify a minimum contribution paid elsewhere for old age insurance
+
+        - Not to have been affiliated, during the five calendar years preceding that of the taking up of duties, to a compulsory French old age insurance scheme, except for accessory activities, of a seasonal nature or for studies.
+
+
+        [Read the text of the law](https://www.legifrance.gouv.fr/codes/id/LEGISCTA000038510929)
+      description.fr: >-
+        Pour bénéficier de l'exonération de cotisations vieillesse, il
+        faut remplir les conditions suivantes :
+
+        - Pouvoir justifier d'une contribution minimale versée ailleurs pour une assurance vieillesse
+
+        - Ne pas avoir été affilié, au cours des cinq années civiles précédant celle de la prise de fonctions, à un régime français obligatoire d'assurance vieillesse, sauf pour des activités accessoires, de caractère saisonnier ou pour les études.
+
+
+        [Lire le texte de loi](https://www.legifrance.gouv.fr/codes/id/LEGISCTA000038510929)
+      titre.en: '[automatic] information'
+      titre.fr: information
   description.en: >
     [automatic] If you are an employee or a manager with tax status,
     and if you have been asked by a foreign company to take up a job in a
@@ -7140,6 +9010,12 @@ salarié . rémunération:
   titre.en: '[automatic] compensation'
   titre.fr: rémunération
 salarié . rémunération . assiette de vérification du SMIC:
+  avec:
+    contrôle:
+      description.en: '[automatic] The salary entered is less than the minimum wage.'
+      description.fr: Le salaire saisi est inférieur au SMIC.
+      titre.en: '[automatic] control'
+      titre.fr: contrôle
   description.en: >
     [automatic] This is the salary taken into account to verify that
     the minimum wage is reached.
@@ -7158,6 +9034,162 @@ salarié . rémunération . assiette de vérification du SMIC:
   titre.en: '[automatic] verification base of the SMIC'
   titre.fr: assiette de vérification du SMIC
 salarié . rémunération . avantages en nature:
+  avec:
+    autres:
+      avec:
+        montant:
+          question.en: |
+            [automatic] What is the amount of these other benefits?
+          question.fr: |
+            Quel est le montant de ces autres avantages ?
+          suggestions.🚗 véhicule.en: '[automatic] 🚗 vehicle'
+          suggestions.🚗 véhicule.fr: 🚗 véhicule
+          titre.en: '[automatic] other'
+          titre.fr: autres
+      question.en: >
+        [automatic] Are there any other benefits in kind (housing, vehicle,
+        discount...)?
+      question.fr: >
+        Y a-t-il d'autres avantages en natures (logement, véhicule,
+        réduction...) ?
+      titre.en: '[automatic] other'
+      titre.fr: autres
+    montant:
+      description.en: >
+        [automatic] Benefits in kind are subject to contributions and
+        income tax. They are taken into account to verify that the minimum wage
+        is met.
+      description.fr: >
+        Les avantages en nature sont soumis aux cotisations et à l'impôt
+        sur le revenu. Ils sont pris en compte pour vérifier que le salaire
+        minimum est atteint.
+      titre.en: '[automatic] Benefits in kind'
+      titre.fr: Avantages en nature
+    nourriture:
+      avec:
+        montant:
+          titre.en: '[automatic] food'
+          titre.fr: nourriture
+        repas par mois:
+          question.en: |
+            [automatic] How many meals per month are paid by the company?
+          question.fr: |
+            Combien de repas par mois sont payés par l'entreprise ?
+          suggestions.1 par jour.en: '[automatic] 1 per day'
+          suggestions.1 par jour.fr: 1 par jour
+          suggestions.2 par jour.en: '[automatic] 2 per day'
+          suggestions.2 par jour.fr: 2 par jour
+          titre.en: '[automatic] meals per month'
+          titre.fr: repas par mois
+      description.en: >
+        [automatic] Meal vouchers are not considered as a benefit in
+        kind but as a reimbursement of expenses.
+      description.fr: >
+        Les titres-restaurant ne sont pas considérés comme un avantage
+        en nature mais comme un remboursement de frais.
+      question.en: |
+        [automatic] Does the company provide free meals?
+      question.fr: |
+        L'entreprise fournit-elle gratuitement des repas ?
+      titre.en: '[automatic] food'
+      titre.fr: nourriture
+    ntic:
+      avec:
+        abonnements:
+          question.en:
+            '[automatic] What is the cost of the subscription (mobile package,
+            etc.) covered by the employer?'
+          question.fr:
+            Quel est le coût de l'abonnement (forfait mobile, etc.) pris en
+            charge par l'employeur ?
+          suggestions.aucun.en: '[automatic] no'
+          suggestions.aucun.fr: aucun
+          suggestions.international.en: '[automatic] international'
+          suggestions.international.fr: international
+          suggestions.standard.en: '[automatic] standard'
+          suggestions.standard.fr: standard
+          titre.en: '[automatic] subscriptions'
+          titre.fr: abonnements
+        coût appareils:
+          question.en: |
+            [automatic] What is the total new cost of the equipment provided?
+          question.fr: |
+            Quel est le coût total neuf des appareils mis à disposition ?
+          suggestions.💻 + 📱✨.en: '[automatic] 💻 + 📱✨'
+          suggestions.💻 + 📱✨.fr: 💻 + 📱✨
+          suggestions.💻.en: '[automatic] 💻'
+          suggestions.💻.fr: 💻
+          suggestions.📱.en: '[automatic] 📱'
+          suggestions.📱.fr: 📱
+          suggestions.📱✨ (haut de gamme).en: '[automatic] 📱✨ (high end)'
+          suggestions.📱✨ (haut de gamme).fr: 📱✨ (haut de gamme)
+          titre.en: '[automatic] equipment costs'
+          titre.fr: coût appareils
+        montant:
+          description.en: >
+            [automatic] For benefits in kind of NTIC type (computers,
+            smartphones, tablets...), there is a fixed annual evaluation
+            corresponding to 10% of the purchase price. For example, for a phone
+            bought at 850€ TTC with a subscription of 30€ / month, the benefit
+            in kind to be reported on the pay slip will be :
+
+
+            ```
+
+            [10% x (850€ + (30€ x 12 months)) / 12 months
+
+            ```
+
+            i.e. 10,08€.
+          description.fr: >
+            Pour les avantages en nature de type NTIC (ordinateurs,
+            smartphones, tablettes...), il y a une évaluation forfaitaire
+            annuelle correspondant à 10% du prix d'achat. Par exemple, pour un
+            téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois,
+            l'avantage en nature à reporter sur le bulletin de paie sera de :
+
+
+            ```
+
+            [10% x (850€ + (30€ x 12 mois)) ] / 12 mois
+
+            ```
+
+            soit 10,08€
+          titre.en: '[automatic] NTIC tools'
+          titre.fr: outils NTIC
+      description.en: >
+        [automatic] The private use of NICT tools provided as part of
+        the professional activity on a permanent basis constitutes a benefit in
+        kind.
+
+
+
+        This benefit is included in the basis for calculating Social Security and unemployment insurance contributions.
+
+
+
+        The reality of private use may be demonstrated either by a written document (employment contract, company agreement, internal regulations, letter from the company's management authorizing the employee to make private use of the tools), or by the existence of detailed invoices making it possible to establish private use.
+      description.fr: >
+        L’usage privé des outils NTIC mis à disposition dans le cadre de
+        l’activité professionnelle à titre permanent est constitutif d’un
+        avantage en nature.
+
+
+
+        Cet avantage est inclus dans la base de calcul des cotisations de Sécurité sociale et d’assurance chômage.
+
+
+
+        La réalité de l’usage privé peut résulter soit d’un document écrit (contrat de travail, accord d’entreprise, règlement intérieur, courrier de la direction de l’entreprise autorisant le salarié à faire un usage privé des outils), soit de l’existence de factures détaillées permettant d’établir une utilisation privée.
+      question.en: >
+        [automatic] Does the company provide a free ICT tool (computer,
+        phone, tablet, etc.)?
+      question.fr: >
+        L'entreprise fournit-elle gratuitement un outil issus des NTIC
+        (ordinateur, téléphone, tablette, etc.) ?
+      titre.en: '[automatic] ntic'
+      titre.fr: ntic
   description.en: >
     [automatic] Benefits in kind consist of the provision by the
     company to its employees of a good or service. The provision may be free of
@@ -7229,6 +9261,72 @@ salarié . rémunération . frais professionnels . déductible:
   titre.en: '[automatic] Deductible portion'
   titre.fr: Part déductibles
 salarié . rémunération . frais professionnels . titres-restaurant:
+  avec:
+    déductible:
+      titre.en: '[automatic] Deductible restaurant vouchers'
+      titre.fr: Titre restaurant déductibles
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    montant:
+      titre.en: '[automatic] amount'
+      titre.fr: montant
+    montant unitaire:
+      description.en: '[automatic] There is no maximum or minimum value for meal
+        vouchers. However, in order to benefit from the contribution exemption,
+        the value of the voucher must not exceed €11.38 in 2021.'
+      description.fr: Il n'y a pas de valeur maximale ou minimale pour les
+        titres-restaurant. En revanche, pour bénéficier de l'exonération de
+        cotisation, il ne faut pas dépasser 11,38€ par titre en 2021.
+      question.en: '[automatic] What is the unit value of the meal voucher?'
+      question.fr: Quelle est la valeur unitaire du titre-restaurant ?
+      suggestions.faible.en: '[automatic] low'
+      suggestions.faible.fr: faible
+      suggestions.max exonéré.en: '[automatic] max exempt'
+      suggestions.max exonéré.fr: max exonéré
+      suggestions.moyenne.en: '[automatic] average'
+      suggestions.moyenne.fr: moyenne
+      titre.en: '[automatic] unit amount'
+      titre.fr: montant unitaire
+    nombre:
+      question.en: '[automatic] How many meal vouchers are distributed to the employee?'
+      question.fr: Combien de titres-restaurant sont distribués au salarié ?
+      suggestions.3 repas/semaine.en: '[automatic] 3 meals/week'
+      suggestions.3 repas/semaine.fr: 3 repas/semaine
+      suggestions.5 repas/semaine.en: '[automatic] 5 meals/week'
+      suggestions.5 repas/semaine.fr: 5 repas/semaine
+      titre.en: '[automatic] number'
+      titre.fr: nombre
+    taux employeur:
+      avec:
+        contrôle max:
+          description.en:
+            "[automatic] The employer's share of the meal voucher must be
+            60% maximum"
+          description.fr: La part employeur du titre-restaurant doit être de 60% au maximum
+          titre.en: '[automatic] max control'
+          titre.fr: contrôle max
+        contrôle min:
+          description.en:
+            "[automatic] The employer's share of the meal voucher must be at
+            least 50%."
+          description.fr: La part employeur du titre-restaurant doit être de 50% au minimum
+          titre.en: '[automatic] minimum control'
+          titre.fr: contrôle min
+      description.en:
+        '[automatic] Portion of the meal voucher paid by the employer.
+        Must be a minimum of 50% and a maximum of 60%.'
+      description.fr:
+        Part du titre-restaurant payée par l'employeur. Doit être de 50%
+        minimum et de 60% maximum.
+      question.en: "[automatic] What is the employer's participation?"
+      question.fr: Quelle est la participation de l'employeur ?
+      suggestions.50%.en: '[automatic] 50%'
+      suggestions.50%.fr: 50%
+      suggestions.60%.en: '[automatic] 60%'
+      suggestions.60%.fr: 60%
+      titre.en: '[automatic] employer rate'
+      titre.fr: taux employeur
   description.en: >-
     [automatic] The meal voucher is a special payment voucher for
     "meals" given by the employer to the employee.
@@ -7262,15 +9360,270 @@ salarié . rémunération . frais professionnels . titres-restaurant:
   titre.en: '[automatic] meal vouchers'
   titre.fr: titres-restaurant
 salarié . rémunération . frais professionnels . trajets domicile travail:
+  avec:
+    abattement temps partiel:
+      titre.en: '[automatic] part-time abatement'
+      titre.fr: abattement temps partiel
+    cumul forfait mobilité durable et transports publics:
+      titre.en: '[automatic] combination of sustainable mobility and public transport'
+      titre.fr: cumul forfait mobilité durable et transports publics
+    déductible:
+      titre.en: '[automatic] Deductible portion'
+      titre.fr: Part déductible
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
   titre.en: '[automatic] commuting to work'
   titre.fr: trajets domicile travail
 salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables:
+  avec:
+    montant:
+      description.en: >
+        [automatic] In order to promote more environmentally friendly
+        means of transportation, the sustainable mobility package offers
+        employers the possibility of granting a contribution-exempt allowance to
+        employees who use so-called "soft mobility" modes of transportation to
+        commute between their usual residence and their place of work.
+
+
+        The sustainable mobility package replaces the bicycle mileage allowance and the carpooling allowance.
+
+
+        The conditions and terms of application of the sustainable mobility package differ according to the sectors concerned. To find out how it applies in the public sector, please consult the dedicated page.
+
+
+        ### Conditions of application
+
+
+        In order to encourage "soft mobility" transportation, employers can cover the travel expenses of employees who use the following modes of transportation to get to work:
+
+
+        - cycling, with or without electric assistance ;
+
+        - carpooling as a driver or passenger
+
+        - public transport (other than those covered by the compulsory payment of season tickets);
+
+        - other shared mobility services.
+      description.fr: >
+        Afin de promouvoir des moyens de transport plus écologiques, le
+        forfait mobilités durables offre aux employeurs la possibilité
+        d’attribuer une indemnité exonérée de cotisations aux salariés
+        privilégiant les modes de transport dits « à mobilité douce » pour
+        effectuer leurs trajets entre leur résidence habituelle et leur lieu de
+        travail.
+
+
+        Le forfait mobilités durables se substitue aux indemnités kilométriques vélo et aux indemnités forfaitaires de covoiturage.
+
+
+        Les conditions et les modalités d’application du forfait mobilités durables diffèrent selon les secteurs visés. Pour connaître les modalités d’application dans le secteur public, consultez la page dédiée.
+
+
+        ### Conditions d'application
+
+
+        Pour favoriser les transports dits « à mobilité douce », les employeurs ont la possibilité de prendre en charge les frais de trajets des salariés qui se rendent au travail en utilisant les modes de déplacement suivants :
+
+
+        - le vélo, avec ou sans assistance électrique ;
+
+        - le covoiturage en tant que conducteur ou passager ;
+
+        - les transports publics de personnes (autres que ceux concernés par la prise en charge obligatoire des frais d’abonnement) ;
+
+        - les autres services de mobilité partagée.
+      question.en:
+        '[automatic] How much of the cost of sustainable mobility (bicycle,
+        carpooling, shared mobility) is covered by the employer?'
+      question.fr:
+        Quel montant des frais de transports de mobilité durable (vélo,
+        covoiturage, mobilité partagée) est pris en charge par l'employeur ?
+      titre.en: '[automatic] amount'
+      titre.fr: montant
   titre.en: '[automatic] sustainable mobility package'
   titre.fr: forfait mobilités durables
 salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport:
+  avec:
+    déductible:
+      description.en: '[automatic] Deductible portion of fuel costs'
+      description.fr: Part déductible de la prise en charge du carburant
+      titre.en: '[automatic] Deductible portion'
+      titre.fr: Part déductible
+    montant:
+      description.en: >
+        [automatic] Under certain conditions, the employer can pay for
+        the fuel and power costs of electric, plug-in hybrid or hydrogen
+        vehicles incurred by employees when traveling between their usual place
+        of residence and their place of work, in the form of a "transportation
+        bonus".
+
+
+        If the employer (private or public) sets it up, it must benefit all employees according to the same terms and conditions and depending on the distance between home and work.
+
+
+        The amount, terms and conditions as well as the criteria for awarding the transport bonus must be provided for by a company agreement or an inter-company agreement, or failing that, by an industry agreement.
+
+        In the absence of an agreement, the employer may provide for the payment of the transport bonus by unilateral decision, after consulting the social and economic committee (CSE), if it exists.
+
+
+        The employee is entitled to the transport bonus if:
+
+
+        - his or her usual residence or workplace is located outside the Ile-de-France region and an urban transport perimeter ;
+
+        - the use of a personal vehicle is made essential by specific working hours that do not allow the use of a public transport system.
+
+
+        Coverage is not provided if:
+
+
+        - the employee has a vehicle permanently made available by the employer and the cost of fuel or electricity is covered (company or service car);
+
+        - the employee is housed in conditions that exclude all transportation costs to get to work (company housing);
+
+        - the employer provides the employee with free transportation.
+
+
+        &gt; Good to know
+
+        &gt; No proof of fuel expenses is required when the employer's contribution does not exceed €200 for fuel expenses, or €500 for the cost of powering electric, rechargeable hybrid or hydrogen vehicles.
+      description.fr: >
+        Une prise en charge par l’employeur, sous forme de « prime de
+        transport », des frais de carburant et d’alimentation des véhicules
+        électriques, hybrides rechargeables ou à hydrogène engagés par les
+        salariés pour leurs déplacements entre leur résidence habituelle et leur
+        lieu de travail est possible sous certaines conditions.
+
+
+        Si l’employeur (de droit privé ou de droit public) la met en place, elle doit profiter à l’ensemble des salariés selon les mêmes modalités et en fonction de la distance entre le domicile et le lieu de travail.
+
+
+        Le montant, les modalités ainsi que les critères d’attribution de la prime de transport doivent être prévus par accord d’entreprise ou par accord interentreprises, et à défaut, par accord de branche.
+
+        En l’absence d’accord, l’employeur peut prévoir le versement de la prime de transport par décision unilatérale, après consultation du comité social et économique (CSE), s’il existe.
+
+
+        Le salarié peut prétendre à la prime de transport si :
+
+
+        - sa résidence habituelle ou son lieu de travail est situé en dehors de la région Ile-de-France et d’un périmètre de transports urbains ;
+
+        - l'utilisation d'un véhicule personnel est rendue indispensable par des conditions d'horaires de travail particuliers ne permettant pas d'emprunter un mode collectif de transport.
+
+
+        La prise en charge n’est pas prévue si :
+
+
+        - le salarié bénéficie d’un véhicule mis à disposition permanente par l’employeur avec prise en charge des dépenses de carburant ou d’alimentation électrique (voiture de fonction ou de service) ;
+
+        - le salarié est logé dans des conditions excluant tous frais de transport pour se rendre au travail (logement de fonction) ;
+
+        - l’employeur assure gratuitement le transport du salarié.
+
+
+        > **Bon à savoir**
+
+        > Aucun justificatif de dépenses de carburant n’est exigé lorsque la prise en charge par l’employeur n’excède pas 200 € pour les frais de carburant, ou 500 € pour les frais d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène.
+      question.en:
+        '[automatic] How much of the cost of fuel/vehicle power spent by
+        the employee to get to work is covered by the employer?'
+      question.fr:
+        Quel montant des frais de carburants / alimentation du véhicule
+        dépensés par le salarié pour se rendre au travail est pris en charge par
+        l'employeur ?
+      titre.en: '[automatic] Transport premium'
+      titre.fr: Prime de transport
+    véhicule electrique hybride hydrogène:
+      question.en:
+        '[automatic] Does the employee use an electric, plug-in hybrid or
+        hydrogen vehicle?'
+      question.fr: Le salarié utilise-t'il un véhicules électriques, hybrides
+        rechargeables ou à hydrogène ?
+      titre.en: '[automatic] electric vehicle hybrid hydrogen'
+      titre.fr: véhicule electrique hybride hydrogène
   titre.en: '[automatic] transportation premium'
   titre.fr: prime de transport
 salarié . rémunération . frais professionnels . trajets domicile travail . transports publics:
+  avec:
+    déductible:
+      description.en:
+        '[automatic] The amount of the public transport pass paid by the
+        employer and deductible from contributions and taxes.'
+      description.fr:
+        Montant de l'abonnement aux transports publics prise en charge
+        par l'employeur et déductible de cotisations et d'impôts.
+      titre.en: '[automatic] deductible'
+      titre.fr: déductible
+    employeur:
+      description.en: '[automatic] Amount of the public transport pass paid by the employer.'
+      description.fr:
+        Montant de l'abonnement aux transports publics prise en charge
+        par l'employeur.
+      titre.en: "[automatic] Employer's share"
+      titre.fr: Part employeur
+    montant:
+      description.en: >
+        [automatic] Employer participation in public transportation
+        costs is mandatory.
+
+
+        Employers (private or public) must pay 50% of the cost of subscriptions taken out by their employees for the entire journey between their usual place of residence and their place of work using public transport services, even if more than one subscription is needed to make the journey (e.g. train + bus).
+
+        This also applies to public bicycle rental services.
+
+
+        The employer may pay more than the mandatory 50%. The payment of transport costs by the employer is exempt from social security contributions and income tax up to 75% of participation.
+
+
+        In the case of part-time work, the rate of coverage will be the same for half-time work or more. Below that, the rate of coverage will be proportional.
+      description.fr: >
+        La participation de l’employeur aux frais de transports publics
+        est obligatoire.
+
+
+        L’employeur (de droit privé ou public) doit prendre en charge 50 % du prix des titres d’abonnements souscrits par ses salariés pour l’intégralité du trajet entre leur résidence habituelle et leur lieu de travail accompli au moyen de services de transports publics même si plusieurs abonnements sont nécessaires à la réalisation de ce trajet (train + bus par exemple).
+
+        Sont également concernés les services publics de location de vélos.
+
+
+        L’employeur peut prendre en charge un part plus importante que les 50% obligatoires. La prise en charge des frais de transports par l’employeur est exonérée de cotisations sociales et d’impôt sur le revenu jusqu'à 75% de participation.
+
+
+        Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
+      question.en:
+        '[automatic] How much does the employee spend on public transport
+        passes to get to work?'
+      question.fr:
+        Quel montant le salarié dépense-t-il en abonnement aux transports
+        publics pour se rendre sur son lieu de travail ?
+      suggestions.Navigo.en: '[automatic] Navigo'
+      suggestions.Navigo.fr: Navigo
+      suggestions.RTM.en: '[automatic] GTR'
+      suggestions.RTM.fr: RTM
+      suggestions.TBM.en: '[automatic] TBM'
+      suggestions.TBM.fr: TBM
+      suggestions.Tisséo.en: '[automatic] Tisséo'
+      suggestions.Tisséo.fr: Tisséo
+      suggestions.Técély.en: '[automatic] Técély'
+      suggestions.Técély.fr: Técély
+      titre.en: '[automatic] Subscription amount'
+      titre.fr: Montant abonnement
+    taux employeur:
+      question.en:
+        "[automatic] What is the employer's contribution to the employee's
+        transportation costs?"
+      question.fr:
+        Quel est le taux de prise en charge par l’employeur aux frais de
+        transports du salarié ?
+      suggestions.Maximum déductible (75%).en: '[automatic] Maximum deductible (75%)'
+      suggestions.Maximum déductible (75%).fr: Maximum déductible (75%)
+      suggestions.Minimum (50%).en: '[automatic] Minimum (50%)'
+      suggestions.Minimum (50%).fr: Minimum (50%)
+      suggestions.Totale (100%).en: '[automatic] Total (100%)'
+      suggestions.Totale (100%).fr: Totale (100%)
+      titre.en: '[automatic] employer rate'
+      titre.fr: taux employeur
   titre.en: '[automatic] public transport'
   titre.fr: transports publics
 salarié . rémunération . heures complémentaires:
@@ -7284,6 +9637,133 @@ salarié . rémunération . heures supplémentaires:
   titre.en: '[automatic] overtime'
   titre.fr: heures supplémentaires
 salarié . rémunération . indemnités CDD:
+  avec:
+    congés payés:
+      avec:
+        assiette:
+          description.en: >-
+            [automatic] During his leave, the employee does not receive his
+            salary. He/she receives a paid vacation allowance.
+
+            All the sums having the character of wages are taken into account to determine the paid leave allowance. Other amounts are not taken into account.
+          description.fr: >-
+            Pendant ses congés, le salarié ne perçoit pas son salaire. Il
+            perçoit une indemnité de congés payés.
+
+            Toutes les sommes ayant le caractère de salaire sont prises en compte pour déterminer l'indemnité de congés payés. Les autres sommes ne sont pas prise en compte.
+          titre.en: '[automatic] Basis for calculating vacation pay'
+          titre.fr: Assiette pour le calcul de l'indemnité de congés payés
+      description.en: >
+        [automatic] The employee on a fixed-term contract has the same
+        rights to paid leave as the employee on a permanent contract.
+
+        employee on a permanent contract. He/she acquires and takes his/her paid vacations under the same conditions.
+
+
+        However, it is common for employees not to be able to take all their leave before the end of their contract.
+
+        before the end of his contract, he benefits from a compensatory allowance for paid
+
+        compensation for paid vacations paid by the employer.
+
+
+        There are two methods for calculating the compensation for untaken vacations.
+
+
+        ### The "one-tenth" method
+
+
+        This method of calculation will most often be favorable to the employee when the employee
+
+        has worked overtime. An indemnity equal to one tenth of the
+
+        gross remuneration received by the employee during the reference period.
+
+        period.
+
+
+        ### Salary maintenance method
+
+
+        This method will most often be favorable to the employee when the employee has
+
+        benefited from a salary increase.
+
+
+        To make the calculation, the employer can take into account either :
+
+        - the actual hours of work for the month,
+
+        - the average number of working days,
+
+        - the actual number of working days.
+      description.fr: >
+        Le salarié en CDD bénéficie des mêmes droits à congés payés que
+        le salarié
+
+        en CDI. Il acquiert et prend ses congés payés dans les mêmes conditions.
+
+
+        Il est cependant courant que le salarié ne puisse pas prendre tous ses
+
+        congés avant le terme de son contrat, il bénéficie alors d'une indemnité
+
+        compensatrice de congés payés versée par l'employeur.
+
+
+        Il existe deux méthodes pour calculer l'indemnité de congés non pris.
+
+
+        ### Méthode "du dixième"
+
+
+        Ce mode de calcul sera le plus souvent favorable au salarié lorsque celui-ci
+
+        a accompli des heures supplémentaires. Une indemnité égale au dixième de la
+
+        rémunération brute totale perçue par le salarié au cours de la période de
+
+        référence.
+
+
+        ### Méthode "maintien du salaire"
+
+
+        Cette méthode sera le plus souvent favorable au salarié lorsque celui-ci a
+
+        bénéficié d’une augmentation de salaire.
+
+
+        Pour effectuer le calcul, l'employeur peut tenir compte soit :
+
+        - de l'horaire réel du mois,
+
+        - du nombre moyen de jours ouvrés (ou ouvrables),
+
+        - du nombre réel de jours ouvrés (ou ouvrables).
+      note.en: >
+        [automatic] The indemnity is paid at the end of the contract, unless
+        the fixed-term contract is continued by a permanent contract.
+
+        Note that the El Khomri law modifies article L3141-12:
+
+        - before : Leave can be taken as soon as the rights are opened
+
+        - now : Leave can be taken as soon as the employee is hired
+      note.fr: >
+        L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit
+        par un CDI.
+
+        À noter, la loi El Khomri modifie l'article L3141-12:
+
+        - avant : Les congés peuvent être pris dès l'ouverture des droits
+
+        - maintenant : Les congés peuvent être pris dès l’embauche
+      titre.en: '[automatic] compensation for paid vacations'
+      titre.fr: indemnité compensatrice de congés payés
+    fin de contrat:
+      titre.en: '[automatic] end of contract indemnity'
+      titre.fr: indemnité de fin de contrat
   note.en:
     '[automatic] These allowances are paid at the end of the contract, but
     in the simulator they are spread over the monthly salaries of the duration
@@ -7306,6 +9786,27 @@ salarié . rémunération . net:
   titre.en: '[automatic] net'
   titre.fr: net
 salarié . rémunération . net . imposable:
+  avec:
+    exonération prime d'impatriation:
+      description.en: '[automatic] The impatriation bonus is a part of the
+        remuneration that is exempt from income tax.'
+      description.fr: La prime d'impatriation est une partie de la rémunération
+        exonérée d'impôt sur le revenu.
+      titre.en: '[automatic] impatriation bonus exemption'
+      titre.fr: exonération prime d'impatriation
+    exonération stagiaires et apprentis:
+      description.en: >
+        [automatic] Salaries paid to apprentices as well as internship
+        bonuses are exempt from income tax up to the annual minimum wage.
+      description.fr: >
+        Les salaires versés aux apprentis ainsi que les gratifications
+        de stages sont exonérés d'impôt sur le revenu dans la limite d'un SMIC
+        annuel.
+      titre.en: '[automatic] exemption for trainees and apprentices'
+      titre.fr: exonération stagiaires et apprentis
+    heures supplémentaires et complémentaires défiscalisées:
+      titre.en: '[automatic] tax-free overtime and complementary hours'
+      titre.fr: heures supplémentaires et complémentaires défiscalisées
   description.en: >
     The net salary less tax deductible social contributions and more
     taxable social benefits. It's the basis used to compute income tax.
@@ -7348,6 +9849,74 @@ salarié . rémunération . net . à payer avant impôt:
   titre.en: '[automatic] Net salary'
   titre.fr: Salaire net
 salarié . rémunération . primes:
+  avec:
+    activité:
+      description.en: >
+        [automatic] Bonuses and gratuities paid in return for, or in
+        connection with, work, directly related to the performance of the
+        employee's work. This is the case, for example, of a sales bonus based
+        exclusively on the employee's results.
+
+        These bonuses are taken into account for the calculation of the minimum wage
+      description.fr: >
+        Primes et gratifications versées en contrepartie, ou à
+        l’occasion du travail, directement liées à l’exécution par le salarié de
+        sa prestation de travail. Tel est le cas, par exemple, d’une prime de
+        vente exclusivement basée sur les résultats du salarié.
+
+        Ces primes sont prises en compte pour le calcul du salaire minimum
+      titre.en: '[automatic] activity bonuses'
+      titre.fr: primes d'activité
+    ancienneté:
+      titre.en: '[automatic] seniority'
+      titre.fr: ancienneté
+    fin d'année:
+      avec:
+        montant:
+          description.en: >
+            [automatic] This bonus is usually paid in one lump sum at the
+            end of the year.
+
+            the year.
+
+
+            Part-time employees are entitled to the year-end bonus under the same conditions as
+
+            same conditions as other employees in proportion to their working hours.
+
+            working hours.
+          description.fr: >
+            Cette prime est le plus souvent versée en une seule fois à la
+            fin de
+
+            l'année.
+
+
+            Les salariés à temps partiel ont dont à la prime de fin d'année dans les
+
+            mêmes conditions que les autres salariés en proportion de leur durée du
+
+            travail.
+          titre.en: '[automatic] Year-end or thirteenth month bonus'
+          titre.fr: Prime de fin d'année ou de treizième mois
+      description.en: >
+        [automatic] The thirteenth month bonus is a benefit granted to
+        the employee which may be provided for by the collective agreement or
+        the employment contract. It is generally paid at the end of the year.
+      description.fr: >
+        La prime de treizième mois est un avantage accordé au salarié
+        qui peut être prévu par la convention collective ou le contrat de
+        travail. Elle est généralement versée en fin d'année.
+      note.en: >
+        [automatic] Some companies offer a year-end bonus on a 13.5 month, 14
+        month or even 15 month basis.
+      note.fr: >
+        Certaines entreprises proposent une prime de fin d'année sur une base
+        de 13,5 mois, 14 mois voire 15 mois.
+      question.en: '[automatic] Does the employee benefit from a thirteenth month?'
+      question.fr: Le salarié bénéficie-t-il d'un treizième mois ?
+      titre.en: '[automatic] Year-end or thirteenth month bonus'
+      titre.fr: Prime de fin d'année ou de treizième mois
   description.en: >
     [automatic] Bonuses are supplements to wages paid to employees
     under the terms of the employment
@@ -7370,6 +9939,13 @@ salarié . rémunération . primes:
   titre.en: '[automatic] premiums'
   titre.fr: primes
 salarié . rémunération . revenus de remplacement:
+  avec:
+    cotisation maladie:
+      titre.en: '[automatic] health contribution'
+      titre.fr: cotisation maladie
+    net:
+      titre.en: '[automatic] net'
+      titre.fr: net
   description.en: >-
     [automatic] Replacement income is income received as a
     substitute for work remuneration: unemployment or partial unemployment
@@ -7412,6 +9988,47 @@ salarié . rémunération . taux horaire . heures supplémentaires:
   titre.en: '[automatic] hourly rate (overtime)'
   titre.fr: taux horaire (heure supplémentaire)
 salarié . temps de travail:
+  avec:
+    SMIC:
+      description.en: >
+        [automatic] Several reductions in contributions ([general
+        reduction](/documentation/employee-contract/general-reduction), reduced
+        rate of [family
+        allowances](/documentation/employee-contract/family-allowances/reduced-rate)
+        and
+        [sickness](/documentation/employee-contract/sickness/employer-reduced-rate),
+        overseas reduction) are based on a SMIC parameter that is subject to
+        several adjustments to take into account the actual working time.
+
+
+        Overtime and complementary hours are taken into account without taking into account the
+
+        overtime and overtime are taken into account without taking the increase into account.
+      description.fr: >
+        Plusieurs réductions de cotisations ([réduction
+        générale](/documentation/contrat-salarié/réduction-générale), taux
+        réduit d'[allocations
+        familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit)
+        et de
+        [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit),
+        réduction outre-mer) reposent sur un paramètre SMIC faisant l'objet de
+        plusieurs ajustements pour prendre en compte le temps de travail
+        effectif.
+
+
+        Les heures supplémentaires et les heures complémentaires sont prises en
+
+        compte sans tenir compte de la majoration.
+      titre.en: '[automatic] SMIC'
+      titre.fr: SMIC
+    plafond sécurité sociale:
+      titre.en: '[automatic] prorated social security ceiling'
+      titre.fr: plafond sécurité sociale proratisé
+    quotité:
+      description.en: '[automatic] Working time in proportion to the legal full time.'
+      description.fr: Temps de travail en proportion du temps complet légal.
+      titre.en: '[automatic] quotient'
+      titre.fr: quotité
   description.en: "[automatic] In France, the legal working time is 35 hours per
     week. However, a large number of existing provisions allow this number to be
     varied. You can find them on the dedicated page
@@ -7426,12 +10043,59 @@ salarié . temps de travail:
   titre.en: '[automatic] working time'
   titre.fr: temps de travail
 salarié . temps de travail . durée légale:
+  avec:
+    mensuelle:
+      titre.en: '[automatic] monthly'
+      titre.fr: mensuelle
   titre.en: '[automatic] legal duration'
   titre.fr: durée légale
 salarié . temps de travail . effectif:
+  avec:
+    quotité:
+      description.en:
+        '[automatic] The social security ceiling must be pro-rated by
+        removing absences as well as days spent on short-time work.'
+      description.fr: Le plafond de la sécurité sociale doit être pro-ratisé en
+        retirant les absences ainsi que les jours passés au chômage partiel.
+      titre.en: '[automatic] quotient'
+      titre.fr: quotité
   titre.en: '[automatic] effective working time'
   titre.fr: temps de travail effectif
 salarié . temps de travail . heures complémentaires:
+  avec:
+    contrôle heures complémentaires 10 pourcents:
+      description.en:
+        '[automatic] Unless otherwise agreed, the number of overtime
+        hours may not exceed one tenth of the contractual part-time duration.'
+      description.fr: Sauf disposition conventionnelle, le nombre d'heures
+        complémentaires ne peut être supérieur à un dixième de la durée
+        contractuelle du temps partiel.
+      titre.en: '[automatic] control overtime 10 percent'
+      titre.fr: contrôle heures complémentaires 10 pourcents
+    contrôle heures complémentaires max:
+      description.en:
+        '[automatic] The overtime must not lead the employee to work
+        more than or equal to the legal working time (35 hours)'
+      description.fr:
+        Les heures complémentaires ne doivent pas amener le salarié à
+        travailler pour une durée supérieure ou égale à la durée légale du
+        travail (35h)
+      titre.en: '[automatic] control overtime max'
+      titre.fr: contrôle heures complémentaires max
+    seuil légal:
+      description.en: >-
+        [automatic] Unless otherwise agreed, the number of overtime
+        hours may not exceed one tenth of the contractual part-time duration.
+
+        If the agreement allows it, overtime beyond this threshold is paid with an increase of 25%.
+      description.fr: >-
+        Sauf disposition conventionnelle, le nombre d'heures
+        complémentaires ne peut être supérieur à un dixième de la durée
+        contractuelle du temps partiel.
+
+        Si la convention le permet, les heures complémentaire au delà de ce seuil sont rémunérée avec une majoration de 25%
+      titre.en: '[automatic] legal threshold'
+      titre.fr: seuil légal
   description.en: >
     [automatic] Overtime is the time worked by a part-time employee
     in excess of the contractual working hours. The overtime must not lead the
@@ -7463,6 +10127,17 @@ salarié . temps de travail . heures complémentaires . majoration:
   titre.en: '[automatic] increase in overtime'
   titre.fr: majoration heures complémentaires
 salarié . temps de travail . heures supplémentaires:
+  avec:
+    contrôle 44h max:
+      description.en: '[automatic] The average weekly working time cannot exceed 44 hours'
+      description.fr: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
+      titre.en: '[automatic] control 44h max'
+      titre.fr: contrôle 44h max
+    contrôle 48h max:
+      description.en: '[automatic] The maximum weekly working time cannot exceed 48 hours'
+      description.fr: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
+      titre.en: '[automatic] control 48h max'
+      titre.fr: contrôle 48h max
   description.en:
     "[automatic] Any hour worked, at the employer's request, beyond
     the legal 35-hour working week (or the equivalent period) is considered
@@ -7563,11 +10238,52 @@ situation personnelle . domiciliation fiscale à l'étranger:
   titre.en: '[automatic] duration of implementation at the end of the year'
   titre.fr: durée d'implantation en fin d'année
 établissement . commune:
+  avec:
+    code postal:
+      titre.en: '[automatic] postal code'
+      titre.fr: code postal
+    département:
+      avec:
+        outre-mer:
+          avec:
+            Guadeloupe Réunion Martinique:
+              titre.en: '[automatic] Guadeloupe Reunion Martinique'
+              titre.fr: Guadeloupe Réunion Martinique
+            Mayotte:
+              titre.en: '[automatic] Mayotte'
+              titre.fr: Mayotte
+          titre.en: '[automatic] overseas'
+          titre.fr: outre-mer
+      titre.en: '[automatic] department'
+      titre.fr: département
+    nom:
+      titre.en: '[automatic] Municipality'
+      titre.fr: Commune
+    taux versement mobilité:
+      titre.en: '[automatic] mobility payment rate'
+      titre.fr: taux versement mobilité
   question.en: In which city is the establishment located?
   question.fr: Dans quelle commune l'établissement est-il implanté ?
   titre.en: '[automatic] '
   titre.fr: commune
 établissement . taux ATMP:
+  avec:
+    avertissement taux minimum:
+      description.en: '[automatic] The rate entered is lower than the minimum legal rate'
+      description.fr: Le taux renseigné est inférieur au taux minimum légal
+      titre.en: '[automatic] warning minimum rate'
+      titre.fr: avertissement taux minimum
+    taux collectif:
+      note.en:
+        '[automatic] The specific collective rates of the Alsace-Moselle scheme
+        are not implemented'
+      note.fr:
+        Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas
+        implémentés
+      question.en: '[automatic] What business is your company in?'
+      question.fr: De quel domaine d'activité dépend votre entreprise ?
+      titre.en: '[automatic] collective rate'
+      titre.fr: taux collectif
   description.en: >
     [automatic] The rate of the AT/MP contribution is determined for
     each establishment according to the following elements:

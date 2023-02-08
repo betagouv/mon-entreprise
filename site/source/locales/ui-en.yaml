@@ -1,4 +1,7 @@
+(invalidité partielle): (partial disability)
+(invalidité totale): (total disability)
 .cta: Launch the simulator
+1 € minimum: 1 € minimum
 "404":
   action: Return to safe place
   message: This page does not exist or no longer exists
@@ -41,20 +44,30 @@
   self-employed.</0>
 A quoi servent mes cotisations ?: What's included in my contributions?
 API REST de simulation: Simulation REST API
+"API REST, en savoir plus sur l'API REST": REST API, learn more about the REST API
 Accessibilité: Accessibility
+Accident du travail et maladie professionnelle: Workplace injury and occupational disease
 Accompagnement activé: Accompaniment activated
 Accompagnement désactivé: Accompaniment deactivated
 Accueil: Home
+"Accéder à l'étape {{step}}": Go to step {{step}}
+"Accéder à la page d'accueil, nouvelle fenêtre": Go to home page, new window
 "Activité exercée en ": "Activity carried out in "
+Adoption: Adoption
 Afficher la description publicodes: Display publicodes description
 Afficher le détail: View details
 Aide à la déclaration de revenu: Income tax return assistance
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
 Aides Covid-19: Covid-19 Aids
+Aller au contenu: Go to content
+Aller plus loin: Go further
+Aller plus loin sur les revenus: Going further on income
 Alors: Then
 Annuel: Yearly
+Annuler: Cancel
 Année d'activité: Years of activity
 Après la création: After the creation
+Arrêt maladie: Sick leave
 Artiste-auteur: Artist-author
 Assimilé salarié: '"Assimilé-salarié"'
 Assistant au choix du statut juridique: Assistance in choosing a legal status
@@ -63,31 +76,46 @@ Assistant à la détermination des charges sociales déductibles: Assistance in 
 Assistants à la déclaration de revenu 2021 des indépendants: Self-employed 2021 tax return assistants
 Assistants à la déclaration de revenu des indépendants: Self-employed tax return assistants
 Assistants à la déclaration de revenus 2021 des indépendants: Assistants to the 2021 tax return for the self-employed
+Attention: Attention
+"Attention, vos données sauvegardées seront supprimées de manière définitive.": Please note that your saved data will be permanently deleted.
 Au-delà du dernier plafond: Beyond the last ceiling
 Au-dessus de: Above
 Aucun: No
+Aucun (0 €): None (0 €)
 Aucun résultat: No result$
 Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 Autres exonérations: Other exemptions
 Autres outils: Other tools
 Avec chômage partiel: With partial unemployment
+Baisse d'au moins 50% du chiffre d'affaires mensuel (600 €): Drop of at least 50% of the monthly turnover (600 €)
+Baisse d'au moins 65% du chiffre d'affaires mensuel (600 €): Decrease of at least 65% of the monthly turnover (600 €)
+Baisse entre 30% et 64% du chiffre d'affaires mensuel (300 €): Decrease between 30% and 64% of the monthly turnover (300 €)
 Budget: Budget
 Calcul: Formula
+Calculer vos revenus: Calculate your income
 Ce simulateur a été prérempli avec la situation de votre entreprise.: This simulator has been pre-filled with your company's situation.
 Cette commune n'existe pas: This commune does not exist
 Cette opération n'est pas réversible.: This operation is not reversible.
 Cette règle ne s'applique pas pour: This rule does not apply for
 Changer: Change
+Charger plus de résultats: Load more results
+Charges: Charges
 Chercher dans la documentation: Search the documentation
+Chiffre d'affaires: Sales figures
+Chiffre d'affaires estimé: Estimated turnover
 Choisir la forme juridique: Choose your legal status
 Choisir plus tard: Choose later
+"Choix d'imposition : impôt sur les sociétés": "Tax election: corporate income tax"
 Choix du statut juridique: Choice of legal status
 Chômage partiel: Partial unemployment
 Code d'intégration: Integration Code
 Commencer: Get started
+"Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre":
+  How does it work? See the explanatory page on the github repository page, new
+  window
 "Commerçant, artisan, ou libéral ?": Trader, craftsman, or liberal?
-Commune ou code postal: Municipality or postal code
+Commune ou code postal: City or postal code
 CompanySearchField:
   ariaClearLabel: Delete search
   description: "The Siret number is a 14 digit number unique to each company. Ex:
@@ -95,6 +123,10 @@ CompanySearchField:
   label: Company name, SIREN or SIRET
   placeholder: "Ex: Café de la gare or 40123778000127"
 Comparaison statuts: Status comparison
+Confirmer: Confirm
+Conjoint associé ou salarié: Associate or employee spouse
+Conjoint collaborateur: Collaborating spouse
+Conjoint collaborateur ou salarié: Collaborating spouse or employee
 Continuer: Continue
 Coronavirus: Coronavirus
 Cotisations: Contributions
@@ -109,12 +141,17 @@ Crée le: Created on
 Créee le <2><0></0></2> et domiciliée à <6><0></0></6>: Created on <2><0></0></2> and domiciled at <6><0></0></6>
 Créer une: Create a
 Créer une entreprise: Create a company
+Dans quels cas mes bénéfices ne sont pas de type BNC ?: In what cases are my profits not BNC?
+Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: When is my company not subject to income tax?
 De: From
 Demande de mobilité: Demand for mobility
+Demande de mobilité internationale: Request for international mobility
 Destinataire: Levied by
 Devenir: Become
+Dividendes nets: Net dividends
 Documentation: Documentation
 "Domiciliée à l'adresse :": "Domiciled at the address :"
+Donner votre avis: Give your opinion
 "Début d'activité : ": "Start of activity: "
 Déclenchement: Applicability
 Découvrir: Discover
@@ -123,25 +160,52 @@ Découvrir: Discover
   We identify, among all the public and parapublic partners, the competent
   advisor for your request. He or she will contact you by phone within 5 days
   and will accompany you according to your situation.
+Décès: Deaths
 Démarches de création: Creation process checklist
+Dépôt de capital: Capital deposit
 Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
 EI / EURL: EI / EURL
 Effacer: Reset
 Effacer mes réponses: Delete my answers
+"Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre": Apply for partial unemployment, access the dedicated page, new window
 "Eligibilité LFR : ": "LFR Eligibility: "
 "Eligibilité LFSS : ": "LFSS Eligibility: "
+"Eligibilité aux mois de mars, avril ou mai 2021 (250 €)": Eligibility in March, April or May 2021 (250 €)
 Embauche: Hiring process
 Embaucher: Hire
 Employeur: Employer
+"En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
+  "In the event of an<1>accident at work</1>, an <4>occupational disease</4> or
+  an <7>accident on the way to or from work</7>, you will be compensated up to
+  :"
 En incluant l'indemnité de chômage partiel: Including short-time working allowance
+"En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos maternel supplémentaire</2>.":
+  In addition to the daily allowance, you may also be entitled to an
+  <2>additional lump-sum maternal rest allowance</2>.
+"En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos parental supplémentaire</2>.":
+  In addition to the daily allowance, you may also be entitled to an
+  <2>additional lump-sum parental rest allowance</2>.
+"En plus du capital décès, une <2>pension de réversion</2> peut être versée au conjoint survivant. Elle correspond aux <5>droits à la retraite acquis par le défunt</5> durant sa vie professionnelle.":
+  In addition to the death benefit, a <2>reversionary pension</2> may be paid to
+  the surviving spouse. It corresponds to the <5>pension rights acquired by the
+  deceased</5> during his or her working life.
 En savoir plus: Learn more
+En savoir plus sur impots:
+  gouv:
+    "fr, nouvelle fenêtre": More information on impots.gouv.fr, new window
+"En savoir plus, nouvelle fenêtre": Learn more, new window
 En-dessous de: Below
 Entreprise Individuelle: Sole Proprietorship
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company created on <2><0></0></2> and domiciled in <6><0></0></6>
 Entrez des mots clefs ici: Enter keywords
 Entrée: Enter
 Envoyer: Send
+Envoyer un courriel à contact@mon-entreprise:
+  beta:
+    gouv:
+      "fr, nouvelle fenêtre": Send an email to contact@mon-entreprise.beta.gouv.fr, new window
+"Ex : Des informations plus claires, un calcul détaillé...": "Ex: Clearer information, detailed calculation..."
 Exemples: Examples
 Exemples de simulation de salaire: Examples of salary simulations
 Exonérations: Exemptions
@@ -150,45 +214,89 @@ ExportSimulation:
   Banner: Print or save as PDF
 Faire une simulation: Launch a simulation
 Fermer: Close
+Fermer le module "Donner son avis": Close the "Give your opinion" module
 Fiche de paie: Payslip
 Gestion des données personnelles: Management of personal data
 Guide du statut juridique: Legal status guide
 Gérant majoritaire: Chairman
 "Gérant majoritaire ": "Majority Manager "
+"Gérant majoritaire, sélectionner l'option et passer à l'étape suivante": Majority manager, select the option and go to the next step
 Gérant minoritaire: Managing director
 Gérant minoritaire ou égalitaire: Minority or equal manager
+"Gérant minoritaire ou égalitaire, sélectionner l'option et passer à l'étape suivante":
+  Minority or equal shareholder manager, select the option and go to the next
+  step
 Gérer mon activité: Manage my business
 Habituellement: Usually
 Imprimer: Print
+Impôt: Tax
 Impôt au barème: Tax on the scale
 Impôts: Taxes
 "Indemnité chômage partiel prise en charge par l'état :": "State-paid short-time working allowance :"
 Indépendant: Indépendant
 Indépendants et dirigeants: Self-employed and executives
+Information: Information
+"Insérer dans le champ la valeur du {{text}}": Insert in the field the value of the {{text}}
 Insérer la suggestion: Insert the suggestion
+Interdiction d'accueil du public (600 €): Prohibition to receive the public (600 €)
 International: International
 Intégrer l'interface de simulation: Integrate the simulation interface
 Intégrer la bibliothèque de calcul: Integrate the calculation library
 Intégrer le module Web: Integrate the Web module
 Intégrer nos simulateurs: Integrate our simulators
 Intégrer un simulateur: Integrating a simulator
+Invalidité: Disability
 J'ai compris: understood
+"J'ai compris, fermer le message condensé.": I understand, close the condensed message.
 Janvier 2019: January 2019
+"Je donne mon avis, donner mon avis sur jedonnemonavis":
+  numerique:
+    gouv:
+      "fr, nouvelle fenêtre": I give my opinion, give my opinion on
+        jedonnemonavis.numerique.gouv.fr, new window
 Jusqu’au: Until
 L'application est prête à fonctionner hors ligne.: The application is ready to work offline.
+L'invalidité et le décès: Disability and death
+La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
+  The Social Security guarantees a <2>death benefit for your dependents</2>
+  under certain conditions.
+La gestion juridique et comptable: Legal and accounting management
+"La maternité, paternité et adoption": Maternity, paternity and adoption
+"La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en considérant que vous avez cotisé suffisamment de trimestres (4 trimestres par an) et que vous partez en retraite à l’âge requis pour obtenir un taux plein.":
+  The pension calculated corresponds to <2>your best 25 years</2>, considering
+  that you have contributed enough quarters (4 quarters per year) and that you
+  retire at the required age to obtain a full rate.
+La retraite: Retirement
+La santé: The health
 La somme de: This rule is the sum of
+Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
+  The amount of your pension is made up of <2>your basic pension + your
+  complementary pension</2>.
+Les données de simulations se mettront automatiquement à jour après la modification d'un champ: The simulation data will automatically update after a field is modified
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ.: The simulation data will automatically update after a field is changed.
+"Lire les précisions, ouvrir le message condensé.": Read the details, open the condensed message.
 Liste des intégrations: List of integrations
 Liste des statuts juridiques: List of legal statutes
+"Logo mon entreprise, accéder à la page d'accueil": Logo my company, go to the home page
+Ma déclaration: My statement
 Ma situation: My situation
+Maternité: Maternity
 Mensuel: Monthly
+Menu de navigation: Navigation menu
+Merci pour votre message !: Thank you for your message!
+Mes cotisations: My contributions
 Mes réponses: My answers
+Message à caractère informatif: Information message
 Mode accompagnement: Accompanying mode
 Modifier: Modify
 Modifier l'entreprise: Modify the company
 Modifier mes réponses: Edit my answers
 Mois non concerné: Month not concerned
 Mon entreprise: My company
+Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
+  urssaf:
+    fr: My company is recruiting! See the job offers of mon-entreprise.urssaf.fr
+Mon imposition: My taxation
 Mon revenu: My income
 Montant: Amount
 Montant annuel: Yearly amount
@@ -197,15 +305,22 @@ Montant de l’exonération sociale liée à la crise sanitaire pour les cotisat
 Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021: Amount of the social exemption related to the health crisis in 2021
 Montant des cotisations: Amount of contributions
 Montant mensuel: Monthly amount
+Ne prend pas l'ACRE en compte: Does not take ACRE into account
 "Nombre de mois LFR : ": "Number of months LFR : "
 "Nombre de mois LFSS 300 : ": "Number of months LFSS 300 : "
 "Nombre de mois LFSS 600 : ": "Number of months LFSS 600 : "
 Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité: Number of months for which you are eligible
 "Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : ": "Number of months for which you qualify: "
 Non: No
+Notre équipe prend en charge votre retour.: Our team will take care of your return.
+"Nous avons à cœur d'améliorer en continu notre site,vos remarques nous sont donc très précieuses.":
+  We are committed to continuously improving our site, so your feedback is very
+  valuable to us.
 Nous n'avons rien trouvé: We didn't find any matching registered company.
+Nous n’avons pas trouvé de résultat pour cette entreprise.: We did not find any results for this company.
 "Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.": New content available, click reload to update the page.
 Nouveautés: News
+Option la plus avantageuse.: Most advantageous option.
 Oui: Yes
 Outils pour les développeurs: Tools for developers
 Outils pour les indépendants: Tools for the self-employed
@@ -218,16 +333,37 @@ Part salariale: Employee share
 Pas en auto-entrepreneur: Not in auto-entrepreneur
 Pas implémenté: Not implemented
 Passer: Skip
+Passer le contenu: Skip the content
+"Passer, passer la question sans répondre": Pass, pass the question without answering
 Personnalisez l'intégration: Customize the integration
 "Perte de revenu net :": "Loss of net income :"
 Plafonds des tranches: Wafer ceilings
 Plan du site: Site Map
 Plein écran: Fullscreen
 Plus d'informations: More information (fr)
+Plus d'informations sur service-public:
+  "fr, nouvelle fenêtre": More information on service-public.fr, new window
 Plusieurs associés: Several partners
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
     fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
+"Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour améliorer le remboursement des frais de santé.":
+  For all statuses, it is advisable to subscribe to a <2>complementary
+  providence (mutual insurance)</2> to improve the reimbursement of health
+  expenses.
+"Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En cas d’arrêt maladie, l’assurance maladie vous versera :":
+  "For all statuses, you will have a <2>waiting period of 3 days</2>. In case of
+  sick leave, the health insurance will pay you :"
+"Pour un décès survenu dans le cadre d’un accident professionnel, vous pouvez bénéficier d’une <1>rente de décès</1>.":
+  If you die as a result of an accident at work, you can receive a <1>death
+  benefit</1>.
+"Pour une invalidité causée par un accident professionnel, vous pouvez bénéficier d’une <1>rente d’incapacité</1>.":
+  For a disability caused by an occupational accident, you can receive a
+  <1>disability pension</1>.
+"Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.": To qualify, you must have contributed for <2>at least 10 months</2>.
+"Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.": To qualify, you must meet <2>certain rules<1></1>.</2>
+"Pour y prétendre, vous devez voir cotisé au moins <2>12 mois</2>": To qualify, you must have contributed for at least <2>12 months</2>
+"Pour y prétendre, vous devez voir cotisé au moins <2>3 mois</2>": To qualify, you must have contributed for at least <2>3 months</2>
 Prise en charge du revenu net avec chômage partiel: Net income support with short-time working
 Prochaines questions: Next questions
 Professionnels de santé: Health Care Professionals
@@ -235,8 +371,11 @@ Professions: Professions
 Professions libérales: By job
 Protection sociale: Social protection
 Précédent: Previous
+"Précédent, revenir à l'étape précédente": Previous, go back to the previous step
 Prévisualisation: Preview
+Qu'est-ce que ça veut dire ?: What does that mean?
 Que cherchez-vous ?: What are you looking for?
+Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: What can we do better to meet your expectations?
 Quel module ?: What module?
 Quelle couleur ?: What color?
 Quelle était votre situation liée à la crise sanitaire durant vos mois d’activité ?:
@@ -244,37 +383,54 @@ Quelle était votre situation liée à la crise sanitaire durant vos mois d’ac
   activity?
 Quelques exemples de salaires: Some salary exemples
 Quelques intégrations: Some integrations
+Recharger: Reload
 Recherche en cours...: Searching...
 Rechercher: Search
 Rechercher une entreprise: Search for a company
+Rechercher une règle de calcul dans la documentation: Search for a calculation rule in the documentation
 Rechercher votre entreprise: Search for your company
+"Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.": Search, open the dialog box to enter your search terms.
 Recommencer: Start again
 Recommencer la simulation: Start the simulation again
 Rend non applicable les règles suivantes: Makes the following rules not applicable
 Renseigner mon entreprise: Find my company
+Renseigner une adresse e-mail pour recevoir une réponse: Enter an email address to receive a reply
 Responsabilité limitée: Limited liability
 Ressources utiles: Helpful resources
 Retour: Back
 Retour à la création: Back to creation
 Retour à ma déclaration: Back to my statement
 Retour à mon activité: Back to my business
+Retourner à la page d'accueil: Return to the home page
+Retraite complémentaire: Supplementary pension
+Retraite de base: Basic pension
+"Retrouver ma simulation, charger les données de ma précédente simulation.": Retrieve my simulation, load data from my previous simulation.
+"Revenir à l'étape {{step}}": Return to step {{step}}
 Revenir à la documentation: Go back to documentation
-Revenu (incluant les dépenses liées à l'activité): Revenue (including expenses related to the activity)
+Revenu (incluant les dépenses liées à l'activité): Income (including expenses related to the activity)
+Revenu après impôt: After-tax income
 Revenu disponible: Disposable income
 Revenu du dirigeant par statut: Executive income by status
+Revenu net: Net income
 "Revenu net avec chômage partiel :": "Net income with short-time work :"
 Revenu net mensuel: Monthly net income
 Revenus étranger: Foreign income
 Règles de calculs: Rules
 Réductions: Discounts
+Réinitialiser: Reset
+Réinitialiser la situation enregistrée: Reset the registered situation
 Rémunération du dirigeant: Director's remuneration
 Répartition du chiffre d'affaires: Breakdown of turnover
+Répondez à quelques questions additionnelles afin de préciser votre résultat.: Answer a few additional questions to clarify your result.
 Résultat: Result
+Résultat fiscal: Tax result
+Réussite: Success
 S'inscrire: Register
 SASU: SASU
 Saisissez le nom d'une commune: Enter the name of a municipality
-Saisissez votre domaine d'activité: Enter your business area
+Saisissez votre domaine d'activité: Enter your field of activity
 Salaire: Salary
+Salaire brut mensuel: Gross monthly salary
 Salaire net: Net Salary
 Salaire net et brut: Net and gross salary
 Salarié: Employee
@@ -282,7 +438,16 @@ Salariés et embauche: Employees and hiring
 Salariés et employeurs: Employees and employers
 Sans responsabilité limitée: Without limited liability
 "Secteur d'activité dont relève l'activité principale : ": "Sector of activity to which the main activity belongs : "
+"Selon les statuts, il est indispensable d’effectuer un <2>apport en capital</2> à la création de l’entreprise. Le <4>montant minimum</4> du capital social est de <7>1 €</7>.":
+  According to the statutes, it is essential to make a <2>capital
+  contribution</2> at the creation of the company. The <4>minimum amount of</4>
+  capital is <7>1 €</7>.
 Si: If
+"Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>":
+  If your company does not appear using your SIREN/SIRET, you may have opted not
+  to have <2>your company information made public</2>, in which case it will not
+  appear in the search results.<7>If this is the case, don't worry, you can
+  still consult and use our simulators</7>.
 Simulateur de demande de mobilité: Mobility request simulator
 Simulateur de salaire: Employee salary simulation
 Simulateurs: Simulations
@@ -290,10 +455,14 @@ Simulateurs disponibles: Available simulators
 Simulation en cours: Simulation in progress
 Simulations personnalisées: Customized simulations
 Sinon: Else
+Situation liée à la crise sanitaire: Situation related to the health crisis
 Situation personnelle: Personal situation
 "Siège :": "Headquarters:"
 Statistiques: Statistics
+Statut du conjoint: Status of the spouse
 Suivant: Next
+"Suivant, passer à l'étape suivante": Next, go to the next step
+"Suivant, passer à la question suivante": Next, go to the next question
 Supprimer les données sauvegardées.: Delete saved data.
 Supprimer toute ma situation: Delete my entire situation
 Tableau affichant pour chaque mois de la période précédemment sélectionnée le montant de réductions pour la situation sélectionnée.:
@@ -302,44 +471,95 @@ Tableau affichant pour chaque mois de la période précédemment sélectionnée 
 Taux: Rate
 Taux calculé: Calculated rate
 Taux moyen: Average rate
+Tient compte de l'ACRE: Takes into account the ACRE
 Total des retenues: Total withheld
 "Total payé par l'entreprise :": "Total paid by the company :"
+"Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
+  "Every year, depending on your earnings, <2>you earn points that make up your
+  supplementary retirement pension</2>. At the end of your career, your points
+  are transformed into <5>an amount that is added to your basic pension each
+  month</5>. This value is calculated over the long term. For example, after 10
+  years, you would be entitled to :"
+Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les <5>protège en cas d’invalidité</5> et assure à leurs proches une <8>pension de réversion et un capital en cas de décès</8>.:
+  All statuses contribute to a <2>disability-death pension</2> that
+  <5>protects</5> them <5>in case of disability</5> and provides their relatives
+  with a <8>reversionary pension and a capital sum in case of death</8>.
+Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: All statuses entitle you to <2>reimbursement of the cost of care</2>.
+"Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de congé maternité, paternité, adoption.":
+  All statuses entitle you to <2>daily allowances</2> for maternity, paternity
+  and adoption leave.
 Tout effacer: Delete all
 Tout le site: The whole site
+Tout réinitialiser: Reset all
 Tranche de l'assiette: Scale bracket
 Travailleurs Non Salariés (TNS): Non-salaried workers (TNS)
+Type: Type
+"Un <1>capital « orphelin »</1> est versé aux enfants des travailleurs indépendants décédés, sous certaines conditions.":
+  An <1>"orphan" capital</1> is paid to the children of deceased self-employed
+  workers, under certain conditions.
+Un avis sur cette page ?: Any opinion on this page?
 Un seul associé: Only one partner
 Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!: Any ideas?<1></1>Contact us!
+"Urssaf, voir le site urssaf":
+  "fr, nouvelle fenêtre": Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Use with a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use the simulator calculations in your application
 "Versement : ": "Payment : "
+Versement libératoire de l'impôt sur le revenu: Payment in full discharge of income tax
+Veuillez entrer un message avant de soumettre le formulaire.: Please enter a message before submitting the form.
+Veuillez renseigner votre adresse email.: Please enter your email address.
 Vie privée: Privacy
 Voir la fiche Urssaf: See the Urssaf sheet
 Voir la fiche de paie: See the pay slip
 Voir la répartition des cotisations: View contribution breakdown
 Voir le code source: See the source code
 Voir les autres simulateurs: See the other simulators
+"Voir les nouveautés apportées par la version {{release}}": See what's new in the {{release}} version
+Voir les simulateurs personnalisés: See custom simulators
+"Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise": See the personalized simulators, access the management page of my company
 Voir ma situation: See my situation
+"Voir ma situation, accéder à la page de gestion de mon entreprise": See my situation, access my company's management page
 Voir mes paramètres: See my situation
+Vos attentes ne sont pas remplies: Your expectations are not met
+Vos charges estimées: Your estimated expenses
+Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie en SASU.: Your <1>salary</1> is <4>too low</4> to benefit from sick leave in SASU.
 Votre adresse e-mail: Your email address
+Votre adresse e-mail (requise): Your email address (required)
+Votre avis nous intéresse: Your opinion is important to us
+Votre chiffre d'affaires estimé: Your estimated turnover
+Votre domaine d'activité: Your field of activity
 Votre entreprise: Your company
 Votre forme juridique: Your legal status
+Votre message (requis): Your message (required)
+Vous allez dépasser le plafond de la micro-entreprise: You will exceed the micro-business limit
+"Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.": We are sorry that you were not satisfied with your experience.
+Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou d’accident conduisant à une incapacité à poursuivre votre activité professionnelle</2>.:
+  You may be entitled to a disability pension in the <2>event of illness or
+  accident leading to an inability to continue your professional activity</2>.
+Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.: You can try again with your SIREN or SIRET for a better result.
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Are you a SAS(U) manager? <2>Access the dedicated income simulator</2>
+"Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>, <6>conjoint associé</6> ou <9>conjoint salarié</9>).":
+  "You are married, in a civil union or in a common-law relationship with a
+  company director: there are <1>3 possible statuses</1> for
+  you<3>(collaborating spouse</3>, <6>associate spouse</6> or <9>employee
+  spouse</9>)."
+Zoom sur...: Focus on...
 aide: Help
 aide-déclaration-indépendant:
   banner: Find out more about our tax<1>return</1>tool
-  description: <0><0>This tool is an aid to the declaration of income for the
-    <2>self-employed</2>. It allows you to know the amount of deductible social
-    charges.</0><1>You remain entirely responsible for any omissions or
-    inaccuracies in your declaration.</1></0><1><0><0>This tool concerns you if
+  description: <0><0>Declaration of social charges for self-employed
+    workers</0></0><1><0>This tool is an aid to the declaration of income for
+    <2>self-employed workers</2>. It allows you to know the amount of deductible
+    social charges.</0><1>You remain entirely responsible for any omissions or
+    inaccuracies in your declaration.</1></1><2><0><0>This tool concerns you if
     you are in the following case:</0></0><1><0>You contribute to the general
     scheme for independent workers</0></1><2><0>It does not concern you if you
     are in one of the following cases:</0></2><3><0>You exercise a liberal
     activity under a pension scheme for liberal professions in accrual
     accounting</0><1>Your company is domiciled in the
-    DOM</1></3></1><2>Taxation</2><3>These few questions allow you to determine
+    DOM</1></3></2><3>Taxation</3><4>These few questions allow you to determine
     the type of declaration to be filled in, as well as the methods of
-    calculating the social contributions.</3>
+    calculating the social contributions.</4>
   entreprise:
     description: You can fill in your company to pre-fill in the form
     titre: <0>Company and activity</0>
@@ -349,6 +569,7 @@ aide-déclaration-indépendant:
     title-short: Your tax returns
 an: year
 année: year
+août: August
 applicable si: applicable if
 après:
   actions:
@@ -443,8 +664,9 @@ associés:
       involved in the creation of a company in France.
     titre: Number of partners to start a business in France
   titre: Number of partners
+au bout de 10 ans: after 10 years
 auto-entrepreneur-EIRL: auto-entrepreneur-EIRL
-auto-entreprise: auto-enterprise
+auto-entreprise: self-employed
 autoentrepreneur:
   description: >
     <0>
@@ -465,14 +687,12 @@ autoentrepreneur:
       each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly.
     titre: Auto-entrepreneur
   titre: Auto-entrepeneur
+avril: April
 back: Return to the simulation
 barème: scale
-betawarning: <0><0>This tool is in beta version</0></0><1>We are working to
-  validate the information and calculations, but <1>errors may be
-  present</1>.</1><2>Although it is not finished, we chose to publish it to take
-  into account your feedback as soon as possible. If you think you have found a
-  problem or if you want to share a remark, you can contact us via the "Make a
-  suggestion" button at the bottom of the page.</2>
+betawarning: "<0><0>This tool is in beta version</0>: we are working to
+  <3>validate the information and calculations</3>, but <6>errors may be
+  present</6>.</0>"
 budget:
   tableCaption: Table showing the budget for the year {{year}} by expense item.
     The first column shows the current year ({{year}}) on the first line, then
@@ -485,6 +705,8 @@ car dépend de: because it depends on
 cards:
   simulator-resource:
     cta: Go to the simulator
+"certains critères, en savoir plus sur service-public":
+  "fr, nouvelle fenêtre": certain criteria, more information on service-public.fr, new window
 checklist:
   showmore:
     closed: Read more
@@ -535,11 +757,10 @@ comparaisonRégimes:
     <2> Monthly or quaterly advance <1>(with posterior regularization based on real income)</1></2>
 
     <3> Montly or quaterly</3>
-  description: >
-    When you create your company, the choice of legal status will
-    determine to which social scheme the executive is affiliated. There are
-    three different ones, each with its advantages and disadvantages. Thanks to
-    this comparison, you will be able to select the one that best suits you.
+  description: When you create your company, the choice of the legal status will
+    <2>determine to which social regime the manager is affiliated</2>. There are
+    <4>three different</4> legal forms, each with its own advantages and
+    disadvantages. With this comparison, find the one that suits you best.
   déduction: |
     <0> Deduction of expenses</0>
     <1>Yes <1>(tax regime of the actual)</1></1>
@@ -617,6 +838,10 @@ comparaisonRégimes:
   titreSelection: |
     Create my company as:
   trimestreValidés: <0>Number of quarters validated <1>(for retirement)</1></0>
+comparateur:
+  allerPlusLoin:
+    tableCaption: Table showing the details of the net income calculation for SASU,
+      sole proprietorship (EI) and auto-entreprise (AE).
 composantes: components
 copied: Copy
 copyMessage: Copy the message
@@ -654,6 +879,7 @@ créer:
   titre: Create a company
   warningPL: "Note: the case of regulated liberal professions is not covered"
 d'aides: aids
+de chiffre d’affaires: of turnover
 dividendes:
   warning: <0>This simulation is only given as an indication. It only concerns
     French companies subject to corporation tax (IS), and does not concern
@@ -661,6 +887,7 @@ dividendes:
     addition to the tax on other taxable income.</1>
 domiciliation inconnue: unknown address
 domiciliée à: domiciled in
+décembre: December
 déductible: deductible
 déplier: show more
 dû par: owed by
@@ -947,6 +1174,7 @@ formeJuridique:
     liability, subject to a flat-rate scheme for the calculation of taxes and
     the payment of social security contributions.
   titre: Choice of legal status
+février: February
 gerer:
   choix:
     embauche:
@@ -954,6 +1182,7 @@ gerer:
         next employee
       cta: Launch the simulator
       title: Estimate the amount of a hiring
+"gestion sémantique de version, en savoir plus, nouvelle fenêtre": semantic version management, learn more, new window
 gérant minoritaire:
   description: >
     <0>Some special rules apply depending on the amount of shares owned
@@ -981,8 +1210,8 @@ gérer:
     days.</3>"
   avertissement-entreprise-non-traitée: <0>There is not yet an income simulator
     for your type of business on this site.</0><1>If you would like us to
-    develop a new simulator, leave us a message by clicking on the "Make a
-    suggestion" button at the bottom of this page.</1>
+    develop a new simulator, please leave us a message by clicking on the
+    "<1></1>" button on the right of your screen.</1>
   choix:
     chomage-partiel:
       body: Calculate the remaining amount to be paid after reimbursement from the
@@ -1060,8 +1289,13 @@ impôt sur le revenu: income tax
 indemnité: benefit
 indicationTempsPlein: in full-time gross salary equivalent
 inférieurs à: lower than
+janvier: January
 jour: day
 jours: days
+juillet: July
+juin: June
+"l'annuaire des entreprises, nouvelle fenêtre": business directory, new window
+la première année: the first year
 landing:
   aboutUs: "<0>Who are we?</0><1>We are a small, independent, multidisciplinary
     <2>team</2> within <5>the Urssaf</5>. We are committed to being close to
@@ -1073,10 +1307,11 @@ landing:
   choice:
     continue: Continue with the company
     create:
-      aria-label: I don't have a business yet, access the business creation guide.
+      aria-label: I would like to start my own business, access the business creation
+        guide.
       body: Assistance in choosing a legal status and a complete list of the steps
         involved in setting up a business
-      title: I don't have a business yet
+      title: Consult the list of our simulators
     manage:
       body: Personalized tools to anticipate the amount of social contributions to be
         paid and better manage your cash flow.
@@ -1093,9 +1328,13 @@ landing:
     cash flow accordingly.</1>
   outils_cta: <0></0> Discover all simulators and assistants
   seeSimulators: See the simulators list
-  subtitle: The resources needed to develop your business, from legal status to hiring.
+  subtitle: Simulators and assistants to develop your business, from legal status
+    to hiring.
   title: The official tools for entrepreneurs
   titre: MyCompanyInFrance
+"le portail officiel, accéder à aides-entreprises":
+  "fr, nouvelle fenêtre": the official portal, access to aides-entreprises.fr, new window
+"le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre": the Urssaf website, access to the Urssaf website, new window
 legalNotice:
   contact:
     content: |
@@ -1118,15 +1357,19 @@ listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
 loading: Loading in progress...
+mai: May
 maj2019: The simulation is up-to-date in 2019.
+mars: March
+maximum: maximum
 mensuel: monthly
+moins: less
 mois: month
 montant à atteindre: minimum value
 multiplicateur: multiplier
 navbar:
   activate-darkmode: Enable dark mode
   deactivate-darkmode: Disable dark mode
-  logo: Logo My company in France by Urssaf
+  logo: navbar.logo
   redirect-home: Go to home page
 nextSteps:
   integration-iframe:
@@ -1134,10 +1377,13 @@ nextSteps:
       turnkey script.
     cta: See the documentation
     title: Integrate the web module
+nombres: numbers
 non: no
 non applicable si: not applicable if
 non déductible: not deductible
 noresults: No results
+novembre: November
+octobre: October
 ou: or
 oui: yes
 page:
@@ -1408,14 +1654,14 @@ pages:
       meta:
         description: Find out which amounts to fill in and get an estimate of your 2022 dues
         title: Income tax return assistant for self-employed people
-      shortname: Income Tax Wizard
+      shortname: Help with filling out the income tax return
       title: Income tax return assistant for self-employed people
     demande-mobilité:
       meta:
         description: Interactive form to be filled in if you work abroad
         title: "Self-employed: demand for mobility in Europe"
       shortname: Demand for mobility in Europe
-      title: Mobility request simulator
+      title: Request for international mobility
   simulateu rs:
     salarié:
       seo: "<0>How to calculate the net salary?</0><1>During the job interview, the
@@ -1519,10 +1765,10 @@ pages:
         transport). Although they are not used for the calculation of
         contributions and taxes, they must be taken into account to check
         whether the activity is economically viable.</3><4>The complete
-        calculation formula is therefore</4><5><0>Net income = Sales - Social
-        security contributions - Business expenses</0></5><6>How to calculate
-        the income tax for an auto-entrepreneur ?</6><7>If you have opted for
-        the payment in full discharge when creating your auto-entrepreneur, the
+        calculation formula is therefore</4><5>Net income = Sales - Social
+        security contributions - Business expenses</5><6>How to calculate the
+        income tax for an auto-entrepreneur?</6><7>If you have opted for the
+        payment in full discharge when creating your auto-entrepreneur, the
         income tax is paid at the same time as the social
         contributions.</7><8><0></0> <2>See how the amount of the payment in
         full discharge is calculated</2></8><9>Otherwise, you will be taxed
@@ -1610,33 +1856,33 @@ pages:
       seo: "<0>How is the partial activity allowance calculated?</0><1>The basic
         partial activity allowance is fixed by law at <2>70% of the gross
         amount</2>. It is prorated according to the number of hours unemployed.
-        For an employee earning 2300 € gross per month, who works 50% of his
-        usual time, this gives <5>2300 € × 50% × 70% = 805 €</5>.</1><2>In
+        For an employee with a monthly gross salary of €2300, who works 50% of
+        his usual time, this gives <5>€2300 × 50% × 70% = €805</5></1><2>In
         addition to this basic allowance, there is a complementary allowance for
-        salaries close to the SMIC. This supplement is paid when the total of
-        the salary and the basic allowance is below the SMIC net. These
+        salaries close to the SMIC. This additional allowance is paid when the
+        total of the salary and the basic allowance is below the SMIC net. These
         allowances are paid by the employer, who will then be reimbursed in part
         or in full by the State.</2><3>👉 S <2>ee the detail of the calculation
         of the allowance</2></3><4>How to calculate the part reimbursed by the
         State?</4><5>The State pays part of the partial indemnity for salaries
         up to <1>4.5 SMIC</1>, with a minimum of 8.03€ per hour unemployed. In
-        concrete terms, this results in 100% coverage for salaries close to the
-        SMIC. This gradually decreases until it stabilizes at <6>93%</6> for
-        salaries <9>between €2000 and €7000</9> (salary corresponding to the
+        concrete terms, this results in <3>100%</3> coverage for salaries close
+        to the SMIC. This gradually decreases until it stabilizes at <5>93%</5>
+        for salaries <8>between €2000 and €7000</8> (salary corresponding to the
         limit of 4.5 SMIC).</5><6>👉 S <2>ee the details of the calculation of
-        the reimbursement of the allowance</2>.</6><7>Discuss with an advisor
-        about partial activity</7><8>You wish to :<1><0>check the allowance
+        the reimbursement of the allowance</2>.</6><7>Exchange with an advisor
+        on partial activity</7><8>You wish to:<1><0>check the allowance
         received, the remaining expenses</0><1>know the consultation procedure
-        of the <2>CSE</2>, the request for prior authorization</1><2>inform you
-        about long-term partial activity</2><3>train your employees in partial
-        activity to new competences (pedagogical costs taken in
-        charge)</3></1><2>Simple and fast public service: you are called back by
-        the advisor who can help you. Mobilized partners: the departmental
-        directorates of employment, work and solidarity.</2><3></3></8><9>How to
-        declare a partial activity ?</9><10>In view of the coronavirus crisis,
-        the terms and conditions for partial activity have been lightened. The
-        employer is authorized to place his employees in partial activity before
-        the official request is filed. The employer then has a period of <2>30
+        of the <2>CSE</2>, the request for prior authorization</1><2>get
+        information on long-term partial activity</2><3>train your employees in
+        partial activity to new skills (pedagogical costs paid)</3></1><2>Simple
+        and fast public service: you are called back by the advisor who can help
+        you. Mobilized partners: the departmental directorates of employment,
+        labor and solidarity.</2><3></3></8><9>How to declare a partial
+        activity?</9><10>In view of the coronavirus crisis, the terms and
+        conditions for partial activity have been lightened. The employer is
+        authorized to place his employees in partial activity before the
+        official request is filed. The employer then has a period of <2>30
         days</2> to comply with the rules. The indemnities will be paid with
         retroactive effect starting from the implementation of the partial
         unemployment.</10><11>👉 How to <2>apply for partial
@@ -1654,6 +1900,13 @@ pages:
         title: "Starting a business: a comparison of social schemes"
       shortname: Status Comparison
       title: Legal status comparator
+    coût-création-entreprise:
+      meta:
+        description: Estimate the costs of the administrative formalities required to
+          create a company
+        title: Cost of setting up a business
+      shortName: Creation cost
+      title: Cost simulator for creating a company
     dirigean sasu:
       explication seo: "<0>How to calculate the salary of a SASU executive? </0><1>As
         for a conventional employee, the SASU <1>manager</1> pays social
@@ -1721,8 +1974,8 @@ pages:
         transport). These are deductible from the company's income, which means
         that you will not pay taxes or contributions on their amount (unless you
         have opted for the micro-tax option).</3><4>The complete calculation
-        formula is therefore :</4><5><0>Net income = Turnover - Professional
-        expenses - Social contributions</0></5><6>How to calculate the social
+        formula is therefore :</4><5>Net income = Turnover - Professional
+        expenses - Social contributions</5><6>How to calculate the social
         contributions of a sole proprietorship ?</6><7>The manager of a sole
         proprietorship pays social contributions, proportional to the company's
         <2>taxable income</2>. Their amount also varies according to the type of
@@ -1788,14 +2041,14 @@ pages:
           turnover and vice versa
         title: "Self-employed: income simulator"
       retraite-droits-acquis: '<0>Retirement: rights acquired during the
-        year</0><1><0>Basic pension : <2><0></0></2></0><1><0>Basic pension
-        points acquired (CNAVPL) : <2></2></0></1><2><0>Income taken into
-        account for the basic pension : <2></2></0></2><3>Acquired complementary
-        pension points : <2><0><0></0> points acquired</0></2><3><0>not
+        year</0><1><0>Basic pension : <2></2></0><1><0>Basic pension points
+        acquired (CNAVPL) : <2></2></0></1><2><0>Contributed income taken into
+        account for the basic pension : <2></2></0></2><3>Supplementary pension
+        points acquired: <2><0></0> points acquired</2><3><0>not
         known</0><1><0>The number of "free points" received during your
         disability pension depends on your previous income. <2>To find out more,
         click here.</2></0></1><2><0>This simulator does not manage the acquired
-        rights of complementary pension for liberal
+        complementary pension rights for liberal
         professions</0></2></3></3></1>'
       shortname: Independent
       title: Income simulator for the self-employed
@@ -1944,22 +2197,21 @@ pages:
           net income after tax from the total allocated to your compensation.
         ogTitle: "SASU executive compensation: a simulator to find out your net salary"
         titre: "SASU : income simulator for managers"
-      seo-explanation: "<0>How to calculate the salary of a SASU executive? </0><1>As
-        for a classic employee, the SASU <2>manager</2> pays social security
-        contributions on the remuneration he pays himself. The contributions are
-        calculated in the same way as for the employee: they are broken down
-        into the employer and employee parts and are expressed as a percentage
-        of the gross salary.</1><2>The assimilated manager-employee does not pay
+      seo-explanation: "<0>How to calculate the salary of a SASU manager? </0><1>As
+        for a classic employee, the <1>director of a SASU</1> pays social
+        contributions on the remuneration he/she receives. The contributions are
+        calculated in the same way as for an employee: they are broken down into
+        employer and employee parts and are expressed as a percentage of the
+        gross salary.</1><2>The manager as an employee does not pay
         <2>unemployment contributions</2>. Furthermore, they do not benefit from
-        the <5>general reduction</5> in contributions or from the provisions of
-        the French Labour Code, such as <9>overtime</9> or
-        bonuses.</2><3>However, the employee is entitled to the <2>ACRE
-        reduction</2> at the start of employment, under certain
-        conditions.</3><4>You can use our simulator to calculate the <2>net
-        remuneration</2> from a super-gross amount allocated to the executive's
-        remuneration. To do this, simply enter the total amount allocated in the
-        \"total charged\" box. The simulation can then be refined by answering
-        the various questions.</4>"
+        the <5>general reduction in contributions</5> or from the measures
+        governed by the Labor Code, such as <9>overtime</9> or
+        bonuses.</2><3>However, they can claim the <2>ACRE reduction</2> at the
+        beginning of their activity, under certain conditions.</3><4>You can use
+        our simulator to calculate the <2>net remuneration</2> from a super
+        gross amount allocated to the manager's remuneration. To do this, simply
+        enter the total amount allocated in the \"total charged\" box. The
+        simulation can then be refined by answering the various questions.</4>"
       shortname: SAS(U)
       title: SAS(U) Simulator
       titre: Revenue simulator for SAS(U) executive
@@ -1988,7 +2240,9 @@ payslip:
     (French)</1>.
   repartition: Distribution of total amount
 plafond: ceiling
+points: points
 pour les accidents de trajet/travail et maladie pro: for commuting accidents, work accidents and professional illness
+pourcentage: percentage
 previousSimulationBanner:
   info: Your previous simulation data have been saved.
   retrieveButton: Retrieve my last simulation
@@ -2051,8 +2305,11 @@ responsabilité:
 
     You cannot be held personally liable for the company's debts or obligations. On the other hand, the creation process is a little more cumbersome, since it includes the drafting of statutes and the deposit of capital.
   titre: Limited liability company or sole proprietorship
+revenu_après_impots:
+  acre: <0>ACRE under <2>certain conditions</2> <2><1></1></2></0>
 salaire: salary
 salarié: Employee share
+"salarié, accéder au simulateur salarié": employee, access the employee simulator
 select:
   value:
     default: Choose an option
@@ -2081,6 +2338,7 @@ selectionRégime:
     titre: Before starting...
     urssaf: The figures are indicative and do not replace the actual accounts of the
       Urssaf, impots.gouv.fr, etc
+septembre: September
 shareSimulation:
   banner: Generate a share link
   button:
@@ -2100,6 +2358,10 @@ shareSimulation:
   navigatorShare: My Simulation My Company
 simulateurs:
   explanation:
+    CIPAV: Since January 1, 2023, Urssaf has been collecting the basic pension,
+      supplementary pension and disability-death contributions of liberal
+      professionals covered by Cipav. Cipav retains the management of the
+      pension or provident fund file.
     CNAPL: It recovers contributions related to your retirement and disability/death
       plan.
     institutions:
@@ -2143,6 +2405,13 @@ simulateurs:
     cotisations-ordinales: For regulated professions, the simulator does not
       calculate the amount of contributions to the order. They must be added
       manually in the "operating expenses" box.
+    coût-création-entreprise:
+      JAL: This simulator calculates the costs of creation only for SARL, EURL, SAS,
+        SASU, EI and SEL. It does not yet take into account the other forms of
+        company (SA, SCA, SCS, SCI, SCP, SNC, SCM, cooperatives, GIE, GAEC,
+        etc.)
+      greffe: Clerk's fees may be charged for missing or incorrect documents. In
+        addition, if mail is sent, the clerk's office will charge the postage.
     indépendant: <0>The simulator does not take into account the micro-BNC and
       micro-BIC regimes.</0>
     plus: Read the details
@@ -2162,6 +2431,10 @@ simulation-end:
   title: No more questions left!
 site:
   titleTemplate: "%s - My Company"
+stats:
+  change_january_2022: Modification of the user feedback module resulting in a
+    significant decrease in the number of notices
+  change_january_2023: Modification of the user feedback module
 statut du dirigeant:
   description: <0>This choice is important because it determines the social
     security regime and the social coverage of the manager. The amount and terms
@@ -2224,6 +2497,7 @@ taxe: tax
 tous les 6 mois: every 6 months
 toutes ces conditions: all of these apply
 trimestres: quarters
+trimestres acquis: quarters acquired
 trimestres validés: validated quarters
 trimestriel: quarterly
 trouver:
@@ -2236,22 +2510,40 @@ trouver:
       customized to your situation
   titre: Find your company
 une de ces conditions: one of these applies
+versés en deux fois: paid in two installments
+versés en une fois: paid at once
+vide: vacuum
+voir la liste sur afecreation:
+  "fr, nouvelle fenêtre": see the list on afecreation.fr, new window
+"vos retours, accéder aux statistiques d'utilisation": your feedback, access to usage statistics
 warning:
   overwrite:
     situation: Do you want to crush your situation?
+"{{title}}, voir la demande sur github":
+  "com, nouvelle fenêtre": "{{title}}, see the application on github.com, new window"
+"À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SASU. La modification du paramètre ci-dessous influera donc uniquement les calculs liés au statut d'entreprise individuelle (EI).":
+  At this time, this comparator does not take into account the income tax
+  calculation for SASU. Therefore, the change in the parameter below will only
+  affect the calculations related to the sole proprietorship status (EI).
 À quoi servent mes cotisations ?: How are my contributions distributed?
+Échanger avec un conseiller: Talk to a consultant
 Échap: Esc
+Échec: Failure
 Économie collaborative: Collaborative Economy
 Étape complétée: Step completed
 Étape non complétée: Step not completed
 État: State
+Éviter de communiquer des informations personnelles: Avoid giving out personal information
 Êtes vous satisfait de ce guide ?: Are you satisfied with this guide?
 Êtes vous satisfait de cet assistant ?: Are you satisfied with this assistant?
+Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?
+Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Are you sure you want to reset the registered status?
 à: to
+à partir du 29ème jour: from the 29th day
 économieCollaborative:
   WIP: <0>This assistant is under development.</0> Do not hesitate to send us all
-    your remarks, ideas, questions by clicking on the "Make a suggestion" button
-    at the bottom of the page.
+    your remarks, ideas, questions by clicking on the button "<3></3>" on the
+    right of your screen.
   accueil:
     contenu: <0>Do you have income from <2>online platforms</2> (Airbnb, Abritel,
       Drivy, Blablacar, Leboncoin, etc.)? You must declare them in most cases.
