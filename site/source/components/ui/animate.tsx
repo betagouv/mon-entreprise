@@ -43,6 +43,7 @@ export function FromBottom({
 		<>
 			{trail.map((style, i) => (
 				<AnimatedDiv
+					// @ts-ignore Ignore type instantiation is excessively deep and possibly infinite.
 					key={i}
 					style={{
 						...inheritedStyle,
