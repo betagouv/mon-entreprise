@@ -21,13 +21,10 @@ let attributesToTranslate = [
 	'note',
 ]
 
-export function getRulesMissingTranslations() {
-	let currentExternalization = yaml.parse(
-		readFileSync(rulesTranslationPath, 'utf-8')
-	)
+const recursiveRulesMissingTranslations = (currentExternalization, rules) => {
+	const ret = { missingTranslations: [], resolved: {} }
 
-	let missingTranslations = []
-	let resolved = Object.fromEntries(
+	ret.resolved = Object.fromEntries(
 		Object.entries(rules)
 			.map(([dottedName, rule]) => [
 				dottedName,
@@ -41,14 +38,28 @@ export function getRulesMissingTranslations() {
 					Object.entries(rule)
 						.filter(([, v]) => !!v)
 						.map(([k, v]) => {
+							let currentTranslation = currentExternalization?.[dottedName]
+
+							if ('avec' === k) {
+								const result = recursiveRulesMissingTranslations(
+									currentTranslation?.avec,
+									v
+								)
+								ret.missingTranslations.push([
+									dottedName,
+									'avec',
+									result.missingTranslations,
+								])
+
+								return [['avec', result.resolved]]
+							}
+
 							let attrToTranslate = attributesToTranslate.find(
 								(attr) => attr === k
 							)
 							if (!attrToTranslate) return []
 							let enTrad = attrToTranslate + '.en'
 							let frTrad = attrToTranslate + '.fr'
-
-							let currentTranslation = currentExternalization[dottedName]
 
 							if ('suggestions' === attrToTranslate) {
 								return Object.keys(v).reduce((acc, suggestion) => {
@@ -64,7 +75,7 @@ export function getRulesMissingTranslations() {
 											[enTrad, currentTranslation[enTrad]],
 										]
 									}
-									missingTranslations.push([dottedName, enTrad, suggestion])
+									ret.missingTranslations.push([dottedName, enTrad, suggestion])
 									return [...acc, [frTrad, suggestion]]
 								}, [])
 							}
@@ -80,12 +91,25 @@ export function getRulesMissingTranslations() {
 									[enTrad, currentTranslation[enTrad]],
 									[frTrad, v],
 								]
-							missingTranslations.push([dottedName, enTrad, v])
+							ret.missingTranslations.push([dottedName, enTrad, v])
 							return [[frTrad, v]]
 						})
 						.flat()
 				),
 			])
+	)
+
+	return ret
+}
+
+export function getRulesMissingTranslations() {
+	let currentExternalization = yaml.parse(
+		readFileSync(rulesTranslationPath, 'utf-8')
+	)
+
+	const { missingTranslations, resolved } = recursiveRulesMissingTranslations(
+		currentExternalization,
+		rules
 	)
 	return [missingTranslations, resolved]
 }
@@ -99,11 +123,7 @@ export const getUiMissingTranslations = () => {
 
 	const missingTranslations = Object.entries(staticKeys)
 		.filter(([key, valueInSource]) => {
-			if (
-				key.match(/^\{.*\}$/) ||
-				valueInSource === 'NO_TRANSLATION' ||
-				key.includes('NO_AUTO_TRANSLATION')
-			) {
+			if (key.match(/^\{.*\}$/) || key.includes('NO_AUTO_TRANSLATION')) {
 				return false
 			}
 			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
@@ -111,7 +131,8 @@ export const getUiMissingTranslations = () => {
 				currentSelection?.[subPath]
 			const isNewKey = !keys.reduce(pathReducer, translatedKeys)
 			const isInvalidatedKey =
-				keys.reduce(pathReducer, originalKeys) !== valueInSource
+				keys.reduce(pathReducer, originalKeys) !==
+				(valueInSource === 'NO_TRANSLATION' ? key : valueInSource)
 
 			return isNewKey || isInvalidatedKey
 		}, staticKeys)
@@ -128,15 +149,19 @@ export const fetchTranslation = async (text) => {
 	if (typeof text !== 'string') {
 		throw new Error("❌ Can't translate anything other than a string")
 	}
-	const response = await fetch(
-		`https://api.deepl.com/v2/translate?${new URLSearchParams({
+	const response = await fetch(`https://api.deepl.com/v2/translate`, {
+		method: 'POST',
+		headers: {
+			Authorization: 'DeepL-Auth-Key ' + process.env.DEEPL_API_SECRET,
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: new URLSearchParams({
 			text,
-			auth_key: process.env.DEEPL_API_SECRET,
 			tag_handling: 'xml',
 			source_lang: 'FR',
 			target_lang: 'EN',
-		}).toString()}`
-	)
+		}),
+	})
 	if (response.status !== 200) {
 		const msg = JSON.stringify(text, null, 2)
 		console.error(`❌ Deepl return status ${response.status} for:\n\t${msg}\n`)
@@ -144,7 +169,9 @@ export const fetchTranslation = async (text) => {
 	}
 	try {
 		const { translations } = await response.json()
-		console.log(`✅ Deepl translation succeeded for:\n\t${text}\n`)
+		console.log(
+			`✅ Deepl translation succeeded for:\n\t${text}\n\t${translations[0].text}\n`
+		)
 		return translations[0].text
 	} catch (e) {
 		console.warn(`❌ Deepl translation failed for:\n\t${text}\n`)

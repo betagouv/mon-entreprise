@@ -10,8 +10,10 @@ export default {
 	defaultNamespace: 'translation',
 	// Default namespace used in your i18next config
 
-	defaultValue: 'NO_TRANSLATION',
 	// Default value to give to empty keys
+	defaultValue(locale, namespace, key, value) {
+		return key === value || (key && value === '') ? 'NO_TRANSLATION' : value
+	},
 
 	indentation: 2,
 	// Indentation of the catalog files
@@ -85,9 +87,11 @@ export default {
 	sort: true,
 	// Whether or not to sort the catalog
 
-	useKeysAsDefaultValue: false,
-	// Whether to use the keys as the default value; ex. "Hello": "Hello", "World": "World"
-	// The option `defaultValue` will not work if this is set to true
+	resetDefaultValueLocale: 'fr',
+	// The locale to compare with default values to determine whether a default value has been changed.
+	// If this is set and a default value differs from a translation in the specified locale, all entries
+	// for that key across locales are reset to the default value, and existing translations are moved to
+	// the `_old` file.
 
 	verbose: false,
 	// Display info about the parsing including some stats
