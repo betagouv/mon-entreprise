@@ -1,6 +1,6 @@
 import { it } from 'vitest'
 
-import { configSASU } from '@/pages/Simulateurs/sasu/dirigeantSASU'
+import { configSASU } from '@/pages/Simulateurs/sasu/_simulationConfig'
 
 import rémunérationSASUSituations from './simulations-SASU.yaml'
 import { runSimulations } from './utils'
