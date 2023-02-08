@@ -651,7 +651,7 @@ comparaisonRégimes:
   choix:
     AS:
       aria-label: Assimilé salarié, sélectionner l'option et passer à l'étape suivante
-      button: Assimilé&nbsp;salarié
+      button: Assimilé salarié
     EI:
       aria-label: Entreprise individuelle, sélectionner l'option et passer à l'étape
         suivante

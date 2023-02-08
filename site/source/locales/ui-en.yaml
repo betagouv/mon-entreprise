@@ -744,7 +744,7 @@ comparaisonRégimes:
   choix:
     AS:
       aria-label: As an employee, select the option and go to the next step
-      button: Similar to employee
+      button: "Assimilé salarié"
     EI:
       aria-label: Sole proprietorship, select the option and go to the next step
       button: Sole proprietorship
