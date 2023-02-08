@@ -49,7 +49,7 @@ export default function SchemeComparaison({
 							)}
 						>
 							<Trans i18nKey="comparaisonRégimes.choix.AS.button">
-								Assimilé&nbsp;salarié
+								Assimilé salarié
 							</Trans>
 						</Button>
 					),

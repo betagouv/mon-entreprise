@@ -91,7 +91,7 @@ describe('Test prerender', function () {
 					cy.contains('Search for your company')
 					cy.contains('label', 'Company name, SIREN or SI')
 
-					cy.contains("I don't have a business yet")
+					cy.contains('I would like to start my own business')
 
 					cy.contains('a', 'Employee')
 					cy.contains('a', 'Auto-entrepreneur')
