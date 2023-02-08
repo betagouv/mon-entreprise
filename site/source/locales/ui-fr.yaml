@@ -59,6 +59,7 @@ Accompagnement désactivé: Accompagnement désactivé
 "Accéder à la page d'accueil, nouvelle fenêtre": Accéder à la page d'accueil, nouvelle fenêtre
 "Activité exercée en ": "Activité exercée en "
 Adoption: Adoption
+Afficher la transcription: Afficher la transcription
 Afficher le détail: Afficher le détail
 Aller au contenu: Aller au contenu
 Aller plus loin: Aller plus loin
@@ -96,6 +97,7 @@ Charges: Charges
 Chercher dans la documentation: Chercher dans la documentation
 Chiffre d'affaires: Chiffre d'affaires
 Chiffre d'affaires estimé: Chiffre d'affaires estimé
+"Choix d'imposition : impôt sur le revenu": "Choix d'imposition : impôt sur le revenu"
 "Choix d'imposition : impôt sur les sociétés": "Choix d'imposition : impôt sur les sociétés"
 Choix du statut juridique: Choix du statut juridique
 Commencer: Commencer
@@ -139,7 +141,10 @@ Découvrir: Découvrir
   situation.
 Décès: Décès
 Dépôt de capital: Dépôt de capital
+EI: EI
 EI / EURL: EI / EURL
+EIRL: EIRL
+EURL: EURL
 Effacer mes réponses: Effacer mes réponses
 "Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre":
   Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle
@@ -167,6 +172,7 @@ En savoir plus sur impots:
   gouv:
     "fr, nouvelle fenêtre": En savoir plus sur impots.gouv.fr, nouvelle fenêtre
 "En savoir plus, nouvelle fenêtre": En savoir plus, nouvelle fenêtre
+English version of the website enabled.: English version of the website enabled.
 Entreprise Individuelle: Entreprise Individuelle
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
 Envoyer: Envoyer
@@ -288,6 +294,7 @@ Page d'accueil: Page d'accueil
 Pas en auto-entrepreneur: Pas en auto-entrepreneur
 Passer: Passer
 Passer le contenu: Passer le contenu
+Passer à la version française du site: Passer à la version française du site
 "Passer, passer la question sans répondre": Passer, passer la question sans répondre
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
@@ -360,6 +367,9 @@ Répondez à quelques questions additionnelles afin de préciser votre résultat
 Résultat fiscal: Résultat fiscal
 Réussite: Réussite
 S'inscrire: S'inscrire
+SA: SA
+SARL: SARL
+SAS: SAS
 SASU: SASU
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire: Salaire
@@ -393,6 +403,7 @@ Suivant: Suivant
 "Suivant, passer à la question suivante": Suivant, passer à la question suivante
 Supprimer les données sauvegardées.: Supprimer les données sauvegardées.
 Supprimer toute ma situation: Supprimer toute ma situation
+Switch to the english version of the website: Switch to the english version of the website
 Tableau affichant pour chaque mois de la période précédemment sélectionnée le montant de réductions pour la situation sélectionnée.:
   Tableau affichant pour chaque mois de la période précédemment sélectionnée le
   montant de réductions pour la situation sélectionnée.
@@ -429,6 +440,7 @@ Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
 "Versement : ": "Versement : "
 Versement libératoire de l'impôt sur le revenu: Versement libératoire de l'impôt sur le revenu
+Version française du site activée.: Version française du site activée.
 Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
 Veuillez renseigner votre adresse email.: Veuillez renseigner votre adresse email.
 Voir la fiche Urssaf: Voir la fiche Urssaf
@@ -582,6 +594,8 @@ associés:
     titre: Nombre d'associés pour créer une entreprise
   titre: Seul ou à plusieurs
 au bout de 10 ans: au bout de 10 ans
+auto-entrepreneur: auto-entrepreneur
+auto-entrepreneur-EIRL: auto-entrepreneur-EIRL
 auto-entreprise: auto-entreprise
 autoentrepreneur:
   description: "<0>À la différence de l'entreprise individuelle,
@@ -632,15 +646,22 @@ comparaisonRégimes:
   assuranceMaladie: <0>Assurance maladie <2>(médicaments, soins,
     hospitalisations)</2></0><1>Identique pour tous</1>
   auto:
+    indep-aria-label: Indépendant, sélectionner l'option et passer à l'étape suivante
     tagline: Pour commencer sans risques
   choix:
-    AS: Assimilé&nbsp;salarié
-    EI: Entreprise individuelle
-    EI-aria-label: Entreprise individuelle, sélectionner l'option et passer à l'étape suivante
-    auto: Auto-entrepreneur
-    auto-aria-label: Auto-entrepreneur, sélectionner l'option et passer à l'étape suivante
-    indep: Indépendant
-    indep-aria-label: Indépendant, sélectionner l'option et passer à l'étape suivante
+    AS:
+      aria-label: Assimilé salarié, sélectionner l'option et passer à l'étape suivante
+      button: Assimilé&nbsp;salarié
+    EI:
+      aria-label: Entreprise individuelle, sélectionner l'option et passer à l'étape
+        suivante
+      button: Entreprise individuelle
+    auto:
+      aria-label: Auto-entrepreneur, sélectionner l'option et passer à l'étape suivante
+      button: Auto-entrepreneur
+    indep:
+      aria-label: Indépendant, sélectionner l'option et passer à l'étape suivante
+      button: Indépendant
   comparaisonDétaillée: <0><0>Afficher plus d'informations</0></0>
   complémentaireDeductible: <0>Contrats prévoyance et retraite facultatives
     déductibles</0><1>Oui <1>(sous certaines conditions)</1></1><2>Oui <1>(Loi
@@ -788,6 +809,15 @@ en deux fois: en deux fois
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
 entreprise:
+  page:
+    autoEntrepreneur:
+      description: La liste complète des démarches à faire pour devenir
+        {{autoEntrepreneur}}.
+      titre: Devenir {{autoEntrepreneur}}
+    description: La liste complète des démarches à faire pour créer une {{statut}}
+      auprès de l'administration française.
+    entreprise:
+      titre: Créer une {{status}}
   ressources:
     après:
       body: SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que vous
@@ -1114,11 +1144,13 @@ landing:
         d'entreprise.
       body: Un accompagnement au choix du statut juridique et la liste complète des
         démarches de création
-      title: Consulter la liste de nos simulateurs
+      title: J'aimerais créer mon entreprise
     manage:
       body: Des outils personnalisés pour anticiper le montant des cotisations
         sociales à payer et mieux gérer votre trésorerie.
       title: Gérer mon activité
+    simulator:
+      list: Consulter la liste de nos simulateurs
     simulators:
       body: La liste exhaustive de tous les simulateurs disponibles sur le site.
       title: Découvrir tous les simulateurs et assistants
@@ -1993,6 +2025,8 @@ responsabilité:
     nouveaux associés en entreprise individuelle.</3>"
   intro: "Ce choix determine votre degré de responsabilité et votre capacité à
     accueillir de nouveaux associés dans le futur "
+  page:
+    titre: Choisir entre société ou entreprise individuelle
   société: "<0>Société : </0>Vous ne pouvez pas être tenu personnellement
     responsable des dettes ou obligations de la société. En revanche, les
     démarches de création sont un peu plus lourdes, puisqu'elles incluent

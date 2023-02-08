@@ -46,7 +46,7 @@ export default function SocialSecurity() {
 				</section>
 				<StyledFoldingMessage
 					title={t('sécu.videoTranscriptTitle', 'Transcription de la vidéo')}
-					unfoldButtonLabel="Afficher la transcription"
+					unfoldButtonLabel={t('Afficher la transcription')}
 				>
 					<Trans i18nKey="sécu.transcript-NO_AUTO_TRANSLATION">
 						<Body>

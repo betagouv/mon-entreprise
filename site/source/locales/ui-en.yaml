@@ -55,6 +55,7 @@ Accueil: Home
 "Activité exercée en ": "Activity carried out in "
 Adoption: Adoption
 Afficher la description publicodes: Display publicodes description
+Afficher la transcription: View transcript
 Afficher le détail: View details
 Aide à la déclaration de revenu: Income tax return assistance
 Aide à la déclaration de revenus au titre de l'année 2019: Help with your 2019 income tax return
@@ -106,6 +107,7 @@ Chiffre d'affaires: Sales figures
 Chiffre d'affaires estimé: Estimated turnover
 Choisir la forme juridique: Choose your legal status
 Choisir plus tard: Choose later
+"Choix d'imposition : impôt sur le revenu": "Tax Election: Income Tax"
 "Choix d'imposition : impôt sur les sociétés": "Tax election: corporate income tax"
 Choix du statut juridique: Choice of legal status
 Chômage partiel: Partial unemployment
@@ -165,7 +167,10 @@ Démarches de création: Creation process checklist
 Dépôt de capital: Capital deposit
 Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
+EI: EI
 EI / EURL: EI / EURL
+EIRL: EIRL
+EURL: EURL
 Effacer: Reset
 Effacer mes réponses: Delete my answers
 "Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre": Apply for partial unemployment, access the dedicated page, new window
@@ -196,6 +201,7 @@ En savoir plus sur impots:
     "fr, nouvelle fenêtre": More information on impots.gouv.fr, new window
 "En savoir plus, nouvelle fenêtre": Learn more, new window
 En-dessous de: Below
+English version of the website enabled.: English version of the website enabled.
 Entreprise Individuelle: Sole Proprietorship
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company created on <2><0></0></2> and domiciled in <6><0></0></6>
 Entrez des mots clefs ici: Enter keywords
@@ -334,6 +340,7 @@ Pas en auto-entrepreneur: Not in auto-entrepreneur
 Pas implémenté: Not implemented
 Passer: Skip
 Passer le contenu: Skip the content
+Passer à la version française du site: Switch to the French version of the site
 "Passer, passer la question sans répondre": Pass, pass the question without answering
 Personnalisez l'intégration: Customize the integration
 "Perte de revenu net :": "Loss of net income :"
@@ -426,6 +433,9 @@ Résultat: Result
 Résultat fiscal: Tax result
 Réussite: Success
 S'inscrire: Register
+SA: SA
+SARL: SARL
+SAS: SAS
 SASU: SASU
 Saisissez le nom d'une commune: Enter the name of a municipality
 Saisissez votre domaine d'activité: Enter your field of activity
@@ -465,6 +475,7 @@ Suivant: Next
 "Suivant, passer à la question suivante": Next, go to the next question
 Supprimer les données sauvegardées.: Delete saved data.
 Supprimer toute ma situation: Delete my entire situation
+Switch to the english version of the website: Switch to the english version of the website
 Tableau affichant pour chaque mois de la période précédemment sélectionnée le montant de réductions pour la situation sélectionnée.:
   Table showing for each month of the previously selected period the amount of
   discounts for the selected situation.
@@ -506,6 +517,7 @@ Utiliser avec un tableur: Use with a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use the simulator calculations in your application
 "Versement : ": "Payment : "
 Versement libératoire de l'impôt sur le revenu: Payment in full discharge of income tax
+Version française du site activée.: French version of the site activated.
 Veuillez entrer un message avant de soumettre le formulaire.: Please enter a message before submitting the form.
 Veuillez renseigner votre adresse email.: Please enter your email address.
 Vie privée: Privacy
@@ -665,6 +677,7 @@ associés:
     titre: Number of partners to start a business in France
   titre: Number of partners
 au bout de 10 ans: after 10 years
+auto-entrepreneur: auto-entrepreneur
 auto-entrepreneur-EIRL: auto-entrepreneur-EIRL
 auto-entreprise: self-employed
 autoentrepreneur:
@@ -726,15 +739,21 @@ comparaisonRégimes:
     <0> Public health insurance <1>(medicines, care, hospitalizations)</1></0>
     <1> Same for all </1>
   auto:
+    indep-aria-label: Independent, select the option and go to the next step
     tagline: Start without risk
   choix:
-    AS: '"Assimilé-salarié"'
-    EI: Sole proprietorship
-    EI-aria-label: Sole proprietorship, select the option and go to the next step
-    auto: Self-employed contractor
-    auto-aria-label: Self-employed, select the option and go to the next step
-    indep: Independent
-    indep-aria-label: Independent, select the option and go to the next step
+    AS:
+      aria-label: As an employee, select the option and go to the next step
+      button: Similar to employee
+    EI:
+      aria-label: Sole proprietorship, select the option and go to the next step
+      button: Sole proprietorship
+    auto:
+      aria-label: Self-employed, select the option and go to the next step
+      button: Self-employed contractor
+    indep:
+      aria-label: Independent, select the option and go to the next step
+      button: Independent
   comparaisonDétaillée: |
     <0><0> View more information </0></0>
   complémentaireDeductible: |
@@ -948,12 +967,14 @@ en titres-restaurant: in restaurant vouchers
 entreprise:
   page:
     autoEntrepreneur:
-      description: A complete todo list to help you become {{autoEntrepreneur}} in France.`
-      titre: How to become {{autoEntrepreneur}}
+      description: The complete list of steps to take to become a {{autoEntrepreneur}}.
+      titre: Become {{autoEntrepreneur}}
+    description: The complete list of steps to take to create a {{status}} with the
+      French administration.
     entreprise:
       description: A complete todo list to help you create a {{status}} with the
         French administration.`
-      titre: Create an {{status}}
+      titre: Create a {{status}}
   ressources:
     après:
       body: SIREN, SIRET, APE code, KBis. A small glossary of terms that you may
@@ -1311,11 +1332,13 @@ landing:
         guide.
       body: Assistance in choosing a legal status and a complete list of the steps
         involved in setting up a business
-      title: Consult the list of our simulators
+      title: I would like to start my own business
     manage:
       body: Personalized tools to anticipate the amount of social contributions to be
         paid and better manage your cash flow.
       title: Manage my business
+    simulator:
+      list: Consult the list of our simulators
     simulators:
       body: The exhaustive list of all the simulators available on the site.
       title: Discover all the simulators and assistants
@@ -2299,7 +2322,7 @@ responsabilité:
   intro: This choice determines your degree of responsibility and your ability to
     welcome new partners in the future
   page:
-    titre: Choose between Sole Proprietorship and Limited Liability Company in France
+    titre: Choosing between a company or a sole proprietorship
   société: >
     <0>Limited liability company:</0>
 

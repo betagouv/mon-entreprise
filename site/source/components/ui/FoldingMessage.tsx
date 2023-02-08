@@ -34,9 +34,7 @@ export default function FoldingMessage({
 					<Trans>{title}</Trans>{' '}
 					{isFolded && (
 						<Link onPress={() => setIsFolded(false)} aria-expanded={false}>
-							<Trans i18nKey="simulateurs.warning.plus">
-								{unfoldButtonLabel}
-							</Trans>
+							{unfoldButtonLabel}
 						</Link>
 					)}
 				</Intro>

@@ -138,15 +138,12 @@ const RevenuAprèsImpot = ({
 									},
 									{
 										isChecked: true,
-										label: t(
-											`Choix d'imposition : impôt sur ${
-												indépendantEngine.evaluate({
-													valeur: 'entreprise . imposition',
-												}).nodeValue === 'IS'
-													? 'les sociétés'
-													: 'le revenu'
-											}`
-										),
+										label:
+											indépendantEngine.evaluate({
+												valeur: 'entreprise . imposition',
+											}).nodeValue === 'IS'
+												? t("Choix d'imposition : impôt sur les sociétés")
+												: t("Choix d'imposition : impôt sur le revenu"),
 									},
 								]}
 							/>

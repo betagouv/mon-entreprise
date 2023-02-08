@@ -119,7 +119,7 @@ export default function SearchOrCreate() {
 										to={absoluteSitePaths.simulateurs.index}
 										color="secondary"
 									>
-										<Trans i18nKey="landing.choice.create.title">
+										<Trans i18nKey="landing.choice.simulator.list">
 											Consulter la liste de nos simulateurs
 										</Trans>
 									</Button>

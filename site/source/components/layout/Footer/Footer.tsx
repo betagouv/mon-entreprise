@@ -144,11 +144,11 @@ export default function Footer() {
 															openInSameWindow
 															href={hrefLink.href}
 															aria-disabled={isFrenchMode}
-															aria-label={t(
+															aria-label={
 																isFrenchMode
-																	? 'Version française du site activée.'
-																	: 'Passer à la version française du site'
-															)}
+																	? t('Version française du site activée.')
+																	: t('Passer à la version française du site')
+															}
 															lang="fr"
 															data-test-id="fr-switch-button"
 														>
@@ -161,11 +161,13 @@ export default function Footer() {
 															openInSameWindow
 															lang="en"
 															aria-disabled={!isFrenchMode}
-															aria-label={t(
+															aria-label={
 																!isFrenchMode
-																	? 'English version of the website enabled.'
-																	: 'Switch to the english version of the website'
-															)}
+																	? t('English version of the website enabled.')
+																	: t(
+																			'Switch to the english version of the website'
+																	  )
+															}
 															data-test-id="en-switch-button"
 														>
 															EN <Emoji emoji="🇬🇧" />
