@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import replace from '@rollup/plugin-replace'
-import yaml from '@rollup/plugin-yaml'
+import yaml, { ValidYamlType } from '@rollup/plugin-yaml'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react'
 import fs from 'fs/promises'
@@ -60,7 +60,13 @@ export default defineConfig(({ command, mode }) => ({
 				plugins: [['babel-plugin-styled-components', { pure: true }]],
 			},
 		}),
-		yaml(),
+		yaml({
+			transform(data, filePath) {
+				return filePath.endsWith('/rules-en.yaml')
+					? cleanAutomaticTag(data)
+					: data
+			},
+		}),
 		multipleSPA({
 			defaultSite: 'mon-entreprise',
 			templatePath: './source/template.html',
@@ -281,4 +287,22 @@ export const getBranch = (mode: string) => {
  */
 export const isProductionBranch = (mode: string) => {
 	return ['master', 'next'].includes(getBranch(mode))
+}
+
+const cleanAutomaticTag = (data: ValidYamlType): ValidYamlType => {
+	if (typeof data === 'string' && data.startsWith('[automatic] ')) {
+		return data.replace('[automatic] ', '')
+	}
+
+	if (Array.isArray(data)) {
+		return data.map((val) => cleanAutomaticTag(val))
+	}
+
+	if (data && typeof data === 'object') {
+		return Object.fromEntries<ValidYamlType>(
+			Object.entries(data).map(([key, val]) => [key, cleanAutomaticTag(val)])
+		)
+	}
+
+	return data
 }

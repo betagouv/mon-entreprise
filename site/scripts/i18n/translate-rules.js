@@ -10,19 +10,38 @@ import {
 
 const [missingTranslations, resolved] = getRulesMissingTranslations()
 
-writeFileSync(
-	rulesTranslationPath,
-	yaml.stringify(resolved, { sortMapEntries: true })
-)
+const translateObject = (paths, arr) =>
+	Promise.all(
+		arr.map(async ([dot, k, v]) => {
+			if (typeof v === 'string') {
+				const trad = await fetchTranslation(v)
+				const res = paths.reduce((obj, key) => obj[key], resolved)
+				res[dot][k] = '[automatic] ' + trad
+			} else {
+				translateObject([...paths, dot, k], v)
+			}
+		})
+	)
 
 await Promise.all(
 	missingTranslations.map(async ([dottedName, attr, value]) => {
 		try {
-			const translation = await fetchTranslation(value)
-			resolved[dottedName][attr] = '[automatic] ' + translation
+			if (attr === 'avec') {
+				return await translateObject([dottedName, attr], value)
+			}
+
+			if (typeof value === 'string') {
+				const translation = await fetchTranslation(value)
+				resolved[dottedName][attr] = '[automatic] ' + translation
+			} else {
+				console.warn(
+					"Warning: ⚠️ Can't translate anything other than a string",
+					{ dottedName, attr, value }
+				)
+			}
 		} catch (e) {
 			console.error(e)
-			console.log(value)
+			console.log({ dottedName, attr, value })
 		}
 	})
 )

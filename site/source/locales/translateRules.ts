@@ -21,8 +21,7 @@ const translateSuggestion: translateAttribute = (
 	suggestions: Object.entries(rule.suggestions!).reduce(
 		(acc, [name, value]) => ({
 			...acc,
-			[translation[`${prop}.${name}.${lang}`]?.replace(/^\[automatic\] /, '')]:
-				value,
+			[translation[`${prop}.${name}.${lang}`]]: value,
 		}),
 		{}
 	),
@@ -44,8 +43,7 @@ const translateProp =
 		if (prop === 'suggestions' && rule?.suggestions) {
 			return translateSuggestion(prop, rule, translation, lang)
 		}
-		let propTrans = translation[prop + '.' + lang]
-		propTrans = propTrans?.replace(/^\[automatic\] /, '')
+		const propTrans = translation[prop + '.' + lang]
 
 		let avec
 		if (

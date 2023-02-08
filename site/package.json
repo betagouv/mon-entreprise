@@ -139,7 +139,7 @@
 		"cypress-plugin-tab": "^1.0.5",
 		"cypress-wait-until": "^1.7.2",
 		"dotenv": "^16.0.3",
-		"i18next-parser": "^7.0.3",
+		"i18next-parser": "^7.6.0",
 		"netlify-cli": "^12.2.8",
 		"rimraf": "^3.0.2",
 		"rollup-plugin-toml": "^1.0.0",

@@ -8,14 +8,18 @@ import {
 	getUiMissingTranslations,
 } from './utils.js'
 
+const sleep = (timeout) =>
+	new Promise((resolve) => setTimeout(resolve, timeout))
+
 const missingTranslations = getUiMissingTranslations()
 let originalKeys = yaml.parse(readFileSync(UiOriginalTranslationPath, 'utf-8'))
 let translatedKeys = yaml.parse(readFileSync(UiTranslationPath, 'utf-8'))
 await Promise.all(
 	Object.entries(missingTranslations)
 		.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
-		.map(async ([key, originalTranslation]) => {
+		.map(async ([key, originalTranslation], i) => {
 			try {
+				await sleep(i * 50)
 				const translation = await fetchTranslation(originalTranslation)
 				const path = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
 				translatedKeys = assocPath(path, translation, translatedKeys)
