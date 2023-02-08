@@ -44,15 +44,11 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 
 	const titre = isAutoentrepreneur
 		? t(
-				[
-					'entreprise.page.autoEntrepreneur.titre',
-					'Devenir {{autoEntrepreneur}}',
-				],
-				{
-					autoEntrepreneur: statut,
-				}
+				'entreprise.page.autoEntrepreneur.titre',
+				'Devenir {{autoEntrepreneur}}',
+				{ autoEntrepreneur: statut }
 		  )
-		: t(['entreprise.page.entreprise.titre', 'Créer une {{status}}'], {
+		: t('entreprise.page.entreprise.titre', 'Créer une {{status}}', {
 				status: statut,
 		  })
 
@@ -66,17 +62,13 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 					content={
 						isAutoentrepreneur
 							? t(
-									[
-										'entreprise.page.autoEntrepreneur.description',
-										'La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.',
-									],
+									'entreprise.page.autoEntrepreneur.description',
+									'La liste complète des démarches à faire pour devenir {{autoEntrepreneur}}.',
 									{ autoEntrepreneur: statut }
 							  )
 							: t(
-									[
-										'entreprise.page.description',
-										"La liste complète des démarches à faire pour créer une {{statut}} auprès de l'administration française.",
-									],
+									'entreprise.page.description',
+									"La liste complète des démarches à faire pour créer une {{statut}} auprès de l'administration française.",
 									{ statut }
 							  )
 					}

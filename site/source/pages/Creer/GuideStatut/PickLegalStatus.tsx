@@ -31,7 +31,18 @@ const StatutButton = ({ statut }: StatutButtonProps) => {
 				) : (
 					<Trans>Créer une</Trans>
 				)}{' '}
-				{t(statut)}
+				{
+					// t("auto-entrepreneur")
+					// t("EIRL")
+					// t("auto-entrepreneur-EIRL")
+					// t("EI")
+					// t("SASU")
+					// t("SAS")
+					// t("SARL")
+					// t("EURL")
+					// t("SA")
+					t(statut)
+				}
 			</>
 		</Button>
 	)
@@ -112,25 +123,19 @@ export default function SetMainStatus() {
 				)}
 			</H2>
 
-			{Object.entries(possibleStatus)
+			{(Object.entries(possibleStatus) as [LegalStatus, boolean][])
 				.filter(([, v]) => Boolean(v))
-				.map(
-					/* https://github.com/microsoft/TypeScript/issues/32811 */
-					([statut]) => (
-						<Fragment key={statut}>
-							<H3>
-								<StatutTitle
-									statut={statut as LegalStatus}
-									language={i18n.language}
-								/>
-							</H3>
-							<Body>
-								<StatutDescription statut={statut as LegalStatus} />
-							</Body>
-							<StatutButton statut={statut as LegalStatus} />
-						</Fragment>
-					)
-				)}
+				.map(([statut]) => (
+					<Fragment key={statut}>
+						<H3>
+							<StatutTitle statut={statut} language={i18n.language} />
+						</H3>
+						<Body>
+							<StatutDescription statut={statut} />
+						</Body>
+						<StatutButton statut={statut} />
+					</Fragment>
+				))}
 		</>
 	)
 }

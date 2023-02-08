@@ -23,8 +23,9 @@ export default function Meta({
 	const { pathname } = useLocation()
 	const { t } = useTranslation()
 
+	// TODO: refacto des traductions en évitant qu'elles soit dynamique
 	const meta = {
-		title: t([`${page}.titre`, '%s - Mon-entreprise'], title) || title,
+		title: t(`${page}.titre`, '%s - Mon-entreprise', title) || title,
 		description: t(`${page}.description`, description) || description,
 		ogDescription: ogDescription
 			? t(`${page}.ogDescription`, ogDescription) || ogDescription

@@ -44,11 +44,11 @@ export default function SchemeComparaison({
 								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
 							}}
 							aria-label={t(
-								'comparaisonRégimes.choix.AS',
+								'comparaisonRégimes.choix.AS.aria-label',
 								"Assimilé salarié, sélectionner l'option et passer à l'étape suivante"
 							)}
 						>
-							<Trans i18nKey="comparaisonRégimes.choix.AS">
+							<Trans i18nKey="comparaisonRégimes.choix.AS.button">
 								Assimilé&nbsp;salarié
 							</Trans>
 						</Button>
@@ -64,21 +64,21 @@ export default function SchemeComparaison({
 						aria-label={
 							hideAssimiléSalarié
 								? t(
-										'comparaisonRégimes.choix.EI-aria-label',
+										'comparaisonRégimes.choix.EI.aria-label',
 										"Entreprise individuelle, sélectionner l'option et passer à l'étape suivante"
 								  )
 								: t(
-										'comparaisonRégimes.choix.indep-aria-label',
+										'comparaisonRégimes.choix.indep.aria-label',
 										"Indépendant, sélectionner l'option et passer à l'étape suivante"
 								  )
 						}
 					>
 						{hideAssimiléSalarié ? (
-							<Trans i18nKey="comparaisonRégimes.choix.EI">
+							<Trans i18nKey="comparaisonRégimes.choix.EI.button">
 								Entreprise individuelle
 							</Trans>
 						) : (
-							<Trans i18nKey="comparaisonRégimes.choix.indep">
+							<Trans i18nKey="comparaisonRégimes.choix.indep.button">
 								Indépendant
 							</Trans>
 						)}
@@ -93,11 +93,11 @@ export default function SchemeComparaison({
 								dispatch(isAutoentrepreneur(true))
 							}}
 							aria-label={t(
-								'comparaisonRégimes.choix.auto-aria-label',
+								'comparaisonRégimes.choix.auto.aria-label',
 								"Auto-entrepreneur, sélectionner l'option et passer à l'étape suivante"
 							)}
 						>
-							<Trans i18nKey="comparaisonRégimes.choix.auto">
+							<Trans i18nKey="comparaisonRégimes.choix.auto.button">
 								Auto-entrepreneur
 							</Trans>
 						</Button>
