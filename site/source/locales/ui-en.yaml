@@ -556,6 +556,9 @@ Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié<
   you<3>(collaborating spouse</3>, <6>associate spouse</6> or <9>employee
   spouse</9>)."
 Zoom sur...: Focus on...
+accessibility:
+  description: General Accessibility Improvement Framework
+  title: Accessibility
 aide: Help
 aide-déclaration-indépendant:
   banner: Find out more about our tax<1>return</1>tool
@@ -582,6 +585,9 @@ aide-déclaration-indépendant:
 an: year
 année: year
 août: August
+api:
+  description: Tools for developers
+  title: Using our REST API
 applicable si: applicable if
 après:
   actions:
@@ -707,11 +713,13 @@ betawarning: "<0><0>This tool is in beta version</0>: we are working to
   <3>validate the information and calculations</3>, but <6>errors may be
   present</6>.</0>"
 budget:
+  description: The budget of my-company
   tableCaption: Table showing the budget for the year {{year}} by expense item.
     The first column shows the current year ({{year}}) on the first line, then
     the expense items and finally the total before and after tax. The other
     columns show the expenses for each quarter. The last column shows the totals
     for each expense item as well as the aggregated total before and after tax.
+  title: Budget
 calcul-avec: "Calculation from <1></1>with :"
 cancelExample: Back to your situation
 car dépend de: because it depends on
@@ -744,7 +752,7 @@ comparaisonRégimes:
   choix:
     AS:
       aria-label: As an employee, select the option and go to the next step
-      button: "Assimilé salarié"
+      button: Assimilé salarié
     EI:
       aria-label: Sole proprietorship, select the option and go to the next step
       button: Sole proprietorship
@@ -877,8 +885,9 @@ créer:
   cta:
     continue: Continue the guide
     default: Find the right status
-  description: Before starting the administrative procedures to create your
-    company, you must choose a legal status adapted to your activity
+  description: Create a company
+  intro: Before starting the administrative procedures to create your company, you
+    must choose a legal status adapted to your activity
   ressources:
     autoEntrepreneur:
       body: Do you want to become an auto-entrepreneur? Discover the steps to start
@@ -904,6 +913,9 @@ dividendes:
     French companies subject to corporation tax (IS), and does not concern
     self-employed workers.</0><1>The amount of tax on dividends is calculated in
     addition to the tax on other taxable income.</1>
+documentation:
+  description: Explore all the rules in the documentation
+  title: Documentation
 domiciliation inconnue: unknown address
 domiciliée à: domiciled in
 décembre: December
@@ -1300,6 +1312,9 @@ gérer:
   titre: Manage my business
 heure: hour
 heures: hours
+iframe:
+  description: Tools for developers
+  title: Integrate a simulator
 impotSociété:
   exerciceDates: Exercise from <2></2> to <6></6>
   warning: "This simulator is aimed at <2>“TPE”</2>: it takes into account the
@@ -1310,6 +1325,9 @@ impôt sur le revenu: income tax
 indemnité: benefit
 indicationTempsPlein: in full-time gross salary equivalent
 inférieurs à: lower than
+intégration:
+  description: Tools for developers
+  title: Integration
 janvier: January
 jour: day
 jours: days
@@ -1354,7 +1372,6 @@ landing:
   subtitle: Simulators and assistants to develop your business, from legal status
     to hiring.
   title: The official tools for entrepreneurs
-  titre: MyCompanyInFrance
 "le portail officiel, accéder à aides-entreprises":
   "fr, nouvelle fenêtre": the official portal, access to aides-entreprises.fr, new window
 "le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre": the Urssaf website, access to the Urssaf website, new window
@@ -1376,6 +1393,9 @@ legalNotice:
     content: M. Yann-Gaël Amghar, Director of Acoss
     title: Director of publication
   title: Legal notice
+library:
+  description: Tools for developers
+  title: Calculation library
 listeformejuridique:
   page:
     titre: Legal status list for creating your company in France
@@ -1394,6 +1414,10 @@ navbar:
   deactivate-darkmode: Disable dark mode
   logo: navbar.logo
   redirect-home: Go to home page
+news:
+  description: We are continuously improving the site based on your feedback.
+    Discover the latest news
+  title: News
 nextSteps:
   integration-iframe:
     body: Discover how to add this simulator on your website in one click via a
@@ -1409,16 +1433,6 @@ novembre: November
 octobre: October
 ou: or
 oui: yes
-page:
-  documentation:
-    title: Documentation
-  simulateurs:
-    accueil:
-      description: <0>All the simulators on this site are :</0><1><0><0>Maintained
-        up</0> to date with the latest legislative
-        developments</0><1><0>Continuously improved</0> to increase the number
-        of devices considered</1><2><0>Easily and freely integrates</0> on any
-        website. <3>Learn more about</3> it.</2></1>
 pages:
   accessibilité: <0>Accessibility</0><1></1><2></2><3>This page is not a help
     page, but a declaration of compliance with the <2>RGAA</2> 4.0 which aims to
@@ -1754,8 +1768,15 @@ pages:
       shortname: Sole proprietorship
       title: Income simulator for sole proprietorship (EI)
     accueil:
+      description: All simulators on this site are kept up to date with the latest
+        legislative developments.
       header: All the simulators on this site are kept up to date with the latest
         legislative developments.
+      section: <0>All simulators on this site are :</0><1><0><0>kept up to date</0>
+        with the latest legislative
+        developments</0><1>Continuously<0>improved</0> to increase the number of
+        devices taken into account</1><2><0>Easily integrated into</0> any
+        website for<0>free</0>. To <3>find out more</3>, click here.</2></1>
       titre: Simulators available
     artiste-auteur:
       meta:
@@ -2453,11 +2474,20 @@ simulation-end:
   text: You have reached the most accurate estimate.
   title: No more questions left!
 site:
-  titleTemplate: "%s - My Company"
+  defaultTitle: MyCompanyInFrance
+  titleTemplate: "%s - MyCompanyInFrance"
+sitemap:
+  description: Page detailing the tree structure of the Mon-Entreprise site.
+  title: Site Map
+spreadsheet:
+  description: Tools for developers
+  title: Use with a spreadsheet
 stats:
   change_january_2022: Modification of the user feedback module resulting in a
     significant decrease in the number of notices
   change_january_2023: Modification of the user feedback module
+  description: Discover our usage statistics updated daily.
+  title: Statistics
 statut du dirigeant:
   description: <0>This choice is important because it determines the social
     security regime and the social coverage of the manager. The amount and terms

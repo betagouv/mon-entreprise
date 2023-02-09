@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { H1, H3 } from '@/design-system/typography/heading'
@@ -12,17 +12,21 @@ import useSimulatorsData from './Simulateurs/metadata'
 
 export default function Plan() {
 	const { absoluteSitePaths } = useSitePaths()
+	const { t } = useTranslation()
 	const simulatorData = useSimulatorsData()
 
 	return (
 		<>
 			<H1>
-				<Trans>Plan du site</Trans>
+				<Trans i18nKey={'sitemap.title'}>Plan du site</Trans>
 			</H1>
 			<Meta
 				page="plan-du-site"
-				title="Plan du site"
-				description="Page détaillant l'arborescence du site Mon-Entreprise."
+				title={t('sitemap.title', 'Plan du site')}
+				description={t(
+					'sitemap.description',
+					"Page détaillant l'arborescence du site Mon-Entreprise."
+				)}
 			/>
 			<TrackPage chapter1="navigation" name="plan-du-site" />
 

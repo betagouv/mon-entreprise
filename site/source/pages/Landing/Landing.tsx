@@ -32,8 +32,11 @@ export default function Landing() {
 			<TrackPage chapter1="informations" name="accueil" />
 			<Meta
 				page="landing"
-				title="Mon-entreprise"
-				description="L'assistant officiel des entrepreneurs"
+				title=""
+				description={t(
+					'landing.description',
+					"L'assistant officiel des entrepreneurs"
+				)}
 				ogImage="/logo-share.png"
 			/>
 			<Header />

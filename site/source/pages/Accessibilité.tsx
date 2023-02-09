@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -9,20 +9,30 @@ import { TrackPage } from '../ATInternetTracking'
 import Meta from '../components/utils/Meta'
 
 export default function Accessibilité() {
+	const { t } = useTranslation()
+
 	return (
 		<Trans i18nKey="pages.accessibilité">
 			<H1>Accessibilité</H1>
 			<Meta
 				page="accessibilité"
-				title="Accessibilité"
-				description="Référentiel Général d’Amélioration de l’Accessibilité"
+				title={t('accessibility.title', 'Accessibilité')}
+				description={t(
+					'accessibility.description',
+					'Référentiel Général d’Amélioration de l’Accessibilité'
+				)}
 			/>
 			<TrackPage chapter1="informations" name="accessibilite" />
 
 			<Body>
 				Cette page n'est pas une page d'aide, mais une déclaration de conformité
 				au{' '}
-				<abbr title="Référentiel Général d’Amélioration de l’Accessibilité">
+				<abbr
+					title={t(
+						'accessibility.description',
+						'Référentiel Général d’Amélioration de l’Accessibilité'
+					)}
+				>
 					RGAA
 				</abbr>{' '}
 				4.0&nbsp;qui vise à définir le niveau d'accessibilité général constaté

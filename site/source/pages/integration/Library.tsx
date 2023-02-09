@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
 import { ScrollToTop } from '@/components/utils/Scroll'
@@ -16,12 +16,14 @@ import StepByStep from './components/StepByStep'
 import illustration from './images/illustration_library.svg'
 
 export default function Library() {
+	const { t } = useTranslation()
+
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<Meta
 				page="library"
-				title="Librairie de calcul"
-				description="Outils pour les développeurs"
+				title={t('library.title', 'Librairie de calcul')}
+				description={t('library.description', 'Outils pour les développeurs')}
 			/>
 			<ScrollToTop />
 			<Trans i18nKey="pages.développeur.bibliothèque">

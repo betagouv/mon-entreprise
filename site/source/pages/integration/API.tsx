@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
 import { ScrollToTop } from '@/components/utils/Scroll'
@@ -15,13 +15,15 @@ import StepByStep from './components/StepByStep'
 import illustration from './images/API_illustration.svg'
 
 export default function API() {
+	const { t } = useTranslation()
+
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
 			<Meta
 				page="api"
-				title="Utiliser notre API REST"
-				description="Outils pour les développeurs"
+				title={t('api.title', 'Utiliser notre API REST')}
+				description={t('api.description', 'Outils pour les développeurs')}
 			/>
 			<Trans i18nKey="pages.développeur.api">
 				<PageHeader titre="API REST de simulation" picture={illustration}>

@@ -19,15 +19,21 @@ export default function Options() {
 		<>
 			<Meta
 				page="intégration"
-				title="Intégration"
-				description="Outils pour les développeurs"
+				title={t('intégration.title', 'Intégration')}
+				description={t(
+					'intégration.description',
+					'Outils pour les développeurs'
+				)}
 				ogImage={illustration}
 			/>
 			<PageHeader
 				picture={illustration}
 				titre={
 					<>
-						<Trans>Outils pour les développeurs</Trans> <Emoji emoji="👨‍💻" />
+						<Trans i18nKey="intégration.description">
+							Outils pour les développeurs
+						</Trans>{' '}
+						<Emoji emoji="👨‍💻" />
 					</>
 				}
 			>

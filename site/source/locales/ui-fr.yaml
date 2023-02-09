@@ -483,6 +483,9 @@ Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié<
   existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>,
   <6>conjoint associé</6> ou <9>conjoint salarié</9>)."
 Zoom sur...: Zoom sur...
+accessibility:
+  description: Référentiel Général d’Amélioration de l’Accessibilité
+  title: Accessibilité
 aide-déclaration-indépendant:
   banner: Découvrez notre outil d'<1>aide à la déclaration des revenus</1>
   description: <0><0>Déclaration charges sociales indépendants</0></0><1><0>Cet
@@ -505,6 +508,9 @@ aide-déclaration-indépendant:
     title: Montants à reporter dans votre déclaration de revenus
     title-short: Vos déclarations fiscales
 août: août
+api:
+  description: Outils pour les développeurs
+  title: Utiliser notre API REST
 après:
   ape:
     description: Le code APE correspond au <1>secteur d'activité</1> de votre
@@ -619,12 +625,14 @@ betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
   être présentes.</6></0>"
 budget:
+  description: Le budget de mon-entreprise
   tableCaption: Tableau affichant le bugdet de l'année {{year}} par poste de
     dépenses. La première colonne affiche l'année en cours ({{year}}) sur la
     première ligne puis les postes de dépenses et pour finir le total HT et
     total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre.
     La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi
     que les totaux HT et TTC agrégés.
+  title: Budget
 cards:
   simulator-resource:
     cta: Accéder au simulateur
@@ -723,7 +731,8 @@ créer:
   cta:
     continue: Continuer le guide
     default: Trouver le bon statut
-  description: Avant d'entamer les démarches administratives pour créer votre
+  description: Créer une entreprise
+  intro: Avant d'entamer les démarches administratives pour créer votre
     entreprise, vous devez choisir un statut juridique adapté à votre activité
   ressources:
     autoEntrepreneur:
@@ -751,6 +760,9 @@ dividendes:
     concerne pas les travailleurs indépendants non salariés.</0><1>Le montant de
     l'impôt sur les dividendes est calculé en sus de l’impôt sur les autres
     revenus imposables.</1>
+documentation:
+  description: Explorez toutes les règles de la documentation
+  title: Documentation
 domiciliation inconnue: domiciliation inconnue
 domiciliée à: domiciliée à
 décembre: décembre
@@ -1115,6 +1127,9 @@ gérer:
       cta: Lire le guide
       title: Comprendre la sécurité sociale
   titre: Gérer mon activité
+iframe:
+  description: Outils pour les développeurs
+  title: Intégrer un simulateur
 impotSociété:
   exerciceDates: Exercice du <2></2> au <6></6>
   warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
@@ -1122,6 +1137,9 @@ impotSociété:
 impôt: impôt
 impôt sur le revenu: impôt sur le revenu
 inférieurs à: inférieurs à
+intégration:
+  description: Outils pour les développeurs
+  title: Intégration
 janvier: janvier
 jours: jours
 juillet: juillet
@@ -1154,6 +1172,7 @@ landing:
     simulators:
       body: La liste exhaustive de tous les simulateurs disponibles sur le site.
       title: Découvrir tous les simulateurs et assistants
+  description: L'assistant officiel des entrepreneurs
   outils: <0>Les outils à votre disposition</0><1>Nous mettons à votre disposition
     des assistants et simulateurs pour vous aider à la gestion de votre
     entreprise, anticiper les prélèvements et planifier votre trésorerie en
@@ -1179,6 +1198,9 @@ legalNotice:
     content: M. Yann-Gaël Amghar, Directeur de l'Acoss
     title: Directeur de la publication
   title: Mentions légales
+library:
+  description: Outils pour les développeurs
+  title: Librairie de calcul
 listeformejuridique:
   page:
     titre: Liste des statuts juridiques pour la création de votre entreprise
@@ -1194,6 +1216,10 @@ navbar:
   deactivate-darkmode: Désactiver le mode sombre
   logo: navbar.logo
   redirect-home: Accéder à la page d'accueil
+news:
+  description: Nous améliorons le site en continu à partir de vos retours.
+    Découvrez les dernières nouveautés
+  title: Nouveautés
 nextSteps:
   integration-iframe:
     body: Decouvrez comment ajouter ce simulateur sur votre site internet en un clic
@@ -1207,16 +1233,6 @@ novembre: novembre
 octobre: octobre
 ou: ou
 oui: oui
-page:
-  documentation:
-    title: Documentation
-  simulateurs:
-    accueil:
-      description: <0>Tous les simulateurs sur ce site sont :</0><1><0><0>Maintenus à
-        jour</0> avec les dernières évolutions législatives</0><1><0>Améliorés
-        en continu</0> afin d'augmenter le nombre de dispositifs pris en
-        compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
-        quel site internet. <3>En savoir plus</3>.</2></1>
 pages:
   accessibilité: <0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
     page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui
@@ -1538,8 +1554,15 @@ pages:
         locales...</2><3></3></9>"
   simulateurs:
     accueil:
+      description: Tous les simulateurs sur ce site sont maintenus à jour avec les
+        dernières évolutions législatives.
       header: Tous les simulateurs sur ce site sont maintenus à jour avec les
         dernières évolutions législatives.
+      section: <0>Tous les simulateurs sur ce site sont :</0><1><0><0>Maintenus à
+        jour</0> avec les dernières évolutions législatives</0><1><0>Améliorés
+        en continu</0> afin d'augmenter le nombre de dispositifs pris en
+        compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
+        quel site internet. <3>En savoir plus</3>.</2></1>
       titre: Simulateurs disponibles
     artiste-auteur:
       meta:
@@ -2144,11 +2167,20 @@ simulation-end:
   text: Vous avez maintenant accès à l'estimation la plus précise possible.
   title: Vous avez complété cette simulation
 site:
+  defaultTitle: Mon-entreprise
   titleTemplate: "%s - Mon-entreprise"
+sitemap:
+  description: Page détaillant l'arborescence du site Mon-Entreprise.
+  title: Plan du site
+spreadsheet:
+  description: Outils pour les développeurs
+  title: Utiliser avec un tableur
 stats:
   change_january_2022: Modification du module de retours utilisateurs entraînant
     une baisse significative des avis
   change_january_2023: Modification du module de retours utilisateurs
+  description: Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
+  title: Statistiques
 statut du dirigeant:
   description: <0>Ce choix est important car il détermine le régime de sécurité
     sociale et la couverture sociale du dirigeant. Le montant et les modalités

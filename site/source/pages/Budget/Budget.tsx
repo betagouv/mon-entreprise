@@ -64,8 +64,8 @@ export default function Budget() {
 			<TrackPage chapter1="informations" name="budget" />
 			<Meta
 				page="budget"
-				title="Budget"
-				description="Le budget de mon-entreprise"
+				title={t('budget.title', 'Budget')}
+				description={t('budget.description', 'Le budget de mon-entreprise')}
 			/>
 			<ScrollToTop />
 			<H1>
