@@ -3,7 +3,7 @@ import { SimulatorsDataParams } from '../configs/types'
 import salaireBrutNetPreviewEN from './SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './SalaireBrutNetPreviewFR.png'
 import SalariéSimulation, { SeoExplanations } from './Salarié'
-import { configSalarié } from './_simulationConfig'
+import { configSalarié } from './simulationConfig'
 
 export function salariéConfig(params: SimulatorsDataParams) {
 	const { t, sitePaths, language } = params

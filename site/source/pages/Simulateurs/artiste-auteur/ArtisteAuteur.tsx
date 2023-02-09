@@ -14,7 +14,7 @@ import { EngineContext } from '@/components/utils/EngineContext'
 import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { H2 } from '@/design-system/typography/heading'
 
-import { configArtisteAuteur } from './_simulationConfig'
+import { configArtisteAuteur } from './simulationConfig'
 
 export default function ArtisteAuteur() {
 	useSimulationConfig({ path: 'artiste-auteur', config: configArtisteAuteur })

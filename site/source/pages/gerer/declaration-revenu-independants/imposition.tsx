@@ -28,10 +28,10 @@ import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { getMeta } from '@/utils'
 
-import { SimpleField } from '../_components/Fields'
-import FormulaireTitle from './_components/FormulaireTitle'
-import ModeAccompagnement from './_components/ModeAccompagnement'
-import { useProgress } from './_components/hooks'
+import { SimpleField } from '../components/Fields'
+import FormulaireTitle from './components/FormulaireTitle'
+import ModeAccompagnement from './components/ModeAccompagnement'
+import { useProgress } from './components/hooks'
 
 export const OBJECTIFS: Array<DottedName> = [
 	'entreprise . imposition',

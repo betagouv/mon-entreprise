@@ -19,12 +19,12 @@ import { Li, Ol } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { getMeta } from '@/utils'
 
-import { SimpleField } from '../_components/Fields'
+import { SimpleField } from '../components/Fields'
 import {
 	DéclarationRevenuSection,
 	useDéclarationRevenuFields,
-} from './_components/DéclarationRevenu'
-import { useApplicableFields, useProgress } from './_components/hooks'
+} from './components/DéclarationRevenu'
+import { useApplicableFields, useProgress } from './components/hooks'
 
 export interface Meta {
 	requis?: 'oui' | 'non'

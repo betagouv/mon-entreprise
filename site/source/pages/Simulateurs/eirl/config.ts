@@ -2,7 +2,7 @@ import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 import AutoEntrepreneurPreview from '../images/AutoEntrepreneurPreview.png'
 import IndépendantSimulation from '../indépendant/Indépendant'
-import { configEirl } from '../indépendant/_simulationConfig'
+import { configEirl } from '../indépendant/simulationConfig'
 
 export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

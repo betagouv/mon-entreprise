@@ -2,7 +2,7 @@ import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 import AutoEntrepreneurPreview from '../images/AutoEntrepreneurPreview.png'
 import AutoEntrepreneur, { SeoExplanations } from './AutoEntrepreneur'
-import { configAutoEntrepreneur } from './_simulationConfig'
+import { configAutoEntrepreneur } from './simulationConfig'
 
 export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

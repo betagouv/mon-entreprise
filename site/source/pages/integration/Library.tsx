@@ -11,9 +11,9 @@ import { Li, Ol } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 
 import Meta from '../../components/utils/Meta'
-import { CasParticuliers } from './_components/CasParticuliers'
-import StepByStep from './_components/StepByStep'
-import illustration from './_images/illustration_library.svg'
+import { CasParticuliers } from './components/CasParticuliers'
+import StepByStep from './components/StepByStep'
+import illustration from './images/illustration_library.svg'
 
 export default function Library() {
 	return (

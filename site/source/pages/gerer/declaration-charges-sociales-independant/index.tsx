@@ -23,10 +23,10 @@ import { situationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
 
 import { TrackPage } from '../../../ATInternetTracking'
-import { SimpleField, SubSection } from '../_components/Fields'
-import { ExplicationsResultatFiscal } from './_components/ExplicationResultatFiscal'
-import ResultatsSimples from './_components/RésultatSimple'
-import illustration from './_undraw_fill_in_mie5.svg'
+import { SimpleField, SubSection } from '../components/Fields'
+import { ExplicationsResultatFiscal } from './components/ExplicationResultatFiscal'
+import ResultatsSimples from './components/RésultatSimple'
+import illustration from './undraw_fill_in_mie5.svg'
 
 const config: SimulationConfig = {
 	'objectifs exclusifs': [

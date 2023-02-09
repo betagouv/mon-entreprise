@@ -24,9 +24,9 @@ import './iframe.css'
 import { Button } from '@/design-system/buttons'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
-import cciLogo from './_images/cci.png'
-import minTraLogo from './_images/min-tra.jpg'
-import poleEmploiLogo from './_images/pole-emploi.png'
+import cciLogo from './images/cci.png'
+import minTraLogo from './images/min-tra.jpg'
+import poleEmploiLogo from './images/pole-emploi.png'
 
 const checkIframe = (obj: SimulatorData[keyof SimulatorData]) =>
 	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)

@@ -1,7 +1,7 @@
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 import IndépendantSimulation from './Indépendant'
-import { configIndépendant } from './_simulationConfig'
+import { configIndépendant } from './simulationConfig'
 
 export function indépendantConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

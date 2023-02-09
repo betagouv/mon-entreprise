@@ -29,11 +29,11 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
 
-import { SimpleField } from '../_components/Fields'
-import Exceptions from './_components/Exceptions'
-import NotHandledCase from './_components/NotHandledCase'
-import { useProgress } from './_components/hooks'
-import illustration from './_components/undraw_fill_in_mie5.svg'
+import { SimpleField } from '../components/Fields'
+import Exceptions from './components/Exceptions'
+import NotHandledCase from './components/NotHandledCase'
+import { useProgress } from './components/hooks'
+import illustration from './components/undraw_fill_in_mie5.svg'
 
 export const OBJECTIFS: DottedName[] = [
 	'entreprise . SIREN',

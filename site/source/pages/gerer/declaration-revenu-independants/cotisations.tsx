@@ -12,8 +12,8 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 
-import { SimpleField } from '../_components/Fields'
-import { DéclarationRevenu } from './_components/DéclarationRevenu'
+import { SimpleField } from '../components/Fields'
+import { DéclarationRevenu } from './components/DéclarationRevenu'
 
 export default function Cotisations() {
 	const { numberCurrentStep, numberSteps } = useSimulationProgress()
