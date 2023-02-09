@@ -2,7 +2,7 @@ import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 import ChômagePartielComponent, { SeoExplanations } from './ChômagePartiel'
 import ChômagePartielPreview from './ChômagePartielPreview.png'
-import { configChômagePartiel } from './_simulationConfig'
+import { configChômagePartiel } from './simulationConfig'
 
 export function chômagePartielConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

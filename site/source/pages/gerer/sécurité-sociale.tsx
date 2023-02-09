@@ -8,7 +8,7 @@ import { H1, H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import { TrackPage } from '../../ATInternetTracking'
-import Video from './_components/Video'
+import Video from './components/Video'
 
 export default function SocialSecurity() {
 	const { t } = useTranslation()

@@ -1,7 +1,7 @@
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 import { IndépendantPLSimulation } from '../indépendant/Indépendant'
-import { configAuxiliaire } from '../profession-libérale/_simulationConfig'
+import { configAuxiliaire } from '../profession-libérale/simulationConfig'
 
 export function auxiliaireMédicalConfig({
 	t,

@@ -1,6 +1,6 @@
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
-import { configProfessionLibérale } from '../profession-libérale/_simulationConfig'
+import { configProfessionLibérale } from '../profession-libérale/simulationConfig'
 import PAMCHome from './PAMCHome'
 
 export function pamcConfig({ t, sitePaths }: SimulatorsDataParams) {

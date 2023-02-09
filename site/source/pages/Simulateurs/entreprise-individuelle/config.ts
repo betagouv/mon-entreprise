@@ -5,7 +5,7 @@ import {
 	EntrepriseIndividuelle,
 	SeoExplanationsEI,
 } from '../indépendant/Indépendant'
-import { configEntrepriseIndividuelle } from '../indépendant/_simulationConfig'
+import { configEntrepriseIndividuelle } from '../indépendant/simulationConfig'
 
 export function entrepriseIndividuelleConfig({
 	t,

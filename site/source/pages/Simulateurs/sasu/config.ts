@@ -2,7 +2,7 @@ import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 import RémunérationSASUPreview from '../images/RémunérationSASUPreview.png'
 import { SASUSimulation, SeoExplanations } from './SASU'
-import { configSASU } from './_simulationConfig'
+import { configSASU } from './simulationConfig'
 
 export function sasuConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

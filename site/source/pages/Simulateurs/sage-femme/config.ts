@@ -1,7 +1,7 @@
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 import { IndépendantPLSimulation } from '../indépendant/Indépendant'
-import { configSageFemme } from '../profession-libérale/_simulationConfig'
+import { configSageFemme } from '../profession-libérale/simulationConfig'
 
 export function sageFemmeConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

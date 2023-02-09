@@ -10,9 +10,9 @@ import { Li, Ol, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 
 import Meta from '../../components/utils/Meta'
-import { CasParticuliers } from './_components/CasParticuliers'
-import StepByStep from './_components/StepByStep'
-import illustration from './_images/API_illustration.svg'
+import { CasParticuliers } from './components/CasParticuliers'
+import StepByStep from './components/StepByStep'
+import illustration from './images/API_illustration.svg'
 
 export default function API() {
 	return (

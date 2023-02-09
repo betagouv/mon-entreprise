@@ -22,7 +22,7 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { getMeta } from '@/utils'
 
-import { SimpleField } from '../../_components/Fields'
+import { SimpleField } from '../../components/Fields'
 import { Meta } from '../declaration'
 import Exceptions from './Exceptions'
 import { useApplicableFields } from './hooks'

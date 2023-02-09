@@ -9,7 +9,7 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 
 import Meta from '../../components/utils/Meta'
-import illustration from './_images/illustration_code.svg'
+import illustration from './images/illustration_code.svg'
 
 export default function Options() {
 	const { absoluteSitePaths } = useSitePaths()

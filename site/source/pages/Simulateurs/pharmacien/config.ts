@@ -1,7 +1,7 @@
 import { config } from '../configs/config'
 import { SimulatorsDataParams } from '../configs/types'
 import { IndépendantPLSimulation } from '../indépendant/Indépendant'
-import { configPharmacien } from '../profession-libérale/_simulationConfig'
+import { configPharmacien } from '../profession-libérale/simulationConfig'
 
 export function pharmacienConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

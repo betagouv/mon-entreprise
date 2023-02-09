@@ -13,7 +13,7 @@ import { SimulationConfig } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 import { omit } from '@/utils'
 
-import { useProgress } from './_components/hooks'
+import { useProgress } from './components/hooks'
 import Cotisations from './cotisations'
 import Déclaration, { useObjectifs as useStep3Objectifs } from './declaration'
 import Entreprise, { OBJECTIFS as Step1Objectifs } from './entreprise'
