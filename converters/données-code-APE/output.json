@@ -3,10 +3,9 @@
     {
       "codeApe": "01.11Z",
       "title": "Culture de céréales (à l'exception du riz), de légumineuses et de graines oléagineuses",
-      "data": [
-        "Cette sous-classe comprend toutes les formes de culture de plein champ de céréales, de légumineuses et de graines oléagineuses. Ces cultures sont souvent combinées au sein des unités agricoles."
-      ],
+      "data": [],
       "contenuCentral": [
+        "toutes les formes de culture de plein champ de céréales, de légumineuses et de graines oléagineuses. Ces cultures sont souvent combinées au sein des unités agricoles.",
         "la culture de céréales telles que :",
         "• blé",
         "• maïs-grain",
@@ -287,10 +286,10 @@
       "codeApe": "01.30Z",
       "title": "Reproduction de plantes",
       "data": [
-        "Cette sous-classe comprend la production de tout type de matières végétales destiné à la propagation des végétaux, y compris boutures, drageons et semis, en vue de la propagation directe des plantes ou par l'intermédiaire de greffons.",
         "Produits associés : 01.30.10p"
       ],
       "contenuCentral": [
+        "la production de tout type de matières végétales destiné à la propagation des végétaux, y compris boutures, drageons et semis, en vue de la propagation directe des plantes ou par l'intermédiaire de greffons.",
         "la culture de plantes destinées à la plantation",
         "la culture de plantes destinées à l'ornementation, y compris le gazon en rouleaux",
         "la culture de plantes vivantes pour la production de bulbes, tubercules ou racines, de boutures et greffons, de blanc de champignon",
@@ -400,7 +399,6 @@
       "codeApe": "01.49Z",
       "title": "Élevage d'autres animaux",
       "data": [
-        "03.22Z)",
         "Produits associés : 01.49.11p, 01.49.12p, 01.49.13p, 01.49.19p, 01.49.21p, 01.49.22p,",
         "01.49.23p, 01.49.24p, 01.49.25p, 01.49.26p, 01.49.27p, 01.49.28p,",
         "01.49.31p, 01.49.32p, 01.49.39p"
@@ -427,8 +425,7 @@
       "contenuAnnexe": [],
       "contenuExclu": [
         "la production de cuirs et peaux provenant de la chasse ou du piégeage (cf. 01.70Z)",
-        "l'exploitation de fermes d'élevage de grenouilles, de crocodiles, de vers marins (cf. 03.21Z et",
-        "03.22Z)",
+        "l'exploitation de fermes d'élevage de grenouilles, de crocodiles, de vers marins (cf. 03.21Z et 03.22Z)",
         "les exploitations piscicoles (cf. 03.21Z et 03.22Z)",
         "l'hébergement et le dressage d'animaux de compagnie (cf. 96.09Z)",
         "l'élevage de volailles (cf. 01.47Z)"
@@ -438,7 +435,6 @@
       "codeApe": "01.50Z",
       "title": "Culture et élevage associés",
       "data": [
-        "Cette sous-classe couvre la production combinée de produits végétaux et de produits animaux sans spécialisation de la production dans les produits végétaux ou dans les animaux. La dimension de l'exploitation agricole globale n'est pas un facteur déterminant. Si dans une unité donnée, la production de produits végétaux ou d'animaux est égale ou supérieure à 66 % des marges brutes standard, l'activité combinée ne doit pas être affectée à cette sous-classe, mais dans la culture ou dans l'élevage.",
         "Produits associés : 01.11.11p, 01.11.12p, 01.11.20p, 01.11.31p, 01.11.32p, 01.11.33p,",
         "01.11.41p, 01.11.42p, 01.11.43p, 01.11.49p, 01.11.50p, 01.11.61p,",
         "01.11.62p, 01.11.69p, 01.11.71p, 01.11.72p, 01.11.73p, 01.11.74p,",
@@ -468,7 +464,9 @@
         "01.49.22p, 01.49.23p, 01.49.24p, 01.49.25p, 01.49.26p, 01.49.27p,",
         "01.49.28p, 01.49.31p, 01.49.32p, 01.49.39p"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "la production combinée de produits végétaux et de produits animaux sans spécialisation de la production dans les produits végétaux ou dans les animaux. La dimension de l'exploitation agricole globale n'est pas un facteur déterminant. Si dans une unité donnée, la production de produits végétaux ou d'animaux est égale ou supérieure à 66 % des marges brutes standard, l'activité combinée ne doit pas être affectée à cette sous-classe, mais dans la culture ou dans l'élevage."
+      ],
       "contenuAnnexe": [],
       "contenuExclu": [
         "les cultures mixtes concernées par plusieurs classes des groupes 01.1 et 01.2",
@@ -551,10 +549,11 @@
       "codeApe": "01.64Z",
       "title": "Traitement des semences",
       "data": [
-        "Cette sous-classe comprend l'ensemble des activités de traitement primaire des récoltes visant à améliorer la qualité des semences en les débarrassant des impuretés, des éléments de trop petite taille, des éléments endommagés par les traitements mécaniques ou par les insectes et des semences immatures ou encore en enlevant la moisissure afin de garantir des bonnes conditions d'entreposage. Cette activité comprend le séchage, le nettoyage, le triage et le traitement des semences jusqu'à leur commercialisation. Elle s'applique aussi aux céréales génétiquement modifiées.",
         "Produits associés : 01.64.10"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "l'ensemble des activités de traitement primaire des récoltes visant à améliorer la qualité des semences en les débarrassant des impuretés, des éléments de trop petite taille, des éléments endommagés par les traitements mécaniques ou par les insectes et des semences immatures ou encore en enlevant la moisissure afin de garantir des bonnes conditions d'entreposage. Cette activité comprend le séchage, le nettoyage, le triage et le traitement des semences jusqu'à leur commercialisation. Elle s'applique aussi aux céréales génétiquement modifiées."
+      ],
       "contenuAnnexe": [],
       "contenuExclu": [
         "la production de semences (cf. groupes 01.1 et 01.2)",
@@ -661,10 +660,10 @@
       "codeApe": "02.40Z",
       "title": "Services de soutien à l'exploitation forestière",
       "data": [
-        "Cette sous-classe comprend la réalisation d'une partie de l'exploitation forestière pour compte de tiers.",
         "Produits associés : 02.40.10"
       ],
       "contenuCentral": [
+        "la réalisation d'une partie de l'exploitation forestière pour compte de tiers.",
         "les services annexes à la sylviculture :",
         "• entretien des forêts",
         "• inventaire des forêts",
@@ -1013,7 +1012,6 @@
       "codeApe": "09.10Z",
       "title": "Activités de soutien à l'extraction d'hydrocarbures",
       "data": [
-        "et 06.20Z)",
         "Produits associés : 09.10.11, 09.10.12, 09.10.13"
       ],
       "contenuCentral": [
@@ -1027,8 +1025,7 @@
         "la protection et la lutte contre les incendies sur les champs de pétrole et de gaz"
       ],
       "contenuExclu": [
-        "les activités de services réalisées par des exploitants de champs de gaz et de pétrole (cf. 06.10Z",
-        "et 06.20Z)",
+        "les activités de services réalisées par des exploitants de champs de gaz et de pétrole (cf. 06.10Z et 06.20Z)",
         "les services spécialisés de réparation des machines pour l'extraction (cf. 33.12Z)",
         "la liquéfaction et la regazéification du gaz naturel en vue de son transport, effectuées ailleurs que sur le site minier (cf. 52.21Z)",
         "les études géophysiques, géologiques et sismiques (cf. 71.12B)"
@@ -1037,12 +1034,9 @@
     {
       "codeApe": "09.90Z",
       "title": "Activités de soutien aux autres industries extractives",
-      "data": [
-        "05, 07 et 08 :"
-      ],
+      "data": [],
       "contenuCentral": [
-        "les services de soutien exécutés pour le compte de tiers liés aux activités minières des divisions",
-        "05, 07 et 08 :",
+        "les services de soutien exécutés pour le compte de tiers liés aux activités minières des divisions 05, 07 et 08 :",
         "• les services d'exploration par les méthodes classiques de prospection, comme le prélèvement d'échantillons et les observations géologiques sur les sites de prospection",
         "• le drainage ou le pompage des mines pour le compte de tiers",
         "• les sondages et forages d'essai",
@@ -1077,12 +1071,7 @@
       "codeApe": "10.12Z",
       "title": "Transformation et conservation de la viande de volaille",
       "data": [
-        "Produits associés : 10.12.10, 10.12.20, 10.12.30, 10.12.40, 10.12.50, 10.12.99",
-        "- soies de porc et poils à brosserie, crins de chevaux",
-        "- ivoire et déchets d'ivoire",
-        "- boyaux et produits de la boyauderie, vessies, estomacs d'animaux",
-        "- glandes et sécrétions à usage pharmaceutique brutes",
-        "- sang d'abattage, ambre gris, musc"
+        "Produits associés : 10.12.10, 10.12.20, 10.12.30, 10.12.40, 10.12.50, 10.12.99"
       ],
       "contenuCentral": [
         "l'exploitation d'abattoirs se livrant à l'abattage, à la préparation et à l'emballage de volailles",
@@ -1095,6 +1084,11 @@
       ],
       "contenuExclu": [
         "le conditionnement de viandes de volailles, pour compte propre (cf. 46.32A) ou pour compte de tiers (cf. 82.92Z)",
+        "soies de porc et poils à brosserie, crins de chevaux",
+        "ivoire et déchets d'ivoire",
+        "boyaux et produits de la boyauderie, vessies, estomacs d'animaux",
+        "glandes et sécrétions à usage pharmaceutique brutes",
+        "sang d'abattage, ambre gris, musc",
         "peaux de reptiles (01.49.39), plumes et duvets (10.12.50), animaux naturalisés (32.99.59), produits opothérapiques (21.10.60)"
       ]
     },
@@ -1106,8 +1100,8 @@
         "10.13.91p, 10.13.99"
       ],
       "contenuCentral": [
-        "la fabrication industrielle de produits à base de viandes ou d'abats (pièces salées, fumées,",
-        "séchées, cuites, etc.)la fabrication industrielle de charcuteries telles que pâtés, rillettes, saucisses, salamis, boudins, andouillettes, cervelas, mortadelles, galantines, jambons cuits",
+        "la fabrication industrielle de produits à base de viandes ou d'abats (pièces salées, fumées, séchées, cuites, etc.)",
+        "la fabrication industrielle de charcuteries telles que pâtés, rillettes, saucisses, salamis, boudins, andouillettes, cervelas, mortadelles, galantines, jambons cuits",
         "la préparation de foies gras"
       ],
       "contenuAnnexe": [
@@ -1195,8 +1189,7 @@
       "title": "Préparation de jus de fruits et légumes",
       "data": [
         "Produits associés : 10.32.11, 10.32.12, 10.32.13, 10.32.14, 10.32.15, 10.32.16,",
-        "10.32.17, 10.32.19, 10.32.99",
-        "- autres préparations et conserves à base de pommes de terre, non congelées ou surgelées"
+        "10.32.17, 10.32.19, 10.32.99"
       ],
       "contenuCentral": [
         "la préparation de jus de fruits et légumes"
@@ -1205,7 +1198,8 @@
         "la production de concentrés et de nectars à partir de fruits et légumes frais"
       ],
       "contenuExclu": [
-        "la préparation de boissons rafraîchissantes à base de fruits (cf. 11.07B)"
+        "la préparation de boissons rafraîchissantes à base de fruits (cf. 11.07B)",
+        "autres préparations et conserves à base de pommes de terre, non congelées ou surgelées"
       ]
     },
     {
@@ -1439,7 +1433,6 @@
       "codeApe": "10.71A",
       "title": "Fabrication industrielle de pain et de pâtisserie fraîche",
       "data": [
-        "monsieur crus",
         "Produits associés : 10.71.11p, 10.71.12p, 10.71.99p"
       ],
       "contenuCentral": [
@@ -1447,8 +1440,7 @@
         "la fabrication de pâtes et pâtons surgelés destinés à la cuisson"
       ],
       "contenuAnnexe": [
-        "la fabrication à caractère industriel de quiches, tartes salées, tourtes fraîches et de croque-",
-        "monsieur crus"
+        "la fabrication à caractère industriel de quiches, tartes salées, tourtes fraîches et de croque-monsieur crus"
       ],
       "contenuExclu": [
         "la fabrication de quiches, tartes salées, tourtes et pizzas surgelées (cf. 10.85Z), de pizzas fraîches (cf. 10.89Z)"
@@ -1473,15 +1465,13 @@
       "codeApe": "10.71C",
       "title": "Boulangerie et boulangerie-pâtisserie",
       "data": [
-        "monsieur crus, associée à la vente au détail de produits de boulangerie",
         "Produits associés : 10.71.11p, 10.71.12p, 10.71.99p"
       ],
       "contenuCentral": [
         "la fabrication à caractère artisanal associée à la vente au détail de pains, de viennoiseries (croissants par exemple), de pâtisseries fraîches, de gaufres et crêpes"
       ],
       "contenuAnnexe": [
-        "la fabrication à caractère artisanal de quiches, tartes salées, tourtes fraîches et de croque-",
-        "monsieur crus, associée à la vente au détail de produits de boulangerie"
+        "la fabrication à caractère artisanal de quiches, tartes salées, tourtes fraîches et de croque-monsieur crus, associée à la vente au détail de produits de boulangerie"
       ],
       "contenuExclu": [
         "la fabrication de quiches, tartes salées, tourtes et pizzas surgelées (cf. 10.85Z), de pizzas fraîches (cf. 10.89Z)"
@@ -1643,8 +1633,7 @@
       "title": "Fabrication d'autres produits alimentaires n.c.a.",
       "data": [
         "Produits associés : 10.89.11, 10.89.12, 10.89.13, 10.89.14, 10.89.15, 10.89.16,",
-        "10.89.17, 10.89.19, 10.89.99",
-        "- cuisson et autres façons de préparation de plats préparés"
+        "10.89.17, 10.89.19, 10.89.99"
       ],
       "contenuCentral": [
         "la fabrication de préparations pour entremets, de desserts lactés de conservation, petits déjeuners en poudre ou granulés, etc.",
@@ -1666,6 +1655,7 @@
         "la préparation d'aliments préparés périssables à base de fruits ou de légumes (cf. 10.39)",
         "la fabrication de pizzas surgelées (cf. 10.85Z)",
         "la production de boissons alcooliques et de boissons rafraîchissantes (cf. 11)",
+        "cuisson et autres façons de préparation de plats préparés",
         "produits du même domaine, fabriqués par un sous-traitant propriétaire des intrants (voir postes précédents)"
       ]
     },
@@ -1998,8 +1988,7 @@
       "codeApe": "13.94Z",
       "title": "Fabrication de ficelles, cordes et filets",
       "data": [
-        "Produits associés : 13.94.12, 13.94.20, 13.94.99",
-        "- remplissage à façon d'articles de literie garnis"
+        "Produits associés : 13.94.12, 13.94.20, 13.94.99"
       ],
       "contenuCentral": [
         "la fabrication de ficelles, cordes et cordages, même imprégnés, enduits ou recouverts ou gainés de caoutchouc ou de matière plastique",
@@ -2013,6 +2002,7 @@
         "la fabrication de filets à cheveux (cf. 14.19Z)",
         "la fabrication de câbles métalliques (cf. 25.93Z)",
         "la fabrication de filets montés pour la pratique des sports (cf. 32.30Z)",
+        "remplissage à façon d'articles de literie garnis",
         "produits du même domaine, fabriqués par un sous-traitant propriétaire des intrants (voir postes précédents)"
       ]
     },
@@ -2063,7 +2053,6 @@
       "codeApe": "13.99Z",
       "title": "Fabrication d'autres textiles n.c.a.",
       "data": [
-        "Rachel ou sur des métiers similaires (cf. 13.91Z)",
         "Produits associés : 13.99.11, 13.99.12, 13.99.13, 13.99.14, 13.99.15, 13.99.16,",
         "13.99.19, 13.99.99"
       ],
@@ -2078,8 +2067,7 @@
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
-        "la fabrication de tissus des types utilisés pour filets, rideaux et vitrages, tricotés sur métier",
-        "Rachel ou sur des métiers similaires (cf. 13.91Z)",
+        "la fabrication de tissus des types utilisés pour filets, rideaux et vitrages, tricotés sur métier Rachel ou sur des métiers similaires (cf. 13.91Z)",
         "la fabrication de revêtements de sol aiguilletés (cf. 13.93Z)",
         "la fabrication d'ouates de matières textiles et d'articles de ouaterie : serviettes et tampons hygiéniques, etc. (cf. 17.22Z)"
       ]
@@ -2641,13 +2629,11 @@
       "codeApe": "18.13Z",
       "title": "Activités de pré-presse",
       "data": [
-        "CD-ROM, Internet)",
         "Produits associés : 18.13.10, 18.13.20, 18.13.30"
       ],
       "contenuCentral": [
         "la composition, la photocomposition, la saisie de données, y compris par numérisation et reconnaissance optique des caractères, la mise en forme électronique",
-        "la préparation de fichiers de données pour des applications multimédia (impression sur papier,",
-        "CD-ROM, Internet)",
+        "la préparation de fichiers de données pour des applications multimédia (impression sur papier, CD-ROM, Internet)",
         "les services de photogravure, y compris la photocomposition et la réalisation de plaques (pour les procédés d'impression typographique et offset)",
         "la préparation des cylindres : la gravure de cylindres pour la reproduction de gravures",
         "le transfert CTP (\"computer to plate », de l'ordinateur à la plaque, également plaques en photopolymères)",
@@ -2711,10 +2697,9 @@
     {
       "codeApe": "19.20Z",
       "title": "Raffinage du pétrole",
-      "data": [
-        "Cette sous-classe comprend la fabrication de combustibles liquides ou gazeux ou d'autres produits obtenus à partir du pétrole brut, de minéraux bitumineux ou résultant de leur distillation fractionnée. Les techniques de raffinage du pétrole impliquent la mise en œuvre d'une ou plusieurs activités : la distillation fractionnée, la distillation directe du pétrole brut et le craquage"
-      ],
+      "data": [],
       "contenuCentral": [
+        "la fabrication de combustibles liquides ou gazeux ou d'autres produits obtenus à partir du pétrole brut, de minéraux bitumineux ou résultant de leur distillation fractionnée. Les techniques de raffinage du pétrole impliquent la mise en œuvre d'une ou plusieurs activités : la distillation fractionnée, la distillation directe du pétrole brut et le craquage",
         "la production de carburants pour moteurs : essence, kérosène, etc.",
         "la production de combustibles : fiouls légers, demi-lourds et lourds, gaz de raffinerie tels qu'éthane, propane, butane, etc.",
         "la fabrication d'huiles de graissage et de graisses lubrifiantes à partir de pétrole, y compris les résidus de raffinage"
@@ -2780,7 +2765,6 @@
       "codeApe": "20.13B",
       "title": "Fabrication d'autres produits chimiques inorganiques de base n.c.a.",
       "data": [
-        "Cette sous-classe comprend la fabrication de produits chimiques par des processus de base.",
         "Ces processus permettent généralement d'obtenir des éléments chimiques distincts ou des composés chimiquement définis.",
         "Produits associés : 20.13.21, 20.13.22, 20.13.23, 20.13.24, 20.13.25, 20.13.31,",
         "20.13.32, 20.13.41, 20.13.42, 20.13.43, 20.13.51, 20.13.52,",
@@ -2788,6 +2772,8 @@
         "20.13.67, 20.13.68, 20.13.99p"
       ],
       "contenuCentral": [
+        "la fabrication de produits chimiques par des processus de base.",
+        "Ces processus permettent généralement d'obtenir des éléments chimiques distincts ou des composés chimiquement définis.",
         "la fabrication d'éléments chimiques (à l'exclusion des gaz d'origine industrielle et de la métallurgie)",
         "la fabrication des acides inorganiques, à l'exclusion de l'acide nitrique",
         "la fabrication d'alcalis, de lessives et d'autres bases inorganiques, à l'exclusion de l'ammoniac",
@@ -2810,10 +2796,9 @@
     {
       "codeApe": "20.14Z",
       "title": "Fabrication d'autres produits chimiques organiques de base",
-      "data": [
-        "Cette sous-classe comprend la fabrication de produits chimiques par des processus de base, tels que le craquage thermique et la distillation. Ces processus permettent généralement d'obtenir des éléments chimiques distincts ou des composés chimiquement définis."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la fabrication de produits chimiques par des processus de base, tels que le craquage thermique et la distillation. Ces processus permettent généralement d'obtenir des éléments chimiques distincts ou des composés chimiquement définis.",
         "la fabrication des produits chimiques de base :",
         "• hydrocarbures acycliques, saturés ou non saturés",
         "• hydrocarbures cycliques, saturés ou non saturés",
@@ -2852,12 +2837,12 @@
       "codeApe": "20.16Z",
       "title": "Fabrication de matières plastiques de base",
       "data": [
-        "Cette sous-classe comprend la fabrication de résines synthétiques, de matières plastiques et d'élastomères thermoplastiques non vulcanisables, ainsi que le mélange de résines sur commande et la fabrication de résines synthétiques standards.",
         "Produits associés : 20.16.10, 20.16.20, 20.16.30, 20.16.40, 20.16.51, 20.16.52,",
         "20.16.53, 20.16.54, 20.16.55, 20.16.56, 20.16.57, 20.16.59,",
         "20.16.99"
       ],
       "contenuCentral": [
+        "la fabrication de résines synthétiques, de matières plastiques et d'élastomères thermoplastiques non vulcanisables, ainsi que le mélange de résines sur commande et la fabrication de résines synthétiques standards.",
         "la fabrication de matières plastiques sous formes primaires :",
         "• polymères, y compris les polymères d'éthylène, de propylène, de styrène, de chlorure de vinyle, d'acétate de vinyle et les polymères acryliques",
         "• polyamides",
@@ -2934,7 +2919,6 @@
       "codeApe": "20.41Z",
       "title": "Fabrication de savons, détergents et produits d'entretien",
       "data": [
-        "20.14Z)",
         "Produits associés : 20.41.10, 20.41.20, 20.41.31, 20.41.32, 20.41.41, 20.41.42,",
         "20.41.43, 20.41.44, 20.41.99"
       ],
@@ -2957,8 +2941,7 @@
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
-        "la fabrication d'éléments chimiques distincts ou de composés chimiquement définis (cf. 20.13B,",
-        "20.14Z)",
+        "la fabrication d'éléments chimiques distincts ou de composés chimiquement définis (cf. 20.13B, 20.14Z)",
         "la fabrication de glycérine synthétique obtenue à partir de produits pétroliers (cf. 20.14Z)",
         "la fabrication de savon cosmétique (cf. 20.42Z)"
       ]
@@ -3128,7 +3111,6 @@
       "codeApe": "22.11Z",
       "title": "Fabrication et rechapage de pneumatiques",
       "data": [
-        "45.20B)",
         "Produits associés : 22.11.11, 22.11.12, 22.11.13, 22.11.14, 22.11.15, 22.11.16,",
         "22.11.20, 22.11.99"
       ],
@@ -3143,8 +3125,7 @@
       "contenuAnnexe": [],
       "contenuExclu": [
         "la fabrication de matériaux de réparation en caoutchouc (cf. 22.19Z)",
-        "la réparation, la pose ou le remplacement de pneumatiques et de chambres à air (cf. 45.20A,",
-        "45.20B)"
+        "la réparation, la pose ou le remplacement de pneumatiques et de chambres à air (cf. 45.20A, 45.20B)"
       ]
     },
     {
@@ -3369,10 +3350,10 @@
       "codeApe": "23.20Z",
       "title": "Fabrication de produits réfractaires",
       "data": [
-        "Cette sous-classe comprend la fabrication de produits intermédiaires réfractaires obtenus à partir de minerais non-métalliques extraits de mines ou de carrières, tels que le sable, le gravier, la pierre ou l'argile.",
         "Produits associés : 23.20.11, 23.20.12, 23.20.13, 23.20.14, 23.20.99"
       ],
       "contenuCentral": [
+        "la fabrication de produits intermédiaires réfractaires obtenus à partir de minerais non-métalliques extraits de mines ou de carrières, tels que le sable, le gravier, la pierre ou l'argile.",
         "la fabrication de produits réfractaires non façonnés :",
         "• mortiers, bétons, etc.",
         "la fabrication de produits réfractaires façonnés :",
@@ -3499,12 +3480,9 @@
     {
       "codeApe": "23.51Z",
       "title": "Fabrication de ciment",
-      "data": [
-        "Portland, les ciments alumineux, les ciments de laitier et les ciments surphosphatés"
-      ],
+      "data": [],
       "contenuCentral": [
-        "la fabrication de ciments dits « clinkers » et de ciments hydrauliques, y compris les ciments",
-        "Portland, les ciments alumineux, les ciments de laitier et les ciments surphosphatés"
+        "la fabrication de ciments dits « clinkers » et de ciments hydrauliques, y compris les ciments Portland, les ciments alumineux, les ciments de laitier et les ciments surphosphatés"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -3726,7 +3704,6 @@
       "codeApe": "24.32Z",
       "title": "Laminage à froid de feuillards",
       "data": [
-        "ou 46.72Z)",
         "Produits associés : 24.32.10, 24.32.20, 24.32.99"
       ],
       "contenuCentral": [
@@ -3734,8 +3711,7 @@
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
-        "l'obtention de produits plats en acier par simple refendage de tôles laminées à froid (cf. 24.10Z",
-        "ou 46.72Z)"
+        "l'obtention de produits plats en acier par simple refendage de tôles laminées à froid (cf. 24.10Z ou 46.72Z)"
       ]
     },
     {
@@ -4312,11 +4288,11 @@
       "codeApe": "26.11Z",
       "title": "Fabrication de composants électroniques",
       "data": [
-        "Cette sous-classe comprend la fabrication de semi-conducteurs et d'autres composants électroniques.",
         "Produits associés : 26.11.11, 26.11.12, 26.11.21, 26.11.22, 26.11.30, 26.11.40,",
         "26.11.50, 26.11.91, 26.11.99"
       ],
       "contenuCentral": [
+        "la fabrication de semi-conducteurs et d'autres composants électroniques.",
         "la fabrication de condensateurs électroniques",
         "la fabrication de résistances électroniques",
         "la fabrication de circuits imprimés nus",
@@ -4377,15 +4353,15 @@
       "codeApe": "26.20Z",
       "title": "Fabrication d'ordinateurs et d'équipements périphériques",
       "data": [
-        "Cette sous-classe comprend la fabrication et/ou l'assemblage d'ordinateurs, tels que des gros systèmes, des ordinateurs de bureau, des ordinateurs portables et des serveurs, ainsi que des équipements informatiques périphériques, tels que systèmes de stockage et unités d'entrée et de sortie (imprimantes, écrans, claviers). Les ordinateurs peuvent être analogiques, numériques ou hybrides. Les ordinateurs numériques, les plus courants, sont des appareils capables de réaliser l'ensemble des opérations suivantes :",
-        "1) enregistrer le ou les programmes de traitement et les données immédiatement nécessaires pour l'exécution de ce ou de ces programmes;",
-        "2) être librement programmés conformément aux besoins de l'utilisateur;",
-        "3) résoudre les opérations arithmétiques conformément aux instructions de l'utilisateur;",
-        "4) exécuter, sans aucune intervention humaine, un programme de traitement imposant à l'ordinateur de modifier son exécution par une décision logique durant le processus.",
-        "Les ordinateurs analogiques sont capables de simuler des modèles mathématiques et comprennent au moins des éléments de contrôle analogique et de programmation.",
-        "(cf. 26.40Z)"
+        "Les ordinateurs analogiques sont capables de simuler des modèles mathématiques et comprennent au moins des éléments de contrôle analogique et de programmation."
       ],
       "contenuCentral": [
+        "la fabrication et/ou l'assemblage d'ordinateurs, tels que des gros systèmes, des ordinateurs de bureau, des ordinateurs portables et des serveurs, ainsi que des équipements informatiques périphériques, tels que systèmes de stockage et unités d'entrée et de sortie (imprimantes, écrans, claviers). Les ordinateurs peuvent être analogiques, numériques ou hybrides. Les ordinateurs numériques, les plus courants, sont des appareils capables de réaliser l'ensemble des opérations suivantes :",
+        "enregistrer le ou les programmes de traitement et les données immédiatement nécessaires pour l'exécution de ce ou de ces programmes;",
+        "être librement programmés conformément aux besoins de l'utilisateur;",
+        "résoudre les opérations arithmétiques conformément aux instructions de l'utilisateur;",
+        "exécuter, sans aucune intervention humaine, un programme de traitement imposant à l'ordinateur de modifier son exécution par une décision logique durant le processus.",
+        "Les ordinateurs analogiques sont capables de simuler des modèles mathématiques et comprennent au moins des éléments de contrôle analogique et de programmation.",
         "la fabrication ou l'assemblage d'ordinateurs de tous types : de bureau, portables, serveurs, gros systèmes, de poche (PDA)",
         "la fabrication de terminaux informatiques spécialisés",
         "la fabrication d'unités centrales",
@@ -4411,8 +4387,7 @@
         "la reproduction de supports enregistrés de tous types (cf. 18.2)",
         "la fabrication de composants électroniques et d'assemblages électroniques utilisés dans l'informatique tels que modems internes ou externes, modules et cartes électroniques assemblées (cf. 26.1)",
         "la fabrication de modems (équipement porteur) et d'interrupteurs de communication numérique, d'équipements de communication de données (par exemple ponts, routeurs, passerelles, etc.) (cf. 26.30Z)",
-        "la fabrication de produits électroniques grand public, tels que lecteurs de CD et de DVD",
-        "(cf. 26.40Z)",
+        "la fabrication de produits électroniques grand public, tels que lecteurs de CD et de DVD (cf. 26.40Z)",
         "la fabrication d'écrans de télévision de tous types (cf. 26.40Z)",
         "la fabrication de consoles de jeux vidéo (cf. 26.40Z)",
         "la fabrication de supports optiques et magnétiques vierges destinés à être utilisés avec les ordinateurs et d'autres appareils (cf. 26.80Z)"
@@ -4421,10 +4396,9 @@
     {
       "codeApe": "26.30Z",
       "title": "Fabrication d'équipements de communication",
-      "data": [
-        "Cette sous-classe comprend la fabrication d'équipements téléphoniques et de communication des données utilisés pour transmettre électroniquement des signaux par les fils ou par les airs tels que les émissions de radio ou de télévision et les équipements de communication sans fil."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la fabrication d'équipements téléphoniques et de communication des données utilisés pour transmettre électroniquement des signaux par les fils ou par les airs tels que les émissions de radio ou de télévision et les équipements de communication sans fil.",
         "la fabrication d'équipements de commutation de central",
         "la fabrication de téléphones sans fil",
         "la fabrication d'équipements d'autocommutateur privé",
@@ -4457,10 +4431,9 @@
     {
       "codeApe": "26.40Z",
       "title": "Fabrication de produits électroniques grand public",
-      "data": [
-        "Cette sous-classe comprend la fabrication d'équipements électroniques audio et vidéo destinés aux loisirs domestiques, aux véhicules automobiles, aux systèmes d'information du public et à l'amplification des instruments de musique."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la fabrication d'équipements électroniques audio et vidéo destinés aux loisirs domestiques, aux véhicules automobiles, aux systèmes d'information du public et à l'amplification des instruments de musique.",
         "la fabrication de magnétoscopes et d'équipements de reproduction de l'image",
         "la fabrication de téléviseurs",
         "la fabrication de moniteurs et d'écrans de télévision",
@@ -4498,8 +4471,7 @@
       "codeApe": "26.51B",
       "title": "Fabrication d'instrumentation scientifique et technique",
       "data": [
-        "pour le travail qu'elles représentent et peuvent comprendre la fourniture de matières premières complémentaires",
-        "Par exemple :"
+        "pour le travail qu'elles représentent et peuvent comprendre la fourniture de matières premières complémentaires"
       ],
       "contenuCentral": [
         "la fabrication d'instruments de contrôle des émissions des véhicules à moteur",
@@ -4549,10 +4521,9 @@
     {
       "codeApe": "26.70Z",
       "title": "Fabrication de matériels optique et photographique",
-      "data": [
-        "Cette sous-classe comprend la fabrication d'instruments et de lentilles optiques, tels que jumelles, microscopes (à l'exception des microscopes électroniques, protoniques), télescopes, prismes et lentilles (sauf ophtalmiques), l'enduisage ou le polissage de lentilles (sauf ophtalmiques), le montage de lentilles (sauf ophtalmiques) et la fabrication de matériel photographique tel que les appareils photographiques et les luxmètres."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la fabrication d'instruments et de lentilles optiques, tels que jumelles, microscopes (à l'exception des microscopes électroniques, protoniques), télescopes, prismes et lentilles (sauf ophtalmiques), l'enduisage ou le polissage de lentilles (sauf ophtalmiques), le montage de lentilles (sauf ophtalmiques) et la fabrication de matériel photographique tel que les appareils photographiques et les luxmètres.",
         "la fabrication de miroirs optiques",
         "la fabrication de matériel de visée optique équipant les fusils",
         "la fabrication d'appareils de positionnement optique",
@@ -4569,10 +4540,10 @@
       "codeApe": "26.80Z",
       "title": "Fabrication de supports magnétiques et optiques",
       "data": [
-        "Cette sous-classe comprend la fabrication de supports d'enregistrement magnétiques et optiques.",
         "Produits associés : 26.80.11, 26.80.12, 26.80.13, 26.80.14, 26.80.99"
       ],
       "contenuCentral": [
+        "la fabrication de supports d'enregistrement magnétiques et optiques.",
         "la fabrication de bandes magnétiques vierges pour le son et l'image",
         "la fabrication de cassettes vierges pour le son et l'image",
         "la fabrication de disquettes vierges",
@@ -4590,13 +4561,12 @@
       "codeApe": "27.11Z",
       "title": "Fabrication de moteurs, génératrices et transformateurs électriques",
       "data": [
-        "Cette sous-classe comprend la fabrication de tout type de moteurs et transformateurs électriques : courant alternatif, courant continu ou alternatif-continu.",
         "Produits associés : 27.11.10, 27.11.21, 27.11.22, 27.11.23, 27.11.24, 27.11.25,",
         "27.11.26, 27.11.31, 27.11.32, 27.11.41, 27.11.42, 27.11.43,",
-        "27.11.50, 27.11.61, 27.11.62, 27.11.99",
-        "27 ÉQUIPEMENTS ÉLECTRIQUES"
+        "27.11.50, 27.11.61, 27.11.62, 27.11.99"
       ],
       "contenuCentral": [
+        "la fabrication de tout type de moteurs et transformateurs électriques : courant alternatif, courant continu ou alternatif-continu.",
         "la fabrication de moteurs électriques (à l'exception des moteurs de démarrage pour moteurs à combustion interne)",
         "la fabrication de transformateurs électriques de distribution",
         "la fabrication de transformateurs pour soudure à l'arc",
@@ -4644,11 +4614,11 @@
       "codeApe": "27.20Z",
       "title": "Fabrication de piles et d'accumulateurs électriques",
       "data": [
-        "Cette sous-classe comprend la fabrication de batteries, rechargeables ou non.",
         "Produits associés : 27.20.11, 27.20.12, 27.20.21, 27.20.22, 27.20.23, 27.20.24,",
         "27.20.99"
       ],
       "contenuCentral": [
+        "la fabrication de batteries, rechargeables ou non.",
         "la fabrication de piles et de batteries électriques :",
         "• piles au bioxyde de manganèse, à l'oxyde de mercure, à l'oxyde d'argent ou contenant d'autres matières",
         "la fabrication d'accumulateurs électriques et de parties de ces appareils (séparateurs, bacs, couvercles)",
@@ -4700,10 +4670,10 @@
       "codeApe": "27.33Z",
       "title": "Fabrication de matériel d'installation électrique",
       "data": [
-        "Cette sous-classe comprend la fabrication de dispositifs de câblage porteurs et non porteurs de courant pour le câblage d'installations électriques, quel que soit le matériau utilisé.",
         "Produits associés : 27.33.11, 27.33.12, 27.33.13, 27.33.14, 27.33.99"
       ],
       "contenuCentral": [
+        "la fabrication de dispositifs de câblage porteurs et non porteurs de courant pour le câblage d'installations électriques, quel que soit le matériau utilisé.",
         "la fabrication de barres bus, de conducteurs électriques (sauf de type commutateurs)",
         "la fabrication de disjoncteurs différentiels",
         "la fabrication de douilles pour lampes",
@@ -4724,10 +4694,9 @@
     {
       "codeApe": "27.40Z",
       "title": "Fabrication d'appareils d'éclairage électrique",
-      "data": [
-        "Cette sous-classe comprend la fabrication d'ampoules et de tubes électriques, et de leurs pièces (à l'exception des ébauches de verre pour ampoules électriques), la fabrication d'appareils d'éclairage ainsi que de lampes de table et de lampadaires (à l'exception des dispositifs de câblage porteurs et non porteurs de courant)."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la fabrication d'ampoules et de tubes électriques, et de leurs pièces (à l'exception des ébauches de verre pour ampoules électriques), la fabrication d'appareils d'éclairage ainsi que de lampes de table et de lampadaires (à l'exception des dispositifs de câblage porteurs et non porteurs de courant).",
         "la fabrication de lampes à décharge, à incandescence, à fluorescence, à ultraviolet, à infrarouge, etc., leurs ampoules et accessoires"
       ],
       "contenuAnnexe": [],
@@ -4739,10 +4708,7 @@
       "data": [
         "Produits associés : 27.51.11, 27.51.12, 27.51.13, 27.51.14, 27.51.15, 27.51.21,",
         "27.51.22, 27.51.23, 27.51.24, 27.51.25, 27.51.26, 27.51.27,",
-        "27.51.28, 27.51.29, 27.51.30, 27.51.99",
-        "Par exemple :",
-        "- assemblage du produit mentionné ou de ses parties",
-        "- finitions diverses"
+        "27.51.28, 27.51.29, 27.51.30, 27.51.99"
       ],
       "contenuCentral": [
         "la fabrication d'appareils électroménagers :",
@@ -4778,6 +4744,9 @@
         "la fabrication de réfrigérateurs et de congélateurs à usage commercial et industriel, de matériel de conditionnement d'air, de ventilateurs de grenier, de chauffage de locaux à montage permanent, de ventilateurs d'évacuation, d'appareils pour la cuisine de type commercial, d'appareils de blanchisserie ou de nettoyage à sec de type commercial, d'aspirateurs de type commercial ou, industriel (cf. 28)",
         "la fabrication de machines à coudre destinées à un usage domestique (cf. 28.94Z)",
         "l'installation d'aspirateurs à unité centrale (cf. 43.29B)",
+        "Par exemple :",
+        "assemblage du produit mentionné ou de ses parties",
+        "finitions diverses",
         "produits du même domaine, fabriqués par un sous-traitant propriétaire des intrants (voir postes précédents)"
       ]
     },
@@ -4785,12 +4754,12 @@
       "codeApe": "27.52Z",
       "title": "Fabrication d'appareils ménagers non électriques",
       "data": [
-        "Produits associés : 27.52.11, 27.52.12, 27.52.13, 27.52.14, 27.52.20, 27.52.99",
-        "- réchauds, rôtissoires, grils, chauffe-plats, etc., électriques"
+        "Produits associés : 27.52.11, 27.52.12, 27.52.13, 27.52.14, 27.52.20, 27.52.99"
       ],
       "contenuCentral": [
         "la fabrication d'appareils non électriques pour le chauffage des locaux et la cuisine domestique :",
-        "• appareils pour le chauffage des locaux, cuisinières, grils, poêles, chauffe-eau, ustensiles de cuisine, chauffe-plats, non électriques"
+        "• appareils pour le chauffage des locaux, cuisinières, grils, poêles, chauffe-eau, ustensiles de cuisine, chauffe-plats, non électriques",
+        "réchauds, rôtissoires, grils, chauffe-plats, etc., électriques"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4799,13 +4768,13 @@
       "codeApe": "27.90Z",
       "title": "Fabrication d'autres matériels électriques",
       "data": [
-        "Cette sous-classe comprend la fabrication de divers appareils électriques autres que moteurs, générateurs et transformateurs, piles et accumulateurs, câbles et câblages d'installations électriques, appareils d'éclairage ou appareils ménagers.",
         "Produits associés : 27.90.11, 27.90.12, 27.90.13, 27.90.20, 27.90.31, 27.90.32,",
         "27.90.33, 27.90.41, 27.90.42, 27.90.43, 27.90.44, 27.90.45,",
         "27.90.51, 27.90.52, 27.90.53, 27.90.60, 27.90.70, 27.90.81,",
         "27.90.82, 27.90.99"
       ],
       "contenuCentral": [
+        "la fabrication de divers appareils électriques autres que moteurs, générateurs et transformateurs, piles et accumulateurs, câbles et câblages d'installations électriques, appareils d'éclairage ou appareils ménagers.",
         "la fabrication de chargeurs de batterie à semi-conducteurs",
         "la fabrication de dispositifs électriques d'ouverture et de fermeture des portes",
         "la fabrication de carillons électriques",
@@ -4904,9 +4873,7 @@
         "Produits associés : 28.13.11, 28.13.12, 28.13.13, 28.13.14, 28.13.21, 28.13.22,",
         "28.13.23, 28.13.24, 28.13.25, 28.13.26, 28.13.27, 28.13.28,",
         "28.13.31, 28.13.32, 28.13.99",
-        "pour le travail qu'elles représentent et peuvent comprendre la fourniture de matières premières complémentaires",
-        "Par exemple :",
-        "- assemblage du produit mentionné ou de ses parties"
+        "pour le travail qu'elles représentent et peuvent comprendre la fourniture de matières premières complémentaires"
       ],
       "contenuCentral": [
         "la fabrication de pompes à air ou à vide et de compresseurs d'air ou d'autres gaz",
@@ -4919,6 +4886,9 @@
       "contenuExclu": [
         "la fabrication de matériel hydraulique et pneumatique (cf. 28.12Z)",
         "la fabrication de groupes frigorifiques à compression (cf. 28.25Z)",
+        "pour le travail qu'elles représentent et peuvent comprendre la fourniture de matières premières complémentaires",
+        "Par exemple :",
+        "assemblage du produit mentionné ou de ses parties",
         "produits du même domaine, fabriqués par un sous-traitant propriétaire des intrants (voir postes précédents)"
       ]
     },
@@ -4944,8 +4914,7 @@
       "codeApe": "28.15Z",
       "title": "Fabrication d'engrenages et d'organes mécaniques de transmission",
       "data": [
-        "pour le travail qu'elles représentent et peuvent comprendre la fourniture de matières premières complémentaires",
-        "Par exemple :"
+        "pour le travail qu'elles représentent et peuvent comprendre la fourniture de matières premières complémentaires"
       ],
       "contenuCentral": [
         "la fabrication de roulements à billes, à galets, à rouleaux ou à aiguilles et de leurs éléments",
@@ -4993,8 +4962,6 @@
       "codeApe": "28.22Z",
       "title": "Fabrication de matériel de levage et de manutention",
       "data": [
-        "pelleteuses (cf. 28.92Z)",
-        "30.20Z)",
         "Produits associés : 28.22.11, 28.22.12, 28.22.13, 28.22.14, 28.22.15, 28.22.16,",
         "28.22.17, 28.22.18, 28.22.19, 28.22.20, 28.22.99"
       ],
@@ -5015,10 +4982,8 @@
       "contenuExclu": [
         "la fabrication de robots industriels à usages multiples (cf. 28.99)",
         "la fabrication d'appareils élévateurs, transporteurs ou convoyeurs à action continue, pour mines au fond ou pour d'autres travaux souterrains (cf. 28.92Z)",
-        "la fabrication de pelles mécaniques, d'excavateurs, de chargeuses et de chargeuses-",
-        "pelleteuses (cf. 28.92Z)",
-        "la fabrication de camions-grues, pontons-grue et de wagons-grues, (cf. 29.10Z, 30.11Z et",
-        "30.20Z)",
+        "la fabrication de pelles mécaniques, d'excavateurs, de chargeuses et de chargeuses-pelleteuses (cf. 28.92Z)",
+        "la fabrication de camions-grues, pontons-grue et de wagons-grues, (cf. 29.10Z, 30.11Z et 30.20Z)",
         "l'installation d'ascenseurs et monte-charge (cf. 43.29B)"
       ]
     },
@@ -5181,7 +5146,6 @@
       "codeApe": "28.41Z",
       "title": "Fabrication de machines-outils pour le travail des métaux",
       "data": [
-        "pilons, machines à forger, etc.",
         "Produits associés : 28.41.11, 28.41.12, 28.41.21, 28.41.22, 28.41.23, 28.41.24,",
         "28.41.31, 28.41.32, 28.41.33, 28.41.34, 28.41.40, 28.41.99"
       ],
@@ -5189,8 +5153,7 @@
         "la fabrication de machines de formage des métaux, y compris celles opérant par faisceaux laser, par ultrasons, par jet de plasma ou par impulsions magnétiques, etc.",
         "la fabrication de machines-outils servant à tourner, percer, fraiser, limer, raboter, aléser, rectifier, etc.",
         "la fabrication de machines-outils à estamper ou à presser",
-        "la fabrication de machines à poinçonner, presses hydrauliques, freins hydrauliques, marteaux-",
-        "pilons, machines à forger, etc.",
+        "la fabrication de machines à poinçonner, presses hydrauliques, freins hydrauliques, marteaux-pilons, machines à forger, etc.",
         "la fabrication de bancs à étirer, de machines pour exécuter un filetage par roulage ou de machines pour le travail des métaux sous forme de fils"
       ],
       "contenuAnnexe": [
@@ -5339,10 +5302,9 @@
     {
       "codeApe": "28.99B",
       "title": "Fabrication d'autres machines spécialisées",
-      "data": [
-        "Cette sous-classe comprend la fabrication de machines d'usage spécifique non classées ailleurs."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la fabrication de machines d'usage spécifique non classées ailleurs.",
         "la fabrication de séchoirs pour le bois, les pâtes à papier, les papiers ou les cartons et d'autres matières (à l'exception des produits agricoles et textiles)",
         "la fabrication d'essoreuses industrielles",
         "la fabrication de machines et appareils pour la fabrication de tuiles, de briques, de pâtes céramiques formées, de tuyaux, d'électrodes de graphite, de craies à écrire et à dessiner, etc.",
@@ -5479,7 +5441,6 @@
       "codeApe": "30.11Z",
       "title": "Construction de navires et de structures fl ottantes",
       "data": [
-        "grues, radeaux gonfl ables autres que récréatifs, etc.",
         "Produits associés : 30.11.10, 30.11.21, 30.11.22, 30.11.23, 30.11.24, 30.11.31,",
         "30.11.32, 30.11.33, 30.11.40, 30.11.50, 30.11.91, 30.11.92, 30.11.99"
       ],
@@ -5492,8 +5453,7 @@
       "contenuAnnexe": [
         "la construction d'aéroglisseurs, à l'exception des aéroglisseurs de plaisance",
         "la construction de plates-formes de forage fl ottantes ou submersibles",
-        "la construction de structures et d'engins fl ottants tels que docks fl ottants, pontons, caissons, coff res d'amarrage fl ottants, bouées, réservoirs fl ottants, barges, allèges, gabares, pontons-",
-        "grues, radeaux gonfl ables autres que récréatifs, etc.",
+        "la construction de structures et d'engins fl ottants tels que docks fl ottants, pontons, caissons, coff res d'amarrage fl ottants, bouées, réservoirs fl ottants, barges, allèges, gabares, pontons-grues, radeaux gonfl ables autres que récréatifs, etc.",
         "la fabrication d'éléments pour la construction de navires et de structures fl ottantes",
         "la transformation, la reconstruction et l'équipement de navires et de structures fl ottantes"
       ],
@@ -5747,6 +5707,7 @@
         "la fabrication de meubles en céramique, béton et pierre (cf. 23.42Z, 23.69Z, 23.70Z)",
         "la fabrication de lampes ou d'appareils d'éclairage (cf. 27.40Z)",
         "la restauration de meubles et le rembourrage dans le cadre de la restauration de meubles (cf. 95.24Z)",
+        "pour le travail qu'elles représentent et peuvent comprendre la fourniture de matières premières complémentaires",
         "produits du même domaine, fabriqués par un sous-traitant propriétaire des intrants (voir postes précédents)"
       ]
     },
@@ -5836,7 +5797,6 @@
       "codeApe": "32.30Z",
       "title": "Fabrication d'articles de sport",
       "data": [
-        "30)",
         "Produits associés : 32.30.11, 32.30.12, 32.30.13, 32.30.14, 32.30.15, 32.30.16,",
         "32.30.99"
       ],
@@ -5866,8 +5826,7 @@
         "la fabrication de chaussures de sport (cf. 15.20Z)",
         "la fabrication d'armes et de munitions pour la chasse et la pratique du tir sportif (cf. 25.40Z)",
         "la fabrication de poids en métal utilisés pour la pratique de l'haltérophilie (cf. 25.99B)",
-        "la fabrication de véhicules de sport, à l'exclusion des toboggans, des luges et similaires (cf. 29,",
-        "30)",
+        "la fabrication de véhicules de sport, à l'exclusion des toboggans, des luges et similaires (cf. 29, 30)",
         "la fabrication de bateaux (cf. 30.12Z)",
         "la fabrication de tables de billard (cf. 32.40Z)",
         "la fabrication de protections auditives (par exemple contre le bruit ou pour la pratique de la natation) (cf. 32.99Z)",
@@ -6010,10 +5969,9 @@
     {
       "codeApe": "33.11Z",
       "title": "Réparation d'ouvrages en métaux",
-      "data": [
-        "Cette sous-classe comprend la réparation et l'entretien des ouvrages en métaux produits dans la division 25."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la réparation et l'entretien des ouvrages en métaux produits dans la division 25.",
         "la réparation et l'entretien de structures métalliques",
         "la réparation et l'entretien de réservoirs, citernes et conteneurs métalliques",
         "la réparation et l'entretien de conduites et pipelines",
@@ -6029,10 +5987,9 @@
     {
       "codeApe": "33.12Z",
       "title": "Réparation de machines et équipements mécaniques",
-      "data": [
-        "Cette sous-classe comprend la réparation et l'entretien des machines et équipements mécaniques relevant de la division 28 comme la réparation de machines et équipements agricoles ou de machines et équipements industriels ou commerciaux tels que chariots élévateurs et autres matériels de manutention, machines-outils, équipements de réfrigération commerciaux, équipements de construction et machines des industries extractives, etc."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la réparation et l'entretien des machines et équipements mécaniques relevant de la division 28 comme la réparation de machines et équipements agricoles ou de machines et équipements industriels ou commerciaux tels que chariots élévateurs et autres matériels de manutention, machines-outils, équipements de réfrigération commerciaux, équipements de construction et machines des industries extractives, etc.",
         "la réparation et l'entretien de moteurs à combustion interne de véhicules autres qu'automobiles, de pompes, compresseurs et équipements similaires et de machines hydrauliques, d'articles de robinetterie, d'organes mécaniques de transmission",
         "la réparation et l'entretien de fours industriels, de matériel de levage et de manutention des matériaux",
         "la réparation et l'entretien de caisses enregistreuses, de photocopieuses, de calculateurs, électroniques ou non, de machines à écrire",
@@ -6060,20 +6017,19 @@
     {
       "codeApe": "33.13Z",
       "title": "Réparation de matériels électroniques et optiques",
-      "data": [
-        "Cette sous-classe comprend la réparation et l'entretien des articles produits dans les groupes"
+      "data": [],
+      "contenuCentral": [
+        "la réparation et l'entretien des articles produits dans les groupes"
       ],
-      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
     {
       "codeApe": "33.14Z",
       "title": "Réparation d'équipements électriques",
-      "data": [
-        "Cette sous-classe comprend la réparation et l'entretien des articles produits dans la division 27, à l'exception de ceux relevant du groupe 27.5 (appareils électroménagers)."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la réparation et l'entretien des articles produits dans la division 27, à l'exception de ceux relevant du groupe 27.5 (appareils électroménagers).",
         "la réparation et l'entretien des transformateurs de puissance, de distribution et des transformateurs spéciaux",
         "la réparation et l'entretien de moteurs et de générateurs électriques et de groupes électrogènes à moteur",
         "la réparation et l'entretien de commutateurs et de tableaux de distribution",
@@ -6101,10 +6057,10 @@
       "codeApe": "33.15Z",
       "title": "Réparation et maintenance navale",
       "data": [
-        "Cette sous-classe comprend les activités de réparation navale. Néanmoins, la reconstruction ou la révision des navires et des bateaux relèvent de la division 30.",
         "Produits associés : 33.15.10"
       ],
       "contenuCentral": [
+        "les activités de réparation navale. Néanmoins, la reconstruction ou la révision des navires et des bateaux relèvent de la division 30.",
         "la réparation et l'entretien régulier des navires et bateaux",
         "la réparation et l'entretien des bateaux de plaisance"
       ],
@@ -6119,10 +6075,10 @@
       "codeApe": "33.16Z",
       "title": "Réparation et maintenance d'aéronefs et d'engins spatiaux",
       "data": [
-        "Cette sous-classe comprend les activités de réparation et d'entretien d'aéronefs et d'engins spatiaux.",
         "Produits associés : 33.16.10"
       ],
       "contenuCentral": [
+        "les activités de réparation et d'entretien d'aéronefs et d'engins spatiaux.",
         "la réparation et l'entretien d'aéronefs",
         "la réparation et l'entretien de moteurs d'aéronefs"
       ],
@@ -6137,10 +6093,10 @@
       "codeApe": "33.17Z",
       "title": "Réparation et maintenance d'autres équipements de transport",
       "data": [
-        "Cette sous-classe comprend la réparation et l'entretien d'autres matériels de transport relevant de la division 30, à l'exception des motocycles, des bicyclettes et des véhicules militaires de combat.",
         "Produits associés : 33.17.11, 33.17.19"
       ],
       "contenuCentral": [
+        "la réparation et l'entretien d'autres matériels de transport relevant de la division 30, à l'exception des motocycles, des bicyclettes et des véhicules militaires de combat.",
         "la réparation et l'entretien des locomotives et des wagons",
         "la réparation et l'entretien de véhicules pour invalides",
         "la réparation de véhicules propulsés à la main ou à traction animale"
@@ -6161,10 +6117,10 @@
       "codeApe": "33.19Z",
       "title": "Réparation d'autres équipements",
       "data": [
-        "Cette sous-classe comprend la réparation et l'entretien d'équipements non couverts dans d'autres classes de cette division.",
         "Produits associés : 33.19.10"
       ],
       "contenuCentral": [
+        "la réparation et l'entretien d'équipements non couverts dans d'autres classes de cette division.",
         "la réparation de bâches et d'autres articles textiles confectionnés",
         "la réparation des filets de pêche, y compris raccommodage",
         "la réparation de cordes, gréements, toiles et toiles goudronnées",
@@ -6468,11 +6424,11 @@
       "codeApe": "38.12Z",
       "title": "Collecte des déchets dangereux",
       "data": [
-        "Cette sous-classe comprend l'enlèvement de déchets dangereux, solides ou autres, c'est-à-dire les déchets contenant des substances dangereuses pour la santé humaine et pour l'environnement, telles que des substances explosives, oxydantes, inflammables, toxiques, irritantes, nocives, cancérogènes, corrosives, infectieuses ou autres. Elle comprend également les activités d'identification, de traitement, d'emballage et d'étiquetage des déchets pour le transport.",
         "Produits associés : 38.12.11, 38.12.12, 38.12.13, 38.12.21, 38.12.22, 38.12.23, 38.12.24,",
         "38.12.25, 38.12.26, 38.12.27, 38.12.29, 38.12.30"
       ],
       "contenuCentral": [
+        "l'enlèvement de déchets dangereux, solides ou autres, c'est-à-dire les déchets contenant des substances dangereuses pour la santé humaine et pour l'environnement, telles que des substances explosives, oxydantes, inflammables, toxiques, irritantes, nocives, cancérogènes, corrosives, infectieuses ou autres. Elle comprend également les activités d'identification, de traitement, d'emballage et d'étiquetage des déchets pour le transport.",
         "la collecte de déchets dangereux, tels que :",
         "• huiles usagées de navires, de garages",
         "• huiles et graisses de cuisson usagées",
@@ -6510,10 +6466,10 @@
       "codeApe": "38.22Z",
       "title": "Traitement et élimination des déchets dangereux",
       "data": [
-        "Cette sous-classe comprend l'élimination et le traitement avant élimination de déchets dangereux, solides ou autres, c'est-à-dire les déchets contenant des substances dangereuses pour la santé humaine et pour l'environnement, telles que des substances explosives, oxydantes, inflammables, toxiques, irritantes, nocives, cancérogènes, corrosives, infectieuses ou autres.",
         "Produits associés : 38.22.11, 38.22.19, 38.22.21, 38.22.29"
       ],
       "contenuCentral": [
+        "l'élimination et le traitement avant élimination de déchets dangereux, solides ou autres, c'est-à-dire les déchets contenant des substances dangereuses pour la santé humaine et pour l'environnement, telles que des substances explosives, oxydantes, inflammables, toxiques, irritantes, nocives, cancérogènes, corrosives, infectieuses ou autres.",
         "l'exploitation d'installations de traitement de déchets dangereux",
         "le traitement et l'élimination d'animaux toxiques vivants ou morts et d'autres déchets contaminés",
         "l'incinération de déchets dangereux",
@@ -6767,10 +6723,9 @@
     {
       "codeApe": "42.21Z",
       "title": "Construction de réseaux pour fluides",
-      "data": [
-        "Cette sous-classe comprend la construction de lignes de distribution pour le transport de fluides et des bâtiments et structures faisant partie intégrante de ces systèmes."
-      ],
+      "data": [],
       "contenuCentral": [
+        "la construction de lignes de distribution pour le transport de fluides et des bâtiments et structures faisant partie intégrante de ces systèmes.",
         "la construction d'ouvrages de génie civil pour :",
         "• conduites couvrant de longues distances et urbaines",
         "• conduites et canalisations d'eau",
@@ -6793,10 +6748,10 @@
       "codeApe": "42.22Z",
       "title": "Construction de réseaux électriques et de télécommunications",
       "data": [
-        "Cette sous-classe comprend la construction de lignes de distribution pour l'électricité et les télécommunications et des bâtiments et structures faisant partie intégrante de ces systèmes, y compris les centrales électriques de tous types.",
         "Produits associés : 42.22.11, 42.22.12, 42.22.13, 42.22.21, 42.22.22, 42.22.23"
       ],
       "contenuCentral": [
+        "la construction de lignes de distribution pour l'électricité et les télécommunications et des bâtiments et structures faisant partie intégrante de ces systèmes, y compris les centrales électriques de tous types.",
         "la construction de lignes de transport d'énergie électrique à longue distance et urbaines, aériennes ou souterraines",
         "la construction de lignes de communication à longue distance et urbaines, aériennes ou souterraines",
         "la construction de lignes d'alimentation pour voies ferrées, yc caténaires",
@@ -6839,7 +6794,6 @@
       "codeApe": "42.99Z",
       "title": "Construction d'autres ouvrages de génie civil n.c.a.",
       "data": [
-        "routes, de stations de sports d'hivers, ou balnéaires, etc.)",
         "Produits associés : 42.99.11, 42.99.12, 42.99.19, 42.99.21, 42.99.22, 42.99.29"
       ],
       "contenuCentral": [
@@ -6857,8 +6811,7 @@
         "l'aménagement de zones rurales et le remembrement",
         "la promotion immobilière de :",
         "• zones d'activités et marchés d'intérêt national, régional ou local",
-        "• équipements locaux (aménagements de bassins fluviaux, de ports de plaisance, d'auto-",
-        "routes, de stations de sports d'hivers, ou balnéaires, etc.)",
+        "• équipements locaux (aménagements de bassins fluviaux, de ports de plaisance, d'auto-routes, de stations de sports d'hivers, ou balnéaires, etc.)",
         "l'aménagement ou la rénovation de zones urbaines par voie de promotion"
       ],
       "contenuExclu": [
@@ -6987,9 +6940,7 @@
       "codeApe": "43.22B",
       "title": "Travaux d'installation d'équipements thermiques et de climatisation",
       "data": [
-        "Produits associés : 43.22.12",
-        "- travaux d'installation de systèmes d'extinction automatique des incendies (43.22.11)",
-        "- travaux d'ignifugation (43.29.11)"
+        "Produits associés : 43.22.12"
       ],
       "contenuCentral": [
         "l'installation dans des bâtiments ou d'autres projets de construction des éléments suivants :",
@@ -7001,7 +6952,9 @@
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
-        "l'installation de chauffage électrique par plinthe chauffante (cf. 43.21A)"
+        "l'installation de chauffage électrique par plinthe chauffante (cf. 43.21A)",
+        "travaux d'installation de systèmes d'extinction automatique des incendies (43.22.11)",
+        "travaux d'ignifugation (43.29.11)"
       ]
     },
     {
@@ -7115,9 +7068,7 @@
       "codeApe": "43.33Z",
       "title": "Travaux de revêtement des sols et des murs",
       "data": [
-        "Produits associés : 43.33.10, 43.33.21, 43.33.29",
-        "- travaux de ferronnerie d'art (43.39.11)",
-        "- assemblage de meubles indépendants (95.24.10)"
+        "Produits associés : 43.33.10, 43.33.21, 43.33.29"
       ],
       "contenuCentral": [
         "la pose dans des bâtiments ou d'autres projets de construction des éléments suivants :",
@@ -7128,7 +7079,9 @@
         "• papiers peints"
       ],
       "contenuAnnexe": [
-        "l'installation de faux planchers sur structure métallique pour les installations informatiques"
+        "l'installation de faux planchers sur structure métallique pour les installations informatiques",
+        "travaux de ferronnerie d'art (43.39.11)",
+        "assemblage de meubles indépendants (95.24.10)"
       ],
       "contenuExclu": []
     },
@@ -7280,10 +7233,7 @@
       "codeApe": "43.99E",
       "title": "Location avec opérateur de matériel de construction",
       "data": [
-        "Produits associés : 43.99.90p",
-        "- travaux de nettoyage à la vapeur, de sablage et travaux spécialisés similaires appliqués aux parties extérieures des bâtiments",
-        "- location de grues et d'autres matériels de construction, ne correspondant pas à une activité de construction spécifique, avec opérateur",
-        "- autres travaux de construction spécialisés n.c.a."
+        "Produits associés : 43.99.90p"
       ],
       "contenuCentral": [
         "la location de grues et d'autres matériels de construction avec opérateur, ne correspondant pas à une activité de construction spécifique"
@@ -7291,6 +7241,9 @@
       "contenuAnnexe": [],
       "contenuExclu": [
         "la location de machines et de matériels de construction sans opérateur (cf. 77.32Z)",
+        "travaux de nettoyage à la vapeur, de sablage et travaux spécialisés similaires appliqués aux parties extérieures des bâtiments",
+        "location de grues et d'autres matériels de construction, ne correspondant pas à une activité de construction spécifique, avec opérateur",
+        "autres travaux de construction spécialisés n.c.a.",
         "location d'équipements de construction avec opérateur pour une activité de construction spécifique (cf. service de construction spécifique concerné à la section F )"
       ]
     },
@@ -8293,7 +8246,6 @@
       "codeApe": "47.11D",
       "title": "Supermarchés",
       "data": [
-        "400 et 2500 m²",
         "Produits associés : 47.00.11p, 47.00.12p, 47.00.13p, 47.00.14p, 47.00.15p, 47.00.16p,",
         "47.00.17p, 47.00.18p, 47.00.19p, 47.00.21p, 47.00.22p, 47.00.23p,",
         "47.00.24p, 47.00.25p, 47.00.26p, 47.00.27p, 47.00.31p, 47.00.32p,",
@@ -8307,8 +8259,7 @@
         "47.00.87p, 47.00.88p, 47.00.89p, 47.00.91p, 47.00.92p, 47.00.99p"
       ],
       "contenuCentral": [
-        "le commerce de détail non spécialisé à prédominance alimentaire, réalisant un chiffre d'affaires alimentaire supérieur à 65 % des ventes, en magasin d'une surface de vente comprise entre",
-        "400 et 2500 m²"
+        "le commerce de détail non spécialisé à prédominance alimentaire, réalisant un chiffre d'affaires alimentaire supérieur à 65 % des ventes, en magasin d'une surface de vente comprise entre 400 et 2500 m²"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -8316,12 +8267,9 @@
     {
       "codeApe": "47.11E",
       "title": "Magasins multi-commerces",
-      "data": [
-        "400 et 2500 m²"
-      ],
+      "data": [],
       "contenuCentral": [
-        "le commerce de détail non spécialisé à prédominance alimentaire, réalisant un chiffre d'affaires alimentaire inférieur à 65 % des ventes, en magasin d'une surface de vente comprise entre",
-        "400 et 2500 m²"
+        "le commerce de détail non spécialisé à prédominance alimentaire, réalisant un chiffre d'affaires alimentaire inférieur à 65 % des ventes, en magasin d'une surface de vente comprise entre 400 et 2500 m²"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -8434,7 +8382,11 @@
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
-        "le commerce de détail de confiserie, chocolaterie, pain et pâtisserie auto-produite (cf. 10.5,"
+        "le commerce de détail de confiserie, chocolaterie, pain et pâtisserie auto-produite (cf. 10.5, 10.7 et 10.8)",
+        "vente au détail de chaussures à usage sportif exclusif (chaussures de ski, à crampons, etc.)",
+        "vente au détail d'articles de pêche",
+        "vente au détail de cycles",
+        "vente au détail d'articles de tir et de chasse (y compris les munitions) (47.00.86)"
       ]
     },
     {
@@ -9400,12 +9352,12 @@
       "codeApe": "51.22Z",
       "title": "Transports spatiaux",
       "data": [
-        "Produits associés : 51.22.11, 51.22.12",
-        "- transport aérien non régulier d'autres marchandises"
+        "Produits associés : 51.22.11, 51.22.12"
       ],
       "contenuCentral": [
         "le lancement de satellites et de véhicules spatiaux",
-        "le transport spatial de fret et de personnes"
+        "le transport spatial de fret et de personnes",
+        "transport aérien non régulier d'autres marchandises"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9488,8 +9440,7 @@
       "codeApe": "52.23Z",
       "title": "Services auxiliaires des transports aériens",
       "data": [
-        "Produits associés : 52.23.11, 52.23.12, 52.23.19, 52.23.20",
-        "- services de remorquage pour entrer (et accoster) ou sortir d'un port fluvial"
+        "Produits associés : 52.23.11, 52.23.12, 52.23.19, 52.23.20"
       ],
       "contenuCentral": [
         "les activités liées au transport aérien de personnes, d'animaux ou de fret :",
@@ -9507,6 +9458,7 @@
         "la manutention du fret (cf. 52.24)",
         "les services de formation pour les pilotes d'avion à caractère professionnel (cf. 85.42Z) ou non ( 85.53Z)",
         "les services rendus sur les terrains d'aviation de tourisme (cf. 93.29Z)",
+        "services de remorquage pour entrer (et accoster) ou sortir d'un port fluvial",
         "remorquage courant des navires en eaux fluviales (50.40.22)"
       ]
     },
@@ -9579,10 +9531,10 @@
       "codeApe": "53.10Z",
       "title": "Activités de poste dans le cadre d'une obligation de service universel",
       "data": [
-        "Cette sous-classe comprend les activités postales réalisées par un ou plusieurs opérateurs désignés pour assumer l'obligation de service universel. Ces activités comprennent l'utilisation de l'infrastructure de service universel, notamment les points de vente au détail, les installations de tri et de traitement et les transporteurs pour l'enlèvement et la livraison du courrier. La distribution peut inclure des lettres, des cartes postales, des imprimés (journaux, périodiques, publicités, etc.), de petits paquets ou des documents. Sont compris également les autres services nécessaires pour remplir l'obligation de service universel.",
         "Produits associés : 53.10.11, 53.10.12, 53.10.13, 53.10.14, 53.10.19"
       ],
       "contenuCentral": [
+        "les activités postales réalisées par un ou plusieurs opérateurs désignés pour assumer l'obligation de service universel. Ces activités comprennent l'utilisation de l'infrastructure de service universel, notamment les points de vente au détail, les installations de tri et de traitement et les transporteurs pour l'enlèvement et la livraison du courrier. La distribution peut inclure des lettres, des cartes postales, des imprimés (journaux, périodiques, publicités, etc.), de petits paquets ou des documents. Sont compris également les autres services nécessaires pour remplir l'obligation de service universel.",
         "la levée, le tri, l'acheminement et la distribution (nationale ou internationale) de lettres, colis et petits paquets (assimilés à du courrier) par les services postaux chargés de l'obligation de service universel. Il peut être fait appel à un ou à plusieurs modes de transport et l'acheminement peut s'effectuer par un moyen de transport détenu en propre (privé) ou par un moyen de transport public.",
         "la collecte du courrier et des colis dans les boîtes à lettres publiques ou les bureaux de poste",
         "l'acheminement des journaux au tarif de la presse",
@@ -9636,10 +9588,10 @@
     {
       "codeApe": "55.20Z",
       "title": "Hébergement touristique et autre hébergement de courte durée",
-      "data": [
-        "Cette sous-classe comprend la mise à disposition d'un lieu d'hébergement, généralement sur une base journalière ou hebdomadaire, principalement pour un séjour de courte durée comprenant, dans un espace limité, des pièces complètement meublées ou des espaces de vie, de repas et de repos et disposant d'installations pour cuisiner ou de cuisines intégrées. Il peut s'agir d'appartements situés dans de petits bâtiments indépendants à plusieurs niveaux ou dans des"
+      "data": [],
+      "contenuCentral": [
+        "la mise à disposition d'un lieu d'hébergement, généralement sur une base journalière ou hebdomadaire, principalement pour un séjour de courte durée comprenant, dans un espace limité, des pièces complètement meublées ou des espaces de vie, de repas et de repos et disposant d'installations pour cuisiner ou de cuisines intégrées. Il peut s'agir d'appartements situés dans de petits bâtiments indépendants à plusieurs niveaux ou dans des"
       ],
-      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -9664,10 +9616,10 @@
       "codeApe": "55.90Z",
       "title": "Autres hébergements",
       "data": [
-        "Cette sous-classe comprend la mise à disposition de lieux d'hébergement temporaire ou à long terme dans des chambres individuelles ou pour plusieurs personnes, des résidences pour étudiants, des foyers pour travailleurs migrants (saisonniers), etc.",
         "Produits associés : 55.90.11, 55.90.12, 55.90.13, 55.90.19"
       ],
       "contenuCentral": [
+        "la mise à disposition de lieux d'hébergement temporaire ou à long terme dans des chambres individuelles ou pour plusieurs personnes, des résidences pour étudiants, des foyers pour travailleurs migrants (saisonniers), etc.",
         "les résidences d'étudiants",
         "les internats",
         "les foyers pour travailleurs",
@@ -9772,10 +9724,9 @@
     {
       "codeApe": "56.30Z",
       "title": "Débits de boissons",
-      "data": [
-        "Cette sous-classe comprend les activités de préparation et de service de boissons destinées à la consommation sur place"
-      ],
+      "data": [],
       "contenuCentral": [
+        "les activités de préparation et de service de boissons destinées à la consommation sur place",
         "les bars",
         "les cafés",
         "les discothèques et les pistes de danse où le service de boissons est prédominant",
@@ -9796,10 +9747,10 @@
       "codeApe": "58.12Z",
       "title": "Édition de répertoires et de fichiers d'adresses",
       "data": [
-        "Cette sous-classe comprend l'édition de listes contenant des éléments factuels et des informations (bases de données), protégées dans leur forme, mais pas dans leur contenu. Ces listes peuvent être publiées sous forme imprimée ou électronique.",
         "Produits associés : 58.12.10, 58.12.20, 58.12.30, 58.12.40"
       ],
       "contenuCentral": [
+        "l'édition de listes contenant des éléments factuels et des informations (bases de données), protégées dans leur forme, mais pas dans leur contenu. Ces listes peuvent être publiées sous forme imprimée ou électronique.",
         "la publication de fichiers d'adresses",
         "l'édition d'annuaires (téléphoniques, professionnels, etc.)",
         "l'édition d'autres répertoires et recueils, comme la jurisprudence, les compendiums pharmaceutiques, etc."
@@ -9896,7 +9847,7 @@
       "codeApe": "58.29C",
       "title": "Edition de logiciels applicatifs",
       "data": [
-        "Produits associés : 58.29.13, 58.29.21, 58.29.29, 58.29.32, 58.29.40p, 58.29.50p 111111"
+        "Produits associés : 58.29.13, 58.29.21, 58.29.29, 58.29.32, 58.29.40p, 58.29.50p"
       ],
       "contenuCentral": [
         "l'édition de logiciels généraux à usage professionnel ou domestique (loisirs, éducation, gestion) tels que :",
@@ -9982,7 +9933,6 @@
       "codeApe": "59.13B",
       "title": "Edition et distribution vidéo",
       "data": [
-        "DVD à partir d'originaux (cf. 18.20Z)",
         "Produits associés : 59.13.11p, 59.13.12p"
       ],
       "contenuCentral": [
@@ -9990,8 +9940,7 @@
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
-        "le tirage de contretypes et la reproduction de bandes magnétiques audio et vidéo, de CD ou de",
-        "DVD à partir d'originaux (cf. 18.20Z)",
+        "le tirage de contretypes et la reproduction de bandes magnétiques audio et vidéo, de CD ou de DVD à partir d'originaux (cf. 18.20Z)",
         "le commerce de gros de cassettes vidéo et de DVD enregistrées (cf. 46.43Z)",
         "le commerce de détail de cassettes vidéo et de DVD enregistrées (cf. 47.63Z)",
         "la location de DVD et vidéocassettes au public (cf. 77.22Z)"
@@ -10014,11 +9963,13 @@
       "codeApe": "59.20Z",
       "title": "Enregistrement sonore et édition musicale",
       "data": [
-        "Cette sous-classe comprend les activités liées à la production de matrices sonores originales, sur bandes, cassettes, CD, la mise à disposition des enregistrements, leur promotion et leur distribution auprès de grossistes, de détaillants ou directement auprès du public. Ces dernières activités peuvent ou non être intégrées à l'activité de production de matrices au sein d'une même unité. Si ce n'est pas le cas, l'unité réalisant ces activités doit obtenir au préalable les droits de reproduction et de diffusion.",
-        "Cette sous-classe inclut également les services d'enregistrement sonore en studio ou ailleurs, y compris la production d'émissions de radio enregistrées.",
-        "Cette sous-classe comprend les activités d'édition musicale, c'est-à-dire les activités d'exploitation des droits (copyright) associés aux compositions musicales, de promotion, d'autorisation et d'utilisation de ces compositions dans des enregistrements, à la radio, à la télévision, dans des films, des spectacles, sur des supports imprimés ou dans d'autres médias. Les unités actives dans ce domaine peuvent détenir les droits de propriété intellectuelle ou agir pour le compte de leur détenteur."
+        "Cette sous-classe inclut également les services d'enregistrement sonore en studio ou ailleurs, y compris la production d'émissions de radio enregistrées."
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "les activités liées à la production de matrices sonores originales, sur bandes, cassettes, CD, la mise à disposition des enregistrements, leur promotion et leur distribution auprès de grossistes, de détaillants ou directement auprès du public. Ces dernières activités peuvent ou non être intégrées à l'activité de production de matrices au sein d'une même unité. Si ce n'est pas le cas, l'unité réalisant ces activités doit obtenir au préalable les droits de reproduction et de diffusion.",
+        "Cette sous-classe inclut également les services d'enregistrement sonore en studio ou ailleurs, y compris la production d'émissions de radio enregistrées.",
+        "les activités d'édition musicale, c'est-à-dire les activités d'exploitation des droits (copyright) associés aux compositions musicales, de promotion, d'autorisation et d'utilisation de ces compositions dans des enregistrements, à la radio, à la télévision, dans des films, des spectacles, sur des supports imprimés ou dans d'autres médias. Les unités actives dans ce domaine peuvent détenir les droits de propriété intellectuelle ou agir pour le compte de leur détenteur."
+      ],
       "contenuAnnexe": [
         "l'édition de livres musicaux et de partitions"
       ],
@@ -10143,10 +10094,10 @@
       "codeApe": "62.01Z",
       "title": "Programmation informatique",
       "data": [
-        "Cette sous-classe comprend les activités de développement, adaptation, test et prise en charge de logiciels. Elle comprend également la conception de programmes sur la base des instructions des utilisateurs.",
         "Produits associés : 62.01.11, 62.01.12, 62.01.21, 62.01.29"
       ],
       "contenuCentral": [
+        "les activités de développement, adaptation, test et prise en charge de logiciels. Elle comprend également la conception de programmes sur la base des instructions des utilisateurs.",
         "la conception de la structure et du contenu et l'écriture des programmes informatiques nécessaires à la création et à l'implantation de :",
         "logiciels systèmes et réseaux",
         "applications logicielles",
@@ -10205,9 +10156,7 @@
       "codeApe": "62.09Z",
       "title": "Autres activités informatiques",
       "data": [
-        "Produits associés : 62.09.10, 62.09.20",
-        "- services associant l'évaluation des besoins informatiques du client, la planification des acquisitions de matériels et de logiciels, le développement de spécifications de systèmes et l'installation du nouveau système",
-        "- services d'intégration de systèmes informatiques, c'est-à-dire l'analyse de la configuration du client, des besoins informatiques actuels et futurs du client, des achats de nouveaux matériels et logiciels du client et l'intégration des nouveaux matériels et logiciels dans le système informatique du client"
+        "Produits associés : 62.09.10, 62.09.20"
       ],
       "contenuCentral": [
         "les activités dans le domaine informatique et des technologies de l'information non classées ailleurs, telles que :",
@@ -10221,18 +10170,22 @@
         "la programmation informatique (cf. 62.01Z)",
         "les services de conseil informatique (cf. 62.02A)",
         "la gestion d'installations informatiques (cf. 62.03Z)",
-        "le traitement et l'hébergement des données (cf. 63.11Z)"
+        "le traitement et l'hébergement des données (cf. 63.11Z)",
+        "services associant l'évaluation des besoins informatiques du client, la planification des acquisitions de matériels et de logiciels, le développement de spécifications de systèmes et l'installation du nouveau système",
+        "services d'intégration de systèmes informatiques, c'est-à-dire l'analyse de la configuration du client, des besoins informatiques actuels et futurs du client, des achats de nouveaux matériels et logiciels du client et l'intégration des nouveaux matériels et logiciels dans le système informatique du client"
       ]
     },
     {
       "codeApe": "63.11Z",
       "title": "Traitement de données, hébergement et activités connexes",
       "data": [
-        "Cette sous-classe comprend la fourniture d'infrastructures destinées aux services d'hébergement, de traitement des données et d'autres activités similaires. Elle inclut les activités d'hébergement spécialisées comme les services d'hébergement de sites web, d'applications ou de services de diffusion continue (streaming) ou encore la mise à la disposition de clients d'installations informatiques à temps partagé sur gros ordinateurs.",
         "Les activités de traitement des données comprennent les services de traitement complets et la préparation de rapports spécifiques à partir des données fournies par le client, les services spécialisés de saisie et de traitement automatisé des données, y compris les activités de gestion de bases de données.",
         "Produits associés : 63.11.11, 63.11.12, 63.11.13, 63.11.19, 63.11.20"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "la fourniture d'infrastructures destinées aux services d'hébergement, de traitement des données et d'autres activités similaires. Elle inclut les activités d'hébergement spécialisées comme les services d'hébergement de sites web, d'applications ou de services de diffusion continue (streaming) ou encore la mise à la disposition de clients d'installations informatiques à temps partagé sur gros ordinateurs.",
+        "Les activités de traitement des données comprennent les services de traitement complets et la préparation de rapports spécifiques à partir des données fournies par le client, les services spécialisés de saisie et de traitement automatisé des données, y compris les activités de gestion de bases de données."
+      ],
       "contenuAnnexe": [],
       "contenuExclu": [
         "l'édition de logiciels standard (cf. 58.29), le développement de logiciels ( 62.01Z)",
@@ -10329,10 +10282,10 @@
     {
       "codeApe": "64.20Z",
       "title": "Activités des sociétés holding",
-      "data": [
-        "Cette sous-classe comprend les activités des sociétés holding, c'est-à-dire des entités qui détiennent les actifs (possèdent le contrôle des fonds propres) d'un groupe de sociétés filiales et dont la principale activité est d'être propriétaire de ce groupe. Les sociétés holding appartenant à cette sous-classe ne fournissent aucun autre service aux entreprises dans lesquelles elles détiennent des fonds propres, en d'autres termes, elles n'administrent pas ou ne gèrent pas d'autres entités."
+      "data": [],
+      "contenuCentral": [
+        "les activités des sociétés holding, c'est-à-dire des entités qui détiennent les actifs (possèdent le contrôle des fonds propres) d'un groupe de sociétés filiales et dont la principale activité est d'être propriétaire de ce groupe. Les sociétés holding appartenant à cette sous-classe ne fournissent aucun autre service aux entreprises dans lesquelles elles détiennent des fonds propres, en d'autres termes, elles n'administrent pas ou ne gèrent pas d'autres entités."
       ],
-      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -10340,12 +10293,12 @@
       "codeApe": "64.30Z",
       "title": "Fonds de placement et entités financières similaires",
       "data": [
-        "Cette sous-classe comprend les entités légales organisées pour regrouper des titres ou d'autres actifs financiers, sans les administrer, pour le compte d'actionnaires ou de bénéficiaires.",
         "Les portefeuilles sont adaptés pour avoir des caractéristiques d'investissement spécifiques (diversification, risque, taux de rendement et volatilité des prix). Ces entités perçoivent des intérêts, des dividendes et d'autres revenus de biens, mais elles n'ont pas ou peu d'employés et ne tirent aucun revenu de la vente de services.",
-        "classe de la NAF correspondant à leur activité principale)",
         "Produits associés : 64.30.10"
       ],
       "contenuCentral": [
+        "les entités légales organisées pour regrouper des titres ou d'autres actifs financiers, sans les administrer, pour le compte d'actionnaires ou de bénéficiaires.",
+        "Les portefeuilles sont adaptés pour avoir des caractéristiques d'investissement spécifiques (diversification, risque, taux de rendement et volatilité des prix). Ces entités perçoivent des intérêts, des dividendes et d'autres revenus de biens, mais elles n'ont pas ou peu d'employés et ne tirent aucun revenu de la vente de services.",
         "les sociétés d'investissement à capital variable",
         "les sociétés d'investissement à capital fixe",
         "les fiducies, les comptes de patrimoine ou d'agence, administrés pour le compte des bénéficiaires selon les dispositions d'une convention de fiducie, d'un testament ou d'un contrat d'agence",
@@ -10353,8 +10306,7 @@
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
-        "les fonds et les fiducies tirant des revenus de la vente de biens ou de services (cf. la sous-",
-        "classe de la NAF correspondant à leur activité principale)",
+        "les fonds et les fiducies tirant des revenus de la vente de biens ou de services (cf. la sous-classe de la NAF correspondant à leur activité principale)",
         "les activités des sociétés holding (cf. 64.20Z)",
         "les caisses de retraite (cf. 65.30Z)",
         "la gestion de fonds (cf. 66.30Z)",
@@ -10451,11 +10403,11 @@
       "data": [
         "Produits associés : 65.20.11, 65.20.12, 65.20.13, 65.20.21, 65.20.22, 65.20.23,",
         "65.20.24, 65.20.25, 65.20.31, 65.20.32, 65.20.41, 65.20.42,",
-        "65.20.50, 65.20.60",
-        "• rapatriement des dépouilles"
+        "65.20.50, 65.20.60"
       ],
       "contenuCentral": [
-        "les activités consistant à prendre à son compte la totalité ou une partie du risque associé à des polices d'assurance émises par d'autres assureurs (assurance vie, assurance dommages, financement des pensions)"
+        "les activités consistant à prendre à son compte la totalité ou une partie du risque associé à des polices d'assurance émises par d'autres assureurs (assurance vie, assurance dommages, financement des pensions)",
+        "• rapatriement des dépouilles"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10466,10 +10418,10 @@
       "codeApe": "65.30Z",
       "title": "Caisses de retraite",
       "data": [
-        "Cette sous-classe comprend les entités juridiques (fonds, régimes et/ou programmes) organisées pour assurer le paiement des prestations de retraite exclusivement pour les salariés ou membres du répondant du régime. Elle comprend les régimes de pension avec prestations prédéterminées ainsi que les régimes individuels dans lesquels les prestations sont simplement déterminées par la cotisation de l'affilié.",
         "Produits associés : 65.30.11, 65.30.12"
       ],
       "contenuCentral": [
+        "les entités juridiques (fonds, régimes et/ou programmes) organisées pour assurer le paiement des prestations de retraite exclusivement pour les salariés ou membres du répondant du régime. Elle comprend les régimes de pension avec prestations prédéterminées ainsi que les régimes individuels dans lesquels les prestations sont simplement déterminées par la cotisation de l'affilié.",
         "les régimes de prestations aux salariés",
         "les fonds et régimes de pension"
       ],
@@ -10663,10 +10615,10 @@
       "codeApe": "68.31Z",
       "title": "Agences immobilières",
       "data": [
-        "Cette classe comprend la prestation d'activités immobilières par des agences immobilières.",
         "Produits associés : 68.31.11, 68.31.12, 68.31.13, 68.31.14, 68.31.15, 68.31.16"
       ],
       "contenuCentral": [
+        "la prestation d'activités immobilières par des agences immobilières.",
         "l'intermédiation en matière d'achat, de vente, de location de biens immobiliers pour le compte de tiers",
         "les services de conseil et d'évaluation en rapport avec l'achat, la vente et la location de biens immobiliers, pour le compte de tiers",
         "les activités des agents fiduciaires en immobilier"
@@ -10749,8 +10701,7 @@
       "title": "Activités comptables",
       "data": [
         "Produits associés : 69.20.10, 69.20.21, 69.20.22, 69.20.23, 69.20.24, 69.20.29,",
-        "69.20.31, 69.20.32, 69.20.40",
-        "- services de conseil à des clients concernant leurs droits et obligations juridiques et les autres services juridiques n.c.a."
+        "69.20.31, 69.20.32, 69.20.40"
       ],
       "contenuCentral": [
         "l'enregistrement d'opérations commerciales pour les entreprises ou autres",
@@ -10765,18 +10716,20 @@
       "contenuExclu": [
         "les activités de traitement et de tabulation des données (cf. 63.11Z)",
         "le conseil de gestion en matière de systèmes comptables, les procédures de contrôle budgétaire (cf. 70.22Z)",
-        "le recouvrement de factures (cf. 82.91Z)"
+        "le recouvrement de factures (cf. 82.91Z)",
+        "services de conseil à des clients concernant leurs droits et obligations juridiques et les autres services juridiques n.c.a."
       ]
     },
     {
       "codeApe": "70.10Z",
       "title": "Activités des sièges sociaux",
       "data": [
-        "Cette sous-classe comprend la supervision et la gestion d'autres unités de la même entreprise ou du même groupe, la prise en charge du rôle de planification et de direction stratégique ou organisationnelle de l'entreprise ou du groupe, l'exercice du contrôle opérationnel et la gestion des opérations courantes des unités rattachées.",
         "Cette classe ne concerne que des unités sans activité « productive » significative.",
         "Produits associés : 70.10.10"
       ],
       "contenuCentral": [
+        "la supervision et la gestion d'autres unités de la même entreprise ou du même groupe, la prise en charge du rôle de planification et de direction stratégique ou organisationnelle de l'entreprise ou du groupe, l'exercice du contrôle opérationnel et la gestion des opérations courantes des unités rattachées.",
+        "Cette classe ne concerne que des unités sans activité « productive » significative.",
         "les activités des sièges sociaux",
         "les activités des sièges administratifs centralisés",
         "les activités des sièges d'entreprise",
@@ -10792,10 +10745,11 @@
       "codeApe": "70.21Z",
       "title": "Conseil en relations publiques et communication",
       "data": [
-        "Cette classe comprend le conseil et l'assistance opérationnelle, y compris les activités de lobbying, apportés aux entreprises et autres organisations en matière de relations publiques et de communication.",
         "Produits associés : 70.21.10"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "le conseil et l'assistance opérationnelle, y compris les activités de lobbying, apportés aux entreprises et autres organisations en matière de relations publiques et de communication."
+      ],
       "contenuAnnexe": [],
       "contenuExclu": [
         "les activités des agences de publicité et la régie publicitaire de médias (cf. 73.1)",
@@ -10805,10 +10759,9 @@
     {
       "codeApe": "70.22Z",
       "title": "Conseil pour les affaires et autres conseils de gestion",
-      "data": [
-        "Cette sous-classe comprend le conseil et l'assistance opérationnelle apportés à des entreprises et autres organisations sur des questions de gestion, telles que la planification d'entreprise stratégique et organisationnelle, la reconfiguration de processus, la gestion du changement, la réduction des coûts et d'autres questions financières, les objectifs et les politiques de marketing, les politiques, les pratiques et la planification en matière de ressources humaines, les stratégies de rémunération et retraite, la planification de la production et du contrôle."
-      ],
+      "data": [],
       "contenuCentral": [
+        "le conseil et l'assistance opérationnelle apportés à des entreprises et autres organisations sur des questions de gestion, telles que la planification d'entreprise stratégique et organisationnelle, la reconfiguration de processus, la gestion du changement, la réduction des coûts et d'autres questions financières, les objectifs et les politiques de marketing, les politiques, les pratiques et la planification en matière de ressources humaines, les stratégies de rémunération et retraite, la planification de la production et du contrôle.",
         "le conseil et l'assistance opérationnelle aux entreprises et aux services publics dans les domaines suivants :",
         "• la conception de méthodes ou procédures comptables, de programme de comptabilisation des dépenses, de procédures de contrôle budgétaire"
       ],
@@ -10865,9 +10818,7 @@
       "data": [
         "Produits associés : 71.12.11, 71.12.12, 71.12.13, 71.12.14, 71.12.15, 71.12.16,",
         "71.12.17, 71.12.18, 71.12.19, 71.12.20, 71.12.31, 71.12.32,",
-        "71.12.33, 71.12.34p, 71.12.35",
-        "- témoignage d'un témoin, qui, de par son expérience, sa formation, ses compétences ou connaissances en ingénierie, est reconnu comme qualifié pour émettre un avis fondé sur des questions relevant de ce domaine",
-        "- étude technique d'un système ou d'une structure technique ayant connu une défaillance afin d'en déterminer les causes"
+        "71.12.33, 71.12.34p, 71.12.35"
       ],
       "contenuCentral": [
         "les activités d'ingénierie (c'est-à-dire l'application des lois physiques et principes d'ingénierie dans la conception de machines, matériaux, instruments, structures, processus et systèmes) et de conseil dans les domaines suivants :",
@@ -10891,6 +10842,8 @@
         "le design industriel (cf. 74.10Z)",
         "la photographie aérienne (cf. 74.20Z)",
         "les activités des économistes de la construction (cf. 74.90A)",
+        "témoignage d'un témoin, qui, de par son expérience, sa formation, ses compétences ou connaissances en ingénierie, est reconnu comme qualifié pour émettre un avis fondé sur des questions relevant de ce domaine",
+        "étude technique d'un système ou d'une structure technique ayant connu une défaillance afin d'en déterminer les causes",
         "conseils, études et rapports donnés ou réalisés dans le cadre d'un projet (71.12.12 à 71.12.19, selon le type de projet)"
       ]
     },
@@ -10925,13 +10878,13 @@
       "codeApe": "72.11Z",
       "title": "Recherche-développement en biotechnologie",
       "data": [
-        "Cette sous-classe comprend la recherche et le développement expérimental en biotechnologie",
         "synthèse/amplification de l'ADN/ARN, profilage de l'expression génétique et utilisation de la technologie antisens",
         "Produits associés : 72.00.11p, 72.00.12p, 72.00.13p, 72.00.20p, 72.11.11, 72.11.12,",
         "72.11.13, 72.11.21, 72.11.22, 72.11.23, 72.11.31, 72.11.32,",
         "72.11.33, 72.11.40"
       ],
       "contenuCentral": [
+        "la recherche et le développement expérimental en biotechnologie",
         "ADN/ARN : génomique, pharmacogénomique, sondes géniques, génie génétique, séquençage/",
         "synthèse/amplification de l'ADN/ARN, profilage de l'expression génétique et utilisation de la technologie antisens",
         "protéines et autres molécules : séquençage/synthèse/ingénierie de protéines et peptides (y compris hormones à grandes molécules); amélioration des méthodes d'administration de médicaments à grandes molécules; protéomique, isolation et purification des protéines, signalisation, identification des récepteurs cellulaires",
@@ -10989,11 +10942,10 @@
       "codeApe": "73.11Z",
       "title": "Activités des agences de publicité",
       "data": [
-        "Cette sous-classe comprend la prestation de toute une gamme de services (directement ou en les sous-traitant), notamment le conseil, la création publicitaire, la production de matériel publicitaire.",
-        "59.20Z)",
         "Produits associés : 73.11.11, 73.11.12, 73.11.13, 73.11.19"
       ],
       "contenuCentral": [
+        "la prestation de toute une gamme de services (directement ou en les sous-traitant), notamment le conseil, la création publicitaire, la production de matériel publicitaire.",
         "la conception et la réalisation de campagnes publicitaires :",
         "• conception et diffusion de publicités dans les journaux et les périodiques, à la radio et à la télévision, sur Internet et dans d'autres médias",
         "• conception et diffusion de publicités à l'extérieur, par exemple sur des panneaux, sur des vitrines, dans des magasins, sur des voitures et des autobus, etc.",
@@ -11011,8 +10963,7 @@
       ],
       "contenuExclu": [
         "l'édition de matériel publicitaire (cf. 58.19Z)",
-        "la réalisation de messages publicitaires pour la radio, la télévision et le cinéma (cf. 59.11B,",
-        "59.20Z)",
+        "la réalisation de messages publicitaires pour la radio, la télévision et le cinéma (cf. 59.11B, 59.20Z)",
         "le conseil en relations publiques et en communication (cf. 70.21Z)",
         "les études de marché (cf. 73.20Z)",
         "la photographie publicitaire (cf. 74.20Z)",
@@ -11353,10 +11304,10 @@
       "codeApe": "78.10Z",
       "title": "Activités des agences de placement de main-d'œuvre",
       "data": [
-        "Cette sous-classe comprend les activités consistant à lister les postes vacants et à orienter ou placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salariés des agences de placement.",
         "Produits associés : 78.10.11, 78.10.12"
       ],
       "contenuCentral": [
+        "les activités consistant à lister les postes vacants et à orienter ou placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salariés des agences de placement.",
         "la recherche, la sélection, l'orientation et le placement de personnel, y compris les activités de recherche et de placement de cadres",
         "les activités des psychologues pour le recrutement de personnel",
         "les activités des agences et bureaux de sélection d'acteurs et de figurants, telles que les agences de distribution de rôles",
@@ -11373,11 +11324,12 @@
       "codeApe": "78.20Z",
       "title": "Activités des agences de travail temporaire",
       "data": [
-        "Cette sous-classe comprend les activités consistant à fournir des travailleurs pour des périodes limitées en vue de remplacer temporairement ou de compléter la main-d'œuvre du client, les personnes placées étant salariées par l'agence de travail temporaire.Les agences affectées à cette sous-classe n'assurent toutefois pas la supervision directe de leurs salariés sur les lieux de travail du client.",
         "Produits associés : 78.20.11, 78.20.12, 78.20.13, 78.20.14, 78.20.15, 78.20.16,",
         "78.20.19"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "les activités consistant à fournir des travailleurs pour des périodes limitées en vue de remplacer temporairement ou de compléter la main-d'œuvre du client, les personnes placées étant salariées par l'agence de travail temporaire.Les agences affectées à cette sous-classe n'assurent toutefois pas la supervision directe de leurs salariés sur les lieux de travail du client."
+      ],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -11385,19 +11337,20 @@
       "codeApe": "78.30Z",
       "title": "Autre mise à disposition de ressources humaines",
       "data": [
-        "Cette sous-classe comprend les activités consistant à fournir des ressources humaines au client.",
         "Les unités classées ici sont l'employeur officiel des salariés pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salariés.",
         "La fourniture de ressources humaines a généralement lieu pour une longue durée ou sur une base permanente et les unités classées ici sont spécialisées dans l'exécution d'une vaste gamme de tâches de gestion des ressources humaines.",
-        "d'œuvre du client (cf. 78.20Z)",
         "Produits associés : 78.30.11, 78.30.12, 78.30.13, 78.30.14, 78.30.15, 78.30.16,",
         "78.30.19"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "les activités consistant à fournir des ressources humaines au client.",
+        "Les unités classées ici sont l'employeur officiel des salariés pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salariés.",
+        "La fourniture de ressources humaines a généralement lieu pour une longue durée ou sur une base permanente et les unités classées ici sont spécialisées dans l'exécution d'une vaste gamme de tâches de gestion des ressources humaines."
+      ],
       "contenuAnnexe": [],
       "contenuExclu": [
         "la prestation de fonctions liées aux ressources humaines, associée à la supervision ou à la gestion de l'entreprise (cf. la sous-classe de l'activité économique de cette entreprise)",
-        "la fourniture de travailleurs en vue de remplacer temporairement ou de compléter la main-",
-        "d'œuvre du client (cf. 78.20Z)"
+        "la fourniture de travailleurs en vue de remplacer temporairement ou de compléter la main-d'œuvre du client (cf. 78.20Z)"
       ]
     },
     {
@@ -11453,10 +11406,10 @@
       "codeApe": "80.10Z",
       "title": "Activités de sécurité privée",
       "data": [
-        "Cette sous-classe comprend la prestation d'un ou de plusieurs des services suivants : services de garde et de patrouille, services de transports de fonds (collecte et livraison d'argent), de reçus ou d'autres objets de valeur en utilisant du personnel équipé pour protéger de tels biens pendant le transport.",
         "Produits associés : 80.10.11, 80.10.12, 80.10.19"
       ],
       "contenuCentral": [
+        "la prestation d'un ou de plusieurs des services suivants : services de garde et de patrouille, services de transports de fonds (collecte et livraison d'argent), de reçus ou d'autres objets de valeur en utilisant du personnel équipé pour protéger de tels biens pendant le transport.",
         "les services de voitures blindées",
         "les services de gardes du corps",
         "les services de détecteurs de mensonges",
@@ -11508,10 +11461,11 @@
       "codeApe": "81.10Z",
       "title": "Activités combinées de soutien lié aux bâtiments",
       "data": [
-        "Cette sous-classe comprend la prestation d'une combinaison de services de soutien dans les installations du client. Ces services comprennent le nettoyage intérieur courant, l'entretien, l'élimination des ordures, le gardiennage et la sécurité, la distribution du courrier, la blanchisserie et des services de soutien annexes. Ces activités de soutien sont effectuées par du personnel qui n'intervient pas dans les activités essentielles du client ou n'est pas chargé de celles ci.",
         "Produits associés : 81.10.10"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "la prestation d'une combinaison de services de soutien dans les installations du client. Ces services comprennent le nettoyage intérieur courant, l'entretien, l'élimination des ordures, le gardiennage et la sécurité, la distribution du courrier, la blanchisserie et des services de soutien annexes. Ces activités de soutien sont effectuées par du personnel qui n'intervient pas dans les activités essentielles du client ou n'est pas chargé de celles ci."
+      ],
       "contenuAnnexe": [
         "la gestion du fonctionnement des services généraux des moyens : gestion des bâtiments relativement à un ensemble de prestations telles que la propreté, la sécurité, l'accueil, les approvisionnements courants"
       ],
@@ -11588,8 +11542,7 @@
       "codeApe": "81.30Z",
       "title": "Services d'aménagement paysager",
       "data": [
-        "Produits associés : 81.30.11, 81.30.12",
-        "- services de désinfection et de destruction de parasites dans les bâtiments et autres ouvrages non agricoles (81.29.11)"
+        "Produits associés : 81.30.11, 81.30.12"
       ],
       "contenuCentral": [
         "la plantation, les soins et l'entretien de parcs et jardins pour :",
@@ -11610,17 +11563,19 @@
         "les pépinières et pépinières forestières (cf. 01.30Z, 02.10Z)",
         "le maintien en bon ordre écologique de terrains pour l'agriculture (cf. 01.61Z)",
         "les activités de construction à des fins d'aménagement paysager (cf. section F)",
-        "les activités de conception et d'architecture paysagère (cf. 71.11Z)"
+        "les activités de conception et d'architecture paysagère (cf. 71.11Z)",
+        "services de désinfection et de destruction de parasites dans les bâtiments et autres ouvrages non agricoles (81.29.11)"
       ]
     },
     {
       "codeApe": "82.11Z",
       "title": "Services administratifs combinés de bureau",
       "data": [
-        "Cette sous-classe comprend la prestation d'une combinaison de services administratifs de bureau quotidiens, comme l'accueil, la planification financière, la facturation, la gestion de dossiers et l'archivage, les activités liées au personnel, l'organisation des locaux, les services de courrier, etc., pour le compte de tiers.",
         "Produits associés : 82.11.10"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "la prestation d'une combinaison de services administratifs de bureau quotidiens, comme l'accueil, la planification financière, la facturation, la gestion de dossiers et l'archivage, les activités liées au personnel, l'organisation des locaux, les services de courrier, etc., pour le compte de tiers."
+      ],
       "contenuAnnexe": [],
       "contenuExclu": [
         "la prestation d'une seule partie donnée de ces activités (cf. sous-classe en fonction de cette activité)",
@@ -11630,10 +11585,9 @@
     {
       "codeApe": "82.19Z",
       "title": "Photocopie, préparation de documents et autres activités spécialisées de soutien de bureau",
-      "data": [
-        "Cette sous-classe comprend diverses activités de photocopie, préparation de documents et autres activités spécialisées de soutien de bureau. Les activités de photocopie/impression de documents classées ici concernent uniquement des activités d'impression en petit tirage."
-      ],
+      "data": [],
       "contenuCentral": [
+        "diverses activités de photocopie, préparation de documents et autres activités spécialisées de soutien de bureau. Les activités de photocopie/impression de documents classées ici concernent uniquement des activités d'impression en petit tirage.",
         "la préparation de documents",
         "la révision ou la correction de documents",
         "la frappe et le traitement de texte",
@@ -11666,15 +11620,7 @@
       "codeApe": "82.30Z",
       "title": "Organisation de foires, salons professionnels et congrès",
       "data": [
-        "Produits associés : 82.30.11, 82.30.12",
-        "- révision ou correction de documents",
-        "- dactylographie, traitement de texte ou publication assistée par ordinateur",
-        "- services de secrétariat de soutien",
-        "- transcription de documents et autres services de secrétariat",
-        "- rédaction de lettres et de curriculum vitae",
-        "- location de boîtes aux lettres",
-        "- services de traitement de texte",
-        "- autres services de reproduction de documents n'offrant pas de services d'impression (impression offset, impression-minute, impression numérique, services de prépresse)"
+        "Produits associés : 82.30.11, 82.30.12"
       ],
       "contenuCentral": [
         "l'organisation, la promotion et/ou la gestion d'événements, tels que des salons et foires commerciales, des congrès, des conférences et des réunions, incluant ou non la gestion et la mise à disposition du personnel pour exploiter les installations où ces événements ont lieu"
@@ -11687,6 +11633,14 @@
         "l'aménagement de stands (cf. 43.32C)",
         "la location et l'exploitation de centres de conférences et de lieux d'exposition (cf. 68.20B)",
         "l'organisation de foires et salons de nature récréative (cf. 93.29Z)",
+        "révision ou correction de documents",
+        "dactylographie, traitement de texte ou publication assistée par ordinateur",
+        "services de secrétariat de soutien",
+        "transcription de documents et autres services de secrétariat",
+        "rédaction de lettres et de curriculum vitae",
+        "location de boîtes aux lettres",
+        "services de traitement de texte",
+        "autres services de reproduction de documents n'offrant pas de services d'impression (impression offset, impression-minute, impression numérique, services de prépresse)",
         "services de prépresse (18.13.10)",
         "services de sténographie spécialisés, tels que la transcription des délibérations des tribunaux (82.99.11)",
         "services de sténographes publics (82.99.11)"
@@ -11818,12 +11772,7 @@
       "title": "Administration publique (tutelle) des activités économiques",
       "data": [
         "Produits associés : 84.13.11, 84.13.12, 84.13.13, 84.13.14, 84.13.15, 84.13.16,",
-        "84.13.17, 84.13.18",
-        "- services administratifs en matière de contrôle des loyers et de conditions d'admissibilité pour les logements bénéficiant de subventions publiques",
-        "- services de logement à l'intention du grand public ou de personnes ayant des besoins particuliers",
-        "- diffusion de l'information publique en matière de logement",
-        "- normes de pollution et diffusion de l'information sur la pollution",
-        "- services administratifs en matière de programmes de protection de l'environnement"
+        "84.13.17, 84.13.18"
       ],
       "contenuCentral": [
         "l'administration publique et la tutelle des différents secteurs de l'activité économique, y compris l'octroi de subventions :",
@@ -11844,6 +11793,11 @@
       ],
       "contenuExclu": [
         "les activités de recherche et de développement expérimental (cf. 72)",
+        "services administratifs en matière de contrôle des loyers et de conditions d'admissibilité pour les logements bénéficiant de subventions publiques",
+        "services de logement à l'intention du grand public ou de personnes ayant des besoins particuliers",
+        "diffusion de l'information publique en matière de logement",
+        "normes de pollution et diffusion de l'information sur la pollution",
+        "services administratifs en matière de programmes de protection de l'environnement",
         "assainissement, élimination des déchets et dépollution (37, 38, 39)"
       ]
     },
@@ -11972,8 +11926,7 @@
       "codeApe": "84.30C",
       "title": "Distribution sociale de revenus",
       "data": [
-        "Produits associés : 84.30.13, 84.30.14",
-        "- services de lutte contre les incendies et de prévention des incendies fournis par des unités non spécialisées dans les aéroports (52.23.19)"
+        "Produits associés : 84.30.13, 84.30.14"
       ],
       "contenuCentral": [
         "la gestion de l'indemnisation du chômage total ou partiel et des préretraites",
@@ -11981,7 +11934,8 @@
         "la gestion du versement de revenus de substitution"
       ],
       "contenuAnnexe": [
-        "la gestion des prestations logement"
+        "la gestion des prestations logement",
+        "services de lutte contre les incendies et de prévention des incendies fournis par des unités non spécialisées dans les aéroports (52.23.19)"
       ],
       "contenuExclu": []
     },
@@ -12005,12 +11959,15 @@
       "codeApe": "85.20Z",
       "title": "Enseignement primaire",
       "data": [
-        "Cette sous-classe comprend l'enseignement primaire : cours de matières scolaires et travaux associés donnant aux élèves un enseignement de base solide en lecture, écriture et mathématiques et une compréhension élémentaire d'autres matières telles que l'histoire, la géographie, les sciences naturelles, les sciences sociales, l'art et la musique.",
         "Cet enseignement est généralement dispensé à des enfants. Les programmes d'alphabétisation au sein ou en dehors du système scolaire, dont le contenu est similaire aux programmes de l'enseignement primaire, mais qui sont destinés à des personnes considérées comme trop âgées pour entrer dans des écoles élémentaires, y sont toutefois également inclus (programmes d'alphabétisation des adultes, par exemple).",
         "Par exemple, enseignement dispensé par les écoles élémentaires",
         "Produits associés : 85.20.11, 85.20.12"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "l'enseignement primaire : cours de matières scolaires et travaux associés donnant aux élèves un enseignement de base solide en lecture, écriture et mathématiques et une compréhension élémentaire d'autres matières telles que l'histoire, la géographie, les sciences naturelles, les sciences sociales, l'art et la musique.",
+        "Cet enseignement est généralement dispensé à des enfants. Les programmes d'alphabétisation au sein ou en dehors du système scolaire, dont le contenu est similaire aux programmes de l'enseignement primaire, mais qui sont destinés à des personnes considérées comme trop âgées pour entrer dans des écoles élémentaires, y sont toutefois également inclus (programmes d'alphabétisation des adultes, par exemple).",
+        "Par exemple, enseignement dispensé par les écoles élémentaires"
+      ],
       "contenuAnnexe": [],
       "contenuExclu": [
         "l'enseignement pour adultes tel qu'il est défi ni dans le groupe 85.5",
@@ -12021,12 +11978,13 @@
       "codeApe": "85.31Z",
       "title": "Enseignement secondaire général",
       "data": [
-        "Cette sous-classe comprend le type d'enseignement qui pose les fondements de la formation tout au long de la vie et du développement humain et permet d'ouvrir des possibilités d'enseignement ultérieures. Les établissements concernés offrent des programmes qui sont habituellement plus orientés sur une discipline et sont dispensés par des enseignants plus spécialisés et emploient plus souvent plusieurs professeurs donnant cours dans leur domaine de spécialisation.",
         "Les matières enseignées à ce niveau comportent souvent une certaine spécialisation qui commence à déterminer l'orientation future des élèves, mêmes de ceux qui fréquentent l'enseignement général. Les programmes d'études amènent les élèves à un niveau qui doit leur permettre de suivre un enseignement technique ou professionnel ou d'accéder à l'enseignement supérieur sans les obliger à choisir une discipline particulière.",
         "Par exemple, enseignement dispensé par les collèges et les seconds cycles des lycées généraux et technologiques",
         "Produits associés : 85.31.11, 85.31.12, 85.31.21, 85.31.22"
       ],
       "contenuCentral": [
+        "le type d'enseignement qui pose les fondements de la formation tout au long de la vie et du développement humain et permet d'ouvrir des possibilités d'enseignement ultérieures. Les établissements concernés offrent des programmes qui sont habituellement plus orientés sur une discipline et sont dispensés par des enseignants plus spécialisés et emploient plus souvent plusieurs professeurs donnant cours dans leur domaine de spécialisation.",
+        "Les matières enseignées à ce niveau comportent souvent une certaine spécialisation qui commence à déterminer l'orientation future des élèves, mêmes de ceux qui fréquentent l'enseignement général. Les programmes d'études amènent les élèves à un niveau qui doit leur permettre de suivre un enseignement technique ou professionnel ou d'accéder à l'enseignement supérieur sans les obliger à choisir une discipline particulière.",
         "le premier cycle de l'enseignement secondaire général, correspondant plus ou moins à la période couverte par l'obligation scolaire",
         "le deuxième cycle de l'enseignement secondaire général, donnant, en principe, accès à l'enseignement supérieur.",
         "Par exemple, enseignement dispensé par les collèges et les seconds cycles des lycées généraux et technologiques"
@@ -12038,10 +11996,10 @@
       "codeApe": "85.32Z",
       "title": "Enseignement secondaire technique ou professionnel",
       "data": [
-        "Cette sous-classe comprend l'enseignement comportant généralement une spécialisation par matière, qui associe des connaissances de base théoriques et des qualifications pratiques axées sur un emploi existant ou futur. La formation peut avoir pour objet de préparer l'élève à un large éventail d'emplois dans un secteur déterminé ou à un emploi bien précis.",
         "Par exemple, enseignement dispensé par les lycées professionnels, les centres de formation d'apprentis (CFA) relevant de l'enseignement secondaire, les écoles sanitaires et sociales relevant de l'enseignement secondaire et les structures d'accueil d'élèves en difficulté scolaire ou sociale (SEGPA, EREA)"
       ],
       "contenuCentral": [
+        "l'enseignement comportant généralement une spécialisation par matière, qui associe des connaissances de base théoriques et des qualifications pratiques axées sur un emploi existant ou futur. La formation peut avoir pour objet de préparer l'élève à un large éventail d'emplois dans un secteur déterminé ou à un emploi bien précis.",
         "l'enseignement technique et professionnel au-dessous du niveau de l'enseignement supérieur tel qu'il est défini dans le groupe 85.4.",
         "Par exemple, enseignement dispensé par les lycées professionnels, les centres de formation d'apprentis (CFA) relevant de l'enseignement secondaire, les écoles sanitaires et sociales relevant de l'enseignement secondaire et les structures d'accueil d'élèves en difficulté scolaire ou sociale (SEGPA, EREA)"
       ],
@@ -12061,11 +12019,13 @@
       "codeApe": "85.41Z",
       "title": "Enseignement post-secondaire non supérieur",
       "data": [
-        "Cette sous-classe comprend l'enseignement post-secondaire qui ne peut pas être considéré comme relevant de l'enseignement supérieur. Il s'agit, par exemple, de cours d'enseignement post-secondaire supplémentaires destinés à préparer les élèves à l'enseignement supérieur ou à une insertion professionnelle directe.",
         "Par exemple, préparation du diplôme d'accès aux études universitaires, préparation à l'entrée des écoles paramédicales ou sociales de niveau supérieur, classes de mise à niveau BTS, préparation au diplôme de moniteur-éducateur et d'éducateur technique spécialisé (écoles sociales)",
         "Produits associés : 85.41.11, 85.41.12, 85.41.13, 85.41.14"
       ],
-      "contenuCentral": [],
+      "contenuCentral": [
+        "l'enseignement post-secondaire qui ne peut pas être considéré comme relevant de l'enseignement supérieur. Il s'agit, par exemple, de cours d'enseignement post-secondaire supplémentaires destinés à préparer les élèves à l'enseignement supérieur ou à une insertion professionnelle directe.",
+        "Par exemple, préparation du diplôme d'accès aux études universitaires, préparation à l'entrée des écoles paramédicales ou sociales de niveau supérieur, classes de mise à niveau BTS, préparation au diplôme de moniteur-éducateur et d'éducateur technique spécialisé (écoles sociales)"
+      ],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -12086,11 +12046,10 @@
       "codeApe": "85.51Z",
       "title": "Enseignement de disciplines sportives et d'activités de loisirs",
       "data": [
-        "Cette sous-classe comprend la formation dans des activités sportives donnée à des groupes ou des individus par des camps ou des écoles. Les écoles de formation sportive de jour et celles offrant un hébergement sont également incluses. Cette sous-classe ne comprend pas la formation sportive donnée dans les écoles et universités. La formation peut être dispensée dans diverses structures telles que les installations de formation de l'unité ou du client, des établissements d'enseignement ou par d'autres moyens. La formation relevant de cette sous-",
-        "classe est formellement organisée.",
         "Produits associés : 85.51.10"
       ],
       "contenuCentral": [
+        "la formation dans des activités sportives donnée à des groupes ou des individus par des camps ou des écoles. Les écoles de formation sportive de jour et celles offrant un hébergement sont également incluses. Cette sous-classe ne comprend pas la formation sportive donnée dans les écoles et universités. La formation peut être dispensée dans diverses structures telles que les installations de formation de l'unité ou du client, des établissements d'enseignement ou par d'autres moyens. La formation relevant de cette sous-classe est formellement organisée.",
         "la formation sportive (base-ball, basket-ball, cricket, football, etc.)",
         "les camps offrant une formation sportive",
         "les cours de gymnastique",
@@ -12112,10 +12071,10 @@
       "codeApe": "85.52Z",
       "title": "Enseignement culturel",
       "data": [
-        "Cette sous-classe comprend la formation en arts, théâtre et musique. Les structures dispensant ce type de formation peuvent être appelées « écoles », « ateliers », « classes », etc. Elles offrent des cours formellement organisés, principalement à des fins récréatives, de loisirs ou de développement personnel, mais ces cours ne débouchent pas sur un diplôme professionnel.",
         "Produits associés : 85.52.11, 85.52.12, 85.52.13, 85.52.19"
       ],
       "contenuCentral": [
+        "la formation en arts, théâtre et musique. Les structures dispensant ce type de formation peuvent être appelées « écoles », « ateliers », « classes », etc. Elles offrent des cours formellement organisés, principalement à des fins récréatives, de loisirs ou de développement personnel, mais ces cours ne débouchent pas sur un diplôme professionnel.",
         "les professeurs de piano et les autres cours de musique",
         "les cours d'art",
         "les écoles de théâtre (à l'exclusion des établissements universitaires)",
@@ -12187,10 +12146,10 @@
       "codeApe": "85.60Z",
       "title": "Activités de soutien à l'enseignement",
       "data": [
-        "Cette sous-classe comprend les activités non pédagogiques de soutien aux processus ou systèmes éducatifs.",
         "Produits associés : 85.60.10"
       ],
       "contenuCentral": [
+        "les activités non pédagogiques de soutien aux processus ou systèmes éducatifs.",
         "le conseil dans le domaine éducatif",
         "les activités de conseil en orientation scolaire",
         "les activités d'évaluation des tests de connaissances",
@@ -12290,7 +12249,7 @@
         "Produits associés : 86.23.11, 86.23.19"
       ],
       "contenuCentral": [
-        "les activités de pratique dentaire de nature générale ou spécifi que (art dentaire, endodontie et dentisterie pédiatrique, pathologie orale)",
+        "les activités de pratique dentaire de nature générale ou spécifique (art dentaire, endodontie et dentisterie pédiatrique, pathologie orale)",
         "les activités d'orthodontie",
         "les activités de chirurgie buccale"
       ],
@@ -12499,7 +12458,6 @@
       "codeApe": "87.30B",
       "title": "Hébergement social pour handicapés physiques",
       "data": [
-        "C)",
         "Produits associés : 87.30.12, 87.30.13"
       ],
       "contenuCentral": [
@@ -12508,8 +12466,7 @@
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
-        "les activités des établissements pour handicapés dispensant des soins médicaux (cf. 87.10B,",
-        "C)"
+        "les activités des établissements pour handicapés dispensant des soins médicaux (cf. 87.10B, C)"
       ]
     },
     {
@@ -12721,8 +12678,7 @@
       "codeApe": "90.04Z",
       "title": "Gestion de salles de spectacles",
       "data": [
-        "Produits associés : 90.04.10",
-        "- services de production et de présentation de spectacles pyrotechniques et de « son et lumière » (93.29.21)"
+        "Produits associés : 90.04.10"
       ],
       "contenuCentral": [
         "l'exploitation de lieux ou salles de spectacle aménagés pour des représentations publiques : salles de concert, de théatre, de danse, de music hall, cirques, etc."
@@ -12731,7 +12687,8 @@
       "contenuExclu": [
         "l'exploitation de cinémas (cf. 59.14Z)",
         "les activités des agences de vente de billets (cf. 79.90Z)",
-        "la gestion des musées de toute nature (cf. 91.02Z)"
+        "la gestion des musées de toute nature (cf. 91.02Z)",
+        "services de production et de présentation de spectacles pyrotechniques et de « son et lumière » (93.29.21)"
       ]
     },
     {
@@ -12850,10 +12807,9 @@
     {
       "codeApe": "93.12Z",
       "title": "Activités de clubs de sports",
-      "data": [
-        "Cette sous-classe comprend les activités des clubs de sports- professionnels, semi-professionnels ou amateurs- qui donnent à leurs membres la possibilité de pratiquer des activités sportives."
-      ],
+      "data": [],
       "contenuCentral": [
+        "les activités des clubs de sports- professionnels, semi-professionnels ou amateurs- qui donnent à leurs membres la possibilité de pratiquer des activités sportives.",
         "l'exploitation des clubs de sports :",
         "• clubs de football",
         "• clubs de bowling",
@@ -13062,7 +13018,6 @@
       "codeApe": "95.11Z",
       "title": "Réparation d'ordinateurs et d'équipements périphériques",
       "data": [
-        "naux point de vente, sans exploitation mécanique",
         "Produits associés : 95.11.10"
       ],
       "contenuCentral": [
@@ -13085,8 +13040,7 @@
       ],
       "contenuAnnexe": [
         "la réparation et l'entretien des :",
-        "• terminaux informatiques, comme les guichets automatiques de banque (GAB), les termi-",
-        "naux point de vente, sans exploitation mécanique",
+        "• terminaux informatiques, comme les guichets automatiques de banque (GAB), les terminaux point de vente, sans exploitation mécanique",
         "• ordinateurs de poche (assistants personnels)"
       ],
       "contenuExclu": [
@@ -13364,13 +13318,11 @@
       "codeApe": "99.00Z",
       "title": "Activités des organisations et organismes extraterritoriaux",
       "data": [
-        "France",
         "Produits associés : 99.00.10"
       ],
       "contenuCentral": [
         "les activités des ambassades et consulats étrangers en France",
-        "les activités exercées en France par les organisations internationales telles que l'ONU et ses institutions spécialisées (UNESCO), l'OCDE, le FMI, la Banque Mondiale, les institutions de l'Union européenne et en règle générale des organismes ayant un statut diplomatique en",
-        "France"
+        "les activités exercées en France par les organisations internationales telles que l'ONU et ses institutions spécialisées (UNESCO), l'OCDE, le FMI, la Banque Mondiale, les institutions de l'Union européenne et en règle générale des organismes ayant un statut diplomatique en France"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
