@@ -44,35 +44,61 @@ export interface Output {
 	}
 }
 
+const sousClasses = apeData.filter(({ type }) => type === 'sousClasse')
+
+const index: Record<string, number> = sousClasses.reduce(
+	(obj, val, i) => ({ ...obj, [val.code]: i }),
+	{}
+)
+
+const addContenuExcluToContenuCentral: number[][] = []
 const output: Output = {
-	apeData: apeData
-		.filter(({ type }) => type === 'sousClasse')
-		.map(
-			({
+	apeData: sousClasses.map(
+		(
+			{
 				code: codeApe,
 				title,
 				data,
 				contenuCentral,
 				contenuAnnexe,
 				contenuExclu,
-			}) => {
-				return {
-					codeApe,
-					title,
-					data,
-					contenuCentral,
-					contenuAnnexe,
-					contenuExclu,
+			},
+			i
+		) => {
+			contenuExclu.forEach((exclu, j) => {
+				const match = exclu.match(/\(cf\. (?:([0-9A-Z.]+)(?:, )?)+\)/)
+				if (match) {
+					const codes = [...match]
+					codes.shift()
+					codes
+						.map((k) => index?.[k])
+						.filter((x) => typeof x !== 'undefined')
+						.forEach((index) => {
+							addContenuExcluToContenuCentral.push([i, j, index])
+						})
 				}
-			}
-		),
+			})
 
+			return {
+				codeApe,
+				title,
+				data,
+				contenuCentral,
+				contenuAnnexe,
+				contenuExclu,
+			}
+		}
+	),
 	nbEtablissements2021: etablissementsData.data.map(
 		({ nombre_d_etablissements_2021: nbEtablissements }) => nbEtablissements
 	),
 	indexByCodeApe: etablissementsData.indexByCodeApe,
 	indexByCodeDepartement: etablissementsData.indexByCodeDepartement,
 }
+
+addContenuExcluToContenuCentral.forEach(([i, j, index]) => {
+	output.apeData[index].contenuCentral.push(output.apeData[i].contenuExclu[j])
+})
 
 writeFileSync(OUTPUT_JSON_PATH, JSON.stringify(output, null, 2))
 writeFileSync(OUTPUT_MIN_JSON_PATH, JSON.stringify(output))
