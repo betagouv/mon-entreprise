@@ -42,6 +42,7 @@ const getFromSimu = <S extends SimulatorData, T extends string>(
 		: undefined
 
 function IntegrationCustomizer() {
+	const { t } = useTranslation()
 	const simulatorsData = useSimulatorsData()
 	const [searchParams, setSearchParams] = useSearchParams()
 
@@ -100,8 +101,8 @@ function IntegrationCustomizer() {
 			</H2>
 			<Meta
 				page="iframe"
-				title="Intégrer un simulateur"
-				description="Outils pour les développeurs"
+				title={t('iframe.title', 'Intégrer un simulateur')}
+				description={t('iframe.description', 'Outils pour les développeurs')}
 			/>
 			<Grid
 				container

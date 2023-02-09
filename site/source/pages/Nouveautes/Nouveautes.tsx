@@ -61,8 +61,11 @@ export default function Nouveautés() {
 			<TrackPage chapter1="informations" name="nouveautes" />
 			<Meta
 				page="nouveautés"
-				title="Nouveautés"
-				description="Nous améliorons le site en continu à partir de vos retours. Découvrez les dernières nouveautés"
+				title={t('news.title', 'Nouveautés')}
+				description={t(
+					'news.description',
+					'Nous améliorons le site en continu à partir de vos retours. Découvrez les dernières nouveautés'
+				)}
 			/>
 			<ScrollToTop key={selectedRelease} />
 

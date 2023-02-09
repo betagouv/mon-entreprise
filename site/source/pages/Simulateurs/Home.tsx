@@ -35,7 +35,10 @@ export default function Simulateurs() {
 			<Meta
 				page="simulateurs"
 				title={titre}
-				description="Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives."
+				description={t(
+					'pages.simulateurs.accueil.description',
+					'Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives.'
+				)}
 				ogImage={simulatorSvg}
 			/>
 			<PageHeader titre={titre} picture={simulatorSvg}>
@@ -176,7 +179,7 @@ export default function Simulateurs() {
 				</Grid>
 			</section>
 			<section>
-				<Trans i18nKey="page.simulateurs.accueil.description">
+				<Trans i18nKey="pages.simulateurs.accueil.section">
 					<Body>Tous les simulateurs sur ce site sont :</Body>
 					<Ul>
 						<Li>

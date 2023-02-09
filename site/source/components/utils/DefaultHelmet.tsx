@@ -10,7 +10,10 @@ const DefaultHelmet = ({ children }: Props) => {
 	const { t } = useTranslation()
 
 	return (
-		<Helmet titleTemplate={t('site.titleTemplate', '%s - Mon-entreprise')}>
+		<Helmet
+			defaultTitle={t('site.defaultTitle', 'Mon-entreprise')}
+			titleTemplate={t('site.titleTemplate', '%s - Mon-entreprise')}
+		>
 			{children}
 		</Helmet>
 	)

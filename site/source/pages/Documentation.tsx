@@ -159,16 +159,21 @@ function BackToSimulation() {
 }
 
 function DocumentationLanding() {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<TrackPage chapter1="documentation" name="accueil" />
 			<Meta
 				page="documentation"
-				title="Documentation"
-				description="Explorez toutes les règles de la documentation"
+				title={t('documentation.title', 'Documentation')}
+				description={t(
+					'documentation.description',
+					'Explorez toutes les règles de la documentation'
+				)}
 			/>
 			<H1>
-				<Trans i18nKey="page.documentation.title">Documentation</Trans>
+				<Trans i18nKey="documentation.title">Documentation</Trans>
 			</H1>
 			<Body>Explorez toutes les règles de la documentation</Body>
 			<SearchRules />

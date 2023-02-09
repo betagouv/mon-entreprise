@@ -18,8 +18,11 @@ export default function Spreadsheet() {
 			<ScrollToTop />
 			<Meta
 				page="spreadsheet"
-				title="Utiliser avec un tableur"
-				description="Outils pour les développeurs"
+				title={t('spreadsheet.title', 'Utiliser avec un tableur')}
+				description={t(
+					'spreadsheet.description',
+					'Outils pour les développeurs'
+				)}
 			/>
 			<Trans i18nKey="pages.développeur.spreadsheet">
 				<H1>Utiliser avec un tableur</H1>

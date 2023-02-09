@@ -1,4 +1,5 @@
 import { Suspense, lazy } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import PageHeader from '@/components/PageHeader'
@@ -14,13 +15,18 @@ import illustrationSvg from './illustration.svg'
 const Stats = lazy(() => import('./Stats'))
 
 export default function StatsPage() {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<TrackPage chapter1="informations" name="stats" />
 			<Meta
 				page="stats"
-				title="Statistiques"
-				description="	Découvrez nos statistiques d'utilisation mises à jour quotidiennement."
+				title={t('stats.title', 'Statistiques')}
+				description={t(
+					'stats.description',
+					"Découvrez nos statistiques d'utilisation mises à jour quotidiennement."
+				)}
 			/>
 			<ScrollToTop />
 			<PageHeader

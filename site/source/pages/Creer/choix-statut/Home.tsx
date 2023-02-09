@@ -34,7 +34,7 @@ export default function Créer() {
 			<Meta
 				page="créer"
 				title={t('créer.titre', 'Créer une entreprise')}
-				description="Créer une entreprise"
+				description={t('créer.description', 'Créer une entreprise')}
 				ogImage={créerSvg}
 			/>
 
@@ -43,7 +43,7 @@ export default function Créer() {
 				picture={créerSvg}
 			>
 				<Intro>
-					<Trans i18nKey="créer.description">
+					<Trans i18nKey="créer.intro">
 						Avant d'entamer les démarches administratives pour créer votre
 						entreprise, vous devez choisir un statut juridique adapté à votre
 						activité
