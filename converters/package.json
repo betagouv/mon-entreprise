@@ -12,6 +12,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start:données-NAF-CPF-APE": "ts-node-esm ./données-NAF-CPF-APE/convert-pdf.ts",
+		"start:données-NomenclatureGuichet": "ts-node-esm ./données-NomenclatureGuichet/convert.ts",
 		"start:nombre-etablissements-par-code-ape-et-departement": "ts-node-esm ./nombre-etablissements-par-code-ape-et-departement/convert-json.ts",
 		"start:données-code-APE": "ts-node-esm ./données-code-APE/reduce-json.ts",
 		"start:watch:données-NAF-CPF-APE": "nodemon -x 'yarn start:données-NAF-CPF-APE' -e 'ts'",
@@ -20,6 +21,8 @@
 	},
 	"dependencies": {
 		"@types/stream-json": "^1.7.2",
+		"csv": "^6.2.7",
+		"csv-parser": "^3.0.0",
 		"got": "^12.5.3",
 		"pdfdataextract": "^3.2.0",
 		"stream-json": "^1.7.5",

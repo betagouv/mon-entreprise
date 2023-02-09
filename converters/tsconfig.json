@@ -35,7 +35,8 @@
 	"include": [
 		"données-code-APE/reduce-json.ts",
 		"données-NAF-CPF-APE/convert.ts",
-		"nombre-etablissements-par-code-ape-et-departement/convert-json.ts"
+		"nombre-etablissements-par-code-ape-et-departement/convert-json.ts",
+		"données-NomenclatureGuichet/convert.ts"
 	],
 	"exclude": ["**/node_modules"]
 }

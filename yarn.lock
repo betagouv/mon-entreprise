@@ -12820,6 +12820,8 @@ __metadata:
   resolution: "converters@workspace:converters"
   dependencies:
     "@types/stream-json": ^1.7.2
+    csv: ^6.2.7
+    csv-parser: ^3.0.0
     got: ^12.5.3
     nodemon: ^2.0.20
     pdfdataextract: ^3.2.0
@@ -13294,6 +13296,50 @@ __metadata:
   version: 3.1.1
   resolution: "csstype@npm:3.1.1"
   checksum: 1f7b4f5fdd955b7444b18ebdddf3f5c699159f13e9cf8ac9027ae4a60ae226aef9bbb14a6e12ca7dba3358b007cee6354b116e720262867c398de6c955ea451d
+  languageName: node
+  linkType: hard
+
+"csv-generate@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "csv-generate@npm:4.2.2"
+  checksum: f262698c92376261c928779335850c583f5d6ea9f2e476ba476ece7c9fb70bdafe634a4f3024721d44e46b7c50d2135d5932fa383f4fbe48dcaa642635052b2f
+  languageName: node
+  linkType: hard
+
+"csv-parse@npm:^5.3.5":
+  version: 5.3.5
+  resolution: "csv-parse@npm:5.3.5"
+  checksum: 077e010db2ebbc9db708b719f2f650577c5ec8d176cd4363235d6644c36c642811d05ef1b6907390dd7466bde20a8dbb0f34994bc0e101521eb09e6691a02206
+  languageName: node
+  linkType: hard
+
+"csv-parser@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "csv-parser@npm:3.0.0"
+  dependencies:
+    minimist: ^1.2.0
+  bin:
+    csv-parser: bin/csv-parser
+  checksum: adc9d67d9f185249825570778c24d13004625301655330f6b735a052b9fdfbe1a239a014afb1f89939e0626ee573718f71f9f14164db7c17e4bcb2f38d6a162b
+  languageName: node
+  linkType: hard
+
+"csv-stringify@npm:^6.2.4":
+  version: 6.2.4
+  resolution: "csv-stringify@npm:6.2.4"
+  checksum: 12d8ab299735ad6c1ca90b37d900d66ef0fcc4289f565df7c67cbeed33f2de56daeae19094a215aa7d3bde8877c0a105f1aeb531e4f582d7561f213b0680c99d
+  languageName: node
+  linkType: hard
+
+"csv@npm:^6.2.7":
+  version: 6.2.7
+  resolution: "csv@npm:6.2.7"
+  dependencies:
+    csv-generate: ^4.2.2
+    csv-parse: ^5.3.5
+    csv-stringify: ^6.2.4
+    stream-transform: ^3.2.2
+  checksum: 0c8a310ddbe79ad78ff82ceeca72f2bc1090e876803c00fa43886c87a0bf5bd2ec5a51977dafe533acdec9da410ce84e70b66c756b47abe56b215c1379eaf92f
   languageName: node
   linkType: hard
 
@@ -26972,6 +27018,13 @@ __metadata:
   version: 1.0.1
   resolution: "stream-shift@npm:1.0.1"
   checksum: 59b82b44b29ec3699b5519a49b3cedcc6db58c72fb40c04e005525dfdcab1c75c4e0c180b923c380f204bed78211b9bad8faecc7b93dece4d004c3f6ec75737b
+  languageName: node
+  linkType: hard
+
+"stream-transform@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "stream-transform@npm:3.2.2"
+  checksum: bc368a623b65f91d4d7faff90c46b740401fddedd79a4b325e5f9319d227894a84aca0e459d92177a679d5006d7ada3f46ebb514a1712da60b2e8beca54111c4
   languageName: node
   linkType: hard
 
