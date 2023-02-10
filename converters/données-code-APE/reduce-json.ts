@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url'
 
 import { Data as RawApeData } from '../données-NAF-CPF-APE/convert-pdf.js'
 import rawApeData from '../données-NAF-CPF-APE/output.json' assert { type: 'json' }
+import rawApeTags from '../données-NomenclatureGuichet/ape_tags.json' assert { type: 'json' }
 import { Out as EtablissementsData } from '../nombre-etablissements-par-code-ape-et-departement/convert-json.js'
 import rawEtablissementsData from '../nombre-etablissements-par-code-ape-et-departement/output.json' assert { type: 'json' }
 
@@ -14,6 +15,7 @@ const OUTPUT_MIN_JSON_PATH = join(__dirname, './output.min.json')
 
 const apeData = rawApeData as RawApeData[]
 const etablissementsData = rawEtablissementsData as EtablissementsData
+const apeTags = rawApeTags as Record<string, string[]>
 
 interface ApeData {
 	codeApe: string
@@ -83,7 +85,7 @@ const output: Output = {
 				codeApe,
 				title,
 				data,
-				contenuCentral,
+				contenuCentral: contenuCentral.concat(apeTags[codeApe]),
 				contenuAnnexe,
 				contenuExclu,
 			}
