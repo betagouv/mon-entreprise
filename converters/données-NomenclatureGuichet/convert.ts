@@ -22,13 +22,13 @@ fs.createReadStream(join(__dirname, FILENAME))
 	.on('data', (data) => results.push(data))
 	.on('end', () => {
 		fs.writeFileSync(
-			join(__dirname, 'raw_output.json'),
+			join(__dirname, 'raw_output.json', null, 2),
 			JSON.stringify(results)
 		)
 
 		fs.writeFileSync(
 			join(__dirname, 'ape_tags.json'),
-			JSON.stringify(computeAPETag(results))
+			JSON.stringify(computeAPETag(results), null, 2)
 		)
 	})
 
@@ -44,5 +44,28 @@ type Activity = {
 function computeAPETag(
 	results: Array<Activity>
 ): Record<CodeAPE, Array<string>> {
-	return {}
+	return Object.fromEntries(
+		Object.entries(
+			results.reduce(
+				(
+					acc,
+					{
+						'Codes APE compatibles': codesAPE,
+						'Niv. 1': niv1,
+						'Niv. 2': niv2,
+						'Niv. 3': niv3,
+						'Niv. 4': niv4,
+					}
+				) => {
+					codesAPE.forEach((codeAPE) => {
+						acc[codeAPE] ??= new Set()
+						acc[codeAPE].add(niv1).add(niv2).add(niv3).add(niv4)
+					})
+
+					return acc
+				},
+				{} as Record<CodeAPE, Set<string>>
+			)
+		).map(([key, value]) => [key, Array.from(value).filter(Boolean)])
+	)
 }
