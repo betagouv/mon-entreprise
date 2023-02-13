@@ -513,8 +513,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
         - si: entreprise . date de création >= 01/04/2020
           alors: 12.10%
         - sinon: cotisations CIPAV . taux * taux ACRE
-    références:
-      urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
+      références:
+        urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
 
     vente restauration hébergement:
       remplace: taux vente restauration hébergement
