@@ -94,9 +94,17 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
       tranches:
         - montant: 631 €/an
           plafond: 1
-        - montant: 738 €/an
+        - montant:
+            variations:
+              - si: date >= 01/2023
+                alors: 712 €/an
+              - sinon: 738 €/an
           plafond: 3
-        - montant: 863 €/an
+        - montant:
+            variations:
+              - si: date >= 01/2023
+                alors: 828 €/an
+              - sinon: 863 €/an
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm#base
     Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
@@ -117,7 +125,10 @@ dirigeant . indépendant . PL . CARMF . ASV:
   valeur:
     nom: assiette
     somme:
-      - 5136 €/an
+      - variations:
+          - si: date >= 01/2023
+            alors: 5622 €/an
+          - sinon: 5136 €/an
       - produit:
           assiette: PAMC . revenus activité conventionnée
           plafond: 5 * plafond sécurité sociale
@@ -132,7 +143,6 @@ dirigeant . indépendant . PL . CARMF . ASV:
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
   applicable si: métier . santé . médecin . secteur = 'S1'
-  formule:
-    produit:
-      assiette: assiette
-      taux: 2 / 3
+  produit:
+    assiette: assiette
+    taux: 2 / 3

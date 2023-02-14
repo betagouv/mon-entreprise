@@ -33,6 +33,8 @@ dirigeant . indépendant . PL . CAVP . demande reduction:
 dirigeant . indépendant . PL . CAVP . cotisation de référence:
   valeur:
     variations:
+      - si: date >= 01/2023
+        alors: 1306 €
       - si: date >= 01/2022
         alors: 1232 €
       - si: date >= 01/2021
@@ -104,22 +106,26 @@ dirigeant . indépendant . PL . CAVP . PCV:
   référence:
     Taux 2021 (CAVP): https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
     La retraite en claire: https://www.la-retraite-en-clair.fr/parcours-professionnel-regimes-retraite/retraite-travailleurs-independants/retraite-complementaire-pharmaciens-cavp
+    Le montant de la cotisation: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
+  avec:
+    cotisations forfaitaire:
+      variations:
+        - si: date >= 01/2023
+          alors: 1911 €/an
+        - si: date >= 01/2022
+          alors: 1788 €/an
+        - si: date >= 01/2021
+          alors: 1728 €/an
 
-dirigeant . indépendant . PL . CAVP . PCV . cotisations forfaitaire:
-  variations:
-    - si: date >= 01/2022
-      alors: 1788 €/an
-    - si: date >= 01/2021
-      alors: 1728 €/an
-  références:
-    site cavp.fr: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
-
-dirigeant . indépendant . PL . CAVP . PCV . cotisations proportionnelle:
-  formule:
-    produit:
-      assiette: assiette des cotisations
-      taux: 0.30%
-      plafond: 5 * plafond sécurité sociale
+    cotisations proportionnelle:
+      produit:
+        assiette: assiette des cotisations
+        taux:
+          variations:
+            - si: date >= 01/2023
+              alors: 0.60%
+            - sinon: 0.30%
+        plafond: 5 * plafond sécurité sociale
 
 dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
   somme:

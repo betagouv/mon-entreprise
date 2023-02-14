@@ -4,24 +4,21 @@ exports[`calculate simulations-salarié > ATMP 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2344
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > ATMP 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2286
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > ATMP 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2300
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > CCN HCR 1`] = `
@@ -29,7 +26,7 @@ exports[`calculate simulations-salarié > CCN HCR 1`] = `
 salarié . coût total employeur: 3454
 salarié . rémunération . net . payé après impôt: 1872
 salarié . rémunération . net . à payer avant impôt: 1983
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > CCN batiment 1`] = `
@@ -37,7 +34,7 @@ exports[`calculate simulations-salarié > CCN batiment 1`] = `
 salarié . coût total employeur: 3811
 salarié . rémunération . net . payé après impôt: 1822
 salarié . rémunération . net . à payer avant impôt: 1931
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > CCN batiment 2`] = `
@@ -45,7 +42,7 @@ exports[`calculate simulations-salarié > CCN batiment 2`] = `
 salarié . coût total employeur: 3794
 salarié . rémunération . net . payé après impôt: 1824
 salarié . rémunération . net . à payer avant impôt: 1933
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > CCN batiment 3`] = `
@@ -53,7 +50,7 @@ exports[`calculate simulations-salarié > CCN batiment 3`] = `
 salarié . coût total employeur: 3844
 salarié . rémunération . net . payé après impôt: 1837
 salarié . rémunération . net . à payer avant impôt: 1949
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > CCN compta 1`] = `
@@ -61,7 +58,7 @@ exports[`calculate simulations-salarié > CCN compta 1`] = `
 salarié . coût total employeur: 3339
 salarié . rémunération . net . payé après impôt: 1898
 salarié . rémunération . net . à payer avant impôt: 2006
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > CCN optique 1`] = `
@@ -69,7 +66,7 @@ exports[`calculate simulations-salarié > CCN optique 1`] = `
 salarié . coût total employeur: 3528
 salarié . rémunération . net . payé après impôt: 1943
 salarié . rémunération . net . à payer avant impôt: 2058
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > CCN spectacle vivant 1`] = `
@@ -77,7 +74,7 @@ exports[`calculate simulations-salarié > CCN spectacle vivant 1`] = `
 salarié . coût total employeur: 3795
 salarié . rémunération . net . payé après impôt: 2039
 salarié . rémunération . net . à payer avant impôt: 2155
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . CDD . information, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . contrat . CDD . information, salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > CCN sport 1`] = `
@@ -85,15 +82,14 @@ exports[`calculate simulations-salarié > CCN sport 1`] = `
 salarié . coût total employeur: 535
 salarié . rémunération . net . payé après impôt: 374
 salarié . rémunération . net . à payer avant impôt: 374
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > JEI 1`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 3443
 salarié . rémunération . net . payé après impôt: 2168
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > JEI 2`] = `
@@ -101,7 +97,7 @@ exports[`calculate simulations-salarié > JEI 2`] = `
 salarié . coût total employeur: 26517
 salarié . rémunération . net . payé après impôt: 10855
 salarié . rémunération . net . à payer avant impôt: 15995
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > activité partielle 1`] = `
@@ -109,63 +105,56 @@ exports[`calculate simulations-salarié > activité partielle 1`] = `
 salarié . coût total employeur: 82
 salarié . rémunération . net . payé après impôt: 1331
 salarié . rémunération . net . à payer avant impôt: 1331
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > activité partielle 2`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . coût total employeur: 980
 salarié . rémunération . net . payé après impôt: 2118
-salarié . rémunération . net . à payer avant impôt: 2242
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2242"
 `;
 
 exports[`calculate simulations-salarié > activité partielle 3`] = `
 "salarié . contrat . salaire brut: 8000
 salarié . coût total employeur: 2051
 salarié . rémunération . net . payé après impôt: 3765
-salarié . rémunération . net . à payer avant impôt: 4484
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 4484"
 `;
 
 exports[`calculate simulations-salarié > activité partielle 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . coût total employeur: 1614
 salarié . rémunération . net . payé après impôt: 2218
-salarié . rémunération . net . à payer avant impôt: 2406
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2406"
 `;
 
 exports[`calculate simulations-salarié > activité partielle 5`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . coût total employeur: 2812
 salarié . rémunération . net . payé après impôt: 2407
-salarié . rémunération . net . à payer avant impôt: 2684
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2684"
 `;
 
 exports[`calculate simulations-salarié > activité partielle 6`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 740
 salarié . rémunération . net . payé après impôt: 1658
-salarié . rémunération . net . à payer avant impôt: 1709
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1709"
 `;
 
 exports[`calculate simulations-salarié > activité partielle 7`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . coût total employeur: 980
 salarié . rémunération . net . payé après impôt: 2206
-salarié . rémunération . net . à payer avant impôt: 2242
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2242"
 `;
 
 exports[`calculate simulations-salarié > aides 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2302
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > aides 2`] = `
@@ -173,15 +162,14 @@ exports[`calculate simulations-salarié > aides 2`] = `
 salarié . coût total employeur: 12817
 salarié . rémunération . net . payé après impôt: 7714
 salarié . rémunération . net . à payer avant impôt: 8925
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > aides 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 1495
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > aides 4`] = `
@@ -189,7 +177,7 @@ exports[`calculate simulations-salarié > aides 4`] = `
 salarié . coût total employeur: 2310
 salarié . rémunération . net . payé après impôt: 1667
 salarié . rémunération . net . à payer avant impôt: 1720
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . CDD . information"
+Notifications affichées : salarié . contrat . CDD . information"
 `;
 
 exports[`calculate simulations-salarié > apprentissage 1`] = `
@@ -197,7 +185,7 @@ exports[`calculate simulations-salarié > apprentissage 1`] = `
 salarié . coût total employeur: 1547
 salarié . rémunération . net . payé après impôt: 1463
 salarié . rémunération . net . à payer avant impôt: 1463
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > apprentissage 2`] = `
@@ -205,55 +193,49 @@ exports[`calculate simulations-salarié > apprentissage 2`] = `
 salarié . coût total employeur: 1380
 salarié . rémunération . net . payé après impôt: 1463
 salarié . rémunération . net . à payer avant impôt: 1463
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > atmp 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2384
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > avantages 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2517
 salarié . rémunération . net . payé après impôt: 1490
-salarié . rémunération . net . à payer avant impôt: 1540
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1540"
 `;
 
 exports[`calculate simulations-salarié > avantages 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2527
 salarié . rémunération . net . payé après impôt: 1489
-salarié . rémunération . net . à payer avant impôt: 1539
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1539"
 `;
 
 exports[`calculate simulations-salarié > avantages 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2439
 salarié . rémunération . net . payé après impôt: 1514
-salarié . rémunération . net . à payer avant impôt: 1549
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1549"
 `;
 
 exports[`calculate simulations-salarié > cadre 1`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4116
 salarié . rémunération . net . payé après impôt: 2160
-salarié . rémunération . net . à payer avant impôt: 2348
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2348"
 `;
 
 exports[`calculate simulations-salarié > cadre 2`] = `
 "salarié . contrat . salaire brut: 8000
 salarié . coût total employeur: 11561
 salarié . rémunération . net . payé après impôt: 4998
-salarié . rémunération . net . à payer avant impôt: 6247
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 6247"
 `;
 
 exports[`calculate simulations-salarié > cdd 1`] = `
@@ -261,7 +243,7 @@ exports[`calculate simulations-salarié > cdd 1`] = `
 salarié . coût total employeur: 3143
 salarié . rémunération . net . payé après impôt: 1815
 salarié . rémunération . net . à payer avant impôt: 1894
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . CDD . information"
+Notifications affichées : salarié . contrat . CDD . information"
 `;
 
 exports[`calculate simulations-salarié > cdd 2`] = `
@@ -269,7 +251,7 @@ exports[`calculate simulations-salarié > cdd 2`] = `
 salarié . coût total employeur: 3418
 salarié . rémunération . net . payé après impôt: 1897
 salarié . rémunération . net . à payer avant impôt: 2009
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . CDD . information"
+Notifications affichées : salarié . contrat . CDD . information"
 `;
 
 exports[`calculate simulations-salarié > cdd 3`] = `
@@ -277,7 +259,7 @@ exports[`calculate simulations-salarié > cdd 3`] = `
 salarié . coût total employeur: 3707
 salarié . rémunération . net . payé après impôt: 2084
 salarié . rémunération . net . à payer avant impôt: 2197
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . CDD . information"
+Notifications affichées : salarié . contrat . CDD . information"
 `;
 
 exports[`calculate simulations-salarié > cdd 4`] = `
@@ -285,7 +267,7 @@ exports[`calculate simulations-salarié > cdd 4`] = `
 salarié . coût total employeur: 4406
 salarié . rémunération . net . payé après impôt: 2185
 salarié . rémunération . net . à payer avant impôt: 2375
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . CDD . information"
+Notifications affichées : salarié . contrat . CDD . information"
 `;
 
 exports[`calculate simulations-salarié > cdd 5`] = `
@@ -293,95 +275,84 @@ exports[`calculate simulations-salarié > cdd 5`] = `
 salarié . coût total employeur: 3663
 salarié . rémunération . net . payé après impôt: 1792
 salarié . rémunération . net . à payer avant impôt: 1871
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . CDD . information, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . contrat . CDD . information, salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > contrat pro 1`] = `
 "salarié . contrat . salaire brut: 1500
 salarié . coût total employeur: 1566
 salarié . rémunération . net . payé après impôt: 1165
-salarié . rémunération . net . à payer avant impôt: 1165
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1165"
 `;
 
 exports[`calculate simulations-salarié > contrat pro 2`] = `
 "salarié . contrat . salaire brut: 1500
 salarié . coût total employeur: 1566
 salarié . rémunération . net . payé après impôt: 1165
-salarié . rémunération . net . à payer avant impôt: 1165
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1165"
 `;
 
 exports[`calculate simulations-salarié > effectif 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2328
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > effectif 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2339
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > effectif 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2351
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > effectif 4`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2351
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2066
 salarié . rémunération . net . payé après impôt: 1619
-salarié . rémunération . net . à payer avant impôt: 1619
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1619"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2152
 salarié . rémunération . net . payé après impôt: 1549
-salarié . rémunération . net . à payer avant impôt: 1584
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1584"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2109
 salarié . rémunération . net . payé après impôt: 1559
-salarié . rémunération . net . à payer avant impôt: 1594
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1594"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 4`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2109
 salarié . rémunération . net . payé après impôt: 1559
-salarié . rémunération . net . à payer avant impôt: 1594
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1594"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 5`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2328
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 6`] = `
@@ -389,183 +360,161 @@ exports[`calculate simulations-salarié > frais pro - DFS 6`] = `
 salarié . coût total employeur: 1766
 salarié . rémunération . net . payé après impôt: 1348
 salarié . rémunération . net . à payer avant impôt: 1348
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 7`] = `
 "salarié . contrat . salaire brut: 2600
 salarié . coût total employeur: 3187
 salarié . rémunération . net . payé après impôt: 2105
-salarié . rémunération . net . à payer avant impôt: 2125
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2125"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4381
 salarié . rémunération . net . payé après impôt: 2356
-salarié . rémunération . net . à payer avant impôt: 2553
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2553"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4996
 salarié . rémunération . net . payé après impôt: 2628
-salarié . rémunération . net . à payer avant impôt: 2924
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2924"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 3`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4687
 salarié . rémunération . net . payé après impôt: 2637
-salarié . rémunération . net . à payer avant impôt: 2836
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2836"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4380
 salarié . rémunération . net . payé après impôt: 2354
-salarié . rémunération . net . à payer avant impôt: 2551
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2551"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 5090
 salarié . rémunération . net . payé après impôt: 3064
-salarié . rémunération . net . à payer avant impôt: 3261
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 3261"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 3`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4380
 salarié . rémunération . net . payé après impôt: 2354
-salarié . rémunération . net . à payer avant impôt: 2551
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2551"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 4`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4356
 salarié . rémunération . net . payé après impôt: 2330
-salarié . rémunération . net . à payer avant impôt: 2527
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2527"
 `;
 
 exports[`calculate simulations-salarié > frais pro - outre-mer 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4156
 salarié . rémunération . net . payé après impôt: 2479
-salarié . rémunération . net . à payer avant impôt: 2586
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2586"
 `;
 
 exports[`calculate simulations-salarié > frais pro - outre-mer 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4169
 salarié . rémunération . net . payé après impôt: 2475
-salarié . rémunération . net . à payer avant impôt: 2583
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2583"
 `;
 
 exports[`calculate simulations-salarié > frais pro - titres restaurant 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2368
 salarié . rémunération . net . payé après impôt: 1487
-salarié . rémunération . net . à payer avant impôt: 1521
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1521"
 `;
 
 exports[`calculate simulations-salarié > frais pro - titres restaurant 2`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4298
 salarié . rémunération . net . payé après impôt: 1946
-salarié . rémunération . net . à payer avant impôt: 2136
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2136"
 `;
 
 exports[`calculate simulations-salarié > frais pro - titres restaurant 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2412
 salarié . rémunération . net . payé après impôt: 1458
-salarié . rémunération . net . à payer avant impôt: 1493
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1493"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4381
 salarié . rémunération . net . payé après impôt: 2356
-salarié . rémunération . net . à payer avant impôt: 2553
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2553"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4381
 salarié . rémunération . net . payé après impôt: 2356
-salarié . rémunération . net . à payer avant impôt: 2553
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2553"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 3`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4994
 salarié . rémunération . net . payé après impôt: 2624
-salarié . rémunération . net . à payer avant impôt: 2919
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2919"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 4`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4381
 salarié . rémunération . net . payé après impôt: 2356
-salarié . rémunération . net . à payer avant impôt: 2553
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2553"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 5`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4356
 salarié . rémunération . net . payé après impôt: 2331
-salarié . rémunération . net . à payer avant impôt: 2528
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2528"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 6`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . coût total employeur: 4151
 salarié . rémunération . net . payé après impôt: 2497
-salarié . rémunération . net . à payer avant impôt: 2606
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2606"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2428
 salarié . rémunération . net . payé après impôt: 1601
-salarié . rémunération . net . à payer avant impôt: 1636
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1636"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2388
 salarié . rémunération . net . payé après impôt: 1572
-salarié . rémunération . net . à payer avant impôt: 1606
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1606"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2457
 salarié . rémunération . net . payé après impôt: 1601
-salarié . rémunération . net . à payer avant impôt: 1636
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1636"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 4`] = `
@@ -573,7 +522,7 @@ exports[`calculate simulations-salarié > heures supplémentaires et complément
 salarié . coût total employeur: 2428
 salarié . rémunération . net . payé après impôt: 1581
 salarié . rémunération . net . à payer avant impôt: 1616
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 5`] = `
@@ -581,7 +530,7 @@ exports[`calculate simulations-salarié > heures supplémentaires et complément
 salarié . coût total employeur: 2395
 salarié . rémunération . net . payé après impôt: 1555
 salarié . rémunération . net . à payer avant impôt: 1589
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 6`] = `
@@ -589,7 +538,7 @@ exports[`calculate simulations-salarié > heures supplémentaires et complément
 salarié . coût total employeur: 2377
 salarié . rémunération . net . payé après impôt: 1566
 salarié . rémunération . net . à payer avant impôt: 1601
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 7`] = `
@@ -597,7 +546,7 @@ exports[`calculate simulations-salarié > heures supplémentaires et complément
 salarié . coût total employeur: 3330
 salarié . rémunération . net . payé après impôt: 1898
 salarié . rémunération . net . à payer avant impôt: 1919
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . temps de travail . heures complémentaires . contrôle heures complémentaires 10 pourcents"
+Notifications affichées : salarié . temps de travail . heures complémentaires . contrôle heures complémentaires 10 pourcents"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 8`] = `
@@ -605,87 +554,77 @@ exports[`calculate simulations-salarié > heures supplémentaires et complément
 salarié . coût total employeur: 3279
 salarié . rémunération . net . payé après impôt: 1856
 salarié . rémunération . net . à payer avant impôt: 1889
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . temps de travail . heures complémentaires . contrôle heures complémentaires 10 pourcents"
+Notifications affichées : salarié . temps de travail . heures complémentaires . contrôle heures complémentaires 10 pourcents"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 1`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2284
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 2`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2353
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 3`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2353
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 4`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 1950
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 5`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2206
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 6`] = `
 "salarié . contrat . salaire brut: 9000
 salarié . coût total employeur: 12885
 salarié . rémunération . net . payé après impôt: 6224
-salarié . rémunération . net . à payer avant impôt: 7166
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 7166"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 7`] = `
 "salarié . contrat . salaire brut: 9000
 salarié . coût total employeur: 12885
 salarié . rémunération . net . payé après impôt: 6725
-salarié . rémunération . net . à payer avant impôt: 7166
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 7166"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 8`] = `
 "salarié . contrat . salaire brut: 9000
 salarié . coût total employeur: 12885
 salarié . rémunération . net . payé après impôt: 6928
-salarié . rémunération . net . à payer avant impôt: 7166
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 7166"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 9`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2212
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 10`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2353
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 11`] = `
@@ -693,7 +632,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 salarié . coût total employeur: 28380
 salarié . rémunération . net . payé après impôt: 12958
 salarié . rémunération . net . à payer avant impôt: 15995
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu - quotient familial 12`] = `
@@ -701,15 +640,14 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 salarié . coût total employeur: 28380
 salarié . rémunération . net . payé après impôt: 11185
 salarié . rémunération . net . à payer avant impôt: 15995
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 1`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2168
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 2`] = `
@@ -717,7 +655,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu 2`] = `
 salarié . coût total employeur: 42152
 salarié . rémunération . net . payé après impôt: 14593
 salarié . rémunération . net . à payer avant impôt: 24079
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 3`] = `
@@ -725,15 +663,14 @@ exports[`calculate simulations-salarié > impôt sur le revenu 3`] = `
 salarié . coût total employeur: 4508
 salarié . rémunération . net . payé après impôt: 2392
 salarié . rémunération . net . à payer avant impôt: 2590
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . CDD . information"
+Notifications affichées : salarié . contrat . CDD . information"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 4`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 3719
 salarié . rémunération . net . payé après impôt: 2252
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 5`] = `
@@ -741,15 +678,14 @@ exports[`calculate simulations-salarié > impôt sur le revenu 5`] = `
 salarié . coût total employeur: 42152
 salarié . rémunération . net . payé après impôt: 14593
 salarié . rémunération . net . à payer avant impôt: 24079
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 6`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2517
-salarié . rémunération . net . à payer avant impôt: 2626
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2626"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 7`] = `
@@ -757,39 +693,35 @@ exports[`calculate simulations-salarié > impôt sur le revenu 7`] = `
 salarié . coût total employeur: 42152
 salarié . rémunération . net . payé après impôt: 16562
 salarié . rémunération . net . à payer avant impôt: 26817
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 8`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2107
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > inversions 1`] = `
 "salarié . contrat . salaire brut: 1826
 salarié . coût total employeur: 2000
 salarié . rémunération . net . payé après impôt: 1416
-salarié . rémunération . net . à payer avant impôt: 1423
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1423"
 `;
 
 exports[`calculate simulations-salarié > inversions 2`] = `
 "salarié . contrat . salaire brut: 2554
 salarié . coût total employeur: 3372
 salarié . rémunération . net . payé après impôt: 1889
-salarié . rémunération . net . à payer avant impôt: 2000
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2000"
 `;
 
 exports[`calculate simulations-salarié > inversions 3`] = `
 "salarié . contrat . salaire brut: 2703
 salarié . coût total employeur: 3651
 salarié . rémunération . net . payé après impôt: 2000
-salarié . rémunération . net . à payer avant impôt: 2117
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2117"
 `;
 
 exports[`calculate simulations-salarié > lodeom 1`] = `
@@ -797,39 +729,35 @@ exports[`calculate simulations-salarié > lodeom 1`] = `
 salarié . coût total employeur: 1521
 salarié . rémunération . net . payé après impôt: 1182
 salarié . rémunération . net . à payer avant impôt: 1182
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > lodeom 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2000
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > lodeom 3`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 3719
 salarié . rémunération . net . payé après impôt: 2168
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > lodeom 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . coût total employeur: 5428
 salarié . rémunération . net . payé après impôt: 2758
-salarié . rémunération . net . à payer avant impôt: 3148
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 3148"
 `;
 
 exports[`calculate simulations-salarié > lodeom 5`] = `
 "salarié . contrat . salaire brut: 5500
 salarié . coût total employeur: 7784
 salarié . rémunération . net . payé après impôt: 3638
-salarié . rémunération . net . à payer avant impôt: 4354
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 4354"
 `;
 
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 1`] = `
@@ -837,39 +765,35 @@ exports[`calculate simulations-salarié > lodeom compétitivité renforcée 1`] 
 salarié . coût total employeur: 1521
 salarié . rémunération . net . payé après impôt: 1182
 salarié . rémunération . net . à payer avant impôt: 1182
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2000
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 3`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 3000
 salarié . rémunération . net . payé après impôt: 2168
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . coût total employeur: 4866
 salarié . rémunération . net . payé après impôt: 2758
-salarié . rémunération . net . à payer avant impôt: 3148
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 3148"
 `;
 
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 5`] = `
 "salarié . contrat . salaire brut: 5500
 salarié . coût total employeur: 7784
 salarié . rémunération . net . payé après impôt: 3638
-salarié . rémunération . net . à payer avant impôt: 4354
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 4354"
 `;
 
 exports[`calculate simulations-salarié > lodeom innovation et croissance 1`] = `
@@ -877,39 +801,35 @@ exports[`calculate simulations-salarié > lodeom innovation et croissance 1`] = 
 salarié . coût total employeur: 1521
 salarié . rémunération . net . payé après impôt: 1182
 salarié . rémunération . net . à payer avant impôt: 1182
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > lodeom innovation et croissance 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2000
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > lodeom innovation et croissance 3`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 3000
 salarié . rémunération . net . payé après impôt: 2168
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > lodeom innovation et croissance 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . coût total employeur: 4351
 salarié . rémunération . net . payé après impôt: 2758
-salarié . rémunération . net . à payer avant impôt: 3148
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 3148"
 `;
 
 exports[`calculate simulations-salarié > lodeom innovation et croissance 5`] = `
 "salarié . contrat . salaire brut: 5500
 salarié . coût total employeur: 7473
 salarié . rémunération . net . payé après impôt: 3638
-salarié . rémunération . net . à payer avant impôt: 4354
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 4354"
 `;
 
 exports[`calculate simulations-salarié > stage 1`] = `
@@ -917,7 +837,7 @@ exports[`calculate simulations-salarié > stage 1`] = `
 salarié . coût total employeur: 500
 salarié . rémunération . net . payé après impôt: 500
 salarié . rémunération . net . à payer avant impôt: 500
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . stage . avertissement, salarié . contrat . stage . contrôle gratification minimale"
+Notifications affichées : salarié . contrat . stage . avertissement, salarié . contrat . stage . contrôle gratification minimale"
 `;
 
 exports[`calculate simulations-salarié > stage 2`] = `
@@ -925,7 +845,7 @@ exports[`calculate simulations-salarié > stage 2`] = `
 salarié . coût total employeur: 2472
 salarié . rémunération . net . payé après impôt: 1756
 salarié . rémunération . net . à payer avant impôt: 1756
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . stage . avertissement"
+Notifications affichées : salarié . contrat . stage . avertissement"
 `;
 
 exports[`calculate simulations-salarié > taux spécifiques retraite complémentaire 1`] = `
@@ -933,15 +853,14 @@ exports[`calculate simulations-salarié > taux spécifiques retraite complément
 salarié . coût total employeur: 1601
 salarié . rémunération . net . payé après impôt: 1195
 salarié . rémunération . net . à payer avant impôt: 1195
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > taux spécifiques retraite complémentaire 2`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . coût total employeur: 3291
 salarié . rémunération . net . payé après impôt: 1869
-salarié . rémunération . net . à payer avant impôt: 1979
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1979"
 `;
 
 exports[`calculate simulations-salarié > taux spécifiques retraite complémentaire 3`] = `
@@ -949,31 +868,28 @@ exports[`calculate simulations-salarié > taux spécifiques retraite complément
 salarié . coût total employeur: 1587
 salarié . rémunération . net . payé après impôt: 1170
 salarié . rémunération . net . à payer avant impôt: 1170
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > taux spécifiques retraite complémentaire 4`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . coût total employeur: 3253
 salarié . rémunération . net . payé après impôt: 1854
-salarié . rémunération . net . à payer avant impôt: 1938
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1938"
 `;
 
 exports[`calculate simulations-salarié > temps partiel 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2453
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > temps partiel 2`] = `
 "salarié . contrat . salaire brut: 1857
 salarié . coût total employeur: 2434
 salarié . rémunération . net . payé après impôt: 1428
-salarié . rémunération . net . à payer avant impôt: 1448
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1448"
 `;
 
 exports[`calculate simulations-salarié > temps partiel 3`] = `
@@ -981,23 +897,21 @@ exports[`calculate simulations-salarié > temps partiel 3`] = `
 salarié . coût total employeur: 1070
 salarié . rémunération . net . payé après impôt: 770
 salarié . rémunération . net . à payer avant impôt: 770
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . temps de travail . temps partiel . contrôle temps min"
+Notifications affichées : salarié . contrat . temps de travail . temps partiel . contrôle temps min"
 `;
 
 exports[`calculate simulations-salarié > treizième mois 1`] = `
 "salarié . contrat . salaire brut: 2300
 salarié . coût total employeur: 3254
 salarié . rémunération . net . payé après impôt: 1842
-salarié . rémunération . net . à payer avant impôt: 1950
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1950"
 `;
 
 exports[`calculate simulations-salarié > treizième mois 2`] = `
 "salarié . contrat . salaire brut: 2300
 salarié . coût total employeur: 3768
 salarié . rémunération . net . payé après impôt: 2062
-salarié . rémunération . net . à payer avant impôt: 2176
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2176"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 1`] = `
@@ -1005,7 +919,7 @@ exports[`calculate simulations-salarié > échelle de salaires 1`] = `
 salarié . coût total employeur: 123
 salarié . rémunération . net . payé après impôt: 57
 salarié . rémunération . net . à payer avant impôt: 57
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 2`] = `
@@ -1013,7 +927,7 @@ exports[`calculate simulations-salarié > échelle de salaires 2`] = `
 salarié . coût total employeur: 278
 salarié . rémunération . net . payé après impôt: 176
 salarié . rémunération . net . à payer avant impôt: 176
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 3`] = `
@@ -1021,7 +935,7 @@ exports[`calculate simulations-salarié > échelle de salaires 3`] = `
 salarié . coût total employeur: 535
 salarié . rémunération . net . payé après impôt: 374
 salarié . rémunération . net . à payer avant impôt: 374
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 4`] = `
@@ -1029,7 +943,7 @@ exports[`calculate simulations-salarié > échelle de salaires 4`] = `
 salarié . coût total employeur: 793
 salarié . rémunération . net . payé après impôt: 572
 salarié . rémunération . net . à payer avant impôt: 572
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 5`] = `
@@ -1037,7 +951,7 @@ exports[`calculate simulations-salarié > échelle de salaires 5`] = `
 salarié . coût total employeur: 1050
 salarié . rémunération . net . payé après impôt: 770
 salarié . rémunération . net . à payer avant impôt: 770
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 6`] = `
@@ -1045,7 +959,7 @@ exports[`calculate simulations-salarié > échelle de salaires 6`] = `
 salarié . coût total employeur: 1308
 salarié . rémunération . net . payé après impôt: 968
 salarié . rémunération . net . à payer avant impôt: 968
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 7`] = `
@@ -1053,47 +967,42 @@ exports[`calculate simulations-salarié > échelle de salaires 7`] = `
 salarié . coût total employeur: 1566
 salarié . rémunération . net . payé après impôt: 1165
 salarié . rémunération . net . à payer avant impôt: 1165
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 8`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . coût total employeur: 2328
 salarié . rémunération . net . payé après impôt: 1527
-salarié . rémunération . net . à payer avant impôt: 1561
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 9`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . coût total employeur: 3270
 salarié . rémunération . net . payé après impôt: 1848
-salarié . rémunération . net . à payer avant impôt: 1957
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 1957"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 10`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . coût total employeur: 4070
 salarié . rémunération . net . payé après impôt: 2168
-salarié . rémunération . net . à payer avant impôt: 2353
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 11`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . coût total employeur: 5428
 salarié . rémunération . net . payé après impôt: 2758
-salarié . rémunération . net . à payer avant impôt: 3148
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 3148"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 12`] = `
 "salarié . contrat . salaire brut: 5000
 salarié . coût total employeur: 7079
 salarié . rémunération . net . payé après impôt: 3384
-salarié . rémunération . net . à payer avant impôt: 3952
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+salarié . rémunération . net . à payer avant impôt: 3952"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 13`] = `
@@ -1101,7 +1010,7 @@ exports[`calculate simulations-salarié > échelle de salaires 13`] = `
 salarié . coût total employeur: 14314
 salarié . rémunération . net . payé après impôt: 6170
 salarié . rémunération . net . à payer avant impôt: 7969
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 14`] = `
@@ -1109,7 +1018,7 @@ exports[`calculate simulations-salarié > échelle de salaires 14`] = `
 salarié . coût total employeur: 28380
 salarié . rémunération . net . payé après impôt: 10855
 salarié . rémunération . net . à payer avant impôt: 15995
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 15`] = `
@@ -1117,7 +1026,7 @@ exports[`calculate simulations-salarié > échelle de salaires 15`] = `
 salarié . coût total employeur: 128900
 salarié . rémunération . net . payé après impôt: 46358
 salarié . rémunération . net . à payer avant impôt: 87009
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 16`] = `
@@ -1125,5 +1034,5 @@ exports[`calculate simulations-salarié > échelle de salaires 16`] = `
 salarié . coût total employeur: 1244234
 salarié . rémunération . net . payé après impôt: 446210
 salarié . rémunération . net . à payer avant impôt: 896109
-Notifications affichées : entreprise . TVA . franchise de TVA . notification, salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;

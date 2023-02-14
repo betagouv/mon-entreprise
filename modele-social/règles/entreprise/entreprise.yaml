@@ -231,7 +231,10 @@ entreprise . TVA . franchise de TVA . seuils dépassés:
 
 entreprise . TVA . franchise de TVA . notification:
   type: notification
-  valeur: seuils dépassés = non
+  experimental: oui
+  toutes ces conditions:
+    - seuils dépassés = non
+    - chiffre d'affaires != 0
   résumé: |
     Vous êtes en dessous du seuil de déclaration de TVA.
   description: |
