@@ -1,4 +1,13 @@
 # Journal des modifications
+## 1.6.1
+- Mise à jour 2023 des taux et montant de la CARCDSF
+- Mise à jour 2023 des taux et montant de la CARMF
+- Mise à jour 2023 des taux et montant de la CARPIMKO
+- Mise à jour 2023 des taux et montant de la CAVEC
+- Mise à jour 2023 des taux et montant de la CAVP
+- Mise à jour 2023 des taux et montant de la CNBF
+
+
 
 ## 1.6.0
 

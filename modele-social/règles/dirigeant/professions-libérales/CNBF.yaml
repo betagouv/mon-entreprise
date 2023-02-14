@@ -13,7 +13,6 @@ dirigeant . indépendant . PL . CNBF:
     - conjoint collaborateur
   références:
     Site CNBF: https://www.cnbf.fr
-    Barème 2020: https://www.cnbf.fr/wp-content/uploads/2020/08/CNBF-bareme-des-cotisations-et-prestations-2020.pdf
 
 dirigeant . indépendant . PL . CNBF . retraite de base:
   remplace: cotisations et contributions . retraite de base
@@ -25,6 +24,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
           tranches:
             - montant:
                 variations:
+                  - si: date >= 01/2023
+                    alors: 324 €/an
                   - si: date >= 01/2022
                     alors: 303 €/an
                   - si: date >= 01/2021
@@ -32,6 +33,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
               plafond: 1 an
             - montant:
                 variations:
+                  - si: date >= 01/2023
+                    alors: 651 €/an
                   - si: date >= 01/2022
                     alors: 608 €/an
                   - si: date >= 01/2021
@@ -39,6 +42,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
               plafond: 2 ans
             - montant:
                 variations:
+                  - si: date >= 01/2023
+                    alors: 1021 €/an
                   - si: date >= 01/2022
                     alors: 954 €/an
                   - si: date >= 01/2021
@@ -46,6 +51,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
               plafond: 3 ans
             - montant:
                 variations:
+                  - si: date >= 01/2023
+                    alors: 1390 €/an
                   - si: date >= 01/2022
                     alors: 1299 €/an
                   - si: date >= 01/2021
@@ -53,6 +60,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
               plafond: 5 ans
             - montant:
                 variations:
+                  - si: date >= 01/2023
+                    alors: 1774 €/an
                   - si: date >= 01/2022
                     alors: 1658 €/an
                   - si: date >= 01/2021
@@ -68,7 +77,7 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
               - si: date >= 01/2021
                 alors: 291718 €/an
   références:
-    barème 2022: https://www.cnbf.fr/wp-content/uploads/2021/12/Bareme-CNBF-2022.pdf
+    Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
 
 dirigeant . indépendant . PL . CNBF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
@@ -83,6 +92,8 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
     tranches:
       - taux:
           variations:
+            - si: date >= 01/2023
+              alors: 4.80%
             - si: date >= 01/2022
               alors: 4.60%
             - si: date >= 01/2021
@@ -90,6 +101,8 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
         plafond: 1
       - taux:
           variations:
+            - si: date >= 01/2023
+              alors: 9.20%
             - si: date >= 01/2022
               alors: 8.80%
             - si: date >= 01/2021
@@ -97,6 +110,8 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
         plafond: 2
       - taux:
           variations:
+            - si: date >= 01/2023
+              alors: 10.70%
             - si: date >= 01/2022
               alors: 10.20%
             - si: date >= 01/2021
@@ -104,6 +119,8 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
         plafond: 3
       - taux:
           variations:
+            - si: date >= 01/2023
+              alors: 12.20%
             - si: date >= 01/2022
               alors: 11.60%
             - si: date >= 01/2021
@@ -111,6 +128,8 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
         plafond: 4
       - taux:
           variations:
+            - si: date >= 01/2023
+              alors: 13.70%
             - si: date >= 01/2022
               alors: 13%
             - si: date >= 01/2021
@@ -122,7 +141,7 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
     d'avantage pour acquérir d'avantages de points. Seule la première classe est
     implémentée pour l'instant.
   références:
-    barème 2022: https://www.cnbf.fr/wp-content/uploads/2021/12/Bareme-CNBF-2022.pdf
+    Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
 
 dirigeant . indépendant . PL . CNBF . RID:
   titre: invalidité et décès
@@ -132,15 +151,19 @@ dirigeant . indépendant . PL . CNBF . RID:
       - si: entreprise . durée d'activité . en fin d'année < 5 ans
         alors:
           variations:
+            - si: date >= 01/2023
+              alors: 62 €/an
             - si: date >= 01/2022
               alors: 58 €/an
             - si: date >= 01/2021
               alors: 55 €/an
       - sinon:
           variations:
+            - si: date >= 01/2023
+              alors: 153 €/an
             - si: date >= 01/2022
               alors: 145 €/an
             - si: date >= 01/2021
               alors: 137 €/an
   références:
-    barème 2022: https://www.cnbf.fr/wp-content/uploads/2021/12/Bareme-CNBF-2022.pdf
+    Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
