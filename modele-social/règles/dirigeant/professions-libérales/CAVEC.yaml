@@ -18,6 +18,8 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
     tranches:
       - montant:
           variations:
+            - si: date >= 01/2023
+              alors: 711
             - si: date >= 01/2022
               alors: 670
             - si: date >= 01/2021
@@ -25,6 +27,8 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
         plafond: 16190 €/an
       - montant:
           variations:
+            - si: date >= 01/2023
+              alors: 2667
             - si: date >= 01/2022
               alors: 2511
             - si: date >= 01/2021
@@ -32,6 +36,8 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
         plafond: 32350 €/an
       - montant:
           variations:
+            - si: date >= 01/2023
+              alors: 4207
             - si: date >= 01/2022
               alors: 3962
             - si: date >= 01/2021
@@ -39,6 +45,8 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
         plafond: 44790 €/an
       - montant:
           variations:
+            - si: date >= 01/2023
+              alors: 6578
             - si: date >= 01/2022
               alors: 6194
             - si: date >= 01/2021
@@ -46,6 +54,8 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
         plafond: 64560 €/an
       - montant:
           variations:
+            - si: date >= 01/2023
+              alors: 10489
             - si: date >= 01/2022
               alors: 9877
             - si: date >= 01/2021
@@ -53,6 +63,8 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
         plafond: 79040 €/an
       - montant:
           variations:
+            - si: date >= 01/2023
+              alors: 16000
             - si: date >= 01/2022
               alors: 15066
             - si: date >= 01/2021
@@ -60,6 +72,8 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
         plafond: 94850 €/an
       - montant:
           variations:
+            - si: date >= 01/2023
+              alors: 17778
             - si: date >= 01/2022
               alors: 16740
             - si: date >= 01/2021
@@ -67,12 +81,14 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
         plafond: 132780 €/an
       - montant:
           variations:
+            - si: date >= 01/2023
+              alors: 22223
             - si: date >= 01/2022
               alors: 20925
             - si: date >= 01/2021
               alors: 20250
   références:
-    'CAVEC : Les cotisations retraite, prévoyance et options': https://www.cavec.fr/fr/vos-cotisations-12/montant-des-cotisations-retraite-tns-59/montant-des-cotisations-62
+    'Vos cotisations retraite, prévoyance et options': https://www.cavec.fr/votre-retraite/vos-cotisations/vos-cotisations-en-tant-que-liberal-tns/montant-de-vos-cotisations/vos-cotisations-retraite-prevoyance-et-options/
 
 dirigeant . indépendant . PL . CAVEC . invalidité et décès:
   titre: invalidité et décès

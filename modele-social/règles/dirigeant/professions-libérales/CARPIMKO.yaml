@@ -9,6 +9,8 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
   somme:
     - variations:
+        - si: date >= 01/2023
+          alors: 1944 €/an
         - si: date >= 01/2022
           alors: 1840 €/an
         - si: date >= 01/2021
@@ -21,6 +23,8 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
           - taux: 3%
             plafond:
               variations:
+                - si: date >= 01/2023
+                  alors: 203446 €/an
                 - si: date >= 01/2022
                   alors: 193913 €/an
                 - si: date >= 01/2021
@@ -37,6 +41,8 @@ dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
   variations:
     - si: date >= 01/2022
+      alors: 862 €/an
+    - si: date >= 01/2022
       alors: 776 €/an
     - si: date >= 01/2021
       alors: 678 €/an
@@ -50,6 +56,8 @@ dirigeant . indépendant . PL . CARPIMKO . ASV:
     somme:
       - nom: forfaitaire
         variations:
+          - si: date >= 01/2023
+            alors: 634 €/an
           - si: date >= 01/2022
             alors: 601 €/an
           - si: date >= 01/2021
