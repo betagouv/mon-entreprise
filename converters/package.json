@@ -10,7 +10,6 @@
 		"directory": "converters"
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"start:données-NAF-CPF-APE": "ts-node-esm ./données-NAF-CPF-APE/convert-pdf.ts",
 		"start:données-NomenclatureGuichet": "ts-node-esm ./données-NomenclatureGuichet/convert.ts",
 		"start:nombre-etablissements-par-code-ape-et-departement": "ts-node-esm ./nombre-etablissements-par-code-ape-et-departement/convert-json.ts",
