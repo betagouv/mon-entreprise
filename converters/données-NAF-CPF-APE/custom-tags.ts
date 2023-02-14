@@ -8,7 +8,7 @@ interface CustomTags {
 
 export const customTags: CustomTags = {
 	'62.01Z': {
-		contenuCentral: ['développeur', 'informatique', 'web'],
+		contenuCentral: ['développeur'],
 		contenuAnnexe: [],
 		contenuExclu: [],
 	},
