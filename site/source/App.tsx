@@ -33,8 +33,8 @@ import Iframes from './pages/Iframes'
 import Landing from './pages/Landing/Landing'
 import Nouveautés from './pages/Nouveautes/Nouveautes'
 import Offline from './pages/Offline'
-import POCSearchCodeAPE from './pages/POCSearchCodeAPE'
 import Plan from './pages/Plan'
+import SearchCodeAPE from './pages/SearchCodeAPE'
 import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
 import Gérer from './pages/gerer'
@@ -123,10 +123,7 @@ const App = () => {
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>
 						<Routes>
-							<Route
-								path="/poc-search-code-ape"
-								element={<POCSearchCodeAPE />}
-							/>
+							<Route path="/poc-search-code-ape" element={<SearchCodeAPE />} />
 							<Route
 								path={relativeSitePaths.créer.index + '/*'}
 								element={<Créer />}
