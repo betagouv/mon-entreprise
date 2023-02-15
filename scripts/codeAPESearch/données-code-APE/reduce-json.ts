@@ -95,7 +95,7 @@ const output: Output = {
 				codeApe,
 				title,
 				data,
-				contenuCentral: contenuCentral.concat(apeTags[codeApe]),
+				contenuCentral: contenuCentral.concat(apeTags[codeApe] ?? []),
 				contenuAnnexe,
 				contenuExclu,
 			}
