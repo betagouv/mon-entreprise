@@ -7,7 +7,7 @@
 	},
 	"type": "module",
 	"workspaces": [
-		"converters",
+		"scripts",
 		"modele-social",
 		"exoneration-covid",
 		"api",
