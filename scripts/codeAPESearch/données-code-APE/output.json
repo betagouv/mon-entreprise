@@ -1006,7 +1006,6 @@
       "contenuCentral": [
         "l'extraction de la houille en souterrain ou à ciel ouvert, y compris par le recours à des procédés de liquéfaction",
         "le lavage, le triage, le calibrage, la pulvérisation, la compression, etc. destinées à classer, à accroître la qualité ou à faciliter le transport et le stockage de la houille pour compte propre",
-        null,
         "l'extraction de la houille"
       ],
       "contenuAnnexe": [
@@ -1030,7 +1029,6 @@
       "contenuCentral": [
         "l'extraction du lignite en souterrain ou à ciel ouvert, y compris par le recours à des procédés de liquéfaction",
         "le lavage, la déshydratation, la pulvérisation, la compression, etc. destinées à accroître la qualité, à faciliter le transport ou le stockage du lignite pour compte propre",
-        null,
         "l'extraction de lignite"
       ],
       "contenuAnnexe": [],
@@ -1051,7 +1049,6 @@
       ],
       "contenuCentral": [
         "l'extraction d'huiles brutes de pétrole",
-        null,
         "l'extraction de sables bitumineux"
       ],
       "contenuAnnexe": [
@@ -1078,7 +1075,6 @@
         "l'extraction de condensats",
         "la décantation et la séparation de fractions d'hydrocarbures liquides",
         "la désulfuration du gaz",
-        null,
         "l'extraction du méthane, de l'éthane, du butane ou du propane",
         "la production de gaz naturel brut"
       ],
@@ -1101,8 +1097,7 @@
       ],
       "contenuCentral": [
         "l'extraction de minerais exploités principalement en raison de leur teneur en fer",
-        "l'enrichissement et l'agglomération des minerais de fer",
-        null
+        "l'enrichissement et l'agglomération des minerais de fer"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -1120,7 +1115,6 @@
         "l'extraction de pechblende ou d'autres minerais renfermant de l'uranium ou du thorium",
         "la concentration de ces minerais",
         "la fabrication de concentré d'uranium (\"yellow cake\")",
-        null,
         "l'extraction et la préparation de minerais d'uranium et de thorium"
       ],
       "contenuAnnexe": [],
@@ -1185,8 +1179,7 @@
       "contenuCentral": [
         "l'extraction et le dragage de sables industriels, de sables pour la construction et de graviers",
         "le concassage et le broyage de graviers",
-        "l'extraction d'argiles, de terres réfractaires et de kaolin",
-        null
+        "l'extraction d'argiles, de terres réfractaires et de kaolin"
       ],
       "contenuAnnexe": [
         "la fabrication de litières pour chats en argile ou en pouzzolane"
@@ -1346,7 +1339,6 @@
         "l'exploitation d'abattoirs se livrant à l'abattage d'animaux de boucherie, à la préparation et à l'emballage de la viande : bœuf, porc, agneau, lapin, mouton, buffles, bisons, etc.",
         "la production de viandes de boucherie, fraîches, congelées ou surgelées, en carcasses",
         "la production de viandes de boucherie, fraîches, congelées ou surgelées, en morceaux",
-        null,
         "la production de laine de peaux",
         "la production de cuirs et de peaux provenant d'abattoirs",
         "la transformation des baleines sur des bateaux usines",
@@ -1374,8 +1366,7 @@
       "contenuCentral": [
         "l'exploitation d'abattoirs se livrant à l'abattage, à la préparation et à l'emballage de volailles",
         "la production de viandes de volailles (volailles entières ou en portions individuelles), fraîches, congelées ou surgelées",
-        "l'extraction de graisses de volailles comestibles",
-        null
+        "l'extraction de graisses de volailles comestibles"
       ],
       "contenuAnnexe": [
         "la production de plumes, de peaux et de duvets, bruts et apprêtés",
@@ -1402,7 +1393,6 @@
         "la fabrication industrielle de produits à base de viandes ou d'abats (pièces salées, fumées, séchées, cuites, etc.)",
         "la fabrication industrielle de charcuteries telles que pâtés, rillettes, saucisses, salamis, boudins, andouillettes, cervelas, mortadelles, galantines, jambons cuits",
         "la préparation de foies gras",
-        null,
         "la production de farines de viandes"
       ],
       "contenuAnnexe": [
@@ -1510,7 +1500,6 @@
       ],
       "contenuCentral": [
         "la préparation de jus de fruits et légumes",
-        null,
         "la préparation de jus de légumes",
         "la préparation de jus de fruits"
       ],
@@ -1532,7 +1521,6 @@
       "contenuCentral": [
         "la conservation des légumes : congélation, surgélation, séchage, déshydratation, appertisation, lyophilisation, immersion dans l'huile ou le vinaigre, la saumure, mise en conserve, etc.",
         "la préparation de produits à base de légumes",
-        null,
         "la préparation des olives, cornichons et autres légumes condimentaires"
       ],
       "contenuAnnexe": [
@@ -1616,8 +1604,7 @@
       ],
       "contenuCentral": [
         "la production d'huiles végétales raffinées : huiles d'olive, de soja, etc.",
-        "le traitement des huiles végétales : soufflage, cuisson, oxydation, polymérisation, déshydratation, hydrogénation, etc.",
-        null
+        "le traitement des huiles végétales : soufflage, cuisson, oxydation, polymérisation, déshydratation, hydrogénation, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -1653,7 +1640,6 @@
       "title": "Fabrication de lait liquide et de produits frais",
       "data": [],
       "contenuCentral": [
-        null,
         "la transformation du lait"
       ],
       "contenuAnnexe": [],
@@ -1667,8 +1653,7 @@
       ],
       "contenuCentral": [
         "la production de beurre, y compris concentrés ou allégés",
-        "la fabrication de pâtes à tartiner laitières",
-        null
+        "la fabrication de pâtes à tartiner laitières"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -1682,8 +1667,7 @@
       "contenuCentral": [
         "la fabrication de fromages frais ou de caillebotte",
         "la fabrication de fromages à pâte molle, pressée, persillée, etc.",
-        "la fabrication de fromages fondus, râpés ou en poudre",
-        null
+        "la fabrication de fromages fondus, râpés ou en poudre"
       ],
       "contenuAnnexe": [
         "l'affinage de fromages pour compte propre"
@@ -1742,8 +1726,7 @@
       "contenuCentral": [
         "la fabrication de farines de froment (blé) ou de méteil",
         "la fabrication de farines d'autres céréales, de légumes secs ou de tubercules",
-        "la fabrication de farines préparées pour la boulangerie, la pâtisserie, etc.",
-        null
+        "la fabrication de farines préparées pour la boulangerie, la pâtisserie, etc."
       ],
       "contenuAnnexe": [
         "la micronisation (service de broyage de tous types de produits agricoles)"
@@ -1759,8 +1742,7 @@
       "data": [],
       "contenuCentral": [
         "la production de gruaux, de semoules ou pellets, de blé ou d'autres céréales",
-        "la production de riz décortiqué, blanchi ou transformé",
-        null
+        "la production de riz décortiqué, blanchi ou transformé"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -1799,8 +1781,7 @@
       ],
       "contenuCentral": [
         "la fabrication à caractère industriel de pains, de viennoiseries (croissants par exemple), de pâtisseries fraîches et de gaufres et crêpes fraîches (y compris surgelées)",
-        "la fabrication de pâtes et pâtons surgelés destinés à la cuisson",
-        null
+        "la fabrication de pâtes et pâtons surgelés destinés à la cuisson"
       ],
       "contenuAnnexe": [
         "la fabrication à caractère industriel de quiches, tartes salées, tourtes fraîches et de croque-monsieur crus"
@@ -1816,8 +1797,7 @@
         "Produits associés : 10.71.11p, 10.71.12p, 10.71.99p"
       ],
       "contenuCentral": [
-        "la cuisson associée à la vente au détail de pains et de viennoiseries, à partir de pâtes et pâtons surgelés, sans possibilité de consommer sur place",
-        null
+        "la cuisson associée à la vente au détail de pains et de viennoiseries, à partir de pâtes et pâtons surgelés, sans possibilité de consommer sur place"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -1832,8 +1812,7 @@
         "Produits associés : 10.71.11p, 10.71.12p, 10.71.99p"
       ],
       "contenuCentral": [
-        "la fabrication à caractère artisanal associée à la vente au détail de pains, de viennoiseries (croissants par exemple), de pâtisseries fraîches, de gaufres et crêpes",
-        null
+        "la fabrication à caractère artisanal associée à la vente au détail de pains, de viennoiseries (croissants par exemple), de pâtisseries fraîches, de gaufres et crêpes"
       ],
       "contenuAnnexe": [
         "la fabrication à caractère artisanal de quiches, tartes salées, tourtes fraîches et de croque-monsieur crus, associée à la vente au détail de produits de boulangerie"
@@ -1883,8 +1862,7 @@
         "la fabrication de pâtes alimentaires, non cuisinées, ni farcies ni autrement préparées, telles que les macaronis et les nouilles",
         "la fabrication de pâtes alimentaires, farcies ou autrement préparées, à condition qu'elles soient crues",
         "la fabrication de couscous (semoule)",
-        "la fabrication de produits frais, en conserve ou surgelés à base de pâtes",
-        null
+        "la fabrication de produits frais, en conserve ou surgelés à base de pâtes"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -1904,7 +1882,6 @@
         "la fabrication de sirops de sucre",
         "la fabrication de mélasse",
         "la production de sirop et de sucre d'érable",
-        null,
         "la production de sucre de canne ou de betteraves",
         "la production de saccharose"
       ],
@@ -1929,7 +1906,6 @@
         "la fabrication de gommes à mâcher (chewing-gums)",
         "la conservation dans le sucre de fruits (y compris à coque), d'écorces de fruits et d'autres parties de plantes",
         "la fabrication de dragées et pastilles",
-        null,
         "la conservation dans le sucre de fruits, y compris à coque",
         "la fabrication de pâtes à tartiner à base de cacao"
       ],
@@ -1953,7 +1929,6 @@
         "la fabrication d'extraits et concentrés de café",
         "le mélange et le conditionnement du thé et du maté, y compris en sachets",
         "la fabrication d'extraits et de préparations à base de thé et de maté",
-        null,
         "la fabrication de tisanes à base de plantes (menthe, verveine, camomille, etc."
       ],
       "contenuAnnexe": [
@@ -1974,8 +1949,7 @@
       ],
       "contenuCentral": [
         "la fabrication d'épices, de sauces et de condiments : mayonnaise, ketchup, farine de moutarde, moutarde préparée, etc.",
-        "la fabrication du vinaigre",
-        null
+        "la fabrication du vinaigre"
       ],
       "contenuAnnexe": [
         "la transformation du sel pour le rendre propre à la consommation humaine, par exemple en sel iodé"
@@ -1990,7 +1964,6 @@
       "title": "Fabrication de plats préparés",
       "data": [],
       "contenuCentral": [
-        null,
         "la production de plats préparés à base de viande",
         "la production de plats préparés à base de poissons",
         "la production de plats préparés à base de pommes de terre",
@@ -2018,8 +1991,7 @@
         "• aliments pauvres en sodium, y compris les sels diététiques hyposodiques ou asodiques",
         "• aliments sans gluten",
         "• aliments destinés à des personnes affectées d'un métabolisme glucidique perturbé (diabétiques)",
-        "• aliments adaptés à une dépense musculaire intense, en particulier pour les sportifs",
-        null
+        "• aliments adaptés à une dépense musculaire intense, en particulier pour les sportifs"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -2075,8 +2047,7 @@
       ],
       "contenuCentral": [
         "la fabrication de produits pour l'alimentation des animaux de ferme, y compris les aliments concentrés pour animaux et les aliments de complément",
-        "la préparation de produits non mélangés pour l'alimentation des animaux de ferme",
-        null
+        "la préparation de produits non mélangés pour l'alimentation des animaux de ferme"
       ],
       "contenuAnnexe": [
         "le traitement de déchets d'abattoir pour produire des aliments pour animaux"
@@ -2147,7 +2118,6 @@
       "contenuCentral": [
         "la fabrication de champagnes",
         "la production de vins mousseux et de crémants",
-        null,
         "la fabrication de vins effervescents"
       ],
       "contenuAnnexe": [
@@ -2172,7 +2142,6 @@
         "la fabrication de vins à partir de raisins de cuve",
         "la fabrication de vins à partir de moût de raisin concentré",
         "la fabrication de vins doux naturels et de vins de liqueur",
-        null,
         "la fabrication d'apéritifs à base de vins"
       ],
       "contenuAnnexe": [
@@ -2196,8 +2165,7 @@
         "Produits associés : 11.03.10, 11.03.99"
       ],
       "contenuCentral": [
-        "la fabrication de boissons alcoolisées fermentées, mais non distillées, à base de fruit : cidre, poiré et autres vins de fruits",
-        null
+        "la fabrication de boissons alcoolisées fermentées, mais non distillées, à base de fruit : cidre, poiré et autres vins de fruits"
       ],
       "contenuAnnexe": [
         "la fabrication d'hydromel, de saké, et de boissons mélangées contenant des vins de fruits"
@@ -2214,7 +2182,6 @@
       ],
       "contenuCentral": [
         "la fabrication de vermouths et d'autres vins aromatisés",
-        null,
         "la fabrication de vins aromatisés",
         "la fabrication d'apéritifs à base de vermouths",
         "la fabrication d'apéritifs à base de vins aromatisés"
@@ -2231,8 +2198,7 @@
         "Produits associés : 11.05.10, 11.05.20, 11.05.99"
       ],
       "contenuCentral": [
-        "la fabrication de bière par fermentation, à partir d'eau, de malt et de houblon",
-        null
+        "la fabrication de bière par fermentation, à partir d'eau, de malt et de houblon"
       ],
       "contenuAnnexe": [
         "la fabrication de panachés et de bières sans alcool ou faiblement alcoolisées"
@@ -2248,8 +2214,7 @@
         "Produits associés : 11.06.10, 11.06.99"
       ],
       "contenuCentral": [
-        "la fabrication de malt",
-        null
+        "la fabrication de malt"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -2261,8 +2226,7 @@
         "Produits associés : 11.07.11, 11.07.99p"
       ],
       "contenuCentral": [
-        "la production d'eaux minérales naturelles et d'autres eaux embouteillées",
-        null
+        "la production d'eaux minérales naturelles et d'autres eaux embouteillées"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2337,7 +2301,6 @@
         "• la fabrication de fils à coudre à partir de toute matière textile, y compris les mélanges, pour la confection et les usages domestiques",
         "• la fabrication de fils à tricoter ou à crocheter à la main",
         "• la texturation, le moulinage, le retordage, le câblage et l'adhérisation de fils de filaments artificiels ou synthétiques",
-        null,
         "la filature de fils synthétiques ou artificiels",
         "la fabrication de fils de fibres synthétiques ou artificielles"
       ],
@@ -2361,7 +2324,6 @@
         "le tissage par toutes techniques de tissus en toutes matières pour chemiserie, habillement, linge de maison et usages techniques :",
         "• le tissage de type cotonnier et de type lainier (cycles cardé ou peigné)",
         "• la fabrication de velours, de tissus de chenille, de tissus éponge, de tissus à points de gaze, de tissus pour pansements, etc.",
-        null,
         "la fabrication de tissus de fibres de verre"
       ],
       "contenuAnnexe": [],
@@ -2376,8 +2338,7 @@
       "contenuCentral": [
         "l'ennoblissement textile pour compte de tiers tels que :",
         "• le blanchiment, la teinture et l'apprêt de fibres, de fils, de tissus et d'articles en textile, y compris les vêtements",
-        "• l'apprêtage, le séchage, le vaporisage, le décatissage, le stoppage, le sanforisage, le mercerisage de textiles et d'articles textiles, y compris les vêtements",
-        null
+        "• l'apprêtage, le séchage, le vaporisage, le décatissage, le stoppage, le sanforisage, le mercerisage de textiles et d'articles textiles, y compris les vêtements"
       ],
       "contenuAnnexe": [
         "la décoloration des jeans",
@@ -2399,7 +2360,6 @@
         "la fabrication de tissus tricotés ou crochetés :",
         "• velours, peluches, étoffes bouclées (tissus-éponge), étoffes à longs poils et imitations de fourrures par tricotage",
         "• étoffes des types utilisés pour filets, rideaux et vitrages, tricotés sur métier Rachel ou similaires",
-        null,
         "la fabrication de tissus des types utilisés pour filets, rideaux et vitrages, tricotés sur métier Rachel ou sur des métiers similaires",
         "la fabrication d'étoffes à mailles"
       ],
@@ -2413,7 +2373,6 @@
       "title": "Fabrication d'articles textiles, sauf habillement",
       "data": [],
       "contenuCentral": [
-        null,
         "la fabrication de nattes en matières textiles",
         "• fabrication de voiles",
         "la fabrication de parachutes",
@@ -2433,7 +2392,6 @@
       "contenuCentral": [
         "la fabrication de revêtements de sols en matières textiles :",
         "• tapis, moquettes, paillassons, nattes, etc.",
-        null,
         "la fabrication de revêtements de sol aiguilletés"
       ],
       "contenuAnnexe": [
@@ -2456,8 +2414,7 @@
         "la fabrication de filets à mailles nouées obtenus à partir de ficelles, de cordes ou de cordages",
         "la fabrication d'articles de corderie :",
         "• défenses de bateaux, coussins de déchargement, élingues, brides de chargement, cordes ou câbles équipés d'anneaux métalliques, etc.",
-        "la fabrication de filets confectionnés pour la pêche",
-        null
+        "la fabrication de filets confectionnés pour la pêche"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2476,8 +2433,7 @@
       ],
       "contenuCentral": [
         "la fabrication d'étoffes non-tissées par voie sèche",
-        "la fabrication d'articles non vestimentaires en étoffe non-tissée",
-        null
+        "la fabrication d'articles non vestimentaires en étoffe non-tissée"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2504,7 +2460,6 @@
         "• garnitures pour automobiles",
         "• mèches, manchons à incandescence et étoffes tubulaires servant à leur fabrication",
         "• toiles pour machines à papier",
-        null,
         "la fabrication de mèches pour briquets"
       ],
       "contenuAnnexe": [],
@@ -2528,8 +2483,7 @@
         "la fabrication d'articles divers en textiles :",
         "• lacets de chaussures en textile",
         "• gants et houppes à poudrer",
-        "• galons autocollants",
-        null
+        "• galons autocollants"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2546,7 +2500,6 @@
       ],
       "contenuCentral": [
         "la fabrication de vêtements en cuir naturel ou en simili cuir (manteaux, vestes, blousons, costumes, pantalons), y compris de vêtements de travail en cuir",
-        null,
         "la fabrication de vêtements en cuir"
       ],
       "contenuAnnexe": [],
@@ -2565,7 +2518,6 @@
       ],
       "contenuCentral": [
         "la fabrication de vêtements spécifiques pour le travail : salopettes, blouses, tabliers de travail",
-        null,
         "la fabrication de vêtements de travail et de tenues de service (par exemple : tabliers de laboratoires, salopettes, uniformes)"
       ],
       "contenuAnnexe": [],
@@ -2585,8 +2537,7 @@
       ],
       "contenuCentral": [
         "la fabrication de vêtements de dessus pour hommes, femmes et enfants à partir de tissus, d'étoffes à mailles, de non-tissés, etc. :",
-        "• manteaux, vêtements de pluie, anoraks, costumes, tailleurs, ensembles, robes, vestes, pantalons, jupes, etc.",
-        null
+        "• manteaux, vêtements de pluie, anoraks, costumes, tailleurs, ensembles, robes, vestes, pantalons, jupes, etc."
       ],
       "contenuAnnexe": [
         "la fabrication de tous types de vêtements, exécutée sur mesure par des tailleurs, couturiers et couturières",
@@ -2610,8 +2561,7 @@
       ],
       "contenuCentral": [
         "la fabrication de vêtements de dessous et de nuit pour hommes, femmes et enfants à partir de tissus, d'étoffes à mailles, de dentelles, etc. :",
-        "• chemises, chemisiers, chemisettes, slips, caleçons, sous-vêtements, tee-shirts, pyjamas, chemises de nuit, robes de chambre, soutien-gorge, corsets, etc.",
-        null
+        "• chemises, chemisiers, chemisettes, slips, caleçons, sous-vêtements, tee-shirts, pyjamas, chemises de nuit, robes de chambre, soutien-gorge, corsets, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2633,7 +2583,6 @@
         "la fabrication de chapeaux et de bonnets",
         "la fabrication d'accessoires divers de l'habillement en toutes matières :",
         "• gants, ceintures, châles, cravates, foulards, filets pour cheveux, etc.",
-        null,
         "la fabrication de filets à cheveux",
         "la fabrication de gants et autres accessoires de l'habillement en cuir",
         "la fabrication de vêtements garnis de fourrure",
@@ -2662,7 +2611,6 @@
         "la fabrication et la transformation de vêtements et accessoires du vêtement en pelleteries ou fourrures dites « allongées » ou « à plat »",
         "l'assemblage de pelleteries, telles que peaux allongées ou à plat, en nappes, nappettes, carrés, bandes, etc.",
         "la fabrication d'articles divers en fourrure : tapis, poufs non garnis, peaux à polir pour l'industrie",
-        null,
         "la fabrication d'articles en fourrures",
         "la fabrication de vêtements en fourrures"
       ],
@@ -2683,8 +2631,7 @@
         "Produits associés : 14.31.10, 14.31.99"
       ],
       "contenuCentral": [
-        "la fabrication d'articles chaussants tricotés pour hommes, femmes et enfants : chaussettes, bas, collants, etc.",
-        null
+        "la fabrication d'articles chaussants tricotés pour hommes, femmes et enfants : chaussettes, bas, collants, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2697,7 +2644,6 @@
       "data": [],
       "contenuCentral": [
         "la fabrication de pull-overs, de cardigans, de chandails, de gilets et d'articles similaires à mailles",
-        null,
         "la fabrication d'articles vestimentaires à mailles"
       ],
       "contenuAnnexe": [],
@@ -2717,7 +2663,6 @@
         "la fabrication de cuirs et de peaux chamoisés, parcheminés, vernis ou métallisés",
         "la fabrication de cuirs reconstitués",
         "la tonte, le plumage, le grattage, le drayage, le corroyage, le tannage, le blanchiment et la teinture de pelleteries et fourrures",
-        null,
         "la préparation et la teinture des pelleteries et fourrures"
       ],
       "contenuAnnexe": [],
@@ -2741,7 +2686,6 @@
         "la fabrication de bracelets de montre non métalliques",
         "la fabrication d'articles divers en cuir ou en cuir reconstitué : courroies, joints, etc.",
         "la fabrication de lacets en cuir",
-        null,
         "la fabrication d'articles de voyage",
         "la fabrication d'articles de voyage et d'articles de maroquinerie en plastique",
         "la fabrication d'articles de voyage en plastique",
@@ -2802,7 +2746,6 @@
         "la fabrication de traverses en bois pour voies ferrées",
         "la fabrication de lames pour parquets non assemblées",
         "la fabrication de laine (paille) de bois, de farine de bois, de bois en plaquettes ou en particules",
-        null,
         "la production de copeaux de bois et de bois en particules",
         "la production de copeaux de bois"
       ],
@@ -2842,8 +2785,7 @@
         "la fabrication de panneaux à particules orientées et d'autres panneaux de particules",
         "la fabrication de panneaux de fibres de densité moyenne (MDF) et autres panneaux de fibres",
         "la fabrication de bois densifié",
-        "la fabrication de lamellé collé",
-        null
+        "la fabrication de lamellé collé"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -2855,8 +2797,7 @@
         "Produits associés : 16.22.10, 16.22.99"
       ],
       "contenuCentral": [
-        "la fabrication de blocs, lames, etc., pour parquets, assemblés en panneaux",
-        null
+        "la fabrication de blocs, lames, etc., pour parquets, assemblés en panneaux"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2878,8 +2819,7 @@
         "• bardeaux, baguettes et moulures",
         "la fabrication de bâtiments préfabriqués ou d'éléments de ces bâtiments, en bois, par exemple : saunas",
         "la fabrication de maisons mobiles",
-        "la fabrication de cloisons en bois (à l'exception des cloisons mobiles)",
-        null
+        "la fabrication de cloisons en bois (à l'exception des cloisons mobiles)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2897,8 +2837,7 @@
         "la fabrication de caisses, caissettes, cageots, cylindres et emballages similaires, en bois",
         "la fabrication de palettes simples, caisses-palettes et autres plateaux de chargement, en bois",
         "la fabrication de tonneaux, cuves, baquets et autres ouvrages de tonnellerie, en bois",
-        "la fabrication de tambours pour câbles, en bois",
-        null
+        "la fabrication de tambours pour câbles, en bois"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2966,8 +2905,7 @@
       "contenuCentral": [
         "la fabrication de pâtes à papier blanchies, mi-blanchies ou écrues par des procédés mécaniques, chimiques (pâtes à dissoudre ou autres) ou mi-chimiques",
         "la production de pulpe de linters de coton",
-        "le désencrage de vieux papiers et la fabrication de pâtes à papier à partir de déchets de papier",
-        null
+        "le désencrage de vieux papiers et la fabrication de pâtes à papier à partir de déchets de papier"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -2978,7 +2916,6 @@
       "data": [],
       "contenuCentral": [
         "la fabrication de papiers et de cartons destinés à faire l'objet d'une transformation ultérieure par l'industrie",
-        null,
         "la fabrication d'ouate de cellulose",
         "la fabrication de papiers ou de cartons en gros"
       ],
@@ -3001,8 +2938,7 @@
       ],
       "contenuCentral": [
         "la fabrication de papiers et de cartons ondulés",
-        "la fabrication d'emballages en papier ou en carton ondulé",
-        null
+        "la fabrication d'emballages en papier ou en carton ondulé"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -3014,8 +2950,7 @@
         "Produits associés : 17.21.14, 17.21.15, 17.21.99p"
       ],
       "contenuCentral": [
-        "la fabrication de boîtes, d'emballages, de cartonnages pliants, de cartonnages de bureau ou de présentation, de boîtes pâtissières, d'emballages alimentaires, etc., en carton (ou en carton contrecollé ou paraffiné)",
-        null
+        "la fabrication de boîtes, d'emballages, de cartonnages pliants, de cartonnages de bureau ou de présentation, de boîtes pâtissières, d'emballages alimentaires, etc., en carton (ou en carton contrecollé ou paraffiné)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -3031,8 +2966,7 @@
       "data": [],
       "contenuCentral": [
         "la fabrication de sacs et de sachets en papier",
-        "la fabrication de sacs de grande contenance en papier",
-        null
+        "la fabrication de sacs de grande contenance en papier"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -3053,7 +2987,6 @@
         "• serviettes et tampons hygiéniques, couches pour bébés",
         "• plateaux, plats, tasses et gobelets",
         "la fabrication d'ouates de matières textiles et d'articles en ces ouates : serviettes et tampons hygiéniques",
-        null,
         "la fabrication d'ouates de matières textiles et d'articles de ouaterie : serviettes et tampons hygiéniques, etc.",
         "la fabrication de vaisselle en carton"
       ],
@@ -3077,7 +3010,6 @@
         "la fabrication d'enveloppes et de cartes-lettres",
         "la fabrication d'articles de papeterie à usage scolaire et commercial (cahiers, classeurs, registres, livres comptables, formulaires commerciaux, etc.), dès lors que l'information imprimée n'est pas la finalité principale",
         "la fabrication de boîtes, de pochettes et de présentations similaires renfermant un assortiment d'articles de correspondance",
-        null,
         "la fabrication d'enveloppes",
         "la fabrication d'enveloppes et de pochettes postales",
         "la fabrication d'articles de papeterie (cahiers, classeurs, registres, livres comptables, formulaires commerciaux, etc.), dès lors que l'information imprimée n'est pas la finalité principale"
@@ -3094,8 +3026,7 @@
         "Produits associés : 17.24.11, 17.24.12, 17.24.99"
       ],
       "contenuCentral": [
-        "la fabrication de papiers peints et de revêtements muraux similaires, y compris les papiers peints enduits de vinyle et textiles",
-        null
+        "la fabrication de papiers peints et de revêtements muraux similaires, y compris les papiers peints enduits de vinyle et textiles"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -3163,7 +3094,6 @@
         "l'impression de livres et de brochures, de partitions musicales, de cartes géographiques, d'atlas, d'affiches, de catalogues, de prospectus et d'autres imprimés publicitaires, de timbres, de timbres fiscaux, de moyens de paiement et d'autres papiers-valeurs, de cartes à puce, d'albums, d'agendas, de calendriers et d'autres imprimés commerciaux, de papier à lettres à en-tête personnel et d'autres imprimés sur des presses typographiques, offset, d'héliogravure, flexigraphiques, sérigraphiques et d'autres presses graphiques, appareils de reproduction, imprimantes électroniques, appareils de gaufrage.",
         "l'impression directe sur textiles, matières plastiques, verre, métal, bois et céramique",
         "Les motifs imprimés sont généralement protégés par les droits d'auteur.",
-        null,
         "l'impression des cartes à mémoire",
         "l'impression de « cartes à puce »"
       ],
@@ -3194,8 +3124,7 @@
         "• travaux artistiques de nature technique, tels que la préparation des pierres lithographiques et des blocs de bois",
         "• supports de présentation, par exemple transparents pour rétroprojecteur et autres formes de présentation",
         "• croquis, modèles, maquettes, etc.",
-        "• la production d'épreuves",
-        null
+        "• la production d'épreuves"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -3213,8 +3142,7 @@
         "la reliure et la finition de papiers ou de cartons imprimés, par pliage, estampage, poinçonnage, perforage, gaufrage, collage, pelliculage",
         "les services de finition pour CD-ROM",
         "les services de finition pour publipostage, tels que personnalisation ou préparation des enveloppes",
-        "d'autres activités de finition, telles que la gravure ou l'estampage de matrices, la copie en braille",
-        null
+        "d'autres activités de finition, telles que la gravure ou l'estampage de matrices, la copie en braille"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -3225,7 +3153,6 @@
       "data": [],
       "contenuCentral": [
         "la reproduction, à partir d'une matrice, de disques, de CD et de bandes contenant de la musique ou d'autres enregistrements sonores",
-        null,
         "la reproduction de bandes et de disques contenant des enregistrements sonores et vidéo préenregistrés",
         "le tirage de contretypes (à l'exception de la reproduction de films destinés à être projetés dans des salles) et la reproduction de bandes magnétiques audio et vidéo, de CD et de DVD à partir d'originaux",
         "le tirage de contretypes et la reproduction de bandes magnétiques audio et vidéo, de CD ou de DVD à partir d'originaux"
@@ -3297,7 +3224,6 @@
         "• gaz industriels mélangés",
         "• gaz inertes tel l'anhydride carbonique",
         "• gaz isolants",
-        null,
         "la fabrication de gaz industriels"
       ],
       "contenuAnnexe": [],
@@ -3316,7 +3242,6 @@
       ],
       "contenuCentral": [
         "la fabrication de colorants et de pigments, quelle qu'en soit l'origine, sous forme fondamentale ou concentrée",
-        null,
         "la fabrication de colorants et de pigments"
       ],
       "contenuAnnexe": [
@@ -3335,7 +3260,6 @@
       "contenuCentral": [
         "l'enrichissement de minerais d'uranium et de thorium",
         "le retraitement de combustibles nucléaires",
-        null,
         "l'enrichissement et le retraitement de matières nucléaires",
         "le retraitement des combustibles nucléaires"
       ],
@@ -3362,8 +3286,7 @@
         "la fabrication d'alcalis, de lessives et d'autres bases inorganiques, à l'exclusion de l'ammoniac",
         "la fabrication d'autres composés inorganiques",
         "le grillage de la pyrite de fer",
-        "la fabrication d'eau distillée",
-        null
+        "la fabrication d'eau distillée"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -3395,7 +3318,6 @@
         "• autres composés organiques, y compris les produits de la distillation du bois (charbon de bois, par exemple), etc.",
         "la fabrication de produits aromatiques synthétiques",
         "la distillation des goudrons de houille",
-        null,
         "la production de charbon de bois par distillation du bois",
         "la fabrication d'alcool éthylique de synthèse",
         "la fabrication d'alcool éthylique de fermentation",
@@ -3421,7 +3343,6 @@
         "la fabrication d'engrais :",
         "• engrais azotés, phosphatés ou potassiques, simples ou complexes",
         "• urée, phosphates naturels bruts et sels de potassium naturels bruts",
-        null,
         "la fabrication d'engrais chimiques et de composés azotés",
         "la fabrication de mélanges pour plantes en pots à base de tourbe, de terre naturelle, de sables, d'argiles, d'engrais, etc.",
         "la fabrication d'engrais azotés et de composés azotés",
@@ -3451,7 +3372,6 @@
         "• résines alkydes, résines polyesters et polyéthers",
         "• silicones",
         "• échangeurs d'ions à base de polymères",
-        null,
         "la fabrication de matières plastiques sous formes primaires"
       ],
       "contenuAnnexe": [
@@ -3473,7 +3393,6 @@
         "• caoutchouc synthétique",
         "• caoutchouc factice",
         "la fabrication de mélanges de caoutchouc synthétique et de caoutchouc naturel ou de gommes caoutchouteuses (par exemple, le balata)",
-        null,
         "la fabrication de caoutchouc synthétique sous formes primaires"
       ],
       "contenuAnnexe": [],
@@ -3791,7 +3710,6 @@
         "la fabrication de chambres à air pour pneumatiques",
         "la fabrication de bandes de roulement amovibles pour pneumatiques, de flaps, de profilés pour le rechapage des pneumatiques, etc.",
         "le rechapage et le resculptage de pneumatiques",
-        null,
         "la fabrication de pneumatiques",
         "le rechapage de pneumatiques"
       ],
@@ -3822,7 +3740,6 @@
         "la fabrication de brosses en caoutchouc",
         "la fabrication de tuyaux de pipe en caoutchouc dur",
         "la fabrication de peignes, de barrettes, de bigoudis et d'articles similaires en caoutchouc dur",
-        null,
         "la fabrication de tissus textiles imprégnés, enduits, couverts ou stratifiés avec du caoutchouc, où le caoutchouc est le constituant principal",
         "la fabrication de bandes de transmission ou de convoyage en tissu, fil ou câble imprégnés, enduits, recouverts ou stratifiés avec du caoutchouc, où le caoutchouc est le constituant principal",
         "la fabrication de matériaux de réparation en caoutchouc",
@@ -3848,8 +3765,7 @@
         "• plaques, feuilles, blocs, pellicules, bandes, lames (que ces articles soient adhésifs ou non), etc.",
         "la fabrication de produits finis en matières plastiques :",
         "• tubes, tuyaux et accessoires de tuyauterie en plastique",
-        "• films ou feuilles de cellophane",
-        null
+        "• films ou feuilles de cellophane"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -3866,7 +3782,6 @@
       "contenuCentral": [
         "la fabrication d'articles d'emballage en matières plastiques :",
         "• sacs, sachets, conteneurs, boîtes, caisses, bonbonnes, bouteilles, etc.",
-        null,
         "la fabrication d'articles de bouchage et de surbouchage en matières plastiques"
       ],
       "contenuAnnexe": [],
@@ -3889,7 +3804,6 @@
         "• articles en matières plastiques pour usages sanitaires ou hygiéniques, par exemple : baignoires, douches, lavabos, bidets, cuvettes d'aisance, réservoirs de chasse, etc.",
         "la fabrication de revêtements de sols résistants, en vinyle ou en linoléum, etc.",
         "la fabrication de pierre artificielle",
-        null,
         "la fabrication de revêtements de sol souples tels que le linoléum"
       ],
       "contenuAnnexe": [],
@@ -3958,8 +3872,7 @@
       ],
       "contenuCentral": [
         "la fabrication de verre plat, étiré, coulé ou flotté",
-        "la fabrication de verre armé, de verre imprimé, de verre teinté, etc.",
-        null
+        "la fabrication de verre armé, de verre imprimé, de verre teinté, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -3974,8 +3887,7 @@
         "la fabrication de verre plat transformé",
         "la fabrication de verres de sécurité, trempés ou contrecollés",
         "la fabrication de vitrages isolants à parois multiples",
-        "la fabrication de miroirs en verre",
-        null
+        "la fabrication de miroirs en verre"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -3990,8 +3902,7 @@
       "contenuCentral": [
         "la fabrication de bouteilles et de flacons, de pots, de bocaux et autres récipients en verre ou en cristal",
         "la fabrication de verrerie de table",
-        "la fabrication de plats en verre ou en vitrocérame et d'autres articles en verre ou en cristal à usage domestique",
-        null
+        "la fabrication de plats en verre ou en vitrocérame et d'autres articles en verre ou en cristal à usage domestique"
       ],
       "contenuAnnexe": [
         "le façonnage du verre creux : taille, gravure, décoration, etc."
@@ -4040,7 +3951,6 @@
         "la fabrication de verrerie utilisée en bijouterie fantaisie",
         "la fabrication d'articles décoratifs en verre",
         "la fabrication d'isolateurs et de pièces isolantes en verre",
-        null,
         "la fabrication d'isolateurs et pièces isolantes en verre"
       ],
       "contenuAnnexe": [
@@ -4066,7 +3976,6 @@
         "• articles céramiques calorifuges en farines siliceuses fossiles",
         "• briques, dalles et carreaux",
         "• cornues, creusets, moufles, gaines, busettes, tubes, tuyaux, etc.",
-        null,
         "la fabrication de produits en céramique réfractaire",
         "la fabrication d'articles en céramique réfractaire",
         "la fabrication de mortiers et de bétons réfractaires",
@@ -4083,8 +3992,7 @@
       "data": [],
       "contenuCentral": [
         "la fabrication de carreaux pour le revêtement des murs et des cheminées, etc., en céramique non réfractaire",
-        "la fabrication de carreaux et de dalles de pavement en céramique non réfractaire",
-        null
+        "la fabrication de carreaux et de dalles de pavement en céramique non réfractaire"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4103,8 +4011,7 @@
         "la fabrication de hourdis en terre cuite",
         "la fabrication de conduits de fumée, boisseaux, claustras, en terre cuite",
         "la fabrication de drains, tubes, tuyaux, etc., en terre cuite",
-        "la fabrication de tuyaux en grès",
-        null
+        "la fabrication de tuyaux en grès"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4118,8 +4025,7 @@
       "data": [],
       "contenuCentral": [
         "la fabrication de vaisselle et d'autres articles de ménage ainsi que d'articles d'hygiène ou de toilette, en porcelaine, faïence, grès ou terre commune",
-        "la fabrication de statuettes et autres objets d'ornementation en porcelaine, faïence, grès ou terre commune",
-        null
+        "la fabrication de statuettes et autres objets d'ornementation en porcelaine, faïence, grès ou terre commune"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4134,8 +4040,7 @@
         "Produits associés : 23.42.10, 23.42.99"
       ],
       "contenuCentral": [
-        "la fabrication d'appareils sanitaires en céramique tels que éviers, baignoires, bidets, cuvettes de WC, etc.",
-        null
+        "la fabrication d'appareils sanitaires en céramique tels que éviers, baignoires, bidets, cuvettes de WC, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4150,7 +4055,6 @@
       ],
       "contenuCentral": [
         "la fabrication d'isolateurs pour l'électricité et de pièces isolantes en céramique",
-        null,
         "la fabrication d'isolateurs et pièces isolantes en céramiques",
         "la fabrication d'isolateurs en céramique",
         "la fabrication d'isolateurs en porcelaine"
@@ -4171,8 +4075,7 @@
       ],
       "contenuCentral": [
         "la fabrication d'aimants ferrites et d'aimants céramiques",
-        "la fabrication de produits céramiques pour laboratoires et pour usages chimiques ou industriels",
-        null
+        "la fabrication de produits céramiques pour laboratoires et pour usages chimiques ou industriels"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4189,8 +4092,7 @@
       ],
       "contenuCentral": [
         "la fabrication de récipients de transport ou d'emballage en céramique tels que pots, bocaux, jarres, bacs à fleurs, etc.",
-        "la fabrication d'autres produits céramiques non classés ailleurs",
-        null
+        "la fabrication d'autres produits céramiques non classés ailleurs"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4203,8 +4105,7 @@
       "title": "Fabrication de ciment",
       "data": [],
       "contenuCentral": [
-        "la fabrication de ciments dits « clinkers » et de ciments hydrauliques, y compris les ciments Portland, les ciments alumineux, les ciments de laitier et les ciments surphosphatés",
-        null
+        "la fabrication de ciments dits « clinkers » et de ciments hydrauliques, y compris les ciments Portland, les ciments alumineux, les ciments de laitier et les ciments surphosphatés"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4225,7 +4126,6 @@
       "contenuCentral": [
         "la fabrication de chaux vive, de chaux éteinte et de chaux hydraulique",
         "la fabrication de plâtre",
-        null,
         "la production de dolomite calcinée"
       ],
       "contenuAnnexe": [
@@ -4249,8 +4149,7 @@
         "la fabrication d'éléments préfabriqués en béton, en ciment ou en pierre artificielle pour la construction :",
         "• éléments de voirie ou d'assainissement",
         "• éléments de structure en béton pour le bâtiment et le génie civil",
-        "la fabrication de produits divers en béton, en ciment ou en pierre artificielle pour la clôture, le funéraire, etc.",
-        null
+        "la fabrication de produits divers en béton, en ciment ou en pierre artificielle pour la clôture, le funéraire, etc."
       ],
       "contenuAnnexe": [
         "la fabrication de constructions préfabriquées en béton"
@@ -4266,8 +4165,7 @@
       "contenuCentral": [
         "la fabrication d'ouvrages en plâtre pour la construction :",
         "• plaques nues ou doublées, carreaux lisses ou à enduire, panneaux, etc.",
-        "• cloisons sèches à parement plâtre",
-        null
+        "• cloisons sèches à parement plâtre"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4280,7 +4178,6 @@
       ],
       "contenuCentral": [
         "la préparation de béton prêt à l'emploi",
-        null,
         "la fabrication de béton prêt à l'emploi"
       ],
       "contenuAnnexe": [],
@@ -4294,7 +4191,6 @@
       ],
       "contenuCentral": [
         "la fabrication de mortiers et béton sous forme pulvérente",
-        null,
         "la fabrication de mortiers et bétons secs"
       ],
       "contenuAnnexe": [],
@@ -4311,8 +4207,7 @@
       ],
       "contenuCentral": [
         "la fabrication de matériaux de construction en substances végétales (laine de bois, paille, roseaux, joncs) agglomérés avec du ciment, du plâtre ou d'autres liants minéraux",
-        "la fabrication d'ouvrages en amiante-ciment, en cellulose ciment ou similaires tels que plaques planes ou ondulées, éléments de couverture, tuyaux, réservoirs, gouttières, etc.",
-        null
+        "la fabrication d'ouvrages en amiante-ciment, en cellulose ciment ou similaires tels que plaques planes ou ondulées, éléments de couverture, tuyaux, réservoirs, gouttières, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4325,7 +4220,6 @@
       ],
       "contenuCentral": [
         "la fabrication d'autres ouvrages en béton, en ciment, en plâtre ou en pierre artificielle sans rapport avec la construction tels que pots, vases et bacs à fleurs, mobilier de jardin, éléments décoratifs (statues, fresques), etc.",
-        null,
         "la fabrication d'ouvrages en ciment"
       ],
       "contenuAnnexe": [
@@ -4341,7 +4235,6 @@
       "data": [],
       "contenuCentral": [
         "la production d'ouvrages en pierre et matériaux similaires, sculptés, taillés ou autrement façonnés destinée à la construction de bâtiments, de monuments funéraires ou de routes, à la couverture des toitures, etc.",
-        null,
         "la taille, le façonnage et le finissage de la pierre en dehors des carrières",
         "la production de cheminées décoratives essentiellement en pierre",
         "la fabrication de meubles en céramique, béton et pierre",
@@ -4360,8 +4253,7 @@
       ],
       "contenuCentral": [
         "la production de meules, de pierres à aiguiser ou à polir et d'abrasifs naturels ou artificiels appliqués sur support",
-        "la production d'abrasifs appliqués sur support souple",
-        null
+        "la production d'abrasifs appliqués sur support souple"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4435,7 +4327,6 @@
       "title": "Fabrication de tubes, tuyaux, profilés creux et accessoires correspondants en acier",
       "data": [],
       "contenuCentral": [
-        null,
         "la fabrication de tubes et d'accessoires de tuyauterie en acier"
       ],
       "contenuAnnexe": [],
@@ -4449,7 +4340,6 @@
       ],
       "contenuCentral": [
         "la fabrication de barres ou de profilés pleins en acier obtenus par étirage à froid, rectification ou tournage",
-        null,
         "l'étirage à froid de barres",
         "l'étirage à froid de barres ou de profilés pleins en acier"
       ],
@@ -4466,7 +4356,6 @@
       ],
       "contenuCentral": [
         "la fabrication de feuillards d'une largeur inférieure à 600 mm obtenus par relaminage à froid de feuillards laminés à chaud",
-        null,
         "le laminage à froid de feuillards"
       ],
       "contenuAnnexe": [],
@@ -4482,8 +4371,7 @@
       ],
       "contenuCentral": [
         "la fabrication de profilés ouverts par déformation progressive à froid sur machine à galets ou pliage sur presse plieuse de produits laminés plats en acier",
-        "la fabrication de profilés et de panneaux « sandwich » formés ou pliés à froid",
-        null
+        "la fabrication de profilés et de panneaux « sandwich » formés ou pliés à froid"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4496,7 +4384,6 @@
       ],
       "contenuCentral": [
         "la fabrication de fil d'acier par étirage à froid de fil machine",
-        null,
         "le tréfilage"
       ],
       "contenuAnnexe": [],
@@ -4517,7 +4404,6 @@
         "la production d'alliages de métaux précieux",
         "la remise au titre des métaux précieux recyclés",
         "la production de demi-produits en métaux précieux ou en plaqué ou doublé de métaux précieux",
-        null,
         "le doublage ou le placage de métaux précieux"
       ],
       "contenuAnnexe": [],
@@ -4534,7 +4420,6 @@
         "la production d'aluminium (première ou deuxième fusion)",
         "la production d'alliages d'aluminium",
         "la production de demi-produits en aluminium :",
-        null,
         "la production d'oxyde d'aluminium"
       ],
       "contenuAnnexe": [],
@@ -4552,8 +4437,7 @@
       "contenuCentral": [
         "la production de plomb, de zinc et d'étain (première ou deuxième fusion)",
         "la production d'alliages de plomb, de zinc et d'étain",
-        "la production de tôles, feuilles minces, barres, fils, profilés, etc., en plomb, zinc ou étain",
-        null
+        "la production de tôles, feuilles minces, barres, fils, profilés, etc., en plomb, zinc ou étain"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4572,8 +4456,7 @@
         "la production de cuivre (première ou deuxième fusion)",
         "la production d'alliages de cuivre",
         "la production de tôles, feuilles minces, barres, fils, profilés, tuyaux, etc., en cuivre",
-        "la production de tubes en cuivre",
-        null
+        "la production de tubes en cuivre"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4590,8 +4473,7 @@
         "la production d'alliages, de nickel, de chrome, de manganèse, etc.",
         "la production de tôles, feuilles minces, barres, fils, profilés, etc., en nickel, chrome, manganèse, etc.",
         "la production de mattes de nickel",
-        "la production d'autres métaux non ferreux et de cermets",
-        null
+        "la production d'autres métaux non ferreux et de cermets"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4604,7 +4486,6 @@
       ],
       "contenuCentral": [
         "la fusion et le raffinage d'uranium et de thorium",
-        null,
         "la production d'uranium métal à partir de la pechblende ou d'autres minerais renfermant de l'uranium",
         "la fonte et le raffinage de l'uranium"
       ],
@@ -4621,8 +4502,7 @@
       ],
       "contenuCentral": [
         "la fonderie de demi-produits en fonte malléable, à graphite sphéroïdal ou grise ordinaire",
-        "la fabrication de tubes, tuyaux, profilés creux et accessoires correspondant en fonte",
-        null
+        "la fabrication de tubes, tuyaux, profilés creux et accessoires correspondant en fonte"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4639,8 +4519,7 @@
         "la fonderie de demi-produits en acier",
         "la fabrication de pièces de fonte d'acier",
         "la fabrication de tubes et tuyaux en acier sans soudure coulés par centrifugation",
-        "la fabrication d'accessoires de tuyauterie en fonte d'acier",
-        null
+        "la fabrication d'accessoires de tuyauterie en fonte d'acier"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4655,8 +4534,7 @@
       ],
       "contenuCentral": [
         "la fonderie de demi-produits en aluminium, titane, magnésium, zinc, etc.",
-        "la fabrication de pièces en fonte de métaux légers",
-        null
+        "la fabrication de pièces en fonte de métaux légers"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4670,8 +4548,7 @@
       "contenuCentral": [
         "la fonderie de demi-produits en métaux précieux et autres métaux",
         "le moulage sous-pression de pièces en métaux non ferreux",
-        "la fabrication de statues en bronze sur plan",
-        null
+        "la fabrication de statues en bronze sur plan"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4685,8 +4562,7 @@
       "contenuCentral": [
         "la fabrication d'ossatures métalliques pour la construction (pylônes, tabliers, passerelles, etc.)",
         "la fabrication et le montage d'ossatures métalliques pour équipements industriels (ossatures de hauts fourneaux, de matériels de manutention, etc.)",
-        "la fabrication de constructions métalliques préfabriquées : baraques de chantier, éléments modulaires pour expositions, cabines téléphoniques, etc.",
-        null
+        "la fabrication de constructions métalliques préfabriquées : baraques de chantier, éléments modulaires pour expositions, cabines téléphoniques, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4703,8 +4579,7 @@
       ],
       "contenuCentral": [
         "la fabrication de menuiseries métalliques : portes, fenêtres, huisseries, etc.",
-        "la fabrication de fermetures métalliques de bâtiment : portes de garages, grilles déployables ou enroulables, portails métalliques, etc.",
-        null
+        "la fabrication de fermetures métalliques de bâtiment : portes de garages, grilles déployables ou enroulables, portails métalliques, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4721,7 +4596,6 @@
         "la fabrication de chaudières pour le chauffage central à eau chaude, à eau surpressée ou à vapeur, toutes énergies",
         "la fabrication de chaudières murales mixtes à gaz",
         "la fabrication de radiateurs de chauffage central, en fontes ou en acier",
-        null,
         "la fabrication de chaudières de chauffage central"
       ],
       "contenuAnnexe": [],
@@ -4737,8 +4611,7 @@
       ],
       "contenuCentral": [
         "la fabrication de grands réservoirs, de citernes et de cuves métalliques fixes",
-        "la fabrication de bouteilles, citernes et réservoirs métalliques pour gaz comprimés ou liquéfiés",
-        null
+        "la fabrication de bouteilles, citernes et réservoirs métalliques pour gaz comprimés ou liquéfiés"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4756,8 +4629,7 @@
         "la fabrication de générateurs de vapeur pour usages industriels ou énergétiques",
         "la fabrication des appareils auxiliaires pour générateurs de vapeur : condenseurs, économiseurs, surchauffeurs, collecteurs et accumulateurs de vapeur",
         "la construction de réacteurs nucléaires",
-        "la fabrication d'éléments de générateurs de vapeurs y compris pour navires et bateaux",
-        null
+        "la fabrication d'éléments de générateurs de vapeurs y compris pour navires et bateaux"
       ],
       "contenuAnnexe": [
         "la fabrication de structures chaudronnées n.c.a."
@@ -4780,7 +4652,6 @@
         "la fabrication d'armes légères, de revolvers et de pistolets quel qu'en soit le calibre",
         "la fabrication d'armes de chasse, de tir sportif et de défense, même à air comprimé, ainsi que leurs munitions",
         "la fabrication de munitions de guerre : bombes, mines, roquettes, obus, etc.",
-        null,
         "la fabrication de pièces d'artillerie et de munitions",
         "la fabrication d'armes et de munitions",
         "la fabrication d'armes et de munitions pour la chasse et la pratique du tir sportif"
@@ -4804,8 +4675,7 @@
       "contenuCentral": [
         "la production pour des tiers de pièces forgées ou estampées en acier",
         "la production pour des tiers de pièces matricées en métaux non ferreux",
-        "la production pour des tiers de pièces obtenues par frittage",
-        null
+        "la production pour des tiers de pièces obtenues par frittage"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4819,8 +4689,7 @@
         "Produits associés : 25.50.13"
       ],
       "contenuCentral": [
-        "la production pour des tiers de pièces métalliques découpées ou embouties",
-        null
+        "la production pour des tiers de pièces métalliques découpées ou embouties"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4840,7 +4709,6 @@
         "• revêtements protecteurs et décoratifs des métaux (émaillage, vernissage, phosphatation, peinture, marquage sérigraphique, etc.)",
         "• plastification des métaux",
         "• gravure sur métaux",
-        null,
         "le revêtement pour compte de tiers"
       ],
       "contenuAnnexe": [],
@@ -4855,8 +4723,7 @@
       "title": "Décolletage",
       "data": [],
       "contenuCentral": [
-        "la production pour des tiers de pièces décolletées",
-        null
+        "la production pour des tiers de pièces décolletées"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4871,8 +4738,7 @@
       ],
       "contenuCentral": [
         "la production pour des tiers de pièces mécaniques diverses, usinées notamment par enlèvement de matière (alésage, fraisage, tournage, perçage, sciage, crénelage, meulage, affûtage, rectification, etc.) ou assemblage (soudage, collage)",
-        "la reconstruction, réalisée pour des tiers, de moteurs thermiques (réalésage)",
-        null
+        "la reconstruction, réalisée pour des tiers, de moteurs thermiques (réalésage)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4892,8 +4758,7 @@
         "• couperets, hachoirs",
         "• rasoirs et lames pour rasoirs",
         "• ciseaux, tondeuses à cheveux et poils, outils de manucure et de pédicure",
-        "la fabrication d'armes blanches",
-        null
+        "la fabrication d'armes blanches"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -4914,8 +4779,7 @@
         "la fabrication de serrures et gâches électriques",
         "la fabrication de serrures pour automobiles et autres véhicules",
         "la fabrication de barres anti-panique",
-        "la fabrication de ferrures (charnières, gonds, paumelles, etc.)",
-        null
+        "la fabrication de ferrures (charnières, gonds, paumelles, etc.)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -4928,7 +4792,6 @@
       ],
       "contenuCentral": [
         "la fabrication de boîtes de moulage et de moules",
-        null,
         "la fabrication de châssis de fonderie et de moules (à l'exclusion des lingotières)"
       ],
       "contenuAnnexe": [],
@@ -4952,7 +4815,6 @@
         "la fabrication de lampes à souder",
         "la fabrication de couteaux et de lames tranchantes pour machines ou pour appareils mécaniques",
         "la fabrication de scies et lames de scies, y compris circulaires et de chaînes coupantes",
-        null,
         "la fabrication de lames tranchantes pour machines",
         "la fabrication d'outillage à main non motorisé et d'outils interchangeables pour outillage à main",
         "la fabrication d'outillage portatif agricole mécanique",
@@ -4967,7 +4829,6 @@
       "data": [],
       "contenuCentral": [
         "la fabrication de bidons, fûts et tonnelets métalliques",
-        null,
         "la fabrication de fûts, tonnelets, bidons, boites, seaux, etc. métalliques, quelle qu'en soit leur taille pour le transport des marchandises"
       ],
       "contenuAnnexe": [
@@ -4995,8 +4856,7 @@
         "Produits associés : 25.92.11, 25.92.12, 25.92.13, 25.92.99"
       ],
       "contenuCentral": [
-        "la fabrication de boîtes à conserves, d'emballages pour boissons, de tubes et d'étuis souples, etc.",
-        null
+        "la fabrication de boîtes à conserves, d'emballages pour boissons, de tubes et d'étuis souples, etc."
       ],
       "contenuAnnexe": [
         "la fabrication d'articles métalliques de bouchage et de surbouchage"
@@ -5016,7 +4876,6 @@
         "la fabrication de treillis soudés et d'armatures préparées pour le bâtiment",
         "la fabrication d'électrodes pour soudure à l'arc",
         "malles, cantines et valises métalliques (15.12.12)",
-        null,
         "la fabrication de câbles métalliques",
         "la fabrication de toiles en fils métalliques",
         "la fabrication d'articles en fils métalliques",
@@ -5034,7 +4893,6 @@
       "contenuCentral": [
         "la fabrication d'articles de visserie et de boulonnerie : boulons, vis, écrous",
         "la fabrication de rondelles, de rivets pleins, etc.",
-        null,
         "la fabrication d'articles de boulonnerie décolletés"
       ],
       "contenuAnnexe": [],
@@ -5051,8 +4909,7 @@
         "la fabrication d'ustensiles métalliques pour la cuisson : casseroles, poêles à frire, cocottes, autocuiseurs, etc.",
         "la fabrication de moulins à légumes et autres appareils à main analogues",
         "la fabrication d'articles sanitaires en métal : baignoires, éviers, etc.",
-        "la fabrication d'articles domestiques pour le rangement ou le transport : seaux, boites à lettres, arrosoirs, etc.",
-        null
+        "la fabrication d'articles domestiques pour le rangement ou le transport : seaux, boites à lettres, arrosoirs, etc."
       ],
       "contenuAnnexe": [
         "la fabrication de pailles de fer et de laines d'acier, de tampons à récurer"
@@ -5258,7 +5115,6 @@
         "la fabrication de systèmes de détection d'effraction et d'incendie, transmettant des signaux à une station de contrôle",
         "la fabrication de transmetteurs de radio et de télévision",
         "la fabrication d'appareils de communication utilisant les signaux infrarouges (par exemple les commandes à distance)",
-        null,
         "la fabrication de modems (équipement porteur)",
         "la fabrication de modems (équipement porteur) et d'interrupteurs de communication numérique, d'équipements de communication de données (par exemple ponts, routeurs, passerelles, etc.)",
         "la fabrication de matériel de télécommunications pour satellites"
@@ -5296,7 +5152,6 @@
         "la fabrication de lecteurs CD et DVD",
         "la fabrication de machines à karaoké",
         "la fabrication d'écouteurs (par exemple pour radio, stéréo, ordinateur)",
-        null,
         "la fabrication d'écrans d'ordinateur et de télévision",
         "la fabrication de produits électroniques grand public, tels que lecteurs de CD et de DVD",
         "la fabrication d'écrans de télévision de tous types",
@@ -5319,7 +5174,6 @@
         "d'équipements gyroscopiques, etc., pour bateaux, avions ou lanceurs spatiauxla fabrication d'équipements de commande de vol et de systèmes de visualisation",
         "des paramètres de pilotagela fabrication d'appareils de radiodétection (radar), de détection sous-marine (sonar)",
         "et de radionavigationla fabrication d'instruments GPS",
-        null,
         "la fabrication d'appareils GPS",
         "la fabrication d'instruments d'aide à la navigation",
         "la fabrication d'instruments pour l'aviation et l'aéronautique",
@@ -5373,7 +5227,6 @@
       "title": "Horlogerie",
       "data": [],
       "contenuCentral": [
-        null,
         "la fabrication de cages et de cabinets d'appareils d'horlogerie",
         "la fabrication de boîtiers de montres"
       ],
@@ -5385,7 +5238,6 @@
       "title": "Fabrication d'équipements d'irradiation médicale, d'équipements électromédicaux et électrothérapeutiques",
       "data": [],
       "contenuCentral": [
-        null,
         "la fabrication de tubes à rayon X et de dispositifs semblables d'irradiation",
         "la fabrication d'équipements électromédicaux et électrothérapeutiques"
       ],
@@ -5406,7 +5258,6 @@
         "la fabrication de comparateurs optiques",
         "la fabrication d'appareils photos analogiques et numériques",
         "la fabrication d'objectifs pour appareils de prise de vue",
-        null,
         "la fabrication d'éléments d'optique en verre travaillés optiquement",
         "la fabrication de matériels et d'instruments optiques"
       ],
@@ -5426,7 +5277,6 @@
         "la fabrication de disquettes vierges",
         "la fabrication de disques optiques vierges",
         "la fabrication de disques durs",
-        null,
         "la fabrication de supports optiques et magnétiques vierges destinés à être utilisés avec les ordinateurs et d'autres appareils"
       ],
       "contenuAnnexe": [],
@@ -5454,7 +5304,6 @@
         "la fabrication de régulateurs de voltage, transmission et distribution",
         "la fabrication de génératrices (à l'exception des alternateurs charge batterie pour moteurs à combustion interne)",
         "la fabrication de groupes électrogènes à moteur (à l'exception des turbines génératrices)",
-        null,
         "la fabrication de starters pour lampes au néon",
         "la fabrication de génératrices électriques (à l'exception des turbines génératrices)",
         "la fabrication de moteurs électriques, à l'exception des moteurs auxiliaires utilisés pour faciliter le démarrage (voitures hybrides équipées d'un moteur électrique pour la phase de démarrage et d'un moteur thermique qui prend le relais)"
@@ -5485,8 +5334,7 @@
         "la fabrication de compartiments pour appareillage de tableaux de distribution électrique",
         "la fabrication de fusibles électriques",
         "la fabrication d'équipements électriques de commutation",
-        "la fabrication d'interrupteurs électriques (sauf à poussoir, à bouton poussoir, à bascule ou à solénoïde)",
-        null
+        "la fabrication d'interrupteurs électriques (sauf à poussoir, à bouton poussoir, à bascule ou à solénoïde)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -5512,7 +5360,6 @@
         "la fabrication d'accumulateurs au lithium",
         "la fabrication d'accumulateurs à pile sèche",
         "la fabrication d'accumulateurs à pile humide",
-        null,
         "la fabrication de piles et d'accumulateurs",
         "la fabrication de batteries pour véhicules automobiles",
         "la fabrication de batteries"
@@ -5530,7 +5377,6 @@
       ],
       "contenuCentral": [
         "la fabrication de câbles de fibres optiques pour la transmission des données ou la transmission en direct d'images",
-        null,
         "la fabrication de fibres optiques pour la transmission d'images et de câbles de fibres optiques"
       ],
       "contenuAnnexe": [],
@@ -5546,8 +5392,7 @@
         "Produits associés : 27.32.11, 27.32.12, 27.32.13, 27.32.14, 27.32.99"
       ],
       "contenuCentral": [
-        "fabrication de fils et câbles isolés, en acier, cuivre, aluminium, pour le transport ou la distribution d'énergie électrique ou la transmission d'informations codées",
-        null
+        "fabrication de fils et câbles isolés, en acier, cuivre, aluminium, pour le transport ou la distribution d'énergie électrique ou la transmission d'informations codées"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -5575,7 +5420,6 @@
         "la fabrication de canalisations et accessoires électriques",
         "la fabrication de quincaillerie de ligne électrique suspendue",
         "la fabrication de dispositifs de câblage non porteurs de courant faits de plastique, tels que boîtes de connexion, plaques, raccords de lignes",
-        null,
         "la fabrication de dispositifs électriques de câblage",
         "la fabrication d'interrupteurs pour circuits électriques, tels qu'interrupteurs à poussoir et à bouton poussoir"
       ],
@@ -5592,7 +5436,6 @@
       "contenuCentral": [
         "la fabrication d'ampoules et de tubes électriques, et de leurs pièces (à l'exception des ébauches de verre pour ampoules électriques), la fabrication d'appareils d'éclairage ainsi que de lampes de table et de lampadaires (à l'exception des dispositifs de câblage porteurs et non porteurs de courant).",
         "la fabrication de lampes à décharge, à incandescence, à fluorescence, à ultraviolet, à infrarouge, etc., leurs ampoules et accessoires",
-        null,
         "la fabrication d'appareils d'éclairage",
         "la fabrication d'appareils d'éclairage pour véhicules automobiles",
         "fabrication d'appareils d'éclairage pour navires et bateaux",
@@ -5637,7 +5480,6 @@
         "• appareils pour la préparation du café ou du thé",
         "• poêles à frire, rôtissoires, grils, hottes",
         "• résistances chauffantes, etc.",
-        null,
         "la fabrication de lames, peignes et têtes de rasoirs électriques",
         "la fabrication de fours pour usages domestiques",
         "la fabrication de matériel, de machines et d'appareils pour la production du froid de type ménager",
@@ -5666,7 +5508,6 @@
         "la fabrication d'appareils non électriques pour le chauffage des locaux et la cuisine domestique :",
         "• appareils pour le chauffage des locaux, cuisinières, grils, poêles, chauffe-eau, ustensiles de cuisine, chauffe-plats, non électriques",
         "réchauds, rôtissoires, grils, chauffe-plats, etc., électriques",
-        null,
         "la fabrication d'appareils ménagers non électriques",
         "la fabrication de chauffe-eau à gaz"
       ],
@@ -5753,7 +5594,6 @@
         "la fabrication d'ensembles turbine-chaudière",
         "la fabrication de turbines génératrices",
         "la fabrication de moteurs pour des applications industrielles",
-        null,
         "la fabrication d'échangeurs de chaleur",
         "la fabrication de parties de moteurs (pistons, segments de piston, carburateurs)",
         "la fabrication de pistons, segments de piston, carburateurs et autres équipements pour moteur à combustion interne pour véhicules automobiles",
@@ -5783,7 +5623,6 @@
         "la fabrication de systèmes hydrauliques et pneumatiques",
         "la fabrication d'organes hydrauliques de transmission",
         "la fabrication de transmissions hydrostatiques",
-        null,
         "la fabrication de matériel hydraulique et pneumatique",
         "la fabrication de valves hydrauliques et pneumatiques et de systèmes de préparation de l'air pour une utilisation dans des systèmes pneumatiques"
       ],
@@ -5809,7 +5648,6 @@
         "la fabrication de pompes à air ou à vide et de compresseurs d'air ou d'autres gaz",
         "la fabrication de pompes pour liquides, même comportant un dispositif mesureur",
         "la fabrication de pompes pour moteurs à combustion interne : pompes à huile, à eau, à carburant pour véhicules automobiles, etc.",
-        null,
         "la fabrication de compresseurs",
         "la fabrication de pompes pour des applications non hydrauliques",
         "la fabrication de pompes pour véhicules à moteurs et moteurs"
@@ -5836,7 +5674,6 @@
         "la fabrication de robinetterie et de vannes industrielles, y compris les vannes de régulation et la robinetterie d'adduction",
         "la fabrication de robinetterie sanitaire",
         "la fabrication de robinetterie pour le chauffage",
-        null,
         "la fabrication de valves pour des applications autres qu'hydrauliques et pneumatiques"
       ],
       "contenuAnnexe": [],
@@ -5862,7 +5699,6 @@
         "la fabrication de volants et de poulies",
         "la fabrication de chaînes à maillons articulés",
         "la fabrication de chaînes pour la transmission de l'énergie",
-        null,
         "la fabrication d'équipements de transmission mécanique"
       ],
       "contenuAnnexe": [],
@@ -5887,8 +5723,7 @@
         "la fabrication de brûleurs",
         "la fabrication de chauffages électriques de locaux à montage permanent, de chauffages électriques de piscines",
         "la fabrication de chauffages autres qu'électriques et à usage domestique à montage permanent, comme le chauffage solaire, chauffage à la vapeur, chauffage à l'huile et systèmes similaires de chauffage",
-        "la fabrication de fourneaux électrique à usage domestique (installations électriques à air pulsé, pompes à chaleur, etc.), installations non électriques à air pulsé",
-        null
+        "la fabrication de fourneaux électrique à usage domestique (installations électriques à air pulsé, pompes à chaleur, etc.), installations non électriques à air pulsé"
       ],
       "contenuAnnexe": [
         "la fabrication de foyers automatiques, d'avant-foyers, de grilles mécaniques, de dispositifs pour l'évacuation des cendres, etc."
@@ -5913,7 +5748,6 @@
         "la fabrication d'appareils transporteurs ou convoyeurs, de téléphériques, télécabines et remonte-pentes, etc.",
         "la fabrication d'ascenseurs, d'escaliers mécaniques et de trottoirs roulants",
         "la fabrication d'éléments spécialisés de matériels de levage et de manutention",
-        null,
         "la fabrication de crics et vérins hydrauliques",
         "la fabrication de convoyeurs à usage agricole",
         "la fabrication de matériel de levage et de manutention",
@@ -5956,8 +5790,7 @@
         "la fabrication de photocopieuses",
         "la fabrication de cartouches d'encre",
         "la fabrication de tableaux noirs, blancs, etc.",
-        "la fabrication de machines à dicter",
-        null
+        "la fabrication de machines à dicter"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -5986,7 +5819,6 @@
         "• raboteuses",
         "• taille-haies",
         "• cloueuses à poudre",
-        null,
         "la fabrication d'outils à main à moteur"
       ],
       "contenuAnnexe": [],
@@ -6000,7 +5832,6 @@
       "title": "Fabrication d'équipements aérauliques et frigorifiques industriels",
       "data": [],
       "contenuCentral": [
-        null,
         "la fabrication de groupes frigorifiques à compression"
       ],
       "contenuAnnexe": [],
@@ -6011,8 +5842,7 @@
       "title": "Fabrication d'équipements d'emballage, de conditionnement et de pesage",
       "data": [],
       "contenuCentral": [
-        "la fabrication d'appareils et d'instruments de pesage (autres que les balances de précision utilisées dans les laboratoires) :",
-        null
+        "la fabrication d'appareils et d'instruments de pesage (autres que les balances de précision utilisées dans les laboratoires) :"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -6040,7 +5870,6 @@
         "la fabrication de parties de machines d'usage général",
         "la fabrication de matériel non-électrique à souder et à braser",
         "la fabrication de tours de refroidissement et de dispositifs similaires destinés au refroidissement direct fonctionnant avec de l'eau réinjectée",
-        null,
         "la fabrication de joints d'étanchéité en charbon ou en graphite"
       ],
       "contenuAnnexe": [
@@ -6083,7 +5912,6 @@
         "la fabrication d'autres machines et appareils pour l'agriculture :",
         "• machines et appareils pour l'aviculture, l'apiculture, la préparation des aliments ou provendes pour animaux, etc.",
         "• machines pour le nettoyage, le triage ou le calibrage des œufs, des fruits, etc.",
-        null,
         "la fabrication de tracteurs agricoles",
         "la fabrication de remorques et de semi-remorques à usage agricole"
       ],
@@ -6111,7 +5939,6 @@
         "la fabrication de machines-outils à estamper ou à presser",
         "la fabrication de machines à poinçonner, presses hydrauliques, freins hydrauliques, marteaux-pilons, machines à forger, etc.",
         "la fabrication de bancs à étirer, de machines pour exécuter un filetage par roulage ou de machines pour le travail des métaux sous forme de fils",
-        null,
         "la fabrication de bancs à étirer"
       ],
       "contenuAnnexe": [
@@ -6131,7 +5958,6 @@
         "la fabrication de machines-outils pour le travail du bois, de l'os, de la pierre, du caoutchouc durci, des matières plastiques dures ou le travail à froid du verre, y compris celles opérant par faisceaux laser, par ultrasons, par jet de plasma ou par impulsions magnétiques, etc.",
         "la fabrication de porte-pièces pour machines-outils",
         "la fabrication de plateaux diviseurs et autres dispositifs spéciaux pour machines-outils",
-        null,
         "la fabrication de machines-outils pour le travail de la pierre, y compris les machines à fendre ou à cliver",
         "la fabrication de machines ou de matériel pour le travail du caoutchouc durci, des matières plastiques dures ou du verre (travail à froid)"
       ],
@@ -6150,7 +5976,6 @@
         "la fabrication de machines et d'appareils pour la manutention des métaux à haute température :",
         "• convertisseurs, lingotières, poches de coulée, machines à couler sous pression",
         "la fabrication de laminoirs à métaux et de leurs cylindres",
-        null,
         "la fabrication de moules à lingots et lingotières",
         "la fabrication des lingotières"
       ],
@@ -6180,7 +6005,6 @@
         "la fabrication de tracteurs poseurs de voies et de tracteurs utilisés dans la construction et les mines",
         "la fabrication de lames de bouteurs et de bouteurs biais",
         "la fabrication de camions à benne tout-terrain",
-        null,
         "la fabrication d'appareils élévateurs, transporteurs ou convoyeurs à action continue, pour mines au fond ou pour d'autres travaux souterrains",
         "la fabrication de pelles mécaniques, d'excavateurs, de chargeuses et de chargeuses-pelleteuses",
         "la fabrication de tombereaux automoteurs et d'autres engins utilisés dans la construction et les mines"
@@ -6207,7 +6031,6 @@
         "la fabrication de machines et d'appareils pour la minoterie :",
         "• machines pour le nettoyage, le triage ou le calibrage de semences, de grains ou de légumes à cosse secs (tarares, toiles trieuses, séparateurs, machines à brosser les grains, etc.)",
         "• machines et appareils pour la production de farines, gruaux ou autres produits de minoterie (moulins à meules de pierre, alimentateurs, machines à nettoyer les sons, mélangeurs, machines à décortiquer le riz, machines à casser les pois)",
-        null,
         "la fabrication d'appareils pour la filtration ou l'épuration des aliments",
         "la fabrication d'écrémeuses",
         "la fabrication de machines pour le nettoyage, le triage ou le calibrage de semences, de grains ou de légumes à cosse secs"
@@ -6221,7 +6044,6 @@
       "data": [],
       "contenuCentral": [
         "la fabrication de machines pour l'industrie textile :",
-        null,
         "la fabrication de canettes, busettes et bobines comme pièces de machines pour l'industrie textile",
         "la fabrication de machines à coudre destinées à un usage domestique",
         "la fabrication de sèche-linge commerciaux",
@@ -6239,8 +6061,7 @@
       "contenuCentral": [
         "la fabrication de machines pour la production de pâte à papier",
         "la fabrication de machines pour la production du papier et du carton",
-        "la fabrication de machines pour la production d'articles en papier ou en carton",
-        null
+        "la fabrication de machines pour la production d'articles en papier ou en carton"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -6257,8 +6078,7 @@
         "• machines pour le mélange ou le malaxage du caoutchouc ou des matières plastiques",
         "• machines pour la presse, l'extrusion, le soufflage, le thermoformage du caoutchouc ou des matières plastiques",
         "• machines à mouler, machines à fabriquer ou à rechaper les pneumatiques",
-        "• autres machines et appareils à fabriquer des produits spécifiques en caoutchouc ou en matières plastiques",
-        null
+        "• autres machines et appareils à fabriquer des produits spécifiques en caoutchouc ou en matières plastiques"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -6271,7 +6091,6 @@
       ],
       "contenuCentral": [
         "la fabrication de machines et de matériel pour l'imprimerie, la composition, le brochage et la reliure et de machines pour les activités d'impression sur différents types de matériaux",
-        null,
         "la fabrication de machines d'imprimerie"
       ],
       "contenuAnnexe": [],
@@ -6300,7 +6119,6 @@
         "la fabrication d'appareils et de dispositifs pour le lancement de véhicules aériens, de catapultes destinées à équiper des porte-avions et de matériel similaire",
         "la fabrication d'installations de bowling automatiques (par exemple machines à requiller)",
         "la fabrication de manèges, de balançoires, de stands de tir et d'autres attractions foraines",
-        null,
         "la fabrication de machines et appareils pour la séparation isotopique",
         "la fabrication de séchoirs pour la pâte, les papiers ou les cartons"
       ],
@@ -6332,7 +6150,6 @@
         "• autopompes, balayeuses, bibliobus, voitures blindées, etc.",
         "• camions-bétonnières",
         "• la fabrication de véhicules tout terrain, karts et engins similaires, y compris les voitures de course",
-        null,
         "la fabrication de véhicules blindés pour le transport de fonds",
         "la fabrication de tracteurs routiers pour semi-remorques",
         "la fabrication de camions-bétonnières",
@@ -6371,7 +6188,6 @@
         "• transport de passagers : caravanes, remorques pour le camping, etc.",
         "la fabrication de conteneurs spécialement conçus et équipés pour un ou plusieurs modes de transport",
         "l'aménagement de tous types de véhicules automobiles, de remorques et de semi-remorques, notamment de caravanes, autocaravanes et véhicules utilitaires",
-        null,
         "la fabrication de conteneurs de transport",
         "la fabrication de remorques ou de semi-remorques routières",
         "la fabrication de carrosseries pour véhicules automobiles",
@@ -6400,7 +6216,6 @@
         "la fabrication d'autres jeux de fils pour véhicules",
         "l'assemblage de jauges (achetées) dans le tableau de bord, de régulateurs de tension, etc.",
         "la fabrication d'avertisseurs sonores, sirènes pour véhicules automobiles",
-        null,
         "la fabrication de moteurs de démarrage et de générateurs pour moteurs à combustion interne",
         "la fabrication de faisceaux et jeux de fils pour véhicules",
         "la fabrication de dispositifs électriques pour véhicules automobiles, tels que génératrices, alternateurs, bougies d'allumage, jeux de fils pour bougies d'allumage, systèmes d'ouverture et de fermeture électriques des portières et des vitres, régulateurs de tension",
@@ -6430,7 +6245,6 @@
         "• ceintures de sécurité, coussins gonflables de sécurité, portières, pare-chocs, etc.",
         "la fabrication de sièges de voitures",
         "l'assemblage de sous-ensembles complets, de parties et d'accessoires pour véhicules automobiles, pour compte de tiers",
-        null,
         "la fabrication d'autres équipements pour véhicules automobiles",
         "la fabrication de parties et d'accessoires de carrosseries pour véhicules automobiles"
       ],
@@ -6455,7 +6269,6 @@
         "tels que paquebots, bateaux de croisière, transbordeurs, cargos, pétroliers, méthaniers, chimiquiers, bateaux-citernes, etc. la construction de bateaux utilitaires tels que remorqueurs, dragues, etc.",
         "la construction de navires de guerre",
         "la construction de bateaux de pêche et de navires usines procédant à la transformation du poisson",
-        null,
         "la fabrication d'éléments de structure pour navires et bateaux",
         "l'implantation des armements sur bâtiments de guerre"
       ],
@@ -6495,7 +6308,6 @@
         "la construction d'aéroglisseurs de plaisance",
         "la fabrication de motos marines",
         "la construction d'autres embarcations de plaisance et de sport telles que canoës, kayaks, canots, skiffs, etc.",
-        null,
         "construction de bateaux de plaisance",
         "fabrication de bateaux ou de radeaux gonfl ables récréatifs",
         "la fabrication de bateaux"
@@ -6514,7 +6326,6 @@
       "title": "Construction de locomotives et d'autre matériel ferroviaire roulant",
       "data": [],
       "contenuCentral": [
-        null,
         "la fabrication de sièges de wagons",
         "la révision, la conversion et la reconstruction de locomotives et de wagons en usine"
       ],
@@ -6542,7 +6353,6 @@
         "la fabrication de simulateurs de vol pour entraînement au sol",
         "la construction de véhicules spatiaux et de leurs lanceurs, de satellites, de sondes planétaires, de stations orbitales et de navettes spatiales",
         "la fabrication de missiles balistiques intercontinentaux",
-        null,
         "la fabrication de missiles balistiques",
         "la fabrication de turboréacteurs et de turbopropulseurs",
         "la fabrication de sièges d'avions",
@@ -6578,7 +6388,6 @@
         "la fabrication de chars",
         "la fabrication de véhicules militaires amphibies",
         "la construction d'autres véhicules militaires de combat",
-        null,
         "la fabrication de chars et d'autres véhicules blindés de combat",
         "la fabrication de chars et d'autres véhicules militaires de combat"
       ],
@@ -6601,7 +6410,6 @@
         "la fabrication de moteurs pour motocycles",
         "la fabrication de side cars",
         "la fabrication de parties et d'accessoires pour motocycles",
-        null,
         "la fabrication de cycles équipés d'un moteur auxiliaire"
       ],
       "contenuAnnexe": [],
@@ -6624,7 +6432,6 @@
         "la fabrication de véhicules pour invalides, avec ou sans moteur",
         "la fabrication de parties et d'accessoires de véhicules pour invalides",
         "la fabrication de landaus et de poussettes",
-        null,
         "la fabrication de selles de cycles et de motocycles",
         "la fabrication de bicyclettes",
         "la fabrication de véhicules pour invalides"
@@ -6666,7 +6473,6 @@
       "title": "Fabrication de meubles de bureau et de magasin",
       "data": [],
       "contenuCentral": [
-        null,
         "les chariots décoratifs de restaurant, tels que chariots à dessert, à buffets"
       ],
       "contenuAnnexe": [],
@@ -6681,8 +6487,7 @@
       ],
       "contenuCentral": [
         "la fabrication de sièges de cuisine",
-        "la fabrication de meubles de cuisine",
-        null
+        "la fabrication de meubles de cuisine"
       ],
       "contenuAnnexe": [
         "le garnissage de sièges relevant de cette sous-classe dans le cadre de leur fabrication"
@@ -6700,7 +6505,6 @@
         "• matelas comportant des ressorts ou bien rembourrés ou garnis intérieurement d'un matériau de soutien",
         "• matelas non recouverts en caoutchouc alvéolaire ou en matières plastiques alvéolaires",
         "la fabrication de sommiers",
-        null,
         "la fabrication de matelas en matières plastiques alvéolaires non recouvertes"
       ],
       "contenuAnnexe": [],
@@ -6717,8 +6521,7 @@
       ],
       "contenuCentral": [
         "la fabrication de sièges d'ameublement d'intérieur tels que chaises, fauteuils, tabourets, bancs",
-        "la fabrication de canapés, canapés-lits, sofas",
-        null
+        "la fabrication de canapés, canapés-lits, sofas"
       ],
       "contenuAnnexe": [
         "le garnissage de sièges relevant de cette sous-classe dans le cadre de leur fabrication"
@@ -6770,8 +6573,7 @@
         "Produits associés : 32.11.10, 32.11.99"
       ],
       "contenuCentral": [
-        "la fabrication de monnaies, y compris celles ayant cours légal, en métaux précieux ou non",
-        null
+        "la fabrication de monnaies, y compris celles ayant cours légal, en métaux précieux ou non"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -6789,7 +6591,6 @@
         "• vaisselle plate et creuse, couverts, articles de toilette, garnitures de bureau, articles à usage religieux, etc.",
         "la fabrication d'articles techniques et de laboratoire en métal précieux (sauf instruments ou parties d'instruments) : creusets, spatules, anodes de placage, etc.",
         "la fabrication de bracelets de montres et d'étuis à cigarettes en métaux précieux",
-        null,
         "la production de catalyseurs ou d'articles d'usage pour laboratoires, en métaux précieux",
         "la fabrication de couteaux et couverts en métaux précieux",
         "la fabrication d'articles de bijouterie en métaux précieux, en plaqués ou en doublés de métaux précieux",
@@ -6847,8 +6648,7 @@
         "la fabrication d'instruments de musique dont le son est produit électroniquement",
         "la fabrication de boîtes à musique, d'orchestrions, d'orgues de Barbarie, etc.",
         "la fabrication de parties et d'accessoires d'instruments de musique :",
-        "• métronomes, diapasons, cartes, disques et rouleaux pour instruments mécaniques, etc.",
-        null
+        "• métronomes, diapasons, cartes, disques et rouleaux pour instruments mécaniques, etc."
       ],
       "contenuAnnexe": [
         "la fabrication de sifflets, de cornes d'appel et d'autres instruments d'appel ou de signalisation à bouche"
@@ -6882,7 +6682,6 @@
         "• patins à glace, patins à roulettes, etc.",
         "• arcs et arbalètes",
         "• matériel pour gymnases, centres de santé ou d'athlétisme",
-        null,
         "la fabrication de filets montés pour la pratique des sports",
         "la fabrication de gants et coiffures de sport en cuir",
         "la fabrication de coiffures de sport",
@@ -6929,7 +6728,6 @@
         "la fabrication d'articles pour jeux de société",
         "la fabrication de jouets à roues conçus pour être montés par les enfants, y compris les bicyclettes et tricycles en plastique",
         "la fabrication de puzzles et d'articles similaires",
-        null,
         "la fabrication de jouets en bois",
         "la fabrication de jeux et de jouets en papier ou en carton",
         "la fabrication de jeux et de jouets en matières plastiques",
@@ -7006,7 +6804,6 @@
       "data": [],
       "contenuCentral": [
         "la fabrication d'articles ophtalmologiques, lunettes correctrices, lunettes de soleil, lentilles sur prescription, verres de contact, lunettes protectrices",
-        null,
         "la fabrication de produits ophtalmiques en matières plastiques"
       ],
       "contenuAnnexe": [
@@ -7025,7 +6822,6 @@
       "contenuCentral": [
         "la fabrication de balais, de pinceaux et de brosses, même constituant des parties de machines, de balais mécaniques pour emploi à la main, de balais à franges et de plumeaux, de brosses et de pinceaux à peindre, de rouleaux et de tampons à peindre, de raclettes en caoutchouc et d'autres brosses, balais, balayettes, etc.",
         "la fabrication de brosses à habits et à chaussures",
-        null,
         "la fabrication de brosses et de balais"
       ],
       "contenuAnnexe": [],
@@ -7098,7 +6894,6 @@
         "la réparation et l'entretien d'appareils auxiliaires pour générateurs de vapeur :",
         "• condensateurs, économiseurs, surchauffeurs, collecteurs et accumulateurs de vapeur",
         "la réparation et l'entretien de réacteurs nucléaires",
-        null,
         "les activités d'entretien et de réparation de véhicules militaires de combat",
         "la réparation et l'entretien de véhicules militaires de combat",
         "la réparation de fusils pour le tir sportif et de loisirs"
@@ -7152,7 +6947,6 @@
       "data": [],
       "contenuCentral": [
         "la réparation et l'entretien des articles produits dans les groupes",
-        null,
         "la réparation et l'entretien de transformateurs électroniques"
       ],
       "contenuAnnexe": [],
@@ -7205,7 +6999,6 @@
         "les activités de réparation navale. Néanmoins, la reconstruction ou la révision des navires et des bateaux relèvent de la division 30.",
         "la réparation et l'entretien régulier des navires et bateaux",
         "la réparation et l'entretien des bateaux de plaisance",
-        null,
         "les activités d'entretien et de réparation spécialisée de navires, bateaux et structures fl ottantes",
         "l'entretien et la réparation de bateaux de plaisance"
       ],
@@ -7226,7 +7019,6 @@
         "les activités de réparation et d'entretien d'aéronefs et d'engins spatiaux.",
         "la réparation et l'entretien d'aéronefs",
         "la réparation et l'entretien de moteurs d'aéronefs",
-        null,
         "les activités d'entretien et de réparation d'aéronefs et d'engins spatiaux"
       ],
       "contenuAnnexe": [
@@ -7247,7 +7039,6 @@
         "la réparation et l'entretien des locomotives et des wagons",
         "la réparation et l'entretien de véhicules pour invalides",
         "la réparation de véhicules propulsés à la main ou à traction animale",
-        null,
         "les activités d'entretien et de réparation des véhicules pour invalides",
         "les activités d'entretien et de réparation des autres matériels de transport n.c.a."
       ],
@@ -7375,8 +7166,7 @@
         "Produits associés : 33.20.60"
       ],
       "contenuCentral": [
-        "la conception d'ensemble et l'assemblage sur site industriel d'équipements de contrôle des processus industriels",
-        null
+        "la conception d'ensemble et l'assemblage sur site industriel d'équipements de contrôle des processus industriels"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -7489,7 +7279,6 @@
       "contenuCentral": [
         "la production, pour les besoins de l'approvisionnement en gaz, de gaz obtenus par gazéification du charbon ou à partir de co-produits de l'agriculture ou de déchets",
         "la production de combustibles gazeux d'une valeur calorifique déterminée par purification, mélange ou d'autres traitements de gaz d'origines diverses, y compris le gaz naturel",
-        null,
         "la fabrication de combustibles gazeux à partir de charbon, de déchets, etc."
       ],
       "contenuAnnexe": [],
@@ -7507,8 +7296,7 @@
         "Produits associés : 35.22.10"
       ],
       "contenuCentral": [
-        "la distribution par conduites de combustibles gazeux de tous types",
-        null
+        "la distribution par conduites de combustibles gazeux de tous types"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -7806,7 +7594,6 @@
       "contenuCentral": [
         "la promotion immobilière de bâtiments à usage principal d'habitation",
         "la promotion immobilière de résidences hôtelières",
-        null,
         "la promotion immobilière de logements collectifs"
       ],
       "contenuAnnexe": [],
@@ -7823,7 +7610,6 @@
       ],
       "contenuCentral": [
         "la promotion immobilière de bâtiments destinés à l'usage de bureaux",
-        null,
         "la promotion immobilière de bureaux"
       ],
       "contenuAnnexe": [],
@@ -7846,7 +7632,6 @@
         "• parkings couverts et souterrains",
         "• entrepôts",
         "• bâtiments religieux",
-        null,
         "la promotion immobilière à des fins de vente",
         "la promotion immobilière de bâtiments autres que logements collectifs ou bureaux"
       ],
@@ -7880,7 +7665,6 @@
       "title": "Construction de maisons individuelles",
       "data": [],
       "contenuCentral": [
-        null,
         "la construction de maisons individuelles"
       ],
       "contenuAnnexe": [],
@@ -7946,7 +7730,6 @@
         "• installation de barrières de sécurité, de panneaux de circulation, etc.",
         "la construction de pistes d'atterrissage",
         "la construction de pistes cyclables",
-        null,
         "le marquage sur les chaussées et les parcs de stationnement"
       ],
       "contenuAnnexe": [
@@ -7969,8 +7752,7 @@
         "• pose du ballast et des rails",
         "• montage des appareils de voie (aiguillages, croisements, signalisation)",
         "• installation des systèmes de commande et de sécurité",
-        "• remise en état ou la réparation des voies ferrées",
-        null
+        "• remise en état ou la réparation des voies ferrées"
       ],
       "contenuAnnexe": [
         "la construction de funiculaires et de téléphériques"
@@ -7984,8 +7766,7 @@
         "Produits associés : 42.13.10p, 42.13.20p"
       ],
       "contenuCentral": [
-        "la construction de ponts routiers, y compris ceux destinés à supporter des routes surélevées, de ponts ferroviaires et autres",
-        null
+        "la construction de ponts routiers, y compris ceux destinés à supporter des routes surélevées, de ponts ferroviaires et autres"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -8150,8 +7931,7 @@
       ],
       "contenuCentral": [
         "la démolition d'immeubles et d'autres constructions",
-        "les travaux de démolition d'ouvrages de génie civil y compris les chaussées",
-        null
+        "les travaux de démolition d'ouvrages de génie civil y compris les chaussées"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -8257,7 +8037,6 @@
         "l'installation d' :",
         "• appareils d'éclairage de rue et signaux électriques",
         "• éclairage des pistes d'atterrissage",
-        null,
         "l'installation d'appareils d'éclairage de rue et de signaux électriques",
         "l'installation d'appareils d'éclairage et de signaux électriques",
         "l'installation de systèmes de sécurité et d'alarme électroniques, sans leur surveillance ultérieure"
@@ -8281,7 +8060,6 @@
         "l'installation de réseaux sous pression de lutte contre le feu (y compris robinets d'incendie armés)",
         "l'installation de systèmes d'arrosage automatique des pelouses",
         "l'installation de conduits",
-        null,
         "le nettoyage et le débouchage de tuyaux d'écoulement dans des bâtiments"
       ],
       "contenuAnnexe": [],
@@ -8302,7 +8080,6 @@
         "• capteurs d'énergie solaire non électriques",
         "• matériel et conduites de ventilation et de climatisation",
         "• conduites de distribution de vapeur",
-        null,
         "la réparation de fourneaux et autres équipements de chauffage",
         "l'installation et le montage de chaudières pour le chauffage central domestique",
         "l'installation de fourneaux et autres équipements de chauffage",
@@ -8322,8 +8099,7 @@
         "Produits associés : 43.29.11"
       ],
       "contenuCentral": [
-        "les travaux d'isolation thermique, acoustique et antivibrations",
-        null
+        "les travaux d'isolation thermique, acoustique et antivibrations"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -8368,8 +8144,7 @@
         "Produits associés : 43.31.10"
       ],
       "contenuCentral": [
-        "la mise en œuvre dans des bâtiments ou d'autres projets de construction de plâtre, de staff ou de stuc pour enduits intérieurs et extérieurs, y compris les matériaux de lattage associés",
-        null
+        "la mise en œuvre dans des bâtiments ou d'autres projets de construction de plâtre, de staff ou de stuc pour enduits intérieurs et extérieurs, y compris les matériaux de lattage associés"
       ],
       "contenuAnnexe": [
         "le montage de cloisons sèches à base de plâtre",
@@ -8387,7 +8162,6 @@
         "le montage de fermetures de bâtiment en bois ou en matières plastiques : volets, portes de garage, etc.",
         "le montage de portails en bois ou en matières plastiques",
         "la mise en place de cuisines intégrées ou par éléments, de placards, d'escaliers d'intérieur en bois ou en matières plastiques",
-        null,
         "l'installation de fenêtres"
       ],
       "contenuAnnexe": [
@@ -8410,7 +8184,6 @@
         "le montage de faux-plafonds sur structures métalliques, de cloisons mobiles, etc.",
         "le montage des fermetures de bâtiments métalliques : persiennes, volets, portes de garages, etc.",
         "l'installation d'escaliers d'intérieur métalliques",
-        null,
         "la mise en œuvre de menuiseries métalliques",
         "l'installation de vérandas et de serres"
       ],
@@ -8460,8 +8233,7 @@
         "• parquets et autres revêtements de sols en bois, revêtements muraux en bois",
         "• moquettes et revêtements de sols en linoléum, y compris en caoutchouc ou en matières plastiques",
         "• revêtements de sols et de murs en granito, en marbre, en granit ou en ardoise",
-        "• papiers peints",
-        null
+        "• papiers peints"
       ],
       "contenuAnnexe": [
         "l'installation de faux planchers sur structure métallique pour les installations informatiques",
@@ -8526,8 +8298,7 @@
         "Produits associés : 43.91.11"
       ],
       "contenuCentral": [
-        "le montage de charpentes en bois",
-        null
+        "le montage de charpentes en bois"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -8687,8 +8458,7 @@
       ],
       "contenuCentral": [
         "le commerce de gros et de détail de véhicules neufs ou usagés :",
-        "• véhicules automobiles pour le transport des personnes, y compris les véhicules spéciaux tels qu'ambulances, minibus, etc. ( 3,5 tonnes ou moins)",
-        null
+        "• véhicules automobiles pour le transport des personnes, y compris les véhicules spéciaux tels qu'ambulances, minibus, etc. ( 3,5 tonnes ou moins)"
       ],
       "contenuAnnexe": [
         "le commerce de gros et de détail de véhicules automobiles tout terrain, comme les jeeps (3,5 tonnes ou moins)"
@@ -8709,8 +8479,7 @@
       "contenuCentral": [
         "le commerce de gros et de détail de véhicules neufs ou usagés :",
         "• camions, remorques et semi-remorques",
-        "• véhicules pour le camping tels que caravanes et autos-caravanes (camping-cars)",
-        null
+        "• véhicules pour le camping tels que caravanes et autos-caravanes (camping-cars)"
       ],
       "contenuAnnexe": [
         "le commerce de gros et de détail de véhicules automobiles tout terrain (plus de 3,5 tonnes)"
@@ -8728,9 +8497,7 @@
         "Les activités relevant de cette sous-classe NAF s'appliquent aux véhicules dont la vente est décrite dans la sous-classe NAF 45.11Z.",
         "Produits associés : 45.20.11, 45.20.12, 45.20.13, 45.20.14, 45.20.30p"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": [
         "les services de remorquage et d'assistance routière (cf. 52.21Z)"
@@ -8744,7 +8511,6 @@
         "Produits associés : 45.20.21, 45.20.22, 45.20.23, 45.20.30p"
       ],
       "contenuCentral": [
-        null,
         "la réparation, la pose ou le remplacement de pneumatiques et de chambres à air",
         "le nettoyage des véhicules automobiles et les stations de lavage"
       ],
@@ -8776,8 +8542,7 @@
       "data": [],
       "contenuCentral": [
         "le commerce de détail d'accessoires, de pièces détachées et d'équipements divers pour véhicules automobiles",
-        "le commerce de détail de pneumatiques",
-        null
+        "le commerce de détail de pneumatiques"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -8816,9 +8581,7 @@
       "data": [
         "Produits associés : 46.11.11, 46.11.12, 46.11.19"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": [
         "le commerce de gros pour compte propre (cf. 46.2 à 46.9)",
@@ -8833,7 +8596,6 @@
         "Produits associés : 46.12.11p"
       ],
       "contenuCentral": [
-        null,
         "les centrales d'achat de carburant"
       ],
       "contenuAnnexe": [],
@@ -8846,7 +8608,6 @@
         "Produits associés : 46.12.11p, 46.12.12, 46.12.13"
       ],
       "contenuCentral": [
-        null,
         "les intermédiaires du commerce en engrais et produits phytosanitaires"
       ],
       "contenuAnnexe": [],
@@ -8858,9 +8619,7 @@
       "data": [
         "Produits associés : 46.13.11, 46.13.12"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -8871,8 +8630,7 @@
         "Produits associés : 46.14.11, 46.14.12, 46.14.19"
       ],
       "contenuCentral": [
-        "les activités des intermédiaires du commerce de machines, y compris machines de bureau et ordinateurs, équipements industriels, navires et avions",
-        null
+        "les activités des intermédiaires du commerce de machines, y compris machines de bureau et ordinateurs, équipements industriels, navires et avions"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -8888,9 +8646,7 @@
       "data": [
         "Produits associés : 46.15.11, 46.15.12, 46.15.13, 46.15.19"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": [
         "le commerce de gros pour compte propre (cf. 46.2 à 46.9)",
@@ -8903,9 +8659,7 @@
       "data": [
         "Produits associés : 46.16.11, 46.16.12, 46.16.13"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": [
         "le commerce de gros pour compte propre (cf. 46.2 à 46.9)",
@@ -8918,9 +8672,7 @@
       "data": [
         "Produits associés : 46.17.11p, 46.17.12p"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -8930,9 +8682,7 @@
       "data": [
         "Produits associés : 46.17.11p, 46.17.12p, 46.17.13"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -8942,9 +8692,7 @@
       "data": [
         "Produits associés : 46.18.11, 46.18.12, 46.18.19"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": [
         "le commerce de gros pour compte propre (cf. 46.2 à 46.9)",
@@ -8959,9 +8707,7 @@
       "data": [
         "Produits associés : 46.19.10p"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": [
         "les centrales d'achat de carburant (cf. 46.12A)"
@@ -9008,8 +8754,7 @@
         "le commerce de gros de tabac non manufacturé",
         "le commerce de gros de laine sans traitement de celle-ci",
         "le commerce de gros d'aliments pour le bétail et d'autres matières premières agricoles",
-        "le commerce de gros de matériaux, résidus et sous-produits utilisés pour la fabrication d'aliments pour animaux",
-        null
+        "le commerce de gros de matériaux, résidus et sous-produits utilisés pour la fabrication d'aliments pour animaux"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -9026,7 +8771,6 @@
       ],
       "contenuCentral": [
         "le commerce de gros de fleurs, plantes et bulbes",
-        null,
         "le commerce de gros de semences de fleurs"
       ],
       "contenuAnnexe": [
@@ -9039,8 +8783,7 @@
       "title": "Commerce de gros (commerce interentreprises) d'animaux vivants",
       "data": [],
       "contenuCentral": [
-        "le commerce de gros d'animaux sur pied destinés à l'élevage, l'engraissage, l'abattage, le dressage, l'expérimentation, etc.",
-        null
+        "le commerce de gros d'animaux sur pied destinés à l'élevage, l'engraissage, l'abattage, le dressage, l'expérimentation, etc."
       ],
       "contenuAnnexe": [
         "le commerce de gros d'animaux de compagnie"
@@ -9054,8 +8797,7 @@
         "Produits associés : 46.24.10"
       ],
       "contenuCentral": [
-        "le commerce de gros de cuirs et peaux brutes, des peaux tannées ou travaillées",
-        null
+        "le commerce de gros de cuirs et peaux brutes, des peaux tannées ou travaillées"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9068,8 +8810,7 @@
       ],
       "contenuCentral": [
         "le commerce de gros de fruits et légumes frais",
-        "le commerce de gros de fruits et légumes en conserve",
-        null
+        "le commerce de gros de fruits et légumes en conserve"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9081,7 +8822,6 @@
         "Produits associés : 46.32.11p"
       ],
       "contenuCentral": [
-        null,
         "le conditionnement de viandes de volailles pour compte propre",
         "le conditionnement de viandes pour compte propre"
       ],
@@ -9098,7 +8838,6 @@
       ],
       "contenuCentral": [
         "le commerce de gros de charcuterie, salaisonnerie et autres produits à base de viandes",
-        null,
         "le commerce de gros de produits à base de viande"
       ],
       "contenuAnnexe": [],
@@ -9110,9 +8849,7 @@
       "data": [
         "Produits associés : 46.32.11p"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [
         "le commerce de gros de lapins"
       ],
@@ -9127,8 +8864,7 @@
       "contenuCentral": [
         "le commerce de gros de produits laitiers",
         "le commerce de gros d'œufs et d'ovoproduits",
-        "le commerce de gros d'huiles et de graisses comestibles d'origine animale et végétale",
-        null
+        "le commerce de gros d'huiles et de graisses comestibles d'origine animale et végétale"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9142,7 +8878,6 @@
       "contenuCentral": [
         "le commerce de gros de boissons alcoolisées",
         "le commerce de gros de boissons non alcoolisées",
-        null,
         "l'embouteillage et l'étiquetage simples dans le cadre du commerce de gros"
       ],
       "contenuAnnexe": [
@@ -9158,9 +8893,7 @@
       "data": [
         "Produits associés : 46.35.10"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": [
         "le commerce de gros de tabac non manufacturé (cf. 46.21Z)"
@@ -9174,8 +8907,7 @@
       ],
       "contenuCentral": [
         "le commerce de gros de sucre, chocolat et confiserie",
-        "le commerce de gros de produits de boulangerie",
-        null
+        "le commerce de gros de produits de boulangerie"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -9189,7 +8921,6 @@
         "Produits associés : 46.37.10"
       ],
       "contenuCentral": [
-        null,
         "le commerce de gros de cacao"
       ],
       "contenuAnnexe": [
@@ -9204,7 +8935,6 @@
         "Produits associés : 46.38.10"
       ],
       "contenuCentral": [
-        null,
         "le conditionnement des poissons, crustacés et mollusques par les mareyeurs"
       ],
       "contenuAnnexe": [
@@ -9220,7 +8950,6 @@
         "le commerce de gros alimentaire spécialisé relativement à certains des produits suivants :",
         "• farines, produits pour la boulangerie et la biscuiterie",
         "• produits à base de pommes de terre, fruits et légumes secs",
-        null,
         "le commerce de gros des aliments pour animaux de compagnie"
       ],
       "contenuAnnexe": [],
@@ -9233,8 +8962,7 @@
         "Produits associés : 46.39.11"
       ],
       "contenuCentral": [
-        "le commerce de gros alimentaire spécialisé sur la chaîne du froid, mais peu ou pas spécialisé par produit",
-        null
+        "le commerce de gros alimentaire spécialisé sur la chaîne du froid, mais peu ou pas spécialisé par produit"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9245,9 +8973,7 @@
       "data": [
         "Produits associés : 46.39.12"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -9261,8 +8987,7 @@
         "le commerce de gros de fils",
         "le commerce de gros de tissus",
         "le commerce de gros de linge de maison, etc.",
-        "le commerce de gros d'articles de mercerie : aiguilles, fils, etc.",
-        null
+        "le commerce de gros d'articles de mercerie : aiguilles, fils, etc."
       ],
       "contenuAnnexe": [
         "le commerce de gros de parasols, bâches, d'articles de sport en textiles (voiles, parachutes, tentes, sacs de couchage, etc.)"
@@ -9280,8 +9005,7 @@
         "le commerce de gros d'accessoires du vêtement tels que gants, cravates et bretelles",
         "le commerce de gros de chaussures",
         "le commerce de gros d'articles en fourrure",
-        "le commerce de gros de parapluies",
-        null
+        "le commerce de gros de parapluies"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -9302,7 +9026,6 @@
         "le commerce de gros de produits photographiques et optiques",
         "le commerce de gros d'appareils de chauffage électriques",
         "le commerce de gros de cassettes audio et vidéo, de CD, de DVD",
-        null,
         "le commerce de gros de cassettes audio et vidéo, de CD, de DVD contenant des enregistrements",
         "le commerce de gros des machines à coudre domestique",
         "le commerce de gros de cassettes vidéo, de CD, de DVD enregistrés",
@@ -9322,8 +9045,7 @@
       ],
       "contenuCentral": [
         "le commerce de gros de vaisselle et de verrerie de ménage",
-        "le commerce de gros de produits d'entretien, à usage domestique ou industriel",
-        null
+        "le commerce de gros de produits d'entretien, à usage domestique ou industriel"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9335,8 +9057,7 @@
         "Produits associés : 46.45.10"
       ],
       "contenuCentral": [
-        "le commerce de gros de parfumerie, de produits de beauté et de savons",
-        null
+        "le commerce de gros de parfumerie, de produits de beauté et de savons"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9349,7 +9070,6 @@
       ],
       "contenuCentral": [
         "le commerce de gros de produits pharmaceutiques et médicaux",
-        null,
         "le commerce de gros de produits pharmaceutiques"
       ],
       "contenuAnnexe": [
@@ -9364,8 +9084,7 @@
       "contenuCentral": [
         "le commerce de gros de mobilier domestique",
         "le commerce de gros de tapis",
-        "le commerce de gros d'appareils d'éclairage",
-        null
+        "le commerce de gros d'appareils d'éclairage"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9377,7 +9096,6 @@
         "Produits associés : 46.48.10"
       ],
       "contenuCentral": [
-        null,
         "le commerce de gros d'articles de bijouterie"
       ],
       "contenuAnnexe": [],
@@ -9401,7 +9119,6 @@
         "le commerce de gros de jeux et jouets",
         "le commerce de gros d'articles de sport, y compris de chaussures spéciales de sport, telles que des chaussures de ski",
         "le commerce de gros de cycles",
-        null,
         "le commerce de gros de bicyclettes et de pièces et d'accessoires",
         "le commerce de gros d'articles non vestimentaires en cuir",
         "le commerce de gros de chaussures à usage exclusivement sportif, telles que des chaussures de ski, à crampons, etc.",
@@ -9418,8 +9135,7 @@
       ],
       "contenuCentral": [
         "le commerce de gros d'ordinateurs et d'équipements périphériques",
-        "le commerce de gros de logiciels",
-        null
+        "le commerce de gros de logiciels"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -9440,7 +9156,6 @@
         "le commerce de gros de circuits imprimés",
         "le commerce de gros de bandes et disquettes vierges pour le son et l'image, de disques magnétiques et optiques vierges (CD, DVD)",
         "le commerce de gros d'équipements téléphoniques et de communications",
-        null,
         "le commerce de gros de cassettes audio et vidéo, de CD, de DVD vierges",
         "le commerce de gros de composants électroniques",
         "le commerce de gros de cassettes vidéo et de CD vierges"
@@ -9462,8 +9177,7 @@
         "• batteuses",
         "• machines à traire",
         "• machines et appareils pour l'aviculture, l'apiculture",
-        "• tracteurs agricoles et forestiers",
-        null
+        "• tracteurs agricoles et forestiers"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9475,8 +9189,7 @@
         "Produits associés : 46.62.11, 46.62.12, 46.62.19"
       ],
       "contenuCentral": [
-        "le commerce de gros de machines-outils de tout type et pour tout type de matériau",
-        null
+        "le commerce de gros de machines-outils de tout type et pour tout type de matériau"
       ],
       "contenuAnnexe": [
         "le commerce de gros de machines-outils commandées par ordinateur"
@@ -9492,7 +9205,6 @@
       "contenuCentral": [
         "le commerce de matériel de chantier, grues, engins de génie civil",
         "le commerce de gros d'outillage mécanique pour la construction",
-        null,
         "le commerce de gros de machines et d'équipement pour l'extraction, la construction et le génie civil"
       ],
       "contenuAnnexe": [],
@@ -9507,7 +9219,6 @@
         "Produits associés : 46.64.10"
       ],
       "contenuCentral": [
-        null,
         "le commerce de gros de machines à coudre à usage professionnel"
       ],
       "contenuAnnexe": [
@@ -9524,8 +9235,7 @@
         "Produits associés : 46.65.10"
       ],
       "contenuCentral": [
-        "le commerce de gros de biens produits en 31.01Z « Fabrication de meubles de bureau et de magasin »",
-        null
+        "le commerce de gros de biens produits en 31.01Z « Fabrication de meubles de bureau et de magasin »"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9536,7 +9246,6 @@
       "data": [],
       "contenuCentral": [
         "le commerce de gros de machines et d'équipements de bureau, à l'exception des ordinateurs et des équipements périphériques",
-        null,
         "le commerce de gros de machines et d'équipements de bureau (à l'exception des ordinateurs et des équipements périphériques)"
       ],
       "contenuAnnexe": [],
@@ -9550,8 +9259,7 @@
       ],
       "contenuCentral": [
         "le commerce de gros de fils, d'interrupteurs et d'autres matériels d'installation électrique à usage professionnel",
-        "le commerce de gros d'autres matériels électriques tels les moteurs et les transformateurs",
-        null
+        "le commerce de gros d'autres matériels électriques tels les moteurs et les transformateurs"
       ],
       "contenuAnnexe": [
         "le commerce de gros de matériel électrique de signalisation routière",
@@ -9569,8 +9277,7 @@
         "le commerce de gros de matériels de transport autres que les véhicules automobiles, les cycles et les motocycles",
         "le commerce de gros de robots pour chaînes de montage",
         "le commerce de gros de matériel de manutention, de levage",
-        "le commerce de gros d'autres machines et équipements utilisés dans l'industrie",
-        null
+        "le commerce de gros d'autres machines et équipements utilisés dans l'industrie"
       ],
       "contenuAnnexe": [
         "le commerce de gros de matériel de garage, de soudage",
@@ -9595,8 +9302,7 @@
         "Produits associés : 46.69.12p, 46.69.19p"
       ],
       "contenuCentral": [
-        "le commerce de gros de machines et équipements utilisés dans le commerce et les services",
-        null
+        "le commerce de gros de machines et équipements utilisés dans le commerce et les services"
       ],
       "contenuAnnexe": [
         "le commerce de gros à destination du commerce et des services d'appareils aérauliques tels que ventilateurs, climatiseurs, machines et équipements pour le conditionnement de l'air"
@@ -9615,7 +9321,6 @@
         "• pétrole brut, gasoil, essence, mazout, kérosène",
         "• gaz de pétrole liquéfié, butane et propane",
         "• huiles de graissage et graisses lubrifiantes, produits pétroliers raffinés",
-        null,
         "le commerce de gros de combustibles gazeux",
         "le commerce de gros de carburants"
       ],
@@ -9632,8 +9337,7 @@
         "le commerce de gros de minerais métalliques ferreux et non ferreux",
         "le commerce de gros de métaux ferreux et non ferreux sous formes primaires",
         "le commerce de gros de demi-produits en métaux ferreux et non ferreux n.c.a.",
-        "le commerce de gros d'or et d'autres métaux précieux",
-        null
+        "le commerce de gros d'or et d'autres métaux précieux"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -9652,8 +9356,7 @@
         "le commerce de gros de matériaux de construction :",
         "• sable, gravier, ciment, plâtre, briques, etc.",
         "le commerce de gros de bâtiments préfabriqués",
-        "le commerce de gros de verre plat et de miroiterie",
-        null
+        "le commerce de gros de verre plat et de miroiterie"
       ],
       "contenuAnnexe": [
         "le commerce de gros d'isolants thermiques",
@@ -9668,7 +9371,6 @@
       "data": [],
       "contenuCentral": [
         "le commerce de gros de peintures et de vernis",
-        null,
         "le commerce de gros d'appareils sanitaires"
       ],
       "contenuAnnexe": [],
@@ -9682,8 +9384,7 @@
       ],
       "contenuCentral": [
         "le commerce de gros de quincaillerie générale (visserie, boulonnerie, clous, fils, grillages, tréfilés)",
-        "le commerce de gros d'outils tels que marteaux, scies, tournevis et outils similaires à main",
-        null
+        "le commerce de gros d'outils tels que marteaux, scies, tournevis et outils similaires à main"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9699,8 +9400,7 @@
         "le commerce de gros de fixations",
         "le commerce de gros de chaudières",
         "le commerce de gros de fournitures pour installations sanitaires :",
-        "• tubes, tuyaux, raccords de tuyauterie, robinets, raccordements en T, tuyaux en caoutchouc, etc.",
-        null
+        "• tubes, tuyaux, raccords de tuyauterie, robinets, raccordements en T, tuyaux en caoutchouc, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -9716,8 +9416,7 @@
       "contenuCentral": [
         "le commerce de gros de produits chimiques industriels :",
         "• aniline, encres d'imprimerie, huiles essentielles, gaz industriels, colles chimiques, matières colorantes, résine synthétique, méthanol, paraffine, parfums et essences, soude, sel industriel, acides et soufre, produits amylacés, etc.",
-        "le commerce de gros d'engrais et de produits phytosanitaires",
-        null
+        "le commerce de gros d'engrais et de produits phytosanitaires"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9734,7 +9433,6 @@
         "le commerce de gros de fibres textiles, etc.",
         "le commerce de gros de papier et carton en vrac",
         "le commerce de gros de pierres précieuses",
-        null,
         "le commerce de gros de fibres textiles"
       ],
       "contenuAnnexe": [
@@ -9750,7 +9448,6 @@
       ],
       "contenuCentral": [
         "le commerce de gros de déchets et débris métalliques et non métalliques et de matériaux de récupération, y compris la collecte, le tri, la séparation, le démontage de biens usés tels que les automobiles afin de récupérer des pièces réutilisables, le reconditionnement, le stockage et la livraison mais sans réelle transformation. De plus, les déchets achetés et vendus ont une valeur résiduelle",
-        null,
         "la collecte et le tri de matériaux de récupération non triés, tels que papier, plastique, etc. associé à leur vente, sans réelle transformation",
         "le démontage d'automobiles, de navires, d'ordinateurs, de télévisions et d'autres matériels à des fins de récupération de pièces pour les revendre, sans réel processus de transformation",
         "le commerce de gros de déchets métalliques"
@@ -9773,8 +9470,7 @@
         "Produits associés : 46.90.10"
       ],
       "contenuCentral": [
-        "le commerce de gros de divers produits et articles sans spécialisation particulière",
-        null
+        "le commerce de gros de divers produits et articles sans spécialisation particulière"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9788,7 +9484,6 @@
       ],
       "contenuCentral": [
         "le commerce de détail, en magasin ou par livraison à domicile, de tous produits alimentaires surgelés ou congelés",
-        null,
         "le commerce de détail de fruits et légumes surgelés",
         "le commerce de détail de poissons et crustacés surgelés"
       ],
@@ -9799,9 +9494,7 @@
       "codeApe": "47.11B",
       "title": "Commerce d'alimentation générale",
       "data": [],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -9822,8 +9515,7 @@
         "47.00.87p, 47.00.88p, 47.00.89p, 47.00.91p, 47.00.92p, 47.00.99p"
       ],
       "contenuCentral": [
-        "le commerce de détail non spécialisé à prédominance alimentaire en magasin d'une surface de vente comprise entre 120 et 400 m²",
-        null
+        "le commerce de détail non spécialisé à prédominance alimentaire en magasin d'une surface de vente comprise entre 120 et 400 m²"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9845,8 +9537,7 @@
         "47.00.87p, 47.00.88p, 47.00.89p, 47.00.91p, 47.00.92p, 47.00.99p"
       ],
       "contenuCentral": [
-        "le commerce de détail non spécialisé à prédominance alimentaire, réalisant un chiffre d'affaires alimentaire supérieur à 65 % des ventes, en magasin d'une surface de vente comprise entre 400 et 2500 m²",
-        null
+        "le commerce de détail non spécialisé à prédominance alimentaire, réalisant un chiffre d'affaires alimentaire supérieur à 65 % des ventes, en magasin d'une surface de vente comprise entre 400 et 2500 m²"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9856,8 +9547,7 @@
       "title": "Magasins multi-commerces",
       "data": [],
       "contenuCentral": [
-        "le commerce de détail non spécialisé à prédominance alimentaire, réalisant un chiffre d'affaires alimentaire inférieur à 65 % des ventes, en magasin d'une surface de vente comprise entre 400 et 2500 m²",
-        null
+        "le commerce de détail non spécialisé à prédominance alimentaire, réalisant un chiffre d'affaires alimentaire inférieur à 65 % des ventes, en magasin d'une surface de vente comprise entre 400 et 2500 m²"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9879,8 +9569,7 @@
         "47.00.87p, 47.00.88p, 47.00.89p, 47.00.91p, 47.00.92p, 47.00.99p"
       ],
       "contenuCentral": [
-        "le commerce de détail non spécialisé à prédominance alimentaire en magasin d'une surface de vente égale ou supérieure à 2500 m²",
-        null
+        "le commerce de détail non spécialisé à prédominance alimentaire en magasin d'une surface de vente égale ou supérieure à 2500 m²"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9902,8 +9591,7 @@
         "47.00.87p, 47.00.88p, 47.00.89p, 47.00.91p, 47.00.92p, 47.00.99p"
       ],
       "contenuCentral": [
-        "le commerce de détail non spécialisé sans prédominance alimentaire en magasin d'une surface de vente égale ou supérieure à 2500 m²",
-        null
+        "le commerce de détail non spécialisé sans prédominance alimentaire en magasin d'une surface de vente égale ou supérieure à 2500 m²"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -9914,7 +9602,6 @@
       "data": [],
       "contenuCentral": [
         "le commerce de détail non-spécialisé sans prédominance alimentaire en magasin d'une surface de vente inférieure à 2500 m²",
-        null,
         "les sex-shops"
       ],
       "contenuAnnexe": [
@@ -9932,8 +9619,7 @@
       ],
       "contenuCentral": [
         "le commerce de détail de fruits et légumes frais",
-        "le commerce de détail de fruits et légumes en conserve",
-        null
+        "le commerce de détail de fruits et légumes en conserve"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -9983,8 +9669,7 @@
       "title": "Commerce de détail de pain, pâtisserie et confiserie en magasin spécialisé",
       "data": [],
       "contenuCentral": [
-        "le commerce de détail de confiserie, chocolaterie, pain et pâtisserie non auto-produite",
-        null
+        "le commerce de détail de confiserie, chocolaterie, pain et pâtisserie non auto-produite"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10004,8 +9689,7 @@
       "contenuCentral": [
         "le commerce de détail de boissons (non destinées à la consommation sur place) :",
         "• boissons alcoolisées",
-        "• boissons non alcoolisées",
-        null
+        "• boissons non alcoolisées"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10020,8 +9704,7 @@
       ],
       "contenuCentral": [
         "le commerce de détail de tabac",
-        "le commerce de détail de produits à base de tabac",
-        null
+        "le commerce de détail de produits à base de tabac"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -10052,7 +9735,6 @@
       ],
       "contenuCentral": [
         "le commerce de détail de carburants pour véhicules automobiles et motocycles",
-        null,
         "le commerce de détail de carburant pour véhicules automobiles"
       ],
       "contenuAnnexe": [
@@ -10073,8 +9755,7 @@
         "le commerce de détail d'ordinateurs",
         "le commerce de détail d'équipements périphériques",
         "le commerce de détail de consoles de jeux vidéo",
-        "le commerce de détail de logiciels non personnalisés, y compris les jeux vidéo",
-        null
+        "le commerce de détail de logiciels non personnalisés, y compris les jeux vidéo"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10087,9 +9768,7 @@
       "data": [
         "Produits associés : 47.00.32p"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -10102,8 +9781,7 @@
       "contenuCentral": [
         "le commerce de détail d'appareils de radio et de télévision",
         "le commerce de détail d'appareils audio et vidéo",
-        "le commerce de détail de lecteurs et enregistreurs de CD et de DVD",
-        null
+        "le commerce de détail de lecteurs et enregistreurs de CD et de DVD"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -10119,8 +9797,7 @@
         "le commerce de détail de fils à tricoter",
         "le commerce de détail de matériaux de base pour la fabrication de tapis, de tapisseries ou de broderies",
         "le commerce de détail de textiles",
-        "le commerce de détail d'articles de mercerie : aiguilles, fils, etc.",
-        null
+        "le commerce de détail d'articles de mercerie : aiguilles, fils, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10140,8 +9817,7 @@
         "le commerce de détail de peintures, de vernis et d'émaux",
         "le commerce de détail de verre plat",
         "le commerce de détail d'autres matériaux de construction tels que briques, bois, appareils sanitaires",
-        "le commerce de détail de matériaux et de matériels de bricolage",
-        null
+        "le commerce de détail de matériaux et de matériels de bricolage"
       ],
       "contenuAnnexe": [
         "le commerce de détail de tondeuses à gazon, quel que soit le mode de propulsion",
@@ -10163,8 +9839,7 @@
         "le commerce de détail de peintures, de vernis et d'émaux",
         "le commerce de détail de verre plat",
         "le commerce de détail d'autres matériaux de construction tels que briques, bois, appareils sanitaires",
-        "le commerce de détail de matériaux et de matériels de bricolage",
-        null
+        "le commerce de détail de matériaux et de matériels de bricolage"
       ],
       "contenuAnnexe": [
         "le commerce de détail de tondeuses à gazon, quel que soit le mode de propulsion",
@@ -10184,7 +9859,6 @@
         "le commerce de détail de tapis et moquettes",
         "le commerce de détail de rideaux et de voilages",
         "le commerce de détail de papiers peints et de revêtements de sols",
-        null,
         "le commerce de détail de rideaux et de voilage"
       ],
       "contenuAnnexe": [],
@@ -10198,9 +9872,7 @@
       "data": [
         "Produits associés : 47.00.54p"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": [
         "le commerce de détail d'appareils audio et vidéo (cf. 47.43Z)"
@@ -10214,8 +9886,7 @@
       ],
       "contenuCentral": [
         "le commerce de détail de mobilier domestique",
-        "le commerce de détail de mobilier de bureau",
-        null
+        "le commerce de détail de mobilier de bureau"
       ],
       "contenuAnnexe": [
         "le commerce de détail de matelas et de sommiers",
@@ -10239,7 +9910,6 @@
         "le commerce de détail d'instruments de musique et de partitions",
         "le commerce de détail de systèmes de sécurité à alarmes électriques, de dispositifs de verrouillage et de coffres-forts, sans services d'installation ou de maintenance",
         "le commerce de détail d'appareils et d'articles de ménage ou d'économie domestique n.c.a.",
-        null,
         "la vente au détail de systèmes électriques de sécurité, dispositifs de verrouillage mécaniques ou électroniques, coffres-forts et chambres fortes en magasin spécialisé, sans services de surveillance, d'installation ou de maintenance"
       ],
       "contenuAnnexe": [],
@@ -10255,8 +9925,7 @@
         "Produits associés : 47.00.61p"
       ],
       "contenuCentral": [
-        "le commerce de détail de livres de toute nature",
-        null
+        "le commerce de détail de livres de toute nature"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10269,9 +9938,7 @@
       "data": [
         "Produits associés : 47.00.62p, 47.00.63p"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [
         "le commerce de détail de fournitures de bureau telles que stylos, crayons, papier, etc."
       ],
@@ -10286,7 +9953,6 @@
       "contenuCentral": [
         "le commerce de détail d'enregistrements musicaux, de cassettes audio, de CD et de cassettes",
         "le commerce de détail de vidéocassettes et de DVD",
-        null,
         "le commerce de détail de bandes et disques vierges ou enregistrés",
         "le commerce de détail de cassettes vidéo, de CD, de DVD",
         "le commerce de détail de cassettes vidéo et de DVD enregistrées"
@@ -10304,7 +9970,6 @@
       ],
       "contenuCentral": [
         "le commerce de détail d'articles de sport, d'articles pour la pêche, de matériel de camping, de bateaux et de bicyclettes",
-        null,
         "le commerce de détail de bicyclettes et de pièces et d'accessoires",
         "le commerce de détail de chaussures à usage exclusif sportif, telles que des chaussures de ski, chaussures à crampons, etc.",
         "le commerce de détail de chaussures spéciales de sport, telles que des chaussures de ski, etc."
@@ -10323,8 +9988,7 @@
         "Produits associés : 47.00.67p"
       ],
       "contenuCentral": [
-        "le commerce de détail de jeux et de jouets, en toutes matières",
-        null
+        "le commerce de détail de jeux et de jouets, en toutes matières"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10342,7 +10006,6 @@
         "le commerce de détail d'articles d'habillement",
         "le commerce de détail d'articles en fourrure",
         "le commerce de détail d'accessoires du vêtement tels que gants, cravates, bretelles, etc.",
-        null,
         "le commerce de détail d'accessoires du vêtement tels que gants, ceintures, bretelles, etc. en cuir"
       ],
       "contenuAnnexe": [],
@@ -10358,8 +10021,7 @@
         "Produits associés : 47.00.72p"
       ],
       "contenuCentral": [
-        "le commerce de détail de chaussures",
-        null
+        "le commerce de détail de chaussures"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10374,8 +10036,7 @@
       ],
       "contenuCentral": [
         "le commerce de détail d'articles en cuir",
-        "le commerce de détail d'accessoires de voyage en cuir ou en cuirs synthétiques",
-        null
+        "le commerce de détail d'accessoires de voyage en cuir ou en cuirs synthétiques"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10427,8 +10088,7 @@
         "Produits associés : 47.00.76p"
       ],
       "contenuCentral": [
-        "le commerce de détail de parfums, de produits de beauté, de toilette et d'hygiène",
-        null
+        "le commerce de détail de parfums, de produits de beauté, de toilette et d'hygiène"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -10442,8 +10102,7 @@
       "contenuCentral": [
         "le commerce de détail de fleurs, en pots ou coupées et compositions florales, de plantes et de graines",
         "le commerce de détail de plants, arbres et arbustes",
-        "le commerce de détail d'engrais et de produits phytosanitaires",
-        null
+        "le commerce de détail d'engrais et de produits phytosanitaires"
       ],
       "contenuAnnexe": [
         "le commerce de détail d'animaux de compagnie, d'aliments et d'articles pour animaux de compagnie"
@@ -10456,9 +10115,7 @@
       "data": [
         "Produits associés : 47.00.82p"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -10469,8 +10126,7 @@
         "Produits associés : 47.00.83p"
       ],
       "contenuCentral": [
-        "les activités des opticiens",
-        null
+        "les activités des opticiens"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -10483,7 +10139,6 @@
       ],
       "contenuCentral": [
         "le commerce de détail de mazout, de gaz en bonbonnes, de charbon et de bois pour usages domestiques",
-        null,
         "le commerce de détail de gaz en bouteilles",
         "le commerce de détail de gaz de pétrole liquéfié pour la cuisine ou le chauffage"
       ],
@@ -10507,7 +10162,6 @@
         "le commerce de détail de timbres-poste et de pièces de monnaie",
         "la vente au détail d'objets d'art",
         "le commerce de détail de produits non alimentaires n.c.a.",
-        null,
         "le commerce de détail d'articles de tir et de chasse (y compris les munitions)"
       ],
       "contenuAnnexe": [],
@@ -10572,9 +10226,7 @@
       "data": [
         "Produits associés : 47.00.51p, 47.00.52p, 47.00.71p, 47.00.72p"
       ],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -10625,8 +10277,7 @@
       ],
       "contenuCentral": [
         "le commerce de détail de tous types de produits par correspondance",
-        "le commerce de détail de tous types de produits par Internet",
-        null
+        "le commerce de détail de tous types de produits par Internet"
       ],
       "contenuAnnexe": [
         "la vente directe par téléphone ou par le truchement de la radio ou de la télévision",
@@ -10741,8 +10392,7 @@
         "géographique",
         "le transport interurbain de passagers par chemin de fer",
         "l'exploitation de voitures-lits et de voitures-restaurants dans le cadre d'une exploitation intégrée",
-        "par les compagnies de chemin de fer",
-        null
+        "par les compagnies de chemin de fer"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10786,7 +10436,6 @@
       ],
       "contenuCentral": [
         "le transport par voie terrestre de passagers par des systèmes de transport urbain et suburbain utilisant divers modes de transport, tels que bus, chemins de fer, tramway, trolley-bus, métro souterrain ou aérien, etc.",
-        null,
         "le transport de voyageurs par des systèmes de transit urbain et suburbain",
         "l'exploitation de funiculaires, de téléphériques, etc., s'inscrivant dans le cadre de systèmes de transport urbain et suburbain"
       ],
@@ -10835,8 +10484,7 @@
         "les autres transports routiers réguliers de passagers :",
         "• exploitation de lignes régulières d'autocar sur de longues distances, selon des horaires déterminés, même à caractère saisonnier",
         "• navettes d'aéroports régulières",
-        "• autres transports routiers réguliers de passagers n.c.a.",
-        null
+        "• autres transports routiers réguliers de passagers n.c.a."
       ],
       "contenuAnnexe": [
         "l'exploitation d'autobus scolaires et de bus de transport de personnel"
@@ -10903,8 +10551,7 @@
         "• le transport en vrac, y compris par camions-citernes",
         "• le transport de voitures",
         "• le transport de déchets, sans collecte ni élimination",
-        "• le transport routier interurbain d'autres marchandises",
-        null
+        "• le transport routier interurbain d'autres marchandises"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -10917,8 +10564,7 @@
         "49.41.17p, 49.41.18p, 49.41.19p"
       ],
       "contenuCentral": [
-        "le transport routier de fret à caractère urbain ou de proximité, consistant à enlever ou à livrer des marchandises, emballées ou non, lors de déplacements de courte durée",
-        null
+        "le transport routier de fret à caractère urbain ou de proximité, consistant à enlever ou à livrer des marchandises, emballées ou non, lors de déplacements de courte durée"
       ],
       "contenuAnnexe": [
         "la livraison de béton prêt à l'emploi",
@@ -11000,7 +10646,6 @@
         "le transport maritime et côtier, régulier ou non, de passagers :",
         "• l'exploitation de bateaux d'excursion, de croisière ou de tourisme",
         "• l'exploitation de bacs, de bateaux-taxis, etc.",
-        null,
         "la location de bateaux de plaisance avec équipage pour le transport maritime et côtier, par exemple pour des croisières de pêche"
       ],
       "contenuAnnexe": [
@@ -11084,7 +10729,6 @@
         "le transport aérien de passagers sur des lignes régulières et avec des horaires déterminés",
         "les vols par charters pour passagers",
         "les vols de tourisme (excursions aériennes)",
-        null,
         "l'exploitation d'avion-taxis"
       ],
       "contenuAnnexe": [
@@ -11104,8 +10748,7 @@
       ],
       "contenuCentral": [
         "le transport aérien de fret sur des lignes régulières et avec des horaires déterminés",
-        "les transports aériens non réguliers de fret",
-        null
+        "les transports aériens non réguliers de fret"
       ],
       "contenuAnnexe": [
         "la location d'appareils de transport aérien avec pilote aux fins de transport de fret"
@@ -11140,8 +10783,7 @@
         "Produits associés : 52.10.11"
       ],
       "contenuCentral": [
-        "l'exploitation pour compte de tiers d'installations d'entreposage frigorifique ou de lieux de stockage réfrigéré, y compris à caractère industriel ou agricole",
-        null
+        "l'exploitation pour compte de tiers d'installations d'entreposage frigorifique ou de lieux de stockage réfrigéré, y compris à caractère industriel ou agricole"
       ],
       "contenuAnnexe": [
         "la congélation par air forcé"
@@ -11213,7 +10855,6 @@
         "• les activités liées à la navigation, au pilotage et au mouillage",
         "• les activités de sauvetage et de déchargement par allèges",
         "• les services de signalisation par phares et balises",
-        null,
         "les activités de sauvetage maritime"
       ],
       "contenuAnnexe": [
@@ -11236,8 +10877,7 @@
         "les activités liées au transport aérien de personnes, d'animaux ou de fret :",
         "• l'exploitation des aéroports et notamment des terminaux aéroportuaires",
         "• les activités de contrôle des aéroports et de la circulation aérienne",
-        "• les services au sol sur les terrains d'aviation, etc.",
-        null
+        "• les services au sol sur les terrains d'aviation, etc."
       ],
       "contenuAnnexe": [
         "les activités des consignataires aériens",
@@ -11261,8 +10901,7 @@
       ],
       "contenuCentral": [
         "le chargement et le déchargement de marchandises ou de bagages dans les ports maritimes",
-        "l'arrimage et le débardage de conteneurs et d'autres marchandises dans les ports maritimes",
-        null
+        "l'arrimage et le débardage de conteneurs et d'autres marchandises dans les ports maritimes"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -11278,7 +10917,6 @@
       "contenuCentral": [
         "le chargement et le déchargement de marchandises ou de bagages, lors des ruptures de charge, ailleurs que dans les ports maritimes (manutention routière, ferroviaire, fluviale et sur aéroports)",
         "l'arrimage et le débardage de conteneurs et d'autres marchandises ailleurs que dans les ports maritimes",
-        null,
         "la manutention du fret"
       ],
       "contenuAnnexe": [],
@@ -11294,8 +10932,7 @@
       ],
       "contenuCentral": [
         "la collecte d'envois multiples (groupage) de moins de 3 tonnes groupés sur des quais pour constituer des chargements complets aptes à remplir des véhicules de transport pour dégroupage au quai du centre réceptionnaire et livraison au domicile du destinataire",
-        "le fret express de marchandises",
-        null
+        "le fret express de marchandises"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -11338,8 +10975,7 @@
         "la levée, le tri, l'acheminement et la distribution (nationale ou internationale) de lettres, colis et petits paquets (assimilés à du courrier) par les services postaux chargés de l'obligation de service universel. Il peut être fait appel à un ou à plusieurs modes de transport et l'acheminement peut s'effectuer par un moyen de transport détenu en propre (privé) ou par un moyen de transport public.",
         "la collecte du courrier et des colis dans les boîtes à lettres publiques ou les bureaux de poste",
         "l'acheminement des journaux au tarif de la presse",
-        "les services des bureaux de poste tels que la poste restante",
-        null
+        "les services des bureaux de poste tels que la poste restante"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -11384,8 +11020,7 @@
         "Produits associés : 55.10.10"
       ],
       "contenuCentral": [
-        "la mise à disposition d'un lieu d'hébergement (hôtels et hébergement similaire), généralement sur une base journalière ou hebdomadaire, pour un séjour de courte durée. L'offre comprend la fourniture d'un hébergement meublé dans des chambres ou des suites. Elle propose obligatoirement un service quotidien des lits et de nettoyage de la chambre. Cette offre peut comprendre également une gamme d'autres services tels que repas et boissons, garage, blanchisserie, piscine et salle de culture physique, installations pour conférences et séminaires",
-        null
+        "la mise à disposition d'un lieu d'hébergement (hôtels et hébergement similaire), généralement sur une base journalière ou hebdomadaire, pour un séjour de courte durée. L'offre comprend la fourniture d'un hébergement meublé dans des chambres ou des suites. Elle propose obligatoirement un service quotidien des lits et de nettoyage de la chambre. Cette offre peut comprendre également une gamme d'autres services tels que repas et boissons, garage, blanchisserie, piscine et salle de culture physique, installations pour conférences et séminaires"
       ],
       "contenuAnnexe": [
         "les services de centres ou villages de vacances avec service de chambre quotidien"
@@ -11400,7 +11035,6 @@
       "data": [],
       "contenuCentral": [
         "la mise à disposition d'un lieu d'hébergement, généralement sur une base journalière ou hebdomadaire, principalement pour un séjour de courte durée comprenant, dans un espace limité, des pièces complètement meublées ou des espaces de vie, de repas et de repos et disposant d'installations pour cuisiner ou de cuisines intégrées. Il peut s'agir d'appartements situés dans de petits bâtiments indépendants à plusieurs niveaux ou dans des",
-        null,
         "les refuges et cabanes de montagne"
       ],
       "contenuAnnexe": [],
@@ -11457,8 +11091,7 @@
         "Produits associés : 56.10.11, 56.10.12"
       ],
       "contenuCentral": [
-        "l'activité de restauration avec un service à la table",
-        null
+        "l'activité de restauration avec un service à la table"
       ],
       "contenuAnnexe": [
         "les activités des bars et des restaurants avec service de salle installés à bord de moyens de transport, s'ils sont exploités par des unités distinctes"
@@ -11472,8 +11105,7 @@
         "Produits associés : 56.10.13p"
       ],
       "contenuCentral": [
-        "la restauration en libre-service de type cafétéria",
-        null
+        "la restauration en libre-service de type cafétéria"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11516,8 +11148,7 @@
         "Produits associés : 56.21.11, 56.21.19"
       ],
       "contenuCentral": [
-        "la fourniture de services de restauration sur la base de dispositions contractuelles conclues avec le client, à l'endroit précisé par celui-ci et pour une occasion particulière",
-        null
+        "la fourniture de services de restauration sur la base de dispositions contractuelles conclues avec le client, à l'endroit précisé par celui-ci et pour une occasion particulière"
       ],
       "contenuAnnexe": [
         "l'organisation de noces, banquets, cocktails, buffets, lunchs et réceptions diverses à domicile ou dans des lieux choisis par le client"
@@ -11535,8 +11166,7 @@
       ],
       "contenuCentral": [
         "les activités des entreprises fournissant des repas, généralement préparés dans des cuisines centrales, par exemple pour des cantines, restaurants d'entreprises ou des entreprises de transport",
-        "l'exploitation en concession de services de restauration",
-        null
+        "l'exploitation en concession de services de restauration"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -11583,9 +11213,7 @@
       "codeApe": "58.11Z",
       "title": "Édition de livres",
       "data": [],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -11600,7 +11228,6 @@
         "la publication de fichiers d'adresses",
         "l'édition d'annuaires (téléphoniques, professionnels, etc.)",
         "l'édition d'autres répertoires et recueils, comme la jurisprudence, les compendiums pharmaceutiques, etc.",
-        null,
         "l'édition en ligne de répertoires et de fichiers d'adresses"
       ],
       "contenuAnnexe": [],
@@ -11614,7 +11241,6 @@
       ],
       "contenuCentral": [
         "l'édition de journaux, y compris les journaux publicitaires, paraissant au moins quatre fois par semaine. Ces informations peuvent être publiées sous forme imprimée ou électronique, y compris sur Internet",
-        null,
         "l'édition de journaux publicitaires"
       ],
       "contenuAnnexe": [],
@@ -11674,8 +11300,7 @@
         "Produits associés : 58.21.10, 58.21.20, 58.21.30, 58.21.40"
       ],
       "contenuCentral": [
-        "l'édition de logiciels de jeux électroniques pour tout type de plateformes, sur support physique, en téléchargement ou en ligne",
-        null
+        "l'édition de logiciels de jeux électroniques pour tout type de plateformes, sur support physique, en téléchargement ou en ligne"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11688,8 +11313,7 @@
       ],
       "contenuCentral": [
         "l'édition de logiciels système d'exploitation",
-        "l'édition de logiciels réseau",
-        null
+        "l'édition de logiciels réseau"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11701,8 +11325,7 @@
         "Produits associés : 58.29.14, 58.29.31p, 58.29.40p, 58.29.50p"
       ],
       "contenuCentral": [
-        "l'édition de logiciels outils de développement et de langages de programmation",
-        null
+        "l'édition de logiciels outils de développement et de langages de programmation"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11738,8 +11361,7 @@
       "contenuCentral": [
         "la production et la réalisation de films et de programmes audiovisuels de tous types quelle qu'en soit la durée, destinés à la diffusion télévisuelle :",
         "• œuvres de stock (séries, téléfilms, reportages, documentaires, dessins animés, etc.)",
-        "• œuvres de flux (émissions en direct ou retransmises telles que jeux, variétés, météo, sports, journaux d'information, etc.)",
-        null
+        "• œuvres de flux (émissions en direct ou retransmises telles que jeux, variétés, météo, sports, journaux d'information, etc.)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11749,8 +11371,7 @@
       "title": "Production de films institutionnels et publicitaires",
       "data": [],
       "contenuCentral": [
-        "la production et la réalisation :",
-        null
+        "la production et la réalisation :"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11781,8 +11402,7 @@
       ],
       "contenuCentral": [
         "les activités de post-production de films cinématographiques, de vidéo et de programmes de télévision, telles que montage, conversion film/bande, post-synchronisation, sous-titrage, création de génériques, infographie, animations d'images et effets spéciaux, doublage, de même que le développement et le traitement de films cinématographiques",
-        "les activités des laboratoires spécialisés dans la production de films d'animation",
-        null
+        "les activités des laboratoires spécialisés dans la production de films d'animation"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -11800,9 +11420,7 @@
       "codeApe": "59.13A",
       "title": "Distribution de films cinématographiques",
       "data": [],
-      "contenuCentral": [
-        null
-      ],
+      "contenuCentral": [],
       "contenuAnnexe": [],
       "contenuExclu": []
     },
@@ -11813,8 +11431,7 @@
         "Produits associés : 59.13.11p, 59.13.12p"
       ],
       "contenuCentral": [
-        "l'édition et la distribution de films de tous types sur bandes vidéo, CD ou de DVD à destination du public",
-        null
+        "l'édition et la distribution de films de tous types sur bandes vidéo, CD ou de DVD à destination du public"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -11833,7 +11450,6 @@
       "contenuCentral": [
         "la projection de films cinématographiques ou de bandes vidéo dans des salles de cinéma, en plein air ou dans d'autres installations de projection",
         "les activités des ciné-clubs",
-        null,
         "l'exploitation de cinémas"
       ],
       "contenuAnnexe": [],
@@ -11871,8 +11487,7 @@
         "Produits associés : 60.10.11, 60.10.12, 60.10.20, 60.10.30"
       ],
       "contenuCentral": [
-        "l'édition de chaines de radio, consistant à créer du contenu, sous forme de grilles de programmes (ou programmes complets) de radio, avant de le diffuser ou de prendre les dispositions nécessaires à sa diffusion pour leur compte ou à sa distribution par des tiers",
-        null
+        "l'édition de chaines de radio, consistant à créer du contenu, sous forme de grilles de programmes (ou programmes complets) de radio, avant de le diffuser ou de prendre les dispositions nécessaires à sa diffusion pour leur compte ou à sa distribution par des tiers"
       ],
       "contenuAnnexe": [
         "les activités des réseaux de radiodiffusion, constituant et transmettant des grilles de programmes audio destinées à des stations affiliées ou à des abonnés, par les ondes, le câble ou le satellite",
@@ -11891,8 +11506,7 @@
         "Produits associés : 60.20.11p, 60.20.12p, 60.20.13p, 60.20.20p, 60.20.30p"
       ],
       "contenuCentral": [
-        "les activités d'édition de chaînes de télévision généralistes",
-        null
+        "les activités d'édition de chaînes de télévision généralistes"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -11930,8 +11544,7 @@
         "l'exploitation et l'entretien des installations de commutation et de transmission permettant les communications de point à point par l'intermédiaire de lignes terrestres, de micro-ondes ou une combinaison de lignes terrestres et de liaisons satellites",
         "l'exploitation de systèmes de câblodistribution (par exemple pour la transmission des données et des signaux de télévision)",
         "la fourniture de communications par télégraphe et d'autres communications non vocales utilisant leur propre infrastructure",
-        "l'acquisition de l'accès et de la capacité réseau auprès des propriétaires et opérateurs de réseaux et la fourniture de services de télécommunications s'appuyant sur cette capacité, aux entreprises et aux ménages",
-        null
+        "l'acquisition de l'accès et de la capacité réseau auprès des propriétaires et opérateurs de réseaux et la fourniture de services de télécommunications s'appuyant sur cette capacité, aux entreprises et aux ménages"
       ],
       "contenuAnnexe": [
         "l'accès à Internet par l'opérateur de l'infrastructure filaire"
@@ -11948,8 +11561,7 @@
       ],
       "contenuCentral": [
         "les activités d'exploitation, d'entretien et d'accès à des installations de transmission de la voix, de données, de textes, de sons et d'images en utilisant une infrastructure de télécommunications sans fil. Ces installations permettent la transmission omnidirectionnelle par les ondes et peuvent reposer sur une seule technologie ou sur une combinaison de plusieurs technologies.",
-        "Les services de téléavertissement (paging) ainsi que les services d'exploitation et d'entretien de téléphonie cellulaire et autres réseaux de télécommunications sans fil sont inclus.",
-        null
+        "Les services de téléavertissement (paging) ainsi que les services d'exploitation et d'entretien de téléphonie cellulaire et autres réseaux de télécommunications sans fil sont inclus."
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11962,8 +11574,7 @@
       ],
       "contenuCentral": [
         "les activités d'exploitation, d'entretien et d'accès à des installations de transmission de la voix, de données, de textes, de sons et d'images en utilisant une infrastructure de télécommunications par satellite",
-        "la transmission et la distribution auprès du public, via des systèmes satellites de diffusion directe, de programmes ou de bouquets de programmes (ou bouquets de chaînes) contenant des images, du son et des textes fournis par des chaînes ou réseaux de télévision ou de radio",
-        null
+        "la transmission et la distribution auprès du public, via des systèmes satellites de diffusion directe, de programmes ou de bouquets de programmes (ou bouquets de chaînes) contenant des images, du son et des textes fournis par des chaînes ou réseaux de télévision ou de radio"
       ],
       "contenuAnnexe": [
         "l'accès à Internet par l'opérateur de l'infrastructure satellite"
@@ -12007,7 +11618,6 @@
         "pages web",
         "l'adaptation de logiciels, c'est-à-dire la modification et la configuration d'une application existante pour la rendre opérationnelle dans l'environnement informatique du client",
         "développeur",
-        null,
         "l'écriture et l'édition de logiciels pour consoles de jeux vidéo",
         "la programmation informatique",
         "la conception et la réalisation de sites et de pages web",
@@ -12030,7 +11640,6 @@
       "contenuCentral": [
         "la planification et la conception (études, conseil) de systèmes informatiques intégrant les technologies du matériel, des logiciels et des communications. Les services peuvent comprendre la formation des utilisateurs concernés.",
         "le conseil en développement logiciel personnalisé : analyse des besoins et des problèmes des utilisateurs, formulation de propositions de solutions",
-        null,
         "la planification et la conception de systèmes informatiques intégrant les technologies du matériel, des logiciels et des communications, même si la fourniture de logiciels en fait partie",
         "les services de conseil informatique"
       ],
@@ -12044,8 +11653,7 @@
         "Produits associés : 62.02.30"
       ],
       "contenuCentral": [
-        "la maintenance logicielle pour compte de tiers de systèmes et d'applications informatiques",
-        null
+        "la maintenance logicielle pour compte de tiers de systèmes et d'applications informatiques"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -12058,7 +11666,6 @@
       ],
       "contenuCentral": [
         "les services de gestion et d'exploitation sur site des systèmes informatiques et/ou de traitement des données du client, ainsi que les services d'assistance connexes",
-        null,
         "la gestion d'installations informatiques",
         "la prestation de services de gestion et d'exploitation sur site des systèmes informatiques et/ou de traitement des données du client"
       ],
@@ -12104,7 +11711,6 @@
       "contenuCentral": [
         "la fourniture d'infrastructures destinées aux services d'hébergement, de traitement des données et d'autres activités similaires. Elle inclut les activités d'hébergement spécialisées comme les services d'hébergement de sites web, d'applications ou de services de diffusion continue (streaming) ou encore la mise à la disposition de clients d'installations informatiques à temps partagé sur gros ordinateurs.",
         "Les activités de traitement des données comprennent les services de traitement complets et la préparation de rapports spécifiques à partir des données fournies par le client, les services spécialisés de saisie et de traitement automatisé des données, y compris les activités de gestion de bases de données.",
-        null,
         "la mise à disposition de logiciels en ligne (hébergement d'applications et fourniture de services applicatifs)",
         "le traitement et l'hébergement des données",
         "les activités de traitement et de tabulation des données"
@@ -12194,7 +11800,6 @@
         "la surveillance des opérations bancaires",
         "la détention de réserves de change",
         "les activités de la banque centrale en tant que banque du gouvernement",
-        null,
         "les activités de la banque centrale"
       ],
       "contenuAnnexe": [],
@@ -12209,7 +11814,6 @@
         "• établissements bancaires",
         "• caisses d'épargne",
         "• caisses de crédit mutuel",
-        null,
         "les activités se rattachant à l'émission et au paiement de mandats ainsi que les activités des caisses d'épargne postales et d'autres activités à caractère financier",
         "l'octroi de prêts au logement par des institutions spécialisées recevant aussi des dépôts"
       ],
@@ -12229,7 +11833,6 @@
       "data": [],
       "contenuCentral": [
         "les activités des sociétés holding, c'est-à-dire des entités qui détiennent les actifs (possèdent le contrôle des fonds propres) d'un groupe de sociétés filiales et dont la principale activité est d'être propriétaire de ce groupe. Les sociétés holding appartenant à cette sous-classe ne fournissent aucun autre service aux entreprises dans lesquelles elles détiennent des fonds propres, en d'autres termes, elles n'administrent pas ou ne gèrent pas d'autres entités.",
-        null,
         "les activités des sociétés holding",
         "les activités des sociétés holding n'intervenant pas dans la gestion"
       ],
@@ -12249,8 +11852,7 @@
         "les sociétés d'investissement à capital variable",
         "les sociétés d'investissement à capital fixe",
         "les fiducies, les comptes de patrimoine ou d'agence, administrés pour le compte des bénéficiaires selon les dispositions d'une convention de fiducie, d'un testament ou d'un contrat d'agence",
-        "les fonds communs de placement",
-        null
+        "les fonds communs de placement"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -12268,8 +11870,7 @@
         "Produits associés : 64.91.10"
       ],
       "contenuCentral": [
-        "le crédit-bail, lorsque le bail couvre approximativement la durée de service escomptée du bien et que le preneur bénéficie de tous les avantages qu'offre l'utilisation de ce bien et qu'il assume tous les risques découlant de sa propriété. Le bien peut être transmissible ou non et une option d'achat est généralement disponible en fin de bail. Ce type de bail couvre tous les coûts ou presque, y compris les intérêts",
-        null
+        "le crédit-bail, lorsque le bail couvre approximativement la durée de service escomptée du bien et que le preneur bénéficie de tous les avantages qu'offre l'utilisation de ce bien et qu'il assume tous les risques découlant de sa propriété. Le bien peut être transmissible ou non et une option d'achat est généralement disponible en fin de bail. Ce type de bail couvre tous les coûts ou presque, y compris les intérêts"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -12332,8 +11933,7 @@
         "Produits associés : 65.11.10"
       ],
       "contenuCentral": [
-        "la souscription de contrats d'assurance de rente ou d'assurance vie, d'assurance invalidité et d'assurance en cas de mort ou mutilation accidentelle (avec ou sans élément d'épargne important)",
-        null
+        "la souscription de contrats d'assurance de rente ou d'assurance vie, d'assurance invalidité et d'assurance en cas de mort ou mutilation accidentelle (avec ou sans élément d'épargne important)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -12354,8 +11954,7 @@
         "• assurance voyages",
         "• assurance biens",
         "• assurance automobile, assurance maritime, assurance aérienne, assurance transports",
-        "• assurance contre les pertes financières et assurance responsabilité civile",
-        null
+        "• assurance contre les pertes financières et assurance responsabilité civile"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -12370,8 +11969,7 @@
       ],
       "contenuCentral": [
         "les activités consistant à prendre à son compte la totalité ou une partie du risque associé à des polices d'assurance émises par d'autres assureurs (assurance vie, assurance dommages, financement des pensions)",
-        "• rapatriement des dépouilles",
-        null
+        "• rapatriement des dépouilles"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -12415,8 +12013,7 @@
       ],
       "contenuCentral": [
         "l'exploitation et la supervision de marchés financiers autrement que par des organismes publics, tels que les bourses des contrats de marchandises, les bourses des contrats du marché à terme,",
-        "les bourses des titres, les bourses des valeurs, les bourses d'options sur actions ou marchandises",
-        null
+        "les bourses des titres, les bourses des valeurs, les bourses d'options sur actions ou marchandises"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -12524,7 +12121,6 @@
       ],
       "contenuCentral": [
         "les activités des agents et courtiers d'assurances (intermédiaires d'assurance) consistant en la vente, la négociation ou le démarchage de contrats d'assurance de rente et d'autres formes de contrat d'assurance",
-        null,
         "les activités des agents d'assurances",
         "les activités des agents et courtiers d'assurances"
       ],
@@ -12612,7 +12208,6 @@
         "La location s'entend ici de la mise à disposition d'un logement pour une longue durée, quelle qu'en soit la forme juridique (location à bail)."
       ],
       "contenuCentral": [
-        null,
         "la promotion immobilière à objet locatif (sociétés HLM notamment)"
       ],
       "contenuAnnexe": [],
@@ -13029,7 +12624,6 @@
         "vecteurs de gènes et d'ARN : thérapie génique, vecteurs viraux",
         "bioinformatique : construction de bases de données sur les génomes, les séquences de protéines, modélisation de processus biologiques complexes, y compris biologie systémique",
         "nanobiotechnologie : application des outils et procédés de nano/microfabrication pour construire des dispositifs permettant d'étudier les biosystèmes, avec des applications dans l'administration des médicaments, le diagnostic, etc.",
-        null,
         "les activités de recherche pour développer de nouvelles formes de graines ou les modifier"
       ],
       "contenuAnnexe": [],
@@ -13051,7 +12645,6 @@
         "• recherche-développement en sciences médicales",
         "• recherche-développement en agronomie",
         "• recherche-développement interdisciplinaire, principalement en sciences naturelles et ingénierie",
-        null,
         "les activités de recherche et de développement liées à l'ingénierie"
       ],
       "contenuAnnexe": [],
@@ -13251,7 +12844,6 @@
         "• suivi administratif des marchés",
         "• arrêté des comptes de chantiers",
         "l'ordonnancement, la planification et la coordination des chantiers",
-        null,
         "les activités des économistes de la construction"
       ],
       "contenuAnnexe": [
@@ -13713,8 +13305,7 @@
         "79.11.22, 79.11.23"
       ],
       "contenuCentral": [
-        "les activités des agences consistant principalement à vendre, en gros ou au détail, des services de voyage, voyage organisé, transport et hébergement",
-        null
+        "les activités des agences consistant principalement à vendre, en gros ou au détail, des services de voyage, voyage organisé, transport et hébergement"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -14208,8 +13799,7 @@
         "l'exécution du budget et la gestion des fonds publics et de la dette publique :",
         "• collecte et perception de fonds et contrôle des dépenses",
         "la gestion de la politique générale de recherche et développement (civile) et des fonds associés",
-        "la gestion et le fonctionnement des services généraux de planification économique et sociale ainsi que des services statistiques aux différents niveaux de l'administration publique",
-        null
+        "la gestion et le fonctionnement des services généraux de planification économique et sociale ainsi que des services statistiques aux différents niveaux de l'administration publique"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -14238,7 +13828,6 @@
         "• logement",
         "• services sociaux",
         "l'administration publique des politiques de recherche et développement destinées à améliorer le bien-être des personnes et des fonds qui y sont associés",
-        null,
         "la gestion des politiques de recherche et développement destinées à améliorer le bien-être des personnes, avec les fonds qui y sont associés"
       ],
       "contenuAnnexe": [
@@ -14282,7 +13871,6 @@
         "la gestion des politiques de recherche et développement destinées à améliorer la performance économique, avec les fonds qui y sont associés",
         "la définition et la mise en œuvre des politiques générales concernant l'emploi et le marché du travail",
         "la mise en œuvre de politiques de développement régional, par exemple pour réduire le chômage",
-        null,
         "la gestion des politiques de recherche et développement destinées à améliorer la performance et la compétitivité économiques"
       ],
       "contenuAnnexe": [
@@ -14310,7 +13898,6 @@
         "la fourniture d'une aide civile à des pays étrangers, directement ou par le truchement d'organisations internationales",
         "la fourniture d'une aide militaire à des pays étrangers",
         "la gestion du commerce extérieur ainsi que des affaires financières et techniques internationales",
-        null,
         "l'administration des missions diplomatiques ou consulaires françaises à l'étranger"
       ],
       "contenuAnnexe": [],
@@ -14334,7 +13921,6 @@
         "l'administration, le fonctionnement et le soutien des forces de défense civile",
         "la préparation aux situations d'urgence et l'organisation d'exercices auxquels participent les institutions et les populations civiles",
         "la gestion des politiques de recherche et développement relatives à la défense, avec les fonds qui y sont associés",
-        null,
         "l'administration et la gestion des forces armées",
         "les soins médicaux dispensés au personnel militaire en campagne"
       ],
@@ -14360,7 +13946,6 @@
         "le rendu de jugements et d'interprétations de la loi",
         "l'arbitrage des actions civiles",
         "l'administration des établissements pénitentiaires, y compris les services d'assistance aux détenus en vue de faciliter leur réinsertion, que cette gestion et exploitation soient assurées par des organismes publics ou par des organisations privées pour le compte de l'administration publique",
-        null,
         "les activités des tribunaux",
         "les activités des tribunaux militaires"
       ],
@@ -14381,7 +13966,6 @@
         "l'administration et le fonctionnement des forces de police régulières et des forces auxiliaires financées par les pouvoirs publics ainsi que de la police des ports, de la police des frontières, des garde-côtes et des autres forces de police spécialisées, notamment dans la surveillance de la circulation, l'enregistrement des étrangers et la tenue des fichiers des personnes arrêtées",
         "les activités d'ordre public des forces de gendarmerie",
         "la fourniture à la population d'articles de première nécessité en cas de catastrophe survenant en temps de paix",
-        null,
         "les services d'inspection, de protection et de surveillance de la pêche",
         "les services de la police"
       ],
@@ -14398,8 +13982,7 @@
       "contenuCentral": [
         "la lutte contre les incendies et leur prévention :",
         "• administration et fonctionnement des corps réguliers et des corps auxiliaires de pompiers chargés de la lutte contre les incendies, de la prévention des incendies, du sauvetage des personnes et des animaux, de l'assistance en cas de catastrophe naturelle, d'inondations, d'accidents de la circulation, etc.",
-        "organisation d'exercices avec les institutions et populations civiles",
-        null
+        "organisation d'exercices avec les institutions et populations civiles"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -14414,8 +13997,7 @@
       ],
       "contenuCentral": [
         "les activités de gestion (collecte des cotisations, versement des prestations) de la couverture des risques maladie, maternité, accident du travail, maladie professionnelle, invalidité (temporaire ou permanente), décès, vieillesse (retraite de base de la sécurité sociale) et survie (pensions de réversion)",
-        "les activités d'administration générale de sécurité sociale (ACOSS, URSSAF)",
-        null
+        "les activités d'administration générale de sécurité sociale (ACOSS, URSSAF)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -14428,7 +14010,6 @@
       ],
       "contenuCentral": [
         "l'activité des caisses de retraites complémentaires au régime de base, tous statuts confondus (AGIRC, ARRCO, IRCANTEC, etc.)",
-        null,
         "les régimes de sécurité sociale obligatoire, y compris les caisses de retraite complémentaire obligatoires"
       ],
       "contenuAnnexe": [],
@@ -14443,8 +14024,7 @@
       "contenuCentral": [
         "la gestion de l'indemnisation du chômage total ou partiel et des préretraites",
         "la gestion des divers types d'allocations familiales",
-        "la gestion du versement de revenus de substitution",
-        null
+        "la gestion du versement de revenus de substitution"
       ],
       "contenuAnnexe": [
         "la gestion des prestations logement",
@@ -14887,7 +14467,6 @@
       "contenuCentral": [
         "le transport par ambulance de patients par tout mode de transport, y compris l'avion.",
         "Ces services sont souvent fournis à l'occasion d'une urgence médicale.",
-        null,
         "le transport par ambulance",
         "le transport en ambulance",
         "les activités de transport en ambulance"
@@ -14933,8 +14512,7 @@
       ],
       "contenuCentral": [
         "les activités des banques de sang, des banques de sperme, des banques d'organes aux fins de transplantation, etc.",
-        "les lactariums",
-        null
+        "les lactariums"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15020,8 +14598,7 @@
       ],
       "contenuCentral": [
         "l'accueil et l'hébergement, assortis de soins médicaux, sans médecin à demeure, de personnes âgées dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.",
-        "• par exemple, services fournis par les établissements suivants : établissement d'hébergement pour personnes âgées dépendantes (EHPAD), maison de retraite",
-        null
+        "• par exemple, services fournis par les établissements suivants : établissement d'hébergement pour personnes âgées dépendantes (EHPAD), maison de retraite"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15037,8 +14614,7 @@
       ],
       "contenuCentral": [
         "l'accueil, l'hébergement et la rééducation, assortis de soins médicaux, sans médecin à demeure, d'enfants handicapés dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.",
-        "• par exemple, services fournis par les établissements suivants : instituts médico-éducatif (IME), médico-pédagogique (IMP), thérapeutique éducatif et pédagogique (ITEP)",
-        null
+        "• par exemple, services fournis par les établissements suivants : instituts médico-éducatif (IME), médico-pédagogique (IMP), thérapeutique éducatif et pédagogique (ITEP)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15115,7 +14691,6 @@
       "data": [],
       "contenuCentral": [
         "l'accueil et l'hébergement de personnes âgées qui ne sont pas autonomes ou qui ne désirent plus vivre de manière autonome. Les établissements concernés (établissements de moyen et long séjour, maisons de repos, etc.) procurent hébergement, nourriture, surveillance et",
-        null,
         "les activités des résidences pour personnes âgées sans soins médicaux ou dispensant des soins médicaux limités"
       ],
       "contenuAnnexe": [],
@@ -15193,8 +14768,7 @@
         "Produits associés : 88.10.11, 88.10.14"
       ],
       "contenuCentral": [
-        "les visites à domicile et les services d'auxiliaires de vie rendus aux personnes âgées et handicapées",
-        null
+        "les visites à domicile et les services d'auxiliaires de vie rendus aux personnes âgées et handicapées"
       ],
       "contenuAnnexe": [
         "les services d'aide, assurés par des organismes extérieurs, à des personnes âgées et handicapées vivant en hébergement collectif",
@@ -15212,8 +14786,7 @@
       ],
       "contenuCentral": [
         "les activités des centres de jour ou sections occupationnelles pour adultes handicapés",
-        "l'accueil de jour des personnes âgées",
-        null
+        "l'accueil de jour des personnes âgées"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15230,7 +14803,6 @@
       "contenuCentral": [
         "les activités de réadaptation professionnelle et réinsertion des handicapés, à condition que ces activités ne comportent qu'un élément pédagogique limité :",
         "• les activités des établissements et services d'aide par le travail, des centres de rééducation professionnelle, etc.",
-        null,
         "les activités de réadaptation professionnelle et réinsertion des handicapés"
       ],
       "contenuAnnexe": [],
@@ -15249,7 +14821,6 @@
         "• les activités des crèches",
         "• les activités des assistantes maternelles à leur domicile",
         "• les activités des haltes-garderies",
-        null,
         "l'accueil de jour de jeunes enfants par des crèches et garderies d'enfants"
       ],
       "contenuAnnexe": [
@@ -15269,7 +14840,6 @@
       "contenuCentral": [
         "les activités des centres de jour pour enfants handicapés",
         "• par exemple, services fournis par les établissements suivants : service d'éducation spéciale et de soins à domicile, centre médico-psycho-pédagogique, centre d'action médico-sociale précoce",
-        null,
         "les activités d'accueil de jour d'enfants handicapés",
         "l'accueil ou l'accompagnement sans hébergement d'enfants handicapés",
         "l'accueil par des centres de jour pour enfants et jeunes handicapés"
@@ -15288,7 +14858,6 @@
         "• services des œuvres d'adoption",
         "• protection des enfants et adolescents contre les mauvais traitements, guidance infantile",
         "• actions socio-éducatives en milieu ouvert à destination des enfants et adolescents, y compris via les familles",
-        null,
         "les activités d'adoption"
       ],
       "contenuAnnexe": [],
@@ -15415,8 +14984,7 @@
         "Produits associés : 90.04.10"
       ],
       "contenuCentral": [
-        "l'exploitation de lieux ou salles de spectacle aménagés pour des représentations publiques : salles de concert, de théatre, de danse, de music hall, cirques, etc.",
-        null
+        "l'exploitation de lieux ou salles de spectacle aménagés pour des représentations publiques : salles de concert, de théatre, de danse, de music hall, cirques, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15480,8 +15048,7 @@
       "title": "Gestion des sites et monuments historiques et des attractions touristiques similaires",
       "data": [],
       "contenuCentral": [
-        "la gestion et la préservation des sites et bâtiments historiques",
-        null
+        "la gestion et la préservation des sites et bâtiments historiques"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -15710,8 +15277,7 @@
         "les activités des organisations dont les membres ont pour intérêt essentiel le développement et la prospérité des entreprises relevant d'une certaine activité ou profession, ou la croissance économique et la vie d'une région géographique ou d'une subdivision politique déterminée, indépendamment du type d'activité",
         "les activités des fédérations d'associations de ce type",
         "les activités des chambres de commerce, des corporations et d'autres organisations similaires",
-        "la diffusion d'informations, la représentation auprès des organismes publics, les relations publiques et les négociations collectives des organisations patronales et consulaires",
-        null
+        "la diffusion d'informations, la représentation auprès des organismes publics, les relations publiques et les négociations collectives des organisations patronales et consulaires"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15726,7 +15292,6 @@
         "les activités des organisations dont les membres s'intéressent principalement à une discipline, à une profession ou à un domaine technique particulier, telles que les associations de médecins, de juristes, de comptables, d'ingénieurs, d'architectes, etc.",
         "les activités des associations de spécialistes qui exercent des activités à caractère scientifique, intellectuel ou culturel, telles que les associations d'écrivains, de peintres, d'artistes, de journalistes, etc.",
         "la diffusion d'informations, l'élaboration de normes déontologiques et le contrôle de leur respect, la représentation auprès des organismes publics et les relations publiques des organisations professionnelles",
-        null,
         "les activités des associations professionnelles"
       ],
       "contenuAnnexe": [
@@ -15744,7 +15309,6 @@
       ],
       "contenuCentral": [
         "la promotion des intérêts des salariés organisés en syndicats",
-        null,
         "les activités des syndicats de salariés"
       ],
       "contenuAnnexe": [
@@ -15767,7 +15331,6 @@
         "les activités des organisations religieuses ou des particuliers fournissant des services directement aux fidèles dans les églises, mosquées, temples, synagogues ou dans d'autres lieux",
         "les activités des monastères, des couvents et des institutions similaires",
         "les activités de retraite religieuse",
-        null,
         "les services religieux liés aux funérailles"
       ],
       "contenuAnnexe": [
@@ -15786,8 +15349,7 @@
         "Produits associés : 94.92.10"
       ],
       "contenuCentral": [
-        "les activités des organisations politiques et des organisations auxiliaires comme les groupements de jeunes associés à un parti politique. Ces activités visent principalement à influencer l'opinion et les pouvoirs publics, notamment en faisant accéder des membres ou des sympathisants d'un parti à des postes politiques et peuvent comprendre la diffusion d'informations, les relations publiques, la collecte de fonds, etc.",
-        null
+        "les activités des organisations politiques et des organisations auxiliaires comme les groupements de jeunes associés à un parti politique. Ces activités visent principalement à influencer l'opinion et les pouvoirs publics, notamment en faisant accéder des membres ou des sympathisants d'un parti à des postes politiques et peuvent comprendre la diffusion d'informations, les relations publiques, la collecte de fonds, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -15811,7 +15373,6 @@
         "les associations dont l'objet consiste à organiser des réunions et des rencontres, par exemple le Rotary, les loges maçonniques, etc.",
         "les associations de jeunes, les associations d'étudiants, les clubs universitaires, les amicales d'étudiants, etc.",
         "les associations spécialisées dans des occupations culturelles ou récréatives (autres que les clubs sportifs et les cercles de jeux), par exemple les cercles de poésie, les cercles littéraires, les associations historiques, les clubs de jardinage, les ciné-clubs et les photos-clubs, les clubs d'amis de la musique et des arts, les clubs de travaux manuels, les clubs de collectionneurs, les clubs sociaux, les sociétés carnavalesques, etc.",
-        null,
         "les services visant à promouvoir la chasse et le piégeage",
         "l'octroi de subventions par des organisations associatives"
       ],
@@ -15848,7 +15409,6 @@
         "• lecteurs de cartes à puce",
         "• casques de réalité virtuelle",
         "• vidéoprojecteurs",
-        null,
         "la réparation et l'entretien d'ordinateurs et d'équipements périphériques"
       ],
       "contenuAnnexe": [
@@ -15871,7 +15431,6 @@
         "• les modems, équipement porteur",
         "• les télécopieurs",
         "• les équipements de transmission des communications (routeurs, ponts, modems)",
-        null,
         "la réparation et l'entretien de modems, équipement porteur"
       ],
       "contenuAnnexe": [],
@@ -15888,8 +15447,7 @@
         "• télévisions, récepteurs radio",
         "• magnétoscopes",
         "• lecteurs de CD et DVD",
-        "• caméscopes destinés à un usage domestique",
-        null
+        "• caméscopes destinés à un usage domestique"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -15904,8 +15462,7 @@
         "la réparation et l'entretien des appareils ménagers :",
         "• réfrigérateurs, poêles, lave-linge, sèche-linge, lave-vaisselle, matériel de conditionnement d'air, etc.",
         "la réparation et l'entretien d'équipements pour la maison et le jardin :",
-        "• tondeuses à gazon, coupe-bordures, souffleurs à neige et à feuilles, ébrancheurs, etc.",
-        null
+        "• tondeuses à gazon, coupe-bordures, souffleurs à neige et à feuilles, ébrancheurs, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15922,7 +15479,6 @@
       "contenuCentral": [
         "la réparation de chaussures, de bagages et d'articles similaires",
         "la pose de talons",
-        null,
         "la réparation de chaussures et d'autres articles en cuir"
       ],
       "contenuAnnexe": [],
@@ -15936,7 +15492,6 @@
       ],
       "contenuCentral": [
         "le rembourrage, la remise à neuf, la réparation et la restauration de meubles et d'équipements du foyer, y compris de meubles de bureau",
-        null,
         "la restauration de sièges et le rembourrage dans le cadre de la restauration de sièges",
         "la restauration de meubles et le rembourrage dans le cadre de la restauration de meubles",
         "la réparation de mobilier domestique et de bureau, la restauration de meubles"
@@ -15949,8 +15504,7 @@
       "title": "Réparation d'articles d'horlogerie et de bijouterie",
       "data": [],
       "contenuCentral": [
-        "la réparation de montres, horloges et de leurs éléments, tels que boîtiers de montres et cages et cabinets d'horlogerie en tous types de matériaux, mouvements, chronomètres, etc.",
-        null
+        "la réparation de montres, horloges et de leurs éléments, tels que boîtiers de montres et cages et cabinets d'horlogerie en tous types de matériaux, mouvements, chronomètres, etc."
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -16157,7 +15711,6 @@
       ],
       "contenuCentral": [
         "les activités des ménages employant du personnel domestique : femmes de ménage, bonnes, cuisiniers ou cuisinières, serveurs, valets de chambre, maîtres d'hôtel, blanchisseuses, jardiniers, portiers, palefreniers, chauffeurs, concierges, gouvernantes, gardiennes d'enfants à domicile (baby-sitters), précepteurs, secrétaires, etc. Cette sous-classe permet aux domestiques salariés d'indiquer l'activité de l'employeur lors des recensements ou enquêtes, bien que l'employeur soit un particulier. Le service produit par cette activité est consommé par le ménage employeur",
-        null,
         "les services de garde d'enfants à domicile assurés par du personnel domestique salarié des ménages utilisateurs"
       ],
       "contenuAnnexe": [],
@@ -16174,8 +15727,7 @@
         "Produits associés : 98.10.10"
       ],
       "contenuCentral": [
-        "les activités indifférenciées des ménages en tant que producteurs de biens de subsistance, c'est-à-dire les activités des ménages effectuant diverses activités de production de biens destinés à leur propre usage. Ces activités comprennent la chasse et la cueillette, la culture et l'élevage, la fabrication d'abris et de vêtements et d'autres biens produits par le ménage pour assurer sa propre subsistance. Dans la pratique, si les ménages produisent également des biens destinés à la vente, ils sont classés dans le poste de production de biens correspondant de la NAF. S'ils sont principalement engagés dans une activité de subsistance spécifique de production de biens, ils sont classés dans le poste de production de biens correspondant de la NAF",
-        null
+        "les activités indifférenciées des ménages en tant que producteurs de biens de subsistance, c'est-à-dire les activités des ménages effectuant diverses activités de production de biens destinés à leur propre usage. Ces activités comprennent la chasse et la cueillette, la culture et l'élevage, la fabrication d'abris et de vêtements et d'autres biens produits par le ménage pour assurer sa propre subsistance. Dans la pratique, si les ménages produisent également des biens destinés à la vente, ils sont classés dans le poste de production de biens correspondant de la NAF. S'ils sont principalement engagés dans une activité de subsistance spécifique de production de biens, ils sont classés dans le poste de production de biens correspondant de la NAF"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -16187,8 +15739,7 @@
         "Produits associés : 98.20.10"
       ],
       "contenuCentral": [
-        "les activités indifférenciées des ménages en tant que producteurs engagés dans des combinaisons de services de subsistance indifférenciés destinés à leur propre usage. Ces activités comprennent la cuisine, l'enseignement, les soins aux membres du ménage et les autres services produits par le ménage pour assurer sa propre subsistance. Dans la pratique, si les ménages produisent également des biens multiples destinés à leur propre usage, ils sont classés dans les activités indifférenciées des ménages en tant que producteurs de biens pour usage propre",
-        null
+        "les activités indifférenciées des ménages en tant que producteurs engagés dans des combinaisons de services de subsistance indifférenciés destinés à leur propre usage. Ces activités comprennent la cuisine, l'enseignement, les soins aux membres du ménage et les autres services produits par le ménage pour assurer sa propre subsistance. Dans la pratique, si les ménages produisent également des biens multiples destinés à leur propre usage, ils sont classés dans les activités indifférenciées des ménages en tant que producteurs de biens pour usage propre"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -16201,8 +15752,7 @@
       ],
       "contenuCentral": [
         "les activités des ambassades et consulats étrangers en France",
-        "les activités exercées en France par les organisations internationales telles que l'ONU et ses institutions spécialisées (UNESCO), l'OCDE, le FMI, la Banque Mondiale, les institutions de l'Union européenne et en règle générale des organismes ayant un statut diplomatique en France",
-        null
+        "les activités exercées en France par les organisations internationales telles que l'ONU et ses institutions spécialisées (UNESCO), l'OCDE, le FMI, la Banque Mondiale, les institutions de l'Union européenne et en règle générale des organismes ayant un statut diplomatique en France"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
