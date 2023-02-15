@@ -2,7 +2,6 @@ import UFuzzy from '@leeoniya/ufuzzy'
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { t } from 'vitest/dist/index-9f5bc072'
 
 import { FromTop } from '@/components/ui/animate'
 import { Chip, RadioCardGroup, TextField } from '@/design-system'
@@ -11,23 +10,21 @@ import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+import { useAsyncData } from '@/hooks/useAsyncData'
 
-import data from '../../../scripts/codeAPESearch/données-code-APE/output.min.json?raw'
 import { Output as Data } from '../../../scripts/codeAPESearch/données-code-APE/reduce-json'
-
-const {
-	apeData,
-	indexByCodeApe,
-	indexByCodeDepartement,
-	nbEtablissements2021,
-} = JSON.parse(data) as Data
 
 interface SearchableData {
 	original: string[]
 	latinized: string[]
 }
 
-const buildResearch = () => {
+const buildResearch = (lazyData: Data | null) => {
+	if (!lazyData) {
+		return null
+	}
+	const { apeData } = lazyData
+
 	const fuzzy = new UFuzzy({ intraIns: 2 })
 
 	const { specificList, genericList } = apeData.reduce(
@@ -62,7 +59,13 @@ const buildResearch = () => {
 	}
 }
 
-const nbEtablissementParDepartement = (department: string, code: string) => {
+const nbEtablissementParDepartement = (
+	data: Data,
+	department: string,
+	code: string
+) => {
+	const { indexByCodeApe, indexByCodeDepartement, nbEtablissements2021 } = data
+
 	const index =
 		indexByCodeApe[code] &&
 		indexByCodeDepartement[department]?.find((i) =>
@@ -184,12 +187,23 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 	const [selected, setSelected] = useState('')
 	const [list, setList] = useState<ListResult[]>([])
 
+	const lazyData = useAsyncData(
+		() =>
+			import('../../../scripts/codeAPESearch/données-code-APE/output.min.json')
+	)
+
 	const lastIdxs = useRef<Record<string, UFuzzy.HaystackIdxs>>({})
 	const prevValue = useRef<string>(job)
 
-	const { fuzzy, genericList, specificList } = useMemo(buildResearch, [])
+	const buildedResearch = useMemo(() => buildResearch(lazyData), [lazyData])
 
 	useEffect(() => {
+		if (!lazyData || !buildedResearch) {
+			return
+		}
+		const { apeData } = lazyData
+		const { fuzzy, genericList, specificList } = buildedResearch
+
 		if (!job.length) {
 			lastIdxs.current = {}
 			setList([])
@@ -236,6 +250,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 				item,
 				scoreFuzzy: index / arr.length,
 				nbEtablissement: nbEtablissementParDepartement(
+					lazyData,
 					department,
 					item.codeApe.replace('.', '')
 				),
