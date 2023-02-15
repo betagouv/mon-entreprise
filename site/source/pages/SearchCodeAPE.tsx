@@ -67,7 +67,12 @@ const nbEtablissementParDepartement = (department: string, code: string) => {
 			indexByCodeApe[code].includes(i)
 		)
 
-	return typeof index === 'number' ? nbEtablissements2021[index] : -Infinity
+	return typeof index === 'number'
+		? nbEtablissements2021[index]
+		: indexByCodeApe[code]?.reduce(
+				(acc, index) => acc + nbEtablissements2021[index],
+				0
+		  ) ?? 0
 }
 
 interface ResultProps {
@@ -222,12 +227,10 @@ export default function SearchCodeAPE() {
 			.map((item, index, arr) => ({
 				item,
 				scoreFuzzy: index / arr.length,
-				nbEtablissement: department
-					? nbEtablissementParDepartement(
-							department,
-							item.codeApe.replace('.', '')
-					  )
-					: 0,
+				nbEtablissement: nbEtablissementParDepartement(
+					department,
+					item.codeApe.replace('.', '')
+				),
 			}))
 			.sort(({ nbEtablissement: a }, { nbEtablissement: b }) => b - a)
 			.map(({ item, scoreFuzzy, nbEtablissement }, index, arr) => {
@@ -242,7 +245,7 @@ export default function SearchCodeAPE() {
 				return {
 					item,
 					score,
-					debug: IS_PRODUCTION ? null : JSON.stringify(debug, null, 2),
+					debug: IS_DEVELOPMENT ? JSON.stringify(debug, null, 2) : null,
 				}
 			})
 			.sort(({ score: a }, { score: b }) => a - b)
