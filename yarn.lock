@@ -8936,13 +8936,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/stream-json@npm:^1.7.2":
-  version: 1.7.2
-  resolution: "@types/stream-json@npm:1.7.2"
+"@types/stream-json@npm:^1.7.3":
+  version: 1.7.3
+  resolution: "@types/stream-json@npm:1.7.3"
   dependencies:
     "@types/node": "*"
     "@types/stream-chain": "*"
-  checksum: f11e1332f2f0ec38626890d37d3091303067b5f3c5136811821070a1ce40f848a7745f179913ff20516f92c080082c4db6e3ea66d62549222d50965903030f24
+  checksum: cafa47c27bbd0cf446d1c90442cf53240a8a8a3828e73ba456720d6612b03d32d04067c9c0e54105b94584f37c7ed2f1a941b0600fbc6c095c25c1b401d184bb
   languageName: node
   linkType: hard
 
@@ -12814,21 +12814,6 @@ __metadata:
   checksum: dc55a1f28ddd0e9485ef13565f8f756b342f9a46c4ae18b843fe3c30c675d058d6a4823eff86d472f187b176f0adf51ea7b69ea38be34be4a63cbbf91b0593c8
   languageName: node
   linkType: hard
-
-"converters@workspace:converters":
-  version: 0.0.0-use.local
-  resolution: "converters@workspace:converters"
-  dependencies:
-    "@types/stream-json": ^1.7.2
-    csv: ^6.2.7
-    csv-parser: ^3.0.0
-    got: ^12.5.3
-    nodemon: ^2.0.20
-    pdfdataextract: ^3.2.0
-    stream-json: ^1.7.5
-    ts-node: ^10.9.1
-  languageName: unknown
-  linkType: soft
 
 "cookie-signature@npm:1.0.6":
   version: 1.0.6
@@ -26041,6 +26026,21 @@ __metadata:
   checksum: fb73f3d759d43ba033c877628fe9751620a26879f6301d3dbeeb48cf2a65baec5cdf99da65d1bf3b4ff5444b2e59cbe4f81c2456b5e0d2ba7d7fd4aed5da29ce
   languageName: node
   linkType: hard
+
+"scripts@workspace:scripts":
+  version: 0.0.0-use.local
+  resolution: "scripts@workspace:scripts"
+  dependencies:
+    "@types/stream-json": ^1.7.3
+    csv: ^6.2.7
+    csv-parser: ^3.0.0
+    got: ^12.5.3
+    nodemon: ^2.0.20
+    pdfdataextract: ^3.2.0
+    stream-json: ^1.7.5
+    ts-node: ^10.9.1
+  languageName: unknown
+  linkType: soft
 
 "seek-bzip@npm:^1.0.5":
   version: 1.0.6

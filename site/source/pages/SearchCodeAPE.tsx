@@ -10,8 +10,8 @@ import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 
-import data from '../../../converters/données-code-APE/output.min.json'
-import { Output as Data } from '../../../converters/données-code-APE/reduce-json'
+import data from '../../../scripts/codeAPESearch/données-code-APE/output.min.json'
+import { Output as Data } from '../../../scripts/codeAPESearch/données-code-APE/reduce-json'
 
 const {
 	apeData,

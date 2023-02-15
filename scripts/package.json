@@ -1,5 +1,5 @@
 {
-	"name": "converters",
+	"name": "scripts",
 	"version": "1.0.0",
 	"description": "",
 	"type": "module",
@@ -7,19 +7,19 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/betagouv/mon-entreprise.git",
-		"directory": "converters"
+		"directory": "scripts"
 	},
 	"scripts": {
-		"start:données-NAF-CPF-APE": "ts-node-esm ./données-NAF-CPF-APE/convert-pdf.ts",
-		"start:données-NomenclatureGuichet": "ts-node-esm ./données-NomenclatureGuichet/convert.ts",
-		"start:nombre-etablissements-par-code-ape-et-departement": "ts-node-esm ./nombre-etablissements-par-code-ape-et-departement/convert-json.ts",
-		"start:données-code-APE": "ts-node-esm ./données-code-APE/reduce-json.ts",
+		"start:données-NAF-CPF-APE": "ts-node-esm ./codeAPESearch/données-NAF-CPF-APE/convert-pdf.ts",
+		"start:données-NomenclatureGuichet": "ts-node-esm ./codeAPESearch/données-NomenclatureGuichet/convert.ts",
+		"start:nombre-etablissements-par-code-ape-et-departement": "ts-node-esm ./codeAPESearch/nombre-etablissements-par-code-ape-et-departement/convert-json.ts",
+		"start:données-code-APE": "ts-node-esm ./codeAPESearch/données-code-APE/reduce-json.ts",
 		"start:watch:données-NAF-CPF-APE": "nodemon -x 'yarn start:données-NAF-CPF-APE' -e 'ts'",
 		"start:watch:nombre-etablissements-par-code-ape-et-departement": "nodemon -x 'yarn start:nombre-etablissements-par-code-ape-et-departement' -e 'ts'",
 		"start:watch:données-code-APE": "nodemon -x 'yarn start:données-code-APE' -e 'ts'"
 	},
 	"dependencies": {
-		"@types/stream-json": "^1.7.2",
+		"@types/stream-json": "^1.7.3",
 		"csv": "^6.2.7",
 		"csv-parser": "^3.0.0",
 		"got": "^12.5.3",
