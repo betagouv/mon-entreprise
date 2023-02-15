@@ -369,7 +369,6 @@
         "Agriculture, sylviculture et pêche",
         "Culture et élevage",
         "Reproduction de plantes",
-        "",
         "la culture de plantes fleuries ou de fleurs en pot"
       ],
       "contenuAnnexe": [],
@@ -598,7 +597,6 @@
         "plantes à épices aromatiques, médicinales et pharmaceutiques",
         "autres cultures permanentes",
         "Reproduction de plantes",
-        "",
         "Production animale",
         "vaches laitières",
         "autres bovins et buffles",
@@ -629,7 +627,6 @@
         "• pulvérisation des récoltes, y compris par des véhicules aériens",
         "Agriculture, sylviculture et pêche",
         "Activités de soutien aux cultures ",
-        "",
         "l'exploitation d'appareils d'irrigation à des fins agricoles",
         "la protection phytosanitaire dans l'agriculture",
         "le maintien en bon ordre écologique de terrains pour l'agriculture"
@@ -654,7 +651,6 @@
         "Agriculture, sylviculture et pêche",
         "Activités de soutien à la production animale",
         "Activités diverses de soutien à la production animale",
-        "",
         "Maréchalerie.",
         "Nettoyage de locaux agricoles",
         " Prise en pension de chevaux, Services de haras, Centre de remise en forme pour équidés  ",
@@ -690,8 +686,7 @@
         "le paraffinage de fruit",
         "le séchage au soleil de fruits et de légumes",
         "Agriculture, sylviculture et pêche",
-        "Traitement primaire des récoltes",
-        ""
+        "Traitement primaire des récoltes"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -723,7 +718,6 @@
         "Agriculture, sylviculture et pêche",
         "Traitement des semences",
         "amélioration de la qualité des semences ",
-        "",
         " séchage, nettoyage, triage et traitement des semences",
         "les activités de traitement primaire des récoltes visant à améliorer la qualité des semences"
       ],
@@ -748,7 +742,6 @@
         "Agriculture, sylviculture et pêche",
         "Chasse, piégeage et services annexes",
         "Pour la protection des cultures ou des élévages",
-        "",
         "la production de cuirs et peaux provenant de la chasse ou du piégeage",
         "la capture d'autres mammifères marins, par exemple les morses et les phoques"
       ],
@@ -777,7 +770,6 @@
         "Agriculture, sylviculture et pêche",
         "Chasse, piégeage et services annexes",
         "Autre",
-        "",
         "Sylviculture et exploitation forestière",
         "Sylviculture",
         "les pépinières et pépinières forestières"
@@ -806,7 +798,6 @@
         "Agriculture, sylviculture et pêche",
         "Sylviculture et exploitation forestière",
         "Exploitation forestière - négoce du bois",
-        "",
         "la récolte de bois de chauffage",
         "la gestion d'un patrimoine forestier avec exploitation pour compte propre"
       ],
@@ -841,7 +832,6 @@
         "Agriculture, sylviculture et pêche",
         "Sylviculture et exploitation forestière",
         "Récolte de produits forestiers non ligneux poussant à l'état sauvage",
-        "",
         "la récolte des champignons et d'autres produits forestiers non ligneux poussant à l'état sauvage",
         "la récolte des produits forestiers non ligneux poussant à l'état sauvage"
       ],
@@ -875,7 +865,6 @@
         "Agriculture, sylviculture et pêche",
         "Sylviculture et exploitation forestière",
         "Travaux forestiers",
-        "",
         "Fourniture de matériel d'exploitation forestière ",
         "Entreprise de lutte contre les parasites",
         "Conseil en gestion et administration de la forêt (technique, économique, juridique)",
@@ -910,7 +899,6 @@
         "Agriculture, sylviculture et pêche",
         "Pêche",
         "Pêche maritime commerciale",
-        "",
         "pêche maritime pratiquée sur des navires d'une longueur inférieure ou égale à douze mètres ou effectuant habituellement des sorties de moins de 24 heures ",
         "pêcheur maritime à pied professionnel",
         "la transformation et la conservation du poisson sur des navires se livrant à la pêche en mer"
@@ -990,7 +978,6 @@
         "Agriculture, sylviculture et pêche",
         "Aquaculture",
         "Aquaculture en eau douce",
-        "",
         "l'élevage de grenouilles"
       ],
       "contenuAnnexe": [],
@@ -1135,7 +1122,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie extractive",
         "Extraction d'hydrocarbures, de minerais métallique, de houille, de lignite",
-        "",
         "Orpaillage"
       ],
       "contenuAnnexe": [
@@ -1162,8 +1148,7 @@
         "l'extraction de la craie et de la dolomite non calcinée",
         "Industrie et artisanat de fabrication ",
         "Industrie extractive",
-        "Autres activités extractives ",
-        ""
+        "Autres activités extractives "
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -1203,7 +1188,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie extractive",
         "Extraction des minéraux chimiques et d’engrais minéraux.",
-        "",
         "l'extraction de minéraux pour l'industrie chimique et d'engrais naturels"
       ],
       "contenuAnnexe": [
@@ -1226,8 +1210,7 @@
         "la préparation de la tourbe destinée à accroître la qualité, à faciliter le transport ou le stockage de la tourbe pour compte propre",
         "Industrie et artisanat de fabrication ",
         "Industrie extractive",
-        "Extraction de tourbe.",
-        ""
+        "Extraction de tourbe."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -1268,8 +1251,7 @@
         "• pierres gemmes, quartz, mica, etc.",
         "Industrie et artisanat de fabrication ",
         "Industrie extractive",
-        "Autres activités extractives ",
-        ""
+        "Autres activités extractives "
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -1289,7 +1271,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie extractive",
         "Activités de soutien à l'extraction d'hydrocarbures",
-        "",
         "les activités de soutien à l'extraction d'hydrocarbures",
         "la prospection de pétrole et de gaz"
       ],
@@ -1316,7 +1297,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie extractive",
         "Activités de soutien aux autres industries extractives ",
-        "",
         "Activités de soutien aux autres industries extractives exercées de manière artisanale",
         "les activités de soutien à l'extraction de la houille",
         "les forages d'essai pour l'extraction de la houille",
@@ -1416,8 +1396,7 @@
         "la préparation à caractère artisanal de produits à base de viandes ou d'abats et de charcuteries associée à la vente au détail des produits préparés tels que pâtés, rillettes, saucisses, salamis, boudins, andouillettes, cervelas, mortadelles, galantines, jambons cuits",
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
-        "Transformation et conservation de la viande et préparation de produits à base de viande",
-        ""
+        "Transformation et conservation de la viande et préparation de produits à base de viande"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -1445,7 +1424,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
         "Transformation et conservation de poisson, de crustacés et de mollusques",
-        "",
         "la transformation des poissons, des crustacés et des mollusques sur des bateaux usines ou dans des usines à terre",
         "la production de farines de poissons destinées à l'alimentation des animaux"
       ],
@@ -1577,7 +1555,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
         "Fabrication d’huiles et graisses végétales et animales",
-        "",
         "le traitement des graines en vue d'obtenir de l'huile",
         "la production d'huiles et de matières grasses à partir de substances marines",
         "la production de tourteaux oléagineux"
@@ -1627,8 +1604,7 @@
         "la fabrication de graisses composées pour la cuisson des aliments",
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
-        "Fabrication d’huiles et graisses végétales et animales",
-        ""
+        "Fabrication d’huiles et graisses végétales et animales"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -1691,7 +1667,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
         "Fabrication de produits laitiers",
-        "",
         "la fabrication de lactose"
       ],
       "contenuAnnexe": [],
@@ -1763,7 +1738,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
         "Travail des grains ; fabrication de produits amylacés",
-        "",
         "la production d'inuline",
         "la fabrication de glucose, de sirop de glucose, de maltose"
       ],
@@ -1828,8 +1802,7 @@
       "contenuCentral": [
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
-        "Fabrication de produits de boulangerie-pâtisserie (hors cuisson de produits de boulangerie)",
-        ""
+        "Fabrication de produits de boulangerie-pâtisserie (hors cuisson de produits de boulangerie)"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -1846,8 +1819,7 @@
         "la fabrication de produits apéritifs et d'autres produits similaires (petits biscuits, bretzels, etc.), sucrés ou salés",
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
-        "Fabrication d'autres produits alimentaires",
-        ""
+        "Fabrication d'autres produits alimentaires"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -2015,7 +1987,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
         "Fabrication d'autres produits alimentaires",
-        "",
         "la préparation de potages contenant de la viande",
         "la préparation d'extraits et jus de viande, de poissons et d'autres animaux",
         "la fabrication de potages à base de poissons",
@@ -2066,8 +2037,7 @@
         "la fabrication d'aliments préparés pour animaux de compagnie, notamment les chiens, les chats, les oiseaux, les poissons, etc.",
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
-        "Fabrication d'aliments pour animaux",
-        ""
+        "Fabrication d'aliments pour animaux"
       ],
       "contenuAnnexe": [
         "le traitement de déchets d'abattoir pour produire des aliments pour animaux",
@@ -2094,7 +2064,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
         "Fabrication de boissons",
-        "",
         "Fabrication de vin"
       ],
       "contenuAnnexe": [
@@ -2245,7 +2214,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie alimentaire",
         "Fabrication de boissons",
-        "",
         "Fabrication de vin",
         "la préparation de boissons rafraîchissantes à base de fruits",
         "la fabrication d'apéritifs sans alcool"
@@ -2267,7 +2235,6 @@
         "la fabrication de tabacs « homogénéisés » ou « reconstitués »",
         "Industrie et artisanat de fabrication ",
         "Industrie du tabac",
-        "",
         "la fabrication de produits à base de tabac",
         "l'écôtage et le resséchage des feuilles de tabac"
       ],
@@ -2713,7 +2680,6 @@
         "la fabrication de sabots en bois ou en matières plastiques",
         "Industrie et artisanat de fabrication ",
         "Industrie du textile, du cuir et de l'habillement",
-        "",
         "la fabrication de chaussures",
         "la fabrication de bottes ou de chaussures contenant des parties en fourrure",
         "la fabrication de chaussures en bois",
@@ -2763,7 +2729,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie du bois, du papier et du carton",
         "Sciage et rabotage du bois",
-        "",
         "les opérations de traitement chimique à façon des charpentes"
       ],
       "contenuAnnexe": [],
@@ -2874,7 +2839,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie du bois, du papier et du carton",
         "Fabrication d'articles en bois, liège, vannerie et sparterie",
-        "",
         "la fabrication de nattes et de paillassons tressés",
         "la fabrication de revêtements de sol en liège",
         "la fabrication de caisses en matières à tresser",
@@ -3050,7 +3014,6 @@
         "Industrie et artisanat de fabrication ",
         "Industrie du bois, du papier et du carton",
         "Fabrication de pâte à papier, de papier et de carton",
-        "",
         "la fabrication d'articles moulés ou pressés en pâte à papier (par exemple cartons à œufs, plaques en pâte à papier moulées)",
         "la fabrication de tubes, mandrins, tambours, busettes, bobines et canettes en carton",
         "la fabrication de gadgets en papier"
@@ -3072,8 +3035,7 @@
       "contenuCentral": [
         "Industrie et artisanat de fabrication ",
         "Industrie du bois, du papier et du carton",
-        "Imprimerie de journaux",
-        ""
+        "Imprimerie de journaux"
       ],
       "contenuAnnexe": [
         "l'impression d'autres périodiques, paraissant au moins quatre fois par semaine"
@@ -3176,7 +3138,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "Production de brai et de coke de brai.",
-        "",
         "les fours à coke produisant des combustibles solides",
         "la production de coke de houille"
       ],
@@ -3197,7 +3158,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "Cokéfaction et raffinage",
-        "",
         "Agglomération de la tourbe.",
         "l'agglomération de la houille et la fabrication de briquettes de houille",
         "l'agglomération du lignite et la fabrication de briquettes de lignite",
@@ -3412,8 +3372,7 @@
         "la fabrication d'autres produits agrochimiques n.c.a.",
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
-        "industrie chimique ",
-        ""
+        "industrie chimique "
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -3439,7 +3398,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "industrie chimique ",
-        "",
         "la fabrication de colorants et de pigments préparés"
       ],
       "contenuAnnexe": [],
@@ -3473,8 +3431,7 @@
         "• pâtes et poudres à récurer, y compris les articles en papier, ouate, feutre, etc. enduits ou recouverts de celles-ci",
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
-        "industrie chimique ",
-        ""
+        "industrie chimique "
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -3500,7 +3457,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "industrie chimique ",
-        "",
         "la fabrication de savon cosmétique",
         "la fabrication de parfums et de produits pour la toilette",
         "la fabrication de préparations destinées à faciliter l'adhérence des dentiers"
@@ -3520,7 +3476,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "industrie chimique ",
-        "",
         "la fabrication d'allumettes",
         "la fabrication de poudres propulsives ou explosives, d'amorces, de fusées éclairantes, etc."
       ],
@@ -3537,7 +3492,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "industrie chimique ",
-        "",
         "la fabrication des ciments colles"
       ],
       "contenuAnnexe": [],
@@ -3556,7 +3510,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "industrie chimique ",
-        "",
         "la fabrication d'huiles essentielles",
         "la fabrication d'eaux distillées aromatiques",
         "la fabrication d'huiles essentielles naturelles"
@@ -3593,7 +3546,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "industrie chimique ",
-        "",
         "le traitement d'huiles et de graisses par des procédés chimiques",
         "la fabrication d'encres à écrire ou à dessiner"
       ],
@@ -3623,7 +3575,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "industrie chimique ",
-        "",
         "la fabrication de fibres artificielles ou synthétiques",
         "la fabrication de fibres, de filaments et de fils artificiels ou synthétiques"
       ],
@@ -3646,7 +3597,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "Fabrication d’édulcorants de synthèse.",
-        "",
         "la fabrication d'édulcorants de synthèse",
         "la préparation de produits botaniques à usage pharmaceutique",
         "la fabrication des acides salicylique et O-acétylsalicylique"
@@ -3676,7 +3626,6 @@
         "Industrie et artisanat de fabrication ",
         "industrie chimique et pharmaceutique ",
         "Industrie pharmaceutique",
-        "",
         "Fabrication de substances radioactives de diagnostic et de pansements.",
         "la fabrication d'ouates, de pansements imprégnés à usage médical, etc.",
         "la fabrication de sérums thérapeutiques et autres constituants du sang"
@@ -3821,8 +3770,7 @@
         "la fabrication pour compte de tiers de pièces techniques diverses en matières plastiques",
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
-        "Produits en caoutchouc et plastique",
-        ""
+        "Produits en caoutchouc et plastique"
       ],
       "contenuAnnexe": [
         "la fabrication pour compte de tiers d'autres pièces en matières plastiques non décrites ailleurs"
@@ -3847,7 +3795,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Produits en caoutchouc et plastique",
-        "",
         "la fabrication de papiers peints en matières plastiques",
         "la fabrication de parties de chaussures en plastique"
       ],
@@ -3925,7 +3872,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-        "",
         "la fabrication de fibres de verre"
       ],
       "contenuAnnexe": [],
@@ -4270,7 +4216,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-        "",
         "la fabrication d'ouvrages en tourbe",
         "la filature des fibres d'amiante",
         "la production d'adhésifs à base d'asphalte",
@@ -4311,7 +4256,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Métallurgie et produits métalliques",
-        "",
         "la production de poudres métalliques"
       ],
       "contenuAnnexe": [],
@@ -4943,7 +4887,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Métallurgie et produits métalliques",
-        "",
         "la fabrication d'aimants permanents en métal",
         "la production d'éléments de couverture en zinc : gouttières, faîtages, etc.",
         "• fabrication d'hélices pour navires et bateaux",
@@ -4993,7 +4936,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Produits informatiques, électroniques, optiques et équipements électriques",
-        "",
         "la fabrication de circuits imprimés nus et de circuits intégrés",
         "la fabrication de transformateurs et d'interrupteurs de type composants électroniques",
         "la fabrication de câbles pour ordinateurs, pour imprimantes, USB et câbles similaires",
@@ -5030,7 +4972,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Produits informatiques, électroniques, optiques et équipements électriques",
-        "",
         "la fabrication de cartes « à puce » et autres cartes électroniques assemblées",
         "la fabrication de cartes électroniques assemblées"
       ],
@@ -5075,7 +5016,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Produits informatiques, électroniques, optiques et équipements électriques",
-        "",
         "la fabrication d'ordinateurs et d'équipements périphériques",
         "la fabrication d'unités de stockage et de mémoire magnétiques, internes et externes, y compris clés USB et cartes à mémoire flash",
         "la fabrication de machines à photocopier aptes à être connectées à une machine automatique de traitement de l'information"
@@ -5214,7 +5154,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Produits informatiques, électroniques, optiques et équipements électriques",
-        "",
         "la fabrication d'instruments de contrôle environnementaux et des processus industriels"
       ],
       "contenuAnnexe": [],
@@ -5546,7 +5485,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Produits informatiques, électroniques, optiques et équipements électriques",
-        "",
         "la fabrication de feux de signalisation",
         "la fabrication de matériel électrique",
         "la fabrication d'onduleurs à semi-conducteurs, de redresseurs et de convertisseurs",
@@ -6456,7 +6394,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Fabrication de machines et autres équipements",
-        "",
         "la fabrication de caddies",
         "la fabrication de véhicules à traction animale"
       ],
@@ -6549,7 +6486,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Fabrication de meubles",
-        "",
         "la fabrication de placards de cuisine, bibliothèques, penderies, etc.",
         "la fabrication de cloisons mobiles en bois",
         "la fabrication de meubles en matières plastiques"
@@ -6622,7 +6558,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Fabrication d’articles de joaillerie, bijouterie, instrument de musique ",
-        "",
         "la fabrication de bijouterie de fantaisie",
         "la fabrication de bracelets de montres en métaux non précieux",
         "la fabrication de bracelets de montre en métaux ordinaires"
@@ -6774,7 +6709,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Fabrication de prothèses dentaires.",
-        "",
         "Fabrication d'instruments et de fournitures à usage médical et dentaire",
         "la confection d'articles orthopédiques",
         "la fabrication de chaussures orthopédiques",
@@ -6851,7 +6785,6 @@
         "Industrie et artisanat de fabrication ",
         "Fabrication de produits divers",
         "Autres produits manufacturés",
-        "",
         "la fabrication de vêtements de sécurité résistants au feu et de protection",
         "la fabrication de casques de sécurité, de vêtements de sécurité résistants au feu et de protection",
         "la fabrication de ceintures de ligneurs et autres ceintures à usage professionnel",
@@ -7077,8 +7010,7 @@
         "la restauration d'orgues et d'autres instruments de musique historiques",
         "Installation et réparation",
         "Réparation et installation de machines et d'équipements ",
-        "Réparation d'ouvrages en métaux, de machines et d'équipements divers",
-        ""
+        "Réparation d'ouvrages en métaux, de machines et d'équipements divers"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -7190,7 +7122,6 @@
         "Installation et réparation",
         "Réparation et installation de machines et d'équipements ",
         "Installation et montage de matériels électriques divers",
-        "",
         "Installation de matériels électroniques et optiques ou d'autres matériels",
         "l'installation d'équipements industriels",
         "l'installation de gros systèmes et d'ordinateurs similaires"
@@ -7209,7 +7140,6 @@
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Production, transport et distribution d'électricité",
         "Production, transport et distribution d'électricité à titre professionnel",
-        "",
         "Particulier producteur d'électricité"
       ],
       "contenuAnnexe": [],
@@ -7228,7 +7158,6 @@
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Production, transport et distribution d'électricité",
         "Production, transport et distribution d'électricité à titre professionnel",
-        "",
         "Particulier producteur d'électricité"
       ],
       "contenuAnnexe": [],
@@ -7245,7 +7174,6 @@
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Production, transport et distribution d'électricité",
         "Production, transport et distribution d'électricité à titre professionnel",
-        "",
         "Particulier producteur d'électricité"
       ],
       "contenuAnnexe": [],
@@ -7264,7 +7192,6 @@
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Production, transport et distribution d'électricité",
         "Production, transport et distribution d'électricité à titre professionnel",
-        "",
         "Particulier producteur d'électricité"
       ],
       "contenuAnnexe": [],
@@ -7312,8 +7239,7 @@
         "les activités des courtiers en gaz ou des agents qui organisent la vente de gaz via des systèmes de distribution de gaz exploités par d'autres",
         "les échanges de produits et de capacité de transfert pour les combustibles gazeux",
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
-        "Production et distribution de combustibles gazeux",
-        ""
+        "Production et distribution de combustibles gazeux"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -7335,7 +7261,6 @@
         "la production et la distribution par conduites d'air comprimé",
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Production et distribution de vapeur et d'air conditionné",
-        "",
         "la fabrication de glace"
       ],
       "contenuAnnexe": [],
@@ -7355,8 +7280,7 @@
         "le dessalement de l'eau de mer ou d'eaux souterraines, pour autant que la production d'eau constitue l'activité principale",
         "la distribution de l'eau par conduites, camions ou autres moyens de transport",
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
-        "Captage, traitement et distribution d'eau",
-        ""
+        "Captage, traitement et distribution d'eau"
       ],
       "contenuAnnexe": [
         "l'exploitation de canaux d'irrigation"
@@ -7381,7 +7305,6 @@
         "l'entretien et le nettoyage des égouts et des canalisations, y compris le curetage des égouts",
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Collecte et traitement des eaux usées",
-        "",
         "Entretien de fosses septiques.",
         "le traitement des eaux usées à des fins de prévention de la pollution",
         "le traitement de l'eau des piscines collectives avec ou sans entretien des conduites"
@@ -7410,8 +7333,7 @@
         "l'enlèvement des détritus collectés dans les boîtes à ordures dans les lieux publics",
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Collecte, traitement et élimination des déchets ; récupération",
-        "Collecte des déchets non dangereux",
-        ""
+        "Collecte des déchets non dangereux"
       ],
       "contenuAnnexe": [
         "l'enlèvement de déchets de construction et de démolition",
@@ -7445,7 +7367,6 @@
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Collecte, traitement et élimination des déchets ; récupération",
         "Collecte des déchets dangereux",
-        "",
         "Collecte des déchets nucléaires.",
         "la collecte de déchets dangereux"
       ],
@@ -7472,7 +7393,6 @@
         "Au service exclusif des exploitations agricoles",
         "Autre",
         "Incinération des déchets non dangereux et production de cendres et scories associée.",
-        "",
         "la production d'électricité par l'incinération de déchets",
         "l'exploitation de décharges pour l'élimination de déchets non dangereux",
         "l'incinération de déchets non dangereux",
@@ -7504,7 +7424,6 @@
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Collecte, traitement et élimination des déchets ; récupération",
         "Traitement et élimination des déchets dangereux",
-        "",
         "Traitement et élimination de déchets nucléaires radioactifs.",
         "le traitement et l'élimination de déchets nucléaires",
         "l'incinération et la combustion de déchets dangereux",
@@ -7529,7 +7448,6 @@
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Collecte, traitement et élimination des déchets ; récupération",
         "Démantèlement d'épaves",
-        "",
         "la démolition navale",
         "le démantèlement d'automobiles, d'ordinateurs, de télévisions et d'autres matériels à des fins de récupération de matériaux"
       ],
@@ -7547,7 +7465,6 @@
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Collecte, traitement et élimination des déchets ; récupération",
         "Récupération de déchets triés",
-        "",
         "le broyage des produits en matières plastiques",
         "l'exploitation d'installations de tri de matériaux de récupération non triés, tels que papier, plastique etc., en vue de la récupération des déchets",
         "l'exploitation d'installations de tri de matériaux de récupération non triés, tels que papier, plastique, boîtes à boisson et métaux usagés, en vue de la récupération des déchets",
@@ -7572,7 +7489,6 @@
         "les autres activités spécialisées de lutte contre la pollution",
         "Réseaux de production, de distribution et de traitement des fluides et des déchets ",
         "Dépollution et autres services de gestion des déchets",
-        "",
         "Désamiantage.",
         "la décontamination des eaux de surface et des eaux souterraines polluées, in situ",
         "l'assainissement et le nettoyage de bâtiments, des sites miniers, des sols ou des eaux souterraines contaminés, par exemple le désamiantage",
@@ -7653,7 +7569,6 @@
         "Construction",
         "Promotion immobilière",
         "Promotion immobilière de bureaux",
-        "",
         "Promotion immobilière de logements",
         "Promotion immobilière d'autres bâtiments"
       ],
@@ -7695,7 +7610,6 @@
         "l'assemblage et la construction d'ouvrages préfabriqués sur les chantiers",
         "Construction",
         "Construction et réhabilitation de bâtiments résidentiels et non résidentiels",
-        "",
         "les entreprises générales de construction ou « tous corps d'état » prenant la responsabilité globale de la construction d'un bâtiment"
       ],
       "contenuAnnexe": [
@@ -7785,8 +7699,7 @@
         "la construction de tunnels routiers, ferroviaires et autres",
         "Construction",
         "Génie civil",
-        "Construction de routes et de voies ferrées ",
-        ""
+        "Construction de routes et de voies ferrées "
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -7813,7 +7726,6 @@
         "Construction",
         "Génie civil",
         "Construction d’installations de réseaux pour fluides.",
-        "",
         "Forage des puits d’eau.",
         "la construction ou la réparation de réseaux d'égouts",
         "la construction de systèmes d'irrigation (canaux)",
@@ -7842,7 +7754,6 @@
         "Construction",
         "Génie civil",
         "Construction de centrales électriques.",
-        "",
         "Construction de lignes électriques et de télécommunication.",
         "la pose de câbles sous-marins",
         "la construction de lignes de communication et de transport d'énergie électrique"
@@ -8020,7 +7931,6 @@
         "Construction",
         "Travaux de construction spécialisés ",
         "Installation d’antennes.",
-        "",
         "les travaux d'installation électrique dans le bâtiment",
         "l'installation de chauffage électrique par plinthe chauffante"
       ],
@@ -8119,7 +8029,6 @@
         "Construction",
         "Travaux de construction spécialisés ",
         "Travaux d'installation électrique, plomberie et autres travaux d'installation",
-        "",
         "Montage de clôtures et de grilles.",
         "l'installation d'aspirateurs à unité centrale",
         "l'installation d'ascenseurs et monte-charge",
@@ -8207,7 +8116,6 @@
         "Construction",
         "Travaux de construction spécialisés ",
         "Agencement de lieux de vente.",
-        "",
         "Activités de services",
         "Activités administratives, agents commerciaux et autres activités de soutien aux entreprises",
         "Agent commercial",
@@ -8254,8 +8162,7 @@
         "la pose de vitres, de miroirs, portes en glace, vitrines, etc.",
         "Construction",
         "Travaux de construction spécialisés ",
-        "Travaux de plâtrerie, mensuiserie, peinture, vitrerie et de revêtement",
-        ""
+        "Travaux de plâtrerie, mensuiserie, peinture, vitrerie et de revêtement"
       ],
       "contenuAnnexe": [
         "l'application de produits antidérapants sur sol"
@@ -8280,7 +8187,6 @@
         "Construction",
         "Travaux de construction spécialisés ",
         "Autres travaux de finition.",
-        "",
         "la pose de ferronnerie décorative"
       ],
       "contenuAnnexe": [],
@@ -8317,8 +8223,7 @@
         "la mise en place des éléments d'évacuation des eaux de pluie",
         "Construction",
         "Travaux de construction spécialisés ",
-        "Travaux de couverture",
-        ""
+        "Travaux de couverture"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -8338,7 +8243,6 @@
         "Construction",
         "Travaux de construction spécialisés ",
         "Travaux d’étanchéification.",
-        "",
         "les travaux d'étanchéification des toitures-terrasses"
       ],
       "contenuAnnexe": [],
@@ -8359,7 +8263,6 @@
         "Construction",
         "Travaux de construction spécialisés ",
         "Travaux de montage de structures métalliques.",
-        "",
         "le montage de structures métalliques",
         "le montage de charpentes métalliques"
       ],
@@ -8382,8 +8285,7 @@
         "• gros œuvre de bâtiment sans responsabilité globale de la construction",
         "Construction",
         "Travaux de construction spécialisés ",
-        "Travaux de maçonnerie générale et gros œuvre de bâtiment.",
-        ""
+        "Travaux de maçonnerie générale et gros œuvre de bâtiment."
       ],
       "contenuAnnexe": [
         "le ravalement au mortier"
@@ -8413,7 +8315,6 @@
         "Construction",
         "Travaux de construction spécialisés ",
         "Installation de piscines de résidence et construction de piscines extérieures.",
-        "",
         "Construction de cheminées et de fours industriels.",
         "Autres travaux spéciaux de construction.",
         "la construction de chambres fortes",
@@ -8437,8 +8338,7 @@
         "la location de grues et d'autres matériels de construction avec opérateur, ne correspondant pas à une activité de construction spécifique",
         "Construction",
         "Travaux de construction spécialisés ",
-        "Location avec opérateur de matériel de construction.",
-        ""
+        "Location avec opérateur de matériel de construction."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -8530,7 +8430,6 @@
         "le commerce de gros de pneumatiques",
         "Commerce et artisanat de détail",
         "Commerce de véhicules et équipements automobiles",
-        "",
         "le commerce de gros de pièces de véhicules automobiles"
       ],
       "contenuAnnexe": [],
@@ -8560,7 +8459,6 @@
         "Installation et réparation",
         "Réparation de motocycles.",
         " ",
-        "",
         "les activités d'entretien et de réparation de motocycles",
         "la réparation et l'entretien de motocycles",
         "le commerce de gros de motocycles",
@@ -8723,7 +8621,6 @@
         "Commerce et artisanat de détail",
         "Commerce de gros et intermédiaires",
         "Agent commercial",
-        "",
         "Activités de services",
         "Activités administratives, agents commerciaux et autres activités de soutien aux entreprises",
         "Secteur Bois, papier, carton, Imprimerie",
@@ -9637,7 +9534,6 @@
         "Commerce et artisanat de détail",
         "Vente et Commerce de détail",
         "Boucherie.",
-        "",
         "Boucherie-charcuterie.",
         "Boucherie chevaline.",
         "Volailles, gibiers.",
@@ -9656,8 +9552,7 @@
         "le commerce de détail des poissons, d'autres produits de la mer et des préparations à partir de ces produits",
         "Commerce et artisanat de détail",
         "Vente et Commerce de détail",
-        "Commerce de préparation de poissons, crustacés et mollusques",
-        ""
+        "Commerce de préparation de poissons, crustacés et mollusques"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -9721,8 +9616,7 @@
         "les autres commerces de détail alimentaires n.c.a.",
         "Commerce et artisanat de détail",
         "Vente et Commerce de détail",
-        "Crémerie-fromagerie et préparations à base de lait ou de fromage",
-        ""
+        "Crémerie-fromagerie et préparations à base de lait ou de fromage"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -10054,8 +9948,7 @@
         "le commerce de détail de produits pharmaceutiques",
         "Commerce et artisanat de détail",
         "Vente et Commerce de détail",
-        "Officine de pharmacie",
-        ""
+        "Officine de pharmacie"
       ],
       "contenuAnnexe": [
         "le commerce de détail d'herboristerie",
@@ -10072,8 +9965,7 @@
       "contenuCentral": [
         "Commerce et artisanat de détail",
         "Vente et Commerce de détail",
-        "Commerce de détail de fleurs.",
-        ""
+        "Commerce de détail de fleurs."
       ],
       "contenuAnnexe": [
         "le commerce de détail de prothèses, d'orthèses et de véhicules pour invalides",
@@ -10183,7 +10075,6 @@
         "Commerce et artisanat de détail",
         "Vente et Commerce de détail",
         "Commerce de détail en magasin",
-        "",
         "le commerce de détail de biens d'occasion",
         "le commerce de détail de livres d'occasion ou de livres anciens",
         "le commerce de détail de fripes"
@@ -10207,7 +10098,6 @@
         "Commerce et artisanat de détail",
         "Vente et commerce de détail sur éventaires et marchés",
         "Boucherie sur éventaires et marchés.",
-        "",
         "Boucherie-charcuterie sur éventaires et marchés.",
         "Boucherie chevaline sur éventaires et marchés.",
         "Volailles, gibiers sur éventaires et marchés.",
@@ -10253,7 +10143,6 @@
         "Commerce et artisanat de détail",
         "Vente et commerce de détail sur éventaires et marchés",
         "Commerce de détail sur éventaires et marchés",
-        "",
         "Commerce de détail de fleurs sur éventaires et marchés."
       ],
       "contenuAnnexe": [],
@@ -10308,8 +10197,7 @@
         "le commerce de détail spécialisé de produits par correspondance",
         "le commerce de détail spécialisé de produits par Internet",
         "Commerce et artisanat de détail",
-        "Vente à distance",
-        ""
+        "Vente à distance"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10340,7 +10228,6 @@
         "Commerce et artisanat de détail",
         "Vente à domicile",
         "vendeur à domicile indépendant inscrit au RCS",
-        "",
         "vendeur à domicile indépendant inscrit au RSAC",
         "Vendeur à domicile indépendant non immatriculé"
       ],
@@ -10370,7 +10257,6 @@
         "le commerce de détail (hors magasin) par des intermédiaires du commerce",
         "Commerce et artisanat de détail",
         "Vente par automates",
-        "",
         "le commerce de détail par des intermédiaires du commerce hors magasin",
         "la vente au détail de nourriture par le biais de distributeurs automatiques"
       ],
@@ -10416,8 +10302,7 @@
         "le transport ferroviaire de fret interurbain, urbain et suburbain",
         "Activités de services",
         "Transport, Fret, Entreposage",
-        "Transport ferroviaire",
-        ""
+        "Transport ferroviaire"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -10457,7 +10342,6 @@
         "Activités de services",
         "Transport, Fret, Entreposage",
         "Taxis",
-        "",
         "Location de voitures avec chauffeur.",
         "la location ou la location-bail de courte durée de voitures ou de véhicules automobiles légers avec chauffeur",
         "la location ou la location-bail de longue durée de voitures ou de véhicules automobiles légers avec chauffeur"
@@ -10505,8 +10389,7 @@
         "• les autres services occasionnels de transport routiers à la demande",
         "Activités de services",
         "Transport, Fret, Entreposage",
-        "Services occasionnels de transport routiers à la demande",
-        ""
+        "Services occasionnels de transport routiers à la demande"
       ],
       "contenuAnnexe": [
         "le transport de voyageurs par véhicules à traction humaine ou animale"
@@ -10526,7 +10409,6 @@
         "Activités de services",
         "Transport, Fret, Entreposage",
         "Téléphériques et remontées mécaniques",
-        "",
         "l'exploitation de remontées mécaniques"
       ],
       "contenuAnnexe": [],
@@ -10603,8 +10485,7 @@
         "• déménagement de mobilier, de machines et d'équipements professionnels (bureaux, ateliers ou usines)",
         "Activités de services",
         "Transport, Fret, Entreposage",
-        "Services de déménagement.",
-        ""
+        "Services de déménagement."
       ],
       "contenuAnnexe": [
         "le garde-meubles",
@@ -10623,7 +10504,6 @@
         "Activités de services",
         "Transport, Fret, Entreposage",
         "Transports par conduites",
-        "",
         "l'exploitation d'oléoducs ou de gazoducs",
         "le transport, sur de longues distances, de gaz naturel par conduites",
         "le transport (sur de longues distances) d'eau par conduite"
@@ -10687,8 +10567,7 @@
         "le transport de passagers sur les fleuves, les canaux, les lacs et les autres voies navigables intérieures, y compris les ports et les docks",
         "Activités de services",
         "Transport, Fret, Entreposage",
-        "Transport fluvial de passagers",
-        ""
+        "Transport fluvial de passagers"
       ],
       "contenuAnnexe": [
         "la location de bateaux de plaisance avec équipage pour le transport fluvial"
@@ -10708,8 +10587,7 @@
         "le transport de fret sur les fleuves, les canaux, les lacs et les autres voies navigables intérieures, y compris les ports et les docks",
         "Activités de services",
         "Transport, Fret, Entreposage",
-        "Transport fluvial de fret",
-        ""
+        "Transport fluvial de fret"
       ],
       "contenuAnnexe": [
         "la location de bateaux et navires commerciaux avec équipage pour le transport fluvial"
@@ -10831,7 +10709,6 @@
         "Activités de services",
         "Transport, Fret, Entreposage",
         "Assistance et remorquage de véhicules automobiles.",
-        "",
         "la liquéfaction et la regazéification du gaz naturel en vue de son transport, effectuées ailleurs que sur le site minier",
         "les activités des gares de voyageurs",
         "d'aiguillage",
@@ -10956,7 +10833,6 @@
         "Activités de services",
         "Transport, Fret, Entreposage",
         "Services auxilliaires",
-        "",
         "Conseil en organisation de convoi "
       ],
       "contenuAnnexe": [],
@@ -10994,7 +10870,6 @@
         "Activités de services",
         "Transport, Fret, Entreposage",
         "Activités de poste et de courrier",
-        "",
         "livraison à domicile, coursiers",
         "l'exploitation de taxis-marchandises",
         "les activités des coursiers urbains et taxis-marchandises"
@@ -11052,7 +10927,6 @@
         "Activités de services",
         "Hotellerie et restauration",
         "Terrains de camping et parcs pour caravanes ou véhicules de loisirs",
-        "",
         "la mise à disposition d'espaces et d'installations pour des séjours de courte durée dans des parcs de loisirs et des forêts, ainsi que dans des terrains de camping",
         "les parcs pour caravanes, les camps de loisirs, les camps de chasse et de pêche et les terrains de camping"
       ],
@@ -11078,8 +10952,7 @@
         "les voitures-lits",
         "Activités de services",
         "Hotellerie et restauration",
-        "Hotellerie et hébergement avec prestations hotellières",
-        ""
+        "Hotellerie et hébergement avec prestations hotellières"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11126,7 +10999,6 @@
         "Activités de services",
         "Hotellerie et restauration",
         "Restauration",
-        "",
         "Fabrication artisanale associée à la vente de plats pour consommation immédiate en magasins sédentaires ou sur éventaires et marchés.",
         "Fabrication artisanale associée à la vente de plats pour consommation immédiate en véhicules motorisés ou non.",
         "l'activité des « camions frites », avec ou non consommation sur place",
@@ -11184,8 +11056,7 @@
         "l'exploitation en concession de cantines, restaurants d'entreprises ou de cafétérias (par exemple pour des usines, des bureaux, des hôpitaux ou des écoles), comprenant la fourniture des repas et, éventuellement, leur préparation",
         "Activités de services",
         "Hotellerie et restauration",
-        "Traiteurs et autres services de restauration",
-        ""
+        "Traiteurs et autres services de restauration"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11203,7 +11074,6 @@
         "Activités de services",
         "Hotellerie et restauration",
         "Débits de boissons",
-        "",
         "l'activité des débits de boisson"
       ],
       "contenuAnnexe": [],
@@ -11255,8 +11125,7 @@
       "contenuCentral": [
         "Industrie et artisanat de fabrication ",
         "Edition, informatique et télécommunication",
-        "Edition de blog",
-        ""
+        "Edition de blog"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11282,7 +11151,6 @@
         "Industrie et artisanat de fabrication ",
         "Edition, informatique et télécommunication",
         "Édition de livres et périodiques et autres activités d'édition ",
-        "",
         "Edition d’imprimés fiduciaires, imprimés commerciaux, formulaires imprimés.",
         "l'édition de matériel publicitaire"
       ],
@@ -11343,8 +11211,7 @@
         "l'édition de logiciels utilitaires",
         "Industrie et artisanat de fabrication ",
         "Edition, informatique et télécommunication",
-        "Édition de logiciels",
-        ""
+        "Édition de logiciels"
       ],
       "contenuAnnexe": [
         "l'édition de logiciels de gestion de base de données"
@@ -11387,8 +11254,7 @@
         "la production et la réalisation de films et de vidéos d'auteurs, courts ou longs métrages, destinés principalement à la projection dans les salles",
         "Industrie et artisanat de fabrication ",
         "Edition, informatique et télécommunication",
-        "Réalisation technique de films cinématographiques, de vidéo et de programmes de télévision",
-        ""
+        "Réalisation technique de films cinématographiques, de vidéo et de programmes de télévision"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -11468,7 +11334,6 @@
         "Industrie et artisanat de fabrication ",
         "Edition, informatique et télécommunication",
         "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale",
-        "",
         "l'activité des studios d'enregistrement",
         "la production d'émissions de radio enregistrées",
         "la réalisation de messages publicitaires pour la radio, la télévision et le cinéma"
@@ -11524,7 +11389,6 @@
         "Industrie et artisanat de fabrication ",
         "Edition, informatique et télécommunication",
         "Programmation et diffusion",
-        "",
         "les activités d'édition de chaînes de télévision généralistes à audience locale"
       ],
       "contenuAnnexe": [
@@ -11597,7 +11461,6 @@
         "Industrie et artisanat de fabrication ",
         "Edition, informatique et télécommunication",
         "Télécommunications",
-        "",
         "les revendeurs de services de télécommunications"
       ],
       "contenuAnnexe": [],
@@ -11733,7 +11596,6 @@
         "Activités de services",
         "Services d'information",
         "Traitement de données, hébergement et activités connexes ",
-        "",
         "Community manager, ergonome web, blogueur professionnel, rédacteur web"
       ],
       "contenuAnnexe": [],
@@ -11754,7 +11616,6 @@
         "Activités de services",
         "Services d'information",
         "Activités des agences de presse",
-        "",
         "Relation presse, correspondants locaux de la presse écrite",
         "les activités des agences de presse"
       ],
@@ -11779,7 +11640,6 @@
         "Activités de services",
         "Services d'information",
         "Rédacteur, attaché de presse, journaliste d'entreprise",
-        "",
         "Autres services d'information "
       ],
       "contenuAnnexe": [],
@@ -12573,8 +12433,7 @@
         "le contrôle périodique de tous types de véhicules automobiles avec la délivrance d'un certificat",
         "Activités de services",
         "Activités spécialisées, scientifiques et techniques",
-        "Contrôle technique automobile",
-        ""
+        "Contrôle technique automobile"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -12595,7 +12454,6 @@
         "Analyses, essais et inspections techniques",
         " ",
         "Diagnostic technique immobilier",
-        "",
         "les activités de contrôle et les essais techniques",
         "les services des laboratoires de police",
         "les activités de laboratoire et inspections de tous les types de matériaux et produits, à l'exclusion des produits médicaux",
@@ -12667,7 +12525,6 @@
         "Activités de services",
         "Activités spécialisées, scientifiques et techniques",
         "Recherche-développement scientifique",
-        "",
         "la recherche et le développement expérimental en sciences humaines et sociales"
       ],
       "contenuAnnexe": [],
@@ -12698,7 +12555,6 @@
         "Activités de services",
         "Activités spécialisées, scientifiques et techniques",
         "Activités des agences de publicité",
-        "",
         "Pose d’affiches."
       ],
       "contenuAnnexe": [
@@ -12725,8 +12581,7 @@
         "les centrales d'achat d'espace",
         "Activités de services",
         "Activités spécialisées, scientifiques et techniques",
-        "Régie publicitaire de médias",
-        ""
+        "Régie publicitaire de médias"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -12746,7 +12601,6 @@
         "Activités de services",
         "Activités spécialisées, scientifiques et techniques",
         "Études de marché et sondages",
-        "",
         "les études de marché et sondages",
         "les études de marché"
       ],
@@ -12767,7 +12621,6 @@
         "Activités de services",
         "Activités spécialisées, scientifiques et techniques",
         "Activités spécialisées de design",
-        "",
         "Conception de modèles pour étalages et décoration.",
         "la conception de modèles de vêtements",
         "les activités spécialisées de design",
@@ -12822,8 +12675,7 @@
       "contenuCentral": [
         "Activités de services",
         "Activités spécialisées, scientifiques et techniques",
-        "Traduction et interprétation",
-        ""
+        "Traduction et interprétation"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -12869,7 +12721,6 @@
         "Activités de services",
         "Activités spécialisées, scientifiques et techniques",
         "Activités spécialisées, scientifiques et techniques diverses",
-        "",
         "la vérification des factures et l'information sur les tarifs",
         "les activités des imprésarios et des agents ou agences similaires",
         "les consultants en sécurité"
@@ -12898,7 +12749,6 @@
         "Activités de services",
         "Activités spécialisées, scientifiques et techniques",
         "Activités vétérinaires",
-        "",
         "les activités vétérinaires",
         "la vaccination d'animaux"
       ],
@@ -13244,7 +13094,6 @@
         "Activités de services",
         "Activités liées à l'emploi",
         "Agences de casting, agences de placement, agences de mannequins",
-        "",
         "Conseil en recrutement et ressources humaines, portage salarial",
         "les activités de sélection d'acteurs et de figurants"
       ],
@@ -13267,7 +13116,6 @@
         "Activités de services",
         "Activités liées à l'emploi",
         "Activités des agences de travail temporaire ",
-        "",
         "la fourniture de travailleurs en vue de remplacer temporairement ou de compléter la main-d'œuvre du client"
       ],
       "contenuAnnexe": [],
@@ -13288,8 +13136,7 @@
         "La fourniture de ressources humaines a généralement lieu pour une longue durée ou sur une base permanente et les unités classées ici sont spécialisées dans l'exécution d'une vaste gamme de tâches de gestion des ressources humaines.",
         "Activités de services",
         "Activités liées à l'emploi",
-        "Autre mise à disposition de ressources humaines",
-        ""
+        "Autre mise à disposition de ressources humaines"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -13321,8 +13168,7 @@
       "contenuCentral": [
         "Activités de services",
         "Activités des agences de voyage, voyagistes, services de réservation et activités connexes",
-        "Activités des agences de voyage et voyagistes",
-        ""
+        "Activités des agences de voyage et voyagistes"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -13345,7 +13191,6 @@
         "Activités de services",
         "Activités des agences de voyage, voyagistes, services de réservation et activités connexes",
         "Autres services de réservation",
-        "",
         "Services d'échanges à temps partagé",
         "Vente de billets pour les spectacles, manifestations sportives et divertissements",
         "Guides et assistances touristiques",
@@ -13378,7 +13223,6 @@
         "Activités de services",
         "Enquêtes et sécurité",
         "Transport de fonds",
-        "",
         "Déchiquetage d'informations ",
         "Services de véhicules blindés",
         "Garde du corps et agents de protection",
@@ -13405,7 +13249,6 @@
         "Activités de services",
         "Enquêtes et sécurité",
         "Activité de surveillance associée à des systèmes de sécurité ou d'alarme",
-        "",
         "Activité de surveillance associée à l'installation de systèmes d’alarme non dissociées.",
         "les activités liées aux systèmes de sécurité"
       ],
@@ -13430,7 +13273,6 @@
         "Activités de services",
         "Enquêtes et sécurité",
         "Activités d'enquête",
-        "",
         "les activités d'enquêtes",
         "les activités d'enquête"
       ],
@@ -13450,7 +13292,6 @@
         "Activités de services",
         "Services relatifs aux bâtiments et aménagement paysager",
         "Activités combinées de soutien lié aux bâtiments ",
-        "",
         "les activités combinées de soutien lié aux bâtiments (combinaison de services tels que le nettoyage intérieur courant, l'entretien et les réparations mineures, l'élimination des ordures, le gardiennage et la sécurité)"
       ],
       "contenuAnnexe": [
@@ -13474,7 +13315,6 @@
         "Activités de services",
         "Services relatifs aux bâtiments et aménagement paysager",
         "Nettoyage courant des bâtiments",
-        "",
         "le nettoyage des parties intérieures de bâtiments et d'autres constructions"
       ],
       "contenuAnnexe": [],
@@ -13494,7 +13334,6 @@
         "Activités de services",
         "Services relatifs aux bâtiments et aménagement paysager",
         "Nettoyage spécialisé ou extérieur de bâtiments, nettoyage de machines industriellles",
-        "",
         "Ramonage",
         "les activités de nettoyage intérieur et extérieur spécialisé de bâtiments"
       ],
@@ -13513,8 +13352,7 @@
         "les activités de désinfection de locaux et de véhicules et de destruction de parasites",
         "Activités de services",
         "Services relatifs aux bâtiments et aménagement paysager",
-        "Désinfection, désinsectisation, dératisation",
-        ""
+        "Désinfection, désinsectisation, dératisation"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -13537,7 +13375,6 @@
         "Activités de services",
         "Services relatifs aux bâtiments et aménagement paysager",
         "Balayage des chaussées et déblaiement de la neige",
-        "",
         "nettoyage et entretien des piscines",
         "nettoyage des moyens de transports",
         "Autres activités de nettoyage",
@@ -13594,8 +13431,7 @@
         "la prestation d'une combinaison de services administratifs de bureau quotidiens, comme l'accueil, la planification financière, la facturation, la gestion de dossiers et l'archivage, les activités liées au personnel, l'organisation des locaux, les services de courrier, etc., pour le compte de tiers.",
         "Activités de services",
         "Activités administratives, agents commerciaux et autres activités de soutien aux entreprises",
-        "Services administratifs combinés de bureau",
-        ""
+        "Services administratifs combinés de bureau"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -13623,7 +13459,6 @@
         "Activités de services",
         "Activités administratives, agents commerciaux et autres activités de soutien aux entreprises",
         "Secrétariat à façon, duplication (dont photocopie), reproduction et expédition de documents",
-        "",
         "Services de domiciliation",
         "Révision, correction, transcription de documents",
         "Documentaliste Généalogiste",
@@ -13650,7 +13485,6 @@
         "Activités de services",
         "Activités administratives, agents commerciaux et autres activités de soutien aux entreprises",
         "Activités de centres d'appels",
-        "",
         "les activités des centres d'appels"
       ],
       "contenuAnnexe": [],
@@ -13667,7 +13501,6 @@
         "Activités de services",
         "Activités administratives, agents commerciaux et autres activités de soutien aux entreprises",
         "Organisation de foires, salons professionnels et congrès",
-        "",
         "Agent commercial",
         "Secteur de la banque ou de l' assurance",
         "l'organisation de salons professionnels et congrès",
@@ -13706,7 +13539,6 @@
         "Activités de services",
         "Activités administratives, agents commerciaux et autres activités de soutien aux entreprises",
         "Activités des agences de recouvrement de factures et des sociétés d'information financière sur la clientèle",
-        "",
         "le recouvrement de factures"
       ],
       "contenuAnnexe": [],
@@ -13728,7 +13560,6 @@
         "Activités de services",
         "Activités administratives, agents commerciaux et autres activités de soutien aux entreprises",
         "Activités de conditionnement",
-        "",
         "le conditionnement de produits pharmaceutiques",
         "le conditionnement de viandes de volailles pour compte de tiers",
         "le conditionnement de viandes pour compte de tiers",
@@ -13761,7 +13592,6 @@
         "Activités de services",
         "Activités administratives, agents commerciaux et autres activités de soutien aux entreprises",
         "Autres activités commerciales de soutien aux entreprises",
-        "",
         "Autres activités libérales de soutien aux entreprises",
         "Agent commercial",
         "Secteur agrolimentaire",
@@ -14044,8 +13874,7 @@
         "Par exemple, enseignement dispensé par les écoles pré-élémentaires",
         "Activités de services",
         "Enseignement",
-        "Enseignement pré-primaire",
-        ""
+        "Enseignement pré-primaire"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -14067,7 +13896,6 @@
         "Activités de services",
         "Enseignement",
         "Enseignement primaire",
-        "",
         "l'alphabétisation des adultes"
       ],
       "contenuAnnexe": [],
@@ -14093,7 +13921,6 @@
         "Activités de services",
         "Enseignement",
         "Enseignement secondaire général",
-        "",
         "l'enseignement secondaire général"
       ],
       "contenuAnnexe": [],
@@ -14143,8 +13970,7 @@
         "Par exemple, préparation du diplôme d'accès aux études universitaires, préparation à l'entrée des écoles paramédicales ou sociales de niveau supérieur, classes de mise à niveau BTS, préparation au diplôme de moniteur-éducateur et d'éducateur technique spécialisé (écoles sociales)",
         "Activités de services",
         "Enseignement",
-        "Enseignement post-secondaire non supérieur",
-        ""
+        "Enseignement post-secondaire non supérieur"
       ],
       "contenuAnnexe": [],
       "contenuExclu": []
@@ -14188,7 +14014,6 @@
         "Activités de services",
         "Enseignement",
         "Enseignement de disciplines sportives et d'activités de loisirs",
-        "",
         "les cours de sports donnés par des professeurs indépendants, des entraîneurs",
         "les activités des établissements d'enseignement de disciplines sportives et d'activités ludiques",
         "les activités des instructeurs de sports, professeurs et entraîneurs professionnels"
@@ -14217,7 +14042,6 @@
         "Activités de services",
         "Enseignement",
         "Enseignement culturel",
-        "",
         "l'enseignement culturel"
       ],
       "contenuAnnexe": [
@@ -14238,8 +14062,7 @@
         "les écoles de conduite préparant aux différents types de permis de conduire",
         "Activités de services",
         "Enseignement",
-        "Enseignement de la conduite",
-        ""
+        "Enseignement de la conduite"
       ],
       "contenuAnnexe": [
         "les écoles de vol, voile, navigation ne délivrant pas de certificats ou de permis commerciaux"
@@ -14288,7 +14111,6 @@
         "Activités de services",
         "Enseignement",
         "Autres enseignements",
-        "",
         "les cours de langues étrangères"
       ],
       "contenuAnnexe": [],
@@ -14310,8 +14132,7 @@
         "l'organisation d'activités de soutien scolaire sans prestation de service d'enseignement",
         "Activités de services",
         "Enseignement",
-        "Activités de soutien à l'enseignement",
-        ""
+        "Activités de soutien à l'enseignement"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -14874,7 +14695,6 @@
         "Activités de services",
         "Social et santé",
         "Action sociale sans hébergement",
-        "",
         "les services internationaux en cas de catastrophes ou l'aide aux réfugiés",
         "les activités de bienfaisance telles que la collecte de fonds destinés à des œuvres sociales"
       ],
@@ -14898,7 +14718,6 @@
         "Production de spectacles et de tournées artistiques",
         "Artiste de spectacle",
         "Spectacles de marionnettes.",
-        "",
         "les troupes de théâtre et de cirque"
       ],
       "contenuAnnexe": [
@@ -14946,7 +14765,6 @@
         "Création artistique des céramistes, émailleurs, liciers, vitraillistes et autres métiers d'art",
         "Création artistique relevant des arts plastiques et graphiques",
         "Restauration d’objets d’art.",
-        "",
         "la restauration d'œuvres d'art et d'objets de collection des musées"
       ],
       "contenuAnnexe": [],
@@ -15010,7 +14828,6 @@
         "Activités de services",
         "Arts, culture et divertissement",
         "Gestion des bibliothèques et des archives",
-        "",
         "la gestion des archives des administrations",
         "les activités des bibliothèques et archives des administrations",
         "les activités des bibliothèques et archives"
@@ -15033,7 +14850,6 @@
         "Activités de services",
         "Arts, culture et divertissement",
         "Gestion des musées",
-        "",
         "la gestion des musées de toute nature"
       ],
       "contenuAnnexe": [],
@@ -15064,8 +14880,7 @@
         "la gestion des réserves naturelles, y compris la protection de la flore et de la faune, etc.",
         "Activités de services",
         "Arts, culture et divertissement",
-        "Gestion des jardins botaniques et zoologiques et des réserves naturelles",
-        ""
+        "Gestion des jardins botaniques et zoologiques et des réserves naturelles"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15526,7 +15341,6 @@
         "l'accordage de pianos",
         "Installation et réparation",
         "Réparation de biens personnels et domestiques et d'ordinateurs",
-        "",
         "Travaux de petit bricolage dits \" homme toutes mains \"",
         "les « services minute » de gravure",
         "les activités d'entretien et de réparation des cycles",
@@ -15554,8 +15368,7 @@
         "la fourniture, par les blanchisseries de gros, de linge, de vêtements de travail et d'articles similaires",
         "Activités de services",
         "Autres services personnels",
-        "Blanchisserie-teinturerie de gros.",
-        ""
+        "Blanchisserie-teinturerie de gros."
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15577,7 +15390,6 @@
         "Activités de services",
         "Autres services personnels",
         "Laveries automatiques",
-        "",
         "Laveries, blanchisserie et teintureries de détail.",
         "Pressings.",
         "les machines à laver fonctionnant au moyen de pièces de monnaie"
@@ -15599,8 +15411,7 @@
         "le rasage et la taille de la barbe",
         "Activités de services",
         "Autres services personnels",
-        "Coiffure",
-        ""
+        "Coiffure"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15640,7 +15451,6 @@
         "Activités de services",
         "Autres services personnels",
         "Services funéraires",
-        "",
         "Embaumement, soins mortuaires."
       ],
       "contenuAnnexe": [],
@@ -15659,8 +15469,7 @@
         "les activités d'entretien corporel telle que celles fournies par les bains turcs, les saunas et les bains de vapeur, les solariums, les stations thermales, les instituts d'amaigrissement et d'amincissement, les instituts de massage, etc.",
         "Activités de services",
         "Autres services personnels",
-        "Entretien corporel",
-        ""
+        "Entretien corporel"
       ],
       "contenuAnnexe": [],
       "contenuExclu": [
@@ -15685,7 +15494,6 @@
         "Activités de services",
         "Autres services personnels",
         "services personnels divers",
-        "",
         "Dressage, Toilettage, éducation comportementaliste et pension pour animaux de compagnie.",
         "Dressage d'animaux de compagnie et de chiens guide d'aveugle",
         "Toilettage des chiens, chats et autres animaux de compagnie",
