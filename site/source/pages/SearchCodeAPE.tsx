@@ -128,9 +128,10 @@ const Result = ({ item, debug }: ResultProps) => {
 									<br />
 								</Fragment>
 							))}
+							{contenuCentral.length ? <br /> : null}
+
 							{contenuAnnexe.length ? (
 								<>
-									<br />
 									<span style={{ fontWeight: 'bold' }}>
 										Contenu annexe de cette activité :
 									</span>
@@ -143,9 +144,10 @@ const Result = ({ item, debug }: ResultProps) => {
 									<br />
 								</Fragment>
 							))}
+							{contenuAnnexe.length ? <br /> : null}
+
 							{contenuExclu.length ? (
 								<>
-									<br />
 									<span style={{ fontWeight: 'bold' }}>
 										Contenu exclu de cette activité :
 									</span>
