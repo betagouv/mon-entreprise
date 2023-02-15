@@ -1,16 +1,18 @@
 import UFuzzy from '@leeoniya/ufuzzy'
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import { t } from 'vitest/dist/index-9f5bc072'
 
 import { FromTop } from '@/components/ui/animate'
-import { RadioCardGroup, TextField } from '@/design-system'
+import { Chip, RadioCardGroup, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 
-import data from '../../../scripts/codeAPESearch/données-code-APE/output.min.json'
+import data from '../../../scripts/codeAPESearch/données-code-APE/output.min.json?raw'
 import { Output as Data } from '../../../scripts/codeAPESearch/données-code-APE/reduce-json'
 
 const {
@@ -18,7 +20,7 @@ const {
 	indexByCodeApe,
 	indexByCodeDepartement,
 	nbEtablissements2021,
-} = data as Data
+} = JSON.parse(data) as Data
 
 interface SearchableData {
 	original: string[]
@@ -84,27 +86,27 @@ interface ResultProps {
 		contenuAnnexe: string[]
 		contenuExclu: string[]
 	}
-	selected: string
 }
 
-const Result = ({ item, selected, debug }: ResultProps) => {
+const Result = ({ item, debug }: ResultProps) => {
 	const { title, codeApe, contenuCentral, contenuAnnexe, contenuExclu } = item
-	const [open, setOpen] = useState(!false) // TODO remove !
+	const [open, setOpen] = useState(IS_DEVELOPMENT)
+	const { t } = useTranslation()
 
 	return (
 		<Grid container style={{ alignItems: 'center' }}>
 			<Grid item xs={12} md={10}>
-				<H3 style={{ marginTop: 0, marginBottom: '.5rem' }}>{title}</H3>
-				<p style={{ fontWeight: 'bold', marginTop: 0 }}>
-					Code : <span>{codeApe}</span> - <br />
-					[selected : <span>{selected}</span>]
-				</p>
+				<H3 style={{ marginTop: 0, marginBottom: '.5rem' }}>
+					{title}
+					<Chip type="secondary">APE: {codeApe}</Chip>
+				</H3>
+
 				{debug && <pre>{debug}</pre>}
 			</Grid>
 
-			<Grid item xs={12} md={2}>
+			<Grid item xs={12} md={2} style={{ textAlign: 'center' }}>
 				<Button size="XS" onClick={() => setOpen((x) => !x)}>
-					En savoir plus
+					{!open ? t('En savoir plus') : t('Replier')}
 				</Button>
 			</Grid>
 
@@ -170,7 +172,11 @@ interface ListResult {
 	debug: string | null
 }
 
-export default function SearchCodeAPE() {
+interface SearchCodeApeProps {
+	disabled?: boolean
+}
+
+export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 	const [job, setJob] = useState('')
 	const [department, setDepartment] = useState('')
 	const [selected, setSelected] = useState('')
@@ -254,21 +260,14 @@ export default function SearchCodeAPE() {
 		prevValue.current = job
 	}, [department, job])
 
-	const test = list.slice(0, 25).map(({ item, debug }) => {
+	const resultsList = list.slice(0, 25).map(({ item, debug }) => {
 		return (
 			<StyledRadioSkeleton
 				value={item.codeApe}
 				key={item.codeApe}
 				visibleRadioAs="div"
 			>
-				<Result
-					{...{
-						item,
-						department,
-						debug,
-						selected,
-					}}
-				/>
+				<Result item={item} debug={debug} />
 			</StyledRadioSkeleton>
 		)
 	})
@@ -288,8 +287,18 @@ export default function SearchCodeAPE() {
 				</Grid>
 			</Grid>
 
-			<StyledRadioCardGroup value={selected} onChange={setSelected}>
-				<Grid container>{test}</Grid>
+			{IS_DEVELOPMENT && (
+				<>
+					[selected: <span>{disabled ? 'disabled' : selected || 'none'}</span>]
+				</>
+			)}
+
+			<StyledRadioCardGroup
+				value={selected}
+				onChange={setSelected}
+				isDisabled={disabled}
+			>
+				<Grid container>{resultsList}</Grid>
 			</StyledRadioCardGroup>
 		</Body>
 	)

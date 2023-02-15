@@ -123,7 +123,10 @@ const App = () => {
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>
 						<Routes>
-							<Route path="/poc-search-code-ape" element={<SearchCodeAPE />} />
+							<Route
+								path="/poc-search-code-ape"
+								element={<SearchCodeAPE disabled />}
+							/>
 							<Route
 								path={relativeSitePaths.créer.index + '/*'}
 								element={<Créer />}
