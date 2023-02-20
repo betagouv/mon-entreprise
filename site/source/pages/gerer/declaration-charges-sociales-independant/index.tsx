@@ -211,6 +211,8 @@ function ImpositionSection() {
 
 	return (
 		<>
+			<SimpleField dottedName="entreprise . catégorie juridique" />
+
 			<SimpleField dottedName="entreprise . imposition" />
 
 			<WhenAlreadyDefined dottedName="entreprise . imposition">
