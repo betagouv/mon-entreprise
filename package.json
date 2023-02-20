@@ -56,6 +56,9 @@
 		"prettier": "^2.8.3",
 		"rimraf": "^3.0.2"
 	},
+	"resolutions": {
+		"rollup": "^3.10.0"
+	},
 	"packageManager": "yarn@3.3.0",
 	"engines": {
 		"node": "^18"
