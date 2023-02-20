@@ -80,6 +80,7 @@ export const FormulaireS2 = ({
 			{exoS2Applicable ? (
 				<>
 					<Trans>
+						{/* @ts-ignore ignore ReactI18NextChildren error */}
 						<H3 as="h2">
 							Entre début {{ firstMonth: monthNames[firstMonth - 1] }}{' '}
 							{{ firstYear: firstYear.toString() }} et fin{' '}
