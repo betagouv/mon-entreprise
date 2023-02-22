@@ -145,7 +145,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		css`
 			color: ${theme.colors.bases[$color][$color === 'primary' ? 700 : 700]};
 			background-color: ${theme.colors.extended.grey[100]};
-			${$color === 'secondary' &&
+			${($color === 'secondary' || $color === 'tertiary') &&
 			css`
 				border-color: ${theme.colors.bases[$color][500]};
 			`};

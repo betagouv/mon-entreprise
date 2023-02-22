@@ -12,7 +12,7 @@ import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useAsyncData } from '@/hooks/useAsyncData'
 
-import { Output as Data } from '../../../scripts/codeAPESearch/données-code-APE/reduce-json'
+import { Output as Data } from '../../../../../scripts/codeAPESearch/données-code-APE/reduce-json'
 
 interface SearchableData {
 	original: string[]
@@ -189,7 +189,9 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 
 	const lazyData = useAsyncData(
 		() =>
-			import('../../../scripts/codeAPESearch/données-code-APE/output.min.json')
+			import(
+				'../../../../../scripts/codeAPESearch/données-code-APE/output.min.json'
+			)
 	)
 
 	const lastIdxs = useRef<Record<string, UFuzzy.HaystackIdxs>>({})
