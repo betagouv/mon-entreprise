@@ -5,6 +5,7 @@ import SearchCodeApePage from '.'
 
 export function rechercheCodeApeConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
+		beta: true,
 		id: 'recherche-code-ape',
 		pathId: 'assistants.recherche-code-ape',
 		path: sitePaths.assistants['recherche-code-ape'],
@@ -12,7 +13,7 @@ export function rechercheCodeApeConfig({ t, sitePaths }: SimulatorsDataParams) {
 		icône: '🔍',
 		title: t(
 			'pages.assistants.recherche-code-ape.title',
-			'Recherche de code APE'
+			'Quel code APE pour mon activité ? '
 		),
 		shortName: t(
 			'pages.assistants.recherche-code-ape.shortname',
@@ -28,7 +29,9 @@ export function rechercheCodeApeConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'Assistant pour trouver le code APE qui correspond à votre activité.'
 			),
 		},
-		tracking: {},
+		tracking: {
+			// TODO
+		},
 		component: SearchCodeApePage,
 	} as const)
 }

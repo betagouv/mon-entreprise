@@ -389,7 +389,7 @@ const ActivityNotFound = () => {
 								"Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats"
 							)}
 							placeholder={t(
-								`Je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie"`
+								`Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".`
 							)}
 							tags={['code-ape']}
 						/>
