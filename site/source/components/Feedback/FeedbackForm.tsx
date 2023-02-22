@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -49,11 +49,17 @@ const FeedbackThankYouContent = () => {
 }
 
 export default function FeedbackForm({
-	isNotSatisfied,
 	title,
+	infoSlot,
+	description,
+	placeholder,
+	tags,
 }: {
-	isNotSatisfied: boolean
 	title: string
+	infoSlot?: ReactNode
+	description?: string
+	placeholder?: string
+	tags?: string[]
 }) {
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
@@ -61,7 +67,6 @@ export default function FeedbackForm({
 		undefined
 	)
 	const pathname = useLocation().pathname
-	const page = pathname.split('/').slice(-1)[0]
 
 	const { t } = useTranslation()
 
@@ -73,6 +78,7 @@ export default function FeedbackForm({
 		email: string
 	}) => {
 		setIsLoading(true)
+		const subjectTags = tags?.length ? ` [${tags?.join(',')}]` : ''
 
 		try {
 			await fetch(`/server/send-crisp-message`, {
@@ -81,7 +87,7 @@ export default function FeedbackForm({
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
-					subject: `Suggestion sur la page : ${page}`,
+					subject: `Suggestion sur la page : ${pathname}${subjectTags}`,
 					message,
 					email,
 				}),
@@ -89,6 +95,8 @@ export default function FeedbackForm({
 			setIsSubmittedSuccessfully(true)
 		} catch (e) {
 			// Show error message
+			// eslint-disable-next-line no-console
+			console.error(e)
 		}
 	}
 
@@ -112,7 +120,7 @@ export default function FeedbackForm({
 			{isSubmittedSuccessfully && <FeedbackThankYouContent />}
 			{!isSubmittedSuccessfully && (
 				<>
-					<H1>{title}</H1>
+					<H1 style={{ marginTop: '1rem' }}>{title}</H1>
 
 					<StyledFeedback>
 						<form
@@ -141,23 +149,14 @@ export default function FeedbackForm({
 								void sendMessage({ message, email })
 							}}
 						>
-							{isNotSatisfied && (
-								<>
-									<Body>
-										<Trans>
-											Vous n’avez pas été satisfait(e) de votre expérience, nous
-											en sommes désolé(e)s.
-										</Trans>
-									</Body>
-								</>
-							)}
+							{infoSlot}
 
 							<Body>
 								<Strong>
-									<Trans>
-										Que pouvons-nous améliorer pour mieux répondre à vos
-										attentes ?
-									</Trans>
+									{description ??
+										t(
+											'Que pouvons-nous améliorer pour mieux répondre à vos attentes ?'
+										)}
 								</Strong>
 							</Body>
 							<StyledTextArea
@@ -171,10 +170,12 @@ export default function FeedbackForm({
 								rows={7}
 								isDisabled={isLoading}
 								errorMessage={submitError?.message}
-								placeholder={t(
-									'Ex : Des informations plus claires, un calcul détaillé...'
-								)}
+								placeholder={
+									placeholder ??
+									t('Ex : Des informations plus claires, un calcul détaillé...')
+								}
 							/>
+
 							<StyledDiv>
 								<StyledTextField
 									id="email"
@@ -191,9 +192,12 @@ export default function FeedbackForm({
 									onChange={resetSubmitErrorField('email')}
 								/>
 							</StyledDiv>
-							<StyledButton isDisabled={isLoading} type="submit">
-								{t('Envoyer')}
-							</StyledButton>
+
+							<div style={{ textAlign: 'end' }}>
+								<StyledButton isDisabled={isLoading} type="submit">
+									{t('Envoyer')}
+								</StyledButton>
+							</div>
 						</form>
 					</StyledFeedback>
 				</>
