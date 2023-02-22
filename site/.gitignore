@@ -9,3 +9,4 @@ netlify*.toml
 source/public/sitemap.*.txt
 source/public/simulation-data*.json
 dev-dist
+vite*.config.ts.timestamp*
