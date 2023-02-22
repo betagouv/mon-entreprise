@@ -78,7 +78,7 @@ const guidesUrssaf = [
 		title: 'Guide Urssaf pour les professions libérales réglementées',
 	},
 	{
-		url: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf',
+		url: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Urssaf-Guide-AutoEntrepreneur-metropole.pdf',
 		associatedRule: 'dirigeant . auto-entrepreneur',
 		title: 'Guide Urssaf pour les auto-entrepreneurs',
 	},
