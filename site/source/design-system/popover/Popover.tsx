@@ -10,11 +10,9 @@ import {
 import { AriaDialogProps } from '@react-types/dialog'
 import FocusTrap from 'focus-trap-react'
 import React, { RefObject, useEffect, useRef, useState } from 'react'
-import styled, { ThemeProvider, css, keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
-import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Grid } from '@/design-system/layout'
-import { useDarkMode } from '@/hooks/useDarkMode'
 import { getIframeOffset, wrapperDebounceEvents } from '@/utils'
 
 import { Container } from '../layout'

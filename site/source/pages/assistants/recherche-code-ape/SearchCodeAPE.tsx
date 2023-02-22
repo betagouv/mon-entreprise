@@ -1,13 +1,21 @@
 import UFuzzy from '@leeoniya/ufuzzy'
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { Trans, useTranslation } from 'react-i18next'
+import styled, { css } from 'styled-components'
 
+import FeedbackForm from '@/components/Feedback/FeedbackForm'
 import { FromTop } from '@/components/ui/animate'
-import { Chip, RadioCardGroup, TextField } from '@/design-system'
+import {
+	Chip,
+	PopoverWithTrigger,
+	RadioCardGroup,
+	TextField,
+} from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Emoji } from '@/design-system/emoji'
 import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
-import { Grid } from '@/design-system/layout'
+import { ChevronIcon } from '@/design-system/icons'
+import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useAsyncData } from '@/hooks/useAsyncData'
@@ -93,12 +101,12 @@ interface ResultProps {
 
 const Result = ({ item, debug }: ResultProps) => {
 	const { title, codeApe, contenuCentral, contenuAnnexe, contenuExclu } = item
-	const [open, setOpen] = useState(IS_DEVELOPMENT)
+	const [open, setOpen] = useState(false)
 	const { t } = useTranslation()
 
 	return (
 		<Grid container style={{ alignItems: 'center' }}>
-			<Grid item xs={12} md={10}>
+			<Grid item xs={12} sm={8} md={9} xl={10}>
 				<H3 style={{ marginTop: 0, marginBottom: '.5rem' }}>
 					{title}
 					<Chip type="secondary">APE: {codeApe}</Chip>
@@ -107,11 +115,12 @@ const Result = ({ item, debug }: ResultProps) => {
 				{debug && <pre>{debug}</pre>}
 			</Grid>
 
-			<Grid item xs={12} md={2} style={{ textAlign: 'center' }}>
-				<Button size="XS" onClick={() => setOpen((x) => !x)}>
-					{!open ? t('En savoir plus') : t('Replier')}
+			<StyledGrid item xs={12} sm={4} md={3} xl={2}>
+				<Button size="XXS" light onPress={() => setOpen((x) => !x)}>
+					{!open ? t('En savoir plus') : t('Replier')}{' '}
+					<StyledChevron aria-hidden $isOpen={open} />
 				</Button>
-			</Grid>
+			</StyledGrid>
 
 			{open && (
 				<FromTop>
@@ -171,6 +180,22 @@ const Result = ({ item, debug }: ResultProps) => {
 	)
 }
 
+const StyledGrid = styled(Grid)`
+	display: flex;
+	justify-content: end;
+`
+
+const StyledChevron = styled(ChevronIcon)<{ $isOpen: boolean }>`
+	vertical-align: middle;
+	transform: rotate(-90deg);
+	transition: transform 0.3s;
+	${({ $isOpen }) =>
+		!$isOpen &&
+		css`
+			transform: rotate(90deg);
+		`}
+`
+
 interface ListResult {
 	item: Data['apeData'][0]
 	score: number
@@ -182,6 +207,7 @@ interface SearchCodeApeProps {
 }
 
 export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
+	const { t } = useTranslation()
 	const [job, setJob] = useState('')
 	const [department, setDepartment] = useState('')
 	const [selected, setSelected] = useState('')
@@ -277,19 +303,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 
 		setList(results)
 		prevValue.current = job
-	}, [department, job])
-
-	const resultsList = list.slice(0, 25).map(({ item, debug }) => {
-		return (
-			<StyledRadioSkeleton
-				value={item.codeApe}
-				key={item.codeApe}
-				visibleRadioAs="div"
-			>
-				<Result item={item} debug={debug} />
-			</StyledRadioSkeleton>
-		)
-	})
+	}, [buildedResearch, department, job, lazyData])
 
 	const ret = (
 		<Body as="div">
@@ -298,11 +312,15 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 					<TextField
 						value={department}
 						onChange={setDepartment}
-						label="Département"
+						label={t('Département')}
 					/>
 				</Grid>
 				<Grid item xs={8}>
-					<TextField value={job} onChange={setJob} label="Votre métier" />
+					<TextField
+						value={job}
+						onChange={setJob}
+						label={t('Votre activité')}
+					/>
 				</Grid>
 			</Grid>
 
@@ -317,8 +335,23 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 				onChange={setSelected}
 				isDisabled={disabled}
 			>
-				<Grid container>{resultsList}</Grid>
+				<Grid container>
+					{list.slice(0, 25).map(({ item, debug }) => {
+						return (
+							<StyledRadioSkeleton
+								value={item.codeApe}
+								key={item.codeApe}
+								visibleRadioAs="div"
+							>
+								<Result item={item} debug={debug} />
+							</StyledRadioSkeleton>
+						)
+					})}
+				</Grid>
 			</StyledRadioCardGroup>
+
+			<Spacing sm />
+			<ActivityNotFound />
 		</Body>
 	)
 
@@ -330,3 +363,39 @@ const StyledRadioCardGroup = styled(RadioCardGroup)`
 	flex-direction: row;
 	flex-wrap: wrap;
 `
+
+const ActivityNotFound = () => {
+	const { t } = useTranslation()
+
+	return (
+		<>
+			<PopoverWithTrigger
+				trigger={(buttonProps) => (
+					// eslint-disable-next-line react/jsx-props-no-spreading
+					<Button {...buttonProps} size="XS" color="tertiary" light>
+						<Emoji emoji="🖐️" />{' '}
+						<Trans i18nKey="search-code-ape.cant-find-my-activity">
+							Je ne trouve pas mon activité
+						</Trans>
+					</Button>
+				)}
+				small
+			>
+				{() => (
+					<>
+						<FeedbackForm
+							title={t('Quelle est votre activité ?')}
+							description={t(
+								"Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats"
+							)}
+							placeholder={t(
+								`Je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie"`
+							)}
+							tags={['code-ape']}
+						/>
+					</>
+				)}
+			</PopoverWithTrigger>
+		</>
+	)
+}

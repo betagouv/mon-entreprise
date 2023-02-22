@@ -179,7 +179,16 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 						}}
 					>
 						<FeedbackForm
-							isNotSatisfied={isNotSatisfied}
+							infoSlot={
+								isNotSatisfied && (
+									<Body>
+										<Trans>
+											Vous n’avez pas été satisfait(e) de votre expérience, nous
+											en sommes désolé(e)s.
+										</Trans>
+									</Body>
+								)
+							}
 							title={
 								isNotSatisfied
 									? t('Vos attentes ne sont pas remplies')
