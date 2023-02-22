@@ -297,7 +297,7 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 					/>
 					<Spacing sm />
 					<Grid container columns={4}>
-						<SelectedSimulator chapter2={chapter2} />
+						{chapter2 && <SelectedSimulator chapter2={chapter2} />}
 					</Grid>
 				</div>
 				<div>
