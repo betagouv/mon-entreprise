@@ -1,6 +1,7 @@
 import { ImmutableType } from '@/types/utils'
 
 import { choixStatutConfig } from '../Creer/choix-statut/config'
+import { rechercheCodeApeConfig } from '../assistants/recherche-code-ape/config'
 import {
 	déclarationChargesSocialesIndépendantConfig,
 	déclarationRevenuIndépendantConfig,
@@ -72,6 +73,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...coûtCréationEntrepriseConfig(params),
 		...impôtSociétéConfig(params),
 		...cipavConfig(params),
+		...rechercheCodeApeConfig(params),
 	} as const
 
 	return data satisfies ImmutableType<Record<string, PageConfig>>

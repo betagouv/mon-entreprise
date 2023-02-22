@@ -40,6 +40,7 @@ export function ToggleGroup(props: ToggleGroupProps) {
 			<ToggleGroupContainer
 				hideRadio={props.hideRadio ?? false}
 				mode={props?.mode}
+				isDisabled={props?.isDisabled}
 			>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
 			</ToggleGroupContainer>
@@ -74,6 +75,7 @@ const TabModeCheckedStyle = css`
 export const ToggleGroupContainer = styled.div<{
 	hideRadio: boolean
 	mode?: Toggle | Tab
+	isDisabled?: boolean
 }>`
 	--radius: 0.25rem;
 	display: inline-flex;
@@ -96,7 +98,6 @@ export const ToggleGroupContainer = styled.div<{
 		margin: 0;
 		margin-right: -1px;
 		border-radius: 0;
-		cursor: pointer;
 		padding: ${({ theme: { spacings } }) => spacings.xs + ' ' + spacings.lg};
 		background: ${({ theme }) =>
 			theme.darkMode
@@ -104,6 +105,7 @@ export const ToggleGroupContainer = styled.div<{
 				: theme.colors.extended.grey[100]};
 
 		${({ mode }) => mode === 'tab' && TabModeStyle}
+		${({ isDisabled }) => !isDisabled && 'cursor: pointer;'}
 	}
 
 	${LabelBody} {
@@ -137,10 +139,11 @@ export const ToggleGroupContainer = styled.div<{
 	}
 
 	${VisibleRadio}:hover {
-		background-color: ${({ theme }) =>
-			theme.darkMode
+		background-color: ${({ theme, isDisabled }) =>
+			!isDisabled &&
+			(theme.darkMode
 				? theme.colors.bases.primary[700]
-				: theme.colors.bases.primary[100]};
+				: theme.colors.bases.primary[100])};
 	}
 	${RadioButton} {
 		${({ hideRadio }) =>

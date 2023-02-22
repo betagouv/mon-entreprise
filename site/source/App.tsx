@@ -34,9 +34,9 @@ import Landing from './pages/Landing/Landing'
 import Nouveautés from './pages/Nouveautes/Nouveautes'
 import Offline from './pages/Offline'
 import Plan from './pages/Plan'
-import SearchCodeAPE from './pages/SearchCodeAPE'
 import Simulateurs from './pages/Simulateurs'
 import Stats from './pages/Stats/LazyStats'
+import Assistants from './pages/assistants'
 import Gérer from './pages/gerer'
 import Integration from './pages/integration/index'
 import { useSitePaths } from './sitePaths'
@@ -124,16 +124,16 @@ const App = () => {
 					<ErrorBoundary fallback={CatchOffline}>
 						<Routes>
 							<Route
-								path="/poc-search-code-ape"
-								element={<SearchCodeAPE disabled />}
-							/>
-							<Route
 								path={relativeSitePaths.créer.index + '/*'}
 								element={<Créer />}
 							/>
 							<Route
 								path={relativeSitePaths.gérer.index + '/*'}
 								element={<Gérer />}
+							/>
+							<Route
+								path={relativeSitePaths.assistants.index + '/*'}
+								element={<Assistants />}
 							/>
 							<Route
 								path={relativeSitePaths.simulateurs.index + '/*'}

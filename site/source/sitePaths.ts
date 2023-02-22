@@ -54,6 +54,10 @@ const rawSitePathsFr = {
 		},
 		formulaireMobilité: 'demande-mobilité',
 	},
+	assistants: {
+		index: 'assistants',
+		'recherche-code-ape': 'recherche-code-ape',
+	},
 	simulateurs: {
 		index: 'simulateurs',
 		'coût-création-entreprise': 'cout-creation-entreprise',
@@ -138,6 +142,10 @@ const rawSitePathsEn = {
 			},
 		},
 		formulaireMobilité: 'posting-demand',
+	},
+	assistants: {
+		index: 'assistants',
+		'recherche-code-ape': 'search-code-ape',
 	},
 	simulateurs: {
 		index: 'calculators',

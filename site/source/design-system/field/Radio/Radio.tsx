@@ -133,7 +133,7 @@ const Label = styled.label<{ $hideRadio?: boolean; htmlFor?: string }>`
 		css`
 			margin-top: -1px;
 		`}
-	:focus-within ${VisibleRadio} {
+	:focus ${VisibleRadio} {
 		${FocusStyle}
 	}
 `
