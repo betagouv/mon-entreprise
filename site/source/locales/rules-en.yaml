@@ -1068,9 +1068,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
         BIC et BNC
       titre.en: '[automatic] service delivery'
       titre.fr: prestation de service
-    références:
-      titre.en: '[automatic] references'
-      titre.fr: références
     service BIC:
       titre.en: '[automatic] BIC service'
       titre.fr: service BIC
@@ -1422,40 +1419,41 @@ dirigeant . indépendant . PL . CARCDSF:
   titre.en: '[automatic] CARCDSF'
   titre.fr: CARCDSF
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
+  avec:
+    PCV:
+      avec:
+        forfaitaire:
+          titre.en: '[automatic] lump sum'
+          titre.fr: forfaitaire
+        proportionnelle:
+          titre.en: '[automatic] proportional'
+          titre.fr: proportionnelle
+      note.en: >-
+        [automatic] A waiver may be granted when the 2019 professional income
+        is less than or equal to 500 C (value as of January 1 of the year in
+        question), or €11,500.
+
+        The request must be accompanied by a photocopy of the tax return No. 2042 C or 2035 or 2065 and their appendices (2033 B and D or 2053 and 2058 A) of the year 2019.
+
+        This exemption results in the cancellation of rights for the year and the non-contributed points are not redeemable.
+      note.fr: >-
+        Une dispense peut être accordée lorsque les revenus professionnels 2019
+        sont inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année
+        considérée), soit 11 500 €.
+
+        La demande doit être accompagnée d’une photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
+
+        Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
+      titre.en: '[automatic] Supplementary old-age benefit'
+      titre.fr: Prestation complémentaire vieillesse
+    RID:
+      titre.en: '[automatic] disability and death'
+      titre.fr: invalidité et décès
   titre.en: '[automatic] dental surgeon'
   titre.fr: chirurgien-dentiste
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
-  avec:
-    forfaitaire:
-      titre.en: '[automatic] lump sum'
-      titre.fr: forfaitaire
-    proportionnelle:
-      titre.en: '[automatic] proportional'
-      titre.fr: proportionnelle
-  note.en: >-
-    [automatic] An exemption can be granted when the 2019 professional
-    income is less than or equal to C 500 (value on 1 January of the year in
-    question), i.e. € 11,500.
-
-    The application must be accompanied by a photocopy of the tax return n° 2042 C or 2035 or 2065 and their annexes (2033 B and D or 2053 and 2058 A) for the year 2019.
-
-    This exemption results in the cancellation of the fees for the year and the unassessed points are not redeemable.
-  note.fr: >-
-    Une dispense peut être accordée lorsque les revenus professionnels 2019
-    sont inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année
-    considérée), soit 11 500 €.
-
-    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
-
-    Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
-  titre.en: '[automatic] Supplementary old-age benefit'
-  titre.fr: Prestation complémentaire vieillesse
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
   titre.en: '[automatic] CPAM participation'
   titre.fr: participation CPAM
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
-  titre.en: '[automatic] disability and death'
-  titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
   description.en: "[automatic] You have the possibility to benefit from a total
     exemption of contribution for the complementary old age benefit (PCV) if you
@@ -1473,11 +1471,15 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consu
   titre.en: '[automatic] consulting fee'
   titre.fr: prix d'une consultation
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
+  avec:
+    cotisation forfaitaire:
+      titre.en: '[automatic] flat fee'
+      titre.fr: cotisation forfaitaire
+    cotisation proportionnelle:
+      titre.en: '[automatic] proportional contribution'
+      titre.fr: cotisation proportionnelle
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire:
-  titre.en: '[automatic] flat-rate contribution'
-  titre.fr: cotisation forfaitaire
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
   description.en: >
     [automatic] You have the possibility of benefiting from a
@@ -1497,29 +1499,29 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
   titre.fr: réduction applicable
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
   description.en: >
-    [automatic] Affiliates whose net professional income for the
-    year N-1 is less than 85%.
+    [automatic] Members whose net professional income for the year
+    N-1 is less than 85
 
-    % of the PASS in force on 1 January of the year in question (€34,966 in 2020)
+    85% of the PASS in force on January 1 of the year in question 
 
-    may, on request, obtain a reduction in the lump-sum contribution.
-
-
-    The reduction coefficient applied shall be equal to the ratio of income
-
-    non-salaried professionals on the above-mentioned threshold.
+    may, upon request, obtain a reduction in the flat-rate contribution.
 
 
-    The request must be addressed to the CARDSF and be accompanied by a
+    The reduction coefficient applied is equal to the ratio of the self-employed
 
-    photocopy of the tax return no. 2042 C or 2035 or 2065 and their
+    to the above-mentioned threshold.
 
-    annexes (2033 B and D or 2053 and 2058 A) for the year 2019.
+
+    The request must be addressed to the CARCDSF and be accompanied by a
+
+    photocopy of the tax return n° 2042 C or 2035 or 2065 and their appendices
+
+    (2033 B and D or 2053 and 2058 A) for the year 2019.
   description.fr: >
     Les affiliés dont les revenus professionnels nets sur l'année
     N-1 sont inférieurs à 85
 
-    % du PASS en vigueur au 1er janvier de l’année considérée (34 966 € en 2020)
+    % du PASS en vigueur au 1er janvier de l’année considérée 
 
     peuvent, sur demande, obtenir une réduction de la cotisation forfaitaire.
 
@@ -1536,10 +1538,47 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   titre.en: '[automatic] discount rate'
   titre.fr: taux réduction
-dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation proportionnelle:
-  titre.en: '[automatic] proportional contribution'
-  titre.fr: cotisation proportionnelle
 dirigeant . indépendant . PL . CARCDSF . sage-femme:
+  avec:
+    RID:
+      description.en: >
+        [automatic] There are different contribution classes to choose
+        from, corresponding to different contributions
+
+        and different levels of compensation.
+
+
+        A change to a higher class must be requested before July 1 of the current year to take effect
+
+        July 1 of the current year, to take effect on January 1 of the following year.
+
+        the following year.
+
+
+        No change in grade is permitted after July 1 of the 56th birthday.
+      description.fr: >
+        Il existe classes de cotisations aux choix, correspondant à des
+        cotisations
+
+        et des degrés d'indemnisations différents.
+
+
+        Le changement d'option pour une classe supérieure doit être demandé avant le
+
+        1er juillet de l'année en cours, pour prendre effet au 1er janvier de
+
+        l'année suivante.
+
+
+        Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
+      note.en:
+        '[automatic] Starting in 2023, there is no longer an option to elect
+        for a specific contribution class.'
+      note.fr:
+        À partir de 2023, il n'y a plus de possibilité de choisir pour une
+        classe de cotisation spécifique.
+      titre.en: '[automatic] disability and death'
+      titre.fr: invalidité et décès
   titre.en: '[automatic] midwife'
   titre.fr: sage-femme
 dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
@@ -1583,39 +1622,6 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
     non cotisés ne sont pas rachetables.
   titre.en: '[automatic] PCV'
   titre.fr: PCV
-dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
-  description.en: >
-    [automatic] There are contribution classes to choose from,
-    corresponding to contributions
-
-    and different levels of compensation.
-
-
-    The change of option to a higher class must be requested before the
-
-    1 July of the current year, to take effect on 1 January of
-
-    the following year.
-
-
-    No change of class is permitted after July 1 of the 56th birthday.
-  description.fr: >
-    Il existe classes de cotisations aux choix, correspondant à des
-    cotisations
-
-    et des degrés d'indemnisations différents.
-
-
-    Le changement d'option pour une classe supérieure doit être demandé avant le
-
-    1er juillet de l'année en cours, pour prendre effet au 1er janvier de
-
-    l'année suivante.
-
-
-    Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
-  titre.en: '[automatic] disability and death'
-  titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe:
   description.en: >
     [automatic] There are contribution classes to choose from,
@@ -1796,6 +1802,13 @@ dirigeant . indépendant . PL . CAVP:
   titre.en: '[automatic] CAVP'
   titre.fr: CAVP
 dirigeant . indépendant . PL . CAVP . PCV:
+  avec:
+    cotisations forfaitaire:
+      titre.en: '[automatic] flat-rate contributions'
+      titre.fr: cotisations forfaitaire
+    cotisations proportionnelle:
+      titre.en: '[automatic] proportional contributions'
+      titre.fr: cotisations proportionnelle
   titre.en: '[automatic] Old-age benefit (CAVP)'
   titre.fr: Prestation complémentaire de vieillesse (CAVP)
 dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
@@ -1807,12 +1820,6 @@ dirigeant . indépendant . PL . CAVP . PCV . aide CPAM forfaitaire:
 dirigeant . indépendant . PL . CAVP . PCV . aide CPAM proportionnelle:
   titre.en: '[automatic] proportional CPAM assistance'
   titre.fr: aide CPAM proportionnelle
-dirigeant . indépendant . PL . CAVP . PCV . cotisations forfaitaire:
-  titre.en: '[automatic] flat-rate contributions'
-  titre.fr: cotisations forfaitaire
-dirigeant . indépendant . PL . CAVP . PCV . cotisations proportionnelle:
-  titre.en: '[automatic] proportional contributions'
-  titre.fr: cotisations proportionnelle
 dirigeant . indépendant . PL . CAVP . cotisation de référence:
   titre.en: '[automatic] benchmark contribution'
   titre.fr: cotisation de référence

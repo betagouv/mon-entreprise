@@ -162,8 +162,12 @@ Découvrir: Discover
   We identify, among all the public and parapublic partners, the competent
   advisor for your request. He or she will contact you by phone within 5 days
   and will accompany you according to your situation.
+Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats:
+  Describe your business and the search terms you used that did not yield good
+  results
 Décès: Deaths
 Démarches de création: Creation process checklist
+Département: Department
 Dépôt de capital: Capital deposit
 Désactivée: Inactive
 Détail annuel des cotisations: Annual detail of my contributions
@@ -260,6 +264,7 @@ Janvier 2019: January 2019
     gouv:
       "fr, nouvelle fenêtre": I give my opinion, give my opinion on
         jedonnemonavis.numerique.gouv.fr, new window
+Je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie": I am a baker and I did not find by searching "bread" or "pastry".
 Jusqu’au: Until
 L'application est prête à fonctionner hors ligne.: The application is ready to work offline.
 L'invalidité et le décès: Disability and death
@@ -385,6 +390,7 @@ Que cherchez-vous ?: What are you looking for?
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: What can we do better to meet your expectations?
 Quel module ?: What module?
 Quelle couleur ?: What color?
+Quelle est votre activité ?: What is your activity?
 Quelle était votre situation liée à la crise sanitaire durant vos mois d’activité ?:
   What was your situation related to the health crisis during your months of
   activity?
@@ -536,6 +542,7 @@ Voir mes paramètres: See my situation
 Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
 Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie en SASU.: Your <1>salary</1> is <4>too low</4> to benefit from sick leave in SASU.
+Votre activité: Your activity
 Votre adresse e-mail: Your email address
 Votre adresse e-mail (requise): Your email address (required)
 Votre avis nous intéresse: Your opinion is important to us
@@ -1476,6 +1483,13 @@ pages:
     letter by post (free of charge, do not put a stamp on it)
     to:<1></1>Défenseur des droits<3></3>Libre réponse 71120<5></5>75342 Paris
     CEDEX 07</2></21><22>Updated on 29/01/2021</22>
+  assistants:
+    recherche-code-ape:
+      meta:
+        description: Wizard to find the APE code that corresponds to your activity.
+        title: APE code search
+      shortname: APE code search
+      title: APE code search
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL: choose the status that suits
@@ -2362,6 +2376,8 @@ revenu_après_impots:
 salaire: salary
 salarié: Employee share
 "salarié, accéder au simulateur salarié": employee, access the employee simulator
+search-code-ape:
+  cant-find-my-activity: I can't find my activity
 select:
   value:
     default: Choose an option
