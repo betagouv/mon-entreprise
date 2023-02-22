@@ -139,7 +139,11 @@ Découvrir: Découvrir
   parapublics, le conseiller compétent pour votre demande. Celui-ci vous
   contacte par téléphone sous 5 jours et vous accompagne en fonction de votre
   situation.
+Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats:
+  Décrivez-nous votre activité ainsi que les termes de recherche que vous avez
+  utilisés qui n'ont pas donné de bons résultats
 Décès: Décès
+Département: Département
 Dépôt de capital: Dépôt de capital
 EI: EI
 EI / EURL: EI / EURL
@@ -218,6 +222,7 @@ J'ai compris: J'ai compris
     gouv:
       "fr, nouvelle fenêtre": Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
+Je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie": Je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie"
 Jusqu’au: Jusqu’au
 L'application est prête à fonctionner hors ligne.: L'application est prête à fonctionner hors ligne.
 L'invalidité et le décès: L'invalidité et le décès
@@ -332,6 +337,7 @@ Prévisualisation: Prévisualisation
 Qu'est-ce que ça veut dire ?: Qu'est-ce que ça veut dire ?
 Que cherchez-vous ?: Que cherchez-vous ?
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
+Quelle est votre activité ?: Quelle est votre activité ?
 Quelle était votre situation liée à la crise sanitaire durant vos mois d’activité ?:
   Quelle était votre situation liée à la crise sanitaire durant vos mois
   d’activité ?
@@ -460,6 +466,7 @@ Vos charges estimées: Vos charges estimées
 Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie en SASU.:
   Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt
   maladie en SASU.
+Votre activité: Votre activité
 Votre adresse e-mail: Votre adresse e-mail
 Votre adresse e-mail (requise): Votre adresse e-mail (requise)
 Votre avis nous intéresse: Votre avis nous intéresse
@@ -1281,6 +1288,13 @@ pages:
     à&nbsp;:<1></1>Défenseur des droits<3></3>Libre réponse
     71120<5></5>75342&nbsp;Paris CEDEX 07</2></21><22>Mis à jour le
     29/01/2021</22>
+  assistants:
+    recherche-code-ape:
+      meta:
+        description: Assistant pour trouver le code APE qui correspond à votre activité.
+        title: Recherche de code APE
+      shortname: Recherche de code APE
+      title: Recherche de code APE
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui
@@ -2067,6 +2081,8 @@ revenu_après_impots:
   acre: <0>ACRE sous <2>certaines conditions<1></1></2></0>
 salarié: salarié
 "salarié, accéder au simulateur salarié": salarié, accéder au simulateur salarié
+search-code-ape:
+  cant-find-my-activity: Je ne trouve pas mon activité
 select:
   value:
     default: Choisissez une option
