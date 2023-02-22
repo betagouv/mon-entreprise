@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
+import Route404 from '@/components/Route404'
 import { useSitePaths } from '@/sitePaths'
 
 import SimulateurPage from '../../components/PageData'
@@ -23,8 +24,9 @@ export default function Assistants() {
 		))
 
 	return (
-		<>
-			<Routes>{routes}</Routes>
-		</>
+		<Routes>
+			{routes}
+			<Route path="*" element={<Route404 />} />
+		</Routes>
 	)
 }

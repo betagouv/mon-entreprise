@@ -177,6 +177,10 @@ export default function Simulateurs() {
 						{...simulators['coût-création-entreprise']}
 						role="listitem"
 					/>
+					<SimulateurCard
+						{...simulators['recherche-code-ape']}
+						role="listitem"
+					/>
 				</Grid>
 			</section>
 			<section>
@@ -221,6 +225,7 @@ export function SimulateurCard({
 	path,
 	tooltip,
 	iframePath,
+	pathId,
 	icône,
 	beta,
 	small = false,
@@ -268,7 +273,17 @@ export function SimulateurCard({
 							</>
 						}
 						icon={<Emoji emoji={icône} />}
-						ctaLabel={t('.cta', 'Lancer le simulateur')}
+						ctaLabel={
+							pathId.startsWith('assistants') || pathId.startsWith('gérer')
+								? t(
+										'pages.simulateurs.home.cta.assistant',
+										"Lancer l'assistant"
+								  )
+								: t(
+										'pages.simulateurs.home.cta.simulateur',
+										'Lancer le simulateur'
+								  )
+						}
 						to={{ pathname: (isIframe && iframePath) || path }}
 						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 						role="link"
