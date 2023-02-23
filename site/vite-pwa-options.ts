@@ -5,7 +5,7 @@ export const pwaOptions: Partial<Options> = {
 	registerType: 'prompt',
 	strategies: 'injectManifest',
 	srcDir: 'source',
-	filename: 'sw.ts',
+	filename: 'entry-sw.ts',
 	injectManifest: {
 		maximumFileSizeToCacheInBytes: 3000000,
 		manifestTransforms: [
