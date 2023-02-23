@@ -9,7 +9,7 @@ export default defineConfig({
 	},
 	build: {
 		lib: {
-			entry: './source/entry-iframe.ts',
+			entry: './source/entries/entry-iframe.ts',
 			name: 'monEntrepriseIframe',
 			formats: ['iife'],
 			fileName: () => 'simulateur-iframe-integration.js',
