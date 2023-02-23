@@ -92,6 +92,7 @@ Avec chômage partiel: With partial unemployment
 Baisse d'au moins 50% du chiffre d'affaires mensuel (600 €): Drop of at least 50% of the monthly turnover (600 €)
 Baisse d'au moins 65% du chiffre d'affaires mensuel (600 €): Decrease of at least 65% of the monthly turnover (600 €)
 Baisse entre 30% et 64% du chiffre d'affaires mensuel (300 €): Decrease between 30% and 64% of the monthly turnover (300 €)
+"Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant \"pain\" ou \"viennoiserie\".": Hello, I am a baker and I did not find by searching "bread" or "pastry".
 Budget: Budget
 Calcul: Formula
 Calculer vos revenus: Calculate your income
@@ -877,6 +878,11 @@ comparateur:
   allerPlusLoin:
     tableCaption: Table showing the details of the net income calculation for SASU,
       sole proprietorship (EI) and auto-entreprise (AE).
+components:
+  feedback:
+    form:
+      share:
+        checkbox: I want to share my latest simulation to help you better answer me.
 composantes: components
 copied: Copy
 copyMessage: Copy the message
@@ -1485,11 +1491,16 @@ pages:
     CEDEX 07</2></21><22>Updated on 29/01/2021</22>
   assistants:
     recherche-code-ape:
+      description: This wizard allows you to quickly find the APE code (main activity)
+        that corresponds to your activity. This code is assigned by INSEE to
+        each company in France in order to categorize them. Find more
+        information about the APE code on <2>entreprendre.service-public.fr</2>
+        and <6>economie.gouv.fr</6>.
       meta:
         description: Wizard to find the APE code that corresponds to your activity.
         title: APE code search
       shortname: APE code search
-      title: APE code search
+      title: "Which APE code for my activity? "
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL: choose the status that suits
@@ -2100,6 +2111,10 @@ pages:
         title: "Accountant: income simulator"
       shortname: Chartered Accountant
       title: Income simulator for chartered accountant and auditor in private practice
+    home:
+      cta:
+        assistant: Launch the wizard
+        simulateur: Launch the simulator
     indépendant:
       cotisations-forfaitaires: "Amount of lump sum contributions : "
       meta:
