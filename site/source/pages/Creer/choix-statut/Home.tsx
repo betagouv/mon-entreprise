@@ -9,13 +9,13 @@ import { Card } from '@/design-system/card'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { RootState } from '@/reducers/rootReducer'
 import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
 
 import { TrackPage } from '../../../ATInternetTracking'
 import { SimulateurCard } from '../../Simulateurs/Home'
-import useSimulatorsData from '../../Simulateurs/metadata'
 import créerSvg from './créer.svg'
 
 export default function Créer() {

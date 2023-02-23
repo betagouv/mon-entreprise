@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
-import React, { useContext } from 'react'
+import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -14,7 +14,7 @@ import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -40,7 +40,7 @@ export default function Conversation({
 	customSituationVisualisation,
 	engines,
 }: ConversationProps) {
-	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
+	const { currentSimulatorData } = useCurrentSimulatorData()
 	const dispatch = useDispatch()
 	const engine = useEngine()
 

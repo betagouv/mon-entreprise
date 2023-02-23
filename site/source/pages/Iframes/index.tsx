@@ -2,9 +2,9 @@ import { Helmet } from 'react-helmet-async'
 import { Route, Routes } from 'react-router-dom'
 
 import Route404 from '@/components/Route404'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 
 import SimulateurPage from '../../components/PageData'
-import useSimulatorsData from '../Simulateurs/metadata'
 import IframeFooter from './IframeFooter'
 
 export default function Iframes() {
@@ -32,7 +32,7 @@ export default function Iframes() {
 											<Helmet>
 												<link rel="canonical" href={s.path} />
 											</Helmet>
-											<SimulateurPage {...s} />
+											<SimulateurPage />
 										</>
 									}
 								/>

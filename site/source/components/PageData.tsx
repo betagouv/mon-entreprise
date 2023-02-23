@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Meta from '@/components/utils/Meta'
@@ -11,36 +12,19 @@ import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { situationSelector } from '@/selectors/simulationSelectors'
 
 import { TrackChapter } from '../ATInternetTracking'
 import { NextSteps } from '../pages/Simulateurs/NextSteps'
-import {
-	CurrentSimulatorDataProvider,
-	ExtractFromSimuData,
-} from '../pages/Simulateurs/metadata'
 import BetaBanner from './BetaBanner'
 
-export interface PageDataProps {
-	meta: ExtractFromSimuData<'meta'>
-	simulation?: ExtractFromSimuData<'simulation'>
-	tracking: ExtractFromSimuData<'tracking'>
-	tooltip?: ExtractFromSimuData<'tooltip'>
-	iframePath: ExtractFromSimuData<'iframePath'>
-	seoExplanations?: ExtractFromSimuData<'seoExplanations'>
-	beta?: ExtractFromSimuData<'beta'>
-	nextSteps?: ExtractFromSimuData<'nextSteps'>
-	path: ExtractFromSimuData<'path'>
-	title: ExtractFromSimuData<'title'>
-	private?: ExtractFromSimuData<'private'>
-	component: ExtractFromSimuData<'component'>
-	icône: ExtractFromSimuData<'icône'>
-	pathId: ExtractFromSimuData<'pathId'>
-	shortName: ExtractFromSimuData<'shortName'>
-	id: ExtractFromSimuData<'id'>
-}
-
-export default function PageData(props: PageDataProps) {
+export default function PageData() {
+	const { currentSimulatorData } = useCurrentSimulatorData()
+	const { pathname, search } = useLocation()
+	if (!currentSimulatorData) {
+		throw new Error(`No simulator found with url: ${pathname}?${search}`)
+	}
 	const {
 		meta,
 		simulation,
@@ -54,7 +38,7 @@ export default function PageData(props: PageDataProps) {
 		seoExplanations: SeoExplanations,
 		nextSteps,
 		path,
-	} = props
+	} = currentSimulatorData
 
 	const situation = useSelector(situationSelector)
 	const année =
@@ -74,49 +58,47 @@ export default function PageData(props: PageDataProps) {
 	} as ComponentPropsWithoutRef<typeof TrackChapter>
 
 	return (
-		<CurrentSimulatorDataProvider value={props}>
-			<TrackChapter {...trackInfo}>
-				{meta && <Meta page={`simulateur.${title ?? ''}`} {...meta} />}
+		<TrackChapter {...trackInfo}>
+			{meta && <Meta page={`simulateur.${title ?? ''}`} {...meta} />}
 
-				{beta && <BetaBanner />}
-				{title && !inIframe && (
-					<>
-						<H1>
-							<StyledSpan>{title}</StyledSpan>
-							{year && (
-								<Chip type="secondary" icon={<Emoji emoji="📆" />}>
-									{year}
-								</Chip>
-							)}
-							{beta && (
-								<Chip type="info" icon={<Emoji emoji="🚧" />}>
-									Version bêta
-								</Chip>
-							)}
-						</H1>
-						{tooltip && <Intro>{tooltip}</Intro>}
-					</>
-				)}
-
-				<Component />
-
-				{!inIframe && (
-					<>
-						{SeoExplanations && (
-							<section>
-								<SeoExplanations />
-							</section>
+			{beta && <BetaBanner />}
+			{title && !inIframe && (
+				<>
+					<H1>
+						<StyledSpan>{title}</StyledSpan>
+						{year && (
+							<Chip type="secondary" icon={<Emoji emoji="📆" />}>
+								{year}
+							</Chip>
 						)}
-						<NextSteps
-							iframePath={privateIframe ? undefined : iframePath}
-							nextSteps={nextSteps}
-						/>
+						{beta && (
+							<Chip type="info" icon={<Emoji emoji="🚧" />}>
+								Version bêta
+							</Chip>
+						)}
+					</H1>
+					{tooltip && <Intro>{tooltip}</Intro>}
+				</>
+			)}
 
-						<Spacing lg />
-					</>
-				)}
-			</TrackChapter>
-		</CurrentSimulatorDataProvider>
+			<Component />
+
+			{!inIframe && (
+				<>
+					{SeoExplanations && (
+						<section>
+							<SeoExplanations />
+						</section>
+					)}
+					<NextSteps
+						iframePath={privateIframe ? undefined : iframePath}
+						nextSteps={nextSteps}
+					/>
+
+					<Spacing lg />
+				</>
+			)}
+		</TrackChapter>
 	)
 }
 

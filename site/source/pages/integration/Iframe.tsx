@@ -13,11 +13,11 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import urssafLogo from '@/images/Urssaf.svg'
 
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
-import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 
 import './iframe.css'
 

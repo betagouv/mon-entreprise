@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 
 import Route404 from '@/components/Route404'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 import SimulateurPage from '../../components/PageData'
-import useSimulatorsData from '../Simulateurs/metadata'
 
 export default function Assistants() {
 	const sitePaths = useSitePaths()
@@ -19,7 +19,7 @@ export default function Assistants() {
 					sitePaths.absoluteSitePaths.assistants.index,
 					''
 				)}
-				element={<SimulateurPage {...simu} />}
+				element={<SimulateurPage />}
 			/>
 		))
 

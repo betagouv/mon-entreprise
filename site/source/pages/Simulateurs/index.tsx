@@ -6,11 +6,11 @@ import { ScrollToTop } from '@/components/utils/Scroll'
 import { usePersistingState } from '@/components/utils/persistState'
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Link } from '@/design-system/typography/link'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 import SimulateurPage from '../../components/PageData'
 import Home from './Home'
-import useSimulatorsData from './metadata'
 
 type State = {
 	fromGérer?: boolean
@@ -43,7 +43,7 @@ export default function Simulateurs() {
 						path={
 							s.path.replace(absoluteSitePaths.simulateurs.index, '') + '/*'
 						}
-						element={<SimulateurPage {...s} />}
+						element={<SimulateurPage />}
 					/>
 				)),
 		[simulatorsData, absoluteSitePaths]
