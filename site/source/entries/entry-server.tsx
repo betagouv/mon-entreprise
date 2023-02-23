@@ -4,9 +4,9 @@ import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
+import i18next from '../locales/i18n'
 import { AppEn } from './entry-en'
 import { AppFr } from './entry-fr'
-import i18next from './locales/i18n'
 
 export function render(url: string, lang: 'fr' | 'en') {
 	const sheet = new ServerStyleSheet()

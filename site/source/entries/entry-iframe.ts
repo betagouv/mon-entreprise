@@ -9,9 +9,9 @@
  * aboutir à des bugs liés à une config de bundling différentes.
  **/
 
-import { hexToHSL } from './hexToHSL'
+import { hexToHSL } from '../hexToHSL'
 // @ts-ignore ignore file not exist error
-import simulationData from './public/simulation-data-title.json'
+import simulationData from '../public/simulation-data-title.json'
 
 const script = document.currentScript
 if (!script) {

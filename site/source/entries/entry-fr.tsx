@@ -2,10 +2,10 @@ import { I18nProvider } from '@react-aria/i18n'
 import { withProfiler } from '@sentry/react'
 import { createRoot } from 'react-dom/client'
 
-import App from './App'
-import i18next from './locales/i18n'
+import App from '../App'
+import i18next from '../locales/i18n'
 
-import './sentry'
+import '../sentry'
 
 export const AppFr = () => (
 	<I18nProvider locale="fr-FR">

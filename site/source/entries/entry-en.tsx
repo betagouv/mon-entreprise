@@ -2,13 +2,13 @@ import { I18nProvider } from '@react-aria/i18n'
 import { withProfiler } from '@sentry/react'
 import { createRoot } from 'react-dom/client'
 
-import App from './App'
-import i18next from './locales/i18n'
-import ruleTranslations from './locales/rules-en.yaml'
-import translateRules from './locales/translateRules'
-import translations from './locales/ui-en.yaml'
+import App from '../App'
+import i18next from '../locales/i18n'
+import ruleTranslations from '../locales/rules-en.yaml'
+import translateRules from '../locales/translateRules'
+import translations from '../locales/ui-en.yaml'
 
-import './sentry'
+import '../sentry'
 
 export const AppEn = () => (
 	<I18nProvider locale="en-GB">

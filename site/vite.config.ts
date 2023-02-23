@@ -69,11 +69,11 @@ export default defineConfig(({ command, mode }) => ({
 		}),
 		multipleSPA({
 			defaultSite: 'mon-entreprise',
-			templatePath: './source/template.html',
+			templatePath: './source/entries/template.html',
 			sites: {
 				'mon-entreprise': {
 					lang: 'fr',
-					entry: '/source/entry-fr.tsx',
+					entry: '/source/entries/entry-fr.tsx',
 					title:
 						"mon-entreprise.urssaf.fr : L'assistant officiel du créateur d'entreprise",
 					description:
@@ -83,7 +83,7 @@ export default defineConfig(({ command, mode }) => ({
 				},
 				infrance: {
 					lang: 'en',
-					entry: '/source/entry-en.tsx',
+					entry: '/source/entries/entry-en.tsx',
 					title:
 						'My company in France: A step-by-step guide to start a business in France',
 					description:
@@ -126,7 +126,7 @@ export default defineConfig(({ command, mode }) => ({
 		},
 	},
 	optimizeDeps: {
-		entries: ['./source/entry-fr.tsx', './source/entry-en.tsx'],
+		entries: ['./source/entries/entry-fr.tsx', './source/entries/entry-en.tsx'],
 		exclude: ['publicodes-react', 'publicodes'],
 	},
 	ssr: {
