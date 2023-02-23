@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { updateSituation } from '@/actions/actions'
+import { TrackPage } from '@/components/ATInternetTracking'
 import Value from '@/components/EngineValue'
 import Notifications from '@/components/Notifications'
 import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
@@ -12,8 +13,6 @@ import { FromTop } from '@/components/ui/animate'
 import { H2 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { situationSelector } from '@/selectors/simulationSelectors'
-
-import { TrackPage } from '../../../ATInternetTracking'
 
 export default function ISSimulation() {
 	return (

@@ -1,8 +1,8 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
 
+import { TrackChapter } from '@/components/ATInternetTracking'
 import { ScrollToTop } from '@/components/utils/Scroll'
 
-import { TrackChapter } from '../../ATInternetTracking'
 import { LANDING_LEGAL_STATUS_LIST, useSitePaths } from '../../sitePaths'
 import AfterRegistration from './AfterRegistration'
 import CreationChecklist from './CreationChecklist'

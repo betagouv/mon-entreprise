@@ -8,7 +8,7 @@ import {
 	useSearchParams,
 } from 'react-router-dom'
 
-import { TrackPage } from '@/ATInternetTracking'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import {

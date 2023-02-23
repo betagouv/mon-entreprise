@@ -1,12 +1,11 @@
 import { Trans, useTranslation } from 'react-i18next'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import SchemeComparaison from '@/components/SchemeComparaison'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-
-import { TrackPage } from '../../../ATInternetTracking'
 
 export default function Autoentrepreneur() {
 	const { t } = useTranslation()

@@ -5,6 +5,7 @@ import {
 	checkHiringItem,
 	initializeHiringChecklist,
 } from '@/actions/hiringChecklistAction'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { CheckItem, Checklist, ChecklistProps } from '@/components/ui/Checklist'
 import { FromBottom } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
@@ -14,7 +15,6 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 
-import { TrackPage } from '../../ATInternetTracking'
 import { SimulatorRessourceCard } from '../Simulateurs/cards/SimulatorRessourceCard'
 
 type EmbaucherProps = {

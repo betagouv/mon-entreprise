@@ -4,13 +4,12 @@ import {
 	companyHasMultipleAssociates,
 	useDispatchAndGoToNextQuestion,
 } from '@/actions/companyStatusActions'
+import { TrackPage } from '@/components/ATInternetTracking'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-
-import { TrackPage } from '../../../ATInternetTracking'
 
 export default function NumberOfAssociates() {
 	const dispatch = useDispatchAndGoToNextQuestion()

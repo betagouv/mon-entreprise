@@ -7,7 +7,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../ATInternetTracking'
+import { TrackPage } from '../components/ATInternetTracking'
 import Meta from '../components/utils/Meta'
 
 export default function Plan() {

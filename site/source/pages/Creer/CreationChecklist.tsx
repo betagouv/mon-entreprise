@@ -6,6 +6,7 @@ import {
 	initializeCompanyCreationChecklist,
 } from '@/actions/companyCreationChecklistActions'
 import { resetCompanyStatusChoice } from '@/actions/companyStatusActions'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { CheckItem, Checklist } from '@/components/ui/Checklist'
 import { FromBottom } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
@@ -22,7 +23,6 @@ import { RootState } from '@/reducers/rootReducer'
 import { LegalStatus } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../../ATInternetTracking'
 import StatutDescription from './StatutDescription'
 
 type CreateCompanyProps = {

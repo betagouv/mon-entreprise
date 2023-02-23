@@ -15,7 +15,7 @@ import {
 	firstStepCompletedSelector,
 } from '@/selectors/simulationSelectors'
 
-import { TrackPage } from '../../ATInternetTracking'
+import { TrackPage } from '../ATInternetTracking'
 import Banner from '../Banner'
 import AnswerList from '../conversation/AnswerList'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'

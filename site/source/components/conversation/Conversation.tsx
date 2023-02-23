@@ -21,7 +21,7 @@ import {
 } from '@/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
-import { TrackPage } from '../../ATInternetTracking'
+import { TrackPage } from '../ATInternetTracking'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { FromTop } from '../ui/animate'
 import AnswerList from './AnswerList'

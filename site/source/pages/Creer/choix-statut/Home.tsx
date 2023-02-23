@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
 import { FromBottom } from '@/components/ui/animate'
 import Meta from '@/components/utils/Meta'
@@ -14,7 +15,6 @@ import { RootState } from '@/reducers/rootReducer'
 import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../../../ATInternetTracking'
 import { SimulateurCard } from '../../Simulateurs/Home'
 import créerSvg from './créer.svg'
 

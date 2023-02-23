@@ -2,9 +2,9 @@ import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { TrackPage } from '@/ATInternetTracking'
 import { resetSimulation } from '@/actions/actions'
 import { resetCompany } from '@/actions/companyActions'
+import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Condition,
 	WhenAlreadyDefined,

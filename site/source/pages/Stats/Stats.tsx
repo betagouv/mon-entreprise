@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom'
 import { BrushProps } from 'recharts'
 import styled from 'styled-components'
 
+import { toAtString } from '@/components/ATInternetTracking'
 import PagesChart from '@/components/charts/PagesCharts'
 import { useScrollToHash } from '@/components/utils/markdown'
 import { Message } from '@/design-system'
@@ -18,7 +19,6 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 
-import { toAtString } from '../../ATInternetTracking'
 import { debounce, groupBy } from '../../utils'
 import { SimulateurCard } from '../Simulateurs/Home'
 import Chart, { Data, isDataStacked } from './Chart'
@@ -145,7 +145,6 @@ function groupByDate(data: Pageish[]) {
 		.sort((a, b) => b[1] - a[1])
 		.slice(0, 8)
 		.map(([page]) => page)
-	console.log(topPagesOfAllTime)
 
 	return topTenPageByMonth.map(({ date, nombre }) => ({
 		date,
