@@ -2,7 +2,6 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { updateSituation } from '@/actions/actions'
 import { TrackPage } from '@/components/ATInternetTracking'
 import Value from '@/components/EngineValue'
 import Notifications from '@/components/Notifications'
@@ -12,7 +11,8 @@ import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
 import { H2 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { situationSelector } from '@/selectors/simulationSelectors'
+import { updateSituation } from '@/store/actions/actions'
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 export default function ISSimulation() {
 	return (

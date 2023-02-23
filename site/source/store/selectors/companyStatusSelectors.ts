@@ -1,9 +1,8 @@
 import { useSelector } from 'react-redux'
 
-import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
-
-import { LegalStatusRequirements, State } from '../types/companyTypes'
+import { RootState } from '@/store/reducers/rootReducer'
+import { LegalStatusRequirements, State } from '@/types/companyTypes'
 
 const LEGAL_STATUS_DETAILS = {
 	'auto-entrepreneur': {

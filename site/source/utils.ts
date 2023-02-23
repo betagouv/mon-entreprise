@@ -7,7 +7,7 @@ import Engine, {
 	isPublicodesError,
 } from 'publicodes'
 
-import { Situation } from './reducers/rootReducer'
+import { Situation } from '@/store/reducers/rootReducer'
 
 export function capitalise0(name: undefined): undefined
 export function capitalise0(name: string): string

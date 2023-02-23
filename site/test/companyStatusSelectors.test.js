@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { nextQuestionSelector } from '@/selectors/companyStatusSelectors'
+import { nextQuestionSelector } from '@/store/selectors/companyStatusSelectors'
 
 const state = (companyLegalStatus) => ({
 	choixStatutJuridique: {

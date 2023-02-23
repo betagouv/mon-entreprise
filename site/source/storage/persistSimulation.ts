@@ -1,8 +1,8 @@
 import { Store } from 'redux'
 
-import { Action } from '@/actions/actions'
-import { RootState } from '@/reducers/rootReducer'
-import { PreviousSimulation } from '@/selectors/previousSimulationSelectors'
+import { Action } from '@/store/actions/actions'
+import { RootState } from '@/store/reducers/rootReducer'
+import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
 
 import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'

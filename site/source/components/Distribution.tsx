@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { useSelector } from 'react-redux'
 
 import { EngineContext, useEngine } from '@/components/utils/EngineContext'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import BarChartBranch from './BarChart'
 

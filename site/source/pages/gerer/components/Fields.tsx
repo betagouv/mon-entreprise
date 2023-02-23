@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { updateSituation } from '@/actions/actions'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
@@ -16,10 +15,11 @@ import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { updateSituation } from '@/store/actions/actions'
 import {
 	situationSelector,
 	targetUnitSelector,
-} from '@/selectors/simulationSelectors'
+} from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion, getMeta } from '@/utils'
 
 type SubSectionProp = {

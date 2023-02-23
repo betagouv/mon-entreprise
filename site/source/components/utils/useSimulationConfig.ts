@@ -1,9 +1,12 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { loadPreviousSimulation, setSimulationConfig } from '@/actions/actions'
-import { SimulationConfig } from '@/reducers/rootReducer'
-import { configSelector } from '@/selectors/simulationSelectors'
+import {
+	loadPreviousSimulation,
+	setSimulationConfig,
+} from '@/store/actions/actions'
+import { SimulationConfig } from '@/store/reducers/rootReducer'
+import { configSelector } from '@/store/selectors/simulationSelectors'
 import { ImmutableType } from '@/types/utils'
 
 export default function useSimulationConfig({

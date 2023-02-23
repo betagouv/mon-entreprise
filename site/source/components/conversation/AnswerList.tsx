@@ -5,8 +5,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { answerQuestion, resetSimulation } from '@/actions/actions'
-import { resetCompany } from '@/actions/companyActions'
 import { EvaluatedRule, useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import { Message, PopoverWithTrigger } from '@/design-system'
@@ -19,12 +17,14 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
-import { isCompanyDottedName } from '@/reducers/companySituationReducer'
+import { answerQuestion, resetSimulation } from '@/store/actions/actions'
+import { resetCompany } from '@/store/actions/companyActions'
+import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
 import {
 	answeredQuestionsSelector,
 	companySituationSelector,
 	situationSelector,
-} from '@/selectors/simulationSelectors'
+} from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
 import Value from '../EngineValue'

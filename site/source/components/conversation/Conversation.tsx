@@ -4,7 +4,6 @@ import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { answerQuestion } from '@/actions/actions'
 import Notifications from '@/components/Notifications'
 import QuickLinks from '@/components/QuickLinks'
 import RuleInput from '@/components/conversation/RuleInput'
@@ -15,10 +14,11 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import { answerQuestion } from '@/store/actions/actions'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
-} from '@/selectors/simulationSelectors'
+} from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
 import { TrackPage } from '../ATInternetTracking'

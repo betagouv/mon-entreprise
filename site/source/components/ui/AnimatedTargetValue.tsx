@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled, { keyframes } from 'styled-components'
 
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 type AnimatedTargetValueProps = {
 	value?: number

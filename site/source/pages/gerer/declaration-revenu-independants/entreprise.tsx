@@ -2,8 +2,6 @@ import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { resetSimulation } from '@/actions/actions'
-import { resetCompany } from '@/actions/companyActions'
 import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Condition,
@@ -28,6 +26,8 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
+import { resetSimulation } from '@/store/actions/actions'
+import { resetCompany } from '@/store/actions/companyActions'
 
 import { SimpleField } from '../components/Fields'
 import Exceptions from './components/Exceptions'

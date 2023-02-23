@@ -11,7 +11,7 @@ import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import {
 	companySituationSelector,
 	situationSelector,
-} from '@/selectors/simulationSelectors'
+} from '@/store/selectors/simulationSelectors'
 
 import { TrackingContext } from '../ATInternetTracking'
 import { PlaceDesEntreprisesButton } from '../PlaceDesEntreprises'

@@ -1,8 +1,8 @@
 import { Store } from 'redux'
 
-import { Action } from '@/actions/actions'
-import { ChoixStatutJuridiqueState } from '@/reducers/choixStatutJuridiqueReducer'
-import { RootState } from '@/reducers/rootReducer'
+import { Action } from '@/store/actions/actions'
+import { ChoixStatutJuridiqueState } from '@/store/reducers/choixStatutJuridiqueReducer'
+import { RootState } from '@/store/reducers/rootReducer'
 
 import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'

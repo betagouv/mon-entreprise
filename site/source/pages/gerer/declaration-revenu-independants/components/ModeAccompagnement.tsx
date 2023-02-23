@@ -3,7 +3,6 @@ import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import styled, { css } from 'styled-components'
 
-import { updateSituation } from '@/actions/actions'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
@@ -12,6 +11,7 @@ import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useOrdinal } from '@/hooks/useOrdinal'
+import { updateSituation } from '@/store/actions/actions'
 
 export default function ModeAccompagnement() {
 	const engine = useEngine()

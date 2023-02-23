@@ -1,11 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import {
-	checkCompanyCreationItem,
-	initializeCompanyCreationChecklist,
-} from '@/actions/companyCreationChecklistActions'
-import { resetCompanyStatusChoice } from '@/actions/companyStatusActions'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CheckItem, Checklist } from '@/components/ui/Checklist'
 import { FromBottom } from '@/components/ui/animate'
@@ -19,9 +14,14 @@ import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { RootState } from '@/reducers/rootReducer'
-import { LegalStatus } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
+import {
+	checkCompanyCreationItem,
+	initializeCompanyCreationChecklist,
+} from '@/store/actions/companyCreationChecklistActions'
+import { resetCompanyStatusChoice } from '@/store/actions/companyStatusActions'
+import { RootState } from '@/store/reducers/rootReducer'
+import { LegalStatus } from '@/store/selectors/companyStatusSelectors'
 
 import StatutDescription from './StatutDescription'
 

@@ -1,13 +1,13 @@
 import { useDispatch } from 'react-redux'
 
+import fetchBénéfice from '@/api/activité-vers-bénéfice'
+import { fetchCommuneDetails } from '@/api/commune'
+import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import {
 	addCommuneDetails,
 	setBénéficeType,
 	setCompany,
-} from '@/actions/companyActions'
-import fetchBénéfice from '@/api/activité-vers-bénéfice'
-import { fetchCommuneDetails } from '@/api/commune'
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+} from '@/store/actions/companyActions'
 
 export function useSetEntreprise() {
 	const dispatch = useDispatch()

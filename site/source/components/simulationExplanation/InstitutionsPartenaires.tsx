@@ -19,7 +19,7 @@ import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import * as logosSrc from './logos'
 

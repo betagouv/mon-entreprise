@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
+import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
 import { FadeIn } from './ui/animate'
 

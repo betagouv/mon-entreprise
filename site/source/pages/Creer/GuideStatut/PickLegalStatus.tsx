@@ -7,11 +7,11 @@ import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { Button } from '@/design-system/buttons'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+import { useSitePaths } from '@/sitePaths'
 import {
 	LegalStatus,
 	possibleStatusSelector,
-} from '@/selectors/companyStatusSelectors'
-import { useSitePaths } from '@/sitePaths'
+} from '@/store/selectors/companyStatusSelectors'
 
 import StatutDescription from '../StatutDescription'
 

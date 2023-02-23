@@ -5,7 +5,6 @@ import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { updateSituation } from '@/actions/actions'
 import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Condition,
@@ -26,6 +25,7 @@ import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
+import { updateSituation } from '@/store/actions/actions'
 import { getMeta } from '@/utils'
 
 import { SimpleField } from '../components/Fields'

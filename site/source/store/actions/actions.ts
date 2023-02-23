@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 
-import { SimulationConfig } from '@/reducers/rootReducer'
+import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { ImmutableType } from '@/types/utils'
 import { buildSituationFromObject } from '@/utils'
 

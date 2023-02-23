@@ -4,7 +4,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { ThemeContext } from 'styled-components'
 
-import { updateSituation } from '@/actions/actions'
 import { Condition } from '@/components/EngineValue'
 import Notifications from '@/components/Notifications'
 import Simulation, {
@@ -17,6 +16,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+import { updateSituation } from '@/store/actions/actions'
 
 export default function DividendesSimulation() {
 	return (

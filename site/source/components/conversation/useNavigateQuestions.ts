@@ -3,18 +3,18 @@ import Engine from 'publicodes'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { useEngine } from '@/components/utils/EngineContext'
+import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import {
 	goToQuestion,
 	stepAction,
 	updateShouldFocusField,
-} from '@/actions/actions'
-import { useEngine } from '@/components/utils/EngineContext'
-import { useNextQuestions } from '@/components/utils/useNextQuestion'
+} from '@/store/actions/actions'
 import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
 	useMissingVariables,
-} from '@/selectors/simulationSelectors'
+} from '@/store/selectors/simulationSelectors'
 
 export function useNavigateQuestions(engines?: Array<Engine<DottedName>>) {
 	const dispatch = useDispatch()

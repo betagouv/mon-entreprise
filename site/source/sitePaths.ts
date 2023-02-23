@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { MetadataSrc } from '@/pages/Simulateurs/metadata-src'
-import { LegalStatus } from '@/selectors/companyStatusSelectors'
+import { LegalStatus } from '@/store/selectors/companyStatusSelectors'
 
 export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 	'EI',

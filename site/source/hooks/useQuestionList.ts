@@ -2,10 +2,10 @@ import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { stepAction, updateSituation } from '@/actions/actions'
 import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/components/utils/useNextQuestion'
-import { answeredQuestionsSelector } from '@/selectors/simulationSelectors'
+import { stepAction, updateSituation } from '@/store/actions/actions'
+import { answeredQuestionsSelector } from '@/store/selectors/simulationSelectors'
 
 export function useQuestionList(): [
 	questions: Array<RuleNode & { dottedName: DottedName }>,

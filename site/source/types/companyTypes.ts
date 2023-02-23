@@ -1,4 +1,4 @@
-import { LegalStatus } from '@/selectors/companyStatusSelectors'
+import { LegalStatus } from '@/store/selectors/companyStatusSelectors'
 
 export type IsSoleProprietorshipAction = {
 	type: 'COMPANY_IS_SOLE_PROPRIETORSHIP'

@@ -13,7 +13,7 @@ import { Link } from '@/design-system/typography/link'
 import {
 	companySituationSelector,
 	firstStepCompletedSelector,
-} from '@/selectors/simulationSelectors'
+} from '@/store/selectors/simulationSelectors'
 
 import { TrackPage } from '../ATInternetTracking'
 import Banner from '../Banner'

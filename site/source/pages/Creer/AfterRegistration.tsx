@@ -8,8 +8,8 @@ import { ScrollToTop } from '@/components/utils/Scroll'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
+import { RootState } from '@/store/reducers/rootReducer'
 
 import siret from './siret.jpg'
 
