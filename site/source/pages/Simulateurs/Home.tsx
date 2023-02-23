@@ -13,15 +13,13 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
-import useSimulatorsData, {
-	ExtractFromSimuData,
-	SimulatorData,
-} from './metadata'
 
 export default function Simulateurs() {
 	const { t } = useTranslation()
@@ -210,10 +208,7 @@ export default function Simulateurs() {
 	)
 }
 
-type SimulateurCardProps = SimulatorData[keyof SimulatorData] & {
-	simulation?: ExtractFromSimuData<'simulation'>
-	tooltip?: ExtractFromSimuData<'tooltip'>
-	beta?: ExtractFromSimuData<'beta'>
+type SimulateurCardProps = MergedSimulatorDataValues & {
 	small?: boolean
 	fromGérer?: boolean
 	role?: string

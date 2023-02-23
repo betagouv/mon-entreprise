@@ -7,8 +7,7 @@ import { SmallCard } from '@/design-system/card'
 import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
-import { MetadataSrc } from '@/pages/Simulateurs/metadata-src'
+import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useSitePaths } from '@/sitePaths'
 
 import { Highlight } from './Hightlight'
@@ -16,7 +15,7 @@ import { Highlight } from './Hightlight'
 type AlgoliaSimulatorHit = Hit<{
 	icône: string
 	title: string
-	pathId: MetadataSrc[keyof MetadataSrc]['pathId']
+	pathId: MergedSimulatorDataValues['pathId']
 }>
 
 type SimulatorHitsProps = {
@@ -28,8 +27,8 @@ const SimulateurCardHit = ({
 	path,
 	tooltip,
 }: {
-	path: ExtractFromSimuData<'path'>
-	tooltip?: ExtractFromSimuData<'tooltip'>
+	path: MergedSimulatorDataValues['path']
+	tooltip?: MergedSimulatorDataValues['tooltip']
 	hit: AlgoliaSimulatorHit
 }) => {
 	return (
@@ -73,7 +72,7 @@ export const SimulatorHits = connectHits<
 											.reduce<unknown>(
 												(acc, curr) => (acc as Record<string, unknown>)[curr],
 												absoluteSitePaths
-											) as ExtractFromSimuData<'path'>
+											) as MergedSimulatorDataValues['path']
 									}
 								/>
 							</Grid>

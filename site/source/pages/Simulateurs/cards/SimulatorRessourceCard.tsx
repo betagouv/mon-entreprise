@@ -2,8 +2,7 @@ import { Trans } from 'react-i18next'
 
 import { Article } from '@/design-system/card'
 import { Emoji } from '@/design-system/emoji'
-
-import useSimulatorsData, { SimulatorData } from '../metadata'
+import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 
 type SimulatorRessourceCardProps = {
 	simulatorId: keyof SimulatorData

@@ -4,8 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
-
-import useSimulatorsData from '../Simulateurs/metadata'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 
 export default function IntegrationTest() {
 	const simulators = useSimulatorsData()

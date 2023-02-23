@@ -4,11 +4,11 @@ import styled from 'styled-components'
 import { H1, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 import { TrackPage } from '../ATInternetTracking'
 import Meta from '../components/utils/Meta'
-import useSimulatorsData from './Simulateurs/metadata'
 
 export default function Plan() {
 	const { absoluteSitePaths } = useSitePaths()

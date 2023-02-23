@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode, utils } from 'publicodes'
-import { useCallback, useContext, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -18,7 +18,7 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { isCompanyDottedName } from '@/reducers/companySituationReducer'
 import {
 	answeredQuestionsSelector,
@@ -39,7 +39,7 @@ type AnswerListProps = {
 
 export default function AnswerList({ onClose, children }: AnswerListProps) {
 	const { t } = useTranslation()
-	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
+	const { currentSimulatorData } = useCurrentSimulatorData()
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)

@@ -46,13 +46,13 @@ import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
+import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import { companySituationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
 import { evaluateQuestion } from '@/utils'
 
 import { TrackChapter, TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
-import useSimulatorsData, { SimulatorData } from '../Simulateurs/metadata'
 import { AnnuaireEntreprises } from './components/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from './components/AutoEntrepeneurCard'
 import { DemarcheEmbaucheCard } from './components/DemarcheEmbauche'
@@ -112,7 +112,7 @@ export default function Gérer() {
 							element={
 								<>
 									{back}
-									<PageData {...p} />
+									<PageData />
 								</>
 							}
 						/>

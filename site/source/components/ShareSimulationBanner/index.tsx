@@ -7,13 +7,13 @@ import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import {
 	companySituationSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 
 import { TrackingContext } from '../../ATInternetTracking'
-import { CurrentSimulatorDataContext } from '../../pages/Simulateurs/metadata'
 import { PlaceDesEntreprisesButton } from '../PlaceDesEntreprises'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
@@ -26,7 +26,7 @@ export function useUrl() {
 	}
 
 	const searchParams = useParamsFromSituation(situation)
-	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
+	const { currentSimulatorData } = useCurrentSimulatorData()
 
 	const { path = '' } = currentSimulatorData ?? {}
 	const siteUrl =

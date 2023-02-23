@@ -4,16 +4,16 @@ import { Condition } from '@/components/EngineValue'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
+import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { FAQAutoEntrepreneurArticle } from '@/pages/Creer/CreationChecklist'
 import { GuideURSSAFCard } from '@/pages/Simulateurs/cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '@/pages/Simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/Simulateurs/cards/SimulatorRessourceCard'
-import { ExtractFromSimuData } from '@/pages/Simulateurs/metadata'
 import { useSitePaths } from '@/sitePaths'
 
 interface NextStepsProps {
-	iframePath?: ExtractFromSimuData<'iframePath'>
-	nextSteps: ExtractFromSimuData<'nextSteps'>
+	iframePath?: MergedSimulatorDataValues['iframePath']
+	nextSteps: MergedSimulatorDataValues['nextSteps']
 }
 
 export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {

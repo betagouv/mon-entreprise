@@ -12,7 +12,7 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { CurrentSimulatorDataContext } from '@/pages/Simulateurs/metadata'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
@@ -108,7 +108,7 @@ export default function SalaryExplanation() {
 function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 	const { t } = useTranslation()
 	const { colors } = useContext(ThemeContext)
-	const currentSimulatorData = useContext(CurrentSimulatorDataContext)
+	const { currentSimulatorData } = useCurrentSimulatorData()
 
 	return (
 		<section>

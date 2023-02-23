@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import useSimulatorsData from '@/pages/Simulateurs/metadata'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 const PAGE_TITLE = 'Un avis sur cette page ?'
