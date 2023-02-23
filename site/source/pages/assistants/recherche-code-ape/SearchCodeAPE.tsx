@@ -392,6 +392,7 @@ const ActivityNotFound = () => {
 								`Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".`
 							)}
 							tags={['code-ape']}
+							hideShare
 						/>
 					</>
 				)}

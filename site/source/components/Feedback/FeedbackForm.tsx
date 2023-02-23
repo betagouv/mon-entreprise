@@ -4,13 +4,15 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { ScrollToElement } from '@/components/utils/Scroll'
-import { TextAreaField, TextField } from '@/design-system'
+import { Checkbox, TextAreaField, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H1 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+
+import { useUrl } from '../ShareSimulationBanner'
 
 type SubmitError = {
 	message?: string
@@ -54,19 +56,26 @@ export default function FeedbackForm({
 	description,
 	placeholder,
 	tags,
+	hideShare,
 }: {
 	title: string
 	infoSlot?: ReactNode
 	description?: string
 	placeholder?: string
 	tags?: string[]
+	hideShare?: boolean
 }) {
+	const url = useUrl()
+	const urlParams = Array.from(new URL(url).searchParams.entries()).filter(
+		([key]) => key !== 'utm_source'
+	)
+	const [share, setShare] = useState(false)
 	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const [submitError, setSubmitError] = useState<SubmitError | undefined>(
 		undefined
 	)
-	const pathname = useLocation().pathname
+	const pathname = decodeURI(useLocation().pathname)
 
 	const { t } = useTranslation()
 
@@ -87,8 +96,8 @@ export default function FeedbackForm({
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
-					subject: `Suggestion sur la page : ${pathname}${subjectTags}`,
-					message,
+					subject: `Page : ${pathname}${subjectTags}`,
+					message: message + (share ? '\n\n' + url : ''),
 					email,
 				}),
 			})
@@ -175,6 +184,16 @@ export default function FeedbackForm({
 									t('Ex : Des informations plus claires, un calcul détaillé...')
 								}
 							/>
+
+							{!hideShare && urlParams.length > 0 && (
+								<Checkbox
+									onChange={(isSelected) => setShare(isSelected)}
+									label={t(
+										'components.feedback.form.share.checkbox',
+										'Je souhaite partager ma dernière simulation pour vous aider à mieux me répondre.'
+									)}
+								/>
+							)}
 
 							<StyledDiv>
 								<StyledTextField
