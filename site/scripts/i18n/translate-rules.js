@@ -18,7 +18,7 @@ const translateObject = (paths, arr) =>
 				const res = paths.reduce((obj, key) => obj[key], resolved)
 				res[dot][k] = '[automatic] ' + trad
 			} else {
-				translateObject([...paths, dot, k], v)
+				return await translateObject([...paths, dot, k], v)
 			}
 		})
 	)
