@@ -7,6 +7,7 @@ import {
 	isAutoentrepreneur,
 	useDispatchAndGoToNextQuestion,
 } from '@/actions/companyStatusActions'
+import revenusSVG from '@/assets/images/revenus.svg'
 import { Message } from '@/design-system'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
@@ -14,7 +15,6 @@ import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
-import revenusSVG from '@/images/revenus.svg'
 import { useSitePaths } from '@/sitePaths'
 
 type SchemeComparaisonProps = {

@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import logoSvgFR from '@/assets/images/logo-monentreprise.svg'
+import logoSvgFRDark from '@/assets/images/logo-monentreprise_white.svg'
+import logoSvgEN from '@/assets/images/logo-mycompany.svg'
+import logoSvgENDark from '@/assets/images/logo-mycompany_white.svg'
 import { useDarkMode } from '@/hooks/useDarkMode'
-import logoSvgFR from '@/images/logo-monentreprise.svg'
-import logoSvgFRDark from '@/images/logo-monentreprise_white.svg'
-import logoSvgEN from '@/images/logo-mycompany.svg'
-import logoSvgENDark from '@/images/logo-mycompany_white.svg'
 
 /* Figma source: https://www.figma.com/file/YJUpRNO12lcPUDsEYEXzT9/logo-monentreprisee-urssaf-edition */
 

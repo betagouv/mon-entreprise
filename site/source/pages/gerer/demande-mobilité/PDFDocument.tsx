@@ -1,7 +1,7 @@
 import PDFElement from '@react-pdf/renderer'
 import { RuleNode } from 'publicodes'
 
-import urssafPng from '@/images/destinataires/Urssaf.png'
+import urssafPng from '@/assets/images/destinataires/Urssaf.png'
 
 import FieldsPDF, { styles as fieldStyles } from './FieldsPDF'
 import montserratUrl from './Montserrat-SemiBold.ttf'

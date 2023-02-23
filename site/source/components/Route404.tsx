@@ -1,9 +1,9 @@
 import { Trans } from 'react-i18next'
 
+import image from '@/assets/images/road-sign.svg'
 import PageHeader from '@/components/PageHeader'
 import { Button } from '@/design-system/buttons'
 import { Container } from '@/design-system/layout'
-import image from '@/images/road-sign.svg'
 
 export default function Route404() {
 	return (
