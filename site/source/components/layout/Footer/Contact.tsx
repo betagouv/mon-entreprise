@@ -1,4 +1,4 @@
-import ContactImage from '@/images/contact.png'
+import ContactImage from '@/assets/images/contact.png'
 
 const Contact = () => (
 	<div className="centeredMessage">

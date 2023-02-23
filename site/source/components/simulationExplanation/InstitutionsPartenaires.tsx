@@ -3,6 +3,9 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import urssafSrc from '@/assets/images/Urssaf.svg'
+import assuranceMaladieSrc from '@/assets/images/assurance-maladie.svg'
+import dgfipSrc from '@/assets/images/logo-dgfip.svg'
 import Value, {
 	Condition,
 	WhenApplicable,
@@ -16,11 +19,9 @@ import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import urssafSrc from '@/images/Urssaf.svg'
-import assuranceMaladieSrc from '@/images/assurance-maladie.svg'
-import dgfipSrc from '@/images/logo-dgfip.svg'
-import * as logosSrc from '@/images/logos-caisses-retraite'
 import { targetUnitSelector } from '@/selectors/simulationSelectors'
+
+import * as logosSrc from './logos'
 
 export default function InstitutionsPartenaires() {
 	const unit = useSelector(targetUnitSelector)
