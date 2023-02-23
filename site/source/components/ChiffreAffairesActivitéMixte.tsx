@@ -5,9 +5,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { batchUpdateSituation } from '@/actions/actions'
 import { Switch } from '@/design-system/switch'
-import { situationSelector } from '@/selectors/simulationSelectors'
+import { batchUpdateSituation } from '@/store/actions/actions'
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { catchDivideByZeroError } from '@/utils'
 
 import { Condition, WhenApplicable } from './EngineValue'

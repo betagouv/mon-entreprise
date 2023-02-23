@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { RootState, Situation } from '@/reducers/rootReducer'
+import { RootState, Situation } from '@/store/reducers/rootReducer'
 
 export const configSelector = (state: RootState) =>
 	state.simulation?.config ?? {}

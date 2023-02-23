@@ -1,9 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import {
-	directorIsInAMinority,
-	useDispatchAndGoToNextQuestion,
-} from '@/actions/companyStatusActions'
 import { TrackPage } from '@/components/ATInternetTracking'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import AnswerGroup from '@/design-system/answer-group'
@@ -11,6 +7,10 @@ import { Button } from '@/design-system/buttons'
 import { H2 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import {
+	directorIsInAMinority,
+	useDispatchAndGoToNextQuestion,
+} from '@/store/actions/companyStatusActions'
 
 export default function MinorityDirector() {
 	const { t } = useTranslation()

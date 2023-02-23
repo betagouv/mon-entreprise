@@ -1,7 +1,7 @@
 import { Store } from 'redux'
 
-import { Action } from '@/actions/actions'
-import { RootState, Situation } from '@/reducers/rootReducer'
+import { Action } from '@/store/actions/actions'
+import { RootState, Situation } from '@/store/reducers/rootReducer'
 
 import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'

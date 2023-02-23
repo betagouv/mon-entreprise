@@ -2,11 +2,6 @@ import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 
-import {
-	defineDirectorStatus,
-	isAutoentrepreneur,
-	useDispatchAndGoToNextQuestion,
-} from '@/actions/companyStatusActions'
 import revenusSVG from '@/assets/images/revenus.svg'
 import { Message } from '@/design-system'
 import AnswerGroup from '@/design-system/answer-group'
@@ -16,6 +11,11 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
+import {
+	defineDirectorStatus,
+	isAutoentrepreneur,
+	useDispatchAndGoToNextQuestion,
+} from '@/store/actions/companyStatusActions'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean

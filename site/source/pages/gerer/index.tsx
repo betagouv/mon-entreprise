@@ -14,7 +14,6 @@ import {
 } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { resetCompany } from '@/actions/companyActions'
 import {
 	FabriqueSocialEntreprise,
 	searchDenominationOrSiren,
@@ -48,8 +47,9 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
-import { companySituationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
+import { resetCompany } from '@/store/actions/companyActions'
+import { companySituationSelector } from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
 import { SimulateurCard } from '../Simulateurs/Home'

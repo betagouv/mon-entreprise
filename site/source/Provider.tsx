@@ -24,7 +24,7 @@ import { ServiceWorker } from './components/ServiceWorker'
 import { DarkModeProvider } from './contexts/DarkModeContext'
 import { Message } from './design-system'
 import * as safeLocalStorage from './storage/safeLocalStorage'
-import { store } from './store'
+import { store } from './store/store'
 import { inIframe } from './utils'
 
 type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'

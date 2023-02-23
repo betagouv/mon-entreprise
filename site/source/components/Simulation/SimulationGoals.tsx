@@ -7,7 +7,7 @@ import { ForceThemeProvider } from '@/contexts/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
+import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
 import { Logo } from '../Logo'
 import { WatchInitialRender } from '../utils/useInitialRender'

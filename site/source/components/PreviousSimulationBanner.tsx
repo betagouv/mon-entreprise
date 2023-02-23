@@ -1,10 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { loadPreviousSimulation } from '@/actions/actions'
 import { Link } from '@/design-system/typography/link'
-import { RootState } from '@/reducers/rootReducer'
-import { firstStepCompletedSelector } from '@/selectors/simulationSelectors'
+import { loadPreviousSimulation } from '@/store/actions/actions'
+import { RootState } from '@/store/reducers/rootReducer'
+import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
 import Banner from './Banner'
 

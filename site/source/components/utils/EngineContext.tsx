@@ -9,12 +9,12 @@ import Engine, {
 import { createContext, useContext, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { deleteFromSituation } from '@/actions/actions'
+import { deleteFromSituation } from '@/store/actions/actions'
 import {
 	companySituationSelector,
 	configSituationSelector,
 	situationSelector,
-} from '@/selectors/simulationSelectors'
+} from '@/store/selectors/simulationSelectors'
 import { omit } from '@/utils'
 
 import i18n from '../../locales/i18n'

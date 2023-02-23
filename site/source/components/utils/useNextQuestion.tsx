@@ -3,12 +3,12 @@ import Engine from 'publicodes'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
-import { SimulationConfig } from '@/reducers/rootReducer'
+import { SimulationConfig } from '@/store/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	configSelector,
 	useMissingVariables,
-} from '@/selectors/simulationSelectors'
+} from '@/store/selectors/simulationSelectors'
 import { ImmutableType } from '@/types/utils'
 
 import { useEngine } from './EngineContext'

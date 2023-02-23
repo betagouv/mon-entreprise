@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
 import { useEngine } from './utils/EngineContext'

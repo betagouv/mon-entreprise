@@ -2,15 +2,15 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { goToQuestion } from '@/actions/actions'
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { RootState } from '@/reducers/rootReducer'
+import { goToQuestion } from '@/store/actions/actions'
+import { RootState } from '@/store/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
-} from '@/selectors/simulationSelectors'
+} from '@/store/selectors/simulationSelectors'
 
 import { useNextQuestions } from './utils/useNextQuestion'
 

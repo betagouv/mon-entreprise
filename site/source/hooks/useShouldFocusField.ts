@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { updateShouldFocusField } from '@/actions/actions'
-import { shouldFocusFieldSelector } from '@/selectors/simulationSelectors'
+import { updateShouldFocusField } from '@/store/actions/actions'
+import { shouldFocusFieldSelector } from '@/store/selectors/simulationSelectors'
 
 export const useShouldFocusField = () => {
 	const dispatch = useDispatch()

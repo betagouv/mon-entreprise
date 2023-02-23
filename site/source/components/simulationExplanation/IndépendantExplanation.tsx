@@ -22,7 +22,7 @@ import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { targetUnitSelector } from '@/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'
 import CotisationsRégularisation from './IndépendantCotisationsRégularisation'

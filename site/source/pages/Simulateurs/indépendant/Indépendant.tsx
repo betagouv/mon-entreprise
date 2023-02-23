@@ -1,7 +1,6 @@
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { updateSituation } from '@/actions/actions'
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { Condition } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -18,6 +17,7 @@ import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+import { updateSituation } from '@/store/actions/actions'
 
 export function IndépendantPLSimulation() {
 	return (

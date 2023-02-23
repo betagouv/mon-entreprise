@@ -13,7 +13,7 @@ import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
-import { situationSelector } from '@/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 import { NextSteps } from '../pages/Simulateurs/NextSteps'
 import { TrackChapter } from './ATInternetTracking'

@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 
-import { Action } from '@/actions/actions'
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import { Action } from '@/store/actions/actions'
 import { buildSituationFromObject, omit } from '@/utils'
 
 import { Situation } from './rootReducer'

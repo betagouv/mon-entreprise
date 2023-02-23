@@ -3,17 +3,17 @@ import { DottedName } from 'modele-social'
 import { createStore } from 'redux'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { setupSimulationPersistence } from '@/storage/persistSimulation'
+import * as safeLocalStorage from '@/storage/safeLocalStorage'
 import {
 	loadPreviousSimulation,
 	setSimulationConfig,
 	updateSituation,
-} from '../source/actions/actions'
+} from '@/store/actions/actions'
 import reducers, {
 	Simulation,
 	SimulationConfig,
-} from '../source/reducers/rootReducer'
-import { setupSimulationPersistence } from '../source/storage/persistSimulation'
-import * as safeLocalStorage from '../source/storage/safeLocalStorage'
+} from '@/store/reducers/rootReducer'
 
 function delay(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms))

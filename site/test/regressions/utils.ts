@@ -8,8 +8,8 @@ import rules, { DottedName } from 'modele-social'
 import { EvaluatedNode, Evaluation } from 'publicodes'
 import { expect } from 'vitest'
 
-import { engineFactory } from '../../source/components/utils/EngineContext'
-import { Simulation } from '../../source/reducers/rootReducer'
+import { engineFactory } from '@/components/utils/EngineContext'
+import { Simulation } from '@/store/reducers/rootReducer'
 
 type SituationsSpecs = Record<string, Simulation['situation'][]>
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { useNextQuestionUrl } from '@/selectors/companyStatusSelectors'
+import { useNextQuestionUrl } from '@/store/selectors/companyStatusSelectors'
 import { LegalStatusRequirements } from '@/types/companyTypes'
 
 import { Action } from './actions'

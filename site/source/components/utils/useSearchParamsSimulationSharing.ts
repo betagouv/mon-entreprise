@@ -4,10 +4,10 @@ import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
-import { batchUpdateSituation, setActiveTarget } from '@/actions/actions'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Situation } from '@/reducers/rootReducer'
-import { configObjectifsSelector } from '@/selectors/simulationSelectors'
+import { batchUpdateSituation, setActiveTarget } from '@/store/actions/actions'
+import { Situation } from '@/store/reducers/rootReducer'
+import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
 
 type ShortName = string
 type ParamName = DottedName | ShortName

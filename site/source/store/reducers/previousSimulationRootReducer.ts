@@ -1,7 +1,7 @@
-import { Action } from '@/actions/actions'
-import { Simulation } from '@/reducers/rootReducer'
+import { retrievePersistedSimulation } from '@/storage/persistSimulation'
+import { Action } from '@/store/actions/actions'
+import { Simulation } from '@/store/reducers/rootReducer'
 
-import { retrievePersistedSimulation } from '../storage/persistSimulation'
 import { RootState } from './rootReducer'
 
 export const createStateFromPreviousSimulation = (

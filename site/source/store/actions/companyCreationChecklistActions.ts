@@ -1,4 +1,4 @@
-import { LegalStatus } from '@/selectors/companyStatusSelectors'
+import { LegalStatus } from '@/store/selectors/companyStatusSelectors'
 
 export type CompanyCreationAction = ReturnType<
 	typeof initializeCompanyCreationChecklist | typeof checkCompanyCreationItem

@@ -3,7 +3,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
 
-import { resetCompany } from '@/actions/companyActions'
 import {
 	FabriqueSocialEntreprise,
 	searchDenominationOrSiren,
@@ -20,9 +19,10 @@ import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
-import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
+import { resetCompany } from '@/store/actions/companyActions'
+import { RootState } from '@/store/reducers/rootReducer'
 
 export default function SearchOrCreate() {
 	const { absoluteSitePaths } = useSitePaths()

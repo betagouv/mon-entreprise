@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 
-import { RootState, Simulation } from '@/reducers/rootReducer'
+import { RootState, Simulation } from '@/store/reducers/rootReducer'
 
 export type PreviousSimulation = {
 	situation: Simulation['situation']
