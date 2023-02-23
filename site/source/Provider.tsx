@@ -18,10 +18,9 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useIframeResizer } from '@/hooks/useIframeResizer'
 import logo from '@/images/logo-monentreprise.svg'
 
-// ATInternet Tracking
-import { TrackingContext } from './ATInternetTracking'
-import { createTracker } from './ATInternetTracking/Tracker'
 import { ServiceWorker } from './ServiceWorker'
+import { TrackingContext } from './components/ATInternetTracking'
+import { createTracker } from './components/ATInternetTracking/Tracker'
 import { DarkModeProvider } from './contexts/DarkModeContext'
 import { Message } from './design-system'
 import * as safeLocalStorage from './storage/safeLocalStorage'

@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { FromBottom } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { ScrollToTop } from '@/components/utils/Scroll'
@@ -10,7 +11,6 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../../ATInternetTracking'
 import siret from './siret.jpg'
 
 export default function AfterRegistration() {

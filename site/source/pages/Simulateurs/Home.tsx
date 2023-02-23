@@ -1,5 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Chip } from '@/design-system'
@@ -17,7 +18,6 @@ import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 import simulatorSvg from './images/illustration-simulateur.svg'
 

@@ -1,13 +1,13 @@
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import FoldingMessage from '@/components/ui/FoldingMessage'
 import { FromBottom } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 
-import { TrackPage } from '../../ATInternetTracking'
 import Video from './components/Video'
 
 export default function SocialSecurity() {

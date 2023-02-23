@@ -15,8 +15,8 @@ import { Intro } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { situationSelector } from '@/selectors/simulationSelectors'
 
-import { TrackChapter } from '../ATInternetTracking'
 import { NextSteps } from '../pages/Simulateurs/NextSteps'
+import { TrackChapter } from './ATInternetTracking'
 import BetaBanner from './BetaBanner'
 
 export default function PageData() {

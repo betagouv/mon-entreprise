@@ -8,7 +8,7 @@ import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 
-import { TrackingContext } from '../../ATInternetTracking'
+import { TrackingContext } from '../ATInternetTracking'
 
 export function ShareSimulationPopup({ url }: { url: string }) {
 	const inputRef = useRef<HTMLInputElement>(null)

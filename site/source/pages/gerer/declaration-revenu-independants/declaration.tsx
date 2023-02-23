@@ -4,7 +4,7 @@ import { RuleNode } from 'publicodes'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { TrackPage } from '@/ATInternetTracking'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { Condition } from '@/components/EngineValue'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'

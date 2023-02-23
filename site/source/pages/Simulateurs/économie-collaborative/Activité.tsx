@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Navigate, useParams } from 'react-router-dom'
 
-import { TrackPage } from '@/ATInternetTracking'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { FromBottom } from '@/components/ui/animate'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Markdown } from '@/components/utils/markdown'

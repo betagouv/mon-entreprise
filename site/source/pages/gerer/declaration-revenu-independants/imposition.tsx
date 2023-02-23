@@ -5,8 +5,8 @@ import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { TrackPage } from '@/ATInternetTracking'
 import { updateSituation } from '@/actions/actions'
+import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Condition,
 	WhenAlreadyDefined,

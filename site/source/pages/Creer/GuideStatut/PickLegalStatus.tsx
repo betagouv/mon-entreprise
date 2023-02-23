@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { Button } from '@/design-system/buttons'
 import { H2, H3 } from '@/design-system/typography/heading'
@@ -12,7 +13,6 @@ import {
 } from '@/selectors/companyStatusSelectors'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../../../ATInternetTracking'
 import StatutDescription from '../StatutDescription'
 
 type StatutButtonProps = {

@@ -1,7 +1,7 @@
+import { TrackPage } from '@/components/ATInternetTracking'
 import { H2 } from '@/design-system/typography/heading'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 
-import { TrackPage } from '../../../ATInternetTracking'
 import { SimulateurCard } from '../Home'
 
 export default function SalariéSimulation() {

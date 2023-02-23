@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { FromBottom } from '@/components/ui/animate'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Emoji } from '@/design-system/emoji'
@@ -8,7 +9,6 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
-import { TrackPage } from '../../../ATInternetTracking'
 import { ActiviteCard } from './ActiviteCard'
 import { Activity } from './Activité'
 import NextButton from './NextButton'

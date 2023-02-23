@@ -13,7 +13,7 @@ import {
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 
-import { TrackingContext } from '../../ATInternetTracking'
+import { TrackingContext } from '../ATInternetTracking'
 import { PlaceDesEntreprisesButton } from '../PlaceDesEntreprises'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'

@@ -5,7 +5,7 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
-import { TrackPage } from '../ATInternetTracking'
+import { TrackPage } from '../components/ATInternetTracking'
 import Meta from '../components/utils/Meta'
 
 export default function Accessibilité() {

@@ -31,7 +31,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { RootState } from '@/reducers/rootReducer'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../ATInternetTracking'
+import { TrackPage } from '../components/ATInternetTracking'
 import RuleLink from '../components/RuleLink'
 
 export default function Documentation({

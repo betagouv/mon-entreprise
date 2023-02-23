@@ -5,6 +5,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useHref, useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { PopoverWithTrigger, TextField } from '@/design-system'
 import { Article } from '@/design-system/card'
 import { Emoji } from '@/design-system/emoji'
@@ -16,7 +17,6 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import urssafLogo from '@/images/Urssaf.svg'
 
-import { TrackPage } from '../../ATInternetTracking'
 import Meta from '../../components/utils/Meta'
 
 import './iframe.css'

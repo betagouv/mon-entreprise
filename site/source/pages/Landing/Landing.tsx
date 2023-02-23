@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
@@ -14,7 +15,6 @@ import { useGetFullURL } from '@/hooks/useGetFullURL'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import SearchOrCreate from './SearchOrCreate'
 import illustration2Svg from './illustration2.svg'

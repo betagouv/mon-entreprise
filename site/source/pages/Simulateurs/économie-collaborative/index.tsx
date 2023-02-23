@@ -2,7 +2,7 @@ import { Trans } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { TrackChapter } from '@/ATInternetTracking'
+import { TrackChapter } from '@/components/ATInternetTracking'
 import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Link } from '@/design-system/typography/link'
 import useSimulatorsData from '@/hooks/useSimulatorsData'

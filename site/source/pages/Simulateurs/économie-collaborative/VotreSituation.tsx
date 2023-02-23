@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Navigate } from 'react-router-dom'
 
-import { TrackPage } from '@/ATInternetTracking'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { FromBottom } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { ScrollToTop } from '@/components/utils/Scroll'

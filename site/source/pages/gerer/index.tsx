@@ -19,6 +19,7 @@ import {
 	FabriqueSocialEntreprise,
 	searchDenominationOrSiren,
 } from '@/api/fabrique-social'
+import { TrackChapter, TrackPage } from '@/components/ATInternetTracking'
 import {
 	Condition,
 	WhenApplicable,
@@ -51,7 +52,6 @@ import { companySituationSelector } from '@/selectors/simulationSelectors'
 import { useSitePaths } from '@/sitePaths'
 import { evaluateQuestion } from '@/utils'
 
-import { TrackChapter, TrackPage } from '../../ATInternetTracking'
 import { SimulateurCard } from '../Simulateurs/Home'
 import { AnnuaireEntreprises } from './components/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from './components/AutoEntrepeneurCard'
