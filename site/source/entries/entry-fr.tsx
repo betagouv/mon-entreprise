@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client'
 import App from '../App'
 import i18next from '../locales/i18n'
 
-import '../sentry'
+import '../api/sentry'
 
 export const AppFr = () => (
 	<I18nProvider locale="fr-FR">
