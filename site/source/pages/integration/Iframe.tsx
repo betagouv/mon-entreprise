@@ -79,9 +79,9 @@ function IntegrationCustomizer() {
 	useEffect(() => {
 		window.addEventListener(
 			'message',
-			function (evt: MessageEvent<{ kind: string; value: string }>) {
+			function (evt: MessageEvent<{ kind: string; value: number }>) {
 				if (iframeRef.current && evt.data.kind === 'resize-height') {
-					iframeRef.current.style.height = evt.data.value + 'px'
+					iframeRef.current.style.height = `${evt.data.value}px`
 				}
 			}
 		)
