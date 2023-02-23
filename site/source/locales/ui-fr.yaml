@@ -87,6 +87,9 @@ Avec chômage partiel: Avec chômage partiel
 Baisse d'au moins 50% du chiffre d'affaires mensuel (600 €): Baisse d'au moins 50% du chiffre d'affaires mensuel (600 €)
 Baisse d'au moins 65% du chiffre d'affaires mensuel (600 €): Baisse d'au moins 65% du chiffre d'affaires mensuel (600 €)
 Baisse entre 30% et 64% du chiffre d'affaires mensuel (300 €): Baisse entre 30% et 64% du chiffre d'affaires mensuel (300 €)
+"Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant \"pain\" ou \"viennoiserie\".":
+  Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
+  "viennoiserie".
 Budget: Budget
 Calculer vos revenus: Calculer vos revenus
 Ce simulateur a été prérempli avec la situation de votre entreprise.: Ce simulateur a été prérempli avec la situation de votre entreprise.
@@ -733,6 +736,12 @@ comparateur:
   allerPlusLoin:
     tableCaption: Tableau affichant le détail du calcul du revenu net pour la SASU,
       l'entreprise individuelle (EI) et l'auto-entreprise (AE).
+components:
+  feedback:
+    form:
+      share:
+        checkbox: Je souhaite partager ma dernière simulation pour vous aider à mieux me
+          répondre.
 copied: Copié
 copyMessage: Copier le message
 créer:
@@ -1290,11 +1299,16 @@ pages:
     29/01/2021</22>
   assistants:
     recherche-code-ape:
+      description: Cet assistant vous permet de trouver rapidement le code APE
+        (activité principale exercée) qui correspond à votre activité. Ce code
+        est attribué par l'INSEE à chaque entreprise en France afin de les
+        catégoriser. Retrouvez plus d'informations sur le code APE sur
+        <2>entreprendre.service-public.fr</2> et <6>economie.gouv.fr</6>.
       meta:
         description: Assistant pour trouver le code APE qui correspond à votre activité.
         title: Recherche de code APE
       shortname: Recherche de code APE
-      title: Recherche de code APE
+      title: "Quel code APE pour mon activité ? "
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui
@@ -1838,6 +1852,10 @@ pages:
       shortname: Expert-Comptable
       title: Simulateur de revenus pour expert comptable et commissaire aux comptes en
         libéral
+    home:
+      cta:
+        assistant: Lancer l'assistant
+        simulateur: Lancer le simulateur
     indépendant:
       cotisations-forfaitaires: "Montant des cotisations forfaitaires : "
       meta:
