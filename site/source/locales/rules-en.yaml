@@ -7459,6 +7459,21 @@ salarié . contrat . CDD . motif:
           titre.en: '[automatic] Mission contract'
           titre.fr: Contrat de mission
         remplacement:
+          description.en: >
+            [automatic] We group the following cases in this category.
+
+
+            - Replacement of an employee in case of :
+              - Absence;
+              - Temporary change to part-time work, concluded by an amendment to the employment contract or by a written exchange between the employee and his employer;
+              - Suspension of the employment contract;
+              - Final departure preceding the elimination of his workstation after consultation of the works council or, failing that, of the staff representatives, if any;
+              - Waiting for the employee recruited on a permanent contract to replace him/her to take up his/her duties;
+
+            - Replacement of the head of a craft, industrial or commercial company, of a person practicing a liberal profession, of his or her spouse effectively participating in the activity of the company on a professional and usual basis or of a non-salaried partner of a professional partnership, a partnership of means, a liberal practice partnership or any other legal person practicing a liberal profession;
+
+
+            - Replacement of the head of a farm or a company mentioned in 1° to 4° of article L. 722-1 of the rural and maritime fishing code, of a family helper, of a partner in the farm, or of their spouse mentioned in article L. 722-10 of the same code, provided that he or she is effectively participating in the activity of the farm or company;
           description.fr: >
             Nous regroupons dans cette catégorie les cas suivants.
 
