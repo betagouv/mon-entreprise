@@ -2,7 +2,7 @@ import { I18nProvider } from '@react-aria/i18n'
 import { withProfiler } from '@sentry/react'
 import { createRoot } from 'react-dom/client'
 
-import App from '../App'
+import App from '../components/App'
 import i18next from '../locales/i18n'
 import ruleTranslations from '../locales/rules-en.yaml'
 import translateRules from '../locales/translateRules'

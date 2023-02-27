@@ -10,9 +10,9 @@ import { H1, H2, H3, H4, H5, H6 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ol, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { isIterable } from '@/utils'
 
-import { SiteNameContext } from '../../Provider'
-import { isIterable } from '../../utils'
+import { SiteNameContext } from '../Provider'
 
 const internalURLs = {
 	'mon-entreprise.urssaf.fr': 'mon-entreprise',
