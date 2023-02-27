@@ -133,9 +133,6 @@ const Label = styled.label<{ $hideRadio?: boolean; htmlFor?: string }>`
 		css`
 			margin-top: -1px;
 		`}
-	:focus ${VisibleRadio} {
-		${FocusStyle}
-	}
 `
 
 export const LabelBody = styled(Body)<{
@@ -160,6 +157,10 @@ export const InputRadio = styled.input`
 		+ ${VisibleRadio}
 		${OutsideCircle} {
 		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
+
+	:focus + ${VisibleRadio} {
+		${FocusStyle}
 	}
 
 	:checked + ${VisibleRadio} ${InsideCircle} {
