@@ -6,12 +6,12 @@ import { configChômagePartiel } from './simulationConfig'
 
 export function chômagePartielConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
+		beta: true,
 		id: 'chômage-partiel',
 		path: sitePaths.simulateurs['chômage-partiel'],
 		tracking: 'chomage_partiel',
 		pathId: 'simulateurs.chômage-partiel',
 		icône: '😷',
-		beta: true,
 		iframePath: 'simulateur-chomage-partiel',
 		meta: {
 			description: t(
