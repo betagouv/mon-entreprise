@@ -34,7 +34,7 @@ export function déclarationChargesSocialesIndépendantConfig({
 			'pages.gérer.declaration_charges_sociales_indépendant.title',
 			'Assistant à la détermination des charges sociales déductibles'
 		),
-		nextSteps: ['exonération-covid', 'déclaration-revenu-indépendant-beta'],
+		nextSteps: ['déclaration-revenu-indépendant-beta'],
 		component: DéclarationChargeSocialeIndépendant,
 	} as const)
 }
@@ -72,7 +72,7 @@ export function déclarationRevenuIndépendantConfig({
 			'pages.gérer.declaration_charges_sociales_indépendant.title',
 			'Assistant à la détermination des charges sociales déductibles'
 		),
-		nextSteps: ['exonération-covid', 'déclaration-revenu-indépendant-beta'],
+		nextSteps: ['déclaration-revenu-indépendant-beta'],
 		component: DéclarationChargeSocialeIndépendant,
 	} as const)
 }
