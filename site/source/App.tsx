@@ -3,7 +3,7 @@ import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
 import { ComponentProps, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, redirect } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import Route404 from '@/components/Route404'
@@ -82,9 +82,22 @@ const Router = () => {
 	return (
 		<Routes>
 			<Route index element={<Landing />} />
+			<Redirections />
 			<Route path="/iframes/*" element={<Iframes />} />
 			<Route path="*" element={<App />} />
 		</Routes>
+	)
+}
+const Redirections = () => {
+	const { relativeSitePaths } = useSitePaths()
+
+	return (
+		<>
+			<Route
+				path="/stats"
+				element={<Navigate to={relativeSitePaths.stats} replace />}
+			/>
+		</>
 	)
 }
 
@@ -156,7 +169,7 @@ const App = () => {
 								path={relativeSitePaths.nouveautés + '/*'}
 								element={<Nouveautés />}
 							/>
-							<Route path={relativeSitePaths.stats} element={<Stats />} />
+							<Route path={relativeSitePaths.stats} e lement={<Stats />} />
 							<Route path={relativeSitePaths.budget} element={<Budget />} />
 							<Route
 								path={relativeSitePaths.accessibilité}

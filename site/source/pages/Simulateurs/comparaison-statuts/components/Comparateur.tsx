@@ -1,6 +1,6 @@
 import Engine from 'publicodes'
 import { useTranslation } from 'react-i18next'
-import { Route, Routes, redirect, useNavigate } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import { DottedName } from '@/../../modele-social'
 import PeriodSwitch from '@/components/PeriodSwitch'
