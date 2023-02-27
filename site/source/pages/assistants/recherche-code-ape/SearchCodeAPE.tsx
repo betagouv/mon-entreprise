@@ -116,14 +116,21 @@ const Result = ({ item, debug }: ResultProps) => {
 			</Grid>
 
 			<StyledGrid item xs={12} sm={4} md={3} xl={2}>
-				<Button size="XXS" light onPress={() => setOpen((x) => !x)}>
+				<Button
+					size="XXS"
+					light
+					onPress={() => setOpen((x) => !x)}
+					aria-label={!open ? t('En savoir plus') : t('Replier')}
+					aria-expanded={open}
+					aria-controls={`info-${codeApe}`}
+				>
 					{!open ? t('En savoir plus') : t('Replier')}{' '}
 					<StyledChevron aria-hidden $isOpen={open} />
 				</Button>
 			</StyledGrid>
 
 			{open && (
-				<FromTop>
+				<FromTop id={`info-${codeApe}`}>
 					<Grid item xs={12}>
 						<p style={{ marginTop: 0 }}>
 							{contenuCentral.length ? (
@@ -372,7 +379,13 @@ const ActivityNotFound = () => {
 			<PopoverWithTrigger
 				trigger={(buttonProps) => (
 					// eslint-disable-next-line react/jsx-props-no-spreading
-					<Button {...buttonProps} size="XS" color="tertiary" light>
+					<Button
+						{...buttonProps}
+						size="XS"
+						color="tertiary"
+						aria-haspopup="dialog"
+						light
+					>
 						<Emoji emoji="🖐️" />{' '}
 						<Trans i18nKey="search-code-ape.cant-find-my-activity">
 							Je ne trouve pas mon activité

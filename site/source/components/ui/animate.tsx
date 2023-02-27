@@ -16,6 +16,7 @@ type Props = {
 	config?: SpringConfig
 	style?: React.CSSProperties
 	className?: string
+	id?: string
 	delay?: number
 }
 
@@ -65,6 +66,7 @@ export function FromTop({
 	style: inheritedStyle = {},
 	delay = 0,
 	className,
+	id,
 }: Props) {
 	const trail = useTrail(React.Children.count(children), {
 		delay,
@@ -88,6 +90,7 @@ export function FromTop({
 						position: 'relative',
 					}}
 					className={className}
+					id={id}
 				>
 					{childrenArray[i]}
 				</AnimatedDiv>
