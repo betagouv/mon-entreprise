@@ -4,7 +4,7 @@ import { AriaButtonProps } from '@react-types/button'
 import React, { ReactElement, Ref, RefObject, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { ForceThemeProvider } from '@/contexts/DarkModeContext'
+import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Button } from '@/design-system/buttons'
 import { omit } from '@/utils'
 

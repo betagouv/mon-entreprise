@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { DarkModeContext } from '@/contexts/DarkModeContext'
+import { DarkModeContext } from '@/components/utils/DarkModeContext'
 
 export const useDarkMode = () => {
 	return React.useContext(DarkModeContext)
