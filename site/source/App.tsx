@@ -97,6 +97,14 @@ const Redirections = () => {
 				path="/stats"
 				element={<Navigate to={relativeSitePaths.stats} replace />}
 			/>
+			<Route
+				path={'/plan-de-site'}
+				element={<Navigate to={relativeSitePaths.plan} replace />}
+			/>
+			<Route
+				path={'/site-map'}
+				element={<Navigate to={relativeSitePaths.plan} replace />}
+			/>
 		</>
 	)
 }
