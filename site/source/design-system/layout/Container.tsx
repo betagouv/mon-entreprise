@@ -1,7 +1,10 @@
 import { ReactNode } from 'react'
 import styled, { DefaultTheme } from 'styled-components'
 
-import { ForceThemeProvider, ThemeType } from '@/contexts/DarkModeContext'
+import {
+	ForceThemeProvider,
+	ThemeType,
+} from '@/components/utils/DarkModeContext'
 
 const InnerContainer = styled.div`
 	margin-right: auto;

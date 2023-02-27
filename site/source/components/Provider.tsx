@@ -18,7 +18,6 @@ import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useIframeResizer } from '@/hooks/useIframeResizer'
 
-import { DarkModeProvider } from '../contexts/DarkModeContext'
 import { Message } from '../design-system'
 import * as safeLocalStorage from '../storage/safeLocalStorage'
 import { store } from '../store/store'
@@ -26,6 +25,7 @@ import { inIframe } from '../utils'
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
 import { ServiceWorker } from './ServiceWorker'
+import { DarkModeProvider } from './utils/DarkModeContext'
 
 type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
 

@@ -4,7 +4,10 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
-import { ForceThemeProvider, ThemeType } from '@/contexts/DarkModeContext'
+import {
+	ForceThemeProvider,
+	ThemeType,
+} from '@/components/utils/DarkModeContext'
 import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
 import { SearchField } from '@/design-system/field'

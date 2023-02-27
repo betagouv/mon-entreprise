@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import FeedbackButton from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
-import { ForceThemeProvider } from '@/contexts/DarkModeContext'
+import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { FooterContainer } from '@/design-system/footer'
