@@ -92,7 +92,7 @@ const rawSitePathsFr = {
 		'exonération-covid': 'exonération-covid',
 	},
 	nouveautés: 'nouveautés',
-	stats: 'stats',
+	stats: 'statistiques',
 	accessibilité: 'accessibilité',
 	budget: 'budget',
 	développeur: {
@@ -181,6 +181,7 @@ const rawSitePathsEn = {
 		'exonération-covid': 'exoneration-covid',
 	},
 	nouveautés: 'news',
+	stats: 'statistics',
 	accessibilité: 'accessibility',
 	développeur: {
 		...rawSitePathsFr.développeur,
