@@ -34,10 +34,7 @@ export function déclarationRevenuIndépendantBetaConfig({
 			'pages.gérer.declaration_revenu_indépendant.title',
 			'Assistant à la déclaration de revenu pour les indépendants'
 		),
-		nextSteps: [
-			'exonération-covid',
-			'déclaration-charges-sociales-indépendant',
-		],
+		nextSteps: ['déclaration-charges-sociales-indépendant'],
 		path: sitePaths.gérer.déclarationIndépendant.beta.index,
 		component: DéclarationRevenuIndépendant,
 	} as const)

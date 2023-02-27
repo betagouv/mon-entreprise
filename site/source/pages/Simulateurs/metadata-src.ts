@@ -22,7 +22,6 @@ import { dividendesConfig } from './dividendes/config'
 import { eirlConfig } from './eirl/config'
 import { entrepriseIndividuelleConfig } from './entreprise-individuelle/config'
 import { eurlConfig } from './eurl/config'
-import { exonérationCovidConfig } from './exonération-covid/config'
 import { expertComptableConfig } from './expert-comptable/config'
 import { impôtSociétéConfig } from './impot-societe/config'
 import { indépendantConfig } from './indépendant/config'
@@ -69,7 +68,6 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...professionLibéraleConfig(params),
 		...pamcConfig(params),
 		...dividendesConfig(params),
-		...exonérationCovidConfig(params),
 		...coûtCréationEntrepriseConfig(params),
 		...impôtSociétéConfig(params),
 		...cipavConfig(params),
