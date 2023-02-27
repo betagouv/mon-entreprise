@@ -3,7 +3,7 @@ import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
 import { ComponentProps, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Navigate, Route, Routes, redirect } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import Route404 from '@/components/Route404'
@@ -27,7 +27,6 @@ import Accessibilité from './pages/Accessibilité'
 import Budget from './pages/Budget/Budget'
 import Créer from './pages/Creer'
 import IntegrationTest from './pages/Dev/IntegrationTest'
-import Personas from './pages/Dev/Personas'
 import Documentation from './pages/Documentation'
 import Iframes from './pages/Iframes'
 import Landing from './pages/Landing/Landing'
@@ -177,7 +176,7 @@ const App = () => {
 								path={relativeSitePaths.nouveautés + '/*'}
 								element={<Nouveautés />}
 							/>
-							<Route path={relativeSitePaths.stats} e lement={<Stats />} />
+							<Route path={relativeSitePaths.stats} element={<Stats />} />
 							<Route path={relativeSitePaths.budget} element={<Budget />} />
 							<Route
 								path={relativeSitePaths.accessibilité}
@@ -188,7 +187,6 @@ const App = () => {
 								path="/dev/integration-test"
 								element={<IntegrationTest />}
 							/>
-							<Route path="/dev/personas" element={<Personas />} />
 
 							<Route path={relativeSitePaths.plan} element={<Plan />} />
 
