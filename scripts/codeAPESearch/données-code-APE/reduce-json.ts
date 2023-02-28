@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url'
 import { Data as RawApeData } from '../données-NAF-CPF-APE/convert-pdf.js'
 import rawApeData from '../données-NAF-CPF-APE/output.json' assert { type: 'json' }
 import rawApeTags from '../données-NomenclatureGuichet/ape_tags.json' assert { type: 'json' }
-import { Out as EtablissementsData } from '../nombre-etablissements-par-code-ape-et-departement/convert-json.js'
-import rawEtablissementsData from '../nombre-etablissements-par-code-ape-et-departement/output.json' assert { type: 'json' }
+import { Out as NbEtablissementsData } from '../nombre-etablissements-par-code-ape/convert-json.js'
+import rawEtablissementsData from '../nombre-etablissements-par-code-ape/output.json' assert { type: 'json' }
 import { multipleCf } from './custom.js'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -15,7 +15,7 @@ const OUTPUT_JSON_PATH = join(__dirname, './output.json')
 const OUTPUT_MIN_JSON_PATH = join(__dirname, './output.min.json')
 
 const apeData = rawApeData as RawApeData[]
-const etablissementsData = rawEtablissementsData as EtablissementsData
+const etablissementsData = rawEtablissementsData as NbEtablissementsData
 const apeTags = rawApeTags as Record<string, string[]>
 
 interface ApeData {
@@ -27,8 +27,6 @@ interface ApeData {
 	contenuExclu: string[]
 }
 
-type NbEtablissement2021Index = number
-
 export interface Output {
 	/**
 	 * Données textuel pour chaque code APE
@@ -36,15 +34,9 @@ export interface Output {
 	apeData: ApeData[]
 
 	/**
-	 * Nombre d'établissement par département et par code APE,
-	 * l'index de ce tableau correspond au index dans indexByCodeApe et indexByCodeDepartement.
-	 * Cela permet de trouver le nombre d'établissement en 2021 avec un couple code APE + code d'un département.
+	 * Nombre d'établissement par code APE,
 	 */
-	nbEtablissements2021: number[]
-	indexByCodeApe: { [codeAPE: string]: NbEtablissement2021Index[] }
-	indexByCodeDepartement: {
-		[codeDepartement: string]: NbEtablissement2021Index[]
-	}
+	indexByCodeApe: NbEtablissementsData
 }
 
 const sousClasses = apeData.filter(({ type }) => type === 'sousClasse')
@@ -103,11 +95,8 @@ const output: Output = {
 			}
 		}
 	),
-	nbEtablissements2021: etablissementsData.data.map(
-		({ nombre_d_etablissements_2021: nbEtablissements }) => nbEtablissements
-	),
-	indexByCodeApe: etablissementsData.indexByCodeApe,
-	indexByCodeDepartement: etablissementsData.indexByCodeDepartement,
+
+	indexByCodeApe: etablissementsData,
 }
 
 addContenuExcluToContenuCentral.forEach(([i, j, index]) => {
@@ -130,6 +119,27 @@ Object.values(multipleCf).forEach((obj) => {
 		}
 	})
 })
+
+output.apeData = output.apeData.map(
+	({ contenuCentral, contenuAnnexe, contenuExclu, ...rest }) => ({
+		contenuAnnexe: contenuAnnexe.map(
+			(text) => text[0].toUpperCase() + text.slice(1)
+		),
+		contenuExclu: contenuExclu.map(
+			(text) => text[0].toUpperCase() + text.slice(1)
+		),
+		contenuCentral: contenuCentral.reduce((acc, text) => {
+			if (text.startsWith('•')) {
+				acc[acc.length - 1] = acc[acc.length - 1] + '\n' + text.slice(2)
+			} else {
+				acc.push(text[0].toUpperCase() + text.slice(1))
+			}
+
+			return acc
+		}, [] as string[]),
+		...rest,
+	})
+)
 
 writeFileSync(OUTPUT_JSON_PATH, JSON.stringify(output, null, 2))
 writeFileSync(OUTPUT_MIN_JSON_PATH, JSON.stringify(output))

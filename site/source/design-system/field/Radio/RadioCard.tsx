@@ -1,7 +1,9 @@
 import { AriaRadioProps } from '@react-types/radio'
-import styled from 'styled-components'
+import { ComponentProps } from 'react'
+import styled, { css } from 'styled-components'
 
 import { Markdown } from '@/components/utils/markdown'
+import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 
 import { LabelBody, RadioPoint, RadioSkeleton, VisibleRadio } from './Radio'
@@ -17,18 +19,29 @@ const StyledRadioPoint = styled(RadioPoint)`
 	margin-top: 0.2rem;
 `
 
-export const StyledRadioSkeleton = styled(RadioSkeleton)`
-	flex: 1 100%;
-	margin-bottom: ${({ theme }) => theme.spacings.xs};
+export const StyledRadioSkeleton = ({
+	children,
+	...rest
+}: ComponentProps<typeof RadioSkeleton>) => (
+	<StyledCardContainer $inert={rest.isDisabled} as={RadioSkeleton} {...rest}>
+		{children}
+	</StyledCardContainer>
+)
 
+const StyledCardContainer = styled(CardContainer)`
 	${VisibleRadio} {
-		border-radius: var(--radius) !important;
-		display: flex;
-		flex: 1 100%;
-		border-width: 0px;
-		box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-		padding: ${({ theme }) => theme.spacings.sm};
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		background: transparent;
+		border: none;
 	}
+	${({ theme, $inert }) =>
+		$inert &&
+		css`
+			background-color: ${theme.colors.extended.grey[200]};
+		`}
+	margin: 0.5rem 0;
 `
 
 type RadioCardProps = AriaRadioProps & {

@@ -12,19 +12,16 @@
 	"scripts": {
 		"start:données-NAF-CPF-APE": "ts-node-esm ./codeAPESearch/données-NAF-CPF-APE/convert-pdf.ts",
 		"start:données-NomenclatureGuichet": "ts-node-esm ./codeAPESearch/données-NomenclatureGuichet/convert.ts",
-		"start:nombre-etablissements-par-code-ape-et-departement": "ts-node-esm ./codeAPESearch/nombre-etablissements-par-code-ape-et-departement/convert-json.ts",
+		"start:nombre-etablissements-par-code-ape": "ts-node-esm ./codeAPESearch/nombre-etablissements-par-code-ape/convert-json.ts",
 		"start:données-code-APE": "ts-node-esm ./codeAPESearch/données-code-APE/reduce-json.ts",
 		"start:watch:données-NAF-CPF-APE": "nodemon -x 'yarn start:données-NAF-CPF-APE' -e 'ts'",
-		"start:watch:nombre-etablissements-par-code-ape-et-departement": "nodemon -x 'yarn start:nombre-etablissements-par-code-ape-et-departement' -e 'ts'",
+		"start:watch:nombre-etablissements-par-code-ape": "nodemon -x 'yarn start:nombre-etablissements-par-code-ape' -e 'ts'",
 		"start:watch:données-code-APE": "nodemon -x 'yarn start:données-code-APE' -e 'ts'"
 	},
 	"dependencies": {
-		"@types/stream-json": "^1.7.3",
 		"csv": "^6.2.7",
 		"csv-parser": "^3.0.0",
-		"got": "^12.5.3",
 		"pdfdataextract": "^3.2.0",
-		"stream-json": "^1.7.5",
 		"ts-node": "^10.9.1"
 	},
 	"devDependencies": {
