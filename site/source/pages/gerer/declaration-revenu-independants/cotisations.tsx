@@ -25,16 +25,16 @@ export default function Cotisations() {
 				<Grid item lg={10} xl={8}>
 					<div className="print-hidden">
 						<Intro>
-							En 2022, vous paierez des <Strong>cotisations sociales</Strong> à
+							En 2023, vous paierez des <Strong>cotisations sociales</Strong> à
 							l'Urssaf. Pour avoir une première estimation de leur montant, il
 							vous reste une dernière question à répondre :
 						</Intro>
-						<SimpleField dottedName="DRI . cotisations . appelées en 2021" />
+						<SimpleField dottedName="DRI . cotisations . appelées en 2022" />
 					</div>
 				</Grid>
 			</Grid>
 			<Spacing lg />
-			<WhenAlreadyDefined dottedName="DRI . cotisations . appelées en 2021">
+			<WhenAlreadyDefined dottedName="DRI . cotisations . appelées en 2022">
 				<Container
 					forceTheme="dark"
 					backgroundColor={(theme) => theme.colors.bases.primary[600]}
@@ -48,7 +48,7 @@ export default function Cotisations() {
 									<Message icon border={false}>
 										<Intro>
 											<Condition expression="DRI . cotisations >= 0">
-												En 2022, vous devrez payer à l'Urssaf{' '}
+												En 2023, vous devrez payer à l'Urssaf{' '}
 												<Strong>
 													{' '}
 													<Value expression="DRI . cotisations" />
@@ -56,7 +56,7 @@ export default function Cotisations() {
 												de cotisations sociales.
 											</Condition>
 											<Condition expression="DRI . cotisations < 0">
-												En 2022, l'Urssaf vous remboursera{' '}
+												En 2023, l'Urssaf vous remboursera{' '}
 												<Strong>
 													{' '}
 													<Value expression="DRI . cotisations * -1" />
@@ -75,7 +75,7 @@ export default function Cotisations() {
 												améliorer la précision de cette estimation
 											</Strong>{' '}
 											en répondant aux questions suivantes qui concernent{' '}
-											<Strong>l'année 2021</Strong> :
+											<Strong>l'année 2022</Strong> :
 										</Body>
 									</div>
 									<Message border={false}>

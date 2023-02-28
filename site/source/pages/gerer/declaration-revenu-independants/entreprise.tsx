@@ -57,7 +57,7 @@ export default function Accueil() {
 					<Intro>
 						Nous vous proposons une aide pour remplir les revenus issus de votre
 						activité professionnelle dans votre{' '}
-						<Strong>déclaration des revenu de 2021</Strong> sur{' '}
+						<Strong>déclaration des revenu de 2022</Strong> sur{' '}
 						<Link
 							href="https://www.impots.gouv.fr/accueil"
 							aria-label="impots.gouv.fr, nouvelle fenêtre"
@@ -73,7 +73,7 @@ export default function Accueil() {
 							La liste des cases qui vous concernent avec le montant à remplir
 						</Li>
 						<Li>
-							Une estimation des cotisations sociales à payer à l'Urssaf en 2022
+							Une estimation des cotisations sociales à payer à l'Urssaf en 2023
 						</Li>
 					</Ul>
 				</PageHeader>

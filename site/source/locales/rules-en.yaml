@@ -71,10 +71,10 @@ DRI . cas exclus:
 DRI . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
-DRI . cotisations . appelées en 2021:
+DRI . cotisations . appelées en 2022:
   description.en: >-
     [automatic] You can find the total amount of contributions
-    called in 2021 from your personal Urssaf space. Here are the steps to
+    called in 2022 from your personal Urssaf space. Here are the steps to
     follow:
 
 
@@ -89,7 +89,7 @@ DRI . cotisations . appelées en 2021:
     5. The total amount of contributions called for the year 2021 is displayed on the last line **"Total "**.
   description.fr: >-
     Vous pouvez retrouver le montant total des cotisations appelées
-    en 2021 depuis votre espace personnel Urssaf. Voici la marche à suivre :
+    en 2022 depuis votre espace personnel Urssaf. Voici la marche à suivre :
 
 
     1. Connectez-vous sur [votre espace personnel urssaf.fr](https://www.urssaf.fr/portail/home/connectez-vous.html)
@@ -103,24 +103,24 @@ DRI . cotisations . appelées en 2021:
     5. Le montant total des cotisations appelées sur l'année 2021 est affichée sur la dernière ligne **« Total »**
   question.en:
     '[automatic] What is the amount of provisional contributions called
-    for in 2021?'
-  question.fr: Quel est le montant des cotisations provisionnelles appelées en 2021 ?
-  titre.en: '[automatic] Contributions called in 2021'
-  titre.fr: Cotisations appelées en 2021
+    for in 2022?'
+  question.fr: Quel est le montant des cotisations provisionnelles appelées en 2022 ?
+  titre.en: '[automatic] Contributions called in 2022'
+  titre.fr: Cotisations appelées en 2022
 DRI . cotisations . assiette CSG:
   titre.en: '[automatic] CSG base'
   titre.fr: assiette CSG
 DRI . cotisations . assiette des cotisations:
   titre.en: '[automatic] basis of assessment'
   titre.fr: assiette des cotisations
-DRI . cotisations . dûes en 2021:
-  titre.en: '[automatic] Contributions due in 2021'
-  titre.fr: Cotisations dûes en 2021
+DRI . cotisations . dûes en 2022:
+  titre.en: '[automatic] Contributions due in 2022'
+  titre.fr: Cotisations dûes en 2022
 DRI . cotisations . provisionnelles:
   description.en: >-
-    [automatic] In 2022, you will pay an **advance on the amount of
-    contributions** you owe each month. This is called **provisional
-    contributions**. They are calculated based on your 2021 income (reported in
+    [automatic] In 2023, you will pay an **advance on the amount of
+    Contributions** due each month. This is called **provisional
+    contributions**. They are calculated based on your 2022 income (reported in
     2022).
 
 
@@ -129,10 +129,10 @@ DRI . cotisations . provisionnelles:
 
     [Read more](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/les-cotisations-provisionnelles.html)
   description.fr: >-
-    En 2022, vous allez payer chaque mois une **avance sur le
+    En 2023, vous allez payer chaque mois une **avance sur le
     montant des cotisations** à payer. C'est ce que l'on appelle les
     **cotisations provisionnelles**. Elles sont calculées à partir de votre
-    revenu de 2021 (déclaré en 2022).
+    revenu de 2022 (déclaré en 2022).
 
 
     Ces cotisations seront **régularisées en 2023**, une fois que l'Urssaf connaîtra votre revenu réel de 2022.
@@ -149,7 +149,7 @@ DRI . cotisations . régularisation:
     in 2021 and the amount you actually had to pay.
 
 
-    The latter is calculated based on your 2021 income (reported in 2022).
+    The latter is calculated based on your 2022 income (reported in 2022).
 
     in 2022).
 
@@ -161,7 +161,7 @@ DRI . cotisations . régularisation:
     en 2021 et le montant que vous deviez effectivement payer.
 
 
-    Ce dernier est calculé à partir de votre revenu de 2021 (déclaré
+    Ce dernier est calculé à partir de votre revenu de 2022 (déclaré
 
     en 2022).
 

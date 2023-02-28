@@ -663,11 +663,11 @@ assistant-DRI:
       nombre-déclarations: This is your {{nthDeclaration}} tax return since the
         creation of your company.
   intro: <0><0>We offer you a help to fill in the income from your professional
-    activity in your <2>income tax return of 2021</2> on
+    activity in your <2>income tax return of 2022</2> on
     <5>impots.gouv.fr</5>.<7></7></0><1>Answer these few questions, at the end
     you will have :</1><2><0>The forms that concern you</0><1>The list of the
     boxes that concern you with the amount to be filled</1><2>An estimate of the
-    social security contributions to be paid to the Urssaf in 2022</2></2></0>
+    social security contributions to be paid to the Urssaf in 2023</2></2></0>
   precision: "<0>A few clarifications before continuing</0><1><0>If your
     accountant completes your declaration, this wizard can still be useful to
     know the <2>amount of social security contributions to be paid in

@@ -38,7 +38,7 @@ const config: SimulationConfig = {
 	situation: {
 		'déclaration charge sociales': 'oui',
 		'dirigeant . régime social': "'indépendant'",
-		date: '01/01/2021',
+		date: '01/01/2022',
 		'dirigeant . indépendant . PL . CIPAV': 'non',
 		impôt: 'non',
 	},
@@ -121,7 +121,7 @@ export default function AideDéclarationIndépendant() {
 								dottedName="entreprise . date de création"
 								showSuggestions={false}
 							/>
-							<Condition expression="entreprise . date de création > 31/12/2021">
+							<Condition expression="entreprise . date de création > 31/12/2022">
 								<SmallBody
 									css={`
 										color: #ff2d96;
@@ -129,7 +129,7 @@ export default function AideDéclarationIndépendant() {
 									`}
 								>
 									Cette aide à la déclaration concerne uniquement les
-									entreprises déjà en activité en 2021
+									entreprises déjà en activité en 2022
 								</SmallBody>
 							</Condition>
 
@@ -182,7 +182,7 @@ export default function AideDéclarationIndépendant() {
 						</Condition>
 
 						<Condition expression="déclaration charge sociales . cotisations payées">
-							<H2>Cotisations et contributions sociales en 2021</H2>
+							<H2>Cotisations et contributions sociales en 2022</H2>
 							<SimpleField dottedName="déclaration charge sociales . cotisations payées . cotisations sociales" />
 							<SimpleField dottedName="déclaration charge sociales . cotisations payées . CSG déductible et CFP" />
 						</Condition>
@@ -211,8 +211,6 @@ function ImpositionSection() {
 
 	return (
 		<>
-			<SimpleField dottedName="entreprise . catégorie juridique" />
-
 			<SimpleField dottedName="entreprise . imposition" />
 
 			<WhenAlreadyDefined dottedName="entreprise . imposition">
@@ -225,7 +223,7 @@ function ImpositionSection() {
 						<Condition expression="entreprise . imposition . IR">
 							<SimpleField dottedName="entreprise . imposition . régime . micro-entreprise" />
 							<Condition expression="entreprise . imposition . régime . micro-entreprise">
-								<H2>Quel est votre chiffre d'affaires hors taxes en 2021 ?</H2>
+								<H2>Quel est votre chiffre d'affaires hors taxes en 2022 ?</H2>
 								<SmallBody>
 									Indiquez le montant hors taxes de votre chiffre d’affaires ou
 									de vos recettes bruts (avant déduction de l’abattement
@@ -238,7 +236,7 @@ function ImpositionSection() {
 							</Condition>
 							<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
 								<H2>
-									Quel est votre résultat fiscal au titre de l'année 2021 ?
+									Quel est votre résultat fiscal au titre de l'année 2022 ?
 									<br />
 									<small>
 										Charges sociales et exonérations fiscales non incluses{' '}
@@ -261,7 +259,7 @@ function ImpositionSection() {
 						</Condition>
 						<Condition expression="entreprise . imposition . IS">
 							<H2>
-								Quel est le montant net de votre rémunération en 2021 ?
+								Quel est le montant net de votre rémunération en 2022 ?
 								<br />
 								<small>Sans tenir compte des charges sociales</small>
 							</H2>

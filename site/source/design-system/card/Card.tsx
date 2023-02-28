@@ -136,6 +136,7 @@ export const CardContainer = styled.div<{
 	cursor: ${({ $inert }) => ($inert ? 'auto' : 'pointer')};
 	flex-direction: column;
 	align-items: center;
+	border: none;
 	background-color: ${({ theme, $inert }) =>
 		theme.darkMode
 			? theme.colors.extended.dark[600]

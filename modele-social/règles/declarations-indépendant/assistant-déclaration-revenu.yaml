@@ -860,7 +860,7 @@ DRI . cotisations . assiette CSG:
 DRI . cotisations . provisionnelles:
   titre: Vos cotisations provisionnelles estimées
   description: |-
-    En 2022, vous allez payer chaque mois une **avance sur le montant des cotisations** à payer. C'est ce que l'on appelle les **cotisations provisionnelles**. Elles sont calculées à partir de votre revenu de 2021 (déclaré en 2022).
+    En 2023, vous allez payer chaque mois une **avance sur le montant des cotisations** à payer. C'est ce que l'on appelle les **cotisations provisionnelles**. Elles sont calculées à partir de votre revenu de 2022 (déclaré en 2022).
 
     Ces cotisations seront **régularisées en 2023**, une fois que l'Urssaf connaîtra votre revenu réel de 2022.
 
@@ -869,30 +869,30 @@ DRI . cotisations . provisionnelles:
 DRI . cotisations . régularisation:
   titre: Votre régularisation estimée
   valeur: |-
-    cotisations . dûes en 2021
-    - cotisations . appelées en 2021
+    cotisations . dûes en 2022
+    - cotisations . appelées en 2022
   description: |-
     C'est la différence entre les cotisations provisionnelles payées
     en 2021 et le montant que vous deviez effectivement payer.
 
-    Ce dernier est calculé à partir de votre revenu de 2021 (déclaré
+    Ce dernier est calculé à partir de votre revenu de 2022 (déclaré
     en 2022).
 
     [En savoir plus](https://www.urssaf.fr/portail/home/independant/mes-cotisations/les-etapes-de-calcul/le-mode-de-calcul/lajustement-et-la-regularisation.html)
 
-DRI . cotisations . dûes en 2021:
-  titre: Cotisations dûes en 2021
+DRI . cotisations . dûes en 2022:
+  titre: Cotisations dûes en 2022
   unité: €
   recalcul:
     règle: dirigeant . indépendant . cotisations et contributions
     avec:
       dirigeant . indépendant . cotisations facultatives . montant: 0
-      date: 01/01/2021
+      date: 01/01/2022
 
-DRI . cotisations . appelées en 2021:
-  titre: Cotisations appelées en 2021
+DRI . cotisations . appelées en 2022:
+  titre: Cotisations appelées en 2022
   description: |-
-    Vous pouvez retrouver le montant total des cotisations appelées en 2021 depuis votre espace personnel Urssaf. Voici la marche à suivre :
+    Vous pouvez retrouver le montant total des cotisations appelées en 2022 depuis votre espace personnel Urssaf. Voici la marche à suivre :
 
     1. Connectez-vous sur [votre espace personnel urssaf.fr](https://www.urssaf.fr/portail/home/connectez-vous.html)
     2. Dans le menu « Mes services en ligne », cliquez sur **« Mes cotisations »**
@@ -900,5 +900,5 @@ DRI . cotisations . appelées en 2021:
     4. Selectionnez **l'année 2021**
     5. Le montant total des cotisations appelées sur l'année 2021 est affichée sur la dernière ligne **« Total »**
 
-  question: Quel est le montant des cotisations provisionnelles appelées en 2021 ?
+  question: Quel est le montant des cotisations provisionnelles appelées en 2022 ?
   unité: €
