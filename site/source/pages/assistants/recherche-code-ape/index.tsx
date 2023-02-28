@@ -1,5 +1,6 @@
 import { Trans } from 'react-i18next'
 
+import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 
@@ -30,7 +31,7 @@ export default function SearchCodeApePage() {
 					.
 				</Trans>
 			</Body>
-
+			<Spacing md />
 			<SearchCodeAPE disabled />
 		</>
 	)

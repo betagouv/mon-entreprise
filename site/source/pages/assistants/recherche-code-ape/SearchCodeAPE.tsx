@@ -170,7 +170,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 
 	const ret = (
 		<Grid container>
-			<Grid item lg={12} xl={10}>
+			<Grid item lg={12} xl={11}>
 				<SearchField
 					value={job}
 					onChange={setJob}
