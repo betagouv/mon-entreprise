@@ -74,7 +74,7 @@ function IntegrationCustomizer() {
 		''
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
-	const iframeSrc = useHref(`/iframes/${currentIframePath}?iframe=true`)
+	const iframeSrc = useHref(`/iframes/${currentIframePath}`)
 
 	useEffect(() => {
 		window.addEventListener(

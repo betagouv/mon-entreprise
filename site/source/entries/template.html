@@ -186,9 +186,7 @@
 		</div>
 
 		<script>
-			const isIframe = new URLSearchParams(
-				document.location.search.substring(1)
-			).get('iframe')
+			const isIframe = document.location.pathname.startsWith('/iframes/')
 
 			function getItem(key) {
 				try {

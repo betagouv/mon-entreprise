@@ -8,11 +8,6 @@ export function useIsEmbedded(): boolean {
 	} catch (e) {
 		// When useMatch is called outside ReactRouter context, it raise an error. We can safely ignore it.
 	}
-	if (import.meta.env.SSR) {
-		return false
-	}
 
-	return !!new URLSearchParams(document.location.search.substring(1)).get(
-		'iframe'
-	)
+	return false
 }
