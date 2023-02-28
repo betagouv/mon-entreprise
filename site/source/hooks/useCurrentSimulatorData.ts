@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
+import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Merge, ToOptional } from '@/types/utils'
 
 import useSimulatorsData, { SimulatorDataValues } from './useSimulatorsData'
@@ -11,14 +12,23 @@ export type MergedSimulatorDataValues = ToOptional<Merge<SimulatorDataValues>>
  */
 export const useCurrentSimulatorData = () => {
 	const simulatorsData = useSimulatorsData()
+	const isEmbedded = useIsEmbedded()
 	const pathname = decodeURI(useLocation().pathname)
 
+	const entries = Object.entries(simulatorsData)
 	const [key, data] =
-		Object.entries(simulatorsData).find(
-			([, data]) =>
-				pathname.startsWith(data.path) ||
-				pathname.startsWith('/iframes/' + data.iframePath)
-		) ?? []
+		(!isEmbedded
+			? entries
+					.sort((a, b) => b[1].path.length - a[1].path.length)
+					.find(([, data]) => pathname.startsWith(data.path))
+			: entries
+					.sort((a, b) => b[1].iframePath.length - a[1].iframePath.length)
+					.find(([, data]) =>
+						pathname.startsWith('/iframes/' + data.iframePath)
+					)) ?? []
 
-	return { key, currentSimulatorData: data as MergedSimulatorDataValues }
+	return {
+		key,
+		currentSimulatorData: data as MergedSimulatorDataValues | undefined,
+	}
 }
