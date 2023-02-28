@@ -52,6 +52,7 @@ export function SimulationGoal({
 	const currentUnit = useSelector(targetUnitSelector)
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
+		arrondi: round ? 'oui' : 'non',
 		...(!isTypeBoolean ? { unité: currentUnit } : {}),
 	})
 	const rule = engine.getRule(dottedName)
