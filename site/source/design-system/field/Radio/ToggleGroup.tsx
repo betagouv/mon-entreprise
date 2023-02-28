@@ -96,7 +96,7 @@ export const ToggleGroupContainer = styled.div<{
 					? theme.colors.extended.dark[500]
 					: theme.colors.extended.grey[500]};
 		margin: 0;
-		margin-right: -1px;
+		margin-right: -2px;
 		border-radius: 0;
 		padding: ${({ theme: { spacings } }) => spacings.xs + ' ' + spacings.lg};
 		background: ${({ theme }) =>
