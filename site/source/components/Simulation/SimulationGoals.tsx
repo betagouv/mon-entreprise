@@ -50,7 +50,7 @@ export function SimulationGoals({
 						<div className="sr-only" aria-hidden id="simulator-legend-label">
 							{legend}
 						</div>
-						<SmallBody>
+						<SmallBody className="print-hidden">
 							<em>
 								<Trans>
 									Les données de simulations se mettront automatiquement à jour
