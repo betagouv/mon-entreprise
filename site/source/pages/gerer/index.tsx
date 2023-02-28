@@ -235,6 +235,7 @@ function Home() {
 		<>
 			<DefaultHelmet>
 				<title>{t('gérer.titre', 'Gérer mon activité')}</title>
+				<meta name="robots" content="noindex" />
 			</DefaultHelmet>
 
 			{param && param !== engineSiren && !overwrite && (
