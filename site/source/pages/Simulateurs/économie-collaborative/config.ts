@@ -23,6 +23,7 @@ export function économieCollaborativeConfig({
 		icône: '🙋',
 		pathId: 'simulateurs.économieCollaborative.index',
 		iframePath: 'economie-collaborative',
+		beta: true,
 		shortName: t(
 			'pages.économie-collaborative.shortname',
 			'Assistant économie collaborative'
