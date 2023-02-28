@@ -43,11 +43,17 @@ describe('Landing page', function () {
 		cy.get(searchInputPath).invoke('attr', 'type').should('equal', 'search')
 		cy.get(searchInputPath).focus().type('noima')
 
-		cy.intercept({
-			method: 'GET',
-			hostname: 'api.recherche-entreprises.fabrique.social.gouv.fr',
-			url: '/api/v1/search?*',
-		})
+		cy.intercept(
+			{
+				method: 'GET',
+				hostname: 'api.recherche-entreprises.fabrique.social.gouv.fr',
+				url: '/api/v1/search?*',
+			},
+			(req) => {
+				req.responseTimeout = 10 * 1000
+				req.continue()
+			}
+		)
 
 		cy.get(searchResultsPath).children().should('have.length', 6)
 		cy.get(searchResultsPath).children().first().click()
