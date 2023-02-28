@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
 
 import DefaultHelmet from './DefaultHelmet'
 
@@ -20,7 +19,6 @@ export default function Meta({
 	ogTitle,
 	ogImage,
 }: PropType) {
-	const { pathname } = useLocation()
 	const { t } = useTranslation()
 
 	// TODO: refacto des traductions en évitant qu'elles soit dynamique
@@ -51,8 +49,6 @@ export default function Meta({
 						meta.ogImage.startsWith('http')
 							? meta.ogImage
 							: (typeof window !== 'undefined' ? window.location.host : '') +
-							  pathname +
-							  '/' +
 							  meta.ogImage
 					}
 				/>
