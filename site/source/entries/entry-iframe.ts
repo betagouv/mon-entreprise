@@ -39,7 +39,6 @@ const src = new URL(
 		(moduleName as string)
 )
 
-src.searchParams.set('iframe', 'true')
 src.searchParams.set(
 	'integratorUrl',
 	encodeURIComponent(window.location.href.toString())
