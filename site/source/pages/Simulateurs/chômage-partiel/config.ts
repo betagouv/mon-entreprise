@@ -11,6 +11,7 @@ export function chômagePartielConfig({ t, sitePaths }: SimulatorsDataParams) {
 		tracking: 'chomage_partiel',
 		pathId: 'simulateurs.chômage-partiel',
 		icône: '😷',
+		beta: true,
 		iframePath: 'simulateur-chomage-partiel',
 		meta: {
 			description: t(
