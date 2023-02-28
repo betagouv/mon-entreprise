@@ -2503,7 +2503,8 @@ simulateurs:
     profession-libérale: <0>This simulator is intended for use in the NLC
       professions. It does not take into account the professional practice
       societies or the micro-NBP scheme.</0>
-    sasu: Corporate income tax and dividend management are not yet implemented.
+    sasu: This simulator does not manage the case of SAS(U) with income tax (IR).
+      Only the option for corporate tax is implemented (IS).
     titre: Before we start...
     urssaf: The calculations are indicative and are not a substitute for the actual
       statements of Urssaf, impots.gouv.fr, or others.

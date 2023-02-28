@@ -2198,8 +2198,8 @@ simulateurs:
     profession-libérale: <0>Ce simulateur est à destination des professions
       libérales en BNC. Il ne prend pas en compte les sociétés d'exercice
       libéral.</0>
-    sasu: L'impôt sur les sociétés et la gestion des dividendes ne sont pas encore
-      implémentés.
+    sasu: Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu (IR).
+      Seule l'option pour l'impôt sur les sociétés est implémentée (IS).
     titre: Avant de commencer...
     urssaf: Les calculs sont indicatifs. Ils ne se substituent pas aux décomptes
       réels de l’Urssaf, de l’administration fiscale ou de toute autre
