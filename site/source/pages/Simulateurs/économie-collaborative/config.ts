@@ -32,7 +32,6 @@ export function économieCollaborativeConfig({
 			'pages.économie-collaborative.title',
 			'Assistant à la déclaration des revenus des plateformes en ligne'
 		),
-		beta: true,
 		component: ÉconomieCollaborative,
 	} as const)
 }
