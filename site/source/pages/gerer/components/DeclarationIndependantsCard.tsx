@@ -14,7 +14,7 @@ export function DeclarationIndedependantsCard() {
 				'Déclaration de revenus (indépendants)'
 			)}
 			ctaLabel={t('gérer.choix.déclaration.cta', 'Remplir ma déclaration')}
-			to={absoluteSitePaths.gérer.déclarationIndépendant.index}
+			to={absoluteSitePaths.gérer['déclaration-charges-sociales-indépendant']}
 		>
 			<Trans i18nKey="gérer.choix.déclaration.body">
 				Calculez facilement les montants des charges sociales à reporter dans

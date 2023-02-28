@@ -179,8 +179,7 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 									size="XL"
 									isDisabled={progress !== 1}
 									to={
-										absoluteSitePaths.gérer.déclarationIndépendant.beta
-											.cotisations
+										absoluteSitePaths.gérer.déclarationIndépendant.cotisations
 									}
 								>
 									Continuer vers l'estimation des cotisations pour 2022

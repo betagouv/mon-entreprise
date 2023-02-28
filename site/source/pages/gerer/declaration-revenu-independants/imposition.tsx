@@ -349,8 +349,7 @@ function ResultSection() {
 								>
 									<Button
 										to={
-											absoluteSitePaths.gérer.déclarationIndépendant.beta
-												.déclaration
+											absoluteSitePaths.gérer.déclarationIndépendant.déclaration
 										}
 										onPress={() => {
 											dispatchValue('non', 'DRI . déclaration revenus manuelle')
@@ -425,8 +424,7 @@ function ResultSection() {
 										light
 										size="XS"
 										to={
-											absoluteSitePaths.gérer.déclarationIndépendant.beta
-												.déclaration
+											absoluteSitePaths.gérer.déclarationIndépendant.déclaration
 										}
 										onPress={() => {
 											dispatchValue('oui', 'DRI . déclaration revenus manuelle')

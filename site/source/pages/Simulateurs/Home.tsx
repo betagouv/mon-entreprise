@@ -155,7 +155,7 @@ export default function Simulateurs() {
 						role="listitem"
 					/>
 					<SimulateurCard
-						{...simulators['déclaration-revenu-indépendant-beta']}
+						{...simulators['déclaration-revenu-indépendant']}
 						role="listitem"
 					/>
 				</Grid>

@@ -1,7 +1,7 @@
 import { ErrorBoundary } from '@sentry/react'
 import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
-import { ComponentProps, useMemo } from 'react'
+import { ComponentProps, StrictMode, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
@@ -66,10 +66,55 @@ export default function Root({
 		// <StrictMode>
 		<Provider basename={basename}>
 			<EngineProvider value={engine}>
-				<Router />
+				<Redirections>
+					<Router />
+				</Redirections>
 			</EngineProvider>
 		</Provider>
 		// </StrictMode>
+	)
+}
+
+const Redirections = ({ children }: { children: React.ReactNode }) => {
+	const { absoluteSitePaths } = useSitePaths()
+	const redirections = [
+		{
+			paths: ['/stats'],
+			to: absoluteSitePaths.stats,
+		},
+		{
+			paths: ['/plan-de-site', '/site-map'],
+			to: absoluteSitePaths.plan,
+		},
+		{
+			paths: [
+				'/gérer/aide-declaration-independants/beta',
+				'/manage/declaration-aid-independent/beta',
+			],
+			to: absoluteSitePaths.gérer.déclarationIndépendant.index,
+		},
+		{
+			paths: [
+				'/gérer/aide-declaration-independants',
+				'/manage/declaration-aid-independent',
+			],
+			to: absoluteSitePaths.gérer['déclaration-charges-sociales-indépendant'],
+		},
+	] satisfies { paths: string[]; to: string }[]
+
+	return (
+		<Routes>
+			{redirections.flatMap(({ paths, to }) =>
+				paths.map((path) => (
+					<Route
+						key={path}
+						path={path}
+						element={<Navigate to={to} replace />}
+					/>
+				))
+			)}
+			<Route path="*" element={children} />
+		</Routes>
 	)
 }
 
@@ -81,30 +126,9 @@ const Router = () => {
 	return (
 		<Routes>
 			<Route index element={<Landing />} />
-			<Redirections />
 			<Route path="/iframes/*" element={<Iframes />} />
 			<Route path="*" element={<App />} />
 		</Routes>
-	)
-}
-const Redirections = () => {
-	const { relativeSitePaths } = useSitePaths()
-
-	return (
-		<>
-			<Route
-				path="/stats"
-				element={<Navigate to={relativeSitePaths.stats} replace />}
-			/>
-			<Route
-				path={'/plan-de-site'}
-				element={<Navigate to={relativeSitePaths.plan} replace />}
-			/>
-			<Route
-				path={'/site-map'}
-				element={<Navigate to={relativeSitePaths.plan} replace />}
-			/>
-		</>
 	)
 }
 

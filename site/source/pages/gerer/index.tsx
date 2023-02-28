@@ -102,7 +102,6 @@ export default function Gérer() {
 					/>
 					{[
 						simulateurs['déclaration-charges-sociales-indépendant'],
-						simulateurs['déclaration-revenu-indépendant-beta'],
 						simulateurs['déclaration-revenu-indépendant'],
 						simulateurs['demande-mobilité'],
 					].map((p) => (
@@ -315,7 +314,7 @@ function Home() {
 						<WhenApplicable dottedName="dirigeant . indépendant">
 							<SimulateurCard
 								fromGérer
-								{...simulateurs['déclaration-revenu-indépendant-beta']}
+								{...simulateurs['déclaration-revenu-indépendant']}
 							/>
 						</WhenApplicable>
 						<Condition expression="entreprise . imposition . IS">

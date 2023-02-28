@@ -43,14 +43,11 @@ const rawSitePathsFr = {
 		'déclaration-charges-sociales-indépendant':
 			'declaration-charges-sociales-independant',
 		déclarationIndépendant: {
-			index: 'aide-declaration-independants',
-			beta: {
-				index: 'beta',
-				entreprise: 'entreprise',
-				imposition: 'imposition',
-				déclaration: 'declaration',
-				cotisations: 'cotisations',
-			},
+			index: 'aide-declaration-independants-v2',
+			entreprise: 'entreprise',
+			imposition: 'imposition',
+			déclaration: 'declaration',
+			cotisations: 'cotisations',
 		},
 		formulaireMobilité: 'demande-mobilité',
 	},
@@ -131,14 +128,11 @@ const rawSitePathsEn = {
 		'déclaration-charges-sociales-indépendant':
 			'declaration-social-charges-independent',
 		déclarationIndépendant: {
-			index: 'declaration-aid-independent',
-			beta: {
-				index: 'beta',
-				imposition: 'taxation',
-				entreprise: 'company',
-				déclaration: 'declaration',
-				cotisations: 'contributions',
-			},
+			index: 'declaration-aid-independent-v2',
+			imposition: 'taxation',
+			entreprise: 'company',
+			déclaration: 'declaration',
+			cotisations: 'contributions',
 		},
 		formulaireMobilité: 'posting-demand',
 	},
