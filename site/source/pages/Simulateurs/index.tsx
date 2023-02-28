@@ -4,8 +4,8 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { usePersistingState } from '@/components/utils/persistState'
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Link } from '@/design-system/typography/link'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 

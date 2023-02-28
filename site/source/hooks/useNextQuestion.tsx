@@ -11,7 +11,7 @@ import {
 } from '@/store/selectors/simulationSelectors'
 import { ImmutableType } from '@/types/utils'
 
-import { useEngine } from './EngineContext'
+import { useEngine } from '../components/utils/EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 

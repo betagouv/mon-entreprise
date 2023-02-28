@@ -11,13 +11,13 @@ import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { usePersistingState } from '@/components/utils/persistState'
-import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import useSimulationConfig from '@/hooks/useSimulationConfig'
 import {
 	buildSituationFromObject,
 	evaluateQuestion,

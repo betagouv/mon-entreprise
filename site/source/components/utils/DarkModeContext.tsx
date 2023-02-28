@@ -1,8 +1,8 @@
 import { ReactNode, createContext, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { getItem, setItem } from '@/storage/safeLocalStorage'
 
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]

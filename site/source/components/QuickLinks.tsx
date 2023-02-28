@@ -5,14 +5,13 @@ import styled from 'styled-components'
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
+import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { goToQuestion } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
 } from '@/store/selectors/simulationSelectors'
-
-import { useNextQuestions } from './utils/useNextQuestion'
 
 export default function QuickLinks() {
 	const currentQuestion = useSelector(currentQuestionSelector)

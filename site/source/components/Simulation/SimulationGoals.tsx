@@ -7,11 +7,11 @@ import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
 import { Logo } from '../Logo'
 import { WatchInitialRender } from '../utils/useInitialRender'
-import { useIsEmbedded } from '../utils/useIsEmbedded'
 
 type SimulationGoalsProps = {
 	legend: string

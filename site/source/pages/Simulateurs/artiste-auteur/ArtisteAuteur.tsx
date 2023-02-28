@@ -11,8 +11,8 @@ import Simulation, {
 } from '@/components/Simulation'
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { EngineContext } from '@/components/utils/EngineContext'
-import useSimulationConfig from '@/components/utils/useSimulationConfig'
 import { H2 } from '@/design-system/typography/heading'
+import useSimulationConfig from '@/hooks/useSimulationConfig'
 
 import { configArtisteAuteur } from './simulationConfig'
 

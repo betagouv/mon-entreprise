@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { useNextQuestions } from '@/components/utils/useNextQuestion'
+import { useNextQuestions } from '@/hooks/useNextQuestion'
 import {
 	goToQuestion,
 	stepAction,

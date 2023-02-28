@@ -7,8 +7,7 @@ import { CloseButton } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
 import { Body } from '@/design-system/typography/paragraphs'
-
-import { useIsEmbedded } from '../utils/useIsEmbedded'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 
 export default function BetaBanner() {
 	const isEmbedded = useIsEmbedded()
