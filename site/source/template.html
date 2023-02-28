@@ -53,26 +53,26 @@
 		<!--app-helmet-tags:end-->
 
 		<style>
-			html[data-useragent*='MSIE'] #outdated-browser,
-			html[data-useragent*='Safari'][data-useragent*='Version/8']
+			html[data-useragent*=‘MSIE’] #outdated-browser,
+			html[data-useragent*=‘Safari’][data-useragent*=‘Version/8’]
 				#outdated-browser,
-			html[data-useragent*='Safari'][data-useragent*='Version/7']
+			html[data-useragent*=‘Safari’][data-useragent*=‘Version/7’]
 				#outdated-browser,
-			html[data-useragent*='Trident'] #outdated-browser {
+			html[data-useragent*=‘Trident’] #outdated-browser {
 				display: block !important;
 			}
 
-			html[data-useragent*='MSIE'] #loading,
-			html[data-useragent*='Safari'][data-useragent*='Version/8'] #loading,
-			html[data-useragent*='Safari'][data-useragent*='Version/7'] #loading,
-			html[data-useragent*='Trident'] #loading {
+			html[data-useragent*=‘MSIE’] #loading,
+			html[data-useragent*=‘Safari’][data-useragent*=‘Version/8’] #loading,
+			html[data-useragent*=‘Safari’][data-useragent*=‘Version/7’] #loading,
+			html[data-useragent*=‘Trident’] #loading {
 				display: none !important;
 			}
 
-			html[data-useragent*='MSIE'] #js,
-			html[data-useragent*='Safari'][data-useragent*='Version/8'] #js,
-			html[data-useragent*='Safari'][data-useragent*='Version/7'] #js,
-			html[data-useragent*='Trident'] #js {
+			html[data-useragent*=‘MSIE’] #js,
+			html[data-useragent*=‘Safari’][data-useragent*=‘Version/8’] #js,
+			html[data-useragent*=‘Safari’][data-useragent*=‘Version/7’] #js,
+			html[data-useragent*=‘Trident’] #js {
 				display: none !important;
 			}
 
@@ -188,16 +188,16 @@
 		<script>
 			const isIframe = new URLSearchParams(
 				document.location.search.substring(1)
-			).get('iframe')
+			).get(‘iframe’)
 
 			function getItem(key) {
 				try {
 					return window.localStorage.getItem(key)
 				} catch (error) {
-					if (error instanceof Error && error.name === 'SecurityError') {
+					if (error instanceof Error && error.name === ‘SecurityError’) {
 						// eslint-disable-next-line no-console
 						console.warn(
-							'[localStorage] Unable to set item due to security settings'
+							’[localStorage] Unable to set item due to security settings’
 						)
 					}
 
@@ -205,17 +205,17 @@
 				}
 			}
 
-			const darkMode = !isIframe && getItem('darkMode') === 'true'
+			const darkMode = !isIframe && getItem(‘darkMode’) === ‘true’
 
 			if (darkMode) {
-				document.body.style.backgroundColor = '#0f172a'
+				document.body.style.backgroundColor = ’#0f172a’
 			}
 		</script>
 
 		<!-- USER AGENT DATA ATTRIBUTE  -->
 		<script>
 			var b = document.documentElement
-			b.setAttribute('data-useragent', navigator.userAgent)
+			b.setAttribute(‘data-useragent’, navigator.userAgent)
 		</script>
 
 		<script>
@@ -233,19 +233,19 @@
 			try {
 				const rawColor = new URLSearchParams(
 					document.location.search.substring(1)
-				).get('couleur')
+				).get(‘couleur’)
 				const iframeColor = rawColor && parseColor(rawColor)
 				;[
 					document.documentElement,
-					...document.querySelectorAll('[data-js-color-element]'),
+					…document.querySelectorAll(’[data-js-color-element]’),
 				].forEach((element) => {
 					element.style.setProperty(
-						'--COLOR_HUE',
-						iframeColor ? iframeColor[0] : '220deg'
+						'--COLOR_HUE’,
+						iframeColor ? iframeColor[0] : ‘220deg’
 					)
 					element.style.setProperty(
-						'--COLOR_SATURATION',
-						iframeColor ? iframeColor[1] + '%' : '100%'
+						'--COLOR_SATURATION’,
+						iframeColor ? iframeColor[1] + '%’ : ‘100%’
 					)
 				})
 			} catch (e) {
@@ -280,7 +280,7 @@
 					alt="Logo service mon-entreprise urssaf"
 					style="width: 200px; margin-bottom: 2rem"
 				/>
-				<h1>Votre navigateur n'est plus supporté.</h1>
+				<h1>Votre navigateur n’est plus supporté.</h1>
 				<h2>
 					Nous vous invitons à réessayer avec un autre, ou depuis un mobile
 					récent.
@@ -310,7 +310,7 @@
 
 		<script
 			crossorigin="anonymous"
-			src="https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver%2CIntl.~locale.en%2CIntl.~locale.fr%2CString.prototype.replaceAll"
+			src="https://polyfill.io/v3/polyfill.min.js?features=ResizeObserver%2CIntl.~locale.en%2CIntl.~locale.fr%2CString.prototype.replaceAll%2CObject.fromEntries%2CString.prototype.matchAll"
 		></script>
 
 		<script type="module" src="{{ entry }}"></script>
