@@ -1,26 +1,23 @@
 import UFuzzy from '@leeoniya/ufuzzy'
-import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import FeedbackForm from '@/components/Feedback/FeedbackForm'
 import { FromTop } from '@/components/ui/animate'
 import {
-	Chip,
 	PopoverWithTrigger,
 	RadioCardGroup,
-	TextField,
+	SearchField,
 } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
-import { ChevronIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
 import { useAsyncData } from '@/hooks/useAsyncData'
 
 import { Output as Data } from '../../../../../scripts/codeAPESearch/données-code-APE/reduce-json'
+import { Result } from './Result'
 
 interface SearchableData {
 	original: string[]
@@ -67,142 +64,6 @@ const buildResearch = (lazyData: Data | null) => {
 	}
 }
 
-const nbEtablissementParDepartement = (
-	data: Data,
-	department: string,
-	code: string
-) => {
-	const { indexByCodeApe, indexByCodeDepartement, nbEtablissements2021 } = data
-
-	const index =
-		indexByCodeApe[code] &&
-		indexByCodeDepartement[department]?.find((i) =>
-			indexByCodeApe[code].includes(i)
-		)
-
-	return typeof index === 'number'
-		? nbEtablissements2021[index]
-		: indexByCodeApe[code]?.reduce(
-				(acc, index) => acc + nbEtablissements2021[index],
-				0
-		  ) ?? 0
-}
-
-interface ResultProps {
-	debug: string | null
-	item: {
-		title: string
-		codeApe: string
-		contenuCentral: string[]
-		contenuAnnexe: string[]
-		contenuExclu: string[]
-	}
-}
-
-const Result = ({ item, debug }: ResultProps) => {
-	const { title, codeApe, contenuCentral, contenuAnnexe, contenuExclu } = item
-	const [open, setOpen] = useState(false)
-	const { t } = useTranslation()
-
-	return (
-		<Grid container style={{ alignItems: 'center' }}>
-			<Grid item xs={12} sm={8} md={9} xl={10}>
-				<H3 style={{ marginTop: 0, marginBottom: '.5rem' }}>
-					{title}
-					<Chip type="secondary">APE: {codeApe}</Chip>
-				</H3>
-
-				{debug && <pre>{debug}</pre>}
-			</Grid>
-
-			<StyledGrid item xs={12} sm={4} md={3} xl={2}>
-				<Button
-					size="XXS"
-					light
-					onPress={() => setOpen((x) => !x)}
-					aria-label={!open ? t('En savoir plus') : t('Replier')}
-					aria-expanded={open}
-					aria-controls={`info-${codeApe}`}
-				>
-					{!open ? t('En savoir plus') : t('Replier')}{' '}
-					<StyledChevron aria-hidden $isOpen={open} />
-				</Button>
-			</StyledGrid>
-
-			{open && (
-				<FromTop id={`info-${codeApe}`}>
-					<Grid item xs={12}>
-						<p style={{ marginTop: 0 }}>
-							{contenuCentral.length ? (
-								<>
-									<span style={{ fontWeight: 'bold' }}>
-										Contenu central de cette activité :
-									</span>
-									<br />
-								</>
-							) : null}
-							{contenuCentral.map((contenu, i) => (
-								<Fragment key={i}>
-									{contenu}
-									<br />
-								</Fragment>
-							))}
-							{contenuCentral.length ? <br /> : null}
-
-							{contenuAnnexe.length ? (
-								<>
-									<span style={{ fontWeight: 'bold' }}>
-										Contenu annexe de cette activité :
-									</span>
-									<br />
-								</>
-							) : null}
-							{contenuAnnexe.map((contenu, i) => (
-								<Fragment key={i}>
-									{contenu}
-									<br />
-								</Fragment>
-							))}
-							{contenuAnnexe.length ? <br /> : null}
-
-							{contenuExclu.length ? (
-								<>
-									<span style={{ fontWeight: 'bold' }}>
-										Contenu exclu de cette activité :
-									</span>
-									<br />
-								</>
-							) : null}
-							{contenuExclu.map((contenu, i) => (
-								<Fragment key={i}>
-									{contenu}
-									<br />
-								</Fragment>
-							))}
-						</p>
-					</Grid>
-				</FromTop>
-			)}
-		</Grid>
-	)
-}
-
-const StyledGrid = styled(Grid)`
-	display: flex;
-	justify-content: end;
-`
-
-const StyledChevron = styled(ChevronIcon)<{ $isOpen: boolean }>`
-	vertical-align: middle;
-	transform: rotate(-90deg);
-	transition: transform 0.3s;
-	${({ $isOpen }) =>
-		!$isOpen &&
-		css`
-			transform: rotate(90deg);
-		`}
-`
-
 interface ListResult {
 	item: Data['apeData'][0]
 	score: number
@@ -216,11 +77,10 @@ interface SearchCodeApeProps {
 export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 	const { t } = useTranslation()
 	const [job, setJob] = useState('')
-	const [department, setDepartment] = useState('')
 	const [selected, setSelected] = useState('')
 	const [list, setList] = useState<ListResult[]>([])
 
-	const lazyData = useAsyncData(
+	const lazyData: Data | null = useAsyncData(
 		() =>
 			import(
 				'../../../../../scripts/codeAPESearch/données-code-APE/output.min.json'
@@ -267,11 +127,11 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 		const genericLatin = search(genericList.latinized, latinizedValue)
 
 		/**
-		 * Calcul le score final avec 3/4 * le score de la recherche + 1/4 * le score en fonction
-		 * du nombre de création d'entreprise par code APE et departement en 2021
+		 * Calcul le score final avec 2/3 * le score de la recherche + 1/3 * le score en fonction
+		 * du nombre de création d'entreprise par code APE en 2021
 		 */
 		const computeScore = (scoreFuzzy: number, scoreNbEtablissement: number) =>
-			(3 / 4) * scoreFuzzy + (1 / 4) * scoreNbEtablissement
+			(2 / 3) * scoreFuzzy + (1 / 3) * scoreNbEtablissement
 
 		const results = [
 			...new Set([
@@ -284,11 +144,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 			.map((item, index, arr) => ({
 				item,
 				scoreFuzzy: index / arr.length,
-				nbEtablissement: nbEtablissementParDepartement(
-					lazyData,
-					department,
-					item.codeApe.replace('.', '')
-				),
+				nbEtablissement: lazyData.indexByCodeApe[item.codeApe.replace('.', '')],
 			}))
 			.sort(({ nbEtablissement: a }, { nbEtablissement: b }) => b - a)
 			.map(({ item, scoreFuzzy, nbEtablissement }, index, arr) => {
@@ -310,63 +166,51 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 
 		setList(results)
 		prevValue.current = job
-	}, [buildedResearch, department, job, lazyData])
+	}, [buildedResearch, job, lazyData])
 
 	const ret = (
-		<Body as="div">
-			<Grid container>
-				<Grid item xs={4}>
-					<TextField
-						value={department}
-						onChange={setDepartment}
-						label={t('Département')}
-					/>
-				</Grid>
-				<Grid item xs={8}>
-					<TextField
-						value={job}
-						onChange={setJob}
-						label={t('Votre activité')}
-					/>
-				</Grid>
+		<Grid container>
+			<Grid item lg={12} xl={10}>
+				<SearchField
+					value={job}
+					onChange={setJob}
+					label={t("Mots-clés définissants l'activité")}
+					placeholder={t('Par exemple : coiffure, boulangerie ou restauration')}
+				/>
+				<Spacing xs />
+				{list.length > 0 && (
+					<FromTop>
+						<StyledRadioCardGroup
+							value={selected}
+							onChange={setSelected}
+							isDisabled={disabled}
+						>
+							{list.slice(0, 25).map(({ item, debug }) => {
+								return (
+									<StyledRadioSkeleton
+										isDisabled={disabled}
+										value={item.codeApe}
+										key={item.codeApe}
+										visibleRadioAs="div"
+									>
+										<Result item={item} debug={debug} />
+									</StyledRadioSkeleton>
+								)
+							})}
+						</StyledRadioCardGroup>
+					</FromTop>
+				)}
+
+				<Spacing md />
+				<ActivityNotFound />
 			</Grid>
-
-			{IS_DEVELOPMENT && (
-				<>
-					[selected: <span>{disabled ? 'disabled' : selected || 'none'}</span>]
-				</>
-			)}
-
-			<StyledRadioCardGroup
-				value={selected}
-				onChange={setSelected}
-				isDisabled={disabled}
-			>
-				<Grid container>
-					{list.slice(0, 25).map(({ item, debug }) => {
-						return (
-							<StyledRadioSkeleton
-								value={item.codeApe}
-								key={item.codeApe}
-								visibleRadioAs="div"
-							>
-								<Result item={item} debug={debug} />
-							</StyledRadioSkeleton>
-						)
-					})}
-				</Grid>
-			</StyledRadioCardGroup>
-
-			<Spacing sm />
-			<ActivityNotFound />
-		</Body>
+		</Grid>
 	)
 
 	return ret
 }
 
 const StyledRadioCardGroup = styled(RadioCardGroup)`
-	margin-top: 1rem;
 	flex-direction: row;
 	flex-wrap: wrap;
 `
