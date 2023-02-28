@@ -1,6 +1,6 @@
 import { AriaRadioProps } from '@react-types/radio'
 import { ComponentProps } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { Markdown } from '@/components/utils/markdown'
 import { CardContainer } from '@/design-system/card/Card'
@@ -36,11 +36,7 @@ const StyledCardContainer = styled(CardContainer)`
 		background: transparent;
 		border: none;
 	}
-	${({ theme, $inert }) =>
-		$inert &&
-		css`
-			background-color: ${theme.colors.extended.grey[200]};
-		`}
+
 	margin: 0.5rem 0;
 `
 
