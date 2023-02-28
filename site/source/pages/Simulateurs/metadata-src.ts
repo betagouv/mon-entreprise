@@ -2,10 +2,7 @@ import { ImmutableType } from '@/types/utils'
 
 import { choixStatutConfig } from '../Creer/choix-statut/config'
 import { rechercheCodeApeConfig } from '../assistants/recherche-code-ape/config'
-import {
-	déclarationChargesSocialesIndépendantConfig,
-	déclarationRevenuIndépendantConfig,
-} from '../gerer/declaration-charges-sociales-independant/config'
+import { déclarationChargesSocialesIndépendantConfig } from '../gerer/declaration-charges-sociales-independant/config'
 import { déclarationRevenuIndépendantBetaConfig } from '../gerer/declaration-revenu-independants/config'
 import { demandeMobilitéConfig } from '../gerer/demande-mobilité/config'
 import { artisteAuteurConfig } from './artiste-auteur/config'
@@ -54,8 +51,6 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...économieCollaborativeConfig(params),
 		...choixStatutConfig(params),
 		...déclarationChargesSocialesIndépendantConfig(params),
-		// TODO: Delete "déclaration-revenu-indépendant" object when DRI will no longer be in beta
-		...déclarationRevenuIndépendantConfig(params),
 		...déclarationRevenuIndépendantBetaConfig(params),
 		...demandeMobilitéConfig(params),
 		...pharmacienConfig(params),

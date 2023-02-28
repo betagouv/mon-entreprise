@@ -7,14 +7,16 @@ export function déclarationRevenuIndépendantBetaConfig({
 	sitePaths,
 }: SimulatorsDataParams) {
 	return config({
-		id: 'déclaration-revenu-indépendant-beta',
 		beta: true,
+		id: 'déclaration-revenu-indépendant',
+		pathId: 'gérer.déclarationIndépendant.index',
+		path: sitePaths.gérer.déclarationIndépendant.index,
+		iframePath: 'déclaration-revenu-indépendant',
+		icône: '✍️',
 		tracking: {
 			chapter1: 'gerer',
 			chapter2: 'declaration_revenu_independant',
 		},
-		icône: '✍️',
-		iframePath: 'déclaration-revenu-indépendant',
 		meta: {
 			description: t(
 				'pages.gérer.declaration_revenu_indépendant.meta.description',
@@ -25,7 +27,6 @@ export function déclarationRevenuIndépendantBetaConfig({
 				'Assistant à la déclaration de revenu pour les indépendants'
 			),
 		},
-		pathId: 'gérer.déclarationIndépendant.beta.index',
 		shortName: t(
 			'pages.gérer.declaration_revenu_indépendant.shortname',
 			'Aide au remplissage de la déclaration de revenu'
@@ -35,7 +36,6 @@ export function déclarationRevenuIndépendantBetaConfig({
 			'Assistant à la déclaration de revenu pour les indépendants'
 		),
 		nextSteps: ['déclaration-charges-sociales-indépendant'],
-		path: sitePaths.gérer.déclarationIndépendant.beta.index,
 		component: DéclarationRevenuIndépendant,
 	} as const)
 }

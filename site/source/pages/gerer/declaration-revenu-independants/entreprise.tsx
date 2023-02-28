@@ -192,8 +192,7 @@ export default function Accueil() {
 									<Button
 										size="XL"
 										to={
-											absoluteSitePaths.gérer.déclarationIndépendant.beta
-												.imposition
+											absoluteSitePaths.gérer.déclarationIndépendant.imposition
 										}
 									>
 										Continuer avec cette entreprise

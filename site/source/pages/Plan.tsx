@@ -86,7 +86,13 @@ export default function Plan() {
 						</Li>
 						<Li>
 							<H3>
-								<Link to={absoluteSitePaths.gérer.déclarationIndépendant.index}>
+								<Link
+									to={
+										absoluteSitePaths.gérer[
+											'déclaration-charges-sociales-indépendant'
+										]
+									}
+								>
 									<Trans>
 										Assistant à la détermination des charges sociales
 										déductibles

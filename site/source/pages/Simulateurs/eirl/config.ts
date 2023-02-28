@@ -35,7 +35,6 @@ export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 		pathId: 'simulateurs.eirl',
 		shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
 		title: t('pages.simulateurs.eirl.title', 'Simulateur de revenus pour EIRL'),
-		// nextSteps: ['déclaration-revenu-indépendant-beta', 'comparaison-statuts'],
 		nextSteps: ['comparaison-statuts'],
 		path: sitePaths.simulateurs.eirl,
 		simulation: configEirl,
