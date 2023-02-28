@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { Merge, ToOptional } from '@/types/utils'
 
 import useSimulatorsData, { SimulatorDataValues } from './useSimulatorsData'

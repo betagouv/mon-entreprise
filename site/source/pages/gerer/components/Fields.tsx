@@ -11,10 +11,10 @@ import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
-import { useNextQuestions } from '@/components/utils/useNextQuestion'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { updateSituation } from '@/store/actions/actions'
 import {
 	situationSelector,

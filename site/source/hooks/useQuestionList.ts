@@ -3,7 +3,7 @@ import { PublicodesExpression, RuleNode } from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { useNextQuestions } from '@/components/utils/useNextQuestion'
+import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { stepAction, updateSituation } from '@/store/actions/actions'
 import { answeredQuestionsSelector } from '@/store/selectors/simulationSelectors'
 

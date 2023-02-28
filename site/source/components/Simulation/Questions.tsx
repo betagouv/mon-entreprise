@@ -8,8 +8,7 @@ import Conversation, {
 } from '@/components/conversation/Conversation'
 import Progress from '@/components/ui/Progress'
 import { Body } from '@/design-system/typography/paragraphs'
-
-import { useSimulationProgress } from './../utils/useNextQuestion'
+import { useSimulationProgress } from '@/hooks/useNextQuestion'
 
 const QuestionsContainer = styled.div`
 	padding: ${({ theme }) => ` ${theme.spacings.xs} ${theme.spacings.lg}`};

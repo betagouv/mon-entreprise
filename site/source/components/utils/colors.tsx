@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { hexToHSL } from '@/utils/hexToHSL'
-
-import { useIsEmbedded } from './useIsEmbedded'
 
 type ProviderProps = {
 	color?: [number, number, number]

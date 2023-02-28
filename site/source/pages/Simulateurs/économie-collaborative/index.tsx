@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { TrackChapter } from '@/components/ATInternetTracking'
-import { useIsEmbedded } from '@/components/utils/useIsEmbedded'
 import { Link } from '@/design-system/typography/link'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 

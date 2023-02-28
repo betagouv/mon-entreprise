@@ -2,7 +2,7 @@ import rules from 'modele-social'
 import Engine from 'publicodes'
 import { describe, expect, it } from 'vitest'
 
-import { getNextQuestions } from '../source/components/utils/useNextQuestion'
+import { getNextQuestions } from '../source/hooks/useNextQuestion'
 
 describe('conversation', function () {
 	it('should start with the first missing variable', function () {
