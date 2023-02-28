@@ -40,7 +40,7 @@ dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
   titre: invalidité et décès
   remplace: cotisations et contributions . invalidité et décès
   variations:
-    - si: date >= 01/2022
+    - si: date >= 01/2023
       alors: 862 €/an
     - si: date >= 01/2022
       alors: 776 €/an

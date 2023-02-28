@@ -1,4 +1,10 @@
 # Journal des modifications
+
+## 1.6.2
+- Corrige une typo dans les montants de la CARPIMKO
+- Corrige le plafond pour le taux réduit de l’IS (hausse applicable pour l’exercice 2022)
+
+
 ## 1.6.1
 - Mise à jour 2023 des taux et montant de la CARCDSF
 - Mise à jour 2023 des taux et montant de la CARMF
