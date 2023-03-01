@@ -1,6 +1,6 @@
 // TODO: Move to ESModule
 const { loadConfigFromFile, mergeConfig } = require('vite')
-const reactPlugin = require('@vitejs/plugin-react')
+const reactPlugin = require('@vitejs/plugin-react-swc')
 const path = require('path')
 const VitePWA = require('vite-plugin-pwa').VitePWA
 const yaml = require('@rollup/plugin-yaml')
@@ -55,12 +55,7 @@ module.exports = {
 						!(Array.isArray(plugin) && plugin[0].name === 'vite:react-babel')
 				),
 				reactPlugin({
-					babel: {
-						plugins: ['babel-plugin-styled-components'],
-					},
-					// Copied from https://github.com/eirslett/storybook-builder-vite/blob/917d8868943ec5f58c9c2c6900e196637f0d05e3/packages/storybook-builder-vite/vite-config.ts#L95
-					// Do not treat story files as HMR boundaries, storybook itself needs to handle them.
-					exclude: [/\.stories\.([tj])sx?$/, /node_modules/],
+					plugins: [['@swc/plugin-styled-components', { pure: true }]],
 				}),
 				yaml(),
 				VitePWA({ disable: true }),
