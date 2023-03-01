@@ -41,7 +41,7 @@ const config: SimulationConfig = {
 export default function AideDéclarationIndépendant() {
 	const { absoluteSitePaths } = useSitePaths()
 	useSimulationConfig({
-		path: absoluteSitePaths.gérer.déclarationIndépendant.index,
+		path: absoluteSitePaths.assistants.déclarationIndépendant.index,
 		config,
 		autoloadLastSimulation: true,
 	})
@@ -96,7 +96,7 @@ export default function AideDéclarationIndépendant() {
 
 function useSteps() {
 	const sitePaths =
-		useSitePaths().relativeSitePaths.gérer.déclarationIndépendant
+		useSitePaths().relativeSitePaths.assistants.déclarationIndépendant
 	const { t } = useTranslation()
 	const step1Progress = useProgress(Step1Objectifs)
 	const step2Progress = useProgress(Step2Objectifs)

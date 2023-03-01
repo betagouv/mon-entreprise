@@ -9,8 +9,8 @@ export function déclarationRevenuIndépendantBetaConfig({
 	return config({
 		beta: true,
 		id: 'déclaration-revenu-indépendant',
-		pathId: 'gérer.déclarationIndépendant.index',
-		path: sitePaths.gérer.déclarationIndépendant.index,
+		pathId: 'assistants.déclarationIndépendant.index',
+		path: sitePaths.assistants.déclarationIndépendant.index,
 		iframePath: 'déclaration-revenu-indépendant',
 		icône: '✍️',
 		tracking: {

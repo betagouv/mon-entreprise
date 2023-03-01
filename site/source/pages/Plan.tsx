@@ -64,7 +64,7 @@ export default function Plan() {
 				</Li>
 				<Li>
 					<H3 as="h2">
-						<HeaderLink to={absoluteSitePaths.gérer.index}>
+						<HeaderLink to={absoluteSitePaths.assistants.index}>
 							<Trans>Gérer mon activité</Trans>
 						</HeaderLink>
 					</H3>
@@ -72,14 +72,14 @@ export default function Plan() {
 					<Ul>
 						<Li>
 							<H3>
-								<Link to={absoluteSitePaths.gérer.embaucher}>
+								<Link to={absoluteSitePaths.assistants.embaucher}>
 									<Trans>Embaucher</Trans>
 								</Link>
 							</H3>
 						</Li>
 						<Li>
 							<H3>
-								<Link to={absoluteSitePaths.gérer.sécuritéSociale}>
+								<Link to={absoluteSitePaths.assistants.sécuritéSociale}>
 									<Trans>Protection sociale</Trans>
 								</Link>
 							</H3>
@@ -88,7 +88,7 @@ export default function Plan() {
 							<H3>
 								<Link
 									to={
-										absoluteSitePaths.gérer[
+										absoluteSitePaths.assistants[
 											'déclaration-charges-sociales-indépendant'
 										]
 									}
@@ -102,7 +102,7 @@ export default function Plan() {
 						</Li>
 						<Li>
 							<H3>
-								<Link to={absoluteSitePaths.gérer.formulaireMobilité}>
+								<Link to={absoluteSitePaths.assistants.formulaireMobilité}>
 									<Trans>Demande de mobilité internationale</Trans>
 								</Link>
 							</H3>

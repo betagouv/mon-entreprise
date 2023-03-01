@@ -349,7 +349,8 @@ function ResultSection() {
 								>
 									<Button
 										to={
-											absoluteSitePaths.gérer.déclarationIndépendant.déclaration
+											absoluteSitePaths.assistants.déclarationIndépendant
+												.déclaration
 										}
 										onPress={() => {
 											dispatchValue('non', 'DRI . déclaration revenus manuelle')
@@ -389,7 +390,7 @@ function ResultSection() {
 												size="XS"
 												color="tertiary"
 												to={
-													absoluteSitePaths.gérer[
+													absoluteSitePaths.assistants[
 														'déclaration-charges-sociales-indépendant'
 													]
 												}
@@ -424,7 +425,8 @@ function ResultSection() {
 										light
 										size="XS"
 										to={
-											absoluteSitePaths.gérer.déclarationIndépendant.déclaration
+											absoluteSitePaths.assistants.déclarationIndépendant
+												.déclaration
 										}
 										onPress={() => {
 											dispatchValue('oui', 'DRI . déclaration revenus manuelle')
@@ -475,7 +477,7 @@ function ResultSection() {
 										light
 										size="XS"
 										to={
-											absoluteSitePaths.gérer[
+											absoluteSitePaths.assistants[
 												'déclaration-charges-sociales-indépendant'
 											]
 										}

@@ -51,7 +51,7 @@ export default function SalariéSimulation() {
 							Vous pouvez maintenant concrétiser votre projet d'embauche.
 						</Trans>
 						<ButtonContainer>
-							<Button to={absoluteSitePaths.gérer.embaucher}>
+							<Button to={absoluteSitePaths.assistants.embaucher}>
 								<Trans i18nKey="simulation-end.cta">
 									Connaître les démarches
 								</Trans>

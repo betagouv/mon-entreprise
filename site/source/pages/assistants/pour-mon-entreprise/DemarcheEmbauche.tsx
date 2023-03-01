@@ -17,7 +17,7 @@ export function DemarcheEmbaucheCard() {
 				'gérer.ressources.embaucher.cta',
 				'Voir la liste des démarches'
 			)}
-			to={absoluteSitePaths.gérer.embaucher}
+			to={absoluteSitePaths.assistants.embaucher}
 		>
 			<Trans i18nKey="gérer.ressources.embaucher.body">
 				La liste des choses à faire pour être sûr de ne rien oublier lors de

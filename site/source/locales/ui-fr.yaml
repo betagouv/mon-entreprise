@@ -1300,6 +1300,31 @@ pages:
     71120<5></5>75342&nbsp;Paris CEDEX 07</2></21><22>Mis à jour le
     29/01/2021</22>
   assistants:
+    pour-mon-entreprise:
+      avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
+        revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
+        que nous développions un nouveau simulateur, laissez-nous message en
+        cliquant sur le bouton "<1></1>" à droite de votre écran.</1>
+      description: Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
+        payer des cotisations et des impôts. Anticipez leurs montants grâce aux
+        simulateurs adaptés à votre situation.
+      info:
+        PdE: "<0>Échanger avec le conseiller qui peut vous aider selon votre
+          problématique</0><1><0>Vous souhaitez :</0><1><0>recruter, former vos
+          salariés</0><1>financer vos projets d'investissement</1><2>résoudre un
+          problème de trésorerie</2><3>être conseillé(e) en droit du
+          travail</3><4>développer votre activité commerciale</4><5>vendre sur
+          internet</5><6>vendre ou reprendre une entreprise</6><7>améliorer la
+          santé et sécurité au travail</7><8>entrer dans une démarche de
+          transition écologique & RSE</8></1></1><2><0>Service public simple et
+          rapide : vous êtes rappelé(e) par LE conseiller qui peut vous
+          aider.</0></2><3>Plus de 40 partenaires publics sont mobilisés pour
+          vous accompagner en fonction de votre problématique.<1></1>Le
+          conseiller compétent proche de chez vous vous rappelle sous 5
+          jours.</3>"
+      meta:
+        description: Simulateurs et assistants adaptés à votre entreprise
+      title: Gérer mon activité
     recherche-code-ape:
       description: Cet assistant vous permet de trouver rapidement le code APE
         (activité principale exercée) qui correspond à votre activité. Ce code

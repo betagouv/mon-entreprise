@@ -48,7 +48,9 @@ const config: SimulationConfig = {
 export default function AideDéclarationIndépendant() {
 	const { absoluteSitePaths } = useSitePaths()
 	useSimulationConfig({
-		path: absoluteSitePaths.gérer['déclaration-charges-sociales-indépendant'],
+		path: absoluteSitePaths.assistants[
+			'déclaration-charges-sociales-indépendant'
+		],
 		config,
 		autoloadLastSimulation: true,
 	})

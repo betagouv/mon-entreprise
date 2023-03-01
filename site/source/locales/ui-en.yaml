@@ -1492,6 +1492,29 @@ pages:
     to:<1></1>Défenseur des droits<3></3>Libre réponse 71120<5></5>75342 Paris
     CEDEX 07</2></21><22>Updated on 29/01/2021</22>
   assistants:
+    pour-mon-entreprise:
+      avertissement-entreprise-non-traitée: <0>There is not yet an income simulator
+        for your type of business on this site.</0><1>If you would like us to
+        develop a new simulator, please leave us a message by clicking on the
+        "<1></1>" button on the right of your screen.</1>
+      description: Do you want to pay yourself an income or hire someone? You will
+        have to pay contributions and taxes. Anticipate their amounts thanks to
+        the simulators adapted to your situation.
+      info:
+        PdE: "<0>Discuss with the consultant who can help you according to your
+          problem</0><1><0>You wish to :</0><1><0>recruit, train your
+          employees</0><1>finance your investment projects</1><2>solve a cash
+          flow problem</2><3>be advised on labor law</3><4>develop your
+          commercial activity</4><5>sell on the internet</5><6>sell or take over
+          a company</6><7>improve health and safety at work</7><8>enter into an
+          ecological and CSR transition process</8></1></1><2><0>Quick and easy
+          public service: you are called back by THE advisor who can help
+          you.</0></2><3>More than 40 public partners are mobilized to assist
+          you according to your problem.<1></1>The competent advisor near you
+          will call you back within 5 days.</3>"
+      meta:
+        description: Simulators and wizards adapted to your company
+      title: Manage my business
     recherche-code-ape:
       description: This wizard allows you to quickly find the APE code (main activity)
         that corresponds to your activity. This code is assigned by INSEE to

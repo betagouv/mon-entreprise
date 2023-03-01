@@ -14,7 +14,7 @@ export function MobiliteCard() {
 				'Exporter son activité en Europe'
 			)}
 			ctaLabel={t('gérer.ressources.export.cta', 'Remplir le formulaire')}
-			to={absoluteSitePaths.gérer.formulaireMobilité}
+			to={absoluteSitePaths.assistants.formulaireMobilité}
 		>
 			<Trans i18nKey="gérer.ressources.export.body">
 				Le formulaire pour effectuer une demande de mobilité internationale

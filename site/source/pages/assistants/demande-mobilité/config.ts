@@ -4,12 +4,16 @@ import { SimulatorsDataParams } from '../../Simulateurs/configs/types'
 
 export function demandeMobilitéConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
+		private: true,
 		id: 'demande-mobilité',
+		pathId: 'assistants.formulaireMobilité',
+		iframePath: 'demande-mobilite',
+		path: sitePaths.assistants.formulaireMobilité,
+		icône: '🧳',
 		tracking: {
 			chapter1: 'gerer',
 			chapter2: 'demande_mobilite',
 		},
-		icône: '🧳',
 		meta: {
 			title: t(
 				'pages.gérer.demande-mobilité.meta.title',
@@ -20,7 +24,6 @@ export function demandeMobilitéConfig({ t, sitePaths }: SimulatorsDataParams) {
 				"Formulaire interactif à compléter en cas d'exercice d'une activité professionnelle à l'étranger"
 			),
 		},
-		pathId: 'gérer.formulaireMobilité',
 		shortName: t(
 			'pages.gérer.demande-mobilité.shortname',
 			'Demande de mobilité internationale'
@@ -29,9 +32,6 @@ export function demandeMobilitéConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.gérer.demande-mobilité.title',
 			'Demande de mobilité internationale'
 		),
-		private: true,
-		iframePath: 'demande-mobilite',
-		path: sitePaths.gérer.formulaireMobilité,
 		component: FormulaireMobilitéIndépendant,
 	} as const)
 }
