@@ -2,7 +2,7 @@
 import replace from '@rollup/plugin-replace'
 import yaml, { ValidYamlType } from '@rollup/plugin-yaml'
 import legacy from '@vitejs/plugin-legacy'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
 import fs from 'fs/promises'
 import path from 'path'
 import serveStatic from 'serve-static'
@@ -56,9 +56,7 @@ export default defineConfig(({ command, mode }) => ({
 				preventAssignment: false,
 			}),
 		react({
-			babel: {
-				plugins: [['babel-plugin-styled-components', { pure: true }]],
-			},
+			plugins: [['@swc/plugin-styled-components', { pure: true }]],
 		}),
 		yaml({
 			transform(data, filePath) {
@@ -127,6 +125,7 @@ export default defineConfig(({ command, mode }) => ({
 	},
 	optimizeDeps: {
 		entries: ['./source/entries/entry-fr.tsx', './source/entries/entry-en.tsx'],
+		include: ['publicodes-react > react/jsx-runtime'],
 		exclude: ['publicodes-react', 'publicodes'],
 	},
 	ssr: {
