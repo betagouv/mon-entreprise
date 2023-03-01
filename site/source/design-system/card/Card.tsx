@@ -139,7 +139,7 @@ export const CardContainer = styled.div<{
 	border: none;
 	background-color: ${({ theme, $inert }) =>
 		theme.darkMode
-			? theme.colors.extended.dark[600]
+			? theme.colors.extended.dark[$inert ? 700 : 600]
 			: theme.colors.extended.grey[$inert ? 200 : 100]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	box-shadow: ${({ theme }) =>
