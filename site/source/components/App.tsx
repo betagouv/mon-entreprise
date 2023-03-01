@@ -17,27 +17,26 @@ import {
 	useSetupSafeSituation,
 } from '@/components/utils/EngineContext'
 import { Container, Spacing } from '@/design-system/layout'
+import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
+import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
+import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
+import Accessibilité from '@/pages/Accessibilité'
+import Budget from '@/pages/Budget/Budget'
+import Créer from '@/pages/Creer'
+import IntegrationTest from '@/pages/Dev/IntegrationTest'
+import Documentation from '@/pages/Documentation'
+import Iframes from '@/pages/Iframes'
+import Landing from '@/pages/Landing/Landing'
+import Nouveautés from '@/pages/Nouveautes/Nouveautes'
+import Offline from '@/pages/Offline'
+import Plan from '@/pages/Plan'
+import Simulateurs from '@/pages/Simulateurs'
+import Stats from '@/pages/Stats/LazyStats'
+import Assistants from '@/pages/assistants/index'
+import Integration from '@/pages/integration/index'
+import { useSitePaths } from '@/sitePaths'
 
-import { useAxeCoreAnalysis } from '../hooks/useAxeCoreAnalysis'
-import { useGetFullURL } from '../hooks/useGetFullURL'
-import { useSaveAndRestoreScrollPosition } from '../hooks/useSaveAndRestoreScrollPosition'
-import Accessibilité from '../pages/Accessibilité'
-import Budget from '../pages/Budget/Budget'
-import Créer from '../pages/Creer'
-import IntegrationTest from '../pages/Dev/IntegrationTest'
-import Documentation from '../pages/Documentation'
-import Iframes from '../pages/Iframes'
-import Landing from '../pages/Landing/Landing'
-import Nouveautés from '../pages/Nouveautes/Nouveautes'
-import Offline from '../pages/Offline'
-import Plan from '../pages/Plan'
-import Simulateurs from '../pages/Simulateurs'
-import Stats from '../pages/Stats/LazyStats'
-import Assistants from '../pages/assistants'
-import Gérer from '../pages/gerer'
-import Integration from '../pages/integration/index'
-import { useSitePaths } from '../sitePaths'
 import Provider, { ProviderProps } from './Provider'
 
 type RootProps = {
@@ -89,14 +88,16 @@ const Redirections = ({ children }: { children: React.ReactNode }) => {
 				'/gérer/aide-declaration-independants/beta',
 				'/manage/declaration-aid-independent/beta',
 			],
-			to: absoluteSitePaths.gérer.déclarationIndépendant.index,
+			to: absoluteSitePaths.assistants.déclarationIndépendant.index,
 		},
 		{
 			paths: [
 				'/gérer/aide-declaration-independants',
 				'/manage/declaration-aid-independent',
 			],
-			to: absoluteSitePaths.gérer['déclaration-charges-sociales-indépendant'],
+			to: absoluteSitePaths.assistants[
+				'déclaration-charges-sociales-indépendant'
+			],
 		},
 	] satisfies { paths: string[]; to: string }[]
 
@@ -168,10 +169,6 @@ const App = () => {
 							<Route
 								path={relativeSitePaths.créer.index + '/*'}
 								element={<Créer />}
-							/>
-							<Route
-								path={relativeSitePaths.gérer.index + '/*'}
-								element={<Gérer />}
 							/>
 							<Route
 								path={relativeSitePaths.assistants.index + '/*'}

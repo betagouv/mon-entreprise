@@ -1,10 +1,11 @@
 import { ImmutableType } from '@/types/utils'
 
 import { choixStatutConfig } from '../Creer/choix-statut/config'
+import { déclarationChargesSocialesIndépendantConfig } from '../assistants/declaration-charges-sociales-independant/config'
+import { déclarationRevenuIndépendantBetaConfig } from '../assistants/declaration-revenu-independants/config'
+import { demandeMobilitéConfig } from '../assistants/demande-mobilité/config'
+import { pourMonEntrepriseConfig } from '../assistants/pour-mon-entreprise/config'
 import { rechercheCodeApeConfig } from '../assistants/recherche-code-ape/config'
-import { déclarationChargesSocialesIndépendantConfig } from '../gerer/declaration-charges-sociales-independant/config'
-import { déclarationRevenuIndépendantBetaConfig } from '../gerer/declaration-revenu-independants/config'
-import { demandeMobilitéConfig } from '../gerer/demande-mobilité/config'
 import { artisteAuteurConfig } from './artiste-auteur/config'
 import { autoEntrepreneurConfig } from './auto-entrepreneur/config'
 import { auxiliaireMédicalConfig } from './auxiliaire-médical/config'
@@ -32,12 +33,13 @@ import { sasuConfig } from './sasu/config'
 import { économieCollaborativeConfig } from './économie-collaborative/config'
 
 /**
- * Contient l'intégralité des données concernant les différents simulateurs
+ * Contient l'intégralité des données concernant les différents simulateurs et assistants
  * sans dépendance qui compliquerait leur import dans le script de mise à jour
  * des données pour Algolia.
  */
 const getMetadataSrc = (params: SimulatorsDataParams) => {
 	const data = {
+		// simulateurs:
 		...salariéConfig(params),
 		...entrepriseIndividuelleConfig(params),
 		...eirlConfig(params),
@@ -50,9 +52,6 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...comparaisonStatutsConfig(params),
 		...économieCollaborativeConfig(params),
 		...choixStatutConfig(params),
-		...déclarationChargesSocialesIndépendantConfig(params),
-		...déclarationRevenuIndépendantBetaConfig(params),
-		...demandeMobilitéConfig(params),
 		...pharmacienConfig(params),
 		...médecinConfig(params),
 		...chirurgienDentisteConfig(params),
@@ -66,7 +65,13 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...coûtCréationEntrepriseConfig(params),
 		...impôtSociétéConfig(params),
 		...cipavConfig(params),
+
+		// assistants:
+		...déclarationChargesSocialesIndépendantConfig(params),
+		...déclarationRevenuIndépendantBetaConfig(params),
+		...demandeMobilitéConfig(params),
 		...rechercheCodeApeConfig(params),
+		...pourMonEntrepriseConfig(params),
 	} as const
 
 	return data satisfies ImmutableType<Record<string, PageConfig>>

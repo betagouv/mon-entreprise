@@ -17,7 +17,7 @@ export function SecuriteSocialeCard() {
 				</h3>
 			}
 			ctaLabel={t('gérer.ressources.sécuritéSociale.cta', 'Lire le guide')}
-			to={absoluteSitePaths.gérer.sécuritéSociale}
+			to={absoluteSitePaths.assistants.sécuritéSociale}
 		>
 			<Trans i18nKey="gérer.ressources.sécuritéSociale.body">
 				A quoi servent les cotisations sociales ? Le point sur le système de

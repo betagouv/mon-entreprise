@@ -35,9 +35,12 @@ const rawSitePathsFr = {
 			minorityDirector: 'gérant-majoritaire-ou-minoritaire',
 		},
 	},
-	gérer: {
-		index: 'gérer',
-		entreprise: ':entreprise',
+	assistants: {
+		index: 'assistants',
+		'pour-mon-entreprise': {
+			index: 'pour-mon-entreprise',
+			entreprise: ':entreprise',
+		},
 		embaucher: 'embaucher',
 		sécuritéSociale: 'sécurité-sociale',
 		'déclaration-charges-sociales-indépendant':
@@ -50,9 +53,6 @@ const rawSitePathsFr = {
 			cotisations: 'cotisations',
 		},
 		formulaireMobilité: 'demande-mobilité',
-	},
-	assistants: {
-		index: 'assistants',
 		'recherche-code-ape': 'recherche-code-ape',
 	},
 	simulateurs: {
@@ -120,9 +120,12 @@ const rawSitePathsEn = {
 			minorityDirector: 'chairman-or-managing-director',
 		},
 	},
-	gérer: {
-		index: 'manage',
-		entreprise: ':entreprise',
+	assistants: {
+		index: 'assistants',
+		'pour-mon-entreprise': {
+			index: 'for-my-business',
+			entreprise: ':entreprise',
+		},
 		embaucher: 'hiring',
 		sécuritéSociale: 'social-security',
 		'déclaration-charges-sociales-indépendant':
@@ -135,9 +138,6 @@ const rawSitePathsEn = {
 			cotisations: 'contributions',
 		},
 		formulaireMobilité: 'posting-demand',
-	},
-	assistants: {
-		index: 'assistants',
 		'recherche-code-ape': 'search-code-ape',
 	},
 	simulateurs: {

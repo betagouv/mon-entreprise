@@ -8,12 +8,14 @@ export function déclarationChargesSocialesIndépendantConfig({
 }: SimulatorsDataParams) {
 	return config({
 		id: 'déclaration-charges-sociales-indépendant',
-		path: sitePaths.gérer['déclaration-charges-sociales-indépendant'],
+		pathId: 'assistants.déclaration-charges-sociales-indépendant',
+		path: sitePaths.assistants['déclaration-charges-sociales-indépendant'],
+		iframePath: 'déclaration-charges-sociales-indépendant',
+		icône: '📑',
 		tracking: {
 			chapter1: 'gerer',
 			chapter2: 'declaration_charges_sociales_independant',
 		},
-		icône: '📑',
 		meta: {
 			description: t(
 				'pages.gérer.declaration_charges_sociales_indépendant.meta.description',
@@ -24,12 +26,10 @@ export function déclarationChargesSocialesIndépendantConfig({
 				'Détermination des charges sociales déductibles'
 			),
 		},
-		pathId: 'gérer.déclaration-charges-sociales-indépendant',
 		shortName: t(
 			'pages.gérer.declaration_charges_sociales_indépendant.shortname',
 			'Détermination des charges sociales déductibles'
 		),
-		iframePath: 'déclaration-charges-sociales-indépendant',
 		title: t(
 			'pages.gérer.declaration_charges_sociales_indépendant.title',
 			'Assistant à la détermination des charges sociales déductibles'

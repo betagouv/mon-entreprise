@@ -56,7 +56,7 @@ export default function Simulateurs() {
 
 			{pathname !== absoluteSitePaths.simulateurs.index &&
 				(lastState?.fromGérer ? (
-					<Link to={absoluteSitePaths.gérer.index} noUnderline>
+					<Link to={absoluteSitePaths.assistants.index} noUnderline>
 						<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 					</Link>
 				) : lastState?.fromCréer ? (

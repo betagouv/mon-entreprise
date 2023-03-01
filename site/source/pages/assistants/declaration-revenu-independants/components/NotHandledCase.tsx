@@ -41,7 +41,7 @@ export default function NotHandledCase({
 				</Grid>
 				<Grid item lg={2} />
 				<Grid item md="auto">
-					<Button color="tertiary" to={absoluteSitePaths.gérer.index}>
+					<Button color="tertiary" to={absoluteSitePaths.assistants.index}>
 						Découvrir les simulateur et assistant pour mon entreprise
 					</Button>
 				</Grid>

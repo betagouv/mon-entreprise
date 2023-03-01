@@ -48,9 +48,11 @@ export default function SearchOrCreate() {
 							<AnswerGroup role="list">
 								<Button
 									role="link"
-									to={generatePath(absoluteSitePaths.gérer.entreprise, {
-										entreprise: companySIREN as string,
-									})}
+									to={generatePath(
+										absoluteSitePaths.assistants['pour-mon-entreprise']
+											.entreprise,
+										{ entreprise: companySIREN as string }
+									)}
 									data-test-id="cta-see-custom-simulators"
 									aria-label={t(
 										'Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise'
@@ -145,12 +147,13 @@ function useHandleCompanySubmit() {
 			}
 			setEntreprise(établissement)
 			const entreprise = établissement.siren
-			const path = generatePath(absoluteSitePaths.gérer.entreprise, {
-				entreprise,
-			})
+			const path = generatePath(
+				absoluteSitePaths.assistants['pour-mon-entreprise'].entreprise,
+				{ entreprise }
+			)
 			navigate(path)
 		},
-		[navigate, setEntreprise, absoluteSitePaths.gérer.entreprise]
+		[absoluteSitePaths.assistants, navigate, setEntreprise]
 	)
 
 	return handleCompanySubmit

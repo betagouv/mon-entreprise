@@ -9,7 +9,6 @@ import {
 	Route,
 	Routes,
 	generatePath,
-	useLocation,
 	useParams,
 } from 'react-router-dom'
 import styled from 'styled-components'
@@ -18,13 +17,12 @@ import {
 	FabriqueSocialEntreprise,
 	searchDenominationOrSiren,
 } from '@/api/fabrique-social'
-import { TrackChapter, TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Condition,
 	WhenApplicable,
 	WhenNotApplicable,
 } from '@/components/EngineValue'
-import PageData from '@/components/PageData'
 import PageHeader from '@/components/PageHeader'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { CompanyDetails } from '@/components/company/Details'
@@ -33,7 +31,6 @@ import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { useEngine } from '@/components/utils/EngineContext'
-import { ScrollToTop } from '@/components/utils/Scroll'
 import { Markdown } from '@/components/utils/markdown'
 import { Message, Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
@@ -41,163 +38,51 @@ import { Emoji } from '@/design-system/emoji'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
+import { SimulateurCard } from '@/pages/Simulateurs/Home'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { companySituationSelector } from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
-import { SimulateurCard } from '../Simulateurs/Home'
-import { AnnuaireEntreprises } from './components/AnnuaireEntreprises'
-import { AutoEntrepreneurCard } from './components/AutoEntrepeneurCard'
-import { DemarcheEmbaucheCard } from './components/DemarcheEmbauche'
-import { MobiliteCard } from './components/MobiliteCard'
-import { SecuriteSocialeCard } from './components/SecuriteSocialeCard'
-import forms from './components/forms.svg'
-import growth from './components/growth.svg'
-import Embaucher from './embaucher'
-import SocialSecurity from './sécurité-sociale'
+import { AnnuaireEntreprises } from './AnnuaireEntreprises'
+import { AutoEntrepreneurCard } from './AutoEntrepeneurCard'
+import { DemarcheEmbaucheCard } from './DemarcheEmbauche'
+import { MobiliteCard } from './MobiliteCard'
+import { SecuriteSocialeCard } from './SecuriteSocialeCard'
+import forms from './forms.svg'
+import growth from './growth.svg'
 
-export default function Gérer() {
-	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
-	const location = useLocation()
-	const simulateurs = useSimulatorsData()
-
-	const back = (
-		<Link noUnderline to={absoluteSitePaths.gérer.index}>
-			<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
-		</Link>
-	)
+export default function PourMonEntrepriseHome() {
+	const { relativeSitePaths } = useSitePaths()
 
 	return (
-		<>
-			<ScrollToTop key={location.pathname} />
-
-			<TrackChapter chapter1="gerer">
-				<Routes>
-					<Route index element={<Home />} />
-					<Route path={relativeSitePaths.gérer.entreprise} element={<Home />} />
-					<Route
-						path={relativeSitePaths.gérer.sécuritéSociale}
-						element={
-							<>
-								{back}
-								<SocialSecurity />
-							</>
-						}
-					/>
-					<Route
-						path={relativeSitePaths.gérer.embaucher}
-						element={
-							<>
-								{back}
-								<Embaucher />
-							</>
-						}
-					/>
-					{[
-						simulateurs['déclaration-charges-sociales-indépendant'],
-						simulateurs['déclaration-revenu-indépendant'],
-						simulateurs['demande-mobilité'],
-					].map((p) => (
-						<Route
-							key={p.shortName}
-							path={p.path.replace(absoluteSitePaths.gérer.index, '') + '/*'}
-							element={
-								<>
-									{back}
-									<PageData />
-								</>
-							}
-						/>
-					))}
-				</Routes>
-			</TrackChapter>
-		</>
+		<Routes>
+			<Route index element={<PourMonEntreprise />} />
+			<Route
+				path={relativeSitePaths.assistants['pour-mon-entreprise'].entreprise}
+				element={<PourMonEntreprise />}
+			/>
+		</Routes>
 	)
 }
 
-const infereSimulateurRevenuFromSituation = (
-	engine: Engine<DottedName>
-): keyof SimulatorData | null => {
-	if (
-		engine.evaluate('entreprise . catégorie juridique . EI . auto-entrepreneur')
-			.nodeValue
-	) {
-		return 'auto-entrepreneur'
-	}
-
-	if (
-		engine.evaluate('entreprise . catégorie juridique . SARL . EURL').nodeValue
-	) {
-		return 'eurl'
-	}
-	if (
-		engine.evaluate('entreprise . catégorie juridique . SAS . SASU').nodeValue
-	) {
-		return 'sasu'
-	}
-	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
-		return 'eirl'
-	}
-	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
-		const métierProfessionLibéral = engine.evaluate(
-			'dirigeant . indépendant . PL . métier'
-		).nodeValue
-		switch (métierProfessionLibéral) {
-			case 'avocat':
-				return 'avocat'
-			case 'expert-comptable':
-				return 'expert-comptable'
-			case 'santé . médecin':
-				return 'médecin'
-			case 'santé . chirurgien-dentiste':
-				return 'chirurgien-dentiste'
-			case 'santé . sage-femme':
-				return 'sage-femme'
-			case 'santé . auxiliaire médical':
-				return 'auxiliaire-médical'
-			case 'santé . pharmacien':
-				return 'pharmacien'
-		}
-		if (engine.evaluate('dirigeant . indépendant . PL').nodeValue) {
-			return 'profession-libérale'
-		}
-
-		return 'entreprise-individuelle'
-	}
-	const régimeSocial = engine.evaluate('dirigeant . régime social').nodeValue
-
-	if (régimeSocial === 'indépendant') {
-		return 'indépendant'
-	}
-
-	// TODO : assimilé-salarié
-	// if (
-	// 	régimeSocial === 'assimilé-salarié'
-	// ) {
-	// 	return 'assimilé-salarié'
-	// }
-	return null
-}
-
-function Home() {
+function PourMonEntreprise() {
 	const { t, i18n } = useTranslation()
 	const dirigeantSimulateur = infereSimulateurRevenuFromSituation(useEngine())
 	const simulateurs = useSimulatorsData()
-	const { absoluteSitePaths } = useSitePaths()
 	const engine = useEngine()
 	const dispatch = useDispatch()
 	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
+	const prevSiren = useRef(engineSiren)
 	const [overwrite, setOverwrite] = useState(engineSiren === undefined)
 	const { param, entreprise, entrepriseNotFound, entreprisePending } =
 		useSirenFromParams(overwrite)
-	const gérerPath = useGérerPath()
+	const gérerPath = usePourMonEntreprisePath()
 
 	const setEntreprise = useSetEntreprise()
 
@@ -219,25 +104,25 @@ function Home() {
 		gérerPath &&
 		(param == null || (entreprise?.siren && entreprise.siren !== param))
 	) {
-		return <Navigate to={gérerPath} />
+		return <Navigate to={gérerPath} replace />
 	}
 
 	if (
 		(!param && !engineSiren) ||
+		(!engineSiren && !overwrite && prevSiren.current) ||
 		(param && entrepriseNotFound) ||
 		(entreprise && !overwrite && !engineSiren)
 	) {
-		return <Navigate to={absoluteSitePaths.index} />
+		return <Navigate to={'/'} />
 	}
 
 	return (
 		<>
 			<DefaultHelmet>
-				<title>{t('gérer.titre', 'Gérer mon activité')}</title>
 				<meta name="robots" content="noindex" />
 			</DefaultHelmet>
 
-			{param && param !== engineSiren && !overwrite && (
+			{param && engineSiren && param !== engineSiren && !overwrite && (
 				<PopoverOverwriteSituation
 					onOverwrite={() => {
 						dispatch(resetCompany())
@@ -247,12 +132,9 @@ function Home() {
 			)}
 
 			<TrackPage name="accueil" />
-			<PageHeader
-				picture={growth}
-				titre={<Trans i18nKey="gérer.titre">Gérer mon activité</Trans>}
-			>
+			<PageHeader picture={growth}>
 				<Intro>
-					<Trans i18nKey="gérer.description">
+					<Trans i18nKey="pages.assistants.pour-mon-entreprise.description">
 						Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
 						payer des cotisations et des impôts. Anticipez leurs montants grâce
 						aux simulateurs adaptés à votre situation.
@@ -296,7 +178,7 @@ function Home() {
 								`}
 							>
 								<Message border={false} type="info">
-									<Trans i18nKey="gérer.avertissement-entreprise-non-traitée">
+									<Trans i18nKey="pages.assistants.pour-mon-entreprise.avertissement-entreprise-non-traitée">
 										<Intro>
 											Il n'existe pas encore de simulateur de revenu pour votre
 											type d'entreprise sur ce site.
@@ -349,7 +231,7 @@ function Home() {
 				</FromTop>
 			)}
 
-			<Trans i18nKey="gérer.PdE">
+			<Trans i18nKey="pages.assistants.pour-mon-entreprise.info.PdE">
 				<H2>
 					Échanger avec le conseiller qui peut vous aider selon votre
 					problématique
@@ -440,10 +322,10 @@ const UlInColumns = styled.ul`
 	}
 `
 
-export const AskCompanyMissingDetails = () => {
+const AskCompanyMissingDetails = () => {
 	const { absoluteSitePaths } = useSitePaths()
 	useSimulationConfig({
-		path: absoluteSitePaths.gérer.index,
+		path: absoluteSitePaths.assistants.index,
 		config: configCompanyDetails,
 	})
 
@@ -481,6 +363,70 @@ export const AskCompanyMissingDetails = () => {
 			)}
 		</>
 	)
+}
+
+const infereSimulateurRevenuFromSituation = (
+	engine: Engine<DottedName>
+): keyof SimulatorData | null => {
+	if (
+		engine.evaluate('entreprise . catégorie juridique . EI . auto-entrepreneur')
+			.nodeValue
+	) {
+		return 'auto-entrepreneur'
+	}
+
+	if (
+		engine.evaluate('entreprise . catégorie juridique . SARL . EURL').nodeValue
+	) {
+		return 'eurl'
+	}
+	if (
+		engine.evaluate('entreprise . catégorie juridique . SAS . SASU').nodeValue
+	) {
+		return 'sasu'
+	}
+	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
+		return 'eirl'
+	}
+	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
+		const métierProfessionLibéral = engine.evaluate(
+			'dirigeant . indépendant . PL . métier'
+		).nodeValue
+		switch (métierProfessionLibéral) {
+			case 'avocat':
+				return 'avocat'
+			case 'expert-comptable':
+				return 'expert-comptable'
+			case 'santé . médecin':
+				return 'médecin'
+			case 'santé . chirurgien-dentiste':
+				return 'chirurgien-dentiste'
+			case 'santé . sage-femme':
+				return 'sage-femme'
+			case 'santé . auxiliaire médical':
+				return 'auxiliaire-médical'
+			case 'santé . pharmacien':
+				return 'pharmacien'
+		}
+		if (engine.evaluate('dirigeant . indépendant . PL').nodeValue) {
+			return 'profession-libérale'
+		}
+
+		return 'entreprise-individuelle'
+	}
+	const régimeSocial = engine.evaluate('dirigeant . régime social').nodeValue
+
+	if (régimeSocial === 'indépendant') {
+		return 'indépendant'
+	}
+
+	// TODO : assimilé-salarié
+	// if (
+	// 	régimeSocial === 'assimilé-salarié'
+	// ) {
+	// 	return 'assimilé-salarié'
+	// }
+	return null
 }
 
 const PopoverOverwriteSituation = ({
@@ -552,16 +498,17 @@ const PopoverOverwriteSituation = ({
 	)
 }
 
-const useGérerPath = () => {
+const usePourMonEntreprisePath = () => {
 	const { absoluteSitePaths } = useSitePaths()
 	const company = useSelector(companySituationSelector)
 
 	if (company['entreprise . SIREN']) {
 		const siren = (company['entreprise . SIREN'] as string).replace(/'/g, '')
 
-		return generatePath(absoluteSitePaths.gérer.entreprise, {
-			entreprise: siren,
-		})
+		return generatePath(
+			absoluteSitePaths.assistants['pour-mon-entreprise'].entreprise,
+			{ entreprise: siren }
+		)
 	}
 
 	return null
@@ -572,27 +519,17 @@ const useSirenFromParams = (overwrite: boolean) => {
 	const [entreprise, setEntreprise] = useState<FabriqueSocialEntreprise | null>(
 		null
 	)
-	const engine = useEngine()
-	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
 
 	const [entreprisePending, setEntreprisePending] = useState(false)
 	const [entrepriseNotFound, setEntrepriseNotFound] = useState(false)
 
-	const pass = param && param !== engineSiren && !overwrite
-
-	const once = useRef(false)
 	useEffect(() => {
-		let canceled = false
-		if (!param || pass || once.current) {
+		if (!param || !overwrite) {
 			return
 		}
-		once.current = true
 		setEntreprisePending(true)
 		searchDenominationOrSiren(param)
 			.then((entreprises) => {
-				if (canceled) {
-					return
-				}
 				setEntreprisePending(false)
 				if (!entreprises || !entreprises.length) {
 					return setEntrepriseNotFound(true)
@@ -600,19 +537,12 @@ const useSirenFromParams = (overwrite: boolean) => {
 				setEntreprise(entreprises[0])
 			})
 			.catch((error) => {
-				if (canceled) {
-					return
-				}
 				setEntrepriseNotFound(true)
 				setEntreprisePending(false)
 				// eslint-disable-next-line no-console
 				console.error(error)
 			})
-
-		return () => {
-			canceled = true
-		}
-	}, [setEntreprise, param, pass])
+	}, [param, overwrite])
 
 	return {
 		param,
