@@ -132,15 +132,13 @@ export default defineConfig(({ command, mode }) => ({
 		/**
 		 * Prevent listed dependencies from being externalized for SSR build cause some
 		 * packages are not esm ready or package.json setup seems wrong, wait this pr to be merge:
-		 * react-spectrum: https://github.com/adobe/react-spectrum/pull/3630
 		 * markdown-to-jsx: https://github.com/probablyup/markdown-to-jsx/pull/414
-		 * styled-components: https://github.com/styled-components/styled-components/issues/3601
+		 * styled-components: https://github.com/styled-components/styled-components/issues/3601 (wait v6 release)
 		 */
 		noExternal: [
-			/react-aria|react-stately|internationalized/,
 			/markdown-to-jsx/,
 			/styled-components|emotion/,
-			/publicodes-react/, // TODO remove this after publicodes-react upgrade
+			/publicodes-react/, // use styled-components
 		],
 	},
 }))
