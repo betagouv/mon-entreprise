@@ -53,7 +53,9 @@ describe('Landing page', function () {
 				req.responseTimeout = 10 * 1000
 				req.continue()
 			}
-		)
+		).as('search')
+
+		cy.wait('@search')
 
 		cy.get(searchResultsPath).children().should('have.length', 6)
 		cy.get(searchResultsPath).children().first().click()
