@@ -26,7 +26,7 @@ type Notification = {
 	sévérité: 'avertissement' | 'information'
 }
 
-export function getNotifications(engine: Engine) {
+function getNotifications(engine: Engine) {
 	return Object.values(engine.getParsedRules())
 		.filter(
 			(rule) =>
@@ -40,6 +40,7 @@ export function getNotifications(engine: Engine) {
 			description,
 		}))
 }
+
 export default function Notifications() {
 	const { t } = useTranslation()
 	const engine = useEngine()
