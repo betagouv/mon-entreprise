@@ -6,6 +6,7 @@ import { déclarationRevenuIndépendantBetaConfig } from '../assistants/declarat
 import { demandeMobilitéConfig } from '../assistants/demande-mobilité/config'
 import { pourMonEntrepriseConfig } from '../assistants/pour-mon-entreprise/config'
 import { rechercheCodeApeConfig } from '../assistants/recherche-code-ape/config'
+import { économieCollaborativeConfig } from '../assistants/économie-collaborative/config'
 import { artisteAuteurConfig } from './artiste-auteur/config'
 import { autoEntrepreneurConfig } from './auto-entrepreneur/config'
 import { auxiliaireMédicalConfig } from './auxiliaire-médical/config'
@@ -30,7 +31,6 @@ import { professionLibéraleConfig } from './profession-libérale/config'
 import { sageFemmeConfig } from './sage-femme/config'
 import { salariéConfig } from './salarié/config'
 import { sasuConfig } from './sasu/config'
-import { économieCollaborativeConfig } from './économie-collaborative/config'
 
 /**
  * Contient l'intégralité des données concernant les différents simulateurs et assistants

@@ -29,6 +29,10 @@ const rawSitePathsFr = {
 		'recherche-code-ape': 'recherche-code-ape',
 		'déclaration-charges-sociales-indépendant':
 			'declaration-charges-sociales-independant',
+		économieCollaborative: {
+			index: 'économie-collaborative',
+			votreSituation: 'votre-situation',
+		},
 		'pour-mon-entreprise': {
 			index: 'pour-mon-entreprise',
 			entreprise: ':entreprise',
@@ -80,10 +84,6 @@ const rawSitePathsFr = {
 			cipav: 'cipav',
 		},
 		'chômage-partiel': 'chômage-partiel',
-		économieCollaborative: {
-			index: 'économie-collaborative',
-			votreSituation: 'votre-situation',
-		},
 		is: 'impot-societe',
 		dividendes: 'dividendes',
 	},
@@ -114,6 +114,10 @@ const rawSitePathsEn = {
 		'recherche-code-ape': 'search-code-ape',
 		'déclaration-charges-sociales-indépendant':
 			'declaration-social-charges-independent',
+		économieCollaborative: {
+			index: 'sharing-economy',
+			votreSituation: 'your-situation',
+		},
 		'pour-mon-entreprise': {
 			index: 'for-my-business',
 			entreprise: ':entreprise',
@@ -164,10 +168,6 @@ const rawSitePathsEn = {
 			avocat: 'lawyer',
 			'expert-comptable': 'accountant',
 			cipav: 'cipav',
-		},
-		économieCollaborative: {
-			index: 'sharing-economy',
-			votreSituation: 'your-situation',
 		},
 		is: 'corporate-tax',
 		dividendes: 'dividends',

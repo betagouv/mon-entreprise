@@ -86,13 +86,13 @@ type ActivitéSelectionProps = {
 
 export const ActivitéSelection = ({
 	activités,
-	currentActivité,
+	currentActivité = '',
 }: ActivitéSelectionProps) => {
 	const { state } = useContext(StoreContext)
-	const activitéRépondue = activitésRéponduesSelector(state)
-	const nextButtonDisabled = activitésEffectuéesSelector(state).every(
-		(a) => !activités.includes(a)
-	)
+	const activitéRépondue = (state && activitésRéponduesSelector(state)) ?? []
+	const nextButtonDisabled =
+		state !== null &&
+		activitésEffectuéesSelector(state).every((a) => !activités.includes(a))
 
 	return (
 		<>
@@ -114,10 +114,7 @@ export const ActivitéSelection = ({
 				})}
 			</Grid>
 			<Spacing xl />
-			<NextButton
-				disabled={nextButtonDisabled}
-				activité={currentActivité as any}
-			/>
+			<NextButton disabled={nextButtonDisabled} activité={currentActivité} />
 		</>
 	)
 }

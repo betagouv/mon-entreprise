@@ -4,8 +4,8 @@ import { Project } from 'ts-morph'
 import yaml from 'yaml'
 
 const buildYamlToDts = [
-	'./source/pages/Simulateurs/économie-collaborative/activités.yaml',
-	'./source/pages/Simulateurs/économie-collaborative/activités.en.yaml',
+	'./source/pages/assistants/économie-collaborative/activités.yaml',
+	'./source/pages/assistants/économie-collaborative/activités.en.yaml',
 ]
 
 const transform = (data: Record<string, unknown>, filePath: string) => {

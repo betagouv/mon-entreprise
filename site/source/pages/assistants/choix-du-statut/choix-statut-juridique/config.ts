@@ -1,10 +1,6 @@
-// import {NavigateToChoixStatutJuridique} from '.'
-
-import { NavigateToChoixStatutJuridique } from '.'
 import ChoixDuStatut from '..'
 import { config } from '../../../Simulateurs/configs/config'
 import { SimulatorsDataParams } from '../../../Simulateurs/configs/types'
-import GuideStatut from '../GuideStatut'
 
 export function choixStatutJuridiqueConfig({
 	t,

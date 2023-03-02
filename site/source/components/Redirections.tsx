@@ -60,6 +60,16 @@ export default function Redirections({ children }: Props) {
 					absoluteSitePaths.assistants['choix-du-statut'].index
 				),
 			},
+			{
+				paths: [
+					'/simulateurs/économie-collaborative/*',
+					'/calculators/sharing-economy/*',
+				],
+				to: decodeURI(pathname).replace(
+					/^\/(simulateurs|calculators)/,
+					absoluteSitePaths.assistants.index
+				),
+			},
 		] satisfies { paths: string[]; to: string }[]
 	}, [
 		absoluteSitePaths.assistants,

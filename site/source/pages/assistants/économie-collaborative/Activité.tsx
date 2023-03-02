@@ -35,9 +35,7 @@ export default function Activité() {
 	const activité = getTranslatedActivité(title, language)
 	if (state && !(title in state)) {
 		return (
-			<Navigate
-				to={absoluteSitePaths.simulateurs.économieCollaborative.index}
-			/>
+			<Navigate to={absoluteSitePaths.assistants.économieCollaborative.index} />
 		)
 	}
 
@@ -66,7 +64,7 @@ export default function Activité() {
 	}
 
 	const seuilRevenus = state?.[title].seuilRevenus ?? undefined
-	const estExonérée = estExonéréeSelector(title)(state)
+	const estExonérée = state && estExonéréeSelector(title)(state)
 
 	return (
 		<section key={title}>

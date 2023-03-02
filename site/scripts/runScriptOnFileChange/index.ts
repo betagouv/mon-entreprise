@@ -9,8 +9,8 @@ export const runScriptOnFileChange = async () => {
 		options: [
 			{
 				paths: [
-					'./source/pages/Simulateurs/économie-collaborative/activités.yaml',
-					'./source/pages/Simulateurs/économie-collaborative/activités.en.yaml',
+					'./source/pages/assistants/économie-collaborative/activités.yaml',
+					'./source/pages/assistants/économie-collaborative/activités.en.yaml',
 				],
 				run: 'yarn build:yaml-to-dts',
 			},
