@@ -62,7 +62,7 @@ async function searchFullText(
 		return null
 	}
 
-	const json: FabriqueSocialSearchPayload = await response.json()
+	const json = (await response.json()) as FabriqueSocialSearchPayload
 
 	return json.entreprises
 }
