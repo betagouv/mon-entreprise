@@ -2,7 +2,7 @@ import { TrackPage } from '@/components/ATInternetTracking'
 import { H2 } from '@/design-system/typography/heading'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 
-import { SimulateurCard } from '../Home'
+import { SimulateurCard } from '../../simulateurs-et-assistants'
 
 export default function SalariéSimulation() {
 	const simulators = useSimulatorsData()

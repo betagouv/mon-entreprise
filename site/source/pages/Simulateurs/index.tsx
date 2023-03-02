@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { usePersistingState } from '@/components/utils/persistState'
@@ -10,7 +10,6 @@ import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 import SimulateurPage from '../../components/PageData'
-import Home from './Home'
 
 type State = {
 	fromGérer?: boolean
@@ -79,7 +78,12 @@ export default function Simulateurs() {
 					)
 				) : null)}
 			<Routes>
-				<Route index element={<Home />} />
+				<Route
+					index
+					element={
+						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
+					}
+				/>
 				{simulatorRoutes}
 			</Routes>
 		</>

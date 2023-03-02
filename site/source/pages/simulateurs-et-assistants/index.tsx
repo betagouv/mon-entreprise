@@ -2,6 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
+import Meta from '@/components/utils/Meta'
 import { Chip } from '@/design-system'
 import InfoBulle from '@/design-system/InfoBulle'
 import { Card } from '@/design-system/card'
@@ -18,10 +19,9 @@ import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import Meta from '../../components/utils/Meta'
-import simulatorSvg from './images/illustration-simulateur.svg'
+import simulatorSvg from './illustration-simulateur.svg'
 
-export default function Simulateurs() {
+export default function SimulateursEtAssistants() {
 	const { t } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
 	const simulators = useSimulatorsData()

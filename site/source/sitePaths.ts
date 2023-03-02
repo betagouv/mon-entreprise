@@ -91,6 +91,7 @@ const rawSitePathsFr = {
 	stats: 'statistiques',
 	accessibilité: 'accessibilité',
 	budget: 'budget',
+	simulateursEtAssistants: 'simulateurs-et-assistants',
 	développeur: {
 		index: 'développeur',
 		iframe: 'iframe',
@@ -175,6 +176,7 @@ const rawSitePathsEn = {
 	nouveautés: 'news',
 	stats: 'statistics',
 	accessibilité: 'accessibility',
+	simulateursEtAssistants: 'simulators-and-assistants',
 	développeur: {
 		...rawSitePathsFr.développeur,
 		index: 'developer',
