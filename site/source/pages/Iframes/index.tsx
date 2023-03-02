@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 
 import Route404 from '@/components/Route404'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
@@ -26,7 +26,7 @@ export default function Iframes() {
 							s.iframePath && (
 								<Route
 									key={s.iframePath}
-									path={'/' + encodeURI(s.iframePath) + '/*'}
+									path={s.iframePath + '/*'}
 									element={
 										<>
 											<Helmet>
