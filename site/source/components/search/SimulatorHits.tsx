@@ -27,7 +27,7 @@ const SimulateurCardHit = ({
 	path,
 	tooltip,
 }: {
-	path: MergedSimulatorDataValues['path']
+	path: MergedSimulatorDataValues['path'] | '/'
 	tooltip?: MergedSimulatorDataValues['tooltip']
 	hit: AlgoliaSimulatorHit
 }) => {
@@ -52,6 +52,16 @@ export const SimulatorHits = connectHits<
 >(({ hits }: SimulatorHitsProps) => {
 	const { absoluteSitePaths } = useSitePaths()
 
+	const getPath = (hit: AlgoliaSimulatorHit) =>
+		hit.pathId
+			.split('.')
+			.reduce<Record<string, unknown> | null>(
+				(acc, curr) =>
+					(acc && curr in acc && (acc[curr] as Record<string, unknown>)) ||
+					null,
+				absoluteSitePaths
+			) as MergedSimulatorDataValues['path'] | null
+
 	return (
 		<>
 			{hits.length > 0 && (
@@ -64,17 +74,7 @@ export const SimulatorHits = connectHits<
 					(hit) =>
 						hit.pathId && (
 							<Grid item key={hit.objectID} xs={12} lg={6}>
-								<SimulateurCardHit
-									hit={hit}
-									path={
-										hit.pathId
-											.split('.')
-											.reduce<unknown>(
-												(acc, curr) => (acc as Record<string, unknown>)[curr],
-												absoluteSitePaths
-											) as MergedSimulatorDataValues['path']
-									}
-								/>
+								<SimulateurCardHit hit={hit} path={getPath(hit) ?? '/'} />
 							</Grid>
 						)
 				)}
