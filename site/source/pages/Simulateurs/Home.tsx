@@ -279,7 +279,10 @@ export function SimulateurCard({
 										'Lancer le simulateur'
 								  )
 						}
-						to={{ pathname: (isIframe && iframePath) || path }}
+						to={{
+							pathname:
+								(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
+						}}
 						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 						role="link"
 					>
