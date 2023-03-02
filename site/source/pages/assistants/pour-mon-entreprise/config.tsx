@@ -8,6 +8,7 @@ export function pourMonEntrepriseConfig({
 	sitePaths,
 }: SimulatorsDataParams) {
 	return config({
+		private: true,
 		id: 'pour-mon-entreprise',
 		pathId: 'assistants.pour-mon-entreprise.index',
 		path: sitePaths.assistants['pour-mon-entreprise'].index,
