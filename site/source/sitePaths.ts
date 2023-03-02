@@ -127,7 +127,7 @@ const rawSitePathsEn = {
 		},
 		'choix-du-statut': {
 			...rawSitePathsFr.assistants['choix-du-statut'],
-			index: 'create',
+			index: 'choice-of-status',
 			après: 'after-registration',
 			guideStatut: {
 				index: 'legal-status',
