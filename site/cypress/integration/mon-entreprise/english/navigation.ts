@@ -5,14 +5,18 @@ const writeFixtures = Cypress.env('record_http') !== undefined
 describe('General navigation', function () {
 	it('should enable switching site language', function () {
 		cy.visit(
-			fr ? encodeURI('/créer/auto-entrepreneur') : '/create/auto-entrepreneur'
+			fr
+				? encodeURI('/assistants/choix-du-statut/auto-entrepreneur')
+				: '/assistants/choice-of-status/auto-entrepreneur'
 		)
 		cy.get(
 			fr ? '[data-test-id=en-switch-button]' : '[data-test-id=fr-switch-button]'
 		).click()
 		cy.url().should(
 			'include',
-			fr ? '/create/auto-entrepreneur' : encodeURI('/créer/auto-entrepreneur')
+			fr
+				? '/assistants/choice-of-status/auto-entrepreneur'
+				: encodeURI('/assistants/choix-du-statut/auto-entrepreneur')
 		)
 	})
 
