@@ -56,6 +56,14 @@ export type SimulationConfig = Partial<{
 	'unité par défaut'?: string
 }>
 
+type Tracking =
+	| string
+	| {
+			chapter1?: string
+			chapter2?: string
+			chapter3?: string
+	  }
+
 export interface PageConfig {
 	id: string
 	path?: string
@@ -64,13 +72,7 @@ export interface PageConfig {
 	icône: string
 	shortName: string
 	title: string
-	tracking:
-		| string
-		| {
-				chapter1?: string
-				chapter2?: string
-				chapter3?: string
-		  }
+	tracking: Tracking
 	meta: {
 		title: string
 		description: string
@@ -79,6 +81,9 @@ export interface PageConfig {
 		ogImage?: string
 		color?: string
 	}
+	/**
+	 * Hides the simulator in the iframe integration page
+	 */
 	private?: boolean
 	beta?: boolean
 	tooltip?: string
