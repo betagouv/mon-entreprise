@@ -82,7 +82,10 @@ export default function VotreSituation() {
 								concernées (et le changer si besoin). Sinon, vous aurez à créer
 								une nouvelle entreprise.
 							</Body>
-							<Button to={absoluteSitePaths.créer.index} light>
+							<Button
+								to={absoluteSitePaths.assistants['choix-du-statut'].index}
+								light
+							>
 								Créer une entreprise
 							</Button>
 						</Trans>

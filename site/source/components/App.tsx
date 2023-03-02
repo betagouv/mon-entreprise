@@ -23,7 +23,6 @@ import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
 import Accessibilité from '@/pages/Accessibilité'
 import Budget from '@/pages/Budget/Budget'
-import Créer from '@/pages/Creer'
 import IntegrationTest from '@/pages/Dev/IntegrationTest'
 import Documentation from '@/pages/Documentation'
 import Iframes from '@/pages/Iframes'
@@ -166,10 +165,6 @@ const App = () => {
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>
 						<Routes>
-							<Route
-								path={relativeSitePaths.créer.index + '/*'}
-								element={<Créer />}
-							/>
 							<Route
 								path={relativeSitePaths.assistants.index + '/*'}
 								element={<Assistants />}

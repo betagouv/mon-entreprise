@@ -17,7 +17,7 @@ export const pagesToPrerender: {
 } = {
 	'mon-entreprise': [
 		sitePathFr.index,
-		sitePathFr.créer.index,
+		sitePathFr.assistants['choix-du-statut'].index,
 		sitePathFr.simulateurs.index,
 		sitePathFr.simulateurs.salarié,
 		sitePathFr.simulateurs['chômage-partiel'],

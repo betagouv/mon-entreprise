@@ -21,30 +21,18 @@ const status = Object.fromEntries(
 
 const rawSitePathsFr = {
 	index: '',
-	créer: {
-		index: 'créer',
-		...status,
-		après: 'après-la-création',
-		guideStatut: {
-			index: 'statut-juridique',
-			liste: 'liste',
-			soleProprietorship: 'responsabilité',
-			directorStatus: 'dirigeant',
-			autoEntrepreneur: 'auto-entrepreneur-ou-entreprise-individuelle',
-			multipleAssociates: 'nombre-associés',
-			minorityDirector: 'gérant-majoritaire-ou-minoritaire',
-		},
-	},
 	assistants: {
 		index: 'assistants',
+		embaucher: 'embaucher',
+		sécuritéSociale: 'sécurité-sociale',
+		formulaireMobilité: 'demande-mobilité',
+		'recherche-code-ape': 'recherche-code-ape',
+		'déclaration-charges-sociales-indépendant':
+			'declaration-charges-sociales-independant',
 		'pour-mon-entreprise': {
 			index: 'pour-mon-entreprise',
 			entreprise: ':entreprise',
 		},
-		embaucher: 'embaucher',
-		sécuritéSociale: 'sécurité-sociale',
-		'déclaration-charges-sociales-indépendant':
-			'declaration-charges-sociales-independant',
 		déclarationIndépendant: {
 			index: 'aide-declaration-independants-v2',
 			entreprise: 'entreprise',
@@ -52,8 +40,20 @@ const rawSitePathsFr = {
 			déclaration: 'declaration',
 			cotisations: 'cotisations',
 		},
-		formulaireMobilité: 'demande-mobilité',
-		'recherche-code-ape': 'recherche-code-ape',
+		'choix-du-statut': {
+			index: 'choix-du-statut',
+			...status,
+			après: 'après-la-création',
+			guideStatut: {
+				index: 'statut-juridique',
+				liste: 'liste',
+				soleProprietorship: 'responsabilité',
+				directorStatus: 'dirigeant',
+				autoEntrepreneur: 'auto-entrepreneur-ou-entreprise-individuelle',
+				multipleAssociates: 'nombre-associés',
+				minorityDirector: 'gérant-majoritaire-ou-minoritaire',
+			},
+		},
 	},
 	simulateurs: {
 		index: 'simulateurs',
@@ -106,30 +106,18 @@ const rawSitePathsFr = {
 
 const rawSitePathsEn = {
 	...rawSitePathsFr,
-	créer: {
-		...rawSitePathsFr.créer,
-		index: 'create',
-		après: 'after-registration',
-		guideStatut: {
-			index: 'legal-status',
-			liste: 'list',
-			soleProprietorship: 'liability',
-			directorStatus: 'director',
-			autoEntrepreneur: 'auto-entrepreneur',
-			multipleAssociates: 'multiple-associates',
-			minorityDirector: 'chairman-or-managing-director',
-		},
-	},
 	assistants: {
 		index: 'assistants',
+		embaucher: 'hiring',
+		sécuritéSociale: 'social-security',
+		formulaireMobilité: 'posting-demand',
+		'recherche-code-ape': 'search-code-ape',
+		'déclaration-charges-sociales-indépendant':
+			'declaration-social-charges-independent',
 		'pour-mon-entreprise': {
 			index: 'for-my-business',
 			entreprise: ':entreprise',
 		},
-		embaucher: 'hiring',
-		sécuritéSociale: 'social-security',
-		'déclaration-charges-sociales-indépendant':
-			'declaration-social-charges-independent',
 		déclarationIndépendant: {
 			index: 'declaration-aid-independent-v2',
 			imposition: 'taxation',
@@ -137,8 +125,20 @@ const rawSitePathsEn = {
 			déclaration: 'declaration',
 			cotisations: 'contributions',
 		},
-		formulaireMobilité: 'posting-demand',
-		'recherche-code-ape': 'search-code-ape',
+		'choix-du-statut': {
+			...rawSitePathsFr.assistants['choix-du-statut'],
+			index: 'create',
+			après: 'after-registration',
+			guideStatut: {
+				index: 'legal-status',
+				liste: 'list',
+				soleProprietorship: 'liability',
+				directorStatus: 'director',
+				autoEntrepreneur: 'auto-entrepreneur',
+				multipleAssociates: 'multiple-associates',
+				minorityDirector: 'chairman-or-managing-director',
+			},
+		},
 	},
 	simulateurs: {
 		index: 'calculators',
@@ -210,10 +210,10 @@ type PathIds = MetadataSrc[keyof MetadataSrc]['pathId']
 type RequiredPath = Required<UnionToIntersection<PathToType<PathIds, string>>>
 
 // If there is a type error here, check rawSitePathsFr object matches the metadata-src.ts pathId
-const checkedSitePathsFr: RequiredPath & typeof rawSitePathsFr = rawSitePathsFr
+const checkedSitePathsFr = rawSitePathsFr satisfies RequiredPath
 
 // If there is a type error here, check rawSitePathsEn object matches the metadata-src.ts pathId
-const checkedSitePathsEn: RequiredPath & typeof rawSitePathsEn = rawSitePathsEn
+const checkedSitePathsEn = rawSitePathsEn satisfies RequiredPath
 
 type SitePathsFr = typeof checkedSitePathsFr
 type SitePathsEn = typeof checkedSitePathsEn

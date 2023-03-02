@@ -60,7 +60,10 @@ export default function Simulateurs() {
 						<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 					</Link>
 				) : lastState?.fromCréer ? (
-					<Link to={absoluteSitePaths.créer.index} noUnderline>
+					<Link
+						to={absoluteSitePaths.assistants['choix-du-statut'].index}
+						noUnderline
+					>
 						<span aria-hidden>←</span> <Trans>Retour à la création</Trans>
 					</Link>
 				) : !isEmbedded ? (

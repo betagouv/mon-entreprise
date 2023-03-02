@@ -9,6 +9,7 @@ import { Link } from '@/design-system/typography/link'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
+import ChoixDuStatut from './choix-du-statut'
 import Embaucher from './embaucher'
 import SocialSecurity from './sécurité-sociale'
 
@@ -27,47 +28,52 @@ export default function Gérer() {
 		<>
 			<ScrollToTop key={location.pathname} />
 
-			<TrackChapter chapter1="gerer">
-				<Routes>
-					{/* <Route index element={<Home />} />  Navigate to /simu-et-assist */}
-					<Route
-						path={relativeSitePaths.assistants.sécuritéSociale}
-						element={
-							<>
-								{back}
-								<SocialSecurity />
-							</>
-						}
-					/>
-					<Route
-						path={relativeSitePaths.assistants.embaucher}
-						element={
-							<>
-								{back}
-								<Embaucher />
-							</>
-						}
-					/>
-					{Object.entries(simulateurs)
-						.filter(([, simu]) => simu.pathId.startsWith('assistants.'))
-						.map(([, simu]) => (
-							<Route
-								key={simu.path}
-								path={
-									simu.path.replace(absoluteSitePaths.assistants.index, '') +
-									'/*'
-								}
-								element={
-									<>
-										{back}
-										<PageData />
-									</>
-								}
-							/>
-						))}
-					<Route path="*" element={<Route404 />} />
-				</Routes>
-			</TrackChapter>
+			<Routes>
+				{/* <Route index element={<Home />} />  Navigate to /simu-et-assist */}
+				<Route
+					path={relativeSitePaths.assistants.sécuritéSociale}
+					element={
+						<TrackChapter chapter1="gerer">
+							{back}
+							<SocialSecurity />
+						</TrackChapter>
+					}
+				/>
+				<Route
+					path={relativeSitePaths.assistants.embaucher}
+					element={
+						<TrackChapter chapter1="gerer">
+							{back}
+							<Embaucher />
+						</TrackChapter>
+					}
+				/>
+				<Route
+					path={relativeSitePaths.assistants['choix-du-statut'].index + '/*'}
+					element={
+						<TrackChapter chapter1="creer">
+							<ChoixDuStatut />
+						</TrackChapter>
+					}
+				/>
+				{Object.entries(simulateurs)
+					.filter(([, simu]) => simu.pathId.startsWith('assistants.'))
+					.map(([, simu]) => (
+						<Route
+							key={simu.path}
+							path={
+								simu.path.replace(absoluteSitePaths.assistants.index, '') + '/*'
+							}
+							element={
+								<>
+									{back}
+									<PageData />
+								</>
+							}
+						/>
+					))}
+				<Route path="*" element={<Route404 />} />
+			</Routes>
 		</>
 	)
 }

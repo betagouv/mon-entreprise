@@ -31,7 +31,7 @@ const useResetFollowingAnswers = () => {
 	)
 	useEffect(() => {
 		const companyStatusCurrentQuestionName = (Object.entries(
-			absoluteSitePaths.créer.guideStatut
+			absoluteSitePaths.assistants['choix-du-statut'].guideStatut
 		).find(([, pathname]) => location.pathname === pathname) || [])[0]
 		if (!companyStatusCurrentQuestionName) {
 			return
@@ -48,7 +48,7 @@ const useResetFollowingAnswers = () => {
 				)
 			)
 		}
-	}, [location.pathname, dispatch, absoluteSitePaths.créer.guideStatut])
+	}, [location.pathname, dispatch, absoluteSitePaths.assistants])
 }
 
 export default function Créer() {
@@ -58,7 +58,7 @@ export default function Créer() {
 
 	return (
 		<>
-			<Link to={absoluteSitePaths.créer.index}>
+			<Link to={absoluteSitePaths.assistants['choix-du-statut'].index}>
 				<span aria-hidden>←</span> <Trans>Retour</Trans>
 			</Link>
 			<TrackChapter chapter2="guide">
@@ -71,34 +71,55 @@ export default function Créer() {
 				<FromBottom key={location.pathname}>
 					<Routes>
 						<Route
-							path={relativeSitePaths.créer.guideStatut.soleProprietorship}
+							path={
+								relativeSitePaths.assistants['choix-du-statut'].guideStatut
+									.soleProprietorship
+							}
 							element={<SoleProprietorship />}
 						/>
 						<Route
-							path={relativeSitePaths.créer.guideStatut.directorStatus}
+							path={
+								relativeSitePaths.assistants['choix-du-statut'].guideStatut
+									.directorStatus
+							}
 							element={<DirectorStatus />}
 						/>
 						<Route
-							path={relativeSitePaths.créer.guideStatut.autoEntrepreneur}
+							path={
+								relativeSitePaths.assistants['choix-du-statut'].guideStatut
+									.autoEntrepreneur
+							}
 							element={<AutoEntrepreneur />}
 						/>
 						<Route
-							path={relativeSitePaths.créer.guideStatut.multipleAssociates}
+							path={
+								relativeSitePaths.assistants['choix-du-statut'].guideStatut
+									.multipleAssociates
+							}
 							element={<NumberOfAssociate />}
 						/>
 						<Route
-							path={relativeSitePaths.créer.guideStatut.minorityDirector}
+							path={
+								relativeSitePaths.assistants['choix-du-statut'].guideStatut
+									.minorityDirector
+							}
 							element={<MinorityDirector />}
 						/>
 						<Route
-							path={relativeSitePaths.créer.guideStatut.liste}
+							path={
+								relativeSitePaths.assistants['choix-du-statut'].guideStatut
+									.liste
+							}
 							element={<PickLegalStatus />}
 						/>
 						<Route
 							index
 							element={
 								<Navigate
-									to={absoluteSitePaths.créer.guideStatut.liste}
+									to={
+										absoluteSitePaths.assistants['choix-du-statut'].guideStatut
+											.liste
+									}
 									replace
 								/>
 							}

@@ -99,8 +99,10 @@ export default function SearchOrCreate() {
 										role="link"
 										to={
 											statutChoisi
-												? absoluteSitePaths.créer[statutChoisi]
-												: absoluteSitePaths.créer.index
+												? absoluteSitePaths.assistants['choix-du-statut'][
+														statutChoisi
+												  ]
+												: absoluteSitePaths.assistants['choix-du-statut'].index
 										}
 										aria-label={t(
 											'landing.choice.create.aria-label',

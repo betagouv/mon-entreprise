@@ -15,10 +15,10 @@ import { useSitePaths } from '@/sitePaths'
 import { RootState } from '@/store/reducers/rootReducer'
 import { useNextQuestionUrl } from '@/store/selectors/companyStatusSelectors'
 
-import { SimulateurCard } from '../../Simulateurs/Home'
+import { SimulateurCard } from '../../../Simulateurs/Home'
 import créerSvg from './créer.svg'
 
-export default function Créer() {
+export default function ChoixStatutJuridique() {
 	const { t } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
 	const nextQuestionUrl = useNextQuestionUrl()
@@ -54,7 +54,8 @@ export default function Créer() {
 					to={
 						guideAlreadyStarted && nextQuestionUrl
 							? nextQuestionUrl
-							: absoluteSitePaths.créer.guideStatut.multipleAssociates
+							: absoluteSitePaths.assistants['choix-du-statut'].guideStatut
+									.multipleAssociates
 					}
 				>
 					{!guideAlreadyStarted
@@ -90,7 +91,11 @@ export default function Créer() {
 							'créer.ressources.autoEntrepreneur.title',
 							'Démarche auto-entrepreneur'
 						)}
-						to={absoluteSitePaths.créer['auto-entrepreneur']}
+						to={
+							absoluteSitePaths.assistants['choix-du-statut'][
+								'auto-entrepreneur'
+							]
+						}
 						ctaLabel={t(
 							'créer.ressources.autoEntrepreneur.cta',
 							'Consulter les démarches'

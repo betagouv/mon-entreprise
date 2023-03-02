@@ -94,7 +94,7 @@ export default function PreviousAnswers() {
 						<PreviousAnswersItem key={key}>
 							<Link
 								to={
-									absoluteSitePaths.créer.guideStatut[
+									absoluteSitePaths.assistants['choix-du-statut'].guideStatut[
 										key as keyof typeof legalStatus
 									]
 								}

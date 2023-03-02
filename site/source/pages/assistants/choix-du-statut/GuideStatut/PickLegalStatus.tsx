@@ -24,7 +24,11 @@ const StatutButton = ({ statut }: StatutButtonProps) => {
 	const { t } = useTranslation()
 
 	return (
-		<Button to={absoluteSitePaths.créer[statut]} light size="XS">
+		<Button
+			to={absoluteSitePaths.assistants['choix-du-statut'][statut]}
+			light
+			size="XS"
+		>
 			<>
 				{statut.includes('auto-entrepreneur') ? (
 					<Trans>Devenir</Trans>
