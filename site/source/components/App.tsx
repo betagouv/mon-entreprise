@@ -3,7 +3,7 @@ import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
 import { ComponentProps, StrictMode, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import Route404 from '@/components/Route404'
@@ -37,6 +37,7 @@ import Integration from '@/pages/integration/index'
 import { useSitePaths } from '@/sitePaths'
 
 import Provider, { ProviderProps } from './Provider'
+import Redirections from './Redirections'
 
 type RootProps = {
 	basename: ProviderProps['basename']
@@ -68,51 +69,6 @@ export default function Root({
 				</EngineProvider>
 			</Provider>
 		</StrictMode>
-	)
-}
-
-const Redirections = ({ children }: { children: React.ReactNode }) => {
-	const { absoluteSitePaths } = useSitePaths()
-	const redirections = [
-		{
-			paths: ['/stats'],
-			to: absoluteSitePaths.stats,
-		},
-		{
-			paths: ['/plan-de-site', '/site-map'],
-			to: absoluteSitePaths.plan,
-		},
-		{
-			paths: [
-				'/gérer/aide-declaration-independants/beta',
-				'/manage/declaration-aid-independent/beta',
-			],
-			to: absoluteSitePaths.assistants.déclarationIndépendant.index,
-		},
-		{
-			paths: [
-				'/gérer/aide-declaration-independants',
-				'/manage/declaration-aid-independent',
-			],
-			to: absoluteSitePaths.assistants[
-				'déclaration-charges-sociales-indépendant'
-			],
-		},
-	] satisfies { paths: string[]; to: string }[]
-
-	return (
-		<Routes>
-			{redirections.flatMap(({ paths, to }) =>
-				paths.map((path) => (
-					<Route
-						key={path}
-						path={path}
-						element={<Navigate to={to} replace />}
-					/>
-				))
-			)}
-			<Route path="*" element={children} />
-		</Routes>
 	)
 }
 
