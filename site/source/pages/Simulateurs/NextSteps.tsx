@@ -5,11 +5,12 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
-import { FAQAutoEntrepreneurArticle } from '@/pages/Creer/CreationChecklist'
 import { GuideURSSAFCard } from '@/pages/Simulateurs/cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '@/pages/Simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/Simulateurs/cards/SimulatorRessourceCard'
 import { useSitePaths } from '@/sitePaths'
+
+import { FAQAutoEntrepreneurArticle } from '../assistants/choix-du-statut/CreationChecklist'
 
 interface NextStepsProps {
 	iframePath?: MergedSimulatorDataValues['iframePath']

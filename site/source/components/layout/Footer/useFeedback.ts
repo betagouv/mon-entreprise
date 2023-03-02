@@ -30,7 +30,7 @@ export const useFeedback = () => {
 			![
 				absoluteSitePaths.documentation.index,
 				absoluteSitePaths.assistants.index,
-				absoluteSitePaths.créer.index,
+				absoluteSitePaths.assistants['choix-du-statut'].index,
 				absoluteSitePaths.nouveautés,
 				absoluteSitePaths.stats,
 				absoluteSitePaths.développeur.index,

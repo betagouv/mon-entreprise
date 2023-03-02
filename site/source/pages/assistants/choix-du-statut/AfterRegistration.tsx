@@ -28,7 +28,10 @@ export default function AfterRegistration() {
 			</DefaultHelmet>
 			<ScrollToTop />
 			<TrackPage name="apres_la_creation" />
-			<Link noUnderline to={absoluteSitePaths.créer.index}>
+			<Link
+				noUnderline
+				to={absoluteSitePaths.assistants['choix-du-statut'].index}
+			>
 				<span aria-hidden>←</span> <Trans>Retour à la création</Trans>
 			</Link>
 			<H1>

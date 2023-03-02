@@ -40,7 +40,9 @@ export default function Plan() {
 				</Li>
 				<Li>
 					<H3 as="h2">
-						<HeaderLink to={absoluteSitePaths.créer.index}>
+						<HeaderLink
+							to={absoluteSitePaths.assistants['choix-du-statut'].index}
+						>
 							<Trans>Créer une entreprise</Trans>
 						</HeaderLink>
 					</H3>
@@ -48,14 +50,21 @@ export default function Plan() {
 					<Ul>
 						<Li>
 							<H3 as="h2">
-								<Link to={absoluteSitePaths.créer.après}>
+								<Link
+									to={absoluteSitePaths.assistants['choix-du-statut'].après}
+								>
 									<Trans>Après la création</Trans>
 								</Link>
 							</H3>
 						</Li>
 						<Li>
 							<H3 as="h2">
-								<Link to={absoluteSitePaths.créer.guideStatut.index}>
+								<Link
+									to={
+										absoluteSitePaths.assistants['choix-du-statut'].guideStatut
+											.index
+									}
+								>
 									<Trans>Choix du statut juridique</Trans>
 								</Link>
 							</H3>

@@ -1,6 +1,6 @@
 import { ImmutableType } from '@/types/utils'
 
-import { choixStatutConfig } from '../Creer/choix-statut/config'
+import { choixStatutJuridiqueConfig } from '../assistants/choix-du-statut/choix-statut-juridique/config'
 import { déclarationChargesSocialesIndépendantConfig } from '../assistants/declaration-charges-sociales-independant/config'
 import { déclarationRevenuIndépendantBetaConfig } from '../assistants/declaration-revenu-independants/config'
 import { demandeMobilitéConfig } from '../assistants/demande-mobilité/config'
@@ -51,7 +51,6 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...chômagePartielConfig(params),
 		...comparaisonStatutsConfig(params),
 		...économieCollaborativeConfig(params),
-		...choixStatutConfig(params),
 		...pharmacienConfig(params),
 		...médecinConfig(params),
 		...chirurgienDentisteConfig(params),
@@ -67,11 +66,12 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...cipavConfig(params),
 
 		// assistants:
+		...choixStatutJuridiqueConfig(params),
 		...déclarationChargesSocialesIndépendantConfig(params),
 		...déclarationRevenuIndépendantBetaConfig(params),
 		...demandeMobilitéConfig(params),
-		...rechercheCodeApeConfig(params),
 		...pourMonEntrepriseConfig(params),
+		...rechercheCodeApeConfig(params),
 	} as const
 
 	return data satisfies ImmutableType<Record<string, PageConfig>>

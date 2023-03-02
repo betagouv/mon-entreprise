@@ -184,8 +184,10 @@ export const useNextQuestionUrl = () => {
 	const nextQuestion = useSelector(nextQuestionSelector)
 	const { absoluteSitePaths } = useSitePaths()
 	if (!nextQuestion) {
-		return absoluteSitePaths.créer.guideStatut.liste
+		return absoluteSitePaths.assistants['choix-du-statut'].guideStatut.liste
 	}
 
-	return absoluteSitePaths.créer.guideStatut[nextQuestion]
+	return absoluteSitePaths.assistants['choix-du-statut'].guideStatut[
+		nextQuestion
+	]
 }

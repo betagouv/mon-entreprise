@@ -76,7 +76,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 			</DefaultHelmet>
 			<Scroll.toTop />
 			<Link
-				to={absoluteSitePaths.créer.index}
+				to={absoluteSitePaths.assistants['choix-du-statut'].index}
 				onPress={() => {
 					dispatch(resetCompanyStatusChoice())
 				}}
@@ -547,7 +547,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								</Trans>
 							</h3>
 						}
-						to={absoluteSitePaths.créer.après}
+						to={absoluteSitePaths.assistants['choix-du-statut'].après}
 						ctaLabel={t('entreprise.ressources.après.cta', 'Voir le glossaire')}
 					>
 						<Trans i18nKey="entreprise.ressources.après.body">
