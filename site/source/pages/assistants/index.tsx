@@ -1,9 +1,8 @@
 import { Trans } from 'react-i18next'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { TrackChapter } from '@/components/ATInternetTracking'
 import PageData from '@/components/PageData'
-import Route404 from '@/components/Route404'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Link } from '@/design-system/typography/link'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
@@ -29,7 +28,13 @@ export default function Gérer() {
 			<ScrollToTop key={location.pathname} />
 
 			<Routes>
-				{/* <Route index element={<Home />} />  Navigate to /simu-et-assist */}
+				{/* TODO Navigate to /simu-et-assist */}
+				<Route
+					index
+					element={
+						<Navigate to={absoluteSitePaths.simulateurs.index} replace />
+					}
+				/>
 				<Route
 					path={relativeSitePaths.assistants.sécuritéSociale}
 					element={
@@ -72,7 +77,18 @@ export default function Gérer() {
 							}
 						/>
 					))}
-				<Route path="*" element={<Route404 />} />
+				<Route
+					path="*"
+					element={
+						<Navigate
+							to={decodeURI(location.pathname).replace(
+								absoluteSitePaths.assistants.index,
+								absoluteSitePaths.assistants['pour-mon-entreprise'].index
+							)}
+							replace
+						/>
+					}
+				/>
 			</Routes>
 		</>
 	)
