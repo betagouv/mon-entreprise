@@ -32,7 +32,9 @@ export function pourMonEntrepriseConfig({
 				'Simulateurs et assistants adaptés à votre entreprise'
 			),
 		},
-		tracking: {},
+		tracking: {
+			chapter1: 'gerer',
+		},
 		component: PourMonEntreprise as () => JSX.Element, // avoid types loop error
 	} as const)
 }
