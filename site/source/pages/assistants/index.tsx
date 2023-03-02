@@ -28,11 +28,10 @@ export default function Gérer() {
 			<ScrollToTop key={location.pathname} />
 
 			<Routes>
-				{/* TODO Navigate to /simu-et-assist */}
 				<Route
 					index
 					element={
-						<Navigate to={absoluteSitePaths.simulateurs.index} replace />
+						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
 				/>
 				<Route

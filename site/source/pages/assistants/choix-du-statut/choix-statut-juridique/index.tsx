@@ -11,11 +11,11 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { SimulateurCard } from '@/pages/simulateurs-et-assistants'
 import { useSitePaths } from '@/sitePaths'
 import { RootState } from '@/store/reducers/rootReducer'
 import { useNextQuestionUrl } from '@/store/selectors/companyStatusSelectors'
 
-import { SimulateurCard } from '../../../Simulateurs/Home'
 import créerSvg from './créer.svg'
 
 export default function ChoixStatutJuridique() {

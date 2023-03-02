@@ -34,6 +34,7 @@ import Simulateurs from '@/pages/Simulateurs'
 import Stats from '@/pages/Stats/LazyStats'
 import Assistants from '@/pages/assistants/index'
 import Integration from '@/pages/integration/index'
+import SimulateursEtAssistants from '@/pages/simulateurs-et-assistants'
 import { useSitePaths } from '@/sitePaths'
 
 import Provider, { ProviderProps } from './Provider'
@@ -128,6 +129,10 @@ const App = () => {
 							<Route
 								path={relativeSitePaths.simulateurs.index + '/*'}
 								element={<Simulateurs />}
+							/>
+							<Route
+								path={relativeSitePaths.simulateursEtAssistants + '/*'}
+								element={<SimulateursEtAssistants />}
 							/>
 							<Route
 								path={relativeSitePaths.documentation.index + '/*'}

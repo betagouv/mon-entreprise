@@ -20,7 +20,7 @@ import { useFetchData } from '@/hooks/useFetchData'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import { debounce, groupBy } from '@/utils'
 
-import { SimulateurCard } from '../Simulateurs/Home'
+import { SimulateurCard } from '../simulateurs-et-assistants'
 import Chart, { Data, isDataStacked } from './Chart'
 import DemandeUtilisateurs from './DemandesUtilisateurs'
 import GlobalStats, { BigIndicator } from './GlobalStats'

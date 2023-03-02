@@ -15,7 +15,7 @@ import { useGetFullURL } from '@/hooks/useGetFullURL'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import { SimulateurCard } from '../Simulateurs/Home'
+import { SimulateurCard } from '../simulateurs-et-assistants'
 import SearchOrCreate from './SearchOrCreate'
 import illustration2Svg from './illustration2.svg'
 import illustrationSvg from './illustration.svg'
