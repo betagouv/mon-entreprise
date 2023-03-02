@@ -111,7 +111,7 @@ export const ActiviteCard = ({
 						light
 						onClick={(e) => e.stopPropagation()}
 						to={
-							absoluteSitePaths.simulateurs.économieCollaborative.index +
+							absoluteSitePaths.assistants.économieCollaborative.index +
 							'/' +
 							title
 						}

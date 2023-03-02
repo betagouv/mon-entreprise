@@ -153,7 +153,7 @@ export default function Plan() {
 						<Li key="list-item-economie-collaborative">
 							<H3>
 								<Link
-									to={absoluteSitePaths.simulateurs.économieCollaborative.index}
+									to={absoluteSitePaths.assistants.économieCollaborative.index}
 								>
 									<Trans>
 										Assistant à la déclaration des revenus des plateformes en

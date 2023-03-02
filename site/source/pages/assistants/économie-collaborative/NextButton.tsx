@@ -16,12 +16,12 @@ type NextButtonProps = {
 export default function NextButton({ activité, disabled }: NextButtonProps) {
 	const { absoluteSitePaths } = useSitePaths()
 	const { state, dispatch } = useContext(StoreContext)
-	const nextActivité = nextActivitéSelector(state, activité)
+	const nextActivité = state && nextActivitéSelector(state, activité)
 	const nextTo = nextActivité
-		? absoluteSitePaths.simulateurs.économieCollaborative.index +
+		? absoluteSitePaths.assistants.économieCollaborative.index +
 		  '/' +
 		  nextActivité
-		: absoluteSitePaths.simulateurs.économieCollaborative.votreSituation
+		: absoluteSitePaths.assistants.économieCollaborative.votreSituation
 
 	return (
 		<p css="text-align: center">

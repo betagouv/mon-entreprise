@@ -1,15 +1,27 @@
 import ÉconomieCollaborative from '.'
-import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../configs/types'
+import { config } from '../../Simulateurs/configs/config'
+import { SimulatorsDataParams } from '../../Simulateurs/configs/types'
 
 export function économieCollaborativeConfig({
 	t,
 	sitePaths,
 }: SimulatorsDataParams) {
 	return config({
+		beta: true,
 		id: 'économie-collaborative',
-		path: sitePaths.simulateurs.économieCollaborative.index,
+		pathId: 'assistants.économieCollaborative.index',
+		path: sitePaths.assistants.économieCollaborative.index,
+		iframePath: 'economie-collaborative',
 		tracking: 'economie_collaborative',
+		icône: '🙋',
+		title: t(
+			'pages.économie-collaborative.title',
+			'Assistant à la déclaration des revenus des plateformes en ligne'
+		),
+		shortName: t(
+			'pages.économie-collaborative.shortname',
+			'Assistant économie collaborative'
+		),
 		meta: {
 			title: t(
 				'pages.économie-collaborative.meta.title',
@@ -20,18 +32,6 @@ export function économieCollaborativeConfig({
 				'Airbnb, Drivy, Blablacar, Leboncoin... Découvrez comment être en règle dans vos déclarations'
 			),
 		},
-		icône: '🙋',
-		pathId: 'simulateurs.économieCollaborative.index',
-		iframePath: 'economie-collaborative',
-		beta: true,
-		shortName: t(
-			'pages.économie-collaborative.shortname',
-			'Assistant économie collaborative'
-		),
-		title: t(
-			'pages.économie-collaborative.title',
-			'Assistant à la déclaration des revenus des plateformes en ligne'
-		),
 		component: ÉconomieCollaborative,
 	} as const)
 }

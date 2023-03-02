@@ -30,7 +30,7 @@ export default function VotreSituation() {
 	const { state } = useContext(StoreContext)
 	const { t } = useTranslation()
 
-	if (!activitésEffectuéesSelector(state).length) {
+	if (!state || !activitésEffectuéesSelector(state).length) {
 		return <Navigate to={'..'} replace />
 	}
 
@@ -169,7 +169,7 @@ const ActivitéList = ({ activités }: { activités: string[] }) => {
 						title={title}
 						answered
 						label={
-							régimeGénéralDisponibleSelector(state, title) ? (
+							state && régimeGénéralDisponibleSelector(state, title) ? (
 								<Trans i18nKey="économieCollaborative.obligations.régimeGénéralDisponible">
 									Régime général disponible
 								</Trans>

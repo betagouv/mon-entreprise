@@ -15,7 +15,7 @@ import VotreSituation from './VotreSituation'
 
 export default function ÉconomieCollaborative() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
-	const { économieCollaborative } = absoluteSitePaths.simulateurs
+	const { économieCollaborative } = absoluteSitePaths.assistants
 	const iframePath =
 		useSimulatorsData()['économie-collaborative'].iframePath ?? ''
 	const indexPath = useIsEmbedded()
@@ -41,7 +41,7 @@ export default function ÉconomieCollaborative() {
 					<Route index element={<ActivitésSelection />} />
 					<Route
 						path={
-							relativeSitePaths.simulateurs.économieCollaborative.votreSituation
+							relativeSitePaths.assistants.économieCollaborative.votreSituation
 						}
 						element={<VotreSituation />}
 					/>
