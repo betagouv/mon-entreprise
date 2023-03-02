@@ -11,12 +11,19 @@ export default function IntegrationTest() {
 	const integrableModuleNames = useMemo(
 		() =>
 			Object.values(simulators)
-				.map((s) => 'iframePath' in s && s.iframePath)
+				.map((s) =>
+					'iframePath' in s
+						? {
+								iframePath: s.iframePath,
+								private: 'private' in s ? s.private : false,
+						  }
+						: false
+				)
 				.filter(((el) => Boolean(el)) as <T>(x: T | false) => x is T),
 		[simulators]
 	)
 	const [currentModule, setCurrentModule] = useState<string>(
-		integrableModuleNames[0]
+		integrableModuleNames[0]?.iframePath
 	)
 	const [color, setColor] = useState('#005aa1')
 	const [version, setVersion] = useState(0)
@@ -38,8 +45,11 @@ export default function IntegrationTest() {
 		<>
 			<H2>Quel module ?</H2>
 			<select onChange={(event) => setCurrentModule(event.target.value)}>
-				{integrableModuleNames.map((name) => (
-					<option key={name}>{name}</option>
+				{integrableModuleNames.map((el) => (
+					<option key={el.iframePath} value={el.iframePath}>
+						{el.iframePath}
+						{el.private ? ' [private]' : ''}
+					</option>
 				))}
 			</select>
 
