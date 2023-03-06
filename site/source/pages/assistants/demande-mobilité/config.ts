@@ -1,6 +1,6 @@
 import FormulaireMobilitéIndépendant from '.'
-import { config } from '../../simulateurs/configs/config'
-import { SimulatorsDataParams } from '../../simulateurs/configs/types'
+import { config } from '../../simulateurs/_configs/config'
+import { SimulatorsDataParams } from '../../simulateurs/_configs/types'
 
 export function demandeMobilitéConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({

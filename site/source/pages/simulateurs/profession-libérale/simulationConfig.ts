@@ -1,4 +1,4 @@
-import { SimulationConfig } from '../configs/types'
+import { SimulationConfig } from '../_configs/types'
 import { configIndépendant } from '../indépendant/simulationConfig'
 
 export const configProfessionLibérale: SimulationConfig = {

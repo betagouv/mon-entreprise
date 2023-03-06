@@ -1,5 +1,5 @@
-import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../configs/types'
+import { config } from '../_configs/config'
+import { SimulatorsDataParams } from '../_configs/types'
 import { IndépendantPLSimulation } from '../indépendant/Indépendant'
 import { configPharmacien } from '../profession-libérale/simulationConfig'
 

@@ -1,5 +1,5 @@
-import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../configs/types'
+import { config } from '../_configs/config'
+import { SimulatorsDataParams } from '../_configs/types'
 import RémunérationSASUPreview from '../images/RémunérationSASUPreview.png'
 import IndépendantSimulation from '../indépendant/Indépendant'
 import { configEurl } from '../indépendant/simulationConfig'

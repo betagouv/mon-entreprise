@@ -1,6 +1,6 @@
 import ISSimulation, { SeoExplanations } from '.'
-import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../configs/types'
+import { config } from '../_configs/config'
+import { SimulatorsDataParams } from '../_configs/types'
 import ISSimulationConfig from './simulationConfig'
 
 export function impôtSociétéConfig({ t, sitePaths }: SimulatorsDataParams) {

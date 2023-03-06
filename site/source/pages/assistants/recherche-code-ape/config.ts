@@ -1,5 +1,5 @@
+import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
 import { config } from '@/pages/simulateurs/configs/config'
-import { SimulatorsDataParams } from '@/pages/simulateurs/configs/types'
 
 import SearchCodeApePage from '.'
 
@@ -29,9 +29,7 @@ export function rechercheCodeApeConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'Assistant pour trouver le code APE qui correspond à votre activité.'
 			),
 		},
-		tracking: {
-			// TODO
-		},
+		tracking: 'recherche_code_ape',
 		component: SearchCodeApePage,
 	} as const)
 }

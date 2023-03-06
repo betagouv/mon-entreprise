@@ -1,4 +1,4 @@
-import { SimulationConfig } from '../configs/types'
+import { SimulationConfig } from '../_configs/types'
 
 export const configDividendes: SimulationConfig = {
 	'objectifs exclusifs': [

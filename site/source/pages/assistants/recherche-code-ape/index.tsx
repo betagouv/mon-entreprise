@@ -1,5 +1,6 @@
 import { Trans } from 'react-i18next'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -9,6 +10,7 @@ import SearchCodeAPE from './SearchCodeAPE'
 export default function SearchCodeApePage() {
 	return (
 		<>
+			<TrackPage name="accueil" />
 			<Body>
 				<Trans i18nKey="pages.assistants.recherche-code-ape.description">
 					Cet assistant vous permet de trouver rapidement le code APE (activité

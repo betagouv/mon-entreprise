@@ -2,7 +2,7 @@ import { DottedName } from 'modele-social'
 import reduceReducers from 'reduce-reducers'
 import { Reducer, combineReducers } from 'redux'
 
-import { SimulationConfig, Situation } from '@/pages/simulateurs/configs/types'
+import { SimulationConfig, Situation } from '@/pages/simulateurs/_configs/types'
 import { Action } from '@/store/actions/actions'
 import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
 import { ImmutableType } from '@/types/utils'

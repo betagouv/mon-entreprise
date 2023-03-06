@@ -1,4 +1,4 @@
-import { SimulationConfig } from '../configs/types'
+import { SimulationConfig } from '../_configs/types'
 
 const ISSimulationConfig: SimulationConfig = {
 	'unité par défaut': '€/an',

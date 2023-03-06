@@ -1,4 +1,4 @@
-import { SimulationConfig } from '../configs/types'
+import { SimulationConfig } from '../_configs/types'
 import { configProfessionLibérale } from '../profession-libérale/simulationConfig'
 
 const cipavSimulationConfig: SimulationConfig = {
