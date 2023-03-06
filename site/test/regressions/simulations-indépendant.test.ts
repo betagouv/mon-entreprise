@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import { expect, it } from 'vitest'
 
-import { configIndépendant } from '@/pages/Simulateurs/indépendant/simulationConfig'
+import { configIndépendant } from '@/pages/simulateurs/indépendant/simulationConfig'
 
 import independentSituations from './simulations-indépendant.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'

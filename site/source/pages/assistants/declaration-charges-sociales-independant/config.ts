@@ -1,6 +1,6 @@
 import DéclarationChargeSocialeIndépendant from '.'
-import { config } from '../../Simulateurs/configs/config'
-import { SimulatorsDataParams } from '../../Simulateurs/configs/types'
+import { config } from '../../simulateurs/configs/config'
+import { SimulatorsDataParams } from '../../simulateurs/configs/types'
 
 export function déclarationChargesSocialesIndépendantConfig({
 	t,

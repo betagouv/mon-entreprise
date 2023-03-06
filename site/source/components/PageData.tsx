@@ -15,7 +15,7 @@ import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
-import { NextSteps } from '../pages/Simulateurs/NextSteps'
+import { NextSteps } from '../pages/simulateurs/NextSteps'
 import { TrackChapter } from './ATInternetTracking'
 import BetaBanner from './BetaBanner'
 
