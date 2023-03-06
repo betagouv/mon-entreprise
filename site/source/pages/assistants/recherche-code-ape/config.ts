@@ -1,5 +1,5 @@
+import { config } from '@/pages/simulateurs/_configs/config'
 import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
-import { config } from '@/pages/simulateurs/configs/config'
 
 import SearchCodeApePage from '.'
 

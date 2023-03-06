@@ -1,6 +1,6 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import RémunérationSASUPreview from '../images/RémunérationSASUPreview.png'
+import RémunérationSASUPreview from '../_images/RémunérationSASUPreview.png'
 import { SASUSimulation, SeoExplanations } from './SASU'
 import { configSASU } from './simulationConfig'
 
