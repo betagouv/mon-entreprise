@@ -15,7 +15,7 @@ import {
 } from '@/store/actions/hiringChecklistAction'
 import { RootState } from '@/store/reducers/rootReducer'
 
-import { SimulatorRessourceCard } from '../Simulateurs/cards/SimulatorRessourceCard'
+import { SimulatorRessourceCard } from '../simulateurs/cards/SimulatorRessourceCard'
 
 type EmbaucherProps = {
 	onChecklistInitialization: ChecklistProps['onInitialization']

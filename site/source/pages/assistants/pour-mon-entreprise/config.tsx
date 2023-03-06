@@ -1,5 +1,5 @@
-import { config } from '@/pages/Simulateurs/configs/config'
-import { SimulatorsDataParams } from '@/pages/Simulateurs/configs/types'
+import { config } from '@/pages/simulateurs/configs/config'
+import { SimulatorsDataParams } from '@/pages/simulateurs/configs/types'
 
 import PourMonEntreprise from '.'
 

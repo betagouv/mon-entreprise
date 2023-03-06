@@ -17,11 +17,11 @@ const script = document.currentScript
 if (!script) {
 	throw new Error('document.currentScript is null or undefined')
 }
-const moduleName =
+const iframePath =
 	(script.dataset.module as keyof typeof simulationData | undefined) ||
-	'salarié'
+	'simulateur-embauche'
 
-const moduleData = simulationData[moduleName]
+const moduleData = simulationData[iframePath]
 
 const moduleIframeTitle = moduleData?.title || ''
 
@@ -36,7 +36,7 @@ const src = new URL(
 		? import.meta.env.VITE_FR_BASE_URL
 		: import.meta.env.VITE_EN_BASE_URL) +
 		'/iframes/' +
-		(moduleName as string)
+		(iframePath as string)
 )
 
 src.searchParams.set(
@@ -76,8 +76,8 @@ const moduleToSitePath = {
 
 const simulateurLink =
 	import.meta.env.VITE_FR_BASE_URL +
-	(moduleName in moduleToSitePath
-		? moduleToSitePath[moduleName as keyof typeof moduleToSitePath]
+	(iframePath in moduleToSitePath
+		? moduleToSitePath[iframePath as keyof typeof moduleToSitePath]
 		: '/')
 
 const url = new URL(simulateurLink)

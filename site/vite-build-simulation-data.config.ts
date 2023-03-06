@@ -2,7 +2,7 @@ import { unlinkSync, writeFileSync } from 'fs'
 import path from 'path'
 import { defineConfig } from 'vite'
 
-import { PageConfig } from '@/pages/Simulateurs/configs/types'
+import { PageConfig } from '@/pages/simulateurs/configs/types'
 
 import { objectTransform } from './source/utils'
 
@@ -74,10 +74,9 @@ export default defineConfig({
 						'./source/public/simulation-data-title.json',
 						JSON.stringify(
 							Object.fromEntries(
-								Object.entries(algoliaUpdate).map(([id, { title }]) => [
-									id,
-									{ title },
-								])
+								Object.entries(algoliaUpdate).map(
+									([, { iframePath, title }]) => [iframePath, { title }]
+								)
 							)
 						)
 					)

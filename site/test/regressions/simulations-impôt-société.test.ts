@@ -1,6 +1,6 @@
 import { it } from 'vitest'
 
-import ISSimulationConfig from '@/pages/Simulateurs/impot-societe/simulationConfig'
+import ISSimulationConfig from '@/pages/simulateurs/impot-societe/simulationConfig'
 
 import impotSocieteSituations from './simulations-impôt-société.yaml'
 import { runSimulations } from './utils'

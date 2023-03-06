@@ -1,6 +1,6 @@
 import { it } from 'vitest'
 
-import { configDividendes } from '@/pages/Simulateurs/dividendes/simulationConfig'
+import { configDividendes } from '@/pages/simulateurs/dividendes/simulationConfig'
 
 import dividendesSituations from './simulations-dividendes.yaml'
 import { runSimulations } from './utils'
