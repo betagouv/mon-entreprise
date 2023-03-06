@@ -37,6 +37,52 @@ Content-Security-Policy = "default-src 'self' mon-entreprise.fr; style-src 'self
 
 # :SITE_<name> is a placeholder replaced before deploy (depends on the environment)
 
+## Change of PR #2520
+
+# FR | stats -> statistiques
+[[redirects]]
+  from=":SITE_FR/stats"
+  to=":SITE_FR/statistiques"
+  status = 301
+
+# FR | plan-de-site -> plan-du-site
+[[redirects]]
+  from=":SITE_FR/plan-de-site"
+  to=":SITE_FR/plan-du-site"
+  status = 301
+
+# FR | /gérer/aide-declaration-independants/beta -> /assistants/aide-declaration-independants-v2
+[[redirects]]
+  from=":SITE_FR/g%C3%A9rer/aide-declaration-independants/beta/*"
+  to=":SITE_FR/assistants/aide-declaration-independants-v2/:splat"
+  status = 301
+
+# FR | /gérer/aide-declaration-independants -> /assistants/declaration-charges-sociales-independant
+[[redirects]]
+  from=":SITE_FR/g%C3%A9rer/aide-declaration-independants"
+  to=":SITE_FR/assistants/declaration-charges-sociales-independant"
+  status = 301
+
+# FR | /gérer -> /assistants
+[[redirects]]
+  from=":SITE_FR/g%C3%A9rer/*"
+  to=":SITE_FR/assistants/:splat"
+  status = 301
+
+# FR | /créer/* -> /assistants/choix-du-statut
+[[redirects]]
+  from=":SITE_FR/cr%C3%A9er/*"
+  to=":SITE_FR/assistants/choix-du-statut/:splat"
+  status = 301
+
+# FR | /simulateurs/économie-collaborative -> /assistants/économie-collaborative
+[[redirects]]
+  from=":SITE_FR/simulateurs/%C3%A9conomie-collaborative/*"
+  to=":SITE_FR/assistants/%C3%A9conomie-collaborative/:splat"
+  status = 301
+  
+## Older changes
+
 # FR | coronavirus -> simulateurs/chômage-partiel
 [[redirects]]
   from=":SITE_FR/coronavirus"
