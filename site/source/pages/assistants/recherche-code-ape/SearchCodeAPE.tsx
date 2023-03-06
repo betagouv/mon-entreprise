@@ -243,7 +243,7 @@ const ActivityNotFound = () => {
 						<FeedbackForm
 							title={t('Quelle est votre activité ?')}
 							description={t(
-								"Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats"
+								"Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats. Nous utiliserons ces informations pour améliorer cet outil. En revanche, nous ne pourrons pas forcément répondre aux questions relatives au code APE de votre entreprise."
 							)}
 							placeholder={t(
 								`Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".`
