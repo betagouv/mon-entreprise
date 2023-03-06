@@ -1496,6 +1496,17 @@ pages:
     letter by post (free of charge, do not put a stamp on it)
     to:<1></1>Défenseur des droits<3></3>Libre réponse 71120<5></5>75342 Paris
     CEDEX 07</2></21><22>Updated on 29/01/2021</22>
+  assistant:
+    recherche-code-ape:
+      seo explanation: "<0>How does the APE code search work?</0><1>To find your
+        company's APE code, enter one or two keywords that describe the
+        activity. For example: \"catering\" or \"sports coach\". The search uses
+        the Insee and Guichet Unique databases to find the corresponding
+        activities. Moreover, the most popular results (with the most companies
+        created) are displayed first.</1><2>If you do not find the APE code
+        corresponding to your activity with this search, you can report it to us
+        with the button \"I do not find my activity\". This will allow us to
+        improve the search by adding keywords according to your feedback.</2>"
   assistants:
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>There is not yet an income simulator
@@ -1521,11 +1532,12 @@ pages:
         description: Simulators and wizards adapted to your company
       title: Manage my business
     recherche-code-ape:
-      description: This wizard allows you to quickly find the APE code (main activity)
-        that corresponds to your activity. This code is assigned by INSEE to
-        each company in France in order to categorize them. Find more
-        information about the APE code on <2>entreprendre.service-public.fr</2>
-        and <6>economie.gouv.fr</6>.
+      description: <0>This wizard allows you to quickly find the APE code (main
+        activity) that corresponds to your activity. This code is assigned by
+        INSEE to each company in France in order to categorize
+        them.</0><1><0>Find more information about the APE code on
+        <2>entreprendre.service-public.fr</2> and
+        <6>economie.gouv.fr</6>.</0></1>
       meta:
         description: Wizard to find the APE code that corresponds to your activity.
         title: APE code search

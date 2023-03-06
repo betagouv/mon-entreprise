@@ -5,7 +5,7 @@ import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 const PAGE_TITLE = 'Un avis sur cette page ?'
-const SIMULATOR_TITLE = 'Un avis sur ce simulateur ?'
+const SIMULATOR_TITLE = 'Un avis sur cet outil ?'
 
 export const useFeedback = () => {
 	const [shouldShowRater, setShouldShowRater] = useState(false)
@@ -24,13 +24,13 @@ export const useFeedback = () => {
 				absoluteSitePaths.simulateurs.index,
 				absoluteSitePaths.plan,
 				absoluteSitePaths.budget,
+				absoluteSitePaths.assistants.index,
+				absoluteSitePaths.assistants['choix-du-statut'].index,
 				absoluteSitePaths.accessibilité,
 			].includes(currentPathDecoded) &&
 			// Exclure les pages et sous-pages
 			![
 				absoluteSitePaths.documentation.index,
-				absoluteSitePaths.assistants.index,
-				absoluteSitePaths.assistants['choix-du-statut'].index,
 				absoluteSitePaths.nouveautés,
 				absoluteSitePaths.stats,
 				absoluteSitePaths.développeur.index,
