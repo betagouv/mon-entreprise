@@ -38,15 +38,6 @@ export default function Redirections({ children }: Props) {
 				],
 			},
 			{
-				paths: [
-					'/gérer/aide-declaration-independants',
-					'/manage/declaration-aid-independent',
-				],
-				to: absoluteSitePaths.assistants[
-					'déclaration-charges-sociales-indépendant'
-				],
-			},
-			{
 				paths: ['/gérer/*', '/manage/*'],
 				to: decodeURI(pathname).replace(
 					/^\/(gérer|manage)/,
