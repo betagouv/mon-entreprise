@@ -1,5 +1,5 @@
-import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../configs/types'
+import { config } from '../_configs/config'
+import { SimulatorsDataParams } from '../_configs/types'
 import AutoEntrepreneurPreview from '../images/AutoEntrepreneurPreview.png'
 import AutoEntrepreneur, { SeoExplanations } from './AutoEntrepreneur'
 import { configAutoEntrepreneur } from './simulationConfig'

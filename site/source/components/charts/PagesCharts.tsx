@@ -14,7 +14,7 @@ import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
-import { RealResponsiveContainer } from '@/pages/Stats/Chart'
+import { RealResponsiveContainer } from '@/pages/statistiques/Chart'
 
 type Data =
 	| Array<{ date: string; nombre: number }>

@@ -1,5 +1,5 @@
-import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../configs/types'
+import { config } from '../_configs/config'
+import { SimulatorsDataParams } from '../_configs/types'
 import salaireBrutNetPreviewEN from './SalaireBrutNetPreviewEN.png'
 import salaireBrutNetPreviewFR from './SalaireBrutNetPreviewFR.png'
 import SalariéSimulation, { SeoExplanations } from './Salarié'

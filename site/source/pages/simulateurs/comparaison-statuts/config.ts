@@ -1,6 +1,6 @@
 import SchemeComparaisonPage from '.'
-import { config } from '../configs/config'
-import { SimulatorsDataParams } from '../configs/types'
+import { config } from '../_configs/config'
+import { SimulatorsDataParams } from '../_configs/types'
 import { configComparateurStatuts } from './simulationConfig'
 
 export function comparaisonStatutsConfig({

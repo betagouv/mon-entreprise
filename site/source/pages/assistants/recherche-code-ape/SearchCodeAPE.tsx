@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import FeedbackForm from '@/components/Feedback/FeedbackForm'
 import { FromTop } from '@/components/ui/animate'
 import {
@@ -180,6 +181,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 				<Spacing xs />
 				{list.length > 0 && (
 					<FromTop>
+						<TrackPage name="recherche" />
 						<StyledRadioCardGroup
 							value={selected}
 							onChange={setSelected}
