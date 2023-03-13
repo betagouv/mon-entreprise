@@ -129,8 +129,6 @@ export default function FeedbackForm({
 			{isSubmittedSuccessfully && <FeedbackThankYouContent />}
 			{!isSubmittedSuccessfully && (
 				<>
-					<H1 style={{ marginTop: '1rem' }}>{title}</H1>
-
 					<StyledFeedback>
 						<form
 							onSubmit={(e) => {
