@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import FeedbackButton from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
@@ -144,7 +144,13 @@ export default function Footer() {
 															openInSameWindow
 															href={hrefLink.href}
 															aria-disabled={isFrenchMode}
+															isDisabled={isFrenchMode}
 															aria-label={
+																isFrenchMode
+																	? t('Version française du site activée.')
+																	: t('Passer à la version française du site')
+															}
+															title={
 																isFrenchMode
 																	? t('Version française du site activée.')
 																	: t('Passer à la version française du site')
@@ -162,6 +168,13 @@ export default function Footer() {
 															lang="en"
 															aria-disabled={!isFrenchMode}
 															aria-label={
+																!isFrenchMode
+																	? t('English version of the website enabled.')
+																	: t(
+																			'Switch to the english version of the website'
+																	  )
+															}
+															title={
 																!isFrenchMode
 																	? t('English version of the website enabled.')
 																	: t(
@@ -220,10 +233,13 @@ const StyledButton = styled(Button)`
 	padding: 10px 16px 10px 16px;
 	border-radius: 4px;
 
-	&[aria-disabled='true'] {
-		background-color: ${({ theme }) => theme.colors.bases.primary[300]};
-		pointer-events: none;
-	}
+	${({ isDisabled }) =>
+		isDisabled &&
+		css`
+			background-color: ${({ theme }) =>
+				theme.colors.bases.primary[300]}!important;
+			opacity: 1;
+		`}
 `
 
 const StyledLi = styled.li`
