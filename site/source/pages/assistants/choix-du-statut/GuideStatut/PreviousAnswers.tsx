@@ -52,7 +52,7 @@ const requirementToText = (
 	}
 }
 
-const PreviousAnswersList = styled.ul`
+const PreviousAnswersList = styled.nav`
 	font-family: ${({ theme }) => theme.fonts.main};
 	display: flex;
 	list-style-type: none;
@@ -84,7 +84,7 @@ export default function PreviousAnswers() {
 	}
 
 	return (
-		<PreviousAnswersList>
+		<PreviousAnswersList aria-label={t('Étapes du choix du statut juridique')}>
 			{Object.entries(legalStatus).map(([key, value]) => {
 				const textObject = requirementToText(
 					key as keyof LegalStatusRequirements,

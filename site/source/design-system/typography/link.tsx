@@ -82,7 +82,7 @@ export const Link = React.forwardRef<
 			type={undefined}
 			$isDisabled={isDisabled}
 			$noUnderline={noUnderline}
-			tabIndex={isDisabled ? -1 : buttonOrLinkProps.tabIndex}
+			tabIndex={isDisabled ? -1 : undefined}
 			as={isDisabled ? 'span' : buttonOrLinkProps.as}
 		/>
 	)
