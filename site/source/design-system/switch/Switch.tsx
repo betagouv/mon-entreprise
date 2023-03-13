@@ -45,7 +45,7 @@ const StyledSwitch = styled.span<StyledProps>`
 	background-color: ${({ theme, checked }) =>
 		checked
 			? theme.colors.bases.primary[700]
-			: theme.colors.extended.grey[500]};
+			: theme.colors.extended.grey[600]};
 	color: inherit;
 	font-family: ${({ theme }) => theme.fonts.main};
 	padding: 0.2rem;

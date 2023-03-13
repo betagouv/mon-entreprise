@@ -1,5 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Link } from '@/design-system/typography/link'
@@ -70,6 +71,7 @@ const PreviousAnswersItem = styled.li`
 `
 
 export default function PreviousAnswers() {
+	const location = useLocation()
 	const { absoluteSitePaths } = useSitePaths()
 	const legalStatus = useSelector(
 		(state: RootState) => state.choixStatutJuridique.companyLegalStatus
@@ -88,6 +90,11 @@ export default function PreviousAnswers() {
 					key as keyof LegalStatusRequirements,
 					value as string
 				)
+				const isCurrent =
+					decodeURI(location.pathname) ===
+					absoluteSitePaths.assistants['choix-du-statut'].guideStatut[
+						key as keyof typeof legalStatus
+					]
 
 				return (
 					value !== undefined && (
@@ -103,6 +110,11 @@ export default function PreviousAnswers() {
 										(textObject as RequirementToTextType)?.props?.children ||
 										'',
 								})}
+								style={
+									isCurrent
+										? { textDecoration: 'underline' }
+										: { textDecoration: 'none' }
+								}
 							>
 								{textObject}
 							</Link>

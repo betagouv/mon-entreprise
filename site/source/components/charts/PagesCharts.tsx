@@ -85,14 +85,14 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 						textAnchor="end"
 						height={60}
 						minTickGap={-8}
-						stroke={darkMode ? 'lightGrey' : 'darkGray'}
+						stroke={darkMode ? 'lightGrey' : 'gray'}
 					/>
 
 					<YAxis
 						tickFormatter={(x) => formatValue(x)}
 						domain={['0', 'auto']}
 						type="number"
-						stroke={darkMode ? 'lightGrey' : 'darkGray'}
+						stroke={darkMode ? 'lightGrey' : 'gray'}
 					/>
 
 					<Tooltip content={<CustomTooltip />} />

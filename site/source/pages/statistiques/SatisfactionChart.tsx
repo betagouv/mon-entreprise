@@ -105,7 +105,7 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 						textAnchor="end"
 						height={60}
 						minTickGap={-8}
-						stroke={darkMode ? 'lightGrey' : 'darkGray'}
+						stroke={darkMode ? 'lightGrey' : 'gray'}
 					/>
 					<Tooltip content={<CustomTooltip dataType={dataType} />} />
 
