@@ -1,5 +1,5 @@
-import { ReactElement, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { ComponentProps, ReactElement, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import {
 	Bar,
 	BarChart,
@@ -54,7 +54,7 @@ type DataType = 'nombres' | 'pourcentage'
 export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 	const [darkMode] = useDarkMode()
 	const [dataType, setDataType] = useState<DataType>('nombres')
-
+	const { t } = useTranslation()
 	if (!data.length) {
 		return null
 	}
@@ -71,6 +71,10 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 				) : null,
 		}))
 		.filter((d) => Object.values(d.nombre).reduce((a, b) => a + b, 0))
+
+	const BarChartWithRole = (
+		props: ComponentProps<typeof BarChart> | { role: string }
+	): ReactElement => <BarChart {...props} />
 
 	return (
 		<Body as="div">
@@ -89,7 +93,11 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 			<Spacing sm />
 
 			<RealResponsiveContainer width="100%" height={400}>
-				<BarChart data={flattenData}>
+				<BarChartWithRole
+					data={flattenData}
+					aria-label={t('Graphique statistiques détaillés de la satisfaction')}
+					role="img"
+				>
 					<XAxis
 						dataKey="date"
 						tickFormatter={formatMonth}
@@ -129,7 +137,7 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 								strokeWidth={2}
 							/>
 						))}
-				</BarChart>
+				</BarChartWithRole>
 			</RealResponsiveContainer>
 		</Body>
 	)

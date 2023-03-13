@@ -1,4 +1,6 @@
 import { formatValue } from 'publicodes'
+import { ComponentProps, ReactElement } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
 	Bar,
 	ComposedChart,
@@ -43,12 +45,18 @@ function getColor(i: number): string {
 export default function PagesChart({ data, sync = true }: PagesChartProps) {
 	const [darkMode] = useDarkMode()
 
+	const { t } = useTranslation()
+
 	if (!data.length) {
 		return null
 	}
 
 	const dataKeys = Object.keys(data[0].nombre)
 	const flattenedData = (data as any).map((d: any) => ({ ...d, ...d.nombre }))
+
+	const ComposedChartWithRole = (
+		props: ComponentProps<typeof ComposedChart> | { role: string }
+	): ReactElement => <ComposedChart {...props} />
 
 	return (
 		<Body as="div">
@@ -61,10 +69,12 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 					}
 				`}
 			>
-				<ComposedChart
+				<ComposedChartWithRole
 					layout="horizontal"
 					data={flattenedData}
 					syncId={sync ? '1' : undefined}
+					aria-label={t('Graphique des principaux simulateurs')}
+					role="img"
 				>
 					<Legend />
 					<XAxis
@@ -96,7 +106,7 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 							stackId={1}
 						/>
 					))}
-				</ComposedChart>
+				</ComposedChartWithRole>
 			</RealResponsiveContainer>
 		</Body>
 	)
