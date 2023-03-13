@@ -74,6 +74,9 @@ export function CompanySearchField(props: {
 						state={state}
 						isSearchStalled={searchPending}
 						onClear={onClear}
+						aria-label={t(
+							`${searchFieldProps.label}, recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.`
+						)}
 						{...searchFieldProps}
 					/>
 				</ForceThemeProvider>
