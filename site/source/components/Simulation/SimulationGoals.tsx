@@ -50,11 +50,17 @@ export function SimulationGoals({
 						<div className="sr-only" aria-hidden id="simulator-legend-label">
 							{legend}
 						</div>
-						<SmallBody className="print-hidden">
+						<SmallBody className="print-hidden" id="simu-update-explaining">
 							<em>
 								<Trans>
 									Les données de simulations se mettront automatiquement à jour
-									après la modification d'un champ
+									après la modification d'un champ.{' '}
+									<span className="sr-only">
+										Un panneau s'ouvrira pour vous permettre d'apporter des
+										précisions à la simulation, des résultats détaillés
+										s'afficheront en dessous du formulaire et seront mis à jour
+										quand vous modifierez ce dernier.
+									</span>
 								</Trans>
 							</em>
 						</SmallBody>

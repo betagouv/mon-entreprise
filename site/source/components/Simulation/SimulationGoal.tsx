@@ -145,6 +145,7 @@ export function SimulationGoal({
 									/\s|\./g,
 									'_'
 								)}-description`}
+								aria-labelledby="simu-update-explaining"
 								displayedUnit={displayedUnit}
 								dottedName={dottedName}
 								onFocus={() => setFocused(true)}
