@@ -11,7 +11,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { RootState } from '@/store/reducers/rootReducer'
 
-import siret from './siret.jpg'
+import siret from './siret.png'
 
 export default function AfterRegistration() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -60,7 +60,11 @@ export default function AfterRegistration() {
 					d'établissement (NIC).
 				</Trans>
 				<br />
-				<img src={siret} alt="" style={{ maxWidth: '100%' }} />
+				<img
+					src={siret}
+					alt=""
+					style={{ maxWidth: '100%', filter: 'contrast(0.8) brightness(0.6)' }}
+				/>
 			</Body>
 			<H2>
 				<Trans i18nKey="après.ape.titre">Le code APE</Trans>

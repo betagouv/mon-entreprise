@@ -474,7 +474,7 @@ export const StyledGrid = styled.div`
 
 	& > .green {
 		font-weight: bold;
-		color: limegreen;
+		color: green;
 		background-color: inherit;
 	}
 

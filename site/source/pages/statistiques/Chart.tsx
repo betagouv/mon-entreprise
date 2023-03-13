@@ -142,13 +142,13 @@ export default function VisitsChart({
 						textAnchor="end"
 						height={60}
 						minTickGap={-8}
-						stroke={darkMode ? 'lightGrey' : 'darkGray'}
+						stroke={darkMode ? 'lightGrey' : 'gray'}
 					/>
 
 					<YAxis
 						tickFormatter={(val: number) => formatValue(val) as string}
 						type="number"
-						stroke={darkMode ? 'lightGrey' : 'darkGray'}
+						stroke={darkMode ? 'lightGrey' : 'gray'}
 					/>
 
 					<Tooltip

@@ -70,10 +70,10 @@ export const StyledInput = styled.input`
 		${({ theme }) =>
 			theme.darkMode &&
 			css`
-				opacity: 0.6;
+				opacity: 1;
 			`}
 		color: ${({ theme }) =>
-			theme.colors.extended.grey[theme.darkMode ? 200 : 600]};
+			theme.colors.extended.grey[theme.darkMode ? 200 : 600]}!important;
 		background-color: transparent;
 	}
 	${({ theme }) =>
@@ -144,7 +144,7 @@ export const StyledInputContainer = styled.div<{
 	display: flex;
 	background-color: ${({ theme }) =>
 		theme.darkMode
-			? 'rgba(255, 255, 255, 20%)'
+			? 'rgba(255, 255, 255, 10%)'
 			: theme.colors.extended.grey[100]};
 	align-items: center;
 	transition: all 0.2s;
