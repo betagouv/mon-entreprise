@@ -35,7 +35,6 @@ export const InfoIcon = (props: HTMLAttributes<SVGElement>) => (
 		width={20}
 		height={20}
 		xmlns="http://www.w3.org/2000/svg"
-		aria-hidden
 		role="img"
 	>
 		<path
@@ -55,7 +54,6 @@ export const SuccessIcon = (props: HTMLAttributes<SVGElement>) => (
 		width={20}
 		height={20}
 		xmlns="http://www.w3.org/2000/svg"
-		aria-hidden
 		role="img"
 	>
 		<path
@@ -116,7 +114,6 @@ export const ErrorIcon = (props: HTMLAttributes<SVGElement>) => (
 		height="19"
 		viewBox="0 0 20 19"
 		xmlns="http://www.w3.org/2000/svg"
-		aria-hidden
 		role="img"
 	>
 		<path
