@@ -1,5 +1,6 @@
 import { formatValue } from 'publicodes'
-import { ComponentProps, useContext } from 'react'
+import { ComponentProps, ReactElement, ReactNode, useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
 	Area,
 	Bar,
@@ -72,6 +73,7 @@ export default function VisitsChart({
 	startIndex,
 	endIndex,
 }: VisitsChartProps) {
+	const { t } = useTranslation()
 	const [darkMode] = useDarkMode()
 	const { colors } = useContext(ThemeContext)
 	if (!data.length) {
@@ -97,6 +99,10 @@ export default function VisitsChart({
 		return Palette[i % Palette.length]
 	}
 
+	const ComposedChartWithRole = (
+		props: ComponentProps<typeof ComposedChart> | { role: string }
+	): ReactElement => <ComposedChart {...props} />
+
 	return (
 		<Body
 			as="div"
@@ -107,10 +113,14 @@ export default function VisitsChart({
 			`}
 		>
 			<RealResponsiveContainer width="100%" height={500}>
-				<ComposedChart
+				<ComposedChartWithRole
 					layout={layout}
 					data={flattenData}
 					syncId={sync ? '1' : undefined}
+					aria-label={t(
+						'Graphique statistiques détaillés du nombre visites par jour'
+					)}
+					role="img"
 				>
 					{data.length > 1 && onDateChange && (
 						<Brush
@@ -178,7 +188,7 @@ export default function VisitsChart({
 							/>
 						)
 					)}
-				</ComposedChart>
+				</ComposedChartWithRole>
 			</RealResponsiveContainer>
 		</Body>
 	)
