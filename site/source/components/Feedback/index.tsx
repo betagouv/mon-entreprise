@@ -1,3 +1,4 @@
+import FocusTrap from 'focus-trap-react'
 import { useCallback, useContext, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
@@ -92,83 +93,91 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 	if (isFormOpen) {
 		return (
 			<Section ref={containerRef} $isEmbedded={isEmbedded} aria-expanded={true}>
-				<CloseButtonContainer>
-					<CloseButton
-						onClick={() => setIsFormOpen(false)}
-						aria-label={t('Fermer le module "Donner son avis"')}
-					>
-						Fermer
-						<svg
-							role="img"
-							aria-hidden
-							viewBox="0 0 24 24"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							style={{ pointerEvents: 'none' }}
-						>
-							<path
-								fillRule="evenodd"
-								clipRule="evenodd"
-								d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
-							/>
-							<path
-								fillRule="evenodd"
-								clipRule="evenodd"
-								d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
-							/>
-						</svg>
-					</CloseButton>
-				</CloseButtonContainer>
-				{isShowingThankMessage || !shouldAskFeedback ? (
-					<>
-						<Body>
-							<Strong>
-								<Trans i18nKey="feedback.thanks">Merci de votre retour !</Trans>{' '}
-								<Emoji emoji="🙌" />
-							</Strong>
-						</Body>
-						<ThankYouText>
-							<Trans i18nKey="feedback.beta-testeur">
-								Pour continuer à donner votre avis et accéder aux nouveautés en
-								avant-première,{' '}
-								<StyledLink
-									href={INSCRIPTION_LINK}
-									aria-label="inscrivez-vous sur la liste des beta-testeur, nouvelle fenêtre"
-									style={{ color: '#FFF' }}
+				<FocusTrap>
+					<div>
+						<CloseButtonContainer>
+							<CloseButton
+								onClick={() => setIsFormOpen(false)}
+								aria-label={t('Fermer le module "Donner son avis"')}
+							>
+								Fermer
+								<svg
+									role="img"
+									aria-hidden
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									style={{ pointerEvents: 'none' }}
 								>
-									inscrivez-vous sur la liste des beta-testeur
-								</StyledLink>
-							</Trans>
-						</ThankYouText>
-					</>
-				) : (
-					<>
-						<StyledH4>
-							{customTitle || <Trans>Un avis sur cette page ?</Trans>}
-						</StyledH4>
-						<StyledBody>On vous écoute.</StyledBody>
-						<Spacing lg />
-						{shouldShowRater && (
-							<FeedbackRating submitFeedback={submitFeedback} />
+									<path
+										fillRule="evenodd"
+										clipRule="evenodd"
+										d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
+									/>
+									<path
+										fillRule="evenodd"
+										clipRule="evenodd"
+										d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
+									/>
+								</svg>
+							</CloseButton>
+						</CloseButtonContainer>
+						{isShowingThankMessage || !shouldAskFeedback ? (
+							<>
+								<Body>
+									<Strong>
+										<Trans i18nKey="feedback.thanks">
+											Merci de votre retour !
+										</Trans>{' '}
+										<Emoji emoji="🙌" />
+									</Strong>
+								</Body>
+								<ThankYouText>
+									<Trans i18nKey="feedback.beta-testeur">
+										Pour continuer à donner votre avis et accéder aux nouveautés
+										en avant-première,{' '}
+										<StyledLink
+											href={INSCRIPTION_LINK}
+											aria-label="inscrivez-vous sur la liste des beta-testeur, nouvelle fenêtre"
+											style={{ color: '#FFF' }}
+										>
+											inscrivez-vous sur la liste des beta-testeur
+										</StyledLink>
+									</Trans>
+								</ThankYouText>
+							</>
+						) : (
+							<>
+								<StyledH4>
+									{customTitle || <Trans>Un avis sur cette page ?</Trans>}
+								</StyledH4>
+								<StyledBody>On vous écoute.</StyledBody>
+								<Spacing lg />
+								{shouldShowRater && (
+									<FeedbackRating submitFeedback={submitFeedback} />
+								)}
+							</>
 						)}
-					</>
-				)}
-				<Spacing lg />
-				{isSimulateurSalaire ? (
-					<JeDonneMonAvis light />
-				) : (
-					<Button
-						color="tertiary"
-						size="XXS"
-						light
-						aria-haspopup="dialog"
-						onPress={() => {
-							setIsShowingSuggestionForm(true)
-						}}
-					>
-						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
-					</Button>
-				)}
+						<Spacing lg />
+						{isSimulateurSalaire ? (
+							<JeDonneMonAvis light />
+						) : (
+							<Button
+								color="tertiary"
+								size="XXS"
+								light
+								aria-haspopup="dialog"
+								onPress={() => {
+									setIsShowingSuggestionForm(true)
+								}}
+							>
+								<Trans i18nKey="feedback.reportError">
+									Faire une suggestion
+								</Trans>
+							</Button>
+						)}
+					</div>
+				</FocusTrap>
 				{isShowingSuggestionForm && (
 					<Popover
 						isOpen
