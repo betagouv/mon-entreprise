@@ -116,7 +116,13 @@ const App = () => {
 			{!isEmbedded && <Header />}
 
 			<main role="main" id="main">
-				<a href={`${fullURL}#footer`} className="skip-link print-hidden">
+				<a
+					href={`${fullURL}#footer`}
+					aria-label={t(
+						'Passer le contenu principal et aller directement au pied de page'
+					)}
+					className="skip-link print-hidden"
+				>
 					{t('Passer le contenu')}
 				</a>
 				<Container>

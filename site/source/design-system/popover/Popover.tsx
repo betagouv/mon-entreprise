@@ -72,9 +72,10 @@ export default function Popover(
 	if (offsetTop === undefined) {
 		return null
 	}
+	console.log({ title, titleProps })
 
 	return (
-		<OverlayContainer>
+		<OverlayContainer aria-modal={true}>
 			<Underlay {...underlayProps} $offsetTop={offsetTop}>
 				<Container>
 					<Grid
@@ -98,6 +99,7 @@ export default function Popover(
 									{...overlayProps}
 									$offsetTop={offsetTop}
 									ref={ref}
+									aria-label={title}
 								>
 									{props.isDismissable && (
 										<CloseButtonContainer>

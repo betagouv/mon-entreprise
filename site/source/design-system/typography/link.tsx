@@ -69,6 +69,7 @@ export const Link = React.forwardRef<
 		children: React.ReactNode
 		isDisabled?: boolean
 		noUnderline?: boolean
+		to?: string
 	}
 >(function Link(props, forwardedRef) {
 	const { isDisabled, role, noUnderline, ...ariaButtonProps } = props
@@ -77,7 +78,7 @@ export const Link = React.forwardRef<
 	return (
 		<StyledLink
 			{...buttonOrLinkProps}
-			role={role || buttonOrLinkProps?.role}
+			role={role || (props.href || props.to ? undefined : 'button')}
 			type={undefined}
 			$isDisabled={isDisabled}
 			$noUnderline={noUnderline}

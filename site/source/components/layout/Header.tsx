@@ -29,7 +29,7 @@ export default function Header() {
 	return (
 		<header role="banner">
 			<a href={`${fullURL}#main`} className="skip-link print-hidden">
-				{t('Aller au contenu')}
+				{t('Aller au contenu principal')}
 			</a>
 			<Container>
 				<StyledHeader>

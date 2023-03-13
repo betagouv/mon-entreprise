@@ -177,6 +177,11 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 							setIsShowingSuggestionForm(false)
 							setTimeout(() => setIsFormOpen(false))
 						}}
+						title={
+							isNotSatisfied
+								? t('Vos attentes ne sont pas remplies')
+								: t('Votre avis nous intéresse')
+						}
 					>
 						<FeedbackForm
 							infoSlot={
