@@ -17,52 +17,68 @@ export const BigIndicator = ({ main, subTitle, footnote }: IndicatorProps) => (
 		<Indicator main={main} subTitle={subTitle} footnote={footnote} />
 	</Grid>
 )
-
+const mappedLevelToLabel = {
+	mauvais: "Taux d'utilisateurs mécontents",
+	moyen: "Taux d'utilisateurs ayant un avis neutre",
+	bien: "Taux d'utilisateurs satisfaits",
+	'très bien': "Taux d'utilisateurs très satisfaits",
+}
 const RetoursAsProgress = ({
 	percentages,
 }: {
 	percentages: Record<SatisfactionLevel, number>
-}) => (
-	<div
-		className="progress__container"
-		css={`
-			width: 100%;
-			overflow: hidden;
-			height: 2.5rem;
-			border-radius: 3px;
-			margin-top: 1rem;
-			margin-bottom: 2.5rem;
-			display: flex;
-			font-size: 1.8rem;
-		`}
-	>
-		{' '}
-		{SatisfactionStyle.map(([level, { emoji: emojiStr, color }]) => (
-			<div
-				key={level}
-				css={`
-					width: ${percentages[level]}%;
-					background-color: ${color};
-					display: flex;
-					align-items: center;
-					justify-content: center;
-				`}
-			>
-				<Emoji emoji={emojiStr} />
-				<div
-					css={`
-						position: absolute;
-						margin-top: 4rem;
-						font-size: 0.7rem;
-						font-weight: lighter;
-					`}
-				>
-					{Math.round(percentages[level])}%
-				</div>
-			</div>
-		))}
-	</div>
-)
+}) => {
+	const { t } = useTranslation()
+
+	return (
+		<ul
+			className="progress__container"
+			css={`
+				width: 100%;
+				overflow: hidden;
+				height: 2.5rem;
+				border-radius: 3px;
+				margin-top: 1rem;
+				margin-bottom: 2.5rem;
+				display: flex;
+				font-size: 1.8rem;
+				padding: 0;
+			`}
+		>
+			{' '}
+			{SatisfactionStyle.map(([level, { emoji: emojiStr, color }]) => {
+				return (
+					<li
+						key={level}
+						css={`
+							width: ${percentages[level]}%;
+							background-color: ${color};
+							display: flex;
+							align-items: center;
+							justify-content: center;
+						`}
+					>
+						<Emoji
+							emoji={emojiStr}
+							aria-hidden={false}
+							alt={t(mappedLevelToLabel[level])}
+						/>
+						<div
+							css={`
+								position: absolute;
+								margin-top: 4rem;
+								font-size: 0.7rem;
+								font-weight: lighter;
+							`}
+						>
+							{Math.round(percentages[level])}%
+						</div>
+					</li>
+				)
+			})}
+		</ul>
+	)
+}
 
 export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 	const { i18n } = useTranslation()

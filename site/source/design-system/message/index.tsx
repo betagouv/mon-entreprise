@@ -67,7 +67,7 @@ export function Message({
 						) : type === 'error' ? (
 							<ErrorIcon aria-label={t('Échec')} />
 						) : type === 'info' ? (
-							<InfoIcon aria-label={t('Attention')} />
+							<InfoIcon aria-label={t('Attention, information importante')} />
 						) : (
 							<ReturnIcon />
 						)}
