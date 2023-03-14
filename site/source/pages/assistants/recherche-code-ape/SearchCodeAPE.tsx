@@ -204,7 +204,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 				)}
 
 				<Spacing md />
-				<ActivityNotFound />
+				<ActivityNotFound job={job} />
 			</Grid>
 		</Grid>
 	)
@@ -217,27 +217,38 @@ const StyledRadioCardGroup = styled(RadioCardGroup)`
 	flex-wrap: wrap;
 `
 
-const ActivityNotFound = () => {
+const ActivityNotFound = ({ job }: { job: string }) => {
+	const [hide, setHide] = useState(false)
 	const { t } = useTranslation()
+
+	useEffect(() => {
+		if (job.length > 0) {
+			setHide(true)
+		}
+	}, [job.length])
 
 	return (
 		<>
 			<PopoverWithTrigger
-				trigger={(buttonProps) => (
+				trigger={(buttonProps) =>
 					// eslint-disable-next-line react/jsx-props-no-spreading
-					<Button
-						{...buttonProps}
-						size="XS"
-						color="tertiary"
-						aria-haspopup="dialog"
-						light
-					>
-						<Emoji emoji="🖐️" />{' '}
-						<Trans i18nKey="search-code-ape.cant-find-my-activity">
-							Je ne trouve pas mon activité
-						</Trans>
-					</Button>
-				)}
+					hide ? (
+						<Button
+							{...buttonProps}
+							size="XS"
+							color="tertiary"
+							aria-haspopup="dialog"
+							light
+						>
+							<Emoji emoji="🖐️" />{' '}
+							<Trans i18nKey="search-code-ape.cant-find-my-activity">
+								Je ne trouve pas mon activité
+							</Trans>
+						</Button>
+					) : (
+						<></>
+					)
+				}
 				small
 			>
 				{() => (
