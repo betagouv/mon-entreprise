@@ -1,3 +1,4 @@
+import { ComponentType } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
@@ -211,6 +212,7 @@ type SimulateurCardProps = MergedSimulatorDataValues & {
 	small?: boolean
 	fromGérer?: boolean
 	role?: string
+	as?: string | ComponentType<any> | undefined
 }
 
 export function SimulateurCard({
@@ -224,6 +226,7 @@ export function SimulateurCard({
 	beta,
 	small = false,
 	fromGérer = false,
+	as = undefined,
 	...props
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
@@ -241,14 +244,14 @@ export function SimulateurCard({
 						}}
 						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 						title={
-							<h4>
+							<p>
 								{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
 								{beta && (
 									<Chip type="info" icon={<Emoji emoji="🚧" />}>
 										Bêta
 									</Chip>
 								)}
-							</h4>
+							</p>
 						}
 						role="link"
 					/>

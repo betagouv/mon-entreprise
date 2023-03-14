@@ -66,6 +66,7 @@ const StyledArticle = styled.div`
 	padding: ${({ theme }) => theme.spacings.lg};
 	padding-top: ${({ theme }) => theme.spacings.sm};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
+	border: solid 1px ${({ theme }) => theme.colors.extended.grey[600]};
 	transition: background-color 0.15s;
 	cursor: pointer;
 	display: block;

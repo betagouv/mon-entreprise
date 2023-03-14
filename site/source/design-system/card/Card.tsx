@@ -45,7 +45,7 @@ export function Card({
 	...ariaButtonProps
 }: CardProps) {
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
-	const titleProps = getTitleProps(title, 'h2')
+	const titleProps = getTitleProps(title, 'h3')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)

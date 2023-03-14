@@ -28,13 +28,13 @@ type PagesChartProps = {
 }
 const Palette = [
 	'#1ea0f5',
-	'#697ad5',
-	'#b453b6',
-	'#ff2d96',
-	'#fc9e67',
+	'#94004A',
 	'#fad750',
-	'#bed976',
-	'#82da9d',
+	'#B250B4',
+	'#CBE08F',
+	'#2F41A7',
+	'#fc9e67',
+	'#1F6B37',
 	'#46dcc3',
 ]
 

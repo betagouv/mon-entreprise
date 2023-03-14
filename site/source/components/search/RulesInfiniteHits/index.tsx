@@ -58,16 +58,6 @@ const Hit = (hit: THit) => {
 	)
 }
 
-const HideableTitle = connectStats(({ nbHits }) => {
-	return nbHits === 0 ? (
-		<></>
-	) : (
-		<H3 as="h2">
-			<Trans>Règles de calculs</Trans>
-		</H3>
-	)
-})
-
 const HitList = styled.ol`
 	display: flex;
 	flex-direction: column;
@@ -117,7 +107,6 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refineNext }: IHits) => {
 export const RulesInfiniteHits = () => {
 	return (
 		<>
-			<HideableTitle />
 			<Hits />
 		</>
 	)
