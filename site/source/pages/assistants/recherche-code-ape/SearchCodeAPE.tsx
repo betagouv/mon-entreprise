@@ -145,7 +145,8 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 			.map((item, index, arr) => ({
 				item,
 				scoreFuzzy: index / arr.length,
-				nbEtablissement: lazyData.indexByCodeApe[item.codeApe.replace('.', '')],
+				nbEtablissement:
+					lazyData.indexByCodeApe[item.codeApe.replace('.', '')] || 0,
 			}))
 			.sort(({ nbEtablissement: a }, { nbEtablissement: b }) => b - a)
 			.map(({ item, scoreFuzzy, nbEtablissement }, index, arr) => {
