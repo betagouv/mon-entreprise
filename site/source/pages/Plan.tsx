@@ -31,98 +31,75 @@ export default function Plan() {
 
 			<StyledUl>
 				<Li>
-					<H3 as="h2">
-						<Link to={absoluteSitePaths.index}>
-							<Trans>Page d'accueil</Trans>
-						</Link>
-					</H3>
+					<Link to={absoluteSitePaths.index}>
+						<Trans>Page d'accueil</Trans>
+					</Link>
 				</Li>
 				<Li>
-					<H3 as="h2">
-						<HeaderLink
-							to={absoluteSitePaths.assistants['choix-du-statut'].index}
-						>
-							<Trans>Créer une entreprise</Trans>
-						</HeaderLink>
-					</H3>
+					<HeaderLink
+						to={absoluteSitePaths.assistants['choix-du-statut'].index}
+					>
+						<Trans>Créer une entreprise</Trans>
+					</HeaderLink>
 
 					<Ul>
 						<Li>
-							<H3 as="h2">
-								<Link
-									to={absoluteSitePaths.assistants['choix-du-statut'].après}
-								>
-									<Trans>Après la création</Trans>
-								</Link>
-							</H3>
+							<Link to={absoluteSitePaths.assistants['choix-du-statut'].après}>
+								<Trans>Après la création</Trans>
+							</Link>
 						</Li>
 						<Li>
-							<H3 as="h2">
-								<Link
-									to={
-										absoluteSitePaths.assistants['choix-du-statut'].guideStatut
-											.index
-									}
-								>
-									<Trans>Choix du statut juridique</Trans>
-								</Link>
-							</H3>
+							<Link
+								to={
+									absoluteSitePaths.assistants['choix-du-statut'].guideStatut
+										.index
+								}
+							>
+								<Trans>Choix du statut juridique</Trans>
+							</Link>
 						</Li>
 					</Ul>
 				</Li>
 				<Li>
-					<H3 as="h2">
-						<HeaderLink to={absoluteSitePaths.assistants.index}>
-							<Trans>Gérer mon activité</Trans>
-						</HeaderLink>
-					</H3>
+					<HeaderLink to={absoluteSitePaths.assistants.index}>
+						<Trans>Gérer mon activité</Trans>
+					</HeaderLink>
 
 					<Ul>
 						<Li>
-							<H3>
-								<Link to={absoluteSitePaths.assistants.embaucher}>
-									<Trans>Embaucher</Trans>
-								</Link>
-							</H3>
+							<Link to={absoluteSitePaths.assistants.embaucher}>
+								<Trans>Embaucher</Trans>
+							</Link>
 						</Li>
 						<Li>
-							<H3>
-								<Link to={absoluteSitePaths.assistants.sécuritéSociale}>
-									<Trans>Protection sociale</Trans>
-								</Link>
-							</H3>
+							<Link to={absoluteSitePaths.assistants.sécuritéSociale}>
+								<Trans>Protection sociale</Trans>
+							</Link>
 						</Li>
 						<Li>
-							<H3>
-								<Link
-									to={
-										absoluteSitePaths.assistants[
-											'déclaration-charges-sociales-indépendant'
-										]
-									}
-								>
-									<Trans>
-										Assistant à la détermination des charges sociales
-										déductibles
-									</Trans>
-								</Link>
-							</H3>
+							<Link
+								to={
+									absoluteSitePaths.assistants[
+										'déclaration-charges-sociales-indépendant'
+									]
+								}
+							>
+								<Trans>
+									Assistant à la détermination des charges sociales déductibles
+								</Trans>
+							</Link>
 						</Li>
 						<Li>
-							<H3>
-								<Link to={absoluteSitePaths.assistants.formulaireMobilité}>
-									<Trans>Demande de mobilité internationale</Trans>
-								</Link>
-							</H3>
+							<Link to={absoluteSitePaths.assistants.formulaireMobilité}>
+								<Trans>Demande de mobilité internationale</Trans>
+							</Link>
 						</Li>
 					</Ul>
 				</Li>
 				<Li>
-					<H3 as="h2">
-						<HeaderLink to={absoluteSitePaths.simulateurs.index}>
-							<Trans>Simulateurs disponibles</Trans>
-						</HeaderLink>
-					</H3>
+					<HeaderLink to={absoluteSitePaths.simulateurs.index}>
+						<Trans>Simulateurs disponibles</Trans>
+					</HeaderLink>
 
 					<Ul>
 						{Object.entries(absoluteSitePaths.simulateurs)
@@ -130,115 +107,89 @@ export default function Plan() {
 							.map(([simulateurKey, simulateurPath]: [string, string]) => {
 								return (
 									<Li key={`list-item-${simulateurKey}`}>
-										<H3>
-											<Link to={simulateurPath}>
-												{
-													simulatorData[
-														simulateurKey as keyof typeof simulatorData
-													].title
-												}
-											</Link>
-										</H3>
+										<Link to={simulateurPath}>
+											{
+												simulatorData[
+													simulateurKey as keyof typeof simulatorData
+												].title
+											}
+										</Link>
 									</Li>
 								)
 							})}
 						<Li key="list-item-comparaison">
-							<H3>
-								<Link to={absoluteSitePaths.simulateurs.comparaison}>
-									<Trans>Assistant au choix du statut juridique</Trans>
-								</Link>
-							</H3>
+							<Link to={absoluteSitePaths.simulateurs.comparaison}>
+								<Trans>Assistant au choix du statut juridique</Trans>
+							</Link>
 						</Li>
 						<Li key="list-item-economie-collaborative">
-							<H3>
-								<Link
-									to={absoluteSitePaths.assistants.économieCollaborative.index}
-								>
-									<Trans>
-										Assistant à la déclaration des revenus des plateformes en
-										ligne
-									</Trans>
-								</Link>
-							</H3>
+							<Link
+								to={absoluteSitePaths.assistants.économieCollaborative.index}
+							>
+								<Trans>
+									Assistant à la déclaration des revenus des plateformes en
+									ligne
+								</Trans>
+							</Link>
 						</Li>
 					</Ul>
 				</Li>
 				<Li>
-					<H3 as="h2">
-						<Link to={absoluteSitePaths.nouveautés}>
-							<Trans>Nouveautés</Trans>
-						</Link>
-					</H3>
+					<Link to={absoluteSitePaths.nouveautés}>
+						<Trans>Nouveautés</Trans>
+					</Link>
 				</Li>
 
 				<Li>
-					<H3 as="h2">
-						<Link to={absoluteSitePaths.budget}>
-							<Trans>Budget</Trans>
-						</Link>
-					</H3>
+					<Link to={absoluteSitePaths.budget}>
+						<Trans>Budget</Trans>
+					</Link>
 				</Li>
 				<Li>
-					<H3 as="h2">
-						<Link to={absoluteSitePaths.accessibilité}>
-							<Trans>Accessibilité</Trans>
-						</Link>
-					</H3>
+					<Link to={absoluteSitePaths.accessibilité}>
+						<Trans>Accessibilité</Trans>
+					</Link>
 				</Li>
 				<Li>
-					<H3 as="h2">
-						<Link to={absoluteSitePaths.stats}>
-							<Trans>Statistiques</Trans>
-						</Link>
-					</H3>
+					<Link to={absoluteSitePaths.stats}>
+						<Trans>Statistiques</Trans>
+					</Link>
 				</Li>
 				<Li>
-					<H3 as="h2">
-						<HeaderLink to={absoluteSitePaths.développeur.index}>
-							<Trans>Outils pour les développeurs</Trans>
-						</HeaderLink>
-					</H3>
+					<HeaderLink to={absoluteSitePaths.développeur.index}>
+						<Trans>Outils pour les développeurs</Trans>
+					</HeaderLink>
 
 					<Ul>
 						<Li key="list-item-développeur-api">
-							<H3>
-								<Link to={absoluteSitePaths.développeur.api}>
-									<Trans>API REST de simulation</Trans>
-								</Link>
-							</H3>
+							<Link to={absoluteSitePaths.développeur.api}>
+								<Trans>API REST de simulation</Trans>
+							</Link>
 						</Li>
 						<Li key="list-item-développeur-iframe">
-							<H3>
-								<Link to={absoluteSitePaths.développeur.iframe}>
-									<Trans>Intégrer le module Web</Trans>
-								</Link>
-							</H3>
+							<Link to={absoluteSitePaths.développeur.iframe}>
+								<Trans>Intégrer le module Web</Trans>
+							</Link>
 						</Li>
 						<Li key="list-item-développeur-library">
-							<H3>
-								<Link to={absoluteSitePaths.développeur.library}>
-									<Trans>
-										Utiliser les calculs des simulateurs dans votre application
-									</Trans>
-								</Link>
-							</H3>
+							<Link to={absoluteSitePaths.développeur.library}>
+								<Trans>
+									Utiliser les calculs des simulateurs dans votre application
+								</Trans>
+							</Link>
 						</Li>
 						<Li key="list-item-développeur-spreadsheet">
-							<H3>
-								<Link to={absoluteSitePaths.développeur.spreadsheet}>
-									<Trans>Utiliser avec un tableur</Trans>
-								</Link>
-							</H3>
+							<Link to={absoluteSitePaths.développeur.spreadsheet}>
+								<Trans>Utiliser avec un tableur</Trans>
+							</Link>
 						</Li>
 					</Ul>
 				</Li>
 
 				<Li>
-					<H3 as="h2">
-						<Link to={absoluteSitePaths.documentation.index}>
-							<Trans>Documentation</Trans>
-						</Link>
-					</H3>
+					<Link to={absoluteSitePaths.documentation.index}>
+						<Trans>Documentation</Trans>
+					</Link>
 				</Li>
 			</StyledUl>
 		</>

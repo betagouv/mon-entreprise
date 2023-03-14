@@ -68,6 +68,7 @@ function Pagination({ items }: PaginationProps) {
 					<PagerButton
 						onClick={() => setCurrentPage(i)}
 						currentPage={currentPage === i}
+						aria-selected={currentPage === i ? true : undefined}
 						key={i}
 					>
 						{i + 1}
@@ -111,11 +112,10 @@ type PagerButtonProps = {
 const PagerButton = styled.button<PagerButtonProps>`
 	font-family: ${({ theme }) => theme.fonts.main};
 	padding: 0.375rem 0.5rem;
-	border: 1px solid
-		${({ theme, currentPage }) =>
-			currentPage
-				? theme.colors.bases.primary[500]
-				: theme.colors.extended.grey[300]};
+	border: ${({ theme, currentPage }) =>
+		currentPage
+			? `2px solid ${theme.colors.bases.primary[500]}`
+			: `1px solid ${theme.colors.extended.grey[300]}`};
 	margin-right: 0.25rem;
 	background-color: ${({ theme, currentPage }) =>
 		currentPage

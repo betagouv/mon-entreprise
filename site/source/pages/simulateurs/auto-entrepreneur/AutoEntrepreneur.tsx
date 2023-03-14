@@ -77,7 +77,7 @@ function Explanation() {
 						dottedName:
 							'dirigeant . auto-entrepreneur . cotisations et contributions',
 						title: t('Cotisations'),
-						color: colors.bases.secondary[300],
+						color: colors.extended.grey[700],
 					},
 				]}
 			/>

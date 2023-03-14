@@ -1,6 +1,8 @@
 import { useProgressBar } from '@react-aria/progress'
 import styled from 'styled-components'
 
+import { Body } from '@/design-system/typography/paragraphs'
+
 type ProgressProps = {
 	progress: number
 	minValue?: number
@@ -22,20 +24,20 @@ export default function Progress({
 		value: progress,
 	}
 
-	const a11yPrefixLabel = `Étape ${progress + step} sur ${String(maxValue)}, `
+	const a11yPrefixLabel = `Étape ${progress + step} sur ${String(maxValue)}`
 
 	const { progressBarProps, labelProps } = useProgressBar(propsBar)
 
 	return (
 		<div aria-live="polite">
-			<span {...labelProps} className="sr-only" aria-hidden>
-				{`${a11yPrefixLabel} ${propsBar.label}`}
-			</span>
 			<ProgressContainer {...progressBarProps}>
 				<ProgressBar
 					style={{ width: `${(progress * 100) / (maxValue || 1)}%` }}
 				/>
 			</ProgressContainer>
+			<StyledBody {...labelProps} aria-hidden>
+				{a11yPrefixLabel} <span className="sr-only">{propsBar.label}</span>
+			</StyledBody>
 		</div>
 	)
 }
@@ -49,4 +51,10 @@ const ProgressBar = styled.div`
 	transition: width 0.5s;
 	background-color: ${({ theme }) => theme.colors.bases.primary[500]};
 	height: ${({ theme }) => theme.spacings.xxs};
+`
+const StyledBody = styled(Body)`
+	font-size: 0.825rem;
+	padding: 0 1.5rem;
+	margin-bottom: 0;
+	color: ${({ theme }) => theme.colors.extended.grey[600]}!important;
 `

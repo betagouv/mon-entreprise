@@ -1,6 +1,7 @@
 import { Trans } from 'react-i18next'
 import { Hit } from 'react-instantsearch-core'
 import { connectHits } from 'react-instantsearch-dom'
+import styled from 'styled-components'
 
 import InfoBulle from '@/design-system/InfoBulle'
 import { SmallCard } from '@/design-system/card'
@@ -32,19 +33,23 @@ const SimulateurCardHit = ({
 	hit: AlgoliaSimulatorHit
 }) => {
 	return (
-		<SmallCard
+		<StyledSmallCard
 			icon={<Emoji emoji={hit.icône} />}
 			to={{ pathname: path }}
 			state={{ fromSimulateurs: true }}
 			title={
-				<h3>
+				<p>
 					<Highlight hit={hit} attribute="title" />{' '}
 					{tooltip && <InfoBulle>{tooltip}</InfoBulle>}
-				</h3>
+				</p>
 			}
 		/>
 	)
 }
+
+const StyledSmallCard = styled(SmallCard)`
+	border: solid 1px ${({ theme }) => theme.colors.bases.primary[800]};
+`
 
 export const SimulatorHits = connectHits<
 	{ hits: AlgoliaSimulatorHit[] },
@@ -69,11 +74,18 @@ export const SimulatorHits = connectHits<
 					<Trans>Simulateurs</Trans>
 				</H3>
 			)}
-			<Grid container spacing={2}>
+			<Grid container spacing={2} as="ul" style={{ padding: 0 }}>
 				{hits.map(
 					(hit) =>
 						hit.pathId && (
-							<Grid item key={hit.objectID} xs={12} lg={6}>
+							<Grid
+								item
+								key={hit.objectID}
+								xs={12}
+								lg={6}
+								as="li"
+								style={{ listStyle: 'none' }}
+							>
 								<SimulateurCardHit hit={hit} path={getPath(hit) ?? '/'} />
 							</Grid>
 						)

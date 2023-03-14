@@ -140,7 +140,7 @@ const DividendesExplanation = () => {
 							dottedName:
 								'bénéficiaire . dividendes . cotisations et contributions',
 							title: t('Cotisations'),
-							color: colors.bases.secondary[300],
+							color: colors.extended.grey[700],
 						},
 					]}
 				/>

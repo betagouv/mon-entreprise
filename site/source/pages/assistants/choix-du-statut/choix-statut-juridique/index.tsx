@@ -8,7 +8,7 @@ import Meta from '@/components/utils/Meta'
 import { Button } from '@/design-system/buttons'
 import { Card } from '@/design-system/card'
 import { Grid, Spacing } from '@/design-system/layout'
-import { H2 } from '@/design-system/typography/heading'
+import { H3 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { SimulateurCard } from '@/pages/simulateurs-et-assistants'
@@ -70,9 +70,9 @@ export default function ChoixStatutJuridique() {
 			</PageHeader>
 			<Spacing xl />
 
-			<H2 className="sr-only">
+			<H3>
 				<Trans>Ressources utiles</Trans>
-			</H2>
+			</H3>
 
 			<Grid container spacing={3} role="list">
 				<SimulateurCard

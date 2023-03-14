@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react'
+import { ComponentType, ReactNode, createContext, useContext } from 'react'
 import styled, { css } from 'styled-components'
 
 import { SpacingKey } from '../theme'
@@ -95,6 +95,7 @@ type GridContainerProps = {
 	columnSpacing?: number
 	rowSpacing?: number
 	children: React.ReactNode
+	as?: string | ComponentType<any> | undefined
 } & React.ComponentPropsWithoutRef<'div'>
 
 function GridContainer({
@@ -127,6 +128,7 @@ function GridContainer({
 type GridItemProps = {
 	children?: React.ReactNode
 	className?: string
+	as?: string | ComponentType<any> | undefined
 } & Partial<Record<SpacingKey | 'xs', BreakpointConfig>> &
 	React.ComponentPropsWithoutRef<'div'>
 

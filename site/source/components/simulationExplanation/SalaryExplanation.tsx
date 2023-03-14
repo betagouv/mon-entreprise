@@ -17,8 +17,6 @@ import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
 
-	const { t } = useTranslation()
-
 	if (useInversionFail()) {
 		return null
 	}
@@ -148,7 +146,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 							currentSimulatorData?.pathId === 'simulateurs.sasu'
 								? 'dirigeant . assimilé salarié . cotisations'
 								: 'salarié . cotisations',
-						color: colors.bases.secondary[300],
+						color: colors.extended.grey[700],
 					},
 				]}
 			/>

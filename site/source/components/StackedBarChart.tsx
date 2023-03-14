@@ -117,6 +117,7 @@ type InnerStackedBarChartProps = {
 		color?: string
 		value: EvaluatedNode['nodeValue']
 		legend: React.ReactNode
+		title?: string
 		key: string
 	}>
 	precision: Precision
@@ -159,13 +160,14 @@ function InnerStackedBarChart({ data, precision }: InnerStackedBarChartProps) {
 					// <BarItem /> has a border so we don't want to display empty bars
 					// (even with width 0).
 					.filter(({ percentage }) => percentage !== 0)
-					.map(({ key, color, percentage }) => (
+					.map(({ key, color, percentage, title }) => (
 						<BarItem
 							style={{
 								width: `${percentage}%`,
 								backgroundColor: color || 'green',
 							}}
 							key={key}
+							aria-label={`${title || ''}, ${percentage}%`}
 						/>
 					))}
 			</BarStack>
@@ -204,6 +206,7 @@ export default function StackedRulesChart({
 				value: engine.evaluate({ valeur: dottedName, unité: targetUnit })
 					.nodeValue,
 				legend: <RuleLink dottedName={dottedName}>{title}</RuleLink>,
+				title,
 				color,
 			}))}
 		/>
