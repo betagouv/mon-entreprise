@@ -4,7 +4,9 @@ import yaml from 'yaml'
 import {
 	UiOriginalTranslationPath,
 	UiTranslationPath,
+	assocPath,
 	fetchTranslation,
+	filterUnusedTranslations,
 	getUiMissingTranslations,
 } from './utils.js'
 
@@ -30,23 +32,15 @@ await Promise.all(
 			}
 		})
 )
+
+const { originalTranslations, translatedTranslations } =
+	filterUnusedTranslations(originalKeys, translatedKeys)
+
 writeFileSync(
 	UiTranslationPath,
-	yaml.stringify(translatedKeys, { sortMapEntries: true })
+	yaml.stringify(translatedTranslations, { sortMapEntries: true })
 )
 writeFileSync(
 	UiOriginalTranslationPath,
-	yaml.stringify(originalKeys, { sortMapEntries: true })
+	yaml.stringify(originalTranslations, { sortMapEntries: true })
 )
-
-function assocPath(path, val, obj) {
-	if (path.length === 0) return val
-
-	const key = path[0]
-
-	if (path.length >= 2) {
-		val = assocPath(path.slice(1), val, obj?.[key] ?? {})
-	}
-
-	return { ...obj, [key]: val }
-}
