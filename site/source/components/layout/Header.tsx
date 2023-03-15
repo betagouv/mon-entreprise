@@ -35,7 +35,7 @@ export default function Header() {
 				<StyledHeader>
 					<Link
 						to={absoluteSitePaths.index}
-						aria-label={t("Logo mon entreprise, accéder à la page d'accueil")}
+						aria-label={t("URSSAF Mon entreprise, accéder à la page d'accueil")}
 					>
 						<StyledLogo>
 							<Logo />

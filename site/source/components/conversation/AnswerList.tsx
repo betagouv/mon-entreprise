@@ -255,7 +255,9 @@ function StepsTable({
 						<Grid item xs>
 							{rule.title}
 							<ExplicableRule
-								aria-label={t('En savoir plus')}
+								aria-label={t(`Plus d'info sur, {{ title }}`, {
+									title: rule.title,
+								})}
 								light
 								dottedName={rule.dottedName}
 							/>

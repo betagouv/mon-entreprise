@@ -32,18 +32,25 @@ type CardProps = GenericCardProps & {
 	compact?: boolean
 	bodyAs?: React.ComponentProps<typeof Body>['as']
 	role?: string
+	tabIndex?: number
+	onClick?: () => void
+	className?: string
 }
 
-export function Card({
-	title,
-	icon,
-	children,
-	ctaLabel,
-	compact = false,
-	bodyAs,
-	role,
-	...ariaButtonProps
-}: CardProps) {
+export function Card(props: CardProps) {
+	const {
+		title,
+		icon,
+		children,
+		ctaLabel,
+		compact = false,
+		bodyAs,
+		role,
+		tabIndex,
+		onClick,
+		className,
+		...ariaButtonProps
+	} = props
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
 	const titleProps = getTitleProps(title, 'h3')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
@@ -53,7 +60,13 @@ export function Card({
 	delete buttonOrLinkProps.title
 
 	return (
-		<CardContainer $compact={compact}>
+		<CardContainer
+			$compact={compact}
+			tabIndex={tabIndex}
+			onClick={onClick}
+			className={className}
+			aria-label={props?.['aria-label']}
+		>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			{title &&
 				(compact ? (

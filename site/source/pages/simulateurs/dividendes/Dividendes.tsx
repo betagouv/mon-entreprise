@@ -51,7 +51,7 @@ function OptionBarèmeSwitch() {
 	const engineOptionPFU = engine.evaluate(dottedName).nodeValue as string
 
 	const [currentOptionPFU, setCurrentOptionPFU] = useState(engineOptionPFU)
-
+	const { t } = useTranslation()
 	useEffect(() => {
 		if (currentOptionPFU !== engineOptionPFU) {
 			setCurrentOptionPFU(engineOptionPFU)
@@ -65,6 +65,7 @@ function OptionBarèmeSwitch() {
 				setCurrentOptionPFU(value)
 				dispatch(updateSituation(dottedName, `'${value}'`))
 			}}
+			aria-label={t("Régime d'imposition")}
 		>
 			<Radio value="PFU">
 				<Trans>

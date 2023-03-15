@@ -81,6 +81,7 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 			<ToggleGroup
 				onChange={(val) => setDataType(val as DataType)}
 				defaultValue={dataType}
+				aria-label={t("Mode d'affichage")}
 			>
 				<Radio value="nombres">
 					<Trans>nombres</Trans>

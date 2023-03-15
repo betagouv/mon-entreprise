@@ -11,6 +11,7 @@ import {
 import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
 import { SearchField } from '@/design-system/field'
+import { FocusStyle } from '@/design-system/global-style'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { StyledLink } from '@/design-system/typography/link'
@@ -22,6 +23,13 @@ import CompanySearchDetails from './SearchDetails'
 
 const StyledCard = styled(Card)`
 	flex-direction: row; // for Safari <= 13
+	cursor: pointer;
+	&:hover {
+		background-color: ${({ theme }) => theme.colors.extended.dark[700]};
+	}
+	&:focus-visible {
+		${FocusStyle}
+	}
 `
 
 export function CompanySearchField(props: {
@@ -99,6 +107,7 @@ function Results({
 	onSubmit?: (établissement: FabriqueSocialEntreprise) => void
 }) {
 	const { t } = useTranslation()
+	console.log(results)
 
 	return !results.length ? (
 		<FromTop>
@@ -147,9 +156,11 @@ function Results({
 				{results.map((etablissement) => (
 					<Grid key={etablissement.siren} item xs={12}>
 						<StyledCard
-							bodyAs="div"
-							onPress={() => onSubmit?.(etablissement)}
+							role="button"
+							onClick={() => onSubmit?.(etablissement)}
 							compact
+							aria-label={etablissement.label}
+							tabIndex={0}
 						>
 							<CompanySearchDetails entreprise={etablissement} />
 						</StyledCard>
