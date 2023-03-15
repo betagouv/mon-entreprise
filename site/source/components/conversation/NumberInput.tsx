@@ -112,7 +112,7 @@ function getSerializedUnit(
 	value: number,
 	unit: Unit,
 	locale: string,
-	t: (s?: string) => string | undefined
+	translate: (s?: string) => string | undefined
 ): string {
 	// removing euro, which is a currency not a unit
 	unit = {
@@ -128,7 +128,7 @@ function getSerializedUnit(
 
 	if (!formatUnit) {
 		return (
-			t(
+			translate(
 				serializeUnit(unit)
 					?.replace(/\/([^\s])/, '/ $1')
 					.replace('/', 'par')
