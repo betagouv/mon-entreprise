@@ -12,6 +12,11 @@ export default function SearchButton() {
 	return (
 		<PopoverWithTrigger
 			title={t('Que cherchez-vous ?')}
+			titleProps={{
+				style: {
+					marginBottom: '1rem',
+				},
+			}}
 			trigger={(buttonProps) => (
 				<StyledButton
 					size="XS"
