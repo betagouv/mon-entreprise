@@ -84,7 +84,13 @@ export const PlaceDesEntreprisesButton = ({
 						</Container>
 					}
 				>
-					<LazyIframe src={url.href} onLoad={() => scrollTo(0, 0)} />
+					<LazyIframe
+						src={url.href}
+						onLoad={function () {
+							document.getElementById('pdeIframe')?.focus()
+							scrollTo(0, 0)
+						}}
+					/>
 				</Suspense>
 			</PopoverWithTrigger>
 		</Container>
