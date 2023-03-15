@@ -65,14 +65,15 @@ function Pagination({ items }: PaginationProps) {
 			</Ul>
 			<Pager>
 				{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
-					<PagerButton
-						onClick={() => setCurrentPage(i)}
-						currentPage={currentPage === i}
-						aria-selected={currentPage === i ? true : undefined}
-						key={i}
-					>
-						{i + 1}
-					</PagerButton>
+					<li key={i}>
+						<PagerButton
+							onClick={() => setCurrentPage(i)}
+							currentPage={currentPage === i}
+							aria-selected={currentPage === i ? true : undefined}
+						>
+							{i + 1}
+						</PagerButton>
+					</li>
 				))}
 			</Pager>
 		</>
@@ -116,7 +117,6 @@ const PagerButton = styled.button<PagerButtonProps>`
 		currentPage
 			? `2px solid ${theme.colors.bases.primary[500]}`
 			: `1px solid ${theme.colors.extended.grey[300]}`};
-	margin-right: 0.25rem;
 	background-color: ${({ theme, currentPage }) =>
 		currentPage
 			? theme.colors.bases.primary[100]
@@ -125,21 +125,35 @@ const PagerButton = styled.button<PagerButtonProps>`
 	&:hover {
 		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
 	}
-
-	&:first-child {
-		border-top-left-radius: 0.25rem;
-		border-bottom-left-radius: 0.25rem;
-	}
-
-	&:last-child {
-		border-top-right-radius: 0.25rem;
-		border-bottom-right-radius: 0.25rem;
-		margin-right: 0;
-	}
 `
 
-const Pager = styled.div`
+const Pager = styled.ul`
 	font-family: ${({ theme }) => theme.fonts.main};
 	text-align: center;
 	margin: auto;
+
+	& li {
+		list-style: none;
+		display: inline-block;
+		margin-right: 0.25rem;
+	}
+
+	& li:first-child {
+		button {
+			border-top-left-radius: 0.25rem;
+			border-top-right-radius: 0;
+			border-bottom-left-radius: 0.25rem;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	& li:last-child {
+		button {
+			border-top-right-radius: 0.25rem;
+			border-bottom-right-radius: 0.25rem;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			margin-right: 0;
+		}
+	}
 `
