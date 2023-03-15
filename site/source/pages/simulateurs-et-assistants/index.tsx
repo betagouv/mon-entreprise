@@ -31,7 +31,6 @@ export default function SimulateursEtAssistants() {
 		<>
 			<TrackPage chapter1="simulateurs" name="accueil" />
 			<Meta
-				page="simulateurs"
 				title={titre}
 				description={t(
 					'pages.simulateurs.accueil.description',

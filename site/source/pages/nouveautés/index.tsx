@@ -59,7 +59,6 @@ export default function Nouveautés() {
 		<>
 			<TrackPage chapter1="informations" name="nouveautes" />
 			<Meta
-				page="nouveautés"
 				title={t('news.title', 'Nouveautés')}
 				description={t(
 					'news.description',

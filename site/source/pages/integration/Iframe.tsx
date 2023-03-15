@@ -100,7 +100,6 @@ function IntegrationCustomizer() {
 				<Trans>Personnalisez l'intégration</Trans>
 			</H2>
 			<Meta
-				page="iframe"
 				title={t('iframe.title', 'Intégrer un simulateur')}
 				description={t('iframe.description', 'Outils pour les développeurs')}
 			/>

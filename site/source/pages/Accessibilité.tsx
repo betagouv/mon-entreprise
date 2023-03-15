@@ -15,7 +15,6 @@ export default function Accessibilité() {
 		<Trans i18nKey="pages.accessibilité">
 			<H1>Accessibilité</H1>
 			<Meta
-				page="accessibilité"
 				title={t('accessibility.title', 'Accessibilité')}
 				description={t(
 					'accessibility.description',

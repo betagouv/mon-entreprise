@@ -10,10 +10,14 @@ import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import {
+	MergedSimulatorDataValues,
+	useCurrentSimulatorData,
+} from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { Merge, ToOptional } from '@/types/utils'
 
 import { NextSteps } from '../pages/simulateurs/NextSteps'
 import { TrackChapter } from './ATInternetTracking'
@@ -57,9 +61,21 @@ export default function PageData() {
 		...(typeof tracking === 'string' ? { chapter2: tracking } : tracking),
 	} as ComponentPropsWithoutRef<typeof TrackChapter>
 
+	const { ogTitle, ogDescription, ogImage } = meta as Merge<
+		MergedSimulatorDataValues['meta']
+	>
+
 	return (
 		<TrackChapter {...trackInfo}>
-			{meta && <Meta page={`simulateur.${title ?? ''}`} {...meta} />}
+			{meta && (
+				<Meta
+					title={meta.title}
+					description={meta.description}
+					ogTitle={ogTitle}
+					ogDescription={ogDescription}
+					ogImage={ogImage}
+				/>
+			)}
 
 			{beta && <BetaBanner />}
 			{title && !inIframe && (

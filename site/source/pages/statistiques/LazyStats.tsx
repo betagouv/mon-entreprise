@@ -21,7 +21,6 @@ export default function StatsPage() {
 		<>
 			<TrackPage chapter1="informations" name="stats" />
 			<Meta
-				page="stats"
 				title={t('stats.title', 'Statistiques')}
 				description={t(
 					'stats.description',

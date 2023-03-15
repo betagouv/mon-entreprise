@@ -31,7 +31,6 @@ export default function Landing() {
 		<>
 			<TrackPage chapter1="informations" name="accueil" />
 			<Meta
-				page="landing"
 				title=""
 				description={t(
 					'landing.description',

@@ -63,7 +63,6 @@ export default function Budget() {
 		<>
 			<TrackPage chapter1="informations" name="budget" />
 			<Meta
-				page="budget"
 				title={t('budget.title', 'Budget')}
 				description={t('budget.description', 'Le budget de mon-entreprise')}
 			/>

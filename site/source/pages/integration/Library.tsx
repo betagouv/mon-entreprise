@@ -21,7 +21,6 @@ export default function Library() {
 	return (
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<Meta
-				page="library"
 				title={t('library.title', 'Librairie de calcul')}
 				description={t('library.description', 'Outils pour les développeurs')}
 			/>

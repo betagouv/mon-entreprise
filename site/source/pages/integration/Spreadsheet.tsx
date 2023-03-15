@@ -17,7 +17,6 @@ export default function Spreadsheet() {
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
 			<Meta
-				page="spreadsheet"
 				title={t('spreadsheet.title', 'Utiliser avec un tableur')}
 				description={t(
 					'spreadsheet.description',

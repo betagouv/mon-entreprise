@@ -18,7 +18,6 @@ export default function Options() {
 	return (
 		<>
 			<Meta
-				page="intégration"
 				title={t('intégration.title', 'Intégration')}
 				description={t(
 					'intégration.description',

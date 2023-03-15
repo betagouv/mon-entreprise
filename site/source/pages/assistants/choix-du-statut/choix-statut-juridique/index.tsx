@@ -32,7 +32,6 @@ export default function ChoixStatutJuridique() {
 		<FromBottom>
 			<TrackPage name="accueil" />
 			<Meta
-				page="créer"
 				title={t('créer.titre', 'Créer une entreprise')}
 				description={t('créer.description', 'Créer une entreprise')}
 				ogImage={créerSvg}
