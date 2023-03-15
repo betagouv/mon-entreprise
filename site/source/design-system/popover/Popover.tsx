@@ -72,7 +72,6 @@ export default function Popover(
 	if (offsetTop === undefined) {
 		return null
 	}
-	console.log({ title, titleProps })
 
 	return (
 		<OverlayContainer aria-modal={true}>
