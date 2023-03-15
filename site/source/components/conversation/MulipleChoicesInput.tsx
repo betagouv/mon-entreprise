@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Checkbox } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
@@ -47,6 +48,7 @@ type CheckBoxRuleProps = {
 }
 function CheckBoxRule({ node, engine, onChange }: CheckBoxRuleProps) {
 	const evaluation = engine.evaluate(node)
+	const { t } = useTranslation()
 	if (evaluation.nodeValue === null) {
 		return null
 	}
@@ -63,7 +65,9 @@ function CheckBoxRule({ node, engine, onChange }: CheckBoxRuleProps) {
 			<ExplicableRule
 				light
 				dottedName={node.dottedName as DottedName}
-				aria-label={`En savoir plus sur ${node.title}`}
+				aria-label={t("Plus d'infos sur, {{ tile }}", {
+					title: node.title,
+				})}
 			/>
 			<br />
 		</>

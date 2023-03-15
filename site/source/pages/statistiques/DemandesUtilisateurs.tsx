@@ -6,7 +6,7 @@ import { Chip } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
+import { Li, Ol, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 
@@ -58,11 +58,47 @@ function Pagination({ items }: PaginationProps) {
 
 	return (
 		<>
-			<Ul>
-				{items.slice(currentPage * 10, (currentPage + 1) * 10).map((item) => (
-					<Issue key={`issue-${item.number}`} {...item} />
-				))}
-			</Ul>
+			<Ol>
+				{[
+					{
+						title:
+							'mon-entreprise: bug scrolling de la popup Answers (desktop et mobile)',
+						closedAt: '2021-01-12T16:22:52Z',
+						number: 1326,
+						count: 1,
+					},
+					{
+						title: 'Question vide avec le lien direct "impot"',
+						closedAt: '2021-01-05T16:18:10Z',
+						number: 1311,
+						count: 2,
+					},
+					{
+						title:
+							'Abattament fiscal de 10% seulement sur les traitements et salaires',
+						closedAt: '2021-01-05T14:02:59Z',
+						number: 1306,
+						count: 2,
+					},
+					{
+						title: 'Franchise de TVA pour les professions libérales',
+						closedAt: '2021-01-04T11:35:22Z',
+						number: 1216,
+						count: 1,
+					},
+					{
+						title:
+							"Simulateur Auto-Entrepreneur : chiffre d'affaire affiché à 100 000 000 €/an",
+						closedAt: '2020-12-10T11:10:13Z',
+						number: 1246,
+						count: 1,
+					},
+				]
+					.slice(currentPage * 10, (currentPage + 1) * 10)
+					.map((item) => (
+						<Issue key={`issue-${item.number}`} {...item} />
+					))}
+			</Ol>
 			<Pager>
 				{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
 					<li key={i}>
@@ -70,6 +106,7 @@ function Pagination({ items }: PaginationProps) {
 							onClick={() => setCurrentPage(i)}
 							currentPage={currentPage === i}
 							aria-selected={currentPage === i ? true : undefined}
+							aria-current={currentPage === i ? 'page' : undefined}
 						>
 							{i + 1}
 						</PagerButton>
@@ -89,7 +126,8 @@ function Issue({ title, number, count, closedAt }: IssueProps) {
 			<Link
 				href={`https://github.com/betagouv/mon-entreprise/issues/${number}`}
 				aria-label={t(
-					'{{title}}, voir la demande sur github.com, nouvelle fenêtre'
+					'{{title}}, voir la demande sur github.com, nouvelle fenêtre',
+					{ title }
 				)}
 			>
 				{title}

@@ -28,6 +28,7 @@ export default function PeriodSwitch() {
 				onChange={(unit: string) => dispatch(updateUnit(unit))}
 				mode="tab"
 				hideRadio
+				aria-label={t("Mode d'affichage")}
 			>
 				{periods.map(({ label, unit }) => (
 					<span

@@ -73,15 +73,17 @@ type SimpleFieldProps = {
 	question?: RuleNode['rawNode']['question']
 	showSuggestions?: boolean
 	label?: string
+	['aria-label']?: string
 }
 
-export function SimpleField({
-	dottedName,
-	question,
-	summary,
-	showSuggestions = false,
-	label,
-}: SimpleFieldProps) {
+export function SimpleField(props: SimpleFieldProps) {
+	const {
+		dottedName,
+		question,
+		summary,
+		showSuggestions = false,
+		label,
+	} = props
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
 	const evaluation = engine.evaluate(dottedName)
@@ -149,6 +151,7 @@ export function SimpleField({
 				}
 				onChange={dispatchValue}
 				showSuggestions={showSuggestions}
+				aria-label={props?.['aria-label']}
 			/>
 			<Spacing sm />
 		</FadeIn>

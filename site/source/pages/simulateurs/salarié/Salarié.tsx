@@ -151,7 +151,12 @@ export const SeoExplanations = () => {
 			</Body>
 			<Body>
 				Il existe des{' '}
-				<RuleLink dottedName="salarié . coût total employeur . aides">
+				<RuleLink
+					aria-label={t(
+						'aides différées, voir le détail du calcul pour aides différées'
+					)}
+					dottedName="salarié . coût total employeur . aides"
+				>
 					aides différées
 				</RuleLink>{' '}
 				à l'embauche qui ne sont pas toutes prises en compte par notre
