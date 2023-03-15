@@ -21,7 +21,6 @@ type StatutButtonProps = {
 
 const StatutButton = ({ statut }: StatutButtonProps) => {
 	const { absoluteSitePaths } = useSitePaths()
-	const { t } = useTranslation()
 
 	return (
 		<Button
@@ -35,18 +34,7 @@ const StatutButton = ({ statut }: StatutButtonProps) => {
 				) : (
 					<Trans>Créer une</Trans>
 				)}{' '}
-				{
-					// t("auto-entrepreneur")
-					// t("EIRL")
-					// t("auto-entrepreneur-EIRL")
-					// t("EI")
-					// t("SASU")
-					// t("SAS")
-					// t("SARL")
-					// t("EURL")
-					// t("SA")
-					t(statut)
-				}
+				{statut}
 			</>
 		</Button>
 	)
