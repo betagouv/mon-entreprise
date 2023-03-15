@@ -10,8 +10,8 @@ import PagesChart from '@/components/charts/PagesCharts'
 import { useScrollToHash } from '@/components/utils/markdown'
 import { Message } from '@/design-system'
 import InfoBulle from '@/design-system/InfoBulle'
+import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
-import { Radio, ToggleGroup } from '@/design-system/field'
 import { Item, Select } from '@/design-system/field/Select'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
@@ -300,34 +300,51 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 					</Grid>
 				</div>
 				<div>
-					<ToggleGroup
-						onChange={(val) => setPeriod(val as Period)}
-						defaultValue={period}
+					<StyledBody id="mode-affichage-label">
+						<Trans>Mode d'affichage :</Trans>
+					</StyledBody>
+					<ButtonContainer
+						role="tablist"
+						aria-labelledby="mode-affichage-label"
 					>
-						<Radio value="jours">
-							<Trans>jours</Trans>
-						</Radio>
-						<Radio value="mois">
-							<Trans>mois</Trans>
-						</Radio>
-					</ToggleGroup>
+						<StyledButton
+							light={period !== 'jours'}
+							aria-selected={period === 'jours'}
+							aria-controls="visites-panel"
+							role="tab"
+							onClick={() => setPeriod('jours' as Period)}
+						>
+							<Trans>Jours</Trans>
+						</StyledButton>
+						<StyledButton
+							light={period !== 'mois'}
+							aria-selected={period === 'mois'}
+							aria-controls="visites-panel"
+							role="tab"
+							onClick={() => setPeriod('mois' as Period)}
+						>
+							<Trans>Mois</Trans>
+						</StyledButton>
+					</ButtonContainer>
+					<Spacing sm />
 				</div>
 			</Indicators>
 
-			<H3>Visites</H3>
-
-			{visites.length ? (
-				<Chart
-					key={period + visites.length.toString()}
-					period={period}
-					data={visites}
-					onDateChange={handleDateChange}
-					startIndex={startDateIndex}
-					endIndex={endDateIndex}
-				/>
-			) : (
-				<Message type="info">Aucune donnée disponible.</Message>
-			)}
+			<div id="visites-panel">
+				<H3>Visites</H3>
+				{visites.length ? (
+					<Chart
+						key={period + visites.length.toString()}
+						period={period}
+						data={visites}
+						onDateChange={handleDateChange}
+						startIndex={startDateIndex}
+						endIndex={endDateIndex}
+					/>
+				) : (
+					<Message type="info">Aucune donnée disponible.</Message>
+				)}
+			</div>
 
 			{slicedVisits.length > 0 && (
 				<H3>
@@ -536,3 +553,20 @@ function SimulateursChoice(props: {
 		</Select>
 	)
 }
+
+const ButtonContainer = styled.div`
+	display: flex;
+`
+
+const StyledButton = styled(Button)`
+	&:first-child {
+		border-radius: 0.25rem 0 0 0.25rem;
+	}
+	&:nth-child(2) {
+		border-radius: 0 0.25rem 0.25rem 0;
+	}
+`
+
+const StyledBody = styled(Body)`
+	margin-bottom: 0.25rem;
+`
