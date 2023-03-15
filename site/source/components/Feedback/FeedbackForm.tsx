@@ -200,7 +200,7 @@ export default function FeedbackForm({
 									type="email"
 									label={t('Votre adresse e-mail (requise)')}
 									description={t(
-										'Renseigner une adresse e-mail pour recevoir une réponse'
+										'Renseigner une adresse e-mail (au format nom@domaine.com) pour recevoir une réponse'
 									)}
 									isDisabled={isLoading}
 									maxLength={SHORT_MAX_LENGTH}
