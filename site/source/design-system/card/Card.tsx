@@ -53,12 +53,7 @@ export function Card({
 	delete buttonOrLinkProps.title
 
 	return (
-		<CardContainer
-			$compact={compact}
-			{...buttonOrLinkProps}
-			role={role || buttonOrLinkProps?.role}
-			tabIndex={0}
-		>
+		<CardContainer $compact={compact}>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			{title &&
 				(compact ? (
@@ -76,7 +71,13 @@ export function Card({
 				<Body as={bodyAs}>{children}</Body>
 			</div>
 			{ctaLabel && (
-				<CardButton $size="XS" $light $color="primary" as="div">
+				<CardButton
+					$size="XS"
+					$light
+					$color="primary"
+					{...buttonOrLinkProps}
+					role={role || buttonOrLinkProps?.role}
+				>
 					{ctaLabel}
 					{linkProps.external && <NewWindowLinkIcon />}
 				</CardButton>
@@ -133,7 +134,6 @@ export const CardContainer = styled.div<{
 	width: 100%;
 	height: 100%;
 	text-decoration: none;
-	cursor: ${({ $inert }) => ($inert ? 'auto' : 'pointer')};
 	flex-direction: column;
 	align-items: center;
 	border: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
@@ -148,11 +148,6 @@ export const CardContainer = styled.div<{
 		box-shadow: ${({ theme, $inert }) =>
 			!$inert &&
 			(theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3])};
-		background-color: ${({ theme, $inert }) =>
-			!$inert &&
-			(theme.darkMode
-				? theme.colors.extended.dark[500]
-				: theme.colors.bases.primary[100])};
 	}
 	padding: ${({ theme: { spacings }, $compact = false }) =>
 		$compact

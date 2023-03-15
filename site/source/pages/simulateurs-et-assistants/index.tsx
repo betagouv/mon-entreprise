@@ -232,6 +232,11 @@ export function SimulateurCard({
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
 
+	const ctaLabel =
+		pathId.startsWith('assistants') || pathId.startsWith('gérer')
+			? t('pages.simulateurs.home.cta.assistant', "Lancer l'assistant")
+			: t('pages.simulateurs.home.cta.simulateur', 'Lancer le simulateur')
+
 	return (
 		<>
 			{small ? (
@@ -270,17 +275,8 @@ export function SimulateurCard({
 							</>
 						}
 						icon={<Emoji emoji={icône} />}
-						ctaLabel={
-							pathId.startsWith('assistants') || pathId.startsWith('gérer')
-								? t(
-										'pages.simulateurs.home.cta.assistant',
-										"Lancer l'assistant"
-								  )
-								: t(
-										'pages.simulateurs.home.cta.simulateur',
-										'Lancer le simulateur'
-								  )
-						}
+						ctaLabel={ctaLabel}
+						aria-label={`${shortName}, ${ctaLabel}`}
 						to={{
 							pathname:
 								(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
