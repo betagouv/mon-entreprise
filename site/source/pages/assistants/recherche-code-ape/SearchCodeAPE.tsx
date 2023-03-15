@@ -33,12 +33,16 @@ const buildResearch = (lazyData: Data | null) => {
 
 	const fuzzy = new UFuzzy({ intraIns: 2 })
 
-	const { specificList, genericList } = apeData.reduce(
+	const { titleList, specificList, genericList } = apeData.reduce(
 		(prev, { contenuCentral, contenuAnnexe, title, codeApe }) => {
-			const specificText = [title, ...contenuCentral, codeApe].join('\t')
+			const specificText = [...contenuCentral, codeApe].join('\t')
 			const genericText = contenuAnnexe.join('\t')
 
 			return {
+				titleList: {
+					original: [...(prev.titleList?.original ?? []), title],
+					latinized: [],
+				},
 				specificList: {
 					original: [...(prev.specificList?.original ?? []), specificText],
 					latinized: [],
@@ -50,16 +54,19 @@ const buildResearch = (lazyData: Data | null) => {
 			}
 		},
 		{} as {
+			titleList: SearchableData
 			genericList: SearchableData
 			specificList: SearchableData
 		}
 	)
 
+	titleList.latinized = UFuzzy.latinize(titleList.original)
 	specificList.latinized = UFuzzy.latinize(specificList.original)
 	genericList.latinized = UFuzzy.latinize(genericList.original)
 
 	return {
 		fuzzy,
+		titleList,
 		specificList,
 		genericList,
 	}
@@ -98,7 +105,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 			return
 		}
 		const { apeData } = lazyData
-		const { fuzzy, genericList, specificList } = buildedResearch
+		const { fuzzy, titleList, genericList, specificList } = buildedResearch
 
 		if (!job.length) {
 			lastIdxs.current = {}
@@ -122,8 +129,10 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 
 		const latinizedValue = UFuzzy.latinize([job])[0]
 
+		const title = search(titleList.original, job)
 		const specific = search(specificList.original, job)
 		const generic = search(genericList.original, job)
+		const titleLatin = search(titleList.latinized, latinizedValue)
 		const specificLatin = search(specificList.latinized, latinizedValue)
 		const genericLatin = search(genericList.latinized, latinizedValue)
 
@@ -136,6 +145,8 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 
 		const results = [
 			...new Set([
+				...title.order.map((i) => apeData[title.info.idx[i]]),
+				...titleLatin.order.map((i) => apeData[titleLatin.info.idx[i]]),
 				...specificLatin.order.map((i) => apeData[specificLatin.info.idx[i]]),
 				...specific.order.map((i) => apeData[specific.info.idx[i]]),
 				...genericLatin.order.map((i) => apeData[genericLatin.info.idx[i]]),
