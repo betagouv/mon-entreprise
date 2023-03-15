@@ -9,7 +9,13 @@ import {
 } from '@react-aria/overlays'
 import { AriaDialogProps } from '@react-types/dialog'
 import FocusTrap from 'focus-trap-react'
-import React, { RefObject, useEffect, useRef, useState } from 'react'
+import React, {
+	Attributes,
+	RefObject,
+	useEffect,
+	useRef,
+	useState,
+} from 'react'
 import styled, { css, keyframes } from 'styled-components'
 
 import { Grid } from '@/design-system/layout'
@@ -37,6 +43,9 @@ export default function Popover(
 		AriaDialogProps & {
 			children: React.ReactNode
 			title?: string
+			titleProps?: {
+				[key: string]: unknown
+			}
 			small?: boolean
 			contentRef?: RefObject<HTMLDivElement>
 			onClose?: () => void
@@ -44,7 +53,13 @@ export default function Popover(
 			isOpen?: boolean
 		}
 ) {
-	const { title, children, small, contentRef } = props
+	const {
+		title,
+		children,
+		small,
+		contentRef,
+		titleProps: titlePropsFromProps,
+	} = props
 
 	// Handle interacting outside the dialog and pressing
 	// the Escape key to close the modal.
@@ -128,7 +143,11 @@ export default function Popover(
 									)}
 
 									<PopoverContent ref={contentRef}>
-										{title && <H2 {...titleProps}>{title}</H2>}
+										{title && (
+											<StyledH2 {...titleProps} {...titlePropsFromProps}>
+												{title}
+											</StyledH2>
+										)}
 										{children}
 									</PopoverContent>
 								</PopoverContainer>
@@ -245,4 +264,12 @@ export const CloseButton = styled.button`
 const PopoverContent = styled.div`
 	overflow: auto;
 	padding: 0 ${({ theme }) => theme.spacings.xxl + ' ' + theme.spacings.md};
+`
+
+const StyledH2 = styled(H2)`
+	&:after {
+		content: '';
+		border: none;
+		height: 0;
+	}
 `
