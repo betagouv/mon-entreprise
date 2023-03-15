@@ -98,7 +98,10 @@ export default function PreviousAnswers() {
 
 				return (
 					value !== undefined && (
-						<PreviousAnswersItem key={key}>
+						<PreviousAnswersItem
+							key={key}
+							aria-current={isCurrent ? 'step' : undefined}
+						>
 							<Link
 								to={
 									absoluteSitePaths.assistants['choix-du-statut'].guideStatut[
