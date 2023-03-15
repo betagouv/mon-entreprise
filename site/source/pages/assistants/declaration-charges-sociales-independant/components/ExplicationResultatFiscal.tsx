@@ -27,13 +27,6 @@ export const StyledTable = styled.table`
 	}
 `
 
-const exonerationsHeader = 'exonerationsHeader'
-const resultatFiscalHeader = 'resultatFiscalHeader'
-const zonesHeader = 'zonesHeader'
-const madelinHeader = 'madelinHeader'
-const plusValueHeader = 'plusValueHeader'
-const suramortissementHeader = 'suramortissementHeader'
-
 export function ExplicationsResultatFiscal() {
 	return (
 		<HelpButtonWithPopover
@@ -76,112 +69,91 @@ export function ExplicationsResultatFiscal() {
 				</caption>
 				<thead>
 					<tr>
-						<th id="explicationEmptyTh1"></th>
-						<th id="explicationEmptyTh2"></th>
-						<th colSpan={4} id={exonerationsHeader} role="columnheader">
-							Exonérations <strong>(2)</strong>
-						</th>
-					</tr>
-					<tr>
-						<th id="explicationEmptyTh3"></th>
-						<th id={resultatFiscalHeader}>
+						<th scope="col">Régime fiscal</th>
+						<th scope="col">
 							Résultat fiscal <strong>(1)</strong>
 						</th>
-						<th id={zonesHeader} headers={exonerationsHeader}>
-							Exonérations liées aux zones / activités
-						</th>
-						<th id={madelinHeader} headers={exonerationsHeader}>
-							Exonérations Madelin et plan d’épargne retraite
-						</th>
-						<th id={plusValueHeader} headers={exonerationsHeader}>
-							Exonérations de plus-values à court terme
-						</th>
-						<th id={suramortissementHeader} headers={exonerationsHeader}>
-							Suramortissement productif
-						</th>
+						<th scope="col">Exonérations liées aux zones / activités</th>
+						<th scope="col">Exonérations Madelin et plan d’épargne retraite</th>
+						<th scope="col">Exonérations de plus-values à court terme</th>
+						<th scope="col">Suramortissement productif</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th role="rowheader" scope="row">
-							BIC réel normal
-						</th>
-						<td headers={resultatFiscalHeader}>
+						<th scope="row">BIC réel normal</th>
+						<td>
 							<strong>2058-A-SD</strong>
 							<br />
 							Ligne XN (bénéfice) Ligne XO (déficit)
 						</td>
-						<td headers={`${exonerationsHeader} ${zonesHeader}`}>
+						<td>
 							<strong>2058-A-SD</strong>
 							<br />
 							Lignes K9 / L6 / ØV / PP / L2 / 1F / PC / L5 / PA / XC / PB
 						</td>
-						<td headers={`${exonerationsHeader} ${madelinHeader}`}>
+						<td>
 							<strong>2053-SD</strong>
 							<br />
 							Lignes A7 et A8
 						</td>
-						<td headers={`${exonerationsHeader} ${plusValueHeader}`}>
+						<td>
 							<strong>2058-A-SD</strong>
 							<br />
 							Ligne XG (montant inclus)
 						</td>
-						<td headers={`${exonerationsHeader} ${suramortissementHeader}`}>
+						<td>
 							<strong>2058-A-SD</strong>
 							<br />
 							Lignes X9 et YA
 						</td>
 					</tr>
 					<tr>
-						<th role="rowheader" scope="row">
-							BIC réel simplifié
-						</th>
-						<td headers={resultatFiscalHeader}>
+						<th scope="row">BIC réel simplifié</th>
+						<td>
 							<strong>2033-B-SD</strong>
 							<br />
 							Ligne 370 (bénéfice) Ligne 372 (déficit)
 						</td>
-						<td headers={`${exonerationsHeader} ${zonesHeader}`}>
+						<td>
 							<strong>2033 B-SD</strong>
 							<br />
 							Lignes 986 / 127 / 991 / 345 / 992 / 987 / 989 / 138 / 990 / 993
 						</td>
-						<td headers={`${exonerationsHeader} ${madelinHeader}`}>
+						<td>
 							<strong>2033-SD</strong>
 							<br />
 							Lignes 325 et 327
 						</td>
-						<td headers={`${exonerationsHeader} ${plusValueHeader}`}>
+						<td>
 							<strong>2033 B-SD</strong>
 							<br />
 							Ligne 350 (montant inclus)
 						</td>
-						<td headers={`${exonerationsHeader} ${suramortissementHeader}`}>
+						<td>
 							<strong>2033 B-SD</strong>
 							<br />
 							Lignes 655 et 643
 						</td>
 					</tr>
 					<tr>
-						<th role="rowheader" scope="row">
-							BNC déclaration contrôlée
-						</th>
-						<td headers={resultatFiscalHeader}>
+						<th scope="row">BNC déclaration contrôlée</th>
+						<td>
 							<strong>2035-B-SD</strong>
 							<br />
 							Ligne CP (bénéfice) Ligne CR (déficit)
 						</td>
-						<td headers={`${exonerationsHeader} ${zonesHeader}`}>
+						<td>
 							<strong>2035-B-SD </strong>
 							<br />
 							Lignes CS / AW / CU / CI / AX / CQ
 						</td>
-						<td headers={`${exonerationsHeader} ${madelinHeader}`}>
+						<td>
 							<strong>2035-A-SD </strong>
 							<br />
 							Lignes BZ et BU
 						</td>
-						<td headers={`${exonerationsHeader} ${plusValueHeader}`}>
+						<td>
 							<strong>2035-A-SD</strong>
 							<br />
 							Ligne CL (montant inclus)
