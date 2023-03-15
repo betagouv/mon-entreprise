@@ -21,7 +21,6 @@ export default function Plan() {
 				<Trans i18nKey={'sitemap.title'}>Plan du site</Trans>
 			</H1>
 			<Meta
-				page="plan-du-site"
 				title={t('sitemap.title', 'Plan du site')}
 				description={t(
 					'sitemap.description',

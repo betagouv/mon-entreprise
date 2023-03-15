@@ -21,7 +21,6 @@ export default function API() {
 		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
 			<ScrollToTop />
 			<Meta
-				page="api"
 				title={t('api.title', 'Utiliser notre API REST')}
 				description={t('api.description', 'Outils pour les développeurs')}
 			/>

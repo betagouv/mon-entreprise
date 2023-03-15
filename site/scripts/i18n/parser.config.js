@@ -98,4 +98,6 @@ export default {
 
 	verbose: false,
 	// Display info about the parsing including some stats
+
+	failOnWarnings: true,
 }

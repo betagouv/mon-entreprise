@@ -165,7 +165,6 @@ function DocumentationLanding() {
 		<>
 			<TrackPage chapter1="documentation" name="accueil" />
 			<Meta
-				page="documentation"
 				title={t('documentation.title', 'Documentation')}
 				description={t(
 					'documentation.description',
