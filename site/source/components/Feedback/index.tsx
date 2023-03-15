@@ -1,5 +1,12 @@
 import FocusTrap from 'focus-trap-react'
-import { useCallback, useContext, useRef, useState } from 'react'
+import {
+	MutableRefObject,
+	useCallback,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -88,7 +95,30 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 		[tag, url]
 	)
 
+	const buttonRef = useRef() as MutableRefObject<HTMLButtonElement | null>
+
 	const shouldAskFeedback = getShouldAskFeedback(url)
+	const handleClose = () => {
+		setIsFormOpen(false)
+		setTimeout(() => {
+			if (buttonRef.current) {
+				buttonRef.current.focus()
+			}
+		})
+	}
+
+	useEffect(() => {
+		const closeOnEscape = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				handleClose()
+			}
+		}
+		if (isFormOpen) {
+			document.addEventListener('keydown', closeOnEscape)
+		} else {
+			document.removeEventListener('keydown', closeOnEscape)
+		}
+	}, [isFormOpen])
 
 	if (isFormOpen) {
 		return (
@@ -97,7 +127,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 					<div>
 						<CloseButtonContainer>
 							<CloseButton
-								onClick={() => setIsFormOpen(false)}
+								onClick={handleClose}
 								aria-label={t('Fermer le module "Donner son avis"')}
 							>
 								Fermer
@@ -217,6 +247,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 
 	return (
 		<StyledButton
+			ref={buttonRef}
 			aria-label={t('Donner votre avis')}
 			onClick={() => setIsFormOpen(true)}
 			$isEmbedded={isEmbedded}
@@ -228,7 +259,9 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 	)
 }
 
-const StyledButton = styled.button<{ $isEmbedded?: boolean }>`
+const StyledButton = styled.button<{
+	$isEmbedded?: boolean
+}>`
 	position: fixed;
 	top: 10.5rem;
 	${({ $isEmbedded }) => ($isEmbedded ? `top: 2rem;` : '')}
