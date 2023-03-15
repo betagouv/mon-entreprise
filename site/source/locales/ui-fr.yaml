@@ -1,6 +1,5 @@
 (invalidité partielle): (invalidité partielle)
 (invalidité totale): (invalidité totale)
-.cta: Lancer le simulateur
 1 € minimum: 1 € minimum
 "404":
   action: Revenir en lieu sûr
@@ -9,46 +8,7 @@
   <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
   l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>
 <0>Activité mixte</0>: <0>Activité mixte</0>
-<0>Baisse entre 30% et 64% du chiffre d'affaires</0>: <0>Baisse entre 30% et 64% du chiffre d'affaires</0>
-<0>Dispositif loi de financement de la sécurité sociale (LFSS) pour 2021</0><1>Mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité</1>:
-  <0>Dispositif loi de financement de la sécurité sociale (LFSS) pour
-  2021</0><1>Mesure d’interdiction affectant de manière prépondérante la
-  poursuite de votre activité</1>
-<0>Dispositif loi de financement de la sécurité sociale (LFSS) pour 2021</0><1>Mesure d’interdiction d’accueil du public ou baisse d’au moins 50% (ou 65% à compter de décembre 2021) du chiffre d’affaires</1>:
-  <0>Dispositif loi de financement de la sécurité sociale (LFSS) pour
-  2021</0><1>Mesure d’interdiction d’accueil du public ou baisse d’au moins 50%
-  (ou 65% à compter de décembre 2021) du chiffre d’affaires</1>
-"<0>Dispositif loi de finances rectificative (LFR1) pour 2021</0><1>Éligibilité aux mois de mars, avril ou mai 2021</1>":
-  <0>Dispositif loi de finances rectificative (LFR1) pour 2021</0><1>Éligibilité
-  aux mois de mars, avril ou mai 2021</1>
-"<0>Entre début {{firstMonth}} {{firstYear}} et fin {{lastMonth}} {{lastYear}}, combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez le nombre de mois durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité.</1>":
-  <0>Entre début {{firstMonth}} {{firstYear}} et fin {{lastMonth}} {{lastYear}},
-  combien de mois avez-vous été impacté par la crise sanitaire ?</0><1>Précisez
-  le nombre de mois durant lesquels vous avez fait l’objet d’une mesure
-  d’interdiction affectant de manière prépondérante la poursuite de votre
-  activité.</1>
-<0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la réduction</2>:
-  <0>Mois</0><1>Situation liée à la crise sanitaire</1><2>Montant de la
-  réduction</2>
-<0>Mon entreprise</0>: <0>Mon entreprise</0>
-<0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021</0>:
-  <0>Montant de l’exonération sociale liée à la crise sanitaire sur l’année
-  2021</0>
-"<0>Montant total de l'exonération Covid applicable aux cotisations 2021</0><1>L'exonération correspondante s'impute sur les cotisations et contributions sociale définitives 2021, hors CFP (contribution à la formation professionnelle) et CURPS (contribution aux unions régionales des professionnels de santé), dans la limite des cotisations restant dues à l'Urssaf.</1>":
-  <0>Montant total de l'exonération Covid applicable aux cotisations
-  2021</0><1>L'exonération correspondante s'impute sur les cotisations et
-  contributions sociale définitives 2021, hors CFP (contribution à la formation
-  professionnelle) et CURPS (contribution aux unions régionales des
-  professionnels de santé), dans la limite des cotisations restant dues à
-  l'Urssaf.</1>
 <0>Oui</0>: <0>Oui</0>
-<0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre parenthèses dans la déclaration EDI de votre client</1>:
-  <0>Résumé pour les tiers-déclarants</0><1>Reportez les éléments entre
-  parenthèses dans la déclaration EDI de votre client</1>
-<0>Résumé</0>: <0>Résumé</0>
-<0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les indépendants.</0>:
-  <0>Vous n'êtes pas concerné par l'exonération de cotisations Covid pour les
-  indépendants.</0>
 API REST de simulation: API REST de simulation
 "API REST, en savoir plus sur l'API REST": API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
@@ -57,7 +17,6 @@ Accompagnement activé: Accompagnement activé
 Accompagnement désactivé: Accompagnement désactivé
 "Accéder à l'étape {{step}}": Accéder à l'étape {{step}}
 "Accéder à la page d'accueil, nouvelle fenêtre": Accéder à la page d'accueil, nouvelle fenêtre
-"Activité exercée en ": "Activité exercée en "
 Adoption: Adoption
 Afficher la transcription: Afficher la transcription
 Afficher le détail: Afficher le détail
@@ -71,23 +30,16 @@ Assimilé salarié: Assimilé salarié
 Assistant au choix du statut juridique: Assistant au choix du statut juridique
 Assistant à la déclaration des revenus des plateformes en ligne: Assistant à la déclaration des revenus des plateformes en ligne
 Assistant à la détermination des charges sociales déductibles: Assistant à la détermination des charges sociales déductibles
-Assistants à la déclaration de revenu 2021 des indépendants: Assistants à la déclaration de revenu 2021 des indépendants
 Assistants à la déclaration de revenu 2022 des indépendants: Assistants à la déclaration de revenu 2022 des indépendants
-Assistants à la déclaration de revenu des indépendants: Assistants à la déclaration de revenu des indépendants
-Assistants à la déclaration de revenus 2021 des indépendants: Assistants à la déclaration de revenus 2021 des indépendants
 Attention: Attention
 "Attention, vos données sauvegardées seront supprimées de manière définitive.": Attention, vos données sauvegardées seront supprimées de manière définitive.
 Aucun: Aucun
-Aucun (0 €): Aucun (0 €)
 Aucun résultat: Aucun résultat
 Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur en EIRL
 Autres exonérations: Autres exonérations
 Autres outils: Autres outils
 Avec chômage partiel: Avec chômage partiel
-Baisse d'au moins 50% du chiffre d'affaires mensuel (600 €): Baisse d'au moins 50% du chiffre d'affaires mensuel (600 €)
-Baisse d'au moins 65% du chiffre d'affaires mensuel (600 €): Baisse d'au moins 65% du chiffre d'affaires mensuel (600 €)
-Baisse entre 30% et 64% du chiffre d'affaires mensuel (300 €): Baisse entre 30% et 64% du chiffre d'affaires mensuel (300 €)
 "Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant \"pain\" ou \"viennoiserie\".":
   Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
   "viennoiserie".
@@ -98,19 +50,16 @@ Cette commune n'existe pas: Cette commune n'existe pas
 Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
 Charger plus de résultats: Charger plus de résultats
 Charges: Charges
-Chercher dans la documentation: Chercher dans la documentation
 Chiffre d'affaires: Chiffre d'affaires
 Chiffre d'affaires estimé: Chiffre d'affaires estimé
 "Choix d'imposition : impôt sur le revenu": "Choix d'imposition : impôt sur le revenu"
 "Choix d'imposition : impôt sur les sociétés": "Choix d'imposition : impôt sur les sociétés"
 Choix du statut juridique: Choix du statut juridique
-Commencer: Commencer
 "Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre":
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
 Commune ou code postal: Commune ou code postal
 CompanySearchField:
-  ariaClearLabel: Effacer la recherche
   description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
     entreprise. Ex : 40123778000127"
   label: Nom de l'entreprise, SIREN ou SIRET
@@ -122,9 +71,7 @@ Conjoint collaborateur ou salarié: Conjoint collaborateur ou salarié
 Continuer: Continuer
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
-Crée le: Crée le
 "Crée le :": "Crée le :"
-Créee le <2><0></0></2> et domiciliée à <6><0></0></6>: Créee le <2><0></0></2> et domiciliée à <6><0></0></6>
 Créer une: Créer une
 Créer une entreprise: Créer une entreprise
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: Dans quels cas mes bénéfices ne sont pas de type BNC ?
@@ -135,36 +82,23 @@ Dividendes nets: Dividendes nets
 Documentation: Documentation
 "Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
 Donner votre avis: Donner votre avis
-"Début d'activité : ": "Début d'activité : "
-Découvrir: Découvrir
 "Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Nous identifions, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne en fonction de votre situation.":
   Décrivez votre projet ou votre problème en donnant quelques éléments de
   contexte. Nous identifions, parmi l’ensemble des partenaires publics et
   parapublics, le conseiller compétent pour votre demande. Celui-ci vous
   contacte par téléphone sous 5 jours et vous accompagne en fonction de votre
   situation.
-Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats:
-  Décrivez-nous votre activité ainsi que les termes de recherche que vous avez
-  utilisés qui n'ont pas donné de bons résultats
 "Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats. Nous utiliserons ces informations pour améliorer cet outil. En revanche, nous ne pourrons pas forcément répondre aux questions relatives au code APE de votre entreprise.":
   Décrivez-nous votre activité ainsi que les termes de recherche que vous avez
   utilisés qui n'ont pas donné de bons résultats. Nous utiliserons ces
   informations pour améliorer cet outil. En revanche, nous ne pourrons pas
   forcément répondre aux questions relatives au code APE de votre entreprise.
 Décès: Décès
-Département: Département
 Dépôt de capital: Dépôt de capital
-EI: EI
-EI / EURL: EI / EURL
-EIRL: EIRL
-EURL: EURL
 Effacer mes réponses: Effacer mes réponses
 "Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre":
   Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle
   fenêtre
-"Eligibilité LFR : ": "Eligibilité LFR : "
-"Eligibilité LFSS : ": "Eligibilité LFSS : "
-"Eligibilité aux mois de mars, avril ou mai 2021 (250 €)": Eligibilité aux mois de mars, avril ou mai 2021 (250 €)
 Embaucher: Embaucher
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
@@ -196,7 +130,6 @@ Envoyer un courriel à contact@mon-entreprise:
         contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre
 "Ex : Des informations plus claires, un calcul détaillé...": "Ex : Des informations plus claires, un calcul détaillé..."
 Exonérations: Exonérations
-Explorez notre documentation: Explorez notre documentation
 ExportSimulation:
   Banner: Imprimer ou sauvegarder en PDF
 Fermer: Fermer
@@ -216,10 +149,8 @@ Impôt: Impôt
 Impôt au barème: Impôt au barème
 Impôts: Impôts
 Indépendant: Indépendant
-Indépendants et dirigeants: Indépendants et dirigeants
 Information: Information
 "Insérer dans le champ la valeur du {{text}}": Insérer dans le champ la valeur du {{text}}
-Interdiction d'accueil du public (600 €): Interdiction d'accueil du public (600 €)
 International: International
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
@@ -231,9 +162,6 @@ J'ai compris: J'ai compris
     gouv:
       "fr, nouvelle fenêtre": Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
-Je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie": Je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie"
-Jusqu’au: Jusqu’au
-L'application est prête à fonctionner hors ligne.: L'application est prête à fonctionner hors ligne.
 L'invalidité et le décès: L'invalidité et le décès
 La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
   La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
@@ -252,9 +180,6 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ:
   Les données de simulations se mettront automatiquement à jour après la
   modification d'un champ
-Les données de simulations se mettront automatiquement à jour après la modification d'un champ.:
-  Les données de simulations se mettront automatiquement à jour après la
-  modification d'un champ.
 "Lire les précisions, ouvrir le message condensé.": Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
 Liste des statuts juridiques: Liste des statuts juridiques
@@ -265,13 +190,11 @@ Maternité: Maternité
 Menu de navigation: Menu de navigation
 Merci pour votre message !: Merci pour votre message !
 Mes cotisations: Mes cotisations
-Mes réponses: Mes réponses
 Message à caractère informatif: Message à caractère informatif
 Mode accompagnement: Mode accompagnement
 Modifier: Modifier
 Modifier l'entreprise: Modifier l'entreprise
 Modifier mes réponses: Modifier mes réponses
-Mois non concerné: Mois non concerné
 Mon entreprise: Mon entreprise
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
   urssaf:
@@ -280,18 +203,9 @@ Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
 Mon imposition: Mon imposition
 Montant annuel: Montant annuel
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
-Montant de l’exonération sociale liée à la crise sanitaire pour les cotisations de l’année 2021:
-  Montant de l’exonération sociale liée à la crise sanitaire pour les
-  cotisations de l’année 2021
-Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021: Montant de l’exonération sociale liée à la crise sanitaire sur l’année 2021
 Montant mensuel: Montant mensuel
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
 Ne prend pas l'ACRE en compte: Ne prend pas l'ACRE en compte
-"Nombre de mois LFR : ": "Nombre de mois LFR : "
-"Nombre de mois LFSS 300 : ": "Nombre de mois LFSS 300 : "
-"Nombre de mois LFSS 600 : ": "Nombre de mois LFSS 600 : "
-Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité: Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité
-"Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : ": "Nombres de mois pour lesquels vous remplissez les conditions d'éligibilité : "
 Non: Non
 Notre équipe prend en charge votre retour.: Notre équipe prend en charge votre retour.
 "Nous avons à cœur d'améliorer en continu notre site,vos remarques nous sont donc très précieuses.":
@@ -303,7 +217,6 @@ Nouveautés: Nouveautés
 Option la plus avantageuse.: Option la plus avantageuse.
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
-Outils pour les indépendants: Outils pour les indépendants
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Page d'accueil
 "Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
@@ -343,23 +256,16 @@ Prochaines questions: Prochaines questions
 Professions libérales: Professions libérales
 Protection sociale: Protection sociale
 Précédent: Précédent
-"Précédent, revenir à l'étape précédente": Précédent, revenir à l'étape précédente
 Prévisualisation: Prévisualisation
 Qu'est-ce que ça veut dire ?: Qu'est-ce que ça veut dire ?
 Que cherchez-vous ?: Que cherchez-vous ?
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
 Quelle est votre activité ?: Quelle est votre activité ?
-Quelle était votre situation liée à la crise sanitaire durant vos mois d’activité ?:
-  Quelle était votre situation liée à la crise sanitaire durant vos mois
-  d’activité ?
-Quelques intégrations: Quelques intégrations
 Recharger: Recharger
 Rechercher: Rechercher
-Rechercher une entreprise: Rechercher une entreprise
 Rechercher une règle de calcul dans la documentation: Rechercher une règle de calcul dans la documentation
 Rechercher votre entreprise: Rechercher votre entreprise
 "Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.": Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.
-Recommencer la simulation: Recommencer la simulation
 Renseigner une adresse e-mail pour recevoir une réponse: Renseigner une adresse e-mail pour recevoir une réponse
 Replier: Replier
 Ressources utiles: Ressources utiles
@@ -376,7 +282,6 @@ Revenu après impôt: Revenu après impôt
 Revenu disponible: Revenu disponible
 Revenu du dirigeant par statut: Revenu du dirigeant par statut
 Revenu net: Revenu net
-Revenus étranger: Revenus étranger
 Règles de calculs: Règles de calculs
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
@@ -384,18 +289,12 @@ Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Répondez à quelques questions additionnelles afin de préciser votre résultat.
 Résultat fiscal: Résultat fiscal
 Réussite: Réussite
-S'inscrire: S'inscrire
-SA: SA
-SARL: SARL
-SAS: SAS
-SASU: SASU
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire: Salaire
 Salaire brut mensuel: Salaire brut mensuel
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Salariés et employeurs: Salariés et employeurs
-"Secteur d'activité dont relève l'activité principale : ": "Secteur d'activité dont relève l'activité principale : "
 "Selon les statuts, il est indispensable d’effectuer un <2>apport en capital</2> à la création de l’entreprise. Le <4>montant minimum</4> du capital social est de <7>1 €</7>.":
   Selon les statuts, il est indispensable d’effectuer un <2>apport en
   capital</2> à la création de l’entreprise. Le <4>montant minimum</4> du
@@ -407,24 +306,15 @@ Salariés et employeurs: Salariés et employeurs
   de recherche. Vous pouvez le vérifier sur <5>l'annuaire des
   entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de
   même consulter et utiliser nos simulateurs.</7>
-Simulateur de demande de mobilité: Simulateur de demande de mobilité
 Simulateurs: Simulateurs
 Simulateurs disponibles: Simulateurs disponibles
 Simulation en cours: Simulation en cours
-Situation liée à la crise sanitaire: Situation liée à la crise sanitaire
 Situation personnelle: Situation personnelle
-"Siège :": "Siège :"
 Statistiques: Statistiques
 Statut du conjoint: Statut du conjoint
 Suivant: Suivant
-"Suivant, passer à l'étape suivante": Suivant, passer à l'étape suivante
 "Suivant, passer à la question suivante": Suivant, passer à la question suivante
-Supprimer les données sauvegardées.: Supprimer les données sauvegardées.
-Supprimer toute ma situation: Supprimer toute ma situation
 Switch to the english version of the website: Switch to the english version of the website
-Tableau affichant pour chaque mois de la période précédemment sélectionnée le montant de réductions pour la situation sélectionnée.:
-  Tableau affichant pour chaque mois de la période précédemment sélectionnée le
-  montant de réductions pour la situation sélectionnée.
 Tient compte de l'ACRE: Tient compte de l'ACRE
 Total des retenues: Total des retenues
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
@@ -441,8 +331,6 @@ Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: Tous 
 "Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de congé maternité, paternité, adoption.":
   Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de
   congé maternité, paternité, adoption.
-Tout effacer: Tout effacer
-Tout le site: Tout le site
 Tout réinitialiser: Tout réinitialiser
 Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
 Type: Type
@@ -451,12 +339,10 @@ Type: Type
   indépendants décédés, sous certaines conditions.
 Un avis sur cette page ?: Un avis sur cette page ?
 Un seul associé: Un seul associé
-Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!: Une idée&nbsp;?<1></1>Contactez-nous&nbsp;!
 "Urssaf, voir le site urssaf":
   "fr, nouvelle fenêtre": Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
-"Versement : ": "Versement : "
 Versement libératoire de l'impôt sur le revenu: Versement libératoire de l'impôt sur le revenu
 Version française du site activée.: Version française du site activée.
 Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
@@ -471,14 +357,11 @@ Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
   entreprise
 Voir ma situation: Voir ma situation
 "Voir ma situation, accéder à la page de gestion de mon entreprise": Voir ma situation, accéder à la page de gestion de mon entreprise
-Voir mes paramètres: Voir mes paramètres
 Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie en SASU.:
   Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt
   maladie en SASU.
-Votre activité: Votre activité
-Votre adresse e-mail: Votre adresse e-mail
 Votre adresse e-mail (requise): Votre adresse e-mail (requise)
 Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
@@ -506,7 +389,6 @@ accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
 aide-déclaration-indépendant:
-  banner: Découvrez notre outil d'<1>aide à la déclaration des revenus</1>
   description: <0><0>Déclaration charges sociales indépendants</0></0><1><0>Cet
     outil est une aide à la déclaration de revenus à destination des
     <2>travailleurs indépendants</2>. Il vous permet de connaître le montant des
@@ -525,8 +407,6 @@ aide-déclaration-indépendant:
     titre: <0>Entreprise et activité</0>
   results:
     title: Montants à reporter dans votre déclaration de revenus
-    title-short: Vos déclarations fiscales
-août: août
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
@@ -565,11 +445,6 @@ assistant-DRI:
     intro: <0>Nous allons maintenant vous indiquer comment <2>remplir votre
       déclaration de revenu personnelle</2> à partir de la déclaration de
       résultat de votre entreprise.</0>
-  description: <0><0>Cet outil vous aidera à remplir votre <2>déclaration de
-    revenu</2> sur impot.gouv.fr. Vous aurez à la fin :</0><1><0>La liste des
-    cases qui vous concernent avec le montant à remplir</0><1>Une estimation des
-    cotisations sociales à payer à l'Urssaf en 2022</1></1></0><1>Mon
-    entreprise</1>
   imposition:
     intro: <0>Dans cette étape, nous allons déterminer les <2>déclarations qui vous
       concernent</2> et la <5>liste des cases que vous aurez à remplir</5>.</0>
@@ -619,8 +494,6 @@ associés:
     titre: Nombre d'associés pour créer une entreprise
   titre: Seul ou à plusieurs
 au bout de 10 ans: au bout de 10 ans
-auto-entrepreneur: auto-entrepreneur
-auto-entrepreneur-EIRL: auto-entrepreneur-EIRL
 auto-entreprise: auto-entreprise
 autoentrepreneur:
   description: "<0>À la différence de l'entreprise individuelle,
@@ -638,7 +511,6 @@ autoentrepreneur:
       que vous souhaitez démarrer rapidement.
     titre: Auto-entrepreneur
   titre: Entreprise individuelle ou auto-entrepreneur
-avril: avril
 back: Retourner à la simulation
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
@@ -673,7 +545,6 @@ comparaisonRégimes:
   assuranceMaladie: <0>Assurance maladie <2>(médicaments, soins,
     hospitalisations)</2></0><1>Identique pour tous</1>
   auto:
-    indep-aria-label: Indépendant, sélectionner l'option et passer à l'étape suivante
     tagline: Pour commencer sans risques
   choix:
     AS:
@@ -716,21 +587,9 @@ comparaisonRégimes:
     d'affaires</0><1><0>Non</0></1><2><0>Oui</0><1>(72 600 € en services / 176
     200 € en vente de biens, restauration ou hébergement)</1></2>
   retraite: <0>Retraite</0>
-  retraiteEstimation:
-    infobulles:
-      AS: Pension calculée pour 172 trimestres cotisés au régime général sans
-        variations de revenus.
-      auto: Pension calculée pour 172 trimestres cotisés en auto-entrepreneur sans
-        variations de revenus.
-      indep: Pension calculée à titre indicatif pour 172 trimestres cotisés au régime
-        des indépendants sans variations de revenus.
-    legend: <0>Pension de retraite</0><1>(avant impôts)</1>
-  revenuNetAvantImpot: <0>Revenu net de cotisations <1>(avant impôts)</1></0>
   seuil: <0>Revenu minimum pour l'ouverture des droits aux
     prestations</0><1>Oui</1><2>Non <1>(cotisations minimales
     obligatoires)</1></2><3>Oui</3>
-  simulationText: <0>Comparer mes revenus, pension de retraite et indemnité
-    maladie</0><1></1><2>Lancer la simulation</2>
   status:
     AS: SAS, SASU ou SARL avec gérant minoritaire ou égalitaire
     auto: Auto-entreprise
@@ -738,8 +597,6 @@ comparaisonRégimes:
       "1": EI, EIRL, EURL ou SARL avec gérant majoritaire
       "2": EI ou EIRL
     legend: Statuts juridiques possibles
-  titreSelection: "Créer mon entreprise en tant que :"
-  trimestreValidés: <0>Nombre de trimestres validés <1>(pour la retraite)</1></0>
 comparateur:
   allerPlusLoin:
     tableCaption: Tableau affichant le détail du calcul du revenu net pour la SASU,
@@ -765,16 +622,6 @@ créer:
         démarrer votre activité
       cta: Consulter les démarches
       title: Démarche auto-entrepreneur
-    comparaison:
-      body: Indépendant, assimilé-salarié ou auto-entrepreneur ? Calculez les
-        différences en terme de revenus, cotisations, retraite, etc
-      cta: Comparer
-      title: Comparateur de régimes
-    listeStatuts:
-      body: Vous savez déjà quel statut choisir ? Accédez directement à la liste des
-        démarches associées
-      cta: Voir la liste
-      title: Liste des statuts juridiques
   titre: Créer une entreprise
   warningPL: Le cas des professions libérales réglementées n'est pas encore traité
 d'aides: d'aides
@@ -788,10 +635,6 @@ dividendes:
 documentation:
   description: Explorez toutes les règles de la documentation
   title: Documentation
-domiciliation inconnue: domiciliation inconnue
-domiciliée à: domiciliée à
-décembre: décembre
-d’aides: d’aides
 embauche:
   cesuAriaLabel: chèque emploi associatif (CEA), voir plus d'informations sur
     cesu.urssaf.fr, nouvelle fenêtre
@@ -842,7 +685,6 @@ embauche:
       titre: Tenir un registre des employés à jour
     titre: Les formalités pour embaucher
 employeur: employeur
-en deux fois: en deux fois
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
 entreprise:
@@ -930,7 +772,6 @@ entreprise:
         capital.</1>
       titre: Déposer le capital
     comptable:
-      ariaLabel: obligations comptables, voir le détail sur economie.gouv.fr
       description: La gestion d'une entreprise impose un certain nombre
         d'<1>obligations comptables</1>. Il est conseillé de faire appel aux
         services d'un expert-comptable ou d'un logiciel de comptabilité en
@@ -979,7 +820,6 @@ entreprise:
       titre: Écrire les statuts
     titre: À faire pour créer votre entreprise
     titre2: Recommandé avant le début de l'activité
-est un SIREN non diffusible: est un SIREN non diffusible
 explications:
   tableCaption: Tableau affichant les lignes de votre liasse fiscale associées aux
     exonérations fiscales en place pour chaque type d'activité. La première
@@ -992,13 +832,7 @@ explications:
 feedback:
   beta-testeur: Pour continuer à donner votre avis et accéder aux nouveautés en
     avant-première, <2>inscrivez-vous sur la liste des beta-testeur</2>
-  big_smile: Très satisfait, envoyer cette réponse
-  neutral: Moyennement satisfait, envoyer cette réponse
-  question: Êtes-vous satisfait de cette page ?
   reportError: Faire une suggestion
-  sad: Pas satisfait, envoyer cette réponse
-  simulator: Êtes-vous satisfait de ce simulateur&nbsp;?
-  slight_smile: Plutôt satisfait, envoyer cette réponse
   thanks: Merci de votre retour !
 fieldRequired: Champ requis
 footer:
@@ -1046,14 +880,6 @@ formeJuridique:
     responsabilité limitée", avec à un régime forfaitaire pour le calcul des
     impôts et le paiement des cotisations de sécurité sociale.
   titre: Choix du statut juridique
-février: février
-gerer:
-  choix:
-    embauche:
-      body: Calculez le montant total que votre entreprise devra dépenser pour
-        rémunérer votre prochain employé
-      cta: Lancer le simulateur
-      title: Estimer le montant d’une embauche
 "gestion sémantique de version, en savoir plus, nouvelle fenêtre": gestion sémantique de version, en savoir plus, nouvelle fenêtre
 gérant minoritaire:
   description: "<0>Certaines règles spéciales s'appliquent selon le nombre
@@ -1069,22 +895,6 @@ gérant minoritaire:
     titre: Gérant majoritaire ou minoritaire
   titre: Gérant majoritaire ou minoritaire
 gérer:
-  PdE: "<0>Échanger avec le conseiller qui peut vous aider selon votre
-    problématique</0><1><0>Vous souhaitez :</0><1><0>recruter, former vos
-    salariés</0><1>financer vos projets d'investissement</1><2>résoudre un
-    problème de trésorerie</2><3>être conseillé(e) en droit du
-    travail</3><4>développer votre activité commerciale</4><5>vendre sur
-    internet</5><6>vendre ou reprendre une entreprise</6><7>améliorer la santé
-    et sécurité au travail</7><8>entrer dans une démarche de transition
-    écologique & RSE</8></1></1><2><0>Service public simple et rapide : vous
-    êtes rappelé(e) par LE conseiller qui peut vous aider.</0></2><3>Plus de 40
-    partenaires publics sont mobilisés pour vous accompagner en fonction de
-    votre problématique.<1></1>Le conseiller compétent proche de chez vous vous
-    rappelle sous 5 jours.</3>"
-  avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
-    revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez que
-    nous développions un nouveau simulateur, laissez-nous message en cliquant
-    sur le bouton "<1></1>" à droite de votre écran.</1>
   choix:
     chomage-partiel:
       body: Calculez le reste à payer après remboursement de l'État lorsque vous
@@ -1096,33 +906,11 @@ gérer:
         votre déclaration de revenu au titre de 2020
       cta: Remplir ma déclaration
       title: Déclaration de revenus (indépendants)
-    embauche: <0>Estimer le montant d’une embauche</0><1>Calculez le montant total
-      que votre entreprise devra dépenser pour rémunérer votre prochain
-      employé</1>
     is:
       body: Calculez le montant de l'impôt sur les sociétés à partir de votre
         bénéfice.
       cta: Lancer le simulateur
       title: Estimer le montant de l’impôt sur les sociétés
-    revenus:
-      body: Estimez précisément le montant de vos cotisations grâce au simulateur
-        {{régime}} de l'Urssaf
-      cta: Calculer mon revenu net
-      title: Revenus en tant que dirigeant
-  cta: Renseigner mon entreprise
-  description: Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
-    payer des cotisations et des impôts. Anticipez leurs montants grâce aux
-    simulateurs adaptés à votre situation.
-  entreprise:
-    auto: Êtes-vous auto-entrepreneur ?
-    changer: Changer l'entreprise sélectionnée
-    dirigeant:
-      description: Si vous êtes administrateur majoritaire ou si vous faites partie
-        d'un conseil d'administration majoritaire, vous n'aurez pas le même
-        régime de sécurité sociale que si vous êtes minoritaire.
-      titre: Êtes-vous dirigeant majoritaire ?
-    majoritaire: Dirigeant majoritaire
-    minoritaire: Dirigeant minoritaire
   ressources:
     annuaire-entreprises:
       aria-label: Annuaire des Entreprises, nouvelle fenêtre
@@ -1151,12 +939,10 @@ gérer:
         protection sociale dont bénéficient tous les travailleurs en France.
       cta: Lire le guide
       title: Comprendre la sécurité sociale
-  titre: Gérer mon activité
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
 impotSociété:
-  exerciceDates: Exercice du <2></2> au <6></6>
   warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
     réduits de l’impôt sur les sociétés."
 impôt: impôt
@@ -1165,10 +951,7 @@ inférieurs à: inférieurs à
 intégration:
   description: Outils pour les développeurs
   title: Intégration
-janvier: janvier
 jours: jours
-juillet: juillet
-juin: juin
 "l'annuaire des entreprises, nouvelle fenêtre": l'annuaire des entreprises, nouvelle fenêtre
 la première année: la première année
 landing:
@@ -1181,28 +964,19 @@ landing:
     à vis de l’administration afin que vous puissiez vous concentrer sur ce qui
     compte : votre activité.</3>"
   choice:
-    continue: Continuer avec l'entreprise
     create:
       aria-label: J'aimerais créer mon entreprise, accéder au guide de création
         d'entreprise.
-      body: Un accompagnement au choix du statut juridique et la liste complète des
-        démarches de création
       title: J'aimerais créer mon entreprise
-    manage:
-      body: Des outils personnalisés pour anticiper le montant des cotisations
-        sociales à payer et mieux gérer votre trésorerie.
-      title: Gérer mon activité
     simulator:
       list: Consulter la liste de nos simulateurs
     simulators:
-      body: La liste exhaustive de tous les simulateurs disponibles sur le site.
       title: Découvrir tous les simulateurs et assistants
   description: L'assistant officiel des entrepreneurs
   outils: <0>Les outils à votre disposition</0><1>Nous mettons à votre disposition
     des assistants et simulateurs pour vous aider à la gestion de votre
     entreprise, anticiper les prélèvements et planifier votre trésorerie en
     conséquence.</1>
-  outils_cta: <0></0> Découvrir tous les simulateurs et assistants
   subtitle: Les simulateurs et assistants pour développer votre activité, du
     statut juridique à l'embauche.
   title: L'assistant officiel des entrepreneurs
@@ -1230,17 +1004,13 @@ listeformejuridique:
   page:
     titre: Liste des statuts juridiques pour la création de votre entreprise
 loading: Chargement en cours...
-mai: mai
-mars: mars
 maximum: maximum
-mensuel: mensuel
 moins: moins
 mois: mois
 navbar:
   activate-darkmode: Activer le mode sombre
   deactivate-darkmode: Désactiver le mode sombre
   logo: navbar.logo
-  redirect-home: Accéder à la page d'accueil
 news:
   description: Nous améliorons le site en continu à partir de vos retours.
     Découvrez les dernières nouveautés
@@ -1252,12 +1022,6 @@ nextSteps:
     cta: Voir la documentation
     title: Intégrer le module web
 nombres: nombres
-non: non
-noresults: Aucun résultat ne correspond à cette recherche
-novembre: novembre
-octobre: octobre
-ou: ou
-oui: oui
 pages:
   accessibilité: <0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
     page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui
@@ -1371,11 +1135,6 @@ pages:
           qu'auto-entrepreneur
         cta: Voir les réponses
         title: Questions fréquentes
-      impôt:
-        body: Les informations officielles de l'administration fiscale concernant les
-          auto-entrepreneurs et le régime de la micro-entreprise.
-        cta: Consulter l'aide
-        title: Comment déclarer son revenu aux impôts ?
   développeur:
     api: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur votre site
       ou service très facilement grâce à notre API REST ouverte et sans
@@ -1516,7 +1275,6 @@ pages:
         en cliquant sur « Salaire net » dans le simulateur, ou en recherchant «
         Salaire net » dans la recherche en haut à droite.</2>
     couleur: "Quelle couleur ? "
-    doc: documentation en ligne, voir la documentation en ligne
     home:
       choice:
         api:
@@ -1563,13 +1321,6 @@ pages:
       avec <2>Google Sheets</2>, cliquez sur "Créer une copie" (vous pouvez
       vérifier les scripts avec "Afficher le fichier de script Apps")</5>
   gérer:
-    aide-déclaration-indépendant:
-      meta:
-        description: Calculez le montant des cotisations et contributions sociales à
-          reporter dans votre déclaration de revenu 2021
-        title: "Déclaration de revenus indépendant : calcul du montant des cotisations"
-      shortname: Détermination des charges sociales déductibles
-      title: Assistant à la déclaration de revenus pour indépendant
     declaration_charges_sociales_indépendant:
       meta:
         description: Calculez le montant des cotisations et contributions sociales à
@@ -1591,43 +1342,6 @@ pages:
         title: "Travailleur indépendant : demande de mobilité en Europe"
       shortname: Demande de mobilité internationale
       title: Demande de mobilité internationale
-  simulateu rs:
-    salarié:
-      seo: "<0>Comment calculer le salaire net ?</0><1>Lors de l'entretien d'embauche
-        l'employeur propose en général une rémunération exprimée en « brut ». Le
-        montant annoncé inclut ainsi les cotisations salariales, qui servent à
-        financer la protection sociale du salarié et qui sont retranchées du
-        salaire « net » perçu par le salarié.</1><2>Vous pouvez utiliser notre
-        simulateur pour convertir le <2>salaire brut en net</2> : il vous suffit
-        pour cela saisir la rémunération annoncée dans la case salaire brut. La
-        simulation peut-être affinée en répondant aux différentes questions
-        (CDD, statut cadre, heures supplémentaires, temps partiel,
-        titre-restaurants, etc.).</2><3></3><4>Par ailleurs depuis 2019,
-        l'<1>impôt sur le revenu</1> est prélevé à la source. Pour ce faire, la
-        direction générale des finances publiques (DGFiP) transmet à l'employeur
-        le taux d'imposition calculé à partir de la déclaration de revenu du
-        salarié. Si ce taux est inconnu, par exemple lors d'une première année
-        d'activité, l'employeur utilise le <4>taux neutre</4>.</4><5>Comment
-        calculer le coût d'embauche ?</5><6>Si vous cherchez à embaucher, vous
-        pouvez calculer le coût total de la rémunération de votre salarié, ainsi
-        que les montants de cotisations patronales et salariales correspondant.
-        Cela vous permet de définir le niveau de rémunération en connaissant le
-        montant global de charge que cela représente pour votre
-        entreprise.</6><7>En plus du salaire, notre simulateur prend en compte
-        le calcul des avantages en nature (téléphone, véhicule de fonction,
-        etc.), ainsi que la mutuelle santé obligatoire.</7><8>Il existe des
-        <2>aides différées</2> à l'embauche qui ne sont pas toutes prises en
-        compte par notre simulateur, vous pouvez les retrouver sur <6>le portail
-        officiel</6>.</8><9><0>Échanger avec un conseiller pour votre projet de
-        recrutement</0><1>Vous souhaitez :<1><0>Être conseillé(e) sur les aides
-        à l'embauche mobilisables pour votre recrutement</0><1>Vous informer sur
-        l'apprentissage, le contrat de professionnalisation, les emplois francs
-        en quartiers prioritaires, le <2>VTE</2>...</1><2>Trouver des
-        candidats</2><3>Recruter une personne en situation de
-        handicap</3></1><2>Service public simple et rapide : vous êtes
-        rappelé(e) par le conseiller qui peut vous aider.</2></1><2>Partenaires
-        mobilisés : Pôle emploi, APEC, Cap Emploi, missions
-        locales...</2><3></3></9>"
   simulateurs:
     accueil:
       description: Tous les simulateurs sur ce site sont maintenus à jour avec les
@@ -1879,19 +1593,6 @@ pages:
         titre: "EURL : simulateur de revenus pour dirigeant"
       shortname: EURL
       title: Simulateur de revenus pour dirigeant d'EURL
-    exo-covid:
-      meta:
-        description: Déterminez les éléments à déclarer pour bénéficier de l’exonération
-          Covid et obtenir les codes « norme EDI »
-        title: Simulateur d’exonération COVID
-      title: Simulateur d'exonération de cotisations Covid pour indépendant
-    exonération-covid:
-      meta:
-        description: Déterminez les éléments à déclarer pour bénéficier de l’exonération
-          Covid et obtenir les codes « norme EDI »
-        title: Exonération de cotisations covid
-      shortName: Simulateur d’exonération COVID
-      title: Simulateur d’exonération de cotisations Covid pour indépendant
     expert-comptable:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
@@ -1972,7 +1673,6 @@ pages:
       recover: Retrouvez cette simulation ainsi que d'autres outils d'aide à la
         création et à la gestion d'entreprise, sur
         <2>mon-entreprise.urssaf.fr</2>.
-      title: Vous souhaitez retrouver cette simulation ?
     profession-libérale:
       meta:
         description: Calcul du revenu net pour les indépendants en libéral à l'impôt sur
@@ -2041,7 +1741,6 @@ pages:
         locales...</2><3></3></9>"
       shortname: Salarié
       title: Simulateur de revenus pour salarié
-      title-employeur: Simulateur de coûts d'embauche
     sasu:
       meta:
         description: Calcul du salaire net à partir du total alloué à la rémunération et
@@ -2073,7 +1772,6 @@ pages:
     select-year:
       access: Accéder au simulateur {{year}}
       back: Retourner au simulateur {{year}}
-      click-to-change-year: Cliquez pour changer d'année
       info: "Cette simulation concerne l'année <2>{{actualYear}}</2>. "
   économie-collaborative:
     meta:
@@ -2092,7 +1790,6 @@ payslip:
     sur&nbsp;<1>service-public.fr</1>.
   repartition: Répartition du total chargé
 points: points
-pour les accidents de trajet/travail et maladie pro: pour les accidents de trajet/travail et maladie pro
 pourcentage: pourcentage
 previousSimulationBanner:
   info: "Votre précédente simulation a été sauvegardée :"
@@ -2118,7 +1815,6 @@ privacyContent:
   title: Données personnelles
 recherche-globale:
   placeholder: "Mot-clé ou acronyme (ex : CSG)"
-required: Requis
 responsabilité:
   bouton1: Société
   bouton1-aria-label: Société, sélectionner l'option et passer à l'étape suivante
@@ -2151,7 +1847,6 @@ search-code-ape:
 select:
   value:
     default: Choisissez une option
-septembre: septembre
 shareSimulation:
   banner: Générer un lien de partage
   button:
@@ -2184,21 +1879,12 @@ simulateurs:
       dgfip: La direction générale des finances publiques (DGFiP) est l'organisme qui
         collecte l'impôt sur le revenu. <2>Le montant calculé <2>prend en compte
         l'abattement du régime micro-fiscal</2>.</2>
-      notice acre: Les montants indiqués ci-dessus sont calculés sans prendre en
-        compte l'exonération de début d'activité ACRE
       précompte-artiste-auteur: Pour vos revenus en traitement et salaires, ces
         cotisations sont « précomptées », c'est à dire payées à la source par le
         diffuseur.
       titre: Vos institutions partenaires
       urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
         sociale (assurance maladie, allocations familiales, dépendance).
-    pamc: <0><0>Vos institutions
-      partenaires</0><1><0></0><1></1><2><0><0><0></0></0><1>En tant que
-      professionnel de santé conventionné, vous bénéficiez d'une prise en charge
-      d'une partie de vos cotisations par l'Assurance Maladie.</1><2><0></0>
-      <2></2></2></0></2></1><2><0> Les montants indiqués ci-dessus sont
-      calculés sans prendre en compte l'exonération de début d'activité
-      ACRE</0></2></0>
   inversionFail: >-
     Le montant saisi abouti à un résultat impossible. Cela est dû à
     un effet de seuil dans le calcul des cotisations.
@@ -2334,16 +2020,9 @@ sécu:
     besoins.</6>"
   videoTitle: <0>Vidéo explicative "3 minutes pour comprendre la Sécurité Sociale"</0>
   videoTranscriptTitle: Transcription de la vidéo
-tous les 6 mois: tous les 6 mois
 trimestres acquis: trimestres acquis
-trimestriel: trimestriel
-trouver:
-  description: Grâce à la base SIREN, les données publiques sur votre entreprise
-    seront automatiquement disponibles pour la suite du parcours sur le site.
-  titre: Retrouver mon entreprise
 versés en deux fois: versés en deux fois
 versés en une fois: versés en une fois
-vide: vide
 voir la liste sur afecreation:
   "fr, nouvelle fenêtre": voir la liste sur afecreation.fr, nouvelle fenêtre
 "vos retours, accéder aux statistiques d'utilisation": vos retours, accéder aux statistiques d'utilisation
@@ -2362,8 +2041,6 @@ warning:
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
 Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
-Êtes vous satisfait de ce guide ?: Êtes vous satisfait de ce guide ?
-Êtes vous satisfait de cet assistant ?: Êtes vous satisfait de cet assistant ?
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
 à partir du 29ème jour: à partir du 29ème jour
@@ -2403,9 +2080,6 @@ warning:
       faudra seulement vérifier que son objet social est compatible avec les
       activités concernées (et le changer si besoin). Sinon, vous aurez à créer
       une nouvelle entreprise.</1><2>Créer une entreprise</2>
-    guide: <0><0></0> Consulter le guide Urssaf</0><1>Découvrez les modalités des
-      statuts sociaux pour chaque type de locations (bien, meublé, courte durée,
-      classé, etc.).</1><2>PDF</2>
     impôts: <0>Déclarer vos revenus aux impôts</0><1>Pour ces activités, vous avez
       uniquement besoin de déclarer vos revenus sur votre feuille d'imposition.
       Pour en savoir plus, vous pouvez consulter la <2>page dédiée sur

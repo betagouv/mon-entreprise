@@ -145,6 +145,47 @@ export const getUiMissingTranslations = () => {
 	)
 }
 
+const getInObject = (keys, object) =>
+	keys.reduce((obj, key) => (obj && key in obj ? obj[key] : undefined), object)
+
+export function assocPath(path, val, obj) {
+	if (path.length === 0) return val
+
+	const key = path[0]
+
+	if (path.length >= 2) {
+		val = assocPath(path.slice(1), val, obj?.[key] ?? {})
+	}
+
+	return { ...obj, [key]: val }
+}
+
+export const filterUnusedTranslations = (original, translated) => {
+	const staticKeys = JSON.parse(readFileSync(UiStaticAnalysisPath, 'utf-8'))
+
+	const ret = Object.keys(staticKeys).reduce(
+		(obj, key) => {
+			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
+
+			obj.originalTranslations = assocPath(
+				keys,
+				getInObject(keys, original),
+				obj.originalTranslations
+			)
+			obj.translatedTranslations = assocPath(
+				keys,
+				getInObject(keys, translated),
+				obj.translatedTranslations
+			)
+
+			return obj
+		},
+		{ originalTranslations: {}, translatedTranslations: {} }
+	)
+
+	return ret
+}
+
 export const fetchTranslation = async (text) => {
 	if (typeof text !== 'string') {
 		throw new Error("❌ Can't translate anything other than a string")
