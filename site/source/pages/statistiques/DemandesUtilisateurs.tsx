@@ -103,7 +103,7 @@ function Pagination({ items }: PaginationProps) {
 				{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
 					<li key={i}>
 						<PagerButton
-							onClick={() => setCurrentPage(i)}
+							onPress={() => setCurrentPage(i)}
 							currentPage={currentPage === i}
 							aria-selected={currentPage === i ? true : undefined}
 							aria-current={currentPage === i ? 'page' : undefined}
@@ -146,6 +146,7 @@ function formatMonth(date: string | Date) {
 
 type PagerButtonProps = {
 	currentPage: boolean
+	onPress: () => void
 }
 
 const PagerButton = styled.button<PagerButtonProps>`
