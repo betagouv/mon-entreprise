@@ -56,6 +56,10 @@ const RetoursAsProgress = ({
 							display: flex;
 							align-items: center;
 							justify-content: center;
+							border-left: solid 2px white;
+							&:first-child {
+								border-left: none;
+							}
 						`}
 					>
 						<Emoji
