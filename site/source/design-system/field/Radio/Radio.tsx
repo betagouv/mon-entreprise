@@ -43,7 +43,13 @@ export const RadioSkeleton = (props: RadioProps) => {
 
 	return (
 		<Label $hideRadio={hideRadio} htmlFor={id} className={props.className}>
-			<InputRadio {...inputProps} className="sr-only" ref={ref} id={id} />
+			<InputRadio
+				{...inputProps}
+				tabIndex={undefined}
+				className="sr-only"
+				ref={ref}
+				id={id}
+			/>
 			<VisibleRadio as={visibleRadioAs}>{children}</VisibleRadio>
 		</Label>
 	)
