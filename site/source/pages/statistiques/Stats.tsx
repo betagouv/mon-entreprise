@@ -375,14 +375,12 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 								</thead>
 								<tbody>
 									{visites.map((visite) => {
-										const visiteDateParts = visite.date.split('-')
-
 										return (
 											<tr key={visite.date}>
 												<td>
 													{period === 'mois'
-														? `${visiteDateParts[1]}-${visiteDateParts[2]}`
-														: visite.date}
+														? formatMonth(visite.date)
+														: formatDay(visite.date)}
 												</td>
 												<td>{visite.nombre}</td>
 											</tr>

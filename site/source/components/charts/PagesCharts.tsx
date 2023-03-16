@@ -145,15 +145,9 @@ const AccessibleVersion = ({ data }: PagesChartProps) => {
 				</thead>
 				<tbody>
 					{data.map((item) => {
-						const date = new Date(item.date)
-						const year = date.getFullYear()
-						const month = date.getMonth() + 1
-
 						return (
 							<tr key={item.date}>
-								<td>{`${
-									String(month).length === 1 ? `0${month}` : month
-								}/${year}`}</td>
+								<td>{formatMonth(item.date)}</td>
 								{Object.entries(item.nombre).map(([key, value]) => {
 									return (
 										<td key={`${item.date}-${String(key)}`}>{value ?? 0}</td>
