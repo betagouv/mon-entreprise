@@ -258,4 +258,9 @@ a:focus {
 			theme.darkMode && theme.colors.extended.grey[800]};
 	}
 }
+
+.recharts-bar-rectangle {
+	stroke: white;
+  stroke-width: 1px;
+}
 `

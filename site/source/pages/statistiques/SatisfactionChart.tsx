@@ -26,10 +26,10 @@ export const SatisfactionStyle: [
 	SatisfactionLevel,
 	{ emoji: string; color: string }
 ][] = [
-	[SatisfactionLevel.Mauvais, { emoji: '🙁', color: '#F66775' }],
-	[SatisfactionLevel.Moyen, { emoji: '😐', color: '#4A184F' }],
-	[SatisfactionLevel.Bien, { emoji: '🙂', color: '#0F9970' }],
-	[SatisfactionLevel.TrèsBien, { emoji: '😀', color: '#02412F' }],
+	[SatisfactionLevel.Mauvais, { emoji: '🙁', color: '#D3675F' }],
+	[SatisfactionLevel.Moyen, { emoji: '😐', color: '#9C860D' }],
+	[SatisfactionLevel.Bien, { emoji: '🙂', color: '#289D20' }],
+	[SatisfactionLevel.TrèsBien, { emoji: '😀', color: '#149474' }],
 ]
 
 function toPercentage(data: Record<string, number>) {
@@ -123,6 +123,9 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 							stackId="1"
 							fill={color}
 							maxBarSize={50}
+							style={{
+								borderTop: 'solid 1px white',
+							}}
 						>
 							<LabelList
 								dataKey={`${dataType === 'nombres' ? 'nombre' : 'percent'}`}

@@ -29,15 +29,14 @@ type PagesChartProps = {
 	data: Data
 }
 const Palette = [
-	'#1ea0f5',
-	'#94004A',
-	'#fad750',
-	'#B250B4',
-	'#CBE08F',
-	'#2F41A7',
-	'#fc9e67',
-	'#1F6B37',
-	'#46dcc3',
+	'#0B8BE0',
+	'#697ad5',
+	'#b453b6',
+	'#FF2491',
+	'#E15505',
+	'#A28306',
+	'#749027',
+	'#2D954C',
 ]
 
 function getColor(i: number): string {
@@ -59,7 +58,6 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 	const ComposedChartWithRole = (
 		props: ComponentProps<typeof ComposedChart> | { role: string }
 	): ReactElement => <ComposedChart {...props} />
-	console.log(flattenedData)
 
 	return (
 		<Body as="div">
