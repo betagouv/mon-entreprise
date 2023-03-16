@@ -193,15 +193,9 @@ const AccessibleVersion = ({
 				</thead>
 				<tbody>
 					{data.map((item) => {
-						const date = new Date(item.date)
-						const year = date.getFullYear()
-						const month = date.getMonth() + 1
-
 						return (
 							<tr key={item.date}>
-								<td>{`${
-									String(month).length === 1 ? `0${month}` : month
-								}/${year}`}</td>
+								<td>{formatMonth(item.date)}</td>
 								<td>{item[dataKey]['très bien'] ?? 0}</td>
 								<td>{item[dataKey].bien ?? 0}</td>
 								<td>{item[dataKey].moyen ?? 0}</td>
