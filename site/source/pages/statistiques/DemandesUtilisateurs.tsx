@@ -85,7 +85,7 @@ function Issue({ title, number, count, closedAt }: IssueProps) {
 	const { t } = useTranslation()
 
 	return (
-		<Li>
+		<StyledLi>
 			{count > 1 && <Chip>{count} demandes</Chip>}{' '}
 			<Link
 				href={`https://github.com/betagouv/mon-entreprise/issues/${number}`}
@@ -97,9 +97,25 @@ function Issue({ title, number, count, closedAt }: IssueProps) {
 				{title}
 			</Link>{' '}
 			{closedAt && <small>(Résolu en {formatMonth(new Date(closedAt))})</small>}
-		</Li>
+		</StyledLi>
 	)
 }
+
+const StyledLi = styled(Li)`
+	list-style: none;
+	&::before {
+		content: '●' !important;
+		font-size: 80% !important;
+		display: inline-block !important;
+		position: absolute !important;
+		left: 0 !important;
+		width: ${({ theme }) => theme.spacings.lg}!important;
+		text-align: center !important;
+		color: ${({ theme }) => theme.colors.bases.secondary[400]}!important;
+		background-color: inherit !important;
+		margin-bottom: ${({ theme }) => theme.spacings.xs}!important;
+	}
+`
 
 function formatMonth(date: string | Date) {
 	return new Date(date).toLocaleString('default', {
