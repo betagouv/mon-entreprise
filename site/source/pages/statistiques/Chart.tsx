@@ -118,7 +118,7 @@ export default function VisitsChart({
 					data={flattenData}
 					syncId={sync ? '1' : undefined}
 					aria-label={t(
-						'Graphique statistiques détaillés du nombre visites par jour'
+						'Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image'
 					)}
 					role="img"
 				>
