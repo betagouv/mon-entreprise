@@ -1,6 +1,6 @@
 import { formatValue } from 'publicodes'
 import { ComponentProps, ReactElement } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
 	Bar,
 	ComposedChart,
@@ -17,6 +17,8 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { RealResponsiveContainer } from '@/pages/statistiques/Chart'
+
+import FoldingMessage from '../ui/FoldingMessage'
 
 type Data =
 	| Array<{ date: string; nombre: number }>
@@ -57,6 +59,7 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 	const ComposedChartWithRole = (
 		props: ComponentProps<typeof ComposedChart> | { role: string }
 	): ReactElement => <ComposedChart {...props} />
+	console.log(flattenedData)
 
 	return (
 		<Body as="div">
@@ -73,7 +76,9 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 					layout="horizontal"
 					data={flattenedData}
 					syncId={sync ? '1' : undefined}
-					aria-label={t('Graphique des principaux simulateurs')}
+					aria-label={t(
+						'Graphique des principaux simulateurs, présence d’une alternative accessible après l’image'
+					)}
 					role="img"
 				>
 					<Legend />
@@ -108,7 +113,60 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 					))}
 				</ComposedChartWithRole>
 			</RealResponsiveContainer>
+			<AccessibleVersion data={flattenedData} />
 		</Body>
+	)
+}
+
+const AccessibleVersion = ({ data }: PagesChartProps) => {
+	const { t } = useTranslation()
+
+	return (
+		<FoldingMessage
+			title={t('Version accessible des données')}
+			unfoldButtonLabel={t('Afficher la version accessible')}
+		>
+			<table role="table" style={{ textAlign: 'center', width: '100%' }}>
+				<caption className="sr-only">
+					<Trans>
+						Tableau présentant le nombre de visites par page et par mois.
+					</Trans>
+				</caption>
+				<thead>
+					<tr>
+						<th scope="col">
+							<Trans>Date</Trans>
+						</th>
+						{/* Dynamically add the page keys as th */}
+						{Object.keys(data[0].nombre).map((key) => (
+							<th scope="col" key={key}>
+								{key}
+							</th>
+						))}
+					</tr>
+				</thead>
+				<tbody>
+					{data.map((item) => {
+						const date = new Date(item.date)
+						const year = date.getFullYear()
+						const month = date.getMonth() + 1
+
+						return (
+							<tr key={item.date}>
+								<td>{`${
+									String(month).length === 1 ? `0${month}` : month
+								}/${year}`}</td>
+								{Object.entries(item.nombre).map(([key, value]) => {
+									return (
+										<td key={`${item.date}-${String(key)}`}>{value ?? 0}</td>
+									)
+								})}
+							</tr>
+						)
+					})}
+				</tbody>
+			</table>
+		</FoldingMessage>
 	)
 }
 

@@ -10,6 +10,7 @@ import {
 } from 'recharts'
 
 import { StyledLegend } from '@/components/charts/PagesCharts'
+import FoldingMessage from '@/components/ui/FoldingMessage'
 import { Radio, ToggleGroup } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
@@ -46,6 +47,7 @@ type SatisfactionChartProps = {
 	data: Array<{
 		date: string
 		nombre: Record<string, number>
+		percent: Record<string, number>
 	}>
 }
 
@@ -96,7 +98,9 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 			<RealResponsiveContainer width="100%" height={400}>
 				<BarChartWithRole
 					data={flattenData}
-					aria-label={t('Graphique statistiques détaillés de la satisfaction')}
+					aria-label={t(
+						'Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image'
+					)}
 					role="img"
 				>
 					<XAxis
@@ -140,7 +144,71 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 						))}
 				</BarChartWithRole>
 			</RealResponsiveContainer>
+			<AccessibleVersion data={flattenData} dataType={dataType} />
 		</Body>
+	)
+}
+
+const AccessibleVersion = ({
+	data,
+	dataType,
+}: SatisfactionChartProps & { dataType: string }) => {
+	const { t } = useTranslation()
+
+	const dataKey = dataType === 'pourcentage' ? 'percent' : 'nombre'
+
+	return (
+		<FoldingMessage
+			title={t('Version accessible des données')}
+			unfoldButtonLabel={t('Afficher la version accessible')}
+		>
+			<table role="table" style={{ textAlign: 'center', width: '100%' }}>
+				<caption className="sr-only">
+					<Trans>
+						Tableau présentant le nombre de visites par page et par mois en{' '}
+						{dataType === 'pourcentage' ? 'pourcentage' : 'nombres'}.
+					</Trans>
+				</caption>
+				<thead>
+					<tr>
+						<th scope="col">
+							<Trans>Date</Trans>
+						</th>
+						<th scope="col">
+							<Trans>Très bien</Trans>
+						</th>
+						<th scope="col">
+							<Trans>Bien</Trans>
+						</th>
+						<th scope="col">
+							<Trans>Moyen</Trans>
+						</th>
+						<th scope="col">
+							<Trans>Mauvais</Trans>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{data.map((item) => {
+						const date = new Date(item.date)
+						const year = date.getFullYear()
+						const month = date.getMonth() + 1
+
+						return (
+							<tr key={item.date}>
+								<td>{`${
+									String(month).length === 1 ? `0${month}` : month
+								}/${year}`}</td>
+								<td>{item[dataKey]['très bien'] ?? 0}</td>
+								<td>{item[dataKey].bien ?? 0}</td>
+								<td>{item[dataKey].moyen ?? 0}</td>
+								<td>{item[dataKey].mauvais ?? 0}</td>
+							</tr>
+						)
+					})}
+				</tbody>
+			</table>
+		</FoldingMessage>
 	)
 }
 

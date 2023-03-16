@@ -1,12 +1,13 @@
 import { formatValue } from 'publicodes'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { BrushProps } from 'recharts'
 import styled from 'styled-components'
 
 import { toAtString } from '@/components/ATInternetTracking'
 import PagesChart from '@/components/charts/PagesCharts'
+import FoldingMessage from '@/components/ui/FoldingMessage'
 import { useScrollToHash } from '@/components/utils/markdown'
 import { Message } from '@/design-system'
 import InfoBulle from '@/design-system/InfoBulle'
@@ -191,6 +192,8 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 		(searchParams.get('module') as Chapter2) ?? ''
 	)
 
+	const { t } = useTranslation()
+
 	useEffect(() => {
 		const paramsEntries = [
 			['periode', period !== defaultPeriod ? period : ''],
@@ -229,7 +232,11 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 
 	const satisfaction = useMemo(() => {
 		return filterByChapter2(stats.satisfaction as Pageish[], chapter2)
-	}, [chapter2])
+	}, [chapter2]) as Array<{
+		date: string
+		nombre: Record<string, number>
+		percent: Record<string, number>
+	}>
 
 	const [[startDateIndex, endDateIndex], setDateIndex] = useState<
 		[startIndex: number, endIndex: number]
@@ -333,14 +340,58 @@ const StatsDetail = ({ stats }: StatsDetailProps) => {
 			<div id="visites-panel">
 				<H3>Visites</H3>
 				{visites.length ? (
-					<Chart
-						key={period + visites.length.toString()}
-						period={period}
-						data={visites}
-						onDateChange={handleDateChange}
-						startIndex={startDateIndex}
-						endIndex={endDateIndex}
-					/>
+					<>
+						<Chart
+							key={period + visites.length.toString()}
+							period={period}
+							data={visites}
+							onDateChange={handleDateChange}
+							startIndex={startDateIndex}
+							endIndex={endDateIndex}
+						/>
+						<FoldingMessage
+							title={t('Version accessible des données')}
+							unfoldButtonLabel={t('Afficher la version accessible')}
+						>
+							<table
+								role="table"
+								style={{ textAlign: 'center', width: '100%' }}
+							>
+								<caption className="sr-only">
+									<Trans>
+										Tableau présentant le nombre de visites sur le site
+										mon-entreprise par mois ou par jours.
+									</Trans>
+								</caption>
+								<thead>
+									<tr>
+										<th scope="col">
+											<Trans>{period}</Trans>
+										</th>
+										<th scope="col">
+											<Trans>Nombre de visites</Trans>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{visites.map((visite) => {
+										const visiteDateParts = visite.date.split('-')
+
+										return (
+											<tr key={visite.date}>
+												<td>
+													{period === 'mois'
+														? `${visiteDateParts[1]}-${visiteDateParts[2]}`
+														: visite.date}
+												</td>
+												<td>{visite.nombre}</td>
+											</tr>
+										)
+									})}
+								</tbody>
+							</table>
+						</FoldingMessage>
+					</>
 				) : (
 					<Message type="info">Aucune donnée disponible.</Message>
 				)}
