@@ -89,7 +89,7 @@ export default function Popover(
 	}
 
 	return (
-		<OverlayContainer aria-modal={true}>
+		<OverlayContainer aria-modal={true} role="dialog">
 			<Underlay {...underlayProps} $offsetTop={offsetTop}>
 				<Container>
 					<Grid

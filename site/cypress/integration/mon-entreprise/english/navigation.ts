@@ -78,7 +78,7 @@ describe(`Navigation to income simulator using company name (${
 			.wait('@search')
 
 		cy.contains('834364291').click()
-		cy.contains('SAS(U)').click()
+		cy.contains('Lancer le simulateur').click()
 		cy.location().should((loc) => {
 			expect(loc.pathname).to.match(/sasu$/)
 		})
@@ -103,7 +103,7 @@ describe(`Navigation to income simulator using company name (${
 		// ask if auto-entrepreneur
 		cy.contains(fr ? 'auto-entrepreneur' : 'auto-entrepreneur')
 		cy.contains(fr ? 'Oui' : 'Yes').click()
-		cy.contains('Auto-entrepreneur').click()
+		cy.contains('Lancer le simulateur').click()
 		cy.location().should((loc) => {
 			expect(loc.pathname).to.match(/auto-entrepreneur$/)
 		})

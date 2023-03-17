@@ -69,7 +69,12 @@ export const Link = React.forwardRef<
 		children: React.ReactNode
 		isDisabled?: boolean
 		noUnderline?: boolean
-		to?: string
+		to?:
+			| string
+			| {
+					pathname: string
+					search: string
+			  }
 	}
 >(function Link(props, forwardedRef) {
 	const { isDisabled, role, noUnderline, ...ariaButtonProps } = props
