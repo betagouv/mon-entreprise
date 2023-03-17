@@ -20,7 +20,7 @@ export function déclarationRevenuIndépendantBetaConfig({
 		meta: {
 			description: t(
 				'pages.gérer.declaration_revenu_indépendant.meta.description',
-				'Découvrez quels montants remplir dans quelles cases, et obtenez une estimation des cotisations à payer en 2022'
+				'Découvrez quels montants remplir dans quelles cases, et obtenez une estimation des cotisations à payer en 2023'
 			),
 			title: t(
 				'pages.gérer.declaration_revenu_indépendant.meta.title',

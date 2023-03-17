@@ -75,6 +75,7 @@ Assistant au choix du statut juridique: Assistance in choosing a legal status
 Assistant à la déclaration des revenus des plateformes en ligne: Assistant to the declaration of income of online platforms
 Assistant à la détermination des charges sociales déductibles: Assistance in determining deductible social charges
 Assistants à la déclaration de revenu 2021 des indépendants: Self-employed 2021 tax return assistants
+Assistants à la déclaration de revenu 2022 des indépendants: Assistants to the 2022 income tax return for the self-employed
 Assistants à la déclaration de revenu des indépendants: Self-employed tax return assistants
 Assistants à la déclaration de revenus 2021 des indépendants: Assistants to the 2021 tax return for the self-employed
 Attention: Attention
@@ -676,7 +677,7 @@ assistant-DRI:
   precision: "<0>A few clarifications before continuing</0><1><0>If your
     accountant completes your declaration, this wizard can still be useful to
     know the <2>amount of social security contributions to be paid in
-    2022</2></0><1>This tool is <1>100% confidential</1>: all the information
+    2023</2></0><1>This tool is <1>100% confidential</1>: all the information
     you enter will remain in your browser.</1><2>To make your income tax return,
     you will have to connect to <2>impots.gouv.fr</2>.</2></1>"
 associés:
@@ -1751,13 +1752,13 @@ pages:
     declaration_charges_sociales_indépendant:
       meta:
         description: Calculate the amount of social security contributions to be
-          reported on your 2021 income tax return
+          reported on your 2022 income tax return
         title: Determination of deductible social charges
       shortname: Determination of deductible social charges
       title: Deductible social charges assistant
     declaration_revenu_indépendant:
       meta:
-        description: Find out which amounts to fill in and get an estimate of your 2022 dues
+        description: Find out which amounts to fill in and get an estimate of your 2023 dues
         title: Income tax return assistant for self-employed people
       shortname: Help with filling out the income tax return
       title: Income tax return assistant for self-employed people

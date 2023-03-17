@@ -19,7 +19,7 @@ export function déclarationChargesSocialesIndépendantConfig({
 		meta: {
 			description: t(
 				'pages.gérer.declaration_charges_sociales_indépendant.meta.description',
-				'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2021'
+				'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2022'
 			),
 			title: t(
 				'pages.gérer.declaration_charges_sociales_indépendant.meta.title',

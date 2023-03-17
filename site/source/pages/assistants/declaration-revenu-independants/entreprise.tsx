@@ -162,7 +162,7 @@ export default function Accueil() {
 											déclaration, cet assistant peut quand même vous être utile
 											pour connaître le{' '}
 											<Strong>
-												montant des cotisations sociales à payer en 2022
+												montant des cotisations sociales à payer en 2023
 											</Strong>
 										</Li>
 										<Li>

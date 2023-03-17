@@ -72,6 +72,7 @@ Assistant au choix du statut juridique: Assistant au choix du statut juridique
 Assistant à la déclaration des revenus des plateformes en ligne: Assistant à la déclaration des revenus des plateformes en ligne
 Assistant à la détermination des charges sociales déductibles: Assistant à la détermination des charges sociales déductibles
 Assistants à la déclaration de revenu 2021 des indépendants: Assistants à la déclaration de revenu 2021 des indépendants
+Assistants à la déclaration de revenu 2022 des indépendants: Assistants à la déclaration de revenu 2022 des indépendants
 Assistants à la déclaration de revenu des indépendants: Assistants à la déclaration de revenu des indépendants
 Assistants à la déclaration de revenus 2021 des indépendants: Assistants à la déclaration de revenus 2021 des indépendants
 Attention: Attention
@@ -598,7 +599,7 @@ assistant-DRI:
   precision: "<0>Quelques précisions avant de continuer</0><1><0>Si c'est votre
     expert-comptable qui remplit votre déclaration, cet assistant peut quand
     même vous être utile pour connaître le <2>montant des cotisations sociales à
-    payer en 2022</2></0><1>Cet outil est <1>100 % confidentiel</1> : toutes les
+    payer en 2023</2></0><1>Cet outil est <1>100 % confidentiel</1> : toutes les
     informations que vous renseignez resteront dans votre navigateur.</1><2>Pour
     faire votre déclaration de revenu, il faudra vous connecter sur
     <2>impots.gouv.fr</2>.</2></1>"
@@ -1313,10 +1314,10 @@ pages:
         Guichet Unique pour trouver les activités qui correspondent. Par
         ailleurs, les résultats les plus populaires (avec le plus d'entreprise
         crées) sont affichés en premier.</1><2>Si vous ne retrouvez pas le code
-        APE correspondant à votre activité, vous pouvez
-        nous le signaler avec le bouton « Je ne trouve pas mon activité ». Cela
-        nous permettra d'améliorer la recherche en ajoutant des mots clés au fur
-        et à mesure de vos retours.</2>"
+        APE correspondant à votre activité, vous pouvez nous le signaler avec le
+        bouton « Je ne trouve pas mon activité ». Cela nous permettra
+        d'améliorer la recherche en ajoutant des mots clés au fur et à mesure de
+        vos retours.</2>"
   assistants:
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
@@ -1572,14 +1573,14 @@ pages:
     declaration_charges_sociales_indépendant:
       meta:
         description: Calculez le montant des cotisations et contributions sociales à
-          reporter dans votre déclaration de revenu 2021
+          reporter dans votre déclaration de revenu 2022
         title: Détermination des charges sociales déductibles
       shortname: Détermination des charges sociales déductibles
       title: Assistant à la détermination des charges sociales déductibles
     declaration_revenu_indépendant:
       meta:
         description: Découvrez quels montants remplir dans quelles cases, et obtenez une
-          estimation des cotisations à payer en 2022
+          estimation des cotisations à payer en 2023
         title: Assistant à la déclaration de revenu pour les indépendants
       shortname: Aide au remplissage de la déclaration de revenu
       title: Assistant à la déclaration de revenu pour les indépendants
