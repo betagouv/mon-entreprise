@@ -167,6 +167,7 @@ function InnerStackedBarChart({ data, precision }: InnerStackedBarChartProps) {
 								backgroundColor: color || 'green',
 							}}
 							key={key}
+							role="img"
 							aria-label={`${title || ''}, ${percentage}%`}
 						/>
 					))}

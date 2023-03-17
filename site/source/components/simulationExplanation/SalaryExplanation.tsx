@@ -138,10 +138,11 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					},
 					{
 						dottedName: 'impôt . montant',
-						title: t('impôt'),
+						title: t('Impôt'),
 						color: colors.bases.secondary[500],
 					},
 					{
+						title: t('Cotisations'),
 						dottedName:
 							currentSimulatorData?.pathId === 'simulateurs.sasu'
 								? 'dirigeant . assimilé salarié . cotisations'
