@@ -42,6 +42,7 @@ export function SmallCard({
 						margin: 0;
 					`}
 					{...titleProps}
+					as="p"
 				>
 					{titleProps.children}
 					{linkProps.external && <NewWindowLinkIcon />}
