@@ -16,6 +16,7 @@ import React, {
 	useRef,
 	useState,
 } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled, { css, keyframes } from 'styled-components'
 
 import { Grid } from '@/design-system/layout'
@@ -61,6 +62,8 @@ export default function Popover(
 		titleProps: titlePropsFromProps,
 	} = props
 
+	const { t } = useTranslation()
+
 	// Handle interacting outside the dialog and pressing
 	// the Escape key to close the modal.
 	const ref = useRef(null)
@@ -89,7 +92,11 @@ export default function Popover(
 	}
 
 	return (
-		<OverlayContainer aria-modal={true} role="dialog">
+		<OverlayContainer
+			aria-modal={true}
+			role="dialog"
+			aria-label={t('Fond de la boite de dialogue')}
+		>
 			<Underlay {...underlayProps} $offsetTop={offsetTop}>
 				<Container>
 					<Grid
@@ -113,7 +120,8 @@ export default function Popover(
 									{...overlayProps}
 									$offsetTop={offsetTop}
 									ref={ref}
-									aria-label={title}
+									aria-label={title || t('Boite de dialogue')}
+									title="modal"
 								>
 									{props.isDismissable && (
 										<CloseButtonContainer>
