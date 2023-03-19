@@ -42,7 +42,7 @@ const StatusCard = ({
 	const tooltipIdRef = useRef(generateUuid())
 
 	return (
-		<StyledCardContainer $inert>
+		<StyledCardContainer $inert as="li">
 			<CardBody>
 				<Grid container spacing={1}>
 					{status.map((statusString) => (
