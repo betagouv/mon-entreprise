@@ -116,6 +116,7 @@ const DetailsRowCards = ({
 						item
 						xs={sizeXs}
 						lg={sizeLg}
+						as="ul"
 					>
 						<StatusCard
 							status={getStatusLabelsArray(statusArray)}
