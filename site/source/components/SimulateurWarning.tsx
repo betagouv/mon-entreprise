@@ -115,17 +115,18 @@ export default function SimulateurWarning({
 					<>
 						<StyledLi>
 							<Trans i18nKey="simulateurs.warning.coût-création-entreprise.greffe">
-								Des frais de greffe peuvent être facturés en raison de documents
-								manquants ou incorrects. Par ailleurs, en cas d'envoie de
-								courrier, le greffe facture les frais postaux.
+								Des frais de greffe peuvent être facturés en raison
+								d'informations ou de documents manquants ou incorrects. Par
+								ailleurs, en cas d'envoi de courrier, le greffe facture les
+								frais postaux.
 							</Trans>
 						</StyledLi>
 						<StyledLi>
 							<Trans i18nKey="simulateurs.warning.coût-création-entreprise.JAL">
 								Ce simulateur calcule les frais de créations uniquement pour les
-								SARL, EURL, SAS, SASU, EI et SEL. Il prends pas encore en compte
-								les autres formes de société (SA, SCA, SCS, SCI, SCP, SNC, SCM,
-								coopératives, GIE, GAEC, etc.)
+								SARL, EURL, SAS, SASU, EI et SEL. Il ne prend pas encore en
+								compte les autres formes de société (SA, SCA, SCS, SCI, SCP,
+								SNC, SCM, coopératives, GIE, GAEC, etc.)
 							</Trans>
 						</StyledLi>
 					</>

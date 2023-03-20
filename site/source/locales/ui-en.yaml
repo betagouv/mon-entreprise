@@ -2533,11 +2533,12 @@ simulateurs:
       manually in the "operating expenses" box.
     coût-création-entreprise:
       JAL: This simulator calculates the costs of creation only for SARL, EURL, SAS,
-        SASU, EI and SEL. It does not yet take into account the other forms of
+        SASU, EI and SEL. It does not yet take into account other forms of
         company (SA, SCA, SCS, SCI, SCP, SNC, SCM, cooperatives, GIE, GAEC,
         etc.)
-      greffe: Clerk's fees may be charged for missing or incorrect documents. In
-        addition, if mail is sent, the clerk's office will charge the postage.
+      greffe: Clerk's fees may be charged for missing or incorrect information or
+        documents. In addition, if mail is sent, the clerk's office will charge
+        for postage.
     indépendant: <0>The simulator does not take into account the micro-BNC and
       micro-BIC regimes.</0>
     plus: Read the details
