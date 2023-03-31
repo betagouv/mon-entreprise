@@ -1,6 +1,6 @@
 import { AriaButtonProps } from '@react-types/button'
 import React, { ComponentPropsWithRef, ReactHTML, useRef } from 'react'
-import { Link as BaseLink } from 'react-router-dom'
+import { Link as BaseLink, useNavigate } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import { StyledButton } from '@/design-system/buttons/Button'
@@ -18,6 +18,9 @@ type GenericButtonOrLinkProps = (
 	| AriaButtonProps<'button'>
 ) & {
 	openInSameWindow?: true
+	to: {
+		pathname: string
+	}
 }
 
 export type GenericCardProps = {
@@ -55,17 +58,31 @@ export function Card(props: CardProps) {
 	const titleProps = getTitleProps(title, 'h3')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 
+	const navigate = useNavigate()
+
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)
 	// @ts-ignore
 	delete buttonOrLinkProps.title
+
+	const handleClick = () => {
+		if (onClick) {
+			onClick()
+		}
+		navigate(
+			(
+				buttonOrLinkProps as typeof buttonOrLinkProps & {
+					to: { pathname: string }
+				}
+			).to.pathname || ''
+		)
+	}
 
 	return (
 		<CardContainer
 			$compact={compact}
 			tabIndex={tabIndex}
-			onClick={onClick}
+			onClick={handleClick}
 			className={className}
-			aria-label={props?.['aria-label']}
 		>
 			{icon && <IconContainer>{icon}</IconContainer>}
 			{title &&
@@ -90,6 +107,7 @@ export function Card(props: CardProps) {
 					$color="primary"
 					{...buttonOrLinkProps}
 					role={role || buttonOrLinkProps?.role}
+					tabIndex={undefined}
 				>
 					{ctaLabel}
 					{linkProps.external && <NewWindowLinkIcon />}
@@ -132,6 +150,14 @@ const CardButton = styled(StyledButton)`
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		width: initial;
 	}
+
+	&::before {
+		content: '';
+		inset: 0;
+		box-sizing: inherit;
+		z-index: 1;
+		position: absolute;
+	}
 `
 
 const IconContainer = styled.div`
@@ -146,6 +172,7 @@ export const CardContainer = styled.div<{
 	display: flex;
 	width: 100%;
 	height: 100%;
+	position: relative;
 	text-decoration: none;
 	flex-direction: column;
 	align-items: center;
@@ -161,6 +188,11 @@ export const CardContainer = styled.div<{
 		box-shadow: ${({ theme, $inert }) =>
 			!$inert &&
 			(theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3])};
+		background-color: ${({ theme, $inert }) =>
+			!$inert &&
+			(theme.darkMode
+				? theme.colors.extended.dark[500]
+				: theme.colors.bases.primary[100])};
 	}
 	padding: ${({ theme: { spacings }, $compact = false }) =>
 		$compact
