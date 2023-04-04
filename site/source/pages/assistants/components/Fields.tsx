@@ -135,7 +135,11 @@ export function SimpleField({
 			{summary && <SmallBody>{summary ?? rule.rawNode.résumé}</SmallBody>}
 			<RuleInput
 				dottedName={dottedName}
-				displayedUnit={targetUnit}
+				displayedUnit={
+					evaluation.unit?.numerators.includes(targetUnit)
+						? targetUnit
+						: undefined
+				}
 				aria-labelledby={displayedQuestion ? labelId : undefined}
 				label={displayedLabel}
 				required={meta.requis === 'oui'}

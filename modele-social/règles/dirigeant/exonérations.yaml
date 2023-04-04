@@ -135,6 +135,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
       par défaut: 12 mois
       plafond: 12 mois
       plancher: 1 mois
+      unité: mois
 
     prorata:
       valeur: durée / 1 an

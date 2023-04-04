@@ -110,7 +110,6 @@ export default function ResultatsSimples() {
 				<Grid container spacing={2}>
 					{(
 						[
-							'dirigeant . indépendant . cotisations et contributions . exonérations . covid . total',
 							'déclaration charge sociales . résultat . revenu net fiscal',
 							'déclaration charge sociales . résultat . CSG déductible',
 							'déclaration charge sociales . résultat . CFP',

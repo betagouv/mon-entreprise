@@ -12,9 +12,10 @@ import RuleInput from '@/components/conversation/RuleInput'
 import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
-import { H2, H3 } from '@/design-system/typography/heading'
+import { H2 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
@@ -40,6 +41,7 @@ const config: SimulationConfig = {
 		'dirigeant . régime social': "'indépendant'",
 		date: '01/01/2022',
 		'dirigeant . indépendant . PL . CIPAV': 'non',
+		'entreprise . catégorie juridique': "''",
 		impôt: 'non',
 	},
 	'unité par défaut': '€',
@@ -153,11 +155,7 @@ export default function AideDéclarationIndépendant() {
 							<H2>
 								<Trans>Exonérations</Trans>
 							</H2>
-							<SubSection dottedName="dirigeant . indépendant . cotisations et contributions . exonérations . covid" />
-							<H3>
-								<Trans>Autres exonérations</Trans>
-							</H3>
-							{/* <SubSection dottedName="déclaration charge sociales . réduction covid" /> */}
+
 							<SimpleField dottedName="déclaration charge sociales . ACRE" />
 							<SimpleField dottedName="établissement . ZFU" />
 							<Condition expression="établissement . ZFU">
@@ -165,9 +163,6 @@ export default function AideDéclarationIndépendant() {
 							</Condition>
 							<SubSection
 								dottedName="dirigeant . indépendant . cotisations et contributions . exonérations"
-								without={[
-									'dirigeant . indépendant . cotisations et contributions . exonérations . covid',
-								]}
 								hideTitle
 							/>
 
@@ -210,6 +205,7 @@ function ImpositionSection() {
 		},
 		[dispatch]
 	)
+	console.log(useEngine().evaluate('entreprise . imposition'))
 
 	return (
 		<>
@@ -253,7 +249,7 @@ function ImpositionSection() {
 									<RuleInput
 										dottedName="dirigeant . rémunération . totale"
 										onChange={setSituation}
-										displayedUnit=""
+										displayedUnit="€"
 										aria-label={t('Résultat fiscal')}
 									/>
 								</BigInput>
