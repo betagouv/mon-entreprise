@@ -1924,6 +1924,9 @@ simulateurs:
       greffe: Des frais de greffe peuvent être facturés en raison d'informations ou de
         documents manquants ou incorrects. Par ailleurs, en cas d'envoi de
         courrier, le greffe facture les frais postaux.
+      pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
+        entreprises. Il ne prend pas en compte le cas des reprises d'entreprises
+        existantes.
     plus: Lire les précisions
     profession-libérale: <0>Ce simulateur est à destination des professions
       libérales en BNC. Il ne prend pas en compte les sociétés d'exercice

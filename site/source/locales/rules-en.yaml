@@ -4425,6 +4425,23 @@ entreprise . activité . nature:
   titre.fr: nature de l'activité
 entreprise . activités:
   avec:
+    agent commercial:
+      description.en: >
+        [automatic] The commercial agent negotiates and/or concludes
+        sales, purchase, rental or service contracts on behalf of a third party
+        (producer, industrialist, trader, etc.). He is therefore a commercial
+        intermediary who, unlike the VRP (salesman, representative and
+        salesman), is an independent professional.
+      description.fr: >
+        L’agent commercial négocie et/ou conclut des contrats de vente,
+        d’achat, de location ou de prestation de services pour le compte d’un
+        tiers (producteur, industriel, commerçant, etc.). Il s’agit donc d’un
+        intermédiaire de commerce qui, contrairement au VRP (vendeur,
+        représentant et placier), est un professionnel indépendant.
+      question.en: '[automatic] Do you operate as a commercial agent?'
+      question.fr: Exercez-vous votre activité en tant qu'agent commercial ?
+      titre.en: '[automatic] sales agent'
+      titre.fr: agent commercial
     agricole:
       description.en: >
         [automatic] An activity is agricultural if it depends on the
@@ -4510,23 +4527,6 @@ entreprise . activités:
         - Vous avez une activité de location de biens, de marchandises ou de services
       titre.en: '[automatic] commercial'
       titre.fr: commerciale
-    commerciale . agent commercial:
-      description.en: >
-        [automatic] The commercial agent negotiates and/or concludes
-        sales, purchase, rental or service contracts on behalf of a third party
-        (producer, industrialist, trader, etc.). He is therefore a commercial
-        intermediary who, unlike the VRP (salesman, representative and
-        salesman), is an independent professional.
-      description.fr: >
-        L’agent commercial négocie et/ou conclut des contrats de vente,
-        d’achat, de location ou de prestation de services pour le compte d’un
-        tiers (producteur, industriel, commerçant, etc.). Il s’agit donc d’un
-        intermédiaire de commerce qui, contrairement au VRP (vendeur,
-        représentant et placier), est un professionnel indépendant.
-      question.en: '[automatic] Do you operate as a commercial agent?'
-      question.fr: Exercez-vous votre activité en tant qu'agent commercial ?
-      titre.en: '[automatic] sales agent'
-      titre.fr: agent commercial
     libérale:
       description.en: >
         [automatic] A liberal activity consists of services of a mainly
@@ -5348,6 +5348,13 @@ entreprise . coût formalités . annonce légale:
     - soit en fonction du nombre de caractères dans les autres cas
   titre.en: '[automatic] legal notice'
   titre.fr: annonce légale
+entreprise . coût formalités . bénéficiaires effectifs:
+  avec:
+    création:
+      titre.en: '[automatic] Creation rate'
+      titre.fr: Tarif création
+  titre.en: '[automatic] Declarations of beneficial owners'
+  titre.fr: Déclarations des bénéficiaires effectifs
 entreprise . coût formalités . création:
   résumé.en: '[automatic] All costs related to the registration (registry,
     announcements, chambers)'

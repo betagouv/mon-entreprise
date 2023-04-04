@@ -1892,6 +1892,8 @@ simulateurs:
       greffe: Clerk's fees may be charged for missing or incorrect information or
         documents. In addition, if mail is sent, the clerk's office will charge
         for postage.
+      pas-reprise: This simulator calculates the creation costs for new companies. It
+        does not take into account the case of takeovers of existing companies.
     plus: Read the details
     profession-libérale: <0>This simulator is intended for use in the NLC
       professions. It does not take into account the professional practice
