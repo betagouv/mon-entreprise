@@ -20,6 +20,13 @@ export default function SearchCodeApePage() {
 					catégoriser.
 				</Body>
 
+				<Message border={false} type="info" icon mini>
+					<SmallBody>
+						En cas d'activités multiples, l'activité principale sera celle dont
+						le chiffre d'affaires ou les effectifs sont les plus élevés.
+					</SmallBody>
+				</Message>
+
 				<Message border={false} icon mini>
 					<SmallBody>
 						Retrouvez plus d'informations sur le code APE sur{' '}
