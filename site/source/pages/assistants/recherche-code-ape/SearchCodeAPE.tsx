@@ -35,7 +35,12 @@ const buildResearch = (lazyData: Data | null) => {
 
 	const { specificList, genericList } = apeData.reduce(
 		(prev, { contenuCentral, contenuAnnexe, title, codeApe }) => {
-			const specificText = [title, ...contenuCentral, codeApe].join('\t')
+			const specificText = [
+				title,
+				...contenuCentral,
+				codeApe,
+				codeApe.replace('.', ''),
+			].join('\t')
 			const genericText = contenuAnnexe.join('\t')
 
 			return {
