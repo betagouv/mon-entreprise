@@ -1080,7 +1080,9 @@ pages:
         APE correspondant à votre activité, vous pouvez nous le signaler avec le
         bouton « Je ne trouve pas mon activité ». Cela nous permettra
         d'améliorer la recherche en ajoutant des mots clés au fur et à mesure de
-        vos retours.</2>"
+        vos retours.</2><3>Source</3><4>Les données utilisées pour ce moteur de
+        recherche sont extraites du PDF des nomenclatures d'activités françaises
+        de l'INSEE, qui est disponible sur <2>cette page</2>.</4>"
   assistants:
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
@@ -1111,9 +1113,11 @@ pages:
       description: <0>Cet assistant vous permet de trouver rapidement le code APE
         (activité principale exercée) qui correspond à votre activité. Ce code
         est attribué par l'INSEE à chaque entreprise en France afin de les
-        catégoriser.</0><1><0>Retrouvez plus d'informations sur le code APE sur
-        <2>entreprendre.service-public.fr</2> et
-        <6>economie.gouv.fr</6>.</0></1>
+        catégoriser.</0><1><0>En cas d'activités multiples, l'activité
+        principale sera celle dont le chiffre d'affaires ou les effectifs sont
+        les plus élevés.</0></1><2><0>Retrouvez plus d'informations sur le code
+        APE sur <2>entreprendre.service-public.fr</2> et
+        <6>economie.gouv.fr</6>.</0></2>
       meta:
         description: Assistant pour trouver le code APE qui correspond à votre activité.
         title: Recherche de code APE
