@@ -1,20 +1,49 @@
 import { DottedName } from 'modele-social'
+import { utils } from 'publicodes'
 import { useContext } from 'react'
 import styled from 'styled-components'
 
-import { EngineContext } from '@/components/utils/EngineContext'
+import { EngineContext, useEngine } from '@/components/utils/EngineContext'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { capitalise0 } from '@/utils'
 
 export function References({
 	references,
+	dottedName,
 }: {
-	references: Record<string, string>
-}) {
+	references?: Record<string, string>
+	dottedName?: DottedName | undefined
+}): JSX.Element | null {
+	const engine = useEngine()
+
+	if (!dottedName && !references) {
+		return null
+	}
+
+	if (references) {
+		return (
+			<Ul>
+				{Object.entries(references).map(([title, href]) => (
+					<Reference key={href} title={title} href={href} />
+				))}
+			</Ul>
+		)
+	}
+
+	// If no reference, check if parent has some that we could use
+	const parentRule = utils.ruleParent(dottedName as string) as DottedName
+	if (!parentRule) {
+		return null
+	}
+	const parentRefences = engine.getRule(parentRule).rawNode.références
+	if (!parentRefences) {
+		return null
+	}
+
 	return (
 		<Ul>
-			{Object.entries(references).map(([title, href]) => (
+			{Object.entries(parentRefences).map(([title, href]) => (
 				<Reference key={href} title={title} href={href} />
 			))}
 		</Ul>
