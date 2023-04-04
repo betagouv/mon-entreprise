@@ -114,6 +114,13 @@ export default function SimulateurWarning({
 				{simulateur === 'coût-création-entreprise' && (
 					<>
 						<StyledLi>
+							<Trans i18nKey="simulateurs.warning.coût-création-entreprise.pas-reprise">
+								Ce simulateur calcule les frais de création pour les nouvelles
+								entreprises. Il ne prend pas en compte le cas des reprises
+								d'entreprises existantes.
+							</Trans>
+						</StyledLi>
+						<StyledLi>
 							<Trans i18nKey="simulateurs.warning.coût-création-entreprise.greffe">
 								Des frais de greffe peuvent être facturés en raison
 								d'informations ou de documents manquants ou incorrects. Par
