@@ -1085,10 +1085,13 @@ pages:
         activity. For example: \"catering\" or \"sports coach\". The search uses
         the Insee and Guichet Unique databases to find the corresponding
         activities. Moreover, the most popular results (with the most companies
-        created) are displayed first.</1><2>If you do not find the APE code
-        corresponding to your activity with this search, you can report it to us
-        with the button \"I do not find my activity\". This will allow us to
-        improve the search by adding keywords according to your feedback.</2>"
+        created) are displayed first.</1><2>If you can't find the APE code
+        corresponding to your activity, you can let us know with the button \"I
+        can't find my activity\". This will allow us to improve the search by
+        adding keywords as we receive your feedback.</2><3>Source</3><4>The data
+        used for this search engine are extracted from the PDF of the French
+        activity nomenclatures of the INSEE, which is available on <2>this
+        page</2>.</4>"
   assistants:
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>There is not yet an income simulator
@@ -1116,10 +1119,12 @@ pages:
     recherche-code-ape:
       description: <0>This wizard allows you to quickly find the APE code (main
         activity) that corresponds to your activity. This code is assigned by
-        INSEE to each company in France in order to categorize
-        them.</0><1><0>Find more information about the APE code on
+        INSEE to each company in France in order to categorize them.</0><1><0>In
+        case of multiple activities, the main activity will be the one with the
+        highest turnover or the highest number of employees.</0></1><2><0>Find
+        more information on the APE code on
         <2>entreprendre.service-public.fr</2> and
-        <6>economie.gouv.fr</6>.</0></1>
+        <6>economie.gouv.fr</6>.</0></2>
       meta:
         description: Wizard to find the APE code that corresponds to your activity.
         title: APE code search
