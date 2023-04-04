@@ -109,6 +109,7 @@ entreprise . activités:
     - commerciale
     - agricole
     - libérale
+    - agent commercial
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
@@ -197,12 +198,13 @@ entreprise . activités:
       références:
         Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-    commerciale . agent commercial:
-      applicable si: activité . nature . commerciale
+    agent commercial:
       description: |
         L’agent commercial négocie et/ou conclut des contrats de vente, d’achat, de location ou de prestation de services pour le compte d’un tiers (producteur, industriel, commerçant, etc.). Il s’agit donc d’un intermédiaire de commerce qui, contrairement au VRP (vendeur, représentant et placier), est un professionnel indépendant.
       question: Exercez-vous votre activité en tant qu'agent commercial ?
-      par défaut: non
+      par défaut:
+        valeur: non
+        variable manquante: entreprise . activités
       références:
         'Devenir agent commercial : pourquoi et comment obtenir ce statut ?': https://www.economie.gouv.fr/entreprises/agent-commercial-immatriculation
         'Agent commercial - Réglementation': https://bpifrance-creation.fr/activites-reglementees/agent-commercial
