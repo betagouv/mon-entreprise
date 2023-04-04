@@ -59,7 +59,7 @@ entreprise . coût formalités . CMA:
 entreprise . coût formalités . RSAC:
   titre: Registre Spécial des Agents Commerciaux
   acronyme: RSAC
-  applicable si: activités . commerciale . agent commercial
+  applicable si: activités . agent commercial
   avec:
     création:
       titre: Tarif création
