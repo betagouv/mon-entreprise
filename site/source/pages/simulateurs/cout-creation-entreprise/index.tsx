@@ -43,6 +43,14 @@ export default function CoutCreationEntreprise() {
 								/>
 								<SimulationGoal
 									displayedUnit="€ HT"
+									dottedName="entreprise . coût formalités . bénéficiaires effectifs . création"
+									label="Frais de déclaration des bénéficiaires effectifs"
+									editable={false}
+									small
+									round={false}
+								/>
+								<SimulationGoal
+									displayedUnit="€ HT"
 									dottedName="entreprise . coût formalités . annonce légale . forfaitaire"
 									label="Frais d'annonce légale"
 									editable={false}

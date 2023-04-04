@@ -10,11 +10,23 @@ entreprise . coût formalités . création:
           - RCS . création
           - CMA . création
           - RSAC . création
+          - bénéficiaires effectifs . création
           - annonce légale . forfaitaire
   références:
     Combien coûtent les formalités de création d'une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F23282
     Comment créer une société: https://entreprendre.service-public.fr/vosdroits/F32886
     "Création d'entreprise : formalités d'immatriculation d'une société": https://entreprendre.service-public.fr/vosdroits/F35934
+
+entreprise . coût formalités . bénéficiaires effectifs:
+  non applicable si: catégorie juridique . EI
+  titre: Déclarations des bénéficiaires effectifs
+  références:
+    Déclarer les bénéficiaires effectifs de la société: https://entreprendre.service-public.fr/vosdroits/F36703
+    Article A743-10 du Code du commerce: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045251765
+  avec:
+    création:
+      titre: Tarif création
+      valeur: 17.84 €HT
 
 entreprise . coût formalités . RCS:
   titre: Registre du commerce et des sociétés
