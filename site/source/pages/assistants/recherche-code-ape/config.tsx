@@ -1,6 +1,7 @@
 import { Trans } from 'react-i18next'
 
 import { H2 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { config } from '@/pages/simulateurs/_configs/config'
 import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
@@ -55,6 +56,15 @@ export const SeoExplanations = () => (
 			pouvez nous le signaler avec le bouton « Je ne trouve pas mon activité ».
 			Cela nous permettra d'améliorer la recherche en ajoutant des mots clés au
 			fur et à mesure de vos retours.
+		</Body>
+
+		<H2>Source</H2>
+		<Body>
+			Les données utilisées pour ce moteur de recherche sont extraites du PDF
+			des nomenclatures d'activités françaises de l'INSEE, qui est disponible
+			sur{' '}
+			<Link href="https://www.insee.fr/fr/information/2120875">cette page</Link>
+			.
 		</Body>
 	</Trans>
 )
