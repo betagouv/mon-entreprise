@@ -4086,7 +4086,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@koa/cors@npm:^3.3.0":
+"@koa/cors@npm:^3.0.0, @koa/cors@npm:^3.3.0":
   version: 3.4.3
   resolution: "@koa/cors@npm:3.4.3"
   dependencies:
@@ -4104,7 +4104,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@koa/router@npm:^10.1.1":
+"@koa/router@npm:^10.0.0, @koa/router@npm:^10.1.1":
   version: 10.1.1
   resolution: "@koa/router@npm:10.1.1"
   dependencies:
@@ -5207,9 +5207,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.66":
-  version: 1.0.0-beta.66
-  resolution: "@publicodes/api@npm:1.0.0-beta.66"
+"@publicodes/api@npm:^1.0.0-beta.68":
+  version: 1.0.0-beta.68
+  resolution: "@publicodes/api@npm:1.0.0-beta.68"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -5218,7 +5218,7 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.47
-  checksum: 7b9b5eb50075bfafca41d3c9db3a6db90d0aaa556a0c7d5e058ce4a0bed2a81db1cd6205c614c15187d93c565e3002565798e8d76ff1b8eee2a2dc4189483e41
+  checksum: 4c710f9f21bef45612e8949376c95983140a0fe686c24acafa3a0a00db2a997290657b528c31f7e903c9cc16f659479fffb735ae4e7dfe28928d7292cde982bd
   languageName: node
   linkType: hard
 
@@ -10572,9 +10572,9 @@ __metadata:
   resolution: "api@workspace:api"
   dependencies:
     "@apidevtools/swagger-cli": ^4.0.4
-    "@koa/cors": ^4.0.0
-    "@koa/router": ^12.0.0
-    "@publicodes/api": ^1.0.0-beta.66
+    "@koa/cors": ^3.0.0
+    "@koa/router": ^10.0.0
+    "@publicodes/api": ^1.0.0-beta.68
     "@sentry/node": ^7.22.0
     "@sentry/tracing": ^7.22.0
     "@types/koa": ^2.13.5
@@ -10587,11 +10587,11 @@ __metadata:
     got: ^12.5.3
     ioredis: ^5.2.4
     koa: ^2.13.4
-    koa-body: ^6.0.1
+    koa-body: ^5.0.0
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^2.0.20
-    publicodes: ^1.0.0-beta.66
+    publicodes: ^1.0.0-beta.68
     rate-limiter-flexible: ^2.4.1
     rimraf: ^3.0.2
     swagger-ui-dist: ^4.15.5
@@ -16021,7 +16021,7 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.66
+    publicodes: ^1.0.0-beta.68
   peerDependencies:
     publicodes: ^1.0.0-beta.55
   languageName: unknown
@@ -22007,7 +22007,7 @@ __metadata:
   dependencies:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
-    publicodes: ^1.0.0-beta.66
+    publicodes: ^1.0.0-beta.68
   peerDependencies:
     publicodes: ^1.0.0-beta.55
   languageName: unknown
@@ -24492,25 +24492,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.66":
-  version: 1.0.0-beta.66
-  resolution: "publicodes-react@npm:1.0.0-beta.66"
+"publicodes-react@npm:^1.0.0-beta.68":
+  version: 1.0.0-beta.68
+  resolution: "publicodes-react@npm:1.0.0-beta.68"
   dependencies:
     styled-components: ^5.1.0
   peerDependencies:
     publicodes: ^1.0.0-beta.40
     react: ^17 || ^18
     react-dom: ^17 || ^18
-  checksum: 9e48cbbd1c9febd2a8c0f8e1549fe15fdc9c470dcba55b02c9de35982e47bf2c79d069f9285d72b91ffe63d5333c40ad44238741820f7f5bd5ad1fb57a4084c9
+  checksum: 1255486c02e97cdc2f4491110133f07d45a78c1bb94d149ad6363724b89a058d69e462681826a28f99c6e529a0cd8027f9a41344270d35f7555454c5646781ad
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.66":
-  version: 1.0.0-beta.66
-  resolution: "publicodes@npm:1.0.0-beta.66"
+"publicodes@npm:^1.0.0-beta.68":
+  version: 1.0.0-beta.68
+  resolution: "publicodes@npm:1.0.0-beta.68"
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 9e85b8502f5e69765276fa4a9caddf7ce6cfd6c31370e33a110b1b5162187e9c3508b299691d6887e00fb3695478c7b5ebe4d890f9bde19a18e85509f3df0703
+  checksum: 7b724256721d2b2fa6e9b586bebd868f366af45f75c07d1a73ac70eff150e3b18e3ddda97a677bdf482a754e503545646a4a5739d7d8b10f019c74176076acd8
   languageName: node
   linkType: hard
 
@@ -24585,12 +24585,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:6.11.0, qs@npm:^6.10.0, qs@npm:^6.11.0, qs@npm:^6.4.0, qs@npm:^6.5.1, qs@npm:^6.5.2, qs@npm:^6.9.6":
+"qs@npm:6.11.0, qs@npm:^6.10.0, qs@npm:^6.11.0, qs@npm:^6.5.1, qs@npm:^6.5.2, qs@npm:^6.9.6":
   version: 6.11.0
   resolution: "qs@npm:6.11.0"
   dependencies:
     side-channel: ^1.0.4
   checksum: 6e1f29dd5385f7488ec74ac7b6c92f4d09a90408882d0c208414a34dd33badc1a621019d4c799a3df15ab9b1d0292f97c1dd71dc7c045e69f81a8064e5af7297
+  languageName: node
+  linkType: hard
+
+"qs@npm:^6.4.0":
+  version: 6.11.1
+  resolution: "qs@npm:6.11.1"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: 82ee78ef12a16f3372fae5b64f76f8aedecb000feea882bbff1af146c147f6eb66b08f9c3f34d7e076f28563586956318b9b2ca41141846cdd6d5ad6f241d52f
   languageName: node
   linkType: hard
 
@@ -24728,7 +24737,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"raw-body@npm:2.5.1, raw-body@npm:^2.2.0, raw-body@npm:^2.3.3, raw-body@npm:^2.4.1":
+"raw-body@npm:2.5.1, raw-body@npm:^2.3.3, raw-body@npm:^2.4.1":
   version: 2.5.1
   resolution: "raw-body@npm:2.5.1"
   dependencies:
@@ -24737,6 +24746,18 @@ __metadata:
     iconv-lite: 0.4.24
     unpipe: 1.0.0
   checksum: 5362adff1575d691bb3f75998803a0ffed8c64eabeaa06e54b4ada25a0cd1b2ae7f4f5ec46565d1bec337e08b5ac90c76eaa0758de6f72a633f025d754dec29e
+  languageName: node
+  linkType: hard
+
+"raw-body@npm:^2.2.0":
+  version: 2.5.2
+  resolution: "raw-body@npm:2.5.2"
+  dependencies:
+    bytes: 3.1.2
+    http-errors: 2.0.0
+    iconv-lite: 0.4.24
+    unpipe: 1.0.0
+  checksum: ba1583c8d8a48e8fbb7a873fdbb2df66ea4ff83775421bfe21ee120140949ab048200668c47d9ae3880012f6e217052690628cf679ddfbd82c9fc9358d574676
   languageName: node
   linkType: hard
 
@@ -26662,7 +26683,7 @@ __metadata:
     "@axe-core/react": ^4.5.2
     "@internationalized/number": ^3.2.0
     "@leeoniya/ufuzzy": ^1.0.2
-    "@publicodes/api": ^1.0.0-beta.66
+    "@publicodes/api": ^1.0.0-beta.68
     "@react-aria/accordion": ^3.0.0-alpha.15
     "@react-aria/button": ^3.7.0
     "@react-aria/checkbox": ^3.8.0
@@ -26726,8 +26747,8 @@ __metadata:
     markdown-to-jsx: ^7.1.9
     modele-social: "workspace:^"
     netlify-cli: ^12.2.8
-    publicodes: ^1.0.0-beta.66
-    publicodes-react: ^1.0.0-beta.66
+    publicodes: ^1.0.0-beta.68
+    publicodes-react: ^1.0.0-beta.68
     react: ^18.2.0
     react-dom: ^18.2.0
     react-easy-emoji: ^1.8.1
