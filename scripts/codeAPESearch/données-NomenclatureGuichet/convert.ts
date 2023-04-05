@@ -22,8 +22,8 @@ fs.createReadStream(join(__dirname, FILENAME))
 	.on('data', (data) => results.push(data))
 	.on('end', () => {
 		fs.writeFileSync(
-			join(__dirname, 'raw_output.json', null, 2),
-			JSON.stringify(results)
+			join(__dirname, 'raw_output.json'),
+			JSON.stringify(results, null, 2)
 		)
 
 		fs.writeFileSync(
