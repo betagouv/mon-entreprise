@@ -149,6 +149,11 @@ export const customTags: CustomTags = {
 		contenuExclu: [],
 		contenuAnnexe: [],
 	},
+	'46.19B': {
+		contenuCentral: ['apporteur d’affaires'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
 	'86.90F': {
 		contenuCentral: [
 			'psychopraticien',
@@ -176,6 +181,11 @@ export const customTags: CustomTags = {
 	},
 	'01.49Z': {
 		contenuCentral: ['éleveur'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'01.62Z': {
+		contenuCentral: ['physiothérapeute équin'],
 		contenuExclu: [],
 		contenuAnnexe: [],
 	},
