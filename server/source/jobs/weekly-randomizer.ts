@@ -42,6 +42,10 @@ const standupMembers = await Promise.all(
 	)
 )
 
+while (standupMembers.length > 0 && standupMembers.length < 4) {
+	standupMembers.push(...standupMembers)
+}
+
 const shuffleMembers = shuffleArray(standupMembers)
 
 await mongo.setWeeklyTeamOrder(shuffleMembers.map(({ id }) => id))
