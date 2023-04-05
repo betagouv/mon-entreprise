@@ -84,11 +84,6 @@ Donner votre avis: Give your opinion
   We identify, among all the public and parapublic partners, the competent
   advisor for your request. He or she will contact you by phone within 5 days
   and will accompany you according to your situation.
-"Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats. Nous utiliserons ces informations pour améliorer cet outil. En revanche, nous ne pourrons pas forcément répondre aux questions relatives au code APE de votre entreprise.":
-  Tell us about your business and the search terms you used that did not yield
-  good results. We will use this information to improve this tool. However, we
-  will not necessarily be able to answer questions about your company's APE
-  code.
 Décès: Deaths
 Dépôt de capital: Capital deposit
 Effacer mes réponses: Delete my answers
@@ -1822,6 +1817,11 @@ salarié: Employee share
 "salarié, accéder au simulateur salarié": employee, access the employee simulator
 search-code-ape:
   cant-find-my-activity: I can't find my activity
+  feedback:
+    description: Describe your business and the search terms you used that did not
+      yield good results.<1></1>We will use this information to improve this
+      tool.
+    info: We are not able to answer questions about your company's APE code.
 select:
   value:
     default: Choose an option

@@ -87,11 +87,6 @@ Donner votre avis: Donner votre avis
   parapublics, le conseiller compétent pour votre demande. Celui-ci vous
   contacte par téléphone sous 5 jours et vous accompagne en fonction de votre
   situation.
-"Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats. Nous utiliserons ces informations pour améliorer cet outil. En revanche, nous ne pourrons pas forcément répondre aux questions relatives au code APE de votre entreprise.":
-  Décrivez-nous votre activité ainsi que les termes de recherche que vous avez
-  utilisés qui n'ont pas donné de bons résultats. Nous utiliserons ces
-  informations pour améliorer cet outil. En revanche, nous ne pourrons pas
-  forcément répondre aux questions relatives au code APE de votre entreprise.
 Décès: Décès
 Dépôt de capital: Dépôt de capital
 Effacer mes réponses: Effacer mes réponses
@@ -1847,6 +1842,12 @@ salarié: salarié
 "salarié, accéder au simulateur salarié": salarié, accéder au simulateur salarié
 search-code-ape:
   cant-find-my-activity: Je ne trouve pas mon activité
+  feedback:
+    description: Décrivez-nous votre activité ainsi que les termes de recherche que
+      vous avez utilisés qui n'ont pas donné de bons résultats.<1></1>Nous
+      utiliserons ces informations pour améliorer cet outil.
+    info: Nous ne sommes pas en mesure de répondre aux questions concernant le code
+      APE de votre entreprise.
 select:
   value:
     default: Choisissez une option

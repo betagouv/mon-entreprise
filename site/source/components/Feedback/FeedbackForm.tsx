@@ -60,7 +60,7 @@ export default function FeedbackForm({
 }: {
 	title: string
 	infoSlot?: ReactNode
-	description?: string
+	description?: ReactNode
 	placeholder?: string
 	tags?: string[]
 	hideShare?: boolean
