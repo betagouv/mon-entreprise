@@ -17,10 +17,10 @@ const jobs: BreeOptions['jobs'] = [
 		name: 'daily-stand-up',
 		interval: 'on Monday through Thursday at 16:42',
 	},
-	{
-		name: 'weekly-randomizer',
-		interval: 'on Thursday at 16:40',
-	},
+	// {
+	// 	name: 'weekly-randomizer',
+	// 	interval: 'on Thursday at 16:40',
+	// },
 ]
 
 const badJob = jobs.findIndex(
