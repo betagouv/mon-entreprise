@@ -1841,6 +1841,7 @@ revenu_après_impots:
 salarié: salarié
 "salarié, accéder au simulateur salarié": salarié, accéder au simulateur salarié
 search-code-ape:
+  alternative: Vous pouvez essayer "{{proposal}}" au lieu de "{{match}}"
   cant-find-my-activity: Je ne trouve pas mon activité
   feedback:
     description: Décrivez-nous votre activité ainsi que les termes de recherche que
