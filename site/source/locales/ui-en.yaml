@@ -1816,6 +1816,7 @@ revenu_après_impots:
 salarié: Employee share
 "salarié, accéder au simulateur salarié": employee, access the employee simulator
 search-code-ape:
+  alternative: You can try "{{proposal}}" instead of "{{match}}".
   cant-find-my-activity: I can't find my activity
   feedback:
     description: Describe your business and the search terms you used that did not
