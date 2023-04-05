@@ -10,6 +10,7 @@
 		"directory": "scripts"
 	},
 	"scripts": {
+		"build": "run start:nombre-etablissements-par-code-ape && run start:données-NomenclatureGuichet && run start:données-NAF-CPF-APE && run start:données-code-APE",
 		"start:données-NAF-CPF-APE": "ts-node-esm ./codeAPESearch/données-NAF-CPF-APE/convert-pdf.ts",
 		"start:données-NomenclatureGuichet": "ts-node-esm ./codeAPESearch/données-NomenclatureGuichet/convert.ts",
 		"start:nombre-etablissements-par-code-ape": "ts-node-esm ./codeAPESearch/nombre-etablissements-par-code-ape/convert-json.ts",
