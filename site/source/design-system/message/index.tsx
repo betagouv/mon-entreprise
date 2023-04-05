@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { DefaultTheme, css } from 'styled-components'
+import styled, { CSSProperties, DefaultTheme, css } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Palette, SmallPalette } from '@/types/styled'
@@ -19,6 +19,7 @@ type MessageProps = {
 	mini?: boolean
 	light?: boolean
 	className?: string
+	style?: CSSProperties
 	role?: string
 }
 
@@ -30,6 +31,7 @@ export function Message({
 	light = false,
 	children,
 	className,
+	style,
 	role = undefined,
 }: MessageProps) {
 	const { t } = useTranslation()
@@ -49,6 +51,7 @@ export function Message({
 		<ForceThemeProvider forceTheme="light">
 			<StyledMessage
 				className={className}
+				style={style}
 				messageType={type}
 				border={border}
 				mini={mini}

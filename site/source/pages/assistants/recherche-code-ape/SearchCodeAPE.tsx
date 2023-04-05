@@ -16,6 +16,7 @@ import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Grid, Spacing } from '@/design-system/layout'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useAsyncData } from '@/hooks/useAsyncData'
 
 import { Output as Data } from '../../../../../scripts/codeAPESearch/données-code-APE/reduce-json'
@@ -176,6 +177,20 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 		prevValue.current = job
 	}, [buildedResearch, job, lazyData])
 
+	type Alt = { match: string; proposal: string[] }
+	const [alternative, setAlternative] = useState<Alt | null>(null)
+
+	useEffect(() => {
+		const alternatives: Alt[] = [{ match: 'vente', proposal: ['commerce'] }]
+
+		setAlternative(null)
+		alternatives.forEach((alt) => {
+			if (new RegExp(alt.match, 'i').test(job)) {
+				setAlternative(alt)
+			}
+		})
+	}, [job])
+
 	const ret = (
 		<Grid container>
 			<Grid item lg={12} xl={11}>
@@ -185,7 +200,21 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 					label={t("Mots-clés définissants l'activité")}
 					placeholder={t('Par exemple : coiffure, boulangerie ou restauration')}
 				/>
-				<Spacing xs />
+				{alternative ? (
+					<FromTop>
+						<Message border={false} icon mini style={{ margin: '.5rem 0' }}>
+							<SmallBody>
+								<Trans i18nKey="search-code-ape.alternative" shouldUnescape>
+									Vous pouvez essayer "
+									{{ proposal: alternative.proposal.join('", "') }}" au lieu de
+									"{{ match: alternative.match }}"
+								</Trans>
+							</SmallBody>
+						</Message>
+					</FromTop>
+				) : (
+					<Spacing xs />
+				)}
 				{list.length > 0 && (
 					<FromTop>
 						<TrackPage name="recherche" />
