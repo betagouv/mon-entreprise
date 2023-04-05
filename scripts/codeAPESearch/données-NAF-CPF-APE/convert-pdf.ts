@@ -36,6 +36,9 @@ const specialCase = new RegExp(
 		// remove space
 		'fi lm',
 		'fi nal',
+		'coff re',
+		'fl ottant',
+		'gonfl able',
 		'iff érent',
 		'spécifi que',
 		'infi rmeries',
