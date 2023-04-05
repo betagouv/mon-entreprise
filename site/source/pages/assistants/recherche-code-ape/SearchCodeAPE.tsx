@@ -7,6 +7,7 @@ import { TrackPage } from '@/components/ATInternetTracking'
 import FeedbackForm from '@/components/Feedback/FeedbackForm'
 import { FromTop } from '@/components/ui/animate'
 import {
+	Message,
 	PopoverWithTrigger,
 	RadioCardGroup,
 	SearchField,
@@ -261,9 +262,22 @@ const ActivityNotFound = ({ job }: { job: string }) => {
 					<>
 						<FeedbackForm
 							title={t('Quelle est votre activité ?')}
-							description={t(
-								"Décrivez-nous votre activité ainsi que les termes de recherche que vous avez utilisés qui n'ont pas donné de bons résultats. Nous utiliserons ces informations pour améliorer cet outil. En revanche, nous ne pourrons pas forcément répondre aux questions relatives au code APE de votre entreprise."
-							)}
+							infoSlot={
+								<Message border={false} type="info" icon>
+									<Trans i18nKey="search-code-ape.feedback.info">
+										Nous ne sommes pas en mesure de répondre aux questions
+										concernant le code APE de votre entreprise.
+									</Trans>
+								</Message>
+							}
+							description={
+								<Trans i18nKey="search-code-ape.feedback.description">
+									Décrivez-nous votre activité ainsi que les termes de recherche
+									que vous avez utilisés qui n'ont pas donné de bons résultats.
+									<br />
+									Nous utiliserons ces informations pour améliorer cet outil.
+								</Trans>
+							}
 							placeholder={t(
 								`Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".`
 							)}
