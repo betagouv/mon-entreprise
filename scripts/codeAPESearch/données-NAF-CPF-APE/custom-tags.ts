@@ -54,6 +54,7 @@ export const customTags: CustomTags = {
 			'Coach sportif',
 			'Moniteur (enseignement sportif)',
 			"Enseignement sportif (Athlétisme, Aviron, Badminton, Baseball, Softball, Basketball, Biathlon, Bobsleigh, Boxe, Breaking, Canoë, Curling, Cyclisme, Escalade, Escrime, Football, Futsal, Golf, Gymnastique, Haltérophilie, Handball, Hockey sur Gazon , Hockey sur glace, Judo, Karaté, Luge, Lutte, Natation, Natation, Marathon, Patinage, Pentathlon, Plongeon, Rugby, Skateboard, Skeleton, Ski, Alpinisme, Snowboard, Sports Équestres, Surf, Taekwondo, Tennis, Tennis de Table, Ping-pong, Tir, Tir à L'Arc, Trampoline, Triathlon, Ultimate, Voile, Volleyball, Beach-Volley, Water-Polo, Pilates, Stretching, Trail, Fitness, etc.)",
+			'activité physique',
 		],
 		contenuAnnexe: [],
 		contenuExclu: [],
@@ -139,7 +140,7 @@ export const customTags: CustomTags = {
 		contenuAnnexe: [],
 	},
 	'93.12Z': {
-		contenuCentral: ['randonnée'],
+		contenuCentral: ['randonnée', 'activité physique'],
 		contenuExclu: [],
 		contenuAnnexe: [],
 	},
