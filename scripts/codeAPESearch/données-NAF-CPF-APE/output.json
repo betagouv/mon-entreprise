@@ -3605,7 +3605,8 @@
       "• chats et chiens",
       "• oiseaux, tels que des perruches, etc.",
       "• hamsters, etc.",
-      "l'élevage d'animaux divers"
+      "l'élevage d'animaux divers",
+      "éleveur"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -19021,7 +19022,8 @@
       "la fabrication d'encadrements pour des toiles d'artistes",
       "la fabrication de parties de chaussures en bois (par exemple talons et formes)",
       "la fabrication de manches de parapluies, de cannes et d'articles similaires",
-      "la fabrication de blocs destinés à la fabrication de pipes"
+      "la fabrication de blocs destinés à la fabrication de pipes",
+      "la fabrication d'objets en bois flotté"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -26469,7 +26471,8 @@
       "Produits associés : 22.29.91, 22.29.99"
     ],
     "contenuCentral": [
-      "la fabrication pour compte de tiers de pièces techniques diverses en matières plastiques"
+      "la fabrication pour compte de tiers de pièces techniques diverses en matières plastiques",
+      "impression 3D"
     ],
     "contenuAnnexe": [
       "la fabrication pour compte de tiers d'autres pièces en matières plastiques non décrites ailleurs"
@@ -46920,7 +46923,7 @@
     "title": "CONSTRUCTION NAVALE",
     "data": [],
     "contenuCentral": [
-      "la construction de navires, de bateaux et de structures fl ottantes pour le transport ou d'autres usages commerciaux, ainsi que pour le sport et les loisirs."
+      "la construction de navires, de bateaux et de structures flottantes pour le transport ou d'autres usages commerciaux, ainsi que pour le sport et les loisirs."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -46929,7 +46932,7 @@
   {
     "type": "classe",
     "code": "30.11",
-    "title": "Construction de navires et de structures fl ottantes",
+    "title": "Construction de navires et de structures flottantes",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -46939,7 +46942,7 @@
   {
     "type": "sousClasse",
     "code": "30.11Z",
-    "title": "Construction de navires et de structures fl ottantes",
+    "title": "Construction de navires et de structures flottantes",
     "data": [
       "Produits associés : 30.11.10, 30.11.21, 30.11.22, 30.11.23, 30.11.24, 30.11.31,",
       "30.11.32, 30.11.33, 30.11.40, 30.11.50, 30.11.91, 30.11.92, 30.11.99"
@@ -46952,10 +46955,10 @@
     ],
     "contenuAnnexe": [
       "la construction d'aéroglisseurs, à l'exception des aéroglisseurs de plaisance",
-      "la construction de plates-formes de forage fl ottantes ou submersibles",
-      "la construction de structures et d'engins fl ottants tels que docks fl ottants, pontons, caissons, coff res d'amarrage fl ottants, bouées, réservoirs fl ottants, barges, allèges, gabares, pontons-grues, radeaux gonfl ables autres que récréatifs, etc.",
-      "la fabrication d'éléments pour la construction de navires et de structures fl ottantes",
-      "la transformation, la reconstruction et l'équipement de navires et de structures fl ottantes"
+      "la construction de plates-formes de forage flottantes ou submersibles",
+      "la construction de structures et d'engins flottants tels que docks flottants, pontons, caissons, coffres d'amarrage flottants, bouées, réservoirs flottants, barges, allèges, gabares, pontons-grues, radeaux gonflables autres que récréatifs, etc.",
+      "la fabrication d'éléments pour la construction de navires et de structures flottantes",
+      "la transformation, la reconstruction et l'équipement de navires et de structures flottantes"
     ],
     "contenuExclu": [
       "la construction de parties de bateaux autres que les parties qui constituent la coque :",
@@ -46967,8 +46970,8 @@
       "fabrication d'appareils d'éclairage pour navires et bateaux (cf. 27.40Z)",
       "fabrication de véhicules automobiles amphibies (cf. 29.10Z)",
       "construction de bateaux de plaisance (cf. 30.12Z)",
-      "fabrication de bateaux ou de radeaux gonfl ables récréatifs (cf. 30.12Z)",
-      "les activités d'entretien et de réparation spécialisée de navires, bateaux et structures fl ottantes (cf. 33.15Z)",
+      "fabrication de bateaux ou de radeaux gonflables récréatifs (cf. 30.12Z)",
+      "les activités d'entretien et de réparation spécialisée de navires, bateaux et structures flottantes (cf. 33.15Z)",
       "la démolition navale (cf. 38.31Z)",
       "l'aménagement intérieur des bateaux (cf. 43.3)"
     ],
@@ -52342,7 +52345,8 @@
       "l'installation de serrures et autres systèmes complexes de verrouillage",
       "l'installation de récipients métalliques",
       "l'installation de coffres-forts",
-      "l'installation et le montage d'armes"
+      "l'installation et le montage d'armes",
+      "chaudronnier"
     ],
     "contenuAnnexe": [
       "les travaux de tuyauterie métallique sur site industriel : chimie, pétrole, etc.",
@@ -64675,7 +64679,8 @@
       "47.00.87p, 47.00.88p, 47.00.89p, 47.00.91p, 47.00.92p, 47.00.99p"
     ],
     "contenuCentral": [
-      "le commerce de détail non spécialisé sans prédominance alimentaire en magasin d'une surface de vente égale ou supérieure à 2500 m²"
+      "le commerce de détail non spécialisé sans prédominance alimentaire en magasin d'une surface de vente égale ou supérieure à 2500 m²",
+      "boutique de déstockage"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -64687,7 +64692,8 @@
     "title": "Autres commerces de détail en magasin non spécialisé",
     "data": [],
     "contenuCentral": [
-      "le commerce de détail non-spécialisé sans prédominance alimentaire en magasin d'une surface de vente inférieure à 2500 m²"
+      "le commerce de détail non-spécialisé sans prédominance alimentaire en magasin d'une surface de vente inférieure à 2500 m²",
+      "boutique de déstockage"
     ],
     "contenuAnnexe": [
       "les sex-shop",
@@ -65986,7 +65992,8 @@
     "contenuCentral": [
       "le commerce de détail d'articles d'habillement",
       "le commerce de détail d'articles en fourrure",
-      "le commerce de détail d'accessoires du vêtement tels que gants, cravates, bretelles, etc."
+      "le commerce de détail d'accessoires du vêtement tels que gants, cravates, bretelles, etc.",
+      "boutique de déstockage de vêtements"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -66401,7 +66408,9 @@
     ],
     "contenuCentral": [
       "le commerce de détail de tous types de produits par correspondance",
-      "le commerce de détail de tous types de produits par Internet"
+      "le commerce de détail de tous types de produits par Internet",
+      "e-commerce",
+      "vente en ligne"
     ],
     "contenuAnnexe": [
       "la vente directe par téléphone ou par le truchement de la radio ou de la télévision",
@@ -66432,7 +66441,9 @@
     ],
     "contenuCentral": [
       "le commerce de détail spécialisé de produits par correspondance",
-      "le commerce de détail spécialisé de produits par Internet"
+      "le commerce de détail spécialisé de produits par Internet",
+      "e-commerce",
+      "vente en ligne"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -66838,7 +66849,8 @@
       "Produits associés : 49.32.11, 49.32.12"
     ],
     "contenuCentral": [
-      "le transport de voyageurs par taxis, y compris services des centrales de réservation"
+      "le transport de voyageurs par taxis, y compris services des centrales de réservation",
+      "chauffeur VTC"
     ],
     "contenuAnnexe": [
       "la location de voitures particulières avec chauffeur",
@@ -69944,7 +69956,8 @@
       "Produits associés : 53.20.11, 53.20.12, 53.20.19"
     ],
     "contenuCentral": [
-      "la levée, le tri, l'acheminement et la distribution (nationale ou internationale) de lettres et de colis et petits paquets (assimilés à du courrier) par des entreprises opérant en dehors de l'obligation de service universel. Il peut être fait appel à un ou à plusieurs modes de transport et l'acheminement peut s'effectuer par un moyen de transport détenu en propre (privé) ou par un moyen de transport public."
+      "la levée, le tri, l'acheminement et la distribution (nationale ou internationale) de lettres et de colis et petits paquets (assimilés à du courrier) par des entreprises opérant en dehors de l'obligation de service universel. Il peut être fait appel à un ou à plusieurs modes de transport et l'acheminement peut s'effectuer par un moyen de transport détenu en propre (privé) ou par un moyen de transport public.",
+      "Activité de relais colis"
     ],
     "contenuAnnexe": [
       "les services de livraison à domicile",
@@ -70687,7 +70700,8 @@
       "• la préparation de repas sur des éventaires ou sur les marchés"
     ],
     "contenuAnnexe": [
-      "salons de thé"
+      "salons de thé",
+      "bar à chat"
     ],
     "contenuExclu": [
       "la vente au détail de nourriture par le biais de distributeurs automatiques (cf. 47.99B)"
@@ -79078,7 +79092,8 @@
     "contenuCentral": [
       "le conseil et l'assistance opérationnelle apportés à des entreprises et autres organisations sur des questions de gestion, telles que la planification d'entreprise stratégique et organisationnelle, la reconfiguration de processus, la gestion du changement, la réduction des coûts et d'autres questions financières, les objectifs et les politiques de marketing, les politiques, les pratiques et la planification en matière de ressources humaines, les stratégies de rémunération et retraite, la planification de la production et du contrôle.",
       "le conseil et l'assistance opérationnelle aux entreprises et aux services publics dans les domaines suivants :",
-      "• la conception de méthodes ou procédures comptables, de programme de comptabilisation des dépenses, de procédures de contrôle budgétaire"
+      "• la conception de méthodes ou procédures comptables, de programme de comptabilisation des dépenses, de procédures de contrôle budgétaire",
+      "apporteur d’affaires"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -85711,7 +85726,9 @@
       "Produits associés : 82.11.10"
     ],
     "contenuCentral": [
-      "la prestation d'une combinaison de services administratifs de bureau quotidiens, comme l'accueil, la planification financière, la facturation, la gestion de dossiers et l'archivage, les activités liées au personnel, l'organisation des locaux, les services de courrier, etc., pour le compte de tiers."
+      "la prestation d'une combinaison de services administratifs de bureau quotidiens, comme l'accueil, la planification financière, la facturation, la gestion de dossiers et l'archivage, les activités liées au personnel, l'organisation des locaux, les services de courrier, etc., pour le compte de tiers.",
+      "secrétariat et assistance administrative",
+      "secrétaire"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -89721,7 +89738,11 @@
       "• activités des psychologues à vocation thérapeutique",
       "• activités des sophrologues à vocation thérapeutique",
       "• activités des praticiens exerçant dans les domaines de l'acupuncture, de l'homéopathie, etc.",
-      "• activités des guérisseurs, rebouteux, etc."
+      "• activités des guérisseurs, rebouteux, etc.",
+      "psychopraticien",
+      "hypnothérapeute",
+      "hypnothérapie",
+      "réflexologue"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -90577,7 +90598,8 @@
       "l'accueil de jour des enfants d'age pré-scolaire :",
       "• les activités des crèches",
       "• les activités des assistantes maternelles à leur domicile",
-      "• les activités des haltes-garderies"
+      "• les activités des haltes-garderies",
+      "baby-sitters"
     ],
     "contenuAnnexe": [
       "les services de garde d'enfants à domicile assurés par des prestataires de services indépendants"
@@ -91882,7 +91904,8 @@
       "• clubs de bowling",
       "• clubs de natation",
       "• clubs de golf",
-      "• clubs de boxe"
+      "• clubs de boxe",
+      "randonnée"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -94075,7 +94098,9 @@
       "Produits associés : 96.04.10"
     ],
     "contenuCentral": [
-      "les activités d'entretien corporel telle que celles fournies par les bains turcs, les saunas et les bains de vapeur, les solariums, les stations thermales, les instituts d'amaigrissement et d'amincissement, les instituts de massage, etc."
+      "les activités d'entretien corporel telle que celles fournies par les bains turcs, les saunas et les bains de vapeur, les solariums, les stations thermales, les instituts d'amaigrissement et d'amincissement, les instituts de massage, etc.",
+      "activité de bien-être",
+      "relaxation"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [

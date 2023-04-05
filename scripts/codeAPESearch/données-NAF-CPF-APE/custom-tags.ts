@@ -83,4 +83,99 @@ export const customTags: CustomTags = {
 		contenuExclu: [],
 		contenuAnnexe: [],
 	},
+	'49.32Z': {
+		contenuCentral: ['chauffeur VTC'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'16.29Z': {
+		contenuCentral: ["la fabrication d'objets en bois flotté"],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'47.19A': {
+		contenuCentral: ['boutique de déstockage'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'47.19B': {
+		contenuCentral: ['boutique de déstockage'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'47.71Z': {
+		contenuCentral: ['boutique de déstockage de vêtements'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'53.20Z': {
+		contenuCentral: ['Activité de relais colis'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'56.10C': {
+		contenuCentral: [],
+		contenuExclu: [],
+		contenuAnnexe: ['bar à chat'],
+	},
+	'82.11Z': {
+		contenuCentral: ['secrétariat et assistance administrative', 'secrétaire'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'96.04Z': {
+		contenuCentral: ['activité de bien-être', 'relaxation'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'47.91A': {
+		contenuCentral: ['e-commerce', 'vente en ligne'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'47.91B': {
+		contenuCentral: ['e-commerce', 'vente en ligne'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'93.12Z': {
+		contenuCentral: ['randonnée'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'70.22Z': {
+		contenuCentral: ['apporteur d’affaires'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'86.90F': {
+		contenuCentral: [
+			'psychopraticien',
+			'hypnothérapeute',
+			'hypnothérapie',
+			'réflexologue',
+		],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'22.29A': {
+		contenuCentral: ['impression 3D'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'33.20A': {
+		contenuCentral: ['chaudronnier'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'88.91A': {
+		contenuCentral: ['baby-sitters'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'01.49Z': {
+		contenuCentral: ['éleveur'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
 }
