@@ -4176,7 +4176,8 @@
       "• insémination artificielle",
       "• services de haras",
       "• tonte d'ovins",
-      "• hébergement et entretien d'animaux de ferme"
+      "• hébergement et entretien d'animaux de ferme",
+      "physiothérapeute équin"
     ],
     "contenuAnnexe": [
       "les activités des maréchaux-ferrants"
@@ -60537,7 +60538,9 @@
     "data": [
       "Produits associés : 46.19.10p"
     ],
-    "contenuCentral": [],
+    "contenuCentral": [
+      "apporteur d’affaires"
+    ],
     "contenuAnnexe": [],
     "contenuExclu": [],
     "parent": 4644
