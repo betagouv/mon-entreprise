@@ -41,7 +41,7 @@ export default function FoldingMessage({
 				{!isFolded && (
 					<FromTop>
 						<div id="warning-text">{children}</div>
-						<div className="ui__ answer-group print-hidden">
+						<div className="print-hidden">
 							<Button
 								size="XS"
 								aria-expanded

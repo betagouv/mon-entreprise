@@ -34,10 +34,7 @@ export default function Integration() {
 			<ScrollToTop />
 
 			{pathname !== absoluteSitePaths.développeur.index && (
-				<Link
-					className="ui__ simple small push-left button"
-					to={absoluteSitePaths.développeur.index}
-				>
+				<Link to={absoluteSitePaths.développeur.index}>
 					<span aria-hidden>←</span> <Trans>Outils pour les développeurs</Trans>{' '}
 					<Emoji emoji="👨‍💻" />
 				</Link>

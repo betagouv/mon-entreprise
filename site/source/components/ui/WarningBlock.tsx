@@ -46,7 +46,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 					{!folded && (
 						<FromTop>
 							<div id="warning-text">{children}</div>
-							<div className="ui__ answer-group print-hidden">
+							<div className="print-hidden">
 								<Button
 									size="XS"
 									aria-expanded

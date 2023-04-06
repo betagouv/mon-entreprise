@@ -49,14 +49,14 @@ export default function ActivitésSelection() {
 							Suivez ce guide pour savoir en quelques clics comment être en
 							règle.
 						</Body>
-						<SmallBody className="ui__ notice">
+						<SmallBody>
 							Ces revenus sont communiqués automatiquement par les plateformes à
 							l’administration fiscale et à l’Urssaf.
 						</SmallBody>
 					</Trans>
 				</section>
 
-				<section className="ui__ full-width light-bg">
+				<section>
 					<H2>
 						<Trans i18nKey="économieCollaborative.accueil.question">
 							Quels types d'activités avez-vous exercé ?

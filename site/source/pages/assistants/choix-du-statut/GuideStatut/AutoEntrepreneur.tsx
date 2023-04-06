@@ -56,7 +56,7 @@ export default function Autoentrepreneur() {
 					).
 				</Body>
 			</Trans>
-			<div className="ui__ full-width">
+			<div>
 				<SchemeComparaison hideAssimiléSalarié />
 			</div>
 		</>

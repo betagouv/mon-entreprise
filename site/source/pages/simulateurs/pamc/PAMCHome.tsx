@@ -11,7 +11,7 @@ export default function SalariéSimulation() {
 		<>
 			<TrackPage chapter1="simulateurs" name="accueil_pamc" />
 			<H2>Quelle profession exercez-vous ?</H2>
-			<div className="ui__ small box-container" role="list">
+			<div role="list">
 				<SimulateurCard
 					small
 					{...simulators['auxiliaire-médical']}

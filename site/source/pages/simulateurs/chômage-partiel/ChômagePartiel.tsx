@@ -49,9 +49,7 @@ export default function ChômagePartiel() {
 			</Warning>
 			<Simulation
 				results={<ExplanationSection />}
-				customEndMessages={
-					<span className="ui__ notice">Voir les résultats au-dessus</span>
-				}
+				customEndMessages={<span>Voir les résultats au-dessus</span>}
 			>
 				<SimulationGoals legend="Salaire brut avant chômage partiel">
 					<SimulationGoal
@@ -189,7 +187,6 @@ function ExplanationSection() {
 	return (
 		<FromTop>
 			<div
-				className="ui__ light card"
 				css={`
 					overflow: hidden;
 					margin: 1rem 0;
@@ -279,7 +276,7 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 
 	return (
 		<>
-			<ResultTable className="ui__ mobile-version">
+			<ResultTable className="mobile-version">
 				<caption className="sr-only">{captionText}</caption>
 				<thead>
 					<tr>
@@ -335,7 +332,6 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 									<ValueWithLink {...cell} />
 									{cell.additionalText && (
 										<p
-											className="ui__ notice"
 											css={`
 												text-align: right;
 											`}
@@ -381,7 +377,7 @@ function RowLabel({ dottedName }: { dottedName: DottedName }) {
 			>
 				{target.title}
 			</div>
-			<p className="ui__ notice">{target.rawNode.résumé}</p>
+			<p>{target.rawNode.résumé}</p>
 		</>
 	)
 }
@@ -395,7 +391,7 @@ const ResultTable = styled.table`
 		font-weight: initial;
 	}
 
-	&.ui__.mobile-version {
+	&.mobile-version {
 		display: none;
 		@media (max-width: 660px) {
 			display: table;

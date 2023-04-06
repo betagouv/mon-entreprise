@@ -35,7 +35,7 @@ export default function DefineDirectorStatus() {
 					et la couverture sociale du dirigeant. Le montant et les modalités de
 					paiement des cotisations sociales sont également impactés.
 				</Body>
-				<div className="ui__ full-width">
+				<div>
 					<SchemeComparaison hideAutoEntrepreneur />
 				</div>
 			</Trans>
