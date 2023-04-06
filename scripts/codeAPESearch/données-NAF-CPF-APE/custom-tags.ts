@@ -189,4 +189,9 @@ export const customTags: CustomTags = {
 		contenuExclu: [],
 		contenuAnnexe: [],
 	},
+	'81.21Z': {
+		contenuCentral: ['Homme / Femme de ménage'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
 }

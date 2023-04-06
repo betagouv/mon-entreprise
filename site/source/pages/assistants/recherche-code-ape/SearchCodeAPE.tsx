@@ -181,7 +181,11 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 	const [alternative, setAlternative] = useState<Alt | null>(null)
 
 	useEffect(() => {
-		const alternatives: Alt[] = [{ match: 'vente', proposal: ['commerce'] }]
+		const alternatives: Alt[] = [
+			{ match: 'vente', proposal: ['commerce'] },
+			{ match: 'enseignant', proposal: ['enseignement', 'professeur'] },
+			{ match: 'administratif', proposal: ['administration'] },
+		]
 
 		setAlternative(null)
 		alternatives.forEach((alt) => {
