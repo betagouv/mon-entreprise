@@ -1,4 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
 import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -139,26 +140,26 @@ export default function Accessibilité() {
 			<Ul>
 				<Li>
 					Écrire un message au Défenseur des droits (
-					<Link
+					<StyledLink
 						href="https://formulaire.defenseurdesdroits.fr/"
 						target="_blank"
 						rel="noreferrer"
 						aria-label="https://formulaire.defenseurdesdroits.fr/, nouvelle fenêtre"
 					>
 						https://formulaire.defenseurdesdroits.fr/
-					</Link>
+					</StyledLink>
 					)
 				</Li>
 				<Li>
 					Contacter le délégué du Défenseur des droits dans votre région (
-					<Link
+					<StyledLink
 						href="https://www.defenseurdesdroits.fr/saisir/delegues"
 						target="_blank"
 						rel="noreferrer"
 						aria-label="https://www.defenseurdesdroits.fr/saisir/delegues, nouvelle fenêtre"
 					>
 						https://www.defenseurdesdroits.fr/saisir/delegues
-					</Link>
+					</StyledLink>
 					)
 				</Li>
 				<Li>
@@ -177,3 +178,7 @@ export default function Accessibilité() {
 		</Trans>
 	)
 }
+
+const StyledLink = styled(Link)`
+	word-break: break-all;
+`
