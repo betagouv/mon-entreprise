@@ -17,18 +17,19 @@ export const BigIndicator = ({ main, subTitle, footnote }: IndicatorProps) => (
 		<Indicator main={main} subTitle={subTitle} footnote={footnote} />
 	</Grid>
 )
-const mappedLevelToLabel = {
-	mauvais: "Taux d'utilisateurs mécontents",
-	moyen: "Taux d'utilisateurs ayant un avis neutre",
-	bien: "Taux d'utilisateurs satisfaits",
-	'très bien': "Taux d'utilisateurs très satisfaits",
-}
+
 const RetoursAsProgress = ({
 	percentages,
 }: {
 	percentages: Record<SatisfactionLevel, number>
 }) => {
 	const { t } = useTranslation()
+	const mappedLevelToLabel = {
+		mauvais: t("Taux d'utilisateurs mécontents"),
+		moyen: t("Taux d'utilisateurs ayant un avis neutre"),
+		bien: t("Taux d'utilisateurs satisfaits"),
+		'très bien': t("Taux d'utilisateurs très satisfaits"),
+	}
 
 	return (
 		<ul
@@ -65,7 +66,7 @@ const RetoursAsProgress = ({
 						<Emoji
 							emoji={emojiStr}
 							aria-hidden={false}
-							alt={t(mappedLevelToLabel[level])}
+							alt={mappedLevelToLabel[level]}
 						/>
 						<div
 							css={`

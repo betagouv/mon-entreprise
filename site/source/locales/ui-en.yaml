@@ -19,10 +19,12 @@ Accompagnement désactivé: Accompaniment deactivated
 "Accéder à la page d'accueil, nouvelle fenêtre": Go to home page, new window
 Adoption: Adoption
 Afficher la transcription: View transcript
+Afficher la version accessible: View the accessible version
 Afficher le détail: View details
-Aller au contenu: Go to content
+Aller au contenu principal: Go to main content
 Aller plus loin: Go further
 Aller plus loin sur les revenus: Going further on income
+"Aller à l'étape actuelle :": "Go to the current step:"
 Annuler: Cancel
 Après la création: After the creation
 Arrêt maladie: Sick leave
@@ -31,7 +33,7 @@ Assistant au choix du statut juridique: Assistance in choosing a legal status
 Assistant à la déclaration des revenus des plateformes en ligne: Assistant to the declaration of income of online platforms
 Assistant à la détermination des charges sociales déductibles: Assistance in determining deductible social charges
 Assistants à la déclaration de revenu 2022 des indépendants: Assistants to the 2022 income tax return for the self-employed
-Attention: Attention
+"Attention, information importante": Attention, important information
 "Attention, vos données sauvegardées seront supprimées de manière définitive.": Please note that your saved data will be permanently deleted.
 Aucun: No
 Aucun résultat: No result$
@@ -39,6 +41,8 @@ Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 Autres outils: Other tools
 Avec chômage partiel: With partial unemployment
+Bien: Well
+Boite de dialogue: Dialog box
 "Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant \"pain\" ou \"viennoiserie\".": Hello, I am a baker and I did not find by searching "bread" or "pastry".
 Budget: Budget
 Calculer vos revenus: Calculate your income
@@ -73,6 +77,7 @@ Créer une: Create a
 Créer une entreprise: Create a company
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: In what cases are my profits not BNC?
 Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: When is my company not subject to income tax?
+Date: Date
 Demande de mobilité internationale: Request for international mobility
 Devenir: Become
 Dividendes nets: Net dividends
@@ -123,7 +128,17 @@ ExportSimulation:
 Fermer: Close
 Fermer le module "Donner son avis": Close the "Give your opinion" module
 Fiche de paie: Payslip
+Fond de la boite de dialogue: Background of the dialog box
 Gestion des données personnelles: Management of personal data
+"Graphique des principaux simulateurs, présence d’une alternative accessible après l’image":
+  Graph of the main simulators, presence of an alternative accessible after the
+  image
+"Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image":
+  Detailed statistical graph of satisfaction, presence of an accessible
+  alternative after the image
+"Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image":
+  Detailed statistical graph of the number of visits per day, presence of an
+  alternative accessible after the image
 Gérant majoritaire: Chairman
 "Gérant majoritaire, sélectionner l'option et passer à l'étape suivante": Majority manager, select the option and go to the next step
 Gérant minoritaire: Managing director
@@ -150,6 +165,7 @@ J'ai compris: understood
     gouv:
       "fr, nouvelle fenêtre": I give my opinion, give my opinion on
         jedonnemonavis.numerique.gouv.fr, new window
+Jours: Days
 La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
   The Social Security guarantees a <2>death benefit for your dependents</2>
   under certain conditions.
@@ -162,22 +178,29 @@ La gestion juridique et comptable: Legal and accounting management
 Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
   The amount of your pension is made up of <2>your basic pension + your
   complementary pension</2>.
-Les données de simulations se mettront automatiquement à jour après la modification d'un champ: The simulation data will automatically update after a field is modified
+"Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>":
+  Simulation data will automatically update after a field is modified. <2>A
+  panel will open to allow you to add details to the simulation, detailed
+  results will be displayed below the form and will be updated when you edit the
+  form.</2>
 "Lire les précisions, ouvrir le message condensé.": Read the details, open the condensed message.
 Liste des intégrations: List of integrations
 Liste des statuts juridiques: List of legal statutes
-"Logo mon entreprise, accéder à la page d'accueil": Logo my company, go to the home page
 Ma déclaration: My statement
 Ma situation: My situation
 Maternité: Maternity
+Mauvais: Bad
 Menu de navigation: Navigation menu
 Merci pour votre message !: Thank you for your message!
 Mes cotisations: My contributions
 Message à caractère informatif: Information message
 Mode accompagnement: Accompanying mode
+Mode d'affichage: Display mode
+"Mode d'affichage :": "Display mode:"
 Modifier: Modify
 Modifier l'entreprise: Modify the company
 Modifier mes réponses: Edit my answers
+Mois: Month
 Mon entreprise: My company
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
   urssaf:
@@ -187,7 +210,9 @@ Montant annuel: Yearly amount
 Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant mensuel: Monthly amount
 Mots-clés définissants l'activité: Keywords defining the activity
+Moyen: Medium
 Ne prend pas l'ACRE en compte: Does not take ACRE into account
+Nombre de visites: Number of visits
 Non: No
 Notre équipe prend en charge votre retour.: Our team will take care of your return.
 "Nous avons à cœur d'améliorer en continu notre site,vos remarques nous sont donc très précieuses.":
@@ -205,13 +230,16 @@ Page d'accueil: Home page
 Pas en auto-entrepreneur: Not in auto-entrepreneur
 Passer: Skip
 Passer le contenu: Skip the content
+Passer le contenu principal et aller directement au pied de page: Skip the main content and go directly to the footer
 Passer à la version française du site: Switch to the French version of the site
 "Passer, passer la question sans répondre": Pass, pass the question without answering
 Personnalisez l'intégration: Customize the integration
 Plan du site: Site Map
+"Plus d'info sur, {{ title }}": More info on, {{ title }}
 Plus d'informations: More information (fr)
 Plus d'informations sur service-public:
   "fr, nouvelle fenêtre": More information on service-public.fr, new window
+"Plus d'infos sur, {{ tile }}": More info on, {{ tile }}
 Plusieurs associés: Several partners
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
@@ -247,7 +275,8 @@ Rechercher: Search
 Rechercher une règle de calcul dans la documentation: Search for a calculation rule in the documentation
 Rechercher votre entreprise: Search for your company
 "Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.": Search, open the dialog box to enter your search terms.
-Renseigner une adresse e-mail pour recevoir une réponse: Enter an email address to receive a reply
+Renseigner une adresse e-mail (au format nom@domaine:
+  com) pour recevoir une réponse: Enter an e-mail address (in the format nom@domaine.com) to receive a reply
 Replier: Folding
 Ressources utiles: Helpful resources
 Retour: Back
@@ -257,13 +286,14 @@ Retourner à la page d'accueil: Return to the home page
 Retraite complémentaire: Supplementary pension
 Retraite de base: Basic pension
 "Retrouver ma simulation, charger les données de ma précédente simulation.": Retrieve my simulation, load data from my previous simulation.
-"Revenir à l'étape {{step}}": Return to step {{step}}
+Revenir à l'étape: Go back to the step
 Revenu (incluant les dépenses liées à l'activité): Income (including expenses related to the activity)
 Revenu après impôt: After-tax income
 Revenu disponible: Disposable income
 Revenu du dirigeant par statut: Executive income by status
 Revenu net: Net income
 Règles de calculs: Rules
+Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset the registered situation
 Répartition du chiffre d'affaires: Breakdown of turnover
@@ -294,6 +324,15 @@ Statut du conjoint: Status of the spouse
 Suivant: Next
 "Suivant, passer à la question suivante": Next, go to the next question
 Switch to the english version of the website: Switch to the english version of the website
+"Tableau présentant le nombre de visites par page et par mois en {dataType === 'pourcentage' ? 'pourcentage' : 'nombres'}.":
+  "Table showing the number of visits per page per month in {dataType ===
+  'percentage' ? percentage' : 'numbers'}."
+Tableau présentant le nombre de visites par page et par mois.: Table showing the number of visits per page and per month.
+Tableau présentant le nombre de visites sur le site mon-entreprise par mois ou par jours.: Table showing the number of visits to the my-company site by month or by day.
+Taux d'utilisateurs ayant un avis neutre: Rate of users with a neutral opinion
+Taux d'utilisateurs mécontents: Rate of dissatisfied users
+Taux d'utilisateurs satisfaits: Rate of satisfied users
+Taux d'utilisateurs très satisfaits: Rate of very satisfied users
 Tient compte de l'ACRE: Takes into account the ACRE
 Total des retenues: Total withheld
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
@@ -312,7 +351,9 @@ Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: All s
   and adoption leave.
 Tout réinitialiser: Reset all
 Travailleurs Non Salariés (TNS): Non-salaried workers (TNS)
+Très bien: Very good
 Type: Type
+"URSSAF Mon entreprise, accéder à la page d'accueil": URSSAF My company, go to the home page
 "Un <1>capital « orphelin »</1> est versé aux enfants des travailleurs indépendants décédés, sous certaines conditions.":
   An <1>"orphan" capital</1> is paid to the children of deceased self-employed
   workers, under certain conditions.
@@ -323,6 +364,7 @@ Un seul associé: Only one partner
 Utiliser avec un tableur: Use with a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use the simulator calculations in your application
 Versement libératoire de l'impôt sur le revenu: Payment in full discharge of income tax
+Version accessible des données: Accessible version of the data
 Version française du site activée.: French version of the site activated.
 Veuillez entrer un message avant de soumettre le formulaire.: Please enter a message before submitting the form.
 Veuillez renseigner votre adresse email.: Please enter your email address.
@@ -380,6 +422,7 @@ aide-déclaration-indépendant:
     titre: <0>Company and activity</0>
   results:
     title: Amounts to report on your tax return
+"aides différées, voir le détail du calcul pour aides différées": deferred aids, see details of the calculation for deferred aids
 api:
   description: Tools for developers
   title: Using our REST API
@@ -485,7 +528,7 @@ autoentrepreneur:
       for which tax and social contributions are based on the turnover achieved
 
       each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly.
-    titre: Auto-entrepreneur
+    titre: Choosing between auto-entrepreneur and sole proprietorship - My business
   titre: Auto-entrepeneur
 back: Return to the simulation
 betawarning: "<0><0>This tool is in beta version</0>: we are working to
@@ -969,7 +1012,6 @@ inférieurs à: lower than
 intégration:
   description: Tools for developers
   title: Integration
-jours: days
 "l'annuaire des entreprises, nouvelle fenêtre": business directory, new window
 la première année: the first year
 landing:
@@ -1026,7 +1068,6 @@ listeformejuridique:
 loading: Loading in progress...
 maximum: maximum
 moins: less
-mois: month
 navbar:
   activate-darkmode: Enable dark mode
   deactivate-darkmode: Disable dark mode
@@ -1796,6 +1837,9 @@ privacyContent:
     measure below:</2><3><0>I do not want to send anonymous data about my use of
     the site for audience measurement purposes</0></3>
   title: Personal data
+"recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.":
+  The search is launched automatically after the entry of characters, the
+  results will be displayed after this element.
 recherche-globale:
   placeholder: Keyword or acronym (e.g. CSG)
 responsabilité:
@@ -1883,8 +1927,6 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions :"
   warning:
-    année-courante: The amount calculated is the contributions for the year {{year}}
-      (for {{year}} income).
     artiste-auteur:
       "1": This estimate is provided for information purposes. It is based on the
         applicable regulatory elements and the elements that you have entered,
@@ -1912,10 +1954,15 @@ simulateurs:
         for postage.
       pas-reprise: This simulator calculates the creation costs for new companies. It
         does not take into account the case of takeovers of existing companies.
+    indépendant:
+      année-courante: The amount calculated corresponds to the contributions for the
+        year {{year}} (for an income {{year}}).
+    libérale:
+      année-courante: The amount calculated corresponds to the contributions for the
+        year {{year}} (for an income {{year}}).
     plus: Read the details
-    profession-libérale: <0>This simulator is intended for use in the NLC
-      professions. It does not take into account the professional practice
-      societies or the micro-NBP scheme.</0>
+    profession-libérale: This simulator is intended for liberal professions in BNC.
+      It does not take into account the companies of liberal practice.
     sasu: This simulator does not manage the case of SAS(U) with income tax (IR).
       Only the option for corporate tax is implemented (IS).
     titre: Before we start...
@@ -2018,6 +2065,7 @@ warning:
 Échec: Failure
 Étape complétée: Step completed
 Étape non complétée: Step not completed
+Étapes du choix du statut juridique: Steps in choosing a legal status
 Éviter de communiquer des informations personnelles: Avoid giving out personal information
 Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Are you sure you want to reset the registered status?

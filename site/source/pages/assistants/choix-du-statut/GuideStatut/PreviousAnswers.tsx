@@ -108,18 +108,13 @@ export default function PreviousAnswers() {
 										key as keyof typeof legalStatus
 									]
 								}
-								aria-label={t(
-									`${
-										isCurrent
-											? "Aller à l'étape actuelle :"
-											: "Revenir à l'étape"
-									} {{step}}`,
-									{
-										step:
-											(textObject as RequirementToTextType)?.props?.children ||
-											'',
-									}
-								)}
+								aria-label={
+									(isCurrent
+										? t("Aller à l'étape actuelle :")
+										: t("Revenir à l'étape")) +
+										' ' +
+										(textObject as RequirementToTextType)?.props?.children || ''
+								}
 								style={
 									isCurrent
 										? { textDecoration: 'underline' }
