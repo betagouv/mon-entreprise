@@ -1032,6 +1032,8 @@ landing:
     simulators:
       title: Discover all the simulators and assistants
   description: The official tools for entrepreneurs
+  meta:
+    title: Home
   outils: <0>The tools at your disposal</0><1>We provide you with assistants and
     simulators to help you manage your business, anticipate levies and plan your
     cash flow accordingly.</1>
