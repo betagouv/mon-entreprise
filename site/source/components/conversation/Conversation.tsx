@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -59,6 +59,9 @@ export default function Conversation({
 	) => {
 		dispatch(answerQuestion(dottedName, value))
 	}
+
+	const [firstRenderDone, setFirstRenderDone] = useState(false)
+	useEffect(() => setFirstRenderDone(true), [])
 
 	return (
 		<>
@@ -161,7 +164,7 @@ export default function Conversation({
 					</FromTop>
 				) : (
 					<div style={{ textAlign: 'center' }}>
-						<TrackPage name="simulation terminée" />
+						{firstRenderDone && <TrackPage name="simulation terminée" />}
 						<H3 as="h2">
 							<Emoji emoji="🌟" />{' '}
 							<Trans i18nKey="simulation-end.title">
