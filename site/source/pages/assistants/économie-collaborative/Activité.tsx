@@ -51,7 +51,7 @@ export default function Activité() {
 						Quelles sont plus précisément les activités exercées ?
 					</Trans>
 				</H2>
-				<section className="ui__ full-width light-bg">
+				<section>
 					<ActivitéSelection
 						currentActivité={title}
 						activités={(getValueFrom(activité, 'activités') ?? []).map(

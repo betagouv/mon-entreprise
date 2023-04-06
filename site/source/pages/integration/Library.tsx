@@ -85,7 +85,6 @@ export default function Library() {
 					valeur. Voici un exemple pour le calcul brut / net
 				</Body>
 				<div
-					className="ui__ full-width"
 					css={`
 						text-align: center;
 					`}
@@ -187,7 +186,6 @@ export default function Library() {
 					bas salaires.
 				</Body>
 				<div
-					className="ui__ full-width"
 					css={`
 						text-align: center;
 					`}

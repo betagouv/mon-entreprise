@@ -69,7 +69,6 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 					explanations={
 						<Body>
 							<a
-								className="ui__ button"
 								href="https://www.service-public.fr/particuliers/vosdroits/N19871"
 								target="_blank"
 								rel="noreferrer"
@@ -152,7 +151,6 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						<Body>
 							<a
 								href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F1784"
-								className="ui__ button"
 								target="_blank"
 								rel="noreferrer"
 								aria-label={t(
@@ -174,7 +172,6 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 						<Body>
 							<a
 								href="https://www.espace-entreprise.services-retraite.fr/prod-simape-cmc-ihm/#/connaitre-ma-caisse"
-								className="ui__ button"
 								target="_blank"
 								rel="noreferrer"
 								aria-label={t(

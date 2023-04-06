@@ -78,46 +78,25 @@ export function ExplicationsResultatFiscal() {
 					<tr>
 						<th id="explicationEmptyTh1"></th>
 						<th id="explicationEmptyTh2"></th>
-						<th
-							className="ui__ light-bg"
-							colSpan={4}
-							id={exonerationsHeader}
-							role="columnheader"
-						>
+						<th colSpan={4} id={exonerationsHeader} role="columnheader">
 							Exonérations <strong>(2)</strong>
 						</th>
 					</tr>
 					<tr>
 						<th id="explicationEmptyTh3"></th>
-						<th className="ui__ light-bg" id={resultatFiscalHeader}>
+						<th id={resultatFiscalHeader}>
 							Résultat fiscal <strong>(1)</strong>
 						</th>
-						<th
-							className="ui__ light-bg notice"
-							id={zonesHeader}
-							headers={exonerationsHeader}
-						>
+						<th id={zonesHeader} headers={exonerationsHeader}>
 							Exonérations liées aux zones / activités
 						</th>
-						<th
-							className="ui__ light-bg notice"
-							id={madelinHeader}
-							headers={exonerationsHeader}
-						>
+						<th id={madelinHeader} headers={exonerationsHeader}>
 							Exonérations Madelin et plan d’épargne retraite
 						</th>
-						<th
-							className="ui__ light-bg notice"
-							id={plusValueHeader}
-							headers={exonerationsHeader}
-						>
+						<th id={plusValueHeader} headers={exonerationsHeader}>
 							Exonérations de plus-values à court terme
 						</th>
-						<th
-							className="ui__ light-bg notice"
-							id={suramortissementHeader}
-							headers={exonerationsHeader}
-						>
+						<th id={suramortissementHeader} headers={exonerationsHeader}>
 							Suramortissement productif
 						</th>
 					</tr>

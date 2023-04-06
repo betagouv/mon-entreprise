@@ -68,7 +68,7 @@ export default function InstitutionsPartenaires() {
 											cotisations par l'Assurance Maladie.
 										</Trans>
 									</Body>
-									<Body className="ui__ lead">
+									<Body>
 										<Emoji emoji="🎁" />{' '}
 										<RuleLink dottedName="dirigeant . indépendant . PL . PAMC . participation CPAM">
 											<Value

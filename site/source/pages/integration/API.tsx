@@ -83,7 +83,6 @@ export default function API() {
 				</Body>
 
 				<div
-					className="ui__ full-width"
 					css={`
 						text-align: center;
 					`}
