@@ -13,7 +13,7 @@ const lastCompare = (startDate: Date, dateStr: string) =>
 	startDate < new Date(dateStr)
 
 export const BigIndicator = ({ main, subTitle, footnote }: IndicatorProps) => (
-	<Grid item xs={6} md={4} lg={3}>
+	<Grid item xs={6} md={4} lg={3} as="li" style={{ listStyle: 'none' }}>
 		<Indicator main={main} subTitle={subTitle} footnote={footnote} />
 	</Grid>
 )
@@ -151,7 +151,7 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 
 	return (
 		<>
-			<Grid container spacing={2}>
+			<Grid as="ul" container spacing={2} style={{ padding: 0 }}>
 				<BigIndicator
 					main={`${last30dConv} %`}
 					subTitle="Taux de conversion"
@@ -181,7 +181,14 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 				/>
 
 				{currentMonthSatisfaction.total > 0 && (
-					<Grid item xs={12} md={8} lg={12}>
+					<Grid
+						item
+						xs={12}
+						md={8}
+						lg={12}
+						as="li"
+						style={{ listStyle: 'none' }}
+					>
 						<Indicator
 							subTitle="Satisfaction utilisateurs"
 							main={
@@ -199,7 +206,7 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 
 			<Spacing md />
 
-			<Grid container spacing={2}>
+			<Grid container spacing={2} as="ul" style={{ padding: 0 }}>
 				<BigIndicator
 					main={totalVisits}
 					subTitle="Visites"
