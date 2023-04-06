@@ -8,9 +8,12 @@ describe('Page covid-19', { testIsolation: false }, function () {
 	before(function () {
 		return cy.visit(encodeURI('/simulateurs/chômage-partiel'))
 	})
-
 	it('should not crash', function () {
 		cy.contains('Salaire brut mensuel')
+	})
+
+	it('should be RGAA compliant', function () {
+		checkA11Y()
 	})
 
 	it('should display 100% de prise en charge pour un SMIC', function () {
@@ -35,9 +38,5 @@ describe('Page covid-19', { testIsolation: false }, function () {
 		cy.get('[data-test-id=comparaison-total]').contains(
 			/Soit [\d]{1} % du coût habituel/
 		)
-	})
-
-	it('should be RGAA compliant', function () {
-		checkA11Y()
 	})
 })
