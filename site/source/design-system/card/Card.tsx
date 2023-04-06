@@ -18,9 +18,6 @@ type GenericButtonOrLinkProps = (
 	| AriaButtonProps<'button'>
 ) & {
 	openInSameWindow?: true
-	to: {
-		pathname: string
-	}
 }
 
 export type GenericCardProps = {
