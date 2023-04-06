@@ -1,4 +1,5 @@
 import { useButton } from '@react-aria/button'
+import { usePress } from '@react-aria/interactions'
 import React, { useCallback, useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -13,7 +14,6 @@ import { Tag } from '@/design-system/tag'
 import { H4 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { debounce } from '@/utils'
 
 import { StoreContext } from '../StoreContext'
 import { toggleActivité } from '../actions'
@@ -38,16 +38,11 @@ export const ActiviteCard = ({
 	const { absoluteSitePaths } = useSitePaths()
 	const { dispatch } = useContext(StoreContext)
 	const { language } = useTranslation().i18n
-	const toggle = useCallback(
-		// debounce to avoid double onClick call when clicking on checkbox
-		() =>
-			debounce(1, () => {
-				if (selected !== undefined) {
-					dispatch?.(toggleActivité(title))
-				}
-			})(),
-		[dispatch, selected]
-	)
+	const toggle = useCallback(() => {
+		if (selected !== undefined) {
+			dispatch?.(toggleActivité(title))
+		}
+	}, [dispatch, selected])
 	const { titre, explication, plateformes, icônes } = getTranslatedActivité(
 		title,
 		language
@@ -58,7 +53,8 @@ export const ActiviteCard = ({
 		ref
 	)
 
-	delete buttonProps.role
+	// avoid double onPress call when clicking on checkbox
+	const { pressProps } = usePress({})
 
 	return (
 		<CardContainer
@@ -74,13 +70,14 @@ export const ActiviteCard = ({
 						margin-bottom: -1rem;
 						margin-left: 0.75rem;
 					`}
+					{...pressProps}
 				>
 					<Checkbox
 						name={title}
 						id={title.replace(/\s/g, '')}
 						isSelected={selected}
 						excludeFromTabOrder
-						onChange={toggle}
+						onChange={interactive ? toggle : undefined}
 						aria-label={titre}
 						aria-disabled
 					/>
