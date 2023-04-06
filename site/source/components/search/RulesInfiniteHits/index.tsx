@@ -1,11 +1,10 @@
 import { DottedName } from 'modele-social'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
-import { connectInfiniteHits, connectStats } from 'react-instantsearch-dom'
+import { connectInfiniteHits } from 'react-instantsearch-dom'
 import styled from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
-import { H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
 import RuleLink from '../../RuleLink'
@@ -18,6 +17,7 @@ const StyledRuleLink = styled(RuleLink)`
 		margin: 0;
 		color: inherit;
 		background-color: inherit;
+		display: block;
 	}
 
 	${Body} {
@@ -46,11 +46,11 @@ const Hit = (hit: THit) => {
 		<HitContainer>
 			<StyledRuleLink dottedName={hit.objectID}>
 				{hit.namespace && (
-					<SmallBody className="hit-namespace">
+					<SmallBody as="span" className="hit-namespace">
 						<Highlight hit={hit} attribute="namespace" separator=" > " />
 					</SmallBody>
 				)}
-				<Body className="hit-ruleName">
+				<Body as="span" className="hit-ruleName">
 					<Highlight hit={hit} attribute="ruleName" />
 				</Body>
 			</StyledRuleLink>
