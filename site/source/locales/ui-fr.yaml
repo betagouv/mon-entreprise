@@ -19,10 +19,12 @@ Accompagnement désactivé: Accompagnement désactivé
 "Accéder à la page d'accueil, nouvelle fenêtre": Accéder à la page d'accueil, nouvelle fenêtre
 Adoption: Adoption
 Afficher la transcription: Afficher la transcription
+Afficher la version accessible: Afficher la version accessible
 Afficher le détail: Afficher le détail
-Aller au contenu: Aller au contenu
+Aller au contenu principal: Aller au contenu principal
 Aller plus loin: Aller plus loin
 Aller plus loin sur les revenus: Aller plus loin sur les revenus
+"Aller à l'étape actuelle :": "Aller à l'étape actuelle :"
 Annuler: Annuler
 Après la création: Après la création
 Arrêt maladie: Arrêt maladie
@@ -31,7 +33,7 @@ Assistant au choix du statut juridique: Assistant au choix du statut juridique
 Assistant à la déclaration des revenus des plateformes en ligne: Assistant à la déclaration des revenus des plateformes en ligne
 Assistant à la détermination des charges sociales déductibles: Assistant à la détermination des charges sociales déductibles
 Assistants à la déclaration de revenu 2022 des indépendants: Assistants à la déclaration de revenu 2022 des indépendants
-Attention: Attention
+"Attention, information importante": Attention, information importante
 "Attention, vos données sauvegardées seront supprimées de manière définitive.": Attention, vos données sauvegardées seront supprimées de manière définitive.
 Aucun: Aucun
 Aucun résultat: Aucun résultat
@@ -39,6 +41,8 @@ Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur en EIRL
 Autres outils: Autres outils
 Avec chômage partiel: Avec chômage partiel
+Bien: Bien
+Boite de dialogue: Boite de dialogue
 "Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant \"pain\" ou \"viennoiserie\".":
   Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
   "viennoiserie".
@@ -75,6 +79,7 @@ Créer une: Créer une
 Créer une entreprise: Créer une entreprise
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: Dans quels cas mes bénéfices ne sont pas de type BNC ?
 Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?
+Date: Date
 Demande de mobilité internationale: Demande de mobilité internationale
 Devenir: Devenir
 Dividendes nets: Dividendes nets
@@ -129,7 +134,17 @@ ExportSimulation:
 Fermer: Fermer
 Fermer le module "Donner son avis": Fermer le module "Donner son avis"
 Fiche de paie: Fiche de paie
+Fond de la boite de dialogue: Fond de la boite de dialogue
 Gestion des données personnelles: Gestion des données personnelles
+"Graphique des principaux simulateurs, présence d’une alternative accessible après l’image":
+  Graphique des principaux simulateurs, présence d’une alternative accessible
+  après l’image
+"Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image":
+  Graphique statistiques détaillés de la satisfaction, présence d’une
+  alternative accessible après l’image
+"Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image":
+  Graphique statistiques détaillés du nombre visites par jour, présence d’une
+  alternative accessible après l’image
 Gérant majoritaire: Gérant majoritaire
 "Gérant majoritaire, sélectionner l'option et passer à l'étape suivante": Gérant majoritaire, sélectionner l'option et passer à l'étape suivante
 Gérant minoritaire: Gérant minoritaire
@@ -156,6 +171,7 @@ J'ai compris: J'ai compris
     gouv:
       "fr, nouvelle fenêtre": Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
+Jours: Jours
 La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
   La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
   (personnes qui sont à votre charge) sous certaines conditions.
@@ -168,24 +184,30 @@ La gestion juridique et comptable: La gestion juridique et comptable
 Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
   Le montant de votre retraite est constitué de <2>votre retraite de base +
   votre retraite complémentaire</2>.
-Les données de simulations se mettront automatiquement à jour après la modification d'un champ:
+"Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>":
   Les données de simulations se mettront automatiquement à jour après la
-  modification d'un champ
+  modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre
+  d'apporter des précisions à la simulation, des résultats détaillés
+  s'afficheront en dessous du formulaire et seront mis à jour quand vous
+  modifierez ce dernier.</2>
 "Lire les précisions, ouvrir le message condensé.": Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
 Liste des statuts juridiques: Liste des statuts juridiques
-"Logo mon entreprise, accéder à la page d'accueil": Logo mon entreprise, accéder à la page d'accueil
 Ma déclaration: Ma déclaration
 Ma situation: Ma situation
 Maternité: Maternité
+Mauvais: Mauvais
 Menu de navigation: Menu de navigation
 Merci pour votre message !: Merci pour votre message !
 Mes cotisations: Mes cotisations
 Message à caractère informatif: Message à caractère informatif
 Mode accompagnement: Mode accompagnement
+Mode d'affichage: Mode d'affichage
+"Mode d'affichage :": "Mode d'affichage :"
 Modifier: Modifier
 Modifier l'entreprise: Modifier l'entreprise
 Modifier mes réponses: Modifier mes réponses
+Mois: Mois
 Mon entreprise: Mon entreprise
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
   urssaf:
@@ -196,7 +218,9 @@ Montant annuel: Montant annuel
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
 Montant mensuel: Montant mensuel
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
+Moyen: Moyen
 Ne prend pas l'ACRE en compte: Ne prend pas l'ACRE en compte
+Nombre de visites: Nombre de visites
 Non: Non
 Notre équipe prend en charge votre retour.: Notre équipe prend en charge votre retour.
 "Nous avons à cœur d'améliorer en continu notre site,vos remarques nous sont donc très précieuses.":
@@ -214,13 +238,16 @@ Page d'accueil: Page d'accueil
 Pas en auto-entrepreneur: Pas en auto-entrepreneur
 Passer: Passer
 Passer le contenu: Passer le contenu
+Passer le contenu principal et aller directement au pied de page: Passer le contenu principal et aller directement au pied de page
 Passer à la version française du site: Passer à la version française du site
 "Passer, passer la question sans répondre": Passer, passer la question sans répondre
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
+"Plus d'info sur, {{ title }}": Plus d'info sur, {{ title }}
 Plus d'informations: Plus d'informations
 Plus d'informations sur service-public:
   "fr, nouvelle fenêtre": Plus d'informations sur service-public.fr, nouvelle fenêtre
+"Plus d'infos sur, {{ tile }}": Plus d'infos sur, {{ tile }}
 Plusieurs associés: Plusieurs associés
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
@@ -257,7 +284,9 @@ Rechercher: Rechercher
 Rechercher une règle de calcul dans la documentation: Rechercher une règle de calcul dans la documentation
 Rechercher votre entreprise: Rechercher votre entreprise
 "Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.": Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.
-Renseigner une adresse e-mail pour recevoir une réponse: Renseigner une adresse e-mail pour recevoir une réponse
+Renseigner une adresse e-mail (au format nom@domaine:
+  com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
+    nom@domaine.com) pour recevoir une réponse
 Replier: Replier
 Ressources utiles: Ressources utiles
 Retour: Retour
@@ -267,13 +296,14 @@ Retourner à la page d'accueil: Retourner à la page d'accueil
 Retraite complémentaire: Retraite complémentaire
 Retraite de base: Retraite de base
 "Retrouver ma simulation, charger les données de ma précédente simulation.": Retrouver ma simulation, charger les données de ma précédente simulation.
-"Revenir à l'étape {{step}}": Revenir à l'étape {{step}}
+Revenir à l'étape: Revenir à l'étape
 Revenu (incluant les dépenses liées à l'activité): Revenu (incluant les dépenses liées à l'activité)
 Revenu après impôt: Revenu après impôt
 Revenu disponible: Revenu disponible
 Revenu du dirigeant par statut: Revenu du dirigeant par statut
 Revenu net: Revenu net
 Règles de calculs: Règles de calculs
+Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
@@ -306,6 +336,17 @@ Statut du conjoint: Statut du conjoint
 Suivant: Suivant
 "Suivant, passer à la question suivante": Suivant, passer à la question suivante
 Switch to the english version of the website: Switch to the english version of the website
+"Tableau présentant le nombre de visites par page et par mois en {dataType === 'pourcentage' ? 'pourcentage' : 'nombres'}.":
+  "Tableau présentant le nombre de visites par page et par mois en {dataType ===
+  'pourcentage' ? 'pourcentage' : 'nombres'}."
+Tableau présentant le nombre de visites par page et par mois.: Tableau présentant le nombre de visites par page et par mois.
+Tableau présentant le nombre de visites sur le site mon-entreprise par mois ou par jours.:
+  Tableau présentant le nombre de visites sur le site mon-entreprise par mois ou
+  par jours.
+Taux d'utilisateurs ayant un avis neutre: Taux d'utilisateurs ayant un avis neutre
+Taux d'utilisateurs mécontents: Taux d'utilisateurs mécontents
+Taux d'utilisateurs satisfaits: Taux d'utilisateurs satisfaits
+Taux d'utilisateurs très satisfaits: Taux d'utilisateurs très satisfaits
 Tient compte de l'ACRE: Tient compte de l'ACRE
 Total des retenues: Total des retenues
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
@@ -324,7 +365,9 @@ Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: Tous 
   congé maternité, paternité, adoption.
 Tout réinitialiser: Tout réinitialiser
 Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
+Très bien: Très bien
 Type: Type
+"URSSAF Mon entreprise, accéder à la page d'accueil": URSSAF Mon entreprise, accéder à la page d'accueil
 "Un <1>capital « orphelin »</1> est versé aux enfants des travailleurs indépendants décédés, sous certaines conditions.":
   Un <1>capital « orphelin »</1> est versé aux enfants des travailleurs
   indépendants décédés, sous certaines conditions.
@@ -335,6 +378,7 @@ Un seul associé: Un seul associé
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
 Versement libératoire de l'impôt sur le revenu: Versement libératoire de l'impôt sur le revenu
+Version accessible des données: Version accessible des données
 Version française du site activée.: Version française du site activée.
 Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
 Veuillez renseigner votre adresse email.: Veuillez renseigner votre adresse email.
@@ -401,6 +445,7 @@ aide-déclaration-indépendant:
     titre: <0>Entreprise et activité</0>
   results:
     title: Montants à reporter dans votre déclaration de revenus
+"aides différées, voir le détail du calcul pour aides différées": aides différées, voir le détail du calcul pour aides différées
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
@@ -503,7 +548,7 @@ autoentrepreneur:
       sociales sont basés sur le chiffre d'affaires réalisé chaque mois. C'est
       un choix intéressant si vous n'avez pas besoin de beaucoup de capital et
       que vous souhaitez démarrer rapidement.
-    titre: Auto-entrepreneur
+    titre: Choisir entre auto-entrepreneur et entreprise individuelle - Mon entreprise
   titre: Entreprise individuelle ou auto-entrepreneur
 back: Retourner à la simulation
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
@@ -957,7 +1002,6 @@ inférieurs à: inférieurs à
 intégration:
   description: Outils pour les développeurs
   title: Intégration
-jours: jours
 "l'annuaire des entreprises, nouvelle fenêtre": l'annuaire des entreprises, nouvelle fenêtre
 la première année: la première année
 landing:
@@ -1012,7 +1056,6 @@ listeformejuridique:
 loading: Chargement en cours...
 maximum: maximum
 moins: moins
-mois: mois
 navbar:
   activate-darkmode: Activer le mode sombre
   deactivate-darkmode: Désactiver le mode sombre
@@ -1823,6 +1866,9 @@ privacyContent:
     :</2><3><0>Je ne veux pas envoyer de données anonymes sur mon utilisation du
     site à des fins de mesures d'audience</0></3>
   title: Données personnelles
+"recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.":
+  recherche lancée automatiquement après l'entrée de caractères, les résultats
+  s'afficheront à la suite de cet élément.
 recherche-globale:
   placeholder: "Mot-clé ou acronyme (ex : CSG)"
 responsabilité:
@@ -1912,8 +1958,6 @@ simulateurs:
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
-    année-courante: Le montant calculé correspond aux cotisations de l’année
-      {{year}} (pour un revenu {{year}}).
     artiste-auteur:
       "1": Cette estimation est proposée à titre indicatif. Elle est faite à partir
         des éléments réglementaires applicables et des éléments que vous avez
@@ -1946,10 +1990,15 @@ simulateurs:
       pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
         entreprises. Il ne prend pas en compte le cas des reprises d'entreprises
         existantes.
+    indépendant:
+      année-courante: Le montant calculé correspond aux cotisations de l’année
+        {{year}} (pour un revenu {{year}}).
+    libérale:
+      année-courante: Le montant calculé correspond aux cotisations de l’année
+        {{year}} (pour un revenu {{year}}).
     plus: Lire les précisions
-    profession-libérale: <0>Ce simulateur est à destination des professions
-      libérales en BNC. Il ne prend pas en compte les sociétés d'exercice
-      libéral.</0>
+    profession-libérale: Ce simulateur est à destination des professions libérales
+      en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.
     sasu: Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu (IR).
       Seule l'option pour l'impôt sur les sociétés est implémentée (IS).
     titre: Avant de commencer...
@@ -2061,6 +2110,7 @@ warning:
 Échec: Échec
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
+Étapes du choix du statut juridique: Étapes du choix du statut juridique
 Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
