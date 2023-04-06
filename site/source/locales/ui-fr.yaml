@@ -1023,6 +1023,8 @@ landing:
     simulators:
       title: Découvrir tous les simulateurs et assistants
   description: L'assistant officiel des entrepreneurs
+  meta:
+    title: Accueil
   outils: <0>Les outils à votre disposition</0><1>Nous mettons à votre disposition
     des assistants et simulateurs pour vous aider à la gestion de votre
     entreprise, anticiper les prélèvements et planifier votre trésorerie en

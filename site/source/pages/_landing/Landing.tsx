@@ -10,7 +10,6 @@ import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
@@ -32,8 +31,7 @@ export default function Landing() {
 		<>
 			<TrackPage chapter1="informations" name="accueil" />
 			<Meta
-				page="landing"
-				title="Accueil - Mon-Entreprise"
+				title={t('landing.meta.title', 'Accueil')}
 				description={t(
 					'landing.description',
 					"L'assistant officiel des entrepreneurs"
@@ -201,8 +199,4 @@ const HideOnMobile = styled(Grid)`
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
 		display: block;
 	}
-`
-
-const StyledLi = styled.li`
-	list-style: none;
 `
