@@ -79,7 +79,7 @@ export default function Simulateurs() {
 				) : null)}
 			<Routes>
 				<Route
-					index
+					path="*"
 					element={
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
