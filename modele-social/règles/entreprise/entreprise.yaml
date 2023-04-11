@@ -272,6 +272,16 @@ entreprise . résultat fiscal . rémunération dirigeant déductible:
 
 entreprise . exercice:
   avec:
+    début n-1:
+      titre: début
+      type: date
+      par défaut: période . début . n-1
+
+    fin n-1:
+      titre: fin
+      type: date
+      par défaut: période . fin . n-1
+
     début:
       type: date
       par défaut: période . début d'année

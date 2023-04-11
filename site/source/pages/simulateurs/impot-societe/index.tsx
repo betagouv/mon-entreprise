@@ -54,14 +54,14 @@ function ExerciceDate() {
 	return (
 		<ExerciceDateContainer>
 			<RuleInput
-				dottedName={'entreprise . exercice . début'}
+				dottedName={'entreprise . exercice . début n-1'}
 				showDefaultDateValue
 				onChange={(x) =>
-					dispatch(updateSituation('entreprise . exercice . début', x))
+					dispatch(updateSituation('entreprise . exercice . début n-1', x))
 				}
-			/>{' '}
+			/>
 			<RuleInput
-				dottedName={'entreprise . exercice . fin'}
+				dottedName={'entreprise . exercice . fin n-1'}
 				showDefaultDateValue
 				onChange={(x) =>
 					dispatch(updateSituation('entreprise . exercice . fin', x))

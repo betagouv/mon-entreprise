@@ -92,6 +92,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	const rule = engineValue.getRule(dottedName)
 	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
+
 	const shouldFocusField = useShouldFocusField()
 
 	const commonProps: InputProps<Names> = {

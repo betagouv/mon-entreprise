@@ -56,6 +56,7 @@ export default function DateInput({
 						onSecondClick={() => onSubmit?.('suggestion')}
 					/>
 				)}
+
 				<DateField
 					value={missing ? undefined : dateValue}
 					autoFocus={autoFocus}
