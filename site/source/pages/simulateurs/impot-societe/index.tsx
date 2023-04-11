@@ -64,7 +64,7 @@ function ExerciceDate() {
 				dottedName={'entreprise . exercice . fin n-1'}
 				showDefaultDateValue
 				onChange={(x) =>
-					dispatch(updateSituation('entreprise . exercice . fin', x))
+					dispatch(updateSituation('entreprise . exercice . fin n-1', x))
 				}
 			/>
 		</ExerciceDateContainer>
