@@ -13,10 +13,10 @@ const jobs: BreeOptions['jobs'] = [
 		name: 'refresh-token',
 		interval: 'at 2:00',
 	},
-	{
-		name: 'daily-stand-up',
-		interval: 'on Monday through Thursday at 16:42',
-	},
+	// {
+	// 	name: 'daily-stand-up',
+	// 	interval: 'on Monday through Thursday at 16:42',
+	// },
 	// {
 	// 	name: 'weekly-randomizer',
 	// 	interval: 'on Thursday at 16:40',
