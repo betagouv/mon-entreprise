@@ -13,44 +13,39 @@ import { FooterColumn } from '@/design-system/footer/column'
 import { Container, Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { alternateLinks, useSitePaths } from '@/sitePaths'
+import { alternatePathname, useSitePaths } from '@/sitePaths'
 
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
 
-const hrefLangLink = alternateLinks()
+const altPathname = alternatePathname()
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
+	const { pathname } = useLocation()
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
 
-	const currentPath = useLocation().pathname
-
-	const currentEnv = import.meta.env.MODE
-	const encodedUri =
-		typeof window !== 'undefined' &&
-		(currentEnv === 'production' || currentEnv === 'development'
-			? `${window.location.protocol}//${window.location.host}`
-			: '') + window.location.pathname
-	const uri =
-		currentEnv === 'production'
-			? (encodedUri || '').replace(/\/$/, '')
-			: encodedUri || ''
-	const hrefLink =
-		hrefLangLink[language][uri] ?? hrefLangLink[language][uri + '/']
+	const path = pathname.replace(/^\/(mon-entreprise|infrance)/, '')
+	const altLang = language === 'en' ? 'fr' : 'en'
+	const altHref =
+		(import.meta.env.DEV && typeof window !== 'undefined'
+			? language === 'en'
+				? '/mon-entreprise'
+				: '/infrance'
+			: '') + altPathname[language][path] ?? altPathname[language][path + '/']
 
 	const isFrenchMode = language === 'fr'
 
 	return (
 		<>
 			<Helmet>
-				{hrefLink && (
+				{altHref && (
 					<link
-						key={hrefLink.hrefLang}
+						key={altLang}
 						rel="alternate"
-						hrefLang={hrefLink.hrefLang}
-						href={hrefLink.href}
+						hrefLang={altLang}
+						href={altHref}
 					/>
 				)}
 			</Helmet>
@@ -67,7 +62,7 @@ export default function Footer() {
 							: theme.colors.bases.tertiary[100]
 					}
 				>
-					<FeedbackButton key={`${currentPath}-feedback-key`} />
+					<FeedbackButton key={`${pathname}-feedback-key`} />
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}
@@ -136,13 +131,13 @@ export default function Footer() {
 												<InscriptionBetaTesteur /> <Emoji emoji="💌" />
 											</StyledLi>
 										)}
-										{hrefLink && (
-											<StyledLi key={hrefLink.hrefLang}>
+										{altHref && (
+											<StyledLi key={altLang}>
 												<Grid container spacing={2}>
 													<Grid item>
 														<StyledButton
 															openInSameWindow
-															href={hrefLink.href}
+															href={altHref}
 															aria-disabled={isFrenchMode}
 															isDisabled={isFrenchMode}
 															aria-label={
@@ -163,10 +158,11 @@ export default function Footer() {
 													</Grid>
 													<Grid item>
 														<StyledButton
-															href={hrefLink.href}
+															href={altHref}
 															openInSameWindow
 															lang="en"
 															aria-disabled={!isFrenchMode}
+															isDisabled={!isFrenchMode}
 															aria-label={
 																!isFrenchMode
 																	? t('English version of the website enabled.')

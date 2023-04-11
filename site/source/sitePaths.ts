@@ -321,30 +321,57 @@ export const generateSiteMap = (sitePaths: AbsoluteSitePaths): SiteMap =>
 		sitePaths
 	)
 
-export const alternateLinks = () => {
-	const basePathFr =
-		import.meta.env.DEV && typeof window !== 'undefined'
-			? `http://${window.location.host}/mon-entreprise`
-			: import.meta.env.VITE_FR_BASE_URL ?? ''
+export const alternatePathname = () => {
+	type Lang = 'fr' | 'en'
+	type Sitepath = { [k: string]: string | Sitepath }
+	type LangSitepath = { [k in Lang]: string }
+	type Return = { [k: string]: LangSitepath | Return }
 
-	const basePathEn =
-		import.meta.env.DEV && typeof window !== 'undefined'
-			? `http://${window.location.host}/infrance`
-			: import.meta.env.VITE_EN_BASE_URL ?? ''
+	const buildSitemap = (
+		lang: Lang,
+		sitePath: Sitepath,
+		initialValue: Return = {}
+	): Return =>
+		Object.entries(sitePath).reduce(
+			(acc, [key, path]): Return =>
+				typeof path === 'object'
+					? { ...acc, [key]: buildSitemap(lang, path, acc[key] as Return) }
+					: /\/:/.test(path)
+					? acc
+					: ({ ...acc, [key]: { ...acc[key], [lang]: path } } as Return),
+			initialValue
+		)
 
-	const enSiteMap = generateSiteMap(absoluteSitePaths.en).map(
-		(path) => basePathEn + encodeURI(path)
+	const buildPathname = (
+		sitemap: Return,
+		initialValue: Record<Lang, Record<string, string>> = { fr: {}, en: {} }
+	) =>
+		Object.values(sitemap).reduce(
+			(acc, obj): Record<Lang, Record<string, string>> =>
+				typeof obj === 'object' && ('fr' in obj || 'en' in obj)
+					? {
+							fr: {
+								...acc.fr,
+								...('fr' in obj
+									? { [obj.fr as string]: (obj.en || obj.fr) as string }
+									: null),
+							},
+							en: {
+								...acc.en,
+								...('en' in obj
+									? { [obj.en as string]: (obj.fr || obj.en) as string }
+									: null),
+							},
+					  }
+					: buildPathname(obj, acc),
+			initialValue
+		)
+
+	return buildPathname(
+		buildSitemap(
+			'en',
+			absoluteSitePaths.en,
+			buildSitemap('fr', absoluteSitePaths.fr)
+		)
 	)
-	const frSiteMap = generateSiteMap(absoluteSitePaths.fr).map(
-		(path) => basePathFr + encodeURI(path)
-	)
-
-	return {
-		en: Object.fromEntries(
-			enSiteMap.map((key, i) => [key, { href: frSiteMap[i], hrefLang: 'fr' }])
-		),
-		fr: Object.fromEntries(
-			frSiteMap.map((key, i) => [key, { href: enSiteMap[i], hrefLang: 'en' }])
-		),
-	}
 }
