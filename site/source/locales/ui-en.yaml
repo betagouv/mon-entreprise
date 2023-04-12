@@ -1479,9 +1479,9 @@ pages:
       title: Income simulator for liberal professions Cipav
     comparaison:
       meta:
-        description: Self-employed, self-employed or similarly employed? With this
-          comparison, find the plan that suits you best
-        title: "Starting a business: a comparison of social schemes"
+        description: Auto-entrepeneur, EI/EURL or SASU? Simulate the differences in income,
+          retirement and health benefits
+        title: Legal status comparator
       shortname: Status Comparison
       title: Legal status comparator
     coût-création-entreprise:
