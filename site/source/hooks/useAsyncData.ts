@@ -1,4 +1,4 @@
-import { DependencyList, useEffect, useRef } from 'react'
+import { DependencyList, useEffect, useState } from 'react'
 
 /**
  * Executes a function that returns a promise (when dependencies change)
@@ -9,14 +9,14 @@ export const useAsyncData = <T, U = null>(
 	defaultValue: U | null = null,
 	deps: DependencyList = []
 ): T | U | null => {
-	const data = useRef<T | U | null>(defaultValue)
+	const [state, setState] = useState<T | U | null>(defaultValue)
 
 	useEffect(() => {
 		void (async () => {
-			data.current = await getAsyncData()
+			setState(await getAsyncData())
 		})()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, deps)
 
-	return data.current
+	return state
 }

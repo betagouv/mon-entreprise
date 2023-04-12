@@ -1,15 +1,19 @@
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 
 import { Appear } from '@/components/ui/animate'
 import { Chip } from '@/design-system'
 import InfoBulle from '@/design-system/InfoBulle'
-import { Button } from '@/design-system/buttons'
+import { Button, HelpButtonWithPopover } from '@/design-system/buttons'
 import { ChevronIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { H3, H4 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
+import { Body } from '@/design-system/typography/paragraphs'
+
+import GuichetInfo from './GuichetInfo'
 
 interface ResultProps {
 	debug: string | null
@@ -88,6 +92,30 @@ export const Result = ({ item, debug }: ResultProps) => {
 							</Ul>
 						</>
 					) : null}
+					<Trans i18nKey={'codeApe.catégorie-guichet'}>
+						<H4>
+							Catégories du Guichet unique
+							<HelpButtonWithPopover
+								type="info"
+								title="Qu'est-ce que le guichet unique ?"
+							>
+								<Body>
+									Le{' '}
+									<Link href="https://procedures.inpi.fr/">
+										Guichet électronique des formalités d’entreprises
+									</Link>{' '}
+									(Guichet unique) est un portail internet sécurisé, auprès
+									duquel toute entreprise est tenue de déclarer sa création,
+									depuis le 1er janvier 2023.
+								</Body>
+								<Body>
+									Il utilise une classification des activités différente de
+									celle utilisée par l'INSEE pour code APE.
+								</Body>
+							</HelpButtonWithPopover>
+						</H4>
+					</Trans>
+					<GuichetInfo apeCode={codeApe} />
 				</Appear>
 			)}
 		</Grid>

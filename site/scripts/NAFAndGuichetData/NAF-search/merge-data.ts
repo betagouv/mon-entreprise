@@ -2,17 +2,17 @@ import { writeFileSync } from 'fs'
 import { join } from 'path'
 import { fileURLToPath } from 'url'
 
-import { Data as RawApeData } from '../données-NAF-CPF-APE/convert-pdf.js'
-import rawApeData from '../données-NAF-CPF-APE/output.json' assert { type: 'json' }
-import rawApeTags from '../données-NomenclatureGuichet/ape_tags.json' assert { type: 'json' }
-import { Out as NbEtablissementsData } from '../nombre-etablissements-par-code-ape/convert-json.js'
+import rawApeTags from '../NomenclatureGuichet/ape_tags.json' assert { type: 'json' }
+import { Data as RawApeData } from '../extract-NAF-data/convert-pdf.js'
+import rawApeData from '../extract-NAF-data/output.json' assert { type: 'json' }
+import { Out as NbEtablissementsData } from '../nombre-etablissements-par-code-ape/fetch-json.js'
 import rawEtablissementsData from '../nombre-etablissements-par-code-ape/output.json' assert { type: 'json' }
+import { customTags } from './custom-tags.js'
 import { multipleCf } from './custom.js'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const OUTPUT_JSON_PATH = join(__dirname, './output.json')
-const OUTPUT_MIN_JSON_PATH = join(__dirname, './output.min.json')
 
 const apeData = rawApeData as RawApeData[]
 const etablissementsData = rawEtablissementsData as NbEtablissementsData
@@ -88,10 +88,15 @@ const output: Output = {
 				title,
 				data,
 				contenuCentral: contenuCentral.concat(
-					apeTags[codeApe]?.filter((el) => el) ?? []
+					apeTags[codeApe]?.filter((el) => el) ?? [],
+					customTags[codeApe]?.contenuCentral ?? []
 				),
-				contenuAnnexe,
-				contenuExclu,
+				contenuAnnexe: contenuAnnexe.concat(
+					customTags[codeApe]?.contenuAnnexe ?? []
+				),
+				contenuExclu: contenuExclu.concat(
+					customTags[codeApe]?.contenuExclu ?? []
+				),
 			}
 		}
 	),
@@ -142,4 +147,3 @@ output.apeData = output.apeData.map(
 )
 
 writeFileSync(OUTPUT_JSON_PATH, JSON.stringify(output, null, 2))
-writeFileSync(OUTPUT_MIN_JSON_PATH, JSON.stringify(output))

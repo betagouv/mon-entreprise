@@ -3,8 +3,8 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+import { createDataDir, writeInDataDir } from '../utils.js'
 import { apiStats } from './fetch-api-stats.js'
-import { createDataDir, writeInDataDir } from './utils.js'
 
 dotenv.config()
 

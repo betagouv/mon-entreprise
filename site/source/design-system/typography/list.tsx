@@ -3,7 +3,17 @@ import styled, { css } from 'styled-components'
 import { baseParagraphStyle } from './paragraphs'
 
 type ListProps = {
+	/**
+	 * @property {'XS' | 'MD' | 'XL'} - The `size` property is an optional property that can have one
+	 * of three values: 'XS', 'MD', or 'XL'. It is used to specify the size of the list. If this property
+	 * is not provided, the default size will be used. */
 	size?: 'XS' | 'MD' | 'XL'
+
+	/**
+	 * @property {boolean} - A boolean property that indicates whether or not to display markers
+	 * (such as bullets or numbers) for each item in the list.
+	 */
+	noMarker?: boolean
 }
 
 export const Li = styled.li``
@@ -27,16 +37,22 @@ const BaseListStyle = css<ListProps>`
 					padding-left: 2rem;
 			  `}
 
-	${Li} {
+	> ${Li} {
 		position: relative;
-		padding-left: ${({ theme }) => theme.spacings.lg};
+		padding-left: ${({ theme, noMarker }) =>
+			noMarker ? 0 : theme.spacings.lg};
 		margin-bottom: ${({ theme }) => theme.spacings.xs};
 	}
 `
 
 export const Ul = styled.ul<ListProps>`
 	${BaseListStyle}
-	${Li}::before {
+	> ${Li}::before {
+		${({ noMarker }) =>
+			noMarker &&
+			css`
+				display: none;
+			`}
 		content: '●';
 		font-size: 80%;
 		display: inline-block;

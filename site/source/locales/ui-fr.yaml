@@ -530,6 +530,13 @@ checklist:
 chomagePartiel:
   tableCaption: Tableau indiquant le salaire net et le coût pour l'employeur avec
     ou sans chômage partiel.
+codeApe:
+  catégorie-guichet: <0>Catégories du Guichet unique<1><0>Le <2>Guichet
+    électronique des formalités d’entreprises</2> (Guichet unique) est un
+    portail internet sécurisé, auprès duquel toute entreprise est tenue de
+    déclarer sa création, depuis le 1er janvier 2023.</0><1>Il utilise une
+    classification des activités différente de celle utilisée par l'INSEE pour
+    code APE.</1></1></0>
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 an <1>(automatique et inconditionnelle)</1></1><2>Entre 3
     et 4 trimestres <2>(sous conditions d'éligibilité)</2></2>
