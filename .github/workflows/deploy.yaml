@@ -151,7 +151,7 @@ jobs:
           name: static-storybook
           path: dist/dev/storybook
       - id: deploy-netlify
-        uses: nwtgck/actions-netlify@v1.2
+        uses: nwtgck/actions-netlify@v2
         with:
           publish-dir: './dist'
           netlify-config-path: ./netlify.toml
@@ -162,6 +162,7 @@ jobs:
           github-deployment-environment: ${{ needs.deploy-context.outputs.env-name }}
           alias: ${{ needs.deploy-context.outputs.env-name }}${{ matrix.site && format('-{0}', matrix.site) }}
           deploy-message: ${{ github.event.pull_request.title || needs.deploy-context.outputs.env-name }} (${{ matrix.site || 'fr' }})
+          fails-without-credentials: true
 
           # Disabled because we create our own customized comment
           enable-pull-request-comment: false
@@ -184,7 +185,7 @@ jobs:
           name: static-storybook
           path: dist/dev/storybook
       - id: deploy-netlify
-        uses: nwtgck/actions-netlify@v1.1
+        uses: nwtgck/actions-netlify@v2
         with:
           publish-dir: './dist'
           netlify-config-path: ./netlify.toml
@@ -194,6 +195,7 @@ jobs:
           enable-commit-comment: false
           github-deployment-environment: master
           deploy-message: Deploy production branch
+          fails-without-credentials: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
