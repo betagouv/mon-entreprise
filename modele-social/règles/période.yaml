@@ -27,21 +27,3 @@ période . fin d'année:
       alors: 31/12/2022
     - si: date <= 31/12/2023
       alors: 31/12/2023
-
-période . début . n-1:
-  variations:
-    - si: date >= 01/2023
-      alors: 01/01/2022
-    - si: date >= 01/2022
-      alors: 01/01/2021
-    - si: date >= 01/2021
-      alors: 01/01/2020
-
-période . fin . n-1:
-  variations:
-    - si: date <= 31/12/2021
-      alors: 31/12/2020
-    - si: date <= 31/12/2022
-      alors: 31/12/2021
-    - si: date <= 31/12/2023
-      alors: 31/12/2022
