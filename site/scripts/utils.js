@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import { fileURLToPath } from 'url'
 
-const dataDir = join(
+export const dataDir = join(
 	fileURLToPath(import.meta.url),
 	'..',
 	'..',

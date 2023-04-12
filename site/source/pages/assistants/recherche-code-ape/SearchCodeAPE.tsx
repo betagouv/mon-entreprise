@@ -19,8 +19,9 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useAsyncData } from '@/hooks/useAsyncData'
 
-import { Output as Data } from '../../../../../scripts/codeAPESearch/données-code-APE/reduce-json'
 import { Result } from './Result'
+
+type Data = typeof import('@/public/data/ape-search.json')
 
 interface SearchableData {
 	original: string[]
@@ -88,12 +89,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 	const [selected, setSelected] = useState('')
 	const [list, setList] = useState<ListResult[]>([])
 
-	const lazyData: Data | null = useAsyncData(
-		() =>
-			import(
-				'../../../../../scripts/codeAPESearch/données-code-APE/output.min.json'
-			)
-	)
+	const lazyData = useAsyncData(() => import('@/public/data/ape-search.json'))
 
 	const lastIdxs = useRef<Record<string, UFuzzy.HaystackIdxs>>({})
 	const prevValue = useRef<string>(job)
@@ -153,7 +149,12 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 				item,
 				scoreFuzzy: index / arr.length,
 				nbEtablissement:
-					lazyData.indexByCodeApe[item.codeApe.replace('.', '')] || 0,
+					lazyData.indexByCodeApe[
+						item.codeApe.replace(
+							'.',
+							''
+						) as keyof (typeof lazyData)['indexByCodeApe']
+					] || 0,
 			}))
 			.sort(({ nbEtablissement: a }, { nbEtablissement: b }) => b - a)
 			.map(({ item, scoreFuzzy, nbEtablissement }, index, arr) => {

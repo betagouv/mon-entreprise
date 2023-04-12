@@ -511,6 +511,12 @@ checklist:
 chomagePartiel:
   tableCaption: Table showing net salary and cost to the employer with or without
     partial unemployment.
+codeApe:
+  catégorie-guichet: <0>Categories of the Guichet unique<1><0>The <2>Guichet
+    électronique des formalités d'entreprises</2> (Guichet unique) is a secure
+    internet portal, with which any company is required to declare its creation,
+    since January 1st 2023.</0><1>It uses a different classification of
+    activities than the one used by INSEE for APE code.</1></1></0>
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 year <1>(automatic and unconditional)</1></1><2>Between 3
     and 4 quarters <2>(subject to eligibility requirements)</2></2>
@@ -1479,8 +1485,8 @@ pages:
       title: Income simulator for liberal professions Cipav
     comparaison:
       meta:
-        description: Auto-entrepeneur, EI/EURL or SASU? Simulate the differences in income,
-          retirement and health benefits
+        description: Auto-entrepeneur, EI/EURL or SASU? Simulate the differences in
+          income, retirement and health benefits
         title: Legal status comparator
       shortname: Status Comparison
       title: Legal status comparator

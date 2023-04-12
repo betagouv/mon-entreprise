@@ -7,11 +7,11 @@
 	},
 	"type": "module",
 	"workspaces": [
-		"scripts",
 		"modele-social",
 		"exoneration-covid",
 		"api",
 		"site",
+		"site/scripts/NAFAndGuichetData",
 		"server"
 	],
 	"scripts": {

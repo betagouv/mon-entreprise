@@ -3,8 +3,6 @@ import { join } from 'path'
 import { PdfData, VerbosityLevel } from 'pdfdataextract'
 import { fileURLToPath } from 'url'
 
-import { customTags } from './custom-tags.js'
-
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 const INPUT_PDF_PATH = join(
@@ -358,19 +356,7 @@ const transformText = (pages: PdfData['text']) => {
 		return arr
 	}, [] as Data[])
 
-	return data.map((data) => {
-		const {
-			contenuCentral = [],
-			contenuAnnexe = [],
-			contenuExclu = [],
-		} = customTags[data.code] ?? {}
-
-		data.contenuCentral.push(...contenuCentral)
-		data.contenuAnnexe.push(...contenuAnnexe)
-		data.contenuExclu.push(...contenuExclu)
-
-		return data
-	})
+	return data
 }
 
 interface CommonData<Type extends string> {
