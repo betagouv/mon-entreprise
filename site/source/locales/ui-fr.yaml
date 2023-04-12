@@ -1484,9 +1484,9 @@ pages:
       title: Simulateur de revenus pour professions libérales Cipav
     comparaison:
       meta:
-        description: Auto-entrepreneur, indépendant ou dirigeant de SASU ? Avec ce
-          comparatif, trouvez le régime qui vous correspond le mieux
-        title: "Création d'entreprise : le comparatif des régimes sociaux"
+        description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
+          revenu, retraite et indemnités maladie
+        title: Comparateur de statut juridique
       shortname: Comparaison des statuts
       title: Comparateur de statut juridique
     coût-création-entreprise:

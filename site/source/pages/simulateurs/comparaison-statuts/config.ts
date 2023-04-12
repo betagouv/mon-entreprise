@@ -21,11 +21,11 @@ export function comparaisonStatutsConfig({
 		meta: {
 			description: t(
 				'pages.simulateurs.comparaison.meta.description',
-				'Auto-entrepreneur, indépendant ou dirigeant de SASU ? Avec ce comparatif, trouvez le régime qui vous correspond le mieux'
+				'Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de revenu, retraite et indemnités maladie'
 			),
 			title: t(
 				'pages.simulateurs.comparaison.meta.title',
-				"Création d'entreprise : le comparatif des régimes sociaux"
+				'Comparateur de statut juridique'
 			),
 		},
 		shortName: t(
