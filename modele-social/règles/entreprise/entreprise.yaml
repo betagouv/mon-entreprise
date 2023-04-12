@@ -275,12 +275,12 @@ entreprise . exercice:
     début n-1:
       titre: début
       type: date
-      par défaut: période . début . n-1
+      par défaut: 01/01/2022
 
     fin n-1:
       titre: fin
       type: date
-      par défaut: période . fin . n-1
+      par défaut: 31/12/2022
 
     début:
       type: date
