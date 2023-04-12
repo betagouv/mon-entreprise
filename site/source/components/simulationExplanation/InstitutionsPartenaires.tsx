@@ -116,7 +116,19 @@ export function CotisationsUrssaf({
 					<Trans i18nKey="simulateurs.explanation.institutions.urssaf">
 						L’Urssaf recouvre les cotisations servant au financement de la
 						sécurité sociale (assurance maladie, allocations familiales,
-						dépendance).
+						dépendance
+						<WhenNotApplicable
+							dottedName={'dirigeant . indépendant . PL . CNAVPL'}
+						>
+							{' '}
+							et retraite{' '}
+							{/* IRCEC recouvre les cotisations de retraite complémentaire pour les artistes-auteurs */}
+							<Condition expression="artiste-auteur . cotisations > 0">
+								{' '}
+								de base
+							</Condition>
+						</WhenNotApplicable>
+						).
 					</Trans>
 				</Body>
 				{extraNotice && <SmallBody>{extraNotice}</SmallBody>}

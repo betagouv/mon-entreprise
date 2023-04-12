@@ -1861,7 +1861,8 @@ simulateurs:
         are "deducted", i.e. paid at source by the broadcaster.
       titre: Your partner institutions
       urssaf: The Urssaf collects the contributions used to finance social security
-        (health insurance, family allowances, dependence).
+        (health insurance, family allowances, dependency<1> and <3> basic</3>
+        retirement</1>).
   inversionFail: >-
     The amount entered results in an impossible result. This is due
     to a threshold effect in the calculation of contributions.
