@@ -1,4 +1,5 @@
-export { Accordion } from './accordion'
+export { Item } from '@react-stately/collections'
+export * from './accordion'
 export * as button from './buttons'
 export * from './chip'
 export * from './field'

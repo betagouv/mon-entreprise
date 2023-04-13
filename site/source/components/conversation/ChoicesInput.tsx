@@ -10,6 +10,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import {
+	Item,
 	Radio,
 	RadioCard,
 	RadioCardGroup,
@@ -17,7 +18,7 @@ import {
 	ToggleGroup,
 } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
-import { Item, Select } from '@/design-system/field/Select'
+import { Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
 import { Switch } from '@/design-system/switch'
 import { H3, H4 } from '@/design-system/typography/heading'
