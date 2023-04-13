@@ -41,7 +41,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	return (
 		<section className="print-hidden">
 			<H2>
-				<Trans>Ressources utiles</Trans>
+				<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 			</H2>
 			<Grid container spacing={3} role="list">
 				{nextSteps?.map((simulatorId) => (

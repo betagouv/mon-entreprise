@@ -420,3 +420,35 @@ export const GithubIcon = (props: HTMLAttributes<SVGElement>) => (
 		/>
 	</svg>
 )
+
+export const ClockIcon = (props: HTMLAttributes<SVGElement>) => (
+	<svg
+		{...props}
+		width="20"
+		height="20"
+		viewBox="0 0 20 20"
+		// fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden
+		role="img"
+	>
+		<path
+			fillRule="evenodd"
+			clipRule="evenodd"
+			d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20Z"
+			// fill="#212529"
+		/>
+		<path
+			fillRule="evenodd"
+			clipRule="evenodd"
+			d="M10 3.85C10.5523 3.85 11 4.29771 11 4.85V9.95C11 10.5023 10.5523 10.95 10 10.95C9.44771 10.95 9 10.5023 9 9.95V4.85C9 4.29771 9.44771 3.85 10 3.85Z"
+			// fill="#212529"
+		/>
+		<path
+			fillRule="evenodd"
+			clipRule="evenodd"
+			d="M5.43058 12.1087C5.19894 11.6073 5.4176 11.0131 5.91896 10.7815L9.55013 9.10383C10.0515 8.87219 10.6457 9.09084 10.8773 9.5922C11.109 10.0936 10.8903 10.6878 10.389 10.9194L6.75779 12.5971C6.25643 12.8287 5.66222 12.6101 5.43058 12.1087Z"
+			// fill="#212529"
+		/>
+	</svg>
+)

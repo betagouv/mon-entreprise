@@ -3,21 +3,21 @@ import { useTranslation } from 'react-i18next'
 import { MetadataSrc } from '@/pages/simulateurs/metadata-src'
 import { LegalStatus } from '@/store/selectors/companyStatusSelectors'
 
-export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
-	'EI',
-	'EIRL',
-	'EURL',
-	'SAS',
-	'SARL',
-	'SASU',
-	'auto-entrepreneur',
-	'auto-entrepreneur-EIRL',
-	'SA',
-]
+// export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
+// 	'EI',
+// 	'EIRL',
+// 	'EURL',
+// 	'SAS',
+// 	'SARL',
+// 	'SASU',
+// 	'auto-entrepreneur',
+// 	'auto-entrepreneur-EIRL',
+// 	'SA',
+// ]
 
-const status = Object.fromEntries(
-	LANDING_LEGAL_STATUS_LIST.map((statut) => [statut, statut])
-) as { [statut in LegalStatus]: statut }
+// const status = Object.fromEntries(
+// 	LANDING_LEGAL_STATUS_LIST.map((statut) => [statut, statut])
+// ) as { [statut in LegalStatus]: statut }
 
 const rawSitePathsFr = {
 	index: '',
@@ -46,7 +46,8 @@ const rawSitePathsFr = {
 		},
 		'choix-du-statut': {
 			index: 'choix-du-statut',
-			...status,
+			assistant: 'assistant',
+			// ...status,
 			après: 'après-la-création',
 			guideStatut: {
 				index: 'statut-juridique',
@@ -136,6 +137,7 @@ const rawSitePathsEn = {
 		'choix-du-statut': {
 			...rawSitePathsFr.assistants['choix-du-statut'],
 			index: 'choice-of-status',
+			assistant: 'assistant',
 			après: 'after-registration',
 			guideStatut: {
 				index: 'legal-status',

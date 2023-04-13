@@ -457,7 +457,8 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 				/>
 			</Checklist>
 			<H2>
-				<Trans>Ressources utiles</Trans> <Emoji emoji="🧰" />
+				<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>{' '}
+				<Emoji emoji="🧰" />
 			</H2>
 
 			<Grid container role="list">
