@@ -1,4 +1,3 @@
-import { Item } from '@react-stately/collections'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
@@ -9,7 +8,7 @@ import Value, {
 	WhenValueEquals,
 } from '@/components/EngineValue'
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import { Accordion } from '@/design-system'
+import { Accordion, Item } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { ExternalLinkIcon, PlusCircleIcon } from '@/design-system/icons'
 import { Container, Grid, Spacing } from '@/design-system/layout'

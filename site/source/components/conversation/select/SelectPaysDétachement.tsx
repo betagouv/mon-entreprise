@@ -1,4 +1,5 @@
-import { Item, Select } from '@/design-system/field/Select'
+import { Item } from '@/design-system'
+import { Select } from '@/design-system/field/Select'
 
 import { InputProps } from '../RuleInput'
 

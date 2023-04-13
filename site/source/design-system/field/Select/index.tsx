@@ -15,8 +15,6 @@ import { omit } from '@/utils'
 import { ListBox } from './ListBox'
 import { Popover } from './PopOver'
 
-export { Item } from '@react-stately/collections'
-
 export const Label = styled.label`
 	display: block;
 	text-align: left;
