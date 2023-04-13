@@ -59,7 +59,7 @@
 	"resolutions": {
 		"rollup": "^3.10.0"
 	},
-	"packageManager": "yarn@3.3.0",
+	"packageManager": "yarn@3.5.0",
 	"engines": {
 		"node": "^18"
 	}
