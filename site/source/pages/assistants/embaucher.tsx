@@ -261,7 +261,7 @@ function Embaucher({ onChecklistInitialization, onItemCheck }: EmbaucherProps) {
 			</Trans>
 
 			<H3 as="h2">
-				<Trans>Ressources utiles</Trans>
+				<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 			</H3>
 
 			<SimulatorRessourceCard simulatorId="salarié" />
