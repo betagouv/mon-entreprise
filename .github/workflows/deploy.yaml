@@ -143,10 +143,10 @@ jobs:
         site: ['', 'en']
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: static-site
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: static-storybook
           path: dist/dev/storybook
@@ -177,10 +177,10 @@ jobs:
     if: needs.deploy-context.outputs.env-name == 'master'
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: static-site
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: static-storybook
           path: dist/dev/storybook
