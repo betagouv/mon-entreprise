@@ -1,24 +1,22 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 
 import { Radio, ToggleGroup } from '.'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta: Meta<typeof ToggleGroup> = {
 	component: ToggleGroup,
-	// More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-	// argTypes: {
-	// },
-} as ComponentMeta<typeof ToggleGroup>
+}
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ToggleGroup> = (args) => (
-	<ToggleGroup {...args}>
-		<Radio value="valueA">Radio A</Radio>
-		<Radio value="valueB">Radio B</Radio>
-		<Radio value="valueC">Radio C</Radio>
-	</ToggleGroup>
-)
+export default meta
 
-export const Basic = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Basic.args = {}
+type Story = StoryObj<typeof ToggleGroup>
+
+export const Basic: Story = {
+	render: (args) => (
+		<ToggleGroup {...args}>
+			<Radio value="valueA">Radio A</Radio>
+			<Radio value="valueB">Radio B</Radio>
+			<Radio value="valueC">Radio C</Radio>
+		</ToggleGroup>
+	),
+	args: {},
+}

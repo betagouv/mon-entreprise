@@ -1,15 +1,11 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { ErrorBoundary } from '@sentry/react'
+import { Meta, StoryObj } from '@storybook/react'
 
 import { Tooltip } from '@/design-system/tooltip'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta: Meta<typeof Tooltip> = {
 	component: Tooltip,
-	// More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 	argTypes: {
-		children: {
-			type: 'string',
-		},
 		tooltip: {
 			type: 'string',
 		},
@@ -17,15 +13,29 @@ export default {
 			type: 'string',
 		},
 	},
-} as ComponentMeta<typeof Tooltip>
+}
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Tooltip> = (args) => <Tooltip {...args} />
+export default meta
 
-export const Basic = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Basic.args = {
-	children: 'Passez la souris sur moi',
-	tooltip: 'Coucou !',
-	id: 'test-tooltip',
+type Story = StoryObj<typeof Tooltip>
+
+export const Basic: Story = {
+	args: {
+		children: <span>Passez la souris sur moi</span>,
+		tooltip: 'Coucou !',
+		id: 'test-tooltip',
+	},
+}
+
+export const Invalid: Story = {
+	render: (args) => (
+		<ErrorBoundary fallback={({ error }) => <span>{error.message}</span>}>
+			<Tooltip {...args} />
+		</ErrorBoundary>
+	),
+	args: {
+		children: <>Les Fragment sont interdit</>,
+		tooltip: 'Coucou !',
+		id: 'test-tooltip',
+	},
 }

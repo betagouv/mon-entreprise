@@ -9,13 +9,7 @@ import {
 } from '@react-aria/overlays'
 import { AriaDialogProps } from '@react-types/dialog'
 import FocusTrap from 'focus-trap-react'
-import React, {
-	Attributes,
-	RefObject,
-	useEffect,
-	useRef,
-	useState,
-} from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css, keyframes } from 'styled-components'
 

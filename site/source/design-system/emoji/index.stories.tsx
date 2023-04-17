@@ -1,20 +1,20 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 
 import { Emoji as EmojiComponent } from '.'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta: Meta<typeof EmojiComponent> = {
 	component: EmojiComponent,
-	// More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 	argTypes: {
 		emoji: { type: 'string' },
 	},
-} as ComponentMeta<typeof EmojiComponent>
+}
 
-export const Emoji: ComponentStory<typeof EmojiComponent> = (args) => (
-	<EmojiComponent {...args} />
-)
+export default meta
 
-Emoji.args = {
-	emoji: '❤️🧡💛💚💙💜',
+type Story = StoryObj<typeof EmojiComponent>
+
+export const Emoji: Story = {
+	args: {
+		emoji: '❤️🧡💛💚💙💜',
+	},
 }

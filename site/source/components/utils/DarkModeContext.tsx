@@ -5,6 +5,8 @@ import { useDarkMode } from '@/hooks/useDarkMode'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { getItem, setItem } from '@/storage/safeLocalStorage'
 
+// TODO: Theme and dark mode should be in design-system (https://github.com/betagouv/mon-entreprise/issues/2563)
+
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]
 
 const persistDarkMode = (darkMode: boolean) => {
