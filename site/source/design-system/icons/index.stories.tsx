@@ -1,22 +1,23 @@
-import { ComponentMeta } from '@storybook/react'
+import { Meta } from '@storybook/react'
 
 import { SvgIcon } from '.'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta: Meta<typeof SvgIcon> = {
 	component: SvgIcon,
-} as ComponentMeta<typeof SvgIcon>
+}
+
+export default meta
 
 export {
 	CarretDownIcon,
 	ChevronIcon,
+	CircleIcon,
+	EditIcon,
 	ErrorIcon,
+	HexagonIcon,
 	InfoIcon,
 	ReturnIcon,
 	SearchIcon,
 	SuccessIcon,
-	EditIcon,
-	HexagonIcon,
 	TriangleIcon,
-	CircleIcon,
 } from '@/design-system/icons'

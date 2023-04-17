@@ -11,25 +11,23 @@ import { useDarkMode } from '@/hooks/useDarkMode'
 
 type SystemRootProps = {
 	children: ReactNode
+	forceDarkMode?: boolean
 }
 
-const SystemRoot = ({ children }: SystemRootProps) => {
+const SystemRoot = ({ children, forceDarkMode }: SystemRootProps) => {
 	const userAgent = typeof navigator !== 'undefined' && navigator.userAgent
-	const [darkMode] = useDarkMode()
+	const [contextDarkMode] = useDarkMode()
+
+	const darkMode =
+		typeof forceDarkMode === 'boolean' ? forceDarkMode : contextDarkMode
 
 	return (
 		<StyleSheetManager disableCSSOMInjection={isbot(userAgent)}>
 			<ThemeProvider theme={{ ...urssafTheme, darkMode }}>
-				<Background>{children}</Background>
+				<BackgroundStyle $darkMode={darkMode}>{children}</BackgroundStyle>
 			</ThemeProvider>
 		</StyleSheetManager>
 	)
-}
-
-const Background = ({ children }: { children: ReactNode }) => {
-	const [darkMode] = useDarkMode()
-
-	return <BackgroundStyle $darkMode={darkMode}>{children}</BackgroundStyle>
 }
 
 type BackgroundProps = {

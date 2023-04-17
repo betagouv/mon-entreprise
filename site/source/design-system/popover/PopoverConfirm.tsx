@@ -6,7 +6,6 @@ import { Button } from '@/design-system/buttons'
 
 import { Grid } from '../layout'
 import { H3 } from '../typography/heading'
-import { Body } from '../typography/paragraphs'
 import PopoverWithTrigger, {
 	PopoverWithTriggerProps,
 } from './PopoverWithTrigger'

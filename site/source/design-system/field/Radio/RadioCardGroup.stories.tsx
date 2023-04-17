@@ -1,41 +1,41 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 
 import { RadioCard, RadioCardGroup } from '.'
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const meta: Meta<typeof RadioCardGroup> = {
 	component: RadioCardGroup,
-	// More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 	argTypes: {
 		label: {
 			type: 'string',
 		},
 	},
-} as ComponentMeta<typeof RadioCardGroup>
+}
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof RadioCardGroup> = (args) => (
-	<RadioCardGroup {...args}>
-		<RadioCard
-			value="valueA"
-			label={'Title A'}
-			description={'ceci est une description'}
-		/>
-		<RadioCard
-			value="valueB"
-			label={'Title B'}
-			description={'ceci est une description'}
-		/>
-		<RadioCard value="valueC" label={'Title C'} />
-		<RadioCard
-			hideRadio
-			value="valueD"
-			label={'Title D'}
-			description="hidden radio"
-		/>
-	</RadioCardGroup>
-)
+export default meta
 
-export const Basic = Template.bind({})
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-Basic.args = {}
+type Story = StoryObj<typeof RadioCardGroup>
+
+export const Basic: Story = {
+	render: (args) => (
+		<RadioCardGroup {...args}>
+			<RadioCard
+				value="valueA"
+				label={'Title A'}
+				description={'ceci est une description'}
+			/>
+			<RadioCard
+				value="valueB"
+				label={'Title B'}
+				description={'ceci est une description'}
+			/>
+			<RadioCard value="valueC" label={'Title C'} />
+			<RadioCard
+				hideRadio
+				value="valueD"
+				label={'Title D'}
+				description="hidden radio"
+			/>
+		</RadioCardGroup>
+	),
+	args: {},
+}

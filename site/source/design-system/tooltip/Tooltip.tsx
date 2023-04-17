@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { Tooltip as RTooltip } from 'react-tooltip'
 
 import 'react-tooltip/dist/react-tooltip.css'
@@ -11,7 +11,7 @@ export const Tooltip = ({
 	className,
 	id,
 }: {
-	children: ReactNode
+	children: ReactElement
 	tooltip: ReactNode
 	className?: string
 	// A11y : préciser un aria-describedby sur l'élément visé par le tooltip
@@ -20,11 +20,15 @@ export const Tooltip = ({
 	return (
 		<StyledSpan>
 			{React.Children.map(children, (child) => {
-				if (React.isValidElement(child)) {
+				if (React.isValidElement(child) && child.type !== React.Fragment) {
 					return React.cloneElement(child, { id } as {
 						id: string
 					})
 				}
+
+				throw new Error(
+					'Tooltip children must be a valid React element and not a React fragment.'
+				)
 			})}
 			<StyledRTooltip
 				anchorId={id}
@@ -41,6 +45,7 @@ const StyledRTooltip = styled(RTooltip)`
 	max-width: 20rem;
 	font-size: 0.75rem;
 `
+
 const StyledSpan = styled.span`
 	display: flex;
 	align-items: center;
