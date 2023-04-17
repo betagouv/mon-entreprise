@@ -373,7 +373,7 @@ function ResultSection() {
 										}
 									</Markdown>
 									<Condition expression="entreprise . imposition . régime . micro-entreprise">
-										<H5>Calculer le montant des cotisations sociales 2021</H5>
+										<H5>Calculer le montant des cotisations sociales 2022</H5>
 										<SmallBody>
 											Nous mettons à votre disposition un assistant pour
 											connaître le montant des cotisations sociales à renseigner
@@ -412,7 +412,7 @@ function ResultSection() {
 									Si vous connaissez déjà les montants à reporter dans votre
 									déclaration de revenu personnelle, vous pouvez accéder
 									directement à l'estimation des cotisations sociales à payer en
-									2022 :
+									2023 :
 								</SmallBody>
 								<Spacing sm />
 
@@ -432,7 +432,7 @@ function ResultSection() {
 											dispatchValue('oui', 'DRI . déclaration revenus manuelle')
 										}}
 									>
-										Estimer mes cotisations en 2022
+										Estimer mes cotisations en 2023
 									</Button>
 								</div>
 								<Spacing md />

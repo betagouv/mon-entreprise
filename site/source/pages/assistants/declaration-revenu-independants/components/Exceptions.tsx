@@ -45,7 +45,7 @@ Voici une liste non exhaustives des cas non pris en compte dans la version actue
 
 ### Divers
 - Revenus issus de plusieurs entreprises distinctes
-- Cession d'activité courant 2021
+- Cession d'activité courant 2022
 - Déclaration pour une personne à charge
 - Intérêts d’emprunt pour acquisition des parts des associés gérants
 - Revenus étrangers

@@ -134,7 +134,7 @@ export default function Déclaration() {
 											<Li>
 												Cliquez sur la première ligne{' '}
 												<Strong>
-													«&nbsp;Exercice clos le 31/12/2021&nbsp;»
+													«&nbsp;Exercice clos le 31/12/2022&nbsp;»
 												</Strong>
 											</Li>
 											<Li>
@@ -230,7 +230,7 @@ function useModeleMessageComptable() {
 		.join('')
 	if (isIS) {
 		cases +=
-			'Il me faudrait également le montant total de ma rémunération versée en tant que dirigeant en 2021 (hors dividendes).'
+			'Il me faudrait également le montant total de ma rémunération versée en tant que dirigeant en 2022 (hors dividendes).'
 	}
 
 	return ModeleMessageComptable.replace('{{cases}}', cases)

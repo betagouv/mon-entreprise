@@ -183,7 +183,7 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 											.cotisations
 									}
 								>
-									Continuer vers l'estimation des cotisations pour 2022
+									Continuer vers l'estimation des cotisations pour 2023
 								</Button>
 							</Grid>
 							<Spacing md />
