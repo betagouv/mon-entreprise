@@ -45,7 +45,7 @@ export default function GuichetInfo({ apeCode }: { apeCode: string }) {
 								</H5>
 								<Body>
 									Activité{' '}
-									<Strong>{catégorieActivité.replace(/_/g, ' ')}</Strong>, avec
+									<Strong>{catégorieActivité.replace(/_/g, ' ')}</Strong> avec
 									des revenus déclarés en <Strong>{typeBénéfice}</Strong>{' '}
 									{caisseDeRetraiteSpéciale && (
 										<>
