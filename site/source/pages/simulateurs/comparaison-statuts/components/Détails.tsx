@@ -48,7 +48,7 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>La retraite</Trans> <Emoji emoji="🧐" />
+							<Trans>Vos droits pour la retraite</Trans> <Emoji emoji="🧐" />
 						</ItemTitle>
 					}
 					key="retraite"
@@ -121,7 +121,7 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>La santé</Trans> <Emoji emoji="😷" />
+							<Trans>Vos prestations santé</Trans> <Emoji emoji="😷" />
 						</ItemTitle>
 					}
 					key="santé"
@@ -368,7 +368,8 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>L'invalidité et le décès</Trans> <Emoji emoji="🤕" />
+							<Trans>Votre couverture invalidité et décès</Trans>{' '}
+							<Emoji emoji="🤕" />
 						</ItemTitle>
 					}
 					key="maladie"
