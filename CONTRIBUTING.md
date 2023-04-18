@@ -268,4 +268,4 @@ Crisp permet également d'ajouter une étiquette au message, ce qui nous permet 
 
 Quant à la notation des pages avec des smileys, elle fonctionne via des événements personnalisés remontés sur notre outil de statistiques. Nous récupérons le nombre d'événements par page avec l'API fournie pour la présenter sur notre [page statistique dédiée](https://mon-entreprise.urssaf.fr/stats).
 
-Là-aussi nous utilisons l'API fournie pour récupérer les valeurs par page et les présenter vis avec l'API pour la présenter sur notre page statistiques.
+Là-aussi nous utilisons l'API fournie pour récupérer les valeurs par page et les présenter sur notre page statistiques.
