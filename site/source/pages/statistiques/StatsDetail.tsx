@@ -7,7 +7,6 @@ import styled from 'styled-components'
 
 import { toAtString } from '@/components/ATInternetTracking'
 import PagesChart from '@/components/charts/PagesCharts'
-import FoldingMessage from '@/components/ui/FoldingMessage'
 import { useScrollToHash } from '@/components/utils/markdown'
 import { Item, Message } from '@/design-system'
 import InfoBulle from '@/design-system/InfoBulle'
@@ -22,17 +21,379 @@ import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import { debounce, groupBy } from '@/utils'
 
 import { SimulateurCard } from '../simulateurs-et-assistants'
-import Chart, { Data, isDataStacked } from './Chart'
+import Chart, { Data, formatLegend, isDataStacked } from './Chart'
 import DemandeUtilisateurs from './DemandesUtilisateurs'
-import GlobalStats, { BigIndicator } from './GlobalStats'
 import SatisfactionChart from './SatisfactionChart'
+import StatsGlobal, { BigIndicator } from './StatsGlobal'
 import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
 import { formatDay, formatMonth } from './utils'
+
+interface StatsProps {
+	accessibleStats: boolean
+}
+
+export default function Stats({ accessibleStats }: StatsProps) {
+	const { data: stats, loading } = useFetchData<StatsStruct>('/data/stats.json')
+
+	const statsAvailable = stats?.visitesMois != null
+
+	return (
+		<>
+			{statsAvailable ? (
+				<>
+					<StatsDetail stats={stats} accessibleStats={accessibleStats} />
+
+					<StatsGlobal stats={stats} accessibleStats={accessibleStats} />
+				</>
+			) : loading ? (
+				<Intro>Chargement des statistiques...</Intro>
+			) : (
+				<Message type="error" icon mini>
+					<Body>Statistiques indisponibles.</Body>
+				</Message>
+			)}
+
+			<DemandeUtilisateurs />
+		</>
+	)
+}
 
 type Period = 'mois' | 'jours'
 type Chapter2 = PageChapter2 | 'PAM' | 'api-rest'
 
 type Pageish = Page | PageSatisfaction
+
+interface StatsDetailProps {
+	stats: StatsStruct
+	accessibleStats: boolean
+}
+
+export const StatsDetail = ({ stats, accessibleStats }: StatsDetailProps) => {
+	const defaultPeriod = 'mois'
+	const [searchParams, setSearchParams] = useSearchParams()
+	useScrollToHash()
+
+	const [period, setPeriod] = useState<Period>(
+		(searchParams.get('periode') as Period) ?? defaultPeriod
+	)
+	const [chapter2, setChapter2] = useState<Chapter2 | ''>(
+		(searchParams.get('module') as Chapter2) ?? ''
+	)
+
+	const { t } = useTranslation()
+
+	useEffect(() => {
+		const paramsEntries = [
+			['periode', period !== defaultPeriod ? period : ''],
+			['module', chapter2],
+		].filter(([, val]) => val !== '') as [string, string][]
+
+		setSearchParams(paramsEntries, { replace: true })
+	}, [period, chapter2, setSearchParams])
+
+	const visites = useMemo(() => {
+		const rawData = period === 'jours' ? stats.visitesJours : stats.visitesMois
+		if (!chapter2) {
+			return rawData.site
+		}
+		if (chapter2 === 'api-rest') {
+			return (rawData.api ?? []).map(({ date, ...nombre }) => ({
+				date,
+				nombre,
+			}))
+		}
+		if (chapter2 === 'guide') {
+			const pages = rawData.pages as Pageish[]
+			const creer = rawData.creer as Pageish[]
+
+			return statsCreer(pages, creer)
+		}
+
+		return filterByChapter2(rawData.pages as Pageish[], chapter2)
+	}, [period, chapter2])
+
+	const repartition = useMemo(() => {
+		const rawData = stats.visitesMois
+
+		return groupByDate(rawData.pages as Pageish[])
+	}, [])
+
+	const satisfaction = useMemo(() => {
+		return filterByChapter2(stats.satisfaction as Pageish[], chapter2)
+	}, [chapter2]) as Array<{
+		date: string
+		nombre: Record<string, number>
+		percent: Record<string, number>
+	}>
+
+	const [[startDateIndex, endDateIndex], setDateIndex] = useState<
+		[startIndex: number, endIndex: number]
+	>([0, visites.length - 1])
+
+	useEffect(() => {
+		setDateIndex([0, visites.length - 1])
+	}, [visites.length])
+
+	const [slicedVisits, setSlicedVisits] = useState(visites)
+	useEffect(() => {
+		setSlicedVisits(visites)
+	}, [visites])
+
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const handleDateChange = useCallback(
+		debounce(1000, ({ startIndex, endIndex }) => {
+			if (startIndex != null && endIndex != null) {
+				setDateIndex([startIndex, endIndex])
+				setSlicedVisits(visites.slice(startIndex, endIndex + 1))
+			}
+		}) as NonNullable<BrushProps['onChange']>,
+		[visites]
+	)
+
+	const totals: number | Record<string, number> = useMemo(
+		() => computeTotals(slicedVisits),
+		[slicedVisits]
+	)
+
+	const chapters2: Chapter2[] = [
+		...new Set(stats.visitesMois?.pages.map((p) => p.page_chapter2)),
+		'PAM',
+	]
+
+	type ApiData = {
+		date: string
+		nombre: { evaluate: number; rules: number; rule: number }
+	}
+	const apiCumul =
+		chapter2 === 'api-rest' &&
+		slicedVisits.length > 0 &&
+		typeof slicedVisits[0] === 'object' &&
+		(slicedVisits as ApiData[]).reduce(
+			(acc, { nombre }) => ({
+				evaluate: acc.evaluate + nombre.evaluate,
+				rules: acc.rules + nombre.rules,
+				rule: acc.rule + nombre.rule,
+			}),
+			{ evaluate: 0, rules: 0, rule: 0 }
+		)
+
+	return (
+		<>
+			<H2>Statistiques détaillées</H2>
+
+			<Indicators>
+				<div
+					css={`
+						flex-basis: 50%;
+					`}
+				>
+					<SimulateursChoice
+						onChange={setChapter2}
+						value={chapter2}
+						possibleValues={chapters2}
+					/>
+					<Spacing sm />
+					<Grid container columns={4}>
+						{chapter2 && <SelectedSimulator chapter2={chapter2} />}
+					</Grid>
+				</div>
+				<div>
+					<StyledBody id="mode-affichage-label">
+						<Trans>Mode d'affichage :</Trans>
+					</StyledBody>
+					<ButtonContainer
+						role="tablist"
+						aria-labelledby="mode-affichage-label"
+					>
+						<StyledButton
+							light={period !== 'jours'}
+							aria-selected={period === 'jours'}
+							aria-controls="visites-panel"
+							role="tab"
+							onClick={() => setPeriod('jours' as Period)}
+						>
+							<Trans>Jours</Trans>
+						</StyledButton>
+						<StyledButton
+							light={period !== 'mois'}
+							aria-selected={period === 'mois'}
+							aria-controls="visites-panel"
+							role="tab"
+							onClick={() => setPeriod('mois' as Period)}
+						>
+							<Trans>Mois</Trans>
+						</StyledButton>
+					</ButtonContainer>
+					<Spacing sm />
+				</div>
+			</Indicators>
+
+			<div id="visites-panel">
+				<H3>Visites</H3>
+
+				{visites.length ? (
+					accessibleStats ? (
+						<StyledTable as="div">
+							<table
+								role="table"
+								style={{ textAlign: 'center', width: '100%' }}
+							>
+								<caption className="sr-only">
+									<Trans>
+										Tableau présentant le nombre de visites sur le site
+										mon-entreprise par mois ou par jours.
+									</Trans>
+								</caption>
+								<thead>
+									<tr>
+										<th scope="col">
+											<Trans>{period}</Trans>
+										</th>
+										{typeof visites[0].nombre === 'number' ? (
+											<th scope="col">
+												<Trans>Nombre de visites</Trans>
+											</th>
+										) : (
+											Object.keys(visites[0].nombre).map((key) => (
+												<th scope="col" key={key}>
+													{formatLegend(key)}
+												</th>
+											))
+										)}
+									</tr>
+								</thead>
+								<tbody>
+									{visites.flatMap((visite) => {
+										if (typeof visite.nombre === 'number') {
+											return (
+												<tr key={visite.date}>
+													<td>
+														{period === 'mois'
+															? formatMonth(visite.date)
+															: formatDay(visite.date)}
+													</td>
+													<td>{visite.nombre}</td>
+												</tr>
+											)
+										}
+
+										const total = Object.values(visite.nombre).reduce(
+											(acc, value) => acc + value,
+											0
+										)
+										if (total === 0) {
+											return null
+										}
+
+										return (
+											<tr key={visite.date}>
+												<td>
+													{period === 'mois'
+														? formatMonth(visite.date)
+														: formatDay(visite.date)}
+												</td>
+												{Object.entries(visite.nombre).map(([key, value]) => (
+													<td key={key}>{JSON.stringify(value)}</td>
+												))}
+											</tr>
+										)
+									})}
+								</tbody>
+							</table>
+						</StyledTable>
+					) : (
+						<Chart
+							key={period + visites.length.toString()}
+							period={period}
+							data={visites}
+							onDateChange={handleDateChange}
+							startIndex={startDateIndex}
+							endIndex={endDateIndex}
+						/>
+					)
+				) : (
+					<Message type="info">Aucune donnée disponible.</Message>
+				)}
+			</div>
+
+			{slicedVisits.length > 0 && (
+				<H3>
+					Cumuls pour la période{' '}
+					{period === 'jours'
+						? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
+								slicedVisits[slicedVisits.length - 1].date
+						  )}`
+						: `de ${formatMonth(slicedVisits[0].date)}` +
+						  (slicedVisits.length > 1
+								? ` à ${formatMonth(
+										slicedVisits[slicedVisits.length - 1].date
+								  )}`
+								: '')}
+				</H3>
+			)}
+
+			<Grid container spacing={2}>
+				{apiCumul ? (
+					<>
+						<BigIndicator
+							main={apiCumul.evaluate}
+							subTitle="Appel à /evaluate"
+						/>
+						<BigIndicator main={apiCumul.rules} subTitle="Appel à /rules" />
+						<BigIndicator main={apiCumul.rule} subTitle="Appel à /rule/*" />
+					</>
+				) : (
+					<BigIndicator
+						main={formatValue(
+							typeof totals === 'number' ? totals : totals.accueil
+						)}
+						subTitle="Visites"
+					/>
+				)}
+
+				{typeof totals !== 'number' && 'simulation_commencee' in totals && (
+					<>
+						{' '}
+						<BigIndicator
+							main={formatValue(totals.simulation_commencee)}
+							subTitle="Simulations "
+						/>
+						<BigIndicator
+							main={formatValue(
+								Math.round(
+									(100 * totals.simulation_commencee) / totals.accueil
+								),
+								{ displayedUnit: '%' }
+							)}
+							subTitle={
+								<>
+									Taux de conversion&nbsp;
+									<InfoBulle>
+										Pourcentage de personne qui commencent une simulation
+									</InfoBulle>
+								</>
+							}
+						/>
+					</>
+				)}
+			</Grid>
+
+			{period === 'mois' && !!satisfaction.length && (
+				<>
+					<H3>Satisfaction</H3>
+					<SatisfactionChart key={chapter2} data={satisfaction} />
+				</>
+			)}
+
+			{chapter2 === '' && period === 'mois' && (
+				<>
+					<H2>Simulateurs principaux</H2>
+					<PagesChart data={repartition} />
+				</>
+			)}
+		</>
+	)
+}
 
 const isPAM = (name: string | undefined) =>
 	name &&
@@ -176,341 +537,6 @@ const computeTotals = (
 		: data.map((d) => d.nombre).reduce((a, b) => a + b, 0)
 }
 
-interface StatsDetailProps {
-	stats: StatsStruct
-}
-
-const StatsDetail = ({ stats }: StatsDetailProps) => {
-	const defaultPeriod = 'mois'
-	const [searchParams, setSearchParams] = useSearchParams()
-	useScrollToHash()
-
-	const [period, setPeriod] = useState<Period>(
-		(searchParams.get('periode') as Period) ?? defaultPeriod
-	)
-	const [chapter2, setChapter2] = useState<Chapter2 | ''>(
-		(searchParams.get('module') as Chapter2) ?? ''
-	)
-
-	const { t } = useTranslation()
-
-	useEffect(() => {
-		const paramsEntries = [
-			['periode', period !== defaultPeriod ? period : ''],
-			['module', chapter2],
-		].filter(([, val]) => val !== '') as [string, string][]
-
-		setSearchParams(paramsEntries, { replace: true })
-	}, [period, chapter2, setSearchParams])
-
-	const visites = useMemo(() => {
-		const rawData = period === 'jours' ? stats.visitesJours : stats.visitesMois
-		if (!chapter2) {
-			return rawData.site
-		}
-		if (chapter2 === 'api-rest') {
-			return (rawData.api ?? []).map(({ date, ...nombre }) => ({
-				date,
-				nombre,
-			}))
-		}
-		if (chapter2 === 'guide') {
-			const pages = rawData.pages as Pageish[]
-			const creer = rawData.creer as Pageish[]
-
-			return statsCreer(pages, creer)
-		}
-
-		return filterByChapter2(rawData.pages as Pageish[], chapter2)
-	}, [period, chapter2])
-
-	const repartition = useMemo(() => {
-		const rawData = stats.visitesMois
-
-		return groupByDate(rawData.pages as Pageish[])
-	}, [])
-
-	const satisfaction = useMemo(() => {
-		return filterByChapter2(stats.satisfaction as Pageish[], chapter2)
-	}, [chapter2]) as Array<{
-		date: string
-		nombre: Record<string, number>
-		percent: Record<string, number>
-	}>
-
-	const [[startDateIndex, endDateIndex], setDateIndex] = useState<
-		[startIndex: number, endIndex: number]
-	>([0, visites.length - 1])
-
-	useEffect(() => {
-		setDateIndex([0, visites.length - 1])
-	}, [visites.length])
-
-	const [slicedVisits, setSlicedVisits] = useState(visites)
-	useEffect(() => {
-		setSlicedVisits(visites)
-	}, [visites])
-
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	const handleDateChange = useCallback(
-		debounce(1000, ({ startIndex, endIndex }) => {
-			if (startIndex != null && endIndex != null) {
-				setDateIndex([startIndex, endIndex])
-				setSlicedVisits(visites.slice(startIndex, endIndex + 1))
-			}
-		}) as NonNullable<BrushProps['onChange']>,
-		[visites]
-	)
-
-	const totals: number | Record<string, number> = useMemo(
-		() => computeTotals(slicedVisits),
-		[slicedVisits]
-	)
-
-	const chapters2: Chapter2[] = [
-		...new Set(stats.visitesMois?.pages.map((p) => p.page_chapter2)),
-		'PAM',
-	]
-
-	type ApiData = {
-		date: string
-		nombre: { evaluate: number; rules: number; rule: number }
-	}
-	const apiCumul =
-		chapter2 === 'api-rest' &&
-		(slicedVisits as ApiData[]).reduce(
-			(acc, { nombre }) => ({
-				evaluate: acc.evaluate + nombre.evaluate,
-				rules: acc.rules + nombre.rules,
-				rule: acc.rule + nombre.rule,
-			}),
-			{ evaluate: 0, rules: 0, rule: 0 }
-		)
-
-	return (
-		<>
-			<H2>Statistiques détaillées</H2>
-			<Indicators>
-				<div
-					css={`
-						flex-basis: 50%;
-					`}
-				>
-					<SimulateursChoice
-						onChange={setChapter2}
-						value={chapter2}
-						possibleValues={chapters2}
-					/>
-					<Spacing sm />
-					<Grid container columns={4}>
-						{chapter2 && <SelectedSimulator chapter2={chapter2} />}
-					</Grid>
-				</div>
-				<div>
-					<StyledBody id="mode-affichage-label">
-						<Trans>Mode d'affichage :</Trans>
-					</StyledBody>
-					<ButtonContainer
-						role="tablist"
-						aria-labelledby="mode-affichage-label"
-					>
-						<StyledButton
-							light={period !== 'jours'}
-							aria-selected={period === 'jours'}
-							aria-controls="visites-panel"
-							role="tab"
-							onClick={() => setPeriod('jours' as Period)}
-						>
-							<Trans>Jours</Trans>
-						</StyledButton>
-						<StyledButton
-							light={period !== 'mois'}
-							aria-selected={period === 'mois'}
-							aria-controls="visites-panel"
-							role="tab"
-							onClick={() => setPeriod('mois' as Period)}
-						>
-							<Trans>Mois</Trans>
-						</StyledButton>
-					</ButtonContainer>
-					<Spacing sm />
-				</div>
-			</Indicators>
-
-			<div id="visites-panel">
-				<H3>Visites</H3>
-				{visites.length ? (
-					<>
-						<Chart
-							key={period + visites.length.toString()}
-							period={period}
-							data={visites}
-							onDateChange={handleDateChange}
-							startIndex={startDateIndex}
-							endIndex={endDateIndex}
-						/>
-						<FoldingMessage
-							title={t('Version accessible des données')}
-							unfoldButtonLabel={t('Afficher la version accessible')}
-						>
-							<table
-								role="table"
-								style={{ textAlign: 'center', width: '100%' }}
-							>
-								<caption className="sr-only">
-									<Trans>
-										Tableau présentant le nombre de visites sur le site
-										mon-entreprise par mois ou par jours.
-									</Trans>
-								</caption>
-								<thead>
-									<tr>
-										<th scope="col">
-											<Trans>{period}</Trans>
-										</th>
-										<th scope="col">
-											<Trans>Nombre de visites</Trans>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									{visites.map((visite) => {
-										return (
-											<tr key={visite.date}>
-												<td>
-													{period === 'mois'
-														? formatMonth(visite.date)
-														: formatDay(visite.date)}
-												</td>
-												<td>{visite.nombre}</td>
-											</tr>
-										)
-									})}
-								</tbody>
-							</table>
-						</FoldingMessage>
-					</>
-				) : (
-					<Message type="info">Aucune donnée disponible.</Message>
-				)}
-			</div>
-
-			{slicedVisits.length > 0 && (
-				<H3>
-					Cumuls pour la période{' '}
-					{period === 'jours'
-						? `du ${formatDay(slicedVisits[0].date)} au ${formatDay(
-								slicedVisits[slicedVisits.length - 1].date
-						  )}`
-						: `de ${formatMonth(slicedVisits[0].date)}` +
-						  (slicedVisits.length > 1
-								? ` à ${formatMonth(
-										slicedVisits[slicedVisits.length - 1].date
-								  )}`
-								: '')}
-				</H3>
-			)}
-
-			<Grid container spacing={2}>
-				{apiCumul ? (
-					<>
-						<BigIndicator
-							main={apiCumul.evaluate}
-							subTitle="Appel à /evaluate"
-						/>
-						<BigIndicator main={apiCumul.rules} subTitle="Appel à /rules" />
-						<BigIndicator main={apiCumul.rule} subTitle="Appel à /rule/*" />
-					</>
-				) : (
-					<BigIndicator
-						main={formatValue(
-							typeof totals === 'number' ? totals : totals.accueil
-						)}
-						subTitle="Visites"
-					/>
-				)}
-
-				{typeof totals !== 'number' && 'simulation_commencee' in totals && (
-					<>
-						{' '}
-						<BigIndicator
-							main={formatValue(totals.simulation_commencee)}
-							subTitle="Simulations "
-						/>
-						<BigIndicator
-							main={formatValue(
-								Math.round(
-									(100 * totals.simulation_commencee) / totals.accueil
-								),
-								{ displayedUnit: '%' }
-							)}
-							subTitle={
-								<>
-									Taux de conversion&nbsp;
-									<InfoBulle>
-										Pourcentage de personne qui commencent une simulation
-									</InfoBulle>
-								</>
-							}
-						/>
-					</>
-				)}
-			</Grid>
-
-			{period === 'mois' && !!satisfaction.length && (
-				<>
-					<H3>Satisfaction</H3>
-					<SatisfactionChart key={chapter2} data={satisfaction} />
-				</>
-			)}
-
-			{chapter2 === '' && period === 'mois' && (
-				<>
-					<H2>Simulateurs principaux</H2>
-					<PagesChart data={repartition} />
-				</>
-			)}
-		</>
-	)
-}
-
-const Indicators = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 12px;
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		flex-direction: row;
-		align-items: flex-end;
-	}
-`
-
-export default function Stats() {
-	const { data: stats, loading } = useFetchData<StatsStruct>('/data/stats.json')
-
-	const statsAvailable = stats?.visitesMois != null
-
-	return (
-		<>
-			{statsAvailable ? (
-				<>
-					<StatsDetail stats={stats} />
-
-					<H2>Statistiques globales</H2>
-					<GlobalStats stats={stats} />
-				</>
-			) : loading ? (
-				<Intro>Chargement des statistiques...</Intro>
-			) : (
-				<Body>Statistiques indisponibles.</Body>
-			)}
-
-			<DemandeUtilisateurs />
-		</>
-	)
-}
-
 function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
 	if ('iframePath' in s && s.iframePath === 'pamc') {
 		return 'PAM'
@@ -603,6 +629,18 @@ function SimulateursChoice(props: {
 	)
 }
 
+const Indicators = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 12px;
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		flex-direction: row;
+		align-items: flex-end;
+	}
+`
+
 const ButtonContainer = styled.div`
 	display: flex;
 `
@@ -618,4 +656,26 @@ const StyledButton = styled(Button)`
 
 const StyledBody = styled(Body)`
 	margin-bottom: 0.25rem;
+`
+
+const StyledTable = styled(Body)`
+	overflow: auto;
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+
+		th {
+			min-width: 150px;
+			padding: 0.25rem;
+			background-color: ${({ theme }) => theme.colors.extended.grey[300]};
+			border: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
+		}
+		td {
+			border: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
+		}
+		tr:nth-child(2n + 1) {
+			background-color: ${({ theme }) => theme.colors.extended.grey[200]};
+		}
+	}
 `

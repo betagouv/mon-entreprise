@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
+import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 
 import { SatisfactionStyle } from './SatisfactionChart'
@@ -85,7 +86,15 @@ const RetoursAsProgress = ({
 	)
 }
 
-export default function GlobalStats({ stats }: { stats: StatsStruct }) {
+interface GlobalStatsProps {
+	stats: StatsStruct
+	accessibleStats: boolean
+}
+
+export default function StatsGlobal({
+	stats,
+	accessibleStats,
+}: GlobalStatsProps) {
 	const { i18n } = useTranslation()
 	const formatNumber = Intl.NumberFormat(i18n.language).format.bind(null)
 
@@ -156,6 +165,8 @@ export default function GlobalStats({ stats }: { stats: StatsStruct }) {
 
 	return (
 		<>
+			<H2>Statistiques globales</H2>
+
 			<Grid as="ul" container spacing={2} style={{ padding: 0 }}>
 				<BigIndicator
 					main={`${last30dConv} %`}
