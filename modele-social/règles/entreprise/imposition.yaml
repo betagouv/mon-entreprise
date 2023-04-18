@@ -1,5 +1,5 @@
 entreprise . imposition:
-  question: Quel est le **type d'imposition** de votre entreprise ?
+  question: Quel est le type d'imposition de votre entreprise ?
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -41,7 +41,7 @@ entreprise . imposition . IR:
     votre entreprise.
 
 entreprise . imposition . IR . type de bénéfices:
-  question: Quel est le **type de bénéfices** de votre entreprise ?
+  question: Quel est le type de bénéfices de votre entreprise ?
   par défaut: oui
   une possibilité:
     choix obligatoire: oui
@@ -231,7 +231,7 @@ entreprise . imposition . IS . résultat net:
   par défaut: 0€
 
 entreprise . imposition . régime:
-  question: Quel est le **régime d'imposition** de votre entreprise ?
+  question: Quel est le régime d'imposition de votre entreprise ?
   une possibilité:
     choix obligatoire: oui
     possibilités:
