@@ -14,6 +14,7 @@
         - Airbnb
         - Abritel
         - Booking
+      seuil déclaration: 760
       seuil pro: 23000
       seuil régime général: 72600
       exonérée si:
@@ -72,6 +73,7 @@
 - titre: Location de biens
   icônes: 🔑 🚗 🔧 🌱
   explication: Vous mettez en location certains de vos biens, tels que voiture, matériel de jardinage, outils de bricolage, accessoires de luxe, vêtements...
+  seuil déclaration: 0
   seuil pro: 8227
   seuil régime général: 72600
   plateformes:
