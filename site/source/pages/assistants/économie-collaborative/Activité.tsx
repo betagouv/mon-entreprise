@@ -118,7 +118,7 @@ export default function Activité() {
 							}}
 							defaultValue={seuilRevenus}
 						>
-							{getValueFrom(activité, 'seuil déclaration') !== 0 && (
+							{!!getValueFrom(activité, 'seuil déclaration') && (
 								<Radio value="AUCUN">
 									<Trans>inférieurs à</Trans>{' '}
 									{formatValue(getValueFrom(activité, 'seuil déclaration'), {
