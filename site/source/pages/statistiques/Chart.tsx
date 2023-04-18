@@ -277,11 +277,15 @@ const CustomTooltip = ({
 	)
 }
 
-const formatLegend = (key: string) =>
+export const formatLegend = (key: string) =>
 	key === 'accueil'
 		? 'visites'
 		: key === 'simulation_commencee'
 		? 'simulation commencée'
 		: key === 'simulation_terminee'
 		? 'simulation terminée'
+		: key === 'declaration_resultat'
+		? 'déclaration résultat'
+		: key === 'declaration_revenu'
+		? 'déclaration revenu'
 		: key.replace(/_/g, ' ')

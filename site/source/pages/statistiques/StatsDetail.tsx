@@ -15,48 +15,16 @@ import { Emoji } from '@/design-system/emoji'
 import { Select } from '@/design-system/field/Select'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { useFetchData } from '@/hooks/useFetchData'
+import { Body } from '@/design-system/typography/paragraphs'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import { debounce, groupBy } from '@/utils'
 
 import { SimulateurCard } from '../simulateurs-et-assistants'
 import Chart, { Data, formatLegend, isDataStacked } from './Chart'
-import DemandeUtilisateurs from './DemandesUtilisateurs'
 import SatisfactionChart from './SatisfactionChart'
-import StatsGlobal, { BigIndicator } from './StatsGlobal'
+import { BigIndicator } from './StatsGlobal'
 import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
 import { formatDay, formatMonth } from './utils'
-
-interface StatsProps {
-	accessibleStats: boolean
-}
-
-export default function Stats({ accessibleStats }: StatsProps) {
-	const { data: stats, loading } = useFetchData<StatsStruct>('/data/stats.json')
-
-	const statsAvailable = stats?.visitesMois != null
-
-	return (
-		<>
-			{statsAvailable ? (
-				<>
-					<StatsDetail stats={stats} accessibleStats={accessibleStats} />
-
-					<StatsGlobal stats={stats} accessibleStats={accessibleStats} />
-				</>
-			) : loading ? (
-				<Intro>Chargement des statistiques...</Intro>
-			) : (
-				<Message type="error" icon mini>
-					<Body>Statistiques indisponibles.</Body>
-				</Message>
-			)}
-
-			<DemandeUtilisateurs />
-		</>
-	)
-}
 
 type Period = 'mois' | 'jours'
 type Chapter2 = PageChapter2 | 'PAM' | 'api-rest'
