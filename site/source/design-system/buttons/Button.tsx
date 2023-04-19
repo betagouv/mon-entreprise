@@ -37,7 +37,7 @@ export const Button = forwardRef(function Button(
 	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement | null>
 ) {
 	const buttonOrLinkProps = useButtonOrLink(
-		wrapperDebounceEvents(ariaButtonProps),
+		{ ...wrapperDebounceEvents(ariaButtonProps), isDisabled },
 		forwardedRef
 	)
 
@@ -48,7 +48,7 @@ export const Button = forwardRef(function Button(
 			$size={size}
 			$light={light}
 			$color={color}
-			$isDisabled={isDisabled}
+			disabled={isDisabled}
 			$underline={underline}
 			role={role}
 			aria-disabled={ariaButtonProps?.['aria-disabled']}
@@ -58,10 +58,10 @@ export const Button = forwardRef(function Button(
 })
 
 type StyledButtonProps = {
+	disabled?: boolean
 	$color: Color
 	$size: Size
 	$light: boolean
-	$isDisabled?: boolean
 	$underline?: boolean
 }
 
@@ -96,24 +96,24 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	line-height: 1.5rem;
 	border: 2px solid transparent;
 
-	${({ $isDisabled }) =>
-		$isDisabled &&
+	${({ disabled }) =>
+		disabled &&
 		css`
 			opacity: 50%;
 			cursor: not-allowed;
 		`}
 
 	&:active {
-		${({ $isDisabled }) =>
-			!$isDisabled &&
+		${({ disabled }) =>
+			!disabled &&
 			css`
 				transform: translateY(3px);
 			`}
 	}
 
 	&:focus-visible {
-		${({ $isDisabled }) =>
-			$isDisabled
+		${({ disabled }) =>
+			disabled
 				? css`
 						outline: initial;
 				  `
@@ -172,8 +172,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	}
 	/* HOVER STYLE */
 	:hover {
-		${({ theme, $color, $isDisabled, $light }) =>
-			$isDisabled || theme.darkMode
+		${({ theme, $color, disabled, $light }) =>
+			disabled || theme.darkMode
 				? ''
 				: /* Primary, secondary & tertiary light colors */
 				$light
@@ -196,8 +196,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	/* Dark mode */
 	@media not print {
 		:hover {
-			${({ $light, theme, $isDisabled }) =>
-				$isDisabled || !theme.darkMode
+			${({ $light, theme, disabled }) =>
+				disabled || !theme.darkMode
 					? ''
 					: /* White color and light mode (dark background mode) */
 					$light
