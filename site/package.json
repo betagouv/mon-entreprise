@@ -46,7 +46,7 @@
 		"i18n:ui:check": "i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation.js",
 		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && i18next -c scripts/i18n/parser.config.js && node scripts/i18n/translate-ui.js",
 		"start:storybook": "storybook dev -p 6006",
-		"build:storybook": "storybook build"
+		"build:storybook": "NODE_OPTIONS='--max-old-space-size=6144'; storybook build"
 	},
 	"dependencies": {
 		"@atomik-color/component": "^1.0.17",
