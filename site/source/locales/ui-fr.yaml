@@ -19,8 +19,8 @@ Accompagnement désactivé: Accompagnement désactivé
 "Accéder à la page d'accueil, nouvelle fenêtre": Accéder à la page d'accueil, nouvelle fenêtre
 Adoption: Adoption
 Afficher la transcription: Afficher la transcription
-Afficher la version accessible: Afficher la version accessible
 Afficher le détail: Afficher le détail
+"Afficher les données par :": "Afficher les données par :"
 Aller au contenu principal: Aller au contenu principal
 Aller plus loin: Aller plus loin
 Aller plus loin sur les revenus: Aller plus loin sur les revenus
@@ -41,7 +41,6 @@ Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur en EIRL
 Autres outils: Autres outils
 Avec chômage partiel: Avec chômage partiel
-Bien: Bien
 Boite de dialogue: Boite de dialogue
 "Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant \"pain\" ou \"viennoiserie\".":
   Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
@@ -79,7 +78,6 @@ Créer une: Créer une
 Créer une entreprise: Créer une entreprise
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: Dans quels cas mes bénéfices ne sont pas de type BNC ?
 Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?
-Date: Date
 Demande de mobilité internationale: Demande de mobilité internationale
 Devenir: Devenir
 Dividendes nets: Dividendes nets
@@ -184,6 +182,7 @@ La gestion juridique et comptable: La gestion juridique et comptable
 Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
   Le montant de votre retraite est constitué de <2>votre retraite de base +
   votre retraite complémentaire</2>.
+Le pourcentage de satisfaction du mois en cours.: Le pourcentage de satisfaction du mois en cours.
 "Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>":
   Les données de simulations se mettront automatiquement à jour après la
   modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre
@@ -196,14 +195,12 @@ Liste des statuts juridiques: Liste des statuts juridiques
 Ma déclaration: Ma déclaration
 Ma situation: Ma situation
 Maternité: Maternité
-Mauvais: Mauvais
 Menu de navigation: Menu de navigation
 Merci pour votre message !: Merci pour votre message !
 Mes cotisations: Mes cotisations
 Message à caractère informatif: Message à caractère informatif
 Mode accompagnement: Mode accompagnement
 Mode d'affichage: Mode d'affichage
-"Mode d'affichage :": "Mode d'affichage :"
 Modifier: Modifier
 Modifier l'entreprise: Modifier l'entreprise
 Modifier mes réponses: Modifier mes réponses
@@ -218,9 +215,9 @@ Montant annuel: Montant annuel
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
 Montant mensuel: Montant mensuel
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
-Moyen: Moyen
 Ne prend pas l'ACRE en compte: Ne prend pas l'ACRE en compte
 Nombre de visites: Nombre de visites
+Nombres: Nombres
 Non: Non
 Notre équipe prend en charge votre retour.: Notre équipe prend en charge votre retour.
 "Nous avons à cœur d'améliorer en continu notre site,vos remarques nous sont donc très précieuses.":
@@ -270,6 +267,7 @@ Plusieurs associés: Plusieurs associés
 "Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.": Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.
 "Pour y prétendre, vous devez voir cotisé au moins <2>12 mois</2>": Pour y prétendre, vous devez voir cotisé au moins <2>12 mois</2>
 "Pour y prétendre, vous devez voir cotisé au moins <2>3 mois</2>": Pour y prétendre, vous devez voir cotisé au moins <2>3 mois</2>
+Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Professions libérales: Professions libérales
 Protection sociale: Protection sociale
@@ -336,13 +334,13 @@ Statut du conjoint: Statut du conjoint
 Suivant: Suivant
 "Suivant, passer à la question suivante": Suivant, passer à la question suivante
 Switch to the english version of the website: Switch to the english version of the website
-"Tableau présentant le nombre de visites par page et par mois en {dataType === 'pourcentage' ? 'pourcentage' : 'nombres'}.":
+Tableau indiquant le nombre de visites sur le site mon-entreprise par mois ou par jour.:
+  Tableau indiquant le nombre de visites sur le site mon-entreprise par mois ou
+  par jour.
+"Tableau présentant le nombre de visites par page et par mois en {dataType === 'pourcentage' ? t('pourcentage') : t('nombres')}.":
   "Tableau présentant le nombre de visites par page et par mois en {dataType ===
-  'pourcentage' ? 'pourcentage' : 'nombres'}."
-Tableau présentant le nombre de visites par page et par mois.: Tableau présentant le nombre de visites par page et par mois.
-Tableau présentant le nombre de visites sur le site mon-entreprise par mois ou par jours.:
-  Tableau présentant le nombre de visites sur le site mon-entreprise par mois ou
-  par jours.
+  'pourcentage' ? t('pourcentage') : t('nombres')}."
+Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
 Taux d'utilisateurs ayant un avis neutre: Taux d'utilisateurs ayant un avis neutre
 Taux d'utilisateurs mécontents: Taux d'utilisateurs mécontents
 Taux d'utilisateurs satisfaits: Taux d'utilisateurs satisfaits
@@ -365,7 +363,6 @@ Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: Tous 
   congé maternité, paternité, adoption.
 Tout réinitialiser: Tout réinitialiser
 Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
-Très bien: Très bien
 Type: Type
 "URSSAF Mon entreprise, accéder à la page d'accueil": URSSAF Mon entreprise, accéder à la page d'accueil
 "Un <1>capital « orphelin »</1> est versé aux enfants des travailleurs indépendants décédés, sous certaines conditions.":
@@ -378,7 +375,6 @@ Un seul associé: Un seul associé
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
 Versement libératoire de l'impôt sur le revenu: Versement libératoire de l'impôt sur le revenu
-Version accessible des données: Version accessible des données
 Version française du site activée.: Version française du site activée.
 Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
 Veuillez renseigner votre adresse email.: Veuillez renseigner votre adresse email.

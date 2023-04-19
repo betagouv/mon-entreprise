@@ -19,8 +19,8 @@ Accompagnement désactivé: Accompaniment deactivated
 "Accéder à la page d'accueil, nouvelle fenêtre": Go to home page, new window
 Adoption: Adoption
 Afficher la transcription: View transcript
-Afficher la version accessible: View the accessible version
 Afficher le détail: View details
+"Afficher les données par :": "Display data by :"
 Aller au contenu principal: Go to main content
 Aller plus loin: Go further
 Aller plus loin sur les revenus: Going further on income
@@ -41,7 +41,6 @@ Auto-entrepreneur: Auto-entrepreneur
 Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 Autres outils: Other tools
 Avec chômage partiel: With partial unemployment
-Bien: Well
 Boite de dialogue: Dialog box
 "Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant \"pain\" ou \"viennoiserie\".": Hello, I am a baker and I did not find by searching "bread" or "pastry".
 Budget: Budget
@@ -77,7 +76,6 @@ Créer une: Create a
 Créer une entreprise: Create a company
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: In what cases are my profits not BNC?
 Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: When is my company not subject to income tax?
-Date: Date
 Demande de mobilité internationale: Request for international mobility
 Devenir: Become
 Dividendes nets: Net dividends
@@ -178,6 +176,7 @@ La gestion juridique et comptable: Legal and accounting management
 Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
   The amount of your pension is made up of <2>your basic pension + your
   complementary pension</2>.
+Le pourcentage de satisfaction du mois en cours.: The percentage of satisfaction of the current month.
 "Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>":
   Simulation data will automatically update after a field is modified. <2>A
   panel will open to allow you to add details to the simulation, detailed
@@ -189,14 +188,12 @@ Liste des statuts juridiques: List of legal statutes
 Ma déclaration: My statement
 Ma situation: My situation
 Maternité: Maternity
-Mauvais: Bad
 Menu de navigation: Navigation menu
 Merci pour votre message !: Thank you for your message!
 Mes cotisations: My contributions
 Message à caractère informatif: Information message
 Mode accompagnement: Accompanying mode
 Mode d'affichage: Display mode
-"Mode d'affichage :": "Display mode:"
 Modifier: Modify
 Modifier l'entreprise: Modify the company
 Modifier mes réponses: Edit my answers
@@ -210,9 +207,9 @@ Montant annuel: Yearly amount
 Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant mensuel: Monthly amount
 Mots-clés définissants l'activité: Keywords defining the activity
-Moyen: Medium
 Ne prend pas l'ACRE en compte: Does not take ACRE into account
 Nombre de visites: Number of visits
+Nombres: Numbers
 Non: No
 Notre équipe prend en charge votre retour.: Our team will take care of your return.
 "Nous avons à cœur d'améliorer en continu notre site,vos remarques nous sont donc très précieuses.":
@@ -261,6 +258,7 @@ Plusieurs associés: Several partners
 "Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.": To qualify, you must meet <2>certain rules<1></1>.</2>
 "Pour y prétendre, vous devez voir cotisé au moins <2>12 mois</2>": To qualify, you must have contributed for at least <2>12 months</2>
 "Pour y prétendre, vous devez voir cotisé au moins <2>3 mois</2>": To qualify, you must have contributed for at least <2>3 months</2>
+Pourcentage: Percentage
 Prochaines questions: Next questions
 Professions libérales: By job
 Protection sociale: Social protection
@@ -324,11 +322,11 @@ Statut du conjoint: Status of the spouse
 Suivant: Next
 "Suivant, passer à la question suivante": Next, go to the next question
 Switch to the english version of the website: Switch to the english version of the website
-"Tableau présentant le nombre de visites par page et par mois en {dataType === 'pourcentage' ? 'pourcentage' : 'nombres'}.":
+Tableau indiquant le nombre de visites sur le site mon-entreprise par mois ou par jour.: Table showing the number of visits to the my-company site per month or per day.
+"Tableau présentant le nombre de visites par page et par mois en {dataType === 'pourcentage' ? t('pourcentage') : t('nombres')}.":
   "Table showing the number of visits per page per month in {dataType ===
-  'percentage' ? percentage' : 'numbers'}."
-Tableau présentant le nombre de visites par page et par mois.: Table showing the number of visits per page and per month.
-Tableau présentant le nombre de visites sur le site mon-entreprise par mois ou par jours.: Table showing the number of visits to the my-company site by month or by day.
+  'percentage' ? t('percentage') : t('numbers')}."
+Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator and per month.
 Taux d'utilisateurs ayant un avis neutre: Rate of users with a neutral opinion
 Taux d'utilisateurs mécontents: Rate of dissatisfied users
 Taux d'utilisateurs satisfaits: Rate of satisfied users
@@ -351,7 +349,6 @@ Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: All s
   and adoption leave.
 Tout réinitialiser: Reset all
 Travailleurs Non Salariés (TNS): Non-salaried workers (TNS)
-Très bien: Very good
 Type: Type
 "URSSAF Mon entreprise, accéder à la page d'accueil": URSSAF My company, go to the home page
 "Un <1>capital « orphelin »</1> est versé aux enfants des travailleurs indépendants décédés, sous certaines conditions.":
@@ -364,7 +361,6 @@ Un seul associé: Only one partner
 Utiliser avec un tableur: Use with a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use the simulator calculations in your application
 Versement libératoire de l'impôt sur le revenu: Payment in full discharge of income tax
-Version accessible des données: Accessible version of the data
 Version française du site activée.: French version of the site activated.
 Veuillez entrer un message avant de soumettre le formulaire.: Please enter a message before submitting the form.
 Veuillez renseigner votre adresse email.: Please enter your email address.
