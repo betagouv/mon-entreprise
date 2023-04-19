@@ -8,9 +8,8 @@ import styled from 'styled-components'
 import { toAtString } from '@/components/ATInternetTracking'
 import PagesChart from '@/components/charts/PagesCharts'
 import { useScrollToHash } from '@/components/utils/markdown'
-import { Item, Message } from '@/design-system'
+import { Item, Message, Radio, ToggleGroup } from '@/design-system'
 import InfoBulle from '@/design-system/InfoBulle'
-import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Select } from '@/design-system/field/Select'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -20,6 +19,7 @@ import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import { debounce, groupBy } from '@/utils'
 
 import { SimulateurCard } from '../simulateurs-et-assistants'
+import { AccessibleTable } from './AccessibleTable'
 import Chart, { Data, formatLegend, isDataStacked } from './Chart'
 import SatisfactionChart from './SatisfactionChart'
 import { BigIndicator } from './StatsGlobal'
@@ -33,10 +33,10 @@ type Pageish = Page | PageSatisfaction
 
 interface StatsDetailProps {
 	stats: StatsStruct
-	accessibleStats: boolean
+	accessibleMode: boolean
 }
 
-export const StatsDetail = ({ stats, accessibleStats }: StatsDetailProps) => {
+export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 	const defaultPeriod = 'mois'
 	const [searchParams, setSearchParams] = useSearchParams()
 	useScrollToHash()
@@ -135,7 +135,7 @@ export const StatsDetail = ({ stats, accessibleStats }: StatsDetailProps) => {
 	const apiCumul =
 		chapter2 === 'api-rest' &&
 		slicedVisits.length > 0 &&
-		typeof slicedVisits[0] === 'object' &&
+		typeof slicedVisits[0]?.nombre === 'object' &&
 		(slicedVisits as ApiData[]).reduce(
 			(acc, { nombre }) => ({
 				evaluate: acc.evaluate + nombre.evaluate,
@@ -167,31 +167,22 @@ export const StatsDetail = ({ stats, accessibleStats }: StatsDetailProps) => {
 				</div>
 				<div>
 					<StyledBody id="mode-affichage-label">
-						<Trans>Mode d'affichage :</Trans>
+						<Trans>Afficher les données par :</Trans>
 					</StyledBody>
-					<ButtonContainer
-						role="tablist"
+					<ToggleGroup
+						onChange={(val) => setPeriod(val as Period)}
+						defaultValue={period}
+						hideRadio
 						aria-labelledby="mode-affichage-label"
+						aria-controls="visites-panel"
 					>
-						<StyledButton
-							light={period !== 'jours'}
-							aria-selected={period === 'jours'}
-							aria-controls="visites-panel"
-							role="tab"
-							onClick={() => setPeriod('jours' as Period)}
-						>
+						<Radio value="jours">
 							<Trans>Jours</Trans>
-						</StyledButton>
-						<StyledButton
-							light={period !== 'mois'}
-							aria-selected={period === 'mois'}
-							aria-controls="visites-panel"
-							role="tab"
-							onClick={() => setPeriod('mois' as Period)}
-						>
+						</Radio>
+						<Radio value="mois">
 							<Trans>Mois</Trans>
-						</StyledButton>
-					</ButtonContainer>
+						</Radio>
+					</ToggleGroup>
 					<Spacing sm />
 				</div>
 			</Indicators>
@@ -200,75 +191,24 @@ export const StatsDetail = ({ stats, accessibleStats }: StatsDetailProps) => {
 				<H3>Visites</H3>
 
 				{visites.length ? (
-					accessibleStats ? (
-						<StyledTable as="div">
-							<table
-								role="table"
-								style={{ textAlign: 'center', width: '100%' }}
-							>
-								<caption className="sr-only">
-									<Trans>
-										Tableau présentant le nombre de visites sur le site
-										mon-entreprise par mois ou par jours.
-									</Trans>
-								</caption>
-								<thead>
-									<tr>
-										<th scope="col">
-											<Trans>{period}</Trans>
-										</th>
-										{typeof visites[0].nombre === 'number' ? (
-											<th scope="col">
-												<Trans>Nombre de visites</Trans>
-											</th>
-										) : (
-											Object.keys(visites[0].nombre).map((key) => (
-												<th scope="col" key={key}>
-													{formatLegend(key)}
-												</th>
-											))
-										)}
-									</tr>
-								</thead>
-								<tbody>
-									{visites.flatMap((visite) => {
-										if (typeof visite.nombre === 'number') {
-											return (
-												<tr key={visite.date}>
-													<td>
-														{period === 'mois'
-															? formatMonth(visite.date)
-															: formatDay(visite.date)}
-													</td>
-													<td>{visite.nombre}</td>
-												</tr>
-											)
-										}
-
-										const total = Object.values(visite.nombre).reduce(
-											(acc, value) => acc + value,
-											0
-										)
-										if (total === 0) {
-											return null
-										}
-
-										return (
-											<tr key={visite.date}>
-												<td>
-													{period === 'mois'
-														? formatMonth(visite.date)
-														: formatDay(visite.date)}
-												</td>
-												{Object.entries(visite.nombre).map(([key, value]) => (
-													<td key={key}>{JSON.stringify(value)}</td>
-												))}
-											</tr>
-										)
-									})}
-								</tbody>
-							</table>
-						</StyledTable>
+					accessibleMode ? (
+						<AccessibleTable
+							period={period}
+							data={visites.map(({ date, nombre }) => ({
+								date,
+								nombre:
+									typeof nombre === 'number' ? { visites: nombre } : nombre,
+							}))}
+							formatKey={(key) =>
+								key === 'visites' ? t('Nombre de visites') : formatLegend(key)
+							}
+							caption={
+								<Trans>
+									Tableau indiquant le nombre de visites sur le site
+									mon-entreprise par mois ou par jour.
+								</Trans>
+							}
+						/>
 					) : (
 						<Chart
 							key={period + visites.length.toString()}
@@ -349,14 +289,18 @@ export const StatsDetail = ({ stats, accessibleStats }: StatsDetailProps) => {
 			{period === 'mois' && !!satisfaction.length && (
 				<>
 					<H3>Satisfaction</H3>
-					<SatisfactionChart key={chapter2} data={satisfaction} />
+					<SatisfactionChart
+						key={chapter2}
+						data={satisfaction}
+						accessibleMode={accessibleMode}
+					/>
 				</>
 			)}
 
 			{chapter2 === '' && period === 'mois' && (
 				<>
 					<H2>Simulateurs principaux</H2>
-					<PagesChart data={repartition} />
+					<PagesChart data={repartition} accessibleMode={accessibleMode} />
 				</>
 			)}
 		</>
@@ -568,16 +512,16 @@ function SimulateursChoice(props: {
 						: ''
 				)
 			}}
-			defaultSelectedKey={props.value}
-			label={'Sélectionner la fonctionnalité'}
+			defaultSelectedKey={props.value || 'general-stats'}
+			label={'Voir les statistiques pour :'}
 			id="simulator-choice-input"
 		>
 			{[
-				<Item key={''} textValue="Tout le site">
+				<Item key="general-stats" textValue="Tout le site">
 					<Emoji emoji="🌍" />
 					&nbsp;Tout le site
 				</Item>,
-				<Item key={'api-rest'} textValue="API REST">
+				<Item key="api-rest" textValue="API REST">
 					<Emoji emoji="👩‍💻" />
 					&nbsp;API REST
 				</Item>,
@@ -609,41 +553,6 @@ const Indicators = styled.div`
 	}
 `
 
-const ButtonContainer = styled.div`
-	display: flex;
-`
-
-const StyledButton = styled(Button)`
-	&:first-child {
-		border-radius: 0.25rem 0 0 0.25rem;
-	}
-	&:nth-child(2) {
-		border-radius: 0 0.25rem 0.25rem 0;
-	}
-`
-
 const StyledBody = styled(Body)`
 	margin-bottom: 0.25rem;
-`
-
-const StyledTable = styled(Body)`
-	overflow: auto;
-
-	table {
-		width: 100%;
-		border-collapse: collapse;
-
-		th {
-			min-width: 150px;
-			padding: 0.25rem;
-			background-color: ${({ theme }) => theme.colors.extended.grey[300]};
-			border: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
-		}
-		td {
-			border: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
-		}
-		tr:nth-child(2n + 1) {
-			background-color: ${({ theme }) => theme.colors.extended.grey[200]};
-		}
-	}
 `

@@ -61,10 +61,6 @@ const Button = styled.button<ButtonProps>`
 	outline: none;
 	transition: color 0.2s;
 
-	&:focus {
-		${FocusStyle}
-	}
-
 	${({ theme }) =>
 		theme.darkMode &&
 		css`
@@ -88,13 +84,10 @@ const StyledIcon = styled(CarretDownIcon)`
 `
 
 interface WrapperProps {
-	hasError: boolean
-	hasLabel: boolean
-	small?: boolean
-	isOpen?: boolean
+	isOpen: boolean
 }
 
-export const Wrapper = styled.div<WrapperProps>`
+const Wrapper = styled.div<WrapperProps>`
 	overflow: hidden;
 	display: flex;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
@@ -117,36 +110,9 @@ export const Wrapper = styled.div<WrapperProps>`
 	align-items: center;
 	transition: all 0.2s;
 
-	:focus-within {
-		outline-color: ${({ theme, hasError }) =>
-			hasError
-				? theme.colors.extended.error[400]
-				: theme.darkMode
-				? theme.colors.bases.primary[100]
-				: theme.colors.bases.primary[700]};
+	&:focus-within {
+		${FocusStyle}
 	}
-	:focus-within ${Button} {
-		color: ${({ theme }) => theme.colors.bases.primary[800]};
-		background-color: inherit;
-	}
-
-	:focus-within + ${Button} {
-		color: ${({ theme }) => theme.colors.bases.primary[800]};
-		background-color: inherit;
-	}
-
-	${({ hasLabel }) =>
-		hasLabel &&
-		css`
-			${Button}:not(:focus):placeholder-shown {
-				color: transparent;
-				background-color: inherit;
-			}
-			${Button}:not(:focus):placeholder-shown + ${Button} {
-				color: transparent;
-				background-color: inherit;
-			}
-		`}
 
 	${Button}:not(:focus):placeholder-shown + ${Button} {
 		font-size: 1rem;
@@ -155,37 +121,10 @@ export const Wrapper = styled.div<WrapperProps>`
 		transform: translateY(-50%);
 	}
 
-	${({ theme, hasError }) =>
-		hasError &&
-		css`
-			&& {
-				border-color: ${theme.colors.extended.error[400]};
-			}
-			&&& label {
-				color: ${theme.colors.extended.error[400]};
-				background-color: inherit;
-			}
-		`}
-
 	${Button}, ${Button} {
-		padding: ${({ hasLabel, theme, small }) =>
-			small
-				? css`
-						${theme.spacings.xxs} ${theme.spacings.xs}
-				  `
-				: css`calc(${hasLabel ? '1rem' : '0rem'} + ${theme.spacings.xs}) ${
-						theme.spacings.sm
-				  } ${theme.spacings.xs}`};
+		padding: ${({ theme }) =>
+			`${theme.spacings.xs} ${theme.spacings.sm} ${theme.spacings.xs}`};
 	}
-
-	${({ small }) =>
-		small &&
-		css`
-			${Button}, ${Button} {
-				font-size: 1rem;
-				line-height: 1.25rem;
-			}
-		`}
 `
 
 export function Select<T extends Record<string, unknown>>(
@@ -244,12 +183,7 @@ export function Select<T extends Record<string, unknown>>(
 
 	return (
 		<Container>
-			<Wrapper
-				ref={wrapperRef}
-				isOpen={state.isOpen}
-				hasError={false}
-				hasLabel={false}
-			>
+			<Wrapper ref={wrapperRef} isOpen={state.isOpen}>
 				<HiddenSelect
 					state={state}
 					triggerRef={ref}

@@ -8,9 +8,9 @@ import {
 	Tooltip,
 	XAxis,
 } from 'recharts'
+import styled from 'styled-components'
 
 import { StyledLegend } from '@/components/charts/PagesCharts'
-import FoldingMessage from '@/components/ui/FoldingMessage'
 import { Radio, ToggleGroup } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
@@ -19,6 +19,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
+import { AccessibleTable } from './AccessibleTable'
 import { RealResponsiveContainer } from './Chart'
 import { SatisfactionLevel } from './types'
 
@@ -44,6 +45,7 @@ function toPercentage(data: Record<string, number>) {
 }
 
 type SatisfactionChartProps = {
+	accessibleMode: boolean
 	data: Array<{
 		date: string
 		nombre: Record<string, number>
@@ -53,7 +55,10 @@ type SatisfactionChartProps = {
 
 type DataType = 'nombres' | 'pourcentage'
 
-export default function SatisfactionChart({ data }: SatisfactionChartProps) {
+export default function SatisfactionChart({
+	data,
+	accessibleMode,
+}: SatisfactionChartProps) {
 	const [darkMode] = useDarkMode()
 	const [dataType, setDataType] = useState<DataType>('nombres')
 	const { t } = useTranslation()
@@ -80,77 +85,92 @@ export default function SatisfactionChart({ data }: SatisfactionChartProps) {
 
 	return (
 		<Body as="div">
+			<StyledBody id="mode-affichage-satisfaction-label">
+				<Trans>Afficher les données par :</Trans>
+			</StyledBody>
+
 			<ToggleGroup
 				onChange={(val) => setDataType(val as DataType)}
 				defaultValue={dataType}
-				aria-label={t("Mode d'affichage")}
+				hideRadio
+				aria-labelledby="mode-affichage-satisfaction-label"
 			>
 				<Radio value="nombres">
-					<Trans>nombres</Trans>
+					<Trans>Nombres</Trans>
 				</Radio>
 				<Radio value="pourcentage">
-					<Trans>pourcentage</Trans>
+					<Trans>Pourcentage</Trans>
 				</Radio>
 			</ToggleGroup>
 
 			<Spacing sm />
 
-			<RealResponsiveContainer width="100%" height={400}>
-				<BarChartWithRole
+			{accessibleMode ? (
+				<AccessibleVersion
 					data={flattenData}
-					aria-label={t(
-						'Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image'
-					)}
-					role="img"
-				>
-					<XAxis
-						dataKey="date"
-						tickFormatter={formatMonth}
-						angle={-45}
-						textAnchor="end"
-						height={60}
-						minTickGap={-8}
-						stroke={darkMode ? 'lightGrey' : 'gray'}
-					/>
-					<Tooltip content={<CustomTooltip dataType={dataType} />} />
+					dataType={dataType}
+					accessibleMode={accessibleMode}
+				/>
+			) : (
+				<RealResponsiveContainer width="100%" height={400}>
+					<BarChartWithRole
+						data={flattenData}
+						aria-label={t(
+							'Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image'
+						)}
+						role="img"
+					>
+						<XAxis
+							dataKey="date"
+							tickFormatter={formatMonth}
+							angle={-45}
+							textAnchor="end"
+							height={60}
+							minTickGap={-8}
+							stroke={darkMode ? 'lightGrey' : 'gray'}
+						/>
+						<Tooltip content={<CustomTooltip dataType={dataType} />} />
 
-					{SatisfactionStyle.map(([level, { emoji, color }]) => (
-						<Bar
-							key={level}
-							dataKey={`${
-								dataType === 'nombres' ? 'nombre' : 'percent'
-							}.${level}`}
-							stackId="1"
-							fill={color}
-							maxBarSize={50}
-							style={{
-								borderTop: 'solid 1px white',
-							}}
-						>
-							<LabelList
-								dataKey={`${dataType === 'nombres' ? 'nombre' : 'percent'}`}
-								content={() => emoji}
-								position="left"
-							/>
-						</Bar>
-					))}
-
-					{flattenData
-						.filter(({ info }) => info)
-						.map(({ date }) => (
-							<ReferenceLine
-								key={date}
-								x={date}
-								stroke={darkMode ? 'lightGrey' : 'darkGray'}
-								strokeWidth={2}
-							/>
+						{SatisfactionStyle.map(([level, { emoji, color }]) => (
+							<Bar
+								key={level}
+								dataKey={`${
+									dataType === 'nombres' ? 'nombre' : 'percent'
+								}.${level}`}
+								stackId="1"
+								fill={color}
+								maxBarSize={50}
+								style={{
+									borderTop: 'solid 1px white',
+								}}
+							>
+								<LabelList
+									dataKey={`${dataType === 'nombres' ? 'nombre' : 'percent'}`}
+									content={() => emoji}
+									position="left"
+								/>
+							</Bar>
 						))}
-				</BarChartWithRole>
-			</RealResponsiveContainer>
-			<AccessibleVersion data={flattenData} dataType={dataType} />
+
+						{flattenData
+							.filter(({ info }) => info)
+							.map(({ date }) => (
+								<ReferenceLine
+									key={date}
+									x={date}
+									stroke={darkMode ? 'lightGrey' : 'darkGray'}
+									strokeWidth={2}
+								/>
+							))}
+					</BarChartWithRole>
+				</RealResponsiveContainer>
+			)}
 		</Body>
 	)
 }
+
+export const round = (num: number, precision = 0) =>
+	Math.round(num * 10 ** precision) / 10 ** precision
 
 const AccessibleVersion = ({
 	data,
@@ -161,51 +181,28 @@ const AccessibleVersion = ({
 	const dataKey = dataType === 'pourcentage' ? 'percent' : 'nombre'
 
 	return (
-		<FoldingMessage
-			title={t('Version accessible des données')}
-			unfoldButtonLabel={t('Afficher la version accessible')}
-		>
-			<table role="table" style={{ textAlign: 'center', width: '100%' }}>
-				<caption className="sr-only">
-					<Trans>
-						Tableau présentant le nombre de visites par page et par mois en{' '}
-						{dataType === 'pourcentage' ? 'pourcentage' : 'nombres'}.
-					</Trans>
-				</caption>
-				<thead>
-					<tr>
-						<th scope="col">
-							<Trans>Date</Trans>
-						</th>
-						<th scope="col">
-							<Trans>Très bien</Trans>
-						</th>
-						<th scope="col">
-							<Trans>Bien</Trans>
-						</th>
-						<th scope="col">
-							<Trans>Moyen</Trans>
-						</th>
-						<th scope="col">
-							<Trans>Mauvais</Trans>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{data.map((item) => {
-						return (
-							<tr key={item.date}>
-								<td>{formatMonth(item.date)}</td>
-								<td>{item[dataKey]['très bien'] ?? 0}</td>
-								<td>{item[dataKey].bien ?? 0}</td>
-								<td>{item[dataKey].moyen ?? 0}</td>
-								<td>{item[dataKey].mauvais ?? 0}</td>
-							</tr>
-						)
-					})}
-				</tbody>
-			</table>
-		</FoldingMessage>
+		<AccessibleTable
+			period="mois"
+			data={data.map(({ date, ...rest }) => ({
+				date,
+				nombre: {
+					// order is important
+					'très bien': rest[dataKey]['très bien'],
+					bien: rest[dataKey].bien,
+					moyen: rest[dataKey].moyen,
+					mauvais: rest[dataKey].mauvais,
+				},
+			}))}
+			formatValue={({ value }) =>
+				`${round(value, 2)}${dataType === 'pourcentage' ? ' %' : ''}`
+			}
+			caption={
+				<Trans>
+					Tableau présentant le nombre de visites par page et par mois en{' '}
+					{dataType === 'pourcentage' ? t('pourcentage') : t('nombres')}.
+				</Trans>
+			}
+		/>
 	)
 }
 
@@ -307,3 +304,7 @@ const CustomTooltip = ({ payload, active, dataType }: CustomTooltipProps) => {
 		</StyledLegend>
 	)
 }
+
+const StyledBody = styled(Body)`
+	margin-bottom: 0.25rem;
+`

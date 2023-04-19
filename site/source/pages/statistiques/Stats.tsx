@@ -8,10 +8,10 @@ import StatsGlobal from './StatsGlobal'
 import { StatsStruct } from './types'
 
 interface StatsProps {
-	accessibleStats: boolean
+	accessibleMode: boolean
 }
 
-export default function Stats({ accessibleStats }: StatsProps) {
+export default function Stats({ accessibleMode }: StatsProps) {
 	const { data: stats, loading } = useFetchData<StatsStruct>('/data/stats.json')
 
 	const statsAvailable = stats?.visitesMois != null
@@ -20,9 +20,9 @@ export default function Stats({ accessibleStats }: StatsProps) {
 		<>
 			{statsAvailable ? (
 				<>
-					<StatsDetail stats={stats} accessibleStats={accessibleStats} />
+					<StatsDetail stats={stats} accessibleMode={accessibleMode} />
 
-					<StatsGlobal stats={stats} accessibleStats={accessibleStats} />
+					<StatsGlobal stats={stats} accessibleMode={accessibleMode} />
 				</>
 			) : loading ? (
 				<Intro>Chargement des statistiques...</Intro>
