@@ -107,6 +107,11 @@ export default function Popover(
 								min-width: 0;
 							`}
 						>
+							{/* 
+								If you use an iframe in the children, be careful because you need a
+								focusable element before and after the iframe for the FocusTrap to work.
+								The CloseButton counts as the before element, so you just need a focusable element after the iframe.
+							*/}
 							<FocusTrap>
 								<PopoverContainer
 									{...dialogProps}

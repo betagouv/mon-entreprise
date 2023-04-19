@@ -62,36 +62,50 @@ export const PlaceDesEntreprisesButton = ({
 				)}
 				contentRef={contentRef}
 			>
-				<Body>
-					<Trans>
-						Décrivez votre projet ou votre problème en donnant quelques éléments
-						de contexte. Nous identifions, parmi l’ensemble des partenaires
-						publics et parapublics, le conseiller compétent pour votre demande.
-						Celui-ci vous contacte par téléphone sous 5 jours et vous accompagne
-						en fonction de votre situation.
-					</Trans>
-				</Body>
+				{(close) => (
+					<>
+						<Body>
+							<Trans>
+								Décrivez votre projet ou votre problème en donnant quelques
+								éléments de contexte. Nous identifions, parmi l’ensemble des
+								partenaires publics et parapublics, le conseiller compétent pour
+								votre demande. Celui-ci vous contacte par téléphone sous 5 jours
+								et vous accompagne en fonction de votre situation.
+							</Trans>
+						</Body>
 
-				<Suspense
-					fallback={
-						<Container
-							css={`
-								height: 300px;
-								align-items: center;
-							`}
+						<Suspense
+							fallback={
+								<Container
+									css={`
+										height: 300px;
+										align-items: center;
+									`}
+								>
+									<Loader />
+								</Container>
+							}
 						>
-							<Loader />
-						</Container>
-					}
-				>
-					<LazyIframe
-						src={url.href}
-						onLoad={function () {
-							document.getElementById('pdeIframe')?.focus()
-							scrollTo(0, 0)
-						}}
-					/>
-				</Suspense>
+							<LazyIframe
+								src={url.href}
+								onLoad={function () {
+									console.log('iframe loaded')
+
+									document.getElementById('pdeIframe')?.focus()
+									scrollTo(0, 0)
+
+									console.log('done!')
+								}}
+							/>
+						</Suspense>
+
+						<Body style={{ textAlign: 'right' }}>
+							<Button aria-label={t('Fermer')} size="XS" onPress={close}>
+								{t('Fermer')}
+							</Button>
+						</Body>
+					</>
+				)}
 			</PopoverWithTrigger>
 		</Container>
 	)
