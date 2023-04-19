@@ -19,7 +19,7 @@ const Stats = lazy(() => import('./Stats'))
 
 export default function StatsPage() {
 	const { t } = useTranslation()
-	const [accessibleStats, setAccessibleStats] = useState(false)
+	const [accessibleMode, setAccessibleMode] = useState(false)
 
 	return (
 		<>
@@ -51,10 +51,7 @@ export default function StatsPage() {
 						accessibles pour les lecteurs d'écran, nous avons donc mis en place
 						un mode d'accessibilité qui les affiche sous forme de tableaux.
 					</Body>
-					<Switch
-						defaultSelected={accessibleStats}
-						onChange={setAccessibleStats}
-					>
+					<Switch defaultSelected={accessibleMode} onChange={setAccessibleMode}>
 						Activer le mode d'accessibilité sur cette page :
 					</Switch>
 					<Spacing sm />
@@ -62,7 +59,7 @@ export default function StatsPage() {
 			</PageHeader>
 
 			<Suspense fallback={<Intro>Chargement des statistiques...</Intro>}>
-				<Stats accessibleStats={accessibleStats} />
+				<Stats accessibleMode={accessibleMode} />
 			</Suspense>
 			<MoreInfosOnUs />
 		</>

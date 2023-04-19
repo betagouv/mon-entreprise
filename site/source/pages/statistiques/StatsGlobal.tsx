@@ -1,11 +1,13 @@
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 
 import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 
-import { SatisfactionStyle } from './SatisfactionChart'
+import { AccessibleTable } from './AccessibleTable'
+import { SatisfactionStyle, round } from './SatisfactionChart'
 import { SatisfactionLevel, StatsStruct } from './types'
 import { Indicator, IndicatorProps } from './utils'
 
@@ -88,13 +90,14 @@ const RetoursAsProgress = ({
 
 interface GlobalStatsProps {
 	stats: StatsStruct
-	accessibleStats: boolean
+	accessibleMode: boolean
 }
 
 export default function StatsGlobal({
 	stats,
-	accessibleStats,
+	accessibleMode,
 }: GlobalStatsProps) {
+	const { pathname, search } = useLocation()
 	const { i18n } = useTranslation()
 	const formatNumber = Intl.NumberFormat(i18n.language).format.bind(null)
 
@@ -189,7 +192,7 @@ export default function StatsGlobal({
 					footnote={
 						<>
 							sur les 30 derniers jours.{' '}
-							<Link to="#demandes-utilisateurs">
+							<Link to={{ pathname, search, hash: '#demandes-utilisateurs' }}>
 								Voir les demandes populaires
 							</Link>
 						</>
@@ -208,13 +211,37 @@ export default function StatsGlobal({
 						<Indicator
 							subTitle="Satisfaction utilisateurs"
 							main={
-								<>
+								accessibleMode ? (
+									<AccessibleTable
+										data={[
+											{
+												nombre: {
+													// order is important
+													[SatisfactionLevel.TrèsBien]:
+														currentMonthSatisfaction.percentages['très bien'],
+													[SatisfactionLevel.Bien]:
+														currentMonthSatisfaction.percentages.bien,
+													[SatisfactionLevel.Moyen]:
+														currentMonthSatisfaction.percentages.moyen,
+													[SatisfactionLevel.Mauvais]:
+														currentMonthSatisfaction.percentages.mauvais,
+												},
+											},
+										]}
+										caption={
+											<Trans>
+												Le pourcentage de satisfaction du mois en cours.
+											</Trans>
+										}
+										formatValue={({ value }) => formatPercentage(value)}
+									/>
+								) : (
 									<RetoursAsProgress
 										percentages={currentMonthSatisfaction.percentages}
-									/>{' '}
-								</>
+									/>
+								)
 							}
-							footnote={`${currentMonthSatisfaction.total} avis ce mois ci`}
+							footnote={`Pour un total de ${currentMonthSatisfaction.total} avis ce mois-ci`}
 						/>
 					</Grid>
 				)}
@@ -237,3 +264,5 @@ export default function StatsGlobal({
 		</>
 	)
 }
+
+const formatPercentage = (value: number) => `${round(value, 2)} %`

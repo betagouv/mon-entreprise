@@ -16,9 +16,8 @@ import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { AccessibleTable } from '@/pages/statistiques/AccessibleTable'
 import { RealResponsiveContainer } from '@/pages/statistiques/Chart'
-
-import FoldingMessage from '../ui/FoldingMessage'
 
 type Data =
 	| Array<{ date: string; nombre: number }>
@@ -27,6 +26,7 @@ type Data =
 type PagesChartProps = {
 	sync?: boolean
 	data: Data
+	accessibleMode: boolean
 }
 const Palette = [
 	'#0B8BE0',
@@ -43,7 +43,11 @@ function getColor(i: number): string {
 	return Palette[i % Palette.length]
 }
 
-export default function PagesChart({ data, sync = true }: PagesChartProps) {
+export default function PagesChart({
+	data,
+	sync = true,
+	accessibleMode,
+}: PagesChartProps) {
 	const [darkMode] = useDarkMode()
 
 	const { t } = useTranslation()
@@ -53,7 +57,12 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 	}
 
 	const dataKeys = Object.keys(data[0].nombre)
-	const flattenedData = (data as any).map((d: any) => ({ ...d, ...d.nombre }))
+	const flattenedData = data.map((d) => ({
+		...d,
+		...(typeof d.nombre === 'number'
+			? { visites: { total: d.nombre } }
+			: d.nombre),
+	}))
 
 	const ComposedChartWithRole = (
 		props: ComponentProps<typeof ComposedChart> | { role: string }
@@ -61,104 +70,74 @@ export default function PagesChart({ data, sync = true }: PagesChartProps) {
 
 	return (
 		<Body as="div">
-			<RealResponsiveContainer
-				width="100%"
-				height={500}
-				css={`
-					svg {
-						overflow: visible;
+			{accessibleMode ? (
+				<AccessibleTable
+					period="mois"
+					data={data.map(({ date, nombre }) => ({
+						date,
+						nombre: typeof nombre === 'number' ? { visites: nombre } : nombre,
+					}))}
+					caption={
+						<Trans>
+							Tableau présentant le nombre de visites par simulateur et par
+							mois.
+						</Trans>
 					}
-				`}
-			>
-				<ComposedChartWithRole
-					layout="horizontal"
-					data={flattenedData}
-					syncId={sync ? '1' : undefined}
-					aria-label={t(
-						'Graphique des principaux simulateurs, présence d’une alternative accessible après l’image'
-					)}
-					role="img"
+					formatKey={(key) => formatLegend(key)}
+				/>
+			) : (
+				<RealResponsiveContainer
+					width="100%"
+					height={500}
+					css={`
+						svg {
+							overflow: visible;
+						}
+					`}
 				>
-					<Legend />
-					<XAxis
-						dataKey="date"
-						type="category"
-						tickFormatter={formatMonth}
-						angle={-45}
-						textAnchor="end"
-						height={60}
-						minTickGap={-8}
-						stroke={darkMode ? 'lightGrey' : 'gray'}
-					/>
-
-					<YAxis
-						tickFormatter={(x) => formatValue(x)}
-						domain={['0', 'auto']}
-						type="number"
-						stroke={darkMode ? 'lightGrey' : 'gray'}
-					/>
-
-					<Tooltip content={<CustomTooltip />} />
-
-					{dataKeys.map((k, i) => (
-						<Bar
-							key={k}
-							dataKey={k}
-							name={formatLegend(k)}
-							fill={getColor(i)}
-							stackId={1}
+					<ComposedChartWithRole
+						layout="horizontal"
+						data={flattenedData}
+						syncId={sync ? '1' : undefined}
+						aria-label={t(
+							'Graphique des principaux simulateurs, présence d’une alternative accessible après l’image'
+						)}
+						role="img"
+					>
+						<Legend />
+						<XAxis
+							dataKey="date"
+							type="category"
+							tickFormatter={formatMonth}
+							angle={-45}
+							textAnchor="end"
+							height={60}
+							minTickGap={-8}
+							stroke={darkMode ? 'lightGrey' : 'gray'}
 						/>
-					))}
-				</ComposedChartWithRole>
-			</RealResponsiveContainer>
-			<AccessibleVersion data={flattenedData} />
-		</Body>
-	)
-}
 
-const AccessibleVersion = ({ data }: PagesChartProps) => {
-	const { t } = useTranslation()
+						<YAxis
+							tickFormatter={(x) => formatValue(x)}
+							domain={['0', 'auto']}
+							type="number"
+							stroke={darkMode ? 'lightGrey' : 'gray'}
+						/>
 
-	return (
-		<FoldingMessage
-			title={t('Version accessible des données')}
-			unfoldButtonLabel={t('Afficher la version accessible')}
-		>
-			<table role="table" style={{ textAlign: 'center', width: '100%' }}>
-				<caption className="sr-only">
-					<Trans>
-						Tableau présentant le nombre de visites par page et par mois.
-					</Trans>
-				</caption>
-				<thead>
-					<tr>
-						<th scope="col">
-							<Trans>Date</Trans>
-						</th>
-						{/* Dynamically add the page keys as th */}
-						{Object.keys(data[0].nombre).map((key) => (
-							<th scope="col" key={key}>
-								{key}
-							</th>
+						<Tooltip content={<CustomTooltip />} />
+
+						{dataKeys.map((k, i) => (
+							<Bar
+								key={k}
+								dataKey={k}
+								name={formatLegend(k)}
+								fill={getColor(i)}
+								stackId={1}
+							/>
 						))}
-					</tr>
-				</thead>
-				<tbody>
-					{data.map((item) => {
-						return (
-							<tr key={item.date}>
-								<td>{formatMonth(item.date)}</td>
-								{Object.entries(item.nombre).map(([key, value]) => {
-									return (
-										<td key={`${item.date}-${String(key)}`}>{value ?? 0}</td>
-									)
-								})}
-							</tr>
-						)
-					})}
-				</tbody>
-			</table>
-		</FoldingMessage>
+					</ComposedChartWithRole>
+				</RealResponsiveContainer>
+			)}
+		</Body>
 	)
 }
 
