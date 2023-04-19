@@ -67,10 +67,11 @@ export const PlaceDesEntreprisesButton = ({
 						<Body>
 							<Trans>
 								Décrivez votre projet ou votre problème en donnant quelques
-								éléments de contexte. Nous identifions, parmi l’ensemble des
-								partenaires publics et parapublics, le conseiller compétent pour
-								votre demande. Celui-ci vous contacte par téléphone sous 5 jours
-								et vous accompagne en fonction de votre situation.
+								éléments de contexte. Notre partenaire Place des Entrprises
+								identifiera, parmi l’ensemble des partenaires publics et
+								parapublics, le conseiller compétent pour votre demande.
+								Celui-ci vous contactera par téléphone sous 5 jours et vous
+								accompagnera en fonction de votre situation.
 							</Trans>
 						</Body>
 
