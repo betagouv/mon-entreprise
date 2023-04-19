@@ -31,6 +31,7 @@ export const PlaceDesEntreprisesIframe = ({
 				src={src}
 				id="pdeIframe"
 				onLoad={onLoad}
+				tabIndex={0}
 			/>
 		</IframeContainer>
 	)
