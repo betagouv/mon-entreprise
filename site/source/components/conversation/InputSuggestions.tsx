@@ -50,7 +50,7 @@ export default function InputSuggestions({
 	)
 }
 
-const StyledInputSuggestion = styled(SmallBody)`
+export const StyledInputSuggestion = styled(SmallBody)`
 	display: flex;
 	> * {
 		white-space: nowrap;

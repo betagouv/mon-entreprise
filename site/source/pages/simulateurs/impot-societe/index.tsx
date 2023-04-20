@@ -5,18 +5,23 @@ import styled from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import Value from '@/components/EngineValue'
 import Notifications from '@/components/Notifications'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
+import {
+	SimulationContainer,
+	SimulationGoal,
+	SimulationGoals,
+} from '@/components/Simulation'
 import RuleInput from '@/components/conversation/RuleInput'
 import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
 import { H2 } from '@/design-system/typography/heading'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { updateSituation } from '@/store/actions/actions'
+import { Link } from '@/design-system/typography/link'
+import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { batchUpdateSituation, updateSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 export default function ISSimulation() {
 	return (
-		<>
+		<SimulationContainer>
 			<Warning
 				localStorageKey={'app::simulateurs:warning-folded:v1:impôt-societé'}
 			>
@@ -29,6 +34,7 @@ export default function ISSimulation() {
 				</Body>
 			</Warning>
 			<Notifications />
+
 			<SimulationGoals
 				toggles={<ExerciceDate />}
 				legend="Résultat imposable de l'entreprise"
@@ -36,7 +42,7 @@ export default function ISSimulation() {
 				<SimulationGoal dottedName="entreprise . imposition . IS . résultat imposable" />
 			</SimulationGoals>
 			<Explanations />
-		</>
+		</SimulationContainer>
 	)
 }
 
@@ -45,29 +51,70 @@ const ExerciceDateContainer = styled.div`
 	justify-content: flex-end;
 	align-items: center;
 	gap: 0.5rem;
-	margin-top: 1rem;
+	margin-bottom: 0.5rem;
 `
 
 function ExerciceDate() {
 	const dispatch = useDispatch()
 
 	return (
-		<ExerciceDateContainer>
-			<RuleInput
-				dottedName={'entreprise . exercice . début'}
-				showDefaultDateValue
-				onChange={(x) =>
-					dispatch(updateSituation('entreprise . exercice . début', x))
-				}
-			/>{' '}
-			<RuleInput
-				dottedName={'entreprise . exercice . fin'}
-				showDefaultDateValue
-				onChange={(x) =>
-					dispatch(updateSituation('entreprise . exercice . fin', x))
-				}
+		<>
+			<SmallBody
+				css={`
+					align-self: flex-end;
+				`}
+			>
+				<Trans i18nKey={'impot-société.préremplir-exercice'}>
+					Préremplir avec les dates de{' '}
+					<Link
+						onPress={() => {
+							dispatch(
+								batchUpdateSituation({
+									'entreprise . exercice . début': '01/01/2022',
+									'entreprise . exercice . fin': '31/12/2022',
+								})
+							)
+						}}
+					>
+						l'exercice 2022
+					</Link>{' '}
+					ou de{' '}
+					<Link
+						onPress={() => {
+							dispatch(
+								batchUpdateSituation({
+									'entreprise . exercice . début': '01/01/2023',
+									'entreprise . exercice . fin': '31/12/2023',
+								})
+							)
+						}}
+					>
+						l'exercice 2023
+					</Link>
+				</Trans>
+			</SmallBody>
+			<div
+				css={`
+					flex: 1;
+				`}
 			/>
-		</ExerciceDateContainer>
+			<ExerciceDateContainer>
+				<RuleInput
+					dottedName={'entreprise . exercice . début'}
+					showDefaultDateValue
+					onChange={(x) =>
+						dispatch(updateSituation('entreprise . exercice . début', x))
+					}
+				/>{' '}
+				<RuleInput
+					dottedName={'entreprise . exercice . fin'}
+					showDefaultDateValue
+					onChange={(x) =>
+						dispatch(updateSituation('entreprise . exercice . fin', x))
+					}
+				/>
+			</ExerciceDateContainer>
+		</>
 	)
 }
 
