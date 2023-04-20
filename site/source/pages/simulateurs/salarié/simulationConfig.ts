@@ -4,6 +4,7 @@ export const configSalarié: SimulationConfig = {
 	'objectifs exclusifs': [
 		'salarié . coût total employeur',
 		'salarié . contrat . salaire brut',
+		'salarié . contrat . salaire brut . équivalent temps plein',
 		'salarié . rémunération . net . à payer avant impôt',
 		'salarié . rémunération . net . payé après impôt',
 	],
