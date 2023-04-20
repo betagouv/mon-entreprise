@@ -36,17 +36,19 @@ export default function GuichetInfo({ apeCode }: { apeCode: string }) {
 						<Li key={code}>
 							<Message border={false}>
 								<H5>
-									{label.niv4
-										? label.niv4
-										: label.niv3
-										? label.niv3
-										: label.niv2}
+									{[
+										(!label.niv3 || label.niv3 === 'Autre') && label.niv2,
+										(!label.niv4 || label.niv4 === 'Autre') && label.niv3,
+										label.niv4,
+									]
+										.filter(Boolean)
+										.join(' - ')}
 									<Chip type="secondary">{code}</Chip>
 								</H5>
 								<Body>
 									Activité{' '}
 									<Strong>{catégorieActivité.replace(/_/g, ' ')}</Strong> avec
-									des revenus déclarés en <Strong>{typeBénéfice}</Strong>{' '}
+									des revenus déclarés en <Strong>{typeBénéfice}</Strong>
 									{caisseDeRetraiteSpéciale && (
 										<>
 											, affiliée à la{' '}
