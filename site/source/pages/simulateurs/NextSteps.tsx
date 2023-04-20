@@ -6,6 +6,8 @@ import {
 	WhenNotApplicable,
 } from '@/components/EngineValue'
 import { useEngine } from '@/components/utils/EngineContext'
+// import { Article } from '@/design-system/card'
+// import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
@@ -125,3 +127,32 @@ const guidesUrssaf = [
 		ctaLabel: 'En savoir plus',
 	},
 ]
+
+// const FAQAutoEntrepreneurArticle = () => {
+// 	const { t } = useTranslation()
+
+// 	return (
+// 		<Article
+// 			title={
+// 				<h3>
+// 					{t(
+// 						'pages.common.ressources-auto-entrepreneur.FAQ.title',
+// 						'Questions fréquentes'
+// 					)}{' '}
+// 					<Emoji emoji="❓" />
+// 				</h3>
+// 			}
+// 			href="https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html"
+// 			ctaLabel={t(
+// 				'pages.common.ressources-auto-entrepreneur.FAQ.cta',
+// 				'Voir les réponses'
+// 			)}
+// 		>
+// 			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.FAQ.body">
+// 				Une liste exhaustive et maintenue à jour de toutes les questions
+// 				fréquentes (et moins fréquentes) que l'on est amené à poser en tant
+// 				qu'auto-entrepreneur
+// 			</Trans>
+// 		</Article>
+// 	)
+// }

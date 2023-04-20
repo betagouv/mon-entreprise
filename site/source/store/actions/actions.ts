@@ -7,7 +7,6 @@ import { buildSituationFromObject } from '@/utils'
 
 import { CompanyActions } from './companyActions'
 import { CompanyCreationAction } from './companyCreationChecklistActions'
-import { CompanyStatusAction } from './companyStatusActions'
 import { HiringChecklistAction } from './hiringChecklistAction'
 
 export type Action =
@@ -27,7 +26,6 @@ export type Action =
 			| typeof updateShouldFocusField
 	  >
 	| CompanyCreationAction
-	| CompanyStatusAction
 	| CompanyActions
 	| HiringChecklistAction
 

@@ -12,6 +12,7 @@ export {
 	CarretDownIcon,
 	ChevronIcon,
 	CircleIcon,
+	ClockIcon,
 	EditIcon,
 	ErrorIcon,
 	HexagonIcon,

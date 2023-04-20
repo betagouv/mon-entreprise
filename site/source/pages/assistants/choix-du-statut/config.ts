@@ -1,6 +1,6 @@
-import ChoixDuStatut from '..'
-import { config } from '../../../simulateurs/_configs/config'
-import { SimulatorsDataParams } from '../../../simulateurs/_configs/types'
+import ChoixDuStatut from '.'
+import { config } from '../../simulateurs/_configs/config'
+import { SimulatorsDataParams } from '../../simulateurs/_configs/types'
 
 export function choixStatutJuridiqueConfig({
 	t,

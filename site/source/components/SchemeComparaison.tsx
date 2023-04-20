@@ -11,11 +11,6 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import {
-	defineDirectorStatus,
-	isAutoentrepreneur,
-	useDispatchAndGoToNextQuestion,
-} from '@/store/actions/companyStatusActions'
 
 type SchemeComparaisonProps = {
 	hideAutoEntrepreneur?: boolean
@@ -28,7 +23,6 @@ export default function SchemeComparaison({
 }: SchemeComparaisonProps) {
 	const { absoluteSitePaths } = useSitePaths()
 
-	const dispatch = useDispatchAndGoToNextQuestion()
 	const { t } = useTranslation()
 	const [showMore, setShowMore] = useState(false)
 
@@ -40,8 +34,7 @@ export default function SchemeComparaison({
 						<Button
 							key="assimiléSalarié"
 							onPress={() => {
-								dispatch(defineDirectorStatus('SALARIED'))
-								!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
+								/* TODO */
 							}}
 							aria-label={t(
 								'comparaisonRégimes.choix.AS.aria-label',
@@ -57,9 +50,8 @@ export default function SchemeComparaison({
 					<Button
 						key="EI"
 						onPress={() => {
-							!hideAssimiléSalarié &&
-								dispatch(defineDirectorStatus('SELF_EMPLOYED'))
-							!hideAutoEntrepreneur && dispatch(isAutoentrepreneur(false))
+															/* TODO */
+
 						}}
 						aria-label={
 							hideAssimiléSalarié
@@ -88,9 +80,8 @@ export default function SchemeComparaison({
 						<Button
 							key="auto-entrepreneur"
 							onPress={() => {
-								!hideAssimiléSalarié &&
-									dispatch(defineDirectorStatus('SELF_EMPLOYED'))
-								dispatch(isAutoentrepreneur(true))
+															/* TODO */
+
 							}}
 							aria-label={t(
 								'comparaisonRégimes.choix.auto.aria-label',
