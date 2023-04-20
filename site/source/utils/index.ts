@@ -9,12 +9,27 @@ import Engine, {
 
 import { Situation } from '@/store/reducers/rootReducer'
 
+/** The `capitalise0` function is a utility function that capitalizes the first letter of a string. The
+function takes an optional `name` parameter, which is a string that needs to be capitalized. */
 export function capitalise0(name: undefined): undefined
 export function capitalise0(name: string): string
 export function capitalise0(name?: string) {
 	return name && name[0].toUpperCase() + name.slice(1)
 }
 
+/**
+ * This is a TypeScript function that takes a time interval and a function as arguments, and returns a
+ * debounced version of the function that will only execute after the specified time interval has
+ * elapsed since the last time it was called.
+ * @param {number} waitFor - The `waitFor` parameter is a number that represents the time in
+ * milliseconds to wait before executing the `fn` function. 
+ * @param fn - `fn` is a function that takes in one or more arguments of type `T` and returns `void`.
+ * This function will be called after a certain amount of time has passed since the last time it was
+ * called.
+ * @returns A function that takes in any number of arguments of type T and debounces the execution of
+ * the provided function by waiting for the specified amount of time (waitFor) before calling it with
+ * the latest set of arguments.
+ */
 export const debounce = <T>(waitFor: number, fn: (...args: T[]) => void) => {
 	let timeoutId: ReturnType<typeof setTimeout>
 
