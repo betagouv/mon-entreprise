@@ -1,2719 +1,887 @@
 {
-  "01.11Z": [
-    "Culture",
-    "Céréales, légumineuses, graine oléagineuse"
-  ],
-  "01.50Z": [
-    "Culture",
-    "Céréales, légumineuses, graine oléagineuse",
-    "riz",
-    "légumes, melons, racines et tuburcules",
-    "canne à sucre",
-    "tabac",
-    "plante à fibres",
-    "autres cultures non permanentes",
-    "vigne",
-    "fruit à pépins ou à noyau",
-    "fruits tropicaux et subtropicaux ",
-    "agrumes",
-    "fruits oléagineux ",
-    "autres fruits d’arbres ou d’arbustes, fruits à coques",
-    "plantes à boisson ",
-    "plantes à épices aromatiques, médicinales et pharmaceutiques",
-    "autres cultures permanentes",
-    "Reproduction de plantes",
-    "Production animale",
-    "vaches laitières",
-    "autres bovins et buffles",
-    "chevaux et autres équidés",
-    "chameaux et autres camélidés ",
-    "ovins et caprins",
-    "porcins ",
-    "volailles",
-    "autres animaux",
-    "Culture et élevage associés"
-  ],
-  "01.12Z": [
-    "Culture",
-    "riz"
-  ],
-  "01.13Z": [
-    "Culture",
-    "légumes, melons, racines et tuburcules"
-  ],
-  "01.14Z": [
-    "Culture",
-    "canne à sucre"
-  ],
-  "01.15Z": [
-    "Culture",
-    "tabac"
-  ],
-  "01.16Z": [
-    "Culture",
-    "plante à fibres"
-  ],
-  "01.17Z": [
-    "Culture",
-    "autres cultures non permanentes"
-  ],
-  "01.21Z": [
-    "Culture",
-    "vigne"
-  ],
-  "01.22Z": [
-    "Culture",
-    "fruit à pépins ou à noyau"
-  ],
-  "01.23Z": [
-    "Culture",
-    "fruits tropicaux et subtropicaux "
-  ],
-  "01.24Z": [
-    "Culture",
-    "agrumes"
-  ],
-  "01.25Z": [
-    "Culture",
-    "fruits oléagineux "
-  ],
-  "01.26Z": [
-    "Culture",
-    "autres fruits d’arbres ou d’arbustes, fruits à coques"
-  ],
-  "01.27Z": [
-    "Culture",
-    "plantes à boisson "
-  ],
-  "01.28Z": [
-    "Culture",
-    "plantes à épices aromatiques, médicinales et pharmaceutiques"
-  ],
-  "01.19Z": [
-    "Culture",
-    "autres cultures permanentes"
-  ],
-  "01.29Z": [
-    "Culture",
-    "autres cultures permanentes"
-  ],
-  "01.30Z": [
-    "Reproduction de plantes"
-  ],
-  "01.41Z": [
-    "Production animale",
-    "vaches laitières"
-  ],
-  "01.42Z": [
-    "Production animale",
-    "autres bovins et buffles"
-  ],
-  "01.43Z": [
-    "Production animale",
-    "chevaux et autres équidés"
-  ],
-  "01.44Z": [
-    "Production animale",
-    "chameaux et autres camélidés "
-  ],
-  "01.45Z": [
-    "Production animale",
-    "ovins et caprins"
-  ],
-  "01.46Z": [
-    "Production animale",
-    "porcins "
-  ],
-  "01.47Z": [
-    "Production animale",
-    "volailles"
-  ],
-  "01.49Z": [
-    "Production animale",
-    "autres animaux"
-  ],
+  "01.11Z": [],
+  "01.50Z": [],
+  "01.12Z": [],
+  "01.13Z": [],
+  "01.14Z": [],
+  "01.15Z": [],
+  "01.16Z": [],
+  "01.17Z": [],
+  "01.21Z": [],
+  "01.22Z": [],
+  "01.23Z": [],
+  "01.24Z": [],
+  "01.25Z": [],
+  "01.26Z": [],
+  "01.27Z": [],
+  "01.28Z": [],
+  "01.19Z": [],
+  "01.29Z": [],
+  "01.30Z": [],
+  "01.41Z": [],
+  "01.42Z": [],
+  "01.43Z": [],
+  "01.44Z": [],
+  "01.45Z": [],
+  "01.46Z": [],
+  "01.47Z": [],
+  "01.49Z": [],
   "01.61Z": [],
-  "01.62Z": [
-    "Activités diverses de soutien à la production animale",
-    "Maréchalerie.",
-    "Nettoyage de locaux agricoles",
-    " Prise en pension de chevaux, Services de haras, Centre de remise en forme pour équidés  ",
-    "Entretien et soins des animaux d'élevage "
-  ],
+  "01.62Z": [],
   "01.63Z": [],
-  "01.64Z": [
-    "amélioration de la qualité des semences ",
-    " séchage, nettoyage, triage et traitement des semences"
-  ],
-  "01.70Z": [
-    "Pour la protection des cultures ou des élévages"
-  ],
+  "01.64Z": [],
+  "01.70Z": [],
   "02.10Z": [
-    "Autre",
-    "Sylviculture"
-  ],
-  "02.20Z": [
-    "Exploitation forestière - négoce du bois"
-  ],
-  "02.30Z": [
-    "Récolte de produits forestiers non ligneux poussant à l'état sauvage"
-  ],
-  "02.40Z": [
-    "Travaux forestiers",
-    "Fourniture de matériel d'exploitation forestière ",
-    "Entreprise de lutte contre les parasites",
-    "Conseil en gestion et administration de la forêt (technique, économique, juridique)",
-    "Bureau d\"études ",
-    "Défense contre les incendies",
-    "Ingénieur forestier",
-    "production et coupes bois par des particuliers propriétaires forestiers "
-  ],
-  "03.11Z": [
-    "Pêche maritime commerciale",
-    "pêche maritime pratiquée sur des navires d'une longueur inférieure ou égale à douze mètres ou effectuant habituellement des sorties de moins de 24 heures ",
-    "pêcheur maritime à pied professionnel"
-  ],
-  "03.12Z": [
-    "Pêche en eau douce",
-    "Avec présence de viviers",
-    "Sans présence de viviers"
-  ],
-  "03.21Z": [
-    "Aquaculture en mer",
-    "0"
-  ],
-  "03.22Z": [
-    "Aquaculture en eau douce"
-  ],
-  "05.10Z": [
-    "Extraction d'hydrocarbures, de minerais métallique, de houille, de lignite"
-  ],
-  "05.20Z": [
-    "Extraction d'hydrocarbures, de minerais métallique, de houille, de lignite"
-  ],
-  "06.10Z": [
-    "Extraction d'hydrocarbures, de minerais métallique, de houille, de lignite"
-  ],
-  "06.20Z": [
-    "Extraction d'hydrocarbures, de minerais métallique, de houille, de lignite"
-  ],
-  "07.10Z": [
-    "Extraction d'hydrocarbures, de minerais métallique, de houille, de lignite"
-  ],
-  "07.21Z": [
-    "Extraction d'hydrocarbures, de minerais métallique, de houille, de lignite"
-  ],
-  "07.29Z": [
-    "Extraction d'hydrocarbures, de minerais métallique, de houille, de lignite",
-    "Orpaillage"
-  ],
-  "08.12Z": [
-    "Extraction de pierres, de sables et d'argiles",
-    "Transformation et conservation de fruits et légumes",
-    "Transformation et conservation de fruits et légumes à titre artisanal",
-    "Fabrication d’huiles et graisses végétales et animales",
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
-  "08.91Z": [
-    "Extraction des minéraux chimiques et d’engrais minéraux."
-  ],
-  "08.92Z": [
-    "Extraction de tourbe."
-  ],
-  "08.93Z": [
-    "Production de sel.",
-    "En marais salants",
-    "Hors marais salants"
-  ],
-  "08.11Z": [
-    "Autres activités extractives ",
-    "Ardoisier"
-  ],
-  "08.99Z": [
-    "Autres activités extractives ",
-    "Ardoisier"
-  ],
-  "09.10Z": [
-    "Activités de soutien à l'extraction d'hydrocarbures"
-  ],
-  "09.90Z": [
-    "Activités de soutien aux autres industries extractives ",
-    "Activités de soutien aux autres industries extractives exercées de manière artisanale"
-  ],
-  "10.11Z": [
-    "Transformation et conservation de la viande et préparation de produits à base de viande"
-  ],
-  "10.12Z": [
-    "Transformation et conservation de la viande et préparation de produits à base de viande"
-  ],
-  "10.13A": [
-    "Transformation et conservation de la viande et préparation de produits à base de viande"
-  ],
-  "10.13B": [
-    "Transformation et conservation de la viande et préparation de produits à base de viande"
-  ],
-  "10.20Z": [
-    "Transformation et conservation de poisson, de crustacés et de mollusques"
-  ],
-  "10.32Z": [
-    "Transformation et conservation de fruits et légumes",
-    "Transformation et conservation de fruits et légumes à titre artisanal"
-  ],
-  "10.39A": [
-    "Transformation et conservation de fruits et légumes",
-    "Transformation et conservation de fruits et légumes à titre artisanal",
-    "préparation d’aliments préparés périssables à base de fruits et légumes (produits de la «4ème gamme»)"
-  ],
-  "10.39B": [
-    "Transformation et conservation de fruits et légumes",
-    "Transformation et conservation de fruits et légumes à titre artisanal",
-    "préparation d’aliments préparés périssables à base de fruits et légumes (produits de la «4ème gamme»)"
-  ],
-  "10.31Z": [
-    "Transformation et conservation de fruits et légumes",
-    "Transformation et conservation de fruits et légumes à titre artisanal"
-  ],
-  "10.41A": [
-    "Fabrication d’huiles et graisses végétales et animales"
-  ],
-  "10.41B": [
-    "Fabrication d’huiles et graisses végétales et animales"
-  ],
-  "10.42Z": [
-    "Fabrication d’huiles et graisses végétales et animales"
-  ],
-  "10.51A": [
-    "Fabrication de produits laitiers"
-  ],
-  "10.51B": [
-    "Fabrication de produits laitiers"
-  ],
-  "10.51C": [
-    "Fabrication de produits laitiers"
-  ],
-  "10.51D": [
-    "Fabrication de produits laitiers"
-  ],
-  "10.52Z": [
-    "Fabrication de glaces et sorbets",
-    "A titre artisanal",
     "Autre"
   ],
-  "10.61A": [
-    "Travail des grains ; fabrication de produits amylacés"
+  "02.20Z": [],
+  "02.30Z": [],
+  "02.40Z": [],
+  "03.11Z": [],
+  "03.12Z": [],
+  "03.21Z": [],
+  "03.22Z": [],
+  "05.10Z": [],
+  "05.20Z": [],
+  "06.10Z": [],
+  "06.20Z": [],
+  "07.10Z": [],
+  "07.21Z": [],
+  "07.29Z": [],
+  "08.12Z": [],
+  "08.91Z": [],
+  "08.92Z": [],
+  "08.93Z": [],
+  "08.11Z": [],
+  "08.99Z": [],
+  "09.10Z": [],
+  "09.90Z": [],
+  "10.11Z": [],
+  "10.12Z": [],
+  "10.13A": [],
+  "10.13B": [],
+  "10.20Z": [],
+  "10.32Z": [],
+  "10.39A": [],
+  "10.39B": [],
+  "10.31Z": [],
+  "10.41A": [],
+  "10.41B": [],
+  "10.42Z": [],
+  "10.51A": [],
+  "10.51B": [],
+  "10.51C": [],
+  "10.51D": [],
+  "10.52Z": [
+    "Autre"
   ],
-  "10.61B": [
-    "Travail des grains ; fabrication de produits amylacés"
-  ],
-  "10.62Z": [
-    "Travail des grains ; fabrication de produits amylacés"
-  ],
-  "10.71A": [
-    "Fabrication de produits de boulangerie-pâtisserie (hors cuisson de produits de boulangerie)"
-  ],
-  "10.71C": [
-    "Fabrication de produits de boulangerie-pâtisserie (hors cuisson de produits de boulangerie)"
-  ],
-  "10.71D": [
-    "Fabrication de produits de boulangerie-pâtisserie (hors cuisson de produits de boulangerie)"
-  ],
-  "10.71B": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.72Z": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.73Z": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.81Z": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.82Z": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.83Z": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.84Z": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.85Z": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.86Z": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.89Z": [
-    "Fabrication d'autres produits alimentaires"
-  ],
-  "10.91Z": [
-    "Fabrication d'aliments pour animaux"
-  ],
-  "10.92Z": [
-    "Fabrication d'aliments pour animaux"
-  ],
-  "11.01Z": [
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
-  "11.02A": [
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
-  "11.02B": [
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
-  "11.03Z": [
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
-  "11.04Z": [
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
-  "11.05Z": [
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
-  "11.06Z": [
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
-  "11.07A": [
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
-  "11.07B": [
-    "Fabrication de boissons",
-    "Fabrication de vin"
-  ],
+  "10.61A": [],
+  "10.61B": [],
+  "10.62Z": [],
+  "10.71A": [],
+  "10.71C": [],
+  "10.71D": [],
+  "10.71B": [],
+  "10.72Z": [],
+  "10.73Z": [],
+  "10.81Z": [],
+  "10.82Z": [],
+  "10.83Z": [],
+  "10.84Z": [],
+  "10.85Z": [],
+  "10.86Z": [],
+  "10.89Z": [],
+  "10.91Z": [],
+  "10.92Z": [],
+  "11.01Z": [],
+  "11.02A": [],
+  "11.02B": [],
+  "11.03Z": [],
+  "11.04Z": [],
+  "11.05Z": [],
+  "11.06Z": [],
+  "11.07A": [],
+  "11.07B": [],
   "12.00Z": [],
-  "13.10Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "13.20Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "13.30Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "13.91Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "13.92Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "13.93Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "13.94Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "13.95Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "13.96Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "13.99Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "14.11Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "14.12Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "14.13Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "14.14Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "14.19Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "14.20Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "14.31Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "14.39Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "15.11Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "15.12Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "15.20Z": [
-    "Tisserand, Tisserand à bras, Véloutier, Ennoblisseur textile, Moireur, Peintre décorateur sur tissu, Gaufreur sur textile, Plisseur, Sabreur sur velours, Sérigraphe, Teinturier, Tapissier d'ameublement, tapissier décorateur, fabricant de tapis, fabricant de tapisserie, Lissier haute-lice, Lissier basse-lice, Lissier savonnerie, Tufteur, Fabricant d'objets en textile, Passementier, Feutrier, Brodeur, Brodeur à l'aiguille, Brodeur crochet, Brodeur sur machine guidée main, Dentellier, Dentellier à l'aiguille, Dentellier au fuseau, Tulliste, Tresseur, Couturier, Modéliste, Costumier, Tailleur, Couturier flou, Corsetier, Chapelier, Fabricant de coiffes, Modiste, Evantailliste, Plumassier, Gantier, Fourreur, Mégissier, Parreur, Tanneur, Parcheminier, Gaufreur sur cuir, Maroquinier, Coupeur, Malletier, Layetier, GAinier, Doreur sur cuir, Sellier d'ameublement, Sellier maroquinier, Sellier harnacheur, Bottier main, Fabricant de chaussures"
-  ],
-  "16.10A": [
-    "Sciage et rabotage du bois",
-    "Parqueteur"
-  ],
-  "16.10B": [
-    "Sciage et rabotage du bois",
-    "Parqueteur"
-  ],
-  "16.21Z": [
-    "Fabrication d'articles en bois, liège, vannerie et sparterie",
-    "Escaliéteur, Charpentier, Menuisier, Fabricant de bardeaux ou de lattes, Formier, Tabletier, Encadreur, Marqueteur, Sculpteur sur bois, Tourneur sur bois, Fabricant de parapluies, parasols, ombrelles et cannes, Marqueteur de pailles, Vannier, "
-  ],
-  "16.22Z": [
-    "Fabrication d'articles en bois, liège, vannerie et sparterie",
-    "Escaliéteur, Charpentier, Menuisier, Fabricant de bardeaux ou de lattes, Formier, Tabletier, Encadreur, Marqueteur, Sculpteur sur bois, Tourneur sur bois, Fabricant de parapluies, parasols, ombrelles et cannes, Marqueteur de pailles, Vannier, "
-  ],
-  "16.23Z": [
-    "Fabrication d'articles en bois, liège, vannerie et sparterie",
-    "Escaliéteur, Charpentier, Menuisier, Fabricant de bardeaux ou de lattes, Formier, Tabletier, Encadreur, Marqueteur, Sculpteur sur bois, Tourneur sur bois, Fabricant de parapluies, parasols, ombrelles et cannes, Marqueteur de pailles, Vannier, "
-  ],
-  "16.24Z": [
-    "Fabrication d'articles en bois, liège, vannerie et sparterie",
-    "Escaliéteur, Charpentier, Menuisier, Fabricant de bardeaux ou de lattes, Formier, Tabletier, Encadreur, Marqueteur, Sculpteur sur bois, Tourneur sur bois, Fabricant de parapluies, parasols, ombrelles et cannes, Marqueteur de pailles, Vannier, "
-  ],
-  "16.29Z": [
-    "Fabrication d'articles en bois, liège, vannerie et sparterie",
-    "Escaliéteur, Charpentier, Menuisier, Fabricant de bardeaux ou de lattes, Formier, Tabletier, Encadreur, Marqueteur, Sculpteur sur bois, Tourneur sur bois, Fabricant de parapluies, parasols, ombrelles et cannes, Marqueteur de pailles, Vannier, "
-  ],
-  "17.11Z": [
-    "Fabrication de pâte à papier, de papier et de carton",
-    "Dominotier, Fabricant de papier, Marbeur sur papier, Cartonnier, Fabricant d'objets en papier ou en carton, Fabricant de papiers peints"
-  ],
-  "17.12Z": [
-    "Fabrication de pâte à papier, de papier et de carton",
-    "Dominotier, Fabricant de papier, Marbeur sur papier, Cartonnier, Fabricant d'objets en papier ou en carton, Fabricant de papiers peints"
-  ],
-  "17.21A": [
-    "Fabrication de pâte à papier, de papier et de carton",
-    "Dominotier, Fabricant de papier, Marbeur sur papier, Cartonnier, Fabricant d'objets en papier ou en carton, Fabricant de papiers peints"
-  ],
-  "17.21B": [
-    "Fabrication de pâte à papier, de papier et de carton",
-    "Dominotier, Fabricant de papier, Marbeur sur papier, Cartonnier, Fabricant d'objets en papier ou en carton, Fabricant de papiers peints"
-  ],
-  "17.21C": [
-    "Fabrication de pâte à papier, de papier et de carton",
-    "Dominotier, Fabricant de papier, Marbeur sur papier, Cartonnier, Fabricant d'objets en papier ou en carton, Fabricant de papiers peints"
-  ],
-  "17.22Z": [
-    "Fabrication de pâte à papier, de papier et de carton",
-    "Dominotier, Fabricant de papier, Marbeur sur papier, Cartonnier, Fabricant d'objets en papier ou en carton, Fabricant de papiers peints"
-  ],
-  "17.23Z": [
-    "Fabrication de pâte à papier, de papier et de carton",
-    "Dominotier, Fabricant de papier, Marbeur sur papier, Cartonnier, Fabricant d'objets en papier ou en carton, Fabricant de papiers peints"
-  ],
-  "17.24Z": [
-    "Fabrication de pâte à papier, de papier et de carton",
-    "Dominotier, Fabricant de papier, Marbeur sur papier, Cartonnier, Fabricant d'objets en papier ou en carton, Fabricant de papiers peints"
-  ],
-  "17.29Z": [
-    "Fabrication de pâte à papier, de papier et de carton",
-    "Dominotier, Fabricant de papier, Marbeur sur papier, Cartonnier, Fabricant d'objets en papier ou en carton, Fabricant de papiers peints"
-  ],
-  "18.12Z": [
-    "Imprimerie et reproduction d'enregistrements",
-    "Graveur et imprimeur en gaufrage, Imprimeur, Imprimeur en héliogravure, Imprimeur en lithographie, Imprimeur en taille-douce, Imprimeur en typographie, Imprimeur en sérigraphie, Sérigraphe, Calligraphe, Enlumineur, Imagier au pochoir, Doreur sur tranche, Doreur sur cuir, Relieur, Cartonnier, "
-  ],
-  "18.13Z": [
-    "Imprimerie et reproduction d'enregistrements",
-    "Graveur et imprimeur en gaufrage, Imprimeur, Imprimeur en héliogravure, Imprimeur en lithographie, Imprimeur en taille-douce, Imprimeur en typographie, Imprimeur en sérigraphie, Sérigraphe, Calligraphe, Enlumineur, Imagier au pochoir, Doreur sur tranche, Doreur sur cuir, Relieur, Cartonnier, "
-  ],
-  "18.14Z": [
-    "Imprimerie et reproduction d'enregistrements",
-    "Graveur et imprimeur en gaufrage, Imprimeur, Imprimeur en héliogravure, Imprimeur en lithographie, Imprimeur en taille-douce, Imprimeur en typographie, Imprimeur en sérigraphie, Sérigraphe, Calligraphe, Enlumineur, Imagier au pochoir, Doreur sur tranche, Doreur sur cuir, Relieur, Cartonnier, "
-  ],
-  "18.20Z": [
-    "Imprimerie et reproduction d'enregistrements",
-    "Graveur et imprimeur en gaufrage, Imprimeur, Imprimeur en héliogravure, Imprimeur en lithographie, Imprimeur en taille-douce, Imprimeur en typographie, Imprimeur en sérigraphie, Sérigraphe, Calligraphe, Enlumineur, Imagier au pochoir, Doreur sur tranche, Doreur sur cuir, Relieur, Cartonnier, "
-  ],
-  "18.11Z": [
-    "Imprimerie de journaux"
-  ],
-  "19.10Z": [
-    "Cokéfaction et raffinage",
-    " ",
-    "Production de brai et de coke de brai."
-  ],
-  "19.20Z": [
-    "Cokéfaction et raffinage",
-    " ",
-    "Agglomération de la tourbe."
-  ],
-  "20.11Z": [
-    "industrie chimique "
-  ],
-  "20.12Z": [
-    "industrie chimique "
-  ],
-  "20.13A": [
-    "industrie chimique "
-  ],
-  "20.13B": [
-    "industrie chimique "
-  ],
-  "20.14Z": [
-    "industrie chimique "
-  ],
-  "20.15Z": [
-    "industrie chimique "
-  ],
-  "20.16Z": [
-    "industrie chimique "
-  ],
-  "20.17Z": [
-    "industrie chimique "
-  ],
-  "20.20Z": [
-    "industrie chimique "
-  ],
-  "20.30Z": [
-    "industrie chimique "
-  ],
-  "20.41Z": [
-    "industrie chimique "
-  ],
-  "20.42Z": [
-    "industrie chimique "
-  ],
-  "20.51Z": [
-    "industrie chimique "
-  ],
-  "20.52Z": [
-    "industrie chimique "
-  ],
-  "20.53Z": [
-    "industrie chimique "
-  ],
-  "20.59Z": [
-    "industrie chimique "
-  ],
-  "20.60Z": [
-    "industrie chimique "
-  ],
-  "21.10Z": [
-    "Industrie pharmaceutique",
-    "Fabrication d’édulcorants de synthèse."
-  ],
-  "21.20Z": [
-    "Industrie pharmaceutique",
-    "Fabrication de substances radioactives de diagnostic et de pansements."
-  ],
-  "22.11Z": [
-    "Produits en caoutchouc et plastique"
-  ],
-  "22.19Z": [
-    "Produits en caoutchouc et plastique"
-  ],
-  "22.21Z": [
-    "Produits en caoutchouc et plastique"
-  ],
-  "22.22Z": [
-    "Produits en caoutchouc et plastique"
-  ],
-  "22.23Z": [
-    "Produits en caoutchouc et plastique"
-  ],
-  "22.29A": [
-    "Produits en caoutchouc et plastique"
-  ],
-  "22.29B": [
-    "Produits en caoutchouc et plastique"
-  ],
-  "23.11Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.12Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.13Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.14Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.19Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.20Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.31Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.32Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.41Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.42Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.43Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.44Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.49Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.51Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.52Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.61Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.62Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.63Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.64Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.65Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.69Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.70Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.91Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "23.99Z": [
-    "Produits minéraux non métalliques (verre, céramique, porcelaine…)",
-    "Miroitier argenteur, Tailleur de verre, Verrier fondeur, Bombeur, Fondeur par fusion, Fondeur en pâte de verre, Mouleur, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Préparateur presse-papier, Verrier à la main, Souffleur à la canne, Cueilleur, Poseur de pieds ou de jambes, Graveur, Doreur sur verre, Peintre, Polisseur, Sculpteur sur verre, Verrier décorateur, Maître-verrier, Vitrailliste, Fabricant de carreaux, Briquetier, Tuilier, Potier de terre cuite, Potier raku, Céramiste, Décorateur sur céramique, Emailleur sur terre, Peintre fileur-doreur, Peintre sur faïence, Peintre sur porcelaine, Santonnier, Potier de grès, Porcelainier, Faïencier, Potier terre vernissée, Sculpteur sur terre, Tourneur céramique, Fabricant de girouettes et d'éléments de faîtage, Poêlier, Atrier, Rocailleur, Graveur sur pierre, Emailleur sur lave, Lapidaire tourneur sur pierres dures, Marqueteur de pierres dures, Marbrier, "
-  ],
-  "24.10Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.20Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.31Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.32Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.33Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.34Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.41Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.42Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.43Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.44Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.45Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.46Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.51Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.52Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.53Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "24.54Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.11Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.12Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.21Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.29Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.30Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.40Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.50A": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.50B": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.61Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.62A": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.62B": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.71Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.72Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.73A": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.73B": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.91Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.92Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.93Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.94Z": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.99A": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "25.99B": [
-    "Métallurgie et produits métalliques",
-    "Féron, Batteur d'or, Fondeur d'étain, Bronzier, Fondeur, Fondeur statuaire, Fondeur de caractères, Ferronnier-forgeron, Métallier, Armurier, Argenteur sur métal, Doreur sur métal, Ciseleur, Graveur, Graveur médailleur, Graveur héraldiste, Guillocheur, Emailleur sur métal, Emailleur sur cadrans, Décorateur en résine, Tourneur sur métal, Patineur, Coutelier, Fabricant de serrures, Mouleur, Modeleur, Taillandier, Graveur de poinçons, Dinandier, Potier d'étain, Sculpteur sur métal, Monteur en bronze, Fondeur de cloches et sonnailles, Fabricant de girouettes et d'éléments de faîtage"
-  ],
-  "26.11Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.12Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.20Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.30Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.40Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.51A": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.51B": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.52Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.60Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.70Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "26.80Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.11Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.12Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.20Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.31Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.32Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.33Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.40Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.51Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.52Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "27.90Z": [
-    "Produits informatiques, électroniques, optiques et équipements électriques",
-    "Horloger, Campaniste, Fabricant de luminaires, Fabricant d'abat-jour"
-  ],
-  "28.11Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.12Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.13Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.14Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.15Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.21Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.22Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.23Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.24Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.25Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.29A": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.29B": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.30Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.41Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.49Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.91Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.92Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.93Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.94Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.95Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.96Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.99A": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "28.99B": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "29.10Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "29.20Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "29.31Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "29.32Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "30.11Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "30.12Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "30.20Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "30.30Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "30.40Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "30.91Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "30.92Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "30.99Z": [
-    "Fabrication de machines et autres équipements",
-    "Fabricant de manèges, Sellier d'ameublement, Charpentier de marine, Charron"
-  ],
-  "31.01Z": [
-    "Fabrication de meubles",
-    "Ebéniste, Menuisier en sièges, Tapissier d'ameublement, Canneur-rempailleur, Vernisseur, Doreur, Laqueur, Peintre sur mobilier, Marqueteur, Marqueteur de pailles, Sculpteur sur bois, Gainier, Vannier, "
-  ],
-  "31.02Z": [
-    "Fabrication de meubles",
-    "Ebéniste, Menuisier en sièges, Tapissier d'ameublement, Canneur-rempailleur, Vernisseur, Doreur, Laqueur, Peintre sur mobilier, Marqueteur, Marqueteur de pailles, Sculpteur sur bois, Gainier, Vannier, "
-  ],
-  "31.03Z": [
-    "Fabrication de meubles",
-    "Ebéniste, Menuisier en sièges, Tapissier d'ameublement, Canneur-rempailleur, Vernisseur, Doreur, Laqueur, Peintre sur mobilier, Marqueteur, Marqueteur de pailles, Sculpteur sur bois, Gainier, Vannier, "
-  ],
-  "31.09A": [
-    "Fabrication de meubles",
-    "Ebéniste, Menuisier en sièges, Tapissier d'ameublement, Canneur-rempailleur, Vernisseur, Doreur, Laqueur, Peintre sur mobilier, Marqueteur, Marqueteur de pailles, Sculpteur sur bois, Gainier, Vannier, "
-  ],
-  "31.09B": [
-    "Fabrication de meubles",
-    "Ebéniste, Menuisier en sièges, Tapissier d'ameublement, Canneur-rempailleur, Vernisseur, Doreur, Laqueur, Peintre sur mobilier, Marqueteur, Marqueteur de pailles, Sculpteur sur bois, Gainier, Vannier, "
-  ],
-  "32.11Z": [
-    "Fabrication d’articles de joaillerie, bijouterie, instrument de musique ",
-    "Graveur-médailleur, Monnayeur de monnaies ou de médailles, Bijoutier, Apprêteur, Bijoutier en métaux précieux, Joaillier, Lapidaire, Orfèvre, Polisseur, Sertisseur, Ciseleur, Chainiste, Argenteur sur métal, Doreur sur métal, Emailleur sur cadrans, Graveur, Graveur médailleur, Guillocheur, Graveur héraldiste, Diamentaire, Glypticien, bijoutier fantaisie, Fondeur d'étain, Décorateur en résine, Archetier, Facteur de harpes, Restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitares, restaurateur de guitares, facteur d'orgues, Restaurateur d'orgues, Facteur d'harmoniums, Restaurateur d'harmoniums, Fabricant d'anches, facteur d'accordéons, restaurateur d'accordéons, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur de percussions, restaurateurs de percussions, Facteur de pianos, restaurateur de pianos, Facteur d'instruments à vents, restaurateur d'instruments à vent, facteur d'instruments à vents en bois, restaurateur d'instruments à vent en bois, facteur d'instruments à vents en métal restaurateur d'instruments à vent en métal, chaudronnier, facteur d'instruments de musique mécanique, restaurateur d'instruments de musique mécanique, facteur d'instruments traditionnels, restaurateur d'instruments traditionnels, facteur d'instruments à claviers, restaurateur d'instruments à claviers,   "
-  ],
-  "32.12Z": [
-    "Fabrication d’articles de joaillerie, bijouterie, instrument de musique ",
-    "Graveur-médailleur, Monnayeur de monnaies ou de médailles, Bijoutier, Apprêteur, Bijoutier en métaux précieux, Joaillier, Lapidaire, Orfèvre, Polisseur, Sertisseur, Ciseleur, Chainiste, Argenteur sur métal, Doreur sur métal, Emailleur sur cadrans, Graveur, Graveur médailleur, Guillocheur, Graveur héraldiste, Diamentaire, Glypticien, bijoutier fantaisie, Fondeur d'étain, Décorateur en résine, Archetier, Facteur de harpes, Restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitares, restaurateur de guitares, facteur d'orgues, Restaurateur d'orgues, Facteur d'harmoniums, Restaurateur d'harmoniums, Fabricant d'anches, facteur d'accordéons, restaurateur d'accordéons, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur de percussions, restaurateurs de percussions, Facteur de pianos, restaurateur de pianos, Facteur d'instruments à vents, restaurateur d'instruments à vent, facteur d'instruments à vents en bois, restaurateur d'instruments à vent en bois, facteur d'instruments à vents en métal restaurateur d'instruments à vent en métal, chaudronnier, facteur d'instruments de musique mécanique, restaurateur d'instruments de musique mécanique, facteur d'instruments traditionnels, restaurateur d'instruments traditionnels, facteur d'instruments à claviers, restaurateur d'instruments à claviers,   "
-  ],
-  "32.13Z": [
-    "Fabrication d’articles de joaillerie, bijouterie, instrument de musique ",
-    "Graveur-médailleur, Monnayeur de monnaies ou de médailles, Bijoutier, Apprêteur, Bijoutier en métaux précieux, Joaillier, Lapidaire, Orfèvre, Polisseur, Sertisseur, Ciseleur, Chainiste, Argenteur sur métal, Doreur sur métal, Emailleur sur cadrans, Graveur, Graveur médailleur, Guillocheur, Graveur héraldiste, Diamentaire, Glypticien, bijoutier fantaisie, Fondeur d'étain, Décorateur en résine, Archetier, Facteur de harpes, Restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitares, restaurateur de guitares, facteur d'orgues, Restaurateur d'orgues, Facteur d'harmoniums, Restaurateur d'harmoniums, Fabricant d'anches, facteur d'accordéons, restaurateur d'accordéons, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur de percussions, restaurateurs de percussions, Facteur de pianos, restaurateur de pianos, Facteur d'instruments à vents, restaurateur d'instruments à vent, facteur d'instruments à vents en bois, restaurateur d'instruments à vent en bois, facteur d'instruments à vents en métal restaurateur d'instruments à vent en métal, chaudronnier, facteur d'instruments de musique mécanique, restaurateur d'instruments de musique mécanique, facteur d'instruments traditionnels, restaurateur d'instruments traditionnels, facteur d'instruments à claviers, restaurateur d'instruments à claviers,   "
-  ],
-  "32.20Z": [
-    "Fabrication d’articles de joaillerie, bijouterie, instrument de musique ",
-    "Graveur-médailleur, Monnayeur de monnaies ou de médailles, Bijoutier, Apprêteur, Bijoutier en métaux précieux, Joaillier, Lapidaire, Orfèvre, Polisseur, Sertisseur, Ciseleur, Chainiste, Argenteur sur métal, Doreur sur métal, Emailleur sur cadrans, Graveur, Graveur médailleur, Guillocheur, Graveur héraldiste, Diamentaire, Glypticien, bijoutier fantaisie, Fondeur d'étain, Décorateur en résine, Archetier, Facteur de harpes, Restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitares, restaurateur de guitares, facteur d'orgues, Restaurateur d'orgues, Facteur d'harmoniums, Restaurateur d'harmoniums, Fabricant d'anches, facteur d'accordéons, restaurateur d'accordéons, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur de percussions, restaurateurs de percussions, Facteur de pianos, restaurateur de pianos, Facteur d'instruments à vents, restaurateur d'instruments à vent, facteur d'instruments à vents en bois, restaurateur d'instruments à vent en bois, facteur d'instruments à vents en métal restaurateur d'instruments à vent en métal, chaudronnier, facteur d'instruments de musique mécanique, restaurateur d'instruments de musique mécanique, facteur d'instruments traditionnels, restaurateur d'instruments traditionnels, facteur d'instruments à claviers, restaurateur d'instruments à claviers,   "
-  ],
-  "32.30Z": [
-    "Autres produits manufacturés",
-    "Fabricant d'automates, fabricant de jeux, fabricant de jouets, fabricant de maquettes, fabricant de figurines, fabricant de marionnettes, Brossier, Cirier, Plumassier, Modéliste, Boutonnier, Ivoirier, Nacrier, Tabletier, Pipier, Taxidermiste, Fabricant de parapluies, parasols, ombrelles et cannes, parurier floral, Evantailliste, Cornier, Ecailliste, Graveur sur ivoire et autres matériaux d'origine animale, Ivoirier, Nacrier, Sculpteur sur bois, Fabricant de poupées ou de peluches de collection, Perruquier-posticheur, Fabricant de compositions et décors végétaux stables et durables"
-  ],
-  "32.40Z": [
-    "Autres produits manufacturés",
-    "Fabricant d'automates, fabricant de jeux, fabricant de jouets, fabricant de maquettes, fabricant de figurines, fabricant de marionnettes, Brossier, Cirier, Plumassier, Modéliste, Boutonnier, Ivoirier, Nacrier, Tabletier, Pipier, Taxidermiste, Fabricant de parapluies, parasols, ombrelles et cannes, parurier floral, Evantailliste, Cornier, Ecailliste, Graveur sur ivoire et autres matériaux d'origine animale, Ivoirier, Nacrier, Sculpteur sur bois, Fabricant de poupées ou de peluches de collection, Perruquier-posticheur, Fabricant de compositions et décors végétaux stables et durables"
-  ],
-  "32.91Z": [
-    "Autres produits manufacturés",
-    "Fabricant d'automates, fabricant de jeux, fabricant de jouets, fabricant de maquettes, fabricant de figurines, fabricant de marionnettes, Brossier, Cirier, Plumassier, Modéliste, Boutonnier, Ivoirier, Nacrier, Tabletier, Pipier, Taxidermiste, Fabricant de parapluies, parasols, ombrelles et cannes, parurier floral, Evantailliste, Cornier, Ecailliste, Graveur sur ivoire et autres matériaux d'origine animale, Ivoirier, Nacrier, Sculpteur sur bois, Fabricant de poupées ou de peluches de collection, Perruquier-posticheur, Fabricant de compositions et décors végétaux stables et durables"
-  ],
-  "32.99Z": [
-    "Autres produits manufacturés",
-    "Fabricant d'automates, fabricant de jeux, fabricant de jouets, fabricant de maquettes, fabricant de figurines, fabricant de marionnettes, Brossier, Cirier, Plumassier, Modéliste, Boutonnier, Ivoirier, Nacrier, Tabletier, Pipier, Taxidermiste, Fabricant de parapluies, parasols, ombrelles et cannes, parurier floral, Evantailliste, Cornier, Ecailliste, Graveur sur ivoire et autres matériaux d'origine animale, Ivoirier, Nacrier, Sculpteur sur bois, Fabricant de poupées ou de peluches de collection, Perruquier-posticheur, Fabricant de compositions et décors végétaux stables et durables"
-  ],
-  "32.50A": [
-    "Fabrication de prothèses dentaires.",
-    "Fabrication d'instruments et de fournitures à usage médical et dentaire"
-  ],
-  "32.50B": [
-    "Fabrication d’articles ophtalmologiques, lunettes correctrices, lentilles sur\nprescription, verres de contact ",
-    "Fabrication de montures et lunettes de protection",
-    "Lunetier, Ecailliste"
-  ],
-  "58.11Z": [
-    "Édition de livres et périodiques et autres activités d'édition "
-  ],
-  "58.12Z": [
-    "Édition de livres et périodiques et autres activités d'édition "
-  ],
-  "58.13Z": [
-    "Édition de livres et périodiques et autres activités d'édition ",
-    "Edition de blog"
-  ],
-  "58.14Z": [
-    "Édition de livres et périodiques et autres activités d'édition ",
-    "Edition de blog"
-  ],
-  "58.19Z": [
-    "Édition de livres et périodiques et autres activités d'édition ",
-    "Edition d’imprimés fiduciaires, imprimés commerciaux, formulaires imprimés."
-  ],
-  "58.21Z": [
-    "Édition de logiciels"
-  ],
-  "58.29A": [
-    "Édition de logiciels"
-  ],
-  "58.29B": [
-    "Édition de logiciels"
-  ],
-  "58.29C": [
-    "Édition de logiciels"
-  ],
-  "59.11A": [
-    "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale",
-    "Réalisation technique de films cinématographiques, de vidéo et de programmes de télévision"
-  ],
-  "59.11B": [
-    "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale",
-    "Réalisation technique de films cinématographiques, de vidéo et de programmes de télévision"
-  ],
-  "59.11C": [
-    "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale",
-    "Réalisation technique de films cinématographiques, de vidéo et de programmes de télévision"
-  ],
-  "59.12Z": [
-    "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
-  ],
-  "59.13A": [
-    "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
-  ],
-  "59.13B": [
-    "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
-  ],
-  "59.14Z": [
-    "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
-  ],
-  "59.20Z": [
-    "Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale"
-  ],
-  "60.10Z": [
-    "Programmation et diffusion"
-  ],
-  "60.20A": [
-    "Programmation et diffusion"
-  ],
-  "60.20B": [
-    "Programmation et diffusion"
-  ],
-  "61.10Z": [
-    "Télécommunications"
-  ],
-  "61.20Z": [
-    "Télécommunications"
-  ],
-  "61.30Z": [
-    "Télécommunications"
-  ],
-  "61.90Z": [
-    "Télécommunications"
-  ],
-  "62.01Z": [
-    "Programmation, conseil et autres activités informatiques ",
-    "A titre commercial",
-    "A titre indépendant"
-  ],
-  "62.02A": [
-    "Programmation, conseil et autres activités informatiques ",
-    "A titre commercial",
-    "A titre indépendant"
-  ],
-  "62.02B": [
-    "Programmation, conseil et autres activités informatiques ",
-    "A titre commercial",
-    "A titre indépendant"
-  ],
-  "62.03Z": [
-    "Programmation, conseil et autres activités informatiques ",
-    "A titre commercial",
-    "A titre indépendant"
-  ],
-  "62.09Z": [
-    "Programmation, conseil et autres activités informatiques ",
-    "A titre commercial",
-    "A titre indépendant"
-  ],
-  "33.11Z": [
-    "Réparation d'ouvrages en métaux, de machines et d'équipements divers",
-    "Armurier, Coutelier, taillandier, Fabricant de serrures, Charpentier de marine, Fabricant de véhicules de collection (bateaux), Restaurateur de véhicules de collection (bateaux), Fabricant de véhicules de collection (avions), Restaurateur de véhicules de collection (avions), Charron, Facteur d'orgues, Restaurateur d'orgues, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur d’instruments traditionnels, Restaurateur d’instruments traditionnels, Facteur d'harmoniums, restaurateur d'harmoniums"
-  ],
-  "33.13Z": [
-    "Réparation d'ouvrages en métaux, de machines et d'équipements divers",
-    "Armurier, Coutelier, taillandier, Fabricant de serrures, Charpentier de marine, Fabricant de véhicules de collection (bateaux), Restaurateur de véhicules de collection (bateaux), Fabricant de véhicules de collection (avions), Restaurateur de véhicules de collection (avions), Charron, Facteur d'orgues, Restaurateur d'orgues, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur d’instruments traditionnels, Restaurateur d’instruments traditionnels, Facteur d'harmoniums, restaurateur d'harmoniums"
-  ],
-  "33.15Z": [
-    "Réparation d'ouvrages en métaux, de machines et d'équipements divers",
-    "Armurier, Coutelier, taillandier, Fabricant de serrures, Charpentier de marine, Fabricant de véhicules de collection (bateaux), Restaurateur de véhicules de collection (bateaux), Fabricant de véhicules de collection (avions), Restaurateur de véhicules de collection (avions), Charron, Facteur d'orgues, Restaurateur d'orgues, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur d’instruments traditionnels, Restaurateur d’instruments traditionnels, Facteur d'harmoniums, restaurateur d'harmoniums"
-  ],
-  "33.16Z": [
-    "Réparation d'ouvrages en métaux, de machines et d'équipements divers",
-    "Armurier, Coutelier, taillandier, Fabricant de serrures, Charpentier de marine, Fabricant de véhicules de collection (bateaux), Restaurateur de véhicules de collection (bateaux), Fabricant de véhicules de collection (avions), Restaurateur de véhicules de collection (avions), Charron, Facteur d'orgues, Restaurateur d'orgues, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur d’instruments traditionnels, Restaurateur d’instruments traditionnels, Facteur d'harmoniums, restaurateur d'harmoniums"
-  ],
-  "33.17Z": [
-    "Réparation d'ouvrages en métaux, de machines et d'équipements divers",
-    "Armurier, Coutelier, taillandier, Fabricant de serrures, Charpentier de marine, Fabricant de véhicules de collection (bateaux), Restaurateur de véhicules de collection (bateaux), Fabricant de véhicules de collection (avions), Restaurateur de véhicules de collection (avions), Charron, Facteur d'orgues, Restaurateur d'orgues, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur d’instruments traditionnels, Restaurateur d’instruments traditionnels, Facteur d'harmoniums, restaurateur d'harmoniums"
-  ],
-  "33.19Z": [
-    "Réparation d'ouvrages en métaux, de machines et d'équipements divers",
-    "Armurier, Coutelier, taillandier, Fabricant de serrures, Charpentier de marine, Fabricant de véhicules de collection (bateaux), Restaurateur de véhicules de collection (bateaux), Fabricant de véhicules de collection (avions), Restaurateur de véhicules de collection (avions), Charron, Facteur d'orgues, Restaurateur d'orgues, facteur de clavecins et d'épinettes, restaurateur de clavecins et d'épinettes, Facteur d’instruments traditionnels, Restaurateur d’instruments traditionnels, Facteur d'harmoniums, restaurateur d'harmoniums"
-  ],
-  "33.12Z": [
-    "Réparation de machines et équipements mécaniques",
-    "Réparation et entretien de machines agricoles et forestières ",
-    "Réparation et entretien de machines pour la construction et l'extraction",
-    "Réparation d'autres machines et équipements mécaniques"
-  ],
-  "33.14Z": [
-    "Réparation d'équipements électriques",
-    "Réparation, rembobinage et entretien de transformateurs électriques et de groupes électrogènes à moteur ",
-    "Réparation et entretien de matériel de distribution et de commande",
-    "Réparation et entretien de dispositifs de câblage porteurs et non porteurs de courant pour le câblage d'installation électrique",
-    "Réparation d'autres équipements électriques"
-  ],
-  "33.20A": [
-    "Installation de structures métalliques, chaudronnées et de tuyauterie.",
-    "Installation de générateurs de vapeur, de chaudières et de pompes à chaleur pour le chauffage central",
-    "Installation et travaux de tuyauterie métallique sur site industriel : chimie, pétrole…",
-    "Installation d'autres structures métalliques"
-  ],
-  "33.20B": [
-    "Installation de machines et équipements mécaniques.",
-    "Installation et montage de pompes, compresseurs et systèmes hydrauliques",
-    "Installation d'articles de robinetterie et similaires ",
-    "Installation d'autres machines et équipements mécaniques"
-  ],
-  "33.20C": [
-    "Conception d'ensemble et assemblage sur site industriel d'équipements de contrôle des processus industriels"
-  ],
-  "33.20D": [
-    "Installation et montage de matériels électriques divers",
-    "Campaniste",
-    "Installation de matériels électroniques et optiques ou d'autres matériels"
-  ],
-  "45.20A": [
-    "Entretien et réparation de véhicules automobiles",
-    "Fabricant de véhicules de collection (voiture,moto), restaurateur de véhicules de collection (voiture,moto), Carrossier",
-    "Nettoyage et embellissement de véhicules automobiles"
-  ],
-  "45.20B": [
-    "Entretien et réparation de véhicules automobiles",
-    "Fabricant de véhicules de collection (voiture,moto), restaurateur de véhicules de collection (voiture,moto), Carrossier",
-    "Nettoyage et embellissement de véhicules automobiles"
-  ],
-  "45.40Z": [
-    " ",
-    "Fabricant de véhicules de collection (voiture,moto), restaurateur de véhicules de collection (voiture,moto)"
-  ],
-  "95.11Z": [
-    "Restaurateur de meubles, bijoutier, bijoutier en métaux précieux, bijoutier fantaisie, Horloger, Joaillier, Orfèvre, Sertisseur, Polisseur, Facteur de harpes, restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitare, restaurateur de guitares, Facteur d'accordéons, restaurateur d’accordéons, Facteur de percussions, restaurateur de percussions, Facteur d'instruments à claviers, restaurateur d'instruments à claviers, Facteur de pianos, restaurateur de pianos, Facteur d’instruments à vent en bois, restaurateur d’instruments à vent en bois, Facteur d’instruments à vent en métal, restaurateur d’instruments à vent en métal, Facteur d’instruments de musique mécanique, restaurateur d’instruments de musique mécanique, Facteur d'instruments à vent, restaurateur d'instruments à vent, Restaurateur de documents graphiques et imprimés"
-  ],
-  "95.12Z": [
-    "Restaurateur de meubles, bijoutier, bijoutier en métaux précieux, bijoutier fantaisie, Horloger, Joaillier, Orfèvre, Sertisseur, Polisseur, Facteur de harpes, restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitare, restaurateur de guitares, Facteur d'accordéons, restaurateur d’accordéons, Facteur de percussions, restaurateur de percussions, Facteur d'instruments à claviers, restaurateur d'instruments à claviers, Facteur de pianos, restaurateur de pianos, Facteur d’instruments à vent en bois, restaurateur d’instruments à vent en bois, Facteur d’instruments à vent en métal, restaurateur d’instruments à vent en métal, Facteur d’instruments de musique mécanique, restaurateur d’instruments de musique mécanique, Facteur d'instruments à vent, restaurateur d'instruments à vent, Restaurateur de documents graphiques et imprimés"
-  ],
-  "95.21Z": [
-    "Restaurateur de meubles, bijoutier, bijoutier en métaux précieux, bijoutier fantaisie, Horloger, Joaillier, Orfèvre, Sertisseur, Polisseur, Facteur de harpes, restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitare, restaurateur de guitares, Facteur d'accordéons, restaurateur d’accordéons, Facteur de percussions, restaurateur de percussions, Facteur d'instruments à claviers, restaurateur d'instruments à claviers, Facteur de pianos, restaurateur de pianos, Facteur d’instruments à vent en bois, restaurateur d’instruments à vent en bois, Facteur d’instruments à vent en métal, restaurateur d’instruments à vent en métal, Facteur d’instruments de musique mécanique, restaurateur d’instruments de musique mécanique, Facteur d'instruments à vent, restaurateur d'instruments à vent, Restaurateur de documents graphiques et imprimés"
-  ],
-  "95.22Z": [
-    "Restaurateur de meubles, bijoutier, bijoutier en métaux précieux, bijoutier fantaisie, Horloger, Joaillier, Orfèvre, Sertisseur, Polisseur, Facteur de harpes, restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitare, restaurateur de guitares, Facteur d'accordéons, restaurateur d’accordéons, Facteur de percussions, restaurateur de percussions, Facteur d'instruments à claviers, restaurateur d'instruments à claviers, Facteur de pianos, restaurateur de pianos, Facteur d’instruments à vent en bois, restaurateur d’instruments à vent en bois, Facteur d’instruments à vent en métal, restaurateur d’instruments à vent en métal, Facteur d’instruments de musique mécanique, restaurateur d’instruments de musique mécanique, Facteur d'instruments à vent, restaurateur d'instruments à vent, Restaurateur de documents graphiques et imprimés"
-  ],
-  "95.23Z": [
-    "Restaurateur de meubles, bijoutier, bijoutier en métaux précieux, bijoutier fantaisie, Horloger, Joaillier, Orfèvre, Sertisseur, Polisseur, Facteur de harpes, restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitare, restaurateur de guitares, Facteur d'accordéons, restaurateur d’accordéons, Facteur de percussions, restaurateur de percussions, Facteur d'instruments à claviers, restaurateur d'instruments à claviers, Facteur de pianos, restaurateur de pianos, Facteur d’instruments à vent en bois, restaurateur d’instruments à vent en bois, Facteur d’instruments à vent en métal, restaurateur d’instruments à vent en métal, Facteur d’instruments de musique mécanique, restaurateur d’instruments de musique mécanique, Facteur d'instruments à vent, restaurateur d'instruments à vent, Restaurateur de documents graphiques et imprimés"
-  ],
-  "95.24Z": [
-    "Restaurateur de meubles, bijoutier, bijoutier en métaux précieux, bijoutier fantaisie, Horloger, Joaillier, Orfèvre, Sertisseur, Polisseur, Facteur de harpes, restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitare, restaurateur de guitares, Facteur d'accordéons, restaurateur d’accordéons, Facteur de percussions, restaurateur de percussions, Facteur d'instruments à claviers, restaurateur d'instruments à claviers, Facteur de pianos, restaurateur de pianos, Facteur d’instruments à vent en bois, restaurateur d’instruments à vent en bois, Facteur d’instruments à vent en métal, restaurateur d’instruments à vent en métal, Facteur d’instruments de musique mécanique, restaurateur d’instruments de musique mécanique, Facteur d'instruments à vent, restaurateur d'instruments à vent, Restaurateur de documents graphiques et imprimés"
-  ],
-  "95.25Z": [
-    "Restaurateur de meubles, bijoutier, bijoutier en métaux précieux, bijoutier fantaisie, Horloger, Joaillier, Orfèvre, Sertisseur, Polisseur, Facteur de harpes, restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitare, restaurateur de guitares, Facteur d'accordéons, restaurateur d’accordéons, Facteur de percussions, restaurateur de percussions, Facteur d'instruments à claviers, restaurateur d'instruments à claviers, Facteur de pianos, restaurateur de pianos, Facteur d’instruments à vent en bois, restaurateur d’instruments à vent en bois, Facteur d’instruments à vent en métal, restaurateur d’instruments à vent en métal, Facteur d’instruments de musique mécanique, restaurateur d’instruments de musique mécanique, Facteur d'instruments à vent, restaurateur d'instruments à vent, Restaurateur de documents graphiques et imprimés"
-  ],
-  "95.29Z": [
-    "Restaurateur de meubles, bijoutier, bijoutier en métaux précieux, bijoutier fantaisie, Horloger, Joaillier, Orfèvre, Sertisseur, Polisseur, Facteur de harpes, restaurateur de harpes, Luthier, restaurateur d'instruments à cordes frottées, Luthier en guitare, restaurateur de guitares, Facteur d'accordéons, restaurateur d’accordéons, Facteur de percussions, restaurateur de percussions, Facteur d'instruments à claviers, restaurateur d'instruments à claviers, Facteur de pianos, restaurateur de pianos, Facteur d’instruments à vent en bois, restaurateur d’instruments à vent en bois, Facteur d’instruments à vent en métal, restaurateur d’instruments à vent en métal, Facteur d’instruments de musique mécanique, restaurateur d’instruments de musique mécanique, Facteur d'instruments à vent, restaurateur d'instruments à vent, Restaurateur de documents graphiques et imprimés"
-  ],
-  "35.11Z": [
-    "Production, transport et distribution d'électricité à titre professionnel",
-    "Particulier producteur d'énergie photovoltaïque"
-  ],
-  "35.12Z": [
-    "Production, transport et distribution d'électricité à titre professionnel",
-    "Particulier producteur d'énergie photovoltaïque"
-  ],
-  "35.13Z": [
-    "Production, transport et distribution d'électricité à titre professionnel",
-    "Particulier producteur d'énergie photovoltaïque"
-  ],
-  "35.14Z": [
-    "Production, transport et distribution d'électricité à titre professionnel",
-    "Particulier producteur d'énergie photovoltaïque"
-  ],
+  "13.10Z": [],
+  "13.20Z": [],
+  "13.30Z": [],
+  "13.91Z": [],
+  "13.92Z": [],
+  "13.93Z": [],
+  "13.94Z": [],
+  "13.95Z": [],
+  "13.96Z": [],
+  "13.99Z": [],
+  "14.11Z": [],
+  "14.12Z": [],
+  "14.13Z": [],
+  "14.14Z": [],
+  "14.19Z": [],
+  "14.20Z": [],
+  "14.31Z": [],
+  "14.39Z": [],
+  "15.11Z": [],
+  "15.12Z": [],
+  "15.20Z": [],
+  "16.10A": [],
+  "16.10B": [],
+  "16.21Z": [],
+  "16.22Z": [],
+  "16.23Z": [],
+  "16.24Z": [],
+  "16.29Z": [],
+  "17.11Z": [],
+  "17.12Z": [],
+  "17.21A": [],
+  "17.21B": [],
+  "17.21C": [],
+  "17.22Z": [],
+  "17.23Z": [],
+  "17.24Z": [],
+  "17.29Z": [],
+  "18.12Z": [],
+  "18.13Z": [],
+  "18.14Z": [],
+  "18.20Z": [],
+  "18.11Z": [],
+  "19.10Z": [],
+  "19.20Z": [],
+  "20.11Z": [],
+  "20.12Z": [],
+  "20.13A": [],
+  "20.13B": [],
+  "20.14Z": [],
+  "20.15Z": [],
+  "20.16Z": [],
+  "20.17Z": [],
+  "20.20Z": [],
+  "20.30Z": [],
+  "20.41Z": [],
+  "20.42Z": [],
+  "20.51Z": [],
+  "20.52Z": [],
+  "20.53Z": [],
+  "20.59Z": [],
+  "20.60Z": [],
+  "21.10Z": [],
+  "21.20Z": [],
+  "22.11Z": [],
+  "22.19Z": [],
+  "22.21Z": [],
+  "22.22Z": [],
+  "22.23Z": [],
+  "22.29A": [],
+  "22.29B": [],
+  "23.11Z": [],
+  "23.12Z": [],
+  "23.13Z": [],
+  "23.14Z": [],
+  "23.19Z": [],
+  "23.20Z": [],
+  "23.31Z": [],
+  "23.32Z": [],
+  "23.41Z": [],
+  "23.42Z": [],
+  "23.43Z": [],
+  "23.44Z": [],
+  "23.49Z": [],
+  "23.51Z": [],
+  "23.52Z": [],
+  "23.61Z": [],
+  "23.62Z": [],
+  "23.63Z": [],
+  "23.64Z": [],
+  "23.65Z": [],
+  "23.69Z": [],
+  "23.70Z": [],
+  "23.91Z": [],
+  "23.99Z": [],
+  "24.10Z": [],
+  "24.20Z": [],
+  "24.31Z": [],
+  "24.32Z": [],
+  "24.33Z": [],
+  "24.34Z": [],
+  "24.41Z": [],
+  "24.42Z": [],
+  "24.43Z": [],
+  "24.44Z": [],
+  "24.45Z": [],
+  "24.46Z": [],
+  "24.51Z": [],
+  "24.52Z": [],
+  "24.53Z": [],
+  "24.54Z": [],
+  "25.11Z": [],
+  "25.12Z": [],
+  "25.21Z": [],
+  "25.29Z": [],
+  "25.30Z": [],
+  "25.40Z": [],
+  "25.50A": [],
+  "25.50B": [],
+  "25.61Z": [],
+  "25.62A": [],
+  "25.62B": [],
+  "25.71Z": [],
+  "25.72Z": [],
+  "25.73A": [],
+  "25.73B": [],
+  "25.91Z": [],
+  "25.92Z": [],
+  "25.93Z": [],
+  "25.94Z": [],
+  "25.99A": [],
+  "25.99B": [],
+  "26.11Z": [],
+  "26.12Z": [],
+  "26.20Z": [],
+  "26.30Z": [],
+  "26.40Z": [],
+  "26.51A": [],
+  "26.51B": [],
+  "26.52Z": [],
+  "26.60Z": [],
+  "26.70Z": [],
+  "26.80Z": [],
+  "27.11Z": [],
+  "27.12Z": [],
+  "27.20Z": [],
+  "27.31Z": [],
+  "27.32Z": [],
+  "27.33Z": [],
+  "27.40Z": [],
+  "27.51Z": [],
+  "27.52Z": [],
+  "27.90Z": [],
+  "28.11Z": [],
+  "28.12Z": [],
+  "28.13Z": [],
+  "28.14Z": [],
+  "28.15Z": [],
+  "28.21Z": [],
+  "28.22Z": [],
+  "28.23Z": [],
+  "28.24Z": [],
+  "28.25Z": [],
+  "28.29A": [],
+  "28.29B": [],
+  "28.30Z": [],
+  "28.41Z": [],
+  "28.49Z": [],
+  "28.91Z": [],
+  "28.92Z": [],
+  "28.93Z": [],
+  "28.94Z": [],
+  "28.95Z": [],
+  "28.96Z": [],
+  "28.99A": [],
+  "28.99B": [],
+  "29.10Z": [],
+  "29.20Z": [],
+  "29.31Z": [],
+  "29.32Z": [],
+  "30.11Z": [],
+  "30.12Z": [],
+  "30.20Z": [],
+  "30.30Z": [],
+  "30.40Z": [],
+  "30.91Z": [],
+  "30.92Z": [],
+  "30.99Z": [],
+  "31.01Z": [],
+  "31.02Z": [],
+  "31.03Z": [],
+  "31.09A": [],
+  "31.09B": [],
+  "32.11Z": [],
+  "32.12Z": [],
+  "32.13Z": [],
+  "32.20Z": [],
+  "32.30Z": [],
+  "32.40Z": [],
+  "32.91Z": [],
+  "32.99Z": [],
+  "32.50A": [],
+  "32.50B": [],
+  "58.11Z": [],
+  "58.12Z": [],
+  "58.13Z": [],
+  "58.14Z": [],
+  "58.19Z": [],
+  "58.21Z": [],
+  "58.29A": [],
+  "58.29B": [],
+  "58.29C": [],
+  "59.11A": [],
+  "59.11B": [],
+  "59.11C": [],
+  "59.12Z": [],
+  "59.13A": [],
+  "59.13B": [],
+  "59.14Z": [],
+  "59.20Z": [],
+  "60.10Z": [],
+  "60.20A": [],
+  "60.20B": [],
+  "61.10Z": [],
+  "61.20Z": [],
+  "61.30Z": [],
+  "61.90Z": [],
+  "62.01Z": [],
+  "62.02A": [],
+  "62.02B": [],
+  "62.03Z": [],
+  "62.09Z": [],
+  "33.11Z": [],
+  "33.13Z": [],
+  "33.15Z": [],
+  "33.16Z": [],
+  "33.17Z": [],
+  "33.19Z": [],
+  "33.12Z": [],
+  "33.14Z": [],
+  "33.20A": [],
+  "33.20B": [],
+  "33.20C": [],
+  "33.20D": [],
+  "45.20A": [],
+  "45.20B": [],
+  "45.40Z": [],
+  "95.11Z": [],
+  "95.12Z": [],
+  "95.21Z": [],
+  "95.22Z": [],
+  "95.23Z": [],
+  "95.24Z": [],
+  "95.25Z": [],
+  "95.29Z": [],
+  "35.11Z": [],
+  "35.12Z": [],
+  "35.13Z": [],
+  "35.14Z": [],
   "35.21Z": [],
   "35.22Z": [],
   "35.23Z": [],
   "35.30Z": [],
   "36.00Z": [],
-  "37.00Z": [
-    "Collecte et traitement des eaux usées",
-    "Entretien de fosses septiques."
-  ],
-  "38.11Z": [
-    "Collecte des déchets non dangereux"
-  ],
-  "38.12Z": [
-    "Collecte des déchets dangereux",
-    "Collecte des déchets nucléaires."
-  ],
+  "37.00Z": [],
+  "38.11Z": [],
+  "38.12Z": [],
   "38.21Z": [
-    "Traitement et élimination des déchets non dangereux",
-    "Au service exclusif des exploitations agricoles",
-    "Autre",
-    "Incinération des déchets non dangereux et production de cendres et scories associée."
+    "Autre"
   ],
-  "38.22Z": [
-    "Traitement et élimination des déchets dangereux",
-    "Traitement et élimination de déchets nucléaires radioactifs."
-  ],
-  "38.31Z": [
-    "Démantèlement d'épaves"
-  ],
-  "38.32Z": [
-    "Récupération de déchets triés"
-  ],
+  "38.22Z": [],
+  "38.31Z": [],
+  "38.32Z": [],
   "39.00Z": [],
-  "41.10A": [
-    "Promotion immobilière de bureaux",
-    "Promotion immobilière de logements",
-    "Promotion immobilière d'autres bâtiments"
-  ],
-  "41.10B": [
-    "Promotion immobilière de bureaux",
-    "Promotion immobilière de logements",
-    "Promotion immobilière d'autres bâtiments"
-  ],
-  "41.10C": [
-    "Promotion immobilière de bureaux",
-    "Promotion immobilière de logements",
-    "Promotion immobilière d'autres bâtiments"
-  ],
-  "41.10D": [
-    "Promotion immobilière de bureaux",
-    "Promotion immobilière de logements",
-    "Promotion immobilière d'autres bâtiments"
-  ],
+  "41.10A": [],
+  "41.10B": [],
+  "41.10C": [],
+  "41.10D": [],
   "41.20A": [],
   "41.20B": [],
-  "42.11Z": [
-    "Construction de routes et de voies ferrées "
-  ],
-  "42.12Z": [
-    "Construction de routes et de voies ferrées "
-  ],
-  "42.13A": [
-    "Construction de routes et de voies ferrées "
-  ],
-  "42.13B": [
-    "Construction de routes et de voies ferrées "
-  ],
-  "42.21Z": [
-    "Construction d’installations de réseaux pour fluides.",
-    "Forage des puits d’eau."
-  ],
-  "42.22Z": [
-    "Construction de centrales électriques.",
-    "Construction de lignes électriques et de télécommunication."
-  ],
+  "42.11Z": [],
+  "42.12Z": [],
+  "42.13A": [],
+  "42.13B": [],
+  "42.21Z": [],
+  "42.22Z": [],
   "42.91Z": [
-    "Construction d’ouvrages maritimes et fluviaux.",
-    "Au service exclusif des exploitations agricoles",
     "Autre"
   ],
   "42.92Z": [
-    "Construction d'autres ouvrages de génie civil ",
-    "Au service exclusif des exploitations agricoles",
     "Autre"
   ],
   "42.99Z": [
-    "Construction d'autres ouvrages de génie civil ",
-    "Au service exclusif des exploitations agricoles",
-    "Autre",
-    "Construction d’installations sportives et d’ouvrages industriels ou miniers."
+    "Autre"
   ],
   "43.11Z": [
-    "Démolition et préparation des sites",
-    "Au service exclusif des exploitations agricoles",
     "Autre"
   ],
   "43.12Z": [
-    "Démolition et préparation des sites",
-    "Au service exclusif des exploitations agricoles",
     "Autre"
   ],
   "43.13A": [
-    "Démolition et préparation des sites",
-    "Au service exclusif des exploitations agricoles",
     "Autre"
   ],
   "43.13B": [
-    "Démolition et préparation des sites",
-    "Au service exclusif des exploitations agricoles",
     "Autre"
   ],
   "43.13Z": [
-    "Démolition et préparation des sites",
-    "Au service exclusif des exploitations agricoles",
     "Autre"
   ],
   "43.12A": [
-    "Démolition et préparation des sites",
-    "Au service exclusif des exploitations agricoles",
     "Autre"
   ],
-  "4312B": [
-    "Démolition et préparation des sites",
-    "Au service exclusif des exploitations agricoles"
-  ],
+  "4312B": [],
   "43.12B": [
-    "Démolition et préparation des sites",
     "Autre"
   ],
-  "43.21A": [
-    "Installation d’antennes.",
-    "Travaux d'installation électrique, plomberie et autres travaux d'installation"
-  ],
-  "43.21B": [
-    "Travaux d'installation électrique, plomberie et autres travaux d'installation"
-  ],
-  "43.22A": [
-    "Travaux d'installation électrique, plomberie et autres travaux d'installation"
-  ],
-  "43.22B": [
-    "Travaux d'installation électrique, plomberie et autres travaux d'installation"
-  ],
-  "43.29A": [
-    "Travaux d'installation électrique, plomberie et autres travaux d'installation"
-  ],
-  "43.29B": [
-    "Travaux d'installation électrique, plomberie et autres travaux d'installation",
-    "Montage de clôtures et de grilles."
-  ],
-  "43.31Z": [
-    "Travaux de plâtrerie, mensuiserie, peinture, vitrerie et de revêtement",
-    "Staffeur-stucateur, Escaliéteur, Menuisiser, Laqueur, Ferronnier-Forgeron, Métallier, Mosaïste, Paveur-dalleur, Parqueteur, Peintre en décor, Fresquiste, "
-  ],
-  "43.32A": [
-    "Travaux de plâtrerie, mensuiserie, peinture, vitrerie et de revêtement",
-    "Staffeur-stucateur, Escaliéteur, Menuisiser, Laqueur, Ferronnier-Forgeron, Métallier, Mosaïste, Paveur-dalleur, Parqueteur, Peintre en décor, Fresquiste, "
-  ],
-  "43.32B": [
-    "Travaux de plâtrerie, mensuiserie, peinture, vitrerie et de revêtement",
-    "Staffeur-stucateur, Escaliéteur, Menuisiser, Laqueur, Ferronnier-Forgeron, Métallier, Mosaïste, Paveur-dalleur, Parqueteur, Peintre en décor, Fresquiste, "
-  ],
-  "43.33Z": [
-    "Travaux de plâtrerie, mensuiserie, peinture, vitrerie et de revêtement",
-    "Staffeur-stucateur, Escaliéteur, Menuisiser, Laqueur, Ferronnier-Forgeron, Métallier, Mosaïste, Paveur-dalleur, Parqueteur, Peintre en décor, Fresquiste, "
-  ],
-  "43.34Z": [
-    "Travaux de plâtrerie, mensuiserie, peinture, vitrerie et de revêtement",
-    "Staffeur-stucateur, Escaliéteur, Menuisiser, Laqueur, Ferronnier-Forgeron, Métallier, Mosaïste, Paveur-dalleur, Parqueteur, Peintre en décor, Fresquiste, "
-  ],
-  "43.32C": [
-    "Agencement de lieux de vente.",
-    "Agent commercial",
-    "Secteur de l’immobilier"
-  ],
-  "43.39Z": [
-    "Autres travaux de finition.",
-    "Ferronnier-forgeron,"
-  ],
-  "43.91A": [
-    "Travaux de couverture",
-    "Charpentier, Ardoisier, Chaumier, Couvreur du patrimoine bâti, Couvreur ornemaniste, Fabricant de girouettes et d'éléments de faîtage, Lavier, Lauzier,"
-  ],
-  "43.91B": [
-    "Travaux de couverture",
-    "Charpentier, Ardoisier, Chaumier, Couvreur du patrimoine bâti, Couvreur ornemaniste, Fabricant de girouettes et d'éléments de faîtage, Lavier, Lauzier,"
-  ],
-  "43.99A": [
-    "Travaux d’étanchéification."
-  ],
-  "43.99B": [
-    "Travaux de montage de structures métalliques."
-  ],
-  "43.99C": [
-    "Travaux de maçonnerie générale et gros œuvre de bâtiment.",
-    "Maçon du patrimoine bâti, Murailler, Rocailleur, Fontainier, Paveur-dalleur,"
-  ],
-  "43.99D": [
-    "Installation de piscines de résidence et construction de piscines extérieures.",
-    "Construction de cheminées et de fours industriels.",
-    "Atrier",
-    "Autres travaux spéciaux de construction.",
-    "Fontainier,"
-  ],
-  "43.99E": [
-    "Location avec opérateur de matériel de construction."
-  ],
+  "43.21A": [],
+  "43.21B": [],
+  "43.22A": [],
+  "43.22B": [],
+  "43.29A": [],
+  "43.29B": [],
+  "43.31Z": [],
+  "43.32A": [],
+  "43.32B": [],
+  "43.33Z": [],
+  "43.34Z": [],
+  "43.32C": [],
+  "43.39Z": [],
+  "43.91A": [],
+  "43.91B": [],
+  "43.99A": [],
+  "43.99B": [],
+  "43.99C": [],
+  "43.99D": [],
+  "43.99E": [],
   "45.11Z": [],
   "45.19Z": [],
   "45.31Z": [],
   "46.19B": [
-    "Agent commercial",
-    "Secteur Bois, papier, carton, Imprimerie",
-    "Secteur du commerce ,du négoce et de la distribution",
-    "Secteur de l'édition, du multimédia et de la communication",
-    "Secteur de l'informatique et des télécoms",
-    "Secteur des machines, des  équipements et de l'automobile",
-    "Secteur de la métallurgie et du fer",
-    "Secteur du plastique et du caoutchouc",
-    "Secteur du services aux entreprises",
-    "Secteur du textile, de l'habillement et des chaussures",
-    "Secteur du transport et de la logistique",
-    "Secteur de l’immobilier"
-  ],
-  "46.XXX": [
     "Autre"
   ],
-  "47.11A": [
-    "Commerce de détail en magasin"
+  "46.12B": [
+    "Autre"
   ],
-  "47.11B": [
-    "Commerce de détail en magasin"
+  "46.15Z": [
+    "Autre"
   ],
-  "47.11C": [
-    "Commerce de détail en magasin"
+  "46.23Z": [
+    "Autre"
   ],
-  "47.11D": [
-    "Commerce de détail en magasin"
+  "46.33Z": [
+    "Autre"
   ],
-  "47.11E": [
-    "Commerce de détail en magasin"
+  "46.37Z": [
+    "Autre"
   ],
-  "47.11F": [
-    "Commerce de détail en magasin"
+  "46.39B": [
+    "Autre"
   ],
-  "47.19A": [
-    "Commerce de détail en magasin"
+  "46.41Z": [
+    "Autre"
   ],
-  "47.19B": [
-    "Commerce de détail en magasin"
+  "46.43Z": [
+    "Autre"
   ],
-  "47.21Z": [
-    "Commerce de détail en magasin"
+  "46.48Z": [
+    "Autre"
   ],
-  "47.23Z": [
-    "Commerce de détail en magasin",
-    "Commerce de préparation de poissons, crustacés et mollusques"
+  "46.49Z": [
+    "Autre"
   ],
-  "47.24Z": [
-    "Commerce de détail en magasin"
+  "46.62Z": [
+    "Autre"
   ],
-  "47.25Z": [
-    "Commerce de détail en magasin"
+  "46.63Z": [
+    "Autre"
   ],
-  "47.26Z": [
-    "Commerce de détail en magasin"
+  "46.64Z": [
+    "Autre"
   ],
-  "47.29Z": [
-    "Commerce de détail en magasin",
-    "Crémerie-fromagerie et préparations à base de lait ou de fromage"
+  "46.65Z": [
+    "Autre"
   ],
-  "47.30Z": [
-    "Commerce de détail en magasin"
+  "46.66Z": [
+    "Autre"
   ],
-  "47.41Z": [
-    "Commerce de détail en magasin"
+  "46.69C": [
+    "Autre"
   ],
-  "47.42Z": [
-    "Commerce de détail en magasin"
+  "46.73A": [
+    "Autre"
   ],
-  "47.43Z": [
-    "Commerce de détail en magasin"
+  "46.73B": [
+    "Autre"
   ],
-  "47.51Z": [
-    "Commerce de détail en magasin"
+  "46.74A": [
+    "Autre"
   ],
-  "47.52A": [
-    "Commerce de détail en magasin"
+  "46.74B": [
+    "Autre"
   ],
-  "47.52B": [
-    "Commerce de détail en magasin"
+  "46.90Z": [
+    "Autre"
   ],
-  "47.53Z": [
-    "Commerce de détail en magasin"
+  "46.16Z": [
+    "Autre"
   ],
-  "47.54Z": [
-    "Commerce de détail en magasin"
+  "46.17A": [
+    "Autre"
   ],
-  "47.59A": [
-    "Commerce de détail en magasin"
+  "46.17B": [
+    "Autre"
   ],
-  "47.59B": [
-    "Commerce de détail en magasin"
+  "46.22Z": [
+    "Autre"
   ],
-  "47.61Z": [
-    "Commerce de détail en magasin"
+  "46.24Z": [
+    "Autre"
   ],
-  "47.62Z": [
-    "Commerce de détail en magasin"
+  "46.31Z": [
+    "Autre"
   ],
-  "47.63Z": [
-    "Commerce de détail en magasin"
+  "46.32B": [
+    "Autre"
   ],
-  "47.64Z": [
-    "Commerce de détail en magasin"
+  "46.42Z": [
+    "Autre"
   ],
-  "47.65Z": [
-    "Commerce de détail en magasin"
+  "46.44Z": [
+    "Autre"
   ],
-  "47.71Z": [
-    "Commerce de détail en magasin"
+  "46.46Z": [
+    "Autre"
   ],
-  "47.72A": [
-    "Commerce de détail en magasin"
+  "46.47Z": [
+    "Autre"
   ],
-  "47.72B": [
-    "Commerce de détail en magasin"
+  "46.51Z": [
+    "Autre"
   ],
-  "47.73Z": [
-    "Commerce de détail en magasin",
-    "Officine de pharmacie"
+  "46.61Z": [
+    "Autre"
   ],
-  "47.74Z": [
-    "Commerce de détail en magasin",
-    "Commerce de détail de fleurs."
+  "46.69A": [
+    "Autre"
   ],
-  "47.75Z": [
-    "Commerce de détail en magasin"
+  "46.72Z": [
+    "Autre"
   ],
-  "47.76Z": [
-    "Commerce de détail en magasin"
+  "46.75Z": [
+    "Autre"
   ],
-  "47.77Z": [
-    "Commerce de détail en magasin"
+  "46.11Z": [
+    "Autre"
   ],
-  "47.78A": [
-    "Commerce de détail en magasin"
+  "46.12A": [
+    "Autre"
   ],
-  "47.78B": [
-    "Commerce de détail en magasin"
+  "46.13Z": [
+    "Autre"
   ],
-  "47.78C": [
-    "Commerce de détail en magasin"
+  "46.14Z": [
+    "Autre"
   ],
-  "47.79Z": [
-    "Commerce de détail en magasin"
+  "46.18Z": [
+    "Autre"
   ],
-  "47.22Z": [
-    "Boucherie.",
-    "Boucherie-charcuterie.",
-    "Boucherie chevaline.",
-    "Volailles, gibiers.",
-    "Triperie."
+  "46.19A": [
+    "Autre"
   ],
-  "47.81Z": [
-    "Commerce de détail sur éventaires et marchés",
-    "Boucherie sur éventaires et marchés.",
-    "Boucherie-charcuterie sur éventaires et marchés.",
-    "Boucherie chevaline sur éventaires et marchés.",
-    "Volailles, gibiers sur éventaires et marchés.",
-    "Triperie sur éventaires et marchés.",
-    "Préparation de poissons, crustacés, mollusques sur éventaires, marchés.",
-    "Crémerie-fromagerie et préparations à base de lait ou de fromage sur éventaires, marchés"
+  "46.21Z": [
+    "Autre"
   ],
-  "47.82Z": [
-    "Commerce de détail sur éventaires et marchés"
+  "46.32A": [
+    "Autre"
   ],
-  "47.89Z": [
-    "Commerce de détail sur éventaires et marchés",
-    "Commerce de détail de fleurs sur éventaires et marchés."
+  "46.32C": [
+    "Autre"
   ],
+  "46.34Z": [
+    "Autre"
+  ],
+  "46.35Z": [
+    "Autre"
+  ],
+  "46.36Z": [
+    "Autre"
+  ],
+  "46.38A": [
+    "Autre"
+  ],
+  "46.38B": [
+    "Autre"
+  ],
+  "46.39A": [
+    "Autre"
+  ],
+  "46.45Z": [
+    "Autre"
+  ],
+  "46.52Z": [
+    "Autre"
+  ],
+  "46.69B": [
+    "Autre"
+  ],
+  "46.71Z": [
+    "Autre"
+  ],
+  "46.76Z": [
+    "Autre"
+  ],
+  "46.77Z": [
+    "Autre"
+  ],
+  "47.11A": [],
+  "47.11B": [],
+  "47.11C": [],
+  "47.11D": [],
+  "47.11E": [],
+  "47.11F": [],
+  "47.19A": [],
+  "47.19B": [],
+  "47.21Z": [],
+  "47.23Z": [],
+  "47.24Z": [],
+  "47.25Z": [],
+  "47.26Z": [],
+  "47.29Z": [],
+  "47.30Z": [],
+  "47.41Z": [],
+  "47.42Z": [],
+  "47.43Z": [],
+  "47.51Z": [],
+  "47.52A": [],
+  "47.52B": [],
+  "47.53Z": [],
+  "47.54Z": [],
+  "47.59A": [],
+  "47.59B": [],
+  "47.61Z": [],
+  "47.62Z": [],
+  "47.63Z": [],
+  "47.64Z": [],
+  "47.65Z": [],
+  "47.71Z": [],
+  "47.72A": [],
+  "47.72B": [],
+  "47.73Z": [],
+  "47.74Z": [],
+  "47.75Z": [],
+  "47.76Z": [],
+  "47.77Z": [],
+  "47.78A": [],
+  "47.78B": [],
+  "47.78C": [],
+  "47.79Z": [],
+  "47.22Z": [],
+  "47.81Z": [],
+  "47.82Z": [],
+  "47.89Z": [],
   "47.91A": [],
   "47.91B": [],
-  "47.99A": [
-    "vendeur à domicile indépendant inscrit au RCS",
-    "vendeur à domicile indépendant inscrit au RSAC",
-    "Vendeur à domicile indépendant non immatriculé au RCS ou au RSAC"
-  ],
+  "47.99A": [],
   "47.99B": [],
-  "49.10Z": [
-    "Transport ferroviaire"
-  ],
-  "49.20Z": [
-    "Transport ferroviaire"
-  ],
-  "49.32Z": [
-    "Taxis",
-    "Location de voitures avec chauffeur."
-  ],
-  "49.31Z": [
-    "Transport routier",
-    " Transport routier motorisé",
-    " Transport routier non-motorisé"
-  ],
-  "49.39A": [
-    "Transport routier",
-    " Transport routier motorisé",
-    " Transport routier non-motorisé"
-  ],
-  "49.39B": [
-    "Transport routier",
-    " Transport routier motorisé",
-    " Transport routier non-motorisé",
-    "Services occasionnels de transport routiers à la demande"
-  ],
-  "49.41A": [
-    "Transport routier",
-    " Transport routier motorisé",
-    " Transport routier non-motorisé"
-  ],
-  "49.41B": [
-    "Transport routier",
-    " Transport routier motorisé",
-    " Transport routier non-motorisé"
-  ],
-  "49.41C": [
-    "Transport routier",
-    " Transport routier motorisé",
-    " Transport routier non-motorisé"
-  ],
-  "49.39C": [
-    "Téléphériques et remontées mécaniques"
-  ],
-  "49.42Z": [
-    "Services de déménagement."
-  ],
+  "49.10Z": [],
+  "49.20Z": [],
+  "49.32Z": [],
+  "49.31Z": [],
+  "49.39A": [],
+  "49.39B": [],
+  "49.41A": [],
+  "49.41B": [],
+  "49.41C": [],
+  "49.39C": [],
+  "49.42Z": [],
   "50.10Z": [
-    "Transport maritime",
-    "Skippers",
-    "Autre",
-    "Activités de transports maritimes côtiers"
+    "Autre"
   ],
   "50.20Z": [
-    "Transport maritime",
-    "Skippers",
-    "Autre",
-    "Activités de transports maritimes côtiers"
+    "Autre"
   ],
-  "50.30Z": [
-    "Transport fluvial de passagers"
-  ],
-  "50.40Z": [
-    "Transport fluvial de fret"
-  ],
-  "51.10Z": [
-    "Transport aérien et spatial",
-    " "
-  ],
-  "51.21Z": [
-    "Transport aérien et spatial",
-    " "
-  ],
-  "51.22Z": [
-    "Transport aérien et spatial",
-    " "
-  ],
-  "49.50Z": [
-    "Transports par conduites"
-  ],
-  "52.10A": [
-    "Entreposage et stockage",
-    "A titre commercial",
-    "A titre indépendant"
-  ],
-  "52.10B": [
-    "Entreposage et stockage",
-    "A titre commercial",
-    "A titre indépendant"
-  ],
-  "52.22Z": [
-    "Services auxilliaires"
-  ],
-  "52.23Z": [
-    "Services auxilliaires"
-  ],
-  "52.24A": [
-    "Services auxilliaires"
-  ],
-  "52.24B": [
-    "Services auxilliaires"
-  ],
-  "52.29A": [
-    "Services auxilliaires"
-  ],
-  "52.29B": [
-    "Services auxilliaires",
-    "Conseil en organisation de convoi "
-  ],
-  "52.21Z": [
-    "Assistance et remorquage de véhicules automobiles."
-  ],
-  "53.10Z": [
-    "Activités de poste et de courrier"
-  ],
-  "53.20Z": [
-    "Activités de poste et de courrier",
-    "livraison à domicile, coursiers"
-  ],
-  "86.90A": [
-    "Ambulance"
-  ],
-  "55.10Z": [
-    "Hotellerie et hébergement avec prestations hotellières"
-  ],
-  "55.20Z": [
-    "Hotellerie et hébergement avec prestations hotellières"
-  ],
-  "55.90Z": [
-    "Hotellerie et hébergement avec prestations hotellières"
-  ],
-  "55.30Z": [
-    "Terrains de camping et parcs pour caravanes ou véhicules de loisirs"
-  ],
-  "56.10A": [
-    "Restauration",
-    "Fabrication culinaire artisanale de plats à consommer sur place"
-  ],
-  "56.10B": [
-    "Restauration"
-  ],
-  "56.10C": [
-    "Restauration",
-    "Fabrication artisanale associée à la vente de plats pour consommation immédiate en magasins sédentaires ou sur éventaires et marchés.",
-    "Fabrication artisanale associée à la vente de plats pour consommation immédiate en véhicules motorisés ou non."
-  ],
-  "56.21Z": [
-    "Traiteurs et autres services de restauration"
-  ],
-  "56.29A": [
-    "Traiteurs et autres services de restauration"
-  ],
-  "56.29B": [
-    "Traiteurs et autres services de restauration"
-  ],
-  "56.30Z": [
-    "Débits de boissons"
-  ],
-  "63.11Z": [
-    "Traitement de données, hébergement et activités connexes "
-  ],
-  "63.12Z": [
-    "Traitement de données, hébergement et activités connexes ",
-    "Community manager, ergonome web, blogueur professionnel, rédacteur web"
-  ],
-  "doublon": [
-    "Exploitation de portails Internet"
-  ],
-  "63.91Z": [
-    "Activités des agences de presse",
-    "Relation presse, correspondants locaux de la presse écrite"
-  ],
-  "63.99Z": [
-    "Rédacteur, attaché de presse, journaliste d'entreprise",
-    "Autres services d'information "
-  ],
+  "50.30Z": [],
+  "50.40Z": [],
+  "51.10Z": [],
+  "51.21Z": [],
+  "51.22Z": [],
+  "49.50Z": [],
+  "52.10A": [],
+  "52.10B": [],
+  "52.22Z": [],
+  "52.23Z": [],
+  "52.24A": [],
+  "52.24B": [],
+  "52.29A": [],
+  "52.29B": [],
+  "52.21Z": [],
+  "53.10Z": [],
+  "53.20Z": [],
+  "86.90A": [],
+  "55.10Z": [],
+  "55.20Z": [],
+  "55.90Z": [],
+  "55.30Z": [],
+  "56.10A": [],
+  "56.10B": [],
+  "56.10C": [],
+  "56.21Z": [],
+  "56.29A": [],
+  "56.29B": [],
+  "56.30Z": [],
+  "63.11Z": [],
+  "63.12Z": [],
+  "doublon": [],
+  "63.91Z": [],
+  "63.99Z": [],
   "66.11Z": [
-    "Activités des services financiers",
-    "Administration de marchés financiers",
     "Autre"
   ],
   "64.11Z": [
-    "Activités des services financiers",
-    "Administration de marchés financiers",
     "Autre"
   ],
   "64.19Z": [
-    "Activités des services financiers",
-    "Administration de marchés financiers",
-    "Activités diverses des services financiers ",
     "Autre"
   ],
   "64.20Z": [
-    "Activités des services financiers",
-    "Administration de marchés financiers",
-    "Activités diverses des services financiers ",
     "Autre"
   ],
   "64.30Z": [
-    "Activités des services financiers",
-    "Administration de marchés financiers",
     "Autre"
   ],
   "64.91Z": [
-    "Activités des services financiers",
-    "Administration de marchés financiers",
     "Autre"
   ],
   "64.92Z": [
-    "Activités des services financiers",
-    "Administration de marchés financiers",
     "Autre"
   ],
-  "64.99Z": [
-    "Activités des services financiers",
-    "Activités diverses des services financiers "
-  ],
-  "66.12Z": [
-    "Activités des services financiers",
-    "Courtage de valeurs mobilières et de marchandises"
-  ],
-  "66.19A": [
-    "Activités des services financiers",
-    "Trading pour compte propre  ",
-    "Conseil en gestion de patrimoine et gestion de patrimoine personnel",
-    "Location de biens mobiliers",
-    "copropriété de navires et quirataires de navires"
-  ],
-  "66.19B": [
-    "Activités des services financiers",
-    "Autres activités auxiliaires de services financiers, hors assurance et caisses de retraite",
-    "Conseil en placement et en investissement financier, ingénieur d'affaires"
-  ],
-  "66.30Z": [
-    "Activités des services financiers",
-    "Gestion de fonds"
-  ],
-  "65.11Z": [
-    "Activités des services financiers",
-    "Services généraux d'assurances",
-    "Assurances",
-    "Évaluation des risques et dommages",
-    "Expertise automobile",
-    "Expertise médicale",
-    "Activités des mandataires intermédiaires des sociétés ou caisses locales d'assurances mutuelles agricoles ",
-    "Activités des courtiers d'assurances (hors assurances mutuelles agricoles)",
-    "Agent général d'assurances"
-  ],
-  "65.12Z": [
-    "Activités des services financiers",
-    "Services généraux d'assurances",
-    "Assurances",
-    "Évaluation des risques et dommages",
-    "Expertise automobile",
-    "Expertise médicale",
-    "Activités des mandataires intermédiaires des sociétés ou caisses locales d'assurances mutuelles agricoles ",
-    "Activités des courtiers d'assurances (hors assurances mutuelles agricoles)",
-    "Agent général d'assurances"
-  ],
-  "65.20Z": [
-    "Activités des services financiers",
-    "Services généraux d'assurances",
-    "Assurances",
-    "Évaluation des risques et dommages",
-    "Expertise automobile",
-    "Expertise médicale",
-    "Activités des mandataires intermédiaires des sociétés ou caisses locales d'assurances mutuelles agricoles ",
-    "Activités des courtiers d'assurances (hors assurances mutuelles agricoles)",
-    "Agent général d'assurances"
-  ],
-  "65.30Z": [
-    "Activités des services financiers",
-    "Services généraux d'assurances",
-    "Assurances",
-    "Évaluation des risques et dommages",
-    "Expertise automobile",
-    "Expertise médicale",
-    "Activités des mandataires intermédiaires des sociétés ou caisses locales d'assurances mutuelles agricoles ",
-    "Activités des courtiers d'assurances (hors assurances mutuelles agricoles)",
-    "Agent général d'assurances"
-  ],
-  "66.21Z": [
-    "Assurances",
-    "Évaluation des risques et dommages"
-  ],
-  "66.29Z": [
-    "Assurances",
-    "Gestion et administration fonds d'assurance, enquêteur, expert assureur"
-  ],
-  "68.31Z": [
-    "Activités immobilières ",
-    "Agences immobilières",
-    "Agent commercial en immobilier",
-    "Expertises et conseils en immobilier hors diagnostic et transaction",
-    "Expert foncier",
-    "Agent commercial",
-    "Secteur de l’immobilier"
-  ],
-  "68.32A": [
-    "Activités immobilières ",
-    "Administration d'immeubles et autres biens immobiliers"
-  ],
-  "68.32B": [
-    "Activités immobilières ",
-    "Conseil en immobilier ou en gestion de patrimoine"
-  ],
-  "68.10Z": [
-    "Activités immobilières ",
-    "Activités des marchands de biens immobiliers",
-    "Agent commercial",
-    "Secteur de l’immobilier"
-  ],
-  "69.10Z": [
-    "Activités juridiques",
-    "Greffiers près les tribunaux de commerce ",
-    "Administrateurs judiciaires ",
-    "Mandataires judiciaires ",
-    "Opérateur de ventes volontaires de meubles aux enchères publiques",
-    "Expert devant les tribunaux",
-    "Mandataires judiciaires à la protection des majeurs",
-    "Autres activités juridiques",
-    "Avocat",
-    "Notaire",
-    "Commissaire de justice"
-  ],
-  "69.20Z": [
-    "Activités comptables",
-    "Expert-comptable",
-    "Commissaire aux comptes",
-    "Autres activités comptables"
-  ],
-  "70.10Z": [
-    "Activités des sièges sociaux ",
-    "0",
-    "Activités des sièges sociaux",
-    "Activités des sièges sociaux et des sièges d'entreprises"
-  ],
-  "70.21Z": [
-    "Conseil en relations publiques et communication",
-    "Agence de communication, marketing, Conseil en image",
-    "Conseil et accompagnement en communication et relations publiques"
-  ],
-  "70.22Z": [
-    "Conseil pour les affaires et conseil de gestion",
-    "Conseil commercial",
-    "Autres activités de conseil"
-  ],
-  "71.11Z": [
-    "Activités d'architecture et d'ingénierie",
-    "Architecte, architecte d'intérieur",
-    "Autres activités d'architecture, maîtrise d'œuvre ",
-    "Services d'aménagement paysager ",
-    "Conception architecturale de parcs et jardins "
-  ],
-  "71.12A": [
-    "Activités d'architecture et d'ingénierie",
-    "Géomètre",
-    "Autres activités de géomètre"
-  ],
-  "71.12B": [
-    "Activités d'architecture et d'ingénierie",
-    "Ingénierie, études techniques en profession libérale",
-    "Ingénierie, études techniques à titre indépendant"
-  ],
-  "71.20A": [
-    "Contrôle technique automobile"
-  ],
-  "71.20B": [
-    "Analyses, essais et inspections techniques",
-    " ",
-    "Diagnostic technique immobilier"
-  ],
-  "72.11Z": [
-    "Recherche-développement scientifique"
-  ],
-  "72.19Z": [
-    "Recherche-développement scientifique"
-  ],
-  "72.20Z": [
-    "Recherche-développement scientifique"
-  ],
-  "73.11Z": [
-    "Activités des agences de publicité",
-    "Pose d’affiches."
-  ],
-  "73.12Z": [
-    "Régie publicitaire de médias"
-  ],
-  "73.20Z": [
-    "Études de marché et sondages"
-  ],
-  "74.10Z": [
-    "Activités spécialisées de design",
-    "Fabricant de maquettes",
-    "Conception de modèles pour étalages et décoration."
-  ],
-  "74.20Z": [
-    "Activités photographiques",
-    "Exploitant de machines automatiques de photographies",
-    "Studio de photographie.",
-    "Photographe technicien",
-    "Portrait, reportage.",
-    "Photographie industrielle et publicitaire.",
-    "Laboratoires techniques de développement et de tirage.",
-    "Photojournaliste indépendant",
-    "Opérateur de drones réalisant des prises de vues aériennes"
-  ],
-  "74.30Z": [
-    "Traduction et interprétation"
-  ],
-  "74.90A": [
-    "Activités spécialisées, scientifiques et techniques diverses",
-    "Restaurateur de peintures, restaurateur de céramiques, restaurateur de textiles, restaurateur de vitraux, restaurateur de documents graphiques et imprimés, restaurateur de photographies, restaurateur de sculptures, restaurateur de cuirs, restaurateur de métal, restaurateur de mosaïques, restaurateur de verre et de cristal, restaurateur d'objets scientifique  techniques ou industriels, restaurateur de meubles"
-  ],
-  "74.90B": [
-    "Activités spécialisées, scientifiques et techniques diverses",
-    "Restaurateur de peintures, restaurateur de céramiques, restaurateur de textiles, restaurateur de vitraux, restaurateur de documents graphiques et imprimés, restaurateur de photographies, restaurateur de sculptures, restaurateur de cuirs, restaurateur de métal, restaurateur de mosaïques, restaurateur de verre et de cristal, restaurateur d'objets scientifique  techniques ou industriels, restaurateur de meubles"
-  ],
-  "75.00Z": [
-    "Activités vétérinaires"
-  ],
-  "68.20A": [
-    "Location de biens immobiliers",
-    "Loueur en meublé non professionnel",
-    "Location de logements meublés - à titre professionnel",
-    "Location de logements meublés - à titre professionnel avec prestations hôtelières ",
-    "Location de terrains et autres biens immobiliers loués nus - à titre non professionnel",
-    "Location de logements nus, de terrains et autres biens immobiliers loués nus - à titre professionnel",
-    "Location de locaux nus commerciaux ou professionnels - à titre  non professionnel",
-    "Location de locaux nus commerciaux ou professionnels - à titre  professionnel",
-    "Location de locaux  équipés commerciaux ou professionnels ",
-    "Location de garage (sans autre service ou prestation associé)",
-    "Baux ruraux "
-  ],
-  "68.20B": [
-    "Location de biens immobiliers",
-    "Loueur en meublé non professionnel",
-    "Location de logements meublés - à titre professionnel",
-    "Location de logements meublés - à titre professionnel avec prestations hôtelières ",
-    "Location de terrains et autres biens immobiliers loués nus - à titre non professionnel",
-    "Location de logements nus, de terrains et autres biens immobiliers loués nus - à titre professionnel",
-    "Location de locaux nus commerciaux ou professionnels - à titre  non professionnel",
-    "Location de locaux nus commerciaux ou professionnels - à titre  professionnel",
-    "Location de locaux  équipés commerciaux ou professionnels ",
-    "Location de garage (sans autre service ou prestation associé)",
-    "Baux ruraux "
-  ],
-  "77.11A": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.11B": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.12Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.21Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.22Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.29Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.31Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.32Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.33Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.34Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.35Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.39Z": [
-    "Locations de biens mobiliers",
-    "Location et location-bail de biens mobiliers - à titre professionnel",
-    "Location et location-bail de biens mobiliers - à titre  non professionnel",
-    "Location de fonds de commerce ",
-    "Locations d’autres fonds ",
-    "Location de cheptels",
-    "Location de droit à paiement de base"
-  ],
-  "77.40Z": [
-    "Locations de biens mobiliers",
-    "Location-bail de propriété intellectuelle et de produits similaires, à l'exception des œuvres soumises à copyright"
-  ],
-  "78.10Z": [
-    "Agences de casting, agences de placement, agences de mannequins",
-    "Conseil en recrutement et ressources humaines, portage salarial"
-  ],
-  "78.20Z": [
-    "Activités des agences de travail temporaire "
-  ],
-  "78.30Z": [
-    "Autre mise à disposition de ressources humaines"
-  ],
-  "79.11Z": [
-    "Activités des agences de voyage et voyagistes"
-  ],
-  "79.12Z": [
-    "Activités des agences de voyage et voyagistes"
-  ],
-  "79.90Z": [
-    "Autres services de réservation",
-    "Services d'échanges à temps partagé",
-    "Vente de billets pour les spectacles, manifestations sportives et divertissements",
-    "Guides et assistances touristiques",
-    "Guides conférenciers"
-  ],
-  "80.10Z": [
-    "Transport de fonds",
-    "Déchiquetage d'informations ",
-    "Services de véhicules blindés",
-    "Garde du corps et agents de protection",
-    "Vigile, agent de sécurité, maître-chien",
-    "services de dactyloscopie"
-  ],
-  "80.20Z": [
-    "Activité de surveillance associée à des systèmes de sécurité ou d'alarme",
-    "Activité de surveillance associée à l'installation de systèmes d’alarme non dissociées."
-  ],
-  "80.30Z": [
-    "Activités d'enquête"
-  ],
-  "81.10Z": [
-    "Activités combinées de soutien lié aux bâtiments "
-  ],
-  "81.21Z": [
-    "Nettoyage courant des bâtiments"
-  ],
-  "81.22Z": [
-    "Nettoyage spécialisé ou extérieur de bâtiments, nettoyage de machines industriellles",
-    "Ramonage"
-  ],
-  "81.29A": [
-    "Désinfection, désinsectisation, dératisation"
-  ],
-  "81.29B": [
-    "Balayage des chaussées et déblaiement de la neige",
-    "nettoyage et entretien des piscines",
-    "nettoyage des moyens de transports",
-    "Autres activités de nettoyage"
-  ],
-  "81.30Z": [
-    "Services d'aménagement paysager ",
-    "Création, restauration et entretien de parcs et jardins ",
-    "Création, restauration et entretien de parcs et jardins avec travaux de maçonnerie paysagère ",
-    "jardinier du patrimoine"
-  ],
-  "82.11Z": [
-    "Services administratifs combinés de bureau"
-  ],
-  "82.19Z": [
-    "Secrétariat à façon, duplication (dont photocopie), reproduction et expédition de documents",
-    "Services de domiciliation",
-    "Révision, correction, transcription de documents",
-    "Documentaliste Généalogiste"
-  ],
-  "82.20Z": [
-    "Activités de centres d'appels"
-  ],
-  "82.30Z": [
-    "Organisation de foires, salons professionnels et congrès",
-    "Agent commercial",
-    "Secteur agrolimentaire",
-    "Secteur de la banque ou de l' assurance"
-  ],
-  "82.91Z": [
-    "Activités des agences de recouvrement de factures et des sociétés d'information financière sur la clientèle"
-  ],
-  "82.92Z": [
-    "Activités de conditionnement"
-  ],
-  "82.99Z": [
-    "Autres activités commerciales de soutien aux entreprises",
-    "Autres activités libérales de soutien aux entreprises",
-    "Agent commercial",
-    "Secteur agrolimentaire",
-    "Secteur de la banque ou de l' assurance",
-    "Secteur Bois, papier, carton, Imprimerie",
-    "Secteur du BTP ou des matériaux de construction",
-    "Secteur de la Chimie, et de la parachimie",
-    "Secteur du commerce ,du négoce et de la distribution",
-    "Secteur de l'édition, du multimédia et de la communication",
-    "Secteur de l'électronique et de l'électricité",
-    "Secteur des études et conseil",
-    "Secteur de l'industrie pharmaceutique",
-    "Secteur de l'informatique et des télécoms",
-    "Secteur des machines, des  équipements et de l'automobile",
-    "Secteur de la métallurgie et du fer",
-    "Secteur du plastique et du caoutchouc",
-    "Secteur du services aux entreprises",
-    "Secteur du textile, de l'habillement et des chaussures",
-    "Secteur du transport et de la logistique",
-    "Secteur de l’immobilier"
-  ],
-  "46.1XX": [
-    "Agent commercial",
-    "Secteur agrolimentaire",
-    "Secteur de la banque ou de l' assurance",
-    "Secteur du BTP ou des matériaux de construction",
-    "Secteur de la Chimie, et de la parachimie"
-  ],
-  "66.22Z": [
-    "Agent commercial",
-    "Secteur de la banque ou de l' assurance"
-  ],
-  "64XXX": [
-    "Agent commercial",
-    "Secteur de la banque ou de l' assurance"
-  ],
-  "85.10Z": [
-    "Enseignement pré-primaire"
-  ],
-  "85.20Z": [
-    "Enseignement primaire"
-  ],
-  "85.31Z": [
-    "Enseignement secondaire général"
-  ],
+  "64.99Z": [],
+  "66.12Z": [],
+  "66.19A": [],
+  "66.19B": [],
+  "66.30Z": [],
+  "65.11Z": [],
+  "65.12Z": [],
+  "65.20Z": [],
+  "65.30Z": [],
+  "66.21Z": [],
+  "66.29Z": [],
+  "68.31Z": [],
+  "68.32A": [],
+  "68.32B": [],
+  "68.10Z": [],
+  "69.10Z": [],
+  "69.20Z": [],
+  "70.10Z": [],
+  "70.21Z": [],
+  "70.22Z": [],
+  "71.11Z": [],
+  "71.12A": [],
+  "71.12B": [],
+  "71.20A": [],
+  "71.20B": [],
+  "72.11Z": [],
+  "72.19Z": [],
+  "72.20Z": [],
+  "73.11Z": [],
+  "73.12Z": [],
+  "73.20Z": [],
+  "74.10Z": [],
+  "74.20Z": [],
+  "74.30Z": [],
+  "74.90A": [],
+  "74.90B": [],
+  "75.00Z": [],
+  "68.20A": [],
+  "68.20B": [],
+  "77.11A": [],
+  "77.11B": [],
+  "77.12Z": [],
+  "77.21Z": [],
+  "77.22Z": [],
+  "77.29Z": [],
+  "77.31Z": [],
+  "77.32Z": [],
+  "77.33Z": [],
+  "77.34Z": [],
+  "77.35Z": [],
+  "77.39Z": [],
+  "77.40Z": [],
+  "78.10Z": [],
+  "78.20Z": [],
+  "78.30Z": [],
+  "79.11Z": [],
+  "79.12Z": [],
+  "79.90Z": [],
+  "80.10Z": [],
+  "80.20Z": [],
+  "80.30Z": [],
+  "81.10Z": [],
+  "81.21Z": [],
+  "81.22Z": [],
+  "81.29A": [],
+  "81.29B": [],
+  "81.30Z": [],
+  "82.11Z": [],
+  "82.19Z": [],
+  "82.20Z": [],
+  "82.30Z": [],
+  "82.91Z": [],
+  "82.92Z": [],
+  "82.99Z": [],
+  "66.22Z": [],
+  "85.10Z": [],
+  "85.20Z": [],
+  "85.31Z": [],
   "85.32Z": [
-    "Enseignement secondaire technique ou professionnel",
-    "Agricole",
     "Autre"
   ],
-  "85.41Z": [
-    "Enseignement post-secondaire non supérieur"
-  ],
+  "85.41Z": [],
   "85.42Z": [
-    "Enseignement supérieur",
-    "Agricole",
     "Autre"
   ],
-  "85.51Z": [
-    "Enseignement de disciplines sportives et d'activités de loisirs"
-  ],
-  "85.52Z": [
-    "Enseignement culturel"
-  ],
-  "85.53Z": [
-    "Enseignement de la conduite"
-  ],
+  "85.51Z": [],
+  "85.52Z": [],
+  "85.53Z": [],
   "85.59A": [
-    "Formation continue d'adultes",
-    "Agricole",
     "Autre"
   ],
-  "85.59B": [
-    "Autres enseignements"
-  ],
-  "85.60Z": [
-    "Activités de soutien à l'enseignement"
-  ],
-  "86.10Z": [
-    "Santé humaine",
-    "Activités hospitalières"
-  ],
-  "86.21Z": [
-    "Santé humaine",
-    "Médecin sect 1 généraliste",
-    "Médecin sect 2 régime PAMC",
-    "Médecin sect 2 régime TI"
-  ],
-  "86.22A": [
-    "Santé humaine",
-    "Médecin sect 1 spécialiste",
-    "Médecin sect 2 régime PAMC",
-    "Médecin sect 2 régime TI"
-  ],
-  "86.22B": [
-    "Santé humaine",
-    "Médecin sect 1 spécialiste",
-    "Médecin sect 2 régime PAMC",
-    "Médecin sect 2 régime TI"
-  ],
-  "86.22C": [
-    "Santé humaine",
-    "Médecin sect 1 spécialiste",
-    "Médecin sect 2 régime PAMC",
-    "Médecin sect 2 régime TI"
-  ],
-  "86.23Z": [
-    "Santé humaine",
-    "Chirurgien-dentiste et autres pratiques dentaires"
-  ],
-  "86.90D": [
-    "Santé humaine",
-    "Infirmier",
-    "Sage-femme"
-  ],
-  "86.90E": [
-    "Santé humaine",
-    "Orthophoniste",
-    "Orthoptiste",
-    "Masseur kinésithérapeute",
-    "Pédicure podologue régime TI",
-    "Pédicure podologue régime PAMC",
-    "Chiropracteur, ergothérapeute, ostéopathe, psychomotricien",
-    "Autres activités des professionnels de la rééducation et de l’appareillage"
-  ],
-  "86.90F": [
-    "Santé humaine",
-    "Autres activités des professionnels de la rééducation et de l’appareillage",
-    "Psychologue, psychologue-clinicien, psychothérapeute, diététicien",
-    "autres activités de santé humaine"
-  ],
-  "86.90C": [
-    "Santé humaine",
-    "autres activités de santé humaine"
-  ],
-  "86.90B": [
-    "Santé humaine",
-    "laboratoire d'analyse médicale dirigé par un médecin",
-    "laboratoire d'analyse médicale dirigé par un pharmacien"
-  ],
-  "87.10A": [
-    "Hébergement médico-social et social",
-    "Hébergement médicalisé"
-  ],
-  "87.10B": [
-    "Hébergement médico-social et social",
-    "Hébergement médicalisé"
-  ],
-  "87.10C": [
-    "Hébergement médico-social et social",
-    "Hébergement médicalisé"
-  ],
-  "87.20A": [
-    "Hébergement médico-social et social",
-    "Hébergement social pour personnes handicapées mentales, malades mentales et toxicomanes"
-  ],
-  "87.20B": [
-    "Hébergement médico-social et social",
-    "Hébergement social pour personnes handicapées mentales, malades mentales et toxicomanes"
-  ],
-  "87.30A": [
-    "Hébergement médico-social et social",
-    "Hébergement social pour personnes âgées ou handicapées physiques "
-  ],
-  "87.30B": [
-    "Hébergement médico-social et social",
-    "Hébergement social pour personnes âgées ou handicapées physiques "
-  ],
-  "87.90A": [
-    "Hébergement médico-social et social",
-    "Hébergement social pour enfants en difficultés "
-  ],
-  "87.90B": [
-    "Hébergement médico-social et social",
-    "Hébergement social pour adultes et familles en difficultés et autre hébergement social "
-  ],
-  "88.10A": [
-    "Action sociale sans hébergement"
-  ],
-  "88.10B": [
-    "Action sociale sans hébergement"
-  ],
-  "88.10C": [
-    "Action sociale sans hébergement"
-  ],
-  "88.91A": [
-    "Action sociale sans hébergement"
-  ],
-  "88.91B": [
-    "Action sociale sans hébergement"
-  ],
-  "88.99A": [
-    "Action sociale sans hébergement"
-  ],
-  "88.99B": [
-    "Action sociale sans hébergement"
-  ],
-  "90.03A": [
-    "Activités créatives, artistiques et de spectacle ",
-    "Création artistique des céramistes, émailleurs, liciers, vitraillistes et autres métiers d'art",
-    "Maître verrier (Vitrailliste), Sculpteur sur pierre, Fabricant de tapis ou tapisseries, Lissier haute lice, Lissier basse lice, Lissier savonnerie, Fresquiste, Mosaïste, Peintre en décor, Sculpteur sur bois, Sculpteur sur métal, Tourneur sur bois, Tourneur sur métal, Emailleur sur métal, Céramiste, Sculpteur sur terre, Tourneur céramique, Verrier à la main, Souffleur à la canne, Verrier fondeur, Fondeur par fusion (fusing), Fondeur en pâte de verre, Verrier au chalumeau, Souffleur au chalumeau, Fileur au chalumeau, Modeleur au chalumeau, Verrier décorateur, Graveur, Peintre, Sculpteur verre, Tailleur, Parurier floral, Plumassier, Fabricant d’objets en textiles, Fabricant d’objets en papier et/ou carton, Imprimeur, Imprimeur en héliogravure, Imprimeur en lithographie, Imprimeur en sérigraphie, Imprimeur en taille-douce, Fabricant de maquettes",
-    "Création artistique relevant des arts plastiques et graphiques",
-    "Restauration d’objets d’art.",
-    "restaurateur de peintures, restaurateur de céramiques, restaurateur de textiles, restaurateur de vitraux, restaurateur de documents graphiques et imprimés, restaurateur de photographies, restaurateur de sculptures, restaurateur de cuirs, restaurateur de métal, restaurateur de mosaïques, restaurateur de verre et de cristal, restaurateur d'objets scientifiques, techniques ou industriels, restaurateur de meubles, "
-  ],
-  "90.03B": [
-    "Activités créatives, artistiques et de spectacle ",
-    "Création artistique audiovisuelle, cinématographique et photographique",
-    "Création d'œuvres littéraires et dramatiques",
-    "Création d'œuvres musicales et chorégraphiques",
-    "Directeur de collection éditoriale originale",
-    "Vidéaste, vlogueur, blogueur",
-    "Autre activité artistique"
-  ],
-  "90.02Z": [
-    "Activités créatives, artistiques et de spectacle ",
-    "Création de jeux et de jeux vidéo",
-    "Auteur de logiciels",
-    "Journaliste - hors critique d'art",
-    "Critique d'art, de musique, de littérature, de théâtre, de cinéma",
-    "Activité de soutien technique au spectable vivant",
-    "Fabrication de décors, costumes et accessoires de spectacles ",
-    "Fabricant de décors de spectacle, Costumier, Fabricant d'accessoires de spectacle, Fabricant de masques, Perruquier-posticheur, "
-  ],
-  "90.01Z": [
-    "Activités créatives, artistiques et de spectacle ",
-    "Production de spectacles et de tournées artistiques",
-    "Artiste de spectacle",
-    "Spectacles de marionnettes.",
-    "Fabricant de marionnettes"
-  ],
-  "90.04Z": [
-    "Gestion de salles de spectacles "
-  ],
-  "91.01Z": [
-    "Gestion des bibliothèques et des archives"
-  ],
-  "91.02Z": [
-    "Gestion des musées"
-  ],
-  "91.03Z": [
-    "Gestion des sites et monuments historiques et des attractions touristiques similaires"
-  ],
-  "91.04Z": [
-    "Gestion des jardins botaniques et zoologiques et des réserves naturelles"
-  ],
-  "92.00Z": [
-    "Organisation de jeux de hasard et d'argent",
-    "Loterie,casinos, paris, sites inernet de jeux en ligne",
-    "Joueurs professionnels"
-  ],
-  "93.11Z": [
-    "Activités sportives, récréatives et de loisirs",
-    "Gestion d'installations sportives"
-  ],
-  "93.12Z": [
-    "Activités sportives, récréatives et de loisirs",
-    "Activités de clubs de sports"
-  ],
-  "93.13Z": [
-    "Activités sportives, récréatives et de loisirs",
-    "Activités des centres de culture physique"
-  ],
-  "93.19Z": [
-    "Activités sportives, récréatives et de loisirs",
-    "Promotion d'évènements sportifs",
-    "Guide de haute montagne, accompagnateur de moyenne montagne",
-    "Sportifs, arbitres et juges-arbitres professionnels",
-    "Entrainement et dressage d'équidés domestiques",
-    "Entrainement et dressage (hors équidés)"
-  ],
-  "93.21Z": [
-    "Activités sportives, récréatives et de loisirs",
-    "Activités des parcs d'attractions et parcs à thèmes"
-  ],
-  "93.29Z": [
-    "Activités sportives, récréatives et de loisirs",
-    "Organisation ou production d'évènement récréatif, Exploitation des zones d'activités récréatives",
-    "Animateur et accompagnateur en activités récréatives"
-  ],
-  "96.01A": [
-    "Blanchisserie-teinturerie de gros."
-  ],
-  "96.01B": [
-    "Laveries automatiques",
-    "Laveries, blanchisserie et teintureries de détail.",
-    "Pressings."
-  ],
-  "96.02A": [
-    "Coiffure"
-  ],
-  "96.02B": [
-    "Soins de beauté",
-    "Soins et modelages esthétiques",
-    "Prothésiste ongulaire , extension de cils et autres soins de beauté"
-  ],
-  "96.03Z": [
-    "Services funéraires",
-    "Embaumement, soins mortuaires."
-  ],
-  "96.04Z": [
-    "Entretien corporel"
-  ],
-  "96.09Z": [
-    "services personnels divers",
-    "Dressage, Toilettage, éducation comportementaliste et pension pour animaux de compagnie.",
-    "Dressage d'animaux de compagnie et de chiens guide d'aveugle",
-    "Toilettage des chiens, chats et autres animaux de compagnie",
-    "éducation comportementaliste et pension pour animaux de compagnie"
-  ]
+  "85.59B": [],
+  "85.60Z": [],
+  "86.10Z": [],
+  "86.21Z": [],
+  "86.22A": [],
+  "86.22B": [],
+  "86.22C": [],
+  "86.23Z": [],
+  "86.90D": [],
+  "86.90E": [],
+  "86.90F": [],
+  "86.90C": [],
+  "86.90B": [],
+  "87.10A": [],
+  "87.10B": [],
+  "87.10C": [],
+  "87.20A": [],
+  "87.20B": [],
+  "87.30A": [],
+  "87.30B": [],
+  "87.90A": [],
+  "87.90B": [],
+  "88.10A": [],
+  "88.10B": [],
+  "88.10C": [],
+  "88.91A": [],
+  "88.91B": [],
+  "88.99A": [],
+  "88.99B": [],
+  "90.03A": [],
+  "90.03B": [],
+  "90.02Z": [],
+  "90.01Z": [],
+  "90.04Z": [],
+  "91.01Z": [],
+  "91.02Z": [],
+  "91.03Z": [],
+  "91.04Z": [],
+  "92.00Z": [],
+  "93.11Z": [],
+  "93.12Z": [],
+  "93.13Z": [],
+  "93.19Z": [],
+  "93.21Z": [],
+  "93.29Z": [],
+  "96.01A": [],
+  "96.01B": [],
+  "96.02A": [],
+  "96.02B": [],
+  "96.03Z": [],
+  "96.04Z": [],
+  "96.09Z": []
 }

@@ -114,11 +114,6 @@ export const customTags: CustomTags = {
 		contenuExclu: [],
 		contenuAnnexe: [],
 	},
-	'56.10C': {
-		contenuCentral: [],
-		contenuExclu: [],
-		contenuAnnexe: ['bar à chat'],
-	},
 	'82.11Z': {
 		contenuCentral: ['secrétariat et assistance administrative', 'secrétaire'],
 		contenuExclu: [],

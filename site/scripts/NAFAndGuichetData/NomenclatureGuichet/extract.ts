@@ -3,9 +3,11 @@ import fs from 'fs'
 import { join } from 'path'
 import { fileURLToPath } from 'url'
 
+import output from '../nombre-etablissements-par-code-ape/output.json' assert { type: 'json' }
 import { computeGuichet } from './compute-guichet.js'
 
 const FILENAME = 'NomenclatureGuichet_v1_32resana.csv'
+const codesApe = Object.keys(output)
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const results = [] as Array<Activity>
@@ -65,13 +67,13 @@ function computeAPETag(
 				(
 					acc,
 					{
-						'Codes APE compatibles': codesAPE,
+						'Codes APE compatibles': codesAPECompatibles,
 						'Niv. 3': niv3,
 						'Niv. 4': niv4,
 						"Métiers d'art": métiers,
 					}
 				) => {
-					codesAPE.forEach((codeAPE) => {
+					codesAPECompatibles.forEach((codeAPE) => {
 						acc[codeAPE] ??= new Set()
 						acc[codeAPE].add(niv3).add(niv4).add(métiers)
 					})
@@ -80,7 +82,12 @@ function computeAPETag(
 				},
 				{} as Record<CodeAPE, Set<string>>
 			)
-		).map(([key, value]) => [key, Array.from(value).filter(Boolean)])
+		).map(([key, value]) => [
+			key,
+			Array.from(value)
+				.filter((x) => x === 'Autre')
+				.filter(Boolean),
+		])
 	)
 }
 
@@ -100,6 +107,21 @@ function computeApeToGuichet(
 	)
 }
 
+/** The `matchingApe` function takes an array of `CodeAPE` values as input and returns an array of
+matching `CodeAPE` values. If a `CodeAPE` value does not contain the character "X", it is returned
+as is. If it does contain "X", the function find all `CodeAPE`
+values that match the pattern. 
+
+*/
+function matchingApe(codeApes: Array<CodeAPE>) {
+	return codeApes.flatMap((code) => {
+		if (!code.includes('X')) {
+			return code
+		}
+
+		return codesApe.filter((codeApe) => codeApe.match(code.replace(/X/g, '.')))
+	})
+}
 /* The following code reads a CSV file named `NomenclatureGuichet_v1_32resana.csv` using the `fs` module and
 `csv-parser` library. It then processes the data and writes the results to four different JSON
 files: `raw_output.json`, `ape_tags.json`, `ape_to_guichet.json` and `guichet.json`. */
@@ -111,12 +133,14 @@ fs.createReadStream(join(__dirname, FILENAME))
 			skipLines: 1,
 			mapHeaders: ({ header }) =>
 				(header.match(/.+?(?=\n)/)?.[0] ?? header).trim(),
-			mapValues: ({ header, value }) =>
+			mapValues: ({ header, value }: { header: string; value: string }) =>
 				(header === 'Codes APE compatibles' &&
-					value
-						.split(' ; ')
-						.map((v: string) => v.trim())
-						.filter(Boolean)) ||
+					matchingApe(
+						value
+							.split(' ; ')
+							.map((v: string) => v.trim())
+							.filter(Boolean)
+					)) ||
 				value,
 		})
 	)

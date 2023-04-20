@@ -150,10 +150,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 				scoreFuzzy: index / arr.length,
 				nbEtablissement:
 					lazyData.indexByCodeApe[
-						item.codeApe.replace(
-							'.',
-							''
-						) as keyof (typeof lazyData)['indexByCodeApe']
+						item.codeApe as keyof (typeof lazyData)['indexByCodeApe']
 					] || 0,
 			}))
 			.sort(({ nbEtablissement: a }, { nbEtablissement: b }) => b - a)

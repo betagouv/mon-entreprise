@@ -29,7 +29,8 @@ if (!response.ok) {
 const json: Array<Data> = await response.json()
 
 const out = json.reduce((acc, { code_ape, nombre_d_etablissements_2021 }) => {
-	acc[code_ape] = nombre_d_etablissements_2021 ?? 0
+	acc[code_ape.slice(0, 2) + '.' + code_ape.slice(2)] =
+		nombre_d_etablissements_2021 ?? 0
 
 	return acc
 }, {} as Out)
