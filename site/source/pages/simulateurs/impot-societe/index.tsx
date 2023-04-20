@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -10,12 +10,13 @@ import {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import { StyledInputSuggestion } from '@/components/conversation/InputSuggestions'
 import RuleInput from '@/components/conversation/RuleInput'
 import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { batchUpdateSituation, updateSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
@@ -56,48 +57,49 @@ const ExerciceDateContainer = styled.div`
 
 function ExerciceDate() {
 	const dispatch = useDispatch()
+	const { t } = useTranslation()
 
 	return (
-		<>
-			<SmallBody
-				css={`
-					align-self: flex-end;
-				`}
-			>
-				<Trans i18nKey={'impot-société.préremplir-exercice'}>
-					Préremplir avec les dates de{' '}
-					<Link
-						onPress={() => {
-							dispatch(
-								batchUpdateSituation({
-									'entreprise . exercice . début': '01/01/2022',
-									'entreprise . exercice . fin': '31/12/2022',
-								})
-							)
-						}}
-					>
-						l'exercice 2022
-					</Link>{' '}
-					ou de{' '}
-					<Link
-						onPress={() => {
-							dispatch(
-								batchUpdateSituation({
-									'entreprise . exercice . début': '01/01/2023',
-									'entreprise . exercice . fin': '31/12/2023',
-								})
-							)
-						}}
-					>
-						l'exercice 2023
-					</Link>
-				</Trans>
-			</SmallBody>
-			<div
-				css={`
-					flex: 1;
-				`}
-			/>
+		<div>
+			<ExerciceDateContainer>
+				<StyledInputSuggestion>
+					<Trans i18nKey={'impot-société.préremplir-exercice'}>
+						<Link
+							aria-label={t(
+								'impot-société.préremplir.exercice-2022',
+								"Utiliser les dates de l'exercice 2022, préremplir"
+							)}
+							onPress={() => {
+								dispatch(
+									batchUpdateSituation({
+										'entreprise . exercice . début': '01/01/2022',
+										'entreprise . exercice . fin': '31/12/2022',
+									})
+								)
+							}}
+						>
+							Exercice 2022
+						</Link>{' '}
+						<Link
+							aria-label={t(
+								'impot-société.préremplir.exercice-2023',
+								"Utiliser les dates de l'exercice 2023, préremplir"
+							)}
+							onPress={() => {
+								dispatch(
+									batchUpdateSituation({
+										'entreprise . exercice . début': '01/01/2023',
+										'entreprise . exercice . fin': '31/12/2023',
+									})
+								)
+							}}
+						>
+							Exercice 2023
+						</Link>{' '}
+					</Trans>
+				</StyledInputSuggestion>
+			</ExerciceDateContainer>
+
 			<ExerciceDateContainer>
 				<RuleInput
 					dottedName={'entreprise . exercice . début'}
@@ -114,7 +116,7 @@ function ExerciceDate() {
 					}
 				/>
 			</ExerciceDateContainer>
-		</>
+		</div>
 	)
 }
 
