@@ -25,7 +25,12 @@ export default function Header() {
 	const [darkMode, setDarkMode] = useDarkMode()
 
 	return (
-		<header role="banner">
+		<header
+			role="banner"
+			css={`
+				z-index: 1;
+			`}
+		>
 			<a href={`${fullURL}#main`} className="skip-link print-hidden">
 				{t('Aller au contenu principal')}
 			</a>

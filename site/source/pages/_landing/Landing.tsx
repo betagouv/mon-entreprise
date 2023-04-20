@@ -2,8 +2,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import Footer from '@/components/layout/Footer/Footer'
-import Header from '@/components/layout/Header'
 import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
 import { Button } from '@/design-system/buttons'
@@ -11,7 +9,6 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { useGetFullURL } from '@/hooks/useGetFullURL'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
@@ -25,8 +22,6 @@ export default function Landing() {
 	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
-	const fullURL = useGetFullURL()
-
 	return (
 		<>
 			<TrackPage chapter1="informations" name="accueil" />
@@ -38,163 +33,149 @@ export default function Landing() {
 				)}
 				ogImage="/logo-share.png"
 			/>
-			<Header />
 
-			<main role="main" id="main">
-				<a
-					href={`${fullURL}#footer`}
-					aria-label={t(
-						'Passer le contenu principal et aller directement au pied de page'
-					)}
-					className="skip-link print-hidden"
+			<Container>
+				<PageHeader
+					titre={
+						<Trans i18nKey="landing.title">
+							L'assistant officiel des entrepreneurs
+						</Trans>
+					}
+					picture={illustrationSvg}
 				>
-					{t('Aller directement au pied de page')}
-				</a>
-				<Container>
-					<PageHeader
-						titre={
-							<Trans i18nKey="landing.title">
-								L'assistant officiel des entrepreneurs
-							</Trans>
-						}
-						picture={illustrationSvg}
-					>
-						<Intro>
-							<Trans i18nKey="landing.subtitle">
-								Les simulateurs et assistants pour développer votre activité, du
-								statut juridique à l'embauche.
-							</Trans>
-						</Intro>
-					</PageHeader>
-				</Container>
-				<Container
-					forceTheme="dark"
-					backgroundColor={(theme) => theme.colors.bases.primary[600]}
+					<Intro>
+						<Trans i18nKey="landing.subtitle">
+							Les simulateurs et assistants pour développer votre activité, du
+							statut juridique à l'embauche.
+						</Trans>
+					</Intro>
+				</PageHeader>
+			</Container>
+			<Container
+				forceTheme="dark"
+				backgroundColor={(theme) => theme.colors.bases.primary[600]}
+			>
+				<SearchOrCreate />
+				<Spacing xl />
+			</Container>
+			<Container>
+				<Trans i18nKey="landing.outils">
+					<H2>Les outils à votre disposition</H2>
+					<Body>
+						Nous mettons à votre disposition des assistants et simulateurs pour
+						vous aider à la gestion de votre entreprise, anticiper les
+						prélèvements et planifier votre trésorerie en conséquence.
+					</Body>
+				</Trans>
+
+				<Grid
+					container
+					spacing={4}
+					css={`
+						align-items: stretch;
+						justify-content: center;
+					`}
 				>
-					<SearchOrCreate />
-					<Spacing xl />
-				</Container>
-				<Container>
-					<Trans i18nKey="landing.outils">
-						<H2>Les outils à votre disposition</H2>
-						<Body>
-							Nous mettons à votre disposition des assistants et simulateurs
-							pour vous aider à la gestion de votre entreprise, anticiper les
-							prélèvements et planifier votre trésorerie en conséquence.
-						</Body>
-					</Trans>
+					<SimulateurCard {...simulators.salarié} />
+
+					<SimulateurCard {...simulators['auto-entrepreneur']} />
+
+					<SimulateurCard {...simulators['comparaison-statuts']} />
 
 					<Grid
-						container
-						spacing={4}
+						item
+						xs={12}
 						css={`
-							align-items: stretch;
-							justify-content: center;
+							display: flex;
 						`}
 					>
-						<SimulateurCard {...simulators.salarié} />
-
-						<SimulateurCard {...simulators['auto-entrepreneur']} />
-
-						<SimulateurCard {...simulators['comparaison-statuts']} />
-
-						<Grid
-							item
-							xs={12}
+						<Button
+							size="XL"
+							to={absoluteSitePaths.simulateurs.index}
 							css={`
-								display: flex;
+								white-space: no-wrap;
+								margin: auto;
 							`}
 						>
-							<Button
-								size="XL"
-								to={absoluteSitePaths.simulateurs.index}
-								css={`
-									white-space: no-wrap;
-									margin: auto;
-								`}
-							>
-								<Trans i18nKey="landing.choice.simulators.title">
-									Découvrir tous les simulateurs et assistants
-								</Trans>
-							</Button>
-						</Grid>
-					</Grid>
-					<Spacing xl />
-				</Container>
-				<Container
-					backgroundColor={(theme) =>
-						theme.darkMode
-							? theme.colors.extended.dark[700]
-							: theme.colors.bases.primary[100]
-					}
-				>
-					{' '}
-					<Spacing lg />
-					<Grid
-						container
-						css={`
-							align-items: flex-end;
-						`}
-					>
-						<HideOnMobile item xs={2} md={2}>
-							<img
-								src={illustration2Svg}
-								css={`
-									width: 100%;
-									padding-right: 2rem;
-									padding-bottom: 1rem;
-								`}
-								alt=""
-							/>
-						</HideOnMobile>
-						<Grid item md={10}>
-							<Trans i18nKey="landing.aboutUs">
-								<H2>Qui sommes-nous ?</H2>
-
-								<Body>
-									Nous sommes une petite{' '}
-									<Link
-										aria-label="équipe, accéder à notre page de présentation d'équipe, nouvelle fenêtre"
-										href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe"
-									>
-										équipe
-									</Link>{' '}
-									autonome et pluridisciplinaire au sein de{' '}
-									<Link
-										href="https://www.urssaf.fr"
-										aria-label="l'URSSAF, accéder au site urssaf.fr, nouvelle fenêtre"
-									>
-										l’Urssaf
-									</Link>
-									. Nous avons à cœur d’être au près de vos besoins afin
-									d’améliorer en permanence ce site conformément à l'approche{' '}
-									<Link
-										href="https://beta.gouv.fr/manifeste"
-										aria-label="beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre"
-									>
-										beta.gouv.fr
-									</Link>
-									.
-								</Body>
-
-								<Body>
-									Nous avons développé ce site pour accompagner les créateurs
-									d’entreprise dans le développement de leur activité.
-								</Body>
-
-								<Body>
-									Notre objectif est de lever toutes les incertitudes vis à vis
-									de l’administration afin que vous puissiez vous concentrer sur
-									ce qui compte : votre activité.
-								</Body>
+							<Trans i18nKey="landing.choice.simulators.title">
+								Découvrir tous les simulateurs et assistants
 							</Trans>
-						</Grid>
+						</Button>
 					</Grid>
-					<Spacing lg />
-				</Container>
-			</main>
+				</Grid>
+				<Spacing xl />
+			</Container>
+			<Container
+				backgroundColor={(theme) =>
+					theme.darkMode
+						? theme.colors.extended.dark[700]
+						: theme.colors.bases.primary[100]
+				}
+			>
+				{' '}
+				<Spacing lg />
+				<Grid
+					container
+					css={`
+						align-items: flex-end;
+					`}
+				>
+					<HideOnMobile item xs={2} md={2}>
+						<img
+							src={illustration2Svg}
+							css={`
+								width: 100%;
+								padding-right: 2rem;
+								padding-bottom: 1rem;
+							`}
+							alt=""
+						/>
+					</HideOnMobile>
+					<Grid item md={10}>
+						<Trans i18nKey="landing.aboutUs">
+							<H2>Qui sommes-nous ?</H2>
 
-			<Footer />
+							<Body>
+								Nous sommes une petite{' '}
+								<Link
+									aria-label="équipe, accéder à notre page de présentation d'équipe, nouvelle fenêtre"
+									href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe"
+								>
+									équipe
+								</Link>{' '}
+								autonome et pluridisciplinaire au sein de{' '}
+								<Link
+									href="https://www.urssaf.fr"
+									aria-label="l'URSSAF, accéder au site urssaf.fr, nouvelle fenêtre"
+								>
+									l’Urssaf
+								</Link>
+								. Nous avons à cœur d’être au près de vos besoins afin
+								d’améliorer en permanence ce site conformément à l'approche{' '}
+								<Link
+									href="https://beta.gouv.fr/manifeste"
+									aria-label="beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre"
+								>
+									beta.gouv.fr
+								</Link>
+								.
+							</Body>
+
+							<Body>
+								Nous avons développé ce site pour accompagner les créateurs
+								d’entreprise dans le développement de leur activité.
+							</Body>
+
+							<Body>
+								Notre objectif est de lever toutes les incertitudes vis à vis de
+								l’administration afin que vous puissiez vous concentrer sur ce
+								qui compte : votre activité.
+							</Body>
+						</Trans>
+					</Grid>
+				</Grid>
+				<Spacing lg />
+			</Container>
 		</>
 	)
 }

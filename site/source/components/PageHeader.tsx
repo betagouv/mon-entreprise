@@ -23,7 +23,7 @@ export default function PageHeader({
 	return (
 		<Grid
 			container
-			spacing={3}
+			spacing={6}
 			css={`
 				align-items: center;
 			`}
@@ -31,8 +31,8 @@ export default function PageHeader({
 			<Grid
 				item
 				sm={12}
-				md={picture ? 9 : 12}
-				lg={picture ? 8 : 12}
+				md={picture ? 8 : 12}
+				lg={picture ? 7 : 12}
 				css={`
 					display: flex;
 					flex-direction: column !important;
@@ -48,7 +48,7 @@ export default function PageHeader({
 			</Grid>
 
 			{picture && (
-				<InnerGrid item className="hide-mobile" md={3} lg={4}>
+				<InnerGrid item className="hide-mobile" md={4} lg={5}>
 					<Illustration
 						className="hide-mobile"
 						titre={titre}
