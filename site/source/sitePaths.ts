@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
 import { MetadataSrc } from '@/pages/simulateurs/metadata-src'
-import { LegalStatus } from '@/store/selectors/companyStatusSelectors'
 
 // export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
 // 	'EI',
@@ -46,18 +45,15 @@ const rawSitePathsFr = {
 		},
 		'choix-du-statut': {
 			index: 'choix-du-statut',
-			assistant: 'assistant',
+			activité: 'activité',
+			département: 'département',
+			lucratif: 'lucratif',
+			associé: 'associé',
+			rémunération: 'rémunération',
+			statuts: 'statuts',
+			résultat: 'résultat',
 			// ...status,
 			après: 'après-la-création',
-			guideStatut: {
-				index: 'statut-juridique',
-				liste: 'liste',
-				soleProprietorship: 'responsabilité',
-				directorStatus: 'dirigeant',
-				autoEntrepreneur: 'auto-entrepreneur-ou-entreprise-individuelle',
-				multipleAssociates: 'nombre-associés',
-				minorityDirector: 'gérant-majoritaire-ou-minoritaire',
-			},
 		},
 	},
 	simulateurs: {
@@ -139,15 +135,14 @@ const rawSitePathsEn = {
 			index: 'choice-of-status',
 			assistant: 'assistant',
 			après: 'after-registration',
-			guideStatut: {
-				index: 'legal-status',
-				liste: 'list',
-				soleProprietorship: 'liability',
-				directorStatus: 'director',
-				autoEntrepreneur: 'auto-entrepreneur',
-				multipleAssociates: 'multiple-associates',
-				minorityDirector: 'chairman-or-managing-director',
-			},
+
+			activité: 'activity',
+			département: 'state',
+			lucratif: 'lucrative',
+			associé: 'partnership',
+			rémunération: 'remuneration',
+			statuts: 'statuts',
+			résultat: 'result',
 		},
 	},
 	simulateurs: {

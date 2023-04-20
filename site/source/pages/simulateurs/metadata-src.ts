@@ -1,6 +1,6 @@
 import { ImmutableType } from '@/types/utils'
 
-import { choixStatutJuridiqueConfig } from '../assistants/choix-du-statut/choix-statut-juridique/config'
+import { choixStatutJuridiqueConfig } from '../assistants/choix-du-statut/config'
 import { déclarationChargesSocialesIndépendantConfig } from '../assistants/declaration-charges-sociales-independant/config'
 import { déclarationRevenuIndépendantBetaConfig } from '../assistants/declaration-revenu-independants/config'
 import { demandeMobilitéConfig } from '../assistants/demande-mobilité/config'
