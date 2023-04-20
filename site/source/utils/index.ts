@@ -22,7 +22,7 @@ export function capitalise0(name?: string) {
  * debounced version of the function that will only execute after the specified time interval has
  * elapsed since the last time it was called.
  * @param {number} waitFor - The `waitFor` parameter is a number that represents the time in
- * milliseconds to wait before executing the `fn` function. 
+ * milliseconds to wait before executing the `fn` function.
  * @param fn - `fn` is a function that takes in one or more arguments of type `T` and returns `void`.
  * This function will be called after a certain amount of time has passed since the last time it was
  * called.

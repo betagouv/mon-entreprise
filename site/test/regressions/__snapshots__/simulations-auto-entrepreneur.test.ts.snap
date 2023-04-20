@@ -56,9 +56,9 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 304
-dirigeant . auto-entrepreneur . revenu net: 16347
-dirigeant . auto-entrepreneur . revenu net . après impôt: 16347
+dirigeant . auto-entrepreneur . cotisations et contributions: 306
+dirigeant . auto-entrepreneur . revenu net: 16333
+dirigeant . auto-entrepreneur . revenu net . après impôt: 16333
 dirigeant . rémunération . impôt: 0
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
@@ -74,7 +74,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: undefined
-dirigeant . auto-entrepreneur . cotisations et contributions: 688
+dirigeant . auto-entrepreneur . cotisations et contributions: 689
 dirigeant . auto-entrepreneur . revenu net: undefined
 dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
 dirigeant . rémunération . impôt: 792"
@@ -82,9 +82,9 @@ dirigeant . rémunération . impôt: 792"
 
 exports[`calculate simulations-auto-entrepreneur > activités 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 353
-dirigeant . auto-entrepreneur . revenu net: 15760
-dirigeant . auto-entrepreneur . revenu net . après impôt: 15760
+dirigeant . auto-entrepreneur . cotisations et contributions: 355
+dirigeant . auto-entrepreneur . revenu net: 15740
+dirigeant . auto-entrepreneur . revenu net . après impôt: 15740
 dirigeant . rémunération . impôt: 0
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
@@ -153,11 +153,11 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > impôt sur le revenu 1`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 31726
-dirigeant . auto-entrepreneur . cotisations et contributions: 560
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 31766
+dirigeant . auto-entrepreneur . cotisations et contributions: 564
 dirigeant . auto-entrepreneur . revenu net: 25000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 24302
-dirigeant . rémunération . impôt: 698
+dirigeant . auto-entrepreneur . revenu net . après impôt: 24301
+dirigeant . rémunération . impôt: 699
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
