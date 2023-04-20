@@ -955,6 +955,8 @@ gérer:
 iframe:
   description: Tools for developers
   title: Integrate a simulator
+impot-société:
+  préremplir-exercice: Prefill with dates for <2>fiscal year 2022</2> or <6>fiscal year 2023</6>
 impotSociété:
   warning: "This simulator is aimed at <2>“TPE”</2>: it takes into account the
     reduced corporate tax rates."
