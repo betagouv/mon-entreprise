@@ -16,7 +16,7 @@ import {
 	useEngine,
 	useSetupSafeSituation,
 } from '@/components/utils/EngineContext'
-import { Container, Spacing } from '@/design-system/layout'
+import { Container } from '@/design-system/layout'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
@@ -80,7 +80,6 @@ const Router = () => {
 
 	return (
 		<Routes>
-			<Route index element={<Landing />} />
 			<Route path="/iframes/*" element={<Iframes />} />
 			<Route path="*" element={<App />} />
 		</Routes>
@@ -115,7 +114,15 @@ const App = () => {
 		<StyledLayout isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
 
-			<main role="main" id="main">
+			<main
+				role="main"
+				id="main"
+				css={`
+					flex: 1;
+					display: flex;
+					flex-direction: column;
+				`}
+			>
 				<a
 					href={`${fullURL}#footer`}
 					aria-label={t(
@@ -128,6 +135,8 @@ const App = () => {
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>
 						<Routes>
+							<Route index element={<Landing />} />
+
 							<Route
 								path={relativeSitePaths.assistants.index + '/*'}
 								element={<Assistants />}

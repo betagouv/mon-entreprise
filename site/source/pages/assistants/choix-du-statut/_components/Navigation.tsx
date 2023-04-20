@@ -2,6 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useMatch } from 'react-router-dom'
 
 import { Button } from '@/design-system/buttons'
+import { Grid } from '@/design-system/layout'
 import { useSitePaths } from '@/sitePaths'
 
 export const stepOrder = [
@@ -54,32 +55,33 @@ export default function Navigation({
 	const previousStep = stepOrder[stepOrder.indexOf(currentStep) - 1]
 
 	return (
-		<>
-			<Button
-				size="XS"
-				to={
-					absoluteSitePaths.assistants['choix-du-statut'][
-						previousStep || 'index'
-					]
-				}
-			>
-				<span aria-hidden>←</span> <Trans>Précédent</Trans>
-			</Button>
-
-			{nextStep && (
+		<Grid container spacing={2}>
+			<Grid item>
 				<Button
 					size="XS"
-					to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
-					isDisabled={!currentStepIsComplete}
 					light
 					color={'secondary'}
-					aria-label={t("Suivant, passer à l'étape suivante")}
+					to={
+						absoluteSitePaths.assistants['choix-du-statut'][
+							previousStep || 'index'
+						]
+					}
 				>
-					<Trans>Suivant</Trans>
-
-					<span aria-hidden>→</span>
+					<span aria-hidden>←</span> <Trans>Précédent</Trans>
 				</Button>
+			</Grid>
+			{nextStep && (
+				<Grid item>
+					<Button
+						size="XS"
+						to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
+						isDisabled={!currentStepIsComplete}
+						aria-label={t("Suivant, passer à l'étape suivante")}
+					>
+						<Trans>Suivant</Trans> <span aria-hidden>→</span>
+					</Button>
+				</Grid>
 			)}
-		</>
+		</Grid>
 	)
 }
