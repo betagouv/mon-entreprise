@@ -134,9 +134,14 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
       - assiette: entreprise . chiffre d'affaires . service BNC
         taux:
           variations:
-            - si: affiliation CIPAV
-              alors: 0.2%
-            - sinon: 0.1%
+            - si:
+                # Avant 2022, le taux était de 1% pour les PLNR non affiliés à la CIPAV
+                # Source: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/toutes-les-actualites/professions-liberales-non-reglem.html
+                toutes ces conditions:
+                  - date <= 01/2022
+                  - affiliation CIPAV = non
+              alors: 0.1%
+            - sinon: 0.2%
   avec:
     revenus BIC:
       valeur: entreprise . chiffre d'affaires . BIC

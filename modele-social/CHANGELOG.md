@@ -1,11 +1,9 @@
 # Journal des modifications
 
-## 1.6.2
+## 1.6.1
+- Corrige le taux de CPF pour les auto-entrepreneur PLNR (2% depuis 2022)
 - Corrige une typo dans les montants de la CARPIMKO
 - Corrige le plafond pour le taux réduit de l’IS (hausse applicable pour l’exercice 2022)
-
-
-## 1.6.1
 - Mise à jour 2023 des taux et montant de la CARCDSF
 - Mise à jour 2023 des taux et montant de la CARMF
 - Mise à jour 2023 des taux et montant de la CARPIMKO
