@@ -1,8 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useMatch } from 'react-router-dom'
+import styled from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
-import { Grid } from '@/design-system/layout'
+import { Container, Grid, Spacing } from '@/design-system/layout'
 import { useSitePaths } from '@/sitePaths'
 
 export const stepOrder = [
@@ -55,33 +56,44 @@ export default function Navigation({
 	const previousStep = stepOrder[stepOrder.indexOf(currentStep) - 1]
 
 	return (
-		<Grid container spacing={2}>
-			<Grid item>
-				<Button
-					size="XS"
-					light
-					color={'secondary'}
-					to={
-						absoluteSitePaths.assistants['choix-du-statut'][
-							previousStep || 'index'
-						]
-					}
-				>
-					<span aria-hidden>←</span> <Trans>Précédent</Trans>
-				</Button>
-			</Grid>
-			{nextStep && (
-				<Grid item>
-					<Button
-						size="XS"
-						to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
-						isDisabled={!currentStepIsComplete}
-						aria-label={t("Suivant, passer à l'étape suivante")}
-					>
-						<Trans>Suivant</Trans> <span aria-hidden>→</span>
-					</Button>
+		<StyledNavigation>
+			<Container backgroundColor={(theme) => theme.colors.extended.grey[100]}>
+				<Spacing md />
+				<Grid container spacing={2}>
+					<Grid item>
+						<Button
+							light
+							color={'secondary'}
+							to={
+								absoluteSitePaths.assistants['choix-du-statut'][
+									previousStep || 'index'
+								]
+							}
+						>
+							<span aria-hidden>←</span> <Trans>Précédent</Trans>
+						</Button>
+					</Grid>
+					{nextStep && (
+						<Grid item>
+							<Button
+								to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
+								isDisabled={!currentStepIsComplete}
+								aria-label={t("Suivant, passer à l'étape suivante")}
+							>
+								<Trans>Suivant</Trans> <span aria-hidden>→</span>
+							</Button>
+						</Grid>
+					)}
 				</Grid>
-			)}
-		</Grid>
+				<Spacing md />
+			</Container>
+		</StyledNavigation>
 	)
 }
+
+const StyledNavigation = styled.div`
+	position: sticky;
+	bottom: 0;
+	z-index: 1;
+	box-shadow: ${({ theme }) => theme.elevations[6]};
+`
