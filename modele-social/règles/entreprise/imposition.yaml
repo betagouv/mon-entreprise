@@ -292,7 +292,7 @@ entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   type: notification
   sévérité: avertissement
   formule: chiffre d'affaires . seuil micro . dépassé
-  description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro-dépassé)
+  description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
 
 entreprise . chiffre d'affaires . seuil micro:
   experimental: oui
