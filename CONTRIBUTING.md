@@ -10,7 +10,7 @@ Nous utilisons GitHub pour suivre tous les bugs et discussions sur les nouvelles
 
 ## Développement
 
-Si vous voulez participer au développement de nouvelles fonctionnalités, vous pouvez consulter la liste des «[good first issue](https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A%22%3Anew%3A+good+first+issue%22) ». Ce sont des fonctionnalités intéressantes qui ne sont normalement pas trop complexe à implémenter. N'hésitez pas à poser toutes vos questions sur ces issues !
+Si vous voulez participer au développement de nouvelles fonctionnalités, vous pouvez consulter la liste des «[🥇 good first issue](https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A%22%F0%9F%A5%87+good+first+issue%22+) ». Ce sont des fonctionnalités intéressantes qui ne sont normalement pas trop complexe à implémenter. N'hésitez pas à poser toutes vos questions sur ces issues !
 
 ### Technologies
 
