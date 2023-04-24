@@ -198,8 +198,11 @@ const AccessibleVersion = ({
 			}
 			caption={
 				<Trans>
-					Tableau présentant le nombre de visites par page et par mois en{' '}
-					{dataType === 'pourcentage' ? t('pourcentage') : t('nombres')}.
+					Tableau indiquant la satisfaction des utilisateurs en{' '}
+					{dataType === 'pourcentage'
+						? t('pourcentage')
+						: t('nombres de votes')}{' '}
+					sur le site mon-entreprise par mois.
 				</Trans>
 			}
 		/>
