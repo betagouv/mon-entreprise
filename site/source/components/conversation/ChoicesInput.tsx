@@ -58,6 +58,8 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 	choice: Choice
 	type?: 'radio' | 'card' | 'toggle' | 'select'
 } & InputProps<Names>) {
+	const { t } = useTranslation()
+
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
@@ -87,6 +89,10 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 	if (type === 'card') {
 		return (
 			<RadioCardGroup
+				aria-label={t(
+					'conversation.multiple-answer.aria-label',
+					'Choix multiples'
+				)}
 				onChange={handleChange}
 				value={currentSelection ?? undefined}
 			>
@@ -118,6 +124,10 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 
 	return (
 		<Component
+			aria-label={t(
+				'conversation.multiple-answer.aria-label',
+				'Choix multiples'
+			)}
 			{...props}
 			onChange={handleChange}
 			value={currentSelection ?? undefined}
@@ -214,15 +224,15 @@ function RadioChoice<Names extends string = DottedName>({
 							>
 								{node.title}{' '}
 								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}{' '}
-							{type !== 'toggle' && (
-								<ExplicableRule
-									light
-									dottedName={node.dottedName as DottedName}
+								{type !== 'toggle' && (
+									<ExplicableRule
+										light
+										dottedName={node.dottedName as DottedName}
 										aria-label={t("Plus d'infos sur, {{ title }}", {
-										title: node.title,
-									})}
-								/>
-							)}
+											title: node.title,
+										})}
+									/>
+								)}
 							</Radio>
 						</span>
 					)}
@@ -254,12 +264,15 @@ const StyledSubRadioGroup = styled.div`
 export function OuiNonInput<Names extends string = DottedName>(
 	props: InputProps<Names>
 ) {
+	const { t } = useTranslation()
+
 	// seront stockées ainsi dans le state :
 	// [parent object path]: dotted fieldName relative to parent
 	const { handleChange, defaultValue, currentSelection } = useSelection(props)
 
 	return (
 		<ToggleGroup
+			aria-label={t('conversation.yes-no.aria-label', 'Oui ou non')}
 			{...props}
 			onChange={handleChange}
 			value={currentSelection ?? undefined}

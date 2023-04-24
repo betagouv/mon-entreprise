@@ -644,6 +644,11 @@ components:
     form:
       share:
         checkbox: I want to share my latest simulation to help you better answer me.
+conversation:
+  multiple-answer:
+    aria-label: Multiple choices
+  yes-no:
+    aria-label: Yes or No
 copied: Copy
 copyMessage: Copy the message
 créer:
@@ -1878,6 +1883,8 @@ search-code-ape:
       yield good results.<1></1>We will use this information to improve this
       tool.
     info: We are not able to answer questions about your company's APE code.
+  radio-card-group:
+    aria-label: List of activities
 select:
   value:
     default: Choose an option
