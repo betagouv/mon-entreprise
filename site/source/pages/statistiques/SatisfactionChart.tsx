@@ -92,7 +92,6 @@ export default function SatisfactionChart({
 			<ToggleGroup
 				onChange={(val) => setDataType(val as DataType)}
 				defaultValue={dataType}
-				hideRadio
 				aria-labelledby="mode-affichage-satisfaction-label"
 			>
 				<Radio value="nombres">
