@@ -213,17 +213,17 @@ function RadioChoice<Names extends string = DottedName>({
 								)}`}
 							>
 								{node.title}{' '}
-								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
-							</Radio>{' '}
+								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}{' '}
 							{type !== 'toggle' && (
 								<ExplicableRule
 									light
 									dottedName={node.dottedName as DottedName}
-									aria-label={t("Plus d'infos sur, {{ tile }}", {
+										aria-label={t("Plus d'infos sur, {{ title }}", {
 										title: node.title,
 									})}
 								/>
 							)}
+							</Radio>
 						</span>
 					)}
 				</Fragment>

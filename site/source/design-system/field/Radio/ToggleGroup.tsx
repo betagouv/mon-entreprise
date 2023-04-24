@@ -14,13 +14,17 @@ import {
 export type Toggle = 'toggle'
 export type Tab = 'tab'
 
+type AriaLabelRequired =
+	| { 'aria-label': Required<AriaRadioGroupProps>['aria-label'] }
+	| { 'aria-labelledby': Required<AriaRadioGroupProps>['aria-labelledby'] }
+
 type ToggleGroupProps = AriaRadioGroupProps & {
 	label?: string
-	hideRadio?: boolean
 	children: React.ReactNode
+	hideRadio?: boolean
 	className?: string
 	mode?: Toggle | Tab
-}
+} & AriaLabelRequired
 
 export function ToggleGroup(props: ToggleGroupProps) {
 	const { children, label, className } = props
@@ -34,13 +38,13 @@ export function ToggleGroup(props: ToggleGroupProps) {
 		<div
 			className={className}
 			{...radioGroupProps}
-			aria-label={props['aria-label'] ?? undefined}
+			aria-label={props['aria-label']}
 		>
 			{label && <span {...labelProps}>{label}</span>}
 			<ToggleGroupContainer
-				hideRadio={props.hideRadio ?? false}
-				mode={props?.mode}
-				isDisabled={props?.isDisabled}
+				$hideRadio={props.hideRadio ?? false}
+				$mode={props?.mode}
+				$isDisabled={props?.isDisabled}
 			>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
 			</ToggleGroupContainer>
@@ -73,15 +77,15 @@ const TabModeCheckedStyle = css`
 `
 
 export const ToggleGroupContainer = styled.div<{
-	hideRadio: boolean
-	mode?: Toggle | Tab
-	isDisabled?: boolean
+	$hideRadio: boolean
+	$mode?: Toggle | Tab
+	$isDisabled?: boolean
 }>`
 	--radius: 0.25rem;
 	display: inline-flex;
 	flex-wrap: wrap;
-	${({ mode }) =>
-		mode === 'tab' &&
+	${({ $mode }) =>
+		$mode === 'tab' &&
 		css`
 			flex-wrap: nowrap;
 		`}
@@ -104,8 +108,8 @@ export const ToggleGroupContainer = styled.div<{
 				? theme.colors.extended.dark[600]
 				: theme.colors.extended.grey[100]};
 
-		${({ mode }) => mode === 'tab' && TabModeStyle}
-		${({ isDisabled }) => !isDisabled && 'cursor: pointer;'}
+		${({ $mode }) => $mode === 'tab' && TabModeStyle}
+		${({ $isDisabled: isDisabled }) => !isDisabled && 'cursor: pointer;'}
 	}
 
 	${LabelBody} {
@@ -135,19 +139,19 @@ export const ToggleGroupContainer = styled.div<{
 			theme.darkMode
 				? theme.colors.bases.primary[600]
 				: theme.colors.bases.primary[100]};
-		${({ mode }) => mode === 'tab' && TabModeCheckedStyle}
+		${({ $mode }) => $mode === 'tab' && TabModeCheckedStyle}
 	}
 
 	${VisibleRadio}:hover {
-		background-color: ${({ theme, isDisabled }) =>
-			!isDisabled &&
+		background-color: ${({ theme, $isDisabled }) =>
+			!$isDisabled &&
 			(theme.darkMode
 				? theme.colors.bases.primary[700]
 				: theme.colors.bases.primary[100])};
 	}
 	${RadioButton} {
-		${({ hideRadio }) =>
-			hideRadio &&
+		${({ $hideRadio }) =>
+			$hideRadio &&
 			css`
 				display: none;
 			`}

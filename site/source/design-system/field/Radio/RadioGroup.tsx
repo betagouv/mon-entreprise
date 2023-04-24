@@ -15,7 +15,11 @@ export function RadioGroup(props: RadioGroupProps) {
 	const { radioGroupProps, labelProps } = useRadioGroup(props, state)
 
 	return (
-		<div {...radioGroupProps} aria-label={props['aria-label']}>
+		<div
+			{...radioGroupProps}
+			onKeyDown={undefined} // Avoid react-aria focus next element (input, button, etc.) on keydown for rgaa
+			aria-label={props['aria-label']}
+		>
 			{label && <span {...labelProps}>{label}</span>}
 			<RadioGroupContainer orientationMode={props.orientation ?? 'vertical'}>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
