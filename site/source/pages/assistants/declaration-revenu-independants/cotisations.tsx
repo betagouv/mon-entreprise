@@ -81,30 +81,29 @@ export default function Cotisations() {
 									<Message border={false}>
 										<div
 											css={`
+												position: relative;
+												top: -1px;
+												margin: 0 -1.5rem;
+											`}
+										>
+											<Progress
+												progress={numberCurrentStep}
+												maxValue={numberSteps}
+											/>
+										</div>
+
+										<div
+											css={`
 												margin: -0.75rem 0;
 											`}
 										>
 											<Conversation
 												customSituationVisualisation={
-													<>
-														<Grid container>
-															<DéclarationRevenu />
-														</Grid>
-													</>
+													<Grid container>
+														<DéclarationRevenu />
+													</Grid>
 												}
 											/>
-											<div
-												css={`
-													position: relative;
-													top: -2px;
-													margin: 0 -1.5rem;
-												`}
-											>
-												<Progress
-													progress={numberCurrentStep}
-													maxValue={numberSteps}
-												/>
-											</div>
 										</div>
 									</Message>
 								</FromTop>
