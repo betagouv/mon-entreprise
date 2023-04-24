@@ -648,6 +648,11 @@ components:
       share:
         checkbox: Je souhaite partager ma dernière simulation pour vous aider à mieux me
           répondre.
+conversation:
+  multiple-answer:
+    aria-label: Choix multiples
+  yes-no:
+    aria-label: Oui ou non
 copied: Copié
 copyMessage: Copier le message
 créer:
@@ -1906,6 +1911,8 @@ search-code-ape:
       utiliserons ces informations pour améliorer cet outil.
     info: Nous ne sommes pas en mesure de répondre aux questions concernant le code
       APE de votre entreprise.
+  radio-card-group:
+    aria-label: Liste des activités
 select:
   value:
     default: Choisissez une option

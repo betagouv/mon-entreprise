@@ -224,6 +224,10 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 							value={selected}
 							onChange={setSelected}
 							isDisabled={disabled}
+							aria-label={t(
+								'search-code-ape.radio-card-group.aria-label',
+								'Liste des activités'
+							)}
 						>
 							{list.slice(0, 25).map(({ item, debug }) => {
 								return (
