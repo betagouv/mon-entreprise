@@ -5,9 +5,9 @@ import styled, { css } from 'styled-components'
 
 import {
 	InputRadio,
-	LabelBody,
 	RadioButton,
 	RadioContext,
+	SpanBody,
 	VisibleRadio,
 } from './Radio'
 
@@ -71,7 +71,7 @@ const TabModeCheckedStyle = css`
 	border: none !important;
 	background-color: ${({ theme }) => theme.colors.bases.primary[600]};
 
-	${LabelBody} {
+	${SpanBody} {
 		color: ${({ theme }) => theme.colors.extended.grey[100]}!important;
 	}
 `
@@ -112,7 +112,7 @@ export const ToggleGroupContainer = styled.div<{
 		${({ $isDisabled: isDisabled }) => !isDisabled && 'cursor: pointer;'}
 	}
 
-	${LabelBody} {
+	${SpanBody} {
 		margin: 0;
 		margin-left: ${({ theme }) => theme.spacings.xxs};
 	}

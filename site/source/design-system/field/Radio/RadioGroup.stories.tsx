@@ -16,6 +16,9 @@ export const Basic: Story = {
 			<Radio value="valueA">Radio A</Radio>
 			<Radio value="valueB">Radio B</Radio>
 			<Radio value="valueC">Radio C</Radio>
+			<Radio isDisabled value="valueD">
+				Radio Disabled
+			</Radio>
 		</RadioGroup>
 	),
 	args: {},

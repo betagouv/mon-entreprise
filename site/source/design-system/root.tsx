@@ -9,6 +9,8 @@ import styled, {
 import urssafTheme from '@/design-system/theme'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
+import { GlobalStyle } from './global-style'
+
 type SystemRootProps = {
 	children: ReactNode
 	forceDarkMode?: boolean
@@ -24,7 +26,10 @@ const SystemRoot = ({ children, forceDarkMode }: SystemRootProps) => {
 	return (
 		<StyleSheetManager disableCSSOMInjection={isbot(userAgent)}>
 			<ThemeProvider theme={{ ...urssafTheme, darkMode }}>
-				<BackgroundStyle $darkMode={darkMode}>{children}</BackgroundStyle>
+				<BackgroundStyle $darkMode={darkMode}>
+					<GlobalStyle />
+					{children}
+				</BackgroundStyle>
 			</ThemeProvider>
 		</StyleSheetManager>
 	)
