@@ -199,9 +199,12 @@ const AccessibleVersion = ({
 			caption={
 				<Trans>
 					Tableau indiquant la satisfaction des utilisateurs en{' '}
-					{dataType === 'pourcentage'
-						? t('pourcentage')
-						: t('nombres de votes')}{' '}
+					{{
+						percentOrVotes:
+							dataType === 'pourcentage'
+								? t('pourcentage')
+								: t('nombres de votes'),
+					}}{' '}
 					sur le site mon-entreprise par mois.
 				</Trans>
 			}

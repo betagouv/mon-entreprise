@@ -182,7 +182,6 @@ La gestion juridique et comptable: La gestion juridique et comptable
 Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
   Le montant de votre retraite est constitué de <2>votre retraite de base +
   votre retraite complémentaire</2>.
-Le pourcentage de satisfaction du mois en cours.: Le pourcentage de satisfaction du mois en cours.
 "Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>":
   Les données de simulations se mettront automatiquement à jour après la
   modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre
@@ -244,7 +243,7 @@ Plan du site: Plan du site
 Plus d'informations: Plus d'informations
 Plus d'informations sur service-public:
   "fr, nouvelle fenêtre": Plus d'informations sur service-public.fr, nouvelle fenêtre
-"Plus d'infos sur, {{ tile }}": Plus d'infos sur, {{ tile }}
+"Plus d'infos sur, {{ title }}": Plus d'infos sur, {{ title }}
 Plusieurs associés: Plusieurs associés
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
@@ -334,12 +333,12 @@ Statut du conjoint: Statut du conjoint
 Suivant: Suivant
 "Suivant, passer à la question suivante": Suivant, passer à la question suivante
 Switch to the english version of the website: Switch to the english version of the website
-Tableau indiquant le nombre de visites sur le site mon-entreprise par mois ou par jour.:
-  Tableau indiquant le nombre de visites sur le site mon-entreprise par mois ou
-  par jour.
-"Tableau présentant le nombre de visites par page et par mois en {dataType === 'pourcentage' ? t('pourcentage') : t('nombres')}.":
-  "Tableau présentant le nombre de visites par page et par mois en {dataType ===
-  'pourcentage' ? t('pourcentage') : t('nombres')}."
+"Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.":
+  Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur
+  le site mon-entreprise par mois.
+"Tableau indiquant le nombre de visites sur le site mon-entreprise par {{period}}.":
+  Tableau indiquant le nombre de visites sur le site mon-entreprise par
+  {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
 Taux d'utilisateurs ayant un avis neutre: Taux d'utilisateurs ayant un avis neutre
 Taux d'utilisateurs mécontents: Taux d'utilisateurs mécontents
@@ -998,6 +997,7 @@ inférieurs à: inférieurs à
 intégration:
   description: Outils pour les développeurs
   title: Intégration
+jours: jours
 "l'annuaire des entreprises, nouvelle fenêtre": l'annuaire des entreprises, nouvelle fenêtre
 la première année: la première année
 landing:
@@ -1054,6 +1054,7 @@ listeformejuridique:
 loading: Chargement en cours...
 maximum: maximum
 moins: moins
+mois: mois
 navbar:
   activate-darkmode: Activer le mode sombre
   deactivate-darkmode: Désactiver le mode sombre
@@ -1068,7 +1069,7 @@ nextSteps:
       via un script clé en main.
     cta: Voir la documentation
     title: Intégrer le module web
-nombres: nombres
+nombres de votes: nombres de votes
 pages:
   accessibilité: <0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
     page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui

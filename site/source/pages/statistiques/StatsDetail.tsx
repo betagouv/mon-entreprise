@@ -206,7 +206,7 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 								<Trans>
 									Tableau indiquant le nombre de visites sur le site
 									mon-entreprise par{' '}
-									{period === 'jours' ? t('jours') : t('mois')}.
+									{{ period: period === 'jours' ? t('jours') : t('mois') }}.
 								</Trans>
 							}
 						/>
