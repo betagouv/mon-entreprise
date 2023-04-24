@@ -183,7 +183,9 @@ export default function FeedbackForm({
 								errorMessage={submitError?.message}
 								placeholder={
 									placeholder ??
-									t('Ex : Des informations plus claires, un calcul détaillé...')
+									t(
+										'Exemple : Des informations plus claires, un calcul détaillé...'
+									)
 								}
 							/>
 

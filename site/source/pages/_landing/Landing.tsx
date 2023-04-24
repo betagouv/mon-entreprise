@@ -41,8 +41,14 @@ export default function Landing() {
 			<Header />
 
 			<main role="main" id="main">
-				<a href={`${fullURL}#footer`} className="skip-link print-hidden">
-					{t('Passer le contenu')}
+				<a
+					href={`${fullURL}#footer`}
+					aria-label={t(
+						'Passer le contenu principal et aller directement au pied de page'
+					)}
+					className="skip-link print-hidden"
+				>
+					{t('Aller directement au pied de page')}
 				</a>
 				<Container>
 					<PageHeader

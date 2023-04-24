@@ -2,7 +2,7 @@ entreprise:
   icônes: 🏢🧑‍💼👷‍♂️🧑‍🏭
 entreprise . SIREN:
   description: |
-    Le numéro Siren est un numéro de 9 chiffres unique pour chaque entreprise. Ex : 401237780
+    Le numéro Siren est un numéro de 9 chiffres unique pour chaque entreprise. Exemple : 401237780
   type: texte
 
 entreprise . nom:
