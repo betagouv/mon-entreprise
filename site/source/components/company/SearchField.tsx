@@ -24,9 +24,6 @@ import CompanySearchDetails from './SearchDetails'
 const StyledCard = styled(Card)`
 	flex-direction: row; // for Safari <= 13
 	cursor: pointer;
-	&:hover {
-		background-color: ${({ theme }) => theme.colors.extended.dark[700]};
-	}
 	&:focus-visible {
 		${FocusStyle}
 	}
