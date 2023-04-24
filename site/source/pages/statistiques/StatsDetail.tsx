@@ -172,7 +172,6 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 					<ToggleGroup
 						onChange={(val) => setPeriod(val as Period)}
 						defaultValue={period}
-						hideRadio
 						aria-labelledby="mode-affichage-label"
 						aria-controls="visites-panel"
 					>
