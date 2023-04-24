@@ -123,7 +123,7 @@ const App = () => {
 					)}
 					className="skip-link print-hidden"
 				>
-					{t('Passer le contenu')}
+					{t('Aller directement au pied de page')}
 				</a>
 				<Container>
 					<ErrorBoundary fallback={CatchOffline}>

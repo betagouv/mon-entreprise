@@ -17,7 +17,7 @@ export const SearchBox = connectSearchBox(
 					onClear={() => refine('')}
 					placeholder={t(
 						'recherche-globale.placeholder',
-						'Mot-clé ou acronyme (ex : CSG)'
+						'Mot-clé ou acronyme (exemple : CSG)'
 					)}
 					aria-label={t('Rechercher une règle de calcul dans la documentation')}
 					id="input-recherche-globale"

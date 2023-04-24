@@ -22,6 +22,7 @@ Afficher la transcription: View transcript
 Afficher le détail: View details
 "Afficher les données par :": "Display data by :"
 Aller au contenu principal: Go to main content
+Aller directement au pied de page: Go directly to the footer
 Aller plus loin: Go further
 Aller plus loin sur les revenus: Going further on income
 "Aller à l'étape actuelle :": "Go to the current step:"
@@ -60,10 +61,10 @@ Choix du statut juridique: Choice of legal status
   window
 Commune ou code postal: City or postal code
 CompanySearchField:
-  description: "The Siret number is a 14 digit number unique to each company. Ex:
-    40123778000127"
+  description: "The Siret number is a 14-digit number unique to each company.
+    Example: 40123778000127"
   label: Company name, SIREN or SIRET
-  placeholder: "Ex: Café de la gare or 40123778000127"
+  placeholder: "Example : Café de la gare or 40123778000127"
 Confirmer: Confirm
 Conjoint associé ou salarié: Associate or employee spouse
 Conjoint collaborateur: Collaborating spouse
@@ -120,7 +121,7 @@ Envoyer un courriel à contact@mon-entreprise:
   beta:
     gouv:
       "fr, nouvelle fenêtre": Send an email to contact@mon-entreprise.beta.gouv.fr, new window
-"Ex : Des informations plus claires, un calcul détaillé...": "Ex: Clearer information, detailed calculation..."
+"Exemple : Des informations plus claires, un calcul détaillé...": "Example: Clearer information, detailed calculation..."
 Exonérations: Exemptions
 ExportSimulation:
   Banner: Print or save as PDF
@@ -226,7 +227,6 @@ Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdresser, baker or restaurant"
 Pas en auto-entrepreneur: Not in auto-entrepreneur
 Passer: Skip
-Passer le contenu: Skip the content
 Passer le contenu principal et aller directement au pied de page: Skip the main content and go directly to the footer
 Passer à la version française du site: Switch to the French version of the site
 "Passer, passer la question sans répondre": Pass, pass the question without answering
@@ -1846,7 +1846,7 @@ privacyContent:
   The search is launched automatically after the entry of characters, the
   results will be displayed after this element.
 recherche-globale:
-  placeholder: Keyword or acronym (e.g. CSG)
+  placeholder: "Keyword or acronym (example: CSG)"
 responsabilité:
   bouton1: Limited liability company
   bouton1-aria-label: Company, select the option and go to the next step

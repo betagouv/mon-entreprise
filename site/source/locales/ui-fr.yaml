@@ -22,6 +22,7 @@ Afficher la transcription: Afficher la transcription
 Afficher le détail: Afficher le détail
 "Afficher les données par :": "Afficher les données par :"
 Aller au contenu principal: Aller au contenu principal
+Aller directement au pied de page: Aller directement au pied de page
 Aller plus loin: Aller plus loin
 Aller plus loin sur les revenus: Aller plus loin sur les revenus
 "Aller à l'étape actuelle :": "Aller à l'étape actuelle :"
@@ -63,9 +64,9 @@ Choix du statut juridique: Choix du statut juridique
 Commune ou code postal: Commune ou code postal
 CompanySearchField:
   description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
-    entreprise. Ex : 40123778000127"
+    entreprise. Exemple : 40123778000127"
   label: Nom de l'entreprise, SIREN ou SIRET
-  placeholder: "Ex : Café de la gare ou 40123778000127"
+  placeholder: "Exemple : Café de la gare ou 40123778000127"
 Confirmer: Confirmer
 Conjoint associé ou salarié: Conjoint associé ou salarié
 Conjoint collaborateur: Conjoint collaborateur
@@ -125,7 +126,7 @@ Envoyer un courriel à contact@mon-entreprise:
     gouv:
       "fr, nouvelle fenêtre": Envoyer un courriel à
         contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre
-"Ex : Des informations plus claires, un calcul détaillé...": "Ex : Des informations plus claires, un calcul détaillé..."
+"Exemple : Des informations plus claires, un calcul détaillé...": "Exemple : Des informations plus claires, un calcul détaillé..."
 Exonérations: Exonérations
 ExportSimulation:
   Banner: Imprimer ou sauvegarder en PDF
@@ -233,7 +234,6 @@ Page d'accueil: Page d'accueil
 "Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
 Pas en auto-entrepreneur: Pas en auto-entrepreneur
 Passer: Passer
-Passer le contenu: Passer le contenu
 Passer le contenu principal et aller directement au pied de page: Passer le contenu principal et aller directement au pied de page
 Passer à la version française du site: Passer à la version française du site
 "Passer, passer la question sans répondre": Passer, passer la question sans répondre
@@ -1874,7 +1874,7 @@ privacyContent:
   recherche lancée automatiquement après l'entrée de caractères, les résultats
   s'afficheront à la suite de cet élément.
 recherche-globale:
-  placeholder: "Mot-clé ou acronyme (ex : CSG)"
+  placeholder: "Mot-clé ou acronyme (exemple : CSG)"
 responsabilité:
   bouton1: Société
   bouton1-aria-label: Société, sélectionner l'option et passer à l'étape suivante

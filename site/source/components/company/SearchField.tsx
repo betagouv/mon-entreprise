@@ -45,7 +45,7 @@ export function CompanySearchField(props: {
 		label: t('CompanySearchField.label', "Nom de l'entreprise, SIREN ou SIRET"),
 		description: t(
 			'CompanySearchField.description',
-			'Le numéro Siret est un numéro de 14 chiffres unique pour chaque entreprise. Ex : 40123778000127'
+			'Le numéro Siret est un numéro de 14 chiffres unique pour chaque entreprise. Exemple : 40123778000127'
 		),
 		onSubmit() {
 			const results = refResults.current
@@ -53,7 +53,7 @@ export function CompanySearchField(props: {
 		},
 		placeholder: t(
 			'CompanySearchField.placeholder',
-			'Ex : Café de la gare ou 40123778000127'
+			'Exemple : Café de la gare ou 40123778000127'
 		),
 	}
 
