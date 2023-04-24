@@ -14,7 +14,10 @@ interface AccessibleTableProps {
 	}[]
 	formatKey?: (key: string) => string
 	formatValue?: (data: { key: string; value: number }) => string
-	caption?: ReactNode
+	/**
+	 * RGAA requires a caption for tables
+	 */
+	caption: ReactNode
 }
 
 export const AccessibleTable = ({

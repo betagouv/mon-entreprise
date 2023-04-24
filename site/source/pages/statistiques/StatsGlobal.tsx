@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
 import { Emoji } from '@/design-system/emoji'
@@ -6,8 +6,7 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 
-import { AccessibleTable } from './AccessibleTable'
-import { SatisfactionStyle, round } from './SatisfactionChart'
+import { SatisfactionStyle } from './SatisfactionChart'
 import { SatisfactionLevel, StatsStruct } from './types'
 import { Indicator, IndicatorProps } from './utils'
 
@@ -174,17 +173,17 @@ export default function StatsGlobal({
 				<BigIndicator
 					main={`${last30dConv} %`}
 					subTitle="Taux de conversion"
-					footnote="visites avec une simulation"
+					footnote="visites avec une simulation."
 				/>
 				<BigIndicator
 					main={last30dVisits}
 					subTitle="Visites"
-					footnote="sur les 30 derniers jours"
+					footnote="sur les 30 derniers jours."
 				/>
 				<BigIndicator
 					main={last30dCommence}
 					subTitle="Simulations lancées"
-					footnote="sur les 30 derniers jours"
+					footnote="sur les 30 derniers jours."
 				/>
 				<BigIndicator
 					main={stats.nbAnswersLast30days}
@@ -195,6 +194,7 @@ export default function StatsGlobal({
 							<Link to={{ pathname, search, hash: '#demandes-utilisateurs' }}>
 								Voir les demandes populaires
 							</Link>
+							.
 						</>
 					}
 				/>
@@ -211,37 +211,11 @@ export default function StatsGlobal({
 						<Indicator
 							subTitle="Satisfaction utilisateurs"
 							main={
-								accessibleMode ? (
-									<AccessibleTable
-										data={[
-											{
-												nombre: {
-													// order is important
-													[SatisfactionLevel.TrèsBien]:
-														currentMonthSatisfaction.percentages['très bien'],
-													[SatisfactionLevel.Bien]:
-														currentMonthSatisfaction.percentages.bien,
-													[SatisfactionLevel.Moyen]:
-														currentMonthSatisfaction.percentages.moyen,
-													[SatisfactionLevel.Mauvais]:
-														currentMonthSatisfaction.percentages.mauvais,
-												},
-											},
-										]}
-										caption={
-											<Trans>
-												Le pourcentage de satisfaction du mois en cours.
-											</Trans>
-										}
-										formatValue={({ value }) => formatPercentage(value)}
-									/>
-								) : (
-									<RetoursAsProgress
-										percentages={currentMonthSatisfaction.percentages}
-									/>
-								)
+								<RetoursAsProgress
+									percentages={currentMonthSatisfaction.percentages}
+								/>
 							}
-							footnote={`Pour un total de ${currentMonthSatisfaction.total} avis ce mois-ci`}
+							footnote={`Pour un total de ${currentMonthSatisfaction.total} avis ce mois-ci.`}
 						/>
 					</Grid>
 				)}
@@ -264,5 +238,3 @@ export default function StatsGlobal({
 		</>
 	)
 }
-
-const formatPercentage = (value: number) => `${round(value, 2)} %`
