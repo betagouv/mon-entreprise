@@ -314,10 +314,13 @@ entreprise . activités . principale:
   titre: Activité principale
   avec:
     code APE:
-      titre: Code APE
       description: |
         Le code APE est un code qui permet d'identifier l'activité principale de l'entreprise.
         Il est composé de 5 chiffres.
+    code guichet:
+      description: |
+        Le code guichet est utilisé pour identifier l'activité principale lors de la déclaration de 
+        la nouvelle entreprise via le guichet unique
 
 #   une possibilité:
 #     choix obligatoire: oui

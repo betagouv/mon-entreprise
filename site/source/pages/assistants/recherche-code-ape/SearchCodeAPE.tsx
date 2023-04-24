@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import FeedbackForm from '@/components/Feedback/FeedbackForm'
 import { FromTop } from '@/components/ui/animate'
+import { usePersistingState } from '@/components/utils/persistState'
 import {
 	Message,
 	PopoverWithTrigger,
@@ -91,14 +92,23 @@ export default function SearchCodeAPE({
 	onCodeAPESelected,
 }: SearchCodeApeProps) {
 	const { t } = useTranslation()
-	const [job, setJob] = useState('')
-	const [selected, setSelected] = useState('')
-	const [list, setList] = useState<ListResult[]>([])
+	const [searchQuery, setSearchQuery] = usePersistingState<string>(
+		'codeAPE:search',
+		''
+	)
+	const [selected, setSelected] = usePersistingState<string>(
+		'codeAPE:selected',
+		''
+	)
+	const [list, setList] = usePersistingState<ListResult[]>(
+		'codeAPE:results',
+		[]
+	)
 
 	const lazyData = useAsyncData(() => import('@/public/data/ape-search.json'))
 
 	const lastIdxs = useRef<Record<string, UFuzzy.HaystackIdxs>>({})
-	const prevValue = useRef<string>(job)
+	const prevValue = useRef<string>(searchQuery)
 
 	const buildedResearch = useMemo(() => buildResearch(lazyData), [lazyData])
 
@@ -109,10 +119,10 @@ export default function SearchCodeAPE({
 		const { apeData } = lazyData
 		const { fuzzy, genericList, specificList } = buildedResearch
 
-		if (!job.length) {
+		if (!searchQuery.length) {
 			lastIdxs.current = {}
 			setList([])
-			prevValue.current = job
+			prevValue.current = searchQuery
 
 			return
 		}
@@ -129,10 +139,10 @@ export default function SearchCodeAPE({
 			return { idxs, info, order }
 		}
 
-		const latinizedValue = UFuzzy.latinize([job])[0]
+		const latinizedValue = UFuzzy.latinize([searchQuery])[0]
 
-		const specific = search(specificList.original, job)
-		const generic = search(genericList.original, job)
+		const specific = search(specificList.original, searchQuery)
+		const generic = search(genericList.original, searchQuery)
 		const specificLatin = search(specificList.latinized, latinizedValue)
 		const genericLatin = search(genericList.latinized, latinizedValue)
 
@@ -178,8 +188,8 @@ export default function SearchCodeAPE({
 			.sort(({ score: a }, { score: b }) => a - b)
 
 		setList(results)
-		prevValue.current = job
-	}, [buildedResearch, job, lazyData])
+		prevValue.current = searchQuery
+	}, [buildedResearch, searchQuery, lazyData])
 
 	type Alt = { match: string; proposal: string[] }
 	const [alternative, setAlternative] = useState<Alt | null>(null)
@@ -193,11 +203,11 @@ export default function SearchCodeAPE({
 
 		setAlternative(null)
 		alternatives.forEach((alt) => {
-			if (new RegExp(alt.match, 'i').test(job)) {
+			if (new RegExp(alt.match, 'i').test(searchQuery)) {
 				setAlternative(alt)
 			}
 		})
-	}, [job])
+	}, [searchQuery])
 
 	useEffect(() => {
 		if (onCodeAPESelected) {
@@ -208,8 +218,8 @@ export default function SearchCodeAPE({
 	const ret = (
 		<>
 			<SearchField
-				value={job}
-				onChange={setJob}
+				value={searchQuery}
+				onChange={setSearchQuery}
 				label={t("Mots-clés définissants l'activité")}
 				placeholder={t('Par exemple : coiffure, boulangerie ou restauration')}
 			/>
