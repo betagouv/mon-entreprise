@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react'
 
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
 
-type Storage = Record<string, unknown> | boolean | number | null
+type Storage =
+	| Record<string, unknown>
+	| Array<unknown>
+	| boolean
+	| number
+	| null
+	| string
 
 export const getInitialState = <T extends Storage>(key: string): T | null => {
 	const value = safeLocalStorage.getItem(key)

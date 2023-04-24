@@ -55,15 +55,11 @@ export default function Activité() {
 				<SearchCodeAPE hideGuichetUnique onCodeAPESelected={setCodeApe} />
 				<Navigation
 					currentStepIsComplete={!!codeApe}
-					nextStepLabel={t(
-						'créer.activité.next',
-						'Selectionner cette activité'
-					)}
 					onNextStep={() =>
 						dispatch(
 							updateSituation(
 								'entreprise . activités . principale . code APE',
-								codeApe
+								`'${codeApe}'`
 							)
 						)
 					}

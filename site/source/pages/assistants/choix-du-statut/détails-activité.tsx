@@ -1,67 +1,138 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 
-import { Message } from '@/design-system'
-import { HelpButtonWithPopover } from '@/design-system/buttons'
+import Skeleton from '@/components/ui/Skeleton'
+import { useEngine } from '@/components/utils/EngineContext'
+import { Message, RadioCardGroup } from '@/design-system'
+import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
+import { Spacing } from '@/design-system/layout'
 import { H3, H5 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { useSitePaths } from '@/sitePaths'
 import { updateSituation } from '@/store/actions/actions'
 
+import {
+	GuichetDescription,
+	GuichetEntry,
+	getGuichetTitle,
+	useGuichetInfo,
+} from '../recherche-code-ape/GuichetInfo'
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
 
 export default function Activité() {
-	const [codeApe, setCodeApe] = useState('')
 	const { t } = useTranslation()
+	const codeApe = useEngine().evaluate(
+		'entreprise . activités . principale . code APE'
+	).nodeValue as string | undefined
+	const dispatch = useDispatch()
+
+	const [codeGuichet, setCodeGuichet] = useState<string | undefined>(undefined)
+	const guichetEntries = useGuichetInfo(codeApe)
+
+	useEffect(() => {
+		if (guichetEntries && guichetEntries.length === 1)
+			setCodeGuichet(guichetEntries[0].code)
+	}, [guichetEntries])
+
+	if (!codeApe) return <CodeAPENonConnu />
 
 	return (
 		<>
 			<Layout title={t('créer.activité.title', 'Votre activité')}>
-				<Trans i18nKey={'créer.activité.subtitle'}>
-					<H3 as="h2">
-						Mon activité principale est...
-						<HelpButtonWithPopover
-							title={t(
-								'créer.activité.help.title',
-								'Le choix du statut, un choix adapté à votre situation'
-							)}
-							type="info"
-						>
-							<Body>
-								Le choix du statut et les cotisations diffèrent en fonction de
-								l'activité professionnelle que vous exercez. Renseigner votre
-								métier vous donnera de la visibilité sur les statuts possibles
-								et permettra de simuler vos revenus de manière plus précise.
-							</Body>
-							<Message type="secondary" border={false}>
-								<H5 as="h3">Vous cumulez plusieurs activités ?</H5>
-								<Body>
-									Votre entreprise doit tout de même déclarer une activité
-									principale à l'administration. Pour savoir comment la
-									déterminer, <Link>voir ce guide</Link>.
-								</Body>
-							</Message>
-						</HelpButtonWithPopover>
-					</H3>
+				<Trans i18nKey={'créer.activité-détails.subtitle'}>
+					<H3 as="h2">Précisions sur votre activité</H3>
 				</Trans>
+
+				{!guichetEntries ? (
+					<GuichetSkeleton />
+				) : guichetEntries.length === 1 ? (
+					<>
+						<Message border={false}>
+							<H5 as="h3">{getGuichetTitle(guichetEntries[0].label)}</H5>
+
+							<GuichetDescription {...guichetEntries[0]} />
+						</Message>
+					</>
+				) : (
+					<GuichetSelection
+						entries={guichetEntries}
+						onGuichetSelected={setCodeGuichet}
+					/>
+				)}
 				<Navigation
-					currentStepIsComplete={!!codeApe}
-					nextStepLabel={t(
-						'créer.activité.next',
-						'Selectionner cette activité'
-					)}
+					currentStepIsComplete={!!codeGuichet}
+					nextStepLabel={
+						guichetEntries?.length === 1 &&
+						t('créer.activité-détails.next1', 'Continuer avec cette activité')
+					}
 					onNextStep={() =>
+						codeGuichet &&
 						dispatch(
 							updateSituation(
-								'entreprise . activités . principale . code APE',
-								codeApe
+								'entreprise . activités . principale . code guichet',
+								`'${codeGuichet}'`
 							)
 						)
 					}
 				/>
 			</Layout>
 		</>
+	)
+}
+
+function CodeAPENonConnu() {
+	const { absoluteSitePaths } = useSitePaths()
+
+	return (
+		// For now, we don't handle the case where the user doesn't find his code APE
+		<Navigate
+			to={absoluteSitePaths.assistants['choix-du-statut']['recherche-activité']}
+			replace
+		/>
+	)
+}
+
+function GuichetSelection({
+	entries,
+	onGuichetSelected,
+	codeGuichet,
+}: {
+	entries: GuichetEntry[]
+	onGuichetSelected: (code: string) => void
+	codeGuichet?: string
+}) {
+	return (
+		<>
+			<Body>Sectionnez la description d'activité qui correspond le mieux.</Body>
+			<RadioCardGroup value={codeGuichet} onChange={onGuichetSelected}>
+				{entries.map((guichetEntry) => {
+					return (
+						<StyledRadioSkeleton
+							value={guichetEntry.code}
+							key={guichetEntry.code}
+							visibleRadioAs="div"
+						>
+							<H5 as="h3">{getGuichetTitle(guichetEntry.label)}</H5>
+							<GuichetDescription {...guichetEntry} />
+						</StyledRadioSkeleton>
+					)
+				})}
+			</RadioCardGroup>
+		</>
+	)
+}
+
+function GuichetSkeleton() {
+	return (
+		<Message border={false}>
+			<Body>
+				<Skeleton width={300} height={20} />
+				<Spacing md />
+				<Skeleton width={600} height={20} />
+			</Body>
+		</Message>
 	)
 }

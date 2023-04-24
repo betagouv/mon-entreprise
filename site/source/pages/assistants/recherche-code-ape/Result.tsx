@@ -5,8 +5,6 @@ import styled, { css } from 'styled-components'
 import { Appear } from '@/components/ui/animate'
 import { Button, HelpButtonWithPopover } from '@/design-system/buttons'
 import { ChevronIcon } from '@/design-system/icons'
-import InfoBulle from '@/design-system/InfoBulle'
-import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4, H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -27,21 +25,14 @@ interface ResultProps {
 	hideGuichetUnique: boolean
 }
 
-export const Result = ({ item, debug, hideGuichetUnique }: ResultProps) => {
+export const Result = ({ item, hideGuichetUnique }: ResultProps) => {
 	const { title, codeApe, contenuCentral, contenuAnnexe, contenuExclu } = item
 	const [open, setOpen] = useState(false)
 	const { t } = useTranslation()
 
 	return (
 		<>
-			<H4 as="h3">
-				{title}
-				{debug && (
-					<InfoBulle>
-						<pre>{debug}</pre>
-					</InfoBulle>
-				)}
-			</H4>
+			<H4 as="h3">{title}</H4>
 			<Body
 				css={`
 					display: flex;
@@ -49,7 +40,7 @@ export const Result = ({ item, debug, hideGuichetUnique }: ResultProps) => {
 					align-items: center;
 				`}
 			>
-				<Strong>Code : {codeApe}</Strong>
+				<Strong>Code APE : {codeApe}</Strong>
 				<Button
 					size="XXS"
 					light
@@ -102,27 +93,10 @@ export const Result = ({ item, debug, hideGuichetUnique }: ResultProps) => {
 							<Trans i18nKey={'codeApe.catégorie-guichet'}>
 								<H4>
 									Catégories du Guichet unique
-									<HelpButtonWithPopover
-										type="info"
-										title="Qu'est-ce que le guichet unique ?"
-									>
-										<Body>
-											Le{' '}
-											<Link href="https://procedures.inpi.fr/">
-												Guichet électronique des formalités d’entreprises
-											</Link>{' '}
-											(Guichet unique) est un portail internet sécurisé, auprès
-											duquel toute entreprise est tenue de déclarer sa création,
-											depuis le 1er janvier 2023.
-										</Body>
-										<Body>
-											Il utilise une classification des activités différente de
-											celle utilisée par l'INSEE pour code APE.
-										</Body>
-									</HelpButtonWithPopover>
+									<HelpGuichetUnique />
 								</H4>
 							</Trans>
-							<GuichetInfo apeCode={codeApe} />
+							<GuichetInfo codeApe={codeApe} />
 						</>
 					)}
 				</Appear>
@@ -130,12 +104,6 @@ export const Result = ({ item, debug, hideGuichetUnique }: ResultProps) => {
 		</>
 	)
 }
-
-const StyledGrid = styled(Grid)`
-	display: flex;
-	justify-content: end;
-	align-items: center;
-`
 
 const StyledChevron = styled(ChevronIcon)<{ $isOpen: boolean }>`
 	vertical-align: middle;
@@ -147,3 +115,26 @@ const StyledChevron = styled(ChevronIcon)<{ $isOpen: boolean }>`
 			transform: rotate(90deg);
 		`}
 `
+
+export function HelpGuichetUnique() {
+	return (
+		<HelpButtonWithPopover
+			type="info"
+			title="Qu'est-ce que le guichet unique ?"
+		>
+			<Body>
+				Le{' '}
+				<Link href="https://procedures.inpi.fr/">
+					Guichet électronique des formalités d’entreprises
+				</Link>{' '}
+				(Guichet unique) est un portail internet sécurisé, auprès duquel toute
+				entreprise est tenue de déclarer sa création, depuis le 1er janvier
+				2023.
+			</Body>
+			<Body>
+				Il utilise une classification des activités différente de celle utilisée
+				par l'INSEE pour code APE.
+			</Body>
+		</HelpButtonWithPopover>
+	)
+}

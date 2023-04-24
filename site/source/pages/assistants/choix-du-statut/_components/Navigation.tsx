@@ -47,7 +47,7 @@ export default function Navigation({
 	onNextStep,
 }: {
 	currentStepIsComplete: boolean
-	nextStepLabel?: string
+	nextStepLabel?: false | string
 	onNextStep?: () => void
 }) {
 	const { t } = useTranslation()
@@ -84,7 +84,7 @@ export default function Navigation({
 							isDisabled={!currentStepIsComplete}
 							aria-label={t("Suivant, passer à l'étape suivante")}
 						>
-							{nextStepLabel || <Trans>Suivant</Trans>}{' '}
+							{nextStepLabel || <Trans>Enregistrer et passer à la suite</Trans>}{' '}
 							<span aria-hidden>→</span>
 						</Button>
 					</Grid>
