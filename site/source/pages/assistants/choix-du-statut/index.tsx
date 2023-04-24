@@ -3,12 +3,13 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { useSitePaths } from '@/sitePaths'
 
-import Activité from './activité'
 import AfterRegistration from './après'
 import Associé from './associé'
 import Département from './département'
+import DétailsActivité from './détails-activité'
 import AccueilChoixStatut from './home'
 import Lucratif from './lucratif'
+import RechercheActivité from './recherche-activité'
 import Rémunération from './rémunération'
 import Résultat from './résultat'
 import Statuts from './statuts'
@@ -24,7 +25,14 @@ export default function ChoixDuStatut() {
 			<Routes>
 				<Route index element={<AccueilChoixStatut />} />
 				<Route path={childrenPaths.après} element={<AfterRegistration />} />
-				<Route path={childrenPaths.activité} element={<Activité />} />
+				<Route
+					path={childrenPaths['recherche-activité']}
+					element={<RechercheActivité />}
+				/>
+				<Route
+					path={childrenPaths['détails-activité']}
+					element={<DétailsActivité />}
+				/>
 				<Route path={childrenPaths.département} element={<Département />} />
 				<Route path={childrenPaths.associé} element={<Associé />} />
 				<Route path={childrenPaths.lucratif} element={<Lucratif />} />

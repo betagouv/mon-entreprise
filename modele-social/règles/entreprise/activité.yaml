@@ -209,72 +209,6 @@ entreprise . activités:
         'Devenir agent commercial : pourquoi et comment obtenir ce statut ?': https://www.economie.gouv.fr/entreprises/agent-commercial-immatriculation
         'Agent commercial - Réglementation': https://bpifrance-creation.fr/activites-reglementees/agent-commercial
 
-# entreprise . activités . principale:
-#   une possibilité:
-#     choix obligatoire: oui
-#     possibilités:
-#       - artisanale
-#       - commerciale
-#       - agricole
-#       - libérale
-#   variations:
-#     - si:
-#         toutes ces conditions:
-#           - activités . artisanale
-#           - activités . commerciale = non
-#           - activités . agricole = non
-#           - activités . libérale = non
-#       alors: "'artisanale'"
-#     - si:
-#         toutes ces conditions:
-#           - activités . commerciale
-#           - activités . artisanale = non
-#           - activités . agricole = non
-#           - activités . libérale = non
-#       alors: "'commerciale'"
-#     - si:
-#         toutes ces conditions:
-#           - activités . agricole
-#           - activités . artisanale = non
-#           - activités . commerciale = non
-#           - activités . libérale = non
-#       alors: "'agricole'"
-#     - si:
-#         toutes ces conditions:
-#           - activités . libérale
-#           - activités . agricole = non
-#           - activités . artisanale = non
-#           - activités . commerciale = non
-#         alors: "'libérale'"
-#     - sinon:
-#         variations:
-#           - si: activités . libérale
-#             par défaut: "'libérale'"
-#           - si: activités . agricole
-#             par défaut: "'agricole'"
-#           - si: activités . commerciale
-#             par défaut: "'artisanale'"
-#           - sinon:
-#               par défaut: "'commerciale'"
-
-#   références:
-#     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
-#     Comment déterminer la nature de l'activité d'une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
-#     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
-#   avec:
-#     artisanale:
-#       applicable si: activités . artisanale
-#       valeur: activités . principale = "'artisanale'"
-#     commerciale:
-#       applicable si: activités . commerciale
-#       valeur: activités . principale = "'commerciale'"
-#     agricole:
-#       applicable si: activités . agricole
-#       valeur: activités . principale = "'agricole'"
-#     libérale:
-#       applicable si: activités . libérale
-#       valeur: activités . principale = "'libérale'"
-
 entreprise . activités . service ou vente:
   experimental: oui
   non applicable si: revenus mixtes
@@ -374,3 +308,78 @@ entreprise . activités . saisonnière:
     Vous pouvez demander l‘application de cette dispense depuis votre espace en urssaf: Messagerie > Nouveau message > Un autre sujet (informations, documents ou justificatifs) > Demander des informations sur mon compte ou un récapitulatif > Faire une demande ou un complément de demande »
 
     > À noter : l’assiette minimale pour la retraite de base permet de garantir la validation de 3 trimestres d’assurance vieillesse.
+
+entreprise . activités . principale:
+  experimental: oui
+  titre: Activité principale
+  avec:
+    code APE:
+      titre: Code APE
+      description: |
+        Le code APE est un code qui permet d'identifier l'activité principale de l'entreprise.
+        Il est composé de 5 chiffres.
+
+#   une possibilité:
+#     choix obligatoire: oui
+#     possibilités:
+#       - artisanale
+#       - commerciale
+#       - agricole
+#       - libérale
+#   variations:
+#     - si:
+#         toutes ces conditions:
+#           - activités . artisanale
+#           - activités . commerciale = non
+#           - activités . agricole = non
+#           - activités . libérale = non
+#       alors: "'artisanale'"
+#     - si:
+#         toutes ces conditions:
+#           - activités . commerciale
+#           - activités . artisanale = non
+#           - activités . agricole = non
+#           - activités . libérale = non
+#       alors: "'commerciale'"
+#     - si:
+#         toutes ces conditions:
+#           - activités . agricole
+#           - activités . artisanale = non
+#           - activités . commerciale = non
+#           - activités . libérale = non
+#       alors: "'agricole'"
+#     - si:
+#         toutes ces conditions:
+#           - activités . libérale
+#           - activités . agricole = non
+#           - activités . artisanale = non
+#           - activités . commerciale = non
+#         alors: "'libérale'"
+#     - sinon:
+#         variations:
+#           - si: activités . libérale
+#             par défaut: "'libérale'"
+#           - si: activités . agricole
+#             par défaut: "'agricole'"
+#           - si: activités . commerciale
+#             par défaut: "'artisanale'"
+#           - sinon:
+#               par défaut: "'commerciale'"
+
+#   références:
+#     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
+#     Comment déterminer la nature de l'activité d'une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
+#     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
+#   avec:
+#     artisanale:
+#       applicable si: activités . artisanale
+#       valeur: activités . principale = "'artisanale'"
+#     commerciale:
+#       applicable si: activités . commerciale
+#       valeur: activités . principale = "'commerciale'"
+#     agricole:
+#       applicable si: activités . agricole
+#       valeur: activités . principale = "'agricole'"
+#     libérale:
+#       applicable si: activités . libérale
+#       valeur: activités . principale = "'libérale'"

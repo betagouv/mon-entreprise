@@ -34,6 +34,7 @@ entreprise . catégorie juridique:
       - SAS
       - SELARL
       - SELAS
+      - association
       - autre
   meta:
     affichage: radio
@@ -66,6 +67,7 @@ entreprise . catégorie juridique . EI:
         experimental: oui
         valeur: oui
     EI:
+      titre: entreprise individuelle
       valeur: auto-entrepreneur = non
       non applicable si: associés . multiples
 
@@ -218,6 +220,9 @@ entreprise . catégorie juridique . SELAS:
       acronyme: SELAS
       titre: Société d'exercice libéral par action simplifiée
       valeur: associés . multiples
+
+entreprise . catégorie juridique . association:
+  valeur: catégorie juridique = 'association'
 
 entreprise . catégorie juridique . autre:
   valeur: catégorie juridique = 'autre'
