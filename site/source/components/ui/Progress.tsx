@@ -53,8 +53,11 @@ const ProgressBar = styled.div`
 	height: ${({ theme }) => theme.spacings.xxs};
 `
 const StyledBody = styled(Body)`
+	position: absolute;
+	top: 0;
+	right: 0;
 	font-size: 0.825rem;
-	padding: 0 1.5rem;
-	margin-bottom: 0;
+	padding: 0.25rem 1.5rem;
+	margin: 0;
 	color: ${({ theme }) => theme.colors.extended.grey[600]}!important;
 `
