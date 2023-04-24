@@ -10,28 +10,26 @@ import { Body } from '@/design-system/typography/paragraphs'
 export const RadioContext = createContext<RadioGroupState | null>(null)
 
 type RadioProps = AriaRadioProps & {
-	hideRadio?: boolean
 	className?: string
 	role?: string
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	visibleRadioAs?: string | React.ComponentType<any>
 }
 
+// TDOO: isDisabled style
 export function Radio(props: RadioProps) {
-	const { hideRadio, children, id } = props
+	const { children } = props
 
 	return (
 		<RadioSkeleton role="radio" aria-atomic {...props}>
-			{!hideRadio && <RadioPoint />}
-			<LabelBody as="span" htmlFor={id} $hideRadio={hideRadio}>
-				{children}
-			</LabelBody>
+			<RadioPoint />
+			<SpanBody>{children}</SpanBody>
 		</RadioSkeleton>
 	)
 }
 
 export const RadioSkeleton = (props: RadioProps) => {
-	const { hideRadio, visibleRadioAs, id, ...ariaProps } = props
+	const { visibleRadioAs, id, ...ariaProps } = props
 	const { children } = ariaProps
 	const state = useContext(RadioContext)
 	if (!state) {
@@ -42,7 +40,7 @@ export const RadioSkeleton = (props: RadioProps) => {
 	const { inputProps } = useRadio(ariaProps, state, ref)
 
 	return (
-		<Label $hideRadio={hideRadio} htmlFor={id} className={props.className}>
+		<Label htmlFor={id} className={props.className}>
 			<InputRadio
 				{...inputProps}
 				// Avoid react-aria focus next element (input, button, etc.) on keydown for rgaa
@@ -136,26 +134,12 @@ export const VisibleRadio = styled.span`
 	}
 `
 
-const Label = styled.label<{ $hideRadio?: boolean; htmlFor?: string }>`
-	${({ $hideRadio }) =>
-		$hideRadio &&
-		css`
-			margin-top: -1px;
-		`}
-`
+const Label = styled.label<{ htmlFor?: string }>``
 
-export const LabelBody = styled(Body)<{
-	$hideRadio?: boolean
-	htmlFor?: string
-}>`
+export const SpanBody = styled(Body).attrs({ as: 'span' })`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 	background-color: transparent;
-	${({ $hideRadio }) =>
-		$hideRadio &&
-		css`
-			margin: 0 !important;
-		`}
 `
 
 export const InputRadio = styled.input`

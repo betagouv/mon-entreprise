@@ -10,7 +10,6 @@ import { BrowserRouter } from 'react-router-dom'
 import logo from '@/assets/images/logo-monentreprise.svg'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
-import { GlobalStyle } from '@/design-system/global-style'
 import { Container, Grid } from '@/design-system/layout'
 import DesignSystemThemeProvider from '@/design-system/root'
 import { H1, H4 } from '@/design-system/typography/heading'
@@ -45,7 +44,6 @@ export default function Provider({
 	return (
 		<DarkModeProvider>
 			<DesignSystemThemeProvider>
-				<GlobalStyle />
 				<ErrorBoundary showDialog fallback={ErrorFallback}>
 					{!import.meta.env.SSR &&
 						import.meta.env.MODE === 'production' &&

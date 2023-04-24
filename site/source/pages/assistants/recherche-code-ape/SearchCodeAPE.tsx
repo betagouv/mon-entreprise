@@ -14,8 +14,8 @@ import {
 } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
-import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
-import { Grid, Spacing } from '@/design-system/layout'
+import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
+import { Spacing } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useAsyncData } from '@/hooks/useAsyncData'
 
@@ -81,9 +81,15 @@ interface ListResult {
 
 interface SearchCodeApeProps {
 	disabled?: boolean
+	hideGuichetUnique?: boolean
+	onCodeAPESelected?: (codeAPE: string) => void
 }
 
-export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
+export default function SearchCodeAPE({
+	disabled,
+	hideGuichetUnique = false,
+	onCodeAPESelected,
+}: SearchCodeApeProps) {
 	const { t } = useTranslation()
 	const [job, setJob] = useState('')
 	const [selected, setSelected] = useState('')
@@ -193,62 +199,70 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 		})
 	}, [job])
 
-	const ret = (
-		<Grid container>
-			<Grid item lg={12} xl={11}>
-				<SearchField
-					value={job}
-					onChange={setJob}
-					label={t("Mots-clés définissants l'activité")}
-					placeholder={t('Par exemple : coiffure, boulangerie ou restauration')}
-				/>
-				{alternative ? (
-					<FromTop>
-						<Message border={false} icon mini style={{ margin: '.5rem 0' }}>
-							<SmallBody>
-								<Trans i18nKey="search-code-ape.alternative" shouldUnescape>
-									Vous pouvez essayer "
-									{{ proposal: alternative.proposal.join('", "') }}" au lieu de
-									"{{ match: alternative.match }}"
-								</Trans>
-							</SmallBody>
-						</Message>
-					</FromTop>
-				) : (
-					<Spacing xs />
-				)}
-				{list.length > 0 && (
-					<FromTop>
-						<TrackPage name="recherche" />
-						<StyledRadioCardGroup
-							value={selected}
-							onChange={setSelected}
-							isDisabled={disabled}
-							aria-label={t(
-								'search-code-ape.radio-card-group.aria-label',
-								'Liste des activités'
-							)}
-						>
-							{list.slice(0, 25).map(({ item, debug }) => {
-								return (
-									<StyledRadioSkeleton
-										isDisabled={disabled}
-										value={item.codeApe}
-										key={item.codeApe}
-										visibleRadioAs="div"
-									>
-										<Result item={item} debug={debug} />
-									</StyledRadioSkeleton>
-								)
-							})}
-						</StyledRadioCardGroup>
-					</FromTop>
-				)}
+	useEffect(() => {
+		if (onCodeAPESelected) {
+			onCodeAPESelected(selected)
+		}
+	}, [selected, onCodeAPESelected])
 
-				<Spacing md />
-				{/* <ActivityNotFound job={job} /> */}
-			</Grid>
-		</Grid>
+	const ret = (
+		<>
+			<SearchField
+				value={job}
+				onChange={setJob}
+				label={t("Mots-clés définissants l'activité")}
+				placeholder={t('Par exemple : coiffure, boulangerie ou restauration')}
+			/>
+			{alternative ? (
+				<FromTop>
+					<Message border={false} icon mini style={{ margin: '.5rem 0' }}>
+						<SmallBody>
+							<Trans i18nKey="search-code-ape.alternative" shouldUnescape>
+								Vous pouvez essayer "
+								{{ proposal: alternative.proposal.join('", "') }}" au lieu de "
+								{{ match: alternative.match }}"
+							</Trans>
+						</SmallBody>
+					</Message>
+				</FromTop>
+			) : (
+				<Spacing xs />
+			)}
+			{list.length > 0 && (
+				<FromTop>
+					<TrackPage name="recherche" />
+					<StyledRadioCardGroup
+						value={selected}
+						onChange={setSelected}
+						isDisabled={disabled}
+						aria-label={t(
+							'search-code-ape.radio-card-group.aria-label',
+							'Liste des activités'
+						)}
+					>
+						{list.slice(0, 25).map(({ item, debug }) => {
+							return (
+								<RadioCardSkeleton
+									isDisabled={disabled}
+									value={item.codeApe}
+									key={item.codeApe}
+									visibleRadioAs="div"
+								>
+									<Result
+										item={item}
+										debug={debug}
+										hideGuichetUnique={hideGuichetUnique}
+									/>
+								</RadioCardSkeleton>
+							)
+						})}
+					</StyledRadioCardGroup>
+				</FromTop>
+			)}
+
+			<Spacing md />
+			{/* <ActivityNotFound job={job} /> */}
+		</>
 	)
 
 	return ret

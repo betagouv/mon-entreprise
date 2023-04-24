@@ -6,7 +6,7 @@ import { Markdown } from '@/components/utils/markdown'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 
-import { LabelBody, RadioPoint, RadioSkeleton, VisibleRadio } from './Radio'
+import { RadioPoint, RadioSkeleton, SpanBody, VisibleRadio } from './Radio'
 
 const Description = styled.span`
 	display: block;
@@ -19,7 +19,7 @@ const StyledRadioPoint = styled(RadioPoint)`
 	margin-top: 0.2rem;
 `
 
-export const StyledRadioSkeleton = ({
+export const RadioCardSkeleton = ({
 	children,
 	...rest
 }: ComponentProps<typeof RadioSkeleton>) => (
@@ -30,14 +30,15 @@ export const StyledRadioSkeleton = ({
 
 const StyledCardContainer = styled(CardContainer)`
 	${VisibleRadio} {
-		padding: 0;
 		margin: 0;
 		width: 100%;
 		background: transparent;
-		border: none;
+		border: 2px solid transparent;
+		border-radius: 0.25rem;
 	}
 
-	margin: 0.5rem 0;
+	padding: 0;
+	margin: ${({ theme }) => theme.spacings.xs} 0;
 `
 
 type RadioCardProps = AriaRadioProps & {
@@ -47,9 +48,9 @@ type RadioCardProps = AriaRadioProps & {
 	description?: string
 	emoji?: string
 	autoFocus?: boolean
-	hideRadio?: boolean
 }
 
+// TODO: isDisabled style
 export function RadioCard({
 	label,
 	description,
@@ -57,16 +58,16 @@ export function RadioCard({
 	...props
 }: RadioCardProps) {
 	return (
-		<StyledRadioSkeleton {...props}>
-			{!props.hideRadio && <StyledRadioPoint />}
-			<LabelBody as="span" $hideRadio={props.hideRadio}>
+		<RadioCardSkeleton {...props}>
+			<StyledRadioPoint />
+			<SpanBody>
 				<span>
 					{label} {emoji && <Emoji emoji={emoji} />}
 				</span>
 				{description && (
 					<Markdown as={Description}>{description ?? ''}</Markdown>
 				)}
-			</LabelBody>
-		</StyledRadioSkeleton>
+			</SpanBody>
+		</RadioCardSkeleton>
 	)
 }
