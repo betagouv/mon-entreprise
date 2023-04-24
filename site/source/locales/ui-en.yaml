@@ -177,7 +177,6 @@ La gestion juridique et comptable: Legal and accounting management
 Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
   The amount of your pension is made up of <2>your basic pension + your
   complementary pension</2>.
-Le pourcentage de satisfaction du mois en cours.: The percentage of satisfaction of the current month.
 "Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>":
   Simulation data will automatically update after a field is modified. <2>A
   panel will open to allow you to add details to the simulation, detailed
@@ -237,7 +236,7 @@ Plan du site: Site Map
 Plus d'informations: More information (fr)
 Plus d'informations sur service-public:
   "fr, nouvelle fenêtre": More information on service-public.fr, new window
-"Plus d'infos sur, {{ tile }}": More info on, {{ tile }}
+"Plus d'infos sur, {{ title }}": More info on, {{ title }}
 Plusieurs associés: Several partners
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
@@ -323,10 +322,10 @@ Statut du conjoint: Status of the spouse
 Suivant: Next
 "Suivant, passer à la question suivante": Next, go to the next question
 Switch to the english version of the website: Switch to the english version of the website
-Tableau indiquant le nombre de visites sur le site mon-entreprise par mois ou par jour.: Table showing the number of visits to the my-company site per month or per day.
-"Tableau présentant le nombre de visites par page et par mois en {dataType === 'pourcentage' ? t('pourcentage') : t('nombres')}.":
-  "Table showing the number of visits per page per month in {dataType ===
-  'percentage' ? t('percentage') : t('numbers')}."
+"Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.":
+  Table showing the satisfaction of users in {{percentOrVotes}} on the site
+  my-company by month.
+"Tableau indiquant le nombre de visites sur le site mon-entreprise par {{period}}.": Table showing the number of visits to the my-company site by {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator and per month.
 Taux d'utilisateurs ayant un avis neutre: Rate of users with a neutral opinion
 Taux d'utilisateurs mécontents: Rate of dissatisfied users
@@ -1009,6 +1008,7 @@ inférieurs à: lower than
 intégration:
   description: Tools for developers
   title: Integration
+jours: days
 "l'annuaire des entreprises, nouvelle fenêtre": business directory, new window
 la première année: the first year
 landing:
@@ -1067,6 +1067,7 @@ listeformejuridique:
 loading: Loading in progress...
 maximum: maximum
 moins: less
+mois: month
 navbar:
   activate-darkmode: Enable dark mode
   deactivate-darkmode: Disable dark mode
@@ -1081,7 +1082,7 @@ nextSteps:
       turnkey script.
     cta: See the documentation
     title: Integrate the web module
-nombres: numbers
+nombres de votes: number of votes
 pages:
   accessibilité: <0>Accessibility</0><1></1><2></2><3>This page is not a help
     page, but a declaration of compliance with the <2>RGAA</2> 4.0 which aims to
