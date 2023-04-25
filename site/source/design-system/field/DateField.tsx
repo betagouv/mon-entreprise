@@ -1,15 +1,261 @@
-import { AriaTextFieldOptions } from '@react-aria/textfield'
+import 'react-day-picker/dist/style.css'
 
+import { format as formatDate, isValid, parse } from 'date-fns'
+import { enUS, fr } from 'date-fns/locale'
+import FocusTrap from 'focus-trap-react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { DayPicker, useInput } from 'react-day-picker'
+import { useTranslation } from 'react-i18next'
+import { usePopper } from 'react-popper'
+import styled from 'styled-components'
+
+import { useOnClickOutside } from '@/hooks/useClickOutside'
+
+import { Button } from '../buttons'
+import { Emoji } from '../emoji'
+import { Spacing } from '../layout'
+import { Body } from '../typography/paragraphs'
 import TextField from './TextField'
 
-export default function DateField(props: AriaTextFieldOptions<'input'>) {
+interface DateFieldProps {
+	defaultSelected?: Date
+	inputValue?: string
+	onChange?: (value?: string) => void
+
+	placeholder?: string
+	label?: string
+	'aria-label'?: string
+	'aria-labelby'?: string
+
+	autoFocus?: boolean
+	isRequired?: boolean
+}
+
+export default function DateField(props: DateFieldProps) {
+	const { aria: ariaProps, rest } = splitAriaProps(props)
+	const { defaultSelected, placeholder = 'JJ/MM/AAAA', label, onChange } = rest
+
+	const { t, i18n } = useTranslation()
+	const language = i18n.language as 'fr' | 'en'
+
+	const [isChangeOnce, setIsChangeOnce] = useState(false)
+	const [selected, setSelected] = useState<Date>()
+	const [isPopperOpen, setIsPopperOpen] = useState(false)
+
+	const popperRef = useRef<HTMLDivElement>(null)
+	const buttonRef = useRef<HTMLButtonElement>(null)
+	const containerRef = useRef<HTMLDivElement>(null)
+	const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+		null
+	)
+
+	const format = 'dd/MM/y'
+	const { inputProps, dayPickerProps } = useInput({
+		defaultSelected,
+		format,
+		required: true,
+		locale: language === 'fr' ? fr : enUS,
+		fromDate: new Date('1800-01-01'),
+		toDate: new Date(),
+	})
+
+	const [inputValue, setInputValue] = useState<string>(
+		inputProps.value as string
+	)
+
+	const popper = usePopper(popperRef.current, popperElement, {
+		placement: 'bottom-end',
+	})
+
+	useOnClickOutside(containerRef, () => setIsPopperOpen(false))
+
+	const closePopper = () => {
+		setIsPopperOpen(false)
+		buttonRef?.current?.focus()
+	}
+
+	const handleInputChange = (value: string) => {
+		setIsPopperOpen(false)
+		setIsChangeOnce(true)
+		setInputValue(value)
+		const date = parse(value, format, new Date())
+		if (
+			isValid(date) &&
+			date.getFullYear() > 1800 &&
+			date.getFullYear() <= new Date().getFullYear()
+		) {
+			setSelected(date)
+			onChange?.(value)
+		} else {
+			setSelected(undefined)
+			onChange?.()
+		}
+	}
+
+	const handleButtonPress = () => {
+		setIsPopperOpen((open) => !open)
+	}
+
+	const handleDaySelect = useCallback(
+		(date?: Date) => {
+			setSelected(date)
+			if (date) {
+				const value = formatDate(date, format)
+				setInputValue(value)
+				closePopper()
+				onChange?.(value)
+			} else {
+				setInputValue('')
+				onChange?.()
+			}
+		},
+		[onChange]
+	)
+
+	const oldDefaultSelected = useRef<Date | undefined>(defaultSelected)
+	useEffect(() => {
+		if (
+			typeof defaultSelected !== 'undefined' &&
+			oldDefaultSelected.current?.getTime() !== defaultSelected.getTime()
+		) {
+			handleDaySelect(defaultSelected)
+			oldDefaultSelected.current = defaultSelected
+		}
+	}, [defaultSelected, handleDaySelect])
+
 	return (
-		<TextField
-			{...props}
-			css={`
-				text-transform: uppercase;
-			`}
-			type="date"
-		/>
+		<Container ref={containerRef}>
+			<Wrapper ref={popperRef}>
+				<TextField
+					{...ariaProps}
+					label={label}
+					placeholder={placeholder}
+					value={inputValue}
+					onChange={(value) => {
+						handleInputChange(value)
+					}}
+					onBlur={(e) => {
+						inputProps.onBlur?.(
+							e as React.FocusEvent<HTMLInputElement, Element>
+						)
+					}}
+					onFocus={(e) => {
+						inputProps.onFocus?.(
+							e as React.FocusEvent<HTMLInputElement, Element>
+						)
+					}}
+					errorMessage={
+						isChangeOnce &&
+						selected === undefined &&
+						t(
+							'design-system.date-picker.error.invalid-date',
+							'Format de date invalide, le format attendu est jours/mois/année'
+						)
+					}
+				/>
+				<StyledButton
+					ref={buttonRef}
+					onPress={handleButtonPress}
+					type="button"
+					size="XXS"
+					aria-label={t(
+						'design-system.date-picker.choose-date',
+						'Choisir une date'
+					)}
+				>
+					<Emoji
+						emoji="📅"
+						aria-label={t(
+							'design-system.date-picker.open-selector',
+							'Ouvrir le sélecteur de date'
+						)}
+						aria-hidden={false}
+					/>
+				</StyledButton>
+			</Wrapper>
+
+			{isPopperOpen && (
+				<FocusTrap
+					active
+					focusTrapOptions={{
+						initialFocus: false,
+						allowOutsideClick: true,
+						clickOutsideDeactivates: true,
+						fallbackFocus: buttonRef.current ?? undefined,
+					}}
+				>
+					<StyledBody
+						as="div"
+						tabIndex={-1}
+						style={popper.styles.popper}
+						className="dialog-sheet"
+						{...popper.attributes.popper}
+						ref={setPopperElement}
+						role="dialog"
+						aria-label="DayPicker calendar"
+					>
+						<DayPicker
+							{...dayPickerProps}
+							captionLayout="dropdown-buttons"
+							initialFocus={isPopperOpen}
+							mode="single"
+							defaultMonth={selected}
+							selected={selected}
+							onSelect={handleDaySelect}
+						/>
+					</StyledBody>
+				</FocusTrap>
+			)}
+		</Container>
 	)
 }
+
+const StyledBody = styled(Body)`
+	display: inline-block;
+	z-index: 10;
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[700]
+			: theme.colors.extended.grey[200]};
+	box-shadow: ${({ theme }) =>
+		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
+`
+
+const Container = styled.div``
+
+const Wrapper = styled.div`
+	position: relative;
+`
+
+const StyledButton = styled(Button)`
+	max-width: 55px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 0.5rem;
+`
+
+type OnlyAriaType<T> = {
+	[K in keyof T as K extends `aria-${string}` ? K : never]: T[K]
+}
+
+/**
+ * Split props into aria and rest
+ * @param props
+ */
+const splitAriaProps = <T extends object>(props: T) =>
+	Object.entries(props).reduce(
+		(acc, [key, prop]) => {
+			if (key.startsWith('aria-')) {
+				acc.aria[key] = prop
+			} else {
+				acc.rest[key] = prop
+			}
+
+			return acc
+		},
+		{ aria: {}, rest: {} } as {
+			aria: Record<string, unknown>
+			rest: Record<string, unknown>
+		}
+	) as { aria: OnlyAriaType<T>; rest: Omit<T, keyof OnlyAriaType<T>> }

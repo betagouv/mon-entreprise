@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 import { InputProps } from '@/components/conversation/RuleInput'
 import { DateField } from '@/design-system/field'
@@ -12,37 +12,28 @@ export default function DateInput({
 	title,
 	onSubmit,
 	required,
-	autoFocus,
 	value,
 }: InputProps) {
-	const dateValue = useMemo(() => {
-		if (!value || typeof value !== 'string') {
+	const convertDate = (val?: unknown) => {
+		if (!val || typeof val !== 'string') {
 			return undefined
 		}
-		const [day, month, year] = value.split('/')
+		const [day, month, year] = val.split('/')
 
 		return `${year}-${month}-${day}`
-	}, [value])
-	// const [currentValue, setCurrentValue] = useState(dateValue)
+	}
+
 	const handleDateChange = useCallback(
-		(value: string) => {
+		(value?: string) => {
 			if (!value) {
 				return onChange(undefined)
 			}
-			const [year, month, day] = value.split('-')
-			if (+year < 1700) {
-				return
-			}
-			if (year.length > 4) {
-				return
-			}
-			if ([day, month, year].some((x) => Number.isNaN(+x))) {
-				return
-			}
-			onChange(`${day}/${month}/${year}`)
+			onChange(value)
 		},
 		[onChange]
 	)
+
+	const dateValue = convertDate(value)
 
 	return (
 		<div className="step input">
@@ -51,14 +42,21 @@ export default function DateInput({
 					<InputSuggestions
 						suggestions={suggestions}
 						onFirstClick={(value) => {
-							onChange(value)
+							handleDateChange(
+								'nodeValue' in value && typeof value.nodeValue === 'string'
+									? value.nodeValue
+									: undefined
+							)
 						}}
-						onSecondClick={() => onSubmit?.('suggestion')}
+						onSecondClick={() => {
+							onSubmit?.('suggestion')
+						}}
 					/>
 				)}
 				<DateField
-					value={missing ? undefined : dateValue}
-					autoFocus={autoFocus}
+					defaultSelected={
+						missing || !dateValue ? undefined : new Date(dateValue)
+					}
 					isRequired={required}
 					onChange={handleDateChange}
 					aria-label={title}

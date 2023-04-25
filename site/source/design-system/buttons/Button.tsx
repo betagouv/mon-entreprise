@@ -41,6 +41,9 @@ export const Button = forwardRef(function Button(
 		forwardedRef
 	)
 
+	// @ts-ignore
+	delete buttonOrLinkProps.isDisabled // Remove isDisabled from props casue it's not a valid HTML attribute
+
 	return (
 		<StyledButton
 			// eslint-disable-next-line react/jsx-props-no-spreading
