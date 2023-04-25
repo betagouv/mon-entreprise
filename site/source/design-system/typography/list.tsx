@@ -51,7 +51,7 @@ export const Ul = styled.ul<ListProps>`
 		${({ noMarker }) =>
 			noMarker &&
 			css`
-				display: none;
+				display: none !important;
 			`}
 		content: '●';
 		font-size: 80%;

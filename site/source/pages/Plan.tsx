@@ -1,7 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
 
-import { H1, H3 } from '@/design-system/typography/heading'
+import { H1 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
@@ -29,18 +28,16 @@ export default function Plan() {
 			/>
 			<TrackPage chapter1="navigation" name="plan-du-site" />
 
-			<StyledUl>
+			<Ul size="XL" noMarker>
 				<Li>
 					<Link to={absoluteSitePaths.index}>
 						<Trans>Page d'accueil</Trans>
 					</Link>
 				</Li>
 				<Li>
-					<HeaderLink
-						to={absoluteSitePaths.assistants['choix-du-statut'].index}
-					>
+					<Link to={absoluteSitePaths.assistants['choix-du-statut'].index}>
 						<Trans>Créer une entreprise</Trans>
-					</HeaderLink>
+					</Link>
 
 					<Ul>
 						<Li>
@@ -61,9 +58,9 @@ export default function Plan() {
 					</Ul>
 				</Li>
 				<Li>
-					<HeaderLink to={absoluteSitePaths.assistants.index}>
+					<Link to={absoluteSitePaths.assistants.index}>
 						<Trans>Gérer mon activité</Trans>
-					</HeaderLink>
+					</Link>
 
 					<Ul>
 						<Li>
@@ -97,9 +94,9 @@ export default function Plan() {
 					</Ul>
 				</Li>
 				<Li>
-					<HeaderLink to={absoluteSitePaths.simulateurs.index}>
+					<Link to={absoluteSitePaths.simulateurs.index}>
 						<Trans>Simulateurs disponibles</Trans>
-					</HeaderLink>
+					</Link>
 
 					<Ul>
 						{Object.entries(absoluteSitePaths.simulateurs)
@@ -156,9 +153,9 @@ export default function Plan() {
 					</Link>
 				</Li>
 				<Li>
-					<HeaderLink to={absoluteSitePaths.développeur.index}>
+					<Link to={absoluteSitePaths.développeur.index}>
 						<Trans>Outils pour les développeurs</Trans>
-					</HeaderLink>
+					</Link>
 
 					<Ul>
 						<Li key="list-item-développeur-api">
@@ -191,16 +188,7 @@ export default function Plan() {
 						<Trans>Documentation</Trans>
 					</Link>
 				</Li>
-			</StyledUl>
+			</Ul>
 		</>
 	)
 }
-
-const HeaderLink = styled(Link)`
-	${({ theme }) => `margin-bottom: ${theme.spacings.xs}`};
-	display: inline-block;
-`
-
-const StyledUl = styled.ul`
-	padding-left: 0;
-`

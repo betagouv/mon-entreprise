@@ -5,7 +5,7 @@ import { Configure, Index } from 'react-instantsearch-dom'
 import { useLocation } from 'react-router-dom'
 
 import { Spacing } from '@/design-system/layout'
-import { H2, H3 } from '@/design-system/typography/heading'
+import { H3 } from '@/design-system/typography/heading'
 
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'
@@ -49,9 +49,9 @@ export default function SearchRulesAndSimulators({
 			</Index>
 
 			<Index indexName={`${ALGOLIA_INDEX_PREFIX}rules`}>
-				<H2 as={H3}>
+				<H3 as="h2">
 					<Trans>Règles de calculs</Trans>
-				</H2>
+				</H3>
 				<RulesInfiniteHits />
 			</Index>
 			<Spacing lg />

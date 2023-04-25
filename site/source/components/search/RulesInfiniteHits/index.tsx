@@ -61,7 +61,7 @@ const Hit = (hit: THit) => {
 const HitList = styled.ol`
 	display: flex;
 	flex-direction: column;
-
+	margin: 0;
 	list-style-type: none;
 	padding: 0;
 	width: 100%;

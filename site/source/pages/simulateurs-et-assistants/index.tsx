@@ -249,14 +249,14 @@ export function SimulateurCard({
 						}}
 						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 						title={
-							<p>
+							<span>
 								{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
 								{beta && (
 									<Chip type="info" icon={<Emoji emoji="🚧" />}>
 										Bêta
 									</Chip>
 								)}
-							</p>
+							</span>
 						}
 						role="link"
 					/>
