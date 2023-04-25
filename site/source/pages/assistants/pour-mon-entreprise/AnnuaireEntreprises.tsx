@@ -21,6 +21,10 @@ export function AnnuaireEntreprises() {
 					'gérer.ressources.annuaire-entreprises.cta',
 					'Visiter le site'
 				)}
+				aria-label={t(
+					'gérer.ressources.annuaire-entreprises.aria-label',
+					'Annuaire-entreprise, Visiter le site'
+				)}
 			>
 				{t(
 					'gérer.ressources.annuaire-entreprises.body',

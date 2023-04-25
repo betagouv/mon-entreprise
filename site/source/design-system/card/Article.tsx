@@ -38,21 +38,16 @@ export function Article({
 	})
 
 	return (
-		<StyledArticle
-			{...ariaButtonProps}
-			{...buttonProps}
-			{...linkProps}
-			as={elementType}
-		>
+		<StyledArticle>
 			<StyledHeader as={titleProps.as}>
 				{titleProps.children} {icon}
 			</StyledHeader>
 			<Content>{children}</Content>
 			<StyledBody
-				css={`
-					display: flex;
-					align-items: center;
-				`}
+				{...ariaButtonProps}
+				{...linkProps}
+				{...buttonProps}
+				as={elementType}
 			>
 				{ctaLabel}
 				{linkProps.external && <NewWindowLinkIcon />}
@@ -71,6 +66,12 @@ const StyledArticle = styled.div`
 	cursor: pointer;
 	display: block;
 	text-decoration: none;
+
+	/* Hack to transmit hover to link */
+	width: 100%;
+	height: 100%;
+	position: relative;
+
 	&:hover {
 		background-color: ${({ theme }) =>
 			theme.darkMode
@@ -96,6 +97,17 @@ const Content = styled(Body)`
 `
 
 const StyledBody = styled(Body)`
+	display: flex;
+	align-items: center;
+
+	/** Hack to get hover from parent */
+	&::before {
+		content: '';
+		inset: 0;
+		box-sizing: inherit;
+		z-index: 1;
+		position: absolute;
+	}
 	&,
 	& * {
 		color: ${({ theme }) => theme.colors.bases.primary[700]};

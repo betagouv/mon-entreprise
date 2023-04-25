@@ -136,6 +136,7 @@ export default function ResultatsSimples() {
 											/>
 										</StyledIntro>
 									}
+									aria-label={`${r.title}, voir les détails du calcul`}
 									title={
 										<>
 											<span>{r.title}</span>

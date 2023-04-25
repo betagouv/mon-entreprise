@@ -480,6 +480,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								'entreprise.ressources.simu.autoEntrepreneur.cta',
 								'Simuler les revenus'
 							)}
+							aria-label={t(
+								'entreprise.ressources.simu.autoEntrepreneur.aria-label',
+								'Auto-entrepreneur, simuler mes revenus'
+							)}
 						>
 							<Trans i18nKey="entreprise.ressources.simu.autoEntrepreneur.body">
 								Simuler le montant de vos cotisations sociales et de votre impôt
@@ -504,6 +508,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 							ctaLabel={t(
 								'entreprise.ressources.simu.indépendant.cta',
 								'Simuler les cotisations'
+							)}
+							aria-label={t(
+								'entreprise.ressources.simu.indépendant.aria-label',
+								'Indépendant, simuler mes revenus'
 							)}
 						>
 							<Trans i18nKey="entreprise.ressources.simu.indépendant.body">
@@ -530,6 +538,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 								'entreprise.ressources.simu.assimilé.cta',
 								'Simuler la rémunération'
 							)}
+							aria-label={t(
+								'entreprise.ressources.simu.assimilé.aria-label',
+								'SASU, simuler la rémunération'
+							)}
 						>
 							<Trans i18nKey="entreprise.ressources.simu.assimilé.body">
 								Simuler le montant de vos cotisations sociales pour bien
@@ -549,6 +561,10 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						}
 						to={absoluteSitePaths.assistants['choix-du-statut'].après}
 						ctaLabel={t('entreprise.ressources.après.cta', 'Voir le glossaire')}
+						aria-label={t(
+							'entreprise.ressources.après.aria-label',
+							'Après la création, voir le glossaire'
+						)}
 					>
 						<Trans i18nKey="entreprise.ressources.après.body">
 							SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que
@@ -562,7 +578,7 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						<Article
 							title={<h3>Guide pratique Urssaf</h3>}
 							href="https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf"
-							ctaLabel="Consulter le guide"
+							ctaLabel="Consulter le guide Urssaf"
 						>
 							Des conseils pour les auto-entrepreneurs : comment préparer son
 							projet pour se lancer dans la création et une présentation
@@ -581,7 +597,8 @@ export default function CreateCompany({ statut }: CreateCompanyProps) {
 						<Article
 							title={<h3>Guide Urssaf pour les travailleur indépendant</h3>}
 							href="https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf"
-							ctaLabel="Consulter le guide"
+							ctaLabel="Consulter le guide Urssaf"
+							aria-label="Travailleurs indépendants, consulter le guide Urssaf"
 						>
 							Des conseils sur comment préparer son projet pour se lancer dans
 							la création et une présentation détaillée de votre protection

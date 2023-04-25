@@ -16,7 +16,11 @@ export function SecuriteSocialeCard() {
 					</Trans>
 				</h3>
 			}
-			ctaLabel={t('gérer.ressources.sécuritéSociale.cta', 'Lire le guide')}
+			ctaLabel={t('gérer.ressources.sécuritéSociale.cta', 'Voir la vidéo')}
+			aria-label={t(
+				'gérer.ressources.sécuritéSociale.aria-label',
+				'Comprendre la sécurité sociale, Voir la vidéo'
+			)}
 			to={absoluteSitePaths.assistants.sécuritéSociale}
 		>
 			<Trans i18nKey="gérer.ressources.sécuritéSociale.body">
