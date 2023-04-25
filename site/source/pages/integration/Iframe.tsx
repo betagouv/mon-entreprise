@@ -246,6 +246,7 @@ export default function Integration() {
 							title="Urssaf"
 							href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
 							ctaLabel="Voir l'intégration"
+							aria-label="Urssaf.fr, Voir l'intégration"
 						>
 							<Logo src={urssafLogo} alt="Logo urssaf.fr" />
 						</Article>
@@ -255,6 +256,7 @@ export default function Integration() {
 							title="CCI de France"
 							href="http://les-aides.fr/embauche"
 							ctaLabel="Voir l'intégration"
+							aria-label="les-aides.fr, Voir l'intégration"
 						>
 							<Logo src={cciLogo} alt="Logo Les-aides.fr" />
 						</Article>
@@ -263,6 +265,7 @@ export default function Integration() {
 						<Article
 							title="Code du travail numérique"
 							href="https://code.travail.gouv.fr/outils/simulateur-embauche"
+							aria-label="code.travail.gouv.fr, Voir le simulateur"
 							ctaLabel="Voir le simulateur"
 						>
 							<Logo src={minTraLogo} alt="Logo Ministère du travail" />
@@ -272,6 +275,7 @@ export default function Integration() {
 						<Article
 							title="Pôle Emploi"
 							href="https://entreprise.pole-emploi.fr/cout-salarie/"
+							aria-label="pole-emploi.fr, Voir le simulateur"
 							ctaLabel="Voir le simulateur"
 						>
 							<Logo src={poleEmploiLogo} alt="" />

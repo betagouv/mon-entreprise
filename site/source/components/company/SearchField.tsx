@@ -15,6 +15,7 @@ import { FocusStyle } from '@/design-system/global-style'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { StyledLink } from '@/design-system/typography/link'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import useSearchCompany from '@/hooks/useSearchCompany'
 
@@ -153,21 +154,21 @@ function Results({
 		</FromTop>
 	) : (
 		<FromTop>
-			<Grid container spacing={2} data-test-id="company-search-results">
+			<Ul noMarker data-test-id="company-search-results">
 				{results.map((etablissement) => (
-					<Grid key={etablissement.siren} item xs={12}>
+					<Li key={etablissement.siren}>
 						<StyledCard
 							role="button"
-							onClick={() => onSubmit?.(etablissement)}
+							onPress={() => onSubmit?.(etablissement)}
 							compact
 							aria-label={etablissement.label}
 							tabIndex={0}
 						>
 							<CompanySearchDetails entreprise={etablissement} />
 						</StyledCard>
-					</Grid>
+					</Li>
 				))}
-			</Grid>
+			</Ul>
 		</FromTop>
 	)
 }

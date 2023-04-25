@@ -18,11 +18,7 @@ import {
 	searchDenominationOrSiren,
 } from '@/api/fabrique-social'
 import { TrackPage } from '@/components/ATInternetTracking'
-import {
-	Condition,
-	WhenApplicable,
-	WhenNotApplicable,
-} from '@/components/EngineValue'
+import { Condition, WhenApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { CompanyDetails } from '@/components/company/Details'
@@ -49,11 +45,6 @@ import { resetCompany } from '@/store/actions/companyActions'
 import { companySituationSelector } from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
-import { AnnuaireEntreprises } from './AnnuaireEntreprises'
-import { AutoEntrepreneurCard } from './AutoEntrepeneurCard'
-import { DemarcheEmbaucheCard } from './DemarcheEmbauche'
-import { MobiliteCard } from './MobiliteCard'
-import { SecuriteSocialeCard } from './SecuriteSocialeCard'
 import forms from './forms.svg'
 import growth from './growth.svg'
 
@@ -272,33 +263,6 @@ function PourMonEntreprise() {
 						.nodeValue as Evaluation<string>
 				}
 			/>
-
-			<H2>
-				<Trans>Ressources utiles</Trans>
-			</H2>
-			<Grid container spacing={3} role="list">
-				{dirigeantSimulateur === 'indépendant' && i18n.language === 'fr' && (
-					<Grid item sm={12} md={4}>
-						<MobiliteCard />
-					</Grid>
-				)}
-				<WhenNotApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
-					<Grid item sm={12} md={4} role="listitem">
-						<DemarcheEmbaucheCard />
-					</Grid>
-				</WhenNotApplicable>
-				<WhenApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
-					<Grid item sm={12} md={4} role="listitem">
-						<AutoEntrepreneurCard />
-					</Grid>
-				</WhenApplicable>
-				<Grid item sm={12} md={4} role="listitem">
-					<SecuriteSocialeCard />
-				</Grid>
-				<Grid item sm={12} md={4} role="listitem">
-					<AnnuaireEntreprises />
-				</Grid>
-			</Grid>
 		</>
 	)
 }

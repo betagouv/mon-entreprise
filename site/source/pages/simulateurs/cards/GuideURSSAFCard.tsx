@@ -28,6 +28,9 @@ export function GuideURSSAFCard({ guideUrssaf }: GuideURSSAFCardProps) {
 			title={guideUrssaf.title}
 			icon={<Emoji emoji="📖" />}
 			ctaLabel={guideUrssaf.ctaLabel ?? 'Voir le guide'}
+			aria-label={
+				guideUrssaf.title + ', ' + (guideUrssaf.ctaLabel ?? 'Voir le guide')
+			}
 			href={guideUrssaf.url}
 		>
 			{guideUrssaf.description ?? DEFAULT_DESCRIPTION}

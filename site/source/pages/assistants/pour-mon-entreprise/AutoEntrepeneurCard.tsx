@@ -15,6 +15,10 @@ export function AutoEntrepreneurCard() {
 				</h3>
 			}
 			ctaLabel={t('gérer.ressources.autoEntrepreneur.cta', 'Visiter le site')}
+			aria-label={t(
+				'gérer.ressources.autoEntrepreneur.aria-label',
+				'auto-entrepreneur.urssaf.fr, Visiter le site'
+			)}
 			href="https://autoentrepreneur.urssaf.fr"
 		>
 			<Trans i18nKey="gérer.ressources.autoEntrepreneur.body">

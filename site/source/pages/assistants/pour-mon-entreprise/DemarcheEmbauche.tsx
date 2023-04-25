@@ -17,6 +17,10 @@ export function DemarcheEmbaucheCard() {
 				'gérer.ressources.embaucher.cta',
 				'Voir la liste des démarches'
 			)}
+			aria-label={t(
+				'gérer.ressources.embaucher.aria-label',
+				"Embauche d'un salarié, Voir la liste des démarches"
+			)}
 			to={absoluteSitePaths.assistants.embaucher}
 		>
 			<Trans i18nKey="gérer.ressources.embaucher.body">

@@ -23,6 +23,10 @@ export function IframeIntegrationCard({
 				</Trans>
 			}
 			ctaLabel={t('nextSteps.integration-iframe.cta', 'Voir la documentation')}
+			aria-label={t(
+				'nextSteps.integration-iframe.aria-label',
+				'Intégrer le module web, Voir la documentation'
+			)}
 			to={{
 				pathname: sitePaths.développeur.iframe,
 				search: `?module=${iframePath}`,

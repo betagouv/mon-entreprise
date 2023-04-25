@@ -1,6 +1,6 @@
 import { AriaButtonProps } from '@react-types/button'
 import React, { ComponentPropsWithRef, ReactHTML, useRef } from 'react'
-import { Link as BaseLink, useNavigate } from 'react-router-dom'
+import { Link as BaseLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import { StyledButton } from '@/design-system/buttons/Button'
@@ -55,30 +55,15 @@ export function Card(props: CardProps) {
 	const titleProps = getTitleProps(title, 'h3')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 
-	const navigate = useNavigate()
-
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)
 	// @ts-ignore
 	delete buttonOrLinkProps.title
 
-	const handleClick = () => {
-		if (onClick) {
-			onClick()
-		}
-		navigate(
-			(
-				buttonOrLinkProps as typeof buttonOrLinkProps & {
-					to: { pathname: string }
-				}
-			).to.pathname || ''
-		)
-	}
-
 	return (
 		<CardContainer
 			$compact={compact}
+			{...(!ctaLabel ? buttonOrLinkProps : {})}
 			tabIndex={tabIndex}
-			onClick={handleClick}
 			className={className}
 		>
 			{icon && <IconContainer>{icon}</IconContainer>}
