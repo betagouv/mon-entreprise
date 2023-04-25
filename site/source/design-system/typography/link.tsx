@@ -78,14 +78,14 @@ export const Link = React.forwardRef<
 			  }
 	}
 >(function Link(props, forwardedRef) {
-	const { isDisabled, role, noUnderline, ...ariaButtonProps } = props
+	const { isDisabled, role, noUnderline, type, ...ariaButtonProps } = props
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
 
 	return (
 		<StyledLink
 			{...buttonOrLinkProps}
 			role={role || (props.href || props.to ? undefined : 'button')}
-			type={undefined}
+			type={type}
 			$isDisabled={isDisabled}
 			$noUnderline={noUnderline}
 			tabIndex={isDisabled ? -1 : undefined}
