@@ -241,17 +241,15 @@ const StyledBody = styled(Body)`
 `
 
 const Wrapper = styled.div`
-	display: flex;
-	align-items: center;
 	position: relative;
 `
 
 const StyledButton = styled(Button)`
 	max-width: 55px;
-	position: absolute;
 	right: 0;
-
-	margin: 0.5rem;
+	top: 0;
+	margin: ${({ theme }) => theme.spacings.sm};
+	position: absolute;
 `
 
 type OnlyAriaType<T> = {
