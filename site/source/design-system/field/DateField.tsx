@@ -1,34 +1,29 @@
 import 'react-day-picker/dist/style.css'
 
+import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react-dom'
 import { format as formatDate, isValid, parse } from 'date-fns'
 import { enUS, fr } from 'date-fns/locale'
 import FocusTrap from 'focus-trap-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useId } from 'react-aria'
 import { DayPicker, useInput } from 'react-day-picker'
-import { Trans, useTranslation } from 'react-i18next'
-import { usePopper } from 'react-popper'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { useOnClickOutside } from '@/hooks/useClickOutside'
 
 import { Button } from '../buttons'
 import { Emoji } from '../emoji'
-import { Spacing } from '../layout'
 import { Body } from '../typography/paragraphs'
 import TextField from './TextField'
 
 interface DateFieldProps {
 	defaultSelected?: Date
-	inputValue?: string
 	onChange?: (value?: string) => void
 	placeholder?: string
 	label?: string
 	'aria-label'?: string
 	'aria-labelby'?: string
-
-	autoFocus?: boolean
-	isRequired?: boolean
 }
 
 export default function DateField(props: DateFieldProps) {
@@ -40,15 +35,7 @@ export default function DateField(props: DateFieldProps) {
 
 	const [isChangeOnce, setIsChangeOnce] = useState(false)
 	const [selected, setSelected] = useState<Date>()
-	const [isPopperOpen, setIsPopperOpen] = useState(false)
-
-	const popperRef = useRef<HTMLDivElement>(null)
-	const dayPickerRef = useRef<HTMLDivElement>(null)
-	const buttonRef = useRef<HTMLButtonElement>(null)
-	const containerRef = useRef<HTMLDivElement>(null)
-	const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
-		null
-	)
+	const [isOpen, setIsOpen] = useState(false)
 
 	const id = useId()
 
@@ -66,19 +53,27 @@ export default function DateField(props: DateFieldProps) {
 		inputProps.value as string
 	)
 
-	const popper = usePopper(popperRef.current, popperElement, {
-		placement: 'bottom-end',
+	const { x, y, strategy, refs } = useFloating<HTMLButtonElement>({
+		open: isOpen,
+		placement: 'bottom',
+		middleware: [offset(8), flip()],
+		whileElementsMounted: autoUpdate,
 	})
 
-	useOnClickOutside(dayPickerRef, () => setIsPopperOpen(false))
+	useOnClickOutside(refs.floating, () => setIsOpen(false))
 
-	const closePopper = () => {
-		setIsPopperOpen(false)
-		buttonRef?.current?.focus()
-	}
+	const close = useCallback(() => {
+		setIsOpen((open) => {
+			if (open) {
+				refs.reference?.current?.focus()
+			}
+
+			return false
+		})
+	}, [refs.reference])
 
 	const handleInputChange = (value: string) => {
-		setIsPopperOpen(false)
+		setIsOpen(false)
 		setIsChangeOnce(true)
 		setInputValue(value)
 		const date = parse(value, format, new Date())
@@ -96,7 +91,7 @@ export default function DateField(props: DateFieldProps) {
 	}
 
 	const handleButtonPress = () => {
-		setIsPopperOpen((open) => !open)
+		setIsOpen((open) => !open)
 	}
 
 	const handleDaySelect = useCallback(
@@ -105,14 +100,14 @@ export default function DateField(props: DateFieldProps) {
 			if (date) {
 				const value = formatDate(date, format)
 				setInputValue(value)
-				closePopper()
+				close()
 				onChange?.(value)
 			} else {
 				setInputValue('')
 				onChange?.()
 			}
 		},
-		[onChange]
+		[close, onChange]
 	)
 
 	const oldDefaultSelected = useRef<Date | undefined>(defaultSelected)
@@ -127,11 +122,15 @@ export default function DateField(props: DateFieldProps) {
 	}, [defaultSelected, handleDaySelect])
 
 	return (
-		<div ref={containerRef}>
-			<Wrapper ref={popperRef}>
+		<div>
+			<Wrapper>
 				<TextField
 					{...ariaProps}
 					label={label}
+					aria-label={t(
+						'design-system.date-picker.label',
+						'Champ de date au format jours/mois/année'
+					)}
 					placeholder={placeholder}
 					value={inputValue}
 					onChange={(value) => {
@@ -157,13 +156,13 @@ export default function DateField(props: DateFieldProps) {
 					}
 				/>
 				<StyledButton
-					ref={buttonRef}
+					ref={refs.setReference}
 					onPress={handleButtonPress}
 					type="button"
 					aria-haspopup="dialog"
 					size="XXS"
-					aria-expanded={isPopperOpen}
-					aria-controls={isPopperOpen ? id : undefined}
+					aria-expanded={isOpen}
+					aria-controls={isOpen ? id : undefined}
 					aria-label={t(
 						'design-system.date-picker.open-selector',
 						'Ouvrir le sélecteur de date'
@@ -173,55 +172,70 @@ export default function DateField(props: DateFieldProps) {
 				</StyledButton>
 			</Wrapper>
 
-			{isPopperOpen && (
+			{isOpen && (
 				<FocusTrap
 					active
 					focusTrapOptions={{
 						allowOutsideClick: true,
 						clickOutsideDeactivates: true,
-						escapeDeactivates: true,
+						fallbackFocus: refs.reference.current ?? undefined,
 					}}
 				>
 					<StyledBody
 						as="div"
 						id={id}
 						tabIndex={-1}
-						style={popper.styles.popper}
 						className="dialog-sheet"
-						{...popper.attributes.popper}
-						ref={setPopperElement}
+						ref={refs.setFloating}
+						style={{
+							position: strategy,
+							top: y ?? 0,
+							left: x ?? 0,
+							width: 'max-content',
+						}}
 						role="dialog"
 						onKeyDown={(e) => {
 							if (e.key === 'Escape') {
-								closePopper()
+								close()
 							}
 						}}
-						aria-label="Calendrier de selection de date"
+						aria-label="Calendrier de sélection de date"
 					>
-						<div
-							ref={dayPickerRef}
-							css={`
-								text-align: center;
-							`}
-						>
-							<DayPicker
-								{...dayPickerProps}
-								captionLayout="dropdown-buttons"
-								mode="single"
-								defaultMonth={selected}
-								selected={selected}
-								onSelect={handleDaySelect}
-							/>
-							<Button
-								light
-								size="XXS"
-								onPress={closePopper}
-								aria-label="Fermer le calendrier de selection"
-							>
-								<Trans>Fermer</Trans> ×
-							</Button>
-							<Spacing sm />
-						</div>
+						<DayPicker
+							{...dayPickerProps}
+							captionLayout="dropdown-buttons"
+							mode="single"
+							defaultMonth={selected}
+							selected={selected}
+							onSelect={handleDaySelect}
+							labels={{
+								labelMonthDropdown: () =>
+									t('design-system.date-picker.month', 'Mois'),
+								labelYearDropdown: () =>
+									t('design-system.date-picker.year', 'Année'),
+								labelNext: () =>
+									t('design-system.date-picker.next-month', 'Mois suivant'),
+								labelPrevious: () =>
+									t('design-system.date-picker.prev-month', 'Mois précédent'),
+							}}
+							locale={language === 'fr' ? fr : enUS}
+							footer={
+								<div style={{ display: 'flex', justifyContent: 'center' }}>
+									<Button
+										light
+										type="button"
+										onPress={close}
+										size="XXS"
+										aria-label={t(
+											'design-system.date-picker.close-selector',
+											'Fermer le sélecteur de date'
+										)}
+									>
+										{t('design-system.date-picker.close', 'Fermer')}
+									</Button>
+								</div>
+							}
+						/>
 					</StyledBody>
 				</FocusTrap>
 			)}
@@ -237,20 +251,23 @@ const StyledBody = styled(Body)`
 			? theme.colors.extended.grey[700]
 			: theme.colors.extended.grey[200]};
 	box-shadow: ${({ theme }) =>
-		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
+		theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3]};
 `
 
 const Wrapper = styled.div`
 	width: fit-content;
 	position: relative;
+	& input {
+		height: 3.5rem;
+	}
 `
 
 const StyledButton = styled(Button)`
+	position: absolute;
 	max-width: 55px;
 	right: 0;
 	top: 0;
-	margin: ${({ theme }) => theme.spacings.xs};
-	position: absolute;
+	margin: 0.7rem;
 `
 
 type OnlyAriaType<T> = {
