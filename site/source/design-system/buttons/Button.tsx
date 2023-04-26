@@ -70,7 +70,6 @@ type StyledButtonProps = {
 
 export const StyledButton = styled.button<StyledButtonProps>`
 	width: fit-content;
-	display: inline-block;
 	text-decoration: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 500;
@@ -105,14 +104,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			opacity: 50%;
 			cursor: not-allowed;
 		`}
-
-	&:active {
-		${({ disabled }) =>
-			!disabled &&
-			css`
-				transform: translateY(3px);
-			`}
-	}
 
 	&:focus-visible {
 		${({ disabled }) =>
@@ -173,6 +164,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 				color: ${theme.colors.extended.grey[100]};
 			`}
 	}
+
+	/////////////////////
+
 	/* HOVER STYLE */
 	:hover {
 		${({ theme, $color, disabled, $light }) =>
