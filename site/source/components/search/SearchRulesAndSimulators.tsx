@@ -1,6 +1,6 @@
 import algoliasearch from 'algoliasearch/lite'
 import { useEffect, useRef } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Configure, Index } from 'react-instantsearch-dom'
 import { useLocation } from 'react-router-dom'
 
@@ -22,10 +22,8 @@ interface Props {
 	closePopover: () => void
 }
 
-export default function SearchRulesAndSimulators({
-	closePopover,
-	...searchProps
-}: Props) {
+export default function SearchRulesAndSimulators({ closePopover }: Props) {
+	const { t } = useTranslation()
 	const location = useLocation()
 	const prevLocation = useRef(location)
 	useEffect(() => {
@@ -41,7 +39,10 @@ export default function SearchRulesAndSimulators({
 			searchClient={searchClient}
 			role="search"
 		>
-			<SearchBox {...searchProps} />
+			<SearchBox
+				label={t('Rechercher un simulateur ou une règle')}
+				aria-label={t('Rechercher un simulateur ou une règle')}
+			/>
 
 			<Index indexName={`${ALGOLIA_INDEX_PREFIX}simulateurs`}>
 				<Configure hitsPerPage={6} />

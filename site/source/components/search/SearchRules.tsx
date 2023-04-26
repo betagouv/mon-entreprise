@@ -1,5 +1,5 @@
 import algoliasearch from 'algoliasearch/lite'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { H2 } from '@/design-system/typography/heading'
 
@@ -14,12 +14,17 @@ const ALGOLIA_INDEX_PREFIX = import.meta.env.VITE_ALGOLIA_INDEX_PREFIX || ''
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
 export default function SearchRules() {
+	const { t } = useTranslation()
+
 	return (
 		<SearchRoot
 			indexName={`${ALGOLIA_INDEX_PREFIX}rules`}
 			searchClient={searchClient}
 		>
-			<SearchBox />
+			<SearchBox
+				label={t('Rechercher une règle dans la documentation')}
+				aria-label={t('Rechercher une règle dans la documentation')}
+			/>
 			<H2>
 				<Trans>Règles de calculs</Trans>
 			</H2>

@@ -1,9 +1,15 @@
 import { useTranslation } from 'react-i18next'
+import { SearchBoxProvided } from 'react-instantsearch-core'
 import { connectSearchBox } from 'react-instantsearch-dom'
 
 import { SearchField } from '@/design-system/field'
 
-export const SearchBox = connectSearchBox(
+interface Props extends SearchBoxProvided {
+	label: string
+	'aria-label'?: string
+}
+
+export const SearchBox = connectSearchBox<Props>(
 	({ currentRefinement, isSearchStalled, refine, ...props }) => {
 		const { t } = useTranslation()
 
@@ -11,18 +17,19 @@ export const SearchBox = connectSearchBox(
 			<form noValidate role="search">
 				<SearchField
 					type="search"
-					autoFocus
 					value={currentRefinement}
 					onChange={refine}
-					onClear={() => refine('')}
+					onClear={() => {
+						refine('')
+					}}
 					placeholder={t(
 						'recherche-globale.placeholder',
 						'Mot-clé ou acronyme (exemple : CSG)'
 					)}
-					aria-label={t('Rechercher une règle de calcul dans la documentation')}
 					id="input-recherche-globale"
 					isSearchStalled={isSearchStalled}
-					{...props}
+					label={props.label}
+					aria-label={props['aria-label']}
 				/>
 			</form>
 		)
