@@ -4,8 +4,8 @@ export const pwaOptions: Partial<Options> = {
 	// selfDestroying: true, // Unregister PWA
 	registerType: 'prompt',
 	strategies: 'injectManifest',
-	srcDir: 'source',
-	filename: 'entries/entry-sw.ts',
+	srcDir: 'source/entries',
+	filename: 'entry-sw.ts',
 	injectManifest: {
 		maximumFileSizeToCacheInBytes: 3000000,
 		manifestTransforms: [
