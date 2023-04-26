@@ -112,12 +112,22 @@ export default function Popover(
 								focusable element before and after the iframe for the FocusTrap to work.
 								The CloseButton counts as the before element, so you just need a focusable element after the iframe.
 							*/}
-							<FocusTrap>
+							<FocusTrap
+								focusTrapOptions={{
+									clickOutsideDeactivates: true,
+									escapeDeactivates: false,
+								}}
+							>
 								<PopoverContainer
 									{...dialogProps}
 									{...modalProps}
 									{...overlayProps}
 									$offsetTop={offsetTop}
+									onKeyDown={(e) => {
+										if (props.isDismissable && e.key === 'Escape') {
+											props.onClose?.()
+										}
+									}}
 									ref={ref}
 									aria-label={title || t('Boite de dialogue')}
 									title="modal"
