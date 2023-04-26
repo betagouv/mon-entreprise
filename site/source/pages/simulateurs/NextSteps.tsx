@@ -86,26 +86,27 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 }
 
 const guidesUrssaf = [
-	{
-		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/PAM/Diaporama_Medecins.pdf',
-		associatedRule: "dirigeant . indépendant . PL . métier = 'santé . médecin'",
-		title: 'Guide Urssaf pour les médecins libéraux',
-	},
-	{
-		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf',
-		associatedRule: 'entreprise . activité . nature . libérale . réglementée',
-		title: 'Guide Urssaf pour les professions libérales réglementées',
-	},
-	{
-		url: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Urssaf-Guide-AutoEntrepreneur-metropole.pdf',
-		associatedRule: 'dirigeant . auto-entrepreneur',
-		title: 'Guide Urssaf pour les auto-entrepreneurs',
-	},
-	{
-		url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf',
-		associatedRule: 'dirigeant',
-		title: 'Guide Urssaf pour les indépendants',
-	},
+	/* On désactive tous les guides Urssaf qui sont des documents non accessibles. */
+	// {
+	// 	url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/PAM/Diaporama_Medecins.pdf',
+	// 	associatedRule: "dirigeant . indépendant . PL . métier = 'santé . médecin'",
+	// 	title: 'Guide Urssaf pour les médecins libéraux',
+	// },
+	// {
+	// 	url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf',
+	// 	associatedRule: 'entreprise . activité . nature . libérale . réglementée',
+	// 	title: 'Guide Urssaf pour les professions libérales réglementées',
+	// },
+	// {
+	// 	url: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Urssaf-Guide-AutoEntrepreneur-metropole.pdf',
+	// 	associatedRule: 'dirigeant . auto-entrepreneur',
+	// 	title: 'Guide Urssaf pour les auto-entrepreneurs',
+	// },
+	// {
+	// 	url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf',
+	// 	associatedRule: 'dirigeant',
+	// 	title: 'Guide Urssaf pour les indépendants',
+	// },
 	{
 		url: 'https://www.urssaf.fr/portail/home/employeur/employer-du-personnel/nouvel-employeur.html',
 		title: "Nouvel employeur : l'Urssaf vous accompagne",
