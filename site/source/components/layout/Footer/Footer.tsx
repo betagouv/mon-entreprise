@@ -133,8 +133,8 @@ export default function Footer() {
 										)}
 										{altHref && (
 											<StyledLi key={altLang}>
-												<Grid container spacing={2}>
-													<Grid item>
+												<Grid container spacing={2} role="list">
+													<Grid item role="listitem">
 														<StyledButton
 															openInSameWindow
 															href={altHref}
@@ -156,7 +156,7 @@ export default function Footer() {
 															FR <Emoji emoji="🇫🇷" />
 														</StyledButton>
 													</Grid>
-													<Grid item>
+													<Grid item role="listitem">
 														<StyledButton
 															href={altHref}
 															openInSameWindow
