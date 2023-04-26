@@ -11,12 +11,7 @@ export default function SearchButton() {
 
 	return (
 		<PopoverWithTrigger
-			title={t('Que cherchez-vous ?')}
-			titleProps={{
-				style: {
-					marginBottom: '1rem',
-				},
-			}}
+			title={t('Recherche sur le site')}
 			trigger={(buttonProps) => (
 				<StyledButton
 					size="XS"
@@ -49,10 +44,7 @@ export default function SearchButton() {
 			)}
 		>
 			{(closePopover) => (
-				<SearchRulesAndSimulators
-					aria-label={t('Que cherchez-vous ?')}
-					closePopover={closePopover}
-				/>
+				<SearchRulesAndSimulators closePopover={closePopover} />
 			)}
 		</PopoverWithTrigger>
 	)
@@ -72,9 +64,3 @@ const StyledIcon = styled.svg`
 	height: ${({ theme }) => theme.spacings.md};
 	margin-right: ${({ theme }) => theme.spacings.xs};
 `
-
-// const StyledLabel = styled.span`
-// 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-// 		${SROnly}
-// 	}
-// `

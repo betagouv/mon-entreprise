@@ -38,9 +38,6 @@ export default function Popover(
 		AriaDialogProps & {
 			children: React.ReactNode
 			title?: string
-			titleProps?: {
-				[key: string]: unknown
-			}
 			small?: boolean
 			contentRef?: RefObject<HTMLDivElement>
 			onClose?: () => void
@@ -48,13 +45,7 @@ export default function Popover(
 			isOpen?: boolean
 		}
 ) {
-	const {
-		title,
-		children,
-		small,
-		contentRef,
-		titleProps: titlePropsFromProps,
-	} = props
+	const { title, children, small, contentRef } = props
 
 	const { t } = useTranslation()
 
@@ -160,11 +151,7 @@ export default function Popover(
 									)}
 
 									<PopoverContent ref={contentRef}>
-										{title && (
-											<StyledH2 {...titleProps} {...titlePropsFromProps}>
-												{title}
-											</StyledH2>
-										)}
+										{title && <H2 {...titleProps}>{title}</H2>}
 										{children}
 									</PopoverContent>
 								</PopoverContainer>
@@ -281,12 +268,4 @@ export const CloseButton = styled.button`
 const PopoverContent = styled.div`
 	overflow: auto;
 	padding: 0 ${({ theme }) => theme.spacings.xxl + ' ' + theme.spacings.md};
-`
-
-const StyledH2 = styled(H2)`
-	&:after {
-		content: '';
-		border: none;
-		height: 0;
-	}
 `

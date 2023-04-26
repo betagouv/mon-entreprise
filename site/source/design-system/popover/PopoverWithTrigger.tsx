@@ -21,9 +21,6 @@ export type PopoverWithTriggerProps = {
 	) => ReactElement<typeof Button> | ReactElement<typeof Link>
 	children: React.ReactNode | ((close: () => void) => React.ReactNode)
 	title?: string
-	titleProps?: {
-		[key: string]: unknown
-	}
 	small?: boolean
 	contentRef?: RefObject<HTMLDivElement>
 }
@@ -31,7 +28,6 @@ export type PopoverWithTriggerProps = {
 export default function PopoverWithTrigger({
 	children,
 	title,
-	titleProps,
 	trigger,
 	small,
 	contentRef,
@@ -69,7 +65,6 @@ export default function PopoverWithTrigger({
 					<Popover
 						{...overlayProps}
 						title={title}
-						titleProps={titleProps}
 						onClose={() => {
 							state.close()
 						}}
