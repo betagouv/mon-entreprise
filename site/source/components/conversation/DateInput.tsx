@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback } from 'react'
 
 import { InputProps } from '@/components/conversation/RuleInput'
 import { DateField } from '@/design-system/field'
