@@ -12,6 +12,7 @@ import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
 import { SearchField } from '@/design-system/field'
 import { FocusStyle } from '@/design-system/global-style'
+import { ChevronIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { StyledLink } from '@/design-system/typography/link'
@@ -109,7 +110,6 @@ function Results({
 	onSubmit?: (établissement: FabriqueSocialEntreprise) => void
 }) {
 	const { t } = useTranslation()
-	console.log(results)
 
 	return !results.length ? (
 		<FromTop>
@@ -154,21 +154,32 @@ function Results({
 		</FromTop>
 	) : (
 		<FromTop>
-			<Ul noMarker data-test-id="company-search-results">
-				{results.map((etablissement) => (
-					<Li key={etablissement.siren}>
-						<StyledCard
-							role="button"
-							onPress={() => onSubmit?.(etablissement)}
-							compact
-							aria-label={etablissement.label}
-							tabIndex={0}
-						>
-							<CompanySearchDetails entreprise={etablissement} />
-						</StyledCard>
-					</Li>
-				))}
-			</Ul>
+			<ForceThemeProvider>
+				<Ul noMarker data-test-id="company-search-results">
+					{results.map((etablissement) => (
+						<Li key={etablissement.siren}>
+							<StyledCard
+								onPress={() => onSubmit?.(etablissement)}
+								onClick={() => onSubmit?.(etablissement)}
+								compact
+								bodyAs="div"
+								aria-label={`${etablissement.label}, Selectionner cette entreprise`}
+								ctaLabel={
+									<ChevronIcon
+										css={`
+											height: 20px;
+											margin-top: 5px;
+										`}
+										aria-hidden
+									/>
+								}
+							>
+								<CompanySearchDetails entreprise={etablissement} />
+							</StyledCard>
+						</Li>
+					))}
+				</Ul>
+			</ForceThemeProvider>
 		</FromTop>
 	)
 }

@@ -27,28 +27,26 @@ export type GenericCardProps = {
 } & GenericButtonOrLinkProps
 
 type CardProps = GenericCardProps & {
-	ctaLabel?: React.ReactNode
-	children: React.ReactNode
-	compact?: boolean
 	bodyAs?: React.ComponentProps<typeof Body>['as']
+	children: React.ReactNode
+	className?: string
+	compact?: boolean
+	ctaLabel?: React.ReactNode
 	role?: string
 	tabIndex?: number
-	onClick?: () => void
-	className?: string
 }
 
 export function Card(props: CardProps) {
 	const {
-		title,
-		icon,
-		children,
-		ctaLabel,
-		compact = false,
 		bodyAs,
+		children,
+		className,
+		compact = false,
+		ctaLabel,
+		icon,
 		role,
 		tabIndex,
-		onClick,
-		className,
+		title,
 		...ariaButtonProps
 	} = props
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
@@ -133,6 +131,7 @@ const CardButton = styled(StyledButton)`
 		width: initial;
 	}
 
+	/* Hack to transmit state (hover, focused) to card */
 	&::before {
 		content: '';
 		inset: 0;
@@ -151,10 +150,12 @@ export const CardContainer = styled.div<{
 	$compact?: boolean
 	$inert?: boolean
 }>`
-	display: flex;
+	/* Hack to get state from link/button */
 	width: 100%;
 	height: 100%;
 	position: relative;
+
+	display: flex;
 	text-decoration: none;
 	flex-direction: column;
 	align-items: center;

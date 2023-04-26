@@ -1,8 +1,9 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { useLocation } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 import { Chip } from '@/design-system'
+import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -34,10 +35,16 @@ export default function DemandeUtilisateurs() {
 			</Body>
 
 			<H3>En attente d'implémentation</H3>
-			<Pagination items={stats?.retoursUtilisateurs.open ?? []} />
+			<Pagination
+				items={stats?.retoursUtilisateurs.open ?? []}
+				title="Liste des demandes utilisateurs en attente d'implémentation"
+			/>
 
 			<H3>Réalisées</H3>
-			<Pagination items={stats?.retoursUtilisateurs.closed ?? []} />
+			<Pagination
+				items={stats?.retoursUtilisateurs.closed ?? []}
+				title="Liste des demandes utilisateurs réalisées"
+			/>
 		</section>
 	)
 }
@@ -51,13 +58,15 @@ type IssueProps = {
 
 type PaginationProps = {
 	items: Array<IssueProps>
+	title: string
 }
 
-function Pagination({ items }: PaginationProps) {
-	const [currentPage, setCurrentPage] = useState(0)
+function Pagination({ title, items }: PaginationProps) {
+	const state: Record<string, number> = useLocation().state ?? {}
+	const currentPage = state[title] ?? 0
 
 	return (
-		<>
+		<nav aria-label={`${title} : menu de navigation paginée`}>
 			<Ol>
 				{items.slice(currentPage * 10, (currentPage + 1) * 10).map((item) => (
 					<Issue key={`issue-${item.number}`} {...item} />
@@ -67,7 +76,12 @@ function Pagination({ items }: PaginationProps) {
 				{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
 					<li key={i}>
 						<PagerButton
-							onClick={() => setCurrentPage(i)}
+							light
+							size="XXS"
+							replace
+							to=""
+							state={{ ...state, [title]: i }}
+							aria-label={`${title}, Page numéro ${i + 1}`}
 							currentPage={currentPage === i}
 							aria-selected={currentPage === i ? true : undefined}
 							aria-current={currentPage === i ? 'page' : undefined}
@@ -77,12 +91,18 @@ function Pagination({ items }: PaginationProps) {
 					</li>
 				))}
 			</Pager>
-		</>
+		</nav>
 	)
 }
 
 function Issue({ title, number, count, closedAt }: IssueProps) {
 	const { t } = useTranslation()
+
+	// Remove emojis from title string
+	title = title.replace(
+		/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
+		''
+	)
 
 	return (
 		<StyledLi>
@@ -128,24 +148,22 @@ type PagerButtonProps = {
 	currentPage: boolean
 }
 
-const PagerButton = styled.button<PagerButtonProps>`
-	font-family: ${({ theme }) => theme.fonts.main};
-	padding: 0.375rem 0.5rem;
+const PagerButton = styled(Button)<PagerButtonProps>`
 	border: ${({ theme, currentPage }) =>
 		currentPage
-			? `2px solid ${theme.colors.bases.primary[500]}`
-			: `1px solid ${theme.colors.extended.grey[300]}`};
+			? `2px solid ${theme.colors.bases.primary[600]}`
+			: `2px solid ${theme.colors.extended.grey[400]}`};
 	background-color: ${({ theme, currentPage }) =>
-		currentPage
-			? theme.colors.bases.primary[100]
-			: theme.colors.extended.grey[100]};
-
+		currentPage &&
+		css`
+			${theme.colors.bases.primary[100]}
+		`};
 	&:hover {
 		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
 	}
 `
 
-const Pager = styled.ul`
+const Pager = styled.ol`
 	font-family: ${({ theme }) => theme.fonts.main};
 	text-align: center;
 	margin: auto;

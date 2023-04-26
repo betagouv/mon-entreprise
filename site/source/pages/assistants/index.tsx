@@ -18,7 +18,10 @@ export default function Gérer() {
 	const simulateurs = useSimulatorsData()
 
 	const back = (
-		<Link noUnderline to={absoluteSitePaths.assistants.index}>
+		<Link
+			noUnderline
+			to={absoluteSitePaths.assistants['pour-mon-entreprise'].index}
+		>
 			<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 		</Link>
 	)
@@ -70,7 +73,6 @@ export default function Gérer() {
 							}
 							element={
 								<>
-									{back}
 									<PageData />
 								</>
 							}

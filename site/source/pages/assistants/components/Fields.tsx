@@ -126,10 +126,7 @@ export function SimpleField(props: SimpleFieldProps) {
 			{displayedQuestion ? (
 				<StyledQuestion id={labelId}>
 					<Markdown components={{ p: Intro }}>{displayedQuestion}</Markdown>
-					<ExplicableRule
-						dottedName={dottedName}
-						aria-label={t('En savoir plus')}
-					/>
+					<ExplicableRule dottedName={dottedName} />
 				</StyledQuestion>
 			) : (
 				<Spacing sm />

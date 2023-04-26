@@ -81,11 +81,9 @@ export default function AideDéclarationIndépendant() {
 							Cet outil vous concerne si vous êtes dans le cas suivant :
 						</Strong>
 					</Body>
-					<Ul>
-						<Li>
-							Vous cotisez au régime général des travailleurs indépendants
-						</Li>
-					</Ul>
+					<Body>
+						Vous cotisez au régime général des travailleurs indépendants
+					</Body>
 					<Body>
 						<Strong>
 							Il ne vous concerne pas si vous êtes dans un des cas suivants :

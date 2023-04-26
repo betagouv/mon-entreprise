@@ -27,14 +27,6 @@ export default function CompanySearchDetails({
 		[i18n.language]
 	)
 
-	// if (company === null) {
-	// 	return (
-	// 		<SmallBody>
-	// 			{siren}
-	// 			<Trans>est un SIREN non diffusible</Trans>
-	// 		</SmallBody>
-	// 	)
-	// }
 	return (
 		<CompanyContainer>
 			<H4
