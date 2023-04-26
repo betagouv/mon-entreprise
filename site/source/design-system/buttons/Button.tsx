@@ -69,8 +69,8 @@ type StyledButtonProps = {
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
-	display: inline-flex;
 	width: fit-content;
+	display: inline-block;
 	text-decoration: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 500;
