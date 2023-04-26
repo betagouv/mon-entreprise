@@ -13,6 +13,8 @@ import { Highlight } from '../Hightlight'
 type THit = AlgoliaHit<{ objectID: DottedName; namespace?: string }>
 
 const StyledRuleLink = styled(RuleLink)`
+	display: block; // Fix focus outline on chrome
+
 	${SmallBody}, ${Body} {
 		margin: 0;
 		color: inherit;
@@ -96,7 +98,7 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refineNext }: IHits) => {
 				))}
 			</HitList>
 			{hasMore && (
-				<Button light size="XS" onClick={refineNext}>
+				<Button light size="XS" onPress={refineNext}>
 					{t('Charger plus de résultats')}
 				</Button>
 			)}
