@@ -24,7 +24,10 @@ export default function Progress({
 		value: progress,
 	}
 
-	const a11yPrefixLabel = `Étape ${progress + step} sur ${String(maxValue)}`
+	const a11yPrefixLabel = `Étape ${Math.min(
+		progress + step,
+		maxValue
+	)} sur ${String(maxValue)}`
 
 	const { progressBarProps, labelProps } = useProgressBar(propsBar)
 
@@ -36,7 +39,7 @@ export default function Progress({
 				/>
 			</ProgressContainer>
 			<StyledBody {...labelProps} aria-hidden>
-				{a11yPrefixLabel} <span className="sr-only">{propsBar.label}</span>
+				{a11yPrefixLabel}
 			</StyledBody>
 		</div>
 	)

@@ -241,6 +241,7 @@ const StyledBody = styled(Body)`
 `
 
 const Wrapper = styled.div`
+	width: fit-content;
 	position: relative;
 `
 
@@ -248,7 +249,7 @@ const StyledButton = styled(Button)`
 	max-width: 55px;
 	right: 0;
 	top: 0;
-	margin: ${({ theme }) => theme.spacings.sm};
+	margin: ${({ theme }) => theme.spacings.xs};
 	position: absolute;
 `
 
