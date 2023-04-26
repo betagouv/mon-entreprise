@@ -4,6 +4,7 @@ import { format as formatDate, isValid, parse } from 'date-fns'
 import { enUS, fr } from 'date-fns/locale'
 import FocusTrap from 'focus-trap-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useId } from 'react-aria'
 import { DayPicker, useInput } from 'react-day-picker'
 import { useTranslation } from 'react-i18next'
 import { usePopper } from 'react-popper'
@@ -13,7 +14,6 @@ import { useOnClickOutside } from '@/hooks/useClickOutside'
 
 import { Button } from '../buttons'
 import { Emoji } from '../emoji'
-import { Spacing } from '../layout'
 import { Body } from '../typography/paragraphs'
 import TextField from './TextField'
 
@@ -21,7 +21,6 @@ interface DateFieldProps {
 	defaultSelected?: Date
 	inputValue?: string
 	onChange?: (value?: string) => void
-
 	placeholder?: string
 	label?: string
 	'aria-label'?: string
@@ -48,6 +47,8 @@ export default function DateField(props: DateFieldProps) {
 	const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
 		null
 	)
+
+	const id = useId()
 
 	const format = 'dd/MM/y'
 	const { inputProps, dayPickerProps } = useInput({
@@ -124,7 +125,7 @@ export default function DateField(props: DateFieldProps) {
 	}, [defaultSelected, handleDaySelect])
 
 	return (
-		<Container ref={containerRef}>
+		<div ref={containerRef}>
 			<Wrapper ref={popperRef}>
 				<TextField
 					{...ariaProps}
@@ -149,7 +150,7 @@ export default function DateField(props: DateFieldProps) {
 						selected === undefined &&
 						t(
 							'design-system.date-picker.error.invalid-date',
-							'Format de date invalide, le format attendu est jours/mois/année'
+							'Format de date invalide, le format attendu est JJ/MM/AAAA (par exemple, 11/06/1991).'
 						)
 					}
 				/>
@@ -157,20 +158,16 @@ export default function DateField(props: DateFieldProps) {
 					ref={buttonRef}
 					onPress={handleButtonPress}
 					type="button"
+					aria-haspopup="dialog"
 					size="XXS"
+					aria-expanded={isPopperOpen}
+					aria-controls={isPopperOpen ? id : undefined}
 					aria-label={t(
-						'design-system.date-picker.choose-date',
-						'Choisir une date'
+						'design-system.date-picker.open-selector',
+						'Ouvrir le sélecteur de date'
 					)}
 				>
-					<Emoji
-						emoji="📅"
-						aria-label={t(
-							'design-system.date-picker.open-selector',
-							'Ouvrir le sélecteur de date'
-						)}
-						aria-hidden={false}
-					/>
+					<Emoji emoji="📅" aria-hidden />
 				</StyledButton>
 			</Wrapper>
 
@@ -178,26 +175,30 @@ export default function DateField(props: DateFieldProps) {
 				<FocusTrap
 					active
 					focusTrapOptions={{
-						initialFocus: false,
 						allowOutsideClick: true,
 						clickOutsideDeactivates: true,
-						fallbackFocus: buttonRef.current ?? undefined,
+						escapeDeactivates: true,
 					}}
 				>
 					<StyledBody
 						as="div"
+						id={id}
 						tabIndex={-1}
 						style={popper.styles.popper}
 						className="dialog-sheet"
 						{...popper.attributes.popper}
 						ref={setPopperElement}
 						role="dialog"
-						aria-label="DayPicker calendar"
+						onKeyDown={(e) => {
+							if (e.key === 'Escape') {
+								closePopper()
+							}
+						}}
+						aria-label="Calendrier de selection de date"
 					>
 						<DayPicker
 							{...dayPickerProps}
 							captionLayout="dropdown-buttons"
-							initialFocus={isPopperOpen}
 							mode="single"
 							defaultMonth={selected}
 							selected={selected}
@@ -206,7 +207,7 @@ export default function DateField(props: DateFieldProps) {
 					</StyledBody>
 				</FocusTrap>
 			)}
-		</Container>
+		</div>
 	)
 }
 
@@ -221,9 +222,9 @@ const StyledBody = styled(Body)`
 		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
 `
 
-const Container = styled.div``
-
 const Wrapper = styled.div`
+	display: flex;
+	align-items: center;
 	position: relative;
 `
 
@@ -231,7 +232,7 @@ const StyledButton = styled(Button)`
 	max-width: 55px;
 	position: absolute;
 	right: 0;
-	top: 0;
+
 	margin: 0.5rem;
 `
 

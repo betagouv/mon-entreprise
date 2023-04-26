@@ -54,10 +54,7 @@ const RuleInputWithTitle = ({
 					`}
 				>
 					{title}
-					<ExplicableRule
-						dottedName={dottedName}
-						aria-label={t('En savoir plus')}
-					/>
+					<ExplicableRule dottedName={dottedName} />
 				</H3>
 			)}
 			<RuleInput

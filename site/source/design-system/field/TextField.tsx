@@ -112,7 +112,7 @@ export const StyledDescription = styled(ExtraSmallBody)`
 	padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.sm}`};
 	will-change: color;
 	transition: color 0.2s;
-	margin-top: 0;
+	margin-top: ${({ theme }) => `${theme.spacings.xs}`};
 `
 
 export const StyledErrorMessage = styled(StyledDescription)`

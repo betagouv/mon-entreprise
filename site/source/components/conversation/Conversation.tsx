@@ -94,11 +94,7 @@ export default function Conversation({
 							>
 								<H3 id="questionHeader" as="h2">
 									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
-									<ExplicableRule
-										aria-label={t('En savoir plus')}
-										light
-										dottedName={currentQuestion}
-									/>
+									<ExplicableRule light dottedName={currentQuestion} />
 								</H3>
 							</div>
 							<fieldset>

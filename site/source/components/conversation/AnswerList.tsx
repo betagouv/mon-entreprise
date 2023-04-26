@@ -313,11 +313,7 @@ function AnswerElement(rule: RuleNode) {
 					<form onSubmit={onClose}>
 						<H3>
 							{evaluateQuestion(engine, engine.getRule(questionDottedName))}
-							<ExplicableRule
-								light
-								dottedName={questionDottedName}
-								aria-label={t('En savoir plus')}
-							/>
+							<ExplicableRule light dottedName={questionDottedName} />
 						</H3>
 						<RuleInput
 							dottedName={questionDottedName}
