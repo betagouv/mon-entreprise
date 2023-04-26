@@ -5,6 +5,7 @@ import 'react-tooltip/dist/react-tooltip.css'
 
 import styled from 'styled-components'
 
+// TODO: Replace react-tooltip with @floating-ui/react-dom for more control (see DateField.tsx for example)
 export const Tooltip = ({
 	children,
 	tooltip,
