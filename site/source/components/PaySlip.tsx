@@ -150,11 +150,7 @@ export default function PaySlip() {
 						<Fragment key={section.dottedName}>
 							<H5 className="payslip__cotisationTitle">
 								{section.title}
-								<ExplicableRule
-									light
-									dottedName={section.dottedName}
-									aria-label={t('En savoir plus')}
-								/>
+								<ExplicableRule light dottedName={section.dottedName} />
 							</H5>
 							{cotisations.map((cotisation) => (
 								<Cotisation key={cotisation} dottedName={cotisation} />
