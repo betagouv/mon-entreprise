@@ -6,7 +6,7 @@ import FocusTrap from 'focus-trap-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useId } from 'react-aria'
 import { DayPicker, useInput } from 'react-day-picker'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { usePopper } from 'react-popper'
 import styled from 'styled-components'
 
@@ -14,6 +14,7 @@ import { useOnClickOutside } from '@/hooks/useClickOutside'
 
 import { Button } from '../buttons'
 import { Emoji } from '../emoji'
+import { Spacing } from '../layout'
 import { Body } from '../typography/paragraphs'
 import TextField from './TextField'
 
@@ -42,6 +43,7 @@ export default function DateField(props: DateFieldProps) {
 	const [isPopperOpen, setIsPopperOpen] = useState(false)
 
 	const popperRef = useRef<HTMLDivElement>(null)
+	const dayPickerRef = useRef<HTMLDivElement>(null)
 	const buttonRef = useRef<HTMLButtonElement>(null)
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
@@ -68,7 +70,7 @@ export default function DateField(props: DateFieldProps) {
 		placement: 'bottom-end',
 	})
 
-	useOnClickOutside(containerRef, () => setIsPopperOpen(false))
+	useOnClickOutside(dayPickerRef, () => setIsPopperOpen(false))
 
 	const closePopper = () => {
 		setIsPopperOpen(false)
@@ -196,14 +198,30 @@ export default function DateField(props: DateFieldProps) {
 						}}
 						aria-label="Calendrier de selection de date"
 					>
-						<DayPicker
-							{...dayPickerProps}
-							captionLayout="dropdown-buttons"
-							mode="single"
-							defaultMonth={selected}
-							selected={selected}
-							onSelect={handleDaySelect}
-						/>
+						<div
+							ref={dayPickerRef}
+							css={`
+								text-align: center;
+							`}
+						>
+							<DayPicker
+								{...dayPickerProps}
+								captionLayout="dropdown-buttons"
+								mode="single"
+								defaultMonth={selected}
+								selected={selected}
+								onSelect={handleDaySelect}
+							/>
+							<Button
+								light
+								size="XXS"
+								onPress={closePopper}
+								aria-label="Fermer le calendrier de selection"
+							>
+								<Trans>Fermer</Trans> ×
+							</Button>
+							<Spacing sm />
+						</div>
 					</StyledBody>
 				</FocusTrap>
 			)}
