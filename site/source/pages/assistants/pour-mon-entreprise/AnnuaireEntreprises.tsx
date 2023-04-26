@@ -13,21 +13,21 @@ export function AnnuaireEntreprises() {
 		<>
 			<Article
 				title={t(
-					'gérer.ressources.annuaire-entreprises.title',
+					'assistants.pour-mon-entreprise.annuaire-entreprises.title',
 					'Voir vos données publiques'
 				)}
 				href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siren}?mtm_campaign=mon-entreprise`}
 				ctaLabel={t(
-					'gérer.ressources.annuaire-entreprises.cta',
+					'assistants.pour-mon-entreprise.annuaire-entreprises.cta',
 					'Visiter le site'
 				)}
 				aria-label={t(
-					'gérer.ressources.annuaire-entreprises.aria-label',
+					'assistants.pour-mon-entreprise.annuaire-entreprises.aria-label',
 					'Annuaire-entreprise, Visiter le site'
 				)}
 			>
 				{t(
-					'gérer.ressources.annuaire-entreprises.body',
+					'assistants.pour-mon-entreprise.annuaire-entreprises.body',
 					'Retrouvez toutes les informations publiques concernant votre entreprise sur'
 				)}{' '}
 				Annuaire des Entreprises.

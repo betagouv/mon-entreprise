@@ -428,9 +428,9 @@ aide-déclaration-indépendant:
     charges sociales déductibles.</0><1>Vous restez entièrement responsable
     d'éventuelles omissions ou inexactitudes dans votre
     déclaration.</1></1><2><0><0>Cet outil vous concerne si vous êtes dans le
-    cas suivant :</0></0><1><0>Vous cotisez au régime général des travailleurs
-    indépendants</0></1><2><0>Il ne vous concerne pas si vous êtes dans un des
-    cas suivants :</0></2><3><0>Vous exercez une activité libérale relevant d’un
+    cas suivant :</0></0><1>Vous cotisez au régime général des travailleurs
+    indépendants</1><2><0>Il ne vous concerne pas si vous êtes dans un des cas
+    suivants :</0></2><3><0>Vous exercez une activité libérale relevant d’un
     régime de retraite des professions libérales en comptabilité
     d'engagement</0><1>Votre entreprise est domiciliée dans les
     DOM</1></3></2><3>Imposition</3><4>Ces quelques questions permettent de
@@ -512,6 +512,14 @@ assistant-DRI:
     informations que vous renseignez resteront dans votre navigateur.</1><2>Pour
     faire votre déclaration de revenu, il faudra vous connecter sur
     <2>impots.gouv.fr</2>.</2></1>"
+assistants:
+  pour-mon-entreprise:
+    annuaire-entreprises:
+      aria-label: Annuaire-entreprise, Visiter le site
+      body: Retrouvez toutes les informations publiques concernant votre entreprise
+        sur
+      cta: Visiter le site
+      title: Voir vos données publiques
 associés:
   choix1: Seul
   choix1-aria-label: Seul, sélectionner l'option et passer à l'étape suivante
@@ -672,6 +680,19 @@ créer:
   warningPL: Le cas des professions libérales réglementées n'est pas encore traité
 d'aides: d'aides
 de chiffre d’affaires: de chiffre d’affaires
+design-system:
+  date-picker:
+    close: Fermer
+    close-selector: Fermer le sélecteur de date
+    error:
+      invalid-date: Format de date invalide, le format attendu est JJ/MM/AAAA (par
+        exemple, 11/06/1991).
+    label: Champ de date au format jours/mois/année
+    month: Mois
+    next-month: Mois suivant
+    open-selector: Ouvrir le sélecteur de date
+    prev-month: Mois précédent
+    year: Année
 dividendes:
   warning: <0>Cette simulation est uniquement donnée à titre indicatif. Elle ne
     concerne que les sociétés françaises à l’impôt sur les sociétés (IS), et ne
@@ -745,22 +766,26 @@ entreprise:
       titre: Créer une {{status}}
   ressources:
     après:
+      aria-label: Après la création, voir le glossaire
       body: SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que vous
         pourrez (éventuellement) rencontrer après la création.
       cta: Voir le glossaire
       title: Après la création
     simu:
       assimilé:
+        aria-label: SASU, simuler la rémunération
         body: Simuler le montant de vos cotisations sociales pour bien préparer votre
           business plan.
         cta: Simuler la rémunération
         title: Simulateur de rémunération pour dirigeant de SASU
       autoEntrepreneur:
+        aria-label: Auto-entrepreneur, simuler mes revenus
         body: Simuler le montant de vos cotisations sociales et de votre impôt et
           estimez votre futur revenu net.
         cta: Simuler les revenus
         title: Simulateur de revenus auto-entrepreneur
       indépendant:
+        aria-label: Indépendant, simuler mes revenus
         body: Simuler le montant de vos cotisations sociales pour bien préparer votre
           business plan.
         cta: Simuler les cotisations
@@ -962,28 +987,24 @@ gérer:
       aria-label: Annuaire des Entreprises, nouvelle fenêtre
       body: Retrouvez toutes les informations publiques concernant votre entreprise
         sur
-      cta: Visiter le site
-      title: Voir vos données publiques
     autoEntrepreneur:
+      aria-label: auto-entrepreneur.urssaf.fr, Visiter le site
       body: Vous pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
         cotisations, et plus largement trouver toutes les informations relatives
         au statut d'auto-entrepreneur
       cta: Visiter le site
       title: Site officiel des auto-entrepreneurs
     embaucher:
+      aria-label: Embauche d'un salarié, Voir la liste des démarches
       body: La liste des choses à faire pour être sûr de ne rien oublier lors de
         l’embauche d’un nouveau salarié
       cta: Voir la liste des démarches
       title: "Découvrir les démarches d’embauche "
-    export:
-      body: Le formulaire pour effectuer une demande de mobilité internationale
-        (détachement ou pluriactivité)
-      cta: Remplir le formulaire
-      title: Exporter son activité en Europe
     sécuritéSociale:
+      aria-label: Comprendre la sécurité sociale, Voir la vidéo
       body: A quoi servent les cotisations sociales ? Le point sur le système de
         protection sociale dont bénéficient tous les travailleurs en France.
-      cta: Lire le guide
+      cta: Voir la vidéo
       title: Comprendre la sécurité sociale
 iframe:
   description: Outils pour les développeurs
@@ -1070,6 +1091,7 @@ news:
   title: Nouveautés
 nextSteps:
   integration-iframe:
+    aria-label: Intégrer le module web, Voir la documentation
     body: Decouvrez comment ajouter ce simulateur sur votre site internet en un clic
       via un script clé en main.
     cta: Voir la documentation

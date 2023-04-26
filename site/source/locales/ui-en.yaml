@@ -402,14 +402,14 @@ accessibility:
   title: Accessibility
 aide-déclaration-indépendant:
   description: <0><0>Declaration of social charges for self-employed
-    workers</0></0><1><0>This tool is an aid to the declaration of income for
+    workers</0></0><1><0>This tool is an aid for the declaration of income for
     <2>self-employed workers</2>. It allows you to know the amount of deductible
     social charges.</0><1>You remain entirely responsible for any omissions or
     inaccuracies in your declaration.</1></1><2><0><0>This tool concerns you if
-    you are in the following case:</0></0><1><0>You contribute to the general
-    scheme for independent workers</0></1><2><0>It does not concern you if you
-    are in one of the following cases:</0></2><3><0>You exercise a liberal
-    activity under a pension scheme for liberal professions in accrual
+    you are in the following case:</0></0><1>You contribute to the general
+    scheme for independent workers</1><2><0>It does not concern you if you are
+    in one of the following cases:</0></2><3><0>You exercise a liberal activity
+    under a pension scheme for liberal professions in accrual
     accounting</0><1>Your company is domiciled in the
     DOM</1></3></2><3>Taxation</3><4>These few questions allow you to determine
     the type of declaration to be filled in, as well as the methods of
@@ -485,6 +485,13 @@ assistant-DRI:
     2023</2></0><1>This tool is <1>100% confidential</1>: all the information
     you enter will remain in your browser.</1><2>To make your income tax return,
     you will have to connect to <2>impots.gouv.fr</2>.</2></1>"
+assistants:
+  pour-mon-entreprise:
+    annuaire-entreprises:
+      aria-label: Company directory, Visit the site
+      body: Find all public information about your company on
+      cta: Visit the site
+      title: See your public data
 associés:
   choix1: Alone
   choix1-aria-label: Alone, select the option and go to the next step
@@ -668,6 +675,19 @@ créer:
   warningPL: "Note: the case of regulated liberal professions is not covered"
 d'aides: aids
 de chiffre d’affaires: of turnover
+design-system:
+  date-picker:
+    close: Close
+    close-selector: Close the date selector
+    error:
+      invalid-date: Invalid date format, the expected format is DD/MM/YYYY (for
+        example, 11/06/1991).
+    label: Date field in day/month/year format
+    month: Month
+    next-month: Next month
+    open-selector: Open the date selector
+    prev-month: Previous month
+    year: Year
 dividendes:
   warning: <0>This simulation is only given as an indication. It only concerns
     French companies subject to corporation tax (IS), and does not concern
@@ -739,22 +759,26 @@ entreprise:
       titre: Create a {{status}}
   ressources:
     après:
+      aria-label: After creation, see the glossary
       body: SIREN, SIRET, APE code, KBis. A small glossary of terms that you may
         (possibly) encounter after the creation.
       cta: See the glossary
       title: After the creation
     simu:
       assimilé:
+        aria-label: SASU, simulate the remuneration
         body: Simulate the amount of your social contributions to prepare your business
           plan.
         cta: Simulate compensation
         title: Remuneration simulator for SASU managers
       autoEntrepreneur:
+        aria-label: Self-employed contractor, simulate my income
         body: Simulate the amount of your social security contributions and taxes and
           estimate your future net income.
         cta: Simulate income
         title: Auto-entrepreneur income simulator
       indépendant:
+        aria-label: Self-employed, simulate my income
         body: Simulate the amount of your social contributions to prepare your business
           plan.
         cta: Simulate contributions
@@ -974,27 +998,24 @@ gérer:
     annuaire-entreprises:
       aria-label: Company Directory, new window
       body: Find all public information about your company on
-      cta: Visit the site
-      title: See your public data
     autoEntrepreneur:
+      aria-label: auto-entrepreneur.urssaf.fr, Visit the site
       body: You will be able to declare your turnover, pay your contributions, and
         more generally find all the information relating to the status of
         auto-entrepreneur
       cta: Visit the site
       title: Official website of auto-entrepreneurs
     embaucher:
+      aria-label: Hiring an employee, See the list of steps
       body: The list of things to do to make sure you don't forget anything when
         hiring a new employee
       cta: See the list of steps
       title: "Discover the hiring process "
-    export:
-      body: The form to apply for international mobility (secondment or multi-job)
-      cta: Fill in the form
-      title: Exporting your business to Europe
     sécuritéSociale:
+      aria-label: Understanding Social Security, Watch the video
       body: What are social security contributions for? An update on the social
         protection system from which all workers in France benefit.
-      cta: Read the guide
+      cta: Watch the video
       title: Understanding Social Security
 iframe:
   description: Tools for developers
@@ -1083,6 +1104,7 @@ news:
   title: News
 nextSteps:
   integration-iframe:
+    aria-label: Integrate the web module, See the documentation
     body: Discover how to add this simulator on your website in one click via a
       turnkey script.
     cta: See the documentation
