@@ -35,9 +35,9 @@ export default function Accessibilité() {
 				>
 					RGAA
 				</abbr>{' '}
-				4.0&nbsp;qui vise à définir le niveau d'accessibilité général constaté
+				4.1&nbsp;qui vise à définir le niveau d'accessibilité général constaté
 				sur le site conformément à la réglementation. Cette page est obligatoire
-				pour être conforme au RGAA 4.0.
+				pour être conforme au RGAA 4.1.
 			</Body>
 			<H2>Qu’est-ce que l’accessibilité numérique&nbsp;?</H2>
 			<Body>
@@ -63,13 +63,14 @@ export default function Accessibilité() {
 			</Ul>
 			<H2>Déclaration d’accessibilité</H2>
 			<Body>
-				L'Acoss s’engage à rendre ses sites internet accessibles conformément à
-				l’article 47 de la loi n° 2005-102 du 11 février 2005.
+				L'Acoss s’engage à rendre ses sites internet, extranet, intranet
+				accessibles conformément à l’article 47 de la loi n° 2005-102 du 11
+				février 2005.
 			</Body>
 			<Body>
 				À cette fin, elle rédige{' '}
 				<Link
-					href="https://www.acoss.fr/files/RGAA/accessibilite_numerique-schema_pluriannuel_2020_2022-Acoss.pdf"
+					href="https://www.urssaf.org/files/RGAA/accessibilite_numerique-schema_pluriannuel-Acoss.pdf"
 					target="_blank"
 					rel="noreferrer"
 					aria-label="la stratégie et le plan d’action à mettre en œuvre, en savoir plus, nouvelle fenêtre"
@@ -98,7 +99,7 @@ export default function Accessibilité() {
 				</Link>{' '}
 				n’est actuellement pas en conformité avec le{' '}
 				<Link
-					href="https://numerique.gouv.fr/publications/rgaa-accessibilite/"
+					href="https://accessibilite.numerique.gouv.fr/"
 					target="_blank"
 					rel="noreferrer"
 					aria-label="Référentiel général d’amélioration de l’accessibilité (RGAA), en savoir plus, nouvelle fenêtre"
@@ -171,6 +172,13 @@ export default function Accessibilité() {
 					Libre réponse 71120
 					<br />
 					75342&nbsp;Paris CEDEX 07
+				</Li>
+				<Li>
+					Contacter le D&eacute;fenseur des droits par
+					t&eacute;l&eacute;phone&nbsp;:{' '}
+					<Link href="tel:+33969390000">
+						+33&nbsp;9&nbsp;69&nbsp;39&nbsp;00&nbsp;00
+					</Link>
 				</Li>
 			</Ul>
 
