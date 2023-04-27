@@ -2,6 +2,7 @@ import FocusTrap from 'focus-trap-react'
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Trans } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
@@ -91,6 +92,12 @@ export const Drawer = ({
 	useOnKeyDown('Escape', () => {
 		closeDrawer()
 	})
+
+	const location = useLocation()
+
+	useEffect(() => {
+		closeDrawer()
+	}, [closeDrawer, location])
 
 	return (
 		<>
