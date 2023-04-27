@@ -21,7 +21,7 @@ import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useOnClickOutside } from '@/hooks/useClickOutside'
+import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { useSitePaths } from '@/sitePaths'
 
 import * as safeLocalStorage from '../../storage/safeLocalStorage'

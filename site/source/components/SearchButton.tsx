@@ -54,10 +54,6 @@ const StyledButton = styled(Button)`
 	flex: 0;
 	align-items: center;
 	margin-right: ${({ theme }) => theme.spacings.md};
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		order: 3;
-		margin-right: 0;
-	}
 `
 
 const StyledIcon = styled.svg`

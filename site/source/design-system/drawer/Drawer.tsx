@@ -1,15 +1,18 @@
 import FocusTrap from 'focus-trap-react'
-import React, { ReactNode, useCallback, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Trans } from 'react-i18next'
 import styled, { css } from 'styled-components'
+
+import { useOnClickOutside } from '@/hooks/useOnClickOutside'
+import { useOnKeyDown } from '@/hooks/useOnKeyDown'
 
 import { Button } from '../buttons'
 import { Grid } from '../layout'
 import { CloseButton, CloseButtonContainer } from '../popover/Popover'
 
 export type DrawerButtonProps = {
-	onClick: () => void
+	onPress: () => void
 	['aria-expanded']: boolean
 	['aria-haspopup']:
 		| boolean
@@ -32,14 +35,15 @@ export const Drawer = ({
 	cancelLabel,
 	isDismissable = true,
 }: {
-	trigger: ({ onClick }: DrawerButtonProps) => ReactNode
+	trigger: (props: DrawerButtonProps) => ReactNode
 	children: ReactNode
 	confirmLabel?: string
 	cancelLabel?: string
-	onConfirm: () => void
+	onConfirm?: () => void
 	onCancel?: () => void
 	isDismissable?: boolean
 }) => {
+	const panel = useRef<HTMLDivElement>(null)
 	const [isOpen, setIsOpen] = useState(false)
 	const [isMounted, setIsMounted] = useState(false)
 
@@ -55,8 +59,10 @@ export const Drawer = ({
 			const scrollY = document.body.style.top
 			document.body.style.position = ''
 			document.body.style.top = ''
-			// Avoid scroll jump
-			window.scrollTo(0, parseInt(scrollY || '0') * -1)
+			if (scrollY) {
+				// Avoid scroll jump
+				window.scrollTo(0, parseInt(scrollY) * -1)
+			}
 		}
 	}
 
@@ -67,8 +73,9 @@ export const Drawer = ({
 		}
 	}, [isMounted])
 
-	const closeDrawer = () => {
+	const closeDrawer = useCallback(() => {
 		setIsOpen(false)
+		disablePageScrolling(false)
 
 		setTimeout(() => {
 			setIsMounted(false)
@@ -76,18 +83,21 @@ export const Drawer = ({
 				onCancel()
 			}
 		}, 500)
-	}
+	}, [onCancel])
 
-	const handleDeactivate = useCallback(() => {
-		disablePageScrolling(false)
-	}, [])
+	useOnClickOutside(panel, () => {
+		closeDrawer()
+	})
+	useOnKeyDown('Escape', () => {
+		closeDrawer()
+	})
 
 	return (
 		<>
 			{trigger({
 				'aria-expanded': isOpen,
 				'aria-haspopup': 'dialog',
-				onClick: openDrawer,
+				onPress: openDrawer,
 			})}
 			{isMounted &&
 				ReactDOM.createPortal(
@@ -96,13 +106,10 @@ export const Drawer = ({
 						<FocusTrap
 							focusTrapOptions={{
 								clickOutsideDeactivates: true,
-								onDeactivate: () => {
-									closeDrawer()
-									handleDeactivate()
-								},
+								fallbackFocus: panel.current ?? undefined,
 							}}
 						>
-							<DrawerPanel $isOpen={isOpen} role="dialog">
+							<DrawerPanel ref={panel} $isOpen={isOpen} role="dialog">
 								{isDismissable && (
 									<StyledCloseButtonContainer>
 										{/* TODO : replace with Link when in design system */}
@@ -129,15 +136,10 @@ export const Drawer = ({
 										</CloseButton>
 									</StyledCloseButtonContainer>
 								)}
-								<DrawerContent>
-									{React.Children.map(children, (child) => {
-										if (React.isValidElement(child)) {
-											return React.cloneElement(child, { closeDrawer } as {
-												closeDrawer: () => void
-											})
-										}
-									})}
-								</DrawerContent>
+
+								<DrawerContentWrapper>
+									<DrawerContent>{children}</DrawerContent>
+								</DrawerContentWrapper>
 
 								{onConfirm && (
 									<DrawerFooter>
@@ -197,12 +199,15 @@ const DrawerBackground = styled.div<{ $isOpen?: boolean }>`
 const DrawerPanel = styled.div<{
 	$isOpen: boolean
 }>`
+	display: flex;
+	flex-direction: column;
 	width: 500px;
 	max-width: 100vw;
 	height: 100vh;
-	overflow-x: hidden;
-	overflow-y: auto;
-	background-color: ${({ theme }) => theme.colors.extended.grey[100]};
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.extended.grey[100]};
 	transition: transform 0.5s ease-in-out;
 	position: fixed;
 	right: 0;
@@ -216,6 +221,11 @@ const DrawerPanel = styled.div<{
 		`}
 `
 
+const DrawerContentWrapper = styled.div`
+	overflow: auto;
+	flex-grow: 1;
+`
+
 const DrawerContent = styled.div`
 	padding: 0 ${({ theme }) => theme.spacings.xxl};
 	padding-bottom: 2rem;
@@ -223,14 +233,12 @@ const DrawerContent = styled.div`
 `
 
 const DrawerFooter = styled.div`
-	position: sticky;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: ${({ theme }) => theme.colors.extended.grey[100]};
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.extended.grey[100]};
 	padding: ${({ theme }) => theme.spacings.xl};
 	box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.15);
-	z-index: 10;
 `
 
 const StyledGrid = styled(Grid)`
@@ -239,11 +247,4 @@ const StyledGrid = styled(Grid)`
 	gap: ${({ theme }) => theme.spacings.md};
 `
 
-const StyledCloseButtonContainer = styled(CloseButtonContainer)`
-	position: sticky;
-	top: 0;
-	left: 0;
-	right: 0;
-	background: ${({ theme }) => theme.colors.extended.grey[100]};
-	z-index: 10;
-`
+const StyledCloseButtonContainer = styled(CloseButtonContainer)``

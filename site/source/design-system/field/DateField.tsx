@@ -11,7 +11,7 @@ import { DayPicker, useInput } from 'react-day-picker'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { useOnClickOutside } from '@/hooks/useClickOutside'
+import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 import { Button } from '../buttons'
 import { Emoji } from '../emoji'
@@ -133,6 +133,7 @@ export default function DateField(props: DateFieldProps) {
 		<div>
 			<Wrapper>
 				<TextField
+					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...ariaProps}
 					label={label}
 					aria-label={t(
@@ -185,7 +186,6 @@ export default function DateField(props: DateFieldProps) {
 				<FocusTrap
 					active
 					focusTrapOptions={{
-						allowOutsideClick: true,
 						clickOutsideDeactivates: true,
 						fallbackFocus: refs.reference.current ?? undefined,
 					}}
@@ -211,6 +211,7 @@ export default function DateField(props: DateFieldProps) {
 						aria-label="Calendrier de sélection de date"
 					>
 						<DayPicker
+							// eslint-disable-next-line react/jsx-props-no-spreading
 							{...dayPickerProps}
 							captionLayout="dropdown-buttons"
 							mode="single"

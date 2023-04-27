@@ -16,6 +16,7 @@ import styled, { css, keyframes } from 'styled-components'
 import { Grid } from '@/design-system/layout'
 import { getIframeOffset, wrapperDebounceEvents } from '@/utils'
 
+import { FocusStyle } from '../global-style'
 import { Container } from '../layout'
 import { H2 } from '../typography/heading'
 
@@ -233,9 +234,13 @@ export const CloseButtonContainer = styled.div`
 		`}
 	display: flex;
 	align-items: center;
-	height: ${({ theme }) => theme.spacings.xxl};
 	justify-content: flex-end;
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.extended.grey[100]};
 `
+
 export const CloseButton = styled.button`
 	display: inline-flex;
 	align-items: center;
@@ -262,6 +267,11 @@ export const CloseButton = styled.button`
 	}
 	:hover {
 		text-decoration: underline;
+	}
+	:focus {
+		${FocusStyle}
+		box-shadow:  inset 0 0 0 3px #ffffff;
+		outline-offset: -2px;
 	}
 `
 

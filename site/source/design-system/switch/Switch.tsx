@@ -86,8 +86,15 @@ const LabelBody = styled(Body)`
 	cursor: pointer;
 `
 
-const Text = styled.span`
-	margin-right: ${({ theme }) => theme.spacings.xxs};
+const Text = styled.span<{ invertLabel?: boolean }>`
+	${({ theme, invertLabel: $invertLabel }) =>
+		$invertLabel
+			? css`
+					margin-left: ${theme.spacings.xxs};
+			  `
+			: css`
+					margin-right: ${theme.spacings.xxs};
+			  `};
 `
 
 type AriaSwitchProps = Parameters<typeof useSwitch>[0]
@@ -98,6 +105,10 @@ export type SwitchProps = AriaSwitchProps & {
 	children?: ReactNode
 	className?: string
 	role?: string
+	/**
+	 * Invert the position of the label and the switch
+	 */
+	invertLabel?: boolean
 }
 
 export const Switch = (props: SwitchProps) => {
@@ -106,6 +117,7 @@ export const Switch = (props: SwitchProps) => {
 		light = false,
 		children,
 		className,
+		invertLabel = false,
 		...ariaProps
 	} = props
 	const state = useToggleState(ariaProps)
@@ -116,8 +128,10 @@ export const Switch = (props: SwitchProps) => {
 	const { isSelected } = state
 
 	return (
-		<LabelBody as="label" className={className}>
-			{children && <Text>{children}</Text>}
+		<LabelBody as="label" htmlFor={inputProps.id} className={className}>
+			{children && !invertLabel && (
+				<Text invertLabel={invertLabel}>{children}</Text>
+			)}
 			<StyledSwitch
 				light={light}
 				size={size}
@@ -125,6 +139,7 @@ export const Switch = (props: SwitchProps) => {
 				disabled={isDisabled}
 			>
 				<HiddenInput
+					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...inputProps}
 					type="checkbox"
 					tabIndex={0}
@@ -139,6 +154,9 @@ export const Switch = (props: SwitchProps) => {
 					disabled={isDisabled}
 				/>
 			</StyledSwitch>
+			{children && invertLabel && (
+				<Text invertLabel={invertLabel}>{children}</Text>
+			)}
 		</LabelBody>
 	)
 }
