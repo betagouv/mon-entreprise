@@ -12,6 +12,7 @@ import { useDarkMode } from '@/hooks/useDarkMode'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useSitePaths } from '@/sitePaths'
 
+import { Menu } from './Menu'
 import NewsBanner from './NewsBanner'
 
 export default function Header() {
@@ -19,10 +20,7 @@ export default function Header() {
 
 	const fullURL = useGetFullURL()
 
-	const {
-		i18n: { language },
-		t,
-	} = useTranslation()
+	const { i18n, t } = useTranslation()
 
 	const [darkMode, setDarkMode] = useDarkMode()
 
@@ -41,11 +39,9 @@ export default function Header() {
 							<Logo />
 						</StyledLogo>
 					</Link>
-					<div
-						css={`
-							flex: 1;
-						`}
-					/>
+
+					<div style={{ flex: 1 }} />
+
 					<div
 						style={{
 							display: 'flex',
@@ -67,9 +63,11 @@ export default function Header() {
 						<Emoji emoji="🌙" aria-hidden />
 					</div>
 
-					{language === 'fr' && <SearchButton />}
+					{i18n.language === 'fr' && <SearchButton />}
+
+					<Menu />
 				</StyledHeader>
-				<BrowserOnly>{language === 'fr' && <NewsBanner />}</BrowserOnly>
+				<BrowserOnly>{i18n.language === 'fr' && <NewsBanner />}</BrowserOnly>
 			</Container>
 		</header>
 	)
