@@ -10,7 +10,11 @@ describe('Recherche globales', { testIsolation: false }, function () {
 
 		cy.contains('Rechercher').click()
 
-		cy.focused().should('have.attr', 'type', 'search')
+		cy.contains('Recherche sur le site')
+
+		cy.contains('Fermer').focus()
+
+		cy.focused().tab().should('have.attr', 'type', 'search')
 
 		cy.contains('Simulateurs')
 			.next()
