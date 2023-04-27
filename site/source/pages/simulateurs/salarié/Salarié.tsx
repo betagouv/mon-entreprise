@@ -233,19 +233,20 @@ function TitreRestaurant() {
 
 	return (
 		<Condition expression={`${dottedName} > 0`}>
-			<StyledInfo>
-				<FromTop>
+			<FromTop>
+				<StyledInfo>
 					<RuleLink dottedName={dottedName}>
 						+{' '}
 						<Value
 							expression={dottedName}
 							displayedUnit="€"
 							unit={targetUnit}
-						/>
+							linkToRule={false}
+						/>{' '}
 						<Trans>en titres-restaurant</Trans> <Emoji emoji=" 🍽" />
 					</RuleLink>
-				</FromTop>
-			</StyledInfo>
+				</StyledInfo>
+			</FromTop>
 		</Condition>
 	)
 }
@@ -278,20 +279,21 @@ function AidesGlimpse() {
 
 	return (
 		<Condition expression={`${dottedName} > 0`}>
-			<StyledInfo>
-				<FromTop>
+			<FromTop>
+				<StyledInfo>
 					<RuleLink dottedName={aideLink}>
 						<Trans>en incluant</Trans>{' '}
 						<Value
 							expression={dottedName}
 							displayedUnit="€"
 							unit={targetUnit}
+							linkToRule={false}
 						/>{' '}
 						<Trans>d'aides</Trans>{' '}
 						<Emoji emoji={aides.rawNode.icônes as string} />
 					</RuleLink>
-				</FromTop>
-			</StyledInfo>
+				</StyledInfo>
+			</FromTop>
 		</Condition>
 	)
 }

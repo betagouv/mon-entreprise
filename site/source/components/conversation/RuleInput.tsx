@@ -12,7 +12,6 @@ import React, { useContext } from 'react'
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { EngineContext } from '@/components/utils/EngineContext'
-import { useShouldFocusField } from '@/hooks/useShouldFocusField'
 import { getMeta } from '@/utils'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
@@ -92,7 +91,6 @@ export default function RuleInput<Names extends string = DottedName>({
 	const rule = engineValue.getRule(dottedName)
 	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
-	const shouldFocusField = useShouldFocusField()
 
 	const commonProps: InputProps<Names> = {
 		dottedName,
@@ -107,7 +105,6 @@ export default function RuleInput<Names extends string = DottedName>({
 		description: rule.rawNode.description,
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},
-		autoFocus: shouldFocusField,
 		engine: engineValue,
 		...props,
 		// Les espaces ne sont pas autorisés dans un id, les points sont assimilés à une déclaration de class CSS par Cypress
