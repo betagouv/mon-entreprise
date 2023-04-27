@@ -2089,6 +2089,7 @@ warning:
 Échec: Failure
 Étape complétée: Step completed
 Étape non complétée: Step not completed
+"Étape {{ total }} sur {{ maxValue }}": Step {{ total }} on {{ maxValue }}
 Étapes du choix du statut juridique: Steps in choosing a legal status
 Éviter de communiquer des informations personnelles: Avoid giving out personal information
 Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?

@@ -1,4 +1,5 @@
 import { useProgressBar } from '@react-aria/progress'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { Body } from '@/design-system/typography/paragraphs'
@@ -16,6 +17,7 @@ export default function Progress({
 	maxValue = 1,
 	step = 1,
 }: ProgressProps) {
+	const { t } = useTranslation()
 	const propsBar = {
 		showValueLabel: false,
 		label: 'Questions répondues pour améliorer la précision de la simulation',
@@ -24,12 +26,8 @@ export default function Progress({
 		value: progress,
 	}
 
-	const a11yPrefixLabel = `Étape ${Math.min(
-		progress + step,
-		maxValue
-	)} sur ${String(maxValue)}`
-
 	const { progressBarProps, labelProps } = useProgressBar(propsBar)
+	const total = Math.min(progress + step, maxValue).toString()
 
 	return (
 		<div aria-live="polite">
@@ -39,7 +37,7 @@ export default function Progress({
 				/>
 			</ProgressContainer>
 			<StyledBody {...labelProps} aria-hidden>
-				{a11yPrefixLabel}
+				{t('Étape {{ total }} sur {{ maxValue }}', { total, maxValue })}
 			</StyledBody>
 		</div>
 	)
@@ -62,5 +60,8 @@ const StyledBody = styled(Body)`
 	font-size: 0.825rem;
 	padding: 0.25rem 1.5rem;
 	margin: 0;
-	color: ${({ theme }) => theme.colors.extended.grey[600]}!important;
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[200]
+			: theme.colors.extended.grey[600]}!important;
 `
