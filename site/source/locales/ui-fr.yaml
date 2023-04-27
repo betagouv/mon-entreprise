@@ -2133,6 +2133,7 @@ warning:
 Échec: Échec
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
+"Étape {{ total }} sur {{ maxValue }}": Étape {{ total }} sur {{ maxValue }}
 Étapes du choix du statut juridique: Étapes du choix du statut juridique
 Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?

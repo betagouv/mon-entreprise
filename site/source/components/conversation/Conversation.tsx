@@ -68,11 +68,13 @@ export default function Conversation({
 	useEffect(() => setFirstRenderDone(true), [])
 
 	const focusFirstElemInForm = useCallback(() => {
-		formRef.current
-			?.querySelector<HTMLInputElement | HTMLButtonElement | HTMLLinkElement>(
-				'input, button, a'
-			)
-			?.focus()
+		setTimeout(() => {
+			formRef.current
+				?.querySelector<HTMLInputElement | HTMLButtonElement | HTMLLinkElement>(
+					'input, button, a'
+				)
+				?.focus()
+		}, 5)
 	}, [])
 
 	const goToPrevious = useCallback(() => {
