@@ -27,12 +27,8 @@ Aller plus loin: Go further
 Aller plus loin sur les revenus: Going further on income
 "Aller à l'étape actuelle :": "Go to the current step:"
 Annuler: Cancel
-Après la création: After the creation
 Arrêt maladie: Sick leave
 Assimilé salarié: '"Assimilé-salarié"'
-Assistant au choix du statut juridique: Assistance in choosing a legal status
-Assistant à la déclaration des revenus des plateformes en ligne: Assistant to the declaration of income of online platforms
-Assistant à la détermination des charges sociales déductibles: Assistance in determining deductible social charges
 Assistants à la déclaration de revenu 2022 des indépendants: Assistants to the 2022 income tax return for the self-employed
 "Attention, information importante": Attention, important information
 "Attention, vos données sauvegardées seront supprimées de manière définitive.": Please note that your saved data will be permanently deleted.
@@ -55,7 +51,6 @@ Chiffre d'affaires: Sales figures
 Chiffre d'affaires estimé: Estimated turnover
 "Choix d'imposition : impôt sur le revenu": "Tax Election: Income Tax"
 "Choix d'imposition : impôt sur les sociétés": "Tax election: corporate income tax"
-Choix du statut juridique: Choice of legal status
 "Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre":
   How does it work? See the explanatory page on the github repository page, new
   window
@@ -74,10 +69,8 @@ Cotisations: Contributions
 Cotisations sociales: Social contributions
 "Crée le :": "Created on :"
 Créer une: Create a
-Créer une entreprise: Create a company
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: In what cases are my profits not BNC?
 Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: When is my company not subject to income tax?
-Demande de mobilité internationale: Request for international mobility
 Devenir: Become
 Dividendes nets: Net dividends
 Documentation: Documentation
@@ -93,7 +86,6 @@ Décès: Deaths
 Dépôt de capital: Capital deposit
 Effacer mes réponses: Delete my answers
 "Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre": Apply for partial unemployment, access the dedicated page, new window
-Embaucher: Hire
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "In the event of an<1>accident at work</1>, an <4>occupational disease</4> or
   an <7>accident on the way to or from work</7>, you will be compensated up to
@@ -146,7 +138,6 @@ Gérant minoritaire ou égalitaire: Minority or equal manager
 "Gérant minoritaire ou égalitaire, sélectionner l'option et passer à l'étape suivante":
   Minority or equal shareholder manager, select the option and go to the next
   step
-Gérer mon activité: Manage my business
 Habituellement: Usually
 Impôt: Tax
 Impôt au barème: Tax on the scale
@@ -183,6 +174,7 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
   panel will open to allow you to add details to the simulation, detailed
   results will be displayed below the form and will be updated when you edit the
   form.</2>
+Les formalités pour embaucher: The formalities for hiring
 "Lire les précisions, ouvrir le message condensé.": Read the details, open the condensed message.
 Liste des intégrations: List of integrations
 Liste des statuts juridiques: List of legal statutes
@@ -265,12 +257,13 @@ Protection sociale: Social protection
 Précédent: Previous
 Prévisualisation: Preview
 Qu'est-ce que ça veut dire ?: What does that mean?
-Que cherchez-vous ?: What are you looking for?
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: What can we do better to meet your expectations?
 Quelle est votre activité ?: What is your activity?
 Recharger: Reload
+Recherche sur le site: Search on the site
 Rechercher: Search
-Rechercher une règle de calcul dans la documentation: Search for a calculation rule in the documentation
+Rechercher un simulateur ou une règle: Search for a simulator or a rule
+Rechercher une règle dans la documentation: Search for a rule in the documentation
 Rechercher votre entreprise: Search for your company
 "Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.": Search, open the dialog box to enter your search terms.
 Renseigner une adresse e-mail (au format nom@domaine:
@@ -314,7 +307,7 @@ Salariés et employeurs: Employees and employers
   appear in the search results.<7>If this is the case, don't worry, you can
   still consult and use our simulators</7>.
 Simulateurs: Simulations
-Simulateurs disponibles: Available simulators
+Simulateurs et Assistants: Simulators and Assistants
 Simulation en cours: Simulation in progress
 Situation personnelle: Personal situation
 Statistiques: Statistics
@@ -1111,24 +1104,25 @@ nextSteps:
     title: Integrate the web module
 nombres de votes: number of votes
 pages:
-  accessibilité: <0>Accessibility</0><1></1><2></2><3>This page is not a help
-    page, but a declaration of compliance with the <2>RGAA</2> 4.0 which aims to
-    define the general level of accessibility found on the site in accordance
-    with the regulations. This page is mandatory to be compliant with the RGAA
-    4.0.</3><4>What is digital accessibility?</4><5>An accessible website is a
+  accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
+    page, but a declaration of conformity to the <2>RGAA</2> 4.1 which aims at
+    defining the general level of accessibility noted on the site in accordance
+    with the regulation. This page is mandatory to be compliant with the RGAA
+    4.1.</3><4>What is digital accessibility?</4><5>An accessible website is a
     website that allows all Internet users to access its content without
     difficulty, including people with disabilities who use specialized software
     or hardware.</5><6>An accessible website allows for example
     to:</6><7><0>Navigate with voice synthesizers or Braille displays
     (particularly used by blind or visually impaired Internet
     users).</0><1>Customize the display of the site according to your needs
-    (enlarging characters, changing colors, etc.).</1><2>Navigate without using
-    the mouse, with the keyboard only or via a touch
-    screen.</2></7><8>Accessibility statement</8><9>Acoss is committed to making
-    its websites accessible in accordance with article 47 of law n° 2005-102 of
-    11 February 2005.</9><10>To this end, it draws up <2>the strategy and action
-    plan to be</2> implemented.</10><11>This declaration of accessibility
-    applies to <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance
+    (enlarging the characters, changing the colors, etc.).</1><2>Navigate
+    without using the mouse, with the keyboard only or via a touch
+    screen.</2></7><8>Accessibility statement</8><9>Acoss undertakes to make its
+    internet, extranet and intranet sites accessible in accordance with article
+    47 of law n° 2005-102 of 11 February 2005.</9><10>To this end, it is
+    drafting <2>the strategy and action plan to be</2> implemented.</10><11>This
+    declaration of accessibility applies to
+    <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance
     status</12><13><0>https://mon-entreprise.urssaf.fr</0> is currently not in
     compliance with the <4>General Accessibility Improvement Framework
     (GA</4>I). The compliance audit will be scheduled soon. Corrections will be
@@ -1143,15 +1137,16 @@ pages:
     so, send us an e-mail to <2>accessibilite@acoss.fr.</2></17><18>Rights
     Defender</18><19>This procedure is to be used in the following
     case.</19><20>You have reported to the webmaster a lack of accessibility
-    that prevents you from accessing content or services on the portal and you
+    that prevents you from accessing a content or service of the portal and you
     have not received a satisfactory response.</20><21><0>Write a message to the
     Human Rights
     Defender<1>(https://formulaire.defenseurdesdroits.fr/)</1></0><1>Contact the
     delegate of the Defender of Rights in your
     area<1>(https://www.defenseurdesdroits.fr/saisir/delegues)</1></1><2>Send a
     letter by post (free of charge, do not put a stamp on it)
-    to:<1></1>Défenseur des droits<3></3>Libre réponse 71120<5></5>75342 Paris
-    CEDEX 07</2></21><22>Updated on 29/01/2021</22>
+    to:<1></1>Défenseur des droits<3></3>Free reply 71120<5></5>75342 Paris
+    CEDEX 07</2><3>Contact the Human Rights Defender by telephone: <2>+33 9 69
+    39 00 00</2></3></21><22>Updated on 29/01/2021</22>"
   assistant:
     recherche-code-ape:
       seo explanation: "<0>How does the APE code search work?</0><1>To find your
@@ -1417,8 +1412,8 @@ pages:
       title: Request for international mobility
   simulateurs:
     accueil:
-      description: All simulators on this site are kept up to date with the latest
-        legislative developments.
+      description: All simulators and wizards on this site are kept up to date with
+        the latest legislative developments.
       header: All the simulators on this site are kept up to date with the latest
         legislative developments.
       section: <0>All simulators on this site are :</0><1><0><0>kept up to date</0>
@@ -1426,7 +1421,7 @@ pages:
         developments</0><1>Continuously<0>improved</0> to increase the number of
         devices taken into account</1><2><0>Easily integrated into</0> any
         website for<0>free</0>. To <3>find out more</3>, click here.</2></1>
-      titre: Simulators available
+      titre: Simulators and Assistants
     artiste-auteur:
       meta:
         description: Estimate social contributions on copyright and BNC income
