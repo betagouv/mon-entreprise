@@ -18,7 +18,7 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { Tag, TagType } from '@/design-system/tag'
 import { Tooltip } from '@/design-system/tooltip'
 import { Strong } from '@/design-system/typography'
-import { H1, H4, H5 } from '@/design-system/typography/heading'
+import { H2, H4, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { answerQuestion } from '@/store/actions/actions'
@@ -62,8 +62,14 @@ const AllerPlusLoinRevenus = ({
 
 	return (
 		<Drawer
-			trigger={(buttonProps: { onClick: () => void }) => (
-				<Button color="secondary" light size="XS" {...buttonProps}>
+			trigger={(buttonProps) => (
+				<Button
+					color="secondary"
+					light
+					size="XS"
+					// eslint-disable-next-line react/jsx-props-no-spreading
+					{...buttonProps}
+				>
 					<Trans>Aller plus loin</Trans> <StyledArrowRightIcon />
 				</Button>
 			)}
@@ -105,226 +111,229 @@ const AllerPlusLoinRevenus = ({
 			}}
 		>
 			<>
-				<H1>
+				<H2>
 					<Trans>Aller plus loin sur les revenus</Trans>
-				</H1>
+				</H2>
 				<H4
-					as="h2"
+					as="h3"
 					css={`
 						margin-bottom: 1rem;
 					`}
 				>
 					<Trans>Calculer vos revenus</Trans>
 				</H4>
-				<StyledTable>
-					<caption className="sr-only">
-						{t(
-							'comparateur.allerPlusLoin.tableCaption',
-							"Tableau affichant le détail du calcul du revenu net pour la SASU, l'entreprise individuelle (EI) et l'auto-entreprise (AE)."
-						)}
-					</caption>
-					<thead>
-						<tr>
-							<th className="sr-only">Type de structure</th>
-							<th scope="col">
-								<span className="table-title-sasu">
-									<StatusTagIcon status="sasu" /> SASU
-								</span>
-							</th>
-
-							<th scope="col">
-								<Tooltip
-									tooltip="Entreprise individuelle"
-									id="tooltip-ei-table"
-								>
-									<span className="table-title-ei">
-										<StatusTagIcon status="ei" /> EI
+				<WrapperTable>
+					<StyledTable>
+						<caption className="sr-only">
+							{t(
+								'comparateur.allerPlusLoin.tableCaption',
+								"Tableau affichant le détail du calcul du revenu net pour la SASU, l'entreprise individuelle (EI) et l'auto-entreprise (AE)."
+							)}
+						</caption>
+						<thead>
+							<tr>
+								<th className="sr-only">Type de structure</th>
+								<th scope="col">
+									<span className="table-title-sasu">
+										<StatusTagIcon status="sasu" /> SASU
 									</span>
-								</Tooltip>
-							</th>
+								</th>
 
-							<th scope="col">
-								<Tooltip tooltip="Auto-entreprise" id="tooltip-ae-table">
-									<span className="table-title-ae">
-										<StatusTagIcon status="ae" /> AE
-									</span>
-								</Tooltip>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">
-								<Minus
-									css={`
-										opacity: 0;
-									`}
-									aria-hidden
-								>
-									-
-								</Minus>{' '}
-								<Trans>Chiffre d'affaires</Trans>
-							</th>
-							<td colSpan={3}>
-								<StyledTag $color={'grey' as TagType}>
-									<Value
-										expression="entreprise . chiffre d'affaires"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</StyledTag>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								<Minus aria-label={t('moins')}>-</Minus> <Trans>Charges</Trans>
-							</th>
-							<td colSpan={3}>
-								<StyledTag $color={'grey' as TagType}>
-									<Value
-										expression="entreprise . charges"
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</StyledTag>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								<Minus aria-label={t('moins')}>-</Minus>{' '}
-								<Trans>Cotisations</Trans>
-							</th>
-							<td>
-								<StyledTag $color={'secondary' as TagType}>
-									<Value
-										expression="dirigeant . rémunération . cotisations"
-										engine={assimiléEngine}
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</StyledTag>
-							</td>
-							<td>
-								<StyledTag $color={'independant' as TagType}>
-									<Value
-										expression="dirigeant . rémunération . cotisations"
-										engine={indépendantEngine}
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</StyledTag>
-							</td>
-							<td>
-								<StyledTag $color={'tertiary' as TagType}>
-									<Value
-										expression="dirigeant . rémunération . cotisations"
-										engine={autoEntrepreneurEngine}
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</StyledTag>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								<Minus aria-label={t('moins')}>-</Minus> <Trans>Impôts</Trans>
-							</th>
-							<td>
-								<StyledTag $color={'secondary' as TagType}>
-									<Value
-										expression="dirigeant . rémunération . impôt"
-										engine={assimiléEngine}
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</StyledTag>
-							</td>
-							<td>
-								<StyledTag $color={'independant' as TagType}>
-									<Value
-										expression="dirigeant . rémunération . impôt"
-										engine={indépendantEngine}
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</StyledTag>
-							</td>
-							<td>
-								<StyledTag $color={'tertiary' as TagType}>
-									<Value
-										expression="dirigeant . rémunération . impôt"
-										engine={autoEntrepreneurEngine}
-										unit="€/an"
-										displayedUnit="€"
-										linkToRule={false}
-									/>
-								</StyledTag>
-							</td>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<th scope="row">
-								<Minus
-									css={`
-										opacity: 0;
-									`}
-									aria-hidden
-								>
-									-
-								</Minus>{' '}
-								<StyledStrong>
-									<Trans>Revenu net</Trans>
-								</StyledStrong>
-							</th>
-							<td>
-								<StyledTag $color={'secondary' as TagType}>
-									<Strong>
+								<th scope="col">
+									<Tooltip
+										tooltip="Entreprise individuelle"
+										id="tooltip-ei-table"
+									>
+										<span className="table-title-ei">
+											<StatusTagIcon status="ei" /> EI
+										</span>
+									</Tooltip>
+								</th>
+
+								<th scope="col">
+									<Tooltip tooltip="Auto-entreprise" id="tooltip-ae-table">
+										<span className="table-title-ae">
+											<StatusTagIcon status="ae" /> AE
+										</span>
+									</Tooltip>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">
+									<Minus
+										css={`
+											opacity: 0;
+										`}
+										aria-hidden
+									>
+										-
+									</Minus>{' '}
+									<Trans>Chiffre d'affaires</Trans>
+								</th>
+								<td colSpan={3}>
+									<StyledTag $color={'grey' as TagType}>
 										<Value
-											expression="dirigeant . rémunération . net . après impôt"
+											expression="entreprise . chiffre d'affaires"
+											displayedUnit="€"
+											linkToRule={false}
+										/>
+									</StyledTag>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									<Minus aria-label={t('moins')}>-</Minus>{' '}
+									<Trans>Charges</Trans>
+								</th>
+								<td colSpan={3}>
+									<StyledTag $color={'grey' as TagType}>
+										<Value
+											expression="entreprise . charges"
+											unit="€/an"
+											displayedUnit="€"
+											linkToRule={false}
+										/>
+									</StyledTag>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									<Minus aria-label={t('moins')}>-</Minus>{' '}
+									<Trans>Cotisations</Trans>
+								</th>
+								<td>
+									<StyledTag $color={'secondary' as TagType}>
+										<Value
+											expression="dirigeant . rémunération . cotisations"
 											engine={assimiléEngine}
 											unit="€/an"
 											displayedUnit="€"
 											linkToRule={false}
 										/>
-									</Strong>
-								</StyledTag>
-							</td>
-							<td>
-								<StyledTag $color={'independant' as TagType}>
-									<Strong>
+									</StyledTag>
+								</td>
+								<td>
+									<StyledTag $color={'independant' as TagType}>
 										<Value
-											expression="dirigeant . rémunération . net . après impôt"
+											expression="dirigeant . rémunération . cotisations"
 											engine={indépendantEngine}
 											unit="€/an"
 											displayedUnit="€"
 											linkToRule={false}
 										/>
-									</Strong>
-								</StyledTag>
-							</td>
-							<td>
-								<StyledTag $color={'tertiary' as TagType}>
-									<Strong>
+									</StyledTag>
+								</td>
+								<td>
+									<StyledTag $color={'tertiary' as TagType}>
 										<Value
-											expression="dirigeant . rémunération . net . après impôt"
+											expression="dirigeant . rémunération . cotisations"
 											engine={autoEntrepreneurEngine}
 											unit="€/an"
 											displayedUnit="€"
 											linkToRule={false}
 										/>
-									</Strong>
-								</StyledTag>
-							</td>
-						</tr>
-					</tfoot>
-				</StyledTable>
+									</StyledTag>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									<Minus aria-label={t('moins')}>-</Minus> <Trans>Impôts</Trans>
+								</th>
+								<td>
+									<StyledTag $color={'secondary' as TagType}>
+										<Value
+											expression="dirigeant . rémunération . impôt"
+											engine={assimiléEngine}
+											unit="€/an"
+											displayedUnit="€"
+											linkToRule={false}
+										/>
+									</StyledTag>
+								</td>
+								<td>
+									<StyledTag $color={'independant' as TagType}>
+										<Value
+											expression="dirigeant . rémunération . impôt"
+											engine={indépendantEngine}
+											unit="€/an"
+											displayedUnit="€"
+											linkToRule={false}
+										/>
+									</StyledTag>
+								</td>
+								<td>
+									<StyledTag $color={'tertiary' as TagType}>
+										<Value
+											expression="dirigeant . rémunération . impôt"
+											engine={autoEntrepreneurEngine}
+											unit="€/an"
+											displayedUnit="€"
+											linkToRule={false}
+										/>
+									</StyledTag>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th scope="row">
+									<Minus
+										css={`
+											opacity: 0;
+										`}
+										aria-hidden
+									>
+										-
+									</Minus>{' '}
+									<StyledStrong>
+										<Trans>Revenu net</Trans>
+									</StyledStrong>
+								</th>
+								<td>
+									<StyledTag $color={'secondary' as TagType}>
+										<Strong>
+											<Value
+												expression="dirigeant . rémunération . net . après impôt"
+												engine={assimiléEngine}
+												unit="€/an"
+												displayedUnit="€"
+												linkToRule={false}
+											/>
+										</Strong>
+									</StyledTag>
+								</td>
+								<td>
+									<StyledTag $color={'independant' as TagType}>
+										<Strong>
+											<Value
+												expression="dirigeant . rémunération . net . après impôt"
+												engine={indépendantEngine}
+												unit="€/an"
+												displayedUnit="€"
+												linkToRule={false}
+											/>
+										</Strong>
+									</StyledTag>
+								</td>
+								<td>
+									<StyledTag $color={'tertiary' as TagType}>
+										<Strong>
+											<Value
+												expression="dirigeant . rémunération . net . après impôt"
+												engine={autoEntrepreneurEngine}
+												unit="€/an"
+												displayedUnit="€"
+												linkToRule={false}
+											/>
+										</Strong>
+									</StyledTag>
+								</td>
+							</tr>
+						</tfoot>
+					</StyledTable>
+				</WrapperTable>
 				<Spacing md />
 				<Flex>
 					<H4 as="h2">Bénéficier de l'ACRE</H4>
@@ -358,10 +367,9 @@ const AllerPlusLoinRevenus = ({
 							id="activation-acre"
 							onChange={(value: boolean) => setAcreValue(value)}
 							defaultSelected={defaultValueACRE as boolean}
+							label="Activer l'ACRE dans la simulation"
+							invertLabel
 						/>
-						<Label htmlFor="activation-acre">
-							Activer l'ACRE dans la simulation
-						</Label>
 					</FlexCentered>
 
 					{(acreValue || defaultValueACRE) && (
@@ -378,10 +386,9 @@ const AllerPlusLoinRevenus = ({
 									id="activation-acre-ae"
 									onChange={(value: boolean) => setAEAcreValue(value)}
 									defaultSelected={isAutoEntrepreneurACREEnabled}
+									label="Je suis éligible à l'ACRE pour mon auto-entreprise"
+									invertLabel
 								/>
-								<Label htmlFor="activation-acre-ae">
-									Je suis éligible à l'ACRE pour mon auto-entreprise
-								</Label>
 							</FlexCentered>
 						</>
 					)}
@@ -462,10 +469,9 @@ const AllerPlusLoinRevenus = ({
 						id="versement-liberatoire"
 						onChange={setVersementLiberatoireValue}
 						defaultSelected={defaultValueVersementLiberatoire as boolean}
+						label="Activer le versement libératoire dans la simulation."
+						invertLabel
 					/>
-					<Label htmlFor="versement-liberatoire">
-						Activer le versement libératoire dans la simulation.
-					</Label>
 				</FlexCentered>
 			</>
 		</Drawer>
@@ -497,14 +503,12 @@ const FlexCentered = styled.div`
 	align-items: center;
 `
 
-const Label = styled.label`
-	margin-left: ${({ theme }) => theme.spacings.md};
-	font-family: ${({ theme }) => theme.fonts.main};
-	font-size: 1rem;
-`
-
 const StyledArrowRightIcon = styled(ArrowRightIcon)`
 	margin-left: ${({ theme }) => theme.spacings.sm};
+`
+
+const WrapperTable = styled.div`
+	overflow: auto;
 `
 
 const StyledTable = styled.table`
@@ -517,6 +521,13 @@ const StyledTable = styled.table`
 
 	tr {
 		border-spacing: ${({ theme }) => theme.spacings.md}!important;
+	}
+
+	th {
+		color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[200]
+				: theme.colors.extended.grey[800]};
 	}
 
 	thead th {

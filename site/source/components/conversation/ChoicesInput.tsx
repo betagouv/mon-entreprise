@@ -347,8 +347,9 @@ export const SwitchInput = (props: {
 	label?: string
 	id?: string
 	key?: string
+	invertLabel?: boolean
 }) => {
-	const { onChange, id, label, defaultSelected, key } = props
+	const { onChange, id, label, defaultSelected, key, invertLabel } = props
 
 	return (
 		<Switch
@@ -357,6 +358,7 @@ export const SwitchInput = (props: {
 			light
 			id={id}
 			key={key}
+			invertLabel={invertLabel}
 		>
 			{label}
 		</Switch>
