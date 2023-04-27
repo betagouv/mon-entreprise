@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -50,8 +50,12 @@ export default function Conversation({
 
 	const { t } = useTranslation()
 
-	const { currentQuestion, currentQuestionIsAnswered, goToPrevious, goToNext } =
-		useNavigateQuestions(engines)
+	const {
+		currentQuestion,
+		currentQuestionIsAnswered,
+		goToPrevious: goToPreviousQuestion,
+		goToNext: goToNextQuestion,
+	} = useNavigateQuestions(engines)
 
 	const onChange = (
 		value: PublicodesExpression | undefined,
@@ -62,6 +66,26 @@ export default function Conversation({
 
 	const [firstRenderDone, setFirstRenderDone] = useState(false)
 	useEffect(() => setFirstRenderDone(true), [])
+
+	const focusFirstElemInForm = useCallback(() => {
+		formRef.current
+			?.querySelector<HTMLInputElement | HTMLButtonElement | HTMLLinkElement>(
+				'input, button, a'
+			)
+			?.focus()
+	}, [])
+
+	const goToPrevious = useCallback(() => {
+		goToPreviousQuestion()
+		focusFirstElemInForm()
+	}, [focusFirstElemInForm, goToPreviousQuestion])
+
+	const goToNext = useCallback(() => {
+		goToNextQuestion()
+		focusFirstElemInForm()
+	}, [focusFirstElemInForm, goToNextQuestion])
+
+	const formRef = React.useRef<HTMLFormElement>(null)
 
 	return (
 		<>
@@ -85,6 +109,7 @@ export default function Conversation({
 								e.preventDefault()
 								goToNext()
 							}}
+							ref={formRef}
 						>
 							<div
 								css={`
