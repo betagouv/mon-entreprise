@@ -27,12 +27,8 @@ Aller plus loin: Aller plus loin
 Aller plus loin sur les revenus: Aller plus loin sur les revenus
 "Aller à l'étape actuelle :": "Aller à l'étape actuelle :"
 Annuler: Annuler
-Après la création: Après la création
 Arrêt maladie: Arrêt maladie
 Assimilé salarié: Assimilé salarié
-Assistant au choix du statut juridique: Assistant au choix du statut juridique
-Assistant à la déclaration des revenus des plateformes en ligne: Assistant à la déclaration des revenus des plateformes en ligne
-Assistant à la détermination des charges sociales déductibles: Assistant à la détermination des charges sociales déductibles
 Assistants à la déclaration de revenu 2022 des indépendants: Assistants à la déclaration de revenu 2022 des indépendants
 "Attention, information importante": Attention, information importante
 "Attention, vos données sauvegardées seront supprimées de manière définitive.": Attention, vos données sauvegardées seront supprimées de manière définitive.
@@ -57,7 +53,6 @@ Chiffre d'affaires: Chiffre d'affaires
 Chiffre d'affaires estimé: Chiffre d'affaires estimé
 "Choix d'imposition : impôt sur le revenu": "Choix d'imposition : impôt sur le revenu"
 "Choix d'imposition : impôt sur les sociétés": "Choix d'imposition : impôt sur les sociétés"
-Choix du statut juridique: Choix du statut juridique
 "Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre":
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
@@ -76,10 +71,8 @@ Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
 "Crée le :": "Crée le :"
 Créer une: Créer une
-Créer une entreprise: Créer une entreprise
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: Dans quels cas mes bénéfices ne sont pas de type BNC ?
 Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?
-Demande de mobilité internationale: Demande de mobilité internationale
 Devenir: Devenir
 Dividendes nets: Dividendes nets
 Documentation: Documentation
@@ -97,7 +90,6 @@ Effacer mes réponses: Effacer mes réponses
 "Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre":
   Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle
   fenêtre
-Embaucher: Embaucher
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
   d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à
@@ -151,7 +143,6 @@ Gérant minoritaire ou égalitaire: Gérant minoritaire ou égalitaire
 "Gérant minoritaire ou égalitaire, sélectionner l'option et passer à l'étape suivante":
   Gérant minoritaire ou égalitaire, sélectionner l'option et passer à l'étape
   suivante
-Gérer mon activité: Gérer mon activité
 Habituellement: Habituellement
 Impôt: Impôt
 Impôt au barème: Impôt au barème
@@ -189,6 +180,7 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
   d'apporter des précisions à la simulation, des résultats détaillés
   s'afficheront en dessous du formulaire et seront mis à jour quand vous
   modifierez ce dernier.</2>
+Les formalités pour embaucher: Les formalités pour embaucher
 "Lire les précisions, ouvrir le message condensé.": Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
 Liste des statuts juridiques: Liste des statuts juridiques
@@ -273,12 +265,13 @@ Protection sociale: Protection sociale
 Précédent: Précédent
 Prévisualisation: Prévisualisation
 Qu'est-ce que ça veut dire ?: Qu'est-ce que ça veut dire ?
-Que cherchez-vous ?: Que cherchez-vous ?
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
 Quelle est votre activité ?: Quelle est votre activité ?
 Recharger: Recharger
+Recherche sur le site: Recherche sur le site
 Rechercher: Rechercher
-Rechercher une règle de calcul dans la documentation: Rechercher une règle de calcul dans la documentation
+Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
+Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher votre entreprise: Rechercher votre entreprise
 "Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.": Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.
 Renseigner une adresse e-mail (au format nom@domaine:
@@ -325,7 +318,7 @@ Salariés et employeurs: Salariés et employeurs
   entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de
   même consulter et utiliser nos simulateurs.</7>
 Simulateurs: Simulateurs
-Simulateurs disponibles: Simulateurs disponibles
+Simulateurs et Assistants: Simulateurs et Assistants
 Simulation en cours: Simulation en cours
 Situation personnelle: Situation personnelle
 Statistiques: Statistiques
@@ -1098,11 +1091,11 @@ nextSteps:
     title: Intégrer le module web
 nombres de votes: nombres de votes
 pages:
-  accessibilité: <0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
-    page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.0&nbsp;qui
+  accessibilité: "<0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
+    page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.1&nbsp;qui
     vise à définir le niveau d'accessibilité général constaté sur le site
     conformément à la réglementation. Cette page est obligatoire pour être
-    conforme au RGAA 4.0.</3><4>Qu’est-ce que l’accessibilité
+    conforme au RGAA 4.1.</3><4>Qu’est-ce que l’accessibilité
     numérique&nbsp;?</4><5>Un site web accessible est un site qui permet à tous
     les internautes d’accéder à ses contenus sans difficulté, y compris aux
     personnes qui présentent un handicap et utilisent des logiciels ou matériels
@@ -1113,10 +1106,10 @@ pages:
     (grossissement des caractères, modification des couleurs,
     etc.).</1><2>Naviguer sans utiliser la souris, avec le clavier uniquement ou
     via un écran tactile.</2></7><8>Déclaration d’accessibilité</8><9>L'Acoss
-    s’engage à rendre ses sites internet accessibles conformément à l’article 47
-    de la loi n° 2005-102 du 11 février 2005.</9><10>À cette fin, elle rédige
-    <2>la stratégie et le plan d’action à mettre en œuvre</2>.</10><11>Cette
-    déclaration d’accessibilité s’applique à
+    s’engage à rendre ses sites internet, extranet, intranet accessibles
+    conformément à l’article 47 de la loi n° 2005-102 du 11 février
+    2005.</9><10>À cette fin, elle rédige <2>la stratégie et le plan d’action à
+    mettre en œuvre</2>.</10><11>Cette déclaration d’accessibilité s’applique à
     <2>https://mon-entreprise.urssaf.fr</2>.</11><12>État de
     conformité</12><13><0>https://mon-entreprise.urssaf.fr</0> n’est
     actuellement pas en conformité avec le <4>référentiel général d’amélioration
@@ -1142,8 +1135,10 @@ pages:
     (<1>https://www.defenseurdesdroits.fr/saisir/delegues</1>)</1><2>Envoyer un
     courrier par la poste (gratuit, ne pas mettre de timbre)
     à&nbsp;:<1></1>Défenseur des droits<3></3>Libre réponse
-    71120<5></5>75342&nbsp;Paris CEDEX 07</2></21><22>Mis à jour le
-    29/01/2021</22>
+    71120<5></5>75342&nbsp;Paris CEDEX 07</2><3>Contacter le D&eacute;fenseur
+    des droits par t&eacute;l&eacute;phone&nbsp;:
+    <2>+33&nbsp;9&nbsp;69&nbsp;39&nbsp;00&nbsp;00</2></3></21><22>Mis à jour le
+    29/01/2021</22>"
   assistant:
     recherche-code-ape:
       seo explanation: "<0>Comment fonctionne la recherche de code APE ?</0><1>Pour
@@ -1423,8 +1418,8 @@ pages:
       title: Demande de mobilité internationale
   simulateurs:
     accueil:
-      description: Tous les simulateurs sur ce site sont maintenus à jour avec les
-        dernières évolutions législatives.
+      description: Tous les simulateurs et assistants sur ce site sont maintenus à
+        jour avec les dernières évolutions législatives.
       header: Tous les simulateurs sur ce site sont maintenus à jour avec les
         dernières évolutions législatives.
       section: <0>Tous les simulateurs sur ce site sont :</0><1><0><0>Maintenus à
@@ -1432,7 +1427,7 @@ pages:
         en continu</0> afin d'augmenter le nombre de dispositifs pris en
         compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
         quel site internet. <3>En savoir plus</3>.</2></1>
-      titre: Simulateurs disponibles
+      titre: Simulateurs et Assistants
     artiste-auteur:
       meta:
         description: Estimez les cotisations sociales sur les droits d'auteur et sur le
