@@ -26,7 +26,10 @@ export default function SimulateursEtAssistants() {
 	const { t } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
 	const simulators = useSimulatorsData()
-	const titre = t('pages.simulateurs.accueil.titre', 'Simulateurs disponibles')
+	const titre = t(
+		'pages.simulateurs.accueil.titre',
+		'Simulateurs et Assistants'
+	)
 
 	return (
 		<>
@@ -35,7 +38,7 @@ export default function SimulateursEtAssistants() {
 				title={titre}
 				description={t(
 					'pages.simulateurs.accueil.description',
-					'Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives.'
+					'Tous les simulateurs et assistants sur ce site sont maintenus à jour avec les dernières évolutions législatives.'
 				)}
 				ogImage={simulatorSvg}
 			/>
