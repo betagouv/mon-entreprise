@@ -69,7 +69,7 @@ describe(
 				.tab()
 				.type('Française')
 				.tab()
-				.type('1991-07-25')
+				.type('25/07/1991')
 
 			cy.contains('Non')
 				.click()
@@ -114,7 +114,7 @@ describe(
 			// "activité en France" section
 			cy.contains('Pour une période déterminée et dans un seul pays').click()
 			cy.contains('Date de début').click({ force: true })
-			cy.focused().type('2020-11-06').tab().type('2021-04-09').tab()
+			cy.focused().type('06/11/2020').tab().tab().type('09/04/2021').tab().tab()
 			cy.focused().type('Argen{enter}')
 
 			cy.contains('Agent contractuel').click()
@@ -161,7 +161,8 @@ describe(
 				.tab()
 				.type('Sophie')
 				.tab()
-				.type('1978-04-21')
+				.type('21/04/1978')
+				.tab()
 				.tab()
 			cy.focused().type('{downarrow}{enter}')
 
