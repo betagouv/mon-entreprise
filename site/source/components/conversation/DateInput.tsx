@@ -3,6 +3,7 @@ import { useCallback } from 'react'
 import { InputProps } from '@/components/conversation/RuleInput'
 import { DateField } from '@/design-system/field'
 
+import { useEngine } from '../utils/EngineContext'
 import InputSuggestions from './InputSuggestions'
 
 export default function DateInput({
@@ -14,6 +15,8 @@ export default function DateInput({
 	required,
 	value,
 }: InputProps) {
+	const engine = useEngine()
+
 	const convertDate = (val?: unknown) => {
 		if (!val || typeof val !== 'string') {
 			return undefined
@@ -41,7 +44,9 @@ export default function DateInput({
 				{suggestions && (
 					<InputSuggestions
 						suggestions={suggestions}
-						onFirstClick={(value) => {
+						onFirstClick={(node) => {
+							const value = engine.evaluate(node)
+
 							handleDateChange(
 								'nodeValue' in value && typeof value.nodeValue === 'string'
 									? value.nodeValue
