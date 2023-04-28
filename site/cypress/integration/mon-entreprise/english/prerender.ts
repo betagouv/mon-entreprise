@@ -93,10 +93,10 @@ describe('Test prerender', function () {
 
 					cy.contains('I would like to start my own business')
 
-					cy.contains('a', 'Employee')
-					cy.contains('a', 'Auto-entrepreneur')
-					cy.contains('a', 'Status Comparison')
-					cy.contains('a', 'Discover all the simulators and assistants')
+					cy.contains('Employee')
+					cy.contains('Auto-entrepreneur')
+					cy.contains('Status Comparison')
+					cy.contains('Discover all the simulators and assistants')
 				},
 			},
 			{

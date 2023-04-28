@@ -30,7 +30,7 @@ describe('Partage (simulateur salarié)', function () {
 		cy.visit(simulatorUrl)
 		cy.get(brutInputSelector).first().type('{selectall}1539')
 		cy.contains('De quel type de contrat').should('be.visible')
-		cy.get('label').contains('CDD').should('be.visible').click()
+		cy.get('label').contains('CDD').should('be.visible').click('left')
 		cy.get('button').contains('Suivant').should('be.visible')
 		cy.contains('Générer un lien').click()
 		cy.get('input[aria-label="URL de votre simulation"]')
