@@ -135,9 +135,9 @@ describe(
 			cy.focused().tab().type('you@ajido.com').tab().type('+94655487015')
 
 			cy.contains("Dans le pays d'accueil").click()
-			cy.focused().tab().type('{downarrow}{downarrow}')
 
-			cy.focused().tab().type('{downarrow}')
+			cy.focused().tab().type('{downarrow}{downarrow}')
+			cy.focused().tab().focused().tab().type('{downarrow}')
 			cy.focused().tab().type('{downarrow}')
 			cy.focused().tab().type('{downarrow}')
 			cy.focused().tab().type('{downarrow}')
