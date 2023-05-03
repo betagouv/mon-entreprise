@@ -75,6 +75,13 @@ describe('Simulateur auto-entrepreneur', { testIsolation: false }, function () {
 		})
 	})
 
+	it('should display the correct percentage when "Chiffre d\'affaires" is 0', function () {
+		cy.get(inputSelector).first().type('{selectall}0')
+
+		cy.contains(/[cC]otisations\s+0\s*%/)
+		cy.contains(/[Ii]mpôt\s+0\s*%/)
+	})
+
 	it('should be RGAA compliant', function () {
 		checkA11Y()
 	})
