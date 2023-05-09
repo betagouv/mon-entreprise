@@ -79,9 +79,7 @@ function simpleRoundedPer(values: Array<number>, logScale: number) {
 	const total = values.reduce(sum, 0)
 
 	if (total === 0) {
-		return values.map(() =>
-			{return 0}
-		)
+		return values.map(() => 0)
 	}
 
 	// By default we are talking percentages, but this can be per-mille or more
