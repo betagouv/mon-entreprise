@@ -1,5 +1,8 @@
 # Journal des modifications
 
+## 1.6.2
+- Mise à jour du SMIC au 1er mai 2023
+
 ## 1.6.1
 - Corrige le taux de CPF pour les auto-entrepreneur PLNR (2% depuis 2022)
 - Corrige une typo dans les montants de la CARPIMKO
