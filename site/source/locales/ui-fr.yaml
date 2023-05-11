@@ -900,8 +900,8 @@ feedback:
   thanks: Merci de votre retour !
 fieldRequired: Champ requis
 footer:
-  accessibilité: "Accessibilité : non conforme"
-  accessibilitéAriaLabel: "Accessibilité : non conforme, en savoir plus"
+  accessibilité: "Accessibilité : partiellement conforme"
+  accessibilitéAriaLabel: "Accessibilité : partiellement conforme, en savoir plus"
 formeJuridique:
   EI: Aucun apport en capital n'est nécessaire. Le capital privé et le capital de
     l'entreprise ne font qu'un.
@@ -1111,24 +1111,82 @@ pages:
     2005.</9><10>À cette fin, elle rédige <2>la stratégie et le plan d’action à
     mettre en œuvre</2>.</10><11>Cette déclaration d’accessibilité s’applique à
     <2>https://mon-entreprise.urssaf.fr</2>.</11><12>État de
-    conformité</12><13><0>https://mon-entreprise.urssaf.fr</0> n’est
-    actuellement pas en conformité avec le <4>référentiel général d’amélioration
-    de l’accessibilité (RGAA)</4>. L’audit de conformité sera prochainement
-    planifié. Les corrections seront prises en compte suite à
-    l’audit.</13><14>Droit à la compensation</14><15>Dans l’attente d’une mise
-    en conformité totale, vous pouvez obtenir une version accessible des
-    documents ou des informations qui y seraient contenues en envoyant un
+    conformité</12><13>Mon-entreprise - <2>https://mon-entreprise.urssaf.fr/</2>
+    est en conformité partielle avec le référentiel général d’amélioration de
+    l’accessibilité (RGAA), version 4.1 en raison des non-conformités et des
+    dérogations énumérées ci-dessous.</13><14>Résultats des
+    tests</14><15>L’audit de conformité réalisé par URBILOG révèle que
+    :</15><16><0>79% des critères du RGAA version 4.1 sont respectés.</0><1>Le
+    taux moyen de conformité du service en ligne est de 93%.</1></16><17>Nombre
+    de critères applicables : 63 ; Nombre de critères conformes : 50 ; Nombre de
+    critères non conformes : 13</17><18>Contenus non accessibles</18><19>Les
+    contenus listés ci-dessous ne sont pas accessibles pour les raisons
+    suivantes :</19><20>Non conformité</20><21>1. Images</21><22>Chaque image de
+    décoration est-elle correctement ignorée par les technologies d’assistance
+    ?</22><23>2. Cadres</23><24>RAS</24><25>3. Couleurs</25><26><0>Dans chaque
+    page web, l’information ne doit pas être donnée uniquement par la couleur.
+    Cette règle est-elle respectée ? </0><1>Dans chaque page web, les couleurs
+    utilisées dans les composants d’interface ou les éléments graphiques
+    porteurs d’informations sont-elles suffisamment contrastées (hors cas
+    particuliers) ?</1></26><27>4. Multimédia</27><28>RAS</28><29>5.
+    Tableaux</29><30>Pour chaque tableau de données, chaque en-tête de colonne
+    et chaque en-tête de ligne sont-ils correctement déclarés ?</30><31>6.
+    Liens</31><32>Chaque lien est-il explicite (hors cas particuliers)
+    ?</32><33>7. Scripts</33><34><0>Chaque script est-il, si nécessaire,
+    compatible avec les technologies d’assistance ?</0><1>Chaque script est-il
+    contrôlable par le clavier et par tout dispositif de pointage (hors cas
+    particuliers) ?</1><2>Pour chaque script qui initie un changement de
+    contexte, l’utilisateur est-il averti ou en a-t-il le contrôle
+    ?</2></34><35>8. Éléments obligatoires</35><36>RAS</36><37>9. Structuration
+    de l'information</37><38>Dans chaque page web, chaque liste est-elle
+    correctement structurée ?</38><39>10. Présentation de
+    l'information</39><40>Dans chaque page web, l’information reste-t-elle
+    compréhensible lorsque les feuilles de styles sont désactivées ?</40><41>11.
+    Formulaires</41><42><0>Dans chaque formulaire, chaque regroupement de champs
+    de même nature a-t-il une légende ?</0><1>Dans chaque formulaire, l’intitulé
+    de chaque bouton est-il pertinent (hors cas particuliers) ?</1></42><43>12.
+    Navigation</43><44>RAS</44><45>13. Consultation</45><46>Dans chaque page
+    web, chaque document bureautique en téléchargement possède-t-il, si
+    nécessaire, une version accessible (hors cas particuliers)
+    ?</46><47>Dérogation pour charge disproportionnée</47>
+    <49>RAS</49><50>Contenus non-soumis à l'obligation
+    d'accessibilité</50><51>RAS</51><52>Établissement de cette déclaration
+    d'accessibilité</52> <54>Cette déclaration d'accessibilité a été établie le
+    11/05/2023.</54><55>Technologies utilisées pour la réalisation du
+    site</55><56><0> HTML 5</0><1> CSS</1><2> JavaScript
+    </2></56><57>Environnement de test</57><58>Les vérifications de restitution
+    de contenus ont été réalisées sur la base de la combinaison fournie par la
+    base de référence du RGAA 4.1, avec les versions suivantes : </58><59><0>
+    NVDA 2022.4 et Firefox 110 </0><1> VoiceOver Mac OS 13.2 et Safari :
+    16.3</1></59><60>Outils pour évaluer l'accessibilité</60><61><0>Barre
+    extension de contrôle de taux de contraste WCAG Color Contrast
+    Checker</0><1> Barre extension Assistant RGAA V4.1 Compéthance</1><2> Barre
+    extension Web Developer toolbar</2><3> Inspecteur du navigateur</3><4>
+    UserCSS/Stylus</4></61><62>Pages du site ayant fait l'objet de la
+    vérification de
+    conformité</62><63><0><0>Accueil</0></0><1><0>Accessibilité</0></1><2><0>Pl\
+    an de
+    site</0></2><3><0>Statistiques</0></3><4><0>Documentation</0></4><5><0>Créer
+    une entreprise</0></5><6><0>Nombre
+    d'associés</0></6><7><0>Responsabilité</0></7><8><0>Choix du statut
+    juridique</0></8><9><0>Liste des statuts juridiques</0></9><10><0>Après la
+    création</0></10><11><0>Simulateurs</0></11><12><0>Simulateur de revenus
+    pour salarié</0></12><13><0>Assistant à la détermination des charges
+    sociales déductibles</0></13><14><0>Simulateur de revenus pour profession
+    libérale</0></14></63><64>Droit à la compensation</64><65>Dans l’attente
+    d’une mise en conformité totale, vous pouvez obtenir une version accessible
+    des documents ou des informations qui y seraient contenues en envoyant un
     courriel à <2>accessibilite@acoss.fr</2> en indiquant le nom du document
     concerné et/ou les informations que vous souhaiteriez obtenir. Les
     informations demandées vous seront transmises dans les meilleurs
-    délais.</15><16>Amélioration et contact</16><17>Vous pouvez nous aider à
+    délais.</65><66>Amélioration et contact</66><67>Vous pouvez nous aider à
     améliorer l’accessibilité du site en nous signalant les problèmes éventuels
     que vous rencontrez. Pour ce faire, envoyez-nous un courriel à
-    <2>accessibilite@acoss.fr</2>.</17><18>Défenseur des droits</18><19>Cette
-    procédure est à utiliser dans le cas suivant.</19><20>Vous avez signalé au
+    <2>accessibilite@acoss.fr</2>.</67><68>Défenseur des droits</68><69>Cette
+    procédure est à utiliser dans le cas suivant.</69><70>Vous avez signalé au
     responsable du site internet un défaut d’accessibilité qui vous empêche
     d’accéder à un contenu ou à un des services du portail et vous n’avez pas
-    obtenu de réponse satisfaisante.</20><21><0>Écrire un message au Défenseur
+    obtenu de réponse satisfaisante.</70><71><0>Écrire un message au Défenseur
     des droits
     (<1>https://formulaire.defenseurdesdroits.fr/</1>)</0><1>Contacter le
     délégué du Défenseur des droits dans votre région
@@ -1137,8 +1195,8 @@ pages:
     à&nbsp;:<1></1>Défenseur des droits<3></3>Libre réponse
     71120<5></5>75342&nbsp;Paris CEDEX 07</2><3>Contacter le D&eacute;fenseur
     des droits par t&eacute;l&eacute;phone&nbsp;:
-    <2>+33&nbsp;9&nbsp;69&nbsp;39&nbsp;00&nbsp;00</2></3></21><22>Mis à jour le
-    29/01/2021</22>"
+    <2>+33&nbsp;9&nbsp;69&nbsp;39&nbsp;00&nbsp;00</2></3></71><72>Mis à jour le
+    11/05/2023</72>"
   assistant:
     recherche-code-ape:
       seo explanation: "<0>Comment fonctionne la recherche de code APE ?</0><1>Pour

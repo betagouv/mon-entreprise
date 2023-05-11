@@ -8,7 +8,6 @@ declare const _default: readonly [{
         readonly icônes: "🏠 🛋";
         readonly explication: "Vous avez loué un logement meublé pour de courtes durées à une clientèle de passage qui n'y élit pas domicile (hors chambre d’hôte ou meublé de tourisme)";
         readonly plateformes: readonly ["Airbnb", "Abritel", "Booking"];
-        readonly "seuil d\u00E9claration": 760;
         readonly "seuil pro": 23000;
         readonly "seuil r\u00E9gime g\u00E9n\u00E9ral": 72600;
         readonly "exon\u00E9r\u00E9e si": readonly [{
@@ -47,7 +46,6 @@ declare const _default: readonly [{
     readonly titre: "Location de biens";
     readonly icônes: "🔑 🚗 🔧 🌱";
     readonly explication: "Vous mettez en location certains de vos biens, tels que voiture, matériel de jardinage, outils de bricolage, accessoires de luxe, vêtements...";
-    readonly "seuil d\u00E9claration": 0;
     readonly "seuil pro": 8227;
     readonly "seuil r\u00E9gime g\u00E9n\u00E9ral": 72600;
     readonly plateformes: readonly ["Drivy", "outils de jardinage, bricolage..."];

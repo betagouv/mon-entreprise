@@ -4217,11 +4217,11 @@ entreprise:
   titre.fr: entreprise
 entreprise . SIREN:
   description.en: >
-    [automatic] The Siren number is a unique 9 digit number for each
-    company. Ex : 401237780
+    [automatic] The Siren number is a unique 9-digit number for each
+    company. Example: 401237780
   description.fr: >
     Le numéro Siren est un numéro de 9 chiffres unique pour chaque
-    entreprise. Ex : 401237780
+    entreprise. Exemple : 401237780
   titre.en: '[automatic] SIREN'
   titre.fr: SIREN
 entreprise . TVA:
@@ -5456,8 +5456,8 @@ entreprise . exercice:
   titre.en: '[automatic] exercise'
   titre.fr: exercice
 entreprise . imposition:
-  question.en: "[automatic] What is your company's **type of taxation**?"
-  question.fr: Quel est le **type d'imposition** de votre entreprise ?
+  question.en: '[automatic] What type of taxation does your company have?'
+  question.fr: Quel est le type d'imposition de votre entreprise ?
   titre.en: '[automatic] taxation'
   titre.fr: imposition
 entreprise . imposition . IR:
@@ -5509,8 +5509,8 @@ entreprise . imposition . IR . information sur le report de déficit:
   titre.en: '[automatic] information on deficit carryover'
   titre.fr: information sur le report de déficit
 entreprise . imposition . IR . type de bénéfices:
-  question.en: "[automatic] What is your company's **type of profit**?"
-  question.fr: Quel est le **type de bénéfices** de votre entreprise ?
+  question.en: '[automatic] What type of benefits does your company provide?'
+  question.fr: Quel est le type de bénéfices de votre entreprise ?
   titre.en: '[automatic] type of benefits'
   titre.fr: type de bénéfices
 entreprise . imposition . IR . type de bénéfices . BA:
@@ -5619,8 +5619,8 @@ entreprise . imposition . IS . éligible taux réduit:
   titre.en: '[automatic] eligible for reduced rate'
   titre.fr: éligible taux réduit
 entreprise . imposition . régime:
-  question.en: "[automatic] What is your company's **tax regime**?"
-  question.fr: Quel est le **régime d'imposition** de votre entreprise ?
+  question.en: '[automatic] What is the tax regime of your company?'
+  question.fr: Quel est le régime d'imposition de votre entreprise ?
   titre.en: '[automatic] diet'
   titre.fr: régime
 entreprise . imposition . régime . déclaration contrôlée:
@@ -5653,11 +5653,11 @@ entreprise . imposition . régime . micro-entreprise:
   titre.fr: micro-entreprise
 entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   description.en: '[automatic] The annual turnover threshold for the micro-tax
-    regime is exceeded. Learn
-    more](/documentation/company/turnover/threshold-micro-tax-exceeded)'
+    system is exceeded. [Read
+    more](/documentation/company/turnover/threshold-exceeded)'
   description.fr: Le seuil annuel de chiffre d'affaires pour le régime
     micro-fiscal est dépassé. [En savoir
-    plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro-dépassé)
+    plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
   titre.en: '[automatic] threshold alert exceeded'
   titre.fr: alerte seuil dépassés
 entreprise . imposition . régime . micro-entreprise . revenu abattu:

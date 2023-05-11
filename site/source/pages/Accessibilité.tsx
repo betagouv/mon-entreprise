@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { H1, H2, H3 } from '@/design-system/typography/heading'
+import { H1, H2, H3, H4, H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
@@ -23,7 +23,6 @@ export default function Accessibilité() {
 				)}
 			/>
 			<TrackPage chapter1="informations" name="accessibilite" />
-
 			<Body>
 				Cette page n'est pas une page d'aide, mais une déclaration de conformité
 				au{' '}
@@ -91,24 +90,263 @@ export default function Accessibilité() {
 			</Body>
 			<H3>État de conformité</H3>
 			<Body>
+				Mon-entreprise -{' '}
 				<Link
 					href="https://mon-entreprise.urssaf.fr"
 					aria-label="https://mon-entreprise.urssaf.fr, nouvelle fenêtre"
 				>
-					https://mon-entreprise.urssaf.fr
+					https://mon-entreprise.urssaf.fr/
 				</Link>{' '}
-				n’est actuellement pas en conformité avec le{' '}
-				<Link
-					href="https://accessibilite.numerique.gouv.fr/"
-					target="_blank"
-					rel="noreferrer"
-					aria-label="Référentiel général d’amélioration de l’accessibilité (RGAA), en savoir plus, nouvelle fenêtre"
-				>
-					référentiel général d’amélioration de l’accessibilité (RGAA)
-				</Link>
-				. L’audit de conformité sera prochainement planifié. Les corrections
-				seront prises en compte suite à l’audit.
+				est en conformité partielle avec le référentiel général d’amélioration
+				de l’accessibilité (RGAA), version 4.1 en raison des non-conformités et
+				des dérogations énumérées ci-dessous.
 			</Body>
+			<H3>Résultats des tests</H3>
+			<Body>L’audit de conformité réalisé par URBILOG révèle que :</Body>
+			<Ul>
+				<Li>79% des critères du RGAA version 4.1 sont respectés.</Li>
+				<Li>Le taux moyen de conformité du service en ligne est de 93%.</Li>
+			</Ul>
+			<Body>
+				Nombre de critères applicables : 63 ; Nombre de critères conformes : 50
+				; Nombre de critères non conformes : 13
+			</Body>
+			<H3>Contenus non accessibles</H3>
+			<Body>
+				Les contenus listés ci-dessous ne sont pas accessibles pour les raisons
+				suivantes :
+			</Body>
+			<H4>Non conformité</H4>
+			<H5>1. Images</H5>
+			<Body>
+				Chaque image de décoration est-elle correctement ignorée par les
+				technologies d’assistance ?
+			</Body>
+			<H5>2. Cadres</H5>
+			<Body>RAS</Body>
+			<H5>3. Couleurs</H5>
+			<Ul>
+				<Li>
+					Dans chaque page web, l’information ne doit pas être donnée uniquement
+					par la couleur. Cette règle est-elle respectée ?{' '}
+				</Li>
+				<Li>
+					Dans chaque page web, les couleurs utilisées dans les composants
+					d’interface ou les éléments graphiques porteurs d’informations
+					sont-elles suffisamment contrastées (hors cas particuliers) ?
+				</Li>
+			</Ul>
+			<H5>4. Multimédia</H5>
+			<Body>RAS</Body>
+			<H5>5. Tableaux</H5>
+			<Body>
+				Pour chaque tableau de données, chaque en-tête de colonne et chaque
+				en-tête de ligne sont-ils correctement déclarés ?
+			</Body>
+			<H5>6. Liens</H5>
+			<Body>Chaque lien est-il explicite (hors cas particuliers) ?</Body>
+			<H5>7. Scripts</H5>
+			<Ul>
+				<Li>
+					Chaque script est-il, si nécessaire, compatible avec les technologies
+					d’assistance ?
+				</Li>
+				<Li>
+					Chaque script est-il contrôlable par le clavier et par tout dispositif
+					de pointage (hors cas particuliers) ?
+				</Li>
+				<Li>
+					Pour chaque script qui initie un changement de contexte, l’utilisateur
+					est-il averti ou en a-t-il le contrôle ?
+				</Li>
+			</Ul>
+			<H5>8. Éléments obligatoires</H5>
+			<Body>RAS</Body>
+			<H5>9. Structuration de l'information</H5>
+			<Body>
+				Dans chaque page web, chaque liste est-elle correctement structurée ?
+			</Body>
+			<H5>10. Présentation de l'information</H5>
+			<Body>
+				Dans chaque page web, l’information reste-t-elle compréhensible lorsque
+				les feuilles de styles sont désactivées ?
+			</Body>
+			<H5>11. Formulaires</H5>
+			<Ul>
+				<Li>
+					Dans chaque formulaire, chaque regroupement de champs de même nature
+					a-t-il une légende ?
+				</Li>
+				<Li>
+					Dans chaque formulaire, l’intitulé de chaque bouton est-il pertinent
+					(hors cas particuliers) ?
+				</Li>
+			</Ul>
+			<H5>12. Navigation</H5>
+			<Body>RAS</Body>
+			<H5>13. Consultation</H5>
+			<Body>
+				Dans chaque page web, chaque document bureautique en téléchargement
+				possède-t-il, si nécessaire, une version accessible (hors cas
+				particuliers) ?
+			</Body>
+			<H4>Dérogation pour charge disproportionnée</H4> <Body>RAS</Body>
+			<H4>Contenus non-soumis à l'obligation d'accessibilité</H4>
+			<Body>RAS</Body>
+			<H3>Établissement de cette déclaration d'accessibilité</H3>{' '}
+			<Body>
+				Cette déclaration d'accessibilité a été établie le 11/05/2023.
+			</Body>
+			<H4>Technologies utilisées pour la réalisation du site</H4>
+			<Ul>
+				<Li> HTML 5</Li>
+				<Li> CSS</Li>
+				<Li> JavaScript </Li>
+			</Ul>
+			<H4>Environnement de test</H4>
+			<Body>
+				Les vérifications de restitution de contenus ont été réalisées sur la
+				base de la combinaison fournie par la base de référence du RGAA 4.1,
+				avec les versions suivantes :{' '}
+			</Body>
+			<Ul>
+				<Li> NVDA 2022.4 et Firefox 110 </Li>
+				<Li> VoiceOver Mac OS 13.2 et Safari : 16.3</Li>
+			</Ul>
+			<H4>Outils pour évaluer l'accessibilité</H4>
+			<Ul>
+				<Li>
+					Barre extension de contrôle de taux de contraste WCAG Color Contrast
+					Checker
+				</Li>
+				<Li> Barre extension Assistant RGAA V4.1 Compéthance</Li>
+				<Li> Barre extension Web Developer toolbar</Li>
+				<Li> Inspecteur du navigateur</Li>
+				<Li> UserCSS/Stylus</Li>
+			</Ul>
+			<H4>Pages du site ayant fait l'objet de la vérification de conformité</H4>
+			<Ul>
+				<Li>
+					<Link
+						aria-label="Accueil, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/"
+					>
+						Accueil
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Accessibilité, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/accessibilit%C3%A9"
+					>
+						Accessibilité
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Plan de site, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/plan-de-site"
+					>
+						Plan de site
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Statistiques, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/stats"
+					>
+						Statistiques
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Documentation, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/documentation"
+					>
+						Documentation
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Créer une entreprise, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er"
+					>
+						Créer une entreprise
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Nombre d'associés, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/statut-juridique/nombre-associ%C3%A9s"
+					>
+						Nombre d'associés
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Responsabilité, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/statut-juridique/responsabilit%C3%A9"
+					>
+						Responsabilité
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Choix du statut juridique, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/statut-juridique/auto-entrepreneur-ou-entreprise-individuelle"
+					>
+						Choix du statut juridique
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Liste des statuts juridiques, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/statut-juridique/liste"
+					>
+						Liste des statuts juridiques
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Après la création, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/apr%C3%A8s-la-cr%C3%A9ation"
+					>
+						Après la création
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Simulateurs, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/simulateurs"
+					>
+						Simulateurs
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Simulateur de revenus pour salarié, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/simulateurs/salaire-brut-net"
+					>
+						Simulateur de revenus pour salarié
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Assistant à la détermination des charges sociales déductibles, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/g%C3%A9rer/declaration-charges-sociales-independant"
+					>
+						Assistant à la détermination des charges sociales déductibles
+					</Link>
+				</Li>
+				<Li>
+					<Link
+						aria-label="Simulateur de revenus pour profession libérale, nouvelle fenêtre"
+						href="https://mon-entreprise.urssaf.fr/simulateurs/profession-liberale"
+					>
+						Simulateur de revenus pour profession libérale
+					</Link>
+				</Li>
+			</Ul>
 			<H3>Droit à la compensation</H3>
 			<Body>
 				Dans l’attente d’une mise en conformité totale, vous pouvez obtenir une
@@ -181,8 +419,7 @@ export default function Accessibilité() {
 					</Link>
 				</Li>
 			</Ul>
-
-			<SmallBody>Mis à jour le 29/01/2021</SmallBody>
+			<SmallBody>Mis à jour le 11/05/2023</SmallBody>
 		</Trans>
 	)
 }

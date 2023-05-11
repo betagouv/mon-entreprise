@@ -204,12 +204,12 @@ export default function Footer() {
 													to={absoluteSitePaths.accessibilité}
 													aria-label={t(
 														'footer.accessibilitéAriaLabel',
-														'Accessibilité : non conforme, en savoir plus'
+														'Accessibilité : partiellement conforme, en savoir plus'
 													)}
 													noUnderline
 												>
 													<Trans i18nKey="footer.accessibilité">
-														Accessibilité : non conforme
+														Accessibilité : partiellement conforme
 													</Trans>
 												</Link>
 											</StyledLi>
