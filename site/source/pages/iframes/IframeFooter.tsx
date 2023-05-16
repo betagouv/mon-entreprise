@@ -1,4 +1,3 @@
-import FeedbackButton from '@/components/Feedback'
 import Privacy from '@/components/layout/Footer/Privacy'
 import { Spacing } from '@/design-system/layout'
 
@@ -10,7 +9,7 @@ export default function IframeFooter() {
 					textAlign: 'center',
 				}}
 			>
-				<FeedbackButton isEmbedded />
+				{/* <FeedbackButton isEmbedded /> */}
 				<Spacing xl />
 				<Privacy noUnderline={false} />
 				<Spacing lg />

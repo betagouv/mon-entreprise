@@ -246,7 +246,7 @@ export default function SearchCodeAPE({ disabled }: SearchCodeApeProps) {
 				)}
 
 				<Spacing md />
-				<ActivityNotFound job={job} />
+				{/* <ActivityNotFound job={job} /> */}
 			</Grid>
 		</Grid>
 	)
