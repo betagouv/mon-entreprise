@@ -1105,98 +1105,97 @@ nextSteps:
 nombres de votes: number of votes
 pages:
   accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
-    page, but a declaration of conformity to the <2>RGAA</2> 4.1 which aims to
-    define the general level of accessibility noted on the site in accordance
-    with the regulation. This page is mandatory to be compliant with the RGAA
-    4.1.</3><4>What is digital accessibility?</4><5>An accessible website is a
-    website that allows all Internet users to access its content without
-    difficulty, including people with disabilities who use specialized software
-    or hardware.</5><6>An accessible website allows for example
-    to:</6><7><0>Navigate with voice synthesizers or Braille displays
-    (particularly used by blind or visually impaired Internet
-    users).</0><1>Customize the display of the site according to your needs
-    (enlarging characters, changing colors, etc.).</1><2>Navigate without using
-    the mouse, with the keyboard only or via a touch
-    screen.</2></7><8>Accessibility statement</8><9>Acoss undertakes to make its
-    internet, extranet and intranet sites accessible in accordance with article
-    47 of law n° 2005-102 of 11 February 2005.</9><10>To this end, it is
-    drafting <2>the strategy and action plan to be</2> implemented.</10><11>This
-    declaration of accessibility applies to
+    page, but a declaration of compliance with <2>RGAA</2> 4.1, which aims to
+    define the general level of accessibility observed on the site in accordance
+    with regulations. This page is mandatory to comply with RGAA 4.1.</3><4>What
+    is digital accessibility?</4><5>An accessible website is one that enables
+    all Internet users to access its content without difficulty, including
+    people with disabilities who use specialized software or hardware.</5><6>For
+    example, an accessible site enables :</6><7><0>Navigate with voice
+    synthesizers or Braille displays (used in particular by blind or
+    partially-sighted Internet users).</0><1>Customize the site's display
+    according to your needs (enlarging characters, changing colors,
+    etc.).</1><2>Navigate without using the mouse, with the keyboard only or via
+    a touch screen.</2></7><8>Accessibility statement</8><9>Acoss undertakes to
+    make its internet, extranet and intranet sites accessible in accordance with
+    article 47 of law no. 2005-102 of February 11, 2005.</9><10>To this end, it
+    will draw up <2>a strategy and action plan to be</2>
+    implemented.</10><11>This declaration of accessibility applies to
     <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance
-    status</12><13>My Company - <2>https://mon-entreprise.urssaf.fr/</2> is in
-    partial compliance with the General Accessibility Improvement Framework
-    (GAI), version 4.1 due to the non-conformities and derogations listed
-    below.</13><14>Test results</14><15>The compliance audit carried out by
-    URBILOG reveals that :</15><16><0>79% of the criteria of the RGAA version
-    4.1 are respected.</0><1>The average rate of conformity of the online
-    service is 93%.</1></16><17>Number of applicable criteria: 63; Number of
-    compliant criteria: 50; Number of non-compliant criteria: 13</17><18>Non
-    accessible contents</18><19>The contents listed below are not accessible for
-    the following reasons:</19><20>Non-compliance</20><21>1. Images</21><22>Is
-    each decorative image properly ignored by assistive technologies?</22><23>2.
-    Frames</23><24>CLEAR</24><25>3. Colors</25><26><0>In every web page,
-    information should not be given only by the color. Is this rule respected?
-    </0><1>In each web page, are the colors used in the interface components or
-    graphic elements carrying information sufficiently contrasted (except in
-    special cases)?</1></26><27>4. Multimedia</27><28>RAS</28><29>5.
-    Tables</29><30>For each data table, are each column header and row header
-    correctly reported?</30><31>6. Links</31><32>Is each link explicit (except
-    for special cases) ?</32><33>7. Scripts</33><34><0>Is each script, if
-    necessary, compatible with assistive technologies?</0><1>Is each script
-    controllable by the keyboard and by any pointing device (except in special
-    cases)?</1><2>For each script that initiates a context switch, is the user
-    warned or does he have control over it?</2></34><35>8. Mandatory
-    elements</35><36>RAS</36><37>9. Information structuring</37><38>In each web
-    page, is each list properly structured?</38><39>10. Presentation of the
-    information</39><40>In each web page, does the information remain
-    understandable when style sheets are disabled?</40><41>11.
-    Forms</41><42><0>In each form, does each grouping of fields of the same
-    nature have a caption?</0><1>In each form, is the title of each button
-    relevant (except in special cases)?</1></42><43>12.
-    Navigation</43><44>RAS</44><45>13. Consultation</45><46>In each web page,
-    does each office document available for download have, if necessary, an
-    accessible version (except in special cases)?</46><47>Exemption for
-    disproportionate burden</47> <49>RAS</49><50>Content not subject to the
-    accessibility obligation</50><51>RAS</51><52>Establishment of this
-    accessibility statement</52> <54>This accessibility statement was
-    established on 11/05/2023.</54><55>Technologies used for the realization of
-    the site</55><56><0> HTML 5</0><1> CSS</1><2> JavaScript </2></56><57>Test
-    environment</57><58>The content rendering tests were carried out on the
-    basis of the combination provided by the RGAA 4.1 reference base, with the
+    status</12><13>Mon-entreprise - <1>https://mon-entreprise.urssaf.fr/</1> is
+    partially compliant with the <5>RGAA (référentiel général d'amélioration de
+    l'accessibilité)</5>, version 4.1, due to the non-conformities and
+    derogations listed below.</13><14>Test results</14><15>The compliance audit
+    carried out by URBILOG revealed that :</15><16><0>79% of RGAA version 4.1
+    criteria are met.</0><1>The average compliance rate for the online service
+    is 93%.</1></16><17>Number of applicable criteria: 63; Number of compliant
+    criteria: 50; Number of non-compliant criteria: 13</17><18>Content not
+    accessible</18><19>The content listed below is not accessible for the
+    following reasons:</19><20>Non-compliance</20><21>1. Images</21><22>Is each
+    decorative image correctly ignored by assistive technologies?</22><23>2.
+    Frames</23><24>None</24><25>3. Colors</25><26><0>On every web page,
+    information should not be conveyed by color alone. Is this rule respected?
+    </0><1>In each web page, are the colors used in interface components or
+    graphic elements carrying information sufficiently contrasting (excluding
+    special cases)?</1></26><27>4. Multimedia</27><28>None</28><29>5.
+    Tables</29><30>For each data table, are each column header and each row
+    header correctly declared?</30><31>6. Links</31><32>Are all links explicit
+    (excluding special cases)?</32><33>7. Scripts</33><34><0>Is every script
+    compatible with assistive technologies, if necessary?</0><1>Can each script
+    be controlled via the keyboard or any other pointing device (excluding
+    special cases)?</1><2>For each script that initiates a context switch, is
+    the user warned or does he/she have control over it?</2></34><35>8.
+    Mandatory elements</35><36>None</36><37>9. Information
+    structuring</37><38>Is every list on every web page correctly
+    structured?</38><39>10. Presentation of information</39><40>Does the
+    information on each web page remain comprehensible when style sheets are
+    deactivated?</40><41>11. Forms</41><42><0>In each form, is there a caption
+    for each grouping of similar fields?</0><1>In each form, is the title of
+    each button relevant (except in special cases)?</1></42><43>12.
+    Navigation</43><44>None</44><45>13. Consultation</45><46>Is there an
+    accessible version of every web page or office document available for
+    download (excluding special cases)?</46><47>Waiver for disproportionate
+    burden</47> <49>None</49><50>Content not subject to accessibility
+    requirements</50><51>None</51><52>Establishment of this accessibility
+    declaration</52> <54>This accessibility declaration was drawn up on May 11,
+    2023.</54><55>Technologies used to create the site</55><56><0> HTML 5</0><1>
+    CSS</1><2> JavaScript </2><3> SVG </3><4> Aria </4></56><57>Test
+    environment</57><58>Content rendering checks were carried out on the basis
+    of the combination provided by the RGAA 4.1 reference database, with the
     following versions: </58><59><0> NVDA 2022.4 and Firefox 110 </0><1>
-    VoiceOver Mac OS 13.2 and Safari: 16.3</1></59><60>Tools for evaluating
-    accessibility</60><61><0>WCAG Color Contrast Checker extension bar</0><1>
-    RGAA V4.1 Competence Assistant extension bar</1><2> Web Developer toolbar
+    VoiceOver Mac OS 13.2 and Safari: 16.3</1></59><60>Accessibility evaluation
+    tools</60><61><0><2>WCAG Color</2> Contrast Checker extension bar</0><1>
+    RGAA Assistant V4.1 Compéthance extension bar</1><2> Web Developer toolbar
     extension</2><3> Browser Inspector</3><4> UserCSS/Stylus</4></61><62>Site
     pages checked for
     compliance</62><63><0><0>Home</0></0><1><0>Accessibility</0></1><2><0>Site
-    Map</0></2><3><0>Statistics</0></3><4><0>Documentation</0></4><5><0>Create a
+    map</0></2><3><0>Statistics</0></3><4><0>Documentation</0></4><5><0>Create a
     company</0></5><6><0>Number of
-    partners</0></6><7><0>Responsibility</0></7><8><0>Choice of legal
-    status</0></8><9><0>List of legal statutes</0></9><10><0>After the
+    partners</0></6><7><0>Liability</0></7><8><0>Choice of legal
+    status</0></8><9><0>List of legal forms</0></9><10><0>After
     creation</0></10><11><0>Simulators</0></11><12><0>Income simulator for
     employees</0></12><13><0>Wizard for determining deductible social
-    charges</0></13><14><0>Income simulator for liberal
-    professions</0></14></63><64>Right to compensation</64><65>While waiting for
-    full compliance, you can obtain an accessible version of the documents or
-    information contained therein by sending an e-mail to
-    <2>accessibilite@acoss.fr</2> indicating the name of the document concerned
-    and/or the information you would like to obtain. The requested information
-    will be sent to you as soon as possible.</65><66>Improvement and
-    contact</66><67>You can help us to improve the accessibility of the site by
-    reporting any problems you encounter. To do so, send us an e-mail to
+    charges</0></13><14><0>Income simulator for self-employed
+    professionals</0></14></63><64>Right to compensation</64><65>Pending full
+    compliance, you can obtain an accessible version of documents or information
+    contained therein by sending an e-mail to <2>accessibilite@acoss.fr</2>,
+    indicating the name of the document concerned and/or the information you
+    would like to obtain. The requested information will be sent to you as soon
+    as possible.</65><66>Improvement and contact</66><67>You can help us to
+    improve the accessibility of the site by notifying us of any problems you
+    encounter. To do so, send us an e-mail to
     <2>accessibilite@acoss.fr.</2></67><68>Rights Defender</68><69>This
-    procedure is to be used in the following case.</69><70>You have reported to
-    the webmaster a lack of accessibility that prevents you from accessing
-    content or services on the portal and you have not received a satisfactory
-    response.</70><71><0>Write a message to the Human Rights
-    Defender<1>(https://formulaire.defenseurdesdroits.fr/)</1></0><1>Contact the
-    delegate of the Defender of Rights in your
-    area<1>(https://www.defenseurdesdroits.fr/saisir/delegues)</1></1><2>Send a
-    letter by post (free of charge, do not put a stamp on it)
-    to:<1></1>Défenseur des droits<3></3>Free reply 71120<5></5>75342 Paris
-    CEDEX 07</2><3>Contact the Human Rights Defender by telephone: <2>+33 9 69
-    39 00 00</2></3></71><72>Updated on 11/05/2023</72>"
+    procedure should be used in the following cases.</69><70>You have notified
+    the website manager of an accessibility problem that is preventing you from
+    accessing content or services on the portal, and you have not received a
+    satisfactory response.</70><71><0>Write a message to the Défenseur des
+    droits<1>(https://formulaire.defenseurdesdroits.fr/)</1></0><1>Contact the
+    Rights Defender delegate in your
+    region<1>(https://www.defenseurdesdroits.fr/saisir/delegues)</1></1><2>Send
+    a letter by post (free of charge, do not use a stamp) to:<1></1>Défenseur
+    des droits<3></3>Libre réponse 71120<5></5>75342 Paris CEDEX
+    07</2><3>Contact the D&eacute;fenseur des droits by telephone: <2>+33 9 69
+    39 00 00</2></3></71><72>Updated on May 11, 2023</72>"
   assistant:
     recherche-code-ape:
       seo explanation: "<0>How does the APE code search work?</0><1>To find your
