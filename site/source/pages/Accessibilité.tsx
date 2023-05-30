@@ -80,26 +80,21 @@ export default function Accessibilité() {
 			</Body>
 			<Body>
 				Cette déclaration d’accessibilité s’applique à{' '}
-				<Link
-					href="https://mon-entreprise.urssaf.fr"
-					aria-label="https://mon-entreprise.urssaf.fr, nouvelle fenêtre"
-				>
-					https://mon-entreprise.urssaf.fr
-				</Link>
-				.
+				<Link href="/">https://mon-entreprise.urssaf.fr</Link>.
 			</Body>
 			<H3>État de conformité</H3>
 			<Body>
-				Mon-entreprise -{' '}
+				Mon-entreprise - <Link href="/">https://mon-entreprise.urssaf.fr/</Link>{' '}
+				est en conformité partielle avec le{' '}
 				<Link
-					href="https://mon-entreprise.urssaf.fr"
-					aria-label="https://mon-entreprise.urssaf.fr, nouvelle fenêtre"
+					href="https://accessibilite.numerique.gouv.fr"
+					aria-label="Référentiel général d’amélioration
+				de l’accessibilité, nouvelle fenêtre"
 				>
-					https://mon-entreprise.urssaf.fr/
-				</Link>{' '}
-				est en conformité partielle avec le référentiel général d’amélioration
-				de l’accessibilité (RGAA), version 4.1 en raison des non-conformités et
-				des dérogations énumérées ci-dessous.
+					référentiel général d’amélioration de l’accessibilité (RGAA)
+				</Link>
+				, version 4.1 en raison des non-conformités et des dérogations énumérées
+				ci-dessous.
 			</Body>
 			<H3>Résultats des tests</H3>
 			<Body>L’audit de conformité réalisé par URBILOG révèle que :</Body>
@@ -123,7 +118,7 @@ export default function Accessibilité() {
 				technologies d’assistance ?
 			</Body>
 			<H5>2. Cadres</H5>
-			<Body>RAS</Body>
+			<Body>Néant</Body>
 			<H5>3. Couleurs</H5>
 			<Ul>
 				<Li>
@@ -137,7 +132,7 @@ export default function Accessibilité() {
 				</Li>
 			</Ul>
 			<H5>4. Multimédia</H5>
-			<Body>RAS</Body>
+			<Body>Néant</Body>
 			<H5>5. Tableaux</H5>
 			<Body>
 				Pour chaque tableau de données, chaque en-tête de colonne et chaque
@@ -161,7 +156,7 @@ export default function Accessibilité() {
 				</Li>
 			</Ul>
 			<H5>8. Éléments obligatoires</H5>
-			<Body>RAS</Body>
+			<Body>Néant</Body>
 			<H5>9. Structuration de l'information</H5>
 			<Body>
 				Dans chaque page web, chaque liste est-elle correctement structurée ?
@@ -183,25 +178,27 @@ export default function Accessibilité() {
 				</Li>
 			</Ul>
 			<H5>12. Navigation</H5>
-			<Body>RAS</Body>
+			<Body>Néant</Body>
 			<H5>13. Consultation</H5>
 			<Body>
 				Dans chaque page web, chaque document bureautique en téléchargement
 				possède-t-il, si nécessaire, une version accessible (hors cas
 				particuliers) ?
 			</Body>
-			<H4>Dérogation pour charge disproportionnée</H4> <Body>RAS</Body>
+			<H4>Dérogation pour charge disproportionnée</H4> <Body>Néant</Body>
 			<H4>Contenus non-soumis à l'obligation d'accessibilité</H4>
-			<Body>RAS</Body>
+			<Body>Néant</Body>
 			<H3>Établissement de cette déclaration d'accessibilité</H3>{' '}
 			<Body>
-				Cette déclaration d'accessibilité a été établie le 11/05/2023.
+				Cette déclaration d'accessibilité a été établie le 11 mai 2023.
 			</Body>
 			<H4>Technologies utilisées pour la réalisation du site</H4>
 			<Ul>
 				<Li> HTML 5</Li>
 				<Li> CSS</Li>
 				<Li> JavaScript </Li>
+				<Li> SVG </Li>
+				<Li> Aria </Li>
 			</Ul>
 			<H4>Environnement de test</H4>
 			<Body>
@@ -216,8 +213,8 @@ export default function Accessibilité() {
 			<H4>Outils pour évaluer l'accessibilité</H4>
 			<Ul>
 				<Li>
-					Barre extension de contrôle de taux de contraste WCAG Color Contrast
-					Checker
+					Barre extension de contrôle de taux de contraste{' '}
+					<span lang="en">WCAG Color Contrast Checker</span>
 				</Li>
 				<Li> Barre extension Assistant RGAA V4.1 Compéthance</Li>
 				<Li> Barre extension Web Developer toolbar</Li>
@@ -227,122 +224,63 @@ export default function Accessibilité() {
 			<H4>Pages du site ayant fait l'objet de la vérification de conformité</H4>
 			<Ul>
 				<Li>
-					<Link
-						aria-label="Accueil, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/"
-					>
-						Accueil
-					</Link>
+					<Link href="/">Accueil</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Accessibilité, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/accessibilit%C3%A9"
-					>
-						Accessibilité
-					</Link>
+					<Link href="/accessibilit%C3%A9">Accessibilité</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Plan de site, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/plan-de-site"
-					>
-						Plan de site
-					</Link>
+					<Link href="/plan-de-site">Plan de site</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Statistiques, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/stats"
-					>
-						Statistiques
-					</Link>
+					<Link href="/stats">Statistiques</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Documentation, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/documentation"
-					>
-						Documentation
-					</Link>
+					<Link href="/documentation">Documentation</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Créer une entreprise, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er"
-					>
-						Créer une entreprise
-					</Link>
+					<Link href="/cr%C3%A9er">Créer une entreprise</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Nombre d'associés, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/statut-juridique/nombre-associ%C3%A9s"
-					>
+					<Link href="/cr%C3%A9er/statut-juridique/nombre-associ%C3%A9s">
 						Nombre d'associés
 					</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Responsabilité, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/statut-juridique/responsabilit%C3%A9"
-					>
+					<Link href="/cr%C3%A9er/statut-juridique/responsabilit%C3%A9">
 						Responsabilité
 					</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Choix du statut juridique, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/statut-juridique/auto-entrepreneur-ou-entreprise-individuelle"
-					>
+					<Link href="/cr%C3%A9er/statut-juridique/auto-entrepreneur-ou-entreprise-individuelle">
 						Choix du statut juridique
 					</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Liste des statuts juridiques, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/statut-juridique/liste"
-					>
+					<Link href="/cr%C3%A9er/statut-juridique/liste">
 						Liste des statuts juridiques
 					</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Après la création, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/cr%C3%A9er/apr%C3%A8s-la-cr%C3%A9ation"
-					>
+					<Link href="/cr%C3%A9er/apr%C3%A8s-la-cr%C3%A9ation">
 						Après la création
 					</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Simulateurs, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/simulateurs"
-					>
-						Simulateurs
-					</Link>
+					<Link href="/simulateurs">Simulateurs</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Simulateur de revenus pour salarié, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/simulateurs/salaire-brut-net"
-					>
+					<Link href="/simulateurs/salaire-brut-net">
 						Simulateur de revenus pour salarié
 					</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Assistant à la détermination des charges sociales déductibles, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/g%C3%A9rer/declaration-charges-sociales-independant"
-					>
+					<Link href="/g%C3%A9rer/declaration-charges-sociales-independant">
 						Assistant à la détermination des charges sociales déductibles
 					</Link>
 				</Li>
 				<Li>
-					<Link
-						aria-label="Simulateur de revenus pour profession libérale, nouvelle fenêtre"
-						href="https://mon-entreprise.urssaf.fr/simulateurs/profession-liberale"
-					>
+					<Link href="/simulateurs/profession-liberale">
 						Simulateur de revenus pour profession libérale
 					</Link>
 				</Li>
@@ -419,7 +357,7 @@ export default function Accessibilité() {
 					</Link>
 				</Li>
 			</Ul>
-			<SmallBody>Mis à jour le 11/05/2023</SmallBody>
+			<SmallBody>Mis à jour le 11 mai 2023</SmallBody>
 		</Trans>
 	)
 }
