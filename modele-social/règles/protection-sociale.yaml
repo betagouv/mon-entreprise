@@ -160,7 +160,7 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
   note: La revalorisation de la valeur du point a lieu au 1er novembre, et non au 1er janvier.
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
-    agirc-arrco: https://www.agirc-arrco.fr/ressources-documentaires/chiffres-cles/
+    'Agirc-Arrco : Paramètres et données statistiques': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
   avec:
     points acquis:
       note: |
@@ -180,7 +180,7 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         - si: date >= 01/01/2019
           alors: 17.0571 €/point
       références:
-        barèmes agirc-arrco: https://www.agirc-arrco.fr/wp-content/uploads/2021/10/Compilation_valeurs_de_point_novembre-2022.pdf
+        'Agirc-Arrco : Paramètres et données statistiques': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
 
 protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
@@ -191,6 +191,8 @@ protection sociale . retraite . complémentaire . RCI:
     facteur:
       nom: valeur du point
       variations:
+        - si: date >= 01/2023
+          alors: 1.280 €/an/point
         - si: date >= 01/2022
           alors: 1.221 €/an/point
         - si: date >= 01/2021
@@ -200,8 +202,8 @@ protection sociale . retraite . complémentaire . RCI:
         - si: date >= 01/01/2019
           alors: 1.191 €/an/point
   références:
-    cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
-    barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_point_bar
+    'Fonctionnement de la retraite complémentaire des indépendants': https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
+    'Valeur de service du point de retraite complémentaire': https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_point_bar
   avec:
     points acquis:
       non applicable si: dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité # Non implémenté (cf règle)
@@ -212,6 +214,8 @@ protection sociale . retraite . complémentaire . RCI:
 
     valeur d'acquisition:
       variations:
+        - si: date >= 01/2023
+          alors: 19.394 €/point
         - si: date >= 01/2022
           alors: 17.956 €/point
         - si: date >= 01/2021
@@ -221,7 +225,7 @@ protection sociale . retraite . complémentaire . RCI:
         - si: date >= 01/01/2019
           alors: 17.515 €/point
       références:
-        barèmes cnav.fr: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_achat_point_bar
+        Valeur d'achat du point de retraite complémentaire: https://www.legislation.cnav.fr/Pages/bareme.aspx?Nom=rci_valeur_achat_point_bar
 
     revenu cotisé auto-entrepreneur:
       applicable si: dirigeant . auto-entrepreneur
