@@ -1,5 +1,9 @@
 # Journal des modifications
 
+## 1.6.3
+- Mise à jour de la valeur de service et d’acquisition du point de retraite complémentaire indépendant (RCI)
+
+
 ## 1.6.2
 - Mise à jour du SMIC au 1er mai 2023
 
