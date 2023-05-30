@@ -69,7 +69,6 @@ situation . autres:
 
 situation . TNS:
   une de ces conditions:
-    - situation . PAM
     - situation . dirigeants
     - situation . artiste-auteur
 
@@ -80,6 +79,7 @@ situation . notification:
   applicable si:
     une de ces conditions:
       - situation . PL
+      - situation . PAM
       - situation . AC
       - situation . auto-entrepreneur
 
