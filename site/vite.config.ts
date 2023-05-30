@@ -72,22 +72,14 @@ export default defineConfig(({ command, mode }) => ({
 				'mon-entreprise': {
 					lang: 'fr',
 					entry: '/source/entries/entry-fr.tsx',
-					title:
-						"mon-entreprise.urssaf.fr : L'assistant officiel du créateur d'entreprise",
-					description:
-						'Du statut juridique à la première embauche, en passant par la simulation des cotisations, vous trouverez ici toutes les ressources pour démarrer votre activité.',
-					shareImage: '/source/assets/images/logo-monentreprise.svg',
-					shareImageAlt: 'Logo mon-entreprise, site Urssaf',
+					logo: '/source/assets/images/logo-monentreprise.svg',
+					logoAlt: 'Logo mon-entreprise, site Urssaf',
 				},
 				infrance: {
 					lang: 'en',
 					entry: '/source/entries/entry-en.tsx',
-					title:
-						'My company in France: A step-by-step guide to start a business in France',
-					description:
-						'Find the type of company that suits you and follow the steps to register your company. Discover the French social security system by simulating your hiring costs. Discover the procedures to hire in France and learn the basics of French labour law.',
-					shareImage: '/logo-mycompany-share.png',
-					shareImageAlt: 'Logo My company in France by Urssaf',
+					logo: '/logo-mycompany-share.png',
+					logoAlt: 'Logo My company in France by Urssaf',
 				},
 			},
 		}),

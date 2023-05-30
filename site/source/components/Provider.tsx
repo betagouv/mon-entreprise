@@ -42,60 +42,11 @@ export default function Provider({
 }: ProviderProps): JSX.Element {
 	useIframeResizer()
 
-	const { t } = useTranslation()
-
 	return (
 		<DarkModeProvider>
 			<DesignSystemThemeProvider>
 				<GlobalStyle />
-				<ErrorBoundary
-					showDialog
-					fallback={(errorData) => (
-						<main style={{ height: '100vh' }}>
-							<Container>
-								<Link href="/" aria-label={t("Retourner à la page d'accueil")}>
-									<img
-										src={logo}
-										alt="Logo mon-entreprise"
-										style={{
-											maxWidth: '200px',
-											width: '100%',
-											marginTop: '1rem',
-										}}
-									></img>
-								</Link>
-								<H1>Une erreur est survenue</H1>
-								<Intro>
-									L'équipe technique mon-entreprise a été automatiquement
-									prévenue.
-								</Intro>
-								<Body>
-									Vous pouvez également nous contacter directement à l'adresse{' '}
-									<Link
-										href="mailto:contact@mon-entreprise.beta.gouv.fr"
-										aria-label={t(
-											'Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre'
-										)}
-									>
-										contact@mon-entreprise.beta.gouv.fr
-									</Link>{' '}
-									si vous souhaitez partager une remarque. Veuillez nous excuser
-									pour la gêne occasionnée.
-								</Body>
-								<Grid container>
-									<Grid item xs={12} lg={6}>
-										<Message type="info">
-											<H4>Cause de l'erreur :</H4>
-											<Body>
-												{errorData.error.name} : {errorData.error.message}
-											</Body>
-										</Message>
-									</Grid>
-								</Grid>
-							</Container>
-						</main>
-					)}
-				>
+				<ErrorBoundary showDialog fallback={ErrorFallback}>
 					{!import.meta.env.SSR &&
 						import.meta.env.MODE === 'production' &&
 						'serviceWorker' in navigator &&
@@ -118,6 +69,60 @@ export default function Provider({
 				</ErrorBoundary>
 			</DesignSystemThemeProvider>
 		</DarkModeProvider>
+	)
+}
+
+function ErrorFallback(props: {
+	error: Error
+	componentStack: string | null
+	eventId: string | null
+	resetError(): void
+}) {
+	const { t } = useTranslation()
+
+	return (
+		<main style={{ height: '100vh' }}>
+			<Container>
+				<Link href="/" aria-label={t("Retourner à la page d'accueil")}>
+					<img
+						src={logo}
+						alt="Logo mon-entreprise"
+						style={{
+							maxWidth: '200px',
+							width: '100%',
+							marginTop: '1rem',
+						}}
+					></img>
+				</Link>
+				<H1>Une erreur est survenue</H1>
+				<Intro>
+					L'équipe technique mon-entreprise a été automatiquement prévenue.
+				</Intro>
+				<Body>
+					Vous pouvez également nous contacter directement à l'adresse{' '}
+					<Link
+						href="mailto:contact@mon-entreprise.beta.gouv.fr"
+						aria-label={t(
+							'Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre'
+						)}
+					>
+						contact@mon-entreprise.beta.gouv.fr
+					</Link>{' '}
+					si vous souhaitez partager une remarque. Veuillez nous excuser pour la
+					gêne occasionnée.
+				</Body>
+				<Grid container>
+					<Grid item xs={12} lg={6}>
+						<Message type="info">
+							<H4>Cause de l'erreur :</H4>
+							<Body>
+								{props.error.name} : {props.error.message}
+							</Body>
+						</Message>
+					</Grid>
+				</Grid>
+			</Container>
+		</main>
 	)
 }
 
