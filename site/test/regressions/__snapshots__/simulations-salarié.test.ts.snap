@@ -207,19 +207,18 @@ Notifications affichées : salarié . contrat . CDD . information"
 exports[`calculate simulations-salarié > apprentissage 1`] = `
 "salarié . contrat . salaire brut: 1500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 1547
+salarié . coût total employeur: 1047
 salarié . rémunération . net . payé après impôt: 1466
 salarié . rémunération . net . à payer avant impôt: 1466
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
 exports[`calculate simulations-salarié > apprentissage 2`] = `
-"salarié . contrat . salaire brut: 1500
+"salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 1380
-salarié . rémunération . net . payé après impôt: 1466
-salarié . rémunération . net . à payer avant impôt: 1466
-Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
+salarié . coût total employeur: 3207
+salarié . rémunération . net . payé après impôt: 2353
+salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
 exports[`calculate simulations-salarié > atmp 1`] = `

@@ -41,9 +41,8 @@ apprentissage:
   - salarié . contrat: "'apprentissage'"
     salarié . contrat . salaire brut: 1500 €/mois
   - salarié . contrat: "'apprentissage'"
-    salarié . contrat . salaire brut: 1500 €/mois
-    salarié . contrat . apprentissage . diplôme préparé: "'niveau bac ou moins'"
-    salarié . contrat . apprentissage . ancienneté: "'moins de deux ans'"
+    salarié . contrat . salaire brut: 2500 €/mois
+    salarié . contrat . apprentissage . diplôme . niveau 8: oui
 
 ATMP:
   - salarié . contrat . salaire brut: 2000 €/mois

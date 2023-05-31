@@ -1,5 +1,12 @@
 # Journal des modifications
 
+
+## 1.7.0
+- Met à jour l’aide à l’embauche d’un apprenti (supprime l’historique : l’ancienne version était mal implémentée)
+- Ajoute la règle  `salarié . contrat . ancienneté`
+- Ajoute la règle `salarié . contrat . apprentissage . diplôme . niveau 8` pour la nouvelle aide à l’embauche des contrat d’apprentissage
+- Déprécie les règles `salarié . contrat . apprentissage . diplôme préparé` et `salarié . contrat . apprentissage . ancienneté`
+
 ## 1.6.3
 - Mise à jour de la valeur de service et d’acquisition du point de retraite complémentaire indépendant (RCI)
 

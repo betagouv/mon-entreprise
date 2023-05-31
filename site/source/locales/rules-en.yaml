@@ -7583,6 +7583,15 @@ salarié . contrat . CDD . reconduction en CDI:
   question.fr: Le CDD sera-t-il reconduit en CDI ?
   titre.en: '[automatic] renewal on permanent contract'
   titre.fr: reconduction en CDI
+salarié . contrat . ancienneté:
+  description.en: >
+    [automatic] Seniority is the number of years an employee has
+    been with the company. It is calculated from the date of hire.
+  description.fr: >
+    L'ancienneté est le nombre d'années de présence dans
+    l'entreprise. Elle est calculée à partir de la date d'embauche.
+  titre.en: '[automatic] seniority'
+  titre.fr: ancienneté
 salarié . contrat . apprentissage . ancienneté:
   question.en: '[automatic] How long has the apprentice been employed?'
   question.fr: Depuis combien de temps l'apprenti est-il employé ?
@@ -7612,36 +7621,56 @@ salarié . contrat . apprentissage . assiette réduite apprentissage:
     sociales jusqu'à 79% du SMIC.
   titre.en: '[automatic] reduced learning base'
   titre.fr: assiette réduite apprentissage
+salarié . contrat . apprentissage . diplôme:
+  titre.en: '[automatic] Diploma prepared'
+  titre.fr: Diplôme préparé
+salarié . contrat . apprentissage . diplôme . niveau 8:
+  description.en: >
+    [automatic] To qualify for the apprenticeship hiring grant, the
+    apprentice must be preparing for a diploma or professional qualification at
+    or below level 7 of the national framework of professional certifications
+    (all diplomas except doctorate and HDR).
+  description.fr: >
+    Pour bénéficier de l'aide à l'embauche pour un contrat
+    d'apprentissage, l'apprenti doit préparer un diplôme ou un titre à finalité
+    professionnelle inférieur ou égal au niveau 7 du cadre national des
+    certifications professionnelles (tous les diplômes sauf doctorat et HDR).
+  question.en: '[automatic] Is the apprentice preparing a level 8 diploma (PhD or HDR)?'
+  question.fr: L'apprenti prépare-t-il un diplôme de niveau 8 (doctorat ou HDR) ?
+  titre.en: '[automatic] level 8'
+  titre.fr: niveau 8
 salarié . contrat . apprentissage . diplôme préparé:
+  avec:
+    niveau bac ou moins:
+      description.en:
+        '[automatic] For level V (CAP, BEP, CTM...) and level IV (Bac
+        Pro, BP, BTM) diplomas'
+      description.fr:
+        Concerne les diplôme de niveau V (CAP, BEP, CTM...) et de niveau
+        IV (Bac Pro, BP, BTM)
+      titre.en: '[automatic] Baccalaureate or equivalent diploma'
+      titre.fr: Diplôme d'un niveau inférieur ou égal au bac
+    niveau supérieur au bac:
+      description.en:
+        '[automatic] Level I (Master, Engineer, Grandes écoles...),
+        level II (License, BMS...), and level III (BTS, SUT, BM, ...) diplomas.'
+      description.fr:
+        Concerne les diplôme de niveau I (Master, Ingénieur, Grandes
+        écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT,
+        BM, ...)
+      titre.en: '[automatic] Diploma above baccalaureate level'
+      titre.fr: Diplôme d'un niveau supérieur au bac
   question.en: '[automatic] What type of degree is the apprentice preparing for?'
   question.fr: Quel type de diplôme l'apprenti prépare-t-il ?
   titre.en: '[automatic] prepared diploma'
   titre.fr: diplôme préparé
-salarié . contrat . apprentissage . diplôme préparé . niveau bac ou moins:
-  description.en: '[automatic] Concerns level V diplomas (CAP, BEP, CTM...) and
-    level IV (Bac Pro, BP, BTM)'
-  description.fr:
-    Concerne les diplôme de niveau V (CAP, BEP, CTM...) et de niveau
-    IV (Bac Pro, BP, BTM)
-  titre.en: '[automatic] Diploma of less than or equal to the baccalaureate'
-  titre.fr: Diplôme d'un niveau inférieur ou égal au bac
-salarié . contrat . apprentissage . diplôme préparé . niveau supérieur au bac:
-  description.en: '[automatic] Concerns level I (Master, Engineer, Grandes
-    écoles...), level II (License, BMS...), and level III (BTS, SUT, BM, ...)'
-  description.fr: Concerne les diplôme de niveau I (Master, Ingénieur, Grandes
-    écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT, BM,
-    ...)
-  titre.en: '[automatic] Diploma of a higher level than the baccalaureate'
-  titre.fr: Diplôme d'un niveau supérieur au bac
 salarié . contrat . date d'embauche:
   question.en: "[automatic] What is the employee's date of hire?"
   question.fr: Quelle est la date d'embauche du salarié ?
-  suggestions.Début 2020.en: '[automatic] Early 2020'
-  suggestions.Début 2020.fr: Début 2020
-  suggestions.Début 2021.en: '[automatic] Early 2021'
-  suggestions.Début 2021.fr: Début 2021
-  suggestions.Fin 2017.en: '[automatic] End of 2017'
-  suggestions.Fin 2017.fr: Fin 2017
+  suggestions.Début d'année.en: '[automatic] Beginning of the year'
+  suggestions.Début d'année.fr: Début d'année
+  suggestions.Fin d'année.en: '[automatic] Year-end'
+  suggestions.Fin d'année.fr: Fin d'année
   titre.en: '[automatic] date of hire'
   titre.fr: date d'embauche
 salarié . contrat . professionnalisation . jeune de moins de 30 ans:
@@ -8857,20 +8886,19 @@ salarié . coût total employeur . aides . embauche:
   titre.fr: aides à l'embauche
 salarié . coût total employeur . aides . embauche . apprentis:
   description.en: >
-    [automatic] Since 2019 a single hiring aid replaces four
-    previous schemes. The amount of aid depends on the length of the contract.
+    [automatic] This scheme provides financial support to employers
+    recruiting apprentices.
 
 
-    Once the registration procedures are completed, the aid is paid automatically every month.
+    This aid takes over from that applicable until December 31, 2022, and is available between January 1 and December 31, 2023.
   description.fr: >
-    Depuis 2019 une aide à l'embauche unique remplace quatre
-    précédents dispositifs. Le montant de l'aide dépend de l'ancienneté du
-    contrat.
+    Il s'agit d'une aide pour accompagner financièrement les
+    employeurs qui recrutent en contrats d'apprentissage.
 
 
-    Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
-  titre.en: '[automatic] apprentices'
-  titre.fr: apprentis
+    Cette aide prend la suite de celle qui était applicable jusqu'au 31 décembre 2022, et est disponible entre le 1er janvier et 31 décembre 2023.
+  titre.en: '[automatic] Hiring aid for apprenticeship contracts'
+  titre.fr: Aides à l'embauche pour un contrat d'apprentissage
 salarié . coût total employeur . aides . embauche . senior professionnalisation:
   description.en: >
     [automatic] Employers can obtain €2,000 in aid for the hiring of
