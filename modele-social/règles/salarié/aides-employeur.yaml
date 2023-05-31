@@ -20,24 +20,23 @@ salarié . coût total employeur . aides . embauche:
     - emploi franc
 
 salarié . coût total employeur . aides . embauche . apprentis:
+  titre: Aides à l'embauche pour un contrat d'apprentissage
   description: |
-    Depuis 2019 une aide à l'embauche unique remplace quatre précédents dispositifs. Le montant de l'aide dépend de l'ancienneté du contrat.
+    Il s'agit d'une aide pour accompagner financièrement les employeurs qui recrutent en contrats d'apprentissage.
 
-    Une fois les démarches d'enregistrement effectuées, l'aide est versée automatiquement tous les mois.
+    Cette aide prend la suite de celle qui était applicable jusqu'au 31 décembre 2022, et est disponible entre le 1er janvier et 31 décembre 2023.
+
   applicable si:
     toutes ces conditions:
       - entreprise . salariés . effectif < 250
       - contrat . apprentissage
-      - contrat . apprentissage . diplôme préparé . niveau bac ou moins
-  formule:
-    variations:
-      - si: contrat . apprentissage . ancienneté = 'moins d'un an'
-        alors: 4125 €/an
-      - si: contrat . apprentissage . ancienneté = 'moins de deux ans'
-        alors: 2000 €/an
-      - sinon: 1200 €/an
+      - contrat . apprentissage . diplôme . niveau 8 = non
+
+  valeur: 6000 €/an
+
   références:
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
+    Aides à l'embauche pour un contrat d'apprentissage: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
+    "Embauche d'un(e) apprenti(e) : vous avez droit à des aides": https://www.economie.gouv.fr/entreprises/aides-embauche-apprenti
 
 salarié . coût total employeur . aides . embauche . senior professionnalisation:
   description: |

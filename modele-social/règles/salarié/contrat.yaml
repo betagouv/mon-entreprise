@@ -108,54 +108,39 @@ salarié . contrat:
           valeur: 15% * plafond sécurité sociale
           Gratification minimale: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131
 
+salarié . contrat . apprentissage . diplôme:
+  titre: Diplôme préparé
+salarié . contrat . apprentissage . diplôme . niveau 8:
+  par défaut: non
+  question: L'apprenti prépare-t-il un diplôme de niveau 8 (doctorat ou HDR) ?
+  description: |
+    Pour bénéficier de l'aide à l'embauche pour un contrat d'apprentissage, l'apprenti doit préparer un diplôme ou un titre à finalité professionnelle inférieur ou égal au niveau 7 du cadre national des certifications professionnelles (tous les diplômes sauf doctorat et HDR).
+  références:
+    Aides à l'embauche pour un contrat d'apprentissage: https://entreprendre.service-public.fr/vosdroits/F23556
+    Quelle est la nomenclature des diplômes par niveau ?: https://www.service-public.fr/particuliers/vosdroits/F199
+
 salarié . contrat . apprentissage . diplôme préparé:
+  déprécié: oui # Était utile pour une aide à l'embauche de 2019
   question: Quel type de diplôme l'apprenti prépare-t-il ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - niveau bac ou moins
-        - niveau supérieur au bac
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - niveau bac ou moins
+      - niveau supérieur au bac
   par défaut: "'niveau supérieur au bac'"
+  avec:
+    niveau bac ou moins:
+      titre: Diplôme d'un niveau inférieur ou égal au bac
+      valeur: diplôme préparé = 'niveau bac ou moins'
+      description: Concerne les diplôme de niveau V (CAP, BEP, CTM...) et de niveau IV (Bac Pro, BP, BTM)
 
-salarié . contrat . apprentissage . diplôme préparé . niveau bac ou moins:
-  titre: Diplôme d'un niveau inférieur ou égal au bac
-  formule: diplôme préparé = 'niveau bac ou moins'
-  description: Concerne les diplôme de niveau V (CAP, BEP, CTM...) et de niveau IV (Bac Pro, BP, BTM)
-
-salarié . contrat . apprentissage . diplôme préparé . niveau supérieur au bac:
-  titre: Diplôme d'un niveau supérieur au bac
-  formule: diplôme préparé = 'niveau supérieur au bac'
-  description: Concerne les diplôme de niveau I (Master, Ingénieur, Grandes écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT, BM, ...)
-
-# salarié . contrat . apprentissage . durée:
-#   icônes: ⏳
-#   titre: durée du contrat
-#   question: Quelle est la durée du contrat ?
-#   plancher: 6 mois
-#   plafond: 3 ans # TODO 4 ans les travailleurs handicapé
-#   description: |
-#     Le contrat d'apprentissage est un contrat écrit de droit privé.
-
-#     Il peut être à durée limitée (CDL) d'une durée de 6 mois au minimum à 3 ans au maximum
-#   références:
-#     Contrat d'apprentissage: https://www.service-public.fr/particuliers/vosdroits/F2918/personnalisation/resultat?lang=&quest0=0&quest=
-#   suggestions:
-#     3 ans: 3 ans
-#     2 ans: 2 ans
-#     1 an: 1 an
-#     6 mois: 6 mois
-#   par défaut: 2 ans
-
-# salarié . contrat . apprentissage . trimestres validés pour la retraite:
-#   remplace: protection sociale . retraite . trimestres
-#   valeur: salarié . contrat . apprentissage . durée * 4 trimestres validés/an - 0.5
-#   arrondi: oui
-#   reference:
-#     Site réglementaire de la retraite du régime général: https://www.legislation.cnav.fr/Pages/expose.aspx?Nom=cotisation_salaire_type_activite_apprenti_ex
-#   note: On arrondi à l'unité inférieur, d'où la soustraction de 0.5
+    niveau supérieur au bac:
+      titre: Diplôme d'un niveau supérieur au bac
+      valeur: diplôme préparé = 'niveau supérieur au bac'
+      description: Concerne les diplôme de niveau I (Master, Ingénieur, Grandes écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT, BM, ...)
 
 salarié . contrat . apprentissage . ancienneté:
+  déprécié: oui # Était utile pour une aide à l'embauche de 2019
   question: Depuis combien de temps l'apprenti est-il employé ?
   formule:
     une possibilité:
@@ -413,12 +398,17 @@ salarié . contrat . CDD . congés pris:
 
 salarié . contrat . date d'embauche:
   question: Quelle est la date d'embauche du salarié ?
-  par défaut: 01/10/2021
+  par défaut: date
   suggestions:
-    Début 2021: 01/01/2021
-    Début 2020: 01/01/2020
-    Fin 2017: 31/12/2017
+    Début d'année: période . début d'année
+    Fin d'année: période . fin d'année
   type: date
+
+salarié . contrat . ancienneté:
+  description: |
+    L'ancienneté est le nombre d'années de présence dans l'entreprise. Elle est calculée à partir de la date d'embauche.
+  durée:
+    depuis: date d'embauche
 
 salarié . contrat . salaire brut:
   identifiant court: salaire-brut
