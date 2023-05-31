@@ -30,7 +30,12 @@ export default function Progress({
 	const total = Math.min(progress + step, maxValue).toString()
 
 	return (
-		<div aria-live="polite">
+		<div
+			aria-live="polite"
+			css={`
+				position: relative;
+			`}
+		>
 			<ProgressContainer {...progressBarProps}>
 				<ProgressBar
 					style={{ width: `${(progress * 100) / (maxValue || 1)}%` }}

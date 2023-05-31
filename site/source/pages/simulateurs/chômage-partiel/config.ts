@@ -11,7 +11,7 @@ export function chômagePartielConfig({ t, sitePaths }: SimulatorsDataParams) {
 		path: sitePaths.simulateurs['chômage-partiel'],
 		tracking: 'chomage_partiel',
 		pathId: 'simulateurs.chômage-partiel',
-		icône: '😷',
+		icône: '📉',
 		iframePath: 'simulateur-chomage-partiel',
 		meta: {
 			description: t(
@@ -38,7 +38,7 @@ export function chômagePartielConfig({ t, sitePaths }: SimulatorsDataParams) {
 		),
 		title: t(
 			'pages.simulateurs.chômage-partiel.title',
-			"Simulateur du calcul de l'indemnité chômage partiel (Covid-19)"
+			"Simulateur du calcul de l'indemnité chômage partiel"
 		),
 		nextSteps: ['salarié'],
 		simulation: configChômagePartiel,

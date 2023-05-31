@@ -53,6 +53,7 @@ salarié . temps de travail . heures supplémentaires:
   non applicable si: contrat . temps de travail . temps partiel
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées ?
   par défaut: 0 heures/mois
+  unité: heures/mois
   suggestions:
     aucune: 0 heures/mois
     39h / semaine: 17.33 heures/mois

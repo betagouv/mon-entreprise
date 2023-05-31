@@ -116,7 +116,7 @@ Notifications affichées : salarié . contrat . salaire brut . contrôle salaire
 exports[`calculate simulations-salarié > activité partielle 1`] = `
 "salarié . contrat . salaire brut: 1560
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 112
+salarié . coût total employeur: 136
 salarié . rémunération . net . payé après impôt: 1361
 salarié . rémunération . net . à payer avant impôt: 1361
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"

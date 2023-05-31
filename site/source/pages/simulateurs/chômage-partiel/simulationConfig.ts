@@ -22,5 +22,7 @@ export const configChômagePartiel: SimulationConfig = {
 		'salarié . cotisations . prévoyances': {
 			'applicable si': 'non',
 		},
+		'salarié . temps de travail . heures supplémentaires': 0,
+		'salarié . temps de travail . heures complémentaires': 0,
 	},
 }

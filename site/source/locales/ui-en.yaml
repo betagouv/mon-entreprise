@@ -85,7 +85,6 @@ Donner votre avis: Give your opinion
 Décès: Deaths
 Dépôt de capital: Capital deposit
 Effacer mes réponses: Delete my answers
-"Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre": Apply for partial unemployment, access the dedicated page, new window
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "In the event of an<1>accident at work</1>, an <4>occupational disease</4> or
   an <7>accident on the way to or from work</7>, you will be compensated up to
@@ -1553,46 +1552,35 @@ pages:
         ogTitle: "Short-time working simulator: find out the impact on the net salaried
           income and the total employer cost."
         titre: Calculation of the short-time working allowance in France
-      seo: "<0>How is the partial activity allowance calculated?</0><1>The basic
-        partial activity allowance is fixed by law at <2>70% of the gross
-        amount</2>. It is prorated according to the number of hours unemployed.
-        For an employee with a monthly gross salary of €2300, who works 50% of
-        his usual time, this gives <5>€2300 × 50% × 70% = €805</5></1><2>In
-        addition to this basic allowance, there is a complementary allowance for
-        salaries close to the SMIC. This additional allowance is paid when the
-        total of the salary and the basic allowance is below the SMIC net. These
-        allowances are paid by the employer, who will then be reimbursed in part
-        or in full by the State.</2><3>👉 S <2>ee the detail of the calculation
-        of the allowance</2></3><4>How to calculate the part reimbursed by the
-        State?</4><5>The State pays part of the partial indemnity for salaries
-        up to <1>4.5 SMIC</1>, with a minimum of 8.03€ per hour unemployed. In
-        concrete terms, this results in <3>100%</3> coverage for salaries close
-        to the SMIC. This gradually decreases until it stabilizes at <5>93%</5>
-        for salaries <8>between €2000 and €7000</8> (salary corresponding to the
-        limit of 4.5 SMIC).</5><6>👉 S <2>ee the details of the calculation of
-        the reimbursement of the allowance</2>.</6><7>Exchange with an advisor
-        on partial activity</7><8>You wish to:<1><0>check the allowance
-        received, the remaining expenses</0><1>know the consultation procedure
-        of the <2>CSE</2>, the request for prior authorization</1><2>get
-        information on long-term partial activity</2><3>train your employees in
-        partial activity to new skills (pedagogical costs paid)</3></1><2>Simple
-        and fast public service: you are called back by the advisor who can help
-        you. Mobilized partners: the departmental directorates of employment,
-        labor and solidarity.</2><3></3></8><9>How to declare a partial
-        activity?</9><10>In view of the coronavirus crisis, the terms and
-        conditions for partial activity have been lightened. The employer is
-        authorized to place his employees in partial activity before the
-        official request is filed. The employer then has a period of <2>30
-        days</2> to comply with the rules. The indemnities will be paid with
-        retroactive effect starting from the implementation of the partial
-        unemployment.</10><11>👉 How to <2>apply for partial
-        unemployment</2></11><12> What are the social contributions to be paid
-        for partial activity compensation?</12><13>The partial activity
-        allowance is subject to CSG/CRDS and a health contribution in certain
-        cases. To find out more, see the explanatory page on <2>the Urssaf
-        website</2>.</13>"
+      seo: "<0>How is partial activity compensation calculated?</0><1>The basic
+        partial activity allowance is set by law at <2><0></0> of gross
+        salary</2>. It is prorated according to the number of hours lost. For an
+        employee earning €2,300 gross per month, working 50% of normal working
+        hours, this gives <4>€2,300 × 50% × 60% = €805</4>.</1><2>In addition to
+        this basic allowance, there is a supplementary allowance for salaries
+        close to the minimum wage. This additional allowance is paid when the
+        total of the salary and the basic allowance is below one SMIC net. These
+        allowances are paid by the employer, who is then reimbursed in part or
+        in full by the State.</2><3>👉 S <2>ee details of how the allowance is
+        calculated</2></3><4>How do I calculate the portion reimbursed by the
+        State?</4><5>The State covers part of the partial indemnity for wages up
+        to <1>4.5 SMIC</1>, with a minimum of<3> <1></1> </3>per hour not
+        worked.</5><6>👉 S <2>ee the detailed calculation of the indemnity
+        reimbursement</2></6><7>Talk to an advisor about partial
+        activity</7><8>You would like to :<1><0>check the allowance received,
+        and the amount still to be paid</0><1>find out about the procedure for
+        consulting the <2>Works Council</2> and requesting prior
+        authorization</1><2>find out about long-term partial
+        activity</2><3>train your part-time employees in new skills (educational
+        costs covered)</3></1><2>Quick and easy public service: you are called
+        back by the advisor who can help you. Partners: departmental departments
+        of employment, labor and solidarity.</2><3></3></8><9> What social
+        security contributions do I have to pay for partial activity
+        compensation?</9><10>Partial activity compensation is subject to
+        CSG/CRDS and, in certain cases, a health contribution. To find out more,
+        see the explanatory page on <2>the Urssaf website</2>.</10>"
       shortname: Partial unemployment
-      title: Allowance for short-time work simulator (Covid-19)
+      title: Partial unemployment benefit calculation simulator
     cipav:
       meta:
         description: Calculation of the net income after deduction of contributions from

@@ -7015,18 +7015,30 @@ salarié:
   titre.en: '[automatic] employee'
   titre.fr: salarié
 salarié . activité partielle:
-  description.en: >-
-    [automatic] Following the Coronavirus crisis, the government has
-    set up an extended partial unemployment scheme in which the State covers the
-    compensation for hours lost up to 4.5 SMIC.
-
-    The declaration of partial activity is simplified and the effect is retroactive.
-  description.fr: >-
-    À la suite de la crise du Coronavirus, le gouvernement a mis en
-    place un dispositif de chômage partiel étendu dans lequel l'État prend en
-    charge l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
-
-    La déclaration d'activité partielle est simplifiée et l'effet est rétroactif.
+  description.en: "[automatic] In the event of a company resorting to partial
+    activity, employees affected by a loss of salary are compensated (also known
+    as partial unemployment or technical unemployment) by the employer. To
+    benefit from this scheme, and to obtain the state allowance corresponding to
+    the hours called unemployed: hours not worked by decision of the employer,
+    the employer must take steps with the Dreets: Dreets: Direction régionale de
+    l'économie, de l'emploi, du travail et des solidarités (ex-Direccte)
+    (formerly Direccte). default: no"
+  description.fr: "En cas de recours à l'activité partielle au sein d'une
+    entreprise, les salariés touchés par une perte de salaire sont indemnisés
+    (dispositif appelé aussi chômage partiel ou chômage technique) par
+    l'employeur. Pour bénéficier de ce dispositif et obtenir l'allocation de
+    l'État correspondant aux heures dites chômées : Heure non travaillée sur
+    décision de l'employeur, l'employeur doit engager des démarches auprès de la
+    Dreets : Dreets : Direction régionale de l'économie, de l'emploi, du travail
+    et des solidarités (ex-Direccte) (anciennement Direccte).  par défaut: non"
+  note.en: >
+    [automatic] This simulator only takes into account the general case,
+    and does not take into account special cases (e.g. Mayotte, long-term
+    allowance, Covid-19).
+  note.fr: >
+    Ce simulateur ne prend uniquement en compte le cas général, et ne tient
+    pas compte des cas particuliers (ex: Mayotte, allocation longue durée,
+    Covid-19)
   titre.en: '[automatic] partial activity'
   titre.fr: activité partielle
 salarié . activité partielle . heures chômées:
@@ -7056,12 +7068,27 @@ salarié . activité partielle . heures travaillées . contrôle temps de travai
   titre.en: '[automatic] working time control'
   titre.fr: contrôle temps de travail
 salarié . activité partielle . indemnisation entreprise:
-  description.en: '[automatic] In the context of the Coronavirus crisis, the
-    government has announced that the partial unemployment compensation for
-    closed businesses will be 100% covered by the state.'
-  description.fr: Dans le cadre de la crise du Coronavirus, le gouvernement a
-    annoncé que l'indemnité de chômage partiel pour les commerces fermés sera
-    prise à 100% en charge par l'état.
+  description.en: >-
+    [automatic] If the employer has obtained administrative
+    authorization, he can file a **claim for compensation** which enables him to
+    obtain **reimbursement** of the monthly remuneration paid to the employees
+    concerned.
+
+
+    The employer may receive partial activity allowance up to a maximum of 1,000 hours per year and per employee**.
+
+
+    &gt; Warning**: in the event of fraud or false declaration, the employer is liable to 2 years' imprisonment and a €30,000 fine.
+  description.fr: >-
+    Si l'employeur a obtenu l'autorisation administrative, il peut
+    déposer une **demande d'indemnisation** qui lui permet d'obtenir le
+    **remboursement mensuel** des rémunérations versées aux salariés concernés.
+
+
+    L'employeur peut percevoir l'allocation d'activité partielle dans la limite d'un plafond de **1000 heures par an et par salarié**.
+
+
+    > **Attention** : en cas de fraude ou de fausse déclaration, l'employeur encourt jusqu'à 2 ans d'emprisonnement et 30 000 € d'amende.
   titre.en: '[automatic] Reimbursement of the indemnity'
   titre.fr: Remboursement de l'indemnité
 salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
@@ -7128,51 +7155,6 @@ salarié . activité partielle . rémunération mensuelle minimale:
     versement complémentaire de l’employeur.
   titre.en: '[automatic] minimum monthly remuneration'
   titre.fr: rémunération mensuelle minimale
-salarié . activité partielle . secteur d'activité restreint:
-  description.en: >-
-    [automatic] Companies whose activity has been interrupted by
-    administrative decision due to the health crisis, or which are located in a
-    territorial district subject to specific restrictions on the conditions for
-    carrying out economic activity and the movement of persons taken by the
-    administrative authority when they suffer a sharp drop in turnover, or which
-    belong to the most affected sectors and continue to suffer a very sharp drop
-    in turnover, will benefit from an allowance rate of 70% until 31 October
-    2021.
-
-
-    This includes:
-
-      - companies in the sectors listed in Annex 2 of the decree of June 29, 2020 , which have suffered a very sharp drop in turnover of at least 80% during the period between March 15 and May 15, 2020 ;
-
-      - establishments receiving the public that are administratively closed or located in an area subject to special restrictions (e.g. curfew) and that have suffered a drop in turnover of at least 60%;
-
-      - establishments located in the catchment area of a ski resort and suffering a drop in sales of at least 50% if the cable cars and ski lifts are closed.
-  description.fr: >-
-    Les entreprises dont l'activité a été interrompue par décision
-    administrative en raison de la crise sanitaire, ou qui sont situées dans une
-    circonscription territoriale soumise à des restrictions spécifiques des
-    conditions d'exercice de l'activité économique et de circulation des
-    personnes prises par l'autorité administrative lorsqu'ils subissent une
-    forte baisse de chiffre d'affaires, ou qui relèvent des secteurs les plus
-    affectés et qui continuent de subir une très forte baisse du chiffre
-    d'affaires, bénéficient d'un taux d'allocation de 70 % jusqu'au 31 octobre
-    2021.
-
-
-    Sont concernées :
-
-      - les entreprises relevant des secteurs, listés en annexe 2 du décret du 29 juin 2020 , qui ont subi une très forte baisse de chiffre d'affaires d'au moins 80 % durant la période comprise entre le 15 mars et le 15 mai 2020 ;
-
-      - les établissement recevant du public fermés administrativement ou situés dans un territoire soumis à des restrictions particulières (couvre-feu par exemple) et subissant une baisse de chiffre d'affaires d'au moins 60 % ;
-
-      - les établissements situés dans une zone de chalandise d'une station de ski et subissant une baisse de chiffre d'affaires d'au moins 50 % si les téléphériques et remontées mécaniques sont fermés.
-  question.en: "[automatic] Is the company's sector of activity subject to
-    regulatory restrictions (e.g. tourism, restaurants, culture, events)"
-  question.fr: "Le secteur d'activité de l'entreprise fait-il l'objet de
-    restrictions réglementaires ? (ex. : tourisme, restauration, culture,
-    événementiel)"
-  titre.en: '[automatic] restricted area of activity'
-  titre.fr: secteur d'activité restreint
 salarié . activité partielle . total employeur habituel:
   titre.en: '[automatic] total usual employer'
   titre.fr: total employeur habituel

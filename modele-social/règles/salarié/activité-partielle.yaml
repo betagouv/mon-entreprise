@@ -38,21 +38,16 @@ salarié . rémunération . revenus de remplacement:
 salarié . activité partielle:
   experimental: oui
   description: >-
-    À la suite de la crise du Coronavirus, le gouvernement a mis en place un
-    dispositif de chômage partiel étendu dans lequel l'État prend en charge
-    l'indemnisation des heures chômées jusqu’à 4,5 SMIC.
+    En cas de recours à l'activité partielle au sein d'une entreprise, les salariés touchés par une perte de salaire sont indemnisés (dispositif appelé aussi chômage partiel ou chômage technique) par l'employeur. Pour bénéficier de ce dispositif et obtenir l'allocation de l'État correspondant aux heures dites chômées : Heure non travaillée sur décision de l'employeur, l'employeur doit engager des démarches auprès de la Dreets : Dreets : Direction régionale de l'économie, de l'emploi, du travail et des solidarités (ex-Direccte) (anciennement Direccte).  par défaut: non
 
-    La déclaration d'activité partielle est simplifiée et l'effet est
-    rétroactif.
+  note: |
+    Ce simulateur ne prend uniquement en compte le cas général, et ne tient pas compte des cas particuliers (ex: Mayotte, allocation longue durée, Covid-19)
   par défaut: non
-  rend non applicable:
-    - temps de travail . heures supplémentaires
-    - temps de travail . heures complémentaires
   références:
     déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
-    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
-    economie.gouv.fr: https://www.economie.gouv.fr/entreprises/activite-partielle
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d.html
+    "Chômage partiel ou technique (activité partielle) : démarches de l'employeur": https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
+    'Employeurs : comment fonctionne l’activité partielle en cas de difficultés ?': https://www.economie.gouv.fr/entreprises/activite-partielle
+    'L’activité partielle (dispositif de droit commun)': https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d.html
 
 salarié . activité partielle . rémunération mensuelle minimale:
   acronyme: RMM
@@ -121,16 +116,8 @@ salarié . activité partielle . indemnités:
 salarié . activité partielle . indemnités . base:
   multiplication:
     assiette: retrait absence
-    # Historique:
-    # - avant le 01/07/2021: 70%
-    # - à partir du 01/07/2021 : 60% (sauf pour les secteurs protégés, date repoussée au 01/09/2021)
     taux:
-      valeur:
-        variations:
-          - si: secteur d'activité restreint
-            alors: 70%
-            # Historique 60% jusqu'au 31 octobre 2021, 70% après
-          - sinon: 60%
+      valeur: 60%
       nom: taux
 
 salarié . activité partielle . indemnités . complémentaire:
@@ -156,70 +143,49 @@ salarié . activité partielle . retrait absence:
 salarié . activité partielle . indemnisation entreprise:
   titre: Remboursement de l'indemnité
   description: >-
-    Dans le cadre de la crise du Coronavirus, le gouvernement a annoncé que
-    l'indemnité de chômage partiel pour les commerces fermés sera prise à
-    100% en charge par l'état.
-  formule:
+    Si l'employeur a obtenu l'autorisation administrative, il peut déposer une **demande d'indemnisation** qui lui permet d'obtenir le **remboursement mensuel** des rémunérations versées aux salariés concernés.
+
+
+    L'employeur peut percevoir l'allocation d'activité partielle dans la limite d'un plafond de **1000 heures par an et par salarié**.
+
+
+    > **Attention** : en cas de fraude ou de fausse déclaration, l'employeur encourt jusqu'à 2 ans d'emprisonnement et 30 000 € d'amende.
+  multiplication:
+    assiette: retrait absence
+    taux: taux d'indemnisation
+  plancher:
     multiplication:
-      assiette: retrait absence
-      taux: taux d'indemnisation
-    # TODO: plus à jour depuis le 1er avril 2022
-    # confer https://github.com/betagouv/mon-entreprise/issues/2119#issuecomment-1114785875
-    plancher:
-      variations:
-        - si: date >= 01/2022
-          alors: 8.37 €/heures * heures chômées
-        - si: date >= 01/10/2021
-          alors: 8.30 €/heures * heures chômées
-        - si: date >= 01/2021
-          alors: 8.11 €/heures * heures chômées
-    plafond:
-      recalcul:
-        avec:
-          contrat . salaire brut: 4.5 * contrat . temps de travail . SMIC
+      assiette:
+        nom: plancher horaire
+        variations:
+          - si: date >= 05/2023
+            alors: 8.21 €/heures
+          - si: date >= 01/2023
+            alors: 8.03€/heures
+          - si: date >= 08/2022
+            alors: 7.88€/heures
+          - si: date >= 05/2022
+            alors: 7.73€/heures
+          - si: date >= 01/2022
+            alors: 8.37 €/heures
+          - si: date >= 10/2021
+            alors: 8.30 €/heures
+          - si: date >= 01/2021
+            alors: 8.11 €/heures
+      facteur: heures chômées
+
+  plafond:
+    recalcul:
+      avec:
+        contrat . salaire brut: 4.5 * contrat . temps de travail . SMIC
   références:
-    Décret mise à jour 2022: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044614377
+    Quelle allocation perçoit l'employeur en cas d'activité partielle ?: https://www.service-public.fr/particuliers/vosdroits/F23503#fiche-item-aria-6
 
 salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
   titre: taux d'allocation
   description: >-
     Pendant la période de baisse d’activité, l’employeur reçoit de l’Agence de services et de paiement (ASP) une allocation équivalente à une part de la rémunération horaire du salarié placé en activité partielle, dans un délai moyen de 12 jours. Le salarié reçoit quant à lui, de son employeur, une indemnité d’activité partielle, en lieu et place de son salaire pour la période durant laquelle il est placé en activité partielle.
-  formule:
-    variations:
-      - si: secteur d'activité restreint
-        # Historique:
-        # - avant le 01/07/2021: 70%
-        # - avant le 01/08/2021: 60%
-        # - avant le 01/09/2021: 52%
-        # - à partir du 01/09/2021: 36%
-        alors: 70%
-      # Historique:
-      # - avant le 01/06/2021: 60%
-      # - avant le 01/07/2021: 52%
-      # - à partir du 01/07/2021: 36%
-      - sinon: 36%
-
-salarié . activité partielle . secteur d'activité restreint:
-  question: >-
-    Le secteur d'activité de l'entreprise fait-il l'objet de restrictions
-    réglementaires ? (ex. : tourisme, restauration, culture, événementiel)
-  description: >-
-    Les entreprises dont l'activité a été interrompue par décision administrative en raison de la crise sanitaire, ou qui sont situées dans une circonscription territoriale soumise à des restrictions spécifiques des conditions d'exercice de l'activité économique et de circulation des personnes prises par l'autorité administrative lorsqu'ils subissent une forte baisse de chiffre d'affaires, ou qui relèvent des secteurs les plus affectés et qui continuent de subir une très forte baisse du chiffre d'affaires, bénéficient d'un taux d'allocation de 70 % jusqu'au 31 octobre 2021.
-
-
-    Sont concernées :
-
-      - les entreprises relevant des secteurs, listés en annexe 2 du décret du 29 juin 2020 , qui ont subi une très forte baisse de chiffre d'affaires d'au moins 80 % durant la période comprise entre le 15 mars et le 15 mai 2020 ;
-
-      - les établissement recevant du public fermés administrativement ou situés dans un territoire soumis à des restrictions particulières (couvre-feu par exemple) et subissant une baisse de chiffre d'affaires d'au moins 60 % ;
-
-      - les établissements situés dans une zone de chalandise d'une station de ski et subissant une baisse de chiffre d'affaires d'au moins 50 % si les téléphériques et remontées mécaniques sont fermés.
-
-  références:
-    Liste des secteurs concernés: https://travail-emploi.gouv.fr/actualites/presse/communiques-de-presse/article/prise-en-charge-a-100-de-l-activite-partielle-par-l-etat-pour-les-entreprises
-    Actualité service-public.fr: https://www.service-public.fr/particuliers/actualites/A15140
-
-  par défaut: non
+  valeur: 36%
 
 salarié . activité partielle . net habituel:
   recalcul:
