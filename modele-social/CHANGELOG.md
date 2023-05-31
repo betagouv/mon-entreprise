@@ -6,6 +6,9 @@
 - Ajoute la règle  `salarié . contrat . ancienneté`
 - Ajoute la règle `salarié . contrat . apprentissage . diplôme . niveau 8` pour la nouvelle aide à l’embauche des contrat d’apprentissage
 - Déprécie les règles `salarié . contrat . apprentissage . diplôme préparé` et `salarié . contrat . apprentissage . ancienneté`
+- Met à jour le calcul de l’indemnité de chômage partiel (y compris indemnité employeur)
+- Supprime la règle experimentale `salarié . activité partielle . secteur d'activité restreint`
+
 
 ## 1.6.3
 - Mise à jour de la valeur de service et d’acquisition du point de retraite complémentaire indépendant (RCI)

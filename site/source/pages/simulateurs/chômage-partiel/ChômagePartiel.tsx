@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import Value from '@/components/EngineValue'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
 import Simulation, {
@@ -13,6 +14,7 @@ import Simulation, {
 import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
+import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -70,10 +72,18 @@ export const SeoExplanations = () => {
 			<H2>Comment calculer l'indemnité d'activité partielle ?</H2>
 			<Body>
 				L'indemnité d'activité partielle de base est fixée par la loi à{' '}
-				<strong>70% du brut</strong>. Elle est proratisée en fonction du nombre
-				d'heures chômées. Pour un salarié à 2300 € brut mensuel, qui travaille à
-				50% de son temps usuel, cela donne{' '}
-				<strong>2300 € × 50% × 70% = 805 €</strong>
+				<Strong>
+					<Value
+						linkToRule={false}
+						expression={
+							'salarié . activité partielle . indemnités . base . taux'
+						}
+					/>{' '}
+					du brut
+				</Strong>
+				. Elle est proratisée en fonction du nombre d'heures chômées. Pour un
+				salarié à 2300 € brut mensuel, qui travaille à 50% de son temps usuel,
+				cela donne <Strong>2300 € × 50% × 60% = 805 €</Strong>
 			</Body>
 			<Body>
 				A cette indemnité de base s'ajoute l'indemnité complémentaire pour les
@@ -91,12 +101,17 @@ export const SeoExplanations = () => {
 			<H2>Comment calculer la part remboursée par l'État ?</H2>
 			<Body>
 				L'État prend en charge une partie de l'indemnité partielle pour les
-				salaires allant jusqu'à <strong>4,5 SMIC</strong>, avec un minimum à
-				8,03€ par heures chômée. Concrètement, cela abouti à une prise en charge
-				à<strong>100%</strong> pour les salaires proches du SMIC. Celle-ci
-				diminue progressivement jusqu'à se stabiliser à <strong>93%</strong>{' '}
-				pour les salaires compris <strong>entre 2000 € et 7000 €</strong>{' '}
-				(salaire correspondant à la limite de 4,5 SMIC).
+				salaires allant jusqu'à <Strong>4,5 SMIC</Strong>, avec un minimum à
+				<Strong>
+					{' '}
+					<Value
+						linkToRule={false}
+						expression={
+							'salarié . activité partielle . indemnisation entreprise . plancher horaire * 1 heure'
+						}
+					/>{' '}
+				</Strong>
+				par heures chômée.
 			</Body>
 			<Body>
 				👉{' '}
@@ -127,27 +142,7 @@ export const SeoExplanations = () => {
 				</Body>
 				<PlaceDesEntreprisesButton pathname="/aide-entreprise/activite-partielle-mon-entreprise-urssaf-fr/demande/activite-partielle" />
 			</Body>
-			<H2>Comment déclarer une activité partielle ?</H2>
-			<Body>
-				Face à la crise du coronavirus, les modalités de passage en activité
-				partielle ont été allégées. L'employeur est autorisé a placer ses
-				salariés en activité partielle avant que la demande officielle ne soit
-				déposée. Celui-ci dispose ensuite d'un délai de{' '}
-				<strong>30 jours</strong> pour se mettre en règle. Les indemnités seront
-				versées avec un effet rétro-actif débutant à la mise en place du chômage
-				partiel.
-			</Body>
-			<Body>
-				👉{' '}
-				<Link
-					href="https://www.service-public.fr/professionnels-entreprises/vosdroits/R31001"
-					aria-label={t(
-						'Effectuer la demande de chômage partiel, accéder à la page dédiée, nouvelle fenêtre'
-					)}
-				>
-					Effectuer la demande de chômage partiel
-				</Link>
-			</Body>
+
 			<H2>
 				{' '}
 				Quelles sont les cotisations sociales à payer pour l'indemnité
@@ -203,7 +198,7 @@ function ExplanationSection() {
 								additionalText: language === 'fr' && (
 									<span data-test-id="comparaison-net">
 										Soit{' '}
-										<strong>
+										<Strong>
 											{formatValue(
 												catchDivideByZeroError(() =>
 													engine.evaluate({
@@ -213,7 +208,7 @@ function ExplanationSection() {
 													})
 												)
 											)}
-										</strong>{' '}
+										</Strong>{' '}
 										du revenu net
 									</span>
 								),
@@ -227,7 +222,7 @@ function ExplanationSection() {
 								additionalText: language === 'fr' && (
 									<span data-test-id="comparaison-total">
 										Soit{' '}
-										<strong>
+										<Strong>
 											{formatValue(
 												catchDivideByZeroError(() =>
 													engine.evaluate({
@@ -237,7 +232,7 @@ function ExplanationSection() {
 													})
 												)
 											)}
-										</strong>{' '}
+										</Strong>{' '}
 										du coût habituel
 									</span>
 								),
