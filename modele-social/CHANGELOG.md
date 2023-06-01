@@ -1,6 +1,14 @@
 # Journal des modifications
 
 
+## 1.7.1
+Clarifie le vocabulaire, les référence et l’implémentation du calcul de l’indemnité d’activité partielle
+
+- Renomme la règle `salarié . activité partielle . rémunération mensuelle minimale` vers `salarié . activité partielle . indemnités . légale . rémunération mensuelle minimale`
+- Renomme la règle `salarié . activité partielle . indemnités . base` en `salarié . activité partielle . indemnités . légale . base`
+- Renomme la règle `salarié . activité partielle . indemnités . complémentaire` en `salarié . activité partielle . indemnités . légale . allocation complémentaire`
+- Crée la règle `salarié . activité partielle . indemnités . légale`
+
 ## 1.7.0
 - Met à jour l’aide à l’embauche d’un apprenti (supprime l’historique : l’ancienne version était mal implémentée)
 - Ajoute la règle  `salarié . contrat . ancienneté`
