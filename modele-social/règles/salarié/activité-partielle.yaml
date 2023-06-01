@@ -44,27 +44,10 @@ salarié . activité partielle:
     Ce simulateur ne prend uniquement en compte le cas général, et ne tient pas compte des cas particuliers (ex: Mayotte, allocation longue durée, Covid-19)
   par défaut: non
   références:
-    déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
     "Chômage partiel ou technique (activité partielle) : démarches de l'employeur": https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
     'Employeurs : comment fonctionne l’activité partielle en cas de difficultés ?': https://www.economie.gouv.fr/entreprises/activite-partielle
     'L’activité partielle (dispositif de droit commun)': https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d.html
-
-salarié . activité partielle . rémunération mensuelle minimale:
-  acronyme: RMM
-  description: >-
-    Les salariés à temps plein dont l’horaire de travail est réduit ont droit à
-    une rémunération mensuelle minimale qui peut donner lieu à un versement
-    complémentaire de l’employeur.
-  références:
-    Article L3232-3 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006902847&cidTexte=LEGITEXT000006072050&dateTexte=20080501
-  formule:
-    recalcul:
-      règle: salarié . rémunération . net . sans revenus de remplacement
-      avec:
-        contrat . salaire brut: contrat . temps de travail . SMIC
-        activité partielle: non
-        temps de travail . heures supplémentaires: non
-        temps de travail . heures complémentaires: non
+    déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
 
 salarié . activité partielle . heures chômées:
   unité: heures/mois
@@ -99,6 +82,16 @@ salarié . activité partielle . indemnités:
     reçoit de l'entreprise une indemnité. L'entreprise obtient en contrepartie de
     l’Etat une allocation d’activité partielle.
 
+  somme:
+    - légale
+    # - complémentaire
+  références:
+    Le régime social de l'indemnité d’activité partielle: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d/le-regime-social-de-lindemnite-d.html
+
+salarié . activité partielle . indemnités . légale:
+  description: |
+    L'employeur doit verser au salarié une indemnité minimum légale égale à 60% de sa rémunération brute par heure chomée.
+
     Si après versement de l’indemnité d’activité partielle la rémunération du
     salarié est inférieure à la rémunération mensuelle minimale (RMM garantie par
     les articles L3232-1 et suivants du code du travail pour les salariés à temps
@@ -106,34 +99,39 @@ salarié . activité partielle . indemnités:
     à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
     somme initialement perçue par le salarié.
 
-  formule:
-    somme:
-      - base
-      - complémentaire
-  références:
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d.html
+    Cette allocation complémentaire est exonérée de cotisations et contributions dans les 
+    mêmes conditions que l’indemnité d’activité partielle légale.
 
-salarié . activité partielle . indemnités . base:
-  multiplication:
-    assiette: retrait absence
-    taux:
-      valeur: 60%
-      nom: taux
-
-salarié . activité partielle . indemnités . complémentaire:
-  description: >-
-    L'indemnité complémentaire de chômage partielle est une indemnité versée par
-    l'entreprise pour les salaires proches du SMIC permettant de s'assurer que
-    rémunération effectivement perçue ne soit jamais inférieure à celle
-    du SMIC net.
-  # La condition suivante assure que cette règle ne crée pas de boucle avec indemnités . conventionnelle . part soumise à cotisation
-  non applicable si: contrat . salaire brut > 3.15 * contrat . temps de travail . SMIC
-  formule:
-    valeur: rémunération mensuelle minimale
-    abattement:
-      somme:
-        - rémunération . net . sans revenus de remplacement
-        - indemnités . base
+  somme:
+    - nom: base
+      multiplication:
+        assiette: retrait absence
+        taux: taux
+    - nom: allocation complémentaire
+      valeur: rémunération mensuelle minimale
+      abattement:
+        somme:
+          - base
+          - rémunération . net . sans revenus de remplacement
+  référence:
+    Article L3232-6 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902850/2020-03-02
+  avec:
+    taux: 60%
+    rémunération mensuelle minimale:
+      acronyme: RMM
+      description: >-
+        Les salariés à temps plein dont l’horaire de travail est réduit ont droit à
+        une rémunération mensuelle minimale qui peut donner lieu à un versement
+        complémentaire de l’employeur.
+      recalcul:
+        règle: salarié . rémunération . net . sans revenus de remplacement
+        avec:
+          contrat . salaire brut: contrat . temps de travail . SMIC
+          activité partielle: non
+          temps de travail . heures supplémentaires: non
+          temps de travail . heures complémentaires: non
+      références:
+        Article L3232-3 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006902847&cidTexte=LEGITEXT000006072050&dateTexte=20080501
 
 salarié . activité partielle . retrait absence:
   multiplication:

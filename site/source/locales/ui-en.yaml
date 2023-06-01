@@ -1552,21 +1552,21 @@ pages:
         ogTitle: "Short-time working simulator: find out the impact on the net salaried
           income and the total employer cost."
         titre: Calculation of the short-time working allowance in France
-      seo: "<0>How is partial activity compensation calculated?</0><1>The basic
-        partial activity allowance is set by law at <2><0></0> of gross
+      seo: "<0>How is the statutory partial activity allowance calculated?</0><1>The
+        basic partial activity allowance is set by law at <2><0></0> of gross
         salary</2>. It is prorated according to the number of hours lost. For an
-        employee earning €2,300 gross per month, working 50% of normal working
-        hours, this gives <4>€2,300 × 50% × 60% = €805</4>.</1><2>In addition to
-        this basic allowance, there is a supplementary allowance for salaries
-        close to the minimum wage. This additional allowance is paid when the
-        total of the salary and the basic allowance is below one SMIC net. These
-        allowances are paid by the employer, who is then reimbursed in part or
-        in full by the State.</2><3>👉 S <2>ee details of how the allowance is
-        calculated</2></3><4>How do I calculate the portion reimbursed by the
-        State?</4><5>The State covers part of the partial indemnity for wages up
-        to <1>4.5 SMIC</1>, with a minimum of<3> <1></1> </3>per hour not
-        worked.</5><6>👉 S <2>ee the detailed calculation of the indemnity
-        reimbursement</2></6><7>Talk to an advisor about partial
+        employee earning €2,300 gross per month, working 50% of his usual
+        working hours, this gives <4>€2,300 × 50% × 60% = €805</4>.</1><2>In
+        addition to this basic allowance, there is a supplementary allowance for
+        salaries close to the minimum wage. This additional allowance is paid
+        when the total of the salary and the basic allowance is below one SMIC
+        net. These allowances are paid by the employer, who is then reimbursed
+        in part or in full by the State.</2><3>👉 S <2>ee details of how the
+        allowance is calculated</2></3><4>How do I calculate the portion
+        reimbursed by the State?</4><5>The State covers part of the partial
+        indemnity for wages up to <1>4.5 SMIC</1>, with a minimum of<3> <1></1>
+        </3>per hour not worked.</5><6>👉 S <2>ee the detailed calculation of
+        the indemnity reimbursement</2></6><7>Talk to an advisor about partial
         activity</7><8>You would like to :<1><0>check the allowance received,
         and the amount still to be paid</0><1>find out about the procedure for
         consulting the <2>Works Council</2> and requesting prior
@@ -1575,10 +1575,10 @@ pages:
         costs covered)</3></1><2>Quick and easy public service: you are called
         back by the advisor who can help you. Partners: departmental departments
         of employment, labor and solidarity.</2><3></3></8><9> What social
-        security contributions do I have to pay for partial activity
-        compensation?</9><10>Partial activity compensation is subject to
-        CSG/CRDS and, in certain cases, a health contribution. To find out more,
-        see the explanatory page on <2>the Urssaf website</2>.</10>"
+        security contributions do I have to pay for part-time
+        work?</9><10>Partial activity compensation is subject to CSG/CRDS and,
+        in certain cases, a health contribution. To find out more, see the
+        explanatory page on <2>the Urssaf website</2>.</10>"
       shortname: Partial unemployment
       title: Partial unemployment benefit calculation simulator
     cipav:

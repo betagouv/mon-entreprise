@@ -7108,53 +7108,84 @@ salarié . activité partielle . indemnisation entreprise . taux d'indemnisation
   titre.en: '[automatic] allocation rate'
   titre.fr: taux d'allocation
 salarié . activité partielle . indemnités:
-  description.en: >-
-    [automatic] Short-time work does not entitle the employee to a
+  description.en:
+    '[automatic] Short-time work does not entitle the employee to a
     salary but to a specific allowance. For each hour of unemployment that can
     be compensated, the employee receives an indemnity from the company. In
-    return, the company receives a partial activity allowance from the State.
-
-    If, after payment of the partial activity allowance, the employee's remuneration is lower than the minimum monthly remuneration (RMM guaranteed by articles L3232-1 et seq. of the Labor Code for full-time employees), the employer must pay him/her a complementary allowance which is equal to the difference between the minimum monthly remuneration (or Smic net) and the sum initially received by the employee.
-  description.fr: >-
-    La mise en chômage partiel ouvre droit non au paiement d’un
+    return, the company receives a partial activity allowance from the
+    government.'
+  description.fr: La mise en chômage partiel ouvre droit non au paiement d’un
     salaire mais à l’allocation spécifique. Pour chaque heure chômée
     indemnisable, le salarié reçoit de l'entreprise une indemnité. L'entreprise
     obtient en contrepartie de l’Etat une allocation d’activité partielle.
-
-    Si après versement de l’indemnité d’activité partielle la rémunération du salarié est inférieure à la rémunération mensuelle minimale (RMM garantie par les articles L3232-1 et suivants du code du travail pour les salariés à temps plein), l'employeur doit  lui verser une allocation complémentaire qui est égale à la différence entre la rémunération mensuelle minimale (ou Smic net) et la somme initialement perçue par le salarié.
   titre.en: '[automatic] indemnities'
   titre.fr: indemnités
-salarié . activité partielle . indemnités . base:
-  titre.en: '[automatic] base'
-  titre.fr: base
-salarié . activité partielle . indemnités . complémentaire:
-  description.en:
-    '[automatic] The complementary indemnity of partial unemployment
-    is an indemnity paid by the company for salaries close to the SMIC (minimum
-    wage) to ensure that the remuneration actually received is never lower than
-    the net SMIC.'
-  description.fr: L'indemnité complémentaire de chômage partielle est une
-    indemnité versée par l'entreprise pour les salaires proches du SMIC
-    permettant de s'assurer que rémunération effectivement perçue ne soit jamais
-    inférieure à celle du SMIC net.
-  titre.en: '[automatic] complementary'
-  titre.fr: complémentaire
+salarié . activité partielle . indemnités . légale:
+  avec:
+    rémunération mensuelle minimale:
+      description.en:
+        '[automatic] Full-time employees who work reduced hours are
+        entitled to a minimum monthly payment that may be supplemented by the
+        employer.'
+      description.fr:
+        Les salariés à temps plein dont l’horaire de travail est réduit
+        ont droit à une rémunération mensuelle minimale qui peut donner lieu à
+        un versement complémentaire de l’employeur.
+      titre.en: '[automatic] minimum monthly remuneration'
+      titre.fr: rémunération mensuelle minimale
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  description.en: >
+    [automatic] The employer must pay the employee a minimum legal
+    indemnity equal to 60% of his gross pay per hour lost.
+
+
+    If, after payment of the partial activity allowance, the employee's remuneration
+
+    is less than the minimum monthly remuneration (RMM) guaranteed by
+
+    articles L3232-1 et seq. of the French Labor Code for full-time employees)
+
+    employees), the employer must pay a complementary allowance equal to the difference
+
+    the difference between the minimum monthly remuneration (or Smic net) and the amount
+
+    initially received by the employee.
+
+
+    This additional allowance is exempt from contributions under the same conditions 
+
+    same conditions as the statutory partial activity allowance.
+  description.fr: >
+    L'employeur doit verser au salarié une indemnité minimum légale
+    égale à 60% de sa rémunération brute par heure chomée.
+
+
+    Si après versement de l’indemnité d’activité partielle la rémunération du
+
+    salarié est inférieure à la rémunération mensuelle minimale (RMM garantie par
+
+    les articles L3232-1 et suivants du code du travail pour les salariés à temps
+
+    plein), l'employeur doit  lui verser une allocation complémentaire qui est égale
+
+    à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
+
+    somme initialement perçue par le salarié.
+
+
+    Cette allocation complémentaire est exonérée de cotisations et contributions dans les 
+
+    mêmes conditions que l’indemnité d’activité partielle légale.
+  titre.en: '[automatic] legal'
+  titre.fr: légale
 salarié . activité partielle . net habituel:
   titre.en: '[automatic] usual net'
   titre.fr: net habituel
 salarié . activité partielle . retrait absence:
   titre.en: '[automatic] withdrawal absence'
   titre.fr: retrait absence
-salarié . activité partielle . rémunération mensuelle minimale:
-  description.en: '[automatic] Full-time employees who work reduced hours are
-    entitled to a minimum monthly payment that may be supplemented by the
-    employer.'
-  description.fr:
-    Les salariés à temps plein dont l’horaire de travail est réduit
-    ont droit à une rémunération mensuelle minimale qui peut donner lieu à un
-    versement complémentaire de l’employeur.
-  titre.en: '[automatic] minimum monthly remuneration'
-  titre.fr: rémunération mensuelle minimale
 salarié . activité partielle . total employeur habituel:
   titre.en: '[automatic] total usual employer'
   titre.fr: total employeur habituel

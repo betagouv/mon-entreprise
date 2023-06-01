@@ -47,6 +47,11 @@ export default function ChômagePartiel() {
 						Ce simulateur ne prend pas en compte les rémunérations brut définies
 						sur 39h hebdomadaires.
 					</Li>
+					<Li>
+						De même, il ne prend pas en compte les indemnités complémentaire
+						d'activité partielle prévue par une convention/accord collectif ou
+						une décision unilatérale de l'employeur.
+					</Li>
 				</Ul>
 			</Warning>
 			<Simulation
@@ -69,14 +74,14 @@ export const SeoExplanations = () => {
 
 	return (
 		<Trans i18nKey="pages.simulateurs.chômage-partiel.seo">
-			<H2>Comment calculer l'indemnité d'activité partielle ?</H2>
+			<H2>Comment calculer l'indemnité d'activité partielle légale ?</H2>
 			<Body>
 				L'indemnité d'activité partielle de base est fixée par la loi à{' '}
 				<Strong>
 					<Value
 						linkToRule={false}
 						expression={
-							'salarié . activité partielle . indemnités . base . taux'
+							'salarié . activité partielle . indemnités . légale . taux'
 						}
 					/>{' '}
 					du brut
