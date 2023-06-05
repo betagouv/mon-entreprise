@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
+import FeedbackButton from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Button } from '@/design-system/buttons'
@@ -61,7 +62,7 @@ export default function Footer() {
 							: theme.colors.bases.tertiary[100]
 					}
 				>
-					{/* <FeedbackButton key={`${pathname}-feedback-key`} /> */}
+					<FeedbackButton key={`${pathname}-feedback-key`} />
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}
