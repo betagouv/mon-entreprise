@@ -116,12 +116,10 @@ html, body, #js, #js > *, [data-overlay-container] {
 			? css`
 					min-height: 100%;
 			  `
-			: css`
-					height: 100%;
-			  `
+			: css``
 	}
 	
-}
+} 
 
 *,
 *:before,

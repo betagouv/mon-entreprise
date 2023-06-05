@@ -193,4 +193,6 @@ const StyledLayout = styled.div<{
 			display: flex;
 			height: 100%;
 		`}
+
+	min-height: 100vh;
 `
