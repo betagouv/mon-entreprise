@@ -25,7 +25,6 @@ Aller au contenu principal: Go to main content
 Aller directement au pied de page: Go directly to the footer
 Aller plus loin: Go further
 Aller plus loin sur les revenus: Going further on income
-"Aller à l'étape actuelle :": "Go to the current step:"
 Annuler: Cancel
 Arrêt maladie: Sick leave
 Assimilé salarié: '"Assimilé-salarié"'
@@ -35,7 +34,6 @@ Assistants à la déclaration de revenu 2022 des indépendants: Assistants to th
 Aucun: No
 Aucun résultat: No result$
 Auto-entrepreneur: Auto-entrepreneur
-Auto-entrepreneur en EIRL: Auto-entrepreneur with EIRL option
 Autres outils: Other tools
 Avec chômage partiel: With partial unemployment
 Boite de dialogue: Dialog box
@@ -68,10 +66,8 @@ Continuer: Continue
 Cotisations: Contributions
 Cotisations sociales: Social contributions
 "Crée le :": "Created on :"
-Créer une: Create a
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: In what cases are my profits not BNC?
 Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: When is my company not subject to income tax?
-Devenir: Become
 Dividendes nets: Net dividends
 Documentation: Documentation
 "Domiciliée à l'adresse :": "Domiciled at the address :"
@@ -105,6 +101,7 @@ En savoir plus sur impots:
     "fr, nouvelle fenêtre": More information on impots.gouv.fr, new window
 "En savoir plus, nouvelle fenêtre": Learn more, new window
 English version of the website enabled.: English version of the website enabled.
+Enregistrer et passer à la suite: Save and continue
 Entreprise Individuelle: Sole Proprietorship
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company created on <2><0></0></2> and domiciled in <6><0></0></6>
 Envoyer: Send
@@ -130,13 +127,6 @@ Gestion des données personnelles: Management of personal data
 "Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image":
   Detailed statistical graph of the number of visits per day, presence of an
   alternative accessible after the image
-Gérant majoritaire: Chairman
-"Gérant majoritaire, sélectionner l'option et passer à l'étape suivante": Majority manager, select the option and go to the next step
-Gérant minoritaire: Managing director
-Gérant minoritaire ou égalitaire: Minority or equal manager
-"Gérant minoritaire ou égalitaire, sélectionner l'option et passer à l'étape suivante":
-  Minority or equal shareholder manager, select the option and go to the next
-  step
 Habituellement: Usually
 Impôt: Tax
 Impôt au barème: Tax on the scale
@@ -176,7 +166,6 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
 Les formalités pour embaucher: The formalities for hiring
 "Lire les précisions, ouvrir le message condensé.": Read the details, open the condensed message.
 Liste des intégrations: List of integrations
-Liste des statuts juridiques: List of legal statutes
 Ma déclaration: My statement
 Ma situation: My situation
 Maternité: Maternity
@@ -216,7 +205,6 @@ Outils pour les développeurs: Tools for developers
 PFU (<1>"flat tax"</1>): Flat tax
 Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdresser, baker or restaurant"
-Pas en auto-entrepreneur: Not in auto-entrepreneur
 Passer: Skip
 Passer le contenu principal et aller directement au pied de page: Skip the main content and go directly to the footer
 Passer à la version française du site: Switch to the French version of the site
@@ -228,7 +216,6 @@ Plus d'informations: More information (fr)
 Plus d'informations sur service-public:
   "fr, nouvelle fenêtre": More information on service-public.fr, new window
 "Plus d'infos sur, {{ title }}": More info on, {{ title }}
-Plusieurs associés: Several partners
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
     fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
@@ -268,15 +255,12 @@ Rechercher votre entreprise: Search for your company
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Enter an e-mail address (in the format nom@domaine.com) to receive a reply
 Replier: Folding
-Ressources utiles: Helpful resources
-Retour: Back
 Retour à la création: Back to creation
 Retour à mon activité: Back to my business
 Retourner à la page d'accueil: Return to the home page
 Retraite complémentaire: Supplementary pension
 Retraite de base: Basic pension
 "Retrouver ma simulation, charger les données de ma précédente simulation.": Retrieve my simulation, load data from my previous simulation.
-Revenir à l'étape: Go back to the step
 Revenu (incluant les dépenses liées à l'activité): Income (including expenses related to the activity)
 Revenu après impôt: After-tax income
 Revenu disponible: Disposable income
@@ -312,6 +296,7 @@ Situation personnelle: Personal situation
 Statistiques: Statistics
 Statut du conjoint: Status of the spouse
 Suivant: Next
+"Suivant, passer à l'étape suivante": Next, go to the next step
 "Suivant, passer à la question suivante": Next, go to the next question
 Switch to the english version of the website: Switch to the english version of the website
 "Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.":
@@ -347,7 +332,6 @@ Type: Type
   An <1>"orphan" capital</1> is paid to the children of deceased self-employed
   workers, under certain conditions.
 Un avis sur cette page ?: Any opinion on this page?
-Un seul associé: Only one partner
 "Urssaf, voir le site urssaf":
   "fr, nouvelle fenêtre": Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Use with a spreadsheet
@@ -374,7 +358,6 @@ Votre avis nous intéresse: Your opinion is important to us
 Votre chiffre d'affaires estimé: Your estimated turnover
 Votre couverture invalidité et décès: Your disability and death coverage
 Votre domaine d'activité: Your field of activity
-Votre forme juridique: Your legal status
 Votre message (requis): Your message (required)
 Vous allez dépasser le plafond de la micro-entreprise: You will exceed the micro-business limit
 "Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.": We are sorry that you were not satisfied with your experience.
@@ -484,47 +467,8 @@ assistants:
       body: Find all public information about your company on
       cta: Visit the site
       title: See your public data
-associés:
-  choix1: Alone
-  choix1-aria-label: Alone, select the option and go to the next step
-  choix2: Several people
-  choix2-aria-label: Several people, select the option and go to the next step
-  description: >
-    <0>
-      A company with only one partner is easier to create and manage. A shareholder
-      may be a natural person (an individual) or a legal person (for example,
-      another company).
-    </0> <1>
-      Note: this choice is not final. You can start your company on your own,
-      and welcome new partners as your business grows.
-    </1>
-  page:
-    description: Find out which status to choose based on the number of partners
-      involved in the creation of a company in France.
-    titre: Number of partners to start a business in France
-  titre: Number of partners
 au bout de 10 ans: after 10 years
 auto-entreprise: self-employed
-autoentrepreneur:
-  description: >
-    <0>
-      The auto-entrepreneur benefits from a simplified scheme of declaration and payment, for which tax and social contributions
-      are based on the turnover achieved each month.
-    </0> <1>
-      <0>Note:</0>
-      Some activities are excluded from this status (<2>see the list [fr]</2>). Some activities
-      are regulated with a qualification or a professional experience (<4>see the list [fr])</4>).
-    </1>
-  page:
-    description: >
-      The auto-entrepreneur benefits from a simplified scheme of
-      declaration and payment,
-
-      for which tax and social contributions are based on the turnover achieved
-
-      each month. It's an interesting choice if you do not need a lot of capital, and want to get started quickly.
-    titre: Choosing between auto-entrepreneur and sole proprietorship - My business
-  titre: Auto-entrepeneur
 back: Return to the simulation
 betawarning: "<0><0>This tool is in beta version</0>: we are working to
   <3>validate the information and calculations</3>, but <6>errors may be
@@ -546,15 +490,25 @@ checklist:
   showmore:
     closed: Read more
     open: Hide details
+choix-statut:
+  home:
+    estimated-duration: "Estimated duration: 5 minutes."
+    find-statut: Finding the right status
+    info: For best results, you need to <2>answer all the questions</2>.
+    intro: The first step is to choose the <2>right legal status for your
+      business</2>. The administrative procedures will vary depending on the
+      legal status you choose.
+    title: Choose your status
+  meta:
+    description: Choose your status
+    title: Choose your status
 chomagePartiel:
   tableCaption: Table showing net salary and cost to the employer with or without
     partial unemployment.
 codeApe:
-  catégorie-guichet: <0>Categories of the Guichet unique<1><0>The <2>Guichet
-    électronique des formalités d'entreprises</2> (Guichet unique) is a secure
-    internet portal, with which any company is required to declare its creation,
-    since January 1st 2023.</0><1>It uses a different classification of
-    activities than the one used by INSEE for APE code.</1></1></0>
+  catégorie-guichet: <0>Guichet unique categories<1></1></0>
+common:
+  useful-resources: Useful resources
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 year <1>(automatic and unconditional)</1></1><2>Between 3
     and 4 quarters <2>(subject to eligibility requirements)</2></2>
@@ -665,20 +619,20 @@ conversation:
 copied: Copy
 copyMessage: Copy the message
 créer:
-  cta:
-    continue: Continue the guide
-    default: Find the right status
-  description: Create a company
-  intro: Before starting the administrative procedures to create your company, you
-    must choose a legal status adapted to your activity
-  ressources:
-    autoEntrepreneur:
-      body: Do you want to become an auto-entrepreneur? Discover the steps to start
-        your business
-      cta: Consult the procedures
-      title: Auto-entrepreneur procedure
-  titre: Create a company
-  warningPL: "Note: the case of regulated liberal professions is not covered"
+  activité:
+    help:
+      title: Choosing the right status for your situation
+    subtitle: <0>My main activity is...<1><0>The choice of status and contributions
+      depends on your professional activity. Entering your occupation will give
+      you a clearer idea of the possible statuses and enable you to simulate
+      your income more accurately.</0><1><0>Do you combine several
+      activities?</0><1>Your company must still declare one main activity to the
+      authorities. To find out how to do this, <2>see this
+      guide</2>.</1></1></1></0>
+    title: Your business
+  activité-détails:
+    next1: Continue with this activity
+    subtitle: <0>Details of your business</0>
 d'aides: aids
 de chiffre d’affaires: of turnover
 design-system:
@@ -754,169 +708,6 @@ embauche:
 employeur: Employer share
 en incluant: including
 en titres-restaurant: in restaurant vouchers
-entreprise:
-  page:
-    autoEntrepreneur:
-      description: The complete list of steps to take to become a {{autoEntrepreneur}}.
-      titre: Become {{autoEntrepreneur}}
-    description: The complete list of steps to take to create a {{status}} with the
-      French administration.
-    entreprise:
-      titre: Create a {{status}}
-  ressources:
-    après:
-      aria-label: After creation, see the glossary
-      body: SIREN, SIRET, APE code, KBis. A small glossary of terms that you may
-        (possibly) encounter after the creation.
-      cta: See the glossary
-      title: After the creation
-    simu:
-      assimilé:
-        aria-label: SASU, simulate the remuneration
-        body: Simulate the amount of your social contributions to prepare your business
-          plan.
-        cta: Simulate compensation
-        title: Remuneration simulator for SASU managers
-      autoEntrepreneur:
-        aria-label: Self-employed contractor, simulate my income
-        body: Simulate the amount of your social security contributions and taxes and
-          estimate your future net income.
-        cta: Simulate income
-        title: Auto-entrepreneur income simulator
-      indépendant:
-        aria-label: Self-employed, simulate my income
-        body: Simulate the amount of your social contributions to prepare your business
-          plan.
-        cta: Simulate contributions
-        title: Self-employed contribution simulator
-  retour: Choose another status
-  tâches:
-    adresse:
-      description: <0><0>The address</0> is the physical space where your company will
-        be incorporated. In certain places and situations, you can benefit from
-        substantial public financing (exemption from charges, taxes, etc.).
-        <2>More information (Fr)</2></0>
-      titre: Find an address to incorporate the company
-    affectation:
-      description: >
-        <0>
-          The <1>declaration of asset allocation</1> allows you to separate professional
-          assets from your personal assets, which then becomes unseizable. This procedure
-          is free of charge if it is carried out at the time of the creation
-          of a company.
-        </0> <1>
-          To do so, simply declare which assets are allocated to the patrimony of your company.
-          All the contributions necessary for your professional activity must be included
-          (for example: goodwill, trademark, patent, or professional equipment). You can do
-          the valuation of the asset yourself if it does not exceed €30,000.
-        </1> <2>
-          <0>$t(Plus d'informations)</0>
-        </2>
-      titre: Make a declaration of asset allocation
-    assurance:
-      description: <0>An SME or self-employed person must protect themselves against
-        the main risks to which they are exposed and take out guarantee
-        contracts. Whether it is a tenant or owner of its walls, the company
-        must insure its buildings, its professional equipment, its goods, its
-        raw materials, its vehicles, as well as in terms of civil liability of
-        the company and its managers or in terms of operating loss.</0><1>More
-        information (Fr)</1>
-      titre: Check out the need for professional insurance
-    avancement: Use these lists to track down your advancement in the business
-      creation process. It is automatically saved in your browser.
-    banque:
-      description:
-        "1": The purpose of a <1>professional bank account</1> is to separate your
-          company's assets from your personal assets.
-        "2": "The professional bank account allows you to:"
-        EI: "Although it is not mandatory for a sole proprietorship, it is strongly
-          recommended. "
-        liste: >
-          <0>Differentiate your private and professional operations and simplify
-          your cash management</0>
-
-          <1>Facilitate any tax audit operations.</1>
-      titre: Open a business bank account
-    capital:
-      description: <0>The <1>deposit of share capital</1>  must be made at the time of
-        the incorporation of a company by any person acting on behalf of the
-        company and having received funds from contributions in cash (sum of
-        money) from the creditors of the company (shareholder or
-        partner).</0><1>The deposit consists of a transfer of a sum of money to
-        a blocked account with a bank or the public <2>Caisse des dépôts et
-        consignations</2> or a notary, who must then provide a certificate of
-        deposit of capital.</1>
-      titre: Deposit capital funds
-    comptable:
-      description: Managing a company brings a number of <1>accounting
-        obligations</1>. It is advisable to call in a competent person or use a
-        website that can handle accounting for you.
-      titre: Choose a certified accountant
-    formeJuridique:
-      titre: Choose the legal status
-    formulaire:
-      description: <0>You can register online at any time, save it and return to it as
-        you wish.</0><1></1><2>Doing it online</2>
-      titre: Register my company online
-    journal:
-      description: >
-        <0>A notice of incorporation of the company must be published in a
-        newspaper of legal announcements (« JAL » in French), for a cost of
-        publication that depends on the size of the announcement and the rates
-        charged by the chosen newspaper.</0><1><0>Find a newspaper of legal
-        announcements</0></1><2>The notice must contain the following
-        information:</2>
-
-        <3>
-
-        <0>The company's name and possibly its acronym</0>
-
-        <1>The legal form</1>
-
-        <2>The amount of the company's capital</2>
-
-        <3>The address of the registered office</3>
-
-        <4>The corporate purpose</4>
-
-        <5>The duration of the company</5>
-
-        <6>
-          The full name and address of the manager and of the persons
-          with general authority to bind the company to third parties,
-          and of the statutory auditors (if appointed)
-        </6>
-
-        <7>
-          The place and number of the RCS with which the company is
-          registered
-        </7>
-
-        </3>
-      titre: Publish a notice of creation in a newspaper
-    nom:
-      description: <0><0>The corporate name</0> is the name of your company in the
-        eyes of the law, written on all your administrative documents. It may be
-        different from your business name.</0><1>It is advisable to check that
-        the name is available, i.e. that it does not infringe on a name already
-        protected by a trademark, a company name, a trade name, an Internet
-        domain name, etc. You can check in the <2>INPI</2> database.</1>
-      titre: Find a corporate name
-    objetSocial:
-      description: The <1>corporate purpose</1> of the company ("objet social") is the
-        main activity run. A secondary activity can be registered.
-      titre: Write the corporate purpose of the company
-    statuts:
-      aria-label: Status examples for your {{status}}, new window
-      description: The company's articles of association ( "les statuts"), is an
-        official document written in French, describing the status choice,
-        naming the associate(s) and the contributed capital. <2>For more than
-        one associate, it is recommended to ask for the help of a lawyer to
-        write them.</2>
-      exemple: Example articles for your
-      titre: Write the company's articles
-    titre: The to-do list for creating your business
-    titre2: Recommended before starting your activity
 explications:
   tableCaption: Table displaying the lines of your tax return associated with the
     tax exemptions in place for each type of activity. The first column displays
@@ -937,55 +728,7 @@ footer:
   accessibilitéAriaLabel: "Accessibility: partially compliant, read more"
   github:
     text: View source code on Github
-formeJuridique:
-  EI: Also called company in own name or company in a personal name. No capital
-    contribution is necessary. Private wealth and corporate wealth are one.
-  EIRL: Allows you to protect your personal assets by allocating specific capital
-    to your professional activity. Society and the individual are the same
-    person. Not suitable if the sole shareholder is a legal entity (company) or
-    if you plan to welcome other shareholders during the development of your
-    company (choose EURL in this case).
-  EURL: The company has only one partner. Liability is limited to the amount of
-    the capital contribution of the sole shareholder. Evolves into a SARL when
-    new partners join the company.
-  SA: Composed of at least 2 shareholders. This is the only status that allows you
-    to be listed on the stock exchange (from 7 shareholders). The minimum share
-    capital is €37.000.
-  SARL: Composed of at least 2 partners whose financial responsibility is limited
-    to the amount of their contribution to the company's capital. The minimum
-    capital is freely fixed in the articles of association.
-  SAS: Company with at least 2 partners. The financial liability of the
-    shareholders is limited to the amount of their contribution to the company's
-    capital. The minimum capital is freely set in the Articles of Association.
-    An SAS is characterised by a high degree of flexibility in terms of
-    functioning (tailor-made statutes).
-  SASU: Composed of only one partner. The financial responsibility is limited to
-    the amount of his contribution to the company's capital. The minimum capital
-    is freely fixed in the Articles of Association.
-  SNC: The liability of the partners for the debts of the company is unified
-    (one  partner only can be sued for the entire debt) and indefinite
-    (responsible on the entirety of their personnal wealth).
-  micro: The auto-entrepreneur is a sole proprietorship company, subject to a
-    flat-rate scheme for the calculation of taxes and the payment of social
-    security contributions.
-  micro-EIRL: The EIRL auto-entrepreneur is a sole proprietorship with limited
-    liability, subject to a flat-rate scheme for the calculation of taxes and
-    the payment of social security contributions.
-  titre: Choice of legal status
 "gestion sémantique de version, en savoir plus, nouvelle fenêtre": semantic version management, learn more, new window
-gérant minoritaire:
-  description: >
-    <0>Some special rules apply depending on the amount of shares owned
-    by the director.</0><1><0><0>Chairman</0>: The director is in majority, or
-    is part of a managing board that is in majority.</0><1><0>Managing
-    director</0>: The director is in minority (or equality), or is part of a
-    managing board that is in minority (or equality).</1></1>
-  page:
-    description: Some special rules apply depending on the amount of shares owned by
-      the director and this can lead to a different status when creating your
-      company in France
-    titre: Chairman or managing director in France
-  titre: Chairman or managing director
 gérer:
   choix:
     chomage-partiel:
@@ -1095,9 +838,6 @@ legalNotice:
 library:
   description: Tools for developers
   title: Calculation library
-listeformejuridique:
-  page:
-    titre: Legal status list for creating your company in France
 loading: Loading in progress...
 maximum: maximum
 moins: less
@@ -1275,13 +1015,6 @@ pages:
       title: Help in choosing the legal status
     shortname: Legal status assistant
     title: Legal status choice assistant
-  common:
-    ressources-auto-entrepreneur:
-      FAQ:
-        body: An exhaustive and updated list of all the frequent (and less frequent)
-          questions that one is led to ask as an auto-entrepreneur
-        cta: See the answers
-        title: Frequently asked questions
   développeur:
     api: '<0><0>You can reuse the calculations of my-company on your site or service
       very easily thanks to our open REST API and without
@@ -1922,30 +1655,6 @@ privacyContent:
   results will be displayed after this element.
 recherche-globale:
   placeholder: "Keyword or acronym (example: CSG)"
-responsabilité:
-  bouton1: Limited liability company
-  bouton1-aria-label: Company, select the option and go to the next step
-  bouton2: Sole proprietorship
-  bouton2-aria-label: Sole proprietorship, select the option and go to the next step
-  description: Limited liability? Sole proprietorship? Each option has legal
-    implications and leads to a different status for the creation of your
-    company in France. This guide helps you choose between the different forms
-    of liability.
-  entreprise-individuelle: >
-    <0>Sole proprietorship:</0>
-
-    An economic activity carried out by a single natural person in his or her own name. Less formalities, but more risks in the event of bankruptcy, because your personal assets can be put to use.
-
-    <3>You cannot welcome new partners into a sole proprietorship.</3>
-  intro: This choice determines your degree of responsibility and your ability to
-    welcome new partners in the future
-  page:
-    titre: Choosing between a company or a sole proprietorship
-  société: >
-    <0>Limited liability company:</0>
-
-    You cannot be held personally liable for the company's debts or obligations. On the other hand, the creation process is a little more cumbersome, since it includes the drafting of statutes and the deposit of capital.
-  titre: Limited liability company or sole proprietorship
 revenu_après_impots:
   acre: <0>ACRE under <2>certain conditions</2> <2><1></1></2></0>
 salarié: Employee share
@@ -2079,16 +1788,6 @@ stats:
     number of requests.
   description: Discover our usage statistics updated daily.
   title: Statistics
-statut du dirigeant:
-  description: <0>This choice is important because it determines the social
-    security regime and the social coverage of the manager. The amount and terms
-    of payment of social security contributions are also
-    impacted.</0><1><0></0></1>
-  page:
-    description: This choice is important because it determines the director's
-      Social Security scheme and coverage. Each option has legal implications,
-      and leads to a different status when creating your company in France
-  titre: Defining the director's status
 supérieurs à: higher than
 sécu:
   contenu: >
@@ -2137,8 +1836,6 @@ sécu:
 trimestres acquis: quarters acquired
 versés en deux fois: paid in two installments
 versés en une fois: paid at once
-voir la liste sur afecreation:
-  "fr, nouvelle fenêtre": see the list on afecreation.fr, new window
 "vos retours, accéder aux statistiques d'utilisation": your feedback, access to usage statistics
 warning:
   overwrite:
@@ -2155,7 +1852,6 @@ warning:
 Étape complétée: Step completed
 Étape non complétée: Step not completed
 "Étape {{ total }} sur {{ maxValue }}": Step {{ total }} on {{ maxValue }}
-Étapes du choix du statut juridique: Steps in choosing a legal status
 Éviter de communiquer des informations personnelles: Avoid giving out personal information
 Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Are you sure you want to reset the registered status?

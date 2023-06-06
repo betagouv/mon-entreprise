@@ -25,7 +25,6 @@ Aller au contenu principal: Aller au contenu principal
 Aller directement au pied de page: Aller directement au pied de page
 Aller plus loin: Aller plus loin
 Aller plus loin sur les revenus: Aller plus loin sur les revenus
-"Aller à l'étape actuelle :": "Aller à l'étape actuelle :"
 Annuler: Annuler
 Arrêt maladie: Arrêt maladie
 Assimilé salarié: Assimilé salarié
@@ -35,7 +34,6 @@ Assistants à la déclaration de revenu 2022 des indépendants: Assistants à la
 Aucun: Aucun
 Aucun résultat: Aucun résultat
 Auto-entrepreneur: Auto-entrepreneur
-Auto-entrepreneur en EIRL: Auto-entrepreneur en EIRL
 Autres outils: Autres outils
 Avec chômage partiel: Avec chômage partiel
 Boite de dialogue: Boite de dialogue
@@ -70,10 +68,8 @@ Continuer: Continuer
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
 "Crée le :": "Crée le :"
-Créer une: Créer une
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: Dans quels cas mes bénéfices ne sont pas de type BNC ?
 Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?
-Devenir: Devenir
 Dividendes nets: Dividendes nets
 Documentation: Documentation
 "Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
@@ -107,6 +103,7 @@ En savoir plus sur impots:
     "fr, nouvelle fenêtre": En savoir plus sur impots.gouv.fr, nouvelle fenêtre
 "En savoir plus, nouvelle fenêtre": En savoir plus, nouvelle fenêtre
 English version of the website enabled.: English version of the website enabled.
+Enregistrer et passer à la suite: Enregistrer et passer à la suite
 Entreprise Individuelle: Entreprise Individuelle
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
 Envoyer: Envoyer
@@ -133,13 +130,6 @@ Gestion des données personnelles: Gestion des données personnelles
 "Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image":
   Graphique statistiques détaillés du nombre visites par jour, présence d’une
   alternative accessible après l’image
-Gérant majoritaire: Gérant majoritaire
-"Gérant majoritaire, sélectionner l'option et passer à l'étape suivante": Gérant majoritaire, sélectionner l'option et passer à l'étape suivante
-Gérant minoritaire: Gérant minoritaire
-Gérant minoritaire ou égalitaire: Gérant minoritaire ou égalitaire
-"Gérant minoritaire ou égalitaire, sélectionner l'option et passer à l'étape suivante":
-  Gérant minoritaire ou égalitaire, sélectionner l'option et passer à l'étape
-  suivante
 Habituellement: Habituellement
 Impôt: Impôt
 Impôt au barème: Impôt au barème
@@ -180,7 +170,6 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
 Les formalités pour embaucher: Les formalités pour embaucher
 "Lire les précisions, ouvrir le message condensé.": Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
-Liste des statuts juridiques: Liste des statuts juridiques
 Ma déclaration: Ma déclaration
 Ma situation: Ma situation
 Maternité: Maternité
@@ -221,7 +210,6 @@ Outils pour les développeurs: Outils pour les développeurs
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Page d'accueil
 "Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
-Pas en auto-entrepreneur: Pas en auto-entrepreneur
 Passer: Passer
 Passer le contenu principal et aller directement au pied de page: Passer le contenu principal et aller directement au pied de page
 Passer à la version française du site: Passer à la version française du site
@@ -233,7 +221,6 @@ Plus d'informations: Plus d'informations
 Plus d'informations sur service-public:
   "fr, nouvelle fenêtre": Plus d'informations sur service-public.fr, nouvelle fenêtre
 "Plus d'infos sur, {{ title }}": Plus d'infos sur, {{ title }}
-Plusieurs associés: Plusieurs associés
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
     fr</2>: Pour en savoir plus, rendez-vous sur le site
@@ -275,15 +262,12 @@ Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
     nom@domaine.com) pour recevoir une réponse
 Replier: Replier
-Ressources utiles: Ressources utiles
-Retour: Retour
 Retour à la création: Retour à la création
 Retour à mon activité: Retour à mon activité
 Retourner à la page d'accueil: Retourner à la page d'accueil
 Retraite complémentaire: Retraite complémentaire
 Retraite de base: Retraite de base
 "Retrouver ma simulation, charger les données de ma précédente simulation.": Retrouver ma simulation, charger les données de ma précédente simulation.
-Revenir à l'étape: Revenir à l'étape
 Revenu (incluant les dépenses liées à l'activité): Revenu (incluant les dépenses liées à l'activité)
 Revenu après impôt: Revenu après impôt
 Revenu disponible: Revenu disponible
@@ -321,6 +305,7 @@ Situation personnelle: Situation personnelle
 Statistiques: Statistiques
 Statut du conjoint: Statut du conjoint
 Suivant: Suivant
+"Suivant, passer à l'étape suivante": Suivant, passer à l'étape suivante
 "Suivant, passer à la question suivante": Suivant, passer à la question suivante
 Switch to the english version of the website: Switch to the english version of the website
 "Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.":
@@ -358,7 +343,6 @@ Type: Type
   Un <1>capital « orphelin »</1> est versé aux enfants des travailleurs
   indépendants décédés, sous certaines conditions.
 Un avis sur cette page ?: Un avis sur cette page ?
-Un seul associé: Un seul associé
 "Urssaf, voir le site urssaf":
   "fr, nouvelle fenêtre": Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
@@ -389,7 +373,6 @@ Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
 Votre couverture invalidité et décès: Votre couverture invalidité et décès
 Votre domaine d'activité: Votre domaine d'activité
-Votre forme juridique: Votre forme juridique
 Votre message (requis): Votre message (requis)
 Vous allez dépasser le plafond de la micro-entreprise: Vous allez dépasser le plafond de la micro-entreprise
 "Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.":
@@ -510,39 +493,8 @@ assistants:
         sur
       cta: Visiter le site
       title: Voir vos données publiques
-associés:
-  choix1: Seul
-  choix1-aria-label: Seul, sélectionner l'option et passer à l'étape suivante
-  choix2: Plusieurs personnes
-  choix2-aria-label: Plusieurs personnes, sélectionner l'option et passer à l'étape suivante
-  description: "<0>Une entreprise avec un seul associé est plus simple à créer et
-    gérer. Un associé peut-être une personne physique (un individu) ou une
-    personne morale (par exemple une société).</0><1>Note : ce choix n'est pas
-    définitif. Vous pouvez tout à fait commencer votre société seul, et
-    accueillir de nouveaux associés au cours de votre développement.</1>"
-  page:
-    description: Découvrez quels status choisir en fonction du nombre d'associés
-      participant à la création de l'entreprise.
-    titre: Nombre d'associés pour créer une entreprise
-  titre: Seul ou à plusieurs
 au bout de 10 ans: au bout de 10 ans
 auto-entreprise: auto-entreprise
-autoentrepreneur:
-  description: "<0>À la différence de l'entreprise individuelle,
-    l'auto-entrepreneur bénéficie d'un régime simplifié de déclaration et de
-    paiement : les cotisations sociales et l'impôt sur le revenu sont calculés
-    sur le chiffre d'affaires encaissé.</0><1><0>Note</0> : Certaines activités
-    sont exclues de ce statut (<2> voir la liste</2>). Certaines activités sont
-    réglementées avec une qualification ou une expérience professionnelle
-    (<4>voir la liste</4>).</1>"
-  page:
-    description: Un auto-entrepreneur bénéficie d'un système simplifié de
-      déclaration et de paiement, pour lesquelles les impôts et cotisations
-      sociales sont basés sur le chiffre d'affaires réalisé chaque mois. C'est
-      un choix intéressant si vous n'avez pas besoin de beaucoup de capital et
-      que vous souhaitez démarrer rapidement.
-    titre: Choisir entre auto-entrepreneur et entreprise individuelle - Mon entreprise
-  titre: Entreprise individuelle ou auto-entrepreneur
 back: Retourner à la simulation
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
@@ -565,16 +517,26 @@ checklist:
   showmore:
     closed: En savoir plus
     open: Masquer les détails
+choix-statut:
+  home:
+    estimated-duration: "Durée estimée : 5 minutes."
+    find-statut: Trouver le bon statut
+    info: Pour obtenir un résultat optimal, vous devez <2>répondre à toutes les
+      questions.</2>
+    intro: La première étape consiste à choisir un <2>statut juridique adapté à
+      votre activité</2>. Les démarches administratives changent en fonction de
+      ce dernier.
+    title: Choisir votre statut
+  meta:
+    description: Choisir votre statut
+    title: Choisir votre statut
 chomagePartiel:
   tableCaption: Tableau indiquant le salaire net et le coût pour l'employeur avec
     ou sans chômage partiel.
 codeApe:
-  catégorie-guichet: <0>Catégories du Guichet unique<1><0>Le <2>Guichet
-    électronique des formalités d’entreprises</2> (Guichet unique) est un
-    portail internet sécurisé, auprès duquel toute entreprise est tenue de
-    déclarer sa création, depuis le 1er janvier 2023.</0><1>Il utilise une
-    classification des activités différente de celle utilisée par l'INSEE pour
-    code APE.</1></1></0>
+  catégorie-guichet: <0>Catégories du Guichet unique<1></1></0>
+common:
+  useful-resources: Ressources utiles
 comparaisonRégimes:
   ACRE: <0>ACRE</0><1>1 an <1>(automatique et inconditionnelle)</1></1><2>Entre 3
     et 4 trimestres <2>(sous conditions d'éligibilité)</2></2>
@@ -668,20 +630,21 @@ conversation:
 copied: Copié
 copyMessage: Copier le message
 créer:
-  cta:
-    continue: Continuer le guide
-    default: Trouver le bon statut
-  description: Créer une entreprise
-  intro: Avant d'entamer les démarches administratives pour créer votre
-    entreprise, vous devez choisir un statut juridique adapté à votre activité
-  ressources:
-    autoEntrepreneur:
-      body: Vous souhaitez devenir auto-entrepreneur ? Découvrez les étapes pour bien
-        démarrer votre activité
-      cta: Consulter les démarches
-      title: Démarche auto-entrepreneur
-  titre: Créer une entreprise
-  warningPL: Le cas des professions libérales réglementées n'est pas encore traité
+  activité:
+    help:
+      title: Le choix du statut, un choix adapté à votre situation
+    subtitle: <0>Mon activité principale est...<1><0>Le choix du statut et les
+      cotisations diffèrent en fonction de l'activité professionnelle que vous
+      exercez. Renseigner votre métier vous donnera de la visibilité sur les
+      statuts possibles et permettra de simuler vos revenus de manière plus
+      précise.</0><1><0>Vous cumulez plusieurs activités ?</0><1>Votre
+      entreprise doit tout de même déclarer une activité principale à
+      l'administration. Pour savoir comment la déterminer, <2>voir ce
+      guide</2>.</1></1></1></0>
+    title: Votre activité
+  activité-détails:
+    next1: Continuer avec cette activité
+    subtitle: <0>Précisions sur votre activité</0>
 d'aides: d'aides
 de chiffre d’affaires: de chiffre d’affaires
 design-system:
@@ -758,143 +721,6 @@ embauche:
 employeur: employeur
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
-entreprise:
-  page:
-    autoEntrepreneur:
-      description: La liste complète des démarches à faire pour devenir
-        {{autoEntrepreneur}}.
-      titre: Devenir {{autoEntrepreneur}}
-    description: La liste complète des démarches à faire pour créer une {{statut}}
-      auprès de l'administration française.
-    entreprise:
-      titre: Créer une {{status}}
-  ressources:
-    après:
-      aria-label: Après la création, voir le glossaire
-      body: SIREN, SIRET, code APE, KBis. Un petit glossaire des termes que vous
-        pourrez (éventuellement) rencontrer après la création.
-      cta: Voir le glossaire
-      title: Après la création
-    simu:
-      assimilé:
-        aria-label: SASU, simuler la rémunération
-        body: Simuler le montant de vos cotisations sociales pour bien préparer votre
-          business plan.
-        cta: Simuler la rémunération
-        title: Simulateur de rémunération pour dirigeant de SASU
-      autoEntrepreneur:
-        aria-label: Auto-entrepreneur, simuler mes revenus
-        body: Simuler le montant de vos cotisations sociales et de votre impôt et
-          estimez votre futur revenu net.
-        cta: Simuler les revenus
-        title: Simulateur de revenus auto-entrepreneur
-      indépendant:
-        aria-label: Indépendant, simuler mes revenus
-        body: Simuler le montant de vos cotisations sociales pour bien préparer votre
-          business plan.
-        cta: Simuler les cotisations
-        title: Simulateur de cotisations indépendant
-  retour: Choisir un autre statut
-  tâches:
-    adresse:
-      description: <0><0>L'adresse</0> est l'espace physique où votre entreprise sera
-        incorporée. Dans certains lieux et certaines situations, vous pouvez
-        bénéficier d'un financement public important (exonération de charges, de
-        taxes, etc.). <3>Plus d'infos</3></0>
-      titre: Choisir une adresse pour le siège
-    affectation:
-      description: "<0>La <1>déclaration d'affectation du patrimoine</1> permet de
-        séparer le patrimoine professionnel de votre patrimoine personnel, qui
-        devient alors insaisissable. Cette démarche est gratuite si elle est
-        effectué au moment de la création d'entreprise.</0><1>Pour cela, il
-        suffit simplement de déclarer quelles biens sont affectés au patrimoine
-        de votre entreprise. Tous les apports nécessaires à votre activité
-        professionnelle doivent y figurer (par exemple : fond de commerce,
-        marque, brevet, ou encore matériel professionnel). Vous pouvez vous
-        charger vous-même de l'évaluation de la valeur du bien si celle ci ne
-        dépasse pas les 30 000 €.</1><2><0>Plus d'informations</0></2>"
-      titre: Effectuer une déclaration d'affectation de patrimoine
-    assurance:
-      description: <0>Une PME ou un travailleur indépendant doit se protéger contre
-        les principaux risques auxquels il est exposé et souscrire des contrats
-        de garantie. Qu'elle soit locataire ou propriétaire de ses murs,
-        l'entreprise doit assurer ses immeubles, son matériel professionnel, ses
-        biens, ses matières premières, ses véhicules, ainsi qu'en matière de
-        responsabilité civile de l'entreprise et de ses dirigeants ou en matière
-        de perte d'exploitation.</0><1>Plus d'infos</1>
-      titre: Juger de la nécessité de prendre une assurance
-    avancement: Utilisez cette liste pour suivre votre avancement dans les
-      démarches. Votre progression est automatiquement sauvegardée dans votre
-      navigateur.
-    banque:
-      description:
-        "1": Le but d'un <1>compte bancaire d'entreprise</1> est de séparer les actifs
-          de l'entreprise des vôtres.
-        "2": "Le compte d'entreprise vous permet de :"
-        EI: "Si son ouverture n'est pas obligatoire pour une entreprise individuelle,
-          elle reste fortement recommandée. "
-        liste: <0>Différencier vos opérations privées et
-          professionnelles</0><1>Faciliter les déclarations fiscales</1>
-      titre: Ouvrir un compte bancaire
-    capital:
-      description: <0>Le <1>dépôt du capital social</1> doit être fait au moment de la
-        constitution d'une société par une personne agissant au nom de la
-        société et ayant reçu des apports en numéraire (somme d'argent) de la
-        part des créanciers de la société (actionnaire ou associé).</0><1>Le
-        dépôt consiste en un transfert d'une somme d'argent sur un compte bloqué
-        auprès d'une banque ou de la <2>Caisse des dépôts et consignations</2>
-        ou d'un notaire, qui doit alors fournir un certificat de dépôt du
-        capital.</1>
-      titre: Déposer le capital
-    comptable:
-      description: La gestion d'une entreprise impose un certain nombre
-        d'<1>obligations comptables</1>. Il est conseillé de faire appel aux
-        services d'un expert-comptable ou d'un logiciel de comptabilité en
-        ligne.
-      titre: Choisir un expert-comptable
-    formeJuridique:
-      titre: Choisir la forme juridique
-    formulaire:
-      description: <0>Vous pouvez faire votre inscription en ligne à tout moment,
-        l'enregistrer et y revenir comme vous le souhaitez.</0><1></1><2>Faire
-        la démarche en ligne</2>
-      titre: Créer mon entreprise en ligne
-    journal:
-      description: "<0>Vous devez publier la création de votre entreprise dans un
-        journal d'annonces légales (« JAL »), pour un coût de publication qui
-        dépend du volume de l'annonce et des tarifs pratiqués par le journal
-        choisi </0><1><0>Trouver un journal d'annonces légales
-        (JAL)</0></1><2>Cette annonce doit contenir les informations suivantes :
-        </2><3><0>Le nom de l'entreprise et éventuellement son acronyme</0><1>La
-        forme juridique</1><2>Le capital de l'entreprise</2><3>L'adresse du
-        siège</3><4>L'objet social</4><5>La durée de l'entreprise</5><6>Les
-        noms, prénoms et adresses des dirigeants et des personnes ayant le
-        pouvoir d'engager la société envers les tiers</6><7>Le lieu et le numéro
-        du RCS auprès duquel la société est immatriculée</7></3>"
-      titre: Publier une annonce de création dans un journal
-    nom:
-      description: <0><0>La dénomination sociale</0> est le nom de votre entreprise
-        aux yeux de la loi, écrit sur tous vos documents administratifs. Il peut
-        être différent de votre nom commercial.</0><1>Il est conseillé de
-        vérifier que le nom est disponible, c'est-à-dire qu'il ne porte pas
-        atteinte à un nom déjà protégé par une marque, une raison sociale, un
-        nom commercial, un nom de domaine Internet, etc. Vous pouvez vérifier
-        dans la base de données <2>INPI</2>.</1>
-      titre: Trouver un nom d'entreprise
-    objetSocial:
-      description: L'<1>objet social</1> est l'activité principale de l'entreprise.
-        Une activité secondaire peut être enregistrée.
-      titre: Déterminer l'objet social
-    statuts:
-      aria-label: Exemples de status pour votre {{statut}}, nouvelle fenêtre
-      description: Il s'agit d'un document officiel qui intègre la forme juridique,
-        nomme les associés et leurs contributions au capital. <2>Dans le cas
-        d'une création d'entreprise avec plusieurs associés, il est recommandé
-        de faire appel à un juriste pour les rédiger. </2>
-      exemple: Exemple de statuts pour votre
-      titre: Écrire les statuts
-    titre: À faire pour créer votre entreprise
-    titre2: Recommandé avant le début de l'activité
 explications:
   tableCaption: Tableau affichant les lignes de votre liasse fiscale associées aux
     exonérations fiscales en place pour chaque type d'activité. La première
@@ -915,62 +741,7 @@ footer:
   accessibilitéAriaLabel: "Accessibilité : partiellement conforme, en savoir plus"
   github:
     text: Voir le code source sur Github
-formeJuridique:
-  EI: Aucun apport en capital n'est nécessaire. Le capital privé et le capital de
-    l'entreprise ne font qu'un.
-  EIRL: Permet d'attribuer un capital spécifique à son activité professionnelle,
-    et de choisir le régime d'imposition sur les société (IS) plutôt que revenu
-    (IR) La société et l'individu constituent la même personne. Ne convient pas
-    si l'associé unique est une personne morale (entreprise) ou si vous pensez
-    accueillir d'autres associés au cours de votre développement (choisissez
-    EURL dans ce cas).
-  EURL: L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
-    de l'apport de capital. Evolue en SARL lors de l'arrivée de nouveaux
-    associés dans la société.
-  SA: Société ayant au moins deux actionnaires. C'est le seul statut qui permet
-    d'être coté en bourse (à partir de 7 actionnaires). Le capital social
-    minimum est de 37.000 €.
-  SARL: Société ayant au moins deux associés dont la responsabilité financière est
-    limitée au montant de leur apport au capital. Le capital minimum est fixé
-    librement dans les statuts. Les associés se répartissent des parts sociales
-    toutes identiques, et la société est dirigée par un ou plusieurs gérants qui
-    sont forcément des personnes physiques. Le fonctionnement d'une SARL est
-    encadré par le code du commerce.
-  SAS: Société ayant au moins deux associés. La responsabilité financière des
-    associés est limitée au montant de leur apport au capital de la société. Le
-    capital minimum est fixé librement dans les statuts. Les associés se
-    répartissent des actions qui peuvent être de plusieurs catégories, et la
-    société est dirigée par un président qui peut être une personne morale (une
-    autre société). La SAS se caractérise par une grande souplesse de
-    fonctionnement (statuts sur mesure).
-  SASU: L'entreprise n'a qu'un associé. La responsabilité est limitée au montant
-    de l'apport de capital de l'unique associé (qui peut être une personne
-    morale).
-  SNC: La responsabilité des associés pour les dettes de la société est solidaire
-    (un seul associé peut être poursuivi pour la totalité de la dette) et
-    indéfinie (responsable sur la totalité de son patrimoine personnel).
-  micro: Un auto-entrepreneur exerce son activité en entreprise individuelle, avec
-    un régime forfaitaire pour ses cotisations sociales et un calcul spécifique
-    de l'impôt.
-  micro-EIRL: Un auto-entrepreneur option EIRL exerce son activité en entreprise
-    individuelle en choisissant l'option "Entrepreneur individuel à
-    responsabilité limitée", avec à un régime forfaitaire pour le calcul des
-    impôts et le paiement des cotisations de sécurité sociale.
-  titre: Choix du statut juridique
 "gestion sémantique de version, en savoir plus, nouvelle fenêtre": gestion sémantique de version, en savoir plus, nouvelle fenêtre
-gérant minoritaire:
-  description: "<0>Certaines règles spéciales s'appliquent selon le nombre
-    d'actions détenues.</0><1><0><0>Gérant majoritaire</0> : Vous êtes
-    l'administrateur majoritaire (ou faite partie d'un conseil d'administration
-    majoritaire).</0><1><0>Gérant minoritaire</0> : Vous êtes administrateur
-    minoritaire ou égalitaire (ou faites partie d'un conseil d'administration
-    minoritaire ou égalitaire).</1></1>"
-  page:
-    description: Certaines règles particulières s'appliquent en fonction du nombre
-      d'actions détenues par l'administrateur, ce qui peut conduire à un statut
-      différent lors de la création de votre société
-    titre: Gérant majoritaire ou minoritaire
-  titre: Gérant majoritaire ou minoritaire
 gérer:
   choix:
     chomage-partiel:
@@ -1080,9 +851,6 @@ legalNotice:
 library:
   description: Outils pour les développeurs
   title: Librairie de calcul
-listeformejuridique:
-  page:
-    titre: Liste des statuts juridiques pour la création de votre entreprise
 loading: Chargement en cours...
 maximum: maximum
 moins: moins
@@ -1278,14 +1046,6 @@ pages:
       title: Aide au choix du statut juridique
     shortname: Assistant statut juridique
     title: Assistant au choix du statut juridique
-  common:
-    ressources-auto-entrepreneur:
-      FAQ:
-        body: Une liste exhaustive et maintenue à jour de toutes les questions
-          fréquentes (et moins fréquentes) que l'on est amené à poser en tant
-          qu'auto-entrepreneur
-        cta: Voir les réponses
-        title: Questions fréquentes
   développeur:
     api: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur votre site
       ou service très facilement grâce à notre API REST ouverte et sans
@@ -1959,29 +1719,6 @@ privacyContent:
   s'afficheront à la suite de cet élément.
 recherche-globale:
   placeholder: "Mot-clé ou acronyme (exemple : CSG)"
-responsabilité:
-  bouton1: Société
-  bouton1-aria-label: Société, sélectionner l'option et passer à l'étape suivante
-  bouton2: Entreprise individuelle
-  bouton2-aria-label: Entreprise individuelle, sélectionner l'option et passer à l'étape suivante
-  description: Responsabilité limitée ? entreprise individuelle ? Chaque option a
-    des implications juridiques et conduit à un statut différent pour la
-    création de votre entreprise en France. Ce guide vous aide à choisir entre
-    les différentes forme de responsabilité.
-  entreprise-individuelle: "<0>Entreprise individuelle : </0>Une activité
-    économique exercée par une seule personne physique, en son nom propre. Moins
-    de formalités, mais plus de risques en cas de faillite, car votre patrimoine
-    personnel peut être mis à contribution. <3>Vous ne pouvez pas accueillir de
-    nouveaux associés en entreprise individuelle.</3>"
-  intro: "Ce choix determine votre degré de responsabilité et votre capacité à
-    accueillir de nouveaux associés dans le futur "
-  page:
-    titre: Choisir entre société ou entreprise individuelle
-  société: "<0>Société : </0>Vous ne pouvez pas être tenu personnellement
-    responsable des dettes ou obligations de la société. En revanche, les
-    démarches de création sont un peu plus lourdes, puisqu'elles incluent
-    notamment la rédaction de statuts et le dépôt d'un capital."
-  titre: Entreprise individuelle ou société ?
 revenu_après_impots:
   acre: <0>ACRE sous <2>certaines conditions<1></1></2></0>
 salarié: salarié
@@ -2124,17 +1861,6 @@ stats:
     réduire le nombre de requêtes.
   description: Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
   title: Statistiques
-statut du dirigeant:
-  description: <0>Ce choix est important car il détermine le régime de sécurité
-    sociale et la couverture sociale du dirigeant. Le montant et les modalités
-    de paiement des cotisations sociales sont également
-    impactés.</0><1><0></0></1>
-  page:
-    description: Ce choix est important parce qu'il détermine le régime de sécurité
-      sociale et la couverture sociale de l'administrateur. Chaque option a des
-      implications juridiques et conduit à un statut différent lors de la
-      création de votre entreprise.
-  titre: Définir le statut du dirigeant
 supérieurs à: supérieurs à
 sécu:
   contenu: <0>Protection sociale </0><1>En France, tous les travailleurs
@@ -2187,8 +1913,6 @@ sécu:
 trimestres acquis: trimestres acquis
 versés en deux fois: versés en deux fois
 versés en une fois: versés en une fois
-voir la liste sur afecreation:
-  "fr, nouvelle fenêtre": voir la liste sur afecreation.fr, nouvelle fenêtre
 "vos retours, accéder aux statistiques d'utilisation": vos retours, accéder aux statistiques d'utilisation
 warning:
   overwrite:
@@ -2205,7 +1929,6 @@ warning:
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
 "Étape {{ total }} sur {{ maxValue }}": Étape {{ total }} sur {{ maxValue }}
-Étapes du choix du statut juridique: Étapes du choix du statut juridique
 Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?

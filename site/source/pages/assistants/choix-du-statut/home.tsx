@@ -93,7 +93,7 @@ export default function AccueilChoixStatut() {
 			></div>
 			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
 				<H3>
-					<Trans i18nKey="common.useful-resources">Raccourcis utiles</Trans>
+					<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 				</H3>
 
 				<Grid container spacing={3} role="list">
