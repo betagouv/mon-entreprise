@@ -20,7 +20,6 @@ jobs:
           CRISP_API_IDENTIFIER: ${{ secrets.CRISP_API_IDENTIFIER }}
           CRISP_API_KEY: ${{ secrets.CRISP_API_KEY }}
           CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
-      - run: ls -la site/source/public/data
       - run: yarn workspace site run postinstall
         env:
           # Secrets of all kinds for fetching stats & releases
@@ -41,4 +40,4 @@ jobs:
           commit-message: Updates the base-stats.json file every six months
           title: '[Automatic PR] Updates the base-stats.json file'
           body: >
-            Piano Analytics delete data after two year, this cron task update the base-stats.json every six months to not lose old data.
+            Piano Analytics deletes data after two years, this cron job updates the base-stats.json file every six months so that old data is not lost.
