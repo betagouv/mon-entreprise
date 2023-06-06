@@ -9,11 +9,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          cache: 'yarn'
-      # - uses: ./.github/actions/install
+      - uses: ./.github/actions/install
       - run: ls -la site/source/public/data
       - run: yarn workspace site run postinstall
       - run: cp site/source/public/data/stats.json site/source/public/data/base-stats.json
