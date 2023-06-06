@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install
+      - run: cp site/source/public/data/stats.json site/source/public/data/base-stats.json
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
