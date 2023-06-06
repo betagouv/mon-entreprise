@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 0 15 6,12 *'
+    - cron: '5 0 7 6,12 *'
 
 name: Updates the base-stats.json file every six months
 jobs:
