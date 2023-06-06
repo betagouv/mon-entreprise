@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import { createDataDir, writeInDataDir } from '../utils.js'
+import { createDataDir, readInDataDir, writeInDataDir } from '../utils.js'
 import { apiStats } from './fetch-api-stats.js'
 
 dotenv.config()
@@ -189,7 +189,7 @@ const buildSatisfactionQuery = () => ({
 		s: [617190, 617189],
 	},
 	period: {
-		p1: [last36Months],
+		p1: [last12Months],
 	},
 	evo: {
 		granularity: 'M',
@@ -244,6 +244,7 @@ const buildSiteQuery = (period, granularity) => ({
 const yesterday = new Date(new Date().setDate(new Date().getDate() - 1))
 	.toISOString()
 	.slice(0, 10)
+
 const last60days = {
 	type: 'D',
 	start: new Date(
@@ -257,12 +258,12 @@ const last60days = {
 	end: yesterday,
 }
 
-const last36Months = {
+const last12Months = {
 	type: 'D',
 	start:
 		new Date(
 			Math.max(
-				new Date().setMonth(new Date().getMonth() - 36),
+				new Date().setMonth(new Date().getMonth() - 12),
 				new Date('2021-03')
 			)
 		)
@@ -270,6 +271,7 @@ const last36Months = {
 			.slice(0, 8) + '01',
 	end: yesterday,
 }
+
 const uniformiseData = (data) =>
 	data
 		.map(({ d_evo_day, d_evo_month, m_visits, m_events, ...data }) => ({
@@ -314,8 +316,8 @@ async function fetchDailyVisits() {
 
 async function fetchMonthlyVisits() {
 	const pages = uniformiseData([
-		...flattenPage(await fetchApi(buildSimulateursQuery(last36Months, 'M'))),
-		...flattenPage(await fetchApi(buildCreerQuery(last36Months, 'M'))),
+		...flattenPage(await fetchApi(buildSimulateursQuery(last12Months, 'M'))),
+		...flattenPage(await fetchApi(buildCreerQuery(last12Months, 'M'))),
 	])
 
 	const site = [
@@ -324,15 +326,15 @@ async function fetchMonthlyVisits() {
 			nombre: visites,
 		})),
 		...uniformiseData(
-			(await fetchApi(buildSiteQuery(last36Months, 'M')))[0].Rows
+			(await fetchApi(buildSiteQuery(last12Months, 'M')))[0].Rows
 		),
 	]
 
 	const creer = uniformiseData(
-		flattenPage(await fetchApi(buildCreerSegmentQuery(last36Months, 'M')))
+		flattenPage(await fetchApi(buildCreerSegmentQuery(last12Months, 'M')))
 	)
 
-	const { start, end } = last36Months
+	const { start, end } = last12Months
 
 	return {
 		pages,
@@ -552,17 +554,34 @@ async function fetchAllUserFeedbackIssues() {
 	}
 }
 
+const mergePreviousData = (previousDatas, newDatas) => {
+	if (!Array.isArray(previousDatas) || !Array.isArray(newDatas)) {
+		throw new Error('Datas must be arrays')
+	}
+
+	const oneYearAgo = new Date(
+		new Date().setFullYear(new Date().getFullYear() - 1)
+	)
+
+	const mergedDatas = [
+		...previousDatas.filter(({ date, month }) => {
+			return new Date(date ?? month) <= oneYearAgo
+		}),
+		...newDatas.filter(({ date, month }) => {
+			return new Date(date ?? month) > oneYearAgo
+		}),
+	].sort((a, b) => new Date(a.date ?? a.month) - new Date(b.date ?? b.month))
+
+	return mergedDatas
+}
+
 createDataDir()
+const baseData = readInDataDir('base-stats.json')
+
 // In case we cannot fetch the release (the API is down or the Authorization
 // token isn't valid) we fallback to some fake data -- it would be better to
 // have a static ressource accessible without authentification.
-writeInDataDir('stats.json', {
-	retoursUtilisateurs: {
-		open: [],
-		closed: [],
-	},
-	nbAnswersLast30days: 0,
-})
+writeInDataDir('stats.json', baseData)
 
 try {
 	if (
@@ -594,7 +613,7 @@ try {
 		fetchAllUserFeedbackIssues(),
 		fetchAllUserAnswerStats(),
 	])
-	const satisfaction = uniformiseData(flattenPage(await rawSatisfaction)).map(
+	const satisfaction = uniformiseData(flattenPage(rawSatisfaction)).map(
 		(page) => {
 			// eslint-disable-next-line no-unused-vars
 			const { date, ...satisfactionPage } = {
@@ -606,8 +625,13 @@ try {
 	)
 	writeInDataDir('stats.json', {
 		visitesJours,
-		visitesMois,
-		satisfaction,
+		visitesMois: Object.fromEntries(
+			Object.entries(baseData.visitesMois).map(([key, prev]) => [
+				key,
+				mergePreviousData(prev, visitesMois[key]),
+			])
+		),
+		satisfaction: mergePreviousData(baseData.satisfaction, satisfaction),
 		retoursUtilisateurs,
 		nbAnswersLast30days,
 	})

@@ -1,0 +1,20 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 0 15 6,12 *'
+
+name: Updates the base-stats.json file every six months
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          add-paths: site/source/public/data/base-stats.json
+          commit-message: Updates the base-stats.json file every six months
+          title: '[Automatic PR] Updates the base-stats.json file'
+          body: >
+            Piano Analytics delete data after two year, this cron task update the base-stats.json every six months to not lose old data.
