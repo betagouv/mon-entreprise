@@ -4,9 +4,12 @@ import styled from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
 import { Grid } from '@/design-system/layout'
-import { useSitePaths } from '@/sitePaths'
+import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
-export const stepOrder = [
+type ChoixStatut = RelativeSitePaths['assistants']['choix-du-statut']
+type Step = keyof ChoixStatut
+
+export const stepOrder: readonly Step[] = [
 	'recherche-activité',
 	'détails-activité',
 	'département',
@@ -17,8 +20,6 @@ export const stepOrder = [
 	'résultat',
 ] as const
 
-type Step = (typeof stepOrder)[number]
-
 function useCurrentStep() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
 	const localizedStep = useMatch(
@@ -28,17 +29,18 @@ function useCurrentStep() {
 		return null
 	}
 
-	const currentStep = Object.entries(
+	const entries = Object.entries(
 		relativeSitePaths.assistants['choix-du-statut']
-	).find(
-		([, value]) => value === localizedStep
-	)?.[0] as keyof (typeof relativeSitePaths.assistants)['choix-du-statut']
+	) as [Step, ChoixStatut[Step]][]
 
-	if (!stepOrder.includes(currentStep as Step)) {
+	const [currentStep] =
+		entries.find(([, value]) => value === localizedStep) ?? []
+
+	if (!currentStep || !stepOrder.includes(currentStep)) {
 		return null
 	}
 
-	return currentStep as Step
+	return currentStep
 }
 
 export default function Navigation({
@@ -48,7 +50,7 @@ export default function Navigation({
 }: {
 	currentStepIsComplete: boolean
 	nextStepLabel?: false | string
-	onNextStep?: () => void
+	onNextStep?: (next: { nextStep: string; nextAbsolutePath: string }) => void
 }) {
 	const { t } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
@@ -57,8 +59,10 @@ export default function Navigation({
 	if (!currentStep) {
 		return null
 	}
-	const nextStep = stepOrder[stepOrder.indexOf(currentStep) + 1]
-	const previousStep = stepOrder[stepOrder.indexOf(currentStep) - 1]
+
+	type PartialStep = Step | undefined
+	const nextStep = stepOrder[stepOrder.indexOf(currentStep) + 1] as PartialStep
+	const prevStep = stepOrder[stepOrder.indexOf(currentStep) - 1] as PartialStep
 
 	return (
 		<StyledNavigation>
@@ -69,7 +73,7 @@ export default function Navigation({
 						color={'secondary'}
 						to={
 							absoluteSitePaths.assistants['choix-du-statut'][
-								previousStep || 'index'
+								prevStep || 'index'
 							]
 						}
 					>
@@ -79,8 +83,24 @@ export default function Navigation({
 				{nextStep && (
 					<Grid item>
 						<Button
-							onPress={onNextStep}
-							to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
+							onPress={() =>
+								onNextStep?.({
+									nextStep,
+									nextAbsolutePath:
+										absoluteSitePaths.assistants['choix-du-statut'][nextStep],
+								})
+							}
+							// Probleme de desynchronisation entre le onpress et le to, le onpress n'est pas toujours appelé avant le to
+							// to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
+
+							// est ce qu'on devrait pas utiliser les parametres de l'url comme ca ?
+							// to={{
+							// 	pathname:
+							// 		absoluteSitePaths.assistants['choix-du-statut'][nextStep],
+							// 	search: createSearchParams({
+							// 		codeAPE: '6201Z',
+							// 	}).toString(),
+							// }}
 							isDisabled={!currentStepIsComplete}
 							aria-label={t("Suivant, passer à l'étape suivante")}
 						>
@@ -100,6 +120,6 @@ const StyledNavigation = styled.div`
 	margin: 0 -1rem;
 	bottom: 0;
 	background: ${({ theme }) => theme.colors.extended.grey[100]};
-	z-index: 1;
+	z-index: 2;
 	/* box-shadow: ${({ theme }) => theme.elevations[6]}; */
 `

@@ -22,7 +22,7 @@ import {
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
 
-export default function Activité() {
+export default function DétailsActivité() {
 	const { t } = useTranslation()
 	const codeApe = useEngine().evaluate(
 		'entreprise . activités . principale . code APE'
@@ -107,7 +107,11 @@ function GuichetSelection({
 	return (
 		<>
 			<Body>Sectionnez la description d'activité qui correspond le mieux.</Body>
-			<RadioCardGroup value={codeGuichet} onChange={onGuichetSelected}>
+			<RadioCardGroup
+				value={codeGuichet}
+				onChange={onGuichetSelected}
+				aria-label={'liste des activités'}
+			>
 				{entries.map((guichetEntry) => {
 					return (
 						<RadioCardSkeleton

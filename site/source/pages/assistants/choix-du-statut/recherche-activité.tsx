@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { Message } from '@/design-system'
 import { HelpButtonWithPopover } from '@/design-system/buttons'
@@ -13,8 +14,9 @@ import SearchCodeAPE from '../recherche-code-ape/SearchCodeAPE'
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
 
-export default function Activité() {
+export default function RechercheActivité() {
 	const [codeApe, setCodeApe] = useState('')
+	const naviguate = useNavigate()
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 
@@ -55,14 +57,15 @@ export default function Activité() {
 				<SearchCodeAPE hideGuichetUnique onCodeAPESelected={setCodeApe} />
 				<Navigation
 					currentStepIsComplete={!!codeApe}
-					onNextStep={() =>
+					onNextStep={({ nextAbsolutePath }) => {
 						dispatch(
 							updateSituation(
 								'entreprise . activités . principale . code APE',
 								`'${codeApe}'`
 							)
 						)
-					}
+						naviguate(nextAbsolutePath)
+					}}
 				/>
 			</Layout>
 		</>
