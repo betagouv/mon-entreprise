@@ -44,6 +44,7 @@ export const Custom: Story = {
 			</RadioCardSkeleton>
 			<RadioCardSkeleton value="value2">
 				<p>Value 2</p>
+				<p>Second paragraph</p>
 			</RadioCardSkeleton>
 			<RadioCardSkeleton value="value3">
 				<p>Value 3</p>

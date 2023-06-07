@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom'
 import Skeleton from '@/components/ui/Skeleton'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message, RadioCardGroup } from '@/design-system'
-import { StyledRadioSkeleton } from '@/design-system/field/Radio/RadioCard'
+import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Spacing } from '@/design-system/layout'
 import { H3, H5 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -110,14 +110,14 @@ function GuichetSelection({
 			<RadioCardGroup value={codeGuichet} onChange={onGuichetSelected}>
 				{entries.map((guichetEntry) => {
 					return (
-						<StyledRadioSkeleton
+						<RadioCardSkeleton
 							value={guichetEntry.code}
 							key={guichetEntry.code}
 							visibleRadioAs="div"
 						>
 							<H5 as="h3">{getGuichetTitle(guichetEntry.label)}</H5>
 							<GuichetDescription {...guichetEntry} />
-						</StyledRadioSkeleton>
+						</RadioCardSkeleton>
 					)
 				})}
 			</RadioCardGroup>
