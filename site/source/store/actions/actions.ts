@@ -6,7 +6,6 @@ import { ImmutableType } from '@/types/utils'
 import { buildSituationFromObject } from '@/utils'
 
 import { CompanyActions } from './companyActions'
-import { CompanyCreationAction } from './companyCreationChecklistActions'
 import { HiringChecklistAction } from './hiringChecklistAction'
 
 export type Action =
@@ -25,7 +24,6 @@ export type Action =
 			| typeof batchUpdateSituation
 			| typeof updateShouldFocusField
 	  >
-	| CompanyCreationAction
 	| CompanyActions
 	| HiringChecklistAction
 
