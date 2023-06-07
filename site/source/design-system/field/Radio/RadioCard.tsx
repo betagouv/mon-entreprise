@@ -30,6 +30,7 @@ export const RadioCardSkeleton = ({
 
 const StyledCardContainer = styled(CardContainer)`
 	${VisibleRadio} {
+		display: initial;
 		margin: 0;
 		width: 100%;
 		background: transparent;
@@ -58,7 +59,7 @@ export function RadioCard({
 	...props
 }: RadioCardProps) {
 	return (
-		<RadioCardSkeleton {...props}>
+		<StyledRadioCardSkeleton {...props}>
 			<StyledRadioPoint />
 			<SpanBody>
 				<span>
@@ -68,6 +69,12 @@ export function RadioCard({
 					<Markdown as={Description}>{description ?? ''}</Markdown>
 				)}
 			</SpanBody>
-		</RadioCardSkeleton>
+		</StyledRadioCardSkeleton>
 	)
 }
+
+const StyledRadioCardSkeleton = styled(RadioCardSkeleton)`
+	${VisibleRadio} {
+		display: flex;
+	}
+`

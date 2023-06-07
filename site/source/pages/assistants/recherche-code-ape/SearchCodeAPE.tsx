@@ -15,6 +15,7 @@ import {
 } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
+import { VisibleRadio } from '@/design-system/field/Radio/Radio'
 import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Spacing } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
@@ -281,6 +282,11 @@ export default function SearchCodeAPE({
 const StyledRadioCardGroup = styled(RadioCardGroup)`
 	flex-direction: row;
 	flex-wrap: wrap;
+
+	${VisibleRadio} {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
 `
 
 const ActivityNotFound = ({ job }: { job: string }) => {
