@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
 
 import {
@@ -22,13 +22,14 @@ import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
 import { resetCompany } from '@/store/actions/companyActions'
-import { RootState } from '@/store/reducers/rootReducer'
+
+// import { RootState } from '@/store/reducers/rootReducer'
 
 export default function SearchOrCreate() {
 	const { absoluteSitePaths } = useSitePaths()
-	const statutChoisi = useSelector(
-		(state: RootState) => state.choixStatutJuridique.companyStatusChoice
-	)
+	// const statutChoisi = useSelector(
+	// 	(state: RootState) => state.choixStatutJuridique.companyStatusChoice
+	// )
 	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
 	useSetEntrepriseFromUrssafConnection()
 	const handleCompanySubmit = useHandleCompanySubmit()
@@ -98,11 +99,12 @@ export default function SearchOrCreate() {
 										size="XL"
 										role="link"
 										to={
-											statutChoisi
-												? absoluteSitePaths.assistants['choix-du-statut'][
-														statutChoisi
-												  ]
-												: absoluteSitePaths.assistants['choix-du-statut'].index
+											// statutChoisi
+											// 	? absoluteSitePaths.assistants['choix-du-statut'][
+											// 			statutChoisi
+											// 	  ]
+											// 	:
+											absoluteSitePaths.assistants['choix-du-statut'].index
 										}
 										aria-label={t(
 											'landing.choice.create.aria-label',

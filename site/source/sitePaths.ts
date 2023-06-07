@@ -37,7 +37,6 @@ const rawSitePathsFr = {
 			rémunération: 'remuneration',
 			statuts: 'statuts',
 			résultat: 'resultat',
-			// ...status,
 			après: 'apres-la-création',
 		},
 	},
@@ -116,12 +115,10 @@ const rawSitePathsEn = {
 			cotisations: 'contributions',
 		},
 		'choix-du-statut': {
-			...rawSitePathsFr.assistants['choix-du-statut'],
 			index: 'choice-of-status',
-			assistant: 'assistant',
+			'recherche-activité': 'recherche-activite',
+			'détails-activité': 'details-activite',
 			après: 'after-registration',
-
-			activité: 'activity',
 			département: 'state',
 			lucratif: 'lucrative',
 			associé: 'partnership',

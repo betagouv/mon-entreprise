@@ -50,8 +50,7 @@ export default function SchemeComparaison({
 					<Button
 						key="EI"
 						onPress={() => {
-															/* TODO */
-
+							/* TODO */
 						}}
 						aria-label={
 							hideAssimiléSalarié
@@ -80,8 +79,7 @@ export default function SchemeComparaison({
 						<Button
 							key="auto-entrepreneur"
 							onPress={() => {
-															/* TODO */
-
+								/* TODO */
 							}}
 							aria-label={t(
 								'comparaisonRégimes.choix.auto.aria-label',

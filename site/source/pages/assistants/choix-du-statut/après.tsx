@@ -1,5 +1,4 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { FromBottom } from '@/components/ui/animate'
@@ -9,17 +8,16 @@ import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { RootState } from '@/store/reducers/rootReducer'
 
 import siret from './siret.png'
 
 export default function AfterRegistration() {
 	const { absoluteSitePaths } = useSitePaths()
-	const statutChoisi = useSelector(
-		(state: RootState) => state.choixStatutJuridique.companyStatusChoice
-	)
+	// const statutChoisi = useSelector(
+	// 	(state: RootState) => state.choixStatutJuridique.companyStatusChoice
+	// )
 	const { t } = useTranslation()
-	const isAutoentrepreneur = statutChoisi?.match('auto-entrepreneur')
+	// const isAutoentrepreneur = statutChoisi?.match('auto-entrepreneur')
 
 	return (
 		<FromBottom>
@@ -41,10 +39,11 @@ export default function AfterRegistration() {
 				<Trans i18nKey="après.intro">
 					Une fois votre{' '}
 					{{
-						statutChoisi: isAutoentrepreneur
-							? t('auto-entreprise')
-							: statutChoisi ||
-							  t('après.entreprise', { defaultValue: 'entreprise' }),
+						statutChoisi:
+							// isAutoentrepreneur
+							// ? t('auto-entreprise')
+							// :  statutChoisi ||
+							t('après.entreprise', { defaultValue: 'entreprise' }),
 					}}{' '}
 					créée, vous recevez les informations suivantes :
 				</Trans>
