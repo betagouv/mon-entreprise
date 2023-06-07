@@ -2,22 +2,6 @@ import { useTranslation } from 'react-i18next'
 
 import { MetadataSrc } from '@/pages/simulateurs/metadata-src'
 
-// export const LANDING_LEGAL_STATUS_LIST: Array<LegalStatus> = [
-// 	'EI',
-// 	'EIRL',
-// 	'EURL',
-// 	'SAS',
-// 	'SARL',
-// 	'SASU',
-// 	'auto-entrepreneur',
-// 	'auto-entrepreneur-EIRL',
-// 	'SA',
-// ]
-
-// const status = Object.fromEntries(
-// 	LANDING_LEGAL_STATUS_LIST.map((statut) => [statut, statut])
-// ) as { [statut in LegalStatus]: statut }
-
 const rawSitePathsFr = {
 	index: '',
 	assistants: {
