@@ -91,7 +91,13 @@ export default function AccueilChoixStatut() {
 					flex: 1;
 				`}
 			></div>
-			<Container backgroundColor={(theme) => theme.colors.bases.primary[100]}>
+			<Container
+				backgroundColor={(theme) =>
+					theme.darkMode
+						? theme.colors.bases.primary[800]
+						: theme.colors.bases.primary[100]
+				}
+			>
 				<H3>
 					<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 				</H3>
