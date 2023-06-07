@@ -8,7 +8,7 @@ export function choixStatutJuridiqueConfig({
 }: SimulatorsDataParams) {
 	return config({
 		id: 'choix-statut',
-		pathId: 'assistants.choix-du-statut.guideStatut.index',
+		pathId: 'assistants.choix-du-statut.index',
 		path: sitePaths.assistants['choix-du-statut'].index,
 		iframePath: 'choix-statut-juridique',
 		icône: '📚',
