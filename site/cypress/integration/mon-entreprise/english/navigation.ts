@@ -6,8 +6,8 @@ describe('General navigation', function () {
 	it('should enable switching site language', function () {
 		cy.visit(
 			fr
-				? encodeURI('/assistants/choix-du-statut/auto-entrepreneur')
-				: '/assistants/choice-of-status/auto-entrepreneur'
+				? encodeURI('/assistants/choix-du-statut')
+				: '/assistants/choice-of-status'
 		)
 		cy.get(
 			fr ? '[data-test-id=en-switch-button]' : '[data-test-id=fr-switch-button]'
@@ -15,8 +15,8 @@ describe('General navigation', function () {
 		cy.url().should(
 			'include',
 			fr
-				? '/assistants/choice-of-status/auto-entrepreneur'
-				: encodeURI('/assistants/choix-du-statut/auto-entrepreneur')
+				? '/assistants/choice-of-status'
+				: encodeURI('/assistants/choix-du-statut')
 		)
 	})
 
