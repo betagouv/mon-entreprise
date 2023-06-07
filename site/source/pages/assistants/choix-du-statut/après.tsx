@@ -81,11 +81,11 @@ export default function AfterRegistration() {
 					</Link>
 					).{' '}
 					<span
-						style={
-							statutChoisi && /auto-entrepreneur|EI/.exec(statutChoisi)
-								? { display: 'none' }
-								: {}
-						}
+					// style={
+					// 	statutChoisi && /auto-entrepreneur|EI/.exec(statutChoisi)
+					// 		? { display: 'none' }
+					// 		: {}
+					// }
 					>
 						Il détermine aussi la convention collective applicable à
 						l'entreprise, et en partie le taux de la cotisation accidents du
