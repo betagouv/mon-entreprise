@@ -125,12 +125,22 @@ export const customTags: CustomTags = {
 		contenuAnnexe: [],
 	},
 	'47.91A': {
-		contenuCentral: ['e-commerce', 'vente en ligne'],
+		contenuCentral: [
+			'e-commerce',
+			'vente en ligne',
+			'place de marché en ligne',
+			'marketplace',
+		],
 		contenuExclu: [],
 		contenuAnnexe: [],
 	},
 	'47.91B': {
-		contenuCentral: ['e-commerce', 'vente en ligne'],
+		contenuCentral: [
+			'e-commerce',
+			'vente en ligne',
+			'place de marché en ligne',
+			'marketplace',
+		],
 		contenuExclu: [],
 		contenuAnnexe: [],
 	},
@@ -155,6 +165,7 @@ export const customTags: CustomTags = {
 			'hypnothérapeute',
 			'hypnothérapie',
 			'réflexologue',
+			'thérapeute',
 		],
 		contenuExclu: [],
 		contenuAnnexe: [],
@@ -185,8 +196,66 @@ export const customTags: CustomTags = {
 		contenuAnnexe: [],
 	},
 	'81.21Z': {
-		contenuCentral: ['Homme / Femme de ménage'],
+		contenuCentral: [
+			'Homme / Femme de ménage',
+			'homme / femme toute main',
+			'homme / femme à tout faire',
+			'montage / assemblage de meubles',
+		],
 		contenuExclu: [],
 		contenuAnnexe: [],
+	},
+	'47.73Z': {
+		contenuCentral: ['Pharmacie'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'81.10Z': {
+		contenuCentral: [
+			'entretien intérieur et exterieur de résidences secondaires',
+		],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'69.10Z': {
+		contenuCentral: ['médiateurs et conciliateurs'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+	'27.52Z': {
+		contenuCentral: ['chauffe-eau solaire'],
+		contenuExclu: [],
+		contenuAnnexe: [],
+	},
+
+	'71.12B': {
+		contenuCentral: ['bureau d’études', 'assistant à maîtrise d’ouvrage'],
+		contenuAnnexe: [],
+		contenuExclu: [],
+	},
+	'82.19Z': {
+		contenuCentral: ['assistant administratif à domicile'],
+		contenuAnnexe: [],
+		contenuExclu: [],
+	},
+	'90.03B': {
+		contenuCentral: ['écrivain / écrivaine', 'rédaction de livre'],
+		contenuAnnexe: [],
+		contenuExclu: [],
+	},
+	'93.29Z': {
+		contenuCentral: ['organisation d’évènement'],
+		contenuAnnexe: [],
+		contenuExclu: [],
+	},
+	'82.30Z': {
+		contenuCentral: ['organisation d’évènement'],
+		contenuAnnexe: [],
+		contenuExclu: [],
+	},
+	'79.90Z': {
+		contenuCentral: ['guichetier'],
+		contenuAnnexe: [],
+		contenuExclu: [],
 	},
 }
