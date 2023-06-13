@@ -48,7 +48,7 @@ situation . salarié:
   valeur: situation = 'salarié'
 
 situation . salarié 2:
-  titre: salarié
+  titre: salarié multi-employeurs
   valeur: situation = 'salarié 2'
 
 situation . dirigeants:
@@ -60,7 +60,7 @@ situation . intermittent:
   valeur: situation = 'intermittent'
 
 situation . non actif:
-  titre: Demandeur d'emploi / Étudiant / Pensionné
+  titre: Demandeur d’emploi indemnisé
   valeur: situation = 'non actif'
 
 situation . autres:
