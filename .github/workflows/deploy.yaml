@@ -84,7 +84,7 @@ jobs:
           ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
           ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
           ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: static-site
           path: |
@@ -113,7 +113,7 @@ jobs:
           CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
       - name: Build Storybook
         run: yarn workspace site build:storybook
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: static-storybook
           path: |
@@ -127,7 +127,7 @@ jobs:
       - uses: ./.github/actions/install
       - name: Build API
         run: yarn workspace api build
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: static-api
           path: |
@@ -207,14 +207,14 @@ jobs:
     needs: [deploy-preview, deploy-context]
     steps:
       - name: Find Comment
-        uses: peter-evans/find-comment@v1
+        uses: peter-evans/find-comment@v2
         id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }} #e.g. 1
           comment-author: 'github-actions[bot]'
           body-includes: netlify
       - name: Create comment
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v3
         with:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
