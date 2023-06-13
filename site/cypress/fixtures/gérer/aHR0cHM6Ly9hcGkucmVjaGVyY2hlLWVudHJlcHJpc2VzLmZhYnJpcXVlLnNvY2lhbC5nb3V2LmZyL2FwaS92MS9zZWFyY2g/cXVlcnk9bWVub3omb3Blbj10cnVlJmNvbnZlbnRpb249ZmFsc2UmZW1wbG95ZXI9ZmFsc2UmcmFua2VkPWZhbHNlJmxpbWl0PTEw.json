@@ -1,0 +1,421 @@
+{
+  "entreprises": [
+    {
+      "activitePrincipale": "Commerce de détail de quincaillerie, peintures et verres en magasin spécialisé",
+      "activitePrincipaleUniteLegale": "47.52A",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "47.52A",
+          "address": "IMMEUBLE L'EAU VIVE 73150 VAL D'ISERE",
+          "codeCommuneEtablissement": "73304",
+          "codePostalEtablissement": "73150",
+          "etablissementSiege": true,
+          "idccs": [
+            "1383"
+          ],
+          "libelleCommuneEtablissement": "VAL D'ISERE",
+          "siret": "85183524900026"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "O",
+      "categorieJuridiqueUniteLegale": "5710",
+      "conventions": [
+        {
+          "idcc": 1383,
+          "etat": "VIGUEUR_ETEN",
+          "id": "KALICONT000005635591",
+          "mtime": 1555615456,
+          "shortTitle": "Quincaillerie : commerces de quincaillerie, fournitures industrielles, fers-métaux et équipements de la maison",
+          "texte_de_base": "KALITEXT000018000548",
+          "title": "Convention collective nationale des employés et agents de maîtrise des commerces de quincaillerie, fournitures industrielles, fers, métaux et équipement de la maison. Etendue par arrêté du 29 avril 1986 JORF 1er juin 1986.",
+          "url": "https://www.legifrance.gouv.fr/affichIDCC.do?idConvention=KALICONT000005635591"
+        }
+      ],
+      "dateCreationUniteLegale": "2019-06-18",
+      "dateDebut": "2019-11-25",
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "47.52A",
+        "address": "IMMEUBLE L'EAU VIVE 73150 VAL D'ISERE",
+        "categorieEntreprise": "PME",
+        "codeCommuneEtablissement": "73304",
+        "codePostalEtablissement": "73150",
+        "etablissementSiege": true,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [
+          "1383"
+        ],
+        "libelleCommuneEtablissement": "VAL D'ISERE",
+        "siret": "85183524900026"
+      },
+      "highlightLabel": "TY <b><u>MENNOZ</u></b> BRICO VAL",
+      "label": "TY MENNOZ BRICO VAL",
+      "matching": 1,
+      "simpleLabel": "TY MENNOZ",
+      "siren": "851835249"
+    },
+    {
+      "activitePrincipale": "Activités des organisations associatives n.c.a.",
+      "activitePrincipaleUniteLegale": "94.99Z",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "94.99Z",
+          "address": "39 RUE BRIZEUX 56100 LORIENT",
+          "codeCommuneEtablissement": "56121",
+          "codePostalEtablissement": "56100",
+          "etablissementSiege": true,
+          "libelleCommuneEtablissement": "LORIENT",
+          "siret": "83798530800019"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "N",
+      "categorieJuridiqueUniteLegale": "9220",
+      "conventions": [],
+      "dateCreationUniteLegale": "2017-12-05",
+      "dateDebut": "2017-12-05",
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "94.99Z",
+        "address": "39 RUE BRIZEUX 56100 LORIENT",
+        "codeCommuneEtablissement": "56121",
+        "codePostalEtablissement": "56100",
+        "etablissementSiege": true,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [],
+        "libelleCommuneEtablissement": "LORIENT",
+        "siret": "83798530800019"
+      },
+      "highlightLabel": "<b><u>MENOZ</u></b> COMPAGNIE YADO",
+      "label": "MENOZ COMPAGNIE YADO",
+      "matching": 1,
+      "simpleLabel": "MENOZ COMPAGNIE YADO",
+      "siren": "837985308"
+    },
+    {
+      "activitePrincipale": "Programmation informatique",
+      "activitePrincipaleUniteLegale": "62.01Z",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "62.01Z",
+          "address": "18 RUE ELSA TRIOLET 29200 BREST",
+          "codeCommuneEtablissement": "29019",
+          "codePostalEtablissement": "29200",
+          "etablissementSiege": true,
+          "idccs": [
+            "9998"
+          ],
+          "libelleCommuneEtablissement": "BREST",
+          "siret": "83436429100023"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "N",
+      "categorieJuridiqueUniteLegale": "5710",
+      "conventions": [
+        {
+          "idcc": 9998
+        }
+      ],
+      "dateCreationUniteLegale": "2018-01-02",
+      "dateDebut": "2022-04-16",
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "62.01Z",
+        "address": "18 RUE ELSA TRIOLET 29200 BREST",
+        "categorieEntreprise": "PME",
+        "codeCommuneEtablissement": "29019",
+        "codePostalEtablissement": "29200",
+        "etablissementSiege": true,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [
+          "9998"
+        ],
+        "libelleCommuneEtablissement": "BREST",
+        "siret": "83436429100023"
+      },
+      "highlightLabel": "<b><u>MENOZ</u></b>",
+      "label": "MENOZ",
+      "matching": 1,
+      "simpleLabel": "MENOZ",
+      "siren": "834364291"
+    },
+    {
+      "activitePrincipale": "Récupération de déchets triés",
+      "activitePrincipaleUniteLegale": "38.32Z",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "38.32Z",
+          "address": "8 RUE PASTEUR 69740 GENAS",
+          "codeCommuneEtablissement": "69277",
+          "codePostalEtablissement": "69740",
+          "etablissementSiege": false,
+          "libelleCommuneEtablissement": "GENAS",
+          "siret": "97041672300017"
+        },
+        {
+          "activitePrincipaleEtablissement": "38.32Z",
+          "address": "19 RUE DE L INDUSTRIE 69740 GENAS",
+          "codeCommuneEtablissement": "69277",
+          "codePostalEtablissement": "69740",
+          "etablissementSiege": true,
+          "libelleCommuneEtablissement": "GENAS",
+          "siret": "97041672300033"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "N",
+      "categorieJuridiqueUniteLegale": "1000",
+      "conventions": [],
+      "dateCreationUniteLegale": "1970-01-01",
+      "dateDebut": "2008-01-01",
+      "etablissements": 2,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "38.32Z",
+        "address": "8 RUE PASTEUR 69740 GENAS",
+        "categorieEntreprise": "PME",
+        "codeCommuneEtablissement": "69277",
+        "codePostalEtablissement": "69740",
+        "etablissementSiege": false,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [],
+        "libelleCommuneEtablissement": "GENAS",
+        "siret": "97041672300017"
+      },
+      "highlightLabel": "FERNAND <b><u>MUNOZ</u></b>",
+      "label": "FERNAND MUNOZ",
+      "matching": 2,
+      "simpleLabel": "MUNOZ",
+      "siren": "970416723"
+    },
+    {
+      "activitePrincipale": "Pratique dentaire",
+      "activitePrincipaleUniteLegale": "86.23Z",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "86.23Z",
+          "address": "102 RUE JULES VERNE 72300 SABLE-SUR-SARTHE",
+          "codeCommuneEtablissement": "72264",
+          "codePostalEtablissement": "72300",
+          "etablissementSiege": true,
+          "libelleCommuneEtablissement": "SABLE-SUR-SARTHE",
+          "siret": "95116112400015"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "O",
+      "categorieJuridiqueUniteLegale": "1000",
+      "conventions": [],
+      "dateCreationUniteLegale": "2023-05-01",
+      "dateDebut": "2023-05-01",
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "86.23Z",
+        "address": "102 RUE JULES VERNE 72300 SABLE-SUR-SARTHE",
+        "codeCommuneEtablissement": "72264",
+        "codePostalEtablissement": "72300",
+        "etablissementSiege": true,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [],
+        "libelleCommuneEtablissement": "SABLE-SUR-SARTHE",
+        "siret": "95116112400015"
+      },
+      "highlightLabel": "KAREN <b><u>MUNOZ</u></b> SALAS DOCTEUR",
+      "label": "KAREN MUNOZ SALAS DOCTEUR",
+      "matching": 1,
+      "simpleLabel": "MUNOZ SALAS",
+      "siren": "951161124"
+    },
+    {
+      "activitePrincipale": "Autres travaux de construction spécialisés n.c.a.",
+      "activitePrincipaleUniteLegale": "43.99C",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "43.99C",
+          "address": "NEVARONE 20167 ALATA",
+          "codeCommuneEtablissement": "2A006",
+          "codePostalEtablissement": "20167",
+          "etablissementSiege": true,
+          "libelleCommuneEtablissement": "ALATA",
+          "siret": "95151299500014"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "N",
+      "categorieJuridiqueUniteLegale": "1000",
+      "conventions": [],
+      "dateCreationUniteLegale": "2023-04-09",
+      "dateDebut": "2023-04-09",
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "43.99C",
+        "address": "NEVARONE 20167 ALATA",
+        "codeCommuneEtablissement": "2A006",
+        "codePostalEtablissement": "20167",
+        "etablissementSiege": true,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [],
+        "libelleCommuneEtablissement": "ALATA",
+        "siret": "95151299500014"
+      },
+      "highlightLabel": "HUGO GONCALVES <b><u>MENEZES</u></b> HGM",
+      "label": "HUGO GONCALVES MENEZES HGM",
+      "matching": 1,
+      "simpleLabel": "GONCALVES MENEZES",
+      "siren": "951512995"
+    },
+    {
+      "activitePrincipale": "Activité des médecins spécialistes",
+      "activitePrincipaleUniteLegale": "86.22C",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "86.22C",
+          "address": "4 CRS HENRI PIERANGELI 20200 BASTIA",
+          "codeCommuneEtablissement": "2B033",
+          "codePostalEtablissement": "20200",
+          "etablissementSiege": true,
+          "libelleCommuneEtablissement": "BASTIA",
+          "siret": "95182965400015"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "O",
+      "categorieJuridiqueUniteLegale": "5485",
+      "conventions": [],
+      "dateCreationUniteLegale": "2023-04-20",
+      "dateDebut": "2023-04-20",
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "86.22C",
+        "address": "4 CRS HENRI PIERANGELI 20200 BASTIA",
+        "codeCommuneEtablissement": "2B033",
+        "codePostalEtablissement": "20200",
+        "etablissementSiege": true,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [],
+        "libelleCommuneEtablissement": "BASTIA",
+        "siret": "95182965400015"
+      },
+      "highlightLabel": "MAGALI <b><u>MUNOZ</u></b>",
+      "label": "MAGALI MUNOZ",
+      "matching": 1,
+      "simpleLabel": "MAGALI MUNOZ",
+      "siren": "951829654"
+    },
+    {
+      "activitePrincipale": "Autres services personnels n.c.a.",
+      "activitePrincipaleUniteLegale": "96.09Z",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "96.09Z",
+          "address": "5 B CHE DU STADE DE LA COURONNE 13500 MARTIGUES",
+          "codeCommuneEtablissement": "13056",
+          "codePostalEtablissement": "13500",
+          "etablissementSiege": true,
+          "libelleCommuneEtablissement": "MARTIGUES",
+          "siret": "95184427300015"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "N",
+      "categorieJuridiqueUniteLegale": "1000",
+      "conventions": [],
+      "dateCreationUniteLegale": "2023-04-07",
+      "dateDebut": "2023-04-07",
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "96.09Z",
+        "address": "5 B CHE DU STADE DE LA COURONNE 13500 MARTIGUES",
+        "codeCommuneEtablissement": "13056",
+        "codePostalEtablissement": "13500",
+        "etablissementSiege": true,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [],
+        "libelleCommuneEtablissement": "MARTIGUES",
+        "siret": "95184427300015"
+      },
+      "highlightLabel": "LIONEL <b><u>MUNOZ</u></b> BOU BUSHCRAFT",
+      "label": "LIONEL MUNOZ BOU BUSHCRAFT",
+      "matching": 1,
+      "simpleLabel": "MUNOZ",
+      "siren": "951844273"
+    },
+    {
+      "activitePrincipale": "Location et exploitation de biens immobiliers propres ou loués",
+      "activitePrincipaleUniteLegale": "68.20A",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "68.20A",
+          "address": "RESIDENCE ST SERGE 22 RUE DU MAINE 49100 ANGERS",
+          "codeCommuneEtablissement": "49007",
+          "codePostalEtablissement": "49100",
+          "etablissementSiege": true,
+          "libelleCommuneEtablissement": "ANGERS",
+          "siret": "95197398100016"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "N",
+      "categorieJuridiqueUniteLegale": "2110",
+      "conventions": [],
+      "dateCreationUniteLegale": "2022-11-01",
+      "dateDebut": "2023-04-26",
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "68.20A",
+        "address": "RESIDENCE ST SERGE 22 RUE DU MAINE 49100 ANGERS",
+        "codeCommuneEtablissement": "49007",
+        "codePostalEtablissement": "49100",
+        "etablissementSiege": true,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [],
+        "libelleCommuneEtablissement": "ANGERS",
+        "siret": "95197398100016"
+      },
+      "highlightLabel": "<b><u>MENON</u></b> ALEXANDRE & LAPEYRE AUDREY",
+      "label": "MENON ALEXANDRE & LAPEYRE AUDREY",
+      "matching": 1,
+      "simpleLabel": "MENON ALEXANDRE & LAPEYRE AUDREY",
+      "siren": "951973981"
+    },
+    {
+      "activitePrincipale": "Hébergement touristique et autre hébergement de courte durée",
+      "activitePrincipaleUniteLegale": "55.20Z",
+      "allMatchingEtablissements": [
+        {
+          "activitePrincipaleEtablissement": "55.20Z",
+          "address": "3 RUE MAL DE LATTRE DE TASSIGNY 71100 CHALON-SUR-SAONE",
+          "codeCommuneEtablissement": "71076",
+          "codePostalEtablissement": "71100",
+          "etablissementSiege": true,
+          "libelleCommuneEtablissement": "CHALON-SUR-SAONE",
+          "siret": "95277206900011"
+        }
+      ],
+      "caractereEmployeurUniteLegale": "N",
+      "categorieJuridiqueUniteLegale": "2110",
+      "conventions": [],
+      "dateCreationUniteLegale": "2023-01-01",
+      "dateDebut": "2023-01-01",
+      "etablissements": 1,
+      "etatAdministratifUniteLegale": "A",
+      "firstMatchingEtablissement": {
+        "activitePrincipaleEtablissement": "55.20Z",
+        "address": "3 RUE MAL DE LATTRE DE TASSIGNY 71100 CHALON-SUR-SAONE",
+        "codeCommuneEtablissement": "71076",
+        "codePostalEtablissement": "71100",
+        "etablissementSiege": true,
+        "etatAdministratifEtablissement": "A",
+        "idccs": [],
+        "libelleCommuneEtablissement": "CHALON-SUR-SAONE",
+        "siret": "95277206900011"
+      },
+      "highlightLabel": "INDIVISION RENNE BLONDET <b><u>MUNOZ</u></b>",
+      "label": "INDIVISION RENNE BLONDET MUNOZ",
+      "matching": 1,
+      "simpleLabel": "INDIVISION RENNE BLONDET MUNOZ",
+      "siren": "952772069"
+    }
+  ]
+}

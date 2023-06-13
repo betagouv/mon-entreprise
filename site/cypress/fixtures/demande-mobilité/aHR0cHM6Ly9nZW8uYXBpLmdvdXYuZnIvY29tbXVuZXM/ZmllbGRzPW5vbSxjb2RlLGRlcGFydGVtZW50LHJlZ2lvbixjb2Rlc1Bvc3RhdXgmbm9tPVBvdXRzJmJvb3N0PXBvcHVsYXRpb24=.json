@@ -5,7 +5,7 @@
     "codesPostaux": [
       "65100"
     ],
-    "_score": 0.707863385442417,
+    "_score": 0.7078351011711698,
     "departement": {
       "code": "65",
       "nom": "Hautes-Pyrénées"
@@ -21,7 +21,7 @@
     "codesPostaux": [
       "64460"
     ],
-    "_score": 0.6108329931709119,
+    "_score": 0.6108338859132434,
     "departement": {
       "code": "64",
       "nom": "Pyrénées-Atlantiques"

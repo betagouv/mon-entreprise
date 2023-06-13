@@ -5,7 +5,7 @@
     "codesPostaux": [
       "29200"
     ],
-    "_score": 1.723195924539529,
+    "_score": 1.719818959982611,
     "departement": {
       "code": "29",
       "nom": "Finistère"
@@ -21,7 +21,7 @@
     "codesPostaux": [
       "27350"
     ],
-    "_score": 0.7001791138138566,
+    "_score": 0.7003536456918837,
     "departement": {
       "code": "27",
       "nom": "Eure"
@@ -37,7 +37,7 @@
     "codesPostaux": [
       "70300"
     ],
-    "_score": 0.49394880972580746,
+    "_score": 0.49397751499282716,
     "departement": {
       "code": "70",
       "nom": "Haute-Saône"

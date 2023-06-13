@@ -103,7 +103,7 @@ describe(`Navigation to income simulator using company name (${
 			.type('johan girod')
 			.wait('@search')
 
-		cy.contains('834825614')
+		cy.contains('493096580')
 			.should('be.visible')
 			.parentsUntil('li')
 			.find('button')
