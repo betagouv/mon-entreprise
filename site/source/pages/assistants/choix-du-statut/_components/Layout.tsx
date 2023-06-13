@@ -1,4 +1,3 @@
-import { Message } from '@/design-system'
 import { Grid } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 

@@ -65,56 +65,64 @@ export default function Navigation({
 	const prevStep = stepOrder[stepOrder.indexOf(currentStep) - 1] as PartialStep
 
 	return (
-		<StyledNavigation>
-			<Grid container spacing={2}>
-				<Grid item>
-					<Button
-						light
-						color={'secondary'}
-						to={
-							absoluteSitePaths.assistants['choix-du-statut'][
-								prevStep || 'index'
-							]
-						}
-					>
-						<span aria-hidden>←</span> <Trans>Précédent</Trans>
-					</Button>
-				</Grid>
-				{nextStep && (
+		<>
+			<StyledNavigation>
+				<Grid container spacing={2}>
 					<Grid item>
 						<Button
-							onPress={() =>
-								onNextStep?.({
-									nextStep,
-									nextAbsolutePath:
-										absoluteSitePaths.assistants['choix-du-statut'][nextStep],
-								})
+							light
+							color={'secondary'}
+							to={
+								absoluteSitePaths.assistants['choix-du-statut'][
+									prevStep || 'index'
+								]
 							}
-							// Probleme de desynchronisation entre le onpress et le to, le onpress n'est pas toujours appelé avant le to
-							// to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
-
-							// est ce qu'on devrait pas utiliser les parametres de l'url comme ca ?
-							// to={{
-							// 	pathname:
-							// 		absoluteSitePaths.assistants['choix-du-statut'][nextStep],
-							// 	search: createSearchParams({
-							// 		codeAPE: '6201Z',
-							// 	}).toString(),
-							// }}
-							isDisabled={!currentStepIsComplete}
-							aria-label={t("Suivant, passer à l'étape suivante")}
 						>
-							{nextStepLabel || <Trans>Enregistrer et passer à la suite</Trans>}{' '}
-							<span aria-hidden>→</span>
+							<span aria-hidden>←</span> <Trans>Précédent</Trans>
 						</Button>
 					</Grid>
-				)}
-			</Grid>
-		</StyledNavigation>
+					{nextStep && (
+						<Grid item>
+							<Button
+								onPress={() =>
+									onNextStep?.({
+										nextStep,
+										nextAbsolutePath:
+											absoluteSitePaths.assistants['choix-du-statut'][nextStep],
+									})
+								}
+								// Probleme de desynchronisation entre le onpress et le to, le onpress n'est pas toujours appelé avant le to
+								// to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
+
+								// est ce qu'on devrait pas utiliser les parametres de l'url comme ca ?
+								// to={{
+								// 	pathname:
+								// 		absoluteSitePaths.assistants['choix-du-statut'][nextStep],
+								// 	search: createSearchParams({
+								// 		codeAPE: '6201Z',
+								// 	}).toString(),
+								// }}
+								isDisabled={!currentStepIsComplete}
+								aria-label={t("Suivant, passer à l'étape suivante")}
+							>
+								{nextStepLabel || (
+									<Trans>Enregistrer et passer à la suite</Trans>
+								)}{' '}
+								<span aria-hidden>→</span>
+							</Button>
+						</Grid>
+					)}
+				</Grid>
+			</StyledNavigation>
+			<Shadow />
+		</>
 	)
 }
 
 const StyledNavigation = styled.div`
+	display: flex;
+	align-items: center;
+	height: 110px;
 	position: sticky;
 	padding: ${({ theme }) => theme.spacings.lg} 1rem;
 	margin: 0 -1rem;
@@ -124,5 +132,20 @@ const StyledNavigation = styled.div`
 			? theme.colors.extended.dark[800]
 			: theme.colors.extended.grey[100]};
 	z-index: 2;
-	/* box-shadow: ${({ theme }) => theme.elevations[6]}; */
+`
+
+const Shadow = styled.div`
+	z-index: 1;
+	position: sticky;
+	bottom: 35px;
+	transform: translateY(-200%);
+	height: 25px;
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	box-shadow: ${({ theme }) =>
+		theme.darkMode ? theme.elevationsDarkMode[6] : theme.elevations[6]};
+
+	/* debug 
+	/* background: red; */
 `
