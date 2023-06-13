@@ -119,7 +119,10 @@ const StyledNavigation = styled.div`
 	padding: ${({ theme }) => theme.spacings.lg} 1rem;
 	margin: 0 -1rem;
 	bottom: 0;
-	background: ${({ theme }) => theme.colors.extended.grey[100]};
+	background: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[800]
+			: theme.colors.extended.grey[100]};
 	z-index: 2;
 	/* box-shadow: ${({ theme }) => theme.elevations[6]}; */
 `

@@ -15,7 +15,9 @@ import { getBestOption, OptionType } from '../utils'
 import StatusCard from './StatusCard'
 
 const getStatusLabelsArray = (statusArray: OptionType[]) =>
-	statusArray.map((statusOption) => statusOption.type)
+	statusArray.map(
+		(statusOption) => statusOption.type.toUpperCase() as 'SASU' | 'EI' | 'AE'
+	)
 
 const getGridSizes = (statusArray: OptionType[]) => {
 	return { sizeXs: 12, sizeLg: 4 * statusArray.length }

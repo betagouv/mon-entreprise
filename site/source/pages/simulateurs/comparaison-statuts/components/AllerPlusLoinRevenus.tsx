@@ -9,13 +9,15 @@ import { SwitchInput } from '@/components/conversation/ChoicesInput'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue'
+import { StatusTag } from '@/components/StatusTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Drawer } from '@/design-system/drawer'
 import { ArrowRightIcon, InfoIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
-import { Tag, TagType } from '@/design-system/tag'
+import { Tag } from '@/design-system/tag'
+import { Colors } from '@/design-system/theme'
 import { Tooltip } from '@/design-system/tooltip'
 import { Strong } from '@/design-system/typography'
 import { H2, H4, H5 } from '@/design-system/typography/heading'
@@ -24,7 +26,6 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { answerQuestion } from '@/store/actions/actions'
 
 import { useCasParticuliers } from '../contexts/CasParticuliers'
-import { StatusTagIcon } from './StatusCard'
 
 const DOTTEDNAME_SOCIETE_IMPOT = 'entreprise . imposition'
 const DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE =
@@ -137,7 +138,7 @@ const AllerPlusLoinRevenus = ({
 								<th className="sr-only">Type de structure</th>
 								<th scope="col">
 									<span className="table-title-sasu">
-										<StatusTagIcon status="sasu" /> SASU
+										<StatusTag status="SASU" text="acronym" showIcon />
 									</span>
 								</th>
 
@@ -147,7 +148,7 @@ const AllerPlusLoinRevenus = ({
 										id="tooltip-ei-table"
 									>
 										<span className="table-title-ei">
-											<StatusTagIcon status="ei" /> EI
+											<StatusTag status="EI" text="acronym" showIcon />
 										</span>
 									</Tooltip>
 								</th>
@@ -155,7 +156,7 @@ const AllerPlusLoinRevenus = ({
 								<th scope="col">
 									<Tooltip tooltip="Auto-entreprise" id="tooltip-ae-table">
 										<span className="table-title-ae">
-											<StatusTagIcon status="ae" /> AE
+											<StatusTag status="AE" text="acronym" showIcon />
 										</span>
 									</Tooltip>
 								</th>
@@ -175,7 +176,7 @@ const AllerPlusLoinRevenus = ({
 									<Trans>Chiffre d'affaires</Trans>
 								</th>
 								<td colSpan={3}>
-									<StyledTag $color={'grey' as TagType}>
+									<StyledTag color={'grey' as Colors}>
 										<Value
 											expression="entreprise . chiffre d'affaires"
 											displayedUnit="€"
@@ -190,7 +191,7 @@ const AllerPlusLoinRevenus = ({
 									<Trans>Charges</Trans>
 								</th>
 								<td colSpan={3}>
-									<StyledTag $color={'grey' as TagType}>
+									<StyledTag color={'grey' as Colors}>
 										<Value
 											expression="entreprise . charges"
 											unit="€/an"
@@ -206,7 +207,7 @@ const AllerPlusLoinRevenus = ({
 									<Trans>Cotisations</Trans>
 								</th>
 								<td>
-									<StyledTag $color={'secondary' as TagType}>
+									<StyledTag color={'secondary' as Colors}>
 										<Value
 											expression="dirigeant . rémunération . cotisations"
 											engine={assimiléEngine}
@@ -217,7 +218,7 @@ const AllerPlusLoinRevenus = ({
 									</StyledTag>
 								</td>
 								<td>
-									<StyledTag $color={'independant' as TagType}>
+									<StyledTag color={'independant' as Colors}>
 										<Value
 											expression="dirigeant . rémunération . cotisations"
 											engine={indépendantEngine}
@@ -228,7 +229,7 @@ const AllerPlusLoinRevenus = ({
 									</StyledTag>
 								</td>
 								<td>
-									<StyledTag $color={'tertiary' as TagType}>
+									<StyledTag color={'tertiary' as Colors}>
 										<Value
 											expression="dirigeant . rémunération . cotisations"
 											engine={autoEntrepreneurEngine}
@@ -244,7 +245,7 @@ const AllerPlusLoinRevenus = ({
 									<Minus aria-label={t('moins')}>-</Minus> <Trans>Impôts</Trans>
 								</th>
 								<td>
-									<StyledTag $color={'secondary' as TagType}>
+									<StyledTag color={'secondary' as Colors}>
 										<Value
 											expression="dirigeant . rémunération . impôt"
 											engine={assimiléEngine}
@@ -255,7 +256,7 @@ const AllerPlusLoinRevenus = ({
 									</StyledTag>
 								</td>
 								<td>
-									<StyledTag $color={'independant' as TagType}>
+									<StyledTag color={'independant' as Colors}>
 										<Value
 											expression="dirigeant . rémunération . impôt"
 											engine={indépendantEngine}
@@ -266,7 +267,7 @@ const AllerPlusLoinRevenus = ({
 									</StyledTag>
 								</td>
 								<td>
-									<StyledTag $color={'tertiary' as TagType}>
+									<StyledTag color={'tertiary' as Colors}>
 										<Value
 											expression="dirigeant . rémunération . impôt"
 											engine={autoEntrepreneurEngine}
@@ -294,7 +295,7 @@ const AllerPlusLoinRevenus = ({
 									</StyledStrong>
 								</th>
 								<td>
-									<StyledTag $color={'secondary' as TagType}>
+									<StyledTag color={'secondary' as Colors}>
 										<Strong>
 											<Value
 												expression="dirigeant . rémunération . net . après impôt"
@@ -307,7 +308,7 @@ const AllerPlusLoinRevenus = ({
 									</StyledTag>
 								</td>
 								<td>
-									<StyledTag $color={'independant' as TagType}>
+									<StyledTag color={'independant' as Colors}>
 										<Strong>
 											<Value
 												expression="dirigeant . rémunération . net . après impôt"
@@ -320,7 +321,7 @@ const AllerPlusLoinRevenus = ({
 									</StyledTag>
 								</td>
 								<td>
-									<StyledTag $color={'tertiary' as TagType}>
+									<StyledTag color={'tertiary' as Colors}>
 										<Strong>
 											<Value
 												expression="dirigeant . rémunération . net . après impôt"
@@ -480,7 +481,7 @@ const AllerPlusLoinRevenus = ({
 	)
 }
 
-const StyledTag = styled(Tag)<{ $color: TagType }>`
+const StyledTag = styled(Tag)`
 	width: 100%;
 	justify-content: center;
 	font-size: 0.75rem;

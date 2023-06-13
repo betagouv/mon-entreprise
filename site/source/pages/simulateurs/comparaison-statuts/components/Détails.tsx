@@ -489,7 +489,7 @@ const Détails = ({
 							sa vie professionnelle.
 						</Trans>
 					</Body>
-					<StatusCard status={['sasu', 'ei', 'ae']}>
+					<StatusCard status={['SASU', 'EI', 'AE']}>
 						<span>
 							<Value
 								linkToRule={false}
@@ -637,12 +637,12 @@ const Détails = ({
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']}>
+							<StatusCard status={['SASU']}>
 								<Trans>1 € minimum</Trans>
 							</StatusCard>
 						</Grid>
 						<Grid item xs={12} lg={8}>
-							<StatusCard status={['ei', 'ae']}>
+							<StatusCard status={['EI', 'AE']}>
 								<DisabledLabel>
 									<Trans>Aucun</Trans>
 								</DisabledLabel>
@@ -664,17 +664,17 @@ const Détails = ({
 					</Body>
 					<Grid container spacing={4}>
 						<Grid item xs={12} lg={4}>
-							<StatusCard status={['sasu']}>
+							<StatusCard status={['SASU']}>
 								<Trans>Conjoint associé ou salarié</Trans>
 							</StatusCard>
 						</Grid>
 						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ei']}>
+							<StatusCard status={['EI']}>
 								<Trans>Conjoint collaborateur ou salarié</Trans>
 							</StatusCard>
 						</Grid>
 						<Grid item xs={12} lg={4}>
-							<StatusCard status={['ae']}>
+							<StatusCard status={['AE']}>
 								<Trans>Conjoint collaborateur</Trans>
 							</StatusCard>
 						</Grid>
