@@ -4743,6 +4743,7 @@
       "contenuCentral": [
         "La fabrication d'appareils non électriques pour le chauffage des locaux et la cuisine domestique :\nappareils pour le chauffage des locaux, cuisinières, grils, poêles, chauffe-eau, ustensiles de cuisine, chauffe-plats, non électriques",
         "Réchauds, rôtissoires, grils, chauffe-plats, etc., électriques",
+        "Chauffe-eau solaire",
         "La fabrication d'appareils ménagers non électriques",
         "La fabrication de chauffe-eau à gaz"
       ],
@@ -8917,7 +8918,8 @@
       ],
       "contenuExclu": [],
       "contenuCentral": [
-        "Le commerce de détail de produits pharmaceutiques"
+        "Le commerce de détail de produits pharmaceutiques",
+        "Pharmacie"
       ],
       "codeApe": "47.73Z",
       "title": "Commerce de détail de produits pharmaceutiques en magasin spécialisé",
@@ -9104,7 +9106,9 @@
         "Le commerce de détail de tous types de produits par correspondance",
         "Le commerce de détail de tous types de produits par Internet",
         "E-commerce",
-        "Vente en ligne"
+        "Vente en ligne",
+        "Place de marché en ligne",
+        "Marketplace"
       ],
       "codeApe": "47.91A",
       "title": "Vente à distance sur catalogue général",
@@ -9132,7 +9136,9 @@
         "Le commerce de détail spécialisé de produits par correspondance",
         "Le commerce de détail spécialisé de produits par Internet",
         "E-commerce",
-        "Vente en ligne"
+        "Vente en ligne",
+        "Place de marché en ligne",
+        "Marketplace"
       ],
       "codeApe": "47.91B",
       "title": "Vente à distance sur catalogue spécialisé",
@@ -10885,6 +10891,7 @@
         "La représentation juridique d'une partie contre une partie adverse, que ce soit ou non devant des tribunaux ou d'autres organes judiciaires, par des membres du barreau ou sous leur contrôle :\nconseil et représentation dans des affaires civiles\nconseil et représentation dans des affaires pénales\nconseil et représentation en relation avec des conflits du travail",
         "Le conseil et l'assistance juridique de nature générale, la rédaction de documents juridiques :\nstatuts, accords d'association ou documents analogues relatifs à la constitution de sociétés\nbrevets et droits d'auteurs\nrédaction d'actes, de testaments, d'actes fiduciaires, etc.",
         "Les autres activités des notaires, des huissiers, des juges d'instruction et des arbitres",
+        "Médiateurs et conciliateurs",
         "Les activités juridiques",
         "Les activités de conseil et de représentation en matière civile, pénale ou autre"
       ],
@@ -11035,6 +11042,8 @@
         "Les services de gestion de projets de constructions",
         "Les études géophysiques, géologiques et sismiques",
         "L'information cartographique et spatiale",
+        "Bureau d’études",
+        "Assistant à maîtrise d’ouvrage",
         "La prospection de pétrole et de gaz, les études géophysiques, géologiques et sismiques",
         "Les activités d'ingénierie",
         "Les activités d'ingénierie, c'est-à-dire l'application des lois physiques et principes d'ingénierie dans la conception de machines, matériaux, instruments, structures, processus et systèmes"
@@ -11597,6 +11606,7 @@
         "Les activités de vente de billets pour les spectacles, les manifestations sportives et tous les autres événements de divertissement",
         "Les services d'assistance aux touristes :\nfourniture d'informations touristiques\nactivités des guides touristiques,",
         "Les activités de promotion du tourisme",
+        "Guichetier",
         "Les autres services de réservation liés aux voyages",
         "Les réservations pour le transport, les hôtels, les restaurants, la location de véhicules, les spectacles et les événements sportifs",
         "Les activités des agences de vente de billets"
@@ -11677,6 +11687,7 @@
       ],
       "contenuCentral": [
         "La prestation d'une combinaison de services de soutien dans les installations du client. Ces services comprennent le nettoyage intérieur courant, l'entretien, l'élimination des ordures, le gardiennage et la sécurité, la distribution du courrier, la blanchisserie et des services de soutien annexes. Ces activités de soutien sont effectuées par du personnel qui n'intervient pas dans les activités essentielles du client ou n'est pas chargé de celles ci.",
+        "Entretien intérieur et exterieur de résidences secondaires",
         "Les activités combinées de soutien lié aux bâtiments (combinaison de services tels que le nettoyage intérieur courant, l'entretien et les réparations mineures, l'élimination des ordures, le gardiennage et la sécurité)"
       ],
       "codeApe": "81.10Z",
@@ -11691,6 +11702,9 @@
       "contenuCentral": [
         "Le nettoyage courant (non spécialisé) de tous types de bâtiments tels que :\nbureaux",
         "Homme / Femme de ménage",
+        "Homme / femme toute main",
+        "Homme / femme à tout faire",
+        "Montage / assemblage de meubles",
         "Le nettoyage des parties intérieures de bâtiments et d'autres constructions"
       ],
       "codeApe": "81.21Z",
@@ -11807,6 +11821,7 @@
         "La duplication",
         "Le tirage de plans",
         "D'autres services de reproduction de documents n'offrant pas de services d'impression (impression offset, impression-minute, services de pré-presse)",
+        "Assistant administratif à domicile",
         "La photocopie de documents",
         "Les travaux d'impression rapide en petits tirages",
         "La location de boîtes postales",
@@ -11856,6 +11871,7 @@
       ],
       "contenuCentral": [
         "L'organisation, la promotion et/ou la gestion d'événements, tels que des salons et foires commerciales, des congrès, des conférences et des réunions, incluant ou non la gestion et la mise à disposition du personnel pour exploiter les installations où ces événements ont lieu",
+        "Organisation d’évènement",
         "L'organisation de salons professionnels et congrès",
         "L'organisation et la gestion d'événements, tels que des réunions, des congrès et des conférences"
       ],
@@ -12579,6 +12595,7 @@
         "Hypnothérapeute",
         "Hypnothérapie",
         "Réflexologue",
+        "Thérapeute",
         "Les activités des psychologues à vocation thérapeutique"
       ],
       "codeApe": "86.90F",
@@ -12884,7 +12901,9 @@
       "contenuCentral": [
         "Les activités des écrivains indépendants, pour tous les sujets, y compris la fiction, les ouvrages techniques, etc.",
         "Les activités des compositeurs de musique",
-        "Les activités des journalistes indépendants"
+        "Les activités des journalistes indépendants",
+        "Écrivain / écrivaine",
+        "Rédaction de livre"
       ],
       "codeApe": "90.03B",
       "title": "Autre création artistique",
@@ -13105,6 +13124,7 @@
         "Les foires et salons de nature récréative",
         "Les activités des plages, y compris la location de matériels tels que les cabines de bain, vestiaires, sièges, etc.",
         "Les discothèques et les pistes de danse où le service de boissons n'est pas prédominant",
+        "Organisation d’évènement",
         "L'exploitation de ports de plaisance (marinas)",
         "Les services rendus sur les terrains d'aviation de tourisme",
         "L'organisation de foires et salons de nature récréative",
