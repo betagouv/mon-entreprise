@@ -220,7 +220,10 @@ export default function SearchCodeAPE({
 		<>
 			<SearchField
 				value={searchQuery}
-				onChange={setSearchQuery}
+				onChange={(v) => {
+					setSearchQuery(v)
+					setSelected('')
+				}}
 				label={t("Mots-clés définissants l'activité")}
 				placeholder={t('Par exemple : coiffure, boulangerie ou restauration')}
 			/>
