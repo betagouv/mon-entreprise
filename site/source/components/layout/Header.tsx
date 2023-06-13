@@ -87,7 +87,7 @@ const StyledHeader = styled.div`
 	column-gap: ${({ theme }) => theme.spacings.xs};
 	row-gap: ${({ theme }) => theme.spacings.md};
 	a {
-		height: 100%;
+		height: 3rem;
 		display: flex;
 		align-items: center;
 	}

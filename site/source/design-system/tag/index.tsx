@@ -1,47 +1,108 @@
 import styled from 'styled-components'
 
-import { baseTheme, getColorGroup } from '../theme'
+import { Colors, getColorGroup, isColor } from '../theme'
+import { KeysOfUnion, LG, MD, SM } from '../types'
 
-export type TagType = keyof typeof baseTheme.colors.bases &
-	keyof typeof baseTheme.colors.extended &
-	keyof typeof baseTheme.colors.publics
+type SizeProps = SM | MD | LG
+type SizeKey = KeysOfUnion<SizeProps>
 
-type SizeType = 'sm' | 'md' | 'lg'
+interface Color {
+	light: Colors | string
+	dark: Colors | string
+}
 
-const lightColors = ['grey']
+interface TagProps {
+	children?: React.ReactNode
+	className?: string
+	color?: Colors | Color | string
+}
 
-export const Tag = styled.div<{ $color?: TagType; $size?: SizeType }>`
+export const Tag = ({
+	children,
+	className,
+	color,
+	...size
+}: TagProps & Partial<SizeProps>) => (
+	<StyledTag
+		className={className}
+		$color={color}
+		$size={
+			'sm' in size ? 'sm' : 'md' in size ? 'md' : 'lg' in size ? 'lg' : 'md'
+		}
+	>
+		{children}
+	</StyledTag>
+)
+
+const StyledTag = styled.span<{ $color?: Color | string; $size: SizeKey }>`
 	font-family: ${({ theme }) => theme.fonts.main};
 
-	display: flex;
+	display: inline-flex;
+	vertical-align: middle;
 	align-items: center;
 	width: fit-content;
 	padding: 0.25rem 0.5rem;
 	border-radius: 0.25rem;
 	font-weight: 500;
+	font-size: 0.75rem;
+	line-height: 1rem;
+
 	background-color: ${({ theme, $color }) =>
-		$color
-			? theme.colors[getColorGroup($color)][$color][
-					lightColors.includes($color) ? 300 : 100
-			  ]
-			: theme.colors.bases.primary[100]};
+		typeof $color === 'string'
+			? isColor($color)
+				? getColorGroup($color)?.[200]
+				: $color
+			: theme.darkMode
+			? // darkmode
+			  typeof $color?.dark === 'string'
+				? isColor($color.dark)
+					? getColorGroup($color.dark)?.[200]
+					: $color.dark
+				: theme.colors.extended.grey[600]
+			: // lightmode
+			typeof $color?.light === 'string'
+			? isColor($color.light)
+				? getColorGroup($color.light)?.[400]
+				: $color.light
+			: theme.colors.extended.grey[400]};
+
 	color: ${({ theme, $color }) =>
-		$color
-			? theme.colors[getColorGroup($color)][$color][600]
-			: theme.colors.extended.grey[800]};
-	font-size: ${({ $size }) => {
-		switch ($size) {
-			case 'sm':
-				return '0.75rem'
-			case 'md':
-			default:
-				return '1rem'
-		}
-	}};
+		typeof $color === 'string'
+			? isColor($color)
+				? getColorGroup($color)?.[700]
+				: null
+			: theme.darkMode
+			? // darkmode
+			  typeof $color?.dark === 'string'
+				? isColor($color.dark)
+					? getColorGroup($color.dark)?.[700]
+					: null
+				: null
+			: // lightmode
+			typeof $color?.light === 'string'
+			? isColor($color.light)
+				? getColorGroup($color.light)?.[600]
+				: null
+			: null};
+
 	svg {
 		fill: ${({ theme, $color }) =>
-			$color
-				? theme.colors[getColorGroup($color)][$color][600]
-				: theme.colors.extended.grey[800]};
+			typeof $color === 'string'
+				? isColor($color)
+					? getColorGroup($color)?.[700]
+					: null
+				: theme.darkMode
+				? // darkmode
+				  typeof $color?.dark === 'string'
+					? isColor($color.dark)
+						? getColorGroup($color.dark)?.[700]
+						: null
+					: null
+				: // lightmode
+				typeof $color?.light === 'string'
+				? isColor($color.light)
+					? getColorGroup($color.light)?.[600]
+					: null
+				: null};
 	}
 `

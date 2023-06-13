@@ -15,13 +15,11 @@ export default function Layout({
 		<>
 			<H1>{title}</H1>
 			<Grid container spacing={5}>
-				<Grid item sm={12} md={8} lg={9}>
+				<Grid item sm={12} md={7} lg={8}>
 					{children}
 				</Grid>
-				<Grid item sm={12} md={4} lg={3}>
-					<Message>
-						<StatutsDisponibles />
-					</Message>
+				<Grid item sm={12} md={5} lg={4}>
+					<StatutsDisponibles />
 				</Grid>
 			</Grid>
 		</>

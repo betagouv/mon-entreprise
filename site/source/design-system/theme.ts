@@ -1,6 +1,7 @@
 import { Theme } from '@/types/styled'
+import { Merge } from '@/types/utils'
 
-import { TagType } from './tag'
+import { KeysOfUnion } from './types'
 
 export const baseTheme = {
 	colors: {
@@ -185,17 +186,37 @@ export const baseTheme = {
 	},
 }
 
-export type ColorGroups = Array<keyof typeof baseTheme.colors>
+type ColorsType = typeof baseTheme.colors
+type ColorGroups = Merge<ColorsType[keyof ColorsType]>
 
-export const getColorGroup = (color: TagType) => {
-	const colorGroups: ColorGroups = Object.keys(baseTheme.colors).map(
-		(colorGroup) => colorGroup as keyof typeof baseTheme.colors
-	)
+export type Colors = KeysOfUnion<ColorsType[keyof ColorsType]>
 
-	return colorGroups.find(
-		(colorGroup: keyof typeof baseTheme.colors) =>
-			!!baseTheme.colors[colorGroup]?.[color]
-	) as keyof typeof baseTheme.colors
+/**
+ * Check if a color is in the theme
+ * @param color
+ */
+export const isColor = (color: string): color is Colors =>
+	Object.values(baseTheme.colors).some((val) => color in val)
+
+/**
+ * Get the color group of a color
+ * @example getColorGroup('error') => { 100: '#FDE8E9', 200: '#F9BCC0', 300: '#DB666E', 400: '#CB111D', 500: '#96050F', 600: '#52070C' }
+ * @param color
+ */
+export const getColorGroup = <T extends Colors>(color: T) => {
+	const colorGroup = Object.values(baseTheme.colors).find(
+		(val) => color in val
+	) as ColorGroups | undefined
+
+	if (colorGroup && color in colorGroup) {
+		return (
+			(colorGroup[color as keyof ColorGroups] as Merge<
+				NonNullable<ColorGroups[T]>
+			>) ?? null
+		)
+	}
+
+	return null
 }
 
 // We use the Grid from material-ui, we need to uniformise

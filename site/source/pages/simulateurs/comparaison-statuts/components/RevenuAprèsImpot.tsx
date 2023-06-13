@@ -66,7 +66,7 @@ const RevenuAprèsImpot = ({
 			<Grid container spacing={4}>
 				<Grid item xs={12} lg={4}>
 					<StatusCard
-						status={['sasu']}
+						status={['SASU']}
 						isBestOption={bestOption === 'sasu'}
 						footerContent={
 							<CheckList
@@ -121,7 +121,7 @@ const RevenuAprèsImpot = ({
 
 				<Grid item xs={12} lg={4}>
 					<StatusCard
-						status={['ei']}
+						status={['EI']}
 						isBestOption={bestOption === 'ei'}
 						footerContent={
 							<CheckList
@@ -181,7 +181,7 @@ const RevenuAprèsImpot = ({
 
 				<Grid item xs={12} lg={4}>
 					<StatusCard
-						status={['ae']}
+						status={['AE']}
 						isBestOption={bestOption === 'ae'}
 						footerContent={
 							<CheckList

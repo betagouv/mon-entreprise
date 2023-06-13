@@ -168,21 +168,6 @@ export const EditIcon = (props: HTMLAttributes<SVGElement>) => (
 	</svg>
 )
 
-export const HexagonIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
-		{...props}
-		width="16"
-		height="16"
-		viewBox="0 0 16 16"
-		fill="#1D458C"
-		xmlns="http://www.w3.org/2000/svg"
-		aria-hidden
-		role="img"
-	>
-		<path d="M8 3L12.3301 5.5V10.5L8 13L3.66987 10.5V5.5L8 3Z" />
-	</svg>
-)
-
 export const TriangleIcon = (props: HTMLAttributes<SVGElement>) => (
 	<svg
 		{...props}
@@ -195,6 +180,41 @@ export const TriangleIcon = (props: HTMLAttributes<SVGElement>) => (
 		role="img"
 	>
 		<path d="M8 3L13.1962 12H2.80385L8 3Z" />
+	</svg>
+)
+
+export const SquareIcon = (props: HTMLAttributes<SVGElement>) => (
+	<svg
+		{...props}
+		width="16"
+		height="16"
+		viewBox="0 0 16 16"
+		fill="#1D458C"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden
+		role="img"
+		className={'square-icon' + (props.className ? ' ' + props.className : '')}
+	>
+		<path d="M3 3H13V13H3V3Z" />
+	</svg>
+)
+
+export const RhombusIcon = styled(SquareIcon)`
+	transform: rotate(45deg);
+`
+
+export const HexagonIcon = (props: HTMLAttributes<SVGElement>) => (
+	<svg
+		{...props}
+		width="16"
+		height="16"
+		viewBox="0 0 16 16"
+		fill="#1D458C"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden
+		role="img"
+	>
+		<path d="M8 3L12.3301 5.5V10.5L8 13L3.66987 10.5V5.5L8 3Z" />
 	</svg>
 )
 

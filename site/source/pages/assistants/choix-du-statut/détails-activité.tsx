@@ -117,7 +117,6 @@ function GuichetSelection({
 						<RadioCardSkeleton
 							value={guichetEntry.code}
 							key={guichetEntry.code}
-							visibleRadioAs="div"
 						>
 							<H5 as="h3">{getGuichetTitle(guichetEntry.label)}</H5>
 							<GuichetDescription {...guichetEntry} />
@@ -132,11 +131,9 @@ function GuichetSelection({
 function GuichetSkeleton() {
 	return (
 		<Message border={false}>
-			<Body>
-				<Skeleton width={300} height={20} />
-				<Spacing md />
-				<Skeleton width={600} height={20} />
-			</Body>
+			<Skeleton width={300} height={20} />
+			<Spacing md />
+			<Skeleton width={600} height={20} />
 		</Message>
 	)
 }

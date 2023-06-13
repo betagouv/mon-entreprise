@@ -1,5 +1,5 @@
 /**
- * Immutable type
+ * Immutable type, useful for satisfied typescript type checking
  *
  * source: https://github.com/cefn/lauf/blob/b982a09/modules/store/src/types/immutable.ts#L25
  */
