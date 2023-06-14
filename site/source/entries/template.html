@@ -226,7 +226,7 @@
 				const iframeColor = rawColor && parseColor(rawColor)
 				;[
 					document.documentElement,
-					…document.querySelectorAll('[data-js-color-element]'),
+					...document.querySelectorAll('[data-js-color-element]'),
 				].forEach((element) => {
 					element.style.setProperty(
 						'--COLOR_HUE',
