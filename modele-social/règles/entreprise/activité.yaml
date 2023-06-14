@@ -320,7 +320,9 @@ entreprise . activités . principale:
     code guichet:
       description: |
         Le code guichet est utilisé pour identifier l'activité principale lors de la déclaration de 
-        la nouvelle entreprise via le guichet unique
+        la nouvelle entreprise via le guichet unique. Il diffère du code APE : certains code APE ont plusieurs code guichet associés.
+
+        Il permet de connaître le type d'imposition de bénéfince (BIC, BNC, BA), la nature d'activité ou encore les régimes de retraite spécifiques associés au type d'activité.
 
 #   une possibilité:
 #     choix obligatoire: oui

@@ -9,7 +9,7 @@ import { SwitchInput } from '@/components/conversation/ChoicesInput'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue'
-import { StatusTag } from '@/components/StatusTag'
+import { StatutTag } from '@/components/StatutTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
@@ -138,7 +138,7 @@ const AllerPlusLoinRevenus = ({
 								<th className="sr-only">Type de structure</th>
 								<th scope="col">
 									<span className="table-title-sasu">
-										<StatusTag status="SASU" text="acronym" showIcon />
+										<StatutTag statut="SASU" text="acronym" showIcon />
 									</span>
 								</th>
 
@@ -148,7 +148,7 @@ const AllerPlusLoinRevenus = ({
 										id="tooltip-ei-table"
 									>
 										<span className="table-title-ei">
-											<StatusTag status="EI" text="acronym" showIcon />
+											<StatutTag statut="EI" text="acronym" showIcon />
 										</span>
 									</Tooltip>
 								</th>
@@ -156,7 +156,7 @@ const AllerPlusLoinRevenus = ({
 								<th scope="col">
 									<Tooltip tooltip="Auto-entreprise" id="tooltip-ae-table">
 										<span className="table-title-ae">
-											<StatusTag status="AE" text="acronym" showIcon />
+											<StatutTag statut="AE" text="acronym" showIcon />
 										</span>
 									</Tooltip>
 								</th>

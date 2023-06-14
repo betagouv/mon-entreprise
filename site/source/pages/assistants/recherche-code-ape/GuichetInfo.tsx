@@ -72,8 +72,8 @@ export function GuichetDescription({
 	return (
 		<>
 			<Body>
-				Activité <Strong>{catégorieActivité.replace(/_/g, ' ')}</Strong> avec
-				des revenus déclarés en <Strong>{typeBénéfice}</Strong>
+				Activité <Strong>{catégorieActivité.replace(/_/g, ' ')}</Strong> avec le
+				type de bénéfice <Strong>{typeBénéfice}</Strong>
 				{caisseDeRetraiteSpéciale && (
 					<>
 						, affiliée à la <Strong>{caisseDeRetraiteSpéciale}</Strong> pour la

@@ -51,7 +51,11 @@ entreprise . catégorie juridique . EI:
     par: "'unique'"
   avec:
     auto-entrepreneur:
-      non applicable si: associés . multiples
+      acronyme: AE
+      non applicable si:
+        une de ces conditions:
+          - associés . multiples
+          - entreprise . imposition . IR . type de bénéfices = 'BA'
       question: Êtes-vous auto-entrepreneur ?
       remplace:
         - règle: imposition . régime
@@ -68,6 +72,7 @@ entreprise . catégorie juridique . EI:
         valeur: oui
     EI:
       titre: entreprise individuelle
+      acronyme: EI
       valeur: auto-entrepreneur = non
       non applicable si: associés . multiples
 
