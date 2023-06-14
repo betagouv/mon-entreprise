@@ -18,6 +18,8 @@ export const plausibleEvent = (
 	const referer = ctx.headers.referer ?? ''
 	const url = ctx.href
 
+	console.log({ userAgent, xForwardedFor, referer, url })
+
 	return got('https://plausible.io/api/event', {
 		method: 'POST',
 		headers: {
