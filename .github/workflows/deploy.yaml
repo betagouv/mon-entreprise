@@ -232,6 +232,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     runs-on: ubuntu-22.04
+    container: cypress/browsers:latest
     # We need to specify always() https://github.com/actions/runner/issues/491
     if: always() && needs.deploy-preview.result == 'success'
     needs: [deploy-context, deploy-preview]
@@ -302,6 +303,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     runs-on: ubuntu-22.04
+    container: cypress/browsers:latest
     # We need to specify always() https://github.com/actions/runner/issues/491
     if: always() && needs.deploy-prod.result == 'success'
     needs: [deploy-context, deploy-prod]
