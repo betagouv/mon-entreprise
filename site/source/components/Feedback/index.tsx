@@ -263,8 +263,7 @@ const StyledButton = styled.button<{
 	$isEmbedded?: boolean
 }>`
 	position: fixed;
-	top: 10.5rem;
-	${({ $isEmbedded }) => ($isEmbedded ? `top: 2rem;` : '')}
+	top: ${({ $isEmbedded }) => ($isEmbedded ? '2rem' : '10.5rem')};
 	right: 0;
 	width: 3.75rem;
 	height: 3.75rem;
