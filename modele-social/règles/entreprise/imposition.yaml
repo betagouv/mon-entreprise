@@ -351,7 +351,7 @@ entreprise . chiffre d'affaires . seuil micro . dépassé:
   # elle est utilisée.
   une de ces conditions:
     - entreprise . chiffre d'affaires > total
-    - entreprise . chiffre d'affaires . service > service
+    - entreprise . chiffre d'affaires . service > libérale
 
 entreprise . imposition . régime . déclaration contrôlée:
   applicable si: IR . type de bénéfices . BNC
