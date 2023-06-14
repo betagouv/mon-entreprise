@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
+import Contact from '@/components/Contact'
 import FeedbackButton from '@/components/Feedback'
 import LegalNotice from '@/components/LegalNotice'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
@@ -191,6 +192,9 @@ export default function Footer() {
 							<FooterColumn>
 								<nav title="Troisième colonne du menu">
 									<ul>
+										<StyledLi>
+											<Contact />
+										</StyledLi>
 										<StyledLi>
 											<LegalNotice />
 										</StyledLi>
