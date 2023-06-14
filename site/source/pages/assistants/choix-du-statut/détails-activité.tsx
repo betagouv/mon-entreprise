@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
 import Skeleton from '@/components/ui/Skeleton'
+import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message, RadioCardGroup } from '@/design-system'
 import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Spacing } from '@/design-system/layout'
 import { H3, H5 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+import { useEngineIsIdle } from '@/hooks/useEngineIsIddle'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
@@ -22,71 +24,89 @@ import {
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
 
+function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
+	const dispatch = useDispatch()
+
+	return useCallback(
+		(codeGuichet: GuichetEntry['code'] | undefined) => {
+			const guichet = guichetEntries?.find(
+				(guichet) => guichet.code === codeGuichet
+			)
+			dispatch(
+				batchUpdateSituation({
+					'entreprise . activités . principale . code guichet': guichet
+						? `'${guichet.code}'`
+						: undefined,
+					'entreprise . imposition . IR . type de bénéfices': guichet
+						? `'${guichet.typeBénéfice}'`
+						: undefined,
+				})
+			)
+		},
+		[dispatch, guichetEntries]
+	)
+}
+
 export default function DétailsActivité() {
 	const { t } = useTranslation()
 	const codeApe = useEngine().evaluate(
 		'entreprise . activités . principale . code APE'
 	).nodeValue as string | undefined
-	const dispatch = useDispatch()
 
 	const [codeGuichet, setCodeGuichet] = useState<string | undefined>(undefined)
-	const guichetEntries = useGuichetInfo(codeApe)
 
+	const guichetEntries = useGuichetInfo(codeApe)
+	const isIdle = useEngineIsIdle()
+	// If there is only one guichet code possible for this code APE, we select it
 	useEffect(() => {
 		if (guichetEntries && guichetEntries.length === 1)
 			setCodeGuichet(guichetEntries[0].code)
 	}, [guichetEntries])
 
-	const guichetSelected = guichetEntries?.find(
-		(guichet) => guichet.code === codeGuichet
-	)
+	const updateSituationWithGuichet =
+		useUpdateSituationWithGuichet(guichetEntries)
 
-	const onNextStepClicked = () => {
-		if (!guichetSelected) {
-			return
-		}
-		dispatch(
-			batchUpdateSituation({
-				'entreprise . activités . principale . code guichet': `'${guichetSelected.code}'`,
-				'entreprise . imposition . IR . type de bénéfices':
-					guichetSelected.typeBénéfice,
-			})
-		)
+	if (!isIdle) {
+		return null
 	}
-
-	if (!codeApe) return <CodeAPENonConnu />
 
 	return (
 		<>
 			<Layout title={t('créer.activité.title', 'Votre activité')}>
-				<Trans i18nKey={'créer.activité-détails.subtitle'}>
-					<H3 as="h2">Précisions sur votre activité</H3>
-				</Trans>
+				<FromBottom>
+					<Trans i18nKey={'créer.activité-détails.subtitle'}>
+						<H3 as="h2">Précisions sur votre activité</H3>
+					</Trans>
+					{!codeApe ? (
+						<CodeAPENonConnu />
+					) : !guichetEntries ? (
+						<GuichetSkeleton />
+					) : guichetEntries.length === 1 ? (
+						<>
+							<Message border={false}>
+								<H5 as="h3">{getGuichetTitle(guichetEntries[0].label)}</H5>
 
-				{!guichetEntries ? (
-					<GuichetSkeleton />
-				) : guichetEntries.length === 1 ? (
-					<>
-						<Message border={false}>
-							<H5 as="h3">{getGuichetTitle(guichetEntries[0].label)}</H5>
-
-							<GuichetDescription {...guichetEntries[0]} />
-						</Message>
-					</>
-				) : (
-					<GuichetSelection
-						entries={guichetEntries}
-						onGuichetSelected={setCodeGuichet}
+								<GuichetDescription {...guichetEntries[0]} />
+							</Message>
+						</>
+					) : (
+						<GuichetSelection
+							entries={guichetEntries}
+							onGuichetSelected={(code) => {
+								setCodeGuichet(code)
+								updateSituationWithGuichet(code)
+							}}
+						/>
+					)}
+					<Navigation
+						currentStepIsComplete={!!codeGuichet}
+						nextStepLabel={
+							guichetEntries?.length === 1 &&
+							t('créer.activité-détails.next1', 'Continuer avec cette activité')
+						}
+						onPreviousStep={() => updateSituationWithGuichet(undefined)}
 					/>
-				)}
-				<Navigation
-					currentStepIsComplete={!!codeGuichet}
-					nextStepLabel={
-						guichetEntries?.length === 1 &&
-						t('créer.activité-détails.next1', 'Continuer avec cette activité')
-					}
-					onNextStep={onNextStepClicked}
-				/>
+				</FromBottom>
 			</Layout>
 		</>
 	)
@@ -140,9 +160,11 @@ function GuichetSelection({
 function GuichetSkeleton() {
 	return (
 		<Message border={false}>
+			<Spacing sm />
 			<Skeleton width={300} height={20} />
 			<Spacing md />
 			<Skeleton width={600} height={20} />
+			<Spacing sm />
 		</Message>
 	)
 }

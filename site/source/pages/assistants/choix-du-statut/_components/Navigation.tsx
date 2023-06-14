@@ -47,10 +47,12 @@ export default function Navigation({
 	currentStepIsComplete,
 	nextStepLabel,
 	onNextStep,
+	onPreviousStep,
 }: {
 	currentStepIsComplete: boolean
 	nextStepLabel?: false | string
-	onNextStep?: (next: { nextStep: string; nextAbsolutePath: string }) => void
+	onNextStep?: () => void
+	onPreviousStep?: () => void
 }) {
 	const { t } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
@@ -62,7 +64,9 @@ export default function Navigation({
 
 	type PartialStep = Step | undefined
 	const nextStep = stepOrder[stepOrder.indexOf(currentStep) + 1] as PartialStep
-	const prevStep = stepOrder[stepOrder.indexOf(currentStep) - 1] as PartialStep
+	const previousStep = stepOrder[
+		stepOrder.indexOf(currentStep) - 1
+	] as PartialStep
 
 	return (
 		<>
@@ -72,9 +76,10 @@ export default function Navigation({
 						<Button
 							light
 							color={'secondary'}
+							onPress={onPreviousStep}
 							to={
 								absoluteSitePaths.assistants['choix-du-statut'][
-									prevStep || 'index'
+									previousStep || 'index'
 								]
 							}
 						>
@@ -84,16 +89,9 @@ export default function Navigation({
 					{nextStep && (
 						<Grid item>
 							<Button
-								onPress={() =>
-									onNextStep?.({
-										nextStep,
-										nextAbsolutePath:
-											absoluteSitePaths.assistants['choix-du-statut'][nextStep],
-									})
-								}
+								onPress={onNextStep}
 								// Probleme de desynchronisation entre le onpress et le to, le onpress n'est pas toujours appelé avant le to
-								// to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
-
+								to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
 								// est ce qu'on devrait pas utiliser les parametres de l'url comme ca ?
 								// to={{
 								// 	pathname:
