@@ -2,7 +2,7 @@ import { ReactNode, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
-import { StatusTag } from '@/components/StatusTag'
+import { StatutTag } from '@/components/StatutTag'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
@@ -10,19 +10,19 @@ import { Tooltip } from '@/design-system/tooltip'
 import { Body } from '@/design-system/typography/paragraphs'
 import { generateUuid } from '@/utils'
 
-type StatusCardType = {
-	status: ('SASU' | 'EI' | 'AE')[]
+type StatutCardType = {
+	statut: ('SASU' | 'EI' | 'AE')[]
 	footerContent?: ReactNode
 	isBestOption?: boolean
 	children: ReactNode
 }
 
 const StatusCard = ({
-	status,
+	statut: status,
 	children,
 	footerContent,
 	isBestOption,
-}: StatusCardType) => {
+}: StatutCardType) => {
 	const tooltipIdRef = useRef(generateUuid())
 
 	return (
@@ -31,7 +31,7 @@ const StatusCard = ({
 				<Grid container spacing={1}>
 					{status.map((statusString) => (
 						<Grid item key={statusString}>
-							<StatusTag status={statusString} text="shortName" showIcon />
+							<StatutTag statut={statusString} text="shortName" showIcon />
 						</Grid>
 					))}
 				</Grid>

@@ -121,7 +121,7 @@ const DetailsRowCards = ({
 						as="ul"
 					>
 						<StatusCard
-							status={getStatusLabelsArray(statusArray)}
+							statut={getStatusLabelsArray(statusArray)}
 							footerContent={footers?.[statusObject.type]}
 							isBestOption={
 								statusArray.length !== 3 &&

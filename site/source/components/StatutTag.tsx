@@ -11,7 +11,7 @@ import {
 import { Tag } from '@/design-system/tag'
 import { Colors } from '@/design-system/theme'
 
-export const TAG_DATA = {
+const TAG_DATA = {
 	EI: {
 		color: 'independant',
 		longName: 'Entreprise individuelle',
@@ -71,7 +71,7 @@ export const TAG_DATA = {
 	}
 }
 
-export type Status = keyof typeof TAG_DATA
+export type Statut = keyof typeof TAG_DATA
 
 const StyledTag = styled(Tag)`
 	margin: 0 0.25rem;
@@ -87,19 +87,19 @@ const StyledTag = styled(Tag)`
 	}
 `
 
-interface StatusTagProps {
-	status: Status
+interface StatutTagProps {
+	statut: Statut
 	text: 'acronym' | 'shortName' | 'longName'
 	showIcon?: boolean
 }
 
-export const StatusTag = ({ status, text, showIcon }: StatusTagProps) => {
-	const Icon = TAG_DATA[status].icon
+export const StatutTag = ({ statut, text, showIcon }: StatutTagProps) => {
+	const Icon = TAG_DATA[statut].icon
 
 	return (
-		<StyledTag color={TAG_DATA[status].color} sm>
+		<StyledTag color={TAG_DATA[statut].color} sm>
 			{showIcon && <Icon />}
-			{TAG_DATA[status][text]}
+			{TAG_DATA[statut][text]}
 		</StyledTag>
 	)
 }

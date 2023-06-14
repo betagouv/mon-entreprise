@@ -11,7 +11,7 @@ import { Spacing } from '@/design-system/layout'
 import { H3, H5 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
-import { updateSituation } from '@/store/actions/actions'
+import { batchUpdateSituation } from '@/store/actions/actions'
 
 import {
 	GuichetDescription,
@@ -36,6 +36,23 @@ export default function DétailsActivité() {
 		if (guichetEntries && guichetEntries.length === 1)
 			setCodeGuichet(guichetEntries[0].code)
 	}, [guichetEntries])
+
+	const guichetSelected = guichetEntries?.find(
+		(guichet) => guichet.code === codeGuichet
+	)
+
+	const onNextStepClicked = () => {
+		if (!guichetSelected) {
+			return
+		}
+		dispatch(
+			batchUpdateSituation({
+				'entreprise . activités . principale . code guichet': `'${guichetSelected.code}'`,
+				'entreprise . imposition . IR . type de bénéfices':
+					guichetSelected.typeBénéfice,
+			})
+		)
+	}
 
 	if (!codeApe) return <CodeAPENonConnu />
 
@@ -68,15 +85,7 @@ export default function DétailsActivité() {
 						guichetEntries?.length === 1 &&
 						t('créer.activité-détails.next1', 'Continuer avec cette activité')
 					}
-					onNextStep={() =>
-						codeGuichet &&
-						dispatch(
-							updateSituation(
-								'entreprise . activités . principale . code guichet',
-								`'${codeGuichet}'`
-							)
-						)
-					}
+					onNextStep={onNextStepClicked}
 				/>
 			</Layout>
 		</>

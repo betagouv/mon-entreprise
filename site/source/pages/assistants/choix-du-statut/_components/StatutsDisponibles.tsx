@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
-import { Status, StatusTag } from '@/components/StatusTag'
+import { Statut, StatutTag } from '@/components/StatutTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { H5 } from '@/design-system/typography/heading'
@@ -17,29 +17,15 @@ export default function StatutsDisponibles() {
 				professionnelle que vous exercez
 			</SmallBody>
 			<StyledUl noMarker>
-				<Statut
-					statut="entreprise . catégorie juridique . EI . EI"
-					status="EI"
-				/>
-				<Statut
-					statut="entreprise . catégorie juridique . EI . auto-entrepreneur"
-					status="AE"
-				/>
-				<Statut
-					statut="entreprise . catégorie juridique . SARL . EURL"
-					status="EURL"
-				/>
-				<Statut
-					statut="entreprise . catégorie juridique . SARL . SARL"
-					status="SARL"
-				/>
+				<Statut statut="entreprise . catégorie juridique . EI . EI" />
+				<Statut statut="entreprise . catégorie juridique . EI . auto-entrepreneur" />
+				<Statut statut="entreprise . catégorie juridique . SARL . EURL" />
+				<Statut statut="entreprise . catégorie juridique . SARL . SARL" />
 				<Statut
 					statut="entreprise . catégorie juridique . SAS . SAS"
-					status="SAS"
 				/>
 				<Statut
 					statut="entreprise . catégorie juridique . SAS . SASU"
-					status="SASU"
 				/>
 				{/* <Statut
 					statut="entreprise . catégorie juridique . SELARL . SELARL"
@@ -57,10 +43,7 @@ export default function StatutsDisponibles() {
 					statut="entreprise . catégorie juridique . SELAS . SELASU"
 					status=""
 				/> */}
-				<Statut
-					statut="entreprise . catégorie juridique . association"
-					status="association"
-				/>
+				<Statut statut="entreprise . catégorie juridique . association" />
 			</StyledUl>
 		</StyledMessage>
 	)
@@ -96,14 +79,18 @@ const StyledMessage = styled(Message)`
 	}
 `
 
-function Statut({ statut, status }: { statut: DottedName; status: Status }) {
+function Statut({ statut }: { statut: DottedName }) {
 	const engine = useEngine()
-	const disabled = status === 'AE'
+	const disabled =
+		engine.evaluate({ 'est non applicable': statut }).nodeValue === true
+
+	const acronyme = (engine.getRule(statut).rawNode.acronyme ??
+		engine.getRule(statut).title.toLocaleLowerCase()) as Statut
 
 	return (
 		<Li className={disabled ? 'disabled' : ''}>
 			<StyledSpan>{engine.getRule(statut).title}</StyledSpan>
-			<StatusTag status={status} text="acronym" showIcon />
+			<StatutTag statut={acronyme} text="acronym" showIcon />
 		</Li>
 	)
 }

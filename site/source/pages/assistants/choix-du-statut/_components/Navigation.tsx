@@ -139,6 +139,7 @@ const Shadow = styled.div`
 	position: sticky;
 	bottom: 35px;
 	transform: translateY(-200%);
+	clip-path: inset(-5px 0px -5px -5px);
 	height: 25px;
 	padding: 0;
 	margin: 0;
