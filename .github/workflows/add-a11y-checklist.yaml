@@ -12,13 +12,13 @@ jobs:
           fetch-depth: 0
       - name: Get changed files in the site folder
         id: changed-files-specific
-        uses: tj-actions/changed-files@v35
+        uses: tj-actions/changed-files@v36
         with:
           files: |
             site/**
       - name: Find Comment
         if: steps.changed-files-specific.outputs.any_changed == 'true'
-        uses: peter-evans/find-comment@v1
+        uses: peter-evans/find-comment@v2
         id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }} #e.g. 1
@@ -26,7 +26,7 @@ jobs:
           body-includes: accessibilité
       - name: Create comment
         if: steps.changed-files-specific.outputs.any_changed == 'true' && steps.find-comment.outputs.comment-id == ''
-        uses: peter-evans/create-or-update-comment@v1
+        uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
