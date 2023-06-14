@@ -81,7 +81,8 @@ export const SimulationGoalsContainer = styled.div<
 	z-index: 1;
 	position: relative;
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
-	border-start-end-radius: 0;
+	border-start-end-radius: ${({ theme, isEmbeded }) =>
+		isEmbeded ? theme.box.borderRadius : '0'};
 	border-end-start-radius: 0;
 	border-end-end-radius: 0;
 	border-start-start-radius: ${({ theme }) => theme.box.borderRadius};
@@ -108,7 +109,6 @@ export const SimulationGoalsContainer = styled.div<
 		padding: 0;
 	}
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		border-start-start-radius: ${({ theme }) => theme.box.borderRadius};
 		border-start-end-radius: ${({ theme }) => theme.box.borderRadius};
 	}
 `
