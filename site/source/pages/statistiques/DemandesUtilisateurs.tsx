@@ -14,6 +14,9 @@ import { useFetchData } from '@/hooks/useFetchData'
 import { StatsStruct } from './types'
 
 export default function DemandeUtilisateurs() {
+	// Waiting for #2552 to be implemented
+	return null
+
 	const { data: stats } = useFetchData<StatsStruct>('/data/stats.json')
 	const { t } = useTranslation()
 
