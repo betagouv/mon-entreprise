@@ -12,7 +12,7 @@ jobs:
       # Note: we could detect if the comment was already posted in the issue to
       # avoid posting it multiple times in case the issue was re-opened and
       # re-closed. https://github.com/peter-evans/create-or-update-comment
-      - uses: peter-evans/create-or-update-comment@v1
+      - uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |

@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         # Custom cache as we do not care about installing all the other dependancies
         with:
           path: |
@@ -24,7 +24,7 @@ jobs:
       - uses: ./.github/actions/install
 
       - name: Test external integration
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           install: false
           working-directory: site
@@ -33,7 +33,7 @@ jobs:
           config: specPattern=cypress/integration/external/**/*.{js,jsx,ts,tsx},baseUrl=https://mon-entreprise.urssaf.fr
 
       - name: e2e tests with external API calls
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           install: false
           working-directory: site

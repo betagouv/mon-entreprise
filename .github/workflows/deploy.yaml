@@ -280,7 +280,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/actions/install
       - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           # Hack to use local node version, issue : https://github.com/cypress-io/github-action/issues/489#issuecomment-1021379037
           command-prefix: '--'
@@ -350,7 +350,7 @@ jobs:
         uses: actions/checkout@v3
       - uses: ./.github/actions/install
       - name: Test e2e mon-entreprise on production (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           install: false
           working-directory: site
