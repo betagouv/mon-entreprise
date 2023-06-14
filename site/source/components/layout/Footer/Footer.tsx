@@ -29,11 +29,10 @@ export default function Footer() {
 	const path = pathname.replace(/^\/(mon-entreprise|infrance)/, '')
 	const altLang = language === 'en' ? 'fr' : 'en'
 	const altHref =
-		(import.meta.env.DEV && typeof window !== 'undefined'
-			? language === 'en'
-				? '/mon-entreprise'
-				: '/infrance'
-			: '') + altPathname[language][path] ?? altPathname[language][path + '/']
+		(language === 'en'
+			? import.meta.env.VITE_FR_BASE_URL
+			: import.meta.env.VITE_EN_BASE_URL) + altPathname[language][path] ??
+		altPathname[language][path + '/']
 
 	const isFrenchMode = language === 'fr'
 
