@@ -3,7 +3,7 @@ import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 
 import { SimulationConfig, Situation } from '@/pages/simulateurs/_configs/types'
-import { Action } from '@/store/actions/actions'
+import { Action, updateSituation } from '@/store/actions/actions'
 import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
 import { ImmutableType } from '@/types/utils'
 import { objectTransform, omit } from '@/utils'
@@ -168,11 +168,10 @@ function batchUpdateSituationReducer(state: RootState, action: Action) {
 
 	return Object.entries(action.situation).reduce<RootState | null>(
 		(newState, [fieldName, value]) =>
-			mainReducer(newState ?? undefined, {
-				type: 'UPDATE_SITUATION',
-				fieldName,
-				value,
-			}),
+			mainReducer(
+				newState ?? undefined,
+				updateSituation(fieldName as DottedName, value)
+			),
 		state
 	)
 }
