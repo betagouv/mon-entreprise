@@ -646,6 +646,20 @@ components:
       share:
         checkbox: Je souhaite partager ma dernière simulation pour vous aider à mieux me
           répondre.
+contact:
+  email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
+    👋 en haut à droite de votre ecran ou directement par mail à l'adresse
+    suivante : <2>contact@mon-entreprise.beta.gouv.fr</2></0>"
+  info: <0>Nous sommes une petite équipe uniquement affectée au développement du
+    site mon-entreprise.urssaf.fr et des simulateurs associés.<1></1>Par
+    conséquent, nous n'avons pas accès à la situation personnelle des cotisants
+    (pour des raisons de confidentialité), et nous ne pouvons légalement pas
+    donner de conseil sur une situation spécifique.</0>
+  title: Nous contacter
+  urssaf: "<0>Si vous souhaitez contacter votre Urssaf, vous pouvez utiliser les
+    canaux habituels :</0><1><0>par téléphone :
+    <2>www.urssaf.fr/portail/home/votre-urssaf/contacts-telephoniques.html</2><\
+    /0><1>par message : <2>www.contact.urssaf.fr</2></1></1>"
 conversation:
   multiple-answer:
     aria-label: Choix multiples

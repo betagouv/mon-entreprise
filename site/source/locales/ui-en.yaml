@@ -643,6 +643,20 @@ components:
     form:
       share:
         checkbox: I want to share my latest simulation to help you better answer me.
+contact:
+  email: "<0>You can contact us via our returns module using the 👋 button at the
+    top right of your screen or directly by e-mail at the following address:
+    <2>contact@mon-entreprise.beta.gouv.fr</2></0>"
+  info: <0>We are a small team dedicated solely to the development of the
+    mon-entreprise.urssaf.fr website and the associated simulators.<1></1>As a
+    result, we have no access to the personal situation of contributors (for
+    confidentiality reasons), and we cannot legally give advice on a specific
+    situation.</0>
+  title: Contact us
+  urssaf: "<0>If you wish to contact your Urssaf, you can use the usual
+    channels:</0><1><0>by telephone:
+    <2>www.urssaf.fr/portail/home/votre-urssaf/contacts-telephoniques.html</2><\
+    /0><1>by message: <2>www.contact.urssaf.fr</2></1></1>"
 conversation:
   multiple-answer:
     aria-label: Multiple choices

@@ -4612,6 +4612,34 @@ entreprise . activités . commerciale . débit de tabac:
   question.fr: Exercez-vous une activité de vente de tabac ?
   titre.en: '[automatic] tobacco shop'
   titre.fr: débit de tabac
+entreprise . activités . principale:
+  avec:
+    code APE:
+      description.en: |
+        [automatic] The APE code identifies the company's main activity.
+        It consists of 5 digits.
+      description.fr: >
+        Le code APE est un code qui permet d'identifier l'activité
+        principale de l'entreprise.
+
+        Il est composé de 5 chiffres.
+      titre.en: '[automatic] APE code'
+      titre.fr: code APE
+    code guichet:
+      description.en: >
+        [automatic] The "guichet" code is used to identify the main
+        activity when declaring a new 
+
+        the new company via the one-stop shop
+      description.fr: >
+        Le code guichet est utilisé pour identifier l'activité
+        principale lors de la déclaration de 
+
+        la nouvelle entreprise via le guichet unique
+      titre.en: '[automatic] counter code'
+      titre.fr: code guichet
+  titre.en: '[automatic] Main activity'
+  titre.fr: Activité principale
 entreprise . activités . revenus mixtes:
   avec:
     proportions:
@@ -4810,8 +4838,8 @@ entreprise . catégorie juridique:
 entreprise . catégorie juridique . EI:
   avec:
     EI:
-      titre.en: '[automatic] EI'
-      titre.fr: EI
+      titre.en: '[automatic] sole proprietorship'
+      titre.fr: entreprise individuelle
     auto-entrepreneur:
       question.en: '[automatic] Are you an auto-entrepreneur?'
       question.fr: Êtes-vous auto-entrepreneur ?
@@ -4956,6 +4984,9 @@ entreprise . catégorie juridique . SELAS:
 entreprise . catégorie juridique . SNC:
   titre.en: '[automatic] General partnership'
   titre.fr: Société en nom collectif
+entreprise . catégorie juridique . association:
+  titre.en: '[automatic] association'
+  titre.fr: association
 entreprise . catégorie juridique . autre:
   description.en: >
     [automatic] This simulator does not yet manage all types of
