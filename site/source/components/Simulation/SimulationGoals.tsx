@@ -141,7 +141,12 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 			)}
 			{toggles && (
 				<Grid item xs>
-					<ToggleSection>{toggles}</ToggleSection>
+					<ToggleSection
+						// Margin right is needed to avoid the feedback button to overlap the toggles in the iframe
+						style={inIframe ? { marginRight: '40px' } : {}}
+					>
+						{toggles}
+					</ToggleSection>
 				</Grid>
 			)}
 		</Section>
