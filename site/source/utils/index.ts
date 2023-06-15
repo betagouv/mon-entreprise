@@ -1,10 +1,10 @@
 import { DottedName } from 'modele-social'
 import Engine, {
+	formatValue,
+	isPublicodesError,
 	PublicodesExpression,
 	Rule,
 	RuleNode,
-	formatValue,
-	isPublicodesError,
 } from 'publicodes'
 
 import { Situation } from '@/store/reducers/rootReducer'

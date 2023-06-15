@@ -1,7 +1,8 @@
-import later from '@breejs/later'
-import Bree, { BreeOptions } from 'bree'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+import later from '@breejs/later'
+import Bree, { BreeOptions } from 'bree'
 
 import { NODE_ENV } from './config.js'
 

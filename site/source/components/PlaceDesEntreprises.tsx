@@ -1,4 +1,4 @@
-import { Suspense, lazy, useRef } from 'react'
+import { lazy, Suspense, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 

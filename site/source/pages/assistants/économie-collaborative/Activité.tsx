@@ -5,8 +5,8 @@ import { Navigate, useParams } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { FromBottom } from '@/components/ui/animate'
-import { ScrollToTop } from '@/components/utils/Scroll'
 import { Markdown } from '@/components/utils/markdown'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { Emoji } from '@/design-system/emoji'
 import { Radio, RadioGroup } from '@/design-system/field'
 import { H1, H2, H3 } from '@/design-system/typography/heading'
@@ -14,13 +14,13 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { getValueFrom } from '@/utils'
 
+import { selectSeuilRevenus } from './actions'
+import { getTranslatedActivité } from './activitésData'
 import { ActivitéSelection } from './ActivitésSelection'
 import Exonérations from './Exonérations'
 import NextButton from './NextButton'
-import { StoreContext } from './StoreContext'
-import { selectSeuilRevenus } from './actions'
-import { getTranslatedActivité } from './activitésData'
 import { estExonéréeSelector } from './selectors'
+import { StoreContext } from './StoreContext'
 
 export type Activity = {
 	titre: string

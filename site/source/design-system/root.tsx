@@ -1,9 +1,9 @@
 import isbot from 'isbot'
 import { ReactNode } from 'react'
 import styled, {
+	css,
 	StyleSheetManager,
 	ThemeProvider,
-	css,
 } from 'styled-components'
 
 import urssafTheme from '@/design-system/theme'

@@ -1,11 +1,11 @@
 import { DottedName } from 'modele-social'
 import {
 	ASTNode,
+	formatValue,
 	ParsedRules,
+	reduceAST,
 	Rule,
 	RuleNode,
-	formatValue,
-	reduceAST,
 } from 'publicodes'
 import { Fragment, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'

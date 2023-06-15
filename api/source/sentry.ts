@@ -1,8 +1,9 @@
+// eslint-disable-next-line n/no-deprecated-api
+import Domains from 'domain'
+
 import { RouterContext } from '@koa/router'
 import * as Sentry from '@sentry/node'
 import * as Tracing from '@sentry/tracing'
-// eslint-disable-next-line n/no-deprecated-api
-import Domains from 'domain'
 import { Context, Next } from 'koa'
 
 const release =

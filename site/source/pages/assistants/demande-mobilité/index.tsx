@@ -1,11 +1,11 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
-import { Fragment, Suspense, lazy, useCallback, useContext } from 'react'
+import { Fragment, lazy, Suspense, useCallback, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import RuleInput from '@/components/conversation/RuleInput'
+import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'

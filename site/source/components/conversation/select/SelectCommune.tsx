@@ -4,8 +4,8 @@ import styled, { css } from 'styled-components'
 
 import {
 	Commune,
-	SearchCommune,
 	fetchCommuneDetails,
+	SearchCommune,
 	searchCommunes,
 } from '@/api/commune'
 import { TextField } from '@/design-system/field'

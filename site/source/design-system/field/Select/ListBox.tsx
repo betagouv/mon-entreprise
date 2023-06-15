@@ -2,10 +2,10 @@ import { AriaListBoxOptions, useListBox, useOption } from '@react-aria/listbox'
 import type { ListState } from '@react-stately/list'
 import type { Node } from '@react-types/shared'
 import {
+	createContext,
 	HTMLAttributes,
 	ReactNode,
 	RefObject,
-	createContext,
 	useContext,
 	useRef,
 } from 'react'

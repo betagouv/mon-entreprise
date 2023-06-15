@@ -8,8 +8,8 @@ import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 
-import Value from '../EngineValue'
 import SeeAnswersButton from '../conversation/SeeAnswersButton'
+import Value from '../EngineValue'
 
 export function CompanyDetails({
 	showSituation = false,

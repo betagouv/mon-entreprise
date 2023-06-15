@@ -1,4 +1,4 @@
-import { ComponentType, ReactNode, createContext, useContext } from 'react'
+import { ComponentType, createContext, ReactNode, useContext } from 'react'
 import styled, { css } from 'styled-components'
 
 import { SpacingKey } from '../theme'

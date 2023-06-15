@@ -3,11 +3,11 @@ import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
+import { ExplicableRule } from '@/components/conversation/Explicable'
 import Value, {
 	WhenAlreadyDefined,
 	WhenValueEquals,
 } from '@/components/EngineValue'
-import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Accordion, Item } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { ExternalLinkIcon, PlusCircleIcon } from '@/design-system/icons'

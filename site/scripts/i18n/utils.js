@@ -1,5 +1,6 @@
-import dotenv from 'dotenv'
 import { readFileSync } from 'fs'
+
+import dotenv from 'dotenv'
 import yaml from 'yaml'
 
 import rules from '../../../modele-social/dist/index.js'

@@ -1,10 +1,10 @@
 import { BlobProvider } from '@react-pdf/renderer'
 import { RuleNode, utils } from 'publicodes'
-import { Suspense, lazy, useContext, useRef, useState } from 'react'
+import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
 import { ThemeContext } from 'styled-components'
 
-import { TrackPage, TrackingContext } from '@/components/ATInternetTracking'
+import { TrackingContext, TrackPage } from '@/components/ATInternetTracking'
 import { Condition } from '@/components/EngineValue'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
 import { Message, PopoverWithTrigger } from '@/design-system'

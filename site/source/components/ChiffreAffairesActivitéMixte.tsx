@@ -10,9 +10,9 @@ import { batchUpdateSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { catchDivideByZeroError } from '@/utils'
 
+import { ExplicableRule } from './conversation/Explicable'
 import { Condition, WhenApplicable } from './EngineValue'
 import { SimulationGoal } from './Simulation'
-import { ExplicableRule } from './conversation/Explicable'
 import { FromTop } from './ui/animate'
 import { useEngine } from './utils/EngineContext'
 

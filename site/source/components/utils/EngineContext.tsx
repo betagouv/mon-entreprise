@@ -1,10 +1,10 @@
 import { DottedName } from 'modele-social'
 import Engine, {
 	EvaluatedNode,
+	isPublicodesError,
 	PublicodesExpression,
 	Rule,
 	RuleNode,
-	isPublicodesError,
 } from 'publicodes'
 import { createContext, useContext, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

@@ -2,6 +2,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
+import RuleInput from '@/components/conversation/RuleInput'
 import { Condition } from '@/components/EngineValue'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import RuleLink from '@/components/RuleLink'
@@ -11,7 +12,6 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import RuleInput from '@/components/conversation/RuleInput'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
 import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'

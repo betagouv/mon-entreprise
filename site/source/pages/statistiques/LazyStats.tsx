@@ -1,10 +1,10 @@
-import { Suspense, lazy, useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
+import Privacy from '@/components/layout/Footer/Privacy'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import PageHeader from '@/components/PageHeader'
-import Privacy from '@/components/layout/Footer/Privacy'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Message } from '@/design-system'

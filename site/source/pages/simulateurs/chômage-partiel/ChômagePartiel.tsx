@@ -11,8 +11,8 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
+import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'

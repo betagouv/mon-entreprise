@@ -5,10 +5,10 @@ import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+	generatePath,
 	Navigate,
 	Route,
 	Routes,
-	generatePath,
 	useParams,
 } from 'react-router-dom'
 import styled from 'styled-components'
@@ -18,11 +18,11 @@ import {
 	searchDenominationOrSiren,
 } from '@/api/fabrique-social'
 import { TrackPage } from '@/components/ATInternetTracking'
+import { CompanyDetails } from '@/components/company/Details'
+import RuleInput from '@/components/conversation/RuleInput'
 import { Condition, WhenApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
-import { CompanyDetails } from '@/components/company/Details'
-import RuleInput from '@/components/conversation/RuleInput'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'

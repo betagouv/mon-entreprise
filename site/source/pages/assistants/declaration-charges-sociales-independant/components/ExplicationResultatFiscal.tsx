@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover'
 import { Li, Ul } from '@/design-system/typography/list'
-import { Body, baseParagraphStyle } from '@/design-system/typography/paragraphs'
+import { baseParagraphStyle, Body } from '@/design-system/typography/paragraphs'
 
 export const StyledTable = styled.table`
 	${baseParagraphStyle}

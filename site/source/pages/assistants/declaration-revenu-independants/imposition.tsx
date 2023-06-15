@@ -29,8 +29,8 @@ import { getMeta } from '@/utils'
 
 import { SimpleField } from '../components/Fields'
 import FormulaireTitle from './components/FormulaireTitle'
-import ModeAccompagnement from './components/ModeAccompagnement'
 import { useProgress } from './components/hooks'
+import ModeAccompagnement from './components/ModeAccompagnement'
 
 export const OBJECTIFS: Array<DottedName> = [
 	'entreprise . imposition',

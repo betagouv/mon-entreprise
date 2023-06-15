@@ -1,7 +1,8 @@
 /* eslint-env node */
 import fs from 'fs'
-import yaml from 'js-yaml'
 import path from 'path'
+
+import yaml from 'js-yaml'
 import Engine from 'publicodes'
 
 const publicodesDir = './règles'

@@ -9,15 +9,15 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
-import { ActiviteCard } from './ActiviteCard'
 import { Activity } from './Activité'
-import NextButton from './NextButton'
-import { StoreContext } from './StoreContext'
+import { ActiviteCard } from './ActiviteCard'
 import { activités } from './activitésData'
+import NextButton from './NextButton'
 import {
 	activitésEffectuéesSelector,
 	activitésRéponduesSelector,
 } from './selectors'
+import { StoreContext } from './StoreContext'
 
 export default function ActivitésSelection() {
 	const { t } = useTranslation()

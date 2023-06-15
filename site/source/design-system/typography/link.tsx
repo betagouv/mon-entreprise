@@ -1,9 +1,9 @@
 import { useButton } from '@react-aria/button'
 import { AriaButtonProps } from '@react-types/button'
 import React, {
-	CSSProperties,
 	ComponentProps,
 	ComponentPropsWithRef,
+	CSSProperties,
 	ForwardedRef,
 	useCallback,
 	useRef,

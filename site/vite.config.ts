@@ -1,12 +1,13 @@
 /* eslint-disable no-console */
+import fs from 'fs/promises'
+import path from 'path'
+
 import replace from '@rollup/plugin-replace'
 import yaml, { ValidYamlType } from '@rollup/plugin-yaml'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react-swc'
-import fs from 'fs/promises'
-import path from 'path'
 import serveStatic from 'serve-static'
-import { Plugin, defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv, Plugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 import { runScriptOnFileChange } from './scripts/runScriptOnFileChange'

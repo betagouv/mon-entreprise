@@ -1,6 +1,6 @@
 import { composeWithDevToolsDevelopmentOnly } from '@redux-devtools/extension'
 import { createReduxEnhancer } from '@sentry/react'
-import { StoreEnhancer, applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, createStore, StoreEnhancer } from 'redux'
 
 import reducers from '@/store/reducers/rootReducer'
 
