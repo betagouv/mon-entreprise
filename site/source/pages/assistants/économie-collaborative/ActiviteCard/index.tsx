@@ -15,9 +15,9 @@ import { H4 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 
-import { StoreContext } from '../StoreContext'
 import { toggleActivité } from '../actions'
 import { getTranslatedActivité } from '../activitésData'
+import { StoreContext } from '../StoreContext'
 
 type ActiviteCardProps = {
 	title: string

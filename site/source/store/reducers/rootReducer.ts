@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import reduceReducers from 'reduce-reducers'
-import { Reducer, combineReducers } from 'redux'
+import { combineReducers, Reducer } from 'redux'
 
 import { SimulationConfig, Situation } from '@/pages/simulateurs/_configs/types'
 import { Action } from '@/store/actions/actions'

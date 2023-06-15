@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
+
 import { Project } from 'ts-morph'
 import yaml from 'yaml'
 

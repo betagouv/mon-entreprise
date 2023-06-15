@@ -2,9 +2,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import PageHeader from '@/components/PageHeader'
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
+import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
 import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
@@ -16,9 +16,9 @@ import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 import { SimulateurCard } from '../simulateurs-et-assistants'
-import SearchOrCreate from './SearchOrCreate'
-import illustration2Svg from './illustration2.svg'
 import illustrationSvg from './illustration.svg'
+import illustration2Svg from './illustration2.svg'
+import SearchOrCreate from './SearchOrCreate'
 
 export default function Landing() {
 	const simulators = useSimulatorsData()

@@ -4,9 +4,9 @@ import Koa from 'koa'
 import { koaBody } from 'koa-body'
 
 import {
-	PORT,
 	clientId,
 	clientSecret,
+	PORT,
 	redirectUri,
 	serverUrl,
 } from './config.js'

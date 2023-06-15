@@ -11,7 +11,7 @@ import RuleLink from '@/components/RuleLink'
 import { HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 
-import { OptionType, getBestOption } from '../utils'
+import { getBestOption, OptionType } from '../utils'
 import StatusCard from './StatusCard'
 
 const getStatusLabelsArray = (statusArray: OptionType[]) =>

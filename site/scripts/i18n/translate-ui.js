@@ -1,13 +1,14 @@
 import { readFileSync, writeFileSync } from 'fs'
+
 import yaml from 'yaml'
 
 import {
-	UiOriginalTranslationPath,
-	UiTranslationPath,
 	assocPath,
 	fetchTranslation,
 	filterUnusedTranslations,
 	getUiMissingTranslations,
+	UiOriginalTranslationPath,
+	UiTranslationPath,
 } from './utils.js'
 
 const sleep = (timeout) =>

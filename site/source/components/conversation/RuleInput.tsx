@@ -4,8 +4,8 @@ import Engine, {
 	EvaluatedNode,
 	Evaluation,
 	PublicodesExpression,
-	RuleNode,
 	reduceAST,
+	RuleNode,
 } from 'publicodes'
 import React, { useContext } from 'react'
 
@@ -18,9 +18,9 @@ import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import { MultipleChoicesInput } from './MulipleChoicesInput'
 import ParagrapheInput from './ParagrapheInput'
-import TextInput from './TextInput'
 import SelectPaysDétachement from './select/SelectPaysDétachement'
 import SelectAtmp from './select/SelectTauxRisque'
+import TextInput from './TextInput'
 
 type InputType = 'radio' | 'card' | 'toggle' | 'select'
 

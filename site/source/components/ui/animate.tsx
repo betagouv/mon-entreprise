@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import {
-	SpringConfig,
 	animated,
 	config as configPresets,
+	SpringConfig,
 	useSpring,
 	useTrail,
 } from 'react-spring'

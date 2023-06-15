@@ -3,6 +3,8 @@ import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { TrackPage } from '@/components/ATInternetTracking'
+import { CompanyDetails } from '@/components/company/Details'
+import { CompanySearchField } from '@/components/company/SearchField'
 import {
 	Condition,
 	WhenAlreadyDefined,
@@ -10,10 +12,8 @@ import {
 	WhenNotAlreadyDefined,
 } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
-import { CompanyDetails } from '@/components/company/Details'
-import { CompanySearchField } from '@/components/company/SearchField'
-import Warning from '@/components/ui/WarningBlock'
 import { FromTop } from '@/components/ui/animate'
+import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { Message } from '@/design-system'
@@ -31,8 +31,8 @@ import { resetCompany } from '@/store/actions/companyActions'
 
 import { SimpleField } from '../components/Fields'
 import Exceptions from './components/Exceptions'
-import NotHandledCase from './components/NotHandledCase'
 import { useProgress } from './components/hooks'
+import NotHandledCase from './components/NotHandledCase'
 import illustration from './components/undraw_fill_in_mie5.svg'
 
 export const OBJECTIFS: DottedName[] = [

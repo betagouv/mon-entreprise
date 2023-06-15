@@ -12,8 +12,8 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import StackedBarChart from '@/components/StackedBarChart'
 import { InstitutionsPartenairesAutoEntrepreneur } from '@/components/simulationExplanation/InstitutionsPartenaires'
+import StackedBarChart from '@/components/StackedBarChart'
 import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { H2 } from '@/design-system/typography/heading'

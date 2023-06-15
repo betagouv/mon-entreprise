@@ -1,5 +1,5 @@
 import { NumberFieldProps } from '@react-types/numberfield'
-import { ASTNode, Unit, parseUnit, serializeUnit } from 'publicodes'
+import { ASTNode, parseUnit, serializeUnit, Unit } from 'publicodes'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'

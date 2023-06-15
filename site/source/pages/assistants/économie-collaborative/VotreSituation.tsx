@@ -16,7 +16,6 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 
 import { ActiviteCard } from './ActiviteCard'
-import { StoreContext } from './StoreContext'
 import illustration from './images/multitasking.svg'
 import {
 	activitésEffectuéesSelector,
@@ -24,6 +23,7 @@ import {
 	nextActivitéSelector,
 	régimeGénéralDisponibleSelector,
 } from './selectors'
+import { StoreContext } from './StoreContext'
 
 export default function VotreSituation() {
 	const { absoluteSitePaths } = useSitePaths()

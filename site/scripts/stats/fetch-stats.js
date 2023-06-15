@@ -1,7 +1,8 @@
-import dotenv from 'dotenv'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+
+import dotenv from 'dotenv'
 
 import { createDataDir, readInDataDir, writeInDataDir } from '../utils.js'
 import { apiStats } from './fetch-api-stats.js'

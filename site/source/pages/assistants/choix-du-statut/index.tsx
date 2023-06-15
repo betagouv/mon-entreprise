@@ -4,9 +4,9 @@ import { ScrollToTop } from '@/components/utils/Scroll'
 import { LANDING_LEGAL_STATUS_LIST, useSitePaths } from '@/sitePaths'
 
 import AfterRegistration from './AfterRegistration'
+import ChoixStatutJuridique from './choix-statut-juridique'
 import CreationChecklist from './CreationChecklist'
 import GuideStatut from './GuideStatut'
-import ChoixStatutJuridique from './choix-statut-juridique'
 
 export default function ChoixDuStatut() {
 	const { relativeSitePaths } = useSitePaths()

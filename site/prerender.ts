@@ -1,6 +1,7 @@
 import { readFileSync, statSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { argv } from 'node:process'
+
 import Tinypool from 'tinypool'
 
 import { absoluteSitePaths } from './source/sitePaths.js'

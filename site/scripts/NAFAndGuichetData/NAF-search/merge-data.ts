@@ -2,11 +2,11 @@ import { writeFileSync } from 'fs'
 import { join } from 'path'
 import { fileURLToPath } from 'url'
 
-import rawApeTags from '../NomenclatureGuichet/ape_tags.json' assert { type: 'json' }
 import { Data as RawApeData } from '../extract-NAF-data/convert-pdf.js'
 import rawApeData from '../extract-NAF-data/output.json' assert { type: 'json' }
 import { Out as NbEtablissementsData } from '../nombre-etablissements-par-code-ape/fetch-json.js'
 import rawEtablissementsData from '../nombre-etablissements-par-code-ape/output.json' assert { type: 'json' }
+import rawApeTags from '../NomenclatureGuichet/ape_tags.json' assert { type: 'json' }
 import { customTags } from './custom-tags.js'
 import { multipleCf } from './custom.js'
 

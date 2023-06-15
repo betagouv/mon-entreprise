@@ -2,9 +2,9 @@ import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
 	EvaluatedNode,
+	formatValue,
 	PublicodesExpression,
 	RuleNode,
-	formatValue,
 } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'

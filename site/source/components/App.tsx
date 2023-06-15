@@ -6,13 +6,13 @@ import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
-import Route404 from '@/components/Route404'
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
+import Route404 from '@/components/Route404'
 import {
+	engineFactory,
 	EngineProvider,
 	Rules,
-	engineFactory,
 	useEngine,
 	useSetupSafeSituation,
 } from '@/components/utils/EngineContext'
@@ -21,17 +21,17 @@ import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
-import Accessibilité from '@/pages/Accessibilité'
-import Documentation from '@/pages/Documentation'
-import Offline from '@/pages/Offline'
-import Plan from '@/pages/Plan'
 import Landing from '@/pages/_landing/Landing'
+import Accessibilité from '@/pages/Accessibilité'
 import Assistants from '@/pages/assistants/index'
 import Budget from '@/pages/budget/index'
 import IntegrationTest from '@/pages/dev/IntegrationTest'
+import Documentation from '@/pages/Documentation'
 import Iframes from '@/pages/iframes'
 import Integration from '@/pages/integration/index'
 import Nouveautés from '@/pages/nouveautés/index'
+import Offline from '@/pages/Offline'
+import Plan from '@/pages/Plan'
 import Simulateurs from '@/pages/simulateurs'
 import SimulateursEtAssistants from '@/pages/simulateurs-et-assistants'
 import Stats from '@/pages/statistiques/LazyStats'

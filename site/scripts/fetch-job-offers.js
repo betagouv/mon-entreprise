@@ -1,8 +1,9 @@
 // We publish our job offers on https://beta.gouv.fr/recrutement/. To augment
 // their reach, we also publish a banner on our website automatically by using
 // the beta.gouv.fr API.
-import dotenv from 'dotenv'
 import { promisify } from 'util'
+
+import dotenv from 'dotenv'
 import { parseString } from 'xml2js'
 
 import { createDataDir, writeInDataDir } from './utils.js'

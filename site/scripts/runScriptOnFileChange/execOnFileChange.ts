@@ -1,8 +1,9 @@
-import { getPackageDeps } from '@rushstack/package-deps-hash'
 import { exec as originalExec } from 'child_process'
 import { existsSync, lstatSync, readFileSync, writeFileSync } from 'fs'
 import { relative, resolve } from 'path'
 import { promisify } from 'util'
+
+import { getPackageDeps } from '@rushstack/package-deps-hash'
 
 const exec = promisify(originalExec)
 

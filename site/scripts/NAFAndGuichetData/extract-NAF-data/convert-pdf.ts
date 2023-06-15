@@ -1,7 +1,8 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
-import { PdfData, VerbosityLevel } from 'pdfdataextract'
 import { fileURLToPath } from 'url'
+
+import { PdfData, VerbosityLevel } from 'pdfdataextract'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 

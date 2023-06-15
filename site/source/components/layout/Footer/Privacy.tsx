@@ -7,7 +7,7 @@ import { Link } from '@/design-system/typography/link'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
 import * as safeLocalStorage from '../../../storage/safeLocalStorage'
-import { TrackPage, TrackingContext } from '../../ATInternetTracking'
+import { TrackingContext, TrackPage } from '../../ATInternetTracking'
 
 export default function Privacy({
 	label,

@@ -1,7 +1,8 @@
-import parseCsv from 'csv-parser'
 import fs from 'fs'
 import { join } from 'path'
 import { fileURLToPath } from 'url'
+
+import parseCsv from 'csv-parser'
 
 import output from '../nombre-etablissements-par-code-ape/output.json' assert { type: 'json' }
 import { computeGuichet } from './compute-guichet.js'

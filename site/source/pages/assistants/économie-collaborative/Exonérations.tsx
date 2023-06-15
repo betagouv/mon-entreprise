@@ -5,9 +5,9 @@ import { CheckItem, Checklist } from '@/components/ui/Checklist'
 import { H2 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
+import { changeCritèreExonération } from './actions'
 import { Activity } from './Activité'
 import { StoreContext } from './StoreContext'
-import { changeCritèreExonération } from './actions'
 
 export default function Exonération({
 	exceptionsExonération,

@@ -1,6 +1,7 @@
-import yaml from '@rollup/plugin-yaml'
 import { statSync } from 'fs'
 import path from 'path'
+
+import yaml from '@rollup/plugin-yaml'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
