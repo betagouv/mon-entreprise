@@ -13,8 +13,9 @@ const rateLimiter =
 		? new RateLimiterRedis({
 				storeClient: new Redis(process.env.SCALINGO_REDIS_URL, {
 					enableOfflineQueue: false,
+					keyPrefix: 'rate-limiter',
 				}),
-				keyPrefix: 'middleware',
+				keyPrefix: 'rate-limiter',
 				points: 5, // 5 requests for ctx.ip
 				duration: 1, // per 1 second
 		  })
