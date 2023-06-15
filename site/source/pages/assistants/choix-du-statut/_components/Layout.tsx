@@ -8,7 +8,7 @@ export default function Layout({
 	children,
 }: {
 	title: string
-	children: React.ReactNode
+	children?: React.ReactNode
 }) {
 	return (
 		<>

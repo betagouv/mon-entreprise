@@ -1,3 +1,5 @@
+import { useMemo } from 'react'
+
 import { Chip, Message } from '@/design-system'
 import { Strong } from '@/design-system/typography'
 import { H5 } from '@/design-system/typography/heading'
@@ -17,13 +19,15 @@ export function useGuichetInfo(codeApe?: string): GuichetEntry[] | null {
 	const guichet = useAsyncData(lazyGuichet)?.default
 	const apeToGuichet = useAsyncData(lazyApeToGuichet)?.default
 
-	if (!codeApe || !guichet || !apeToGuichet || !(codeApe in apeToGuichet)) {
-		return null
-	}
+	return useMemo(() => {
+		if (!codeApe || !guichet || !apeToGuichet || !(codeApe in apeToGuichet)) {
+			return null
+		}
 
-	return apeToGuichet[codeApe as keyof ApeToGuichet].map(
-		(code) => guichet[code as keyof Guichet]
-	)
+		return apeToGuichet[codeApe as keyof ApeToGuichet].map(
+			(code) => guichet[code as keyof Guichet]
+		)
+	}, [codeApe, guichet, apeToGuichet])
 }
 
 export function getGuichetTitle(label: GuichetEntry['label']) {

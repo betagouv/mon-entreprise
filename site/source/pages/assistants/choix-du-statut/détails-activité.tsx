@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
 import Skeleton from '@/components/ui/Skeleton'
-import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message, RadioCardGroup } from '@/design-system'
 import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
@@ -14,6 +13,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { useEngineIsIdle } from '@/hooks/useEngineIsIddle'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
+import { guichetToPLMétier } from '@/utils/guichetToPLMétier'
 
 import {
 	GuichetDescription,
@@ -24,89 +24,75 @@ import {
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
 
-function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
-	const dispatch = useDispatch()
-
-	return useCallback(
-		(codeGuichet: GuichetEntry['code'] | undefined) => {
-			const guichet = guichetEntries?.find(
-				(guichet) => guichet.code === codeGuichet
-			)
-			dispatch(
-				batchUpdateSituation({
-					'entreprise . activités . principale . code guichet': guichet
-						? `'${guichet.code}'`
-						: undefined,
-					'entreprise . imposition . IR . type de bénéfices': guichet
-						? `'${guichet.typeBénéfice}'`
-						: undefined,
-				})
-			)
-		},
-		[dispatch, guichetEntries]
-	)
-}
-
 export default function DétailsActivité() {
 	const { t } = useTranslation()
 	const codeApe = useEngine().evaluate(
 		'entreprise . activités . principale . code APE'
 	).nodeValue as string | undefined
+	const defaultCodeGuichet = useEngine().evaluate(
+		'entreprise . activités . principale . code guichet'
+	).nodeValue as string | undefined
 
 	const [codeGuichet, setCodeGuichet] = useState<string | undefined>(undefined)
 
 	const guichetEntries = useGuichetInfo(codeApe)
-	const isIdle = useEngineIsIdle()
-	// If there is only one guichet code possible for this code APE, we select it
-	useEffect(() => {
-		if (guichetEntries && guichetEntries.length === 1)
-			setCodeGuichet(guichetEntries[0].code)
-	}, [guichetEntries])
-
 	const updateSituationWithGuichet =
 		useUpdateSituationWithGuichet(guichetEntries)
 
+	useEffect(() => {
+		// If there is only one guichet code possible for this code APE, we select it
+		if (guichetEntries && guichetEntries.length === 1) {
+			setCodeGuichet(guichetEntries[0].code)
+		}
+		// If the current code guichet from situation is in the list of possible guichet codes, we select it
+		if (
+			guichetEntries &&
+			guichetEntries.some((g) => g.code === defaultCodeGuichet)
+		) {
+			setCodeGuichet(defaultCodeGuichet)
+		}
+	}, [guichetEntries, defaultCodeGuichet])
+
+	// Wait for the update to be done before rendering the component
+	const isIdle = useEngineIsIdle()
 	if (!isIdle) {
-		return null
+		return <Layout title={t('créer.activité.title', 'Votre activité')} />
 	}
 
 	return (
 		<>
 			<Layout title={t('créer.activité.title', 'Votre activité')}>
-				<FromBottom>
-					<Trans i18nKey={'créer.activité-détails.subtitle'}>
-						<H3 as="h2">Précisions sur votre activité</H3>
-					</Trans>
-					{!codeApe ? (
-						<CodeAPENonConnu />
-					) : !guichetEntries ? (
-						<GuichetSkeleton />
-					) : guichetEntries.length === 1 ? (
-						<>
-							<Message border={false}>
-								<H5 as="h3">{getGuichetTitle(guichetEntries[0].label)}</H5>
+				<Trans i18nKey={'créer.activité-détails.subtitle'}>
+					<H3 as="h2">Précisions sur votre activité</H3>
+				</Trans>
+				{!codeApe ? (
+					<CodeAPENonConnu />
+				) : !guichetEntries ? (
+					<GuichetSkeleton />
+				) : guichetEntries.length === 1 ? (
+					<>
+						<Message border={false}>
+							<H5 as="h3">{getGuichetTitle(guichetEntries[0].label)}</H5>
 
-								<GuichetDescription {...guichetEntries[0]} />
-							</Message>
-						</>
-					) : (
-						<GuichetSelection
-							entries={guichetEntries}
-							onGuichetSelected={(code) => {
-								setCodeGuichet(code)
-								updateSituationWithGuichet(code)
-							}}
-						/>
-					)}
-					<Navigation
-						currentStepIsComplete={!!codeGuichet}
-						nextStepLabel={
-							guichetEntries?.length === 1 &&
-							t('créer.activité-détails.next1', 'Continuer avec cette activité')
-						}
-						onPreviousStep={() => updateSituationWithGuichet(undefined)}
+							<GuichetDescription {...guichetEntries[0]} />
+						</Message>
+					</>
+				) : (
+					<GuichetSelection
+						entries={guichetEntries}
+						onGuichetSelected={(code) => {
+							setCodeGuichet(code)
+						}}
 					/>
-				</FromBottom>
+				)}
+				<Navigation
+					currentStepIsComplete={!!codeGuichet}
+					onNextStep={() => updateSituationWithGuichet(codeGuichet)}
+					nextStepLabel={
+						guichetEntries?.length === 1 &&
+						t('créer.activité-détails.next1', 'Continuer avec cette activité')
+					}
+				/>
 			</Layout>
 		</>
 	)
@@ -166,5 +152,46 @@ function GuichetSkeleton() {
 			<Skeleton width={600} height={20} />
 			<Spacing sm />
 		</Message>
+	)
+}
+
+function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
+	const dispatch = useDispatch()
+
+	return useCallback(
+		(codeGuichet: GuichetEntry['code'] | undefined) => {
+			const guichet = guichetEntries?.find(
+				(guichet) => guichet.code === codeGuichet
+			)
+			if (!guichet) {
+				dispatch(
+					batchUpdateSituation({
+						'entreprise . activités . principale . code guichet': undefined,
+						'entreprise . imposition . IR . type de bénéfices': undefined,
+						'entreprise . activité . nature': undefined,
+						'entreprise . activité . nature . libérale . réglementée':
+							undefined,
+						'dirigeant . indépendant . PL . métier': undefined,
+					})
+				)
+
+				return
+			}
+			const PLRMétier = guichetToPLMétier(guichet)
+			dispatch(
+				batchUpdateSituation({
+					'entreprise . activités . principale . code guichet': `'${guichet.code}'`,
+					'entreprise . imposition . IR . type de bénéfices': `'${guichet.typeBénéfice}'`,
+					'entreprise . activité . nature': PLRMétier
+						? "'libérale'"
+						: undefined,
+					'entreprise . activité . nature . libérale . réglementée': PLRMétier
+						? 'oui'
+						: 'non',
+					'dirigeant . indépendant . PL . métier': PLRMétier,
+				})
+			)
+		},
+		[dispatch, guichetEntries]
 	)
 }
