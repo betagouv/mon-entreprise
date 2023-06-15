@@ -13,6 +13,7 @@ const redis =
 	process.env.NODE_ENV === 'production' && process.env.SCALINGO_REDIS_URL
 		? new Redis(process.env.SCALINGO_REDIS_URL, {
 				enableOfflineQueue: false,
+				keyPrefix: 'cache',
 		  })
 		: new RedisMock()
 
