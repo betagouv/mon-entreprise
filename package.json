@@ -38,12 +38,12 @@
 	"devDependencies": {
 		"@actions/core": "^1.10.0",
 		"@actions/github": "^5.1.1",
-		"@ianvs/prettier-plugin-sort-imports": "^3.7.1",
+		"@ianvs/prettier-plugin-sort-imports": "^4.0.2",
 		"@types/got": "^9.6.12",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"eslint": "^8.28.0",
-		"eslint-config-prettier": "^8.5.0",
+		"eslint-config-prettier": "^8.8.0",
 		"eslint-config-standard": "^17.0.0",
 		"eslint-plugin-cypress": "^2.12.1",
 		"eslint-plugin-import": "^2.26.0",
@@ -53,11 +53,12 @@
 		"eslint-plugin-promise": "^6.1.1",
 		"eslint-plugin-react": "^7.31.11",
 		"eslint-plugin-react-hooks": "^4.6.0",
-		"prettier": "^2.8.3",
+		"prettier": "^2.8.8",
 		"rimraf": "^3.0.2"
 	},
 	"resolutions": {
-		"rollup": "^3.10.0"
+		"rollup": "^3.10.0",
+		"@types/koa": "^2.13.6"
 	},
 	"packageManager": "yarn@3.5.0",
 	"engines": {

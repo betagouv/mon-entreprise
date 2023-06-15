@@ -2,10 +2,15 @@
 	"bracketSpacing": true,
 	"semi": false,
 	"singleQuote": true,
-	"importOrder": ["<THIRD_PARTY_MODULES>", "^@/(.*)", "^\\.(.*)"],
-	"importOrderSortSpecifiers": true,
-	"importOrderSeparation": true,
+	"importOrder": [
+		"<BUILTIN_MODULES>",
+		"",
+		"<THIRD_PARTY_MODULES>",
+		"",
+		"^@/(.*)",
+		"",
+		"^\\.(.*)"
+	],
 	"importOrderParserPlugins": ["typescript", "jsx", "importAssertions"],
-	"importOrderMergeDuplicateImports": true,
-	"importOrderCombineTypeAndValueImports": true
+	"importOrderTypeScriptVersion": "^4.5.0"
 }
