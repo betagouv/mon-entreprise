@@ -1,3 +1,5 @@
+import { createHash } from 'crypto'
+
 import Router from '@koa/router'
 import IORedis from 'ioredis'
 import IORedisMock from 'ioredis-mock'
@@ -27,7 +29,10 @@ export const redisCacheMiddleware = () => {
 			return
 		}
 
-		const cacheKey = JSON.stringify(ctx.request.body)
+		const cacheKey = createHash('sha1')
+			.update(JSON.stringify(ctx.request.body))
+			.digest('base64')
+
 		const cachedResponse = await redis.get(cacheKey)
 		if (cachedResponse) {
 			ctx.body = JSON.parse(cachedResponse) as unknown
