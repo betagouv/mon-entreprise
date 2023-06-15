@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Markdown } from '@/components/utils/markdown'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 
 import { RadioPoint, RadioSkeleton, SpanBody, VisibleRadio } from './Radio'
 
@@ -66,7 +67,9 @@ export function RadioCard({
 					{label} {emoji && <Emoji emoji={emoji} />}
 				</span>
 				{description && (
-					<Markdown as={Description}>{description ?? ''}</Markdown>
+					<SmallBody>
+						<Markdown as={Description}>{description ?? ''}</Markdown>
+					</SmallBody>
 				)}
 			</SpanBody>
 		</StyledRadioCardSkeleton>
