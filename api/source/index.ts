@@ -9,6 +9,7 @@ import { catchErrors } from './errors.js'
 import openapi from './openapi.json' assert { type: 'json' }
 import { plausibleMiddleware } from './plausible.js'
 import { rateLimiterMiddleware } from './rate-limiter.js'
+import { redisCacheMiddleware } from './redis-cache.js'
 import { docRoutes } from './route/doc.js'
 import { openapiRoutes } from './route/openapi.js'
 import Sentry, { requestHandler, tracingMiddleWare } from './sentry.js'
@@ -43,7 +44,13 @@ router.use('/api/v1', docRoutes(), openapiRoutes(openapi))
 
 const apiRoutes = publicodesAPI(new Engine(rules))
 
-router.use('/api/v1', plausibleMiddleware, rateLimiterMiddleware, apiRoutes)
+router.use(
+	'/api/v1',
+	rateLimiterMiddleware,
+	redisCacheMiddleware(),
+	plausibleMiddleware,
+	apiRoutes
+)
 
 app.use(router.routes())
 app.use(router.allowedMethods())
