@@ -1,11 +1,12 @@
-import { H1 } from '@/design-system/typography/heading'
-
+import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
 
 export default function Département() {
 	return (
 		<>
-			<H1>Département</H1> <Navigation currentStepIsComplete />
+			<Layout title="Où souhaitez-vous exercer votre activité ?">
+				<Navigation currentStepIsComplete />
+			</Layout>
 		</>
 	)
 }
