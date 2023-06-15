@@ -13,7 +13,7 @@ export const stepOrder: readonly Step[] = [
 	'recherche-activité',
 	'détails-activité',
 	'commune',
-	'lucratif',
+	'association',
 	'associé',
 	'rémunération',
 	'statuts',
