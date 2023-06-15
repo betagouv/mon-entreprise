@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { Message } from '@/design-system'
 import { HelpButtonWithPopover } from '@/design-system/buttons'
-import { H3, H5 } from '@/design-system/typography/heading'
+import { H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { updateSituation } from '@/store/actions/actions'
@@ -20,13 +20,13 @@ export default function RechercheActivité() {
 
 	return (
 		<>
-			<Layout title={t('créer.activité.title', 'Votre activité')}>
-				<Trans i18nKey={'créer.activité.subtitle'}>
-					<H3 as="h2">
+			<Layout
+				title={
+					<Trans i18nKey={'choix-statut.activité.title'}>
 						Mon activité principale est...
 						<HelpButtonWithPopover
 							title={t(
-								'créer.activité.help.title',
+								'choix-statut.activité.help.title',
 								'Le choix du statut, un choix adapté à votre situation'
 							)}
 							type="info"
@@ -50,8 +50,9 @@ export default function RechercheActivité() {
 								</Body>
 							</Message>
 						</HelpButtonWithPopover>
-					</H3>
-				</Trans>
+					</Trans>
+				}
+			>
 				<SearchCodeAPE hideGuichetUnique onCodeAPESelected={setCodeApe} />
 				<Navigation
 					currentStepIsComplete={!!codeApe}

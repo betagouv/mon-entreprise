@@ -5,7 +5,7 @@ import { useSitePaths } from '@/sitePaths'
 
 import AfterRegistration from './après'
 import Associé from './associé'
-import Département from './département'
+import Commune from './commune'
 import DétailsActivité from './détails-activité'
 import AccueilChoixStatut from './home'
 import Lucratif from './lucratif'
@@ -33,7 +33,7 @@ export default function ChoixDuStatut() {
 					path={childrenPaths['détails-activité']}
 					element={<DétailsActivité />}
 				/>
-				<Route path={childrenPaths.département} element={<Département />} />
+				<Route path={childrenPaths.commune} element={<Commune />} />
 				<Route path={childrenPaths.associé} element={<Associé />} />
 				<Route path={childrenPaths.lucratif} element={<Lucratif />} />
 				<Route path={childrenPaths.rémunération} element={<Rémunération />} />

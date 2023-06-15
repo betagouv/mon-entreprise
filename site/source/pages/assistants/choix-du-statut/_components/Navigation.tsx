@@ -3,7 +3,7 @@ import { useMatch } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
-import { Grid } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
 type ChoixStatut = RelativeSitePaths['assistants']['choix-du-statut']
@@ -12,7 +12,7 @@ type Step = keyof ChoixStatut
 export const stepOrder: readonly Step[] = [
 	'recherche-activité',
 	'détails-activité',
-	'département',
+	'commune',
 	'lucratif',
 	'associé',
 	'rémunération',
@@ -70,6 +70,7 @@ export default function Navigation({
 
 	return (
 		<>
+			<Spacing xs />
 			<StyledNavigation>
 				<Grid container spacing={2}>
 					<Grid item>

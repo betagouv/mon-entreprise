@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
@@ -8,7 +8,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Message, RadioCardGroup } from '@/design-system'
 import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Spacing } from '@/design-system/layout'
-import { H3, H5 } from '@/design-system/typography/heading'
+import { H5 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useEngineIsIdle } from '@/hooks/useEngineIsIddle'
 import { useSitePaths } from '@/sitePaths'
@@ -55,16 +55,18 @@ export default function DétailsActivité() {
 
 	// Wait for the update to be done before rendering the component
 	const isIdle = useEngineIsIdle()
+
+	const title = t(
+		'créer.choix-statut.détails-activité.title',
+		'Précisions sur votre activité'
+	)
 	if (!isIdle) {
-		return <Layout title={t('créer.activité.title', 'Votre activité')} />
+		return <Layout title={title} />
 	}
 
 	return (
 		<>
-			<Layout title={t('créer.activité.title', 'Votre activité')}>
-				<Trans i18nKey={'créer.activité-détails.subtitle'}>
-					<H3 as="h2">Précisions sur votre activité</H3>
-				</Trans>
+			<Layout title={title}>
 				{!codeApe ? (
 					<CodeAPENonConnu />
 				) : !guichetEntries ? (
