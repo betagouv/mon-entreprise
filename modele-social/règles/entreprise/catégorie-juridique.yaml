@@ -1,5 +1,5 @@
 entreprise . associés:
-  par défaut: "'unique'"
+  possiblement non applicable: non
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -46,14 +46,11 @@ entreprise . catégorie juridique . EI:
     code insee: 1000
   titre: Entreprise individuelle (y compris auto-entrepreneurs)
   valeur: catégorie juridique = 'EI'
-
+  non applicable si: associés . multiples
   avec:
     auto-entrepreneur:
       acronyme: AE
-      non applicable si:
-        une de ces conditions:
-          - associés . multiples
-          - entreprise . imposition . IR . type de bénéfices = 'BA'
+      non applicable si: entreprise . imposition . IR . type de bénéfices = 'BA'
 
       question: Êtes-vous auto-entrepreneur ?
 
@@ -62,7 +59,6 @@ entreprise . catégorie juridique . EI:
         experimental: oui
 
     EI:
-      non applicable si: associés . multiples
       titre: entreprise individuelle
       acronyme: EI
       valeur: auto-entrepreneur = non
@@ -78,8 +74,7 @@ entreprise . catégorie juridique . SARL:
     SARL:
       titre: Société à responsabilité limitée
       acronyme: SARL
-      # valeur: associés . multiples
-      non applicable si: associés . unique
+      applicable si: associés . multiples
       description: |
         La société à responsabilité limitée (SARL) comprend au minimum deux associés. Cette forme juridique est la plus répandue pour les sociétés. En revanche, elle ne peut être choisie pour les professions juridiques, judiciaires ou de santé (hors pharmaciens).
 
@@ -102,7 +97,7 @@ entreprise . catégorie juridique . SARL:
     EURL:
       titre: Entreprise unipersonnelle à responsabilité limitée
       acronyme: EURL
-      valeur: associés . unique
+      applicable si: associés . unique
       description: |
         L'entreprise unipersonnelle à responsabilité limitée (EURL) est une société à responsabilité limitée (SARL) constituée d'un seul associé. Elle est également appelée SARL unipersonnelle.
 
@@ -129,7 +124,7 @@ entreprise . catégorie juridique . SNC:
   titre: Société en nom collectif
   acronyme: SNC
   valeur: catégorie juridique = 'SNC'
-  non applicable si: associés . unique
+  applicable si: associés . multiples
   meta:
     code insee: 5202
 
@@ -143,12 +138,12 @@ entreprise . catégorie juridique . SAS:
     SASU:
       titre: Société par actions simplifiée unipersonnelle
       acronyme: SASU
-      valeur: associés . unique
+      applicable si: associés . unique
 
     SAS:
       titre: Société par actions simplifiée
       acronyme: SAS
-      valeur: associés . multiples
+      applicable si: associés . multiples
 
     unipersonnelle:
       déprécié: oui
@@ -167,11 +162,11 @@ entreprise . catégorie juridique . SELARL:
     SELARLU:
       acronyme: SELARLU
       titre: Société d'exercice libéral à responsabilité limitée unipersonnelle
-      valeur: associés . unique
+      applicable si: associés . unique
     SELARL:
       acronyme: SELARL
       titre: Société d'exercice libéral à responsabilité limitée
-      valeur: associés . multiples
+      applicable si: associés . multiples
 
 entreprise . catégorie juridique . SELAS:
   acronyme: SELAS(U)
@@ -184,11 +179,11 @@ entreprise . catégorie juridique . SELAS:
     SELASU:
       acronyme: SELASU
       titre: Société d'exercice libéral par action simplifiée unipersonnelle
-      valeur: associés . unique
+      applicable si: associés . unique
     SELAS:
       acronyme: SELAS
       titre: Société d'exercice libéral par action simplifiée
-      valeur: associés . multiples
+      applicable si: associés . multiples
 
 entreprise . catégorie juridique . association:
   valeur: catégorie juridique = 'association'
@@ -204,11 +199,12 @@ entreprise . catégorie juridique . remplacements:
   # On extrait tous les remplacements dans un espace de nom que l'on peut désactiver pour l'aide au choix du statut par exemple
   # Cela permet d'éviter des boucles de dans les missingVariables
   experimental: oui
-  valeur: oui
+  valeur: non
   avec:
     régime micro-entreprise:
       privé: oui
       valeur: EI . auto-entrepreneur
+      applicable si: remplacements
       remplace:
         - règle: imposition . régime
           par: "'micro-entreprise'"
@@ -221,6 +217,8 @@ entreprise . catégorie juridique . remplacements:
 
     associé unique:
       privé: oui
+      applicable si: remplacements
+
       une de ces conditions:
         - EI
         - SARL . EURL
@@ -232,6 +230,8 @@ entreprise . catégorie juridique . remplacements:
           par: "'unique'"
 
     associé multiples:
+      applicable si: remplacements
+      privé: oui
       une de ces conditions:
         - SNC
         - SARL . SARL
@@ -240,7 +240,7 @@ entreprise . catégorie juridique . remplacements:
         - SELARL . SELARL
       remplace:
         - règle: associés
-          par: "'unique'"
+          par: "'multiples'"
 
     profession libérale reglementée:
       privé: oui

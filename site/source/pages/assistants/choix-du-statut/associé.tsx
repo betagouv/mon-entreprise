@@ -1,3 +1,4 @@
+import { serializeEvaluation } from 'publicodes'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -84,9 +85,9 @@ function useAssociésSelection(): [
 	(value: RadioOption) => void,
 	() => void
 ] {
-	const associés = useEngine().evaluate('entreprise . associés').nodeValue as
-		| RadioOption
-		| undefined
+	const associés = serializeEvaluation(
+		useEngine().evaluate('entreprise . associés')
+	) as RadioOption | undefined
 
 	const [currentSelection, setCurrentSelection] =
 		useState<RadioOption>(associés)
