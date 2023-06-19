@@ -56,7 +56,10 @@ export default function DateField(props: DateFieldProps) {
 		required: true,
 		locale: language === 'fr' ? fr : enUS,
 		fromDate: type === 'date futur' ? new Date() : new Date('1800-01-01'),
-		toDate: type === 'date passé' ? new Date() : undefined,
+		toDate:
+			type === 'date passé'
+				? new Date()
+				: new Date(`${new Date().getFullYear() + 100}-01-01`),
 	})
 
 	const [inputValue, setInputValue] = useState<string>(
