@@ -13,6 +13,7 @@ import { redisCacheMiddleware } from './redis-cache.js'
 import { docRoutes } from './route/doc.js'
 import { openapiRoutes } from './route/openapi.js'
 import Sentry, { requestHandler, tracingMiddleWare } from './sentry.js'
+import { getUnitKey } from './units.js'
 
 type State = Koa.DefaultState
 type Context = Koa.DefaultContext
@@ -42,7 +43,7 @@ app.use(cors())
 
 router.use('/api/v1', docRoutes(), openapiRoutes(openapi))
 
-const apiRoutes = publicodesAPI(new Engine(rules))
+const apiRoutes = publicodesAPI(new Engine(rules, { getUnitKey }))
 
 router.use(
 	'/api/v1',
@@ -65,4 +66,4 @@ const server = app.listen(port, function () {
 	console.log('listening on port:', port)
 })
 
-export { server, app }
+export { app, server }
