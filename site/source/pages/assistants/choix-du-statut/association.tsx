@@ -47,10 +47,11 @@ export default function Association() {
 				>
 					<RadioCard
 						value={'gagner-argent'}
-						label={t(
-							'choix-statut.association.question.gagner-argent',
-							"Dans le but de gagner de l'argent"
-						)}
+						label={
+							<Trans i18nKey="choix-statut.association.question.gagner-argent">
+								Dans le but de <Strong>gagner de l'argent</Strong>
+							</Trans>
+						}
 						// emoji={node.rawNode.icônes}
 						// description={node.rawNode.description}
 					>
@@ -58,10 +59,11 @@ export default function Association() {
 					</RadioCard>
 					<RadioCard
 						value={'non-lucratif'}
-						label={t(
-							'choix-statut.association.question.gagner-argent',
-							'Dans un but non lucratif'
-						)}
+						label={
+							<Trans i18nKey="choix-statut.association.question.gagner-argent">
+								Dans un but <Strong>non lucratif</Strong>
+							</Trans>
+						}
 						// emoji={node.rawNode.icônes}
 						description={t(
 							'choix-statut.association.question.non-lucratif.description',
