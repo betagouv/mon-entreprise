@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`] = `
 {
@@ -915,11 +915,6 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
 ",
-    },
-    {
-      "message": "
-[ Avertissement ]
-⚠️  Dans l'expression '<', la partie gauche (unité: jour) n'est pas compatible avec la partie droite (unité: ans)",
     },
     {
       "message": "
