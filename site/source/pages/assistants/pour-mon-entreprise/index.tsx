@@ -103,7 +103,7 @@ function PourMonEntreprise() {
 		(param && entrepriseNotFound) ||
 		(entreprise && !overwrite && !engineSiren)
 	) {
-		return <Navigate to={'/404'} />
+		return <Navigate to="/404" replace />
 	}
 
 	return (
