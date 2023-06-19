@@ -84,6 +84,34 @@ describe('e2e test mon-entreprise api', () => {
 		).resolves.toMatchSnapshot()
 	})
 
+	it('Test evaluate avocat (test units)', async () => {
+		await expect(
+			chai
+				.request(server)
+				.post('/api/v1/evaluate')
+				.send({
+					situation: {
+						'dirigeant . indépendant . cotisations facultatives': 'oui',
+						'entreprise . activité . nature . libérale . réglementée': 'oui',
+						'dirigeant . indépendant . PL . métier': "'avocat'",
+						'entreprise . activité . nature': "'libérale'",
+						'entreprise . date de création': '01/01/2013',
+						"entreprise . chiffre d'affaires": 6264,
+						'entreprise . catégorie juridique': "'EI'",
+						'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
+					},
+					expressions: ['dirigeant . rémunération . net . après impôt'],
+				})
+				.then((res) => {
+					expect(res.status).toMatchInlineSnapshot('200')
+
+					return transformResult(
+						JSON.parse(res.text) as Record<string, unknown>
+					)
+				})
+		).resolves.toMatchSnapshot()
+	})
+
 	it('Test openapi.json endpoint', async () => {
 		await expect(
 			chai

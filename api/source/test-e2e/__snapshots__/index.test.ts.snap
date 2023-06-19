@@ -1,5 +1,355 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
+{
+  "evaluate": [
+    {
+      "missingVariables": [
+        "dirigeant . indépendant . IJSS",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . âge",
+        "dirigeant . indépendant . cotisations facultatives . PER",
+        "dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance",
+        "dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite",
+        "dirigeant . indépendant . revenus étrangers",
+        "entreprise . charges",
+        "entreprise . imposition",
+        "entreprise . imposition . régime",
+        "entreprise . imposition . régime . micro-entreprise",
+        "impôt . foyer fiscal . enfants à charge",
+        "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
+        "impôt . foyer fiscal . situation de famille",
+        "impôt . méthode de calcul",
+        "situation personnelle . domiciliation fiscale à l'étranger",
+        "établissement . ZFU",
+      ],
+      "nodeValue": 2786.8209761099615,
+      "traversedVariables": [
+        "dirigeant . rémunération . net . après impôt",
+        "dirigeant . rémunération",
+        "dirigeant",
+        "dirigeant . rémunération . net",
+        "dirigeant . rémunération . totale",
+        "dirigeant . assimilé salarié",
+        "dirigeant . régime social",
+        "entreprise . catégorie juridique . EI . auto-entrepreneur",
+        "entreprise . catégorie juridique . EI",
+        "entreprise . catégorie juridique",
+        "entreprise . associés . multiples",
+        "entreprise . catégorie juridique . SAS",
+        "entreprise . catégorie juridique . SARL",
+        "dirigeant . gérant minoritaire",
+        "entreprise . imposition . IS",
+        "entreprise . imposition",
+        "entreprise . catégorie juridique . SARL . EURL",
+        "entreprise . catégorie juridique . SELARL . SELARL",
+        "entreprise . catégorie juridique . SELARL",
+        "entreprise . chiffre d'affaires",
+        "entreprise . charges",
+        "dirigeant . rémunération . cotisations",
+        "dirigeant . indépendant",
+        "dirigeant . indépendant . cotisations et contributions",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . covid",
+        "date",
+        "dirigeant . indépendant . cotisations et contributions . cotisations",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . maladie",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . maladie",
+        "déclaration charge sociales",
+        "dirigeant . exonérations . ACRE",
+        "dirigeant . auto-entrepreneur",
+        "entreprise . durée d'activité . en début d'année",
+        "entreprise . date de création",
+        "période . début d'année",
+        "période",
+        "dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger",
+        "situation personnelle . domiciliation fiscale à l'étranger",
+        "dirigeant . indépendant . PL . PAMC . maladie",
+        "déclaration charge sociales . nature de l'activité",
+        "entreprise . catégorie juridique . SELAS",
+        "entreprise . activité . nature",
+        "dirigeant . indépendant . PL",
+        "dirigeant . indépendant . PL . métier",
+        "entreprise . activité . nature . libérale . réglementée",
+        "entreprise . activité . nature . libérale",
+        "dirigeant . indépendant . PL . maladie",
+        "dirigeant . indépendant . PL . régime général",
+        "déclaration charge sociales . nature de l'activité . libérale",
+        "dirigeant . indépendant . PL . CIPAV",
+        "dirigeant . indépendant . PL . option régime général",
+        "dirigeant . indépendant . PL . maladie . taux",
+        "DRI . cotisations . assiette des cotisations",
+        "DRI",
+        "dirigeant . indépendant . assiette des cotisations",
+        "dirigeant . indépendant . assiette des cotisations . sans plancher",
+        "dirigeant . indépendant . revenu professionnel",
+        "dirigeant . indépendant . cotisations facultatives . déductibles",
+        "entreprise . imposition . régime . micro-entreprise",
+        "DRI . accompagnement imposition . régime memento fiscal . RSI",
+        "DRI . accompagnement imposition . régime memento fiscal . RN",
+        "DRI . accompagnement imposition . régime memento fiscal . DECC",
+        "DRI . accompagnement imposition . régime memento fiscal . SPECIAL",
+        "DRI . accompagnement imposition . régime memento fiscal . MICROE",
+        "entreprise . imposition . régime",
+        "dirigeant . indépendant . cotisations facultatives",
+        "dirigeant . indépendant . cotisations facultatives . plafond prévoyance",
+        "plafond sécurité sociale",
+        "dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance",
+        "dirigeant . indépendant . cotisations facultatives . plafond retraite complémentaire",
+        "dirigeant . indépendant . cotisations facultatives . PER",
+        "dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . retraite de base",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . retraite de base",
+        "dirigeant . indépendant . PL . CNAVPL . remplacement retraite",
+        "dirigeant . indépendant . PL . CNAVPL",
+        "dirigeant . indépendant . PL . CNBF",
+        "dirigeant . indépendant . PL . CNBF . retraite de base",
+        "dirigeant . indépendant . PL . CNBF . retraite de base . cotisation forfaitaire",
+        "entreprise . durée d'activité . en fin d'année",
+        "période . fin d'année",
+        "dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . retraite complémentaire",
+        "dirigeant . indépendant . PL . CARCDSF . retraite complémentaire",
+        "dirigeant . indépendant . PL . CARMF . retraite complémentaire",
+        "dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire",
+        "dirigeant . indépendant . PL . CAVEC . retraite complémentaire",
+        "dirigeant . indépendant . PL . CAVP . retraite complémentaire",
+        "dirigeant . indépendant . PL . CNBF . retraite complémentaire",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . indemnités journalières maladie",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . indemnités journalières maladie",
+        "dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . âge . invalidité et décès",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . âge",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . invalidité et décès",
+        "dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID",
+        "dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste",
+        "dirigeant . indépendant . PL . CARCDSF . sage-femme . RID",
+        "dirigeant . indépendant . PL . CARCDSF . sage-femme",
+        "dirigeant . indépendant . PL . CARMF . invalidité décès",
+        "dirigeant . indépendant . PL . CARPIMKO . invalidité et décès",
+        "dirigeant . indépendant . PL . CAVEC . invalidité et décès",
+        "dirigeant . indépendant . PL . CAVP . invalidité et décès",
+        "dirigeant . indépendant . PL . CIPAV . invalidité et décès",
+        "dirigeant . indépendant . PL . CNBF . RID",
+        "dirigeant . indépendant . PL . PAMC . allocations familiales",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . allocations familiales",
+        "dirigeant . indépendant . cotisations et contributions . allocations familiales",
+        "dirigeant . indépendant . cotisations et contributions . allocations familiales . taux",
+        "dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV",
+        "dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV",
+        "dirigeant . indépendant . PL . CARMF . ASV",
+        "dirigeant . indépendant . PL . CARPIMKO . ASV",
+        "dirigeant . indépendant . PL . CAVP . PCV",
+        "dirigeant . indépendant . cotisations et contributions . PCV",
+        "dirigeant . indépendant . cotisations et contributions . exonérations",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . ZFU",
+        "établissement . ZFU",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . covid . conjoint collaborateur",
+        "dirigeant . indépendant . conjoint collaborateur . cotisations",
+        "dirigeant . indépendant . PL . CAVEC",
+        "dirigeant . indépendant . cotisations facultatives . montant",
+        "dirigeant . indépendant . cotisations facultatives . contrats madelin",
+        "dirigeant . indépendant . cotisations et contributions . CSG-CRDS",
+        "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . non déductible",
+        "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . non déductible . taux",
+        "DRI . cotisations . assiette CSG",
+        "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . assiette",
+        "dirigeant . indépendant . revenus étrangers . montant",
+        "dirigeant . indépendant . PL . PAMC",
+        "dirigeant . indépendant . revenus étrangers",
+        "dirigeant . indépendant . PL . PAMC . IJSS",
+        "dirigeant . indépendant . IJSS . imposable",
+        "dirigeant . indépendant . IJSS",
+        "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . non déductible . revenus de remplacement",
+        "dirigeant . indépendant . IJSS . montant",
+        "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . déductible",
+        "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . déductible . taux",
+        "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . déductible . revenus de remplacement",
+        "dirigeant . indépendant . PL . PAMC . CURPS",
+        "dirigeant . indépendant . cotisations et contributions . contributions spéciales",
+        "dirigeant . indépendant . cotisations et contributions . formation professionnelle",
+        "impôt . montant",
+        "impôt . taux d'imposition",
+        "impôt . méthode de calcul . taux neutre",
+        "dirigeant . auto-entrepreneur . impôt . versement libératoire",
+        "dirigeant . auto-entrepreneur . impôt",
+        "impôt . méthode de calcul",
+        "impôt . méthode de calcul . par défaut",
+        "impôt . méthode de calcul . taux personnalisé",
+        "impôt . méthode de calcul . barème standard",
+        "impôt . foyer fiscal . taux effectif",
+        "impôt . foyer fiscal",
+        "impôt . foyer fiscal . revenu imposable",
+        "impôt . foyer fiscal . revenu imposable . revenu d'activité abattu",
+        "impôt . foyer fiscal . revenu imposable . revenu d'activité",
+        "dirigeant . rémunération . net . imposable",
+        "entreprise . imposition . IR",
+        "bénéficiaire . dividendes . imposables",
+        "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
+        "impôt . foyer fiscal . impôt à payer",
+        "impôt . foyer fiscal . impôt sur le revenu",
+        "impôt . foyer fiscal . impôt sur le revenu . impôt brut",
+        "impôt . foyer fiscal . nombre de parts . principales",
+        "impôt . foyer fiscal . situation de famille",
+        "impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans parts rattachées",
+        "impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage",
+        "impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage . Plafonnement général",
+        "impôt . foyer fiscal . nombre de parts . rattachées",
+        "impôt . foyer fiscal . enfants à charge",
+        "impôt . foyer fiscal . nombre de parts . majoration personne seule avec enfant",
+        "impôt . foyer fiscal . parent isolé",
+        "impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage . Plafonnement parent isolé",
+        "impôt . foyer fiscal . nombre de parts",
+        "impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant",
+        "impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part",
+        "impôt . foyer fiscal . impôt sur le revenu . quotient familial",
+        "impôt . foyer fiscal . impôt sur le revenu . décote",
+        "impôt . dividendes . PFU",
+        "bénéficiaire . dividendes . bruts",
+        "impôt . foyer fiscal . CEHR",
+        "dirigeant . auto-entrepreneur . impôt . versement libératoire . montant",
+      ],
+      "unit": {
+        "denominators": [
+          "an",
+        ],
+        "numerators": [
+          "€",
+        ],
+      },
+    },
+  ],
+  "warnings": [
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature . libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+  ],
+}
+`;
+
 exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`] = `
 {
   "evaluate": [
