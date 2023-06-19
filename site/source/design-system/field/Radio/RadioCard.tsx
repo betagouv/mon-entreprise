@@ -1,24 +1,12 @@
 import { AriaRadioProps } from '@react-types/radio'
-import { ComponentProps } from 'react'
+import React, { ComponentProps } from 'react'
 import styled from 'styled-components'
 
-import { Markdown } from '@/components/utils/markdown'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
-import { RadioPoint, RadioSkeleton, SpanBody, VisibleRadio } from './Radio'
-
-const Description = styled.span`
-	display: block;
-	margin: 0;
-	margin-top: ${({ theme }) => theme.spacings.sm};
-`
-
-const StyledRadioPoint = styled(RadioPoint)`
-	align-self: baseline;
-	margin-top: 0.2rem;
-`
+import { RadioPoint, RadioSkeleton, VisibleRadio } from './Radio'
 
 export const RadioCardSkeleton = ({
 	children,
@@ -45,9 +33,9 @@ const StyledCardContainer = styled(CardContainer)`
 
 type RadioCardProps = AriaRadioProps & {
 	value: string
-	label: string
+	label: React.ReactNode
 	className?: string
-	description?: string
+	description?: React.ReactNode
 	emoji?: string
 	autoFocus?: boolean
 }
@@ -62,16 +50,14 @@ export function RadioCard({
 	return (
 		<StyledRadioCardSkeleton {...props}>
 			<StyledRadioPoint />
-			<SpanBody>
-				<span>
+
+			<div>
+				<Body>
 					{label} {emoji && <Emoji emoji={emoji} />}
-				</span>
-				{description && (
-					<SmallBody>
-						<Markdown as={Description}>{description ?? ''}</Markdown>
-					</SmallBody>
-				)}
-			</SpanBody>
+				</Body>
+
+				{description && <SmallBody grey>{description}</SmallBody>}
+			</div>
 		</StyledRadioCardSkeleton>
 	)
 }
@@ -80,4 +66,12 @@ const StyledRadioCardSkeleton = styled(RadioCardSkeleton)`
 	${VisibleRadio} {
 		display: flex;
 	}
+`
+
+const StyledRadioPoint = styled(RadioPoint)`
+	margin: ${({ theme }) => theme.spacings.md};
+	margin-right: ${({ theme }) => theme.spacings.md} !important;
+	transform: translateY(${({ theme }) => theme.spacings.xxs});
+	margin-left: 0;
+	align-self: flex-start;
 `
