@@ -65,7 +65,7 @@ export default function Association() {
 					<RadioCard
 						value={'non-lucratif'}
 						label={
-							<Trans i18nKey="choix-statut.association.question.gagner-argent">
+							<Trans i18nKey="choix-statut.association.question.non-lucratif">
 								Dans un but <Strong>non lucratif</Strong>
 							</Trans>
 						}

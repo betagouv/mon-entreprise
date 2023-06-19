@@ -34,7 +34,6 @@ export function useNextStep() {
 
 	const nextStep =
 		stepOrder[currentStep ? stepOrder.indexOf(currentStep) + 1 : 0]
-	console.log('huihuihi', nextStep)
 
 	return absoluteSitePaths.assistants['choix-du-statut'][nextStep]
 }

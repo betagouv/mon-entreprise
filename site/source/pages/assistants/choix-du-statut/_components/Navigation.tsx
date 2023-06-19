@@ -12,7 +12,7 @@ export default function Navigation({
 	currentStepIsComplete,
 	nextStepLabel,
 	onNextStep,
-	onPreviousStep,
+	onPreviousStep, // TODO : prefer resetOnLeave
 	assistantIsCompleted = false,
 }: {
 	currentStepIsComplete: boolean

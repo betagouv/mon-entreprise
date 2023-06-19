@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { MetadataSrc } from '@/pages/simulateurs/metadata-src'
+import { MetadataSrc } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 const rawSitePathsFr = {
 	index: '',
@@ -37,7 +37,6 @@ const rawSitePathsFr = {
 			rémunération: 'remuneration',
 			statuts: 'statuts',
 			résultat: 'resultat',
-			après: 'apres-la-création',
 		},
 	},
 	simulateurs: {

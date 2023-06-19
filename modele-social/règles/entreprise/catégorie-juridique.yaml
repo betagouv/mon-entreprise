@@ -5,6 +5,11 @@ entreprise . associés:
     possibilités:
       - unique
       - multiples
+  non applicable si:
+    une de ces conditions:
+      - entreprise . catégorie juridique = 'EI'
+      - entreprise . catégorie juridique = 'association'
+      - entreprise . catégorie juridique = 'autre'
   description: |
     Si vous êtes le seul associé de votre société, alors vous êtes dans le cas d'une « société unipersonnelle ».
 
@@ -46,9 +51,7 @@ entreprise . catégorie juridique . EI:
     code insee: 1000
   titre: Entreprise individuelle (y compris auto-entrepreneurs)
   valeur: catégorie juridique = 'EI'
-  remplace:
-    règle: associés
-    par: "'unique'"
+
   avec:
     auto-entrepreneur:
       acronyme: AE
