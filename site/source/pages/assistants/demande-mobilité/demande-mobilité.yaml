@@ -211,7 +211,7 @@ données assuré:
       type: texte
       titre: Nationalité
     date de naissance:
-      type: date
+      type: date passé
       titre: Date de naissance
 
     titre: commune de naissance
@@ -818,7 +818,7 @@ détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
               type: texte
             date de naissance:
               titre: Date de naissance
-              type: date
+              type: date passé
             lien de parenté:
               titre: Lien de parenté
 
@@ -1055,7 +1055,7 @@ pluriactivité . période:
     fin:
       applicable si: date de fin connue
       titre: date de fin
-      type: date
+      type: date futur
 
 pluriactivité . activité substantielle en France:
   non applicable si:

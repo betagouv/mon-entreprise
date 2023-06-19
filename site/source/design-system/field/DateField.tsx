@@ -18,7 +18,7 @@ import { Emoji } from '../emoji'
 import { Body } from '../typography/paragraphs'
 import TextField from './TextField'
 
-interface DateFieldProps {
+export interface DateFieldProps {
 	defaultSelected?: Date
 	onChange?: (value?: string) => void
 	placeholder?: string
@@ -26,6 +26,7 @@ interface DateFieldProps {
 	isRequired?: boolean
 	'aria-label'?: string
 	'aria-labelby'?: string
+	type?: 'date passé' | 'date' | 'date futur'
 }
 
 export default function DateField(props: DateFieldProps) {
@@ -36,6 +37,7 @@ export default function DateField(props: DateFieldProps) {
 		label,
 		isRequired,
 		onChange,
+		type = 'date',
 	} = rest
 
 	const { t, i18n } = useTranslation()
@@ -53,8 +55,8 @@ export default function DateField(props: DateFieldProps) {
 		format,
 		required: true,
 		locale: language === 'fr' ? fr : enUS,
-		fromDate: new Date('1800-01-01'),
-		toDate: new Date(),
+		fromDate: type === 'date futur' ? new Date() : new Date('1800-01-01'),
+		toDate: type === 'date passé' ? new Date() : undefined,
 	})
 
 	const [inputValue, setInputValue] = useState<string>(

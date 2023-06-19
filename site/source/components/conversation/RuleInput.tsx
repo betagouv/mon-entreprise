@@ -12,6 +12,7 @@ import React, { useContext } from 'react'
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { EngineContext } from '@/components/utils/EngineContext'
+import { DateFieldProps } from '@/design-system/field/DateField'
 import { getMeta } from '@/utils'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
@@ -167,8 +168,13 @@ export default function RuleInput<Names extends string = DottedName>({
 		return <SelectAtmp {...commonProps} />
 	}
 
-	if (rule.rawNode.type === 'date') {
-		return <DateInput {...commonProps} />
+	if (rule.rawNode.type?.startsWith('date')) {
+		return (
+			<DateInput
+				{...commonProps}
+				type={rule.rawNode.type as DateFieldProps['type']}
+			/>
+		)
 	}
 
 	if (
