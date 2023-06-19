@@ -5,11 +5,6 @@ entreprise . associés:
     possibilités:
       - unique
       - multiples
-  non applicable si:
-    une de ces conditions:
-      - entreprise . catégorie juridique = 'EI'
-      - entreprise . catégorie juridique = 'association'
-      - entreprise . catégorie juridique = 'autre'
   description: |
     Si vous êtes le seul associé de votre société, alors vous êtes dans le cas d'une « société unipersonnelle ».
 
@@ -59,25 +54,18 @@ entreprise . catégorie juridique . EI:
         une de ces conditions:
           - associés . multiples
           - entreprise . imposition . IR . type de bénéfices = 'BA'
+
       question: Êtes-vous auto-entrepreneur ?
-      remplace:
-        - règle: imposition . régime
-          par: "'micro-entreprise'"
-        - règle: entreprise . imposition
-          par: "'IR'"
-        - règle: entreprise . imposition . IR
-          par: oui
-        - règle: entreprise . imposition . IS
-          par: non
+
       par défaut:
         nom: par défaut
         experimental: oui
-        valeur: oui
+
     EI:
+      non applicable si: associés . multiples
       titre: entreprise individuelle
       acronyme: EI
       valeur: auto-entrepreneur = non
-      non applicable si: associés . multiples
 
 ### (niveau 1 code 5)	Société commerciale ###
 
@@ -90,7 +78,8 @@ entreprise . catégorie juridique . SARL:
     SARL:
       titre: Société à responsabilité limitée
       acronyme: SARL
-      valeur: associés . multiples
+      # valeur: associés . multiples
+      non applicable si: associés . unique
       description: |
         La société à responsabilité limitée (SARL) comprend au minimum deux associés. Cette forme juridique est la plus répandue pour les sociétés. En revanche, elle ne peut être choisie pour les professions juridiques, judiciaires ou de santé (hors pharmaciens).
 
@@ -172,22 +161,8 @@ entreprise . catégorie juridique . SELARL:
   titre: SELARL ou SELARLU
   description: Société d'exercice libéral à responsabilité limitée
   valeur: catégorie juridique = 'SELARL'
-  rend non applicable:
-    - activités . commerciale
-    - activités . agricole
-    - activités . artisanale
   meta:
     code insee: 5485
-  remplace:
-    - règle: activités . libérale
-      par: oui
-    - règle: activités . libérale . réglementée
-      par: oui
-    # TODO : remove when old activity modele is not used anymore :
-    - règle: entreprise . activité . nature
-      par: "'libérale'"
-    - règle: entreprise . activité . nature . libérale . réglementée
-      par: oui
   avec:
     SELARLU:
       acronyme: SELARLU
@@ -205,20 +180,6 @@ entreprise . catégorie juridique . SELAS:
   valeur: catégorie juridique = 'SELAS'
   meta:
     code insee: 5785
-  rend non applicable:
-    - activités . commerciale
-    - activités . agricole
-    - activités . artisanale
-  remplace:
-    - règle: activités . libérale
-      par: oui
-    - règle: activités . libérale . réglementée
-      par: oui
-    # TODO : remove when old activity modele is not used anymore :
-    - règle: entreprise . activité . nature
-      par: "'libérale'"
-    - règle: entreprise . activité . nature . libérale . réglementée
-      par: oui
   avec:
     SELASU:
       acronyme: SELASU
@@ -238,3 +199,66 @@ entreprise . catégorie juridique . autre:
   sévérité: avertissement
   description: |
     Ce simulateur ne gère pas encore tout les types d'entreprises, le montant affiché pourrait être incorrect.
+
+entreprise . catégorie juridique . remplacements:
+  # On extrait tous les remplacements dans un espace de nom que l'on peut désactiver pour l'aide au choix du statut par exemple
+  # Cela permet d'éviter des boucles de dans les missingVariables
+  experimental: oui
+  valeur: oui
+  avec:
+    régime micro-entreprise:
+      privé: oui
+      valeur: EI . auto-entrepreneur
+      remplace:
+        - règle: imposition . régime
+          par: "'micro-entreprise'"
+        - règle: entreprise . imposition
+          par: "'IR'"
+        - règle: entreprise . imposition . IR
+          par: oui
+        - règle: entreprise . imposition . IS
+          par: non
+
+    associé unique:
+      privé: oui
+      une de ces conditions:
+        - EI
+        - SARL . EURL
+        - SAS . SASU
+        - SELAS . SELASU
+        - SELARL . SELARLU
+      remplace:
+        - règle: associés
+          par: "'unique'"
+
+    associé multiples:
+      une de ces conditions:
+        - SNC
+        - SARL . SARL
+        - SAS . SAS
+        - SELAS . SELAS
+        - SELARL . SELARL
+      remplace:
+        - règle: associés
+          par: "'unique'"
+
+    profession libérale reglementée:
+      privé: oui
+      applicable si:
+        une de ces conditions:
+          - SELARL
+          - SELAS
+      remplace:
+        - règle: activités . libérale
+          par: oui
+        - règle: activités . libérale . réglementée
+          par: oui
+        # TODO : remove when old activity modele is not used anymore :
+        - règle: entreprise . activité . nature
+          par: "'libérale'"
+        - règle: entreprise . activité . nature . libérale . réglementée
+          par: oui
+      rend non applicable:
+        - activités . commerciale
+        - activités . agricole
+        - activités . artisanale

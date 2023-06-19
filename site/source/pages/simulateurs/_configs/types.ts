@@ -90,6 +90,8 @@ export interface PageConfig {
 	nextSteps?: string[]
 
 	simulation?: SimulationConfig
+	autoloadLastSimulation?: boolean
+
 	/**
 	 * `component` must be followed by a one-word component for the `yarn build:simulator-data` script to work
 	 * example: `component: MyComponent,`

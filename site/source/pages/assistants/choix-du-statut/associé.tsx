@@ -25,19 +25,20 @@ export default function Associés() {
 						<HelpButtonWithPopover
 							title={t(
 								'choix-statut.associés.help.title',
-								'Être associé(e) ou actionnaire'
+								'Être plusieurs associé(e)s ou actionnaires'
 							)}
 							type="info"
 						>
 							<Body>
-								Vous{' '}
-								<Strong>
-									partagez la propriété de votre entreprise avec d’autres
-									personnes qui peuvent être physiques (individus) ou morales
-									(sociétés)
-								</Strong>
-								. Dans le cas des <Strong>sociétés par actions</Strong> (SASU,
-								SAS), on parle d’<Strong>actionnaires</Strong>.
+								Vous <Strong>partagez la propriété de votre entreprise </Strong>
+								avec d’autres personnes qui peuvent être{' '}
+								<Strong>physiques</Strong> (individus) ou{' '}
+								<Strong>morales</Strong> (sociétés).
+							</Body>
+							<Body>
+								Dans le cas des <Strong>sociétés par actions</Strong> (SASU,
+								SAS), on parle d’
+								<Strong>actionnaires</Strong>.
 							</Body>
 						</HelpButtonWithPopover>
 					</Trans>
@@ -86,10 +87,7 @@ function useAssociésSelection(): [
 	const associés = useEngine().evaluate('entreprise . associés').nodeValue as
 		| RadioOption
 		| undefined
-	console.log(
-		useEngine().evaluate('entreprise . associés'),
-		useEngine().evaluate('entreprise . catégorie juridique')
-	)
+
 	const [currentSelection, setCurrentSelection] =
 		useState<RadioOption>(associés)
 

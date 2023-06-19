@@ -2,14 +2,12 @@ import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { TrackChapter } from '@/components/ATInternetTracking'
-import PageData from '@/components/PageData'
+import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Link } from '@/design-system/typography/link'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import ChoixDuStatut from './choix-du-statut'
-import Embaucher from './embaucher'
 import SocialSecurity from './sécurité-sociale'
 
 export default function Gérer() {
@@ -46,23 +44,7 @@ export default function Gérer() {
 						</TrackChapter>
 					}
 				/>
-				<Route
-					path={relativeSitePaths.assistants.embaucher}
-					element={
-						<TrackChapter chapter1="gerer">
-							{back}
-							<Embaucher />
-						</TrackChapter>
-					}
-				/>
-				<Route
-					path={relativeSitePaths.assistants['choix-du-statut'].index + '/*'}
-					element={
-						<TrackChapter chapter1="creer">
-							<ChoixDuStatut />
-						</TrackChapter>
-					}
-				/>
+
 				{Object.entries(simulateurs)
 					.filter(([, simu]) => simu.pathId.startsWith('assistants.'))
 					.map(([, simu]) => (
@@ -73,7 +55,7 @@ export default function Gérer() {
 							}
 							element={
 								<>
-									<PageData />
+									<SimulateurOrAssistantPage />
 								</>
 							}
 						/>

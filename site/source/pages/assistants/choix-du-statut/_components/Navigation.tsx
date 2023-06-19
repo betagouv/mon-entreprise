@@ -1,12 +1,12 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { useSitePaths } from '@/sitePaths'
 
-import { useNextStep } from './useNextStep'
+import { useCurrentStep, useNextStep, usePreviousStep } from './useSteps'
 
 export default function Navigation({
 	currentStepIsComplete,
@@ -23,12 +23,14 @@ export default function Navigation({
 }) {
 	const { t } = useTranslation()
 	const nextStep = useNextStep()
-	const navigate = useNavigate()
-	const resultatPath =
-		useSitePaths().absoluteSitePaths.assistants['choix-du-statut'].résultat
+	const currentStep = useCurrentStep()
+	const previousStep = usePreviousStep()
+	const choixDuStatutPath =
+		useSitePaths().absoluteSitePaths.assistants['choix-du-statut']
 
 	return (
 		<>
+			<TrackPage name={currentStep} />
 			<Spacing xs />
 			<StyledNavigation>
 				<Grid container spacing={2}>
@@ -36,10 +38,8 @@ export default function Navigation({
 						<Button
 							light
 							color={'secondary'}
-							onPress={() => {
-								onPreviousStep?.()
-								navigate(-1)
-							}}
+							to={choixDuStatutPath[previousStep]}
+							onPress={onPreviousStep}
 						>
 							<span aria-hidden>←</span> <Trans>Précédent</Trans>
 						</Button>
@@ -48,7 +48,7 @@ export default function Navigation({
 						<Grid item>
 							<Button
 								onPress={onNextStep}
-								to={nextStep}
+								to={choixDuStatutPath[nextStep]}
 								isDisabled={!currentStepIsComplete}
 								aria-label={t("Suivant, passer à l'étape suivante")}
 							>
@@ -62,7 +62,7 @@ export default function Navigation({
 					{assistantIsCompleted && (
 						<Grid item>
 							<Button
-								to={resultatPath}
+								to={choixDuStatutPath['résultat']}
 								aria-label={t('Suivant, voir le résultat')}
 							>
 								{nextStepLabel || (

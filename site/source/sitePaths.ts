@@ -6,7 +6,6 @@ const rawSitePathsFr = {
 	index: '',
 	assistants: {
 		index: 'assistants',
-		embaucher: 'embaucher',
 		sécuritéSociale: 'sécurité-sociale',
 		formulaireMobilité: 'demande-mobilité',
 		'recherche-code-ape': 'recherche-code-ape',
@@ -92,7 +91,6 @@ const rawSitePathsEn = {
 	...rawSitePathsFr,
 	assistants: {
 		index: 'assistants',
-		embaucher: 'hiring',
 		sécuritéSociale: 'social-security',
 		formulaireMobilité: 'posting-demand',
 		'recherche-code-ape': 'search-code-ape',

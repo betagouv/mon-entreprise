@@ -17,7 +17,7 @@ import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { configArtisteAuteur } from './simulationConfig'
 
 export default function ArtisteAuteur() {
-	useSimulationConfig({ path: 'artiste-auteur', config: configArtisteAuteur })
+	useSimulationConfig({ key: 'artiste-auteur', config: configArtisteAuteur })
 
 	return (
 		<>

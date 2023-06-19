@@ -17,13 +17,13 @@ import {
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
-import { Merge, ToOptional } from '@/types/utils'
+import { Merge } from '@/types/utils'
 
 import { NextSteps } from '../pages/simulateurs/NextSteps'
 import { TrackChapter } from './ATInternetTracking'
 import BetaBanner from './BetaBanner'
 
-export default function PageData() {
+export default function SimulateurOrAssistantPage() {
 	const { currentSimulatorData } = useCurrentSimulatorData()
 	const { pathname, search } = useLocation()
 	if (!currentSimulatorData) {
@@ -41,6 +41,7 @@ export default function PageData() {
 		component: Component,
 		seoExplanations: SeoExplanations,
 		nextSteps,
+		autoloadLastSimulation,
 		path,
 	} = currentSimulatorData
 
@@ -50,7 +51,11 @@ export default function PageData() {
 	const year = typeof année === 'number' ? `Année ${année}` : ''
 
 	const inIframe = useIsEmbedded()
-	useSimulationConfig({ path, config: simulation })
+	useSimulationConfig({
+		key: path,
+		config: simulation,
+		autoloadLastSimulation,
+	})
 	useSearchParamsSimulationSharing()
 
 	const trackInfo = {

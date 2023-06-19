@@ -288,7 +288,7 @@ const UlInColumns = styled.ul`
 const AskCompanyMissingDetails = () => {
 	const { absoluteSitePaths } = useSitePaths()
 	useSimulationConfig({
-		path: absoluteSitePaths.assistants.index,
+		key: absoluteSitePaths.assistants.index,
 		config: configCompanyDetails,
 	})
 

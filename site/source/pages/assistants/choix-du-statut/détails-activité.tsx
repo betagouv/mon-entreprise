@@ -85,6 +85,7 @@ export default function DétailsActivité() {
 						onGuichetSelected={(code) => {
 							setCodeGuichet(code)
 						}}
+						codeGuichet={codeGuichet}
 					/>
 				)}
 				<Navigation

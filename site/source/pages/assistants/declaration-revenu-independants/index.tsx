@@ -41,7 +41,7 @@ const config: SimulationConfig = {
 export default function AideDéclarationIndépendant() {
 	const { absoluteSitePaths } = useSitePaths()
 	useSimulationConfig({
-		path: absoluteSitePaths.assistants.déclarationIndépendant.index,
+		key: absoluteSitePaths.assistants.déclarationIndépendant.index,
 		config,
 		autoloadLastSimulation: true,
 	})
