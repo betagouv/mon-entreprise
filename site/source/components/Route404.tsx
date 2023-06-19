@@ -5,9 +5,15 @@ import PageHeader from '@/components/PageHeader'
 import { Button } from '@/design-system/buttons'
 import { Container } from '@/design-system/layout'
 
+import DefaultHelmet from './utils/DefaultHelmet'
+
 export default function Route404() {
 	return (
 		<Container>
+			<DefaultHelmet>
+				<meta name="robots" content="noindex" />
+			</DefaultHelmet>
+
 			<PageHeader
 				titre={
 					<Trans i18nKey="404.message">

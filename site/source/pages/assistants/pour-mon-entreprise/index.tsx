@@ -63,7 +63,6 @@ export default function PourMonEntrepriseHome() {
 }
 
 function PourMonEntreprise() {
-	const { t, i18n } = useTranslation()
 	const dirigeantSimulateur = infereSimulateurRevenuFromSituation(useEngine())
 	const simulateurs = useSimulatorsData()
 	const engine = useEngine()
@@ -104,7 +103,7 @@ function PourMonEntreprise() {
 		(param && entrepriseNotFound) ||
 		(entreprise && !overwrite && !engineSiren)
 	) {
-		return <Navigate to={'/'} />
+		return <Navigate to={'/404'} />
 	}
 
 	return (
