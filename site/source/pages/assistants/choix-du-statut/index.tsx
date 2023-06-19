@@ -3,7 +3,6 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { useSitePaths } from '@/sitePaths'
 
-import AfterRegistration from './après'
 import Association from './association'
 import Associé from './associé'
 import Commune from './commune'
@@ -24,7 +23,6 @@ export default function ChoixDuStatut() {
 			<ScrollToTop key={location.pathname} />
 			<Routes>
 				<Route index element={<AccueilChoixStatut />} />
-				<Route path={childrenPaths.après} element={<AfterRegistration />} />
 				<Route
 					path={childrenPaths['recherche-activité']}
 					element={<RechercheActivité />}

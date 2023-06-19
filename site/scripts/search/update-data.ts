@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import rawRules from 'modele-social'
 import Engine, { ParsedRules } from 'publicodes'
 
-import { MetadataSrc } from '@/pages/simulateurs/metadata-src'
+import { MetadataSrc } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 dotenv.config()
 
