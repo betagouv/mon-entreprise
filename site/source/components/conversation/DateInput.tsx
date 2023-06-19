@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 
 import { InputProps } from '@/components/conversation/RuleInput'
 import { DateField } from '@/design-system/field'
+import { DateFieldProps } from '@/design-system/field/DateField'
 
 import { useEngine } from '../utils/EngineContext'
 import InputSuggestions from './InputSuggestions'
@@ -14,7 +15,8 @@ export default function DateInput({
 	onSubmit,
 	required,
 	value,
-}: InputProps) {
+	type,
+}: InputProps & { type: DateFieldProps['type'] }) {
 	const engine = useEngine()
 
 	const convertDate = (val?: unknown) => {
@@ -66,6 +68,7 @@ export default function DateInput({
 					onChange={handleDateChange}
 					aria-label={title}
 					label={title}
+					type={type}
 				/>
 			</div>
 		</div>
