@@ -82,7 +82,7 @@ const StyledMessage = styled(Message)`
 function Statut({ statut }: { statut: DottedName }) {
 	const engine = useEngine()
 	const disabled =
-		engine.evaluate({ 'est non applicable': statut }).nodeValue === true
+		engine.evaluate({ '=': [statut, 'non'] }).nodeValue === true
 
 	const acronyme = (engine.getRule(statut).rawNode.acronyme ??
 		engine.getRule(statut).title.toLocaleLowerCase()) as Statut

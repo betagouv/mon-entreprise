@@ -12,15 +12,15 @@ import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { SimulateurCard } from '@/pages/simulateurs-et-assistants'
-import { useSitePaths } from '@/sitePaths'
 
-import { stepOrder } from './_components/Navigation'
+import { useNextStep } from './_components/useNextStep'
 import créerSvg from './_illustrations/créer.svg'
 
 export default function AccueilChoixStatut() {
 	const { t } = useTranslation()
-	const { relativeSitePaths } = useSitePaths()
+
 	const simulateurData = useSimulatorsData()
+	const nextStep = useNextStep()
 
 	return (
 		<>
@@ -58,10 +58,7 @@ export default function AccueilChoixStatut() {
 
 				<Grid container spacing={3} style={{ alignItems: 'center' }}>
 					<Grid item xs={12} sm={'auto'}>
-						<Button
-							size="XL"
-							to={relativeSitePaths.assistants['choix-du-statut'][stepOrder[0]]}
-						>
+						<Button size="XL" to={nextStep}>
 							<Trans i18nKey="choix-statut.home.find-statut">
 								Trouver le bon statut
 							</Trans>

@@ -1,72 +1,31 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { useMatch } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
-import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/sitePaths'
 
-type ChoixStatut = RelativeSitePaths['assistants']['choix-du-statut']
-type Step = keyof ChoixStatut
-
-export const stepOrder: readonly Step[] = [
-	'recherche-activité',
-	'détails-activité',
-	'commune',
-	'association',
-	'associé',
-	'rémunération',
-	'statuts',
-	'résultat',
-] as const
-
-function useCurrentStep() {
-	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
-	const localizedStep = useMatch(
-		`${absoluteSitePaths.assistants['choix-du-statut'].index}/:step`
-	)?.params.step
-	if (!localizedStep) {
-		return null
-	}
-
-	const entries = Object.entries(
-		relativeSitePaths.assistants['choix-du-statut']
-	) as [Step, ChoixStatut[Step]][]
-
-	const [currentStep] =
-		entries.find(([, value]) => value === localizedStep) ?? []
-
-	if (!currentStep || !stepOrder.includes(currentStep)) {
-		return null
-	}
-
-	return currentStep
-}
+import { useNextStep } from './useNextStep'
 
 export default function Navigation({
 	currentStepIsComplete,
 	nextStepLabel,
 	onNextStep,
 	onPreviousStep,
+	assistantIsCompleted = false,
 }: {
 	currentStepIsComplete: boolean
 	nextStepLabel?: false | string
 	onNextStep?: () => void
 	onPreviousStep?: () => void
+	assistantIsCompleted?: boolean
 }) {
 	const { t } = useTranslation()
-	const { absoluteSitePaths } = useSitePaths()
-
-	const currentStep = useCurrentStep()
-	if (!currentStep) {
-		return null
-	}
-
-	type PartialStep = Step | undefined
-	const nextStep = stepOrder[stepOrder.indexOf(currentStep) + 1] as PartialStep
-	const previousStep = stepOrder[
-		stepOrder.indexOf(currentStep) - 1
-	] as PartialStep
+	const nextStep = useNextStep()
+	const navigate = useNavigate()
+	const resultatPath =
+		useSitePaths().absoluteSitePaths.assistants['choix-du-statut'].résultat
 
 	return (
 		<>
@@ -77,35 +36,37 @@ export default function Navigation({
 						<Button
 							light
 							color={'secondary'}
-							onPress={onPreviousStep}
-							to={
-								absoluteSitePaths.assistants['choix-du-statut'][
-									previousStep || 'index'
-								]
-							}
+							onPress={() => {
+								onPreviousStep?.()
+								navigate(-1)
+							}}
 						>
 							<span aria-hidden>←</span> <Trans>Précédent</Trans>
 						</Button>
 					</Grid>
-					{nextStep && (
+					{nextStep && !assistantIsCompleted && (
 						<Grid item>
 							<Button
 								onPress={onNextStep}
-								// Probleme de desynchronisation entre le onpress et le to, le onpress n'est pas toujours appelé avant le to
-								to={absoluteSitePaths.assistants['choix-du-statut'][nextStep]}
-								// est ce qu'on devrait pas utiliser les parametres de l'url comme ca ?
-								// to={{
-								// 	pathname:
-								// 		absoluteSitePaths.assistants['choix-du-statut'][nextStep],
-								// 	search: createSearchParams({
-								// 		codeAPE: '6201Z',
-								// 	}).toString(),
-								// }}
+								to={nextStep}
 								isDisabled={!currentStepIsComplete}
 								aria-label={t("Suivant, passer à l'étape suivante")}
 							>
 								{nextStepLabel || (
 									<Trans>Enregistrer et passer à la suite</Trans>
+								)}{' '}
+								<span aria-hidden>→</span>
+							</Button>
+						</Grid>
+					)}
+					{assistantIsCompleted && (
+						<Grid item>
+							<Button
+								to={resultatPath}
+								aria-label={t('Suivant, voir le résultat')}
+							>
+								{nextStepLabel || (
+									<Trans>Enregistrer et voir le résultat</Trans>
 								)}{' '}
 								<span aria-hidden>→</span>
 							</Button>
