@@ -8,8 +8,8 @@ import { koaBody } from 'koa-body'
 const Redis = IORedis.default
 const RedisMock = IORedisMock.default
 
-// cache expires in 2 hours
-const CACHE_EXPIRE = 2 * 60 * 60
+// cache expires in 12 hours
+const CACHE_EXPIRE = 12 * 60 * 60
 
 const redis =
 	process.env.NODE_ENV === 'production' && process.env.SCALINGO_REDIS_URL
