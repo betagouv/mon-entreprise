@@ -264,6 +264,12 @@ const StyledBody = styled(Body)`
 			: theme.colors.extended.grey[200]};
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3]};
+
+	.rdp-dropdown:focus-visible:not([disabled]) + .rdp-caption_label,
+	.rdp-button:focus-visible:not([disabled]) {
+		background-color: ${({ theme }) =>
+			theme.darkMode && theme.colors.extended.grey[600]};
+	}
 `
 
 const Wrapper = styled.div`
