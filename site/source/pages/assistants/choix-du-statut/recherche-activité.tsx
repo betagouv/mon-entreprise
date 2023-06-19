@@ -57,7 +57,6 @@ export default function RechercheActivité() {
 				<Navigation
 					currentStepIsComplete={!!codeApe}
 					onNextStep={() => {
-						console.log('yaaaaaay')
 						dispatch(
 							updateSituation(
 								'entreprise . activités . principale . code APE',

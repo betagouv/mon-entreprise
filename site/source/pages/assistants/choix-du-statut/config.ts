@@ -26,11 +26,14 @@ export function choixStatutJuridiqueConfig({
 				'SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui vous convient le mieux grâce à cet assistant'
 			),
 		},
-		title: t(
-			'pages.choix-statut.title',
-			'Assistant au choix du statut juridique'
-		),
+		title: t('pages.choix-statut.title', 'Choisir votre statut'),
 		shortName: t('pages.choix-statut.shortname', 'Assistant statut juridique'),
 		component: ChoixDuStatut,
+		simulation: {
+			situation: {
+				'entreprise . catégorie juridique . remplacements': 'non',
+			},
+		},
+		autoloadLastSimulation: true,
 	} as const)
 }

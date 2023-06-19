@@ -9,7 +9,7 @@ import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import SimulateurPage from '../../components/PageData'
+import SimulateurOrAssistantPage from '../../components/SimulateurOrAssistantPage'
 
 type State = {
 	fromGérer?: boolean
@@ -42,7 +42,7 @@ export default function Simulateurs() {
 						path={
 							s.path.replace(absoluteSitePaths.simulateurs.index, '') + '/*'
 						}
-						element={<SimulateurPage />}
+						element={<SimulateurOrAssistantPage />}
 					/>
 				)),
 		[simulatorsData, absoluteSitePaths]

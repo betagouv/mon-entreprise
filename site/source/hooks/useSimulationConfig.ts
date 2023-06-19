@@ -10,11 +10,11 @@ import { configSelector } from '@/store/selectors/simulationSelectors'
 import { ImmutableType } from '@/types/utils'
 
 export default function useSimulationConfig({
-	path,
+	key,
 	config,
 	autoloadLastSimulation = false,
 }: {
-	path: string
+	key: string
 	config?: ImmutableType<SimulationConfig>
 	autoloadLastSimulation?: boolean
 }) {
@@ -22,7 +22,7 @@ export default function useSimulationConfig({
 
 	// Initialize redux store in SSR mode
 	if (import.meta.env.SSR) {
-		dispatch(setSimulationConfig(config ?? {}, path))
+		dispatch(setSimulationConfig(config ?? {}, key))
 	}
 
 	const lastConfig = useSelector(configSelector)
@@ -35,14 +35,10 @@ export default function useSimulationConfig({
 
 	useLayoutEffectWithoutWarnInSSR(() => {
 		if (config && lastConfig !== config) {
-			dispatch(setSimulationConfig(config ?? {}, path))
+			dispatch(setSimulationConfig(config ?? {}, key))
 		}
-	}, [config, dispatch, lastConfig, path])
-
-	useEffect(() => {
 		if (autoloadLastSimulation) {
 			dispatch(loadPreviousSimulation())
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [config, dispatch, lastConfig, key])
 }

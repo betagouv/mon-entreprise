@@ -1,8 +1,7 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
-import Meta from '@/components/utils/Meta'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { ClockIcon } from '@/design-system/icons'
@@ -12,31 +11,22 @@ import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { SimulateurCard } from '@/pages/simulateurs-et-assistants'
+import { useSitePaths } from '@/sitePaths'
 
-import { useNextStep } from './_components/useNextStep'
+import { useNextStep } from './_components/useSteps'
 import créerSvg from './_illustrations/créer.svg'
 
 export default function AccueilChoixStatut() {
-	const { t } = useTranslation()
-
 	const simulateurData = useSimulatorsData()
 	const nextStep = useNextStep()
+	const choixStatutPath =
+		useSitePaths().absoluteSitePaths.assistants['choix-du-statut']
 
 	return (
 		<>
 			<TrackPage name="accueil" />
-			<Meta
-				title={t('choix-statut.meta.title', 'Choisir votre statut')}
-				description={t('choix-statut.meta.description', 'Choisir votre statut')}
-				ogImage={créerSvg}
-			/>
 
-			<PageHeader
-				titre={
-					<Trans i18nKey="choix-statut.home.title">Choisir votre statut</Trans>
-				}
-				picture={créerSvg}
-			>
+			<PageHeader picture={créerSvg}>
 				<Intro>
 					<Trans i18nKey="choix-statut.home.intro">
 						La première étape consiste à choisir un{' '}
@@ -58,7 +48,7 @@ export default function AccueilChoixStatut() {
 
 				<Grid container spacing={3} style={{ alignItems: 'center' }}>
 					<Grid item xs={12} sm={'auto'}>
-						<Button size="XL" to={nextStep}>
+						<Button size="XL" to={choixStatutPath[nextStep]}>
 							<Trans i18nKey="choix-statut.home.find-statut">
 								Trouver le bon statut
 							</Trans>

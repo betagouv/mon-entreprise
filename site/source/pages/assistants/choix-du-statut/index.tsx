@@ -1,8 +1,9 @@
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { useSitePaths } from '@/sitePaths'
 
+import { useCurrentStep } from './_components/useSteps'
 import Association from './association'
 import Associé from './associé'
 import Commune from './commune'
@@ -15,12 +16,12 @@ import Statuts from './statuts'
 
 export default function ChoixDuStatut() {
 	const { relativeSitePaths } = useSitePaths()
-	const location = useLocation()
+	const currentStep = useCurrentStep()
 	const childrenPaths = relativeSitePaths.assistants['choix-du-statut']
 
 	return (
 		<>
-			<ScrollToTop key={location.pathname} />
+			<ScrollToTop key={currentStep} />
 			<Routes>
 				<Route index element={<AccueilChoixStatut />} />
 				<Route
