@@ -8,7 +8,7 @@ import { koaBody } from 'koa-body'
 const Redis = IORedis.default
 const RedisMock = IORedisMock.default
 
-// cache expires in 12 hours
+// cache expires in 12 hours (in seconds)
 const CACHE_EXPIRE = 12 * 60 * 60
 
 const redis =
@@ -43,9 +43,11 @@ export const redisCacheMiddleware = () => {
 		await next()
 
 		if (ctx.status === 200) {
+			const responseCachedAt = Date.now()
+			const cacheExpiresAt = responseCachedAt + CACHE_EXPIRE * 1000
 			await redis.set(
 				cacheKey,
-				JSON.stringify({ responseCachedAt: Date.now(), ...ctx.body }),
+				JSON.stringify({ responseCachedAt, cacheExpiresAt, ...ctx.body }),
 				'EX',
 				CACHE_EXPIRE
 			)
