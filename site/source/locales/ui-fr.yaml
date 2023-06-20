@@ -2112,6 +2112,8 @@ stats:
   change_january_2022: Modification du module de retours utilisateurs entraînant
     une baisse significative des avis
   change_january_2023: Modification du module de retours utilisateurs
+  change_june_2023: Ajout d'un cache sur l'API pour améliorer les performances et
+    réduire le nombre de requêtes.
   description: Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
   title: Statistiques
 statut du dirigeant:

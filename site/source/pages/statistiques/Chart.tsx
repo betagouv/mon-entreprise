@@ -10,6 +10,7 @@ import {
 	ComposedChart,
 	Legend,
 	Line,
+	ReferenceLine,
 	ResponsiveContainer,
 	Tooltip,
 	XAxis,
@@ -28,6 +29,7 @@ type Period = 'mois' | 'jours'
 export type Data<T = number | Record<string, number>> = {
 	date: string
 	nombre: T
+	info?: ReactNode
 }[]
 
 export type DataStacked = Data<Record<string, number>>
@@ -188,6 +190,17 @@ export default function VisitsChart({
 							/>
 						)
 					)}
+
+					{flattenData
+						.filter(({ info }) => info)
+						.map(({ date }) => (
+							<ReferenceLine
+								key={date}
+								x={date}
+								stroke={darkMode ? 'dodgerblue' : 'dodgerblue'}
+								strokeWidth={2}
+							/>
+						))}
 				</ComposedChartWithRole>
 			</RealResponsiveContainer>
 		</Body>
@@ -262,6 +275,7 @@ const CustomTooltip = ({
 
 	return (
 		<StyledLegend>
+			{data.info}
 			<Body>
 				{period === 'jours' ? formatDayLong(data.date) : formatMonth(data.date)}
 			</Body>
