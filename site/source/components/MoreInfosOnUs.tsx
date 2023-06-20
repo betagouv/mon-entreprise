@@ -22,12 +22,12 @@ export default function MoreInfosOnUs() {
 		<>
 			<H2>Plus d'infos sur mon-entreprise</H2>
 			<Grid container spacing={2} role="list">
-				{!pathname.startsWith(absoluteSitePaths.nouveautés) && (
+				{!pathname.startsWith(absoluteSitePaths.nouveautés.index) && (
 					<Grid item xs={12} sm={6} md={4} role="listitem">
 						<SmallCard
 							icon={<Emoji emoji={'✨'} />}
 							title={<h3>Les nouveautés</h3>}
-							to={absoluteSitePaths.nouveautés}
+							to={absoluteSitePaths.nouveautés.index}
 						>
 							Qu'avons-nous mis en production ces derniers mois ?
 						</SmallCard>

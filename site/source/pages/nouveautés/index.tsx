@@ -30,8 +30,8 @@ export default function Nouveautés() {
 	const { data } = useFetchData<Releases>('/data/releases.json')
 	const navigate = useNavigate()
 	const { absoluteSitePaths } = useSitePaths()
-	const slug = useMatch(`${encodeURI(absoluteSitePaths.nouveautés)}/:slug`)
-		?.params?.slug
+	const slug = useMatch(encodeURI(absoluteSitePaths.nouveautés.date))?.params
+		?.date
 	useHideNewsBanner()
 
 	const { t } = useTranslation()
@@ -48,7 +48,7 @@ export default function Nouveautés() {
 	const selectedRelease = data.findIndex(({ name }) => slugify(name) === slug)
 
 	const getPath = (index: number) =>
-		`${absoluteSitePaths.nouveautés}/${slugify(data[index].name)}`
+		`${absoluteSitePaths.nouveautés.index}/${slugify(data[index].name)}`
 
 	if (!slug || selectedRelease === -1) {
 		return <Navigate to={getPath(0)} replace />

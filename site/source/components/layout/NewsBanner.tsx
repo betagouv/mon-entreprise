@@ -68,7 +68,7 @@ function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
 				<Body>
 					Découvrez les nouveautés {determinant(lastRelease.name)}
 					<Link
-						to={absoluteSitePaths.nouveautés}
+						to={absoluteSitePaths.nouveautés.index}
 						aria-label={t(
 							'Voir les nouveautés apportées par la version {{release}}',
 							{ release: lastRelease.name.toLowerCase() }
