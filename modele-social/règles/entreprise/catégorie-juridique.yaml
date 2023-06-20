@@ -46,11 +46,16 @@ entreprise . catégorie juridique . EI:
     code insee: 1000
   titre: Entreprise individuelle (y compris auto-entrepreneurs)
   valeur: catégorie juridique = 'EI'
-  non applicable si: associés . multiples
   avec:
     auto-entrepreneur:
+      applicable si: associés . unique
       acronyme: AE
-      non applicable si: entreprise . imposition . IR . type de bénéfices = 'BA'
+      non applicable si:
+        une de ces conditions:
+          - entreprise . imposition . IR . type de bénéfices = 'BA'
+          - toutes ces conditions:
+              - activité . nature . libérale . réglementée
+              - dirigeant . indépendant . PL . métier . rattaché CIPAV = non
 
       question: Êtes-vous auto-entrepreneur ?
 
@@ -59,6 +64,7 @@ entreprise . catégorie juridique . EI:
         experimental: oui
 
     EI:
+      applicable si: associés . unique
       titre: entreprise individuelle
       acronyme: EI
       valeur: auto-entrepreneur = non
@@ -70,6 +76,7 @@ entreprise . catégorie juridique . SARL:
     code insee: 5499
   titre: SARL ou EURL
   valeur: catégorie juridique = 'SARL'
+  non applicable si: activité . nature . libérale . réglementée
   avec:
     SARL:
       titre: Société à responsabilité limitée
@@ -129,6 +136,7 @@ entreprise . catégorie juridique . SNC:
     code insee: 5202
 
 entreprise . catégorie juridique . SAS:
+  non applicable si: activité . nature . libérale . réglementée
   titre: SAS ou SASU
   acronyme: SAS(U)
   valeur: catégorie juridique = 'SAS'
@@ -152,6 +160,7 @@ entreprise . catégorie juridique . SAS:
 ### (niveau 1 code 6)	Autre personne morale immatriculée au RCS ###
 
 entreprise . catégorie juridique . SELARL:
+  applicable si: activité . nature . libérale . réglementée
   acronyme: SELARL(U)
   titre: SELARL ou SELARLU
   description: Société d'exercice libéral à responsabilité limitée
@@ -169,6 +178,7 @@ entreprise . catégorie juridique . SELARL:
       applicable si: associés . multiples
 
 entreprise . catégorie juridique . SELAS:
+  applicable si: activité . nature . libérale . réglementée
   acronyme: SELAS(U)
   titre: SELAS ou SELASU
   description: Société d'exercice libéral par actions simplifiées
@@ -198,13 +208,18 @@ entreprise . catégorie juridique . autre:
 entreprise . catégorie juridique . remplacements:
   # On extrait tous les remplacements dans un espace de nom que l'on peut désactiver pour l'aide au choix du statut par exemple
   # Cela permet d'éviter des boucles de dans les missingVariables
+
+  # Ces remplacements mette à jour les régimes d'imposition et la nature d'activité en fonctions de ceux compatibles avec le statut juridique connu.
   experimental: oui
   valeur: non
   avec:
     régime micro-entreprise:
       privé: oui
-      valeur: EI . auto-entrepreneur
-      applicable si: remplacements
+
+      applicable si:
+        toutes ces conditions:
+          - remplacements
+          - EI . auto-entrepreneur
       remplace:
         - règle: imposition . régime
           par: "'micro-entreprise'"
@@ -217,37 +232,45 @@ entreprise . catégorie juridique . remplacements:
 
     associé unique:
       privé: oui
-      applicable si: remplacements
 
-      une de ces conditions:
-        - EI
-        - SARL . EURL
-        - SAS . SASU
-        - SELAS . SELASU
-        - SELARL . SELARLU
+      applicable si:
+        toutes ces conditions:
+          - remplacements
+          - une de ces conditions:
+              - EI
+              - SARL . EURL
+              - SAS . SASU
+              - SELAS . SELASU
+              - SELARL . SELARLU
       remplace:
         - règle: associés
           par: "'unique'"
 
     associé multiples:
-      applicable si: remplacements
       privé: oui
-      une de ces conditions:
-        - SNC
-        - SARL . SARL
-        - SAS . SAS
-        - SELAS . SELAS
-        - SELARL . SELARL
+
+      applicable si:
+        toutes ces conditions:
+          - remplacements
+          - une de ces conditions:
+              - SNC
+              - SARL . SARL
+              - SAS . SAS
+              - SELAS . SELAS
+              - SELARL . SELARL
       remplace:
         - règle: associés
           par: "'multiples'"
 
     profession libérale reglementée:
       privé: oui
+
       applicable si:
-        une de ces conditions:
-          - SELARL
-          - SELAS
+        toutes ces conditions:
+          - remplacements
+          - une de ces conditions:
+              - SELARL
+              - SELAS
       remplace:
         - règle: activités . libérale
           par: oui
@@ -262,3 +285,12 @@ entreprise . catégorie juridique . remplacements:
         - activités . commerciale
         - activités . agricole
         - activités . artisanale
+
+    pas profession libérale reglementée:
+      privé: oui
+      non applicable si:
+        une de ces conditions:
+          - remplacements = non
+          - SELARL
+          - SELAS
+      rend non applicable: activités . libérale . réglementée
