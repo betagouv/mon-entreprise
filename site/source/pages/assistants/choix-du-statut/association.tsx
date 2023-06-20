@@ -45,7 +45,7 @@ export default function Association() {
 			>
 				<RadioCardGroup
 					aria-label={t(
-						'choix-statut.association.question',
+						'choix-statut.association.question.label',
 						'Pourquoi créez vous cette entreprise ?'
 					)}
 					onChange={setCurrentSelection as (val: string) => void}
@@ -54,7 +54,7 @@ export default function Association() {
 					<RadioCard
 						value={'gagner-argent'}
 						label={
-							<Trans i18nKey="choix-statut.association.question.gagner-argent">
+							<Trans i18nKey="choix-statut.association.question.gagner-argent.label">
 								Dans le but de <Strong>gagner de l'argent</Strong>
 							</Trans>
 						}
@@ -64,7 +64,7 @@ export default function Association() {
 					<RadioCard
 						value={'non-lucratif'}
 						label={
-							<Trans i18nKey="choix-statut.association.question.non-lucratif">
+							<Trans i18nKey="choix-statut.association.question.non-lucratif.label">
 								Dans un but <Strong>non lucratif</Strong>
 							</Trans>
 						}

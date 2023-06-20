@@ -102,6 +102,7 @@ En savoir plus sur impots:
 "En savoir plus, nouvelle fenêtre": Learn more, new window
 English version of the website enabled.: English version of the website enabled.
 Enregistrer et passer à la suite: Save and continue
+Enregistrer et voir le résultat: Save and view results
 Entreprise Individuelle: Sole Proprietorship
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company created on <2><0></0></2> and domiciled in <6><0></0></6>
 Envoyer: Send
@@ -163,7 +164,6 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
   panel will open to allow you to add details to the simulation, detailed
   results will be displayed below the form and will be updated when you edit the
   form.</2>
-Les formalités pour embaucher: The formalities for hiring
 "Lire les précisions, ouvrir le message condensé.": Read the details, open the condensed message.
 Liste des intégrations: List of integrations
 Ma déclaration: My statement
@@ -212,9 +212,6 @@ Passer à la version française du site: Switch to the French version of the sit
 Personnalisez l'intégration: Customize the integration
 Plan du site: Site Map
 "Plus d'info sur, {{ title }}": More info on, {{ title }}
-Plus d'informations: More information (fr)
-Plus d'informations sur service-public:
-  "fr, nouvelle fenêtre": More information on service-public.fr, new window
 "Plus d'infos sur, {{ title }}": More info on, {{ title }}
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
@@ -298,6 +295,7 @@ Statut du conjoint: Status of the spouse
 Suivant: Next
 "Suivant, passer à l'étape suivante": Next, go to the next step
 "Suivant, passer à la question suivante": Next, go to the next question
+"Suivant, voir le résultat": Next, see the result
 Switch to the english version of the website: Switch to the english version of the website
 "Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.":
   Table showing the satisfaction of users in {{percentOrVotes}} on the site
@@ -397,35 +395,6 @@ aide-déclaration-indépendant:
 api:
   description: Tools for developers
   title: Using our REST API
-après:
-  ape:
-    description: The APE code corresponds to your company's <1>sector of
-      activity</1>. It classifies the main branch of your company in the French
-      national classification of activities "NAF" (<3>see list</3>). <6>It also
-      determines the collective agreement applicable to the company, and in part
-      the rate of the occupational injury and disease contribution to be paid.
-      </6><7>In case of an erroneous APE code, you can <2>request a
-      modification</2> from INSEE.</7>
-    titre: The APE code
-  entreprise: company
-  intro: Once your <2>{{companyStatusChoice}}</2> has been successfully
-    registered, you'll have access to the following
-  kbis:
-    description:
-      "1": It is the official document attesting to <2>the legal existence of a
-        commercial enterprise</2>. In most cases, to be opposable and authentic
-        for administrative procedures, the extract must be less than 3 months
-        old.
-      "2": This document is generally requested when applying for a public tender,
-        opening a professional bank account, purchasing professional equipment
-        from distributors, etc.
-    titre: The Kbis
-  siret:
-    description: The SIREN number <1>identifies your company</1> while the SIRET
-      number identifies each place of business operated by the same company. The
-      SIRET is composed by the SIREN followed by the establishment number (NIC).
-    titre: The SIRET number
-  titre: After registration
 assistant-DRI:
   declaration:
     intro: <0>We will now show you how to <2>complete your personal income tax
@@ -468,7 +437,6 @@ assistants:
       cta: Visit the site
       title: See your public data
 au bout de 10 ans: after 10 years
-auto-entreprise: self-employed
 back: Return to the simulation
 betawarning: "<0><0>This tool is in beta version</0>: we are working to
   <3>validate the information and calculations</3>, but <6>errors may be
@@ -491,6 +459,50 @@ checklist:
     closed: Read more
     open: Hide details
 choix-statut:
+  activité:
+    help:
+      title: Choosing the right status for your situation
+    title: My main activity is...<1><0>The choice of status and contributions
+      depends on your professional activity. Entering your occupation will give
+      you a clearer idea of the possible statuses and enable you to simulate
+      your income more accurately.</0><1><0>Do you combine several
+      activities?</0><1>Your company must still declare one main activity to the
+      authorities. To find out how to do this, <2>see this
+      guide</2>.</1></1></1>
+  association:
+    help:
+      title: What is an association, or non-profit organization?
+    question:
+      gagner-argent:
+        label: To <1>earn</1> money
+      label: Why are you creating this company?
+      non-lucratif:
+        description: For example, by creating an association
+        label: <1>Not for profit</1>
+    title: "I am creating this company...<1><0>It enables you to <2>share a common
+      project in the general interest, without making a profit</2>: promoting a
+      sporting activity, the integration of people in difficulty, local
+      development, etc...</0></1>"
+  associés:
+    help:
+      title: Several partners or shareholders
+    question1:
+      label: How do you manage this business?
+      plusieurs: Several
+      seul: Only
+    question2: Do you plan to add partners at a later stage?
+    title: I manage this business...<1><0>You <1>share ownership of your business
+      </1>with other people, who may be <4>natural persons</4> (individuals) or
+      <7>legal entities</7> (companies).</0><1>In the case of <1>joint-stock
+      companies</1> (SASU, SAS), these are referred to
+      as<3>shareholders</3>.</1></1>
+  commune:
+    help:
+      title: Each region has its own specific features
+    title: In which commune would you like to set up your business?<1><0>Some laws
+      are specific to certain regions or departments (Alsace-Moselle, DOM
+      exemption, etc.).</0><1>In addition, some communes have special incentives
+      for business start-ups (ZRR, ZFU, etc.).</1></1>
   home:
     estimated-duration: "Estimated duration: 5 minutes."
     find-statut: Finding the right status
@@ -498,10 +510,22 @@ choix-statut:
     intro: The first step is to choose the <2>right legal status for your
       business</2>. The administrative procedures will vary depending on the
       legal status you choose.
-    title: Choose your status
-  meta:
-    description: Choose your status
-    title: Choose your status
+  rémunération:
+    CA:
+      help:
+        title: Estimate my sales
+      label: Sales (excl. VAT)
+      title: "In the first year, I estimate my sales at...<1><0>Sales are the <2>sum
+        of all sales made during</2> your accounting period (one year): <6>Sales
+        = selling price × quantities sold</6>.</0></1>"
+    charges:
+      help:
+        title: Define your business expenses
+      label: Amount of charges excl.
+      title: "<0>I estimate my business expenses at...<1><0>These are <2>all the
+        expenses necessary for the smooth running of your business</2>:
+        accountancy, telephone subscription, internet subscription, health
+        insurance, provident fund, work tools, etc.</0></1></0>"
 chomagePartiel:
   tableCaption: Table showing net salary and cost to the employer with or without
     partial unemployment.
@@ -619,20 +643,11 @@ conversation:
 copied: Copy
 copyMessage: Copy the message
 créer:
-  activité:
-    help:
-      title: Choosing the right status for your situation
-    subtitle: <0>My main activity is...<1><0>The choice of status and contributions
-      depends on your professional activity. Entering your occupation will give
-      you a clearer idea of the possible statuses and enable you to simulate
-      your income more accurately.</0><1><0>Do you combine several
-      activities?</0><1>Your company must still declare one main activity to the
-      authorities. To find out how to do this, <2>see this
-      guide</2>.</1></1></1></0>
-    title: Your business
   activité-détails:
     next1: Continue with this activity
-    subtitle: <0>Details of your business</0>
+  choix-statut:
+    détails-activité:
+      title: Details of your business
 d'aides: aids
 de chiffre d’affaires: of turnover
 design-system:
@@ -656,55 +671,6 @@ dividendes:
 documentation:
   description: Explore all the rules in the documentation
   title: Documentation
-embauche:
-  cesuAriaLabel: chèque emploi associatif (CEA), see more information on
-    cesu.urssaf.fr, new window
-  chaque mois: >
-    <0>Then each month</0> <1>
-      <0>Compute the individual social contributions (using the chosen payslip software)</0>
-      <1>Declare the contributions through the DSN, the new online declaration system</1>
-      <2>Deliver the standardised payslip to your employee</2>
-    </1> <2>Get an example payslip</2>
-  teseAriaLabel: titre emploi service entreprise (Tese), see more information on
-    letese.urssaf.fr, new window
-  tâches:
-    contrat:
-      titre: Sign an employment contract with your employee
-    description: All the necessary steps to hire your first employee.
-    dpae:
-      ariaLabel: be done online, access the URSSAF website, new window
-      description: >
-        This can be done through the form called DPAE, must be completed
-        within 8 days before any hiring, and can <2>be done online (Fr)</2>
-      titre: Declare your hiring t  o the social administration
-    logiciel de paie:
-      ariaLabel: private payroll software, see examples on dsn-info.fr, new window
-      description: >
-        With fewer than 20 employees, payslips and declarations can be
-        handled online by the <2> Tese (Fr)</2>, a tool developped by the french
-        social administration. You can also use <5>a private payslip software
-        (Fr)</5>
-      titre: Choose a payslip software
-    medecine:
-      description: Don't forget to plan an initial appointment for each new hire.
-      titre: Register to a work medicine office
-    page:
-      description: All the necessary steps to hire your first employee in France.
-      titre: The formalities for hiring
-    pension:
-      aria-label: Find my pension fund, new window
-      description: Find your pension institute (Fr)
-      titre: Contact the compulsory supplementary pension institution assigned to you
-    prévoyance . santé:
-      description: >
-        You must cover your employees with the private complementary health
-        insurance ("prévoyance . santé" or colloquially "mutuelle" in French) of
-        your choice as long as it provides a set of minimum guarantees. The
-        employer must pay at least half of the package.
-      titre: Pick a private complementary health insurance
-    registre:
-      titre: Keep an updated staff register
-    titre: Hiring process checklist
 employeur: Employer share
 en incluant: including
 en titres-restaurant: in restaurant vouchers
@@ -1014,7 +980,7 @@ pages:
         you best with this wizard"
       title: Help in choosing the legal status
     shortname: Legal status assistant
-    title: Legal status choice assistant
+    title: Choose your status
   développeur:
     api: '<0><0>You can reuse the calculations of my-company on your site or service
       very easily thanks to our open REST API and without
@@ -1760,7 +1726,6 @@ simulateurs:
     urssaf: The calculations are indicative and are not a substitute for the actual
       statements of Urssaf, impots.gouv.fr, or others.
 simulation-end:
-  cta: Know the steps to take
   hiring:
     text: You can now turn your hiring project into reality.
   text: You have reached the most accurate estimate.
