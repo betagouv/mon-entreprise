@@ -16,9 +16,9 @@ import { batchUpdateSituation } from '@/store/actions/actions'
 import { guichetToPLMétier } from '@/utils/guichetToPLMétier'
 
 import {
+	getGuichetTitle,
 	GuichetDescription,
 	GuichetEntry,
-	getGuichetTitle,
 	useGuichetInfo,
 } from '../recherche-code-ape/GuichetInfo'
 import Layout from './_components/Layout'

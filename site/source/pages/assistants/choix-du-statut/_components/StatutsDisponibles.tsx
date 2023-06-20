@@ -1,7 +1,7 @@
+import { DottedName } from 'modele-social'
 import styled from 'styled-components'
 
-import { DottedName } from '@/../../modele-social'
-import { Statut, StatutTag } from '@/components/StatutTag'
+import { StatutTag, StatutType } from '@/components/StatutTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { H5 } from '@/design-system/typography/heading'
@@ -21,24 +21,12 @@ export default function StatutsDisponibles() {
 				<Statut statut="entreprise . catégorie juridique . EI . auto-entrepreneur" />
 				<Statut statut="entreprise . catégorie juridique . SARL . EURL" />
 				<Statut statut="entreprise . catégorie juridique . SARL . SARL" />
-				<Statut
-					statut="entreprise . catégorie juridique . SAS . SAS"
-				/>
-				<Statut
-					statut="entreprise . catégorie juridique . SAS . SASU"
-				/>
-				<Statut
-					statut="entreprise . catégorie juridique . SELARL . SELARL"
-				/>
-				<Statut
-					statut="entreprise . catégorie juridique . SELARL . SELARLU"
-				/>
-				<Statut
-					statut="entreprise . catégorie juridique . SELAS . SELAS"
-				/>
-				<Statut
-					statut="entreprise . catégorie juridique . SELAS . SELASU"
-				/>
+				<Statut statut="entreprise . catégorie juridique . SAS . SAS" />
+				<Statut statut="entreprise . catégorie juridique . SAS . SASU" />
+				<Statut statut="entreprise . catégorie juridique . SELARL . SELARL" />
+				<Statut statut="entreprise . catégorie juridique . SELARL . SELARLU" />
+				<Statut statut="entreprise . catégorie juridique . SELAS . SELAS" />
+				<Statut statut="entreprise . catégorie juridique . SELAS . SELASU" />
 				<Statut statut="entreprise . catégorie juridique . association" />
 			</StyledUl>
 		</StyledMessage>
@@ -77,11 +65,10 @@ const StyledMessage = styled(Message)`
 
 function Statut({ statut }: { statut: DottedName }) {
 	const engine = useEngine()
-	const disabled =
-		engine.evaluate({ '=': [statut, 'non'] }).nodeValue === true
+	const disabled = engine.evaluate({ '=': [statut, 'non'] }).nodeValue === true
 
 	const acronyme = (engine.getRule(statut).rawNode.acronyme ??
-		engine.getRule(statut).title.toLocaleLowerCase()) as Statut
+		engine.getRule(statut).title.toLocaleLowerCase()) as StatutType
 
 	return (
 		<Li className={disabled ? 'disabled' : ''}>
