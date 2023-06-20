@@ -48,7 +48,7 @@ export default function Association() {
 						'choix-statut.association.question',
 						'Pourquoi créez vous cette entreprise ?'
 					)}
-					onChange={setCurrentSelection}
+					onChange={setCurrentSelection as (val: string) => void}
 					value={currentSelection}
 				>
 					<RadioCard

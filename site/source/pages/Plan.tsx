@@ -88,11 +88,11 @@ export const PlanContent = () => {
 						})
 						.reverse()}
 
-					<Li>
+					{/* <Li>
 						<Link to={absoluteSitePaths.assistants.embaucher}>
 							<Trans>Les formalités pour embaucher</Trans>
 						</Link>
-					</Li>
+					</Li> */}
 
 					<Li>
 						<Link to={absoluteSitePaths.assistants.sécuritéSociale}>

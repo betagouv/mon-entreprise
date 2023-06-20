@@ -1,10 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import {
-	WhenAlreadyDefined,
-	WhenApplicable,
-	WhenNotApplicable,
-} from '@/components/EngineValue'
+import { WhenAlreadyDefined, WhenApplicable } from '@/components/EngineValue'
 import { useEngine } from '@/components/utils/EngineContext'
 // import { Article } from '@/design-system/card'
 // import { Emoji } from '@/design-system/emoji'
@@ -19,7 +15,6 @@ import { useSitePaths } from '@/sitePaths'
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from '../assistants/pour-mon-entreprise/AutoEntrepeneurCard'
 import { CodeDuTravailNumeriqueCard } from '../assistants/pour-mon-entreprise/CodeDuTravailNumeriqueCard'
-import { DemarcheEmbaucheCard } from '../assistants/pour-mon-entreprise/DemarcheEmbauche'
 import { SecuriteSocialeCard } from '../assistants/pour-mon-entreprise/SecuriteSocialeCard'
 
 interface NextStepsProps {
@@ -60,11 +55,11 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						/>
 					</Grid>
 				)}
-				<WhenNotApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
+				{/* <WhenNotApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
+					<Grid item sm={12} md={4} role="listitem">
 						<DemarcheEmbaucheCard />
 					</Grid>
-				</WhenNotApplicable>
+				</WhenNotApplicable> */}
 				<WhenApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
 					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<AutoEntrepreneurCard />

@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Article } from '@/design-system/card'
 import { useSitePaths } from '@/sitePaths'
 
+// TODO: remove?
 export function DemarcheEmbaucheCard() {
 	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
@@ -21,7 +22,7 @@ export function DemarcheEmbaucheCard() {
 				'gérer.ressources.embaucher.aria-label',
 				"Embauche d'un salarié, Voir la liste des démarches"
 			)}
-			to={absoluteSitePaths.assistants.embaucher}
+			// to={absoluteSitePaths.assistants.embaucher}
 		>
 			<Trans i18nKey="gérer.ressources.embaucher.body">
 				La liste des choses à faire pour être sûr de ne rien oublier lors de

@@ -31,7 +31,7 @@ const StatusCard = ({
 				<Grid container spacing={1}>
 					{status.map((statusString) => (
 						<Grid item key={statusString}>
-							<StatutTag statut={statusString} text="shortName" showIcon />
+							<StatutTag statut={statusString} text="longName" showIcon />
 						</Grid>
 					))}
 				</Grid>
