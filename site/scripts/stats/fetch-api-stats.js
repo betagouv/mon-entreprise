@@ -43,7 +43,10 @@ export const apiStats = async (start, end, interval) => {
 		)
 			.filter((x) => !!x)
 			.flatMap(({ results }, i) =>
-				results.map(({ date, pageviews }) => ({ date, [names[i]]: pageviews }))
+				(results || []).map(({ date, pageviews }) => ({
+					date,
+					[names[i]]: pageviews,
+				}))
 			)
 			.reduce(
 				(acc, el) => (
