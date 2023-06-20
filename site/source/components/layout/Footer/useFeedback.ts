@@ -31,7 +31,7 @@ export const useFeedback = () => {
 			// Exclure les pages et sous-pages
 			![
 				absoluteSitePaths.documentation.index,
-				absoluteSitePaths.nouveautés,
+				absoluteSitePaths.nouveautés.index,
 				absoluteSitePaths.stats,
 				absoluteSitePaths.développeur.index,
 			].some((path) => currentPathDecoded.includes(path))

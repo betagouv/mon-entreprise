@@ -87,7 +87,10 @@ const rawSitePathsFr = {
 		is: 'impot-societe',
 		dividendes: 'dividendes',
 	},
-	nouveautés: 'nouveautés',
+	nouveautés: {
+		index: 'nouveautés',
+		date: ':date',
+	},
 	stats: 'statistiques',
 	accessibilité: 'accessibilité',
 	budget: 'budget',
@@ -173,7 +176,10 @@ const rawSitePathsEn = {
 		is: 'corporate-tax',
 		dividendes: 'dividends',
 	},
-	nouveautés: 'news',
+	nouveautés: {
+		index: 'news',
+		date: ':date',
+	},
 	stats: 'statistics',
 	accessibilité: 'accessibility',
 	simulateursEtAssistants: 'simulators-and-assistants',
@@ -336,8 +342,6 @@ export const alternatePathname = () => {
 			(acc, [key, path]): Return =>
 				typeof path === 'object'
 					? { ...acc, [key]: buildSitemap(lang, path, acc[key] as Return) }
-					: /\/:/.test(path)
-					? acc
 					: ({ ...acc, [key]: { ...acc[key], [lang]: path } } as Return),
 			initialValue
 		)

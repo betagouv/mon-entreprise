@@ -154,7 +154,7 @@ const App = () => {
 								element={<Integration />}
 							/>
 							<Route
-								path={relativeSitePaths.nouveautés + '/*'}
+								path={relativeSitePaths.nouveautés.index + '/*'}
 								element={<Nouveautés />}
 							/>
 							<Route path={relativeSitePaths.stats} element={<Stats />} />

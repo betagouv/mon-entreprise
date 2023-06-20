@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
+import { generatePath, matchPath, useLocation } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 import Contact from '@/components/Contact'
@@ -15,11 +15,25 @@ import { Container, Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
+import { isNotNull } from '@/utils'
 
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import Privacy from './Privacy'
 
 const altPathname = alternatePathname()
+
+const altPathnnamesWithParams = (
+	lang: keyof typeof altPathname,
+	path: string
+) =>
+	Object.entries(altPathname[lang])
+		.filter(([pth]) => /\/:/.test(pth))
+		.map(([pth, alt]) => {
+			const match = matchPath(pth, path)
+
+			return match && generatePath(alt, match.params)
+		})
+		.filter(isNotNull)
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -27,13 +41,17 @@ export default function Footer() {
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
 
-	const path = pathname.replace(/^\/(mon-entreprise|infrance)/, '')
+	const path = decodeURIComponent(
+		pathname.replace(/^\/(mon-entreprise|infrance)/, '')
+	)
 	const altLang = language === 'en' ? 'fr' : 'en'
 	const altHref =
 		(language === 'en'
 			? import.meta.env.VITE_FR_BASE_URL
-			: import.meta.env.VITE_EN_BASE_URL) + altPathname[language][path] ??
-		altPathname[language][path + '/']
+			: import.meta.env.VITE_EN_BASE_URL) +
+		(altPathname[language][path] ??
+			altPathnnamesWithParams(language, path)?.[0] ??
+			'/')
 
 	const isFrenchMode = language === 'fr'
 
@@ -96,7 +114,10 @@ export default function Footer() {
 												</Link>
 											</StyledLi>
 											<StyledLi>
-												<Link to={absoluteSitePaths.nouveautés} noUnderline>
+												<Link
+													to={absoluteSitePaths.nouveautés.index}
+													noUnderline
+												>
 													Nouveautés <Emoji emoji="✨" />
 												</Link>
 											</StyledLi>

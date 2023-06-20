@@ -47,7 +47,7 @@ export const PlanContent = () => {
 			</Li>
 
 			<Li>
-				<Link to={absoluteSitePaths.nouveautés}>
+				<Link to={absoluteSitePaths.nouveautés.index}>
 					<Trans>Nouveautés</Trans>
 				</Link>
 			</Li>
