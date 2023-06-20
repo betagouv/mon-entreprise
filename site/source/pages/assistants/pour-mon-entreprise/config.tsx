@@ -16,16 +16,16 @@ export function pourMonEntrepriseConfig({
 		icône: '🏢',
 		title: t(
 			'pages.assistants.pour-mon-entreprise.title',
-			'Gérer mon activité'
+			'Assistants pour mon activité'
 		),
 		shortName: t(
 			'pages.assistants.pour-mon-entreprise.title',
-			'Gérer mon activité'
+			'Assistants pour mon activité'
 		),
 		meta: {
 			title: t(
 				'pages.assistants.pour-mon-entreprise.title',
-				'Gérer mon activité'
+				'Assistants pour mon activité'
 			),
 			description: t(
 				'pages.assistants.pour-mon-entreprise.meta.description',
