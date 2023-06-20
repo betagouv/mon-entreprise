@@ -27,22 +27,18 @@ export default function StatutsDisponibles() {
 				<Statut
 					statut="entreprise . catégorie juridique . SAS . SASU"
 				/>
-				{/* <Statut
+				<Statut
 					statut="entreprise . catégorie juridique . SELARL . SELARL"
-					status=""
 				/>
 				<Statut
 					statut="entreprise . catégorie juridique . SELARL . SELARLU"
-					status=""
 				/>
 				<Statut
 					statut="entreprise . catégorie juridique . SELAS . SELAS"
-					status=""
 				/>
 				<Statut
 					statut="entreprise . catégorie juridique . SELAS . SELASU"
-					status=""
-				/> */}
+				/>
 				<Statut statut="entreprise . catégorie juridique . association" />
 			</StyledUl>
 		</StyledMessage>

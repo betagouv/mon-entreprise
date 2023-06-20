@@ -83,6 +83,7 @@ export default function DétailsActivité() {
 					<GuichetSelection
 						entries={guichetEntries}
 						onGuichetSelected={(code) => {
+							updateSituationWithGuichet(codeGuichet)
 							setCodeGuichet(code)
 						}}
 						codeGuichet={codeGuichet}

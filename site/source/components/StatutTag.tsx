@@ -15,7 +15,6 @@ const TAG_DATA = {
 	EI: {
 		color: 'independant',
 		longName: 'Entreprise individuelle',
-		shortName: 'Entreprise (EI)',
 		acronym: 'EI',
 		icon: TriangleIcon,
 	},
@@ -29,35 +28,56 @@ const TAG_DATA = {
 	SASU: {
 		color: 'secondary',
 		longName: 'Société par actions simplifiée unipersonnelle',
-		shortName: 'Société (SASU)',
+
 		acronym: 'SASU',
 		icon: HexagonIcon,
 	},
 	SAS: {
 		color: 'secondary',
 		longName: 'Société par actions simplifiée',
-		shortName: 'Société (SAS)',
 		acronym: 'SAS',
 		icon: HexagonIcon,
 	},
 	EURL: {
 		color: 'artisteAuteur',
 		longName: 'Entreprise unipersonnelle à responsabilité limitée',
-		shortName: 'Entreprise (EURL)',
 		acronym: 'EURL',
 		icon: RhombusIcon,
 	},
 	SARL: {
 		color: 'artisteAuteur',
 		longName: 'Société à responsabilité limitée',
-		shortName: 'Société (SARL)',
 		acronym: 'SARL',
 		icon: RhombusIcon,
+	},
+	SELARLU: {
+		color: 'marin',
+		longName:
+			"Société d'exercice libéral à responsabilité limitée unipersonnelle",
+		acronym: 'SELARLU',
+		icon: RhombusIcon,
+	},
+	SELARL: {
+		color: 'marin',
+		longName: "Société d'exercice libéral à responsabilité limitée",
+		acronym: 'SELARL',
+		icon: RhombusIcon,
+	},
+	SELAS: {
+		color: 'marin',
+		longName: "Société d'exercice libéral par action simplifiée",
+		acronym: 'SELAS',
+		icon: HexagonIcon,
+	},
+	SELASU: {
+		color: 'marin',
+		longName: "Société d'exercice libéral par action simplifiée unipersonnelle",
+		acronym: 'SELASU',
+		icon: HexagonIcon,
 	},
 	association: {
 		color: 'primary',
 		longName: 'Association',
-		shortName: 'Association',
 		acronym: 'Assoc.',
 		icon: SquareIcon,
 	},
@@ -65,7 +85,7 @@ const TAG_DATA = {
 	[key: string]: {
 		color: Colors
 		longName: string
-		shortName: string
+		shortName?: string
 		acronym: string
 		icon: FC
 	}
