@@ -2068,6 +2068,8 @@ stats:
   change_january_2022: Modification of the user feedback module resulting in a
     significant decrease in the number of notices
   change_january_2023: Modification of the user feedback module
+  change_june_2023: Addition of an API cache to improve performance and reduce the
+    number of requests.
   description: Discover our usage statistics updated daily.
   title: Statistics
 statut du dirigeant:
