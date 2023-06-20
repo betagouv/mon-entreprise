@@ -89,7 +89,7 @@ const TAG_DATA = {
 	}
 }
 
-export type Statut = keyof typeof TAG_DATA
+export type StatutType = keyof typeof TAG_DATA
 
 const StyledTag = styled(Tag)`
 	margin: 0 0.25rem;
@@ -106,7 +106,7 @@ const StyledTag = styled(Tag)`
 `
 
 interface StatutTagProps {
-	statut: Statut
+	statut: StatutType
 	text: 'acronym' | 'longName'
 	showIcon?: boolean
 }
