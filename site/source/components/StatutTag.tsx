@@ -21,7 +21,6 @@ const TAG_DATA = {
 	AE: {
 		color: 'tertiary',
 		longName: 'Auto-entrepreneur',
-		shortName: 'Auto-entrepreneur',
 		acronym: 'AE',
 		icon: CircleIcon,
 	},
@@ -85,7 +84,6 @@ const TAG_DATA = {
 	[key: string]: {
 		color: Colors
 		longName: string
-		shortName?: string
 		acronym: string
 		icon: FC
 	}
@@ -109,7 +107,7 @@ const StyledTag = styled(Tag)`
 
 interface StatutTagProps {
 	statut: Statut
-	text: 'acronym' | 'shortName' | 'longName'
+	text: 'acronym' | 'longName'
 	showIcon?: boolean
 }
 
