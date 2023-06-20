@@ -63,7 +63,7 @@ export default function Associés() {
 			>
 				<RadioCardGroup
 					aria-label={t(
-						'choix-statut.associés.question1',
+						'choix-statut.associés.question1.label',
 						'Comment gérez-vous cette entreprise ?'
 					)}
 					onChange={(value) =>

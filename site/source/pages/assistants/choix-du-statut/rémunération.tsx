@@ -24,7 +24,7 @@ export default function Rémunération() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="choix-statut.rémunération.CA">
+					<Trans i18nKey="choix-statut.rémunération.CA.title">
 						La première année, j'estime mon chiffre d'affaires à...
 						<HelpButtonWithPopover
 							title={t(
@@ -52,7 +52,7 @@ export default function Rémunération() {
 					)}
 					displayedUnit="€/an"
 				/>
-				<Trans i18nKey="choix-statut.rémunération.charges">
+				<Trans i18nKey="choix-statut.rémunération.charges.title">
 					<H3 as="h2">
 						J'estime mes charges professionnelles à...
 						<HelpButtonWithPopover

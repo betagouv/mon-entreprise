@@ -4682,6 +4682,40 @@ entreprise . activités . commerciale . débit de tabac:
   question.fr: Exercez-vous une activité de vente de tabac ?
   titre.en: '[automatic] tobacco shop'
   titre.fr: débit de tabac
+entreprise . activités . principale:
+  avec:
+    code APE:
+      description.en: |
+        [automatic] The APE code identifies the company's main activity.
+        It consists of 5 digits.
+      description.fr: >
+        Le code APE est un code qui permet d'identifier l'activité
+        principale de l'entreprise.
+
+        Il est composé de 5 chiffres.
+      titre.en: '[automatic] APE code'
+      titre.fr: code APE
+    code guichet:
+      description.en: >
+        [automatic] The "guichet" code is used to identify the main
+        activity when declaring a new 
+
+        the new company via the guichet unique. It differs from the APE code: some APE codes have several guichet codes associated with them.
+
+
+        It can be used to identify the type of income tax (BIC, BNC, BA), the nature of the activity or the specific pension schemes associated with the type of activity.
+      description.fr: >
+        Le code guichet est utilisé pour identifier l'activité
+        principale lors de la déclaration de 
+
+        la nouvelle entreprise via le guichet unique. Il diffère du code APE : certains code APE ont plusieurs code guichet associés.
+
+
+        Il permet de connaître le type d'imposition de bénéfince (BIC, BNC, BA), la nature d'activité ou encore les régimes de retraite spécifiques associés au type d'activité.
+      titre.en: '[automatic] counter code'
+      titre.fr: code guichet
+  titre.en: '[automatic] Main activity'
+  titre.fr: Activité principale
 entreprise . activités . revenus mixtes:
   avec:
     proportions:
@@ -4880,8 +4914,8 @@ entreprise . catégorie juridique:
 entreprise . catégorie juridique . EI:
   avec:
     EI:
-      titre.en: '[automatic] EI'
-      titre.fr: EI
+      titre.en: '[automatic] sole proprietorship'
+      titre.fr: entreprise individuelle
     auto-entrepreneur:
       question.en: '[automatic] Are you an auto-entrepreneur?'
       question.fr: Êtes-vous auto-entrepreneur ?
@@ -5026,6 +5060,9 @@ entreprise . catégorie juridique . SELAS:
 entreprise . catégorie juridique . SNC:
   titre.en: '[automatic] General partnership'
   titre.fr: Société en nom collectif
+entreprise . catégorie juridique . association:
+  titre.en: '[automatic] association'
+  titre.fr: association
 entreprise . catégorie juridique . autre:
   description.en: >
     [automatic] This simulator does not yet manage all types of
@@ -5035,6 +5072,25 @@ entreprise . catégorie juridique . autre:
     le montant affiché pourrait être incorrect.
   titre.en: '[automatic] other'
   titre.fr: autre
+entreprise . catégorie juridique . remplacements:
+  avec:
+    associé multiples:
+      titre.en: '[automatic] multiple partners'
+      titre.fr: associé multiples
+    associé unique:
+      titre.en: '[automatic] sole partner'
+      titre.fr: associé unique
+    pas profession libérale reglementée:
+      titre.en: '[automatic] not a regulated liberal profession'
+      titre.fr: pas profession libérale reglementée
+    profession libérale reglementée:
+      titre.en: '[automatic] regulated liberal profession'
+      titre.fr: profession libérale reglementée
+    régime micro-entreprise:
+      titre.en: '[automatic] micro-business regime'
+      titre.fr: régime micro-entreprise
+  titre.en: '[automatic] replacements'
+  titre.fr: remplacements
 entreprise . charges:
   description.en: >
     [automatic] 

@@ -104,6 +104,7 @@ En savoir plus sur impots:
 "En savoir plus, nouvelle fenêtre": En savoir plus, nouvelle fenêtre
 English version of the website enabled.: English version of the website enabled.
 Enregistrer et passer à la suite: Enregistrer et passer à la suite
+Enregistrer et voir le résultat: Enregistrer et voir le résultat
 Entreprise Individuelle: Entreprise Individuelle
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
 Envoyer: Envoyer
@@ -167,7 +168,6 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
   d'apporter des précisions à la simulation, des résultats détaillés
   s'afficheront en dessous du formulaire et seront mis à jour quand vous
   modifierez ce dernier.</2>
-Les formalités pour embaucher: Les formalités pour embaucher
 "Lire les précisions, ouvrir le message condensé.": Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
 Ma déclaration: Ma déclaration
@@ -217,9 +217,6 @@ Passer à la version française du site: Passer à la version française du site
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
 "Plus d'info sur, {{ title }}": Plus d'info sur, {{ title }}
-Plus d'informations: Plus d'informations
-Plus d'informations sur service-public:
-  "fr, nouvelle fenêtre": Plus d'informations sur service-public.fr, nouvelle fenêtre
 "Plus d'infos sur, {{ title }}": Plus d'infos sur, {{ title }}
 "Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
   urssaf:
@@ -307,6 +304,7 @@ Statut du conjoint: Statut du conjoint
 Suivant: Suivant
 "Suivant, passer à l'étape suivante": Suivant, passer à l'étape suivante
 "Suivant, passer à la question suivante": Suivant, passer à la question suivante
+"Suivant, voir le résultat": Suivant, voir le résultat
 Switch to the english version of the website: Switch to the english version of the website
 "Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.":
   Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur
@@ -417,36 +415,6 @@ aide-déclaration-indépendant:
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
-après:
-  ape:
-    description: Le code APE correspond au <1>secteur d'activité</1> de votre
-      entreprise. Il classifie la branche principale de votre entreprise dans la
-      nomenclature nationale d'activités françaises « NAF » (<3>voir la
-      liste</3>). <6>Il détermine aussi la convention collective applicable à
-      l'entreprise, et en partie le taux de la cotisation accidents du travail
-      et maladies professionnelles à payer.</6><7>En cas de code APE erroné,
-      vous pouvez <2>demander une modification</2> à l'INSEE.</7>
-    titre: Le code APE
-  entreprise: entreprise
-  intro: "Une fois votre {{statutChoisi}} créée, vous recevez les informations
-    suivantes :"
-  kbis:
-    description:
-      "1": C'est le document officiel qui atteste de <2>l'existence légale d'une
-        entreprise commerciale</2>. Le plus souvent, pour être valable par les
-        procédures administratives, il doit dater de moins de 3 mois. <5>Plus
-        d'infos.</5>
-      "2": Ce document est généralement demandé lors de la candidature à un appel
-        d'offre public, de l'ouverture d'un compte bancaire, d'achats
-        d'équipement professionnel auprès de fournisseurs, etc.
-    titre: Le Kbis
-  siret:
-    description: Le numéro SIREN <1>est l'identifiant de votre entreprise</1> tandis
-      que le numéro SIRET identifie chaque établissement de la même entreprise.
-      Le SIRET commence par le SIREN, auquel on ajoute le numéro d'établissement
-      (NIC).
-    titre: Le numéro SIRET
-  titre: Après la création
 assistant-DRI:
   declaration:
     intro: <0>Nous allons maintenant vous indiquer comment <2>remplir votre
@@ -494,7 +462,6 @@ assistants:
       cta: Visiter le site
       title: Voir vos données publiques
 au bout de 10 ans: au bout de 10 ans
-auto-entreprise: auto-entreprise
 back: Retourner à la simulation
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
@@ -518,6 +485,52 @@ checklist:
     closed: En savoir plus
     open: Masquer les détails
 choix-statut:
+  activité:
+    help:
+      title: Le choix du statut, un choix adapté à votre situation
+    title: Mon activité principale est...<1><0>Le choix du statut et les cotisations
+      diffèrent en fonction de l'activité professionnelle que vous exercez.
+      Renseigner votre métier vous donnera de la visibilité sur les statuts
+      possibles et permettra de simuler vos revenus de manière plus
+      précise.</0><1><0>Vous cumulez plusieurs activités ?</0><1>Votre
+      entreprise doit tout de même déclarer une activité principale à
+      l'administration. Pour savoir comment la déterminer, <2>voir ce
+      guide</2>.</1></1></1>
+  association:
+    help:
+      title: L’association, ou organisation à but non lucratif, quèsaco ?
+    question:
+      gagner-argent:
+        label: Dans le but de <1>gagner de l'argent</1>
+      label: Pourquoi créez vous cette entreprise ?
+      non-lucratif:
+        description: Par exemple, en créant une association
+        label: Dans un but <1>non lucratif</1>
+    title: "Je crée cette entreprise...<1><0>Elle permet de <2>partager un projet
+      commun dans l’intérêt général, sans faire de bénéfices</2> : promouvoir
+      une activité sportive, l'insertion de personnes en difficulté, le
+      développement local, etc...</0></1>"
+  associés:
+    help:
+      title: Être plusieurs associé(e)s ou actionnaires
+    question1:
+      label: Comment gérez-vous cette entreprise ?
+      plusieurs: À plusieurs
+      seul: Seul
+    question2: Envisagez-vous d’ajouter des associé(e)s dans un second temps ?
+    title: Je gère cette entreprise...<1><0>Vous <1>partagez la propriété de votre
+      entreprise </1>avec d’autres personnes qui peuvent être <4>physiques</4>
+      (individus) ou <7>morales</7> (sociétés).</0><1>Dans le cas des
+      <1>sociétés par actions</1> (SASU, SAS), on parle
+      d’<3>actionnaires</3>.</1></1>
+  commune:
+    help:
+      title: Chaque territoire a ses spécificités
+    title: Dans quelle commune voulez-vous créer votre entreprise ?<1><0>Certains
+      dispositifs législatifs sont spécifiques à des régions ou départements
+      (Alsace-Moselle, exonération DOM, etc).</0><1>Par ailleurs, certaines
+      communes ont des dispositifs d'aide à la création d'entreprise (ZRR, ZFU,
+      etc).</1></1>
   home:
     estimated-duration: "Durée estimée : 5 minutes."
     find-statut: Trouver le bon statut
@@ -526,10 +539,23 @@ choix-statut:
     intro: La première étape consiste à choisir un <2>statut juridique adapté à
       votre activité</2>. Les démarches administratives changent en fonction de
       ce dernier.
-    title: Choisir votre statut
-  meta:
-    description: Choisir votre statut
-    title: Choisir votre statut
+  rémunération:
+    CA:
+      help:
+        title: Estimer mon chiffre d’affaire
+      label: Montant du chiffre d'affaires HT
+      title: "La première année, j'estime mon chiffre d'affaires à...<1><0>Le chiffre
+        d’affaires est la <2>somme des montants des ventes réalisées pendant</2>
+        votre exercice comptable (un an) : <6>CA = prix de vente × quantités
+        vendues</6>.</0></1>"
+    charges:
+      help:
+        title: Définir vos charges professionnelles
+      label: Montant des charges HT
+      title: "<0>J'estime mes charges professionnelles à...<1><0>Ce sont <2>toutes les
+        dépenses nécessaires au bon fonctionnement de votre entreprise</2> :
+        expertise-comptable, abonnement téléphonique, abonnement internet,
+        mutuelle, prévoyance, outils de travail, etc.</0></1></0>"
 chomagePartiel:
   tableCaption: Tableau indiquant le salaire net et le coût pour l'employeur avec
     ou sans chômage partiel.
@@ -630,21 +656,11 @@ conversation:
 copied: Copié
 copyMessage: Copier le message
 créer:
-  activité:
-    help:
-      title: Le choix du statut, un choix adapté à votre situation
-    subtitle: <0>Mon activité principale est...<1><0>Le choix du statut et les
-      cotisations diffèrent en fonction de l'activité professionnelle que vous
-      exercez. Renseigner votre métier vous donnera de la visibilité sur les
-      statuts possibles et permettra de simuler vos revenus de manière plus
-      précise.</0><1><0>Vous cumulez plusieurs activités ?</0><1>Votre
-      entreprise doit tout de même déclarer une activité principale à
-      l'administration. Pour savoir comment la déterminer, <2>voir ce
-      guide</2>.</1></1></1></0>
-    title: Votre activité
   activité-détails:
     next1: Continuer avec cette activité
-    subtitle: <0>Précisions sur votre activité</0>
+  choix-statut:
+    détails-activité:
+      title: Précisions sur votre activité
 d'aides: d'aides
 de chiffre d’affaires: de chiffre d’affaires
 design-system:
@@ -669,55 +685,6 @@ dividendes:
 documentation:
   description: Explorez toutes les règles de la documentation
   title: Documentation
-embauche:
-  cesuAriaLabel: chèque emploi associatif (CEA), voir plus d'informations sur
-    cesu.urssaf.fr, nouvelle fenêtre
-  chaque mois: <0>Tous les mois</0><1><0>Utiliser un logiciel de paie pour
-    calculer les cotisations sociales et les transmettre via la déclaration
-    sociale nominative (DSN).<1></1>Certaines offres de service de l’Urssaf
-    comme le <4>titre emploi service entreprise (Tese)</4> ou le <8>chèque
-    emploi associatif (CEA)</8> gèrent automatiquement la transmission de la DSN
-    pour vous.</0><1>Remettre la fiche de paie à votre employé</1></1>
-  teseAriaLabel: titre emploi service entreprise (Tese), voir plus d'informations
-    sur letese.urssaf.fr, nouvelle fenêtre
-  tâches:
-    contrat:
-      titre: Signer un contrat de travail avec votre employé
-    description: Toutes les étapes nécessaires à l'embauche de votre premier employé.
-    dpae:
-      ariaLabel: être effectué en ligne, accéder au site de l'URSSAF, nouvelle fenêtre
-      description: Ceci peut être fait par le biais du formulaire appelé DPAE, doit
-        être complété dans les 8 jours avant toute embauche, et peut <2>être
-        effectué en ligne</2>.
-      titre: Déclarer l'embauche à l'administration sociale
-    logiciel de paie:
-      ariaLabel: logiciel de paie privé, voir des exemples sur dsn-info.fr, nouvelle
-        fenêtre
-      description: Les fiches de paie et les déclarations peuvent être traitées en
-        ligne gratuitement par le <2>Tese</2>. Vous pouvez aussi utiliser un
-        <5>logiciel de paie privé.</5>
-      titre: Choisir un logiciel de paie
-    medecine:
-      description: N'oubliez pas de planifier un rendez-vous initial pour chaque
-        nouvelle embauche. <2>Plus d'infos.</2>
-      titre: S'inscrire à un bureau de médecine du travail
-    page:
-      description: Toutes les démarches nécessaires à l'embauche de votre premier salarié.
-      titre: Les formalités pour embaucher
-    pension:
-      aria-label: Trouver mon institution de prévoyance, nouvelle fenêtre
-      description: Trouver mon institution de prévoyance
-      titre: Prendre contact avec l'institution de prévoyance complémentaire
-        obligatoire qui vous est assignée
-    prévoyance . santé:
-      description: Vous devez couvrir vos salariés avec l'assurance complémentaire
-        santé privée de votre choix (aussi appelée "mutuelle"), pour autant
-        qu'elle offre un ensemble de garanties minimales. L'employeur doit payer
-        au moins la moitié du forfait.
-      titre: Choisir une prévoyance . santé
-    registre:
-      titre: Tenir un registre des employés à jour
-    titre: Les formalités pour embaucher
 employeur: employeur
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
@@ -1045,7 +1012,7 @@ pages:
         vous convient le mieux grâce à cet assistant"
       title: Aide au choix du statut juridique
     shortname: Assistant statut juridique
-    title: Assistant au choix du statut juridique
+    title: Choisir votre statut
   développeur:
     api: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur votre site
       ou service très facilement grâce à notre API REST ouverte et sans
@@ -1833,7 +1800,6 @@ simulateurs:
       réels de l’Urssaf, de l’administration fiscale ou de toute autre
       organisme.
 simulation-end:
-  cta: Connaître les démarches
   hiring:
     text: Vous pouvez maintenant concrétiser votre projet d'embauche.
   text: Vous avez maintenant accès à l'estimation la plus précise possible.
