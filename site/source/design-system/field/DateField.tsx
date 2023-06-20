@@ -273,6 +273,11 @@ const StyledBody = styled(Body)`
 		background-color: ${({ theme }) =>
 			theme.darkMode && theme.colors.extended.grey[600]};
 	}
+
+	.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+		background-color: ${({ theme }) =>
+			theme.darkMode && theme.colors.extended.grey[600]};
+	}
 `
 
 const Wrapper = styled.div`
@@ -289,6 +294,8 @@ const StyledButton = styled(Button)`
 	right: 0;
 	top: 0;
 	margin: 0.7rem;
+	background-color: ${({ theme }) =>
+		theme.darkMode && theme.colors.bases.primary[700]};
 `
 
 type OnlyAriaType<T> = {
