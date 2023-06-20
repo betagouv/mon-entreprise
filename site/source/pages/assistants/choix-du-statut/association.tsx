@@ -1,9 +1,8 @@
-import { Evaluation } from 'publicodes'
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { useEngine } from '@/components/utils/EngineContext'
+import { usePersistingState } from '@/components/utils/persistState'
 import { RadioCard, RadioCardGroup } from '@/design-system'
 import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { Strong } from '@/design-system/typography'
@@ -91,48 +90,49 @@ function useAssociationSelection(): [
 	(value: RadioOption) => void,
 	() => void
 ] {
-	const isAssociation = useEngine().evaluate(
-		'entreprise . catégorie juridique . association'
-	).nodeValue as Evaluation<boolean>
-
-	const [currentSelection, setCurrentSelection] = useState<RadioOption>(
-		isAssociation === true
-			? 'non-lucratif'
-			: isAssociation === false
-			? 'gagner-argent'
-			: undefined
-	)
+	const [{ state: currentSelection }, setCurrentSelection] =
+		usePersistingState<{ state: RadioOption }>('choix-statut:association', {
+			state: undefined,
+		})
 
 	const dispatch = useDispatch()
 
 	const handleChange = (value: RadioOption) => {
-		setCurrentSelection(value)
+		setCurrentSelection({ state: value })
 
-		if (value === 'gagner-argent') {
-			dispatch(
-				batchUpdateSituation({
-					'entreprise . catégorie juridique . association': 'non',
-					'entreprise . catégorie juridique': undefined,
-				})
-			)
-		} else if (value === 'non-lucratif') {
-			dispatch(
-				batchUpdateSituation({
-					'entreprise . catégorie juridique . association': undefined,
-					'entreprise . catégorie juridique': "'association'",
-				})
-			)
+		switch (value) {
+			case 'gagner-argent':
+				dispatch(
+					batchUpdateSituation({
+						'entreprise . catégorie juridique . association': 'non',
+						'entreprise . catégorie juridique': undefined,
+					})
+				)
+				break
+			case 'non-lucratif':
+				dispatch(
+					batchUpdateSituation({
+						'entreprise . catégorie juridique . association': undefined,
+						'entreprise . catégorie juridique': "'association'",
+					})
+				)
+				break
+			case undefined:
+				dispatch(
+					batchUpdateSituation({
+						'entreprise . catégorie juridique . association': undefined,
+						'entreprise . catégorie juridique': undefined,
+					})
+				)
+				break
 		}
 	}
 
+	useEffect(() => {
+		handleChange(currentSelection)
+	}, [])
 	const reset = () => {
-		setCurrentSelection(undefined)
-		dispatch(
-			batchUpdateSituation({
-				'entreprise . catégorie juridique . association': undefined,
-				'entreprise . catégorie juridique': undefined,
-			})
-		)
+		handleChange(undefined)
 	}
 
 	return [currentSelection, handleChange, reset]

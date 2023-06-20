@@ -1,21 +1,37 @@
-import { serializeEvaluation } from 'publicodes'
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
+import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
-import { RadioCard, RadioCardGroup } from '@/design-system'
+import { usePersistingState } from '@/components/utils/persistState'
+import {
+	Message,
+	Radio,
+	RadioCard,
+	RadioCardGroup,
+	ToggleGroup,
+} from '@/design-system'
 import { HelpButtonWithPopover } from '@/design-system/buttons'
+import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
+import { H4 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { deleteFromSituation, updateSituation } from '@/store/actions/actions'
+import { batchUpdateSituation } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
 
+type State = {
+	question1: 'seul' | 'plusieurs' | undefined
+	question2: 'oui' | 'non' | undefined
+}
+
 export default function Associés() {
 	const { t } = useTranslation()
-	const [currentSelection, setCurrentSelection, reset] = useAssociésSelection()
+
+	const [{ question1, question2 }, setState, reset, isComplete] =
+		useAssociésSelection()
 
 	return (
 		<>
@@ -47,62 +63,109 @@ export default function Associés() {
 			>
 				<RadioCardGroup
 					aria-label={t(
-						'choix-statut.associés.question',
+						'choix-statut.associés.question1',
 						'Comment gérez-vous cette entreprise ?'
 					)}
-					onChange={setCurrentSelection}
-					value={currentSelection}
+					onChange={(value) =>
+						setState({ question1: value as State['question1'] })
+					}
+					value={question1}
 				>
 					<RadioCard
-						value={"'unique'"}
+						value={'seul'}
 						label={
-							<Trans i18nKey="choix-statut.associés.question.seul">Seul</Trans>
+							<Trans i18nKey="choix-statut.associés.question1.seul">Seul</Trans>
 						}
-					>
-						<Body></Body>
-					</RadioCard>
+					/>
 					<RadioCard
-						value={"'multiples'"}
+						value={'plusieurs'}
 						label={
-							<Trans i18nKey="choix-statut.associés.question.plusieurs">
+							<Trans i18nKey="choix-statut.associés.question1.plusieurs">
 								À plusieurs
 							</Trans>
 						}
 					/>
 				</RadioCardGroup>
-				<Navigation
-					currentStepIsComplete={currentSelection !== undefined}
-					onPreviousStep={reset}
-				/>
+				{question1 === 'seul' && (
+					<FromTop>
+						<Spacing md />
+						<Message type="secondary" border={false}>
+							<H4 id="question2">
+								<Trans i18nKey="choix-statut.associés.question2">
+									Envisagez-vous d’ajouter des associé(e)s dans un second temps
+									?
+								</Trans>
+							</H4>
+							<ToggleGroup
+								aria-labelledby="question2"
+								onChange={(value) =>
+									setState({ question2: value as State['question2'] })
+								}
+								value={question2}
+							>
+								<Radio value={'oui'}>
+									<Trans>Oui</Trans>
+								</Radio>
+								<Radio value={'non'}>
+									<Trans>Non</Trans>
+								</Radio>
+							</ToggleGroup>
+							<Spacing md />
+						</Message>
+					</FromTop>
+				)}
+
+				<Navigation currentStepIsComplete={isComplete} onPreviousStep={reset} />
 			</Layout>
 		</>
 	)
 }
 
-type RadioOption = "'unique'" | "'multiples'" | undefined
 function useAssociésSelection(): [
-	RadioOption,
-	(value: RadioOption) => void,
-	() => void
+	state: State,
+	setState: (value: Partial<State>) => void,
+	reset: () => void,
+	isComplete: boolean
 ] {
-	const associés = serializeEvaluation(
-		useEngine().evaluate('entreprise . associés')
-	) as RadioOption | undefined
-
-	const [currentSelection, setCurrentSelection] =
-		useState<RadioOption>(associés)
+	const [state, setState] = usePersistingState<State>('choix-statut:associés', {
+		question1: undefined,
+		question2: undefined,
+	})
 
 	const dispatch = useDispatch()
 
-	const handleChange = (value: RadioOption) => {
-		setCurrentSelection(value)
-		dispatch(updateSituation('entreprise . associés', value))
+	const handleChange = (value: Partial<State>) => {
+		const newState = { ...state, ...value }
+		setState(newState)
+		dispatch(
+			batchUpdateSituation({
+				'entreprise . associés':
+					newState.question1 === 'seul'
+						? "'unique'"
+						: newState.question1 === 'plusieurs'
+						? "'multiples'"
+						: undefined,
+				// On préfère conseiller l'EI à l'EURL pour les entrepreneurs seuls (dans un premier temps)
+				'entreprise . catégorie juridique . EI':
+					newState.question2 === 'oui' ? 'non' : undefined,
+				'entreprise . catégorie juridique . SARL . EURL':
+					newState.question2 === 'non' ? 'non' : undefined,
+			})
+		)
 	}
 
+	useEffect(() => {
+		handleChange(state)
+	}, [])
 	const reset = () => {
-		setCurrentSelection(undefined)
-		dispatch(deleteFromSituation('entreprise . associés'))
+		handleChange({
+			question1: undefined,
+			question2: undefined,
+		})
 	}
 
-	return [currentSelection, handleChange, reset]
+	const isComplete =
+		useEngine().evaluate('entreprise . associés').nodeValue !== undefined
+
+	return [state, handleChange, reset, isComplete]
 }
