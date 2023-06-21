@@ -11,8 +11,6 @@ import { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { FromTop } from '@/components/ui/animate'
 import Warning from '@/components/ui/WarningBlock'
-import DefaultHelmet from '@/components/utils/DefaultHelmet'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
@@ -60,10 +58,7 @@ export default function AideDéclarationIndépendant() {
 
 	return (
 		<>
-			<Trans i18nKey="aide-déclaration-indépendant.description">
-				<DefaultHelmet>
-					<title>Déclaration charges sociales indépendants</title>
-				</DefaultHelmet>
+			<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.description">
 				<PageHeader picture={illustration}>
 					<Intro>
 						Cet outil est une aide à la déclaration de revenus à destination des{' '}
@@ -116,7 +111,7 @@ export default function AideDéclarationIndépendant() {
 				<Grid container>
 					<Grid item xs={12} sm={10} md={9} lg={8}>
 						<Condition expression="déclaration charge sociales . comptabilité . engagement">
-							<Trans i18nKey="aide-déclaration-indépendant.entreprise.titre">
+							<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.titre">
 								<H2>Entreprise et activité</H2>
 							</Trans>
 							<SimpleField
@@ -203,7 +198,6 @@ function ImpositionSection() {
 		},
 		[dispatch]
 	)
-	console.log(useEngine().evaluate('entreprise . imposition'))
 
 	return (
 		<>

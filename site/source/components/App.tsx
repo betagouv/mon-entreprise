@@ -8,7 +8,6 @@ import styled, { css } from 'styled-components'
 
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
-import Route404 from '@/components/Route404'
 import {
 	engineFactory,
 	EngineProvider,
@@ -22,6 +21,7 @@ import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
 import Landing from '@/pages/_landing/Landing'
+import Page404 from '@/pages/404'
 import Accessibilité from '@/pages/Accessibilité'
 import Assistants from '@/pages/assistants/index'
 import Budget from '@/pages/budget/index'
@@ -180,9 +180,8 @@ const App = () => {
 
 							<Route path={relativeSitePaths.plan} element={<Plan />} />
 
-							<Route path="*" element={<Route404 />} />
+							<Route path="*" element={<Page404 />} />
 						</Routes>
-						{/* <Spacing xxl /> */}
 					</ErrorBoundary>
 				</Container>
 			</main>

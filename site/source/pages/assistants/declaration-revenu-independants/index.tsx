@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { Condition } from '@/components/EngineValue'
 import PrintExportRecover from '@/components/simulationExplanation/PrintExportRecover'
-import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Step, Stepper } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
@@ -55,9 +54,6 @@ export default function AideDéclarationIndépendant() {
 
 	return (
 		<>
-			<DefaultHelmet>
-				<title>Déclaration de revenu indépendants</title>
-			</DefaultHelmet>
 			<PrintExportRecover />
 			<Condition expression="DRI">
 				<Spacing lg />
@@ -66,9 +62,11 @@ export default function AideDéclarationIndépendant() {
 						{steps.map((step) => (
 							<Step
 								key={step.to}
-								aria-label={t("Accéder à l'étape {{step}}", {
-									step: step.children,
-								})}
+								aria-label={t(
+									'pages.assistants.declaration-revenu-independants.goToStep',
+									"Accéder à l'étape {{step}}",
+									{ step: step.children }
+								)}
 								{...omit(step, 'page')}
 							/>
 						))}

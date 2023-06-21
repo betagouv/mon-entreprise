@@ -19,20 +19,20 @@ export function déclarationRevenuIndépendantBetaConfig({
 		},
 		meta: {
 			description: t(
-				'pages.gérer.declaration_revenu_indépendant.meta.description',
+				'pages.assistants.declaration-revenu-independants.meta.description',
 				'Découvrez quels montants remplir dans quelles cases, et obtenez une estimation des cotisations à payer en 2023'
 			),
 			title: t(
-				'pages.gérer.declaration_revenu_indépendant.meta.title',
+				'pages.assistants.declaration-revenu-independants.meta.title',
 				'Assistant à la déclaration de revenu pour les indépendants'
 			),
 		},
 		shortName: t(
-			'pages.gérer.declaration_revenu_indépendant.shortname',
+			'pages.assistants.declaration-revenu-independants.shortname',
 			'Aide au remplissage de la déclaration de revenu'
 		),
 		title: t(
-			'pages.gérer.declaration_revenu_indépendant.title',
+			'pages.assistants.declaration-revenu-independants.title',
 			'Assistant à la déclaration de revenu pour les indépendants'
 		),
 		nextSteps: ['déclaration-charges-sociales-indépendant'],
