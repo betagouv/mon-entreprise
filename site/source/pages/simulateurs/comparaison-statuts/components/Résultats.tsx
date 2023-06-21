@@ -1,17 +1,12 @@
-import Engine from 'publicodes'
 import styled from 'styled-components'
 
-import { DottedName } from '@/../../modele-social'
 import { Container } from '@/design-system/layout'
 
+import { EngineComparison } from './Comparateur'
 import RevenuAprèsImpot from './RevenuAprèsImpot'
 import RevenuEstimé from './RevenuEstimé'
 
-const Résultats = ({
-	engines,
-}: {
-	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
-}) => {
+const Résultats = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 	return (
 		<StyledContainer
 			backgroundColor={(theme) =>
@@ -21,7 +16,7 @@ const Résultats = ({
 			}
 		>
 			<RevenuEstimé />
-			<RevenuAprèsImpot engines={engines} />
+			<RevenuAprèsImpot namedEngines={namedEngines} />
 		</StyledContainer>
 	)
 }

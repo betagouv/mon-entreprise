@@ -109,11 +109,15 @@ function useRémunérationState(): [
 		setState(newState)
 		dispatch(
 			batchUpdateSituation({
-				"entreprise . chiffre d'affaires": {
-					valeur: newState.CA,
-					unité: '€/an',
-				},
-				'entreprise . charges': { valeur: newState.charges, unité: '€/an' },
+				"entreprise . chiffre d'affaires": newState.CA
+					? {
+							valeur: newState.CA,
+							unité: '€/an',
+					  }
+					: undefined,
+				'entreprise . charges': newState.charges
+					? { valeur: newState.charges, unité: '€/an' }
+					: undefined,
 			})
 		)
 	}

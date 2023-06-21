@@ -1,18 +1,12 @@
-import Engine from 'publicodes'
+import Engine, { Evaluation } from 'publicodes'
 
 import { DottedName } from '@/../../modele-social'
+import { Statut } from '@/components/StatutTag'
 
-export type ValueType =
-	| string
-	| number
-	| boolean
-	| null
-	| Record<string, unknown>
 export type OptionType = {
-	type: 'sasu' | 'ei' | 'ae'
-	value?: ValueType
-	engine?: Engine<DottedName>
-	documentationPath?: string
+	engine: Engine<DottedName>
+	name: Statut
+	value: Evaluation
 }
 export const getBestOption = (options: OptionType[]) => {
 	const sortedOptions = [...options].sort(
@@ -30,5 +24,5 @@ export const getBestOption = (options: OptionType[]) => {
 		}
 	)
 
-	return sortedOptions?.[0]?.type
+	return sortedOptions?.[0]?.name
 }
