@@ -44,29 +44,6 @@
 		<meta name="theme-color" content="#2975d1" />
 
 		<style>
-			html[data-useragent*='MSIE'] #outdated-browser,
-			html[data-useragent*='Safari'][data-useragent*='Version/8']
-				#outdated-browser,
-			html[data-useragent*='Safari'][data-useragent*='Version/7']
-				#outdated-browser,
-			html[data-useragent*='Trident'] #outdated-browser {
-				display: block !important;
-			}
-
-			html[data-useragent*='MSIE'] #loading,
-			html[data-useragent*='Safari'][data-useragent*='Version/8'] #loading,
-			html[data-useragent*='Safari'][data-useragent*='Version/7'] #loading,
-			html[data-useragent*='Trident'] #loading {
-				display: none !important;
-			}
-
-			html[data-useragent*='MSIE'] #js,
-			html[data-useragent*='Safari'][data-useragent*='Version/8'] #js,
-			html[data-useragent*='Safari'][data-useragent*='Version/7'] #js,
-			html[data-useragent*='Trident'] #js {
-				display: none !important;
-			}
-
 			/* CSS Loader */
 			#loading {
 				animation: appear 0.6s;
@@ -241,61 +218,6 @@
 				console.error(e)
 			}
 		</script>
-
-		<!-- OUTDATED BROWSER WARNING -->
-		<div
-			id="outdated-browser"
-			style="
-				position: fixed;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				display: none;
-				background-color: white;
-			"
-		>
-			<div
-				style="
-					margin: 100px auto;
-					max-width: 800px;
-					text-align: center;
-					font-family: 'Montserrat', sans-serif;
-					font-weight: 300;
-				"
-			>
-				<img
-					src="/logo-share.png"
-					alt="Logo service mon-entreprise urssaf"
-					style="width: 200px; margin-bottom: 2rem"
-				/>
-				<h1>Votre navigateur n'est plus supporté.</h1>
-				<h2>
-					Nous vous invitons à réessayer avec un autre, ou depuis un mobile
-					récent.
-				</h2>
-				<br />
-				<h3>
-					Si besoin, vous pouvez en installer un nouveau depuis
-					<a
-						style="color: #2975d1; background-color: inherit"
-						href="https://outdatedbrowser.com/fr"
-						aria-label="cette page, visiter outdatedbrowser.com, nouvelle fenêtre"
-						>cette page</a
-					>
-				</h3>
-				<h3>
-					<a
-						href="javascript:void(0);"
-						onclick="
-					var b = document.documentElement;
-					b.setAttribute('data-useragent',  'force-navigation-anyway');
-				"
-						>Continuer quand même vers le site</a
-					>
-				</h3>
-			</div>
-		</div>
 
 		<script
 			crossorigin="anonymous"
