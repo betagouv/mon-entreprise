@@ -13,7 +13,7 @@ const stepOrder: readonly Step[] = [
 	'association',
 	'associé',
 	'rémunération',
-	'statuts',
+	'comparateur',
 ] as const
 
 export function useCurrentStep() {

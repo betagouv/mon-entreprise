@@ -10,6 +10,7 @@ import Simulation, {
 } from '@/components/Simulation'
 import { Statut } from '@/components/StatutTag'
 import { Spacing } from '@/design-system/layout'
+import { useSitePaths } from '@/sitePaths'
 
 import Détails from './Détails'
 import Résultats from './Résultats'
@@ -19,7 +20,9 @@ type NamedEngine = {
 	name: Statut
 }
 
-export type EngineComparison = [NamedEngine, NamedEngine, NamedEngine]
+export type EngineComparison =
+	| [NamedEngine, NamedEngine, NamedEngine]
+	| [NamedEngine, NamedEngine]
 
 function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 	const { t } = useTranslation()
@@ -29,6 +32,8 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 		Engine<DottedName>,
 		Engine<DottedName>
 	]
+
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<>
@@ -54,7 +59,10 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 			<Spacing md />
 			<Résultats namedEngines={namedEngines} />
 			<Détails namedEngines={namedEngines} />
-			<EngineDocumentationRoutes namedEngines={namedEngines} />
+			<EngineDocumentationRoutes
+				basePath={absoluteSitePaths.simulateurs.comparaison}
+				namedEngines={namedEngines}
+			/>
 		</>
 	)
 }
