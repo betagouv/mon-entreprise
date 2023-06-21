@@ -9,6 +9,25 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 
 export default function StatutsDisponibles() {
+	const engine = useEngine()
+	const statutes = [
+		'entreprise . catégorie juridique . EI . EI',
+		'entreprise . catégorie juridique . EI . auto-entrepreneur',
+		'entreprise . catégorie juridique . SARL . EURL',
+		'entreprise . catégorie juridique . SARL . SARL',
+		'entreprise . catégorie juridique . SAS . SAS',
+		'entreprise . catégorie juridique . SAS . SASU',
+		'entreprise . catégorie juridique . SELARL . SELARL',
+		'entreprise . catégorie juridique . SELARL . SELARLU',
+		'entreprise . catégorie juridique . SELAS . SELAS',
+		'entreprise . catégorie juridique . SELAS . SELASU',
+		'entreprise . catégorie juridique . association',
+	].sort(
+		(a, b) =>
+			(engine.evaluate({ '=': [a, 'non'] }).nodeValue ? 1 : -1) -
+			(engine.evaluate({ '=': [b, 'non'] }).nodeValue ? 1 : -1)
+	) as DottedName[]
+
 	return (
 		<StyledMessage>
 			<H5 as="h2"> Statuts disponibles</H5>
@@ -17,17 +36,9 @@ export default function StatutsDisponibles() {
 				professionnelle que vous exercez
 			</SmallBody>
 			<StyledUl noMarker>
-				<Statut statut="entreprise . catégorie juridique . EI . EI" />
-				<Statut statut="entreprise . catégorie juridique . EI . auto-entrepreneur" />
-				<Statut statut="entreprise . catégorie juridique . SARL . EURL" />
-				<Statut statut="entreprise . catégorie juridique . SARL . SARL" />
-				<Statut statut="entreprise . catégorie juridique . SAS . SAS" />
-				<Statut statut="entreprise . catégorie juridique . SAS . SASU" />
-				<Statut statut="entreprise . catégorie juridique . SELARL . SELARL" />
-				<Statut statut="entreprise . catégorie juridique . SELARL . SELARLU" />
-				<Statut statut="entreprise . catégorie juridique . SELAS . SELAS" />
-				<Statut statut="entreprise . catégorie juridique . SELAS . SELASU" />
-				<Statut statut="entreprise . catégorie juridique . association" />
+				{statutes.map((statut) => (
+					<Statut key={statut} statut={statut} />
+				))}
 			</StyledUl>
 		</StyledMessage>
 	)
