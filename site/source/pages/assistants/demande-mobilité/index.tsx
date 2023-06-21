@@ -7,7 +7,6 @@ import { TrackPage } from '@/components/ATInternetTracking'
 import RuleInput from '@/components/conversation/RuleInput'
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import BrowserOnly from '@/components/utils/BrowserOnly'
-import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { usePersistingState } from '@/components/utils/persistState'
@@ -46,9 +45,6 @@ export default function PageMobilité() {
 				certificat A1 afin d'être couverts pendant la période de travail à
 				l'étranger.
 			</Intro>
-			<DefaultHelmet>
-				<title>Demande de mobilité internationale</title>
-			</DefaultHelmet>
 			<EngineProvider value={engine}>
 				<FormulairePublicodes />
 			</EngineProvider>

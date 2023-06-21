@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async'
 import { Route, Routes } from 'react-router-dom'
 
-import Route404 from '@/components/Route404'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
+import Page404 from '@/pages/404'
 
 import SimulateurOrAssistantPage from '../../components/SimulateurOrAssistantPage'
 import IframeFooter from './IframeFooter'
@@ -38,7 +38,7 @@ export default function Iframes() {
 								/>
 							)
 					)}
-				<Route path="*" element={<Route404 />} />
+				<Route path="*" element={<Page404 />} />
 			</Routes>
 			<IframeFooter />
 		</>

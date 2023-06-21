@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { FromBottom } from '@/components/ui/animate'
 import FoldingMessage from '@/components/ui/FoldingMessage'
-import DefaultHelmet from '@/components/utils/DefaultHelmet'
+import Meta from '@/components/utils/Meta'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -16,9 +16,16 @@ export default function SocialSecurity() {
 
 	return (
 		<>
-			<DefaultHelmet>
-				<title>{t('sécu.page.titre', 'Sécurité sociale')}</title>
-			</DefaultHelmet>
+			<Meta
+				title={t(
+					'pages.assistants.sécurité-sociale.meta.title',
+					'Sécurité sociale'
+				)}
+				description={t(
+					'pages.assistants.sécurité-sociale.meta.description',
+					"La sécurité sociale est un système obligatoire qui permet de couvrir les dépenses de santé, de retraite, de chômage ou encore d'accident du travail."
+				)}
+			/>
 
 			<FromBottom>
 				<TrackPage name="securite_social" />

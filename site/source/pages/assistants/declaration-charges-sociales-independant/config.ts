@@ -18,20 +18,20 @@ export function déclarationChargesSocialesIndépendantConfig({
 		},
 		meta: {
 			description: t(
-				'pages.gérer.declaration_charges_sociales_indépendant.meta.description',
+				'pages.assistants.declaration-charges-sociales-independant.meta.description',
 				'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2022'
 			),
 			title: t(
-				'pages.gérer.declaration_charges_sociales_indépendant.meta.title',
+				'pages.assistants.declaration-charges-sociales-independant.meta.title',
 				'Détermination des charges sociales déductibles'
 			),
 		},
 		shortName: t(
-			'pages.gérer.declaration_charges_sociales_indépendant.shortname',
+			'pages.assistants.declaration-charges-sociales-independant.shortname',
 			'Détermination des charges sociales déductibles'
 		),
 		title: t(
-			'pages.gérer.declaration_charges_sociales_indépendant.title',
+			'pages.assistants.declaration-charges-sociales-independant.title',
 			'Assistant à la détermination des charges sociales déductibles'
 		),
 		nextSteps: ['déclaration-revenu-indépendant'],
