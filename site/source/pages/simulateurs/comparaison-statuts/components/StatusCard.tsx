@@ -2,7 +2,7 @@ import { ReactNode, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
-import { Statut, StatutTag } from '@/components/StatutTag'
+import { StatutTag, StatutType } from '@/components/StatutTag'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
@@ -11,7 +11,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { generateUuid } from '@/utils'
 
 type StatutCardType = {
-	statut: Statut[]
+	statut: StatutType[]
 	footerContent?: ReactNode
 	isBestOption?: boolean
 	children: ReactNode

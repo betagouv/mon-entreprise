@@ -1,11 +1,11 @@
 import Engine, { Evaluation } from 'publicodes'
 
 import { DottedName } from '@/../../modele-social'
-import { Statut } from '@/components/StatutTag'
+import { StatutType } from '@/components/StatutTag'
 
 export type OptionType = {
 	engine: Engine<DottedName>
-	name: Statut
+	name: StatutType
 	value: Evaluation
 }
 export const getBestOption = (options: OptionType[]) => {
