@@ -177,7 +177,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 			<StyledTitle>
 				<StyledButton {...buttonProps} ref={ref} $variant={$variant}>
 					<span>{item.props.title}</span>
-					<ChevronRightMedium aria-hidden $isOpen={isOpen} alt="" />
+					<ChevronRightMedium aria-hidden $isOpen={isOpen} alt="icon" />
 				</StyledButton>
 			</StyledTitle>
 			{/* @ts-ignore: https://github.com/pmndrs/react-spring/issues/1515 */}
