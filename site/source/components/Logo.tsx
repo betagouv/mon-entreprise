@@ -19,7 +19,7 @@ export function Logo() {
 
 	return (
 		<StyledLogo
-			alt={t('navbar.logo')}
+			alt={t('navbar.logo', 'logo Mon entreprise')}
 			src={
 				language === 'fr'
 					? isDarkModeEnabled

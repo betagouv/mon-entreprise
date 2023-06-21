@@ -278,7 +278,7 @@ export default function Integration() {
 							aria-label="pole-emploi.fr, Voir le simulateur"
 							ctaLabel="Voir le simulateur"
 						>
-							<Logo src={poleEmploiLogo} alt="" />
+							<Logo src={poleEmploiLogo} alt="Logo Pôle emploi" />
 						</Article>
 					</Grid>
 					<Grid role="listitem" item xs={12} md={6} xl={4}>
