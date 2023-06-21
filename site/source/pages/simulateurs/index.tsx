@@ -81,13 +81,8 @@ export default function Simulateurs() {
 					)
 				) : null)}
 			<Routes>
-				<Route
-					path="*"
-					element={
-						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
-					}
-				/>
 				{simulatorRoutes}
+				<Route path="*" element={<Navigate to="/404" replace />} />
 			</Routes>
 		</>
 	)

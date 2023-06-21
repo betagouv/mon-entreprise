@@ -5,7 +5,7 @@ import image from '@/assets/images/road-sign.svg'
 import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
 import { Button } from '@/design-system/buttons'
-import { Container } from '@/design-system/layout'
+import { Container, Spacing } from '@/design-system/layout'
 
 export default function Page404() {
 	const { t } = useTranslation()
@@ -35,6 +35,7 @@ export default function Page404() {
 					<Trans i18nKey="404.action">Revenir en lieu sûr</Trans>
 				</Button>
 			</PageHeader>
+			<Spacing xxl />
 		</Container>
 	)
 }
