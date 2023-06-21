@@ -46,6 +46,9 @@ export function coûtCréationEntrepriseConfig({
 					'oui',
 				'dirigeant . indépendant . PL . métier . santé . vétérinaire . par défaut':
 					'oui',
+				'entreprise . catégorie juridique . association': {
+					'applicable si': 'non',
+				},
 			},
 		},
 		component: CoutCreationEntreprise,

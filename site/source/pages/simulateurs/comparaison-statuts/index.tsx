@@ -1,5 +1,3 @@
-import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
 import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
 
@@ -7,7 +5,7 @@ import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system/typography'
 import { Intro } from '@/design-system/typography/paragraphs'
 
-import Comparateur from './components/Comparateur'
+import Comparateur, { EngineComparison } from './components/Comparateur'
 import {
 	CasParticuliersProvider,
 	useCasParticuliers,
@@ -58,10 +56,10 @@ function ComparateurStatutsUI() {
 	)
 
 	const engines = [
-		assimiléEngine,
-		autoEntrepreneurEngine,
-		indépendantEngine,
-	] as [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
+		{ engine: assimiléEngine, name: 'SASU' },
+		{ engine: indépendantEngine, name: 'EI' },
+		{ engine: autoEntrepreneurEngine, name: 'AE' },
+	] as EngineComparison
 
 	return (
 		<>
@@ -76,7 +74,7 @@ function ComparateurStatutsUI() {
 					correspond le mieux.
 				</Trans>
 			</Intro>
-			<Comparateur engines={engines} />
+			<Comparateur namedEngines={engines} />
 		</>
 	)
 }

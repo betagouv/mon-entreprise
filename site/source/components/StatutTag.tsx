@@ -27,7 +27,6 @@ const TAG_DATA = {
 	SASU: {
 		color: 'secondary',
 		longName: 'Société par actions simplifiée unipersonnelle',
-
 		acronym: 'SASU',
 		icon: HexagonIcon,
 	},

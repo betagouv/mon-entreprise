@@ -2,7 +2,7 @@ import { ReactNode, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
-import { StatutTag } from '@/components/StatutTag'
+import { Statut, StatutTag } from '@/components/StatutTag'
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
@@ -11,7 +11,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { generateUuid } from '@/utils'
 
 type StatutCardType = {
-	statut: ('SASU' | 'EI' | 'AE')[]
+	statut: Statut[]
 	footerContent?: ReactNode
 	isBestOption?: boolean
 	children: ReactNode
@@ -31,7 +31,7 @@ const StatusCard = ({
 				<Grid container spacing={1}>
 					{status.map((statusString) => (
 						<Grid item key={statusString}>
-							<StatutTag statut={statusString} text="longName" showIcon />
+							<StatutTag statut={statusString} text="acronym" showIcon />
 						</Grid>
 					))}
 				</Grid>

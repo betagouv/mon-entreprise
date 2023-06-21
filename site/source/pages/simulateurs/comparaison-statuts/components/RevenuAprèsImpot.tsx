@@ -1,59 +1,31 @@
-import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { DottedName } from '@/../../modele-social'
-import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
-import { CheckList } from '@/design-system'
-import { ExternalLinkIcon, HelpIcon } from '@/design-system/icons'
-import { Grid } from '@/design-system/layout'
+import { ExternalLinkIcon } from '@/design-system/icons'
 import { H2 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import { getBestOption, OptionType } from '../utils'
-import AllerPlusLoinRevenus from './AllerPlusLoinRevenus'
-import StatusCard from './StatusCard'
-import WarningTooltip from './WarningTooltip'
+import { EngineComparison } from './Comparateur'
 
 const RevenuAprèsImpot = ({
-	engines,
+	namedEngines,
 }: {
-	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
+	namedEngines: EngineComparison
 }) => {
-	const [assimiléEngine, autoEntrepreneurEngine, indépendantEngine] = engines
+	const [assimiléEngine, autoEntrepreneurEngine, indépendantEngine] =
+		namedEngines
 	const { t } = useTranslation()
-
-	const assimiléValue = assimiléEngine.evaluate({
-		valeur: 'dirigeant . rémunération . net . après impôt',
-		unité: '€/mois',
-	}).nodeValue
-
-	const indépendantValue = indépendantEngine.evaluate({
-		valeur: 'dirigeant . rémunération . net . après impôt',
-		unité: '€/mois',
-	}).nodeValue
-
-	const autoEntrepreneurValue = autoEntrepreneurEngine.evaluate({
-		valeur: 'dirigeant . rémunération . net . après impôt',
-		unité: '€/mois',
-	}).nodeValue
-
-	const options: OptionType[] = [
-		{
-			type: 'sasu',
-			value: assimiléValue,
-		},
-		{
-			type: 'ei',
-			value: indépendantValue,
-		},
-		{
-			type: 'ae',
-			value: autoEntrepreneurValue,
-		},
-	]
+	const options = namedEngines.map(({ engine, name }) => ({
+		engine,
+		name,
+		value: engine.evaluate({
+			valeur: 'dirigeant . rémunération . net . après impôt',
+			unité: '€/mois',
+		}).nodeValue,
+	})) as [OptionType, OptionType, OptionType]
 
 	const bestOption = getBestOption(options)
 
@@ -62,12 +34,12 @@ const RevenuAprèsImpot = ({
 			<H2>
 				<Trans>Revenu après impôt</Trans>
 			</H2>
-
+			{/* 
 			<Grid container spacing={4}>
 				<Grid item xs={12} lg={4}>
 					<StatusCard
 						statut={['SASU']}
-						isBestOption={bestOption === 'sasu'}
+						isBestOption={bestOption === 'SASU'}
 						footerContent={
 							<CheckList
 								items={[
@@ -281,7 +253,7 @@ const RevenuAprèsImpot = ({
 			</Grid>
 			<DivAlignRight>
 				<AllerPlusLoinRevenus engines={engines} />
-			</DivAlignRight>
+			</DivAlignRight> */}
 		</>
 	)
 }

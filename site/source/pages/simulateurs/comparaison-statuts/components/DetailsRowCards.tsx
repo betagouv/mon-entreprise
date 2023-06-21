@@ -12,80 +12,49 @@ import { HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 
 import { getBestOption, OptionType } from '../utils'
+import { EngineComparison } from './Comparateur'
 import StatusCard from './StatusCard'
-
-const getStatusLabelsArray = (statusArray: OptionType[]) =>
-	statusArray.map(
-		(statusOption) => statusOption.type.toUpperCase() as 'SASU' | 'EI' | 'AE'
-	)
 
 const getGridSizes = (statusArray: OptionType[]) => {
 	return { sizeXs: 12, sizeLg: 4 * statusArray.length }
 }
 
 const DetailsRowCards = ({
-	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
+	namedEngines,
 	dottedName,
 	unit,
 	bestOption,
 	evolutionDottedName,
 	evolutionLabel,
-	footers,
 	label,
-	warnings,
+	footer,
+	warning,
 }: {
-	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
+	namedEngines: EngineComparison
 	dottedName: DottedName
 	unit?: string
-	bestOption?: 'sasu' | 'ei' | 'ae'
+	bestOption?: 1 | 2 | 3
 	evolutionDottedName?: DottedName
 	evolutionLabel?: ReactNode | string
-	footers?: { sasu: ReactNode; ei: ReactNode; ae: ReactNode }
 	label?: ReactNode | string
 
-	warnings?: { sasu?: ReactNode; ei?: ReactNode; ae?: ReactNode }
+	warning?: (engine: Engine<DottedName>) => ReactNode
+	footer?: (engine: Engine<DottedName>) => ReactNode
 }) => {
-	const assimiléEvaluation = assimiléEngine.evaluate({
-		valeur: dottedName,
-		...(unit && { unité: unit }),
-	})
-
-	const indépendantEvaluation = indépendantEngine.evaluate({
-		valeur: dottedName,
-		...(unit && { unité: unit }),
-	})
-
-	const autoEntrepreneurEvaluation = autoEntrepreneurEngine.evaluate({
-		valeur: dottedName,
-		...(unit && { unité: unit }),
-	})
-
-	const options: OptionType[] = [
-		{
-			type: 'sasu',
-			value: Math.round(assimiléEvaluation.nodeValue as number),
-			engine: assimiléEngine,
-			documentationPath: '/simulateurs/comparaison-régimes-sociaux/SASU',
-		},
-		{
-			type: 'ei',
-			value: Math.round(indépendantEvaluation.nodeValue as number),
-			engine: indépendantEngine,
-			documentationPath: '/simulateurs/comparaison-régimes-sociaux/EI',
-		},
-		{
-			type: 'ae',
-			value: Math.round(autoEntrepreneurEvaluation.nodeValue as number),
-			engine: autoEntrepreneurEngine,
-			documentationPath:
-				'/simulateurs/comparaison-régimes-sociaux/auto-entrepreneur',
-		},
-	]
+	console.log(namedEngines)
+	const options = namedEngines.map(({ engine, name }) => ({
+		engine,
+		name,
+		value: engine.evaluate({
+			valeur: dottedName,
+			...(unit && { unité: unit }),
+		}).nodeValue,
+	})) as [OptionType, OptionType, OptionType]
 
 	const bestOptionValue = bestOption ?? getBestOption(options)
 
-	const sortedStatus = [...options]
-		.reduce((acc: OptionType[][], option: OptionType) => {
+	const groupedOptions = options
+		.reduce((acc, option) => {
 			const newAcc = [...acc]
 			const sameValues = options.filter(
 				(optionFiltered) => optionFiltered.value === option.value
@@ -94,7 +63,7 @@ const DetailsRowCards = ({
 			if (
 				!newAcc.find((arrayOfStatus) =>
 					arrayOfStatus.some(
-						(statusObject: OptionType) => statusObject.value === option.value
+						(statusObject) => statusObject.value === option.value
 					)
 				)
 			) {
@@ -102,30 +71,31 @@ const DetailsRowCards = ({
 			}
 
 			return newAcc
-		}, [] as OptionType[][])
-		.filter((arrayOfStatus: OptionType[]) => arrayOfStatus.length > 0)
+		}, [] as (typeof options)[0][][])
+
+		.filter((arrayOfStatus) => arrayOfStatus.length > 0)
 
 	return (
 		<Grid container spacing={4}>
-			{sortedStatus.map((statusArray: OptionType[]) => {
-				const statusObject: OptionType = statusArray[0]
+			{groupedOptions.map((sameValueOptions) => {
+				const statusObject = sameValueOptions[0]
 
-				const { sizeXs, sizeLg } = getGridSizes(statusArray)
+				const { sizeXs, sizeLg } = getGridSizes(sameValueOptions)
 
 				return (
 					<Grid
-						key={`${dottedName}-${statusObject.type}`}
+						key={`${dottedName}-${statusObject.name}`}
 						item
 						xs={sizeXs}
 						lg={sizeLg}
 						as="ul"
 					>
 						<StatusCard
-							statut={getStatusLabelsArray(statusArray)}
-							footerContent={footers?.[statusObject.type]}
+							statut={sameValueOptions.map(({ name }) => name)}
+							footerContent={footer?.(statusObject.engine)}
 							isBestOption={
-								statusArray.length !== 3 &&
-								bestOptionValue === statusObject.type
+								sameValueOptions.length !== 3 &&
+								bestOptionValue === statusObject.name
 							}
 						>
 							<WhenNotApplicable
@@ -133,6 +103,13 @@ const DetailsRowCards = ({
 								engine={statusObject.engine}
 							>
 								<DisabledLabel>Ne s'applique pas</DisabledLabel>
+								<StyledRuleLink
+									documentationPath={`/simulateurs/comparaison-régimes-sociaux/${statusObject.name}`}
+									dottedName={dottedName}
+									engine={statusObject.engine}
+								>
+									<HelpIcon />
+								</StyledRuleLink>
 							</WhenNotApplicable>
 							<WhenApplicable
 								dottedName={dottedName}
@@ -151,14 +128,13 @@ const DetailsRowCards = ({
 										{label && label}
 									</span>
 									<StyledRuleLink
-										documentationPath={statusObject.documentationPath}
+										documentationPath={`/simulateurs/comparaison-régimes-sociaux/${statusObject.name}`}
 										dottedName={dottedName}
 										engine={statusObject.engine}
 									>
 										<HelpIcon />
 									</StyledRuleLink>
-									{warnings?.[statusObject.type] &&
-										warnings?.[statusObject.type]}
+									{warning?.(statusObject.engine)}
 								</StyledDiv>
 								{evolutionDottedName && (
 									<Precisions>

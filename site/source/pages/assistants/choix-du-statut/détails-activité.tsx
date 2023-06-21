@@ -186,8 +186,16 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 				batchUpdateSituation({
 					'entreprise . activités . principale . code guichet': `'${guichet.code}'`,
 					'entreprise . imposition . IR . type de bénéfices': `'${guichet.typeBénéfice}'`,
-					'entreprise . activité . nature': PLRMétier
+					'entreprise . activité . nature': guichet.catégorieActivité.includes(
+						'LIBERALE'
+					)
 						? "'libérale'"
+						: guichet.catégorieActivité.includes('ARTISANALE')
+						? "'artisanale'"
+						: guichet.catégorieActivité.includes('COMMERCIALE')
+						? "'commerciale'"
+						: guichet.catégorieActivité.includes('AGRICOLE')
+						? "'agricole'"
 						: undefined,
 					'entreprise . activité . nature . libérale . réglementée': PLRMétier
 						? 'oui'

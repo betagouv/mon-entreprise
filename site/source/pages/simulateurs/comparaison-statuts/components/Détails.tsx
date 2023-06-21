@@ -1,32 +1,23 @@
-import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
-import { DottedName } from '@/../../modele-social'
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import Value, {
-	WhenAlreadyDefined,
-	WhenValueEquals,
-} from '@/components/EngineValue'
+import Value, { Condition } from '@/components/EngineValue'
 import { Accordion, Item } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { ExternalLinkIcon, PlusCircleIcon } from '@/design-system/icons'
-import { Container, Grid, Spacing } from '@/design-system/layout'
+import { Container, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H4 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 
+import { EngineComparison } from './Comparateur'
 import DetailsRowCards from './DetailsRowCards'
 import ItemTitle from './ItemTitle'
-import StatusCard from './StatusCard'
 import WarningTooltip from './WarningTooltip'
 
-const Détails = ({
-	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
-}: {
-	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
-}) => {
+const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 	return (
 		<StyledContainer
 			backgroundColor={(theme) =>
@@ -78,11 +69,7 @@ const Détails = ({
 
 					<DetailsRowCards
 						dottedName="protection sociale . retraite . base"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						unit="€/mois"
 					/>
 
@@ -108,11 +95,7 @@ const Détails = ({
 
 					<DetailsRowCards
 						dottedName="protection sociale . retraite . complémentaire"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						unit="€/mois"
 						evolutionLabel={<Trans>au bout de 10 ans</Trans>}
 					/>
@@ -157,40 +140,36 @@ const Détails = ({
 					</Body>
 					<DetailsRowCards
 						dottedName="protection sociale . maladie . arrêt maladie"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						unit="€/jour"
-						warnings={{
-							sasu: (
-								<WhenValueEquals
-									engine={assimiléEngine}
-									expression="protection sociale . maladie . arrêt maladie"
-									value={0}
-								>
-									<WarningTooltip
-										tooltip={
-											<span
-												css={`
-													font-weight: normal;
-												`}
-											>
-												<Trans>
-													Votre <Strong>rémunération</Strong> est{' '}
-													<Strong>trop faible</Strong> pour bénéficier d’arrêt
-													maladie en SASU.
-												</Trans>
-											</span>
-										}
-										id="tooltip-sasu-arrêt-maladie"
-									/>
-								</WhenValueEquals>
-							),
-						}}
-						footers={{
-							sasu: (
+						warning={(engine) => (
+							<Condition
+								engine={engine}
+								expression="protection sociale . maladie . arrêt maladie = 0"
+							>
+								<WarningTooltip
+									tooltip={
+										<span
+											css={`
+												font-weight: normal;
+											`}
+										>
+											<Trans>
+												Votre <Strong>rémunération</Strong> est{' '}
+												<Strong>trop faible</Strong> pour bénéficier d’arrêt
+												maladie.
+											</Trans>
+										</span>
+									}
+									id="tooltip-sasu-arrêt-maladie"
+								/>
+							</Condition>
+						)}
+						footer={(engine) => (
+							<Condition
+								engine={engine}
+								expression="protection sociale . maladie . arrêt maladie != 0"
+							>
 								<StyledDiv>
 									<PlusCircleIcon
 										css={`
@@ -204,50 +183,17 @@ const Détails = ({
 									>
 										<Trans>
 											Pour y prétendre, vous devez voir cotisé au moins{' '}
-											<Strong>3 mois</Strong>
+											<Strong>
+												<Value
+													engine={engine}
+													expression="protection sociale . maladie . arrêt maladie . délai d'attente"
+												/>
+											</Strong>
 										</Trans>
 									</Body>
 								</StyledDiv>
-							),
-							ei: (
-								<StyledDiv>
-									<PlusCircleIcon
-										css={`
-											margin-top: 0 !important;
-										`}
-									/>
-									<Body
-										css={`
-											margin: 0;
-										`}
-									>
-										<Trans>
-											Pour y prétendre, vous devez voir cotisé au moins{' '}
-											<Strong>12 mois</Strong>
-										</Trans>
-									</Body>
-								</StyledDiv>
-							),
-							ae: (
-								<StyledDiv>
-									<PlusCircleIcon
-										css={`
-											margin-top: 0 !important;
-										`}
-									/>
-									<Body
-										css={`
-											margin: 0;
-										`}
-									>
-										<Trans>
-											Pour y prétendre, vous devez voir cotisé au moins{' '}
-											<Strong>12 mois</Strong>
-										</Trans>
-									</Body>
-								</StyledDiv>
-							),
-						}}
+							</Condition>
+						)}
 					/>
 
 					<StyledH4>
@@ -264,11 +210,7 @@ const Détails = ({
 					</Body>
 					<DetailsRowCards
 						dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						unit="€/mois"
 						evolutionDottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
 						evolutionLabel={<Trans>à partir du 29ème jour</Trans>}
@@ -308,11 +250,7 @@ const Détails = ({
 
 					<DetailsRowCards
 						dottedName="protection sociale . maladie . maternité paternité adoption"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						unit="€/jour"
 					/>
 
@@ -332,11 +270,7 @@ const Détails = ({
 					</Body>
 					<DetailsRowCards
 						dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						label={<Trans>versés en deux fois</Trans>}
 					/>
 
@@ -356,11 +290,7 @@ const Détails = ({
 					</Body>
 					<DetailsRowCards
 						dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						label={<Trans>versés en une fois</Trans>}
 					/>
 				</Item>
@@ -417,11 +347,7 @@ const Détails = ({
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
 						evolutionDottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						unit="€/mois"
 						label={
 							<span style={{ fontSize: '1rem' }}>
@@ -448,11 +374,7 @@ const Détails = ({
 					</Body>
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						unit="€/mois"
 					/>
 
@@ -469,11 +391,7 @@ const Détails = ({
 					</Body>
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . capital décès"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 					/>
 
 					<Body
@@ -489,7 +407,7 @@ const Détails = ({
 							sa vie professionnelle.
 						</Trans>
 					</Body>
-					<StatusCard statut={['SASU', 'EI', 'AE']}>
+					{/* <StatusCard statut={['SASU', 'EI', 'AE']}>
 						<span>
 							<Value
 								linkToRule={false}
@@ -505,7 +423,7 @@ const Détails = ({
 								<Trans>maximum</Trans>
 							</WhenAlreadyDefined>
 						</span>
-					</StatusCard>
+					</StatusCard> */}
 
 					<Body
 						css={`
@@ -520,11 +438,7 @@ const Détails = ({
 
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						unit="€/mois"
 					/>
 
@@ -541,11 +455,7 @@ const Détails = ({
 
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . capital décès . orphelin"
-						engines={[
-							assimiléEngine,
-							autoEntrepreneurEngine,
-							indépendantEngine,
-						]}
+						namedEngines={namedEngines}
 						unit="€/enfant"
 					/>
 				</Item>
@@ -623,7 +533,7 @@ const Détails = ({
 						*/
 					}
 
-					<StyledH4>
+					{/* <StyledH4>
 						<Trans>Dépôt de capital</Trans>
 						<ExplicableRule dottedName="entreprise . capital social" />
 					</StyledH4>
@@ -648,9 +558,9 @@ const Détails = ({
 								</DisabledLabel>
 							</StatusCard>
 						</Grid>
-					</Grid>
+					</Grid> */}
 
-					<StyledH4>
+					{/* <StyledH4>
 						<Trans>Statut du conjoint</Trans>
 					</StyledH4>
 					<Body>
@@ -678,7 +588,7 @@ const Détails = ({
 								<Trans>Conjoint collaborateur</Trans>
 							</StatusCard>
 						</Grid>
-					</Grid>
+					</Grid> */}
 				</Item>
 			</Accordion>
 		</StyledContainer>
