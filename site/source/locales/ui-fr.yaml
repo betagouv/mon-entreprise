@@ -1,6 +1,5 @@
 (invalidité partielle): (invalidité partielle)
 (invalidité totale): (invalidité totale)
-1 € minimum: 1 € minimum
 "404":
   action: Revenir en lieu sûr
   message: Cette page n'existe pas ou n'existe plus
@@ -15,7 +14,6 @@ Accessibilité: Accessibilité
 Accident du travail et maladie professionnelle: Accident du travail et maladie professionnelle
 Accompagnement activé: Accompagnement activé
 Accompagnement désactivé: Accompagnement désactivé
-"Accéder à l'étape {{step}}": Accéder à l'étape {{step}}
 "Accéder à la page d'accueil, nouvelle fenêtre": Accéder à la page d'accueil, nouvelle fenêtre
 Adoption: Adoption
 Afficher la transcription: Afficher la transcription
@@ -49,8 +47,6 @@ Charger plus de résultats: Charger plus de résultats
 Charges: Charges
 Chiffre d'affaires: Chiffre d'affaires
 Chiffre d'affaires estimé: Chiffre d'affaires estimé
-"Choix d'imposition : impôt sur le revenu": "Choix d'imposition : impôt sur le revenu"
-"Choix d'imposition : impôt sur les sociétés": "Choix d'imposition : impôt sur les sociétés"
 "Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre":
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
@@ -61,9 +57,6 @@ CompanySearchField:
   label: Nom de l'entreprise, SIREN ou SIRET
   placeholder: "Exemple : Café de la gare ou 40123778000127"
 Confirmer: Confirmer
-Conjoint associé ou salarié: Conjoint associé ou salarié
-Conjoint collaborateur: Conjoint collaborateur
-Conjoint collaborateur ou salarié: Conjoint collaborateur ou salarié
 Continuer: Continuer
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
@@ -81,7 +74,6 @@ Donner votre avis: Donner votre avis
   demande. Celui-ci vous contactera par téléphone sous 5 jours et vous
   accompagnera en fonction de votre situation.
 Décès: Décès
-Dépôt de capital: Dépôt de capital
 Effacer mes réponses: Effacer mes réponses
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
@@ -193,7 +185,6 @@ Montant annuel: Montant annuel
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
 Montant mensuel: Montant mensuel
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
-Ne prend pas l'ACRE en compte: Ne prend pas l'ACRE en compte
 Nombre de visites: Nombre de visites
 Nombres: Nombres
 Non: Non
@@ -237,8 +228,7 @@ Plan du site: Plan du site
   bénéficier d’une <1>rente d’incapacité</1>.
 "Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.": Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.
 "Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.": Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.
-"Pour y prétendre, vous devez voir cotisé au moins <2>12 mois</2>": Pour y prétendre, vous devez voir cotisé au moins <2>12 mois</2>
-"Pour y prétendre, vous devez voir cotisé au moins <2>3 mois</2>": Pour y prétendre, vous devez voir cotisé au moins <2>3 mois</2>
+"Pour y prétendre, vous devez voir cotisé au moins <2><0></0></2>": Pour y prétendre, vous devez voir cotisé au moins <2><0></0></2>
 Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Professions libérales: Professions libérales
@@ -284,10 +274,6 @@ Salaire brut mensuel: Salaire brut mensuel
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Salariés et employeurs: Salariés et employeurs
-"Selon les statuts, il est indispensable d’effectuer un <2>apport en capital</2> à la création de l’entreprise. Le <4>montant minimum</4> du capital social est de <7>1 €</7>.":
-  Selon les statuts, il est indispensable d’effectuer un <2>apport en
-  capital</2> à la création de l’entreprise. Le <4>montant minimum</4> du
-  capital social est de <7>1 €</7>.
 "Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>":
   Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut
   que vous ayez opté pour que <2>les informations de votre entreprise ne soient
@@ -300,7 +286,6 @@ Simulateurs et Assistants: Simulateurs et Assistants
 Simulation en cours: Simulation en cours
 Situation personnelle: Situation personnelle
 Statistiques: Statistiques
-Statut du conjoint: Statut du conjoint
 Suivant: Suivant
 "Suivant, passer à l'étape suivante": Suivant, passer à l'étape suivante
 "Suivant, passer à la question suivante": Suivant, passer à la question suivante
@@ -317,7 +302,6 @@ Taux d'utilisateurs ayant un avis neutre: Taux d'utilisateurs ayant un avis neut
 Taux d'utilisateurs mécontents: Taux d'utilisateurs mécontents
 Taux d'utilisateurs satisfaits: Taux d'utilisateurs satisfaits
 Taux d'utilisateurs très satisfaits: Taux d'utilisateurs très satisfaits
-Tient compte de l'ACRE: Tient compte de l'ACRE
 Total des retenues: Total des retenues
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
   "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui
@@ -345,7 +329,6 @@ Un avis sur cette page ?: Un avis sur cette page ?
   "fr, nouvelle fenêtre": Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
-Versement libératoire de l'impôt sur le revenu: Versement libératoire de l'impôt sur le revenu
 Version française du site activée.: Version française du site activée.
 Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
 Veuillez renseigner votre adresse email.: Veuillez renseigner votre adresse email.
@@ -363,16 +346,15 @@ Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Vos droits pour la retraite: Vos droits pour la retraite
 Vos prestations santé: Vos prestations santé
-Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie en SASU.:
+Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie.:
   Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt
-  maladie en SASU.
+  maladie.
 Votre adresse e-mail (requise): Votre adresse e-mail (requise)
 Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
 Votre couverture invalidité et décès: Votre couverture invalidité et décès
 Votre domaine d'activité: Votre domaine d'activité
 Votre message (requis): Votre message (requis)
-Vous allez dépasser le plafond de la micro-entreprise: Vous allez dépasser le plafond de la micro-entreprise
 "Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.":
   Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes
   désolé(e)s.
@@ -384,31 +366,11 @@ Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résulta
   Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
   résultat.
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>
-"Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>, <6>conjoint associé</6> ou <9>conjoint salarié</9>).":
-  "Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il
-  existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>,
-  <6>conjoint associé</6> ou <9>conjoint salarié</9>)."
 Zoom sur...: Zoom sur...
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
 aide-déclaration-indépendant:
-  description: <0><0>Déclaration charges sociales indépendants</0></0><1><0>Cet
-    outil est une aide à la déclaration de revenus à destination des
-    <2>travailleurs indépendants</2>. Il vous permet de connaître le montant des
-    charges sociales déductibles.</0><1>Vous restez entièrement responsable
-    d'éventuelles omissions ou inexactitudes dans votre
-    déclaration.</1></1><2><0><0>Cet outil vous concerne si vous êtes dans le
-    cas suivant :</0></0><1>Vous cotisez au régime général des travailleurs
-    indépendants</1><2><0>Il ne vous concerne pas si vous êtes dans un des cas
-    suivants :</0></2><3><0>Vous exercez une activité libérale relevant d’un
-    régime de retraite des professions libérales en comptabilité
-    d'engagement</0><1>Votre entreprise est domiciliée dans les
-    DOM</1></3></2><3>Imposition</3><4>Ces quelques questions permettent de
-    déterminer le type de déclaration à remplir, ainsi que les modalités de
-    calcul des cotisations sociales.</4>
-  entreprise:
-    titre: <0>Entreprise et activité</0>
   results:
     title: Montants à reporter dans votre déclaration de revenus
 "aides différées, voir le détail du calcul pour aides différées": aides différées, voir le détail du calcul pour aides différées
@@ -462,7 +424,6 @@ assistants:
       cta: Visiter le site
       title: Voir vos données publiques
 au bout de 10 ans: au bout de 10 ans
-back: Retourner à la simulation
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
   être présentes.</6></0>"
@@ -662,7 +623,6 @@ créer:
     détails-activité:
       title: Précisions sur votre activité
 d'aides: d'aides
-de chiffre d’affaires: de chiffre d’affaires
 design-system:
   date-picker:
     close: Fermer
@@ -682,9 +642,6 @@ dividendes:
     concerne pas les travailleurs indépendants non salariés.</0><1>Le montant de
     l'impôt sur les dividendes est calculé en sus de l’impôt sur les autres
     revenus imposables.</1>
-documentation:
-  description: Explorez toutes les règles de la documentation
-  title: Documentation
 employeur: employeur
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
@@ -769,7 +726,6 @@ intégration:
   title: Intégration
 jours: jours
 "l'annuaire des entreprises, nouvelle fenêtre": l'annuaire des entreprises, nouvelle fenêtre
-la première année: la première année
 landing:
   aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
     autonome et pluridisciplinaire au sein de <6>l’Urssaf</6>. Nous avons à cœur
@@ -819,13 +775,12 @@ library:
   description: Outils pour les développeurs
   title: Librairie de calcul
 loading: Chargement en cours...
-maximum: maximum
 moins: moins
 mois: mois
 navbar:
   activate-darkmode: Activer le mode sombre
   deactivate-darkmode: Désactiver le mode sombre
-  logo: navbar.logo
+  logo: logo Mon entreprise
 news:
   description: Nous améliorons le site en continu à partir de vos retours.
     Découvrez les dernières nouveautés
@@ -839,6 +794,9 @@ nextSteps:
     title: Intégrer le module web
 nombres de votes: nombres de votes
 pages:
+  "404":
+    description: La page que vous cherchez n'existe pas ou n'existe plus
+    title: Page introuvable
   accessibilité: "<0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
     page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.1&nbsp;qui
     vise à définir le niveau d'accessibilité général constaté sur le site
@@ -961,6 +919,36 @@ pages:
         recherche sont extraites du PDF des nomenclatures d'activités françaises
         de l'INSEE, qui est disponible sur <2>cette page</2>.</4>"
   assistants:
+    declaration-charges-sociales-independant:
+      description: <0><0>Cet outil est une aide à la déclaration de revenus à
+        destination des <2>travailleurs indépendants</2>. Il vous permet de
+        connaître le montant des charges sociales déductibles.</0><1>Vous restez
+        entièrement responsable d'éventuelles omissions ou inexactitudes dans
+        votre déclaration.</1></0><1><0><0>Cet outil vous concerne si vous êtes
+        dans le cas suivant :</0></0><1>Vous cotisez au régime général des
+        travailleurs indépendants</1><2><0>Il ne vous concerne pas si vous êtes
+        dans un des cas suivants :</0></2><3><0>Vous exercez une activité
+        libérale relevant d’un régime de retraite des professions libérales en
+        comptabilité d'engagement</0><1>Votre entreprise est domiciliée dans les
+        DOM</1></3></1><2>Imposition</2><3>Ces quelques questions permettent de
+        déterminer le type de déclaration à remplir, ainsi que les modalités de
+        calcul des cotisations sociales.</3>
+      entreprise:
+        titre: <0>Entreprise et activité</0>
+      meta:
+        description: Calculez le montant des cotisations et contributions sociales à
+          reporter dans votre déclaration de revenu 2022
+        title: Détermination des charges sociales déductibles
+      shortname: Détermination des charges sociales déductibles
+      title: Assistant à la détermination des charges sociales déductibles
+    declaration-revenu-independants:
+      goToStep: Accéder à l'étape {{step}}
+      meta:
+        description: Découvrez quels montants remplir dans quelles cases, et obtenez une
+          estimation des cotisations à payer en 2023
+        title: Assistant à la déclaration de revenu pour les indépendants
+      shortname: Aide au remplissage de la déclaration de revenu
+      title: Assistant à la déclaration de revenu pour les indépendants
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
@@ -1006,6 +994,12 @@ pages:
         title: Recherche de code APE
       shortname: Recherche de code APE
       title: "Quel code APE pour mon activité ? "
+    sécurité-sociale:
+      meta:
+        description: La sécurité sociale est un système obligatoire qui permet de
+          couvrir les dépenses de santé, de retraite, de chômage ou encore
+          d'accident du travail.
+        title: Sécurité sociale
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui
@@ -1013,6 +1007,13 @@ pages:
       title: Aide au choix du statut juridique
     shortname: Assistant statut juridique
     title: Choisir votre statut
+  documentation:
+    back: Retourner à la simulation
+    meta:
+      description: Documentation des règles de calcul de nos simulateurs et assistants
+      descriptionBis: Explorez toutes les règles de la documentation
+      title: Documentation
+    title: Documentation
   développeur:
     api: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur votre site
       ou service très facilement grâce à notre API REST ouverte et sans
@@ -1199,20 +1200,6 @@ pages:
       avec <2>Google Sheets</2>, cliquez sur "Créer une copie" (vous pouvez
       vérifier les scripts avec "Afficher le fichier de script Apps")</5>
   gérer:
-    declaration_charges_sociales_indépendant:
-      meta:
-        description: Calculez le montant des cotisations et contributions sociales à
-          reporter dans votre déclaration de revenu 2022
-        title: Détermination des charges sociales déductibles
-      shortname: Détermination des charges sociales déductibles
-      title: Assistant à la détermination des charges sociales déductibles
-    declaration_revenu_indépendant:
-      meta:
-        description: Découvrez quels montants remplir dans quelles cases, et obtenez une
-          estimation des cotisations à payer en 2023
-        title: Assistant à la déclaration de revenu pour les indépendants
-      shortname: Aide au remplissage de la déclaration de revenu
-      title: Assistant à la déclaration de revenu pour les indépendants
     demande-mobilité:
       meta:
         description: Formulaire interactif à compléter en cas d'exercice d'une activité
@@ -1220,6 +1207,9 @@ pages:
         title: "Travailleur indépendant : demande de mobilité en Europe"
       shortname: Demande de mobilité internationale
       title: Demande de mobilité internationale
+  offline:
+    description: Vous êtes actuellement hors ligne.
+    title: Hors ligne
   simulateurs:
     accueil:
       description: Tous les simulateurs et assistants sur ce site sont maintenus à
@@ -1686,8 +1676,6 @@ privacyContent:
   s'afficheront à la suite de cet élément.
 recherche-globale:
   placeholder: "Mot-clé ou acronyme (exemple : CSG)"
-revenu_après_impots:
-  acre: <0>ACRE sous <2>certaines conditions<1></1></2></0>
 salarié: salarié
 "salarié, accéder au simulateur salarié": salarié, accéder au simulateur salarié
 search-code-ape:
@@ -1835,31 +1823,26 @@ sécu:
     population</2>.</1><2>En contrepartie du paiement de <2>contributions
     sociales</2>, le cotisant est couvert sur la maladie, les accidents du
     travail, chômage ou encore la retraite.</2>
-  page:
-    titre: Sécurité sociale
-  transcript: <0>Trois minutes pour comprendre les enjeux de la sécurité
-    sociale.</0><1>La sécurité sociale a pour objectif de protéger les personnes
-    qui résident en France face à certains événements qui surviennent tout au
-    long de leur vie.</1><2>Son budget est composé de dépenses principalement
-    sous la forme de prestations et de recettes alimentées en partie par les
-    cotisations.</2><3>Les recettes sont gérées par la branche recouvrement
-    composée des Urssaf.</3><4>Pour les dépenses, il existe 5 branches
-    :</4><5><0>La branche maladie permet de couvrir les dépenses
-    d'hospitalisation, de médicaments et consultations des professionnels de
-    santé, ainsi que le paiement des indemnités journalières en cas d'arrêt de
-    travail.</0><1>La branche retraite prend en charge l'inscription des revenus
-    sur le compte vieillesse de chacun, tout au long de sa vie active, à partir
-    des déclarations internet des entreprises, ce qui lui permet ensuite de
-    calculer le montant des retraites et de les verser.</1><2>La branche
-    accident du travail prend en charge les frais liés aux maladies
-    professionnelles et aux accidents du travail.</2><3>La branche famille verse
-    différents types de prestations liées à la naissance, à la garde d'enfants,
-    au logement ou à la solidarité, comme la gestion du RSA par
-    exemple.</3><4>La branche autonomie garantit l'équité territoriale, la
-    qualité et l'efficience de l'accompagnement des personnes âgées et des
-    personnes handicapées, quelle que soit leur lieu de vie.</4></5><6>Ces six
-    branches forment le régime général de la sécurité sociale. Le régime
-    agricole MSA et des régimes spéciaux viennent s'ajouter.</6><7>Toutes les
+  transcript-NO_AUTO_TRANSLATION: "<0>Trois minutes pour comprendre les enjeux de
+    la sécurité sociale.</0><1>La sécurité sociale a pour objectif de protéger
+    les personnes qui résident en France face à certains évènements qui
+    surviennent tout au long de leur vie.</1><2>Son budget est composé dépenses
+    principalement sous la forme de prestations et de recettes, alimentés en
+    partie par les contributions. Les recettes sont gérées bar la branche des
+    recouvrements composé des URSSAF. Pour les dépenses, il existe quatre
+    branches. La branche Assurance-Maladie permet de couvrir les dépenses
+    d’hospitalisation, de médicaments et consultation des professionnels de
+    santé. La branche retraite prend en charge l’inscription des revenus sur le
+    compte vieillesse de chacun tout au long de sa vie active, à partir des
+    déclarations internet des entreprises, ce qui permet ensuite de calculer le
+    montant des retraites et de les verser. La branche accidents du travail
+    prend en charge les frais liés aux maladies professionnelles et aux
+    accidents du travail. La branche famille verse différents types de
+    prestations liées à la naissance, à la garde d’enfant, aux aides à
+    l’éducation ou au logement par exemple. Ces quatre branches forment le
+    régime général de la sécurité sociale qui a intégré les indépendants le 1er
+    janvier 2018. Des organisations spécifiques s’ajoutent au régime général
+    dont la MSA pour les agriculteurs ou les régimes spéciaux.</2><3>Toutes les
     personnes qui résident en France contribuent au financement de la sécurité
     sociale qui en retour couvre toute la population. Le principe est celui du
     pot commun fonctionnant par solidarité, le montant de la contribution versé

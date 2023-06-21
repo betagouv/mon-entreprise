@@ -1,6 +1,5 @@
 (invalidité partielle): (partial disability)
 (invalidité totale): (total disability)
-1 € minimum: 1 € minimum
 "404":
   action: Return to safe place
   message: This page does not exist or no longer exists
@@ -15,7 +14,6 @@ Accessibilité: Accessibility
 Accident du travail et maladie professionnelle: Workplace injury and occupational disease
 Accompagnement activé: Accompaniment activated
 Accompagnement désactivé: Accompaniment deactivated
-"Accéder à l'étape {{step}}": Go to step {{step}}
 "Accéder à la page d'accueil, nouvelle fenêtre": Go to home page, new window
 Adoption: Adoption
 Afficher la transcription: View transcript
@@ -47,8 +45,6 @@ Charger plus de résultats: Load more results
 Charges: Charges
 Chiffre d'affaires: Sales figures
 Chiffre d'affaires estimé: Estimated turnover
-"Choix d'imposition : impôt sur le revenu": "Tax Election: Income Tax"
-"Choix d'imposition : impôt sur les sociétés": "Tax election: corporate income tax"
 "Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre":
   How does it work? See the explanatory page on the github repository page, new
   window
@@ -59,9 +55,6 @@ CompanySearchField:
   label: Company name, SIREN or SIRET
   placeholder: "Example : Café de la gare or 40123778000127"
 Confirmer: Confirm
-Conjoint associé ou salarié: Associate or employee spouse
-Conjoint collaborateur: Collaborating spouse
-Conjoint collaborateur ou salarié: Collaborating spouse or employee
 Continuer: Continue
 Cotisations: Contributions
 Cotisations sociales: Social contributions
@@ -79,7 +72,6 @@ Donner votre avis: Give your opinion
   contact you by phone within 5 days and will assist you according to your
   situation.
 Décès: Deaths
-Dépôt de capital: Capital deposit
 Effacer mes réponses: Delete my answers
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "In the event of an<1>accident at work</1>, an <4>occupational disease</4> or
@@ -188,7 +180,6 @@ Montant annuel: Yearly amount
 Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant mensuel: Monthly amount
 Mots-clés définissants l'activité: Keywords defining the activity
-Ne prend pas l'ACRE en compte: Does not take ACRE into account
 Nombre de visites: Number of visits
 Nombres: Numbers
 Non: No
@@ -231,8 +222,7 @@ Plan du site: Site Map
   <1>disability pension</1>.
 "Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.": To qualify, you must have contributed for <2>at least 10 months</2>.
 "Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.": To qualify, you must meet <2>certain rules<1></1>.</2>
-"Pour y prétendre, vous devez voir cotisé au moins <2>12 mois</2>": To qualify, you must have contributed for at least <2>12 months</2>
-"Pour y prétendre, vous devez voir cotisé au moins <2>3 mois</2>": To qualify, you must have contributed for at least <2>3 months</2>
+"Pour y prétendre, vous devez voir cotisé au moins <2><0></0></2>": To qualify, you must have contributed at least <2><0></0></2>
 Pourcentage: Percentage
 Prochaines questions: Next questions
 Professions libérales: By job
@@ -277,10 +267,6 @@ Salaire brut mensuel: Gross monthly salary
 Salaire net: Net Salary
 Salariés et embauche: Employees and hiring
 Salariés et employeurs: Employees and employers
-"Selon les statuts, il est indispensable d’effectuer un <2>apport en capital</2> à la création de l’entreprise. Le <4>montant minimum</4> du capital social est de <7>1 €</7>.":
-  According to the statutes, it is essential to make a <2>capital
-  contribution</2> at the creation of the company. The <4>minimum amount of</4>
-  capital is <7>1 €</7>.
 "Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>":
   If your company does not appear using your SIREN/SIRET, you may have opted not
   to have <2>your company information made public</2>, in which case it will not
@@ -291,7 +277,6 @@ Simulateurs et Assistants: Simulators and Assistants
 Simulation en cours: Simulation in progress
 Situation personnelle: Personal situation
 Statistiques: Statistics
-Statut du conjoint: Status of the spouse
 Suivant: Next
 "Suivant, passer à l'étape suivante": Next, go to the next step
 "Suivant, passer à la question suivante": Next, go to the next question
@@ -306,7 +291,6 @@ Taux d'utilisateurs ayant un avis neutre: Rate of users with a neutral opinion
 Taux d'utilisateurs mécontents: Rate of dissatisfied users
 Taux d'utilisateurs satisfaits: Rate of satisfied users
 Taux d'utilisateurs très satisfaits: Rate of very satisfied users
-Tient compte de l'ACRE: Takes into account the ACRE
 Total des retenues: Total withheld
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
   "Every year, depending on your earnings, <2>you earn points that make up your
@@ -334,7 +318,6 @@ Un avis sur cette page ?: Any opinion on this page?
   "fr, nouvelle fenêtre": Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Use with a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use the simulator calculations in your application
-Versement libératoire de l'impôt sur le revenu: Payment in full discharge of income tax
 Version française du site activée.: French version of the site activated.
 Veuillez entrer un message avant de soumettre le formulaire.: Please enter a message before submitting the form.
 Veuillez renseigner votre adresse email.: Please enter your email address.
@@ -350,45 +333,24 @@ Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
 Vos droits pour la retraite: Your retirement rights
 Vos prestations santé: Your health benefits
-Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie en SASU.: Your <1>salary</1> is <4>too low</4> to benefit from sick leave in SASU.
+Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie.: Your <1>salary</1> is <4>too low</4> to benefit from sick leave.
 Votre adresse e-mail (requise): Your email address (required)
 Votre avis nous intéresse: Your opinion is important to us
 Votre chiffre d'affaires estimé: Your estimated turnover
 Votre couverture invalidité et décès: Your disability and death coverage
 Votre domaine d'activité: Your field of activity
 Votre message (requis): Your message (required)
-Vous allez dépasser le plafond de la micro-entreprise: You will exceed the micro-business limit
 "Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.": We are sorry that you were not satisfied with your experience.
 Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou d’accident conduisant à une incapacité à poursuivre votre activité professionnelle</2>.:
   You may be entitled to a disability pension in the <2>event of illness or
   accident leading to an inability to continue your professional activity</2>.
 Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.: You can try again with your SIREN or SIRET for a better result.
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Are you a SAS(U) manager? <2>Access the dedicated income simulator</2>
-"Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>, <6>conjoint associé</6> ou <9>conjoint salarié</9>).":
-  "You are married, in a civil union or in a common-law relationship with a
-  company director: there are <1>3 possible statuses</1> for
-  you<3>(collaborating spouse</3>, <6>associate spouse</6> or <9>employee
-  spouse</9>)."
 Zoom sur...: Focus on...
 accessibility:
   description: General Accessibility Improvement Framework
   title: Accessibility
 aide-déclaration-indépendant:
-  description: <0><0>Declaration of social charges for self-employed
-    workers</0></0><1><0>This tool is an aid for the declaration of income for
-    <2>self-employed workers</2>. It allows you to know the amount of deductible
-    social charges.</0><1>You remain entirely responsible for any omissions or
-    inaccuracies in your declaration.</1></1><2><0><0>This tool concerns you if
-    you are in the following case:</0></0><1>You contribute to the general
-    scheme for independent workers</1><2><0>It does not concern you if you are
-    in one of the following cases:</0></2><3><0>You exercise a liberal activity
-    under a pension scheme for liberal professions in accrual
-    accounting</0><1>Your company is domiciled in the
-    DOM</1></3></2><3>Taxation</3><4>These few questions allow you to determine
-    the type of declaration to be filled in, as well as the methods of
-    calculating the social contributions.</4>
-  entreprise:
-    titre: <0>Company and activity</0>
   results:
     title: Amounts to report on your tax return
 "aides différées, voir le détail du calcul pour aides différées": deferred aids, see details of the calculation for deferred aids
@@ -437,7 +399,6 @@ assistants:
       cta: Visit the site
       title: See your public data
 au bout de 10 ans: after 10 years
-back: Return to the simulation
 betawarning: "<0><0>This tool is in beta version</0>: we are working to
   <3>validate the information and calculations</3>, but <6>errors may be
   present</6>.</0>"
@@ -649,7 +610,6 @@ créer:
     détails-activité:
       title: Details of your business
 d'aides: aids
-de chiffre d’affaires: of turnover
 design-system:
   date-picker:
     close: Close
@@ -668,9 +628,6 @@ dividendes:
     French companies subject to corporation tax (IS), and does not concern
     self-employed workers.</0><1>The amount of tax on dividends is calculated in
     addition to the tax on other taxable income.</1>
-documentation:
-  description: Explore all the rules in the documentation
-  title: Documentation
 employeur: Employer share
 en incluant: including
 en titres-restaurant: in restaurant vouchers
@@ -753,7 +710,6 @@ intégration:
   title: Integration
 jours: days
 "l'annuaire des entreprises, nouvelle fenêtre": business directory, new window
-la première année: the first year
 landing:
   aboutUs: "<0>Who are we?</0><1>We are a small, independent, multidisciplinary
     <2>team</2> within <5>the Urssaf</5>. We are committed to being close to
@@ -805,13 +761,12 @@ library:
   description: Tools for developers
   title: Calculation library
 loading: Loading in progress...
-maximum: maximum
 moins: less
 mois: month
 navbar:
   activate-darkmode: Enable dark mode
   deactivate-darkmode: Disable dark mode
-  logo: navbar.logo
+  logo: logo My company
 news:
   description: We are continuously improving the site based on your feedback.
     Discover the latest news
@@ -825,6 +780,9 @@ nextSteps:
     title: Integrate the web module
 nombres de votes: number of votes
 pages:
+  "404":
+    description: The page you are looking for does not exist or no longer exists
+    title: Page not found
   accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
     page, but a declaration of compliance with <2>RGAA</2> 4.1, which aims to
     define the general level of accessibility observed on the site in accordance
@@ -932,6 +890,36 @@ pages:
         activity nomenclatures of the INSEE, which is available on <2>this
         page</2>.</4>"
   assistants:
+    declaration-charges-sociales-independant:
+      description: <0><0>This tool is designed to help <2>self-employed workers</2>
+        file their tax returns. It enables you to find out the amount of
+        deductible social charges.</0><1>You remain entirely responsible for any
+        omissions or inaccuracies in your declaration.</1></0><1><0><0>This tool
+        is for you if you are in one of the following situations:</0></0><1>You
+        contribute to the general scheme for self-employed workers.</1><2><0>It
+        does not concern you if you are in one of the following
+        situations:</0></2><3><0>You are a self-employed worker covered by a
+        self-employed pension scheme on an accrual basis.</0><1>Your company is
+        domiciled in the French overseas
+        departments</1></3></1><2>Taxation</2><3>These few questions will help
+        you determine the type of declaration you need to complete, and how your
+        social security contributions are calculated.</3>
+      entreprise:
+        titre: <0>Company and activity</0>
+      meta:
+        description: Calculate the amount of social security contributions to be
+          reported on your 2022 tax return
+        title: Determining deductible social security charges
+      shortname: Determining deductible social security charges
+      title: Assistance in determining deductible social charges
+    declaration-revenu-independants:
+      goToStep: Go to step {{step}}
+      meta:
+        description: Find out which amounts to enter in which boxes, and get an estimate
+          of the contributions to be paid in 2023.
+        title: Income tax return wizard for the self-employed
+      shortname: Help filling out your tax return
+      title: Income tax return wizard for the self-employed
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>There is not yet an income simulator
         for your type of business on this site.</0><1>If you would like us to
@@ -974,6 +962,11 @@ pages:
         title: APE code search
       shortname: APE code search
       title: "Which APE code for my activity? "
+    sécurité-sociale:
+      meta:
+        description: Social security is a compulsory system that covers healthcare,
+          retirement, unemployment and workplace accident expenses.
+        title: Social security
   choix-statut:
     meta:
       description: "SASU, EURL, auto-entrepreneur, EIRL: choose the status that suits
@@ -981,6 +974,13 @@ pages:
       title: Help in choosing the legal status
     shortname: Legal status assistant
     title: Choose your status
+  documentation:
+    back: Back to simulation
+    meta:
+      description: Documentation of calculation rules for our simulators and wizards
+      descriptionBis: Explore all the rules of documentation
+      title: Documentation
+    title: Documentation
   développeur:
     api: '<0><0>You can reuse the calculations of my-company on your site or service
       very easily thanks to our open REST API and without
@@ -1159,25 +1159,15 @@ pages:
       Sheets</2>, click on "Create a copy" (you can check the scripts with "View
       Apps script file")</5>
   gérer:
-    declaration_charges_sociales_indépendant:
-      meta:
-        description: Calculate the amount of social security contributions to be
-          reported on your 2022 income tax return
-        title: Determination of deductible social charges
-      shortname: Determination of deductible social charges
-      title: Deductible social charges assistant
-    declaration_revenu_indépendant:
-      meta:
-        description: Find out which amounts to fill in and get an estimate of your 2023 dues
-        title: Income tax return assistant for self-employed people
-      shortname: Help with filling out the income tax return
-      title: Income tax return assistant for self-employed people
     demande-mobilité:
       meta:
         description: Interactive form to be filled in if you work abroad
         title: "Self-employed: demand for mobility in Europe"
       shortname: Demand for mobility in Europe
       title: Request for international mobility
+  offline:
+    description: You are currently offline.
+    title: Offline
   simulateurs:
     accueil:
       description: All simulators and wizards on this site are kept up to date with
@@ -1621,8 +1611,6 @@ privacyContent:
   results will be displayed after this element.
 recherche-globale:
   placeholder: "Keyword or acronym (example: CSG)"
-revenu_après_impots:
-  acre: <0>ACRE under <2>certain conditions</2> <2><1></1></2></0>
 salarié: Employee share
 "salarié, accéder au simulateur salarié": employee, access the employee simulator
 search-code-ape:
@@ -1761,40 +1749,39 @@ sécu:
     <1>In France, all workers benefit from quality social protection. This mandatory system is based on solidarity and aims to ensure the <2>general well-being of the population</2>.</1>
 
     <2>In return for the payment of <2>social security contributions</2>, the contributor is covered for illness, accidents at work, unemployment or retirement.</2>
-  page:
-    titre: Social Security
-  transcript: <0>Three minutes to understand the challenges of social
-    security.</0><1>The aim of social security is to protect people living in
-    France against certain events that occur throughout their lives.</1><2>Its
-    budget is made up of expenditure, mainly in the form of benefits, and
-    revenue, partly funded by contributions.</2><3>Revenues are managed by the
-    collection branch, made up of Urssaf.</3><4>For expenditure, there are 5
-    branches:</4><5><0>The sickness branch covers hospitalization, drugs and
-    consultations with health professionals, as well as the payment of daily
-    allowances in the event of sick leave.</0><1>The Retirement branch is
-    responsible for recording income on the individual's retirement account
-    throughout his or her working life, based on company internet declarations,
-    which it then uses to calculate and pay pensions.</1><2>The work accident
-    branch covers the costs of occupational illnesses and accidents.</2><3>The
-    Family branch pays out various types of benefits linked to childbirth,
-    childcare, housing or solidarity, such as the management of the
-    RSA.</3><4>The Autonomy branch guarantees territorial equity, quality and
-    efficiency in the support of the elderly and disabled, wherever they
-    live.</4></5><6>These six branches make up the general social security
-    system. The MSA agricultural scheme and special schemes are also
-    included.</6><7>All residents of France contribute to the financing of
-    social security, which in turn covers the entire population. The principle
-    is that of a common pot operating on the basis of solidarity, with the
-    amount of the contribution paid by each person depending not on his or her
-    own risks, but on his or her income.</7><8>Social security is also
-    developing new services, such as the opening of childcare places for young
-    children, enabling their parents to continue working. It is also developing
-    preventive actions, organizing vaccination campaigns, early detection of
-    certain illnesses, support for people returning home after hospitalization,
-    and helping private individuals to register their childcare or home
-    services.</8><9>Created in 1945, social security has enabled the French not
-    only to live more, but also to live better. It will continue to evolve to
-    build services that meet their needs.</9>
+  transcript-NO_AUTO_TRANSLATION: "<0>Three minutes to understand the challenges
+    of social security.</0><1>The purpose of social security is to protect
+    people living in France when certain events occur during their
+    lives.</1><2>Its budget consists of expenses mainly in the form of benefits
+    and of income, financed partly by contributions. Income is managed by the
+    collection branch made up of the URSSAF agencies. Regarding expenses, there
+    are four branches. The health insurance branch covers hospital costs,
+    medecine and consultations. The retirement pension branch registers on each
+    person's old-age account their income received throughout their working life
+    using companies online declarations in order to calculate and pay pensions.
+    the occupational risks branch covers the costs related to occupational
+    diseases and accidents at work. the family branch provides various benefits
+    regarding birth and child care and allowances for education and housing for
+    example. These four branches form the general scheme of the Social Security
+    system. Besides the general scheme there are specific organizations such as
+    the MSA for farmers and special schemes.</2><3>All people living in France
+    help to fund the Social Security system which in  return provides cover for
+    all of them. The principle is that of a \"common pot\" which works through
+    solidarity each person pays contributions based on their income rather than
+    on their risks.</3><4>The Social Security system by providing pensions and
+    paying for medical care has extended life expectancy in France by three
+    months every year in the past 20 years. This progress leads to financing
+    difficulties: longer life expectancy implies more pensions and higher health
+    expenses which unbalance the system. To restore its balance, measures are
+    being taken especially by extending the contributions duration.</4><5>The
+    Social Security system is also increasing its services such as childcare
+    capacity for children aged up to three so their parents can keep working. It
+    is also developing preventive actions, running immunization campaigns
+    programs for the early screening of certain diseases, actions for post
+    Hospital support at home, and information about fall danger among the
+    elderly.</5><6>Founded seventy years ago, the French Social Security system
+    has not only enabled the French to live longer but also better it will
+    continue evolving to build the services that meet their needs you.</6>"
   videoTitle: <0>Explanatory video "3 minutes to understand the French Social
     Security system"</0>
   videoTranscriptTitle: Transcript of the video

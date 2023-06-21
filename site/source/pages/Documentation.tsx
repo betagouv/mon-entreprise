@@ -60,9 +60,9 @@ export default function Documentation({
 					) : (
 						<>
 							<Meta
-								title={t('documentation.title', 'Documentation')}
+								title={t('pages.documentation.meta.title', 'Documentation')}
 								description={t(
-									'documentation.description',
+									'pages.documentation.meta.description',
 									'Documentation des règles de calcul de nos simulateurs et assistants'
 								)}
 							/>
@@ -159,7 +159,9 @@ function BackToSimulation() {
 			<Spacing lg />
 			<Button to={url}>
 				<span aria-hidden>←</span>{' '}
-				<Trans i18nKey="back">Retourner à la simulation</Trans>
+				<Trans i18nKey="pages.documentation.back">
+					Retourner à la simulation
+				</Trans>
 			</Button>
 		</>
 	)
@@ -172,14 +174,14 @@ function DocumentationLanding() {
 		<>
 			<TrackPage chapter1="documentation" name="accueil" />
 			<Meta
-				title={t('documentation.title', 'Documentation')}
+				title={t('pages.documentation.meta.title', 'Documentation')}
 				description={t(
-					'documentation.description',
+					'pages.documentation.meta.descriptionBis',
 					'Explorez toutes les règles de la documentation'
 				)}
 			/>
 			<H1>
-				<Trans i18nKey="documentation.title">Documentation</Trans>
+				<Trans i18nKey="pages.documentation.title">Documentation</Trans>
 			</H1>
 			<Body>Explorez toutes les règles de la documentation</Body>
 			<SearchRules />
