@@ -3,15 +3,15 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import Popover from '@/design-system/popover/Popover'
 import Documentation from '@/pages/Documentation'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/components/Comparateur'
-import { useSitePaths } from '@/sitePaths'
 
 export function EngineDocumentationRoutes({
 	namedEngines,
+	basePath,
 }: {
 	namedEngines: EngineComparison
+	basePath: string
 }) {
 	const navigate = useNavigate()
-	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<Routes>
@@ -25,14 +25,14 @@ export function EngineDocumentationRoutes({
 								isOpen
 								isDismissable
 								onClose={() => {
-									navigate(absoluteSitePaths.simulateurs.comparaison, {
+									navigate(basePath, {
 										replace: true,
 									})
 								}}
 							>
 								<Documentation
 									engine={engine}
-									documentationPath={`/simulateurs/comparaison-régimes-sociaux/${name}`}
+									documentationPath={`${basePath}/${name}`}
 								/>
 							</Popover>
 						</div>

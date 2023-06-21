@@ -7,12 +7,12 @@ import { useCurrentStep } from './_components/useSteps'
 import Association from './association'
 import Associé from './associé'
 import Commune from './commune'
+import Comparateur from './comparateur'
 import DétailsActivité from './détails-activité'
 import AccueilChoixStatut from './home'
 import RechercheActivité from './recherche-activité'
 import Rémunération from './rémunération'
 import Résultat from './résultat'
-import Statuts from './statuts'
 
 export default function ChoixDuStatut() {
 	const { relativeSitePaths } = useSitePaths()
@@ -32,12 +32,21 @@ export default function ChoixDuStatut() {
 					path={childrenPaths['détails-activité']}
 					element={<DétailsActivité />}
 				/>
-				<Route path={childrenPaths.commune} element={<Commune />} />
-				<Route path={childrenPaths.associé} element={<Associé />} />
-				<Route path={childrenPaths.association} element={<Association />} />
-				<Route path={childrenPaths.rémunération} element={<Rémunération />} />
-				<Route path={childrenPaths.résultat} element={<Résultat />} />
-				<Route path={childrenPaths.statuts} element={<Statuts />} />
+				<Route path={`${childrenPaths.commune}/*`} element={<Commune />} />
+				<Route path={`${childrenPaths.associé}/*`} element={<Associé />} />
+				<Route
+					path={`${childrenPaths.association}/*`}
+					element={<Association />}
+				/>
+				<Route
+					path={`${childrenPaths.rémunération}/*`}
+					element={<Rémunération />}
+				/>
+				<Route path={`${childrenPaths.résultat}/*`} element={<Résultat />} />
+				<Route
+					path={`${childrenPaths.comparateur}/*`}
+					element={<Comparateur />}
+				/>
 			</Routes>
 		</>
 	)

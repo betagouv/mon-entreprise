@@ -41,7 +41,6 @@ const DetailsRowCards = ({
 	warning?: (engine: Engine<DottedName>) => ReactNode
 	footer?: (engine: Engine<DottedName>) => ReactNode
 }) => {
-	console.log(namedEngines)
 	const options = namedEngines.map(({ engine, name }) => ({
 		engine,
 		name,
@@ -104,7 +103,7 @@ const DetailsRowCards = ({
 							>
 								<DisabledLabel>Ne s'applique pas</DisabledLabel>
 								<StyledRuleLink
-									documentationPath={`/simulateurs/comparaison-régimes-sociaux/${statusObject.name}`}
+									documentationPath={`${statusObject.name}`}
 									dottedName={dottedName}
 									engine={statusObject.engine}
 								>
@@ -128,7 +127,7 @@ const DetailsRowCards = ({
 										{label && label}
 									</span>
 									<StyledRuleLink
-										documentationPath={`/simulateurs/comparaison-régimes-sociaux/${statusObject.name}`}
+										documentationPath={`${statusObject.name}`}
 										dottedName={dottedName}
 										engine={statusObject.engine}
 									>

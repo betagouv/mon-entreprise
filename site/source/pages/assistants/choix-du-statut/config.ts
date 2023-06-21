@@ -32,6 +32,7 @@ export function choixStatutJuridiqueConfig({
 		simulation: {
 			situation: {
 				'entreprise . catégorie juridique . remplacements': 'non',
+				salarié: 'non',
 			},
 		},
 		autoloadLastSimulation: true,
