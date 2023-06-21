@@ -40,6 +40,7 @@ export default function Documentation({
 	documentationPath: string
 	engine: Engine
 }) {
+	const { t } = useTranslation()
 	const location = useLocation()
 	const pathname = decodeURI(location?.pathname ?? '')
 	const documentationSitePaths = useMemo(
@@ -58,6 +59,13 @@ export default function Documentation({
 						<Navigate to="/404" replace />
 					) : (
 						<>
+							<Meta
+								title={t('documentation.title', 'Documentation')}
+								description={t(
+									'documentation.description',
+									'Documentation des règles de calcul de nos simulateurs et assistants'
+								)}
+							/>
 							<div id="mobile-menu-portal-id" />
 							<FromBottom>
 								<TrackPage
