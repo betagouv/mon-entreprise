@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
-import { Statut } from '@/components/StatutTag'
+import { StatutType } from '@/components/StatutTag'
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/components/Comparateur'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
@@ -50,7 +50,7 @@ function useStatutComparaison(): EngineComparison {
 	)
 }
 
-function usePossibleStatuts(): Array<Statut> {
+function usePossibleStatuts(): Array<StatutType> {
 	const engine = useEngine()
 	// We could do this logic by filtering the applicable status in publicodes,
 	// but for now, there is only two options, so we hardcode it
@@ -64,7 +64,10 @@ function usePossibleStatuts(): Array<Statut> {
 	}
 }
 
-function getSituationFromStatut(statut: Statut, AEAcre: boolean): Situation {
+function getSituationFromStatut(
+	statut: StatutType,
+	AEAcre: boolean
+): Situation {
 	return {
 		'entreprise . catégorie juridique . remplacements': 'oui',
 		'entreprise . catégorie juridique':

@@ -8,7 +8,7 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import { Statut } from '@/components/StatutTag'
+import { StatutType } from '@/components/StatutTag'
 import { Spacing } from '@/design-system/layout'
 import { useSitePaths } from '@/sitePaths'
 
@@ -17,7 +17,7 @@ import Résultats from './Résultats'
 
 type NamedEngine = {
 	engine: Engine<DottedName>
-	name: Statut
+	name: StatutType
 }
 
 export type EngineComparison =
