@@ -1,24 +1,18 @@
-import Engine, { PublicodesExpression } from 'publicodes'
+import { PublicodesExpression } from 'publicodes'
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { DottedName } from '@/../../modele-social'
 import { SwitchInput } from '@/components/conversation/ChoicesInput'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
-import Value from '@/components/EngineValue'
-import { StatutTag } from '@/components/StatutTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Drawer } from '@/design-system/drawer'
 import { ArrowRightIcon, InfoIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
-import { Tag } from '@/design-system/tag'
-import { Colors } from '@/design-system/theme'
-import { Tooltip } from '@/design-system/tooltip'
 import { Strong } from '@/design-system/typography'
 import { H2, H4, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
@@ -26,6 +20,8 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { answerQuestion } from '@/store/actions/actions'
 
 import { useCasParticuliers } from '../contexts/CasParticuliers'
+import { EngineComparison } from './Comparateur'
+import RevenuTable from './RevenuTable'
 
 const DOTTEDNAME_SOCIETE_IMPOT = 'entreprise . imposition'
 const DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE =
@@ -33,17 +29,20 @@ const DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE =
 const DOTTEDNAME_ACRE = 'dirigeant . exonérations . ACRE'
 
 const AllerPlusLoinRevenus = ({
-	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
+	namedEngines,
 }: {
-	engines: [Engine<DottedName>, Engine<DottedName>, Engine<DottedName>]
+	namedEngines: EngineComparison
 }) => {
 	const defaultValueImpot = useEngine().evaluate(
 		DOTTEDNAME_SOCIETE_IMPOT
 	).nodeValue
-	const defaultValueVersementLiberatoire = autoEntrepreneurEngine.evaluate(
+
+	// TODO
+	const defaultValueVersementLiberatoire = namedEngines[0].engine.evaluate(
 		DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE
 	).nodeValue
-	const defaultValueACRE = assimiléEngine.evaluate(DOTTEDNAME_ACRE).nodeValue
+	const defaultValueACRE =
+		namedEngines[0].engine.evaluate(DOTTEDNAME_ACRE).nodeValue
 
 	const [impotValue, setImpotValue] = useState(
 		`'${String(defaultValueImpot)}'` || "'IS'"
@@ -117,226 +116,8 @@ const AllerPlusLoinRevenus = ({
 				<H2>
 					<Trans>Aller plus loin sur les revenus</Trans>
 				</H2>
-				<H4
-					as="h3"
-					css={`
-						margin-bottom: 1rem;
-					`}
-				>
-					<Trans>Calculer vos revenus</Trans>
-				</H4>
-				<WrapperTable>
-					<StyledTable>
-						<caption className="sr-only">
-							{t(
-								'comparateur.allerPlusLoin.tableCaption',
-								"Tableau affichant le détail du calcul du revenu net pour la SASU, l'entreprise individuelle (EI) et l'auto-entreprise (AE)."
-							)}
-						</caption>
-						<thead>
-							<tr>
-								<th className="sr-only">Type de structure</th>
-								<th scope="col">
-									<span className="table-title-sasu">
-										<StatutTag statut="SASU" text="acronym" showIcon />
-									</span>
-								</th>
+				<RevenuTable namedEngines={namedEngines} />
 
-								<th scope="col">
-									<Tooltip
-										tooltip="Entreprise individuelle"
-										id="tooltip-ei-table"
-									>
-										<span className="table-title-ei">
-											<StatutTag statut="EI" text="acronym" showIcon />
-										</span>
-									</Tooltip>
-								</th>
-
-								<th scope="col">
-									<Tooltip tooltip="Auto-entreprise" id="tooltip-ae-table">
-										<span className="table-title-ae">
-											<StatutTag statut="AE" text="acronym" showIcon />
-										</span>
-									</Tooltip>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">
-									<Minus
-										css={`
-											opacity: 0;
-										`}
-										aria-hidden
-									>
-										-
-									</Minus>{' '}
-									<Trans>Chiffre d'affaires</Trans>
-								</th>
-								<td colSpan={3}>
-									<StyledTag color={'grey' as Colors}>
-										<Value
-											expression="entreprise . chiffre d'affaires"
-											displayedUnit="€"
-											linkToRule={false}
-										/>
-									</StyledTag>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<Minus aria-label={t('moins')}>-</Minus>{' '}
-									<Trans>Charges</Trans>
-								</th>
-								<td colSpan={3}>
-									<StyledTag color={'grey' as Colors}>
-										<Value
-											expression="entreprise . charges"
-											unit="€/an"
-											displayedUnit="€"
-											linkToRule={false}
-										/>
-									</StyledTag>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<Minus aria-label={t('moins')}>-</Minus>{' '}
-									<Trans>Cotisations</Trans>
-								</th>
-								<td>
-									<StyledTag color={'secondary' as Colors}>
-										<Value
-											expression="dirigeant . rémunération . cotisations"
-											engine={assimiléEngine}
-											unit="€/an"
-											displayedUnit="€"
-											linkToRule={false}
-										/>
-									</StyledTag>
-								</td>
-								<td>
-									<StyledTag color={'independant' as Colors}>
-										<Value
-											expression="dirigeant . rémunération . cotisations"
-											engine={indépendantEngine}
-											unit="€/an"
-											displayedUnit="€"
-											linkToRule={false}
-										/>
-									</StyledTag>
-								</td>
-								<td>
-									<StyledTag color={'tertiary' as Colors}>
-										<Value
-											expression="dirigeant . rémunération . cotisations"
-											engine={autoEntrepreneurEngine}
-											unit="€/an"
-											displayedUnit="€"
-											linkToRule={false}
-										/>
-									</StyledTag>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<Minus aria-label={t('moins')}>-</Minus> <Trans>Impôts</Trans>
-								</th>
-								<td>
-									<StyledTag color={'secondary' as Colors}>
-										<Value
-											expression="dirigeant . rémunération . impôt"
-											engine={assimiléEngine}
-											unit="€/an"
-											displayedUnit="€"
-											linkToRule={false}
-										/>
-									</StyledTag>
-								</td>
-								<td>
-									<StyledTag color={'independant' as Colors}>
-										<Value
-											expression="dirigeant . rémunération . impôt"
-											engine={indépendantEngine}
-											unit="€/an"
-											displayedUnit="€"
-											linkToRule={false}
-										/>
-									</StyledTag>
-								</td>
-								<td>
-									<StyledTag color={'tertiary' as Colors}>
-										<Value
-											expression="dirigeant . rémunération . impôt"
-											engine={autoEntrepreneurEngine}
-											unit="€/an"
-											displayedUnit="€"
-											linkToRule={false}
-										/>
-									</StyledTag>
-								</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th scope="row">
-									<Minus
-										css={`
-											opacity: 0;
-										`}
-										aria-hidden
-									>
-										-
-									</Minus>{' '}
-									<StyledStrong>
-										<Trans>Revenu net</Trans>
-									</StyledStrong>
-								</th>
-								<td>
-									<StyledTag color={'secondary' as Colors}>
-										<Strong>
-											<Value
-												expression="dirigeant . rémunération . net . après impôt"
-												engine={assimiléEngine}
-												unit="€/an"
-												displayedUnit="€"
-												linkToRule={false}
-											/>
-										</Strong>
-									</StyledTag>
-								</td>
-								<td>
-									<StyledTag color={'independant' as Colors}>
-										<Strong>
-											<Value
-												expression="dirigeant . rémunération . net . après impôt"
-												engine={indépendantEngine}
-												unit="€/an"
-												displayedUnit="€"
-												linkToRule={false}
-											/>
-										</Strong>
-									</StyledTag>
-								</td>
-								<td>
-									<StyledTag color={'tertiary' as Colors}>
-										<Strong>
-											<Value
-												expression="dirigeant . rémunération . net . après impôt"
-												engine={autoEntrepreneurEngine}
-												unit="€/an"
-												displayedUnit="€"
-												linkToRule={false}
-											/>
-										</Strong>
-									</StyledTag>
-								</td>
-							</tr>
-						</tfoot>
-					</StyledTable>
-				</WrapperTable>
 				<Spacing md />
 				<Flex>
 					<H4 as="h2">Bénéficier de l'ACRE</H4>
@@ -458,7 +239,7 @@ const AllerPlusLoinRevenus = ({
 					}}
 					key="imposition"
 					aria-labelledby="questionHeader"
-					engine={indépendantEngine}
+					engine={namedEngines[0].engine}
 				/>
 
 				<H5 as="h3">
@@ -481,21 +262,6 @@ const AllerPlusLoinRevenus = ({
 	)
 }
 
-const StyledTag = styled(Tag)`
-	width: 100%;
-	justify-content: center;
-	font-size: 0.75rem;
-`
-
-const Minus = styled.span`
-	color: ${({ theme }) => theme.colors.bases.secondary[500]};
-	margin-right: ${({ theme }) => theme.spacings.sm};
-`
-
-const StyledStrong = styled(Strong)`
-	font-family: ${({ theme }) => theme.fonts.main};
-`
-
 const Flex = styled.div`
 	display: flex;
 	align-items: baseline;
@@ -508,91 +274,6 @@ const FlexCentered = styled.div`
 
 const StyledArrowRightIcon = styled(ArrowRightIcon)`
 	margin-left: ${({ theme }) => theme.spacings.sm};
-`
-
-const WrapperTable = styled.div`
-	overflow: auto;
-`
-
-const StyledTable = styled.table`
-	width: 100%;
-	text-align: left;
-	font-family: ${({ theme }) => theme.fonts.main};
-	border-collapse: separate;
-	border-spacing: 0.5rem;
-	border: transparent;
-
-	tr {
-		border-spacing: ${({ theme }) => theme.spacings.md}!important;
-	}
-
-	th {
-		color: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.extended.grey[200]
-				: theme.colors.extended.grey[800]};
-	}
-
-	thead th {
-		text-align: center;
-		font-size: 0.75rem;
-	}
-	.table-title-sasu {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: ${({ theme }) => theme.colors.bases.secondary[600]};
-		svg {
-			fill: ${({ theme }) => theme.colors.bases.secondary[600]};
-			margin-right: ${({ theme }) => theme.spacings.xxs};
-		}
-	}
-	.table-title-ei {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: ${({ theme }) => theme.colors.publics.independant[600]};
-		svg {
-			fill: ${({ theme }) => theme.colors.publics.independant[600]};
-			margin-right: ${({ theme }) => theme.spacings.xxs};
-		}
-	}
-	.table-title-ae {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: ${({ theme }) => theme.colors.bases.tertiary[500]};
-		svg {
-			fill: ${({ theme }) => theme.colors.bases.tertiary[500]};
-			margin-right: ${({ theme }) => theme.spacings.xxs};
-		}
-	}
-
-	tbody th {
-		font-weight: normal;
-	}
-
-	tbody tr:last-of-type td {
-		padding-bottom: 0.5rem;
-	}
-
-	tfoot {
-		position: relative;
-	}
-
-	tfoot:after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		height: 1px;
-		background-color: ${({ theme }) => theme.colors.extended.grey[500]};
-	}
-	tfoot td,
-	tfoot th {
-		padding-top: 1rem;
-	}
 `
 
 export default AllerPlusLoinRevenus

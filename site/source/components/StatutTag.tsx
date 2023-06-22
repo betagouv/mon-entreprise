@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import styled from 'styled-components'
 
 import {
@@ -106,17 +106,25 @@ const StyledTag = styled(Tag)`
 
 interface StatutTagProps {
 	statut: StatutType
-	text: 'acronym' | 'longName'
+	text?: 'acronym' | 'longName'
+	children?: ReactNode
 	showIcon?: boolean
+	className?: string
 }
 
-export const StatutTag = ({ statut, text, showIcon }: StatutTagProps) => {
+export const StatutTag = ({
+	statut,
+	text = 'acronym',
+	showIcon,
+	children,
+	className,
+}: StatutTagProps) => {
 	const Icon = TAG_DATA[statut].icon
 
 	return (
-		<StyledTag color={TAG_DATA[statut].color} sm>
+		<StyledTag color={TAG_DATA[statut].color} sm className={className}>
 			{showIcon && <Icon />}
-			{TAG_DATA[statut][text]}
+			{children ?? TAG_DATA[statut][text]}
 		</StyledTag>
 	)
 }
