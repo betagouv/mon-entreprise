@@ -16,6 +16,7 @@ import { useSitePaths } from '@/sitePaths'
 
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from '../assistants/pour-mon-entreprise/AutoEntrepeneurCard'
+import { CodeDuTravailNumeriqueCard } from '../assistants/pour-mon-entreprise/CodeDuTravailNumeriqueCard'
 import { DemarcheEmbaucheCard } from '../assistants/pour-mon-entreprise/DemarcheEmbauche'
 import { SecuriteSocialeCard } from '../assistants/pour-mon-entreprise/SecuriteSocialeCard'
 
@@ -67,6 +68,9 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						<AutoEntrepreneurCard />
 					</Grid>
 				</WhenApplicable>
+				<Grid item xs={12} sm={6} lg={4} role="listitem">
+					<CodeDuTravailNumeriqueCard />
+				</Grid>
 				<Grid item xs={12} sm={6} lg={4} role="listitem">
 					<SecuriteSocialeCard />
 				</Grid>
