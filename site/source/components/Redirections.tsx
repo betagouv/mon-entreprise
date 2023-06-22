@@ -61,6 +61,7 @@ export default function Redirections({ children }: Props) {
 					absoluteSitePaths.assistants.index
 				),
 			},
+			{ paths: ['/assistants/embaucher', '/assistants/hiring'], to: '/404' },
 		] satisfies { paths: string[]; to: string }[]
 	}, [
 		absoluteSitePaths.assistants,
