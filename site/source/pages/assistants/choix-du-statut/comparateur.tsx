@@ -33,7 +33,6 @@ export default function Comparateur() {
 function useStatutComparaison(): EngineComparison {
 	const { isAutoEntrepreneurACREEnabled } = useCasParticuliers()
 	const possibleStatuts = usePossibleStatuts()
-	console.log(possibleStatuts)
 	const situation = useRawSituation()
 	const engine = useEngine()
 

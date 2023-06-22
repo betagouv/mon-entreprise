@@ -15,8 +15,12 @@ import { getBestOption, OptionType } from '../utils'
 import { EngineComparison } from './Comparateur'
 import StatusCard from './StatusCard'
 
-const getGridSizes = (statusArray: OptionType[]) => {
-	return { sizeXs: 12, sizeLg: 4 * statusArray.length }
+export const getGridSizes = (numberOptions: number, total: number) => {
+	return {
+		xs: 12,
+		// sm: total === 2 ? 6 : 12,
+		lg: (12 / total) * numberOptions,
+	}
 }
 
 const DetailsRowCards = ({
@@ -79,14 +83,11 @@ const DetailsRowCards = ({
 			{groupedOptions.map((sameValueOptions) => {
 				const statusObject = sameValueOptions[0]
 
-				const { sizeXs, sizeLg } = getGridSizes(sameValueOptions)
-
 				return (
 					<Grid
 						key={`${dottedName}-${statusObject.name}`}
 						item
-						xs={sizeXs}
-						lg={sizeLg}
+						{...getGridSizes(sameValueOptions.length, groupedOptions.length)}
 						as="ul"
 					>
 						<StatusCard
