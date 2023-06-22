@@ -11,7 +11,7 @@ import {
 import { Tag } from '@/design-system/tag'
 import { Colors } from '@/design-system/theme'
 
-const TAG_DATA = {
+export const TAG_DATA = {
 	EI: {
 		color: 'independant',
 		longName: 'Entreprise individuelle',
@@ -124,7 +124,13 @@ export const StatutTag = ({
 	return (
 		<StyledTag color={TAG_DATA[statut].color} sm className={className}>
 			{showIcon && <Icon />}
-			{children ?? TAG_DATA[statut][text]}
+			{children ?? text === 'acronym' ? (
+				<abbr title={TAG_DATA[statut].longName}>
+					{TAG_DATA[statut].acronym}
+				</abbr>
+			) : (
+				TAG_DATA[statut][text]
+			)}
 		</StyledTag>
 	)
 }

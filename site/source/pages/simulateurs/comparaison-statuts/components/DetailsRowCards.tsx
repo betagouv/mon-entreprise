@@ -10,6 +10,7 @@ import Value, {
 import RuleLink from '@/components/RuleLink'
 import { HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
+import { Body } from '@/design-system/typography/paragraphs'
 
 import { getBestOption, OptionType } from '../utils'
 import { EngineComparison } from './Comparateur'
@@ -85,9 +86,9 @@ const DetailsRowCards = ({
 
 				return (
 					<Grid
-						key={`${dottedName}-${statusObject.name}`}
+						key={`${dottedName}-${statusObject.name as string}`}
 						item
-						{...getGridSizes(sameValueOptions.length, groupedOptions.length)}
+						{...getGridSizes(sameValueOptions.length, options.length)}
 						as="ul"
 					>
 						<StatusCard
@@ -98,60 +99,62 @@ const DetailsRowCards = ({
 								bestOptionValue === statusObject.name
 							}
 						>
-							<WhenNotApplicable
-								dottedName={dottedName}
-								engine={statusObject.engine}
-							>
-								<DisabledLabel>Ne s'applique pas</DisabledLabel>
-								<StyledRuleLink
-									documentationPath={`${statusObject.name}`}
+							<StyledBody as="div">
+								<WhenNotApplicable
 									dottedName={dottedName}
 									engine={statusObject.engine}
 								>
-									<HelpIcon />
-								</StyledRuleLink>
-							</WhenNotApplicable>
-							<WhenApplicable
-								dottedName={dottedName}
-								engine={statusObject.engine}
-							>
-								<StyledDiv>
-									<span>
-										<Value
-											linkToRule={false}
-											expression={dottedName}
-											engine={statusObject.engine}
-											precision={0}
-											unit={unit}
-										/>
-										{label && ' '}
-										{label && label}
-									</span>
+									<DisabledLabel>Ne s'applique pas</DisabledLabel>
 									<StyledRuleLink
-										documentationPath={`${statusObject.name}`}
+										documentationPath={`${statusObject.name as string}`}
 										dottedName={dottedName}
 										engine={statusObject.engine}
 									>
 										<HelpIcon />
 									</StyledRuleLink>
-									{warning?.(statusObject.engine)}
-								</StyledDiv>
-								{evolutionDottedName && (
-									<Precisions>
-										<Value
-											linkToRule={false}
-											expression={evolutionDottedName}
+								</WhenNotApplicable>
+								<WhenApplicable
+									dottedName={dottedName}
+									engine={statusObject.engine}
+								>
+									<StyledDiv>
+										<span>
+											<Value
+												linkToRule={false}
+												expression={dottedName}
+												engine={statusObject.engine}
+												precision={0}
+												unit={unit}
+											/>
+											{label && ' '}
+											{label && label}
+										</span>
+										<StyledRuleLink
+											documentationPath={`${statusObject.name}`}
+											dottedName={dottedName}
 											engine={statusObject.engine}
-											precision={0}
-											unit={unit}
-										/>{' '}
-										{evolutionLabel}
-									</Precisions>
-								)}
-								{!evolutionDottedName && evolutionLabel && (
-									<Precisions>{evolutionLabel}</Precisions>
-								)}
-							</WhenApplicable>
+										>
+											<HelpIcon />
+										</StyledRuleLink>
+										{warning?.(statusObject.engine)}
+									</StyledDiv>
+									{evolutionDottedName && (
+										<Precisions>
+											<Value
+												linkToRule={false}
+												expression={evolutionDottedName}
+												engine={statusObject.engine}
+												precision={0}
+												unit={unit}
+											/>{' '}
+											{evolutionLabel}
+										</Precisions>
+									)}
+									{!evolutionDottedName && evolutionLabel && (
+										<Precisions>{evolutionLabel}</Precisions>
+									)}
+								</WhenApplicable>
+							</StyledBody>
 						</StatusCard>
 					</Grid>
 				)
@@ -194,3 +197,12 @@ const StyledDiv = styled.div`
 `
 
 export default DetailsRowCards
+const StyledBody = styled(Body)`
+	font-size: 1.25rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	font-weight: 700;
+	margin: 0;
+	margin-top: 0.75rem;
+`

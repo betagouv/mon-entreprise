@@ -1,12 +1,13 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
 import Value, { Condition } from '@/components/EngineValue'
+import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Accordion, Item } from '@/design-system'
+import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { ExternalLinkIcon, PlusCircleIcon } from '@/design-system/icons'
-import { Container, Spacing } from '@/design-system/layout'
+import { Container } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H4 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
@@ -15,9 +16,12 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { EngineComparison } from './Comparateur'
 import DetailsRowCards from './DetailsRowCards'
 import ItemTitle from './ItemTitle'
+import RevenuTable from './RevenuTable'
 import WarningTooltip from './WarningTooltip'
 
 const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
+	const { t } = useTranslation()
+
 	return (
 		<StyledContainer
 			backgroundColor={(theme) =>
@@ -35,6 +39,35 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 				}
 				isFoldable
 			>
+				<Item
+					title={
+						<ItemTitle>
+							<Trans>Vos revenus</Trans> <Emoji emoji="🤑" />
+						</ItemTitle>
+					}
+					key="revenus"
+					hasChildItems={false}
+				>
+					<StyledH4>
+						<Trans>Revenus après impôts</Trans>
+
+						<HelpButtonWithPopover
+							type="info"
+							title={t('Calculer vos revenus')}
+						>
+							<RevenuTable namedEngines={namedEngines} />
+						</HelpButtonWithPopover>
+					</StyledH4>
+					<Body>
+						Vos revenu après déduction de l'impôt sur le revenu, en prenant
+						compte de l'ACRE si vous avez activé l'option.
+					</Body>
+					<DetailsRowCards
+						dottedName="dirigeant . rémunération . net . après impôt"
+						namedEngines={namedEngines}
+						unit="€/mois"
+					/>
+				</Item>
 				<Item
 					title={
 						<ItemTitle>
@@ -360,16 +393,11 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 							</span>
 						}
 					/>
-					<Spacing md />
-
-					<Body
-						css={`
-							margin-top: 2rem;
-						`}
-					>
+					<Body>
 						<Trans>
-							Pour une invalidité causée par un accident professionnel, vous
-							pouvez bénéficier d’une <Strong>rente d’incapacité</Strong>.
+							Pour une invalidité causée par un{' '}
+							<Strong>accident professionnel</Strong>, vous pouvez bénéficier
+							d’une <Strong>rente d’incapacité</Strong>.
 						</Trans>
 					</Body>
 					<DetailsRowCards
@@ -394,11 +422,7 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 						namedEngines={namedEngines}
 					/>
 
-					<Body
-						css={`
-							margin-top: 2rem;
-						`}
-					>
+					<Body>
 						<Trans>
 							En plus du capital décès, une{' '}
 							<Strong>pension de réversion</Strong> peut être versée au conjoint
@@ -425,14 +449,11 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 						</span>
 					</StatusCard> */}
 
-					<Body
-						css={`
-							margin-top: 2rem;
-						`}
-					>
+					<Body>
 						<Trans>
-							Pour un décès survenu dans le cadre d’un accident professionnel,
-							vous pouvez bénéficier d’une <Strong>rente de décès</Strong>.
+							Pour un décès survenu dans le cadre d’un{' '}
+							<Strong>accident professionnel</Strong>, vous pouvez bénéficier
+							d’une <Strong>rente de décès</Strong>.
 						</Trans>
 					</Body>
 
@@ -440,16 +461,14 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 						dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
 						namedEngines={namedEngines}
 						unit="€/mois"
+						label={t('pour vos proches')}
 					/>
 
-					<Body
-						css={`
-							margin-top: 2rem;
-						`}
-					>
+					<Body>
 						<Trans>
-							Un <Strong>capital « orphelin »</Strong> est versé aux enfants des
-							travailleurs indépendants décédés, sous certaines conditions.
+							Un <Strong>capital « orphelin »</Strong> est versé aux{' '}
+							<Strong>enfants des travailleurs indépendants</Strong> décédés,
+							sous certaines conditions.
 						</Trans>
 					</Body>
 

@@ -35,8 +35,7 @@ const StatusCard = ({
 						</Grid>
 					))}
 				</Grid>
-
-				<StyledBody as="div">{children}</StyledBody>
+				{children}
 			</CardBody>
 			{isBestOption && (
 				<Tooltip
@@ -79,18 +78,11 @@ const StyledEmoji = styled(Emoji)`
 	font-size: 1.5rem;
 `
 
-const StyledBody = styled(Body)`
-	font-size: 1.25rem;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	font-weight: 700;
-	margin: 0;
-	margin-top: 0.75rem;
-`
-
 const CardBody = styled.div`
 	padding: 1.5rem;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
 	width: 100%;
 `
 

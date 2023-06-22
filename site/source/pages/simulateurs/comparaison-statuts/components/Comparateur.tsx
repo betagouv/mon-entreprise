@@ -9,11 +9,12 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { StatutType } from '@/components/StatutTag'
-import { Spacing } from '@/design-system/layout'
+import { Container, Spacing } from '@/design-system/layout'
 import { useSitePaths } from '@/sitePaths'
 
 import Détails from './Détails'
-import Résultats from './Résultats'
+import ModifierOptions from './ModifierOptions'
+import StatutChoice from './StatutChoice'
 
 type NamedEngine = {
 	engine: Engine<DottedName>
@@ -56,9 +57,32 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 					<SimulationGoal dottedName="entreprise . charges" isInfoMode />
 				</SimulationGoals>
 			</Simulation>
-			<Spacing md />
-			<Résultats namedEngines={namedEngines} />
+			<Spacing lg />
+			<Container
+				backgroundColor={(theme) =>
+					theme.darkMode
+						? theme.colors.extended.dark[700]
+						: theme.colors.bases.primary[100]
+				}
+				css={`
+					padding: 1rem 0;
+				`}
+			>
+				<StatutChoice namedEngines={namedEngines} hideCTA />
+				<div
+					css={`
+						text-align: right;
+						padding-top: 1rem;
+					`}
+				>
+					<ModifierOptions namedEngines={namedEngines} />
+				</div>
+			</Container>
 			<Détails namedEngines={namedEngines} />
+			<EngineDocumentationRoutes
+				namedEngines={namedEngines}
+				basePath={absoluteSitePaths.assistants['choix-du-statut'].comparateur}
+			/>
 			<EngineDocumentationRoutes
 				basePath={absoluteSitePaths.simulateurs.comparaison}
 				namedEngines={namedEngines}

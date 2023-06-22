@@ -28,8 +28,11 @@ export const CheckList = ({
 }
 
 const StyledUl = styled.ul`
-	margin: 0;
 	padding: 0;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
 `
 
 const StyledLi = styled.li<{ $isChecked?: boolean }>`
@@ -47,6 +50,7 @@ const StyledLi = styled.li<{ $isChecked?: boolean }>`
 	}
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 	font-family: ${({ theme }) => theme.fonts.main};
 	&:not(:last-child) {
 		margin-bottom: 1.5rem;

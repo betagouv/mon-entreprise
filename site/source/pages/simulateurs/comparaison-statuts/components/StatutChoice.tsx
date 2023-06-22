@@ -1,105 +1,117 @@
+import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
 
-import Value, { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
-import RuleLink from '@/components/RuleLink'
-import { StatutType } from '@/components/StatutTag'
-import { CheckList } from '@/design-system'
-import { ExternalLinkIcon, HelpIcon } from '@/design-system/icons'
-import { Grid } from '@/design-system/layout'
-import { StyledLink } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
-import { useSitePaths } from '@/sitePaths'
+import { StatutType, TAG_DATA } from '@/components/StatutTag'
+import { Button } from '@/design-system/buttons'
+import { Grid, Spacing } from '@/design-system/layout'
+import { Strong } from '@/design-system/typography'
+import { H4 } from '@/design-system/typography/heading'
+import { Li, Ul } from '@/design-system/typography/list'
 
-import AllerPlusLoinRevenus from './AllerPlusLoinRevenus'
 import { EngineComparison } from './Comparateur'
 import { getGridSizes } from './DetailsRowCards'
 import StatusCard from './StatusCard'
 
-const RevenuAprèsImpot = ({
+const StatutChoice = ({
 	namedEngines,
+	hideCTA = false,
 }: {
 	namedEngines: EngineComparison
+	hideCTA: boolean
 }) => {
 	const gridSizes = getGridSizes(1, namedEngines.length)
 
 	return (
-		<>
+		<div>
+			<Spacing lg />
 			<Grid container spacing={4}>
 				<Grid item {...gridSizes}>
-					<RevenuBloc {...namedEngines[0]} />
+					<StatutBloc {...namedEngines[0]} hideCTA />
 				</Grid>
 				<Grid item {...gridSizes}>
-					<RevenuBloc {...namedEngines[1]} />
+					<StatutBloc {...namedEngines[1]} hideCTA />
 				</Grid>
 				<Grid item {...gridSizes}>
-					{namedEngines[2] && <RevenuBloc {...namedEngines[2]} />}
+					{namedEngines[2] && <StatutBloc {...namedEngines[2]} hideCTA />}
 				</Grid>
 			</Grid>
-			<AllerPlusLoinRevenus namedEngines={namedEngines} />
-		</>
+		</div>
 	)
 }
 
-function RevenuBloc({
+function StatutBloc({
 	engine,
 	name,
+	hideCTA = false,
 }: {
 	engine: Engine<DottedName>
 	name: StatutType
+	hideCTA: boolean
 }) {
 	const { t } = useTranslation()
-	const { absoluteSitePaths } = useSitePaths()
+	const régimeSocial = engine.evaluate('dirigeant . régime social')
+		.nodeValue as string
+	const imposition = engine.evaluate('entreprise . imposition')
+		.nodeValue as string
+	const versementLibératoire = engine.evaluate(
+		'dirigeant . auto-entrepreneur . impôt . versement libératoire'
+	).nodeValue as string
 
 	return (
 		<StatusCard
 			statut={[name]}
 			footerContent={
-				<CheckList
-					items={[
-						{
-							isChecked: engine.evaluate({
-								valeur: 'dirigeant . exonérations . ACRE',
-							}).nodeValue as boolean,
-							label: engine.evaluate({
-								valeur: 'dirigeant . exonérations . ACRE',
-							}).nodeValue
-								? t("Tient compte de l'ACRE")
-								: t("Ne prend pas l'ACRE en compte"),
-						},
-						{
-							isChecked: true,
-							label: t("Choix d'imposition : impôt sur les sociétés"),
-						},
-					]}
-				/>
+				!hideCTA && (
+					<div
+						css={`
+							text-align: center;
+						`}
+					>
+						<Button size="XS">Choisir ce statut</Button>
+					</div>
+				)
 			}
 		>
-			<span>
-				<Value
-					linkToRule={false}
-					expression="dirigeant . rémunération . net . après impôt"
-					engine={engine}
-					precision={0}
-					unit="€/mois"
-				/>{' '}
-				<Condition engine={engine} expression="dirigeant . exonérations . ACRE">
-					<WhenAlreadyDefined
-						dottedName="dirigeant . rémunération . net . après impôt"
-						engine={engine}
-					>
-						<Trans>la première année</Trans>
-					</WhenAlreadyDefined>
-				</Condition>
-			</span>
-			<StyledRuleLink
-				dottedName="dirigeant . rémunération . net . après impôt"
-				engine={engine}
-				documentationPath={`${absoluteSitePaths.assistants['choix-du-statut'].comparateur}/{name}`}
+			<H4 as="h3">{TAG_DATA[name].longName}</H4>
+			<Ul
+				css={`
+					display: flex;
+					flex: 1;
+					flex-direction: column;
+					justify-content: flex-end;
+				`}
 			>
-				<HelpIcon />
-			</StyledRuleLink>
+				<Li>
+					<Trans>
+						{versementLibératoire ? (
+							<Trans>
+								<Strong>Versement libératoire</Strong> de l'impôt sur le revenu
+							</Trans>
+						) : imposition === 'IS' ? (
+							<Trans>
+								<Strong>Impôt sur les sociétés</Strong> (IS)
+							</Trans>
+						) : (
+							<Trans>
+								<Strong>Impôt sur le revenu</Strong> (IR)
+							</Trans>
+						)}
+					</Trans>
+				</Li>
+				<Li>
+					<Trans>
+						Régime social des <Strong>{régimeSocial}s</Strong>
+					</Trans>
+				</Li>
+				<Li>
+					{engine.evaluate({
+						valeur: 'dirigeant . exonérations . ACRE',
+					}).nodeValue
+						? t('Avec ACRE')
+						: t('Sans exonération ACRE')}
+				</Li>
+			</Ul>
 		</StatusCard>
 	)
 }
@@ -171,29 +183,4 @@ function RevenuBloc({
 							/>
 							*/
 
-export default RevenuAprèsImpot
-
-const StyledRuleLink = styled(RuleLink)`
-	display: inline-flex;
-	margin-left: 0.15rem;
-	&:hover {
-		opacity: 0.8;
-	}
-`
-
-const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
-	margin-left: 0.25rem;
-`
-
-const BlackColoredLink = styled(StyledLink)`
-	color: ${({ theme }) => theme.colors.extended.grey[800]};
-`
-
-const DivAlignRight = styled.div`
-	margin-top: ${({ theme }) => theme.spacings.lg};
-	text-align: right;
-`
-
-const StyledBody = styled(Body)`
-	color: ${({ theme }) => theme.colors.extended.grey[100]}!important;
-`
+export default StatutChoice
