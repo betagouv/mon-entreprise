@@ -18,7 +18,7 @@ const StatutChoice = ({
 	hideCTA = false,
 }: {
 	namedEngines: EngineComparison
-	hideCTA: boolean
+	hideCTA?: boolean
 }) => {
 	const gridSizes = getGridSizes(1, namedEngines.length)
 
