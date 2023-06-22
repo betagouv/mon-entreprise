@@ -45,8 +45,8 @@ export function Article({
 			<Content>{children}</Content>
 			<StyledBody
 				{...ariaButtonProps}
-				{...linkProps}
 				{...buttonProps}
+				{...linkProps}
 				as={elementType}
 			>
 				{ctaLabel}
