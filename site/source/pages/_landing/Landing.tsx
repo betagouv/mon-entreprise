@@ -91,7 +91,7 @@ export default function Landing() {
 					>
 						<Button
 							size="XL"
-							to={absoluteSitePaths.simulateurs.index}
+							to={absoluteSitePaths.simulateursEtAssistants}
 							css={`
 								white-space: no-wrap;
 								margin: auto;
