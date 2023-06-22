@@ -45,12 +45,14 @@ entreprise . catégorie juridique . EI:
     code insee: 1000
   titre: Entreprise individuelle (y compris auto-entrepreneurs)
   valeur: catégorie juridique = 'EI'
+  par défaut:
+    applicable si: associés . unique
+    valeur: oui
   avec:
     auto-entrepreneur:
       question: Êtes-vous auto-entrepreneur ?
       acronyme: AE
       par défaut:
-        applicable si: associés . unique
         non applicable si:
           une de ces conditions:
             - entreprise . imposition . IR . type de bénéfices = 'BA'
@@ -59,14 +61,11 @@ entreprise . catégorie juridique . EI:
                 - dirigeant . indépendant . PL . métier . rattaché CIPAV = non
         nom: par défaut
         experimental: oui
-        valeur: oui
 
     EI:
       titre: entreprise individuelle
       acronyme: EI
       valeur: auto-entrepreneur = non
-      par défaut:
-        applicable si: associés . unique
 
 ### (niveau 1 code 5)	Société commerciale ###
 
