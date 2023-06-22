@@ -21,14 +21,13 @@ import { answerQuestion } from '@/store/actions/actions'
 
 import { useCasParticuliers } from '../contexts/CasParticuliers'
 import { EngineComparison } from './Comparateur'
-import RevenuTable from './RevenuTable'
 
 const DOTTEDNAME_SOCIETE_IMPOT = 'entreprise . imposition'
 const DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE =
 	'dirigeant . auto-entrepreneur . impôt . versement libératoire'
 const DOTTEDNAME_ACRE = 'dirigeant . exonérations . ACRE'
 
-const AllerPlusLoinRevenus = ({
+const ModifierOptions = ({
 	namedEngines,
 }: {
 	namedEngines: EngineComparison
@@ -70,12 +69,10 @@ const AllerPlusLoinRevenus = ({
 			trigger={(buttonProps) => (
 				<Button
 					color="secondary"
-					light
-					size="XS"
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...buttonProps}
 				>
-					<Trans>Aller plus loin</Trans> <StyledArrowRightIcon />
+					<Trans>Modifier mes options</Trans> <StyledArrowRightIcon />
 				</Button>
 			)}
 			confirmLabel="Enregistrer les options"
@@ -114,9 +111,8 @@ const AllerPlusLoinRevenus = ({
 		>
 			<>
 				<H2>
-					<Trans>Aller plus loin sur les revenus</Trans>
+					<Trans>Modifier mes options</Trans>
 				</H2>
-				<RevenuTable namedEngines={namedEngines} />
 
 				<Spacing md />
 				<Flex>
@@ -276,4 +272,4 @@ const StyledArrowRightIcon = styled(ArrowRightIcon)`
 	margin-left: ${({ theme }) => theme.spacings.sm};
 `
 
-export default AllerPlusLoinRevenus
+export default ModifierOptions

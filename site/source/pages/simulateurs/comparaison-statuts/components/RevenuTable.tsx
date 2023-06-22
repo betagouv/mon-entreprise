@@ -5,7 +5,6 @@ import Value from '@/components/EngineValue'
 import { StatutTag } from '@/components/StatutTag'
 import { Tag } from '@/design-system/tag'
 import { Strong } from '@/design-system/typography'
-import { H4 } from '@/design-system/typography/heading'
 
 import { EngineComparison } from './Comparateur'
 
@@ -18,14 +17,7 @@ export default function RevenuTable({
 
 	return (
 		<>
-			<H4
-				as="h3"
-				css={`
-					margin-bottom: 1rem;
-				`}
-			>
-				<Trans>Calculer vos revenus</Trans>
-			</H4>
+
 			<WrapperTable>
 				<StyledTable>
 					<caption className="sr-only">
@@ -249,32 +241,6 @@ const StyledTable = styled.table`
 		align-items: center;
 		justify-content: center;
 	}
-	/* color: ${({ theme }) => theme.colors.bases.secondary[600]};
-  svg {
-    fill: ${({ theme }) => theme.colors.bases.secondary[600]};
-    margin-right: ${({ theme }) => theme.spacings.xxs};
-  } */
-	/* }
-.table-title-ei {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.colors.publics.independant[600]};
-  svg {
-    fill: ${({ theme }) => theme.colors.publics.independant[600]};
-    margin-right: ${({ theme }) => theme.spacings.xxs};
-  }
-}
-.table-title-ae {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.colors.bases.tertiary[500]};
-  svg {
-    fill: ${({ theme }) => theme.colors.bases.tertiary[500]};
-    margin-right: ${({ theme }) => theme.spacings.xxs};
-  }
-} */
 
 	tbody th {
 		font-weight: normal;
