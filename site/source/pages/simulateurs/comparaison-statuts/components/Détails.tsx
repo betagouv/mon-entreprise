@@ -1,8 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import Value, { Condition } from '@/components/EngineValue'
 import { ExplicableRule } from '@/components/conversation/Explicable'
+import Value, { Condition } from '@/components/EngineValue'
 import { Accordion, Item } from '@/design-system'
 import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'

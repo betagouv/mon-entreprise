@@ -7,7 +7,10 @@
   <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
   l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>
 <0>Activité mixte</0>: <0>Activité mixte</0>
+<0>Impôt sur le revenu</0> (IR): <0>Impôt sur le revenu</0> (IR)
+<0>Impôt sur les sociétés</0> (IS): <0>Impôt sur les sociétés</0> (IS)
 <0>Oui</0>: <0>Oui</0>
+<0>Versement libératoire</0> de l'impôt sur le revenu: <0>Versement libératoire</0> de l'impôt sur le revenu
 API REST de simulation: API REST de simulation
 "API REST, en savoir plus sur l'API REST": API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
@@ -21,8 +24,6 @@ Afficher le détail: Afficher le détail
 "Afficher les données par :": "Afficher les données par :"
 Aller au contenu principal: Aller au contenu principal
 Aller directement au pied de page: Aller directement au pied de page
-Aller plus loin: Aller plus loin
-Aller plus loin sur les revenus: Aller plus loin sur les revenus
 Annuler: Annuler
 Arrêt maladie: Arrêt maladie
 Assimilé salarié: Assimilé salarié
@@ -33,6 +34,7 @@ Aucun: Aucun
 Aucun résultat: Aucun résultat
 Auto-entrepreneur: Auto-entrepreneur
 Autres outils: Autres outils
+Avec ACRE: Avec ACRE
 Avec chômage partiel: Avec chômage partiel
 Boite de dialogue: Boite de dialogue
 "Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant \"pain\" ou \"viennoiserie\".":
@@ -173,6 +175,7 @@ Mode accompagnement: Mode accompagnement
 Mode d'affichage: Mode d'affichage
 Modifier: Modifier
 Modifier l'entreprise: Modifier l'entreprise
+Modifier mes options: Modifier mes options
 Modifier mes réponses: Modifier mes réponses
 Mois: Mois
 Mon entreprise: Mon entreprise
@@ -220,12 +223,12 @@ Plan du site: Plan du site
 "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En cas d’arrêt maladie, l’assurance maladie vous versera :":
   "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En
   cas d’arrêt maladie, l’assurance maladie vous versera :"
-"Pour un décès survenu dans le cadre d’un accident professionnel, vous pouvez bénéficier d’une <1>rente de décès</1>.":
-  Pour un décès survenu dans le cadre d’un accident professionnel, vous pouvez
-  bénéficier d’une <1>rente de décès</1>.
-"Pour une invalidité causée par un accident professionnel, vous pouvez bénéficier d’une <1>rente d’incapacité</1>.":
-  Pour une invalidité causée par un accident professionnel, vous pouvez
-  bénéficier d’une <1>rente d’incapacité</1>.
+"Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, vous pouvez bénéficier d’une <4>rente de décès</4>.":
+  Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, vous
+  pouvez bénéficier d’une <4>rente de décès</4>.
+"Pour une invalidité causée par un <2>accident professionnel</2>, vous pouvez bénéficier d’une <4>rente d’incapacité</4>.":
+  Pour une invalidité causée par un <2>accident professionnel</2>, vous pouvez
+  bénéficier d’une <4>rente d’incapacité</4>.
 "Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.": Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.
 "Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.": Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.
 "Pour y prétendre, vous devez voir cotisé au moins <2><0></0></2>": Pour y prétendre, vous devez voir cotisé au moins <2><0></0></2>
@@ -257,11 +260,13 @@ Retraite de base: Retraite de base
 "Retrouver ma simulation, charger les données de ma précédente simulation.": Retrouver ma simulation, charger les données de ma précédente simulation.
 Revenu (incluant les dépenses liées à l'activité): Revenu (incluant les dépenses liées à l'activité)
 Revenu après impôt: Revenu après impôt
+Revenu avant impôt: Revenu avant impôt
 Revenu disponible: Revenu disponible
 Revenu du dirigeant par statut: Revenu du dirigeant par statut
-Revenu net: Revenu net
+Revenus après impôts: Revenus après impôts
 Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
+"Régime social des <1>{régimeSocial}s</1>": Régime social des <1>{régimeSocial}s</1>
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
@@ -274,6 +279,7 @@ Salaire brut mensuel: Salaire brut mensuel
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Salariés et employeurs: Salariés et employeurs
+Sans exonération ACRE: Sans exonération ACRE
 "Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>":
   Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut
   que vous ayez opté pour que <2>les informations de votre entreprise ne soient
@@ -321,14 +327,15 @@ Tout réinitialiser: Tout réinitialiser
 Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
 Type: Type
 "URSSAF Mon entreprise, accéder à la page d'accueil": URSSAF Mon entreprise, accéder à la page d'accueil
-"Un <1>capital « orphelin »</1> est versé aux enfants des travailleurs indépendants décédés, sous certaines conditions.":
-  Un <1>capital « orphelin »</1> est versé aux enfants des travailleurs
-  indépendants décédés, sous certaines conditions.
+"Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs indépendants</4> décédés, sous certaines conditions.":
+  Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs
+  indépendants</4> décédés, sous certaines conditions.
 Un avis sur cette page ?: Un avis sur cette page ?
 "Urssaf, voir le site urssaf":
   "fr, nouvelle fenêtre": Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
+Versement libératoire de l'impôt sur le revenu: Versement libératoire de l'impôt sur le revenu
 Version française du site activée.: Version française du site activée.
 Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
 Veuillez renseigner votre adresse email.: Veuillez renseigner votre adresse email.
@@ -346,6 +353,7 @@ Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Vos droits pour la retraite: Vos droits pour la retraite
 Vos prestations santé: Vos prestations santé
+Vos revenus: Vos revenus
 Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie.:
   Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt
   maladie.
@@ -485,6 +493,10 @@ choix-statut:
       <1>sociétés par actions</1> (SASU, SAS), on parle
       d’<3>actionnaires</3>.</1></1>
   commune:
+    description: "<0>Bonne nouvelle : il ne reste plus que <2>{namedEngines.length}
+      statuts possibles</2>. Vous allez maintenant pouvoir entrer dans le détail
+      et comparer <5>leurs revenus</5>, la <7>couverture sociale</7> et la
+      <10>gestion comptable et juridique</10> avant de faire votre choix.</0>"
     help:
       title: Chaque territoire a ses spécificités
     title: Dans quelle commune voulez-vous créer votre entreprise ?<1><0>Certains
@@ -585,10 +597,6 @@ comparaisonRégimes:
       "1": EI, EIRL, EURL ou SARL avec gérant majoritaire
       "2": EI ou EIRL
     legend: Statuts juridiques possibles
-comparateur:
-  allerPlusLoin:
-    tableCaption: Tableau affichant le détail du calcul du revenu net pour la SASU,
-      l'entreprise individuelle (EI) et l'auto-entreprise (AE).
 components:
   feedback:
     form:
@@ -1349,6 +1357,11 @@ pages:
         title: Comparateur de statut juridique
       shortname: Comparaison des statuts
       title: Comparateur de statut juridique
+    comparaison-statuts:
+      revenu-table:
+        net: Tableau affichant le détail du calcul du revenu net pour chaque statut
+        net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
+          pour chaque statut
     coût-création-entreprise:
       meta:
         description: Estimez les coûts des formalités administratives obligatoires à la
@@ -1648,6 +1661,7 @@ payslip:
     sur&nbsp;<1>service-public.fr</1>.
   repartition: Répartition du total chargé
 points: points
+pour vos proches: pour vos proches
 pourcentage: pourcentage
 previousSimulationBanner:
   info: "Votre précédente simulation a été sauvegardée :"
@@ -1866,6 +1880,20 @@ versés en une fois: versés en une fois
 warning:
   overwrite:
     situation: Voulez-vous écraser votre situation ?
+"{versementLibératoire ? (\n\t\t\t\t\t\t\t<Trans>\n\t\t\t\t\t\t\t\t<Strong>Versement libératoire</Strong> de l'impôt sur le revenu\n\t\t\t\t\t\t\t</Trans>\n\t\t\t\t\t\t) : imposition === 'IS' ? (\n\t\t\t\t\t\t\t<Trans>\n\t\t\t\t\t\t\t\t<Strong>Impôt sur les sociétés</Strong> (IS)\n\t\t\t\t\t\t\t</Trans>\n\t\t\t\t\t\t) : (\n\t\t\t\t\t\t\t<Trans>\n\t\t\t\t\t\t\t\t<Strong>Impôt sur le revenu</Strong> (IR)\n\t\t\t\t\t\t\t</Trans>\n\t\t\t\t\t\t)}": |-
+  {versementLibératoire ? (
+  							<Trans>
+  								<Strong>Versement libératoire</Strong> de l'impôt sur le revenu
+  							</Trans>
+  						) : imposition === 'IS' ? (
+  							<Trans>
+  								<Strong>Impôt sur les sociétés</Strong> (IS)
+  							</Trans>
+  						) : (
+  							<Trans>
+  								<Strong>Impôt sur le revenu</Strong> (IR)
+  							</Trans>
+  						)}
 "{{title}}, voir la demande sur github":
   "com, nouvelle fenêtre": "{{title}}, voir la demande sur github.com, nouvelle fenêtre"
 "À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SASU. La modification du paramètre ci-dessous influera donc uniquement les calculs liés au statut d'entreprise individuelle (EI).":
