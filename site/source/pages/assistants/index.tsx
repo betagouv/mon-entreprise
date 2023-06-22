@@ -10,7 +10,7 @@ import { useSitePaths } from '@/sitePaths'
 
 import SocialSecurity from './sécurité-sociale'
 
-export default function Gérer() {
+export default function Assistants() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
 	const location = useLocation()
 	const simulateurs = useSimulatorsData()
