@@ -17,12 +17,11 @@ export default function RevenuTable({
 
 	return (
 		<>
-
 			<WrapperTable>
 				<StyledTable>
 					<caption className="sr-only">
 						{t(
-							'comparateur.allerPlusLoin.tableCaption',
+							'pages.simulateurs.comparaison-statuts.revenu-table.net',
 							'Tableau affichant le détail du calcul du revenu net pour chaque statut'
 						)}
 					</caption>
@@ -134,7 +133,7 @@ export default function RevenuTable({
 				<StyledTable>
 					<caption className="sr-only">
 						{t(
-							'comparateur.allerPlusLoin.tableCaption',
+							'pages.simulateurs.comparaison-statuts.revenu-table.net-après-impôt',
 							'Tableau affichant le détail du calcul du revenu net après impôt pour chaque statut'
 						)}
 					</caption>
