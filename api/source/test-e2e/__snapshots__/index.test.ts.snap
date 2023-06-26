@@ -35,12 +35,13 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "dirigeant . assimilé salarié",
         "dirigeant . régime social",
         "entreprise . catégorie juridique . EI . auto-entrepreneur",
-        "entreprise . catégorie juridique . EI",
         "entreprise . catégorie juridique",
-        "entreprise . associés . multiples",
+        "entreprise . catégorie juridique . EI",
         "entreprise . catégorie juridique . SAS",
         "entreprise . catégorie juridique . SARL",
         "dirigeant . gérant minoritaire",
+        "entreprise . associés . multiples",
+        "entreprise . catégorie juridique . remplacements",
         "entreprise . imposition . IS",
         "entreprise . imposition",
         "entreprise . catégorie juridique . SARL . EURL",
@@ -74,6 +75,7 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "situation personnelle . domiciliation fiscale à l'étranger",
         "dirigeant . indépendant . PL . PAMC . maladie",
         "déclaration charge sociales . nature de l'activité",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
         "entreprise . catégorie juridique . SELAS",
         "entreprise . activité . nature",
         "dirigeant . indépendant . PL",
@@ -240,6 +242,15 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
 ➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
@@ -294,6 +305,15 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
 ➡️  Dans la règle \\"entreprise . activité . nature\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
@@ -331,6 +351,15 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
       "message": "
 [ Avertissement ]
 ➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -365,9 +394,21 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
       "missingVariables": [
         "dirigeant . assimilé salarié",
         "dirigeant . gérant minoritaire",
+        "dirigeant . indépendant",
+        "entreprise . activité . nature",
+        "entreprise . activité . nature . libérale . réglementée",
         "entreprise . associés",
+        "entreprise . associés . unique",
         "entreprise . catégorie juridique",
+        "entreprise . catégorie juridique . EI",
         "entreprise . catégorie juridique . EI . auto-entrepreneur",
+        "entreprise . catégorie juridique . SARL",
+        "entreprise . catégorie juridique . SAS",
+        "entreprise . catégorie juridique . SELARL",
+        "entreprise . catégorie juridique . SELAS",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
+        "entreprise . imposition",
+        "entreprise . imposition . IR . type de bénéfices",
         "salarié . activité partielle",
         "salarié . contrat",
         "salarié . contrat . statut cadre",
@@ -396,17 +437,32 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "dirigeant",
         "dirigeant . régime social",
         "entreprise . catégorie juridique . EI . auto-entrepreneur",
-        "entreprise . catégorie juridique . EI",
         "entreprise . catégorie juridique",
-        "entreprise . associés . multiples",
+        "entreprise . associés . unique",
+        "entreprise . catégorie juridique . remplacements",
+        "entreprise . catégorie juridique . EI",
         "entreprise . associés",
         "DRI",
         "entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut",
-        "entreprise . catégorie juridique . SAS",
-        "entreprise . catégorie juridique . SARL",
-        "dirigeant . gérant minoritaire",
+        "entreprise . imposition . IR . type de bénéfices",
+        "entreprise . imposition . IR",
+        "entreprise . imposition",
+        "entreprise . catégorie juridique . SARL . EURL",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
         "entreprise . catégorie juridique . SELARL",
+        "entreprise . activité . nature . libérale . réglementée",
+        "déclaration charge sociales . nature de l'activité",
+        "déclaration charge sociales",
+        "entreprise . activité . nature . libérale",
+        "entreprise . activité . nature",
         "entreprise . catégorie juridique . SELAS",
+        "entreprise . catégorie juridique . SARL",
+        "entreprise . catégorie juridique . SELARL . SELARL",
+        "entreprise . associés . multiples",
+        "dirigeant . indépendant . PL . métier . rattaché CIPAV",
+        "dirigeant . indépendant",
+        "entreprise . catégorie juridique . SAS",
+        "dirigeant . gérant minoritaire",
         "salarié",
         "salarié . rémunération . net",
         "salarié . rémunération . net . sans revenus de remplacement",
@@ -624,11 +680,23 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
       "missingVariables": [
         "dirigeant . assimilé salarié",
         "dirigeant . gérant minoritaire",
+        "dirigeant . indépendant",
         "entreprise . TVA",
+        "entreprise . activité . nature",
+        "entreprise . activité . nature . libérale . réglementée",
         "entreprise . association non lucrative",
         "entreprise . associés",
+        "entreprise . associés . unique",
         "entreprise . catégorie juridique",
+        "entreprise . catégorie juridique . EI",
         "entreprise . catégorie juridique . EI . auto-entrepreneur",
+        "entreprise . catégorie juridique . SARL",
+        "entreprise . catégorie juridique . SAS",
+        "entreprise . catégorie juridique . SELARL",
+        "entreprise . catégorie juridique . SELAS",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
+        "entreprise . imposition",
+        "entreprise . imposition . IR . type de bénéfices",
         "entreprise . salariés . effectif . seuil",
         "salarié . activité partielle",
         "salarié . contrat",
@@ -667,17 +735,32 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "dirigeant",
         "dirigeant . régime social",
         "entreprise . catégorie juridique . EI . auto-entrepreneur",
-        "entreprise . catégorie juridique . EI",
         "entreprise . catégorie juridique",
-        "entreprise . associés . multiples",
+        "entreprise . associés . unique",
+        "entreprise . catégorie juridique . remplacements",
+        "entreprise . catégorie juridique . EI",
         "entreprise . associés",
         "DRI",
         "entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut",
-        "entreprise . catégorie juridique . SAS",
-        "entreprise . catégorie juridique . SARL",
-        "dirigeant . gérant minoritaire",
+        "entreprise . imposition . IR . type de bénéfices",
+        "entreprise . imposition . IR",
+        "entreprise . imposition",
+        "entreprise . catégorie juridique . SARL . EURL",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
         "entreprise . catégorie juridique . SELARL",
+        "entreprise . activité . nature . libérale . réglementée",
+        "déclaration charge sociales . nature de l'activité",
+        "déclaration charge sociales",
+        "entreprise . activité . nature . libérale",
+        "entreprise . activité . nature",
         "entreprise . catégorie juridique . SELAS",
+        "entreprise . catégorie juridique . SARL",
+        "entreprise . catégorie juridique . SELARL . SELARL",
+        "entreprise . associés . multiples",
+        "dirigeant . indépendant . PL . métier . rattaché CIPAV",
+        "dirigeant . indépendant",
+        "entreprise . catégorie juridique . SAS",
+        "dirigeant . gérant minoritaire",
         "salarié . rémunération . primes",
         "salarié . rémunération . primes . activité",
         "salarié . rémunération . primes . activité . base",
@@ -907,11 +990,12 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant",
         "dirigeant . régime social",
         "entreprise . catégorie juridique . EI . auto-entrepreneur",
-        "entreprise . catégorie juridique . EI",
         "entreprise . catégorie juridique",
-        "entreprise . associés . multiples",
+        "entreprise . catégorie juridique . EI",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV",
         "dirigeant . auto-entrepreneur . affiliation CIPAV",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
+        "entreprise . catégorie juridique . remplacements",
         "entreprise . catégorie juridique . SELARL",
         "entreprise . catégorie juridique . SELAS",
         "entreprise . activité . nature . libérale . réglementée",
@@ -990,9 +1074,8 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur",
         "dirigeant . régime social",
         "entreprise . catégorie juridique . EI . auto-entrepreneur",
-        "entreprise . catégorie juridique . EI",
         "entreprise . catégorie juridique",
-        "entreprise . associés . multiples",
+        "entreprise . catégorie juridique . EI",
         "impôt . méthode de calcul",
         "impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
         "impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte",
@@ -1040,15 +1123,16 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant",
         "dirigeant . régime social",
         "entreprise . catégorie juridique . EI . auto-entrepreneur",
-        "entreprise . catégorie juridique . EI",
         "entreprise . catégorie juridique",
-        "entreprise . associés . multiples",
+        "entreprise . catégorie juridique . EI",
         "dirigeant . auto-entrepreneur . revenu net",
         "entreprise . chiffre d'affaires",
         "dirigeant . auto-entrepreneur . chiffre d'affaires",
         "dirigeant . auto-entrepreneur . cotisations et contributions",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV",
         "dirigeant . auto-entrepreneur . affiliation CIPAV",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
+        "entreprise . catégorie juridique . remplacements",
         "entreprise . catégorie juridique . SELARL",
         "entreprise . catégorie juridique . SELAS",
         "entreprise . activité . nature . libérale . réglementée",
@@ -1157,6 +1241,15 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
 ➡️  Dans la règle \\"entreprise . activité . nature\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
@@ -1176,6 +1269,15 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
       "message": "
 [ Avertissement ]
 ➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1230,6 +1332,15 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
       "message": "
 [ Avertissement ]
 ➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1328,7 +1439,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1337,34 +1448,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RN\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . DECC\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . SPECIAL\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1418,7 +1502,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1427,34 +1511,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RN\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . DECC\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . SPECIAL\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1500,6 +1557,150 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
       "message": "
 [ Avertissement ]
 ➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RN\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . DECC\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . SPECIAL\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RN\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . DECC\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . SPECIAL\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
