@@ -12,6 +12,7 @@ export function choixStatutJuridiqueConfig({
 		path: sitePaths.assistants['choix-du-statut'].index,
 		iframePath: 'choix-statut-juridique',
 		icône: '📚',
+		beta: true,
 		tracking: {
 			chapter1: 'creer',
 			chapter2: 'guide',
