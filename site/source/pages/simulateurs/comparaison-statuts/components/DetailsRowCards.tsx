@@ -28,7 +28,7 @@ const DetailsRowCards = ({
 	namedEngines,
 	dottedName,
 	unit,
-	bestOption,
+	leastIsBest = false,
 	evolutionDottedName,
 	evolutionLabel,
 	label,
@@ -38,7 +38,7 @@ const DetailsRowCards = ({
 	namedEngines: EngineComparison
 	dottedName: DottedName
 	unit?: string
-	bestOption?: 1 | 2 | 3
+	leastIsBest?: boolean
 	evolutionDottedName?: DottedName
 	evolutionLabel?: ReactNode | string
 	label?: ReactNode | string
@@ -55,7 +55,7 @@ const DetailsRowCards = ({
 		}).nodeValue,
 	})) as [OptionType, OptionType, OptionType]
 
-	const bestOptionValue = bestOption ?? getBestOption(options)
+	const bestOptionValue = getBestOption(options, leastIsBest)
 
 	const groupedOptions = options
 		.reduce((acc, option) => {

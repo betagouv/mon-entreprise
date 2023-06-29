@@ -457,6 +457,7 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 					</Body>
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . capital décès"
+						label="pour vos proches"
 						namedEngines={namedEngines}
 					/>
 
@@ -469,29 +470,17 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 							sa vie professionnelle.
 						</Trans>
 					</Body>
-					{/* <StatusCard statut={['SASU', 'EI', 'AE']}>
-						<span>
-							<Value
-								linkToRule={false}
-								expression="protection sociale . invalidité et décès . pension de reversion"
-								engine={assimiléEngine}
-								precision={0}
-								unit="€/mois"
-							/>{' '}
-							<WhenAlreadyDefined
-								engine={assimiléEngine}
-								dottedName="protection sociale . invalidité et décès . pension de reversion"
-							>
-								<Trans>maximum</Trans>
-							</WhenAlreadyDefined>
-						</span>
-					</StatusCard> */}
+					<DetailsRowCards
+						dottedName="protection sociale . invalidité et décès . pension de reversion"
+						label={'maximum'}
+						namedEngines={namedEngines}
+					/>
 
 					<Body>
 						<Trans>
 							Pour un décès survenu dans le cadre d’un{' '}
-							<Strong>accident professionnel</Strong>, vous pouvez bénéficier
-							d’une <Strong>rente de décès</Strong>.
+							<Strong>accident professionnel</Strong>, le conjoint survivant
+							peut bénéficier d’une <Strong>rente de décès</Strong>.
 						</Trans>
 					</Body>
 
@@ -499,7 +488,7 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 						dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
 						namedEngines={namedEngines}
 						unit="€/mois"
-						label={t('pour vos proches')}
+						label={t("en cas d'accident pro")}
 					/>
 
 					<Body>
@@ -526,96 +515,24 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 					key="administratif"
 					hasChildItems={false}
 				>
-					{
-						// TODO : implémenter les valeurs correspondantes dans modèle-social
-						// Ressource : https://entreprendre.service-public.fr/vosdroits/F23282
-						/*
-							<StyledH4>
-								<Trans>Coût de création</Trans>
-								<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
-							</StyledH4>
-							<Body>
-								<Trans>
-									Les formalités de création d'une entreprise diffèrent selon les
-									statuts et la nature de l'activité. Le calcul se concentre ici sur
-									les <Strong>procédures obligatoires</Strong> (immatriculation,
-									annonces légales, rédaction des statuts...).
-								</Trans>
-							</Body>
-							<Grid container spacing={4}>
-								<Grid item xs={12} lg={4}>
-									<StatusCard status={['sasu']}>
-										<span>
-											<Value
-												linkToRule={false}
-												expression="protection sociale . maladie . arrêt maladie"
-												engine={assimiléEngine}
-												precision={0}
-												unit="€"
-											/>
-										</span>
-										<StyledRuleLink
-											dottedName="protection sociale . maladie . arrêt maladie"
-											engine={assimiléEngine}
-										>
-											<HelpIcon />
-										</StyledRuleLink>
-									</StatusCard>
-								</Grid>
-								<Grid item xs={12} lg={4}>
-									<StatusCard status={['ei']}>
-										<span>
-											<Value
-												linkToRule={false}
-												expression="protection sociale . maladie . arrêt maladie"
-												engine={indépendantEngine}
-												precision={0}
-												unit="€"
-											/>
-										</span>
-										<StyledRuleLink
-											dottedName="protection sociale . maladie . arrêt maladie"
-											engine={assimiléEngine}
-										>
-											<HelpIcon />
-										</StyledRuleLink>
-									</StatusCard>
-								</Grid>
-								<Grid item xs={12} lg={4}>
-									<StatusCard status={['ae']}>
-										<Trans>Aucun</Trans>
-									</StatusCard>
-								</Grid>
-							</Grid>
-						*/
-					}
-
-					{/* <StyledH4>
-						<Trans>Dépôt de capital</Trans>
-						<ExplicableRule dottedName="entreprise . capital social" />
+					<StyledH4>
+						<Trans>Coût de création</Trans>
+						<ExplicableRule dottedName="entreprise . coût formalités . création" />
 					</StyledH4>
 					<Body>
 						<Trans>
-							Selon les statuts, il est indispensable d’effectuer un{' '}
-							<Strong>apport en capital</Strong> à la création de l’entreprise.
-							Le <Strong>montant minimum</Strong> du capital social est de{' '}
-							<Strong>1 €</Strong>.
+							Les formalités de création d'une entreprise diffèrent selon les
+							statuts et la nature de l'activité. Le calcul se concentre ici sur
+							les <Strong>procédures obligatoires</Strong> (immatriculation,
+							annonces légales, rédaction des statuts...).
 						</Trans>
 					</Body>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard statut={['SASU']}>
-								<Trans>1 € minimum</Trans>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={8}>
-							<StatusCard statut={['EI', 'AE']}>
-								<DisabledLabel>
-									<Trans>Aucun</Trans>
-								</DisabledLabel>
-							</StatusCard>
-						</Grid>
-					</Grid> */}
+
+					<DetailsRowCards
+						dottedName="entreprise . coût formalités . création"
+						namedEngines={namedEngines}
+						leastIsBest
+					/>
 
 					{/* <StyledH4>
 						<Trans>Statut du conjoint</Trans>
@@ -628,24 +545,12 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 							<Strong>conjoint associé</Strong> ou{' '}
 							<Strong>conjoint salarié</Strong>).
 						</Trans>
-					</Body>
-					<Grid container spacing={4}>
-						<Grid item xs={12} lg={4}>
-							<StatusCard statut={['SASU']}>
-								<Trans>Conjoint associé ou salarié</Trans>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard statut={['EI']}>
-								<Trans>Conjoint collaborateur ou salarié</Trans>
-							</StatusCard>
-						</Grid>
-						<Grid item xs={12} lg={4}>
-							<StatusCard statut={['AE']}>
-								<Trans>Conjoint collaborateur</Trans>
-							</StatusCard>
-						</Grid>
-					</Grid> */}
+					</Body> */}
+					{/* 					
+					<DetailsRowCards
+						dottedName="dirigeant . statut du conjoint"
+						namedEngines={namedEngines}
+					/> */}
 				</Item>
 			</Accordion>
 		</StyledContainer>
