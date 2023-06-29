@@ -59,13 +59,51 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 						</HelpButtonWithPopover>
 					</StyledH4>
 					<Body>
-						Vos revenu après déduction de l'impôt sur le revenu, en prenant
-						compte de l'ACRE si vous avez activé l'option.
+						Vos revenus après déduction de l'impôt, en prenant compte de l'ACRE
+						si vous avez activé l'option.
 					</Body>
 					<DetailsRowCards
 						dottedName="dirigeant . rémunération . net . après impôt"
 						namedEngines={namedEngines}
 						unit="€/mois"
+						warning={(engine) => (
+							<Condition
+								engine={engine}
+								expression={{
+									et: [
+										'entreprise . catégorie juridique . EI . auto-entrepreneur',
+										"entreprise . chiffre d'affaires . seuil micro . dépassé",
+									],
+								}}
+							>
+								<WarningTooltip
+									id="warning-auto-entrepreneur"
+									tooltip={
+										<div id="warning-auto-entrepreneur">
+											<Trans>
+												Vous allez dépasser le plafond de la micro-entreprise
+											</Trans>{' '}
+											<span>
+												(
+												<Value
+													linkToRule={false}
+													displayedUnit="€"
+													expression={
+														String(
+															engine.evaluate('entreprise . activité . nature')
+																.nodeValue
+														) === 'libérale'
+															? "entreprise . chiffre d'affaires . seuil micro . libérale"
+															: "entreprise . chiffre d'affaires . seuil micro . total"
+													}
+												/>{' '}
+												<Trans>de chiffre d’affaires</Trans>).
+											</span>
+										</div>
+									}
+								/>
+							</Condition>
+						)}
 					/>
 				</Item>
 				<Item
