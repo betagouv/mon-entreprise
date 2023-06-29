@@ -172,7 +172,12 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 					batchUpdateSituation({
 						'entreprise . activités . principale . code guichet': undefined,
 						'entreprise . imposition . IR . type de bénéfices': undefined,
+						'entreprise . activités . libérale': undefined,
+						'entreprise . activités . artisanale': undefined,
+						'entreprise . activités . agricole': undefined,
+						'entreprise . activités . commerciale': undefined,
 						'entreprise . activité . nature': undefined,
+
 						'entreprise . activité . nature . libérale . réglementée':
 							undefined,
 						'dirigeant . indépendant . PL . métier': undefined,
@@ -182,21 +187,17 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 				return
 			}
 			const PLRMétier = guichetToPLMétier(guichet)
+			const activité = getActivitéFromGuichet(guichet)
 			dispatch(
 				batchUpdateSituation({
 					'entreprise . activités . principale . code guichet': `'${guichet.code}'`,
 					'entreprise . imposition . IR . type de bénéfices': `'${guichet.typeBénéfice}'`,
-					'entreprise . activité . nature': guichet.catégorieActivité.includes(
-						'LIBERALE'
-					)
-						? "'libérale'"
-						: guichet.catégorieActivité.includes('ARTISANALE')
-						? "'artisanale'"
-						: guichet.catégorieActivité.includes('COMMERCIALE')
-						? "'commerciale'"
-						: guichet.catégorieActivité.includes('AGRICOLE')
-						? "'agricole'"
-						: undefined,
+					...(activité
+						? {
+								'entreprise . activité . nature': `'${activité}'`,
+								[`entreprise . activités . ${activité}`]: 'oui',
+						  }
+						: {}),
 					'entreprise . activité . nature . libérale . réglementée': PLRMétier
 						? 'oui'
 						: 'non',
@@ -206,4 +207,16 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 		},
 		[dispatch, guichetEntries]
 	)
+}
+
+function getActivitéFromGuichet(guichet: GuichetEntry) {
+	return guichet.catégorieActivité.includes('LIBERALE')
+		? 'libérale'
+		: guichet.catégorieActivité.includes('ARTISANALE')
+		? 'artisanale'
+		: guichet.catégorieActivité.includes('COMMERCIALE')
+		? 'commerciale'
+		: guichet.catégorieActivité.includes('AGRICOLE')
+		? 'agricole'
+		: undefined
 }
