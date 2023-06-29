@@ -99,7 +99,7 @@ export const Drawer = ({
 	useEffect(() => {
 		// if the drawer close unexpectedly cause of this effect, be sure to use useCallback for the onCancel prop
 		closeDrawer()
-	}, [closeDrawer, location])
+	}, [location])
 
 	return (
 		<>

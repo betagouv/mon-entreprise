@@ -33,6 +33,7 @@ export function choixStatutJuridiqueConfig({
 		simulation: {
 			situation: {
 				'entreprise . catégorie juridique . remplacements': 'non',
+				'entreprise . date de création': 'date',
 				salarié: 'non',
 			},
 		},
