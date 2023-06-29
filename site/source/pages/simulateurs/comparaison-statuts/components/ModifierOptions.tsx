@@ -7,7 +7,6 @@ import styled from 'styled-components'
 import { SwitchInput } from '@/components/conversation/ChoicesInput'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Drawer } from '@/design-system/drawer'
@@ -32,16 +31,23 @@ const ModifierOptions = ({
 }: {
 	namedEngines: EngineComparison
 }) => {
-	const defaultValueImpot = useEngine().evaluate(
+	const notAutoEntrepreneurEngine = namedEngines.find(
+		({ name }) => name !== 'AE'
+	)?.engine
+
+	const defaultValueImpot = notAutoEntrepreneurEngine?.evaluate(
 		DOTTEDNAME_SOCIETE_IMPOT
 	).nodeValue
 
-	// TODO
-	const defaultValueVersementLiberatoire = namedEngines[0].engine.evaluate(
+	const autoEntrepreneurEngine = namedEngines.find(
+		({ name }) => name === 'AE'
+	)?.engine
+	const defaultValueVersementLiberatoire = autoEntrepreneurEngine?.evaluate(
 		DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE
 	).nodeValue
+
 	const defaultValueACRE =
-		namedEngines[0].engine.evaluate(DOTTEDNAME_ACRE).nodeValue
+		notAutoEntrepreneurEngine?.evaluate(DOTTEDNAME_ACRE).nodeValue
 
 	const [impotValue, setImpotValue] = useState(
 		`'${String(defaultValueImpot)}'` || "'IS'"

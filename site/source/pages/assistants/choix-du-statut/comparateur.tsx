@@ -143,6 +143,8 @@ function getSituationFromStatut(
 		'entreprise . associés': ['SARL', 'SAS', 'SELAS', 'SELARL'].includes(statut)
 			? "'multiple'"
 			: "'unique'",
-		...(AEAcre ? { 'dirigeant . exonérations . ACRE': 'oui' } : {}),
+		...(statut === 'AE'
+			? { 'dirigeant . exonérations . ACRE': AEAcre ? 'oui' : 'non' }
+			: {}),
 	}
 }
