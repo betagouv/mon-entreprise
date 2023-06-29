@@ -31,11 +31,11 @@ const ModifierOptions = ({
 }: {
 	namedEngines: EngineComparison
 }) => {
-	const notAutoEntrepreneurEngine = namedEngines.find(
-		({ name }) => name !== 'AE'
-	)?.engine
+	const notAutoEntrepreneur = namedEngines.find(({ name }) =>
+		['EI', 'EURL', 'SARL', 'SELARL', 'SELARLU'].includes(name)
+	)
 
-	const defaultValueImpot = notAutoEntrepreneurEngine?.evaluate(
+	const defaultValueImpot = notAutoEntrepreneur?.engine.evaluate(
 		DOTTEDNAME_SOCIETE_IMPOT
 	).nodeValue
 
@@ -47,7 +47,7 @@ const ModifierOptions = ({
 	).nodeValue
 
 	const defaultValueACRE =
-		notAutoEntrepreneurEngine?.evaluate(DOTTEDNAME_ACRE).nodeValue
+		notAutoEntrepreneur?.engine.evaluate(DOTTEDNAME_ACRE).nodeValue
 
 	const [impotValue, setImpotValue] = useState(
 		`'${String(defaultValueImpot)}'` || "'IS'"
@@ -158,7 +158,7 @@ const ModifierOptions = ({
 						/>
 					</FlexCentered>
 
-					{(acreValue || defaultValueACRE) && (
+					{autoEntrepreneurEngine && (acreValue || defaultValueACRE) && (
 						<>
 							<Body>
 								Les{' '}
@@ -185,21 +185,29 @@ const ModifierOptions = ({
 					Impôt sur le revenu, impôt sur les sociétés : que choisir ?
 				</H4>
 				<Body>
-					L’EI et la SASU permettent de{' '}
+					Vous pouvez{' '}
 					<Strong>
 						choisir entre l’imposition sur les sociétés et sur le revenu
 					</Strong>{' '}
-					durant les 5 premières années. En auto-entreprise (AE), c’est l’
-					<Strong>impôt sur le revenu</Strong> qui est appliqué automatiquement
-					; dans certaines situations, vous pouvez aussi opter pour le{' '}
-					<Strong>
-						<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
-							versement libératoire
-						</Link>
-					</Strong>
-					.
+					durant les 5 premières années.
+					{autoEntrepreneurEngine && (
+						<>
+							En auto-entreprise (AE), c’est l’
+							<Strong>impôt sur le revenu</Strong> qui est appliqué
+							automatiquement ; dans certaines situations, vous pouvez aussi
+							opter pour le{' '}
+							<Strong>
+								<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
+									versement libératoire
+								</Link>
+							</Strong>
+							.
+						</>
+					)}
 				</Body>
-				<H5 as="h3">Choisir mon option de simulation (pour EI)</H5>
+				<H5 as="h3">
+					Choisir mon option de simulation (pour {notAutoEntrepreneur?.name})
+				</H5>
 				<Message type="secondary">
 					<Grid
 						container
@@ -226,9 +234,7 @@ const ModifierOptions = ({
 							>
 								<Trans>
 									À ce jour, ce comparateur ne prend pas en compte le calcul de
-									l'impôt sur le revenu pour les SASU. La modification du
-									paramètre ci-dessous influera donc uniquement les calculs liés
-									au statut d'entreprise individuelle (EI).
+									l'impôt sur le revenu pour les SAS(U).
 								</Trans>
 							</Body>
 						</Grid>
@@ -243,22 +249,25 @@ const ModifierOptions = ({
 					aria-labelledby="questionHeader"
 					engine={namedEngines[0].engine}
 				/>
-
-				<H5 as="h3">
-					Choisir mon option de versement libératoire (pour AE){' '}
-					<ExplicableRule
-						dottedName={DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE}
-					/>
-				</H5>
-				<FlexCentered>
-					<SwitchInput
-						id="versement-liberatoire"
-						onChange={setVersementLiberatoireValue}
-						defaultSelected={defaultValueVersementLiberatoire as boolean}
-						label="Activer le versement libératoire dans la simulation."
-						invertLabel
-					/>
-				</FlexCentered>
+				{autoEntrepreneurEngine && (
+					<>
+						<H5 as="h3">
+							Choisir mon option de versement libératoire (pour AE){' '}
+							<ExplicableRule
+								dottedName={DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE}
+							/>
+						</H5>
+						<FlexCentered>
+							<SwitchInput
+								id="versement-liberatoire"
+								onChange={setVersementLiberatoireValue}
+								defaultSelected={defaultValueVersementLiberatoire as boolean}
+								label="Activer le versement libératoire dans la simulation."
+								invertLabel
+							/>
+						</FlexCentered>
+					</>
+				)}
 			</>
 		</Drawer>
 	)

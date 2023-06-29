@@ -257,3 +257,14 @@ entreprise . catégorie juridique . remplacements:
           - SELARL
           - SELAS
       rend non applicable: activités . libérale . réglementée
+
+    SASU option IR non implémentée:
+      privé: oui
+      valeur: oui
+      applicable si:
+        une de ces conditions:
+          - SAS
+          - SELAS
+      remplace:
+        règle: entreprise . imposition
+        par: "'IS'"

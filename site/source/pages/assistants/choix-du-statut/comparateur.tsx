@@ -139,7 +139,6 @@ function getSituationFromStatut(
 				: `'${statut}'`,
 		'entreprise . catégorie juridique . EI . auto-entrepreneur':
 			statut === 'AE' ? 'oui' : 'non',
-		'entreprise . imposition': "'IS'",
 		'entreprise . associés': ['SARL', 'SAS', 'SELAS', 'SELARL'].includes(statut)
 			? "'multiple'"
 			: "'unique'",

@@ -111,7 +111,7 @@ function StatutBloc({
 						valeur: 'dirigeant . exonérations . ACRE',
 					}).nodeValue
 						? t('Avec ACRE')
-						: t('Sans exonération ACRE')}
+						: t('Option ACRE non activée')}
 				</Li>
 			</Ul>
 		</StatusCard>
