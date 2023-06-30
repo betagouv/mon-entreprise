@@ -42,7 +42,10 @@ export default function ChoixDuStatut() {
 					path={`${childrenPaths.rémunération}/*`}
 					element={<Rémunération />}
 				/>
-				<Route path={`${childrenPaths.résultat}/*`} element={<Résultat />} />
+				<Route
+					path={`${childrenPaths.résultat.index}/*`}
+					element={<Résultat />}
+				/>
 				<Route
 					path={`${childrenPaths.comparateur}/*`}
 					element={<Comparateur />}

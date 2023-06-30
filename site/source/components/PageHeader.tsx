@@ -23,9 +23,9 @@ export default function PageHeader({
 	return (
 		<Grid
 			container
-			spacing={6}
+			columnSpacing={6}
 			css={`
-				align-items: center;
+				/* align-items: center; */
 			`}
 		>
 			<Grid

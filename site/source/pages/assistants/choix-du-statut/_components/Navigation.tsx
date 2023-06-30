@@ -4,9 +4,14 @@ import styled from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
-import { useSitePaths } from '@/sitePaths'
+import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
 import { useCurrentStep, useNextStep, usePreviousStep } from './useSteps'
+
+type Statuts = Exclude<
+	keyof RelativeSitePaths['assistants']['choix-du-statut']['résultat'],
+	'index'
+>
 
 export default function Navigation({
 	currentStepIsComplete,
@@ -19,7 +24,7 @@ export default function Navigation({
 	nextStepLabel?: false | string
 	onNextStep?: () => void
 	onPreviousStep?: () => void
-	assistantIsCompleted?: boolean
+	assistantIsCompleted?: false | Statuts
 }) {
 	const { t } = useTranslation()
 	const nextStep = useNextStep()
@@ -62,7 +67,7 @@ export default function Navigation({
 					{assistantIsCompleted && (
 						<Grid item>
 							<Button
-								to={choixDuStatutPath['résultat']}
+								to={choixDuStatutPath['résultat'][assistantIsCompleted]}
 								aria-label={t('Suivant, voir le résultat')}
 							>
 								{nextStepLabel || (
