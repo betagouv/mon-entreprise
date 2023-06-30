@@ -181,9 +181,7 @@ const ModifierOptions = ({
 				</div>
 
 				<Spacing md />
-				<H4 as="h2">
-					Impôt sur le revenu, impôt sur les sociétés : que choisir ?
-				</H4>
+				<H4 as="h2">Quelle imposition pour mon entreprise ?</H4>
 				<Body>
 					Vous pouvez{' '}
 					<Strong>

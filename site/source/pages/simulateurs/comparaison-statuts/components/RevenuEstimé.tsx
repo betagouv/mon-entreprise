@@ -5,12 +5,12 @@ import Value from '@/components/EngineValue'
 import { CardContainer } from '@/design-system/card/Card'
 import { EditIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
-import { StyledLink } from '@/design-system/typography/link'
+import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useGetFullURL } from '@/hooks/useGetFullURL'
+import { useSitePaths } from '@/sitePaths'
 
 const RevenuEstimé = () => {
-	const fullURL = useGetFullURL()
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<CardContainer
@@ -49,17 +49,16 @@ const RevenuEstimé = () => {
 					/>
 				</StyledGrid>
 				<GridEditLink item xs={12} lg={3}>
-					<StyledA
-						as={StyledLink}
-						href={`${fullURL}#simulation-comparateur`}
-						$noUnderline
+					<Link
+						to={absoluteSitePaths.assistants['choix-du-statut'].rémunération}
+						// $noUnderline
 						css={`
 							display: inline-flex;
 							align-items: center;
 						`}
 					>
 						<StyledEditIcon /> Modifier les informations
-					</StyledA>
+					</Link>
 				</GridEditLink>
 			</Grid>
 		</CardContainer>
@@ -113,10 +112,6 @@ const GridEditLink = styled(Grid)`
 		padding-top: ${({ theme }) => theme.spacings.lg};
 		justify-content: center;
 	}
-`
-
-const StyledA = styled.a`
-	text-decoration: none;
 `
 
 export default RevenuEstimé
