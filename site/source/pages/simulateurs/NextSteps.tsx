@@ -4,7 +4,7 @@ import { WhenAlreadyDefined, WhenApplicable } from '@/components/EngineValue'
 import { useEngine } from '@/components/utils/EngineContext'
 // import { Article } from '@/design-system/card'
 // import { Emoji } from '@/design-system/emoji'
-import { Grid } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { GuideURSSAFCard } from '@/pages/simulateurs/cards/GuideURSSAFCard'
@@ -31,7 +31,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
 	)
 
-	if (!iframePath && !nextSteps && !guideUrssaf) {
+	if (!nextSteps || (!iframePath && !guideUrssaf)) {
 		return null
 	}
 
@@ -55,11 +55,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						/>
 					</Grid>
 				)}
-				{/* <WhenNotApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
-					<Grid item sm={12} md={4} role="listitem">
-						<DemarcheEmbaucheCard />
-					</Grid>
-				</WhenNotApplicable> */}
+
 				<WhenApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
 					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<AutoEntrepreneurCard />
@@ -82,6 +78,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 					</Grid>
 				)}
 			</Grid>
+			<Spacing lg />
 		</section>
 	)
 }

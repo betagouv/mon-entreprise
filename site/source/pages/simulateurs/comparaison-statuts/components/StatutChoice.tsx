@@ -8,6 +8,7 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
+import { useSitePaths } from '@/sitePaths'
 
 import { EngineComparison } from './Comparateur'
 import { getGridSizes } from './DetailsRowCards'
@@ -59,6 +60,7 @@ function StatutBloc({
 	const versementLibératoire = engine.evaluate(
 		'dirigeant . auto-entrepreneur . impôt . versement libératoire'
 	).nodeValue as string
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<StatusCard
@@ -70,7 +72,14 @@ function StatutBloc({
 							text-align: center;
 						`}
 					>
-						<Button size="XS">Choisir ce statut</Button>
+						<Button
+							to={
+								absoluteSitePaths.assistants['choix-du-statut'].résultat[name]
+							}
+							size="XS"
+						>
+							Choisir ce statut
+						</Button>
 					</div>
 				)
 			}

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
@@ -10,6 +10,7 @@ import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { batchUpdateSituation } from '@/store/actions/actions'
+import { debounce } from '@/utils'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
@@ -103,23 +104,29 @@ function useRémunérationState(): [
 	)
 
 	const dispatch = useDispatch()
+	const debouncedUpdateSituation = useCallback(
+		debounce(1000, (newState: State) => {
+			dispatch(
+				batchUpdateSituation({
+					"entreprise . chiffre d'affaires": newState.CA
+						? {
+								valeur: newState.CA,
+								unité: '€/an',
+						  }
+						: undefined,
+					'entreprise . charges': newState.charges
+						? { valeur: newState.charges, unité: '€/an' }
+						: undefined,
+				})
+			)
+		}),
+		[]
+	)
 
 	const handleChange = (value: Partial<State>) => {
 		const newState = { ...state, ...value }
 		setState(newState)
-		dispatch(
-			batchUpdateSituation({
-				"entreprise . chiffre d'affaires": newState.CA
-					? {
-							valeur: newState.CA,
-							unité: '€/an',
-					  }
-					: undefined,
-				'entreprise . charges': newState.charges
-					? { valeur: newState.charges, unité: '€/an' }
-					: undefined,
-			})
-		)
+		debouncedUpdateSituation(newState)
 	}
 
 	useEffect(() => {

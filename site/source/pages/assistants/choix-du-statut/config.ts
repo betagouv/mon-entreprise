@@ -38,5 +38,6 @@ export function choixStatutJuridiqueConfig({
 			},
 		},
 		autoloadLastSimulation: true,
+		nextSteps: false,
 	} as const)
 }

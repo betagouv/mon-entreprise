@@ -3,7 +3,7 @@ import { useMatch } from 'react-router-dom'
 import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
 type ChoixStatut = RelativeSitePaths['assistants']['choix-du-statut']
-type Step = keyof ChoixStatut
+type Step = Exclude<keyof ChoixStatut, 'résultat'>
 
 const stepOrder: readonly Step[] = [
 	'index',

@@ -77,7 +77,9 @@ export default function Association() {
 				<Navigation
 					currentStepIsComplete={currentSelection !== undefined}
 					onPreviousStep={reset}
-					assistantIsCompleted={currentSelection === 'non-lucratif'}
+					assistantIsCompleted={
+						currentSelection === 'non-lucratif' && 'association'
+					}
 				/>
 			</Layout>
 		</>

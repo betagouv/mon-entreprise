@@ -87,7 +87,7 @@ export interface PageConfig {
 	private?: boolean
 	beta?: boolean
 	tooltip?: string
-	nextSteps?: string[]
+	nextSteps?: string[] | false
 
 	simulation?: SimulationConfig
 	autoloadLastSimulation?: boolean

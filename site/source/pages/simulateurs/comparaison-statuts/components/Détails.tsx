@@ -609,12 +609,4 @@ const BlackColoredLink = styled(StyledLink)`
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
 `
 
-const DisabledLabel = styled(Body)`
-	color: ${({ theme }) => theme.colors.extended.grey[600]}!important;
-	font-size: 1.25rem;
-	font-weight: 700;
-	font-style: italic;
-	margin: 0;
-`
-
 export default Détails

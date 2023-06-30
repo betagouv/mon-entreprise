@@ -7,7 +7,6 @@ import Meta from '@/components/utils/Meta'
 import useSearchParamsSimulationSharing from '@/components/utils/useSearchParamsSimulationSharing'
 import { Chip } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
-import { Spacing } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 import {
@@ -115,8 +114,6 @@ export default function SimulateurOrAssistantPage() {
 						iframePath={privateIframe ? undefined : iframePath}
 						nextSteps={nextSteps}
 					/>
-
-					<Spacing lg />
 				</>
 			)}
 		</TrackChapter>

@@ -100,6 +100,9 @@ function useStatutComparaison(): EngineComparison {
 	)
 }
 
+const SASUEIAE: StatutType[] = ['SASU', 'EI', 'AE']
+const SASUEURL: StatutType[] = ['SASU', 'EURL']
+const SASSARL: StatutType[] = ['SAS', 'SARL']
 function usePossibleStatuts(): Array<StatutType> {
 	const engine = useEngine()
 	// We could do this logic by filtering the applicable status in publicodes,
@@ -108,14 +111,14 @@ function usePossibleStatuts(): Array<StatutType> {
 		engine.evaluate('entreprise . catégorie juridique . EI = non').nodeValue !==
 		true
 	) {
-		return ['SASU', 'EI', 'AE']
+		return SASUEIAE
 	} else if (
 		engine.evaluate('entreprise . catégorie juridique . SARL . EURL = non')
 			.nodeValue !== true
 	) {
-		return ['SASU', 'EURL']
+		return SASUEURL
 	} else {
-		return ['SAS', 'SARL']
+		return SASSARL
 	}
 }
 
