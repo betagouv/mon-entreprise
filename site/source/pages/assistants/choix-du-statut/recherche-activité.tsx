@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
@@ -7,7 +7,7 @@ import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { updateSituation } from '@/store/actions/actions'
+import { resetSimulation, updateSituation } from '@/store/actions/actions'
 
 import SearchCodeAPE from '../recherche-code-ape/SearchCodeAPE'
 import Layout from './_components/Layout'
@@ -17,6 +17,10 @@ export default function RechercheActivité() {
 	const [codeApe, setCodeApe] = useState('')
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(resetSimulation())
+	}, [])
 
 	return (
 		<>

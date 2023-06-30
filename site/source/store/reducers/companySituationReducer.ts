@@ -76,6 +76,7 @@ export function companySituation(state: Situation = {}, action: Action) {
 			}
 
 		case 'SET_SIMULATION':
+		case 'RESET_SIMULATION':
 			return state['entreprise . SIREN'] ? state : {}
 	}
 

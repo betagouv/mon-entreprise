@@ -10,7 +10,7 @@ import { SmallBody } from '@/design-system/typography/paragraphs'
 
 export default function StatutsDisponibles() {
 	const engine = useEngine()
-	const statutes = [
+	const statuts = [
 		'entreprise . catégorie juridique . EI . EI',
 		'entreprise . catégorie juridique . EI . auto-entrepreneur',
 		'entreprise . catégorie juridique . SARL . EURL',
@@ -36,7 +36,7 @@ export default function StatutsDisponibles() {
 				professionnelle que vous exercez
 			</SmallBody>
 			<StyledUl noMarker>
-				{statutes.map((statut) => (
+				{statuts.map((statut) => (
 					<Statut key={statut} statut={statut} />
 				))}
 			</StyledUl>

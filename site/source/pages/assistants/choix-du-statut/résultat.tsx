@@ -1,7 +1,8 @@
 import { useLocation } from 'react-router-dom'
 
+import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
-import { Container, Grid } from '@/design-system/layout'
+import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
@@ -25,6 +26,14 @@ export default function Résultat() {
 				quelques pistes.
 			</Intro>
 
+			<Button
+				color="secondary"
+				light
+				to={absoluteSitePaths.assistants['choix-du-statut'].index}
+			>
+				<span aria-hidden>↻</span> Recommencer le guide
+			</Button>
+			<Spacing md />
 			<Container
 				backgroundColor={(theme) =>
 					theme.darkMode
