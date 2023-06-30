@@ -60,6 +60,7 @@ Confirmer: Confirm
 Continuer: Continue
 Cotisations: Contributions
 Cotisations sociales: Social contributions
+Coût de création: Cost of creation
 "Crée le :": "Created on :"
 Dans quels cas mes bénéfices ne sont pas de type BNC ?: In what cases are my profits not BNC?
 Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: When is my company not subject to income tax?
@@ -158,6 +159,11 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
   panel will open to allow you to add details to the simulation, detailed
   results will be displayed below the form and will be updated when you edit the
   form.</2>
+"Les formalités de création d'une entreprise diffèrent selon les statuts et la nature de l'activité. Le calcul se concentre ici sur les <1>procédures obligatoires</1> (immatriculation, annonces légales, rédaction des statuts...).":
+  The formalities involved in setting up a business vary according to the type
+  of company and the nature of the activity. The calculation here focuses on the
+  <1>mandatory procedures</1> (registration, legal announcements, drafting of
+  articles of association, etc.).
 "Lire les précisions, ouvrir le message condensé.": Read the details, open the condensed message.
 Liste des intégrations: List of integrations
 Ma déclaration: My statement
@@ -193,6 +199,7 @@ Notre équipe prend en charge votre retour.: Our team will take care of your ret
 Nous n’avons pas trouvé de résultat pour cette entreprise.: We did not find any results for this company.
 "Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.": New content available, click reload to update the page.
 Nouveautés: News
+Option ACRE non activée: ACRE option not activated
 Option la plus avantageuse.: Most advantageous option.
 Oui: Yes
 Outils pour les développeurs: Tools for developers
@@ -217,9 +224,9 @@ Plan du site: Site Map
 "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En cas d’arrêt maladie, l’assurance maladie vous versera :":
   "For all statuses, you will have a <2>waiting period of 3 days</2>. In case of
   sick leave, the health insurance will pay you :"
-"Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, vous pouvez bénéficier d’une <4>rente de décès</4>.":
-  If you die as a result of an <2>accident at work</2>, you may be entitled to a
-  <4>death pension</4>.
+"Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le conjoint survivant peut bénéficier d’une <4>rente de décès</4>.":
+  In the event of death resulting from an <2>accident at work</2>, the surviving
+  spouse may be entitled to a <4>death pension</4>.
 "Pour une invalidité causée par un <2>accident professionnel</2>, vous pouvez bénéficier d’une <4>rente d’incapacité</4>.":
   If you are disabled as a result of an <2>accident at work</2>, you may be
   entitled to a <4>disability pension</4>.
@@ -272,7 +279,6 @@ Salaire brut mensuel: Gross monthly salary
 Salaire net: Net Salary
 Salariés et embauche: Employees and hiring
 Salariés et employeurs: Employees and employers
-Sans exonération ACRE: Without ACRE exemption
 "Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>":
   If your company does not appear using your SIREN/SIRET, you may have opted not
   to have <2>your company information made public</2>, in which case it will not
@@ -324,7 +330,6 @@ Un avis sur cette page ?: Any opinion on this page?
   "fr, nouvelle fenêtre": Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Use with a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use the simulator calculations in your application
-Versement libératoire de l'impôt sur le revenu: Payment in full discharge of income tax
 Version française du site activée.: French version of the site activated.
 Veuillez entrer un message avant de soumettre le formulaire.: Please enter a message before submitting the form.
 Veuillez renseigner votre adresse email.: Please enter your email address.
@@ -348,6 +353,7 @@ Votre chiffre d'affaires estimé: Your estimated turnover
 Votre couverture invalidité et décès: Your disability and death coverage
 Votre domaine d'activité: Your field of activity
 Votre message (requis): Your message (required)
+Vous allez dépasser le plafond de la micro-entreprise: You will exceed the micro-business limit
 "Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.": We are sorry that you were not satisfied with your experience.
 Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou d’accident conduisant à une incapacité à poursuivre votre activité professionnelle</2>.:
   You may be entitled to a disability pension in the <2>event of illness or
@@ -466,10 +472,9 @@ choix-statut:
       companies</1> (SASU, SAS), these are referred to
       as<3>shareholders</3>.</1></1>
   commune:
-    description: "<0>Good news: there are only <2>{namedEngines.length} statuses</2>
-      left. You can now go into more detail and compare <5>their income</5>,
-      <7>social security coverage</7> and <10>accounting and legal
-      management</10> before making your choice.</0>"
+    description: <0>You can now go into more detail and compare <2>income</2>,
+      <4>social security coverage</4> and <7>accounting and legal management</7>
+      before making your choice.</0>
     help:
       title: Each region has its own specific features
     title: In which commune would you like to set up your business?<1><0>Some laws
@@ -479,10 +484,9 @@ choix-statut:
   home:
     estimated-duration: "Estimated duration: 5 minutes."
     find-statut: Finding the right status
-    info: For best results, you need to <2>answer all the questions</2>.
-    intro: The first step is to choose the <2>right legal status for your
-      business</2>. The administrative procedures will vary depending on the
-      legal status you choose.
+    intro: The first step in setting up your own business is to <2>choose the legal
+      status best suited to your activity</2>. The administrative procedures
+      vary according to the legal status chosen.
   rémunération:
     CA:
       help:
@@ -618,6 +622,7 @@ créer:
     détails-activité:
       title: Details of your business
 d'aides: aids
+de chiffre d’affaires: in sales
 design-system:
   date-picker:
     close: Close
@@ -637,6 +642,7 @@ dividendes:
     self-employed workers.</0><1>The amount of tax on dividends is calculated in
     addition to the tax on other taxable income.</1>
 employeur: Employer share
+en cas d'accident pro: in the event of a professional accident
 en incluant: including
 en titres-restaurant: in restaurant vouchers
 explications:
@@ -1598,7 +1604,6 @@ payslip:
     (French)</1>.
   repartition: Distribution of total amount
 points: points
-pour vos proches: for your loved ones
 pourcentage: percentage
 previousSimulationBanner:
   info: Your previous simulation data have been saved.
@@ -1822,10 +1827,9 @@ warning:
   						)}
 "{{title}}, voir la demande sur github":
   "com, nouvelle fenêtre": "{{title}}, see the application on github.com, new window"
-"À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SASU. La modification du paramètre ci-dessous influera donc uniquement les calculs liés au statut d'entreprise individuelle (EI).":
-  At this time, this comparator does not take into account the income tax
-  calculation for SASU. Therefore, the change in the parameter below will only
-  affect the calculations related to the sole proprietorship status (EI).
+"À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SAS(U).":
+  At present, this comparator does not include income tax calculations for
+  SAS(U).
 À quoi servent mes cotisations ?: How are my contributions distributed?
 Échanger avec un conseiller: Talk to a consultant
 Échec: Failure
