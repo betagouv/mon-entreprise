@@ -5057,9 +5057,6 @@ entreprise . catégorie juridique . SELAS:
   description.fr: Société d'exercice libéral par actions simplifiées
   titre.en: '[automatic] SELAS or SELASU'
   titre.fr: SELAS ou SELASU
-entreprise . catégorie juridique . SNC:
-  titre.en: '[automatic] General partnership'
-  titre.fr: Société en nom collectif
 entreprise . catégorie juridique . association:
   titre.en: '[automatic] association'
   titre.fr: association
@@ -5074,9 +5071,9 @@ entreprise . catégorie juridique . autre:
   titre.fr: autre
 entreprise . catégorie juridique . remplacements:
   avec:
-    associé multiples:
-      titre.en: '[automatic] multiple partners'
-      titre.fr: associé multiples
+    SASU option IR non implémentée:
+      titre.en: '[automatic] SASU option IR not implemented'
+      titre.fr: SASU option IR non implémentée
     associé unique:
       titre.en: '[automatic] sole partner'
       titre.fr: associé unique
