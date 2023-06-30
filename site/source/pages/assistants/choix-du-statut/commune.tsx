@@ -1,21 +1,20 @@
-import { DottedName } from 'modele-social'
-import { Evaluation } from 'publicodes'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
+import { Commune as CommuneType } from '@/api/commune'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { useEngine } from '@/components/utils/EngineContext'
+import { usePersistingState } from '@/components/utils/persistState'
 import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { Body } from '@/design-system/typography/paragraphs'
-import { answerQuestion } from '@/store/actions/actions'
+import { answerQuestion, batchUpdateSituation } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
 
 export default function Commune() {
-	const dispatch = useDispatch()
-	const dottedName = 'établissement . commune' as DottedName
-	const commune = useEngine().evaluate(dottedName).nodeValue
+	const [commune, setCommune, reset, isComplete] = useCommuneSelection()
 	const { t } = useTranslation()
 
 	return (
@@ -44,13 +43,60 @@ export default function Commune() {
 				}
 			>
 				<SelectCommune
-					onChange={(c) =>
-						dispatch(answerQuestion(dottedName, { batchUpdate: c }))
-					}
-					value={commune as Evaluation<string>}
+					onChange={setCommune}
+					value={commune && `${commune.nom} (${commune['code postal']})`}
 				/>
-				<Navigation currentStepIsComplete={!!commune} />
+				<Navigation onPreviousStep={reset} currentStepIsComplete={isComplete} />
 			</Layout>
 		</>
 	)
+}
+
+function useCommuneSelection(): [
+	state: CommuneType | undefined,
+	setState: (c: CommuneType) => void,
+	reset: () => void,
+	isComplete: boolean
+] {
+	const [state, setState] = usePersistingState<{
+		commune: CommuneType | undefined
+	}>('choix-statut:commune', {
+		commune: undefined,
+	})
+
+	const dispatch = useDispatch()
+
+	const handleChange = (commune: CommuneType) => {
+		setState({ commune })
+		dispatch(
+			answerQuestion('établissement . commune', { batchUpdate: commune })
+		)
+	}
+
+	useEffect(() => {
+		state.commune &&
+			dispatch(
+				answerQuestion('établissement . commune', {
+					batchUpdate: state.commune,
+				})
+			)
+	}, [])
+
+	const reset = () => {
+		setState({ commune: undefined })
+		dispatch(
+			batchUpdateSituation({
+				'établissement . commune . code postal': undefined,
+				'établissement . commune . département': undefined,
+				'établissement . commune . nom': undefined,
+				'établissement . commune . taux versement mobilité': undefined,
+			})
+		)
+	}
+
+	const isComplete =
+		useEngine().evaluate('établissement . commune . nom').nodeValue !==
+		undefined
+
+	return [state.commune, handleChange, reset, isComplete]
 }
