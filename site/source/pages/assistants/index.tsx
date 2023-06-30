@@ -1,14 +1,11 @@
 import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
-import { TrackChapter } from '@/components/ATInternetTracking'
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { Link } from '@/design-system/typography/link'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
-
-import SocialSecurity from './sécurité-sociale'
 
 export default function Assistants() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
@@ -33,15 +30,6 @@ export default function Assistants() {
 					index
 					element={
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
-					}
-				/>
-				<Route
-					path={relativeSitePaths.assistants.sécuritéSociale}
-					element={
-						<TrackChapter chapter1="gerer">
-							{back}
-							<SocialSecurity />
-						</TrackChapter>
 					}
 				/>
 

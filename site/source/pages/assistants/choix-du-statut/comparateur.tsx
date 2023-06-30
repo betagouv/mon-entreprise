@@ -7,7 +7,7 @@ import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import { Button } from '@/design-system/buttons'
 import { Container } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Intro } from '@/design-system/typography/paragraphs'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/components/Comparateur'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
@@ -28,14 +28,12 @@ export default function Comparateur() {
 	return (
 		<>
 			<Trans i18nKey="choix-statut.commune.description">
-				<Body>
-					Bonne nouvelle : il ne reste plus que{' '}
-					<Strong>{namedEngines.length} statuts possibles</Strong>. Vous allez
-					maintenant pouvoir entrer dans le détail et comparer{' '}
-					<Strong>leurs revenus</Strong>, la <Strong>couverture sociale</Strong>{' '}
+				<Intro>
+					Vous allez maintenant pouvoir entrer dans le détail et comparer{' '}
+					<Strong>les revenus</Strong>, la <Strong>couverture sociale</Strong>{' '}
 					et la <Strong>gestion comptable et juridique</Strong> avant de faire
 					votre choix.
-				</Body>
+				</Intro>
 			</Trans>
 
 			<Container
