@@ -1231,6 +1231,11 @@ pages:
         for your type of business on this site.</0><1>If you would like us to
         develop a new simulator, please leave us a message by clicking on the
         "<1></1>" button on the right of your screen.</1>
+      codeDuTravailNumeriqueCard:
+        aria-label: Digital labor code
+        body: For all your labour law questions, visit the Digital Labour Code website.
+        cta: Read more
+        title: Digital labor code
       description: Do you want to pay yourself an income or hire someone? You will
         have to pay contributions and taxes. Anticipate their amounts thanks to
         the simulators adapted to your situation.
