@@ -49,7 +49,7 @@ export default function SocialSecurity() {
 					title={t('sécu.videoTranscriptTitle', 'Transcription de la vidéo')}
 					unfoldButtonLabel={t('Afficher la transcription')}
 				>
-					<Trans i18nKey="sécu.transcript-NO_AUTO_TRANSLATION">
+					<Trans i18nKey="sécu.transcript">
 						<Body>
 							Trois minutes pour comprendre les enjeux de la sécurité sociale.
 						</Body>
