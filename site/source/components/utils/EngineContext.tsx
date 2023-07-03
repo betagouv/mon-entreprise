@@ -34,8 +34,33 @@ const engineOptions = {
 	},
 }
 
+let warnCount = 0
+let timeout: NodeJS.Timeout | null = null
+const logger = {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	warn: (message: string) => {
+		// console.warn(message)
+
+		warnCount++
+		timeout !== null && clearTimeout(timeout)
+		timeout = setTimeout(() => {
+			// eslint-disable-next-line no-console
+			console.warn('⚠️', warnCount, 'warnings in the engine')
+			warnCount = 0
+		}, 1000)
+	},
+	error: (message: string) => {
+		// eslint-disable-next-line no-console
+		console.error(message)
+	},
+	log: (message: string) => {
+		// eslint-disable-next-line no-console
+		console.log(message)
+	},
+}
+
 export function engineFactory(rules: Rules, options = {}) {
-	return new Engine(rules, { ...engineOptions, ...options })
+	return new Engine(rules, { ...engineOptions, ...options, logger })
 }
 
 export const EngineContext = createContext<Engine>(new Engine())
