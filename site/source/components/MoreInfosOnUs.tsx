@@ -3,11 +3,10 @@ import { useLocation } from 'react-router-dom'
 
 import { SmallCard } from '@/design-system/card'
 import { Emoji } from '@/design-system/emoji'
+import { GithubIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { useSitePaths } from '@/sitePaths'
-
-import { icons } from './ui/SocialIcon'
 
 export default function MoreInfosOnUs() {
 	const { pathname } = useLocation()
@@ -57,22 +56,7 @@ export default function MoreInfosOnUs() {
 				)}
 				<Grid item xs={12} sm={6} md={4} role="listitem">
 					<SmallCard
-						icon={
-							<svg
-								viewBox="15 15 34 34"
-								style={{
-									width: '3rem',
-									height: '3rem',
-									margin: 0,
-								}}
-								aria-hidden
-								role="img"
-							>
-								<g>
-									<path d={icons.github.icon} />
-								</g>
-							</svg>
-						}
+						icon={<GithubIcon style={{ width: '2rem', height: '2rem' }} />}
 						href="https://github.com/betagouv/mon-entreprise"
 						title={<h3>Le code source</h3>}
 					>

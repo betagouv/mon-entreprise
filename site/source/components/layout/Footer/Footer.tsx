@@ -11,6 +11,7 @@ import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { FooterContainer } from '@/design-system/footer'
 import { FooterColumn } from '@/design-system/footer/column'
+import { GithubIcon } from '@/design-system/icons'
 import { Container, Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -152,6 +153,25 @@ export default function Footer() {
 												<InscriptionBetaTesteur /> <Emoji emoji="💌" />
 											</StyledLi>
 										)}
+										<StyledLi>
+											<Link
+												href="https://github.com/betagouv/mon-entreprise"
+												noUnderline
+											>
+												<Trans i18nKey="footer.github.text">
+													Voir le code source sur Github
+												</Trans>{' '}
+												<GithubIcon
+													style={{
+														width: '18px',
+														height: '18px',
+														margin: '0 0.2rem',
+														verticalAlign: 'middle',
+														fill: '#e6edf3',
+													}}
+												/>
+											</Link>
+										</StyledLi>
 										{altHref && (
 											<StyledLi key={altLang}>
 												<Grid container spacing={2} role="list">

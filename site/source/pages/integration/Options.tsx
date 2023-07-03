@@ -1,9 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
-import { icons } from '@/components/ui/SocialIcon'
 import { Card } from '@/design-system/card'
 import { Emoji } from '@/design-system/emoji'
+import { GithubIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
@@ -146,20 +146,7 @@ export default function Options() {
 				<Grid item xs={12} md={6} lg={4}>
 					<Card
 						icon={
-							<svg
-								viewBox="15 15 34 34"
-								style={{
-									width: '1rem',
-									height: '1rem',
-									margin: 0,
-								}}
-								aria-hidden
-								role="img"
-							>
-								<g style={{ fill: '#030303' }}>
-									<path d={icons.github.icon} />
-								</g>
-							</svg>
+							<GithubIcon style={{ width: '1.25rem', height: '1.25rem' }} />
 						}
 						title={t(
 							'pages.développeur.choice.github.title',

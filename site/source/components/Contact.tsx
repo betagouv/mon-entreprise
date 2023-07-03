@@ -1,7 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Message, PopoverWithTrigger } from '@/design-system'
-import { H2 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
