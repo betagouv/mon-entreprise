@@ -21,7 +21,7 @@ export default function Video() {
 					border: '0',
 				}}
 				src={`https://www.youtube-nocookie.com/embed/${
-					i18n.language === 'fr' ? 'EMQ3fNyMxBE' : 'dN9ZVazSmpc'
+					i18n.language === 'fr' ? 'dEMyuLETckA' : 'nGfY3W89XzA'
 				}?rel=0&amp;showinfo=0;disablekb=1`}
 				allow="autoplay; encrypted-media"
 				allowFullScreen
