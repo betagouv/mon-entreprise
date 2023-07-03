@@ -1,5 +1,5 @@
 import Engine, { PublicodesExpression } from 'publicodes'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
@@ -60,6 +60,11 @@ const AllerPlusLoinRevenus = ({
 
 	const dispatch = useDispatch()
 
+	const onCancel = useCallback(() => {
+		setAcreValue(null)
+		setVersementLiberatoireValue(null)
+	}, [])
+
 	return (
 		<Drawer
 			trigger={(buttonProps) => (
@@ -105,10 +110,7 @@ const AllerPlusLoinRevenus = ({
 					setIsAutoEntrepreneurACREEnabled(AEAcreValue)
 				}
 			}}
-			onCancel={() => {
-				setAcreValue(null)
-				setVersementLiberatoireValue(null)
-			}}
+			onCancel={onCancel}
 		>
 			<>
 				<H2>
