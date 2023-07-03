@@ -58,20 +58,20 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 					</Grid>
 				)}
 				<WhenNotApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
-					<Grid item sm={12} md={4} role="listitem">
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<DemarcheEmbaucheCard />
 					</Grid>
 				</WhenNotApplicable>
 				<WhenApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
-					<Grid item sm={12} md={4} role="listitem">
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<AutoEntrepreneurCard />
 					</Grid>
 				</WhenApplicable>
-				<Grid item sm={12} md={4} role="listitem">
+				<Grid item xs={12} sm={6} lg={4} role="listitem">
 					<SecuriteSocialeCard />
 				</Grid>
 				<WhenAlreadyDefined dottedName="entreprise . SIREN">
-					<Grid item sm={12} md={4} role="listitem">
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<AnnuaireEntreprises />
 					</Grid>
 				</WhenAlreadyDefined>
