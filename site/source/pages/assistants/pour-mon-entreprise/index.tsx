@@ -53,11 +53,11 @@ export default function PourMonEntrepriseHome() {
 
 	return (
 		<Routes>
-			<Route index element={<PourMonEntreprise />} />
 			<Route
 				path={relativeSitePaths.assistants['pour-mon-entreprise'].entreprise}
 				element={<PourMonEntreprise />}
 			/>
+			<Route path="*" element={<PourMonEntreprise />} />
 		</Routes>
 	)
 }
