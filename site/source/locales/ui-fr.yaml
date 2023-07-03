@@ -1231,6 +1231,12 @@ pages:
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
         que nous développions un nouveau simulateur, laissez-nous message en
         cliquant sur le bouton "<1></1>" à droite de votre écran.</1>
+      codeDuTravailNumeriqueCard:
+        aria-label: Code du travail numérique
+        body: Pour toutes vos questions en droit du travail, rendez-vous sur le site
+          Code du travail numérique
+        cta: En savoir plus
+        title: Code du travail numérique
       description: Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
         payer des cotisations et des impôts. Anticipez leurs montants grâce aux
         simulateurs adaptés à votre situation.
