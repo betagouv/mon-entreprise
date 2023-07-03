@@ -6,6 +6,7 @@ import { FromBottom } from '@/components/ui/animate'
 import FoldingMessage from '@/components/ui/FoldingMessage'
 import DefaultHelmet from '@/components/utils/DefaultHelmet'
 import { H1, H2 } from '@/design-system/typography/heading'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import Video from './components/Video'
@@ -52,65 +53,80 @@ export default function SocialSecurity() {
 						<Body>
 							Trois minutes pour comprendre les enjeux de la sécurité sociale.
 						</Body>
+
 						<Body>
 							La sécurité sociale a pour objectif de protéger les personnes qui
-							résident en France face à certains évènements qui surviennent tout
+							résident en France face à certains événements qui surviennent tout
 							au long de leur vie.
 						</Body>
+
 						<Body>
-							Son budget est composé dépenses principalement sous la forme de
-							prestations et de recettes, alimentés en partie par les
-							contributions. Les recettes sont gérées bar la branche des
-							recouvrements composé des URSSAF. Pour les dépenses, il existe
-							quatre branches. La branche Assurance-Maladie permet de couvrir
-							les dépenses d’hospitalisation, de médicaments et consultation des
-							professionnels de santé. La branche retraite prend en charge
-							l’inscription des revenus sur le compte vieillesse de chacun tout
-							au long de sa vie active, à partir des déclarations internet des
-							entreprises, ce qui permet ensuite de calculer le montant des
-							retraites et de les verser. La branche accidents du travail prend
-							en charge les frais liés aux maladies professionnelles et aux
-							accidents du travail. La branche famille verse différents types de
-							prestations liées à la naissance, à la garde d’enfant, aux aides à
-							l’éducation ou au logement par exemple. Ces quatre branches
-							forment le régime général de la sécurité sociale qui a intégré les
-							indépendants le 1er janvier 2018. Des organisations spécifiques
-							s’ajoutent au régime général dont la MSA pour les agriculteurs ou
-							les régimes spéciaux.
+							Son budget est composé de dépenses principalement sous la forme de
+							prestations et de recettes alimentées en partie par les
+							cotisations.
+						</Body>
+
+						<Body>
+							Les recettes sont gérées par la branche recouvrement composée des
+							Urssaf.
+						</Body>
+
+						<Body>Pour les dépenses, il existe 5 branches :</Body>
+						<Ul>
+							<Li>
+								La branche maladie permet de couvrir les dépenses
+								d'hospitalisation, de médicaments et consultations des
+								professionnels de santé, ainsi que le paiement des indemnités
+								journalières en cas d'arrêt de travail.
+							</Li>
+							<Li>
+								La branche retraite prend en charge l'inscription des revenus
+								sur le compte vieillesse de chacun, tout au long de sa vie
+								active, à partir des déclarations internet des entreprises, ce
+								qui lui permet ensuite de calculer le montant des retraites et
+								de les verser.
+							</Li>
+							<Li>
+								La branche accident du travail prend en charge les frais liés
+								aux maladies professionnelles et aux accidents du travail.
+							</Li>
+							<Li>
+								La branche famille verse différents types de prestations liées à
+								la naissance, à la garde d'enfants, au logement ou à la
+								solidarité, comme la gestion du RSA par exemple.
+							</Li>
+							<Li>
+								La branche autonomie garantit l'équité territoriale, la qualité
+								et l'efficience de l'accompagnement des personnes âgées et des
+								personnes handicapées, quelle que soit leur lieu de vie.
+							</Li>
+						</Ul>
+
+						<Body>
+							Ces six branches forment le régime général de la sécurité sociale.
+							Le régime agricole MSA et des régimes spéciaux viennent s'ajouter.
 						</Body>
 						<Body>
 							Toutes les personnes qui résident en France contribuent au
 							financement de la sécurité sociale qui en retour couvre toute la
-							population. Le principe est celui du "pot-commun" fonctionnant par
-							solidarité. Le montant de la contribution versée par chaque
-							personne ne dépend pas de ses propres risques, mais de ses
-							revenus.
+							population. Le principe est celui du pot commun fonctionnant par
+							solidarité, le montant de la contribution versé par chaque
+							personne ne dépend pas de ses propres risques mais de ses revenus.
 						</Body>
 						<Body>
-							La sécurité sociale, par l’intermédiaire du versement des
-							retraites et de la prise en charge des soins, a permis
-							l’allongement de l’espérance de vie de trois mois de plus par an
-							depuis 20 ans. Ces progrès entraînent des difficultés de
-							financement : l'allongement de la durée de vie implique des
-							retraites plus longues et des dépenses de santé plus importante
-							qui déséquilibre le système. Pour rééquilibrer le système des
-							mesures d'adaptation sont prises notamment sur la durée de
-							cotisation.
-						</Body>
-						<Body>
-							La sécurité sociale développe également de nouveaux services comme
-							l'ouverture de places d'accueil pour les jeunes enfants ce qui
-							permet à leurs parents de continuer à travailler. Elle développe
-							aussi des actions de prévention, organise des campagnes de
-							vaccination, de dépistage précoce de certaines maladies, des
+							La sécurité sociale développe également de nouveaux services,
+							comme l'ouverture de places d'accueil pour les jeunes enfants, ce
+							qui permet à leurs parents de continuer à travailler. Elle
+							développe aussi des actions de prévention, organise des campagnes
+							de vaccination, de dépistage précoce de certaines maladies, des
 							actions d'accompagnement au retour à domicile après
-							hospitalisation, ainsi que des campagnes d'information et de
-							prévention sur les chutes des personnes âgées.
+							hospitalisation et aide les particuliers pour déclarer leur garde
+							d'enfants ou leurs services à domicile.
 						</Body>
 						<Body>
-							Née il y a soixante dix ans, la Sécurité Sociale a permis aux
-							français de vivre plus, mais aussi mieux elle continuera à évoluer
-							pour construire les services qui correspondent à leurs besoins.
+							Née en 1945, la sécurité sociale a permis aux Français de vivre
+							plus, mais aussi de vivre mieux. Elle continuera à évoluer pour
+							construire les services qui correspondent à leurs besoins.
 						</Body>
 					</Trans>
 				</StyledFoldingMessage>
