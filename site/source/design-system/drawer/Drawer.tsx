@@ -95,7 +95,9 @@ export const Drawer = ({
 
 	const location = useLocation()
 
+	// close the drawer when the route change
 	useEffect(() => {
+		// if the drawer close unexpectedly cause of this effect, be sure to use useCallback for the onCancel prop
 		closeDrawer()
 	}, [closeDrawer, location])
 
