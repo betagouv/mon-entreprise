@@ -46,6 +46,7 @@ module.exports = {
 			files: ['**/*.{ts,tsx}'],
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
+				ecmaVersion: 'latest',
 				ecmaFeatures: { jsx: true },
 				tsconfigRootDir,
 				project: ['*/tsconfig.json'],
@@ -72,7 +73,10 @@ module.exports = {
 				'react-hooks/rules-of-hooks': 'error',
 				'react-hooks/exhaustive-deps': [
 					'warn',
-					{ additionalHooks: 'useAsyncData' },
+					{
+						additionalHooks:
+							'usePromise|useLazyPromise|usePromiseOnSituationChange',
+					},
 				],
 
 				'@typescript-eslint/no-unsafe-call': 'warn',

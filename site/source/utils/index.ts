@@ -283,8 +283,25 @@ export const generateUuid = () => {
 }
 
 /**
- * Returns true if x is not null, useful for filtering out nulls from arrays
+ * Returns true if value is not null, useful for filtering out nulls from arrays
  * @example [1, null, 2].filter(isNotNull) // [1, 2]
- * @param x
+ * @param value
  */
-export const isNotNull = <T>(x: T | null): x is T => x !== null
+export const isNotNull = <T>(value: T | null): value is T => value !== null
+
+/**
+ * Returns true if value is not undefined, useful for filtering out undefined from arrays
+ * @example [1, undefined, 2].filter(isDefined) // [1, 2]
+ * @param value
+ */
+export const isDefined = <T>(value: T | undefined): value is T =>
+	value !== undefined
+
+/**
+ * Returns true if value is not null or undefined, useful for filtering out nulls and undefined from arrays
+ * @example [1, null, undefined, 2].filter(isNotNullOrUndefined) // [1, 2]
+ * @param value
+ */
+export const isNotNullOrUndefined = <T>(
+	value: T | null | undefined
+): value is T => isNotNull(value) && isDefined(value)

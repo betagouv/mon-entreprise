@@ -11,7 +11,7 @@ import { VisibleRadio } from '@/design-system/field/Radio/Radio'
 import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Spacing } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { useAsyncData } from '@/hooks/useAsyncData'
+import { usePromise } from '@/hooks/usePromise'
 
 import { Result } from './Result'
 
@@ -102,12 +102,15 @@ export default function SearchCodeAPE({
 		[]
 	)
 
-	const lazyData = useAsyncData(() => import('@/public/data/ape-search.json'))
+	const lazyData = usePromise(() => import('@/public/data/ape-search.json'))
 
 	const lastIdxs = useRef<Record<string, UFuzzy.HaystackIdxs>>({})
 	const prevValue = useRef<string>(searchQuery)
 
-	const buildedResearch = useMemo(() => buildResearch(lazyData), [lazyData])
+	const buildedResearch = useMemo(
+		() => lazyData && buildResearch(lazyData),
+		[lazyData]
+	)
 
 	useEffect(() => {
 		if (!lazyData || !buildedResearch) {

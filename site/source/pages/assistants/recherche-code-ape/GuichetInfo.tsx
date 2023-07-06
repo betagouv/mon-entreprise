@@ -5,7 +5,7 @@ import { Strong } from '@/design-system/typography'
 import { H5 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useAsyncData } from '@/hooks/useAsyncData'
+import { usePromise } from '@/hooks/usePromise'
 import { capitalise0 } from '@/utils'
 
 const lazyApeToGuichet = () => import('@/public/data/ape-to-guichet.json')
@@ -16,8 +16,8 @@ type Guichet = typeof import('@/public/data/guichet.json')
 export type GuichetEntry = Guichet[keyof Guichet]
 
 export function useGuichetInfo(codeApe?: string): GuichetEntry[] | null {
-	const guichet = useAsyncData(lazyGuichet)?.default
-	const apeToGuichet = useAsyncData(lazyApeToGuichet)?.default
+	const guichet = usePromise(lazyGuichet)?.default
+	const apeToGuichet = usePromise(lazyApeToGuichet)?.default
 
 	return useMemo(() => {
 		if (!codeApe || !guichet || !apeToGuichet || !(codeApe in apeToGuichet)) {
