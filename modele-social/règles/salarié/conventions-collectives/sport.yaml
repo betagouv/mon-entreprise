@@ -150,9 +150,8 @@ salarié . convention collective . sport . cotisations . formation professionnel
       taux: 1%
 
 salarié . convention collective . sport . cotisations . assiette franchisée:
-  formule:
-    valeur: cotisations . assiette
-    abattement: franchise
+  valeur: cotisations . assiette
+  abattement: franchise * 1 jour
 
 salarié . convention collective . sport . joueur entraineur:
   question: Le joueur est-il aussi entraineur ?
@@ -162,10 +161,11 @@ salarié . convention collective . sport . exonération cotisation AT:
   non applicable si:
     une de ces conditions:
       - joueur entraineur
-      - refus
+      - refus exonération cotisation AT
+  valeur: oui
   rend non applicable: cotisations . ATMP
 
-salarié . convention collective . sport . exonération cotisation AT . refus:
+salarié . convention collective . sport . refus exonération cotisation AT:
   titre: refus exonération AT
   question: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
   par défaut: non
@@ -173,22 +173,23 @@ salarié . convention collective . sport . exonération cotisation AT . refus:
 salarié . convention collective . sport . cotisations . assiette forfaitaire:
   applicable si: assiette franchisée < SMIC . horaire * 115 heures/mois
   remplace: salarié . cotisations . assiette forfaitaire
-  formule:
-    grille:
-      assiette: assiette franchisée
-      multiplicateur: SMIC . horaire / 1 mois
-      unité: €/mois
-      tranches:
-        - montant: 5 * SMIC . horaire
-          plafond: 45 heures
-        - montant: 15 * SMIC . horaire
-          plafond: 60 heures
-        - montant: 25 * SMIC . horaire
-          plafond: 80 heures
-        - montant: 35 * SMIC . horaire
-          plafond: 100 heures
-        - montant: 50 * SMIC . horaire
-          plafond: 115 heures
+  unité: €/mois
+  grille:
+    assiette: assiette franchisée
+    multiplicateur: SMIC . horaire
+    tranches:
+      - montant: 5 * SMIC . horaire
+        plafond: 45 heures
+      - montant: 15 * SMIC . horaire
+        plafond: 60 heures
+      - montant: 25 * SMIC . horaire
+        plafond: 80 heures
+      - montant: 35 * SMIC . horaire
+        plafond: 100 heures
+      - montant: 50 * SMIC . horaire
+        plafond: 115 heures
+  références:
+    Barème assiette forfaitaire convention sport: https://www.urssaf.fr/portail/home/taux-et-baremes/assiettes-forfaitaires-et-franch/le-sportif-entraineur-personne-q.html
 
 salarié . convention collective . sport . primes . nombre de manifestations:
   question: Combien de manifestations rémunérées le joueur a-t'il effectué ?
@@ -216,9 +217,8 @@ salarié . convention collective . sport . primes . manifestation 1:
 
 salarié . convention collective . sport . primes . manifestation 1 . franchise:
   titre: franchise manifestation 1
-  formule:
-    valeur: manifestation 1
-    plafond: 70% * plafond sécurité sociale . journalier
+  valeur: manifestation 1
+  plafond: 70% * plafond sécurité sociale . journalier * 1 jour
 
 salarié . convention collective . sport . primes . manifestation 2:
   question: Quelle prime pour la deuxième manifestation ?
@@ -227,9 +227,8 @@ salarié . convention collective . sport . primes . manifestation 2:
 
 salarié . convention collective . sport . primes . manifestation 2 . franchise:
   titre: franchise manifestation 2
-  formule:
-    valeur: manifestation 2
-    plafond: 70% * plafond sécurité sociale . journalier
+  valeur: manifestation 2
+  plafond: 70% * plafond sécurité sociale . journalier * 1 jour
 
 salarié . convention collective . sport . primes . manifestation 3:
   question: Quelle prime pour la troisième manifestation ?
@@ -238,9 +237,8 @@ salarié . convention collective . sport . primes . manifestation 3:
 
 salarié . convention collective . sport . primes . manifestation 3 . franchise:
   titre: franchise manifestation 3
-  formule:
-    valeur: manifestation 3
-    plafond: 70% * plafond sécurité sociale . journalier
+  valeur: manifestation 3
+  plafond: 70% * plafond sécurité sociale . journalier * 1 jour
 
 salarié . convention collective . sport . primes . manifestation 4:
   question: Quelle prime pour la quatrième manifestation ?
@@ -249,9 +247,8 @@ salarié . convention collective . sport . primes . manifestation 4:
 
 salarié . convention collective . sport . primes . manifestation 4 . franchise:
   titre: franchise manifestation 4
-  formule:
-    valeur: manifestation 4
-    plafond: 70% * plafond sécurité sociale . journalier
+  valeur: manifestation 4
+  plafond: 70% * plafond sécurité sociale . journalier * 1 jour
 
 salarié . convention collective . sport . primes . manifestation 5:
   question: Quelle prime pour la cinquième manifestation ?
@@ -260,9 +257,8 @@ salarié . convention collective . sport . primes . manifestation 5:
 
 salarié . convention collective . sport . primes . manifestation 5 . franchise:
   titre: franchise manifestation 5
-  formule:
-    valeur: manifestation 5
-    plafond: 70% * plafond sécurité sociale . journalier
+  valeur: manifestation 5
+  plafond: 70% * plafond sécurité sociale . journalier * 1 jour
 
 salarié . convention collective . sport . primes . autres manifestations:
   question: Quelles primes pour les autres manifestations ?
