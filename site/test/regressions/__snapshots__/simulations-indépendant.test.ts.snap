@@ -1,5 +1,18 @@
 // Vitest Snapshot v1
 
+exports[`calculate simulations-indépendant > DROM 1`] = `
+"dirigeant . indépendant . cotisations et contributions . début activité: null
+dirigeant . indépendant . revenu professionnel: 14706
+dirigeant . rémunération . cotisations: 5834
+dirigeant . rémunération . net: 14166
+dirigeant . rémunération . net . après impôt: 14166
+dirigeant . rémunération . totale: 20000
+entreprise . charges: 0
+entreprise . chiffre d'affaires: 20000
+impôt . montant: 0
+Notifications affichées : dirigeant . indépendant . cotisations et contributions . exonérations . DROM"
+`;
+
 exports[`calculate simulations-indépendant > acre 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: 1505
 dirigeant . indépendant . revenu professionnel: 51983

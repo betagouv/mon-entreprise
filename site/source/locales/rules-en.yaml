@@ -1107,6 +1107,41 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
     d'acre sur une meme année.
   titre.en: '[automatic] notification calculation ACRE annual'
   titre.fr: notification calcul ACRE annuel
+dirigeant . auto-entrepreneur . exonération DROM:
+  description.en: >
+    [automatic] As an auto-entrepreneur starting out in business,
+    you benefit from an exemption that translates into the application of
+    reduced contribution rates over three years, corresponding to :
+
+
+    - 1/6 of the full rate for mainland France if you are a craftsman, shopkeeper or unregulated liberal professional, 1/3 if you are a regulated liberal professional, until the end of the 7th quarter following the quarter in which you started your business,
+
+    - ½ of the full metropolitan rates if you are a craftsman, tradesman or self-employed professional, for the period between the end of the 8th quarter of activity and the end of the 3rd calendar year of activity,
+
+    - 2/3 of the full metropolitan rate from the 4th year of activity.
+
+
+    This simulator does not take these rates into account for the moment.
+  description.fr: >
+    En tant qu’auto-entrepreneur en début d’activité, vous
+    bénéficiez d’une exonération qui se traduit par l’application de taux
+    réduits de cotisations sur trois ans, correspondant à :
+
+
+    - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
+
+    - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
+
+    - 2/3 des taux pleins de métropole à compter de la 4ème année d’activité.
+
+
+    Ce simulateur ne prend pas en compte ces taux pour le moment.
+  résumé.en: |
+    [automatic] This simulator does not take into account DROM reduced rates.
+  résumé.fr: |
+    Ce simulateur ne prend pas en compte les taux réduit DROM.
+  titre.en: '[automatic] DROM exemption'
+  titre.fr: exonération DROM
 dirigeant . auto-entrepreneur . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
@@ -3294,6 +3329,41 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
   titre.en: '[automatic] rate'
   titre.fr: taux
+dirigeant . indépendant . cotisations et contributions . exonérations . DROM:
+  description.en: >
+    [automatic] At the start of their activity, for a period of 24
+    months, self-employed people whose businesses are located in the French
+    overseas departments benefit from an exemption from certain social security
+    contributions, subject to certain income conditions.
+
+
+    At the end of the 24-month exemption period, contributions for the current year are initially calculated provisionally on the basis of the last known self-employed income.
+
+
+    Then, as from the 3rd year of activity, after completion of the self-employed person's income tax return (formerly DSI: déclaration sociale des indépendants), all social contributions are regularized and adjusted, with the exception of the professional training contribution (CFP), which is calculated on a definitive basis.
+
+
+    This simulator does not take these exemptions into account for the moment.
+  description.fr: >
+    En début d’activité pendant 24 mois, les indépendants dont
+    l'entreprise est localisée dans les DOM bénéficient, sous conditions de
+    revenus, d’une exonération de certaines cotisations et de contributions
+    sociales.
+
+
+    A l’issue de la période d’exonération de 24 mois, les cotisations, pour l’année en cours, sont d’abord calculées à titre provisoire sur la base du dernier revenu d’activité non salariée connu.
+
+
+    Puis, à compter de la 3ème année d’activité, après la réalisation de la déclaration de revenus des indépendants (anciennement DSI : déclaration sociale des indépendants), toutes les cotisations et contributions sociales sont régularisées et ajustées, à l’exception de la contribution à la formation professionnelle (CFP) qui est calculée à titre définitif.
+
+
+    Ce simulateur ne prend pas en compte ces exonérations pour le moment.
+  résumé.en: |
+    [automatic] This simulator does not take into account DROM exemptions.
+  résumé.fr: |
+    Ce simulateur ne prend pas en compte les exonérations DROM.
+  titre.en: '[automatic] DROM exemption'
+  titre.fr: exonération DROM
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   titre.en: '[automatic] ZFU'
   titre.fr: ZFU
@@ -8145,11 +8215,6 @@ salarié . convention collective . sport . cotisations . régime frais de santé
 salarié . convention collective . sport . exonération cotisation AT:
   titre.en: '[automatic] exemption of contribution AT'
   titre.fr: exonération cotisation AT
-salarié . convention collective . sport . exonération cotisation AT . refus:
-  question.en: '[automatic] Did the employer refuse to be exempted from AT contributions?'
-  question.fr: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
-  titre.en: '[automatic] refusal of TA exemption'
-  titre.fr: refus exonération AT
 salarié . convention collective . sport . joueur entraineur:
   question.en: '[automatic] Is the player also a coach?'
   question.fr: Le joueur est-il aussi entraineur ?
@@ -8208,6 +8273,11 @@ salarié . convention collective . sport . primes . nombre de manifestations:
   question.fr: Combien de manifestations rémunérées le joueur a-t'il effectué ?
   titre.en: '[automatic] number of events'
   titre.fr: nombre de manifestations
+salarié . convention collective . sport . refus exonération cotisation AT:
+  question.en: '[automatic] Did the employer refuse to be exempted from WC contributions?'
+  question.fr: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
+  titre.en: '[automatic] AT exemption refusal'
+  titre.fr: refus exonération AT
 salarié . cotisations:
   description.en: '[automatic] Total social security contributions paid for this
     employee. It includes an employer and an employee share.'
