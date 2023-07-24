@@ -1,12 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
+import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
-import { RadioCard, RadioCardGroup } from '@/design-system'
+import { Message, RadioCard, RadioCardGroup } from '@/design-system'
 import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { Strong } from '@/design-system/typography'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
@@ -14,7 +15,7 @@ import Navigation from './_components/Navigation'
 
 export default function Association() {
 	const { t } = useTranslation()
-	const [currentSelection, setCurrentSelection, reset] =
+	const [currentSelection, setCurrentSelection, reset, associationPossible] =
 		useAssociationSelection()
 
 	return (
@@ -63,15 +64,29 @@ export default function Association() {
 					</RadioCard>
 					<RadioCard
 						value={'non-lucratif'}
+						isDisabled={!associationPossible}
 						label={
 							<Trans i18nKey="choix-statut.association.question.non-lucratif.label">
 								Dans un but <Strong>non lucratif</Strong>
 							</Trans>
 						}
-						description={t(
-							'choix-statut.association.question.non-lucratif.description',
-							'Par exemple, en créant une association'
-						)}
+						description={
+							associationPossible ? (
+								t(
+									'choix-statut.association.question.non-lucratif.description',
+									'Par exemple, en créant une association'
+								)
+							) : (
+								<Message type="info" mini icon>
+									<SmallBody>
+										<Trans i18nKey="choix-statut.association.question.non-lucratif.description.disabled">
+											Cette option n'est pas disponible car votre activité ne
+											peut pas être exercée sous forme d’association
+										</Trans>
+									</SmallBody>
+								</Message>
+							)
+						}
 					/>
 				</RadioCardGroup>
 				<Navigation
@@ -90,7 +105,8 @@ type RadioOption = 'gagner-argent' | 'non-lucratif' | undefined
 function useAssociationSelection(): [
 	RadioOption,
 	(value: RadioOption) => void,
-	() => void
+	() => void,
+	boolean
 ] {
 	const [{ state: currentSelection }, setCurrentSelection] =
 		usePersistingState<{ state: RadioOption }>('choix-statut:association', {
@@ -98,10 +114,17 @@ function useAssociationSelection(): [
 		})
 
 	const dispatch = useDispatch()
-
+	const engine = useEngine()
+	const associationPossible = useMemo(
+		() =>
+			engine.evaluate({
+				'est applicable': 'entreprise . catégorie juridique . association',
+			}).nodeValue === true,
+		[]
+	)
 	const handleChange = (value: RadioOption) => {
 		setCurrentSelection({ state: value })
-
+		if (!associationPossible) return
 		switch (value) {
 			case 'gagner-argent':
 				dispatch(
@@ -131,11 +154,11 @@ function useAssociationSelection(): [
 	}
 
 	useEffect(() => {
-		handleChange(currentSelection)
+		handleChange(associationPossible ? currentSelection : 'gagner-argent')
 	}, [])
 	const reset = () => {
 		handleChange(undefined)
 	}
 
-	return [currentSelection, handleChange, reset]
+	return [currentSelection, handleChange, reset, associationPossible]
 }

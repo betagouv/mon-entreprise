@@ -51,7 +51,7 @@ export default function DétailsActivité() {
 		) {
 			setCodeGuichet(defaultCodeGuichet)
 		}
-	}, [guichetEntries, defaultCodeGuichet])
+	}, [])
 
 	// Wait for the update to be done before rendering the component
 	const isIdle = useEngineIsIdle()
@@ -83,7 +83,7 @@ export default function DétailsActivité() {
 					<GuichetSelection
 						entries={guichetEntries}
 						onGuichetSelected={(code) => {
-							updateSituationWithGuichet(codeGuichet)
+							updateSituationWithGuichet(code)
 							setCodeGuichet(code)
 						}}
 						codeGuichet={codeGuichet}
@@ -91,7 +91,6 @@ export default function DétailsActivité() {
 				)}
 				<Navigation
 					currentStepIsComplete={!!codeGuichet}
-					onNextStep={() => updateSituationWithGuichet(codeGuichet)}
 					nextStepLabel={
 						guichetEntries?.length === 1 &&
 						t('créer.activité-détails.next1', 'Continuer avec cette activité')
