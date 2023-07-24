@@ -1,4 +1,6 @@
 import { DottedName } from 'modele-social'
+import { forwardRef } from 'react'
+import FlipMove from 'react-flip-move'
 import styled from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
@@ -35,7 +37,8 @@ export default function StatutsDisponibles() {
 				Les statuts disponibles diffèrent en fonction de l'activité
 				professionnelle que vous exercez
 			</SmallBody>
-			<StyledUl noMarker>
+
+			<StyledUl noMarker as={FlipMove}>
 				{statuts.map((statut) => (
 					<Statut key={statut} statut={statut} />
 				))}
@@ -74,7 +77,10 @@ const StyledMessage = styled(Message)`
 	}
 `
 
-function Statut({ statut }: { statut: DottedName }) {
+const Statut = forwardRef(function Statut(
+	{ statut }: { statut: DottedName },
+	ref: React.Ref<HTMLLIElement>
+) {
 	const engine = useEngine()
 	const disabled = engine.evaluate({ '=': [statut, 'non'] }).nodeValue === true
 
@@ -82,12 +88,12 @@ function Statut({ statut }: { statut: DottedName }) {
 		engine.getRule(statut).title.toLocaleLowerCase()) as StatutType
 
 	return (
-		<Li className={disabled ? 'disabled' : ''}>
+		<Li ref={ref} className={disabled ? 'disabled' : ''}>
 			<StyledSpan>{engine.getRule(statut).title}</StyledSpan>
 			<StatutTag statut={acronyme} text="acronym" showIcon />
 		</Li>
 	)
-}
+})
 
 const StyledSpan = styled.span``
 

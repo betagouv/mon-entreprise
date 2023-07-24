@@ -51,7 +51,7 @@ export default function DétailsActivité() {
 		) {
 			setCodeGuichet(defaultCodeGuichet)
 		}
-	}, [])
+	}, [guichetEntries])
 
 	// Wait for the update to be done before rendering the component
 	const isIdle = useEngineIsIdle()

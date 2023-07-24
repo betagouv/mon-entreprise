@@ -22922,6 +22922,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-flip-move@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "react-flip-move@npm:3.0.5"
+  peerDependencies:
+    react: ">=16.3.x"
+    react-dom: ">=16.3.x"
+  checksum: d216ab35638d232f6ca994e52348f78464c3576c6036423795cbb87d4b25e31abb94685f5b645f34bf9adbaae6cb9d3b3d55fba99fa64d56aa05e7c3bf246655
+  languageName: node
+  linkType: hard
+
 "react-helmet-async@npm:^1.3.0":
   version: 1.3.0
   resolution: "react-helmet-async@npm:1.3.0"
@@ -24707,6 +24717,7 @@ __metadata:
     react-day-picker: ^8.7.1
     react-dom: ^18.2.0
     react-easy-emoji: ^1.8.1
+    react-flip-move: ^3.0.5
     react-helmet-async: ^1.3.0
     react-i18next: ^12.1.5
     react-instantsearch: ^6.38.1
