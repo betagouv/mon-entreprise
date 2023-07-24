@@ -946,7 +946,12 @@ salarié . cotisations . prévoyances:
         non déductible socialement:
           titre: Prévoyance employeur non déductible
           description: Montant de la part employeur des prévoyances à réintégrer pour le calcul de l'assiette des cotisations
-          valeur: employeur
+          valeur:
+            recalcul:
+              règle: employeur
+              avec:
+                non déductible socialement: 0€
+
           abattement:
             somme:
               - 6% * plafond sécurité sociale

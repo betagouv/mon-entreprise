@@ -1,6 +1,12 @@
 # Journal des modifications
 
 
+## 1.7.2
+Corrige des bugs dans l’implémentation de la convention collective du sport : 
+- Enlève la boucle du calcul de la limite d’éxonération de la prévoyance 
+- Renomme la règle  `salarié . convention collective . sport . exonération cotisation AT . refus` en `salarié . convention collective . sport . refus exonération cotisation AT`
+- Correction d’unités
+
 ## 1.7.1
 Clarifie le vocabulaire, les référence et l’implémentation du calcul de l’indemnité d’activité partielle
 

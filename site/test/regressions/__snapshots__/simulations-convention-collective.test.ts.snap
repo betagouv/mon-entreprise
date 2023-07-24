@@ -1,0 +1,82 @@
+// Vitest Snapshot v1
+
+exports[`calculate simulations-salarié > CCN HCR 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3421
+salarié . rémunération . net . payé après impôt: 1872
+salarié . rémunération . net . à payer avant impôt: 1983
+Notifications affichées : salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié > CCN batiment 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3779
+salarié . rémunération . net . payé après impôt: 1822
+salarié . rémunération . net . à payer avant impôt: 1931
+Notifications affichées : salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié > CCN batiment 2`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3762
+salarié . rémunération . net . payé après impôt: 1824
+salarié . rémunération . net . à payer avant impôt: 1933
+Notifications affichées : salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié > CCN batiment 3`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3811
+salarié . rémunération . net . payé après impôt: 1837
+salarié . rémunération . net . à payer avant impôt: 1949
+Notifications affichées : salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié > CCN compta 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3306
+salarié . rémunération . net . payé après impôt: 1898
+salarié . rémunération . net . à payer avant impôt: 2006
+Notifications affichées : salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié > CCN optique 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3496
+salarié . rémunération . net . payé après impôt: 1943
+salarié . rémunération . net . à payer avant impôt: 2058
+Notifications affichées : salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié > CCN spectacle vivant 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3771
+salarié . rémunération . net . payé après impôt: 2039
+salarié . rémunération . net . à payer avant impôt: 2155
+Notifications affichées : salarié . contrat . CDD . information, salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié > CCN sport 1`] = `
+"salarié . contrat . salaire brut: 500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 905
+salarié . rémunération . net . payé après impôt: 595
+salarié . rémunération . net . à payer avant impôt: 595
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle, salarié . convention collective . contrôle décharge"
+`;
+
+exports[`calculate simulations-salarié > CCN sport 2`] = `
+"salarié . contrat . salaire brut: 1800
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 1801
+salarié . rémunération . net . payé après impôt: 1393
+salarié . rémunération . net . à payer avant impôt: 1401
+Notifications affichées : salarié . convention collective . contrôle décharge"
+`;
