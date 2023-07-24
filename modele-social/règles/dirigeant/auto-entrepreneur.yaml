@@ -353,3 +353,24 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
     avec:
       - revenu net
       - revenu net . après impôt
+
+dirigeant . auto-entrepreneur . exonération DROM:
+  experimental: oui
+  applicable si: établissement . commune . département . outre-mer
+  valeur: oui
+  rend non applicable: exonérations . ACRE
+  type: notification
+  sévérité: avertissement
+  résumé: |
+    Ce simulateur ne prend pas en compte les taux réduit DROM.
+  description: |
+    En tant qu’auto-entrepreneur en début d’activité, vous bénéficiez d’une exonération qui se traduit par l’application de taux réduits de cotisations sur trois ans, correspondant à :
+
+    - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
+    - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
+    - 2/3 des taux pleins de métropole à compter de la 4ème année d’activité.
+
+    Ce simulateur ne prend pas en compte ces taux pour le moment.
+
+  références:
+    'Vous êtes auto-entrepreneur dans les DROM ?': https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#vous-etes-auto-entrepreneur-dans

@@ -74,3 +74,7 @@ activité mixte:
     entreprise . activités . revenus mixtes . proportions . vente restauration hébergement: 33.33%
     entreprise . activités . revenus mixtes: oui
     entreprise . activité . nature: "'commerciale'"
+
+DROM:
+  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
+    établissement . commune . département . outre-mer: oui

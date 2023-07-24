@@ -136,3 +136,7 @@ exonération âge:
   - dirigeant . rémunération . totale: 55000 €/an
     entreprise . date de création: 01/01/2010
     dirigeant . indépendant . cotisations et contributions . exonérations . âge: oui
+
+DROM:
+  - dirigeant . rémunération . totale: 20000 €/an
+    établissement . commune . département . outre-mer: oui

@@ -49,6 +49,8 @@ it('calculate simulations-indépendant', () => {
 		  "impôt . méthode de calcul",
 		  "situation personnelle . RSA",
 		  "situation personnelle . domiciliation fiscale à l'étranger",
+		  "établissement . commune . département",
+		  "établissement . commune . département . outre-mer",
 		]
 	`)
 })

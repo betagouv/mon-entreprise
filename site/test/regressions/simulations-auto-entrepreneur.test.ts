@@ -35,6 +35,8 @@ it('calculate simulations-auto-entrepreneur', () => {
 		  "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
 		  "impôt . foyer fiscal . situation de famille",
 		  "impôt . méthode de calcul",
+		  "établissement . commune . département",
+		  "établissement . commune . département . outre-mer",
 		]
 	`)
 })
