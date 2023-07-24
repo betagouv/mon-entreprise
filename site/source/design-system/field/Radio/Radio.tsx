@@ -51,7 +51,9 @@ export const RadioSkeleton = (props: RadioProps) => {
 				ref={ref}
 				id={id}
 			/>
-			<VisibleRadio as={visibleRadioAs}>{children}</VisibleRadio>
+			<VisibleRadio as={visibleRadioAs} $inert={props.isDisabled}>
+				{children}
+			</VisibleRadio>
 		</Label>
 	)
 }
@@ -113,7 +115,7 @@ export const RadioButton = styled.span`
 	}
 `
 
-export const VisibleRadio = styled.span`
+export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 	display: inline-flex;
 	align-items: center;
 	text-align: initial;
@@ -121,17 +123,31 @@ export const VisibleRadio = styled.span`
 	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.sm});
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	z-index: 1;
-	:hover > ${RadioButton}::before {
-		opacity: 1;
-		transform: scale(1);
-	}
+	${({ theme, $inert }) =>
+		!$inert
+			? css`
+			:hover > ${RadioButton}::before {
+				opacity: 1;
+				transform: scale(1);
+			}
 
-	:hover ${OutsideCircle} {
-		border-color: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.bases.primary[500]
-				: theme.colors.bases.primary[700]};
-	}
+			:hover ${OutsideCircle} {
+				border-color: ${
+					theme.darkMode
+						? theme.colors.bases.primary[500]
+						: theme.colors.bases.primary[700]
+				};
+			} : 
+		`
+			: css`
+					&:hover {
+						background-color: ${theme.colors.extended.grey[200]} !important;
+					}
+					&:hover,
+					&:hover * {
+						cursor: default !important;
+					}
+			  `}
 `
 
 const Label = styled.label<{ htmlFor?: string }>``

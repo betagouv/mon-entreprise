@@ -24,7 +24,7 @@ export function guichetToPLMétier(
 		? guichet.code === '07140111'
 			? "'santé . sage-femme'"
 			: "'santé . chirurgien-dentiste'"
-		: caisse === 'CARPV'
+		: caisse === 'CAVP'
 		? "'santé . pharmacien'"
 		: caisse === 'CARPIMKO'
 		? "'santé . auxiliaire médical'"

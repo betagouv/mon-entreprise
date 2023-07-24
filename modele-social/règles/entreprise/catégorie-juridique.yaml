@@ -191,6 +191,8 @@ entreprise . catégorie juridique . SELAS:
 
 entreprise . catégorie juridique . association:
   valeur: catégorie juridique = 'association'
+  par défaut:
+    non applicable si: activité . nature . libérale . réglementée
 
 entreprise . catégorie juridique . autre:
   valeur: catégorie juridique = 'autre'
