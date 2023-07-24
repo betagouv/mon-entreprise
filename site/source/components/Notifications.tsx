@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -11,9 +11,8 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 
-import RuleLink from './RuleLink'
+import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'
-import { Markdown } from './utils/markdown'
 
 // To add a new notification to a simulator, you should create a publicodes rule
 // with the "type: notification" attribute. The display can be customized with
@@ -78,13 +77,9 @@ export default function Notifications() {
 						type={sévérité === 'avertissement' ? 'info' : 'primary'}
 						key={dottedName}
 					>
-						<Markdown>{résumé ?? description ?? ''}</Markdown>{' '}
 						<Body>
-							{résumé && (
-								<RuleLink dottedName={dottedName as DottedName}>
-									<Trans>En savoir plus</Trans>
-								</RuleLink>
-							)}
+							{résumé ?? description ?? ''}
+							<ExplicableRule dottedName={dottedName} light />
 						</Body>
 						<AbsoluteCloseButton
 							aria-label={t('Fermer')}
