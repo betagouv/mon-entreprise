@@ -281,8 +281,6 @@ dirigeant . indépendant . cotisations et contributions . exonérations . DROM:
   description: |
     En début d’activité pendant 24 mois, les indépendants dont l'entreprise est localisée dans les DOM bénéficient, sous conditions de revenus, d’une exonération de certaines cotisations et de contributions sociales.
 
-    A l’issue de la période d’exonération de 24 mois, les cotisations, pour l’année en cours, sont d’abord calculées à titre provisoire sur la base du dernier revenu d’activité non salariée connu.
-
     Il existe également des exonérations et des abattements en régime de croisière (à partir de la troisième année).
 
     Ce simulateur ne prend pas en compte ces exonérations pour le moment.
