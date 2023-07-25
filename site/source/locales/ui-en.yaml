@@ -452,7 +452,48 @@ choix-statut:
         label: To <1>earn</1> money
       label: Why are you creating this company?
       non-lucratif:
-        description: For example, by creating an association
+        description:
+          "0": F
+          "1": o
+          "10": e
+          "11": ","
+          "12": " "
+          "13": b
+          "14": y
+          "15": " "
+          "16": c
+          "17": r
+          "18": e
+          "19": a
+          "2": r
+          "20": t
+          "21": i
+          "22": n
+          "23": g
+          "24": " "
+          "25": a
+          "26": n
+          "27": " "
+          "28": a
+          "29": s
+          "3": " "
+          "30": s
+          "31": o
+          "32": c
+          "33": i
+          "34": a
+          "35": t
+          "36": i
+          "37": o
+          "38": n
+          "4": e
+          "5": x
+          "6": a
+          "7": m
+          "8": p
+          "9": l
+          disabled: This option is not available because your business cannot be run as an
+            association.
         label: <1>Not for profit</1>
     title: "I am creating this company...<1><0>It enables you to <2>share a common
       project in the general interest, without making a profit</2>: promoting a
@@ -1762,48 +1803,46 @@ stats:
   title: Statistics
 supérieurs à: higher than
 sécu:
-  contenu: >
-    <0> Social protection</0>
-
-    <1>In France, all workers benefit from quality social protection. This mandatory system is based on solidarity and aims to ensure the <2>general well-being of the population</2>.</1>
-
-    <2>In return for the payment of <2>social security contributions</2>, the contributor is covered for illness, accidents at work, unemployment or retirement.</2>
-  transcript-NO_AUTO_TRANSLATION: "<0>Three minutes to understand the challenges
-    of social security.</0><1>The purpose of social security is to protect
-    people living in France when certain events occur during their
-    lives.</1><2>Its budget consists of expenses mainly in the form of benefits
-    and of income, financed partly by contributions. Income is managed by the
-    collection branch made up of the URSSAF agencies. Regarding expenses, there
-    are four branches. The health insurance branch covers hospital costs,
-    medecine and consultations. The retirement pension branch registers on each
-    person's old-age account their income received throughout their working life
-    using companies online declarations in order to calculate and pay pensions.
-    the occupational risks branch covers the costs related to occupational
-    diseases and accidents at work. the family branch provides various benefits
-    regarding birth and child care and allowances for education and housing for
-    example. These four branches form the general scheme of the Social Security
-    system. Besides the general scheme there are specific organizations such as
-    the MSA for farmers and special schemes.</2><3>All people living in France
-    help to fund the Social Security system which in  return provides cover for
-    all of them. The principle is that of a \"common pot\" which works through
-    solidarity each person pays contributions based on their income rather than
-    on their risks.</3><4>The Social Security system by providing pensions and
-    paying for medical care has extended life expectancy in France by three
-    months every year in the past 20 years. This progress leads to financing
-    difficulties: longer life expectancy implies more pensions and higher health
-    expenses which unbalance the system. To restore its balance, measures are
-    being taken especially by extending the contributions duration.</4><5>The
-    Social Security system is also increasing its services such as childcare
-    capacity for children aged up to three so their parents can keep working. It
-    is also developing preventive actions, running immunization campaigns
-    programs for the early screening of certain diseases, actions for post
-    Hospital support at home, and information about fall danger among the
-    elderly.</5><6>Founded seventy years ago, the French Social Security system
-    has not only enabled the French to live longer but also better it will
-    continue evolving to build the services that meet their needs you.</6>"
-  videoTitle: <0>Explanatory video "3 minutes to understand the French Social
-    Security system"</0>
-  videoTranscriptTitle: Transcript of the video
+  contenu: <0>Social protection </0><1>In France, all workers benefit from
+    high-quality social protection. This compulsory system is based on
+    solidarity and aims to ensure the <2>general well-being of the
+    population</2>.</1><2>In return for paying <2>social security
+    contributions</2>, contributors are covered for sickness, industrial
+    accidents, unemployment and retirement.</2>
+  transcript: <0>Three minutes to understand the challenges of social
+    security.</0><1>The aim of social security is to protect people living in
+    France against certain events that occur throughout their lives.</1><2>Its
+    budget is made up of expenditure, mainly in the form of benefits, and
+    revenue, partly funded by contributions.</2><3>Revenues are managed by the
+    collection branch, made up of Urssaf.</3><4>For expenditure, there are 5
+    branches:</4><5><0>The sickness branch covers hospitalization, drugs and
+    consultations with health professionals, as well as the payment of daily
+    allowances in the event of sick leave.</0><1>The Retirement branch is
+    responsible for recording income on the individual's retirement account
+    throughout his or her working life, based on company internet declarations,
+    which it then uses to calculate and pay pensions.</1><2>The work accident
+    branch covers the costs of occupational illnesses and accidents.</2><3>The
+    Family branch pays out various types of benefits linked to childbirth,
+    childcare, housing or solidarity, such as the management of the
+    RSA.</3><4>The Autonomy branch guarantees territorial equity, quality and
+    efficiency in the support of the elderly and disabled, wherever they
+    live.</4></5><6>These six branches make up the general social security
+    system. The MSA agricultural scheme and special schemes are also
+    included.</6><7>All residents of France contribute to the financing of
+    social security, which in turn covers the entire population. The principle
+    is that of a common pot operating on the basis of solidarity, with the
+    amount of the contribution paid by each person depending not on his or her
+    own risks, but on his or her income.</7><8>Social security is also
+    developing new services, such as the opening of childcare places for young
+    children, enabling their parents to continue working. It is also developing
+    preventive actions, organizing vaccination campaigns, early detection of
+    certain illnesses, support for people returning home after hospitalization,
+    and helping private individuals to register their childcare or home
+    services.</8><9>Created in 1945, social security has enabled the French not
+    only to live more, but also to live better. It will continue to evolve to
+    build services that meet their needs.</9>
+  videoTitle: <0>3 minutes to understand Social Security" explanatory video</0>
+  videoTranscriptTitle: Video transcript
 trimestres acquis: quarters acquired
 versés en deux fois: paid in two installments
 versés en une fois: paid at once
