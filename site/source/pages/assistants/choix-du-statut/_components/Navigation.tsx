@@ -19,12 +19,14 @@ export default function Navigation({
 	onNextStep,
 	onPreviousStep, // TODO : prefer resetOnLeave
 	assistantIsCompleted = false,
+	children,
 }: {
 	currentStepIsComplete: boolean
 	nextStepLabel?: false | string
 	onNextStep?: () => void
 	onPreviousStep?: () => void
 	assistantIsCompleted?: false | Statuts
+	children?: React.ReactNode
 }) {
 	const { t } = useTranslation()
 	const nextStep = useNextStep()
@@ -39,6 +41,11 @@ export default function Navigation({
 			<Spacing xs />
 			<StyledNavigation>
 				<Grid container spacing={2}>
+					{children && (
+						<Grid item xs={12}>
+							{children}
+						</Grid>
+					)}
 					<Grid item>
 						<Button
 							light

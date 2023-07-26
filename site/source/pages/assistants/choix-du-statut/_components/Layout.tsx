@@ -1,7 +1,7 @@
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 
-import StatutsDisponibles from './StatutsDisponibles'
+import StatutsPossibles from './StatutsPossibles'
 
 export default function Layout({
 	title,
@@ -18,7 +18,7 @@ export default function Layout({
 					{children}
 				</Grid>
 				<Grid item sm={12} md={5} lg={4}>
-					<StatutsDisponibles />
+					<StatutsPossibles />
 				</Grid>
 			</Grid>
 		</>

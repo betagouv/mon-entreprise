@@ -87,6 +87,9 @@ entreprise . activité . nature:
 ## | New activité modèle |
 ## =======================
 
+# Ce nouveau modèle gère la pluri activité (contrairement à l'ancien). Il est utilisé dans le simulateur de coût de création.
+# Dans le futur, il faudrait migrer les autres simulateurs pour ne plus utiliser que ce nouveau modèle
+
 entreprise . activités:
   experimental: oui
   titre: nature de l'activité

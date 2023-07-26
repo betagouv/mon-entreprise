@@ -10,7 +10,7 @@ import { H5 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 
-export default function StatutsDisponibles() {
+export default function StatutsPossibles() {
 	const engine = useEngine()
 	const statuts = [
 		'entreprise . catégorie juridique . EI . EI',

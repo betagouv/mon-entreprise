@@ -22,6 +22,10 @@ import {
 	GuichetEntry,
 	useGuichetInfo,
 } from '../recherche-code-ape/GuichetInfo'
+import {
+	AvertissementActivitéNonDisponible,
+	estNonDisponible,
+} from './_components/ActivitéNonDisponible'
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
 
@@ -53,7 +57,9 @@ export default function DétailsActivité() {
 			setCodeGuichet(defaultCodeGuichet)
 		}
 	}, [guichetEntries])
-
+	const guichet = guichetEntries?.find(
+		(guichet) => guichet.code === codeGuichet
+	)
 	// Wait for the update to be done before rendering the component
 	const isIdle = useEngineIsIdle()
 
@@ -91,12 +97,14 @@ export default function DétailsActivité() {
 					/>
 				)}
 				<Navigation
-					currentStepIsComplete={!!codeGuichet}
+					currentStepIsComplete={!!codeGuichet && !estNonDisponible(guichet)}
 					nextStepLabel={
 						guichetEntries?.length === 1 &&
 						t('créer.activité-détails.next1', 'Continuer avec cette activité')
 					}
-				/>
+				>
+					<AvertissementActivitéNonDisponible guichet={guichet} />
+				</Navigation>
 			</Layout>
 		</>
 	)
@@ -139,7 +147,9 @@ function GuichetSelection({
 
 	return (
 		<>
-			<Body>Sectionnez la description d'activité qui correspond le mieux.</Body>
+			<Body>
+				Selectionnez la description d'activité qui correspond le mieux.
+			</Body>
 			{showCCIOrCMAHelp && (
 				<Message>
 					<Body>
@@ -203,7 +213,7 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 						'entreprise . activités . agricole': undefined,
 						'entreprise . activités . commerciale': undefined,
 						'entreprise . activité . nature': undefined,
-
+						'artiste-auteur': undefined,
 						'entreprise . activité . nature . libérale . réglementée':
 							undefined,
 						'dirigeant . indépendant . PL . métier': undefined,
@@ -228,6 +238,7 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 						? 'oui'
 						: 'non',
 					'dirigeant . indépendant . PL . métier': PLRMétier,
+					'artiste-auteur': guichet.artisteAuteurPossible ? 'oui' : 'non',
 				})
 			)
 		},

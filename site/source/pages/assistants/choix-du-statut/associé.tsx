@@ -3,7 +3,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { FromTop } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
 	Message,
@@ -115,7 +114,7 @@ export default function Associés() {
 						</Message>
 					</FromTop>
 				)}
-				{question2 === 'non' && (
+				{question2 === 'non' && question1 === 'seul' && (
 					<FromTop>
 						<Spacing md />
 						<Message type="secondary" border={false}>
@@ -160,6 +159,21 @@ export default function Associés() {
 								</Radio>
 							</ToggleGroup>
 							<Spacing md />
+						</Message>
+					</FromTop>
+				)}
+				{question1 === 'plusieurs' && (
+					<FromTop>
+						<Spacing lg />
+						<Message type="info" icon>
+							<Body>
+								<Trans i18nKey="choix-statut.associés.plusieurs.avertissement">
+									Cet assistant ne gère pas encore le cas des gérant associés
+									égalitaire ou minoritaire. Il s'adresse uniquement aux
+									personnes possédant <Strong>au minimum 51 % des parts</Strong>{' '}
+									de leur entreprise.
+								</Trans>
+							</Body>
 						</Message>
 					</FromTop>
 				)}
@@ -220,13 +234,9 @@ function useAssociésSelection(): [
 	}
 
 	const isComplete =
-		useEngine().evaluate({
-			'toutes ces conditions': [
-				{ 'est défini': 'entreprise . associés' },
-				{ 'est défini': 'entreprise . catégorie juridique . EI' },
-				{ 'est défini': 'entreprise . catégorie juridique . SARL . EURL' },
-			],
-		}).nodeValue === true
+		state.question1 === 'plusieurs' ||
+		state.question2 === 'oui' ||
+		!!state.question3
 
 	return [state, handleChange, reset, isComplete]
 }
