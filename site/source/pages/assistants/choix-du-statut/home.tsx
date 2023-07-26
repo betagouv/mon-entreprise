@@ -74,11 +74,13 @@ export default function AccueilChoixStatut() {
 				) : (
 					<>
 						<Message type="info" border={false}>
-							<H3>Une entreprise a déjà renseignée</H3>
-							<Body>
-								Pour accéder à l'assistant, il vous faut réinitialiser les
-								données
-							</Body>
+							<Trans i18nKey="choix-statut.home.warning-entreprise-existante">
+								<H3>Une entreprise a déjà renseignée</H3>
+								<Body>
+									Pour accéder à l'assistant, il vous faut réinitialiser les
+									données
+								</Body>
+							</Trans>
 						</Message>
 						<CompanyDetails headingTag="h3" />
 						<PopoverConfirm
