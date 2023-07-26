@@ -25,12 +25,13 @@ import Navigation from './_components/Navigation'
 type State = {
 	question1: 'seul' | 'plusieurs' | undefined
 	question2: 'oui' | 'non' | undefined
+	question3: 'oui' | 'non' | undefined
 }
 
 export default function Associés() {
 	const { t } = useTranslation()
 
-	const [{ question1, question2 }, setState, reset, isComplete] =
+	const [{ question1, question2, question3 }, setState, reset, isComplete] =
 		useAssociésSelection()
 
 	return (
@@ -114,6 +115,54 @@ export default function Associés() {
 						</Message>
 					</FromTop>
 				)}
+				{question2 === 'non' && (
+					<FromTop>
+						<Spacing md />
+						<Message type="secondary" border={false}>
+							<H4 id="question3">
+								<Trans i18nKey="choix-statut.associés.question3">
+									Préférez-vous exercer votre activité sous la forme d'une
+									société uniquement ?
+									<HelpButtonWithPopover
+										title={t(
+											'choix-statut.associés.question3.help.title',
+											'Choisir entre une entreprise individuelle et une société'
+										)}
+										type="info"
+									>
+										<Body>
+											Avec une <Strong>entreprise individuelle</Strong>, les
+											formalité de création sont plus simples et moins
+											coûteuses. En revanche, vous êtes responsable sur
+											l'ensemble de vos biens utiles à votre activité (matériel,
+											locaux, outils, etc.).
+										</Body>
+										<Body>
+											Avec une <Strong>société</Strong>, vous êtes uniquement
+											responsable sur le montant de votre apport au capital
+											social et des biens détenus par la société.
+										</Body>
+									</HelpButtonWithPopover>
+								</Trans>
+							</H4>
+							<ToggleGroup
+								aria-labelledby="question3"
+								onChange={(value) =>
+									setState({ question3: value as State['question3'] })
+								}
+								value={question3}
+							>
+								<Radio value={'oui'}>
+									<Trans>Oui</Trans>
+								</Radio>
+								<Radio value={'non'}>
+									<Trans>Non</Trans>
+								</Radio>
+							</ToggleGroup>
+							<Spacing md />
+						</Message>
+					</FromTop>
+				)}
 
 				<Navigation currentStepIsComplete={isComplete} onPreviousStep={reset} />
 			</Layout>
@@ -130,6 +179,7 @@ function useAssociésSelection(): [
 	const [state, setState] = usePersistingState<State>('choix-statut:associés', {
 		question1: undefined,
 		question2: undefined,
+		question3: undefined,
 	})
 
 	const dispatch = useDispatch()
@@ -145,11 +195,15 @@ function useAssociésSelection(): [
 						: newState.question1 === 'plusieurs'
 						? "'multiples'"
 						: undefined,
-				// On préfère conseiller l'EI à l'EURL pour les entrepreneurs seuls (dans un premier temps)
+
 				'entreprise . catégorie juridique . EI':
-					newState.question2 === 'oui' ? 'non' : undefined,
+					newState.question2 === 'oui' || newState.question3 === 'oui'
+						? 'non'
+						: undefined,
 				'entreprise . catégorie juridique . SARL . EURL':
-					newState.question2 === 'non' ? 'non' : undefined,
+					newState.question2 === 'non' && newState.question3 === 'non'
+						? 'non'
+						: undefined,
 			})
 		)
 	}
@@ -161,11 +215,12 @@ function useAssociésSelection(): [
 		handleChange({
 			question1: undefined,
 			question2: undefined,
+			question3: undefined,
 		})
 	}
 
 	const isComplete =
-		useEngine().evaluate('entreprise . associés').nodeValue !== undefined
+		useEngine().evaluate('entreprise . associés').nodeValue !== undefined // TODO
 
 	return [state, handleChange, reset, isComplete]
 }
