@@ -2,8 +2,12 @@ import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
 
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
+import { Message } from '@/design-system'
+import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
-import { Intro } from '@/design-system/typography/paragraphs'
+import { Link } from '@/design-system/typography/link'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { useSitePaths } from '@/sitePaths'
 
 import Comparateur, { EngineComparison } from './components/Comparateur'
 import {
@@ -14,7 +18,7 @@ import {
 function ComparateurStatutsUI() {
 	const engine = useEngine()
 	const situation = useRawSituation()
-
+	const { absoluteSitePaths } = useSitePaths()
 	const { isAutoEntrepreneurACREEnabled } = useCasParticuliers()
 
 	const assimiléEngine = useMemo(
@@ -63,6 +67,16 @@ function ComparateurStatutsUI() {
 
 	return (
 		<>
+			<Message type="secondary" icon={<Emoji emoji="✨" />} border={false}>
+				<Body>
+					Découvrez quel statut est le{' '}
+					<Strong>plus adapté pour votre activité</Strong> grâce au{' '}
+					<Link to={absoluteSitePaths.assistants['choix-du-statut'].index}>
+						nouvel assistant au choix du statut
+					</Link>{' '}
+					!
+				</Body>
+			</Message>
 			<Intro>
 				<Trans i18nKey="comparaisonRégimes.description">
 					Lorsque vous créez votre entreprise, le choix du statut juridique va{' '}
@@ -74,6 +88,7 @@ function ComparateurStatutsUI() {
 					correspond le mieux.
 				</Trans>
 			</Intro>
+
 			<Comparateur namedEngines={engines} />
 		</>
 	)
