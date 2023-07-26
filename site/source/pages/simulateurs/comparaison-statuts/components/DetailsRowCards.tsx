@@ -1,12 +1,9 @@
-import Engine from 'publicodes'
+import Engine, { PublicodesExpression } from 'publicodes'
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 
 import { DottedName } from '@/../../modele-social'
-import Value, {
-	WhenApplicable,
-	WhenNotApplicable,
-} from '@/components/EngineValue'
+import Value, { Condition, WhenNotApplicable } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
@@ -27,6 +24,7 @@ export const getGridSizes = (numberOptions: number, total: number) => {
 const DetailsRowCards = ({
 	namedEngines,
 	dottedName,
+	expression,
 	unit,
 	leastIsBest = false,
 	evolutionDottedName,
@@ -36,7 +34,8 @@ const DetailsRowCards = ({
 	warning,
 }: {
 	namedEngines: EngineComparison
-	dottedName: DottedName
+	dottedName?: DottedName
+	expression?: PublicodesExpression
 	unit?: string
 	leastIsBest?: boolean
 	evolutionDottedName?: DottedName
@@ -46,11 +45,12 @@ const DetailsRowCards = ({
 	warning?: (engine: Engine<DottedName>) => ReactNode
 	footer?: (engine: Engine<DottedName>) => ReactNode
 }) => {
+	const expressionOrDottedName = dottedName ?? expression
 	const options = namedEngines.map(({ engine, name }) => ({
 		engine,
 		name,
 		value: engine.evaluate({
-			valeur: dottedName,
+			valeur: expressionOrDottedName,
 			...(unit && { unité: unit }),
 		}).nodeValue,
 	})) as [OptionType, OptionType, OptionType]
@@ -86,7 +86,7 @@ const DetailsRowCards = ({
 
 				return (
 					<Grid
-						key={`${dottedName}-${statusObject.name as string}`}
+						key={statusObject.name}
 						item
 						{...getGridSizes(sameValueOptions.length, options.length)}
 						as="ul"
@@ -100,60 +100,66 @@ const DetailsRowCards = ({
 							}
 						>
 							<StyledBody as="div">
-								<WhenNotApplicable
-									dottedName={dottedName}
-									engine={statusObject.engine}
-								>
-									<DisabledLabel>Ne s'applique pas</DisabledLabel>
-									<StyledRuleLink
-										documentationPath={`${statusObject.name as string}`}
+								{dottedName && (
+									<WhenNotApplicable
 										dottedName={dottedName}
 										engine={statusObject.engine}
 									>
-										<HelpIcon />
-									</StyledRuleLink>
-								</WhenNotApplicable>
-								<WhenApplicable
-									dottedName={dottedName}
-									engine={statusObject.engine}
-								>
-									<StyledDiv>
-										<span>
-											<Value
-												linkToRule={false}
-												expression={dottedName}
-												engine={statusObject.engine}
-												precision={0}
-												unit={unit}
-											/>
-											{label && ' '}
-											{label && label}
-										</span>
+										<DisabledLabel>Ne s'applique pas</DisabledLabel>
 										<StyledRuleLink
-											documentationPath={`${statusObject.name}`}
+											documentationPath={`${statusObject.name as string}`}
 											dottedName={dottedName}
 											engine={statusObject.engine}
 										>
 											<HelpIcon />
 										</StyledRuleLink>
-										{warning?.(statusObject.engine)}
-									</StyledDiv>
-									{evolutionDottedName && (
-										<Precisions>
-											<Value
-												linkToRule={false}
-												expression={evolutionDottedName}
-												engine={statusObject.engine}
-												precision={0}
-												unit={unit}
-											/>{' '}
-											{evolutionLabel}
-										</Precisions>
-									)}
-									{!evolutionDottedName && evolutionLabel && (
-										<Precisions>{evolutionLabel}</Precisions>
-									)}
-								</WhenApplicable>
+									</WhenNotApplicable>
+								)}
+								{expressionOrDottedName && (
+									<Condition
+										expression={expressionOrDottedName}
+										engine={statusObject.engine}
+									>
+										<StyledDiv>
+											<span>
+												<Value
+													linkToRule={false}
+													expression={expressionOrDottedName}
+													engine={statusObject.engine}
+													precision={0}
+													unit={unit}
+												/>
+												{label && ' '}
+												{label && label}
+											</span>
+											{dottedName && (
+												<StyledRuleLink
+													documentationPath={`${statusObject.name}`}
+													dottedName={dottedName}
+													engine={statusObject.engine}
+												>
+													<HelpIcon />
+												</StyledRuleLink>
+											)}
+											{warning?.(statusObject.engine)}
+										</StyledDiv>
+										{evolutionDottedName && (
+											<Precisions>
+												<Value
+													linkToRule={false}
+													expression={evolutionDottedName}
+													engine={statusObject.engine}
+													precision={0}
+													unit={unit}
+												/>{' '}
+												{evolutionLabel}
+											</Precisions>
+										)}
+										{!evolutionDottedName && evolutionLabel && (
+											<Precisions>{evolutionLabel}</Precisions>
+										)}
+									</Condition>
+								)}
 							</StyledBody>
 						</StatusCard>
 					</Grid>

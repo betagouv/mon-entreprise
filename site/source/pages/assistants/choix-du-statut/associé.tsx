@@ -220,7 +220,13 @@ function useAssociésSelection(): [
 	}
 
 	const isComplete =
-		useEngine().evaluate('entreprise . associés').nodeValue !== undefined // TODO
+		useEngine().evaluate({
+			'toutes ces conditions': [
+				{ 'est défini': 'entreprise . associés' },
+				{ 'est défini': 'entreprise . catégorie juridique . EI' },
+				{ 'est défini': 'entreprise . catégorie juridique . SARL . EURL' },
+			],
+		}).nodeValue === true
 
 	return [state, handleChange, reset, isComplete]
 }
