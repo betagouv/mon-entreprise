@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
@@ -9,6 +9,7 @@ import { Message, RadioCardGroup } from '@/design-system'
 import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Spacing } from '@/design-system/layout'
 import { H5 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useEngineIsIdle } from '@/hooks/useEngineIsIddle'
 import { useSitePaths } from '@/sitePaths'
@@ -113,6 +114,18 @@ function CodeAPENonConnu() {
 	)
 }
 
+function choixEntreArtisanaleOuCommerciale(entries: GuichetEntry[]): boolean {
+	return (
+		entries.every(
+			(e) =>
+				e.catégorieActivité.includes('ARTISANALE') ||
+				e.catégorieActivité.includes('COMMERCIALE')
+		) &&
+		entries.some((e) => e.catégorieActivité.includes('ARTISANALE')) &&
+		entries.some((e) => e.catégorieActivité.includes('COMMERCIALE'))
+	)
+}
+
 function GuichetSelection({
 	entries,
 	onGuichetSelected,
@@ -122,9 +135,23 @@ function GuichetSelection({
 	onGuichetSelected: (code: string) => void
 	codeGuichet?: string
 }) {
+	const showCCIOrCMAHelp = choixEntreArtisanaleOuCommerciale(entries)
+
 	return (
 		<>
 			<Body>Sectionnez la description d'activité qui correspond le mieux.</Body>
+			{showCCIOrCMAHelp && (
+				<Message>
+					<Body>
+						<Trans i18nKey="créer.choix-statut.détails-activité.aide-cci-cma">
+							Si vous hésitez entre une activité artisanale ou commerciale, vous
+							pouvez consulter les sites de la{' '}
+							<Link href="https://www.cci.fr/">CCI</Link> ou de la{' '}
+							<Link href="https://www.cma-france.fr/">CMA</Link>.
+						</Trans>
+					</Body>
+				</Message>
+			)}
 			<RadioCardGroup
 				value={codeGuichet}
 				onChange={onGuichetSelected}
