@@ -106,6 +106,7 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 						)}
 					/>
 				</Item>
+
 				<Item
 					title={
 						<ItemTitle>
@@ -534,7 +535,7 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 						leastIsBest
 					/>
 
-					{/* <StyledH4>
+					<StyledH4>
 						<Trans>Statut du conjoint</Trans>
 					</StyledH4>
 					<Body>
@@ -545,12 +546,35 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 							<Strong>conjoint associé</Strong> ou{' '}
 							<Strong>conjoint salarié</Strong>).
 						</Trans>
-					</Body> */}
-					{/* 					
+					</Body>
+
 					<DetailsRowCards
-						dottedName="dirigeant . statut du conjoint"
+						expression={{
+							variations: [
+								{
+									si: 'entreprise . catégorie juridique . EI . auto-entrepreneur',
+									alors: '"Conjoint collaborateur"',
+								},
+								{
+									si: 'entreprise . catégorie juridique . EI',
+									alors: '"Conjoint collaborateur ou salarié"',
+								},
+								{
+									si: {
+										'une de ces conditions': [
+											'entreprise . catégorie juridique . SARL',
+											'entreprise . catégorie juridique . SELARL',
+										],
+									},
+									alors: '"Conjoint collaborateur, associé ou salarié"',
+								},
+								{
+									sinon: '"Conjoint associé ou salarié"',
+								},
+							],
+						}}
 						namedEngines={namedEngines}
-					/> */}
+					/>
 				</Item>
 			</Accordion>
 		</StyledContainer>
