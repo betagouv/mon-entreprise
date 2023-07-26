@@ -85,17 +85,23 @@ function useStatutComparaison(): EngineComparison {
 	const situation = useRawSituation()
 	const engine = useEngine()
 
-	return useMemo(
+	const namedEngines = useMemo(
 		() =>
 			possibleStatuts.map((statut) => ({
 				name: statut,
-				engine: engine.shallowCopy().setSituation({
-					...situation,
-					...getSituationFromStatut(statut, isAutoEntrepreneurACREEnabled),
-				}),
+				engine: engine.shallowCopy(),
 			})) as EngineComparison,
-		[possibleStatuts, isAutoEntrepreneurACREEnabled]
+		[possibleStatuts]
 	)
+
+	for (const { name, engine } of namedEngines) {
+		engine.setSituation({
+			...situation,
+			...getSituationFromStatut(name, isAutoEntrepreneurACREEnabled),
+		})
+	}
+
+	return namedEngines
 }
 
 const SASUEIAE: StatutType[] = ['SASU', 'EI', 'AE']
@@ -130,7 +136,7 @@ function getSituationFromStatut(
 			statut === 'SASU'
 				? "'SAS'"
 				: statut === 'EURL'
-				? "'EURL'"
+				? "'SARL'"
 				: statut === 'AE'
 				? "'EI'"
 				: statut === 'SELARLU'

@@ -13,7 +13,7 @@ import { Drawer } from '@/design-system/drawer'
 import { ArrowRightIcon, InfoIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
-import { H2, H4, H5 } from '@/design-system/typography/heading'
+import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { answerQuestion } from '@/store/actions/actions'
@@ -120,14 +120,13 @@ const ModifierOptions = ({
 					<Trans>Modifier mes options</Trans>
 				</H2>
 
-				<Spacing md />
-				<Flex>
-					<H4 as="h2">Bénéficier de l'ACRE</H4>
+				<H3>
+					Bénéficier de l'ACRE{' '}
 					<ExplicableRule
 						dottedName="dirigeant . exonérations . ACRE"
 						title="Bénéficier de l'ACRE"
 					/>
-				</Flex>
+				</H3>
 
 				<Body>
 					L'aide à la création ou à la reprise d'une entreprise (Acre) consiste
@@ -146,7 +145,7 @@ const ModifierOptions = ({
 						<Trans>En savoir plus</Trans>
 					</Button>
 				}
-				<H5 as="h3">Choisir mon option de simulation</H5>
+				<H5 as="h4">Choisir mon option de simulation</H5>
 				<div aria-live="polite">
 					<FlexCentered>
 						<SwitchInput
@@ -181,7 +180,7 @@ const ModifierOptions = ({
 				</div>
 
 				<Spacing md />
-				<H4 as="h2">Quelle imposition pour mon entreprise ?</H4>
+				<H3>Quelle imposition pour mon entreprise ?</H3>
 				<Body>
 					Vous pouvez{' '}
 					<Strong>
@@ -203,7 +202,7 @@ const ModifierOptions = ({
 						</>
 					)}
 				</Body>
-				<H5 as="h3">
+				<H5 as="h4">
 					Choisir mon option de simulation (pour {notAutoEntrepreneur?.name})
 				</H5>
 				<Message type="secondary">
@@ -245,7 +244,7 @@ const ModifierOptions = ({
 					}}
 					key="imposition"
 					aria-labelledby="questionHeader"
-					engine={namedEngines[0].engine}
+					engine={namedEngines[1].engine}
 				/>
 				{autoEntrepreneurEngine && (
 					<>
