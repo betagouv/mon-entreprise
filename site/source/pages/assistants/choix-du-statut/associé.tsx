@@ -14,7 +14,8 @@ import {
 import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
-import { H4 } from '@/design-system/typography/heading'
+import { H3, H4 } from '@/design-system/typography/heading'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
@@ -129,18 +130,49 @@ export default function Associés() {
 										)}
 										type="info"
 									>
-										<Body>
-											Avec une <Strong>entreprise individuelle</Strong>, les
-											formalité de création sont plus simples et moins
-											coûteuses. En revanche, vous êtes responsable sur
-											l'ensemble de vos biens utiles à votre activité (matériel,
-											locaux, outils, etc.).
-										</Body>
-										<Body>
-											Avec une <Strong>société</Strong>, vous êtes uniquement
-											responsable sur le montant de votre apport au capital
-											social et des biens détenus par la société.
-										</Body>
+										<H3>Entreprise individuelle</H3>
+										<Ul>
+											<Li>
+												Vous êtes{' '}
+												<Strong>
+													responsable sur l'ensemble de vos biens utiles à votre
+													activité
+												</Strong>{' '}
+												(matériel, locaux, outils, etc.).{' '}
+											</Li>
+											<Li>
+												Votre{' '}
+												<Strong>patrimoine personnel peut être saisi</Strong> en
+												cas de manquements à vos obligations fiscales et
+												sociales.
+											</Li>
+											<Li>
+												Vous pouvez{' '}
+												<Strong>
+													renoncer à la séparation de ses patrimoines
+												</Strong>
+												, par exemple pour garantir un crédit bancaire.
+											</Li>
+											<Li>
+												Les formalités de création et de gestion sont{' '}
+												<Strong>plus simples et moins coûteuses.</Strong>
+											</Li>
+										</Ul>
+										<H3>Société</H3>
+										<Ul>
+											<Li>
+												Vous êtes uniquement{' '}
+												<Strong>
+													responsable sur le montant de votre apport au capital
+													social
+												</Strong>{' '}
+												et des biens détenus par la société.
+											</Li>
+											<Li>
+												Les formalités de création et de gestion sont{' '}
+												<Strong>plus complexes et plus coûteuses</Strong>.
+											</Li>
+										</Ul>
 									</HelpButtonWithPopover>
 								</Trans>
 							</H4>

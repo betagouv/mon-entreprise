@@ -18,7 +18,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import { debounce, groupBy } from '@/utils'
 
-import { SimulateurCard } from '../simulateurs-et-assistants'
+import { SimulateurCard } from '../../components/SimulateurCard'
 import { AccessibleTable } from './AccessibleTable'
 import Chart, { Data, formatLegend, isDataStacked } from './Chart'
 import SatisfactionChart from './SatisfactionChart'
