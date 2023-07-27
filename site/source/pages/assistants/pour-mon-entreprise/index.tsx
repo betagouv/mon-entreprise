@@ -1,6 +1,6 @@
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { DottedName } from 'modele-social'
-import Engine, { Evaluation } from 'publicodes'
+import { Evaluation } from 'publicodes'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -21,16 +21,17 @@ import {
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
+import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition, WhenApplicable } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
+import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { Message, Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
@@ -38,8 +39,7 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
-import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
-import { SimulateurCard } from '@/pages/simulateurs-et-assistants'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { companySituationSelector } from '@/store/selectors/simulationSelectors'
@@ -63,7 +63,6 @@ export default function PourMonEntrepriseHome() {
 }
 
 function PourMonEntreprise() {
-	const dirigeantSimulateur = infereSimulateurRevenuFromSituation(useEngine())
 	const simulateurs = useSimulatorsData()
 	const engine = useEngine()
 	const dispatch = useDispatch()
@@ -156,32 +155,7 @@ function PourMonEntreprise() {
 							position: relative;
 						`}
 					>
-						{dirigeantSimulateur ? (
-							<SimulateurCard fromGérer {...simulateurs[dirigeantSimulateur]} />
-						) : (
-							<Grid
-								item
-								md={12}
-								lg={8}
-								css={`
-									margin-bottom: -1rem;
-								`}
-							>
-								<Message border={false} type="info">
-									<Trans i18nKey="pages.assistants.pour-mon-entreprise.avertissement-entreprise-non-traitée">
-										<Intro>
-											Il n'existe pas encore de simulateur de revenu pour votre
-											type d'entreprise sur ce site.
-										</Intro>
-										<Body>
-											Si vous souhaitez que nous développions un nouveau
-											simulateur, laissez-nous message en cliquant sur le bouton
-											"<Emoji emoji="👋" />" à droite de votre écran.
-										</Body>
-									</Trans>
-								</Message>
-							</Grid>
-						)}
+						<CurrentSimulatorCard fromGérer />
 
 						<WhenApplicable dottedName="dirigeant . indépendant">
 							<SimulateurCard
@@ -326,70 +300,6 @@ const AskCompanyMissingDetails = () => {
 			)}
 		</>
 	)
-}
-
-const infereSimulateurRevenuFromSituation = (
-	engine: Engine<DottedName>
-): keyof SimulatorData | null => {
-	if (
-		engine.evaluate('entreprise . catégorie juridique . EI . auto-entrepreneur')
-			.nodeValue
-	) {
-		return 'auto-entrepreneur'
-	}
-
-	if (
-		engine.evaluate('entreprise . catégorie juridique . SARL . EURL').nodeValue
-	) {
-		return 'eurl'
-	}
-	if (
-		engine.evaluate('entreprise . catégorie juridique . SAS . SASU').nodeValue
-	) {
-		return 'sasu'
-	}
-	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
-		return 'eirl'
-	}
-	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
-		const métierProfessionLibéral = engine.evaluate(
-			'dirigeant . indépendant . PL . métier'
-		).nodeValue
-		switch (métierProfessionLibéral) {
-			case 'avocat':
-				return 'avocat'
-			case 'expert-comptable':
-				return 'expert-comptable'
-			case 'santé . médecin':
-				return 'médecin'
-			case 'santé . chirurgien-dentiste':
-				return 'chirurgien-dentiste'
-			case 'santé . sage-femme':
-				return 'sage-femme'
-			case 'santé . auxiliaire médical':
-				return 'auxiliaire-médical'
-			case 'santé . pharmacien':
-				return 'pharmacien'
-		}
-		if (engine.evaluate('dirigeant . indépendant . PL').nodeValue) {
-			return 'profession-libérale'
-		}
-
-		return 'entreprise-individuelle'
-	}
-	const régimeSocial = engine.evaluate('dirigeant . régime social').nodeValue
-
-	if (régimeSocial === 'indépendant') {
-		return 'indépendant'
-	}
-
-	// TODO : assimilé-salarié
-	// if (
-	// 	régimeSocial === 'assimilé-salarié'
-	// ) {
-	// 	return 'assimilé-salarié'
-	// }
-	return null
 }
 
 const PopoverOverwriteSituation = ({

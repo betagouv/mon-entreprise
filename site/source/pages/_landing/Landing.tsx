@@ -12,7 +12,7 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import { SimulateurCard } from '../simulateurs-et-assistants'
+import { SimulateurCard } from '../../components/SimulateurCard'
 import illustrationSvg from './illustration.svg'
 import illustration2Svg from './illustration2.svg'
 import SearchOrCreate from './SearchOrCreate'
