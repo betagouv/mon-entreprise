@@ -22,7 +22,7 @@ import { TrackPage } from '@/components/ATInternetTracking'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
-import { Condition, WhenApplicable } from '@/components/EngineValue'
+import { Condition } from '@/components/EngineValue'
 import PageHeader from '@/components/PageHeader'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { SimulateurCard } from '@/components/SimulateurCard'
@@ -42,6 +42,7 @@ import useSimulationConfig from '@/hooks/useSimulationConfig'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
+import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { companySituationSelector } from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
@@ -105,6 +106,9 @@ function PourMonEntreprise() {
 		return <Navigate to="/404" replace />
 	}
 
+	const isAutoEntrepreneur =
+		engine.evaluate('dirigeant . auto-entrepreneur').nodeValue === true
+
 	return (
 		<>
 			<Helmet>
@@ -157,12 +161,12 @@ function PourMonEntreprise() {
 					>
 						<CurrentSimulatorCard fromGérer />
 
-						<WhenApplicable dottedName="dirigeant . indépendant">
+						<Condition expression="dirigeant . indépendant">
 							<SimulateurCard
 								fromGérer
 								{...simulateurs['déclaration-revenu-indépendant']}
 							/>
-						</WhenApplicable>
+						</Condition>
 						<Condition expression="entreprise . imposition . IS">
 							<Grid
 								item
@@ -183,7 +187,7 @@ function PourMonEntreprise() {
 				</FromTop>
 				<Spacing xl />
 			</Container>
-			{dirigeantSimulateur !== 'auto-entrepreneur' && (
+			{!isAutoEntrepreneur && (
 				<FromTop>
 					<H2>
 						<Trans>Salariés et embauche</Trans>
@@ -240,7 +244,7 @@ function PourMonEntreprise() {
 	)
 }
 
-const configCompanyDetails = {
+const configCompanyDetails: SimulationConfig = {
 	questions: {
 		'liste noire': ['entreprise . imposition . régime'] as DottedName[],
 	},
@@ -248,6 +252,10 @@ const configCompanyDetails = {
 		'dirigeant . régime social',
 		'entreprise . imposition',
 	] as DottedName[],
+	situation: {
+		'entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut':
+			'oui',
+	},
 }
 
 const UlInColumns = styled.ul`
