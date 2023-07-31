@@ -7,7 +7,6 @@ salarié . coût total employeur . aides:
   formule:
     somme:
       - embauche
-      - emploi franc
       - activité partielle . indemnisation entreprise
 
 salarié . coût total employeur . aides . embauche:
