@@ -27,13 +27,13 @@ salarié . contrat:
         Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date de fin.
       références:
         Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/le-contrat-a-duree-determinee-cdd
+        Code du travail - Article L1242-1: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050
       avec:
         information:
           type: notification
           valeur: oui
           description: >-
             Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
-            [Code du travail - Article L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
 
     apprentissage:
       titre: apprentissage
