@@ -153,6 +153,7 @@ function BrowserRouterProvider({
 			>
 				<BrowserRouter
 					basename={import.meta.env.MODE === 'production' ? '' : basename}
+					future={{ v7_startTransition: true }}
 				>
 					{children}
 				</BrowserRouter>
