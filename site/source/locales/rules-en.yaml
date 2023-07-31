@@ -4958,8 +4958,10 @@ entreprise . catégorie juridique . SARL:
         - **Régime social** : Si le gérant est aussi l’associé unique, il est considéré comme travailleur non-salarié. Sinon, le gérant est assimilé-salarié
 
         - **Imposition des bénéfices** : Impôt sur le revenu de l’associé unique s’il s’agit d’une personne physique (avec possibilité de choisir l’impôt sur les sociétés). Si l’associé est une personne morale, impôt sur les sociétés.
-      titre.en: '[automatic] One-man business with limited liability'
-      titre.fr: Entreprise unipersonnelle à responsabilité limitée
+      résumé.en: '[automatic] One-man business with limited liability'
+      résumé.fr: Entreprise unipersonnelle à responsabilité limitée
+      titre.en: '[automatic] EURL'
+      titre.fr: EURL
     SARL:
       description.en: >
         [automatic] The limited liability company (LLC) has a minimum of
@@ -5001,8 +5003,10 @@ entreprise . catégorie juridique . SARL:
         - **Régime social** : Un gérant majoritaire est considéré comme travailleur non salarié, un gérant égalitaire ou minoritaire est assimilé-salarié
 
         - **Imposition des bénéfices** : Impôt sur les sociétés, avec possibilité d’opter pour l'impôt sur le revenu dans certains cas (SARL « de famille » ou certaines SARL de moins de cinq ans).
-      titre.en: '[automatic] Limited liability company'
-      titre.fr: Société à responsabilité limitée
+      résumé.en: '[automatic] Limited liability company'
+      résumé.fr: Société à responsabilité limitée
+      titre.en: '[automatic] SARL'
+      titre.fr: SARL
     unipersonnelle:
       titre.en: '[automatic] one-person'
       titre.fr: unipersonnelle
@@ -5011,11 +5015,15 @@ entreprise . catégorie juridique . SARL:
 entreprise . catégorie juridique . SAS:
   avec:
     SAS:
-      titre.en: '[automatic] Simplified joint stock company'
-      titre.fr: Société par actions simplifiée
+      résumé.en: '[automatic] Simplified joint stock company'
+      résumé.fr: Société par actions simplifiée
+      titre.en: '[automatic] SAS'
+      titre.fr: SAS
     SASU:
-      titre.en: '[automatic] Single-member simplified joint stock company'
-      titre.fr: Société par actions simplifiée unipersonnelle
+      résumé.en: '[automatic] Single-member simplified joint stock company'
+      résumé.fr: Société par actions simplifiée unipersonnelle
+      titre.en: '[automatic] SASU'
+      titre.fr: SASU
     unipersonnelle:
       titre.en: '[automatic] one-person'
       titre.fr: unipersonnelle
@@ -5024,14 +5032,17 @@ entreprise . catégorie juridique . SAS:
 entreprise . catégorie juridique . SELARL:
   avec:
     SELARL:
-      titre.en:
-        "[automatic] Limited Liability Company (Société d'exercice libéral à
-        responsabilité limitée)"
-      titre.fr: Société d'exercice libéral à responsabilité limitée
+      résumé.en: "[automatic] Société d'exercice libéral à responsabilité limitée"
+      résumé.fr: Société d'exercice libéral à responsabilité limitée
+      titre.en: '[automatic] SELARL'
+      titre.fr: SELARL
     SELARLU:
-      titre.en: "[automatic] Single-member limited liability company (Société
-        d'exercice libéral à responsabilité limitée unipersonnelle)"
-      titre.fr: Société d'exercice libéral à responsabilité limitée unipersonnelle
+      résumé.en:
+        "[automatic] Société d'exercice libéral à responsabilité limitée
+        unipersonnelle (single-member private limited company)"
+      résumé.fr: Société d'exercice libéral à responsabilité limitée unipersonnelle
+      titre.en: '[automatic] SELARLU'
+      titre.fr: SELARLU
   description.en: "[automatic] Limited Liability Company (Société d'exercice
     libéral à responsabilité limitée)"
   description.fr: Société d'exercice libéral à responsabilité limitée
@@ -5040,13 +5051,17 @@ entreprise . catégorie juridique . SELARL:
 entreprise . catégorie juridique . SELAS:
   avec:
     SELAS:
-      titre.en: '[automatic] Liberal practice company by simplified action'
-      titre.fr: Société d'exercice libéral par action simplifiée
+      résumé.en: "[automatic] Société d'exercice libéral par action simplifiée
+        (simplified joint-stock company)"
+      résumé.fr: Société d'exercice libéral par action simplifiée
+      titre.en: '[automatic] SELAS'
+      titre.fr: SELAS
     SELASU:
-      titre.en:
-        "[automatic] Single-member simplified joint stock company (Société
-        d'exercice libéral par action simplifiée unipersonnelle)"
-      titre.fr: Société d'exercice libéral par action simplifiée unipersonnelle
+      résumé.en: "[automatic] Société d'exercice libéral par action simplifiée
+        unipersonnelle (simplified single-person company)"
+      résumé.fr: Société d'exercice libéral par action simplifiée unipersonnelle
+      titre.en: '[automatic] SELASU'
+      titre.fr: SELASU
   description.en: '[automatic] Liberal practice company by simplified shares'
   description.fr: Société d'exercice libéral par actions simplifiées
   titre.en: '[automatic] SELAS or SELASU'
@@ -7315,14 +7330,11 @@ salarié . contrat:
       avec:
         information:
           description.en:
-            "[automatic] Remember that a fixed-term contract must always
-            correspond to a temporary need of the company. [Labor Code - Article
-            L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArti\
-            cle=LEGIARTI000006901194&amp;cidTexte=LEGITEXT000006072050)"
+            '[automatic] Remember that a fixed-term contract must always
+            correspond to a temporary business need.'
           description.fr:
             Rappelez-vous qu'un CDD doit toujours correspondre à un besoin
-            temporaire de l'entreprise. [Code du travail - Article
-            L1242-1](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050)
+            temporaire de l'entreprise.
           titre.en: '[automatic] information'
           titre.fr: information
       description.en: >
