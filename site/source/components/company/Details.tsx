@@ -16,6 +16,7 @@ export function CompanyDetails({
 	headingTag = 'h2',
 }: {
 	showSituation?: boolean
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	headingTag?: string | ComponentType<any> | undefined
 }) {
 	return (

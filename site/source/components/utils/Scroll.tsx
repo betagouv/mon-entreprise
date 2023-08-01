@@ -20,7 +20,7 @@ export function ScrollToTop({
 			if (!elem) {
 				return
 			}
-			;(elem as any).scrollTop = 0
+			;(elem as HTMLElement).scrollTop = 0
 		})
 		try {
 			window.scroll({

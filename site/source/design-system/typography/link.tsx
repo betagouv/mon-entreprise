@@ -3,7 +3,6 @@ import { AriaButtonProps } from '@react-types/button'
 import React, {
 	ComponentProps,
 	ComponentPropsWithRef,
-	CSSProperties,
 	ForwardedRef,
 	useCallback,
 	useRef,

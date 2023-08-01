@@ -10,6 +10,7 @@ import { Situation } from '@/store/reducers/rootReducer'
 import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
 
 type ShortName = string
+// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 type ParamName = DottedName | ShortName
 
 export default function useSearchParamsSimulationSharing() {

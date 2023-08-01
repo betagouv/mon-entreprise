@@ -5,7 +5,9 @@ export const useAxeCoreAnalysis = () => {
 	const axeRef = useRef<
 		| {
 				default: (
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 					_React: any,
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 					_ReactDOM: any,
 					_timeout: number
 				) => Promise<void>

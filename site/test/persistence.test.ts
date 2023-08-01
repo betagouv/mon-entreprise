@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createMemoryHistory } from 'history'
 import { DottedName } from 'modele-social'
 import { createStore } from 'redux'

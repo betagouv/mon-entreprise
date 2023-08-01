@@ -1,4 +1,3 @@
-import { ComponentType } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Chip } from '@/design-system'
@@ -14,7 +13,6 @@ type SimulateurCardProps = MergedSimulatorDataValues & {
 	small?: boolean
 	fromGérer?: boolean
 	role?: string
-	as?: string | ComponentType<any> | undefined
 }
 
 export function SimulateurCard({

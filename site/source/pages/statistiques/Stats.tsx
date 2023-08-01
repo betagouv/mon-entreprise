@@ -22,7 +22,7 @@ export default function Stats({ accessibleMode }: StatsProps) {
 				<>
 					<StatsDetail stats={stats} accessibleMode={accessibleMode} />
 
-					<StatsGlobal stats={stats} accessibleMode={accessibleMode} />
+					<StatsGlobal stats={stats} />
 				</>
 			) : loading ? (
 				<Intro>Chargement des statistiques...</Intro>

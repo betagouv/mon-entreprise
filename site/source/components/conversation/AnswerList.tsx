@@ -275,8 +275,6 @@ function AnswerElement(rule: RuleNode) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
-	const { t } = useTranslation()
-
 	const parentDottedName = utils.ruleParent(rule.dottedName) as DottedName
 	const questionDottedName = rule.rawNode.question
 		? (rule.dottedName as DottedName)

@@ -267,6 +267,7 @@ function isOnTouchDevice() {
 	if (
 		'ontouchstart' in window ||
 		('DocumentTouch' in window &&
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
 			document instanceof (window as any).DocumentTouch)
 	) {
 		return true
