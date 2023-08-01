@@ -1,12 +1,15 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { WhenAlreadyDefined, WhenApplicable } from '@/components/EngineValue'
+import { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
 import { useEngine } from '@/components/utils/EngineContext'
 // import { Article } from '@/design-system/card'
 // import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
-import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
+import {
+	MergedSimulatorDataValues,
+	useCurrentSimulatorData,
+} from '@/hooks/useCurrentSimulatorData'
 import { GuideURSSAFCard } from '@/pages/simulateurs/cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
@@ -15,7 +18,6 @@ import { useSitePaths } from '@/sitePaths'
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from '../assistants/pour-mon-entreprise/AutoEntrepeneurCard'
 import { CodeDuTravailNumeriqueCard } from '../assistants/pour-mon-entreprise/CodeDuTravailNumeriqueCard'
-import { SecuriteSocialeCard } from '../assistants/pour-mon-entreprise/SecuriteSocialeCard'
 
 interface NextStepsProps {
 	iframePath?: MergedSimulatorDataValues['iframePath']
@@ -27,11 +29,12 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	const { language } = useTranslation().i18n
 	const engine = useEngine()
 
+	const { key } = useCurrentSimulatorData()
 	const guideUrssaf = guidesUrssaf.find(
 		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
 	)
 
-	if (!nextSteps || (!iframePath && !guideUrssaf)) {
+	if (!iframePath && !guideUrssaf) {
 		return null
 	}
 
@@ -41,11 +44,23 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 				<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 			</H2>
 			<Grid container spacing={3} role="list">
-				{nextSteps?.map((simulatorId) => (
-					<Grid item xs={12} sm={6} lg={4} key={simulatorId} role="listitem">
-						<SimulatorRessourceCard simulatorId={simulatorId} />
+				<Condition expression="entreprise . catégorie juridique . EI . auto-entrepreneur = oui">
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
+						<AutoEntrepreneurCard />
 					</Grid>
-				))}
+				</Condition>
+
+				<WhenAlreadyDefined dottedName="entreprise . SIREN">
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
+						<AnnuaireEntreprises />
+					</Grid>
+				</WhenAlreadyDefined>
+				{nextSteps &&
+					nextSteps.map((simulatorId) => (
+						<Grid item xs={12} sm={6} lg={4} key={simulatorId} role="listitem">
+							<SimulatorRessourceCard simulatorId={simulatorId} />
+						</Grid>
+					))}
 
 				{iframePath && (
 					<Grid item xs={12} sm={6} lg={4} role="listitem">
@@ -55,29 +70,18 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						/>
 					</Grid>
 				)}
-
-				<WhenApplicable dottedName="entreprise . catégorie juridique . EI . auto-entrepreneur">
+				{key === 'salarié' && (
 					<Grid item xs={12} sm={6} lg={4} role="listitem">
-						<AutoEntrepreneurCard />
+						<CodeDuTravailNumeriqueCard />
 					</Grid>
-				</WhenApplicable>
-				<Grid item xs={12} sm={6} lg={4} role="listitem">
-					<CodeDuTravailNumeriqueCard />
-				</Grid>
-				<Grid item xs={12} sm={6} lg={4} role="listitem">
-					<SecuriteSocialeCard />
-				</Grid>
-				<WhenAlreadyDefined dottedName="entreprise . SIREN">
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
-						<AnnuaireEntreprises />
-					</Grid>
-				</WhenAlreadyDefined>
+				)}
 				{guideUrssaf && language === 'fr' && (
 					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<GuideURSSAFCard guideUrssaf={guideUrssaf} />
 					</Grid>
 				)}
 			</Grid>
+
 			<Spacing lg />
 		</section>
 	)

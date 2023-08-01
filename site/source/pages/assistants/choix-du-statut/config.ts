@@ -24,7 +24,7 @@ export function choixStatutJuridiqueConfig({
 			),
 			description: t(
 				'pages.choix-statut.meta.description',
-				'SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui vous convient le mieux grâce à cet assistant'
+				'SASU, EURL, auto-entrepreneur, entreprise individuelle : trouvez le statut qui vous convient le mieux'
 			),
 		},
 		title: t('pages.choix-statut.title', 'Choisir votre statut'),

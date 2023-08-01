@@ -28,7 +28,7 @@ export const useCurrentSimulatorData = () => {
 					)) ?? []
 
 	return {
-		key,
+		key: key as keyof typeof simulatorsData,
 		currentSimulatorData: data as MergedSimulatorDataValues | undefined,
 	}
 }
