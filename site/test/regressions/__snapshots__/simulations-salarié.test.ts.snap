@@ -118,7 +118,7 @@ Notifications affichées : salarié . contrat . salaire brut . contrôle salaire
 exports[`calculate simulations-salarié > aides 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 1463
+salarié . coût total employeur: 1879
 salarié . rémunération . net . payé après impôt: 1527
 salarié . rémunération . net . à payer avant impôt: 1561"
 `;
@@ -126,7 +126,7 @@ salarié . rémunération . net . à payer avant impôt: 1561"
 exports[`calculate simulations-salarié > aides 4`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2278
+salarié . coût total employeur: 2486
 salarié . rémunération . net . payé après impôt: 1667
 salarié . rémunération . net . à payer avant impôt: 1720
 Notifications affichées : salarié . contrat . CDD . information"
