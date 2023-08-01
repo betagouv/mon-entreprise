@@ -19,19 +19,21 @@ export const runSimulateurTest = (simulateur) => {
 		it('should display a result when entering a value in any of the currency input', function () {
 			cy.contains(fr ? 'Montant annuel' : 'Annual amount').click()
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
-				cy.get(chargeInputSelector).type(1000)
+				cy.get(chargeInputSelector).type('1000')
 			}
 			cy.get(inputSelector).each(($testedInput) => {
 				// eslint-disable-next-line cypress/unsafe-to-chain-command
 				cy.wrap($testedInput)
 					.type('{selectall}60111')
 					.and(($i) =>
-						expect($i.val().replace(/[\s,.€]/g, '')).to.match(/[1-9][\d]{3,6}$/)
+						expect(($i.val() as string).replace(/[\s,.€]/g, '')).to.match(
+							/[1-9][\d]{3,6}$/
+						)
 					)
 				cy.get(inputSelector).each(($input) => {
 					if ($testedInput.get(0) === $input.get(0)) return
 					cy.wrap($input).and(($i) => {
-						const val = $i.val().replace(/[\s,.€]/g, '')
+						const val = ($i.val() as string).replace(/[\s,.€]/g, '')
 						expect(val).not.to.be.eq('60111')
 						expect(val).to.match(/[1-9][\d]{3,6}$/)
 					})

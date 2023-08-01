@@ -5,7 +5,9 @@ describe.skip('Status guide', function () {
 
 	beforeEach(function () {
 		cy.visit(fr ? encodeURI('/créer') : '/create')
-		cy.contains(fr ? 'Trouver le bon statut' : 'Find the right status').click()
+		cy.contains(fr ? 'Trouver le bon statut' : 'Find the right status').click({
+			waitForAnimations: true,
+		})
 	})
 
 	it('should allow to go back clicking on the previous answers', function () {

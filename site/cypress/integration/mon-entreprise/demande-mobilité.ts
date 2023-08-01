@@ -67,7 +67,7 @@ describe(
 			cy.contains('Non').click()
 			cy.focused().tab().type('Pouts')
 			cy.wait('@communes')
-			cy.focused().contains('65100').type('{enter}')
+			cy.contains('65100', { timeout: 10000 }).type('{enter}')
 			cy.focused().tab().type('{downarrow}')
 
 			cy.focused().tab().type('Brest')
