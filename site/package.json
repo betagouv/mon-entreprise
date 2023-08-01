@@ -93,7 +93,7 @@
 		"reduce-reducers": "^1.0.4",
 		"redux": "^4.2.0",
 		"reselect": "^4.1.7",
-		"styled-components": "^6.0.5",
+		"styled-components": "^5.3.11",
 		"whatwg-fetch": "^3.6.2"
 	},
 	"devDependencies": {
