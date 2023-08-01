@@ -115,7 +115,7 @@ export default function AccueilChoixStatut() {
 						: theme.colors.bases.primary[100]
 				}
 			>
-				<H3>
+				<H3 as="h2">
 					<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 				</H3>
 

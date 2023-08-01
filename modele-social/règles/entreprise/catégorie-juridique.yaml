@@ -213,7 +213,7 @@ entreprise . catégorie juridique . association:
   par défaut:
     non applicable si: activité . nature . libérale . réglementée
   références:
-    Tout savoir l'association: https://www.service-public.fr/particuliers/vosdroits/N31931
+    Tout savoir sur l'association: https://www.service-public.fr/particuliers/vosdroits/N31931
     'associations.gouv.fr : créer, gérer et développer son association': https://www.associations.gouv.fr/
 
 entreprise . catégorie juridique . autre:

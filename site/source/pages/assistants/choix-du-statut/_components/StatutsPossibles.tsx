@@ -38,7 +38,7 @@ export default function StatutsPossibles() {
 				professionnelle que vous exercez
 			</SmallBody>
 
-			<StyledUl noMarker as={FlipMove}>
+			<StyledUl noMarker as={FlipMove} typeName="ul">
 				{statuts.map((statut) => (
 					<Statut key={statut} statut={statut} />
 				))}

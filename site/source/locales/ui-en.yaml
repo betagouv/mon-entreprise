@@ -97,7 +97,7 @@ En savoir plus sur impots:
     "fr, nouvelle fenêtre": More information on impots.gouv.fr, new window
 "En savoir plus, nouvelle fenêtre": Find out more, new window
 English version of the website enabled.: English version of the website enabled.
-Enregistrer et passer à la suite: Save and continue
+Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
 Entreprise Individuelle: Sole proprietorship
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company founded on <2><0></0></2> and domiciled at <6><0></0></6>
@@ -289,7 +289,7 @@ Situation personnelle: Personal situation
 Statistiques: Statistics
 Statut du conjoint: Spouse's status
 Suivant: Next
-"Suivant, passer à l'étape suivante": Next, go to the next step
+"Suivant, enregistrer et passer à l'étape suivante": Next, save and go to the next step
 "Suivant, passer à la question suivante": Next, move on to the next question
 "Suivant, voir le résultat": Next, see the result
 Switch to the english version of the website: Switch to the english version of the website
@@ -756,7 +756,7 @@ landing:
     cash flow accordingly.</1>
   subtitle: Simulators and wizards to help you develop your business, from legal
     status to hiring.
-  title: The official assistant to contractors
+  title: Official tools for entrepreneurs
 "le portail officiel, accéder à aides-entreprises":
   "fr, nouvelle fenêtre": the official portal, access to aides-entreprises.fr, new window
 "le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre": Urssaf website, access to Urssaf website, new window

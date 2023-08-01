@@ -17,7 +17,7 @@ export const runSimulateurTest = (simulateur) => {
 		})
 
 		it('should display a result when entering a value in any of the currency input', function () {
-			cy.contains(fr ? 'Montant annuel' : 'Yearly amount').click()
+			cy.contains(fr ? 'Montant annuel' : 'Annual amount').click()
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type(1000)
 			}
@@ -40,7 +40,7 @@ export const runSimulateurTest = (simulateur) => {
 		})
 
 		it('should allow to change period', function () {
-			cy.contains(fr ? 'Montant annuel' : 'Yearly amount').click()
+			cy.contains(fr ? 'Montant annuel' : 'Annual amount').click()
 			cy.get(inputSelector).first().type('{selectall}12000')
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type('{selectall}6000')
@@ -54,14 +54,14 @@ export const runSimulateurTest = (simulateur) => {
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).first().invoke('val').should('match', /500/)
 			}
-			cy.contains(fr ? 'Montant annuel' : 'Yearly amount').click()
+			cy.contains(fr ? 'Montant annuel' : 'Annual amount').click()
 		})
 
 		it('should allow to navigate to a documentation page', function () {
 			cy.get(inputSelector).first().type('{selectall}2000')
-			cy.contains(fr ? 'Cotisations' : /(c|C)ontributions/).click()
+			cy.contains(fr ? 'Cotisations' : "Contributions").click()
 			cy.location().should((loc) => {
-				expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations/)
+				expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations.*/)
 			})
 		})
 
