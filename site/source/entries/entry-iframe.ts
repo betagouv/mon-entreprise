@@ -10,15 +10,18 @@
  **/
 
 // @ts-ignore ignore file not exist error
-import simulationData from '../public/simulation-data-title.json'
+import simulationData from '../public/simulation-data-title.json' assert { type: 'json' }
 import { hexToHSL } from '../utils/hexToHSL'
+
+type KeyofSimulationData = keyof typeof simulationData
 
 const script = document.currentScript
 if (!script) {
 	throw new Error('document.currentScript is null or undefined')
 }
 const iframePath =
-	(script.dataset.module as keyof typeof simulationData | undefined) ||
+	// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+	(script.dataset.module as KeyofSimulationData | undefined) ||
 	'simulateur-embauche'
 
 const moduleData = simulationData[iframePath]

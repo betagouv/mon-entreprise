@@ -17,15 +17,19 @@ export default function Distribution() {
 	const engine = useContext(EngineContext)
 	const distribution = (
 		getCotisationsBySection(useEngine().getParsedRules())
-			.map(([section, cotisations]) => [
-				section,
-				cotisations
-					.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
-					.reduce(
-						(acc, evaluation) => acc + ((evaluation?.nodeValue as number) || 0),
-						0
-					),
-			])
+			.map(
+				([section, cotisations]) =>
+					[
+						section,
+						cotisations
+							.map((c) => engine.evaluate({ valeur: c, unité: targetUnit }))
+							.reduce(
+								(acc, evaluation) =>
+									acc + ((evaluation?.nodeValue as number) || 0),
+								0
+							),
+					] as const
+			)
 			.filter(([, value]) => value > 0) as Array<[DottedName, number]>
 	).sort(([, a], [, b]) => b - a)
 	const maximum = Math.max(...distribution.map(([, value]) => value))
