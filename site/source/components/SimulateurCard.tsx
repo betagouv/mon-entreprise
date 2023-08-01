@@ -28,7 +28,6 @@ export function SimulateurCard({
 	beta,
 	small = false,
 	fromGérer = false,
-	as = undefined,
 	...props
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()

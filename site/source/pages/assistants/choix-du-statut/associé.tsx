@@ -91,7 +91,7 @@ export default function Associés() {
 					<FromTop>
 						<Spacing md />
 						<Message type="secondary" border={false}>
-							<H4 id="question2">
+							<H4 as="h3" id="question2">
 								<Trans i18nKey="choix-statut.associés.question2">
 									Envisagez-vous d’ajouter des associé(e)s dans un second temps
 									?
@@ -119,7 +119,7 @@ export default function Associés() {
 					<FromTop>
 						<Spacing md />
 						<Message type="secondary" border={false}>
-							<H4 id="question3">
+							<H4 as="h3" id="question3">
 								<Trans i18nKey="choix-statut.associés.question3.label">
 									Préférez-vous exercer votre activité sous la forme d'une
 									société uniquement ?

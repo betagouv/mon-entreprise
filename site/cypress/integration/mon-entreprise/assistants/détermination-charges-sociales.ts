@@ -1,6 +1,6 @@
-import { checkA11Y, fr } from '../../support/utils'
+import { checkA11Y, fr } from '../../../support/utils'
 
-describe(`Formulaire demande mobilité`, function () {
+describe(`Assistant charges sociales`, function () {
 	if (!fr) {
 		return
 	}

@@ -52,6 +52,7 @@ export default function Rémunération() {
 						"Montant du chiffre d'affaires HT"
 					)}
 					displayedUnit="€/an"
+					id="CA"
 				/>
 				<Trans i18nKey="choix-statut.rémunération.charges.title">
 					<H3 as="h2">
@@ -83,6 +84,7 @@ export default function Rémunération() {
 					)}
 					displayedUnit="€/an"
 					onChange={(value) => setState({ charges: value })}
+					id="charges"
 				/>
 
 				<Navigation currentStepIsComplete={isComplete} onPreviousStep={reset} />

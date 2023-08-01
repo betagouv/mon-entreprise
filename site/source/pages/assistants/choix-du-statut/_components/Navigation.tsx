@@ -62,11 +62,11 @@ export default function Navigation({
 								onPress={onNextStep}
 								to={choixDuStatutPath[nextStep]}
 								isDisabled={!currentStepIsComplete}
-								aria-label={t("Suivant, passer à l'étape suivante")}
+								aria-label={t(
+									"Suivant, enregistrer et passer à l'étape suivante"
+								)}
 							>
-								{nextStepLabel || (
-									<Trans>Enregistrer et passer à la suite</Trans>
-								)}{' '}
+								{nextStepLabel || <Trans>Enregistrer et continuer</Trans>}{' '}
 								<span aria-hidden>→</span>
 							</Button>
 						</Grid>
