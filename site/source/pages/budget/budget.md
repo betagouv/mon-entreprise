@@ -65,6 +65,11 @@ En complément du financement apporté par l’Urssaf, le projet bénéficie du 
 
 ---
 
+En 2023, le financement complémentaire apporté par le programme [France Relance](https://france-relance.transformation.gouv.fr/) prend fin, ce qui abouti à un budget en très net baisse. 
+
+
+---
+
 ### Description des catégories
 
 -   **Développement 👨‍💻**

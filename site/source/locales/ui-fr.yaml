@@ -1325,7 +1325,7 @@ pages:
       title: Simulateur de revenus pour professions libérales Cipav
     comparaison:
       meta:
-        description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
+        description: Auto-entrepreneur, EI ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
         title: Comparateur de statut juridique
       shortname: Comparaison des statuts

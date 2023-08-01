@@ -73,22 +73,24 @@ export default function Budget() {
 			</H1>
 			<Markdown>{intro}</Markdown>
 			<H2>Budget consommé</H2>
-			<Grid item xs={6} sm={4}>
-				<Select
-					label={'Année'}
-					defaultSelectedKey={selectedYear}
-					onSelectionChange={(year) => {
-						setSelectedYear(year as (typeof years)[number])
-					}}
-				>
-					{years
-						.filter((year) => !!year)
-						.map((year) => (
-							<Item key={year} textValue={year}>
-								{year}
-							</Item>
-						))}
-				</Select>
+			<Grid container>
+				<Grid item xs={8} sm={3} lg={2}>
+					<Select
+						label={'Année'}
+						defaultSelectedKey={selectedYear}
+						onSelectionChange={(year) => {
+							setSelectedYear(year as (typeof years)[number])
+						}}
+					>
+						{years
+							.filter((year) => !!year)
+							.map((year) => (
+								<Item key={year} textValue={year}>
+									{year}
+								</Item>
+							))}
+					</Select>
+				</Grid>
 			</Grid>
 
 			<Body as="div">
@@ -98,7 +100,7 @@ export default function Budget() {
 				<>
 					<div
 						css={`
-							overflow: auto;
+							overflow-x: auto;
 						`}
 					>
 						<RessourcesAllocationTable role="table">
@@ -235,6 +237,7 @@ export default function Budget() {
 							</tfoot>
 						</RessourcesAllocationTable>
 					</div>
+
 					<Markdown>{ressourcesDescription}</Markdown>
 				</>
 			)}
@@ -244,8 +247,8 @@ export default function Budget() {
 }
 
 const RessourcesAllocationTable = styled.table`
-	width: 100%;
 	text-align: left;
+	width: 100%;
 	td,
 	th {
 		padding: 6px;
