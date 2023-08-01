@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { References } from '@/components/References'
 import { StatutType } from '@/components/StatutTag'
@@ -32,6 +33,8 @@ export default function Résultat() {
 
 	return (
 		<>
+			<TrackPage chapter3="resultat" name={statutLabel} />
+
 			<H3 as="h2">
 				Vous avez choisi le statut : <Strong>{statutLabel}</Strong>{' '}
 				<Emoji emoji="🎉" />

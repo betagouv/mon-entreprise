@@ -14,8 +14,8 @@ export function choixStatutJuridiqueConfig({
 		icône: '📚',
 		beta: true,
 		tracking: {
-			chapter1: 'creer',
-			chapter2: 'guide',
+			chapter1: 'assistant',
+			chapter2: 'choix_du_statut',
 		},
 		meta: {
 			title: t(

@@ -48,7 +48,7 @@ export default function SearchCodeApePage() {
 				</Message>
 			</Trans>
 			<Spacing md />
-			<SearchCodeAPE disabled />
+			<SearchCodeAPE disabled trackSearch />
 		</>
 	)
 }

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
 import { StatutType } from '@/components/StatutTag'
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
@@ -27,6 +28,7 @@ export default function Comparateur() {
 
 	return (
 		<>
+			<TrackPage chapter3="pas_a_pas" name="comparateur" />
 			<Trans i18nKey="choix-statut.commune.description">
 				<Intro>
 					Vous allez maintenant pouvoir entrer dans le détail et comparer{' '}
