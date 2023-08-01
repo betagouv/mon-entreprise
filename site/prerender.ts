@@ -62,8 +62,8 @@ const redirects = await Promise.all(
 					return `
 [[redirects]]
 	from = ":SITE_${site === 'mon-entreprise' ? 'FR' : 'EN'}${
-						dev ? decodeURI(url) : url
-					}"
+		dev ? decodeURI(url) : url
+	}"
 	to = "/${path}"
 	status = 200
 ${dev ? '  force = true\n' : ''}`

@@ -30,14 +30,14 @@ export type Action =
 export const resetSimulation = () =>
 	({
 		type: 'RESET_SIMULATION',
-	} as const)
+	}) as const
 
 export const goToQuestion = (question: DottedName) =>
 	({
 		type: 'STEP_ACTION',
 		name: 'unfold',
 		step: question,
-	} as const)
+	}) as const
 
 export const stepAction = (step: DottedName, source?: string) =>
 	({
@@ -45,7 +45,7 @@ export const stepAction = (step: DottedName, source?: string) =>
 		name: 'fold',
 		step,
 		source,
-	} as const)
+	}) as const
 
 export const setSimulationConfig = (
 	config: ImmutableType<SimulationConfig>,
@@ -55,13 +55,13 @@ export const setSimulationConfig = (
 		type: 'SET_SIMULATION',
 		url,
 		config,
-	} as const)
+	}) as const
 
 export const setActiveTarget = (targetName: DottedName) =>
 	({
 		type: 'SET_ACTIVE_TARGET_INPUT',
 		name: targetName,
-	} as const)
+	}) as const
 
 export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	value === undefined
@@ -76,7 +76,7 @@ export const deleteFromSituation = (fieldName: DottedName) =>
 	({
 		type: 'DELETE_FROM_SITUATION',
 		fieldName,
-	} as const)
+	}) as const
 
 export const batchUpdateSituation = (
 	situation: NonNullable<Parameters<Engine<DottedName>['setSituation']>[0]>
@@ -84,13 +84,13 @@ export const batchUpdateSituation = (
 	({
 		type: 'BATCH_UPDATE_SITUATION',
 		situation,
-	} as const)
+	}) as const
 
 export const updateUnit = (targetUnit: string) =>
 	({
 		type: 'UPDATE_TARGET_UNIT',
 		targetUnit,
-	} as const)
+	}) as const
 
 export function loadPreviousSimulation() {
 	return {
@@ -106,13 +106,13 @@ export const explainVariable = (variableName: DottedName | null = null) =>
 	({
 		type: 'EXPLAIN_VARIABLE',
 		variableName,
-	} as const)
+	}) as const
 
 export const updateShouldFocusField = (shouldFocusField: boolean) =>
 	({
 		type: 'UPDATE_SHOULD_FOCUS_FIELD',
 		shouldFocusField,
-	} as const)
+	}) as const
 
 export const answerQuestion = (
 	dottedName: DottedName,

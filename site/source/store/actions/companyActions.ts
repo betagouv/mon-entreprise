@@ -12,19 +12,19 @@ export type CompanyActions = ReturnType<
 export const resetCompany = () =>
 	({
 		type: 'COMPANY::RESET',
-	} as const)
+	}) as const
 
 export const addCommuneDetails = (details: Commune) =>
 	({
 		type: 'COMPANY::ADD_COMMUNE_DETAILS',
 		details,
-	} as const)
+	}) as const
 
 export const setBénéficeType = (bénéfice: NonNullable<Bénéfice>) =>
 	({
 		type: 'COMPANY::SET_BÉNÉFICE_TYPE',
 		bénéfice,
-	} as const)
+	}) as const
 
 export const setCompany = (entreprise: FabriqueSocialEntreprise) => {
 	return {

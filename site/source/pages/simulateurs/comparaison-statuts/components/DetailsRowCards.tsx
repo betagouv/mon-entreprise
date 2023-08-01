@@ -60,24 +60,27 @@ const DetailsRowCards = ({
 	const bestOptionValue = getBestOption(options, leastIsBest)
 
 	const groupedOptions = options
-		.reduce((acc, option) => {
-			const newAcc = [...acc]
-			const sameValues = options.filter(
-				(optionFiltered) => optionFiltered.value === option.value
-			)
-			// Avoid duplicates
-			if (
-				!newAcc.find((arrayOfStatus) =>
-					arrayOfStatus.some(
-						(statusObject) => statusObject.value === option.value
-					)
+		.reduce(
+			(acc, option) => {
+				const newAcc = [...acc]
+				const sameValues = options.filter(
+					(optionFiltered) => optionFiltered.value === option.value
 				)
-			) {
-				return [...newAcc, sameValues]
-			}
+				// Avoid duplicates
+				if (
+					!newAcc.find((arrayOfStatus) =>
+						arrayOfStatus.some(
+							(statusObject) => statusObject.value === option.value
+						)
+					)
+				) {
+					return [...newAcc, sameValues]
+				}
 
-			return newAcc
-		}, [] as (typeof options)[0][][])
+				return newAcc
+			},
+			[] as (typeof options)[0][][]
+		)
 
 		.filter((arrayOfStatus) => arrayOfStatus.length > 0)
 

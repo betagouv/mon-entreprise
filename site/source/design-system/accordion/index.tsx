@@ -137,12 +137,11 @@ export const Accordion = <T extends object>(
 
 const StyledAccordionGroup = styled.div<{ variant?: 'light' }>`
 	max-width: 100%;
-	${({ theme }) =>
-		css`
-			border-radius: ${theme.box.borderRadius};
-			border: 1px solid ${theme.colors.bases.primary[400]};
-			margin-bottom: ${theme.spacings.lg};
-		`}
+	${({ theme }) => css`
+		border-radius: ${theme.box.borderRadius};
+		border: 1px solid ${theme.colors.bases.primary[400]};
+		margin-bottom: ${theme.spacings.lg};
+	`}
 	${({ variant }) =>
 		variant === 'light' &&
 		css`

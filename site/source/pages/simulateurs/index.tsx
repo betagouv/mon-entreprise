@@ -33,8 +33,8 @@ export default function Simulateurs() {
 	const simulatorRoutes = useMemo(
 		() =>
 			Object.values(simulatorsData)
-				.filter(({ path }) =>
-					path?.startsWith(absoluteSitePaths.simulateurs.index)
+				.filter(
+					({ path }) => path?.startsWith(absoluteSitePaths.simulateurs.index)
 				)
 				.map((s) => (
 					<Route

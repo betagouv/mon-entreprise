@@ -91,7 +91,10 @@ const StyledStepContainer = styled.li`
 	}
 	margin-bottom: ${({ theme }) => theme.spacings.md};
 	* {
-		transition: background-color 0.1s, color 0.1s, border-color 0.1s;
+		transition:
+			background-color 0.1s,
+			color 0.1s,
+			border-color 0.1s;
 	}
 `
 const StyledStepNumber = styled.span<{ $active: boolean; $disabled: boolean }>`

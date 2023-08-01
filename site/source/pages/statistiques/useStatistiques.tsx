@@ -176,14 +176,17 @@ function groupByDate(data: Pageish[]) {
 	}))
 
 	const topPagesOfAllTime = Object.entries(
-		topTenPageByMonth.reduce((acc, { nombre }) => {
-			Object.entries(nombre).forEach(([page, visits]) => {
-				acc[page] ??= 0
-				acc[page] += visits
-			})
+		topTenPageByMonth.reduce(
+			(acc, { nombre }) => {
+				Object.entries(nombre).forEach(([page, visits]) => {
+					acc[page] ??= 0
+					acc[page] += visits
+				})
 
-			return acc
-		}, {} as Record<string, number>)
+				return acc
+			},
+			{} as Record<string, number>
+		)
 	)
 		.sort((a, b) => b[1] - a[1])
 		.slice(0, 8)

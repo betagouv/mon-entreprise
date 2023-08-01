@@ -29,7 +29,9 @@ export const Label = styled.label`
 	position: absolute;
 	will-change: transform top font-size line-height color;
 	transition: all 0.1s;
-	transition: color 0s, background-color 0s;
+	transition:
+		color 0s,
+		background-color 0s;
 	${({ theme }) =>
 		theme.darkMode &&
 		css`

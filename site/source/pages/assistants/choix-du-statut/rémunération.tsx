@@ -155,7 +155,7 @@ function useChiffreAffairesState(): [
 	state: CAState,
 	setState: (value: Partial<CAState>) => void,
 	reset: () => void,
-	isComplete: boolean
+	isComplete: boolean,
 ] {
 	const defaultState = { CA: undefined, charges: undefined }
 	const [state, setState] = usePersistingState<CAState>(
@@ -211,7 +211,7 @@ function useRémunérationTotaleState(): [
 	state: RémunérationState,
 	setState: (value: Partial<RémunérationState>) => void,
 	reset: () => void,
-	isComplete: boolean
+	isComplete: boolean,
 ] {
 	const defaultState = { rémunérationTotale: undefined }
 	const [state, setState] = usePersistingState<RémunérationState>(

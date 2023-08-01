@@ -7,7 +7,7 @@ export default function ({
 	unobserve = true,
 }: IntersectionObserverInit & { unobserve?: boolean }): [
 	React.RefObject<HTMLDivElement>,
-	boolean
+	boolean,
 ] {
 	const ref = useRef<HTMLDivElement>(null)
 	const [wasOnScreen, setWasOnScreen] = useState(false)

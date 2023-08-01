@@ -82,14 +82,17 @@ export function getCotisationsBySection(
 			(dottedName) =>
 				dottedName.replace(/ . (salarié|employeur)$/, '') as DottedName
 		)
-		.reduce((acc, cotisation: DottedName) => {
-			const sectionName = getSection(parsedRules[cotisation])
+		.reduce(
+			(acc, cotisation: DottedName) => {
+				const sectionName = getSection(parsedRules[cotisation])
 
-			return {
-				...acc,
-				[sectionName]: (acc[sectionName] ?? new Set()).add(cotisation),
-			}
-		}, {} as Record<Section, Set<DottedName>>)
+				return {
+					...acc,
+					[sectionName]: (acc[sectionName] ?? new Set()).add(cotisation),
+				}
+			},
+			{} as Record<Section, Set<DottedName>>
+		)
 
 	return Object.entries(cotisations)
 		.map(([section, dottedNames]) => [section, [...dottedNames.values()]])

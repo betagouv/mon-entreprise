@@ -56,7 +56,7 @@ function useCommuneSelection(): [
 	state: CommuneType | undefined,
 	setState: (c: CommuneType) => void,
 	reset: () => void,
-	isComplete: boolean
+	isComplete: boolean,
 ] {
 	const [state, setState] = usePersistingState<{
 		commune: CommuneType | undefined

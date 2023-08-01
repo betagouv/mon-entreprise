@@ -73,27 +73,30 @@ function getTypeBénéfice(activity: Activity): GuichetEntry['typeBénéfice'] {
 export function computeGuichet(
 	activities: Array<Activity>
 ): Record<CodeGuichet, GuichetEntry> {
-	return activities.reduce((acc, activity) => {
-		const catégorieActivité = getCatégorieActivité(activity)
+	return activities.reduce(
+		(acc, activity) => {
+			const catégorieActivité = getCatégorieActivité(activity)
 
-		acc[activity['Code final']] = {
-			catégorieActivité,
-			affiliationPrincipale:
-				activity['Affiliation si principale (hors prolongement agricole)'],
-			caisseDeRetraiteSpéciale:
-				activity['Caisse de retraite spéciale'] || false,
-			artisteAuteurPossible:
-				activity['Encodage ACOSS'].includes('ArtisteAuteur'),
-			typeBénéfice: getTypeBénéfice(activity),
-			code: activity['Code final'],
-			label: {
-				niv1: activity['Niv. 1'],
-				niv2: activity['Niv. 2'],
-				niv3: activity['Niv. 3'],
-				niv4: activity['Niv. 4'],
-			},
-		}
+			acc[activity['Code final']] = {
+				catégorieActivité,
+				affiliationPrincipale:
+					activity['Affiliation si principale (hors prolongement agricole)'],
+				caisseDeRetraiteSpéciale:
+					activity['Caisse de retraite spéciale'] || false,
+				artisteAuteurPossible:
+					activity['Encodage ACOSS'].includes('ArtisteAuteur'),
+				typeBénéfice: getTypeBénéfice(activity),
+				code: activity['Code final'],
+				label: {
+					niv1: activity['Niv. 1'],
+					niv2: activity['Niv. 2'],
+					niv3: activity['Niv. 3'],
+					niv4: activity['Niv. 4'],
+				},
+			}
 
-		return acc
-	}, {} as Record<CodeGuichet, GuichetEntry>)
+			return acc
+		},
+		{} as Record<CodeGuichet, GuichetEntry>
+	)
 }

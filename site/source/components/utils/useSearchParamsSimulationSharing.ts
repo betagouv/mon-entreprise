@@ -91,7 +91,7 @@ export const getRulesParamNames = (
 	(
 		Object.entries(parsedRules) as [
 			DottedName,
-			{ rawNode: { 'identifiant court'?: ShortName } }
+			{ rawNode: { 'identifiant court'?: ShortName } },
 		][]
 	).map(([dottedName, ruleNode]) => [
 		dottedName,

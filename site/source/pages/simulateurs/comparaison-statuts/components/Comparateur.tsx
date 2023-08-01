@@ -31,7 +31,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 	const engines = namedEngines.map(({ engine }) => engine) as [
 		Engine<DottedName>,
 		Engine<DottedName>,
-		Engine<DottedName>
+		Engine<DottedName>,
 	]
 
 	const { absoluteSitePaths } = useSitePaths()
