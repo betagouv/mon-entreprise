@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-indépendant > DROM 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
@@ -10,6 +10,7 @@ dirigeant . rémunération . totale: 20000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
+
 Notifications affichées : dirigeant . indépendant . cotisations et contributions . exonérations . DROM"
 `;
 
@@ -23,6 +24,7 @@ dirigeant . rémunération . totale: 73122
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 73122
 impôt . montant: 9189
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -36,6 +38,7 @@ dirigeant . rémunération . totale: 28503
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 28503
 impôt . montant: 764
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -49,6 +52,7 @@ dirigeant . rémunération . totale: 28521
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 28521
 impôt . montant: 764
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -62,6 +66,7 @@ dirigeant . rémunération . totale: 73019
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 73019
 impôt . montant: 9516
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -87,6 +92,7 @@ dirigeant . rémunération . totale: 77496
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 77496
 impôt . montant: 9224
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -100,6 +106,7 @@ dirigeant . rémunération . totale: 78281
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 78281
 impôt . montant: 9230
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -113,6 +120,7 @@ dirigeant . rémunération . totale: 80801
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 80801
 impôt . montant: 9251
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -126,6 +134,7 @@ dirigeant . rémunération . totale: 74756
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 74756
 impôt . montant: 9201
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -139,6 +148,7 @@ dirigeant . rémunération . totale: 74756
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 74756
 impôt . montant: 9201
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -164,6 +174,7 @@ dirigeant . rémunération . totale: 30000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 30000
 impôt . montant: 326
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -177,6 +188,7 @@ dirigeant . rémunération . totale: 30000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 30000
 impôt . montant: 326
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -190,6 +202,7 @@ dirigeant . rémunération . totale: 30000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 30000
 impôt . montant: 766
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -203,6 +216,7 @@ dirigeant . rémunération . totale: 20000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -240,6 +254,7 @@ dirigeant . rémunération . totale: 1387
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 1387
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -253,6 +268,7 @@ dirigeant . rémunération . totale: 250
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 250
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -266,6 +282,7 @@ dirigeant . rémunération . totale: 1231
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 1231
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -279,6 +296,7 @@ dirigeant . rémunération . totale: 45000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 45000
 impôt . montant: 6042
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -292,6 +310,7 @@ dirigeant . rémunération . totale: 9000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 9000
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -305,6 +324,7 @@ dirigeant . rémunération . totale: 10000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 10000
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -318,6 +338,7 @@ dirigeant . rémunération . totale: 15000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 15000
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -331,6 +352,7 @@ dirigeant . rémunération . totale: 55000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 55000
 impôt . montant: 5378
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -344,6 +366,7 @@ dirigeant . rémunération . totale: 100000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 100000
 impôt . montant: 13078
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -357,6 +380,7 @@ dirigeant . rémunération . totale: 100000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 100000
 impôt . montant: 13078
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -370,6 +394,7 @@ dirigeant . rémunération . totale: 28503
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 28503
 impôt . montant: 602
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -383,6 +408,7 @@ dirigeant . rémunération . totale: 73122
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 73122
 impôt . montant: 8213
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -396,6 +422,7 @@ dirigeant . rémunération . totale: 28503
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 28503
 impôt . montant: 2077
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -409,6 +436,7 @@ dirigeant . rémunération . totale: 2000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 2000
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -422,6 +450,7 @@ dirigeant . rémunération . totale: 60000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 60001
 impôt . montant: 5014
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -435,6 +464,7 @@ dirigeant . rémunération . totale: 14181
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 14181
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -448,6 +478,7 @@ dirigeant . rémunération . totale: 14181
 entreprise . charges: 1000
 entreprise . chiffre d'affaires: 15181
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -461,6 +492,7 @@ dirigeant . rémunération . totale: 60736
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 60732
 impôt . montant: 5148
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -474,6 +506,7 @@ dirigeant . rémunération . totale: 19000
 entreprise . charges: 1000
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -487,6 +520,7 @@ dirigeant . rémunération . totale: 18000
 entreprise . charges: 2000
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -500,6 +534,7 @@ dirigeant . rémunération . totale: 1858
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 1858
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -513,6 +548,7 @@ dirigeant . rémunération . totale: 2448
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 2448
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -526,6 +562,7 @@ dirigeant . rémunération . totale: 3040
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 3040
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -539,6 +576,7 @@ dirigeant . rémunération . totale: 3629
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 3629
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -552,6 +590,7 @@ dirigeant . rémunération . totale: 7193
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 7193
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -565,6 +604,7 @@ dirigeant . rémunération . totale: 14181
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 14181
 impôt . montant: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 

@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 22831
@@ -6,6 +6,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 236
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -15,6 +16,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 112
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -24,6 +26,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 168
 dirigeant . auto-entrepreneur . revenu net: 30000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 30000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -33,6 +36,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 473
 dirigeant . auto-entrepreneur . revenu net: 40000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 40000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -42,6 +46,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 236
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -51,6 +56,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 207
 dirigeant . auto-entrepreneur . revenu net: 17520
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17520
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : dirigeant . auto-entrepreneur . exonération DROM"
 `;
 
@@ -60,6 +66,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 281
 dirigeant . auto-entrepreneur . revenu net: 16630
 dirigeant . auto-entrepreneur . revenu net . après impôt: 16630
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -69,6 +76,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 306
 dirigeant . auto-entrepreneur . revenu net: 16333
 dirigeant . auto-entrepreneur . revenu net . après impôt: 16333
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -78,6 +86,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 290
 dirigeant . auto-entrepreneur . revenu net: 16518
 dirigeant . auto-entrepreneur . revenu net . après impôt: 16518
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -95,6 +104,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 355
 dirigeant . auto-entrepreneur . revenu net: 15740
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15740
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -104,6 +114,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 357
 dirigeant . auto-entrepreneur . revenu net: 15720
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15720
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -113,6 +124,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 214
 dirigeant . auto-entrepreneur . revenu net: 17432
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17432
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -122,6 +134,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 366
 dirigeant . auto-entrepreneur . revenu net: 15604
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15604
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -131,6 +144,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 207
 dirigeant . auto-entrepreneur . revenu net: 17520
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17520
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -140,6 +154,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 356
 dirigeant . auto-entrepreneur . revenu net: 15728
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15728
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -149,6 +164,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 59
 dirigeant . auto-entrepreneur . revenu net: 5000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -158,6 +174,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 591
 dirigeant . auto-entrepreneur . revenu net: 50000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 49910
 dirigeant . rémunération . impôt: 90
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -167,6 +184,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 564
 dirigeant . auto-entrepreneur . revenu net: 25000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 24301
 dirigeant . rémunération . impôt: 699
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -176,6 +194,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 6
 dirigeant . auto-entrepreneur . revenu net: 500
 dirigeant . auto-entrepreneur . revenu net . après impôt: 500
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -185,6 +204,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 12
 dirigeant . auto-entrepreneur . revenu net: 1000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 1000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -194,6 +214,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 24
 dirigeant . auto-entrepreneur . revenu net: 2000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 2000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -203,6 +224,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 59
 dirigeant . auto-entrepreneur . revenu net: 5000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -212,6 +234,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 118
 dirigeant . auto-entrepreneur . revenu net: 10000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 10000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -221,6 +244,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 236
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -230,6 +254,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 591
 dirigeant . auto-entrepreneur . revenu net: 50000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 49910
 dirigeant . rémunération . impôt: 90
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -239,6 +264,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 827
 dirigeant . auto-entrepreneur . revenu net: 70000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 68852
 dirigeant . rémunération . impôt: 1148
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -256,5 +282,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions: 11812
 dirigeant . auto-entrepreneur . revenu net: 1000000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 870378
 dirigeant . rémunération . impôt: 129622
+
 Notifications affichées : entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés"
 `;

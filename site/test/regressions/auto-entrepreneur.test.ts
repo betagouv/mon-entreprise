@@ -2,7 +2,7 @@ import { expect, it } from 'vitest'
 
 import { configAutoEntrepreneur } from '@/pages/simulateurs/auto-entrepreneur/simulationConfig'
 
-import autoEntrepreneurSituations from './simulations-auto-entrepreneur.yaml'
+import autoEntrepreneurSituations from './auto-entrepreneur.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-auto-entrepreneur', () => {

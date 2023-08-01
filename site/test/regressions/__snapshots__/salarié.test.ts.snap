@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-salarié > ATMP 1`] = `
 "salarié . contrat . salaire brut: 2000
@@ -38,6 +38,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 26483
 salarié . rémunération . net . payé après impôt: 10855
 salarié . rémunération . net . à payer avant impôt: 15995
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -47,6 +48,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 136
 salarié . rémunération . net . payé après impôt: 1361
 salarié . rémunération . net . à payer avant impôt: 1361
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -112,6 +114,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 12817
 salarié . rémunération . net . payé après impôt: 7714
 salarié . rémunération . net . à payer avant impôt: 8925
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -129,6 +132,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 2486
 salarié . rémunération . net . payé après impôt: 1667
 salarié . rémunération . net . à payer avant impôt: 1720
+
 Notifications affichées : salarié . contrat . CDD . information"
 `;
 
@@ -138,6 +142,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1047
 salarié . rémunération . net . payé après impôt: 1466
 salarié . rémunération . net . à payer avant impôt: 1466
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -203,6 +208,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3111
 salarié . rémunération . net . payé après impôt: 1815
 salarié . rémunération . net . à payer avant impôt: 1894
+
 Notifications affichées : salarié . contrat . CDD . information"
 `;
 
@@ -212,6 +218,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3386
 salarié . rémunération . net . payé après impôt: 1897
 salarié . rémunération . net . à payer avant impôt: 2009
+
 Notifications affichées : salarié . contrat . CDD . information"
 `;
 
@@ -221,6 +228,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3673
 salarié . rémunération . net . payé après impôt: 2084
 salarié . rémunération . net . à payer avant impôt: 2197
+
 Notifications affichées : salarié . contrat . CDD . information"
 `;
 
@@ -230,6 +238,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 4406
 salarié . rémunération . net . payé après impôt: 2185
 salarié . rémunération . net . à payer avant impôt: 2375
+
 Notifications affichées : salarié . contrat . CDD . information"
 `;
 
@@ -239,6 +248,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3631
 salarié . rémunération . net . payé après impôt: 1792
 salarié . rémunération . net . à payer avant impôt: 1871
+
 Notifications affichées : salarié . contrat . CDD . information, salarié . convention collective . contrôle décharge"
 `;
 
@@ -336,6 +346,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1767
 salarié . rémunération . net . payé après impôt: 1344
 salarié . rémunération . net . à payer avant impôt: 1344
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -521,6 +532,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 2394
 salarié . rémunération . net . payé après impôt: 1581
 salarié . rémunération . net . à payer avant impôt: 1616
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
@@ -530,6 +542,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 2362
 salarié . rémunération . net . payé après impôt: 1555
 salarié . rémunération . net . à payer avant impôt: 1589
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
@@ -539,6 +552,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 2344
 salarié . rémunération . net . payé après impôt: 1566
 salarié . rémunération . net . à payer avant impôt: 1601
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
@@ -548,6 +562,7 @@ salarié . contrat . salaire brut . équivalent temps plein: 2917
 salarié . coût total employeur: 3330
 salarié . rémunération . net . payé après impôt: 1898
 salarié . rémunération . net . à payer avant impôt: 1919
+
 Notifications affichées : salarié . temps de travail . heures complémentaires . contrôle heures complémentaires 10 pourcents"
 `;
 
@@ -557,6 +572,7 @@ salarié . contrat . salaire brut . équivalent temps plein: 2692
 salarié . coût total employeur: 3263
 salarié . rémunération . net . payé après impôt: 1856
 salarié . rémunération . net . à payer avant impôt: 1889
+
 Notifications affichées : salarié . temps de travail . heures complémentaires . contrôle heures complémentaires 10 pourcents"
 `;
 
@@ -646,6 +662,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 28380
 salarié . rémunération . net . payé après impôt: 12958
 salarié . rémunération . net . à payer avant impôt: 15995
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -655,6 +672,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 28380
 salarié . rémunération . net . payé après impôt: 11185
 salarié . rémunération . net . à payer avant impôt: 15995
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -672,6 +690,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 42152
 salarié . rémunération . net . payé après impôt: 14593
 salarié . rémunération . net . à payer avant impôt: 24079
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -681,6 +700,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 4508
 salarié . rémunération . net . payé après impôt: 2392
 salarié . rémunération . net . à payer avant impôt: 2590
+
 Notifications affichées : salarié . contrat . CDD . information"
 `;
 
@@ -698,6 +718,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 42152
 salarié . rémunération . net . payé après impôt: 14593
 salarié . rémunération . net . à payer avant impôt: 24079
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -715,6 +736,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 42152
 salarié . rémunération . net . payé après impôt: 16562
 salarié . rémunération . net . à payer avant impôt: 26817
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -756,6 +778,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1521
 salarié . rémunération . net . payé après impôt: 1182
 salarié . rémunération . net . à payer avant impôt: 1182
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -797,6 +820,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1521
 salarié . rémunération . net . payé après impôt: 1182
 salarié . rémunération . net . à payer avant impôt: 1182
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -838,6 +862,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1521
 salarié . rémunération . net . payé après impôt: 1182
 salarié . rémunération . net . à payer avant impôt: 1182
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -879,6 +904,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 500
 salarié . rémunération . net . payé après impôt: 500
 salarié . rémunération . net . à payer avant impôt: 500
+
 Notifications affichées : salarié . contrat . stage . avertissement, salarié . contrat . stage . contrôle gratification minimale"
 `;
 
@@ -888,6 +914,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 2472
 salarié . rémunération . net . payé après impôt: 1756
 salarié . rémunération . net . à payer avant impôt: 1756
+
 Notifications affichées : salarié . contrat . stage . avertissement"
 `;
 
@@ -897,6 +924,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1601
 salarié . rémunération . net . payé après impôt: 1195
 salarié . rémunération . net . à payer avant impôt: 1195
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -914,6 +942,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1587
 salarié . rémunération . net . payé après impôt: 1170
 salarié . rémunération . net . à payer avant impôt: 1170
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -947,6 +976,7 @@ salarié . contrat . salaire brut . équivalent temps plein: 1750
 salarié . coût total employeur: 1052
 salarié . rémunération . net . payé après impôt: 770
 salarié . rémunération . net . à payer avant impôt: 770
+
 Notifications affichées : salarié . contrat . temps de travail . temps partiel . contrôle temps min"
 `;
 
@@ -972,6 +1002,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 123
 salarié . rémunération . net . payé après impôt: 57
 salarié . rémunération . net . à payer avant impôt: 57
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -981,6 +1012,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 278
 salarié . rémunération . net . payé après impôt: 176
 salarié . rémunération . net . à payer avant impôt: 176
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -990,6 +1022,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 535
 salarié . rémunération . net . payé après impôt: 374
 salarié . rémunération . net . à payer avant impôt: 374
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -999,6 +1032,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 793
 salarié . rémunération . net . payé après impôt: 572
 salarié . rémunération . net . à payer avant impôt: 572
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -1008,6 +1042,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1050
 salarié . rémunération . net . payé après impôt: 770
 salarié . rémunération . net . à payer avant impôt: 770
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -1017,6 +1052,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1308
 salarié . rémunération . net . payé après impôt: 968
 salarié . rémunération . net . à payer avant impôt: 968
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -1026,6 +1062,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1566
 salarié . rémunération . net . payé après impôt: 1165
 salarié . rémunération . net . à payer avant impôt: 1165
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
 
@@ -1075,6 +1112,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 14314
 salarié . rémunération . net . payé après impôt: 6170
 salarié . rémunération . net . à payer avant impôt: 7969
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -1084,6 +1122,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 28380
 salarié . rémunération . net . payé après impôt: 10855
 salarié . rémunération . net . à payer avant impôt: 15995
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -1093,6 +1132,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 128900
 salarié . rémunération . net . payé après impôt: 46358
 salarié . rémunération . net . à payer avant impôt: 87009
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
@@ -1102,5 +1142,6 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1244234
 salarié . rémunération . net . payé après impôt: 446210
 salarié . rémunération . net . à payer avant impôt: 896109
+
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;

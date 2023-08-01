@@ -3,7 +3,7 @@ import { expect, it } from 'vitest'
 
 import { configIndépendant } from '@/pages/simulateurs/indépendant/simulationConfig'
 
-import independentSituations from './simulations-indépendant.yaml'
+import independentSituations from './indépendant.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-indépendant', () => {

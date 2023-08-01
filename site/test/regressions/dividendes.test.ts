@@ -2,7 +2,7 @@ import { it } from 'vitest'
 
 import { configDividendes } from '@/pages/simulateurs/dividendes/simulationConfig'
 
-import dividendesSituations from './simulations-dividendes.yaml'
+import dividendesSituations from './dividendes.yaml'
 import { runSimulations } from './utils'
 
 it('calculate simulations-dividendes', () => {

@@ -2,7 +2,7 @@ import { expect, it } from 'vitest'
 
 import { configArtisteAuteur } from '@/pages/simulateurs/artiste-auteur/simulationConfig'
 
-import artisteAuteurSituations from './simulations-artiste-auteur.yaml'
+import artisteAuteurSituations from './artiste-auteur.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-artiste-auteur', () => {

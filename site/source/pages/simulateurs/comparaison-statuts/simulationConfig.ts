@@ -11,6 +11,18 @@ export const configComparateurStatuts: SimulationConfig = {
 		'protection sociale . maladie . arrêt maladie',
 		'protection sociale . maladie . arrêt maladie . délai de carence',
 		"protection sociale . maladie . arrêt maladie . délai d'attente",
+		'protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités',
+		'protection sociale . maladie . maternité paternité adoption',
+		'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption',
+		'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel',
+		'protection sociale . invalidité et décès . pension de reversion',
+		'protection sociale . invalidité et décès . pension invalidité . invalidité partielle',
+		'protection sociale . invalidité et décès . pension invalidité . invalidité totale',
+		'protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès',
+		'protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité',
+		'protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité',
+		'protection sociale . invalidité et décès . capital décès',
+		'protection sociale . invalidité et décès . capital décès . orphelin',
 	],
 	questions: {
 		'liste noire': [

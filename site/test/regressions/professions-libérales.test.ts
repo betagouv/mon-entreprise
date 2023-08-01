@@ -2,7 +2,7 @@ import { expect, it } from 'vitest'
 
 import { configProfessionLibérale } from '@/pages/simulateurs/profession-libérale/simulationConfig'
 
-import professionsLibéralesSituations from './simulations-professions-libérales.yaml'
+import professionsLibéralesSituations from './professions-libérales.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-professions-libérales', () => {
