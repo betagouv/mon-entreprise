@@ -43,7 +43,7 @@ async function fetchAndReport(link) {
 	let remainingRetries = 3
 	while (status === 499 && remainingRetries > 0) {
 		remainingRetries--
-		await sleep(20_000)
+		await sleep(15_000)
 		status = await getHTTPStatus(link)
 	}
 	report({ status, link })
@@ -62,7 +62,7 @@ async function getHTTPStatus(link) {
 	}
 }
 
-async function report({ status, link }) {
+function report({ status, link }) {
 	console.log(status >= 404 ? '❌' : status >= 400 ? '⬛' : '✅', status, link)
 	if (status >= 404 && status !== 499) {
 		detectedErrors.push({ status, link })
@@ -108,3 +108,5 @@ if (detectedErrors.length > 0) {
 		)
 	}
 }
+
+process.exit(0)
