@@ -41,8 +41,7 @@ describe('Landing page', function () {
 
 		cy.get(searchInputPath).should('have.attr', 'placeholder')
 		cy.get(searchInputPath).invoke('attr', 'type').should('equal', 'search')
-		cy.get(searchInputPath).focus()
-		cy.type('noima')
+		cy.get(searchInputPath).first().type('noima')
 
 		cy.intercept(
 			{
