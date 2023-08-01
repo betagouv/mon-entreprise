@@ -15,7 +15,13 @@
 			"@/*": ["*"]
 		},
 		"types": ["vite/client", "vite-plugin-pwa/client"],
-		"typeRoots": ["./node_modules/@types", "./types/"],
+		"typeRoots": [
+			"../node_modules/@types",
+			"../node_modules",
+			"./node_modules/@types",
+			"./node_modules",
+			"./types"
+		],
 		"noEmit": true,
 		"strict": true
 	},
