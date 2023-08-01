@@ -2,6 +2,7 @@
 import { exec } from 'child_process'
 import { promisify } from 'util'
 
+import * as core from '@actions/core'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -94,7 +95,7 @@ if (detectedErrors.length > 0) {
 				.split('\n')
 				.map((line) => line.trim())
 				.join('<br />')
-		console.log(`comment=${format(message)} >> $GITHUB_OUTPUT`)
+		core.setOutput('comment', format(message))
 	} else if (detectedErrors) {
 		console.log(
 			'Liens invalides :' +
