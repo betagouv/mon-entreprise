@@ -97,10 +97,27 @@ export function hash(str: string): number {
 	return hash
 }
 
-export function omit<T, K extends keyof T>(obj: T, key: K): Omit<T, K> {
-	const { [key]: _ignore, ...returnObject } = obj
+/**
+ * Omits the given keys from the object
+ * @param obj
+ * @param keys
+ * @example omit({ a: 1, b: 2, c: 3 }, 'a', 'c') // { b: 2 }
+ */
+export function omit<T extends object, K extends keyof T>(
+	obj: T,
+	...keys: K[]
+): Omit<T, K> {
+	const ret = keys.reduce(
+		(acc, key) => {
+			// eslint-disable-next-line @typescript-eslint/no-unused-vars
+			const { [key]: _, ...rest } = acc as T
 
-	return returnObject
+			return rest
+		},
+		obj as Omit<T, K>
+	)
+
+	return ret
 }
 
 /**
