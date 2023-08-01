@@ -9,7 +9,6 @@
 <0>Activité mixte</0>: <0>Activité mixte</0>
 <0>Impôt sur le revenu</0> (IR): <0>Impôt sur le revenu</0> (IR)
 <0>Impôt sur les sociétés</0> (IS): <0>Impôt sur les sociétés</0> (IS)
-<0>Oui</0>: <0>Oui</0>
 <0>Versement libératoire</0> de l'impôt sur le revenu: <0>Versement libératoire</0> de l'impôt sur le revenu
 API REST de simulation: API REST de simulation
 "API REST, en savoir plus sur l'API REST": API REST, en savoir plus sur l'API REST
@@ -25,14 +24,13 @@ Aller au contenu principal: Aller au contenu principal
 Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
 Arrêt maladie: Arrêt maladie
-Assimilé salarié: Assimilé salarié
 Assistants à la déclaration de revenu 2022 des indépendants: Assistants à la déclaration de revenu 2022 des indépendants
 "Attention, information importante": Attention, information importante
 "Attention, vos données sauvegardées seront supprimées de manière définitive.": Attention, vos données sauvegardées seront supprimées de manière définitive.
 Aucun: Aucun
 Aucun résultat: Aucun résultat
-Auto-entrepreneur: Auto-entrepreneur
 Autres outils: Autres outils
+Avec <2><0></0></2> de cotisations sociales: Avec <2><0></0></2> de cotisations sociales
 Avec ACRE: Avec ACRE
 Avec chômage partiel: Avec chômage partiel
 Boite de dialogue: Boite de dialogue
@@ -99,7 +97,6 @@ En savoir plus sur impots:
 English version of the website enabled.: English version of the website enabled.
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
-Entreprise Individuelle: Entreprise Individuelle
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
 Envoyer: Envoyer
 Envoyer un courriel à contact@mon-entreprise:
@@ -129,7 +126,6 @@ Habituellement: Habituellement
 Impôt: Impôt
 Impôt au barème: Impôt au barème
 Impôts: Impôts
-Indépendant: Indépendant
 Information: Information
 "Insérer dans le champ la valeur du {{text}}": Insérer dans le champ la valeur du {{text}}
 International: International
@@ -252,7 +248,6 @@ Recherche sur le site: Recherche sur le site
 Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
-Rechercher votre entreprise: Rechercher votre entreprise
 "Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.": Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
@@ -269,7 +264,7 @@ Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
 Revenu disponible: Revenu disponible
 Revenu du dirigeant par statut: Revenu du dirigeant par statut
-Revenus après impôts: Revenus après impôts
+Revenu net mensuel après impôts: Revenu net mensuel après impôts
 Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 "Régime social des <1>{régimeSocial}s</1>": Régime social des <1>{régimeSocial}s</1>
@@ -296,6 +291,7 @@ Simulateurs: Simulateurs
 Simulateurs et Assistants: Simulateurs et Assistants
 Simulation en cours: Simulation en cours
 Situation personnelle: Situation personnelle
+Soit <2><0></0></2> avant impôts: Soit <2><0></0></2> avant impôts
 Statistiques: Statistiques
 Statut du conjoint: Statut du conjoint
 Suivant: Suivant
@@ -568,66 +564,12 @@ codeApe:
 common:
   useful-resources: Ressources utiles
 comparaisonRégimes:
-  ACRE: <0>ACRE</0><1>1 an <1>(automatique et inconditionnelle)</1></1><2>Entre 3
-    et 4 trimestres <2>(sous conditions d'éligibilité)</2></2>
-  AS:
-    tagline: Le régime tout compris
-  AT: <0>Couverture accidents du travail</0>
-  assuranceMaladie: <0>Assurance maladie <2>(médicaments, soins,
-    hospitalisations)</2></0><1>Identique pour tous</1>
-  auto:
-    tagline: Pour commencer sans risques
-  choix:
-    AS:
-      aria-label: Assimilé salarié, sélectionner l'option et passer à l'étape suivante
-      button: Assimilé salarié
-    EI:
-      aria-label: Entreprise individuelle, sélectionner l'option et passer à l'étape
-        suivante
-      button: Entreprise individuelle
-    auto:
-      aria-label: Auto-entrepreneur, sélectionner l'option et passer à l'étape suivante
-      button: Auto-entrepreneur
-    indep:
-      aria-label: Indépendant, sélectionner l'option et passer à l'étape suivante
-      button: Indépendant
-  comparaisonDétaillée: <0><0>Afficher plus d'informations</0></0>
-  complémentaireDeductible: <0>Contrats prévoyance et retraite facultatives
-    déductibles</0><1>Oui <1>(sous certaines conditions)</1></1><2>Oui <1>(Loi
-    Madelin)</1></2>
-  comptabilité: <0>Gestion comptable, sociale, juridique...</0><1>Accompagnement
-    fortement conseillé<1>(expert comptable, comptable, centre de gestion
-    agrée...)</1></1><2>Simplifiée <2>(peut être gérée par
-    l'auto-entrepreneur)</2></2>
-  cotisationMinimale: <0>Paiement de cotisations minimales</0>
-  cotisations: <0>Paiement des cotisations</0><1>Mensuel</1><2>Provision mensuelle
-    ou trimestrielle<1>(avec régularisation après coup en fonction du revenu
-    réel)</1></2><3>Mensuel ou trimestriel</3>
   description: Lorsque vous créez votre entreprise, le choix du statut juridique
     va <2>déterminer à quel régime social le dirigeant est affilié</2>. Il en
     existe <4>trois différents</4>, avec chacun ses avantages et inconvénients.
     Avec ce comparatif, trouvez celui qui vous correspond le mieux.
-  déduction: <0>Déduction des charges</0><1>Oui <1>(régime fiscal du
-    réel)</1></1><2>Non<1>(mais abattement forfaitaire pour le calcul de l'impôt
-    sur le revenu)</1></2>
-  indemnités: <0>Indemnités journalières <1>(en cas d'arrêt maladie)</1></0>
-  indep:
-    tagline: La protection sociale à la carte
-  mutuelle: <0>Mutuelle santé<1></1></0><1>Obligatoire</1><2>Fortement conseillée</2>
-  plafondCA: <0>Plafond de chiffre
-    d'affaires</0><1><0>Non</0></1><2><0>Oui</0><1>(72 600 € en services / 176
-    200 € en vente de biens, restauration ou hébergement)</1></2>
-  retraite: <0>Retraite</0>
-  seuil: <0>Revenu minimum pour l'ouverture des droits aux
-    prestations</0><1>Oui</1><2>Non <1>(cotisations minimales
-    obligatoires)</1></2><3>Oui</3>
-  status:
-    AS: SAS, SASU ou SARL avec gérant minoritaire ou égalitaire
-    auto: Auto-entreprise
-    indep:
-      "1": EI, EIRL, EURL ou SARL avec gérant majoritaire
-      "2": EI ou EIRL
-    legend: Statuts juridiques possibles
+  notif: <0><0>Découvrez quel statut est le <2>plus adapté pour votre activité</2>
+    grâce au <5>nouvel assistant au choix du statut</5> !</0></0>
 components:
   feedback:
     form:
@@ -794,6 +736,8 @@ landing:
     des assistants et simulateurs pour vous aider à la gestion de votre
     entreprise, anticiper les prélèvements et planifier votre trésorerie en
     conséquence.</1>
+  searchcompany: <0>Rechercher votre entreprise </0><1>Pour accéder à nos
+    simulateurs les plus pertinents pour votre activité</1>
   subtitle: Les simulateurs et assistants pour développer votre activité, du
     statut juridique à l'embauche.
   title: L'assistant officiel des entrepreneurs

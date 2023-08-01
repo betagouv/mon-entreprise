@@ -11,6 +11,7 @@ import { Container } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H4 } from '@/design-system/typography/heading'
 import { StyledLink } from '@/design-system/typography/link'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import { EngineComparison } from './Comparateur'
@@ -49,7 +50,7 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 					hasChildItems={false}
 				>
 					<StyledH4>
-						<Trans>Revenus après impôts</Trans>
+						<Trans>Revenu net mensuel après impôts</Trans>
 
 						<HelpButtonWithPopover
 							type="info"
@@ -58,14 +59,45 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 							<RevenuTable namedEngines={namedEngines} />
 						</HelpButtonWithPopover>
 					</StyledH4>
-					<Body>
-						Vos revenus après déduction de l'impôt, en prenant compte de l'ACRE
-						si vous avez activé l'option.
-					</Body>
 					<DetailsRowCards
 						dottedName="dirigeant . rémunération . net . après impôt"
 						namedEngines={namedEngines}
 						unit="€/mois"
+						footer={(engine) => (
+							<Ul>
+								<Li>
+									<Trans i18nKey="">
+										Soit{' '}
+										<Strong>
+											<Value
+												engine={engine}
+												expression="dirigeant . rémunération . net"
+												displayedUnit="€"
+												unit="€/mois"
+												precision={0}
+												linkToRule={false}
+											/>
+										</Strong>{' '}
+										avant impôts
+									</Trans>
+								</Li>{' '}
+								<Li>
+									<Trans i18nKey="">
+										Avec{' '}
+										<Strong>
+											<Value
+												engine={engine}
+												expression=" dirigeant . rémunération . cotisations / dirigeant . rémunération . totale"
+												unit="%"
+												precision={0}
+												linkToRule={false}
+											/>
+										</Strong>{' '}
+										de cotisations sociales
+									</Trans>
+								</Li>
+							</Ul>
+						)}
 						warning={(engine) => (
 							<Condition
 								engine={engine}

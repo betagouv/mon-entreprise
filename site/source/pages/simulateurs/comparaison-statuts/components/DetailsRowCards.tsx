@@ -31,6 +31,7 @@ const DetailsRowCards = ({
 	evolutionLabel,
 	label,
 	footer,
+	displayedUnit,
 	warning,
 }: {
 	namedEngines: EngineComparison
@@ -38,6 +39,7 @@ const DetailsRowCards = ({
 	expression?: PublicodesExpression
 	unit?: string
 	leastIsBest?: boolean
+	displayedUnit?: string
 	evolutionDottedName?: DottedName
 	evolutionLabel?: ReactNode | string
 	label?: ReactNode | string
@@ -128,6 +130,7 @@ const DetailsRowCards = ({
 													engine={statusObject.engine}
 													precision={0}
 													unit={unit}
+													displayedUnit={displayedUnit}
 												/>
 												{label && ' '}
 												{label && label}
