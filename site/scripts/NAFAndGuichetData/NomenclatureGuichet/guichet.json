@@ -752,7 +752,7 @@
       "niv1": "Agriculture, sylviculture et pêche",
       "niv2": "Aquaculture",
       "niv3": "Aquaculture en mer",
-      "niv4": "0"
+      "niv4": "Nécessitant d'embarquer sur un navire battant pavillon français"
     }
   },
   "01080102": {
@@ -766,7 +766,7 @@
       "niv1": "Agriculture, sylviculture et pêche",
       "niv2": "Aquaculture",
       "niv3": "Aquaculture en mer",
-      "niv4": "0"
+      "niv4": "Ne nécessitant pas d'embarquer sur un navire battant pavillon français"
     }
   },
   "01080200": {
@@ -1162,7 +1162,7 @@
     }
   },
   "02050100": {
-    "catégorieActivité": "AGRICOLE",
+    "catégorieActivité": "ARTISANALE",
     "affiliationPrincipale": "ACOSS",
     "caisseDeRetraiteSpéciale": false,
     "artisteAuteurPossible": false,
@@ -1232,7 +1232,7 @@
     }
   },
   "02060100": {
-    "catégorieActivité": "COMMERCIALE",
+    "catégorieActivité": "ARTISANALE",
     "affiliationPrincipale": "ACOSS",
     "caisseDeRetraiteSpéciale": false,
     "artisteAuteurPossible": false,
@@ -1628,7 +1628,7 @@
     "affiliationPrincipale": "ACOSS",
     "caisseDeRetraiteSpéciale": false,
     "artisteAuteurPossible": false,
-    "typeBénéfice": "BIC",
+    "typeBénéfice": "BNC",
     "code": "02080902",
     "label": {
       "niv1": "Industrie et artisanat de fabrication ",
@@ -2986,7 +2986,7 @@
     "affiliationPrincipale": "ACOSS",
     "caisseDeRetraiteSpéciale": false,
     "artisteAuteurPossible": false,
-    "typeBénéfice": "BIC",
+    "typeBénéfice": "BNC",
     "code": "06060200",
     "label": {
       "niv1": "Commerce et artisanat de détail",
@@ -3555,6 +3555,20 @@
       "niv4": ""
     }
   },
+  "07030800": {
+    "catégorieActivité": "COMMERCIALE",
+    "affiliationPrincipale": "ACOSS",
+    "caisseDeRetraiteSpéciale": false,
+    "artisteAuteurPossible": false,
+    "typeBénéfice": "BIC",
+    "code": "07030800",
+    "label": {
+      "niv1": "Activités de services",
+      "niv2": "Services d'information",
+      "niv3": "Influenceur et créateur de contenu",
+      "niv4": ""
+    }
+  },
   "07040101": {
     "catégorieActivité": "COMMERCIALE",
     "affiliationPrincipale": "ACOSS",
@@ -3791,6 +3805,20 @@
       "niv2": "Activités bancaires, financières, d'assurances, de gestion, comptables et juridiques",
       "niv3": "Assurances",
       "niv4": "Gestion et administration fonds d'assurance, enquêteur, expert assureur"
+    }
+  },
+  "07040210": {
+    "catégorieActivité": "LIBERALE_NON_REGLEMENTEE",
+    "affiliationPrincipale": "ACOSS",
+    "caisseDeRetraiteSpéciale": false,
+    "artisteAuteurPossible": false,
+    "typeBénéfice": "BNC",
+    "code": "07040210",
+    "label": {
+      "niv1": "Activités de services",
+      "niv2": "Activités bancaires, financières, d'assurances, de gestion, comptables et juridiques",
+      "niv3": "Assurances",
+      "niv4": "Activités des mandataires d'assurance et des mandataires d'intermédiaires d'assurance"
     }
   },
   "07040301": {
@@ -4084,7 +4112,7 @@
       "niv1": "Activités de services",
       "niv2": "Activités bancaires, financières, d'assurances, de gestion, comptables et juridiques",
       "niv3": "Activités des sièges sociaux ",
-      "niv4": "0"
+      "niv4": "Centre de gestion agréé ou association de gestion et de comptabilité composé(e) en majorité de membres désignés par des organisations professionnelles agricoles ou des chambres d'agriculture"
     }
   },
   "07040602": {
@@ -4174,7 +4202,7 @@
   "07050102": {
     "catégorieActivité": "LIBERALE_NON_REGLEMENTEE",
     "affiliationPrincipale": "ACOSS",
-    "caisseDeRetraiteSpéciale": false,
+    "caisseDeRetraiteSpéciale": "CIPAV",
     "artisteAuteurPossible": false,
     "typeBénéfice": "BNC",
     "code": "07050102",
@@ -4182,7 +4210,7 @@
       "niv1": "Activités de services",
       "niv2": "Activités spécialisées, scientifiques et techniques",
       "niv3": "Activités d'architecture et d'ingénierie",
-      "niv4": "Autres activités d'architecture, maîtrise d'œuvre "
+      "niv4": "Maîtrise d'œuvre, ingénieur-conseil"
     }
   },
   "07050103": {
@@ -4202,7 +4230,7 @@
   "07050104": {
     "catégorieActivité": "LIBERALE_NON_REGLEMENTEE",
     "affiliationPrincipale": "ACOSS",
-    "caisseDeRetraiteSpéciale": false,
+    "caisseDeRetraiteSpéciale": "CIPAV",
     "artisteAuteurPossible": false,
     "typeBénéfice": "BNC",
     "code": "07050104",
@@ -4211,20 +4239,6 @@
       "niv2": "Activités spécialisées, scientifiques et techniques",
       "niv3": "Activités d'architecture et d'ingénierie",
       "niv4": "Autres activités de géomètre"
-    }
-  },
-  "07050105": {
-    "catégorieActivité": "LIBERALE_REGLEMENTEE",
-    "affiliationPrincipale": "ACOSS",
-    "caisseDeRetraiteSpéciale": "CIPAV",
-    "artisteAuteurPossible": false,
-    "typeBénéfice": "BNC",
-    "code": "07050105",
-    "label": {
-      "niv1": "Activités de services",
-      "niv2": "Activités spécialisées, scientifiques et techniques",
-      "niv3": "Activités d'architecture et d'ingénierie",
-      "niv4": "Ingénierie, études techniques en profession libérale"
     }
   },
   "07050106": {
@@ -4239,6 +4253,20 @@
       "niv2": "Activités spécialisées, scientifiques et techniques",
       "niv3": "Activités d'architecture et d'ingénierie",
       "niv4": "Ingénierie, études techniques à titre indépendant"
+    }
+  },
+  "07050107": {
+    "catégorieActivité": "LIBERALE_NON_REGLEMENTEE",
+    "affiliationPrincipale": "ACOSS",
+    "caisseDeRetraiteSpéciale": "CIPAV",
+    "artisteAuteurPossible": false,
+    "typeBénéfice": "BNC",
+    "code": "07050107",
+    "label": {
+      "niv1": "Activités de services",
+      "niv2": "Activités spécialisées, scientifiques et techniques",
+      "niv3": "Activités d'architecture et d'ingénierie",
+      "niv4": "Economiste de la construction"
     }
   },
   "07050200": {

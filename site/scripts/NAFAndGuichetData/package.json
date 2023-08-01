@@ -9,6 +9,9 @@
 		"url": "https://github.com/betagouv/mon-entreprise.git",
 		"directory": "site/scripts"
 	},
+	"engines": {
+		"node": "^18"
+	},
 	"scripts": {
 		"extract-NAF-from-PDF": "ts-node-esm ./extract-NAF-data/convert-pdf.ts",
 		"extract-guichet": "ts-node-esm ./NomenclatureGuichet/extract.ts",
