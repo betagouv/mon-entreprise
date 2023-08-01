@@ -1,5 +1,6 @@
 name: Check links validity
 on:
+  workflow_dispatch:
   schedule:
     # https://crontab.guru/#0_11_*_*_2
     - cron: '0 11 * * 2'
