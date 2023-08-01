@@ -7,7 +7,7 @@ import parseCsv from 'csv-parser'
 import output from '../nombre-etablissements-par-code-ape/output.json' assert { type: 'json' }
 import { computeGuichet } from './compute-guichet.js'
 
-const FILENAME = 'NomenclatureGuichet_v1_32resana.csv'
+const FILENAME = 'NomenclatureGuichet_v1_34.csv'
 const codesApe = Object.keys(output)
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
@@ -130,7 +130,7 @@ files: `raw_output.json`, `ape_tags.json`, `ape_to_guichet.json` and `guichet.js
 fs.createReadStream(join(__dirname, FILENAME))
 	.pipe(
 		parseCsv({
-			separator: ';',
+			separator: ',',
 			skipLines: 1,
 			mapHeaders: ({ header }) =>
 				(header.match(/.+?(?=\n)/)?.[0] ?? header).trim(),
