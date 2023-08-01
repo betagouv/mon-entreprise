@@ -5,7 +5,7 @@ import {
 	GenericButtonOrNavLinkProps,
 	useButtonOrLink,
 } from '@/design-system/typography/link'
-import { wrapperDebounceEvents } from '@/utils'
+import { omit, wrapperDebounceEvents } from '@/utils'
 
 import { FocusStyle } from '../global-style'
 
@@ -41,13 +41,17 @@ export const Button = forwardRef(function Button(
 		forwardedRef
 	)
 
-	// @ts-ignore
-	delete buttonOrLinkProps.isDisabled // Remove isDisabled from props casue it's not a valid HTML attribute
+	// Omit isDisabled and openInSameWindow from props casue it's not a valid HTML attribute
+	const props = omit(
+		buttonOrLinkProps as Record<string, unknown>,
+		'isDisabled',
+		'openInSameWindow'
+	)
 
 	return (
 		<StyledButton
 			// eslint-disable-next-line react/jsx-props-no-spreading
-			{...buttonOrLinkProps}
+			{...props}
 			$size={size}
 			$light={light}
 			$color={color}
