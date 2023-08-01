@@ -865,7 +865,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . contrat . CDI",
         "salarié . contrat . professionnalisation . salarié de 45 ans et plus",
         "salarié . contrat . professionnalisation",
-        "salarié . coût total employeur . aides . emploi franc",
         "salarié . activité partielle . indemnisation entreprise",
       ],
       "unit": {
