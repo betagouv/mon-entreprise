@@ -257,6 +257,7 @@ function formatMonth(date: string | Date) {
 type CustomTooltipProps = {
 	active?: boolean
 	period: Period
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	payload?: any
 	dataKeys: string[]
 }

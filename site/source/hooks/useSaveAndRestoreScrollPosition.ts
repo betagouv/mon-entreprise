@@ -16,7 +16,9 @@ export const useSaveAndRestoreScrollPosition = () => {
 
 		if (
 			scrollPosition &&
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
 			(navigationType === POP_ACTION_LABEL ||
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
 				navigationType === REPLACE_ACTION_LABEL)
 		) {
 			window.scrollTo(0, parseInt(scrollPosition))

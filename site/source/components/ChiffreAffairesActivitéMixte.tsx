@@ -160,8 +160,6 @@ function ActivitéMixte() {
 		[dispatch, situation]
 	)
 
-	const { t } = useTranslation()
-
 	return (
 		<div key={Boolean(defaultChecked).toString()}>
 			<StyledActivitéMixteContainer>

@@ -14,10 +14,7 @@ export const CheckList = ({
 				const { isChecked, label } = item
 
 				return (
-					<StyledLi
-						$isChecked={isChecked}
-						key={`checklist-item-${item.toString()}-${index}`}
-					>
+					<StyledLi $isChecked={isChecked} key={`checklist-item-${index}`}>
 						{isChecked ? <CheckmarkIcon /> : <CrossIcon />}
 						{label}
 					</StyledLi>

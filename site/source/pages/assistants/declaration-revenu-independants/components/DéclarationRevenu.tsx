@@ -1,7 +1,6 @@
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, Rule, RuleNode } from 'publicodes'
 import { Fragment, useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import styled, { css } from 'styled-components'
 
@@ -35,8 +34,6 @@ const RuleInputWithTitle = ({
 	dottedName: string
 }) => {
 	const dispatch = useDispatch()
-
-	const { t } = useTranslation()
 
 	const dispatchValue = useCallback(
 		(value: PublicodesExpression | undefined, dottedName: DottedName) => {

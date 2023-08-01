@@ -22,6 +22,7 @@ export const runSimulateurTest = (simulateur) => {
 				cy.get(chargeInputSelector).type(1000)
 			}
 			cy.get(inputSelector).each(($testedInput) => {
+				// eslint-disable-next-line cypress/unsafe-to-chain-command
 				cy.wrap($testedInput)
 					.type('{selectall}60111')
 					.and(($i) =>

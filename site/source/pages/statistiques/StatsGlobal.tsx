@@ -89,13 +89,9 @@ const RetoursAsProgress = ({
 
 interface GlobalStatsProps {
 	stats: StatsStruct
-	accessibleMode: boolean
 }
 
-export default function StatsGlobal({
-	stats,
-	accessibleMode,
-}: GlobalStatsProps) {
+export default function StatsGlobal({ stats }: GlobalStatsProps) {
 	const { pathname, search } = useLocation()
 	const { i18n } = useTranslation()
 	const formatNumber = Intl.NumberFormat(i18n.language).format.bind(null)

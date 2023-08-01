@@ -11,6 +11,7 @@ type DirPath = string
 type FilePath = string
 
 interface Option {
+	// eslint-disable-next-line @typescript-eslint/no-duplicate-type-constituents
 	paths: (DirPath | FilePath)[]
 	run: string
 }

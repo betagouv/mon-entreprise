@@ -2,7 +2,6 @@ import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -95,8 +94,6 @@ export function SimpleField(props: SimpleFieldProps) {
 		},
 		[dispatch]
 	)
-
-	const { t } = useTranslation()
 
 	let displayedQuestion =
 		question ?? evaluateQuestion(engine, engine.getRule(dottedName))

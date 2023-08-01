@@ -107,8 +107,6 @@ export default function PaySlip() {
 	const parsedRules = useEngine().getParsedRules()
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
-	const { t } = useTranslation()
-
 	return (
 		<div
 			className="payslip__container"

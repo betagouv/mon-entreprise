@@ -72,10 +72,8 @@ describe(`Navigation to income simulator using company name (${
 			fr ? 'Rechercher votre entreprise ' : 'Find your company '
 		).click()
 
-		cy.get('input[data-test-id="company-search-input"]')
-			.first()
-			.type('menoz')
-			.wait('@search')
+		cy.get('input[data-test-id="company-search-input"]').first().type('menoz')
+		cy.wait('@search')
 
 		cy.contains('834364291')
 			.should('be.visible')
@@ -99,9 +97,8 @@ describe(`Navigation to income simulator using company name (${
 			fr ? 'Rechercher votre entreprise ' : 'Find your company '
 		).click()
 
-		cy.get('input[data-test-id="company-search-input"]')
-			.type('jeremy rialland')
-			.wait('@search')
+		cy.get('input[data-test-id="company-search-input"]').type('jeremy rialland')
+		cy.wait('@search')
 
 		cy.contains('850556812')
 			.should('be.visible')

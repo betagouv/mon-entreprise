@@ -225,7 +225,9 @@ const checkedSitePathsFr = rawSitePathsFr satisfies RequiredPath
 // If there is a type error here, check rawSitePathsEn object matches the metadata-src.ts pathId
 const checkedSitePathsEn = rawSitePathsEn satisfies RequiredPath
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type SitePathsFr = typeof checkedSitePathsFr
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type SitePathsEn = typeof checkedSitePathsEn
 
 type GenericSitePath = { [key: string]: string | GenericSitePath }
