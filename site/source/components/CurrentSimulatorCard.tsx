@@ -20,7 +20,10 @@ export function CurrentSimulatorCard({
 	const simulateurs = useSimulatorsData()
 
 	return dirigeantSimulateur ? (
-		<SimulateurCard fromGérer={fromGérer} {...simulateurs[dirigeantSimulateur]} />
+		<SimulateurCard
+			fromGérer={fromGérer}
+			{...simulateurs[dirigeantSimulateur]}
+		/>
 	) : (
 		<Grid
 			item

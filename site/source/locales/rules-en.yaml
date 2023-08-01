@@ -7045,13 +7045,68 @@ protection sociale . retraite . complémentaire:
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
   avec:
     points acquis:
-      note.en: >
-        [automatic] We base ourselves on a constant value of the point, but it
-        changes from year to year, so this value is a rough approximation
-      note.fr: >
-        On se base sur une valeur constante du point, hors cette dernière
-        change d'année en année, cette valeure est donc une grossière
-        approximation
+      description.en: >
+        [automatic] Throughout your career, you earn pension points by
+        paying compulsory pension contributions. The total number of points
+        acquired will determine the annual amount of your future supplementary
+        pension.
+
+
+        So it's important to understand how these pension points are allocated.
+
+
+        #### Formula for calculating the number of points
+
+
+        **Number of points** = **Contribution base** × **Points calculation rate** / **Purchase value of a point**.
+
+
+        #### What is the points calculation rate?
+
+
+        This is the percentage applied to the contribution base to calculate points. 
+
+
+        Note: it also serves as the basis for calculating the contributions paid by the employer and the employee: it is then multiplied by 1.27 to determine the contributions payable. 
+
+
+        The rate that appears on the pay slip and is split between the employee and employer is therefore higher than the points acquisition rate. The additional contribution thus determined is not used to acquire points.
+      description.fr: >
+        Tout au long de votre carrière, vous obtenez des points de
+        retraite via le versement de cotisations de retraite obligatoires. C’est
+        le nombre total des points acquis qui déterminera le montant annuel de
+        votre future retraite complémentaire.
+
+
+        Il est donc important de bien comprendre comment ces points de retraite sont attribués.
+
+
+        #### Formule de calcul du nombre de points
+
+
+        **Nombre de points** = **Assiette des cotisations** × **Taux de calcul des points** / **Valeur d’achat d’un point**
+
+
+        #### Le taux de calcul des points, c’est quoi ?
+
+
+        C’est le pourcentage appliqué sur l’assiette des cotisations pour calculer les points. 
+
+
+        A noter : il sert aussi de base au calcul des cotisations payées par l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer les cotisations à payer. 
+
+
+        Le taux qui apparait sur le bulletin de salaire et qui est réparti entre le salarié et l’employeur est donc supérieur au taux d’acquisition des points. Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des points.
+      note.en:
+        '[automatic] As the supplementary pension contribution rate is 127% of
+        the points calculation rate, the amount of contributions paid by the
+        employee must be divided by 1.27 to obtain the amount to be used to
+        calculate points.'
+      note.fr:
+        Le taux de cotisation de retraite complémentaire étant 127% du taux de
+        calcul des points, il faut diviser par 1.27 le montant des cotisations
+        versées par le salarié pour obtenir le montant à utiliser pour le calcul
+        des points.
       titre.en: '[automatic] points acquired'
       titre.fr: points acquis
     valeur d'acquisition:

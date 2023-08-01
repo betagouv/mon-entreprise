@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`calculate simulations-salarié > ACRE 1`] = `
+exports[`calculate comparateur-statuts > ACRE 1`] = `
 "dirigeant . rémunération . net: 44208
 dirigeant . rémunération . net . après impôt: 43983
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
@@ -25,7 +25,7 @@ protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
-exports[`calculate simulations-salarié > ACRE 2`] = `
+exports[`calculate comparateur-statuts > ACRE 2`] = `
 "dirigeant . rémunération . net: 36633
 dirigeant . rémunération . net . après impôt: 31660
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
@@ -50,7 +50,7 @@ protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
-exports[`calculate simulations-salarié > ACRE 3`] = `
+exports[`calculate comparateur-statuts > ACRE 3`] = `
 "dirigeant . rémunération . net: 30251
 dirigeant . rémunération . net . après impôt: 27965
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1287
@@ -69,13 +69,13 @@ protection sociale . maladie . maternité paternité adoption: 84
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
 protection sociale . retraite . base: 1609
-protection sociale . retraite . complémentaire: 196
+protection sociale . retraite . complémentaire: 154
 protection sociale . retraite . trimestres: 4
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
-exports[`calculate simulations-salarié > EI à l'IS 1`] = `
+exports[`calculate comparateur-statuts > EI à l'IS 1`] = `
 "dirigeant . rémunération . net: 27470
 dirigeant . rémunération . net . après impôt: 25919
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
@@ -100,7 +100,7 @@ protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
-exports[`calculate simulations-salarié > base 1`] = `
+exports[`calculate comparateur-statuts > base 1`] = `
 "dirigeant . rémunération . net: 40548
 dirigeant . rémunération . net . après impôt: 40323
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
@@ -125,7 +125,7 @@ protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
-exports[`calculate simulations-salarié > base 2`] = `
+exports[`calculate comparateur-statuts > base 2`] = `
 "dirigeant . rémunération . net: 32800
 dirigeant . rémunération . net . après impôt: 28976
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
@@ -150,7 +150,7 @@ protection sociale . retraite . trimestres: 4
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
-exports[`calculate simulations-salarié > base 3`] = `
+exports[`calculate comparateur-statuts > base 3`] = `
 "dirigeant . rémunération . net: 26944
 dirigeant . rémunération . net . après impôt: 25371
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1148
@@ -169,13 +169,13 @@ protection sociale . maladie . maternité paternité adoption: 75
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
 protection sociale . retraite . base: 1435
-protection sociale . retraite . complémentaire: 175
+protection sociale . retraite . complémentaire: 138
 protection sociale . retraite . trimestres: 4
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
-exports[`calculate simulations-salarié > profession libérale non reglementée 1`] = `
+exports[`calculate comparateur-statuts > profession libérale non reglementée 1`] = `
 "dirigeant . rémunération . net: 32220
 dirigeant . rémunération . net . après impôt: 26746
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
@@ -198,7 +198,7 @@ protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
 
-exports[`calculate simulations-salarié > profession libérale non reglementée 2`] = `
+exports[`calculate comparateur-statuts > profession libérale non reglementée 2`] = `
 "dirigeant . rémunération . net: 30808
 dirigeant . rémunération . net . après impôt: 27606
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
@@ -221,7 +221,7 @@ protection sociale . retraite . complémentaire: 124
 protection sociale . retraite . trimestres: 4"
 `;
 
-exports[`calculate simulations-salarié > profession libérale non reglementée 3`] = `
+exports[`calculate comparateur-statuts > profession libérale non reglementée 3`] = `
 "dirigeant . rémunération . net: 25240
 dirigeant . rémunération . net . après impôt: 23926
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1076
@@ -240,6 +240,6 @@ protection sociale . maladie . maternité paternité adoption: 70
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
 protection sociale . retraite . base: 1345
-protection sociale . retraite . complémentaire: 164
+protection sociale . retraite . complémentaire: 129
 protection sociale . retraite . trimestres: 4"
 `;

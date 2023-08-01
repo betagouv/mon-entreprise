@@ -5,7 +5,7 @@ import { configComparateurStatuts } from '@/pages/simulateurs/comparaison-statut
 import situations from './comparateur-statuts.yaml'
 import { runSimulations } from './utils'
 
-it('calculate simulations-salarié', () => {
+it('calculate comparateur-statuts', () => {
 	runSimulations(
 		situations,
 		[
