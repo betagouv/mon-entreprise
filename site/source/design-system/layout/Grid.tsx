@@ -1,20 +1,29 @@
-import { ComponentType, createContext, ReactNode, useContext } from 'react'
+import { ComponentType, createContext, useContext } from 'react'
 import styled, { css } from 'styled-components'
+
+import { Merge } from '@/types/utils'
 
 import { SpacingKey } from '../theme'
 
-const breakPoints = ['sm', 'md', 'lg', 'xl'] as Array<SpacingKey>
+const breakPoints = ['$sm', '$md', '$lg', '$xl'] as const
+
+type Distribute<T extends string, U> = T extends unknown
+	? { [K in T]: U }
+	: never
+
+type BreakPoint = '$xs' | (typeof breakPoints)[number]
+type BreakPoints = Distribute<BreakPoint, number>
 
 type ContainerContext = {
-	nbColumns: number
-	rowSpacing: number
-	columnSpacing: number
+	$nbColumns: number
+	$rowSpacing: number
+	$columnSpacing: number
 }
 
 const GridContainerContext = createContext<ContainerContext>({
-	nbColumns: 12,
-	columnSpacing: 0,
-	rowSpacing: 0,
+	$nbColumns: 12,
+	$columnSpacing: 0,
+	$rowSpacing: 0,
 })
 
 type BreakpointConfig = number | true | 'auto' | undefined
@@ -53,38 +62,45 @@ type GridProps =
  */
 export default function FluidGrid(props: GridProps) {
 	if (props.container === true) {
-		return <GridContainer {...props} />
-	} else if (props?.item === true) {
-		return <GridItem {...props} />
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { container, item, ...containerProps } = props // Omit props.container and props.item
+
+		return <GridContainer {...containerProps} />
+	} else if (props.item === true) {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { container, item, ...itemProps } = props // Omit props.container and props.item
+
+		return <GridItem {...itemProps} />
 	}
 
 	return null
 }
 
-const StyledGridContainer = styled.div<GridContainerProps>`
+const StyledGridContainer = styled.div<Omit<ContainerContext, '$nbColumns'>>`
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	margin-left: -${({ theme, columnSpacing }) => theme.spacing[columnSpacing ?? 0]};
-	margin-top: -${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]};
+	margin-left: -${({ theme, $columnSpacing }) => theme.spacing[$columnSpacing ?? 0]};
+	margin-top: -${({ theme, $rowSpacing }) => theme.spacing[$rowSpacing ?? 0]};
 	width: calc(
-		100% + ${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]}
+		100% + ${({ theme, $rowSpacing }) => theme.spacing[$rowSpacing ?? 0]}
 	);
 `
 
-const StyledGridItem = styled.div<GridItemProps & ContainerContext>`
-	padding-left: ${({ theme, columnSpacing }) =>
-		theme.spacing[columnSpacing ?? 0]};
-	padding-top: ${({ theme, rowSpacing }) => theme.spacing[rowSpacing ?? 0]};
-	${(props) => breakPointCss(props.xs, props.nbColumns)}
+const StyledGridItem = styled.div<ContainerContext & Merge<BreakPoints>>`
+	padding-left: ${({ theme, $columnSpacing }) =>
+		theme.spacing[$columnSpacing ?? 0]};
+	padding-top: ${({ theme, $rowSpacing }) => theme.spacing[$rowSpacing ?? 0]};
+	${({ $xs, $nbColumns }) => breakPointCss($xs, $nbColumns)}
 
 	${(props) =>
 		breakPoints
 			.filter((id) => props[id])
 			.map(
 				(id) => css`
-					@media (min-width: ${({ theme }) => theme.breakpointsWidth[id]}) {
-						${breakPointCss(props[id], props.nbColumns)}
+					@media (min-width: ${({ theme }) =>
+							theme.breakpointsWidth[id.replace('$', '') as SpacingKey]}) {
+						${breakPointCss(props[id], props.$nbColumns)}
 					}
 				`
 			)}
@@ -95,6 +111,7 @@ type GridContainerProps = {
 	columnSpacing?: number
 	rowSpacing?: number
 	children: React.ReactNode
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	as?: string | ComponentType<any> | undefined
 } & React.ComponentPropsWithoutRef<'div'>
 
@@ -109,14 +126,14 @@ function GridContainer({
 	return (
 		<GridContainerContext.Provider
 			value={{
-				nbColumns: columns,
-				columnSpacing: columnSpacing ?? spacing,
-				rowSpacing: rowSpacing ?? spacing,
+				$nbColumns: columns,
+				$columnSpacing: columnSpacing ?? spacing,
+				$rowSpacing: rowSpacing ?? spacing,
 			}}
 		>
 			<StyledGridContainer
-				columnSpacing={columnSpacing ?? spacing}
-				rowSpacing={rowSpacing ?? spacing}
+				$columnSpacing={columnSpacing ?? spacing}
+				$rowSpacing={rowSpacing ?? spacing}
 				{...otherProps}
 			>
 				{children}
@@ -128,6 +145,7 @@ function GridContainer({
 type GridItemProps = {
 	children?: React.ReactNode
 	className?: string
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	as?: string | ComponentType<any> | undefined
 } & Partial<Record<SpacingKey | 'xs', BreakpointConfig>> &
 	React.ComponentPropsWithoutRef<'div'>
@@ -145,7 +163,13 @@ function GridItem({
 
 	return (
 		<StyledGridItem
-			{...{ xs, sm, md, lg, xl, ...containerContext, ...otherProps }}
+			$xs={xs}
+			$sm={sm}
+			$md={md}
+			$lg={lg}
+			$xl={xl}
+			{...containerContext}
+			{...otherProps}
 		>
 			{children}
 		</StyledGridItem>
