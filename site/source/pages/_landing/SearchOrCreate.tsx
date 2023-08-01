@@ -81,13 +81,13 @@ export default function SearchOrCreate() {
 						</>
 					) : (
 						<>
-							<H3 as="h2">
-								<Trans>Rechercher votre entreprise</Trans>{' '}
-							</H3>
-							<Body>
-								Pour accéder à nos simulateurs les plus pertinents pour votre
-								activité
-							</Body>
+							<Trans i18nKey="landing.searchcompany">
+								<H3 as="h2">Rechercher votre entreprise </H3>
+								<Body>
+									Pour accéder à nos simulateurs les plus pertinents pour votre
+									activité
+								</Body>
+							</Trans>
 							<CompanySearchField
 								onSubmit={handleCompanySubmit}
 								forceTheme="dark"

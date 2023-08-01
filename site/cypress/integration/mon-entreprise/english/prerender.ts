@@ -86,7 +86,7 @@ describe('Test prerender', function () {
 			{
 				path: '',
 				test: () => {
-					cy.contains('The official tools for entrepreneurs')
+					cy.contains('Official tools for entrepreneurs')
 
 					cy.contains('Search for your company')
 					cy.contains('label', 'Company name, SIREN or SI')

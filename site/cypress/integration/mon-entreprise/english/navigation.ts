@@ -69,7 +69,7 @@ describe(`Navigation to income simulator using company name (${
 		}).as('search')
 
 		cy.contains(
-			fr ? 'Rechercher votre entreprise ' : 'Search for your company '
+			fr ? 'Rechercher votre entreprise ' : 'Find your company '
 		).click()
 
 		cy.get('input[data-test-id="company-search-input"]')
@@ -96,7 +96,7 @@ describe(`Navigation to income simulator using company name (${
 		}).as('search')
 
 		cy.contains(
-			fr ? 'Rechercher votre entreprise ' : 'Search for your company '
+			fr ? 'Rechercher votre entreprise ' : 'Find your company '
 		).click()
 
 		cy.get('input[data-test-id="company-search-input"]')

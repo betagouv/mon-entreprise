@@ -59,7 +59,7 @@ export const runSimulateurTest = (simulateur) => {
 
 		it('should allow to navigate to a documentation page', function () {
 			cy.get(inputSelector).first().type('{selectall}2000')
-			cy.contains(fr ? 'Cotisations' : "Contributions").click()
+			cy.contains(fr ? 'Cotisations' : 'Contributions').click()
 			cy.location().should((loc) => {
 				expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations.*/)
 			})

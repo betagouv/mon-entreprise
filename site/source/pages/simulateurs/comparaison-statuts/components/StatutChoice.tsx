@@ -2,6 +2,7 @@ import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 
+import { ExplicableRule } from '@/components/conversation/Explicable'
 import { StatutType, TAG_DATA } from '@/components/StatutTag'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -121,6 +122,7 @@ function StatutBloc({
 					}).nodeValue
 						? t('Avec ACRE')
 						: t('Option ACRE non activée')}
+					<ExplicableRule dottedName="dirigeant . exonérations . ACRE" />
 				</Li>
 			</Ul>
 		</StatusCard>

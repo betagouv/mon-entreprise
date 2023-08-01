@@ -67,16 +67,18 @@ function ComparateurStatutsUI() {
 
 	return (
 		<>
-			<Message type="secondary" icon={<Emoji emoji="✨" />} border={false}>
-				<Body>
-					Découvrez quel statut est le{' '}
-					<Strong>plus adapté pour votre activité</Strong> grâce au{' '}
-					<Link to={absoluteSitePaths.assistants['choix-du-statut'].index}>
-						nouvel assistant au choix du statut
-					</Link>{' '}
-					!
-				</Body>
-			</Message>
+			<Trans i18nKey="comparaisonRégimes.notif">
+				<Message type="secondary" icon={<Emoji emoji="✨" />} border={false}>
+					<Body>
+						Découvrez quel statut est le{' '}
+						<Strong>plus adapté pour votre activité</Strong> grâce au{' '}
+						<Link to={absoluteSitePaths.assistants['choix-du-statut'].index}>
+							nouvel assistant au choix du statut
+						</Link>{' '}
+						!
+					</Body>
+				</Message>
+			</Trans>
 			<Intro>
 				<Trans i18nKey="comparaisonRégimes.description">
 					Lorsque vous créez votre entreprise, le choix du statut juridique va{' '}
