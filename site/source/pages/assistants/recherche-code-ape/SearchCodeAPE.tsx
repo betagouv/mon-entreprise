@@ -77,12 +77,14 @@ interface SearchCodeApeProps {
 	disabled?: boolean
 	hideGuichetUnique?: boolean
 	onCodeAPESelected?: (codeAPE: string) => void
+	trackSearch?: boolean
 }
 
 export default function SearchCodeAPE({
 	disabled,
 	hideGuichetUnique = false,
 	onCodeAPESelected,
+	trackSearch = false,
 }: SearchCodeApeProps) {
 	const { t } = useTranslation()
 	const [searchQuery, setSearchQuery] = usePersistingState<string>(
@@ -236,7 +238,7 @@ export default function SearchCodeAPE({
 			)}
 			{list.length > 0 && (
 				<FromTop>
-					<TrackPage name="recherche" />
+					{trackSearch && <TrackPage name="recherche" />}
 					<StyledRadioCardGroup
 						value={selected}
 						onChange={setSelected}

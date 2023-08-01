@@ -686,12 +686,6 @@ gérer:
         l’embauche d’un nouveau salarié
       cta: Voir la liste des démarches
       title: "Découvrir les démarches d’embauche "
-    sécuritéSociale:
-      aria-label: Comprendre la sécurité sociale, Voir la vidéo
-      body: A quoi servent les cotisations sociales ? Le point sur le système de
-        protection sociale dont bénéficient tous les travailleurs en France.
-      cta: Voir la vidéo
-      title: Comprendre la sécurité sociale
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
@@ -983,8 +977,8 @@ pages:
       title: "Quel code APE pour mon activité ? "
   choix-statut:
     meta:
-      description: "SASU, EURL, auto-entrepreneur, EIRL : choisissez le statut qui
-        vous convient le mieux grâce à cet assistant"
+      description: "SASU, EURL, auto-entrepreneur, entreprise individuelle : trouvez
+        le statut qui vous convient le mieux"
       title: Aide au choix du statut juridique
     shortname: Assistant statut juridique
     title: Choisir votre statut
@@ -1325,7 +1319,7 @@ pages:
       title: Simulateur de revenus pour professions libérales Cipav
     comparaison:
       meta:
-        description: Auto-entrepreneur, EI ou SASU ? Simulez les différences de
+        description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
         title: Comparateur de statut juridique
       shortname: Comparaison des statuts

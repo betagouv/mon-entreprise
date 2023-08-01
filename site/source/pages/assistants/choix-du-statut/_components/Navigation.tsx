@@ -37,7 +37,7 @@ export default function Navigation({
 
 	return (
 		<>
-			<TrackPage name={currentStep} />
+			<TrackPage chapter3="pas_a_pas" name={currentStep} />
 			<Spacing xs />
 			<StyledNavigation>
 				<Grid container spacing={2}>

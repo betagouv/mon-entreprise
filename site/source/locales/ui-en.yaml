@@ -652,12 +652,6 @@ gérer:
         employee
       cta: See the list of procedures
       title: "Find out about the hiring process "
-    sécuritéSociale:
-      aria-label: Understanding social security, Watch the video
-      body: What are social security contributions used for? An update on the social
-        protection system that benefits all workers in France.
-      cta: Watch the video
-      title: Understanding social security
 iframe:
   description: Tools for developers
   title: Integrate a simulator
@@ -929,8 +923,8 @@ pages:
       title: "Which APE code for my business? "
   choix-statut:
     meta:
-      description: "SASU, EURL, auto-entrepreneur, EIRL: choose the status that suits
-        you best with this wizard"
+      description: "SASU, EURL, auto-entrepreneur, sole proprietorship: find the
+        status that suits you best"
       title: Help in choosing legal status
     shortname: Legal status assistant
     title: Choose your status

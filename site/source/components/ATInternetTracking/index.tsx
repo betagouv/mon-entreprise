@@ -23,8 +23,8 @@ export function toAtString(string: string): string {
 type Chapter1 =
 	| 'simulateurs'
 	| 'informations'
-	| 'creer'
 	| 'gerer'
+	| 'assistants'
 	| 'documentation'
 	| 'integration'
 	| 'navigation'
