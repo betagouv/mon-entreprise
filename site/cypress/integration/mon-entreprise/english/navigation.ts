@@ -82,7 +82,7 @@ describe(`Navigation to income simulator using company name (${
 			.parentsUntil('li')
 			.find('button')
 			.click()
-		cy.contains(fr ? 'Lancer le simulateur' : 'Launch the simulator').click()
+		cy.contains('SAS(U)').click()
 		cy.location().should((loc) => {
 			expect(loc.pathname).to.match(/sasu$/)
 		})
@@ -100,7 +100,7 @@ describe(`Navigation to income simulator using company name (${
 		).click()
 
 		cy.get('input[data-test-id="company-search-input"]')
-			.type('johan girod')
+			.type('jeremy rialland')
 			.wait('@search')
 
 		cy.contains('493096580')

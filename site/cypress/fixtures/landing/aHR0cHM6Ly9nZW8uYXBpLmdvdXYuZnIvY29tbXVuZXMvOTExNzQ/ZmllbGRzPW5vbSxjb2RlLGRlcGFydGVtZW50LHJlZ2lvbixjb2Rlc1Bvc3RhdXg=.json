@@ -1,0 +1,15 @@
+{
+  "nom": "Corbeil-Essonnes",
+  "code": "91174",
+  "codesPostaux": [
+    "91100"
+  ],
+  "departement": {
+    "code": "91",
+    "nom": "Essonne"
+  },
+  "region": {
+    "code": "11",
+    "nom": "Île-de-France"
+  }
+}
