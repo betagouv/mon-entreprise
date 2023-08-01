@@ -159,15 +159,31 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
           alors: 1.2588 €/an/point
   note: La revalorisation de la valeur du point a lieu au 1er novembre, et non au 1er janvier.
   références:
-    service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
-    'Agirc-Arrco : Paramètres et données statistiques': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
+    'Retraite complémentaire dans le privé : Agirc-Arrco': https://www.service-public.fr/particuliers/vosdroits/F15396
+    'Points de retraite : comment sont-ils obtenus ?': https://www.agirc-arrco.fr/ma-retraite/comprendre-ma-retraite/points-de-retraite-comment-sont-ils-obtenus/
+    Calculer les cotisations de retraite complémentaire: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire
+    'Le calcul des points cotisés Agirc-Arrco': https://www.agirc-arrco.fr/mes-services-particuliers/les-experts-retraite/parole-experts/le-calcul-des-points-cotises-agirc-arrco/
   avec:
     points acquis:
-      note: |
-        On se base sur une valeur constante du point, hors cette dernière change d'année en année, cette valeure est donc une grossière approximation
-      valeur: salarié . cotisations . retraite complémentaire / valeur d'acquisition
-      références:
-        service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F15396
+      description: |
+        Tout au long de votre carrière, vous obtenez des points de retraite via le versement de cotisations de retraite obligatoires. C’est le nombre total des points acquis qui déterminera le montant annuel de votre future retraite complémentaire.
+
+        Il est donc important de bien comprendre comment ces points de retraite sont attribués.
+
+        #### Formule de calcul du nombre de points
+
+        **Nombre de points** = **Assiette des cotisations** × **Taux de calcul des points** / **Valeur d’achat d’un point**
+
+        #### Le taux de calcul des points, c’est quoi ?
+
+        C’est le pourcentage appliqué sur l’assiette des cotisations pour calculer les points. 
+
+        A noter : il sert aussi de base au calcul des cotisations payées par l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer les cotisations à payer. 
+
+        Le taux qui apparait sur le bulletin de salaire et qui est réparti entre le salarié et l’employeur est donc supérieur au taux d’acquisition des points. Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des points.
+
+      valeur: (salarié . cotisations . retraite complémentaire / 1.27) / valeur d'acquisition
+      note: Le taux de cotisation de retraite complémentaire étant 127% du taux de calcul des points, il faut diviser par 1.27 le montant des cotisations versées par le salarié pour obtenir le montant à utiliser pour le calcul des points.
 
     valeur d'acquisition:
       variations:

@@ -120,7 +120,7 @@ export default function Associés() {
 						<Spacing md />
 						<Message type="secondary" border={false}>
 							<H4 id="question3">
-								<Trans i18nKey="choix-statut.associés.question3">
+								<Trans i18nKey="choix-statut.associés.question3.label">
 									Préférez-vous exercer votre activité sous la forme d'une
 									société uniquement ?
 									<HelpButtonWithPopover

@@ -73,7 +73,7 @@ export default function Association() {
 						description={
 							associationPossible ? (
 								t(
-									'choix-statut.association.question.non-lucratif.description',
+									'choix-statut.association.question.non-lucratif.description.label',
 									'Par exemple, en créant une association'
 								)
 							) : (

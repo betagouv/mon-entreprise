@@ -97,7 +97,7 @@ export default function DétailsActivité() {
 					/>
 				)}
 				<Navigation
-					currentStepIsComplete={!!codeGuichet && !estNonDisponible(guichet)}
+					currentStepIsComplete={!!guichet && !estNonDisponible(guichet)}
 					nextStepLabel={
 						guichetEntries?.length === 1 &&
 						t('créer.activité-détails.next1', 'Continuer avec cette activité')
