@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 1`] = `
 "dirigeant . indépendant . cotisations et contributions: 1221
@@ -9,6 +9,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 36
 protection sociale . retraite . complémentaire: 24
 protection sociale . retraite . trimestres: 3
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -21,6 +22,7 @@ impôt . montant: 747
 protection sociale . retraite . base: 144
 protection sociale . retraite . complémentaire: 95
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -121,6 +123,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 71
 protection sociale . retraite . complémentaire: 5
 protection sociale . retraite . trimestres: 3
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -155,6 +158,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 72
 protection sociale . retraite . complémentaire: 48
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -189,6 +193,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 2
 protection sociale . retraite . trimestres: 3
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -201,6 +206,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 5
 protection sociale . retraite . trimestres: 3
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -213,6 +219,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 7
 protection sociale . retraite . trimestres: 3
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -225,6 +232,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 10
 protection sociale . retraite . trimestres: 3
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -237,6 +245,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 36
 protection sociale . retraite . complémentaire: 24
 protection sociale . retraite . trimestres: 3
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -249,6 +258,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 72
 protection sociale . retraite . complémentaire: 48
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -316,6 +326,7 @@ impôt . montant: 5564
 protection sociale . retraite . base: 279
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -328,6 +339,7 @@ impôt . montant: 5443
 protection sociale . retraite . base: 276
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -340,6 +352,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 111
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
@@ -440,6 +453,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 106
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
@@ -452,6 +466,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 35
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 3
+
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV"
 `;
 
@@ -464,6 +479,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 106
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
@@ -476,6 +492,7 @@ impôt . montant: 0
 protection sociale . retraite . base: 106
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
@@ -488,5 +505,6 @@ impôt . montant: 0
 protection sociale . retraite . base: 106
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
+
 Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;

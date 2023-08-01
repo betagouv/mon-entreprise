@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-salarié > CCN HCR 1`] = `
 "salarié . contrat . salaire brut: 2500
@@ -6,6 +6,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3421
 salarié . rémunération . net . payé après impôt: 1872
 salarié . rémunération . net . à payer avant impôt: 1983
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
@@ -15,6 +16,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3779
 salarié . rémunération . net . payé après impôt: 1822
 salarié . rémunération . net . à payer avant impôt: 1931
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
@@ -24,6 +26,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3762
 salarié . rémunération . net . payé après impôt: 1824
 salarié . rémunération . net . à payer avant impôt: 1933
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
@@ -33,6 +36,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3811
 salarié . rémunération . net . payé après impôt: 1837
 salarié . rémunération . net . à payer avant impôt: 1949
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
@@ -42,6 +46,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3306
 salarié . rémunération . net . payé après impôt: 1898
 salarié . rémunération . net . à payer avant impôt: 2006
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
@@ -51,6 +56,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3496
 salarié . rémunération . net . payé après impôt: 1943
 salarié . rémunération . net . à payer avant impôt: 2058
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;
 
@@ -60,6 +66,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3771
 salarié . rémunération . net . payé après impôt: 2039
 salarié . rémunération . net . à payer avant impôt: 2155
+
 Notifications affichées : salarié . contrat . CDD . information, salarié . convention collective . contrôle décharge"
 `;
 
@@ -69,6 +76,7 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 905
 salarié . rémunération . net . payé après impôt: 595
 salarié . rémunération . net . à payer avant impôt: 595
+
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle, salarié . convention collective . contrôle décharge"
 `;
 
@@ -78,5 +86,6 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1801
 salarié . rémunération . net . payé après impôt: 1393
 salarié . rémunération . net . à payer avant impôt: 1401
+
 Notifications affichées : salarié . convention collective . contrôle décharge"
 `;

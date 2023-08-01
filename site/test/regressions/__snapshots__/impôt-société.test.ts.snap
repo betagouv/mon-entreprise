@@ -1,8 +1,9 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-impot-société > bénéfices 1`] = `
 "entreprise . imposition . IS . contribution sociale: 0
 entreprise . imposition . IS . montant: 0
+
 Notifications affichées : entreprise . imposition . IS . information sur le report de déficit"
 `;
 

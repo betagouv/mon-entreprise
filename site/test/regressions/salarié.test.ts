@@ -2,7 +2,7 @@ import { expect, it } from 'vitest'
 
 import { configSalarié } from '@/pages/simulateurs/salarié/simulationConfig'
 
-import employeeSituations from './simulations-salarié.yaml'
+import employeeSituations from './salarié.yaml'
 import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-salarié', () => {
