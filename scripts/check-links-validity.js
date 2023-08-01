@@ -9,7 +9,7 @@ dotenv.config()
 
 // Extrait la liste des liens référencés dans la base de code
 const { stdout, stderr } = await promisify(exec)(
-	"rg -oNI -e 'https?://([\\w/_\\-?=%+@]|\\.\\w)+' -g '*.{yaml,ts,tsx,js,jsx}' -g '!*-en.yaml' ./ | sort | uniq"
+	"rg -oNI -e 'https?://([\\w/_\\-?=%+@]|\\.\\w)+' -g '*.{yaml,ts,tsx,js,jsx}' -g '!*-en.yaml' ./ | sort | uniq",
 )
 if (stderr) {
 	throw new Error(stderr)
@@ -74,8 +74,11 @@ function sleep(ms) {
 }
 
 await Promise.allSettled(
-	Array.from({ length: simultaneousItems }).map(processNextQueueItem)
+	Array.from({ length: simultaneousItems }).map(processNextQueueItem),
 )
+
+console.log('Terminé')
+
 if (detectedErrors.length > 0) {
 	// Formattage spécifique pour récupérer le résultat avec l'action Github
 	if (process.argv.slice(2).includes('--ci')) {
@@ -97,13 +100,11 @@ if (detectedErrors.length > 0) {
 				.join('<br />')
 		core.setOutput('comment', format(message))
 	} else if (detectedErrors) {
-		console.log(
+		core.setFailed(
 			'Liens invalides :' +
 				detectedErrors
 					.map(({ status, link }) => `\n- [${status}] ${link}`)
-					.join('')
+					.join(''),
 		)
 	}
-
-	console.log('Terminé')
 }
