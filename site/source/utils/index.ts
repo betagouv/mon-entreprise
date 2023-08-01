@@ -137,13 +137,16 @@ export function groupBy<E, G extends string>(
 	arr: Array<E>,
 	callback: (elm: E, index: number, array: Array<E>) => G
 ): Record<G, Array<E>> {
-	return arr.reduce((result, item, currentIndex) => {
-		const key = callback(item, currentIndex, arr)
-		result[key] = result[key] || []
-		result[key].push(item)
+	return arr.reduce(
+		(result, item, currentIndex) => {
+			const key = callback(item, currentIndex, arr)
+			result[key] = result[key] || []
+			result[key].push(item)
 
-		return result
-	}, {} as Record<G, Array<E>>)
+			return result
+		},
+		{} as Record<G, Array<E>>
+	)
 }
 
 export function isIterable<T>(obj: unknown): obj is Iterable<T> {
@@ -159,7 +162,7 @@ export function isIterable<T>(obj: unknown): obj is Iterable<T> {
  */
 export const getValueFrom = <
 	T extends Record<string | number | symbol, unknown>,
-	K extends string | number | symbol
+	K extends string | number | symbol,
 >(
 	obj: T,
 	key: K

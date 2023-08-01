@@ -190,5 +190,7 @@ export const CardContainer = styled.div<{
 			: css`
 					${spacings.md} ${spacings.lg}
 			  `};
-	transition: box-shadow 0.15s, background-color 0.15s;
+	transition:
+		box-shadow 0.15s,
+		background-color 0.15s;
 `

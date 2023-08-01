@@ -386,7 +386,8 @@ function IntegrationCode({
 				background: ${darkMode ? '#484848' : '#f8f8f8'};
 				overflow: auto;
 				line-height: 1.6em;
-				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05),
+				box-shadow:
+					0 1px 1px rgba(0, 0, 0, 0.05),
 					-1px 1px 1px rgba(0, 0, 0, 0.02);
 
 				em {

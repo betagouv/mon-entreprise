@@ -30,10 +30,14 @@ const StyledSpan = styled.span<StyledProps>`
 	position: relative;
 	left: ${({ checked }) =>
 		checked ? 'calc(100% - 2 * (var(--switch-size) / 5))' : '0'};
-	transition: left 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	transition:
+		left 0.15s ease-in-out,
+		box-shadow 0.15s ease-in-out;
 	padding: calc(var(--switch-size) / 5);
 	border-radius: inherit;
-	box-shadow: 0px 3px 1px 0px #0000000f, 0px 3px 8px 0px #00000026;
+	box-shadow:
+		0px 3px 1px 0px #0000000f,
+		0px 3px 8px 0px #00000026;
 	background-color: #ffffff;
 	color: inherit;
 `

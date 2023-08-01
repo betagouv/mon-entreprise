@@ -11,7 +11,7 @@ export function useQuestionList(): [
 	questions: Array<RuleNode & { dottedName: DottedName }>,
 	onQuestionAnswered: (
 		dottedName: DottedName
-	) => (value?: PublicodesExpression) => void
+	) => (value?: PublicodesExpression) => void,
 ] {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const nextQuestions = useNextQuestions()

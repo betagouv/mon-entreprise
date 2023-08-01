@@ -106,7 +106,7 @@ function useAssociationSelection(): [
 	RadioOption,
 	(value: RadioOption) => void,
 	() => void,
-	boolean
+	boolean,
 ] {
 	const [{ state: currentSelection }, setCurrentSelection] =
 		usePersistingState<{ state: RadioOption }>('choix-statut:association', {

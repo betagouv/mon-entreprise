@@ -34,9 +34,12 @@ const InfoBulleText = styled.span`
 	font-family: 'Roboto';
 	background-color: white;
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
-	transition: opacity 0.2s, transform 0.2s;
+	transition:
+		opacity 0.2s,
+		transform 0.2s;
 	opacity: 0;
-	box-shadow: 0px 2px 4px -1px rgba(41, 117, 209, 0.2),
+	box-shadow:
+		0px 2px 4px -1px rgba(41, 117, 209, 0.2),
 		0px 4px 5px 0px rgba(41, 117, 209, 0.14),
 		0px 1px 10px 0px rgba(41, 117, 209, 0.12);
 	pointer-events: none;

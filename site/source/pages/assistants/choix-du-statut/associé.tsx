@@ -220,7 +220,7 @@ function useAssociésSelection(): [
 	state: State,
 	setState: (value: Partial<State>) => void,
 	reset: () => void,
-	isComplete: boolean
+	isComplete: boolean,
 ] {
 	const [state, setState] = usePersistingState<State>('choix-statut:associés', {
 		question1: undefined,

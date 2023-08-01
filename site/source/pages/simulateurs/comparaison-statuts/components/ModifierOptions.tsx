@@ -39,9 +39,8 @@ const ModifierOptions = ({
 		DOTTEDNAME_SOCIETE_IMPOT
 	).nodeValue
 
-	const autoEntrepreneurEngine = namedEngines.find(
-		({ name }) => name === 'AE'
-	)?.engine
+	const autoEntrepreneurEngine = namedEngines.find(({ name }) => name === 'AE')
+		?.engine
 	const defaultValueVersementLiberatoire = autoEntrepreneurEngine?.evaluate(
 		DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE
 	).nodeValue

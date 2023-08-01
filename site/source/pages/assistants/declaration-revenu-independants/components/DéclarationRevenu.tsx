@@ -309,10 +309,9 @@ const StyledCase = styled.span`
 	border-top: none;
 	background-color: white;
 	color: inherit;
-	padding: ${({ theme }) =>
-		css`
-			${theme.spacings.xxs} ${theme.spacings.sm}
-		`};
+	padding: ${({ theme }) => css`
+		${theme.spacings.xxs} ${theme.spacings.sm}
+	`};
 	display: inline-block;
 	width: 5.5rem;
 	text-align: right;

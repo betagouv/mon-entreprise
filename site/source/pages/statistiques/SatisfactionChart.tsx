@@ -25,7 +25,7 @@ import { SatisfactionLevel } from './types'
 
 export const SatisfactionStyle: [
 	SatisfactionLevel,
-	{ emoji: string; color: string }
+	{ emoji: string; color: string },
 ][] = [
 	[SatisfactionLevel.Mauvais, { emoji: '🙁', color: '#D3675F' }],
 	[SatisfactionLevel.Moyen, { emoji: '😐', color: '#9C860D' }],
