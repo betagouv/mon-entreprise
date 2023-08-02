@@ -3,13 +3,13 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 
 import { Appear } from '@/components/ui/animate'
+import { Chip } from '@/design-system'
 import { Button, HelpButtonWithPopover } from '@/design-system/buttons'
 import { ChevronIcon } from '@/design-system/icons'
-import { Strong } from '@/design-system/typography'
-import { H4, H5 } from '@/design-system/typography/heading'
+import { H4, H5, H6 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
 import GuichetInfo from './GuichetInfo'
 
@@ -32,15 +32,15 @@ export const Result = ({ item, hideGuichetUnique }: ResultProps) => {
 
 	return (
 		<>
-			<H4 as="h3">{title}</H4>
-			<Body
+			<H5 as="h3">{title}</H5>
+			<SmallBody
 				css={`
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
 				`}
 			>
-				<Strong>Code APE : {codeApe}</Strong>
+				<Chip>Code : {codeApe}</Chip>
 				<Button
 					size="XXS"
 					light
@@ -53,12 +53,12 @@ export const Result = ({ item, hideGuichetUnique }: ResultProps) => {
 					{!open ? t('En savoir plus') : t('Replier')}&nbsp;
 					<StyledChevron aria-hidden $isOpen={open} />
 				</Button>
-			</Body>
+			</SmallBody>
 			{open && (
 				<Appear id={`info-${codeApe}`}>
 					{contenuCentral.length ? (
 						<>
-							<H5 as="h4">Contenu central de cette activité :</H5>
+							<H6 as="h4">Contenu central de cette activité :</H6>
 							<Ul>
 								{contenuCentral.map((contenu, i) => (
 									<Li key={i}>{contenu}</Li>
@@ -69,7 +69,7 @@ export const Result = ({ item, hideGuichetUnique }: ResultProps) => {
 
 					{contenuAnnexe.length ? (
 						<>
-							<H5 as="h4">Contenu annexe de cette activité :</H5>
+							<H6 as="h4">Contenu annexe de cette activité :</H6>
 							<Ul>
 								{contenuAnnexe.map((contenu, i) => (
 									<Li key={i}>{contenu}</Li>
@@ -80,7 +80,7 @@ export const Result = ({ item, hideGuichetUnique }: ResultProps) => {
 
 					{contenuExclu.length ? (
 						<>
-							<H5 as="h4">Contenu exclu de cette activité :</H5>
+							<H6 as="h4">Contenu exclu de cette activité :</H6>
 							<Ul>
 								{contenuExclu.map((contenu, i) => (
 									<Li key={i}>{contenu}</Li>

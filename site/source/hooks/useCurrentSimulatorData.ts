@@ -17,15 +17,15 @@ export const useCurrentSimulatorData = () => {
 
 	const entries = Object.entries(simulatorsData)
 	const [key, data] =
-		(!isEmbedded
-			? entries
-					.sort((a, b) => b[1].path.length - a[1].path.length)
-					.find(([, data]) => pathname.startsWith(data.path))
-			: entries
-					.sort((a, b) => b[1].iframePath.length - a[1].iframePath.length)
-					.find(([, data]) =>
-						pathname.startsWith('/iframes/' + data.iframePath)
-					)) ?? []
+		// Find the simulator with classic path
+		entries
+			.sort((a, b) => b[1].path.length - a[1].path.length)
+			.find(([, data]) => pathname.startsWith(data.path)) ??
+		// Find the simulator with iframe path
+		entries
+			.sort((a, b) => b[1].iframePath.length - a[1].iframePath.length)
+			.find(([, data]) => pathname.startsWith('/iframes/' + data.iframePath)) ??
+		[]
 
 	return {
 		key: key as keyof typeof simulatorsData,

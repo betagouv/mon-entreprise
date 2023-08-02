@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { Button } from '@/design-system/buttons'
@@ -20,6 +20,7 @@ export default function Navigation({
 	onPreviousStep, // TODO : prefer resetOnLeave
 	assistantIsCompleted = false,
 	children,
+	small = false,
 }: {
 	currentStepIsComplete: boolean
 	nextStepLabel?: false | string
@@ -27,6 +28,7 @@ export default function Navigation({
 	onPreviousStep?: () => void
 	assistantIsCompleted?: false | Statuts
 	children?: React.ReactNode
+	small?: boolean
 }) {
 	const { t } = useTranslation()
 	const nextStep = useNextStep()
@@ -38,8 +40,8 @@ export default function Navigation({
 	return (
 		<>
 			<TrackPage chapter3="pas_a_pas" name={currentStep} />
-			<Spacing xs />
-			<StyledNavigation>
+			{!small && <Spacing xs />}
+			<StyledNavigation $small={small}>
 				<Grid container spacing={2}>
 					{children && (
 						<Grid item xs={12}>
@@ -49,6 +51,7 @@ export default function Navigation({
 					<Grid item>
 						<Button
 							light
+							size={small ? 'XS' : 'MD'}
 							color={'secondary'}
 							to={choixDuStatutPath[previousStep]}
 							onPress={onPreviousStep}
@@ -59,6 +62,7 @@ export default function Navigation({
 					{nextStep && !assistantIsCompleted && (
 						<Grid item>
 							<Button
+								size={small ? 'XS' : 'MD'}
 								onPress={onNextStep}
 								to={choixDuStatutPath[nextStep]}
 								isDisabled={!currentStepIsComplete}
@@ -86,17 +90,21 @@ export default function Navigation({
 					)}
 				</Grid>
 			</StyledNavigation>
-			<Shadow />
+			{!small && <Shadow />}
 		</>
 	)
 }
 
-const StyledNavigation = styled.div`
+const StyledNavigation = styled.div<{ $small: boolean }>`
 	display: flex;
 	align-items: center;
-	height: 110px;
+	${({ $small }) =>
+		!$small &&
+		css`
+			height: 110px;
+		`}
 	position: sticky;
-	padding: ${({ theme }) => theme.spacings.lg} 1rem;
+	padding: ${({ theme, $small }) => theme.spacings[$small ? 'sm' : 'lg']} 1rem;
 	margin: 0 -1rem;
 	bottom: 0;
 	background: ${({ theme }) =>

@@ -9,30 +9,17 @@ import {
 } from '@react-aria/overlays'
 import { AriaDialogProps } from '@react-types/dialog'
 import FocusTrap from 'focus-trap-react'
-import React, { RefObject, useEffect, useRef, useState } from 'react'
+import React, { RefObject, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css, keyframes } from 'styled-components'
 
 import { Grid } from '@/design-system/layout'
-import { getIframeOffset, wrapperDebounceEvents } from '@/utils'
+import { wrapperDebounceEvents } from '@/utils'
 
 import { FocusStyle } from '../global-style'
+import { useIFrameOffset } from '../hooks'
 import { Container } from '../layout'
 import { H2 } from '../typography/heading'
-
-const useIFrameOffset = () => {
-	const [offsetTop, setOffset] = useState<number | null | undefined>(
-		window.parent !== window ? undefined : null
-	)
-	useEffect(() => {
-		if (window.parent === window) {
-			return
-		}
-		void getIframeOffset().then(setOffset)
-	}, [])
-
-	return offsetTop
-}
 
 export default function Popover(
 	props: OverlayProps &

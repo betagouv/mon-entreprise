@@ -78,6 +78,7 @@ interface SearchCodeApeProps {
 	hideGuichetUnique?: boolean
 	onCodeAPESelected?: (codeAPE: string) => void
 	trackSearch?: boolean
+	underSelection?: React.ReactNode
 }
 
 export default function SearchCodeAPE({
@@ -85,6 +86,7 @@ export default function SearchCodeAPE({
 	hideGuichetUnique = false,
 	onCodeAPESelected,
 	trackSearch = false,
+	underSelection,
 }: SearchCodeApeProps) {
 	const { t } = useTranslation()
 	const [searchQuery, setSearchQuery] = usePersistingState<string>(
@@ -250,18 +252,23 @@ export default function SearchCodeAPE({
 					>
 						{list.slice(0, 25).map(({ item, debug }) => {
 							return (
-								<RadioCardSkeleton
-									isDisabled={disabled}
-									value={item.codeApe}
-									key={item.codeApe}
-									visibleRadioAs="div"
-								>
-									<Result
-										item={item}
-										debug={debug}
-										hideGuichetUnique={hideGuichetUnique}
-									/>
-								</RadioCardSkeleton>
+								<>
+									<RadioCardSkeleton
+										isDisabled={disabled}
+										value={item.codeApe}
+										key={item.codeApe}
+										visibleRadioAs="div"
+									>
+										<Result
+											item={item}
+											debug={debug}
+											hideGuichetUnique={hideGuichetUnique}
+										/>
+									</RadioCardSkeleton>
+									{underSelection && selected === item.codeApe && (
+										<FromTop>{underSelection}</FromTop>
+									)}
+								</>
 							)
 						})}
 					</StyledRadioCardGroup>
