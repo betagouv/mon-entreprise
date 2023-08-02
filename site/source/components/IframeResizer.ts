@@ -1,22 +1,15 @@
 import { useEffect } from 'react'
 
-/**
- * @deprecated Prefer the use of useIsEmbedded() if possible  */
-export function isIframe() {
-	try {
-		return window.self !== window.top
-	} catch (e) {
-		return true
-	}
-}
+import { useIsEmbedded } from '../hooks/useIsEmbedded'
 
-export function useIframeResizer() {
+export function IframeResizer() {
+	const isEmbedded = useIsEmbedded()
 	useEffect(() => {
 		// The code below communicate with the iframe.js script on a host site
 		// to automatically resize the iframe when its inner content height
 		// change.
 
-		if (!isIframe()) {
+		if (!isEmbedded) {
 			return
 		}
 
@@ -28,5 +21,7 @@ export function useIframeResizer() {
 		observer.observe(window.document.body)
 
 		return () => observer.disconnect()
-	}, [])
+	}, [isEmbedded])
+
+	return null
 }

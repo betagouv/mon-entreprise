@@ -86,7 +86,7 @@ export default function SimulateurOrAssistantPage() {
 			{title && !inIframe && (
 				<>
 					<H1>
-						<StyledSpan>{title}</StyledSpan>
+						<StyledSpan>{title}</StyledSpan>{' '}
 						{year && (
 							<Chip type="secondary" icon={<Emoji emoji="📆" />}>
 								{year}

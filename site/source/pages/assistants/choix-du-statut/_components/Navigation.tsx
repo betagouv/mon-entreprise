@@ -42,13 +42,19 @@ export default function Navigation({
 			<TrackPage chapter3="pas_a_pas" name={currentStep} />
 			{!small && <Spacing xs />}
 			<StyledNavigation $small={small}>
-				<Grid container spacing={2}>
+				<Grid
+					container
+					spacing={2}
+					css={`
+						flex-wrap: wrap-reverse;
+					`}
+				>
 					{children && (
 						<Grid item xs={12}>
 							{children}
 						</Grid>
 					)}
-					<Grid item>
+					<Grid item xs={12} sm="auto">
 						<Button
 							light
 							size={small ? 'XS' : 'MD'}
@@ -60,7 +66,7 @@ export default function Navigation({
 						</Button>
 					</Grid>
 					{nextStep && !assistantIsCompleted && (
-						<Grid item>
+						<Grid item xs={12} sm="auto">
 							<Button
 								size={small ? 'XS' : 'MD'}
 								onPress={onNextStep}
@@ -76,7 +82,7 @@ export default function Navigation({
 						</Grid>
 					)}
 					{assistantIsCompleted && (
-						<Grid item>
+						<Grid item xs={12} sm="auto">
 							<Button
 								to={choixDuStatutPath['résultat'][assistantIsCompleted]}
 								aria-label={t('Suivant, voir le résultat')}
@@ -101,7 +107,7 @@ const StyledNavigation = styled.div<{ $small: boolean }>`
 	${({ $small }) =>
 		!$small &&
 		css`
-			height: 110px;
+			height: fit-content;
 		`}
 	position: sticky;
 	padding: ${({ theme, $small }) => theme.spacings[$small ? 'sm' : 'lg']} 1rem;
@@ -117,7 +123,7 @@ const StyledNavigation = styled.div<{ $small: boolean }>`
 const Shadow = styled.div`
 	z-index: 1;
 	position: sticky;
-	bottom: 35px;
+	bottom: 30px;
 	transform: translateY(-200%);
 	clip-path: inset(-5px 0px -5px -5px);
 	height: 25px;

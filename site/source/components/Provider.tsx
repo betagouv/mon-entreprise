@@ -15,15 +15,14 @@ import DesignSystemThemeProvider from '@/design-system/root'
 import { H1, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { useIframeResizer } from '@/hooks/useIframeResizer'
 import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
 
 import { Message } from '../design-system'
 import * as safeLocalStorage from '../storage/safeLocalStorage'
 import { store } from '../store/store'
-import { inIframe } from '../utils'
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
+import { IframeResizer } from './IframeResizer'
 import { ServiceWorker } from './ServiceWorker'
 import { DarkModeProvider } from './utils/DarkModeContext'
 
@@ -40,8 +39,6 @@ export default function Provider({
 	basename,
 	children,
 }: ProviderProps): JSX.Element {
-	useIframeResizer()
-
 	return (
 		<EmbededContextProvider>
 			<DarkModeProvider>
@@ -49,8 +46,8 @@ export default function Provider({
 					<ErrorBoundary showDialog fallback={ErrorFallback}>
 						{!import.meta.env.SSR &&
 							import.meta.env.MODE === 'production' &&
-							'serviceWorker' in navigator &&
-							!inIframe() && <ServiceWorker />}
+							'serviceWorker' in navigator && <ServiceWorker />}
+						<IframeResizer />
 						<OverlayProvider>
 							<ReduxProvider store={store}>
 								<ThemeColorsProvider>

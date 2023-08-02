@@ -6,6 +6,7 @@ import { Appear } from '@/components/ui/animate'
 import { Chip } from '@/design-system'
 import { Button, HelpButtonWithPopover } from '@/design-system/buttons'
 import { ChevronIcon } from '@/design-system/icons'
+import { Grid } from '@/design-system/layout'
 import { H4, H5, H6 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -33,27 +34,34 @@ export const Result = ({ item, hideGuichetUnique }: ResultProps) => {
 	return (
 		<>
 			<H5 as="h3">{title}</H5>
-			<SmallBody
-				css={`
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
-				`}
-			>
-				<Chip>Code : {codeApe}</Chip>
-				<Button
-					size="XXS"
-					light
-					color="secondary"
-					onPress={() => setOpen((x) => !x)}
-					aria-expanded={open}
-					aria-controls={`info-${codeApe}`}
-					aria-label={!open ? t('En savoir plus') : t('Replier')}
+			<SmallBody>
+				<Grid
+					container
+					css={`
+						align-items: center;
+						justify-content: space-between;
+					`}
 				>
-					{!open ? t('En savoir plus') : t('Replier')}&nbsp;
-					<StyledChevron aria-hidden $isOpen={open} />
-				</Button>
+					<Grid item>
+						<Chip>Code : {codeApe}</Chip>
+					</Grid>
+					<Grid item>
+						<Button
+							size="XXS"
+							light
+							color="secondary"
+							onPress={() => setOpen((x) => !x)}
+							aria-expanded={open}
+							aria-controls={`info-${codeApe}`}
+							aria-label={!open ? t('En savoir plus') : t('Replier')}
+						>
+							{!open ? t('En savoir plus') : t('Replier')}&nbsp;
+							<StyledChevron aria-hidden $isOpen={open} />
+						</Button>
+					</Grid>
+				</Grid>
 			</SmallBody>
+
 			{open && (
 				<Appear id={`info-${codeApe}`}>
 					{contenuCentral.length ? (

@@ -8,7 +8,6 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { H5 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
-import { SmallBody } from '@/design-system/typography/paragraphs'
 
 export default function StatutsPossibles() {
 	const engine = useEngine()
@@ -33,10 +32,6 @@ export default function StatutsPossibles() {
 	return (
 		<StyledMessage>
 			<H5 as="h2"> Statuts disponibles</H5>
-			<SmallBody>
-				Les statuts disponibles diffèrent en fonction de l'activité
-				professionnelle que vous exercez
-			</SmallBody>
 
 			<StyledUl noMarker as={FlipMove} typeName="ul">
 				{statuts.map((statut) => (
@@ -51,7 +46,7 @@ const StyledMessage = styled(Message)`
 	padding-top: 2rem;
 	border: none;
 	position: sticky;
-	top: 0;
+	top: 1rem;
 	border-radius: 0.5rem;
 	background: ${({ theme }) =>
 		theme.darkMode
