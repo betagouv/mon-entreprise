@@ -111,7 +111,7 @@ describe(`Navigation to income simulator using company name (${
 		// ask if auto-entrepreneur
 		cy.contains(fr ? 'auto-entrepreneur' : 'auto-entrepreneur')
 		cy.contains(fr ? 'Oui' : 'Yes').click()
-		cy.contains(fr ? 'Lancer le simulateur' : 'Launch the simulator').click()
+		cy.contains(fr ? 'Lancer le simulateur' : 'Launch simulator').click()
 		cy.location().should((loc) => {
 			expect(loc.pathname).to.match(/auto-entrepreneur$/)
 		})
