@@ -15,7 +15,6 @@ import {
 } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
-import { useSitePaths } from '@/sitePaths'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { Merge } from '@/types/utils'
 
@@ -57,7 +56,7 @@ export default function SimulateurOrAssistantPage() {
 		autoloadLastSimulation,
 	})
 	useSearchParamsSimulationSharing()
-	const { absoluteSitePaths } = useSitePaths()
+
 	const trackInfo = {
 		chapter1:
 			typeof tracking !== 'string' && tracking && 'chapter1' in tracking

@@ -7,6 +7,7 @@ import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { resetSimulation, updateSituation } from '@/store/actions/actions'
 
 import SearchCodeAPE from '../recherche-code-ape/SearchCodeAPE'
@@ -17,10 +18,25 @@ export default function RechercheActivité() {
 	const [codeApe, setCodeApe] = useState('')
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
-
+	const isEmbedded = useIsEmbedded()
 	useEffect(() => {
 		dispatch(resetSimulation())
 	}, [])
+
+	const NavigationComponent = (
+		<Navigation
+			small={!!codeApe && isEmbedded}
+			currentStepIsComplete={!!codeApe}
+			onNextStep={() => {
+				dispatch(
+					updateSituation(
+						'entreprise . activités . principale . code APE',
+						`'${codeApe}'`
+					)
+				)
+			}}
+		/>
+	)
 
 	return (
 		<>
@@ -57,18 +73,12 @@ export default function RechercheActivité() {
 					</Trans>
 				}
 			>
-				<SearchCodeAPE hideGuichetUnique onCodeAPESelected={setCodeApe} />
-				<Navigation
-					currentStepIsComplete={!!codeApe}
-					onNextStep={() => {
-						dispatch(
-							updateSituation(
-								'entreprise . activités . principale . code APE',
-								`'${codeApe}'`
-							)
-						)
-					}}
+				<SearchCodeAPE
+					hideGuichetUnique
+					onCodeAPESelected={setCodeApe}
+					underSelection={isEmbedded ? NavigationComponent : null}
 				/>
+				{(!codeApe || !isEmbedded) && NavigationComponent}
 			</Layout>
 		</>
 	)

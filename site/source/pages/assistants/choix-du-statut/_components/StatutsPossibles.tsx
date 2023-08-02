@@ -50,6 +50,8 @@ export default function StatutsPossibles() {
 const StyledMessage = styled(Message)`
 	padding-top: 2rem;
 	border: none;
+	position: sticky;
+	top: 0;
 	border-radius: 0.5rem;
 	background: ${({ theme }) =>
 		theme.darkMode
