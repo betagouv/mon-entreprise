@@ -1,7 +1,10 @@
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
-import Value from '@/components/EngineValue'
+import Value, {
+	WhenAlreadyDefined,
+	WhenNotAlreadyDefined,
+} from '@/components/EngineValue'
 import { CardContainer } from '@/design-system/card/Card'
 import { EditIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
@@ -20,35 +23,48 @@ const RevenuEstimé = () => {
 			$inert
 		>
 			<Grid container>
-				<Grid
-					css={`
-						padding-right: 1.5rem;
-					`}
-					item
-					xs={12}
-					sm={6}
-					lg={3}
-				>
-					<Label>
-						<Trans>Votre chiffre d'affaires estimé</Trans>
-					</Label>
-					<StyledValue
-						linkToRule={false}
-						expression="entreprise . chiffre d'affaires"
-					/>
-				</Grid>
+				<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
+					<Grid
+						css={`
+							padding-right: 1.5rem;
+						`}
+						item
+						xs={12}
+						sm={6}
+						lg={3}
+					>
+						<Label>
+							<Trans>Votre chiffre d'affaires estimé</Trans>
+						</Label>
+						<StyledValue
+							linkToRule={false}
+							expression="entreprise . chiffre d'affaires"
+						/>
+					</Grid>
+					<StyledGrid item xs={12} sm={6} lg={5}>
+						<Label>
+							<Trans>Vos charges estimées</Trans>
+						</Label>
+						<StyledValue
+							linkToRule={false}
+							unit="€/an"
+							expression="entreprise . charges"
+						/>
+					</StyledGrid>
+				</WhenAlreadyDefined>
+				<WhenNotAlreadyDefined dottedName="entreprise . chiffre d'affaires">
+					<Grid item xs>
+						<Label>
+							<Trans>Votre rémunération totale estimée</Trans>
+						</Label>
+						<StyledValue
+							linkToRule={false}
+							expression="dirigeant . rémunération . totale"
+						/>
+					</Grid>
+				</WhenNotAlreadyDefined>
 
-				<StyledGrid item xs={12} sm={6} lg={5}>
-					<Label>
-						<Trans>Vos charges estimées</Trans>
-					</Label>
-					<StyledValue
-						linkToRule={false}
-						unit="€/an"
-						expression="entreprise . charges"
-					/>
-				</StyledGrid>
-				<GridEditLink item xs={12} lg={3}>
+				<GridEditLink item xs={12} sm="auto">
 					<Link
 						to={absoluteSitePaths.assistants['choix-du-statut'].rémunération}
 						// $noUnderline

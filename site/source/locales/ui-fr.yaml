@@ -364,6 +364,7 @@ Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
 Votre couverture invalidité et décès: Votre couverture invalidité et décès
 Votre domaine d'activité: Votre domaine d'activité
 Votre message (requis): Votre message (requis)
+Votre rémunération totale estimée: Votre rémunération totale estimée
 Vous allez dépasser le plafond de la micro-entreprise: Vous allez dépasser le plafond de la micro-entreprise
 "Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.":
   Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes
@@ -556,6 +557,16 @@ choix-statut:
         dépenses nécessaires au bon fonctionnement de votre entreprise</2> :
         expertise-comptable, abonnement téléphonique, abonnement internet,
         mutuelle, prévoyance, outils de travail, etc.</0></1></0>"
+    rémunérationTotale:
+      label: Montant de la rémunération totale
+    totale:
+      help:
+        title: Rémunération totale du dirigeant
+      title: En tant que dirigeant, je souhaite que l'entreprise me rémunère en
+        dépensant au total...<1><0>C'est ce que l'entreprise dépense en tout
+        pour la rémunération du dirigeant. Cette rémunération "super-brute"
+        inclut toutes les cotisations sociales à payer. On peut aussi considérer
+        que c'est la valeur monétaire du travail du dirigeant.</0></1>
 chomagePartiel:
   tableCaption: Tableau indiquant le salaire net et le coût pour l'employeur avec
     ou sans chômage partiel.

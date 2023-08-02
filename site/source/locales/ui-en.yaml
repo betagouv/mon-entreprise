@@ -349,6 +349,7 @@ Votre chiffre d'affaires estimé: Your estimated sales
 Votre couverture invalidité et décès: Your disability and death coverage
 Votre domaine d'activité: Your field of activity
 Votre message (requis): Your message (required)
+Votre rémunération totale estimée: Your estimated total remuneration
 Vous allez dépasser le plafond de la micro-entreprise: You will exceed the micro-business limit
 "Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.": We're sorry you weren't satisfied with your experience.
 Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou d’accident conduisant à une incapacité à poursuivre votre activité professionnelle</2>.:
@@ -528,6 +529,16 @@ choix-statut:
         expenses necessary for the smooth running of your business</2>:
         accountancy, telephone subscription, internet subscription, health
         insurance, provident fund, work tools, etc.</0></1></0>"
+    rémunérationTotale:
+      label: Total compensation
+    totale:
+      help:
+        title: Total executive compensation
+      title: As a manager, I want the company to pay me a total of...<1><0>This is the
+        total amount the company spends on the executive's remuneration. This
+        "super-gross" remuneration includes all social security contributions
+        payable. It can also be considered as the monetary value of the
+        executive's work.</0></1>
 chomagePartiel:
   tableCaption: Table showing net salary and cost to the employer with or without
     short-time working.
