@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react'
+import { useMatch } from 'react-router-dom'
 
 export function useIsEmbedded(): boolean {
 	return useContext(EmbededContext)
@@ -12,7 +13,19 @@ export function EmbededContextProvider({
 	children: React.ReactNode
 }) {
 	const [isEmbedded, setIsEmbedded] = useState(false)
-	const isIframePath = document.location.pathname.includes('/iframes/')
+
+	let isIframePath
+	try {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		isIframePath = useMatch('/iframes/')
+	} catch {
+		try {
+			isIframePath = window.document.location.pathname.includes('/iframes/')
+		} catch {
+			isIframePath = false
+		}
+	}
+
 	if (isIframePath && !isEmbedded) {
 		setIsEmbedded(true)
 	}
