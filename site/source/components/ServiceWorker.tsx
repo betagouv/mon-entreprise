@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { getItem, removeItem, setItem } from '@/storage/safeLocalStorage'
 
 import { Message } from '../design-system'
@@ -43,6 +44,7 @@ const pwaPromptDelayKey = 'update-pwa-prompt-delay'
 export const ServiceWorker = () => {
 	const { t } = useTranslation()
 	const [showPrompt, setShowPrompt] = useState(false)
+	const isEmbedded = useIsEmbedded()
 
 	const {
 		needRefresh: [needRefresh, setNeedRefresh],
@@ -85,6 +87,9 @@ export const ServiceWorker = () => {
 			console.error('SW registration error', error)
 		},
 	})
+	if (isEmbedded) {
+		return null
+	}
 
 	return (
 		<PromptContainer>
