@@ -88,15 +88,15 @@ describe('Test prerender', function () {
 				test: () => {
 					cy.contains('Official tools for entrepreneurs')
 
-					cy.contains('Search for your company')
-					cy.contains('label', 'Company name, SIREN or SI')
+					cy.contains('Find your company ')
+					cy.contains('label', 'Company name, SIREN or SIRET')
 
-					cy.contains('I would like to start my own business')
+					cy.contains("I'd like to start my own business")
 
 					cy.contains('Employee')
 					cy.contains('Auto-entrepreneur')
-					cy.contains('Status Comparison')
-					cy.contains('Discover all the simulators and assistants')
+					cy.contains('Status comparison')
+					cy.contains('Discover all simulators and assistants')
 				},
 			},
 			{
