@@ -16,6 +16,7 @@ import { H1, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useIframeResizer } from '@/hooks/useIframeResizer'
+import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
 
 import { Message } from '../design-system'
 import * as safeLocalStorage from '../storage/safeLocalStorage'
@@ -42,31 +43,33 @@ export default function Provider({
 	useIframeResizer()
 
 	return (
-		<DarkModeProvider>
-			<DesignSystemThemeProvider>
-				<ErrorBoundary showDialog fallback={ErrorFallback}>
-					{!import.meta.env.SSR &&
-						import.meta.env.MODE === 'production' &&
-						'serviceWorker' in navigator &&
-						!inIframe() && <ServiceWorker />}
-					<OverlayProvider>
-						<ReduxProvider store={store}>
-							<ThemeColorsProvider>
-								<DisableAnimationOnPrintProvider>
-									<SiteNameContext.Provider value={basename}>
-										<I18nextProvider i18n={i18next}>
-											<BrowserRouterProvider basename={basename}>
-												{children}
-											</BrowserRouterProvider>
-										</I18nextProvider>
-									</SiteNameContext.Provider>
-								</DisableAnimationOnPrintProvider>
-							</ThemeColorsProvider>
-						</ReduxProvider>
-					</OverlayProvider>
-				</ErrorBoundary>
-			</DesignSystemThemeProvider>
-		</DarkModeProvider>
+		<EmbededContextProvider>
+			<DarkModeProvider>
+				<DesignSystemThemeProvider>
+					<ErrorBoundary showDialog fallback={ErrorFallback}>
+						{!import.meta.env.SSR &&
+							import.meta.env.MODE === 'production' &&
+							'serviceWorker' in navigator &&
+							!inIframe() && <ServiceWorker />}
+						<OverlayProvider>
+							<ReduxProvider store={store}>
+								<ThemeColorsProvider>
+									<DisableAnimationOnPrintProvider>
+										<SiteNameContext.Provider value={basename}>
+											<I18nextProvider i18n={i18next}>
+												<BrowserRouterProvider basename={basename}>
+													{children}
+												</BrowserRouterProvider>
+											</I18nextProvider>
+										</SiteNameContext.Provider>
+									</DisableAnimationOnPrintProvider>
+								</ThemeColorsProvider>
+							</ReduxProvider>
+						</OverlayProvider>
+					</ErrorBoundary>
+				</DesignSystemThemeProvider>
+			</DarkModeProvider>
+		</EmbededContextProvider>
 	)
 }
 
