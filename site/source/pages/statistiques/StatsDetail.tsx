@@ -1,5 +1,5 @@
 import { formatValue } from 'publicodes'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { BrushProps } from 'recharts'
@@ -8,28 +8,25 @@ import styled from 'styled-components'
 import { toAtString } from '@/components/ATInternetTracking'
 import PagesChart from '@/components/charts/PagesCharts'
 import { useScrollToHash } from '@/components/utils/markdown'
-import { Item, Message, Radio, ToggleGroup } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Select } from '@/design-system/field/Select'
+import { Message, Radio, ToggleGroup } from '@/design-system'
 import InfoBulle from '@/design-system/InfoBulle'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
-import { debounce, groupBy } from '@/utils'
+import { debounce } from '@/utils'
 
-import { SimulateurCard } from '../../components/SimulateurCard'
 import { AccessibleTable } from './AccessibleTable'
-import Chart, { Data, formatLegend, isDataStacked } from './Chart'
+import Chart, { formatLegend } from './Chart'
 import SatisfactionChart from './SatisfactionChart'
+import { SelectedSimulator, SimulateursChoice } from './SimulateursChoice'
 import { BigIndicator } from './StatsGlobal'
-import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
+import { PageChapter2, StatsStruct } from './types'
+import { Filter, useStatistiques } from './useStatistiques'
+import { useTotals } from './useTotals'
 import { formatDay, formatMonth } from './utils'
 
 type Period = 'mois' | 'jours'
-type Chapter2 = PageChapter2 | 'PAM' | 'api-rest'
-
-type Pageish = Page | PageSatisfaction
 
 interface StatsDetailProps {
 	stats: StatsStruct
@@ -37,66 +34,15 @@ interface StatsDetailProps {
 }
 
 export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
-	const defaultPeriod = 'mois'
-	const [searchParams, setSearchParams] = useSearchParams()
 	useScrollToHash()
-
-	const [period, setPeriod] = useState<Period>(
-		(searchParams.get('periode') as Period) ?? defaultPeriod
-	)
-	const [chapter2, setChapter2] = useState<Chapter2 | ''>(
-		(searchParams.get('module') as Chapter2) ?? ''
-	)
+	const [{ period, filter }, { setPeriod, setFilter }] = useStatState()
 
 	const { t } = useTranslation()
-
-	useEffect(() => {
-		const paramsEntries = [
-			['periode', period !== defaultPeriod ? period : ''],
-			['module', chapter2],
-		].filter(([, val]) => val !== '') as [string, string][]
-
-		setSearchParams(paramsEntries, { replace: true })
-	}, [period, chapter2, setSearchParams])
-
-	const visites = useMemo(() => {
-		const rawData = period === 'jours' ? stats.visitesJours : stats.visitesMois
-		if (!chapter2) {
-			return rawData.site
-		}
-		if (chapter2 === 'api-rest') {
-			return (rawData.api ?? []).map(({ date, ...nombre }) => ({
-				date,
-				nombre,
-				info:
-					(period === 'jours' ? '2023-06-16' : '2023-06-01') === date ? (
-						<ChangeJune2023 />
-					) : null,
-			}))
-		}
-		if (chapter2 === 'guide') {
-			const pages = rawData.pages as Pageish[]
-			const creer = rawData.creer as Pageish[]
-
-			return statsCreer(pages, creer)
-		}
-
-		return filterByChapter2(rawData.pages as Pageish[], chapter2)
-	}, [period, chapter2])
-
-	const repartition = useMemo(() => {
-		const rawData = stats.visitesMois
-
-		return groupByDate(rawData.pages as Pageish[])
-	}, [])
-
-	const satisfaction = useMemo(() => {
-		return filterByChapter2(stats.satisfaction as Pageish[], chapter2)
-	}, [chapter2]) as Array<{
-		date: string
-		nombre: Record<string, number>
-		percent: Record<string, number>
-	}>
+	const { visites, repartition, satisfaction } = useStatistiques({
+		period,
+		stats,
+		filter,
+	})
 
 	const [[startDateIndex, endDateIndex], setDateIndex] = useState<
 		[startIndex: number, endIndex: number]
@@ -111,6 +57,8 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 		setSlicedVisits(visites)
 	}, [visites])
 
+	const totals = useTotals(slicedVisits)
+
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const handleDateChange = useCallback(
 		debounce(1000, ({ startIndex, endIndex }) => {
@@ -122,22 +70,12 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 		[visites]
 	)
 
-	const totals: number | Record<string, number> = useMemo(
-		() => computeTotals(slicedVisits),
-		[slicedVisits]
-	)
-
-	const chapters2: Chapter2[] = [
-		...new Set(stats.visitesMois?.pages.map((p) => p.page_chapter2)),
-		'PAM',
-	]
-
 	type ApiData = {
 		date: string
 		nombre: { evaluate: number; rules: number; rule: number }
 	}
 	const apiCumul =
-		chapter2 === 'api-rest' &&
+		filter === 'api-rest' &&
 		slicedVisits.length > 0 &&
 		typeof slicedVisits[0]?.nombre === 'object' &&
 		(slicedVisits as ApiData[]).reduce(
@@ -159,14 +97,10 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 						flex-basis: 50%;
 					`}
 				>
-					<SimulateursChoice
-						onChange={setChapter2}
-						value={chapter2}
-						possibleValues={chapters2}
-					/>
+					<SimulateursChoice onChange={setFilter} value={filter} />
 					<Spacing sm />
 					<Grid container columns={4}>
-						{chapter2 && <SelectedSimulator chapter2={chapter2} />}
+						{filter && <SelectedSimulator filter={filter} />}
 					</Grid>
 				</div>
 				<div>
@@ -294,14 +228,14 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 				<>
 					<H3>Satisfaction</H3>
 					<SatisfactionChart
-						key={chapter2}
+						key={JSON.stringify(filter)}
 						data={satisfaction}
 						accessibleMode={accessibleMode}
 					/>
 				</>
 			)}
 
-			{chapter2 === '' && period === 'mois' && (
+			{filter === '' && period === 'mois' && (
 				<>
 					<H2>Simulateurs principaux</H2>
 					<PagesChart data={repartition} accessibleMode={accessibleMode} />
@@ -311,247 +245,29 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 	)
 }
 
-const ChangeJune2023 = () => (
-	<Body style={{ maxWidth: '350px' }}>
-		<Trans i18nKey="stats.change_june_2023">
-			Ajout d'un cache sur l'API pour améliorer les performances et réduire le
-			nombre de requêtes.
-		</Trans>
-	</Body>
-)
-
-const isPAM = (name: string | undefined) =>
-	name &&
-	[
-		'medecin',
-		'chirurgien_dentiste',
-		'auxiliaire_medical',
-		'sage_femme',
-	].includes(name)
-
-const filterByChapter2 = (pages: Pageish[], chapter2: Chapter2 | '') => {
-	return Object.entries(
-		groupBy(
-			pages.filter(
-				(p) =>
-					!chapter2 ||
-					((!('page' in p) || p.page !== 'accueil_pamc') &&
-						(p.page_chapter2 === chapter2 ||
-							(chapter2 === 'PAM' && isPAM(p.page_chapter3))))
-			),
-			(p) => ('date' in p ? p.date : p.month)
-		)
-	).map(([date, values]) => ({
-		date,
-		nombre: Object.fromEntries(
-			Object.entries(
-				groupBy(values, (x) => ('page' in x ? x.page : x.click))
-			).map(([key, values]) => [
-				key,
-				values.reduce((sum, value) => sum + value.nombre, 0),
-			])
-		),
-	}))
-}
-
-const statsCreer = (pages: Pageish[], creer: Pageish[]) => {
-	const accueil = groupBy(
-		pages.filter(
-			(p) =>
-				'page' in p &&
-				p.page === 'accueil' &&
-				p.page_chapter1 === 'creer' &&
-				true
-		),
-		(p) => ('date' in p ? p.date : p.month)
-	)
-
-	const commencee = groupBy(
-		creer.filter(
-			(p) =>
-				'page' in p &&
-				p.page === 'accueil' &&
-				p.page_chapter1 === 'creer' &&
-				true
-		),
-		(p) => ('date' in p ? p.date : p.month)
-	)
-	const terminee = groupBy(
-		creer.filter(
-			(p) =>
-				'page' in p &&
-				p.page !== 'liste' &&
-				p.page_chapter1 === 'creer' &&
-				(p.page_chapter2 as string) === 'statut' &&
-				true
-		),
-		(p) => ('date' in p ? p.date : p.month)
-	)
-
-	return Object.entries(commencee).map(([date, values]) => ({
-		date,
-		nombre: {
-			accueil: accueil[date]?.reduce((acc, p) => acc + p.nombre, 0),
-			simulation_commencee: values.reduce((acc, p) => acc + p.nombre, 0),
-			simulation_terminee: terminee[date]?.reduce(
-				(acc, p) => acc + p.nombre,
-				0
-			),
-		},
-	}))
-}
-
-function groupByDate(data: Pageish[]) {
-	const topTenPageByMonth = Object.entries(
-		groupBy(
-			data.filter((d) => 'page' in d && d.page === 'accueil'),
-			(p) => ('date' in p ? p.date : p.month)
-		)
-	).map(([date, values]) => ({
-		date,
-		nombre: Object.fromEntries(
-			Object.entries(
-				groupBy(values, (x) => x.page_chapter1 + ' / ' + x.page_chapter2)
-			).map(
-				([k, v]) =>
-					[k, v.map((v) => v.nombre).reduce((a, b) => a + b, 0)] as const
-			)
-		),
-	}))
-
-	const topPagesOfAllTime = Object.entries(
-		topTenPageByMonth.reduce((acc, { nombre }) => {
-			Object.entries(nombre).forEach(([page, visits]) => {
-				acc[page] ??= 0
-				acc[page] += visits
-			})
-
-			return acc
-		}, {} as Record<string, number>)
-	)
-		.sort((a, b) => b[1] - a[1])
-		.slice(0, 8)
-		.map(([page]) => page)
-
-	return topTenPageByMonth.map(({ date, nombre }) => ({
-		date,
-		nombre: Object.fromEntries(
-			Object.entries(nombre).filter(([page]) =>
-				topPagesOfAllTime.includes(page)
-			)
-		),
-	}))
-}
-
-const computeTotals = (
-	data: Data<number> | Data<Record<string, number>>
-): number | Record<string, number> => {
-	return isDataStacked(data)
-		? data
-				.map((d) => d.nombre)
-				.reduce(
-					(acc, record) =>
-						[...Object.entries(acc), ...Object.entries(record)].reduce(
-							(merge, [key, value]) => {
-								return { ...merge, [key]: (acc[key] ?? 0) + value }
-							},
-							{}
-						),
-					{}
-				)
-		: data.map((d) => d.nombre).reduce((a, b) => a + b, 0)
-}
-
-function getChapter2(s: SimulatorData[keyof SimulatorData]): Chapter2 | '' {
+export function getFilter(s: SimulatorData[keyof SimulatorData]): Filter | '' {
 	if ('iframePath' in s && s.iframePath === 'pamc') {
 		return 'PAM'
 	}
 	if (!s.tracking) {
 		return ''
 	}
-	const tracking = s.tracking as { chapter2?: Chapter2 }
-	const chapter2 =
-		typeof tracking === 'string' ? tracking : tracking.chapter2 ?? ''
+	const tracking = s.tracking as
+		| string
+		| { chapter2?: PageChapter2; chapter3?: string }
 
-	return toAtString(chapter2) as typeof chapter2
-}
-
-function SelectedSimulator(props: { chapter2: Chapter2 | '' }) {
-	const simulateur = Object.values(useSimulatorsData()).find(
-		(s) =>
-			getChapter2(s) === props.chapter2 &&
-			!(
-				typeof s.tracking === 'object' &&
-				'chapter3' in s.tracking &&
-				s.tracking.chapter3
-			)
-	)
-	if (!simulateur) {
-		return null
+	const filter =
+		typeof tracking === 'string' ? { chapter2: tracking } : tracking ?? ''
+	if (!filter.chapter2) {
+		return ''
 	}
 
-	return <SimulateurCard small {...simulateur} />
-}
-
-function SimulateursChoice(props: {
-	onChange: (ch: Chapter2 | '') => void
-	value: Chapter2 | ''
-	possibleValues: Array<Chapter2>
-}) {
-	const simulateurs = Object.values(useSimulatorsData())
-		.filter((s) => {
-			const chapter2 = getChapter2(s)
-
-			return (
-				chapter2 &&
-				props.possibleValues.includes(chapter2) &&
-				!(
-					typeof s.tracking === 'object' &&
-					'chapter3' in s.tracking &&
-					s.tracking.chapter3
-				)
-			)
-		})
-		.sort((a, b) => (a.shortName < b.shortName ? -1 : 1))
-
-	return (
-		<Select
-			onSelectionChange={(val) => {
-				props.onChange(
-					typeof val === 'string' && val.length && !isNaN(parseInt(val))
-						? getChapter2(simulateurs[parseInt(val)])
-						: val === 'api-rest'
-						? val
-						: ''
-				)
-			}}
-			defaultSelectedKey={props.value || 'general-stats'}
-			label={'Voir les statistiques pour :'}
-			id="simulator-choice-input"
-		>
-			{[
-				<Item key="general-stats" textValue="Tout le site">
-					<Emoji emoji="🌍" />
-					&nbsp;Tout le site
-				</Item>,
-				<Item key="api-rest" textValue="API REST">
-					<Emoji emoji="👩‍💻" />
-					&nbsp;API REST
-				</Item>,
-				...simulateurs.map((s, i) => (
-					<Item key={i} textValue={s.shortName}>
-						{s.icône && (
-							<>
-								<Emoji emoji={s.icône} />
-								&nbsp;
-							</>
-						)}
-						{s.shortName}
-					</Item>
-				)),
-			]}
-		</Select>
-	)
+	return {
+		chapter2: toAtString(filter.chapter2),
+		...('chapter3' in filter && filter.chapter3
+			? { chapter3: toAtString(filter.chapter3) }
+			: {}),
+	} as Filter
 }
 
 const Indicators = styled.div`
@@ -569,3 +285,47 @@ const Indicators = styled.div`
 const StyledBody = styled(Body)`
 	margin-bottom: 0.25rem;
 `
+
+const DEFAULT_PERIOD = 'mois'
+function useStatState() {
+	const [searchParams, setSearchParams] = useSearchParams()
+
+	const [period, setPeriod] = useState<Period>(
+		(searchParams.get('periode') as Period) ?? DEFAULT_PERIOD
+	)
+	const simulators = useSimulatorsData()
+	const URLFilter: string = searchParams.get('module') ?? ''
+
+	const [filter, setFilter] = useState<Filter | ''>(
+		URLFilter in simulators
+			? getFilter(simulators[URLFilter as keyof typeof simulators])
+			: ['PAMC', 'api-rest'].includes(URLFilter)
+			? (URLFilter as Filter)
+			: ''
+	)
+
+	useEffect(() => {
+		const module =
+			Object.values(simulators).find(
+				(s) =>
+					!!filter && JSON.stringify(getFilter(s)) === JSON.stringify(filter)
+			)?.id ?? filter
+		const paramsEntries = [
+			['periode', period !== DEFAULT_PERIOD ? period : ''],
+			['module', module],
+		].filter(([, val]) => val !== '') as [string, string][]
+
+		setSearchParams(paramsEntries, { replace: true })
+	}, [period, filter, simulators, setSearchParams])
+
+	return [
+		{
+			period,
+			filter,
+		},
+		{
+			setPeriod,
+			setFilter,
+		},
+	] as const
+}

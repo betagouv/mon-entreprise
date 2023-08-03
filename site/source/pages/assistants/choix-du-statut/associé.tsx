@@ -121,8 +121,8 @@ export default function Associés() {
 						<Message type="secondary" border={false}>
 							<H4 as="h3" id="question3">
 								<Trans i18nKey="choix-statut.associés.question3.label">
-									Préférez-vous exercer votre activité sous la forme d'une
-									société uniquement ?
+									Voulez-vous exercer votre activité sous la forme d'une société
+									uniquement ?
 									<HelpButtonWithPopover
 										title={t(
 											'choix-statut.associés.question3.help.title',

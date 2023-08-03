@@ -479,10 +479,10 @@ choix-statut:
     question3:
       help:
         title: Choosing between a sole proprietorship and a company
-      label: Would you prefer to run your business solely as a company?<1><0>Sole
+      label: Do you want to run your business as a company only?<1><0>Sole
         proprietorship</0><1><0>You are <2>responsible for all your business
         assets</2> (equipment, premises, tools, etc.). </0><1>Your <2>personal
-        assets may be seized</2> if you fail to meet your tax and social
+        assets can be seized</2> if you fail to meet your tax and social
         security obligations.</1><2>You can <2>waive the separation of your
         assets</2>, for example to secure a bank loan.</2><3>The formalities
         involved in setting up and running a company are <2>simpler and less

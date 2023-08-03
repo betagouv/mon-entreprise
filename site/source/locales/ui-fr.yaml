@@ -504,14 +504,14 @@ choix-statut:
     question3:
       help:
         title: Choisir entre une entreprise individuelle et une société
-      label: Préférez-vous exercer votre activité sous la forme d'une société
-        uniquement ?<1><0>Entreprise individuelle</0><1><0>Vous êtes
-        <2>responsable sur l'ensemble de vos biens utiles à votre activité</2>
-        (matériel, locaux, outils, etc.). </0><1>Votre <2>patrimoine personnel
-        peut être saisi</2> en cas de manquements à vos obligations fiscales et
-        sociales.</1><2>Vous pouvez <2>renoncer à la séparation de ses
-        patrimoines</2>, par exemple pour garantir un crédit bancaire.</2><3>Les
-        formalités de création et de gestion sont <2>plus simples et moins
+      label: Voulez-vous exercer votre activité sous la forme d'une société uniquement
+        ?<1><0>Entreprise individuelle</0><1><0>Vous êtes <2>responsable sur
+        l'ensemble de vos biens utiles à votre activité</2> (matériel, locaux,
+        outils, etc.). </0><1>Votre <2>patrimoine personnel peut être saisi</2>
+        en cas de manquements à vos obligations fiscales et sociales.</1><2>Vous
+        pouvez <2>renoncer à la séparation de ses patrimoines</2>, par exemple
+        pour garantir un crédit bancaire.</2><3>Les formalités de création et de
+        gestion sont <2>plus simples et moins
         coûteuses.</2></3></1><2>Société</2><3><0>Vous êtes uniquement
         <2>responsable sur le montant de votre apport au capital social</2> et
         des biens détenus par la société.</0><1>Les formalités de création et de
