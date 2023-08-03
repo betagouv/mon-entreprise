@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import styled from 'styled-components'
 
 import { EngineContext, useEngine } from '@/components/utils/EngineContext'
+import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { capitalise0 } from '@/utils'
@@ -55,26 +56,38 @@ function Reference({ href, title }: { href: string; title: string }) {
 
 	return (
 		<Li key={href}>
-			<Link
-				href={href}
+			<Grid
+				container
+				spacing={2}
 				css={`
-					display: flex;
+					display: inline-flex;
 				`}
 			>
-				<div
+				<Grid item xs={12} sm="auto">
+					<Link
+						href={href}
+						css={`
+							display: flex;
+						`}
+					>
+						{capitalise0(title)}
+					</Link>
+				</Grid>
+				<Grid
+					item
+					xs="auto"
 					css={`
-						flex: 1;
+						text-align: right;
 					`}
 				>
-					{capitalise0(title)}
-				</div>
-				{domain in referencesImages && (
-					<StyledImage
-						src={referencesImages[domain as keyof typeof referencesImages]}
-						alt={`logo du site ${domain}`}
-					/>
-				)}
-			</Link>
+					{domain in referencesImages && (
+						<StyledImage
+							src={referencesImages[domain as keyof typeof referencesImages]}
+							alt={`logo du site ${domain}`}
+						/>
+					)}
+				</Grid>
+			</Grid>
 		</Li>
 	)
 }
@@ -89,7 +102,7 @@ const StyledImage = styled.img`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	background-color: ${({ theme }) => theme.colors.extended.grey[100]};
 
-	max-height: 2.5rem;
+	max-height: 2.25rem;
 `
 const referencesImages = {
 	'service-public.fr': '/références-images/service-public.png',

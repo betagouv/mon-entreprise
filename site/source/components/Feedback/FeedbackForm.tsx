@@ -22,8 +22,6 @@ type SubmitError = {
 const SHORT_MAX_LENGTH = 254
 
 const FeedbackThankYouContent = () => {
-	const { t } = useTranslation()
-
 	return (
 		<>
 			<StyledEmojiContainer role="img" aria-hidden>
@@ -51,14 +49,12 @@ const FeedbackThankYouContent = () => {
 }
 
 export default function FeedbackForm({
-	title,
 	infoSlot,
 	description,
 	placeholder,
 	tags,
 	hideShare,
 }: {
-	title: string
 	infoSlot?: ReactNode
 	description?: ReactNode
 	placeholder?: string
@@ -129,10 +125,6 @@ export default function FeedbackForm({
 			{isSubmittedSuccessfully && <FeedbackThankYouContent />}
 			{!isSubmittedSuccessfully && (
 				<>
-					<H1 as="h4" style={{ marginTop: '1rem' }}>
-						{title}
-					</H1>
-
 					<StyledFeedback>
 						<form
 							onSubmit={(e) => {

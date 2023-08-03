@@ -2,12 +2,12 @@ import styled from 'styled-components'
 
 import { Emoji } from '@/design-system/emoji'
 
-export type Feedback = 'mauvais' | 'moyen' | 'bien' | 'très bien'
+export type FeedbackT = 'mauvais' | 'moyen' | 'bien' | 'très bien'
 
 const FeedbackRating = ({
 	submitFeedback,
 }: {
-	submitFeedback: (feedbackValue: Feedback) => void
+	submitFeedback: (feedbackValue: FeedbackT) => void
 }) => {
 	return (
 		<div

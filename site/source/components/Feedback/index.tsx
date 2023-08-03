@@ -1,103 +1,27 @@
 import FocusTrap from 'focus-trap-react'
-import {
-	MutableRefObject,
-	useCallback,
-	useContext,
-	useEffect,
-	useRef,
-	useState,
-} from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
+import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { TrackingContext } from '@/components/ATInternetTracking'
-import { Popover } from '@/design-system'
-import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { FocusStyle } from '@/design-system/global-style'
-import { Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H4 } from '@/design-system/typography/heading'
-import { StyledLink } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
-import { useSitePaths } from '@/sitePaths'
 
-import * as safeLocalStorage from '../../storage/safeLocalStorage'
-import { JeDonneMonAvis } from '../JeDonneMonAvis'
-import { INSCRIPTION_LINK } from '../layout/Footer/InscriptionBetaTesteur'
-import { useFeedback } from '../layout/Footer/useFeedback'
-import FeedbackForm from './FeedbackForm'
-import FeedbackRating, { Feedback } from './FeedbackRating'
-
-const localStorageKey = (url: string) => `app::feedback::v3::${url}`
-const setFeedbackGivenForUrl = (url: string) => {
-	safeLocalStorage.setItem(
-		localStorageKey(url),
-		JSON.stringify(new Date().toISOString())
-	)
-}
-
-// Ask for feedback again after 4 months
-const getShouldAskFeedback = (url: string) => {
-	const previousFeedbackDate = safeLocalStorage.getItem(localStorageKey(url))
-	if (!previousFeedbackDate) {
-		return true
-	}
-
-	return (
-		new Date(previousFeedbackDate) <
-		new Date(new Date().setMonth(new Date().getMonth() - 4))
-	)
-}
-
-const IFRAME_SIMULATEUR_EMBAUCHE_PATH = '/iframes/simulateur-embauche'
+import { ForceThemeProvider } from '../utils/DarkModeContext'
+import { Feedback } from './Feedback'
 
 const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 	const [isFormOpen, setIsFormOpen] = useState(false)
-	const [isShowingThankMessage, setIsShowingThankMessage] = useState(false)
-	const [isShowingSuggestionForm, setIsShowingSuggestionForm] = useState(false)
-	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
-	const url = useLocation().pathname
-	const tag = useContext(TrackingContext)
 	const containerRef = useRef<HTMLElement | null>(null)
-
-	const { absoluteSitePaths } = useSitePaths()
-	const currentPath = useLocation().pathname
-	const isSimulateurSalaire =
-		currentPath.includes(absoluteSitePaths.simulateurs.salarié) ||
-		currentPath.includes(IFRAME_SIMULATEUR_EMBAUCHE_PATH)
-
-	const { shouldShowRater, customTitle } = useFeedback()
-
+	const [feedbackFormIsOpened, setFeedbackFormIsOpened] = useState(false)
 	useOnClickOutside(
 		containerRef,
-		() => !isShowingSuggestionForm && setIsFormOpen(false)
-	)
-
-	const submitFeedback = useCallback(
-		(rating: Feedback) => {
-			setFeedbackGivenForUrl(url)
-			tag.events.send('click.action', {
-				click_chapter1: 'satisfaction',
-				click: rating,
-			})
-			const isNotSatisfiedValue = ['mauvais', 'moyen'].includes(rating)
-			if (isNotSatisfiedValue) {
-				setIsNotSatisfied(true)
-			}
-
-			setIsShowingThankMessage(!isNotSatisfiedValue)
-			setIsShowingSuggestionForm(isNotSatisfiedValue)
-		},
-		[tag, url]
+		() => !feedbackFormIsOpened && setIsFormOpen(false)
 	)
 
 	const buttonRef = useRef() as MutableRefObject<HTMLButtonElement | null>
 
-	const shouldAskFeedback = getShouldAskFeedback(url)
 	const handleClose = () => {
 		setIsFormOpen(false)
 		setTimeout(() => {
@@ -124,7 +48,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 		return (
 			<Section ref={containerRef} $isEmbedded={isEmbedded} aria-expanded={true}>
 				<FocusTrap>
-					<div>
+					<ForceThemeProvider forceTheme="dark">
 						<CloseButtonContainer>
 							<CloseButton
 								onClick={handleClose}
@@ -152,95 +76,17 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 								</svg>
 							</CloseButton>
 						</CloseButtonContainer>
-						{isShowingThankMessage || !shouldAskFeedback ? (
-							<>
-								<Body>
-									<Strong>
-										<Trans i18nKey="feedback.thanks">
-											Merci de votre retour !
-										</Trans>{' '}
-										<Emoji emoji="🙌" />
-									</Strong>
-								</Body>
-								<ThankYouText>
-									<Trans i18nKey="feedback.beta-testeur">
-										Pour continuer à donner votre avis et accéder aux nouveautés
-										en avant-première,{' '}
-										<StyledLink
-											href={INSCRIPTION_LINK}
-											aria-label="inscrivez-vous sur la liste des beta-testeur, nouvelle fenêtre"
-											style={{ color: '#FFF' }}
-										>
-											inscrivez-vous sur la liste des beta-testeur
-										</StyledLink>
-									</Trans>
-								</ThankYouText>
-							</>
-						) : (
-							<>
-								<StyledH4>
-									{customTitle || <Trans>Un avis sur cette page ?</Trans>}
-								</StyledH4>
-								<StyledBody>On vous écoute.</StyledBody>
-								<Spacing lg />
-								{shouldShowRater && (
-									<FeedbackRating submitFeedback={submitFeedback} />
-								)}
-							</>
-						)}
-						<Spacing lg />
-						{isSimulateurSalaire ? (
-							<JeDonneMonAvis light />
-						) : (
-							<Button
-								color="tertiary"
-								size="XXS"
-								light
-								aria-haspopup="dialog"
-								onPress={() => {
-									setIsShowingSuggestionForm(true)
-								}}
-							>
-								<Trans i18nKey="feedback.reportError">
-									Faire une suggestion
-								</Trans>
-							</Button>
-						)}
-					</div>
-				</FocusTrap>
-				{isShowingSuggestionForm && (
-					<Popover
-						isOpen
-						isDismissable
-						onClose={() => {
-							setIsShowingSuggestionForm(false)
-							setTimeout(() => setIsFormOpen(false))
-						}}
-						title={
-							isNotSatisfied
-								? t('Vos attentes ne sont pas remplies')
-								: t('Votre avis nous intéresse')
-						}
-					>
-						<FeedbackForm
-							infoSlot={
-								isNotSatisfied && (
-									<Body>
-										<Trans>
-											Vous n’avez pas été satisfait(e) de votre expérience, nous
-											en sommes désolé(e)s.
-										</Trans>
-									</Body>
-								)
-							}
-							title={
-								isNotSatisfied
-									? t('Vos attentes ne sont pas remplies')
-									: t('Votre avis nous intéresse')
-							}
+						<Feedback
+							onEnd={() => {
+								if (!feedbackFormIsOpened) {
+									setIsFormOpen(false)
+								}
+								setFeedbackFormIsOpened(false)
+							}}
+							onFeedbackFormOpen={() => setFeedbackFormIsOpened(true)}
 						/>
-					</Popover>
-				)}
+					</ForceThemeProvider>
+				</FocusTrap>
 			</Section>
 		)
 	}
@@ -324,16 +170,6 @@ const StyledButton = styled.button<{
 	}
 `
 
-const StyledH4 = styled(H4)`
-	margin: 0;
-	color: ${({ theme }) => theme.colors.extended.grey[100]};
-	font-size: 1rem;
-`
-
-const StyledBody = styled(Body)`
-	margin: 0;
-`
-
 const Section = styled.section<{ $isEmbedded?: boolean }>`
 	position: fixed;
 	top: 10.5rem;
@@ -342,10 +178,7 @@ const Section = styled.section<{ $isEmbedded?: boolean }>`
 	width: 17.375rem;
 	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
 	border-radius: 2rem 0 0 2rem;
-	color: ${({ theme }) => theme.colors.extended.grey[100]};
-	& ${Body} {
-		color: ${({ theme }) => theme.colors.extended.grey[100]};
-	}
+
 	padding: 1.5rem;
 	padding-top: 0.75rem;
 	display: flex;
@@ -358,10 +191,6 @@ const Section = styled.section<{ $isEmbedded?: boolean }>`
 	@media print {
 		display: none;
 	}
-`
-
-const ThankYouText = styled(Body)`
-	font-size: 14px;
 `
 
 const CloseButtonContainer = styled.div`

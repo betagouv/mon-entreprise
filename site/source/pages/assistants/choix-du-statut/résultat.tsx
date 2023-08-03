@@ -5,9 +5,11 @@ import { useLocation } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
+import { Feedback } from '@/components/Feedback/Feedback'
 import { References } from '@/components/References'
 import { StatutType } from '@/components/StatutTag'
 import { useEngine } from '@/components/utils/EngineContext'
+import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Article } from '@/design-system/card'
 import { Emoji } from '@/design-system/emoji'
@@ -44,7 +46,7 @@ export default function Résultat() {
 				nécessaires à la création de votre entreprise. Voici quelques pistes.
 			</Intro>
 			<Grid spacing={3} container>
-				<Grid item lg={6} sm={12}>
+				<Grid item xl={4} lg={6} sm={12}>
 					<Article
 						title="Le guide complet pour créer son activité"
 						href="https://entreprendre.service-public.fr/vosdroits/N31901"
@@ -54,7 +56,7 @@ export default function Résultat() {
 						entreprise, du stade de l'idée au lancement de l'entreprise.
 					</Article>
 				</Grid>
-				<Grid item lg={6} sm={12}>
+				<Grid item xl={4} lg={6} sm={12}>
 					<Article
 						title="Vos démarches en ligne"
 						href="https://formalites.entreprises.gouv.fr/"
@@ -64,17 +66,41 @@ export default function Résultat() {
 						gratuite, sur le site officiel formalites.entreprises.gouv.fr.
 					</Article>
 				</Grid>
+				<Grid item xl={4} xs={12} sm>
+					<Message
+						type="info"
+						border={false}
+						css={`
+							text-align: center;
+							display: flex;
+							align-items: center;
+							height: 100%;
+						`}
+					>
+						<Feedback />
+						<Spacing sm />
+					</Message>
+				</Grid>
+				<Grid
+					item
+					xs
+					css={`
+						text-align: right;
+					`}
+					xl="auto"
+				>
+					<Button
+						color="secondary"
+						light
+						size="XXS"
+						to={absoluteSitePaths.assistants['choix-du-statut'].index}
+					>
+						<span aria-hidden>↻</span> Recommencer l'assistant
+					</Button>
+				</Grid>
 			</Grid>
-			<Spacing xl />
-			<Button
-				color="secondary"
-				light
-				size="XS"
-				to={absoluteSitePaths.assistants['choix-du-statut'].index}
-			>
-				<span aria-hidden>↻</span> Recommencer l'assistant
-			</Button>
-			<Spacing xl />
+			<Spacing md />
+
 			<Container
 				backgroundColor={(theme) =>
 					theme.darkMode
