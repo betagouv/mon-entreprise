@@ -55,119 +55,12 @@ const buildSimulateursQuery = (period, granularity) => ({
 		granularity,
 		top: {
 			'page-num': 1,
-			'max-results': 500,
+			'max-results': 5000,
 			sort: ['-m_visits'],
 			filter: {
 				property: {
 					page_chapter1: {
-						$in: ['gerer', 'simulateurs'],
-					},
-				},
-			},
-		},
-	},
-	options: {
-		ignore_null_properties: true,
-	},
-})
-
-const buildCreerQuery = (period, granularity) => ({
-	columns: [
-		'page',
-		'page_chapter1',
-		'page_chapter2',
-		'page_chapter3',
-		'm_visits',
-	],
-	space: {
-		s: [617190, 617189],
-	},
-	period: {
-		p1: [period],
-	},
-	evo: {
-		granularity,
-		top: {
-			'page-num': 1,
-			'max-results': 500,
-			sort: ['-m_visits'],
-			filter: {
-				property: {
-					$AND: [
-						{
-							page: {
-								$eq: 'accueil',
-							},
-						},
-						{
-							page_chapter1: {
-								$eq: 'creer',
-							},
-						},
-					],
-				},
-			},
-		},
-	},
-	options: {
-		ignore_null_properties: true,
-	},
-})
-
-const buildCreerSegmentQuery = (period, granularity) => ({
-	columns: [
-		'page',
-		'page_chapter1',
-		'page_chapter2',
-		'page_chapter3',
-		'm_visits',
-	],
-	segment: {
-		section: {
-			scope: 'visit_id',
-			category: 'property',
-			coverage: 'at_least_one_visit',
-			content: {
-				and: [
-					{
-						condition: {
-							filter: {
-								page_chapter1: {
-									$eq: 'creer',
-								},
-							},
-						},
-					},
-					{
-						condition: {
-							filter: {
-								page: {
-									$eq: 'accueil',
-								},
-							},
-						},
-					},
-				],
-			},
-			mode: 'include',
-		},
-	},
-	space: {
-		s: [617190],
-	},
-	period: {
-		p1: [period],
-	},
-	evo: {
-		granularity,
-		top: {
-			'page-num': 1,
-			'max-results': 500,
-			sort: ['-m_visits'],
-			filter: {
-				property: {
-					page_chapter1: {
-						$eq: 'creer',
+						$in: ['assistant', 'simulateurs', 'gérer'],
 					},
 				},
 			},
@@ -196,14 +89,14 @@ const buildSatisfactionQuery = () => ({
 		granularity: 'M',
 		top: {
 			'page-num': 1,
-			'max-results': 500,
+			'max-results': 5000,
 			sort: ['-m_events'],
 			filter: {
 				property: {
 					$AND: [
 						{
 							page_chapter1: {
-								$in: ['creer', 'gerer', 'simulateurs'],
+								$in: ['assistant', 'gerer', 'simulateurs'],
 							},
 						},
 						{
@@ -233,7 +126,7 @@ const buildSiteQuery = (period, granularity) => ({
 		granularity,
 		top: {
 			'page-num': 1,
-			'max-results': 500,
+			'max-results': 5000,
 			sort: ['-m_visits'],
 		},
 	},
@@ -286,23 +179,16 @@ const uniformiseData = (data) =>
 
 const flattenPage = (list) =>
 	list
-		.filter(
-			(p) => p && (p.page_chapter2 !== 'N/A' || p.page_chapter1 === 'creer')
-		) // Remove simulateur landing page
+		.filter((p) => p && p.page_chapter2 !== 'N/A') // Remove landing pages
 		.map(({ Rows, ...page }) => Rows.map((r) => ({ ...page, ...r })))
 		.flat()
 
 async function fetchDailyVisits() {
-	const pages = uniformiseData([
-		...flattenPage(await fetchApi(buildSimulateursQuery(last60days, 'D'))),
-		...flattenPage(await fetchApi(buildCreerQuery(last60days, 'D'))),
-	])
+	const pages = uniformiseData(
+		flattenPage(await fetchApi(buildSimulateursQuery(last60days, 'D')))
+	)
 	const site = uniformiseData(
 		(await fetchApi(buildSiteQuery(last60days, 'D')))[0].Rows
-	)
-
-	const creer = uniformiseData(
-		flattenPage(await fetchApi(buildCreerSegmentQuery(last60days, 'D')))
 	)
 
 	const { start, end } = last60days
@@ -310,16 +196,15 @@ async function fetchDailyVisits() {
 	return {
 		pages,
 		site,
-		creer,
+
 		api: await apiStats(start, end, 'date'),
 	}
 }
 
 async function fetchMonthlyVisits() {
-	const pages = uniformiseData([
-		...flattenPage(await fetchApi(buildSimulateursQuery(last12Months, 'M'))),
-		...flattenPage(await fetchApi(buildCreerQuery(last12Months, 'M'))),
-	])
+	const pages = uniformiseData(
+		flattenPage(await fetchApi(buildSimulateursQuery(last12Months, 'M')))
+	)
 
 	const site = [
 		...matomoSiteVisitsHistory.map(({ date, visites }) => ({
@@ -331,16 +216,11 @@ async function fetchMonthlyVisits() {
 		),
 	]
 
-	const creer = uniformiseData(
-		flattenPage(await fetchApi(buildCreerSegmentQuery(last12Months, 'M')))
-	)
-
 	const { start, end } = last12Months
 
 	return {
 		pages,
 		site,
-		creer,
 		api: await apiStats(start, end, 'month'),
 	}
 }

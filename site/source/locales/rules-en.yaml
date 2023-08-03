@@ -1250,32 +1250,23 @@ dirigeant . exonérations . ACRE:
       titre.en: '[automatic] Default ACRE'
       titre.fr: ACRE par défaut
   description.en: >-
-    [automatic] The aid for creating or taking over a business
-    (Acre) consists of a partial exemption from social security charges, known
-    as the start-up exemption, for 12 months.
+    [automatic] Assistance for setting up or taking over a business
+    (Acre) consists of a partial exemption from social security contributions,
+    known as the "start-up exemption", for a period of 12 months.
 
 
-    It is **automatic** for **companies and sole proprietorships** (under certain conditions, such as not having benefited from it in the last three years).
+    It is **automatic** for **companies and sole proprietorships** (subject to certain conditions, such as not having benefited from it in the last three years).
 
 
-    For **self-employed** entrepreneurs, however, it must be requested and is reserved for the following beneficiaries
+    For **self-employed** entrepreneurs, on the other hand, it must be applied for, and is reserved for the following beneficiaries:
 
-    - Jobseekers (whether or not they receive compensation but have been registered with the Pôle Emploi for at least 6 months during the last 18 months).
+    - Jobseekers (with or without benefits, but registered with Pôle Emploi for at least 6 months in the last 18 months).
 
-    - Recipients of social assistance (RSA, ASS, ATA)
+    - Recipients of social assistance (RSA, ASS, ATA).
 
-    - Young people between 18 and 25 years old (up to 29 years old for people recognized as disabled)
+    - Young people aged between 18 and 25 (up to 29 for people recognized as disabled).
 
-    - People creating a micro-enterprise in a priority district of the city (QPPV)
-
-
-    &gt; *Historical*:
-
-    - For auto-businesses created from January 1, 2020, the exemption is again subject to conditions.
-
-    - For businesses created between January 1, 2019 and December 31, 2019, the reduction is generalized to all creators, unless you have already obtained the ACCRE in the previous three years
-
-    - For companies created before January 1, 2019, the exemption of contribution called ACCRE was subject to conditions and was not automatic: you had to apply.
+    - People setting up a micro-business in a priority urban district (QPPV).
   description.fr: >-
     L'aide à la création ou à la reprise d'une entreprise (Acre)
     consiste en une exonération partielle de charges sociales, dite exonération
@@ -1294,15 +1285,6 @@ dirigeant . exonérations . ACRE:
     - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
 
     - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
-
-
-    > *Historique*:
-
-    - Pour les auto-entreprise créées à partir du 1er janvier 2020, l'exonération est de nouveau soumise à condition.
-
-    - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019, la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
-
-    - Pour les entreprises créées avant le 1er janvier 2019, la l'exonération de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
   question.en: '[automatic] Did you benefit from the ACRE?'
   question.fr: Bénéficiez-vous de l'ACRE ?
   titre.en: '[automatic] ACRE'

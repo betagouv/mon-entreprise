@@ -71,4 +71,5 @@ export enum PageChapter2 {
 	Independant = 'independant',
 	ProfessionLiberale = 'profession_liberale',
 	Salarie = 'salarie',
+	ChoixDuStatut = 'choix_du_statut',
 }
