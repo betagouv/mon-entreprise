@@ -19,6 +19,7 @@ export default function ActivityNotFound({ job }: { job: string }) {
 	return (
 		<>
 			<PopoverWithTrigger
+				title={t('Quelle est votre activité ?')}
 				trigger={(buttonProps) =>
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					hide ? (
@@ -43,7 +44,6 @@ export default function ActivityNotFound({ job }: { job: string }) {
 				{() => (
 					<>
 						<FeedbackForm
-							title={t('Quelle est votre activité ?')}
 							infoSlot={
 								<Message border={false} type="info" icon>
 									<Trans i18nKey="search-code-ape.feedback.info">

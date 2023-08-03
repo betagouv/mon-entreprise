@@ -26,12 +26,15 @@ export const useFeedback = () => {
 				absoluteSitePaths.budget,
 				absoluteSitePaths.assistants.index,
 				absoluteSitePaths.assistants['choix-du-statut'].index,
+				absoluteSitePaths.assistants['choix-du-statut']['recherche-activité'],
+				absoluteSitePaths.assistants['choix-du-statut']['détails-activité'],
 				absoluteSitePaths.accessibilité,
 			].includes(currentPathDecoded) &&
 			// Exclure les pages et sous-pages
 			![
 				absoluteSitePaths.documentation.index,
 				absoluteSitePaths.nouveautés.index,
+
 				absoluteSitePaths.stats,
 				absoluteSitePaths.développeur.index,
 			].some((path) => currentPathDecoded.includes(path))
