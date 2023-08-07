@@ -283,7 +283,3 @@ const Minus = styled.span`
 	color: ${({ theme }) => theme.colors.bases.secondary[500]};
 	margin-right: ${({ theme }) => theme.spacings.sm};
 `
-
-const StyledStrong = styled(Strong)`
-	font-family: ${({ theme }) => theme.fonts.main};
-`

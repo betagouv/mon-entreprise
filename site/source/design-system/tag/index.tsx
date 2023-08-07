@@ -7,13 +7,16 @@ type SizeProps = SM | MD | LG
 type SizeKey = KeysOfUnion<SizeProps>
 
 interface Color {
+	// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 	light: Colors | string
+	// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 	dark: Colors | string
 }
 
 interface TagProps {
 	children?: React.ReactNode
 	className?: string
+	// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 	color?: Colors | Color | string
 }
 

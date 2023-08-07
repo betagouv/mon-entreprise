@@ -269,11 +269,6 @@ const ModifierOptions = ({
 	)
 }
 
-const Flex = styled.div`
-	display: flex;
-	align-items: baseline;
-`
-
 const FlexCentered = styled.div`
 	display: flex;
 	align-items: center;
