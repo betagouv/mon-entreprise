@@ -45,10 +45,8 @@ describe(`Assistant choix du statut`, { testIsolation: false }, function () {
 	})
 
 	it('should allow to input remuneration and select appropriate statut', function () {
-		cy.get('#CA').click({ waitForAnimations: true })
-		cy.type('50000')
-		cy.get('#charges').click({ waitForAnimations: true })
-		cy.type('10000')
+		cy.get('#CA').type('50000')
+		cy.get('#charges').type('10000')
 
 		checkA11Y()
 		cy.contains('Enregistrer et continuer').not('[disabled]').click()
