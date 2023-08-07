@@ -37,7 +37,10 @@ export function useStatistiques({
 					) : null,
 			}))
 		}
-		if (typeof filter !== 'string' && filter.chapter2 === 'choix_du_statut') {
+		if (
+			typeof filter !== 'string' &&
+			filter.chapter2 === PageChapter2.ChoixDuStatut
+		) {
 			const pages = rawData.pages as Pageish[]
 
 			return statsChoixStatut(pages)
@@ -122,7 +125,7 @@ function filterPage(
 
 const statsChoixStatut = (pages: Pageish[]) => {
 	const choixStatutPage = pages.filter(
-		(p) => p.page_chapter2 === 'choix_du_statut'
+		(p) => p.page_chapter2 === PageChapter2.ChoixDuStatut
 	)
 	const accueil = groupBy(
 		choixStatutPage.filter((p) => 'page' in p && p.page === 'accueil'),

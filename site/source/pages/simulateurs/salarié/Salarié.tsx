@@ -20,7 +20,6 @@ import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanat
 import { FromTop } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
@@ -32,11 +31,6 @@ import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import urlIllustrationNetBrutEn from './illustration-net-brut-en.png'
 import urlIllustrationNetBrut from './illustration-net-brut.png'
-
-const ButtonContainer = styled.span`
-	display: block;
-	margin: 2rem 1rem;
-`
 
 export default function SalariéSimulation() {
 	const { absoluteSitePaths } = useSitePaths()

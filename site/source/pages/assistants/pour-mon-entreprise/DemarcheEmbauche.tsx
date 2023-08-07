@@ -1,11 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Article } from '@/design-system/card'
-import { useSitePaths } from '@/sitePaths'
 
 // TODO: remove?
 export function DemarcheEmbaucheCard() {
-	const { absoluteSitePaths } = useSitePaths()
+	// const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
 	return (

@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom'
 
-import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { Merge, ToOptional } from '@/types/utils'
 
 import useSimulatorsData, { SimulatorDataValues } from './useSimulatorsData'
@@ -12,7 +11,6 @@ export type MergedSimulatorDataValues = ToOptional<Merge<SimulatorDataValues>>
  */
 export const useCurrentSimulatorData = () => {
 	const simulatorsData = useSimulatorsData()
-	const isEmbedded = useIsEmbedded()
 	const pathname = decodeURI(useLocation().pathname)
 
 	const entries = Object.entries(simulatorsData)
