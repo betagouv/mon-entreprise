@@ -47,8 +47,8 @@ await Promise.all(
 	})
 )
 
-prettier.resolveConfig(rulesTranslationPath).then((options) => {
-	const formattedYaml = prettier.format(
+prettier.resolveConfig(rulesTranslationPath).then(async (options) => {
+	const formattedYaml = await prettier.format(
 		yaml.stringify(resolved, { sortMapEntries: true }),
 		{
 			...options,
