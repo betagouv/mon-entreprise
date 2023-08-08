@@ -1,6 +1,6 @@
 import type { WorkerEngineAction, WorkerEngineActions } from './workerEngine'
 
-if (import.meta.env.SSR || !window.Worker) {
+if (!import.meta.env.SSR && !window.Worker) {
 	throw new Error('Worker is not supported in this browser')
 }
 

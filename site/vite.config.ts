@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 /* eslint-disable no-console */
 
 import path from 'path'
@@ -19,6 +20,9 @@ export default defineConfig(({ command, mode }) => ({
 	resolve: {
 		alias: [{ find: '@', replacement: path.resolve('./source') }],
 		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
+	},
+	test: {
+		setupFiles: ['@vitest/web-worker'],
 	},
 	publicDir: 'source/public',
 	build: {
