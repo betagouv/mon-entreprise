@@ -1,5 +1,4 @@
 import { Evaluation } from 'publicodes'
-import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -8,8 +7,10 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { AbsoluteSitePaths } from '@/sitePaths'
-
-import { EngineContext } from './utils/EngineContext'
+import {
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 type SimulateurWarningProps = {
 	simulateur: Exclude<keyof AbsoluteSitePaths['simulateurs'], 'index'>
@@ -18,10 +19,13 @@ type SimulateurWarningProps = {
 export default function SimulateurWarning({
 	simulateur,
 }: SimulateurWarningProps) {
-	const year = useContext(EngineContext)
-		.evaluate('date')
-		.nodeValue?.toString()
-		.slice(-4) as Evaluation<number> | undefined
+	const workerEngine = useWorkerEngine()
+	const year = usePromiseOnSituationChange(
+		() => workerEngine.asyncEvaluateWithEngineId('date'),
+		[workerEngine]
+	)
+		?.nodeValue?.toString()
+		.slice(-4) as Evaluation<number>
 
 	return (
 		<Warning

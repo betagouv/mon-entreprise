@@ -6,7 +6,7 @@ import Engine, {
 	Rule,
 	RuleNode,
 } from 'publicodes'
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { deleteFromSituation } from '@/store/actions/actions'
@@ -16,6 +16,10 @@ import {
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
 import { omit } from '@/utils'
+import {
+	useWorkerEngine,
+	WorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 import i18n from '../../locales/i18n'
 
@@ -63,12 +67,12 @@ export function engineFactory(rules: Rules, options = {}) {
 	return new Engine(rules, { ...engineOptions, ...options, logger })
 }
 
-export const EngineContext = createContext<Engine>(new Engine())
-export const EngineProvider = EngineContext.Provider
+// export const EngineContext = createContext<Engine>(new Engine())
+// export const EngineProvider = EngineContext.Provider
 
-export function useEngine() {
-	return useContext(EngineContext) as Engine<DottedName>
-}
+// export function useEngine() {
+// 	return useContext(EngineContext) as Engine<DottedName>
+// }
 
 export const useRawSituation = () => {
 	const simulatorSituation = useSelector(situationSelector)
@@ -97,6 +101,8 @@ export const safeSetSituation = <Names extends string>(
 		situation: Partial<Record<Names, PublicodesExpression>>
 		faultyDottedName?: Names
 	}) => void
+	// rawSituation: Parameters<Engine<Names>['setSituation']>[0],
+	// options: Parameters<Engine<Names>['setSituation']>[1]
 ) => {
 	let situationError = false
 	const errors: Error[] = []
@@ -104,6 +110,7 @@ export const safeSetSituation = <Names extends string>(
 	do {
 		try {
 			// Try to set situation
+			// engine.setSituation(situation, options)
 			engine.setSituation(situation)
 			situationError = false
 		} catch (error) {
@@ -148,46 +155,58 @@ export const safeSetSituation = <Names extends string>(
 	} while (situationError && errors.length < 1000)
 }
 
-export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
+// engine: Engine<DottedName>
+export const useSetupSafeSituation = (workerEngine?: WorkerEngine) => {
 	const dispatch = useDispatch()
+	// const workerEngine = useWorkerEngine()
 	const rawSituation = useRawSituation()
 
 	const simulatorSituation = useSelector(situationSelector)
 	const configSituation = useSelector(configSituationSelector)
 	const companySituation = useSelector(companySituationSelector)
+	const { asyncSetSituationWithEngineId } = workerEngine ?? {}
 
-	try {
-		safeSetSituation(engine, rawSituation, ({ faultyDottedName }) => {
-			if (!faultyDottedName) {
-				throw new Error('Bad empty faultyDottedName')
-			}
+	useEffect(() => {
+		if (!asyncSetSituationWithEngineId) {
+			return
+		}
+		console.log('set rawSituation', rawSituation, workerEngine)
 
-			if (faultyDottedName in simulatorSituation) {
-				dispatch(deleteFromSituation(faultyDottedName))
-			} else {
-				throw new Error(
-					'Bad ' +
-						(faultyDottedName in configSituation
-							? 'config'
-							: faultyDottedName in companySituation
-							? 'company'
-							: 'unknow') +
-						' situation : ' +
-						JSON.stringify(faultyDottedName)
-				)
-			}
-		})
-	} catch (error) {
-		// eslint-disable-next-line no-console
-		console.error(error)
+		void asyncSetSituationWithEngineId(rawSituation)
+	}, [asyncSetSituationWithEngineId, rawSituation])
 
-		engine.setSituation()
-	}
+	// try {
+	// 	safeSetSituation(engine, rawSituation, ({ faultyDottedName }) => {
+	// 		if (!faultyDottedName) {
+	// 			throw new Error('Bad empty faultyDottedName')
+	// 		}
+
+	// 		if (faultyDottedName in simulatorSituation) {
+	// 			dispatch(deleteFromSituation(faultyDottedName))
+	// 		} else {
+	// 			throw new Error(
+	// 				'Bad ' +
+	// 					(faultyDottedName in configSituation
+	// 						? 'config'
+	// 						: faultyDottedName in companySituation
+	// 						? 'company'
+	// 						: 'unknow') +
+	// 					' situation : ' +
+	// 					JSON.stringify(faultyDottedName)
+	// 			)
+	// 		}
+	// 	})
+	// } catch (error) {
+	// 	// eslint-disable-next-line no-console
+	// 	console.error(error)
+
+	// 	engine.setSituation()
+	// }
 }
 
-export function useInversionFail() {
-	return useContext(EngineContext).inversionFail()
-}
+// export function useInversionFail() {
+// 	return useContext(EngineContext).inversionFail()
+// }
 
 export type EvaluatedRule = EvaluatedNode &
 	RuleNode & { dottedName: DottedName }

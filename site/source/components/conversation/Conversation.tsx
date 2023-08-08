@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression } from 'publicodes'
+import Engine, { PublicodesExpression, RuleNode } from 'publicodes'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import RuleInput from '@/components/conversation/RuleInput'
 import Notifications from '@/components/Notifications'
 import QuickLinks from '@/components/QuickLinks'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -19,7 +18,12 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils'
+import {
+	useAsyncGetRule,
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 import { TrackPage } from '../ATInternetTracking'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
@@ -32,17 +36,16 @@ import { useNavigateQuestions } from './useNavigateQuestions'
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
 	customSituationVisualisation?: React.ReactNode
-	engines?: Array<Engine<DottedName>>
+	workerEngines?: WorkerEngine[]
 }
 
 export default function Conversation({
 	customEndMessages,
 	customSituationVisualisation,
-	engines,
+	workerEngines,
 }: ConversationProps) {
 	const { currentSimulatorData } = useCurrentSimulatorData()
 	const dispatch = useDispatch()
-	const engine = useEngine()
 
 	const situation = useSelector(situationSelector)
 
@@ -55,7 +58,7 @@ export default function Conversation({
 		currentQuestionIsAnswered,
 		goToPrevious: goToPreviousQuestion,
 		goToNext: goToNextQuestion,
-	} = useNavigateQuestions(engines)
+	} = useNavigateQuestions(workerEngines)
 
 	const onChange = (
 		value: PublicodesExpression | undefined,
@@ -88,6 +91,13 @@ export default function Conversation({
 	}, [focusFirstElemInForm, goToNextQuestion])
 
 	const formRef = React.useRef<HTMLFormElement>(null)
+	const workerEngine = useWorkerEngine()
+	const rule = useAsyncGetRule(currentQuestion)
+
+	const question = usePromiseOnSituationChange(
+		async () => rule && evaluateQuestion(workerEngine, rule),
+		[rule, workerEngine]
+	)
 
 	return (
 		<>
@@ -120,7 +130,7 @@ export default function Conversation({
 								}}
 							>
 								<H3 id="questionHeader" as="h2">
-									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
+									{question}
 									<ExplicableRule light dottedName={currentQuestion} />
 								</H3>
 							</div>
@@ -240,4 +250,20 @@ export default function Conversation({
 			</div>
 		</>
 	)
+}
+
+export async function evaluateQuestion(
+	workerEngine: WorkerEngine,
+	rule: RuleNode
+) {
+	const question = rule.rawNode.question
+	if (question && typeof question === 'object') {
+		return (
+			await workerEngine.asyncEvaluateWithEngineId(
+				question as PublicodesExpression
+			)
+		).nodeValue as string
+	}
+
+	return question
 }

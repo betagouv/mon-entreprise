@@ -10,13 +10,17 @@ import { Strong } from '@/design-system/typography'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { updateSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import {
+	useAsyncGetRule,
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput, { InputProps } from '../conversation/RuleInput'
 import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
-import { useEngine } from '../utils/EngineContext'
 import { useInitialRender } from '../utils/useInitialRender'
 
 type SimulationGoalProps = {
@@ -48,14 +52,18 @@ export function SimulationGoal({
 	isInfoMode = false,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
-	const engine = useEngine()
 	const currentUnit = useSelector(targetUnitSelector)
-	const evaluation = engine.evaluate({
-		valeur: dottedName,
-		arrondi: round ? 'oui' : 'non',
-		...(!isTypeBoolean ? { unité: currentUnit } : {}),
-	})
-	const rule = engine.getRule(dottedName)
+	const workerEngine = useWorkerEngine()
+	const evaluation = usePromiseOnSituationChange(
+		() =>
+			workerEngine.asyncEvaluateWithEngineId({
+				value: dottedName,
+				arrondi: round ? 'oui' : 'non',
+				...(!isTypeBoolean ? { unité: currentUnit } : {}),
+			}),
+		[workerEngine, dottedName, round, isTypeBoolean, currentUnit]
+	)
+	const rule = useAsyncGetRule(dottedName)
 	const initialRender = useInitialRender()
 	const [isFocused, setFocused] = useState(false)
 	const onChange = useCallback(
@@ -65,10 +73,11 @@ export function SimulationGoal({
 		},
 		[dispatch, onUpdateSituation, dottedName]
 	)
-	if (evaluation.nodeValue === null) {
-		return null
-	}
-	if (small && !editable && evaluation.nodeValue === undefined) {
+
+	if (
+		evaluation?.nodeValue === null ||
+		(small && !editable && evaluation?.nodeValue === undefined)
+	) {
 		return null
 	}
 
@@ -96,7 +105,7 @@ export function SimulationGoal({
 										<StyledBody
 											id={`${dottedName.replace(/\s|\./g, '_')}-label`}
 										>
-											<Strong>{label || rule.title}</Strong>
+											<Strong>{label || rule?.title}</Strong>
 										</StyledBody>
 									</Grid>
 									<Grid item>
@@ -114,7 +123,7 @@ export function SimulationGoal({
 								</RuleLink>
 							)}
 
-							{rule.rawNode.résumé && (
+							{rule?.rawNode.résumé && (
 								<StyledSmallBody
 									className={small ? 'sr-only' : ''}
 									id={`${dottedName.replace(/\s|\./g, '_')}-description`}
@@ -129,7 +138,7 @@ export function SimulationGoal({
 					</StyledGuideLectureContainer>
 					{editable ? (
 						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
-							{!isFocused && !small && (
+							{!isFocused && !small && evaluation && (
 								<AnimatedTargetValue value={evaluation.nodeValue as number} />
 							)}
 							<RuleInput
@@ -140,7 +149,7 @@ export function SimulationGoal({
 										  }
 										: undefined
 								}
-								aria-label={engine.getRule(dottedName)?.title}
+								aria-label={rule?.title}
 								aria-describedby={`${dottedName.replace(
 									/\s|\./g,
 									'_'
@@ -151,7 +160,9 @@ export function SimulationGoal({
 								onFocus={() => setFocused(true)}
 								onBlur={() => setFocused(false)}
 								onChange={onChange}
-								missing={dottedName in evaluation.missingVariables}
+								missing={
+									evaluation && dottedName in evaluation.missingVariables
+								}
 								small={small}
 								formatOptions={{
 									maximumFractionDigits: round ? 0 : 2,

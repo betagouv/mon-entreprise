@@ -17,6 +17,7 @@ import { H1, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
+import { WorkerEngineProvider } from '@/worker/socialWorkerEngineClient'
 
 import { Message } from '../design-system'
 import * as safeLocalStorage from '../storage/safeLocalStorage'
@@ -27,7 +28,7 @@ import { IframeResizer } from './IframeResizer'
 import { ServiceWorker } from './ServiceWorker'
 import { DarkModeProvider } from './utils/DarkModeContext'
 
-type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
+type SiteName = 'mon-entreprise' | 'infrance'
 
 export const SiteNameContext = createContext<SiteName | null>(null)
 
@@ -51,26 +52,28 @@ export default function Provider({
 						<I18nextProvider i18n={i18next}>
 							<ReduxProvider store={store}>
 								<BrowserRouterProvider basename={basename}>
-									<ErrorBoundary
-										fallback={(errorData) => (
-											// eslint-disable-next-line react/jsx-props-no-spreading
-											<ErrorFallback {...errorData} showFeedbackForm />
-										)}
-									>
-										{!import.meta.env.SSR &&
-											import.meta.env.MODE === 'production' &&
-											'serviceWorker' in navigator && <ServiceWorker />}
-										<IframeResizer />
-										<OverlayProvider>
-											<ThemeColorsProvider>
-												<DisableAnimationOnPrintProvider>
-													<SiteNameContext.Provider value={basename}>
-														{children}
-													</SiteNameContext.Provider>
-												</DisableAnimationOnPrintProvider>
-											</ThemeColorsProvider>
-										</OverlayProvider>
-									</ErrorBoundary>
+									<WorkerEngineProvider basename={basename}>
+										<ErrorBoundary
+											fallback={(errorData) => (
+												// eslint-disable-next-line react/jsx-props-no-spreading
+												<ErrorFallback {...errorData} />
+											)}
+										>
+											{!import.meta.env.SSR &&
+												import.meta.env.MODE === 'production' &&
+												'serviceWorker' in navigator && <ServiceWorker />}
+											<IframeResizer />
+											<OverlayProvider>
+												<ThemeColorsProvider>
+													<DisableAnimationOnPrintProvider>
+														<SiteNameContext.Provider value={basename}>
+															{children}
+														</SiteNameContext.Provider>
+													</DisableAnimationOnPrintProvider>
+												</ThemeColorsProvider>
+											</OverlayProvider>
+										</ErrorBoundary>
+									</WorkerEngineProvider>
 								</BrowserRouterProvider>
 							</ReduxProvider>
 						</I18nextProvider>

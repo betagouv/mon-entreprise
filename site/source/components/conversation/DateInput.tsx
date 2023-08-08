@@ -4,7 +4,7 @@ import { InputProps } from '@/components/conversation/RuleInput'
 import { DateField } from '@/design-system/field'
 import { DateFieldProps } from '@/design-system/field/DateField'
 
-import { useEngine } from '../utils/EngineContext'
+// import { useEngine } from '../utils/EngineContext'
 import InputSuggestions from './InputSuggestions'
 
 export default function DateInput({
@@ -17,7 +17,7 @@ export default function DateInput({
 	value,
 	type,
 }: InputProps & { type: DateFieldProps['type'] }) {
-	const engine = useEngine()
+	// const engine = useEngine()
 
 	const convertDate = (val?: unknown) => {
 		if (!val || typeof val !== 'string') {
@@ -47,13 +47,12 @@ export default function DateInput({
 					<InputSuggestions
 						suggestions={suggestions}
 						onFirstClick={(node) => {
-							const value = engine.evaluate(node)
-
-							handleDateChange(
-								'nodeValue' in value && typeof value.nodeValue === 'string'
-									? value.nodeValue
-									: undefined
-							)
+							// const value = engine.evaluate(node)
+							// handleDateChange(
+							// 	'nodeValue' in value && typeof value.nodeValue === 'string'
+							// 		? value.nodeValue
+							// 		: undefined
+							// )
 						}}
 						onSecondClick={() => {
 							onSubmit?.('suggestion')

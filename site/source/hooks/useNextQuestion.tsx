@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
+import Engine, { RuleNode } from 'publicodes'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -10,8 +10,13 @@ import {
 	useMissingVariables,
 } from '@/store/selectors/simulationSelectors'
 import { ImmutableType } from '@/types/utils'
+import {
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
-import { useEngine } from '../components/utils/EngineContext'
+// import { useEngine } from '../components/utils/EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 
@@ -67,23 +72,30 @@ export function getNextQuestions(
 }
 
 export const useNextQuestions = function (
-	engines?: Array<Engine<DottedName>>
+	workerEngines?: WorkerEngine[]
 ): Array<DottedName> {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const config = useSelector(configSelector)
-	const engine = useEngine()
-	const missingVariables = useMissingVariables({ engines: engines ?? [engine] })
-	const nextQuestions = useMemo(() => {
-		const next = getNextQuestions(
-			missingVariables,
-			config.questions ?? {},
-			answeredQuestions
-		)
+	const workerEngine = useWorkerEngine()
+	const missingVariables = useMissingVariables(workerEngines)
 
-		return next.filter(
-			(question) => engine.getRule(question).rawNode.question !== undefined
-		)
-	}, [missingVariables, config, answeredQuestions, engine])
+	const nextQuestions = usePromiseOnSituationChange(
+		async () => {
+			const next = getNextQuestions(
+				missingVariables,
+				config.questions ?? {},
+				answeredQuestions
+			)
+
+			const rules = await Promise.all(
+				next.map((question) => workerEngine.asyncGetRuleWithEngineId(question))
+			)
+
+			return next.filter((_, i) => rules[i].rawNode.question !== undefined)
+		},
+		[missingVariables, config.questions, answeredQuestions, workerEngine],
+		{ defaultValue: [] as DottedName[] }
+	)
 
 	return nextQuestions
 }

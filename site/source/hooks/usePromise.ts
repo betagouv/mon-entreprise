@@ -6,7 +6,7 @@ import { DependencyList, useCallback, useEffect, useState } from 'react'
  */
 export const usePromise = <T, Default = undefined>(
 	promise: () => Promise<T>,
-	deps: DependencyList = [],
+	deps: DependencyList,
 	defaultValue?: Default
 ) => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -15,8 +15,34 @@ export const usePromise = <T, Default = undefined>(
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => void lazyPromise(), deps)
 
+	// cancelable promise
+	// useEffect(() => {
+	// 	const controller = new window.AbortController()
+	// 	const signal = controller.signal
+
+	// 	void new Promise((resolve, reject) => {
+	// 		void lazyPromise().then(resolve)
+	// 		// .then(resolve)
+
+	// 		signal.addEventListener('abort', () => {
+	// 			reject(new Error('Promise aborted'))
+	// 		})
+	// 	})
+
+	// 	return () => {
+	// 		console.log('### aborting')
+	// 		controller.abort()
+	// 		// promise.
+	// 	}
+	// }, deps)
+
 	return state
 }
+
+/**
+ * Return a typed tuple.
+ */
+const tuple = <T extends unknown[]>(args: [...T]): T => args
 
 /**
  * Execute an asynchronous function and return its result (Return default value if the promise is not finished).
@@ -25,19 +51,16 @@ export const usePromise = <T, Default = undefined>(
 export const useLazyPromise = <
 	T,
 	Params extends unknown[],
-	Default = undefined
+	Default = undefined,
 >(
 	promise: (...params: Params) => Promise<T>,
-	deps: DependencyList = [],
+	deps: DependencyList,
 	defaultValue?: Default
 ) => {
-	// console.log('===>', defaultValue)
 	const [state, setState] = useState<T | Default>(defaultValue as Default)
 
 	const lazyPromise = useCallback(
 		async (...params: Params) => {
-			// console.log('====', defaultValue)
-
 			const result = await promise(...params)
 			setState(result)
 
@@ -47,5 +70,5 @@ export const useLazyPromise = <
 		deps
 	)
 
-	return [state, lazyPromise] as const
+	return tuple([state, lazyPromise])
 }

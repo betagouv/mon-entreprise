@@ -1,9 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
-import { useEngine } from '@/components/utils/EngineContext'
-// import { Article } from '@/design-system/card'
-// import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import {
@@ -12,12 +9,16 @@ import {
 } from '@/hooks/useCurrentSimulatorData'
 import { GuideURSSAFCard } from '@/pages/simulateurs/cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
-import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
 import { useSitePaths } from '@/sitePaths'
+import {
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from '../assistants/pour-mon-entreprise/AutoEntrepeneurCard'
 import { CodeDuTravailNumeriqueCard } from '../assistants/pour-mon-entreprise/CodeDuTravailNumeriqueCard'
+import { SimulatorRessourceCard } from './cards/SimulatorRessourceCard'
 
 interface NextStepsProps {
 	iframePath?: MergedSimulatorDataValues['iframePath']
@@ -27,11 +28,19 @@ interface NextStepsProps {
 export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	const { absoluteSitePaths } = useSitePaths()
 	const { language } = useTranslation().i18n
-	const engine = useEngine()
+	const workerEngine = useWorkerEngine()
 
 	const { key } = useCurrentSimulatorData()
-	const guideUrssaf = guidesUrssaf.find(
-		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
+	const guideUrssaf = usePromiseOnSituationChange(
+		async () =>
+			(
+				await Promise.all(
+					guidesUrssaf.map(({ associatedRule }) =>
+						workerEngine.asyncEvaluateWithEngineId(associatedRule)
+					)
+				)
+			).find(({ nodeValue }) => nodeValue),
+		[workerEngine]
 	)
 
 	if (!iframePath && !guideUrssaf) {
@@ -58,7 +67,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 				{nextSteps &&
 					nextSteps.map((simulatorId) => (
 						<Grid item xs={12} sm={6} lg={4} key={simulatorId} role="listitem">
-							<SimulatorRessourceCard simulatorId={simulatorId} />
+							{/* <SimulatorRessourceCard simulatorId={simulatorId} /> */}
 						</Grid>
 					))}
 
@@ -70,14 +79,14 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						/>
 					</Grid>
 				)}
-				{key === 'salarié' && (
+				{/* {key === 'salarié' && (
 					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<CodeDuTravailNumeriqueCard />
 					</Grid>
-				)}
+				)} */}
 				{guideUrssaf && language === 'fr' && (
 					<Grid item xs={12} sm={6} lg={4} role="listitem">
-						<GuideURSSAFCard guideUrssaf={guideUrssaf} />
+						{/* <GuideURSSAFCard guideUrssaf={guideUrssaf} /> */}
 					</Grid>
 				)}
 			</Grid>

@@ -29,7 +29,6 @@ import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Markdown } from '@/components/utils/markdown'
 import { Message, Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
@@ -44,7 +43,6 @@ import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { companySituationSelector } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils'
 
 import forms from './forms.svg'
 import growth from './growth.svg'
@@ -294,9 +292,9 @@ const AskCompanyMissingDetails = () => {
 					{questions.map((question) => (
 						<FromTop key={question.dottedName}>
 							<H3>
-								<Markdown options={{ forceInline: true }}>
+								{/* <Markdown options={{ forceInline: true }}>
 									{evaluateQuestion(engine, question) ?? ''}
-								</Markdown>
+								</Markdown> */}
 							</H3>
 							<RuleInput
 								dottedName={question.dottedName}

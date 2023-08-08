@@ -3,11 +3,12 @@ import { utils } from 'publicodes'
 import { useContext } from 'react'
 import { styled } from 'styled-components'
 
-import { EngineContext, useEngine } from '@/components/utils/EngineContext'
+// import { useEngine } from '@/components/utils/EngineContext'
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
-import { capitalise0 } from '@/utils'
+import { usePromise } from '@/hooks/usePromise'
+import { capitalise0, isNotNullOrUndefined } from '@/utils'
 
 export function References({
 	references,
@@ -131,21 +132,37 @@ const getDomain = (link: string) =>
 	)
 
 export function RuleReferences({ dottedNames }: { dottedNames: DottedName[] }) {
-	const engine = useContext(EngineContext)
+	const references = usePromise(
+		async () => {
+			const values = await Promise.all(
+				dottedNames.map(
+					async (dottedName) =>
+						(await asyncEvaluate(`${dottedName} != non`)).nodeValue
+				)
+			)
+
+			const refs = await Promise.all(
+				values
+					.filter(isNotNullOrUndefined)
+					.map(async (dottedName) =>
+						Object.entries(
+							(await asyncGetRule(dottedName as DottedName)).rawNode
+								.références ?? {}
+						)
+					)
+			)
+
+			return refs.flat()
+		},
+		[dottedNames],
+		[]
+	)
 
 	return (
 		<Ul>
-			{dottedNames
-				.filter(
-					(dottedName) => engine.evaluate(`${dottedName} != non`).nodeValue
-				)
-				.map((dottedName) =>
-					Object.entries(
-						engine.getRule(dottedName).rawNode.références ?? {}
-					).map(([title, href]) => (
-						<Reference key={href} title={title} href={href} />
-					))
-				)}
+			{references.map(([title, href]) => (
+				<Reference key={href} title={title} href={href} />
+			))}
 		</Ul>
 	)
 }

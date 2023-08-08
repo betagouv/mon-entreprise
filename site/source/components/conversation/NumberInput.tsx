@@ -1,10 +1,10 @@
 import { NumberFieldProps } from '@react-types/numberfield'
 import { ASTNode, parseUnit, serializeUnit, Unit } from 'publicodes'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { EngineContext } from '@/components/utils/EngineContext'
+// import { EngineContext } from '@/components/utils/EngineContext'
 import { NumberField } from '@/design-system/field'
 import { debounce } from '@/utils'
 
@@ -30,7 +30,7 @@ export default function NumberInput({
 	)
 	const { i18n, t } = useTranslation()
 	const parsedDisplayedUnit = displayedUnit ? parseUnit(displayedUnit) : unit
-	const engine = useContext(EngineContext)
+
 	useEffect(() => {
 		if (value !== currentValue) {
 			setCurrentValue(
@@ -41,23 +41,27 @@ export default function NumberInput({
 		}
 	}, [value])
 
-	if (parsedDisplayedUnit && parsedDisplayedUnit.numerators.includes('€')) {
-		parsedDisplayedUnit.numerators = parsedDisplayedUnit.numerators.filter(
-			(u) => u === '€'
-		)
-		formatOptions = {
-			style: 'currency',
-			currency: 'EUR',
-			minimumFractionDigits: 0,
-
-			...formatOptions,
-		}
-	} else {
-		formatOptions = {
+	const format = useMemo(() => {
+		let ret = {
 			style: 'decimal',
 			...formatOptions,
 		}
-	}
+
+		if (parsedDisplayedUnit && parsedDisplayedUnit.numerators.includes('€')) {
+			parsedDisplayedUnit.numerators = parsedDisplayedUnit.numerators.filter(
+				(u) => u === '€'
+			)
+			ret = {
+				style: 'currency',
+				currency: 'EUR',
+				minimumFractionDigits: 0,
+				...formatOptions,
+			}
+		}
+
+		return ret
+	}, [formatOptions, parsedDisplayedUnit])
+
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
 	return (
@@ -83,7 +87,7 @@ export default function NumberInput({
 						debouncedOnChange(valeur)
 					}
 				}}
-				formatOptions={formatOptions}
+				formatOptions={format}
 				placeholder={
 					missing && value != null && typeof value === 'number'
 						? value
@@ -94,8 +98,8 @@ export default function NumberInput({
 			<InputSuggestions
 				className="print-hidden"
 				suggestions={suggestions}
-				onFirstClick={(node: ASTNode) => {
-					const evaluatedNode = engine.evaluate(node)
+				onFirstClick={async (node: ASTNode) => {
+					const evaluatedNode = await asyncEvaluate(node)
 					if (serializeUnit(evaluatedNode.unit) === serializeUnit(unit)) {
 						setCurrentValue(evaluatedNode.nodeValue as number)
 					}

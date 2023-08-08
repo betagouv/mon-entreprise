@@ -13,7 +13,6 @@ import Value, {
 } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { FromBottom } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
@@ -171,25 +170,36 @@ export function ImpôtsDGFIP({ role }: { role?: string }) {
 	)
 }
 
+const caisses = [
+	'CARCDSF',
+	'CARPIMKO',
+	'CIPAV',
+	'CARMF',
+	'CNBF',
+	'CAVEC',
+	'CAVP',
+] as const
+
 function CaisseRetraite({ role }: { role?: string }) {
-	const engine = useEngine()
 	const unit = useSelector(targetUnitSelector)
-	const caisses = [
-		'CARCDSF',
-		'CARPIMKO',
-		'CIPAV',
-		'CARMF',
-		'CNBF',
-		'CAVEC',
-		'CAVP',
-	] as const
+	const rules = usePromiseOnSituationChange(
+		() =>
+			Promise.all(
+				caisses.map((caisse) =>
+					asyncGetRule(
+						`dirigeant . indépendant . PL . ${caisse} . cotisations` as DottedName
+					)
+				)
+			),
+		[]
+	)
 
 	return (
 		<>
-			{caisses.map((caisse) => {
+			{caisses.map((caisse, index) => {
 				const dottedName =
 					`dirigeant . indépendant . PL . ${caisse}` as DottedName
-				const { description, références } = engine.getRule(dottedName).rawNode
+				const { description, références } = rules?.[index].rawNode || {}
 
 				return (
 					<Condition expression={dottedName} key={caisse}>
@@ -243,9 +253,9 @@ function CaisseRetraite({ role }: { role?: string }) {
 
 export function InstitutionsPartenairesArtisteAuteur() {
 	const unit = useSelector(targetUnitSelector)
-	const { description: descriptionIRCEC } = useEngine().getRule(
-		'artiste-auteur . cotisations . IRCEC'
-	).rawNode
+	const descriptionIRCEC = useAsyncGetRule(
+		'artiste-auteur . cotisations . IRCEC' as DottedName
+	)?.rawNode.description
 
 	return (
 		<section>

@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import Engine, {
+import {
 	ASTNode,
 	EvaluatedNode,
 	Evaluation,
@@ -7,13 +7,19 @@ import Engine, {
 	reduceAST,
 	RuleNode,
 } from 'publicodes'
-import React, { useContext } from 'react'
+import React from 'react'
 
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
-import { EngineContext } from '@/components/utils/EngineContext'
 import { DateFieldProps } from '@/design-system/field/DateField'
-import { getMeta } from '@/utils'
+import { usePromise } from '@/hooks/usePromise'
+import { getMeta, isNotNull } from '@/utils'
+import {
+	useAsyncGetRule,
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
@@ -49,7 +55,8 @@ type Props<Names extends string = DottedName> = Omit<
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
 	modifiers?: Record<string, string>
-	engine?: Engine<DottedName>
+	// engine?: Engine<DottedName>
+	engineId?: number
 }
 
 export type InputProps<Name extends string = string> = Omit<
@@ -61,7 +68,8 @@ export type InputProps<Name extends string = string> = Omit<
 		description: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
 		onChange: (value: PublicodesExpression | undefined) => void
-		engine: Engine<Name>
+		// engine: Engine<Name>
+		engineId: number
 	}
 
 export const binaryQuestion = [
@@ -73,7 +81,7 @@ export const binaryQuestion = [
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
-export default function RuleInput<Names extends string = DottedName>({
+export default function RuleInput({
 	dottedName,
 	onChange,
 	showSuggestions = true,
@@ -81,24 +89,64 @@ export default function RuleInput<Names extends string = DottedName>({
 	showDefaultDateValue = false,
 	missing,
 	inputType,
-	modifiers = {},
-	engine,
+	modifiers,
+	engineId = 0,
 	...props
-}: Props<Names>) {
-	const defaultEngine = useContext(EngineContext)
+}: Props<DottedName>) {
+	// const defaultEngine = useContext(EngineContext)
 
-	const engineValue = (engine ?? defaultEngine) as Engine<Names>
+	// const engineValue = (engine ?? defaultEngine) as Engine<Names>
 
-	const rule = engineValue.getRule(dottedName)
-	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
-	const value = evaluation.nodeValue
+	const workerEngine = useWorkerEngine()
 
-	const commonProps: InputProps<Names> = {
+	const rule = useAsyncGetRule(dottedName)
+
+	// const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
+	// async
+	const evaluation = usePromiseOnSituationChange(
+		() =>
+			workerEngine.asyncEvaluateWithEngineId({
+				valeur: dottedName,
+				...(modifiers ?? {}),
+			}),
+		[dottedName, modifiers, workerEngine]
+	)
+
+	const value = evaluation?.nodeValue
+
+	const isMultipleChoices = usePromiseOnSituationChange(
+		async () =>
+			rule && isMultiplePossibilities(workerEngine, engineId, dottedName),
+		[dottedName, engineId, rule, workerEngine]
+	)
+
+	console.log('=>', dottedName)
+
+	const choice = usePromise(
+		() => getOnePossibilityOptions(workerEngine, dottedName),
+		[workerEngine.situationVersion, dottedName]
+	)
+
+	dottedName === 'entreprise . activité . nature' &&
+		console.log(
+			'choice',
+			isMultipleChoices,
+			choice,
+			rule && isOnePossibility(rule)
+		)
+
+	if (!rule || isMultipleChoices === undefined) {
+		return <p>Chargement...</p>
+	}
+
+	const commonProps: InputProps<DottedName> = {
 		dottedName,
 		value,
 		missing:
 			missing ??
-			(!showDefaultDateValue && dottedName in evaluation.missingVariables),
+			(!showDefaultDateValue &&
+				evaluation &&
+				dottedName in evaluation.missingVariables),
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		onSubmit,
@@ -106,24 +154,25 @@ export default function RuleInput<Names extends string = DottedName>({
 		description: rule.rawNode.description,
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},
-		engine: engineValue,
+		// engine: engineValue,
+		engineId,
 		...props,
 		// Les espaces ne sont pas autorisés dans un id, les points sont assimilés à une déclaration de class CSS par Cypress
 		id: props?.id?.replace(/\s|\.]/g, '_') ?? dottedName.replace(/\s|\./g, '_'),
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
-	if (isMultiplePossibilities(engineValue, dottedName)) {
+	if (isMultipleChoices) {
 		return (
 			<MultipleChoicesInput
 				{...commonProps}
-				choices={getMultiplePossibilitiesOptions(engineValue, dottedName)}
+				engineId={engineId}
 				onChange={onChange}
 			/>
 		)
 	}
 
-	if (isOnePossibility(engineValue.getRule(dottedName))) {
+	if (isOnePossibility(rule) && choice) {
 		const type =
 			inputType ??
 			(meta.affichage &&
@@ -131,32 +180,22 @@ export default function RuleInput<Names extends string = DottedName>({
 				? (meta.affichage as 'radio' | 'card' | 'toggle' | 'select')
 				: 'radio')
 
-		return (
-			<MultipleAnswerInput
-				{...commonProps}
-				choice={getOnePossibilityOptions(engineValue, dottedName)}
-				type={type}
-			/>
-		)
+		return <MultipleAnswerInput {...commonProps} choice={choice} type={type} />
 	}
 
 	if (rule.rawNode.API && rule.rawNode.API === 'commune') {
-		return (
-			<SelectCommune
+		return `<SelectCommune
 				{...commonProps}
 				onChange={(c) => commonProps.onChange({ batchUpdate: c })}
 				value={value as Evaluation<string>}
-			/>
-		)
+			/>`
 	}
 
 	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
-		return (
-			<SelectPaysDétachement
+		return `<SelectPaysDétachement
 				{...commonProps}
 				plusFrance={rule.rawNode.API.endsWith('plus France')}
-			/>
-		)
+			/>`
 	}
 	if (rule.rawNode.API) {
 		throw new Error(
@@ -165,39 +204,33 @@ export default function RuleInput<Names extends string = DottedName>({
 	}
 
 	if (rule.dottedName === 'établissement . taux ATMP . taux collectif') {
-		return <SelectAtmp {...commonProps} />
+		return '<SelectAtmp {...commonProps} />'
 	}
 
 	if (rule.rawNode.type?.startsWith('date')) {
-		return (
-			<DateInput
+		return `<DateInput
 				{...commonProps}
 				type={rule.rawNode.type as DateFieldProps['type']}
-			/>
-		)
+			/>`
 	}
 
 	if (
-		evaluation.unit == null &&
+		evaluation?.unit == null &&
 		['booléen', 'notification', undefined].includes(rule.rawNode.type) &&
-		typeof evaluation.nodeValue !== 'number'
+		typeof evaluation?.nodeValue !== 'number'
 	) {
 		return <OuiNonInput {...commonProps} />
 	}
 
 	if (rule.rawNode.type === 'texte') {
-		return (
-			<TextInput
+		return `<TextInput
 				{...commonProps}
 				label={undefined}
 				value={value as Evaluation<string>}
-			/>
-		)
+			/>`
 	}
 	if (rule.rawNode.type === 'paragraphe') {
-		return (
-			<ParagrapheInput {...commonProps} value={value as Evaluation<string>} />
-		)
+		return '<ParagrapheInput {...commonProps} value={value as Evaluation<string>} />'
 	}
 
 	// Pas de title sur NumberInput pour avoir une bonne expérience avec
@@ -207,7 +240,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	return (
 		<NumberInput
 			{...commonProps}
-			unit={evaluation.unit}
+			unit={evaluation?.unit}
 			value={value as Evaluation<number>}
 		/>
 	)
@@ -224,11 +257,15 @@ const isOnePossibility = (node: RuleNode) =>
 		node
 	)
 
-export const getOnePossibilityOptions = <Name extends string>(
-	engine: Engine<Name>,
-	path: Name
-): Choice => {
-	const node = engine.getRule(path)
+const getOnePossibilityOptions = async (
+	workerEngine: WorkerEngine,
+	// engineId: number,
+	path: DottedName
+): Promise<Choice> => {
+	const node = await workerEngine.asyncGetRuleWithEngineId(path)
+
+	// if (path === 'entreprise . activité . nature') debugger
+
 	if (!node) {
 		throw new Error(`La règle ${path} est introuvable`)
 	}
@@ -237,47 +274,58 @@ export const getOnePossibilityOptions = <Name extends string>(
 		variant &&
 		(!variant['choix obligatoire'] || variant['choix obligatoire'] === 'non')
 
-	return Object.assign(
+	const ttt = Object.assign(
 		node,
 		variant
 			? {
 					canGiveUp,
 					children: (
-						variant.explanation as (ASTNode & {
-							nodeKind: 'reference'
-						})[]
-					)
-						.filter(
-							(explanation) => engine.evaluate(explanation).nodeValue !== null
+						await Promise.all(
+							(
+								variant.explanation as (ASTNode & { nodeKind: 'reference' })[]
+							).map(async (explanation) => {
+								console.log('=>>>>', explanation)
+
+								const evaluate = await workerEngine.asyncEvaluateWithEngineId(
+									explanation
+								)
+
+								return evaluate.nodeValue !== null
+									? await getOnePossibilityOptions(
+											workerEngine,
+											explanation.dottedName as DottedName
+									  )
+									: null
+							})
 						)
-						.map(({ dottedName }) =>
-							getOnePossibilityOptions(engine, dottedName as Name)
-						),
+					).filter(isNotNull),
 			  }
 			: null
 	) as Choice
+
+	console.log('choice=>', ttt)
+
+	return ttt
 }
 
-type RuleWithMultiplePossibilities = RuleNode & {
+export type RuleWithMultiplePossibilities = RuleNode & {
 	rawNode: RuleNode['rawNode'] & {
 		'plusieurs possibilités'?: Array<string>
 	}
 }
-function isMultiplePossibilities<Name extends string>(
-	engine: Engine<Name>,
-	dottedName: Name
-): boolean {
-	return !!(engine.getRule(dottedName) as RuleWithMultiplePossibilities)
-		.rawNode['plusieurs possibilités']
-}
 
-function getMultiplePossibilitiesOptions<Name extends string>(
-	engine: Engine<Name>,
-	dottedName: Name
-): RuleNode<Name>[] {
-	return (
-		(engine.getRule(dottedName) as RuleWithMultiplePossibilities).rawNode[
-			'plusieurs possibilités'
-		] ?? []
-	).map((name) => engine.getRule(`${dottedName} . ${name}` as Name))
+async function isMultiplePossibilities(
+	workerEngine: WorkerEngine,
+	engineId: number,
+	//  Engine<Name>,
+	dottedName: DottedName
+): Promise<boolean> {
+	// return !!(engine.getRule(dottedName) as RuleWithMultiplePossibilities)
+	// 	.rawNode['plusieurs possibilités']
+
+	return !!(
+		(await workerEngine.asyncGetRuleWithEngineId(
+			dottedName
+		)) as RuleWithMultiplePossibilities
+	).rawNode['plusieurs possibilités']
 }

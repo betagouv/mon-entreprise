@@ -15,6 +15,15 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 	const { t } = useTranslation()
 	const containerRef = useRef<HTMLElement | null>(null)
 	const [feedbackFormIsOpened, setFeedbackFormIsOpened] = useState(false)
+
+	// const { absoluteSitePaths } = useSitePaths()
+	// const currentPath = useLocation().pathname
+	// const isSimulateurSalaire =
+	// 	currentPath.includes(absoluteSitePaths.simulateurs.salarié) ||
+	// 	currentPath.includes(IFRAME_SIMULATEUR_EMBAUCHE_PATH)
+
+	// const { shouldShowRater, customTitle } = useFeedback()
+
 	useOnClickOutside(
 		containerRef,
 		() => !feedbackFormIsOpened && setIsFormOpen(false)

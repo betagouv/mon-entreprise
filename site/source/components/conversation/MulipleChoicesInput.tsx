@@ -5,35 +5,53 @@ import { useTranslation } from 'react-i18next'
 
 import { Checkbox } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
+import { usePromise } from '@/hooks/usePromise'
+import {
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 import { ExplicableRule } from './Explicable'
-import { InputProps } from './RuleInput'
+import { InputProps, RuleWithMultiplePossibilities } from './RuleInput'
 
 export function MultipleChoicesInput<Names extends string = DottedName>(
-	props: Omit<InputProps<Names>, 'onChange'> & {
-		choices: Array<RuleNode<Names>>
-		onChange: (value: PublicodesExpression, name: Names) => void
+	props: Omit<InputProps<DottedName>, 'onChange'> & {
+		engineId: number
+		onChange: (value: PublicodesExpression, name: DottedName) => void
 	}
 ) {
-	const handleChange = (isSelected: boolean, dottedName: Names) => {
+	const { engineId, dottedName, onChange } = props
+	const workerEngine = useWorkerEngine()
+	const choices = usePromise(
+		() => getMultiplePossibilitiesOptions(workerEngine, engineId, dottedName),
+		[dottedName, engineId, workerEngine],
+		[] as RuleNode<DottedName>[]
+	)
+
+	const handleChange = (isSelected: boolean, dottedName: DottedName) => {
 		// As soon as one option is selected, all the others are not missing anymore
-		return props.choices.forEach((choice) => {
-			const value =
-				dottedName === choice.dottedName
-					? isSelected
-					: props.engine.evaluate(choice).nodeValue
-			props.onChange(value ? 'oui' : 'non', choice.dottedName)
-		})
+		return Promise.all(
+			choices.map(async (choice) => {
+				const value =
+					dottedName === choice.dottedName
+						? isSelected
+						: (await workerEngine.asyncEvaluateWithEngineId(choice)).nodeValue
+				onChange(value ? 'oui' : 'non', choice.dottedName)
+			})
+		)
 	}
 
 	return (
 		<div aria-labelledby="questionHeader" role="group">
-			{props.choices.map((node) => (
+			{choices.map((node) => (
 				<Fragment key={node.dottedName}>
 					<CheckBoxRule
 						node={node}
-						onChange={(isSelected) => handleChange(isSelected, node.dottedName)}
-						engine={props.engine}
+						onChange={(isSelected) =>
+							void handleChange(isSelected, node.dottedName)
+						}
+						engineId={engineId}
 					/>
 				</Fragment>
 			))}
@@ -43,11 +61,16 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 
 type CheckBoxRuleProps = {
 	node: RuleNode
-	engine: Engine
+	engineId: number
 	onChange: (isSelected: boolean) => void
 }
-function CheckBoxRule({ node, engine, onChange }: CheckBoxRuleProps) {
-	const evaluation = engine.evaluate(node)
+function CheckBoxRule({ node, engineId, onChange }: CheckBoxRuleProps) {
+	const workerEngine = useWorkerEngine()
+
+	const evaluation = usePromiseOnSituationChange(
+		() => workerEngine.asyncEvaluateWithEngineId(engineId, node),
+		[engineId, node, workerEngine]
+	)
 	const { t } = useTranslation()
 	if (evaluation.nodeValue === null) {
 		return null
@@ -71,5 +94,34 @@ function CheckBoxRule({ node, engine, onChange }: CheckBoxRuleProps) {
 			/>
 			<br />
 		</>
+	)
+}
+
+async function getMultiplePossibilitiesOptions(
+	workerEngine: WorkerEngine,
+	engineId: number,
+	// engine: Engine<Name>,
+	dottedName: DottedName
+): Promise<RuleNode<DottedName>[]> {
+	// return (
+	// 	(engine.getRule(dottedName) as RuleWithMultiplePossibilities).rawNode[
+	// 		'plusieurs possibilités'
+	// 	] ?? []
+	// ).map((name) => engine.getRule(`${dottedName} . ${name}` as Name))
+	const posibilities =
+		(
+			(await workerEngine.asyncGetRuleWithEngineId(
+				engineId,
+				dottedName
+			)) as RuleWithMultiplePossibilities
+		).rawNode['plusieurs possibilités'] ?? []
+
+	return await Promise.all(
+		posibilities.map((name) =>
+			workerEngine.asyncGetRuleWithEngineId(
+				engineId,
+				`${dottedName} . ${name}` as DottedName
+			)
+		)
 	)
 }

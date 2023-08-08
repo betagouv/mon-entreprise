@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import Engine, {
+import {
 	formatValue,
 	isPublicodesError,
 	PublicodesExpression,
@@ -232,21 +232,6 @@ export async function getIframeOffset(): Promise<number> {
 		window.parent?.postMessage({ kind: 'get-offset' }, '*')
 		window.addEventListener('message', returnOffset)
 	})
-}
-
-export function evaluateQuestion(
-	engine: Engine,
-	rule: RuleNode
-): string | undefined {
-	const question = rule.rawNode.question as Exclude<
-		number,
-		PublicodesExpression
-	>
-	if (question && typeof question === 'object') {
-		return engine.evaluate(question as PublicodesExpression).nodeValue as string
-	}
-
-	return question
 }
 
 export function buildSituationFromObject<Names extends string = DottedName>(

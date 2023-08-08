@@ -1,13 +1,15 @@
 import { Evaluation } from 'publicodes'
-import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import Banner from '@/components/Banner'
-import { EngineContext } from '@/components/utils/EngineContext'
 import { Link as DesignSystemLink } from '@/design-system/typography/link'
 import { updateSituation } from '@/store/actions/actions'
+import {
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 const Bold = styled.span<{ $bold: boolean }>`
 	${({ $bold }) => ($bold ? 'font-weight: bold;' : '')}
@@ -15,15 +17,17 @@ const Bold = styled.span<{ $bold: boolean }>`
 
 export const SelectSimulationYear = () => {
 	const dispatch = useDispatch()
-	const year = useContext(EngineContext).evaluate('date')
+	const workerEngine = useWorkerEngine()
+	const year = usePromiseOnSituationChange(
+		() => workerEngine.asyncEvaluateWithEngineId('date'),
+		[workerEngine]
+	)
 	const choices = [2022, 2023]
 
 	const actualYear = Number(
-		(year.nodeValue?.toString().slice(-4) as Evaluation<number> | undefined) ||
+		(year?.nodeValue?.toString().slice(-4) as Evaluation<number>) ||
 			new Date().getFullYear()
 	)
-
-	// return null // Waiting for next year.
 
 	return (
 		<Banner hideAfterFirstStep={false} icon={'📅'}>

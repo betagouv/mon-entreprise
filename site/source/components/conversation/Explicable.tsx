@@ -1,16 +1,18 @@
 import { DottedName } from 'modele-social'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
-import { EngineContext } from '@/components/utils/EngineContext'
+// import { EngineContext } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
+import { usePromise } from '@/hooks/usePromise'
+import { useWorkerEngine } from '@/worker/socialWorkerEngineClient'
 
 import { References } from '../References'
 import RuleLink from '../RuleLink'
 
-export function ExplicableRule<Names extends string = DottedName>({
+export function ExplicableRule<Names extends DottedName>({
 	dottedName,
 	light,
 	bigPopover,
@@ -22,15 +24,21 @@ export function ExplicableRule<Names extends string = DottedName>({
 	bigPopover?: boolean
 	title?: string
 }) {
-	const engine = useContext(EngineContext)
+	const workerEngine = useWorkerEngine()
+	const rule = usePromise(
+		async () =>
+			dottedName != null
+				? workerEngine.asyncGetRuleWithEngineId(dottedName)
+				: null,
+		[dottedName, workerEngine]
+	)
 
 	// Rien à expliquer ici, ce n'est pas une règle
 	if (dottedName == null) {
 		return null
 	}
-	const rule = engine.getRule(dottedName)
 
-	if (rule.rawNode.description == null) {
+	if (rule?.rawNode.description == null) {
 		return null
 	}
 
@@ -50,9 +58,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 		>
 			<Markdown>{rule.rawNode.description}</Markdown>
 
-			<RuleLink dottedName={dottedName as DottedName}>
-				Lire la documentation
-			</RuleLink>
+			<RuleLink dottedName={dottedName}>Lire la documentation</RuleLink>
 
 			{rule.rawNode.références && (
 				<>

@@ -9,9 +9,12 @@ import { styled } from 'styled-components'
 import RuleLink from '@/components/RuleLink'
 import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import {
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
-import { useEngine } from './utils/EngineContext'
 
 const BarStack = styled.div`
 	display: flex;
@@ -139,6 +142,7 @@ export function StackedBarChart({
 	const styles = useSpring({ opacity: displayChart ? 1 : 0 })
 
 	return !useContext(DisableAnimationContext) ? (
+		// @ts-ignore type too deep
 		<animated.div ref={intersectionRef} style={styles}>
 			<InnerStackedBarChart data={data} precision={precision} />
 		</animated.div>
@@ -201,20 +205,27 @@ export default function StackedRulesChart({
 	data,
 	precision = 0.1,
 }: StackedRulesChartProps) {
-	const engine = useEngine()
 	const targetUnit = useSelector(targetUnitSelector)
+	const workerEngine = useWorkerEngine()
 
-	return (
-		<StackedBarChart
-			precision={precision}
-			data={data.map(({ dottedName, title, color }) => ({
-				key: dottedName,
-				value: engine.evaluate({ valeur: dottedName, unité: targetUnit })
-					.nodeValue,
-				legend: <RuleLink dottedName={dottedName}>{title}</RuleLink>,
-				title,
-				color,
-			}))}
-		/>
+	const datas = usePromiseOnSituationChange(
+		() =>
+			Promise.all(
+				data.map(async ({ dottedName, title, color }) => ({
+					key: dottedName,
+					value: (
+						await workerEngine.asyncEvaluateWithEngineId({
+							valeur: dottedName,
+							unité: targetUnit,
+						})
+					).nodeValue,
+					legend: <RuleLink dottedName={dottedName}>{title}</RuleLink>,
+					title,
+					color,
+				}))
+			),
+		[data, targetUnit, workerEngine]
 	)
+
+	return <StackedBarChart precision={precision} data={datas || []} />
 }

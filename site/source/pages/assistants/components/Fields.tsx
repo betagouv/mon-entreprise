@@ -8,7 +8,7 @@ import { styled } from 'styled-components'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
-import { EngineContext } from '@/components/utils/EngineContext'
+// import { EngineContext } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
@@ -19,7 +19,7 @@ import {
 	situationSelector,
 	targetUnitSelector,
 } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion, getMeta } from '@/utils'
+import { getMeta } from '@/utils'
 
 type SubSectionProp = {
 	dottedName: DottedName
@@ -96,7 +96,7 @@ export function SimpleField(props: SimpleFieldProps) {
 	)
 
 	let displayedQuestion =
-		question ?? evaluateQuestion(engine, engine.getRule(dottedName))
+		'question ?? evaluateQuestion(engine, engine.getRule(dottedName))'
 
 	const labelId = useSSRSafeId()
 	const targetUnit = useSelector(targetUnitSelector)

@@ -41,6 +41,17 @@ export default defineConfig(({ command, mode }) => ({
 		IS_STAGING: mode === 'production' && !isProductionBranch(mode),
 		IS_PRODUCTION: mode === 'production' && isProductionBranch(mode),
 	},
+	worker: {
+		plugins: [
+			yaml({
+				transform(data, filePath) {
+					return filePath.endsWith('/rules-en.yaml')
+						? cleanAutomaticTag(data)
+						: data
+				},
+			}),
+		],
+	},
 	plugins: [
 		{
 			name: 'run-script-on-file-change',

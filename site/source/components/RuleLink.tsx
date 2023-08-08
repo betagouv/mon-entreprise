@@ -1,12 +1,13 @@
 import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
 import { RuleLink as EngineRuleLink } from 'publicodes-react'
-import React, { ReactNode, useContext } from 'react'
+import React, { ReactNode } from 'react'
 
 import { Link } from '@/design-system/typography/link'
 import { useSitePaths } from '@/sitePaths'
-
-import { EngineContext } from './utils/EngineContext'
+import {
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 // TODO : quicklink -> en cas de variations ou de somme avec un seul élément actif, faire un lien vers cet élément
 export default function RuleLink(
@@ -16,23 +17,32 @@ export default function RuleLink(
 		children?: React.ReactNode
 		documentationPath?: string
 		linkComponent?: ReactNode
-		engine?: Engine<DottedName>
+		engineId?: number
 	} & Omit<React.ComponentProps<typeof Link>, 'to' | 'children'>
 ) {
+	const engineId = props.engineId ?? 0
 	const { absoluteSitePaths } = useSitePaths()
-	const defaultEngine = useContext(EngineContext)
+	const [loading, setLoading] = React.useState(true)
+	const [error, setError] = React.useState(false)
+	const workerEngine = useWorkerEngine()
 
-	const engineUsed = props?.engine ?? defaultEngine
+	usePromiseOnSituationChange(() => {
+		setLoading(true)
+		setError(false)
 
-	try {
-		engineUsed.getRule(props.dottedName)
-	} catch (error) {
-		// eslint-disable-next-line no-console
-		console.error(error)
+		return workerEngine
+			.asyncGetRuleWithEngineId(props.dottedName)
+			.catch(() => setError(true))
+			.then(() => setLoading(false))
+	}, [props.dottedName, workerEngine])
 
+	if (loading || error) {
 		return null
 	}
 
+	return <>EngineRuleLink</>
+
+	// TODO : publicodes-react ne supporte pas encore les engines dans un worker
 	return (
 		<EngineRuleLink
 			{...props}

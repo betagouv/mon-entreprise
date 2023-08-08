@@ -1,9 +1,6 @@
-import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import {
 	goToQuestion,
@@ -15,14 +12,17 @@ import {
 	currentQuestionSelector,
 	useMissingVariables,
 } from '@/store/selectors/simulationSelectors'
+import {
+	useWorkerEngine,
+	WorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
-export function useNavigateQuestions(engines?: Array<Engine<DottedName>>) {
+export function useNavigateQuestions(workerEngines?: WorkerEngine[]) {
 	const dispatch = useDispatch()
-	const engine = useEngine()
-	const nextQuestion = useNextQuestions(engines)[0]
+	const nextQuestions = useNextQuestions(workerEngines)
 	const currentQuestion = useSelector(currentQuestionSelector)
 
-	const missingVariables = useMissingVariables({ engines: engines ?? [engine] })
+	const missingVariables = useMissingVariables(workerEngines)
 	const currentQuestionIsAnswered =
 		currentQuestion && !(currentQuestion in missingVariables)
 
@@ -40,13 +40,13 @@ export function useNavigateQuestions(engines?: Array<Engine<DottedName>>) {
 	}
 
 	useEffect(() => {
-		if (!currentQuestion && nextQuestion) {
-			dispatch(goToQuestion(nextQuestion))
+		if (!currentQuestion && nextQuestions[0]) {
+			dispatch(goToQuestion(nextQuestions[0]))
 		}
-	}, [nextQuestion, currentQuestion])
+	}, [nextQuestions, currentQuestion, dispatch])
 
 	return {
-		currentQuestion: currentQuestion ?? nextQuestion,
+		currentQuestion: currentQuestion ?? nextQuestions[0],
 		currentQuestionIsAnswered,
 		goToPrevious,
 		goToNext,

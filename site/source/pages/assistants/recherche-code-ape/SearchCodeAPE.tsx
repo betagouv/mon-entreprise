@@ -102,7 +102,7 @@ export default function SearchCodeAPE({
 		[]
 	)
 
-	const lazyData = usePromise(() => import('@/public/data/ape-search.json'))
+	const lazyData = usePromise(() => import('@/public/data/ape-search.json'), [])
 
 	const lastIdxs = useRef<Record<string, UFuzzy.HaystackIdxs>>({})
 	const prevValue = useRef<string>(searchQuery)

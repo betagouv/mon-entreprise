@@ -6,15 +6,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Switch } from '@/design-system/switch'
+import { useLazyPromise } from '@/hooks/usePromise'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { ReplaceReturnType } from '@/types/utils'
 import { catchDivideByZeroError } from '@/utils'
+import {
+	useAsyncGetRule,
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Condition, WhenApplicable } from './EngineValue'
 import { SimulationGoal } from './Simulation'
 import { FromTop } from './ui/animate'
-import { useEngine } from './utils/EngineContext'
 
 const proportions = {
 	'entreprise . activités . revenus mixtes . proportions . service BIC':
@@ -60,7 +66,12 @@ export default function ChiffreAffairesActivitéMixte({
 							<SimulationGoal
 								small
 								key={chiffreAffaires}
-								onUpdateSituation={adjustProportions}
+								onUpdateSituation={
+									adjustProportions as ReplaceReturnType<
+										ReturnType<typeof useAdjustProportions>,
+										void
+									>
+								}
 								dottedName={chiffreAffaires}
 							/>
 						))}
@@ -72,11 +83,11 @@ export default function ChiffreAffairesActivitéMixte({
 }
 
 function useAdjustProportions(CADottedName: DottedName) {
-	const engine = useEngine()
 	const dispatch = useDispatch()
+	const workerEngine = useWorkerEngine()
 
-	return useCallback(
-		(name: DottedName, value?: PublicodesExpression) => {
+	const [, trigger] = useLazyPromise(
+		async (name: DottedName, value?: PublicodesExpression) => {
 			const checkValue = (
 				val: unknown
 			): val is { valeur: number; unité: string } =>
@@ -87,61 +98,79 @@ function useAdjustProportions(CADottedName: DottedName) {
 				typeof val.valeur === 'number' &&
 				typeof val.unité === 'string'
 
-			const old = Object.values(proportions).map((chiffreAffaire) =>
-				serializeEvaluation(
-					engine.evaluate(
-						name === chiffreAffaire && checkValue(value)
-							? value
-							: chiffreAffaire
+			const old = await Promise.all(
+				Object.values(proportions).map(async (chiffreAffaire) =>
+					serializeEvaluation(
+						await workerEngine.asyncEvaluateWithEngineId(
+							name === chiffreAffaire && checkValue(value)
+								? value
+								: chiffreAffaire
+						)
 					)
 				)
 			)
 			const nouveauCA = serializeEvaluation(
-				engine.evaluate({ somme: old.filter(Boolean) })
+				await workerEngine.asyncEvaluateWithEngineId({
+					somme: old.filter(Boolean),
+				})
 			)
 
 			if (nouveauCA === '0€/an') {
 				return // Avoid division by 0
 			}
-			const situation = Object.entries(proportions).reduce(
-				(acc, [proportionName, valueName]) => {
+
+			const entries = Object.entries(proportions).map(
+				async ([proportionName, valueName]) => {
 					const newValue = serializeEvaluation(
-						engine.evaluate(
+						await workerEngine.asyncEvaluateWithEngineId(
 							valueName === name && checkValue(value)
 								? value
 								: { valeur: valueName, 'par défaut': '0€/an' }
 						)
 					)
 					const newProportion = serializeEvaluation(
-						catchDivideByZeroError(() =>
-							engine.evaluate({
+						await catchDivideByZeroError(() =>
+							workerEngine.asyncEvaluateWithEngineId({
 								valeur: `${newValue ?? ''} / ${nouveauCA ?? ''}`,
 								unité: '%',
 							})
 						)
 					)
 
-					return {
-						...acc,
-						[proportionName]: newProportion,
-						[valueName]: undefined,
-					}
-				},
+					return [proportionName, valueName, newProportion] as const
+				}
+			)
+
+			const situation = (await Promise.all(entries)).reduce(
+				(acc, [proportionName, valueName, newProportion]) => ({
+					...acc,
+					[proportionName]: newProportion,
+					[valueName]: undefined,
+				}),
 				{ [CADottedName]: nouveauCA }
 			)
 			dispatch(batchUpdateSituation(situation))
 		},
-		[CADottedName, engine, dispatch]
+		[CADottedName, dispatch, workerEngine]
 	)
+
+	return trigger
 }
 
 function ActivitéMixte() {
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
-	const rule = useEngine().getRule('entreprise . activités . revenus mixtes')
+	const rule = useAsyncGetRule('entreprise . activités . revenus mixtes')
+	const workerEngine = useWorkerEngine()
 	const defaultChecked =
-		useEngine().evaluate('entreprise . activités . revenus mixtes')
-			.nodeValue === true
+		usePromiseOnSituationChange(
+			() =>
+				workerEngine.asyncEvaluateWithEngineId(
+					'entreprise . activités . revenus mixtes'
+				),
+			[workerEngine]
+		)?.nodeValue === true
+
 	const onMixteChecked = useCallback(
 		(checked: boolean) => {
 			dispatch(
@@ -173,7 +202,7 @@ function ActivitéMixte() {
 						Activité mixte
 					</Switch>
 				</Trans>
-				<ExplicableRule dottedName={rule.dottedName} light />
+				{rule && <ExplicableRule dottedName={rule.dottedName} light />}
 			</StyledActivitéMixteContainer>
 		</div>
 	)

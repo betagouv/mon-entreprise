@@ -7,11 +7,17 @@ import i18next from '../locales/i18n'
 
 import '../api/sentry'
 
-export const AppFr = () => (
-	<I18nProvider locale="fr-FR">
-		<App basename="mon-entreprise" />
-	</I18nProvider>
-)
+import { useCreateWorkerEngine } from '@/worker/socialWorkerEngineClient'
+
+export const AppFr = () => {
+	// useCreateWorkerEngine('mon-entreprise')
+
+	return (
+		<I18nProvider locale="fr-FR">
+			<App basename="mon-entreprise" />
+		</I18nProvider>
+	)
+}
 
 const AppFrWithProfiler = withProfiler(AppFr)
 

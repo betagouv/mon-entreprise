@@ -14,6 +14,13 @@ type ImmutableIndex<T> = Readonly<{
 }>
 
 /**
+ * Mutable type
+ */
+export type Mutable<T> = {
+	-readonly [K in keyof T]: Mutable<T[K]>
+}
+
+/**
  * Merge union of object
  *
  * Example: `Merge<{a: number, b: string} | {a: string, c: string}>` type gives
@@ -44,3 +51,11 @@ export type ToOptional<T> = Partial<Pick<T, UndefinedProperties<T>>> &
 type UndefinedProperties<T> = {
 	[P in keyof T]-?: undefined extends T[P] ? P : never
 }[keyof T]
+
+/**
+ * Replace the return type of a function
+ */
+export type ReplaceReturnType<
+	T extends (...a: never) => unknown,
+	TNewReturn,
+> = (...a: Parameters<T>) => TNewReturn

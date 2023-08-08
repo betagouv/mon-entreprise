@@ -10,7 +10,6 @@ import {
 import { CompanyDetails } from '@/components/company/Details'
 import { CompanySearchField } from '@/components/company/SearchField'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { useEngine } from '@/components/utils/EngineContext'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
@@ -22,6 +21,7 @@ import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
 import { resetCompany } from '@/store/actions/companyActions'
+import { usePromiseOnSituationChange } from '@/worker/socialWorkerEngineClient'
 
 // import { RootState } from '@/store/reducers/rootReducer'
 
@@ -30,7 +30,10 @@ export default function SearchOrCreate() {
 	// const statutChoisi = useSelector(
 	// 	(state: RootState) => state.choixStatutJuridique.companyStatusChoice
 	// )
-	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
+	const companySIREN = usePromiseOnSituationChange(
+		() => asyncEvaluate('entreprise . SIREN'),
+		[]
+	)?.nodeValue
 	useSetEntrepriseFromUrssafConnection()
 	const handleCompanySubmit = useHandleCompanySubmit()
 	const dispatch = useDispatch()
@@ -166,7 +169,11 @@ function useHandleCompanySubmit() {
 function useSetEntrepriseFromUrssafConnection() {
 	const setEntreprise = useSetEntreprise()
 	const siret = siretFromUrssafFrConnection()
-	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
+	const companySIREN = usePromiseOnSituationChange(
+		() => asyncEvaluate('entreprise . SIREN'),
+		[]
+	)?.nodeValue
+
 	useEffect(() => {
 		if (siret && !companySIREN) {
 			searchDenominationOrSiren(siret)

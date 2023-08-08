@@ -8,7 +8,7 @@ import { SmallBody } from '@/design-system/typography/paragraphs'
 
 type InputSuggestionsProps = {
 	suggestions?: Record<string, ASTNode>
-	onFirstClick: (val: ASTNode) => void
+	onFirstClick: (val: ASTNode) => void | Promise<void>
 	onSecondClick?: (val: ASTNode) => void
 	className?: string
 }
@@ -32,7 +32,7 @@ export default function InputSuggestions({
 					<Link
 						key={text}
 						onPress={() => {
-							onFirstClick(value)
+							void onFirstClick(value)
 							if (suggestion !== value) {
 								setSuggestion(value)
 							} else {

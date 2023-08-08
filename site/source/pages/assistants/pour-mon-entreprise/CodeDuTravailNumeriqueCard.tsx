@@ -30,7 +30,7 @@ export function CodeDuTravailNumeriqueCard() {
 				Pour toutes vos questions en droit du travail, rendez-vous sur le site
 				Code du travail numérique
 			</Trans>
-			<Spacing md />
+			<Spacing md as="span" style={{ display: 'block' }} />
 			<CodeDuTravailNumeriqueLogo />
 		</Article>
 	)

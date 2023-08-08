@@ -1,13 +1,19 @@
 import { DottedName } from 'modele-social'
-import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
+import { ParsedRules, serializeEvaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
-import { useEngine } from '@/components/utils/EngineContext'
+// import { useEngine } from '@/components/utils/EngineContext'
 import { batchUpdateSituation, setActiveTarget } from '@/store/actions/actions'
 import { Situation } from '@/store/reducers/rootReducer'
 import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
+import {
+	useAsyncParsedRules,
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 type ShortName = string
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
@@ -18,11 +24,11 @@ export default function useSearchParamsSimulationSharing() {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const objectifs = useSelector(configObjectifsSelector)
 	const dispatch = useDispatch()
-	const engine = useEngine()
+	const parsedRules = useAsyncParsedRules()
 
 	const dottedNameParamName = useMemo(
-		() => getRulesParamNames(engine.getParsedRules()),
-		[engine]
+		() => (parsedRules ? getRulesParamNames(parsedRules) : []),
+		[parsedRules]
 	)
 
 	useEffect(() => {
@@ -64,13 +70,25 @@ export default function useSearchParamsSimulationSharing() {
 }
 
 export const useParamsFromSituation = (situation: Situation) => {
-	const engine = useEngine()
+	const parsedRules = useAsyncParsedRules()
+	const workerEngine = useWorkerEngine()
 	const dottedNameParamName = useMemo(
-		() => getRulesParamNames(engine.getParsedRules()),
-		[engine]
+		() => (parsedRules ? getRulesParamNames(parsedRules) : []),
+		[parsedRules]
 	)
 
-	return getSearchParamsFromSituation(engine, situation, dottedNameParamName)
+	const ret = usePromiseOnSituationChange(
+		() =>
+			getSearchParamsFromSituation(
+				workerEngine,
+				situation,
+				dottedNameParamName
+			),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[dottedNameParamName, workerEngine]
+	)
+
+	return ret
 }
 
 export const cleanSearchParams = (
@@ -99,29 +117,36 @@ export const getRulesParamNames = (
 		ruleNode.rawNode['identifiant court'] || dottedName,
 	])
 
-export function getSearchParamsFromSituation(
-	engine: Engine,
+export async function getSearchParamsFromSituation(
+	workerEngine: WorkerEngine,
 	situation: Situation,
 	dottedNameParamName: [DottedName, ParamName][]
-): URLSearchParams {
+): Promise<URLSearchParams> {
 	const searchParams = new URLSearchParams()
 	const dottedNameParamNameMapping = Object.fromEntries(dottedNameParamName)
 
-	Object.entries(situation).forEach(([dottedName, value]) => {
-		const paramName = dottedNameParamNameMapping[dottedName]
-		try {
-			const serializedValue = serializeEvaluation(engine.evaluate(value))
+	const promises = Object.entries(situation).map(
+		async ([dottedName, value]) => {
+			const paramName = dottedNameParamNameMapping[dottedName]
+			try {
+				const serializedValue = serializeEvaluation(
+					await workerEngine.asyncEvaluateWithEngineId(value)
+				)
 
-			if (typeof serializedValue !== 'undefined') {
-				searchParams.set(paramName, serializedValue)
-			} else if (typeof value === 'object') {
-				searchParams.set(paramName, JSON.stringify(value))
+				if (typeof serializedValue !== 'undefined') {
+					searchParams.set(paramName, serializedValue)
+				} else if (typeof value === 'object') {
+					searchParams.set(paramName, JSON.stringify(value))
+				}
+			} catch (error) {
+				// eslint-disable-next-line no-console
+				console.error(error)
+				// debugger
 			}
-		} catch (error) {
-			// eslint-disable-next-line no-console
-			console.error(error)
 		}
-	})
+	)
+	await Promise.all(promises)
+
 	searchParams.sort()
 
 	return searchParams

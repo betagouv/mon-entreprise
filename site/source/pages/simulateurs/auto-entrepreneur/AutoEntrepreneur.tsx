@@ -19,8 +19,11 @@ import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 
 export default function AutoEntrepreneur() {
+	console.log('ok')
+
 	return (
 		<>
+			aaaaaaaaaaaaaaa
 			<Simulation
 				explanations={<Explanation />}
 				afterQuestionsSlot={<SelectSimulationYear />}

@@ -1,13 +1,12 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
-import { Fragment, lazy, Suspense, useCallback, useContext } from 'react'
+import { Fragment, lazy, Suspense, useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import RuleInput from '@/components/conversation/RuleInput'
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
 import BrowserOnly from '@/components/utils/BrowserOnly'
-import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { usePersistingState } from '@/components/utils/persistState'
 import { Button } from '@/design-system/buttons'
@@ -17,13 +16,7 @@ import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
-import {
-	buildSituationFromObject,
-	evaluateQuestion,
-	getMeta,
-	hash,
-	omit,
-} from '@/utils'
+import { buildSituationFromObject, getMeta, hash, omit } from '@/utils'
 
 import formulaire from './demande-mobilité.yaml'
 
@@ -45,9 +38,9 @@ export default function PageMobilité() {
 				certificat A1 afin d'être couverts pendant la période de travail à
 				l'étranger.
 			</Intro>
-			<EngineProvider value={engine}>
+			{/* <EngineProvider value={engine}>
 				<FormulairePublicodes />
-			</EngineProvider>
+			</EngineProvider> */}
 		</>
 	)
 }
@@ -74,7 +67,7 @@ const useFields = (
 
 const VERSION = hash(JSON.stringify(formulaire))
 function FormulairePublicodes() {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const [situation, setSituation] = usePersistingState<
 		Record<string, PublicodesExpression>
 	>(`formulaire-détachement:${VERSION}`, {})
@@ -181,12 +174,12 @@ function FormulairePublicodes() {
 												}}
 											>
 												{' '}
-												<Markdown>
+												{/* <Markdown>
 													{evaluateQuestion(
 														engine,
 														engine.getRule(dottedName)
 													) ?? ''}
-												</Markdown>
+												</Markdown> */}
 											</div>
 										)}
 
@@ -194,10 +187,10 @@ function FormulairePublicodes() {
 											id={dottedName.replace(/\s|\./g, '_')}
 											dottedName={dottedName as DottedName}
 											onChange={(value) => onChange(dottedName, value)}
-											aria-label={
-												question &&
-												evaluateQuestion(engine, engine.getRule(dottedName))
-											}
+											// aria-label={
+											// 	question &&
+											// 	evaluateQuestion(engine, engine.getRule(dottedName))
+											// }
 										/>
 										{question && type === undefined && description && (
 											<Markdown>{description}</Markdown>

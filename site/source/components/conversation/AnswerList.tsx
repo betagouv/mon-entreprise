@@ -1,11 +1,16 @@
 import { DottedName } from 'modele-social'
-import { PublicodesExpression, RuleNode, utils } from 'publicodes'
+import {
+	EvaluatedNode,
+	PublicodesExpression,
+	RuleNode,
+	utils,
+} from 'publicodes'
 import { useCallback, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { EvaluatedRule, useEngine } from '@/components/utils/EngineContext'
+import { EvaluatedRule } from '@/components/utils/EngineContext'
 import { Message, PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
@@ -17,6 +22,7 @@ import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
+import { usePromise } from '@/hooks/usePromise'
 import { answerQuestion, resetSimulation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
@@ -25,7 +31,7 @@ import {
 	companySituationSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils'
+import { useWorkerEngine } from '@/worker/socialWorkerEngineClient'
 
 import Value from '../EngineValue'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
@@ -41,27 +47,43 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 	const { t } = useTranslation()
 	const { currentSimulatorData } = useCurrentSimulatorData()
 	const dispatch = useDispatch()
-	const engine = useEngine()
+	const workerEngine = useWorkerEngine()
 	const situation = useSelector(situationSelector)
 	const companySituation = useSelector(companySituationSelector)
 	const passedQuestions = useSelector(answeredQuestionsSelector)
-	const answeredAndPassedQuestions = useMemo(
-		() =>
-			(Object.keys(situation) as DottedName[])
-				.filter(
-					(answered) => !passedQuestions.some((passed) => answered === passed)
+	const answeredAndPassedQuestions = usePromise(
+		async () =>
+			(
+				await Promise.all(
+					(Object.keys(situation) as DottedName[])
+						.filter(
+							(answered) =>
+								!passedQuestions.some((passed) => answered === passed)
+						)
+						.concat(passedQuestions)
+						.map(
+							async (dottedName) =>
+								await workerEngine.asyncGetRuleWithEngineId(dottedName)
+						)
 				)
-				.concat(passedQuestions)
-				.filter(
-					(dottedName) =>
-						engine.getRule(dottedName).rawNode.question !== undefined
-				)
-				.map((dottedName) => engine.getRule(dottedName)),
-		[engine, passedQuestions, situation]
+			).filter((rule) => rule.rawNode.question !== undefined),
+		[passedQuestions, situation, workerEngine],
+		[] as RuleNode<DottedName>[]
 	)
-	const nextSteps = useNextQuestions().map((dottedName) =>
-		engine.evaluate(engine.getRule(dottedName))
-	) as Array<EvaluatedRule>
+	const nextQuestions = useNextQuestions()
+	const nextSteps = usePromise(
+		() =>
+			Promise.all(
+				nextQuestions.map(
+					async (dottedName) =>
+						workerEngine.asyncEvaluateWithEngineId(
+							await workerEngine.asyncGetRuleWithEngineId(dottedName)
+						) as Promise<EvaluatedNode>
+				)
+			),
+		[nextQuestions, workerEngine],
+		[] as EvaluatedRule[]
+	)
 
 	const situationQuestions = useMemo(
 		() =>
@@ -70,23 +92,33 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 			),
 		[answeredAndPassedQuestions]
 	)
-	const companyQuestions = useMemo(
+	const companyQuestions = usePromise(
 		() =>
-			Array.from(
-				new Set(
-					(
-						[
-							...answeredAndPassedQuestions.map(({ dottedName }) => dottedName),
-							...Object.keys(situation),
-							...Object.keys(companySituation),
-						] as Array<DottedName>
-					).filter(isCompanyDottedName)
-				)
-			).map((dottedName) => engine.getRule(dottedName)),
-		[answeredAndPassedQuestions]
+			Promise.all(
+				Array.from(
+					new Set(
+						(
+							[
+								...answeredAndPassedQuestions.map(
+									({ dottedName }) => dottedName
+								),
+								...Object.keys(situation),
+								...Object.keys(companySituation),
+							] as Array<DottedName>
+						).filter(isCompanyDottedName)
+					)
+				).map((dottedName) => workerEngine.asyncGetRuleWithEngineId(dottedName))
+			),
+		[answeredAndPassedQuestions, companySituation, situation, workerEngine],
+		[] as RuleNode<DottedName>[]
 	)
 
-	const siret = engine.evaluate('établissement . SIRET').nodeValue as string
+	const siret = usePromise(
+		async () =>
+			(await workerEngine.asyncEvaluateWithEngineId('établissement . SIRET'))
+				.nodeValue as string,
+		[workerEngine]
+	)
 
 	return (
 		<div className="answer-list">
@@ -101,7 +133,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 						<Trans>Simulation en cours</Trans>
 					</H3>
 
-					<StepsTable {...{ rules: situationQuestions, onClose }} />
+					<StepsTable rules={situationQuestions} onClose={onClose} />
 					{children}
 					<div
 						className="print-hidden"
@@ -203,7 +235,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 							textAlign: 'center',
 						}}
 					></div>
-					<StepsTable {...{ rules: companyQuestions, onClose }} />
+					<StepsTable rules={companyQuestions} onClose={onClose} />
 					<Spacing md />
 					<div className="print-hidden">
 						<Body style={{ marginTop: 0 }}>
@@ -231,7 +263,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 						<Emoji emoji="🔮 " />
 						<Trans>Prochaines questions</Trans>
 					</H2>
-					<StepsTable {...{ rules: nextSteps, onClose }} />
+					<StepsTable rules={nextSteps} onClose={onClose} />
 				</div>
 			)}
 		</div>
@@ -259,7 +291,7 @@ function StepsTable({
 									title: rule.title,
 								})}
 								light
-								dottedName={rule.dottedName}
+								dottedName={rule.dottedName as DottedName}
 							/>
 						</Grid>
 						<StyledAnswer item xs="auto">
@@ -273,14 +305,19 @@ function StepsTable({
 
 function AnswerElement(rule: RuleNode) {
 	const dispatch = useDispatch()
-	const engine = useEngine()
-
+	const workerEngine = useWorkerEngine()
 	const parentDottedName = utils.ruleParent(rule.dottedName) as DottedName
-	const questionDottedName = rule.rawNode.question
-		? (rule.dottedName as DottedName)
-		: parentDottedName && engine.getRule(parentDottedName).rawNode.API
-		? parentDottedName
-		: undefined
+	const questionDottedName = usePromise(
+		async () =>
+			rule.rawNode.question
+				? (rule.dottedName as DottedName)
+				: parentDottedName &&
+				  (await workerEngine.asyncGetRuleWithEngineId(parentDottedName))
+						.rawNode.API
+				? parentDottedName
+				: undefined,
+		[parentDottedName, rule.dottedName, rule.rawNode.question, workerEngine]
+	)
 
 	const handleChange = useCallback(
 		(value: PublicodesExpression | undefined) => {
@@ -311,7 +348,7 @@ function AnswerElement(rule: RuleNode) {
 				<>
 					<form onSubmit={onClose}>
 						<H3>
-							{evaluateQuestion(engine, engine.getRule(questionDottedName))}
+							{/* {evaluateQuestion(engine, engine.getRule(questionDottedName))} */}
 							<ExplicableRule light dottedName={questionDottedName} />
 						</H3>
 						<RuleInput

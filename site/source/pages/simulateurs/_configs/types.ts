@@ -1,8 +1,8 @@
 import type { TFunction } from 'i18next'
-import { DottedName } from 'modele-social'
-import { ASTNode, PublicodesExpression } from 'publicodes'
+import type { DottedName } from 'modele-social'
+import type { ASTNode, PublicodesExpression } from 'publicodes'
 
-import { AbsoluteSitePaths } from '@/sitePaths'
+import type { AbsoluteSitePaths } from '@/sitePaths'
 
 export type Situation = Partial<
 	Record<DottedName, PublicodesExpression | ASTNode>

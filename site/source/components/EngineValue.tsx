@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import Engine, {
+import {
 	ASTNode,
 	EvaluatedNode,
 	formatValue,
@@ -10,13 +10,21 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { keyframes, styled } from 'styled-components'
 
+import {
+	useAsyncParsedRules,
+	usePromiseOnSituationChange,
+	useWorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
+
 import RuleLink from './RuleLink'
-import { useEngine } from './utils/EngineContext'
+
+// import { useEngine } from './utils/EngineContext'
 
 export type ValueProps<Names extends string> = {
 	expression: PublicodesExpression
 	unit?: string
-	engine?: Engine<Names>
+	// engine?: Engine<Names>
+	engineId?: number
 	displayedUnit?: string
 	precision?: number
 	documentationPath?: string
@@ -27,7 +35,7 @@ export type ValueProps<Names extends string> = {
 export default function Value<Names extends string>({
 	expression,
 	unit,
-	engine,
+	engineId = 0,
 	displayedUnit,
 	flashOnChange = false,
 	precision,
@@ -36,18 +44,25 @@ export default function Value<Names extends string>({
 	...props
 }: ValueProps<Names>) {
 	const { language } = useTranslation().i18n
+	const workerEngine = useWorkerEngine()
 	if (expression === null) {
 		throw new TypeError('expression cannot be null')
 	}
-	const defaultEngine = useEngine()
-	const e = engine ?? defaultEngine
-	const isRule =
-		typeof expression === 'string' && expression in e.getParsedRules()
-
-	const evaluation = e.evaluate({
-		valeur: expression,
-		...(unit && { unité: unit }),
+	const parsedRules = useAsyncParsedRules({
+		workerEngine,
 	})
+
+	const isRule =
+		typeof expression === 'string' && parsedRules && expression in parsedRules
+
+	const evaluation = usePromiseOnSituationChange(
+		() =>
+			workerEngine.asyncEvaluateWithEngineId({
+				valeur: expression,
+				...(unit && { unité: unit }),
+			}),
+		[expression, unit, workerEngine]
+	)
 
 	const value = formatValue(evaluation, {
 		displayedUnit,
@@ -55,8 +70,15 @@ export default function Value<Names extends string>({
 		precision,
 	}) as string
 
-	if (isRule && linkToRule) {
-		const ruleEvaluation = e.evaluate(expression)
+	const ruleEvaluation = usePromiseOnSituationChange(
+		async () =>
+			isRule &&
+			linkToRule &&
+			workerEngine.asyncEvaluateWithEngineId(expression),
+		[expression, isRule, linkToRule, workerEngine]
+	)
+
+	if (isRule && linkToRule && ruleEvaluation) {
 		let dottedName = expression as DottedName
 		if (ruleEvaluation.sourceMap?.mecanismName === 'replacement') {
 			dottedName =
@@ -88,17 +110,16 @@ export default function Value<Names extends string>({
 		</StyledValue>
 	)
 }
-const flash = keyframes`
 
+const flash = keyframes`
 	from {
     background-color: white;
 		opacity: 0.8;
   }
 	
-		to {
-			background-color: transparent;
-		}
-
+	to {
+		background-color: transparent;
+	}
 `
 
 const StyledValue = styled.span<{ $flashOnChange: boolean }>`
@@ -109,118 +130,168 @@ const StyledValue = styled.span<{ $flashOnChange: boolean }>`
 type ConditionProps = {
 	expression: PublicodesExpression | ASTNode
 	children: React.ReactNode
-	engine?: Engine<DottedName>
+	// engine?: Engine<DottedName>
+	engineId?: number
 }
 
 export function Condition({
 	expression,
 	children,
-	engine: engineFromProps,
+	// engine: engineFromProps,
+	engineId = 0,
 }: ConditionProps) {
-	const defaultEngine = useEngine()
-	const engine = engineFromProps ?? defaultEngine
-	const nodeValue = engine.evaluate({ '!=': [expression, 'non'] }).nodeValue
+	// const defaultEngine = useEngine()
+	// const engine = engineFromProps ?? defaultEngine
+	// const nodeValue = engine.evaluate({ '!=': [expression, 'non'] }).nodeValue
 
-	if (!nodeValue) {
-		return null
-	}
+	// if (!nodeValue) {
+	// 	return null
+	// }
 
-	return <>{children}</>
+	// return <>{children}</>
+
+	const workerEngine = useWorkerEngine()
+
+	const node = usePromiseOnSituationChange(
+		() =>
+			workerEngine.asyncEvaluateWithEngineId({
+				'!=': [expression, 'non'],
+			}),
+		[expression, workerEngine]
+	)
+
+	return !node?.nodeValue ? null : <>{children}</>
 }
 
 export function WhenValueEquals({
 	expression,
 	value,
 	children,
-	engine: engineFromProps,
+	// engine: engineFromProps,
+	engineId = 0,
 }: ConditionProps & { value: string | number }) {
-	const defaultEngine = useEngine()
-	const engine = engineFromProps ?? defaultEngine
-	const nodeValue = engine.evaluate(expression).nodeValue
+	// const defaultEngine = useEngine()
+	// const engine = engineFromProps ?? defaultEngine
+	// const nodeValue = engine.evaluate(expression).nodeValue
 
-	if (nodeValue !== value) {
-		return null
-	}
+	// if (nodeValue !== value) {
+	// 	return null
+	// }
 
-	return <>{children}</>
+	// return <>{children}</>
+	const workerEngine = useWorkerEngine()
+
+	const node = usePromiseOnSituationChange(
+		() => workerEngine.asyncEvaluateWithEngineId(expression),
+		[expression, workerEngine]
+	)
+
+	return node?.nodeValue !== value ? null : <>{children}</>
 }
 
 export function WhenApplicable({
 	dottedName,
 	children,
-	engine,
+	engineId = 0,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
-	engine?: Engine<DottedName>
+	// engine?: Engine<DottedName>
+	engineId?: number
 }) {
-	const defaultEngine = useEngine()
+	const workerEngine = useWorkerEngine()
+	// const defaultEngine = useEngine()
 
-	const engineValue = engine ?? defaultEngine
+	// const engineValue = engine ?? defaultEngine
 
-	if (
-		engineValue.evaluate({ 'est applicable': dottedName }).nodeValue !== true
-	) {
-		return null
-	}
+	// if (
+	// 	engineValue.evaluate({ 'est applicable': dottedName }).nodeValue !== true
+	// ) {
+	// 	return null
+	// }
 
-	return <>{children}</>
+	// return <>{children}</>
+
+	const node = usePromiseOnSituationChange(
+		() =>
+			workerEngine.asyncEvaluateWithEngineId({
+				'est applicable': dottedName,
+			}),
+		[dottedName, workerEngine]
+	)
+
+	return node?.nodeValue !== true ? <>{children}</> : null
 }
 
 export function WhenNotApplicable({
 	dottedName,
 	children,
-	engine,
+	engineId = 0,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
-	engine?: Engine<DottedName>
+	// engine?: Engine<DottedName>
+	engineId?: number
 }) {
-	const defaultEngine = useEngine()
+	// const defaultEngine = useEngine()
 
-	const engineValue = engine ?? defaultEngine
+	// const engineValue = engine ?? defaultEngine
 
-	if (
-		engineValue.evaluate({ 'est non applicable': dottedName }).nodeValue !==
-		true
-	) {
-		return null
-	}
+	// if (
+	// 	engineValue.evaluate({ 'est non applicable': dottedName }).nodeValue !==
+	// 	true
+	// ) {
+	// 	return null
+	// }
 
-	return <>{children}</>
+	// return <>{children}</>
+	const workerEngine = useWorkerEngine()
+
+	const node = usePromiseOnSituationChange(
+		() =>
+			workerEngine.asyncEvaluateWithEngineId({
+				'est non applicable': dottedName,
+			}),
+		[dottedName, workerEngine]
+	)
+
+	return node?.nodeValue !== true ? null : <>{children}</>
 }
 
 export function WhenAlreadyDefined({
 	dottedName,
 	children,
-	engine,
+	engineId = 0,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
-	engine?: Engine<DottedName>
+	// engine?: Engine<DottedName>
+	engineId?: number
 }) {
-	const defaultEngine = useEngine()
+	const workerEngine = useWorkerEngine()
+	const node = usePromiseOnSituationChange(
+		() =>
+			workerEngine.asyncEvaluateWithEngineId({ 'est non défini': dottedName }),
+		[dottedName, workerEngine]
+	)
 
-	const engineValue = engine ?? defaultEngine
-
-	if (engineValue.evaluate({ 'est non défini': dottedName }).nodeValue) {
-		return null
-	}
-
-	return <>{children}</>
+	return node?.nodeValue ? null : <>{children}</>
 }
 
 export function WhenNotAlreadyDefined({
 	dottedName,
 	children,
+	engineId = 0,
 }: {
 	dottedName: DottedName
 	children: React.ReactNode
+	engineId?: number
 }) {
-	const engine = useEngine()
-	if (engine.evaluate({ 'est défini': dottedName }).nodeValue) {
-		return null
-	}
+	const workerEngine = useWorkerEngine()
+	const node = usePromiseOnSituationChange(
+		() => workerEngine.asyncEvaluateWithEngineId({ 'est défini': dottedName }),
+		[dottedName, workerEngine]
+	)
 
-	return <>{children}</>
+	return node?.nodeValue ? null : <>{children}</>
 }

@@ -1,10 +1,15 @@
 import { DottedName } from 'modele-social'
-import Engine, { utils } from 'publicodes'
+import { utils } from 'publicodes'
 import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
 
-import { useEngine } from '@/components/utils/EngineContext'
+import { usePromise } from '@/hooks/usePromise'
+// import { useEngine } from '@/components/utils/EngineContext'
 import { RootState, Situation } from '@/store/reducers/rootReducer'
+import {
+	useWorkerEngine,
+	WorkerEngine,
+} from '@/worker/socialWorkerEngineClient'
 
 export const configSelector = (state: RootState) =>
 	state.simulation?.config ?? {}
@@ -22,22 +27,34 @@ export const configObjectifsSelector = createSelector(
 
 const emptySituation: Situation = {}
 
-export const useMissingVariables = ({
-	engines,
-}: {
-	engines: Array<Engine<DottedName>>
-}): Partial<Record<DottedName, number>> => {
+export const useMissingVariables = (
+	workerEngines?: WorkerEngine[]
+): Partial<Record<DottedName, number>> => {
 	const objectifs = useSelector(configObjectifsSelector)
+	const workerEngine = useWorkerEngine()
 
-	return treatAPIMissingVariables(
-		objectifs
-			.flatMap((objectif) =>
-				engines.map((e) => e.evaluate(objectif).missingVariables ?? {})
+	return usePromise(
+		async () => {
+			const evaluates = await Promise.all(
+				objectifs.flatMap((objectif) =>
+					(workerEngines ?? [workerEngine]).map(
+						async (e) =>
+							(await e.asyncEvaluateWithEngineId(objectif)).missingVariables ??
+							{}
+					)
+				)
 			)
-			.reduce(mergeMissing, {}),
-		useEngine()
+
+			return await treatAPIMissingVariables(
+				evaluates.reduce(mergeMissing, {}),
+				workerEngine
+			)
+		},
+		[objectifs, workerEngine, workerEngines],
+		{}
 	)
 }
+
 export const situationSelector = (state: RootState) =>
 	state.simulation?.situation ?? emptySituation
 
@@ -75,14 +92,26 @@ export const shouldFocusFieldSelector = (state: RootState) =>
  *
  * For instance, the commune field (API) will fill `commune . nom` `commune . taux versement transport`, `commune . département`, etc.
  */
-function treatAPIMissingVariables<Name extends string>(
-	missingVariables: Partial<Record<Name, number>>,
-	engine: Engine<Name>
-): Partial<Record<Name, number>> {
-	return (Object.entries(missingVariables) as Array<[Name, number]>).reduce(
-		(missings, [name, value]: [Name, number]) => {
-			const parentName = utils.ruleParent(name) as Name
-			if (parentName && engine.getRule(parentName).rawNode.API) {
+async function treatAPIMissingVariables(
+	missingVariables: Partial<Record<DottedName, number>>,
+	workerEngine: WorkerEngine
+): Promise<Partial<Record<DottedName, number>>> {
+	return (
+		await Promise.all(
+			(Object.entries(missingVariables) as [DottedName, number][]).map(
+				async ([name, value]) => {
+					const parentName = utils.ruleParent(name) as DottedName
+					const rule =
+						parentName &&
+						(await workerEngine.asyncGetRuleWithEngineId(parentName))
+
+					return [name, value, parentName, rule.rawNode.API] as const
+				}
+			)
+		)
+	).reduce(
+		(missings, [name, value, parentName, API]) => {
+			if (API) {
 				missings[parentName] = (missings[parentName] ?? 0) + value
 
 				return missings
@@ -91,9 +120,10 @@ function treatAPIMissingVariables<Name extends string>(
 
 			return missings
 		},
-		{} as Partial<Record<Name, number>>
+		{} as Partial<Record<DottedName, number>>
 	)
 }
+
 const mergeMissing = (
 	left: Record<string, number> | undefined = {},
 	right: Record<string, number> | undefined = {}
