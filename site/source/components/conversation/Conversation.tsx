@@ -258,11 +258,8 @@ export async function evaluateQuestion(
 ) {
 	const question = rule.rawNode.question
 	if (question && typeof question === 'object') {
-		return (
-			await workerEngine.asyncEvaluateWithEngineId(
-				question as PublicodesExpression
-			)
-		).nodeValue as string
+		return (await workerEngine.asyncEvaluate(question as PublicodesExpression))
+			.nodeValue as string
 	}
 
 	return question

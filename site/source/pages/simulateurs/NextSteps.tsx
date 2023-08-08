@@ -36,7 +36,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 			(
 				await Promise.all(
 					guidesUrssaf.map(({ associatedRule }) =>
-						workerEngine.asyncEvaluateWithEngineId(associatedRule)
+						workerEngine.asyncEvaluate(associatedRule)
 					)
 				)
 			).find(({ nodeValue }) => nodeValue),

@@ -7,11 +7,7 @@ import i18next from '../locales/i18n'
 
 import '../api/sentry'
 
-import { useCreateWorkerEngine } from '@/worker/socialWorkerEngineClient'
-
 export const AppFr = () => {
-	// useCreateWorkerEngine('mon-entreprise')
-
 	return (
 		<I18nProvider locale="fr-FR">
 			<App basename="mon-entreprise" />

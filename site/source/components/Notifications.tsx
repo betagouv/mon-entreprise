@@ -35,11 +35,10 @@ type Notification = {
 async function getNotifications(workerEngine: WorkerEngine) {
 	return (
 		await Promise.all(
-			Object.values(await workerEngine.asyncGetParsedRulesWithEngineId()).map(
+			Object.values(await workerEngine.asyncGetParsedRules()).map(
 				async (rule) =>
 					rule.rawNode.type === 'notification' &&
-					!!(await workerEngine.asyncEvaluateWithEngineId(rule.dottedName))
-						.nodeValue
+					!!(await workerEngine.asyncEvaluate(rule.dottedName)).nodeValue
 						? {
 								dottedName: rule.dottedName,
 								sévérité: rule.rawNode.sévérité,

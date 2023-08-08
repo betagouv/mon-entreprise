@@ -7,7 +7,7 @@ import {
 	reduceAST,
 	RuleNode,
 } from 'publicodes'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
@@ -101,11 +101,15 @@ export default function RuleInput({
 
 	const rule = useAsyncGetRule(dottedName)
 
+	useEffect(() => {
+		console.log('update', workerEngine.situationVersion)
+	}, [workerEngine.situationVersion])
+
 	// const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
 	// async
 	const evaluation = usePromiseOnSituationChange(
 		() =>
-			workerEngine.asyncEvaluateWithEngineId({
+			workerEngine.asyncEvaluate({
 				valeur: dottedName,
 				...(modifiers ?? {}),
 			}),
@@ -262,7 +266,7 @@ const getOnePossibilityOptions = async (
 	// engineId: number,
 	path: DottedName
 ): Promise<Choice> => {
-	const node = await workerEngine.asyncGetRuleWithEngineId(path)
+	const node = await workerEngine.asyncGetRule(path)
 
 	// if (path === 'entreprise . activité . nature') debugger
 
@@ -286,9 +290,7 @@ const getOnePossibilityOptions = async (
 							).map(async (explanation) => {
 								console.log('=>>>>', explanation)
 
-								const evaluate = await workerEngine.asyncEvaluateWithEngineId(
-									explanation
-								)
+								const evaluate = await workerEngine.asyncEvaluate(explanation)
 
 								return evaluate.nodeValue !== null
 									? await getOnePossibilityOptions(
@@ -324,7 +326,7 @@ async function isMultiplePossibilities(
 	// 	.rawNode['plusieurs possibilités']
 
 	return !!(
-		(await workerEngine.asyncGetRuleWithEngineId(
+		(await workerEngine.asyncGetRule(
 			dottedName
 		)) as RuleWithMultiplePossibilities
 	).rawNode['plusieurs possibilités']

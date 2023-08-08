@@ -30,6 +30,8 @@ export function SimulateurCard({
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
 
+	if (!pathId) return null
+
 	const ctaLabel =
 		pathId.startsWith('assistants') || pathId.startsWith('gérer')
 			? t('pages.simulateurs.home.cta.assistant', "Lancer l'assistant")

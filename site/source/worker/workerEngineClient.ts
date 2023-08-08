@@ -1,15 +1,45 @@
 import type { WorkerEngineAction, WorkerEngineActions } from './workerEngine'
 
-if (!import.meta.env.SSR && !window.Worker) {
-	throw new Error('Worker is not supported in this browser')
-}
-
-// const sleepMs = (ms: number) =>
-// 	new Promise((resolve) => setTimeout(resolve, ms))
+// if (typeof Worker === 'undefined') {
+// 	throw new Error('Worker is not supported.')
+// }
 
 /**
  * This file is a client to communicate with workerEngine.
  */
+
+const isObject = (val: unknown): val is object =>
+	typeof val === 'object' && val !== null
+
+const isId = (val: object): val is { id: number } =>
+	'id' in val && typeof val.id === 'number'
+
+const isBatch = (val: object): val is { batch: unknown[] } =>
+	'batch' in val && Array.isArray(val.batch)
+
+interface WorkerEnginePromise<
+	Actions extends WorkerEngineActions<InitParams, Name>,
+	InitParams extends unknown[] = unknown[],
+	Name extends string = string,
+	T extends Actions['action'] = Actions['action'],
+> {
+	engineId: number
+	action: T
+	resolve: (value: unknown) => void
+	reject: (value: unknown) => void
+}
+
+interface Ctx<
+	Actions extends WorkerEngineActions<InitParams, Name>,
+	InitParams extends unknown[] = unknown[],
+	Name extends string = string,
+> {
+	engineId: number
+	promises: WorkerEnginePromise<Actions>[]
+	lastCleanup: null | NodeJS.Timeout
+	worker: Worker
+	isWorkerReady: Promise<number>
+}
 
 export type WorkerEngineClient<
 	Actions extends WorkerEngineActions<InitParams, Name>,
@@ -23,78 +53,19 @@ export const createWorkerEngineClient = <
 	Name extends string = string,
 >(
 	worker: Worker,
-	onSituationChange: (engineId: number) => void = () => {},
-	...initParams: WorkerEngineAction<Actions, 'init'>['params']
-) => {
-	type Action<T extends Actions['action']> = WorkerEngineAction<Actions, T>
-
-	const test = {
-		onSituationChange: (engineId: number) => {},
+	options: {
+		initParams: WorkerEngineAction<Actions, 'init'>['params']
+		onSituationChange?: (engineId: number) => void
 	}
-
+) => {
 	console.log('{createWorker}')
 
-	type WorkerEnginePromise<T extends Actions['action'] = Actions['action']> = {
-		engineId: number
-		action: T
-		resolve: (value: unknown) => void
-		reject: (value: unknown) => void
-	}
-
-	let promises: WorkerEnginePromise[] = []
-	let lastCleanup: null | NodeJS.Timeout = null
-
-	const postMessage = async <T extends Actions['action'], U extends Action<T>>(
-		engineId: number,
-		action: T,
-		...params: U['params']
-		// ...params: U['params'] extends [] ? [] : U['params']
-	) => {
-		console.log('{postMessage}', action, params)
-		const promiseTimeout = 100000
-		const warning = setTimeout(() => {
-			console.log('{promise waiting for too long, aborting!}', action, params)
-			promises[id].reject?.(new Error('timeout'))
-		}, promiseTimeout)
-
-		lastCleanup !== null && clearInterval(lastCleanup)
-		lastCleanup = setTimeout(() => {
-			if (promises.length) {
-				console.log('{cleanup}', promises.length)
-				promises = []
-				lastCleanup = null
-			}
-		}, 200000)
-
-		const id = promises.length
-		console.time(`execute-${id}`)
-
-		const stack = new Error().stack
-
-		const promise = new Promise<U['result']>((resolve, reject) => {
-			promises[id] = {
-				engineId,
-				action,
-				resolve: (...params: unknown[]) => {
-					clearTimeout(warning)
-
-					return resolve(...(params as Parameters<typeof resolve>))
-				},
-				reject: (err) => {
-					clearTimeout(warning)
-
-					console.error(err)
-					console.error(stack)
-					console.error(new Error((err as Error).message, { cause: stack }))
-
-					return reject(err)
-				},
-			}
-		})
-
-		worker.postMessage({ engineId, action, params, id })
-
-		return promise
+	const ctx: Ctx<Actions> = {
+		engineId: 0,
+		promises: [],
+		lastCleanup: null,
+		worker,
+		isWorkerReady: null as unknown as Promise<number>, // will be set later in the function
 	}
 
 	worker.onmessageerror = function (e) {
@@ -105,243 +76,278 @@ export const createWorkerEngineClient = <
 		console.log('{onerror}', e)
 	}
 
-	const ppp = (data) => {
+	const ppp = (data: { id: number; result?: unknown; error?: string }) => {
 		console.timeEnd(`execute-${data.id}`)
 		if (data.id === 0) {
 			console.timeEnd('loading')
 		}
 
 		if ('error' in data) {
-			return promises[data.id].reject?.(data.error)
+			return ctx.promises[data.id].reject?.(data.error)
 		}
-		promises[data.id].resolve?.(data.result)
+		ctx.promises[data.id].resolve?.(data.result)
 	}
 
-	worker.onmessage = function (e) {
-		console.log('{msg}', e.data)
+	worker.onmessage = function (e: MessageEvent<unknown>) {
+		const data = e.data
 
-		if ('batch' in e.data) {
-			e.data.batch.forEach((data) => {
+		console.log('{msg}', data)
+
+		if (isObject(data)) {
+			if (isId(data)) {
 				ppp(data)
-			})
-		} else {
-			ppp(e.data)
+
+				return
+			} else if (isBatch(data)) {
+				data.batch.forEach((d) => isObject(d) && isId(d) && ppp(d))
+
+				return
+			}
 		}
+
+		console.error('{unknown message}', data)
+
+		throw new Error('unknown message')
 	}
 
-	const engineId = 0
-	const isWorkerReady = postMessage(engineId, 'init', ...initParams)
+	const { initParams, onSituationChange } = options
 
-	const workerEngineConstruct = (
-		engineId: number,
-		onSituationChange: (engineId: number) => void = () => {}
-	) => ({
-		test,
-		engineId,
-		worker,
-		isWorkerReady,
-		onSituationChange,
-		// promises,
-		postMessage,
+	ctx.isWorkerReady = postMessage(ctx, 'init', ...initParams)
+
+	const workerEngine = workerEngineConstruct(ctx, { onSituationChange })
+
+	void postMessage(ctx, 'setSituation')
+
+	return workerEngine
+}
+
+// type ActionType<
+// 	Actions extends WorkerEngineActions<InitParams, Name>,
+// 	ActionNames extends Actions['action'],
+// 	InitParams extends unknown[] = unknown[],
+// 	Name extends string = string,
+// > = WorkerEngineAction<Actions, ActionNames>
+
+// type Action<T extends Actions['action']> = WorkerEngineAction<Actions, T>
+
+// const postMessage = async <T extends Actions['action'], U extends Action<T>>(
+// 	engineId: number,
+// 	action: T,
+// 	...params: U['params']
+// 	// ...params: U['params'] extends [] ? [] : U['params']
+// ) => {
+
+const postMessage = async <
+	Actions extends WorkerEngineActions<InitParams, Name>,
+	Action extends WorkerEngineAction<Actions, ActionNames>,
+	ActionNames extends Actions['action'],
+	InitParams extends unknown[] = unknown[],
+	Name extends string = string,
+>(
+	// ActionNames extends Actions['action'],
+	// Actions extends WorkerEngineActions<InitParams, Name>,
+	// InitParams extends unknown[] = unknown[],
+	// Name extends string = string,
+
+	// Action extends Actions['action'],
+	// Actions extends WorkerEngineActions<InitParams, Name>,
+	// InitParams extends unknown[] = unknown[],
+	// Name extends string = string,
+	ctx: Ctx<Actions>,
+	action: ActionNames,
+	...params: Action['params']
+	// ...params: U['params'] extends [] ? [] : U['params']
+) => {
+	const { engineId, worker } = ctx
+
+	console.log('{postMessage}', action, params)
+
+	const promiseTimeout = 100000
+	const warning = setTimeout(() => {
+		console.log('{promise waiting for too long, aborting!}', action, params)
+		ctx.promises[id].reject?.(new Error('timeout'))
+	}, promiseTimeout)
+
+	ctx.lastCleanup !== null && clearInterval(ctx.lastCleanup)
+	ctx.lastCleanup = setTimeout(() => {
+		if (ctx.promises.length) {
+			console.log('{cleanup}', ctx.promises.length)
+			ctx.promises = []
+			ctx.lastCleanup = null
+		}
+	}, promiseTimeout * 2)
+
+	const id = ctx.promises.length
+	console.time(`execute-${id}`)
+
+	const stack = new Error().stack
+
+	const promise = new Promise<Action['result']>((resolve, reject) => {
+		ctx.promises[id] = {
+			engineId,
+			action,
+			resolve: (...params: unknown[]) => {
+				clearTimeout(warning)
+
+				return resolve(...(params as Parameters<typeof resolve>))
+			},
+			reject: (err: unknown) => {
+				clearTimeout(warning)
+
+				console.error(err)
+				console.error(stack)
+				console.error(new Error((err as Error).message, { cause: stack }))
+
+				return reject(err)
+			},
+		}
+	})
+
+	worker.postMessage({ engineId: ctx.engineId, action, params, id })
+
+	return promise
+}
+
+const workerEngineConstruct = <
+	// ActionNames extends Actions['action'],
+	Actions extends WorkerEngineActions<InitParams, Name>,
+	InitParams extends unknown[] = unknown[],
+	Name extends string = string,
+>(
+	ctx: Ctx<Actions>,
+	options: {
+		// engineId: number
+		// worker: Worker
+		// isWorkerReady: Promise<Extract<Actions, { action: 'init' }>['result']>
+		onSituationChange?: (engineId: number) => void
+		// postMessage: <
+		// 	T extends Actions['action'],
+		// 	U extends Extract<Actions, { action: T }>,
+		// >(
+		// 	engineId: number,
+		// 	action: T,
+		// 	...params: U['params']
+		// ) => Promise<U['result']>
+	}
+) => {
+	type Act<T extends Actions['action']> = WorkerEngineAction<Actions, T>
+
+	// const yyyy = <
+	// 	ActionNames extends Actions['action'],
+	// 	Act extends Action<ActionNames, Actions>,
+	// 	Actions extends WorkerEngineActions<InitParams, Name>,
+	// 	InitParams extends unknown[] = unknown[],
+	// 	Name extends string = string,
+	// >(
+	// 	action: ActionNames,
+	// 	...params: Act['params']
+	// ) => postMessage(ctx, action, ...params)
+
+	// interface PostMessage {
+	// 	<
+	// 		ActionNames extends Actions['action'],
+	// 		Act extends Action<ActionNames, Actions>,
+	// 	>(
+	// 		action: ActionNames,
+	// 		...params: Act['params']
+	// 	): Promise<Act['result']>
+	// }
+
+	const wrappedPostMessage =
+		(ctx: Ctx<Actions>) =>
+		<
+			ActionNames extends Actions['action'],
+			Action extends WorkerEngineAction<Actions, ActionNames>,
+		>(
+			action: ActionNames,
+			...params: Action['params']
+		) =>
+			postMessage(ctx, action, ...params)
+
+	// await postMessage(ctx, '')
+	// await wrappedPostMessage(ctx)('')
+	// await wrappedPostMessage(ctx)('')
+
+	const context = {
+		engineId: ctx.engineId,
+		worker: ctx.worker,
+		isWorkerReady: ctx.isWorkerReady,
+		onSituationChange: options.onSituationChange,
+		postMessage: wrappedPostMessage(ctx),
+
 		terminate: () => {
-			workerEngine.worker.terminate()
-			promises.forEach((promise) => promise.reject?.('worker terminated'))
-			promises = []
+			context.worker.terminate()
+			ctx.promises.forEach((promise) => promise.reject?.('worker terminated'))
+			ctx.promises = []
 		},
-
-		// withEngineId: (engineId: number, promise: Promise) => {
-		// 	const tmp = workerEngine.engineId
-		// 	workerEngine.engineId = engineId
-
-		// 	promise()
-
-		// 	workerEngine.engineId = tmp
-		// },
-
-		// asynchronous setSituation function
 
 		/**
 		 * This function is used to set the situation in the worker with a specific engineId.
 		 */
-		asyncSetSituationWithEngineId: async (
-			// engineId: number,
-			...params: Action<'setSituation'>['params']
-		): Promise<Action<'setSituation'>['result']> => {
+		asyncSetSituation: async (
+			...params: Act<'setSituation'>['params']
+		): Promise<Act<'setSituation'>['result']> => {
 			// abort every action "evaluate"
-
-			console.log(')=>', promises)
-
 			// promises.forEach((promise) => {
 			// 	if (engineId === promise.engineId && promise.action === 'evaluate') {
 			// 		promise.reject?.('abort')
 			// 	}
 			// })
 
-			// if (!workerEngine.worker) {
-			// 	await sleepMs(10)
+			const ret = await context.postMessage('setSituation', ...params)
 
-			// 	return workerEngine.asyncSetSituationWithEngineId(engineId, ...params)
-			// }
-
-			// console.log('??? engideid', engineId, workerEngine, onSituationChange)
-
-			const ret = await workerEngine.postMessage(
-				engineId,
-				'setSituation',
-				...params
-			)
-
-			console.log('testtesttesttesttest', test)
-
-			test.onSituationChange(engineId)
+			context.onSituationChange?.(ctx.engineId)
 
 			return ret
 		},
 
 		/**
-		 * This function is used to set the situation in the worker.
-		 */
-		// asyncSetSituation: async (...params: Action<'setSituation'>['params']) =>
-		// 	workerEngine.asyncSetSituationWithEngineId(defaultEngineId, ...params),
-
-		// asynchronous evaluate function
-
-		/**
 		 * This function is used to evaluate a publicodes expression in the worker with a specific engineId.
 		 */
-		asyncEvaluateWithEngineId: async (
-			// engineId: number,
-			...params: Action<'evaluate'>['params']
-		): Promise<Action<'evaluate'>['result']> => {
-			// if (!workerEngine.worker) {
-			// 	await sleepMs(10)
+		asyncEvaluate: async (
+			...params: Act<'evaluate'>['params']
+		): Promise<Act<'evaluate'>['result']> => {
+			const promise = await context.postMessage('evaluate', ...params)
 
-			// 	return workerEngine.asyncEvaluateWithEngineId(engineId, ...params)
-			// }
-
-			const promise = await workerEngine.postMessage(
-				engineId,
-				'evaluate',
-				...params
-			)
-
-			// console.trace('{asyncEvaluateWithEngineId}')
+			// console.trace('{asyncEvaluate}')
 
 			return promise
 		},
 
 		/**
-		 * This function is used to evaluate a publicodes expression in the worker.
-		 */
-		// asyncEvaluate: async (...params: Action<'evaluate'>['params']) =>
-		// 	workerEngine.asyncEvaluateWithEngineId(defaultEngineId, ...params),
-
-		// asynchronous getRule function:
-
-		/**
 		 * This function is used to get a publicodes rule that is in the worker with a specific EngineId.
 		 */
-		asyncGetRuleWithEngineId: async (
-			// engineId: number,
-			...params: Action<'getRule'>['params']
-		): Promise<Action<'getRule'>['result']> => {
-			// if (!workerEngine.worker) {
-			// 	await sleepMs(10)
-
-			// 	return workerEngine.asyncGetRuleWithEngineId(engineId, ...params)
-			// }
-
-			return await workerEngine.postMessage(engineId, 'getRule', ...params)
+		asyncGetRule: async (
+			...params: Act<'getRule'>['params']
+		): Promise<Act<'getRule'>['result']> => {
+			return await context.postMessage('getRule', ...params)
 		},
-
-		/**
-		 * This function is used to get a rule in the worker.
-		 */
-		// asyncGetRule: async (...params: Action<'getRule'>['params']) =>
-		// 	workerEngine.asyncGetRuleWithEngineId(defaultEngineId, ...params),
-
-		// asynchronous getParsedRules function
 
 		/**
 		 * This function is used to get all the parsed rules in the worker with a specific engineId.
 		 */
-		asyncGetParsedRulesWithEngineId: async () // engineId: number
-		: Promise<Action<'getParsedRules'>['result']> => {
-			// if (!workerEngine.worker) {
-			// 	await sleepMs(10)
-
-			// 	return workerEngine.asyncGetParsedRulesWithEngineId(engineId)
-			// }
-
-			return await workerEngine.postMessage(engineId, 'getParsedRules')
+		asyncGetParsedRules: async (): Promise<Act<'getParsedRules'>['result']> => {
+			return await context.postMessage('getParsedRules')
 		},
-
-		/**
-		 * This function is used to get all the parsed rules in the worker.
-		 */
-		// asyncGetParsedRules: async () =>
-		// 	workerEngine.asyncGetParsedRulesWithEngineId(defaultEngineId),
-
-		// asynchronous shallowCopy function
 
 		/**
 		 * This function is used to shallow copy an engine in the worker with a specific engineId.
 		 */
-		asyncShallowCopyWithEngineId: async (
-			onSituationChange: () => void = () => {}
-		) => {
-			// engineId: number
-			// if (!workerEngine.worker) {
-			// 	await sleepMs(10)
+		asyncShallowCopy: async (onSituationChange: () => void = () => {}) => {
+			const newEngineId = await context.postMessage('shallowCopy')
 
-			// 	return workerEngine.asyncShallowCopyWithEngineId(engineId)
-			// }
-
-			const newEngineId = await workerEngine.postMessage(
-				engineId,
-				'shallowCopy'
-			)
-
-			// return {
-			// 	...workerEngine,
-			// 	engineId: newEngineId,
-			// }
-
-			// const uu = Object.assign({}, workerEngine)
-			// uu.engineId = newEngineId
-
-			// console.log('???[newEngineId]', newEngineId, engineId)
-
-			return workerEngineConstruct(newEngineId, onSituationChange)
+			return workerEngineConstruct(ctx, { onSituationChange })
 		},
 
 		/**
-		 * This function is used to shallow copy an engine in the worker.
+		 * This function is used to delete a shallow copy of an engine in the worker.
 		 */
-		// asyncShallowCopy: async () => ({
-		// 	...context,
-		// 	engineId: await workerEngine.asyncShallowCopyWithEngineId(
-		// 		defaultEngineId
-		// 	),
-		// }),
-
-		// asynchronous deleteShallowCopy function
-
-		/**
-		 * 	* This function is used to delete a shallow copy of an engine in the worker.
-		 */
-		asyncDeleteShallowCopy: async () // engineId: number
-		: Promise<Action<'deleteShallowCopy'>['result']> => {
-			// if (!workerEngine.worker) {
-			// 	await sleepMs(10)
-
-			// 	return workerEngine.asyncDeleteShallowCopy(engineId)
-			// }
-
-			return await workerEngine.postMessage(engineId, 'deleteShallowCopy')
+		asyncDeleteShallowCopy: async (): Promise<
+			Act<'deleteShallowCopy'>['result']
+		> => {
+			return context.postMessage('deleteShallowCopy')
 		},
-	})
-	const workerEngine = workerEngineConstruct(engineId, onSituationChange)
+	}
 
-	return workerEngine
+	return context
 }

@@ -19,7 +19,7 @@ export const SelectSimulationYear = () => {
 	const dispatch = useDispatch()
 	const workerEngine = useWorkerEngine()
 	const year = usePromiseOnSituationChange(
-		() => workerEngine.asyncEvaluateWithEngineId('date'),
+		() => workerEngine.asyncEvaluate('date'),
 		[workerEngine]
 	)
 	const choices = [2022, 2023]

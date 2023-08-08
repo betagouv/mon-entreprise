@@ -49,10 +49,7 @@ const TestWorkerEngine = () => {
 	// const workerEngineCtx = useWorkerEngineContext()
 
 	const [, trigger] = useLazyPromise(
-		async () =>
-			workerEngine?.asyncSetSituationWithEngineId({
-				SMIC: '1000€/mois',
-			}),
+		async () => workerEngine?.asyncSetSituation({ SMIC: '1000€/mois' }),
 		[workerEngine],
 		{ defaultValue: 'loading...' }
 	)
@@ -62,13 +59,13 @@ const TestWorkerEngine = () => {
 	const parsedRules = useAsyncParsedRules()
 
 	const resultSmic = usePromiseOnSituationChange(
-		() => workerEngine.asyncEvaluateWithEngineId('SMIC'),
+		() => workerEngine.asyncEvaluate('SMIC'),
 		[workerEngine],
 		{ defaultValue: 'loading...' }
 	)
 
 	const [resultLazySmic, triggerLazySmic] = useLazyPromiseOnSituationChange(
-		() => workerEngine.asyncEvaluateWithEngineId('SMIC'),
+		() => workerEngine.asyncEvaluate('SMIC'),
 		[workerEngine],
 		{ defaultValue: 'wait 2sec...' }
 	)
@@ -91,7 +88,7 @@ const TestWorkerEngine = () => {
 	const [, triggerCopy] = useLazyPromise(async () => {
 		// console.log('+++++++++>', workerEngineCopy)
 
-		await workerEngineCopy?.asyncSetSituationWithEngineId({
+		await workerEngineCopy?.asyncSetSituation({
 			SMIC: '2000€/mois',
 		})
 	}, [workerEngineCopy])
@@ -106,7 +103,7 @@ const TestWorkerEngine = () => {
 	})
 
 	const resultSmicCopy = usePromiseOnSituationChange(
-		async () => workerEngineCopy?.asyncEvaluateWithEngineId('SMIC'),
+		async () => workerEngineCopy?.asyncEvaluate('SMIC'),
 		[workerEngineCopy],
 		{
 			defaultValue: 'loading...',
@@ -116,7 +113,7 @@ const TestWorkerEngine = () => {
 
 	const [resultLazySmicCopy, triggerLazySmicCopy] =
 		useLazyPromiseOnSituationChange(
-			async () => workerEngineCopy?.asyncEvaluateWithEngineId('SMIC'),
+			async () => workerEngineCopy?.asyncEvaluate('SMIC'),
 			[workerEngineCopy],
 			{
 				defaultValue: 'wait 2sec...',
@@ -135,7 +132,7 @@ const TestWorkerEngine = () => {
 		})()
 	}, [triggerLazySmicCopy, workerEngine.isWorkerReady])
 
-	const { asyncSetSituationWithEngineId } = workerEngineCopy ?? {}
+	const { asyncSetSituation } = workerEngineCopy ?? {}
 	usePromiseOnSituationChange(async () => {
 		// console.log('**************>', workerEngineCopy, resultSmic)
 
@@ -145,11 +142,11 @@ const TestWorkerEngine = () => {
 		) {
 			// console.log('ooooooooooooooooooo', resultSmic)
 
-			await asyncSetSituationWithEngineId?.({
+			await asyncSetSituation?.({
 				SMIC: resultSmic.nodeValue + '€/mois',
 			})
 		}
-	}, [asyncSetSituationWithEngineId, resultSmic])
+	}, [asyncSetSituation, resultSmic])
 
 	return (
 		<div>
@@ -243,6 +240,7 @@ RootProps) {
 		</StrictMode>
 	)
 }
+
 const Router = () => {
 	/*
 	const exampleSyncValue = usePromiseOnSituationChange(

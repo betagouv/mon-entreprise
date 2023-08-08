@@ -16,8 +16,12 @@ import DesignSystemThemeProvider from '@/design-system/root'
 import { H1, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+// import { workerClient } from '@/entries/entry-fr'
 import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
+import { Actions } from '@/worker/socialWorkerEngine.worker'
+import SocialeWorkerEngine from '@/worker/socialWorkerEngine.worker?worker'
 import { WorkerEngineProvider } from '@/worker/socialWorkerEngineClient'
+import { createWorkerEngineClient } from '@/worker/workerEngineClient'
 
 import { Message } from '../design-system'
 import * as safeLocalStorage from '../storage/safeLocalStorage'
@@ -27,6 +31,40 @@ import { createTracker } from './ATInternetTracking/Tracker'
 import { IframeResizer } from './IframeResizer'
 import { ServiceWorker } from './ServiceWorker'
 import { DarkModeProvider } from './utils/DarkModeContext'
+
+const workerClient = createWorkerEngineClient<Actions>(
+	typeof Worker === 'undefined'
+		? ({ postMessage: () => {} } as unknown as Worker)
+		: new SocialeWorkerEngine(),
+	// () => {},
+	// () =>
+	// 	startTransition(() => {
+	// 		setSituationVersion((situationVersion) => {
+	// 			// console.log('??? setSituationVersion original')
+
+	// 			// situationVersion[engineId] =
+	// 			// 	typeof situationVersion[engineId] !== 'number'
+	// 			// 		? 0
+	// 			// 		: situationVersion[engineId]++
+
+	// 			// return situationVersion
+	// 			return situationVersion + 1
+	// 		})
+	// 	}),
+	//
+	{
+		initParams: [{ basename: 'mon-entreprise' }],
+		// onSituationChange: function () {
+		// 	console.log('update *****************')
+
+		// 	startTransition(() => {
+		// 		setSituationVersion((situationVersion) => {
+		// 			return situationVersion + 1
+		// 		})
+		// 	})
+		// },
+	}
+)
 
 type SiteName = 'mon-entreprise' | 'infrance'
 
@@ -52,7 +90,10 @@ export default function Provider({
 						<I18nextProvider i18n={i18next}>
 							<ReduxProvider store={store}>
 								<BrowserRouterProvider basename={basename}>
-									<WorkerEngineProvider basename={basename}>
+									<WorkerEngineProvider
+										basename={basename}
+										workerClient={workerClient}
+									>
 										<ErrorBoundary
 											fallback={(errorData) => (
 												// eslint-disable-next-line react/jsx-props-no-spreading

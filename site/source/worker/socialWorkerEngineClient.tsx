@@ -14,7 +14,6 @@ import { useSetupSafeSituation } from '@/components/utils/EngineContext'
 import { useLazyPromise, usePromise } from '@/hooks/usePromise'
 
 import { Actions } from './socialWorkerEngine.worker'
-import SocialeWorkerEngine from './socialWorkerEngine.worker?worker'
 import {
 	createWorkerEngineClient,
 	WorkerEngineClient,
@@ -39,7 +38,7 @@ const WorkerEngineContext = createContext<WorkerEngine>()
 export const useWorkerEngine = () => {
 	const context = useContext(WorkerEngineContext)
 
-	if (!context) {
+	if (!context && !import.meta.env.SSR) {
 		throw new Error(
 			'You are trying to use the worker engine outside of its provider'
 		)
@@ -57,16 +56,18 @@ export const useWorkerEngine = () => {
 export const WorkerEngineProvider = ({
 	children,
 	basename,
+	workerClient,
 }: {
 	children: React.ReactNode
 	basename: ProviderProps['basename']
+	workerClient: WorkerEngineClient<Actions>
 }) => {
-	const workerEngine = useCreateWorkerEngine(basename)
+	const workerEngine = useCreateWorkerEngine(basename, workerClient)
 
 	useSetupSafeSituation(workerEngine)
 
 	if (workerEngine === undefined) {
-		return null
+		return children
 	}
 
 	return (
@@ -108,16 +109,64 @@ export const WorkerEngineProvider = ({
  * This hook is used to create a worker engine.
  * @param basename
  */
-export const useCreateWorkerEngine = (basename: ProviderProps['basename']) => {
+export const useCreateWorkerEngine = (
+	basename: ProviderProps['basename'],
+	workerClient: WorkerEngineClient<Actions>
+) => {
 	const [situationVersion, setSituationVersion] = useState(0)
 	const [workerEngine, setWorkerEngine] =
-		useState<WorkerEngineClient<Actions>>()
+		useState<WorkerEngineClient<Actions>>(workerClient)
 	// console.log('llllllpppppppppppppppppppppppppp', workerClient)
 
 	const [transition, startTransition] = useTransition()
 
 	useEffect(() => {
-		// workerClient.test.onSituationChange = function (engineId) {
+		console.timeEnd('time')
+		// const workerClient = createWorkerEngineClient<Actions>(
+		// 	new SocialeWorkerEngine(),
+		// 	// () => {},
+		// 	// () =>
+		// 	// 	startTransition(() => {
+		// 	// 		setSituationVersion((situationVersion) => {
+		// 	// 			// console.log('??? setSituationVersion original')
+
+		// 	// 			// situationVersion[engineId] =
+		// 	// 			// 	typeof situationVersion[engineId] !== 'number'
+		// 	// 			// 		? 0
+		// 	// 			// 		: situationVersion[engineId]++
+
+		// 	// 			// return situationVersion
+		// 	// 			return situationVersion + 1
+		// 	// 		})
+		// 	// 	}),
+		// 	//
+		// 	{
+		// 		initParams: [{ basename: 'mon-entreprise' }],
+		// 		onSituationChange: function () {
+		// 			console.log('update *****************')
+
+		// 			startTransition(() => {
+		// 				setSituationVersion((situationVersion) => {
+		// 					return situationVersion + 1
+		// 				})
+		// 			})
+		// 		},
+		// 	}
+		// )
+
+		workerClient.onSituationChange = function () {
+			console.log('update *****************')
+
+			startTransition(() => {
+				setSituationVersion((situationVersion) => {
+					return situationVersion + 1
+				})
+			})
+		}
+
+		// workerClient.context.onSituationChange = function () {
+		// 	console.log('update !!!!!!!!!!!!!!!!!!')
+
 		// 	console.log('transition...')
 
 		// 	startTransition(() => {
@@ -134,30 +183,12 @@ export const useCreateWorkerEngine = (basename: ProviderProps['basename']) => {
 		// 		})
 		// 	})
 		// }
-		const workerClient = createWorkerEngineClient<Actions>(
-			new SocialeWorkerEngine(),
-			// () => {},
-			(engineId) =>
-				startTransition(() => {
-					setSituationVersion((situationVersion) => {
-						// console.log('??? setSituationVersion original')
-
-						// situationVersion[engineId] =
-						// 	typeof situationVersion[engineId] !== 'number'
-						// 		? 0
-						// 		: situationVersion[engineId]++
-
-						// return situationVersion
-						return situationVersion + 1
-					})
-				}),
-			{ basename: 'mon-entreprise' }
-		)
 
 		console.log('{init worker}', workerClient)
 		setWorkerEngine(workerClient)
 
-		void workerClient.asyncSetSituationWithEngineId({})
+		// void workerClient.context.asyncSetSituation({})
+
 		console.time('{init}')
 		let init = false
 		void workerClient.isWorkerReady.finally(() => {
@@ -184,10 +215,11 @@ export const useCreateWorkerEngine = (basename: ProviderProps['basename']) => {
 	}, [basename])
 
 	// return workerEngine ? { ...workerEngine, situationVersion } : null
-	const memo = useMemo(
-		() => (workerEngine ? { ...workerEngine, situationVersion } : undefined),
-		[situationVersion, workerEngine]
-	)
+	const memo = useMemo(() => {
+		// console.log('update:', { situationVersion, workerEngine })
+
+		return workerEngine ? { ...workerEngine, situationVersion } : undefined
+	}, [situationVersion, workerEngine])
 
 	return memo
 }
@@ -260,7 +292,7 @@ export const useAsyncGetRule = <
 	const workerEngine = workerEngineOption ?? defaultWorkerEngine
 
 	return usePromiseOnSituationChange(
-		async () => workerEngine.asyncGetRuleWithEngineId(dottedName),
+		async () => workerEngine.asyncGetRule(dottedName),
 		[dottedName, workerEngine],
 		{ defaultValue, workerEngine }
 	)
@@ -280,7 +312,7 @@ export const useAsyncParsedRules = <
 	const workerEngine = workerEngineOption ?? defaultWorkerEngine
 
 	return usePromiseOnSituationChange(
-		async () => workerEngine.asyncGetParsedRulesWithEngineId(),
+		async () => workerEngine.asyncGetParsedRules(),
 		[workerEngine],
 		{ defaultValue, workerEngine }
 	)
@@ -299,7 +331,7 @@ export const useShallowCopy = (
 
 	const workerEngineCopy = usePromiseOnSituationChange(
 		async () => {
-			const copy = await workerEngine.asyncShallowCopyWithEngineId(() => {
+			const copy = await workerEngine.asyncShallowCopy(() => {
 				// console.log('??? onSituationChange', copy)
 
 				setSituationVersion((x) => x + 1)

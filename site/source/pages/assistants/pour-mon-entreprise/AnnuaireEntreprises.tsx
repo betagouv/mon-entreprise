@@ -11,8 +11,7 @@ export function AnnuaireEntreprises() {
 	const workerEngine = useWorkerEngine()
 
 	const siren = usePromiseOnSituationChange(
-		async () =>
-			await workerEngine.asyncEvaluateWithEngineId('entreprise . SIREN'),
+		async () => await workerEngine.asyncEvaluate('entreprise . SIREN'),
 		[workerEngine],
 		{ defaultValue: null }
 	)?.nodeValue as string | null

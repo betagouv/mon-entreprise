@@ -21,7 +21,7 @@ export default function SimulateurWarning({
 }: SimulateurWarningProps) {
 	const workerEngine = useWorkerEngine()
 	const year = usePromiseOnSituationChange(
-		() => workerEngine.asyncEvaluateWithEngineId('date'),
+		() => workerEngine.asyncEvaluate('date'),
 		[workerEngine]
 	)
 		?.nodeValue?.toString()

@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression, RuleNode } from 'publicodes'
+import { PublicodesExpression, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -36,7 +36,7 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 				const value =
 					dottedName === choice.dottedName
 						? isSelected
-						: (await workerEngine.asyncEvaluateWithEngineId(choice)).nodeValue
+						: (await workerEngine.asyncEvaluate(choice)).nodeValue
 				onChange(value ? 'oui' : 'non', choice.dottedName)
 			})
 		)
@@ -68,7 +68,7 @@ function CheckBoxRule({ node, engineId, onChange }: CheckBoxRuleProps) {
 	const workerEngine = useWorkerEngine()
 
 	const evaluation = usePromiseOnSituationChange(
-		() => workerEngine.asyncEvaluateWithEngineId(engineId, node),
+		() => workerEngine.asyncEvaluate(node),
 		[engineId, node, workerEngine]
 	)
 	const { t } = useTranslation()
@@ -110,18 +110,14 @@ async function getMultiplePossibilitiesOptions(
 	// ).map((name) => engine.getRule(`${dottedName} . ${name}` as Name))
 	const posibilities =
 		(
-			(await workerEngine.asyncGetRuleWithEngineId(
-				engineId,
+			(await workerEngine.asyncGetRule(
 				dottedName
 			)) as RuleWithMultiplePossibilities
 		).rawNode['plusieurs possibilités'] ?? []
 
 	return await Promise.all(
 		posibilities.map((name) =>
-			workerEngine.asyncGetRuleWithEngineId(
-				engineId,
-				`${dottedName} . ${name}` as DottedName
-			)
+			workerEngine.asyncGetRule(`${dottedName} . ${name}` as DottedName)
 		)
 	)
 }

@@ -214,7 +214,7 @@ export default function StackedRulesChart({
 				data.map(async ({ dottedName, title, color }) => ({
 					key: dottedName,
 					value: (
-						await workerEngine.asyncEvaluateWithEngineId({
+						await workerEngine.asyncEvaluate({
 							valeur: dottedName,
 							unité: targetUnit,
 						})

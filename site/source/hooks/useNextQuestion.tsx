@@ -88,7 +88,7 @@ export const useNextQuestions = function (
 			)
 
 			const rules = await Promise.all(
-				next.map((question) => workerEngine.asyncGetRuleWithEngineId(question))
+				next.map((question) => workerEngine.asyncGetRule(question))
 			)
 
 			return next.filter((_, i) => rules[i].rawNode.question !== undefined)

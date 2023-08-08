@@ -39,8 +39,7 @@ export const useMissingVariables = (
 				objectifs.flatMap((objectif) =>
 					(workerEngines ?? [workerEngine]).map(
 						async (e) =>
-							(await e.asyncEvaluateWithEngineId(objectif)).missingVariables ??
-							{}
+							(await e.asyncEvaluate(objectif)).missingVariables ?? {}
 					)
 				)
 			)
@@ -102,8 +101,7 @@ async function treatAPIMissingVariables(
 				async ([name, value]) => {
 					const parentName = utils.ruleParent(name) as DottedName
 					const rule =
-						parentName &&
-						(await workerEngine.asyncGetRuleWithEngineId(parentName))
+						parentName && (await workerEngine.asyncGetRule(parentName))
 
 					return [name, value, parentName, rule.rawNode.API] as const
 				}

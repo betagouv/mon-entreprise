@@ -62,8 +62,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 						)
 						.concat(passedQuestions)
 						.map(
-							async (dottedName) =>
-								await workerEngine.asyncGetRuleWithEngineId(dottedName)
+							async (dottedName) => await workerEngine.asyncGetRule(dottedName)
 						)
 				)
 			).filter((rule) => rule.rawNode.question !== undefined),
@@ -76,8 +75,8 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 			Promise.all(
 				nextQuestions.map(
 					async (dottedName) =>
-						workerEngine.asyncEvaluateWithEngineId(
-							await workerEngine.asyncGetRuleWithEngineId(dottedName)
+						workerEngine.asyncEvaluate(
+							await workerEngine.asyncGetRule(dottedName)
 						) as Promise<EvaluatedNode>
 				)
 			),
@@ -107,7 +106,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 							] as Array<DottedName>
 						).filter(isCompanyDottedName)
 					)
-				).map((dottedName) => workerEngine.asyncGetRuleWithEngineId(dottedName))
+				).map((dottedName) => workerEngine.asyncGetRule(dottedName))
 			),
 		[answeredAndPassedQuestions, companySituation, situation, workerEngine],
 		[] as RuleNode<DottedName>[]
@@ -115,7 +114,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 
 	const siret = usePromise(
 		async () =>
-			(await workerEngine.asyncEvaluateWithEngineId('établissement . SIRET'))
+			(await workerEngine.asyncEvaluate('établissement . SIRET'))
 				.nodeValue as string,
 		[workerEngine]
 	)
@@ -312,8 +311,7 @@ function AnswerElement(rule: RuleNode) {
 			rule.rawNode.question
 				? (rule.dottedName as DottedName)
 				: parentDottedName &&
-				  (await workerEngine.asyncGetRuleWithEngineId(parentDottedName))
-						.rawNode.API
+				  (await workerEngine.asyncGetRule(parentDottedName)).rawNode.API
 				? parentDottedName
 				: undefined,
 		[parentDottedName, rule.dottedName, rule.rawNode.question, workerEngine]

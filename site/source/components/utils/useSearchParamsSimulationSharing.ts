@@ -130,7 +130,7 @@ export async function getSearchParamsFromSituation(
 			const paramName = dottedNameParamNameMapping[dottedName]
 			try {
 				const serializedValue = serializeEvaluation(
-					await workerEngine.asyncEvaluateWithEngineId(value)
+					await workerEngine.asyncEvaluate(value)
 				)
 
 				if (typeof serializedValue !== 'undefined') {

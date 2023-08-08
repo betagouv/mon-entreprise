@@ -101,7 +101,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 			const old = await Promise.all(
 				Object.values(proportions).map(async (chiffreAffaire) =>
 					serializeEvaluation(
-						await workerEngine.asyncEvaluateWithEngineId(
+						await workerEngine.asyncEvaluate(
 							name === chiffreAffaire && checkValue(value)
 								? value
 								: chiffreAffaire
@@ -110,7 +110,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 				)
 			)
 			const nouveauCA = serializeEvaluation(
-				await workerEngine.asyncEvaluateWithEngineId({
+				await workerEngine.asyncEvaluate({
 					somme: old.filter(Boolean),
 				})
 			)
@@ -122,7 +122,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 			const entries = Object.entries(proportions).map(
 				async ([proportionName, valueName]) => {
 					const newValue = serializeEvaluation(
-						await workerEngine.asyncEvaluateWithEngineId(
+						await workerEngine.asyncEvaluate(
 							valueName === name && checkValue(value)
 								? value
 								: { valeur: valueName, 'par défaut': '0€/an' }
@@ -130,7 +130,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 					)
 					const newProportion = serializeEvaluation(
 						await catchDivideByZeroError(() =>
-							workerEngine.asyncEvaluateWithEngineId({
+							workerEngine.asyncEvaluate({
 								valeur: `${newValue ?? ''} / ${nouveauCA ?? ''}`,
 								unité: '%',
 							})
@@ -165,9 +165,7 @@ function ActivitéMixte() {
 	const defaultChecked =
 		usePromiseOnSituationChange(
 			() =>
-				workerEngine.asyncEvaluateWithEngineId(
-					'entreprise . activités . revenus mixtes'
-				),
+				workerEngine.asyncEvaluate('entreprise . activités . revenus mixtes'),
 			[workerEngine]
 		)?.nodeValue === true
 

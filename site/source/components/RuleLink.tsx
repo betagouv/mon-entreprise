@@ -31,7 +31,7 @@ export default function RuleLink(
 		setError(false)
 
 		return workerEngine
-			.asyncGetRuleWithEngineId(props.dottedName)
+			.asyncGetRule(props.dottedName)
 			.catch(() => setError(true))
 			.then(() => setLoading(false))
 	}, [props.dottedName, workerEngine])

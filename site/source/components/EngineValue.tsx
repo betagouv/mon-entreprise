@@ -57,7 +57,7 @@ export default function Value<Names extends string>({
 
 	const evaluation = usePromiseOnSituationChange(
 		() =>
-			workerEngine.asyncEvaluateWithEngineId({
+			workerEngine.asyncEvaluate({
 				valeur: expression,
 				...(unit && { unité: unit }),
 			}),
@@ -71,10 +71,7 @@ export default function Value<Names extends string>({
 	}) as string
 
 	const ruleEvaluation = usePromiseOnSituationChange(
-		async () =>
-			isRule &&
-			linkToRule &&
-			workerEngine.asyncEvaluateWithEngineId(expression),
+		async () => isRule && linkToRule && workerEngine.asyncEvaluate(expression),
 		[expression, isRule, linkToRule, workerEngine]
 	)
 
@@ -153,10 +150,7 @@ export function Condition({
 	const workerEngine = useWorkerEngine()
 
 	const node = usePromiseOnSituationChange(
-		() =>
-			workerEngine.asyncEvaluateWithEngineId({
-				'!=': [expression, 'non'],
-			}),
+		() => workerEngine.asyncEvaluate({ '!=': [expression, 'non'] }),
 		[expression, workerEngine]
 	)
 
@@ -182,7 +176,7 @@ export function WhenValueEquals({
 	const workerEngine = useWorkerEngine()
 
 	const node = usePromiseOnSituationChange(
-		() => workerEngine.asyncEvaluateWithEngineId(expression),
+		() => workerEngine.asyncEvaluate(expression),
 		[expression, workerEngine]
 	)
 
@@ -213,10 +207,7 @@ export function WhenApplicable({
 	// return <>{children}</>
 
 	const node = usePromiseOnSituationChange(
-		() =>
-			workerEngine.asyncEvaluateWithEngineId({
-				'est applicable': dottedName,
-			}),
+		() => workerEngine.asyncEvaluate({ 'est applicable': dottedName }),
 		[dottedName, workerEngine]
 	)
 
@@ -248,10 +239,7 @@ export function WhenNotApplicable({
 	const workerEngine = useWorkerEngine()
 
 	const node = usePromiseOnSituationChange(
-		() =>
-			workerEngine.asyncEvaluateWithEngineId({
-				'est non applicable': dottedName,
-			}),
+		() => workerEngine.asyncEvaluate({ 'est non applicable': dottedName }),
 		[dottedName, workerEngine]
 	)
 
@@ -270,8 +258,7 @@ export function WhenAlreadyDefined({
 }) {
 	const workerEngine = useWorkerEngine()
 	const node = usePromiseOnSituationChange(
-		() =>
-			workerEngine.asyncEvaluateWithEngineId({ 'est non défini': dottedName }),
+		() => workerEngine.asyncEvaluate({ 'est non défini': dottedName }),
 		[dottedName, workerEngine]
 	)
 
@@ -289,7 +276,7 @@ export function WhenNotAlreadyDefined({
 }) {
 	const workerEngine = useWorkerEngine()
 	const node = usePromiseOnSituationChange(
-		() => workerEngine.asyncEvaluateWithEngineId({ 'est défini': dottedName }),
+		() => workerEngine.asyncEvaluate({ 'est défini': dottedName }),
 		[dottedName, workerEngine]
 	)
 

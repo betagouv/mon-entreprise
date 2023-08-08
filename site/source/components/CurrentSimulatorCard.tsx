@@ -9,7 +9,8 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 
 import { SimulateurCard } from './SimulateurCard'
-import { useEngine } from './utils/EngineContext'
+
+// import { useEngine } from './utils/EngineContext'
 
 export function CurrentSimulatorCard({
 	fromGérer = false,

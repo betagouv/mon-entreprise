@@ -164,16 +164,16 @@ export const useSetupSafeSituation = (workerEngine?: WorkerEngine) => {
 	const simulatorSituation = useSelector(situationSelector)
 	const configSituation = useSelector(configSituationSelector)
 	const companySituation = useSelector(companySituationSelector)
-	const { asyncSetSituationWithEngineId } = workerEngine ?? {}
+	const { asyncSetSituation } = workerEngine ?? {}
 
 	useEffect(() => {
-		if (!asyncSetSituationWithEngineId) {
+		if (!asyncSetSituation) {
 			return
 		}
 		console.log('set rawSituation', rawSituation, workerEngine)
 
-		void asyncSetSituationWithEngineId(rawSituation)
-	}, [asyncSetSituationWithEngineId, rawSituation])
+		void asyncSetSituation(rawSituation)
+	}, [asyncSetSituation, rawSituation])
 
 	// try {
 	// 	safeSetSituation(engine, rawSituation, ({ faultyDottedName }) => {

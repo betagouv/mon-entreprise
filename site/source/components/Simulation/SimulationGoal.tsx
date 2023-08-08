@@ -56,7 +56,7 @@ export function SimulationGoal({
 	const workerEngine = useWorkerEngine()
 	const evaluation = usePromiseOnSituationChange(
 		() =>
-			workerEngine.asyncEvaluateWithEngineId({
+			workerEngine.asyncEvaluate({
 				value: dottedName,
 				arrondi: round ? 'oui' : 'non',
 				...(!isTypeBoolean ? { unité: currentUnit } : {}),
