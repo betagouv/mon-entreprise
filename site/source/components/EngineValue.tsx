@@ -10,11 +10,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { keyframes, styled } from 'styled-components'
 
+import { usePromise } from '@/hooks/usePromise'
 import {
 	useAsyncParsedRules,
-	usePromiseOnSituationChange,
 	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+} from '@/worker/workerEngineClientReact'
 
 import RuleLink from './RuleLink'
 
@@ -55,7 +55,7 @@ export default function Value<Names extends string>({
 	const isRule =
 		typeof expression === 'string' && parsedRules && expression in parsedRules
 
-	const evaluation = usePromiseOnSituationChange(
+	const evaluation = usePromise(
 		() =>
 			workerEngine.asyncEvaluate({
 				valeur: expression,
@@ -70,7 +70,7 @@ export default function Value<Names extends string>({
 		precision,
 	}) as string
 
-	const ruleEvaluation = usePromiseOnSituationChange(
+	const ruleEvaluation = usePromise(
 		async () => isRule && linkToRule && workerEngine.asyncEvaluate(expression),
 		[expression, isRule, linkToRule, workerEngine]
 	)
@@ -149,7 +149,7 @@ export function Condition({
 
 	const workerEngine = useWorkerEngine()
 
-	const node = usePromiseOnSituationChange(
+	const node = usePromise(
 		() => workerEngine.asyncEvaluate({ '!=': [expression, 'non'] }),
 		[expression, workerEngine]
 	)
@@ -175,7 +175,7 @@ export function WhenValueEquals({
 	// return <>{children}</>
 	const workerEngine = useWorkerEngine()
 
-	const node = usePromiseOnSituationChange(
+	const node = usePromise(
 		() => workerEngine.asyncEvaluate(expression),
 		[expression, workerEngine]
 	)
@@ -206,7 +206,7 @@ export function WhenApplicable({
 
 	// return <>{children}</>
 
-	const node = usePromiseOnSituationChange(
+	const node = usePromise(
 		() => workerEngine.asyncEvaluate({ 'est applicable': dottedName }),
 		[dottedName, workerEngine]
 	)
@@ -238,7 +238,7 @@ export function WhenNotApplicable({
 	// return <>{children}</>
 	const workerEngine = useWorkerEngine()
 
-	const node = usePromiseOnSituationChange(
+	const node = usePromise(
 		() => workerEngine.asyncEvaluate({ 'est non applicable': dottedName }),
 		[dottedName, workerEngine]
 	)
@@ -257,7 +257,7 @@ export function WhenAlreadyDefined({
 	engineId?: number
 }) {
 	const workerEngine = useWorkerEngine()
-	const node = usePromiseOnSituationChange(
+	const node = usePromise(
 		() => workerEngine.asyncEvaluate({ 'est non défini': dottedName }),
 		[dottedName, workerEngine]
 	)
@@ -275,7 +275,7 @@ export function WhenNotAlreadyDefined({
 	engineId?: number
 }) {
 	const workerEngine = useWorkerEngine()
-	const node = usePromiseOnSituationChange(
+	const node = usePromise(
 		() => workerEngine.asyncEvaluate({ 'est défini': dottedName }),
 		[dottedName, workerEngine]
 	)

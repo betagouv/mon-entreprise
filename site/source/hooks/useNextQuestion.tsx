@@ -10,11 +10,9 @@ import {
 	useMissingVariables,
 } from '@/store/selectors/simulationSelectors'
 import { ImmutableType } from '@/types/utils'
-import {
-	usePromiseOnSituationChange,
-	useWorkerEngine,
-	WorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
+
+import { usePromise } from './usePromise'
 
 // import { useEngine } from '../components/utils/EngineContext'
 
@@ -79,7 +77,7 @@ export const useNextQuestions = function (
 	const workerEngine = useWorkerEngine()
 	const missingVariables = useMissingVariables(workerEngines)
 
-	const nextQuestions = usePromiseOnSituationChange(
+	const nextQuestions = usePromise(
 		async () => {
 			const next = getNextQuestions(
 				missingVariables,
@@ -94,7 +92,7 @@ export const useNextQuestions = function (
 			return next.filter((_, i) => rules[i].rawNode.question !== undefined)
 		},
 		[missingVariables, config.questions, answeredQuestions, workerEngine],
-		{ defaultValue: [] as DottedName[] }
+		[] as DottedName[]
 	)
 
 	return nextQuestions

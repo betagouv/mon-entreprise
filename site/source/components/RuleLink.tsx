@@ -3,11 +3,9 @@ import { RuleLink as EngineRuleLink } from 'publicodes-react'
 import React, { ReactNode } from 'react'
 
 import { Link } from '@/design-system/typography/link'
+import { usePromise } from '@/hooks/usePromise'
 import { useSitePaths } from '@/sitePaths'
-import {
-	usePromiseOnSituationChange,
-	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 // TODO : quicklink -> en cas de variations ou de somme avec un seul élément actif, faire un lien vers cet élément
 export default function RuleLink(
@@ -26,7 +24,7 @@ export default function RuleLink(
 	const [error, setError] = React.useState(false)
 	const workerEngine = useWorkerEngine()
 
-	usePromiseOnSituationChange(() => {
+	usePromise(() => {
 		setLoading(true)
 		setError(false)
 

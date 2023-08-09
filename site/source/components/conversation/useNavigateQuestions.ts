@@ -12,10 +12,7 @@ import {
 	currentQuestionSelector,
 	useMissingVariables,
 } from '@/store/selectors/simulationSelectors'
-import {
-	useWorkerEngine,
-	WorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 export function useNavigateQuestions(workerEngines?: WorkerEngine[]) {
 	const dispatch = useDispatch()

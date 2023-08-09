@@ -7,13 +7,11 @@ import {
 	MergedSimulatorDataValues,
 	useCurrentSimulatorData,
 } from '@/hooks/useCurrentSimulatorData'
+import { usePromise } from '@/hooks/usePromise'
 import { GuideURSSAFCard } from '@/pages/simulateurs/cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { useSitePaths } from '@/sitePaths'
-import {
-	usePromiseOnSituationChange,
-	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from '../assistants/pour-mon-entreprise/AutoEntrepeneurCard'
@@ -31,7 +29,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	const workerEngine = useWorkerEngine()
 
 	const { key } = useCurrentSimulatorData()
-	const guideUrssaf = usePromiseOnSituationChange(
+	const guideUrssaf = usePromise(
 		async () =>
 			(
 				await Promise.all(

@@ -12,10 +12,7 @@ import { usePromise } from '@/hooks/usePromise'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { isNotNull } from '@/utils'
-import {
-	useWorkerEngine,
-	WorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'

@@ -6,11 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { Checkbox } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { usePromise } from '@/hooks/usePromise'
-import {
-	usePromiseOnSituationChange,
-	useWorkerEngine,
-	WorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { ExplicableRule } from './Explicable'
 import { InputProps, RuleWithMultiplePossibilities } from './RuleInput'
@@ -67,19 +63,19 @@ type CheckBoxRuleProps = {
 function CheckBoxRule({ node, engineId, onChange }: CheckBoxRuleProps) {
 	const workerEngine = useWorkerEngine()
 
-	const evaluation = usePromiseOnSituationChange(
+	const evaluation = usePromise(
 		() => workerEngine.asyncEvaluate(node),
-		[engineId, node, workerEngine]
+		[node, workerEngine]
 	)
 	const { t } = useTranslation()
-	if (evaluation.nodeValue === null) {
+	if (evaluation?.nodeValue === null) {
 		return null
 	}
 
 	return (
 		<>
 			<Checkbox
-				defaultSelected={evaluation.nodeValue === true}
+				defaultSelected={evaluation?.nodeValue === true}
 				id={`checkbox-input-${node.dottedName.replace(/\s|\./g, '_')}`}
 				label={node.title}
 				onChange={(isSelected) => onChange(isSelected)}

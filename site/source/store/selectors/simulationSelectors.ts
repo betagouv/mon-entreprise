@@ -6,10 +6,7 @@ import { createSelector } from 'reselect'
 import { usePromise } from '@/hooks/usePromise'
 // import { useEngine } from '@/components/utils/EngineContext'
 import { RootState, Situation } from '@/store/reducers/rootReducer'
-import {
-	useWorkerEngine,
-	WorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 export const configSelector = (state: RootState) =>
 	state.simulation?.config ?? {}

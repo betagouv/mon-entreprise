@@ -4,16 +4,20 @@ import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
+import { usePromise } from '@/hooks/usePromise'
 // import { useEngine } from '@/components/utils/EngineContext'
 import { batchUpdateSituation, setActiveTarget } from '@/store/actions/actions'
 import { Situation } from '@/store/reducers/rootReducer'
-import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
+import {
+	companySituationSelector,
+	configObjectifsSelector,
+	situationSelector,
+} from '@/store/selectors/simulationSelectors'
 import {
 	useAsyncParsedRules,
-	usePromiseOnSituationChange,
 	useWorkerEngine,
 	WorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+} from '@/worker/workerEngineClientReact'
 
 type ShortName = string
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
@@ -69,24 +73,23 @@ export default function useSearchParamsSimulationSharing() {
 	}, [])
 }
 
-export const useParamsFromSituation = (situation: Situation) => {
+export const useParamsFromSituation = () => {
+	const situation = useSelector(situationSelector)
+	const companySituation = useSelector(companySituationSelector)
 	const parsedRules = useAsyncParsedRules()
 	const workerEngine = useWorkerEngine()
-	const dottedNameParamName = useMemo(
-		() => (parsedRules ? getRulesParamNames(parsedRules) : []),
-		[parsedRules]
-	)
 
-	const ret = usePromiseOnSituationChange(
-		() =>
-			getSearchParamsFromSituation(
-				workerEngine,
-				situation,
-				dottedNameParamName
-			),
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[dottedNameParamName, workerEngine]
-	)
+	const ret = usePromise(() => {
+		const dottedNameParamName = parsedRules
+			? getRulesParamNames(parsedRules)
+			: []
+
+		return getSearchParamsFromSituation(
+			workerEngine,
+			{ ...situation, ...companySituation },
+			dottedNameParamName
+		)
+	}, [companySituation, parsedRules, situation, workerEngine])
 
 	return ret
 }

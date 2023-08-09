@@ -5,11 +5,9 @@ import { styled } from 'styled-components'
 
 import Banner from '@/components/Banner'
 import { Link as DesignSystemLink } from '@/design-system/typography/link'
+import { usePromise } from '@/hooks/usePromise'
 import { updateSituation } from '@/store/actions/actions'
-import {
-	usePromiseOnSituationChange,
-	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 const Bold = styled.span<{ $bold: boolean }>`
 	${({ $bold }) => ($bold ? 'font-weight: bold;' : '')}
@@ -18,7 +16,7 @@ const Bold = styled.span<{ $bold: boolean }>`
 export const SelectSimulationYear = () => {
 	const dispatch = useDispatch()
 	const workerEngine = useWorkerEngine()
-	const year = usePromiseOnSituationChange(
+	const year = usePromise(
 		() => workerEngine.asyncEvaluate('date'),
 		[workerEngine]
 	)

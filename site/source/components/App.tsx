@@ -11,7 +11,7 @@ import { Container } from '@/design-system/layout'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { useLazyPromise } from '@/hooks/usePromise'
+import { useLazyPromise, usePromise } from '@/hooks/usePromise'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
 import Landing from '@/pages/_landing/Landing'
 import Page404 from '@/pages/404'
@@ -29,11 +29,9 @@ import { useSitePaths } from '@/sitePaths'
 import {
 	useAsyncGetRule,
 	useAsyncParsedRules,
-	useLazyPromiseOnSituationChange,
-	usePromiseOnSituationChange,
 	useShallowCopy,
 	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+} from '@/worker/workerEngineClientReact'
 
 import Provider, { ProviderProps } from './Provider'
 import Redirections from './Redirections'
@@ -58,16 +56,16 @@ const TestWorkerEngine = () => {
 
 	const parsedRules = useAsyncParsedRules()
 
-	const resultSmic = usePromiseOnSituationChange(
+	const resultSmic = usePromise(
 		() => workerEngine.asyncEvaluate('SMIC'),
 		[workerEngine],
-		{ defaultValue: 'loading...' }
+		'loading...'
 	)
 
-	const [resultLazySmic, triggerLazySmic] = useLazyPromiseOnSituationChange(
+	const [resultLazySmic, triggerLazySmic] = useLazyPromise(
 		() => workerEngine.asyncEvaluate('SMIC'),
 		[workerEngine],
-		{ defaultValue: 'wait 2sec...' }
+		'wait 2sec...'
 	)
 
 	useEffect(() => {
@@ -102,24 +100,17 @@ const TestWorkerEngine = () => {
 		workerEngine: workerEngineCopy,
 	})
 
-	const resultSmicCopy = usePromiseOnSituationChange(
+	const resultSmicCopy = usePromise(
 		async () => workerEngineCopy?.asyncEvaluate('SMIC'),
 		[workerEngineCopy],
-		{
-			defaultValue: 'loading...',
-			workerEngine: workerEngineCopy,
-		}
+		'loading...'
 	)
 
-	const [resultLazySmicCopy, triggerLazySmicCopy] =
-		useLazyPromiseOnSituationChange(
-			async () => workerEngineCopy?.asyncEvaluate('SMIC'),
-			[workerEngineCopy],
-			{
-				defaultValue: 'wait 2sec...',
-				workerEngine: workerEngineCopy,
-			}
-		)
+	const [resultLazySmicCopy, triggerLazySmicCopy] = useLazyPromise(
+		async () => workerEngineCopy?.asyncEvaluate('SMIC'),
+		[workerEngineCopy],
+		'wait 2sec...'
+	)
 
 	useEffect(() => {
 		// console.log('useEffect')
@@ -133,7 +124,7 @@ const TestWorkerEngine = () => {
 	}, [triggerLazySmicCopy, workerEngine.isWorkerReady])
 
 	const { asyncSetSituation } = workerEngineCopy ?? {}
-	usePromiseOnSituationChange(async () => {
+	usePromise(async () => {
 		// console.log('**************>', workerEngineCopy, resultSmic)
 
 		if (

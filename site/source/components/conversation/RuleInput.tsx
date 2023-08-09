@@ -16,10 +16,9 @@ import { usePromise } from '@/hooks/usePromise'
 import { getMeta, isNotNull } from '@/utils'
 import {
 	useAsyncGetRule,
-	usePromiseOnSituationChange,
 	useWorkerEngine,
 	WorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+} from '@/worker/workerEngineClientReact'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
@@ -107,7 +106,7 @@ export default function RuleInput({
 
 	// const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
 	// async
-	const evaluation = usePromiseOnSituationChange(
+	const evaluation = usePromise(
 		() =>
 			workerEngine.asyncEvaluate({
 				valeur: dottedName,
@@ -118,7 +117,7 @@ export default function RuleInput({
 
 	const value = evaluation?.nodeValue
 
-	const isMultipleChoices = usePromiseOnSituationChange(
+	const isMultipleChoices = usePromise(
 		async () =>
 			rule && isMultiplePossibilities(workerEngine, engineId, dottedName),
 		[dottedName, engineId, rule, workerEngine]
@@ -128,7 +127,7 @@ export default function RuleInput({
 
 	const choice = usePromise(
 		() => getOnePossibilityOptions(workerEngine, dottedName),
-		[workerEngine.situationVersion, dottedName]
+		[workerEngine, dottedName]
 	)
 
 	dottedName === 'entreprise . activité . nature' &&

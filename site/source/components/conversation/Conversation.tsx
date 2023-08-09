@@ -13,6 +13,7 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import { usePromise } from '@/hooks/usePromise'
 import { answerQuestion } from '@/store/actions/actions'
 import {
 	answeredQuestionsSelector,
@@ -20,10 +21,9 @@ import {
 } from '@/store/selectors/simulationSelectors'
 import {
 	useAsyncGetRule,
-	usePromiseOnSituationChange,
 	useWorkerEngine,
 	WorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+} from '@/worker/workerEngineClientReact'
 
 import { TrackPage } from '../ATInternetTracking'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
@@ -94,7 +94,7 @@ export default function Conversation({
 	const workerEngine = useWorkerEngine()
 	const rule = useAsyncGetRule(currentQuestion)
 
-	const question = usePromiseOnSituationChange(
+	const question = usePromise(
 		async () => rule && evaluateQuestion(workerEngine, rule),
 		[rule, workerEngine]
 	)

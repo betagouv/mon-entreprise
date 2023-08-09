@@ -8,11 +8,9 @@ import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
+import { usePromise } from '@/hooks/usePromise'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
-import {
-	usePromiseOnSituationChange,
-	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
 
@@ -208,7 +206,7 @@ export default function StackedRulesChart({
 	const targetUnit = useSelector(targetUnitSelector)
 	const workerEngine = useWorkerEngine()
 
-	const datas = usePromiseOnSituationChange(
+	const datas = usePromise(
 		() =>
 			Promise.all(
 				data.map(async ({ dottedName, title, color }) => ({

@@ -44,6 +44,7 @@ const logger = {
 
 const init = ({ basename }: Pick<ProviderProps, 'basename'>) => {
 	let rules = rawRules
+
 	if (basename === 'infrance') {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		rules = translateRules('en', ruleTranslations, rules)

@@ -6,11 +6,9 @@ import Warning from '@/components/ui/WarningBlock'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { usePromise } from '@/hooks/usePromise'
 import { AbsoluteSitePaths } from '@/sitePaths'
-import {
-	usePromiseOnSituationChange,
-	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 type SimulateurWarningProps = {
 	simulateur: Exclude<keyof AbsoluteSitePaths['simulateurs'], 'index'>
@@ -20,7 +18,7 @@ export default function SimulateurWarning({
 	simulateur,
 }: SimulateurWarningProps) {
 	const workerEngine = useWorkerEngine()
-	const year = usePromiseOnSituationChange(
+	const year = usePromise(
 		() => workerEngine.asyncEvaluate('date'),
 		[workerEngine]
 	)

@@ -7,7 +7,7 @@ import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { usePromise } from '@/hooks/usePromise'
-import { useWorkerEngine } from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { References } from '../References'
 import RuleLink from '../RuleLink'

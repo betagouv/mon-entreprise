@@ -16,10 +16,7 @@ import {
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
 import { omit } from '@/utils'
-import {
-	useWorkerEngine,
-	WorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 import i18n from '../../locales/i18n'
 
@@ -203,10 +200,3 @@ export const useSetupSafeSituation = (workerEngine?: WorkerEngine) => {
 	// 	engine.setSituation()
 	// }
 }
-
-// export function useInversionFail() {
-// 	return useContext(EngineContext).inversionFail()
-// }
-
-export type EvaluatedRule = EvaluatedNode &
-	RuleNode & { dottedName: DottedName }

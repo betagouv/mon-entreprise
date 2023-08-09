@@ -20,8 +20,8 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
 import { Actions } from '@/worker/socialWorkerEngine.worker'
 import SocialeWorkerEngine from '@/worker/socialWorkerEngine.worker?worker'
-import { WorkerEngineProvider } from '@/worker/socialWorkerEngineClient'
 import { createWorkerEngineClient } from '@/worker/workerEngineClient'
+import { WorkerEngineProvider } from '@/worker/workerEngineClientReact'
 
 import { Message } from '../design-system'
 import * as safeLocalStorage from '../storage/safeLocalStorage'
@@ -90,10 +90,7 @@ export default function Provider({
 						<I18nextProvider i18n={i18next}>
 							<ReduxProvider store={store}>
 								<BrowserRouterProvider basename={basename}>
-									<WorkerEngineProvider
-										basename={basename}
-										workerClient={workerClient}
-									>
+									<WorkerEngineProvider workerClient={workerClient}>
 										<ErrorBoundary
 											fallback={(errorData) => (
 												// eslint-disable-next-line react/jsx-props-no-spreading

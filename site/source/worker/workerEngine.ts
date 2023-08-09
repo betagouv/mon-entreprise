@@ -5,8 +5,8 @@ import Engine from 'publicodes'
  */
 
 export type WorkerEngineActions<
-	InitParams extends unknown[],
-	Name extends string,
+	InitParams extends unknown[] = unknown[],
+	Name extends string = string,
 > =
 	| {
 			action: 'init'
@@ -44,9 +44,10 @@ export type WorkerEngineActions<
 			result: void
 	  }
 
-type DistributiveOmit<T, K extends keyof T> = T extends unknown
-	? Omit<T, K>
-	: never
+export type WorkerEngineAction<
+	Actions extends WorkerEngineActions,
+	Action extends Actions['action'],
+> = Extract<Actions, { action: Action }>
 
 type GenericParams = {
 	/**
@@ -60,24 +61,24 @@ type GenericParams = {
 	id: number
 }
 
-export type WorkerEngineAction<
-	Acts extends WorkerEngineActions<unknown[], string>,
-	T extends Acts['action'],
-> = Extract<Acts, { action: T }>
+type DistributiveOmit<T, K extends keyof T> = T extends unknown
+	? Omit<T, K>
+	: never
 
+/**
+ */
 export const createWorkerEngine = <
-	Name extends string,
-	EngineType extends Engine<Name>,
+	Name extends string = string,
 	InitParams extends unknown[] = unknown[],
 >(
-	init: (...params: InitParams) => EngineType
+	init: (...params: InitParams) => Engine<Name>
 ) => {
 	type Params = DistributiveOmit<
 		WorkerEngineActions<InitParams, Name> & GenericParams,
 		'result'
 	>
 
-	let engines: (EngineType | undefined)[] = []
+	let engines: (Engine<Name> | undefined)[] = []
 	let queue: (Params & { engineId: number })[] = []
 
 	let setDefaultEngineReady: (() => void) | null = null
@@ -121,7 +122,7 @@ export const createWorkerEngine = <
 
 			return { id, result }
 		} else if (action === 'shallowCopy') {
-			engines.push(engine.shallowCopy() as EngineType)
+			engines.push(engine.shallowCopy())
 
 			return { id, result: engines.length - 1 }
 		} else if (action === 'deleteShallowCopy') {

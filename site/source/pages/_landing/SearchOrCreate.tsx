@@ -17,11 +17,12 @@ import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+import { usePromise } from '@/hooks/usePromise'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
 import { resetCompany } from '@/store/actions/companyActions'
-import { usePromiseOnSituationChange } from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 // import { RootState } from '@/store/reducers/rootReducer'
 
@@ -30,9 +31,10 @@ export default function SearchOrCreate() {
 	// const statutChoisi = useSelector(
 	// 	(state: RootState) => state.choixStatutJuridique.companyStatusChoice
 	// )
-	const companySIREN = usePromiseOnSituationChange(
-		() => asyncEvaluate('entreprise . SIREN'),
-		[]
+	const workerEngine = useWorkerEngine()
+	const companySIREN = usePromise(
+		() => workerEngine.asyncEvaluate('entreprise . SIREN'),
+		[workerEngine]
 	)?.nodeValue
 	useSetEntrepriseFromUrssafConnection()
 	const handleCompanySubmit = useHandleCompanySubmit()
@@ -169,9 +171,10 @@ function useHandleCompanySubmit() {
 function useSetEntrepriseFromUrssafConnection() {
 	const setEntreprise = useSetEntreprise()
 	const siret = siretFromUrssafFrConnection()
-	const companySIREN = usePromiseOnSituationChange(
-		() => asyncEvaluate('entreprise . SIREN'),
-		[]
+	const workerEngine = useWorkerEngine()
+	const companySIREN = usePromise(
+		() => workerEngine.asyncEvaluate('entreprise . SIREN'),
+		[workerEngine]
 	)?.nodeValue
 
 	useEffect(() => {

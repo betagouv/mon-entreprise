@@ -8,13 +8,13 @@ import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { usePromise } from '@/hooks/usePromise'
 import { updateSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 import {
 	useAsyncGetRule,
-	usePromiseOnSituationChange,
 	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+} from '@/worker/workerEngineClientReact'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput, { InputProps } from '../conversation/RuleInput'
@@ -54,7 +54,7 @@ export function SimulationGoal({
 	const dispatch = useDispatch()
 	const currentUnit = useSelector(targetUnitSelector)
 	const workerEngine = useWorkerEngine()
-	const evaluation = usePromiseOnSituationChange(
+	const evaluation = usePromise(
 		() =>
 			workerEngine.asyncEvaluate({
 				value: dottedName,

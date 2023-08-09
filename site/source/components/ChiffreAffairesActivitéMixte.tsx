@@ -6,16 +6,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Switch } from '@/design-system/switch'
-import { useLazyPromise } from '@/hooks/usePromise'
+import { useLazyPromise, usePromise } from '@/hooks/usePromise'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { ReplaceReturnType } from '@/types/utils'
 import { catchDivideByZeroError } from '@/utils'
 import {
 	useAsyncGetRule,
-	usePromiseOnSituationChange,
 	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+} from '@/worker/workerEngineClientReact'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Condition, WhenApplicable } from './EngineValue'
@@ -163,7 +162,7 @@ function ActivitéMixte() {
 	const rule = useAsyncGetRule('entreprise . activités . revenus mixtes')
 	const workerEngine = useWorkerEngine()
 	const defaultChecked =
-		usePromiseOnSituationChange(
+		usePromise(
 			() =>
 				workerEngine.asyncEvaluate('entreprise . activités . revenus mixtes'),
 			[workerEngine]

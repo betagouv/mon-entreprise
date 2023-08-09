@@ -1,19 +1,17 @@
 import { useTranslation } from 'react-i18next'
 
 import { Article } from '@/design-system/card'
-import {
-	usePromiseOnSituationChange,
-	useWorkerEngine,
-} from '@/worker/socialWorkerEngineClient'
+import { usePromise } from '@/hooks/usePromise'
+import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 export function AnnuaireEntreprises() {
 	const { t } = useTranslation()
 	const workerEngine = useWorkerEngine()
 
-	const siren = usePromiseOnSituationChange(
+	const siren = usePromise(
 		async () => await workerEngine.asyncEvaluate('entreprise . SIREN'),
 		[workerEngine],
-		{ defaultValue: null }
+		null
 	)?.nodeValue as string | null
 
 	return typeof siren === 'string' ? (

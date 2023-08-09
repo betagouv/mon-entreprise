@@ -1,16 +1,10 @@
 import { DottedName } from 'modele-social'
-import {
-	EvaluatedNode,
-	PublicodesExpression,
-	RuleNode,
-	utils,
-} from 'publicodes'
+import { PublicodesExpression, RuleNode, utils } from 'publicodes'
 import { useCallback, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { EvaluatedRule } from '@/components/utils/EngineContext'
 import { Message, PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
@@ -31,7 +25,7 @@ import {
 	companySituationSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
-import { useWorkerEngine } from '@/worker/socialWorkerEngineClient'
+import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 import Value from '../EngineValue'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
@@ -77,11 +71,11 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					async (dottedName) =>
 						workerEngine.asyncEvaluate(
 							await workerEngine.asyncGetRule(dottedName)
-						) as Promise<EvaluatedNode>
+						) as Promise<RuleNode<DottedName>>
 				)
 			),
 		[nextQuestions, workerEngine],
-		[] as EvaluatedRule[]
+		[] as RuleNode<DottedName>[]
 	)
 
 	const situationQuestions = useMemo(
@@ -272,7 +266,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 function StepsTable({
 	rules,
 }: {
-	rules: Array<EvaluatedRule | RuleNode>
+	rules: Array<RuleNode>
 	onClose: () => void
 }) {
 	const { t } = useTranslation()
