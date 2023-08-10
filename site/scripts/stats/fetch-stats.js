@@ -480,51 +480,60 @@ writeInDataDir('stats.json', baseData)
 if (
 	!process.env.ATINTERNET_API_ACCESS_KEY ||
 	!process.env.ATINTERNET_API_SECRET_KEY ||
-	!process.env.ZAMMAD_API_SECRET_KEY
+	!process.env.ZAMMAD_API_SECRET_KEY ||
+	!process.env.CRISP_API_IDENTIFIER ||
+	!process.env.CRISP_API_KEY ||
+	!process.env.GITHUB_API_SECRET
 ) {
 	const missingEnvVar = (name) => (!process.env[name] ? name : null)
-	throw new Error(
+	const error = new Error(
 		`Variables d'environnement manquantes : ${[
 			missingEnvVar('ATINTERNET_API_ACCESS_KEY'),
 			missingEnvVar('ATINTERNET_API_SECRET_KEY'),
 			missingEnvVar('ZAMMAD_API_SECRET_KEY'),
+			missingEnvVar('CRISP_API_IDENTIFIER'),
+			missingEnvVar('CRISP_API_KEY'),
+			missingEnvVar('GITHUB_API_SECRET'),
 		]
 			.filter(Boolean)
 			.join(', ')}, nous ne récupérons pas les statistiques d'usage`
 	)
-}
-const [
-	visitesJours,
-	visitesMois,
-	rawSatisfaction,
-	retoursUtilisateurs,
-	nbAnswersLast30days,
-] = await Promise.all([
-	fetchDailyVisits(),
-	fetchMonthlyVisits(),
-	fetchApi(buildSatisfactionQuery),
-	fetchAllUserFeedbackIssues(),
-	fetchAllUserAnswerStats(),
-])
-const satisfaction = uniformiseData(flattenPage(rawSatisfaction)).map(
-	(page) => {
-		// eslint-disable-next-line no-unused-vars
-		const { date, ...satisfactionPage } = {
-			month: new Date(new Date(page.date).setDate(1)),
-			...page,
+
+	console.error(error)
+} else {
+	const [
+		visitesJours,
+		visitesMois,
+		rawSatisfaction,
+		retoursUtilisateurs,
+		nbAnswersLast30days,
+	] = await Promise.all([
+		fetchDailyVisits(),
+		fetchMonthlyVisits(),
+		fetchApi(buildSatisfactionQuery),
+		fetchAllUserFeedbackIssues(),
+		fetchAllUserAnswerStats(),
+	])
+	const satisfaction = uniformiseData(flattenPage(rawSatisfaction)).map(
+		(page) => {
+			// eslint-disable-next-line no-unused-vars
+			const { date, ...satisfactionPage } = {
+				month: new Date(new Date(page.date).setDate(1)),
+				...page,
+			}
+			return satisfactionPage
 		}
-		return satisfactionPage
-	}
-)
-writeInDataDir('stats.json', {
-	visitesJours,
-	visitesMois: Object.fromEntries(
-		Object.entries(baseData.visitesMois).map(([key, prev]) => [
-			key,
-			mergePreviousData(prev, visitesMois[key]),
-		])
-	),
-	satisfaction: mergePreviousData(baseData.satisfaction, satisfaction),
-	retoursUtilisateurs,
-	nbAnswersLast30days,
-})
+	)
+	writeInDataDir('stats.json', {
+		visitesJours,
+		visitesMois: Object.fromEntries(
+			Object.entries(baseData.visitesMois).map(([key, prev]) => [
+				key,
+				mergePreviousData(prev, visitesMois[key]),
+			])
+		),
+		satisfaction: mergePreviousData(baseData.satisfaction, satisfaction),
+		retoursUtilisateurs,
+		nbAnswersLast30days,
+	})
+}
