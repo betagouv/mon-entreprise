@@ -15,63 +15,74 @@ const matomoSiteVisitsHistory = JSON.parse(
 	)
 )
 
-const fetchApi = async function (query) {
+const fetchApi = async function (query, page = 1) {
 	const response = await fetch('https://api.atinternet.io/v3/data/getData', {
 		method: 'POST',
 		headers: new Headers({
 			'x-api-key': `${process.env.ATINTERNET_API_ACCESS_KEY}_${process.env.ATINTERNET_API_SECRET_KEY}`,
 			'Content-Type': 'application/json',
 		}),
-		body: JSON.stringify(query),
+		body: JSON.stringify(query(page)),
 	})
+
 	if (!response.ok) {
 		if (response.status === 429) {
 			return new Promise((resolve) =>
-				setTimeout(() => resolve(fetchApi(query)), 100)
+				setTimeout(() => resolve(fetchApi(query(page))), 100)
 			)
 		}
 		const text = await response.text()
 		throw new Error(`Erreur de l'API (${text})`)
 	}
+
 	const data = await response.json()
-	return data.DataFeed.Rows.map((x) => x.Rows)
+
+	const mergedRows = data.DataFeed.Rows.map((x) => x.Rows)
+
+	if (mergedRows.length >= 100) {
+		mergedRows.push(...(await fetchApi(query, page + 1)))
+	}
+
+	return mergedRows
 }
 
-const buildSimulateursQuery = (period, granularity) => ({
-	columns: [
-		'page',
-		'page_chapter1',
-		'page_chapter2',
-		'page_chapter3',
-		'm_visits',
-	],
-	space: {
-		s: [617190, 617189],
-	},
-	period: {
-		p1: [period],
-	},
-	evo: {
-		granularity,
-		top: {
-			'page-num': 1,
-			'max-results': 5000,
-			sort: ['-m_visits'],
-			filter: {
-				property: {
-					page_chapter1: {
-						$in: ['assistant', 'simulateurs', 'gérer'],
+const buildSimulateursQuery =
+	(period, granularity) =>
+	(page = 1) => ({
+		columns: [
+			'page',
+			'page_chapter1',
+			'page_chapter2',
+			'page_chapter3',
+			'm_visits',
+		],
+		space: {
+			s: [617190, 617189],
+		},
+		period: {
+			p1: [period],
+		},
+		evo: {
+			granularity,
+			top: {
+				'page-num': page,
+				'max-results': 100,
+				sort: ['-m_visits'],
+				filter: {
+					property: {
+						page_chapter1: {
+							$in: ['assistant', 'simulateurs', 'gérer'],
+						},
 					},
 				},
 			},
 		},
-	},
-	options: {
-		ignore_null_properties: true,
-	},
-})
+		options: {
+			ignore_null_properties: true,
+		},
+	})
 
-const buildSatisfactionQuery = () => ({
+const buildSatisfactionQuery = (page = 1) => ({
 	columns: [
 		'page_chapter1',
 		'page_chapter2',
@@ -88,8 +99,8 @@ const buildSatisfactionQuery = () => ({
 	evo: {
 		granularity: 'M',
 		top: {
-			'page-num': 1,
-			'max-results': 5000,
+			'page-num': page,
+			'max-results': 100,
 			sort: ['-m_events'],
 			filter: {
 				property: {
@@ -114,26 +125,28 @@ const buildSatisfactionQuery = () => ({
 	},
 })
 
-const buildSiteQuery = (period, granularity) => ({
-	columns: ['m_visits'],
-	space: {
-		s: [617190, 617189],
-	},
-	period: {
-		p1: [period],
-	},
-	evo: {
-		granularity,
-		top: {
-			'page-num': 1,
-			'max-results': 5000,
-			sort: ['-m_visits'],
+const buildSiteQuery =
+	(period, granularity) =>
+	(page = 1) => ({
+		columns: ['m_visits'],
+		space: {
+			s: [617190, 617189],
 		},
-	},
-	options: {
-		ignore_null_properties: true,
-	},
-})
+		period: {
+			p1: [period],
+		},
+		evo: {
+			granularity,
+			top: {
+				'page-num': page,
+				'max-results': 100,
+				sort: ['-m_visits'],
+			},
+		},
+		options: {
+			ignore_null_properties: true,
+		},
+	})
 
 const yesterday = new Date(new Date().setDate(new Date().getDate() - 1))
 	.toISOString()
@@ -464,58 +477,54 @@ const baseData = readInDataDir('base-stats.json')
 // have a static ressource accessible without authentification.
 writeInDataDir('stats.json', baseData)
 
-try {
-	if (
-		!process.env.ATINTERNET_API_ACCESS_KEY ||
-		!process.env.ATINTERNET_API_SECRET_KEY ||
-		!process.env.ZAMMAD_API_SECRET_KEY
-	) {
-		const missingEnvVar = (name) => (!process.env[name] ? name : null)
-		throw new Error(
-			`Variables d'environnement manquantes : ${[
-				missingEnvVar('ATINTERNET_API_ACCESS_KEY'),
-				missingEnvVar('ATINTERNET_API_SECRET_KEY'),
-				missingEnvVar('ZAMMAD_API_SECRET_KEY'),
-			]
-				.filter(Boolean)
-				.join(', ')}, nous ne récupérons pas les statistiques d'usage`
-		)
-	}
-	const [
-		visitesJours,
-		visitesMois,
-		rawSatisfaction,
-		retoursUtilisateurs,
-		nbAnswersLast30days,
-	] = await Promise.all([
-		fetchDailyVisits(),
-		fetchMonthlyVisits(),
-		fetchApi(buildSatisfactionQuery()),
-		fetchAllUserFeedbackIssues(),
-		fetchAllUserAnswerStats(),
-	])
-	const satisfaction = uniformiseData(flattenPage(rawSatisfaction)).map(
-		(page) => {
-			// eslint-disable-next-line no-unused-vars
-			const { date, ...satisfactionPage } = {
-				month: new Date(new Date(page.date).setDate(1)),
-				...page,
-			}
-			return satisfactionPage
-		}
+if (
+	!process.env.ATINTERNET_API_ACCESS_KEY ||
+	!process.env.ATINTERNET_API_SECRET_KEY ||
+	!process.env.ZAMMAD_API_SECRET_KEY
+) {
+	const missingEnvVar = (name) => (!process.env[name] ? name : null)
+	throw new Error(
+		`Variables d'environnement manquantes : ${[
+			missingEnvVar('ATINTERNET_API_ACCESS_KEY'),
+			missingEnvVar('ATINTERNET_API_SECRET_KEY'),
+			missingEnvVar('ZAMMAD_API_SECRET_KEY'),
+		]
+			.filter(Boolean)
+			.join(', ')}, nous ne récupérons pas les statistiques d'usage`
 	)
-	writeInDataDir('stats.json', {
-		visitesJours,
-		visitesMois: Object.fromEntries(
-			Object.entries(baseData.visitesMois).map(([key, prev]) => [
-				key,
-				mergePreviousData(prev, visitesMois[key]),
-			])
-		),
-		satisfaction: mergePreviousData(baseData.satisfaction, satisfaction),
-		retoursUtilisateurs,
-		nbAnswersLast30days,
-	})
-} catch (e) {
-	console.error(e)
 }
+const [
+	visitesJours,
+	visitesMois,
+	rawSatisfaction,
+	retoursUtilisateurs,
+	nbAnswersLast30days,
+] = await Promise.all([
+	fetchDailyVisits(),
+	fetchMonthlyVisits(),
+	fetchApi(buildSatisfactionQuery),
+	fetchAllUserFeedbackIssues(),
+	fetchAllUserAnswerStats(),
+])
+const satisfaction = uniformiseData(flattenPage(rawSatisfaction)).map(
+	(page) => {
+		// eslint-disable-next-line no-unused-vars
+		const { date, ...satisfactionPage } = {
+			month: new Date(new Date(page.date).setDate(1)),
+			...page,
+		}
+		return satisfactionPage
+	}
+)
+writeInDataDir('stats.json', {
+	visitesJours,
+	visitesMois: Object.fromEntries(
+		Object.entries(baseData.visitesMois).map(([key, prev]) => [
+			key,
+			mergePreviousData(prev, visitesMois[key]),
+		])
+	),
+	satisfaction: mergePreviousData(baseData.satisfaction, satisfaction),
+	retoursUtilisateurs,
+	nbAnswersLast30days,
+})
