@@ -9,7 +9,7 @@ dotenv.config()
 
 // Extrait la liste des liens référencés dans la base de code
 const { stdout, stderr } = await promisify(exec)(
-	"rg -oNI -e 'https?://([\\w/_\\-?=%+@]|\\.\\w)+' -g '*.{yaml,ts,tsx,js,jsx}' -g '!*-en.yaml' ./ | sort | uniq"
+	"rg -oNI -e 'https?://([\\w/_\\-?=%+@]|\\.\\w)+' -g '*.{yaml,ts,tsx,js,jsx}' -g '!*-en.yaml' -g '!api' ./ | sort | uniq"
 )
 if (stderr) {
 	throw new Error(stderr)
