@@ -164,7 +164,6 @@ Ma déclaration: Ma déclaration
 Ma situation: Ma situation
 Maternité: Maternité
 Menu de navigation: Menu de navigation
-Merci pour votre message !: Merci pour votre message !
 Mes cotisations: Mes cotisations
 Message à caractère informatif: Message à caractère informatif
 Mode accompagnement: Mode accompagnement
@@ -187,10 +186,6 @@ Mots-clés définissants l'activité: Mots-clés définissants l'activité
 Nombre de visites: Nombre de visites
 Nombres: Nombres
 Non: Non
-Notre équipe prend en charge votre retour.: Notre équipe prend en charge votre retour.
-"Nous avons à cœur d'améliorer en continu notre site, vos remarques nous sont donc très précieuses.":
-  Nous avons à cœur d'améliorer en continu notre site, vos remarques nous sont
-  donc très précieuses.
 Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons pas trouvé de résultat pour cette entreprise.
 "Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.": Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
 Nouveautés: Nouveautés
@@ -658,7 +653,17 @@ explications:
 feedback:
   beta-testeur: Pour continuer à donner votre avis et accéder aux nouveautés en
     avant-première, <2>inscrivez-vous sur la liste des beta-testeur</2>
+  error:
+    description: Le message n’a pas pu être envoyé (status code {{statusCode}}).
+      Veuillez réessayer ou nous contacter par mail à l’adresse
+      <4>contact@mon-entreprise.beta.gouv.fr</4>.
+    title: <0>Une erreur est survenue pendant l’envoi du message</0>
   reportError: Faire une suggestion
+  success:
+    body1: Notre équipe prend en charge votre retour.
+    body2: Nous avons à cœur d'améliorer en continu notre site, vos remarques nous
+      sont donc très précieuses.
+    title: Merci pour votre message !
   thanks: Merci de votre retour !
 fieldRequired: Champ requis
 footer:
