@@ -173,9 +173,12 @@ export default function Select({
 		</Container>
 	)
 }
+
 const FocusedOption = css`
 	background-color: ${({ theme }) =>
-		theme.colors.bases.primary[100]} !important;
+		theme.darkMode
+			? theme.colors.bases.primary[700]
+			: theme.colors.bases.primary[100]} !important;
 	border-color: ${({ theme }) => theme.colors.bases.primary[500]} !important;
 `
 
@@ -188,7 +191,10 @@ const OptionList = styled.ul`
 	top: 100%;
 	padding: 0;
 	z-index: 900;
-	background: ${({ theme }) => theme.colors.extended.grey[100]};
+	background: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.bases.primary[800]
+			: theme.colors.extended.grey[100]};
 	border-radius: 0.3rem;
 	box-shadow: 0 4px 8px #eee;
 `
@@ -198,9 +204,10 @@ const Option = styled(Body)<{
 }>`
 	text-align: left;
 	display: block;
-	color: inherit;
 	background-color: ${({ theme }) =>
-		theme.colors.extended.grey[100]} !important;
+		theme.darkMode
+			? theme.colors.bases.primary[800]
+			: theme.colors.extended.grey[100]} !important;
 	width: 100%;
 
 	border-radius: 0.3rem;
