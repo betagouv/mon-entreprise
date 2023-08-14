@@ -603,8 +603,11 @@ en incluant: including
 en titres-restaurant: in meal vouchers
 error:
   back: Back to home page
-  body: <0>If you would like to help us correct this problem, please describe the
+  body0: <0>If you would like to help us correct this problem, please describe the
     actions that led to this error using the form below or at
+    <2>contact@mon-entreprise.beta.gouv.fr</2>.</0>
+  body1: <0>If you would like to help us correct this problem, please describe the
+    actions that led to this error at
     <2>contact@mon-entreprise.beta.gouv.fr</2>.</0>
   contact: Send an e-mail to contact@mon-entreprise.beta.gouv.fr, new window
   description: "Describe the actions that led to this error:"

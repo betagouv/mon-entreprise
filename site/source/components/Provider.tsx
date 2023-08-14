@@ -44,32 +44,37 @@ export default function Provider({
 		<EmbededContextProvider>
 			<DarkModeProvider>
 				<DesignSystemThemeProvider>
-					<I18nextProvider i18n={i18next}>
-						<ReduxProvider store={store}>
-							<BrowserRouterProvider basename={basename}>
-								<ErrorBoundary
-									fallback={(errorData) => (
-										// eslint-disable-next-line react/jsx-props-no-spreading
-										<ErrorFallback {...errorData} />
-									)}
-								>
-									{!import.meta.env.SSR &&
-										import.meta.env.MODE === 'production' &&
-										'serviceWorker' in navigator && <ServiceWorker />}
-									<IframeResizer />
-									<OverlayProvider>
-										<ThemeColorsProvider>
-											<DisableAnimationOnPrintProvider>
-												<SiteNameContext.Provider value={basename}>
-													{children}
-												</SiteNameContext.Provider>
-											</DisableAnimationOnPrintProvider>
-										</ThemeColorsProvider>
-									</OverlayProvider>
-								</ErrorBoundary>
-							</BrowserRouterProvider>
-						</ReduxProvider>
-					</I18nextProvider>
+					<ErrorBoundary
+						// eslint-disable-next-line react/jsx-props-no-spreading
+						fallback={(errorData) => <ErrorFallback {...errorData} />}
+					>
+						<I18nextProvider i18n={i18next}>
+							<ReduxProvider store={store}>
+								<BrowserRouterProvider basename={basename}>
+									<ErrorBoundary
+										fallback={(errorData) => (
+											// eslint-disable-next-line react/jsx-props-no-spreading
+											<ErrorFallback {...errorData} showFeedbackForm />
+										)}
+									>
+										{!import.meta.env.SSR &&
+											import.meta.env.MODE === 'production' &&
+											'serviceWorker' in navigator && <ServiceWorker />}
+										<IframeResizer />
+										<OverlayProvider>
+											<ThemeColorsProvider>
+												<DisableAnimationOnPrintProvider>
+													<SiteNameContext.Provider value={basename}>
+														{children}
+													</SiteNameContext.Provider>
+												</DisableAnimationOnPrintProvider>
+											</ThemeColorsProvider>
+										</OverlayProvider>
+									</ErrorBoundary>
+								</BrowserRouterProvider>
+							</ReduxProvider>
+						</I18nextProvider>
+					</ErrorBoundary>
 				</DesignSystemThemeProvider>
 			</DarkModeProvider>
 		</EmbededContextProvider>
@@ -81,6 +86,7 @@ const ErrorFallback = (props: {
 	componentStack: string | null
 	eventId: string | null
 	resetError(): void
+	showFeedbackForm?: boolean
 }) => {
 	const { t } = useTranslation()
 
@@ -123,38 +129,58 @@ const ErrorFallback = (props: {
 				</Intro>
 				<Grid container spacing={3}>
 					<Grid item xs={12} lg={8}>
-						<FeedbackForm
-							infoSlot={
-								<Trans i18nKey="error.body">
-									<Body>
-										Si vous souhaitez nous aider à corriger ce problème, vous
-										pouvez décrire les actions ont conduit à cette erreur via le
-										formulaire ci-dessous ou à l'adresse :{' '}
-										<Link
-											href="mailto:contact@mon-entreprise.beta.gouv.fr"
-											aria-label={t(
-												'error.contact',
-												'Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre'
-											)}
-										>
-											contact@mon-entreprise.beta.gouv.fr
-										</Link>
-										.
-									</Body>
-								</Trans>
-							}
-							description={
-								<Trans i18nKey="error.description">
-									Décrivez les actions qui ont conduit à cette erreur :
-								</Trans>
-							}
-							placeholder={t(
-								'error.placeholder',
-								`Bonjour, j'ai rencontré une erreur après avoir cliqué sur...`
-							)}
-							tags={['error']}
-							additionalData={additionalData}
-						/>
+						{props.showFeedbackForm ? (
+							<FeedbackForm
+								infoSlot={
+									<Trans i18nKey="error.body0">
+										<Body>
+											Si vous souhaitez nous aider à corriger ce problème, vous
+											pouvez décrire les actions ont conduit à cette erreur via
+											le formulaire ci-dessous ou à l'adresse :{' '}
+											<Link
+												href="mailto:contact@mon-entreprise.beta.gouv.fr"
+												aria-label={t(
+													'error.contact',
+													'Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre'
+												)}
+											>
+												contact@mon-entreprise.beta.gouv.fr
+											</Link>
+											.
+										</Body>
+									</Trans>
+								}
+								description={
+									<Trans i18nKey="error.description">
+										Décrivez les actions qui ont conduit à cette erreur :
+									</Trans>
+								}
+								placeholder={t(
+									'error.placeholder',
+									`Bonjour, j'ai rencontré une erreur après avoir cliqué sur...`
+								)}
+								tags={['error']}
+								additionalData={additionalData}
+							/>
+						) : (
+							<Trans i18nKey="error.body1">
+								<Body>
+									Si vous souhaitez nous aider à corriger ce problème, vous
+									pouvez décrire les actions ont conduit à cette erreur à
+									l'adresse :{' '}
+									<Link
+										href="mailto:contact@mon-entreprise.beta.gouv.fr"
+										aria-label={t(
+											'error.contact',
+											'Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre'
+										)}
+									>
+										contact@mon-entreprise.beta.gouv.fr
+									</Link>
+									.
+								</Body>
+							</Trans>
+						)}
 					</Grid>
 
 					<Grid item xs={12} lg={8}>
