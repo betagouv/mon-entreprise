@@ -14,6 +14,7 @@ import Simulation, {
 import { FromTop } from '@/components/ui/animate'
 import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
+import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -41,19 +42,31 @@ export default function ChômagePartiel() {
 
 	return (
 		<>
-			<Warning localStorageKey="covid19">
-				<Ul>
-					<Li>
-						Ce simulateur ne prend pas en compte les rémunérations brut définies
-						sur 39h hebdomadaires.
-					</Li>
-					<Li>
-						De même, il ne prend pas en compte les indemnités complémentaire
-						d'activité partielle prévue par une convention/accord collectif ou
-						une décision unilatérale de l'employeur.
-					</Li>
-				</Ul>
-			</Warning>
+			<Grid
+				container
+				spacing={2}
+				css={`
+					justify-content: center;
+				`}
+			>
+				<Grid item xl={9} lg={10} md={11} sm={12}>
+					{' '}
+					<Warning localStorageKey="covid19">
+						<Ul>
+							<Li>
+								Ce simulateur ne prend pas en compte les rémunérations brut
+								définies sur 39h hebdomadaires.
+							</Li>
+							<Li>
+								De même, il ne prend pas en compte les indemnités complémentaire
+								d'activité partielle prévue par une convention/accord collectif
+								ou une décision unilatérale de l'employeur.
+							</Li>
+						</Ul>
+					</Warning>
+				</Grid>
+			</Grid>
+
 			<Simulation
 				results={<ExplanationSection />}
 				customEndMessages={<span>Voir les résultats au-dessus</span>}
