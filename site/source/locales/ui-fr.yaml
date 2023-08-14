@@ -99,11 +99,6 @@ Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
 Envoyer: Envoyer
-Envoyer un courriel à contact@mon-entreprise:
-  beta:
-    gouv:
-      "fr, nouvelle fenêtre": Envoyer un courriel à
-        contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre
 "Exemple : Des informations plus claires, un calcul détaillé...": "Exemple : Des informations plus claires, un calcul détaillé..."
 Exonérations: Exonérations
 ExportSimulation:
@@ -193,8 +188,8 @@ Nombre de visites: Nombre de visites
 Nombres: Nombres
 Non: Non
 Notre équipe prend en charge votre retour.: Notre équipe prend en charge votre retour.
-"Nous avons à cœur d'améliorer en continu notre site,vos remarques nous sont donc très précieuses.":
-  Nous avons à cœur d'améliorer en continu notre site,vos remarques nous sont
+"Nous avons à cœur d'améliorer en continu notre site, vos remarques nous sont donc très précieuses.":
+  Nous avons à cœur d'améliorer en continu notre site, vos remarques nous sont
   donc très précieuses.
 Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons pas trouvé de résultat pour cette entreprise.
 "Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.": Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
@@ -255,7 +250,6 @@ Renseigner une adresse e-mail (au format nom@domaine:
 Replier: Replier
 Retour à la création: Retour à la création
 Retour à mon activité: Retour à mon activité
-Retourner à la page d'accueil: Retourner à la page d'accueil
 Retraite complémentaire: Retraite complémentaire
 Retraite de base: Retraite de base
 "Retrouver ma simulation, charger les données de ma précédente simulation.": Retrouver ma simulation, charger les données de ma précédente simulation.
@@ -641,6 +635,17 @@ employeur: employeur
 en cas d'accident pro: en cas d'accident pro
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
+error:
+  back: Retourner à la page d'accueil
+  body: "<0>Si vous souhaitez nous aider à corriger ce problème, vous pouvez
+    décrire les actions ont conduit à cette erreur via le formulaire ci-dessous
+    ou à l'adresse : <2>contact@mon-entreprise.beta.gouv.fr</2>.</0>"
+  contact: Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre
+  description: "Décrivez les actions qui ont conduit à cette erreur :"
+  intro: L'équipe technique mon-entreprise a été prévenue automatiquement,
+    veuillez nous excuser pour la gêne occasionnée.
+  placeholder: Bonjour, j'ai rencontré une erreur après avoir cliqué sur...
+  title: Une erreur est survenue
 explications:
   tableCaption: Tableau affichant les lignes de votre liasse fiscale associées aux
     exonérations fiscales en place pour chaque type d'activité. La première

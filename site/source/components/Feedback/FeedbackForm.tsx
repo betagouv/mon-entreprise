@@ -39,8 +39,8 @@ const FeedbackThankYouContent = () => {
 			</Body>
 			<Body>
 				<Trans>
-					Nous avons à cœur d'améliorer en continu notre site,vos remarques nous
-					sont donc très précieuses.
+					Nous avons à cœur d'améliorer en continu notre site, vos remarques
+					nous sont donc très précieuses.
 				</Trans>
 			</Body>
 			<Spacing lg />
@@ -54,12 +54,14 @@ export default function FeedbackForm({
 	placeholder,
 	tags,
 	hideShare,
+	additionalData,
 }: {
 	infoSlot?: ReactNode
 	description?: ReactNode
 	placeholder?: string
 	tags?: string[]
 	hideShare?: boolean
+	additionalData?: string
 }) {
 	const url = useUrl()
 	const urlParams = Array.from(new URL(url).searchParams.entries()).filter(
@@ -93,7 +95,10 @@ export default function FeedbackForm({
 				},
 				body: JSON.stringify({
 					subject: `Page : ${pathname}${subjectTags}`,
-					message: message + (share ? '\n\n' + url : ''),
+					message:
+						message +
+						(share ? '\n\n' + url : '') +
+						(additionalData ? '\n\n' + additionalData : ''),
 					email,
 				}),
 			})

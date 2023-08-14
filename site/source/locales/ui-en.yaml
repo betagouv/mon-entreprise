@@ -99,10 +99,6 @@ Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company founded on <2><0></0></2> and domiciled at <6><0></0></6>
 Envoyer: Send
-Envoyer un courriel à contact@mon-entreprise:
-  beta:
-    gouv:
-      "fr, nouvelle fenêtre": Send an e-mail to contact@mon-entreprise.beta.gouv.fr, new window
 "Exemple : Des informations plus claires, un calcul détaillé...": "Example: clearer information, detailed calculation..."
 Exonérations: Exemptions
 ExportSimulation:
@@ -187,7 +183,7 @@ Nombre de visites: Number of visits
 Nombres: Numbers
 Non: No
 Notre équipe prend en charge votre retour.: Our team will take care of your return.
-"Nous avons à cœur d'améliorer en continu notre site,vos remarques nous sont donc très précieuses.":
+"Nous avons à cœur d'améliorer en continu notre site, vos remarques nous sont donc très précieuses.":
   We're constantly striving to improve our site, so your feedback is very
   important to us.
 Nous n’avons pas trouvé de résultat pour cette entreprise.: No results were found for this company.
@@ -246,7 +242,6 @@ Renseigner une adresse e-mail (au format nom@domaine:
 Replier: Fold
 Retour à la création: Back to creation
 Retour à mon activité: Back to my activity
-Retourner à la page d'accueil: Back to home page
 Retraite complémentaire: Supplementary pension
 Retraite de base: Basic pension
 "Retrouver ma simulation, charger les données de ma précédente simulation.": Retrieve my simulation, load data from my previous simulation.
@@ -611,6 +606,17 @@ employeur: employer
 en cas d'accident pro: in the event of a professional accident
 en incluant: including
 en titres-restaurant: in meal vouchers
+error:
+  back: Back to home page
+  body: <0>If you would like to help us correct this problem, please describe the
+    actions that led to this error using the form below or at
+    <2>contact@mon-entreprise.beta.gouv.fr</2>.</0>
+  contact: Send an e-mail to contact@mon-entreprise.beta.gouv.fr, new window
+  description: "Describe the actions that led to this error:"
+  intro: The mon-entreprise technical team has been notified automatically. We
+    apologize for any inconvenience caused.
+  placeholder: Hello, I encountered an error after clicking on...
+  title: An error has occurred
 explications:
   tableCaption: Table displaying the lines of your tax return associated with the
     tax exemptions in place for each type of activity. The first column shows
