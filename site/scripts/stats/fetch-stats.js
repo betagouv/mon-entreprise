@@ -28,7 +28,7 @@ const fetchApi = async function (query, page = 1) {
 	if (!response.ok) {
 		if (response.status === 429) {
 			return new Promise((resolve) =>
-				setTimeout(() => resolve(fetchApi(query(page))), 100)
+				setTimeout(() => resolve(fetchApi(query, page)), 100)
 			)
 		}
 		const text = await response.text()
