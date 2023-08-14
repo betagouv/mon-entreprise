@@ -632,9 +632,12 @@ en incluant: en incluant
 en titres-restaurant: en titres-restaurant
 error:
   back: Retourner à la page d'accueil
-  body: "<0>Si vous souhaitez nous aider à corriger ce problème, vous pouvez
+  body0: "<0>Si vous souhaitez nous aider à corriger ce problème, vous pouvez
     décrire les actions ont conduit à cette erreur via le formulaire ci-dessous
     ou à l'adresse : <2>contact@mon-entreprise.beta.gouv.fr</2>.</0>"
+  body1: "<0>Si vous souhaitez nous aider à corriger ce problème, vous pouvez
+    décrire les actions ont conduit à cette erreur à l'adresse :
+    <2>contact@mon-entreprise.beta.gouv.fr</2>.</0>"
   contact: Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre
   description: "Décrivez les actions qui ont conduit à cette erreur :"
   intro: L'équipe technique mon-entreprise a été prévenue automatiquement,

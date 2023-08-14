@@ -62,13 +62,13 @@ export default function Root({
 
 	return (
 		<StrictMode>
-			<Provider basename={basename}>
-				<EngineProvider value={engine}>
+			<EngineProvider value={engine}>
+				<Provider basename={basename}>
 					<Redirections>
 						<Router />
 					</Redirections>
-				</EngineProvider>
-			</Provider>
+				</Provider>
+			</EngineProvider>
 		</StrictMode>
 	)
 }
