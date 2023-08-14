@@ -23,6 +23,7 @@ export type PopoverWithTriggerProps = {
 	title?: string
 	small?: boolean
 	contentRef?: RefObject<HTMLDivElement>
+	disableOverflowAuto?: boolean
 }
 
 export default function PopoverWithTrigger({
@@ -31,6 +32,7 @@ export default function PopoverWithTrigger({
 	trigger,
 	small,
 	contentRef,
+	disableOverflowAuto,
 }: PopoverWithTriggerProps) {
 	const state = useOverlayTriggerState({})
 	const openButtonRef = useRef<HTMLButtonElement>(null)
@@ -64,6 +66,7 @@ export default function PopoverWithTrigger({
 				<ForceThemeProvider forceTheme="default">
 					<Popover
 						{...overlayProps}
+						disableOverflowAuto={disableOverflowAuto}
 						title={title}
 						onClose={() => {
 							state.close()
