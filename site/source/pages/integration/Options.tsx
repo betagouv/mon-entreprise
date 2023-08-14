@@ -4,7 +4,7 @@ import PageHeader from '@/components/PageHeader'
 import { Card } from '@/design-system/card'
 import { Emoji } from '@/design-system/emoji'
 import { GithubIcon } from '@/design-system/icons'
-import { Grid } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 
@@ -162,6 +162,7 @@ export default function Options() {
 					</Card>
 				</Grid>
 			</Grid>
+			<Spacing md />
 		</>
 	)
 }

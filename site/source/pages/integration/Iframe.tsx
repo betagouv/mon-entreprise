@@ -292,6 +292,7 @@ export default function Integration() {
 					</Grid>
 				</Grid>
 			</section>
+			<Spacing md />
 		</>
 	)
 }
