@@ -292,6 +292,7 @@ function AnswerElement(rule: RuleNode) {
 	return questionDottedName ? (
 		<PopoverWithTrigger
 			small
+			disableOverflowAuto // disable overflow auto for SelectCommune autocomplete to not be hidden
 			trigger={(buttonProps) => (
 				<Link
 					{...buttonProps}

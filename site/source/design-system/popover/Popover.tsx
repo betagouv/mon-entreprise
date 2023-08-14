@@ -31,6 +31,7 @@ export default function Popover(
 			onClose?: () => void
 			isDismissable?: boolean
 			isOpen?: boolean
+			disableOverflowAuto?: boolean
 		}
 ) {
 	const { title, children, small, contentRef } = props
@@ -138,7 +139,10 @@ export default function Popover(
 										</CloseButtonContainer>
 									)}
 
-									<PopoverContent ref={contentRef}>
+									<PopoverContent
+										ref={contentRef}
+										$disableOverflowAuto={props.disableOverflowAuto ?? false}
+									>
 										{title && <H2 {...titleProps}>{title}</H2>}
 										{children}
 									</PopoverContent>
@@ -262,7 +266,8 @@ export const CloseButton = styled.button`
 	}
 `
 
-const PopoverContent = styled.div`
-	overflow: auto;
+const PopoverContent = styled.div<{ $disableOverflowAuto: boolean }>`
+	${({ $disableOverflowAuto }) =>
+		$disableOverflowAuto ? '' : 'overflow: auto;'}
 	padding: 0 ${({ theme }) => theme.spacings.xxl + ' ' + theme.spacings.md};
 `
