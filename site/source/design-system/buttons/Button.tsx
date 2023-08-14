@@ -204,7 +204,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 					: /* White color and light mode (dark background mode) */
 					$light
 					? css`
-							color: rgba(255, 255, 255, 25%);
+							color: rgba(255, 255, 255, 75%);
 							background-color: inherit;
 							opacity: 1;
 					  `
