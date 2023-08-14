@@ -4,12 +4,13 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { ScrollToElement } from '@/components/utils/Scroll'
-import { Checkbox, TextAreaField, TextField } from '@/design-system'
+import { Checkbox, Message, TextAreaField, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
-import { H1 } from '@/design-system/typography/heading'
+import { H1, H4 } from '@/design-system/typography/heading'
+import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import { useUrl } from '../ShareSimulationBanner'
@@ -30,20 +31,58 @@ const FeedbackThankYouContent = () => {
 				</span>
 			</StyledEmojiContainer>
 			<H1>
-				<Trans>Merci pour votre message !</Trans>
+				<Trans i18nKey={'feedback.success.title'}>
+					Merci pour votre message !
+				</Trans>
 			</H1>
 			<Body>
 				<Strong>
-					<Trans>Notre équipe prend en charge votre retour.</Trans>
+					<Trans i18nKey={'feedback.success.body1'}>
+						Notre équipe prend en charge votre retour.
+					</Trans>
 				</Strong>
 			</Body>
 			<Body>
-				<Trans>
+				<Trans i18nKey={'feedback.success.body2'}>
 					Nous avons à cœur d'améliorer en continu notre site, vos remarques
 					nous sont donc très précieuses.
 				</Trans>
 			</Body>
 			<Spacing lg />
+		</>
+	)
+}
+
+const FeedbackRequestErrorContent = ({
+	statusCode,
+}: {
+	statusCode: number
+}) => {
+	const { t } = useTranslation()
+
+	return (
+		<>
+			<Message type="error">
+				<Trans i18nKey={'feedback.error.title'}>
+					<H4>Une erreur est survenue pendant l’envoi du message</H4>
+				</Trans>
+				<Body>
+					<Trans i18nKey={'feedback.error.description'}>
+						Le message n’a pas pu être envoyé (status code {{ statusCode }}).
+						Veuillez réessayer ou nous contacter par mail à l’adresse{' '}
+						<Link
+							href="mailto:contact@mon-entreprise.beta.gouv.fr"
+							aria-label={t(
+								'error.contact',
+								'Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre'
+							)}
+						>
+							contact@mon-entreprise.beta.gouv.fr
+						</Link>
+						.
+					</Trans>
+				</Body>
+			</Message>
 		</>
 	)
 }
@@ -68,7 +107,9 @@ export default function FeedbackForm({
 		([key]) => key !== 'utm_source'
 	)
 	const [share, setShare] = useState(false)
-	const [isSubmittedSuccessfully, setIsSubmittedSuccessfully] = useState(false)
+	const [requestStatusCode, setRequestStatusCode] = useState<null | number>(
+		null
+	)
 	const [isLoading, setIsLoading] = useState(false)
 	const [submitError, setSubmitError] = useState<SubmitError | undefined>(
 		undefined
@@ -88,7 +129,7 @@ export default function FeedbackForm({
 		const subjectTags = tags?.length ? ` [${tags?.join(',')}]` : ''
 
 		try {
-			await fetch(`/server/send-crisp-message`, {
+			const result = await fetch(`/server/send-crisp-message`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -102,7 +143,8 @@ export default function FeedbackForm({
 					email,
 				}),
 			})
-			setIsSubmittedSuccessfully(true)
+			setIsLoading(false)
+			setRequestStatusCode(result.status)
 		} catch (e) {
 			// Show error message
 			// eslint-disable-next-line no-console
@@ -119,17 +161,18 @@ export default function FeedbackForm({
 	const resetSubmitErrorField = (field: keyof SubmitError) =>
 		submitError?.[field]
 			? () =>
-					setSubmitError((previousValue) => ({
-						...previousValue,
-						[field]: '',
-					}))
+					setSubmitError((previousValue) => ({ ...previousValue, [field]: '' }))
 			: undefined
 
 	return (
 		<ScrollToElement onlyIfNotVisible>
-			{isSubmittedSuccessfully && <FeedbackThankYouContent />}
-			{!isSubmittedSuccessfully && (
+			{requestStatusCode === 200 ? (
+				<FeedbackThankYouContent />
+			) : (
 				<>
+					{requestStatusCode !== null && (
+						<FeedbackRequestErrorContent statusCode={requestStatusCode} />
+					)}
 					<StyledFeedback>
 						<form
 							onSubmit={(e) => {

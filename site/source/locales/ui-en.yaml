@@ -160,7 +160,6 @@ Ma déclaration: My declaration
 Ma situation: My situation
 Maternité: Maternity ward
 Menu de navigation: Navigation menu
-Merci pour votre message !: Thank you for your message!
 Mes cotisations: My contributions
 Message à caractère informatif: Informative message
 Mode accompagnement: Support mode
@@ -182,10 +181,6 @@ Mots-clés définissants l'activité: Keywords defining the activity
 Nombre de visites: Number of visits
 Nombres: Numbers
 Non: No
-Notre équipe prend en charge votre retour.: Our team will take care of your return.
-"Nous avons à cœur d'améliorer en continu notre site, vos remarques nous sont donc très précieuses.":
-  We're constantly striving to improve our site, so your feedback is very
-  important to us.
 Nous n’avons pas trouvé de résultat pour cette entreprise.: No results were found for this company.
 "Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.": New content available, click reload to update page.
 Nouveautés: News
@@ -628,7 +623,17 @@ explications:
 feedback:
   beta-testeur: To continue giving your opinion and previewing new products,
     <2>sign up for the beta tester list</2>
+  error:
+    description: The message could not be sent (status code {{statusCode}}). Please
+      try again or contact us by e-mail at
+      <4>contact@mon-entreprise.beta.gouv.fr</4>.
+    title: <0>An error has occurred while sending the message</0>
   reportError: Make a suggestion
+  success:
+    body1: Our team will take care of your return.
+    body2: We're constantly striving to improve our site, so your feedback is very
+      important to us.
+    title: Thank you for your message!
   thanks: Thank you for your feedback!
 fieldRequired: Required field
 footer:
