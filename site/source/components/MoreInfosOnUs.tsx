@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { SmallCard } from '@/design-system/card'
 import { Emoji } from '@/design-system/emoji'
 import { GithubIcon } from '@/design-system/icons'
-import { Grid } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { useSitePaths } from '@/sitePaths'
 
@@ -64,6 +64,7 @@ export default function MoreInfosOnUs() {
 					</SmallCard>
 				</Grid>
 			</Grid>
+			<Spacing md />
 		</>
 	)
 }

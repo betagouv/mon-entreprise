@@ -62,7 +62,6 @@ export default function StatsPage() {
 				<Stats accessibleMode={accessibleMode} />
 			</Suspense>
 			<MoreInfosOnUs />
-			<Spacing md />
 		</>
 	)
 }
