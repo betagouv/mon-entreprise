@@ -109,7 +109,13 @@ export default function Select({
 						return
 					}
 					setFocusedElem(
-						(focusedElem + (e.key === 'ArrowDown' ? 1 : -1)) %
+						(focusedElem) =>
+							(focusedElem +
+								(e.key === 'ArrowDown'
+									? 1
+									: focusedElem === 0
+									? searchResults.length - 1
+									: -1)) %
 							searchResults.length
 					)
 					e.preventDefault()
@@ -124,7 +130,7 @@ export default function Select({
 					break
 			}
 		},
-		[searchResults, focusedElem, setSearchResults, submitFocusedElem, noResult]
+		[searchResults, setSearchResults, submitFocusedElem, noResult]
 	)
 
 	return (
@@ -141,6 +147,7 @@ export default function Select({
 				label={t('Commune ou code postal')}
 				value={name}
 				onChange={handleChange}
+				autoComplete="off"
 			/>
 
 			{!!searchResults && (
