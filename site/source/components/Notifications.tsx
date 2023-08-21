@@ -13,6 +13,7 @@ import { RootState } from '@/store/reducers/rootReducer'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'
+import { Markdown } from './utils/markdown'
 
 // To add a new notification to a simulator, you should create a publicodes rule
 // with the "type: notification" attribute. The display can be customized with
@@ -64,6 +65,8 @@ export default function Notifications() {
 			: (getNotifications(engine) as Array<Notification>)
 	).filter(({ dottedName }) => !hiddenNotifications?.includes(dottedName))
 
+	const isMultiline = (str: string) => str.trim().split('\n').length > 1
+
 	return (
 		<div
 			css={`
@@ -77,15 +80,20 @@ export default function Notifications() {
 						type={sévérité === 'avertissement' ? 'info' : 'primary'}
 						key={dottedName}
 					>
-						<Body>
-							{résumé ?? description ?? ''}
+						<StyledBody
+							as="div"
+							isMultiline={isMultiline(résumé ?? description ?? '')}
+						>
+							<Markdown>{résumé ?? description ?? ''}</Markdown>
+						</StyledBody>
+						<Absolute isMultiline={isMultiline(résumé ?? description ?? '')}>
 							<ExplicableRule dottedName={dottedName} light />
-						</Body>
-						<AbsoluteCloseButton
-							aria-label={t('Fermer')}
-							onPress={() => dispatch(hideNotification(dottedName))}
-							color={sévérité === 'avertissement' ? 'tertiary' : 'primary'}
-						/>
+							<CloseButton
+								aria-label={t('Fermer')}
+								onPress={() => dispatch(hideNotification(dottedName))}
+								color={sévérité === 'avertissement' ? 'tertiary' : 'primary'}
+							/>
+						</Absolute>
 					</Message>
 				))}
 			</Appear>
@@ -93,8 +101,23 @@ export default function Notifications() {
 	)
 }
 
-const AbsoluteCloseButton = styled(CloseButton)`
+const StyledBody = styled(Body)<{ isMultiline: boolean }>`
+	margin-right: ${({ isMultiline }) => (isMultiline ? '3rem' : '5rem')};
+`
+
+const Absolute = styled.div<{ isMultiline: boolean }>`
+	display: flex;
+	flex-direction: column;
+
+	flex-direction: ${({ isMultiline }) =>
+		isMultiline ? 'column-reverse' : 'row'};
+	align-items: flex-end;
 	position: absolute;
-	top: ${({ theme }) => theme.spacings.xs};
+	top: ${({ theme, isMultiline }) =>
+		isMultiline ? theme.spacings.xxs : theme.spacings.xs};
 	right: ${({ theme }) => theme.spacings.sm};
+	${CloseButton} {
+		margin-left: ${({ theme }) => theme.spacings.xxs};
+		margin-bottom: ${({ theme }) => theme.spacings.xxs};
+	}
 `
