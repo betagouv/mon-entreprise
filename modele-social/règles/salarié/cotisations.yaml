@@ -103,7 +103,6 @@ salarié . cotisations . exonérations . heures supplémentaires:
       note: La déduction ne s’applique pas aux heures complémentaires
       références:
         La déduction forfaitaire patronale pour heures supplémentaires: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
-        'Heures supplémentaires : une nouvelle exonération pour les entreprises de 20 à 249 salariés': https://www.urssaf.fr/portail/home/actualites/toute-lactualite-employeur/heures-supplementaires--une-nouv.html
 
 salarié . cotisations . exonérations . lodeom:
   experimental: oui
@@ -531,7 +530,7 @@ salarié . cotisations . APEC:
     Cotisation spécifique aux cadre pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
   références:
-    chiffres clés: http://www.agirc-arrco.fr/l-agirc-et-larrco/chiffres-cles
+    'Agirc-arrco : le calcul des cotisations': https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
   applicable si: contrat . statut cadre
   produit:
     assiette: cotisations . assiette
@@ -1215,10 +1214,10 @@ salarié . cotisations . assiette forfaitaire:
         applicable si: rémunération . brut >= 1.5 * plafond sécurité sociale
         valeur: 70% * rémunération . brut
       références:
-        exception agirc-arco (fiche 3): https://www.agirc-arrco.fr/fileadmin/agircarrco/documents/circulaires/agirc_arrco/2019/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf
-        CSG-CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
         'Cas particuliers : bases forfaitaires et franchises de cotisations ': https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/cas-particuliers--bases-forfaita.html
         'Montant des assiettes forfaitaires': https://www.urssaf.fr/portail/home/taux-et-baremes/assiettes-forfaitaires-et-franch.html
+        CSG-CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
+        'Agirc-arco : circulaire 2019-01-DRJ': https://www.agirc-arrco.fr/wp-content/uploads/2021/10/2019-1-DRJ_Reglementation__applicable_aux_entreprises.pdf#page=29
       note: |
         Il existe une règle générale d'encadrement des assiettes forfaitaires. Lorsque la rémunération est supérieure ou égale à
         1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
