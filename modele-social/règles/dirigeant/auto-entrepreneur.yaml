@@ -136,7 +136,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
           variations:
             - si:
                 # Avant 2022, le taux était de 1% pour les PLNR non affiliés à la CIPAV
-                # Source: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/toutes-les-actualites/professions-liberales-non-reglem.html
                 toutes ces conditions:
                   - date <= 01/2022
                   - affiliation CIPAV = non
@@ -188,7 +187,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   références:
     Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
     'Cotisations et contributions sociales : montant et déclaration': https://entreprendre.service-public.fr/vosdroits/F36232#fiche-item-aria-2
-    'Auto-entrepreneur: ce qu’il faut savoir (PDF)': https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
 
   avec:
     cotisations CIPAV:
@@ -255,9 +253,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
         - si: entreprise . date de création >= 01/04/2020
           alors: 12.10%
         - sinon: cotisations CIPAV . taux * taux ACRE
-      références:
-        urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Metropole/UrssafAutoEntrepreneurMetro.pdf
-
     vente restauration hébergement:
       remplace: taux vente restauration hébergement
       valeur: taux ACRE * taux vente restauration hébergement

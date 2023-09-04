@@ -16,7 +16,7 @@ entreprise . imposition:
         alors: "'IR'"
       - sinon: "'IS'"
   références:
-    Comment seront imposés mes bénéfices ?: https://bpifrance-creation.fr/moment-de-vie/comment-seront-imposes-mes-benefices?block_id=186
+    Comment seront imposés mes bénéfices ?: https://bpifrance-creation.fr/moment-de-vie/comment-seront-imposes-mes-benefices
     Quelle imposition selon mon statut ?: https://www.economie.gouv.fr/entreprises/impot-revenu-impot-societe-statut
     Guide complet sur les types de résultats d'une entreprise: https://www.impots.gouv.fr/professionnel/resultat-imposable-limpot-sur-le-revenu-ir-ou-limpot-sur-les-societes
 

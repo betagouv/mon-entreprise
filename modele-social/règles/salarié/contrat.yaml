@@ -334,8 +334,8 @@ salarié . contrat . CDD . indemnité de fin de contrat:
       description: Dans ces cas, aucune majoration ou indemnité sur le CDD ne sera à verser.
       par défaut: non
       références:
-        Faute grave: https://code.travail.gouv.fr/fiche-service-public/faute-simple-grave-ou-lourde-quelles-differences-pour-le-salarie-licencie
-        Force majeure: https://code.travail.gouv.fr/fiche-service-public/rupture-du-contrat-de-travail-pour-cas-de-force-majeure?q=rupture%20du%20contrat%20et%20force%20majeure
+        'Licenciement pour faute simple, grave ou lourde : quelles conséquences ?': https://code.travail.gouv.fr/fiche-service-public/licenciement-pour-faute-simple-grave-ou-lourde-quelles-consequences-pour-le-salarie
+        'Rupture du contrat de travail pour cas de force majeure': https://code.travail.gouv.fr/fiche-service-public/rupture-du-contrat-de-travail-pour-cas-de-force-majeure?q=rupture%20du%20contrat%20et%20force%20majeure
 
     CDD jeune vacances:
       par défaut: non
