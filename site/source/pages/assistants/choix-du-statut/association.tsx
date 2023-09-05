@@ -23,7 +23,7 @@ export default function Association() {
 			<Layout
 				title={
 					<Trans i18nKey="choix-statut.association.title">
-						Je crée cette entreprise...
+						Je crée cette activité...
 						<HelpButtonWithPopover
 							title={t(
 								'choix-statut.association.help.title',
