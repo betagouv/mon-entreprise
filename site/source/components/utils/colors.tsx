@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ThemeProvider, useTheme } from 'styled-components'
+import { createGlobalStyle, ThemeProvider, useTheme } from 'styled-components'
 
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { hexToHSL } from '@/utils/hexToHSL'
@@ -42,30 +42,38 @@ const IFRAME_COLOR = iframeColor
 // the full palette generation that happen here. This is to prevent a UI
 // flash, cf. #1786.
 
+const GlobalCssVar = createGlobalStyle<{
+	$hue: number
+	$saturation: number
+}>`
+html {
+	--${HUE_CSS_VARIABLE_NAME}: ${({ $hue }) => $hue}deg;
+	--${SATURATION_CSS_VARIABLE_NAME}: ${({ $saturation }) => $saturation}%;
+}
+`
+
 export function ThemeColorsProvider({ children }: ProviderProps) {
 	const divRef = useRef<HTMLDivElement>(null)
 	const [themeColor, setThemeColor] = useState(IFRAME_COLOR)
 	useEffect(() => {
-		window.addEventListener('message', (evt: MessageEvent) => {
-			if (evt.data.kind === 'change-theme-color') {
-				setThemeColor(hexToHSL(evt.data.value))
+		window.addEventListener(
+			'message',
+			(evt: MessageEvent<{ kind: string; value: string }>) => {
+				if (evt.data.kind === 'change-theme-color') {
+					console.log('change-theme-color', evt.data.value)
+					setThemeColor(hexToHSL(evt.data.value))
+				}
 			}
-		})
-	}, [])
-	const [hue, saturation] = themeColor
-	useEffect(() => {
-		const root = document.querySelector(':root') as HTMLElement | undefined
-		root?.style.setProperty(`--${HUE_CSS_VARIABLE_NAME}`, `${hue}deg`)
-		root?.style.setProperty(
-			`--${SATURATION_CSS_VARIABLE_NAME}`,
-			`${saturation}%`
 		)
-	}, [hue, saturation])
+	}, [])
+
 	const isEmbeded = useIsEmbedded()
 	const defaultTheme = useTheme()
 	if (!themeColor && !isEmbeded) {
 		return <>{children}</>
 	}
+
+	const [hue, saturation] = themeColor
 
 	return (
 		<ThemeProvider
@@ -77,6 +85,7 @@ export function ThemeColorsProvider({ children }: ProviderProps) {
 				},
 			}}
 		>
+			<GlobalCssVar $hue={hue} $saturation={saturation} />
 			{/* This div is only used to set the CSS variables */}
 			<div
 				ref={divRef}

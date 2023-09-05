@@ -146,6 +146,7 @@ function DocumentationPageBody({
 	return (
 		<StyledDocumentation>
 			<RulePage
+				isSSR={import.meta.env.SSR}
 				language={i18n.language as 'fr' | 'en'}
 				rulePath={params['*'] ?? ''}
 				engine={engine}

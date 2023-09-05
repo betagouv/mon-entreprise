@@ -122,7 +122,7 @@ export const FadeIn = ({
 	)
 }
 
-export function Appear({
+function AppearAnim({
 	children,
 	className,
 	unless = false,
@@ -158,3 +158,7 @@ export function Appear({
 		</animated.div>
 	)
 }
+
+export const Appear = (props: Parameters<typeof AppearAnim>[0]) =>
+	// eslint-disable-next-line react/jsx-props-no-spreading
+	import.meta.env.SSR ? props.children : <AppearAnim {...props} />

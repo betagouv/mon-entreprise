@@ -2,9 +2,9 @@
 	"compilerOptions": {
 		"lib": ["ESNext", "DOM", "WebWorker"],
 		"baseUrl": "source",
-		"moduleResolution": "node",
-		"module": "esnext",
-		"target": "esnext",
+		"moduleResolution": "Node",
+		"module": "ESNext",
+		"target": "ESNext",
 		"esModuleInterop": true,
 		"jsx": "react-jsx",
 		"forceConsistentCasingInFileNames": true,
@@ -38,6 +38,7 @@
 		"vite-iframe-script.config.ts",
 		"build/vite-build-simulation-data.config.ts",
 		"build/prerender.ts",
+		"build/prerender-worker.ts",
 		"vite-pwa-options.ts"
 	]
 }

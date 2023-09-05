@@ -260,6 +260,10 @@ const LazyBlobProvider = lazy<typeof BlobProvider>(
 
 // From https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript/4819886#4819886
 function isOnTouchDevice() {
+	if (import.meta.env.SSR) {
+		return false
+	}
+
 	const prefixes = ' -webkit- -moz- -o- -ms- '.split(' ')
 	const mq = function (query: string) {
 		return window.matchMedia(query).matches

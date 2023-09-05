@@ -6,7 +6,7 @@ import { render } from '../dist/ssr/entry-server.js'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const cache = {}
+const cache: { [k: string]: string } = {}
 
 const htmlBodyStart = '<!--app-html:start-->'
 const htmlBodyEnd = '<!--app-html:end-->'
@@ -16,15 +16,35 @@ const headTagsEnd = '<!--app-helmet-tags:end-->'
 const regexHTML = new RegExp(htmlBodyStart + '[\\s\\S]+' + htmlBodyEnd, 'm')
 const regexHelmet = new RegExp(headTagsStart + '[\\s\\S]+' + headTagsEnd, 'm')
 
-export default async ({ site, url, lang }) => {
-	// TODO: Add CI test to enforce meta tags on SSR pages
-	const { html, styleTags, helmet } = render(url, lang)
+interface Params {
+	site: string
+	url: string
+	lang: string
+}
 
-	const template =
+// const vite = await createViteServer({
+// 	server: {},
+// 	appType: 'mpa',
+// })
+
+export default async ({ site, url, lang }: Params) => {
+	const fileTemplate =
 		cache[site] ??
 		readFileSync(path.join(dirname, `../dist/${site}.html`), 'utf-8')
 
-	cache[site] = template
+	cache[site] ??= fileTemplate
+
+	// const template = await vite.transformIndexHtml(url, fileTemplate)
+	const template = fileTemplate
+
+	// const { render } = await vite.ssrLoadModule(
+	// 	'./source/entries/entry-server.tsx'
+	// )
+
+	// TODO: Add CI test to enforce meta tags on SSR pages
+	const { html, styleTags, helmet } = await render(url, lang)
+
+	console.log({ html, styleTags, helmet })
 
 	const page = template
 		.replace(regexHTML, html)

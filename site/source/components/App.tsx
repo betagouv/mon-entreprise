@@ -1,6 +1,22 @@
+import {
+	SuspensePromise,
+	useAsyncGetRule,
+	useAsyncParsedRules,
+	useAsyncShallowCopy,
+	useLazyPromise,
+	usePromise,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@publicodes/worker-react'
 import { ErrorBoundary } from '@sentry/react'
 import { FallbackRender } from '@sentry/react/types/errorboundary'
-import { ComponentProps, StrictMode, useEffect, useState } from 'react'
+import React, {
+	ComponentProps,
+	StrictMode,
+	Suspense,
+	useEffect,
+	useState,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import { css, styled } from 'styled-components'
@@ -11,13 +27,14 @@ import { Container } from '@/design-system/layout'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { useLazyPromise, usePromise } from '@/hooks/usePromise'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
 import Landing from '@/pages/_landing/Landing'
 import Page404 from '@/pages/404'
 import Accessibilité from '@/pages/Accessibilité'
 import Budget from '@/pages/budget/index'
 import IntegrationTest from '@/pages/dev/IntegrationTest'
+import Documentation from '@/pages/Documentation'
+import Iframes from '@/pages/iframes'
 import Integration from '@/pages/integration/index'
 import Nouveautés from '@/pages/nouveautés/index'
 import Offline from '@/pages/Offline'
@@ -26,33 +43,26 @@ import Simulateurs from '@/pages/simulateurs'
 import SimulateursEtAssistants from '@/pages/simulateurs-et-assistants'
 import Stats from '@/pages/statistiques/LazyStats'
 import { useSitePaths } from '@/sitePaths'
-import {
-	useAsyncGetRule,
-	useAsyncParsedRules,
-	useShallowCopy,
-	useWorkerEngine,
-} from '@/worker/workerEngineClientReact'
 
 import Provider, { ProviderProps } from './Provider'
 import Redirections from './Redirections'
 
 type RootProps = {
 	basename: ProviderProps['basename']
-	// rulesPreTransform?: (rules: Rules) => Rules
 }
 
 const TestWorkerEngine = () => {
 	const [refresh, setRefresh] = useState(0)
 	const workerEngine = useWorkerEngine()
-	// const workerEngineCtx = useWorkerEngineContext()
 
 	const [, trigger] = useLazyPromise(
-		async () => workerEngine?.asyncSetSituation({ SMIC: '1000€/mois' }),
+		async () => workerEngine.asyncSetSituation({ SMIC: '1000€/mois' }),
 		[workerEngine],
 		{ defaultValue: 'loading...' }
 	)
 
 	const date = useAsyncGetRule('date', { defaultValue: 'loading...' })
+	const SMIC = useAsyncGetRule('SMIC', { defaultValue: 'loading...' })
 
 	const parsedRules = useAsyncParsedRules()
 
@@ -65,12 +75,10 @@ const TestWorkerEngine = () => {
 	const [resultLazySmic, triggerLazySmic] = useLazyPromise(
 		() => workerEngine.asyncEvaluate('SMIC'),
 		[workerEngine],
-		'wait 2sec...'
+		'wait 3sec...'
 	)
 
 	useEffect(() => {
-		console.log('??? useEffect')
-
 		void (async () => {
 			await workerEngine.isWorkerReady
 			setTimeout(() => {
@@ -79,65 +87,72 @@ const TestWorkerEngine = () => {
 		})()
 	}, [triggerLazySmic, workerEngine.isWorkerReady])
 
-	const workerEngineCopy = useShallowCopy(workerEngine)
-	// // const workerEngineCopy = workerEngine
-	console.log('=========>', workerEngine, workerEngineCopy)
+	// const workerEngineCopy = useAsyncShallowCopy(workerEngine)
+	// // // const workerEngineCopy = workerEngine
+	// console.log('=========>', workerEngine, workerEngineCopy)
 
-	const [, triggerCopy] = useLazyPromise(async () => {
-		// console.log('+++++++++>', workerEngineCopy)
+	// const [, triggerCopy] = useLazyPromise(async () => {
+	// 	console.log('+++++++++>', workerEngineCopy)
 
-		await workerEngineCopy?.asyncSetSituation({
-			SMIC: '2000€/mois',
-		})
-	}, [workerEngineCopy])
+	// 	await workerEngineCopy?.asyncSetSituation({
+	// 		SMIC: '2000€/mois',
+	// 	})
+	// }, [workerEngineCopy])
 
-	const dateCopy = useAsyncGetRule('date', {
-		defaultValue: 'loading...',
-		// workerEngine: workerEngineCopy,
-	})
+	// const dateCopy = useAsyncGetRule('date', {
+	// 	defaultValue: 'loading...',
+	// 	workerEngine: workerEngineCopy,
+	// })
 
-	const parsedRulesCopy = useAsyncParsedRules({
-		workerEngine: workerEngineCopy,
-	})
+	// const parsedRulesCopy = useAsyncParsedRules({
+	// 	workerEngine: workerEngineCopy,
+	// })
 
-	const resultSmicCopy = usePromise(
-		async () => workerEngineCopy?.asyncEvaluate('SMIC'),
-		[workerEngineCopy],
-		'loading...'
-	)
+	// const resultSmicCopy = usePromise(
+	// 	async () =>
+	// 		!workerEngineCopy
+	// 			? 'still loading...'
+	// 			: workerEngineCopy.asyncEvaluate('SMIC'),
+	// 	[workerEngineCopy],
+	// 	'loading...'
+	// )
 
-	const [resultLazySmicCopy, triggerLazySmicCopy] = useLazyPromise(
-		async () => workerEngineCopy?.asyncEvaluate('SMIC'),
-		[workerEngineCopy],
-		'wait 2sec...'
-	)
+	// const [resultLazySmicCopy, triggerLazySmicCopy] = useLazyPromise(
+	// 	async () =>
+	// 		!workerEngineCopy
+	// 			? 'still loading...'
+	// 			: workerEngineCopy.asyncEvaluate('SMIC'),
+	// 	[workerEngineCopy],
+	// 	'wait 3sec...'
+	// )
 
-	useEffect(() => {
-		// console.log('useEffect')
+	// useEffect(() => {
+	// 	// console.log('useEffect')
 
-		void (async () => {
-			await workerEngine.isWorkerReady
-			setTimeout(() => {
-				void triggerLazySmicCopy()
-			}, 3000)
-		})()
-	}, [triggerLazySmicCopy, workerEngine.isWorkerReady])
+	// 	void (async () => {
+	// 		await workerEngine.isWorkerReady
+	// 		setTimeout(() => {
+	// 			void triggerLazySmicCopy()
+	// 		}, 3000)
+	// 	})()
+	// }, [triggerLazySmicCopy, workerEngine.isWorkerReady])
 
-	const { asyncSetSituation } = workerEngineCopy ?? {}
-	usePromise(async () => {
-		// console.log('**************>', workerEngineCopy, resultSmic)
+	// const { asyncSetSituation } = workerEngineCopy ?? {}
+	// usePromise(async () => {
+	// 	// console.log('**************>', workerEngineCopy, resultSmic)
 
-		if (
-			typeof resultSmic !== 'string' &&
-			typeof resultSmic.nodeValue === 'number'
-		) {
-			// console.log('ooooooooooooooooooo', resultSmic)
+	// 	if (
+	// 		resultSmic &&
+	// 		typeof resultSmic !== 'string' &&
+	// 		typeof resultSmic.nodeValue === 'number'
+	// 	) {
+	// 		// console.log('ooooooooooooooooooo', resultSmic)
 
-			await asyncSetSituation?.({
-				SMIC: resultSmic.nodeValue + '€/mois',
-			})
-		}
-	}, [asyncSetSituation, resultSmic])
+	// 		await asyncSetSituation?.({
+	// 			SMIC: resultSmic.nodeValue + '€/mois',
+	// 		})
+	// 	}
+	// }, [asyncSetSituation, resultSmic])
 
 	return (
 		<div>
@@ -146,11 +161,15 @@ const TestWorkerEngine = () => {
 				Refresh {refresh}
 			</button>
 			<button onClick={() => void trigger()}>trigger</button>
-			<button onClick={() => void triggerCopy()}>trigger copy</button>
+			{/* <button onClick={() => void triggerCopy()}>trigger copy</button> */}
 
 			<p>
 				date title:{' '}
 				{JSON.stringify(typeof date === 'string' ? date : date?.title)}
+			</p>
+			<p>
+				SMIC title:{' '}
+				{JSON.stringify(typeof SMIC === 'string' ? SMIC : SMIC?.title)}
 			</p>
 			<p>
 				parsedRules length:{' '}
@@ -171,7 +190,7 @@ const TestWorkerEngine = () => {
 				)}
 			</p>
 
-			<p>workerEngineCopy: {JSON.stringify(workerEngineCopy?.engineId)}</p>
+			{/*	<p>workerEngineCopy: {JSON.stringify(workerEngineCopy?.engineId)}</p>
 
 			<p>
 				dateCopy title:{' '}
@@ -198,7 +217,7 @@ const TestWorkerEngine = () => {
 						? resultLazySmicCopy
 						: resultLazySmicCopy?.nodeValue
 				)}
-			</p>
+			</p> */}
 		</div>
 	)
 }
@@ -221,13 +240,11 @@ RootProps) {
 
 	return (
 		<StrictMode>
-			{/* <EngineProvider value={engine}> */}
 			<Provider basename={basename}>
 				<Redirections>
 					<Router />
 				</Redirections>
 			</Provider>
-			{/* </EngineProvider> */}
 		</StrictMode>
 	)
 }
@@ -277,9 +294,21 @@ const Router = () => {
 			exemple d'execution manuel : {JSON.stringify(exampleAsyncValue)} */}
 			{/*  */}
 			<Routes>
-				<Route path="test-worker" element={<TestWorkerEngine />} />
+				<Route
+					path="test-worker"
+					element={
+						<>
+							<SuspensePromise isSSR={import.meta.env.SSR}>
+								{/* <TestWorkerEngine /> */}
+								<div>
+									<TestWorkerEngine />
+								</div>
+							</SuspensePromise>
+						</>
+					}
+				/>
 
-				{/* <Route path="/iframes/*" element={<Iframes />} /> */}
+				<Route path="/iframes/*" element={<Iframes />} />
 				<Route path="*" element={<App />} />
 			</Routes>
 		</>
@@ -300,6 +329,7 @@ const App = () => {
 	const fullURL = useGetFullURL()
 	useSaveAndRestoreScrollPosition()
 	const isEmbedded = useIsEmbedded()
+	const workerEngine = useWorkerEngine()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useAxeCoreAnalysis()
@@ -345,15 +375,17 @@ const App = () => {
 								path={relativeSitePaths.simulateursEtAssistants + '/*'}
 								element={<SimulateursEtAssistants />}
 							/>
-							{/* <Route
-									path={relativeSitePaths.documentation.index + '/*'}
-									element={
+							<Route
+								path={relativeSitePaths.documentation.index + '/*'}
+								element={
+									<SuspensePromise isSSR={import.meta.env.SSR}>
 										<Documentation
 											documentationPath={documentationPath}
-											engine={engine}
+											engine={workerEngine}
 										/>
-									}
-								/> */}
+									</SuspensePromise>
+								}
+							/>
 							<Route
 								path={relativeSitePaths.développeur.index + '/*'}
 								element={<Integration />}

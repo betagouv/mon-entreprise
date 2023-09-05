@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useNextQuestions } from '@/hooks/useNextQuestion'
@@ -12,7 +13,6 @@ import {
 	currentQuestionSelector,
 	useMissingVariables,
 } from '@/store/selectors/simulationSelectors'
-import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 export function useNavigateQuestions(workerEngines?: WorkerEngine[]) {
 	const dispatch = useDispatch()
@@ -25,22 +25,27 @@ export function useNavigateQuestions(workerEngines?: WorkerEngine[]) {
 
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 
-	const goToPrevious = () => {
+	const goToPrevious = useCallback(() => {
 		dispatch(updateShouldFocusField(true))
 		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
-	}
-	const goToNext = () => {
+	}, [dispatch, previousAnswers])
+
+	const goToNext = useCallback(() => {
 		dispatch(updateShouldFocusField(true))
 		if (currentQuestion) {
 			dispatch(stepAction(currentQuestion))
+			// dispatch(goToQuestion(nextQuestions[0]))
+			nextQuestions.length > 1 && dispatch(goToQuestion(nextQuestions[1]))
 		}
-	}
+	}, [currentQuestion, dispatch, nextQuestions])
 
+	const init = useRef(false)
 	useEffect(() => {
-		if (!currentQuestion && nextQuestions[0]) {
+		if (!init.current && !currentQuestion && nextQuestions.length) {
 			dispatch(goToQuestion(nextQuestions[0]))
+			init.current = true
 		}
-	}, [nextQuestions, currentQuestion, dispatch])
+	}, [currentQuestion, dispatch, nextQuestions])
 
 	return {
 		currentQuestion: currentQuestion ?? nextQuestions[0],
