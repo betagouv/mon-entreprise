@@ -1,12 +1,17 @@
-import rawRules, { DottedName } from 'modele-social'
+import { createWorkerEngine, WorkerEngineActions } from '@publicodes/worker'
+import rawRules from 'modele-social'
 import Engine from 'publicodes'
+import {
+	publicodesReactActions,
+	PublicodesReactActions,
+} from 'publicodes-react'
 
 import type { ProviderProps } from '@/components/Provider'
 import i18n from '@/locales/i18n'
 import ruleTranslations from '@/locales/rules-en.yaml'
 import translateRules from '@/locales/translateRules'
 
-import { createWorkerEngine, WorkerEngineActions } from './workerEngine'
+export type Actions = WorkerEngineActions | PublicodesReactActions
 
 function getUnitKey(unit: string): string {
 	const units = i18n.getResourceBundle('fr', 'units') as Record<string, string>
@@ -52,11 +57,13 @@ const init = ({ basename }: Pick<ProviderProps, 'basename'>) => {
 
 	const engine = new Engine(rules, { getUnitKey, logger })
 
+	console.timeEnd('[createWorkerEngine] init')
+
 	return engine
 }
 
-export type Actions = WorkerEngineActions<Parameters<typeof init>, DottedName>
+console.time('[createWorkerEngine] init')
 
-console.time('[createWorkerEngine]')
-createWorkerEngine(init)
-console.timeEnd('[createWorkerEngine]')
+createWorkerEngine(init, {
+	...publicodesReactActions(),
+})
