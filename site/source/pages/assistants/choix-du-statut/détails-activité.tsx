@@ -122,18 +122,6 @@ function CodeAPENonConnu() {
 	)
 }
 
-function choixEntreArtisanaleOuCommerciale(entries: GuichetEntry[]): boolean {
-	return (
-		entries.every(
-			(e) =>
-				e.catégorieActivité.includes('ARTISANALE') ||
-				e.catégorieActivité.includes('COMMERCIALE')
-		) &&
-		entries.some((e) => e.catégorieActivité.includes('ARTISANALE')) &&
-		entries.some((e) => e.catégorieActivité.includes('COMMERCIALE'))
-	)
-}
-
 function GuichetSelection({
 	entries,
 	onGuichetSelected,
@@ -144,6 +132,7 @@ function GuichetSelection({
 	codeGuichet?: string
 }) {
 	const showCCIOrCMAHelp = choixEntreArtisanaleOuCommerciale(entries)
+	const showBNCorBICHelp = choixEntreBNCouBIC(entries)
 
 	return (
 		<>
@@ -162,6 +151,31 @@ function GuichetSelection({
 					</Body>
 				</Message>
 			)}
+			{showBNCorBICHelp && (
+				<Message>
+					<Trans i18nKey="crée.choix-statut.détails-activité.aide-bnc-bic">
+						<Body>
+							Le choix entre exercer une activité à titre commercial (avec des
+							revenus de type BIC) ou à titre indépendant (avec des revenus de
+							type BNC) dépend souvent de la nature de votre travail. Si vous
+							vendez des biens ou des services de manière régulière et que vous
+							agissez comme un commerçant, il est probable que vous releviez du
+							régime BIC. En revanche, si votre activité est basée sur des
+							compétences professionnelles, intellectuelles ou artistiques,
+							comme la médecine, la consultation ou l'écriture, vous serez
+							probablement sous le régime BNC.
+						</Body>
+						<Body>
+							Pour en savoir plus, vous pouvez consulter le site de{' '}
+							<Link href="https://www.urssaf.fr/portail/home/independant/je-cree-mon-entreprise/quelle-activite/les-differentes-activites-indepe.html">
+								l'URSSAF
+							</Link>
+							.
+						</Body>
+					</Trans>
+				</Message>
+			)}
+
 			<RadioCardGroup
 				value={codeGuichet}
 				onChange={onGuichetSelected}
@@ -256,4 +270,26 @@ function getActivitéFromGuichet(guichet: GuichetEntry) {
 		: guichet.catégorieActivité.includes('AGRICOLE')
 		? 'agricole'
 		: undefined
+}
+
+function choixEntreArtisanaleOuCommerciale(entries: GuichetEntry[]): boolean {
+	return (
+		entries.every(
+			(e) =>
+				e.catégorieActivité.includes('ARTISANALE') ||
+				e.catégorieActivité.includes('COMMERCIALE')
+		) &&
+		entries.some((e) => e.catégorieActivité.includes('ARTISANALE')) &&
+		entries.some((e) => e.catégorieActivité.includes('COMMERCIALE'))
+	)
+}
+
+function choixEntreBNCouBIC(entries: GuichetEntry[]): boolean {
+	return (
+		entries.every(
+			(e) => e.typeBénéfice === 'BIC' || e.typeBénéfice === 'BNC'
+		) &&
+		entries.some((e) => e.typeBénéfice === 'BIC') &&
+		entries.some((e) => e.typeBénéfice === 'BNC')
+	)
 }

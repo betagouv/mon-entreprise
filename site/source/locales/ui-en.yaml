@@ -450,7 +450,7 @@ choix-statut:
             association.
           label: For example, by creating an association
         label: <1>Not for profit</1>
-    title: "I am creating this company...<1><0>It enables you to <2>share a common
+    title: "I am creating this activity...<1><0>It enables you to <2>share a common
       project in the general interest, without making a profit</2>: promoting a
       sporting activity, the integration of people in difficulty, local
       development, etc...</0></1>"
@@ -570,6 +570,17 @@ conversation:
     aria-label: Yes or no
 copied: Copy
 copyMessage: Copy message
+crée:
+  choix-statut:
+    détails-activité:
+      aide-bnc-bic: <0>Whether you choose to work on a commercial basis (earning
+        BIC-type income) or on a self-employed basis (earning BNC-type income)
+        often depends on the nature of your work. If you sell goods or services
+        on a regular basis, and act like a merchant, you're likely to fall under
+        the BIC regime. On the other hand, if your activity is based on
+        professional, intellectual or artistic skills, such as medicine,
+        consulting or writing, you'll probably come under the BNC
+        regime.</0><1>To find out more, visit the <2>URSSAF</2> website.</1>
 créer:
   activité-détails:
     next1: Continue with this activity

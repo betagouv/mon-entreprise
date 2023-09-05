@@ -474,7 +474,7 @@ choix-statut:
             exercée sous forme d’association
           label: Par exemple, en créant une association
         label: Dans un but <1>non lucratif</1>
-    title: "Je crée cette entreprise...<1><0>Elle permet de <2>partager un projet
+    title: "Je crée cette activité...<1><0>Elle permet de <2>partager un projet
       commun dans l’intérêt général, sans faire de bénéfices</2> : promouvoir
       une activité sportive, l'insertion de personnes en difficulté, le
       développement local, etc...</0></1>"
@@ -597,6 +597,19 @@ conversation:
     aria-label: Oui ou non
 copied: Copié
 copyMessage: Copier le message
+crée:
+  choix-statut:
+    détails-activité:
+      aide-bnc-bic: <0>Le choix entre exercer une activité à titre commercial (avec
+        des revenus de type BIC) ou à titre indépendant (avec des revenus de
+        type BNC) dépend souvent de la nature de votre travail. Si vous vendez
+        des biens ou des services de manière régulière et que vous agissez comme
+        un commerçant, il est probable que vous releviez du régime BIC. En
+        revanche, si votre activité est basée sur des compétences
+        professionnelles, intellectuelles ou artistiques, comme la médecine, la
+        consultation ou l'écriture, vous serez probablement sous le régime
+        BNC.</0><1>Pour en savoir plus, vous pouvez consulter le site de
+        <2>l'URSSAF</2>.</1>
 créer:
   activité-détails:
     next1: Continuer avec cette activité
