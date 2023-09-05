@@ -1,6 +1,7 @@
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import rules, { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
+import { RulePage, useDocumentationSiteMap } from 'publicodes-react'
 import { ComponentProps, useMemo, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -38,20 +39,27 @@ export default function Documentation({
 	engine,
 }: {
 	documentationPath: string
-	engine: Engine
+	engine: WorkerEngine
 }) {
 	const { t } = useTranslation()
 	const location = useLocation()
 	const pathname = decodeURI(location?.pathname ?? '')
-	const documentationSitePaths = useMemo(
-		() => getDocumentationSiteMap({ engine, documentationPath }),
-		[engine, documentationPath]
+	const workerEngine = useWorkerEngine()
+	const documentationSitePaths = useDocumentationSiteMap(
+		workerEngine,
+		documentationPath
 	)
+
+	if (!documentationSitePaths) {
+		return <>documentationSitePaths loading...</>
+	}
 
 	return (
 		<Routes>
 			<Route index element={<DocumentationLanding />} />
-			<Route path="dev" element={<DocumentationRulesList />} />
+			{IS_DEVELOPMENT && (
+				<Route path="dev" element={<DocumentationRulesList />} />
+			)}
 			<Route
 				path="*"
 				element={
@@ -97,6 +105,10 @@ const StyledAccordion = styled(Accordion)`
 			font-weight: bold;
 		}
 	}
+
+	button {
+		border-radius: ${({ theme }) => theme.box.borderRadius};
+	}
 `
 
 type Renderers = ComponentProps<typeof RulePage>['renderers']
@@ -117,7 +129,7 @@ function DocumentationPageBody({
 	engine,
 }: {
 	documentationPath: string
-	engine: Engine
+	engine: WorkerEngine
 }) {
 	const { absoluteSitePaths } = useSitePaths()
 	const { i18n } = useTranslation()

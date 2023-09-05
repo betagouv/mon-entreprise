@@ -1,3 +1,4 @@
+import { useAsyncParsedRules, useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import {
 	ASTNode,
@@ -11,10 +12,6 @@ import { useTranslation } from 'react-i18next'
 import { keyframes, styled } from 'styled-components'
 
 import { usePromise } from '@/hooks/usePromise'
-import {
-	useAsyncParsedRules,
-	useWorkerEngine,
-} from '@/worker/workerEngineClientReact'
 
 import RuleLink from './RuleLink'
 

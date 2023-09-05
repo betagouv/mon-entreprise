@@ -1,7 +1,7 @@
+import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { ComponentProps } from 'react'
 
-import { DottedName } from '@/../../modele-social'
 import Value from '@/components/EngineValue'
 import { H3 } from '@/design-system/typography/heading'
 

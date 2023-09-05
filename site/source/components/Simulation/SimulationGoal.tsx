@@ -1,3 +1,4 @@
+import { useAsyncGetRule, useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { formatValue, PublicodesExpression } from 'publicodes'
 import React, { useCallback, useState } from 'react'
@@ -11,10 +12,6 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { usePromise } from '@/hooks/usePromise'
 import { updateSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
-import {
-	useAsyncGetRule,
-	useWorkerEngine,
-} from '@/worker/workerEngineClientReact'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput, { InputProps } from '../conversation/RuleInput'

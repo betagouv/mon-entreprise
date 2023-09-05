@@ -1,8 +1,8 @@
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { useTranslation } from 'react-i18next'
 
 import { Article } from '@/design-system/card'
 import { usePromise } from '@/hooks/usePromise'
-import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 export function AnnuaireEntreprises() {
 	const { t } = useTranslation()

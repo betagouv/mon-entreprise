@@ -1,3 +1,4 @@
+import { useAsyncGetRule, useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
@@ -11,10 +12,6 @@ import { batchUpdateSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { ReplaceReturnType } from '@/types/utils'
 import { catchDivideByZeroError } from '@/utils'
-import {
-	useAsyncGetRule,
-	useWorkerEngine,
-} from '@/worker/workerEngineClientReact'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Condition, WhenApplicable } from './EngineValue'

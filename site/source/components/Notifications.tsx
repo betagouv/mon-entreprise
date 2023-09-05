@@ -1,3 +1,4 @@
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
 import { useTranslation } from 'react-i18next'
@@ -12,7 +13,6 @@ import { usePromise } from '@/hooks/usePromise'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { isNotNull } from '@/utils'
-import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'

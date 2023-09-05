@@ -1,3 +1,8 @@
+import {
+	useAsyncParsedRules,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { ParsedRules, serializeEvaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
@@ -13,11 +18,6 @@ import {
 	configObjectifsSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
-import {
-	useAsyncParsedRules,
-	useWorkerEngine,
-	WorkerEngine,
-} from '@/worker/workerEngineClientReact'
 
 type ShortName = string
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents

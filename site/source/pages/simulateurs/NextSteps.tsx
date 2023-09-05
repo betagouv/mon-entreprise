@@ -1,3 +1,4 @@
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
@@ -11,7 +12,6 @@ import { usePromise } from '@/hooks/usePromise'
 import { GuideURSSAFCard } from '@/pages/simulateurs/cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { useSitePaths } from '@/sitePaths'
-import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from '../assistants/pour-mon-entreprise/AutoEntrepeneurCard'

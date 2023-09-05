@@ -1,3 +1,4 @@
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { Evaluation } from 'publicodes'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
@@ -8,7 +9,6 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { usePromise } from '@/hooks/usePromise'
 import { AbsoluteSitePaths } from '@/sitePaths'
-import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 type SimulateurWarningProps = {
 	simulateur: Exclude<keyof AbsoluteSitePaths['simulateurs'], 'index'>

@@ -1,3 +1,8 @@
+import {
+	useAsyncGetRule,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, RuleNode } from 'publicodes'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -19,11 +24,6 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
-import {
-	useAsyncGetRule,
-	useWorkerEngine,
-	WorkerEngine,
-} from '@/worker/workerEngineClientReact'
 
 import { TrackPage } from '../ATInternetTracking'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'

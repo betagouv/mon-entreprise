@@ -1,3 +1,4 @@
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
@@ -6,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 import { Checkbox } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { usePromise } from '@/hooks/usePromise'
-import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { ExplicableRule } from './Explicable'
 import { InputProps, RuleWithMultiplePossibilities } from './RuleInput'

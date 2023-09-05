@@ -1,3 +1,4 @@
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -22,7 +23,6 @@ import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
 import { resetCompany } from '@/store/actions/companyActions'
-import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 // import { RootState } from '@/store/reducers/rootReducer'
 

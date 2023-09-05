@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Appear } from '@/components/ui/animate'
 
-// We add a animation for all coponents displayed on the client only but not on
+// We add a animation for all components displayed on the client only but not on
 // the SSR to avoid augment the CLS (Cumulative Layout Shift).
 export default function BrowserOnly({
 	children,

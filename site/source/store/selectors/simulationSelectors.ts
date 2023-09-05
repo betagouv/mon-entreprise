@@ -1,3 +1,4 @@
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { utils } from 'publicodes'
 import { useSelector } from 'react-redux'
@@ -6,7 +7,6 @@ import { createSelector } from 'reselect'
 import { usePromise } from '@/hooks/usePromise'
 // import { useEngine } from '@/components/utils/EngineContext'
 import { RootState, Situation } from '@/store/reducers/rootReducer'
-import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 export const configSelector = (state: RootState) =>
 	state.simulation?.config ?? {}

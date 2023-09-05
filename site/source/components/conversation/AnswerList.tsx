@@ -1,3 +1,4 @@
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode, utils } from 'publicodes'
 import { useCallback, useMemo } from 'react'
@@ -25,7 +26,6 @@ import {
 	companySituationSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
-import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 import Value from '../EngineValue'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'

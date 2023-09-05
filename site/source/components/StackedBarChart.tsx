@@ -1,3 +1,4 @@
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
 import React, { useContext } from 'react'
@@ -10,7 +11,6 @@ import RuleLink from '@/components/RuleLink'
 import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
 import { usePromise } from '@/hooks/usePromise'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
-import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
 

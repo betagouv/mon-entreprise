@@ -1,3 +1,4 @@
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { Evaluation } from 'publicodes'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -7,7 +8,6 @@ import Banner from '@/components/Banner'
 import { Link as DesignSystemLink } from '@/design-system/typography/link'
 import { usePromise } from '@/hooks/usePromise'
 import { updateSituation } from '@/store/actions/actions'
-import { useWorkerEngine } from '@/worker/workerEngineClientReact'
 
 const Bold = styled.span<{ $bold: boolean }>`
 	${({ $bold }) => ($bold ? 'font-weight: bold;' : '')}

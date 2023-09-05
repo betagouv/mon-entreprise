@@ -1,3 +1,8 @@
+import {
+	useAsyncGetRule,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import {
 	ASTNode,
@@ -14,11 +19,6 @@ import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { usePromise } from '@/hooks/usePromise'
 import { getMeta, isNotNull } from '@/utils'
-import {
-	useAsyncGetRule,
-	useWorkerEngine,
-	WorkerEngine,
-} from '@/worker/workerEngineClientReact'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
@@ -99,10 +99,6 @@ export default function RuleInput({
 	const workerEngine = useWorkerEngine()
 
 	const rule = useAsyncGetRule(dottedName)
-
-	useEffect(() => {
-		console.log('update', workerEngine.situationVersion)
-	}, [workerEngine.situationVersion])
 
 	// const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
 	// async
@@ -187,11 +183,13 @@ export default function RuleInput({
 	}
 
 	if (rule.rawNode.API && rule.rawNode.API === 'commune') {
-		return `<SelectCommune
+		return (
+			<SelectCommune
 				{...commonProps}
 				onChange={(c) => commonProps.onChange({ batchUpdate: c })}
 				value={value as Evaluation<string>}
-			/>`
+			/>
+		)
 	}
 
 	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {

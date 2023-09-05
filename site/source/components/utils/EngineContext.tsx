@@ -1,3 +1,4 @@
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import Engine, {
 	EvaluatedNode,
@@ -6,7 +7,7 @@ import Engine, {
 	Rule,
 	RuleNode,
 } from 'publicodes'
-import { createContext, useContext, useEffect, useMemo } from 'react'
+import React, { createContext, useContext, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { deleteFromSituation } from '@/store/actions/actions'
@@ -16,7 +17,6 @@ import {
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
 import { omit } from '@/utils'
-import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 import i18n from '../../locales/i18n'
 
@@ -158,13 +158,13 @@ export const useSetupSafeSituation = (workerEngine?: WorkerEngine) => {
 	// const workerEngine = useWorkerEngine()
 	const rawSituation = useRawSituation()
 
-	const simulatorSituation = useSelector(situationSelector)
-	const configSituation = useSelector(configSituationSelector)
-	const companySituation = useSelector(companySituationSelector)
+	// const simulatorSituation = useSelector(situationSelector)
+	// const configSituation = useSelector(configSituationSelector)
+	// const companySituation = useSelector(companySituationSelector)
 	const { asyncSetSituation } = workerEngine ?? {}
 
 	useEffect(() => {
-		if (!asyncSetSituation) {
+		if (!asyncSetSituation || Object.keys(rawSituation).length === 0) {
 			return
 		}
 		console.log('set rawSituation', rawSituation, workerEngine)

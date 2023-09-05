@@ -1,3 +1,4 @@
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
 import { useMemo } from 'react'
@@ -10,7 +11,6 @@ import {
 	useMissingVariables,
 } from '@/store/selectors/simulationSelectors'
 import { ImmutableType } from '@/types/utils'
-import { useWorkerEngine, WorkerEngine } from '@/worker/workerEngineClientReact'
 
 import { usePromise } from './usePromise'
 
