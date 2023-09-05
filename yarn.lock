@@ -5099,6 +5099,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eshaz/web-worker@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@eshaz/web-worker@npm:1.2.1"
+  checksum: 515dd7d4ad28116c843e79f9092b673de5c0414739f95b095338db50d136eb912ec6a8b9e3e0ec336e8e9880a52aa2081a564a9e13dfc343c5e80b367b7c44d6
+  languageName: node
+  linkType: hard
+
 "@eslint-community/eslint-utils@npm:^4.1.2, @eslint-community/eslint-utils@npm:^4.2.0, @eslint-community/eslint-utils@npm:^4.4.0":
   version: 4.4.0
   resolution: "@eslint-community/eslint-utils@npm:4.4.0"
@@ -7381,9 +7388,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@npm:^1.0.0-beta.73":
-  version: 1.0.0-beta.73
-  resolution: "@publicodes/api@npm:1.0.0-beta.73"
+"@publicodes/api@betagouv/publicodes#head=publicodes-in-worker&workspace=@publicodes/api&v0":
+  version: 1.0.0-beta.71
+  resolution: "@publicodes/api@https://github.com/betagouv/publicodes.git#workspace=%40publicodes%2Fapi&v0=&commit=7f48993c0d3ab97b7375d33ce0d1e1fdbcb123f8"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -7392,7 +7399,29 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.47
-  checksum: 448625cc10b05bf114188b05db5f7ae19f1d6b84b6773db6bd9bdc4319e462b032b72b5700ed9fa0eedad412d9dda512f60862fdb87e7063e2a68ccd16a24277
+  checksum: 1d4086285bec8ca992ccbe4f90e0927dfe741cd67c424752f2c17bc1a29b55a78788b6144d56001d625d20c26defd57ffb4f2eeb123f4d1cbb9c7dd2f7327acb
+  languageName: node
+  linkType: hard
+
+"@publicodes/worker-react@betagouv/publicodes#head=publicodes-in-worker&workspace=@publicodes/worker-react&v0":
+  version: 1.0.0-beta.71
+  resolution: "@publicodes/worker-react@https://github.com/betagouv/publicodes.git#workspace=%40publicodes%2Fworker-react&v0=&commit=7f48993c0d3ab97b7375d33ce0d1e1fdbcb123f8"
+  dependencies:
+    "@publicodes/worker": ^1.0.0-beta.71
+  peerDependencies:
+    publicodes: ^1.0.0-beta.40
+    react: ^17 || ^18
+    react-dom: ^17 || ^18
+  checksum: a5071fe45594098bed605d9f7b1e175ceee445d70de5e1b1e04c7c25780e4bf95511c3792f7f5a2aea1a9384639574411f058d7f9325a8bb09cad8f5898cfd5d
+  languageName: node
+  linkType: hard
+
+"@publicodes/worker@betagouv/publicodes#head=publicodes-in-worker&workspace=@publicodes/worker&v0":
+  version: 1.0.0-beta.71
+  resolution: "@publicodes/worker@https://github.com/betagouv/publicodes.git#workspace=%40publicodes%2Fworker&v0=&commit=7f48993c0d3ab97b7375d33ce0d1e1fdbcb123f8"
+  peerDependencies:
+    publicodes: ^1.0.0-beta.40
+  checksum: 7827767ae3d122d6f5d7fa8062665da6754425583afef34248dd25fc72d5a804ff2ea98d0a37379cb61e606bef94773df0975f475892def0de64f43549d78470
   languageName: node
   linkType: hard
 
@@ -21749,7 +21778,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"koa@npm:^2.13.4, koa@npm:^2.14.2":
+"koa@npm:^2.14.2":
   version: 2.14.2
   resolution: "koa@npm:2.14.2"
   dependencies:
@@ -22580,7 +22609,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-to-jsx@npm:^7.1.9":
+"markdown-to-jsx@npm:^7.3.2":
   version: 7.3.2
   resolution: "markdown-to-jsx@npm:7.3.2"
   peerDependencies:
@@ -25244,25 +25273,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.73":
-  version: 1.0.0-beta.73
-  resolution: "publicodes-react@npm:1.0.0-beta.73"
+"publicodes-react@betagouv/publicodes#head=publicodes-in-worker&workspace=publicodes-react&v0":
+  version: 1.0.0-beta.71
+  resolution: "publicodes-react@https://github.com/betagouv/publicodes.git#workspace=publicodes-react&v0=&commit=7f48993c0d3ab97b7375d33ce0d1e1fdbcb123f8"
   dependencies:
-    styled-components: ^6.0.7
+    "@publicodes/worker-react": ^1.0.0-beta.71
+    styled-components: ^5.3.11
   peerDependencies:
     publicodes: ^1.0.0-beta.71
     react: ^17 || ^18
     react-dom: ^17 || ^18
-  checksum: 7c21d37bd2839ee6b964524c477fe5e02d46c5ef9f52386f5e8f0bf2b775588853d86d0452194f207cddd46318b9a9500db2f5275c932af661df3d1d9fcde712
+  checksum: ba7160310beb706434a143f4665db450e1d5c76bd2c06b008717e594c169db89f326feba9be31c00b74f3fe653744f0ae9328b88191684548782b5eaa1b64c00
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.73":
-  version: 1.0.0-beta.73
-  resolution: "publicodes@npm:1.0.0-beta.73"
+"publicodes@betagouv/publicodes#head=publicodes-in-worker&workspace=publicodes&v0":
+  version: 1.0.0-beta.71
+  resolution: "publicodes@https://github.com/betagouv/publicodes.git#workspace=publicodes&v0=&commit=7f48993c0d3ab97b7375d33ce0d1e1fdbcb123f8"
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 2f9ea0694a13f83e7901d66026e520b230bf8066b2ba14912439c480234c8e1e961157ab276fe592b3d55ed7b5514bdeb6f43a3cb88183b270b3ad75a164e895
+  checksum: 1dfacea3530491f425a3204459669f0ed6135e246d8b7889eea3871aaa83accf7965dc7dceddc353d98b608181f0214f1ca7444c22ceb8f5504e3a5f5e6d1aaa
   languageName: node
   linkType: hard
 
@@ -27464,10 +27494,12 @@ __metadata:
     "@atomik-color/component": ^1.0.17
     "@atomik-color/core": ^1.0.13
     "@axe-core/react": ^4.5.2
+    "@eshaz/web-worker": ^1.2.1
     "@floating-ui/react-dom": ^1.3.0
     "@internationalized/number": ^3.2.0
     "@leeoniya/ufuzzy": ^1.0.2
-    "@publicodes/api": ^1.0.0-beta.73
+    "@publicodes/worker": ^1.0.0-beta.73
+    "@publicodes/worker-react": ^1.0.0-beta.73
     "@react-aria/accordion": ^3.0.0-alpha.17
     "@react-pdf/renderer": ^3.1.6
     "@react-types/accordion": ^3.0.0-alpha.16
@@ -27512,7 +27544,7 @@ __metadata:
     i18next-parser: ^8.3.0
     iframe-resizer: ^4.3.6
     isbot: ^3.6.13
-    markdown-to-jsx: ^7.1.9
+    markdown-to-jsx: ^7.3.2
     modele-social: "workspace:^"
     netlify-cli: ^15.11.0
     publicodes: ^1.0.0-beta.73
@@ -29379,21 +29411,21 @@ __metadata:
 
 "typescript@patch:typescript@^5.0.0#~builtin<compat/typescript>, typescript@patch:typescript@^5.0.4#~builtin<compat/typescript>":
   version: 5.1.6
-  resolution: "typescript@patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=85af82"
+  resolution: "typescript@patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 21e88b0a0c0226f9cb9fd25b9626fb05b4c0f3fddac521844a13e1f30beb8f14e90bd409a9ac43c812c5946d714d6e0dee12d5d02dfc1c562c5aacfa1f49b606
+  checksum: f53bfe97f7c8b2b6d23cf572750d4e7d1e0c5fff1c36d859d0ec84556a827b8785077bc27676bf7e71fae538e517c3ecc0f37e7f593be913d884805d931bc8be
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@^5.2.2#~builtin<compat/typescript>":
   version: 5.2.2
-  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=85af82"
+  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=f3b441"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 07106822b4305de3f22835cbba949a2b35451cad50888759b6818421290ff95d522b38ef7919e70fb381c5fe9c1c643d7dea22c8b31652a717ddbd57b7f4d554
+  checksum: 0f4da2f15e6f1245e49db15801dbee52f2bbfb267e1c39225afdab5afee1a72839cd86000e65ee9d7e4dfaff12239d28beaf5ee431357fcced15fb08583d72ca
   languageName: node
   linkType: hard
 
