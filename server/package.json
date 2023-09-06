@@ -32,10 +32,10 @@
 		"@types/koa": "^2.13.8",
 		"@types/koa__cors": "^4.0.0",
 		"@types/koa__router": "^12.0.0",
-		"@types/node": "^18.17.3",
+		"@types/node": "^18.17.14",
 		"@types/safe-timers": "^1.1.0",
 		"ts-node": "^10.9.1",
-		"typescript": "^5.1.6"
+		"typescript": "^5.2.2"
 	},
 	"engines": {
 		"node": "^18"
