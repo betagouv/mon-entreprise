@@ -12389,14 +12389,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/web-worker@npm:^0.34.1":
-  version: 0.34.1
-  resolution: "@vitest/web-worker@npm:0.34.1"
+"@vitest/web-worker@npm:^0.34.3":
+  version: 0.34.3
+  resolution: "@vitest/web-worker@npm:0.34.3"
   dependencies:
     debug: ^4.3.4
   peerDependencies:
     vitest: ">=0.34.0"
-  checksum: 959cd13f711375f4eaf4dfc59a939860aa4b55f326672c2b6a877e624b2b65f16c1af75be08c378e98355730c4a54230010e5585329f5b9d37aa18c8a0e69e16
+  checksum: b062b8bcd7ddb5b41c71932d1fb7d610178983e1ebd34cab6af0b2c00dd6332959f8b69ff4b9ba21531ed9fc7be8bf9ea2d96cce31b378be2d28e7b1041573b7
   languageName: node
   linkType: hard
 
@@ -27530,7 +27530,7 @@ __metadata:
     "@types/serve-static": ^1.15.2
     "@vitejs/plugin-legacy": ^4.1.1
     "@vitejs/plugin-react-swc": ^3.3.2
-    "@vitest/web-worker": ^0.34.1
+    "@vitest/web-worker": ^0.34.3
     algoliasearch: ^4.19.1
     cypress: ^12.5.1
     cypress-axe: ^1.1.0
