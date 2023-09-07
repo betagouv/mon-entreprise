@@ -2,7 +2,7 @@ import { DottedName } from 'modele-social'
 import { ASTNode, reduceAST } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import Banner from '@/components/Banner'
 import Value, {

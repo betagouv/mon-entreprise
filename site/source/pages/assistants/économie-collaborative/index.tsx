@@ -1,6 +1,6 @@
 import { Trans } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { TrackChapter } from '@/components/ATInternetTracking'
 import { Link } from '@/design-system/typography/link'

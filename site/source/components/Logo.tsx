@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import logoSvgFRDark from '@/assets/images/logo-monentreprise_white.svg'
 import logoSvgFR from '@/assets/images/logo-monentreprise.svg'

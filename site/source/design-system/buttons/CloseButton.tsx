@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { GenericButtonOrNavLinkProps } from '../typography/link'
 import { Button } from './Button'

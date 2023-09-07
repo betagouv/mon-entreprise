@@ -1,6 +1,6 @@
 import { AriaRadioProps } from '@react-types/radio'
 import React, { ComponentProps } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'

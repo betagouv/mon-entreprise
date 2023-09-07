@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import Meta from '@/components/utils/Meta'
 import useSearchParamsSimulationSharing from '@/components/utils/useSearchParamsSimulationSharing'

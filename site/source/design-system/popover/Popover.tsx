@@ -11,7 +11,7 @@ import { AriaDialogProps } from '@react-types/dialog'
 import FocusTrap from 'focus-trap-react'
 import React, { RefObject, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { css, keyframes } from 'styled-components'
+import { css, keyframes, styled } from 'styled-components'
 
 import { Grid } from '@/design-system/layout'
 import { wrapperDebounceEvents } from '@/utils'

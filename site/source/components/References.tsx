@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import { utils } from 'publicodes'
 import { useContext } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { EngineContext, useEngine } from '@/components/utils/EngineContext'
 import { Grid } from '@/design-system/layout'

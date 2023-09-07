@@ -9,7 +9,7 @@ import {
 	useContext,
 	useRef,
 } from 'react'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 interface ListBoxProps extends AriaListBoxOptions<unknown> {
 	listBoxRef?: RefObject<HTMLUListElement>

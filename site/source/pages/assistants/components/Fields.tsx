@@ -3,7 +3,7 @@ import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'

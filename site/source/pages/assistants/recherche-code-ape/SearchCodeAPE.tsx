@@ -1,7 +1,7 @@
 import UFuzzy from '@leeoniya/ufuzzy'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { FromTop } from '@/components/ui/animate'

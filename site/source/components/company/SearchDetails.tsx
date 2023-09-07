@@ -1,6 +1,6 @@
 import { Fragment, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { Spacing } from '@/design-system/layout'

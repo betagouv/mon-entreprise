@@ -1,6 +1,6 @@
 import { iframeResize } from 'iframe-resizer'
 import { ReactEventHandler, useEffect } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 const Iframe = styled.iframe`
 	width: 1px;

@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { generatePath, matchPath, useLocation } from 'react-router-dom'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import Contact from '@/components/Contact'
 import FeedbackButton from '@/components/Feedback'

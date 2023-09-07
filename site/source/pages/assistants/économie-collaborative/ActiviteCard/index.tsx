@@ -2,7 +2,7 @@ import { useButton } from '@react-aria/button'
 import { usePress } from '@react-aria/interactions'
 import React, { useCallback, useContext, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
 import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover'

@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import Conversation, {
 	ConversationProps,

@@ -4,7 +4,7 @@ import { AriaButtonProps } from '@react-types/button'
 import { ComponentPropsWithRef } from 'react'
 import { Trans } from 'react-i18next'
 import { Link as RouterLink, useMatch } from 'react-router-dom'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { Link } from '../typography/link'
 

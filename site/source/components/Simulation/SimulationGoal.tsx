@@ -2,7 +2,7 @@ import { DottedName } from 'modele-social'
 import { formatValue, PublicodesExpression } from 'publicodes'
 import React, { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'

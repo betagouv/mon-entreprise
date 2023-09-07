@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import assuranceMaladieSrc from '@/assets/images/assurance-maladie.svg'
 import dgfipSrc from '@/assets/images/logo-dgfip.svg'

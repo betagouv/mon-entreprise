@@ -8,7 +8,7 @@ import React, {
 	useRef,
 } from 'react'
 import { NavLink } from 'react-router-dom'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 export const StyledLinkHover = css`
 	text-decoration: underline;

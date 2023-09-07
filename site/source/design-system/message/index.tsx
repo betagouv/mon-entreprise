@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { css, CSSProperties, DefaultTheme } from 'styled-components'
+import { css, CSSProperties, DefaultTheme, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Palette, SmallPalette } from '@/types/styled'

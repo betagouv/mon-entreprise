@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export { default as Container } from './Container'
 export { default as Grid } from './Grid'

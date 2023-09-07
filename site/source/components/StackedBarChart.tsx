@@ -4,7 +4,7 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { animated, useSpring } from 'react-spring'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'

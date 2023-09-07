@@ -6,7 +6,7 @@ import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { omit } from '@/utils'
 

@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { H1 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { Appear } from '@/components/ui/animate'
 import { Chip } from '@/design-system'

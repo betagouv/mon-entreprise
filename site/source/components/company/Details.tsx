@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Message } from '@/design-system'
 import { Grid, Spacing } from '@/design-system/layout'

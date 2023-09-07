@@ -8,7 +8,7 @@ import {
 	Tooltip,
 	XAxis,
 } from 'recharts'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { StyledLegend } from '@/components/charts/PagesCharts'
 import { Radio, ToggleGroup } from '@/design-system'

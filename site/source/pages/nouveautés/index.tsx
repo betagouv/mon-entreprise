@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Navigate, useMatch, useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { determinant, useHideNewsBanner } from '@/components/layout/NewsBanner'

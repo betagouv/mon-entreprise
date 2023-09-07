@@ -1,7 +1,8 @@
 import isbot from 'isbot'
 import { ReactNode } from 'react'
-import styled, {
+import {
 	css,
+	styled,
 	StyleSheetManager,
 	ThemeProvider,
 } from 'styled-components'

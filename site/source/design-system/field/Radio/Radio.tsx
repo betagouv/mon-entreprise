@@ -2,7 +2,7 @@ import { useRadio } from '@react-aria/radio'
 import { RadioGroupState } from '@react-stately/radio'
 import { AriaRadioProps } from '@react-types/radio'
 import { createContext, useContext, useRef } from 'react'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '@/design-system/global-style'
 import { Body } from '@/design-system/typography/paragraphs'

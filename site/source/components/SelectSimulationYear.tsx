@@ -2,7 +2,7 @@ import { Evaluation } from 'publicodes'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import Banner from '@/components/Banner'
 import { EngineContext } from '@/components/utils/EngineContext'

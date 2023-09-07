@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'

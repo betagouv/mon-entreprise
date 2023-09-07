@@ -10,7 +10,7 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'

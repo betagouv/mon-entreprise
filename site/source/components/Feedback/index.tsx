@@ -1,7 +1,7 @@
 import FocusTrap from 'focus-trap-react'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Emoji } from '@/design-system/emoji'
 import { FocusStyle } from '@/design-system/global-style'

@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { StyledInputSuggestion } from '@/components/conversation/InputSuggestions'

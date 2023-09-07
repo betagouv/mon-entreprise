@@ -2,7 +2,7 @@ import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'

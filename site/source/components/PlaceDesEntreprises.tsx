@@ -1,6 +1,6 @@
 import { lazy, Suspense, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'

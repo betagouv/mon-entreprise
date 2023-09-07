@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export * as headings from './heading'
 export * as lists from './list'

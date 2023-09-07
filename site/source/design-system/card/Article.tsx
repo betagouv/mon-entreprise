@@ -1,7 +1,7 @@
 import { useButton } from '@react-aria/button'
 import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { ChevronIcon } from '@/design-system/icons'
 import { H4 } from '@/design-system/typography/heading'
