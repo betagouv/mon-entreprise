@@ -1,10 +1,13 @@
-import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
+import {
+	usePromise,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { utils } from 'publicodes'
 import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
 
-import { usePromise } from '@/hooks/usePromise'
 // import { useEngine } from '@/components/utils/EngineContext'
 import { RootState, Situation } from '@/store/reducers/rootReducer'
 
@@ -26,7 +29,7 @@ const emptySituation: Situation = {}
 
 export const useMissingVariables = (
 	workerEngines?: WorkerEngine[]
-): Partial<Record<DottedName, number>> => {
+): Partial<Record<DottedName, number>> | 'IS_LOADING' => {
 	const objectifs = useSelector(configObjectifsSelector)
 	const workerEngine = useWorkerEngine()
 
@@ -41,13 +44,13 @@ export const useMissingVariables = (
 				)
 			)
 
-			return await treatAPIMissingVariables(
+			return treatAPIMissingVariables(
 				evaluates.reduce(mergeMissing, {}),
 				workerEngine
 			)
 		},
 		[objectifs, workerEngine, workerEngines],
-		{}
+		'IS_LOADING'
 	)
 }
 

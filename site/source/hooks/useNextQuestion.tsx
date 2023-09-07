@@ -68,13 +68,16 @@ export function getNextQuestions(
 
 export const useNextQuestions = function (
 	workerEngines?: WorkerEngine[]
-): Array<DottedName> {
+): Array<DottedName> | 'IS_LOADING' {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const config = useSelector(configSelector)
 	const workerEngine = useWorkerEngine()
 	const missingVariables = useMissingVariables(workerEngines)
 
-	const nextQuestions = useMemo(() => {
+	return useMemo(() => {
+		if (missingVariables === 'IS_LOADING') {
+			return 'IS_LOADING'
+		}
 		const next = getNextQuestions(
 			missingVariables,
 			config.questions ?? {},
@@ -85,8 +88,6 @@ export const useNextQuestions = function (
 
 		return next.filter((_, i) => rules[i].rawNode.question !== undefined)
 	}, [missingVariables, config.questions, answeredQuestions, workerEngine])
-
-	return nextQuestions
 }
 
 export function useSimulationProgress(): {

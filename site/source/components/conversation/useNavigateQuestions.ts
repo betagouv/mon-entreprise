@@ -1,6 +1,5 @@
 import { WorkerEngine } from '@publicodes/worker-react'
-import { DottedName } from 'modele-social'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useNextQuestions } from '@/hooks/useNextQuestion'
@@ -18,11 +17,9 @@ import {
 export function useNavigateQuestions(workerEngines?: WorkerEngine[]) {
 	const dispatch = useDispatch()
 	const nextQuestions = useNextQuestions(workerEngines)
+	const nextQuestion =
+		nextQuestions !== 'IS_LOADING' ? nextQuestions[0] : undefined
 	const currentQuestion = useSelector(currentQuestionSelector)
-
-	const missingVariables = useMissingVariables(workerEngines)
-	const currentQuestionIsAnswered =
-		currentQuestion && !(currentQuestion in missingVariables)
 
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 
@@ -35,24 +32,30 @@ export function useNavigateQuestions(workerEngines?: WorkerEngine[]) {
 		dispatch(updateShouldFocusField(true))
 		if (currentQuestion) {
 			dispatch(stepAction(currentQuestion))
-			// dispatch(goToQuestion(nextQuestions[0]))
-			nextQuestions.length > 1 && dispatch(goToQuestion(nextQuestions[1]))
 		}
 	}, [currentQuestion, dispatch, nextQuestions])
 
-	const init = useRef(false)
 	useEffect(() => {
-		if (!init.current && !currentQuestion && nextQuestions.length) {
-			dispatch(goToQuestion(nextQuestions[0]))
-			init.current = true
+		if (!currentQuestion && nextQuestion) {
+			dispatch(goToQuestion(nextQuestion))
 		}
 	}, [currentQuestion, dispatch, nextQuestions])
 
 	return {
-		currentQuestion:
-			currentQuestion ?? (nextQuestions[0] as DottedName | undefined),
-		currentQuestionIsAnswered,
+		isLoading: nextQuestions === 'IS_LOADING',
+		currentQuestion: currentQuestion ?? nextQuestion,
 		goToPrevious,
 		goToNext,
 	}
+}
+
+export function useCurrentQuestionIsAnswered() {
+	const currentQuestion = useSelector(currentQuestionSelector)
+	const missingVariables = useMissingVariables()
+
+	return (
+		currentQuestion &&
+		missingVariables !== 'IS_LOADING' &&
+		!(currentQuestion in missingVariables)
+	)
 }

@@ -27,7 +27,10 @@ import { FromTop } from '../ui/animate'
 import AnswerList from './AnswerList'
 import { ExplicableRule } from './Explicable'
 import SeeAnswersButton from './SeeAnswersButton'
-import { useNavigateQuestions } from './useNavigateQuestions'
+import {
+	useCurrentQuestionIsAnswered,
+	useNavigateQuestions,
+} from './useNavigateQuestions'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -51,11 +54,11 @@ export default function Conversation({
 
 	const {
 		currentQuestion,
-		currentQuestionIsAnswered,
 		goToPrevious: goToPreviousQuestion,
 		goToNext: goToNextQuestion,
+		isLoading,
 	} = useNavigateQuestions(workerEngines)
-
+	const currentQuestionIsAnswered = useCurrentQuestionIsAnswered()
 	const onChange = (
 		value: PublicodesExpression | undefined,
 		dottedName: DottedName
@@ -94,6 +97,10 @@ export default function Conversation({
 		async () => rule && evaluateQuestion(workerEngine, rule),
 		[rule, workerEngine]
 	)
+
+	if (isLoading) {
+		return null
+	}
 
 	return (
 		<>
