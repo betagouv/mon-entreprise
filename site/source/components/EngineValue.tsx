@@ -206,7 +206,7 @@ export function WhenApplicable({
 		[dottedName, workerEngine]
 	)
 
-	return node?.nodeValue !== true ? <>{children}</> : null
+	return node?.nodeValue !== true ? null : <>{children}</>
 }
 
 export function WhenNotApplicable({

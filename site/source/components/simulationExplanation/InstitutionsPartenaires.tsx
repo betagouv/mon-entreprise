@@ -184,16 +184,10 @@ const caisses = [
 function CaisseRetraite({ role }: { role?: string }) {
 	const unit = useSelector(targetUnitSelector)
 	const workerEngine = useWorkerEngine()
-	const rules = usePromiseOnSituationChange(
-		() =>
-			Promise.all(
-				caisses.map((caisse) =>
-					workerEngine.getRule(
-						`dirigeant . indépendant . PL . ${caisse} . cotisations` as DottedName
-					)
-				)
-			),
-		[]
+	const rules = caisses.map((caisse) =>
+		workerEngine.getRule(
+			`dirigeant . indépendant . PL . ${caisse} . cotisations` as DottedName
+		)
 	)
 
 	return (
