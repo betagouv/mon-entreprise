@@ -23,7 +23,6 @@ import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScroll
 import Landing from '@/pages/_landing/Landing'
 import Page404 from '@/pages/404'
 import Accessibilité from '@/pages/Accessibilité'
-import Assistants from '@/pages/assistants/index'
 import Budget from '@/pages/budget/index'
 import IntegrationTest from '@/pages/dev/IntegrationTest'
 import Documentation from '@/pages/Documentation'
@@ -136,11 +135,11 @@ const App = () => {
 					<ErrorBoundary fallback={CatchOffline}>
 						<Routes>
 							<Route index element={<Landing />} />
-
+							{/* 
 							<Route
 								path={relativeSitePaths.assistants.index + '/*'}
 								element={<Assistants />}
-							/>
+							/> */}
 							<Route
 								path={relativeSitePaths.simulateurs.index + '/*'}
 								element={<Simulateurs />}

@@ -12,7 +12,6 @@ import {
 } from '@/hooks/useCurrentSimulatorData'
 import { GuideURSSAFCard } from '@/pages/simulateurs/cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
-import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
 import { useSitePaths } from '@/sitePaths'
 
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
@@ -58,7 +57,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 				{nextSteps &&
 					nextSteps.map((simulatorId) => (
 						<Grid item xs={12} sm={6} lg={4} key={simulatorId} role="listitem">
-							<SimulatorRessourceCard simulatorId={simulatorId} />
+							{/* <SimulatorRessourceCard simulatorId={simulatorId} /> */}
 						</Grid>
 					))}
 
