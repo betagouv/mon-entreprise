@@ -12,20 +12,14 @@ import {
 	reduceAST,
 	RuleNode,
 } from 'publicodes'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
-import { DateFieldProps } from '@/design-system/field/DateField'
 import { getMeta, isNotNull } from '@/utils'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
-import DateInput from './DateInput'
 import { MultipleChoicesInput } from './MulipleChoicesInput'
-import ParagrapheInput from './ParagrapheInput'
-import SelectPaysDétachement from './select/SelectPaysDétachement'
-import SelectAtmp from './select/SelectTauxRisque'
-import TextInput from './TextInput'
 
 type InputType = 'radio' | 'card' | 'toggle' | 'select'
 

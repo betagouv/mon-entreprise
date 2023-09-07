@@ -183,11 +183,12 @@ const caisses = [
 
 function CaisseRetraite({ role }: { role?: string }) {
 	const unit = useSelector(targetUnitSelector)
+	const workerEngine = useWorkerEngine()
 	const rules = usePromiseOnSituationChange(
 		() =>
 			Promise.all(
 				caisses.map((caisse) =>
-					asyncGetRule(
+					workerEngine.getRule(
 						`dirigeant . indépendant . PL . ${caisse} . cotisations` as DottedName
 					)
 				)
@@ -255,9 +256,6 @@ function CaisseRetraite({ role }: { role?: string }) {
 export function InstitutionsPartenairesArtisteAuteur() {
 	const unit = useSelector(targetUnitSelector)
 	const workerEngine = useWorkerEngine()
-	// const descriptionIRCEC = useAsyncGetRule(
-	// 	'artiste-auteur . cotisations . IRCEC' as DottedName
-	// )?.rawNode.description
 	const descriptionIRCEC = workerEngine.getRule(
 		'artiste-auteur . cotisations . IRCEC' as DottedName
 	)?.rawNode.description

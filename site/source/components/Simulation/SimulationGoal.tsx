@@ -60,7 +60,6 @@ export function SimulationGoal({
 			}),
 		[workerEngine, dottedName, round, isTypeBoolean, currentUnit]
 	)
-	// const rule = useAsyncGetRule(dottedName)
 	const rule = workerEngine.getRule(dottedName)
 	const initialRender = useInitialRender()
 	const [isFocused, setFocused] = useState(false)

@@ -4,17 +4,10 @@ import {
 	useLazyPromise,
 	usePromise,
 	useWorkerEngine,
-	WorkerEngine,
 } from '@publicodes/worker-react'
 import { ErrorBoundary } from '@sentry/react'
 import { FallbackRender } from '@sentry/react/types/errorboundary'
-import React, {
-	ComponentProps,
-	StrictMode,
-	Suspense,
-	useEffect,
-	useState,
-} from 'react'
+import { ComponentProps, StrictMode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import { css, styled } from 'styled-components'
@@ -59,8 +52,6 @@ const TestWorkerEngine = () => {
 		{ defaultValue: 'loading...' }
 	)
 
-	// const date = useAsyncGetRule('date', { defaultValue: 'loading...' })
-	// const SMIC = useAsyncGetRule('SMIC', { defaultValue: 'loading...' })
 	const date = workerEngine.getRule('date')
 	const SMIC = workerEngine.getRule('SMIC')
 

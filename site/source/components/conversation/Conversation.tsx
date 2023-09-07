@@ -1,6 +1,6 @@
 import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression, RuleNode } from 'publicodes'
+import { PublicodesExpression, RuleNode } from 'publicodes'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -88,7 +88,6 @@ export default function Conversation({
 
 	const formRef = React.useRef<HTMLFormElement>(null)
 	const workerEngine = useWorkerEngine()
-	// const rule = useAsyncGetRule(currentQuestion)
 	const rule = workerEngine.getRule(currentQuestion)
 
 	const question = usePromise(

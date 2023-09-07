@@ -17,19 +17,7 @@ export function References({
 	references?: Record<string, string>
 	dottedName?: DottedName | undefined
 }): JSX.Element | null {
-	return null
 	const workerEngine = useWorkerEngine()
-	const parentRefences = usePromise(async () => {
-		if (!dottedName && !references) {
-			return null
-		}
-		const parentRule = utils.ruleParent(dottedName as string) as DottedName
-		if (!parentRule) {
-			return null
-		}
-
-		return (await workerEngine.asyncGetRule(parentRule)).rawNode.références
-	}, [dottedName, references, workerEngine])
 
 	if (!dottedName && !references) {
 		return null
@@ -46,11 +34,11 @@ export function References({
 	}
 
 	// If no reference, check if parent has some that we could use
-	// const parentRule = utils.ruleParent(dottedName as string) as DottedName
-	// if (!parentRule) {
-	// 	return null
-	// }
-	// const parentRefences = engine.getRule(parentRule).rawNode.références
+	const parentRule = utils.ruleParent(dottedName as string) as DottedName
+	if (!parentRule) {
+		return null
+	}
+	const parentRefences = workerEngine.getRule(parentRule).rawNode.références
 	if (!parentRefences) {
 		return null
 	}
@@ -144,12 +132,13 @@ const getDomain = (link: string) =>
 	)
 
 export function RuleReferences({ dottedNames }: { dottedNames: DottedName[] }) {
+	const workerEngine = useWorkerEngine()
 	const references = usePromise(
 		async () => {
 			const values = await Promise.all(
 				dottedNames.map(
 					async (dottedName) =>
-						(await asyncEvaluate(`${dottedName} != non`)).nodeValue
+						(await workerEngine.asyncEvaluate(`${dottedName} != non`)).nodeValue
 				)
 			)
 
@@ -158,7 +147,7 @@ export function RuleReferences({ dottedNames }: { dottedNames: DottedName[] }) {
 					.filter(isNotNullOrUndefined)
 					.map(async (dottedName) =>
 						Object.entries(
-							(await asyncGetRule(dottedName as DottedName)).rawNode
+							workerEngine.getRule(dottedName as DottedName).rawNode
 								.références ?? {}
 						)
 					)

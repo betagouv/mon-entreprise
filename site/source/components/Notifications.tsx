@@ -1,6 +1,6 @@
 import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
-import Engine, { RuleNode } from 'publicodes'
+import { RuleNode } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
@@ -32,17 +32,16 @@ type Notification = {
 async function getNotifications(workerEngine: WorkerEngine) {
 	return (
 		await Promise.all(
-			Object.values(await workerEngine.asyncGetParsedRules()).map(
-				async (rule) =>
-					rule.rawNode.type === 'notification' &&
-					!!(await workerEngine.asyncEvaluate(rule.dottedName)).nodeValue
-						? {
-								dottedName: rule.dottedName,
-								sévérité: rule.rawNode.sévérité,
-								résumé: rule.rawNode.résumé,
-								description: rule.rawNode.description,
-						  }
-						: null
+			Object.values(workerEngine.getParsedRules()).map(async (rule) =>
+				rule.rawNode.type === 'notification' &&
+				!!(await workerEngine.asyncEvaluate(rule.dottedName)).nodeValue
+					? {
+							dottedName: rule.dottedName,
+							sévérité: rule.rawNode.sévérité,
+							résumé: rule.rawNode.résumé,
+							description: rule.rawNode.description,
+					  }
+					: null
 			)
 		)
 	).filter(isNotNull)
