@@ -1,4 +1,8 @@
-import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
+import {
+	SuspensePromise,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@publicodes/worker-react'
 import rules, { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { RulePage, useDocumentationSiteMap } from 'publicodes-react'
@@ -34,17 +38,32 @@ import { RootState } from '@/store/reducers/rootReducer'
 import { TrackPage } from '../components/ATInternetTracking'
 import RuleLink from '../components/RuleLink'
 
-export default function Documentation({
-	documentationPath,
-	engine,
-}: {
+interface DocumentationProps {
 	documentationPath: string
 	engine: WorkerEngine
-}) {
+}
+
+export default function DocumentationWrapper(props: DocumentationProps) {
+	return (
+		<SuspensePromise
+			isSSR={import.meta.env.SSR}
+			fallback={<div>DocumentationWrapper loading...</div>}
+			activateInBrowser
+		>
+			<Documentation
+				// eslint-disable-next-line react/jsx-props-no-spreading
+				{...props}
+			/>
+		</SuspensePromise>
+	)
+}
+
+function Documentation({ documentationPath, engine }: DocumentationProps) {
 	const { t } = useTranslation()
 	const location = useLocation()
 	const pathname = decodeURI(location?.pathname ?? '')
 	const workerEngine = useWorkerEngine()
+
 	const documentationSitePaths = useDocumentationSiteMap(
 		workerEngine,
 		documentationPath

@@ -1,6 +1,10 @@
 import NodeWorker from '@eshaz/web-worker'
 import { createWorkerEngineClient } from '@publicodes/worker'
-import { useWorkerEngine, WorkerEngineProvider } from '@publicodes/worker-react'
+import {
+	SuspensePromise,
+	useWorkerEngine,
+	WorkerEngineProvider,
+} from '@publicodes/worker-react'
 import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import i18next from 'i18next'
@@ -80,30 +84,32 @@ export default function Provider({
 						<I18nextProvider i18n={i18next}>
 							<ReduxProvider store={store}>
 								<BrowserRouterProvider basename={basename}>
-									<WorkerEngineProvider workerClient={workerClient}>
-										<SituationSynchronize>
-											<ErrorBoundary
-												fallback={(errorData) => (
-													// eslint-disable-next-line react/jsx-props-no-spreading
-													<ErrorFallback {...errorData} />
-												)}
-											>
-												{!import.meta.env.SSR &&
-													import.meta.env.MODE === 'production' &&
-													'serviceWorker' in navigator && <ServiceWorker />}
-												<IframeResizer />
-												<OverlayProvider>
-													<ThemeColorsProvider>
-														<DisableAnimationOnPrintProvider>
-															<SiteNameContext.Provider value={basename}>
-																{children}
-															</SiteNameContext.Provider>
-														</DisableAnimationOnPrintProvider>
-													</ThemeColorsProvider>
-												</OverlayProvider>
-											</ErrorBoundary>
-										</SituationSynchronize>
-									</WorkerEngineProvider>
+									<SuspensePromise isSSR={import.meta.env.SSR}>
+										<WorkerEngineProvider workerClient={workerClient}>
+											<SituationSynchronize>
+												<ErrorBoundary
+													fallback={(errorData) => (
+														// eslint-disable-next-line react/jsx-props-no-spreading
+														<ErrorFallback {...errorData} />
+													)}
+												>
+													{!import.meta.env.SSR &&
+														import.meta.env.MODE === 'production' &&
+														'serviceWorker' in navigator && <ServiceWorker />}
+													<IframeResizer />
+													<OverlayProvider>
+														<ThemeColorsProvider>
+															<DisableAnimationOnPrintProvider>
+																<SiteNameContext.Provider value={basename}>
+																	{children}
+																</SiteNameContext.Provider>
+															</DisableAnimationOnPrintProvider>
+														</ThemeColorsProvider>
+													</OverlayProvider>
+												</ErrorBoundary>
+											</SituationSynchronize>
+										</WorkerEngineProvider>
+									</SuspensePromise>
 								</BrowserRouterProvider>
 							</ReduxProvider>
 						</I18nextProvider>

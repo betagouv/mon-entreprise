@@ -22,32 +22,25 @@ interface Params {
 	lang: string
 }
 
-// const vite = await createViteServer({
-// 	server: {},
-// 	appType: 'mpa',
-// })
+const script = `
+<script>
+window.PRERENDER = true;
+</script>
+`
 
 export default async ({ site, url, lang }: Params) => {
-	const fileTemplate =
+	const template =
 		cache[site] ??
 		readFileSync(path.join(dirname, `../dist/${site}.html`), 'utf-8')
 
-	cache[site] ??= fileTemplate
+	cache[site] ??= template
 
-	// const template = await vite.transformIndexHtml(url, fileTemplate)
-	const template = fileTemplate
-
-	// const { render } = await vite.ssrLoadModule(
-	// 	'./source/entries/entry-server.tsx'
-	// )
-
-	// TODO: Add CI test to enforce meta tags on SSR pages
+	// // TODO: Add CI test to enforce meta tags on SSR pages
 	const { html, styleTags, helmet } = await render(url, lang)
-
-	console.log({ html, styleTags, helmet })
 
 	const page = template
 		.replace(regexHTML, html)
+		.replace('<!--app-script-->', script)
 		.replace('<!--app-style-->', styleTags)
 		.replace(regexHelmet, helmet.title.toString() + helmet.meta.toString())
 

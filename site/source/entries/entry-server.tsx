@@ -1,11 +1,15 @@
 import { SSRProvider } from '@react-aria/ssr'
 import { lazy } from 'react'
-import ReactDomServer, { type renderToReadableStream } from 'react-dom/server'
+import ReactDomServerType from 'react-dom/server'
+// @ts-ignore
+import ReactDomServer from 'react-dom/server.browser'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
 import i18next from '../locales/i18n'
+
+const { renderToReadableStream } = ReactDomServer as typeof ReactDomServerType
 
 function streamToString(stream: ReadableStream<Uint8Array>) {
 	return new Response(stream).text()
@@ -59,9 +63,7 @@ export async function render(url: string, lang: 'fr' | 'en'): Promise<Result> {
 	console.log('!!! STARTING !!!')
 
 	try {
-		const stream = await (
-			ReactDomServer.renderToReadableStream as unknown as typeof renderToReadableStream
-		)(element, {
+		const stream = await renderToReadableStream(element, {
 			onError(error, errorInfo) {
 				console.error({ error, errorInfo })
 			},

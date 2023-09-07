@@ -1,11 +1,17 @@
 import { I18nProvider } from '@react-aria/i18n'
 import { withProfiler } from '@sentry/react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 
 import App from '../components/App'
 import i18next from '../locales/i18n'
 
 import '../api/sentry'
+
+declare global {
+	interface Window {
+		PRERENDER?: boolean
+	}
+}
 
 export const AppFr = () => {
 	return (
@@ -23,6 +29,10 @@ if (!import.meta.env.SSR) {
 		console.error(err)
 	)
 	const container = document.querySelector('#js') as Element
-	const root = createRoot(container)
-	root.render(<AppFrWithProfiler />)
+	if (window.PRERENDER) {
+		const root = hydrateRoot(container, <AppFrWithProfiler />)
+	} else {
+		const root = createRoot(container)
+		root.render(<AppFrWithProfiler />)
+	}
 }
