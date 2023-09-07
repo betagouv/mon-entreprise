@@ -25,11 +25,7 @@ export function ExplicableRule<Names extends DottedName>({
 	title?: string
 }) {
 	const workerEngine = useWorkerEngine()
-	const rule = usePromise(
-		async () =>
-			dottedName != null ? workerEngine.asyncGetRule(dottedName) : null,
-		[dottedName, workerEngine]
-	)
+	const rule = dottedName != null ? workerEngine.getRule(dottedName) : null
 
 	// Rien à expliquer ici, ce n'est pas une règle
 	if (dottedName == null) {

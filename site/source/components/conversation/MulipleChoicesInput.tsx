@@ -19,10 +19,10 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 ) {
 	const { engineId, dottedName, onChange } = props
 	const workerEngine = useWorkerEngine()
-	const choices = usePromise(
-		() => getMultiplePossibilitiesOptions(workerEngine, engineId, dottedName),
-		[dottedName, engineId, workerEngine],
-		[] as RuleNode<DottedName>[]
+	const choices = getMultiplePossibilitiesOptions(
+		workerEngine,
+		engineId,
+		dottedName
 	)
 
 	const handleChange = (isSelected: boolean, dottedName: DottedName) => {
@@ -93,27 +93,26 @@ function CheckBoxRule({ node, engineId, onChange }: CheckBoxRuleProps) {
 	)
 }
 
-async function getMultiplePossibilitiesOptions(
+function getMultiplePossibilitiesOptions(
 	workerEngine: WorkerEngine,
 	engineId: number,
 	// engine: Engine<Name>,
 	dottedName: DottedName
-): Promise<RuleNode<DottedName>[]> {
+): RuleNode<DottedName>[] {
 	// return (
 	// 	(engine.getRule(dottedName) as RuleWithMultiplePossibilities).rawNode[
 	// 		'plusieurs possibilités'
 	// 	] ?? []
 	// ).map((name) => engine.getRule(`${dottedName} . ${name}` as Name))
 	const posibilities =
-		(
-			(await workerEngine.asyncGetRule(
-				dottedName
-			)) as RuleWithMultiplePossibilities
-		).rawNode['plusieurs possibilités'] ?? []
+		(workerEngine.getRule(dottedName) as RuleWithMultiplePossibilities).rawNode[
+			'plusieurs possibilités'
+		] ?? []
 
-	return await Promise.all(
-		posibilities.map((name) =>
-			workerEngine.asyncGetRule(`${dottedName} . ${name}` as DottedName)
-		)
+	return posibilities.map(
+		(name) =>
+			workerEngine.getRule(
+				`${dottedName} . ${name}` as DottedName
+			) as RuleNode<DottedName>
 	)
 }

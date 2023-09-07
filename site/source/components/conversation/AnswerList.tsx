@@ -55,9 +55,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 								!passedQuestions.some((passed) => answered === passed)
 						)
 						.concat(passedQuestions)
-						.map(
-							async (dottedName) => await workerEngine.asyncGetRule(dottedName)
-						)
+						.map((dottedName) => workerEngine.getRule(dottedName))
 				)
 			).filter((rule) => rule.rawNode.question !== undefined),
 		[passedQuestions, situation, workerEngine],
@@ -70,7 +68,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 				nextQuestions.map(
 					async (dottedName) =>
 						workerEngine.asyncEvaluate(
-							await workerEngine.asyncGetRule(dottedName)
+							workerEngine.getRule(dottedName)
 						) as Promise<RuleNode<DottedName>>
 				)
 			),
@@ -100,7 +98,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 							] as Array<DottedName>
 						).filter(isCompanyDottedName)
 					)
-				).map((dottedName) => workerEngine.asyncGetRule(dottedName))
+				).map((dottedName) => workerEngine.getRule(dottedName))
 			),
 		[answeredAndPassedQuestions, companySituation, situation, workerEngine],
 		[] as RuleNode<DottedName>[]
@@ -300,16 +298,11 @@ function AnswerElement(rule: RuleNode) {
 	const dispatch = useDispatch()
 	const workerEngine = useWorkerEngine()
 	const parentDottedName = utils.ruleParent(rule.dottedName) as DottedName
-	const questionDottedName = usePromise(
-		async () =>
-			rule.rawNode.question
-				? (rule.dottedName as DottedName)
-				: parentDottedName &&
-				  (await workerEngine.asyncGetRule(parentDottedName)).rawNode.API
-				? parentDottedName
-				: undefined,
-		[parentDottedName, rule.dottedName, rule.rawNode.question, workerEngine]
-	)
+	const questionDottedName = rule.rawNode.question
+		? (rule.dottedName as DottedName)
+		: parentDottedName && workerEngine.getRule(parentDottedName).rawNode.API
+		? parentDottedName
+		: undefined
 
 	const handleChange = useCallback(
 		(value: PublicodesExpression | undefined) => {

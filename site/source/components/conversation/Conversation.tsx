@@ -1,8 +1,4 @@
-import {
-	useAsyncGetRule,
-	useWorkerEngine,
-	WorkerEngine,
-} from '@publicodes/worker-react'
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, RuleNode } from 'publicodes'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -92,7 +88,8 @@ export default function Conversation({
 
 	const formRef = React.useRef<HTMLFormElement>(null)
 	const workerEngine = useWorkerEngine()
-	const rule = useAsyncGetRule(currentQuestion)
+	// const rule = useAsyncGetRule(currentQuestion)
+	const rule = workerEngine.getRule(currentQuestion)
 
 	const question = usePromise(
 		async () => rule && evaluateQuestion(workerEngine, rule),

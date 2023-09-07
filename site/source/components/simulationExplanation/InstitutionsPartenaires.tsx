@@ -1,3 +1,4 @@
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -253,7 +254,11 @@ function CaisseRetraite({ role }: { role?: string }) {
 
 export function InstitutionsPartenairesArtisteAuteur() {
 	const unit = useSelector(targetUnitSelector)
-	const descriptionIRCEC = useAsyncGetRule(
+	const workerEngine = useWorkerEngine()
+	// const descriptionIRCEC = useAsyncGetRule(
+	// 	'artiste-auteur . cotisations . IRCEC' as DottedName
+	// )?.rawNode.description
+	const descriptionIRCEC = workerEngine.getRule(
 		'artiste-auteur . cotisations . IRCEC' as DottedName
 	)?.rawNode.description
 

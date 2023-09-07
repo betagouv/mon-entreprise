@@ -1,4 +1,4 @@
-import { useAsyncGetRule, useWorkerEngine } from '@publicodes/worker-react'
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
@@ -156,8 +156,8 @@ function useAdjustProportions(CADottedName: DottedName) {
 function ActivitéMixte() {
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
-	const rule = useAsyncGetRule('entreprise . activités . revenus mixtes')
 	const workerEngine = useWorkerEngine()
+	const rule = workerEngine.getRule('entreprise . activités . revenus mixtes')
 	const defaultChecked =
 		usePromise(
 			() =>

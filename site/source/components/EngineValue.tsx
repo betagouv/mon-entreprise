@@ -1,4 +1,4 @@
-import { useAsyncParsedRules, useWorkerEngine } from '@publicodes/worker-react'
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import {
 	ASTNode,
@@ -45,9 +45,7 @@ export default function Value<Names extends string>({
 	if (expression === null) {
 		throw new TypeError('expression cannot be null')
 	}
-	const parsedRules = useAsyncParsedRules({
-		workerEngine,
-	})
+	const parsedRules = workerEngine.getParsedRules()
 
 	const isRule =
 		typeof expression === 'string' && parsedRules && expression in parsedRules

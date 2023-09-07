@@ -1,5 +1,5 @@
 import {
-	useAsyncGetRule,
+	usePromise,
 	useWorkerEngine,
 	WorkerEngine,
 } from '@publicodes/worker-react'
@@ -17,7 +17,6 @@ import React, { useEffect } from 'react'
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { DateFieldProps } from '@/design-system/field/DateField'
-import { usePromise } from '@/hooks/usePromise'
 import { getMeta, isNotNull } from '@/utils'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
@@ -98,7 +97,8 @@ export default function RuleInput({
 
 	const workerEngine = useWorkerEngine()
 
-	const rule = useAsyncGetRule(dottedName)
+	// const rule = useAsyncGetRule(dottedName)
+	const rule = workerEngine.getRule(dottedName)
 
 	// const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
 	// async
@@ -263,7 +263,7 @@ const getOnePossibilityOptions = async (
 	// engineId: number,
 	path: DottedName
 ): Promise<Choice> => {
-	const node = await workerEngine.asyncGetRule(path)
+	const node = workerEngine.getRule(path)
 
 	// if (path === 'entreprise . activité . nature') debugger
 
@@ -322,9 +322,6 @@ async function isMultiplePossibilities(
 	// return !!(engine.getRule(dottedName) as RuleWithMultiplePossibilities)
 	// 	.rawNode['plusieurs possibilités']
 
-	return !!(
-		(await workerEngine.asyncGetRule(
-			dottedName
-		)) as RuleWithMultiplePossibilities
-	).rawNode['plusieurs possibilités']
+	return !!(workerEngine.getRule(dottedName) as RuleWithMultiplePossibilities)
+		.rawNode['plusieurs possibilités']
 }

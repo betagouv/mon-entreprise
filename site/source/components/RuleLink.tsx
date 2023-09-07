@@ -1,4 +1,4 @@
-import { usePromise, useWorkerEngine } from '@publicodes/worker-react'
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { RuleLink as EngineRuleLink } from 'publicodes-react'
 import React from 'react'
@@ -16,24 +16,17 @@ export default function RuleLink(
 ) {
 	const { dottedName, documentationPath, children, ...linkProps } = props
 	const { absoluteSitePaths } = useSitePaths()
-	const [loading, setLoading] = React.useState(true)
-	const [error, setError] = React.useState(false)
+
 	const workerEngine = useWorkerEngine()
 
-	usePromise(async () => {
-		setLoading(true)
-		setError(false)
+	let error = false
+	try {
+		workerEngine.getRule(dottedName)
+	} catch (err) {
+		error = true
+	}
 
-		try {
-			const rule = await workerEngine.asyncGetRule(dottedName)
-		} catch (error) {
-			setError(true)
-		}
-
-		setLoading(false)
-	}, [dottedName, workerEngine])
-
-	if (loading || error) {
+	if (error) {
 		return null
 	}
 

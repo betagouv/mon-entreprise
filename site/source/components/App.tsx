@@ -1,7 +1,5 @@
 import {
 	SuspensePromise,
-	useAsyncGetRule,
-	useAsyncParsedRules,
 	useAsyncShallowCopy,
 	useLazyPromise,
 	usePromise,
@@ -61,10 +59,13 @@ const TestWorkerEngine = () => {
 		{ defaultValue: 'loading...' }
 	)
 
-	const date = useAsyncGetRule('date', { defaultValue: 'loading...' })
-	const SMIC = useAsyncGetRule('SMIC', { defaultValue: 'loading...' })
+	// const date = useAsyncGetRule('date', { defaultValue: 'loading...' })
+	// const SMIC = useAsyncGetRule('SMIC', { defaultValue: 'loading...' })
+	const date = workerEngine.getRule('date')
+	const SMIC = workerEngine.getRule('SMIC')
 
-	const parsedRules = useAsyncParsedRules()
+	// const parsedRules = useAsyncParsedRules()
+	const parsedRules = workerEngine.getParsedRules()
 
 	const resultSmic = usePromise(
 		() => workerEngine.asyncEvaluate('SMIC'),
@@ -87,17 +88,17 @@ const TestWorkerEngine = () => {
 		})()
 	}, [triggerLazySmic, workerEngine.isWorkerReady])
 
-	// const workerEngineCopy = useAsyncShallowCopy(workerEngine)
-	// // // const workerEngineCopy = workerEngine
-	// console.log('=========>', workerEngine, workerEngineCopy)
+	const workerEngineCopy = useAsyncShallowCopy(workerEngine)
+	// // const workerEngineCopy = workerEngine
+	console.log('=========>', workerEngine, workerEngineCopy)
 
-	// const [, triggerCopy] = useLazyPromise(async () => {
-	// 	console.log('+++++++++>', workerEngineCopy)
+	const [, triggerCopy] = useLazyPromise(async () => {
+		console.log('+++++++++>', workerEngineCopy)
 
-	// 	await workerEngineCopy?.asyncSetSituation({
-	// 		SMIC: '2000€/mois',
-	// 	})
-	// }, [workerEngineCopy])
+		await workerEngineCopy?.asyncSetSituation({
+			SMIC: '2000€/mois',
+		})
+	}, [workerEngineCopy])
 
 	// const dateCopy = useAsyncGetRule('date', {
 	// 	defaultValue: 'loading...',
@@ -108,51 +109,54 @@ const TestWorkerEngine = () => {
 	// 	workerEngine: workerEngineCopy,
 	// })
 
-	// const resultSmicCopy = usePromise(
-	// 	async () =>
-	// 		!workerEngineCopy
-	// 			? 'still loading...'
-	// 			: workerEngineCopy.asyncEvaluate('SMIC'),
-	// 	[workerEngineCopy],
-	// 	'loading...'
-	// )
+	const dateCopy = workerEngineCopy?.getRule('date')
+	const parsedRulesCopy = workerEngineCopy?.getParsedRules()
 
-	// const [resultLazySmicCopy, triggerLazySmicCopy] = useLazyPromise(
-	// 	async () =>
-	// 		!workerEngineCopy
-	// 			? 'still loading...'
-	// 			: workerEngineCopy.asyncEvaluate('SMIC'),
-	// 	[workerEngineCopy],
-	// 	'wait 3sec...'
-	// )
+	const resultSmicCopy = usePromise(
+		async () =>
+			!workerEngineCopy
+				? 'still loading...'
+				: workerEngineCopy.asyncEvaluate('SMIC'),
+		[workerEngineCopy],
+		'loading...'
+	)
 
-	// useEffect(() => {
-	// 	// console.log('useEffect')
+	const [resultLazySmicCopy, triggerLazySmicCopy] = useLazyPromise(
+		async () =>
+			!workerEngineCopy
+				? 'still loading...'
+				: workerEngineCopy.asyncEvaluate('SMIC'),
+		[workerEngineCopy],
+		'wait 3sec...'
+	)
 
-	// 	void (async () => {
-	// 		await workerEngine.isWorkerReady
-	// 		setTimeout(() => {
-	// 			void triggerLazySmicCopy()
-	// 		}, 3000)
-	// 	})()
-	// }, [triggerLazySmicCopy, workerEngine.isWorkerReady])
+	useEffect(() => {
+		// console.log('useEffect')
 
-	// const { asyncSetSituation } = workerEngineCopy ?? {}
-	// usePromise(async () => {
-	// 	// console.log('**************>', workerEngineCopy, resultSmic)
+		void (async () => {
+			await workerEngine.isWorkerReady
+			setTimeout(() => {
+				void triggerLazySmicCopy()
+			}, 3000)
+		})()
+	}, [triggerLazySmicCopy, workerEngine.isWorkerReady])
 
-	// 	if (
-	// 		resultSmic &&
-	// 		typeof resultSmic !== 'string' &&
-	// 		typeof resultSmic.nodeValue === 'number'
-	// 	) {
-	// 		// console.log('ooooooooooooooooooo', resultSmic)
+	const { asyncSetSituation } = workerEngineCopy ?? {}
+	usePromise(async () => {
+		// console.log('**************>', workerEngineCopy, resultSmic)
 
-	// 		await asyncSetSituation?.({
-	// 			SMIC: resultSmic.nodeValue + '€/mois',
-	// 		})
-	// 	}
-	// }, [asyncSetSituation, resultSmic])
+		if (
+			resultSmic &&
+			typeof resultSmic !== 'string' &&
+			typeof resultSmic.nodeValue === 'number'
+		) {
+			// console.log('ooooooooooooooooooo', resultSmic)
+
+			await asyncSetSituation?.({
+				SMIC: resultSmic.nodeValue + '€/mois',
+			})
+		}
+	}, [asyncSetSituation, resultSmic])
 
 	return (
 		<div>
@@ -190,7 +194,7 @@ const TestWorkerEngine = () => {
 				)}
 			</p>
 
-			{/*	<p>workerEngineCopy: {JSON.stringify(workerEngineCopy?.engineId)}</p>
+			<p>workerEngineCopy: {JSON.stringify(workerEngineCopy?.engineId)}</p>
 
 			<p>
 				dateCopy title:{' '}
@@ -217,7 +221,7 @@ const TestWorkerEngine = () => {
 						? resultLazySmicCopy
 						: resultLazySmicCopy?.nodeValue
 				)}
-			</p> */}
+			</p>
 		</div>
 	)
 }
@@ -378,12 +382,10 @@ const App = () => {
 							<Route
 								path={relativeSitePaths.documentation.index + '/*'}
 								element={
-									<SuspensePromise isSSR={import.meta.env.SSR}>
-										<Documentation
-											documentationPath={documentationPath}
-											engine={workerEngine}
-										/>
-									</SuspensePromise>
+									<Documentation
+										documentationPath={documentationPath}
+										engine={workerEngine}
+									/>
 								}
 							/>
 							<Route

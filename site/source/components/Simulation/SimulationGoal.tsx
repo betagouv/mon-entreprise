@@ -1,4 +1,4 @@
-import { useAsyncGetRule, useWorkerEngine } from '@publicodes/worker-react'
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { formatValue, PublicodesExpression } from 'publicodes'
 import React, { useCallback, useState } from 'react'
@@ -60,7 +60,8 @@ export function SimulationGoal({
 			}),
 		[workerEngine, dottedName, round, isTypeBoolean, currentUnit]
 	)
-	const rule = useAsyncGetRule(dottedName)
+	// const rule = useAsyncGetRule(dottedName)
+	const rule = workerEngine.getRule(dottedName)
 	const initialRender = useInitialRender()
 	const [isFocused, setFocused] = useState(false)
 	const onChange = useCallback(

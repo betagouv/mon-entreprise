@@ -1,8 +1,4 @@
-import {
-	useAsyncParsedRules,
-	useWorkerEngine,
-	WorkerEngine,
-} from '@publicodes/worker-react'
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { ParsedRules, serializeEvaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
@@ -28,7 +24,9 @@ export default function useSearchParamsSimulationSharing() {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const objectifs = useSelector(configObjectifsSelector)
 	const dispatch = useDispatch()
-	const parsedRules = useAsyncParsedRules()
+	// const parsedRules = useAsyncParsedRules()
+	const workerEngine = useWorkerEngine()
+	const parsedRules = workerEngine.getParsedRules()
 
 	const dottedNameParamName = useMemo(
 		() => (parsedRules ? getRulesParamNames(parsedRules) : []),
@@ -76,8 +74,9 @@ export default function useSearchParamsSimulationSharing() {
 export const useParamsFromSituation = () => {
 	const situation = useSelector(situationSelector)
 	const companySituation = useSelector(companySituationSelector)
-	const parsedRules = useAsyncParsedRules()
+	// const parsedRules = useAsyncParsedRules()
 	const workerEngine = useWorkerEngine()
+	const parsedRules = workerEngine.getParsedRules()
 
 	const ret = usePromise(() => {
 		const dottedNameParamName = parsedRules

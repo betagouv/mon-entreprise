@@ -95,10 +95,9 @@ async function treatAPIMissingVariables(
 	return (
 		await Promise.all(
 			(Object.entries(missingVariables) as [DottedName, number][]).map(
-				async ([name, value]) => {
+				([name, value]) => {
 					const parentName = utils.ruleParent(name) as DottedName
-					const rule =
-						parentName && (await workerEngine.asyncGetRule(parentName))
+					const rule = parentName && workerEngine.getRule(parentName)
 
 					return [name, value, parentName, rule.rawNode.API] as const
 				}
