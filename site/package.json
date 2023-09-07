@@ -125,7 +125,6 @@
 		"@types/recharts": "^1.8.24",
 		"@types/serve-static": "^1.15.2",
 		"@vitejs/plugin-legacy": "^4.1.1",
-		"@vitejs/plugin-react-swc": "^3.3.2",
 		"@vitest/web-worker": "^0.34.3",
 		"cypress": "^12.5.1",
 		"cypress-axe": "^1.1.0",
