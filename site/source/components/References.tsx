@@ -1,4 +1,4 @@
-import { useWorkerEngine } from '@publicodes/worker-react'
+import { usePromise, useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { utils } from 'publicodes'
 import { styled } from 'styled-components'
@@ -7,7 +7,6 @@ import { styled } from 'styled-components'
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
-import { usePromise } from '@/hooks/usePromise'
 import { capitalise0, isNotNullOrUndefined } from '@/utils'
 
 export function References({
@@ -142,20 +141,18 @@ export function RuleReferences({ dottedNames }: { dottedNames: DottedName[] }) {
 				)
 			)
 
-			const refs = await Promise.all(
-				values
-					.filter(isNotNullOrUndefined)
-					.map(async (dottedName) =>
-						Object.entries(
-							workerEngine.getRule(dottedName as DottedName).rawNode
-								.références ?? {}
-						)
+			const refs = values
+				.filter(isNotNullOrUndefined)
+				.map((dottedName) =>
+					Object.entries(
+						workerEngine.getRule(dottedName as DottedName).rawNode.références ??
+							{}
 					)
-			)
+				)
 
 			return refs.flat()
 		},
-		[dottedNames],
+		[dottedNames, workerEngine],
 		[]
 	)
 
