@@ -1,4 +1,8 @@
-import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
+import {
+	usePromise,
+	useWorkerEngine,
+	WorkerEngine,
+} from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
@@ -6,14 +10,13 @@ import { useTranslation } from 'react-i18next'
 
 import { Checkbox } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
-import { usePromise } from '@/hooks/usePromise'
 
 import { ExplicableRule } from './Explicable'
 import { InputProps, RuleWithMultiplePossibilities } from './RuleInput'
 
 export function MultipleChoicesInput<Names extends string = DottedName>(
 	props: Omit<InputProps<DottedName>, 'onChange'> & {
-		engineId: number
+		// engineId: number
 		onChange: (value: PublicodesExpression, name: DottedName) => void
 	}
 ) {
@@ -21,7 +24,7 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 	const workerEngine = useWorkerEngine()
 	const choices = getMultiplePossibilitiesOptions(
 		workerEngine,
-		engineId,
+		// engineId,
 		dottedName
 	)
 
@@ -47,7 +50,7 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 						onChange={(isSelected) =>
 							void handleChange(isSelected, node.dottedName)
 						}
-						engineId={engineId}
+						// engineId={engineId}
 					/>
 				</Fragment>
 			))}
@@ -57,10 +60,14 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 
 type CheckBoxRuleProps = {
 	node: RuleNode
-	engineId: number
+	// engineId: number
 	onChange: (isSelected: boolean) => void
 }
-function CheckBoxRule({ node, engineId, onChange }: CheckBoxRuleProps) {
+function CheckBoxRule({
+	node,
+	// engineId,
+	onChange,
+}: CheckBoxRuleProps) {
 	const workerEngine = useWorkerEngine()
 
 	const evaluation = usePromise(
@@ -95,7 +102,7 @@ function CheckBoxRule({ node, engineId, onChange }: CheckBoxRuleProps) {
 
 function getMultiplePossibilitiesOptions(
 	workerEngine: WorkerEngine,
-	engineId: number,
+	// engineId: number,
 	// engine: Engine<Name>,
 	dottedName: DottedName
 ): RuleNode<DottedName>[] {

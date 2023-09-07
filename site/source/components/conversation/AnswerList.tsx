@@ -1,4 +1,4 @@
-import { useWorkerEngine } from '@publicodes/worker-react'
+import { usePromise, useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode, utils } from 'publicodes'
 import { useCallback, useMemo } from 'react'
@@ -17,7 +17,6 @@ import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { usePromise } from '@/hooks/usePromise'
 import { answerQuestion, resetSimulation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
@@ -79,30 +78,21 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 	const situationQuestions = useMemo(
 		() =>
 			answeredAndPassedQuestions.filter(
-				({ dottedName }) => !isCompanyDottedName(dottedName)
+				({ dottedName }) => !isCompanyDottedName(dottedName as DottedName)
 			),
 		[answeredAndPassedQuestions]
 	)
-	const companyQuestions = usePromise(
-		() =>
-			Promise.all(
-				Array.from(
-					new Set(
-						(
-							[
-								...answeredAndPassedQuestions.map(
-									({ dottedName }) => dottedName
-								),
-								...Object.keys(situation),
-								...Object.keys(companySituation),
-							] as Array<DottedName>
-						).filter(isCompanyDottedName)
-					)
-				).map((dottedName) => workerEngine.getRule(dottedName))
-			),
-		[answeredAndPassedQuestions, companySituation, situation, workerEngine],
-		[] as RuleNode<DottedName>[]
-	)
+	const companyQuestions = Array.from(
+		new Set(
+			(
+				[
+					...answeredAndPassedQuestions.map(({ dottedName }) => dottedName),
+					...Object.keys(situation),
+					...Object.keys(companySituation),
+				] as Array<DottedName>
+			).filter(isCompanyDottedName)
+		)
+	).map((dottedName) => workerEngine.getRule(dottedName))
 
 	const siret = usePromise(
 		async () =>

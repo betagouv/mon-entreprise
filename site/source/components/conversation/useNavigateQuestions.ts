@@ -1,4 +1,5 @@
 import { WorkerEngine } from '@publicodes/worker-react'
+import { DottedName } from 'modele-social'
 import { useCallback, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -48,7 +49,8 @@ export function useNavigateQuestions(workerEngines?: WorkerEngine[]) {
 	}, [currentQuestion, dispatch, nextQuestions])
 
 	return {
-		currentQuestion: currentQuestion ?? nextQuestions[0],
+		currentQuestion:
+			currentQuestion ?? (nextQuestions[0] as DottedName | undefined),
 		currentQuestionIsAnswered,
 		goToPrevious,
 		goToNext,

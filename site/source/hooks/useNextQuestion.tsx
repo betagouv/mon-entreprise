@@ -74,7 +74,7 @@ export const useNextQuestions = function (
 	const workerEngine = useWorkerEngine()
 	const missingVariables = useMissingVariables(workerEngines)
 
-	return useMemo(() => {
+	const nextQuestions = useMemo(() => {
 		const next = getNextQuestions(
 			missingVariables,
 			config.questions ?? {},
@@ -83,13 +83,10 @@ export const useNextQuestions = function (
 
 		const rules = next.map((question) => workerEngine.getRule(question))
 
-		const nextQuestions = next.filter(
-			(_, i) => rules[i].rawNode.question !== undefined
-		)
-		console.log('nextQuestions', nextQuestions)
+		return next.filter((_, i) => rules[i].rawNode.question !== undefined)
+	}, [missingVariables, config.questions, answeredQuestions, workerEngine])
 
-		return nextQuestions
-	}, [answeredQuestions, config, missingVariables])
+	return nextQuestions
 }
 
 export function useSimulationProgress(): {

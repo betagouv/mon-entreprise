@@ -63,7 +63,7 @@ export type InputProps<Name extends string = string> = Omit<
 		value: EvaluatedNode['nodeValue']
 		onChange: (value: PublicodesExpression | undefined) => void
 		// engine: Engine<Name>
-		engineId: number
+		// engineId: number
 	}
 
 export const binaryQuestion = [
@@ -84,7 +84,7 @@ export default function RuleInput({
 	missing,
 	inputType,
 	modifiers,
-	engineId = 0,
+	// engineId = 0, // TODO engine id is in worker engine so we need to accept workerEngine from props
 	...props
 }: Props<DottedName>) {
 	// const defaultEngine = useContext(EngineContext)
@@ -109,7 +109,7 @@ export default function RuleInput({
 	const value = evaluation?.nodeValue
 
 	const isMultipleChoices =
-		rule && isMultiplePossibilities(workerEngine, engineId, dottedName)
+		rule && isMultiplePossibilities(workerEngine, dottedName)
 
 	const choice = usePromise(
 		() => getOnePossibilityOptions(workerEngine, dottedName),
@@ -132,7 +132,7 @@ export default function RuleInput({
 		question: rule.rawNode.question,
 		suggestions: showSuggestions ? rule.suggestions : {},
 		// engine: engineValue,
-		engineId,
+		// engineId,
 		...props,
 		// Les espaces ne sont pas autorisés dans un id, les points sont assimilés à une déclaration de class CSS par Cypress
 		id: props?.id?.replace(/\s|\.]/g, '_') ?? dottedName.replace(/\s|\./g, '_'),
@@ -143,7 +143,7 @@ export default function RuleInput({
 		return (
 			<MultipleChoicesInput
 				{...commonProps}
-				engineId={engineId}
+				// engineId={engineId}
 				onChange={onChange}
 			/>
 		)
@@ -245,11 +245,6 @@ const getOnePossibilityOptions = async (
 ): Promise<Choice> => {
 	const node = workerEngine.getRule(path)
 
-	// if (path === 'entreprise . activité . nature') debugger
-
-	if (!node) {
-		throw new Error(`La règle ${path} est introuvable`)
-	}
 	const variant = isOnePossibility(node)
 	const canGiveUp =
 		variant &&
@@ -265,8 +260,6 @@ const getOnePossibilityOptions = async (
 							(
 								variant.explanation as (ASTNode & { nodeKind: 'reference' })[]
 							).map(async (explanation) => {
-								console.log('=>>>>', explanation)
-
 								const evaluate = await workerEngine.asyncEvaluate(explanation)
 
 								return evaluate.nodeValue !== null
@@ -293,13 +286,8 @@ export type RuleWithMultiplePossibilities = RuleNode & {
 
 function isMultiplePossibilities(
 	workerEngine: WorkerEngine,
-	engineId: number,
-	//  Engine<Name>,
 	dottedName: DottedName
 ): boolean {
-	// return !!(engine.getRule(dottedName) as RuleWithMultiplePossibilities)
-	// 	.rawNode['plusieurs possibilités']
-
 	return !!(workerEngine.getRule(dottedName) as RuleWithMultiplePossibilities)
 		.rawNode['plusieurs possibilités']
 }
