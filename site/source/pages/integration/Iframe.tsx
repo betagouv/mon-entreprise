@@ -3,7 +3,7 @@ import { str2Color } from '@atomik-color/core'
 import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useHref, useSearchParams } from 'react-router-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import urssafLogo from '@/assets/images/Urssaf.svg'
 import { TrackPage } from '@/components/ATInternetTracking'

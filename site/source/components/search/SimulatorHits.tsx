@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 import { Hit } from 'react-instantsearch-core'
 import { connectHits } from 'react-instantsearch-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { SmallCard } from '@/design-system/card'
 import { Emoji } from '@/design-system/emoji'

@@ -1,7 +1,7 @@
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'

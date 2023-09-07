@@ -1,7 +1,7 @@
 import { useRadioGroup } from '@react-aria/radio'
 import { useRadioGroupState } from '@react-stately/radio'
 import { AriaRadioGroupProps } from '@react-types/radio'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import {
 	InputRadio,

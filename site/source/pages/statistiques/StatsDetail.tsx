@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 import { BrushProps } from 'recharts'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { toAtString } from '@/components/ATInternetTracking'
 import PagesChart from '@/components/charts/PagesCharts'

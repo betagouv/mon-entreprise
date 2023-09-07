@@ -2,7 +2,7 @@ import { DottedName } from 'modele-social'
 import { useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
 import { connectInfiniteHits } from 'react-instantsearch-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'

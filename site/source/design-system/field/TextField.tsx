@@ -1,6 +1,6 @@
 import { AriaTextFieldOptions, useTextField } from '@react-aria/textfield'
 import { HTMLAttributes, RefObject, useRef } from 'react'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { ExtraSmallBody } from '@/design-system/typography/paragraphs'
 import { omit } from '@/utils'

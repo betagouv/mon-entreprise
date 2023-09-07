@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { Button } from '@/design-system/buttons'

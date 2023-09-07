@@ -1,7 +1,7 @@
 import { useSearchFieldState } from '@react-stately/searchfield'
 import { ReactNode, useEffect, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import {

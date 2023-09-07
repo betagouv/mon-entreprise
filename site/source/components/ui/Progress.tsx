@@ -1,6 +1,6 @@
 import { useProgressBar } from '@react-aria/progress'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Body } from '@/design-system/typography/paragraphs'
 

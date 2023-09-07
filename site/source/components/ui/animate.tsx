@@ -7,7 +7,7 @@ import {
 	useTrail,
 } from 'react-spring'
 import useMeasure from 'react-use-measure'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { DisableAnimationContext } from '@/components/utils/DisableAnimationContext'
 

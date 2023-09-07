@@ -128,11 +128,7 @@ export default defineConfig(({ command, mode }) => ({
 		 * markdown-to-jsx: https://github.com/probablyup/markdown-to-jsx/pull/414
 		 * styled-components: https://github.com/styled-components/styled-components/issues/3601 (wait v6 release)
 		 */
-		noExternal: [
-			/markdown-to-jsx/,
-			/styled-components|emotion/,
-			/publicodes-react/, // use styled-components
-		],
+		noExternal: [/styled-components|emotion/, /tslib/],
 	},
 }))
 

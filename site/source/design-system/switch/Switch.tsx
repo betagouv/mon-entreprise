@@ -1,7 +1,7 @@
 import { useSwitch } from '@react-aria/switch'
 import { useToggleState } from '@react-stately/toggle'
 import { ReactNode, useRef } from 'react'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { FocusStyle, SROnly } from '@/design-system/global-style'
 

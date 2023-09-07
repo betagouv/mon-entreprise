@@ -6,7 +6,7 @@ import { useSelectState } from '@react-stately/select'
 import type { AriaSelectProps } from '@react-types/select'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '@/design-system/global-style'
 import { CarretDownIcon } from '@/design-system/icons'

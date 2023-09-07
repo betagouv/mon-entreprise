@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 const baseHeading = css`
 	font-family: 'Montserrat', sans-serif;

@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'

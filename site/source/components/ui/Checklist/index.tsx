@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Markdown } from '@/components/utils/markdown'
 import { ScrollToElement } from '@/components/utils/Scroll'

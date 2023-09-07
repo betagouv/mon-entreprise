@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { Chip } from '@/design-system'
 import { Button } from '@/design-system/buttons'

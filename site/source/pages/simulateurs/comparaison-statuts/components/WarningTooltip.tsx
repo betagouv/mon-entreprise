@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { WarningIcon } from '@/design-system/icons'
 import { Tooltip } from '@/design-system/tooltip'

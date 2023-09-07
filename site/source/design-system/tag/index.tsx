@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Colors, getColorGroup, isColor } from '../theme'
 import { KeysOfUnion, LG, MD, SM } from '../types'

@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Article } from '@/design-system/card'
 import { Spacing } from '@/design-system/layout'

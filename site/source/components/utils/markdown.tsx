@@ -1,7 +1,7 @@
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import React, { useContext, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'

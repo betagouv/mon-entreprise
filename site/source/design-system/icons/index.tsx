@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 export const SvgIcon = styled.svg`
 	/* width: ${({ theme }) => theme.spacings.lg};

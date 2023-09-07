@@ -1,5 +1,5 @@
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover'
 import { Li, Ul } from '@/design-system/typography/list'

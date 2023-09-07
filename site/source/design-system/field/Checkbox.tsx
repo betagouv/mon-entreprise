@@ -2,7 +2,7 @@ import { useCheckbox } from '@react-aria/checkbox'
 import { useToggleState } from '@react-stately/toggle'
 import { AriaCheckboxProps } from '@react-types/checkbox'
 import { useRef } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Body } from '@/design-system/typography/paragraphs'
 

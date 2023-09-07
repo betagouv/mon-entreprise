@@ -1,6 +1,6 @@
 import { ReactNode, useRef } from 'react'
 import { Trans } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
 import { CardContainer } from '@/design-system/card/Card'

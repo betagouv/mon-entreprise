@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import { forwardRef } from 'react'
 import FlipMove from 'react-flip-move'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
 import { useEngine } from '@/components/utils/EngineContext'

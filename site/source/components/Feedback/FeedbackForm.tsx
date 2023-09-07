@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { ScrollToElement } from '@/components/utils/Scroll'
 import { Checkbox, Message, TextAreaField, TextField } from '@/design-system'

@@ -1,5 +1,5 @@
 import { InstantSearch, InstantSearchProps } from 'react-instantsearch-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 interface SearchType extends InstantSearchProps {
 	role?: string

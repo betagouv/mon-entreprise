@@ -9,7 +9,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useId } from 'react-aria'
 import { DayPicker, useInput } from 'react-day-picker'
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
