@@ -88,7 +88,7 @@ export default function Conversation({
 
 	const formRef = React.useRef<HTMLFormElement>(null)
 	const workerEngine = useWorkerEngine()
-	const rule = workerEngine.getRule(currentQuestion)
+	const rule = currentQuestion && workerEngine.getRule(currentQuestion)
 
 	const question = usePromise(
 		async () => rule && evaluateQuestion(workerEngine, rule),
