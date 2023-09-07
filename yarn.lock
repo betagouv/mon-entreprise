@@ -7388,9 +7388,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/api@portal:/home/johan/Projets/publicodes/packages/api::locator=root%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@publicodes/api@portal:/home/johan/Projets/publicodes/packages/api::locator=root%40workspace%3A."
+"@publicodes/api@betagouv/publicodes#head=publicodes-in-worker&workspace=@publicodes/api&v0":
+  version: 1.0.0-beta.72
+  resolution: "@publicodes/api@https://github.com/betagouv/publicodes.git#workspace=%40publicodes%2Fapi&v0=&commit=6eab7e0019e133a012b216da6d60e3314aec5707"
   dependencies:
     "@koa/cors": ^3.3.0
     "@koa/router": ^10.1.1
@@ -7399,28 +7399,31 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.47
+  checksum: 4e0c9c6967e26468612501ea396f93b9ff9304c25d59550b1428baf09e7d1e2b2857716f18d84f582183051e3c7e6078034e7ea8e170314a10fd7b6c0785b96f
   languageName: node
-  linkType: soft
+  linkType: hard
 
-"@publicodes/worker-react@portal:/home/johan/Projets/publicodes/packages/worker-react::locator=root%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@publicodes/worker-react@portal:/home/johan/Projets/publicodes/packages/worker-react::locator=root%40workspace%3A."
+"@publicodes/worker-react@betagouv/publicodes#head=publicodes-in-worker&workspace=@publicodes/worker-react&v0":
+  version: 1.0.0-beta.71
+  resolution: "@publicodes/worker-react@https://github.com/betagouv/publicodes.git#workspace=%40publicodes%2Fworker-react&v0=&commit=6eab7e0019e133a012b216da6d60e3314aec5707"
   dependencies:
-    "@publicodes/worker": "workspace:^"
+    "@publicodes/worker": ^1.0.0-beta.71
   peerDependencies:
     publicodes: ^1.0.0-beta.40
     react: ^17 || ^18
     react-dom: ^17 || ^18
+  checksum: 2428c2acd4a5cde2432c532562044b94fef0e9aa430406cc07c164caa71ec6484cdcf7906face107968d42bba70b1aa86e35f37bbcc63b9b2f000ba17c7e327d
   languageName: node
-  linkType: soft
+  linkType: hard
 
-"@publicodes/worker@portal:/home/johan/Projets/publicodes/packages/worker::locator=root%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@publicodes/worker@portal:/home/johan/Projets/publicodes/packages/worker::locator=root%40workspace%3A."
+"@publicodes/worker@betagouv/publicodes#head=publicodes-in-worker&workspace=@publicodes/worker&v0":
+  version: 1.0.0-beta.71
+  resolution: "@publicodes/worker@https://github.com/betagouv/publicodes.git#workspace=%40publicodes%2Fworker&v0=&commit=6eab7e0019e133a012b216da6d60e3314aec5707"
   peerDependencies:
     publicodes: ^1.0.0-beta.40
+  checksum: 26c9335ef5b4f28f241ed21f2409dc2509293432f070b76524dea877ffdf82f08e349183f87463e9f5c61ee6548640af741c40e5970f13973c8b1a250d39f6c1
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "@react-aria/accordion@npm:^3.0.0-alpha.17":
   version: 3.0.0-nightly.3854
@@ -25145,26 +25148,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@portal:/home/johan/Projets/publicodes/packages/react-ui::locator=root%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "publicodes-react@portal:/home/johan/Projets/publicodes/packages/react-ui::locator=root%40workspace%3A."
+"publicodes-react@betagouv/publicodes#head=publicodes-in-worker&workspace=publicodes-react&v0":
+  version: 1.0.0-beta.72
+  resolution: "publicodes-react@https://github.com/betagouv/publicodes.git#workspace=publicodes-react&v0=&commit=6eab7e0019e133a012b216da6d60e3314aec5707"
   dependencies:
-    "@publicodes/worker-react": "workspace:^"
+    "@publicodes/worker-react": ^1.0.0-beta.71
     styled-components: ^6.0.7
   peerDependencies:
     publicodes: ^1.0.0-beta.72
     react: ^18
     react-dom: ^18
+  checksum: e775ffb71a63949fbb2f3f55e97981b376464e3cc075f3c4f4c443e516d66910d7346a1f3952ffc905237680ba532253fde57a24b17a46e48c6940321383dedb
   languageName: node
-  linkType: soft
+  linkType: hard
 
-"publicodes@portal:/home/johan/Projets/publicodes/packages/core::locator=root%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "publicodes@portal:/home/johan/Projets/publicodes/packages/core::locator=root%40workspace%3A."
+"publicodes@betagouv/publicodes#head=publicodes-in-worker&workspace=publicodes&v0":
+  version: 1.0.0-beta.72
+  resolution: "publicodes@https://github.com/betagouv/publicodes.git#workspace=publicodes&v0=&commit=6eab7e0019e133a012b216da6d60e3314aec5707"
   peerDependencies:
     "@types/mocha": ^9.0.0
+  checksum: ab67797de175ae5b6991cf6de0163d927160599afb5d002b611b7e39844d06a3c855615cd4ebced250c60e1e9e86335579ba61e417e3fdcac9cf18f5c8ec003d
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "pump@npm:3.0.0, pump@npm:^3.0.0":
   version: 3.0.0
