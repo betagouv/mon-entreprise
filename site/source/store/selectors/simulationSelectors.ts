@@ -88,34 +88,30 @@ export const shouldFocusFieldSelector = (state: RootState) =>
  *
  * For instance, the commune field (API) will fill `commune . nom` `commune . taux versement transport`, `commune . département`, etc.
  */
-async function treatAPIMissingVariables(
+function treatAPIMissingVariables(
 	missingVariables: Partial<Record<DottedName, number>>,
 	workerEngine: WorkerEngine
-): Promise<Partial<Record<DottedName, number>>> {
-	return (
-		await Promise.all(
-			(Object.entries(missingVariables) as [DottedName, number][]).map(
-				([name, value]) => {
-					const parentName = utils.ruleParent(name) as DottedName
-					const rule = parentName && workerEngine.getRule(parentName)
+): Partial<Record<DottedName, number>> {
+	return (Object.entries(missingVariables) as [DottedName, number][])
+		.map(([name, value]) => {
+			const parentName = utils.ruleParent(name) as DottedName
+			const rule = parentName && workerEngine.getRule(parentName)
 
-					return [name, value, parentName, rule.rawNode.API] as const
+			return [name, value, parentName, rule.rawNode.API] as const
+		})
+		.reduce(
+			(missings, [name, value, parentName, API]) => {
+				if (API) {
+					missings[parentName] = (missings[parentName] ?? 0) + value
+
+					return missings
 				}
-			)
-		)
-	).reduce(
-		(missings, [name, value, parentName, API]) => {
-			if (API) {
-				missings[parentName] = (missings[parentName] ?? 0) + value
+				missings[name] = value
 
 				return missings
-			}
-			missings[name] = value
-
-			return missings
-		},
-		{} as Partial<Record<DottedName, number>>
-	)
+			},
+			{} as Partial<Record<DottedName, number>>
+		)
 }
 
 const mergeMissing = (

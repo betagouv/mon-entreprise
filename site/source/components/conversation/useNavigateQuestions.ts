@@ -1,4 +1,4 @@
-import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
+import { WorkerEngine } from '@publicodes/worker-react'
 import { useCallback, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 

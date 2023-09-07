@@ -16,9 +16,11 @@ import React from 'react'
 
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
+import { DateFieldProps } from '@/design-system/field/DateField'
 import { getMeta, isNotNull } from '@/utils'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
+import DateInput from './DateInput'
 import { MultipleChoicesInput } from './MulipleChoicesInput'
 
 type InputType = 'radio' | 'card' | 'toggle' | 'select'
@@ -91,7 +93,6 @@ export default function RuleInput({
 
 	const workerEngine = useWorkerEngine()
 
-	// const rule = useAsyncGetRule(dottedName)
 	const rule = workerEngine.getRule(dottedName)
 
 	// const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
@@ -107,30 +108,13 @@ export default function RuleInput({
 
 	const value = evaluation?.nodeValue
 
-	const isMultipleChoices = usePromise(
-		async () =>
-			rule && isMultiplePossibilities(workerEngine, engineId, dottedName),
-		[dottedName, engineId, rule, workerEngine]
-	)
-
-	console.log('=>', dottedName)
+	const isMultipleChoices =
+		rule && isMultiplePossibilities(workerEngine, engineId, dottedName)
 
 	const choice = usePromise(
 		() => getOnePossibilityOptions(workerEngine, dottedName),
 		[workerEngine, dottedName]
 	)
-
-	dottedName === 'entreprise . activité . nature' &&
-		console.log(
-			'choice',
-			isMultipleChoices,
-			choice,
-			rule && isOnePossibility(rule)
-		)
-
-	if (!rule || isMultipleChoices === undefined) {
-		return <p>Chargement...</p>
-	}
 
 	const commonProps: InputProps<DottedName> = {
 		dottedName,
@@ -203,10 +187,12 @@ export default function RuleInput({
 	}
 
 	if (rule.rawNode.type?.startsWith('date')) {
-		return `<DateInput
+		return (
+			<DateInput
 				{...commonProps}
 				type={rule.rawNode.type as DateFieldProps['type']}
-			/>`
+			/>
+		)
 	}
 
 	if (
@@ -269,7 +255,7 @@ const getOnePossibilityOptions = async (
 		variant &&
 		(!variant['choix obligatoire'] || variant['choix obligatoire'] === 'non')
 
-	const ttt = Object.assign(
+	const choice = Object.assign(
 		node,
 		variant
 			? {
@@ -296,9 +282,7 @@ const getOnePossibilityOptions = async (
 			: null
 	) as Choice
 
-	console.log('choice=>', ttt)
-
-	return ttt
+	return choice
 }
 
 export type RuleWithMultiplePossibilities = RuleNode & {
@@ -307,12 +291,12 @@ export type RuleWithMultiplePossibilities = RuleNode & {
 	}
 }
 
-async function isMultiplePossibilities(
+function isMultiplePossibilities(
 	workerEngine: WorkerEngine,
 	engineId: number,
 	//  Engine<Name>,
 	dottedName: DottedName
-): Promise<boolean> {
+): boolean {
 	// return !!(engine.getRule(dottedName) as RuleWithMultiplePossibilities)
 	// 	.rawNode['plusieurs possibilités']
 

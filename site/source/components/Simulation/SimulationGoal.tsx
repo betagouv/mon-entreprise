@@ -50,6 +50,7 @@ export function SimulationGoal({
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const currentUnit = useSelector(targetUnitSelector)
+
 	const workerEngine = useWorkerEngine()
 	const evaluation = usePromise(
 		() =>
@@ -60,7 +61,9 @@ export function SimulationGoal({
 			}),
 		[workerEngine, dottedName, round, isTypeBoolean, currentUnit]
 	)
+
 	const rule = workerEngine.getRule(dottedName)
+
 	const initialRender = useInitialRender()
 	const [isFocused, setFocused] = useState(false)
 	const onChange = useCallback(
@@ -72,7 +75,9 @@ export function SimulationGoal({
 	)
 
 	if (
+		// Si le champs est non applicable
 		evaluation?.nodeValue === null ||
+		// Ou si il est petit, non editable et qu'il n'est pas défini
 		(small && !editable && evaluation?.nodeValue === undefined)
 	) {
 		return null

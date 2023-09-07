@@ -1,6 +1,5 @@
 import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
-import Engine, { RuleNode } from 'publicodes'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -11,8 +10,6 @@ import {
 	useMissingVariables,
 } from '@/store/selectors/simulationSelectors'
 import { ImmutableType } from '@/types/utils'
-
-import { usePromise } from './usePromise'
 
 // import { useEngine } from '../components/utils/EngineContext'
 
@@ -77,23 +74,22 @@ export const useNextQuestions = function (
 	const workerEngine = useWorkerEngine()
 	const missingVariables = useMissingVariables(workerEngines)
 
-	const nextQuestions = usePromise(
-		async () => {
-			const next = getNextQuestions(
-				missingVariables,
-				config.questions ?? {},
-				answeredQuestions
-			)
+	return useMemo(() => {
+		const next = getNextQuestions(
+			missingVariables,
+			config.questions ?? {},
+			answeredQuestions
+		)
 
-			const rules = next.map((question) => workerEngine.getRule(question))
+		const rules = next.map((question) => workerEngine.getRule(question))
 
-			return next.filter((_, i) => rules[i].rawNode.question !== undefined)
-		},
-		[missingVariables, config.questions, answeredQuestions, workerEngine],
-		[] as DottedName[]
-	)
+		const nextQuestions = next.filter(
+			(_, i) => rules[i].rawNode.question !== undefined
+		)
+		console.log('nextQuestions', nextQuestions)
 
-	return nextQuestions
+		return nextQuestions
+	}, [answeredQuestions, config, missingVariables])
 }
 
 export function useSimulationProgress(): {

@@ -1,6 +1,7 @@
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { NumberFieldProps } from '@react-types/numberfield'
 import { ASTNode, parseUnit, serializeUnit, Unit } from 'publicodes'
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -30,7 +31,7 @@ export default function NumberInput({
 	)
 	const { i18n, t } = useTranslation()
 	const parsedDisplayedUnit = displayedUnit ? parseUnit(displayedUnit) : unit
-
+	const workerEngine = useWorkerEngine()
 	useEffect(() => {
 		if (value !== currentValue) {
 			setCurrentValue(
@@ -99,7 +100,7 @@ export default function NumberInput({
 				className="print-hidden"
 				suggestions={suggestions}
 				onFirstClick={async (node: ASTNode) => {
-					const evaluatedNode = await asyncEvaluate(node)
+					const evaluatedNode = await workerEngine.asyncEvaluate(node)
 					if (serializeUnit(evaluatedNode.unit) === serializeUnit(unit)) {
 						setCurrentValue(evaluatedNode.nodeValue as number)
 					}

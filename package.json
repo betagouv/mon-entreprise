@@ -67,11 +67,11 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"styled-components": "^6.0.7",
-		"@publicodes/api": "betagouv/publicodes#head=publicodes-in-worker&workspace=@publicodes/api&v0",
-		"publicodes": "betagouv/publicodes#head=publicodes-in-worker&workspace=publicodes&v0",
-		"publicodes-react": "betagouv/publicodes#head=publicodes-in-worker&workspace=publicodes-react&v0",
-		"@publicodes/worker": "betagouv/publicodes#head=publicodes-in-worker&workspace=@publicodes/worker&v0",
-		"@publicodes/worker-react": "betagouv/publicodes#head=publicodes-in-worker&workspace=@publicodes/worker-react&v0"
+		"@publicodes/api": "portal:/home/johan/Projets/publicodes/packages/api",
+		"publicodes": "portal:/home/johan/Projets/publicodes/packages/core",
+		"publicodes-react": "portal:/home/johan/Projets/publicodes/packages/react-ui",
+		"@publicodes/worker": "portal:/home/johan/Projets/publicodes/packages/worker",
+		"@publicodes/worker-react": "portal:/home/johan/Projets/publicodes/packages/worker-react"
 	},
 	"packageManager": "yarn@3.6.3",
 	"engines": {

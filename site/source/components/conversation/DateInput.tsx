@@ -1,10 +1,11 @@
+// import { useEngine } from '../utils/EngineContext'
+import { useWorkerEngine } from '@publicodes/worker-react'
 import { useCallback } from 'react'
 
 import { InputProps } from '@/components/conversation/RuleInput'
 import { DateField } from '@/design-system/field'
 import { DateFieldProps } from '@/design-system/field/DateField'
 
-// import { useEngine } from '../utils/EngineContext'
 import InputSuggestions from './InputSuggestions'
 
 export default function DateInput({
@@ -17,7 +18,7 @@ export default function DateInput({
 	value,
 	type,
 }: InputProps & { type: DateFieldProps['type'] }) {
-	// const engine = useEngine()
+	const engine = useWorkerEngine()
 
 	const convertDate = (val?: unknown) => {
 		if (!val || typeof val !== 'string') {
@@ -46,13 +47,13 @@ export default function DateInput({
 				{suggestions && (
 					<InputSuggestions
 						suggestions={suggestions}
-						onFirstClick={(node) => {
-							// const value = engine.evaluate(node)
-							// handleDateChange(
-							// 	'nodeValue' in value && typeof value.nodeValue === 'string'
-							// 		? value.nodeValue
-							// 		: undefined
-							// )
+						onFirstClick={async (node) => {
+							const value = await engine.asyncEvaluate(node)
+							handleDateChange(
+								'nodeValue' in value && typeof value.nodeValue === 'string'
+									? value.nodeValue
+									: undefined
+							)
 						}}
 						onSecondClick={() => {
 							onSubmit?.('suggestion')
