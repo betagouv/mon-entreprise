@@ -25165,6 +25165,7 @@ __metadata:
     serve-static: ^1.15.0
     storybook: ^7.0.5
     styled-components: ^6.0.7
+    stylis: ^4.0.0
     ts-morph: ^17.0.1
     ts-node: ^10.9.1
     typescript: ^5.2.2
@@ -25995,7 +25996,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylis@npm:^4.3.0":
+"stylis@npm:^4.0.0, stylis@npm:^4.3.0":
   version: 4.3.0
   resolution: "stylis@npm:4.3.0"
   checksum: 6120de3f03eacf3b5adc8e7919c4cca991089156a6badc5248752a3088106afaaf74996211a6817a7760ebeadca09004048eea31875bd8d4df51386365c50025

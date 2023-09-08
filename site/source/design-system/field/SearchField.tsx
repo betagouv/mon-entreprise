@@ -38,9 +38,9 @@ const SearchInputContainer = styled(StyledInputContainer)`
 	}
 `
 
-const IconContainer = styled.div<{ hasLabel?: boolean }>`
+const IconContainer = styled.div<{ $hasLabel?: boolean }>`
 	padding: calc(
-			${({ hasLabel = false }) => (hasLabel ? '1rem' : '0rem')} + 0.5rem
+			${({ $hasLabel = false }) => ($hasLabel ? '1rem' : '0rem')} + 0.5rem
 		)
 		0 0.5rem;
 `
@@ -67,10 +67,10 @@ export default function SearchField(
 	return (
 		<StyledContainer>
 			<SearchInputContainer
-				hasError={!!props.errorMessage || props.validationState === 'invalid'}
-				hasLabel={!!props.label}
+				$hasError={!!props.errorMessage || props.validationState === 'invalid'}
+				$hasLabel={!!props.label}
 			>
-				<IconContainer hasLabel={!!props.label}>
+				<IconContainer $hasLabel={!!props.label}>
 					{props.isSearchStalled ? <Loader /> : <SearchIcon aria-hidden />}
 				</IconContainer>
 				<SearchInput

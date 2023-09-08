@@ -86,7 +86,9 @@ const OuterContainer = styled.div<OuterContainerProps>`
 	flex-direction: column;
 	min-width: 100vw;
 	background-color: ${({ theme, $backgroundColor }) =>
-		$backgroundColor ? $backgroundColor(theme) : theme.colors};
+		$backgroundColor
+			? $backgroundColor(theme)
+			: theme.colors.extended.grey[100]};
 	@media print {
 		min-width: initial;
 	}

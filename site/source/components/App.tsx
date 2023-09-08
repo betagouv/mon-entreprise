@@ -111,7 +111,7 @@ const App = () => {
 	const engine = useEngine()
 
 	return (
-		<StyledLayout isEmbedded={isEmbedded}>
+		<StyledLayout $isEmbedded={isEmbedded}>
 			{!isEmbedded && <Header />}
 
 			<main
@@ -192,10 +192,10 @@ const App = () => {
 }
 
 const StyledLayout = styled.div<{
-	isEmbedded: boolean
+	$isEmbedded: boolean
 }>`
-	${({ isEmbedded }) =>
-		!isEmbedded &&
+	${({ $isEmbedded }) =>
+		!$isEmbedded &&
 		css`
 			flex-direction: column;
 			display: flex;

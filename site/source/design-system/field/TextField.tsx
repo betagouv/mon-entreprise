@@ -21,8 +21,8 @@ export default function TextField(props: TextFieldProps) {
 	return (
 		<StyledContainer>
 			<StyledInputContainer
-				hasError={!!props.errorMessage || props.validationState === 'invalid'}
-				hasLabel={!!props.label && !props.small}
+				$hasError={!!props.errorMessage || props.validationState === 'invalid'}
+				$hasLabel={!!props.label && !props.small}
 			>
 				<StyledInput
 					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
@@ -127,9 +127,9 @@ export const StyledSuffix = styled.span`
 `
 
 export const StyledInputContainer = styled.div<{
-	hasError: boolean
-	hasLabel: boolean
-	small?: boolean
+	$hasError: boolean
+	$hasLabel: boolean
+	$small?: boolean
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>
@@ -150,8 +150,8 @@ export const StyledInputContainer = styled.div<{
 	transition: all 0.2s;
 
 	:focus-within {
-		outline-color: ${({ theme, hasError }) =>
-			hasError
+		outline-color: ${({ theme, $hasError }) =>
+			$hasError
 				? theme.colors.extended.error[400]
 				: theme.darkMode
 				? theme.colors.bases.primary[100]
@@ -173,8 +173,8 @@ export const StyledInputContainer = styled.div<{
 			`}
 	}
 
-	${({ hasLabel }) =>
-		hasLabel &&
+	${({ $hasLabel }) =>
+		$hasLabel &&
 		css`
 			${StyledInput}:not(:focus):placeholder-shown {
 				color: transparent;
@@ -193,8 +193,8 @@ export const StyledInputContainer = styled.div<{
 		transform: translateY(-50%);
 	}
 
-	${({ theme, hasError }) =>
-		hasError &&
+	${({ theme, $hasError }) =>
+		$hasError &&
 		css`
 			&& {
 				border-color: ${theme.colors.extended.error[400]};
@@ -206,12 +206,12 @@ export const StyledInputContainer = styled.div<{
 		`}
 
 	${StyledInput}, ${StyledSuffix} {
-		padding: ${({ hasLabel, theme, small }) =>
-			small
+		padding: ${({ $hasLabel, theme, $small }) =>
+			$small
 				? css`
 						${theme.spacings.xxs} ${theme.spacings.xs}
 				  `
-				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
+				: css`calc(${$hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
 				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
 		color: ${({ theme }) =>
@@ -220,8 +220,8 @@ export const StyledInputContainer = styled.div<{
 				: theme.colors.extended.grey[800]};
 	}
 
-	${({ small }) =>
-		small &&
+	${({ $small }) =>
+		$small &&
 		css`
 			${StyledSuffix}, ${StyledInput} {
 				font-size: 1rem;

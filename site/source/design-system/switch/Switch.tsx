@@ -22,8 +22,8 @@ const sizeDico = {
 interface StyledProps {
 	checked: boolean
 	disabled: boolean
-	size: Size
-	light: boolean
+	$size: Size
+	$light: boolean
 }
 
 const StyledSpan = styled.span<StyledProps>`
@@ -43,7 +43,7 @@ const StyledSpan = styled.span<StyledProps>`
 `
 
 const StyledSwitch = styled.span<StyledProps>`
-	--switch-size: ${({ size }) => sizeDico[size]};
+	--switch-size: ${({ $size }) => sizeDico[$size]};
 	display: inline-flex;
 	transition: all 0.15s ease-in-out;
 	background-color: ${({ theme, checked }) =>
@@ -55,9 +55,9 @@ const StyledSwitch = styled.span<StyledProps>`
 	padding: 0.2rem;
 	margin: 0 ${({ theme }) => theme.spacings.xxs};
 	border-radius: var(--switch-size);
-	width: calc(var(--switch-size) + ${({ light }) => (light ? 4 : 0)}px);
-	${({ light }) =>
-		light
+	width: calc(var(--switch-size) + ${({ $light }) => ($light ? 4 : 0)}px);
+	${({ $light }) =>
+		$light
 			? css`
 					border: 2px #ffffffbf solid;
 			  `
@@ -105,7 +105,7 @@ type AriaSwitchProps = Parameters<typeof useSwitch>[0]
 
 export type SwitchProps = AriaSwitchProps & {
 	size?: Size
-	light?: boolean
+	$light?: boolean
 	children?: ReactNode
 	className?: string
 	role?: string
@@ -118,7 +118,7 @@ export type SwitchProps = AriaSwitchProps & {
 export const Switch = (props: SwitchProps) => {
 	const {
 		size = 'MD',
-		light = false,
+		$light = false,
 		children,
 		className,
 		invertLabel = false,
@@ -137,8 +137,8 @@ export const Switch = (props: SwitchProps) => {
 				<Text invertLabel={invertLabel}>{children}</Text>
 			)}
 			<StyledSwitch
-				light={light}
-				size={size}
+				$light={$light}
+				$size={size}
 				checked={isSelected}
 				disabled={isDisabled}
 			>
@@ -151,8 +151,8 @@ export const Switch = (props: SwitchProps) => {
 					role={props?.role}
 				/>
 				<StyledSpan
-					light={light}
-					size={size}
+					$light={$light}
+					$size={size}
 					aria-hidden
 					checked={isSelected}
 					disabled={isDisabled}

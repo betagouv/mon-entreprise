@@ -113,7 +113,6 @@ export function useExternalLinkProps({
 	return {
 		target: '_blank',
 		rel: 'noreferrer',
-		external: true,
 		children: children && (
 			<>
 				{children}

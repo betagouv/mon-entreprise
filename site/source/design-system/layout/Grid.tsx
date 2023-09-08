@@ -62,8 +62,8 @@ type GridProps =
  */
 export default function FluidGrid(props: GridProps) {
 	if (props.container === true) {
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { container, item, ...containerProps } = props // Omit props.container and props.item
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 		return <GridContainer {...containerProps} />
 	} else if (props.item === true) {
