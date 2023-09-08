@@ -23979,7 +23979,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes-react@npm:^1.0.0-beta.70":
+"publicodes-react@npm:1.0.0-beta.70":
   version: 1.0.0-beta.70
   resolution: "publicodes-react@npm:1.0.0-beta.70"
   dependencies:
@@ -23992,7 +23992,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.70":
+"publicodes@npm:1.0.0-beta.70, publicodes@npm:^1.0.0-beta.70":
   version: 1.0.0-beta.70
   resolution: "publicodes@npm:1.0.0-beta.70"
   peerDependencies:
@@ -26249,8 +26249,8 @@ __metadata:
     markdown-to-jsx: ^7.1.9
     modele-social: "workspace:^"
     netlify-cli: ^12.2.8
-    publicodes: ^1.0.0-beta.70
-    publicodes-react: ^1.0.0-beta.70
+    publicodes: 1.0.0-beta.70
+    publicodes-react: 1.0.0-beta.70
     react: ^18.2.0
     react-aria: ^3.24.0
     react-day-picker: ^8.7.1

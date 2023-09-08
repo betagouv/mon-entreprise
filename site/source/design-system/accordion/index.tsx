@@ -227,14 +227,13 @@ const StyledButton = styled.button<{ $variant?: 'light' }>`
 		${FocusStyle}
 	}
 
-	${({ theme, $variant }) =>
+	${({ $variant }) =>
 		$variant === 'light' &&
 		css`
 			background-color: transparent;
 			padding: 1.5rem;
 			padding-left: 0;
 			align-items: center;
-			border-bottom: 1px solid ${theme.colors.bases.primary[400]};
 			> span {
 				border-radius: 0;
 			}

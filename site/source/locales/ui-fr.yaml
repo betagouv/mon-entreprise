@@ -55,6 +55,7 @@ CompanySearchField:
     entreprise. Exemple : 40123778000127"
   label: Nom de l'entreprise, SIREN ou SIRET
   placeholder: "Exemple : Café de la gare ou 40123778000127"
+Comparer...: Comparer...
 Confirmer: Confirmer
 Continuer: Continuer
 Cotisations: Cotisations
@@ -138,7 +139,7 @@ Jours: Jours
 La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
   La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
   (personnes qui sont à votre charge) sous certaines conditions.
-La gestion juridique et comptable: La gestion juridique et comptable
+La gestion juridique et comptable <1></1>: La gestion juridique et comptable <1></1>
 "La maternité, paternité et adoption": La maternité, paternité et adoption
 "La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en considérant que vous avez cotisé suffisamment de trimestres (4 trimestres par an) et que vous partez en retraite à l’âge requis pour obtenir un taux plein.":
   La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en
@@ -370,7 +371,6 @@ Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié<
   "Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il
   existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>,
   <6>conjoint associé</6> ou <9>conjoint salarié</9>)."
-Zoom sur...: Zoom sur...
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité

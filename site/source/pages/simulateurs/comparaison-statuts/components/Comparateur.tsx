@@ -78,7 +78,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 					<ModifierOptions namedEngines={namedEngines} />
 				</div>
 			</Container>
-			<Détails namedEngines={namedEngines} />
+			<Détails namedEngines={namedEngines} expandRevenuSection />
 			<EngineDocumentationRoutes
 				namedEngines={namedEngines}
 				basePath={absoluteSitePaths.assistants['choix-du-statut'].comparateur}

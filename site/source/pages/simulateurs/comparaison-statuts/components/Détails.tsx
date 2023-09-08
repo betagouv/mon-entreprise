@@ -20,11 +20,17 @@ import ItemTitle from './ItemTitle'
 import RevenuTable from './RevenuTable'
 import WarningTooltip from './WarningTooltip'
 
-const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
+const Détails = ({
+	namedEngines,
+	expandRevenuSection = false,
+}: {
+	namedEngines: EngineComparison
+	expandRevenuSection?: boolean
+}) => {
 	const { t } = useTranslation()
 
 	return (
-		<StyledContainer
+		<Container
 			backgroundColor={(theme) =>
 				theme.darkMode
 					? theme.colors.extended.dark[800]
@@ -33,9 +39,10 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 		>
 			<Accordion
 				variant="light"
+				defaultExpandedKeys={expandRevenuSection ? ['revenus'] : []}
 				title={
 					<H2>
-						<Trans>Zoom sur...</Trans>
+						<Trans>Comparer...</Trans>
 					</H2>
 				}
 				isFoldable
@@ -43,7 +50,8 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>Vos revenus</Trans> <Emoji emoji="🤑" />
+							<Trans>Vos revenus</Trans>&nbsp;
+							<Emoji emoji="🤑" />
 						</ItemTitle>
 					}
 					key="revenus"
@@ -142,7 +150,8 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>Vos droits pour la retraite</Trans> <Emoji emoji="🧐" />
+							<Trans>Vos droits pour la retraite</Trans>&nbsp;
+							<Emoji emoji="🧐" />
 						</ItemTitle>
 					}
 					key="retraite"
@@ -207,7 +216,8 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>Vos prestations santé</Trans> <Emoji emoji="😷" />
+							<Trans>Vos prestations santé</Trans>&nbsp;
+							<Emoji emoji="😷" />
 						</ItemTitle>
 					}
 					key="santé"
@@ -323,7 +333,7 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>La maternité, paternité et adoption</Trans>{' '}
+							<Trans>La maternité, paternité et adoption</Trans>&nbsp;
 							<Emoji emoji="🤗" />
 						</ItemTitle>
 					}
@@ -401,7 +411,7 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>Votre couverture invalidité et décès</Trans>{' '}
+							<Trans>Votre couverture invalidité et décès</Trans>&nbsp;
 							<Emoji emoji="🤕" />
 						</ItemTitle>
 					}
@@ -541,8 +551,9 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>La gestion juridique et comptable</Trans>{' '}
-							<Emoji emoji="🤓" />
+							<Trans>
+								La gestion juridique et comptable <Emoji emoji="🤓" />
+							</Trans>
 						</ItemTitle>
 					}
 					key="administratif"
@@ -609,16 +620,11 @@ const Détails = ({ namedEngines }: { namedEngines: EngineComparison }) => {
 					/>
 				</Item>
 			</Accordion>
-		</StyledContainer>
+		</Container>
 	)
 }
 
-const StyledContainer = styled(Container)`
-	padding: ${({ theme }) => theme.spacings.lg};
-`
-
 const StyledH4 = styled(H4)`
-	font-size: 1.25rem;
 	color: ${({ theme }) => theme.colors.bases.primary[600]};
 `
 // TODO : décommenter une fois l'implémentation du calcul des coûts de créations
