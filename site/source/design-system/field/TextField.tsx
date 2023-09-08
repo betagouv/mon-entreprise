@@ -66,7 +66,7 @@ export const StyledInput = styled.input`
 	height: 100%;
 	outline: none;
 	transition: color 0.2s;
-	::placeholder {
+	&::placeholder {
 		${({ theme }) =>
 			theme.darkMode &&
 			css`
@@ -149,7 +149,7 @@ export const StyledInputContainer = styled.div<{
 	align-items: center;
 	transition: all 0.2s;
 
-	:focus-within {
+	&:focus-within {
 		outline-color: ${({ theme, $hasError }) =>
 			$hasError
 				? theme.colors.extended.error[400]
@@ -159,12 +159,12 @@ export const StyledInputContainer = styled.div<{
 		outline-offset: ${({ theme }) => theme.spacings.xxs};
 		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
-	:focus-within ${StyledLabel} {
+	&:focus-within ${StyledLabel} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
 		background-color: transparent;
 	}
 
-	:focus-within + ${StyledDescription} {
+	&:focus-within + ${StyledDescription} {
 		${({ theme }) =>
 			!theme.darkMode &&
 			css`

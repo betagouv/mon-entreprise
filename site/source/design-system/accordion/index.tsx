@@ -198,7 +198,7 @@ const StyledTitle = styled.h3`
 `
 
 const StyledAccordionItem = styled.div`
-	:not(:first-child) {
+	&:not(:first-child) {
 		border-top: 1px solid ${({ theme }) => theme.colors.bases.primary[400]};
 	}
 `
@@ -219,11 +219,11 @@ const StyledButton = styled.button<{ $variant?: 'light' }>`
 			border-radius: ${theme.box.borderRadius};
 		}
 	`}
-	:hover {
+	&:hover {
 		text-decoration: ${({ $variant }) =>
 			$variant === 'light' ? 'none' : 'underline'};
 	}
-	:focus {
+	&:focus {
 		${FocusStyle}
 	}
 

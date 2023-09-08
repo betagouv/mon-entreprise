@@ -19,6 +19,7 @@ export default function NumberInput({
 	unit,
 	formatOptions,
 	displayedUnit,
+	small,
 }: InputProps & {
 	unit?: Unit
 }) {
@@ -61,6 +62,7 @@ export default function NumberInput({
 	return (
 		<StyledNumberInput>
 			<NumberField
+				small={small}
 				description=""
 				displayedUnit={
 					parsedDisplayedUnit &&

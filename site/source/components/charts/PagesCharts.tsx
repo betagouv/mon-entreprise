@@ -181,7 +181,7 @@ const formatLegend = (key: string) =>
 	key.replace('simulateurs / ', '').replace(/_/g, ' ')
 
 const ColoredLi = styled(Li)<{ color?: string }>`
-	::before {
+	&::before {
 		${({ color }) =>
 			color &&
 			css`

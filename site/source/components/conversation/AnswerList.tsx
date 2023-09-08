@@ -349,7 +349,7 @@ const StyledAnswerList = styled(Grid)`
 			? theme.colors.bases.primary[100]
 			: theme.colors.extended.dark[500]};
 	font-family: ${({ theme }) => theme.fonts.main};
-	:nth-child(2n) {
+	&:nth-child(2n) {
 		background-color: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.dark[500]

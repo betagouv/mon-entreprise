@@ -121,7 +121,7 @@ const CompactStyledHeader = styled(H4)`
 const StyledHeader = styled(H3)`
 	text-align: center;
 	${HeadingUnderline}
-	::after {
+	&::after {
 		margin: auto;
 	}
 `

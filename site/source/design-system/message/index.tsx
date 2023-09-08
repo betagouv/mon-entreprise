@@ -111,8 +111,8 @@ const StyledMessage = styled.div<StyledMessageProps>`
 			padding: ${$mini ? theme.spacings.xxs : '0px'}
 				${$mini ? theme.spacings.md : theme.spacings.lg};
 			background-color: ${$light ? 'rgba(255,255,255,0.75)' : colorSpace[100]};
-			$border: ${$mini ? '1px' : '2px'} solid ${colorSpace[$border ? 500 : 100]};
-			$border-radius: ${theme.box.borderRadius};
+			border: ${$mini ? '1px' : '2px'} solid ${colorSpace[$border ? 500 : 100]};
+			border-radius: ${theme.box.borderRadius};
 			margin-bottom: ${theme.spacings.md};
 
 			&& h3,

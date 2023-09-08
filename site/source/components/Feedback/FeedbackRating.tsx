@@ -65,7 +65,7 @@ const EmojiButton = styled.button`
 	background: none;
 	transition: transform 0.05s;
 	will-change: transform;
-	:hover {
+	&:hover {
 		transform: scale(1.3);
 	}
 `

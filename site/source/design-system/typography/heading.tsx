@@ -12,7 +12,7 @@ const baseHeading = css`
 `
 
 export const HeadingUnderline = css`
-	::after {
+	&::after {
 		height: 1.25rem;
 		width: 5rem;
 		display: block;

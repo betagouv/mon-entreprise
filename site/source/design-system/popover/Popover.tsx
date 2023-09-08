@@ -256,10 +256,10 @@ export const CloseButton = styled.button`
 				? theme.colors.extended.grey[100]
 				: theme.colors.bases.primary[700]};
 	}
-	:hover {
+	&:hover {
 		text-decoration: underline;
 	}
-	:focus {
+	&:focus {
 		${FocusStyle}
 		box-shadow:  inset 0 0 0 3px #ffffff;
 		outline-offset: -2px;

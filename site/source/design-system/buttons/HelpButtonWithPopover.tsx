@@ -103,7 +103,7 @@ const StyledButton = styled(Button)<{ $light?: boolean }>`
 			(${({ theme }) => theme.spacings.md}) / 2 + var(--padding)
 		);
 
-		:hover {
+		&:hover {
 			background-color: ${({ theme }) => theme.colors.bases.primary[200]};
 		}
 	}
