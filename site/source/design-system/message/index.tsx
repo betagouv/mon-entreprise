@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
-import { css, CSSProperties, DefaultTheme, styled } from 'styled-components'
+import { css, DefaultTheme, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Palette, SmallPalette } from '@/types/styled'
@@ -52,10 +52,10 @@ export function Message({
 			<StyledMessage
 				className={className}
 				style={style}
-				messageType={type}
-				border={border}
-				mini={mini}
-				light={light}
+				$messageType={type}
+				$border={border}
+				$mini={mini}
+				$light={light}
 				aria-atomic
 			>
 				{icon && (
@@ -90,26 +90,29 @@ const StyledIconWrapper = styled.div<{
 	}
 `
 
-type StyledMessageProps = Pick<MessageProps, 'border' | 'light' | 'mini'> & {
-	messageType: NonNullable<MessageProps['type']>
+type StyledMessageProps = {
+	$border: boolean
+	$light: boolean
+	$mini: boolean
+	$messageType: NonNullable<MessageProps['type']>
 }
 
 const StyledMessage = styled.div<StyledMessageProps>`
 	display: flex;
 	position: relative;
 	align-items: baseline;
-	${({ theme, messageType, border, light, mini }) => {
+	${({ theme, $messageType, $border, $light, $mini }) => {
 		const colorSpace: Palette | SmallPalette =
-			messageType === 'secondary' || messageType === 'primary'
-				? theme.colors.bases[messageType]
-				: theme.colors.extended[messageType]
+			$messageType === 'secondary' || $messageType === 'primary'
+				? theme.colors.bases[$messageType]
+				: theme.colors.extended[$messageType]
 
 		return css`
-			padding: ${mini ? theme.spacings.xxs : '0px'}
-				${mini ? theme.spacings.md : theme.spacings.lg};
-			background-color: ${light ? 'rgba(255,255,255,0.75)' : colorSpace[100]};
-			border: ${mini ? '1px' : '2px'} solid ${colorSpace[border ? 500 : 100]};
-			border-radius: ${theme.box.borderRadius};
+			padding: ${$mini ? theme.spacings.xxs : '0px'}
+				${$mini ? theme.spacings.md : theme.spacings.lg};
+			background-color: ${$light ? 'rgba(255,255,255,0.75)' : colorSpace[100]};
+			$border: ${$mini ? '1px' : '2px'} solid ${colorSpace[$border ? 500 : 100]};
+			$border-radius: ${theme.box.borderRadius};
 			margin-bottom: ${theme.spacings.md};
 
 			&& h3,
@@ -120,7 +123,7 @@ const StyledMessage = styled.div<StyledMessageProps>`
 				background-color: inherit;
 			}
 			> * {
-				margin: -${mini ? theme.spacings.xs : 0} 0;
+				margin: -${$mini ? theme.spacings.xs : 0} 0;
 			}
 			& p,
 			& span,

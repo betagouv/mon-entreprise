@@ -105,7 +105,13 @@ export default function NumberField(props: NumberFieldProps) {
 				$small={props.small}
 			>
 				<StyledNumberInput
-					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
+					{...(omit(
+						props,
+						'label',
+						'small',
+						'formatOptions',
+						'displayedUnit'
+					) as HTMLAttributes<HTMLInputElement>)}
 					{...inputWithCursorHandlingProps}
 					placeholder={
 						props.placeholder != null
@@ -113,7 +119,7 @@ export default function NumberField(props: NumberFieldProps) {
 							: ''
 					}
 					ref={ref}
-					withUnit={!!props.displayedUnit}
+					$withUnit={!!props.displayedUnit}
 				/>
 				{props.displayedUnit && (
 					<StyledUnit
@@ -155,9 +161,9 @@ const StyledUnit = styled(StyledSuffix)`
 	white-space: nowrap;
 `
 
-const StyledNumberInput = styled(StyledInput)<{ withUnit: boolean }>`
-	${({ withUnit }) =>
-		withUnit &&
+const StyledNumberInput = styled(StyledInput)<{ $withUnit: boolean }>`
+	${({ $withUnit }) =>
+		$withUnit &&
 		css`
 			padding-right: 0 !important;
 		`};

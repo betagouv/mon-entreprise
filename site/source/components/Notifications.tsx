@@ -82,11 +82,11 @@ export default function Notifications() {
 					>
 						<StyledBody
 							as="div"
-							isMultiline={isMultiline(résumé ?? description ?? '')}
+							$isMultiline={isMultiline(résumé ?? description ?? '')}
 						>
 							<Markdown>{résumé ?? description ?? ''}</Markdown>
 						</StyledBody>
-						<Absolute isMultiline={isMultiline(résumé ?? description ?? '')}>
+						<Absolute $isMultiline={isMultiline(résumé ?? description ?? '')}>
 							<ExplicableRule dottedName={dottedName} light />
 							<CloseButton
 								aria-label={t('Fermer')}
@@ -101,20 +101,20 @@ export default function Notifications() {
 	)
 }
 
-const StyledBody = styled(Body)<{ isMultiline: boolean }>`
-	margin-right: ${({ isMultiline }) => (isMultiline ? '3rem' : '5rem')};
+const StyledBody = styled(Body)<{ $isMultiline: boolean }>`
+	margin-right: ${({ $isMultiline }) => ($isMultiline ? '3rem' : '5rem')};
 `
 
-const Absolute = styled.div<{ isMultiline: boolean }>`
+const Absolute = styled.div<{ $isMultiline: boolean }>`
 	display: flex;
 	flex-direction: column;
 
-	flex-direction: ${({ isMultiline }) =>
-		isMultiline ? 'column-reverse' : 'row'};
+	flex-direction: ${({ $isMultiline }) =>
+		$isMultiline ? 'column-reverse' : 'row'};
 	align-items: flex-end;
 	position: absolute;
-	top: ${({ theme, isMultiline }) =>
-		isMultiline ? theme.spacings.xxs : theme.spacings.xs};
+	top: ${({ theme, $isMultiline }) =>
+		$isMultiline ? theme.spacings.xxs : theme.spacings.xs};
 	right: ${({ theme }) => theme.spacings.sm};
 	${CloseButton} {
 		margin-left: ${({ theme }) => theme.spacings.xxs};

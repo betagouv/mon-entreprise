@@ -124,8 +124,8 @@ export function SimulationGoal({
 							)}
 						</StyledGoalHeader>
 					</Grid>
-					<StyledGuideLectureContainer>
-						<StyledGuideLecture small={small} />
+					<StyledGuideLectureContainer item md>
+						<StyledGuideLecture />
 					</StyledGuideLectureContainer>
 					{editable ? (
 						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
@@ -174,10 +174,7 @@ export function SimulationGoal({
 	)
 }
 
-const StyledGuideLectureContainer = styled(Grid).attrs({
-	item: true,
-	md: true,
-})`
+const StyledGuideLectureContainer = styled(Grid)`
 	display: none;
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
@@ -185,9 +182,7 @@ const StyledGuideLectureContainer = styled(Grid).attrs({
 	}
 `
 
-const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })<{
-	small: boolean
-}>`
+const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })`
 	border-bottom: 1px dashed
 		${({ theme }) =>
 			theme.darkMode
