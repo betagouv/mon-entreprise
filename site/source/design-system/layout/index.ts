@@ -12,7 +12,7 @@ export const Spacing = styled.div<
 	| { xs: true }
 	| { xxs: true }
 >`
-	height: ${({ theme, ...props }) =>
+	min-height: ${({ theme, ...props }) =>
 		'xxl' in props
 			? theme.spacings.xxl
 			: 'xl' in props

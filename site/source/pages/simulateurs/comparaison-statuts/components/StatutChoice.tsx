@@ -90,8 +90,8 @@ function StatutBloc({
 				css={`
 					display: flex;
 					flex: 1;
+					margin-bottom: 0;
 					flex-direction: column;
-					justify-content: flex-end;
 				`}
 			>
 				<Li>

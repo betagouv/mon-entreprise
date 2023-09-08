@@ -6,7 +6,7 @@ import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoute
 import { StatutType } from '@/components/StatutTag'
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import { Button } from '@/design-system/buttons'
-import { Container } from '@/design-system/layout'
+import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Intro } from '@/design-system/typography/paragraphs'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/components/Comparateur'
@@ -37,6 +37,9 @@ export default function Comparateur() {
 					votre choix.
 				</Intro>
 			</Trans>
+			<RevenuEstimé />
+			<Spacing xl />
+			<Détails namedEngines={namedEngines} />
 
 			<Container
 				backgroundColor={(theme) =>
@@ -48,27 +51,25 @@ export default function Comparateur() {
 					padding: 2rem 0;
 				`}
 			>
-				<RevenuEstimé />
 				<StatutChoice namedEngines={namedEngines} />
-				<div
-					css={`
-						display: flex;
-						justify-content: space-between;
-						padding-top: 2rem;
-					`}
-				>
-					<Button
-						light
-						color={'secondary'}
-						to={choixDuStatutPath[previousStep]}
-					>
-						{' '}
-						<span aria-hidden>←</span> <Trans>Précédent</Trans>
-					</Button>
-					<ModifierOptions namedEngines={namedEngines} />
-				</div>
+				<Spacing xl />
+				<Grid container spacing={3}>
+					<Grid item xs={12} sm="auto">
+						<Button
+							light
+							color={'secondary'}
+							to={choixDuStatutPath[previousStep]}
+						>
+							{' '}
+							<span aria-hidden>←</span> <Trans>Précédent</Trans>
+						</Button>
+					</Grid>
+					<Grid item xs={12} sm="auto">
+						<ModifierOptions namedEngines={namedEngines} />
+					</Grid>
+				</Grid>
 			</Container>
-			<Détails namedEngines={namedEngines} />
+
 			<EngineDocumentationRoutes
 				namedEngines={namedEngines}
 				basePath={absoluteSitePaths.assistants['choix-du-statut'].comparateur}

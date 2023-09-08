@@ -325,7 +325,7 @@ export const CircledArrowIcon = (props: HTMLAttributes<SVGElement>) => (
 		{...props}
 		width="40"
 		height="40"
-		viewBox="0 0 40 40"
+		viewBox="0 0 45 45"
 		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
