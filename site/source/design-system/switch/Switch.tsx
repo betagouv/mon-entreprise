@@ -59,7 +59,7 @@ const StyledSwitch = styled.span<StyledProps>`
 	${({ $light }) =>
 		$light
 			? css`
-					border: 2px #ffffffbf solid;
+					border: 2px #ffffffbf solid !important;
 			  `
 			: ''}
 
@@ -72,7 +72,7 @@ const StyledSwitch = styled.span<StyledProps>`
 					? theme.colors.bases.primary[700]
 					: theme.colors.extended.grey[500]}42; // 42 is alpha
 	}
-	:focus-within {
+	&:focus-within {
 		${FocusStyle}
 	}
 	${({ disabled, theme }) =>
@@ -105,7 +105,7 @@ type AriaSwitchProps = Parameters<typeof useSwitch>[0]
 
 export type SwitchProps = AriaSwitchProps & {
 	size?: Size
-	$light?: boolean
+	light?: boolean
 	children?: ReactNode
 	className?: string
 	role?: string
@@ -118,7 +118,7 @@ export type SwitchProps = AriaSwitchProps & {
 export const Switch = (props: SwitchProps) => {
 	const {
 		size = 'MD',
-		$light = false,
+		light = false,
 		children,
 		className,
 		invertLabel = false,
@@ -137,7 +137,7 @@ export const Switch = (props: SwitchProps) => {
 				<Text $invertLabel={invertLabel}>{children}</Text>
 			)}
 			<StyledSwitch
-				$light={$light}
+				$light={light}
 				$size={size}
 				checked={isSelected}
 				disabled={isDisabled}
@@ -151,7 +151,7 @@ export const Switch = (props: SwitchProps) => {
 					role={props?.role}
 				/>
 				<StyledSpan
-					$light={$light}
+					$light={light}
 					$size={size}
 					aria-hidden
 					checked={isSelected}

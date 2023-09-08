@@ -219,8 +219,8 @@ const Option = styled(Body)<{
 
 	border-radius: 0.3rem;
 	border: 2px solid transparent;
-	:hover,
-	:focus {
+	&:hover,
+	&:focus {
 		${FocusedOption}
 	}
 	transition: background-color 0.2s;

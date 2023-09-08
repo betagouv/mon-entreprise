@@ -86,7 +86,7 @@ const StyledStepContainer = styled.li`
 	counter-increment: step-counter;
 	display: inline-block;
 	margin-right: ${({ theme }) => theme.spacings.lg};
-	:last-child {
+	&:last-child {
 		margin-right: 0;
 	}
 	margin-bottom: ${({ theme }) => theme.spacings.md};
@@ -98,7 +98,7 @@ const StyledStepContainer = styled.li`
 	}
 `
 const StyledStepNumber = styled.span<{ $active: boolean; $disabled: boolean }>`
-	::before {
+	&::before {
 		content: counter(step-counter);
 		font-size: 1.125rem;
 		font-weight: 500;
@@ -151,7 +151,7 @@ const StyledProgressBar = styled.span<{
 	background-color: ${({ theme }) => theme.colors.extended.grey[300]};
 
 	position: relative;
-	::after {
+	&::after {
 		display: block;
 		content: '';
 		height: inherit;

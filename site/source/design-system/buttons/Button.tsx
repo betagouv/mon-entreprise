@@ -119,7 +119,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 				: ''}
 	}
 
-	:focus {
+	&:focus {
 		${FocusStyle}
 	}
 
@@ -173,7 +173,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	/////////////////////
 
 	/* HOVER STYLE */
-	:hover {
+	&:hover {
 		${({ theme, $color, disabled, $light }) =>
 			disabled || theme.darkMode
 				? ''
@@ -197,7 +197,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
 	/* Dark mode */
 	@media not print {
-		:hover {
+		&:hover {
 			${({ $light, theme, disabled }) =>
 				disabled || !theme.darkMode
 					? ''

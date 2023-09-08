@@ -99,7 +99,7 @@ export const RadioButton = styled.span`
 	flex-shrink: 0;
 	position: relative;
 	margin-right: var(--halo);
-	::before {
+	&::before {
 		content: '';
 		position: absolute;
 		top: calc(var(--halo) * -1);
@@ -126,12 +126,12 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 	${({ theme, $inert }) =>
 		!$inert
 			? css`
-			:hover > ${RadioButton}::before {
+			&:hover > ${RadioButton}::before {
 				opacity: 1;
 				transform: scale(1);
 			}
 
-			:hover ${OutsideCircle} {
+			&:hover ${OutsideCircle} {
 				border-color: ${
 					theme.darkMode
 						? theme.colors.bases.primary[500]
@@ -159,20 +159,20 @@ export const SpanBody = styled(Body).attrs({ as: 'span' })`
 `
 
 export const InputRadio = styled.input`
-	:focus
+	&:focus
 		+ ${VisibleRadio}
 		${OutsideCircle},
-		:checked
+		&:checked
 		+ ${VisibleRadio}
 		${OutsideCircle} {
 		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
 	}
 
-	:focus + ${VisibleRadio} {
+	&:focus + ${VisibleRadio} {
 		${FocusStyle}
 	}
 
-	:checked + ${VisibleRadio} ${InsideCircle} {
+	&:checked + ${VisibleRadio} ${InsideCircle} {
 		transform: scale(1);
 	}
 `

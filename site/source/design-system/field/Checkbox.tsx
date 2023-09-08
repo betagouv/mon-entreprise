@@ -81,7 +81,7 @@ const CheckboxVisualContainer = styled.span`
 	-webkit-tap-highlight-color: transparent;
 	transition: all 0.2s ease;
 
-	::before {
+	&::before {
 		content: '';
 		position: absolute;
 		top: calc(var(--halo) * -1 - 2px);

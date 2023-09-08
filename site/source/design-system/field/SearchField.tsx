@@ -33,7 +33,7 @@ const SearchInput = styled(StyledInput)`
 
 const SearchInputContainer = styled(StyledInputContainer)`
 	padding-left: 0.5rem;
-	:focus-within {
+	&:focus-within {
 		${FocusStyle}
 	}
 `

@@ -63,8 +63,8 @@ const ListItem = styled.li<{ isFocused?: boolean; isSelected?: boolean }>`
 
 	border-radius: 0.3rem;
 	border: 2px solid transparent;
-	:hover,
-	:focus {
+	&:hover,
+	&:focus {
 		${FocusedOption}
 	}
 	max-width: 100%;
