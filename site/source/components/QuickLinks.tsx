@@ -42,7 +42,7 @@ export default function QuickLinks() {
 			{links.map(({ label, dottedName }) => (
 				<StyledLink
 					key={dottedName}
-					underline={dottedName === currentQuestion}
+					$underline={dottedName === currentQuestion}
 					onPress={() => dispatch(goToQuestion(dottedName))}
 					aria-label={t('{{question}}, aller à la question : {{question}}', {
 						question: label,
@@ -61,6 +61,6 @@ const StyledLinks = styled(SmallBody)`
 	gap: ${({ theme }) => theme.spacings.sm};
 `
 
-const StyledLink = styled(Link)<{ underline: boolean }>`
-	text-decoration: ${({ underline }) => (underline ? 'underline' : '')};
+const StyledLink = styled(Link)<{ $underline: boolean }>`
+	text-decoration: ${({ $underline }) => ($underline ? 'underline' : '')};
 `

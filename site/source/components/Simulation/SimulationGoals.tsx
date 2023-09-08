@@ -15,18 +15,12 @@ import { WatchInitialRender } from '../utils/useInitialRender'
 
 type SimulationGoalsProps = {
 	legend: string
-	publique?:
-		| 'employeur'
-		| 'particulier'
-		| 'artisteAuteur'
-		| 'independant'
-		| 'marin'
+
 	children: React.ReactNode
 	toggles?: React.ReactNode
 }
 
 export function SimulationGoals({
-	publique,
 	legend,
 	toggles,
 	children,
@@ -40,9 +34,8 @@ export function SimulationGoals({
 				<TopSection toggles={toggles} />
 
 				<SimulationGoalsContainer
-					isEmbeded={isEmbeded}
-					isFirstStepCompleted={isFirstStepCompleted}
-					publique={publique}
+					$isEmbeded={isEmbeded}
+					$isFirstStepCompleted={isFirstStepCompleted}
 					id="simulator-legend"
 					aria-live="polite"
 				>
@@ -72,37 +65,26 @@ export function SimulationGoals({
 	)
 }
 
-export const SimulationGoalsContainer = styled.div<
-	Pick<SimulationGoalsProps, 'publique'> & {
-		isFirstStepCompleted: boolean
-		isEmbeded: boolean
-	}
->`
+export const SimulationGoalsContainer = styled.div<{
+	$isFirstStepCompleted: boolean
+	$isEmbeded: boolean
+}>`
 	z-index: 1;
 	position: relative;
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
-	border-start-end-radius: ${({ theme, isEmbeded }) =>
-		isEmbeded ? theme.box.borderRadius : '0'};
+	border-start-end-radius: ${({ theme, $isEmbeded }) =>
+		$isEmbeded ? theme.box.borderRadius : '0'};
 	border-end-start-radius: 0;
 	border-end-end-radius: 0;
 	border-start-start-radius: ${({ theme }) => theme.box.borderRadius};
-	${({ isFirstStepCompleted }) =>
-		isFirstStepCompleted &&
+	${({ $isFirstStepCompleted }) =>
+		$isFirstStepCompleted &&
 		css`
 			border-bottom-right-radius: 0;
 			border-bottom-left-radius: 0;
 		`}
 	transition: border-radius 0.15s;
-	background: ${({ theme, publique, isEmbeded }) => {
-		const colorPalette =
-			publique && !isEmbeded
-				? theme.colors.publics[publique]
-				: theme.colors.bases.primary
-
-		return css`
-			${colorPalette[600]};
-		`
-	}};
+	background: ${({ theme }) => theme.colors.bases.primary[600]};
 
 	@media print {
 		background: initial;
@@ -119,7 +101,7 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 	const { t } = useTranslation()
 
 	return (
-		<Section>
+		<Section container>
 			{inIframe && (
 				<Grid
 					item
@@ -153,7 +135,7 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 	)
 }
 
-const Section = styled(Grid).attrs({ container: true })`
+const Section = styled(Grid)`
 	justify-content: space-between;
 	gap: ${({ theme }) => theme.spacings.xs};
 `

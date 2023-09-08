@@ -9,8 +9,8 @@ import { EngineContext } from '@/components/utils/EngineContext'
 import { Link as DesignSystemLink } from '@/design-system/typography/link'
 import { updateSituation } from '@/store/actions/actions'
 
-const Bold = styled.span<{ bold: boolean }>`
-	${({ bold }) => (bold ? 'font-weight: bold;' : '')}
+const Bold = styled.span<{ $bold: boolean }>`
+	${({ $bold }) => ($bold ? 'font-weight: bold;' : '')}
 `
 
 export const SelectSimulationYear = () => {
@@ -29,7 +29,7 @@ export const SelectSimulationYear = () => {
 		<Banner hideAfterFirstStep={false} icon={'📅'}>
 			<Trans i18nKey="pages.simulateurs.select-year.info">
 				Cette simulation concerne l'année{' '}
-				<Bold bold={actualYear !== 2023}>{{ actualYear }}</Bold>.{' '}
+				<Bold $bold={actualYear !== 2023}>{{ actualYear }}</Bold>.{' '}
 			</Trans>
 			<>
 				{choices

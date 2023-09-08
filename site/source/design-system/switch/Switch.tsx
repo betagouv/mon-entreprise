@@ -90,8 +90,8 @@ const LabelBody = styled(Body)`
 	cursor: pointer;
 `
 
-const Text = styled.span<{ invertLabel?: boolean }>`
-	${({ theme, invertLabel: $invertLabel }) =>
+const Text = styled.span<{ $invertLabel?: boolean }>`
+	${({ theme, $invertLabel }) =>
 		$invertLabel
 			? css`
 					margin-left: ${theme.spacings.xxs};
@@ -134,7 +134,7 @@ export const Switch = (props: SwitchProps) => {
 	return (
 		<LabelBody as="label" htmlFor={inputProps.id} className={className}>
 			{children && !invertLabel && (
-				<Text invertLabel={invertLabel}>{children}</Text>
+				<Text $invertLabel={invertLabel}>{children}</Text>
 			)}
 			<StyledSwitch
 				$light={$light}
@@ -159,7 +159,7 @@ export const Switch = (props: SwitchProps) => {
 				/>
 			</StyledSwitch>
 			{children && invertLabel && (
-				<Text invertLabel={invertLabel}>{children}</Text>
+				<Text $invertLabel={invertLabel}>{children}</Text>
 			)}
 		</LabelBody>
 	)

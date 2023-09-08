@@ -21,7 +21,7 @@ export function RadioGroup(props: RadioGroupProps) {
 			aria-label={props['aria-label']}
 		>
 			{label && <span {...labelProps}>{label}</span>}
-			<RadioGroupContainer orientationMode={props.orientation ?? 'vertical'}>
+			<RadioGroupContainer $orientationMode={props.orientation ?? 'vertical'}>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
 			</RadioGroupContainer>
 		</div>
@@ -29,10 +29,10 @@ export function RadioGroup(props: RadioGroupProps) {
 }
 
 const RadioGroupContainer = styled.div<{
-	orientationMode: 'horizontal' | 'vertical'
+	$orientationMode: 'horizontal' | 'vertical'
 }>`
 	display: flex;
 	flex-wrap: wrap;
-	flex-direction: ${({ orientationMode }) =>
-		orientationMode === 'horizontal' ? 'row' : 'column'};
+	flex-direction: ${({ $orientationMode }) =>
+		$orientationMode === 'horizontal' ? 'row' : 'column'};
 `

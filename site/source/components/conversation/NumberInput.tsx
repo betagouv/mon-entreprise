@@ -1,4 +1,3 @@
-import { NumberFieldProps } from '@react-types/numberfield'
 import { ASTNode, parseUnit, serializeUnit, Unit } from 'publicodes'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -20,7 +19,6 @@ export default function NumberInput({
 	unit,
 	formatOptions,
 	displayedUnit,
-	...fieldProps
 }: InputProps & {
 	unit?: Unit
 }) {
@@ -63,7 +61,6 @@ export default function NumberInput({
 	return (
 		<StyledNumberInput>
 			<NumberField
-				{...(fieldProps as NumberFieldProps)}
 				description=""
 				displayedUnit={
 					parsedDisplayedUnit &&
