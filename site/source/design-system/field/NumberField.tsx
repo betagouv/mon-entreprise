@@ -100,9 +100,9 @@ export default function NumberField(props: NumberFieldProps) {
 		<StyledNumberFieldContainer>
 			<StyledInputContainer
 				{...groupProps}
-				hasError={!!props.errorMessage || props.validationState === 'invalid'}
-				hasLabel={!!props.label}
-				small={props.small}
+				$hasError={!!props.errorMessage || props.validationState === 'invalid'}
+				$hasLabel={!!props.label}
+				$small={props.small}
 			>
 				<StyledNumberInput
 					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}

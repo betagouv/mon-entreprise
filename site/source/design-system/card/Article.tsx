@@ -50,7 +50,7 @@ export function Article({
 				as={elementType}
 			>
 				{ctaLabel}
-				{linkProps.external && <NewWindowLinkIcon />}
+				{linkProps.target === '_blank' && <NewWindowLinkIcon />}
 				<StyledChevron aria-hidden />
 			</StyledBody>
 		</StyledArticle>

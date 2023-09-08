@@ -90,7 +90,7 @@ export function Card(props: CardProps) {
 					tabIndex={undefined}
 				>
 					{ctaLabel}
-					{linkProps.external && <NewWindowLinkIcon />}
+					{linkProps.target === '_blank' && <NewWindowLinkIcon />}
 				</CardButton>
 			)}
 		</CardContainer>

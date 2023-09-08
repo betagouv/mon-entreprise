@@ -45,7 +45,7 @@ export function SmallCard({
 					as="span"
 				>
 					{titleProps.children}
-					{linkProps.external && <NewWindowLinkIcon />}
+					{linkProps.target === '_blank' && <NewWindowLinkIcon />}
 				</H6>
 				{children && <SmallBody>{children}</SmallBody>}
 			</Content>

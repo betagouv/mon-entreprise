@@ -26,7 +26,6 @@ export function SimulateurCard({
 	beta,
 	small = false,
 	fromGérer = false,
-	...props
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
@@ -39,7 +38,7 @@ export function SimulateurCard({
 	return (
 		<>
 			{small ? (
-				<Grid item xs={12} sm={6} md={6} lg={4} {...props}>
+				<Grid item xs={12} sm={6} md={6} lg={4}>
 					<SmallCard
 						icon={<Emoji emoji={icône} />}
 						to={{
@@ -61,7 +60,7 @@ export function SimulateurCard({
 					/>
 				</Grid>
 			) : (
-				<Grid item xs={12} sm={6} md={6} lg={4} {...props}>
+				<Grid item xs={12} sm={6} md={6} lg={4}>
 					<Card
 						title={
 							<>
