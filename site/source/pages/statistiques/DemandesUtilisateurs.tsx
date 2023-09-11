@@ -14,9 +14,6 @@ import { useFetchData } from '@/hooks/useFetchData'
 import { StatsStruct } from './types'
 
 export default function DemandeUtilisateurs() {
-	// Waiting for #2552 to be implemented
-	return null
-
 	const { data: stats } = useFetchData<StatsStruct>('/data/stats.json')
 	const { t } = useTranslation()
 
@@ -86,7 +83,6 @@ function Pagination({ title, items }: PaginationProps) {
 							state={{ ...state, [title]: i }}
 							aria-label={`${title}, Page numéro ${i + 1}`}
 							currentPage={currentPage === i}
-							aria-selected={currentPage === i ? true : undefined}
 							aria-current={currentPage === i ? 'page' : undefined}
 						>
 							{i + 1}
