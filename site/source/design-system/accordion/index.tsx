@@ -109,7 +109,11 @@ export const Accordion = <T extends object>(
 								onClick={() => (allItemsOpen ? closeAll() : openAll())}
 							>
 								<StyledChevronIcon $isOpen={allItemsOpen} />
-								<Trans>{allItemsOpen ? 'Tout plier' : 'Tout déplier'}</Trans>
+								{allItemsOpen ? (
+									<Trans>Tout plier</Trans>
+								) : (
+									<Trans>Tout déplier</Trans>
+								)}
 							</StyledFoldButton>
 						</Grid>
 					)}

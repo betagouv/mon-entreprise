@@ -54,7 +54,7 @@ function StatutBloc({
 	hideCTA: boolean
 }) {
 	const { t } = useTranslation()
-	const régimeSocial = engine.evaluate('dirigeant . régime social')
+	const regime = engine.evaluate('dirigeant . régime social')
 		.nodeValue as string
 	const imposition = engine.evaluate('entreprise . imposition')
 		.nodeValue as string
@@ -95,25 +95,23 @@ function StatutBloc({
 				`}
 			>
 				<Li>
-					<Trans>
-						{versementLibératoire ? (
-							<Trans>
-								<Strong>Versement libératoire</Strong> de l'impôt sur le revenu
-							</Trans>
-						) : imposition === 'IS' ? (
-							<Trans>
-								<Strong>Impôt sur les sociétés</Strong> (IS)
-							</Trans>
-						) : (
-							<Trans>
-								<Strong>Impôt sur le revenu</Strong> (IR)
-							</Trans>
-						)}
-					</Trans>
+					{versementLibératoire ? (
+						<Trans>
+							<Strong>Versement libératoire</Strong> de l'impôt sur le revenu
+						</Trans>
+					) : imposition === 'IS' ? (
+						<Trans>
+							<Strong>Impôt sur les sociétés</Strong> (IS)
+						</Trans>
+					) : (
+						<Trans>
+							<Strong>Impôt sur le revenu</Strong> (IR)
+						</Trans>
+					)}
 				</Li>
 				<Li>
-					<Trans>
-						Régime social des <Strong>{régimeSocial}s</Strong>
+					<Trans i18nKey="statutchoice.regime">
+						Régime social des {{ regime }}s
 					</Trans>
 				</Li>
 				<Li>

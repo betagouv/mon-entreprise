@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Radio, ToggleGroup } from '@/design-system/field'
@@ -35,9 +35,7 @@ export default function PeriodSwitch() {
 						key={unit}
 						className={currentUnit !== unit ? 'print-hidden' : ''}
 					>
-						<Radio value={unit}>
-							<Trans>{label}</Trans>
-						</Radio>
+						<Radio value={unit}>{label}</Radio>
 					</span>
 				))}
 			</ToggleGroup>

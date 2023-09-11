@@ -56,7 +56,7 @@ export default function HelpButtonWithPopover({
 						)}
 					</CircleIcon>
 
-					<Trans>{type}</Trans>
+					{type === 'aide' ? <Trans>aide</Trans> : <Trans>info</Trans>}
 				</StyledButton>
 			)}
 			title={title}

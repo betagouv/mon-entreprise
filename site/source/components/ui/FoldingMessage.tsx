@@ -31,7 +31,7 @@ export default function FoldingMessage({
 		<Message type={type} {...props}>
 			<div className="print-hidden">
 				<Intro as="h2">
-					<Trans>{title}</Trans>{' '}
+					{title}{' '}
 					{isFolded && (
 						<Link onPress={() => setIsFolded(false)} aria-expanded={false}>
 							{unfoldButtonLabel}

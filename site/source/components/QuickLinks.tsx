@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -48,7 +48,7 @@ export default function QuickLinks() {
 						question: label,
 					})}
 				>
-					<Trans i18nKey={'quicklinks.' + label}>{label}</Trans>
+					{label}
 				</StyledLink>
 			))}
 		</StyledLinks>
