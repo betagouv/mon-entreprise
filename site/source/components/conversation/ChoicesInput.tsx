@@ -355,7 +355,7 @@ export const SwitchInput = (props: {
 		<Switch
 			defaultSelected={defaultSelected}
 			onChange={(isSelected: boolean) => onChange && onChange(isSelected)}
-			$light
+			light
 			id={id}
 			key={key}
 			invertLabel={invertLabel}
