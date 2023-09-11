@@ -257,7 +257,6 @@ Revenu du dirigeant par statut: Revenu du dirigeant par statut
 Revenu net mensuel après impôts: Revenu net mensuel après impôts
 Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
-"Régime social des <1>{régimeSocial}s</1>": Régime social des <1>{régimeSocial}s</1>
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
@@ -315,6 +314,8 @@ Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: Tous 
 "Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de congé maternité, paternité, adoption.":
   Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de
   congé maternité, paternité, adoption.
+Tout déplier: Tout déplier
+Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
 Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
 Type: Type
@@ -374,6 +375,7 @@ Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié<
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
+aide: aide
 aide-déclaration-indépendant:
   results:
     title: Montants à reporter dans votre déclaration de revenus
@@ -736,6 +738,7 @@ impotSociété:
     réduits de l’impôt sur les sociétés."
 impôt: impôt
 impôt sur le revenu: impôt sur le revenu
+info: info
 inférieurs à: inférieurs à
 intégration:
   description: Outils pour les développeurs
@@ -1832,6 +1835,8 @@ stats:
     réduire le nombre de requêtes.
   description: Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
   title: Statistiques
+statutchoice:
+  regime: Régime social des {{regime}}s
 supérieurs à: supérieurs à
 trimestres acquis: trimestres acquis
 versés en deux fois: versés en deux fois
@@ -1840,20 +1845,6 @@ versés en une fois: versés en une fois
 warning:
   overwrite:
     situation: Voulez-vous écraser votre situation ?
-"{versementLibératoire ? (\n\t\t\t\t\t\t\t<Trans>\n\t\t\t\t\t\t\t\t<Strong>Versement libératoire</Strong> de l'impôt sur le revenu\n\t\t\t\t\t\t\t</Trans>\n\t\t\t\t\t\t) : imposition === 'IS' ? (\n\t\t\t\t\t\t\t<Trans>\n\t\t\t\t\t\t\t\t<Strong>Impôt sur les sociétés</Strong> (IS)\n\t\t\t\t\t\t\t</Trans>\n\t\t\t\t\t\t) : (\n\t\t\t\t\t\t\t<Trans>\n\t\t\t\t\t\t\t\t<Strong>Impôt sur le revenu</Strong> (IR)\n\t\t\t\t\t\t\t</Trans>\n\t\t\t\t\t\t)}": |-
-  {versementLibératoire ? (
-  							<Trans>
-  								<Strong>Versement libératoire</Strong> de l'impôt sur le revenu
-  							</Trans>
-  						) : imposition === 'IS' ? (
-  							<Trans>
-  								<Strong>Impôt sur les sociétés</Strong> (IS)
-  							</Trans>
-  						) : (
-  							<Trans>
-  								<Strong>Impôt sur le revenu</Strong> (IR)
-  							</Trans>
-  						)}
 "{{title}}, voir la demande sur github":
   "com, nouvelle fenêtre": "{{title}}, voir la demande sur github.com, nouvelle fenêtre"
 "À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SAS(U).":

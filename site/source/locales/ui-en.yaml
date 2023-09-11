@@ -249,7 +249,6 @@ Revenu du dirigeant par statut: Executive income by status
 Revenu net mensuel après impôts: Net monthly income after tax
 Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
-"Régime social des <1>{régimeSocial}s</1>": Régime social des <1>{régimeSocial}s</1>
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
 Répartition du chiffre d'affaires: Sales breakdown
@@ -305,6 +304,8 @@ Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: All s
 "Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de congé maternité, paternité, adoption.":
   All statuses entitle you to <2>daily benefits</2> for maternity, paternity and
   adoption leave.
+Tout déplier: Unfold all
+Tout plier: Fold everything
 Tout réinitialiser: Reset all
 Travailleurs Non Salariés (TNS): Self-employed workers (TNS)
 Type: Type
@@ -357,6 +358,7 @@ accessibility:
   description: Référentiel Général d'Amélioration de l'Accessibilité (General
     Accessibility Improvement Reference System)
   title: Accessibility
+aide: assistance
 aide-déclaration-indépendant:
   results:
     title: Amounts to report on your tax return
@@ -701,6 +703,7 @@ impotSociété:
     into account reduced corporate tax rates."
 impôt: tax
 impôt sur le revenu: income tax
+info: info
 inférieurs à: below
 intégration:
   description: Tools for developers
@@ -850,13 +853,13 @@ pages:
     employees</0></12><13><0>Wizard for determining deductible social
     charges</0></13><14><0>Income simulator for self-employed
     professionals</0></14></63><64>Right to compensation</64><65>Pending full
-    compliance, you can obtain an accessible version of documents or information
-    contained therein by sending an e-mail to <2>accessibilite@acoss.fr</2>,
-    indicating the name of the document concerned and/or the information you
-    would like to obtain. The requested information will be sent to you as soon
-    as possible.</65><66>Improvement and contact</66><67>You can help us to
-    improve the accessibility of the site by notifying us of any problems you
-    encounter. To do so, send us an e-mail to
+    compliance, you can obtain an accessible version of the documents or
+    information they contain by sending an e-mail to
+    <2>accessibilite@acoss.fr</2>, indicating the name of the document concerned
+    and/or the information you would like to obtain. The requested information
+    will be sent to you as soon as possible.</65><66>Improvement and
+    contact</66><67>You can help us to improve the accessibility of the site by
+    notifying us of any problems you encounter. To do so, send us an e-mail to
     <2>accessibilite@acoss.fr.</2></67><68>Rights Defender</68><69>This
     procedure should be used in the following cases.</69><70>You have notified
     the website manager of an accessibility problem that is preventing you from
@@ -1724,6 +1727,8 @@ stats:
     number of requests.
   description: Discover our usage statistics, updated daily.
   title: Statistics
+statutchoice:
+  regime: Social security {{regime}}s
 supérieurs à: greater than
 trimestres acquis: quarters acquired
 versés en deux fois: paid in two instalments
@@ -1732,20 +1737,6 @@ versés en une fois: one-off payments
 warning:
   overwrite:
     situation: Do you want to crush your situation?
-"{versementLibératoire ? (\n\t\t\t\t\t\t\t<Trans>\n\t\t\t\t\t\t\t\t<Strong>Versement libératoire</Strong> de l'impôt sur le revenu\n\t\t\t\t\t\t\t</Trans>\n\t\t\t\t\t\t) : imposition === 'IS' ? (\n\t\t\t\t\t\t\t<Trans>\n\t\t\t\t\t\t\t\t<Strong>Impôt sur les sociétés</Strong> (IS)\n\t\t\t\t\t\t\t</Trans>\n\t\t\t\t\t\t) : (\n\t\t\t\t\t\t\t<Trans>\n\t\t\t\t\t\t\t\t<Strong>Impôt sur le revenu</Strong> (IR)\n\t\t\t\t\t\t\t</Trans>\n\t\t\t\t\t\t)}": |-
-  {disbursementFree ? (
-  							<Trans>
-  								<Strong>Payment in full discharge</Strong> of income tax
-  							</Trans>
-  						) : taxation === 'IS' ? (
-  							<Trans>
-  								<Strong>Corporation tax</Strong> (IS)
-  							</Trans>
-  						) : (
-  							<Trans>
-  								<Strong>Income tax</Strong> (IR)
-  							</Trans>
-  						)}
 "{{title}}, voir la demande sur github":
   "com, nouvelle fenêtre": "{{title}}view request on github.com, new window"
 "À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SAS(U).":
