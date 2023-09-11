@@ -1,5 +1,5 @@
 import { formatValue } from 'publicodes'
-import { ComponentProps, ReactElement, ReactNode, useContext } from 'react'
+import { ComponentProps, ReactElement, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
 	Area,
@@ -16,7 +16,7 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from 'styled-components'
 
 import { StyledLegend } from '@/components/charts/PagesCharts'
 import { Strong } from '@/design-system/typography'
@@ -77,7 +77,7 @@ export default function VisitsChart({
 }: VisitsChartProps) {
 	const { t } = useTranslation()
 	const [darkMode] = useDarkMode()
-	const { colors } = useContext(ThemeContext)
+	const { colors } = useTheme()
 	if (!data.length) {
 		return null
 	}

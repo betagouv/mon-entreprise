@@ -2,7 +2,7 @@ import { BlobProvider } from '@react-pdf/renderer'
 import { RuleNode, utils } from 'publicodes'
 import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from 'styled-components'
 
 import { TrackingContext, TrackPage } from '@/components/ATInternetTracking'
 import { Condition } from '@/components/EngineValue'
@@ -37,7 +37,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 	const engine = useContext(EngineContext)
 	const signatureRef = useRef<SignaturePadInstance>()
 	const tracker = useContext(TrackingContext)
-	const { colors } = useContext(ThemeContext)
+	const { colors } = useTheme()
 	if (missingValues.length) {
 		return (
 			<Message type="info" icon>
