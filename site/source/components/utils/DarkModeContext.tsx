@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useState } from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider, useTheme } from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
@@ -62,16 +62,17 @@ export const ForceThemeProvider = ({
 	forceTheme?: ThemeType
 }) => {
 	const [darkMode] = useDarkMode()
+	const currentTheme = useTheme()
 
 	return (
 		<ThemeProvider
-			theme={(theme) => ({
-				...theme,
+			theme={{
+				...currentTheme,
 				darkMode:
 					forceTheme === undefined || forceTheme === 'default'
 						? darkMode
 						: forceTheme === 'dark',
-			})}
+			}}
 		>
 			{children}
 		</ThemeProvider>

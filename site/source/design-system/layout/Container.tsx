@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
-import { DefaultTheme, styled } from 'styled-components'
+import { ReactNode, useMemo } from 'react'
+import { DefaultTheme, styled, useTheme } from 'styled-components'
 
 import {
 	ForceThemeProvider,
@@ -49,10 +49,6 @@ const InnerContainer = styled.div`
 	}
 `
 
-type OuterContainerProps = {
-	$backgroundColor?: (theme: DefaultTheme) => string
-}
-
 type ContainerProps = {
 	children: ReactNode
 	forceTheme?: ThemeType
@@ -66,13 +62,20 @@ export default function Container({
 	children,
 	className,
 }: ContainerProps) {
+	const theme = useTheme()
+	const background = useMemo(
+		() =>
+			backgroundColor?.(theme) ??
+			(theme.darkMode
+				? theme.colors.extended.dark[800]
+				: theme.colors.extended.grey[100]),
+		[theme]
+	)
+
 	return (
 		<ForceThemeProvider forceTheme={forceTheme}>
 			<OuterOuterContainer>
-				<OuterContainer
-					$backgroundColor={backgroundColor}
-					className={className}
-				>
+				<OuterContainer $backgroundColor={background} className={className}>
 					<InnerContainer>{children}</InnerContainer>
 				</OuterContainer>
 			</OuterOuterContainer>
@@ -80,15 +83,14 @@ export default function Container({
 	)
 }
 
-const OuterContainer = styled.div<OuterContainerProps>`
+const OuterContainer = styled.div<{
+	$backgroundColor: string
+}>`
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	min-width: 100vw;
-	background-color: ${({ theme, $backgroundColor }) =>
-		$backgroundColor
-			? $backgroundColor(theme)
-			: theme.colors.extended.grey[100]};
+	background-color: ${({ $backgroundColor }) => $backgroundColor};
 	@media print {
 		min-width: initial;
 	}
