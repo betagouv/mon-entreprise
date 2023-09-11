@@ -1,8 +1,8 @@
 import { DottedName } from 'modele-social'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue'
 import Notifications from '@/components/Notifications'
@@ -107,7 +107,7 @@ const DividendesSimulationGoals = () => (
 
 const DividendesExplanation = () => {
 	const { t } = useTranslation()
-	const { colors } = useContext(ThemeContext)
+	const { colors } = useTheme()
 
 	return (
 		<Condition expression="bénéficiaire . dividendes . bruts > 0">

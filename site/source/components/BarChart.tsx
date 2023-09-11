@@ -2,7 +2,7 @@ import { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { animated, config, useSpring } from 'react-spring'
-import { styled, ThemeContext } from 'styled-components'
+import { styled, useTheme } from 'styled-components'
 
 import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
 import { Emoji } from '@/design-system/emoji'
@@ -30,7 +30,7 @@ function ChartItemBar({
 		colors: {
 			bases: { primary },
 		},
-	} = useContext(ThemeContext)
+	} = useTheme()
 	const style = useSpring({
 		config: config.slow,
 		delay: 100,

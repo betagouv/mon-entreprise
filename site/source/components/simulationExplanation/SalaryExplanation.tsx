@@ -1,6 +1,6 @@
-import { useContext, useRef } from 'react'
+import { useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from 'styled-components'
 
 import Distribution from '@/components/Distribution'
 import PaySlip from '@/components/PaySlip'
@@ -105,7 +105,7 @@ export default function SalaryExplanation() {
 
 function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 	const { t } = useTranslation()
-	const { colors } = useContext(ThemeContext)
+	const { colors } = useTheme()
 	const { currentSimulatorData } = useCurrentSimulatorData()
 
 	return (

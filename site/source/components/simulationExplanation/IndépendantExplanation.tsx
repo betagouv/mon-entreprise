@@ -3,10 +3,9 @@ import BarChartBranch from '@/components/BarChart'
 import '@/components/Distribution.css'
 
 import { DottedName } from 'modele-social'
-import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from 'styled-components'
 
 import Value, {
 	Condition,
@@ -31,7 +30,7 @@ import { DistributionSection } from './SalaryExplanation'
 
 export default function IndépendantExplanation() {
 	const { t } = useTranslation()
-	const { colors } = useContext(ThemeContext)
+	const { colors } = useTheme()
 
 	return (
 		<>

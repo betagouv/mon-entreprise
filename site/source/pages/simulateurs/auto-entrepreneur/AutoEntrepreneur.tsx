@@ -1,6 +1,5 @@
-import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { ThemeContext } from 'styled-components'
+import { useTheme } from 'styled-components'
 
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { WhenAlreadyDefined } from '@/components/EngineValue'
@@ -54,7 +53,7 @@ export default function AutoEntrepreneur() {
 
 function Explanation() {
 	const { t } = useTranslation()
-	const { colors } = useContext(ThemeContext)
+	const { colors } = useTheme()
 
 	return (
 		<section>
