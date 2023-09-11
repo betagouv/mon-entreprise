@@ -25,7 +25,6 @@ export default function ArtisteAuteur() {
 				<SimulateurWarning simulateur="artiste-auteur" />
 				<SimulationGoals
 					legend="Vos revenus d'artiste auteur"
-					publique="artisteAuteur"
 					toggles={<PeriodSwitch />}
 				>
 					<SimulationGoal dottedName="artiste-auteur . revenus . traitements et salaires" />

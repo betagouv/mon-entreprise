@@ -14,6 +14,7 @@ describe('Recherche globales', { testIsolation: false }, function () {
 
 		cy.contains('Fermer').focus()
 
+		// eslint-disable-next-line cypress/unsafe-to-chain-command
 		cy.focused().tab().should('have.attr', 'type', 'search')
 
 		cy.contains('Simulateurs')
@@ -22,6 +23,7 @@ describe('Recherche globales', { testIsolation: false }, function () {
 			.should('have.length', 6)
 		cy.contains('Règles de calculs').next().find('li').should('have.length', 20)
 
+		// eslint-disable-next-line cypress/unsafe-to-chain-command
 		cy.focused().type('avocat')
 
 		cy.contains('Simulateurs')

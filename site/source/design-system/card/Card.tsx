@@ -1,7 +1,7 @@
 import { AriaButtonProps } from '@react-types/button'
 import React, { ComponentPropsWithRef, ReactHTML, useRef } from 'react'
 import { Link as BaseLink } from 'react-router-dom'
-import { css, styled } from 'styled-components'
+import { css, IStyledComponent, styled } from 'styled-components'
 
 import { StyledButton } from '@/design-system/buttons/Button'
 import { H3, H4, HeadingUnderline } from '@/design-system/typography/heading'
@@ -27,7 +27,7 @@ export type GenericCardProps = {
 } & GenericButtonOrLinkProps
 
 type CardProps = GenericCardProps & {
-	bodyAs?: React.ComponentProps<typeof Body>['as']
+	bodyAs?: keyof ReactHTML | IStyledComponent<'web'>
 	children: React.ReactNode
 	className?: string
 	compact?: boolean

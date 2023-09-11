@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider, useTheme } from 'styled-components'
 
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { hexToHSL } from '@/utils/hexToHSL'
@@ -62,19 +62,20 @@ export function ThemeColorsProvider({ children }: ProviderProps) {
 		)
 	}, [hue, saturation])
 	const isEmbeded = useIsEmbedded()
+	const defaultTheme = useTheme()
 	if (!themeColor && !isEmbeded) {
 		return <>{children}</>
 	}
 
 	return (
 		<ThemeProvider
-			theme={(theme) => ({
-				...theme,
+			theme={{
+				...defaultTheme,
 				colors: {
-					...theme.colors,
-					bases: { ...theme.colors.bases, primary: PALETTE },
+					...defaultTheme.colors,
+					bases: { ...defaultTheme.colors.bases, primary: PALETTE },
 				},
-			})}
+			}}
 		>
 			{/* This div is only used to set the CSS variables */}
 			<div

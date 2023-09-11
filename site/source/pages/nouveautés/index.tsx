@@ -90,7 +90,7 @@ export default function Nouveautés() {
 				</Body>
 
 				<Grid container spacing={2}>
-					<MobileGridItem>
+					<MobileGridItem item xs={12}>
 						<Select
 							label="Date de la newsletter"
 							value={selectedRelease}
@@ -106,7 +106,7 @@ export default function Nouveautés() {
 							)}
 						</Select>
 					</MobileGridItem>
-					<DesktopGridItem>
+					<DesktopGridItem item lg={3}>
 						<Sidebar>
 							<StyledUl>
 								{data.map(({ name }, index) => (
@@ -146,7 +146,7 @@ export default function Nouveautés() {
 	)
 }
 
-const MobileGridItem = styled(Grid).attrs({ item: true, xs: 12 })`
+const MobileGridItem = styled(Grid)`
 	display: block;
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
@@ -154,7 +154,7 @@ const MobileGridItem = styled(Grid).attrs({ item: true, xs: 12 })`
 	}
 `
 
-const DesktopGridItem = styled(Grid).attrs({ item: true, lg: 3 })`
+const DesktopGridItem = styled(Grid)`
 	display: none;
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {

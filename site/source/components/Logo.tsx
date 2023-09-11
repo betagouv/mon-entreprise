@@ -19,6 +19,7 @@ export function Logo() {
 
 	return (
 		<StyledLogo
+			data-test-id="logo img"
 			alt={t('navbar.logo', 'logo Mon entreprise')}
 			src={
 				language === 'fr'
@@ -33,6 +34,6 @@ export function Logo() {
 	)
 }
 
-const StyledLogo = styled.img.attrs({ 'data-test-id': 'logo img' })`
+const StyledLogo = styled.img`
 	height: 100%;
 `

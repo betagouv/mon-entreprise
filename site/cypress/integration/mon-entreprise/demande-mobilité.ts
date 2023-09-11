@@ -1,3 +1,4 @@
+/* eslint-disable cypress/unsafe-to-chain-command */
 import { checkA11Y, fr } from '../../support/utils'
 
 const writeFixtures = Cypress.env('record_http') !== undefined

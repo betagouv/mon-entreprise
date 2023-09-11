@@ -1,6 +1,5 @@
-const fr = Cypress.env('language') === 'fr'
-
 describe('Champs localisation (simulateur salarié)', function () {
+	const fr = Cypress.env('language') === 'fr'
 	if (!fr) {
 		return
 	}
@@ -16,6 +15,7 @@ describe('Champs localisation (simulateur salarié)', function () {
 		cy.contains('SMIC').click()
 		cy.contains('button', 'Commune').click()
 		cy.contains('Commune ou code postal').click({ force: true })
+		// eslint-disable-next-line cypress/unsafe-to-chain-command
 		cy.focused().type('Steenvoorde')
 		cy.wait('@communes')
 		cy.contains('Steenvoorde (59114)').click({ force: true })
