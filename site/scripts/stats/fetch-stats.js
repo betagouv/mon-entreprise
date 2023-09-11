@@ -48,39 +48,39 @@ const fetchApi = async function (query, page = 1) {
 
 const buildSimulateursQuery =
 	(period, granularity) =>
-	(page = 1) => ({
-		columns: [
-			'page',
-			'page_chapter1',
-			'page_chapter2',
-			'page_chapter3',
-			'm_visits',
-		],
-		space: {
-			s: [617190, 617189],
-		},
-		period: {
-			p1: [period],
-		},
-		evo: {
-			granularity,
-			top: {
-				'page-num': page,
-				'max-results': 100,
-				sort: ['-m_visits'],
-				filter: {
-					property: {
-						page_chapter1: {
-							$in: ['assistant', 'simulateurs', 'gérer'],
+		(page = 1) => ({
+			columns: [
+				'page',
+				'page_chapter1',
+				'page_chapter2',
+				'page_chapter3',
+				'm_visits',
+			],
+			space: {
+				s: [617190, 617189],
+			},
+			period: {
+				p1: [period],
+			},
+			evo: {
+				granularity,
+				top: {
+					'page-num': page,
+					'max-results': 100,
+					sort: ['-m_visits'],
+					filter: {
+						property: {
+							page_chapter1: {
+								$in: ['assistant', 'simulateurs', 'gérer'],
+							},
 						},
 					},
 				},
 			},
-		},
-		options: {
-			ignore_null_properties: true,
-		},
-	})
+			options: {
+				ignore_null_properties: true,
+			},
+		})
 
 const buildSatisfactionQuery = (page = 1) => ({
 	columns: [
@@ -127,26 +127,26 @@ const buildSatisfactionQuery = (page = 1) => ({
 
 const buildSiteQuery =
 	(period, granularity) =>
-	(page = 1) => ({
-		columns: ['m_visits'],
-		space: {
-			s: [617190, 617189],
-		},
-		period: {
-			p1: [period],
-		},
-		evo: {
-			granularity,
-			top: {
-				'page-num': page,
-				'max-results': 100,
-				sort: ['-m_visits'],
+		(page = 1) => ({
+			columns: ['m_visits'],
+			space: {
+				s: [617190, 617189],
 			},
-		},
-		options: {
-			ignore_null_properties: true,
-		},
-	})
+			period: {
+				p1: [period],
+			},
+			evo: {
+				granularity,
+				top: {
+					'page-num': page,
+					'max-results': 100,
+					sort: ['-m_visits'],
+				},
+			},
+			options: {
+				ignore_null_properties: true,
+			},
+		})
 
 const yesterday = new Date(new Date().setDate(new Date().getDate() - 1))
 	.toISOString()
@@ -256,8 +256,7 @@ const getISODatesStartEndPreviousMonth = () => {
 }
 async function fetchPaginatedCrispConversations(pageNumber, urlParams) {
 	const response = await fetch(
-		`https://api.crisp.chat/v1/website/d8247abb-cac5-4db6-acb2-cea0c00d8524/conversations/${pageNumber}${
-			urlParams ? `?${urlParams}` : ''
+		`https://api.crisp.chat/v1/website/d8247abb-cac5-4db6-acb2-cea0c00d8524/conversations/${pageNumber}${urlParams ? `?${urlParams}` : ''
 		}`,
 		{
 			method: 'get',
@@ -343,16 +342,20 @@ async function fetchGithubIssuesFromTags(tags) {
 
 	const query = `query {
 			repository(owner:"betagouv", name:"mon-entreprise") {${tags
-				.map(
-					({ name, count }, i) =>
-						`
+			.map(
+				({ name, count }, i) =>
+					`
 				issue${i}_${count}: issue(number: ${name.slice(1)}) {
 						title
 						closedAt
 						number
-				}`
-				)
-				.join('\n')}
+						stateReason
+						timelineItems(last: 1, itemTypes: [CONVERTED_TO_DISCUSSION_EVENT]) {
+							nodes
+						}
+					}`
+			)
+			.join('\n')}
 			}
 		}`
 	const response = await fetch('https://api.github.com/graphql', {
@@ -368,7 +371,7 @@ async function fetchGithubIssuesFromTags(tags) {
 	if (response.status != 200) {
 		console.error(
 			`❌ Github response status: ${response.status}\n` +
-				'\tCheck your GITHUB_API_SECRET key in site/.env\n'
+			'\tCheck your GITHUB_API_SECRET key in site/.env\n'
 		)
 	}
 
@@ -439,11 +442,12 @@ async function fetchAllUserFeedbackIssues() {
 			.sort(([, a], [, b]) => b - a)
 			.map(([name, count]) => ({ name, count }))
 	)
-
 	return {
 		open: sortedIssues.filter((s) => !s.closedAt),
 		closed: sortedIssues
 			.filter((s) => s.closedAt)
+			.filter((s) => s.stateReason !== 'NOT_PLANNED')
+			.filter((s) => s.timelineItems.nodes.length === 0) // Not converted to discussion
 			.sort((i1, i2) => new Date(i2.closedAt) - new Date(i1.closedAt)),
 	}
 }
