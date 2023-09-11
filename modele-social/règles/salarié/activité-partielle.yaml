@@ -99,7 +99,7 @@ salarié . activité partielle . indemnités . légale:
     à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
     somme initialement perçue par le salarié.
 
-    Cette allocation complémentaire est exonérée de cotisations et contributions dans les 
+    Cette allocation complémentaire est exonérée de cotisations et contributions dans les
     mêmes conditions que l’indemnité d’activité partielle légale.
 
   somme:
@@ -113,6 +113,9 @@ salarié . activité partielle . indemnités . légale:
         somme:
           - base
           - rémunération . net . sans revenus de remplacement
+  plafond:
+    valeur: net habituel
+    abattement: rémunération . net . sans revenus de remplacement
   référence:
     Article L3232-6 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902850/2020-03-02
   avec:
