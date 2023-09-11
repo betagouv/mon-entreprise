@@ -4,7 +4,8 @@ import { Theme } from '@/types/styled'
 
 export { default as Container } from './Container'
 export { default as Grid } from './Grid'
-type SpacingProps =
+
+type SpacingProps = (
 	| { xxl: true }
 	| { xl: true }
 	| { lg: true }
@@ -12,6 +13,9 @@ type SpacingProps =
 	| { sm: true }
 	| { xs: true }
 	| { xxs: true }
+) & {
+	className?: string
+}
 
 export function Spacing(props: SpacingProps) {
 	return (
@@ -21,6 +25,7 @@ export function Spacing(props: SpacingProps) {
 					(key) => key in props
 				) ?? 'md'
 			}
+			className={props.className}
 		/>
 	)
 }

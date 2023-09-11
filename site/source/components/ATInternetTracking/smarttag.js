@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // We wrap the whole file into a condition, but it might be preferable to use a
 // conditionnal import to exclude this whole file from the SSR bundle
 // https://github.com/vitejs/vite/discussions/6377

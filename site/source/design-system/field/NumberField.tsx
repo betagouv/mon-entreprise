@@ -377,6 +377,7 @@ function useSimpleNumberFieldState(
 		inputValue,
 		decrement,
 		increment,
+		setNumberValue,
 		minValue: props.minValue ?? -Infinity,
 		maxValue: props.maxValue ?? Infinity,
 		canIncrement: true,

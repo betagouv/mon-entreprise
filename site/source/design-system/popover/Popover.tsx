@@ -72,7 +72,7 @@ export default function Popover(
 			aria-label={t('Fond de la boite de dialogue')}
 		>
 			<Underlay {...underlayProps} $offsetTop={offsetTop}>
-				<Container>
+				<Container backgroundColor={() => 'transparent'}>
 					<Grid
 						container
 						css={`

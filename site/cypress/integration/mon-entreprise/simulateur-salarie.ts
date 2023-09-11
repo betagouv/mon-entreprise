@@ -40,6 +40,7 @@ describe('Simulateur salarié : part time contract', function () {
 			.next()
 			.find('button')
 			.click()
+		// eslint-disable-next-line cypress/unsafe-to-chain-command
 		cy.focused().type('25')
 		cy.contains('Fermer').click()
 

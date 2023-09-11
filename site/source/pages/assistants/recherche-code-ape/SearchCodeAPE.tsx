@@ -130,6 +130,15 @@ export default function SearchCodeAPE({
 			cache?: UFuzzy.HaystackIdxs
 		) => {
 			const idxs = fuzzy.filter(list, value, cache)
+			if (!idxs) {
+				return {
+					idxs: [],
+					info: {
+						idx: [],
+					},
+					order: [],
+				}
+			}
 			const info = fuzzy.info(idxs, list, value)
 			const order = fuzzy.sort(info, list, value)
 
