@@ -46,9 +46,9 @@ const RuleInputWithTitle = ({
 		<>
 			{title && (
 				<H3
-					css={`
-						margin-top: 1rem;
-					`}
+					style={{
+						marginTop: '1rem',
+					}}
 				>
 					{title}
 					<ExplicableRule dottedName={dottedName} />
@@ -125,10 +125,10 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 				<Grid
 					container
 					spacing={3}
-					css={`
-						align-items: stretch;
-						flex-wrap: wrap-reverse;
-					`}
+					style={{
+						alignItems: 'stretch',
+						flexWrap: 'wrap-reverse',
+					}}
 				>
 					<Grid
 						item
@@ -144,10 +144,10 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 						<Message border={false}>
 							<Grid
 								container
-								css={`
-									align-items: center;
-									justify-content: space-between;
-								`}
+								style={{
+									alignItems: 'center',
+									justifyContent: 'space-between',
+								}}
 								spacing={1}
 							>
 								<SimpleField dottedName="DRI . déclarant" />
@@ -164,9 +164,9 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 
 							<Grid
 								xs={12}
-								css={`
-									text-align: center;
-								`}
+								style={{
+									textAlign: 'center',
+								}}
 								item
 							>
 								<Button
@@ -189,11 +189,11 @@ export function DéclarationRevenuSection({ progress }: { progress: number }) {
 					{!déclarationRevenusManuel && (
 						<Grid item lg={4} xl={5}>
 							<div
-								css={`
-									position: sticky !important;
-									top: 1rem;
-									padding-bottom: 0.001rem;
-								`}
+								style={{
+									position: 'sticky',
+									top: '1rem',
+									paddingBottom: '0.001rem',
+								}}
 							>
 								<Message type="info" border={false}>
 									<Body>
@@ -262,9 +262,9 @@ export function DéclarationRevenu({
 							<H3>{rule.title}</H3>
 						) : (
 							<H4
-								css={`
-									margin-top: 0rem;
-								`}
+								style={{
+									marginTop: '0rem',
+								}}
 							>
 								{rule.title}
 							</H4>

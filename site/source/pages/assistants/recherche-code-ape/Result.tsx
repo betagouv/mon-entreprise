@@ -37,10 +37,10 @@ export const Result = ({ item, hideGuichetUnique }: ResultProps) => {
 			<SmallBody>
 				<Grid
 					container
-					css={`
-						align-items: center;
-						justify-content: space-between;
-					`}
+					style={{
+						alignItems: 'center',
+						justifyContent: 'space-between',
+					}}
 				>
 					<Grid item>
 						<Chip>Code : {codeApe}</Chip>

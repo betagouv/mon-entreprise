@@ -45,9 +45,9 @@ export default function ChômagePartiel() {
 			<Grid
 				container
 				spacing={2}
-				css={`
-					justify-content: center;
-				`}
+				style={{
+					justifyContent: 'center',
+				}}
 			>
 				<Grid item xl={9} lg={10} md={11} sm={12}>
 					{' '}
@@ -200,10 +200,10 @@ function ExplanationSection() {
 	return (
 		<FromTop>
 			<div
-				css={`
-					overflow: hidden;
-					margin: 1rem 0;
-				`}
+				style={{
+					overflow: 'hidden',
+					margin: '1rem 0',
+				}}
 			>
 				<ComparaisonTable
 					rows={[
@@ -345,9 +345,9 @@ function ComparaisonTable({ rows: [head, ...body] }: ComparaisonTableProps) {
 									<ValueWithLink {...cell} />
 									{cell.additionalText && (
 										<p
-											css={`
-												text-align: right;
-											`}
+											style={{
+												textAlign: 'right',
+											}}
 										>
 											{cell.additionalText}
 										</p>
@@ -384,9 +384,9 @@ function RowLabel({ dottedName }: { dottedName: DottedName }) {
 		<>
 			{' '}
 			<div
-				css={`
-					font-weight: bold;
-				`}
+				style={{
+					fontWeight: 'bold',
+				}}
 			>
 				{target.title}
 			</div>

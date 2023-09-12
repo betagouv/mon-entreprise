@@ -166,10 +166,10 @@ function Results({
 								aria-label={`${etablissement.label}, Selectionner cette entreprise`}
 								ctaLabel={
 									<ChevronIcon
-										css={`
-											height: 20px;
-											margin-top: 5px;
-										`}
+										style={{
+											height: '20px',
+											marginTop: '5px',
+										}}
 										aria-hidden
 									/>
 								}

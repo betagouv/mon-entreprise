@@ -105,9 +105,9 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					{children}
 					<div
 						className="print-hidden"
-						css={`
-							text-align: center;
-						`}
+						style={{
+							textAlign: 'center',
+						}}
 					>
 						<PopoverConfirm
 							small
@@ -132,9 +132,9 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 			{currentSimulatorData?.pathId === 'simulateurs.salarié' && (
 				<div
 					className="print-hidden"
-					css={`
-						text-align: center;
-					`}
+					style={{
+						textAlign: 'center',
+					}}
 				>
 					<Spacing md />
 					<JeDonneMonAvis />
@@ -150,26 +150,26 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 						<Message type="secondary" border={false} icon>
 							<Body>
 								<span
-									css={`
-										display: flex;
-										align-items: center;
-									`}
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+									}}
 								>
 									<span
-										css={`
-											flex-shrink: 1;
-										`}
+										style={{
+											flexShrink: '1',
+										}}
 									>
 										Les réponses liées à l'entreprise sont{' '}
 										<Strong>automatiquement sauvegardées</Strong> entre les
 										simulations.
 									</span>
 									<span
-										css={`
-											flex: 1;
-											min-width: fit-content;
-											text-align: right;
-										`}
+										style={{
+											flex: '1',
+											minWidth: 'fit-content',
+											textAlign: 'right',
+										}}
 									>
 										<PopoverConfirm
 											small
@@ -199,14 +199,14 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 					</div>
 					<div
 						className="print-hidden"
-						css={`
-							text-align: center;
-						`}
+						style={{
+							textAlign: 'center',
+						}}
 					></div>
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
 					<Spacing md />
 					<div className="print-hidden">
-						<Body css={{ marginTop: 0 }}>
+						<Body style={{ marginTop: 0 }}>
 							{t(
 								'gérer.ressources.annuaire-entreprises.body',
 								'Retrouvez toutes les informations publiques concernant votre entreprise sur'

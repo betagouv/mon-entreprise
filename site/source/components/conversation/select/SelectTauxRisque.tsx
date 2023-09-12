@@ -89,38 +89,38 @@ function SelectComponent({
 						onPress={() => submitOnChange(option)}
 						compact
 						key={JSON.stringify(option)}
-						css={`
-							padding: 0.4rem;
-							margin-top: 0.5rem;
-						`}
+						style={{
+							padding: '0.4rem',
+							marginTop: '0.5rem',
+						}}
 					>
 						<span
-							css={`
-								flex: 6;
-							`}
+							style={{
+								flex: '6',
+							}}
 						>
 							{option['Nature du risque']}
 						</span>
 
 						<span
-							css={`
-								flex: 2;
-								color: #333;
-								background-color: inherit;
-								font-size: 1rem;
-							`}
+							style={{
+								flex: '2',
+								color: '#333',
+								backgroundColor: 'inherit',
+								fontSize: '1rem',
+							}}
 						>
 							{formatTauxNet(option['Taux net'])}
 						</span>
 						<span
-							css={`
-								flex: 4;
-								background-color: #ddd;
-								color: #333;
-								border-radius: 0.25em;
-								padding: 0.5em;
-								text-align: center;
-							`}
+							style={{
+								flex: '4',
+								backgroundColor: '#ddd',
+								color: '#333',
+								borderRadius: '0.25em',
+								padding: '0.5em',
+								textAlign: 'center',
+							}}
 						>
 							{option['Catégorie']}
 						</span>

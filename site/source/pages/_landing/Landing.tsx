@@ -71,10 +71,10 @@ export default function Landing() {
 				<Grid
 					container
 					spacing={4}
-					css={`
-						align-items: stretch;
-						justify-content: center;
-					`}
+					style={{
+						alignItems: 'stretch',
+						justifyContent: 'center',
+					}}
 				>
 					<SimulateurCard {...simulators.salarié} />
 
@@ -85,17 +85,17 @@ export default function Landing() {
 					<Grid
 						item
 						xs={12}
-						css={`
-							display: flex;
-						`}
+						style={{
+							display: 'flex',
+						}}
 					>
 						<Button
 							size="XL"
 							to={absoluteSitePaths.simulateursEtAssistants}
-							css={`
-								white-space: no-wrap;
-								margin: auto;
-							`}
+							style={{
+								whiteSpace: 'nowrap',
+								margin: 'auto',
+							}}
 						>
 							<Trans i18nKey="landing.choice.simulators.title">
 								Découvrir tous les simulateurs et assistants
@@ -116,18 +116,18 @@ export default function Landing() {
 				<Spacing lg />
 				<Grid
 					container
-					css={`
-						align-items: flex-end;
-					`}
+					style={{
+						alignItems: 'flex-end',
+					}}
 				>
 					<HideOnMobile item xs={2} md={2}>
 						<img
 							src={illustration2Svg}
-							css={`
-								width: 100%;
-								padding-right: 2rem;
-								padding-bottom: 1rem;
-							`}
+							style={{
+								width: '100%',
+								paddingRight: '2rem',
+								paddingBottom: '1rem',
+							}}
 							alt="illustration"
 							aria-hidden
 						/>

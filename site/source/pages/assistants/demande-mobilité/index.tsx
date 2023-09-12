@@ -154,10 +154,10 @@ function FormulairePublicodes() {
 									<WhenApplicable dottedName={dottedName as DottedName}>
 										<Grid item xs={12}>
 											<SmallBody
-												css={`
-													color: #ff2d96;
-													background-color: inherit;
-												`}
+												style={{
+													color: '#ff2d96',
+													backgroundColor: 'inherit',
+												}}
 											>
 												{description}
 											</SmallBody>
@@ -176,9 +176,9 @@ function FormulairePublicodes() {
 									>
 										{question && (
 											<div
-												css={`
-													margin-top: -1rem;
-												`}
+												style={{
+													marginTop: '-1rem',
+												}}
 											>
 												{' '}
 												<Markdown>
@@ -220,9 +220,9 @@ function FormulairePublicodes() {
 
 			{!!Object.keys(situation).length && (
 				<div
-					css={`
-						text-align: right;
-					`}
+					style={{
+						textAlign: 'right',
+					}}
 				>
 					<PopoverConfirm
 						small

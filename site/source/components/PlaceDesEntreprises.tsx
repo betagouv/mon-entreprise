@@ -78,10 +78,10 @@ export const PlaceDesEntreprisesButton = ({
 						<Suspense
 							fallback={
 								<Container
-									css={`
-										height: 300px;
-										align-items: center;
-									`}
+									style={{
+										height: '300px',
+										alignItems: 'center',
+									}}
 								>
 									<Loader />
 								</Container>

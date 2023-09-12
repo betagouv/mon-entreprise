@@ -38,9 +38,9 @@ export function SmallCard({
 			<IconPlaceholder>{icon}</IconPlaceholder>
 			<Content>
 				<H6
-					css={`
-						margin: 0;
-					`}
+					style={{
+						margin: '0',
+					}}
 					{...titleProps}
 					as="span"
 				>

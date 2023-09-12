@@ -342,9 +342,9 @@ function ResultSection() {
 							<WhenNotApplicable dottedName="DRI . imposition cas exclus">
 								<Spacing md />
 								<div
-									css={`
-										text-align: center;
-									`}
+									style={{
+										textAlign: 'center',
+									}}
 								>
 									<Button
 										to={
@@ -380,9 +380,9 @@ function ResultSection() {
 											déclaration de revenu.
 										</SmallBody>
 										<div
-											css={`
-												text-align: center;
-											`}
+											style={{
+												textAlign: 'center',
+											}}
 										>
 											<Button
 												light
@@ -416,9 +416,9 @@ function ResultSection() {
 								<Spacing sm />
 
 								<div
-									css={`
-										text-align: center;
-									`}
+									style={{
+										textAlign: 'center',
+									}}
 								>
 									<Button
 										light
@@ -468,9 +468,9 @@ function ResultSection() {
 								</Body>
 
 								<Body
-									css={`
-										text-align: center;
-									`}
+									style={{
+										textAlign: 'center',
+									}}
 								>
 									<Button
 										light

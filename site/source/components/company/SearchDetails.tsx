@@ -31,9 +31,9 @@ export default function CompanySearchDetails({
 		<CompanyContainer>
 			<H4
 				as="div"
-				css={`
-					margin: 0;
-				`}
+				style={{
+					margin: '0',
+				}}
 			>
 				<>
 					{'highlightLabel' in entreprise

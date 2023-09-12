@@ -45,17 +45,17 @@ export default function SalaryExplanation() {
 				<div ref={payslipRef} />
 				<Grid
 					container
-					css={`
-						justify-content: center;
-					`}
+					style={{
+						justifyContent: 'center',
+					}}
 				>
 					<Grid
 						item
 						xl={9}
 						lg={10}
-						css={`
-							overflow: auto;
-						`}
+						style={{
+							overflow: 'auto',
+						}}
 					>
 						<H2>
 							<Trans>Fiche de paie</Trans>
@@ -111,15 +111,15 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 	return (
 		<section>
 			<div
-				css={`
-					display: flex;
-					align-items: baseline;
-				`}
+				style={{
+					display: 'flex',
+					alignItems: 'baseline',
+				}}
 			>
 				<H2
-					css={`
-						flex: 1;
-					`}
+					style={{
+						flex: '1',
+					}}
 				>
 					<Trans i18nKey="payslip.repartition">
 						Répartition du total chargé

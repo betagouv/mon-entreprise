@@ -16,7 +16,7 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts'
-import { useTheme } from 'styled-components'
+import { styled, useTheme } from 'styled-components'
 
 import { StyledLegend } from '@/components/charts/PagesCharts'
 import { Strong } from '@/design-system/typography'
@@ -106,14 +106,7 @@ export default function VisitsChart({
 	): ReactElement => <ComposedChart {...props} />
 
 	return (
-		<Body
-			as="div"
-			css={`
-				svg {
-					overflow: visible;
-				}
-			`}
-		>
+		<Body as="div">
 			<RealResponsiveContainer width="100%" height={500}>
 				<ComposedChartWithRole
 					layout={layout}
@@ -210,7 +203,7 @@ export default function VisitsChart({
 export const RealResponsiveContainer = (
 	props: ComponentProps<typeof ResponsiveContainer>
 ) => (
-	<div
+	<StyledDiv
 		style={{
 			width: props.width,
 			height: props.height,
@@ -229,9 +222,13 @@ export const RealResponsiveContainer = (
 		>
 			<ResponsiveContainer {...props} width="100%" height="100%" />
 		</div>
-	</div>
+	</StyledDiv>
 )
-
+const StyledDiv = styled.div`
+	svg {
+		overflow: visible;
+	}
+`
 function formatDay(date: string | Date) {
 	return new Date(date).toLocaleString('default', {
 		day: '2-digit',

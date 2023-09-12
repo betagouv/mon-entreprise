@@ -83,9 +83,9 @@ export default function API() {
 				</Body>
 
 				<div
-					css={`
-						text-align: center;
-					`}
+					style={{
+						textAlign: 'center',
+					}}
 				>
 					<iframe
 						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"

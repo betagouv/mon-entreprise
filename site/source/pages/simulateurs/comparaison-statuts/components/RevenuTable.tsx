@@ -41,9 +41,9 @@ export default function RevenuTable({
 						<tr>
 							<th scope="row">
 								<Minus
-									css={`
-										opacity: 0;
-									`}
+									style={{
+										opacity: '0',
+									}}
 									aria-hidden
 								>
 									-
@@ -100,9 +100,9 @@ export default function RevenuTable({
 						<tr>
 							<th scope="row">
 								<Minus
-									css={`
-										opacity: 0;
-									`}
+									style={{
+										opacity: '0',
+									}}
 									aria-hidden
 								>
 									-
@@ -175,9 +175,9 @@ export default function RevenuTable({
 						<tr>
 							<th scope="row">
 								<Minus
-									css={`
-										opacity: 0;
-									`}
+									style={{
+										opacity: '0',
+									}}
 									aria-hidden
 								>
 									-

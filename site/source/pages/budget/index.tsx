@@ -99,9 +99,9 @@ export default function Budget() {
 			{selectedYear !== '2019' && (
 				<>
 					<div
-						css={`
-							overflow-x: auto;
-						`}
+						style={{
+							overflowX: 'auto',
+						}}
 					>
 						<RessourcesAllocationTable role="table">
 							<caption className="sr-only">

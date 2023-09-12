@@ -47,9 +47,9 @@ export default function Comparateur() {
 						? theme.colors.extended.dark[700]
 						: theme.colors.bases.primary[100]
 				}
-				css={`
-					padding: 2rem 0;
-				`}
+				style={{
+					padding: '2rem 0',
+				}}
 			>
 				<StatutChoice namedEngines={namedEngines} />
 				<Spacing xl />

@@ -113,10 +113,10 @@ const DividendesExplanation = () => {
 		<Condition expression="bénéficiaire . dividendes . bruts > 0">
 			<section id="simulateur-dividendes-section-total">
 				<div
-					css={`
-						display: flex;
-						align-items: baseline;
-					`}
+					style={{
+						display: 'flex',
+						alignItems: 'baseline',
+					}}
 				>
 					<H2>
 						<Trans i18nKey="payslip.repartition">

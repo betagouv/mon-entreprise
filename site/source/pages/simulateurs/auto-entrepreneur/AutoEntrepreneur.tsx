@@ -113,9 +113,9 @@ export const SeoExplanations = () => (
 			role="presentation"
 			mini
 			border={false}
-			css={`
-				width: fit-content;
-			`}
+			style={{
+				width: 'fit-content',
+			}}
 		>
 			Revenu net = Chiffres d'affaires − Cotisations sociales − Dépenses
 			professionnelles

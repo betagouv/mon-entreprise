@@ -150,9 +150,9 @@ function Explanations() {
 				</Intro>
 				<Body
 					className="notice"
-					css={`
-						margin-top: -1rem;
-					`}
+					style={{
+						marginTop: '-1rem',
+					}}
 				>
 					<Trans>Montant de l'impôt sur les sociétés</Trans>
 				</Body>

@@ -59,16 +59,16 @@ function Reference({ href, title }: { href: string; title: string }) {
 			<Grid
 				container
 				spacing={2}
-				css={`
-					display: inline-flex;
-				`}
+				style={{
+					display: 'inline-flex',
+				}}
 			>
 				<Grid item xs={12} sm="auto">
 					<Link
 						href={href}
-						css={`
-							display: flex;
-						`}
+						style={{
+							display: 'flex',
+						}}
 					>
 						{capitalise0(title)}
 					</Link>
@@ -76,9 +76,9 @@ function Reference({ href, title }: { href: string; title: string }) {
 				<Grid
 					item
 					xs="auto"
-					css={`
-						text-align: right;
-					`}
+					style={{
+						textAlign: 'right',
+					}}
 				>
 					{domain in referencesImages && (
 						<StyledImage

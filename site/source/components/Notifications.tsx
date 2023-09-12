@@ -69,9 +69,9 @@ export default function Notifications() {
 
 	return (
 		<div
-			css={`
-				margin-top: 1rem;
-			`}
+			style={{
+				marginTop: '1rem',
+			}}
 		>
 			<Appear>
 				{messages.map(({ sévérité, dottedName, résumé, description }) => (

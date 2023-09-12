@@ -63,9 +63,9 @@ export default function Déclaration() {
 					<Grid
 						container
 						spacing={2}
-						css={`
-							align-items: flex-end;
-						`}
+						style={{
+							alignItems: 'flex-end',
+						}}
 					>
 						<Grid item lg={10} xl={8}>
 							<FromTop>
@@ -298,9 +298,9 @@ function LiasseFiscale() {
 				return section === 'oui' ? (
 					<Grid item xs={12} key={dottedName}>
 						<H3
-							css={`
-								margin-bottom: 0rem;
-							`}
+							style={{
+								marginBottom: '0rem',
+							}}
 						>
 							{rule.title}
 						</H3>

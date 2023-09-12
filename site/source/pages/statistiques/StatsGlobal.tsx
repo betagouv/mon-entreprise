@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
+import { styled } from 'styled-components'
 
 import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -36,34 +37,31 @@ const RetoursAsProgress = ({
 	return (
 		<ul
 			className="progress__container"
-			css={`
-				width: 100%;
-				overflow: hidden;
-				height: 2.5rem;
-				border-radius: 3px;
-				margin-top: 1rem;
-				margin-bottom: 2.5rem;
-				display: flex;
-				font-size: 1.8rem;
-				padding: 0;
-			`}
+			style={{
+				width: '100%',
+				overflow: 'hidden',
+				height: '2.5rem',
+				borderRadius: '3px',
+				marginTop: '1rem',
+				marginBottom: '2.5rem',
+				display: 'flex',
+				fontSize: '1.8rem',
+				padding: '0',
+			}}
 		>
 			{' '}
 			{SatisfactionStyle.map(([level, { emoji: emojiStr, color }]) => {
 				return (
-					<li
+					<StyledLi
 						key={level}
-						css={`
-							width: ${percentages[level]}%;
-							background-color: ${color};
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							border-left: solid 2px white;
-							&:first-child {
-								border-left: none;
-							}
-						`}
+						style={{
+							width: `${percentages[level]}%`,
+							backgroundColor: `${color}`,
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							borderLeft: 'solid 2px white',
+						}}
 					>
 						<Emoji
 							emoji={emojiStr}
@@ -71,21 +69,27 @@ const RetoursAsProgress = ({
 							alt={mappedLevelToLabel[level]}
 						/>
 						<div
-							css={`
-								position: absolute;
-								margin-top: 4rem;
-								font-size: 0.7rem;
-								font-weight: lighter;
-							`}
+							style={{
+								position: 'absolute',
+								marginTop: '4rem',
+								fontSize: '0.7rem',
+								fontWeight: 'lighter',
+							}}
 						>
 							{Math.round(percentages[level])}%
 						</div>
-					</li>
+					</StyledLi>
 				)
 			})}
 		</ul>
 	)
 }
+
+const StyledLi = styled.li`
+	&:first-child {
+		border-left: none;
+	}
+`
 
 interface GlobalStatsProps {
 	stats: StatsStruct

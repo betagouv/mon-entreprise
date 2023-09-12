@@ -64,16 +64,16 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 						? theme.colors.extended.dark[700]
 						: theme.colors.bases.primary[100]
 				}
-				css={`
-					padding: 1rem 0;
-				`}
+				style={{
+					padding: '1rem 0',
+				}}
 			>
 				<StatutChoice namedEngines={namedEngines} hideCTA />
 				<div
-					css={`
-						text-align: right;
-						padding-top: 1rem;
-					`}
+					style={{
+						textAlign: 'right',
+						paddingTop: '1rem',
+					}}
 				>
 					<ModifierOptions namedEngines={namedEngines} />
 				</div>

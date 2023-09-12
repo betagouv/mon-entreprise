@@ -21,11 +21,11 @@ export default function InscriptionBetaTesteur() {
 		>
 			<img
 				src={FeedbackSvg}
-				css={`
-					height: auto !important;
-					max-width: 25rem;
-					padding-top: 2rem;
-				`}
+				style={{
+					height: 'auto',
+					maxWidth: '25rem',
+					paddingTop: '2rem',
+				}}
 				alt=""
 			/>
 			<Intro>

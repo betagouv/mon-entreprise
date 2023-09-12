@@ -20,20 +20,20 @@ export default function NotHandledCase({
 		<Message type="info">
 			<Grid
 				container
-				css={`
-					justify-content: center;
-					align-items: center;
-				`}
+				style={{
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
 				spacing={3}
 			>
 				<ReverseOrderOnMobile item xs={6} md={3}>
 					<img
 						src={notHandled}
 						alt=""
-						css={`
-							width: 100%;
-							padding: 1rem;
-						`}
+						style={{
+							width: '100%',
+							padding: '1rem',
+						}}
 					/>
 				</ReverseOrderOnMobile>
 				<Grid item md={9}>

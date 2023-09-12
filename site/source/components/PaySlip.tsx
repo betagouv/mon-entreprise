@@ -21,6 +21,8 @@ import { ExplicableRule } from './conversation/Explicable'
 
 import './PaySlip.css'
 
+import { styled } from 'styled-components'
+
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 
 export const SECTION_ORDER = [
@@ -108,17 +110,7 @@ export default function PaySlip() {
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
 	return (
-		<div
-			className="payslip__container"
-			css={`
-				.value {
-					display: flex;
-					align-items: flex-end;
-					justify-content: flex-end;
-					padding-right: 0.2em;
-				}
-			`}
-		>
+		<StyledContainer className="payslip__container">
 			<div className="payslip__salarySection">
 				<Line
 					rule="salarié . temps de travail"
@@ -199,7 +191,7 @@ export default function PaySlip() {
 			</div>
 			{/* Section salaire net */}
 			<SalaireNetSection />
-		</div>
+		</StyledContainer>
 	)
 }
 
@@ -259,3 +251,12 @@ function Cotisation({ dottedName }: { dottedName: DottedName }) {
 		</>
 	)
 }
+
+const StyledContainer = styled.div`
+	.value {
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+		padding-right: 0.2em;
+	}
+`

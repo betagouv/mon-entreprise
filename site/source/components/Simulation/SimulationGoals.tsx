@@ -105,11 +105,11 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 			{inIframe && (
 				<Grid
 					item
-					css={`
-						display: flex;
-						justify-content: center;
-						align-items: flex-end;
-					`}
+					style={{
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'flex-end',
+					}}
 				>
 					<LogoContainer
 						href={import.meta.env.VITE_FR_BASE_URL}

@@ -58,10 +58,10 @@ export default function AccueilChoixStatut() {
 							<Grid item>
 								<SmallBody
 									grey
-									css={`
-										display: flex;
-										gap: 0.5rem;
-									`}
+									style={{
+										display: 'flex',
+										gap: '0.5rem',
+									}}
 								>
 									<ClockIcon />
 									<Trans i18nKey="choix-statut.home.estimated-duration">
@@ -104,9 +104,9 @@ export default function AccueilChoixStatut() {
 			</PageHeader>
 			<Spacing xxl />
 			<div
-				css={`
-					flex: 1;
-				`}
+				style={{
+					flex: '1',
+				}}
 			></div>
 			<Container
 				backgroundColor={(theme) =>

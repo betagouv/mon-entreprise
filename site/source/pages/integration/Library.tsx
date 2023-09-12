@@ -85,9 +85,9 @@ export default function Library() {
 					valeur. Voici un exemple pour le calcul brut / net
 				</Body>
 				<div
-					css={`
-						text-align: center;
-					`}
+					style={{
+						textAlign: 'center',
+					}}
 				>
 					<iframe
 						src="https://codesandbox.io/embed/zen-keller-2dpct?fontsize=14&hidenavigation=1&theme=dark"
@@ -186,9 +186,9 @@ export default function Library() {
 					bas salaires.
 				</Body>
 				<div
-					css={`
-						text-align: center;
-					`}
+					style={{
+						textAlign: 'center',
+					}}
 				>
 					<iframe
 						src="https://codesandbox.io/embed/mon-entreprise-exemple-3-4j11c?fontsize=14&hidenavigation=1&theme=dark"

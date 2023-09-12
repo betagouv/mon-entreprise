@@ -41,9 +41,9 @@ const StatusCard = ({
 				<Tooltip
 					tooltip={
 						<StyledBodyTooltip
-							css={`
-								font-weight: normal;
-							`}
+							style={{
+								fontWeight: 'normal',
+							}}
 						>
 							<Trans>Option la plus avantageuse.</Trans>
 						</StyledBodyTooltip>

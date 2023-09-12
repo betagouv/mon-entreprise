@@ -104,11 +104,11 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 						Signez ci dessous en utilisant la totalité de l'espace :{' '}
 					</SmallBody>
 					<div
-						css={`
-							border: 1px solid ${colors.bases.primary[700]};
-							border-radius: 0.3rem;
-							position: relative;
-						`}
+						style={{
+							border: `1px solid ${colors.bases.primary[700]}`,
+							borderRadius: '0.3rem',
+							position: 'relative',
+						}}
 					>
 						<SignaturePad
 							height={200}
@@ -117,9 +117,9 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 						/>
 					</div>
 					<div
-						css={`
-							text-align: right;
-						`}
+						style={{
+							textAlign: 'right',
+						}}
 					>
 						<Link onPress={() => signatureRef.current?.clear()}>
 							<Emoji emoji="🗑️" /> Recommencer{' '}

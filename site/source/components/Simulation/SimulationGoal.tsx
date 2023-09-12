@@ -77,10 +77,10 @@ export function SimulationGoal({
 			<StyledGoal $small={small && !editable}>
 				<Grid
 					container
-					css={`
-						align-items: baseline;
-						justify-content: space-between;
-					`}
+					style={{
+						alignItems: 'baseline',
+						justifyContent: 'space-between',
+					}}
 					spacing={2}
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
@@ -88,9 +88,9 @@ export function SimulationGoal({
 							{isInfoMode ? (
 								<Grid
 									container
-									css={`
-										align-items: center;
-									`}
+									style={{
+										alignItems: 'center',
+									}}
 								>
 									<Grid item>
 										<StyledBody

@@ -117,11 +117,11 @@ const App = () => {
 			<main
 				role="main"
 				id="main"
-				css={`
-					flex: 1;
-					display: flex;
-					flex-direction: column;
-				`}
+				style={{
+					flex: '1',
+					display: 'flex',
+					flexDirection: 'column',
+				}}
 			>
 				<a
 					href={`${fullURL}#footer`}

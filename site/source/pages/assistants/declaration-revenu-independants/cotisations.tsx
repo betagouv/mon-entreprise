@@ -80,11 +80,11 @@ export default function Cotisations() {
 									</div>
 									<Message border={false}>
 										<div
-											css={`
-												position: relative;
-												top: -1px;
-												margin: 0 -1.5rem;
-											`}
+											style={{
+												position: 'relative',
+												top: '-1px',
+												margin: '0 -1.5rem',
+											}}
 										>
 											<Progress
 												progress={numberCurrentStep}
@@ -93,9 +93,9 @@ export default function Cotisations() {
 										</div>
 
 										<div
-											css={`
-												margin: -0.75rem 0;
-											`}
+											style={{
+												margin: '-0.75rem 0',
+											}}
 										>
 											<Conversation
 												customSituationVisualisation={

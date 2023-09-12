@@ -17,17 +17,17 @@ const RevenuEstimé = () => {
 
 	return (
 		<CardContainer
-			css={`
-				padding: 1.5rem !important;
-			`}
+			style={{
+				padding: '1.5rem !important',
+			}}
 			$inert
 		>
 			<Grid container>
 				<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
 					<Grid
-						css={`
-							padding-right: 1.5rem;
-						`}
+						style={{
+							paddingRight: '1.5rem',
+						}}
 						item
 						xs={12}
 						sm={6}
@@ -68,10 +68,10 @@ const RevenuEstimé = () => {
 					<Link
 						to={absoluteSitePaths.assistants['choix-du-statut'].rémunération}
 						// $noUnderline
-						css={`
-							display: inline-flex;
-							align-items: center;
-						`}
+						style={{
+							display: 'inline-flex',
+							alignItems: 'center',
+						}}
 					>
 						<StyledEditIcon /> Modifier les informations
 					</Link>

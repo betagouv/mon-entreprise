@@ -11,10 +11,10 @@ const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({
 }) => {
 	return (
 		<div
-			css={`
-				display: flex;
-				gap: 18px;
-			`}
+			style={{
+				display: 'flex',
+				gap: '18px',
+			}}
 			{...props}
 		>
 			{Children.map(children, (c, i) => (

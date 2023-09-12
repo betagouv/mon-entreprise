@@ -11047,13 +11047,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/plugin-styled-components@npm:^1.5.76":
-  version: 1.5.76
-  resolution: "@swc/plugin-styled-components@npm:1.5.76"
-  checksum: 13af300558b29ccb45ef92ab51f9816bb2842ea6b156e8b538f384e8bc8e26f2166cfb0fe720105e5c77fb2010c991693e87b7d61065468800eef6b2679c6e49
-  languageName: node
-  linkType: hard
-
 "@szmarczak/http-timer@npm:^4.0.5":
   version: 4.0.6
   resolution: "@szmarczak/http-timer@npm:4.0.6"
@@ -28179,7 +28172,6 @@ __metadata:
     "@storybook/react": ^7.0.5
     "@storybook/react-vite": ^7.0.5
     "@storybook/testing-library": ^0.1.0
-    "@swc/plugin-styled-components": ^1.5.76
     "@types/history": ^5.0.0
     "@types/react": ^18.2.21
     "@types/react-dom": ^18.2.7

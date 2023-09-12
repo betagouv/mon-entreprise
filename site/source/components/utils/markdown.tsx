@@ -218,32 +218,31 @@ export function HeadingWithAnchorLink({
 	)
 
 	return (
-		<Heading
-			id={headingId}
-			level={level}
-			css={`
-				position: relative;
-				.anchor-link {
-					display: none;
-					position: absolute;
-					top: 0;
-					left: 0;
-					transform: translateX(-100%);
-					padding-right: 6px;
-					color: var(--lighterTextColor);
-					background-color: inherit;
-					text-decoration: none;
-					font-size: 0.8em;
-				}
-				&:hover .anchor-link {
-					display: block;
-				}
-			`}
-		>
+		<StyledHeading id={headingId} level={level}>
 			{childrenWithAnchor}
-		</Heading>
+		</StyledHeading>
 	)
 }
+
+const StyledHeading = styled(Heading)`
+	position: relative;
+
+	.anchor-link {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: translateX(-100%);
+		padding-right: 6px;
+		color: var(--lighterTextColor);
+		background-color: inherit;
+		text-decoration: none;
+		font-size: 0.8em;
+	}
+	&:hover .anchor-link {
+		display: block;
+	}
+`
 
 type HeadingProps = {
 	level: number

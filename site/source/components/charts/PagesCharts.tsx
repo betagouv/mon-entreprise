@@ -86,15 +86,7 @@ export default function PagesChart({
 					formatKey={(key) => formatLegend(key)}
 				/>
 			) : (
-				<RealResponsiveContainer
-					width="100%"
-					height={500}
-					css={`
-						svg {
-							overflow: visible;
-						}
-					`}
-				>
+				<RealResponsiveContainer width="100%" height={500}>
 					<ComposedChartWithRole
 						layout="horizontal"
 						data={flattenedData}
