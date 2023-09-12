@@ -58,18 +58,7 @@ export default defineConfig(({ command, mode }) => ({
 				preventAssignment: false,
 			}),
 
-		react({
-			plugins: [
-				[
-					'@swc/plugin-styled-components',
-					{
-						pure: true,
-						displayName: true,
-						transpileTemplateLiterals: false,
-					},
-				],
-			],
-		}),
+		react(),
 
 		yaml({
 			transform(data, filePath) {

@@ -36,5 +36,8 @@ export default async ({ site, url, lang }) => {
 	await fs.mkdir(dir, { recursive: true })
 	await fs.writeFile(path.join(dir, 'index.html'), page)
 
-	return path.relative(path.join(dirname, '../dist'), path.join(dir, 'index.html'))
+	return path.relative(
+		path.join(dirname, '../dist'),
+		path.join(dir, 'index.html')
+	)
 }

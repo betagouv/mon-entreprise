@@ -143,16 +143,22 @@ export function SimulationContainer({
 		<Grid
 			container
 			spacing={2}
-			css={`
-				justify-content: center;
-			`}
+			style={{
+				justifyContent: 'center',
+			}}
 			id={id}
 		>
 			<StyledGrid
 				item
-				css={`
-					${fullWidth ? `width: 100%; max-width: none; flex-basis: auto;` : ''}
-				`}
+				style={
+					fullWidth
+						? {
+								width: ' 100%',
+								maxWidth: 'none',
+								flexBasis: 'auto',
+						  }
+						: {}
+				}
 				xl={9}
 				lg={10}
 				md={11}

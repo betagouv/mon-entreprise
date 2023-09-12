@@ -29,9 +29,9 @@ export function CurrentSimulatorCard({
 			item
 			md={12}
 			lg={8}
-			css={`
-				margin-bottom: -1rem;
-			`}
+			style={{
+				marginBottom: '-1rem',
+			}}
 		>
 			<Message border={false} type="info">
 				<Trans i18nKey="pages.assistants.pour-mon-entreprise.avertissement-entreprise-non-traitée">

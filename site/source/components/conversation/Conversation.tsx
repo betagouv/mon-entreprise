@@ -114,10 +114,10 @@ export default function Conversation({
 							ref={formRef}
 						>
 							<div
-								css={`
-									display: inline-flex;
-									align-items: baseline;
-								`}
+								style={{
+									display: 'inline-flex',
+									alignItems: 'baseline',
+								}}
 							>
 								<H3 id="questionHeader" as="h2">
 									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
@@ -175,10 +175,10 @@ export default function Conversation({
 									item
 									xs={12}
 									sm
-									css={`
-										justify-content: flex-end;
-										display: flex;
-									`}
+									style={{
+										justifyContent: 'flex-end',
+										display: 'flex',
+									}}
 								>
 									<SeeAnswersButton>
 										{customSituationVisualisation}
@@ -224,10 +224,10 @@ export default function Conversation({
 								item
 								xs={6}
 								sm
-								css={`
-									justify-content: flex-end;
-									display: flex;
-								`}
+								style={{
+									justifyContent: 'flex-end',
+									display: 'flex',
+								}}
 							>
 								<SeeAnswersButton>
 									{customSituationVisualisation}

@@ -81,11 +81,11 @@ export function ThemeColorsProvider({ children }: ProviderProps) {
 			<div
 				ref={divRef}
 				data-js-color-element
-				css={`
-					height: 100%;
-					display: flex;
-					flex-direction: column;
-				`}
+				style={{
+					height: '100%',
+					display: 'flex',
+					flexDirection: 'column',
+				}}
 			>
 				{children}
 			</div>

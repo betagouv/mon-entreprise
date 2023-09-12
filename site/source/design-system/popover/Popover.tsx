@@ -75,17 +75,17 @@ export default function Popover(
 				<Container backgroundColor={() => 'transparent'}>
 					<Grid
 						container
-						css={`
-							justify-content: center;
-						`}
+						style={{
+							justifyContent: 'center',
+						}}
 					>
 						<Grid
 							item
 							sm={small ? 10 : 12}
 							md={small ? 8 : 12}
-							css={`
-								min-width: 0;
-							`}
+							style={{
+								minWidth: '0',
+							}}
 						>
 							{/* 
 								If you use an iframe in the children, be careful because you need a

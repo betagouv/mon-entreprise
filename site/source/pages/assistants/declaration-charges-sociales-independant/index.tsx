@@ -120,10 +120,10 @@ export default function AideDéclarationIndépendant() {
 							/>
 							<Condition expression="entreprise . date de création > 31/12/2022">
 								<SmallBody
-									css={`
-										color: #ff2d96;
-										background-color: inherit;
-									`}
+									style={{
+										color: '#ff2d96',
+										backgroundColor: 'inherit',
+									}}
 								>
 									Cette aide à la déclaration concerne uniquement les
 									entreprises déjà en activité en 2022

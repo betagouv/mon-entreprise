@@ -56,10 +56,10 @@ export default function AnimatedTargetValue({
 			className="print-hidden"
 			aria-hidden
 			key={difference}
-			css={`
-				position: relative;
-				text-align: right;
-			`}
+			style={{
+				position: 'relative',
+				textAlign: 'right',
+			}}
 		>
 			<StyledEvaporate>
 				{formatDifference(difference ?? 0, language)}

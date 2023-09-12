@@ -93,9 +93,9 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 
 			<Indicators>
 				<div
-					css={`
-						flex-basis: 50%;
-					`}
+					style={{
+						flexBasis: '50%',
+					}}
 				>
 					<SimulateursChoice onChange={setFilter} value={filter} />
 					<Spacing sm />

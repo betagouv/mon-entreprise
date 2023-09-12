@@ -70,12 +70,12 @@ export default function Résultat() {
 					<Message
 						type="info"
 						border={false}
-						css={`
-							text-align: center;
-							display: flex;
-							align-items: center;
-							height: 100%;
-						`}
+						style={{
+							textAlign: 'center',
+							display: 'flex',
+							alignItems: 'center',
+							height: '100%',
+						}}
 					>
 						<Feedback />
 						<Spacing sm />
@@ -84,9 +84,9 @@ export default function Résultat() {
 				<Grid
 					item
 					xs
-					css={`
-						text-align: right;
-					`}
+					style={{
+						textAlign: 'right',
+					}}
 					xl="auto"
 				>
 					<Button

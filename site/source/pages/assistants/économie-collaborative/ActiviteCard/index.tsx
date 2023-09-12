@@ -65,11 +65,11 @@ export const ActiviteCard = ({
 		>
 			{selected !== undefined && (
 				<div
-					css={`
-						transform: scale(1.15);
-						margin-bottom: -1rem;
-						margin-left: 0.75rem;
-					`}
+					style={{
+						transform: 'scale(1.15)',
+						marginBottom: '-1rem',
+						marginLeft: '0.75rem',
+					}}
 					{...pressProps}
 				>
 					<Checkbox
@@ -89,9 +89,9 @@ export const ActiviteCard = ({
 					<Body>{explication}</Body>
 				</HelpButtonWithPopover>
 				<SmallBody
-					css={`
-						flex: 1;
-					`}
+					style={{
+						flex: '1',
+					}}
 				>
 					{plateformes.join(', ')}
 				</SmallBody>

@@ -184,9 +184,9 @@ export default function Accueil() {
 									</Ul>
 								</Trans>
 								<div
-									css={`
-										text-align: center;
-									`}
+									style={{
+										textAlign: 'center',
+									}}
 								>
 									<Spacing lg />
 									<Button

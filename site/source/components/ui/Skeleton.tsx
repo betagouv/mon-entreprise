@@ -17,17 +17,18 @@ const skeletonKeyframes = keyframes`
 export default function Skeleton({ width, height }: SkeletonProps) {
 	return (
 		<span
-			css={`
-				background-color: #eee;
-				background-image: linear-gradient(90deg, #eee, #f5f5f5, #eee);
-				background-size: 200px 100%;
-				background-repeat: no-repeat;
-				border-radius: 4px;
-				display: inline-block;
-				line-height: 1;
-				animation: ${skeletonKeyframes} 1.2s ease-in-out infinite;
-			`}
-			style={{ width, height }}
+			style={{
+				backgroundColor: '#eee',
+				backgroundImage: 'linear-gradient(90deg, #eee, #f5f5f5, #eee)',
+				backgroundSize: '200px 100%',
+				backgroundRepeat: 'no-repeat',
+				borderRadius: '4px',
+				display: 'inline-block',
+				lineHeight: '1',
+				animation: `${skeletonKeyframes} 1.2s ease-in-out infinite`,
+				width,
+				height,
+			}}
 		>
 			&zwnj;
 		</span>

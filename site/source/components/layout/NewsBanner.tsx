@@ -53,10 +53,10 @@ function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
 
 	return (
 		<div
-			css={`
-				display: flex;
-				justify-content: center;
-			`}
+			style={{
+				display: 'flex',
+				justifyContent: 'center',
+			}}
 		>
 			<Message
 				className="print-hidden"

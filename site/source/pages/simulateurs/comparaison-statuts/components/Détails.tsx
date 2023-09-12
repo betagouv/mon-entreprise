@@ -224,9 +224,9 @@ const Détails = ({
 					hasChildItems={false}
 				>
 					<Body
-						css={`
-							margin-bottom: 0;
-						`}
+						style={{
+							marginBottom: '0',
+						}}
 					>
 						<Trans>
 							Tous les statuts vous ouvrent le droit au{' '}
@@ -264,9 +264,9 @@ const Détails = ({
 								<WarningTooltip
 									tooltip={
 										<span
-											css={`
-												font-weight: normal;
-											`}
+											style={{
+												fontWeight: 'normal',
+											}}
 										>
 											<Trans>
 												Votre <Strong>rémunération</Strong> est{' '}
@@ -286,14 +286,14 @@ const Détails = ({
 							>
 								<StyledDiv>
 									<PlusCircleIcon
-										css={`
-											margin-top: 0 !important;
-										`}
+										style={{
+											marginTop: '0 !important',
+										}}
 									/>
 									<Body
-										css={`
-											margin: 0;
-										`}
+										style={{
+											margin: '0',
+										}}
 									>
 										<Trans>
 											Pour y prétendre, vous devez voir cotisé au moins{' '}
@@ -341,9 +341,9 @@ const Détails = ({
 					hasChildItems={false}
 				>
 					<Body
-						css={`
-							margin-bottom: 0;
-						`}
+						style={{
+							marginBottom: '0',
+						}}
 					>
 						<Trans>
 							Tous les statuts vous ouvrent le droit aux{' '}
@@ -352,9 +352,9 @@ const Détails = ({
 						</Trans>
 					</Body>
 					<Body
-						css={`
-							margin-top: 0;
-						`}
+						style={{
+							marginTop: '0',
+						}}
 					>
 						<Trans>
 							Pour y prétendre, vous devez avoir cotisé{' '}
@@ -445,9 +445,9 @@ const Détails = ({
 						</Trans>
 					</BodyNoMargin>
 					<BodyNoMargin
-						css={`
-							margin-bottom: 1rem;
-						`}
+						style={{
+							marginBottom: '1rem',
+						}}
 					>
 						<Trans>
 							Pour y prétendre, vous devez respecter{' '}

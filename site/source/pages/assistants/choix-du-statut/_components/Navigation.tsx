@@ -45,9 +45,9 @@ export default function Navigation({
 				<Grid
 					container
 					spacing={2}
-					css={`
-						flex-wrap: wrap-reverse;
-					`}
+					style={{
+						flexWrap: 'wrap-reverse',
+					}}
 				>
 					{children && (
 						<Grid item xs={12}>

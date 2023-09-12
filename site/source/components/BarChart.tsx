@@ -45,14 +45,12 @@ function ChartItemBar({
 			{disableAnimation ? (
 				<div
 					className="distribution-chart__bar print-background-force"
-					css={{ backgroundColor: primary[600] }}
-					style={{ flex: percentage }}
+					style={{ backgroundColor: primary[600], flex: percentage }}
 				/>
 			) : (
 				<animated.div
 					className="distribution-chart__bar print-background-force"
-					css={{ backgroundColor: primary[600] }}
-					style={style}
+					style={{ ...style, backgroundColor: primary[600] }}
 				/>
 			)}
 			<Value>
@@ -160,9 +158,9 @@ function InnerBarChartBranch({
 				<div className="distribution-chart__counterparts">
 					<Body
 						as="h3"
-						css={`
-							margin-bottom: 0;
-						`}
+						style={{
+							marginBottom: '0',
+						}}
 					>
 						{title}
 					</Body>

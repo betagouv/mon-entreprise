@@ -32,9 +32,9 @@ export default function Progress({
 	return (
 		<div
 			aria-live="polite"
-			css={`
-				position: relative;
-			`}
+			style={{
+				position: 'relative',
+			}}
 		>
 			<ProgressContainer {...progressBarProps}>
 				<ProgressBar

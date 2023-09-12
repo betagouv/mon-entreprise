@@ -175,9 +175,9 @@ function RadioChoice<Names extends string = DottedName>({
 								/\s|\./g,
 								'_'
 							)}-${rootDottedName.replace(/\s|\./g, '_')}`}
-							css={`
-								margin-top: -1rem;
-							`}
+							style={{
+								marginTop: '-1rem',
+							}}
 						>
 							<H4 as={H3} id={node.dottedName + '-legend'}>
 								{node.title}

@@ -72,11 +72,11 @@ export function Card(props: CardProps) {
 					<StyledHeader {...titleProps} />
 				))}
 			<div
-				css={`
-					flex: 1;
-					text-align: center;
-					width: 100%;
-				`}
+				style={{
+					flex: '1',
+					textAlign: 'center',
+					width: '100%',
+				}}
 			>
 				<Body as={bodyAs}>{children}</Body>
 			</div>

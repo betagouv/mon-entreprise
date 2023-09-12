@@ -75,9 +75,9 @@ export function CheckItem({
 					sm={10}
 					md={8}
 					lg={6}
-					css={`
-						margin-left: 2rem;
-					`}
+					style={{
+						marginLeft: '2rem',
+					}}
 				>
 					{typeof explanations === 'string' ? (
 						<Markdown>{explanations}</Markdown>

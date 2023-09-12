@@ -27,9 +27,9 @@ export default function Header() {
 	return (
 		<header
 			role="banner"
-			css={`
-				z-index: 1;
-			`}
+			style={{
+				zIndex: '1',
+			}}
 		>
 			<a href={`${fullURL}#main`} className="skip-link print-hidden">
 				{t('Aller au contenu principal')}

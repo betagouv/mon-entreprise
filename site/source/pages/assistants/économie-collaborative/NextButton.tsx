@@ -29,9 +29,9 @@ export default function NextButton({ activité, disabled }: NextButtonProps) {
 				isDisabled={disabled}
 				onPress={() => dispatch?.(activitéVue(activité))}
 				to={nextTo}
-				css={`
-					margin: auto;
-				`}
+				style={{
+					margin: 'auto',
+				}}
 			>
 				{nextActivité || disabled ? (
 					<Trans>Continuer</Trans>

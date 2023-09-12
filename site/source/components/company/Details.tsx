@@ -23,10 +23,10 @@ export function CompanyDetails({
 		<StyledCompanyContainer>
 			<Grid
 				container
-				css={`
-					align-items: flex-end;
-					justify-content: center;
-				`}
+				style={{
+					alignItems: 'flex-end',
+					justifyContent: 'center',
+				}}
 				spacing={3}
 			>
 				<Grid item xs={12} lg>

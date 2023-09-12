@@ -22,7 +22,6 @@ import './iframe.css'
 
 import { Button } from '@/design-system/buttons'
 import { Select } from '@/design-system/field/Select'
-import { useDarkMode } from '@/hooks/useDarkMode'
 
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
@@ -106,9 +105,9 @@ function IntegrationCustomizer() {
 			<Grid
 				container
 				spacing={4}
-				css={`
-					justify-content: space-between;
-				`}
+				style={{
+					justifyContent: 'space-between',
+				}}
 			>
 				<Grid item xl={4} lg={5} md>
 					<H3>
@@ -349,7 +348,6 @@ function IntegrationCode({
 	color,
 }: IntegrationCodeProps) {
 	const { t } = useTranslation()
-	const [darkMode] = useDarkMode()
 
 	const codeRef = useRef<HTMLDivElement>(null)
 	const [copied, setCopied] = useState(false)
@@ -377,27 +375,7 @@ function IntegrationCode({
 	}, [module, color])
 
 	return (
-		<div
-			css={`
-				display: block;
-				position: relative;
-				font-size: 80%;
-				padding: 1em;
-				margin: auto auto 1em;
-				background: ${darkMode ? '#484848' : '#f8f8f8'};
-				overflow: auto;
-				line-height: 1.6em;
-				box-shadow:
-					0 1px 1px rgba(0, 0, 0, 0.05),
-					-1px 1px 1px rgba(0, 0, 0, 0.02);
-
-				em {
-					font-weight: 300;
-					color: ${darkMode ? 'white' : 'black'};
-					background-color: inherit;
-				}
-			`}
-		>
+		<StyledDiv>
 			<code ref={codeRef}>
 				<span>{'<'}</span>
 				<em>script</em>
@@ -423,13 +401,13 @@ function IntegrationCode({
 				<span>{'>'}</span>
 			</code>
 			<div
-				css={`
-					display: block;
-					right: 0;
-					top: 0;
-					position: absolute;
-					margin: 8px;
-				`}
+				style={{
+					display: 'block',
+					right: '0',
+					top: '0',
+					position: 'absolute',
+					margin: '8px',
+				}}
 			>
 				<Button
 					size="XXS"
@@ -449,6 +427,26 @@ function IntegrationCode({
 					<Emoji emoji={copied ? '✔️' : '📑'} />
 				</Button>
 			</div>
-		</div>
+		</StyledDiv>
 	)
 }
+
+const StyledDiv = styled.div`
+	display: block;
+	right: 0;
+	top: 0;
+	position: absolute;
+	margin: 8px;
+	background: ${({ theme }) => (theme.darkMode ? '#484848' : '#f8f8f8')};
+	overflow: auto;
+	line-height: 1.6em;
+	box-shadow:
+		0 1px 1px rgba(0, 0, 0, 0.05),
+		-1px 1px 1px rgba(0, 0, 0, 0.02);
+
+	em {
+		font-weight: 300;
+		color: ${({ theme }) => (theme.darkMode ? 'white' : 'black')};
+		background-color: inherit;
+	}
+`

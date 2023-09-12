@@ -69,9 +69,9 @@ function StatutBloc({
 			footerContent={
 				!hideCTA && (
 					<div
-						css={`
-							text-align: center;
-						`}
+						style={{
+							textAlign: 'center',
+						}}
 					>
 						<Button
 							to={
@@ -87,12 +87,12 @@ function StatutBloc({
 		>
 			<H4 as="h3">{TAG_DATA[name].longName}</H4>
 			<Ul
-				css={`
-					display: flex;
-					flex: 1;
-					margin-bottom: 0;
-					flex-direction: column;
-				`}
+				style={{
+					display: 'flex',
+					flex: '1',
+					marginBottom: '0',
+					flexDirection: 'column',
+				}}
 			>
 				<Li>
 					{versementLibératoire ? (

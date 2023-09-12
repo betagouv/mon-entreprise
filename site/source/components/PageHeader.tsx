@@ -24,20 +24,22 @@ export default function PageHeader({
 		<Grid
 			container
 			columnSpacing={6}
-			css={`
-				/* align-items: center; */
-			`}
+			css={
+				{
+					/* align-items: center; */
+				}
+			}
 		>
 			<Grid
 				item
 				sm={12}
 				md={picture ? 8 : 12}
 				lg={picture ? 7 : 12}
-				css={`
-					display: flex;
-					flex-direction: column !important;
-					align-items: flex-start;
-				`}
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'flex-start',
+				}}
 			>
 				{titre && (
 					<>

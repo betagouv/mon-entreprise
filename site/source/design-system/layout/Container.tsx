@@ -54,6 +54,7 @@ type ContainerProps = {
 	forceTheme?: ThemeType
 	backgroundColor?: (theme: DefaultTheme) => string
 	className?: string
+	style?: React.CSSProperties
 }
 
 export default function Container({
@@ -61,6 +62,7 @@ export default function Container({
 	forceTheme,
 	children,
 	className,
+	style,
 }: ContainerProps) {
 	const theme = useTheme()
 	const background = useMemo(
@@ -75,7 +77,11 @@ export default function Container({
 	return (
 		<ForceThemeProvider forceTheme={forceTheme}>
 			<OuterOuterContainer>
-				<OuterContainer $backgroundColor={background} className={className}>
+				<OuterContainer
+					$backgroundColor={background}
+					className={className}
+					style={style}
+				>
 					<InnerContainer>{children}</InnerContainer>
 				</OuterContainer>
 			</OuterOuterContainer>

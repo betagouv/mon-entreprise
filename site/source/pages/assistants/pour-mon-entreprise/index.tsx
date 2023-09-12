@@ -155,9 +155,9 @@ function PourMonEntreprise() {
 					<Grid
 						container
 						spacing={3}
-						css={`
-							position: relative;
-						`}
+						style={{
+							position: 'relative',
+						}}
 					>
 						<CurrentSimulatorCard fromGérer />
 
@@ -173,9 +173,9 @@ function PourMonEntreprise() {
 								xs={12}
 								md={6}
 								lg={4}
-								css={`
-									align-self: flex-end;
-								`}
+								style={{
+									alignSelf: 'flex-end',
+								}}
 							>
 								<Grid container spacing={3} columns={2}>
 									<SimulateurCard fromGérer {...simulateurs.is} small />
@@ -283,9 +283,9 @@ const AskCompanyMissingDetails = () => {
 			{!!questions.length && (
 				<>
 					<Body
-						css={`
-							margin-bottom: -0.5rem;
-						`}
+						style={{
+							marginBottom: '-0.5rem',
+						}}
 					>
 						Répondez aux questions suivantes pour découvrir les simulateurs et
 						assistants adaptés à votre situation :
@@ -346,9 +346,9 @@ const PopoverOverwriteSituation = ({
 				</Message>
 				<Grid
 					container
-					css={`
-						justify-content: end;
-					`}
+					style={{
+						justifyContent: 'end',
+					}}
 					spacing={2}
 				>
 					<Grid item>

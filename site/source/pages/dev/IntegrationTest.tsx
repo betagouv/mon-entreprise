@@ -64,10 +64,10 @@ export default function IntegrationTest() {
 			</Button>
 
 			<div
-				style={{ border: '2px dashed blue' }}
-				css={`
-					display: ${version > 0 ? 'block' : 'none'};
-				`}
+				style={{
+					border: '2px dashed blue',
+					display: version > 0 ? 'block' : 'none',
+				}}
 			>
 				<div ref={domNode} />
 			</div>

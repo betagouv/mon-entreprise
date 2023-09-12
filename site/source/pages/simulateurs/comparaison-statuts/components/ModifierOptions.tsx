@@ -207,26 +207,26 @@ const ModifierOptions = ({
 				<Message type="secondary">
 					<Grid
 						container
-						css={`
-							flex-wrap: nowrap;
-							align-items: baseline;
-						`}
+						style={{
+							flexWrap: 'nowrap',
+							alignItems: 'baseline',
+						}}
 						spacing={3}
 					>
 						<Grid item>
 							<InfoIcon
-								css={`
-									padding-top: 0.15rem;
-									display: inline-block;
-								`}
+								style={{
+									paddingTop: '0.15rem',
+									display: 'inline-block',
+								}}
 								aria-label={t('Message à caractère informatif')}
 							/>
 						</Grid>
 						<Grid item>
 							<Body
-								css={`
-									font-size: 0.875rem;
-								`}
+								style={{
+									fontSize: '0.875rem',
+								}}
 							>
 								<Trans>
 									À ce jour, ce comparateur ne prend pas en compte le calcul de
