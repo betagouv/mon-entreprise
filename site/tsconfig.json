@@ -31,12 +31,13 @@
 	"include": [
 		"source",
 		"scripts",
+		"build",
 		"test/**/*.ts",
 		"vite.config.ts",
 		"cypress.config.ts",
 		"vite-iframe-script.config.ts",
-		"vite-build-simulation-data.config.ts",
-		"prerender.ts",
+		"build/vite-build-simulation-data.config.ts",
+		"build/prerender.ts",
 		"vite-pwa-options.ts"
 	]
 }

@@ -1,6 +1,6 @@
 import { execOnFileChange } from './execOnFileChange.js'
 
-export const runScriptOnFileChange = async () => {
+export const compileEconomieCollaborativeYaml = async () => {
 	console.log('Search for changed file...')
 
 	const results = await execOnFileChange({
