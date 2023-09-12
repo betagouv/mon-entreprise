@@ -4,7 +4,7 @@ import { argv } from 'node:process'
 
 import Tinypool from 'tinypool'
 
-import { absoluteSitePaths } from './source/sitePaths.js'
+import { absoluteSitePaths } from '../source/sitePaths.js'
 
 const filename = new URL('./prerender-worker.js', import.meta.url).href
 const pool = new Tinypool({ filename })

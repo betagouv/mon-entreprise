@@ -2,7 +2,7 @@ import { promises as fs, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'url'
 
-import { render } from './dist/ssr/entry-server.js'
+import { render } from '../dist/ssr/entry-server.js'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -22,7 +22,7 @@ export default async ({ site, url, lang }) => {
 
 	const template =
 		cache[site] ??
-		readFileSync(path.join(dirname, `./dist/${site}.html`), 'utf-8')
+		readFileSync(path.join(dirname, `../dist/${site}.html`), 'utf-8')
 
 	cache[site] = template
 
@@ -31,10 +31,10 @@ export default async ({ site, url, lang }) => {
 		.replace('<!--app-style-->', styleTags)
 		.replace(regexHelmet, helmet.title.toString() + helmet.meta.toString())
 
-	const dir = path.join(dirname, 'dist/prerender', site, decodeURI(url))
+	const dir = path.join(dirname, '../dist/prerender', site, decodeURI(url))
 
 	await fs.mkdir(dir, { recursive: true })
 	await fs.writeFile(path.join(dir, 'index.html'), page)
 
-	return path.relative(path.join(dirname, 'dist'), path.join(dir, 'index.html'))
+	return path.relative(path.join(dirname, '../dist'), path.join(dir, 'index.html'))
 }

@@ -1,11 +1,11 @@
-import { unlinkSync, writeFileSync } from 'fs'
-import path from 'path'
+import { writeFileSync } from 'fs'
+import { join, resolve } from 'path'
 
 import { defineConfig } from 'vite'
 
 import { PageConfig } from '@/pages/simulateurs/_configs/types'
 
-import { objectTransform } from './source/utils'
+import { objectTransform } from '../source/utils'
 
 const filterOgImage = (obj: Record<string, Omit<PageConfig, 'component'>>) =>
 	objectTransform(obj, (entries) => {
@@ -25,10 +25,10 @@ const filterOgImage = (obj: Record<string, Omit<PageConfig, 'component'>>) =>
 
 export default defineConfig({
 	resolve: {
-		alias: [{ find: '@', replacement: path.resolve('./source') }],
+		alias: [{ find: '@', replacement: resolve('./source') }],
 	},
 	build: {
-		outDir: './',
+		outDir: './dist',
 		target: 'esnext',
 		emptyOutDir: false,
 		lib: {
@@ -60,13 +60,16 @@ export default defineConfig({
 			closeBundle: () => {
 				// eslint-disable-next-line @typescript-eslint/no-misused-promises
 				setTimeout(async () => {
-					const path = './builded-simulation-data.js'
+					const path = join(
+						import.meta.url,
+						'../../dist/builded-simulation-data.js'
+					)
+					console.log('path', path)
 					type PageConfigType = {
 						default: Record<string, Omit<PageConfig, 'component'>>
 					}
 					const algoliaUpdate = ((await import(path)) as PageConfigType).default
 
-					unlinkSync(path)
 					writeFileSync(
 						'./source/public/simulation-data.json',
 						JSON.stringify(filterOgImage(algoliaUpdate))
