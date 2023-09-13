@@ -98,9 +98,9 @@
 		"whatwg-fetch": "^3.6.2"
 	},
 	"devDependencies": {
-		"@react-types/accordion": "^3.0.0-alpha.11",
-		"@react-types/numberfield": "^3.4.0",
-		"@react-types/searchfield": "^3.4.0",
+		"@react-types/accordion": "^3.0.0-alpha.16",
+		"@react-types/numberfield": "^3.6.0",
+		"@react-types/searchfield": "^3.5.0",
 		"@redux-devtools/extension": "^3.2.5",
 		"@rollup/plugin-replace": "^5.0.2",
 		"@rollup/plugin-yaml": "^4.1.1",
