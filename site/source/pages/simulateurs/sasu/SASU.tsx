@@ -22,6 +22,11 @@ export function SASUSimulation() {
 				>
 					<SimulationGoal dottedName="dirigeant . rémunération . totale" />
 					<SimulationGoal
+						editable
+						small
+						dottedName="salarié . rémunération . brut"
+					/>
+					<SimulationGoal
 						editable={false}
 						small
 						dottedName="dirigeant . assimilé salarié . cotisations"

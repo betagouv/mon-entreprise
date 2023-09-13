@@ -3,6 +3,7 @@ import { SimulationConfig } from '../_configs/types'
 export const configSASU: SimulationConfig = {
 	'objectifs exclusifs': [
 		'dirigeant . rémunération . totale',
+		'salarié . rémunération . brut',
 		'salarié . rémunération . net . à payer avant impôt',
 		'salarié . rémunération . net . payé après impôt',
 	],
