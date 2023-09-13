@@ -3875,8 +3875,58 @@ dirigeant . indépendant . cotisations facultatives . plafond retraite compléme
   titre.en: '[automatic] complementary pension ceiling'
   titre.fr: plafond retraite complémentaire
 dirigeant . indépendant . revenu professionnel:
-  description.en: '[automatic] remuneration of the manager in the self-employed regime'
-  description.fr: rémunération du dirigeant au régime des indépendant
+  description.en: >-
+    [automatic] Professional income is the manager's remuneration
+    under the self-employment scheme.
+
+    For companies that have opted for the **income tax**, this is the **taxable income**.
+
+    For companies that have opted for the **taxe sur les sociétés**, this is the manager's remuneration, plus non-deductible contributions.
+  description.fr: >-
+    Le revenu professionnel est la rémunération du dirigeant au
+    régime des indépendant.
+
+    Pour les entreprises qui ont opté pour l'**impôt sur le revenu**, il s'agit du **résultat fiscal**.
+
+    Pour les entreprises qui ont opté pour l'**impôt sur les sociétés**, il s'agit de la rémunération du dirigeant, auquel on ajoute les cotisations non déductibles.
+  note.en: >
+    [automatic] ### How is professional income calculated from sales in the
+    simulator?
+
+
+    To find your professional income, solve the following equation:
+
+
+    CAS = professional income + expenses + contributions (professional income)`.
+
+
+    Since contributions depend on professional income, we can't have a "ready-made" formula for calculating it. We therefore use an algorithm to find the value that works in the previous equation. This is what is meant by "solving the circular reference".
+
+
+    This algorithm works on a trial-and-error basis, testing values until the right one is found (with a heuristic for finding the values to test).
+
+
+    In reality, as contributions are regularized from one year to the next, this calculation never needs to be made (with a few exceptions). But we've chosen to implement it to provide the closest result without having to ask for the amount of provisional contributions paid in year N-1.
+  note.fr: >
+    ### Comment est calculé le revenu professionnel à partir du chiffre
+    d'affaires dans le simulateur ?
+
+
+    Pour retrouver le revenu professionnel il faut résoudre l'équation suivante :
+
+
+    `CA = revenu professionnel + charges + cotisations (revenu professionnel)`
+
+
+    Comme les cotisations dépendent du revenu professionnel, nous ne pouvons pas avoir de formule « toute faite » pour le calculer. Nous procédons donc par un algorithme qui retrouve la valeur qui fonctionne dans l'équation précédente. C'est ce que signifie « résoudre la référence circulaire »
+
+
+    Cet algorithme fonctionne par essai-erreur, en testant des valeurs jusqu'à trouver la bonne (avec une heuristique pour trouver les valeurs à tester).
+
+
+    Dans la réalité, comme les cotisations sont régularisées d'une année sur l'autre, ce calcul n'est jamais à faire (sauf exceptions). Mais nous avons choisi de l'implémenter pour fournir le résultat le plus proche sans avoir à demander le montant des cotisations provisionnelles payées l'année N-1.
+  résumé.en: "[automatic] executive compensation under the self-employed workers' scheme"
+  résumé.fr: rémunération du dirigeant au régime des indépendant
   titre.en: '[automatic] professional income'
   titre.fr: revenu professionnel
 dirigeant . indépendant . revenus étrangers:
