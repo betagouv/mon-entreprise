@@ -1,7 +1,8 @@
+import { NumberFieldProps } from '@react-types/numberfield'
 import { ASTNode, parseUnit, serializeUnit, Unit } from 'publicodes'
 import { useCallback, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
+import styled from 'styled-components'
 
 import { EngineContext } from '@/components/utils/EngineContext'
 import { NumberField } from '@/design-system/field'
@@ -19,8 +20,7 @@ export default function NumberInput({
 	unit,
 	formatOptions,
 	displayedUnit,
-	small,
-	...props
+	...fieldProps
 }: InputProps & {
 	unit?: Unit
 }) {
@@ -58,12 +58,13 @@ export default function NumberInput({
 			...formatOptions,
 		}
 	}
-	const debouncedOnChange = useCallback(debounce(1000, onChange), [onChange])
+	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
 	return (
 		<StyledNumberInput>
 			<NumberField
-				small={small}
+				{...(fieldProps as NumberFieldProps)}
+				description=""
 				displayedUnit={
 					parsedDisplayedUnit &&
 					getSerializedUnit(
@@ -83,13 +84,12 @@ export default function NumberInput({
 					}
 				}}
 				formatOptions={formatOptions}
-				{...props}
-				value={currentValue}
 				placeholder={
 					missing && value != null && typeof value === 'number'
 						? value
 						: undefined
 				}
+				value={currentValue}
 			/>
 			<InputSuggestions
 				className="print-hidden"
