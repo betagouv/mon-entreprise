@@ -9071,14 +9071,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/accordion@npm:^3.0.0-alpha.11":
-  version: 3.0.0-nightly.3598
-  resolution: "@react-types/accordion@npm:3.0.0-nightly.3598"
+"@react-types/accordion@npm:^3.0.0-alpha.16":
+  version: 3.0.0-nightly.4135
+  resolution: "@react-types/accordion@npm:3.0.0-nightly.4135"
   dependencies:
-    "@react-types/shared": 3.0.0-nightly.1898+810579b67
+    "@react-types/shared": 3.0.0-nightly.2426+a6ad96492
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: 573bd63f15103f81e14d4d98bce85c03f9cee23baa7e159d7e3c30b4cffa06cd40b9a24d5c29a21c73318bdac294f67bc804b49f7f3043b60dac62a1339a321b
+  checksum: 1e94abdd79752a1ec59ff1b1fb6dbe3de0d9d8e96397cba0b54e70113d2b6f71fa3d9d3f850bbe2f1e269018b9d45e2d83bad832fbd1c1d8f494904ba264bf42
   languageName: node
   linkType: hard
 
@@ -9255,17 +9255,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/numberfield@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "@react-types/numberfield@npm:3.4.0"
-  dependencies:
-    "@react-types/shared": ^3.17.0
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: 3dd9530a3067f2959fe5ab073fa6371b4145a3496488fb6467fb8b8a99f8f6b36d8379a4bef3de84559fbe0075891881af99a538331e1113c7fedd5e22f70c88
-  languageName: node
-  linkType: hard
-
 "@react-types/numberfield@npm:^3.4.1":
   version: 3.4.1
   resolution: "@react-types/numberfield@npm:3.4.1"
@@ -9274,6 +9263,17 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: ea4842c599b4e18c252c9b5faab7f83889238500233aa60f816914ba236eefa1628c69de2dec0b0e2bdfe7f06f1a4dff7d9634b47abf5f3aaf89898b389a2b86
+  languageName: node
+  linkType: hard
+
+"@react-types/numberfield@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "@react-types/numberfield@npm:3.6.0"
+  dependencies:
+    "@react-types/shared": ^3.20.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 5e1d5223df1a796122957076b18f062069c2c62bd5539284ee02a48f0b34b6bfd10cd8e338bef6743127154cec9d5ab09e1aaa80b7ce25c8e867c0eace2a3a6a
   languageName: node
   linkType: hard
 
@@ -9310,18 +9310,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/searchfield@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "@react-types/searchfield@npm:3.4.0"
-  dependencies:
-    "@react-types/shared": ^3.17.0
-    "@react-types/textfield": ^3.7.0
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: 58ff85d24e32b38bd4ab58beea0e0c441bd79af22e5e85ef154bd98f6d523690ea5e1ada3f70cfac5be460e07c8112b0ac45d60b0e748593d17ac3b0920983f0
-  languageName: node
-  linkType: hard
-
 "@react-types/searchfield@npm:^3.4.1":
   version: 3.4.1
   resolution: "@react-types/searchfield@npm:3.4.1"
@@ -9331,6 +9319,18 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 17db40292fa90bc73dee9a6f30a9f7446be7c9dadd188facfccbf8e3995f8c6b4eb21d8e8b7e43558434e1ae913997f85110f5177bd4a8a27a9edd55ed6f86fd
+  languageName: node
+  linkType: hard
+
+"@react-types/searchfield@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "@react-types/searchfield@npm:3.5.0"
+  dependencies:
+    "@react-types/shared": ^3.20.0
+    "@react-types/textfield": ^3.8.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: e39a8d710b7125d2ed0202525eef9d779da33f2d498e13167cf8c9ef9d36e82c1fa82a5f75866c78370ddd45d44f240c6eb0e322693f1bf7e9ceb788982f824b
   languageName: node
   linkType: hard
 
@@ -9345,15 +9345,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/shared@npm:3.0.0-nightly.1898+810579b67":
-  version: 3.0.0-nightly.1898
-  resolution: "@react-types/shared@npm:3.0.0-nightly.1898"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: 2b13f51f91cc7f12f4c951b45bd4a0cf11eb39a7324548ad55a52174e93447c70f9816a5dec16cfe90b30f5200466cf8cf2022ddbb4265a942ac4598029e6451
-  languageName: node
-  linkType: hard
-
 "@react-types/shared@npm:3.0.0-nightly.2152+2cb1d0d7e":
   version: 3.0.0-nightly.2152
   resolution: "@react-types/shared@npm:3.0.0-nightly.2152"
@@ -9363,12 +9354,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/shared@npm:^3.17.0":
-  version: 3.17.0
-  resolution: "@react-types/shared@npm:3.17.0"
+"@react-types/shared@npm:3.0.0-nightly.2426+a6ad96492":
+  version: 3.0.0-nightly.2426
+  resolution: "@react-types/shared@npm:3.0.0-nightly.2426"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: 004fc58ab0d3d64a84ce5a98e7e201b88bbb64f8b4a8309d50be30fe6172d0f172f00c666074aa96f13bbbfbced8b986901ad6b35b6d2d32d8dc25e251fcdb31
+  checksum: 7c1aa10ec17cfa52bf1340a1f955821df8a1ced55543c0be2e904ed856d978667b3b35d811355d7b6fefb3856d83806e3fd5c75778ffd7477ad03a9f97f4fa56
   languageName: node
   linkType: hard
 
@@ -9378,6 +9369,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 8fc56701e91f4f943f5b7c7cf968f103527c8dd5803430bd46e9210c24d3b410132fb3ded63841cf3c5cb20558385746b2705ba61204ff425c30fb1f0a64e342
+  languageName: node
+  linkType: hard
+
+"@react-types/shared@npm:^3.20.0":
+  version: 3.20.0
+  resolution: "@react-types/shared@npm:3.20.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 322aee262aa9155286cbb04dacc470ad819f4f081f4ede7a5bfe0af05b57917e4710be124d46b04d60937584386960437c65e0aa0627685046e5b37afc05802a
   languageName: node
   linkType: hard
 
@@ -9427,17 +9427,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/textfield@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "@react-types/textfield@npm:3.7.0"
-  dependencies:
-    "@react-types/shared": ^3.17.0
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: b6e72d2c971be528ba0c3e8cfb4f0937104e1413a372455399ed27ce42dbe89ffc5f8689a6a778b8cc049e8b020c8e94e2bda07101a238f4b6bf3b34c34fa774
-  languageName: node
-  linkType: hard
-
 "@react-types/textfield@npm:^3.7.1":
   version: 3.7.1
   resolution: "@react-types/textfield@npm:3.7.1"
@@ -9446,6 +9435,17 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: 0d540d49294211d0d59c41a2687c08ea90b2269e78227d1b3da23de3da8fc153eafd94d679fe4cf5b8e55fd04db1dcde96827f717de4da6d88e6b703c17ddb52
+  languageName: node
+  linkType: hard
+
+"@react-types/textfield@npm:^3.8.0":
+  version: 3.8.0
+  resolution: "@react-types/textfield@npm:3.8.0"
+  dependencies:
+    "@react-types/shared": ^3.20.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+  checksum: 7504e5781d1d973561e85c2f9597501546e31d4c16c9d24315ce5164bc566d89262a186be1682f78bbd806f6a07dfcd796e83a10b63db7d4e60da833b5cb8bf1
   languageName: node
   linkType: hard
 
@@ -28153,9 +28153,9 @@ __metadata:
     "@publicodes/api": ^1.0.0-beta.73
     "@react-aria/accordion": ^3.0.0-alpha.17
     "@react-pdf/renderer": ^3.1.6
-    "@react-types/accordion": ^3.0.0-alpha.11
-    "@react-types/numberfield": ^3.4.0
-    "@react-types/searchfield": ^3.4.0
+    "@react-types/accordion": ^3.0.0-alpha.16
+    "@react-types/numberfield": ^3.6.0
+    "@react-types/searchfield": ^3.5.0
     "@redux-devtools/extension": ^3.2.5
     "@rollup/plugin-replace": ^5.0.2
     "@rollup/plugin-yaml": ^4.1.1

@@ -20,6 +20,7 @@ export default function NumberInput({
 	formatOptions,
 	displayedUnit,
 	small,
+	...props
 }: InputProps & {
 	unit?: Unit
 }) {
@@ -57,13 +58,12 @@ export default function NumberInput({
 			...formatOptions,
 		}
 	}
-	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
+	const debouncedOnChange = useCallback(debounce(1000, onChange), [onChange])
 
 	return (
 		<StyledNumberInput>
 			<NumberField
 				small={small}
-				description=""
 				displayedUnit={
 					parsedDisplayedUnit &&
 					getSerializedUnit(
@@ -83,12 +83,13 @@ export default function NumberInput({
 					}
 				}}
 				formatOptions={formatOptions}
+				{...props}
+				value={currentValue}
 				placeholder={
 					missing && value != null && typeof value === 'number'
 						? value
 						: undefined
 				}
-				value={currentValue}
 			/>
 			<InputSuggestions
 				className="print-hidden"

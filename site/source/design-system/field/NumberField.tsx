@@ -29,12 +29,19 @@ import {
 	StyledSuffix,
 } from './TextField'
 
-type NumberFieldProps = Omit<AriaNumberFieldProps, 'placeholder'> & {
+type NumberFieldProps = Omit<
+	AriaNumberFieldProps,
+	'placeholder' | 'onBlur' | 'onFocus'
+> & {
 	name?: string
 	displayedUnit?: string
 	small?: boolean
-	placeholder?: number
+	placeholder?: number | undefined
 	onChange?: (n?: number) => void
+
+	// API of react-aria types is broken, we need to use the HTMLAttributes version
+	onFocus?: React.HTMLAttributes<HTMLInputElement>['onFocus']
+	onBlur?: React.HTMLAttributes<HTMLInputElement>['onBlur']
 }
 
 export default function NumberField(props: NumberFieldProps) {
