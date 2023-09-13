@@ -21,6 +21,7 @@ export const pagesToPrerender: {
 	infrance: string[]
 } = {
 	'mon-entreprise': [
+		'/test-worker',
 		'/documentation/artiste‑auteur/cotisations/CSG‑CRDS/abattement',
 		// '/iframes/pamc',
 		// '/iframes/simulateur-embauche',

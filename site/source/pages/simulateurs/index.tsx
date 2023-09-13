@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { Suspense, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
@@ -42,7 +42,11 @@ export default function Simulateurs() {
 						path={
 							s.path.replace(absoluteSitePaths.simulateurs.index, '') + '/*'
 						}
-						element={<SimulateurOrAssistantPage />}
+						element={
+							<Suspense>
+								<SimulateurOrAssistantPage />
+							</Suspense>
+						}
 					/>
 				)),
 		[simulatorsData, absoluteSitePaths]

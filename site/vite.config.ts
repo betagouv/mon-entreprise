@@ -139,8 +139,13 @@ export default defineConfig(({ command, mode }) => ({
 
 	optimizeDeps: {
 		entries: ['./source/entries/entry-fr.tsx', './source/entries/entry-en.tsx'],
-		include: ['publicodes-react > react/jsx-runtime'],
-		exclude: ['publicodes-react', 'publicodes'],
+		include: [],
+		exclude: [
+			'publicodes-react',
+			'publicodes',
+			'@publicodes/worker',
+			'@publicodes/worker-react',
+		],
 	},
 
 	ssr: {

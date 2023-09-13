@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
@@ -102,7 +102,9 @@ export default function SimulateurOrAssistantPage() {
 				</>
 			)}
 
-			<Component />
+			<Suspense>
+				<Component />
+			</Suspense>
 
 			{!inIframe && (
 				<>

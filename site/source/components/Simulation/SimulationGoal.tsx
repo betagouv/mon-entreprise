@@ -1,7 +1,7 @@
-import { useWorkerEngine } from '@publicodes/worker-react'
+import { usePromise, useWorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { formatValue, PublicodesExpression } from 'publicodes'
-import React, { useCallback, useState } from 'react'
+import React, { Suspense, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -9,7 +9,6 @@ import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { usePromise } from '@/hooks/usePromise'
 import { updateSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -59,7 +58,7 @@ export function SimulationGoal({
 				arrondi: round ? 'oui' : 'non',
 				...(!isTypeBoolean ? { unité: currentUnit } : {}),
 			}),
-		[workerEngine, dottedName, round, isTypeBoolean, currentUnit]
+		[currentUnit, dottedName, isTypeBoolean, round, workerEngine]
 	)
 
 	const rule = workerEngine.getRule(dottedName)
@@ -143,33 +142,35 @@ export function SimulationGoal({
 							{!isFocused && !small && evaluation && (
 								<AnimatedTargetValue value={evaluation.nodeValue as number} />
 							)}
-							<RuleInput
-								modifiers={
-									!isTypeBoolean
-										? {
-												unité: currentUnit,
-										  }
-										: undefined
-								}
-								aria-label={rule?.title}
-								aria-describedby={`${dottedName.replace(
-									/\s|\./g,
-									'_'
-								)}-description`}
-								aria-labelledby="simu-update-explaining"
-								displayedUnit={displayedUnit}
-								dottedName={dottedName}
-								onFocus={() => setFocused(true)}
-								onBlur={() => setFocused(false)}
-								onChange={onChange}
-								missing={
-									evaluation && dottedName in evaluation.missingVariables
-								}
-								small={small}
-								formatOptions={{
-									maximumFractionDigits: round ? 0 : 2,
-								}}
-							/>
+							<Suspense>
+								<RuleInput
+									modifiers={
+										!isTypeBoolean
+											? {
+													unité: currentUnit,
+											  }
+											: undefined
+									}
+									aria-label={rule?.title}
+									aria-describedby={`${dottedName.replace(
+										/\s|\./g,
+										'_'
+									)}-description`}
+									aria-labelledby="simu-update-explaining"
+									displayedUnit={displayedUnit}
+									dottedName={dottedName}
+									onFocus={() => setFocused(true)}
+									onBlur={() => setFocused(false)}
+									onChange={onChange}
+									missing={
+										evaluation && dottedName in evaluation.missingVariables
+									}
+									small={small}
+									formatOptions={{
+										maximumFractionDigits: round ? 0 : 2,
+									}}
+								/>
+							</Suspense>
 						</Grid>
 					) : (
 						<Grid item>

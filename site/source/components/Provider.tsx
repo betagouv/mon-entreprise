@@ -1,28 +1,28 @@
 import NodeWorker from '@eshaz/web-worker'
 import { createWorkerEngineClient } from '@publicodes/worker'
-import {
-	SuspensePromise,
-	useWorkerEngine,
-	WorkerEngineProvider,
-} from '@publicodes/worker-react'
+import { useWorkerEngine, WorkerEngineProvider } from '@publicodes/worker-react'
 import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import i18next from 'i18next'
-import { createContext, ReactNode } from 'react'
+import { createContext, ReactNode, Suspense } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider, Trans, useTranslation } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
+// import NodeWorker from 'whatwg-worker'
+
 import logo from '@/assets/images/logo-monentreprise.svg'
 import FeedbackForm from '@/components/Feedback/FeedbackForm'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
+import { Loader } from '@/design-system/icons/Loader'
 import { Container, Grid } from '@/design-system/layout'
 import DesignSystemThemeProvider from '@/design-system/root'
 import { H1, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { ClientOnly } from '@/hooks/useClientOnly'
 // import { workerClient } from '@/entries/entry-fr'
 import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
 import { Actions } from '@/worker/socialWorkerEngine.worker'
@@ -43,10 +43,12 @@ console.time('start!')
 export const worker = import.meta.env.SSR
 	? // Node doesn't support web worker :( upvote issue here: https://github.com/nodejs/node/issues/43583
 	  new NodeWorker(
-			new URL('../worker/socialWorkerEngine.worker.js', import.meta.url),
+			new URL('./worker/socialWorkerEngine.worker.js', import.meta.url),
 			{ type: 'module' }
 	  )
 	: new SocialeWorkerEngine()
+
+console.log('worker', worker)
 
 const workerClient = createWorkerEngineClient<Actions>(worker, {
 	initParams: [{ basename: 'mon-entreprise' }],
@@ -84,7 +86,7 @@ export default function Provider({
 						<I18nextProvider i18n={i18next}>
 							<ReduxProvider store={store}>
 								<BrowserRouterProvider basename={basename}>
-									<SuspensePromise isSSR={import.meta.env.SSR}>
+									<Suspense fallback={<Loader />}>
 										<WorkerEngineProvider workerClient={workerClient}>
 											<SituationSynchronize>
 												<ErrorBoundary
@@ -93,9 +95,10 @@ export default function Provider({
 														<ErrorFallback {...errorData} />
 													)}
 												>
-													{!import.meta.env.SSR &&
-														import.meta.env.MODE === 'production' &&
-														'serviceWorker' in navigator && <ServiceWorker />}
+													<ClientOnly>
+														{!import.meta.env.SSR &&
+															'serviceWorker' in navigator && <ServiceWorker />}
+													</ClientOnly>
 													<IframeResizer />
 													<OverlayProvider>
 														<ThemeColorsProvider>
@@ -109,7 +112,7 @@ export default function Provider({
 												</ErrorBoundary>
 											</SituationSynchronize>
 										</WorkerEngineProvider>
-									</SuspensePromise>
+									</Suspense>
 								</BrowserRouterProvider>
 							</ReduxProvider>
 						</I18nextProvider>

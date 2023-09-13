@@ -1,12 +1,8 @@
-import {
-	SuspensePromise,
-	useWorkerEngine,
-	WorkerEngine,
-} from '@publicodes/worker-react'
+import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import rules, { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { RulePage, useDocumentationSiteMap } from 'publicodes-react'
-import { ComponentProps, useMemo, useRef } from 'react'
+import { ComponentProps, Suspense, useMemo, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -45,16 +41,12 @@ interface DocumentationProps {
 
 export default function DocumentationWrapper(props: DocumentationProps) {
 	return (
-		<SuspensePromise
-			isSSR={import.meta.env.SSR}
-			fallback={<div>DocumentationWrapper loading...</div>}
-			activateInBrowser
-		>
+		<Suspense fallback={<div>DocumentationWrapper loading...</div>}>
 			<Documentation
 				// eslint-disable-next-line react/jsx-props-no-spreading
 				{...props}
 			/>
-		</SuspensePromise>
+		</Suspense>
 	)
 }
 

@@ -170,6 +170,7 @@ export const useSetupSafeSituation = (workerEngine?: WorkerEngine) => {
 		console.log('set rawSituation', rawSituation, workerEngine)
 
 		void asyncSetSituation(rawSituation)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [asyncSetSituation, rawSituation])
 
 	// try {

@@ -16,17 +16,13 @@ const headTagsEnd = '<!--app-helmet-tags:end-->'
 const regexHTML = new RegExp(htmlBodyStart + '[\\s\\S]+' + htmlBodyEnd, 'm')
 const regexHelmet = new RegExp(headTagsStart + '[\\s\\S]+' + headTagsEnd, 'm')
 
+const script = `<script>window.PRERENDER = true;</script>`
+
 interface Params {
 	site: string
 	url: string
 	lang: string
 }
-
-const script = `
-<script>
-window.PRERENDER = true;
-</script>
-`
 
 export default async ({ site, url, lang }: Params) => {
 	const template =
@@ -36,13 +32,20 @@ export default async ({ site, url, lang }: Params) => {
 	cache[site] ??= template
 
 	// // TODO: Add CI test to enforce meta tags on SSR pages
-	const { html, styleTags, helmet } = await render(url, lang)
+	const { html, styleTags, helmet } = (await render(url, lang)) as {
+		html: string
+		styleTags: string
+		helmet?: { title: string; meta: string }
+	}
 
 	const page = template
-		.replace(regexHTML, html)
+		.replace(regexHTML, html.trim())
 		.replace('<!--app-script-->', script)
 		.replace('<!--app-style-->', styleTags)
-		.replace(regexHelmet, helmet.title.toString() + helmet.meta.toString())
+		.replace(
+			regexHelmet,
+			(helmet?.title.toString() ?? '') + (helmet?.meta.toString() ?? '')
+		)
 
 	const dir = path.join(dirname, '../dist/prerender', site, decodeURI(url))
 

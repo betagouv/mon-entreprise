@@ -73,10 +73,7 @@ module.exports = {
 				'react-hooks/rules-of-hooks': 'error',
 				'react-hooks/exhaustive-deps': [
 					'warn',
-					{
-						additionalHooks:
-							'usePromise|useLazyPromise|usePromiseOnSituationChange',
-					},
+					{ additionalHooks: 'usePromise|useLazyPromise' },
 				],
 
 				'@typescript-eslint/no-unsafe-call': 'warn',

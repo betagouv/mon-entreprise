@@ -13,7 +13,7 @@ declare global {
 	}
 }
 
-export const AppFr = () => {
+const AppFr = () => {
 	return (
 		<I18nProvider locale="fr-FR">
 			<App basename="mon-entreprise" />
@@ -21,7 +21,7 @@ export const AppFr = () => {
 	)
 }
 
-const AppFrWithProfiler = withProfiler(AppFr)
+export const AppFrWithProfiler = withProfiler(AppFr)
 
 if (!import.meta.env.SSR) {
 	i18next.changeLanguage('fr').catch((err) =>
@@ -30,7 +30,9 @@ if (!import.meta.env.SSR) {
 	)
 	const container = document.querySelector('#js') as Element
 	if (window.PRERENDER) {
+		container.innerHTML = container.innerHTML.trim() // Trim before hydrating to avoid mismatche error.
 		const root = hydrateRoot(container, <AppFrWithProfiler />)
+		console.log('>>> hydrateRoot DONE', root)
 	} else {
 		const root = createRoot(container)
 		root.render(<AppFrWithProfiler />)

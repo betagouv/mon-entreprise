@@ -23,7 +23,7 @@ function getUnitKey(unit: string): string {
 }
 
 let warnCount = 0
-let timeout: NodeJS.Timeout | null = null
+let timeout: ReturnType<typeof setTimeout> | null = null
 const logger = {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	warn: (message: string) => {
@@ -57,12 +57,12 @@ const init = ({ basename }: Pick<ProviderProps, 'basename'>) => {
 
 	const engine = new Engine(rules, { getUnitKey, logger })
 
-	console.timeEnd('[createWorkerEngine] init')
+	console.timeEnd('(createWorkerEngine) init')
 
 	return engine
 }
 
-console.time('[createWorkerEngine] init')
+console.time('(createWorkerEngine) init')
 
 createWorkerEngine(init, {
 	...publicodesReactActions(),

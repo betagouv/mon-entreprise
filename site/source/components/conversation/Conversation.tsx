@@ -1,7 +1,7 @@
 import { useWorkerEngine, WorkerEngine } from '@publicodes/worker-react'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { Suspense, useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -143,13 +143,15 @@ export default function Conversation({
 										'Répondez à quelques questions additionnelles afin de préciser votre résultat.'
 									)}
 								</legend>
-								<RuleInput
-									dottedName={currentQuestion}
-									onChange={onChange}
-									key={currentQuestion}
-									onSubmit={goToNext}
-									aria-labelledby="questionHeader"
-								/>
+								<Suspense>
+									<RuleInput
+										dottedName={currentQuestion}
+										onChange={onChange}
+										key={currentQuestion}
+										onSubmit={goToNext}
+										aria-labelledby="questionHeader"
+									/>
+								</Suspense>
 							</fieldset>
 							<Spacing md />
 							<Grid container spacing={2}>

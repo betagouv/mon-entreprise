@@ -8,6 +8,7 @@ import { Emoji } from '@/design-system/emoji'
 import { Container } from '@/design-system/layout'
 import { Switch } from '@/design-system/switch'
 import { Link } from '@/design-system/typography/link'
+import { ClientOnly } from '@/hooks/useClientOnly'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useSitePaths } from '@/sitePaths'
@@ -72,7 +73,7 @@ export default function Header() {
 
 					<Menu />
 				</StyledHeader>
-				<BrowserOnly>{i18n.language === 'fr' && <NewsBanner />}</BrowserOnly>
+				<ClientOnly>{i18n.language === 'fr' && <NewsBanner />}</ClientOnly>
 			</Container>
 		</header>
 	)

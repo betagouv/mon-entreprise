@@ -108,9 +108,6 @@ export default function RuleInput({
 
 	const value = evaluation?.nodeValue
 
-	const isMultipleChoices =
-		rule && isMultiplePossibilities(workerEngine, dottedName)
-
 	const choice = usePromise(
 		() => getOnePossibilityOptions(workerEngine, dottedName),
 		[workerEngine, dottedName]
@@ -139,7 +136,7 @@ export default function RuleInput({
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
-	if (isMultipleChoices) {
+	if (rule && isMultiplePossibilities(workerEngine, dottedName)) {
 		return (
 			<MultipleChoicesInput
 				{...commonProps}

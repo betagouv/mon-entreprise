@@ -1,5 +1,5 @@
+import { PromiseSSR } from '@publicodes/worker-react'
 import { SSRProvider } from '@react-aria/ssr'
-import { lazy } from 'react'
 import ReactDomServerType from 'react-dom/server'
 // @ts-ignore
 import ReactDomServer from 'react-dom/server.browser'
@@ -8,20 +8,14 @@ import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
 import i18next from '../locales/i18n'
+import { AppEnWithProfiler as AppEn } from './entry-en'
+import { AppFrWithProfiler as AppFr } from './entry-fr'
 
 const { renderToReadableStream } = ReactDomServer as typeof ReactDomServerType
 
 function streamToString(stream: ReadableStream<Uint8Array>) {
 	return new Response(stream).text()
 }
-
-const AppFrLazy = lazy(async () => ({
-	default: (await import('./entry-fr')).AppFr,
-}))
-
-const AppEnLazy = lazy(async () => ({
-	default: (await import('./entry-en')).AppEn,
-}))
 
 // @ts-ignore
 global.window = {
@@ -38,7 +32,6 @@ interface Result {
 export async function render(url: string, lang: 'fr' | 'en'): Promise<Result> {
 	global.window.location.href = url
 	global.window.location.search = ''
-	console.log({ url, lang })
 
 	const sheet = new ServerStyleSheet()
 	const helmetContext = {} as FilledContext
@@ -52,28 +45,22 @@ export async function render(url: string, lang: 'fr' | 'en'): Promise<Result> {
 			<SSRProvider>
 				<StyleSheetManager sheet={sheet.instance}>
 					<StaticRouter location={url}>
-						[prerender] window: {JSON.stringify(window)}
-						{lang === 'fr' ? <AppFrLazy /> : <AppEnLazy />}
+						<PromiseSSR>{lang === 'fr' ? <AppFr /> : <AppEn />}</PromiseSSR>
 					</StaticRouter>
 				</StyleSheetManager>
 			</SSRProvider>
 		</HelmetProvider>
 	)
 
-	console.log('!!! STARTING !!!')
-
 	try {
 		const stream = await renderToReadableStream(element, {
 			onError(error, errorInfo) {
+				// eslint-disable-next-line no-console
 				console.error({ error, errorInfo })
 			},
 		})
 
-		console.log('!!! LOADING !!!')
-
 		await stream.allReady
-
-		console.log('!!! DONE !!!')
 
 		const html = await streamToString(stream)
 
@@ -81,6 +68,7 @@ export async function render(url: string, lang: 'fr' | 'en'): Promise<Result> {
 
 		return { html, styleTags, helmet: helmetContext.helmet }
 	} catch (error) {
+		// eslint-disable-next-line no-console
 		console.error(error)
 
 		throw error
