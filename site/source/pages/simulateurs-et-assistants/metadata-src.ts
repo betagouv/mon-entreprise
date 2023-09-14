@@ -2,7 +2,6 @@ import { ImmutableType } from '@/types/utils'
 
 import { choixStatutJuridiqueConfig } from '../assistants/choix-du-statut/config'
 import { déclarationChargesSocialesIndépendantConfig } from '../assistants/declaration-charges-sociales-independant/config'
-import { déclarationRevenuIndépendantBetaConfig } from '../assistants/declaration-revenu-independants/config'
 import { demandeMobilitéConfig } from '../assistants/demande-mobilité/config'
 import { économieCollaborativeConfig } from '../assistants/économie-collaborative/config'
 import { pourMonEntrepriseConfig } from '../assistants/pour-mon-entreprise/config'
@@ -68,7 +67,6 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		// assistants:
 		...choixStatutJuridiqueConfig(params),
 		...déclarationChargesSocialesIndépendantConfig(params),
-		...déclarationRevenuIndépendantBetaConfig(params),
 		...demandeMobilitéConfig(params),
 		...pourMonEntrepriseConfig(params),
 		...rechercheCodeApeConfig(params),

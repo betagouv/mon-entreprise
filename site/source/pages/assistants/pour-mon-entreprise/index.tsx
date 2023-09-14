@@ -164,7 +164,7 @@ function PourMonEntreprise() {
 						<Condition expression="dirigeant . indépendant">
 							<SimulateurCard
 								fromGérer
-								{...simulateurs['déclaration-revenu-indépendant']}
+								{...simulateurs['déclaration-charges-sociales-indépendant']}
 							/>
 						</Condition>
 						<Condition expression="entreprise . imposition . IS">

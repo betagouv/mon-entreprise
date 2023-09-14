@@ -34,7 +34,6 @@ export function déclarationChargesSocialesIndépendantConfig({
 			'pages.assistants.declaration-charges-sociales-independant.title',
 			'Assistant à la détermination des charges sociales déductibles'
 		),
-		nextSteps: ['déclaration-revenu-indépendant'],
 		component: DéclarationChargeSocialeIndépendant,
 	} as const)
 }

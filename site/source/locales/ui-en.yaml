@@ -3,6 +3,12 @@
 "404":
   action: Back to safety
   message: This page does not exist or no longer exists
+"<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour les indépendants, vous pouvez calculer le montant de vos charges sociales déductibles grâce à notre assistant dédié :</1><2>Assistant déclaration charges sociales indépendant</2></0>":
+  <0><0>The latter was not as successful as we'd hoped. We therefore decided to
+  remove it from the site. It was too difficult to keep the information and
+  calculations up to date.</0><1>For the self-employed, you can calculate the
+  amount of your deductible social security contributions using our dedicated
+  assistant:</1><2>Self-employed social charges declaration wizard</2></0>
 "<0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>":
   <0><0>We've detected an old situation. Are you sure you want to overwrite
   it?</0></0><1><0><0>Overwrite</0></0><1><0>Cancel</0></1></1>
@@ -14,8 +20,6 @@ API REST de simulation: Simulation REST API
 "API REST, en savoir plus sur l'API REST": API REST, more about API REST
 Accessibilité: Accessibility
 Accident du travail et maladie professionnelle: Occupational injury and disease
-Accompagnement activé: Active support
-Accompagnement désactivé: Accompaniment deactivated
 "Accéder à la page d'accueil, nouvelle fenêtre": Go to home page, new window
 Adoption: Adoption
 Afficher le détail: Show details
@@ -62,8 +66,6 @@ Cotisations: Contributions
 Cotisations sociales: Social security contributions
 Coût de création: Cost of creation
 "Crée le :": "Created on :"
-Dans quels cas mes bénéfices ne sont pas de type BNC ?: When are my profits not BNC?
-Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: When is my company not subject to income tax?
 Dividendes nets: Net dividends
 Documentation: Documentation
 "Domiciliée à l'adresse :": "Domiciled at address :"
@@ -157,16 +159,12 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
   articles of association, etc.).
 "Lire les précisions, ouvrir le message condensé.": Read the details, open the condensed message.
 Liste des intégrations: List of integrations
-Ma déclaration: My declaration
 Ma situation: My situation
 Maternité: Maternity ward
 Menu de navigation: Navigation menu
-Mes cotisations: My contributions
 Message à caractère informatif: Informative message
-Mode accompagnement: Support mode
 Mode d'affichage: Display mode
 Modifier: Edit
-Modifier l'entreprise: Modify the company
 Modifier mes options: Modify my options
 Modifier mes réponses: Modify my answers
 Mois: Month
@@ -174,7 +172,6 @@ Mon entreprise: My company
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
   urssaf:
     fr: My company is recruiting! See job offers on mon-entreprise.urssaf.fr
-Mon imposition: My taxation
 Montant annuel: Annual amount
 Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant mensuel: Monthly amount
@@ -224,7 +221,6 @@ Professions libérales: Liberal professions
 Protection sociale: Social protection
 Précédent: Previous
 Prévisualisation: Preview
-Qu'est-ce que ça veut dire ?: What does this mean?
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: What can we do better to meet your expectations?
 Quelle est votre activité ?: What's your business?
 Recharger: Reload
@@ -366,40 +362,6 @@ aide-déclaration-indépendant:
 api:
   description: Tools for developers
   title: Use our REST API
-assistant-DRI:
-  declaration:
-    intro: <0>We'll now show you how to <2>complete your personal tax return</2>
-      using your company's income tax return.</0>
-  imposition:
-    intro: <0>In this step, we'll determine which <2>declarations apply to you</2>
-      and the <5>list of boxes you'll need to fill in</5>.</0>
-    mode-accompagnement:
-      activé: <0>Perhaps you're not quite sure yet. We'll take you step by step
-        through a series of simple questions. Each time, we'll give you hints on
-        how to find the information you need to answer them.</0><1>We'll also
-        explain all the key concepts related to your tax return (e.g. IS/IR,
-        BIC, BNC, liasse fiscale, etc.).</1><2>You can change modes at any time
-        using the switch below. </2>
-      désactivé: <0>You may be familiar with related concepts (e.g. IS/IR, BIC/BNC,
-        tax returns, etc.). We'll get straight to the point, asking <2>simple,
-        precise questions</2> to save you time. </0><1>If you'd like more help
-        answering the questions, you can switch <1>modes</1> at any time by
-        using the switch below.</1>
-      nombre-déclarations: This is your {{nthDeclaration}} income tax return since the
-        creation of your company.
-  intro: <0><0>We offer you help to fill in the income from your professional
-    activity in your <2>2022 income tax return</2> on
-    <5>impots.gouv.fr</5>.<7></7></0><1>Answer these few questions, and at the
-    end you'll have :</1><2><0>the forms that apply to you</0><1>A list of the
-    boxes that apply to you, with the amounts to be filled in</1><2>An estimate
-    of the social security contributions to be paid to Urssaf in
-    2023</2></2></0>
-  precision: "<0>A few clarifications before continuing</0><1><0>If it's your
-    accountant who completes your declaration, this wizard can still help you to
-    find out the <2>amount of social security contributions to be paid in
-    2023</2>.</0><1>This tool is <1>100% confidential</1>: all the information
-    you enter will remain in your browser.</1><2>To file your tax return, you'll
-    need to log on to <2>impots.gouv.fr</2>.</2></1>"
 assistants:
   pour-mon-entreprise:
     annuaire-entreprises:
@@ -571,7 +533,6 @@ conversation:
   yes-no:
     aria-label: Yes or no
 copied: Copy
-copyMessage: Copy message
 crée:
   choix-statut:
     détails-activité:
@@ -651,7 +612,6 @@ feedback:
       important to us.
     title: Thank you for your message!
   thanks: Thank you for your feedback!
-fieldRequired: Required field
 footer:
   accessibilité: "Accessibility: partially compliant"
   accessibilitéAriaLabel: "Accessibility: partially compliant, find out more"
@@ -684,12 +644,6 @@ gérer:
         the information you need about auto-entrepreneur status.
       cta: Visit the site
       title: Official website for auto-entrepreneurs
-    embaucher:
-      aria-label: Hiring an employee, See the list of procedures
-      body: A checklist to make sure you don't forget anything when hiring a new
-        employee
-      cta: See the list of procedures
-      title: "Find out about the hiring process "
 iframe:
   description: Tools for developers
   title: Integrate a simulator
@@ -909,14 +863,6 @@ pages:
         title: Determining deductible social security charges
       shortname: Determining deductible social security charges
       title: Assistance in determining deductible social charges
-    declaration-revenu-independants:
-      goToStep: Go to step {{step}}
-      meta:
-        description: Find out which amounts to enter in which boxes, and get an estimate
-          of the contributions to be paid in 2023.
-        title: Income tax return wizard for the self-employed
-      shortname: Help filling out your tax return
-      title: Income tax return wizard for the self-employed
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>There is no income simulator for your
         type of business on this site yet.</0><1>If you would like us to develop
