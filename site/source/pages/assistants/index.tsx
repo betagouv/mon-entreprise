@@ -5,10 +5,17 @@ import { ScrollToTop } from '@/components/utils/Scroll'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
+import AideDéclarationIndépendant from './declaration-revenu-independants'
+
 export default function Assistants() {
-	const { absoluteSitePaths } = useSitePaths()
+	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
 	const location = useLocation()
 	const simulateurs = useSimulatorsData()
+	console.log(
+		'location.pathname',
+		location.pathname,
+		absoluteSitePaths.assistants.déclarationIndépendant.index
+	)
 
 	return (
 		<>
@@ -21,7 +28,14 @@ export default function Assistants() {
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
 				/>
-
+				<Route
+					path={relativeSitePaths.assistants.déclarationIndépendant.index}
+					element={
+						<>
+							<AideDéclarationIndépendant />
+						</>
+					}
+				/>
 				{Object.entries(simulateurs)
 					.filter(([, simu]) => simu.pathId.startsWith('assistants.'))
 					.map(([, simu]) => (
@@ -37,18 +51,6 @@ export default function Assistants() {
 							}
 						/>
 					))}
-				<Route
-					path="*"
-					element={
-						<Navigate
-							to={decodeURI(location.pathname).replace(
-								absoluteSitePaths.assistants.index,
-								absoluteSitePaths.assistants['pour-mon-entreprise'].index
-							)}
-							replace
-						/>
-					}
-				/>
 			</Routes>
 		</>
 	)

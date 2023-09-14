@@ -3,6 +3,13 @@
 "404":
   action: Revenir en lieu sûr
   message: Cette page n'existe pas ou n'existe plus
+"<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour les indépendants, vous pouvez calculer le montant de vos charges sociales déductibles grâce à notre assistant dédié :</1><2>Assistant déclaration charges sociales indépendant</2></0>":
+  <0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé
+  de le retirer du site. En effet, il était trop difficile de maintenir à jour
+  les informations et les calculs.</0><1>Pour les indépendants, vous pouvez
+  calculer le montant de vos charges sociales déductibles grâce à notre
+  assistant dédié :</1><2>Assistant déclaration charges sociales
+  indépendant</2></0>
 "<0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>":
   <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
   l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>
@@ -14,8 +21,6 @@ API REST de simulation: API REST de simulation
 "API REST, en savoir plus sur l'API REST": API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
 Accident du travail et maladie professionnelle: Accident du travail et maladie professionnelle
-Accompagnement activé: Accompagnement activé
-Accompagnement désactivé: Accompagnement désactivé
 "Accéder à la page d'accueil, nouvelle fenêtre": Accéder à la page d'accueil, nouvelle fenêtre
 Adoption: Adoption
 Afficher le détail: Afficher le détail
@@ -62,8 +67,6 @@ Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
 Coût de création: Coût de création
 "Crée le :": "Crée le :"
-Dans quels cas mes bénéfices ne sont pas de type BNC ?: Dans quels cas mes bénéfices ne sont pas de type BNC ?
-Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?: Dans quels cas mon entreprise n'est pas imposée à l'impôt sur le revenu ?
 Dividendes nets: Dividendes nets
 Documentation: Documentation
 "Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
@@ -161,16 +164,12 @@ Le montant de votre retraite est constitué de <2>votre retraite de base + votre
   statuts...).
 "Lire les précisions, ouvrir le message condensé.": Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
-Ma déclaration: Ma déclaration
 Ma situation: Ma situation
 Maternité: Maternité
 Menu de navigation: Menu de navigation
-Mes cotisations: Mes cotisations
 Message à caractère informatif: Message à caractère informatif
-Mode accompagnement: Mode accompagnement
 Mode d'affichage: Mode d'affichage
 Modifier: Modifier
-Modifier l'entreprise: Modifier l'entreprise
 Modifier mes options: Modifier mes options
 Modifier mes réponses: Modifier mes réponses
 Mois: Mois
@@ -179,7 +178,6 @@ Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
   urssaf:
     fr: Mon entreprise recrute ! Voir les offres d'emplois de
       mon-entreprise.urssaf.fr
-Mon imposition: Mon imposition
 Montant annuel: Montant annuel
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
 Montant mensuel: Montant mensuel
@@ -231,7 +229,6 @@ Professions libérales: Professions libérales
 Protection sociale: Protection sociale
 Précédent: Précédent
 Prévisualisation: Prévisualisation
-Qu'est-ce que ça veut dire ?: Qu'est-ce que ça veut dire ?
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
 Quelle est votre activité ?: Quelle est votre activité ?
 Recharger: Recharger
@@ -383,44 +380,6 @@ aide-déclaration-indépendant:
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
-assistant-DRI:
-  declaration:
-    intro: <0>Nous allons maintenant vous indiquer comment <2>remplir votre
-      déclaration de revenu personnelle</2> à partir de la déclaration de
-      résultat de votre entreprise.</0>
-  imposition:
-    intro: <0>Dans cette étape, nous allons déterminer les <2>déclarations qui vous
-      concernent</2> et la <5>liste des cases que vous aurez à remplir</5>.</0>
-    mode-accompagnement:
-      activé: "<0>Tout n'est peut-être pas encore très clair pour vous. Nous allons
-        vous guider pas à pas en vous posant des questions simples. À chaque
-        fois, nous vous donnerons des pistes sur comment trouver les
-        informations pour y répondre.</0><1>Nous vous expliquerons aussi toutes
-        les notions clés reliées à votre déclaration (par exemple : IS/IR, BIC,
-        BNC, liasse fiscale, etc.)</1><2>Vous pouvez changer de mode à tout
-        moment en utilisant l'interrupteur ci-dessous. </2>"
-      désactivé: "<0>Vous avez peut-être une bonne connaissance des notions associées
-        (par exemple : IS/IR, BIC/BNC, liasse fiscale, etc.). Nous irons droit
-        au but en vous posant des <2>questions simples et précises</2> pour vous
-        faire gagner du temps. </0><1>Si vous souhaitez être davantage
-        accompagné pour répondre aux questions, vous pouvez <1>changer de
-        mode</1> à tout moment en utilisant l'interrupteur ci-dessous.</1>"
-      nombre-déclarations: C'est votre {{nthDeclaration}} déclaration de revenu depuis
-        la création de votre entreprise.
-  intro: <0><0>Nous vous proposons une aide pour remplir les revenus issus de
-    votre activité professionnelle dans votre <2>déclaration des revenu de
-    2022</2> sur <5>impots.gouv.fr</5>.<7></7></0><1>Répondez à ces quelques
-    questions, à la fin vous aurez :</1><2><0>Les formulaires qui vous
-    concernent</0><1>La liste des cases qui vous concernent avec le montant à
-    remplir</1><2>Une estimation des cotisations sociales à payer à l'Urssaf en
-    2023</2></2></0>
-  precision: "<0>Quelques précisions avant de continuer</0><1><0>Si c'est votre
-    expert-comptable qui remplit votre déclaration, cet assistant peut quand
-    même vous être utile pour connaître le <2>montant des cotisations sociales à
-    payer en 2023</2></0><1>Cet outil est <1>100 % confidentiel</1> : toutes les
-    informations que vous renseignez resteront dans votre navigateur.</1><2>Pour
-    faire votre déclaration de revenu, il faudra vous connecter sur
-    <2>impots.gouv.fr</2>.</2></1>"
 assistants:
   pour-mon-entreprise:
     annuaire-entreprises:
@@ -598,7 +557,6 @@ conversation:
   yes-no:
     aria-label: Oui ou non
 copied: Copié
-copyMessage: Copier le message
 crée:
   choix-statut:
     détails-activité:
@@ -683,7 +641,6 @@ feedback:
       sont donc très précieuses.
     title: Merci pour votre message !
   thanks: Merci de votre retour !
-fieldRequired: Champ requis
 footer:
   accessibilité: "Accessibilité : partiellement conforme"
   accessibilitéAriaLabel: "Accessibilité : partiellement conforme, en savoir plus"
@@ -719,12 +676,6 @@ gérer:
         au statut d'auto-entrepreneur
       cta: Visiter le site
       title: Site officiel des auto-entrepreneurs
-    embaucher:
-      aria-label: Embauche d'un salarié, Voir la liste des démarches
-      body: La liste des choses à faire pour être sûr de ne rien oublier lors de
-        l’embauche d’un nouveau salarié
-      cta: Voir la liste des démarches
-      title: "Découvrir les démarches d’embauche "
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
@@ -962,14 +913,6 @@ pages:
         title: Détermination des charges sociales déductibles
       shortname: Détermination des charges sociales déductibles
       title: Assistant à la détermination des charges sociales déductibles
-    declaration-revenu-independants:
-      goToStep: Accéder à l'étape {{step}}
-      meta:
-        description: Découvrez quels montants remplir dans quelles cases, et obtenez une
-          estimation des cotisations à payer en 2023
-        title: Assistant à la déclaration de revenu pour les indépendants
-      shortname: Aide au remplissage de la déclaration de revenu
-      title: Assistant à la déclaration de revenu pour les indépendants
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez

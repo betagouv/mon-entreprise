@@ -150,10 +150,6 @@ export default function SimulateursEtAssistants() {
 						{...simulators['déclaration-charges-sociales-indépendant']}
 						role="listitem"
 					/>
-					<SimulateurCard
-						{...simulators['déclaration-revenu-indépendant']}
-						role="listitem"
-					/>
 				</Grid>
 
 				<H2 id="autres-outils">

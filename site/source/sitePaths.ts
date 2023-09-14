@@ -21,10 +21,6 @@ const rawSitePathsFr = {
 		},
 		déclarationIndépendant: {
 			index: 'aide-declaration-independants-v2',
-			entreprise: 'entreprise',
-			imposition: 'imposition',
-			déclaration: 'declaration',
-			cotisations: 'cotisations',
 		},
 		'choix-du-statut': {
 			index: 'choix-du-statut',

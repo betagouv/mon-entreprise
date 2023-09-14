@@ -88,18 +88,11 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "dirigeant . indépendant . PL . CIPAV",
         "dirigeant . indépendant . PL . option régime général",
         "dirigeant . indépendant . PL . maladie . taux",
-        "DRI . cotisations . assiette des cotisations",
-        "DRI",
         "dirigeant . indépendant . assiette des cotisations",
         "dirigeant . indépendant . assiette des cotisations . sans plancher",
         "dirigeant . indépendant . revenu professionnel",
         "dirigeant . indépendant . cotisations facultatives . déductibles",
         "entreprise . imposition . régime . micro-entreprise",
-        "DRI . accompagnement imposition . régime memento fiscal . RSI",
-        "DRI . accompagnement imposition . régime memento fiscal . RN",
-        "DRI . accompagnement imposition . régime memento fiscal . DECC",
-        "DRI . accompagnement imposition . régime memento fiscal . SPECIAL",
-        "DRI . accompagnement imposition . régime memento fiscal . MICROE",
         "entreprise . imposition . régime",
         "dirigeant . indépendant . cotisations facultatives",
         "dirigeant . indépendant . cotisations facultatives . plafond prévoyance",
@@ -162,7 +155,6 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . non déductible",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . non déductible . taux",
-        "DRI . cotisations . assiette CSG",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . assiette",
         "dirigeant . indépendant . revenus étrangers . montant",
         "dirigeant . indépendant . PL . PAMC",
@@ -442,7 +434,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "entreprise . catégorie juridique . remplacements",
         "entreprise . catégorie juridique . EI",
         "entreprise . associés",
-        "DRI",
         "entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut",
         "entreprise . imposition . IR . type de bénéfices",
         "entreprise . imposition . IR",
@@ -740,7 +731,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "entreprise . catégorie juridique . remplacements",
         "entreprise . catégorie juridique . EI",
         "entreprise . associés",
-        "DRI",
         "entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut",
         "entreprise . imposition . IR . type de bénéfices",
         "entreprise . imposition . IR",
@@ -1026,12 +1016,6 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "entreprise . activités . libérale",
         "entreprise . activités . agricole",
         "entreprise . imposition . régime . micro-entreprise",
-        "DRI . accompagnement imposition . régime memento fiscal . RSI",
-        "DRI",
-        "DRI . accompagnement imposition . régime memento fiscal . RN",
-        "DRI . accompagnement imposition . régime memento fiscal . DECC",
-        "DRI . accompagnement imposition . régime memento fiscal . SPECIAL",
-        "DRI . accompagnement imposition . régime memento fiscal . MICROE",
         "entreprise . activités . service ou vente",
         "entreprise . activité . nature . artisanale",
         "entreprise . activité . nature . commerciale",
@@ -1092,12 +1076,6 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur . impôt . revenu imposable",
         "entreprise . imposition . régime . micro-entreprise . revenu abattu",
         "entreprise . imposition . régime . micro-entreprise",
-        "DRI . accompagnement imposition . régime memento fiscal . RSI",
-        "DRI",
-        "DRI . accompagnement imposition . régime memento fiscal . RN",
-        "DRI . accompagnement imposition . régime memento fiscal . DECC",
-        "DRI . accompagnement imposition . régime memento fiscal . SPECIAL",
-        "DRI . accompagnement imposition . régime memento fiscal . MICROE",
         "bénéficiaire . dividendes . imposables",
         "dirigeant . auto-entrepreneur . impôt . versement libératoire . montant",
       ],
@@ -1163,12 +1141,6 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "entreprise . activités . libérale",
         "entreprise . activités . agricole",
         "entreprise . imposition . régime . micro-entreprise",
-        "DRI . accompagnement imposition . régime memento fiscal . RSI",
-        "DRI",
-        "DRI . accompagnement imposition . régime memento fiscal . RN",
-        "DRI . accompagnement imposition . régime memento fiscal . DECC",
-        "DRI . accompagnement imposition . régime memento fiscal . SPECIAL",
-        "DRI . accompagnement imposition . régime memento fiscal . MICROE",
         "entreprise . activités . service ou vente",
         "entreprise . activité . nature . artisanale",
         "entreprise . activité . nature . commerciale",
@@ -1394,7 +1366,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1403,7 +1375,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RN\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1412,25 +1384,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . DECC\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . SPECIAL\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1466,51 +1420,6 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RN\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . DECC\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . SPECIAL\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
 ➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
@@ -1538,51 +1447,6 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RN\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . DECC\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . SPECIAL\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
 ➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
@@ -1602,123 +1466,6 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
       "message": "
 [ Avertissement ]
 ➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RN\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . DECC\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . SPECIAL\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RSI\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . RN\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . DECC\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . SPECIAL\\"
-⚠️  Cette règle est tagguée comme experimentale. 
-
-Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
-",
-    },
-    {
-      "message": "
-[ Avertissement ]
-➡️  Dans la règle \\"DRI . accompagnement imposition . régime memento fiscal . MICROE\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.

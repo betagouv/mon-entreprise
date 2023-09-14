@@ -38,7 +38,11 @@ export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.eurl.title',
 			"Simulateur de revenus pour dirigeant d'EURL"
 		),
-		nextSteps: ['déclaration-revenu-indépendant', 'is', 'comparaison-statuts'],
+		nextSteps: [
+			'déclaration-charges-sociales-indépendant',
+			'is',
+			'comparaison-statuts',
+		],
 		path: sitePaths.simulateurs.eurl,
 		simulation: configEurl,
 		component: IndépendantSimulation,
