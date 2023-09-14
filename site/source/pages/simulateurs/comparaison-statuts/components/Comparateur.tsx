@@ -80,10 +80,6 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 			</Container>
 			<Détails namedEngines={namedEngines} expandRevenuSection />
 			<EngineDocumentationRoutes
-				namedEngines={namedEngines}
-				basePath={absoluteSitePaths.assistants['choix-du-statut'].comparateur}
-			/>
-			<EngineDocumentationRoutes
 				basePath={absoluteSitePaths.simulateurs.comparaison}
 				namedEngines={namedEngines}
 			/>

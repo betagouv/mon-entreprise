@@ -31,7 +31,7 @@
 		"build:sitemap": "ts-node-esm build/build-sitemap.ts",
 		"build:ssr": "NODE_OPTIONS='--max-old-space-size=4096'; vite build --ssr ./source/entries/entry-server.tsx --outDir ./dist/ssr --emptyOutDir && echo '{\"type\": \"module\"}' > dist/package.json",
 		"build:storybook": "NODE_OPTIONS='--max-old-space-size=6144'; storybook build",
-		"build:yaml-to-dts": "ts-node-esm scripts/build-yaml-to-dts.ts",
+		"build:yaml-to-dts": "ts-node-esm build/build-yaml-to-dts.ts",
 		"preview:mon-entreprise": "sed 's|:SITE_EN|_|g' netlify.preview.toml | sed 's|:SITE_FR||g' | sed 's|:API_URL|http://localhost:3004|g' > dist/netlify.toml && cd dist && netlify dev -d ./ -p 8888",
 		"preview:infrance": "      sed 's|:SITE_EN||g' netlify.preview.toml | sed 's|:SITE_FR|_|g' | sed 's|:API_URL|http://localhost:3004|g' > dist/netlify.toml && cd dist && netlify dev -d ./ -p 8889",
 		"typecheck:watch": "tsc --skipLibCheck --noEmit --watch",
