@@ -156,6 +156,7 @@ export default function SimulateursEtAssistants() {
 					<Trans>Autres outils</Trans>
 				</H2>
 				<Grid container spacing={3} role="list" aria-labelledby="autres-outils">
+					<SimulateurCard {...simulators['choix-statut']} role="listitem" />
 					<SimulateurCard {...simulators.is} role="listitem" />
 					<SimulateurCard {...simulators.dividendes} role="listitem" />
 					<SimulateurCard
