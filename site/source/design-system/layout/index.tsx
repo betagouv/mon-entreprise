@@ -31,5 +31,5 @@ export function Spacing(props: SpacingProps) {
 }
 
 const SpacingStyled = styled.div<{ $size: keyof Theme['spacings'] }>`
-	height: ${({ theme, $size }) => theme.spacings[$size]};
+	min-height: ${({ theme, $size }) => theme.spacings[$size]};
 `
