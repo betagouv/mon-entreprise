@@ -1,4 +1,8 @@
 import {
+	createWorkerEngineClient,
+	WorkerEngineClient,
+} from '@publicodes/worker'
+import {
 	PromiseSSR,
 	usePromise,
 	useWorkerEngine,
@@ -39,12 +43,14 @@ import Simulateurs from '@/pages/simulateurs'
 import SimulateursEtAssistants from '@/pages/simulateurs-et-assistants'
 import Stats from '@/pages/statistiques/LazyStats'
 import { useSitePaths } from '@/sitePaths'
+import { Actions } from '@/worker/socialWorkerEngine.worker'
 
 import Provider, { ProviderProps } from './Provider'
 import Redirections from './Redirections'
 
 type RootProps = {
 	basename: ProviderProps['basename']
+	workerClient: WorkerEngineClient<Actions>
 }
 
 const TestWorkerEngineWrapper = () => (
@@ -280,38 +286,14 @@ const TestWorkerEngine = () => {
 	)
 }
 
-export default function Root({
-	basename,
-}: // rulesPreTransform = (r) => r,
-RootProps) {
-	// const situationVersion = useCreateWorkerEngine(basename)
-	// const engine = useMemo(
-	// 	() => engineFactory(rulesPreTransform(rules)),
-
-	// 	// We need to keep [rules] in the dependency list for hot reload of the rules
-	// 	// in dev mode, even if ESLint think it is unnecessary since `rules` isn't
-	// 	// defined in the component scope.
-	// 	//
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// 	[rules]
-	// )
-
-	const [promiseSSR, setPromiseSSR] = useState(false)
-
-	const elems = (
-		<Provider basename={basename}>
-			<Redirections>
-				<Router />
-			</Redirections>
-		</Provider>
-	)
-
+export default function Root({ basename, workerClient }: RootProps) {
 	return (
 		<StrictMode>
-			<button onClick={() => setPromiseSSR((v) => !v)}>
-				use is {promiseSSR ? 'enabled' : 'disabled'}
-			</button>
-			{promiseSSR ? <PromiseSSR>{elems}</PromiseSSR> : elems}
+			<Provider basename={basename} workerClient={workerClient}>
+				<Redirections>
+					<Router />
+				</Redirections>
+			</Provider>
 		</StrictMode>
 	)
 }

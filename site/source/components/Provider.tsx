@@ -1,5 +1,7 @@
-import NodeWorker from '@eshaz/web-worker'
-import { createWorkerEngineClient } from '@publicodes/worker'
+import {
+	createWorkerEngineClient,
+	WorkerEngineClient,
+} from '@publicodes/worker'
 import { useWorkerEngine, WorkerEngineProvider } from '@publicodes/worker-react'
 import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
@@ -16,7 +18,6 @@ import logo from '@/assets/images/logo-monentreprise.svg'
 import FeedbackForm from '@/components/Feedback/FeedbackForm'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
-import { Loader } from '@/design-system/icons/Loader'
 import { Container, Grid } from '@/design-system/layout'
 import DesignSystemThemeProvider from '@/design-system/root'
 import { H1, H4 } from '@/design-system/typography/heading'
@@ -26,7 +27,6 @@ import { ClientOnly } from '@/hooks/useClientOnly'
 // import { workerClient } from '@/entries/entry-fr'
 import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
 import { Actions } from '@/worker/socialWorkerEngine.worker'
-import SocialeWorkerEngine from '@/worker/socialWorkerEngine.worker?worker'
 
 import { Message } from '../design-system'
 import * as safeLocalStorage from '../storage/safeLocalStorage'
@@ -38,32 +38,19 @@ import { ServiceWorker } from './ServiceWorker'
 import { DarkModeProvider } from './utils/DarkModeContext'
 import { useSetupSafeSituation } from './utils/EngineContext'
 
-console.time('start!')
-
-export const worker = import.meta.env.SSR
-	? // Node doesn't support web worker :( upvote issue here: https://github.com/nodejs/node/issues/43583
-	  new NodeWorker(
-			new URL('./worker/socialWorkerEngine.worker.js', import.meta.url),
-			{ type: 'module' }
-	  )
-	: new SocialeWorkerEngine()
-
-console.log('worker', worker)
-
-const workerClient = createWorkerEngineClient<Actions>(worker, {
-	initParams: [{ basename: 'mon-entreprise' }],
-})
-
 type SiteName = 'mon-entreprise' | 'infrance'
 
 export const SiteNameContext = createContext<SiteName | null>(null)
 
 export type ProviderProps = {
 	basename: SiteName
+	workerClient: WorkerEngineClient<Actions>
 	children: ReactNode
 }
 
 const SituationSynchronize = ({ children }: { children: ReactNode }) => {
+	console.timeEnd('worker ready!')
+
 	const workerEngine = useWorkerEngine()
 
 	useSetupSafeSituation(workerEngine)
@@ -73,6 +60,7 @@ const SituationSynchronize = ({ children }: { children: ReactNode }) => {
 
 export default function Provider({
 	basename,
+	workerClient,
 	children,
 }: ProviderProps): JSX.Element {
 	return (
@@ -86,33 +74,36 @@ export default function Provider({
 						<I18nextProvider i18n={i18next}>
 							<ReduxProvider store={store}>
 								<BrowserRouterProvider basename={basename}>
-									<Suspense fallback={<Loader />}>
-										<WorkerEngineProvider workerClient={workerClient}>
-											<SituationSynchronize>
-												<ErrorBoundary
-													fallback={(errorData) => (
-														// eslint-disable-next-line react/jsx-props-no-spreading
-														<ErrorFallback {...errorData} />
-													)}
-												>
-													<ClientOnly>
-														{!import.meta.env.SSR &&
-															'serviceWorker' in navigator && <ServiceWorker />}
-													</ClientOnly>
-													<IframeResizer />
-													<OverlayProvider>
-														<ThemeColorsProvider>
-															<DisableAnimationOnPrintProvider>
-																<SiteNameContext.Provider value={basename}>
-																	{children}
-																</SiteNameContext.Provider>
-															</DisableAnimationOnPrintProvider>
-														</ThemeColorsProvider>
-													</OverlayProvider>
-												</ErrorBoundary>
-											</SituationSynchronize>
-										</WorkerEngineProvider>
-									</Suspense>
+									<ClientOnly>
+										{!import.meta.env.SSR && 'serviceWorker' in navigator && (
+											<ServiceWorker />
+										)}
+									</ClientOnly>
+									<IframeResizer />
+
+									<OverlayProvider>
+										<ThemeColorsProvider>
+											<DisableAnimationOnPrintProvider>
+												<SiteNameContext.Provider value={basename}>
+													<WorkerEngineProvider
+														workerClient={workerClient}
+														loading={null}
+													>
+														<SituationSynchronize>
+															<ErrorBoundary
+																fallback={(errorData) => (
+																	// eslint-disable-next-line react/jsx-props-no-spreading
+																	<ErrorFallback {...errorData} />
+																)}
+															>
+																{children}
+															</ErrorBoundary>
+														</SituationSynchronize>
+													</WorkerEngineProvider>
+												</SiteNameContext.Provider>
+											</DisableAnimationOnPrintProvider>
+										</ThemeColorsProvider>
+									</OverlayProvider>
 								</BrowserRouterProvider>
 							</ReduxProvider>
 						</I18nextProvider>
