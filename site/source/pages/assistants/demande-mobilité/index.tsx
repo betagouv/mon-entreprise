@@ -6,6 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '@/components/ATInternetTracking'
 import RuleInput from '@/components/conversation/RuleInput'
 import { WhenApplicable, WhenNotApplicable } from '@/components/EngineValue'
+import { Appear } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -214,7 +215,9 @@ function FormulairePublicodes() {
 			<WhenNotApplicable dottedName={'situation . notification' as DottedName}>
 				<BrowserOnly>
 					<Suspense fallback={null}>
-						<LazyEndBlock fields={fields} missingValues={missingValues} />
+						<Appear>
+							<LazyEndBlock fields={fields} missingValues={missingValues} />
+						</Appear>
 					</Suspense>
 				</BrowserOnly>
 			</WhenNotApplicable>

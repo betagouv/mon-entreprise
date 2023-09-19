@@ -12,6 +12,7 @@ import { useDarkMode } from '@/hooks/useDarkMode'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useSitePaths } from '@/sitePaths'
 
+import { Appear } from '../ui/animate'
 import { Menu } from './Menu'
 import NewsBanner from './NewsBanner'
 
@@ -72,7 +73,13 @@ export default function Header() {
 
 					<Menu />
 				</StyledHeader>
-				<BrowserOnly>{i18n.language === 'fr' && <NewsBanner />}</BrowserOnly>
+				<BrowserOnly>
+					{i18n.language === 'fr' && (
+						<Appear>
+							<NewsBanner />
+						</Appear>
+					)}
+				</BrowserOnly>
 			</Container>
 		</header>
 	)

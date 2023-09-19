@@ -1,17 +1,14 @@
 import React from 'react'
 
-import { Appear } from '@/components/ui/animate'
+import { useBrowserOnly } from '@/hooks/useBrowserOnly'
 
-// We add a animation for all coponents displayed on the client only but not on
-// the SSR to avoid augment the CLS (Cumulative Layout Shift).
+/**
+ * Display the children only on the browser (client-side).
+ */
 export default function BrowserOnly({
 	children,
 }: {
 	children: React.ReactNode
 }) {
-	if (import.meta.env.SSR) {
-		return null
-	}
-
-	return <Appear>{children}</Appear>
+	return useBrowserOnly() ? children : null
 }
