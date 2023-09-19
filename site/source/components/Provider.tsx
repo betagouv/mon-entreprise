@@ -25,9 +25,10 @@ import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
 import { IframeResizer } from './IframeResizer'
 import { ServiceWorker } from './ServiceWorker'
+import BrowserOnly from './utils/BrowserOnly'
 import { DarkModeProvider } from './utils/DarkModeContext'
 
-type SiteName = 'mon-entreprise' | 'infrance' | 'publicodes'
+type SiteName = 'mon-entreprise' | 'infrance'
 
 export const SiteNameContext = createContext<SiteName | null>(null)
 
@@ -57,9 +58,11 @@ export default function Provider({
 											<ErrorFallback {...errorData} showFeedbackForm />
 										)}
 									>
-										{!import.meta.env.SSR &&
-											import.meta.env.MODE === 'production' &&
-											'serviceWorker' in navigator && <ServiceWorker />}
+										{!import.meta.env.SSR && 'serviceWorker' in navigator && (
+											<BrowserOnly>
+												<ServiceWorker />
+											</BrowserOnly>
+										)}
 										<IframeResizer />
 										<OverlayProvider>
 											<ThemeColorsProvider>

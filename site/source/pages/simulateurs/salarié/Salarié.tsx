@@ -17,7 +17,7 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
-import { FromTop } from '@/components/ui/animate'
+import { Appear, FromTop } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Emoji } from '@/design-system/emoji'
@@ -60,14 +60,16 @@ export default function SalariéSimulation() {
 						{!import.meta.env.SSR &&
 							!document.referrer?.includes('code.travail.gouv.fr') && (
 								<WhenNotAlreadyDefined dottedName="entreprise . catégorie juridique">
-									<Banner icon={'👨‍✈️'}>
-										<Trans>
-											Vous êtes dirigeant d'une SAS(U) ?{' '}
-											<Link to={absoluteSitePaths.simulateurs.sasu}>
-												Accéder au simulateur de revenu dédié
-											</Link>
-										</Trans>
-									</Banner>
+									<Appear>
+										<Banner icon={'👨‍✈️'}>
+											<Trans>
+												Vous êtes dirigeant d'une SAS(U) ?{' '}
+												<Link to={absoluteSitePaths.simulateurs.sasu}>
+													Accéder au simulateur de revenu dédié
+												</Link>
+											</Trans>
+										</Banner>
+									</Appear>
 								</WhenNotAlreadyDefined>
 							)}
 					</BrowserOnly>
