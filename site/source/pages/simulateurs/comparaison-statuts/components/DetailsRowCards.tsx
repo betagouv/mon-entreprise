@@ -1,8 +1,8 @@
+import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
-import { DottedName } from '@/../../modele-social'
 import Value, { Condition, WhenNotApplicable } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { HelpIcon } from '@/design-system/icons'

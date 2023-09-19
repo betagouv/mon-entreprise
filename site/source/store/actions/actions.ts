@@ -39,12 +39,11 @@ export const goToQuestion = (question: DottedName) =>
 		step: question,
 	}) as const
 
-export const stepAction = (step: DottedName, source?: string) =>
+export const stepAction = (step: DottedName) =>
 	({
 		type: 'STEP_ACTION',
 		name: 'fold',
 		step,
-		source,
 	}) as const
 
 export const setSimulationConfig = (
