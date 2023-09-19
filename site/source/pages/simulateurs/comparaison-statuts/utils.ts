@@ -1,6 +1,6 @@
+import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
 
-import { DottedName } from '@/../../modele-social'
 import { StatutType } from '@/components/StatutTag'
 
 export type OptionType = {

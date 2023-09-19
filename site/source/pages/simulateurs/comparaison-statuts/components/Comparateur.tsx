@@ -1,7 +1,7 @@
+import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { useTranslation } from 'react-i18next'
 
-import { DottedName } from '@/../../modele-social'
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import Simulation, {

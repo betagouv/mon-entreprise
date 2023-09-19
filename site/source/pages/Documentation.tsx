@@ -51,7 +51,9 @@ export default function Documentation({
 	return (
 		<Routes>
 			<Route index element={<DocumentationLanding />} />
-			<Route path="dev" element={<DocumentationRulesList />} />
+			{IS_DEVELOPMENT && (
+				<Route path="dev" element={<DocumentationRulesList />} />
+			)}
 			<Route
 				path="*"
 				element={
@@ -90,6 +92,7 @@ export default function Documentation({
 
 const StyledAccordion = styled(Accordion)`
 	margin: 1.5rem 0;
+	overflow: hidden;
 
 	${Accordion.StyledTitle} {
 		margin: 0;

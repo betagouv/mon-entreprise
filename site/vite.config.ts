@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 /* eslint-disable no-console */
 
 import path from 'path'
