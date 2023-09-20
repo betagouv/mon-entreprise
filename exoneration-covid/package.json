@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"js-yaml": "^4.1.0",
 		"onchange": "^7.1.0",
-		"publicodes": "^1.0.0-beta.73"
+		"publicodes": "^1.0.0-beta.74"
 	},
 	"peerDependencies": {
 		"publicodes": "^1.0.0-beta.55"
