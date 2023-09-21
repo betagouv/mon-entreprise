@@ -197,7 +197,9 @@ export default function RuleInput<Names extends string = DottedName>({
 		return (
 			<>
 				<OuiNonInput {...commonProps} />
-				<DefaultValue dottedName={dottedName as DottedName} />
+				{!hideDefaultValue && (
+					<DefaultValue dottedName={dottedName as DottedName} />
+				)}
 			</>
 		)
 	}
