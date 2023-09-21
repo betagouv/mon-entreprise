@@ -244,6 +244,7 @@ function ImpositionSection() {
 									<RuleInput
 										dottedName="dirigeant . rémunération . totale"
 										onChange={setSituation}
+										hideDefaultValue
 										displayedUnit="€"
 										aria-label={t('Résultat fiscal')}
 									/>
@@ -260,6 +261,7 @@ function ImpositionSection() {
 								<RuleInput
 									dottedName="dirigeant . rémunération . net"
 									onChange={setSituation}
+									hideDefaultValue
 								/>
 							</BigInput>
 						</Condition>

@@ -13,10 +13,12 @@ import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { DateFieldProps } from '@/design-system/field/DateField'
+import { Spacing } from '@/design-system/layout'
 import { getMeta } from '@/utils'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
+import { DefaultValue } from './DefaultValue'
 import { MultipleChoicesInput } from './MulipleChoicesInput'
 import ParagrapheInput from './ParagrapheInput'
 import SelectPaysDétachement from './select/SelectPaysDétachement'
@@ -40,10 +42,7 @@ type Props<Names extends string = DottedName> = Omit<
 	// a build-in logic in the engine, by setting the "applicability" of
 	// suggestions.
 	showSuggestions?: boolean
-	// TODO: having an option seems undesirable, but it's the easier way to
-	// implement this behavior currently
-	// cf .https://github.com/betagouv/mon-entreprise/issues/1489#issuecomment-823058710
-	showDefaultDateValue?: boolean
+	hideDefaultValue?: boolean
 	onSubmit?: (source?: string) => void
 	inputType?: InputType
 	formatOptions?: Intl.NumberFormatOptions
@@ -78,7 +77,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	onChange,
 	showSuggestions = true,
 	onSubmit = () => null,
-	showDefaultDateValue = false,
+	hideDefaultValue = false,
 	missing,
 	inputType,
 	modifiers = {},
@@ -96,9 +95,8 @@ export default function RuleInput<Names extends string = DottedName>({
 	const commonProps: InputProps<Names> = {
 		dottedName,
 		value,
-		missing:
-			missing ??
-			(!showDefaultDateValue && dottedName in evaluation.missingVariables),
+		hideDefaultValue,
+		missing: missing ?? dottedName in evaluation.missingVariables,
 		onChange: (value: PublicodesExpression | undefined) =>
 			onChange(value, dottedName),
 		onSubmit,
@@ -115,11 +113,14 @@ export default function RuleInput<Names extends string = DottedName>({
 
 	if (isMultiplePossibilities(engineValue, dottedName)) {
 		return (
-			<MultipleChoicesInput
-				{...commonProps}
-				choices={getMultiplePossibilitiesOptions(engineValue, dottedName)}
-				onChange={onChange}
-			/>
+			<>
+				<MultipleChoicesInput
+					{...commonProps}
+					choices={getMultiplePossibilitiesOptions(engineValue, dottedName)}
+					onChange={onChange}
+				/>
+				<Spacing md />
+			</>
 		)
 	}
 
@@ -132,30 +133,41 @@ export default function RuleInput<Names extends string = DottedName>({
 				: 'radio')
 
 		return (
-			<MultipleAnswerInput
-				{...commonProps}
-				choice={getOnePossibilityOptions(engineValue, dottedName)}
-				type={type}
-			/>
+			<>
+				<MultipleAnswerInput
+					{...commonProps}
+					choice={getOnePossibilityOptions(engineValue, dottedName)}
+					type={type}
+				/>
+				{!hideDefaultValue && (
+					<DefaultValue dottedName={dottedName as DottedName} />
+				)}
+			</>
 		)
 	}
 
 	if (rule.rawNode.API && rule.rawNode.API === 'commune') {
 		return (
-			<SelectCommune
-				{...commonProps}
-				onChange={(c) => commonProps.onChange({ batchUpdate: c })}
-				value={value as Evaluation<string>}
-			/>
+			<>
+				<SelectCommune
+					{...commonProps}
+					onChange={(c) => commonProps.onChange({ batchUpdate: c })}
+					value={value as Evaluation<string>}
+				/>
+				<Spacing md />
+			</>
 		)
 	}
 
 	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
 		return (
-			<SelectPaysDétachement
-				{...commonProps}
-				plusFrance={rule.rawNode.API.endsWith('plus France')}
-			/>
+			<>
+				<SelectPaysDétachement
+					{...commonProps}
+					plusFrance={rule.rawNode.API.endsWith('plus France')}
+				/>
+				<Spacing md />
+			</>
 		)
 	}
 	if (rule.rawNode.API) {
@@ -182,7 +194,12 @@ export default function RuleInput<Names extends string = DottedName>({
 		['booléen', 'notification', undefined].includes(rule.rawNode.type) &&
 		typeof evaluation.nodeValue !== 'number'
 	) {
-		return <OuiNonInput {...commonProps} />
+		return (
+			<>
+				<OuiNonInput {...commonProps} />
+				<DefaultValue dottedName={dottedName as DottedName} />
+			</>
+		)
 	}
 
 	if (rule.rawNode.type === 'texte') {

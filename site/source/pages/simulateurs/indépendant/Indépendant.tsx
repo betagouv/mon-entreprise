@@ -130,6 +130,7 @@ export default function IndépendantSimulation() {
 						<>
 							<RuleInput
 								inputType="toggle"
+								hideDefaultValue
 								missing={false}
 								dottedName="entreprise . imposition"
 								onChange={(imposition) => {

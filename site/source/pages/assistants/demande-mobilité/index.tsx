@@ -194,6 +194,7 @@ function FormulairePublicodes() {
 											id={dottedName.replace(/\s|\./g, '_')}
 											dottedName={dottedName as DottedName}
 											onChange={(value) => onChange(dottedName, value)}
+											hideDefaultValue
 											aria-label={
 												question &&
 												evaluateQuestion(engine, engine.getRule(dottedName))

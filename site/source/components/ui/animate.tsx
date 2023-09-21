@@ -138,16 +138,13 @@ export function Appear({
 		reset: false,
 		to: { opacity: 1, height },
 	})
-
-	if (useContext(DisableAnimationContext) || unless) {
-		return <>{children}</>
-	}
+	const animate = !useContext(DisableAnimationContext) && !unless
 
 	return (
 		<animated.div
 			style={{
 				...style,
-				...animatedStyle,
+				...(animate ? animatedStyle : {}),
 				overflow: 'hidden',
 				display: 'flex',
 				flexDirection: 'column',

@@ -146,6 +146,7 @@ export function SimulationGoal({
 									'_'
 								)}-description`}
 								aria-labelledby="simu-update-explaining"
+								hideDefaultValue
 								displayedUnit={displayedUnit}
 								dottedName={dottedName}
 								onFocus={() => setFocused(true)}

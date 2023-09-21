@@ -299,6 +299,7 @@ const AskCompanyMissingDetails = () => {
 								</Markdown>
 							</H3>
 							<RuleInput
+								hideDefaultValue
 								dottedName={question.dottedName}
 								onChange={onQuestionAnswered(question.dottedName)}
 							/>
