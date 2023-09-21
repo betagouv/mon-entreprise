@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
@@ -9,9 +8,14 @@ import { Strong } from '@/design-system/typography'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 
+import { usePersistingState } from '../utils/persistState'
+
 export default function BetaBanner() {
 	const isEmbedded = useIsEmbedded()
-	const [showBetaBanner, toggleBetaBanner] = useState(true)
+	const [showBetaBanner, toggleBetaBanner] = usePersistingState(
+		'betawarning',
+		true as boolean
+	)
 	const { t } = useTranslation()
 	if (!showBetaBanner) {
 		return null
@@ -33,13 +37,6 @@ export default function BetaBanner() {
 					onPress={() => toggleBetaBanner(false)}
 					aria-label={t('Fermer')}
 				/>
-				{/* <Body>
-								Bien qu'il ne soit pas terminé, nous avons choisi de le publier
-								pour prendre en compte vos retours le plus tôt possible. Si vous
-								pensez avoir trouvé un problème ou si vous voulez nous partager
-								une remarque, vous pouvez nous contacter via le bouton « Faire
-								une suggestion » en bas de page.
-							</Body> */}
 			</Message>
 		</StyledBetaContainer>
 	)

@@ -536,14 +536,15 @@ copied: Copy
 crée:
   choix-statut:
     détails-activité:
-      aide-bnc-bic: <0>Whether you choose to work on a commercial basis (earning
-        BIC-type income) or on a self-employed basis (earning BNC-type income)
-        often depends on the nature of your work. If you sell goods or services
-        on a regular basis, and act like a merchant, you're likely to fall under
-        the BIC regime. On the other hand, if your activity is based on
-        professional, intellectual or artistic skills, such as medicine,
-        consulting or writing, you'll probably come under the BNC
-        regime.</0><1>To find out more, visit the <2>URSSAF</2> website.</1>
+      aide-bnc-bic: <0>Whether you choose to work on a <2>commercial</2> basis
+        (earning BIC-type income) or on a <4>self-employed</4> basis (earning
+        BNC-type income) depends mainly on the nature of your work:</0><1><0>If
+        you sell goods or services on a regular basis and act as a merchant,
+        you're likely to be covered by the <1>BIC regime</1>.</0><1>On the other
+        hand, if your activity is based on professional, intellectual or
+        artistic skills, such as medicine, consulting or writing, you'll
+        probably come under the <1>BNC regime</1>.</1></1><2>To find out more,
+        visit the <2>URSSAF</2> website.</2>
 créer:
   activité-détails:
     next1: Continue with this activity
@@ -673,23 +674,16 @@ landing:
     remove any uncertainties with regard to the administration, so that you can
     concentrate on what matters: your business.</3>"
   choice:
-    create:
-      aria-label: I'd like to start my own business, access the business start-up guide.
-      title: I'd like to start my own business
-    simulator:
-      list: Consult the list of our simulators
     simulators:
-      title: Discover all simulators and assistants
+      title: Discover the list of all tools
   description: The official assistant to entrepreneurs
   meta:
     title: Home
-  outils: <0>Tools at your disposal</0><1>We provide you with wizards and
-    simulators to help you manage your business, anticipate levies and plan your
-    cash flow accordingly.</1>
+  outils: <0>Some reference simulators</0>
   searchcompany: <0>Find your company </0><1>To access our simulators most
     relevant to your business</1>
-  subtitle: Simulators and wizards to help you develop your business, from legal
-    status to hiring.
+  subtitle: Wizards and simulators for <2>personalized answers</2> to your
+    questions about <5>setting up and running</5> your business.
   title: Official tools for entrepreneurs
 "le portail officiel, accéder à aides-entreprises":
   "fr, nouvelle fenêtre": the official portal, access to aides-entreprises.fr, new window
@@ -908,10 +902,26 @@ pages:
       title: "Which APE code for my business? "
   choix-statut:
     meta:
-      description: "SASU, EURL, auto-entrepreneur, sole proprietorship: find the
-        status that suits you best"
+      description: SAS, EURL, EI, auto-entrepreneur...  This simulator will help you
+        choose the legal status best suited to your business project.
       title: Help in choosing legal status
-    shortname: Legal status assistant
+    seo explanation: <0>Why is the choice of legal status essential?</0><1>Your
+      legal status determines the structure of your company, its tax and social
+      security obligations, and your responsibility as a manager. It can have a
+      direct impact on your profitability, social security coverage, financing
+      possibilities and much more.</1><2>How do I choose the right
+      status?</2><3>Our status selection wizard is designed to simplify this
+      complex process. It will ask you simple questions about your business,
+      your objectives and your personal situation. It will help you select the
+      status best suited to your situation.</3><4>The benefits of our assistant
+      :</4><5><0><0>Personalized:</0> Our recommendations are tailored to your
+      specific situation.</0><1><0>Informed:</0> We regularly update our
+      information to reflect the latest regulations and tax
+      laws.</1><2><0>Simple:</0> You don't need to be a legal expert. Our
+      assistant makes the process as simple as
+      possible.</2><3><0>Confidence:</0> Our recommendations are based on a
+      thorough and impartial analysis.</3></5>
+    shortname: Choice of status
     title: Choose your status
   documentation:
     back: Back to simulation
@@ -1124,12 +1134,13 @@ pages:
       title: Artist contribution simulator
     auto-entrepreneur:
       meta:
-        description: Income calculation based on sales, after deduction of contributions
-          and taxes
-        ogDescription: "With the auto-entrepreneur income simulator developed by Urssaf,
-          you can estimate your income based on your monthly or annual sales, to
-          help you manage your cash flow. Or the other way round: find out how
-          much you need to invoice to reach a certain income."
+        description: Calculate your net income after contributions and taxes, taking
+          into account all options, including ACRE and prélèvement libératoire.
+        ogDescription: Take control of your finances as an auto-entrepreneur! Instantly
+          estimate your net income after charges and find out how best to manage
+          your income. Our simulator, designed with the expertise of
+          professionals, adapts to your activity (sector, sales, ACRE exemption,
+          etc.) to help you achieve your financial goals.
         ogTitle: "Self-employed entrepreneurs: quickly calculate your net income from
           sales and vice versa"
         titre: "Self-employed entrepreneurs: income simulator"
@@ -1426,18 +1437,17 @@ pages:
         (stated in the employment contract) minus employee contributions
         (pension, social security contributions, etc.).
       meta:
-        description: Calculation of net salary, net salary after tax and total employer
-          costs. Many options available (executive, internship, apprenticeship,
-          overtime, etc.).
-        ogDescription: As an employee, immediately calculate your net income after tax
-          from the gross monthly or annual income. As an employee, estimate the
-          total cost of hiring someone based on gross income. This simulator has
-          been developed with the experts at Urssaf, and adapts the calculations
-          to your situation (executive status, internship, apprenticeship,
-          overtime, luncheon vouchers, health insurance, part-time work,
-          collective bargaining agreement, etc.).
-        ogTitle: "Gross, net, net after tax salary, total cost: the ultimate simulator
-          for employees and employers"
+        description: "Calculate the total cost of hiring and explore different
+          compensation options: management, internships, apprenticeships,
+          overtime, and much more!"
+        ogDescription: Optimize your finances at the click of a button! Instantly
+          calculate your net income as an employee and assess the total cost of
+          hiring as an employer. Our simulator, developed with Urssaf experts,
+          adjusts to your situation (executive, internship, apprenticeship,
+          overtime, benefits, part-time, collective agreement, etc.) to help you
+          make informed decisions.
+        ogTitle: "Gross salary, net salary, net salary after tax, total cost: the
+          all-in-one simulator for employees and employers"
         titre: "Gross/net salary: the Urssaf converter"
       seo: "<0>How do you calculate net salary?</0><1>During the job interview, the
         employer generally proposes a gross salary. This amount includes the

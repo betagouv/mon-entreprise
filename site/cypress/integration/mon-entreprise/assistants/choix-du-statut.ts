@@ -11,7 +11,7 @@ describe(`Assistant choix du statut`, { testIsolation: false }, function () {
 
 	it('should allow start assistant', function () {
 		cy.visit(encodeURI('/'))
-		cy.contains("J'aimerais créer mon entreprise").click()
+		cy.get('a[aria-label="Choix du statut, Lancer l\'assistant"]').click()
 		checkA11Y()
 		cy.contains('Trouver le bon statut').click()
 	})

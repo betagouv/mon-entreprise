@@ -8,8 +8,10 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Message, RadioCardGroup } from '@/design-system'
 import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Spacing } from '@/design-system/layout'
+import { Strong } from '@/design-system/typography'
 import { H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useEngineIsIdle } from '@/hooks/useEngineIsIddle'
 import { useSitePaths } from '@/sitePaths'
@@ -155,16 +157,25 @@ function GuichetSelection({
 				<Message>
 					<Trans i18nKey="crée.choix-statut.détails-activité.aide-bnc-bic">
 						<Body>
-							Le choix entre exercer une activité à titre commercial (avec des
-							revenus de type BIC) ou à titre indépendant (avec des revenus de
-							type BNC) dépend souvent de la nature de votre travail. Si vous
-							vendez des biens ou des services de manière régulière et que vous
-							agissez comme un commerçant, il est probable que vous releviez du
-							régime BIC. En revanche, si votre activité est basée sur des
-							compétences professionnelles, intellectuelles ou artistiques,
-							comme la médecine, la consultation ou l'écriture, vous serez
-							probablement sous le régime BNC.
+							Le choix entre exercer une activité à titre{' '}
+							<Strong>commercial</Strong> (avec des revenus de type BIC) ou à
+							titre <Strong>indépendant</Strong> (avec des revenus de type BNC)
+							dépend principalement de la nature de votre travail :
 						</Body>
+						<Ul>
+							<Li>
+								Si vous vendez des biens ou des services de manière régulière et
+								que vous agissez comme un commerçant, il est probable que vous
+								releviez du <Strong>régime BIC.</Strong>
+							</Li>
+							<Li>
+								En revanche, si votre activité est basée sur des compétences
+								professionnelles, intellectuelles ou artistiques, comme la
+								médecine, la consultation ou l'écriture, vous serez probablement
+								sous le <Strong>régime BNC.</Strong>
+							</Li>
+						</Ul>
+
 						<Body>
 							Pour en savoir plus, vous pouvez consulter le site de{' '}
 							<Link href="https://www.urssaf.fr/portail/home/independant/je-cree-mon-entreprise/quelle-activite/les-differentes-activites-indepe.html">
