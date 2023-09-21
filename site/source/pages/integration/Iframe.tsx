@@ -432,13 +432,10 @@ function IntegrationCode({
 }
 
 const StyledDiv = styled.div`
-	display: block;
-	right: 0;
-	top: 0;
-	position: absolute;
-	margin: 8px;
+	padding: 1rem;
 	background: ${({ theme }) => (theme.darkMode ? '#484848' : '#f8f8f8')};
 	overflow: auto;
+	border-radius: ${({ theme }) => theme.box.borderRadius};
 	line-height: 1.6em;
 	box-shadow:
 		0 1px 1px rgba(0, 0, 0, 0.05),
