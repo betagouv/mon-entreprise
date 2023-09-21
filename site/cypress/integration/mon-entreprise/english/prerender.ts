@@ -87,16 +87,6 @@ describe('Test prerender', function () {
 				path: '',
 				test: () => {
 					cy.contains('Official tools for entrepreneurs')
-
-					cy.contains('Find your company ')
-					cy.contains('label', 'Company name, SIREN or SIRET')
-
-					cy.contains("I'd like to start my own business")
-
-					cy.contains('Employee')
-					cy.contains('Auto-entrepreneur')
-					cy.contains('Status comparison')
-					cy.contains('Discover all simulators and assistants')
 				},
 			},
 			{

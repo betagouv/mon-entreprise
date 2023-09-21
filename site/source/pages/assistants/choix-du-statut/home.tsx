@@ -13,7 +13,6 @@ import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
-import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 
@@ -21,7 +20,6 @@ import { useNextStep } from './_components/useSteps'
 import créerSvg from './_illustrations/créer.svg'
 
 export default function AccueilChoixStatut() {
-	const simulateurData = useSimulatorsData()
 	const nextStep = useNextStep()
 	const choixStatutPath =
 		useSitePaths().absoluteSitePaths.assistants['choix-du-statut']

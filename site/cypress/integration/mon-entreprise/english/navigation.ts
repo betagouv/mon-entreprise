@@ -68,10 +68,6 @@ describe(`Navigation to income simulator using company name (${
 			url: '/api/v1/search*',
 		}).as('search')
 
-		cy.contains(
-			fr ? 'Rechercher votre entreprise ' : 'Find your company '
-		).click()
-
 		cy.get('input[data-test-id="company-search-input"]').first().type('menoz')
 		cy.wait('@search')
 
@@ -100,10 +96,6 @@ describe(`Navigation to income simulator using company name (${
 			hostname: 'api.recherche-entreprises.fabrique.social.gouv.fr',
 			url: '/api/v1/search*',
 		}).as('search')
-
-		cy.contains(
-			fr ? 'Rechercher votre entreprise ' : 'Find your company '
-		).click()
 
 		cy.get('input[data-test-id="company-search-input"]').type('jeremy rialland')
 		cy.wait('@search')

@@ -560,16 +560,16 @@ copied: Copié
 crée:
   choix-statut:
     détails-activité:
-      aide-bnc-bic: <0>Le choix entre exercer une activité à titre commercial (avec
-        des revenus de type BIC) ou à titre indépendant (avec des revenus de
-        type BNC) dépend souvent de la nature de votre travail. Si vous vendez
-        des biens ou des services de manière régulière et que vous agissez comme
-        un commerçant, il est probable que vous releviez du régime BIC. En
-        revanche, si votre activité est basée sur des compétences
-        professionnelles, intellectuelles ou artistiques, comme la médecine, la
-        consultation ou l'écriture, vous serez probablement sous le régime
-        BNC.</0><1>Pour en savoir plus, vous pouvez consulter le site de
-        <2>l'URSSAF</2>.</1>
+      aide-bnc-bic: <0>Le choix entre exercer une activité à titre <2>commercial</2>
+        (avec des revenus de type BIC) ou à titre <4>indépendant</4> (avec des
+        revenus de type BNC) dépend principalement de la nature de votre travail
+        :</0><1><0>Si vous vendez des biens ou des services de manière régulière
+        et que vous agissez comme un commerçant, il est probable que vous
+        releviez du <1>régime BIC.</1></0><1>En revanche, si votre activité est
+        basée sur des compétences professionnelles, intellectuelles ou
+        artistiques, comme la médecine, la consultation ou l'écriture, vous
+        serez probablement sous le <1>régime BNC.</1></1></1><2>Pour en savoir
+        plus, vous pouvez consulter le site de <2>l'URSSAF</2>.</2>
 créer:
   activité-détails:
     next1: Continuer avec cette activité
@@ -706,25 +706,17 @@ landing:
     à vis de l’administration afin que vous puissiez vous concentrer sur ce qui
     compte : votre activité.</3>"
   choice:
-    create:
-      aria-label: J'aimerais créer mon entreprise, accéder au guide de création
-        d'entreprise.
-      title: J'aimerais créer mon entreprise
-    simulator:
-      list: Consulter la liste de nos simulateurs
     simulators:
-      title: Découvrir tous les simulateurs et assistants
+      title: Découvrir la liste de tous les outils
   description: L'assistant officiel des entrepreneurs
   meta:
     title: Accueil
-  outils: <0>Les outils à votre disposition</0><1>Nous mettons à votre disposition
-    des assistants et simulateurs pour vous aider à la gestion de votre
-    entreprise, anticiper les prélèvements et planifier votre trésorerie en
-    conséquence.</1>
+  outils: <0>Quelques simulateurs de référence</0>
   searchcompany: <0>Rechercher votre entreprise </0><1>Pour accéder à nos
     simulateurs les plus pertinents pour votre activité</1>
-  subtitle: Les simulateurs et assistants pour développer votre activité, du
-    statut juridique à l'embauche.
+  subtitle: Des assistants et simulateurs pour obtenir des <2>réponses
+    personnalisées</2> à vos questions sur la <5>création et la gestion</5> de
+    votre entreprise.
   title: L'assistant officiel des entrepreneurs
 "le portail officiel, accéder à aides-entreprises":
   "fr, nouvelle fenêtre": le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre
@@ -960,10 +952,27 @@ pages:
       title: "Quel code APE pour mon activité ? "
   choix-statut:
     meta:
-      description: "SASU, EURL, auto-entrepreneur, entreprise individuelle : trouvez
-        le statut qui vous convient le mieux"
+      description: SAS, EURL, EI, auto-entrepreneur...  Ce simulateur vous aide à
+        choisir le statut juridique le plus adapté à votre projet d'entreprise.
       title: Aide au choix du statut juridique
-    shortname: Assistant statut juridique
+    seo explanation: <0>Pourquoi le choix du statut est-il essentiel ?</0><1>Votre
+      statut juridique détermine la structure de votre entreprise, ses
+      obligations fiscales et sociales, ainsi que votre responsabilité en tant
+      que dirigeant. Il peut influencer directement votre rentabilité, votre
+      couverture sociale, vos possibilités de financement, et bien plus
+      encore.</1><2>Comment choisir le bon statut ?</2><3>Notre assistant au
+      choix du statut est conçu pour simplifier ce processus complexe. Il vous
+      posera des questions simples sur votre entreprise, vos objectifs et votre
+      situation personnelle. Il vous permettra de selectionner le statut le
+      mieux adaptés à votre situation.</3><4>Les avantages de notre assistant
+      :</4><5><0><0>Personnalisé :</0> Nos recommandations sont adaptées à votre
+      situation spécifique.</0><1><0>Informé :</0> Nous actualisons
+      régulièrement nos informations pour refléter les dernières réglementations
+      et lois fiscales.</1><2><0>Simplicité :</0> Vous n'avez pas besoin d'être
+      un expert juridique. Notre assistant rend le processus aussi simple que
+      possible.</2><3><0>Confiance :</0> Nos recommandations reposent sur une
+      analyse approfondie et impartiale.</3></5>
+    shortname: Choix du statut
     title: Choisir votre statut
   documentation:
     back: Retourner à la simulation
@@ -1189,13 +1198,15 @@ pages:
       title: Simulateur de cotisations d’artiste-auteur
     auto-entrepreneur:
       meta:
-        description: Calcul du revenu à partir du chiffre d'affaires, après déduction
-          des cotisations et des impôts
-        ogDescription: "Grâce au simulateur de revenu auto-entrepreneur développé par
-          l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction
-          de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre
-          trésorerie. Ou dans le sens inverse : savoir quel montant facturer
-          pour atteindre un certain revenu."
+        description: Calculez votre revenu net après cotisations et impôts en tenant
+          compte de toutes les options, y compris ACRE et prélèvement
+          libératoire.
+        ogDescription: Prenez le contrôle de vos finances en tant qu'auto-entrepreneur !
+          Estimez instantanément votre revenu net après charges et découvrez
+          comment gérer au mieux vos revenus. Notre simulateur, conçu avec
+          l'expertise des professionnels, s'adapte à votre activité (secteur,
+          chiffre d'affaires, exonération ACRE, etc.) pour vous aider à
+          atteindre vos objectifs financiers.
         ogTitle: "Auto-entrepreneur : calculez rapidement votre revenu net à partir du
           CA et vice-versa"
         titre: "Auto-entrepreneurs : simulateur de revenus"
@@ -1512,18 +1523,17 @@ pages:
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
       meta:
-        description: Calcul du salaire net, net après impôt et coût total employeur.
-          Beaucoup d'options disponibles (cadre, stage, apprentissage, heures
-          supplémentaires, etc.)
-        ogDescription: En tant que salarié, calculez immédiatement votre revenu net
-          après impôt à partir du brut mensuel ou annuel. En tant qu'employé,
-          estimez le coût total d'une embauche à partir du brut. Ce simulateur
-          est développé avec les experts de l'Urssaf, et il adapte les calculs à
-          votre situation (statut cadre, stage, apprentissage, heures
-          supplémentaire, titre-restaurants, mutuelle, temps partiel, convention
-          collective, etc.)
-        ogTitle: "Salaire brut, net, net après impôt, coût total : le simulateur ultime
-          pour salariés et employeurs"
+        description: "Calculez le coût total d'une embauche et explorez les différentes
+          options de rémunération : cadres, stages, apprentissages, heures
+          supplémentaires, et bien plus !"
+        ogDescription: Optimisez vos finances en un clic ! Calculez instantanément votre
+          revenu net en tant que salarié et évaluez le coût total d'une embauche
+          en tant qu'employeur. Notre simulateur, élaboré avec les experts de
+          l'Urssaf, s'ajuste à votre situation (cadre, stage, apprentissage,
+          heures supplémentaires, avantages, temps partiel, convention
+          collective, etc.) pour des décisions éclairées
+        ogTitle: "Salaire brut, net, net après impôt, coût total : le simulateur
+          tout-en-un pour salariés et employeurs"
         titre: "Salaire brut / net : le convertisseur Urssaf"
       seo: "<0>Comment calculer le salaire net ?</0><1>Lors de l'entretien d'embauche
         l'employeur propose en général une rémunération exprimée en « brut ». Le
