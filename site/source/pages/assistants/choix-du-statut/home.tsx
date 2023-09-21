@@ -4,12 +4,11 @@ import { useDispatch } from 'react-redux'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CompanyDetails } from '@/components/company/Details'
 import PageHeader from '@/components/PageHeader'
-import { SimulateurCard } from '@/components/SimulateurCard'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { ClockIcon } from '@/design-system/icons'
-import { Container, Grid, Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
@@ -103,36 +102,6 @@ export default function AccueilChoixStatut() {
 				)}
 			</PageHeader>
 			<Spacing xxl />
-			<div
-				style={{
-					flex: '1',
-				}}
-			></div>
-			<Container
-				backgroundColor={(theme) =>
-					theme.darkMode
-						? theme.colors.bases.primary[800]
-						: theme.colors.bases.primary[100]
-				}
-			>
-				<H3 as="h2">
-					<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
-				</H3>
-
-				<Grid container spacing={3} role="list">
-					<SimulateurCard
-						small
-						role="listitem"
-						{...simulateurData['coût-création-entreprise']}
-					/>
-					<SimulateurCard
-						small
-						role="listitem"
-						{...simulateurData['comparaison-statuts']}
-					/>
-				</Grid>
-				<Spacing xl />
-			</Container>
 		</>
 	)
 }
