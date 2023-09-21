@@ -9,11 +9,9 @@ import {
 } from '@/api/fabrique-social'
 import { CompanyDetails } from '@/components/company/Details'
 import { CompanySearchField } from '@/components/company/SearchField'
-import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { useEngine } from '@/components/utils/EngineContext'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { H3 } from '@/design-system/typography/heading'
@@ -38,104 +36,61 @@ export default function SearchOrCreate() {
 	const { t } = useTranslation()
 
 	return (
-		<ForceThemeProvider forceTheme="dark">
-			<Grid container spacing={3}>
-				<Grid item xl={8} lg={10} md={12}>
-					{companySIREN ? (
-						<>
-							<H3 as="h2">Votre entreprise</H3>
-							<CompanyDetails headingTag="h3" />
-							<Spacing md />
-							<AnswerGroup role="list">
-								<Button
-									role="link"
-									to={generatePath(
-										absoluteSitePaths.assistants['pour-mon-entreprise']
-											.entreprise,
-										{ entreprise: companySIREN as string }
-									)}
-									data-test-id="cta-see-custom-simulators"
-									aria-label={t(
-										'Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise'
-									)}
-								>
-									{t('Voir les simulateurs personnalisés')}
-								</Button>
-								<PopoverConfirm
-									trigger={(buttonProps) => (
-										<Button
-											light
-											aria-label={t('Réinitialiser la situation enregistrée')}
-											{...buttonProps}
-										>
-											{t('Réinitialiser')}
-										</Button>
-									)}
-									onConfirm={() => dispatch(resetCompany())}
-									small
-									title={t(
-										'Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?'
-									)}
-								/>
-							</AnswerGroup>
-						</>
-					) : (
-						<>
-							<Trans i18nKey="landing.searchcompany">
-								<H3 as="h2">Rechercher votre entreprise </H3>
-								<Body>
-									Pour accéder à nos simulateurs les plus pertinents pour votre
-									activité
-								</Body>
-							</Trans>
-							<CompanySearchField
-								onSubmit={handleCompanySubmit}
-								forceTheme="dark"
-							/>
-							<Spacing md />
-							<Grid container spacing={2}>
-								<Grid item>
+		<Grid container spacing={3}>
+			<Grid item xl={8} lg={10} md={12}>
+				{companySIREN ? (
+					<>
+						<H3 as="h2">Votre entreprise</H3>
+						<CompanyDetails headingTag="h3" />
+						<Spacing md />
+						<AnswerGroup role="list">
+							<Button
+								role="link"
+								to={generatePath(
+									absoluteSitePaths.assistants['pour-mon-entreprise']
+										.entreprise,
+									{ entreprise: companySIREN as string }
+								)}
+								data-test-id="cta-see-custom-simulators"
+								aria-label={t(
+									'Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise'
+								)}
+							>
+								{t('Voir les simulateurs personnalisés')}
+							</Button>
+							<PopoverConfirm
+								trigger={(buttonProps) => (
 									<Button
-										size="XL"
-										role="link"
-										to={
-											// statutChoisi
-											// 	? absoluteSitePaths.assistants['choix-du-statut'][
-											// 			statutChoisi
-											// 	  ]
-											// 	:
-											absoluteSitePaths.assistants['choix-du-statut'].index
-										}
-										aria-label={t(
-											'landing.choice.create.aria-label',
-											"J'aimerais créer mon entreprise, accéder au guide de création d'entreprise."
-										)}
-									>
-										<Emoji emoji="💡" />{' '}
-										<Trans i18nKey="landing.choice.create.title">
-											J'aimerais créer mon entreprise
-										</Trans>
-									</Button>
-								</Grid>
-								<Grid item>
-									<Button
-										size="XL"
-										role="link"
 										light
-										to={absoluteSitePaths.simulateurs.index}
-										color="secondary"
+										aria-label={t('Réinitialiser la situation enregistrée')}
+										{...buttonProps}
 									>
-										<Trans i18nKey="landing.choice.simulator.list">
-											Consulter la liste de nos simulateurs
-										</Trans>
+										{t('Réinitialiser')}
 									</Button>
-								</Grid>
-							</Grid>
-						</>
-					)}
-				</Grid>
+								)}
+								onConfirm={() => dispatch(resetCompany())}
+								small
+								title={t(
+									'Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?'
+								)}
+							/>
+						</AnswerGroup>
+					</>
+				) : (
+					<>
+						<Trans i18nKey="landing.searchcompany">
+							<H3 as="h2">Rechercher votre entreprise </H3>
+							<Body>
+								Pour accéder à nos simulateurs les plus pertinents pour votre
+								activité
+							</Body>
+						</Trans>
+						<CompanySearchField onSubmit={handleCompanySubmit} />
+						<Spacing md />
+					</>
+				)}
 			</Grid>
-		</ForceThemeProvider>
+		</Grid>
 	)
 }
 

@@ -3,9 +3,11 @@ import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
+import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import Meta from '@/components/utils/Meta'
 import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
+import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
@@ -43,31 +45,37 @@ export default function Landing() {
 					}
 					picture={illustrationSvg}
 				>
-					<Intro>
+					<Intro $xxl>
 						<Trans i18nKey="landing.subtitle">
-							Les simulateurs et assistants pour développer votre activité, du
-							statut juridique à l'embauche.
+							Des assistants et simulateurs pour obtenir des{' '}
+							<Strong>réponses personnalisées</Strong> à vos questions sur la{' '}
+							<Strong>création et la gestion</Strong> de votre entreprise.
 						</Trans>
 					</Intro>
+					<Spacing sm />
+					<Grid container>
+						<Grid item xs={12}>
+							<Button
+								size="XL"
+								light
+								to={absoluteSitePaths.simulateursEtAssistants}
+							>
+								<Trans i18nKey="landing.choice.simulators.title">
+									Découvrir la liste de tous les outils
+								</Trans>
+							</Button>
+						</Grid>
+					</Grid>
+					<Spacing xxl />
 				</PageHeader>
 			</Container>
 			<Container
 				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
-				<SearchOrCreate />
-				<Spacing xl />
-			</Container>
-			<Container>
 				<Trans i18nKey="landing.outils">
-					<H2>Les outils à votre disposition</H2>
-					<Body>
-						Nous mettons à votre disposition des assistants et simulateurs pour
-						vous aider à la gestion de votre entreprise, anticiper les
-						prélèvements et planifier votre trésorerie en conséquence.
-					</Body>
+					<H2>Quelques simulateurs de référence</H2>
 				</Trans>
-
 				<Grid
 					container
 					spacing={4}
@@ -76,33 +84,18 @@ export default function Landing() {
 						justifyContent: 'center',
 					}}
 				>
-					<SimulateurCard {...simulators.salarié} />
+					<ForceThemeProvider forceTheme="default">
+						<SimulateurCard {...simulators.salarié} />
 
-					<SimulateurCard {...simulators['auto-entrepreneur']} />
+						<SimulateurCard {...simulators['choix-statut']} />
 
-					<SimulateurCard {...simulators['comparaison-statuts']} />
-
-					<Grid
-						item
-						xs={12}
-						style={{
-							display: 'flex',
-						}}
-					>
-						<Button
-							size="XL"
-							to={absoluteSitePaths.simulateursEtAssistants}
-							style={{
-								whiteSpace: 'nowrap',
-								margin: 'auto',
-							}}
-						>
-							<Trans i18nKey="landing.choice.simulators.title">
-								Découvrir tous les simulateurs et assistants
-							</Trans>
-						</Button>
-					</Grid>
+						<SimulateurCard {...simulators['auto-entrepreneur']} />
+					</ForceThemeProvider>
 				</Grid>
+				<Spacing xxl />
+			</Container>
+			<Container>
+				<SearchOrCreate />
 				<Spacing xl />
 			</Container>
 			<Container
