@@ -4,7 +4,7 @@
 		"dbaeumer.vscode-eslint",
 		"ban.spellright",
 		"styled-components.vscode-styled-components",
-		"bungcip.better-toml",
+		"tamasfe.even-better-toml",
 		"mikestead.dotenv"
 	]
 }
