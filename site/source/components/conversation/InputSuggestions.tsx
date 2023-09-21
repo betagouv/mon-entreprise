@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 
@@ -22,7 +23,7 @@ export default function InputSuggestions({
 	const [suggestion, setSuggestion] = useState<ASTNode>()
 	const { t } = useTranslation()
 	if (!suggestions || !Object.keys(suggestions).length) {
-		return null
+		return <Spacing md />
 	}
 
 	return (

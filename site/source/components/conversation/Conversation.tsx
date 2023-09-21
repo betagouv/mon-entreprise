@@ -88,6 +88,8 @@ export default function Conversation({
 	}, [focusFirstElemInForm, goToNextQuestion])
 
 	const formRef = React.useRef<HTMLFormElement>(null)
+	const isDateQuestion =
+		currentQuestion && engine.getRule(currentQuestion).rawNode.type === 'date'
 
 	return (
 		<>
@@ -136,9 +138,9 @@ export default function Conversation({
 									key={currentQuestion}
 									onSubmit={goToNext}
 									aria-labelledby="questionHeader"
+									hideDefaultValue={isDateQuestion}
 								/>
 							</fieldset>
-							<Spacing md />
 							<Grid container spacing={2}>
 								{previousAnswers.length > 0 && (
 									<Grid item xs={6} sm="auto">

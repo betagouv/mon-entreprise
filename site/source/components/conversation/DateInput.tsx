@@ -3,6 +3,7 @@ import { useCallback } from 'react'
 import { InputProps } from '@/components/conversation/RuleInput'
 import { DateField } from '@/design-system/field'
 import { DateFieldProps } from '@/design-system/field/DateField'
+import { Spacing } from '@/design-system/layout'
 
 import { useEngine } from '../utils/EngineContext'
 import InputSuggestions from './InputSuggestions'
@@ -12,6 +13,7 @@ export default function DateInput({
 	onChange,
 	missing,
 	title,
+	hideDefaultValue,
 	onSubmit,
 	required,
 	value,
@@ -62,7 +64,9 @@ export default function DateInput({
 				)}
 				<DateField
 					defaultSelected={
-						missing || !dateValue ? undefined : new Date(dateValue)
+						(missing && hideDefaultValue) || !dateValue
+							? undefined
+							: new Date(dateValue)
 					}
 					isRequired={required}
 					onChange={handleDateChange}
@@ -70,6 +74,7 @@ export default function DateInput({
 					label={title}
 					type={type}
 				/>
+				<Spacing md />
 			</div>
 		</div>
 	)

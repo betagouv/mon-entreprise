@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 
 import { Card } from '@/design-system/card'
 import TextField from '@/design-system/field/TextField'
+import { Spacing } from '@/design-system/layout'
 
 import Worker from './SelectTauxRisque.worker?worker'
 
@@ -166,5 +167,10 @@ export default function SelectAtmp(
 			)
 	}, [])
 
-	return <SelectComponent {...props} options={options || []} />
+	return (
+		<>
+			<SelectComponent {...props} options={options || []} />
+			<Spacing md />
+		</>
+	)
 }
