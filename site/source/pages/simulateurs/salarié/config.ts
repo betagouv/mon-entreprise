@@ -20,15 +20,15 @@ export function salariéConfig(params: SimulatorsDataParams) {
 		meta: {
 			description: t(
 				'pages.simulateurs.salarié.meta.description',
-				"Calcul du salaire net, net après impôt et coût total employeur. Beaucoup d'options disponibles (cadre, stage, apprentissage, heures supplémentaires, etc.)"
+				"Calculez le coût total d'une embauche et explorez les différentes options de rémunération : cadres, stages, apprentissages, heures supplémentaires, et bien plus !"
 			),
 			ogDescription: t(
 				'pages.simulateurs.salarié.meta.ogDescription',
-				"En tant que salarié, calculez immédiatement votre revenu net après impôt à partir du brut mensuel ou annuel. En tant qu'employé, estimez le coût total d'une embauche à partir du brut. Ce simulateur est développé avec les experts de l'Urssaf, et il adapte les calculs à votre situation (statut cadre, stage, apprentissage, heures supplémentaire, titre-restaurants, mutuelle, temps partiel, convention collective, etc.)"
+				"Optimisez vos finances en un clic ! Calculez instantanément votre revenu net en tant que salarié et évaluez le coût total d'une embauche en tant qu'employeur. Notre simulateur, élaboré avec les experts de l'Urssaf, s'ajuste à votre situation (cadre, stage, apprentissage, heures supplémentaires, avantages, temps partiel, convention collective, etc.) pour des décisions éclairées"
 			),
 			ogTitle: t(
 				'pages.simulateurs.salarié.meta.ogTitle',
-				'Salaire brut, net, net après impôt, coût total : le simulateur ultime pour salariés et employeurs'
+				'Salaire brut, net, net après impôt, coût total : le simulateur tout-en-un pour salariés et employeurs'
 			),
 			title: t(
 				'pages.simulateurs.salarié.meta.titre',

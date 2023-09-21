@@ -21,17 +21,10 @@ export default function PageHeader({
 	picture?: string
 }) {
 	return (
-		<Grid
-			container
-			columnSpacing={6}
-			css={
-				{
-					/* align-items: center; */
-				}
-			}
-		>
+		<Grid container>
 			<Grid
 				item
+				xs={12}
 				sm={12}
 				md={picture ? 8 : 12}
 				lg={picture ? 7 : 12}
@@ -50,7 +43,7 @@ export default function PageHeader({
 			</Grid>
 
 			{picture && (
-				<InnerGrid item className="hide-mobile" md={4} lg={5}>
+				<InnerGrid item className="hide-mobile" md={4} lg={5} xl={4}>
 					<Illustration
 						className="hide-mobile"
 						titre={titre}

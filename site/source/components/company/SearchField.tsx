@@ -4,10 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
-import {
-	ForceThemeProvider,
-	ThemeType,
-} from '@/components/utils/DarkModeContext'
+import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
 import { SearchField } from '@/design-system/field'
@@ -20,7 +17,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import useSearchCompany from '@/hooks/useSearchCompany'
 
-import { FromTop } from '../ui/animate'
+import { Appear, FromTop } from '../ui/animate'
 import CompanySearchDetails from './SearchDetails'
 
 const StyledCard = styled(Card)`
@@ -36,7 +33,6 @@ export function CompanySearchField(props: {
 	onValue?: () => void
 	onClear?: () => void
 	onSubmit?: (search: FabriqueSocialEntreprise | null) => void
-	forceTheme?: ThemeType
 }) {
 	const { t } = useTranslation()
 	const refResults = useRef<FabriqueSocialEntreprise[] | null>(null)
@@ -75,28 +71,28 @@ export function CompanySearchField(props: {
 	return (
 		<Grid container>
 			<Grid item xs={12}>
-				<ForceThemeProvider forceTheme={props?.forceTheme}>
-					<SearchField
-						data-test-id="company-search-input"
-						state={state}
-						isSearchStalled={searchPending}
-						onClear={onClear}
-						aria-label={
-							searchFieldProps.label +
-							', ' +
-							t(
-								"recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément."
-							)
-						}
-						{...searchFieldProps}
-					/>
-				</ForceThemeProvider>
+				<SearchField
+					data-test-id="company-search-input"
+					state={state}
+					isSearchStalled={searchPending}
+					onClear={onClear}
+					aria-label={
+						searchFieldProps.label +
+						', ' +
+						t(
+							"recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément."
+						)
+					}
+					{...searchFieldProps}
+				/>
 			</Grid>
 
 			<Grid item xs={12}>
-				{state.value && !searchPending && (
-					<Results results={results} onSubmit={onSubmit} />
-				)}
+				<Appear unless={searchPending || !state.value}>
+					{state.value && !searchPending && (
+						<Results results={results} onSubmit={onSubmit} />
+					)}
+				</Appear>
 			</Grid>
 		</Grid>
 	)

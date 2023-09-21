@@ -24,11 +24,11 @@ export function choixStatutJuridiqueConfig({
 			),
 			description: t(
 				'pages.choix-statut.meta.description',
-				'SASU, EURL, auto-entrepreneur, entreprise individuelle : trouvez le statut qui vous convient le mieux'
+				"SAS, EURL, EI, auto-entrepreneur...  Ce simulateur vous aide à choisir le statut juridique le plus adapté à votre projet d'entreprise."
 			),
 		},
 		title: t('pages.choix-statut.title', 'Choisir votre statut'),
-		shortName: t('pages.choix-statut.shortname', 'Assistant statut juridique'),
+		shortName: t('pages.choix-statut.shortname', 'Choix du statut'),
 		component: ChoixDuStatut,
 		simulation: {
 			situation: {

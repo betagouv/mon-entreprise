@@ -64,7 +64,7 @@ export function Card(props: CardProps) {
 			tabIndex={tabIndex}
 			className={className}
 		>
-			{icon && <IconContainer>{icon}</IconContainer>}
+			{icon && <IconContainer className="hide-mobile">{icon}</IconContainer>}
 			{title &&
 				(compact ? (
 					<CompactStyledHeader {...titleProps} />
@@ -149,6 +149,7 @@ const CardButton = styled(StyledButton)`
 const IconContainer = styled.div`
 	transform: scale(2.3);
 	margin-top: ${({ theme }) => theme.spacings.md};
+	margin-bottom: 0;
 `
 
 export const CardContainer = styled.div<{

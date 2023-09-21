@@ -13,11 +13,11 @@ export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {
 		meta: {
 			description: t(
 				'pages.simulateurs.auto-entrepreneur.meta.description',
-				"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
+				'Calculez votre revenu net après cotisations et impôts en tenant compte de toutes les options, y compris ACRE et prélèvement libératoire.'
 			),
 			ogDescription: t(
 				'pages.simulateurs.auto-entrepreneur.meta.ogDescription',
-				"Grâce au simulateur de revenu auto-entrepreneur développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
+				"Prenez le contrôle de vos finances en tant qu'auto-entrepreneur ! Estimez instantanément votre revenu net après charges et découvrez comment gérer au mieux vos revenus. Notre simulateur, conçu avec l'expertise des professionnels, s'adapte à votre activité (secteur, chiffre d'affaires, exonération ACRE, etc.) pour vous aider à atteindre vos objectifs financiers."
 			),
 			ogTitle: t(
 				'pages.simulateurs.auto-entrepreneur.meta.ogTitle',

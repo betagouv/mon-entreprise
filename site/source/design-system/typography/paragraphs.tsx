@@ -15,10 +15,10 @@ export const baseParagraphStyle = css`
 	}
 `
 
-export const Intro = styled.p`
+export const Intro = styled.p<{ $xxl?: boolean }>`
 	${baseParagraphStyle}
-	font-size: 1.25rem;
-	line-height: 2rem;
+	font-size: ${({ $xxl }) => ($xxl ? '1.5rem' : '1.25rem')};
+	line-height: ${({ $xxl }) => ($xxl ? '2.5rem' : '2rem')};
 `
 
 export const Body = styled.p`
