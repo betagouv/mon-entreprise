@@ -62,3 +62,17 @@
     Déploiement: 22900
     Marge du porteur: 10046
     Logiciels et hébergement: 17098
+
+2023:
+  T1:
+    Développement: 47500
+    Déploiement: 10100
+    Design: 4000
+    Logiciels et hébergement: 7203
+    Portage: 24921
+    # Envoyé à l'Urssaf: 82712.80
+  T2:
+    Développement: 30325
+    Portage: 7885
+    Logiciels et hébergement: 563
+    # Envoyé à l'Urssaf: 34218
