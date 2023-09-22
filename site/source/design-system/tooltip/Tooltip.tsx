@@ -1,60 +1,109 @@
-import React, { ReactElement, ReactNode } from 'react'
-import { Tooltip as RTooltip } from 'react-tooltip'
-
-import 'react-tooltip/dist/react-tooltip.css'
-
+import {
+	autoUpdate,
+	flip,
+	offset,
+	shift,
+	useFloating,
+} from '@floating-ui/react-dom'
+import { CSSProperties, ReactNode, useId, useState } from 'react'
 import { styled } from 'styled-components'
 
-// TODO: Replace react-tooltip with @floating-ui/react-dom for more control (see DateField.tsx for example)
+import { useOnKeyDown } from '@/hooks/useOnKeyDown'
+
 export const Tooltip = ({
 	children,
 	tooltip,
 	className,
-	id,
+	style,
 }: {
-	children: ReactElement
+	children: ReactNode
 	tooltip: ReactNode
 	className?: string
-	// A11y : préciser un aria-describedby sur l'élément visé par le tooltip
-	id: string
+	style?: CSSProperties
 }) => {
-	return (
-		<StyledSpan>
-			{React.Children.map(children, (child) => {
-				if (React.isValidElement(child) && child.type !== React.Fragment) {
-					return React.cloneElement(child, { id } as {
-						id: string
-					})
-				}
+	const [isHovered, setIsHovered] = useState(false)
+	const [isFocused, setIsFocused] = useState(false)
 
-				throw new Error(
-					'Tooltip children must be a valid React element and not a React fragment.'
-				)
-			})}
-			<StyledRTooltip
-				anchorId={id}
+	const isOpen = isHovered || isFocused
+	const { x, y, strategy, refs } = useFloating<HTMLButtonElement>({
+		open: isOpen,
+		placement: 'top',
+		// Make sure the tooltip stays on the screen
+		whileElementsMounted: autoUpdate,
+		middleware: [
+			offset(5),
+			flip({
+				fallbackAxisSideDirection: 'start',
+			}),
+			shift(),
+		],
+	})
+
+	useOnKeyDown('Escape', () => {
+		setIsHovered(false)
+		setIsFocused(false)
+	})
+
+	const id = useId()
+
+	return (
+		<>
+			<StyledButtonAsText
 				className={className}
-				id={`${id}-description`}
+				style={style}
+				ref={refs.setReference}
+				onMouseEnter={() => setIsHovered(true)}
+				onMouseLeave={() => setIsHovered(false)}
+				onFocus={() => setIsFocused(true)}
+				onBlur={() => setIsFocused(false)}
+				aria-describedby={id}
 			>
-				{tooltip}
-			</StyledRTooltip>
-		</StyledSpan>
+				{children}
+			</StyledButtonAsText>
+			{isOpen && (
+				<StyledTooltip
+					className={className}
+					id={id}
+					ref={refs.setFloating}
+					role="tooltip"
+					style={{
+						position: strategy,
+						top: y ?? 0,
+						left: x ?? 0,
+						width: 'max-content',
+					}}
+				>
+					{tooltip}
+				</StyledTooltip>
+			)}
+		</>
 	)
 }
 
-const StyledRTooltip = styled(RTooltip)`
+const StyledTooltip = styled.span`
 	max-width: 20rem;
-	font-size: 0.75rem;
+
+	opacity: 1 !important;
+	font-size: 80%;
+	font-family: ${({ theme }) => theme.fonts.main};
+	background: ${({ theme }) => theme.colors.extended.grey[800]};
+	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm}`};
+	border: 1px solid
+		${({ theme }) =>
+			theme.darkMode ? theme.colors.extended.dark[500] : 'transparent'};
+	color: ${({ theme }) => theme.colors.extended.grey[100]};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	z-index: 100;
+	* {
+		color: ${({ theme }) => theme.colors.extended.grey[100]};
+	}
 `
 
-const StyledSpan = styled.span`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	.react-tooltip {
-		opacity: 1 !important;
-		background: ${({ theme }) => theme.colors.extended.grey[800]};
-		color: ${({ theme }) => theme.colors.extended.grey[100]};
-		z-index: 100;
-	}
+const StyledButtonAsText = styled.button`
+	background: none;
+	border: none;
+	cursor: unset;
+	padding: 0;
+	font-size: inherit;
+	color: inherit;
 `

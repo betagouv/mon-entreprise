@@ -5180,26 +5180,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/core@npm:^1.1.0":
-  version: 1.2.1
-  resolution: "@floating-ui/core@npm:1.2.1"
-  checksum: 7a263e15abad4cd98ce3938075c90f76bafef71c67964c83dd7cf1e1916c92ccfa46a4f2b95b403bb180f70b3e7ded118db1cbc3426269ec70e948edf0d19ae2
-  languageName: node
-  linkType: hard
-
 "@floating-ui/core@npm:^1.2.6":
   version: 1.2.6
   resolution: "@floating-ui/core@npm:1.2.6"
   checksum: e4aa96c435277f1720d4bc939e17a79b1e1eebd589c20b622d3c646a5273590ff889b8c6e126f7be61873cf8c4d7db7d418895986ea19b8b0d0530de32504c3a
-  languageName: node
-  linkType: hard
-
-"@floating-ui/dom@npm:1.1.1":
-  version: 1.1.1
-  resolution: "@floating-ui/dom@npm:1.1.1"
-  dependencies:
-    "@floating-ui/core": ^1.1.0
-  checksum: 8b7f3b98ed7ec0b634e4a0b735253b0442358c5cea8302935fc185b2bd882202a053622abe9248c76d0908645dd35f93adeaed2d64371b2ab76b36725ce3f7d3
   languageName: node
   linkType: hard
 
@@ -14643,7 +14627,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.5, classnames@npm:^2.3.2":
+"classnames@npm:^2.2.5":
   version: 2.3.2
   resolution: "classnames@npm:2.3.2"
   checksum: 2c62199789618d95545c872787137262e741f9db13328e216b093eea91c85ef2bfb152c1f9e63027204e2559a006a92eb74147d46c800a9f96297ae1d9f96f4e
@@ -26616,19 +26600,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-tooltip@npm:^5.4.0":
-  version: 5.8.1
-  resolution: "react-tooltip@npm:5.8.1"
-  dependencies:
-    "@floating-ui/dom": 1.1.1
-    classnames: ^2.3.2
-  peerDependencies:
-    react: ">=16.14.0"
-    react-dom: ">=16.14.0"
-  checksum: 43e6b8328cca47bf0c987cd5beeec205bc0e4083fd2f56d85604a6b6f24dadb31614be4d1e6a6e3257dedf680019bc1ea86a0fdc8172e557155203a3d1d3de41
-  languageName: node
-  linkType: hard
-
 "react-transition-group@npm:2.9.0":
   version: 2.9.0
   resolution: "react-transition-group@npm:2.9.0"
@@ -28214,7 +28185,6 @@ __metadata:
     react-signature-pad-wrapper: ^3.3.1
     react-spring: ^9.5.5
     react-stately: ^3.22.0
-    react-tooltip: ^5.4.0
     react-use-measure: ^2.1.1
     recharts: 2.3.2
     reduce-reducers: ^1.0.4
