@@ -64,6 +64,7 @@ type PaginationProps = {
 function Pagination({ title, items }: PaginationProps) {
 	const state: Record<string, number> = useLocation().state ?? {}
 	const currentPage = state[title] ?? 0
+	const currentSearch = useLocation().search
 
 	return (
 		<nav aria-label={`${title} : menu de navigation paginée`}>
@@ -79,7 +80,9 @@ function Pagination({ title, items }: PaginationProps) {
 							light
 							size="XXS"
 							replace
-							to=""
+							to={{
+								search: currentSearch,
+							}}
 							state={{ ...state, [title]: i }}
 							aria-label={`${title}, Page numéro ${i + 1}`}
 							currentPage={currentPage === i}
