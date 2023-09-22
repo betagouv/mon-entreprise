@@ -1,8 +1,11 @@
+import { CSSProperties } from 'react'
 import { keyframes, styled } from 'styled-components'
 
 type SkeletonProps = {
 	width?: number
 	height?: number
+	className?: string
+	style?: CSSProperties
 }
 
 const skeletonKeyframes = keyframes`
@@ -14,14 +17,14 @@ const skeletonKeyframes = keyframes`
   }
 ` as unknown as string // keyframes type are outdated, see https://github.com/DefinitelyTyped/DefinitelyTyped/issues/48907
 
-export default function Skeleton({ width, height }: SkeletonProps) {
+export default function Skeleton({
+	style,
+	className,
+	height,
+	width,
+}: SkeletonProps) {
 	return (
-		<StyledSpan
-			style={{
-				width,
-				height,
-			}}
-		>
+		<StyledSpan className={className} style={{ ...style, height, width }}>
 			&zwnj;
 		</StyledSpan>
 	)

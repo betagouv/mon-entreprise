@@ -1,12 +1,15 @@
-import { useCallback } from 'react'
+import { lazy, Suspense, useCallback } from 'react'
+import styled from 'styled-components'
 
 import { InputProps } from '@/components/conversation/RuleInput'
-import { DateField } from '@/design-system/field'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
 
+import Skeleton from '../ui/Skeleton'
 import { useEngine } from '../utils/EngineContext'
 import InputSuggestions from './InputSuggestions'
+
+const DateField = lazy(() => import('@/design-system/field/DateField'))
 
 export default function DateInput({
 	suggestions,
@@ -62,20 +65,31 @@ export default function DateInput({
 						}}
 					/>
 				)}
-				<DateField
-					defaultSelected={
-						(missing && hideDefaultValue) || !dateValue
-							? undefined
-							: new Date(dateValue)
-					}
-					isRequired={required}
-					onChange={handleDateChange}
-					aria-label={title}
-					label={title}
-					type={type}
-				/>
+				<Suspense fallback={<DateFieldFallback />}>
+					<DateField
+						defaultSelected={
+							(missing && hideDefaultValue) || !dateValue
+								? undefined
+								: new Date(dateValue)
+						}
+						isRequired={required}
+						onChange={handleDateChange}
+						aria-label={title}
+						label={title}
+						type={type}
+					/>
+				</Suspense>
 				<Spacing md />
 			</div>
 		</div>
 	)
 }
+function DateFieldFallback() {
+	return <Wrapper />
+}
+
+const Wrapper = styled(Skeleton)`
+	width: 218px;
+
+	height: 3.5rem;
+`
