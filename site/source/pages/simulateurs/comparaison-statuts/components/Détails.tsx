@@ -117,9 +117,8 @@ const Détails = ({
 								}}
 							>
 								<WarningTooltip
-									id="warning-auto-entrepreneur"
 									tooltip={
-										<div id="warning-auto-entrepreneur">
+										<div>
 											<Trans>
 												Vous allez dépasser le plafond de la micro-entreprise
 											</Trans>{' '}
@@ -275,7 +274,6 @@ const Détails = ({
 											</Trans>
 										</span>
 									}
-									id="tooltip-sasu-arrêt-maladie"
 								/>
 							</Condition>
 						)}

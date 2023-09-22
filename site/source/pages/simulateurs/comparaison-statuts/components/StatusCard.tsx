@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from 'react'
+import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -7,8 +7,6 @@ import { CardContainer } from '@/design-system/card/Card'
 import { Emoji } from '@/design-system/emoji'
 import { Grid } from '@/design-system/layout'
 import { Tooltip } from '@/design-system/tooltip'
-import { Body } from '@/design-system/typography/paragraphs'
-import { generateUuid } from '@/utils'
 
 type StatutCardType = {
 	statut: StatutType[]
@@ -23,8 +21,6 @@ const StatusCard = ({
 	footerContent,
 	isBestOption,
 }: StatutCardType) => {
-	const tooltipIdRef = useRef(generateUuid())
-
 	return (
 		<StyledCardContainer $inert as="li">
 			<CardBody>
@@ -38,25 +34,9 @@ const StatusCard = ({
 				{children}
 			</CardBody>
 			{isBestOption && (
-				<Tooltip
-					tooltip={
-						<StyledBodyTooltip
-							style={{
-								fontWeight: 'normal',
-							}}
-						>
-							<Trans>Option la plus avantageuse.</Trans>
-						</StyledBodyTooltip>
-					}
-					id={`tooltip-option-avantageuse-${String(tooltipIdRef.current)}`}
-				>
-					<StyledEmoji
-						emoji="🥇"
-						aria-describedby={`tooltip-option-avantageuse-${String(
-							tooltipIdRef.current
-						)}`}
-					/>
-				</Tooltip>
+				<StyledTooltip tooltip={<Trans>Option la plus avantageuse.</Trans>}>
+					<StyledEmoji emoji="🥇" />
+				</StyledTooltip>
 			)}
 			{footerContent && <CardFooter>{footerContent}</CardFooter>}
 		</StyledCardContainer>
@@ -71,10 +51,12 @@ const StyledCardContainer = styled(CardContainer)`
 	padding: 0;
 `
 
-const StyledEmoji = styled(Emoji)`
+const StyledTooltip = styled(Tooltip)`
 	position: absolute;
 	top: 0;
 	right: 1.5rem;
+`
+const StyledEmoji = styled(Emoji)`
 	font-size: 1.5rem;
 `
 
@@ -90,10 +72,4 @@ const CardFooter = styled.div`
 	width: 100%;
 	border-top: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
 	padding: 1.5rem;
-`
-
-const StyledBodyTooltip = styled(Body)`
-	color: ${({ theme }) => theme.colors.extended.grey[100]}!important;
-	font-size: 0.75rem;
-	margin: 0;
 `
