@@ -65,7 +65,7 @@ En complément du financement apporté par l’Urssaf, le projet bénéficie du 
 
 ---
 
-En 2023, le financement complémentaire apporté par le programme [France Relance](https://france-relance.transformation.gouv.fr/) prend fin, ce qui abouti à un budget en très net baisse. 
+En 2023, le financement complémentaire apporté par le programme [France Relance](https://france-relance.transformation.gouv.fr/) prend fin. Par ailleurs, l'Urssaf réduit sa participation à 250 k€ TTC. Le budget est donc en très net baisse, le plus faible depuis la création du produit.
 
 
 ---
@@ -97,10 +97,10 @@ En 2023, le financement complémentaire apporté par le programme [France Relanc
     charge des frais de déplacement des développeurs qui ne sont pas situés en
     région parisienne.
 
--   **Marge du porteur 🤝**
+-   **Portage 🤝**
 
     La marge du porteur attributaire du
-    [marché public de l’Acoss](https://www.acoss.fr/home/fournisseurs.html).
+    [marché public de l’Acoss](https://www.acoss.fr/home/fournisseurs.html), ainsi que les coûts liés à la société spécialement créée pour effectuer le portage des indépendants qui travaillent sur le site (administration, comptabilité, facturation, impôts, etc.).
 
 > #### À propos de la TVA
 >
