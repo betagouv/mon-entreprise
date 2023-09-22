@@ -26,6 +26,7 @@ const [
 	ressources2020,
 	ressources2021,
 	ressources2022,
+	ressources2023,
 	ressourcesDescription,
 ] = prose.split(/\r?\n-{3,}\r?\n/)
 
@@ -34,12 +35,13 @@ const ressources = {
 	2020: ressources2020,
 	2021: ressources2021,
 	2022: ressources2022,
+	2023: ressources2023,
 } as const
 
 const arraySum = (arr: number[]) => arr.reduce((a, b) => a + b, 0)
 
 export default function Budget() {
-	const years = ['2019', '2020', '2021', '2022'] as const
+	const years = ['2019', '2020', '2021', '2022', '2023'] as const
 	const quarters = [
 		{ label: 'T1', 'aria-label': 'Trimestre 1' },
 		{ label: 'T2', 'aria-label': 'Trimestre 2' },

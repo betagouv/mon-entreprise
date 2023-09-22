@@ -13,54 +13,54 @@
     Développement: 73500
     Logiciels et hébergement: 456
     Déplacements: 742
-    Marge du porteur: 10337
+    Portage: 10337
   T2:
     Développement: 56100
     Logiciels et hébergement: 338
-    Marge du porteur: 7514
+    Portage: 7514
   T3:
     Développement: 22350
     Logiciels et hébergement: 294
-    Marge du porteur: 3014
+    Portage: 3014
   T4:
     Développement: 72150
     Logiciels et hébergement: 782
-    Marge du porteur: 9631
+    Portage: 9631
 2021:
   T1:
     Développement: 44850
     Logiciels et hébergement: 454
     Déplacements: 114
-    Marge du porteur: 6045
+    Portage: 6045
   T2:
     Développement: 57750
     Logiciels et hébergement: 212
-    Marge du porteur: 7715
+    Portage: 7715
   T3:
     Développement: 35100
     Logiciels et hébergement: 342
-    Marge du porteur: 4717
+    Portage: 4717
   T4:
     Développement: 59400
     Logiciels et hébergement: 578
-    Marge du porteur: 7983
+    Portage: 7983
 2022:
   T1:
     Développement: 72450
-    Marge du porteur: 9643
+    Portage: 9643
   T2:
     Développement: 58950
-    Marge du porteur: 7849
+    Portage: 7849
   T3:
     Développement: 53800
     Design: 4250
     Déploiement: 19000
-    Marge du porteur: 10259
+    Portage: 10259
   T4:
     Design: 28750
     Développement: 74554.5
     Déploiement: 22900
-    Marge du porteur: 10046
+    Portage: 10046
     Logiciels et hébergement: 17098
 
 2023:
