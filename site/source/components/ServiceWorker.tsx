@@ -83,6 +83,9 @@ export const ServiceWorker = () => {
 		},
 
 		onRegisterError: (error) => {
+			if (error instanceof Error && /permission|aborted/i.test(error.message)) {
+				return
+			}
 			// eslint-disable-next-line no-console
 			console.error('SW registration error', error)
 		},
