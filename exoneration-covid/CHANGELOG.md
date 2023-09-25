@@ -1,3 +1,7 @@
+## 0.6.0
+
+Exporte les règles au format json pour optimiser le chargement
+
 ## 0.5.0
 
 Fixe une version de publicodes minimum en peerDependancy.
