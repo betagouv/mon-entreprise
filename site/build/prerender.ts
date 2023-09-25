@@ -6,8 +6,12 @@ import Tinypool from 'tinypool'
 
 import { absoluteSitePaths } from '../source/sitePaths.js'
 
-const filename = new URL('./prerender-worker.js', import.meta.url).href
-const pool = new Tinypool({ filename })
+const filename = new URL('./prerender-worker.ts', import.meta.url).href
+const pool = new Tinypool({
+	filename,
+	execArgv: ['--loader', 'ts-node/esm'],
+	idleTimeout: 2000,
+})
 
 const sitePathFr = absoluteSitePaths.fr
 const sitePathEn = absoluteSitePaths.en
@@ -51,15 +55,17 @@ const dev = argv.findIndex((val) => val === '--dev') > -1
 
 const redirects = await Promise.all(
 	Object.entries(pagesToPrerender).flatMap(([site, urls]) =>
-		urls.map((url) =>
-			pool
-				.run({
-					site,
-					url,
-					lang: site === 'mon-entreprise' ? 'fr' : 'en',
-				})
-				.then((path: string) => {
-					return `
+		urls.map(async (url) => {
+			const path = await (pool.run({
+				site,
+				url,
+				lang: site === 'mon-entreprise' ? 'fr' : 'en',
+			}) as Promise<string>)
+
+			// eslint-disable-next-line no-console
+			console.log(`preredering ${url} done, adding redirect`)
+
+			return `
 [[redirects]]
 	from = ":SITE_${site === 'mon-entreprise' ? 'FR' : 'EN'}${
 		dev ? decodeURI(url) : url
@@ -67,8 +73,7 @@ const redirects = await Promise.all(
 	to = "/${path}"
 	status = 200
 ${dev ? '  force = true\n' : ''}`
-				})
-		)
+		})
 	)
 )
 
