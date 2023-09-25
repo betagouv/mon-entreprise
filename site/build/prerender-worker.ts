@@ -2,6 +2,7 @@ import { promises as fs, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'url'
 
+// @ts-ignore
 import { render } from '../dist/ssr/entry-server.js'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
