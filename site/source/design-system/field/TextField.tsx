@@ -25,7 +25,11 @@ export default function TextField(props: TextFieldProps) {
 				$hasLabel={!!props.label && !props.small}
 			>
 				<StyledInput
-					{...(omit(props, 'label') as HTMLAttributes<HTMLInputElement>)}
+					{...(omit(
+						props,
+						'label',
+						'errorMessage'
+					) as HTMLAttributes<HTMLInputElement>)}
 					{...(inputProps as HTMLAttributes<HTMLInputElement>)}
 					placeholder={
 						(inputProps as HTMLAttributes<HTMLInputElement>).placeholder ??

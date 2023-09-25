@@ -113,11 +113,12 @@ export default function NumberField(props: NumberFieldProps) {
 			>
 				<StyledNumberInput
 					{...(omit(
-						props,
+						props as typeof props & { dottedName?: string },
 						'label',
 						'small',
 						'formatOptions',
-						'displayedUnit'
+						'displayedUnit',
+						'dottedName'
 					) as HTMLAttributes<HTMLInputElement>)}
 					{...inputWithCursorHandlingProps}
 					placeholder={
