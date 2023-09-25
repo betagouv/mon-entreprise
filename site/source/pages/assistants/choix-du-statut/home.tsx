@@ -54,7 +54,7 @@ export default function AccueilChoixStatut() {
 
 							<Grid item>
 								<SmallBody
-									grey
+									$grey
 									style={{
 										display: 'flex',
 										gap: '0.5rem',

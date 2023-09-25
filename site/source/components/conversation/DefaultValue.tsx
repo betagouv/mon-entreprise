@@ -26,7 +26,7 @@ export function DefaultValue({
 		<>
 			<Appear unless={showDefaultValue}>
 				{showDefaultValue && (
-					<SmallBody style={{ marginBottom: 0 }} grey>
+					<SmallBody style={{ marginBottom: 0 }} $grey>
 						Choix par défaut :{' '}
 						<Strong>
 							<Value expression={dottedName} linkToRule={false} />

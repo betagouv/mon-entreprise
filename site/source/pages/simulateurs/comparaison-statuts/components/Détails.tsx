@@ -38,7 +38,7 @@ const Détails = ({
 			}
 		>
 			<Accordion
-				variant="light"
+				$variant="light"
 				defaultExpandedKeys={expandRevenuSection ? ['revenus'] : []}
 				title={
 					<H2>
