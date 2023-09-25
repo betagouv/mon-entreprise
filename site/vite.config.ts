@@ -8,7 +8,7 @@ import yaml, { ValidYamlType } from '@rollup/plugin-yaml'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react-swc'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 import { multipleSPA } from './build/multiple-SPA'
@@ -34,6 +34,13 @@ export default defineConfig(({ command, mode }) => ({
 		sourcemap: true,
 		rollupOptions: {
 			output: {
+				hoistTransitiveImports: false,
+				manualChunks: (id) => {
+					if (id.includes('modele-social')) {
+						return 'modele-social'
+					}
+				},
+				entryFileNames: '[name].js',
 				chunkFileNames: (chunkInfo) => {
 					if (chunkInfo.isDynamicEntry) {
 						return 'assets/lazy_[name].[hash].js'
@@ -101,6 +108,8 @@ export default defineConfig(({ command, mode }) => ({
 		legacy({
 			targets: ['defaults', 'not IE 11'],
 		}),
+
+		splitVendorChunkPlugin(),
 
 		sentryVitePlugin({
 			org: 'betagouv',
