@@ -46,7 +46,8 @@ function readRules() {
 export default function writeJSFile() {
 	const rules = readRules()
 	const names = Object.keys(new Engine(rules).getParsedRules())
-	const jsString = `export default ${JSON.stringify(rules, null, 2)}`
+	const json = JSON.stringify(JSON.stringify(rules))
+	const jsString = `export const json = /*@__PURE__*/ ${json};\nexport default /*@__PURE__*/ JSON.parse(json);`
 	fs.writeFileSync(path.resolve(outDir, 'index.js'), jsString)
 	fs.writeFileSync(
 		path.resolve(outDir, 'names.ts'),

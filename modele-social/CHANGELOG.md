@@ -1,6 +1,9 @@
 # Journal des modifications
 
 
+## 1.8.0
+Exporte les règles au format json pour optimiser le chargement
+
 ## 1.7.2
 Corrige des bugs dans l’implémentation de la convention collective du sport : 
 - Enlève la boucle du calcul de la limite d’éxonération de la prévoyance 
