@@ -1,5 +1,8 @@
+import { ResizeObserver } from '@juggle/resize-observer'
 import { SSRProvider } from '@react-aria/ssr'
-import ReactDOMServer from 'react-dom/server'
+import ReactDomServerType from 'react-dom/server'
+// @ts-ignore
+import ReactDomServer from 'react-dom/server.browser'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
@@ -8,13 +11,34 @@ import i18next from '../locales/i18n'
 import { AppEn } from './entry-en'
 import { AppFr } from './entry-fr'
 
-export function render(url: string, lang: 'fr' | 'en') {
+const { renderToReadableStream } = ReactDomServer as typeof ReactDomServerType
+
+function streamToString(stream: ReadableStream<Uint8Array>) {
+	return new Response(stream).text()
+}
+
+// @ts-ignore
+global.window = {
+	// @ts-ignore
+	location: {},
+	ResizeObserver,
+}
+
+interface Result {
+	html: string
+	styleTags: string
+	helmet: FilledContext['helmet']
+}
+
+export async function render(url: string, lang: 'fr' | 'en'): Promise<Result> {
+	global.window.location.href = url
+	global.window.location.search = ''
+
 	const sheet = new ServerStyleSheet()
 	const helmetContext = {} as FilledContext
-	const App = lang === 'fr' ? AppFr : AppEn
 	i18next.changeLanguage(lang).catch((err) =>
 		// eslint-disable-next-line no-console
-		console.error(err)
+		console.error('Error', err)
 	)
 
 	const element = (
@@ -22,20 +46,32 @@ export function render(url: string, lang: 'fr' | 'en') {
 			<SSRProvider>
 				<StyleSheetManager sheet={sheet.instance}>
 					<StaticRouter location={url}>
-						<App />
+						{lang === 'fr' ? <AppFr /> : <AppEn />}
 					</StaticRouter>
 				</StyleSheetManager>
 			</SSRProvider>
 		</HelmetProvider>
 	)
 
-	// Render to initialize redux store (via useSimulationConfig)
-	ReactDOMServer.renderToString(element)
+	try {
+		const stream = await renderToReadableStream(element, {
+			onError(error, errorInfo) {
+				// eslint-disable-next-line no-console
+				console.error({ error, errorInfo })
+			},
+		})
 
-	// Render with redux store configured
-	const html = ReactDOMServer.renderToString(element)
+		await stream.allReady
 
-	const styleTags = sheet.getStyleTags()
+		const html = await streamToString(stream)
 
-	return { html, styleTags, helmet: helmetContext.helmet }
+		const styleTags = sheet.getStyleTags()
+
+		return { html, styleTags, helmet: helmetContext.helmet }
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.error(error)
+
+		throw error
+	}
 }

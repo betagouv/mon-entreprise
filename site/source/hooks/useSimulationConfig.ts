@@ -2,6 +2,10 @@ import { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
+	useEngine,
+	useSetupSafeSituation,
+} from '@/components/utils/EngineContext'
+import {
 	loadPreviousSimulation,
 	setSimulationConfig,
 } from '@/store/actions/actions'
@@ -41,4 +45,6 @@ export default function useSimulationConfig({
 			dispatch(loadPreviousSimulation())
 		}
 	}, [config, dispatch, lastConfig, key])
+
+	useSetupSafeSituation(useEngine())
 }
