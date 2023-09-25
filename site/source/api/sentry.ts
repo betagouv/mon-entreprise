@@ -1,28 +1,42 @@
 import { CaptureConsole } from '@sentry/integrations'
-import { init } from '@sentry/react'
-import { BrowserTracing } from '@sentry/tracing'
+import {
+	BrowserTracing,
+	init,
+	reactRouterV6Instrumentation,
+} from '@sentry/react'
+import { useEffect } from 'react'
+import {
+	createRoutesFromChildren,
+	matchRoutes,
+	useLocation,
+	useNavigationType,
+} from 'react-router-dom'
 
-const branch = BRANCH_NAME
-
-if (branch && IS_STAGING) {
+if (BRANCH_NAME && IS_STAGING) {
 	// eslint-disable-next-line no-console
 	console.info(
-		`ℹ Vous êtes sur la branche : %c${branch}`,
+		`ℹ Vous êtes sur la branche : %c${BRANCH_NAME}`,
 		'font-weight: bold; text-decoration: underline;'
 	)
 }
 
-const release =
-	branch && `${branch}-` + import.meta.env.VITE_GITHUB_SHA?.substring(0, 7)
-
-if (IS_PRODUCTION) {
+if (!import.meta.env.SSR && (IS_PRODUCTION || IS_STAGING)) {
 	init({
 		dsn: 'https://d857393f4cfb40eebc0b9b54893bab23@sentry.incubateur.net/9',
 		integrations: [
-			new BrowserTracing(),
 			new CaptureConsole({ levels: ['error'] }),
+			new BrowserTracing({
+				routingInstrumentation: reactRouterV6Instrumentation(
+					useEffect,
+					useLocation,
+					useNavigationType,
+					createRoutesFromChildren,
+					matchRoutes
+				),
+			}),
 		],
-		release,
+		normalizeDepth: 10,
+		enableTracing: true,
 		// Set tracesSampleRate to 1.0 to capture 100%
 		// of transactions for performance monitoring.
 		// We recommend adjusting this value in production

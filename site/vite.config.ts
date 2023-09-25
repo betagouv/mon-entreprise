@@ -5,6 +5,7 @@ import path from 'path'
 
 import replace from '@rollup/plugin-replace'
 import yaml, { ValidYamlType } from '@rollup/plugin-yaml'
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react-swc'
 import { defineConfig, loadEnv } from 'vite'
@@ -15,6 +16,13 @@ import { pwaOptions } from './build/vite-pwa-options'
 import { compileEconomieCollaborativeYaml } from './scripts/compileEconomieColllaborativeYaml'
 
 const env = (mode: string) => loadEnv(mode, process.cwd(), '')
+
+const branch = (mode: string) => getBranch(mode)
+
+const sentryReleaseName = (mode: string) =>
+	env(mode).VITE_GITHUB_SHA
+		? `${branch(mode)}-` + env(mode).VITE_GITHUB_SHA?.substring(0, 7)
+		: undefined
 
 export default defineConfig(({ command, mode }) => ({
 	resolve: {
@@ -37,7 +45,7 @@ export default defineConfig(({ command, mode }) => ({
 		},
 	},
 	define: {
-		BRANCH_NAME: JSON.stringify(getBranch(mode)),
+		BRANCH_NAME: JSON.stringify(branch(mode)),
 		IS_DEVELOPMENT: mode === 'development',
 		IS_STAGING: mode === 'production' && !isProductionBranch(mode),
 		IS_PRODUCTION: mode === 'production' && isProductionBranch(mode),
@@ -92,6 +100,22 @@ export default defineConfig(({ command, mode }) => ({
 
 		legacy({
 			targets: ['defaults', 'not IE 11'],
+		}),
+
+		sentryVitePlugin({
+			org: 'betagouv',
+			project: 'mon-entreprise',
+			url: 'https://sentry.incubateur.net/',
+			authToken: process.env.SENTRY_AUTH_TOKEN,
+			telemetry: false,
+			release: {
+				// Use same release name as the one used in the app.
+				name: sentryReleaseName(mode),
+				uploadLegacySourcemaps: {
+					paths: ['./dist'],
+					ignore: ['./node_modules'],
+				},
+			},
 		}),
 	],
 

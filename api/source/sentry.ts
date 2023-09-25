@@ -1,9 +1,6 @@
-// eslint-disable-next-line n/no-deprecated-api
-import Domains from 'domain'
-
 import { RouterContext } from '@koa/router'
-import * as Sentry from '@sentry/node'
-import * as Tracing from '@sentry/tracing'
+import Sentry from '@sentry/node'
+import { stripUrlQueryAndFragment } from '@sentry/utils'
 import { Context, Next } from 'koa'
 
 const release =
@@ -20,43 +17,38 @@ Sentry.init({
 	tracesSampleRate: 0.5,
 	release,
 	environment: release.includes('api-pr') ? 'test' : 'production',
+
+	integrations: [
+		// Automatically instrument Node.js libraries and frameworks
+		...Sentry.autoDiscoverNodePerformanceMonitoringIntegrations(),
+	],
 })
 
 export default Sentry
 
-// not mandatory, but adding domains does help a lot with breadcrumbs
-export const requestHandler = (ctx: Context, next: Next) => {
-	return new Promise<void>((resolve) => {
-		const local = Domains.create()
-		local.add(ctx as never)
-		local.on('error', (err) => {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-			ctx.status = (err.status as number) || 500
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-			ctx.body = err.message
-			ctx.app.emit('error', err, ctx)
-		})
-		void local.run(async () => {
-			Sentry.getCurrentHub().configureScope((scope) =>
-				scope.addEventProcessor((event) =>
-					Sentry.Handlers.parseRequest(event, ctx.request, { user: false })
-				)
+export const requestHandler = async (ctx: Context, next: Next) =>
+	Sentry.runWithAsyncContext(() => {
+		const hub = Sentry.getCurrentHub()
+		hub.configureScope((scope) =>
+			scope.addEventProcessor((event) =>
+				Sentry.addRequestDataToEvent(event, ctx.request, {
+					include: { user: false },
+				})
 			)
-			await next()
-			resolve()
-		})
+		)
+
+		return next()
 	})
-}
 
 // this tracing middleware creates a transaction per request
 export const tracingMiddleWare = async (ctx: RouterContext, next: Next) => {
 	const reqMethod = (ctx.method || '').toUpperCase()
-	const reqUrl = ctx.url && Tracing.stripUrlQueryAndFragment(ctx.url)
+	const reqUrl = ctx.url && stripUrlQueryAndFragment(ctx.url)
 
 	// connect to trace of upstream app
 	let traceparentData
 	if (ctx.request.get('sentry-trace')) {
-		traceparentData = Tracing.extractTraceparentData(
+		traceparentData = Sentry.extractTraceparentData(
 			ctx.request.get('sentry-trace')
 		)
 	}
@@ -80,9 +72,7 @@ export const tracingMiddleWare = async (ctx: RouterContext, next: Next) => {
 			// if using koa router, a nicer way to capture transaction using the matched route
 			if (ctx._matchedRoute) {
 				const mountPath = (ctx.mountPath as undefined | string) || ''
-				transaction.setName(
-					`${reqMethod} ${mountPath}${ctx._matchedRoute.toString()}`
-				)
+				transaction.setName(`${reqMethod} ${mountPath}${ctx._matchedRoute}`)
 			}
 			transaction.setHttpStatus(ctx.status)
 			transaction.finish()

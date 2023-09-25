@@ -29,9 +29,9 @@ if (process.env.NODE_ENV === 'production') {
 
 	app.on('error', (err, ctx: RouterContext) => {
 		Sentry.withScope((scope) => {
-			scope.addEventProcessor((event) => {
-				return Sentry.Handlers.parseRequest(event, ctx.request)
-			})
+			scope.addEventProcessor((event) =>
+				Sentry.addRequestDataToEvent(event, ctx.request)
+			)
 			Sentry.captureException(err)
 		})
 	})

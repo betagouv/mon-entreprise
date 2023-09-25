@@ -59,6 +59,7 @@ jobs:
       - name: Build app
         run: yarn workspace site build
         env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           VITE_AT_INTERNET_SITE_ID: ${{ needs.deploy-context.outputs.env-name == 'master' && 617190 || 617189 }}
           VITE_ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           VITE_ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
