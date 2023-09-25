@@ -3,14 +3,14 @@
 "404":
   action: Revenir en lieu sûr
   message: Cette page n'existe pas ou n'existe plus
-"<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour les indépendants, vous pouvez calculer le montant de vos charges sociales déductibles grâce à notre assistant dédié :</1><2>Assistant déclaration charges sociales indépendant</2></0>":
+<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour les indépendants, vous pouvez calculer le montant de vos charges sociales déductibles grâce à notre assistant dédié :</1><2>Assistant déclaration charges sociales indépendant</2></0>:
   <0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé
   de le retirer du site. En effet, il était trop difficile de maintenir à jour
   les informations et les calculs.</0><1>Pour les indépendants, vous pouvez
   calculer le montant de vos charges sociales déductibles grâce à notre
   assistant dédié :</1><2>Assistant déclaration charges sociales
   indépendant</2></0>
-"<0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>":
+<0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
   <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
   l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>
 <0>Activité mixte</0>: <0>Activité mixte</0>
@@ -18,10 +18,10 @@
 <0>Impôt sur les sociétés</0> (IS): <0>Impôt sur les sociétés</0> (IS)
 <0>Versement libératoire</0> de l'impôt sur le revenu: <0>Versement libératoire</0> de l'impôt sur le revenu
 API REST de simulation: API REST de simulation
-"API REST, en savoir plus sur l'API REST": API REST, en savoir plus sur l'API REST
+API REST, en savoir plus sur l'API REST: API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
 Accident du travail et maladie professionnelle: Accident du travail et maladie professionnelle
-"Accéder à la page d'accueil, nouvelle fenêtre": Accéder à la page d'accueil, nouvelle fenêtre
+Accéder à la page d'accueil, nouvelle fenêtre: Accéder à la page d'accueil, nouvelle fenêtre
 Adoption: Adoption
 Afficher le détail: Afficher le détail
 "Afficher les données par :": "Afficher les données par :"
@@ -30,8 +30,8 @@ Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
 Arrêt maladie: Arrêt maladie
 Assistants à la déclaration de revenu 2022 des indépendants: Assistants à la déclaration de revenu 2022 des indépendants
-"Attention, information importante": Attention, information importante
-"Attention, vos données sauvegardées seront supprimées de manière définitive.": Attention, vos données sauvegardées seront supprimées de manière définitive.
+Attention, information importante: Attention, information importante
+Attention, vos données sauvegardées seront supprimées de manière définitive.: Attention, vos données sauvegardées seront supprimées de manière définitive.
 Aucun: Aucun
 Aucun résultat: Aucun résultat
 Autres outils: Autres outils
@@ -39,7 +39,7 @@ Avec <2><0></0></2> de cotisations sociales: Avec <2><0></0></2> de cotisations 
 Avec ACRE: Avec ACRE
 Avec chômage partiel: Avec chômage partiel
 Boite de dialogue: Boite de dialogue
-"Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant \"pain\" ou \"viennoiserie\".":
+Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".:
   Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
   "viennoiserie".
 Budget: Budget
@@ -51,7 +51,7 @@ Charger plus de résultats: Charger plus de résultats
 Charges: Charges
 Chiffre d'affaires: Chiffre d'affaires
 Chiffre d'affaires estimé: Chiffre d'affaires estimé
-"Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre":
+Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
 Commune ou code postal: Commune ou code postal
@@ -71,7 +71,7 @@ Dividendes nets: Dividendes nets
 Documentation: Documentation
 "Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
 Donner votre avis: Donner votre avis
-"Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Notre partenaire Place des Entrprises identifiera, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.":
+Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Notre partenaire Place des Entrprises identifiera, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.:
   Décrivez votre projet ou votre problème en donnant quelques éléments de
   contexte. Notre partenaire Place des Entrprises identifiera, parmi l’ensemble
   des partenaires publics et parapublics, le conseiller compétent pour votre
@@ -83,21 +83,21 @@ Effacer mes réponses: Effacer mes réponses
   "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
   d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à
   hauteur de :"
-"En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos maternel supplémentaire</2>.":
+En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos maternel supplémentaire</2>.:
   En plus des indemnités journalières, vous pouvez aussi prétendre à une
   <2>allocation forfaitaire de repos maternel supplémentaire</2>.
-"En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos parental supplémentaire</2>.":
+En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos parental supplémentaire</2>.:
   En plus des indemnités journalières, vous pouvez aussi prétendre à une
   <2>allocation forfaitaire de repos parental supplémentaire</2>.
-"En plus du capital décès, une <2>pension de réversion</2> peut être versée au conjoint survivant. Elle correspond aux <5>droits à la retraite acquis par le défunt</5> durant sa vie professionnelle.":
+En plus du capital décès, une <2>pension de réversion</2> peut être versée au conjoint survivant. Elle correspond aux <5>droits à la retraite acquis par le défunt</5> durant sa vie professionnelle.:
   En plus du capital décès, une <2>pension de réversion</2> peut être versée au
   conjoint survivant. Elle correspond aux <5>droits à la retraite acquis par le
   défunt</5> durant sa vie professionnelle.
 En savoir plus: En savoir plus
 En savoir plus sur impots:
   gouv:
-    "fr, nouvelle fenêtre": En savoir plus sur impots.gouv.fr, nouvelle fenêtre
-"En savoir plus, nouvelle fenêtre": En savoir plus, nouvelle fenêtre
+    fr, nouvelle fenêtre: En savoir plus sur impots.gouv.fr, nouvelle fenêtre
+En savoir plus, nouvelle fenêtre: En savoir plus, nouvelle fenêtre
 English version of the website enabled.: English version of the website enabled.
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
@@ -112,13 +112,13 @@ Fermer le module "Donner son avis": Fermer le module "Donner son avis"
 Fiche de paie: Fiche de paie
 Fond de la boite de dialogue: Fond de la boite de dialogue
 Gestion des données personnelles: Gestion des données personnelles
-"Graphique des principaux simulateurs, présence d’une alternative accessible après l’image":
+Graphique des principaux simulateurs, présence d’une alternative accessible après l’image:
   Graphique des principaux simulateurs, présence d’une alternative accessible
   après l’image
-"Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image":
+Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image:
   Graphique statistiques détaillés de la satisfaction, présence d’une
   alternative accessible après l’image
-"Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image":
+Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image:
   Graphique statistiques détaillés du nombre visites par jour, présence d’une
   alternative accessible après l’image
 Habituellement: Habituellement
@@ -126,43 +126,43 @@ Impôt: Impôt
 Impôt au barème: Impôt au barème
 Impôts: Impôts
 Information: Information
-"Insérer dans le champ la valeur du {{text}}": Insérer dans le champ la valeur du {{text}}
+Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
 International: International
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
 Invalidité: Invalidité
 J'ai compris: J'ai compris
-"J'ai compris, fermer le message condensé.": J'ai compris, fermer le message condensé.
-"Je donne mon avis, donner mon avis sur jedonnemonavis":
+J'ai compris, fermer le message condensé.: J'ai compris, fermer le message condensé.
+Je donne mon avis, donner mon avis sur jedonnemonavis:
   numerique:
     gouv:
-      "fr, nouvelle fenêtre": Je donne mon avis, donner mon avis sur
+      fr, nouvelle fenêtre: Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
 Jours: Jours
 La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
   La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
   (personnes qui sont à votre charge) sous certaines conditions.
 La gestion juridique et comptable <1></1>: La gestion juridique et comptable <1></1>
-"La maternité, paternité et adoption": La maternité, paternité et adoption
-"La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en considérant que vous avez cotisé suffisamment de trimestres (4 trimestres par an) et que vous partez en retraite à l’âge requis pour obtenir un taux plein.":
+La maternité, paternité et adoption: La maternité, paternité et adoption
+La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en considérant que vous avez cotisé suffisamment de trimestres (4 trimestres par an) et que vous partez en retraite à l’âge requis pour obtenir un taux plein.:
   La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en
   considérant que vous avez cotisé suffisamment de trimestres (4 trimestres par
   an) et que vous partez en retraite à l’âge requis pour obtenir un taux plein.
 Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
   Le montant de votre retraite est constitué de <2>votre retraite de base +
   votre retraite complémentaire</2>.
-"Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>":
+Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
   Les données de simulations se mettront automatiquement à jour après la
   modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre
   d'apporter des précisions à la simulation, des résultats détaillés
   s'afficheront en dessous du formulaire et seront mis à jour quand vous
   modifierez ce dernier.</2>
-"Les formalités de création d'une entreprise diffèrent selon les statuts et la nature de l'activité. Le calcul se concentre ici sur les <1>procédures obligatoires</1> (immatriculation, annonces légales, rédaction des statuts...).":
+Les formalités de création d'une entreprise diffèrent selon les statuts et la nature de l'activité. Le calcul se concentre ici sur les <1>procédures obligatoires</1> (immatriculation, annonces légales, rédaction des statuts...).:
   Les formalités de création d'une entreprise diffèrent selon les statuts et la
   nature de l'activité. Le calcul se concentre ici sur les <1>procédures
   obligatoires</1> (immatriculation, annonces légales, rédaction des
   statuts...).
-"Lire les précisions, ouvrir le message condensé.": Lire les précisions, ouvrir le message condensé.
+Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
 Ma situation: Ma situation
 Maternité: Maternité
@@ -186,7 +186,7 @@ Nombre de visites: Nombre de visites
 Nombres: Nombres
 Non: Non
 Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons pas trouvé de résultat pour cette entreprise.
-"Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.": Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
+Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
 Nouveautés: Nouveautés
 Option ACRE non activée: Option ACRE non activée
 Option la plus avantageuse.: Option la plus avantageuse.
@@ -198,31 +198,31 @@ Page d'accueil: Page d'accueil
 Passer: Passer
 Passer le contenu principal et aller directement au pied de page: Passer le contenu principal et aller directement au pied de page
 Passer à la version française du site: Passer à la version française du site
-"Passer, passer la question sans répondre": Passer, passer la question sans répondre
+Passer, passer la question sans répondre: Passer, passer la question sans répondre
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
-"Plus d'info sur, {{ title }}": Plus d'info sur, {{ title }}
-"Plus d'infos sur, {{ title }}": Plus d'infos sur, {{ title }}
-"Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations":
+Plus d'info sur, {{ title }}: Plus d'info sur, {{ title }}
+Plus d'infos sur, {{ title }}: Plus d'infos sur, {{ title }}
+Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
     fr</2>: Pour en savoir plus, rendez-vous sur le site
       <2>aquoiserventlescotisations.urssaf.fr</2>
-"Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour améliorer le remboursement des frais de santé.":
+Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour améliorer le remboursement des frais de santé.:
   Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance
   complémentaire (mutuelle)</2> pour améliorer le remboursement des frais de
   santé.
 "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En cas d’arrêt maladie, l’assurance maladie vous versera :":
   "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En
   cas d’arrêt maladie, l’assurance maladie vous versera :"
-"Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le conjoint survivant peut bénéficier d’une <4>rente de décès</4>.":
+Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le conjoint survivant peut bénéficier d’une <4>rente de décès</4>.:
   Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le
   conjoint survivant peut bénéficier d’une <4>rente de décès</4>.
-"Pour une invalidité causée par un <2>accident professionnel</2>, vous pouvez bénéficier d’une <4>rente d’incapacité</4>.":
+Pour une invalidité causée par un <2>accident professionnel</2>, vous pouvez bénéficier d’une <4>rente d’incapacité</4>.:
   Pour une invalidité causée par un <2>accident professionnel</2>, vous pouvez
   bénéficier d’une <4>rente d’incapacité</4>.
-"Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.": Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.
-"Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.": Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.
-"Pour y prétendre, vous devez voir cotisé au moins <2><0></0></2>": Pour y prétendre, vous devez voir cotisé au moins <2><0></0></2>
+Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.: Pour y prétendre, vous devez avoir cotisé <2>au moins 10 mois</2>.
+Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.: Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.
+Pour y prétendre, vous devez voir cotisé au moins <2><0></0></2>: Pour y prétendre, vous devez voir cotisé au moins <2><0></0></2>
 Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Professions libérales: Professions libérales
@@ -236,7 +236,7 @@ Recherche sur le site: Recherche sur le site
 Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
-"Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.": Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.
+Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.: Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
     nom@domaine.com) pour recevoir une réponse
@@ -245,7 +245,7 @@ Retour à la création: Retour à la création
 Retour à mon activité: Retour à mon activité
 Retraite complémentaire: Retraite complémentaire
 Retraite de base: Retraite de base
-"Retrouver ma simulation, charger les données de ma précédente simulation.": Retrouver ma simulation, charger les données de ma précédente simulation.
+Retrouver ma simulation, charger les données de ma précédente simulation.: Retrouver ma simulation, charger les données de ma précédente simulation.
 Revenu (incluant les dépenses liées à l'activité): Revenu (incluant les dépenses liées à l'activité)
 Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
@@ -266,7 +266,7 @@ Salaire brut mensuel: Salaire brut mensuel
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Salariés et employeurs: Salariés et employeurs
-"Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>":
+Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut
   que vous ayez opté pour que <2>les informations de votre entreprise ne soient
   pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats
@@ -281,14 +281,14 @@ Soit <2><0></0></2> avant impôts: Soit <2><0></0></2> avant impôts
 Statistiques: Statistiques
 Statut du conjoint: Statut du conjoint
 Suivant: Suivant
-"Suivant, enregistrer et passer à l'étape suivante": Suivant, enregistrer et passer à l'étape suivante
-"Suivant, passer à la question suivante": Suivant, passer à la question suivante
-"Suivant, voir le résultat": Suivant, voir le résultat
+Suivant, enregistrer et passer à l'étape suivante: Suivant, enregistrer et passer à l'étape suivante
+Suivant, passer à la question suivante: Suivant, passer à la question suivante
+Suivant, voir le résultat: Suivant, voir le résultat
 Switch to the english version of the website: Switch to the english version of the website
-"Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.":
+Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur
   le site mon-entreprise par mois.
-"Tableau indiquant le nombre de visites sur le site mon-entreprise par {{period}}.":
+Tableau indiquant le nombre de visites sur le site mon-entreprise par {{period}}.:
   Tableau indiquant le nombre de visites sur le site mon-entreprise par
   {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
@@ -308,7 +308,7 @@ Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les <5
   <5>protège en cas d’invalidité</5> et assure à leurs proches une <8>pension de
   réversion et un capital en cas de décès</8>.
 Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>
-"Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de congé maternité, paternité, adoption.":
+Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de congé maternité, paternité, adoption.:
   Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de
   congé maternité, paternité, adoption.
 Tout déplier: Tout déplier
@@ -316,13 +316,13 @@ Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
 Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
 Type: Type
-"URSSAF Mon entreprise, accéder à la page d'accueil": URSSAF Mon entreprise, accéder à la page d'accueil
-"Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs indépendants</4> décédés, sous certaines conditions.":
+URSSAF Mon entreprise, accéder à la page d'accueil: URSSAF Mon entreprise, accéder à la page d'accueil
+Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs indépendants</4> décédés, sous certaines conditions.:
   Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs
   indépendants</4> décédés, sous certaines conditions.
 Un avis sur cette page ?: Un avis sur cette page ?
-"Urssaf, voir le site urssaf":
-  "fr, nouvelle fenêtre": Urssaf, voir le site urssaf.fr, nouvelle fenêtre
+Urssaf, voir le site urssaf:
+  fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
 Version française du site activée.: Version française du site activée.
@@ -331,13 +331,13 @@ Veuillez renseigner votre adresse email.: Veuillez renseigner votre adresse emai
 Voir la fiche Urssaf: Voir la fiche Urssaf
 Voir la fiche de paie: Voir la fiche de paie
 Voir les autres simulateurs: Voir les autres simulateurs
-"Voir les nouveautés apportées par la version {{release}}": Voir les nouveautés apportées par la version {{release}}
+Voir les nouveautés apportées par la version {{release}}: Voir les nouveautés apportées par la version {{release}}
 Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
-"Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise":
+Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise:
   Voir les simulateurs personnalisés, accéder à la page de gestion de mon
   entreprise
 Voir ma situation: Voir ma situation
-"Voir ma situation, accéder à la page de gestion de mon entreprise": Voir ma situation, accéder à la page de gestion de mon entreprise
+Voir ma situation, accéder à la page de gestion de mon entreprise: Voir ma situation, accéder à la page de gestion de mon entreprise
 Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Vos droits pour la retraite: Vos droits pour la retraite
@@ -354,7 +354,7 @@ Votre domaine d'activité: Votre domaine d'activité
 Votre message (requis): Votre message (requis)
 Votre rémunération totale estimée: Votre rémunération totale estimée
 Vous allez dépasser le plafond de la micro-entreprise: Vous allez dépasser le plafond de la micro-entreprise
-"Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.":
+Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.:
   Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes
   désolé(e)s.
 Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou d’accident conduisant à une incapacité à poursuivre votre activité professionnelle</2>.:
@@ -376,7 +376,7 @@ aide: aide
 aide-déclaration-indépendant:
   results:
     title: Montants à reporter dans votre déclaration de revenus
-"aides différées, voir le détail du calcul pour aides différées": aides différées, voir le détail du calcul pour aides différées
+aides différées, voir le détail du calcul pour aides différées: aides différées, voir le détail du calcul pour aides différées
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
@@ -404,8 +404,8 @@ budget:
 cards:
   simulator-resource:
     cta: Accéder au simulateur
-"certains critères, en savoir plus sur service-public":
-  "fr, nouvelle fenêtre": certains critères, en savoir plus sur service-public.fr, nouvelle fenêtre
+certains critères, en savoir plus sur service-public:
+  fr, nouvelle fenêtre: certains critères, en savoir plus sur service-public.fr, nouvelle fenêtre
 checklist:
   showmore:
     closed: En savoir plus
@@ -646,7 +646,7 @@ footer:
   accessibilitéAriaLabel: "Accessibilité : partiellement conforme, en savoir plus"
   github:
     text: Voir le code source sur Github
-"gestion sémantique de version, en savoir plus, nouvelle fenêtre": gestion sémantique de version, en savoir plus, nouvelle fenêtre
+gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 gérer:
   choix:
     chomage-partiel:
@@ -695,7 +695,7 @@ intégration:
   description: Outils pour les développeurs
   title: Intégration
 jours: jours
-"l'annuaire des entreprises, nouvelle fenêtre": l'annuaire des entreprises, nouvelle fenêtre
+l'annuaire des entreprises, nouvelle fenêtre: l'annuaire des entreprises, nouvelle fenêtre
 landing:
   aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
     autonome et pluridisciplinaire au sein de <6>l’Urssaf</6>. Nous avons à cœur
@@ -718,9 +718,9 @@ landing:
     personnalisées</2> à vos questions sur la <5>création et la gestion</5> de
     votre entreprise.
   title: L'assistant officiel des entrepreneurs
-"le portail officiel, accéder à aides-entreprises":
-  "fr, nouvelle fenêtre": le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre
-"le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre": le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre
+le portail officiel, accéder à aides-entreprises:
+  fr, nouvelle fenêtre: le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre
+le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre: le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre
 legalNotice:
   contact:
     content: <0>contact@mon-entreprise.beta.gouv.fr</0>
@@ -728,8 +728,8 @@ legalNotice:
   editeur:
     title: Editeur
   hosting:
-    content: Netlify<1></1>610 22nd Street, Suite 315,<3></3>San Francisco, CA 94107
-      <5></5>Site web :&nbsp;<7>https://www.netlify.com</7>
+    content: "Netlify<1></1>610 22nd Street, Suite 315,<3></3>San Francisco, CA
+      94107 <5></5>Site web : <7>https://www.netlify.com</7>"
     title: Prestataire d'hébergement
   publication:
     content: M. Yann-Gaël Amghar, Directeur de l'Acoss
@@ -762,15 +762,15 @@ pages:
     description: La page que vous cherchez n'existe pas ou n'existe plus
     title: Page introuvable
   accessibilité: "<0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
-    page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.1&nbsp;qui
-    vise à définir le niveau d'accessibilité général constaté sur le site
+    page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.1 qui vise
+    à définir le niveau d'accessibilité général constaté sur le site
     conformément à la réglementation. Cette page est obligatoire pour être
-    conforme au RGAA 4.1.</3><4>Qu’est-ce que l’accessibilité
-    numérique&nbsp;?</4><5>Un site web accessible est un site qui permet à tous
-    les internautes d’accéder à ses contenus sans difficulté, y compris aux
-    personnes qui présentent un handicap et utilisent des logiciels ou matériels
-    spécialisés.</5><6>Un site accessible permet par exemple
-    de&nbsp;:</6><7><0>Naviguer avec des synthèses vocales ou des plages braille
+    conforme au RGAA 4.1.</3><4>Qu’est-ce que l’accessibilité numérique
+    ?</4><5>Un site web accessible est un site qui permet à tous les internautes
+    d’accéder à ses contenus sans difficulté, y compris aux personnes qui
+    présentent un handicap et utilisent des logiciels ou matériels
+    spécialisés.</5><6>Un site accessible permet par exemple de
+    :</6><7><0>Naviguer avec des synthèses vocales ou des plages braille
     (notamment utilisées par les internautes aveugles ou
     malvoyants).</0><1>Personnaliser l’affichage du site selon ses besoins
     (grossissement des caractères, modification des couleurs,
@@ -861,11 +861,10 @@ pages:
     (<1>https://formulaire.defenseurdesdroits.fr/</1>)</0><1>Contacter le
     délégué du Défenseur des droits dans votre région
     (<1>https://www.defenseurdesdroits.fr/saisir/delegues</1>)</1><2>Envoyer un
-    courrier par la poste (gratuit, ne pas mettre de timbre)
-    à&nbsp;:<1></1>Défenseur des droits<3></3>Libre réponse
-    71120<5></5>75342&nbsp;Paris CEDEX 07</2><3>Contacter le D&eacute;fenseur
-    des droits par t&eacute;l&eacute;phone&nbsp;:
-    <2>+33&nbsp;9&nbsp;69&nbsp;39&nbsp;00&nbsp;00</2></3></71><72>Mis à jour le
+    courrier par la poste (gratuit, ne pas mettre de timbre) à :<1></1>Défenseur
+    des droits<3></3>Libre réponse 71120<5></5>75342 Paris CEDEX
+    07</2><3>Contacter le D&eacute;fenseur des droits par
+    t&eacute;l&eacute;phone : <2>+33 9 69 39 00 00</2></3></71><72>Mis à jour le
     11 mai 2023</72>"
   assistant:
     recherche-code-ape:
@@ -1062,7 +1061,7 @@ pages:
         title: Publicodes
     code:
       copy-code: Copier le code dans le presse-papier
-      description: "Voici le code à copier-coller sur votre site&nbsp;:"
+      description: "Voici le code à copier-coller sur votre site :"
       titre: Code d'intégration
     components:
       CasParticuliers: "<0>En savoir plus sur...</0><1><0>Comment faire une simulation
@@ -1614,11 +1613,11 @@ pages:
 payslip:
   disclaimer: Il ne prend pour l'instant pas en compte les accords et conventions
     collectives, ni la myriade d'aides aux entreprises. Trouvez votre convention
-    collective <2>ici</2>, et explorez les aides
-    sur&nbsp;<4>aides-entreprises.fr</4>.
+    collective <2>ici</2>, et explorez les aides sur
+    <4>aides-entreprises.fr</4>.
   notice: Le simulateur vous aide à comprendre votre bulletin de paie, sans lui
-    être opposable. Pour plus d&apos;informations, rendez vous
-    sur&nbsp;<1>service-public.fr</1>.
+    être opposable. Pour plus d'informations, rendez vous sur
+    <1>service-public.fr</1>.
   repartition: Répartition du total chargé
 points: points
 pourcentage: pourcentage
@@ -1644,13 +1643,13 @@ privacyContent:
     :</2><3><0>Je ne veux pas envoyer de données anonymes sur mon utilisation du
     site à des fins de mesures d'audience</0></3>
   title: Données personnelles
-"recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.":
+recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.:
   recherche lancée automatiquement après l'entrée de caractères, les résultats
   s'afficheront à la suite de cet élément.
 recherche-globale:
   placeholder: "Mot-clé ou acronyme (exemple : CSG)"
 salarié: salarié
-"salarié, accéder au simulateur salarié": salarié, accéder au simulateur salarié
+salarié, accéder au simulateur salarié: salarié, accéder au simulateur salarié
 search-code-ape:
   alternative: Vous pouvez essayer "{{proposal}}" au lieu de "{{match}}"
   cant-find-my-activity: Je ne trouve pas mon activité
@@ -1670,14 +1669,14 @@ shareSimulation:
   button:
     copied: Copié
     copy: Copier le lien
-  description: "<0>À quoi sert le lien de partage&nbsp;?</0><1>Les simulateurs et
+  description: "<0>À quoi sert le lien de partage ?</0><1>Les simulateurs et
     assistants de mon-entreprise.urssaf.fr sont <2>100 % confidentiels</2> : les
     informations que vous renseignez ne quittent jamais votre
     navigateur.</1><2>Pour <1>envoyer une simulation</1> à une autre personne,
     ou <4>retrouver votre simulation sur un autre appareil</4> que celui-ci,
     vous pouvez utiliser un lien de partage.</2><3>Celui ci contient votre
     situation directement sous forme de texte. Comme ça, pas besoin de passer
-    par un fichier ou par une sauvegarde sur un serveur externe&nbsp;!</3>"
+    par un fichier ou par une sauvegarde sur un serveur externe !</3>"
   modal:
     helpText: Le lien est sélectionné, vous pouvez le copier/coller
     notice: Ce lien peut être utilisé pour accéder à votre simulation
@@ -1705,8 +1704,8 @@ simulateurs:
         sociale (assurance maladie, allocations familiales, dépendance<1> et
         retraite <3> de base</3></1>).
   inversionFail: >-
-    Le montant saisi abouti à un résultat impossible. Cela est dû à
-    un effet de seuil dans le calcul des cotisations.
+    Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de
+    seuil dans le calcul des cotisations.
 
 
     Nous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).
@@ -1794,13 +1793,13 @@ supérieurs à: supérieurs à
 trimestres acquis: trimestres acquis
 versés en deux fois: versés en deux fois
 versés en une fois: versés en une fois
-"vos retours, accéder aux statistiques d'utilisation": vos retours, accéder aux statistiques d'utilisation
+vos retours, accéder aux statistiques d'utilisation: vos retours, accéder aux statistiques d'utilisation
 warning:
   overwrite:
     situation: Voulez-vous écraser votre situation ?
 "{{title}}, voir la demande sur github":
-  "com, nouvelle fenêtre": "{{title}}, voir la demande sur github.com, nouvelle fenêtre"
-"À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SAS(U).":
+  com, nouvelle fenêtre: "{{title}}, voir la demande sur github.com, nouvelle fenêtre"
+À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SAS(U).:
   À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le
   revenu pour les SAS(U).
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
@@ -1808,7 +1807,7 @@ warning:
 Échec: Échec
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
-"Étape {{ total }} sur {{ maxValue }}": Étape {{ total }} sur {{ maxValue }}
+Étape {{ total }} sur {{ maxValue }}: Étape {{ total }} sur {{ maxValue }}
 Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
