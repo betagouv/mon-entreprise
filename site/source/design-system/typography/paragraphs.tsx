@@ -27,13 +27,13 @@ export const Body = styled.p`
 	line-height: 1.5rem;
 `
 
-export const SmallBody = styled.p<{ grey?: boolean }>`
+export const SmallBody = styled.p<{ $grey?: boolean }>`
 	${baseParagraphStyle}
 	font-size: 0.875rem;
 	line-height: 1.25rem;
 
-	${({ grey }) =>
-		grey &&
+	${({ $grey }) =>
+		$grey &&
 		css`
 			color: ${({ theme }) =>
 				theme.darkMode

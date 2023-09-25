@@ -20,7 +20,7 @@ const SAVE_STATE_LOCALSTORAGE_KEY = 'accordion-state'
 
 export const Accordion = <T extends object>(
 	props: AriaAccordionProps<T> & {
-		variant?: 'light'
+		$variant?: 'light'
 		shouldToggleAll?: boolean
 		title?: ReactNode
 		isFoldable?: boolean
@@ -120,7 +120,7 @@ export const Accordion = <T extends object>(
 				</StyledGrid>
 			)}
 			<StyledAccordionGroup
-				{...omit(props, 'title')}
+				{...omit(props, 'title', 'defaultExpandedKeys')}
 				{...accordionProps}
 				ref={ref}
 			>
@@ -130,7 +130,7 @@ export const Accordion = <T extends object>(
 							key={item.key}
 							item={item}
 							state={state}
-							$variant={props?.variant}
+							$variant={props?.$variant}
 						/>
 					)
 				})}
@@ -139,15 +139,15 @@ export const Accordion = <T extends object>(
 	)
 }
 
-const StyledAccordionGroup = styled.div<{ variant?: 'light' }>`
+const StyledAccordionGroup = styled.div<{ $variant?: 'light' }>`
 	max-width: 100%;
 	${({ theme }) => css`
 		border-radius: ${theme.box.borderRadius};
 		border: 1px solid ${theme.colors.bases.primary[400]};
 		margin-bottom: ${theme.spacings.lg};
 	`}
-	${({ variant }) =>
-		variant === 'light' &&
+	${({ $variant }) =>
+		$variant === 'light' &&
 		css`
 			border-radius: 0;
 			border: none;
