@@ -68,7 +68,10 @@ export default function ShareOrSaveSimulationBanner({
 					url,
 				})
 			} catch (e) {
-				if (e instanceof Error && e.toString().includes('AbortError')) {
+				if (
+					e instanceof Error &&
+					(e.toString().includes('AbortError') || /permission/i.test(e.message))
+				) {
 					return
 				}
 				// eslint-disable-next-line no-console
