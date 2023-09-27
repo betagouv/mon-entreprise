@@ -83,7 +83,15 @@ export const ServiceWorker = () => {
 		},
 
 		onRegisterError: (error) => {
-			if (error instanceof Error && /permission|aborted/i.test(error.message)) {
+			// Avoid errors in Sentry:
+			// "NotSupportedError: Failed to register a ServiceWorker: The user denied permission to use Service Worker."
+			// "AbortError: The operation was aborted."
+			// "AbortError: Failed to register a ServiceWorker for scope with script: Operation has been aborted"
+			// "SecurityError: The operation is insecure."
+			if (
+				error instanceof Error &&
+				/permission|aborted|insecure/i.test(error.message)
+			) {
 				return
 			}
 			// eslint-disable-next-line no-console
