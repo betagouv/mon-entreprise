@@ -55,6 +55,7 @@ export default defineConfig(({ command, mode }) => ({
 		IS_DEVELOPMENT: mode === 'development',
 		IS_STAGING: mode === 'production' && !isProductionBranch(mode),
 		IS_PRODUCTION: mode === 'production' && isProductionBranch(mode),
+		SENTRY_RELEASE_NAME: JSON.stringify(sentryReleaseName(mode)),
 	},
 	plugins: [
 		command === 'build' &&
@@ -109,6 +110,7 @@ export default defineConfig(({ command, mode }) => ({
 			release: {
 				// Use same release name as the one used in the app.
 				name: sentryReleaseName(mode),
+				inject: false, // Avoid adding imports with a hash in chunks, as this causes long term caching issues.
 				uploadLegacySourcemaps: {
 					paths: ['./dist'],
 					ignore: ['./node_modules'],

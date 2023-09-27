@@ -52,3 +52,8 @@ declare const IS_STAGING: boolean
  * This variable is statically replaced during the build
  */
 declare const IS_DEVELOPMENT: boolean
+
+/**
+ * This variable is statically replaced during the build
+ */
+declare const SENTRY_RELEASE_NAME: string
