@@ -10,6 +10,12 @@
   calculer le montant de vos charges sociales déductibles grâce à notre
   assistant dédié :</1><2>Assistant déclaration charges sociales
   indépendant</2></0>
+<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour retrouver les informations à jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités relevant de l’économie collaborative</2></0>:
+  <0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé
+  de le retirer du site. En effet, il était trop difficile de maintenir à jour
+  les informations et les calculs.</0><1>Pour retrouver les informations à
+  jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités
+  relevant de l’économie collaborative</2></0>
 <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
   <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
   l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>
@@ -22,6 +28,7 @@ API REST, en savoir plus sur l'API REST: API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
 Accident du travail et maladie professionnelle: Accident du travail et maladie professionnelle
 Accéder à la page d'accueil, nouvelle fenêtre: Accéder à la page d'accueil, nouvelle fenêtre
+Activités relevant de l’économie collaborative, voir la page: Activités relevant de l’économie collaborative, voir la page
 Adoption: Adoption
 Afficher le détail: Afficher le détail
 "Afficher les données par :": "Afficher les données par :"
@@ -62,7 +69,6 @@ CompanySearchField:
   placeholder: "Exemple : Café de la gare ou 40123778000127"
 Comparer...: Comparer...
 Confirmer: Confirmer
-Continuer: Continuer
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
 Coût de création: Coût de création
@@ -169,7 +175,6 @@ Maternité: Maternité
 Menu de navigation: Menu de navigation
 Message à caractère informatif: Message à caractère informatif
 Mode d'affichage: Mode d'affichage
-Modifier: Modifier
 Modifier mes options: Modifier mes options
 Modifier mes réponses: Modifier mes réponses
 Mois: Mois
@@ -690,7 +695,6 @@ impotSociété:
 impôt: impôt
 impôt sur le revenu: impôt sur le revenu
 info: info
-inférieurs à: inférieurs à
 intégration:
   description: Outils pour les développeurs
   title: Intégration
@@ -1603,13 +1607,6 @@ pages:
       access: Accéder au simulateur {{year}}
       back: Retourner au simulateur {{year}}
       info: "Cette simulation concerne l'année <2>{{actualYear}}</2>. "
-  économie-collaborative:
-    meta:
-      description: Airbnb, Drivy, Blablacar, Leboncoin... Découvrez comment être en
-        règle dans vos déclarations
-      title: "Déclaration des revenus des plateforme en ligne : guide intéractif"
-    shortname: Assistant économie collaborative
-    title: Assistant à la déclaration des revenus des plateformes en ligne
 payslip:
   disclaimer: Il ne prend pour l'instant pas en compte les accords et conventions
     collectives, ni la myriade d'aides aux entreprises. Trouvez votre convention
@@ -1789,7 +1786,6 @@ stats:
   title: Statistiques
 statutchoice:
   regime: Régime social des {{regime}}s
-supérieurs à: supérieurs à
 trimestres acquis: trimestres acquis
 versés en deux fois: versés en deux fois
 versés en une fois: versés en une fois
@@ -1812,55 +1808,3 @@ warning:
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
 à partir du 29ème jour: à partir du 29ème jour
-économieCollaborative:
-  WIP: <0>Cet assistant est en cours de développement.</0> N'hésitez pas à nous
-    faire part de toute vos remarques, idées, questions en cliquant sur le
-    bouton "<3></3>" à droite de votre écran.
-  accueil:
-    contenu: <0>Vous avez des revenus issus des <2>plateformes en ligne</2> (Airbnb,
-      Abritel, Drivy, Blablacar, Leboncoin, etc.) ? Vous devez les déclarer dans
-      la plupart des cas. Cependant, il peut être difficile de s'y retrouver
-      <5><0></0></5>.</0><1>Suivez ce guide pour savoir en quelques clics
-      comment être en règle.</1><2>Ces revenus sont communiqués automatiquement
-      par les plateformes à l’administration fiscale et à l’Urssaf.</2>
-    question: Quels types d'activités avez-vous exercé ?
-    réassurance: "PS : cet outil est là uniquement pour vous informer, aucune donnée
-      ne sera transmise aux administrations"
-    titre: Comment déclarer mes revenus des plateformes en ligne ?
-  activité:
-    choix: Quelles sont plus précisément les activités exercées ?
-    impôt: <0>Vous devez déclarez vos revenus aux impôts</0><1>Les revenus de cette
-      activité sont imposables.</1>
-    pro: <0>Il s'agit d'une activité professionnelle</0><1>Les revenus de cette
-      activité sont considérés comme des <2>revenus professionnels dès le 1er
-      euro gagné</2>.</1>
-    revenusAnnuels: <0>Revenus annuels</0><1>Vos revenus annuels pour cette activité sont :</1>
-    voirObligations: Voir mes obligations
-  exonération:
-    exception-notice: Si aucun de ces cas ne s'applique à vous, vous n'aurez rien à déclarer.
-    notice: Si l'un de ces cas s'applique à vous, vous n'aurez rien à déclarer.
-    question: Êtes-vous dans un des cas suivants ?
-  obligations:
-    aucune: <0>Rien à faire</0><1>Vous n'avez pas besoin de déclarer vos revenus
-      pour ces activités.</1>
-    entreprise: <0>Avec une entreprise</0><1>Si vous possédez déjà une activité
-      déclarée, vous pouvez ajouter ces revenus à ceux de l'entreprise. Il vous
-      faudra seulement vérifier que son objet social est compatible avec les
-      activités concernées (et le changer si besoin). Sinon, vous aurez à créer
-      une nouvelle entreprise.</1><2>Créer une entreprise</2>
-    impôts: <0>Déclarer vos revenus aux impôts</0><1>Pour ces activités, vous avez
-      uniquement besoin de déclarer vos revenus sur votre feuille d'imposition.
-      Pour en savoir plus, vous pouvez consulter la <2>page dédiée sur
-      impots.gouv.fr</2>.</1>
-    pro: <0>Déclarer en tant qu'activité professionnelle</0><1>Vos revenus sont
-      considérés comme revenus professionnels, ils sont soumis aux cotisations
-      sociales. En contrepartie, ils ouvrent vos droit à des prestations
-      sociales (retraite, assurance maladie, maternité, etc.).</1>
-    régimeGénéral: <0>Avec l'option régime général</0><1>Pour certaines activités,
-      vous pouvez déclarer vos revenus directement sur le site de l'Urssaf.
-      C'est une option intéressante si vous ne souhaitez pas créer d'entreprise
-      ou modifier une entreprise existante. Vous devrez dans tous les cas
-      déclarer ces revenus aux impôts.</1><2>Déclarer au régime général</2>
-    régimeGénéralDisponible: Régime général disponible
-    titre: Que dois-je faire pour être en règle ?
-  retourAccueil: Retour à la selection d'activités
