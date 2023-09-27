@@ -1081,10 +1081,10 @@ pages:
           body: Use our simulators in your Excel/Sheets files.
           cta: Start
           title: Using a spreadsheet
-      description: In addition to the mon-entreprise website, we provide free,
-        open-source tools for integration into your website. This means you can
-        include the tools created for <1>mon-entreprise</1> directly in your
-        users' regular workflows.
+      description: <0>Give your users an enhanced experience by incorporating our
+        tools directly into your site.</0><1>Discover our full range of
+        solutions for seamlessly integrating our simulators and wizards into
+        your website.</1>
     iframe:
       csp-1: <0>The error shown below in the console is linked to communication
         between the parent page and the iframe for automatic resizing to the

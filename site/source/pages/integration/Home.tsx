@@ -36,14 +36,16 @@ export default function Options() {
 					</>
 				}
 			>
-				<Intro>
-					<Trans i18nKey="pages.développeur.home.description">
-						En plus du site mon-entreprise, nous mettons à disposition des
-						outils gratuits et libres à intégrer sur votre site web. Vous pouvez
-						ainsi inclure les outils créés pour <strong>mon-entreprise</strong>{' '}
-						directement dans les parcours habituels de vos utilisateurs.
-					</Trans>
-				</Intro>
+				<Trans i18nKey="pages.développeur.home.description">
+					<Intro $xxl>
+						Offrez à vos utilisateurs une expérience améliorée en incorporant
+						nos outils directement dans votre site.
+					</Intro>
+					<Body>
+						Découvrez notre gamme complète de solutions pour intégrer en toute
+						simplicité nos simulateurs et assistants sur votre site web.
+					</Body>
+				</Trans>
 			</PageHeader>
 			<Grid container spacing={3}>
 				<Grid item xs={12} md={6} lg={4}>
