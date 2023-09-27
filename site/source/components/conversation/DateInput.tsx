@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback } from 'react'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { InputProps } from '@/components/conversation/RuleInput'
 import { DateFieldProps } from '@/design-system/field/DateField'

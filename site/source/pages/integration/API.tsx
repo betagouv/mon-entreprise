@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
 import { ScrollToTop } from '@/components/utils/Scroll'
