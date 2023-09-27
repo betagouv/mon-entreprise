@@ -21,7 +21,10 @@ describe('Recherche globales', { testIsolation: false }, function () {
 			.next()
 			.find('[role="button"]')
 			.should('have.length', 6)
-		cy.contains('Règles de calculs').next().find('li').should('have.length', 20)
+		cy.contains('Documentation des simulateurs')
+			.next()
+			.find('li')
+			.should('have.length', 20)
 
 		// eslint-disable-next-line cypress/unsafe-to-chain-command
 		cy.focused().type('avocat')
@@ -30,7 +33,7 @@ describe('Recherche globales', { testIsolation: false }, function () {
 			.next()
 			.find('[role="button"]')
 			.should('have.length', 1)
-		cy.contains('Règles de calculs')
+		cy.contains('Documentation des simulateurs')
 			.next()
 			.find('li')
 			.should('have.length.of.at.least', 1)

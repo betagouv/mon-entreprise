@@ -124,7 +124,7 @@ export const RulesInfiniteHits = () => {
 	return (
 		<>
 			<H3 as="h2">
-				<Trans>Documentation des calculs</Trans>
+				<Trans>Documentation des simulateurs</Trans>
 			</H3>
 			<Hits />
 		</>
