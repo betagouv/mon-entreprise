@@ -13,7 +13,6 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 import { multipleSPA } from './build/multiple-SPA'
 import { pwaOptions } from './build/vite-pwa-options'
-import { compileEconomieCollaborativeYaml } from './scripts/compileEconomieColllaborativeYaml'
 
 const env = (mode: string) => loadEnv(mode, process.cwd(), '')
 
@@ -58,16 +57,6 @@ export default defineConfig(({ command, mode }) => ({
 		IS_PRODUCTION: mode === 'production' && isProductionBranch(mode),
 	},
 	plugins: [
-		{
-			name: 'run-script-on-file-change',
-			apply: 'serve',
-			buildStart() {
-				if (mode === 'development') {
-					void compileEconomieCollaborativeYaml()
-				}
-			},
-		},
-
 		command === 'build' &&
 			replace({
 				__SENTRY_DEBUG__: false,

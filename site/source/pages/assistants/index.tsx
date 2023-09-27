@@ -6,16 +6,12 @@ import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 import AideDéclarationIndépendant from './declaration-revenu-independants'
+import ÉconomieCollaborative from './économie-collaborative'
 
 export default function Assistants() {
 	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
 	const location = useLocation()
 	const simulateurs = useSimulatorsData()
-	console.log(
-		'location.pathname',
-		location.pathname,
-		absoluteSitePaths.assistants.déclarationIndépendant.index
-	)
 
 	return (
 		<>
@@ -28,14 +24,16 @@ export default function Assistants() {
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
 				/>
+				{/* Simulateurs et assistants décomissionnés */}
 				<Route
 					path={relativeSitePaths.assistants.déclarationIndépendant.index}
-					element={
-						<>
-							<AideDéclarationIndépendant />
-						</>
-					}
+					element={<AideDéclarationIndépendant />}
 				/>
+				<Route
+					path={relativeSitePaths.assistants.économieCollaborative.index}
+					element={<ÉconomieCollaborative />}
+				/>
+				{/* Tous les simulateur et assistants */}
 				{Object.entries(simulateurs)
 					.filter(([, simu]) => simu.pathId.startsWith('assistants.'))
 					.map(([, simu]) => (
