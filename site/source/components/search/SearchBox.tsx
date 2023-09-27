@@ -16,6 +16,7 @@ export const SearchBox = connectSearchBox<Props>(
 		return (
 			<form noValidate role="search">
 				<SearchField
+					autoFocus
 					type="search"
 					value={currentRefinement}
 					onChange={refine}
