@@ -13,7 +13,6 @@ const rawSitePathsFr = {
 			'declaration-charges-sociales-independant',
 		économieCollaborative: {
 			index: 'économie-collaborative',
-			votreSituation: 'votre-situation',
 		},
 		'pour-mon-entreprise': {
 			index: 'pour-mon-entreprise',

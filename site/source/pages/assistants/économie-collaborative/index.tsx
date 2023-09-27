@@ -1,57 +1,38 @@
-import { Trans } from 'react-i18next'
-import { Route, Routes } from 'react-router-dom'
-import { styled } from 'styled-components'
+import { Trans, useTranslation } from 'react-i18next'
 
-import { TrackChapter } from '@/components/ATInternetTracking'
-import { Link } from '@/design-system/typography/link'
-import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { useSitePaths } from '@/sitePaths'
+import PageHeader from '@/components/PageHeader'
+import { Button } from '@/design-system/buttons'
+import { Body } from '@/design-system/typography/paragraphs'
 
-import Activité from './Activité'
-import ActivitésSelection from './ActivitésSelection'
-import { StoreProvider } from './StoreContext'
-import VotreSituation from './VotreSituation'
+import illustrationSrc from './illustration.svg'
 
 export default function ÉconomieCollaborative() {
-	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
-	const { économieCollaborative } = absoluteSitePaths.assistants
-	const iframePath =
-		useSimulatorsData()['économie-collaborative'].iframePath ?? ''
-	const indexPath = useIsEmbedded()
-		? encodeURI(`/iframes/${iframePath}`)
-		: économieCollaborative.index
+	const { t } = useTranslation()
 
 	return (
-		<TrackChapter chapter1="simulateurs" chapter2="economie_collaborative">
-			<div css="transform: translateY(2rem)">
-				<StyledLink
-					to={indexPath}
-					end
-					style={({ isActive }) => (isActive ? { display: 'none' } : {})}
+		<Trans>
+			<PageHeader
+				titre="L'assistant économie collaborative, c'est terminé"
+				picture={illustrationSrc}
+			>
+				<Body>
+					Ce dernier n'a pas rencontré le succès escompté. Nous avons donc
+					décidé de le retirer du site. En effet, il était trop difficile de
+					maintenir à jour les informations et les calculs.
+				</Body>
+				<Body>
+					Pour retrouver les informations à jours, vous pouvez vous rendre sur
+					le site de l'Urssaf :
+				</Body>
+				<Button
+					href="https://www.urssaf.fr/portail/home/espaces-dedies/activites-relevant-de-leconomie.html"
+					title={t(
+						'Activités relevant de l’économie collaborative, voir la page'
+					)}
 				>
-					<span aria-hidden>←</span>{' '}
-					<Trans i18nKey="économieCollaborative.retourAccueil">
-						Retour à la selection d'activités
-					</Trans>
-				</StyledLink>
-			</div>
-			<StoreProvider localStorageKey="app::économie-collaborative:v1">
-				<Routes>
-					<Route index element={<ActivitésSelection />} />
-					<Route
-						path={
-							relativeSitePaths.assistants.économieCollaborative.votreSituation
-						}
-						element={<VotreSituation />}
-					/>
-					<Route path={':title'} element={<Activité />} />
-				</Routes>
-			</StoreProvider>
-		</TrackChapter>
+					Activités relevant de l’économie collaborative
+				</Button>
+			</PageHeader>
+		</Trans>
 	)
 }
-
-const StyledLink = styled(Link)`
-	text-decoration: none;
-`

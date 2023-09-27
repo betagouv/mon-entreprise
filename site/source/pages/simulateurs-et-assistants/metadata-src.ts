@@ -3,7 +3,6 @@ import { ImmutableType } from '@/types/utils'
 import { choixStatutJuridiqueConfig } from '../assistants/choix-du-statut/config'
 import { déclarationChargesSocialesIndépendantConfig } from '../assistants/declaration-charges-sociales-independant/config'
 import { demandeMobilitéConfig } from '../assistants/demande-mobilité/config'
-import { économieCollaborativeConfig } from '../assistants/économie-collaborative/config'
 import { pourMonEntrepriseConfig } from '../assistants/pour-mon-entreprise/config'
 import { rechercheCodeApeConfig } from '../assistants/recherche-code-ape/config'
 import { PageConfig, SimulatorsDataParams } from '../simulateurs/_configs/types'
@@ -49,7 +48,6 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...artisteAuteurConfig(params),
 		...chômagePartielConfig(params),
 		...comparaisonStatutsConfig(params),
-		...économieCollaborativeConfig(params),
 		...pharmacienConfig(params),
 		...médecinConfig(params),
 		...chirurgienDentisteConfig(params),
