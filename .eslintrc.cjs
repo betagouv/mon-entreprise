@@ -115,7 +115,17 @@ module.exports = {
 						prev: ['export', 'cjs-export'],
 						next: ['export', 'cjs-export'],
 					},
+
+
 				],
+				"no-restricted-imports": ["error", {
+					"paths": [{
+						"name": "styled-components",
+						"importNames": ["default"],
+						"message": 'Please use named import : `import { styled } from "styled-component"` instead.'
+					}]
+				}]
+
 			},
 		},
 		// Cypress rules
