@@ -236,7 +236,7 @@ export default function Conversation({
 								</SeeAnswersButton>
 							</Grid>
 						</Grid>
-						<Spacing lg />
+						<Notifications />
 					</div>
 				)}
 			</div>
