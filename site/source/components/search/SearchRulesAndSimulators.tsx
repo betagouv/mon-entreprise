@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Configure, Index } from 'react-instantsearch-dom'
 import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Spacing } from '@/design-system/layout'
 
