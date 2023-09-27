@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback } from 'react'
+import { lazy, Suspense, useCallback, useMemo } from 'react'
 import { styled } from 'styled-components'
 
 import { InputProps } from '@/components/conversation/RuleInput'
@@ -43,7 +43,7 @@ export default function DateInput({
 		[onChange]
 	)
 
-	const dateValue = convertDate(value)
+	const dateValue = useMemo(() => new Date(convertDate(value) ?? NaN), [value])
 
 	return (
 		<div className="step input">
@@ -68,9 +68,9 @@ export default function DateInput({
 				<Suspense fallback={<DateFieldFallback />}>
 					<DateField
 						defaultSelected={
-							(missing && hideDefaultValue) || !dateValue
+							(missing && hideDefaultValue) || !isNaN(+dateValue)
 								? undefined
-								: new Date(dateValue)
+								: dateValue
 						}
 						isRequired={required}
 						onChange={handleDateChange}
