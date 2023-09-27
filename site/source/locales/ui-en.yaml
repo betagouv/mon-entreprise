@@ -9,6 +9,11 @@
   calculations up to date.</0><1>For the self-employed, you can calculate the
   amount of your deductible social security contributions using our dedicated
   assistant:</1><2>Self-employed social charges declaration wizard</2></0>
+<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour retrouver les informations à jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités relevant de l’économie collaborative</2></0>:
+  <0><0>The latter was not as successful as we had hoped. We therefore decided
+  to remove it from the site. It was too difficult to keep the information and
+  calculations up to date.</0><1>To find up-to-date information, please visit
+  the Urssaf website:</1><2>Collaborative economy activities</2></0>
 <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
   <0><0>We've detected an old situation. Are you sure you want to overwrite
   it?</0></0><1><0><0>Overwrite</0></0><1><0>Cancel</0></1></1>
@@ -21,6 +26,7 @@ API REST, en savoir plus sur l'API REST: API REST, more about API REST
 Accessibilité: Accessibility
 Accident du travail et maladie professionnelle: Occupational injury and disease
 Accéder à la page d'accueil, nouvelle fenêtre: Go to home page, new window
+Activités relevant de l’économie collaborative, voir la page: Collaborative economy activities, see page
 Adoption: Adoption
 Afficher le détail: Show details
 "Afficher les données par :": "Display data by :"
@@ -61,7 +67,6 @@ CompanySearchField:
   placeholder: "Example: Café de la gare or 40123778000127"
 Comparer...: Compare...
 Confirmer: Confirm
-Continuer: Continue
 Cotisations: Contributions
 Cotisations sociales: Social security contributions
 Coût de création: Cost of creation
@@ -164,7 +169,6 @@ Maternité: Maternity ward
 Menu de navigation: Navigation menu
 Message à caractère informatif: Informative message
 Mode d'affichage: Display mode
-Modifier: Edit
 Modifier mes options: Modify my options
 Modifier mes réponses: Modify my answers
 Mois: Month
@@ -659,7 +663,6 @@ impotSociété:
 impôt: tax
 impôt sur le revenu: income tax
 info: info
-inférieurs à: below
 intégration:
   description: Tools for developers
   title: Integration
@@ -1511,13 +1514,6 @@ pages:
       access: Access the simulator {{year}}
       back: Back to simulator {{year}}
       info: "This simulation concerns the year <2>{{actualYear}}</2>. "
-  économie-collaborative:
-    meta:
-      description: Airbnb, Drivy, Blablacar, Leboncoin... Find out how to make sure
-        your declarations are in order
-      title: "Online platform tax return: interactive guide"
-    shortname: Collaborative economy assistant
-    title: Online platform tax return assistant
 payslip:
   disclaimer: For the moment, it does not take into account collective bargaining
     agreements, nor the myriad forms of assistance available to companies. Find
@@ -1685,7 +1681,6 @@ stats:
   title: Statistics
 statutchoice:
   regime: Social security {{regime}}s
-supérieurs à: greater than
 trimestres acquis: quarters acquired
 versés en deux fois: paid in two instalments
 versés en une fois: one-off payments
@@ -1708,53 +1703,3 @@ warning:
 Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Are you sure you want to reset the registered situation?
 à partir du 29ème jour: from day 29
-économieCollaborative:
-  WIP: <0>This wizard is currently under development.</0> If you have any
-    comments, ideas or questions, please let us know by clicking on the
-    "<3></3>" button on the right of your screen.
-  accueil:
-    contenu: <0>Do you have income from <2>online platforms</2> (Airbnb, Abritel,
-      Drivy, Blablacar, Leboncoin, etc.)? In most cases, you have to declare
-      them. However, it can be difficult to find your way around
-      <5><0></0></5>.</0><1>Follow this guide to find out how to comply in just
-      a few clicks.</1><2>These revenues are automatically communicated by the
-      platforms to the tax authorities and Urssaf.</2>
-    question: What types of business have you been involved in?
-    réassurance: "PS: this tool is for information purposes only; no data will be
-      transmitted to government agencies."
-    titre: How do I declare my income from online platforms?
-  activité:
-    choix: More specifically, what activities are you involved in?
-    impôt: <0>You must declare your income to the tax authorities</0><1>Income from
-      this activity is taxable.</1>
-    pro: <0>This is a professional activity</0><1>Income from this activity is
-      considered <2>professional income from the 1st euro earned</2>.</1>
-    revenusAnnuels: <0>Annual income</0><1>Your annual income for this activity is :</1>
-    voirObligations: See my obligations
-  exonération:
-    exception-notice: If none of these cases apply to you, you won't have to declare anything.
-    notice: If one of these cases applies to you, you won't have to declare anything.
-    question: Are you in one of the following situations?
-  obligations:
-    aucune: <0>Nothing to do</0><1>You don't need to declare your income for these
-      activities.</1>
-    entreprise: <0>With a company</0><1>If you already have a declared activity, you
-      can add this income to that of your company. You'll just need to check
-      that its corporate purpose is compatible with the activities concerned
-      (and change it if necessary). Otherwise, you'll have to set up a new
-      company.</1><2>Create a new company</2>
-    impôts: <0>Declaring your income to the tax authorities</0><1>For these
-      activities, you only need to declare your income on your tax form. To find
-      out more, visit the <2>dedicated page on impots.gouv.fr</2>.</1>
-    pro: <0>Declare as a professional activity</0><1>Your income is considered
-      professional income, and is subject to social security contributions. In
-      return, they entitle you to social benefits (retirement, health and
-      maternity insurance, etc.).</1>
-    régimeGénéral: <0>With the general scheme option</0><1>For certain activities,
-      you can declare your income directly on the Urssaf website. This is an
-      interesting option if you don't wish to set up a new business or modify an
-      existing one. In all cases, you must declare your income to the tax
-      authorities.</1><2>Declaring under the general scheme</2>
-    régimeGénéralDisponible: General scheme available
-    titre: What do I need to do to comply?
-  retourAccueil: Back to activity selection
