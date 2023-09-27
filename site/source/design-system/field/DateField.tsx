@@ -87,8 +87,6 @@ export default function DateField(props: DateFieldProps) {
 	}, [refs.reference])
 
 	const handleInputChange = (value: string) => {
-		console.log('DateField handleInputChange', value)
-
 		setIsOpen(false)
 		setIsChangeOnce(true)
 		setInputValue(value)
@@ -112,8 +110,6 @@ export default function DateField(props: DateFieldProps) {
 
 	const handleDaySelect = useCallback(
 		(date?: Date) => {
-			console.log('DateField handleDaySelect', date)
-
 			setSelected(date)
 			if (date) {
 				const value = formatDate(date, format, { locale })
@@ -128,31 +124,12 @@ export default function DateField(props: DateFieldProps) {
 		[close, onChange]
 	)
 
-	useEffect(() => {
-		console.log('DateField mounted')
-
-		return () => {
-			console.log('DateField unmounted')
-		}
-	}, [])
-
-	useEffect(() => console.log('DateField onChange:', onChange), [onChange])
-	useEffect(
-		() => console.log('DateField defaultSelected:', defaultSelected),
-		[defaultSelected]
-	)
-	useEffect(
-		() => console.log('DateField refs.reference:', refs.reference),
-		[refs.reference]
-	)
-
 	const oldDefaultSelected = useRef<Date | undefined>(defaultSelected)
 	useEffect(() => {
 		if (
 			typeof defaultSelected !== 'undefined' &&
 			oldDefaultSelected.current?.getTime() !== defaultSelected.getTime()
 		) {
-			console.log('DateField useEffect loop ?', defaultSelected)
 			handleDaySelect(defaultSelected)
 			oldDefaultSelected.current = defaultSelected
 		}
