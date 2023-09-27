@@ -1,10 +1,12 @@
 import { DottedName } from 'modele-social'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
 import { connectInfiniteHits } from 'react-instantsearch-dom'
 import { styled } from 'styled-components'
 
+import { FromTop } from '@/components/ui/animate'
 import { Button } from '@/design-system/buttons'
+import { H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
 import RuleLink from '../../RuleLink'
@@ -89,6 +91,18 @@ interface IHits {
 
 const Hits = connectInfiniteHits(({ hits, hasMore, refineNext }: IHits) => {
 	const { t } = useTranslation()
+	if (!hits.length) {
+		return (
+			<FromTop>
+				<SmallBody $grey>
+					<Trans>
+						Aucun résultat ne correspond à votre recherche. Essayez avec
+						d'autres mots-clés.
+					</Trans>
+				</SmallBody>
+			</FromTop>
+		)
+	}
 
 	return (
 		<InfiniteHits>
@@ -109,6 +123,9 @@ const Hits = connectInfiniteHits(({ hits, hasMore, refineNext }: IHits) => {
 export const RulesInfiniteHits = () => {
 	return (
 		<>
+			<H3 as="h2">
+				<Trans>Documentation des calculs</Trans>
+			</H3>
 			<Hits />
 		</>
 	)

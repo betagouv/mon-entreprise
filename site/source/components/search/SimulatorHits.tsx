@@ -8,9 +8,11 @@ import { Emoji } from '@/design-system/emoji'
 import InfoBulle from '@/design-system/InfoBulle'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useSitePaths } from '@/sitePaths'
 
+import { FromTop } from '../ui/animate'
 import { Highlight } from './Hightlight'
 
 type AlgoliaSimulatorHit = Hit<{
@@ -69,10 +71,18 @@ export const SimulatorHits = connectHits<
 
 	return (
 		<>
-			{hits.length > 0 && (
-				<H3 as="h2">
-					<Trans>Simulateurs</Trans>
-				</H3>
+			<H3 as="h2">
+				<Trans>Simulateurs</Trans>
+			</H3>
+			{!hits.length && (
+				<FromTop>
+					<SmallBody $grey>
+						<Trans>
+							Aucun résultat ne correspond à votre recherche. Essayez avec
+							d'autres mots-clés.
+						</Trans>
+					</SmallBody>
+				</FromTop>
 			)}
 			<Grid container spacing={2} as="ul" style={{ padding: 0 }}>
 				{hits.map(

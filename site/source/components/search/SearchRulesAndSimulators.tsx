@@ -1,11 +1,11 @@
 import algoliasearch from 'algoliasearch/lite'
 import { useEffect, useRef } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Configure, Index } from 'react-instantsearch-dom'
 import { useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 
 import { Spacing } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
 
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'
@@ -34,28 +34,31 @@ export default function SearchRulesAndSimulators({ closePopover }: Props) {
 	}, [closePopover, location])
 
 	return (
-		<SearchRoot
-			indexName={`${ALGOLIA_INDEX_PREFIX}rules`}
-			searchClient={searchClient}
-			role="search"
-		>
-			<SearchBox
-				label={t('Rechercher un simulateur ou une règle')}
-				aria-label={t('Rechercher un simulateur ou une règle')}
-			/>
+		<StyledContainer>
+			<SearchRoot
+				indexName={`${ALGOLIA_INDEX_PREFIX}rules`}
+				searchClient={searchClient}
+				role="search"
+			>
+				<SearchBox
+					label={t('Rechercher un simulateur ou une règle')}
+					aria-label={t('Rechercher un simulateur ou une règle')}
+				/>
 
-			<Index indexName={`${ALGOLIA_INDEX_PREFIX}simulateurs`}>
-				<Configure hitsPerPage={6} />
-				<SimulatorHits />
-			</Index>
+				<Index indexName={`${ALGOLIA_INDEX_PREFIX}simulateurs`}>
+					<Configure hitsPerPage={6} />
+					<SimulatorHits />
+				</Index>
 
-			<Index indexName={`${ALGOLIA_INDEX_PREFIX}rules`}>
-				<H3 as="h2">
-					<Trans>Règles de calculs</Trans>
-				</H3>
-				<RulesInfiniteHits />
-			</Index>
-			<Spacing lg />
-		</SearchRoot>
+				<Index indexName={`${ALGOLIA_INDEX_PREFIX}rules`}>
+					<RulesInfiniteHits />
+				</Index>
+				<Spacing lg />
+			</SearchRoot>
+		</StyledContainer>
 	)
 }
+
+const StyledContainer = styled.div`
+	min-height: 400px;
+`
