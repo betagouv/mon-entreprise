@@ -1144,10 +1144,10 @@ pages:
           body: Utilisez nos simulateurs dans vos fichiers Excel/Sheets.
           cta: Commencer
           title: Utiliser avec un tableur
-      description: En plus du site mon-entreprise, nous mettons à disposition des
-        outils gratuits et libres à intégrer sur votre site web. Vous pouvez
-        ainsi inclure les outils créés pour <1>mon-entreprise</1> directement
-        dans les parcours habituels de vos utilisateurs.
+      description: <0>Offrez à vos utilisateurs une expérience améliorée en
+        incorporant nos outils directement dans votre site.</0><1>Découvrez
+        notre gamme complète de solutions pour intégrer en toute simplicité nos
+        simulateurs et assistants sur votre site web.</1>
     iframe:
       csp-1: <0>L'erreur ci-dessous qui s'affiche dans la console est liée à la
         communication entre la page parente et l'iframe pour le
