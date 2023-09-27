@@ -56,7 +56,7 @@ const iframeAttributes = {
 	id: 'simulateurEmbauche',
 	src: src.toString(),
 	style: 'border: none; width: 100%; display: block; height: 700px',
-	allow: 'clipboard-write',
+	allow: 'clipboard-write, webshare',
 	allowfullscreen: 'true',
 	webkitallowfullscreen: 'true',
 	mozallowfullscreen: 'true',
