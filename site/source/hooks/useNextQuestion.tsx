@@ -83,7 +83,7 @@ export const useNextQuestions = function (
 		return next.filter(
 			(question) => engine.getRule(question).rawNode.question !== undefined
 		)
-	}, [missingVariables, config, answeredQuestions, engine])
+	}, [missingVariables, config.questions, answeredQuestions, engine])
 
 	return nextQuestions
 }

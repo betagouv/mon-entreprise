@@ -70,6 +70,8 @@ export const answeredQuestionsSelector = (state: RootState) =>
 export const shouldFocusFieldSelector = (state: RootState) =>
 	state.simulation?.shouldFocusField ?? false
 
+export const urlSelector = (state: RootState) => state.simulation?.url
+
 /**
  * Merge objectifs missings that depends on the same input field.
  *
