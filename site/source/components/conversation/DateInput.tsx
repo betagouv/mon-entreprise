@@ -30,7 +30,7 @@ export default function DateInput({
 		}
 		const [day, month, year] = val.split('/')
 
-		return `${year}-${month}-${day}`
+		return `${year}-${month}-${day}T12:00:00`
 	}
 
 	const handleDateChange = useCallback(
@@ -68,7 +68,7 @@ export default function DateInput({
 				<Suspense fallback={<DateFieldFallback />}>
 					<DateField
 						defaultSelected={
-							(missing && hideDefaultValue) || !isNaN(+dateValue)
+							(missing && hideDefaultValue) || isNaN(+dateValue)
 								? undefined
 								: dateValue
 						}

@@ -50,11 +50,12 @@ export default function DateField(props: DateFieldProps) {
 	const id = useId()
 
 	const format = 'dd/MM/y'
+	const locale = language === 'fr' ? fr : enUS
 	const { inputProps, dayPickerProps } = useInput({
 		defaultSelected,
 		format,
 		required: true,
-		locale: language === 'fr' ? fr : enUS,
+		locale,
 		fromDate: type === 'date futur' ? new Date() : new Date('1800-01-01'),
 		toDate:
 			type === 'date passé'
@@ -115,7 +116,7 @@ export default function DateField(props: DateFieldProps) {
 
 			setSelected(date)
 			if (date) {
-				const value = formatDate(date, format)
+				const value = formatDate(date, format, { locale })
 				setInputValue(value)
 				close()
 				onChange?.(value)
