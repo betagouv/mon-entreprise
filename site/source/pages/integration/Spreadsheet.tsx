@@ -14,7 +14,7 @@ export default function Spreadsheet() {
 	const { t } = useTranslation()
 
 	return (
-		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
+		<div>
 			<ScrollToTop />
 			<Meta
 				title={t('spreadsheet.title', 'Utiliser avec un tableur')}

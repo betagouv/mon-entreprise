@@ -10,9 +10,9 @@ import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
 
 import API from './API'
+import Home from './Home'
 import Iframe from './Iframe'
 import Library from './Library'
-import Options from './Options'
 import Spreadsheet from './Spreadsheet'
 
 type JobOffer = {
@@ -60,7 +60,7 @@ export default function Integration() {
 				</Banner>
 			)}
 			<Routes>
-				<Route index element={<Options />} />
+				<Route index element={<Home />} />
 				<Route path={relativeSitePaths.développeur.api} element={<API />} />
 				<Route
 					path={relativeSitePaths.développeur.iframe}

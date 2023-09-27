@@ -1,4 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
 import { ScrollToTop } from '@/components/utils/Scroll'
@@ -18,7 +19,7 @@ export default function API() {
 	const { t } = useTranslation()
 
 	return (
-		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
+		<div>
 			<ScrollToTop />
 			<Meta
 				title={t('api.title', 'Utiliser notre API REST')}
@@ -87,13 +88,22 @@ export default function API() {
 						textAlign: 'center',
 					}}
 				>
-					<iframe
-						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+					<StyledExempleIframe
 						src="https://stackblitz.com/edit/api-mon-entreprise?ctl=1&embed=1&file=main.js"
 						title="Exemple d'intégration dans un éditeur de code en ligne"
-					></iframe>
+					/>
 				</div>
 			</Trans>
 		</div>
 	)
 }
+
+export const StyledExempleIframe = styled.iframe`
+	width: 100%;
+	max-width: 1200px;
+	height: 500px;
+	border: 0;
+	margin-bottom: 2rem;
+	border-radius: 4px;
+	overflow: hidden;
+`
