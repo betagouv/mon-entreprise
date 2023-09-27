@@ -8,9 +8,10 @@ import { Code, Strong } from '@/design-system/typography'
 import { H2, H3, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ol } from '@/design-system/typography/list'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 
 import Meta from '../../components/utils/Meta'
+import { StyledExempleIframe } from './API'
 import { CasParticuliers } from './components/CasParticuliers'
 import StepByStep from './components/StepByStep'
 import illustration from './images/illustration_library.svg'
@@ -19,7 +20,7 @@ export default function Library() {
 	const { t } = useTranslation()
 
 	return (
-		<div css="iframe{margin-top: 1em; margin-bottom: 1em}">
+		<div>
 			<Meta
 				title={t('library.title', 'Librairie de calcul')}
 				description={t('library.description', 'Outils pour les développeurs')}
@@ -89,11 +90,10 @@ export default function Library() {
 						textAlign: 'center',
 					}}
 				>
-					<iframe
+					<StyledExempleIframe
 						src="https://codesandbox.io/embed/zen-keller-2dpct?fontsize=14&hidenavigation=1&theme=dark"
-						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
 						title="Exemple d'intégration sur codesandbox.io : lancement d'un calcul"
-					></iframe>
+					/>
 				</div>
 				<H2>Paramétrer le calcul</H2>
 				<Body>
@@ -156,11 +156,10 @@ export default function Library() {
 					Voici ce que donne le calcul avec l'exemple cité ci-dessus :
 				</Body>
 				<div>
-					<iframe
+					<StyledExempleIframe
 						src="https://codesandbox.io/embed/mon-entreprise-exemple-2-cev02?fontsize=14&hidenavigation=1&theme=dark"
-						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
 						title="Exemple d'intégration sur codesandbox.io : paramétrage du calcul"
-					></iframe>
+					/>
 				</div>
 				<Message type="info" icon>
 					<Body>
@@ -179,22 +178,21 @@ export default function Library() {
 					d'analyse économique ou politique. Ici, on trace le prix du travail et
 					le salaire net en fonction du brut.
 				</Body>
-				<Body css="font-style: italic; border-left: 6px solid #eee; padding-left: .6rem">
+				<SmallBody $grey>
 					On peut constater la progressivité du salaire total, qui est en
 					pourcent plus faible pour un SMIC que pour un haut revenu. Autrement
 					dit, les hauts salaires paient une partie des cotisations sociales des
 					bas salaires.
-				</Body>
+				</SmallBody>
 				<div
 					style={{
 						textAlign: 'center',
 					}}
 				>
-					<iframe
+					<StyledExempleIframe
 						src="https://codesandbox.io/embed/mon-entreprise-exemple-3-4j11c?fontsize=14&hidenavigation=1&theme=dark"
-						css="width:100%; max-width: 1200px; height:500px; border:0; border-radius: 4px; overflow:hidden;"
 						title="Exemple d'intégration sur codesandbox.io : association avec d'autres librairies"
-					></iframe>
+					/>
 				</div>
 			</Trans>
 		</div>
