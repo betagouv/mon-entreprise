@@ -22,6 +22,7 @@ if (BRANCH_NAME && IS_STAGING) {
 
 if (!import.meta.env.SSR && (IS_PRODUCTION || IS_STAGING)) {
 	init({
+		release: SENTRY_RELEASE_NAME,
 		dsn: 'https://d857393f4cfb40eebc0b9b54893bab23@sentry.incubateur.net/9',
 		integrations: [
 			new CaptureConsole({ levels: ['error'] }),
