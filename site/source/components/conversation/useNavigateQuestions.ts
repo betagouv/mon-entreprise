@@ -13,6 +13,7 @@ import {
 import {
 	answeredQuestionsSelector,
 	currentQuestionSelector,
+	urlSelector,
 	useMissingVariables,
 } from '@/store/selectors/simulationSelectors'
 
@@ -21,6 +22,7 @@ export function useNavigateQuestions(engines?: Array<Engine<DottedName>>) {
 	const engine = useEngine()
 	const nextQuestion = useNextQuestions(engines)[0]
 	const currentQuestion = useSelector(currentQuestionSelector)
+	const url = useSelector(urlSelector)
 
 	const missingVariables = useMissingVariables({ engines: engines ?? [engine] })
 	const currentQuestionIsAnswered =
@@ -44,6 +46,10 @@ export function useNavigateQuestions(engines?: Array<Engine<DottedName>>) {
 			dispatch(goToQuestion(nextQuestion))
 		}
 	}, [nextQuestion, currentQuestion])
+
+	useEffect(() => {
+		dispatch(goToQuestion(nextQuestion))
+	}, [url])
 
 	return {
 		currentQuestion: currentQuestion ?? nextQuestion,
