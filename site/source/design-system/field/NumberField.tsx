@@ -113,11 +113,15 @@ export default function NumberField(props: NumberFieldProps) {
 			>
 				<StyledNumberInput
 					{...(omit(
-						props as typeof props & { dottedName?: string },
+						props as typeof props & {
+							dottedName?: string
+							hideDefaultValue?: boolean
+						},
 						'label',
 						'small',
 						'formatOptions',
 						'displayedUnit',
+						'hideDefaultValue',
 						'dottedName'
 					) as HTMLAttributes<HTMLInputElement>)}
 					{...inputWithCursorHandlingProps}
