@@ -404,6 +404,10 @@ assistants:
       cta: Visiter le site
       title: Voir vos données publiques
 au bout de 10 ans: au bout de 10 ans
+badnews:
+  body: <0>Important :</0> La mise à jour des simulateurs et le support
+    utilisateur ne sont plus assurés. <3>En savoir plus.</3>
+  label: Information importante
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
   être présentes.</6></0>"
@@ -644,6 +648,10 @@ explications:
 feedback:
   beta-testeur: Pour continuer à donner votre avis et accéder aux nouveautés en
     avant-première, <2>inscrivez-vous sur la liste des beta-testeur</2>
+  disabled:
+    body: <0>Suite à l'arrêt de l'équipe Mon-Entreprise, nous ne sommes plus en
+      mesure de traiter vos retours, le formulaire est donc désactivé pour le
+      moment.</0>
   error:
     description: Le message n’a pas pu être envoyé (status code {{statusCode}}).
       Veuillez réessayer ou nous contacter par mail à l’adresse
