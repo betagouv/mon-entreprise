@@ -26,10 +26,10 @@ const data = rawCSV
 		+a[INDEX.CODE_COMMUNE] < +b[INDEX.CODE_COMMUNE]
 			? -1
 			: +a[INDEX.CODE_COMMUNE] > +b[INDEX.CODE_COMMUNE]
-				? 1
-				: a[INDEX.DATE_EFFET] > b[INDEX.DATE_EFFET]
-					? -1
-					: 1
+			? 1
+			: a[INDEX.DATE_EFFET] > b[INDEX.DATE_EFFET]
+			? -1
+			: 1
 	)
 	.reduce(
 		(acc, r) => ({
