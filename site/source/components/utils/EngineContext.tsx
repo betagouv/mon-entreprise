@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteFromSituation } from '@/store/actions/actions'
 import {
 	companySituationSelector,
+	configObjectifsSelector,
 	configSituationSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
@@ -186,7 +187,14 @@ export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
 }
 
 export function useInversionFail() {
-	return useContext(EngineContext).inversionFail()
+	const engine = useEngine()
+	const objectifs = useSelector(configObjectifsSelector).flatMap(
+		(objectif) => engine.evaluate(objectif).nodeValue
+	)
+	const inversionFail =
+		engine.inversionFail() && objectifs.some((o) => o === undefined)
+
+	return inversionFail
 }
 
 export type EvaluatedRule = EvaluatedNode &

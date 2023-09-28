@@ -22,6 +22,11 @@
 <0>Activité mixte</0>: <0>Activité mixte</0>
 <0>Impôt sur le revenu</0> (IR): <0>Impôt sur le revenu</0> (IR)
 <0>Impôt sur les sociétés</0> (IS): <0>Impôt sur les sociétés</0> (IS)
+<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vrai vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
+  <0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas
+  possible d'obtenir ce montant dans la vrai vie à cause d'un effet de seuil
+  dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en
+  modifiant la valeur renseignée.</1>
 <0>Versement libératoire</0> de l'impôt sur le revenu: <0>Versement libératoire</0> de l'impôt sur le revenu
 API REST de simulation: API REST de simulation
 API REST, en savoir plus sur l'API REST: API REST, en savoir plus sur l'API REST
@@ -1704,12 +1709,6 @@ simulateurs:
       urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
         sociale (assurance maladie, allocations familiales, dépendance<1> et
         retraite <3> de base</3></1>).
-  inversionFail: >-
-    Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de
-    seuil dans le calcul des cotisations.
-
-
-    Nous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
