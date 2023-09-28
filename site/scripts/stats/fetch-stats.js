@@ -328,6 +328,7 @@ async function fetchZammadUserAnswersStats() {
 	return answer.index.count
 }
 
+// eslint-disable-next-line no-unused-vars
 async function fetchAllUserAnswerStats() {
 	const zammadAnswersCount = await fetchZammadUserAnswersStats()
 	const cripsAnswersCount = await fetchCrispAnsweredConversationsLastMonth()
@@ -424,6 +425,7 @@ async function fetchZammadUserFeedbackIssues() {
 	)
 }
 
+// eslint-disable-next-line no-unused-vars
 async function fetchAllUserFeedbackIssues() {
 	const crispFeedbackIssues = await fetchCrispUserFeedbackIssues()
 	const zammadFeedbackIssues = await fetchZammadUserFeedbackIssues()
@@ -510,14 +512,14 @@ if (
 		visitesJours,
 		visitesMois,
 		rawSatisfaction,
-		retoursUtilisateurs,
-		nbAnswersLast30days,
+		// retoursUtilisateurs,
+		// nbAnswersLast30days,
 	] = await Promise.all([
 		fetchDailyVisits(),
 		fetchMonthlyVisits(),
 		fetchApi(buildSatisfactionQuery),
-		fetchAllUserFeedbackIssues(),
-		fetchAllUserAnswerStats(),
+		// fetchAllUserFeedbackIssues(),
+		// fetchAllUserAnswerStats(),
 	])
 	const satisfaction = uniformiseData(flattenPage(rawSatisfaction)).map(
 		(page) => {
@@ -538,7 +540,8 @@ if (
 			])
 		),
 		satisfaction: mergePreviousData(baseData.satisfaction, satisfaction),
-		retoursUtilisateurs,
-		nbAnswersLast30days,
+		// We use old data because we don't have account on Zammad and Crisp anymore
+		retoursUtilisateurs: baseData.retoursUtilisateurs,
+		nbAnswersLast30days: baseData.nbAnswersLast30days,
 	})
 }
