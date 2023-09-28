@@ -1,7 +1,6 @@
 import { ErrorBoundary } from '@sentry/react'
-import { FallbackRender } from '@sentry/react/types/errorboundary'
 import rules from 'modele-social'
-import { ComponentProps, StrictMode, useMemo } from 'react'
+import { StrictMode, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import { css, styled } from 'styled-components'
@@ -30,7 +29,7 @@ import Documentation from '@/pages/Documentation'
 import Iframes from '@/pages/iframes'
 import Integration from '@/pages/integration/index'
 import Nouveautés from '@/pages/nouveautés/index'
-import Offline from '@/pages/Offline'
+import { CatchOffline } from '@/pages/Offline'
 import Plan from '@/pages/Plan'
 import Simulateurs from '@/pages/simulateurs'
 import SimulateursEtAssistants from '@/pages/simulateurs-et-assistants'
@@ -65,7 +64,9 @@ export default function Root({
 			<EngineProvider value={engine}>
 				<Provider basename={basename}>
 					<Redirections>
-						<Router />
+						<ErrorBoundary fallback={CatchOffline}>
+							<Router />
+						</ErrorBoundary>
 					</Redirections>
 				</Provider>
 			</EngineProvider>
@@ -84,14 +85,6 @@ const Router = () => {
 			<Route path="*" element={<App />} />
 		</Routes>
 	)
-}
-
-const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
-	if (error.message.includes('dynamically imported module')) {
-		return <Offline />
-	} else {
-		throw error
-	}
 }
 
 const App = () => {
@@ -133,56 +126,51 @@ const App = () => {
 					{t('Aller directement au pied de page')}
 				</a>
 				<Container>
-					<ErrorBoundary fallback={CatchOffline}>
-						<Routes>
-							<Route index element={<Landing />} />
+					<Routes>
+						<Route index element={<Landing />} />
 
-							<Route
-								path={relativeSitePaths.assistants.index + '/*'}
-								element={<Assistants />}
-							/>
-							<Route
-								path={relativeSitePaths.simulateurs.index + '/*'}
-								element={<Simulateurs />}
-							/>
-							<Route
-								path={relativeSitePaths.simulateursEtAssistants + '/*'}
-								element={<SimulateursEtAssistants />}
-							/>
-							<Route
-								path={relativeSitePaths.documentation.index + '/*'}
-								element={
-									<Documentation
-										documentationPath={documentationPath}
-										engine={engine}
-									/>
-								}
-							/>
-							<Route
-								path={relativeSitePaths.développeur.index + '/*'}
-								element={<Integration />}
-							/>
-							<Route
-								path={relativeSitePaths.nouveautés.index + '/*'}
-								element={<Nouveautés />}
-							/>
-							<Route path={relativeSitePaths.stats} element={<Stats />} />
-							<Route path={relativeSitePaths.budget} element={<Budget />} />
-							<Route
-								path={relativeSitePaths.accessibilité}
-								element={<Accessibilité />}
-							/>
+						<Route
+							path={relativeSitePaths.assistants.index + '/*'}
+							element={<Assistants />}
+						/>
+						<Route
+							path={relativeSitePaths.simulateurs.index + '/*'}
+							element={<Simulateurs />}
+						/>
+						<Route
+							path={relativeSitePaths.simulateursEtAssistants + '/*'}
+							element={<SimulateursEtAssistants />}
+						/>
+						<Route
+							path={relativeSitePaths.documentation.index + '/*'}
+							element={
+								<Documentation
+									documentationPath={documentationPath}
+									engine={engine}
+								/>
+							}
+						/>
+						<Route
+							path={relativeSitePaths.développeur.index + '/*'}
+							element={<Integration />}
+						/>
+						<Route
+							path={relativeSitePaths.nouveautés.index + '/*'}
+							element={<Nouveautés />}
+						/>
+						<Route path={relativeSitePaths.stats} element={<Stats />} />
+						<Route path={relativeSitePaths.budget} element={<Budget />} />
+						<Route
+							path={relativeSitePaths.accessibilité}
+							element={<Accessibilité />}
+						/>
 
-							<Route
-								path="/dev/integration-test"
-								element={<IntegrationTest />}
-							/>
+						<Route path="/dev/integration-test" element={<IntegrationTest />} />
 
-							<Route path={relativeSitePaths.plan} element={<Plan />} />
+						<Route path={relativeSitePaths.plan} element={<Plan />} />
 
-							<Route path="*" element={<Page404 />} />
-						</Routes>
-					</ErrorBoundary>
+						<Route path="*" element={<Page404 />} />
+					</Routes>
 				</Container>
 			</main>
 
