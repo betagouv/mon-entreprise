@@ -1,5 +1,6 @@
 # Journal des modifications
-
+## 1.8.1
+Titre restaurants : Met à jour le montant unitaire exonéré de cotisation pour 2023
 
 ## 1.8.0
 Exporte les règles au format json pour optimiser le chargement

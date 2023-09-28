@@ -441,9 +441,9 @@ salarié . rémunération . net . à payer avant impôt: 1521"
 exports[`calculate simulations-salarié > frais pro - titres restaurant 2`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4298
-salarié . rémunération . net . payé après impôt: 1946
-salarié . rémunération . net . à payer avant impôt: 2136"
+salarié . coût total employeur: 4291
+salarié . rémunération . net . payé après impôt: 1952
+salarié . rémunération . net . à payer avant impôt: 2140"
 `;
 
 exports[`calculate simulations-salarié > frais pro - titres restaurant 3`] = `
