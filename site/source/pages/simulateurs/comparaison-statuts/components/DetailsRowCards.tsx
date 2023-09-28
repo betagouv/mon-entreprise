@@ -1,12 +1,14 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { ReactNode } from 'react'
+import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import Value, { Condition, WhenNotApplicable } from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
+import { Strong } from '@/design-system/typography'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import { getBestOption, OptionType } from '../utils'
@@ -121,50 +123,64 @@ const DetailsRowCards = ({
 									</WhenNotApplicable>
 								)}
 								{expressionOrDottedName && (
-									<Condition
-										expression={expressionOrDottedName}
-										engine={statusObject.engine}
-									>
-										<StyledDiv>
-											<span>
-												<Value
-													linkToRule={false}
-													expression={expressionOrDottedName}
-													engine={statusObject.engine}
-													precision={0}
-													unit={unit}
-													displayedUnit={displayedUnit}
-												/>
-												{label && ' '}
-												{label && label}
-											</span>
-											{dottedName && (
-												<StyledRuleLink
-													documentationPath={`${statusObject.name}`}
-													dottedName={dottedName}
-													engine={statusObject.engine}
-												>
-													<HelpIcon />
-												</StyledRuleLink>
+									<>
+										<Condition
+											expression={{ 'est défini': expressionOrDottedName }}
+											engine={statusObject.engine}
+										>
+											<StyledDiv>
+												<span>
+													<Value
+														linkToRule={false}
+														expression={expressionOrDottedName}
+														engine={statusObject.engine}
+														precision={0}
+														unit={unit}
+														displayedUnit={displayedUnit}
+													/>
+													{label && ' '}
+													{label && label}
+												</span>
+												{dottedName && (
+													<StyledRuleLink
+														documentationPath={`${statusObject.name}`}
+														dottedName={dottedName}
+														engine={statusObject.engine}
+													>
+														<HelpIcon />
+													</StyledRuleLink>
+												)}
+												{warning?.(statusObject.engine)}
+											</StyledDiv>
+											{evolutionDottedName && (
+												<Precisions>
+													<Value
+														linkToRule={false}
+														expression={evolutionDottedName}
+														engine={statusObject.engine}
+														precision={0}
+														unit={unit}
+													/>{' '}
+													{evolutionLabel}
+												</Precisions>
 											)}
-											{warning?.(statusObject.engine)}
-										</StyledDiv>
-										{evolutionDottedName && (
-											<Precisions>
-												<Value
-													linkToRule={false}
-													expression={evolutionDottedName}
-													engine={statusObject.engine}
-													precision={0}
-													unit={unit}
-												/>{' '}
-												{evolutionLabel}
-											</Precisions>
-										)}
-										{!evolutionDottedName && evolutionLabel && (
-											<Precisions>{evolutionLabel}</Precisions>
-										)}
-									</Condition>
+											{!evolutionDottedName && evolutionLabel && (
+												<Precisions>{evolutionLabel}</Precisions>
+											)}
+										</Condition>
+
+										<Condition
+											expression={{ 'est non défini': expressionOrDottedName }}
+											engine={statusObject.engine}
+										>
+											<StyledSmall>
+												<Trans>
+													Le montant demandé n'est{' '}
+													<Strong>pas calculable...</Strong>
+												</Trans>
+											</StyledSmall>
+										</Condition>
+									</>
 								)}
 							</StyledBody>
 						</StatusCard>
@@ -174,7 +190,11 @@ const DetailsRowCards = ({
 		</Grid>
 	)
 }
-
+const StyledSmall = styled.small`
+	color: ${({ theme }) => theme.colors.extended.grey[600]};
+	font-weight: normal;
+	font-size: 80%;
+`
 const StyledRuleLink = styled(RuleLink)`
 	display: inline-flex;
 	margin-left: ${({ theme }) => theme.spacings.xxs};

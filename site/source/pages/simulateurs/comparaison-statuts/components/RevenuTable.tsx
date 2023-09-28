@@ -82,7 +82,7 @@ export default function RevenuTable({
 							</th>
 							{namedEngines.map(({ name, engine }) => (
 								<td key={name}>
-									<StyledStatutTag statut={name} showIcon={false}>
+									<StyledTag color="grey">
 										<Value
 											expression="dirigeant . rémunération . cotisations"
 											engine={engine}
@@ -91,7 +91,7 @@ export default function RevenuTable({
 											displayedUnit="€"
 											linkToRule={false}
 										/>
-									</StyledStatutTag>
+									</StyledTag>
 								</td>
 							))}
 						</tr>
@@ -111,7 +111,7 @@ export default function RevenuTable({
 							</th>
 							{namedEngines.map(({ name, engine }) => (
 								<td key={name}>
-									<StyledStatutTag statut={name} showIcon={false}>
+									<StyledTag color="grey">
 										<Strong>
 											<Value
 												expression="dirigeant . rémunération . net"
@@ -122,7 +122,7 @@ export default function RevenuTable({
 												linkToRule={false}
 											/>
 										</Strong>
-									</StyledStatutTag>
+									</StyledTag>
 								</td>
 							))}
 						</tr>
@@ -157,7 +157,7 @@ export default function RevenuTable({
 							{namedEngines.map(({ name, engine }) => (
 								<td key={name}>
 									{/* // TODO : color */}
-									<StyledStatutTag statut={name} showIcon={false}>
+									<StyledTag color="grey">
 										<Value
 											expression="dirigeant . rémunération . impôt"
 											engine={engine}
@@ -166,7 +166,7 @@ export default function RevenuTable({
 											displayedUnit="€"
 											linkToRule={false}
 										/>
-									</StyledStatutTag>
+									</StyledTag>
 								</td>
 							))}
 						</tr>
@@ -186,18 +186,16 @@ export default function RevenuTable({
 							</th>
 							{namedEngines.map(({ name, engine }) => (
 								<td key={name}>
-									<StyledStatutTag statut={name} showIcon={false}>
-										<Strong>
-											<Value
-												expression="dirigeant . rémunération . net . après impôt"
-												engine={engine}
-												unit="€/an"
-												precision={0}
-												displayedUnit="€"
-												linkToRule={false}
-											/>
-										</Strong>
-									</StyledStatutTag>
+									<StyledTag color="grey">
+										<Value
+											expression="dirigeant . rémunération . net . après impôt"
+											engine={engine}
+											unit="€/an"
+											precision={0}
+											displayedUnit="€"
+											linkToRule={false}
+										/>
+									</StyledTag>
 								</td>
 							))}
 						</tr>
