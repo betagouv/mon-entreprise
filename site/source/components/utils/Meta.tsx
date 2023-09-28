@@ -66,14 +66,10 @@ export default function Meta({
 			<meta
 				property="og:image"
 				content={
-					ogImage
-						? ogImage.startsWith('http')
-							? ogImage
-							: (typeof window !== 'undefined' ? window.location.host : '') +
-							  ogImage
-						: i18n.language === 'fr'
+					ogImage ??
+					(i18n.language === 'fr'
 						? '/assets/images/logo-monentreprise.svg'
-						: '/assets/images/logo-mycompany-share.svg'
+						: '/assets/images/logo-mycompany-share.svg')
 				}
 			/>
 		</Helmet>
