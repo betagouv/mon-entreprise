@@ -1,7 +1,7 @@
 import { ErrorBoundary } from '@sentry/react'
 import rules from 'modele-social'
 import { StrictMode, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
@@ -14,7 +14,11 @@ import {
 	useEngine,
 	useSetupSafeSituation,
 } from '@/components/utils/EngineContext'
-import { Container } from '@/design-system/layout'
+import { Message } from '@/design-system'
+import { Emoji } from '@/design-system/emoji'
+import { Container, Spacing } from '@/design-system/layout'
+import { Link } from '@/design-system/typography/link'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
@@ -65,12 +69,48 @@ export default function Root({
 				<Provider basename={basename}>
 					<Redirections>
 						<ErrorBoundary fallback={CatchOffline}>
+							<BadNews />
 							<Router />
 						</ErrorBoundary>
 					</Redirections>
 				</Provider>
 			</EngineProvider>
 		</StrictMode>
+	)
+}
+
+const BadNews = () => {
+	const { t } = useTranslation()
+	const { absoluteSitePaths } = useSitePaths()
+
+	return (
+		<aside
+			aria-label={t('badnews.label', 'Information importante')}
+			style={{
+				display: 'flex',
+				justifyContent: 'center',
+				position: 'relative',
+				top: '0.25rem',
+				zIndex: 2,
+			}}
+		>
+			<Message
+				className="print-hidden"
+				type="error"
+				icon={<Emoji emoji="💔" />}
+				mini
+				border={false}
+				style={{ margin: 0 }}
+			>
+				<Body>
+					<Trans i18nKey="badnews.body">
+						<strong>Important :</strong> La mise à jour des simulateurs et le
+						support utilisateur ne sont plus assurés.{' '}
+						<Link to={absoluteSitePaths.nouveautés.index}>En savoir plus.</Link>
+					</Trans>
+				</Body>
+			</Message>
+		</aside>
 	)
 }
 
@@ -81,7 +121,16 @@ const Router = () => {
 
 	return (
 		<Routes>
-			<Route path="/iframes/*" element={<Iframes />} />
+			<Route
+				path="/iframes/*"
+				element={
+					<>
+						{/* Spacing added for BadNews */}
+						<Spacing xs />
+						<Iframes />
+					</>
+				}
+			/>
 			<Route path="*" element={<App />} />
 		</Routes>
 	)
