@@ -39,7 +39,6 @@ export default defineConfig(({ command, mode }) => ({
 						return 'modele-social'
 					}
 				},
-				entryFileNames: '[name].js',
 				chunkFileNames: (chunkInfo) => {
 					if (chunkInfo.isDynamicEntry) {
 						return 'assets/lazy_[name].[hash].js'
