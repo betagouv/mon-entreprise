@@ -1,10 +1,14 @@
+import { lazy, Suspense } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
+import { Loader } from '@/design-system/icons/Loader'
 
-import SearchRulesAndSimulators from './search/SearchRulesAndSimulators'
+const LazySearchRulesAndSimulators = lazy(
+	() => import('./search/SearchRulesAndSimulators')
+)
 
 export default function SearchButton() {
 	const { t } = useTranslation()
@@ -44,7 +48,15 @@ export default function SearchButton() {
 			)}
 		>
 			{(closePopover) => (
-				<SearchRulesAndSimulators closePopover={closePopover} />
+				<Suspense
+					fallback={
+						<Container style={{ height: '300px', alignItems: 'center' }}>
+							<Loader />
+						</Container>
+					}
+				>
+					<LazySearchRulesAndSimulators closePopover={closePopover} />
+				</Suspense>
 			)}
 		</PopoverWithTrigger>
 	)
@@ -59,4 +71,9 @@ const StyledButton = styled(Button)`
 const StyledIcon = styled.svg`
 	height: ${({ theme }) => theme.spacings.md};
 	margin-right: ${({ theme }) => theme.spacings.xs};
+`
+
+const Container = styled.div`
+	display: flex;
+	justify-content: center;
 `
