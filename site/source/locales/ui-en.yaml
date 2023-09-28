@@ -382,6 +382,10 @@ assistants:
       cta: Visit the site
       title: View your public data
 au bout de 10 ans: after 10 years
+badnews:
+  body: <0>Important notice:</0> Simulator updates and user support are no longer
+    available. <3>To find out more, click here.</3>
+  label: Important information
 betawarning: "<0><0>This tool is in beta version</0>: we are working on
   <3>validating the information and calculations</3>, but <6>errors may</6>
   still occur.</0>"
@@ -613,6 +617,10 @@ explications:
 feedback:
   beta-testeur: To continue giving your opinion and previewing new products,
     <2>sign up for the beta tester list</2>
+  disabled:
+    body: <0>Due to the discontinuation of the Mon-Entreprise team, we are no longer
+      able to process your feedback, so the form is deactivated for the time
+      being.</0>
   error:
     description: The message could not be sent (status code {{statusCode}}). Please
       try again or contact us by e-mail at
