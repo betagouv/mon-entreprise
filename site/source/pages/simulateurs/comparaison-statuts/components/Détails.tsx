@@ -62,6 +62,7 @@ const Détails = ({
 
 						<HelpButtonWithPopover
 							type="info"
+							bigPopover
 							title={t('Calculer vos revenus')}
 						>
 							<RevenuTable namedEngines={namedEngines} />
@@ -72,39 +73,51 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/mois"
 						footer={(engine) => (
-							<Ul>
-								<Li>
-									<Trans i18nKey="">
-										Soit{' '}
-										<Strong>
-											<Value
-												engine={engine}
-												expression="dirigeant . rémunération . net"
-												displayedUnit="€"
-												unit="€/mois"
-												precision={0}
-												linkToRule={false}
-											/>
-										</Strong>{' '}
-										avant impôts
-									</Trans>
-								</Li>{' '}
-								<Li>
-									<Trans i18nKey="">
-										Avec{' '}
-										<Strong>
-											<Value
-												engine={engine}
-												expression=" dirigeant . rémunération . cotisations / dirigeant . rémunération . totale"
-												unit="%"
-												precision={0}
-												linkToRule={false}
-											/>
-										</Strong>{' '}
-										de cotisations sociales
-									</Trans>
-								</Li>
-							</Ul>
+							<Condition
+								expression={{
+									'est défini': 'dirigeant . rémunération . net . après impôt',
+								}}
+								engine={engine}
+							>
+								<Ul>
+									<Li>
+										<Trans i18nKey="">
+											Soit{' '}
+											<Strong>
+												<Value
+													engine={engine}
+													expression="dirigeant . rémunération . net"
+													displayedUnit="€"
+													unit="€/mois"
+													precision={0}
+													linkToRule={false}
+												/>
+											</Strong>{' '}
+											avant impôts
+										</Trans>
+									</Li>{' '}
+									<Condition
+										engine={engine}
+										expression="dirigeant . rémunération . totale > 0"
+									>
+										<Li>
+											<Trans i18nKey="">
+												Avec{' '}
+												<Strong>
+													<Value
+														engine={engine}
+														expression="dirigeant . rémunération . cotisations / dirigeant . rémunération . totale"
+														unit="%"
+														precision={0}
+														linkToRule={false}
+													/>
+												</Strong>{' '}
+												de cotisations sociales
+											</Trans>
+										</Li>
+									</Condition>
+								</Ul>
+							</Condition>
 						)}
 						warning={(engine) => (
 							<Condition
