@@ -1,13 +1,15 @@
 import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { CloseButton } from '@/design-system/buttons'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Emoji } from '@/design-system/emoji'
+import { Strong } from '@/design-system/typography'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 
@@ -51,18 +53,7 @@ export default function Notifications() {
 	const dispatch = useDispatch()
 
 	const messages: Array<Notification> = (
-		inversionFail
-			? [
-					{
-						dottedName: 'inversion fail',
-						description: t(
-							'simulateurs.inversionFail',
-							'Le montant saisi abouti à un résultat impossible. Cela est dû à un effet de seuil dans le calcul des cotisations.\n\nNous vous invitons à réessayer en modifiant légèrement le montant renseigné (quelques euros de plus par exemple).'
-						),
-						sévérité: 'avertissement',
-					} as Notification,
-			  ]
-			: (getNotifications(engine) as Array<Notification>)
+		getNotifications(engine) as Array<Notification>
 	).filter(({ dottedName }) => !hiddenNotifications?.includes(dottedName))
 
 	const isMultiline = (str: string) => str.trim().split('\n').length > 1
@@ -74,6 +65,22 @@ export default function Notifications() {
 			}}
 		>
 			<Appear>
+				{inversionFail && (
+					<Message icon={<StyledEmoji emoji="🤯" />} type="info">
+						<Trans i18nkey="simulateurs.inversionFail">
+							<Body>
+								Le montant demandé n'est <Strong>pas calculable...</Strong>
+							</Body>
+
+							<SmallBody $grey>
+								Il n'est pas possible d'obtenir ce montant dans la vrai vie à
+								cause d'un effet de seuil dans le calcul des cotisations ou de
+								l'impôt. Vous pouvez réessayer en modifiant la valeur
+								renseignée.
+							</SmallBody>
+						</Trans>
+					</Message>
+				)}
 				{messages.map(({ sévérité, dottedName, résumé, description }) => (
 					<Message
 						icon
@@ -120,4 +127,8 @@ const Absolute = styled.div<{ $isMultiline: boolean }>`
 		margin-left: ${({ theme }) => theme.spacings.xxs};
 		margin-bottom: ${({ theme }) => theme.spacings.xxs};
 	}
+`
+
+const StyledEmoji = styled(Emoji)`
+	transform: scale(1.5);
 `
