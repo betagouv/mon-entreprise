@@ -58,21 +58,21 @@ export default function BadNews() {
 									<Strong>depuis avril</Strong> ;
 								</Li>
 								<Li>
-									Le budget du développement du site, financé par l'Urssaf à
-									100%, est en{' '}
+									Le budget de développement du site, financé en totalité par
+									l'Urssaf, est en{' '}
 									<Link to={absoluteSitePaths.budget}>
-										très nette baisse pour 2023
+										forte baisse pour 2023
 									</Link>
-									. Ce, malgré le{' '}
+									, alors que{' '}
 									<Link to={absoluteSitePaths.stats}>
-										succès manifeste du site
-									</Link>{' '}
-									;
+										son usage est en forte hausse
+									</Link>
+									.
 								</Li>
 								<Li>
 									Ce budget n'est <Strong>pas suffisant</Strong> pour faire
 									travailler l'équipe sur l'année complète et continuer à
-									développer le produit ;
+									développer le produit.
 								</Li>
 							</Ul>
 
@@ -84,10 +84,10 @@ export default function BadNews() {
 							<StyledImg src={missedChance} aria-hidden alt="" />
 							<SmallBody $grey>
 								P.S de l'équipe : On vous le dit sincèrement, ça été très dur de
-								prendre cette décision. On aurait tellement aimé continuer à
-								faire évoluer ce site comme on l'a fait toutes ces années. On
-								est super reconnaissants de voir plus de 500 000 d'entre vous
-								utiliser nos outils chaque mois !
+								prendre cette décision. On aurait aimé continuer à faire évoluer
+								ce site comme on l'a fait toutes ces années. Quoi qu'il
+								advienne, on part très honoré de voir plus de 500 000 d'entre
+								vous utiliser nos outils chaque mois !
 							</SmallBody>
 						</PopoverWithTrigger>
 					</Trans>
