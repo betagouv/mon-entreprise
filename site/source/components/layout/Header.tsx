@@ -11,7 +11,7 @@ import { useDarkMode } from '@/hooks/useDarkMode'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useSitePaths } from '@/sitePaths'
 
-import BadNews from '../BadNews'
+import { BadNews } from '../BadNews'
 import { Appear } from '../ui/animate'
 import BrowserOnly from '../utils/BrowserOnly'
 import { Menu } from './Menu'
@@ -27,64 +27,71 @@ export default function Header() {
 	const [darkMode, setDarkMode] = useDarkMode()
 
 	return (
-		<header
-			role="banner"
-			style={{
-				zIndex: '1',
-			}}
-		>
-			<a href={`${fullURL}#main`} className="skip-link print-hidden">
-				{t('Aller au contenu principal')}
-			</a>
-			<Container>
-				<StyledHeader>
-					<Link
-						to={absoluteSitePaths.index}
-						aria-label={t("URSSAF Mon entreprise, accéder à la page d'accueil")}
-					>
-						<StyledLogo>
-							<Logo />
-						</StyledLogo>
-					</Link>
+		<>
+			<header
+				role="banner"
+				style={{
+					zIndex: '1',
+				}}
+			>
+				<a href={`${fullURL}#main`} className="skip-link print-hidden">
+					{t('Aller au contenu principal')}
+				</a>
+				<Container>
+					<StyledHeader>
+						<Link
+							to={absoluteSitePaths.index}
+							aria-label={t(
+								"URSSAF Mon entreprise, accéder à la page d'accueil"
+							)}
+						>
+							<StyledLogo>
+								<Logo />
+							</StyledLogo>
+						</Link>
 
-					<div style={{ flex: 1 }} />
+						<div style={{ flex: 1 }} />
 
-					<div
-						style={{
-							display: 'flex',
-							alignItems: 'center',
-							marginRight: '1rem',
-						}}
-					>
-						<Emoji emoji="☀️" aria-hidden />
-						<Switch
-							isSelected={darkMode}
-							onChange={setDarkMode}
-							role="checkbox"
-							aria-label={
-								darkMode
-									? t('navbar.deactivate-darkmode', 'Désactiver le mode sombre')
-									: t('navbar.activate-darkmode', 'Activer le mode sombre')
-							}
-						/>
-						<Emoji emoji="🌙" aria-hidden />
-					</div>
+						<div
+							style={{
+								display: 'flex',
+								alignItems: 'center',
+								marginRight: '1rem',
+							}}
+						>
+							<Emoji emoji="☀️" aria-hidden />
+							<Switch
+								isSelected={darkMode}
+								onChange={setDarkMode}
+								role="checkbox"
+								aria-label={
+									darkMode
+										? t(
+												'navbar.deactivate-darkmode',
+												'Désactiver le mode sombre'
+										  )
+										: t('navbar.activate-darkmode', 'Activer le mode sombre')
+								}
+							/>
+							<Emoji emoji="🌙" aria-hidden />
+						</div>
 
-					{i18n.language === 'fr' && <SearchButton />}
+						{i18n.language === 'fr' && <SearchButton />}
 
-					<Menu />
-				</StyledHeader>
-				<BadNews />
+						<Menu />
+					</StyledHeader>
+					<BadNews />
 
-				<BrowserOnly>
-					{i18n.language === 'fr' && (
-						<Appear>
-							<NewsBannerWrapper />
-						</Appear>
-					)}
-				</BrowserOnly>
-			</Container>
-		</header>
+					<BrowserOnly>
+						{i18n.language === 'fr' && (
+							<Appear>
+								<NewsBannerWrapper />
+							</Appear>
+						)}
+					</BrowserOnly>
+				</Container>
+			</header>
+		</>
 	)
 }
 

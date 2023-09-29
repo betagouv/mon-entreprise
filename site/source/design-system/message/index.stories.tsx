@@ -1,10 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { styled } from 'styled-components'
 
 import { Message } from '@/design-system'
 
-import { Emoji } from '../emoji'
-import { Strong } from '../typography'
 import { Body } from '../typography/paragraphs'
 
 const meta: Meta<typeof Message> = {
@@ -48,25 +45,3 @@ export const Alert: Story = {
 	),
 	args: { icon: true },
 }
-
-export const MessageWithCustomIcon: Story = {
-	render: (args) => (
-		<Message {...args}>
-			<Body>
-				<StyledStrong>Cet outil est en version bêta</StyledStrong> : nous
-				travaillons à <Strong>valider les informations et les calculs</Strong>,
-				mais des <Strong>erreurs peuvent être présentes.</Strong>
-			</Body>
-		</Message>
-	),
-	args: {
-		type: 'info',
-		icon: <Emoji emoji="🚧" />,
-		border: false,
-		mini: true,
-	},
-}
-
-const StyledStrong = styled(Strong)`
-	color: ${({ theme }) => theme.colors.extended.info[600]};
-`

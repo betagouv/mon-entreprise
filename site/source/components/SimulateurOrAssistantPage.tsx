@@ -20,7 +20,6 @@ import { Merge } from '@/types/utils'
 
 import { NextSteps } from '../pages/simulateurs/NextSteps'
 import { TrackChapter } from './ATInternetTracking'
-import BetaBanner from './BetaBanner'
 
 export default function SimulateurOrAssistantPage() {
 	const { currentSimulatorData } = useCurrentSimulatorData()
@@ -81,7 +80,7 @@ export default function SimulateurOrAssistantPage() {
 				/>
 			)}
 
-			{beta && <BetaBanner />}
+			{/* {beta && <BetaBanner />} */}
 
 			{title && !inIframe && (
 				<>
