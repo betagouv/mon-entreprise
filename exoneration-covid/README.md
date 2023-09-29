@@ -1,4 +1,5 @@
 # Covid : exonération de cotisation sociale pour les indépendants
+***Archivé***
 
 Ce paquet contient les règles [publicodes](https://publi.codes) utilisées sur https://mon-entreprise.urssaf.fr pour le calcul de l'exonération covid 2021.
 

@@ -16,24 +16,19 @@
 	],
 	"scripts": {
 		"scalingo-postbuild": "echo \"$APP_DIR\" ; CI=true ; yarn test:type && yarn \"build:$APP_DIR\" && yarn workspaces focus \"$APP_DIR\" --production",
-		"build:api": "yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test",
-		"build:server": "yarn workspaces focus server && yarn workspace server run build",
 		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
 		"lint:eslint": "NODE_OPTIONS='--max-old-space-size=4096' eslint .",
 		"lint:eslint:fix": "yarn lint:eslint --fix",
 		"lint:prettier": "yarn run prettier --check \"**/*.{js,jsx,ts,tsx,yaml,yml}\"",
 		"lint:prettier:fix": "yarn lint:prettier --write",
 		"lint:fix": "yarn lint:eslint:fix ; yarn lint:prettier:fix",
-		"lint:quiet": "yarn lint:eslintrc && yarn lint:eslint --quiet && yarn lint:prettier",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
 		"postinstall": "yarn workspaces foreach -piv --exclude site run prepack",
 		"test": "CI=true yarn workspaces foreach run test",
 		"test:type": "yarn workspaces foreach -pi run tsc --skipLibCheck --noEmit",
 		"clean": "yarn workspaces foreach run clean && rimraf node_modules",
-		"start": "yarn workspaces foreach -piv --exclude site run start & yarn workspace site run start",
-		"moso:up": "yarn workspace modele-social up && yarn workspace exoneration-covid up && yarn workspace site upgrade modele-social",
-		"i18n:check": "yarn workspace site i18n:check",
-		"i18n:translate": "yarn workspace site i18n:translate"
+		"build:api": "yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test",
+		"build:server": "yarn workspaces focus server && yarn workspace server run build"
 	},
 	"devDependencies": {
 		"@actions/core": "^1.10.1",
