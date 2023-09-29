@@ -186,11 +186,13 @@ export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
 	}
 }
 
-export function useInversionFail() {
+export function useInversionFail(engines?: Array<Engine<DottedName>>) {
 	const engine = useEngine()
-	const objectifs = useSelector(configObjectifsSelector).flatMap(
-		(objectif) => engine.evaluate(objectif).nodeValue
+	const enginesToUse = engines ?? [engine]
+	const objectifs = useSelector(configObjectifsSelector).flatMap((objectif) =>
+		enginesToUse.map((e) => e.evaluate(objectif).nodeValue)
 	)
+
 	const inversionFail =
 		engine.inversionFail() && objectifs.some((o) => o === undefined)
 
