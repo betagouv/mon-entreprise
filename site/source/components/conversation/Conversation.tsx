@@ -187,57 +187,59 @@ export default function Conversation({
 									</SeeAnswersButton>
 								</Grid>
 							</Grid>
-							<Notifications />
+							<Notifications engines={engines} />
 						</form>
 						<QuickLinks />
 					</FromTop>
 				) : (
-					<div style={{ textAlign: 'center' }}>
-						{firstRenderDone && <TrackPage name="simulation terminée" />}
-						<H3 as="h2">
-							<Emoji emoji="🌟" />{' '}
-							<Trans i18nKey="simulation-end.title">
-								Vous avez complété cette simulation
-							</Trans>
-						</H3>
-						<Body>
-							{customEndMessages || (
-								<Trans i18nKey="simulation-end.text">
-									Vous avez maintenant accès à l'estimation la plus précise
-									possible.
+					<>
+						<div style={{ textAlign: 'center' }}>
+							{firstRenderDone && <TrackPage name="simulation terminée" />}
+							<H3 as="h2">
+								<Emoji emoji="🌟" />{' '}
+								<Trans i18nKey="simulation-end.title">
+									Vous avez complété cette simulation
 								</Trans>
+							</H3>
+							<Body>
+								{customEndMessages || (
+									<Trans i18nKey="simulation-end.text">
+										Vous avez maintenant accès à l'estimation la plus précise
+										possible.
+									</Trans>
+								)}
+							</Body>
+							{currentSimulatorData?.pathId === 'simulateurs.salarié' && (
+								<>
+									<JeDonneMonAvis />
+									<Spacing md />
+								</>
 							)}
-						</Body>
-						{currentSimulatorData?.pathId === 'simulateurs.salarié' && (
-							<>
-								<JeDonneMonAvis />
-								<Spacing md />
-							</>
-						)}
-						<Grid container spacing={2}>
-							{previousAnswers.length > 0 && (
-								<Grid item xs={6} sm="auto">
-									<Button light onPress={goToPrevious} size="XS">
-										<span aria-hidden>←</span> <Trans>Précédent</Trans>
-									</Button>
+							<Grid container spacing={2}>
+								{previousAnswers.length > 0 && (
+									<Grid item xs={6} sm="auto">
+										<Button light onPress={goToPrevious} size="XS">
+											<span aria-hidden>←</span> <Trans>Précédent</Trans>
+										</Button>
+									</Grid>
+								)}
+								<Grid
+									item
+									xs={6}
+									sm
+									style={{
+										justifyContent: 'flex-end',
+										display: 'flex',
+									}}
+								>
+									<SeeAnswersButton>
+										{customSituationVisualisation}
+									</SeeAnswersButton>
 								</Grid>
-							)}
-							<Grid
-								item
-								xs={6}
-								sm
-								style={{
-									justifyContent: 'flex-end',
-									display: 'flex',
-								}}
-							>
-								<SeeAnswersButton>
-									{customSituationVisualisation}
-								</SeeAnswersButton>
 							</Grid>
-						</Grid>
-						<Notifications />
-					</div>
+						</div>
+						<Notifications engines={engines} />
+					</>
 				)}
 			</div>
 		</>

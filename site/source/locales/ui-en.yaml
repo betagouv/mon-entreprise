@@ -384,7 +384,7 @@ assistants:
       title: View your public data
 au bout de 10 ans: after 10 years
 badnews:
-  body: "<0>Important notice:</0> Simulator updates and user support are no longer
+  body: "<0>Announcement:</0> Simulator updates and user support are no longer
     provided. <3><0>The team that has been operating the simulators and wizards
     on mon-entreprise.urssaf.fr for over five years has decided to stop work.
     Here's why:</0><1><0>The team is made up of <2>two freelance
@@ -399,7 +399,6 @@ badnews:
     hard to make this decision. We would have liked to continue to develop this
     site as we have done all these years. Whatever happens, we're honored to see
     over 500,000 of you using our tools every month!</4></3>"
-  label: Important information
 betawarning: "<0><0>This tool is in beta version</0>: we are working on
   <3>validating the information and calculations</3>, but <6>errors may</6>
   still occur.</0>"

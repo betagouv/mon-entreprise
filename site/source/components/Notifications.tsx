@@ -43,10 +43,14 @@ function getNotifications(engine: Engine) {
 		}))
 }
 
-export default function Notifications() {
+export default function Notifications({
+	engines,
+}: {
+	engines?: Array<Engine<DottedName>>
+}) {
 	const { t } = useTranslation()
 	const engine = useEngine()
-	const inversionFail = useInversionFail()
+	const inversionFail = useInversionFail(engines)
 	const hiddenNotifications = useSelector(
 		(state: RootState) => state.simulation?.hiddenNotifications
 	)

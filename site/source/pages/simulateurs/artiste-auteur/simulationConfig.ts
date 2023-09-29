@@ -3,7 +3,6 @@ import { SimulationConfig } from '../_configs/types'
 export const configArtisteAuteur: SimulationConfig = {
 	objectifs: [
 		'artiste-auteur . cotisations',
-		'artiste-auteur . revenus',
 		'artiste-auteur . cotisations . IRCEC',
 	],
 	situation: {
