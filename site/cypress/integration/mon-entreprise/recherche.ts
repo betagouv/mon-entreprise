@@ -15,7 +15,7 @@ describe('Recherche globales', { testIsolation: false }, function () {
 		cy.contains('Fermer').focus()
 
 		// eslint-disable-next-line cypress/unsafe-to-chain-command
-		cy.focused().tab().should('have.attr', 'type', 'search')
+		cy.get('input[type=search]').should('be.focused')
 
 		cy.contains('Simulateurs')
 			.next()

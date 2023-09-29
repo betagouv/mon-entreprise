@@ -12,7 +12,6 @@
 	"type": "module",
 	"scripts": {
 		"build": "yarn tsc",
-		"start": "nodemon -e \"js,ts\" -x 'NODE_OPTIONS=\"--loader ts-node/esm\" node ./source/index.ts'",
 		"start:prod": "NODE_ENV=production nodemon -d 500ms -w ./dist/index.js -x 'node ./dist/index.js || touch ./dist/index.js'"
 	},
 	"dependencies": {
