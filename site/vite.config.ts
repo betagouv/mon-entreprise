@@ -30,6 +30,7 @@ export default defineConfig(({ command, mode }) => ({
 	},
 	publicDir: 'source/public',
 	build: {
+		minify: process.env.NODE_ENV === 'production' ? 'esbuild' : false,
 		sourcemap: true,
 		rollupOptions: {
 			output: {
