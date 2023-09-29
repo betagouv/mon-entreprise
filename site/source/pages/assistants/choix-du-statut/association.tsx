@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
@@ -102,6 +102,7 @@ export default function Association() {
 }
 
 type RadioOption = 'gagner-argent' | 'non-lucratif' | undefined
+
 function useAssociationSelection(): [
 	RadioOption,
 	(value: RadioOption) => void,
@@ -115,13 +116,11 @@ function useAssociationSelection(): [
 
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const associationPossible = useMemo(
-		() =>
-			engine.evaluate({
-				'est applicable': 'entreprise . catégorie juridique . association',
-			}).nodeValue === true,
-		[]
-	)
+
+	const associationPossible =
+		engine.evaluate('entreprise . catégorie juridique . association')
+			.nodeValue !== null
+
 	const handleChange = (value: RadioOption) => {
 		setCurrentSelection({ state: value })
 		if (!associationPossible) return
