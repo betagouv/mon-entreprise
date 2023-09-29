@@ -113,6 +113,7 @@ En savoir plus sur impots:
   gouv:
     fr, nouvelle fenêtre: En savoir plus sur impots.gouv.fr, nouvelle fenêtre
 En savoir plus, nouvelle fenêtre: En savoir plus, nouvelle fenêtre
+En savoir plus.: En savoir plus.
 English version of the website enabled.: English version of the website enabled.
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
@@ -405,8 +406,23 @@ assistants:
       title: Voir vos données publiques
 au bout de 10 ans: au bout de 10 ans
 badnews:
-  body: <0>Important :</0> La mise à jour des simulateurs et le support
-    utilisateur ne sont plus assurés. <3>En savoir plus.</3>
+  body: "<0>Important :</0> La mise à jour des simulateurs et le support
+    utilisateur ne sont plus assurés. <3><0>L'équipe qui opérait les simulateurs
+    et les assistants de mon-entreprise.urssaf.fr depuis plus de cinq ans a pris
+    la décision d'arrêter son travail. En voici l'explication
+    :</0><1><0>L'équipe est composée de <2>deux développeurs indépendants</2>
+    (travailleurs non salariés) ;</0><1>Le paiement de leurs factures est bloqué
+    <2>depuis avril</2> ;</1><2>Le budget du développement du site, financé par
+    l'Urssaf à 100%, est en <2>très nette baisse pour 2023</2>. Ce, malgré le
+    <5>succès manifeste du site</5> ;</2><3>Ce budget n'est <1>pas suffisant</1>
+    pour faire travailler l'équipe sur l'année complète et continuer à
+    développer le produit ;</3></1><2>Cette situation est <1>temporaire</1>, et
+    devrait <4>revenir à la normale</4> dans les prochains mois. Veuillez nous
+    excuser pour la gêne occasionnée.</2><3></3><4>P.S de l'équipe : On vous le
+    dit sincèrement, ça été très dur de prendre cette décision. On aurait
+    tellement aimé continuer à faire évoluer ce site comme on l'a fait toutes
+    ces années. On est super reconnaissants de voir plus de 500 000 d'entre vous
+    utiliser nos outils chaque mois !</4></3>"
   label: Information importante
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
