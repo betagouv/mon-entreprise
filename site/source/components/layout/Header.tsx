@@ -3,7 +3,6 @@ import { styled } from 'styled-components'
 
 import { Logo } from '@/components/Logo'
 import SearchButton from '@/components/SearchButton'
-import BrowserOnly from '@/components/utils/BrowserOnly'
 import { Emoji } from '@/design-system/emoji'
 import { Container } from '@/design-system/layout'
 import { Switch } from '@/design-system/switch'
@@ -12,9 +11,11 @@ import { useDarkMode } from '@/hooks/useDarkMode'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useSitePaths } from '@/sitePaths'
 
+import BadNews from '../BadNews'
 import { Appear } from '../ui/animate'
+import BrowserOnly from '../utils/BrowserOnly'
 import { Menu } from './Menu'
-import NewsBanner from './NewsBanner'
+import NewsBannerWrapper from './NewsBanner'
 
 export default function Header() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -73,10 +74,12 @@ export default function Header() {
 
 					<Menu />
 				</StyledHeader>
+				<BadNews />
+
 				<BrowserOnly>
 					{i18n.language === 'fr' && (
 						<Appear>
-							<NewsBanner />
+							<NewsBannerWrapper />
 						</Appear>
 					)}
 				</BrowserOnly>
