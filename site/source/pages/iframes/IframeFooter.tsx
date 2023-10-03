@@ -12,9 +12,9 @@ export default function IframeFooter() {
 				}}
 			>
 				<Spacing md />
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
+				{/* <div style={{ display: 'flex', justifyContent: 'center' }}>
 					<BadNews />
-				</div>
+				</div> */}
 				<FeedbackButton isEmbedded />
 				<Spacing md />
 				<Privacy noUnderline={false} />

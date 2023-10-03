@@ -80,7 +80,7 @@ export default function Header() {
 
 						<Menu />
 					</StyledHeader>
-					<BadNews />
+					{/* <BadNews /> */}
 
 					<BrowserOnly>
 						{i18n.language === 'fr' && (
