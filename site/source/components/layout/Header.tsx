@@ -11,7 +11,6 @@ import { useDarkMode } from '@/hooks/useDarkMode'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useSitePaths } from '@/sitePaths'
 
-import { BadNews } from '../BadNews'
 import { Appear } from '../ui/animate'
 import BrowserOnly from '../utils/BrowserOnly'
 import { Menu } from './Menu'

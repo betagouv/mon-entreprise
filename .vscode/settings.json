@@ -1,13 +1,6 @@
 {
-	"spellright.language": [
-		"fr",
-		"en"
-	],
-	"spellright.documentTypes": [
-		"yaml",
-		"git-commit",
-		"markdown"
-	],
+	"spellright.language": ["fr", "en"],
+	"spellright.documentTypes": ["yaml", "git-commit", "markdown"],
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"editor.tabSize": 2,
 	"cSpell.words": ["mycompanyinfrance", "smarttag"],
@@ -19,5 +12,6 @@
 	"editor.formatOnSave": true,
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
-	}
+	},
+	"githubPullRequests.ignoredPullRequestBranches": ["master"]
 }
