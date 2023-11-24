@@ -5,9 +5,9 @@ import Koa from 'koa'
 import rules from 'modele-social'
 import Engine from 'publicodes'
 
+import { analyticsMiddleware } from './analytics.js'
 import { catchErrors } from './errors.js'
 import openapi from './openapi.json' assert { type: 'json' }
-import { plausibleMiddleware } from './plausible.js'
 import { rateLimiterMiddleware } from './rate-limiter.js'
 import { redisCacheMiddleware } from './redis-cache.js'
 import { docRoutes } from './route/doc.js'
@@ -49,7 +49,7 @@ router.use(
 	'/api/v1',
 	rateLimiterMiddleware,
 	redisCacheMiddleware(),
-	plausibleMiddleware,
+	analyticsMiddleware,
 	apiRoutes
 )
 
