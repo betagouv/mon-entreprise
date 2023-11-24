@@ -69,6 +69,7 @@
 		"isbot": "^3.7.0",
 		"markdown-to-jsx": "^7.3.2",
 		"modele-social": "workspace:^",
+		"piano-analytics-js": "^6.13.0",
 		"publicodes": "^1.0.0-beta.76",
 		"publicodes-react": "^1.0.0-beta.76",
 		"react": "^18.2.0",

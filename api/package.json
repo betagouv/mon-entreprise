@@ -42,6 +42,7 @@
 		"koa-static": "^5.0.0",
 		"modele-social": "workspace:^",
 		"nodemon": "^3.0.1",
+		"piano-analytics-js": "^6.13.0",
 		"publicodes": "^1.0.0-beta.76",
 		"rate-limiter-flexible": "^2.4.2",
 		"swagger-ui-dist": "^5.7.2"

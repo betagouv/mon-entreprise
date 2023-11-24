@@ -13459,6 +13459,7 @@ __metadata:
     koa-static: ^5.0.0
     modele-social: "workspace:^"
     nodemon: ^3.0.1
+    piano-analytics-js: ^6.13.0
     publicodes: ^1.0.0-beta.76
     rate-limiter-flexible: ^2.4.2
     swagger-ui-dist: ^5.7.2
@@ -25542,6 +25543,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"piano-analytics-js@npm:^6.13.0":
+  version: 6.13.0
+  resolution: "piano-analytics-js@npm:6.13.0"
+  checksum: e80272cd8bd72eb85cbd674a57bf6baf6328ba28bdc3511aab626e730a40a9a4a8656e4d43824ec30e66f776c2598c0e79fe4f6918ba7593a7a8941c462935c0
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
@@ -28378,6 +28386,7 @@ __metadata:
     markdown-to-jsx: ^7.3.2
     modele-social: "workspace:^"
     netlify-cli: ^16.4.0
+    piano-analytics-js: ^6.13.0
     publicodes: ^1.0.0-beta.76
     publicodes-react: ^1.0.0-beta.76
     react: ^18.2.0
