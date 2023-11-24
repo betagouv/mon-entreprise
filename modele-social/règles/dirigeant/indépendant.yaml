@@ -528,6 +528,8 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
           titre global: plafond retraite complémentaire des indépendants
           valeur:
             variations:
+              - si: date >= 01/2023
+                alors: 40784 €/an
               - si: date >= 01/2022
                 alors: 38916 €/an
               - si: date >= 01/2021
