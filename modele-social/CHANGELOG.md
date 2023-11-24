@@ -1,4 +1,8 @@
 # Journal des modifications
+
+## 1.8.2
+PRCI : Met à jour le montant du plafond spécifique du régime complémentaire des indépendants (RCI) pour 2023
+
 ## 1.8.1
 Titre restaurants : Met à jour le montant unitaire exonéré de cotisation pour 2023
 

@@ -27,7 +27,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate comparateur-statuts > ACRE 2`] = `
 "dirigeant . rémunération . net: 36633
-dirigeant . rémunération . net . après impôt: 31660
+dirigeant . rémunération . net . après impôt: 31659
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -134,7 +134,7 @@ protection sociale . invalidité et décès . accidents du travail et maladies p
 protection sociale . invalidité et décès . capital décès: 8798
 protection sociale . invalidité et décès . capital décès . orphelin: 183
 protection sociale . invalidité et décès . pension de reversion: 767
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 852
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 853
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1421
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: null
 protection sociale . maladie . arrêt maladie: 47
