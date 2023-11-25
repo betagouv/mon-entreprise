@@ -47,6 +47,7 @@ const Détails = ({
 				}
 				isFoldable
 			>
+				
 				<Item
 					title={
 						<ItemTitle>
@@ -57,6 +58,8 @@ const Détails = ({
 					key="revenus"
 					hasChildItems={false}
 				>
+				<OuterContainer>
+				<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Revenu net mensuel après impôts</Trans>
 
@@ -157,8 +160,9 @@ const Détails = ({
 							</Condition>
 						)}
 					/>
+				</OuterOuterContainer>
+				</OuterContainer>
 				</Item>
-
 				<Item
 					title={
 						<ItemTitle>
@@ -169,6 +173,8 @@ const Détails = ({
 					key="retraite"
 					hasChildItems={false}
 				>
+					<OuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Le montant de votre retraite est constitué de{' '}
@@ -197,7 +203,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/mois"
 					/>
-
+				</OuterOuterContainer>
+				<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Retraite complémentaire</Trans>
 						<ExplicableRule dottedName="protection sociale . retraite . complémentaire" />
@@ -224,6 +231,8 @@ const Détails = ({
 						unit="€/mois"
 						evolutionLabel={<Trans>au bout de 10 ans</Trans>}
 					/>
+				</OuterOuterContainer>
+				</OuterContainer>
 				</Item>
 				<Item
 					title={
@@ -235,6 +244,9 @@ const Détails = ({
 					key="santé"
 					hasChildItems={false}
 				>
+									
+					<OuterContainer>
+					<OuterOuterContainer>
 					<Body
 						style={{
 							marginBottom: '0',
@@ -320,7 +332,8 @@ const Détails = ({
 							</Condition>
 						)}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Accident du travail et maladie professionnelle</Trans>
 						<ExplicableRule dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités" />
@@ -340,6 +353,8 @@ const Détails = ({
 						evolutionDottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
 						evolutionLabel={<Trans>à partir du 29ème jour</Trans>}
 					/>
+					</OuterOuterContainer>
+					</OuterContainer>
 				</Item>
 				<Item
 					title={
@@ -351,6 +366,8 @@ const Détails = ({
 					key="enfants"
 					hasChildItems={false}
 				>
+					<OuterContainer>
+					<OuterOuterContainer>
 					<Body
 						style={{
 							marginBottom: '0',
@@ -378,7 +395,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/jour"
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Maternité</Trans>
 						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel" />
@@ -398,7 +416,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						label={<Trans>versés en deux fois</Trans>}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Adoption</Trans>
 						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption" />
@@ -418,6 +437,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						label={<Trans>versés en une fois</Trans>}
 					/>
+					</OuterOuterContainer>
+					</OuterContainer>
 				</Item>
 				<Item
 					title={
@@ -429,6 +450,8 @@ const Détails = ({
 					key="maladie"
 					hasChildItems={false}
 				>
+					<OuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Tous les statuts cotisent pour une{' '}
@@ -485,6 +508,8 @@ const Détails = ({
 							</span>
 						}
 					/>
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Pour une invalidité causée par un{' '}
@@ -497,7 +522,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/mois"
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Décès</Trans>
 						<ExplicableRule dottedName="protection sociale . invalidité et décès . capital décès" />
@@ -514,7 +540,8 @@ const Détails = ({
 						label="pour vos proches"
 						namedEngines={namedEngines}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							En plus du capital décès, une{' '}
@@ -529,7 +556,8 @@ const Détails = ({
 						label={'maximum'}
 						namedEngines={namedEngines}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Pour un décès survenu dans le cadre d’un{' '}
@@ -544,7 +572,8 @@ const Détails = ({
 						unit="€/mois"
 						label={t("en cas d'accident pro")}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Un <Strong>capital « orphelin »</Strong> est versé aux{' '}
@@ -558,6 +587,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/enfant"
 					/>
+					</OuterOuterContainer>
+					</OuterContainer>
 				</Item>
 				<Item
 					title={
@@ -570,6 +601,8 @@ const Détails = ({
 					key="administratif"
 					hasChildItems={false}
 				>
+					<OuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Coût de création</Trans>
 						<ExplicableRule dottedName="entreprise . coût formalités . création" />
@@ -588,7 +621,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						leastIsBest
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Statut du conjoint</Trans>
 					</StyledH4>
@@ -629,6 +663,8 @@ const Détails = ({
 						}}
 						namedEngines={namedEngines}
 					/>
+				</OuterOuterContainer>
+				</OuterContainer>
 				</Item>
 			</Accordion>
 		</Container>
@@ -680,6 +716,19 @@ const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
 
 const BlackColoredLink = styled(StyledLink)`
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
+`
+
+
+const OuterOuterContainer = styled.div`
+	@media print {
+		page-break-inside: avoid;
+	}
+`
+
+const OuterContainer = styled.div`
+@media print {
+	page-break-after: always;
+}
 `
 
 export default Détails
