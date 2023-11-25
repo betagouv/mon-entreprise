@@ -19,6 +19,7 @@ import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { batchUpdateSituation, updateSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
+import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 
 export default function ISSimulation() {
 	return (
@@ -154,6 +155,7 @@ function Explanations() {
 				>
 					<Trans>Montant de l'impôt sur les sociétés</Trans>
 				</Body>
+				<ShareOrSaveSimulationBanner share />
 			</ExplanationsContainer>
 		</FromTop>
 	)
