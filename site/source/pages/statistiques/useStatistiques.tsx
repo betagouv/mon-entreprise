@@ -1,7 +1,5 @@
 import { useMemo } from 'react'
-import { Trans } from 'react-i18next'
 
-import { Body } from '@/design-system/typography/paragraphs'
 import { groupBy } from '@/utils'
 
 import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
@@ -28,14 +26,7 @@ export function useStatistiques({
 			return rawData.site
 		}
 		if (filter === 'api-rest') {
-			return (rawData.api ?? []).map(({ date, ...nombre }) => ({
-				date,
-				nombre,
-				info:
-					(period === 'jours' ? '2023-06-16' : '2023-06-01') === date ? (
-						<ChangeJune2023 />
-					) : null,
-			}))
+			return rawData.api
 		}
 		if (
 			typeof filter !== 'string' &&
@@ -73,15 +64,6 @@ export function useStatistiques({
 		satisfaction,
 	}
 }
-
-const ChangeJune2023 = () => (
-	<Body style={{ maxWidth: '350px' }}>
-		<Trans i18nKey="stats.change_june_2023">
-			Ajout d'un cache sur l'API pour améliorer les performances et réduire le
-			nombre de requêtes.
-		</Trans>
-	</Body>
-)
 
 const isPAM = (name: string | undefined) =>
 	name &&
