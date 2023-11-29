@@ -16,7 +16,6 @@ jobs:
           ZAMMAD_API_SECRET_KEY: ${{ secrets.ZAMMAD_API_SECRET_KEY }}
           ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
           ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
-          PLAUSIBLE_API_KEY: ${{ secrets.PLAUSIBLE_API_KEY }}
           CRISP_API_IDENTIFIER: ${{ secrets.CRISP_API_IDENTIFIER }}
           CRISP_API_KEY: ${{ secrets.CRISP_API_KEY }}
           CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
@@ -27,7 +26,6 @@ jobs:
           ZAMMAD_API_SECRET_KEY: ${{ secrets.ZAMMAD_API_SECRET_KEY }}
           ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
           ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
-          PLAUSIBLE_API_KEY: ${{ secrets.PLAUSIBLE_API_KEY }}
           CRISP_API_IDENTIFIER: ${{ secrets.CRISP_API_IDENTIFIER }}
           CRISP_API_KEY: ${{ secrets.CRISP_API_KEY }}
           CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}

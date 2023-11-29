@@ -5,7 +5,6 @@ import { fileURLToPath } from 'url'
 import dotenv from 'dotenv'
 
 import { createDataDir, readInDataDir, writeInDataDir } from '../utils.js'
-import { apiStats } from './fetch-api-stats.js'
 
 dotenv.config()
 
@@ -148,6 +147,45 @@ const buildSiteQuery =
 		},
 	})
 
+const buildAPIQuery =
+	(period, granularity) =>
+	(page = 1) => ({
+		columns: ['page', 'm_page_loads'],
+		space: {
+			s: [617190, 617189],
+		},
+		period: {
+			p1: [period],
+		},
+		evo: {
+			granularity,
+			top: {
+				'page-num': page,
+				'max-results': 100,
+				sort: ['-m_page_loads'],
+				filter: {
+					property: {
+						$AND: [
+							{
+								page_chapter1: {
+									$eq: 'api',
+								},
+							},
+							{
+								page: {
+									$eq: 'evaluate',
+								},
+							},
+						],
+					},
+				},
+			},
+		},
+		options: {
+			ignore_null_properties: true,
+		},
+	})
+
 const yesterday = new Date(new Date().setDate(new Date().getDate() - 1))
 	.toISOString()
 	.slice(0, 10)
@@ -181,11 +219,25 @@ const last12Months = {
 
 const uniformiseData = (data) =>
 	data
-		.map(({ d_evo_day, d_evo_month, m_visits, m_events, ...data }) => ({
-			date: d_evo_day != null ? d_evo_day : d_evo_month,
-			nombre: m_visits != null ? m_visits : m_events,
-			...data,
-		}))
+		.map(
+			({
+				d_evo_day,
+				d_evo_month,
+				m_visits,
+				m_events,
+				m_page_loads,
+				...data
+			}) => ({
+				date: d_evo_day != null ? d_evo_day : d_evo_month,
+				nombre:
+					m_visits != null
+						? m_visits
+						: m_page_loads != null
+						? m_page_loads
+						: m_events,
+				...data,
+			})
+		)
 		// For some reason, an artifact create ghost page with unlogical chapter metrics...
 		// It seems to only by one per month thought... This hacks resolves it
 		.filter(({ m_visits }) => m_visits === undefined || m_visits > 2)
@@ -203,14 +255,14 @@ async function fetchDailyVisits() {
 	const site = uniformiseData(
 		(await fetchApi(buildSiteQuery(last60days, 'D')))[0].Rows
 	)
-
-	const { start, end } = last60days
+	const api = uniformiseData(
+		(await fetchApi(buildAPIQuery(last60days, 'D')))[0].Rows
+	)
 
 	return {
 		pages,
 		site,
-
-		api: await apiStats(start, end, 'date'),
+		api,
 	}
 }
 
@@ -228,13 +280,14 @@ async function fetchMonthlyVisits() {
 			(await fetchApi(buildSiteQuery(last12Months, 'M')))[0].Rows
 		),
 	]
-
-	const { start, end } = last12Months
+	const api = uniformiseData(
+		(await fetchApi(buildAPIQuery(last12Months, 'M')))[0].Rows
+	)
 
 	return {
 		pages,
 		site,
-		api: await apiStats(start, end, 'month'),
+		api,
 	}
 }
 

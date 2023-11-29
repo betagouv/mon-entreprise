@@ -70,23 +70,6 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 		[visites]
 	)
 
-	type ApiData = {
-		date: string
-		nombre: { evaluate: number; rules: number; rule: number }
-	}
-	const apiCumul =
-		filter === 'api-rest' &&
-		slicedVisits.length > 0 &&
-		typeof slicedVisits[0]?.nombre === 'object' &&
-		(slicedVisits as ApiData[]).reduce(
-			(acc, { nombre }) => ({
-				evaluate: acc.evaluate + nombre.evaluate,
-				rules: acc.rules + nombre.rules,
-				rule: acc.rule + nombre.rule,
-			}),
-			{ evaluate: 0, rules: 0, rule: 0 }
-		)
-
 	return (
 		<>
 			<H2>Statistiques détaillées</H2>
@@ -179,24 +162,6 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 			)}
 
 			<Grid container spacing={2}>
-				{apiCumul ? (
-					<>
-						<BigIndicator
-							main={apiCumul.evaluate}
-							subTitle="Appel à /evaluate"
-						/>
-						<BigIndicator main={apiCumul.rules} subTitle="Appel à /rules" />
-						<BigIndicator main={apiCumul.rule} subTitle="Appel à /rule/*" />
-					</>
-				) : (
-					<BigIndicator
-						main={formatValue(
-							typeof totals === 'number' ? totals : totals.accueil
-						)}
-						subTitle="Visites"
-					/>
-				)}
-
 				{typeof totals !== 'number' && 'simulation_commencee' in totals && (
 					<>
 						{' '}
@@ -221,6 +186,20 @@ export const StatsDetail = ({ stats, accessibleMode }: StatsDetailProps) => {
 							}
 						/>
 					</>
+				)}
+				{typeof totals === 'number' && (
+					<BigIndicator
+						main={formatValue(totals)}
+						subTitle={
+							filter === 'api-rest' ? (
+								<>
+									Nombre d'appels à <code>evaluate</code>
+								</>
+							) : (
+								<>Nombre total de visites </>
+							)
+						}
+					/>
 				)}
 			</Grid>
 
