@@ -720,7 +720,7 @@ salarié . cotisations . CSG-CRDS . CSG:
 
     Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance
     également le fonds de solidarité vieillesse
-  multiplication:
+  produit:
     assiette: assiette de base
     composantes:
       - attributs:
