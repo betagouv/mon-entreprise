@@ -1,4 +1,5 @@
 import { DottedName } from 'modele-social'
+import { RuleNode } from 'publicodes'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -21,6 +22,8 @@ import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { Situation } from '@/store/reducers/rootReducer'
 
+import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
+
 export default function Résultat() {
 	const { absoluteSitePaths } = useSitePaths()
 	const location = useLocation()
@@ -32,6 +35,8 @@ export default function Résultat() {
 	useSetStatutInSituation(dottedName)
 	const rule = useEngine().getRule(dottedName)
 	const statutLabel = rule.title
+	const références = useReferences(rule)
+	const externalGuideLink = useExternalGuideLink()
 
 	return (
 		<>
@@ -49,7 +54,7 @@ export default function Résultat() {
 				<Grid item xl={4} lg={6} sm={12}>
 					<Article
 						title="Le guide complet pour créer son activité"
-						href="https://entreprendre.service-public.fr/vosdroits/N31901"
+						href={externalGuideLink}
 						ctaLabel="Lire le guide"
 					>
 						Laissez-vous guidez pas à pas dans les étapes de création de votre
@@ -109,10 +114,7 @@ export default function Résultat() {
 				}
 			>
 				<H3>{statutLabel} : pour aller plus loin</H3>
-				<References
-					dottedName={dottedName}
-					references={rule.rawNode.références}
-				/>
+				<References dottedName={dottedName} references={références} />
 				<H3>Simuler vos futurs revenus</H3>
 				<CurrentSimulatorCard />
 				<Spacing xl />
@@ -159,4 +161,32 @@ function useSetStatutInSituation(dottedName: DottedName) {
 			dispatch(batchUpdateSituation(setAllStatutTo(undefined)))
 		}
 	}, [])
+}
+
+// BPI agreed to use our assistant on their website, but only if we filter the
+// links to only show the ones that are relevant to their users.
+// They paid the extra development cost for this feature.
+const BPIWhiteList = ['bpifrance-creation.fr', 'associations.gouv.fr']
+
+function useReferences(rule: RuleNode) {
+	const onBPISite = useIsEmbededOnBPISite()
+	if (!rule.rawNode.références) {
+		return {}
+	}
+
+	return Object.fromEntries(
+		Object.entries(rule.rawNode.références).filter(([, value]) => {
+			const whitelistedByBPI = BPIWhiteList.some((site) => value.includes(site))
+
+			return onBPISite ? whitelistedByBPI : !whitelistedByBPI
+		})
+	)
+}
+
+function useExternalGuideLink() {
+	const onBPISite = useIsEmbededOnBPISite()
+
+	return onBPISite
+		? 'https://bpifrance-creation.fr/boiteaoutils/guide-pratique-du-createur-reussir-votre-creation-dentreprise'
+		: 'https://entreprendre.service-public.fr/vosdroits/N31901'
 }
