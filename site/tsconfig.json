@@ -10,6 +10,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"allowJs": true,
+		"allowImportingTsExtensions": true,
 		"isolatedModules": true,
 		"paths": {
 			"@/*": ["*"]
@@ -25,9 +26,7 @@
 		"noEmit": true,
 		"strict": true
 	},
-	"ts-node": {
-		"transpileOnly": true
-	},
+
 	"include": [
 		"source",
 		"scripts",

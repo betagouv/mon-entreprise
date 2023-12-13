@@ -32,10 +32,7 @@
 		/* Advanced Options */
 		"forceConsistentCasingInFileNames": true
 	},
-	"ts-node": {
-		"esm": true,
-		"files": true
-	},
+
 	"include": ["source", "types/**/*.d.ts"],
 	"exclude": ["**/node_modules", "**/dist", "vitest.config.ts"]
 }

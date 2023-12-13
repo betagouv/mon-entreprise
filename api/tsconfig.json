@@ -35,9 +35,6 @@
 		// remove this when vite support "NodeNext" : https://github.com/vitejs/vite/issues/10481 or https://github.com/vitejs/vite/issues/8993
 		"skipLibCheck": true
 	},
-	"ts-node": {
-		"esm": true
-	},
 	"include": ["source"],
 	"exclude": ["**/dist", "vitest.config.ts"]
 }
