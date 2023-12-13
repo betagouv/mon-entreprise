@@ -62,7 +62,7 @@ salarié . coût total employeur . aides . emploi franc:
     [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
   applicable si: éligible
   formule:
-    multiplication:
+    produit:
       assiette:
         variations:
           - si: contrat . CDD

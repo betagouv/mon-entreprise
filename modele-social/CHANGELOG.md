@@ -1,4 +1,10 @@
 # Journal des modifications
+
+## 2.0.0-rfc.1
+**BREAKING CHANGE**
+- Utilise publicodes 1.0.0-rfc.1 (cf https://github.com/publicodes/publicodes/blob/master/CHANGELOG.md)
+
+
 ## 1.8.3
 - Met à jour la valeur du point CNAVPL en 2023
 

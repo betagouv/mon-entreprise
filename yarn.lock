@@ -7536,8 +7536,8 @@ __metadata:
   linkType: hard
 
 "@publicodes/api@npm:^1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "@publicodes/api@npm:1.0.0-beta.76"
+  version: 1.0.0-beta.77
+  resolution: "@publicodes/api@npm:1.0.0-beta.77"
   dependencies:
     "@koa/cors": ^3.4.3
     "@koa/router": ^10.1.1
@@ -7546,7 +7546,7 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.47
-  checksum: b501713a8f3a3dcd0d072550306cd2fce671e3238cc3ca1196f304191e17d5ab195addb1fb6c3cff258482db7e4a1405bd2c29e7bda11a05e057577785078c59
+  checksum: be3de4060ebd1886c8cbe5b8d654abb76fddd1eacf36e5b9ad8a191617827b3ef931acc2f1e1cf7151a84e9773039ce8ac446fd103ef33f701bd29f3a3d9a895
   languageName: node
   linkType: hard
 
@@ -26532,24 +26532,24 @@ __metadata:
   linkType: hard
 
 "publicodes-react@npm:^1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "publicodes-react@npm:1.0.0-beta.76"
+  version: 1.0.0-beta.77
+  resolution: "publicodes-react@npm:1.0.0-beta.77"
   dependencies:
     styled-components: ^6.0.8
   peerDependencies:
     publicodes: ^1.0.0-beta.71
     react: ^17 || ^18
     react-dom: ^17 || ^18
-  checksum: 2d1870a134aef4df948cb365bd211484e6430952e70264a027b2b40f81fcaba2ff0b47a05efeef2ac9fb318411a1ce1c762b5ed8d4e597da04d3c116c77a67ec
+  checksum: 006172135be878ee25cbd949ffc857e579dccc17507f1b147e6a4ad1bd88959e3b994235ca084978bd955b0290c73398a989ae8313ad48ab7fdf3208b5501fbe
   languageName: node
   linkType: hard
 
 "publicodes@npm:^1.0.0-beta.76":
-  version: 1.0.0-beta.76
-  resolution: "publicodes@npm:1.0.0-beta.76"
+  version: 1.0.0-beta.77
+  resolution: "publicodes@npm:1.0.0-beta.77"
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: e36b0a3bf08ddab20dda7e588a9138c1c21e10f013146abef71f693f63b7ba4bf541bbd7a5edb714be47838a3bf81996a7ae79060511447fe3141841e05540be
+  checksum: 55f3ba5926fd3f4107b0dc3d96e12b654f53e833dd8dc8beded592e502ff6731e56c2a5a2b1d823223b4d0f8b81453b67677917d11d03ad4948fb0b429a5e487
   languageName: node
   linkType: hard
 

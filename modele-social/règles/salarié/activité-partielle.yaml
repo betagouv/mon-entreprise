@@ -104,7 +104,7 @@ salarié . activité partielle . indemnités . légale:
 
   somme:
     - nom: base
-      multiplication:
+      produit:
         assiette: retrait absence
         taux: taux
     - nom: allocation complémentaire
@@ -134,7 +134,7 @@ salarié . activité partielle . indemnités . légale:
         Article L3232-3 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006902847&cidTexte=LEGITEXT000006072050&dateTexte=20080501
 
 salarié . activité partielle . retrait absence:
-  multiplication:
+  produit:
     assiette: rémunération . taux horaire
     facteur: heures chômées
 
@@ -148,11 +148,11 @@ salarié . activité partielle . indemnisation entreprise:
 
 
     > **Attention** : en cas de fraude ou de fausse déclaration, l'employeur encourt jusqu'à 2 ans d'emprisonnement et 30 000 € d'amende.
-  multiplication:
+  produit:
     assiette: retrait absence
     taux: taux d'indemnisation
   plancher:
-    multiplication:
+    produit:
       assiette:
         nom: plancher horaire
         variations:
