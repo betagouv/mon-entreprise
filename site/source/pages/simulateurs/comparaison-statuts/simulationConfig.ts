@@ -5,6 +5,7 @@ export const configComparateurStatuts: SimulationConfig = {
 	objectifs: [
 		'dirigeant . rémunération . net',
 		'dirigeant . rémunération . net . après impôt',
+		'entreprise . activité . nature . libérale . réglementée',
 		'protection sociale . retraite . trimestres',
 		'protection sociale . retraite . base',
 		'protection sociale . retraite . complémentaire',
@@ -28,7 +29,6 @@ export const configComparateurStatuts: SimulationConfig = {
 		'liste noire': [
 			'entreprise . charges',
 			"entreprise . chiffre d'affaires",
-			'entreprise . activité . nature . libérale . réglementée',
 			'entreprise . imposition',
 			'entreprise . imposition . régime',
 			'entreprise . imposition . régime . micro-entreprise',
@@ -48,6 +48,7 @@ export const configComparateurStatuts: SimulationConfig = {
 	'unité par défaut': '€/mois',
 	situation: {
 		'entreprise . activités . revenus mixtes': 'non',
+		'entreprise . catégorie juridique': "''",
 		salarié: 'non',
 		'salarié . cotisations . ATMP . taux fonctions support': 'oui',
 		"entreprise . chiffre d'affaires": '4000 €/mois',
