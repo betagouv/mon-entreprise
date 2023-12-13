@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { useSitePaths } from '@/sitePaths'
 
+import { IsBPIProvider } from './_components/useIsEmbededBPI'
 import { useCurrentStep } from './_components/useSteps'
 import Association from './association'
 import Associé from './associé'
@@ -20,7 +21,7 @@ export default function ChoixDuStatut() {
 	const childrenPaths = relativeSitePaths.assistants['choix-du-statut']
 
 	return (
-		<>
+		<IsBPIProvider>
 			<ScrollToTop key={currentStep} />
 			<Routes>
 				<Route index element={<AccueilChoixStatut />} />
@@ -51,6 +52,6 @@ export default function ChoixDuStatut() {
 					element={<Comparateur />}
 				/>
 			</Routes>
-		</>
+		</IsBPIProvider>
 	)
 }
