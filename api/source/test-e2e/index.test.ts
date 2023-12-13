@@ -174,7 +174,7 @@ describe('e2e test mon-entreprise api', () => {
 					return res.text
 				})
 		).resolves.toMatchInlineSnapshot(
-			'"Unexpected token x in JSON at position 2"'
+			'"Expected property name or \'}\' in JSON at position 2 (line 1 column 3)"'
 		)
 	})
 })
