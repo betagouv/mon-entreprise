@@ -527,6 +527,10 @@ comparaisonRégimes:
     disadvantages. Use this comparison to find the one that suits you best.
   notif: <0><0>Find out which status is <2>best for your business</2> with the
     <5>new status selection wizard</5>!</0></0>
+  warning-libéral-reglementé: "<0>This simulator does not take into account
+    regulated liberal professions. </0><1>These are subject to specific rules,
+    and have access to dedicated statutes: liberal practice companies
+    (SEL).</1><2><0>To find out more</0> </2>"
 components:
   feedback:
     form:
@@ -1689,8 +1693,6 @@ stats:
   change_january_2022: Modification of the user feedback module resulting in a
     significant drop in the number of reviews
   change_january_2023: Modification of the user feedback module
-  change_june_2023: Addition of an API cache to improve performance and reduce the
-    number of requests.
   description: Discover our usage statistics, updated daily.
   title: Statistics
 statutchoice:

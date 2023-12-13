@@ -3,6 +3,7 @@
 exports[`calculate comparateur-statuts > ACRE 1`] = `
 "dirigeant . rémunération . net: 44208
 dirigeant . rémunération . net . après impôt: 43983
+entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -28,6 +29,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate comparateur-statuts > ACRE 2`] = `
 "dirigeant . rémunération . net: 36633
 dirigeant . rémunération . net . après impôt: 31659
+entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -53,6 +55,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate comparateur-statuts > ACRE 3`] = `
 "dirigeant . rémunération . net: 30251
 dirigeant . rémunération . net . après impôt: 27965
+entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1287
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 805
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 805
@@ -78,6 +81,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate comparateur-statuts > EI à l'IS 1`] = `
 "dirigeant . rémunération . net: 27470
 dirigeant . rémunération . net . après impôt: 25919
+entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -103,6 +107,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate comparateur-statuts > base 1`] = `
 "dirigeant . rémunération . net: 40548
 dirigeant . rémunération . net . après impôt: 40323
+entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -128,6 +133,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate comparateur-statuts > base 2`] = `
 "dirigeant . rémunération . net: 32800
 dirigeant . rémunération . net . après impôt: 28976
+entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -153,6 +159,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate comparateur-statuts > base 3`] = `
 "dirigeant . rémunération . net: 26944
 dirigeant . rémunération . net . après impôt: 25371
+entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1148
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 717
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 717
@@ -178,6 +185,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate comparateur-statuts > profession libérale non reglementée 1`] = `
 "dirigeant . rémunération . net: 32220
 dirigeant . rémunération . net . après impôt: 26746
+entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -201,6 +209,7 @@ protection sociale . retraite . trimestres: 4"
 exports[`calculate comparateur-statuts > profession libérale non reglementée 2`] = `
 "dirigeant . rémunération . net: 30808
 dirigeant . rémunération . net . après impôt: 27606
+entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -224,6 +233,7 @@ protection sociale . retraite . trimestres: 4"
 exports[`calculate comparateur-statuts > profession libérale non reglementée 3`] = `
 "dirigeant . rémunération . net: 25240
 dirigeant . rémunération . net . après impôt: 23926
+entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1076
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 672
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 672

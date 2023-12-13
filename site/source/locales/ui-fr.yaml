@@ -554,6 +554,10 @@ comparaisonRégimes:
     Avec ce comparatif, trouvez celui qui vous correspond le mieux.
   notif: <0><0>Découvrez quel statut est le <2>plus adapté pour votre activité</2>
     grâce au <5>nouvel assistant au choix du statut</5> !</0></0>
+  warning-libéral-reglementé: "<0>Ce simulateur ne prend pas en compte les
+    activités libérales réglementées. </0><1>En effet, ces dernières sont
+    soumises à des règles spécifiques, et ont accès à des statuts dédiés : les
+    sociétés d'exercice libérale (SEL).</1><2><0>En savoir plus</0> </2>"
 components:
   feedback:
     form:
@@ -1796,8 +1800,6 @@ stats:
   change_january_2022: Modification du module de retours utilisateurs entraînant
     une baisse significative des avis
   change_january_2023: Modification du module de retours utilisateurs
-  change_june_2023: Ajout d'un cache sur l'API pour améliorer les performances et
-    réduire le nombre de requêtes.
   description: Découvrez nos statistiques d'utilisation mises à jour quotidiennement.
   title: Statistiques
 statutchoice:
