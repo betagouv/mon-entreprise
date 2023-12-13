@@ -1,4 +1,6 @@
 # Journal des modifications
+## 1.8.3
+- Met à jour la valeur du point CNAVPL en 2023
 
 ## 1.8.2
 PRCI : Met à jour le montant du plafond spécifique du régime complémentaire des indépendants (RCI) pour 2023
