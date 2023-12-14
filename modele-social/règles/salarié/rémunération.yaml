@@ -18,9 +18,9 @@ salarié . rémunération . net . imposable:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
 
   avec:
-
     exonération prime d'impatriation:
-      description: La prime d'impatriation est une partie de la rémunération exonérée
+      description:
+        La prime d'impatriation est une partie de la rémunération exonérée
         d'impôt sur le revenu.
       applicable si: régimes spécifiques . impatriés
       produit:
@@ -88,7 +88,8 @@ salarié . rémunération . net . à payer avant impôt:
     - (- frais professionnels . titres-restaurant . montant)
 
 salarié . rémunération . net:
-  description: C'est la rémunération nette de cotisations. Elle inclut le salaire
+  description:
+    C'est la rémunération nette de cotisations. Elle inclut le salaire
     net, mais également des éléments de rémunération en nature comme les
     avantages en nature, les titres restaurants ou les prévoyances payées par
     employeur.
@@ -280,8 +281,7 @@ salarié . rémunération . indemnités CDD:
       références:
         Comment calculer l'indemnité de congés payés du salarié ?: https://www.service-public.fr/particuliers/vosdroits/F33359
         Code du travail - Article L3141-24: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006902661&dateTexte=&categorieLien=cid
-        assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990:
-          http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
+        assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
         Méthode du maintien de salaire: https://www.service-public.fr/particuliers/vosdroits/F33359
 
       avec:
@@ -303,8 +303,6 @@ salarié . rémunération . indemnités CDD:
             - indemnités CDD . fin de contrat
           références:
 
-
-
     congés payés . Méthode du dixième:
       produit:
         - assiette
@@ -312,7 +310,6 @@ salarié . rémunération . indemnités CDD:
       abattement: salarié . contrat . CDD . congés pris . proportion
 
     congés payés . Méthode du maintien de salaire:
-
       produit:
         - assiette
         - salarié . contrat . CDD . congés pris . proportion par rapport aux
@@ -418,7 +415,6 @@ salarié . rémunération . frais professionnels . titres-restaurant:
   par défaut: non
 
   avec:
-
     déductible:
       titre: Titre restaurant déductibles
       valeur: employeur
@@ -488,7 +484,6 @@ salarié . rémunération . frais professionnels . titres-restaurant:
         60%: 60 %
 
       avec:
-
         contrôle max:
           type: notification
           sévérité: avertissement
@@ -506,7 +501,6 @@ salarié . rémunération . frais professionnels . trajets domicile travail:
     Frais de transport du trajets domicile travail: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail.html
 
   avec:
-
     abattement temps partiel:
       privé: oui
       applicable si: contrat . temps de travail . quotité < 50%
@@ -565,9 +559,9 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
   icônes: 🚍
 
   avec:
-
     déductible:
-      description: Montant de l'abonnement aux transports publics prise en charge par
+      description:
+        Montant de l'abonnement aux transports publics prise en charge par
         l'employeur et déductible de cotisations et d'impôts.
       produit:
         - montant
@@ -581,7 +575,8 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
     employeur:
       applicable si: montant > 0
       titre: Part employeur
-      description: Montant de l'abonnement aux transports publics prise en charge par
+      description:
+        Montant de l'abonnement aux transports publics prise en charge par
         l'employeur.
       unité: €/mois
       produit:
@@ -590,7 +585,8 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
 
     montant:
       titre: Montant abonnement
-      question: Quel montant le salarié dépense-t-il en abonnement aux transports
+      question:
+        Quel montant le salarié dépense-t-il en abonnement aux transports
         publics pour se rendre sur son lieu de travail ?
       unité: €/mois
       par défaut: 0 €/mois
@@ -604,10 +600,8 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
 
         Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
       références:
-        Articles R3261-1 à -10 du code du travail, version 01/01/2009:
-          https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272/2009-01-01
-        Article 81 du code des impôts, version en vigueur au 31/12/2020:
-          https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+        Articles R3261-1 à -10 du code du travail, version 01/01/2009: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272/2009-01-01
+        Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
         Remboursement des frais de transport: https://www.service-public.fr/particuliers/vosdroits/F19846/personnalisation/resultat?lang=&quest0=0
         Prise en charge obligatoire des frais de transport public: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-obligatoire-des.html#FilAriane
       suggestions:
@@ -631,7 +625,6 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
   icônes: 🚗
 
   avec:
-
     déductible:
       applicable si: montant > 0
       titre: Part déductible
@@ -680,10 +673,8 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
 
       références:
         Fiche Urssaf sur la prime de transport: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/prime-de-transport.html
-        Articles R3261-11 à -13 du code du travail, version 11/05/2020:
-          https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
-        Article 81 du code des impôts, version en vigueur au 31/12/2020:
-          https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+        Articles R3261-11 à -13 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
+        Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
     véhicule electrique hybride hydrogène:
       question: Le salarié utilise-t'il un véhicules électriques, hybrides
@@ -720,10 +711,8 @@ salarié . rémunération . frais professionnels . trajets domicile travail . fo
         Forfait mobilité durable: https://entreprendre.service-public.fr/vosdroits/F33808
         'FAQ : le forfait mobilités durables': https://www.ecologie.gouv.fr/faq-forfait-mobilites-durables-fmd
         'Forfait mobilité durable : Comment ça marche ? (pdf)': https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/FMD-Comment-ca-marche.pdf
-        Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020:
-          https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
-        Article 81 du code des impôts, version en vigueur au 31/12/2020:
-          https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+        Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
+        Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
 salarié . rémunération . avantages en nature:
   icônes: 🛏️🚗🥗📱
@@ -737,13 +726,11 @@ salarié . rémunération . avantages en nature:
   par défaut: non
 
   avec:
-
     autres:
       question: >
         Y a-t-il d'autres avantages en natures (logement, véhicule,
         réduction...) ?
       par défaut: non
-
       avec:
         montant:
           titre: autres
@@ -808,11 +795,10 @@ salarié . rémunération . avantages en nature:
         L'entreprise fournit-elle gratuitement un outil issus des NTIC
         (ordinateur, téléphone, tablette, etc.) ?
       par défaut: oui
-
       avec:
-
         abonnements:
-          question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge
+          question:
+            Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge
             par l'employeur ?
           par défaut: 20 €/mois
           suggestions:

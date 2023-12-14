@@ -254,7 +254,8 @@ artiste-auteur . cotisations . IRCEC . profession . RACD:
 artiste-auteur . cotisations . IRCEC . profession . RACL:
   icônes: 🎙️
   titre: auteur ou compositeur lyrique, dialoguiste de doublage
-  description: Les auteurs et compositeurs d’œuvres musicales et les dialoguistes
+  description:
+    Les auteurs et compositeurs d’œuvres musicales et les dialoguistes
     de doublage cotisent au RACL.
   formule: profession = 'RACL'
 

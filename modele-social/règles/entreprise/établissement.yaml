@@ -19,8 +19,6 @@
     code postal:
 
     département:
-
-      
       avec:
         outre-mer:
           par défaut: non
@@ -64,7 +62,6 @@
     Comment calculer les cotisations accidents du travail et maladies professionnelles (AT/MP) ?: https://entreprendre.service-public.fr/vosdroits/F33665
 
   avec:
-
     avertissement taux minimum:
       type: notification
       si: taux ATMP < salarié . cotisations . ATMP . taux minimum
@@ -79,7 +76,6 @@
         implémentés
       # TODO : cette ligne n'est utile que pour déprioriser cette question par rapport à celle sur de `taux ATMP`.
       # Il y a peut-être un bug dans publicodes : on s'attendrait à ce soit déjà le cas.
-
 
 établissement . ZFU:
   experimental: oui

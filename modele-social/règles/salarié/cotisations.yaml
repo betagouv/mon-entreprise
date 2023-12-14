@@ -1233,6 +1233,7 @@ salarié . cotisations . taxe d'apprentissage:
               alors: 0.1%
             - si: entreprise . salariés . ratio alternants < 5%
               alors: 0.05%
+
       avec:
         CSA au taux majoré:
           toutes ces conditions:

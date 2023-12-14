@@ -84,7 +84,8 @@ entreprise . chiffre d'affaires:
 entreprise . chiffre d'affaires . vente restauration hébergement:
   titre: Vente de biens, restauration, hébergement (BIC)
   résumé: Chiffre d'affaires hors taxe
-  question: Quel est le chiffre d'affaires issu de la vente de biens, restauration
+  question:
+    Quel est le chiffre d'affaires issu de la vente de biens, restauration
     ou hébergement ?
   unité: €/an
   variations:
@@ -280,15 +281,13 @@ entreprise . résultat fiscal . rémunération dirigeant déductible:
           déductibles
 
 entreprise . exercice:
-
-  
   avec:
-
     date trop ancienne:
       type: notification
       sévérité: avertissement
       formule: début < 01/01/2018
-      description: La date saisie est trop ancienne. Le simulateur n'intègre pas les
+      description:
+        La date saisie est trop ancienne. Le simulateur n'intègre pas les
         barèmes avant 2018.
 
     début:
@@ -327,7 +326,7 @@ entreprise . charges:
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
   description: |
-    
+
     Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaires encaissé.
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto-entrepreneurs en franchise de TVA)
@@ -400,7 +399,6 @@ entreprise . salariés . effectif:
       par défaut: "'moins de 5'"
 
       avec:
-
         moins de 11:
           titre: entre 5 et 10
 
@@ -421,7 +419,8 @@ entreprise . salariés . effectif:
           titre: 251 et plus
 
 entreprise . salariés . ratio alternants:
-  question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen
+  question:
+    Quelle est la fraction de contrats d'alternance dans l'effectif moyen
     de l'entreprise ?
   titre: Fraction d'alternants
   description: |

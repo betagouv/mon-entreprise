@@ -180,7 +180,8 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . réduc
     - règle: cotisations . vieillesse . employeur . plafonnée . taux
       par: cotisations . vieillesse . employeur . plafonnée . taux * réduction de taux
     - règle: cotisations . vieillesse . employeur . déplafonnée . taux
-      par: cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
+      par:
+        cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
         taux
     - règle: cotisations . vieillesse . salarié . plafonnée . taux
       par: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
@@ -222,7 +223,8 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . plafon
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément:
   non applicable si: activité accessoire
-  question: L'artiste est-il un acteur de complément engagé à la journée pour une
+  question:
+    L'artiste est-il un acteur de complément engagé à la journée pour une
     production cinématographique ?
   par defaut: non
 

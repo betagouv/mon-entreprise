@@ -22,7 +22,6 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
     Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
   avec:
-
     cotisation forfaitaire:
       produit:
         - variations:
@@ -81,12 +80,12 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
   valeur: métier = 'santé . chirurgien-dentiste'
 
   avec:
-
     PCV:
       titre: Prestation complémentaire vieillesse
       remplace: cotisations et contributions . PCV
       non applicable si: exonération PCV
-      note: Une dispense peut être accordée lorsque les revenus professionnels 2019
+      note:
+        Une dispense peut être accordée lorsque les revenus professionnels 2019
         sont inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année
         considérée), soit 11 500 €.
 
@@ -171,14 +170,16 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme:
           alors: 182 €/an
         - si: classe = 'C'
           alors: 273 €/an
-      note: À partir de 2023, il n'y a plus de possibilité de choisir pour une classe
+      note:
+        À partir de 2023, il n'y a plus de possibilité de choisir pour une classe
         de cotisation spécifique.
       références:
         Montant des cotisations: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe:
   titre: Classe de cotisation
-  question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la
+  question:
+    Dans quelle classe cotisez-vous pour le régime invalidité-décès de la
     CARCDSF ?
   description: |
     Il existe classes de cotisations aux choix, correspondant à des cotisations

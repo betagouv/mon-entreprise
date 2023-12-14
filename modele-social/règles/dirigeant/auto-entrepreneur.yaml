@@ -187,7 +187,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
 
     taux prestation de service:
       déprécié: oui
-      note: Il y a maintenant un taux différent pour les prestations de service BIC ou
+      note:
+        Il y a maintenant un taux différent pour les prestations de service BIC ou
         BNC.
       valeur: taux service BIC
 
@@ -260,7 +261,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
 
     prestation de service:
       déprécié: oui
-      note: Il y a maintenant des taux différents pour les prestations de service BIC
+      note:
+        Il y a maintenant des taux différents pour les prestations de service BIC
         et BNC
       valeur: service BIC
 

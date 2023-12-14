@@ -60,13 +60,7 @@
 		"@types/react": "^18.2.18",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"styled-components": "^6.0.7",
-		"@publicodes/api": "portal:/home/johan/Projets/publicodes/_deprecated/api",
-		"publicodes-react": "portal:/home/johan/Projets/publicodes/_deprecated/publicodes-react",
-		"@publicodes/codemod": "portal:/home/johan/Projets/publicodes/packages/codemod",
-		"publicodes": "portal:/home/johan/Projets/publicodes/packages/core",
-		"@publicodes/react-ui": "portal:/home/johan/Projets/publicodes/packages/react-ui",
-		"@publicodes/rest-api": "portal:/home/johan/Projets/publicodes/packages/rest-api"
+		"styled-components": "^6.0.7"
 	},
 	"packageManager": "yarn@3.5.0",
 	"engines": {

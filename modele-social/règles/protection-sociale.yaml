@@ -98,10 +98,10 @@ protection sociale . retraite . base . cotisée:
   plafond: plafond sécurité sociale
 
   avec:
-
     indépendant:
       titre: revenu indépendant
-      valeur: dirigeant . indépendant . cotisations et contributions . retraite de
+      valeur:
+        dirigeant . indépendant . cotisations et contributions . retraite de
         base / dirigeant . indépendant . cotisations et contributions . retraite
         de base . taux
       références:
@@ -133,7 +133,8 @@ protection sociale . retraite . base . cotisée:
 
     salarié:
       titre: revenu salarié
-      valeur: salarié . cotisations . vieillesse . salarié / (salarié . cotisations .
+      valeur:
+        salarié . cotisations . vieillesse . salarié / (salarié . cotisations .
         vieillesse . salarié . plafonnée . taux + salarié . cotisations .
         vieillesse . salarié . déplafonnée . taux)
       références:
@@ -160,7 +161,8 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
   produit:
     - points acquis
     - valeur du point
-  note: La revalorisation de la valeur du point a lieu au 1er novembre, et non au
+  note:
+    La revalorisation de la valeur du point a lieu au 1er novembre, et non au
     1er janvier.
   références:
     'Retraite complémentaire dans le privé : Agirc-Arrco': https://www.service-public.fr/particuliers/vosdroits/F15396
@@ -189,7 +191,8 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 
       valeur: (salarié . cotisations . retraite complémentaire / 1.27) / valeur
         d'acquisition
-      note: Le taux de cotisation de retraite complémentaire étant 127% du taux de
+      note:
+        Le taux de cotisation de retraite complémentaire étant 127% du taux de
         calcul des points, il faut diviser par 1.27 le montant des cotisations
         versées par le salarié pour obtenir le montant à utiliser pour le calcul
         des points.
@@ -226,13 +229,13 @@ protection sociale . retraite . complémentaire . RCI:
     - points acquis
     - valeur du point
   références:
-    'Fonctionnement de la retraite complémentaire des indépendants':
-      https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
+    'Fonctionnement de la retraite complémentaire des indépendants': https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
     'Valeur de service du point de retraite complémentaire': https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
 
   avec:
     points acquis:
-      non applicable si: dirigeant . indépendant . cotisations et contributions .
+      non applicable si:
+        dirigeant . indépendant . cotisations et contributions .
         exonérations . pension invalidité # Non implémenté (cf règle)
       arrondi: oui
       valeur: dirigeant . indépendant . cotisations et contributions . retraite
@@ -383,7 +386,8 @@ protection sociale . retraite . complémentaire . CIPAV:
     Évolutions relatives aux droits et aux prestations de la CIPAV: https://www.lacipav.fr/evolutiondroitsetprestationsCipav
 
   avec:
-    points acquis: dirigeant . indépendant . PL . CIPAV . retraite complémentaire /
+    points acquis:
+      dirigeant . indépendant . PL . CIPAV . retraite complémentaire /
       valeur d'acquisition
     valeur d'acquisition: 45.30 €/point
 
@@ -413,7 +417,8 @@ protection sociale . maladie:
   icônes: 🏥
   titre: assurance maladie
   type: branche
-  résumé: Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
+  résumé:
+    Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
     maladies graves comme les séjours à l'hôpital.
   description: |
     L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
@@ -431,8 +436,7 @@ protection sociale . maladie:
     À quel organisme de sécurité sociale est-on rattaché pour l'assurance maladie ?: https://www.service-public.fr/particuliers/vosdroits/F648
     Ce qui est remboursé pour tout le monde: https://www.ameli.fr/assure/remboursements/rembourse
     Rapport d'activité de l'assurance maladie 2017 (PDF): https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
-    Rapport OCDE sur l'esperance de vie dans les différents pays:
-      https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
+    Rapport OCDE sur l'esperance de vie dans les différents pays: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
 
   avec:
     '[privé] abattement forfaitaire salarié': 21%
@@ -443,7 +447,8 @@ protection sociale . maladie:
       valeur:
         variations:
           - si: dirigeant . indépendant
-            alors: dirigeant . indépendant . cotisations et contributions . indemnités
+            alors:
+              dirigeant . indépendant . cotisations et contributions . indemnités
               journalières maladie . assiette
           - si: dirigeant . auto-entrepreneur
             alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
@@ -467,7 +472,6 @@ protection sociale . maladie . arrêt maladie:
     - indépendant . indemnités
 
   avec:
-
     délai d'attente:
       non applicable si: arrêt maladie = 0
 
@@ -488,13 +492,10 @@ protection sociale . maladie . arrêt maladie . salarié:
 
   avec:
     conditions:
-
       références:
-        Quels sont les critères pour être indemnisé en cas de maladie ?:
-          https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie#text_2632
+        Quels sont les critères pour être indemnisé en cas de maladie ?: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie#text_2632
 
       avec:
-
         délai d'attente:
           description: |
             Pour pouvoir prétendre à une indemnisation pour maladie au titre de votre activité professionnelle, vous devez justifier d’un délai d’affiliation continus dans cette activité. Ce dernier dépend de votre rémunération des mois précédents.
@@ -517,8 +518,7 @@ protection sociale . maladie . arrêt maladie . salarié:
           plafond: 1.8 * SMIC
         - 50%
       références:
-        'Arrêt de travail pour maladie : les indemnités journalières du salarié':
-          https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
+        'Arrêt de travail pour maladie : les indemnités journalières du salarié': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
         'Arrêt maladie : indemnités journalières versées au salarié': https://www.service-public.fr/particuliers/vosdroits/F3053
 
 protection sociale . maladie . arrêt maladie . indépendant:
@@ -528,14 +528,13 @@ protection sociale . maladie . arrêt maladie . indépendant:
       - dirigeant . auto-entrepreneur
 
   références:
-    Quelles indemnités journalières pour les artisans/commerçants:
-      https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
-    Quelles indemnités journalières pour les professions libérales:
-      https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
+    Quelles indemnités journalières pour les artisans/commerçants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
+    Quelles indemnités journalières pour les professions libérales: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
 
   avec:
     conditions:
-      description: En cas de revenu d’activité indépendante faible, le montant de
+      description:
+        En cas de revenu d’activité indépendante faible, le montant de
         l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
         être nul. De même en début d'activité, il faut attendre un certain
         nombre de mois avant de pouvoir bénéficier d'indemnités.
@@ -548,7 +547,6 @@ protection sociale . maladie . arrêt maladie . indépendant:
         Comment bénéficier d'indemnités liées à son ancien régime: https://www.ameli.fr/assure/actualites/indemnites-maladie-et-maternite-du-nouveau-pour-certains-travailleurs-independants
 
       avec:
-
         délai d'attente:
           description: |
             Pour pouvoir prétendre à une indemnisation pour maladie au titre de votre activité professionnelle, vous devez justifier d’un délai d’affiliation continus dans cette activité.
@@ -557,10 +555,8 @@ protection sociale . maladie . arrêt maladie . indépendant:
           valeur: 12 mois
           remplace: arrêt maladie . délai d'attente
           références:
-            'Artisan/commerçant : quels sont les critères pour être indemnisé en cas de maladie ?':
-              https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972#text_124921
-            'Profession libérale : quels sont les critères pour être indemnisé en cas de maladie ?':
-              'https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170646'
+            'Artisan/commerçant : quels sont les critères pour être indemnisé en cas de maladie ?': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972#text_124921
+            'Profession libérale : quels sont les critères pour être indemnisé en cas de maladie ?': 'https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170646'
         revenu: raam > 10% * plafond sécurité sociale
 
     indemnités:
@@ -577,10 +573,8 @@ protection sociale . maladie . arrêt maladie . indépendant:
 protection sociale . maladie . maternité paternité adoption:
   titre: indemnités congé maternité paternité adoption
   références:
-    'Paternité et accueil de l’enfant : vos indemnités journalières':
-      https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant
-    'Les prestations maternité des travailleuses indépendantes et des conjointes collaboratrices':
-      https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric
+    'Paternité et accueil de l’enfant : vos indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant
+    'Les prestations maternité des travailleuses indépendantes et des conjointes collaboratrices': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric
     'Congé d’adoption : les indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-adoption
     'Simulateur maternité paternité adoption': https://www.ameli.fr/assure/simulateur-maternite-paternite
   somme:
@@ -588,7 +582,6 @@ protection sociale . maladie . maternité paternité adoption:
     - indépendant . indemnités
 
   avec:
-
     allocation forfaitaire de repos adoption:
       non applicable si: oui
 
@@ -611,7 +604,6 @@ protection sociale . maladie . maternité paternité adoption:
           - dirigeant . auto-entrepreneur
 
       avec:
-
         allocation forfaitaire de repos adoption:
           remplace: allocation forfaitaire de repos adoption
           valeur: 50% * allocation forfaitaire de repos maternel
@@ -642,10 +634,8 @@ protection sociale . maladie . maternité paternité adoption:
             applicable si: raam < 10% * plafond sécurité sociale
             valeur: 90%
           références:
-            'Les indemnités journalières forfaitaires maternité des travailleuses indépendantes':
-              https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric#text_125695
-            'Paternité et accueil de l’enfant : les indemnités journalières pour les travailleurs indépendants':
-              https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant#text_114763
+            'Les indemnités journalières forfaitaires maternité des travailleuses indépendantes': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric#text_125695
+            'Paternité et accueil de l’enfant : les indemnités journalières pour les travailleurs indépendants': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant#text_114763
 
     salarié:
       applicable si: salarié
@@ -669,13 +659,13 @@ protection sociale . maladie . maternité paternité adoption:
                     salarié
               plancher: invalidité et décès . pension invalidité . minimum salarié
           références:
-            'Congé maternité : les indemnités journalières pour les salariées ':
-              https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-maternite-salariee
+            'Congé maternité : les indemnités journalières pour les salariées ': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-maternite-salariee
 
 protection sociale . invalidité et décès:
   icônes: 🦽
   type: branche
-  résumé: Garantit le versement d'une pension en cas d'invalidité et un capital à
+  résumé:
+    Garantit le versement d'une pension en cas d'invalidité et un capital à
     vos proches en cas de décès.
   description: |
     Vous pouvez être reconnu invalide si votre capacité de travail et de gain est réduite d'au moins 2/3 à la suite d'un accident ou d'une maladie d'origine non professionnelle. Vous pouvez obtenir le versement d'une pension d'invalidité afin de compenser la perte de revenus.
@@ -687,17 +677,13 @@ protection sociale . invalidité et décès:
     pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
 
   avec:
-
     accidents du travail et maladies professionnelles:
       applicable si: salarié
       références:
-        'Incapacité permanente suite à un accident du travail : indemnités et rente':
-          https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-accident-travail
-        'Incapacité permanente suite à une maladie professionnelle : indemnités et rentes':
-          https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-maladie-professionnelle
+        'Incapacité permanente suite à un accident du travail : indemnités et rente': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-accident-travail
+        'Incapacité permanente suite à une maladie professionnelle : indemnités et rentes': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-maladie-professionnelle
 
       avec:
-
         rente décès:
           titre: Rente décès AT/MP
           description: |
@@ -731,7 +717,8 @@ protection sociale . invalidité et décès:
             "Accident du travail : indemnisation en cas d'incapacité permanente": https://www.service-public.fr/particuliers/vosdroits/F14840
 
     accidents du travail et maladies professionnelles . rente incapacité . taux incapacité:
-      question: Quel taux d'incapacité voulez-vous simuler pour la rente accidents du
+      question:
+        Quel taux d'incapacité voulez-vous simuler pour la rente accidents du
         travail et maladie professionnelle ?
       plancher: 10%
       plafond: 100%
@@ -760,8 +747,7 @@ protection sociale . invalidité et décès:
         - les enfants à la charge du défunt de plus de 16 ans, et de moins de 20 ans, poursuivant leurs études ou leur apprentissage ;
         - les enfants, quel que soit leur âge, bénéficiaires des allocations instituées en faveur des handicapés.
       références:
-        'Le capital orphelin pour les enfants des travailleurs indépendants':
-          https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces#text_76987
+        'Le capital orphelin pour les enfants des travailleurs indépendants': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces#text_76987
       valeur: 5% * plafond sécurité sociale * 1 an / 1 enfant
 
     pension de reversion:
@@ -775,8 +761,7 @@ protection sociale . invalidité et décès:
       références:
         Pension de réversion: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/veuvage/pension-reversion-veuvage.html
         Montants minimums de la pension de reversion: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=retraite_reversion_montant_minimum_bar.aspx
-        Pension de réversion - Défunt ayant travaillé dans le privé:
-          https://www.service-public.fr/particuliers/vosdroits/F35774/0?idFicheParent=N378#0
+        Pension de réversion - Défunt ayant travaillé dans le privé: https://www.service-public.fr/particuliers/vosdroits/F35774/0?idFicheParent=N378#0
       plancher:
         variations:
           - si: date >= 07/2022
@@ -808,7 +793,8 @@ protection sociale . invalidité et décès:
 
         invalidité partielle:
           unité: €/mois
-          description: Si vous êtes capable d'exercer une activité professionnelle
+          description:
+            Si vous êtes capable d'exercer une activité professionnelle
             rémunérée, vous êtes classé en 1re catégorie.
           plancher: minimum
           produit:
@@ -820,7 +806,8 @@ protection sociale . invalidité et décès:
         invalidité totale:
           unité: €/mois
           plancher: minimum
-          description: Si vous ne pouvez plus exercer d'activité professionnelle, vous
+          description:
+            Si vous ne pouvez plus exercer d'activité professionnelle, vous
             êtes classé en 2e catégorie.
           produit:
             - revenu annuel moyen des 10 meilleures années
@@ -833,8 +820,7 @@ protection sociale . invalidité et décès:
           applicable si: salarié
           valeur: 309.09 €/mois
           références:
-            "Montant minimal de la pension d'invalidité de travailleur salarié":
-              https://www.legislation.cnav.fr/Lists/ArticlesBareme/DispForm.aspx?ID=4266&ContentTypeId=0x01007CF8FA8574A1B64CA3888B8B205B3F58
+            "Montant minimal de la pension d'invalidité de travailleur salarié": https://www.legislation.cnav.fr/Lists/ArticlesBareme/DispForm.aspx?ID=4266&ContentTypeId=0x01007CF8FA8574A1B64CA3888B8B205B3F58
             'Le montant de votre pension d’invalidité ': https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
 
         revenu annuel moyen des 10 meilleures années:
@@ -845,7 +831,8 @@ protection sociale . invalidité et décès:
             - applicable si: maladie . arrêt maladie . indépendant . conditions . revenu
               variations:
                 - si: dirigeant . indépendant
-                  alors: dirigeant . indépendant . cotisations et contributions . invalidité et
+                  alors:
+                    dirigeant . indépendant . cotisations et contributions . invalidité et
                     décès . assiette
                 - si: dirigeant . auto-entrepreneur
                   alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
@@ -908,10 +895,8 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
 
   références:
     "Comprendre l'assurance AT/MP": https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
-    'Maladie professionnelle : prise en charge et indemnités journalières':
-      https://www.ameli.fr/assure/remboursements/indemnites-journalieres/maladie-professionnelle
-    'Accident du travail : prise en charge et indemnités journalières':
-      https://www.ameli.fr/assure/remboursements/indemnites-journalieres/accident-travail
+    'Maladie professionnelle : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/maladie-professionnelle
+    'Accident du travail : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/accident-travail
     "Qu'est-ce qu'un accident de trajet ?": https://www.service-public.fr/particuliers/vosdroits/F31881
     "Qu'est-ce qu'une maladie professionnelle ?": https://www.service-public.fr/particuliers/vosdroits/F31880
     "Accident du travail : indemnités journalières pendant l'arrêt de travail": https://www.service-public.fr/particuliers/vosdroits/F175

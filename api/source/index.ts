@@ -1,6 +1,6 @@
 import cors from '@koa/cors'
 import Router, { RouterContext } from '@koa/router'
-import { koaMiddleware as publicodesAPI } from '@publicodes/api'
+import { koaMiddleware as publicodesAPI } from '@publicodes/rest-api'
 import Koa from 'koa'
 import rules from 'modele-social'
 import Engine from 'publicodes'
@@ -14,6 +14,7 @@ import { docRoutes } from './route/doc.js'
 import { openapiRoutes } from './route/openapi.js'
 import Sentry, { requestHandler, tracingMiddleWare } from './sentry.js'
 import { getUnitKey } from './units.js'
+import v1unitéAdapterMiddleware from './v1unitéAdapterMiddleware.js'
 
 type State = Koa.DefaultState
 type Context = Koa.DefaultContext
@@ -50,6 +51,7 @@ router.use(
 	rateLimiterMiddleware,
 	redisCacheMiddleware(),
 	analyticsMiddleware,
+	v1unitéAdapterMiddleware,
 	apiRoutes
 )
 

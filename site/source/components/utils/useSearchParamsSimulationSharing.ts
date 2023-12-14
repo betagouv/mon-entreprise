@@ -122,6 +122,7 @@ export function getSearchParamsFromSituation(
 			console.error(error)
 		}
 	})
+
 	searchParams.sort()
 
 	return searchParams
@@ -149,7 +150,9 @@ export function getSituationFromSearchParams(
 			if (value.startsWith('{') && value.endsWith('}')) {
 				try {
 					const parsed = JSON.parse(value) as Record<string, unknown>
-
+					if ('unité' in parsed) {
+						parsed['unité'] = (parsed['unité'] as string).replace(' / ', '/')
+					}
 					situation[paramNameDottedName[paramName]] = parsed
 				} catch (error) {
 					// eslint-disable-next-line no-console

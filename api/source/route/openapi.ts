@@ -1,12 +1,12 @@
 import Router from '@koa/router'
-import { openapi as publicodesOpenapi } from '@publicodes/api'
+import { openapi as publicodesOpenapi } from '@publicodes/rest-api'
 import { Context } from 'koa'
 
 import { analyticsMiddleware } from '../analytics.js'
 import { mergeDeep } from '../utils.js'
 
 /**
- * /openapi.json route, merge customOpenapi with @publicodes/api openapi json
+ * /openapi.json route, merge customOpenapi with @publicodes/rest-api openapi json
  * @param customOpenapi
  * @returns
  */
