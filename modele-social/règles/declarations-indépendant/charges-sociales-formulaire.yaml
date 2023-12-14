@@ -1,15 +1,15 @@
 déclaration charge sociales:
   experimental: oui
   description: >-
-    Ces règles calculent les montants des charges sociales à reporter dans la déclaration de revenu
-    des indépendants et dans les déclaration de résultats.
+    Ces règles calculent les montants des charges sociales à reporter dans la
+    déclaration de revenu des indépendants et dans les déclaration de résultats.
   formule: non
   remplace:
     - règle: dirigeant . exonérations . ACRE
       par: ACRE
 
-    - # Par défaut on  considère que l'entreprise est mixte et on affiche tous les champs
-      règle: entreprise . activités . revenus mixtes
+    # Par défaut on  considère que l'entreprise est mixte et on affiche tous les champs
+    - règle: entreprise . activités . revenus mixtes
       par: oui
 
 déclaration charge sociales . comptabilité:
@@ -88,21 +88,16 @@ déclaration charge sociales . ACRE:
     d'activité pendant 12 mois.
 
 
-    Elle est automatique pour les sociétés et les entreprises individuelles
-    (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les
-    trois dernières années).
+    Elle est automatique pour les sociétés et les entreprises individuelles (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
 
 
-    De plus, pour les travailleurs indépendants classique il est nécessaire de
-    respecter la condition d’être considéré comme créateur au sens de [l’article
-    R131-3 du Code de Sécurité Sociale](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034727582&cidTexte=LEGITEXT000006073189&dateTexte=20170511).
+    De plus, pour les travailleurs indépendants classique il est nécessaire de respecter la condition d’être considéré comme créateur au sens de [l’article R131-3 du Code de Sécurité Sociale](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034727582&cidTexte=LEGITEXT000006073189&dateTexte=20170511).
 
 
     ### Détails
 
 
-    Cette exonération porte sur l’ensemble des cotisations à l’exception de la
-    cotisation retraite complémentaire et les contributions CSG/CRDS et CFP.
+    Cette exonération porte sur l’ensemble des cotisations à l’exception de la cotisation retraite complémentaire et les contributions CSG/CRDS et CFP.
 
 
     Cette exonération peut être totale, partielle ou nulle en fonction des revenus déclarés :
@@ -152,7 +147,8 @@ déclaration charge sociales . nature de l'activité . artisanale:
     liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0
 
 déclaration charge sociales . cotisations obligatoires déductibles:
-  description: Cotisations obligatoires déductibles, utile pour calculer l'assiette de la CSG/CRDS
+  description: Cotisations obligatoires déductibles, utile pour calculer
+    l'assiette de la CSG/CRDS
   somme:
     - dirigeant . indépendant . cotisations et contributions . cotisations
     - dirigeant . indépendant . conjoint collaborateur . cotisations

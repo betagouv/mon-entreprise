@@ -21,16 +21,18 @@ salarié . convention collective:
         - SVP
         - compta
         - optique
+
   avec:
-    droit commun: convention collective = 'droit commun'
+
     contrôle décharge:
       type: notification
       sévérité: avertissement
       valeur: convention collective != 'droit commun'
       description: >-
-        Attention : l'implémentation des conventions collective est encore partielle
-        et non vérifiée. Néanmoins, cela permet d'obtenir une première estimation,
-        plus précise que le régime général.
+        Attention : l'implémentation des conventions collective est encore
+        partielle et non vérifiée. Néanmoins, cela permet d'obtenir une première
+        estimation, plus précise que le régime général.
+    droit commun: convention collective = 'droit commun'
 
 salarié . régimes spécifiques:
 salarié . régimes spécifiques . alsace moselle:
@@ -46,10 +48,13 @@ salarié . régimes spécifiques . alsace moselle:
     - établissement . commune . département = 'Moselle'
 
 salarié . régimes spécifiques . alsace moselle . ATMP:
+
+  
   avec:
     seuil taux mixte ou individuel:
       remplace: cotisations . ATMP . seuil taux mixte ou individuel
       valeur: 50 employés
+
     taux fonctions support:
       référence:
         Annexe de l'Arrêté du 24 décembre 2021 Relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2022: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044616039
@@ -67,7 +72,9 @@ salarié . régimes spécifiques . impatriés:
 
     Les impatriés sont exonérés de cotisations retraite (régime de base et complémentaire) à condition de justifier d'une contribution minimale versée par ailleurs (par exemple dans une caisse de retraite ou un fond de pension étranger). Ils n’acquièrent aucun droit pendant la durée d’exonération.
 
-  note: La durée d’application est fixée au maximum jusqu’au 31 décembre de la huitième année civile suivant la prise de fonctions dans l’entreprise d’accueil.
+  note: La durée d’application est fixée au maximum jusqu’au 31 décembre de la
+    huitième année civile suivant la prise de fonctions dans l’entreprise
+    d’accueil.
   rend non applicable:
     - cotisations . vieillesse
     - cotisations . retraite complémentaire
@@ -75,6 +82,7 @@ salarié . régimes spécifiques . impatriés:
     impots.gouv.fr: https://www.impots.gouv.fr/portail/particulier/questions/puis-je-beneficier-du-regime-des-impatries
     bofip: http://bofip.impots.gouv.fr/bofip/5694-PGP
     Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
+
   avec:
     information:
       type: notification
@@ -90,14 +98,12 @@ salarié . régimes spécifiques . DFS:
   acronyme: DFS
   description: >-
     Pour une liste précise de professions, l'employeur peut pratiquer une
-    déduction forfaitaire spécifique (DFS) pour frais professionnels sur la base de
-    calcul des cotisations sociales. spécifique consiste en un abattement sur l'assiette
-    des cotisations sociales. Elle peut s'appliquer si le salarié supporte
-    effectivement des frais lors de son activité professionnelle.
+    déduction forfaitaire spécifique (DFS) pour frais professionnels sur la base
+    de calcul des cotisations sociales. spécifique consiste en un abattement sur
+    l'assiette des cotisations sociales. Elle peut s'appliquer si le salarié
+    supporte effectivement des frais lors de son activité professionnelle.
 
-    En l’absence de frais effectivement engagés, ou si l’employeur prend en
-    charge ou rembourse la totalité des frais professionnels, il est impossible
-    d’appliquer la DFS.
+    En l’absence de frais effectivement engagés, ou si l’employeur prend en charge ou rembourse la totalité des frais professionnels, il est impossible d’appliquer la DFS.
   question: Le salarié bénéficie-t-il d'une déduction forfaitaire spécifique ?
   par défaut: non
   remplace:
@@ -114,7 +120,14 @@ salarié . régimes spécifiques . DFS:
     # inverse.
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
+
   avec:
+
+    assiette minimale:
+      valeur: rémunération . assiette de vérification du SMIC
+      contexte:
+        contrat . salaire brut: SMIC . horaire * temps de travail . effectif
+
     taux:
       variations:
         - si: profession = 'journaliste'
@@ -130,14 +143,9 @@ salarié . régimes spécifiques . DFS:
       références:
         Circulaire DSS: https://solidarites-sante.gouv.fr/fichiers/bo/2005/05-09/a0090046.htm
 
-    assiette minimale:
-      recalcul:
-        règle: rémunération . assiette de vérification du SMIC
-        avec:
-          contrat . salaire brut: SMIC . horaire * temps de travail . effectif
-
 salarié . régimes spécifiques . DFS . profession:
-  question: Quelle est la profession du salarié pour l'application de la déduction forfaitaire spécifique ?
+  question: Quelle est la profession du salarié pour l'application de la déduction
+    forfaitaire spécifique ?
   formule:
     une possibilité:
       possibilités:
@@ -146,13 +154,21 @@ salarié . régimes spécifiques . DFS . profession:
         - artiste musicien
         - pilote de ligne ou personnel navigant
       choix obligatoire: oui
+
   avec:
+
+    artiste musicien:
+      icônes: 🎼
+      description: >-
+        Concerne les artistes musiciens, choristes, chefs d’orchestre,
+        régisseurs de théâtre
+
     journaliste:
       valeur: profession = 'journaliste'
       icônes: ✒
       description: >-
-        Concerne les journalistes, rédacteurs, photographes, directeurs de journaux
-        Critiques dramatiques et musicaux.
+        Concerne les journalistes, rédacteurs, photographes, directeurs de
+        journaux Critiques dramatiques et musicaux.
 
     ouvrier du bâtiment:
       icônes: 👷‍♂️
@@ -160,12 +176,6 @@ salarié . régimes spécifiques . DFS . profession:
         Concerne les ouvriers du bâtiment visés aux paragraphes 1er et 2 de
         l’article 1er du décret du 17 novembre 1936, à l’exclusion de ceux qui
         travaillent en usine ou en atelier.
-
-    artiste musicien:
-      icônes: 🎼
-      description: >-
-        Concerne les artistes musiciens, choristes, chefs d’orchestre, régisseurs de
-        théâtre
 
     pilote de ligne ou personnel navigant:
       icônes: ✈
@@ -180,7 +190,8 @@ salarié . régimes spécifiques . DFS . profession . journaliste . réduction d
     - règle: cotisations . vieillesse . employeur . plafonnée . taux
       par: cotisations . vieillesse . employeur . plafonnée . taux * réduction de taux
     - règle: cotisations . vieillesse . employeur . déplafonnée . taux
-      par: cotisations . vieillesse . employeur . déplafonnée . taux * réduction de taux
+      par: cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
+        taux
     - règle: cotisations . vieillesse . salarié . plafonnée . taux
       par: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
     - règle: cotisations . vieillesse . salarié . déplafonnée . taux
@@ -206,7 +217,9 @@ salarié . régimes spécifiques . DFS . profession . journaliste . abattement f
 salarié . régimes spécifiques . taxe sur les salaires:
   applicable si: entreprise . TVA = non
   unité: €/an
-  description: La taxe sur les salaires en France est un impôt progressif créé en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils distribuent.
+  description: La taxe sur les salaires en France est un impôt progressif créé en
+    1948 que certains employeurs doivent acquitter sur les salaires qu'ils
+    distribuent.
   barème:
     assiette:
       somme:
@@ -226,7 +239,7 @@ salarié . régimes spécifiques . taxe sur les salaires:
 
 salarié . coût total employeur:
   identifiant court: cout-total-employeur
-  synonymes: [salaire chargé]
+  synonymes: [ salaire chargé ]
   résumé: Dépensé par l'entreprise
   question: Quel est le coût total de cette embauche ?
   description: |

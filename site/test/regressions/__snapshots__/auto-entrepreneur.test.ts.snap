@@ -31,7 +31,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 45675
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 45676
 dirigeant . auto-entrepreneur . cotisations et contributions: 473
 dirigeant . auto-entrepreneur . revenu net: 40000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 40000

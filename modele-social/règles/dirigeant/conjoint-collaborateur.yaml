@@ -48,9 +48,25 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
         une assiette équivalente à 40% du PASS.
       valeur: assiette = 'forfaitaire'
 
-    revenu sans partage:
-      description: Le conjoint collaborateur paiera des cotisations sociales calculées sur une part du revenu professionnel du gérant de l’entreprise.
-      formule: assiette = 'revenu sans partage'
+    pourcentage:
+      titre: Proportion revenu
+      question: À quelle proportion du revenu le conjoint cotise-t'il ?
+      par défaut: "'tiers'"
+      formule:
+        une possibilité:
+          choix obligatoire: oui
+          possibilités:
+            - tiers
+            - moitié
+
+      avec:
+        moitié:
+          formule: pourcentage = 'moitié'
+          titre: '1/2'
+
+        tiers:
+          valeur: pourcentage = 'tiers'
+          titre: '1/3'
 
     revenu avec partage:
       description: |
@@ -68,23 +84,11 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
               - cotisations et contributions . invalidité et décès
               - dirigeant . indépendant . PL . CNAVPL . retraite
 
-    pourcentage:
-      titre: Proportion revenu
-      question: À quelle proportion du revenu le conjoint cotise-t'il ?
-      par défaut: "'tiers'"
-      formule:
-        une possibilité:
-          choix obligatoire: oui
-          possibilités:
-            - tiers
-            - moitié
-      avec:
-        tiers:
-          valeur: pourcentage = 'tiers'
-          titre: '1/3'
-        moitié:
-          formule: pourcentage = 'moitié'
-          titre: '1/2'
+    revenu sans partage:
+      description:
+        Le conjoint collaborateur paiera des cotisations sociales calculées
+        sur une part du revenu professionnel du gérant de l’entreprise.
+      formule: assiette = 'revenu sans partage'
 
 dirigeant . indépendant . conjoint collaborateur . cotisations:
   somme:
@@ -92,50 +96,50 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
     - retraite complémentaire
     - invalidité et décès
     - indemnités journalières maladie
+
   avec:
     assiette:
       titre: assiette conjoint collaborateur
       unité: €/an
-      produit:
-        assiette: assiette des cotisations
-        taux: 1 / 3
-        variations:
-          - si: assiette . forfaitaire
-            alors:
-              assiette: plafond sécurité sociale
-          - si: assiette . pourcentage . moitié
-            alors:
-              taux: 50%
-          - sinon: {}
-
-    retraite de base:
-      recalcul:
-        règle: cotisations et contributions . retraite de base
-        avec:
-          assiette des cotisations: assiette
-          assiette . revenu avec partage: non
-
-    retraite complémentaire:
-      recalcul:
-        règle: cotisations et contributions . retraite complémentaire
-        avec:
-          assiette des cotisations: assiette
-          assiette . revenu avec partage: non
+      variations:
+        - si: assiette . forfaitaire
+          alors:
+            produit:
+              - plafond sécurité sociale
+              - 1 / 3
+        - si: assiette . pourcentage . moitié
+          alors:
+            produit:
+              - assiette des cotisations
+              - 50%
+        - sinon:
+            produit:
+              - assiette des cotisations
+              - 1 / 3
 
     invalidité et décès:
-      recalcul:
-        règle: cotisations et contributions . invalidité et décès
-        avec:
-          assiette des cotisations: assiette
-          assiette . revenu avec partage: non
+      valeur: cotisations et contributions . invalidité et décès
+      contexte:
+        assiette des cotisations: assiette
+        assiette . revenu avec partage: non
+
+    retraite complémentaire:
+      valeur: cotisations et contributions . retraite complémentaire
+      contexte:
+        assiette des cotisations: assiette
+        assiette . revenu avec partage: non
+
+    retraite de base:
+      valeur: cotisations et contributions . retraite de base
+      contexte:
+        assiette des cotisations: assiette
+        assiette . revenu avec partage: non
 
     indemnités journalières maladie:
       produit:
-        assiette:
-          unité: €/an
+        - unité: €/an
           valeur: 40% * plafond sécurité sociale
-        taux:
-          variations:
+        - variations:
             - si: date >= 01/2022
               alors: 0.50%
             - sinon: 0.85%

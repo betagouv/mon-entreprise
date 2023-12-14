@@ -54,29 +54,34 @@ dirigeant . indépendant . PL . CARPIMKO . ASV:
   remplace: cotisations et contributions . PCV
   formule:
     somme:
-      - nom: forfaitaire
-        variations:
-          - si: date >= 01/2023
-            alors: 634 €/an
-          - si: date >= 01/2022
-            alors: 601 €/an
-          - si: date >= 01/2021
-            alors: 590 €/an
-      - nom: proportionnelle
-        produit:
-          assiette: PAMC . assiette participation CPAM
-          taux: 0.40%
+      - forfaitaire
+      - proportionnelle
       - (- participation CPAM)
     arrondi: oui
   références:
     Taux Carpimko: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
+
+  avec:
+    forfaitaire:
+      variations:
+        - si: date >= 01/2023
+          alors: 634 €/an
+        - si: date >= 01/2022
+          alors: 601 €/an
+        - si: date >= 01/2021
+          alors: 590 €/an
+
+    proportionnelle:
+      produit:
+        - PAMC . assiette participation CPAM
+        - 0.40%
 
 dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
   applicable si: PAMC
   formule:
     somme:
       - produit:
-          assiette: forfaitaire
-          taux: 2 / 3
+          - forfaitaire
+          - 2 / 3
         arrondi: oui
       - 60% * proportionnelle

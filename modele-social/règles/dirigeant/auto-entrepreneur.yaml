@@ -11,7 +11,8 @@ dirigeant . auto-entrepreneur . revenu net:
   identifiant court: auto-entrepreneur-net
   résumé: Avant impôt
   question: Quel revenu avant impôt voulez-vous toucher ?
-  description: Il s'agit du revenu après déductions des cotisations, avant le paiement de l'impôt sur le revenu.
+  description: Il s'agit du revenu après déductions des cotisations, avant le
+    paiement de l'impôt sur le revenu.
   valeur: entreprise . chiffre d'affaires - cotisations et contributions
 
 dirigeant . auto-entrepreneur . cotisations et contributions:
@@ -38,43 +39,41 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
   applicable si: entreprise . activité . nature = 'commerciale'
-  produit:
-    composantes:
-      - assiette: entreprise . chiffre d'affaires . service BIC
-        taux: 0.044%
-        attributs:
-          unité: €/mois
-          arrondi: oui
-      - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
-        taux: 0.015%
-        attributs:
-          unité: €/mois
-          arrondi: oui
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+  somme:
+    - produit:
+        - entreprise . chiffre d'affaires . service BIC
+        - 0.044%
+      unité: €/mois
+      arrondi: oui
+    - produit:
+        - entreprise . chiffre d'affaires . vente restauration hébergement
+        - 0.015%
+      unité: €/mois
+      arrondi: oui
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   unité: €/mois
   applicable si: entreprise . activité . nature = 'artisanale'
-  produit:
-    composantes:
-      - assiette: entreprise . chiffre d'affaires . service BIC
-        taux:
-          nom: taux service
-          valeur: 0.48%
-        attributs:
-          unité: €/mois
-          arrondi: oui
-      - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
-        taux:
-          nom: taux vente
-          valeur: 0.22%
-        attributs:
-          unité: €/mois
-          arrondi: oui
 
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+  somme:
+    - produit:
+        - entreprise . chiffre d'affaires . service BIC
+        - taux service
+      unité: €/mois
+      arrondi: oui
+    - produit:
+        - entreprise . chiffre d'affaires . vente restauration hébergement
+        - taux vente
+      unité: €/mois
+      arrondi: oui
+
+  avec:
+    taux service: 0.48%
+    taux vente: 0.22%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace:
   remplace:
@@ -123,17 +122,16 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
     shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/
   note: |
     Les taux implémentés sont ceux prélevés par l'Urssaf.
-  produit:
-    composantes:
-      - assiette: entreprise . chiffre d'affaires . BIC
-        taux:
-          variations:
+  somme:
+    - produit:
+        - entreprise . chiffre d'affaires . BIC
+        - variations:
             - si: entreprise . activité . nature = 'artisanale'
               alors: 0.3%
             - sinon: 0.1%
-      - assiette: entreprise . chiffre d'affaires . service BNC
-        taux:
-          variations:
+    - produit:
+        - entreprise . chiffre d'affaires . service BNC
+        - variations:
             - si:
                 # Avant 2022, le taux était de 1% pour les PLNR non affiliés à la CIPAV
                 toutes ces conditions:
@@ -141,10 +139,12 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
                   - affiliation CIPAV = non
               alors: 0.1%
             - sinon: 0.2%
+
   avec:
     revenus BIC:
       valeur: entreprise . chiffre d'affaires . BIC
       déprécié: oui
+
     revenus BNC:
       valeur: entreprise . chiffre d'affaires . service BNC
       déprécié: oui
@@ -158,35 +158,20 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie
     complexe, toutes les cotisations sont regroupées dans un *forfait* dont le
     taux dépend de la catégorie d'activité.
-  produit:
-    composantes:
-      - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
-        taux:
-          nom: taux vente restauration hébergement
-          variations:
-            - si: date >= 10/2022
-              alors: 12.3%
-            - sinon: 12.8%
-
-      - assiette: entreprise . chiffre d'affaires . service BIC
-        taux:
-          nom: taux service BIC
-          variations:
-            - si: date >= 10/2022
-              alors: 21.2%
-            - sinon: 22%
-
-      - assiette: entreprise . chiffre d'affaires . service BNC
-        taux:
-          nom: taux service BNC
-          variations:
-            - si: date >= 10/2022
-              alors: 21.1%
-            - sinon: 22%
 
   références:
     Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
     'Cotisations et contributions sociales : montant et déclaration': https://entreprendre.service-public.fr/vosdroits/F36232#fiche-item-aria-2
+  somme:
+    - produit:
+        - entreprise . chiffre d'affaires . vente restauration hébergement
+        - taux vente restauration hébergement
+    - produit:
+        - entreprise . chiffre d'affaires . service BIC
+        - taux service BIC
+    - produit:
+        - entreprise . chiffre d'affaires . service BNC
+        - taux service BNC
 
   avec:
     cotisations CIPAV:
@@ -196,14 +181,33 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       applicable si: affiliation CIPAV
       rend non applicable: entreprise . activités . revenus mixtes
       produit:
-        assiette: entreprise . chiffre d'affaires
-        taux:
-          nom: taux
-          valeur: 21.2%
+        - entreprise . chiffre d'affaires
+        - taux
+    cotisations CIPAV . taux: 21.2%
+
     taux prestation de service:
       déprécié: oui
-      note: Il y a maintenant un taux différent pour les prestations de service BIC ou BNC.
+      note: Il y a maintenant un taux différent pour les prestations de service BIC ou
+        BNC.
       valeur: taux service BIC
+
+    taux service BIC:
+      variations:
+        - si: date >= 10/2022
+          alors: 21.2%
+        - sinon: 22%
+
+    taux service BNC:
+      variations:
+        - si: date >= 10/2022
+          alors: 21.1%
+        - sinon: 22%
+
+    taux vente restauration hébergement:
+      variations:
+        - si: date >= 10/2022
+          alors: 12.3%
+        - sinon: 12.8%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   privé: oui
@@ -253,10 +257,12 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
         - si: entreprise . date de création >= 01/04/2020
           alors: 12.10%
         - sinon: cotisations CIPAV . taux * taux ACRE
-    vente restauration hébergement:
-      remplace: taux vente restauration hébergement
-      valeur: taux ACRE * taux vente restauration hébergement
-      arrondi: 1 décimale
+
+    prestation de service:
+      déprécié: oui
+      note: Il y a maintenant des taux différents pour les prestations de service BIC
+        et BNC
+      valeur: service BIC
 
     service BIC:
       remplace: taux service BIC
@@ -268,10 +274,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
       valeur: taux ACRE * taux service BNC
       arrondi: 1 décimale
 
-    prestation de service:
-      déprécié: oui
-      note: Il y a maintenant des taux différents pour les prestations de service BIC et BNC
-      valeur: service BIC
+    vente restauration hébergement:
+      remplace: taux vente restauration hébergement
+      valeur: taux ACRE * taux vente restauration hébergement
+      arrondi: 1 décimale
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel:
   experimental: oui
@@ -288,8 +294,11 @@ dirigeant . auto-entrepreneur . impôt . revenu imposable: entreprise . impositi
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   rend non applicable: revenu imposable
   description: >
-    Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé en même temps que vos cotisations (par mois ou par trimestre) avec application d’un taux spécifique en fonction de votre activité.
-    Pour en bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en 2018
+    Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé
+    en même temps que vos cotisations (par mois ou par trimestre) avec
+    application d’un taux spécifique en fonction de votre activité. Pour en
+    bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en
+    2018
   question: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
   par défaut: non
 
@@ -306,14 +315,16 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
     Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est
     payé en même temps que vos cotisations (par mois ou par trimestre) avec
     application d’un taux spécifique en fonction de votre activité
-  produit:
-    composantes:
-      - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
-        taux: 1%
-      - assiette: entreprise . chiffre d'affaires . service BIC
-        taux: 1.7%
-      - assiette: entreprise . chiffre d'affaires . service BNC
-        taux: 2.2%
+  somme:
+    - produit:
+        - entreprise . chiffre d'affaires . vente restauration hébergement
+        - 1%
+    - produit:
+        - entreprise . chiffre d'affaires . service BIC
+        - 1.7%
+    - produit:
+        - entreprise . chiffre d'affaires . service BNC
+        - 2.2%
 
 dirigeant . auto-entrepreneur . revenu net . après impôt:
   identifiant court: auto-entrepreneur-net-apres-impot
@@ -322,13 +333,11 @@ dirigeant . auto-entrepreneur . revenu net . après impôt:
   arrondi: oui
   question: Quel est le revenu net après impôt souhaité ?
   description: >-
-    Le revenu net de l'auto-entrepreneur après déduction de l'impôt
-    sur le revenu et des cotisations sociales.
+    Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le
+    revenu et des cotisations sociales.
 
 
-    **Attention :** Pour bien évaluer la rentabilité de l'entreprise, il ne faut pas
-    oublier de retrancher à ce montant les dépenses engagées dans le cadre de
-    l'activité. Cela peut inclure par exemple :
+    **Attention :** Pour bien évaluer la rentabilité de l'entreprise, il ne faut pas oublier de retrancher à ce montant les dépenses engagées dans le cadre de l'activité. Cela peut inclure par exemple :
 
     - L'achat des matière premières
 
@@ -345,9 +354,8 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires ?
   résumé: Montant total des recettes (hors taxe)
   inversion numérique:
-    avec:
-      - revenu net
-      - revenu net . après impôt
+    - revenu net
+    - revenu net . après impôt
 
 dirigeant . auto-entrepreneur . exonération DROM:
   experimental: oui

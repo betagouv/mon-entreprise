@@ -9,13 +9,16 @@ entreprise . associés:
 
     Ainsi, une SARL avec un seul associé est appelée EURL (Entreprise Unipersonnelle à Responsabilité Limité). De même pour la SASU, la SELASU et la SERLARLU qui sont les formes unipersonnelles respectives de la SAS, la SELAS et la SELARL.
   question: Je possède cette entreprise...
+
   avec:
-    unique:
-      titre: seul(e)
-      valeur: associés = 'unique'
+
     multiples:
       titre: à plusieurs
       valeur: associés = 'multiples'
+
+    unique:
+      titre: seul(e)
+      valeur: associés = 'unique'
 
 ### ()	La nomenclature des catégories juridiques retenue est celle du niveau III du répertoire Sirene géré par l'Insee ###
 ### https://www.insee.fr/fr/information/2028129
@@ -48,23 +51,26 @@ entreprise . catégorie juridique . EI:
   par défaut:
     applicable si: associés . unique
     valeur: oui
+
   avec:
     auto-entrepreneur:
       question: Êtes-vous auto-entrepreneur ?
       acronyme: AE
-      par défaut:
-        non applicable si:
-          une de ces conditions:
-            - entreprise . imposition . IR . type de bénéfices = 'BA'
-            - toutes ces conditions:
-                - activité . nature . libérale . réglementée
-                - dirigeant . indépendant . PL . métier . rattaché CIPAV = non
-        nom: par défaut
-        experimental: oui
+      par défaut: par défaut
       références:
         S'informer sur le statut: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html
         Les étapes de la création d'une auto-entreprise: https://www.autoentrepreneur.urssaf.fr/portail/accueil/creer-mon-auto-entreprise.html
         Obligations comptables de l'auto-entrepreneur: https://entreprendre.service-public.fr/vosdroits/F23266
+
+    auto-entrepreneur . par défaut:
+      non applicable si:
+        une de ces conditions:
+          - entreprise . imposition . IR . type de bénéfices = 'BA'
+          - toutes ces conditions:
+              - activité . nature . libérale . réglementée
+              - dirigeant . indépendant . PL . métier . rattaché CIPAV = non
+      experimental: oui
+
     EI:
       titre: entreprise individuelle
       acronyme: EI
@@ -84,7 +90,34 @@ entreprise . catégorie juridique . SARL:
   valeur: catégorie juridique = 'SARL'
   par défaut:
     non applicable si: activité . nature . libérale . réglementée
+
   avec:
+
+    EURL:
+      résumé: Entreprise unipersonnelle à responsabilité limitée
+      acronyme: EURL
+      valeur: associés . unique
+      description: |
+        L'entreprise unipersonnelle à responsabilité limitée (EURL) est une société à responsabilité limitée (SARL) constituée d'un seul associé. Elle est également appelée SARL unipersonnelle.
+
+        - **Associé(s)** : Un seul (personne physique ou morale)
+        - **Responsabilité de l’associé ou des associés** : Limitée à ses apports, sauf fautes de gestion si l'associé est aussi gérant de l'entreprise
+        - **Dirigeant(s)** : Un ou plusieurs gérants (personnes physiques), dont l’associé peut (ou non) faire partie
+        - **Responsabilité du ou des dirigeant(s)** : Responsabilité civile et pénale
+        - **Capital social** : Libre, en fonction de la taille et des besoins de l'entreprise
+        - **Régime social** : Si le gérant est aussi l’associé unique, il est considéré comme travailleur non-salarié. Sinon, le gérant est assimilé-salarié
+        - **Imposition des bénéfices** : Impôt sur le revenu de l’associé unique s’il s’agit d’une personne physique (avec possibilité de choisir l’impôt sur les sociétés). Si l’associé est une personne morale, impôt sur les sociétés.
+
+      références:
+        L'EURL, un statut à associé unique à fort potentiel d’évolution:
+          https://www.economie.gouv.fr/entreprises/entreprise-unipersonnelle-responsabilite-limitee-EURL
+        L'EURL en détails: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/eurl-ou-sarl-a-associe-unique
+        Prise de décision dans une société à responsabilité limitée (SARL): https://entreprendre.service-public.fr/vosdroits/F36714
+        Tout ce qu'il faut savoir sur la fiscalité d'une EURL: https://entreprendre.service-public.fr/vosdroits/F36212
+        Tout ce qu'il faut savoir sur les cotisations sociales d'une EURL: https://entreprendre.service-public.fr/vosdroits/F36239
+        "Création d'une EURL : rédaction et enregistrement des statuts":
+          https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=0&quest=
+
     SARL:
       résumé: Société à responsabilité limitée
       acronyme: SARL
@@ -106,30 +139,9 @@ entreprise . catégorie juridique . SARL:
         Prise de décision dans une société à responsabilité limitée (SARL): https://entreprendre.service-public.fr/vosdroits/F36714
         Tout ce qu'il faut savoir sur la fiscalité d'une SARL: https://entreprendre.service-public.fr/vosdroits/F36211
         Tout ce qu'il faut savoir sur les cotisations sociales d'une SARL: https://entreprendre.service-public.fr/vosdroits/F36235
-        "Création d'une SARL : rédaction et enregistrement des statuts": https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=1&quest=
+        "Création d'une SARL : rédaction et enregistrement des statuts":
+          https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=1&quest=
 
-    EURL:
-      résumé: Entreprise unipersonnelle à responsabilité limitée
-      acronyme: EURL
-      valeur: associés . unique
-      description: |
-        L'entreprise unipersonnelle à responsabilité limitée (EURL) est une société à responsabilité limitée (SARL) constituée d'un seul associé. Elle est également appelée SARL unipersonnelle.
-
-        - **Associé(s)** : Un seul (personne physique ou morale)
-        - **Responsabilité de l’associé ou des associés** : Limitée à ses apports, sauf fautes de gestion si l'associé est aussi gérant de l'entreprise
-        - **Dirigeant(s)** : Un ou plusieurs gérants (personnes physiques), dont l’associé peut (ou non) faire partie
-        - **Responsabilité du ou des dirigeant(s)** : Responsabilité civile et pénale
-        - **Capital social** : Libre, en fonction de la taille et des besoins de l'entreprise
-        - **Régime social** : Si le gérant est aussi l’associé unique, il est considéré comme travailleur non-salarié. Sinon, le gérant est assimilé-salarié
-        - **Imposition des bénéfices** : Impôt sur le revenu de l’associé unique s’il s’agit d’une personne physique (avec possibilité de choisir l’impôt sur les sociétés). Si l’associé est une personne morale, impôt sur les sociétés.
-
-      références:
-        L'EURL, un statut à associé unique à fort potentiel d’évolution: https://www.economie.gouv.fr/entreprises/entreprise-unipersonnelle-responsabilite-limitee-EURL
-        L'EURL en détails: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/eurl-ou-sarl-a-associe-unique
-        Prise de décision dans une société à responsabilité limitée (SARL): https://entreprendre.service-public.fr/vosdroits/F36714
-        Tout ce qu'il faut savoir sur la fiscalité d'une EURL: https://entreprendre.service-public.fr/vosdroits/F36212
-        Tout ce qu'il faut savoir sur les cotisations sociales d'une EURL: https://entreprendre.service-public.fr/vosdroits/F36239
-        "Création d'une EURL : rédaction et enregistrement des statuts": https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=0&quest=
     unipersonnelle:
       déprécié: oui
       valeur: EURL
@@ -142,16 +154,9 @@ entreprise . catégorie juridique . SAS:
     non applicable si: activité . nature . libérale . réglementée
   meta:
     code insee: 5710
+
   avec:
-    SASU:
-      résumé: Société par actions simplifiée unipersonnelle
-      acronyme: SASU
-      valeur: associés . unique
-      références:
-        La SASU, des démarches simplifiées: https://www.economie.gouv.fr/entreprises/societe-par-actions-simplifiee-unipersonnelle-sasu
-        La SASU en détails: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/sasu-societe-actions-simplifiee-unipersonnelle
-        Tout ce qu'il faut savoir sur la fiscalité d'une SASU: https://entreprendre.service-public.fr/vosdroits/F36215
-        Tout ce qu'il faut savoir sur les cotisations sociales s'une SASU: https://entreprendre.service-public.fr/vosdroits/F36240
+
     SAS:
       résumé: Société par actions simplifiée
       acronyme: SAS
@@ -162,7 +167,18 @@ entreprise . catégorie juridique . SAS:
         Tout ce qu'il faut savoir sur la fiscalité d'une SAS: https://entreprendre.service-public.fr/vosdroits/F36006
         Tout ce qu'il faut savoir sur les cotisations sociales d'une SAS: https://entreprendre.service-public.fr/vosdroits/F36007
         Prise de décision dans une SAS: https://entreprendre.service-public.fr/vosdroits/F36625
-        "Création d'une SAS : rédaction et enregistrement des statuts": https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=4&quest=
+        "Création d'une SAS : rédaction et enregistrement des statuts":
+          https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=4&quest=
+
+    SASU:
+      résumé: Société par actions simplifiée unipersonnelle
+      acronyme: SASU
+      valeur: associés . unique
+      références:
+        La SASU, des démarches simplifiées: https://www.economie.gouv.fr/entreprises/societe-par-actions-simplifiee-unipersonnelle-sasu
+        La SASU en détails: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/sasu-societe-actions-simplifiee-unipersonnelle
+        Tout ce qu'il faut savoir sur la fiscalité d'une SASU: https://entreprendre.service-public.fr/vosdroits/F36215
+        Tout ce qu'il faut savoir sur les cotisations sociales s'une SASU: https://entreprendre.service-public.fr/vosdroits/F36240
 
     unipersonnelle:
       déprécié: oui
@@ -179,15 +195,18 @@ entreprise . catégorie juridique . SELARL:
     applicable si: activité . nature . libérale . réglementée
   meta:
     code insee: 5485
+
   avec:
-    SELARLU:
-      acronyme: SELARLU
-      résumé: Société d'exercice libéral à responsabilité limitée unipersonnelle
-      valeur: associés . unique
+
     SELARL:
       acronyme: SELARL
       résumé: Société d'exercice libéral à responsabilité limitée
       valeur: associés . multiples
+
+    SELARLU:
+      acronyme: SELARLU
+      résumé: Société d'exercice libéral à responsabilité limitée unipersonnelle
+      valeur: associés . unique
 
 entreprise . catégorie juridique . SELAS:
   acronyme: SELAS(U)
@@ -198,15 +217,18 @@ entreprise . catégorie juridique . SELAS:
     applicable si: activité . nature . libérale . réglementée
   meta:
     code insee: 5785
+
   avec:
-    SELASU:
-      acronyme: SELASU
-      résumé: Société d'exercice libéral par action simplifiée unipersonnelle
-      valeur: associés . unique
+
     SELAS:
       acronyme: SELAS
       résumé: Société d'exercice libéral par action simplifiée
       valeur: associés . multiples
+
+    SELASU:
+      acronyme: SELASU
+      résumé: Société d'exercice libéral par action simplifiée unipersonnelle
+      valeur: associés . unique
 
 entreprise . catégorie juridique . association:
   valeur: catégorie juridique = 'association'
@@ -227,20 +249,8 @@ entreprise . catégorie juridique . remplacements:
   # Ces remplacements mette à jour les régimes d'imposition et la nature d'activité en fonctions de ceux compatibles avec le statut juridique connu.
   experimental: oui
   valeur: oui
+
   avec:
-    régime micro-entreprise:
-      privé: oui
-      valeur: oui
-      applicable si: EI . auto-entrepreneur
-      remplace:
-        - règle: imposition . régime
-          par: "'micro-entreprise'"
-        - règle: entreprise . imposition
-          par: "'IR'"
-        - règle: entreprise . imposition . IR
-          par: oui
-        - règle: entreprise . imposition . IS
-          par: non
 
     associé unique:
       privé: oui
@@ -250,6 +260,15 @@ entreprise . catégorie juridique . remplacements:
       remplace:
         - règle: associés
           par: "'unique'"
+
+    pas profession libérale reglementée:
+      privé: oui
+      valeur: oui
+      non applicable si:
+        une de ces conditions:
+          - SELARL
+          - SELAS
+      rend non applicable: activités . libérale . réglementée
 
     profession libérale reglementée:
       # privé: oui
@@ -273,14 +292,19 @@ entreprise . catégorie juridique . remplacements:
         - activités . agricole
         - activités . artisanale
 
-    pas profession libérale reglementée:
+    régime micro-entreprise:
       privé: oui
       valeur: oui
-      non applicable si:
-        une de ces conditions:
-          - SELARL
-          - SELAS
-      rend non applicable: activités . libérale . réglementée
+      applicable si: EI . auto-entrepreneur
+      remplace:
+        - règle: imposition . régime
+          par: "'micro-entreprise'"
+        - règle: entreprise . imposition
+          par: "'IR'"
+        - règle: entreprise . imposition . IR
+          par: oui
+        - règle: entreprise . imposition . IS
+          par: non
 
     SASU option IR non implémentée:
       privé: oui

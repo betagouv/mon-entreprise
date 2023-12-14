@@ -1,6 +1,6 @@
+import { RuleLink as EngineRuleLink } from '@publicodes/react-ui'
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import { RuleLink as EngineRuleLink } from 'publicodes-react'
 import React, { ReactNode, useContext } from 'react'
 
 import { Link } from '@/design-system/typography/link'

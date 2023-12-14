@@ -10,7 +10,8 @@ salarié . convention collective . SVP . cotisations employeur:
   remplace: cotisations . employeur
   somme:
     - cotisations . employeur
-    - régimes spécifiques . intermittents du spectacle . caisse des congés spectacle
+    - régimes spécifiques . intermittents du spectacle . caisse des congés
+      spectacle
     - FCAP
     - prévoyance
 
@@ -31,9 +32,9 @@ salarié . convention collective . SVP . FCAP:
   non applicable si: entreprise . salariés . effectif = 0
   formule:
     produit:
-      plafond: plafond sécurité sociale
-      assiette: rémunération . brut
-      taux: 0.1%
+      - valeur: rémunération . brut
+        plafond: plafond sécurité sociale
+      - 0.1%
     plancher: 80 €.employés/an / entreprise . salariés . effectif
     plafond: 300 €.employés/an / entreprise . salariés . effectif
 
@@ -44,11 +45,12 @@ salarié . convention collective . SVP . FCAP:
 salarié . convention collective . SVP . prévoyance:
   formule:
     produit:
-      plafond: plafond sécurité sociale
-      assiette: cotisations . assiette
-      taux: 1.20%
+      - valeur: cotisations . assiette
+        plafond: plafond sécurité sociale
+      - 1.20%
   non applicable si: contrat . statut cadre
-  note: Dans le cas du statut cadre, la prévoyance obligatoire est plus avantageuse, c'est donc cette dernière qui est prise en compte
+  note: Dans le cas du statut cadre, la prévoyance obligatoire est plus
+    avantageuse, c'est donc cette dernière qui est prise en compte
   références:
     notice audiens: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/particulier/Fiches-techniques/ESSENTIEL-Sante-Prevoyance-Intermittents.pdf
     Article 12.6, Titre VII, IDCC 3090: https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000028157451&cidTexte=KALITEXT000028157267&dateTexte=29990101&categorieLien=id
@@ -73,14 +75,14 @@ salarié . régimes spécifiques . intermittents du spectacle . formation profes
     somme:
       - 50 €/mois
       - produit:
-          assiette: rémunération . brut
-          taux: 2.10%
+          - rémunération . brut
+          - 2.10%
 
 salarié . régimes spécifiques . intermittents du spectacle . caisse des congés spectacle:
   formule:
     produit:
-      assiette: rémunération . brut
-      taux: 15.40%
+      - rémunération . brut
+      - 15.40%
   références:
     audiens.org: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/particulier/Fiches-techniques/ESSENTIEL-Sante-Prevoyance-Intermittents.pdf
     Article L3141-30 du Code du Travail: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DF6E6424807679A6EDC2915496BEA32D.tplgfr22s_2?idArticle=LEGIARTI000033020675&cidTexte=LEGITEXT000006072050&dateTexte=20200320
@@ -178,7 +180,8 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . réduc
     - règle: cotisations . vieillesse . employeur . plafonnée . taux
       par: cotisations . vieillesse . employeur . plafonnée . taux * réduction de taux
     - règle: cotisations . vieillesse . employeur . déplafonnée . taux
-      par: cotisations . vieillesse . employeur . déplafonnée . taux * réduction de taux
+      par: cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
+        taux
     - règle: cotisations . vieillesse . salarié . plafonnée . taux
       par: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
     - règle: cotisations . vieillesse . salarié . déplafonnée . taux
@@ -214,12 +217,13 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . plafon
       - cotisations . vieillesse
   formule:
     produit:
-      assiette: plafond sécurité sociale . horaire
-      facteur: 12 * nombre jours travaillés
+      - plafond sécurité sociale . horaire
+      - 12 * nombre jours travaillés
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément:
   non applicable si: activité accessoire
-  question: L'artiste est-il un acteur de complément engagé à la journée pour une production cinématographique ?
+  question: L'artiste est-il un acteur de complément engagé à la journée pour une
+    production cinématographique ?
   par defaut: non
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés:
@@ -234,5 +238,5 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur
       par: 1
   formule:
     produit:
-      assiette: SMIC . horaire
-      facteur: 9
+      - SMIC . horaire
+      - 9

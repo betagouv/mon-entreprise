@@ -8,9 +8,8 @@ salarié . convention collective . optique . prime d'ancienneté:
   remplace: rémunération . primes . ancienneté
   formule:
     produit:
-      assiette: salaire minimum conventionnel
-      taux:
-        variations:
+      - salaire minimum conventionnel
+      - variations:
           - si: ancienneté >= 15 an
             alors: 15%
           - si: ancienneté >= 12 an
@@ -66,7 +65,8 @@ salarié . convention collective . optique . salaire minimum conventionnel:
 salarié . convention collective . optique . coefficient:
   question: Quel est le coefficient correspondant au poste du salarié ?
   description: >-
-    Se référer à la [grille fournie par la convention collective](https://www.optometrie-aof.com/images/telecharger/convention_collective.pdf#page=45).
+    Se référer à la [grille fournie par la convention
+    collective](https://www.optometrie-aof.com/images/telecharger/convention_collective.pdf#page=45).
   par défaut: 110 points
 
 salarié . convention collective . optique . prévoyance:
@@ -76,10 +76,12 @@ salarié . convention collective . optique . prévoyance:
     tranches:
       - taux: 0.46%
         plafond: 4 * plafond sécurité sociale
+
   avec:
     employeur:
       remplace: cotisations . prévoyances . conventionnelle . employeur
       valeur: 60% * prévoyance
+
     salarié:
       remplace: cotisations . prévoyances . conventionnelle . salarié
       valeur: 40% * prévoyance

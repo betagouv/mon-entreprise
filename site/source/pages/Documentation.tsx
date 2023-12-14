@@ -1,6 +1,6 @@
+import { getDocumentationSiteMap, RulePage } from '@publicodes/react-ui'
 import rules, { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
 import { ComponentProps, lazy, Suspense, useMemo, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'

@@ -20,32 +20,37 @@ salarié . convention collective . sport . cotisations . financement du paritari
   note: se calcule sur la masse salariale
   formule:
     produit:
-      assiette: cotisations . assiette
-      taux: 0.06%
+      - cotisations . assiette
+      - 0.06%
     plancher: 3 €.employé/an / entreprise . salariés . effectif
 
 salarié . convention collective . sport . cotisations . prévoyance:
-  produit:
-    assiette:
-      valeur: cotisations . assiette
-      plafond: 8 * temps de travail . plafond sécurité sociale
-    composantes:
-      - attributs:
-          remplace: cotisations . prévoyances . conventionnelle . employeur
-          nom: employeur
-        taux: 0.29%
-      - attributs:
-          remplace: cotisations . prévoyances . conventionnelle . salarié
-          nom: salarié
-        taux: 0.29%
   références:
     Article 10.8 de la CCNS (IDCC 2511): https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000033304755&cidTexte=KALITEXT000017577657&dateTexte=29990101&categorieLien=id
+  somme:
+    - employeur
+    - salarié
+
+  avec:
+    employeur:
+      produit:
+        - valeur: cotisations . assiette
+          plafond: 8 * temps de travail . plafond sécurité sociale
+        - 0.29%
+      remplace: cotisations . prévoyances . conventionnelle . employeur
+
+    salarié:
+      produit:
+        - valeur: cotisations . assiette
+          plafond: 8 * temps de travail . plafond sécurité sociale
+        - 0.29%
+      remplace: cotisations . prévoyances . conventionnelle . salarié
 
 salarié . convention collective . sport . cotisations . régime frais de santé:
   remplace: cotisations . prévoyances . santé . montant
   produit:
-    assiette: plafond sécurité sociale
-    taux: taux
+    - plafond sécurité sociale
+    - taux
 
 salarié . convention collective . sport . cotisations . régime frais de santé . taux:
   variations:
@@ -103,9 +108,8 @@ salarié . convention collective . sport . cotisations . formation professionnel
 salarié . convention collective . sport . cotisations . formation professionnelle . plan de formation:
   formule:
     produit:
-      assiette: cotisations . assiette
-      taux:
-        variations:
+      - cotisations . assiette
+      - variations:
           - si: entreprise . salariés . effectif < 20
             alors: 1.45%
           - si: entreprise . salariés . effectif >= 20
@@ -119,9 +123,8 @@ salarié . convention collective . sport . cotisations . formation professionnel
 salarié . convention collective . sport . cotisations . formation professionnelle . professionnalisation:
   formule:
     produit:
-      assiette: cotisations . assiette
-      taux:
-        variations:
+      - cotisations . assiette
+      - variations:
           - si: entreprise . salariés . effectif < 20
             alors: 0.15%
           - si: entreprise . salariés . effectif >= 20
@@ -139,15 +142,15 @@ salarié . convention collective . sport . cotisations . formation professionnel
       - entreprise . salariés . effectif >= 20
   formule:
     produit:
-      assiette: cotisations . assiette
-      taux: 0.20%
+      - cotisations . assiette
+      - 0.20%
 
 salarié . convention collective . sport . cotisations . formation professionnelle . CIF CDD:
   applicable si: contrat . CDD
   formule:
     produit:
-      assiette: cotisations . assiette
-      taux: 1%
+      - cotisations . assiette
+      - 1%
 
 salarié . convention collective . sport . cotisations . assiette franchisée:
   valeur: cotisations . assiette

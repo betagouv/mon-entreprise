@@ -50,7 +50,7 @@ Il est parfois utile de tester des évolutions de publicodes sur mon-entreprise.
 
 -   cloner les deux dépôts
 -   sur le dépôt `publicodes` lancer un `yarn build --watch` pour avoir du rechargement à chaud
--   sur le dépôt `mon-entreprise` lancer un `yarn link ../publicodes --all` pour lier dynamiquement les paquets `publicodes` et `publicodes-react`
+-   sur le dépôt `mon-entreprise` lancer un `yarn link ../publicodes --all` pour lier dynamiquement les paquets `publicodes` et `@publicodes/react-ui`
 
 La commande yarn link prend en paramètre un chemin relatif au dépôt courant, et fonctionne uniquement en local.
 
@@ -65,6 +65,6 @@ Pour déployer une version preview de mon-entreprise utilisant une version de pu
 ```json
 {
     "publicodes": "betagouv/publicodes#head=refacto&workspace=publicodes",
-    "publicodes-react": "betagouv/publicodes#head=refacto&workspace=publicodes-react"
+    "@publicodes/react-ui": "betagouv/publicodes#head=refacto&workspace=@publicodes/react-ui"
 }
 ```

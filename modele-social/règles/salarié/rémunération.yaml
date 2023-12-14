@@ -7,14 +7,7 @@ salarié . rémunération . net . imposable:
   titre: Salaire net imposable
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
-  valeur:
-    nom: sans déductions
-    description: Le net imposable avant les exonérations et déductions
-    somme:
-      - net
-      - cotisations . CSG-CRDS . non déductible
-      - cotisations . prévoyances . employeur
-      - cotisations . prévoyances . salarié . non déductible
+  valeur: sans déductions
   abattement:
     somme:
       - frais professionnels . déductible
@@ -23,25 +16,19 @@ salarié . rémunération . net . imposable:
       - heures supplémentaires et complémentaires défiscalisées
   références:
     DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
   avec:
-    heures supplémentaires et complémentaires défiscalisées:
-      unité: €/mois
-      somme:
-        - heures supplémentaires
-        - heures complémentaires
-      plafond:
-        produit:
-          assiette:
-            variations:
-              - si: date >= 01/01/2022
-                alors: 7500 €/an
-              - sinon: 5000 €/an
-          taux: 1 / (1 - (98.25 / 100) * (6.8 / 100)) # TODO : utiliser les valeurs présentes dans `cotisations . CSG-CRDS`
-        unité: €/an
-        arrondi: oui
-      arrondi: oui
+
+    exonération prime d'impatriation:
+      description: La prime d'impatriation est une partie de la rémunération exonérée
+        d'impôt sur le revenu.
+      applicable si: régimes spécifiques . impatriés
+      produit:
+        - rémunération . net . imposable . sans déductions
+        - 30%
       références:
-        DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+        Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
+        Bofip: https://bofip.impots.gouv.fr/bofip/5677-PGP
 
     exonération stagiaires et apprentis:
       privé: oui
@@ -55,15 +42,31 @@ salarié . rémunération . net . imposable:
           - contrat . stage
       valeur: SMIC
 
-    exonération prime d'impatriation:
-      description: La prime d'impatriation est une partie de la rémunération exonérée d'impôt sur le revenu.
-      applicable si: régimes spécifiques . impatriés
-      produit:
-        assiette: rémunération . net . imposable . sans déductions
-        taux: 30%
+    heures supplémentaires et complémentaires défiscalisées:
+      unité: €/mois
+      somme:
+        - heures supplémentaires
+        - heures complémentaires
+      plafond:
+        produit:
+          - variations:
+              - si: date >= 01/01/2022
+                alors: 7500 €/an
+              - sinon: 5000 €/an
+          - 1 / (1 - (98.25 / 100) * (6.8 / 100))
+        unité: €/an
+        arrondi: oui
+      arrondi: oui
       références:
-        Article 155B du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006307476&dateTexte=&categorieLien=cid
-        Bofip: https://bofip.impots.gouv.fr/bofip/5677-PGP
+        DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
+    sans déductions:
+      description: Le net imposable avant les exonérations et déductions
+      somme:
+        - net
+        - cotisations . CSG-CRDS . non déductible
+        - cotisations . prévoyances . employeur
+        - cotisations . prévoyances . salarié . non déductible
 
 salarié . rémunération . net . à payer avant impôt:
   titre: Salaire net
@@ -77,9 +80,7 @@ salarié . rémunération . net . à payer avant impôt:
 
     Aussi appelé salaire net à payer avant impôt.
 
-    Cette somme peut varier en fonction de décisions politiques (augmentation ou
-    diminution des cotisations) alors que le salaire brut est contractuel (pour
-    le changer, il faut signer un avenant au contrat).
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
 
   somme:
     - net
@@ -87,12 +88,18 @@ salarié . rémunération . net . à payer avant impôt:
     - (- frais professionnels . titres-restaurant . montant)
 
 salarié . rémunération . net:
-  description: C'est la rémunération nette de cotisations. Elle inclut le salaire net, mais également des éléments de rémunération en nature comme les avantages en nature, les titres restaurants ou les prévoyances payées par employeur.
+  description: C'est la rémunération nette de cotisations. Elle inclut le salaire
+    net, mais également des éléments de rémunération en nature comme les
+    avantages en nature, les titres restaurants ou les prévoyances payées par
+    employeur.
   somme:
-    - nom: sans revenus de remplacement
+    - sans revenus de remplacement
+    - revenus de remplacement . net
+
+  avec:
+    sans revenus de remplacement:
       valeur: brut
       abattement: cotisations . salarié
-    - revenus de remplacement . net
 
 salarié . rémunération . net . payé après impôt:
   titre: Salaire net après impôt
@@ -120,7 +127,8 @@ salarié . rémunération . taux horaire . heures supplémentaires:
     supplémentaires. Il intègre les avantages en nature et les primes
     constituant la contrepartie d'un travail fourni.
   unité: €/heures
-  formule: (assiette de vérification du SMIC + primes . fin d'année) / contrat . temps de travail
+  formule: (assiette de vérification du SMIC + primes . fin d'année) / contrat .
+    temps de travail
   références:
     e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
     rfPaye (privé): https://rfpaye.grouperf.com/article/0168/ms/rfpayems0168_2027146.html
@@ -142,6 +150,7 @@ salarié . rémunération . assiette de vérification du SMIC:
   références:
     Assiette minimale de cotisations: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-minimale-des-cotisatio/lassiette-minimale-soumise-a-cot.html
     Comment vérifier que le SMIC est atteint ?: https://travail-emploi.gouv.fr/droit-du-travail/la-remuneration/article/le-smic
+
   avec:
     contrôle:
       type: notification
@@ -168,27 +177,35 @@ salarié . rémunération . primes:
       unité: €/mois
       titre: primes d'activité
       description: >
-        Primes et gratifications versées en contrepartie, ou à l’occasion du travail, directement liées à l’exécution par le salarié de sa prestation de travail. Tel est le cas, par exemple, d’une prime de vente exclusivement basée sur les résultats du salarié.
+        Primes et gratifications versées en contrepartie, ou à l’occasion du
+        travail, directement liées à l’exécution par le salarié de sa prestation
+        de travail. Tel est le cas, par exemple, d’une prime de vente
+        exclusivement basée sur les résultats du salarié.
 
         Ces primes sont prises en compte pour le calcul du salaire minimum
       somme:
-        - nom: base
-          titre: primes d'activité
-          question: Quel est le montant des primes liées à l'activité du salarié ?
-          par défaut: 0 €/mois
-        - nom: conventionnelles
-          valeur: 0 €/mois
+        - base
+        - conventionnelles
 
+    activité . base:
+      titre: primes d'activité
+      question: Quel est le montant des primes liées à l'activité du salarié ?
+      par défaut: 0 €/mois
+    activité . conventionnelles: 0 €/mois
     ancienneté: 0 €/mois
 
     fin d'année:
       titre: Prime de fin d'année ou de treizième mois
       question: Le salarié bénéficie-t-il d'un treizième mois ?
       description: >
-        La prime de treizième mois est un avantage accordé au salarié qui peut être
-        prévu par la convention collective ou le contrat de travail. Elle est
-        généralement versée en fin d'année.
+        La prime de treizième mois est un avantage accordé au salarié qui peut
+        être prévu par la convention collective ou le contrat de travail. Elle
+        est généralement versée en fin d'année.
       par défaut: non
+      note: >
+        Certaines entreprises proposent une prime de fin d'année sur une base de
+        13,5 mois, 14 mois voire 15 mois.
+
       avec:
         montant:
           titre: Prime de fin d'année ou de treizième mois
@@ -200,17 +217,17 @@ salarié . rémunération . primes:
             mêmes conditions que les autres salariés en proportion de leur durée du
             travail.
           produit:
-            assiette: assiette de vérification du SMIC * contrat . temps de travail . quotité
-            facteur: (13 mois - 1 an) / 1 an
-      note: >
-        Certaines entreprises proposent une prime de fin d'année sur une base de
-        13,5 mois, 14 mois voire 15 mois.
+            - assiette de vérification du SMIC * contrat . temps de travail .
+              quotité
+            - (13 mois - 1 an) / 1 an
 
 salarié . rémunération . indemnités CDD:
   applicable si: contrat . CDD
   note: >-
-    Ces indemnités sont versées à la fin du contrat, mais dans le simulateur elles sont réparties sur les salaires mensuels de la durée du contrat.
-    Cela est dû à une limitation du moteur de calcul, qui ne gère pas encore la temporalité.
+    Ces indemnités sont versées à la fin du contrat, mais dans le simulateur
+    elles sont réparties sur les salaires mensuels de la durée du contrat. Cela
+    est dû à une limitation du moteur de calcul, qui ne gère pas encore la
+    temporalité.
   somme:
     - fin de contrat
     - congés payés
@@ -252,16 +269,8 @@ salarié . rémunération . indemnités CDD:
           - salarié . contrat . CDD . congés pris . proportion = 100%
           - salarié . contrat . CDD . reconduction en CDI
       le maximum de:
-        - nom: Méthode du dixième
-          produit:
-            assiette: assiette
-            taux: 10%
-          abattement: salarié . contrat . CDD . congés pris . proportion
-
-        - nom: Méthode du maintien de salaire
-          produit:
-            assiette: assiette
-            facteur: salarié . contrat . CDD . congés pris . proportion par rapport aux jours ouvrés
+        - Méthode du dixième
+        - Méthode du maintien de salaire
 
       note: |
         L'indemnité est versée à la fin du contrat, sauf si le CDD se poursuit par un CDI.
@@ -271,19 +280,19 @@ salarié . rémunération . indemnités CDD:
       références:
         Comment calculer l'indemnité de congés payés du salarié ?: https://www.service-public.fr/particuliers/vosdroits/F33359
         Code du travail - Article L3141-24: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006902661&dateTexte=&categorieLien=cid
-        assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990: http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
+        assiette de l'indemnité, circulaire DRT 18 du 30 octobre 1990:
+          http://conseillerdusalarie.free.fr/Docs/TextesFrance/19901030Circulaire_DRT_90_18_du_30_octobre_1990_CDD_Travail_temporaire.htm
         Méthode du maintien de salaire: https://www.service-public.fr/particuliers/vosdroits/F33359
+
       avec:
         assiette:
           privé: oui
           titre: Assiette pour le calcul de l'indemnité de congés payés
           description: >-
-            Pendant ses congés, le salarié ne perçoit pas son salaire. Il perçoit une
-            indemnité de congés payés.
+            Pendant ses congés, le salarié ne perçoit pas son salaire. Il
+            perçoit une indemnité de congés payés.
 
-            Toutes les sommes ayant le caractère de salaire sont prises en compte pour
-            déterminer l'indemnité de congés payés. Les autres sommes ne sont pas prise en
-            compte.
+            Toutes les sommes ayant le caractère de salaire sont prises en compte pour déterminer l'indemnité de congés payés. Les autres sommes ne sont pas prise en compte.
           somme:
             - contrat . salaire brut
             - heures supplémentaires
@@ -294,18 +303,32 @@ salarié . rémunération . indemnités CDD:
             - indemnités CDD . fin de contrat
           références:
 
+
+
+    congés payés . Méthode du dixième:
+      produit:
+        - assiette
+        - 10%
+      abattement: salarié . contrat . CDD . congés pris . proportion
+
+    congés payés . Méthode du maintien de salaire:
+
+      produit:
+        - assiette
+        - salarié . contrat . CDD . congés pris . proportion par rapport aux
+          jours ouvrés
+
     fin de contrat:
       titre: indemnité de fin de contrat
       alias: prime de précarité
       applicable si: contrat . CDD . indemnité de fin de contrat
       produit:
-        assiette:
-          somme:
+        - somme:
             - contrat . salaire brut
             - avantages en nature . montant
             - primes
             - heures supplémentaires
-        taux: 10%
+        - 10%
       référence:
         Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006189459
         service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F40
@@ -328,18 +351,16 @@ salarié . rémunération . brut:
 salarié . rémunération . heures supplémentaires:
   description: La rémunération relative aux heures supplémentaires
   produit:
-    assiette: taux horaire . heures supplémentaires
-    facteur:
-      somme:
+    - taux horaire . heures supplémentaires
+    - somme:
         - temps de travail . heures supplémentaires
         - temps de travail . heures supplémentaires . majoration
 
 salarié . rémunération . heures complémentaires:
   description: La rémunération relative aux heures complémentaires
   produit:
-    assiette: taux horaire . heures supplémentaires
-    facteur:
-      somme:
+    - taux horaire . heures supplémentaires
+    - somme:
         - temps de travail . heures complémentaires
         - temps de travail . heures complémentaires . majoration
 
@@ -362,10 +383,7 @@ salarié . rémunération . frais professionnels:
       - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
 
 
-    Les frais professionnels sont généralement exclus de la base de calcul des
-    cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de
-    dépassement de plafond pour les remboursements forfaitaires (
-    frais de panier, titres-restaurant, forfait mobilités durables...).
+    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursements forfaitaires ( frais de panier, titres-restaurant, forfait mobilités durables...).
   somme:
     - titres-restaurant . employeur
     - trajets domicile travail . employeur
@@ -386,8 +404,7 @@ salarié . rémunération . frais professionnels . titres-restaurant:
     l’employeur au salarié.
 
 
-    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour
-    régler la consommation :
+    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour régler la consommation :
 
       - d’un repas,
 
@@ -399,99 +416,110 @@ salarié . rémunération . frais professionnels . titres-restaurant:
 
   question: Le salarié reçoit-il des titres-restaurant ?
   par défaut: non
-  avec:
-    montant:
-      produit:
-        assiette: montant unitaire
-        facteur: nombre
 
-    employeur: montant * taux employeur
+  avec:
 
     déductible:
       titre: Titre restaurant déductibles
       valeur: employeur
       plafond:
         produit:
-          assiette: nombre
-          facteur:
-            nom: plafond unitaire
-            valeur:
-              variations:
-                - si: date >= 01/2023
-                  alors: 6.91 €/titres-restaurant
-                - # En 2022, la participation de l’employeur au financement
-                  # d'un titre restaurant exonérée de cotisations sociales est
-                  # fixée de façon rétroactive à 6,50 €
-                  # (article 4 de la loi de Finances pour 2023)
-                  si: date >= 01/2022
-                  alors: 6.50€/titres-restaurant
-                # - si: date >= 09/2022
-                #   alors: 5.92 €/titres-restaurant
-                # - si: date >= 01/2022
-                #   alors: 5.69 €/titres-restaurant
-                - si: date >= 01/2021
-                  alors: 5.55 €/titres-restaurant
+          - nombre
+          - plafond unitaire
       références:
         urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
-    nombre:
-      question: Combien de titres-restaurant sont distribués au salarié ?
-      arrondi: oui
-      par défaut:
-        produit:
-          assiette: 19 titres-restaurant/mois
-          facteur: temps de travail . quotité
-      suggestions:
-        5 repas/semaine: 5 titres-restaurant/semaine * période . semaines par mois
-        3 repas/semaine: 3 titres-restaurant/semaine * période . semaines par mois
+    déductible . plafond unitaire:
+      variations:
+        - si: date >= 01/2023
+          alors: 6.91 €/titres-restaurant
+        # En 2022, la participation de l’employeur au financement
+        # d'un titre restaurant exonérée de cotisations sociales est
+        # fixée de façon rétroactive à 6,50 €
+        # (article 4 de la loi de Finances pour 2023)
+        - si: date >= 01/2022
+          alors: 6.50€/titres-restaurant
+        # - si: date >= 09/2022
+        #   alors: 5.92 €/titres-restaurant
+        # - si: date >= 01/2022
+        #   alors: 5.69 €/titres-restaurant
+        - si: date >= 01/2021
+          alors: 5.55 €/titres-restaurant
+    employeur: montant * taux employeur
+
+    montant:
+      produit:
+        - montant unitaire
+        - nombre
 
     montant unitaire:
       question: Quelle est la valeur unitaire du titre-restaurant ?
       description: >-
-        Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant. En
-        revanche, pour bénéficier de l'exonération de cotisation, il ne faut pas
-        dépasser 11,38€ par titre en 2021.
+        Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant.
+        En revanche, pour bénéficier de l'exonération de cotisation, il ne faut
+        pas dépasser 11,38€ par titre en 2021.
       par défaut: 8 €/titre-restaurant
       suggestions:
         faible: 6 €/titre-restaurant
         moyenne: 8 €/titre-restaurant
         max exonéré:
           valeur: déductible . plafond unitaire / taux employeur
-          unité: € / titre-restaurant
+          unité: €/titre-restaurant
+
+    nombre:
+      question: Combien de titres-restaurant sont distribués au salarié ?
+      arrondi: oui
+      par défaut:
+        produit:
+          - 19 titres-restaurant/mois
+          - temps de travail . quotité
+      suggestions:
+        5 repas/semaine: 5 titres-restaurant/semaine * période . semaines par mois
+        3 repas/semaine: 3 titres-restaurant/semaine * période . semaines par mois
 
     taux employeur:
       description: >-
-        Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum et
-        de 60% maximum.
+        Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum
+        et de 60% maximum.
       question: Quelle est la participation de l'employeur ?
       par défaut: 50 %
       suggestions:
         50%: 50 %
         60%: 60 %
+
       avec:
-        contrôle min:
-          type: notification
-          sévérité: avertissement
-          applicable si: taux employeur < 50%
-          description: La part employeur du titre-restaurant doit être de 50% au minimum
+
         contrôle max:
           type: notification
           sévérité: avertissement
           applicable si: taux employeur > 60%
           description: La part employeur du titre-restaurant doit être de 60% au maximum
 
+        contrôle min:
+          type: notification
+          sévérité: avertissement
+          applicable si: taux employeur < 50%
+          description: La part employeur du titre-restaurant doit être de 50% au minimum
+
 salarié . rémunération . frais professionnels . trajets domicile travail:
   références:
     Frais de transport du trajets domicile travail: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail.html
+
   avec:
-    employeur:
-      somme:
-        - transports publics . employeur
-        - forfait mobilités durables . montant
-        - prime de transport . montant
-        # TODO : [Indemnités kilométriques](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-dindemnites-kilometriq.html)
-        # TODO : [Prime de 4€](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-de-la-prime-de-transpo.html)
-      abattement: abattement temps partiel
+
+    abattement temps partiel:
+      privé: oui
+      applicable si: contrat . temps de travail . quotité < 50%
+      valeur: 100% - (contrat . temps de travail . quotité / 50%)
+      références:
+        Article R3261-14 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000041865023/2020-05-11/
+
+    cumul forfait mobilité durable et transports publics:
+      privé: oui
+      toutes ces conditions:
+        - transports publics . montant > 0
+        - forfait mobilités durables . montant > 0
+
     déductible:
       titre: Part déductible
       valeur:
@@ -513,34 +541,57 @@ salarié . rémunération . frais professionnels . trajets domicile travail:
                   - si: date < 01/2022
                     alors: 600€/an
                   - sinon: 800€/an
-            - sinon:
-                nom: plafond hors cumul
-                privé: oui
-                variations:
-                  - si: date < 01/2022
-                    alors: 500€/an
-                  - sinon: 700€/an
+            - sinon: plafond hors cumul
         plancher: transports publics . déductible
       abattement: abattement temps partiel
 
-    abattement temps partiel:
+    déductible . plafond hors cumul:
       privé: oui
-      applicable si: contrat . temps de travail . quotité < 50%
-      valeur: 100% - (contrat . temps de travail . quotité / 50%)
-      références:
-        Article R3261-14 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000041865023/2020-05-11/
-    cumul forfait mobilité durable et transports publics:
-      privé: oui
-      toutes ces conditions:
-        - transports publics . montant > 0
-        - forfait mobilités durables . montant > 0
+      variations:
+        - si: date < 01/2022
+          alors: 500€/an
+        - sinon: 700€/an
+
+    employeur:
+      somme:
+        - transports publics . employeur
+        - forfait mobilités durables . montant
+        - prime de transport . montant
+        # TODO : [Indemnités kilométriques](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-dindemnites-kilometriq.html)
+        # TODO : [Prime de 4€](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-de-la-prime-de-transpo.html)
+      abattement: abattement temps partiel
 
 salarié . rémunération . frais professionnels . trajets domicile travail . transports publics:
   icônes: 🚍
+
   avec:
+
+    déductible:
+      description: Montant de l'abonnement aux transports publics prise en charge par
+        l'employeur et déductible de cotisations et d'impôts.
+      produit:
+        - montant
+        - valeur: taux employeur
+          plafond:
+            variations:
+              - si: date < 01/2022
+                alors: 50%
+              - sinon: 75%
+
+    employeur:
+      applicable si: montant > 0
+      titre: Part employeur
+      description: Montant de l'abonnement aux transports publics prise en charge par
+        l'employeur.
+      unité: €/mois
+      produit:
+        - montant
+        - taux employeur
+
     montant:
       titre: Montant abonnement
-      question: Quel montant le salarié dépense-t-il en abonnement aux transports publics pour se rendre sur son lieu de travail ?
+      question: Quel montant le salarié dépense-t-il en abonnement aux transports
+        publics pour se rendre sur son lieu de travail ?
       unité: €/mois
       par défaut: 0 €/mois
       description: |
@@ -553,8 +604,10 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
 
         Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
       références:
-        Articles R3261-1 à -10 du code du travail, version 01/01/2009: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272/2009-01-01
-        Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+        Articles R3261-1 à -10 du code du travail, version 01/01/2009:
+          https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272/2009-01-01
+        Article 81 du code des impôts, version en vigueur au 31/12/2020:
+          https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
         Remboursement des frais de transport: https://www.service-public.fr/particuliers/vosdroits/F19846/personnalisation/resultat?lang=&quest0=0
         Prise en charge obligatoire des frais de transport public: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-obligatoire-des.html#FilAriane
       suggestions:
@@ -564,29 +617,9 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
         Tisséo: 42.50 €/mois
         TBM: 42.20 €/mois
 
-    employeur:
-      applicable si: montant > 0
-      titre: Part employeur
-      description: Montant de l'abonnement aux transports publics prise en charge par l'employeur.
-      unité: €/mois
-      produit:
-        assiette: montant
-        taux: taux employeur
-
-    déductible:
-      description: Montant de l'abonnement aux transports publics prise en charge par l'employeur et déductible de cotisations et d'impôts.
-      produit:
-        assiette: montant
-        taux:
-          valeur: taux employeur
-          plafond:
-            variations:
-              - si: date < 01/2022
-                alors: 50%
-              - sinon: 75%
-
     taux employeur:
-      question: Quel est le taux de prise en charge par l’employeur aux frais de transports du salarié ?
+      question: Quel est le taux de prise en charge par l’employeur aux frais de
+        transports du salarié ?
       par défaut: 50%
       plancher: 50%
       suggestions:
@@ -596,13 +629,31 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
 
 salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport:
   icônes: 🚗
+
   avec:
+
+    déductible:
+      applicable si: montant > 0
+      titre: Part déductible
+      description: Part déductible de la prise en charge du carburant
+      valeur: montant
+      plafond:
+        non applicable si: véhicule electrique hybride hydrogène
+        variations:
+          - si: date < 01/2022
+            alors: 200 €/an
+          - si: établissement . commune . département . outre-mer
+            alors: 600 €/an
+          - sinon: 400 €/an
+
     montant:
       titre: Prime de transport
       non applicable si:
         applicable si: date < 01/2022
         valeur: transports publics . montant > 0
-      question: Quel montant des frais de carburants / alimentation du véhicule dépensés par le salarié pour se rendre au travail est pris en charge par l'employeur ?
+      question: Quel montant des frais de carburants / alimentation du véhicule
+        dépensés par le salarié pour se rendre au travail est pris en charge par
+        l'employeur ?
       unité: €/an
       par défaut: 0 €/an
       description: |
@@ -629,32 +680,24 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
 
       références:
         Fiche Urssaf sur la prime de transport: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/prime-de-transport.html
-        Articles R3261-11 à -13 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
-        Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+        Articles R3261-11 à -13 du code du travail, version 11/05/2020:
+          https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
+        Article 81 du code des impôts, version en vigueur au 31/12/2020:
+          https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
-    déductible:
-      applicable si: montant > 0
-      titre: Part déductible
-      description: Part déductible de la prise en charge du carburant
-      valeur: montant
-      plafond:
-        non applicable si: véhicule electrique hybride hydrogène
-        variations:
-          - si: date < 01/2022
-            alors: 200 €/an
-          - si: établissement . commune . département . outre-mer
-            alors: 600 €/an
-          - sinon: 400 €/an
     véhicule electrique hybride hydrogène:
-      question: Le salarié utilise-t'il un véhicules électriques, hybrides rechargeables ou à hydrogène ?
+      question: Le salarié utilise-t'il un véhicules électriques, hybrides
+        rechargeables ou à hydrogène ?
       par défaut: non
 
 salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables:
   non applicable si: régimes spécifiques . DFS
   icônes: 🚲️
+
   avec:
     montant:
-      question: Quel montant des frais de transports de mobilité durable (vélo, covoiturage, mobilité partagée) est pris en charge par l'employeur ?
+      question: Quel montant des frais de transports de mobilité durable (vélo,
+        covoiturage, mobilité partagée) est pris en charge par l'employeur ?
       unité: €/an
       par défaut: 0 €/an
       description: |
@@ -677,8 +720,10 @@ salarié . rémunération . frais professionnels . trajets domicile travail . fo
         Forfait mobilité durable: https://entreprendre.service-public.fr/vosdroits/F33808
         'FAQ : le forfait mobilités durables': https://www.ecologie.gouv.fr/faq-forfait-mobilites-durables-fmd
         'Forfait mobilité durable : Comment ça marche ? (pdf)': https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/FMD-Comment-ca-marche.pdf
-        Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
-        Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+        Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020:
+          https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
+        Article 81 du code des impôts, version en vigueur au 31/12/2020:
+          https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
 salarié . rémunération . avantages en nature:
   icônes: 🛏️🚗🥗📱
@@ -687,18 +732,68 @@ salarié . rémunération . avantages en nature:
     Les avantages en nature sont constitués par la fourniture par l’entreprise à ses travailleurs d’un bien ou service. La mise à disposition peut être gratuite ou moyennant une participation du bénéficiant inférieure à leur valeur réelle.
 
     L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au niveau du salaire brut pour être soumis à cotisations. Après détermination du salaire net imposable, il sera déduit du salaire net à verser.
-  question: L'entreprise fournit-elle des avantages en nature (repas, véhicule, téléphone, réductions, logement...) ?
+  question: L'entreprise fournit-elle des avantages en nature (repas, véhicule,
+    téléphone, réductions, logement...) ?
   par défaut: non
+
   avec:
+
+    autres:
+      question: >
+        Y a-t-il d'autres avantages en natures (logement, véhicule,
+        réduction...) ?
+      par défaut: non
+
+      avec:
+        montant:
+          titre: autres
+          question: >
+            Quel est le montant de ces autres avantages ?
+          par défaut: 0 €/mois
+          suggestions:
+            🚗 véhicule: 260 €/mois
+
     montant:
       titre: Avantages en nature
       description: >
-        Les avantages en nature sont soumis aux cotisations et à l'impôt sur le revenu. Ils sont pris en compte pour vérifier que le salaire minimum est atteint.
+        Les avantages en nature sont soumis aux cotisations et à l'impôt sur le
+        revenu. Ils sont pris en compte pour vérifier que le salaire minimum est
+        atteint.
       formule:
         somme:
           - nourriture . montant
           - ntic . montant
           - autres . montant
+
+    nourriture:
+      icônes: 🍝
+      question: >
+        L'entreprise fournit-elle gratuitement des repas ?
+      par défaut: non
+      description: >
+        Les titres-restaurant ne sont pas considérés comme un avantage en nature
+        mais comme un remboursement de frais.
+
+      avec:
+        montant:
+          titre: nourriture
+          unité: €/mois
+          formule:
+            produit:
+              - repas forfaitaire
+              - repas par mois
+          références:
+            urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
+
+        repas par mois:
+          question: >
+            Combien de repas par mois sont payés par l'entreprise ?
+          par défaut: 21 repas/mois
+          suggestions:
+            1 par jour: 21 repas/mois
+            2 par jour: 42 repas/mois
+    nourriture . montant . repas forfaitaire: 5 €/repas
+
     ntic:
       icônes: 💻📱
       description: |
@@ -710,26 +805,20 @@ salarié . rémunération . avantages en nature:
 
         La réalité de l’usage privé peut résulter soit d’un document écrit (contrat de travail, accord d’entreprise, règlement intérieur, courrier de la direction de l’entreprise autorisant le salarié à faire un usage privé des outils), soit de l’existence de factures détaillées permettant d’établir une utilisation privée.
       question: >
-        L'entreprise fournit-elle gratuitement un outil issus des NTIC (ordinateur, téléphone, tablette, etc.) ?
+        L'entreprise fournit-elle gratuitement un outil issus des NTIC
+        (ordinateur, téléphone, tablette, etc.) ?
       par défaut: oui
-      avec:
-        montant:
-          titre: outils NTIC
-          description: |
-            Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de :
 
-            ```
-            [10% x (850€ + (30€ x 12 mois)) ] / 12 mois
-            ```
-            soit 10,08€
-          produit:
-            assiette:
-              somme:
-                - coût appareils
-                - abonnements * 12 mois
-            taux: 10% /an
-          références:
-            urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html
+      avec:
+
+        abonnements:
+          question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge
+            par l'employeur ?
+          par défaut: 20 €/mois
+          suggestions:
+            aucun: 0 €/mois
+            standard: 20 €/mois
+            international: 40 €/mois
 
         coût appareils:
           question: >
@@ -741,50 +830,20 @@ salarié . rémunération . avantages en nature:
             📱✨ (haut de gamme): 850 €
             💻: 1200 €
             💻 + 📱✨: 2050 €
-        abonnements:
-          question: Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge par l'employeur ?
-          par défaut: 20 €/mois
-          suggestions:
-            aucun: 0 €/mois
-            standard: 20 €/mois
-            international: 40 €/mois
 
-    nourriture:
-      icônes: 🍝
-      question: >
-        L'entreprise fournit-elle gratuitement des repas ?
-      par défaut: non
-      description: >
-        Les titres-restaurant ne sont pas considérés comme un avantage en nature mais comme un remboursement de frais.
-      avec:
         montant:
-          titre: nourriture
-          unité: €/mois
-          formule:
-            produit:
-              assiette:
-                valeur: 5 €/repas
-                nom: repas forfaitaire
-              facteur: repas par mois
+          titre: outils NTIC
+          description: |
+            Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de :
+
+            ```
+            [10% x (850€ + (30€ x 12 mois)) ] / 12 mois
+            ```
+            soit 10,08€
+          produit:
+            - somme:
+                - coût appareils
+                - abonnements * 12 mois
+            - 10% /an
           références:
-            urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
-
-        repas par mois:
-          question: >
-            Combien de repas par mois sont payés par l'entreprise ?
-          par défaut: 21 repas/mois
-          suggestions:
-            1 par jour: 21 repas/mois
-            2 par jour: 42 repas/mois
-    autres:
-      question: >
-        Y a-t-il d'autres avantages en natures (logement, véhicule, réduction...) ?
-      par défaut: non
-      avec:
-        montant:
-          titre: autres
-          question: >
-            Quel est le montant de ces autres avantages ?
-          par défaut: 0 €/mois
-          suggestions:
-            🚗 véhicule: 260 €/mois
+            urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html

@@ -14,26 +14,8 @@ salarié . contrat:
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
   références:
     Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/contrat-de-travail-les-principales-caracteristiques
-  avec:
-    CDI:
-      valeur: contrat = 'CDI'
-      titre: CDI
 
-    CDD:
-      titre: CDD
-      valeur: contrat = 'CDD'
-      description: |
-        Par défaut, faire travailler quelqu'un en France établit automatiquement un CDI à temps plein.
-        Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date de fin.
-      références:
-        Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/le-contrat-a-duree-determinee-cdd
-        Code du travail - Article L1242-1: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050
-      avec:
-        information:
-          type: notification
-          valeur: oui
-          description: >-
-            Rappelez-vous qu'un CDD doit toujours correspondre à un besoin temporaire de l'entreprise.
+  avec:
 
     apprentissage:
       titre: apprentissage
@@ -46,6 +28,28 @@ salarié . contrat:
         - cotisations . exonérations . JEI
         - régimes spécifiques . impatriés
         - temps de travail . temps partiel
+
+    CDD:
+      titre: CDD
+      valeur: contrat = 'CDD'
+      description: |
+        Par défaut, faire travailler quelqu'un en France établit automatiquement un CDI à temps plein.
+        Certaines situations exceptionnelles permettent aux employeurs de prévoir une date de fin. Le contrat, qui est alors nécessaire, mentionne cette date de fin.
+      références:
+        Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/le-contrat-a-duree-determinee-cdd
+        Code du travail - Article L1242-1: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006901194&cidTexte=LEGITEXT000006072050
+
+      avec:
+        information:
+          type: notification
+          valeur: oui
+          description: >-
+            Rappelez-vous qu'un CDD doit toujours correspondre à un besoin
+            temporaire de l'entreprise.
+
+    CDI:
+      valeur: contrat = 'CDI'
+      titre: CDI
 
     professionnalisation:
       titre: professionnalisation
@@ -89,21 +93,30 @@ salarié . contrat:
         - régimes spécifiques . impatriés
 
         - rémunération . assiette de vérification du SMIC . contrôle
+
       avec:
         avertissement:
           type: notification
           sévérité: avertissement
           valeur: oui
           description: >-
-            Une convention de stage **n'est pas un contrat de travail**, et ne peut pas être conclue pour réaliser une tâche régulière correspondant à un poste de travail permanent, ou à un accroissement temporaire de l'activité de l'entreprise. [Code de l'éducation - Article L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
+            Une convention de stage **n'est pas un contrat de travail**, et ne
+            peut pas être conclue pour réaliser une tâche régulière
+            correspondant à un poste de travail permanent, ou à un accroissement
+            temporaire de l'activité de l'entreprise. [Code de l'éducation -
+            Article
+            L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
 
             Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
+
         contrôle gratification minimale:
           type: notification
           sévérité: avertissement
           valeur: contrat . salaire brut < gratification minimale
           description: >-
-            La rémunération du stage est inférieure à la [gratification minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
+            La rémunération du stage est inférieure à la [gratification
+            minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
+
         gratification minimale:
           valeur: 15% * plafond sécurité sociale
           Gratification minimale: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131
@@ -128,16 +141,20 @@ salarié . contrat . apprentissage . diplôme préparé:
       - niveau bac ou moins
       - niveau supérieur au bac
   par défaut: "'niveau supérieur au bac'"
+
   avec:
     niveau bac ou moins:
       titre: Diplôme d'un niveau inférieur ou égal au bac
       valeur: diplôme préparé = 'niveau bac ou moins'
-      description: Concerne les diplôme de niveau V (CAP, BEP, CTM...) et de niveau IV (Bac Pro, BP, BTM)
+      description: Concerne les diplôme de niveau V (CAP, BEP, CTM...) et de niveau IV
+        (Bac Pro, BP, BTM)
 
     niveau supérieur au bac:
       titre: Diplôme d'un niveau supérieur au bac
       valeur: diplôme préparé = 'niveau supérieur au bac'
-      description: Concerne les diplôme de niveau I (Master, Ingénieur, Grandes écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT, BM, ...)
+      description: Concerne les diplôme de niveau I (Master, Ingénieur, Grandes
+        écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT,
+        BM, ...)
 
 salarié . contrat . apprentissage . ancienneté:
   déprécié: oui # Était utile pour une aide à l'embauche de 2019
@@ -169,7 +186,8 @@ salarié . contrat . apprentissage . ancienneté . moins de quatre ans:
     travailleur handicapé est reconnue à l'apprenti.
 
 salarié . contrat . apprentissage . assiette réduite apprentissage:
-  description: Les apprentis bénéficient d'une exonération de cotisations sociales jusqu'à 79% du SMIC.
+  description: Les apprentis bénéficient d'une exonération de cotisations sociales
+    jusqu'à 79% du SMIC.
   références:
     Urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
   remplace:
@@ -209,6 +227,7 @@ salarié . contrat . CDD . motif:
     le recours au CDD: http://www.entreprises.cci-paris-idf.fr/web/reglementation/developpement-entreprise/droit-social/le-recours-au-cdd
     embaucher en CDD: https://www.service-public.fr/particuliers/vosdroits/F34
     les cas de recours au CDD: https://www.easycdd.com/LEGISLATION-CDD/Avant-de-rediger-un-contrat-CDD/Les-cas-de-recours-au-contrat-CDD
+
   avec:
     classique:
       titre: motifs classiques
@@ -222,15 +241,25 @@ salarié . contrat . CDD . motif:
           - mission
       références:
         Code du travail - Article L1242-2: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000033024658&cidTexte=LEGITEXT000006072050&dateTexte=20170420
+
       avec:
-        saisonnier:
-          valeur: salarié . contrat . CDD . motif = 'classique . saisonnier'
-          description: Emplois à caractère saisonnier, dont les tâches sont appelées à se répéter chaque année selon une périodicité à peu près fixe, en fonction du rythme des saisons ou des modes de vie collectifs.
 
         accroissement activité:
           titre: Accroissement temporaire d'activité
           valeur: salarié . contrat . CDD . motif = 'classique . accroissement activité'
           description: Accroissement temporaire de l'activité de l'entreprise
+
+        mission:
+          titre: Contrat de mission
+          valeur: salarié . contrat . CDD . motif = 'classique . mission'
+          description: |
+            > Aussi appelé contrat à objet défini.
+
+            Recrutement d'ingénieurs et de cadres, au sens des conventions collectives, en vue de la réalisation d'un objet défini lorsqu'un accord de branche étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
+
+            - Les nécessités économiques auxquelles ces contrats sont susceptibles d'apporter une réponse adaptée ;
+            - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini bénéficient de garanties relatives à l'aide au reclassement, à la validation des acquis de l'expérience, à la priorité de réembauche et à l'accès à la formation professionnelle continue et peuvent, au cours du délai de prévenance, mobiliser les moyens disponibles pour organiser la suite de leur parcours professionnel ;
+            - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini ont priorité d'accès aux emplois en contrat à durée indéterminée dans l'entreprise.
 
         remplacement:
           titre: Contrat de remplacement
@@ -249,33 +278,39 @@ salarié . contrat . CDD . motif:
 
             - Remplacement du chef d'une exploitation agricole ou d'une entreprise mentionnée aux 1° à 4° de l'article L. 722-1 du code rural et de la pêche maritime, d'un aide familial, d'un associé d'exploitation, ou de leur conjoint mentionné à l'article L. 722-10 du même code dès lors qu'il participe effectivement à l'activité de l'exploitation agricole ou de l'entreprise ;
 
-        mission:
-          titre: Contrat de mission
-          valeur: salarié . contrat . CDD . motif = 'classique . mission'
-          description: |
-            > Aussi appelé contrat à objet défini.
-
-            Recrutement d'ingénieurs et de cadres, au sens des conventions collectives, en vue de la réalisation d'un objet défini lorsqu'un accord de branche étendu ou, à défaut, un accord d'entreprise le prévoit et qu'il définit :
-
-            - Les nécessités économiques auxquelles ces contrats sont susceptibles d'apporter une réponse adaptée ;
-            - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini bénéficient de garanties relatives à l'aide au reclassement, à la validation des acquis de l'expérience, à la priorité de réembauche et à l'accès à la formation professionnelle continue et peuvent, au cours du délai de prévenance, mobiliser les moyens disponibles pour organiser la suite de leur parcours professionnel ;
-            - Les conditions dans lesquelles les salariés sous contrat à durée déterminée à objet défini ont priorité d'accès aux emplois en contrat à durée indéterminée dans l'entreprise.
+        saisonnier:
+          valeur: salarié . contrat . CDD . motif = 'classique . saisonnier'
+          description: Emplois à caractère saisonnier, dont les tâches sont appelées à se
+            répéter chaque année selon une périodicité à peu près fixe, en
+            fonction du rythme des saisons ou des modes de vie collectifs.
 
         usage:
           titre: Contrat d'usage
           alias: motif extra
           valeur: salarié . contrat . CDD . motif = 'classique . usage'
-          description: Emplois pour lesquels, dans certains secteurs d'activité définis par décret ou par convention ou accord collectif de travail étendu, il est d'usage constant de ne pas recourir au contrat de travail à durée indéterminée en raison de la nature de l'activité exercée et du caractère par nature temporaire de ces emplois ;
+          description: Emplois pour lesquels, dans certains secteurs d'activité définis
+            par décret ou par convention ou accord collectif de travail étendu,
+            il est d'usage constant de ne pas recourir au contrat de travail à
+            durée indéterminée en raison de la nature de l'activité exercée et
+            du caractère par nature temporaire de ces emplois ;
           références:
             Embauche en contrat d'extra: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33693
 
     complément formation:
       titre: Complément de formation professionnelle
       valeur: salarié . contrat . CDD . motif = 'complément formation'
-      description: L'employeur s'engage, pour une durée et dans des conditions déterminées par décret, à assurer un complément de formation professionnelle au salarié.
+      description: L'employeur s'engage, pour une durée et dans des conditions
+        déterminées par décret, à assurer un complément de formation
+        professionnelle au salarié.
       références:
         Code du travail - Article L1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420
         Code du travail - Décret D1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000018537448&cidTexte=LEGITEXT000006072050
+
+    contrat aidé:
+      titre: Contrat aidé (CUI, alternance, ...)
+      valeur: salarié . contrat . CDD . motif = 'contrat aidé'
+      références:
+        Code du travail - Article L1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420
 
     issue d'apprentissage:
       titre: À l'issue d'un contrat d'apprentissage
@@ -284,12 +319,6 @@ salarié . contrat . CDD . motif:
         A l'issue d'un contrat d'apprentissage, un contrat de travail à durée déterminée peut être conclu lorsque l'apprenti doit satisfaire aux obligations du service national dans un délai de moins d'un an après l'expiration du contrat d'apprentissage.
       références:
         Code du travail - Article L1242-4: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000028498598&cidTexte=LEGITEXT000006072050&dateTexte=20170420
-
-    contrat aidé:
-      titre: Contrat aidé (CUI, alternance, ...)
-      valeur: salarié . contrat . CDD . motif = 'contrat aidé'
-      références:
-        Code du travail - Article L1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420
     # TODO Attention : il faudrait peut-être prendre en compte les interdictions du CDD.
     # https://www.legifrance.gouv.fr/affichCode.do;jsessionid=B74AE5D2E73ACE3A108B9ADF3BDC8C51.tpdila20v_1?idSectionTA=LEGISCTA000006195640&cidTexte=LEGITEXT000006072050&dateTexte=20170701
 
@@ -313,7 +342,8 @@ salarié . contrat . CDD . durée:
 
 salarié . contrat . CDD . indemnité de fin de contrat:
   alias: prime de précarité
-  question: Le salarié a-t-il droit à l'indemnité de fin de contrat (dite prime de précarité) ?
+  question: Le salarié a-t-il droit à l'indemnité de fin de contrat (dite prime de
+    précarité) ?
   description: Si vous ne savez pas, cliquez sur « Passer »
   par défaut:
     valeur: oui
@@ -327,23 +357,6 @@ salarié . contrat . CDD . indemnité de fin de contrat:
         - rupture sans indemnité
         - CDD jeune vacances
 
-  avec:
-    rupture sans indemnité:
-      titre: Rupture pour faute grave, force majeure, ou par le salarié.
-      question: Le contrat CDD a-t-il été rompu pendant la période d'essai, pour faute grave, force majeure, ou de manière anticipée par le salarié ?
-      description: Dans ces cas, aucune majoration ou indemnité sur le CDD ne sera à verser.
-      par défaut: non
-      références:
-        'Licenciement pour faute simple, grave ou lourde : quelles conséquences ?': https://code.travail.gouv.fr/fiche-service-public/licenciement-pour-faute-simple-grave-ou-lourde-quelles-consequences-pour-le-salarie
-        'Rupture du contrat de travail pour cas de force majeure': https://code.travail.gouv.fr/fiche-service-public/rupture-du-contrat-de-travail-pour-cas-de-force-majeure?q=rupture%20du%20contrat%20et%20force%20majeure
-
-    CDD jeune vacances:
-      par défaut: non
-      question: Est-ce un CDD conclu avec un jeune pendant ses vacances scolaires ou universitaires (« job d’été ») ?
-      description: >-
-
-        Pour être dans ce cas, le contrat doit se terminer avant les vacances scolaires ou universitaires, et que le jeune reprenne effectivement ses études lors de la prochaine rentrée.
-
   références:
     Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006189459&cidTexte=LEGITEXT000006072050
     Fiche Fin du CDD: https://www.service-public.fr/particuliers/vosdroits/F40
@@ -352,6 +365,27 @@ salarié . contrat . CDD . indemnité de fin de contrat:
     La prime de précarité n'est pas due si: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/La-prime-de-precarite/La-prime-de-precarite-n-est-pas-due-si
     Poursuite de l'activité après la fin du CDD: https://www.easycdd.com/LEGISLATION-CDD/Fin-ou-rupture-du-contrat-CDD/Poursuite-de-l-activite-apres-la-fin-du-contrat-CDD
 
+  avec:
+
+    CDD jeune vacances:
+      par défaut: non
+      question: Est-ce un CDD conclu avec un jeune pendant ses vacances scolaires ou
+        universitaires (« job d’été ») ?
+      description: >-
+        
+        Pour être dans ce cas, le contrat doit se terminer avant les vacances scolaires ou universitaires, et que le jeune reprenne effectivement ses études lors de la prochaine rentrée.
+
+    rupture sans indemnité:
+      titre: Rupture pour faute grave, force majeure, ou par le salarié.
+      question: Le contrat CDD a-t-il été rompu pendant la période d'essai, pour faute
+        grave, force majeure, ou de manière anticipée par le salarié ?
+      description: Dans ces cas, aucune majoration ou indemnité sur le CDD ne sera à verser.
+      par défaut: non
+      références:
+        'Licenciement pour faute simple, grave ou lourde : quelles conséquences ?':
+          https://code.travail.gouv.fr/fiche-service-public/licenciement-pour-faute-simple-grave-ou-lourde-quelles-consequences-pour-le-salarie
+        'Rupture du contrat de travail pour cas de force majeure': https://code.travail.gouv.fr/fiche-service-public/rupture-du-contrat-de-travail-pour-cas-de-force-majeure?q=rupture%20du%20contrat%20et%20force%20majeure
+
 salarié . contrat . CDD . reconduction en CDI:
   question: Le CDD sera-t-il reconduit en CDI ?
   description: |
@@ -359,7 +393,8 @@ salarié . contrat . CDD . reconduction en CDI:
   par défaut: non
 
 salarié . contrat . CDD . congés pris:
-  question: Combien de jours de congés seront pris sur la durée du CDD (en jours ouvrés) ?
+  question: Combien de jours de congés seront pris sur la durée du CDD (en jours
+    ouvrés) ?
   description: |
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
@@ -371,30 +406,34 @@ salarié . contrat . CDD . congés pris:
   par défaut: congés dus sur la durée du contrat
   références:
     A-t-on droit à des congés payés pendant un CDD ?: https://www.service-public.fr/particuliers/vosdroits/F2931
+
   avec:
-    jours ouvrés sur la durée du contrat:
-      produit:
-        assiette: 253 jours ouvrés/an
-        facteur: durée
 
     congés dus sur la durée du contrat:
       produit:
-        assiette: 25 jours ouvrés/an
-        facteur: durée
+        - 25 jours ouvrés/an
+        - durée
       arrondi: 2 décimales
 
     contrôle congés non pris max:
       type: notification
       sévérité: avertissement
       valeur: congés pris > congés dus sur la durée du contrat
-      description: Le nombre de jours de congés pris est supérieur à la totalité des jours de congés acquis sur la durée du contrat (par défaut 25 jours / an)
+      description: Le nombre de jours de congés pris est supérieur à la totalité des
+        jours de congés acquis sur la durée du contrat (par défaut 25 jours /
+        an)
+
+    jours ouvrés sur la durée du contrat:
+      produit:
+        - 253 jours ouvrés/an
+        - durée
 
     proportion:
       unité: '%'
       valeur: congés pris / congés dus sur la durée du contrat
       plafond: 100%
-
-    proportion par rapport aux jours ouvrés: (congés dus sur la durée du contrat - congés pris) / jours ouvrés sur la durée du contrat
+    proportion par rapport aux jours ouvrés: (congés dus sur la durée du contrat -
+      congés pris) / jours ouvrés sur la durée du contrat
 
 salarié . contrat . date d'embauche:
   question: Quelle est la date d'embauche du salarié ?
@@ -424,18 +463,27 @@ salarié . contrat . salaire brut:
     salaire médian: 2500 €/mois
     SMIC: temps de travail . SMIC
   inversion numérique:
-    avec:
-      - coût total employeur
-      - rémunération . net . à payer avant impôt
-      - rémunération . net . payé après impôt
-      - équivalent temps plein
-      - dirigeant . rémunération . totale
-      - entreprise . chiffre d'affaires
+    - coût total employeur
+    - rémunération . net . à payer avant impôt
+    - rémunération . net . payé après impôt
+    - équivalent temps plein
+    - dirigeant . rémunération . totale
+    - entreprise . chiffre d'affaires
 
   références:
     Le salaire. Fixation et paiement: http://travail-emploi.gouv.fr/droit-du-travail/remuneration-et-participation-financiere/remuneration/article/le-salaire-fixation-et-paiement
 
   avec:
+
+    contrôle salaire élevé:
+      type: notification
+      toutes ces conditions:
+        - salaire brut >= 10000 €/mois
+        - dirigeant = non
+      description: >-
+        Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de
+        période de calcul ?
+
     équivalent temps plein:
       applicable si: temps de travail . temps partiel
       titre: Salaire brut équivalent temps plein
@@ -443,23 +491,16 @@ salarié . contrat . salaire brut:
       question: Quel est le salaire en équivalent temps plein ?
       unité: €/mois
       valeur: salaire brut / temps de travail . quotité
-    contrôle salaire élevé:
-      type: notification
-      toutes ces conditions:
-        - salaire brut >= 10000 €/mois
-        - dirigeant = non
-      description: >-
-        Le salaire mensuel saisi est élevé. Ne vous êtes-vous pas trompé de période de calcul ?
 
 salarié . contrat . temps de travail:
   unité: heures/mois
   produit:
-    assiette:
-      variations:
+    - variations:
         - si: temps partiel
           alors: temps partiel . heures par semaine
         - sinon: durée légale du travail
-    facteur: période . semaines par mois
+    - période . semaines par mois
+
   avec:
     quotité:
       valeur: temps de travail / durée légale du travail . mensuelle
@@ -473,26 +514,31 @@ salarié . contrat . temps de travail . temps partiel:
 
     Par exemple pour les cotisations plafonnées ou les exonérations dépendant du SMIC.
   par défaut: non
-  avec:
-    heures par semaine:
-      par défaut: 32 heures/semaine
-      plancher: 1 heures/semaine
-      question: Quel est le nombre d'heures travaillées par semaine dans le cadre du temps partiel ?
-      suggestions:
-        4 jours / semaine: durée légale du travail * 4 / 5
-        mi-temps: durée légale du travail / 2
 
-    contrôle temps min:
-      type: notification
-      sévérité: avertissement
-      formule: heures par semaine < 24 heures/semaine
-      description: Le nombre minimum d'heures par semaine est 24. Il est possible de descendre plus bas dans certains cas seulement. [Plus d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+  avec:
 
     contrôle temps max:
       type: notification
       sévérité: avertissement
       formule: heures par semaine >= durée légale du travail
       description: Un temps partiel doit être en dessous de la durée de travail légale (35h)
+
+    contrôle temps min:
+      type: notification
+      sévérité: avertissement
+      formule: heures par semaine < 24 heures/semaine
+      description: Le nombre minimum d'heures par semaine est 24. Il est possible de
+        descendre plus bas dans certains cas seulement. [Plus
+        d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
+
+    heures par semaine:
+      par défaut: 32 heures/semaine
+      plancher: 1 heures/semaine
+      question: Quel est le nombre d'heures travaillées par semaine dans le cadre du
+        temps partiel ?
+      suggestions:
+        4 jours / semaine: durée légale du travail * 4 / 5
+        mi-temps: durée légale du travail / 2
 
 salarié . contrat . statut cadre:
   question: Le salarié a-t-il le statut cadre ?

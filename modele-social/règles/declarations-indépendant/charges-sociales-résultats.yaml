@@ -29,13 +29,15 @@ déclaration charge sociales . résultat . CSG déductible:
   titre: CSG déductible
   résumé: '[B]'
   description: "Montant de la CSG déductible à l'impôt sur le revenu"
-  valeur: dirigeant . indépendant . cotisations et contributions . CSG-CRDS . déductible
+  valeur: dirigeant . indépendant . cotisations et contributions . CSG-CRDS .
+    déductible
 
 déclaration charge sociales . résultat . CFP:
   non applicable si: entreprise . imposition . régime . micro-entreprise
   résumé: '[D]'
   description: Contribution à la formation professionnelle
-  valeur: dirigeant . indépendant . cotisations et contributions . formation professionnelle
+  valeur: dirigeant . indépendant . cotisations et contributions . formation
+    professionnelle
 
 déclaration charge sociales . résultat . total charges sociales déductible:
   non applicable si: entreprise . imposition . régime . micro-entreprise

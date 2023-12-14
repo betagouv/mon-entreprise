@@ -8,8 +8,8 @@ impôt . montant:
   titre: Impôt sur le revenu
   somme:
     - produit:
-        assiette: revenu imposable
-        taux: taux d'imposition
+        - revenu imposable
+        - taux d'imposition
     - dirigeant . auto-entrepreneur . impôt . versement libératoire . montant
     - impôt . dividendes . PFU
   arrondi: oui
@@ -37,9 +37,7 @@ impôt . méthode de calcul:
   # applicable si: revenu imposable > 0
   # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
   non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire > 0
-  par défaut:
-    nom: par défaut
-    valeur: "'barème standard'"
+  par défaut: par défaut
   valeur:
     une possibilité:
       choix obligatoire: oui
@@ -51,24 +49,36 @@ impôt . méthode de calcul:
     différence taux neutre / personnalisé: https://www.impots.gouv.fr/particulier/questions/comment-gerer-mon-prelevement-la-source
     calcul du taux d'imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
 
+  avec:
+    par défaut: "'barème standard'"
+
 impôt . méthode de calcul . taux neutre:
   titre: avec le taux neutre
-  description: Si vous ne connaissez pas votre taux personnalisé, ou si vous voulez connaître votre impôt à la source dans le cas où vous avez choisi de ne pas communiquer à votre taux à l'employeur, le calcul au taux neutre correspond à une imposition pour un célibataire sans enfants et sans autres revenus / charges.
+  description: Si vous ne connaissez pas votre taux personnalisé, ou si vous
+    voulez connaître votre impôt à la source dans le cas où vous avez choisi de
+    ne pas communiquer à votre taux à l'employeur, le calcul au taux neutre
+    correspond à une imposition pour un célibataire sans enfants et sans autres
+    revenus / charges.
   valeur: impôt . méthode de calcul = 'taux neutre'
 
 impôt . méthode de calcul . taux personnalisé:
   titre: avec un taux personnalisé
-  description: Vous pouvez utiliser directement le taux personnalisé communiqué par l'administration fiscale pour calculer votre impôt. Pour le connaître, vous pouvez-vous rendre sur votre [espace fiscal personnel](https://impots.gouv.fr).
+  description: Vous pouvez utiliser directement le taux personnalisé communiqué
+    par l'administration fiscale pour calculer votre impôt. Pour le connaître,
+    vous pouvez-vous rendre sur votre [espace fiscal
+    personnel](https://impots.gouv.fr).
   valeur: impôt . méthode de calcul = 'taux personnalisé'
 
 impôt . méthode de calcul . barème standard:
   titre: avec le barème standard
-  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration fiscale se base pour calculer votre taux d'imposition.
+  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration
+    fiscale se base pour calculer votre taux d'imposition.
   valeur: impôt . méthode de calcul = 'barème standard'
 
 impôt . méthode de calcul . PFU:
   titre: avec prélèvement forfaitaire unique
-  description: Calcul de l'impôt des revenus de capitaux mobiliers avec le prélèvement forfaitaire unique (ou "flat tax")
+  description: Calcul de l'impôt des revenus de capitaux mobiliers avec le
+    prélèvement forfaitaire unique (ou "flat tax")
   valeur: impôt . méthode de calcul = 'PFU'
 
 impôt . revenu imposable:
@@ -84,7 +94,9 @@ impôt . revenu imposable:
     - bénéficiaire . dividendes . imposables
 
 impôt . revenu imposable . abattement contrat court:
-  description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois, il est possible d'appliquer un abattement pour diminuer le montant du prélèvement à la source.
+  description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois,
+    il est possible d'appliquer un abattement pour diminuer le montant du
+    prélèvement à la source.
   applicable si:
     toutes ces conditions:
       - méthode de calcul . taux neutre
@@ -92,19 +104,21 @@ impôt . revenu imposable . abattement contrat court:
   formule:
     valeur: 50% * SMIC . net imposable * 1 mois/an
     arrondi: oui
-  note: Cet abattement s'applique aussi pour les conventions de stage ou les contrats de mission (intérim) de moins de 2 mois.
+  note: Cet abattement s'applique aussi pour les conventions de stage ou les
+    contrats de mission (intérim) de moins de 2 mois.
   références:
     Bofip - dispositions spécifiques aux contrats courts: https://bofip.impots.gouv.fr/bofip/11252-PGP.html?identifiant=BOI-IR-PAS-20-20-30-10-20180515
 
 impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
   icônes: 🇬🇵🇷🇪 🇲🇶
-  applicable si: établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique
+  applicable si: établissement . commune . département . outre-mer . Guadeloupe
+    Réunion Martinique
   remplace: taux neutre d'impôt sur le revenu
-  grille:
-    assiette: revenu imposable
-    variations:
-      - si: date >= 01/01/2022
-        alors:
+  variations:
+    - si: date >= 01/01/2022
+      alors:
+        grille:
+          assiette: revenu imposable
           tranches:
             - montant: 0%
               plafond: 1652 €/mois
@@ -145,7 +159,9 @@ impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martin
             - montant: 38%
               plafond: 53670 €/mois
             - montant: 43%
-      - sinon:
+    - sinon:
+        grille:
+          assiette: revenu imposable
           tranches:
             - montant: 0%
               plafond: 1626 €/mois
@@ -195,11 +211,12 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
       - établissement . commune . département = 'Guyane'
       - établissement . commune . département = 'Mayotte'
   remplace: taux neutre d'impôt sur le revenu
-  grille:
-    assiette: revenu imposable
-    variations:
-      - si: date >= 01/01/2022
-        alors:
+
+  variations:
+    - si: date >= 01/01/2022
+      alors:
+        grille:
+          assiette: revenu imposable
           tranches:
             - montant: 0%
               plafond: 1769 €/mois
@@ -240,7 +257,9 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
             - montant: 38%
               plafond: 56708 €/mois
             - montant: 43%
-      - sinon:
+    - sinon:
+        grille:
+          assiette: revenu imposable
           tranches:
             - montant: 0%
               plafond: 1741 €/mois
@@ -284,13 +303,18 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
 
 impôt . taux neutre d'impôt sur le revenu:
   description: >
-    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des revenus du patrimoine importants).
-  note: Attention, l'abattement de 10% est inclus implicitement dans ce barème. L'assiette est donc bien le salaire imposable, et non le salaire imposable abattu.
-  grille:
-    assiette: revenu imposable
-    variations:
-      - si: date >= 01/01/2022
-        alors:
+    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
+    l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
+    leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
+    revenus du patrimoine importants).
+  note: Attention, l'abattement de 10% est inclus implicitement dans ce barème.
+    L'assiette est donc bien le salaire imposable, et non le salaire imposable
+    abattu.
+  variations:
+    - si: date >= 01/01/2022
+      alors:
+        grille:
+          assiette: revenu imposable
           tranches:
             - montant: 0%
               plafond: 1440 €/mois
@@ -331,7 +355,9 @@ impôt . taux neutre d'impôt sur le revenu:
             - montant: 38%
               plafond: 48967 €/mois
             - montant: 43%
-      - sinon:
+    - sinon:
+        grille:
+          assiette: revenu imposable
           tranches:
             - montant: 0%
               plafond: 1420 €/mois
@@ -468,8 +494,7 @@ impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
     supplémentaire pour le calcul du quotient familial, ce qui correspond au
     maintient de la part de la personne décédée.
 
-    Une personne veuve sans enfant à charge ne bénéficie en revanche d'aucune
-    majoration.
+    Une personne veuve sans enfant à charge ne bénéficie en revanche d'aucune majoration.
   applicable si:
     toutes ces conditions:
       - situation de famille = 'veuf'
@@ -540,8 +565,7 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
     Code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985819/2022-01-04/
 
 impôt . foyer fiscal . revenu imposable . autres revenus imposables:
-  question: Quel est le montant total des autres revenus imposables du foyer
-    fiscal ?
+  question: Quel est le montant total des autres revenus imposables du foyer fiscal ?
   par défaut: 0 €/an
 
 impôt . foyer fiscal . revenu fiscal de référence:
@@ -552,7 +576,8 @@ impôt . foyer fiscal . revenu fiscal de référence:
   formule:
     somme:
       - revenu imposable
-      - salarié . rémunération . net . imposable . exonération prime d'impatriation
+      - salarié . rémunération . net . imposable . exonération prime
+        d'impatriation
   références:
     Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
 
@@ -579,7 +604,8 @@ impôt . foyer fiscal . impôt sur le revenu:
     Fiche service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F34328
 
 impôt . foyer fiscal . impôt sur le revenu . décote:
-  description: Une décote est appliquée après le barème de l'impôt sur le revenu, pour réduire l'impôt des bas revenus.
+  description: Une décote est appliquée après le barème de l'impôt sur le revenu,
+    pour réduire l'impôt des bas revenus.
   variations:
     - si: foyer fiscal . situation de famille = 'couple'
       alors:
@@ -613,10 +639,21 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial:
 
 impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
   somme:
-    - nom: Plafonnement général
+    - Plafonnement général
+    - Plafonnement parent isolé
+
+  références:
+    Bofip 2022: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20220516#III._Niveau_du_plafonnement_16
+    Bofip 2021: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20210330#III._Niveau_du_plafonnement_12
+    Bofip 2020: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20200515#III._Niveau_du_plafonnement_12
+    Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041464047&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20190608
+    Calculer l'impôt net à payer: https://www.service-public.fr/particuliers/vosdroits/F34328#fiche-item-aria-5
+    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
+
+  avec:
+    Plafonnement général:
       produit:
-        assiette:
-          variations:
+        - variations:
             - si: date >= 01/2023
               alors: 1678 €/demi-part/an
             - si: date >= 01/2022
@@ -625,13 +662,12 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
               alors: 1570 €/demi-part/an
             - si: date >= 01/2020
               alors: 1567 €/demi-part/an
-        facteur:
-          produit:
-            assiette:
-              valeur: nombre de parts . rattachées
+        - produit:
+            - valeur: nombre de parts . rattachées
               abattement: nombre de parts . majoration personne seule avec enfant
-            facteur: 2 demi-part/part
-    - nom: Plafonnement parent isolé
+            - 2 demi-part/part
+
+    Plafonnement parent isolé:
       description: |
         Avantage de quotient familial procuré par le premier enfant à charge des
         contribuables célibataires ou divorcés vivant seuls.
@@ -646,14 +682,6 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
         - si: date >= 01/2020
           alors: 3697 €/an
 
-  références:
-    Bofip 2022: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20220516#III._Niveau_du_plafonnement_16
-    Bofip 2021: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20210330#III._Niveau_du_plafonnement_12
-    Bofip 2020: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20200515#III._Niveau_du_plafonnement_12
-    Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041464047&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20190608
-    Calculer l'impôt net à payer: https://www.service-public.fr/particuliers/vosdroits/F34328#fiche-item-aria-5
-    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
-
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
   description: |
     Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
@@ -663,7 +691,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
   barème:
     assiette: quotient familial
     tranches:
-      &tranches # HACK waiting for https://github.com/betagouv/publicodes/discussions/92#discussioncomment-1904882 to be resolved
+      # HACK waiting for https://github.com/betagouv/publicodes/discussions/92#discussioncomment-1904882 to be resolved
+      &tranches
       - taux: 0%
         plafond:
           variations:
@@ -713,13 +742,13 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans parts rattach�
 impôt . foyer fiscal . impôt sur le revenu . impôt brut:
   valeur:
     produit:
-      assiette: impôt brut . par part
-      facteur: nombre de parts
+      - impôt brut . par part
+      - nombre de parts
   plancher:
     valeur:
       produit:
-        assiette: impôt brut . sans parts rattachées
-        facteur: nombre de parts . principales
+        - impôt brut . sans parts rattachées
+        - nombre de parts . principales
     abattement: quotient familial . plafond avantage
   références:
     BOFIP: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant%3DBOI-IR-LIQ-20-20-20-20210330
@@ -765,26 +794,24 @@ impôt . dividendes:
   titre: Imposition des dividendes
 
 impôt . dividendes . impôt sans dividendes:
-  recalcul:
-    règle: impôt . foyer fiscal . impôt à payer
-    avec:
-      bénéficiaire . dividendes . bruts: 0 €/an
   description: Montant de l'impôt si aucun dividende n'était touché
+  valeur: impôt . foyer fiscal . impôt à payer
+  contexte:
+    bénéficiaire . dividendes . bruts: 0 €/an
 
 impôt . dividendes . montant en sus des autres revenus imposables:
   variations:
     - si: méthode de calcul . PFU
       alors: PFU
     - sinon: impôt . foyer fiscal . impôt à payer - impôt sans dividendes
-  description:
-    Montant de l'impôt sur dividendes, en sus de l'impôt sur les autres
+  description: Montant de l'impôt sur dividendes, en sus de l'impôt sur les autres
     revenus imposables
 
 impôt . dividendes . PFU:
   applicable si: impôt . méthode de calcul . PFU
   produit:
-    assiette: bénéficiaire . dividendes . bruts
-    taux: 12.8%
+    - bénéficiaire . dividendes . bruts
+    - 12.8%
   titre: Montant de l'impôt sur dividendes au titre du Prélèvement Forfaitaire
     Unique (ou "flat tax")
   description: |

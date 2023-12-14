@@ -18,7 +18,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid:
         valeur: CSG-CRDS . déductible
         abattement: exonérations . covid . part CSG . déductible
 
-  question: Remplissez-vous les conditions pour bénéficier de la réduction des cotisations et contributions sociales 2021 liées à la crise du Covid-19 ?
+  question: Remplissez-vous les conditions pour bénéficier de la réduction des
+    cotisations et contributions sociales 2021 liées à la crise du Covid-19 ?
   description: |-
     Dans le cadre de la crise sanitaire, le Gouvernement a mis en œuvre plusieurs mesures exceptionnelles concernant les cotisations et contributions sociales des travailleurs indépendants affectés par la crise du coronavirus.
 
@@ -50,7 +51,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid:
   par défaut: non
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . montant:
-  question: Quel est le montant de l’exonération sociale liée à la crise sanitaire pour les cotisations de l’année 2021 ?
+  question: Quel est le montant de l’exonération sociale liée à la crise sanitaire
+    pour les cotisations de l’année 2021 ?
   description: |-
     Pour connaître le montant de l'exonération, vous pouvez utiliser le simulateur d'exonération COVID.
 
@@ -78,8 +80,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid 
   unité: €/an
   résoudre la référence circulaire: oui
   produit:
-    assiette: montant
-    taux: pourcentage cotisations
+    - montant
+    - pourcentage cotisations
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . pourcentage cotisations:
   unité: '%'
@@ -92,8 +94,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . part CSG . déductible:
   titre: Part réduction Covid sur CSG/CRDS déductible
   produit:
-    assiette: part CSG
-    taux: CSG-CRDS . déductible . taux / taux CSG
+    - part CSG
+    - CSG-CRDS . déductible . taux / taux CSG
   arrondi: oui
   unité: €/an
 

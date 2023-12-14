@@ -1,5 +1,6 @@
 plafond sécurité sociale:
-  description: Le plafond de Sécurité sociale est le montant maximum des rémunérations à prendre en compte pour le calcul de certaines cotisations.
+  description: Le plafond de Sécurité sociale est le montant maximum des
+    rémunérations à prendre en compte pour le calcul de certaines cotisations.
   acronyme: PSS
   variations:
     - si: date >= 01/2023
@@ -7,7 +8,8 @@ plafond sécurité sociale:
     - sinon: 3428 €/mois
   références:
     Montants du plafond de Sécurité sociale: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
-  note: Le plafond de la Sécurité sociale n'a pas été revalorisé en 2021 par rapport à 2020.
+  note: Le plafond de la Sécurité sociale n'a pas été revalorisé en 2021 par
+    rapport à 2020.
 
   avec:
     horaire:
@@ -31,21 +33,20 @@ plafond sécurité sociale:
 SMIC:
   unité: €/mois
   produit:
-    assiette: durée légale du travail . mensuelle
-    facteur: SMIC . horaire
+    - durée légale du travail . mensuelle
+    - SMIC . horaire
   références:
     décret: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042677359?r=s75zUOEVpR
 
 SMIC . net imposable:
   titre global: SMIC net imposable
   description: Montant du SMIC net imposable pour un temps plein.
-  recalcul:
-    règle: salarié . rémunération . net . imposable . sans déductions
-    avec:
-      salarié: oui
-      salarié . contrat . salaire brut: SMIC
   références:
     barème PAS: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
+  valeur: salarié . rémunération . net . imposable . sans déductions
+  contexte:
+    salarié: oui
+    salarié . contrat . salaire brut: SMIC
 
 SMIC . horaire:
   titre global: SMIC horaire
@@ -91,17 +92,18 @@ SMIC . horaire:
   références:
     Smic (salaire minimum de croissance): https://www.service-public.fr/particuliers/vosdroits/F2300
     Arrêté du 26 avril 2023 relatif au relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047495817
+
   avec:
     début d'année:
       titre: en début d'année
-      recalcul:
-        règle: SMIC . horaire
-        avec:
-          date: période . début d'année
+      valeur: SMIC . horaire
+      contexte:
+        date: période . début d'année
 
 durée légale du travail:
   valeur: 35 heures/semaine
-  avec:
-    mensuelle: durée légale du travail * période . semaines par mois
   références:
     Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/la-duree-legale-du-travail
+
+  avec:
+    mensuelle: durée légale du travail * période . semaines par mois

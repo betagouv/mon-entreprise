@@ -30,7 +30,7 @@ scenarios:
                 },
                 "salarié . contrat . salaire brut": {
                   "valeur": {{$randomNumber(1000,10000)}},
-                  "unité": "€ / mois"
+                  "unité": "€/mois"
                 },
                 "salarié . contrat": "'CDD'",
                 "salarié . contrat . CDD . durée": {

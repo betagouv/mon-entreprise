@@ -5,13 +5,33 @@ salarié . temps de travail:
     - contrat . temps de travail
     - heures supplémentaires
     - heures complémentaires
-  description: En France, la base légale du travail est de 35h/semaine. Mais un grand nombre de dispositions existantes permettent de faire varier ce nombre. Vous pouvez les retrouver sur la page [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458) dédiée.
+  description: En France, la base légale du travail est de 35h/semaine. Mais un
+    grand nombre de dispositions existantes permettent de faire varier ce
+    nombre. Vous pouvez les retrouver sur la page
+    [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/N458)
+    dédiée.
+
   avec:
+
+    plafond sécurité sociale:
+      titre: plafond sécurité sociale proratisé
+      acronyme: PSS
+      unité: €/mois
+      valeur: plafond sécurité sociale * temps de travail . effectif . quotité
+        # Note: le plafond de la sécurité sociale est pro-ratisé en fonction de la
+        # effectif . quotité. Cela pose problème en cas de de chômage
+        # partiel à 100% car le plafond vaut alors 0€ et celui-ci est utilisé
+        # comme "multiplicateur" à plusieurs endroits, ce qui entraîne des
+        # divisions par zéro (si j'ai bien compris le problème, il est possible
+        # que le problème exact soit un peu différent).
+      plancher: 1 €/mois
+
     quotité:
       description: Temps de travail en proportion du temps complet légal.
       valeur: temps de travail / durée légale . mensuelle
       plafond: 100%
       unité: '%'
+
     SMIC:
       description: |
         Plusieurs réductions de cotisations ([réduction générale](/documentation/contrat-salarié/réduction-générale), taux réduit d'[allocations familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit) et de [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit), réduction outre-mer) reposent sur un paramètre SMIC faisant l'objet de plusieurs ajustements pour prendre en compte le temps de travail effectif.
@@ -21,24 +41,12 @@ salarié . temps de travail:
       formule: temps de travail * SMIC . horaire
       références:
         Détermination du SMIC: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi/determination-du-smic-a-prendre.html
-    plafond sécurité sociale:
-      titre: plafond sécurité sociale proratisé
-      acronyme: PSS
-      unité: €/mois
-      valeur:
-        plafond sécurité sociale * temps de travail . effectif . quotité
-        # Note: le plafond de la sécurité sociale est pro-ratisé en fonction de la
-        # effectif . quotité. Cela pose problème en cas de de chômage
-        # partiel à 100% car le plafond vaut alors 0€ et celui-ci est utilisé
-        # comme "multiplicateur" à plusieurs endroits, ce qui entraîne des
-        # divisions par zéro (si j'ai bien compris le problème, il est possible
-        # que le problème exact soit un peu différent).
-      plancher: 1 €/mois
 
 salarié . temps de travail . effectif:
   titre: temps de travail effectif
   valeur: temps de travail
   abattement: activité partielle . heures chômées
+
   avec:
     quotité:
       description: >-
@@ -48,7 +56,10 @@ salarié . temps de travail . effectif:
       unité: '%'
 
 salarié . temps de travail . heures supplémentaires:
-  description: Toute heure de travail accomplie, à la demande de l'employeur, au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une heure supplémentaire. Les heures supplémentaires ouvrent droit à une rémunération plus favorable (taux horaire majoré) au salarié.
+  description: Toute heure de travail accomplie, à la demande de l'employeur,
+    au-delà de la durée légale de 35 heures (ou de la durée équivalente) est une
+    heure supplémentaire. Les heures supplémentaires ouvrent droit à une
+    rémunération plus favorable (taux horaire majoré) au salarié.
   titre: Nombre d'heures supplémentaires
   non applicable si: contrat . temps de travail . temps partiel
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées ?
@@ -60,14 +71,18 @@ salarié . temps de travail . heures supplémentaires:
     42h / semaine: 30.33 heures/mois
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
+
   avec:
     contrôle 44h max:
       type: notification
       formule:
         toutes ces conditions:
-          - heures supplémentaires > 9 heures/semaine * période . semaines par mois
-          - heures supplémentaires <= 13 heures/semaine * période . semaines par mois
+          - heures supplémentaires > 9 heures/semaine * période . semaines par
+            mois
+          - heures supplémentaires <= 13 heures/semaine * période . semaines par
+            mois
       description: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
+
     contrôle 48h max:
       type: notification
       sévérité: avertissement
@@ -82,7 +97,10 @@ salarié . temps de travail . heures supplémentaires . majoration:
     - 25 % pour les 8 premières heures supplémentaires travaillées dans la même semaine (de la 36e à la 43e heure),
     - 50 % pour les heures suivantes.
   titre: majoration heures supplémentaires
-  note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention avec des taux spécifiques, merci de nous le signaler à `contact@mon-entreprise.beta.gouv.fr`
+  note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de
+    la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention
+    avec des taux spécifiques, merci de nous le signaler à
+    `contact@mon-entreprise.beta.gouv.fr`
   unité: heures/mois
   formule:
     barème:
@@ -102,30 +120,36 @@ salarié . temps de travail . heures complémentaires:
   applicable si: contrat . temps de travail . temps partiel
   question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées ?
   par défaut: 0 heures/mois
+
   avec:
     contrôle heures complémentaires 10 pourcents:
       type: notification
       formule: heures complémentaires > seuil légal
-      description: Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut être supérieur à un dixième de la durée contractuelle du temps partiel.
+      description: Sauf disposition conventionnelle, le nombre d'heures
+        complémentaires ne peut être supérieur à un dixième de la durée
+        contractuelle du temps partiel.
 
     # TODO: Le système d'unité ne fait pas la conversion mois/semaine automatiquement donc nous devons ajouter un terme "semaines par mois" manuellement
     contrôle heures complémentaires max:
       type: notification
       sévérité: avertissement
-      valeur: contrat . temps de travail + heures complémentaires >= durée légale . mensuelle
-      description: Les heures complémentaires ne doivent pas amener le salarié à travailler pour une durée supérieure ou égale à la durée légale du travail (35h)
+      valeur: contrat . temps de travail + heures complémentaires >= durée légale .
+        mensuelle
+      description: Les heures complémentaires ne doivent pas amener le salarié à
+        travailler pour une durée supérieure ou égale à la durée légale du
+        travail (35h)
 
     seuil légal:
       description: >-
-        Sauf disposition conventionnelle, le nombre d'heures complémentaires ne peut
-        être supérieur à un dixième de la durée contractuelle du temps partiel.
+        Sauf disposition conventionnelle, le nombre d'heures complémentaires ne
+        peut être supérieur à un dixième de la durée contractuelle du temps
+        partiel.
 
-        Si la convention le permet, les heures complémentaire au delà de ce seuil
-        sont rémunérée avec une majoration de 25%
+        Si la convention le permet, les heures complémentaire au delà de ce seuil sont rémunérée avec une majoration de 25%
       unité: heures/mois
       produit:
-        assiette: contrat . temps de travail
-        taux: 10%
+        - contrat . temps de travail
+        - 10%
       arrondi: 0 décimales
 
 salarié . temps de travail . heures complémentaires . majoration:
@@ -135,9 +159,7 @@ salarié . temps de travail . heures complémentaires . majoration:
     d'établissement (ou, à défaut, par convention ou accord de branche). Chaque
     taux est au minimum fixé à 10%.
 
-    À défaut d'accord ou de convention, les taux de majoration horaire sont fixés à :
-    - 10 % pour les heures effectuées dans la limite d'un dixième de la durée contractuelle
-    - 25 % pour les heures suivantes.
+    À défaut d'accord ou de convention, les taux de majoration horaire sont fixés à : - 10 % pour les heures effectuées dans la limite d'un dixième de la durée contractuelle - 25 % pour les heures suivantes.
   titre: majoration heures complémentaires
   barème:
     assiette: heures complémentaires
@@ -150,5 +172,6 @@ salarié . temps de travail . heures complémentaires . majoration:
 salarié . temps de travail . durée légale:
   déprécié: oui
   valeur: durée légale du travail
+
   avec:
     mensuelle: durée légale du travail . mensuelle

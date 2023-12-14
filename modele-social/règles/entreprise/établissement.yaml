@@ -14,14 +14,13 @@
       alors:
         texte: '{{ nom }} ({{ code postal }})'
     - sinon: nom
+
   avec:
-    nom:
-      titre: Commune
-    taux versement mobilité:
-      par défaut: 0
-      unité: '%'
     code postal:
+
     département:
+
+      
       avec:
         outre-mer:
           par défaut: non
@@ -39,6 +38,13 @@
                 - département = 'Martinique'
                 - département = 'La Réunion'
             Mayotte: département = 'Mayotte'
+
+    nom:
+      titre: Commune
+
+    taux versement mobilité:
+      par défaut: 0
+      unité: '%'
 
 établissement . taux ATMP:
   description: |
@@ -58,20 +64,22 @@
     Comment calculer les cotisations accidents du travail et maladies professionnelles (AT/MP) ?: https://entreprendre.service-public.fr/vosdroits/F33665
 
   avec:
-    taux collectif:
-      question: De quel domaine d'activité dépend votre entreprise ?
-      par défaut: salarié . cotisations . ATMP . taux moyen
-      unité: '%'
-      note: Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas implémentés
-
-      # TODO : cette ligne n'est utile que pour déprioriser cette question par rapport à celle sur de `taux ATMP`.
-      # Il y a peut-être un bug dans publicodes : on s'attendrait à ce soit déjà le cas.
 
     avertissement taux minimum:
       type: notification
       si: taux ATMP < salarié . cotisations . ATMP . taux minimum
       sévérité: avertissement
       description: Le taux renseigné est inférieur au taux minimum légal
+
+    taux collectif:
+      question: De quel domaine d'activité dépend votre entreprise ?
+      par défaut: salarié . cotisations . ATMP . taux moyen
+      unité: '%'
+      note: Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas
+        implémentés
+      # TODO : cette ligne n'est utile que pour déprioriser cette question par rapport à celle sur de `taux ATMP`.
+      # Il y a peut-être un bug dans publicodes : on s'attendrait à ce soit déjà le cas.
+
 
 établissement . ZFU:
   experimental: oui

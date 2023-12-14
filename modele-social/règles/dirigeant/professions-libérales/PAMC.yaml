@@ -12,7 +12,8 @@ dirigeant . indépendant . PL . PAMC:
     - conjoint collaborateur
     - entreprise . TVA . franchise de TVA
     - dirigeant . indépendant . revenus étrangers
-    - dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger
+    - dirigeant . indépendant . cotisations et contributions . maladie
+      domiciliation fiscale étranger
     - assiette minimale . maladie
 
   formule: oui
@@ -49,17 +50,21 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
 
 dirigeant . indépendant . PL . PAMC . remplaçant:
   question:
-    texte: Au {{ période . début d'année }}, exerciez-vous votre activité exclusivement en tant que remplaçant ?
+    texte: Au {{ période . début d'année }}, exerciez-vous votre activité
+      exclusivement en tant que remplaçant ?
   description: |
     Les practicien et auxiliaire médical exerçant une activité de remplacement ne sont pas redevables de la contribution aux unions régionales des professionnels de santé (CURPS)
   par défaut: non
+
   avec:
     offre simplifiée médecins:
       toutes ces conditions:
         - entreprise . chiffre d'affaires < 19000 €/an
         - métier = 'santé . médecin'
       type: notification
-      description: Vous exercez une activité de médecin exclusivement en tant que remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée. [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
+      description: Vous exercez une activité de médecin exclusivement en tant que
+        remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée.
+        [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
       références:
         Site de l'offre simplifié dédiée aux médecins remplaçant: https://www.medecins-remplacants.urssaf.fr/accueil
 
@@ -90,9 +95,8 @@ dirigeant . indépendant . PL . PAMC . CURPS:
       - remplaçant
   formule:
     produit:
-      assiette: assiette des cotisations
-      taux:
-        variations:
+      - assiette des cotisations
+      - variations:
           - si: métier = 'santé . médecin'
             alors: 0.5%
           - si: métier = 'santé . chirurgien-dentiste'
@@ -121,15 +125,13 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
     provenant des actes conventionnés.
   formule:
     produit:
-      assiette: assiette des cotisations
-      facteur:
-        valeur: 100% - proportion recette activité non conventionnée
+      - assiette des cotisations
+      - valeur: 100% - proportion recette activité non conventionnée
         plancher: 0%
 
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
-  description:
-    Aussi appelé revenu conventionnel, il s'agit du revenu des honoraires nets
-    de dépassement.
+  description: Aussi appelé revenu conventionnel, il s'agit du revenu des
+    honoraires nets de dépassement.
   formule: revenus activité conventionnée  / (100% + dépassement d'honoraire moyen)
   note: |
     La formule référencée dans les textes Urssaf est la suivante :
@@ -160,8 +162,8 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
 dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   formule:
     produit:
-      assiette: (assiette des cotisations - assiette participation CPAM)
-      taux: 3.25%
+      - (assiette des cotisations - assiette participation CPAM)
+      - 3.25%
     arrondi: oui
 
 dirigeant . indépendant . PL . PAMC . allocations familiales:
@@ -179,9 +181,8 @@ dirigeant . indépendant . PL . PAMC . allocations familiales:
 dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM:
   formule:
     produit:
-      assiette: cotisations et contributions . allocations familiales
-      taux:
-        grille:
+      - cotisations et contributions . allocations familiales
+      - grille:
           assiette: assiette participation CPAM
           multiplicateur: plafond sécurité sociale
           tranches:
@@ -198,8 +199,8 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
   remplace: assiette participation CPAM
   formule:
     produit:
-      assiette: revenus activité conventionnée
-      taux: 1 - taux Urssaf / (1 + taux Urssaf)
+      - revenus activité conventionnée
+      - 1 - taux Urssaf / (1 + taux Urssaf)
   référence:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-chirurgien-dentiste/assiette-de-participation-de-la.html
     Texte de loi: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020429271&categorieLien=id
@@ -253,18 +254,17 @@ dirigeant . indépendant . PL . PAMC . IJSS:
   rend non applicable: indépendant . IJSS
   titre: indemnités journalières de sécurité sociale
   description: >-
-    Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le cas de congé maternité/paternité/adoption.
+    Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le
+    cas de congé maternité/paternité/adoption.
 
 
     La CSG-CRDS est automatiquement précomptée par l'Assurance maladie lors du versement. Leur montant est donc retranché à l'assiette pour le calcul de la CSG-CRDS restante dûe.
 
 
-    Les indemnités complémentaires aux indemnités journalières de la Sécurité
-    sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas
-    des revenus de remplacement.
+    Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
 
-    Note: Les prestations d’invalidité versées par les régimes
-    d’invalidité-décès ne sont pas concernées.
+    Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées.
 
-  question: Quel est le montant des indemnités journalières de maternité ou paternité perçu au titre de votre activité libérale ?
+  question: Quel est le montant des indemnités journalières de maternité ou
+    paternité perçu au titre de votre activité libérale ?
   par défaut: 0 €/an

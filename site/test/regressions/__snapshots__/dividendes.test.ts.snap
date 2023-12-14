@@ -15,7 +15,7 @@ exports[`calculate simulations-dividendes > barème couple 2 enfants 2`] = `
 bénéficiaire . dividendes . cotisations et contributions: 3440000
 bénéficiaire . dividendes . imposables: 10640000
 bénéficiaire . dividendes . nets d'impôt: 11418374
-impôt . montant: 5141627
+impôt . montant: 5141626
 impôt . revenu imposable: 10640000
 impôt . taux d'imposition: 48"
 `;
