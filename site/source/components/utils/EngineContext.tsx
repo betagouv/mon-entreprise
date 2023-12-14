@@ -35,27 +35,35 @@ const engineOptions = {
 	},
 }
 
-let warnCount = 0
 let timeout: NodeJS.Timeout | null = null
+let logs: ['warn' | 'error' | 'log', string][] = []
+
 const logger = {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	warn: (message: string) => {
 		// console.warn(message)
+		logs.push(['warn', message])
 
-		warnCount++
 		timeout !== null && clearTimeout(timeout)
 		timeout = setTimeout(() => {
 			// eslint-disable-next-line no-console
-			console.warn('⚠️', warnCount, 'warnings in the engine')
-			warnCount = 0
+			console.groupCollapsed('Publicodes logs')
+			logs.forEach(([type, message]) => {
+				// eslint-disable-next-line no-console
+				console[type](message)
+			})
+			console.groupEnd()
+			logs = []
 		}, 1000)
 	},
 	error: (message: string) => {
 		// eslint-disable-next-line no-console
+		logs.push(['error', message])
 		console.error(message)
 	},
 	log: (message: string) => {
 		// eslint-disable-next-line no-console
+		logs.push(['log', message])
 		console.log(message)
 	},
 }

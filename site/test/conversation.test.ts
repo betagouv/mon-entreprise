@@ -24,22 +24,20 @@ describe('conversation', function () {
 			},
 			cotisation: {
 				formule: {
-					produit: {
-						assiette: 'brut',
-						variations: [
-							{
-								si: 'cadre',
-								alors: {
-									taux: '77%',
+					produit: [
+						'brut',
+						{
+							variations: [
+								{
+									si: 'cadre',
+									alors: '77%',
 								},
-							},
-							{
-								sinon: {
-									taux: '80%',
+								{
+									sinon: '80%',
 								},
-							},
-						],
-					},
+							],
+						},
+					],
 				},
 			},
 			cadre: {

@@ -113,45 +113,50 @@ entreprise . imposition . IS:
 entreprise . imposition . IS . montant:
   unité: €/an
   applicable si: prorata temporis > 0
-  barème:
-    assiette: résultat imposable
-    multiplicateur: prorata temporis
-    variations:
-      - si: exercice . début >= 01/2022
-        alors:
+  variations:
+    - si: exercice . début >= 01/2022
+      alors:
+        barème:
+          assiette: résultat imposable
+          multiplicateur: prorata temporis
           tranches:
-            - taux:
-                nom: taux réduit
-                valeur: 15%
+            - taux: taux réduit
               plafond: plafond taux réduit 1
-            - taux:
-                nom: taux normal
-                valeur: 25%
-      - si: exercice . début >= 01/2021
-        alors:
+            - taux: taux normal
+    - si: exercice . début >= 01/2021
+      alors:
+        barème:
+          assiette: résultat imposable
+          multiplicateur: prorata temporis
           tranches:
             - taux: taux réduit
               plafond: plafond taux réduit 1
             - taux: 26.5%
-      - si: exercice . début >= 01/2020
-        alors:
+    - si: exercice . début >= 01/2020
+      alors:
+        barème:
+          assiette: résultat imposable
+          multiplicateur: prorata temporis
           tranches:
             - taux: taux réduit
               plafond: plafond taux réduit 1
             - taux: 28%
-      - si: exercice . début >= 01/01/2019
-        alors:
+    - si: exercice . début >= 01/01/2019
+      alors:
+        barème:
+          assiette: résultat imposable
+          multiplicateur: prorata temporis
           tranches:
             - taux: taux réduit
               plafond: plafond taux réduit 1
             - taux: 28%
-              plafond:
-                nom: plafond taux réduit 2
-                applicable si: éligible taux réduit
-                valeur: 500000 €/an
+              plafond: plafond taux réduit 2
             - taux: 31%
-      - si: exercice . début >= 01/01/2018
-        alors:
+    - si: exercice . début >= 01/01/2018
+      alors:
+        barème:
+          assiette: résultat imposable
+          multiplicateur: prorata temporis
           tranches:
             - taux: taux réduit
               plafond: plafond taux réduit 1
@@ -159,6 +164,10 @@ entreprise . imposition . IS . montant:
               plafond: plafond taux réduit 2
             - taux: 33.3333%
   arrondi: oui
+
+  références:
+    Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/international-professionnel/impot-sur-les-societes
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
 
   avec:
     plafond taux réduit 1:
@@ -168,16 +177,20 @@ entreprise . imposition . IS . montant:
           alors: 42500 €/an
         - sinon: 38120 €/an
 
-  références:
-    Fiche impots.gouv.fr: https://www.impots.gouv.fr/portail/international-professionnel/impot-sur-les-societes
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23575
+    plafond taux réduit 2:
+      applicable si: éligible taux réduit
+      valeur: 500000 €/an
+    taux normal: 25%
+    taux réduit: 15%
 
 entreprise . imposition . IS . éligible taux réduit:
   par défaut: oui
   toutes ces conditions:
     - chiffre d'affaires <= 7630 k€/an * prorata temporis
-    - nom: capital détenu au moins à 75 pourcents par des personnes physiques
-      valeur: oui
+    - capital détenu au moins à 75 pourcents par des personnes physiques
+
+  avec:
+    capital détenu au moins à 75 pourcents par des personnes physiques: oui
 
 entreprise . imposition . IS . prorata temporis:
   description: |
@@ -203,10 +216,9 @@ entreprise . imposition . IS . contribution sociale:
     L’assiette bénéficie d’un abattement important, et seules les entreprises réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette contribution.
   formule:
     produit:
-      taux: 3.3%
-      assiette:
-        valeur: IS . montant
+      - valeur: IS . montant
         abattement: 763000 €/an * prorata temporis
+      - 3.3%
   références:
     Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
 
@@ -274,16 +286,20 @@ entreprise . imposition . régime . micro-entreprise . revenu abattu:
     - entreprise . chiffre d'affaires . service BIC
     - entreprise . chiffre d'affaires . service BNC
   abattement:
-    produit:
-      composantes:
-        - assiette: entreprise . chiffre d'affaires . vente restauration hébergement
-          taux: 71%
-        - assiette: entreprise . chiffre d'affaires . service BIC
-          taux: 50%
-        - assiette: entreprise . chiffre d'affaires . service BNC
-          taux: 34%
-    plancher:
-      nom: plancher abattement
+    plancher: plancher abattement
+    somme:
+      - produit:
+          - entreprise . chiffre d'affaires . vente restauration hébergement
+          - 71%
+      - produit:
+          - entreprise . chiffre d'affaires . service BIC
+          - 50%
+      - produit:
+          - entreprise . chiffre d'affaires . service BNC
+          - 34%
+
+  avec:
+    plancher abattement:
       variations:
         - si: entreprise . activités . revenus mixtes
           alors: 610 €/an
@@ -293,7 +309,9 @@ entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   type: notification
   sévérité: avertissement
   formule: chiffre d'affaires . seuil micro . dépassé
-  description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal est dépassé. [En savoir plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
+  description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal
+    est dépassé. [En savoir
+    plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
 
 entreprise . chiffre d'affaires . seuil micro:
   experimental: oui

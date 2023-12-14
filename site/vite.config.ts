@@ -133,7 +133,7 @@ export default defineConfig(({ command, mode }) => ({
 		watch: {
 			ignored: [
 				'!**/node_modules/publicodes/**',
-				'!**/node_modules/publicodes-react/**',
+				'!**/node_modules/@publicodes\\/react-ui/**',
 			],
 		},
 		proxy: {
@@ -149,8 +149,8 @@ export default defineConfig(({ command, mode }) => ({
 
 	optimizeDeps: {
 		entries: ['./source/entries/entry-fr.tsx', './source/entries/entry-en.tsx'],
-		include: ['publicodes-react > react/jsx-runtime'],
-		exclude: ['publicodes-react', 'publicodes'],
+		include: ['@publicodes\\/react-ui > react/jsx-runtime'],
+		exclude: ['@publicodes\\/react-ui', 'publicodes'],
 	},
 
 	ssr: {

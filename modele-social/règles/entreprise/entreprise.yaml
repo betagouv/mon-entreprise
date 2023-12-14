@@ -36,7 +36,8 @@ entreprise . date de création . contrôle date passée:
   type: notification
   sévérité: avertissement
   formule: date de création < 01/1900
-  description: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas vous être trompé dans la saisie ?
+  description: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas
+    vous être trompé dans la saisie ?
 
 entreprise . durée d'activité:
   durée:
@@ -83,14 +84,16 @@ entreprise . chiffre d'affaires:
 entreprise . chiffre d'affaires . vente restauration hébergement:
   titre: Vente de biens, restauration, hébergement (BIC)
   résumé: Chiffre d'affaires hors taxe
-  question: Quel est le chiffre d'affaires issu de la vente de biens, restauration ou hébergement ?
+  question: Quel est le chiffre d'affaires issu de la vente de biens, restauration
+    ou hébergement ?
   unité: €/an
   variations:
     - si: activités . revenus mixtes
       alors:
         produit:
-          assiette: chiffre d'affaires
-          taux: activités . revenus mixtes . proportions . vente restauration hébergement
+          - chiffre d'affaires
+          - activités . revenus mixtes . proportions . vente restauration
+            hébergement
     - sinon:
         applicable si: activités . service ou vente = 'vente'
         valeur: chiffre d'affaires
@@ -120,7 +123,8 @@ entreprise . chiffre d'affaires . service BIC:
   arrondi: oui
   résumé: Chiffre d'affaires hors taxe
   titre: Prestations de service commerciales ou artisanales (BIC)
-  question: Quel est le chiffre d'affaires issu de prestations de service commerciales ou artisanales ?
+  question: Quel est le chiffre d'affaires issu de prestations de service
+    commerciales ou artisanales ?
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
     biens corporels (c'est-à-dire ayant une existence matérielle), dont
@@ -135,8 +139,8 @@ entreprise . chiffre d'affaires . service BIC:
     - si: activités . revenus mixtes
       alors:
         produit:
-          assiette: chiffre d'affaires
-          taux: activités . revenus mixtes . proportions . service BIC
+          - chiffre d'affaires
+          - activités . revenus mixtes . proportions . service BIC
     - sinon:
         applicable si: activités . service ou vente = 'service'
         valeur: chiffre d'affaires
@@ -162,8 +166,8 @@ entreprise . chiffre d'affaires . service BNC:
     - si: activités . revenus mixtes
       alors:
         produit:
-          assiette: chiffre d'affaires
-          taux: activités . revenus mixtes . proportions . service BNC
+          - chiffre d'affaires
+          - activités . revenus mixtes . proportions . service BNC
     - sinon:
         applicable si: activité . nature . libérale
         valeur: chiffre d'affaires
@@ -193,7 +197,8 @@ entreprise . TVA . franchise de TVA: oui
 
 entreprise . TVA . franchise de TVA . seuil vente:
   variations:
-    - si: établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique
+    - si: établissement . commune . département . outre-mer . Guadeloupe Réunion
+        Martinique
       alors: 110000 €/an
     - sinon:
         variations:
@@ -206,7 +211,8 @@ entreprise . TVA . franchise de TVA . seuil vente:
 
 entreprise . TVA . franchise de TVA . seuil service:
   variations:
-    - si: établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique
+    - si: établissement . commune . département . outre-mer . Guadeloupe Réunion
+        Martinique
       alors: 60000 €/an
     - si: dirigeant . indépendant . PL . métier = 'avocat'
       alors:
@@ -259,26 +265,41 @@ entreprise . résultat fiscal:
 
 entreprise . résultat fiscal . rémunération dirigeant déductible:
   titre: charges déductibles dirigeant
-  description: Les montants liés à la rémunération du dirigeant qui sont déductibles d'impôt.
+  description: Les montants liés à la rémunération du dirigeant qui sont
+    déductibles d'impôt.
   variations:
     - si: imposition . IS
       alors: dirigeant . rémunération . totale
     # Note : le cas de dirigeant AS à l'IR n'est pas géré
     # - si: dirigeant . assimilé salarié
     #   alors: 0€/an
-    - sinon: # TNS dans entreprise à l'IR
+    - sinon:
+        # TNS dans entreprise à l'IR
         valeur: dirigeant . indépendant . cotisations et contributions
-        abattement: dirigeant . indépendant . cotisations et contributions . non déductibles
+        abattement: dirigeant . indépendant . cotisations et contributions . non
+          déductibles
 
 entreprise . exercice:
+
+  
   avec:
+
+    date trop ancienne:
+      type: notification
+      sévérité: avertissement
+      formule: début < 01/01/2018
+      description: La date saisie est trop ancienne. Le simulateur n'intègre pas les
+        barèmes avant 2018.
+
     début:
       type: date
       par défaut: période . début d'année
 
-    fin:
-      type: date
-      par défaut: période . fin d'année
+    début après la fin:
+      type: notification
+      sévérité: avertissement
+      formule: début >= fin
+      description: La fin de l'exercice doit être postérieure à son début.
 
     durée:
       titre: durée de l'exercice
@@ -287,23 +308,15 @@ entreprise . exercice:
           depuis: début
           jusqu'à: fin
 
-    date trop ancienne:
-      type: notification
-      sévérité: avertissement
-      formule: début < 01/01/2018
-      description: La date saisie est trop ancienne. Le simulateur n'intègre pas les barèmes avant 2018.
-
-    début après la fin:
-      type: notification
-      sévérité: avertissement
-      formule: début >= fin
-      description: La fin de l'exercice doit être postérieure à son début.
-
     durée maximale:
       type: notification
       sévérité: avertissement
       formule: durée >= 24 mois
       description: La durée maximale d'un exercice comptable est de 24 mois.
+
+    fin:
+      type: date
+      par défaut: période . fin d'année
 
 entreprise . charges:
   synonymes:
@@ -314,7 +327,7 @@ entreprise . charges:
   résumé: Toutes les dépenses nécessaires à l'entreprise
   question: Quelles sont les charges de l'entreprise ?
   description: |
-
+    
     Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaires encaissé.
 
     Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto-entrepreneurs en franchise de TVA)
@@ -372,8 +385,7 @@ entreprise . salariés . effectif:
         De nombreuses cotisations patronales varient selon l'effectif de
         l'entreprise.
 
-        Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est
-        atteint ou dépassé pendant 5 années civiles consécutives.
+        Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est atteint ou dépassé pendant 5 années civiles consécutives.
       une possibilité:
         choix obligatoire: oui
         possibilités:
@@ -386,23 +398,31 @@ entreprise . salariés . effectif:
           - plus de 250
 
       par défaut: "'moins de 5'"
+
       avec:
-        moins de 5:
+
         moins de 11:
           titre: entre 5 et 10
-        moins de 20:
-          titre: entre 11 et 19
-        moins de 50:
-          titre: entre 20 et 49
+
         moins de 150:
           titre: entre 50 et 149
+
+        moins de 20:
+          titre: entre 11 et 19
+
         moins de 250:
           titre: entre 150 et 250
+        moins de 5:
+
+        moins de 50:
+          titre: entre 20 et 49
+
         plus de 250:
           titre: 251 et plus
 
 entreprise . salariés . ratio alternants:
-  question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen de l'entreprise ?
+  question: Quelle est la fraction de contrats d'alternance dans l'effectif moyen
+    de l'entreprise ?
   titre: Fraction d'alternants
   description: |
     Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.

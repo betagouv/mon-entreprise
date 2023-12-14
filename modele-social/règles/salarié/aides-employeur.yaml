@@ -43,8 +43,8 @@ salarié . coût total employeur . aides . embauche . senior professionnalisatio
     demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
   applicable si: contrat . professionnalisation . salarié de 45 ans et plus
   produit:
-    assiette: 2000 €/an
-    facteur: temps de travail . effectif . quotité
+    - 2000 €/an
+    - temps de travail . effectif . quotité
   arrondi: oui
   références:
     Ministère du travail: https://travail-emploi.gouv.fr/emploi/mesures-seniors/article/l-aide-a-l-embauche-d-un-demandeur-d-emploi-de-45-ans-et-plus-en-contrat-de
@@ -63,12 +63,11 @@ salarié . coût total employeur . aides . emploi franc:
   applicable si: éligible
   formule:
     produit:
-      assiette:
-        variations:
+      - variations:
           - si: contrat . CDD
             alors: 2500 €/an
           - sinon: 5000 €/an
-      facteur: temps de travail . effectif . quotité
+      - temps de travail . effectif . quotité
     arrondi: oui
   références:
     Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc

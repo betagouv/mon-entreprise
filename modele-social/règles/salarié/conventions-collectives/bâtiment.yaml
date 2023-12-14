@@ -25,18 +25,24 @@ salarié . convention collective . BTP . catégorie . ouvrier:
   formule: catégorie = 'ouvrier'
 
 salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire:
-  produit:
-    assiette: contrat . salaire brut
-    plafond: 3 * temps de travail . plafond sécurité sociale
-    composantes:
-      - attributs:
-          nom: employeur
-          remplace: cotisations . prévoyances . conventionnelle . employeur
-        taux: 1.72%
-      - attributs:
-          nom: salarié
-          remplace: cotisations . prévoyances . conventionnelle . salarié
-        taux: 0.87%
+  somme:
+    - employeur
+    - salarié
+
+  avec:
+    employeur:
+      produit:
+        - valeur: contrat . salaire brut
+          plafond: 3 * temps de travail . plafond sécurité sociale
+        - 1.72%
+      remplace: cotisations . prévoyances . conventionnelle . employeur
+
+    salarié:
+      produit:
+        - valeur: contrat . salaire brut
+          plafond: 3 * temps de travail . plafond sécurité sociale
+        - 0.87%
+      remplace: cotisations . prévoyances . conventionnelle . salarié
 
 salarié . convention collective . BTP . catégorie . etam:
   titre: ETAM
@@ -53,21 +59,28 @@ salarié . convention collective . BTP . catégorie . etam:
     - règle: cotisations . retraite complémentaire . salarié . taux T2
       par: 8.89%
   note: >-
-    Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du 13 décembre 1990.
+    Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du 13
+    décembre 1990.
 
 salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire:
-  produit:
-    assiette: contrat . salaire brut
-    plafond: 3 * temps de travail . plafond sécurité sociale
-    composantes:
-      - attributs:
-          nom: employeur
-          remplace: cotisations . prévoyances . conventionnelle . employeur
-        taux: 1.25%
-      - attributs:
-          nom: salarié
-          remplace: cotisations . prévoyances . conventionnelle . salarié
-        taux: 0.60%
+  somme:
+    - employeur
+    - salarié
+
+  avec:
+    employeur:
+      produit:
+        - valeur: contrat . salaire brut
+          plafond: 3 * temps de travail . plafond sécurité sociale
+        - 1.25%
+      remplace: cotisations . prévoyances . conventionnelle . employeur
+
+    salarié:
+      produit:
+        - valeur: contrat . salaire brut
+          plafond: 3 * temps de travail . plafond sécurité sociale
+        - 0.60%
+      remplace: cotisations . prévoyances . conventionnelle . salarié
 
 salarié . convention collective . BTP . catégorie . cadre:
   formule: catégorie = 'cadre'
@@ -78,13 +91,15 @@ salarié . convention collective . BTP . catégorie . cadre:
       par: oui
 
 salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire:
-  barème:
-    assiette: contrat . salaire brut
-    multiplicateur: plafond sécurité sociale
-    composantes:
-      - attributs:
-          nom: employeur
-          remplace: cotisations . prévoyances . conventionnelle . employeur
+  somme:
+    - employeur
+    - salarié
+
+  avec:
+    employeur:
+      barème:
+        assiette: contrat . salaire brut
+        multiplicateur: plafond sécurité sociale
         tranches:
           - taux: 1.50%
             plafond: 1
@@ -92,9 +107,12 @@ salarié . convention collective . BTP . catégorie . cadre . prévoyance compl�
             plafond: 4
           - taux: 50% * 3.60%
             plafond: 8
-      - attributs:
-          nom: salarié
-          remplace: cotisations . prévoyances . conventionnelle . salarié
+      remplace: cotisations . prévoyances . conventionnelle . employeur
+
+    salarié:
+      barème:
+        assiette: contrat . salaire brut
+        multiplicateur: plafond sécurité sociale
         tranches:
           - taux: 0%
             plafond: 1
@@ -102,6 +120,7 @@ salarié . convention collective . BTP . catégorie . cadre . prévoyance compl�
             plafond: 4
           - taux: 50% * 3.60%
             plafond: 8
+      remplace: cotisations . prévoyances . conventionnelle . salarié
 
 salarié . convention collective . BTP . cotisations employeur:
   remplace: cotisations . employeur
@@ -113,9 +132,8 @@ salarié . convention collective . BTP . cotisations employeur:
 salarié . convention collective . BTP . congés intempéries:
   formule:
     produit:
-      assiette: cotisations . assiette
-      taux:
-        variations:
+      - cotisations . assiette
+      - variations:
           - si: caisse de rattachement = 'idf'
             alors: 19.80%
           - si: caisse de rattachement = 'nord ouest'
@@ -139,7 +157,8 @@ salarié . convention collective . BTP . congés intempéries:
     Article L3141-30 du Code du Travail: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DF6E6424807679A6EDC2915496BEA32D.tplgfr22s_2?idArticle=LEGIARTI000033020675&cidTexte=LEGITEXT000006072050&dateTexte=20200320
 
 salarié . convention collective . BTP . congés intempéries . caisse de rattachement:
-  question: À quelle caisse l'entreprise est-elle rattachée pour le versement de la cotisation congés intempéries ?
+  question: À quelle caisse l'entreprise est-elle rattachée pour le versement de
+    la cotisation congés intempéries ?
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -154,23 +173,26 @@ salarié . convention collective . BTP . congés intempéries . caisse de rattac
         - méditerranée
         - sud ouest
   par défaut: "'idf'"
+
   avec:
+    centre:
+    centre ouest:
+    grand est:
+    grand ouest:
+
     idf:
       titre: Île-de-France
-    nord ouest:
-    grand ouest:
-    centre ouest:
-    centre:
-    grand est:
-    rhône alpes auvergne:
     méditerranée:
+    nord ouest:
+    rhône alpes auvergne:
     sud ouest:
+
 
 salarié . convention collective . BTP . OPPBTP:
   formule:
     produit:
-      assiette: contrat . salaire brut * 1.1314
-      taux: 0.11%
+      - contrat . salaire brut * 1.1314
+      - 0.11%
 
 salarié . convention collective . BTP . taux ATMP fonctions support:
   remplace: cotisations . ATMP . taux fonctions support . montant

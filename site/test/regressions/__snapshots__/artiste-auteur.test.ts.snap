@@ -11,7 +11,7 @@ artiste-auteur . cotisations . IRCEC: 920"
 `;
 
 exports[`calculate simulations-artiste-auteur > bnc 3`] = `
-"artiste-auteur . cotisations: 932
+"artiste-auteur . cotisations: 931
 artiste-auteur . cotisations . IRCEC: 0
 
 Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"

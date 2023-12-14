@@ -18,66 +18,71 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
   remplace: cotisations et contributions . retraite de base
   formule:
     somme:
-      - nom: cotisation forfaitaire
-        grille:
-          assiette: entreprise . durée d'activité . en fin d'année
-          tranches:
-            - montant:
-                variations:
-                  - si: date >= 01/2023
-                    alors: 324 €/an
-                  - si: date >= 01/2022
-                    alors: 303 €/an
-                  - si: date >= 01/2021
-                    alors: 290 €/an
-              plafond: 1 an
-            - montant:
-                variations:
-                  - si: date >= 01/2023
-                    alors: 651 €/an
-                  - si: date >= 01/2022
-                    alors: 608 €/an
-                  - si: date >= 01/2021
-                    alors: 581 €/an
-              plafond: 2 ans
-            - montant:
-                variations:
-                  - si: date >= 01/2023
-                    alors: 1021 €/an
-                  - si: date >= 01/2022
-                    alors: 954 €/an
-                  - si: date >= 01/2021
-                    alors: 912 €/an
-              plafond: 3 ans
-            - montant:
-                variations:
-                  - si: date >= 01/2023
-                    alors: 1390 €/an
-                  - si: date >= 01/2022
-                    alors: 1299 €/an
-                  - si: date >= 01/2021
-                    alors: 1242 €/an
-              plafond: 5 ans
-            - montant:
-                variations:
-                  - si: date >= 01/2023
-                    alors: 1774 €/an
-                  - si: date >= 01/2022
-                    alors: 1658 €/an
-                  - si: date >= 01/2021
-                    alors: 1586 €/an
-      - nom: cotisation proportionnelle
-        produit:
-          taux: 3.1%
-          assiette: assiette des cotisations
+      - cotisation forfaitaire
+      - cotisation proportionnelle
+  références:
+    Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+
+  avec:
+    cotisation forfaitaire:
+      grille:
+        assiette: entreprise . durée d'activité . en fin d'année
+        tranches:
+          - montant:
+              variations:
+                - si: date >= 01/2023
+                  alors: 324 €/an
+                - si: date >= 01/2022
+                  alors: 303 €/an
+                - si: date >= 01/2021
+                  alors: 290 €/an
+            plafond: 1 an
+          - montant:
+              variations:
+                - si: date >= 01/2023
+                  alors: 651 €/an
+                - si: date >= 01/2022
+                  alors: 608 €/an
+                - si: date >= 01/2021
+                  alors: 581 €/an
+            plafond: 2 ans
+          - montant:
+              variations:
+                - si: date >= 01/2023
+                  alors: 1021 €/an
+                - si: date >= 01/2022
+                  alors: 954 €/an
+                - si: date >= 01/2021
+                  alors: 912 €/an
+            plafond: 3 ans
+          - montant:
+              variations:
+                - si: date >= 01/2023
+                  alors: 1390 €/an
+                - si: date >= 01/2022
+                  alors: 1299 €/an
+                - si: date >= 01/2021
+                  alors: 1242 €/an
+            plafond: 5 ans
+          - montant:
+              variations:
+                - si: date >= 01/2023
+                  alors: 1774 €/an
+                - si: date >= 01/2022
+                  alors: 1658 €/an
+                - si: date >= 01/2021
+                  alors: 1586 €/an
+
+    cotisation proportionnelle:
+      produit:
+        - valeur: assiette des cotisations
           plafond:
             variations:
               - si: date >= 01/2022
                 alors: 297549 €/an
               - si: date >= 01/2021
                 alors: 291718 €/an
-  références:
-    Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+        - 3.1%
 
 dirigeant . indépendant . PL . CNBF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire

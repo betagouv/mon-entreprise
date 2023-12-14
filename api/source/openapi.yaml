@@ -24,7 +24,7 @@ paths:
                     'situation':
                       {
                         'salarié . contrat . salaire brut':
-                          { 'valeur': 4200, 'unité': '€ / mois' },
+                          { 'valeur': 4200, 'unité': '€/mois' },
                         'salarié . contrat': "'CDI'",
                       },
                     'expressions':

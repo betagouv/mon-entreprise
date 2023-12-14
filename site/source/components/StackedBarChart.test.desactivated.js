@@ -1,5 +1,5 @@
 // TODO: Ré-activer ce test. Désactivé à cause d'un problème d'import entre
-// publicodes-react et styled-component dans le contexte de test uniquement.
+// @publicodes/react-ui et styled-component dans le contexte de test uniquement.
 // https://github.com/styled-components/styled-components/issues/3601
 
 // import { expect, describe, it } from 'vitest'

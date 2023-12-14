@@ -5,18 +5,18 @@ dirigeant . indépendant . cotisations et contributions . exonérations:
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
   applicable si: établissement . ZFU
   produit:
-    assiette: maladie
-    taux: taux
-    # TODO : Le plafond est proratisé en début / fin d'exonération
-    plafond:
-      recalcul:
-        avec:
+    - valeur: maladie
+      plafond:
+        valeur: exonérations . ZFU
+        contexte:
           revenu professionnel: 3042 heures/an * SMIC . horaire
+    - taux
   arrondi: oui
   unité: €/an
 
 dirigeant . indépendant . cotisations et contributions . exonérations . âge:
-  question: Bénéficiez-vous du dispositif d’exonération « âge pour la retraite » de la cotisation invalidité-décès ?
+  question: Bénéficiez-vous du dispositif d’exonération « âge pour la retraite »
+    de la cotisation invalidité-décès ?
   description: |
     ### Artisans, commerçants, et professions libérales hors CIPAV
     Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient
@@ -50,9 +50,13 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
     variations:
       - si: dirigeant . indépendant . PL . PAMC #TODO demande Urssaf implémentée sans reflechir : il faudra regarder de plus près le pourquoi du comment de cette variations
         alors:
-          texte: Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse retraite ?
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse
+            retraite ?
       - sinon:
-          texte: Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur indépendant ?
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur
+            indépendant ?
   description: |-
     Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
     non agricoles, vous bénéficiez d’une exonération des cotisations de retraite de base, de
@@ -83,30 +87,12 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
     Trimestres assimilés pour le régime de base des indépendants: https://www.legislation.cnav.fr/Pages/expose.aspx?Nom=independant_regime_base_duree_assurance_trimestre_assimile_ex
 
   avec:
-    retraite de base:
-      arrondi: oui
-      non applicable si: prorata < ACRE . prorata sur l'année
-      remplace: retraite de base
-      valeur: retraite de base
-      abattement:
-        valeur: prorata
-        non applicable si:
-          une de ces conditions:
-            - profession libérale réglementées hors Urssaf
-            # l'exonération incapacité est plus avantageuse
-            - PL . CNAVPL . exonération incapacité
-
-    retraite complémentaire:
-      arrondi: oui
-      remplace: retraite complémentaire
-      valeur: retraite complémentaire
-      abattement:
-        valeur: prorata
-        non applicable si:
-          une de ces conditions:
-            - profession libérale réglementées hors Urssaf
-            # l'exonération incapacité est plus avantageuse
-            - PL . CNAVPL . exonération incapacité
+    durée:
+      question: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
+      par défaut: 12 mois
+      plafond: 12 mois
+      plancher: 1 mois
+      unité: mois
 
     indemnités journalières maladie:
       arrondi: oui
@@ -116,7 +102,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
         règle: indemnités journalières maladie
         sauf dans:
           - cotisations et contributions . maladie
-          - cotisations et contributions . indemnités journalières maladie . assiette
+          - cotisations et contributions . indemnités journalières maladie .
+            assiette
       abattement: prorata
 
     maladie:
@@ -130,18 +117,6 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
       valeur: maladie
       abattement: prorata
 
-    durée:
-      question: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
-      par défaut: 12 mois
-      plafond: 12 mois
-      plancher: 1 mois
-      unité: mois
-
-    prorata:
-      valeur: durée / 1 an
-      unité: '%'
-      arrondi: oui
-
     profession libérale réglementées hors Urssaf:
       privé: oui
       toutes ces conditions:
@@ -150,6 +125,36 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
             - PL . CIPAV = non
             - date < 01/2023
 
+    prorata:
+      valeur: durée / 1 an
+      unité: '%'
+      arrondi: oui
+
+    retraite complémentaire:
+      arrondi: oui
+      remplace: retraite complémentaire
+      valeur: retraite complémentaire
+      abattement:
+        valeur: prorata
+        non applicable si:
+          une de ces conditions:
+            - profession libérale réglementées hors Urssaf
+            # l'exonération incapacité est plus avantageuse
+            - PL . CNAVPL . exonération incapacité
+
+    retraite de base:
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
+      remplace: retraite de base
+      valeur: retraite de base
+      abattement:
+        valeur: prorata
+        non applicable si:
+          une de ces conditions:
+            - profession libérale réglementées hors Urssaf
+            # l'exonération incapacité est plus avantageuse
+            - PL . CNAVPL . exonération incapacité
+
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: dirigeant . exonérations . ACRE
   valeur: oui
@@ -157,15 +162,9 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
     'L’Acre pour les indépendants: quel avantages ?': https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/quels-avantages/travailleurs-independants-ne-rel.html
 
   avec:
-    maladie:
-      # On préfère l'exonération pension invalidité si elle est plus avantageuse
-      non applicable si: pension invalidité . prorata >= prorata sur l'année
-      remplace:
-        règle: maladie
-        sauf dans:
-          - cotisations et contributions . maladie . total
-          - cotisations et contributions . maladie . taux progressif
-      valeur: cotisations et contributions . maladie
+    allocations familiales:
+      remplace: allocations familiales
+      valeur: cotisations et contributions . allocations familiales
       abattement: taux * prorata sur l'année
       arrondi: oui
 
@@ -174,10 +173,35 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
       non applicable si: pension invalidité . prorata >= prorata sur l'année
       remplace:
         règle: indemnités journalières maladie
+        priorité: 10
         sauf dans:
           - cotisations et contributions . maladie
-          - cotisations et contributions . indemnités journalières maladie . assiette
+          - cotisations et contributions . indemnités journalières maladie .
+            assiette
       valeur: cotisations et contributions . indemnités journalières maladie
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    invalidité et décès:
+      # On préfère l'exonération âge car elle est plus avantageuse
+      non applicable si: exonérations . âge
+      remplace:
+        règle: invalidité et décès
+        priorité: 10
+      valeur: cotisations et contributions . invalidité et décès
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    maladie:
+      # On préfère l'exonération pension invalidité si elle est plus avantageuse
+      non applicable si: pension invalidité . prorata >= prorata sur l'année
+      remplace:
+        règle: maladie
+        priorité: 10
+        sauf dans:
+          - cotisations et contributions . maladie . total
+          - cotisations et contributions . maladie . taux progressif
+      valeur: cotisations et contributions . maladie
       abattement: taux * prorata sur l'année
       arrondi: oui
 
@@ -190,22 +214,9 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
           - pension invalidité . prorata >= prorata sur l'année
       remplace:
         règle: retraite de base
+        priorité: 10
         sauf dans: protection sociale . retraite . base . cotisée . indépendant
       valeur: cotisations et contributions . retraite de base
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    invalidité et décès:
-      # On préfère l'exonération âge car elle est plus avantageuse
-      non applicable si: exonérations . âge
-      remplace: invalidité et décès
-      valeur: cotisations et contributions . invalidité et décès
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    allocations familiales:
-      remplace: allocations familiales
-      valeur: cotisations et contributions . allocations familiales
       abattement: taux * prorata sur l'année
       arrondi: oui
 
@@ -233,12 +244,12 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
         plafond: 100%
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
-  taux progressif:
-    assiette: entreprise . durée d'activité . en fin d'année
-    retourne seulement le taux: oui
-    variations:
-      - si: entreprise . salariés . effectif < 5
-        alors:
+  variations:
+    - si: entreprise . salariés . effectif < 5
+      alors:
+        taux progressif:
+          assiette: entreprise . durée d'activité . en fin d'année
+          retourne seulement le taux: oui
           tranches:
             - plafond: 5 ans
               taux: 100%
@@ -256,7 +267,10 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
               taux: 20%
             - plafond: 15 ans
               taux: 0%
-      - sinon:
+    - sinon:
+        taux progressif:
+          assiette: entreprise . durée d'activité . en fin d'année
+          retourne seulement le taux: oui
           tranches:
             - plafond: 5 ans
               taux: 100%

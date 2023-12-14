@@ -18,28 +18,10 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
     Toutes les professions libérale (à l'exception des avocats)
     ont les mêmes taux de cotisations pour leur retraite de base.
   valeur:
-    produit:
-      assiette:
-        nom: revenu cotisé
-        valeur: assiette des cotisations
-        plancher: assiette minimale . retraite
-        unité: €/an
-      composantes:
-        - attributs:
-            nom: tranche T1
-            arrondi: oui
-            unité: €/an
-          taux:
-            nom: taux
-            valeur: 8.23%
-          plafond: plafond sécurité sociale
-        - attributs:
-            nom: tranche T2
-            arrondi: oui
-            unité: €/an
-          taux: 1.87%
-          plafond: 5 * plafond sécurité sociale
     abattement: CARMF . participation CPAM retraite
+    somme:
+      - tranche T1
+      - tranche T2
 
   abattement:
     applicable si: exonération incapacité
@@ -48,6 +30,34 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
   références:
     cnavpl.fr: https://www.cnavpl.fr/preparer-sa-retraite/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=24
+
+  avec:
+    tranche T1:
+      produit:
+        - valeur: revenu cotisé
+          plafond: plafond sécurité sociale
+        - taux
+      arrondi: oui
+      unité: €/an
+
+    tranche T1 . revenu cotisé:
+      valeur: assiette des cotisations
+      plancher: assiette minimale . retraite
+      unité: €/an
+    tranche T1 . taux: 8.23%
+
+    tranche T2:
+      produit:
+        - valeur: revenu cotisé
+          plafond: 5 * plafond sécurité sociale
+        - 1.87%
+      arrondi: oui
+      unité: €/an
+
+    tranche T2 . revenu cotisé:
+      valeur: assiette des cotisations
+      plancher: assiette minimale . retraite
+      unité: €/an
 
 #TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
 dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
@@ -70,29 +80,33 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
   remplace: cotisations et contributions . indemnités journalières maladie
   non applicable si: PL . CNBF
   produit:
-    assiette:
-      nom: assiette
-      valeur: assiette des cotisations
-      plafond:
-        nom: plafond
-        valeur: 3 * plafond sécurité sociale
-      plancher:
-        applicable si: assiette minimale
-        valeur: 40% * plafond sécurité sociale
-    taux:
-      nom: taux
-      variations:
-        - si: date >= 01/2022
-          alors: 0.30%
-        - si: date >= 01/2021
-          alors: 0.15%
+    - assiette
+    - taux
   arrondi: oui
   unité: €/an
   références:
     Communiqué de la CNAVPL: https://www.cnavpl.fr/les-pl-indemnises-des-ij/
 
+  avec:
+    assiette:
+      valeur: assiette des cotisations
+      plafond: plafond
+      plancher:
+        applicable si: assiette minimale
+        valeur: 40% * plafond sécurité sociale
+    assiette . plafond: 3 * plafond sécurité sociale
+
+    taux:
+      variations:
+        - si: date >= 01/2022
+          alors: 0.30%
+        - si: date >= 01/2021
+          alors: 0.15%
+
 dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
-  question: Avez-vous été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois consécutifs cette année ?
+  question:
+    Avez-vous été atteint d’une incapacité d’exercice de votre profession
+    pendant au moins six mois consécutifs cette année ?
   par défaut: non
   description: |-
     Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois,
@@ -113,9 +127,13 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
             - date >= 01/2023
             - dirigeant . indépendant . PL . CIPAV
         alors:
-          texte: À quelle proportion le conjoint cotise-t'il pour la retraite de base, la retraite complémentaire et l'invalidité-décès ?
+          texte:
+            À quelle proportion le conjoint cotise-t'il pour la retraite de base, la
+            retraite complémentaire et l'invalidité-décès ?
       - sinon:
-          texte: À quelle proportion du revenu le conjoint cotise-t'il pour le régime de base ?
+          texte:
+            À quelle proportion du revenu le conjoint cotise-t'il pour le régime de
+            base ?
   par défaut: "'quart'"
   formule:
     une possibilité:
@@ -123,48 +141,54 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
       possibilités:
         - quart
         - moitié
+
   avec:
-    quart:
-      valeur: proportion = 'quart'
-      titre: '25 %'
     moitié:
       valeur: proportion = 'moitié'
       titre: '50 %'
+
+    quart:
+      valeur: proportion = 'quart'
+      titre: '25 %'
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
   remplace: conjoint collaborateur . cotisations . assiette
   unité: €/an
   arrondi: oui
-  produit:
-    assiette: assiette des cotisations
-    taux: 50 %
-    variations:
-      - si: conjoint collaborateur . assiette . forfaitaire
-        alors:
-          assiette: plafond sécurité sociale
-      - si: proportion . quart
-        alors:
-          taux: 25%
-      - sinon: {}
+  variations:
+    - si: conjoint collaborateur . assiette . forfaitaire
+      alors:
+        produit:
+          - plafond sécurité sociale
+          - 50 %
+    - si: proportion . quart
+      alors:
+        produit:
+          - assiette des cotisations
+          - 25%
+    - sinon:
+        produit:
+          - assiette des cotisations
+          - 50 %
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
-  remplace: dirigeant . indépendant . conjoint collaborateur . cotisations . retraite de base
-  recalcul:
-    règle: CNAVPL . retraite
-    avec:
-      CNAVPL . retraite . tranche T1 . revenu cotisé:
-        valeur: conjoint collaborateur . assiette
-        plancher: assiette minimale . retraite
-      CNAVPL . retraite . tranche T2 . revenu cotisé:
-        valeur: conjoint collaborateur . assiette
-        plancher: assiette minimale . retraite
+  remplace: dirigeant . indépendant . conjoint collaborateur . cotisations .
+    retraite de base
+  valeur: CNAVPL . retraite
+  contexte:
+    CNAVPL . retraite . tranche T1 . revenu cotisé:
+      valeur: conjoint collaborateur . assiette
+      plancher: assiette minimale . retraite
+    CNAVPL . retraite . tranche T2 . revenu cotisé:
+      valeur: conjoint collaborateur . assiette
+      plancher: assiette minimale . retraite
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
   applicable si: date >= 01/2022
   remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
   produit:
-    assiette: 40% * plafond sécurité sociale
-    taux: 0.3%
+    - 40% * plafond sécurité sociale
+    - 0.3%
   unité: €/an
   arrondi: oui
   référence:

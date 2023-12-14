@@ -41,7 +41,8 @@ artiste-auteur . revenus . BNC . recettes:
 artiste-auteur . revenus . BNC . frais réels:
   par défaut: 0 €/an
   question: Régime des frais réels BNC
-  résumé: Montant de vos dépenses (frais professionnels, amortissements…) qui seront imputés à vos recettes afin d’établir vos bénéfices ou déficits
+  résumé: Montant de vos dépenses (frais professionnels, amortissements…) qui
+    seront imputés à vos recettes afin d’établir vos bénéfices ou déficits
   applicable si: recettes > 0 €/an
   non applicable si: micro-bnc
 
@@ -58,7 +59,10 @@ artiste-auteur . cotisations:
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/vos-cotisations-et-contributions.html
 artiste-auteur . cotisations . assiette:
-  description: Les revenus des artistes-auteurs peuvent être catégorisés soit comme des traitements et salaires, soit comme des bénéfices non commerciaux. Les cotisations sociales sont payées sur la somme des revenus de ces deux catégories.
+  description: Les revenus des artistes-auteurs peuvent être catégorisés soit
+    comme des traitements et salaires, soit comme des bénéfices non commerciaux.
+    Les cotisations sociales sont payées sur la somme des revenus de ces deux
+    catégories.
   formule:
     somme:
       - revenus . traitements et salaires
@@ -87,9 +91,8 @@ artiste-auteur . cotisations . option surcotisation:
 
 artiste-auteur . cotisations . assiette surcotisation:
   produit:
-    assiette: SMIC . horaire . début d'année
-    facteur:
-      variations:
+    - SMIC . horaire . début d'année
+    - variations:
         - si: date >= 01/01/2019
           alors: 600 heures/an
         - sinon: 900 heures/an
@@ -110,16 +113,22 @@ artiste-auteur . cotisations . avertissement trimestres retraite:
 artiste-auteur . cotisations . vieillesse:
   titre: Retraite de base
   formule:
-    produit:
-      assiette: assiette
-      composantes:
-        - attributs:
-            nom: plafonnée
-          taux: salarié . cotisations . vieillesse . salarié . plafonnée . taux - 0.75%
+    somme:
+      - plafonnée
+      - déplafonnée
+
+  avec:
+    déplafonnée:
+      produit:
+        - assiette
+        - salarié . cotisations . vieillesse . salarié . déplafonnée . taux -
+          0.4%
+
+    plafonnée:
+      produit:
+        - valeur: assiette
           plafond: plafond sécurité sociale
-        - attributs:
-            nom: déplafonnée
-          taux: salarié . cotisations . vieillesse . salarié . déplafonnée . taux - 0.4%
+        - salarié . cotisations . vieillesse . salarié . plafonnée . taux - 0.75%
 
 artiste-auteur . cotisations . CSG-CRDS:
   formule:
@@ -136,27 +145,27 @@ artiste-auteur . cotisations . CSG-CRDS . assiette:
 artiste-auteur . cotisations . CSG-CRDS . abattement:
   formule:
     produit:
-      assiette: revenus . traitements et salaires
-      taux: 1.75%
-      plafond: 4 * plafond sécurité sociale
+      - valeur: revenus . traitements et salaires
+        plafond: 4 * plafond sécurité sociale
+      - 1.75%
 
 artiste-auteur . cotisations . CSG-CRDS . CSG:
   formule:
     produit:
-      assiette: CSG-CRDS . assiette
-      taux: 9.20%
+      - CSG-CRDS . assiette
+      - 9.20%
 
 artiste-auteur . cotisations . CSG-CRDS . CRDS:
   formule:
     produit:
-      assiette: CSG-CRDS . assiette
-      taux: 0.50%
+      - CSG-CRDS . assiette
+      - 0.50%
 
 artiste-auteur . cotisations . formation professionnelle:
   formule:
     produit:
-      assiette: assiette
-      taux: 0.35%
+      - assiette
+      - 0.35%
 
 artiste-auteur . cotisations . IRCEC:
   titre: Retraite complémentaire
@@ -184,8 +193,8 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP:
       - si: taux réduit
         alors:
           produit:
-            assiette: assiette
-            taux: 4%
+            - assiette
+            - 4%
       - sinon:
           barème:
             assiette: assiette
@@ -204,7 +213,8 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation: 91
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
   applicable si: assiette < 3 * seuil d'affiliation
-  question: Souhaitez-vous cotiser sur la base d'un taux réduit pour votre retraite complémentaire à l'IRCEC ?
+  question: Souhaitez-vous cotiser sur la base d'un taux réduit pour votre
+    retraite complémentaire à l'IRCEC ?
   par défaut: non
   description: |
     Le régime RAAP vous permet d'opter pour un taux réduit de 4% au lieu de 8%
@@ -244,7 +254,8 @@ artiste-auteur . cotisations . IRCEC . profession . RACD:
 artiste-auteur . cotisations . IRCEC . profession . RACL:
   icônes: 🎙️
   titre: auteur ou compositeur lyrique, dialoguiste de doublage
-  description: Les auteurs et compositeurs d’œuvres musicales et les dialoguistes de doublage cotisent au RACL.
+  description: Les auteurs et compositeurs d’œuvres musicales et les dialoguistes
+    de doublage cotisent au RACL.
   formule: profession = 'RACL'
 
 artiste-auteur . cotisations . IRCEC . régime RACL:
@@ -255,12 +266,13 @@ artiste-auteur . cotisations . IRCEC . cotisation RACD:
   applicable si: profession . RACD
   formule:
     produit:
-      assiette: assiette
-      plafond:
-        nom: plafond
-        valeur: 496250 €/an
-      taux: 8%
+      - valeur: assiette
+        plafond: plafond
+      - 8%
     arrondi: oui
+
+  avec:
+    plafond: 496250 €/an
 
 artiste-auteur . cotisations . IRCEC . cotisation RACL:
   applicable si: profession . RACL
@@ -271,10 +283,10 @@ artiste-auteur . cotisations . IRCEC . cotisation RACL:
         - taux: 0%
           plafond: 2739 €/an
         - taux: 6.5%
-          plafond:
-            nom: plafond
-            valeur: 376665 €/an
-        - taux:
-            nom: cotisation de solidarité
-            valeur: 1.5%
+          plafond: plafond
+        - taux: cotisation de solidarité
     arrondi: oui
+
+  avec:
+    cotisation de solidarité: 1.5%
+    plafond: 376665 €/an

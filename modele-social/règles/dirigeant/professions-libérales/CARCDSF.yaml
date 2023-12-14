@@ -20,7 +20,21 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
     valeur: 100%
   références:
     Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
   avec:
+
+    cotisation forfaitaire:
+      produit:
+        - variations:
+            - si: date >= 01/2023
+              alors: 2959.80 €/an
+            - sinon: 2960.40 €/an
+        - variations:
+            - si: taux réduction
+              alors: taux réduction
+            - sinon: 100%
+      arrondi: oui
+
     cotisation proportionnelle:
       unité: €/an
       barème:
@@ -36,20 +50,6 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
                 - sinon: 10.65%
             plafond: 5
         arrondi: oui
-
-    cotisation forfaitaire:
-      produit:
-        assiette:
-          variations:
-            - si: date >= 01/2023
-              alors: 2959.80 €/an
-            - sinon: 2960.40 €/an
-        facteur:
-          variations:
-            - si: taux réduction
-              alors: taux réduction
-            - sinon: 100%
-      arrondi: oui
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
   formule: assiette des cotisations < 85% * plafond sécurité sociale
@@ -81,6 +81,43 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
   valeur: métier = 'santé . chirurgien-dentiste'
 
   avec:
+
+    PCV:
+      titre: Prestation complémentaire vieillesse
+      remplace: cotisations et contributions . PCV
+      non applicable si: exonération PCV
+      note: Une dispense peut être accordée lorsque les revenus professionnels 2019
+        sont inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année
+        considérée), soit 11 500 €.
+
+        La demande doit être accompagnée d’une photocopie de la
+        déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033
+        B et D ou 2053 et 2058 A) de l’année 2019.
+
+        Cette dispense entraîne l’annulation des droits pour l’année et
+        les points non cotisés ne sont pas rachetables.
+
+      somme:
+        - forfaitaire
+        - proportionnelle
+      arrondi: oui
+      références:
+        Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+
+      avec:
+        forfaitaire:
+          variations:
+            - si: date >= 01/2023
+              alors: 1544.36 €/an
+            - sinon: 1440.60 €/an
+
+        proportionnelle:
+          produit:
+            - valeur: assiette des cotisations
+              plafond: 5 * plafond sécurité sociale
+            - 0.725 %
+          unité: €/an
+
     RID:
       titre: invalidité et décès
       remplace: cotisations et contributions . invalidité et décès
@@ -88,40 +125,6 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
         - si: date >= 01/2023
           alors: 1235 €/an
         - sinon: 1078 €/an
-    PCV:
-      titre: Prestation complémentaire vieillesse
-      remplace: cotisations et contributions . PCV
-      non applicable si: exonération PCV
-      note:
-        Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
-        inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année considérée),
-        soit 11 500 €.
-
-        La demande doit être accompagnée d’une photocopie de la déclaration d’impôt
-        n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058
-        A) de l’année 2019.
-
-        Cette dispense entraîne l’annulation des droits pour l’année et les points
-        non cotisés ne sont pas rachetables.
-
-      somme:
-        - forfaitaire
-        - proportionnelle
-      arrondi: oui
-      avec:
-        forfaitaire:
-          variations:
-            - si: date >= 01/2023
-              alors: 1544.36 €/an
-            - sinon: 1440.60 €/an
-        proportionnelle:
-          produit:
-            assiette: assiette des cotisations
-            plafond: 5 * plafond sécurité sociale
-            taux: 0.725 %
-          unité: €/an
-      références:
-        Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
   formule:
@@ -145,6 +148,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consu
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme:
   valeur: métier = 'santé . sage-femme'
+
   avec:
     RID:
       titre: invalidité et décès
@@ -167,13 +171,15 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme:
           alors: 182 €/an
         - si: classe = 'C'
           alors: 273 €/an
-      note: À partir de 2023, il n'y a plus de possibilité de choisir pour une classe de cotisation spécifique.
+      note: À partir de 2023, il n'y a plus de possibilité de choisir pour une classe
+        de cotisation spécifique.
       références:
         Montant des cotisations: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe:
   titre: Classe de cotisation
-  question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la CARCDSF ?
+  question: Dans quelle classe cotisez-vous pour le régime invalidité-décès de la
+    CARCDSF ?
   description: |
     Il existe classes de cotisations aux choix, correspondant à des cotisations
     et des degrés d'indemnisations différents.
@@ -203,9 +209,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
 
   formule:
     valeur: 780 €/an
-    abattement:
-      nom: participation CPAM
-      valeur: 520 €/an
+    abattement: participation CPAM
   références:
     Site CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
   note: |
@@ -218,6 +222,9 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
 
     Cette dispense entraîne l’annulation des droits pour l’année et les points
     non cotisés ne sont pas rachetables.
+
+  avec:
+    participation CPAM: 520 €/an
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
   type: notification

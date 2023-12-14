@@ -6,7 +6,8 @@ salarié . convention collective . HCR:
 
 salarié . convention collective . HCR . montant forfaitaire d'un repas:
   remplace:
-    règle: rémunération . avantages en nature . nourriture . montant . repas forfaitaire
+    règle: rémunération . avantages en nature . nourriture . montant . repas
+      forfaitaire
   formule: 3.94 €/repas
 
 salarié . convention collective . HCR . majoration heures supplémentaires:
@@ -23,16 +24,22 @@ salarié . convention collective . HCR . majoration heures supplémentaires:
         - taux: 50%
 
 salarié . convention collective . HCR . prévoyance conventionnelle:
-  produit:
-    assiette: contrat . salaire brut
-    plafond: plafond sécurité sociale
-    composantes:
-      - attributs:
-          nom: employeur
-          remplace: cotisations . prévoyances . conventionnelle . employeur
-        taux: 0.90%
-      - attributs:
-          nom: salarié
-          remplace: cotisations . prévoyances . conventionnelle . salarié
-        taux: 0.47%
   note: Taux spécifiques pour les salariés relevant du régime local Alsace-Moselle
+  somme:
+    - employeur
+    - salarié
+
+  avec:
+    employeur:
+      produit:
+        - valeur: contrat . salaire brut
+          plafond: plafond sécurité sociale
+        - 0.90%
+      remplace: cotisations . prévoyances . conventionnelle . employeur
+
+    salarié:
+      produit:
+        - valeur: contrat . salaire brut
+          plafond: plafond sécurité sociale
+        - 0.47%
+      remplace: cotisations . prévoyances . conventionnelle . salarié
