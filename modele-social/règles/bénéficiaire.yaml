@@ -64,7 +64,6 @@ bénéficiaire . dividendes . cotisations et contributions:
     - prélèvement de solidarité
 
   avec:
-
     CRDS:
       produit:
         - bruts
@@ -96,7 +95,8 @@ bénéficiaire . dividendes . imposables:
     - valeur: bruts
       abattement: 40%
     - (- cotisations et contributions . CSG déductible)
-  titre: Net imposable des dividendes auxquels s'applique le barème de l'impôt sur
+  titre:
+    Net imposable des dividendes auxquels s'applique le barème de l'impôt sur
     le revenu
   description: |
     Un abattement de 40% s'applique dans le cas où
@@ -139,7 +139,8 @@ bénéficiaire . dividendes . cotisations et contributions . assiette régime in
   valeur: bruts - assiette forfaitaire
   par défaut: 0 €/an
   unité: €/an
-  titre: Assiette des dividendes soumis aux cotisations et contributions du régime
+  titre:
+    Assiette des dividendes soumis aux cotisations et contributions du régime
     indépendant
   description: |
     Cette assiette représente la partie des dividendes qui n'est pas soumise au

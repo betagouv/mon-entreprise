@@ -111,7 +111,6 @@ entreprise . coût formalités . annonce légale:
       - dirigeant . indépendant . PL . métier = 'santé . pharmacien'
 
   avec:
-
     départements groupe 2:
       par défaut: non
       une de ces conditions:

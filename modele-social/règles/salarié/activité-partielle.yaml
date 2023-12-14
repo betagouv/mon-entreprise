@@ -173,8 +173,7 @@ salarié . activité partielle . indemnisation entreprise:
     contexte:
       contrat . salaire brut: 4.5 * contrat . temps de travail . SMIC
   références:
-    Quelle allocation perçoit l'employeur en cas d'activité partielle ?:
-      https://www.service-public.fr/particuliers/vosdroits/F23503#fiche-item-aria-6
+    Quelle allocation perçoit l'employeur en cas d'activité partielle ?: https://www.service-public.fr/particuliers/vosdroits/F23503#fiche-item-aria-6
 
   avec:
     plancher horaire:

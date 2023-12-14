@@ -23,7 +23,6 @@ salarié . convention collective:
         - optique
 
   avec:
-
     contrôle décharge:
       type: notification
       sévérité: avertissement
@@ -48,8 +47,6 @@ salarié . régimes spécifiques . alsace moselle:
     - établissement . commune . département = 'Moselle'
 
 salarié . régimes spécifiques . alsace moselle . ATMP:
-
-  
   avec:
     seuil taux mixte ou individuel:
       remplace: cotisations . ATMP . seuil taux mixte ou individuel
@@ -122,7 +119,6 @@ salarié . régimes spécifiques . DFS:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
 
   avec:
-
     assiette minimale:
       valeur: rémunération . assiette de vérification du SMIC
       contexte:
@@ -144,7 +140,8 @@ salarié . régimes spécifiques . DFS:
         Circulaire DSS: https://solidarites-sante.gouv.fr/fichiers/bo/2005/05-09/a0090046.htm
 
 salarié . régimes spécifiques . DFS . profession:
-  question: Quelle est la profession du salarié pour l'application de la déduction
+  question:
+    Quelle est la profession du salarié pour l'application de la déduction
     forfaitaire spécifique ?
   formule:
     une possibilité:
@@ -156,7 +153,6 @@ salarié . régimes spécifiques . DFS . profession:
       choix obligatoire: oui
 
   avec:
-
     artiste musicien:
       icônes: 🎼
       description: >-
@@ -190,7 +186,8 @@ salarié . régimes spécifiques . DFS . profession . journaliste . réduction d
     - règle: cotisations . vieillesse . employeur . plafonnée . taux
       par: cotisations . vieillesse . employeur . plafonnée . taux * réduction de taux
     - règle: cotisations . vieillesse . employeur . déplafonnée . taux
-      par: cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
+      par:
+        cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
         taux
     - règle: cotisations . vieillesse . salarié . plafonnée . taux
       par: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
@@ -217,7 +214,8 @@ salarié . régimes spécifiques . DFS . profession . journaliste . abattement f
 salarié . régimes spécifiques . taxe sur les salaires:
   applicable si: entreprise . TVA = non
   unité: €/an
-  description: La taxe sur les salaires en France est un impôt progressif créé en
+  description:
+    La taxe sur les salaires en France est un impôt progressif créé en
     1948 que certains employeurs doivent acquitter sur les salaires qu'ils
     distribuent.
   barème:
@@ -239,7 +237,7 @@ salarié . régimes spécifiques . taxe sur les salaires:
 
 salarié . coût total employeur:
   identifiant court: cout-total-employeur
-  synonymes: [ salaire chargé ]
+  synonymes: [salaire chargé]
   résumé: Dépensé par l'entreprise
   question: Quel est le coût total de cette embauche ?
   description: |

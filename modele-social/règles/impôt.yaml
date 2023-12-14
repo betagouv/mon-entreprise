@@ -71,7 +71,8 @@ impôt . méthode de calcul . taux personnalisé:
 
 impôt . méthode de calcul . barème standard:
   titre: avec le barème standard
-  description: Le calcul "officiel" de l'impôt, celui sur lequel l'administration
+  description:
+    Le calcul "officiel" de l'impôt, celui sur lequel l'administration
     fiscale se base pour calculer votre taux d'imposition.
   valeur: impôt . méthode de calcul = 'barème standard'
 
@@ -604,7 +605,8 @@ impôt . foyer fiscal . impôt sur le revenu:
     Fiche service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F34328
 
 impôt . foyer fiscal . impôt sur le revenu . décote:
-  description: Une décote est appliquée après le barème de l'impôt sur le revenu,
+  description:
+    Une décote est appliquée après le barème de l'impôt sur le revenu,
     pour réduire l'impôt des bas revenus.
   variations:
     - si: foyer fiscal . situation de famille = 'couple'
@@ -804,7 +806,8 @@ impôt . dividendes . montant en sus des autres revenus imposables:
     - si: méthode de calcul . PFU
       alors: PFU
     - sinon: impôt . foyer fiscal . impôt à payer - impôt sans dividendes
-  description: Montant de l'impôt sur dividendes, en sus de l'impôt sur les autres
+  description:
+    Montant de l'impôt sur dividendes, en sus de l'impôt sur les autres
     revenus imposables
 
 impôt . dividendes . PFU:

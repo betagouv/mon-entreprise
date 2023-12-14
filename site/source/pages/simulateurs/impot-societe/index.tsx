@@ -7,6 +7,7 @@ import { StyledInputSuggestion } from '@/components/conversation/InputSuggestion
 import RuleInput from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue'
 import Notifications from '@/components/Notifications'
+import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import {
 	SimulationContainer,
 	SimulationGoal,
@@ -19,7 +20,6 @@ import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { batchUpdateSituation, updateSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
-import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 
 export default function ISSimulation() {
 	return (

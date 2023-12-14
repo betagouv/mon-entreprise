@@ -3,8 +3,7 @@ entreprise . activité:
   type: texte
 
   références:
-    "Activité de votre entreprise : code APE, code NAF, qu'est-ce que c'est ?":
-      https://www.economie.gouv.fr/entreprises/activite-entreprise-code-ape-code-naf
+    "Activité de votre entreprise : code APE, code NAF, qu'est-ce que c'est ?": https://www.economie.gouv.fr/entreprises/activite-entreprise-code-ape-code-naf
     'À quoi correspond le code APE (code NAF) ?': https://entreprendre.service-public.fr/vosdroits/F33050
 
 entreprise . activité . nature:
@@ -28,12 +27,10 @@ entreprise . activité . nature:
         - libérale
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
-    Comment déterminer la nature de l'activité d'une entreprise ?:
-      https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
+    Comment déterminer la nature de l'activité d'une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
 
   avec:
-
     artisanale:
       valeur: activité . nature = 'artisanale'
       description: |
@@ -118,12 +115,10 @@ entreprise . activités:
     - agent commercial
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
-    Comment déterminer la nature de l'activité d'une entreprise ?:
-      https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
+    Comment déterminer la nature de l'activité d'une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
     Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
 
   avec:
-
     agent commercial:
       description: |
         L’agent commercial négocie et/ou conclut des contrats de vente, d’achat, de location ou de prestation de services pour le compte d’un tiers (producteur, industriel, commerçant, etc.). Il s’agit donc d’un intermédiaire de commerce qui, contrairement au VRP (vendeur, représentant et placier), est un professionnel indépendant.
@@ -132,8 +127,7 @@ entreprise . activités:
         valeur: non
         variable manquante: entreprise . activités
       références:
-        'Devenir agent commercial : pourquoi et comment obtenir ce statut ?':
-          https://www.economie.gouv.fr/entreprises/agent-commercial-immatriculation
+        'Devenir agent commercial : pourquoi et comment obtenir ce statut ?': https://www.economie.gouv.fr/entreprises/agent-commercial-immatriculation
         'Agent commercial - Réglementation': https://bpifrance-creation.fr/activites-reglementees/agent-commercial
 
     agricole:
@@ -235,7 +229,6 @@ entreprise . activités . service ou vente:
   par défaut: "'vente'"
 
   avec:
-
     service:
       titre: prestation de service
       description: |
@@ -291,7 +284,8 @@ entreprise . activités . revenus mixtes:
         - service BIC
         - service BNC
         - vente restauration hébergement
-      note: Il appartient à l'utilisateur de bien vérifier que la somme des trois
+      note:
+        Il appartient à l'utilisateur de bien vérifier que la somme des trois
         pourcentages renseignés vaut 100%.
 
     proportions . service BIC:

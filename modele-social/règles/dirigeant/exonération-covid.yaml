@@ -51,7 +51,8 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid:
   par défaut: non
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . montant:
-  question: Quel est le montant de l’exonération sociale liée à la crise sanitaire
+  question:
+    Quel est le montant de l’exonération sociale liée à la crise sanitaire
     pour les cotisations de l’année 2021 ?
   description: |-
     Pour connaître le montant de l'exonération, vous pouvez utiliser le simulateur d'exonération COVID.

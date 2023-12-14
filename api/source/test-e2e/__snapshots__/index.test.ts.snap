@@ -1757,7 +1757,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
                     "situation": {
                       "salarié . contrat": "'CDI'",
                       "salarié . contrat . salaire brut": {
-                        "unité": "€ / mois",
+                        "unité": "€/mois",
                         "valeur": 4200,
                       },
                     },

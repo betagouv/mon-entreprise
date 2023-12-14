@@ -139,7 +139,8 @@ dirigeant . indépendant . PL . métier . juridique:
 
 dirigeant . indépendant . PL . métier . avocat:
   déprécié: oui
-  note: Utiliser `dirigeant . indépendant . PL . métier . juridique . avocat` à la
+  note:
+    Utiliser `dirigeant . indépendant . PL . métier . juridique . avocat` à la
     place
 
 dirigeant . indépendant . PL . métier . expert-comptable:
@@ -152,7 +153,6 @@ dirigeant . indépendant . PL . métier . agents généraux d'assurances:
   description: |
     Les agents généraux d'assurances cotisent auprès de la CAVAMAC pour la retraite et la prévoyance.
   par défaut: par défaut
-
   avec:
     par défaut:
       non applicable si: oui
@@ -236,7 +236,6 @@ dirigeant . indépendant . PL . maladie:
     Article D621-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656764
 
   avec:
-
     taux:
       taux progressif:
         assiette: assiette des cotisations

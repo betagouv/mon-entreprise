@@ -55,14 +55,14 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
   description: |
     Les practicien et auxiliaire médical exerçant une activité de remplacement ne sont pas redevables de la contribution aux unions régionales des professionnels de santé (CURPS)
   par défaut: non
-
   avec:
     offre simplifiée médecins:
       toutes ces conditions:
         - entreprise . chiffre d'affaires < 19000 €/an
         - métier = 'santé . médecin'
       type: notification
-      description: Vous exercez une activité de médecin exclusivement en tant que
+      description:
+        Vous exercez une activité de médecin exclusivement en tant que
         remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée.
         [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
       références:

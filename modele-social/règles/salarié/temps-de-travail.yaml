@@ -12,12 +12,12 @@ salarié . temps de travail:
     dédiée.
 
   avec:
-
     plafond sécurité sociale:
       titre: plafond sécurité sociale proratisé
       acronyme: PSS
       unité: €/mois
-      valeur: plafond sécurité sociale * temps de travail . effectif . quotité
+      valeur:
+        plafond sécurité sociale * temps de travail . effectif . quotité
         # Note: le plafond de la sécurité sociale est pro-ratisé en fonction de la
         # effectif . quotité. Cela pose problème en cas de de chômage
         # partiel à 100% car le plafond vaut alors 0€ et celui-ci est utilisé
@@ -97,7 +97,8 @@ salarié . temps de travail . heures supplémentaires . majoration:
     - 25 % pour les 8 premières heures supplémentaires travaillées dans la même semaine (de la 36e à la 43e heure),
     - 50 % pour les heures suivantes.
   titre: majoration heures supplémentaires
-  note: Pour l'instant, nous implémentons uniquement les taux standards et ceux de
+  note:
+    Pour l'instant, nous implémentons uniquement les taux standards et ceux de
     la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention
     avec des taux spécifiques, merci de nous le signaler à
     `contact@mon-entreprise.beta.gouv.fr`
@@ -133,7 +134,8 @@ salarié . temps de travail . heures complémentaires:
     contrôle heures complémentaires max:
       type: notification
       sévérité: avertissement
-      valeur: contrat . temps de travail + heures complémentaires >= durée légale .
+      valeur:
+        contrat . temps de travail + heures complémentaires >= durée légale .
         mensuelle
       description: Les heures complémentaires ne doivent pas amener le salarié à
         travailler pour une durée supérieure ou égale à la durée légale du

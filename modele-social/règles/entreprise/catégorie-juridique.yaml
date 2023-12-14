@@ -9,9 +9,7 @@ entreprise . associés:
 
     Ainsi, une SARL avec un seul associé est appelée EURL (Entreprise Unipersonnelle à Responsabilité Limité). De même pour la SASU, la SELASU et la SERLARLU qui sont les formes unipersonnelles respectives de la SAS, la SELAS et la SELARL.
   question: Je possède cette entreprise...
-
   avec:
-
     multiples:
       titre: à plusieurs
       valeur: associés = 'multiples'
@@ -92,7 +90,6 @@ entreprise . catégorie juridique . SARL:
     non applicable si: activité . nature . libérale . réglementée
 
   avec:
-
     EURL:
       résumé: Entreprise unipersonnelle à responsabilité limitée
       acronyme: EURL
@@ -109,14 +106,12 @@ entreprise . catégorie juridique . SARL:
         - **Imposition des bénéfices** : Impôt sur le revenu de l’associé unique s’il s’agit d’une personne physique (avec possibilité de choisir l’impôt sur les sociétés). Si l’associé est une personne morale, impôt sur les sociétés.
 
       références:
-        L'EURL, un statut à associé unique à fort potentiel d’évolution:
-          https://www.economie.gouv.fr/entreprises/entreprise-unipersonnelle-responsabilite-limitee-EURL
+        L'EURL, un statut à associé unique à fort potentiel d’évolution: https://www.economie.gouv.fr/entreprises/entreprise-unipersonnelle-responsabilite-limitee-EURL
         L'EURL en détails: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/eurl-ou-sarl-a-associe-unique
         Prise de décision dans une société à responsabilité limitée (SARL): https://entreprendre.service-public.fr/vosdroits/F36714
         Tout ce qu'il faut savoir sur la fiscalité d'une EURL: https://entreprendre.service-public.fr/vosdroits/F36212
         Tout ce qu'il faut savoir sur les cotisations sociales d'une EURL: https://entreprendre.service-public.fr/vosdroits/F36239
-        "Création d'une EURL : rédaction et enregistrement des statuts":
-          https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=0&quest=
+        "Création d'une EURL : rédaction et enregistrement des statuts": https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=0&quest=
 
     SARL:
       résumé: Société à responsabilité limitée
@@ -139,8 +134,7 @@ entreprise . catégorie juridique . SARL:
         Prise de décision dans une société à responsabilité limitée (SARL): https://entreprendre.service-public.fr/vosdroits/F36714
         Tout ce qu'il faut savoir sur la fiscalité d'une SARL: https://entreprendre.service-public.fr/vosdroits/F36211
         Tout ce qu'il faut savoir sur les cotisations sociales d'une SARL: https://entreprendre.service-public.fr/vosdroits/F36235
-        "Création d'une SARL : rédaction et enregistrement des statuts":
-          https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=1&quest=
+        "Création d'une SARL : rédaction et enregistrement des statuts": https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=1&quest=
 
     unipersonnelle:
       déprécié: oui
@@ -156,7 +150,6 @@ entreprise . catégorie juridique . SAS:
     code insee: 5710
 
   avec:
-
     SAS:
       résumé: Société par actions simplifiée
       acronyme: SAS
@@ -167,8 +160,7 @@ entreprise . catégorie juridique . SAS:
         Tout ce qu'il faut savoir sur la fiscalité d'une SAS: https://entreprendre.service-public.fr/vosdroits/F36006
         Tout ce qu'il faut savoir sur les cotisations sociales d'une SAS: https://entreprendre.service-public.fr/vosdroits/F36007
         Prise de décision dans une SAS: https://entreprendre.service-public.fr/vosdroits/F36625
-        "Création d'une SAS : rédaction et enregistrement des statuts":
-          https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=4&quest=
+        "Création d'une SAS : rédaction et enregistrement des statuts": https://entreprendre.service-public.fr/vosdroits/F32232/personnalisation/resultat?lang=&quest0=4&quest=
 
     SASU:
       résumé: Société par actions simplifiée unipersonnelle
@@ -197,7 +189,6 @@ entreprise . catégorie juridique . SELARL:
     code insee: 5485
 
   avec:
-
     SELARL:
       acronyme: SELARL
       résumé: Société d'exercice libéral à responsabilité limitée
@@ -219,7 +210,6 @@ entreprise . catégorie juridique . SELAS:
     code insee: 5785
 
   avec:
-
     SELAS:
       acronyme: SELAS
       résumé: Société d'exercice libéral par action simplifiée
@@ -251,7 +241,6 @@ entreprise . catégorie juridique . remplacements:
   valeur: oui
 
   avec:
-
     associé unique:
       privé: oui
       toutes ces conditions:
