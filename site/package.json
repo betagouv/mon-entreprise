@@ -127,6 +127,7 @@
 		"cypress-wait-until": "^1.7.2",
 		"dotenv": "^16.3.1",
 		"i18next-parser": "^8.7.0",
+		"netlify-cli": "^17.10.1",
 		"serve-static": "^1.15.0",
 		"storybook": "^7.4.3",
 		"tinypool": "^0.8.1",

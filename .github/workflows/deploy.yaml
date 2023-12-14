@@ -69,6 +69,8 @@ jobs:
       - name: Build app SSR
         run: |
           yarn workspace site build:ssr
+      - name: Prerender common routes
+        run: |
           yarn workspace site build:prerender --netlify-toml-path ./netlify.base.toml
       - name: Replace site placeholders in netlify.toml redirection file
         run: |
