@@ -3,7 +3,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'url'
 
 // @ts-ignore
-import { render } from '../dist/ssr/entry-server'
+import { render } from '../dist/ssr/entry-server.js'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
