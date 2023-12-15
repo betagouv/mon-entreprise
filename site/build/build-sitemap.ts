@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs'
 
-import { absoluteSitePaths, generateSiteMap } from '../source/sitePaths.ts'
+import { absoluteSitePaths, generateSiteMap } from '../source/sitePaths.js'
 
 const basePathEn =
 	process.env.VITE_EN_BASE_URL ?? 'http://localhost:3000/infrance'

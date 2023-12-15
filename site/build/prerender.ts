@@ -9,9 +9,8 @@ import { absoluteSitePaths } from '../source/sitePaths.js'
 const filename = new URL('./prerender-worker.ts', import.meta.url).href
 const pool = new Tinypool({
 	filename,
-	execArgv: ['--import', 'tsx/esm'],
+	execArgv: ['--loader', 'ts-node/esm'],
 	idleTimeout: 2000,
-	runtime: 'child_process',
 })
 
 const sitePathFr = absoluteSitePaths.fr
@@ -67,7 +66,6 @@ const redirects = await Promise.all(
 		urls.map(async (url) => {
 			const path = await (pool.run({
 				site,
-
 				url,
 				lang: site === 'mon-entreprise' ? 'fr' : 'en',
 			}) as Promise<string>)
