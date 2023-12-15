@@ -112,6 +112,7 @@ entreprise . imposition . IS:
 
 entreprise . imposition . IS . montant:
   unité: €/an
+  applicable si: prorata temporis > 0
   barème:
     assiette: résultat imposable
     multiplicateur: prorata temporis
