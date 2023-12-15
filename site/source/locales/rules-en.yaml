@@ -111,9 +111,20 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
   titre.en: '[automatic] reduced rate'
   titre.fr: taux réduit
 artiste-auteur . cotisations . IRCEC . cotisation RACD:
+  avec:
+    plafond:
+      titre.en: '[automatic] ceiling'
+      titre.fr: plafond
   titre.en: '[automatic] RACD contribution'
   titre.fr: cotisation RACD
 artiste-auteur . cotisations . IRCEC . cotisation RACL:
+  avec:
+    cotisation de solidarité:
+      titre.en: '[automatic] solidarity contribution'
+      titre.fr: cotisation de solidarité
+    plafond:
+      titre.en: '[automatic] ceiling'
+      titre.fr: plafond
   titre.en: '[automatic] RACL contribution'
   titre.fr: cotisation RACL
 artiste-auteur . cotisations . IRCEC . profession:
@@ -222,6 +233,13 @@ artiste-auteur . cotisations . option surcotisation:
   titre.en: overcontribution option
   titre.fr: option surcotisation
 artiste-auteur . cotisations . vieillesse:
+  avec:
+    déplafonnée:
+      titre.en: '[automatic] uncapped'
+      titre.fr: déplafonnée
+    plafonnée:
+      titre.en: '[automatic] capped'
+      titre.fr: plafonnée
   titre.en: '[automatic] Basic pension'
   titre.fr: Retraite de base
 artiste-auteur . revenus:
@@ -314,6 +332,19 @@ bénéficiaire . dividendes . bruts:
   titre.en: '[automatic] Gross dividends paid'
   titre.fr: Dividendes bruts versés
 bénéficiaire . dividendes . cotisations et contributions:
+  avec:
+    CRDS:
+      titre.en: '[automatic] CRDS'
+      titre.fr: CRDS
+    CSG déductible:
+      titre.en: '[automatic] Deductible CSG'
+      titre.fr: CSG déductible
+    CSG non déductible:
+      titre.en: '[automatic] Non-deductible CSG'
+      titre.fr: CSG non déductible
+    prélèvement de solidarité:
+      titre.en: '[automatic] solidarity levy'
+      titre.fr: prélèvement de solidarité
   note.en: '[automatic] The CSG on income subject to the PFU is never deductible'
   note.fr: La CSG sur les revenus soumis au PFU n'est jamais déductible
   titre.en: '[automatic] contributions and fees'
@@ -497,6 +528,13 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . commerce:
   titre.en: '[automatic] trade'
   titre.fr: commerce
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
+  avec:
+    taux service:
+      titre.en: '[automatic] service rate'
+      titre.fr: taux service
+    taux vente:
+      titre.en: '[automatic] sales rate'
+      titre.fr: taux vente
   titre.en: '[automatic] jobs'
   titre.fr: métiers
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace:
@@ -518,6 +556,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         ou vente).
       titre.en: '[automatic] CIPAV contributions'
       titre.fr: cotisations CIPAV
+    cotisations CIPAV . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
     taux prestation de service:
       note.en: '[automatic] There is now a different rate for BIC or BNC services.'
       note.fr:
@@ -525,6 +566,15 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         ou BNC.
       titre.en: '[automatic] service delivery rate'
       titre.fr: taux prestation de service
+    taux service BIC:
+      titre.en: '[automatic] BIC service rate'
+      titre.fr: taux service BIC
+    taux service BNC:
+      titre.en: '[automatic] BNC service rate'
+      titre.fr: taux service BNC
+    taux vente restauration hébergement:
+      titre.en: '[automatic] sales rate catering accommodation'
+      titre.fr: taux vente restauration hébergement
   description.en: >
     [automatic] The social contributions give the auto-entrepreneur access to a
 
@@ -1088,6 +1138,10 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme:
   titre.en: '[automatic] midwife'
   titre.fr: sage-femme
 dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
+  avec:
+    participation CPAM:
+      titre.en: '[automatic] CPAM contribution'
+      titre.fr: participation CPAM
   description.en: >
     [automatic] For 2020, the amount is set at €780, a third of which, i.e. €260
     to your
@@ -1195,6 +1249,10 @@ dirigeant . indépendant . PL . CARMF:
   titre.en: '[automatic] CARMF'
   titre.fr: CARMF
 dirigeant . indépendant . PL . CARMF . ASV:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
   description.en: >-
     [automatic] The supplementary old-age allowance (ASV) scheme applies to
     contracted doctors.
@@ -1247,6 +1305,10 @@ dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
   titre.en: '[automatic] participation CPAM pension'
   titre.fr: participation CPAM retraite
 dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
+  avec:
+    participation CPAM:
+      titre.en: '[automatic] CPAM contribution'
+      titre.fr: participation CPAM
   titre.en: '[automatic] CNAVPL basic pension (after CPAM participation)'
   titre.fr: retraite de base CNAVPL (après participation CPAM)
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
@@ -1272,6 +1334,13 @@ dirigeant . indépendant . PL . CARPIMKO:
   titre.en: '[automatic] CARPIMKO'
   titre.fr: CARPIMKO
 dirigeant . indépendant . PL . CARPIMKO . ASV:
+  avec:
+    forfaitaire:
+      titre.en: '[automatic] lump-sum'
+      titre.fr: forfaitaire
+    proportionnelle:
+      titre.en: '[automatic] proportional'
+      titre.fr: proportionnelle
   titre.en: '[automatic] Old age benefit'
   titre.fr: Avantage social vieillesse
 dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
@@ -1555,6 +1624,16 @@ dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
   titre.en: '[automatic] disability waiver'
   titre.fr: exonération incapacité
 dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    assiette . plafond:
+      titre.en: '[automatic] ceiling'
+      titre.fr: plafond
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: |
     [automatic] Since July 1, 2021, members of one of the pension funds of the
     CNAVPL can benefit from daily allowances during a sick leave.
@@ -1573,6 +1652,22 @@ dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
   titre.en: '[automatic] Replacement of the basic pension'
   titre.fr: Remplacement de la retraite de base
 dirigeant . indépendant . PL . CNAVPL . retraite:
+  avec:
+    tranche T1:
+      titre.en: '[automatic] T1 tranche'
+      titre.fr: tranche T1
+    tranche T1 . revenu cotisé:
+      titre.en: '[automatic] contributed income'
+      titre.fr: revenu cotisé
+    tranche T1 . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    tranche T2:
+      titre.en: '[automatic] T2 tranche'
+      titre.fr: tranche T2
+    tranche T2 . revenu cotisé:
+      titre.en: '[automatic] contributed income'
+      titre.fr: revenu cotisé
   description.en: |
     [automatic] All liberal professions (except lawyers)
     have the same contribution rates for their basic pension.
@@ -1610,6 +1705,13 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . PL . CNBF . retraite de base:
+  avec:
+    cotisation forfaitaire:
+      titre.en: '[automatic] flat-rate contribution'
+      titre.fr: cotisation forfaitaire
+    cotisation proportionnelle:
+      titre.en: '[automatic] proportional contribution'
+      titre.fr: cotisation proportionnelle
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
 dirigeant . indépendant . PL . PAMC:
@@ -1981,6 +2083,9 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
   titre.fr: cotisations caisse de retraite
 dirigeant . indépendant . PL . maladie:
   avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
     taux avant 2022:
       titre.en: '[automatic] rate before 2022'
       titre.fr: taux avant 2022
@@ -1992,6 +2097,10 @@ dirigeant . indépendant . PL . métier:
   titre.en: '[automatic] profession'
   titre.fr: métier
 dirigeant . indépendant . PL . métier . agents généraux d'assurances:
+  avec:
+    par défaut:
+      titre.en: '[automatic] by default'
+      titre.fr: par défaut
   description.en: >
     [automatic] General insurance agents contribute to CAVAMAC for retirement
     and provident funds.
@@ -2037,6 +2146,9 @@ dirigeant . indépendant . PL . métier . juridique:
         prévoyance.
       titre.en: '[automatic] notary'
       titre.fr: notaire
+    notaire . par défaut:
+      titre.en: '[automatic] by default'
+      titre.fr: par défaut
     officier:
       description.en: >
         [automatic] The ministerial officers, public officers and judicial
@@ -2080,6 +2192,9 @@ dirigeant . indépendant . PL . métier . juridique:
         - Mandataires judiciaires.
       titre.en: '[automatic] Ministerial officer, public officer, judicial company'
       titre.fr: Officier ministériel, officier public, compagnie judicaire
+    officier . par défaut:
+      titre.en: '[automatic] by default'
+      titre.fr: par défaut
   titre.en: '[automatic] Legal and judicial professions'
   titre.fr: Professions juridiques et judicaires
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
@@ -2210,6 +2325,9 @@ dirigeant . indépendant . PL . métier . santé:
     vétérinaire:
       titre.en: '[automatic] veterinarian'
       titre.fr: vétérinaire
+    vétérinaire . par défaut:
+      titre.en: '[automatic] by default'
+      titre.fr: par défaut
   description.en: >
     [automatic] **Exceptions**: Osteopath, psychologist, psychotherapist,
     occupational therapist,
@@ -2312,6 +2430,10 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
   titre.en: '[automatic] amount'
   titre.fr: montant
 dirigeant . indépendant . assiette des cotisations:
+  avec:
+    sans plancher:
+      titre.en: '[automatic] without floor'
+      titre.fr: sans plancher
   description.en:
     '[automatic] This is the base for social security contributions,
     which is necessarily a positive number'
@@ -2566,6 +2688,25 @@ dirigeant . indépendant . cotisations et contributions:
   titre.en: '[automatic] contributions and fees'
   titre.fr: cotisations et contributions
 dirigeant . indépendant . cotisations et contributions . CSG-CRDS:
+  avec:
+    déductible:
+      titre.en: '[automatic] deductible'
+      titre.fr: déductible
+    déductible . revenus de remplacement:
+      titre.en: '[automatic] replacement income'
+      titre.fr: revenus de remplacement
+    déductible . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    non déductible:
+      titre.en: '[automatic] non-deductible'
+      titre.fr: non déductible
+    non déductible . revenus de remplacement:
+      titre.en: '[automatic] replacement income'
+      titre.fr: revenus de remplacement
+    non déductible . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   titre.en: '[automatic] CSG and CRDS'
   titre.fr: CSG-CRDS
 dirigeant . indépendant . cotisations et contributions . CSG-CRDS . assiette:
@@ -2623,6 +2764,10 @@ dirigeant . indépendant . cotisations et contributions . PSS proratisé:
   titre.en: '[automatic] prorated social security ceiling'
   titre.fr: plafond de la sécurité sociale proratisé
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: >
     [automatic] This contribution allows you to benefit from family allowances
     paid by the family allowance fund under the same conditions as employees:
@@ -3049,6 +3194,13 @@ dirigeant . indépendant . cotisations et contributions . formation professionne
   titre.en: '[automatic] professional training'
   titre.fr: formation professionnelle
 dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: >
     [automatic] This contribution allows the payment of daily allowances in case
     of work stoppage due to illness or accident.
@@ -3064,6 +3216,10 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
   titre.en: '[automatic] daily sickness benefits'
   titre.fr: indemnités journalières maladie
 dirigeant . indépendant . cotisations et contributions . invalidité et décès:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
   description.en: >
     [automatic] Under certain conditions, this contribution allows you to
     receive a disability pension before retirement age.
@@ -3095,9 +3251,15 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     taux progressif:
       titre.en: '[automatic] progressive rate'
       titre.fr: taux progressif
+    taux progressif . assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
     taux progressif avant 2022:
       titre.en: '[automatic] progressive rate before 2022'
       titre.fr: taux progressif avant 2022
+    total:
+      titre.en: '[automatic] total'
+      titre.fr: total
   description.en: >
     [automatic] This contribution allows you to benefit from all the health and
     maternity benefits managed by the health insurance and the Cpam:
@@ -3135,6 +3297,10 @@ dirigeant . indépendant . cotisations et contributions . non déductibles:
   titre.en: '[automatic] Non-deductible portion'
   titre.fr: Part non déductibles fiscalement
 dirigeant . indépendant . cotisations et contributions . retraite complémentaire:
+  avec:
+    plafond:
+      titre.en: '[automatic] ceiling'
+      titre.fr: plafond
   description.en: >
     [automatic] Since January 1, 2013, artisans and shopkeepers have had
     identical rights to a supplementary pension.
@@ -3154,6 +3320,10 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . cotisations et contributions . retraite de base:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: >
     [automatic] Since 1973, the contribution paid for the basic old age
     insurance allows craftsmen and traders to benefit from a basic pension
@@ -4223,6 +4393,15 @@ entreprise . activités . revenus mixtes:
         pourcentages renseignés vaut 100%.
       titre.en: '[automatic] proportion activity'
       titre.fr: proportion activité
+    proportions . service BIC:
+      titre.en: '[automatic] BIC service'
+      titre.fr: service BIC
+    proportions . service BNC:
+      titre.en: '[automatic] BNC service'
+      titre.fr: service BNC
+    proportions . vente restauration hébergement:
+      titre.en: '[automatic] sales catering accommodation'
+      titre.fr: vente restauration hébergement
   description.en: >
     [automatic] It is possible to have activities with different types of income
     for the same company.
@@ -4412,6 +4591,9 @@ entreprise . catégorie juridique . EI:
       question.fr: Êtes-vous auto-entrepreneur ?
       titre.en: '[automatic] auto-entrepreneur'
       titre.fr: auto-entrepreneur
+    auto-entrepreneur . par défaut:
+      titre.en: '[automatic] by default'
+      titre.fr: par défaut
   titre.en: '[automatic] Sole proprietorship (including auto-entrepreneurs)'
   titre.fr: Entreprise individuelle (y compris auto-entrepreneurs)
 entreprise . catégorie juridique . SARL:
@@ -4945,6 +5127,18 @@ entreprise . coût formalités . annonce légale:
         il s'agit soit d'un journal d'annonces légales (JAL), soit d'un service de presse en ligne (SPEL).
       titre.en: '[automatic] Flat rate'
       titre.fr: Tarif forfaitaire
+    forfaitaire . EURL:
+      titre.en: '[automatic] EURL'
+      titre.fr: EURL
+    forfaitaire . SARL:
+      titre.en: '[automatic] SARL'
+      titre.fr: SARL
+    forfaitaire . SAS:
+      titre.en: '[automatic] SAS'
+      titre.fr: SAS
+    forfaitaire . SASU:
+      titre.en: '[automatic] SASU'
+      titre.fr: SASU
   description.en: >
     [automatic] The publication of a legal announcement is mandatory to inform
     the public of the major stages in the life of a company: the creation,
@@ -5219,6 +5413,15 @@ entreprise . imposition . IS . montant:
     plafond taux réduit 1:
       titre.en: '[automatic] ceiling reduced rate 1'
       titre.fr: plafond taux réduit 1
+    plafond taux réduit 2:
+      titre.en: '[automatic] ceiling reduced rate 2'
+      titre.fr: plafond taux réduit 2
+    taux normal:
+      titre.en: '[automatic] standard rate'
+      titre.fr: taux normal
+    taux réduit:
+      titre.en: '[automatic] reduced rate'
+      titre.fr: taux réduit
   titre.en: '[automatic] amount'
   titre.fr: montant
 entreprise . imposition . IS . prorata temporis:
@@ -5243,6 +5446,10 @@ entreprise . imposition . IS . résultat net:
   titre.en: '[automatic] net result'
   titre.fr: résultat net
 entreprise . imposition . IS . éligible taux réduit:
+  avec:
+    capital détenu au moins à 75 pourcents par des personnes physiques:
+      titre.en: '[automatic] capital at least 75 percent owned by individuals'
+      titre.fr: capital détenu au moins à 75 pourcents par des personnes physiques
   titre.en: '[automatic] eligible for reduced rate'
   titre.fr: éligible taux réduit
 entreprise . imposition . régime:
@@ -5288,6 +5495,10 @@ entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   titre.en: '[automatic] threshold alert exceeded'
   titre.fr: alerte seuil dépassés
 entreprise . imposition . régime . micro-entreprise . revenu abattu:
+  avec:
+    plancher abattement:
+      titre.en: '[automatic] floor allowance'
+      titre.fr: plancher abattement
   description.en: >
     [automatic] The micro-entrepreneur is exempted from drawing up a
     professional declaration of profits under the BNC or BIC heading.
@@ -5503,6 +5714,21 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   titre.en: '[automatic] family quotient'
   titre.fr: quotient familial
 impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
+  avec:
+    Plafonnement général:
+      titre.en: '[automatic] General ceiling'
+      titre.fr: Plafonnement général
+    Plafonnement parent isolé:
+      description.en: >
+        [automatic] Family quotient benefit for the first dependent child of
+        single or divorced taxpayers living alone.
+
+        single or divorced taxpayers living alone.
+      description.fr: |
+        Avantage de quotient familial procuré par le premier enfant à charge des
+        contribuables célibataires ou divorcés vivant seuls.
+      titre.en: '[automatic] Single parent ceiling'
+      titre.fr: Plafonnement parent isolé
   titre.en: '[automatic] advantage ceiling'
   titre.fr: plafond avantage
 impôt . foyer fiscal . impôt à payer:
@@ -5608,6 +5834,10 @@ impôt . montant:
   titre.en: '[automatic] Income Tax'
   titre.fr: Impôt sur le revenu
 impôt . méthode de calcul:
+  avec:
+    par défaut:
+      titre.en: '[automatic] by default'
+      titre.fr: par défaut
   description.en: >
     We have implemented three ways to calculate income tax:
 
@@ -5900,6 +6130,15 @@ protection sociale . invalidité et décès:
           titre.fr: Rente incapacité AT/MP
       titre.en: '[automatic] work accidents and occupational diseases'
       titre.fr: accidents du travail et maladies professionnelles
+    accidents du travail et maladies professionnelles . rente incapacité . taux incapacité:
+      question.en:
+        '[automatic] What degree of disability would you like to simulate
+        for an occupational injury and disease pension?'
+      question.fr:
+        Quel taux d'incapacité voulez-vous simuler pour la rente accidents
+        du travail et maladie professionnelle ?
+      titre.en: '[automatic] disability rate'
+      titre.fr: taux incapacité
     capital décès:
       titre.en: '[automatic] death benefit'
       titre.fr: capital décès
@@ -6071,6 +6310,9 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
           titre.fr: à partir du 29ème jour
       titre.en: '[automatic] benefits'
       titre.fr: indemmnités
+    indemmnités . salaire journalier de référence:
+      titre.en: '[automatic] daily reference salary'
+      titre.fr: salaire journalier de référence
   description.en: >
     [automatic] Have you suffered an accident at work or an occupational
     disease? 
@@ -6408,6 +6650,18 @@ protection sociale . retraite . base . CNAVPL:
         de leur profession pour une durée de plus de 6 mois
       titre.en: '[automatic] points acquired'
       titre.fr: points acquis
+    points acquis . points T1:
+      titre.en: '[automatic] T1 points'
+      titre.fr: points T1
+    points acquis . points T2:
+      titre.en: '[automatic] T2 points'
+      titre.fr: points T2
+    points acquis . points incapacité:
+      titre.en: '[automatic] disability points'
+      titre.fr: points incapacité
+    valeur du point:
+      titre.en: '[automatic] point value'
+      titre.fr: valeur du point
   description.en: >-
     [automatic] The liberal professions affiliated to the CNAVPL have a basic
     pension plan based on points.
@@ -6599,6 +6853,9 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
     valeur d'acquisition:
       titre.en: '[automatic] acquisition value'
       titre.fr: valeur d'acquisition
+    valeur du point:
+      titre.en: '[automatic] point value'
+      titre.fr: valeur du point
   note.en:
     '[automatic] The revaluation of the point value takes place on November
     1, not January 1.'
@@ -6628,9 +6885,16 @@ protection sociale . retraite . complémentaire . RCI:
     valeur d'acquisition:
       titre.en: '[automatic] acquisition value'
       titre.fr: valeur d'acquisition
+    valeur du point:
+      titre.en: '[automatic] point value'
+      titre.fr: valeur du point
   titre.en: '[automatic] supplementary pension for the self-employed'
   titre.fr: retraite complémentaire des indépendants
 protection sociale . retraite . trimestres:
+  avec:
+    exonération invalidité indépendant:
+      titre.en: '[automatic] self-employed disability exemption'
+      titre.fr: exonération invalidité indépendant
   titre.en: '[automatic] validated quarters'
   titre.fr: trimestres validés
 protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
@@ -6741,6 +7005,10 @@ salarié . activité partielle . heures travaillées . contrôle temps de travai
   titre.en: '[automatic] working time control'
   titre.fr: contrôle temps de travail
 salarié . activité partielle . indemnisation entreprise:
+  avec:
+    plancher horaire:
+      titre.en: '[automatic] hourly floor'
+      titre.fr: plancher horaire
   description.en: >-
     [automatic] If the employer has obtained administrative authorization, he
     can file a **claim for compensation** which enables him to obtain
@@ -6795,6 +7063,12 @@ salarié . activité partielle . indemnités:
   titre.fr: indemnités
 salarié . activité partielle . indemnités . légale:
   avec:
+    allocation complémentaire:
+      titre.en: '[automatic] supplementary allowance'
+      titre.fr: allocation complémentaire
+    base:
+      titre.en: '[automatic] base'
+      titre.fr: base
     rémunération mensuelle minimale:
       description.en:
         '[automatic] Full-time employees who work reduced hours are
@@ -7556,6 +7830,13 @@ salarié . convention collective . BTP . catégorie . cadre:
   titre.en: '[automatic] Frame'
   titre.fr: Cadre
 salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
   titre.en: '[automatic] supplementary pension'
   titre.fr: prévoyance complémentaire
 salarié . convention collective . BTP . catégorie . etam:
@@ -7569,12 +7850,26 @@ salarié . convention collective . BTP . catégorie . etam:
   titre.en: '[automatic] ETAM'
   titre.fr: ETAM
 salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
   titre.en: '[automatic] supplementary pension'
   titre.fr: prévoyance complémentaire
 salarié . convention collective . BTP . catégorie . ouvrier:
   titre.en: '[automatic] Worker'
   titre.fr: Ouvrier
 salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
   titre.en: '[automatic] supplementary pension'
   titre.fr: prévoyance complémentaire
 salarié . convention collective . BTP . congés intempéries:
@@ -7633,6 +7928,13 @@ salarié . convention collective . HCR . montant forfaitaire d'un repas:
   titre.en: '[automatic] flat rate for a meal'
   titre.fr: montant forfaitaire d'un repas
 salarié . convention collective . HCR . prévoyance conventionnelle:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
   note.en: '[automatic] Specific rates for employees under the Alsace-Moselle
     local regime'
   note.fr: Taux spécifiques pour les salariés relevant du régime local Alsace-Moselle
@@ -7786,6 +8088,13 @@ salarié . convention collective . sport . cotisations . franchise:
   titre.en: '[automatic] franchise'
   titre.fr: franchise
 salarié . convention collective . sport . cotisations . prévoyance:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
   titre.en: '[automatic] providence'
   titre.fr: prévoyance
 salarié . convention collective . sport . cotisations . régime frais de santé:
@@ -7875,6 +8184,13 @@ salarié . convention collective . sport . refus exonération cotisation AT:
   titre.en: '[automatic] AT exemption refusal'
   titre.fr: refus exonération AT
 salarié . cotisations:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
   description.en: '[automatic] Total social security contributions paid for this
     employee. It includes an employer and an employee share.'
   description.fr: Total des cotisations et contributions à la sécurité sociales
@@ -7894,6 +8210,13 @@ salarié . cotisations . AGS:
   titre.en: '[automatic] Wage Guarantee Scheme (AGS)'
   titre.fr: Régime de garanti des salaires (AGS)
 salarié . cotisations . APEC:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
   description.en: |
     [automatic] Specific contribution to executives for the operation of APEC
     (Association for the Employment of Executives)
@@ -7907,6 +8230,9 @@ salarié . cotisations . ATMP:
     seuil taux mixte ou individuel:
       titre.en: '[automatic] '
       titre.fr: seuil taux mixte ou individuel
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
     taux fonctions support:
       avec:
         montant:
@@ -7957,6 +8283,16 @@ salarié . cotisations . ATMP:
   titre.en: '[automatic] Workplace accidents and occupational diseases'
   titre.fr: Accidents du Travail et Maladies Professionnelles
 salarié . cotisations . CEG:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . taux T1:
+      titre.en: '[automatic] T1 rate'
+      titre.fr: taux T1
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
   description.en: '[automatic] This contribution, created in 2019, both offsets
     the burdens resulting from retirements before age 67 and honors the pension
     liabilities of those who contributed to the GMP, a former compensation
@@ -7969,6 +8305,16 @@ salarié . cotisations . CEG:
   titre.en: '[automatic] general balance contribution'
   titre.fr: contribution d'équilibre général
 salarié . cotisations . CET:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
   titre.en: '[automatic] technical balance contribution'
   titre.fr: contribution d'équilibre technique
 salarié . cotisations . CPF CDD:
@@ -7979,6 +8325,10 @@ salarié . cotisations . CPF CDD:
   titre.en: '[automatic] CPF CDD'
   titre.fr: CPF CDD
 salarié . cotisations . CSA:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   titre.en: '[automatic] Contribution solidarité autonomie'
   titre.fr: Contribution solidarité autonomie
 salarié . cotisations . CSG-CRDS:
@@ -7999,11 +8349,31 @@ salarié . cotisations . CSG-CRDS:
   titre.en: '[automatic] CSG-CRDS'
   titre.fr: CSG-CRDS
 salarié . cotisations . CSG-CRDS . CRDS:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: '[automatic] Contribution for the repayment of the social debt'
   description.fr: Contribution pour le remboursement de la dette sociale
   titre.en: '[automatic] DRES'
   titre.fr: CRDS
 salarié . cotisations . CSG-CRDS . CSG:
+  avec:
+    déductible:
+      titre.en: '[automatic] deductible'
+      titre.fr: déductible
+    déductible . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    non déductible:
+      titre.en: '[automatic] non-deductible'
+      titre.fr: non déductible
+    non déductible . heures supplémentaires et complémentaires défiscalisées:
+      titre.en: '[automatic] tax-free overtime and complementary hours'
+      titre.fr: heures supplémentaires et complémentaires défiscalisées
+    non déductible . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: >-
     [automatic] The General Social Contribution (CSG) is a tax intended to
     contribute to the financing of social protection.
@@ -8041,6 +8411,22 @@ salarié . cotisations . CSG-CRDS . non déductible:
   titre.en: '[automatic] Non-deductible CSG and CRDS'
   titre.fr: CSG non déductible et CRDS
 salarié . cotisations . CSG-CRDS . revenus de remplacement:
+  avec:
+    CRDS:
+      titre.en: '[automatic] CRDS replacement income'
+      titre.fr: CRDS revenus de remplacement
+    CSG déductible:
+      titre.en: '[automatic] CSG deductible replacement income'
+      titre.fr: CSG déductible revenus de remplacement
+    CSG déductible . plafond:
+      titre.en: '[automatic] ceiling'
+      titre.fr: plafond
+    CSG non déductible:
+      titre.en: '[automatic] CSG non-deductible replacement income'
+      titre.fr: CSG non déductible revenus de remplacement
+    CSG non déductible . plafond:
+      titre.en: '[automatic] ceiling'
+      titre.fr: plafond
   description.en: '[automatic] CSG and CRDS deducted from replacement income.'
   description.fr: La CSG-CRDS prélevées sur les revenus de remplacement.
   note.en: '[automatic] The levying of the CSG and the CRDS may not have the
@@ -8057,6 +8443,9 @@ salarié . cotisations . FNAL:
     privé:
       titre.en: '[automatic] '
       titre.fr: privé
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
     éligible taux réduit:
       titre.en: '[automatic] eligible for reduced rate'
       titre.fr: éligible taux réduit
@@ -8084,12 +8473,27 @@ salarié . cotisations . PEEC:
   titre.fr: Participation à l'effort de construction
 salarié . cotisations . allocations familiales:
   avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
     taux réduit:
       titre.en: '[automatic] reduced rate'
       titre.fr: taux réduit
   titre.en: Family allowances
   titre.fr: allocations familiales
 salarié . cotisations . assiette:
+  avec:
+    sans prévoyance:
+      description.en:
+        "[automatic] The contribution base before reintegration of the
+        non-deductible portion of the employer's provident fund. This is the
+        basis for calculating income-related benefits."
+      description.fr:
+        L'assiette des cotisations avant la réintégration de la part non
+        déductible de la prévoyance employeur. C'est elle qui sert de base au
+        calcul des prévoyances proportionnelles au revenu.
+      titre.en: '[automatic] without foresight'
+      titre.fr: sans prévoyance
   description.en: >
     [automatic] The social security contribution base is the basis for
     calculating a large number of contributions on salaried work. It includes in
@@ -8124,6 +8528,19 @@ salarié . cotisations . assiette forfaitaire:
   titre.en: '[automatic] lump-sum basis'
   titre.fr: assiette forfaitaire
 salarié . cotisations . chômage:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+    salarié . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: '[automatic] Unemployment insurance contribution'
   description.fr: Cotisation d’assurance chômage
   titre.en: '[automatic] unemployment'
@@ -8145,6 +8562,18 @@ salarié . cotisations . contribution au dialogue social:
   titre.en: '[automatic] contribution to social dialogue'
   titre.fr: contribution au dialogue social
 salarié . cotisations . exonérations:
+  avec:
+    employeur:
+      description.en: '[automatic] With the exception of the overtime deduction,
+        employer contribution reduction schemes are mutually exclusive.'
+      description.fr: À l'exception de la déduction heure supplémentaire, les
+        dispositifs de réduction de cotisations patronales sont mutuellement
+        exclusif.
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
   titre.en: '[automatic] Reductions and exemptions'
   titre.fr: Réductions et exonérations
 salarié . cotisations . exonérations . JEI:
@@ -8204,6 +8633,23 @@ salarié . cotisations . exonérations . T:
   titre.en: '[automatic] Coefficient T'
   titre.fr: Coefficient T
 salarié . cotisations . exonérations . heures supplémentaires:
+  avec:
+    employeur:
+      note.en: '[automatic] The deduction does not apply to overtime.'
+      note.fr: La déduction ne s’applique pas aux heures complémentaires
+      titre.en: '[automatic] flat-rate overtime deduction'
+      titre.fr: déduction forfaitaire pour heures supplémentaires
+    salarié:
+      titre.en: '[automatic] reduction in overtime contributions'
+      titre.fr: réduction de cotisations heures supplémentaires
+    salarié . taux des cotisations réduites:
+      description.en: '[automatic] the effective rate of old-age insurance
+        contributions payable by the employee'
+      description.fr:
+        le taux effectif des cotisations d'assurance vieillesse à la
+        charge du salarié
+      titre.en: '[automatic] reduced contribution rates'
+      titre.fr: taux des cotisations réduites
   titre.en: '[automatic] overtime'
   titre.fr: heures supplémentaires
 salarié . cotisations . exonérations . lodeom:
@@ -8211,6 +8657,47 @@ salarié . cotisations . exonérations . lodeom:
     barème compétitivité:
       titre.en: '[automatic] Eligibility for the competitiveness scale'
       titre.fr: Eligibilité au barème de compétitivité
+    barème compétitivité . secteurs d'activité éligible:
+      description.en: >
+        [automatic] To be eligible for the 1st LODEOM exemption scale, known as
+        the competitiveness scale, your company must belong to one of the
+        following sectors:
+
+
+        - ✈ air transport on routes between French overseas departments and regions and between mainland France and these territories, as well as domestic services
+
+        - ⛵ maritime and river services, or connections between French overseas departments and regions
+
+        - 🏗 construction and public works
+
+        - 📰 the press
+
+        - 🎥 audiovisual production
+
+        - sectors eligible for the enhanced competitiveness (scale 2) or innovation and growth (scale 3) schemes, which do not meet the conditions in terms of headcount (fewer than 250 employees) or annual sales (fewer than 50 million euros).
+      description.fr: >
+        Pour être éligible au 1er barème de l'exonération LODEOM, dit barème de
+        compétitivité, votre entreprise doit appartenir à l'un des secteurs
+        suivants :
+
+
+        - ✈ transport aérien assurant les liaisons entre les départements et régions d’Outre-mer et entre la métropole et ces territoires, ainsi que les dessertes intérieures
+
+        - ⛵ dessertes maritimes, fluviales ou les liaisons entre départements et régions d’Outre-mer
+
+        - 🏗 bâtiment et travaux publics
+
+        - 📰 la presse
+
+        - 🎥 la production audiovisuelle
+
+        - les secteurs éligibles aux régimes de compétitivité renforcée (barème 2) ou d’innovation et de croissance (barème 3), qui ne respectent pas les conditions d’effectifs (moins de 250 salariés) ou de chiffres d’affaires annuel (moins de 50 millions d’euros).
+      question.en:
+        '[automatic] Does your company belong to one of the LODEOM-eligible
+        sectors?'
+      question.fr: Votre entreprise appartient-elle à l'un des secteurs éligible LODEOM ?
+      titre.en: '[automatic] eligible business sectors'
+      titre.fr: secteurs d'activité éligible
     barème compétitivité renforcée:
       description.en: >
         [automatic] - Turnover of less than 50 million euros
@@ -8268,6 +8755,11 @@ salarié . cotisations . exonérations . lodeom:
       question.fr: Êtes-vous éligibles au barème innovation et croissance ?
       titre.en: '[automatic] innovation and growth scale'
       titre.fr: barème innovation et croissance
+    zone un:
+      titre.en:
+        '[automatic] Geographical zone 1 (Guadeloupe, Martinique, Reunion
+        Island, French Guiana)'
+      titre.fr: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
   description.en: >
     [automatic] A fairly complex set of contribution reductions is available for
     overseas employees.
@@ -8382,6 +8874,23 @@ salarié . cotisations . formation professionnelle:
   titre.en: '[automatic] professional training'
   titre.fr: formation professionnelle
 salarié . cotisations . maladie:
+  avec:
+    employeur:
+      avec:
+        taux réduit:
+          titre.en: '[automatic] reduced rate'
+          titre.fr: taux réduit
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+    salarié . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: '[automatic] The sickness-maternity-disability insurance
     contribution finances the benefits paid by the general Social Security
     system in the event of incapacity for work. It allows the payment of
@@ -8397,6 +8906,41 @@ salarié . cotisations . prévoyances:
     conventionnelle:
       titre.en: '[automatic] conventional'
       titre.fr: conventionnelle
+    conventionnelle . employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    conventionnelle . salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+    employeur:
+      avec:
+        non déductible socialement:
+          description.en:
+            "[automatic] Amount of employer's share of social security
+            contributions to be added back when calculating the contribution
+            base"
+          description.fr:
+            Montant de la part employeur des prévoyances à réintégrer pour
+            le calcul de l'assiette des cotisations
+          titre.en: '[automatic] Non-deductible employer-sponsored benefits'
+          titre.fr: Prévoyance employeur non déductible
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . cadres:
+      description.en: '[automatic] compulsory provident scheme for executives'
+      description.fr: prévoyance obligatoire pour les cadres
+      titre.en: '[automatic] frames'
+      titre.fr: cadres
+    salarié:
+      avec:
+        non déductible:
+          titre.en: '[automatic] Non-deductible employee benefits'
+          titre.fr: Prévoyance salarié non déductible
+        références:
+          titre.en: '[automatic] references'
+          titre.fr: références
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
   titre.en: '[automatic] supplementary benefits'
   titre.fr: prévoyances complémentaires
 salarié . cotisations . prévoyances . santé:
@@ -8464,6 +9008,25 @@ salarié . cotisations . prévoyances . santé:
   titre.en: '[automatic] health'
   titre.fr: santé
 salarié . cotisations . retraite complémentaire:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . taux T1:
+      titre.en: '[automatic] T1 rate'
+      titre.fr: taux T1
+    employeur . taux T2:
+      titre.en: '[automatic] T2 rates'
+      titre.fr: taux T2
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+    salarié . taux T1:
+      titre.en: '[automatic] T1 rate'
+      titre.fr: taux T1
+    salarié . taux T2:
+      titre.en: '[automatic] T2 rates'
+      titre.fr: taux T2
   description.en: >
     Supplementary pension contribution. Replaces AGIRC and ARRCO which were
     separate before 2019.
@@ -8482,6 +9045,9 @@ salarié . cotisations . taxe d'apprentissage:
         de calcul de la taxe d'apprentissage.
       titre.en: '[automatic] basis for the apprenticeship tax'
       titre.fr: assiette de la taxe d'apprentissage
+    base:
+      titre.en: '[automatic] base'
+      titre.fr: base
     contribution supplémentaire:
       avec:
         CSA au taux majoré:
@@ -8506,6 +9072,37 @@ salarié . cotisations . versement mobilité:
   titre.en: '[automatic] mobility payment'
   titre.fr: versement mobilité
 salarié . cotisations . vieillesse:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . déplafonnée:
+      titre.en: '[automatic] uncapped'
+      titre.fr: déplafonnée
+    employeur . déplafonnée . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    employeur . plafonnée:
+      titre.en: '[automatic] capped'
+      titre.fr: plafonnée
+    employeur . plafonnée . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+    salarié . déplafonnée:
+      titre.en: '[automatic] uncapped'
+      titre.fr: déplafonnée
+    salarié . déplafonnée . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    salarié . plafonnée:
+      titre.en: '[automatic] capped'
+      titre.fr: plafonnée
+    salarié . plafonnée . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: '[automatic] Old age contribution for the basic pension scheme
     for employees.'
   description.fr: Cotisation vieillesse pour le régime de retraite de base des salariés.
@@ -9034,6 +9631,9 @@ salarié . rémunération . avantages en nature:
         L'entreprise fournit-elle gratuitement des repas ?
       titre.en: '[automatic] food'
       titre.fr: nourriture
+    nourriture . montant . repas forfaitaire:
+      titre.en: '[automatic] flat-rate meal'
+      titre.fr: repas forfaitaire
     ntic:
       avec:
         abonnements:
@@ -9206,6 +9806,9 @@ salarié . rémunération . frais professionnels . titres-restaurant:
     déductible:
       titre.en: '[automatic] Deductible restaurant vouchers'
       titre.fr: Titre restaurant déductibles
+    déductible . plafond unitaire:
+      titre.en: '[automatic] unit ceiling'
+      titre.fr: plafond unitaire
     employeur:
       titre.en: '[automatic] employer'
       titre.fr: employeur
@@ -9311,6 +9914,9 @@ salarié . rémunération . frais professionnels . trajets domicile travail:
     déductible:
       titre.en: '[automatic] Deductible portion'
       titre.fr: Part déductible
+    déductible . plafond hors cumul:
+      titre.en: '[automatic] non-cumulative ceiling'
+      titre.fr: plafond hors cumul
     employeur:
       titre.en: '[automatic] employer'
       titre.fr: employeur
@@ -9701,6 +10307,12 @@ salarié . rémunération . indemnités CDD:
         - maintenant : Les congés peuvent être pris dès l’embauche
       titre.en: '[automatic] compensation for paid vacations'
       titre.fr: indemnité compensatrice de congés payés
+    congés payés . Méthode du dixième:
+      titre.en: '[automatic] Tenth method'
+      titre.fr: Méthode du dixième
+    congés payés . Méthode du maintien de salaire:
+      titre.en: '[automatic] Salary continuation method'
+      titre.fr: Méthode du maintien de salaire
     fin de contrat:
       titre.en: '[automatic] end of contract indemnity'
       titre.fr: indemnité de fin de contrat
@@ -9716,6 +10328,10 @@ salarié . rémunération . indemnités CDD:
   titre.en: '[automatic] CDD indemnities'
   titre.fr: indemnités CDD
 salarié . rémunération . net:
+  avec:
+    sans revenus de remplacement:
+      titre.en: '[automatic] without replacement income'
+      titre.fr: sans revenus de remplacement
   description.en: '[automatic] This is the remuneration net of contributions. It
     includes the net salary, but also elements of remuneration in kind such as
     benefits in kind, luncheon vouchers or benefits paid by the employer.'
@@ -9743,6 +10359,11 @@ salarié . rémunération . net . imposable:
     heures supplémentaires et complémentaires défiscalisées:
       titre.en: '[automatic] '
       titre.fr: heures supplémentaires et complémentaires défiscalisées
+    sans déductions:
+      description.en: '[automatic] Net taxable income before exemptions and deductions'
+      description.fr: Le net imposable avant les exonérations et déductions
+      titre.en: '[automatic] without deductions'
+      titre.fr: sans déductions
   description.en: >
     The net salary less tax deductible social contributions and more taxable
     social benefits. It's the basis used to compute income tax.
@@ -9797,6 +10418,14 @@ salarié . rémunération . primes:
         Ces primes sont prises en compte pour le calcul du salaire minimum
       titre.en: '[automatic] '
       titre.fr: primes d'activité
+    activité . base:
+      question.en: '[automatic] What are the employee bonuses?'
+      question.fr: Quel est le montant des primes liées à l'activité du salarié ?
+      titre.en: '[automatic] activity bonuses'
+      titre.fr: primes d'activité
+    activité . conventionnelles:
+      titre.en: '[automatic] conventional'
+      titre.fr: conventionnelles
     ancienneté:
       titre.en: '[automatic] seniority'
       titre.fr: ancienneté
