@@ -27,7 +27,7 @@ export function useUrl() {
 
 	const searchParams = useParamsFromSituation(situation)
 	const { currentSimulatorData } = useCurrentSimulatorData()
-	1
+
 	const { path = '' } = currentSimulatorData ?? {}
 	const siteUrl =
 		language === 'fr'
