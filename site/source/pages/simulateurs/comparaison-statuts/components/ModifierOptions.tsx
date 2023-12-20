@@ -28,8 +28,10 @@ const DOTTEDNAME_ACRE = 'dirigeant . exonérations . ACRE'
 
 const ModifierOptions = ({
 	namedEngines,
+	className
 }: {
-	namedEngines: EngineComparison
+	namedEngines: EngineComparison,
+	className?: string
 }) => {
 	const notAutoEntrepreneur = namedEngines.find(({ name }) =>
 		['EI', 'EURL', 'SARL', 'SELARL', 'SELARLU'].includes(name)
@@ -74,6 +76,7 @@ const ModifierOptions = ({
 			trigger={(buttonProps) => (
 				<Button
 					color="secondary"
+					className={className}
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...buttonProps}
 				>

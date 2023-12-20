@@ -102,7 +102,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 							paddingTop: '1rem',
 						}}
 					>
-						<ModifierOptions namedEngines={namedEngines} />
+						<ModifierOptions namedEngines={namedEngines} className="print-hidden" />
 					</div>
 				</Container>
 				<Détails namedEngines={namedEngines} expandRevenuSection />
