@@ -76,11 +76,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
     taux vente: 0.22%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace:
-  remplace:
-    - règle: taux service
-      par: 0.65%
-    - règle: taux vente
-      par: 0.29%
   par défaut: non
   une de ces conditions:
     - établissement . commune . département = 'Bas-Rhin'
@@ -88,16 +83,29 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
 
+  avec:
+    taux service:
+      remplace: taux service
+      valeur: 0.65%
+
+    taux vente:
+      remplace: taux vente
+      valeur: 0.29%
+
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Moselle:
-  remplace:
-    - règle: taux service
-      par: 0.83%
-    - règle: taux vente
-      par: 0.37%
   par défaut: non
   valeur: établissement . commune . département = 'Moselle'
   références:
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+
+  avec:
+    taux service:
+      remplace: taux service
+      valeur: 0.83%
+
+    taux vente:
+      remplace: taux vente
+      valeur: 0.37%
 
 dirigeant . auto-entrepreneur . affiliation CIPAV:
   une de ces conditions:

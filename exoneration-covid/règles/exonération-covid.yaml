@@ -16,7 +16,8 @@ secteur:
 secteur . S1:
   valeur: secteur = 'S1'
   titre: Secteur dit S1
-  description: Activités du tourisme, de l’hôtellerie, de la restauration, du sport, de la culture, du transport aérien et de l’événementiel
+  description: Activités du tourisme, de l’hôtellerie, de la restauration, du
+    sport, de la culture, du transport aérien et de l’événementiel
 
 secteur . S1bis:
   valeur: secteur = 'S1bis'
@@ -26,10 +27,14 @@ secteur . S1bis:
 secteur . S2:
   valeur: secteur = 'S2'
   titre: Secteur dit S2
-  description: Activités autres que S1 et S1bis ayant fait l'objet d'une interdiction affectant de manière prépondérante la poursuite de leur activité
+  description: Activités autres que S1 et S1bis ayant fait l'objet d'une
+    interdiction affectant de manière prépondérante la poursuite de leur
+    activité
 
 secteur . S1 ou S1bis:
-  question: Quelle était votre situation liée à la crise sanitaire durant vos mois d’activité ?
+  question:
+    Quelle était votre situation liée à la crise sanitaire durant vos mois
+    d’activité ?
   titre: ''
   description: |
     ### Baisse de 50% du chiffres d'affaires (périodes jusqu'à septembre 2021) :
@@ -152,8 +157,7 @@ mois . janvier 2021:
     possibilités:
       - LFSS 600
 
-mois . janvier 2021 . LFSS 600:
-  valeur: janvier 2021 = 'LFSS 600'
+mois . janvier 2021 . LFSS 600: janvier 2021 = 'LFSS 600'
 
 mois . février 2021:
   non applicable si: début d'activité . date >= 03/2021
@@ -162,8 +166,7 @@ mois . février 2021:
     possibilités:
       - LFSS 600
 
-mois . février 2021 . LFSS 600:
-  valeur: février 2021 = 'LFSS 600'
+mois . février 2021 . LFSS 600: février 2021 = 'LFSS 600'
 
 mois . mars 2021:
   non applicable si: début d'activité . date >= 04/2021
@@ -172,8 +175,7 @@ mois . mars 2021:
     possibilités:
       - LFSS 600
 
-mois . mars 2021 . LFSS 600:
-  valeur: mars 2021 = 'LFSS 600'
+mois . mars 2021 . LFSS 600: mars 2021 = 'LFSS 600'
 
 mois . avril 2021:
   non applicable si: début d'activité . date >= 05/2021
@@ -181,8 +183,7 @@ mois . avril 2021:
     possibilités:
       - LFSS 600
 
-mois . avril 2021 . LFSS 600:
-  valeur: avril 2021 = 'LFSS 600'
+mois . avril 2021 . LFSS 600: avril 2021 = 'LFSS 600'
 
 mois . mai 2021:
   non applicable si: début d'activité . date >= 06/2021
@@ -190,8 +191,7 @@ mois . mai 2021:
     possibilités:
       - LFSS 600
 
-mois . mai 2021 . LFSS 600:
-  valeur: mai 2021 = 'LFSS 600'
+mois . mai 2021 . LFSS 600: mai 2021 = 'LFSS 600'
 
 mois . juin 2021:
   non applicable si: début d'activité . date >= 07/2021
@@ -200,8 +200,7 @@ mois . juin 2021:
       - LFSS 600
       - LFR1
 
-mois . juin 2021 . LFSS 600:
-  valeur: juin 2021 = 'LFSS 600'
+mois . juin 2021 . LFSS 600: juin 2021 = 'LFSS 600'
 mois . juin 2021 . LFR1:
   applicable si: LFR1 applicable
   valeur: juin 2021 = 'LFR1'
@@ -213,8 +212,7 @@ mois . juillet 2021:
       - LFSS 600
       - LFR1
 
-mois . juillet 2021 . LFSS 600:
-  valeur: juillet 2021 = 'LFSS 600'
+mois . juillet 2021 . LFSS 600: juillet 2021 = 'LFSS 600'
 
 mois . juillet 2021 . LFR1:
   applicable si: LFR1 applicable
@@ -246,8 +244,7 @@ mois . septembre 2021:
     possibilités:
       - LFSS 600
 
-mois . septembre 2021 . LFSS 600:
-  valeur: septembre 2021 = 'LFSS 600'
+mois . septembre 2021 . LFSS 600: septembre 2021 = 'LFSS 600'
 
 mois . octobre 2021:
   non applicable si: début d'activité . date >= 11/2021
@@ -256,8 +253,7 @@ mois . octobre 2021:
     possibilités:
       - LFSS 600
 
-mois . octobre 2021 . LFSS 600:
-  valeur: octobre 2021 = 'LFSS 600'
+mois . octobre 2021 . LFSS 600: octobre 2021 = 'LFSS 600'
 
 mois . novembre 2021:
   non applicable si: début d'activité . date >= 12/2021
@@ -266,8 +262,7 @@ mois . novembre 2021:
     possibilités:
       - LFSS 600
 
-mois . novembre 2021 . LFSS 600:
-  valeur: novembre 2021 = 'LFSS 600'
+mois . novembre 2021 . LFSS 600: novembre 2021 = 'LFSS 600'
 
 mois . décembre 2021:
   une possibilité:
@@ -279,8 +274,7 @@ mois . décembre 2021 . LFSS 600:
   valeur: décembre 2021 = 'LFSS 600'
   meta:
     baisse d'au moins: 65%
-mois . décembre 2021 . LFSS 300:
-  valeur: décembre 2021 = 'LFSS 300'
+mois . décembre 2021 . LFSS 300: décembre 2021 = 'LFSS 300'
 
 mois . janvier 2022:
   une possibilité:
@@ -292,8 +286,7 @@ mois . janvier 2022 . LFSS 600:
   valeur: janvier 2022 = 'LFSS 600'
   meta:
     baisse d'au moins: 65%
-mois . janvier 2022 . LFSS 300:
-  valeur: janvier 2022 = 'LFSS 300'
+mois . janvier 2022 . LFSS 300: janvier 2022 = 'LFSS 300'
 
 mois . février 2022:
   une possibilité:
@@ -305,18 +298,20 @@ mois . février 2022 . LFSS 600:
   valeur: février 2022 = 'LFSS 600'
   meta:
     baisse d'au moins: 65%
-mois . février 2022 . LFSS 300:
-  valeur: février 2022 = 'LFSS 300'
+mois . février 2022 . LFSS 300: février 2022 = 'LFSS 300'
 
 LFSS 600:
   applicable si: secteur . S1 ou S1bis
   produit:
+    - assiette
+    - mois éligibles
+
+  avec:
     assiette:
-      nom: assiette
       valeur: 600
       unité: €/mois
-    facteur:
-      nom: mois éligibles
+
+    mois éligibles:
       unité: mois
       description: Nombre de mois éligible à l'exonération LFSS à 600 €
       somme:
@@ -354,12 +349,15 @@ LFSS 600 . montant mensuel: LFSS 600 . assiette * 1 mois
 LFSS 300:
   applicable si: secteur . S1 ou S1bis
   produit:
+    - assiette
+    - mois éligibles
+
+  avec:
     assiette:
-      nom: assiette
       valeur: 300
       unité: €/mois
-    facteur:
-      nom: mois éligibles
+
+    mois éligibles:
       description: Nombre de mois éligible à l'exonération LFSS à 300€
       unité: mois
       somme:
@@ -389,14 +387,17 @@ LFR1 applicable:
 
 LFR1:
   produit:
+    - assiette
+    - mois éligibles
+
+  avec:
     assiette:
-      nom: assiette
       valeur: 250
       unité: €/mois
-    facteur:
+
+    mois éligibles:
       unité: mois
       description: Nombre de mois éligible à l'exonération LFR1
-      nom: mois éligibles
       somme:
         - valeur: mois . juin 2021 . LFR1
           par défaut: non
@@ -409,15 +410,17 @@ LFR1 . montant mensuel: LFR1 . assiette * 1 mois
 
 exonération S2:
   produit:
-    assiette:
-      nom: assiette
-      valeur: 600
-      unité: €/mois
-    facteur: mois éligibles
+    - assiette
+    - mois éligibles
   applicable si:
     toutes ces conditions:
       - secteur . S2
       - début d'activité . date <= mois éligibles . dernier mois
+
+  avec:
+    assiette:
+      valeur: 600
+      unité: €/mois
 
 exonération S2 . montant mensuel: exonération S2 . assiette * 1 mois
 
@@ -426,16 +429,21 @@ exonération S2 . mois éligibles:
   unité: mois
   arrondi: oui
   question:
-    texte: Précisez le nombre de mois entre {{ premier mois }} et {{ dernier mois }} durant lesquels vous avez fait l’objet d’une mesure d’interdiction affectant de manière prépondérante la poursuite de votre activité
-  plafond:
-    nom: plafond
-    somme:
-      - durée:
-          depuis: premier mois
-          jusqu'à: dernier mois
-        arrondi: oui
-        unité: mois
-      - 1 mois
+    texte:
+      Précisez le nombre de mois entre {{ premier mois }} et {{ dernier mois }}
+      durant lesquels vous avez fait l’objet d’une mesure d’interdiction
+      affectant de manière prépondérante la poursuite de votre activité
+  plafond: plafond
+
+  avec:
+    plafond:
+      somme:
+        - durée:
+            depuis: premier mois
+            jusqu'à: dernier mois
+          arrondi: oui
+          unité: mois
+        - 1 mois
 
 exonération S2 . mois éligibles . premier mois:
   variations:
@@ -445,8 +453,7 @@ exonération S2 . mois éligibles . premier mois:
       alors: 02/2021
     - si: début d'activité . date > dernier mois
       alors: dernier mois
-    - sinon:
-        valeur: début d'activité . date
+    - sinon: début d'activité . date
 
 exonération S2 . mois éligibles . dernier mois:
   variations:
@@ -523,7 +530,8 @@ code . LFSS:
     - si: LFSS 300 = 0€
       alors:
         texte: O;{{ mois 600 }}
-    - sinon: # LFSS 300 et 600
+    - sinon:
+        # LFSS 300 et 600
         texte: O;{{ mois 600 }};{{ mois 300}}
 
 code . LFSS . mois S2:

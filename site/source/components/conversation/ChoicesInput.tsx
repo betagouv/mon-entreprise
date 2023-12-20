@@ -1,8 +1,8 @@
 import { DottedName } from 'modele-social'
 import {
+	ASTNode,
 	EvaluatedNode,
 	Evaluation,
-	RuleNode,
 	serializeEvaluation,
 } from 'publicodes'
 import { Fragment, Key, useCallback, useEffect, useRef, useState } from 'react'
@@ -45,8 +45,8 @@ const relativeDottedName = (rootDottedName: string, childDottedName: string) =>
 
 */
 
-export type Choice = RuleNode & {
-	children: Array<RuleNode | Choice>
+export type Choice = ASTNode<'rule'> & {
+	children: Array<ASTNode<'rule'> | Choice>
 	canGiveUp?: boolean
 }
 

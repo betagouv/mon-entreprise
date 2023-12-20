@@ -154,13 +154,6 @@ dirigeant . assimilé salarié:
     Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors au régime général de la sécurité sociale, avec quelques contraintes cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas droit.
   valeur: régime social = 'assimilé salarié'
   par défaut: non
-  remplace:
-    - règle: salarié
-      par: oui
-    - règle: salarié . contrat
-      par: "'CDI'"
-    - règle: salarié . contrat . statut cadre
-      par: oui
   rend non applicable:
     - salarié . rémunération . primes
     - salarié . rémunération . frais professionnels
@@ -186,6 +179,19 @@ dirigeant . assimilé salarié:
   références:
     Le régime des dirigeants: https://www.urssaf.fr/portail/home/employeur/creer/choisir-une-forme-juridique/le-statut-du-dirigeant/les-dirigeants-assimiles-salarie.html
   note: Nous ne gérons pas le cas des SAS(U) à l'IR pour l'instant
+
+  avec:
+    salarié:
+      remplace: salarié
+      valeur: oui
+
+    salarié contrat:
+      remplace: salarié . contrat
+      valeur: "'CDI'"
+
+    salarié contrat statut cadre:
+      remplace: salarié . contrat . statut cadre
+      valeur: oui
 
 dirigeant . assimilé salarié . cotisations:
   valeur: salarié . cotisations

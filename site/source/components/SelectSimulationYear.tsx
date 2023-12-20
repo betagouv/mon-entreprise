@@ -1,4 +1,3 @@
-import { Evaluation } from 'publicodes'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -19,8 +18,7 @@ export const SelectSimulationYear = () => {
 	const choices = [2022, 2023]
 
 	const actualYear = Number(
-		(year.nodeValue?.toString().slice(-4) as Evaluation<number> | undefined) ||
-			new Date().getFullYear()
+		year.nodeValue?.toString().slice(-4) || new Date().getFullYear()
 	)
 
 	// return null // Waiting for next year.

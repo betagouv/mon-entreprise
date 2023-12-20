@@ -2,39 +2,49 @@
 
 exports[`calculate simulations-artiste-auteur > bnc 1`] = `
 "artiste-auteur . cotisations: 1230
-artiste-auteur . cotisations . IRCEC: 0"
+artiste-auteur . cotisations . IRCEC: 0
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-artiste-auteur > bnc 2`] = `
 "artiste-auteur . cotisations: 1863
-artiste-auteur . cotisations . IRCEC: 920"
+artiste-auteur . cotisations . IRCEC: 920
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-artiste-auteur > bnc 3`] = `
 "artiste-auteur . cotisations: 931
 artiste-auteur . cotisations . IRCEC: 0
 
-Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
+Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite, entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 1`] = `
 "artiste-auteur . cotisations: 473
-artiste-auteur . cotisations . IRCEC: 0"
+artiste-auteur . cotisations . IRCEC: 0
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 1`] = `
 "artiste-auteur . cotisations: 160
 artiste-auteur . cotisations . IRCEC: 0
 
-Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
+Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite, entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 2`] = `
 "artiste-auteur . cotisations: 1603
-artiste-auteur . cotisations . IRCEC: 800"
+artiste-auteur . cotisations . IRCEC: 800
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 3`] = `
 "artiste-auteur . cotisations: 1049
-artiste-auteur . cotisations . IRCEC: 8000"
+artiste-auteur . cotisations . IRCEC: 8000
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;

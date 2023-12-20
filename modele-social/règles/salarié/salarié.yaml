@@ -103,18 +103,6 @@ salarié . régimes spécifiques . DFS:
     En l’absence de frais effectivement engagés, ou si l’employeur prend en charge ou rembourse la totalité des frais professionnels, il est impossible d’appliquer la DFS.
   question: Le salarié bénéficie-t-il d'une déduction forfaitaire spécifique ?
   par défaut: non
-  remplace:
-    règle: cotisations . assiette
-    par:
-      valeur: cotisations . assiette
-      abattement:
-        valeur: taux * cotisations . assiette
-        plafond: 7600 €/an
-      plancher: assiette minimale
-    sauf dans: salarié . cotisations . CSG-CRDS
-    # TODO: ajouter pas d'abattement pour l'assurance chômage mais seulement
-    # pour les journalistes. Nécessite probablement de faire un re-remplacement
-    # inverse.
   références:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
 
@@ -123,6 +111,16 @@ salarié . régimes spécifiques . DFS:
       valeur: rémunération . assiette de vérification du SMIC
       contexte:
         contrat . salaire brut: SMIC . horaire * temps de travail . effectif
+
+    cotisations assiette:
+      valeur: cotisations . assiette
+      abattement:
+        valeur: taux * cotisations . assiette
+        plafond: 7600 €/an
+      plancher: assiette minimale
+      remplace:
+        références à: cotisations . assiette
+        sauf dans: salarié . cotisations . CSG-CRDS
 
     taux:
       variations:
@@ -182,27 +180,46 @@ salarié . régimes spécifiques . DFS . profession:
         moniteurs d’aéro-clubs et des écoles d’aviation civile
 
 salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux:
-  remplace:
-    - règle: cotisations . vieillesse . employeur . plafonnée . taux
-      par: cotisations . vieillesse . employeur . plafonnée . taux * réduction de taux
-    - règle: cotisations . vieillesse . employeur . déplafonnée . taux
-      par:
+  valeur: 80%
+
+  avec:
+    cotisations allocations familiales taux:
+      remplace: cotisations . allocations familiales . taux
+      valeur: cotisations . allocations familiales . taux * réduction de taux
+
+    cotisations ATMP taux:
+      remplace: cotisations . ATMP . taux
+      valeur: cotisations . ATMP . taux * réduction de taux
+
+    cotisations ATMP taux minimum:
+      remplace: cotisations . ATMP . taux minimum
+      valeur: cotisations . ATMP . taux minimum * réduction de taux
+
+    cotisations versement mobilité:
+      remplace: cotisations . versement mobilité
+      valeur: cotisations . versement mobilité * réduction de taux
+
+    cotisations vieillesse employeur déplafonnée taux:
+      remplace: cotisations . vieillesse . employeur . déplafonnée . taux
+      valeur:
         cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
         taux
-    - règle: cotisations . vieillesse . salarié . plafonnée . taux
-      par: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
-    - règle: cotisations . vieillesse . salarié . déplafonnée . taux
-      par: cotisations . vieillesse . salarié . déplafonnée . taux * réduction de taux
 
-    - règle: cotisations . allocations familiales . taux
-      par: cotisations . allocations familiales . taux * réduction de taux
-    - règle: cotisations . versement mobilité
-      par: cotisations . versement mobilité * réduction de taux
-    - règle: cotisations . ATMP . taux
-      par: cotisations . ATMP . taux * réduction de taux
-    - règle: cotisations . ATMP . taux minimum
-      par: cotisations . ATMP . taux minimum * réduction de taux
-  valeur: 80%
+    cotisations vieillesse employeur plafonnée taux:
+      remplace: cotisations . vieillesse . employeur . plafonnée . taux
+      valeur:
+        cotisations . vieillesse . employeur . plafonnée . taux * réduction de
+        taux
+
+    cotisations vieillesse salarié déplafonnée taux:
+      remplace: cotisations . vieillesse . salarié . déplafonnée . taux
+      valeur:
+        cotisations . vieillesse . salarié . déplafonnée . taux * réduction de
+        taux
+
+    cotisations vieillesse salarié plafonnée taux:
+      remplace: cotisations . vieillesse . salarié . plafonnée . taux
+      valeur: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
 
 salarié . régimes spécifiques . DFS . profession . journaliste . abattement fiscal:
   remplace: rémunération . net . imposable

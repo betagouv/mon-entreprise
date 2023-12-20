@@ -144,7 +144,7 @@ dirigeant . indépendant . assiette minimale . retraite . en 2022:
 
     L’assiette minimale est de 4 758 €  pour 2022 uniquement. Pour 2023, on repasse à une assiette minimale de 11,5% du PASS.
   remplace:
-    règle: assiette minimale . retraite
+    références à: assiette minimale . retraite
     sauf dans: cotisations et contributions . invalidité et décès
   applicable si:
     toutes ces conditions:
@@ -184,7 +184,7 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac . rev
   titre: assiette des cotisations (avec déduction tabac)
   applicable si: déduction tabac
   remplace:
-    règle: assiette des cotisations
+    références à: assiette des cotisations
     dans:
       - retraite de base
       - retraite complémentaire

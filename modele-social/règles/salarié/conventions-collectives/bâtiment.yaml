@@ -49,18 +49,26 @@ salarié . convention collective . BTP . catégorie . etam:
   description: Employé, technicien, angent de maîtrise
   icônes: 👷‍♂️
   formule: catégorie = 'etam'
-  remplace:
-    - règle: cotisations . retraite complémentaire . employeur . taux T1
-      par: 4.47%
-    - règle: cotisations . retraite complémentaire . employeur . taux T2
-      par: 12.70%
-    - règle: cotisations . retraite complémentaire . salarié . taux T1
-      par: 3.40%
-    - règle: cotisations . retraite complémentaire . salarié . taux T2
-      par: 8.89%
   note: >-
     Répartition conventionnelle fixée par l’article 5 de l’Accord du BTP du 13
     décembre 1990.
+
+  avec:
+    cotisations retraite complémentaire employeur taux T1:
+      remplace: cotisations . retraite complémentaire . employeur . taux T1
+      valeur: 4.47%
+
+    cotisations retraite complémentaire employeur taux T2:
+      remplace: cotisations . retraite complémentaire . employeur . taux T2
+      valeur: 12.70%
+
+    cotisations retraite complémentaire salarié taux T1:
+      remplace: cotisations . retraite complémentaire . salarié . taux T1
+      valeur: 3.40%
+
+    cotisations retraite complémentaire salarié taux T2:
+      remplace: cotisations . retraite complémentaire . salarié . taux T2
+      valeur: 8.89%
 
 salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire:
   somme:
@@ -86,9 +94,11 @@ salarié . convention collective . BTP . catégorie . cadre:
   formule: catégorie = 'cadre'
   titre: Cadre
   icônes: 👩‍💼
-  remplace:
-    - règle: contrat . statut cadre
-      par: oui
+
+  avec:
+    contrat statut cadre:
+      remplace: contrat . statut cadre
+      valeur: oui
 
 salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire:
   somme:

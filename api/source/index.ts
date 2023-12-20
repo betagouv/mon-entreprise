@@ -51,7 +51,7 @@ router.use(
 	rateLimiterMiddleware,
 	redisCacheMiddleware(),
 	analyticsMiddleware,
-	v1unitéAdapterMiddleware,
+	v1unitéAdapterMiddleware(),
 	apiRoutes
 )
 

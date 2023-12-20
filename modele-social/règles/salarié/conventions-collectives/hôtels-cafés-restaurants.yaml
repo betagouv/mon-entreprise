@@ -6,7 +6,8 @@ salarié . convention collective . HCR:
 
 salarié . convention collective . HCR . montant forfaitaire d'un repas:
   remplace:
-    règle: rémunération . avantages en nature . nourriture . montant . repas
+    références à:
+      rémunération . avantages en nature . nourriture . montant . repas
       forfaitaire
   formule: 3.94 €/repas
 

@@ -1290,7 +1290,7 @@ salarié . cotisations . assiette forfaitaire:
         - exonérations . réduction générale
         - exonérations . lodeom
       remplace:
-        - règle: cotisations . assiette
+        - références à: cotisations . assiette
           sauf dans:
             - chômage
             - retraite complémentaire
@@ -1298,15 +1298,7 @@ salarié . cotisations . assiette forfaitaire:
             - CET
             - convention collective
             - vieillesse
-        - règle: CSG-CRDS . assiette de base . assiette abattue
-        - règle: temps de travail . plafond sécurité sociale
-          par: plafond sécurité sociale
-          sauf dans:
-            - chômage
-            - retraite complémentaire
-            - CEG
-            - CET
-            - convention collective
+        - références à: CSG-CRDS . assiette de base . assiette abattue
 
       valeur: assiette forfaitaire
       plancher:
@@ -1320,6 +1312,18 @@ salarié . cotisations . assiette forfaitaire:
       note: |
         Il existe une règle générale d'encadrement des assiettes forfaitaires. Lorsque la rémunération est supérieure ou égale à
         1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
+
+      avec:
+        temps de travail plafond sécurité sociale:
+          remplace:
+            références à: temps de travail . plafond sécurité sociale
+            sauf dans:
+              - chômage
+              - retraite complémentaire
+              - CEG
+              - CET
+              - convention collective
+          valeur: plafond sécurité sociale
 
     rémunération réelle:
       question:

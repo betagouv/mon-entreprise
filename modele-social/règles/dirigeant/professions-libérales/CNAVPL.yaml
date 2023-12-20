@@ -6,7 +6,7 @@ dirigeant . indépendant . PL . CNAVPL:
   non applicable si: régime général
   valeur: oui
   rend non applicable:
-    règle: situation personnelle . RSA
+    références à: situation personnelle . RSA
     dans: dirigeant . indépendant . cotisations et contributions
   références:
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
@@ -63,12 +63,16 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
 dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
   titre: Remplacement de la retraite de base
   non applicable si: PL . CNBF
-  remplace:
-    - règle: cotisations et contributions . retraite de base
-      par: retraite
-    - règle: cotisations et contributions . retraite de base . taux
-      par: retraite . tranche T1 . taux
   valeur: oui
+
+  avec:
+    cotisations et contributions retraite de base:
+      remplace: cotisations et contributions . retraite de base
+      valeur: retraite
+
+    cotisations et contributions retraite de base taux:
+      remplace: cotisations et contributions . retraite de base . taux
+      valeur: retraite . tranche T1 . taux
 
 dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
   description: |

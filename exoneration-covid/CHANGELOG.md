@@ -1,3 +1,7 @@
+## 1.0.0-rc.1
+
+Use publicodes v1.0.0-rc.4
+
 ## 0.6.0
 
 Exporte les règles au format json pour optimiser le chargement

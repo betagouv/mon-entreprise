@@ -1,4 +1,3 @@
-import { Evaluation } from 'publicodes'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
@@ -21,7 +20,7 @@ export default function SimulateurWarning({
 	const year = useContext(EngineContext)
 		.evaluate('date')
 		.nodeValue?.toString()
-		.slice(-4) as Evaluation<number> | undefined
+		.slice(-4)
 
 	return (
 		<Warning

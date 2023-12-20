@@ -77,7 +77,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
         assiette gérant:
           valeur: assiette des cotisations - cotisations . assiette
           remplace:
-            règle: assiette des cotisations
+            références à: assiette des cotisations
             dans:
               - cotisations et contributions . retraite de base
               - cotisations et contributions . retraite complémentaire

@@ -4,13 +4,14 @@ déclaration charge sociales:
     Ces règles calculent les montants des charges sociales à reporter dans la
     déclaration de revenu des indépendants et dans les déclaration de résultats.
   formule: non
-  remplace:
-    - règle: dirigeant . exonérations . ACRE
-      par: ACRE
+  avec:
+    dirigeant exonérations ACRE:
+      remplace: dirigeant . exonérations . ACRE
+      valeur: ACRE
 
-    # Par défaut on  considère que l'entreprise est mixte et on affiche tous les champs
-    - règle: entreprise . activités . revenus mixtes
-      par: oui
+    entreprise activités revenus mixtes:
+      remplace: entreprise . activités . revenus mixtes
+      valeur: oui
 
 déclaration charge sociales . comptabilité:
   titre: régime de la déclaration contrôlée
@@ -37,14 +38,17 @@ déclaration charge sociales . cotisations payées:
       - comptabilité . trésorerie
       - entreprise . imposition . IS
   valeur: oui
-  remplace:
-    - règle: résultat . cotisations obligatoires
-      par: cotisations payées . cotisations sociales
-    - règle: résultat . total charges sociales déductible
-      par:
-        somme:
-          - cotisations payées . cotisations sociales
-          - cotisations payées . CSG déductible et CFP
+
+  avec:
+    résultat cotisations obligatoires:
+      remplace: résultat . cotisations obligatoires
+      valeur: cotisations payées . cotisations sociales
+
+    résultat total charges sociales déductible:
+      somme:
+        - cotisations payées . cotisations sociales
+        - cotisations payées . CSG déductible et CFP
+      remplace: résultat . total charges sociales déductible
 
 déclaration charge sociales . cotisations payées . CSG déductible et CFP:
   question: Quel est le montant total de CSG déductible et CFP payées cette année ?
@@ -62,12 +66,6 @@ déclaration charge sociales . cotisations payées . cotisations sociales:
 déclaration charge sociales . nature de l'activité:
   remplace:
     - entreprise . activité . nature
-    - règle: entreprise . activité . nature . libérale
-      par: libérale
-    - règle: entreprise . activité . nature . artisanale
-      par: artisanale
-    - règle: entreprise . activité . nature . commerciale
-      par: commerciale
   question: Quelle est la nature de votre activité ?
   par défaut: "'artisanale'"
   valeur:
@@ -80,6 +78,19 @@ déclaration charge sociales . nature de l'activité:
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887
+
+  avec:
+    entreprise activité nature artisanale:
+      remplace: entreprise . activité . nature . artisanale
+      valeur: artisanale
+
+    entreprise activité nature commerciale:
+      remplace: entreprise . activité . nature . commerciale
+      valeur: commerciale
+
+    entreprise activité nature libérale:
+      remplace: entreprise . activité . nature . libérale
+      valeur: libérale
 
 déclaration charge sociales . ACRE:
   description: >-

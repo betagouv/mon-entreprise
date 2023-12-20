@@ -4,19 +4,6 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid:
       - date >= 01/2020
       - date <= 31/12/2021
   titre: Réduction de cotisation Covid
-  remplace:
-    - règle: cotisations
-      par:
-        valeur: cotisations
-        abattement: exonérations . covid . part cotisations
-    - règle: CSG-CRDS . non déductible
-      par:
-        valeur: CSG-CRDS . non déductible
-        abattement: exonérations . covid . part CSG . non déductible
-    - règle: CSG-CRDS . déductible
-      par:
-        valeur: CSG-CRDS . déductible
-        abattement: exonérations . covid . part CSG . déductible
 
   question: Remplissez-vous les conditions pour bénéficier de la réduction des
     cotisations et contributions sociales 2021 liées à la crise du Covid-19 ?
@@ -49,6 +36,21 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid:
 
     Pour plus d’information, et connaitre le montant de l’exonération dont vous pouvez bénéficier, vous pouvez utiliser le [simulateur d’exonération COVID](/simulateurs/exonération-covid "Nouvelle fenêtre").
   par défaut: non
+  avec:
+    cotisations:
+      valeur: cotisations
+      abattement: exonérations . covid . part cotisations
+      remplace: cotisations
+
+    CSG-CRDS déductible:
+      valeur: CSG-CRDS . déductible
+      abattement: exonérations . covid . part CSG . déductible
+      remplace: CSG-CRDS . déductible
+
+    CSG-CRDS non déductible:
+      valeur: CSG-CRDS . non déductible
+      abattement: exonérations . covid . part CSG . non déductible
+      remplace: CSG-CRDS . non déductible
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . montant:
   question:
@@ -62,12 +64,13 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid 
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . conjoint collaborateur:
   applicable si: conjoint collaborateur
-  remplace:
-    règle: conjoint collaborateur . cotisations
-    par:
+  valeur: montant
+
+  avec:
+    conjoint collaborateur cotisations:
       valeur: conjoint collaborateur . cotisations
       abattement: exonérations . covid . conjoint collaborateur
-  valeur: montant
+      remplace: conjoint collaborateur . cotisations
 
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . total:
   description: Intégrée dans le montant des cotisations affiché ci-dessus
