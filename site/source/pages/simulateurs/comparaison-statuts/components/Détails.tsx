@@ -37,7 +37,7 @@ const Détails = ({
 					: theme.colors.bases.primary[200]
 			}
 		>
-			<Accordion
+			<StyledAccordion
 				$variant="light"
 				defaultExpandedKeys={expandRevenuSection ? ['revenus'] : []}
 				title={
@@ -48,7 +48,7 @@ const Détails = ({
 				isFoldable
 			>
 				
-				<Item
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>Vos revenus</Trans>&nbsp;
@@ -58,7 +58,6 @@ const Détails = ({
 					key="revenus"
 					hasChildItems={false}
 				>
-				<OuterContainer>
 				<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Revenu net mensuel après impôts</Trans>
@@ -161,9 +160,8 @@ const Détails = ({
 						)}
 					/>
 				</OuterOuterContainer>
-				</OuterContainer>
-				</Item>
-				<Item
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>Vos droits pour la retraite</Trans>&nbsp;
@@ -173,7 +171,6 @@ const Détails = ({
 					key="retraite"
 					hasChildItems={false}
 				>
-					<OuterContainer>
 					<OuterOuterContainer>
 					<Body>
 						<Trans>
@@ -232,9 +229,8 @@ const Détails = ({
 						evolutionLabel={<Trans>au bout de 10 ans</Trans>}
 					/>
 				</OuterOuterContainer>
-				</OuterContainer>
-				</Item>
-				<Item
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>Vos prestations santé</Trans>&nbsp;
@@ -244,8 +240,6 @@ const Détails = ({
 					key="santé"
 					hasChildItems={false}
 				>
-									
-					<OuterContainer>
 					<OuterOuterContainer>
 					<Body
 						style={{
@@ -354,9 +348,8 @@ const Détails = ({
 						evolutionLabel={<Trans>à partir du 29ème jour</Trans>}
 					/>
 					</OuterOuterContainer>
-					</OuterContainer>
-				</Item>
-				<Item
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>La maternité, paternité et adoption</Trans>&nbsp;
@@ -366,7 +359,6 @@ const Détails = ({
 					key="enfants"
 					hasChildItems={false}
 				>
-					<OuterContainer>
 					<OuterOuterContainer>
 					<Body
 						style={{
@@ -438,9 +430,8 @@ const Détails = ({
 						label={<Trans>versés en une fois</Trans>}
 					/>
 					</OuterOuterContainer>
-					</OuterContainer>
-				</Item>
-				<Item
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>Votre couverture invalidité et décès</Trans>&nbsp;
@@ -450,7 +441,6 @@ const Détails = ({
 					key="maladie"
 					hasChildItems={false}
 				>
-					<OuterContainer>
 					<OuterOuterContainer>
 					<Body>
 						<Trans>
@@ -588,9 +578,8 @@ const Détails = ({
 						unit="€/enfant"
 					/>
 					</OuterOuterContainer>
-					</OuterContainer>
-				</Item>
-				<Item
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>
@@ -601,7 +590,6 @@ const Détails = ({
 					key="administratif"
 					hasChildItems={false}
 				>
-					<OuterContainer>
 					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Coût de création</Trans>
@@ -664,9 +652,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 					/>
 				</OuterOuterContainer>
-				</OuterContainer>
-				</Item>
-			</Accordion>
+				</StyledItem>
+			</StyledAccordion>
 		</Container>
 	)
 }
@@ -698,7 +685,7 @@ const Precisions = styled.span`
 
 const StyledDiv = styled.div`
 	display: flex;
-
+	
 	svg {
 		width: 2.5rem;
 		margin-right: 1rem;
@@ -718,16 +705,21 @@ const BlackColoredLink = styled(StyledLink)`
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
 `
 
-
 const OuterOuterContainer = styled.div`
 	@media print {
 		page-break-inside: avoid;
 	}
 `
 
-const OuterContainer = styled.div`
+const StyledAccordion = styled(Accordion)`
 @media print {
-	page-break-after: always;
+	page-break-after: avoid;
+}
+`
+
+const StyledItem = styled(Item)`
+@media print {
+	page-break-inside: avoid;
 }
 `
 

@@ -262,6 +262,10 @@ const StyledContent = styled(animated.div)<{
 	$variant?: 'light'
 }>`
 	overflow: hidden;
+	@media print {
+		overflow: visible;
+		display: table;
+	}
 	> div {
 		margin: ${({ theme, $variant }) =>
 			$variant !== 'light' && theme.spacings.lg};

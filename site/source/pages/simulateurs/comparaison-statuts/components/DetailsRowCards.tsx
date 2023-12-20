@@ -90,9 +90,8 @@ const DetailsRowCards = ({
 		<Grid container spacing={4}>
 			{groupedOptions.map((sameValueOptions) => {
 				const statusObject = sameValueOptions[0]
-
 				return (
-					<Grid
+					<StyledGrid
 						key={statusObject.name}
 						item
 						{...getGridSizes(sameValueOptions.length, options.length)}
@@ -189,7 +188,7 @@ const DetailsRowCards = ({
 								)}
 							</StyledBody>
 						</StatusCard>
-					</Grid>
+					</StyledGrid>
 				)
 			})}
 		</Grid>
@@ -231,6 +230,11 @@ const StyledDiv = styled.div`
 	width: 100%;
 	display: flex;
 	align-items: center;
+`
+const StyledGrid = styled(Grid)`
+	@media print {
+		width: 33%;
+}
 `
 
 export default DetailsRowCards
