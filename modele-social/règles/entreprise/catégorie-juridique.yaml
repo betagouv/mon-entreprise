@@ -246,9 +246,11 @@ entreprise . catégorie juridique . remplacements:
       toutes ces conditions:
         - remplacements
         - EI
-      remplace:
-        - règle: associés
-          par: "'unique'"
+
+      avec:
+        associés:
+          remplace: associés
+          valeur: "'unique'"
 
     pas profession libérale reglementée:
       privé: oui
@@ -266,34 +268,49 @@ entreprise . catégorie juridique . remplacements:
         une de ces conditions:
           - SELARL
           - SELAS
-      remplace:
-        - règle: activités . libérale
-          par: oui
-        - règle: activités . libérale . réglementée
-          par: oui
-        # TODO : remove when old activity modele is not used anymore :
-        - règle: entreprise . activité . nature
-          par: "'libérale'"
-        - règle: entreprise . activité . nature . libérale . réglementée
-          par: oui
       rend non applicable:
         - activités . commerciale
         - activités . agricole
         - activités . artisanale
 
+      avec:
+        activités libérale:
+          remplace: activités . libérale
+          valeur: oui
+
+        activités libérale réglementée:
+          remplace: activités . libérale . réglementée
+          valeur: oui
+
+        entreprise activité nature:
+          remplace: entreprise . activité . nature
+          valeur: "'libérale'"
+
+        entreprise activité nature libérale réglementée:
+          remplace: entreprise . activité . nature . libérale . réglementée
+          valeur: oui
+
     régime micro-entreprise:
       privé: oui
       valeur: oui
       applicable si: EI . auto-entrepreneur
-      remplace:
-        - règle: imposition . régime
-          par: "'micro-entreprise'"
-        - règle: entreprise . imposition
-          par: "'IR'"
-        - règle: entreprise . imposition . IR
-          par: oui
-        - règle: entreprise . imposition . IS
-          par: non
+
+      avec:
+        entreprise imposition:
+          remplace: entreprise . imposition
+          valeur: "'IR'"
+
+        entreprise imposition IR:
+          remplace: entreprise . imposition . IR
+          valeur: oui
+
+        entreprise imposition IS:
+          remplace: entreprise . imposition . IS
+          valeur: non
+
+        imposition régime:
+          remplace: imposition . régime
+          valeur: "'micro-entreprise'"
 
     SASU option IR non implémentée:
       privé: oui
@@ -302,6 +319,8 @@ entreprise . catégorie juridique . remplacements:
         une de ces conditions:
           - SAS
           - SELAS
-      remplace:
-        règle: entreprise . imposition
-        par: "'IS'"
+
+      avec:
+        entreprise imposition:
+          remplace: entreprise . imposition
+          valeur: "'IS'"

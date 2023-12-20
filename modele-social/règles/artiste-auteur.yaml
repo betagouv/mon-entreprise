@@ -73,10 +73,6 @@ artiste-auteur . cotisations . option surcotisation:
     toutes ces conditions:
       - assiette > 0
       - assiette < assiette surcotisation
-  remplace:
-    règle: assiette
-    dans: vieillesse
-    par: assiette surcotisation
   question: Souhaitez-vous surcotiser pour augmenter vos droits à retraite ?
   description: |
     Vos revenus sont en dessous des seuils vous permettant de valider l'ensemble
@@ -88,6 +84,13 @@ artiste-auteur . cotisations . option surcotisation:
   par défaut: non
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/la-surcotisation.html
+
+  avec:
+    assiette vieillesse:
+      remplace:
+        références à: assiette
+        dans: vieillesse
+      valeur: assiette surcotisation
 
 artiste-auteur . cotisations . assiette surcotisation:
   produit:

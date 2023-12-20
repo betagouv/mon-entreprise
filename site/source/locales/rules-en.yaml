@@ -204,6 +204,10 @@ artiste-auteur . cotisations . formation professionnelle:
   titre.en: professional training
   titre.fr: formation professionnelle
 artiste-auteur . cotisations . option surcotisation:
+  avec:
+    assiette vieillesse:
+      titre.en: '[automatic] pension base'
+      titre.fr: assiette vieillesse
   description.en: >
     [automatic] Your income is below the thresholds allowing you to validate all
     your social
@@ -418,6 +422,16 @@ dirigeant:
   titre.en: '[automatic] manager'
   titre.fr: dirigeant
 dirigeant . assimilé salarié:
+  avec:
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
+    salarié contrat:
+      titre.en: '[automatic] employee contract'
+      titre.fr: salarié contrat
+    salarié contrat statut cadre:
+      titre.en: '[automatic] employee contract executive status'
+      titre.fr: salarié contrat statut cadre
   description.en: >
     [automatic] Some company directors (this is notably the case for SASU) are
     considered by the social security system as being assimilated to employees.
@@ -538,9 +552,23 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   titre.en: '[automatic] jobs'
   titre.fr: métiers
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Alsace:
+  avec:
+    taux service:
+      titre.en: '[automatic] service rate'
+      titre.fr: taux service
+    taux vente:
+      titre.en: '[automatic] sales rate'
+      titre.fr: taux vente
   titre.en: '[automatic] Alsace rate'
   titre.fr: taux Alsace
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . taux Moselle:
+  avec:
+    taux service:
+      titre.en: '[automatic] service rate'
+      titre.fr: taux service
+    taux vente:
+      titre.en: '[automatic] sales rate'
+      titre.fr: taux vente
   titre.en: '[automatic] Moselle rate'
   titre.fr: taux Moselle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
@@ -1444,6 +1472,10 @@ dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré pa
   titre.en: '[automatic] pay-as-you-go portion'
   titre.fr: part géré par répartition
 dirigeant . indépendant . PL . CIPAV:
+  avec:
+    cotisations et contributions retraite complémentaire:
+      titre.en: '[automatic] supplementary pension contributions'
+      titre.fr: cotisations et contributions retraite complémentaire
   description.en: >
     [automatic] CIPAV is the independent pension fund for the regulated
     professions.
@@ -1649,6 +1681,13 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
   titre.en: '[automatic] daily sickness benefits'
   titre.fr: indemnités journalières maladie
 dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
+  avec:
+    cotisations et contributions retraite de base:
+      titre.en: '[automatic] basic pension contributions'
+      titre.fr: cotisations et contributions retraite de base
+    cotisations et contributions retraite de base taux:
+      titre.en: '[automatic] basic pension contributions rates'
+      titre.fr: cotisations et contributions retraite de base taux
   titre.en: '[automatic] Replacement of the basic pension'
   titre.fr: Remplacement de la retraite de base
 dirigeant . indépendant . PL . CNAVPL . retraite:
@@ -2969,6 +3008,16 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . 
   titre.en: '[automatic] rate'
   titre.fr: taux
 dirigeant . indépendant . cotisations et contributions . exonérations . covid:
+  avec:
+    CSG-CRDS déductible:
+      titre.en: '[automatic] Deductible CSG-CRDS'
+      titre.fr: CSG-CRDS déductible
+    CSG-CRDS non déductible:
+      titre.en: '[automatic] Non-deductible CSG-CRDS'
+      titre.fr: CSG-CRDS non déductible
+    cotisations:
+      titre.en: '[automatic] contributions'
+      titre.fr: cotisations
   description.en: '[automatic] '
   description.fr: >-
     Dans le cadre de la crise sanitaire, le Gouvernement a mis en œuvre
@@ -3026,6 +3075,10 @@ dirigeant . indépendant . cotisations et contributions . exonérations . covid:
   titre.en: '[automatic] Covid contribution reduction'
   titre.fr: Réduction de cotisation Covid
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . conjoint collaborateur:
+  avec:
+    conjoint collaborateur cotisations:
+      titre.en: '[automatic] collaborating spouse contributions'
+      titre.fr: conjoint collaborateur cotisations
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
 dirigeant . indépendant . cotisations et contributions . exonérations . covid . montant:
@@ -3684,6 +3737,13 @@ durée légale du travail:
   titre.en: '[automatic] legal working hours'
   titre.fr: durée légale du travail
 déclaration charge sociales:
+  avec:
+    dirigeant exonérations ACRE:
+      titre.en: '[automatic] executive ACRE exemptions'
+      titre.fr: dirigeant exonérations ACRE
+    entreprise activités revenus mixtes:
+      titre.en: '[automatic] business activities mixed income'
+      titre.fr: entreprise activités revenus mixtes
   description.en:
     '[automatic] These rules calculate the amounts of social charges
     to be reported in the income tax return of the self-employed and in the
@@ -3769,6 +3829,13 @@ déclaration charge sociales . cotisations obligatoires déductibles:
   titre.en: '[automatic] deductible mandatory contributions'
   titre.fr: cotisations obligatoires déductibles
 déclaration charge sociales . cotisations payées:
+  avec:
+    résultat cotisations obligatoires:
+      titre.en: '[automatic] results compulsory contributions'
+      titre.fr: résultat cotisations obligatoires
+    résultat total charges sociales déductible:
+      titre.en: '[automatic] total deductible social security charges'
+      titre.fr: résultat total charges sociales déductible
   titre.en: '[automatic] contributions paid'
   titre.fr: cotisations payées
 déclaration charge sociales . cotisations payées . CSG déductible et CFP:
@@ -3799,6 +3866,16 @@ déclaration charge sociales . cotisations payées . cotisations sociales:
   titre.en: '[automatic] social contributions'
   titre.fr: cotisations sociales
 déclaration charge sociales . nature de l'activité:
+  avec:
+    entreprise activité nature artisanale:
+      titre.en: '[automatic] business activity nature of craft'
+      titre.fr: entreprise activité nature artisanale
+    entreprise activité nature commerciale:
+      titre.en: '[automatic] company business activity'
+      titre.fr: entreprise activité nature commerciale
+    entreprise activité nature libérale:
+      titre.en: '[automatic] business self-employed activity'
+      titre.fr: entreprise activité nature libérale
   question.en: '[automatic] What is the nature of your business?'
   question.fr: Quelle est la nature de votre activité ?
   titre.en: '[automatic] nature of business'
@@ -4760,18 +4837,52 @@ entreprise . catégorie juridique . autre:
 entreprise . catégorie juridique . remplacements:
   avec:
     SASU option IR non implémentée:
+      avec:
+        entreprise imposition:
+          titre.en: '[automatic] business taxation'
+          titre.fr: entreprise imposition
       titre.en: '[automatic] SASU option IR not implemented'
       titre.fr: SASU option IR non implémentée
     associé unique:
+      avec:
+        associés:
+          titre.en: '[automatic] associates'
+          titre.fr: associés
       titre.en: '[automatic] sole partner'
       titre.fr: associé unique
     pas profession libérale reglementée:
       titre.en: '[automatic] not a regulated liberal profession'
       titre.fr: pas profession libérale reglementée
     profession libérale reglementée:
+      avec:
+        activités libérale:
+          titre.en: '[automatic] liberal professions'
+          titre.fr: activités libérale
+        activités libérale réglementée:
+          titre.en: '[automatic] regulated liberal professions'
+          titre.fr: activités libérale réglementée
+        entreprise activité nature:
+          titre.en: '[automatic] company activity nature'
+          titre.fr: entreprise activité nature
+        entreprise activité nature libérale réglementée:
+          titre.en: '[automatic] business regulated liberal activity'
+          titre.fr: entreprise activité nature libérale réglementée
       titre.en: '[automatic] regulated liberal profession'
       titre.fr: profession libérale reglementée
     régime micro-entreprise:
+      avec:
+        entreprise imposition:
+          titre.en: '[automatic] business taxation'
+          titre.fr: entreprise imposition
+        entreprise imposition IR:
+          titre.en: '[automatic] business taxation IR'
+          titre.fr: entreprise imposition IR
+        entreprise imposition IS:
+          titre.en: '[automatic] company taxation IS'
+          titre.fr: entreprise imposition IS
+        imposition régime:
+          titre.en: '[automatic] taxation system'
+          titre.fr: imposition régime
       titre.en: '[automatic] micro-business regime'
       titre.fr: régime micro-entreprise
   titre.en: '[automatic] replacements'
@@ -5105,9 +5216,35 @@ entreprise . coût formalités . RSAC:
 entreprise . coût formalités . annonce légale:
   avec:
     départements groupe 2:
+      avec:
+        forfaitaire EURL:
+          titre.en: '[automatic] flat-rate EURL'
+          titre.fr: forfaitaire EURL
+        forfaitaire SARL:
+          titre.en: '[automatic] flat-rate SARL'
+          titre.fr: forfaitaire SARL
+        forfaitaire SAS:
+          titre.en: '[automatic] flat-rate SAS'
+          titre.fr: forfaitaire SAS
+        forfaitaire SASU:
+          titre.en: '[automatic] flat-rate SASU'
+          titre.fr: forfaitaire SASU
       titre.en: '[automatic] departments group 2'
       titre.fr: départements groupe 2
     départements groupe 3:
+      avec:
+        forfaitaire EURL:
+          titre.en: '[automatic] flat-rate EURL'
+          titre.fr: forfaitaire EURL
+        forfaitaire SARL:
+          titre.en: '[automatic] flat-rate SARL'
+          titre.fr: forfaitaire SARL
+        forfaitaire SAS:
+          titre.en: '[automatic] flat-rate SAS'
+          titre.fr: forfaitaire SAS
+        forfaitaire SASU:
+          titre.en: '[automatic] flat-rate SASU'
+          titre.fr: forfaitaire SASU
       titre.en: '[automatic] departments group 3'
       titre.fr: départements groupe 3
     forfaitaire:
@@ -6190,6 +6327,13 @@ protection sociale . invalidité et décès:
           titre.en: '[automatic] [private] minimum'
           titre.fr: '[privé] minimum'
         '[privé] minimum indépendant':
+          avec:
+            minimum invalidité partielle:
+              titre.en: '[automatic] minimum partial disability'
+              titre.fr: minimum invalidité partielle
+            minimum invalidité totale:
+              titre.en: '[automatic] minimum total disability'
+              titre.fr: minimum invalidité totale
           titre.en: '[automatic] [private] minimum independent'
           titre.fr: '[privé] minimum indépendant'
         invalidité partielle:
@@ -7827,6 +7971,10 @@ salarié . convention collective . BTP . catégorie:
   titre.en: '[automatic] category'
   titre.fr: catégorie
 salarié . convention collective . BTP . catégorie . cadre:
+  avec:
+    contrat statut cadre:
+      titre.en: '[automatic] executive contract'
+      titre.fr: contrat statut cadre
   titre.en: '[automatic] Frame'
   titre.fr: Cadre
 salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire:
@@ -7840,6 +7988,19 @@ salarié . convention collective . BTP . catégorie . cadre . prévoyance compl�
   titre.en: '[automatic] supplementary pension'
   titre.fr: prévoyance complémentaire
 salarié . convention collective . BTP . catégorie . etam:
+  avec:
+    cotisations retraite complémentaire employeur taux T1:
+      titre.en: '[automatic] supplementary pension contributions T1 rate'
+      titre.fr: cotisations retraite complémentaire employeur taux T1
+    cotisations retraite complémentaire employeur taux T2:
+      titre.en: '[automatic] supplementary pension contributions T2 rate'
+      titre.fr: cotisations retraite complémentaire employeur taux T2
+    cotisations retraite complémentaire salarié taux T1:
+      titre.en: '[automatic] supplementary pension contributions T1 rate'
+      titre.fr: cotisations retraite complémentaire salarié taux T1
+    cotisations retraite complémentaire salarié taux T2:
+      titre.en: '[automatic] supplementary pension contributions T2 rate'
+      titre.fr: cotisations retraite complémentaire salarié taux T2
   description.en: '[automatic] Employee, technician, supervisor'
   description.fr: Employé, technicien, angent de maîtrise
   note.en: '[automatic] Conventional distribution fixed by article 5 of the BTP
@@ -8509,6 +8670,10 @@ salarié . cotisations . assiette:
 salarié . cotisations . assiette forfaitaire:
   avec:
     montant:
+      avec:
+        temps de travail plafond sécurité sociale:
+          titre.en: '[automatic] working time social security ceiling'
+          titre.fr: temps de travail plafond sécurité sociale
       note.en: '[automatic] '
       note.fr: >
         Il existe une règle générale d'encadrement des assiettes forfaitaires.
@@ -9246,6 +9411,9 @@ salarié . régimes spécifiques . DFS:
     assiette minimale:
       titre.en: '[automatic] minimum base'
       titre.fr: assiette minimale
+    cotisations assiette:
+      titre.en: '[automatic] contributions basis'
+      titre.fr: cotisations assiette
     taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
@@ -9317,6 +9485,31 @@ salarié . régimes spécifiques . DFS . profession . journaliste . abattement f
   titre.en: '[automatic] net taxable journalist'
   titre.fr: net imposable journaliste
 salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux:
+  avec:
+    cotisations ATMP taux:
+      titre.en: '[automatic] ATMP contributions rates'
+      titre.fr: cotisations ATMP taux
+    cotisations ATMP taux minimum:
+      titre.en: '[automatic] ATMP contributions minimum rate'
+      titre.fr: cotisations ATMP taux minimum
+    cotisations allocations familiales taux:
+      titre.en: '[automatic] family allowance contributions rates'
+      titre.fr: cotisations allocations familiales taux
+    cotisations versement mobilité:
+      titre.en: '[automatic] contributions mobility payment'
+      titre.fr: cotisations versement mobilité
+    cotisations vieillesse employeur déplafonnée taux:
+      titre.en: '[automatic] unfunded old-age employer contributions rate'
+      titre.fr: cotisations vieillesse employeur déplafonnée taux
+    cotisations vieillesse employeur plafonnée taux:
+      titre.en: '[automatic] capped old-age employer contributions rate'
+      titre.fr: cotisations vieillesse employeur plafonnée taux
+    cotisations vieillesse salarié déplafonnée taux:
+      titre.en: '[automatic] unfunded employee old-age contributions rate'
+      titre.fr: cotisations vieillesse salarié déplafonnée taux
+    cotisations vieillesse salarié plafonnée taux:
+      titre.en: '[automatic] capped employee pension contributions rate'
+      titre.fr: cotisations vieillesse salarié plafonnée taux
   titre.en: '[automatic] rate reduction'
   titre.fr: réduction de taux
 salarié . régimes spécifiques . alsace moselle:
@@ -9478,6 +9671,10 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur
   titre.en: '[automatic] complementary actor'
   titre.fr: acteur de complément
 salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire:
+  avec:
+    nombre jours travaillés:
+      titre.en: '[automatic] number of days worked'
+      titre.fr: nombre jours travaillés
   titre.en: '[automatic] lump-sum basis'
   titre.fr: assiette forfaitaire
 salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés:
@@ -9498,12 +9695,56 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . nombre
   titre.en: '[automatic] number of days worked'
   titre.fr: nombre jours travaillés
 salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre:
+  avec:
+    cotisations retraite complémentaire employeur taux T1:
+      titre.en: '[automatic] supplementary pension contributions T1 rate'
+      titre.fr: cotisations retraite complémentaire employeur taux T1
+    cotisations retraite complémentaire employeur taux T2:
+      titre.en: '[automatic] supplementary pension contributions T2 rate'
+      titre.fr: cotisations retraite complémentaire employeur taux T2
+    cotisations retraite complémentaire salarié taux T1:
+      titre.en: '[automatic] supplementary pension contributions T1 rate'
+      titre.fr: cotisations retraite complémentaire salarié taux T1
+    cotisations retraite complémentaire salarié taux T2:
+      titre.en: '[automatic] supplementary pension contributions T2 rate'
+      titre.fr: cotisations retraite complémentaire salarié taux T2
+    plafond sécurité sociale:
+      titre.en: '[automatic] social security ceiling'
+      titre.fr: plafond sécurité sociale
   titre.en: '[automatic] non-executive'
   titre.fr: non cadre
 salarié . régimes spécifiques . intermittents du spectacle . artiste . plafond proratisé:
   titre.en: '[automatic] prorated ceiling'
   titre.fr: plafond proratisé
 salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux:
+  avec:
+    cotisations FNAL taux:
+      titre.en: '[automatic] FNAL contributions rate'
+      titre.fr: cotisations FNAL taux
+    cotisations allocations familiales taux:
+      titre.en: '[automatic] family allowance contributions rates'
+      titre.fr: cotisations allocations familiales taux
+    cotisations maladie employeur taux:
+      titre.en: '[automatic] employer health contribution rates'
+      titre.fr: cotisations maladie employeur taux
+    cotisations maladie salarié taux:
+      titre.en: '[automatic] employee health contribution rate'
+      titre.fr: cotisations maladie salarié taux
+    cotisations versement mobilité:
+      titre.en: '[automatic] contributions mobility payment'
+      titre.fr: cotisations versement mobilité
+    cotisations vieillesse employeur déplafonnée taux:
+      titre.en: '[automatic] unfunded old-age employer contributions rate'
+      titre.fr: cotisations vieillesse employeur déplafonnée taux
+    cotisations vieillesse employeur plafonnée taux:
+      titre.en: '[automatic] capped old-age employer contributions rate'
+      titre.fr: cotisations vieillesse employeur plafonnée taux
+    cotisations vieillesse salarié déplafonnée taux:
+      titre.en: '[automatic] unfunded employee old-age contributions rate'
+      titre.fr: cotisations vieillesse salarié déplafonnée taux
+    cotisations vieillesse salarié plafonnée taux:
+      titre.en: '[automatic] capped employee pension contributions rate'
+      titre.fr: cotisations vieillesse salarié plafonnée taux
   titre.en: '[automatic] rate reduction'
   titre.fr: réduction de taux
 salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . ATMP:
@@ -9516,12 +9757,29 @@ salarié . régimes spécifiques . intermittents du spectacle . formation profes
   titre.en: '[automatic] professional training'
   titre.fr: formation professionnelle
 salarié . régimes spécifiques . intermittents du spectacle . retraite complémentaire techniciens et cadre:
+  avec:
+    cotisations retraite complémentaire employeur taux T1:
+      titre.en: '[automatic] supplementary pension contributions T1 rate'
+      titre.fr: cotisations retraite complémentaire employeur taux T1
+    cotisations retraite complémentaire salarié taux T1:
+      titre.en: '[automatic] supplementary pension contributions T1 rate'
+      titre.fr: cotisations retraite complémentaire salarié taux T1
   titre.en: '[automatic] complementary pension for technicians and executives'
   titre.fr: retraite complémentaire techniciens et cadre
 salarié . régimes spécifiques . intermittents du spectacle . technicien:
   titre.en: '[automatic] technician'
   titre.fr: technicien
 salarié . régimes spécifiques . intermittents du spectacle . technicien . non cadre:
+  avec:
+    cotisations retraite complémentaire employeur taux T2:
+      titre.en: '[automatic] supplementary pension contributions T2 rate'
+      titre.fr: cotisations retraite complémentaire employeur taux T2
+    cotisations retraite complémentaire salarié taux T2:
+      titre.en: '[automatic] supplementary pension contributions T2 rate'
+      titre.fr: cotisations retraite complémentaire salarié taux T2
+    plafond sécurité sociale:
+      titre.en: '[automatic] social security ceiling'
+      titre.fr: plafond sécurité sociale
   titre.en: '[automatic] non-executive'
   titre.fr: non cadre
 salarié . régimes spécifiques . taxe sur les salaires:

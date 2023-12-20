@@ -99,7 +99,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
       non applicable si: prorata < ACRE . prorata sur l'année
       valeur: indemnités journalières maladie
       remplace:
-        règle: indemnités journalières maladie
+        références à: indemnités journalières maladie
         sauf dans:
           - cotisations et contributions . maladie
           - cotisations et contributions . indemnités journalières maladie .
@@ -110,7 +110,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
       arrondi: oui
       non applicable si: prorata < ACRE . prorata sur l'année
       remplace:
-        règle: maladie
+        références à: maladie
         sauf dans:
           - cotisations et contributions . maladie . total
           - cotisations et contributions . maladie . taux progressif
@@ -172,7 +172,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
       # On préfère l'exonération pension invalidité si elle est plus avantageuse
       non applicable si: pension invalidité . prorata >= prorata sur l'année
       remplace:
-        règle: indemnités journalières maladie
+        références à: indemnités journalières maladie
         priorité: 10
         sauf dans:
           - cotisations et contributions . maladie
@@ -186,7 +186,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
       # On préfère l'exonération âge car elle est plus avantageuse
       non applicable si: exonérations . âge
       remplace:
-        règle: invalidité et décès
+        références à: invalidité et décès
         priorité: 10
       valeur: cotisations et contributions . invalidité et décès
       abattement: taux * prorata sur l'année
@@ -196,7 +196,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
       # On préfère l'exonération pension invalidité si elle est plus avantageuse
       non applicable si: pension invalidité . prorata >= prorata sur l'année
       remplace:
-        règle: maladie
+        références à: maladie
         priorité: 10
         sauf dans:
           - cotisations et contributions . maladie . total
@@ -213,7 +213,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
           # On préfère l'exonération pension invalidité si elle est plus avantageuse
           - pension invalidité . prorata >= prorata sur l'année
       remplace:
-        règle: retraite de base
+        références à: retraite de base
         priorité: 10
         sauf dans: protection sociale . retraite . base . cotisée . indépendant
       valeur: cotisations et contributions . retraite de base

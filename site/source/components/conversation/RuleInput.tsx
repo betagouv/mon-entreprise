@@ -275,7 +275,7 @@ export const getOnePossibilityOptions = <Name extends string>(
 						),
 			  }
 			: null
-	) as Choice
+	)
 }
 
 type RuleWithMultiplePossibilities = RuleNode & {

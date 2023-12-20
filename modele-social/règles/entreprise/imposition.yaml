@@ -259,9 +259,6 @@ entreprise . imposition . régime . micro-entreprise:
   non applicable si: entreprise . imposition . IS
   valeur: régime = 'micro-entreprise'
   par défaut: non
-  remplace:
-    - règle: entreprise . imposition . régime
-      par: "'micro-entreprise'"
 
   rend non applicable: dirigeant . indépendant . cotisations facultatives
   question: Avez-vous opté pour le régime micro-fiscal ?

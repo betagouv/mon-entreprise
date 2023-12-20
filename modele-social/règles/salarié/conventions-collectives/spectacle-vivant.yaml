@@ -93,32 +93,43 @@ salarié . régimes spécifiques . intermittents du spectacle . retraite complé
       - contrat . statut cadre
       - technicien
   formule: oui
-  remplace:
-    - règle: cotisations . retraite complémentaire . employeur . taux T1
-      par: 3.94%
-    - règle: cotisations . retraite complémentaire . salarié . taux T1
-      par: 3.93%
   références:
     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+  avec:
+    cotisations retraite complémentaire employeur taux T1:
+      remplace: cotisations . retraite complémentaire . employeur . taux T1
+      valeur: 3.94%
+
+    cotisations retraite complémentaire salarié taux T1:
+      remplace: cotisations . retraite complémentaire . salarié . taux T1
+      valeur: 3.93%
 
 salarié . régimes spécifiques . intermittents du spectacle . technicien:
   formule: intermittents du spectacle = 'technicien'
 
 salarié . régimes spécifiques . intermittents du spectacle . technicien . non cadre:
   formule: contrat . statut cadre = non
-  remplace:
-    - règle: cotisations . retraite complémentaire . employeur . taux T2
-      par: 10.80%
-    - règle: cotisations . retraite complémentaire . salarié . taux T2
-      par: 10.79%
-    - règle: plafond sécurité sociale
-      par: plafond sécurité sociale
-      dans:
-        - cotisations . retraite complémentaire
-        - cotisations . CEG
-        - cotisations . CET
   références:
     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+  avec:
+    cotisations retraite complémentaire employeur taux T2:
+      remplace: cotisations . retraite complémentaire . employeur . taux T2
+      valeur: 10.80%
+
+    cotisations retraite complémentaire salarié taux T2:
+      remplace: cotisations . retraite complémentaire . salarié . taux T2
+      valeur: 10.79%
+
+    plafond sécurité sociale:
+      remplace:
+        références à: plafond sécurité sociale
+        dans:
+          - cotisations . retraite complémentaire
+          - cotisations . CEG
+          - cotisations . CET
+      valeur: plafond sécurité sociale
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste:
   formule: intermittents du spectacle = 'artiste'
@@ -143,23 +154,34 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste:
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre:
   formule: contrat . statut cadre = non
-  remplace:
-    - règle: plafond sécurité sociale
-      par: plafond sécurité sociale
-      dans:
-        - cotisations . retraite complémentaire
-        - cotisations . CEG
-        - cotisations . CET
-    - règle: cotisations . retraite complémentaire . employeur . taux T1
-      par: 4.45%
-    - règle: cotisations . retraite complémentaire . employeur . taux T2
-      par: 10.80%
-    - règle: cotisations . retraite complémentaire . salarié . taux T1
-      par: 4.44%
-    - règle: cotisations . retraite complémentaire . salarié . taux T2
-      par: 10.79%
   références:
     audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+  avec:
+    cotisations retraite complémentaire employeur taux T1:
+      remplace: cotisations . retraite complémentaire . employeur . taux T1
+      valeur: 4.45%
+
+    cotisations retraite complémentaire employeur taux T2:
+      remplace: cotisations . retraite complémentaire . employeur . taux T2
+      valeur: 10.80%
+
+    cotisations retraite complémentaire salarié taux T1:
+      remplace: cotisations . retraite complémentaire . salarié . taux T1
+      valeur: 4.44%
+
+    cotisations retraite complémentaire salarié taux T2:
+      remplace: cotisations . retraite complémentaire . salarié . taux T2
+      valeur: 10.79%
+
+    plafond sécurité sociale:
+      remplace:
+        références à: plafond sécurité sociale
+        dans:
+          - cotisations . retraite complémentaire
+          - cotisations . CEG
+          - cotisations . CET
+      valeur: plafond sécurité sociale
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste . activité accessoire:
   question: |
@@ -170,30 +192,50 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . réduc
   # TODO : centraliser les exonérations sous un namespace commun pour plus de facilité dans leur activiation / desactivation
   rend non applicable: cotisations . exonérations . réduction générale
   non applicable si: activité accessoire
-  remplace:
-    # - règle: exonérations . taux réduit
-    #   par: oui
-    - règle: cotisations . maladie . employeur . taux
-      par: cotisations . maladie . employeur . taux * réduction de taux
-    - règle: cotisations . maladie . salarié . taux
-      par: cotisations . maladie . salarié . taux * réduction de taux
-    - règle: cotisations . vieillesse . employeur . plafonnée . taux
-      par: cotisations . vieillesse . employeur . plafonnée . taux * réduction de taux
-    - règle: cotisations . vieillesse . employeur . déplafonnée . taux
-      par:
+  formule: 70%
+
+  avec:
+    cotisations allocations familiales taux:
+      remplace: cotisations . allocations familiales . taux
+      valeur: cotisations . allocations familiales . taux * réduction de taux
+
+    cotisations FNAL taux:
+      remplace: cotisations . FNAL . taux
+      valeur: cotisations . FNAL . taux * réduction de taux
+
+    cotisations maladie employeur taux:
+      remplace: cotisations . maladie . employeur . taux
+      valeur: cotisations . maladie . employeur . taux * réduction de taux
+
+    cotisations maladie salarié taux:
+      remplace: cotisations . maladie . salarié . taux
+      valeur: cotisations . maladie . salarié . taux * réduction de taux
+
+    cotisations versement mobilité:
+      remplace: cotisations . versement mobilité
+      valeur: cotisations . versement mobilité * réduction de taux
+
+    cotisations vieillesse employeur déplafonnée taux:
+      remplace: cotisations . vieillesse . employeur . déplafonnée . taux
+      valeur:
         cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
         taux
-    - règle: cotisations . vieillesse . salarié . plafonnée . taux
-      par: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
-    - règle: cotisations . vieillesse . salarié . déplafonnée . taux
-      par: cotisations . vieillesse . salarié . déplafonnée . taux * réduction de taux
-    - règle: cotisations . allocations familiales . taux
-      par: cotisations . allocations familiales . taux * réduction de taux
-    - règle: cotisations . versement mobilité
-      par: cotisations . versement mobilité * réduction de taux
-    - règle: cotisations . FNAL . taux
-      par: cotisations . FNAL . taux * réduction de taux
-  formule: 70%
+
+    cotisations vieillesse employeur plafonnée taux:
+      remplace: cotisations . vieillesse . employeur . plafonnée . taux
+      valeur:
+        cotisations . vieillesse . employeur . plafonnée . taux * réduction de
+        taux
+
+    cotisations vieillesse salarié déplafonnée taux:
+      remplace: cotisations . vieillesse . salarié . déplafonnée . taux
+      valeur:
+        cotisations . vieillesse . salarié . déplafonnée . taux * réduction de
+        taux
+
+    cotisations vieillesse salarié plafonnée taux:
+      remplace: cotisations . vieillesse . salarié . plafonnée . taux
+      valeur: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . ATMP:
   remplace: cotisations . ATMP . taux
@@ -212,7 +254,7 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . plafon
   unité: €/mois
 
   remplace:
-    règle: plafond sécurité sociale
+    références à: plafond sécurité sociale
     dans:
       - cotisations . FNAL
       - cotisations . vieillesse
@@ -236,9 +278,12 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur
   applicable si: rémunération . brut < 6% * plafond sécurité sociale
   remplace:
     - salarié . cotisations . assiette forfaitaire
-    - règle: nombre jours travaillés
-      par: 1
   formule:
     produit:
       - SMIC . horaire
       - 9
+
+  avec:
+    nombre jours travaillés:
+      remplace: nombre jours travaillés
+      valeur: 1

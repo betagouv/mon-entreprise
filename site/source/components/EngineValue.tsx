@@ -1,11 +1,5 @@
 import { DottedName } from 'modele-social'
-import Engine, {
-	ASTNode,
-	EvaluatedNode,
-	formatValue,
-	PublicodesExpression,
-	RuleNode,
-} from 'publicodes'
+import Engine, { ASTNode, formatValue, PublicodesExpression } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { keyframes, styled } from 'styled-components'
@@ -59,18 +53,9 @@ export default function Value<Names extends string>({
 		const ruleEvaluation = e.evaluate(expression)
 		let dottedName = expression as DottedName
 		if (ruleEvaluation.sourceMap?.mecanismName === 'replacement') {
-			dottedName =
-				((
-					ruleEvaluation as {
-						explanation: Array<{
-							condition: EvaluatedNode
-							consequence: RuleNode
-						}>
-					}
-				).explanation
-					// eslint-disable-next-line eqeqeq
-					.find(({ condition }) => !!condition.nodeValue)?.consequence
-					.dottedName as DottedName) ?? dottedName
+			dottedName = (
+				ruleEvaluation.sourceMap.args.originalNode as ASTNode<'reference'>
+			).dottedName as DottedName
 		}
 
 		return (

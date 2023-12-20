@@ -170,7 +170,7 @@ dirigeant . indépendant . PL . PAMC . allocations familiales:
   applicable si: métier . santé . médecin . secteur = 'S1'
   titre: allocations familiales (après participation CPAM)
   remplace:
-    règle: cotisations et contributions . allocations familiales
+    références à: cotisations et contributions . allocations familiales
     sauf dans: participation CPAM
   formule:
     valeur: cotisations et contributions . allocations familiales

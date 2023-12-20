@@ -246,7 +246,8 @@ protection sociale . retraite . complémentaire . RCI:
     revenu cotisé auto-entrepreneur:
       applicable si: dirigeant . auto-entrepreneur
       remplace:
-        règle: dirigeant . indépendant . cotisations et contributions . retraite
+        références à:
+          dirigeant . indépendant . cotisations et contributions . retraite
           complémentaire
         dans: points acquis
       somme:
@@ -781,15 +782,21 @@ protection sociale . invalidité et décès:
           une de ces conditions:
             - dirigeant . auto-entrepreneur
             - dirigeant . indépendant
-          remplace:
-            - règle: minimum
-              dans: invalidité partielle
-              par: 486.98 €/mois
-            - règle: minimum
-              dans: invalidité totale
-              par: 686.09 €/mois
           références:
             "Montant et versement de la pension d'invalidité": https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+          avec:
+            minimum invalidité partielle:
+              remplace:
+                références à: minimum
+                dans: invalidité partielle
+              valeur: 486.98 €/mois
+
+            minimum invalidité totale:
+              remplace:
+                références à: minimum
+                dans: invalidité totale
+              valeur: 686.09 €/mois
 
         invalidité partielle:
           unité: €/mois

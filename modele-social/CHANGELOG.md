@@ -1,8 +1,8 @@
 # Journal des modifications
 
-## 2.0.0-rfc.1
+## 2.0.0-rc.1
 **BREAKING CHANGE**
-- Utilise publicodes 1.0.0-rfc.1 (cf https://github.com/publicodes/publicodes/blob/master/CHANGELOG.md)
+- Utilise publicodes 1.0.0-rc.4 (cf https://github.com/publicodes/publicodes/blob/master/CHANGELOG.md)
 
 
 ## 1.8.3

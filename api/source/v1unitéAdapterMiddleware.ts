@@ -1,26 +1,27 @@
-import { BaseContext } from 'koa'
+import Router from '@koa/router'
 
-export default async function v1unitéAdapterMiddleware(
-	ctx: BaseContext,
-	next: () => Promise<unknown>
-) {
-	if (!ctx.path.startsWith('/api/v1/evaluate')) {
-		return await next()
-	}
+export default function v1unitéAdapterMiddleware() {
+	const router = new Router()
 
-	if (!ctx.body) {
-		return await next()
-	}
-	const body = ctx.body as Record<string, unknown>
-	ctx.body = deepMap(body, (value, key) => {
-		if (key === 'unité' && typeof value === 'string') {
-			return value.replace(' /', '/').replace(' /', '/')
+	router.post('/evaluate', async (ctx, next) => {
+		if (!ctx.request.body) {
+			return next()
 		}
 
-		return value
+		ctx.request.body = deepMap(ctx.request.body, (value, key) => {
+			if (key === 'unité' && typeof value === 'string') {
+				const newValue = value.replace(' /', '/').replace('/ ', '/')
+
+				return newValue
+			}
+
+			return value
+		})
+
+		return next()
 	})
 
-	await next()
+	return router.routes()
 }
 
 function deepMap(

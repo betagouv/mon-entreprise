@@ -140,30 +140,46 @@ entreprise . coût formalités . annonce légale:
         - établissement . commune . département = 'Saint-Barthélemy'
         - établissement . commune . département = 'Saint-Martin'
         - établissement . commune . département = 'Wallis-et-Futuna'
-      remplace:
-        - règle: forfaitaire . SAS
-          par: 189 €HT
-        - règle: forfaitaire . SASU
-          par: 135 €HT
-        - règle: forfaitaire . SARL
-          par: 141 €HT
-        - règle: forfaitaire . EURL
-          par: 118 €HT
+
+      avec:
+        forfaitaire EURL:
+          remplace: forfaitaire . EURL
+          valeur: 118 €HT
+
+        forfaitaire SARL:
+          remplace: forfaitaire . SARL
+          valeur: 141 €HT
+
+        forfaitaire SAS:
+          remplace: forfaitaire . SAS
+          valeur: 189 €HT
+
+        forfaitaire SASU:
+          remplace: forfaitaire . SASU
+          valeur: 135 €HT
 
     départements groupe 3:
       par défaut: non
       une de ces conditions:
         - établissement . commune . département = 'La Réunion'
         - établissement . commune . département = 'Mayotte'
-      remplace:
-        - règle: forfaitaire . SAS
-          par: 226 €HT
-        - règle: forfaitaire . SASU
-          par: 162 €HT
-        - règle: forfaitaire . SARL
-          par: 168 €HT
-        - règle: forfaitaire . EURL
-          par: 143 €HT
+
+      avec:
+        forfaitaire EURL:
+          remplace: forfaitaire . EURL
+          valeur: 143 €HT
+
+        forfaitaire SARL:
+          remplace: forfaitaire . SARL
+          valeur: 168 €HT
+
+        forfaitaire SAS:
+          remplace: forfaitaire . SAS
+          valeur: 226 €HT
+
+        forfaitaire SASU:
+          remplace: forfaitaire . SASU
+          valeur: 162 €HT
 
     forfaitaire:
       titre: Tarif forfaitaire

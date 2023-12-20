@@ -1,6 +1,6 @@
 {
 	"name": "exoneration-covid",
-	"version": "0.5.0",
+	"version": "1.0.0-rc.1",
 	"description": "Les règles publicodes pour le calcul de l'exonération de cotisations covid (année 2021)",
 	"main": "./dist/index.js",
 	"types": "./index.d.ts",
@@ -18,11 +18,10 @@
 	"type": "module",
 	"devDependencies": {
 		"js-yaml": "^4.1.0",
-		"onchange": "^7.1.0",
-		"publicodes": "^1.0.0-rfc.1"
+		"onchange": "^7.1.0"
 	},
 	"peerDependencies": {
-		"publicodes": "^1.0.0-beta.55"
+		"publicodes": "^1.0.0-rc.4"
 	},
 	"scripts": {
 		"build": "node ../scripts/build-rules.js",

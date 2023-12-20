@@ -7,7 +7,6 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
       "missingVariables": [
         "dirigeant . indépendant . IJSS",
         "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . âge",
         "dirigeant . indépendant . cotisations facultatives . PER",
         "dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance",
         "dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite",
@@ -53,34 +52,33 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "dirigeant . rémunération . cotisations",
         "dirigeant . indépendant",
         "dirigeant . indépendant . cotisations et contributions",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . covid",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . covid . cotisations",
         "date",
         "dirigeant . indépendant . cotisations et contributions . cotisations",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . maladie",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
         "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . maladie",
         "dirigeant . indépendant . cotisations et contributions . exonérations . DROM",
         "établissement . commune . département . outre-mer",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer . Mayotte",
         "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE",
-        "déclaration charge sociales",
         "dirigeant . auto-entrepreneur . exonération DROM",
         "dirigeant . auto-entrepreneur",
+        "déclaration charge sociales . dirigeant exonérations ACRE",
+        "déclaration charge sociales",
         "dirigeant . exonérations . ACRE",
         "entreprise . durée d'activité . en début d'année",
         "entreprise . date de création",
         "période . début d'année",
         "période",
-        "dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger",
-        "situation personnelle . domiciliation fiscale à l'étranger",
         "dirigeant . indépendant . PL . PAMC . maladie",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature",
         "déclaration charge sociales . nature de l'activité",
-        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
         "entreprise . activité . nature",
         "dirigeant . indépendant . PL",
         "dirigeant . indépendant . PL . métier",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée",
         "entreprise . activité . nature . libérale . réglementée",
+        "déclaration charge sociales . nature de l'activité . entreprise activité nature libérale",
         "entreprise . activité . nature . libérale",
         "dirigeant . indépendant . PL . maladie",
         "dirigeant . indépendant . PL . régime général",
@@ -102,68 +100,53 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "dirigeant . indépendant . cotisations facultatives . PER",
         "dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite",
         "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . retraite de base",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . retraite de base",
-        "dirigeant . indépendant . PL . CNAVPL . remplacement retraite",
-        "dirigeant . indépendant . PL . CNAVPL",
-        "dirigeant . indépendant . PL . CNBF",
         "dirigeant . indépendant . PL . CNBF . retraite de base",
+        "dirigeant . indépendant . PL . CNBF",
         "dirigeant . indépendant . PL . CNBF . retraite de base . cotisation forfaitaire",
         "entreprise . durée d'activité . en fin d'année",
         "période . fin d'année",
         "dirigeant . indépendant . PL . CNBF . retraite de base . cotisation proportionnelle",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . retraite complémentaire",
-        "dirigeant . indépendant . PL . CARCDSF . retraite complémentaire",
-        "dirigeant . indépendant . PL . CARMF . retraite complémentaire",
-        "dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire",
-        "dirigeant . indépendant . PL . CAVEC . retraite complémentaire",
-        "dirigeant . indépendant . PL . CAVP . retraite complémentaire",
+        "dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant",
+        "dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire",
         "dirigeant . indépendant . PL . CNBF . retraite complémentaire",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . indemnités journalières maladie",
         "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . indemnités journalières maladie",
-        "dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . âge . invalidité et décès",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . âge",
         "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . invalidité et décès",
-        "dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID",
-        "dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste",
-        "dirigeant . indépendant . PL . CARCDSF . sage-femme . RID",
-        "dirigeant . indépendant . PL . CARCDSF . sage-femme",
-        "dirigeant . indépendant . PL . CARMF . invalidité décès",
-        "dirigeant . indépendant . PL . CARPIMKO . invalidité et décès",
-        "dirigeant . indépendant . PL . CAVEC . invalidité et décès",
-        "dirigeant . indépendant . PL . CAVP . invalidité et décès",
-        "dirigeant . indépendant . PL . CIPAV . invalidité et décès",
         "dirigeant . indépendant . PL . CNBF . RID",
         "dirigeant . indépendant . PL . PAMC . allocations familiales",
         "dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . allocations familiales",
         "dirigeant . indépendant . cotisations et contributions . allocations familiales",
         "dirigeant . indépendant . cotisations et contributions . allocations familiales . taux",
-        "dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV",
-        "dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV",
-        "dirigeant . indépendant . PL . CARMF . ASV",
-        "dirigeant . indépendant . PL . CARPIMKO . ASV",
         "dirigeant . indépendant . PL . CAVP . PCV",
+        "dirigeant . indépendant . PL . CARPIMKO . ASV",
+        "dirigeant . indépendant . PL . CARMF . ASV",
+        "dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV",
+        "dirigeant . indépendant . PL . CARCDSF . sage-femme",
+        "dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV",
+        "dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste",
         "dirigeant . indépendant . cotisations et contributions . PCV",
         "dirigeant . indépendant . cotisations et contributions . exonérations",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
         "dirigeant . indépendant . cotisations et contributions . exonérations . ZFU",
         "établissement . ZFU",
-        "dirigeant . indépendant . cotisations et contributions . exonérations . covid . conjoint collaborateur",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . covid . conjoint collaborateur . conjoint collaborateur cotisations",
         "dirigeant . indépendant . conjoint collaborateur . cotisations",
-        "dirigeant . indépendant . PL . CAVEC",
+        "dirigeant . indépendant . PL . PAMC",
         "dirigeant . indépendant . cotisations facultatives . montant",
         "dirigeant . indépendant . cotisations facultatives . contrats madelin",
+        "situation personnelle . domiciliation fiscale à l'étranger",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . covid . CSG-CRDS non déductible",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . non déductible",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . non déductible . taux",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . assiette",
         "dirigeant . indépendant . revenus étrangers . montant",
-        "dirigeant . indépendant . PL . PAMC",
         "dirigeant . indépendant . revenus étrangers",
         "dirigeant . indépendant . PL . PAMC . IJSS",
         "dirigeant . indépendant . IJSS . imposable",
         "dirigeant . indépendant . IJSS",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . non déductible . revenus de remplacement",
         "dirigeant . indépendant . IJSS . montant",
+        "dirigeant . indépendant . cotisations et contributions . exonérations . covid . CSG-CRDS déductible",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . déductible",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . déductible . taux",
         "dirigeant . indépendant . cotisations et contributions . CSG-CRDS . déductible . revenus de remplacement",
@@ -234,7 +217,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -252,7 +235,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -261,7 +244,34 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . libérale\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . entreprise activité nature libérale\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -279,7 +289,52 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+➡️  Dans la règle \\"entreprise . activité . nature . libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . entreprise activité nature libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . entreprise activité nature libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature . libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -297,7 +352,52 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -333,7 +433,16 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -351,7 +460,52 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -384,12 +538,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
   "evaluate": [
     {
       "missingVariables": [
-        "dirigeant . assimilé salarié",
-        "dirigeant . gérant minoritaire",
         "dirigeant . indépendant",
-        "entreprise . activité . nature",
-        "entreprise . activité . nature . libérale . réglementée",
-        "entreprise . associés",
         "entreprise . associés . unique",
         "entreprise . catégorie juridique",
         "entreprise . catégorie juridique . EI",
@@ -399,8 +548,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "entreprise . catégorie juridique . SELARL",
         "entreprise . catégorie juridique . SELAS",
         "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
-        "entreprise . imposition",
-        "entreprise . imposition . IR . type de bénéfices",
         "salarié . activité partielle",
         "salarié . contrat",
         "salarié . contrat . statut cadre",
@@ -425,6 +572,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
       "nodeValue": 2748.65125,
       "traversedVariables": [
         "salarié . rémunération . net . à payer avant impôt",
+        "dirigeant . assimilé salarié . salarié",
         "dirigeant . assimilé salarié",
         "dirigeant",
         "dirigeant . régime social",
@@ -433,27 +581,19 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "entreprise . associés . unique",
         "entreprise . catégorie juridique . remplacements",
         "entreprise . catégorie juridique . EI",
-        "entreprise . associés",
         "entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut",
         "entreprise . imposition . IR . type de bénéfices",
-        "entreprise . imposition . IR",
-        "entreprise . catégorie juridique . SAS",
-        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée",
         "entreprise . catégorie juridique . SELARL",
-        "entreprise . activité . nature . libérale . réglementée",
-        "déclaration charge sociales . nature de l'activité",
-        "déclaration charge sociales",
-        "entreprise . activité . nature . libérale",
-        "entreprise . activité . nature",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
         "entreprise . catégorie juridique . SELAS",
-        "entreprise . imposition",
-        "entreprise . catégorie juridique . SARL . EURL",
-        "entreprise . catégorie juridique . SARL",
-        "entreprise . catégorie juridique . SELARL . SELARL",
-        "entreprise . associés . multiples",
         "dirigeant . indépendant . PL . métier . rattaché CIPAV",
         "dirigeant . indépendant",
+        "entreprise . catégorie juridique . SAS",
+        "entreprise . catégorie juridique . SARL",
         "dirigeant . gérant minoritaire",
+        "entreprise . associés . multiples",
+        "entreprise . imposition . IR",
         "salarié",
         "salarié . rémunération . net",
         "salarié . rémunération . net . sans revenus de remplacement",
@@ -475,20 +615,20 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . rémunération . primes . fin d'année",
         "salarié . rémunération . indemnités CDD",
         "salarié . contrat . CDD",
+        "dirigeant . assimilé salarié . salarié contrat",
         "salarié . contrat",
         "salarié . rémunération . heures supplémentaires",
         "salarié . contrat . stage",
         "salarié . temps de travail . heures supplémentaires",
         "salarié . contrat . apprentissage",
         "salarié . contrat . temps de travail . temps partiel",
-        "période . semaines par mois",
-        "période",
-        "durée légale du travail",
-        "salarié . convention collective . compta . majoration heures supplémentaires",
-        "salarié . convention collective . compta",
         "salarié . convention collective . HCR . majoration heures supplémentaires",
         "salarié . convention collective . HCR",
+        "salarié . convention collective . compta . majoration heures supplémentaires",
+        "salarié . convention collective . compta",
         "salarié . temps de travail . heures supplémentaires . majoration",
+        "période . semaines par mois",
+        "période",
         "salarié . rémunération . heures complémentaires",
         "salarié . temps de travail . heures complémentaires",
         "salarié . temps de travail . heures complémentaires . majoration",
@@ -504,6 +644,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "date",
         "salarié . contrat . temps de travail . quotité",
         "salarié . contrat . temps de travail",
+        "durée légale du travail",
         "durée légale du travail . mensuelle",
         "salarié . activité partielle . retrait absence",
         "salarié . activité partielle",
@@ -513,12 +654,13 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "situation personnelle . domiciliation fiscale à l'étranger",
         "salarié . cotisations . vieillesse",
         "salarié . cotisations . vieillesse . salarié . déplafonnée",
-        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations vieillesse salarié déplafonnée taux",
         "salarié . régimes spécifiques . intermittents du spectacle . artiste",
         "salarié . contrat . CDD . motif",
-        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations vieillesse salarié déplafonnée taux",
         "salarié . régimes spécifiques . DFS . profession . journaliste",
         "salarié . cotisations . vieillesse . salarié . déplafonnée . taux",
+        "salarié . régimes spécifiques . DFS . cotisations assiette",
         "salarié . contrat . apprentissage . assiette réduite apprentissage",
         "salarié . cotisations . assiette",
         "salarié . cotisations . assiette . sans prévoyance",
@@ -540,6 +682,8 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . contrat . stage . gratification minimale",
         "salarié . cotisations . prévoyances . employeur . non déductible socialement",
         "salarié . cotisations . vieillesse . salarié . plafonnée",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations vieillesse salarié plafonnée taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations vieillesse salarié plafonnée taux",
         "salarié . cotisations . vieillesse . salarié . plafonnée . taux",
         "salarié . temps de travail . plafond sécurité sociale",
         "salarié . temps de travail . effectif . quotité",
@@ -549,20 +693,30 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . temps de travail . durée légale . mensuelle",
         "salarié . cotisations . vieillesse . employeur",
         "salarié . cotisations . vieillesse . employeur . déplafonnée",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations vieillesse employeur déplafonnée taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations vieillesse employeur déplafonnée taux",
         "salarié . cotisations . vieillesse . employeur . déplafonnée . taux",
         "salarié . cotisations . vieillesse . employeur . plafonnée",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations vieillesse employeur plafonnée taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations vieillesse employeur plafonnée taux",
         "salarié . cotisations . vieillesse . employeur . plafonnée . taux",
         "salarié . cotisations . maladie . salarié",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations maladie salarié taux",
         "salarié . cotisations . maladie . salarié . taux",
         "salarié . régimes spécifiques . alsace moselle",
         "salarié . cotisations . retraite complémentaire . salarié",
         "salarié . cotisations . retraite complémentaire",
         "salarié . cotisations . retraite complémentaire . employeur",
+        "salarié . régimes spécifiques . intermittents du spectacle . retraite complémentaire techniciens et cadre . cotisations retraite complémentaire employeur taux T1",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre . cotisations retraite complémentaire employeur taux T1",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre",
+        "salarié . convention collective . BTP . catégorie . etam . cotisations retraite complémentaire employeur taux T1",
         "salarié . convention collective . BTP . catégorie . etam",
         "salarié . convention collective . BTP",
-        "salarié . régimes spécifiques . intermittents du spectacle . retraite complémentaire techniciens et cadre",
-        "salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre",
         "salarié . cotisations . retraite complémentaire . employeur . taux T1",
+        "salarié . régimes spécifiques . intermittents du spectacle . retraite complémentaire techniciens et cadre . cotisations retraite complémentaire salarié taux T1",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre . cotisations retraite complémentaire salarié taux T1",
+        "salarié . convention collective . BTP . catégorie . etam . cotisations retraite complémentaire salarié taux T1",
         "salarié . cotisations . retraite complémentaire . salarié . taux T1",
         "salarié . cotisations . CEG . salarié",
         "salarié . cotisations . CEG",
@@ -585,15 +739,17 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . convention collective . sport . cotisations . régime frais de santé",
         "salarié . cotisations . prévoyances . santé . montant",
         "salarié . cotisations . prévoyances . santé . taux employeur",
+        "salarié . convention collective . sport . cotisations . prévoyance . employeur",
+        "salarié . convention collective . optique . prévoyance . employeur",
+        "salarié . convention collective . HCR . prévoyance conventionnelle . employeur",
         "salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire . employeur",
         "salarié . convention collective . BTP . catégorie . ouvrier",
         "salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire . employeur",
         "salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire . employeur",
         "salarié . convention collective . BTP . catégorie . cadre",
-        "salarié . convention collective . HCR . prévoyance conventionnelle . employeur",
-        "salarié . convention collective . optique . prévoyance . employeur",
-        "salarié . convention collective . sport . cotisations . prévoyance . employeur",
         "salarié . cotisations . prévoyances . conventionnelle . employeur",
+        "salarié . convention collective . BTP . catégorie . cadre . contrat statut cadre",
+        "dirigeant . assimilé salarié . salarié contrat statut cadre",
         "salarié . contrat . statut cadre",
         "salarié . rémunération . net . imposable . heures supplémentaires et complémentaires défiscalisées",
         "salarié . cotisations . CSG-CRDS . CSG . non déductible",
@@ -604,12 +760,12 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . APEC",
         "salarié . cotisations . prévoyances . salarié",
         "salarié . cotisations . prévoyances . santé . salarié",
+        "salarié . convention collective . sport . cotisations . prévoyance . salarié",
+        "salarié . convention collective . optique . prévoyance . salarié",
+        "salarié . convention collective . HCR . prévoyance conventionnelle . salarié",
         "salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire . salarié",
         "salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire . salarié",
         "salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire . salarié",
-        "salarié . convention collective . HCR . prévoyance conventionnelle . salarié",
-        "salarié . convention collective . optique . prévoyance . salarié",
-        "salarié . convention collective . sport . cotisations . prévoyance . salarié",
         "salarié . cotisations . prévoyances . conventionnelle . salarié",
         "salarié . cotisations . exonérations . salarié",
         "salarié . cotisations . exonérations",
@@ -620,19 +776,25 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . exonérations . JEI",
         "salarié . cotisations . exonérations . lodeom",
         "salarié . cotisations . exonérations . lodeom . zone un",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux",
         "salarié . cotisations . exonérations . lodeom . montant",
         "salarié . cotisations . exonérations . réduction générale",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations maladie employeur taux",
         "salarié . cotisations . maladie . employeur . taux",
         "salarié . cotisations . maladie . employeur . taux réduit",
         "salarié . temps de travail . SMIC",
         "SMIC . horaire",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations allocations familiales taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations allocations familiales taux",
         "salarié . cotisations . allocations familiales . taux",
         "salarié . cotisations . allocations familiales . taux réduit",
         "salarié . cotisations . CSA . taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations ATMP taux minimum",
         "salarié . cotisations . ATMP . taux minimum",
         "salarié . convention collective . sport . exonération cotisation AT",
         "salarié . cotisations . ATMP",
         "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . ATMP",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations ATMP taux",
         "salarié . cotisations . ATMP . taux",
         "salarié . cotisations . ATMP . taux fonctions support",
         "salarié . régimes spécifiques . alsace moselle . ATMP . seuil taux mixte ou individuel",
@@ -640,6 +802,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "établissement . taux ATMP",
         "établissement . taux ATMP . taux collectif",
         "salarié . cotisations . ATMP . taux moyen",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations FNAL taux",
         "salarié . cotisations . FNAL . taux",
         "salarié . cotisations . FNAL . éligible taux réduit",
         "salarié . cotisations . exonérations . JEI . montant",
@@ -669,14 +832,9 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
     },
     {
       "missingVariables": [
-        "dirigeant . assimilé salarié",
-        "dirigeant . gérant minoritaire",
         "dirigeant . indépendant",
         "entreprise . TVA",
-        "entreprise . activité . nature",
-        "entreprise . activité . nature . libérale . réglementée",
         "entreprise . association non lucrative",
-        "entreprise . associés",
         "entreprise . associés . unique",
         "entreprise . catégorie juridique",
         "entreprise . catégorie juridique . EI",
@@ -686,8 +844,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "entreprise . catégorie juridique . SELARL",
         "entreprise . catégorie juridique . SELAS",
         "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
-        "entreprise . imposition",
-        "entreprise . imposition . IR . type de bénéfices",
         "entreprise . salariés . effectif . seuil",
         "salarié . activité partielle",
         "salarié . contrat",
@@ -730,27 +886,19 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "entreprise . associés . unique",
         "entreprise . catégorie juridique . remplacements",
         "entreprise . catégorie juridique . EI",
-        "entreprise . associés",
         "entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut",
         "entreprise . imposition . IR . type de bénéfices",
-        "entreprise . imposition . IR",
-        "entreprise . catégorie juridique . SAS",
-        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée",
         "entreprise . catégorie juridique . SELARL",
-        "entreprise . activité . nature . libérale . réglementée",
-        "déclaration charge sociales . nature de l'activité",
-        "déclaration charge sociales",
-        "entreprise . activité . nature . libérale",
-        "entreprise . activité . nature",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
         "entreprise . catégorie juridique . SELAS",
-        "entreprise . imposition",
-        "entreprise . catégorie juridique . SARL . EURL",
-        "entreprise . catégorie juridique . SARL",
-        "entreprise . catégorie juridique . SELARL . SELARL",
-        "entreprise . associés . multiples",
         "dirigeant . indépendant . PL . métier . rattaché CIPAV",
         "dirigeant . indépendant",
+        "entreprise . catégorie juridique . SAS",
+        "entreprise . catégorie juridique . SARL",
         "dirigeant . gérant minoritaire",
+        "entreprise . associés . multiples",
+        "entreprise . imposition . IR",
         "salarié . rémunération . primes",
         "salarié . rémunération . primes . activité",
         "salarié . rémunération . primes . activité . base",
@@ -765,20 +913,20 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . rémunération . primes . fin d'année",
         "salarié . rémunération . indemnités CDD",
         "salarié . contrat . CDD",
+        "dirigeant . assimilé salarié . salarié contrat",
         "salarié . contrat",
         "salarié . rémunération . heures supplémentaires",
         "salarié . contrat . stage",
         "salarié . temps de travail . heures supplémentaires",
         "salarié . contrat . apprentissage",
         "salarié . contrat . temps de travail . temps partiel",
-        "période . semaines par mois",
-        "période",
-        "durée légale du travail",
-        "salarié . convention collective . compta . majoration heures supplémentaires",
-        "salarié . convention collective . compta",
         "salarié . convention collective . HCR . majoration heures supplémentaires",
         "salarié . convention collective . HCR",
+        "salarié . convention collective . compta . majoration heures supplémentaires",
+        "salarié . convention collective . compta",
         "salarié . temps de travail . heures supplémentaires . majoration",
+        "période . semaines par mois",
+        "période",
         "salarié . rémunération . heures complémentaires",
         "salarié . temps de travail . heures complémentaires",
         "salarié . temps de travail . heures complémentaires . majoration",
@@ -794,30 +942,31 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "date",
         "salarié . contrat . temps de travail . quotité",
         "salarié . contrat . temps de travail",
+        "durée légale du travail",
         "durée légale du travail . mensuelle",
         "salarié . activité partielle . retrait absence",
         "salarié . activité partielle",
-        "salarié . convention collective . BTP . cotisations employeur",
-        "salarié . convention collective . BTP",
         "salarié . convention collective . SVP . cotisations employeur",
         "salarié . convention collective . SVP",
         "salarié . convention collective . sport . cotisations . employeur",
         "salarié . convention collective . sport . cotisations",
+        "salarié . convention collective . BTP . cotisations employeur",
+        "salarié . convention collective . BTP",
         "salarié . cotisations . employeur",
         "salarié . cotisations . maladie . employeur",
         "salarié . cotisations . CSA",
         "salarié . cotisations . vieillesse . employeur",
         "salarié . cotisations . vieillesse . employeur . déplafonnée",
-        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux",
-        "salarié . régimes spécifiques . intermittents du spectacle . artiste",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations vieillesse employeur déplafonnée taux",
         "salarié . contrat . CDD . motif",
-        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations vieillesse employeur déplafonnée taux",
         "salarié . régimes spécifiques . DFS . profession . journaliste",
         "salarié . cotisations . vieillesse . employeur . déplafonnée . taux",
         "salarié . cotisations . assiette",
         "salarié . cotisations . assiette . sans prévoyance",
         "salarié . cotisations . assiette forfaitaire . rémunération réelle",
         "salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste",
         "salarié . convention collective . sport . cotisations . assiette forfaitaire",
         "salarié . cotisations . assiette forfaitaire",
         "plafond sécurité sociale",
@@ -833,6 +982,8 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . contrat . stage . gratification minimale",
         "salarié . cotisations . prévoyances . employeur . non déductible socialement",
         "salarié . cotisations . vieillesse . employeur . plafonnée",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations vieillesse employeur plafonnée taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations vieillesse employeur plafonnée taux",
         "salarié . cotisations . vieillesse . employeur . plafonnée . taux",
         "salarié . cotisations . retraite complémentaire . employeur",
         "situation personnelle . domiciliation fiscale à l'étranger",
@@ -843,11 +994,16 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . temps de travail",
         "salarié . activité partielle . heures chômées",
         "salarié . temps de travail . durée légale . mensuelle",
-        "salarié . convention collective . BTP . catégorie . etam",
-        "salarié . régimes spécifiques . intermittents du spectacle . retraite complémentaire techniciens et cadre",
+        "salarié . régimes spécifiques . intermittents du spectacle . retraite complémentaire techniciens et cadre . cotisations retraite complémentaire employeur taux T1",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre . cotisations retraite complémentaire employeur taux T1",
         "salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre",
+        "salarié . convention collective . BTP . catégorie . etam . cotisations retraite complémentaire employeur taux T1",
+        "salarié . convention collective . BTP . catégorie . etam",
         "salarié . cotisations . retraite complémentaire . employeur . taux T1",
         "salarié . cotisations . retraite complémentaire . salarié",
+        "salarié . régimes spécifiques . intermittents du spectacle . retraite complémentaire techniciens et cadre . cotisations retraite complémentaire salarié taux T1",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre . cotisations retraite complémentaire salarié taux T1",
+        "salarié . convention collective . BTP . catégorie . etam . cotisations retraite complémentaire salarié taux T1",
         "salarié . cotisations . retraite complémentaire . salarié . taux T1",
         "salarié . cotisations . CEG . employeur",
         "salarié . cotisations . CEG",
@@ -857,6 +1013,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . allocations familiales",
         "salarié . cotisations . chômage . employeur",
         "salarié . cotisations . chômage",
+        "salarié . cotisations . chômage . salarié . taux",
         "salarié . cotisations . chômage . employeur . taux",
         "salarié . cotisations . APEC . employeur",
         "salarié . cotisations . AGS",
@@ -867,6 +1024,8 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . contribution au dialogue social",
         "salarié . convention collective . sport . cotisations . formation professionnelle",
         "salarié . cotisations . formation professionnelle",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations versement mobilité",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations versement mobilité",
         "salarié . cotisations . versement mobilité",
         "entreprise . association non lucrative",
         "salarié . cotisations . taxe d'apprentissage",
@@ -879,15 +1038,17 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . convention collective . sport . cotisations . régime frais de santé",
         "salarié . cotisations . prévoyances . santé . montant",
         "salarié . cotisations . prévoyances . santé . taux employeur",
+        "salarié . convention collective . sport . cotisations . prévoyance . employeur",
+        "salarié . convention collective . optique . prévoyance . employeur",
+        "salarié . convention collective . HCR . prévoyance conventionnelle . employeur",
         "salarié . convention collective . BTP . catégorie . ouvrier . prévoyance complémentaire . employeur",
         "salarié . convention collective . BTP . catégorie . ouvrier",
         "salarié . convention collective . BTP . catégorie . etam . prévoyance complémentaire . employeur",
         "salarié . convention collective . BTP . catégorie . cadre . prévoyance complémentaire . employeur",
         "salarié . convention collective . BTP . catégorie . cadre",
-        "salarié . convention collective . HCR . prévoyance conventionnelle . employeur",
-        "salarié . convention collective . optique . prévoyance . employeur",
-        "salarié . convention collective . sport . cotisations . prévoyance . employeur",
         "salarié . cotisations . prévoyances . conventionnelle . employeur",
+        "salarié . convention collective . BTP . catégorie . cadre . contrat statut cadre",
+        "dirigeant . assimilé salarié . salarié contrat statut cadre",
         "salarié . contrat . statut cadre",
         "salarié . cotisations . exonérations . employeur",
         "salarié . cotisations . exonérations",
@@ -895,19 +1056,25 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . exonérations . JEI",
         "salarié . cotisations . exonérations . lodeom",
         "salarié . cotisations . exonérations . lodeom . zone un",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux",
         "salarié . cotisations . exonérations . lodeom . montant",
         "salarié . cotisations . exonérations . réduction générale",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations maladie employeur taux",
         "salarié . cotisations . maladie . employeur . taux",
         "salarié . cotisations . maladie . employeur . taux réduit",
         "salarié . temps de travail . SMIC",
         "SMIC . horaire",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations allocations familiales taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations allocations familiales taux",
         "salarié . cotisations . allocations familiales . taux",
         "salarié . cotisations . allocations familiales . taux réduit",
         "salarié . cotisations . CSA . taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations ATMP taux minimum",
         "salarié . cotisations . ATMP . taux minimum",
         "salarié . convention collective . sport . exonération cotisation AT",
         "salarié . cotisations . ATMP",
         "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . ATMP",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations ATMP taux",
         "salarié . cotisations . ATMP . taux",
         "salarié . cotisations . ATMP . taux fonctions support",
         "salarié . régimes spécifiques . alsace moselle . ATMP . seuil taux mixte ou individuel",
@@ -915,6 +1082,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "établissement . taux ATMP",
         "établissement . taux ATMP . taux collectif",
         "salarié . cotisations . ATMP . taux moyen",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations FNAL taux",
         "salarié . cotisations . FNAL . taux",
         "salarié . cotisations . FNAL . éligible taux réduit",
         "salarié . cotisations . exonérations . JEI . montant",
@@ -925,9 +1093,14 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . régimes spécifiques . impatriés",
         "salarié . cotisations . vieillesse",
         "salarié . cotisations . vieillesse . salarié . déplafonnée",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations vieillesse salarié déplafonnée taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations vieillesse salarié déplafonnée taux",
         "salarié . cotisations . vieillesse . salarié . déplafonnée . taux",
+        "salarié . régimes spécifiques . DFS . cotisations assiette",
         "salarié . contrat . apprentissage . assiette réduite apprentissage",
         "salarié . cotisations . vieillesse . salarié . plafonnée",
+        "salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . cotisations vieillesse salarié plafonnée taux",
+        "salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux . cotisations vieillesse salarié plafonnée taux",
         "salarié . cotisations . vieillesse . salarié . plafonnée . taux",
         "salarié . activité partielle . indemnités",
         "salarié . régimes spécifiques . taxe sur les salaires",
@@ -958,7 +1131,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
 ⚠️  Erreur lors de la conversion d'unité explicite
 ℹ️  
 [ EngineError ]
-✖️  Impossible de convertir l'unité '€' en '€ / mois'",
+✖️  Impossible de convertir l'unité '€' en '€/mois'",
     },
   ],
 }
@@ -973,7 +1146,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 8946,
+      "nodeValue": 8946.000000000002,
       "traversedVariables": [
         "dirigeant . auto-entrepreneur . cotisations et contributions",
         "dirigeant . auto-entrepreneur",
@@ -984,14 +1157,16 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "entreprise . catégorie juridique . EI",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV",
         "dirigeant . auto-entrepreneur . affiliation CIPAV",
-        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée",
         "entreprise . catégorie juridique . remplacements",
         "entreprise . catégorie juridique . SELARL",
         "entreprise . catégorie juridique . SELAS",
         "entreprise . activité . nature . libérale . réglementée",
-        "déclaration charge sociales . nature de l'activité",
+        "déclaration charge sociales . nature de l'activité . entreprise activité nature libérale",
         "déclaration charge sociales",
         "entreprise . activité . nature . libérale",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature",
+        "déclaration charge sociales . nature de l'activité",
         "entreprise . activité . nature",
         "entreprise . date de création",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations",
@@ -999,6 +1174,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département . outre-mer",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer . Mayotte",
+        "déclaration charge sociales . dirigeant exonérations ACRE",
         "dirigeant . exonérations . ACRE",
         "entreprise . durée d'activité",
         "entreprise . durée d'activité . en début d'année",
@@ -1009,15 +1185,22 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "entreprise . chiffre d'affaires . vente restauration hébergement",
         "dirigeant . indépendant . PL",
         "dirigeant . indépendant",
+        "déclaration charge sociales . entreprise activités revenus mixtes",
         "entreprise . activités . revenus mixtes",
         "entreprise . activités",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
         "entreprise . activités . commerciale",
         "entreprise . activités . artisanale",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . activités libérale",
         "entreprise . activités . libérale",
         "entreprise . activités . agricole",
         "entreprise . imposition . régime . micro-entreprise",
+        "entreprise . imposition . IS",
+        "entreprise . catégorie juridique . SAS",
         "entreprise . activités . service ou vente",
+        "déclaration charge sociales . nature de l'activité . entreprise activité nature artisanale",
         "entreprise . activité . nature . artisanale",
+        "déclaration charge sociales . nature de l'activité . entreprise activité nature commerciale",
         "entreprise . activité . nature . commerciale",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux service BIC",
         "entreprise . chiffre d'affaires . service BIC",
@@ -1061,12 +1244,9 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "entreprise . catégorie juridique",
         "entreprise . catégorie juridique . EI",
         "impôt . méthode de calcul",
-        "impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
         "impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte",
-        "établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique",
-        "établissement . commune . département . outre-mer",
+        "impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
         "établissement . commune . département",
-        "établissement . commune . département . outre-mer . Mayotte",
         "impôt . taux neutre d'impôt sur le revenu",
         "date",
         "impôt . revenu imposable",
@@ -1076,7 +1256,13 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur . impôt . revenu imposable",
         "entreprise . imposition . régime . micro-entreprise . revenu abattu",
         "entreprise . imposition . régime . micro-entreprise",
+        "entreprise . imposition . IS",
+        "entreprise . catégorie juridique . SAS",
+        "entreprise . catégorie juridique . SELAS",
         "bénéficiaire . dividendes . imposables",
+        "établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique",
+        "établissement . commune . département . outre-mer",
+        "établissement . commune . département . outre-mer . Mayotte",
         "dirigeant . auto-entrepreneur . impôt . versement libératoire . montant",
       ],
       "unit": {
@@ -1109,14 +1295,16 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur . cotisations et contributions",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV",
         "dirigeant . auto-entrepreneur . affiliation CIPAV",
-        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée",
         "entreprise . catégorie juridique . remplacements",
         "entreprise . catégorie juridique . SELARL",
         "entreprise . catégorie juridique . SELAS",
         "entreprise . activité . nature . libérale . réglementée",
-        "déclaration charge sociales . nature de l'activité",
+        "déclaration charge sociales . nature de l'activité . entreprise activité nature libérale",
         "déclaration charge sociales",
         "entreprise . activité . nature . libérale",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature",
+        "déclaration charge sociales . nature de l'activité",
         "entreprise . activité . nature",
         "entreprise . date de création",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations",
@@ -1124,6 +1312,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département . outre-mer",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer . Mayotte",
+        "déclaration charge sociales . dirigeant exonérations ACRE",
         "dirigeant . exonérations . ACRE",
         "entreprise . durée d'activité",
         "entreprise . durée d'activité . en début d'année",
@@ -1134,15 +1323,22 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "entreprise . chiffre d'affaires . vente restauration hébergement",
         "dirigeant . indépendant . PL",
         "dirigeant . indépendant",
+        "déclaration charge sociales . entreprise activités revenus mixtes",
         "entreprise . activités . revenus mixtes",
         "entreprise . activités",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
         "entreprise . activités . commerciale",
         "entreprise . activités . artisanale",
+        "entreprise . catégorie juridique . remplacements . profession libérale reglementée . activités libérale",
         "entreprise . activités . libérale",
         "entreprise . activités . agricole",
         "entreprise . imposition . régime . micro-entreprise",
+        "entreprise . imposition . IS",
+        "entreprise . catégorie juridique . SAS",
         "entreprise . activités . service ou vente",
+        "déclaration charge sociales . nature de l'activité . entreprise activité nature artisanale",
         "entreprise . activité . nature . artisanale",
+        "déclaration charge sociales . nature de l'activité . entreprise activité nature commerciale",
         "entreprise . activité . nature . commerciale",
         "dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux service BIC",
         "entreprise . chiffre d'affaires . service BIC",
@@ -1160,9 +1356,8 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur . impôt . versement libératoire",
         "dirigeant . auto-entrepreneur . impôt",
         "impôt . méthode de calcul",
-        "impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
         "impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte",
-        "établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique",
+        "impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique",
         "impôt . taux neutre d'impôt sur le revenu",
         "impôt . revenu imposable",
         "dirigeant . rémunération . net . imposable",
@@ -1170,6 +1365,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "dirigeant . auto-entrepreneur . impôt . revenu imposable",
         "entreprise . imposition . régime . micro-entreprise . revenu abattu",
         "bénéficiaire . dividendes . imposables",
+        "établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique",
         "dirigeant . auto-entrepreneur . impôt . versement libératoire . montant",
       ],
       "unit": {
@@ -1195,7 +1391,16 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1213,7 +1418,52 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1249,7 +1499,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1267,7 +1517,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1276,7 +1526,34 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . libérale\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . entreprise activité nature libérale\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1294,7 +1571,52 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+➡️  Dans la règle \\"entreprise . activité . nature . libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . entreprise activité nature libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité . entreprise activité nature libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature . libérale\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1312,7 +1634,52 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée\\"
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . activité . nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"déclaration charge sociales . nature de l'activité\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1366,7 +1733,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1375,7 +1742,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1384,7 +1751,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1393,7 +1760,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1402,7 +1769,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1411,7 +1778,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1420,7 +1787,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1429,7 +1796,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1438,7 +1805,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1447,7 +1814,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1456,7 +1823,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1465,7 +1832,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1474,7 +1841,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1483,7 +1850,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1492,7 +1859,277 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée\\"
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . imposition régime\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . SASU option IR non implémentée . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
+⚠️  Cette règle est tagguée comme experimentale. 
+
+Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
+",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . régime micro-entreprise . entreprise imposition\\"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -1672,9 +2309,6 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
               "type": "object",
             },
             "properties": {
-              "nom": {
-                "type": "string",
-              },
               "question": {
                 "type": "string",
               },
