@@ -65,7 +65,12 @@ function infereSimulateurRevenuFromSituation(
 	) {
 		return 'eurl'
 	}
-	if (engine.evaluate('entreprise . catégorie juridique . SAS').nodeValue) {
+	if (
+		engine.evaluate('entreprise . catégorie juridique . SAS').nodeValue ||
+		engine.evaluate('entreprise . catégorie juridique . SAS . SASU')
+			.nodeValue ||
+		engine.evaluate('entreprise . catégorie juridique . SAS . SAS').nodeValue
+	) {
 		return 'sasu'
 	}
 	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
