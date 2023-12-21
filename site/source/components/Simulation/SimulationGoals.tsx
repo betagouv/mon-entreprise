@@ -1,16 +1,15 @@
 import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
-import { Logo } from '../Logo'
+import { LogoWithLink } from '../Logo'
 import { WatchInitialRender } from '../utils/useInitialRender'
 
 type SimulationGoalsProps = {
@@ -98,8 +97,6 @@ export const SimulationGoalsContainer = styled.div<{
 function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 	const inIframe = useIsEmbedded()
 
-	const { t } = useTranslation()
-
 	return (
 		<Section container>
 			{inIframe && (
@@ -111,14 +108,7 @@ function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 						alignItems: 'flex-end',
 					}}
 				>
-					<LogoContainer
-						href={import.meta.env.VITE_FR_BASE_URL}
-						target="_blank"
-						rel="noreferrer"
-						aria-label={t("Accéder à la page d'accueil, nouvelle fenêtre")}
-					>
-						<Logo />
-					</LogoContainer>
+					<LogoWithLink />
 				</Grid>
 			)}
 			{toggles && (
@@ -172,11 +162,4 @@ export const ToggleSection = styled.div`
 			flex-basis: initial;
 		}
 	}
-`
-
-const LogoContainer = styled(Link)`
-	display: block;
-	height: 4rem;
-	padding: ${({ theme }) => theme.spacings.md} 0;
-	text-align: center;
 `

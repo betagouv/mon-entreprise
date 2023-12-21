@@ -27,6 +27,7 @@ import Budget from '@/pages/budget/index'
 import IntegrationTest from '@/pages/dev/IntegrationTest'
 import Documentation from '@/pages/Documentation'
 import Iframes from '@/pages/iframes'
+import IframeFooter from '@/pages/iframes/IframeFooter'
 import Integration from '@/pages/integration/index'
 import Nouveautés from '@/pages/nouveautés/index'
 import { CatchOffline } from '@/pages/Offline'
@@ -183,7 +184,7 @@ const App = () => {
 				</Container>
 			</main>
 
-			{!isEmbedded && <Footer />}
+			{isEmbedded ? <IframeFooter /> : <Footer />}
 		</StyledLayout>
 	)
 }
