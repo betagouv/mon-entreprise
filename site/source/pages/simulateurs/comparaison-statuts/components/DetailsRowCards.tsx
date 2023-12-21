@@ -125,7 +125,12 @@ const DetailsRowCards = ({
 								{expressionOrDottedName && (
 									<>
 										<Condition
-											expression={{ 'est défini': expressionOrDottedName }}
+											expression={{
+												et: [
+													{ 'est défini': expressionOrDottedName },
+													{ 'est applicable': expressionOrDottedName },
+												],
+											}}
 											engine={statusObject.engine}
 										>
 											<StyledDiv>

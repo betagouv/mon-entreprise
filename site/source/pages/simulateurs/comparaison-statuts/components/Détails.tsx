@@ -307,7 +307,7 @@ const Détails = ({
 										}}
 									>
 										<Trans>
-											Pour y prétendre, vous devez voir cotisé au moins{' '}
+											Pour y prétendre, vous devez avoir cotisé au moins{' '}
 											<Strong>
 												<Value
 													engine={engine}
