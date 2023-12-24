@@ -297,14 +297,20 @@ const StyledDocumentation = styled.div`
 	a {
 		${(props) => componentCSS(StyledLink, props)}
 	}
-	button {
-		font-size: 1rem;
-		font-family: ${({ theme }) => theme.fonts.main};
-	}
-	font-size: 1rem;
-	font-family: ${({ theme }) => theme.fonts.main};
-	line-height: 1.5rem;
 
+	font-family: ${({ theme }) => theme.fonts.main};
+
+	.publicodes_btn-small {
+		background-color: ${({ theme }) => theme.colors.extended.grey[200]};
+		border-radius: ${({ theme }) => theme.box.borderRadius};
+		border: none;
+		padding: ${({ theme }) => theme.spacings.xxs}
+			${({ theme }) => theme.spacings.xs};
+		color: ${({ theme }) => theme.colors.extended.grey[800]};
+		&:hover {
+			background-color: ${({ theme }) => theme.colors.extended.grey[300]};
+		}
+	}
 	#documentation-rule-root nav ul li span button,
 	#documentation-rule-root nav ul li.active .content {
 		background-color: hsl(0deg 0% 90% / 50%);
