@@ -1,4 +1,7 @@
+
 # Journal des modifications
+## 2.0.0-rc.2
+Use publicodes v1.0.0-rc.5
 
 ## 2.0.0-rc.1
 **BREAKING CHANGE**

@@ -54,9 +54,9 @@ dirigeant . rémunération . net: 40000
 dirigeant . rémunération . net . après impôt: 33549
 entreprise . chiffre d'affaires: 54807
 impôt . montant: 6451
-protection sociale . retraite . base: 1714
+protection sociale . retraite . base: null
 protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: 4"
+protection sociale . retraite . trimestres: 0"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 1`] = `
