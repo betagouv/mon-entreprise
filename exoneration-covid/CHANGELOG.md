@@ -1,3 +1,7 @@
+## 1.0.0-rc.2
+
+Use publicodes v1.0.0-rc.5
+
 ## 1.0.0-rc.1
 
 Use publicodes v1.0.0-rc.4
