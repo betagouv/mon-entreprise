@@ -204,7 +204,7 @@ dirigeant . indépendant . cotisations facultatives:
     Ils sont déductible d'impôts (dans la limite d'un plafond), mais non déductible pour l'assiette des cotisations et contributions sociales.
   par défaut: non
   références:
-    Contrats Madelin: https://www.economie.gouv.fr/particuliers/reduction-impot-revenu-investissements-entreprise-pme-madelin
+    Contrats Madelin: https://www.impots.gouv.fr/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
     PER: https://www.economie.gouv.fr/PER-epargne-retraite
 
 dirigeant . indépendant . cotisations facultatives . montant:
