@@ -568,8 +568,8 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
             alors: 38916 €/an
           - si: date >= 01/2021
             alors: 38493 €/an
-        références:
-          Plafond de cotisations - Régime complémentaire des indépendants: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=ti_cotisation_plafond_cotisation_rci.aspx
+    références:
+      Plafond de cotisations - Régime complémentaire des indépendants: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=ti_cotisation_plafond_cotisation_rci.aspx
 
 dirigeant . indépendant . cotisations et contributions . invalidité et décès:
   description: |
