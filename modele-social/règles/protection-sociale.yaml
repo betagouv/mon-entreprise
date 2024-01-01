@@ -268,6 +268,8 @@ protection sociale . retraite . complémentaire . RCI:
 
     valeur d'acquisition:
       variations:
+        - si: date >= 01/2024
+          alors: 20.734 €/point
         - si: date >= 01/2023
           alors: 19.394 €/point
         - si: date >= 01/2022
@@ -279,10 +281,12 @@ protection sociale . retraite . complémentaire . RCI:
         - si: date >= 01/01/2019
           alors: 17.515 €/point
       références:
-        Valeur d'achat du point de retraite complémentaire: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=rci_valeur_achat_point_bar.aspx
+        Valeur d'achat du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_achat_point_bar.aspx
 
     valeur du point:
       variations:
+        - si: date >= 01/2024
+          alors: 1.327 €/an/point
         - si: date >= 01/2023
           alors: 1.280 €/an/point
         - si: date >= 01/2022
@@ -293,6 +297,8 @@ protection sociale . retraite . complémentaire . RCI:
           alors: 1.203 €/an/point
         - si: date >= 01/01/2019
           alors: 1.191 €/an/point
+      références:
+        Valeur de service du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
 
 protection sociale . retraite . base . CNAVPL:
   applicable si: dirigeant . indépendant . PL . CNAVPL
