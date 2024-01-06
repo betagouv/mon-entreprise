@@ -24,7 +24,7 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 2786.8209761099615,
+      "nodeValue": 2782.954156622193,
       "unit": {
         "denominators": [
           "an",
@@ -431,8 +431,10 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . contrat . temps de travail . temps partiel",
         "salarié . convention collective",
         "salarié . cotisations . ATMP . taux fonctions support",
+        "salarié . cotisations . allocations familiales . taux réduit",
         "salarié . cotisations . exonérations . JEI",
         "salarié . cotisations . exonérations . lodeom . zone un",
+        "salarié . cotisations . maladie . employeur . taux réduit",
         "salarié . cotisations . prévoyances . santé . montant",
         "salarié . cotisations . prévoyances . santé . taux employeur",
         "salarié . coût total employeur . aides . emploi franc . éligible",
@@ -451,7 +453,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "établissement . taux ATMP",
         "établissement . taux ATMP . taux collectif",
       ],
-      "nodeValue": 4744.51,
+      "nodeValue": 4750.46,
       "unit": {
         "denominators": [
           "mois",

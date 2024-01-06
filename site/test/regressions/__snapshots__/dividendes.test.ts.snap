@@ -14,8 +14,8 @@ exports[`calculate simulations-dividendes > barème couple 2 enfants 2`] = `
 "bénéficiaire . dividendes . bruts: 20000000
 bénéficiaire . dividendes . cotisations et contributions: 3440000
 bénéficiaire . dividendes . imposables: 10640000
-bénéficiaire . dividendes . nets d'impôt: 11418374
-impôt . montant: 5141626
+bénéficiaire . dividendes . nets d'impôt: 11420629
+impôt . montant: 5139371
 impôt . revenu imposable: 10640000
 impôt . taux d'imposition: 48"
 `;
@@ -25,17 +25,17 @@ exports[`calculate simulations-dividendes > barème couple 2 enfants 3`] = `
 bénéficiaire . dividendes . cotisations et contributions: 34
 bénéficiaire . dividendes . imposables: 106
 bénéficiaire . dividendes . nets d'impôt: 115
-impôt . montant: 38
+impôt . montant: 37
 impôt . revenu imposable: 106
-impôt . taux d'imposition: 36"
+impôt . taux d'imposition: 35"
 `;
 
 exports[`calculate simulations-dividendes > barème couple 2 enfants 4`] = `
 "bénéficiaire . dividendes . bruts: 20000
 bénéficiaire . dividendes . cotisations et contributions: 3440
 bénéficiaire . dividendes . imposables: 10640
-bénéficiaire . dividendes . nets d'impôt: 14891
-impôt . montant: 546
+bénéficiaire . dividendes . nets d'impôt: 14860
+impôt . montant: 497
 impôt . revenu imposable: 10640
 impôt . taux d'imposition: 5"
 `;
@@ -54,8 +54,8 @@ exports[`calculate simulations-dividendes > barème défauts 2`] = `
 "bénéficiaire . dividendes . bruts: 20000000
 bénéficiaire . dividendes . cotisations et contributions: 3440000
 bénéficiaire . dividendes . imposables: 10640000
-bénéficiaire . dividendes . nets d'impôt: 11380709
-impôt . montant: 5179291
+bénéficiaire . dividendes . nets d'impôt: 11381756
+impôt . montant: 5178244
 impôt . revenu imposable: 10640000
 impôt . taux d'imposition: 49"
 `;
@@ -75,7 +75,7 @@ exports[`calculate simulations-dividendes > barème défauts 4`] = `
 bénéficiaire . dividendes . cotisations et contributions: 3440
 bénéficiaire . dividendes . imposables: 10640
 bénéficiaire . dividendes . nets d'impôt: 13368
-impôt . montant: 2068
+impôt . montant: 2014
 impôt . revenu imposable: 10640
 impôt . taux d'imposition: 19"
 `;

@@ -22,7 +22,7 @@ médecin:
     dirigeant . rémunération . totale: 120000 €/an
     dirigeant . indépendant . PL . métier . santé . médecin . secteur: "'non conventionné'"
   - # < 2 ans exercice
-    entreprise . date de création: 01/01/2022
+    entreprise . date de création: 01/01/2023
     dirigeant . indépendant . PL . métier: "'santé . médecin'"
     dirigeant . rémunération . totale: 50000 €/an
 
@@ -120,7 +120,7 @@ CIPAV ACRE:
   - &CNAVPL-ACRE
     dirigeant . rémunération . net: 5000 €/an
     dirigeant . exonérations . ACRE: oui
-    entreprise . date de création: 11/11/2022
+    entreprise . date de création: 11/11/2023
   - <<: *CNAVPL-ACRE
     dirigeant . rémunération . net: 20000 €/an
   - <<: *CNAVPL-ACRE
@@ -128,6 +128,8 @@ CIPAV ACRE:
 
 CIPAV années précédentes:
   - dirigeant . rémunération . net: 50000 €/an
-    date: 01/2022
+    date: 01/2023
   - dirigeant . rémunération . net: 40000 €/an
+    date: 01/2022
+  - dirigeant . rémunération . net: 30000 €/an
     date: 01/2021

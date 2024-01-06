@@ -116,6 +116,50 @@ impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martin
     Réunion Martinique
   remplace: taux neutre d'impôt sur le revenu
   variations:
+    - si: date >= 01/01/2023
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1741 €/mois
+            - montant: 0.5%
+              plafond: 1847 €/mois
+            - montant: 1.3%
+              plafond: 2035 €/mois
+            - montant: 2.1%
+              plafond: 2222 €/mois
+            - montant: 2.9%
+              plafond: 2454 €/mois
+            - montant: 3.5%
+              plafond: 2588 €/mois
+            - montant: 4.1%
+              plafond: 2677 €/mois
+            - montant: 5.3%
+              plafond: 2945 €/mois
+            - montant: 7.5%
+              plafond: 3641 €/mois
+            - montant: 9.9%
+              plafond: 4659 €/mois
+            - montant: 11.9%
+              plafond: 5292 €/mois
+            - montant: 13.8%
+              plafond: 6130 €/mois
+            - montant: 15.8%
+              plafond: 7344 €/mois
+            - montant: 17.9%
+              plafond: 8165 €/mois
+            - montant: 20%
+              plafond: 9280 €/mois
+            - montant: 24%
+              plafond: 12761 €/mois
+            - montant: 28%
+              plafond: 16956 €/mois
+            - montant: 33%
+              plafond: 25880 €/mois
+            - montant: 38%
+              plafond: 56568 €/mois
+            - montant: 43%
     - si: date >= 01/01/2022
       alors:
         grille:
@@ -214,6 +258,50 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
   remplace: taux neutre d'impôt sur le revenu
 
   variations:
+    - si: date >= 01/01/2023
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1865 €/mois
+            - montant: 0.5%
+              plafond: 2016 €/mois
+            - montant: 1.3%
+              plafond: 2248 €/mois
+            - montant: 2.1%
+              plafond: 2534 €/mois
+            - montant: 2.9%
+              plafond: 2632 €/mois
+            - montant: 3.5%
+              plafond: 2722 €/mois
+            - montant: 4.1%
+              plafond: 2811 €/mois
+            - montant: 5.3%
+              plafond: 3123 €/mois
+            - montant: 7.5%
+              plafond: 4310 €/mois
+            - montant: 9.9%
+              plafond: 5578 €/mois
+            - montant: 11.9%
+              plafond: 6291 €/mois
+            - montant: 13.8%
+              plafond: 7300 €/mois
+            - montant: 15.8%
+              plafond: 8031 €/mois
+            - montant: 17.9%
+              plafond: 8897 €/mois
+            - montant: 20%
+              plafond: 10325 €/mois
+            - montant: 24%
+              plafond: 13891 €/mois
+            - montant: 28%
+              plafond: 17669 €/mois
+            - montant: 33%
+              plafond: 28317 €/mois
+            - montant: 38%
+              plafond: 59770 €/mois
+            - montant: 43%
     - si: date >= 01/01/2022
       alors:
         grille:
@@ -312,6 +400,51 @@ impôt . taux neutre d'impôt sur le revenu:
     L'assiette est donc bien le salaire imposable, et non le salaire imposable
     abattu.
   variations:
+    - si: date >= 01/01/2023
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - plafond: 1518 €/mois
+              montant: 0%
+            - plafond: 1577 €/mois
+              montant: 0.5 %
+            - plafond: 1678 €/mois
+              montant: 1.3 %
+            - plafond: 1791 €/mois
+              montant: 2.1 %
+            - plafond: 1914 €/mois
+              montant: 2.9 %
+            - plafond: 2016 €/mois
+              montant: 3.5 %
+            - plafond: 2150 €/mois
+              montant: 4.1 %
+            - plafond: 2544 €/mois
+              montant: 5.3 %
+            - plafond: 2912 €/mois
+              montant: 7.5 %
+            - plafond: 3317 €/mois
+              montant: 9.9 %
+            - plafond: 3734 €/mois
+              montant: 11.9 %
+            - plafond: 4357 €/mois
+              montant: 13.8 %
+            - plafond: 5224 €/mois
+              montant: 15.8 %
+            - plafond: 6537 €/mois
+              montant: 17.9 %
+            - plafond: 8165 €/mois
+              montant: 20%
+            - plafond: 11333 €/mois
+              montant: 24%
+            - plafond: 15349 €/mois
+              montant: 28 %
+            - plafond: 24094 €/mois
+              montant: 33 %
+            - plafond: 51611 €/mois
+              montant: 38 %
+            - montant: 43 %
+
     - si: date >= 01/01/2022
       alors:
         grille:
@@ -400,9 +533,8 @@ impôt . taux neutre d'impôt sur le revenu:
               plafond: 48292 €/mois
             - montant: 43%
   références:
-    Explication de l'impôt neutre: https://www.economie.gouv.fr/prelevement-a-la-source/taux-prelevement#taux-non-personnalise
     BOFIP: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
-
+    Qu'est-ce que le taux neutre ?: https://www.economie.gouv.fr/particuliers/modifier-gerer-taux-prelevement-source#qu-est-ce-que-le-taux-non-person_5
 impôt . taux personnalisé:
   question: Quel est votre taux de prélèvement à la source ?
   description: |
@@ -543,6 +675,8 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
     valeur: 10% * revenu d'activité
     plafond:
       variations:
+        - si: date >= 01/2024
+          alors: 14171 €/an
         - si: date >= 01/2023
           alors: 13522 €/an
         - si: date >= 01/2022
@@ -553,6 +687,8 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
           alors: 12627 €/an
     plancher:
       variations:
+        - si: date >= 01/2024
+          alors: 495 €/an
         - si: date >= 01/2023
           alors: 472 €/an
         - si: date >= 01/2022
@@ -563,7 +699,7 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
           alors: 441 €/an
   références:
     Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
-    Code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985819/2022-01-04/
+    Code des impôts - Article 83: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985819/
 
 impôt . foyer fiscal . revenu imposable . autres revenus imposables:
   question: Quel est le montant total des autres revenus imposables du foyer fiscal ?
@@ -612,6 +748,8 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
     - si: foyer fiscal . situation de famille = 'couple'
       alors:
         variations:
+          - si: date >= 01/2024
+            alors: 1444 €/an
           - si: date >= 01/2023
             alors: 1378 €/an
           - si: date >= 01/2022
@@ -622,6 +760,8 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
             alors: 1286 €/an
     - sinon:
         variations:
+          - si: date >= 01/2024
+            alors: 873 €/an
           - si: date >= 01/2023
             alors: 833 €/an
           - si: date >= 01/2022
@@ -641,10 +781,11 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial:
 
 impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
   somme:
-    - Plafonnement général
-    - Plafonnement parent isolé
+    - plafonnement général
+    - plafonnement parent isolé
 
   références:
+    Bofip 2023: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20230626
     Bofip 2022: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20220516#III._Niveau_du_plafonnement_16
     Bofip 2021: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20210330#III._Niveau_du_plafonnement_12
     Bofip 2020: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20200515#III._Niveau_du_plafonnement_12
@@ -653,9 +794,11 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
 
   avec:
-    Plafonnement général:
+    plafonnement général:
       produit:
         - variations:
+            - si: date >= 01/2024
+              alors: 1759 €/demi-part/an
             - si: date >= 01/2023
               alors: 1678 €/demi-part/an
             - si: date >= 01/2022
@@ -669,12 +812,14 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
               abattement: nombre de parts . majoration personne seule avec enfant
             - 2 demi-part/part
 
-    Plafonnement parent isolé:
+    plafonnement parent isolé:
       description: |
         Avantage de quotient familial procuré par le premier enfant à charge des
         contribuables célibataires ou divorcés vivant seuls.
       applicable si: nombre de parts . majoration personne seule avec enfant
       variations:
+        - si: date >= 01/2024
+          alors: 4149 €/an
         - si: date >= 01/2023
           alors: 3959 €/an
         - si: date >= 01/2022
@@ -698,6 +843,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 0%
         plafond:
           variations:
+            - si: date >= 01/2024
+              alors: 11294 €/part/an
             - si: date >= 01/2023
               alors: 10777 €/part/an
             - si: date >= 01/2022
@@ -707,6 +854,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 11%
         plafond:
           variations:
+            - si: date >= 01/2024
+              alors: 28797 €/part/an
             - si: date >= 01/2023
               alors: 27478 €/part/an
             - si: date >= 01/2022
@@ -716,6 +865,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 30%
         plafond:
           variations:
+            - si: date >= 01/2024
+              alors: 82341 €/part/an
             - si: date >= 01/2023
               alors: 78570 €/part/an
             - si: date >= 01/2022
@@ -725,6 +876,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 41%
         plafond:
           variations:
+            - si: date >= 01/2024
+              alors: 177106 €/part/an
             - si: date >= 01/2023
               alors: 168994 €/part/an
             - si: date >= 01/2022
@@ -734,7 +887,7 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 45%
   références:
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
-    Mise à jour 2022: https://www.economie.gouv.fr/particuliers/changement-2022-particuliers?xtor=ES-39-%5BBI_249_20220104%5D-20220104-%5Bhttps://www.economie.gouv.fr/particuliers/changement-2022-particuliers%5D
+    Comment calculer votre impôt d'après le barème de l'impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/tranches-imposition-impot-revenu
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans parts rattachées:
   barème:

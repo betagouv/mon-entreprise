@@ -781,7 +781,7 @@ salarié . rémunération . avantages en nature:
             1 par jour: 21 repas/mois
             2 par jour: 42 repas/mois
 
-        repas forfaitaire:
+        montant . repas forfaitaire:
           titre: montant forfaitaire
           variations:
             - si: date >= 01/2024
