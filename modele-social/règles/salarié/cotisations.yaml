@@ -265,7 +265,7 @@ salarié . cotisations . exonérations . JEI:
   rend non applicable:
     - réduction générale
     - allocations familiales . taux réduit
-    - salarié . cotisations . maladie . employeur . taux réduit
+    - maladie . employeur . taux réduit
     - lodeom
 
 salarié . cotisations . exonérations . JEI . montant:
@@ -545,7 +545,10 @@ salarié . cotisations . AGS:
   produit:
     - valeur: cotisations . assiette
       plafond: 4 * temps de travail . plafond sécurité sociale
-    - 0.15%
+    - variations:
+        - si: date >= 01/2024
+          alors: 0.2%
+        - sinon: 0.15%
 
 salarié . cotisations . allocations familiales:
   cotisation:
@@ -563,7 +566,19 @@ salarié . cotisations . allocations familiales:
         - si: taux réduit
           alors: 3.45%
         - sinon: 5.25%
-    taux réduit: cotisations . assiette < temps de travail . SMIC * 3.5
+
+    taux réduit:
+      valeur: cotisations . assiette < plafond
+      avec:
+        plafond:
+          produit:
+            - 3.5
+            - valeur: SMIC
+              contexte:
+                date: 31/12/2023
+            - temps de travail . quotité
+      références:
+        Code de la sécurité sociale - Article D241-3-2: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030067277/
 
 salarié . cotisations . APEC:
   titre: Association pour l’emploi des cadres
@@ -668,12 +683,16 @@ salarié . cotisations . ATMP:
         Le taux minimum existant pour la cotisation ATMP. Utilisé notamment pour
         le calcul de la réduction générale de cotisations
       variations:
+        - si: date >= 01/2024
+          alors: 0.46%
+        - si: date >= 01/2023
+          alors: 0.55%
         - si: date >= 01/2022
           alors: 0.59%
         - si: date >= 01/2021
           alors: 0.70 %
       références:
-        Article D241-2-4: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000041460928&cidTexte=LEGITEXT000006073189&dateTexte=20200101
+        Article D241-2-4: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041460928
 
     taux moyen:
       valeur: 2.23%
@@ -933,13 +952,25 @@ salarié . cotisations . maladie:
       titre: part employeur
 
       avec:
-        taux réduit: cotisations . assiette < 2.5 * temps de travail . SMIC
+        taux:
+          variations:
+            - si: taux réduit
+              alors: 7%
+            - sinon: 13%
 
-    employeur . taux:
-      variations:
-        - si: taux réduit
-          alors: 7%
-        - sinon: 13%
+        taux réduit:
+          valeur: cotisations . assiette < plafond
+          avec:
+            plafond:
+              produit:
+                - 2.5
+                - valeur: SMIC
+                  contexte:
+                    date: 31/12/2023
+                - temps de travail . quotité
+          références:
+            Code de la sécurité sociale - Article L241-2-1: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048684728
+            Code de la sécurité sociale - Article L241-1-2: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048807182
 
     salarié:
       produit:
@@ -1138,14 +1169,20 @@ salarié . cotisations . vieillesse:
       produit:
         - cotisations . assiette
         - taux
-    employeur . déplafonnée . taux: 1.9%
+      avec:
+        taux:
+          variations:
+            - si: date >= 01/2024
+              alors: 2.02%
+            - sinon: 1.9%
 
     employeur . plafonnée:
       produit:
         - valeur: cotisations . assiette
           plafond: temps de travail . plafond sécurité sociale
         - taux
-    employeur . plafonnée . taux: 8.55%
+      avec:
+        taux: 8.55%
 
     salarié:
       titre: part salarié
@@ -1157,14 +1194,16 @@ salarié . cotisations . vieillesse:
       produit:
         - cotisations . assiette
         - taux
-    salarié . déplafonnée . taux: 0.4%
+      avec:
+        taux: 0.4%
 
     salarié . plafonnée:
       produit:
         - valeur: cotisations . assiette
           plafond: temps de travail . plafond sécurité sociale
         - taux
-    salarié . plafonnée . taux: 6.90%
+      avec:
+        taux: 6.90%
 
 salarié . cotisations . taxe d'apprentissage:
   cotisation:
