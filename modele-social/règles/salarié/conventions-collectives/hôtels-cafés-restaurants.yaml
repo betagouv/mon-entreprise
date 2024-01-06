@@ -9,7 +9,10 @@ salarié . convention collective . HCR . montant forfaitaire d'un repas:
     références à:
       rémunération . avantages en nature . nourriture . montant . repas
       forfaitaire
-  formule: 3.94 €/repas
+  variations:
+    - si: date >= 01/2024
+      alors: 4.15 €/repas
+    - sinon: 3.94 €/repas
 
 salarié . convention collective . HCR . majoration heures supplémentaires:
   remplace: temps de travail . heures supplémentaires . majoration

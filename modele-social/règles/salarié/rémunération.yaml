@@ -427,6 +427,8 @@ salarié . rémunération . frais professionnels . titres-restaurant:
 
     déductible . plafond unitaire:
       variations:
+        - si: date >= 01/2024
+          alors: 7.18 €/titres-restaurant
         - si: date >= 01/2023
           alors: 6.91 €/titres-restaurant
         # En 2022, la participation de l’employeur au financement
@@ -765,10 +767,9 @@ salarié . rémunération . avantages en nature:
         montant:
           titre: nourriture
           unité: €/mois
-          formule:
-            produit:
-              - repas forfaitaire
-              - repas par mois
+          produit:
+            - repas par mois
+            - repas forfaitaire
           références:
             urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/avantages-en-nature/nourriture.html
 
@@ -779,7 +780,13 @@ salarié . rémunération . avantages en nature:
           suggestions:
             1 par jour: 21 repas/mois
             2 par jour: 42 repas/mois
-    nourriture . montant . repas forfaitaire: 5 €/repas
+
+        repas forfaitaire:
+          titre: montant forfaitaire
+          variations:
+            - si: date >= 01/2024
+              alors: 5.35 €/repas
+            - sinon: 5 €/repas
 
     ntic:
       icônes: 💻📱
