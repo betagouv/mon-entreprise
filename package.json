@@ -50,7 +50,7 @@
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"prettier": "^3.0.3",
-		"publicodes": "1.0.0-rc.5",
+		"publicodes": "1.0.0-rc.6",
 		"rimraf": "^5.0.1"
 	},
 	"resolutions": {

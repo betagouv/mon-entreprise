@@ -7580,22 +7580,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/react-ui@npm:1.0.0-rc.5":
-  version: 1.0.0-rc.5
-  resolution: "@publicodes/react-ui@npm:1.0.0-rc.5"
+"@publicodes/react-ui@npm:1.0.0-rc.6":
+  version: 1.0.0-rc.6
+  resolution: "@publicodes/react-ui@npm:1.0.0-rc.6"
   dependencies:
     styled-components: ^6.1.1
   peerDependencies:
     publicodes: ^1.0.0-beta.71
     react: ^18
     react-dom: ^18
-  checksum: ef5e4b87519ae8e2fbd5538330fa9dd3f0006362c1195d1ce946f7293beba47809db5182c64d191a0460312448b45eedd81bb60e704e2b3283629b33b7b2a129
+  checksum: 22a6244cd3cae9dda6c2a571e14e6ef403cc6195f21529c7abd0c805d4bccb0fe77ecbe4d19d2d55eb3b5de3e919baeee12f47602e4dfc4a0a427f3e0276ad07
   languageName: node
   linkType: hard
 
-"@publicodes/rest-api@npm:1.0.0-rc.5":
-  version: 1.0.0-rc.5
-  resolution: "@publicodes/rest-api@npm:1.0.0-rc.5"
+"@publicodes/rest-api@npm:1.0.0-rc.6":
+  version: 1.0.0-rc.6
+  resolution: "@publicodes/rest-api@npm:1.0.0-rc.6"
   dependencies:
     "@koa/cors": ^3.4.3
     "@koa/router": ^10.1.1
@@ -7604,7 +7604,7 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.0-beta.47
-  checksum: 3f08ef0e0bebe13e7294b42d79fbb284a56948cebae22e0d557dc8794aaed19c054a3338519cd89cac2f557dc4e45eb46d0bed1fdf835fe1c9340b8b216c7fb0
+  checksum: c57b863a9c0ce386c24459ddaccf80408c525bda4f0b53f4160e311c3fc0d839cfa05f8f01806bb28fe6b1070663f156979c7cd269d902bc1671e8b5641eb609
   languageName: node
   linkType: hard
 
@@ -13819,7 +13819,7 @@ __metadata:
     "@apidevtools/swagger-cli": ^4.0.4
     "@koa/cors": ^4.0.0
     "@koa/router": ^12.0.0
-    "@publicodes/rest-api": 1.0.0-rc.5
+    "@publicodes/rest-api": 1.0.0-rc.6
     "@sentry/node": ^7.70.0
     "@sentry/utils": ^7.70.0
     "@types/ioredis-mock": ^8.2.2
@@ -13839,7 +13839,7 @@ __metadata:
     modele-social: "workspace:^"
     nodemon: ^3.0.1
     piano-analytics-js: ^6.13.0
-    publicodes: 1.0.0-rc.5
+    publicodes: 1.0.0-rc.6
     rate-limiter-flexible: ^2.4.2
     swagger-ui-dist: ^5.7.2
     ts-node: ^10.9.1
@@ -18856,7 +18856,7 @@ __metadata:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
   peerDependencies:
-    publicodes: ^1.0.0-rc.5
+    publicodes: ^1.0.0-rc.6
   languageName: unknown
   linkType: soft
 
@@ -24359,7 +24359,7 @@ __metadata:
     js-yaml: ^4.1.0
     onchange: ^7.1.0
   peerDependencies:
-    publicodes: ^1.0.0-rc.5
+    publicodes: ^1.0.0-rc.6
   languageName: unknown
   linkType: soft
 
@@ -26624,12 +26624,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:1.0.0-rc.5":
-  version: 1.0.0-rc.5
-  resolution: "publicodes@npm:1.0.0-rc.5"
+"publicodes@npm:1.0.0-rc.6":
+  version: 1.0.0-rc.6
+  resolution: "publicodes@npm:1.0.0-rc.6"
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: 2fcc67b433b629dc5f22f445ef0b466476baaf899c6eabb71ad5ddccbbe3bcc92c34772e6abe0efecb0db3d1fb99c6e9a9d869d36f1bfb543dd6a45db446b87d
+  checksum: a0ee555a7e34e3b751fee7b366eee7986948c836910b80162642dbd6f16c62ddb79c3e40e9f6fa7fe754d62f824b352f4c1ffec542253e9adf9d288e53ac8fbb
   languageName: node
   linkType: hard
 
@@ -28327,7 +28327,7 @@ __metadata:
     eslint-plugin-react: ^7.33.2
     eslint-plugin-react-hooks: ^4.6.0
     prettier: ^3.0.3
-    publicodes: 1.0.0-rc.5
+    publicodes: 1.0.0-rc.6
     rimraf: ^5.0.1
   languageName: unknown
   linkType: soft
@@ -28903,7 +28903,7 @@ __metadata:
     "@internationalized/number": ^3.2.1
     "@juggle/resize-observer": ^3.4.0
     "@leeoniya/ufuzzy": ^1.0.10
-    "@publicodes/react-ui": 1.0.0-rc.5
+    "@publicodes/react-ui": 1.0.0-rc.6
     "@react-aria/accordion": ^3.0.0-alpha.17
     "@react-pdf/renderer": ^3.1.12
     "@react-types/accordion": ^3.0.0-alpha.16
@@ -28950,7 +28950,7 @@ __metadata:
     modele-social: "workspace:^"
     netlify-cli: ^17.10.1
     piano-analytics-js: ^6.13.0
-    publicodes: 1.0.0-rc.5
+    publicodes: 1.0.0-rc.6
     react: ^18.2.0
     react-aria: ^3.24.0
     react-day-picker: ^8.8.2
