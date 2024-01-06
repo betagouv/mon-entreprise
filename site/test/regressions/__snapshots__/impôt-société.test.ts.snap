@@ -24,22 +24,22 @@ entreprise . imposition . IS . montant: 3000"
 
 exports[`calculate simulations-impot-société > bénéfices 5`] = `
 "entreprise . imposition . IS . contribution sociale: 0
-entreprise . imposition . IS . montant: 45762"
+entreprise . imposition . IS . montant: 45750"
 `;
 
 exports[`calculate simulations-impot-société > bénéfices 6`] = `
 "entreprise . imposition . IS . contribution sociale: 0
-entreprise . imposition . IS . montant: 495762"
+entreprise . imposition . IS . montant: 495750"
 `;
 
 exports[`calculate simulations-impot-société > bénéfices 7`] = `
-"entreprise . imposition . IS . contribution sociale: 139750
-entreprise . imposition . IS . montant: 4995762"
+"entreprise . imposition . IS . contribution sociale: 139681
+entreprise . imposition . IS . montant: 4995750"
 `;
 
 exports[`calculate simulations-impot-société > prorata temporis 1`] = `
 "entreprise . imposition . IS . contribution sociale: 0
-entreprise . imposition . IS . montant: 245762"
+entreprise . imposition . IS . montant: 245750"
 `;
 
 exports[`calculate simulations-impot-société > prorata temporis 2`] = `

@@ -3,8 +3,8 @@
 exports[`calculate assimilé salarié > ACRE 1`] = `
 "dirigeant . rémunération . totale: 10000
 impôt . montant: 0
-salarié . cotisations: 519
-salarié . rémunération . brut: 782
+salarié . cotisations: 520
+salarié . rémunération . brut: 781
 salarié . rémunération . net . payé après impôt: 596
 salarié . rémunération . net . à payer avant impôt: 596
 
@@ -14,7 +14,7 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate assimilé salarié > ACRE 2`] = `
 "dirigeant . rémunération . totale: 20000
 impôt . montant: 0
-salarié . cotisations: 1008
+salarié . cotisations: 1010
 salarié . rémunération . brut: 1582
 salarié . rémunération . net . payé après impôt: 1228
 salarié . rémunération . net . à payer avant impôt: 1228
@@ -24,10 +24,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate assimilé salarié > ACRE 3`] = `
 "dirigeant . rémunération . totale: 30000
-impôt . montant: 873
-salarié . cotisations: 1497
+impôt . montant: 750
+salarié . cotisations: 1500
 salarié . rémunération . brut: 2383
-salarié . rémunération . net . payé après impôt: 1788
+salarié . rémunération . net . payé après impôt: 1798
 salarié . rémunération . net . à payer avant impôt: 1861
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
@@ -35,10 +35,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate assimilé salarié > JEI 1`] = `
 "dirigeant . rémunération . totale: 48000
-impôt . montant: 3247
+impôt . montant: 2939
 salarié . cotisations: 1198
 salarié . rémunération . brut: 3574
-salarié . rémunération . net . payé après impôt: 2531
+salarié . rémunération . net . payé après impôt: 2557
 salarié . rémunération . net . à payer avant impôt: 2802
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
@@ -47,10 +47,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate assimilé salarié > avec charges 1`] = `
 "dirigeant . rémunération . totale: 10000
 impôt . montant: 0
-salarié . cotisations: 396
-salarié . rémunération . brut: 581
-salarié . rémunération . net . payé après impôt: 437
-salarié . rémunération . net . à payer avant impôt: 437
+salarié . cotisations: 397
+salarié . rémunération . brut: 580
+salarié . rémunération . net . payé après impôt: 436
+salarié . rémunération . net . à payer avant impôt: 436
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
@@ -58,10 +58,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate assimilé salarié > avec charges 2`] = `
 "dirigeant . rémunération . totale: 20000
 impôt . montant: 0
-salarié . cotisations: 760
-salarié . rémunération . brut: 1176
-salarié . rémunération . net . payé après impôt: 907
-salarié . rémunération . net . à payer avant impôt: 907
+salarié . cotisations: 761
+salarié . rémunération . brut: 1175
+salarié . rémunération . net . payé après impôt: 906
+salarié . rémunération . net . à payer avant impôt: 906
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
@@ -111,10 +111,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate assimilé salarié > échelle de rémunération 5`] = `
 "dirigeant . rémunération . totale: 10000
 impôt . montant: 0
-salarié . cotisations: 396
-salarié . rémunération . brut: 581
-salarié . rémunération . net . payé après impôt: 437
-salarié . rémunération . net . à payer avant impôt: 437
+salarié . cotisations: 397
+salarié . rémunération . brut: 580
+salarié . rémunération . net . payé après impôt: 436
+salarié . rémunération . net . à payer avant impôt: 436
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
@@ -122,32 +122,32 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate assimilé salarié > échelle de rémunération 6`] = `
 "dirigeant . rémunération . totale: 20000
 impôt . montant: 0
-salarié . cotisations: 760
-salarié . rémunération . brut: 1176
-salarié . rémunération . net . payé après impôt: 907
-salarié . rémunération . net . à payer avant impôt: 907
+salarié . cotisations: 761
+salarié . rémunération . brut: 1175
+salarié . rémunération . net . payé après impôt: 906
+salarié . rémunération . net . à payer avant impôt: 906
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 7`] = `
 "dirigeant . rémunération . totale: 50000
-impôt . montant: 1704
-salarié . cotisations: 1849
-salarié . rémunération . brut: 2960
-salarié . rémunération . net . payé après impôt: 2175
-salarié . rémunération . net . à payer avant impôt: 2317
+impôt . montant: 1577
+salarié . cotisations: 1851
+salarié . rémunération . brut: 2958
+salarié . rémunération . net . payé après impôt: 2184
+salarié . rémunération . net . à payer avant impôt: 2315
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
 "dirigeant . rémunération . totale: 100000
-impôt . montant: 9659
-salarié . cotisations: 3622
-salarié . rémunération . brut: 5952
-salarié . rémunération . net . payé après impôt: 3907
-salarié . rémunération . net . à payer avant impôt: 4712
+impôt . montant: 9333
+salarié . cotisations: 3630
+salarié . rémunération . brut: 5945
+salarié . rémunération . net . payé après impôt: 3925
+salarié . rémunération . net . à payer avant impôt: 4703
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;

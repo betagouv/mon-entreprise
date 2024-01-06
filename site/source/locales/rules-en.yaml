@@ -3354,6 +3354,9 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
     plafond:
       titre.en: '[automatic] ceiling'
       titre.fr: plafond
+    références:
+      titre.en: '[automatic] references'
+      titre.fr: références
   description.en: >
     [automatic] Since January 1, 2013, artisans and shopkeepers have had
     identical rights to a supplementary pension.
@@ -8638,6 +8641,10 @@ salarié . cotisations . allocations familiales:
       titre.en: '[automatic] rate'
       titre.fr: taux
     taux réduit:
+      avec:
+        plafond:
+          titre.en: '[automatic] ceiling'
+          titre.fr: plafond
       titre.en: '[automatic] reduced rate'
       titre.fr: taux réduit
   titre.en: Family allowances
@@ -9042,14 +9049,18 @@ salarié . cotisations . maladie:
   avec:
     employeur:
       avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
         taux réduit:
+          avec:
+            plafond:
+              titre.en: '[automatic] ceiling'
+              titre.fr: plafond
           titre.en: '[automatic] reduced rate'
           titre.fr: taux réduit
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
-    employeur . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
     salarié:
       titre.en: '[automatic] employee share'
       titre.fr: part salarié
@@ -9242,32 +9253,36 @@ salarié . cotisations . vieillesse:
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
     employeur . déplafonnée:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
       titre.en: '[automatic] uncapped'
       titre.fr: déplafonnée
-    employeur . déplafonnée . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
     employeur . plafonnée:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
       titre.en: '[automatic] capped'
       titre.fr: plafonnée
-    employeur . plafonnée . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
     salarié:
       titre.en: '[automatic] employee share'
       titre.fr: part salarié
     salarié . déplafonnée:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
       titre.en: '[automatic] uncapped'
       titre.fr: déplafonnée
-    salarié . déplafonnée . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
     salarié . plafonnée:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
       titre.en: '[automatic] capped'
       titre.fr: plafonnée
-    salarié . plafonnée . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
   description.en: '[automatic] Old age contribution for the basic pension scheme
     for employees.'
   description.fr: Cotisation vieillesse pour le régime de retraite de base des salariés.
@@ -9866,6 +9881,9 @@ salarié . rémunération . avantages en nature:
         montant:
           titre.en: '[automatic] food'
           titre.fr: nourriture
+        montant . repas forfaitaire:
+          titre.en: '[automatic] lump sum'
+          titre.fr: montant forfaitaire
         repas par mois:
           question.en: |
             [automatic] How many meals per month are paid by the company?
@@ -9889,9 +9907,6 @@ salarié . rémunération . avantages en nature:
         L'entreprise fournit-elle gratuitement des repas ?
       titre.en: '[automatic] food'
       titre.fr: nourriture
-    nourriture . montant . repas forfaitaire:
-      titre.en: '[automatic] flat-rate meal'
-      titre.fr: repas forfaitaire
     ntic:
       avec:
         abonnements:

@@ -1,5 +1,32 @@
 
 # Journal des modifications
+## 2.0.0-rc.3
+
+Mise à jour taux et barèmes 2024
+
+### Base
+- PLFSS
+- SMIC
+
+### Salariés
+- Avantage en nature nourriture (base et HCR)
+- Titres-restaurant
+- Hausse cotisation AGS
+- Hausse cotisation vieillesse employeur déplafonnée
+- Baisse taux minimum AT/MP
+- Changement seuil taux réduit cotisations maladie et allocations familiales
+- Changement du barème de la taxe pour les salaires
+
+### Indépendants
+- PRCI
+- Valeur point retraite rci
+
+### Impôts
+- Barème général
+- Taux neutre métropole, DOM, COM
+- Plafonnement quotient familial
+- Décote
+
 ## 2.0.0-rc.2
 Use publicodes v1.0.0-rc.5
 
