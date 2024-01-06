@@ -298,15 +298,18 @@ const StyledDocumentation = styled.div`
 		${(props) => componentCSS(StyledLink, props)}
 	}
 
+
 	font-family: ${({ theme }) => theme.fonts.main};
 
+
 	.publicodes_btn-small {
+		font-size: 0.8rem;
 		background-color: ${({ theme }) => theme.colors.extended.grey[200]};
 		border-radius: ${({ theme }) => theme.box.borderRadius};
 		border: none;
-		padding: ${({ theme }) => theme.spacings.xxs}
-			${({ theme }) => theme.spacings.xs};
+		padding: ${({ theme }) => theme.spacings.xxs} ${({ theme }) => theme.spacings.xs};
 		color: ${({ theme }) => theme.colors.extended.grey[800]};
+
 		&:hover {
 			background-color: ${({ theme }) => theme.colors.extended.grey[300]};
 		}
