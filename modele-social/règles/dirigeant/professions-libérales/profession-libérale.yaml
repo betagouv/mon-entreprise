@@ -262,6 +262,7 @@ dirigeant . indépendant . PL . maladie:
             taux: 6.5%
 
 dirigeant . indépendant . PL . cotisations Urssaf:
+  remplace: cotisations et contributions . Urssaf
   description: |
     Les cotisations recouvrées par l'Urssaf, qui servent au financement
     de la sécurité sociale (assurance maladie, allocations familiales,
@@ -284,6 +285,7 @@ dirigeant . indépendant . PL . cotisations Urssaf:
           - cotisations et contributions . retraite complémentaire
           - cotisations et contributions . invalidité et décès
     arrondi: oui
+  déprécié: oui
 
 dirigeant . indépendant . PL . cotisations caisse de retraite:
   non applicable si:
