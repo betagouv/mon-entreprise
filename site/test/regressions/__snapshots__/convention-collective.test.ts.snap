@@ -4,7 +4,7 @@ exports[`calculate simulations-salarié > CCN HCR 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3412
-salarié . rémunération . net . payé après impôt: 1897
+salarié . rémunération . net . payé après impôt: 1909
 salarié . rémunération . net . à payer avant impôt: 1983
 
 Notifications affichées : salarié . convention collective . contrôle décharge"
@@ -14,7 +14,7 @@ exports[`calculate simulations-salarié > CCN batiment 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3766
-salarié . rémunération . net . payé après impôt: 1846
+salarié . rémunération . net . payé après impôt: 1859
 salarié . rémunération . net . à payer avant impôt: 1931
 
 Notifications affichées : salarié . convention collective . contrôle décharge"
@@ -24,7 +24,7 @@ exports[`calculate simulations-salarié > CCN batiment 2`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3749
-salarié . rémunération . net . payé après impôt: 1848
+salarié . rémunération . net . payé après impôt: 1861
 salarié . rémunération . net . à payer avant impôt: 1933
 
 Notifications affichées : salarié . convention collective . contrôle décharge"
@@ -44,7 +44,7 @@ exports[`calculate simulations-salarié > CCN compta 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3293
-salarié . rémunération . net . payé après impôt: 1922
+salarié . rémunération . net . payé après impôt: 1935
 salarié . rémunération . net . à payer avant impôt: 2006
 
 Notifications affichées : salarié . convention collective . contrôle décharge"
@@ -54,7 +54,7 @@ exports[`calculate simulations-salarié > CCN optique 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3483
-salarié . rémunération . net . payé après impôt: 1943
+salarié . rémunération . net . payé après impôt: 1969
 salarié . rémunération . net . à payer avant impôt: 2058
 
 Notifications affichées : salarié . convention collective . contrôle décharge"
@@ -64,7 +64,7 @@ exports[`calculate simulations-salarié > CCN spectacle vivant 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3759
-salarié . rémunération . net . payé après impôt: 2039
+salarié . rémunération . net . payé après impôt: 2065
 salarié . rémunération . net . à payer avant impôt: 2155
 
 Notifications affichées : salarié . contrat . CDD . information, salarié . convention collective . contrôle décharge"
