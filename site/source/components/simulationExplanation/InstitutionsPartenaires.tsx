@@ -46,7 +46,7 @@ export default function InstitutionsPartenaires() {
 							</WhenApplicable>
 							<WhenNotApplicable dottedName="dirigeant . indépendant . PL . CNAVPL">
 								<CotisationsUrssaf
-									rule="dirigeant . indépendant . cotisations et contributions"
+									rule="dirigeant . indépendant . cotisations et contributions . Urssaf"
 									role="listitem"
 								/>
 							</WhenNotApplicable>

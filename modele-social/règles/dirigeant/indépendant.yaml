@@ -102,6 +102,13 @@ dirigeant . indépendant . cotisations et contributions:
     pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
     réduction ACRE.
 
+  avec:
+    Urssaf:
+      experimentale: oui
+      titre: cotisations recouvrées par l'Urssaf
+      valeur: cotisations et contributions
+      abattement: cotisations facultatives . montant
+
 dirigeant . indépendant . assiette minimale:
   non applicable si:
     une de ces conditions:
