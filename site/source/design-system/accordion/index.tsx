@@ -103,7 +103,7 @@ export const Accordion = <T extends object>(
 				<StyledGrid container>
 					<Grid item>{title}</Grid>
 					{isFoldable && (
-						<Grid item>
+						<Grid item className="print-hidden">
 							<StyledFoldButton
 								underline
 								onClick={() => (allItemsOpen ? closeAll() : openAll())}
