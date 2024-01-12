@@ -287,13 +287,13 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 8`] = `
-"dirigeant . indépendant . cotisations et contributions: 246101
+"dirigeant . indépendant . cotisations et contributions: 251729
 dirigeant . rémunération . net: 1000000
-dirigeant . rémunération . net . après impôt: 528777
-entreprise . chiffre d'affaires: 1246101
-impôt . montant: 471223
+dirigeant . rémunération . net . après impôt: 528702
+entreprise . chiffre d'affaires: 1251729
+impôt . montant: 471298
 protection sociale . retraite . base: 334
-protection sociale . retraite . complémentaire: 1252
+protection sociale . retraite . complémentaire: 1512
 protection sociale . retraite . trimestres: 4"
 `;
 
