@@ -2705,6 +2705,10 @@ dirigeant . indépendant . conjoint collaborateur . notification exonérations n
   titre.en: '[automatic] notification exemptions not taken into account'
   titre.fr: notification exonérations non pris en compte
 dirigeant . indépendant . cotisations et contributions:
+  avec:
+    Urssaf:
+      titre.en: '[automatic] contributions collected by Urssaf'
+      titre.fr: cotisations recouvrées par l'Urssaf
   description.en: >
     [automatic] This is the total amount due by the self-employed person for
     compulsory contributions and
@@ -5855,10 +5859,10 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   titre.fr: quotient familial
 impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avantage:
   avec:
-    Plafonnement général:
-      titre.en: '[automatic] General ceiling'
-      titre.fr: Plafonnement général
-    Plafonnement parent isolé:
+    plafonnement général:
+      titre.en: '[automatic] general ceiling'
+      titre.fr: plafonnement général
+    plafonnement parent isolé:
       description.en: >
         [automatic] Family quotient benefit for the first dependent child of
         single or divorced taxpayers living alone.
@@ -5867,8 +5871,8 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
       description.fr: |
         Avantage de quotient familial procuré par le premier enfant à charge des
         contribuables célibataires ou divorcés vivant seuls.
-      titre.en: '[automatic] Single parent ceiling'
-      titre.fr: Plafonnement parent isolé
+      titre.en: '[automatic] single parent ceiling'
+      titre.fr: plafonnement parent isolé
   titre.en: '[automatic] advantage ceiling'
   titre.fr: plafond avantage
 impôt . foyer fiscal . impôt à payer:
