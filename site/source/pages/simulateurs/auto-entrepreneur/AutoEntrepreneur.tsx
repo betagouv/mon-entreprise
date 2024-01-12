@@ -147,12 +147,19 @@ export const SeoExplanations = () => (
 			</RuleLink>
 		</Body>
 		<H2>Information clé sur la TVA pour les auto-entrepreneurs</H2>
-    <Body>
-    En tant qu'auto-entrepreneur, il est important de comprendre votre responsabilité concernant la TVA. Généralement, les auto-entrepreneurs sont exemptés de TVA jusqu'à ce que leur chiffre d'affaires atteigne un certain seuil, qui varie en fonction de la nature de l'activité (services ou vente de marchandises).
-    </Body>
-    <Body>
-    Une fois ce seuil dépassé, vous êtes tenu de collecter et de déclarer la TVA sur vos ventes ou services. Le taux de TVA appliqué dépend du type d'activité et peut varier, mais le taux standard est souvent autour de 20%. Il est essentiel de se tenir informé des seuils actuels et des taux applicables, car ils peuvent évoluer avec le temps.
-    </Body>
-
+		<Body>
+			En tant qu'auto-entrepreneur, il est important de comprendre votre
+			responsabilité concernant la TVA. Généralement, les auto-entrepreneurs
+			sont exemptés de TVA jusqu'à ce que leur chiffre d'affaires atteigne un
+			certain seuil, qui varie en fonction de la nature de l'activité (services
+			ou vente de marchandises).
+		</Body>
+		<Body>
+			Une fois ce seuil dépassé, vous êtes tenu de collecter et de déclarer la
+			TVA sur vos ventes ou services. Le taux de TVA appliqué dépend du type
+			d'activité et peut varier, mais le taux standard est souvent autour de
+			20%. Il est essentiel de se tenir informé des seuils actuels et des taux
+			applicables, car ils peuvent évoluer avec le temps.
+		</Body>
 	</Trans>
 )

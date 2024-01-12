@@ -1,5 +1,9 @@
 
 # Journal des modifications
+## 2.0.0-rc.4
+- Mise à jour du taux neutre pour 2024
+- Plafond retraite complémentaire CIPAV modifié
+
 ## 2.0.0-rc.3
 
 Mise à jour taux et barèmes 2024
