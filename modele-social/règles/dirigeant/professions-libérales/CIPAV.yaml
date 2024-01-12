@@ -57,7 +57,11 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
           tranches:
             - plafond: 1
               taux: 9%
-            - plafond: 3
+            - plafond:
+                variations:
+                  - si: date < 2024
+                    alors: 3
+                  - sinon: 3.5
               taux: 22%
   abattement:
     applicable si: CNAVPL . exonération incapacité
@@ -65,7 +69,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
 
   références:
     'L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023': https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
-
+    'Bases de calcul et taux des cotisations obligatoires des professions libérales réglementées relevant de la Cipav': https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/PL-relevant-Cipav/bases-calcul-PLR-relevant-Cipav.html#FilAriane
   avec:
     avant 2023:
       privé: oui
