@@ -23,6 +23,15 @@ const sentryReleaseName = (mode: string) =>
 		? `${branch(mode)}-` + env(mode).VITE_GITHUB_SHA?.substring(0, 7)
 		: undefined
 
+const linkFR = 'https://mon-entreprise.urssaf.fr'
+const linkEN = 'https://mycompanyinfrance.urssaf.fr'
+if (process.env.VITE_FR_BASE_URL === undefined) {
+	process.env.VITE_FR_BASE_URL = linkFR
+}
+if (process.env.VITE_EN_BASE_URL === undefined) {
+	process.env.VITE_EN_BASE_URL = linkEN
+}
+
 export default defineConfig(({ command, mode }) => ({
 	resolve: {
 		alias: [{ find: '@', replacement: path.resolve('./source') }],
@@ -59,10 +68,10 @@ export default defineConfig(({ command, mode }) => ({
 	},
 	plugins: [
 		command === 'build' &&
-			replace({
-				__SENTRY_DEBUG__: false,
-				preventAssignment: false,
-			}),
+		replace({
+			__SENTRY_DEBUG__: false,
+			preventAssignment: false,
+		}),
 
 		react(),
 
