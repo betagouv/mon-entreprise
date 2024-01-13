@@ -9,7 +9,7 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
+import { InstitutionsPartenairesArtisteAuteur , TestSeoExplanations } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { H2 } from '@/design-system/typography/heading'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
@@ -33,6 +33,7 @@ export default function ArtisteAuteur() {
 				</SimulationGoals>
 
 				<InstitutionsPartenairesArtisteAuteur />
+				<TestSeoExplanations/>
 			</Simulation>
 		</>
 	)
@@ -80,6 +81,7 @@ function RepartitionCotisations() {
 			<H2>
 				<Trans>À quoi servent mes cotisations ?</Trans>
 			</H2>
+			<H2>Comment calculer l'impôt sur le revenu pour un auto-entrepreneur ?</H2>
 			<div className="distribution-chart__container" role="list">
 				{cotisations
 					.filter(({ value }) => Boolean(value))
@@ -91,7 +93,19 @@ function RepartitionCotisations() {
 							{...cotisation}
 						/>
 					))}
+
+					
 			</div>
+			<div>
+				<H2>
+						
+				</H2>
+			</div>
+			
 		</section>
 	)
+
+
+
 }
+

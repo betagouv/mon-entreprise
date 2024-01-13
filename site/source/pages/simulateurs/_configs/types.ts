@@ -57,6 +57,7 @@ export interface PageConfig {
 		ogImage?: string
 	}
 
+
 	/** Indique si le simulateur est privé
 	 *
 	 * Si c'est le cas, il n'apparaîtra pas dans la recherche et ne sera

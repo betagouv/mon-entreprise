@@ -55,7 +55,7 @@ export default function ChômagePartiel() {
 						<Ul>
 							<Li>
 								Ce simulateur ne prend pas en compte les rémunérations brut
-								définies sur 39h hebdomadaires.
+								définies sur 39h hebdomadaires. 
 							</Li>
 							<Li>
 								De même, il ne prend pas en compte les indemnités complémentaire
@@ -68,15 +68,26 @@ export default function ChômagePartiel() {
 			</Grid>
 
 			<Simulation
-				results={<ExplanationSection />}
+				results={<ExplanationSection/>}
 				customEndMessages={<span>Voir les résultats au-dessus</span>}
 			>
 				<SimulationGoals legend="Salaire brut avant chômage partiel">
 					<SimulationGoal
-						label={t('Salaire brut mensuel')}
+						label={t('Salaire brut mensuelle')}
 						dottedName="salarié . contrat . salaire brut"
 					/>
+
+				<SimulationGoal
+						label={t('Salaire brut mensuelle')}
+						dottedName="salarié . contrat . salaire brut"
+					/> 
+
+					
+
+				
+				
 				</SimulationGoals>
+
 			</Simulation>
 		</>
 	)

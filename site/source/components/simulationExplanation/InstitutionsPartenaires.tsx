@@ -312,6 +312,30 @@ export function InstitutionsPartenairesAutoEntrepreneur() {
 		</section>
 	)
 }
+export const TestSeoExplanations = () => (
+	<Trans i18nKey="pages.simulateurs.artiste-auteur.Testseo explanation">
+		<H2>Le BNC en bref </H2>
+		<Body>
+		Les <strong> Bénéfices Non Commerciaux (BNC) </strong> représentent une catégorie fiscale qui concerne les revenus générés par une activité indépendante à caractère non commercial, industriel ou artisanal. 
+		Les <strong> BNC </strong> concernent les professions libérales, les prestations de services intellectuels, et d'autres activités non commerciales.
+		</Body>
+
+		<Body>
+		<ul>
+		<li>
+		La principale différence entre le régime <strong>micro-BNC </strong> et le régime <strong> BNC (Bénéfices Non Commerciaux) </strong> réside dans la simplification de la comptabilité et le plafond de revenus. 
+		Le <strong> micro-BNC </strong> , destiné aux petites entreprises, offre une gestion plus facile avec une déclaration simplifiée des revenus, et un abattement forfaitaire de <strong> 34% </strong> pour les frais professionnels. 
+		Il est limité à un chiffre d'affaires annuel de <strong>72 600 euros </strong> (en 2023).
+		</li>
+		<li>
+		En revanche le régime <strong> BNC </strong> , lui, s'adresse aux entreprises avec des revenus plus élevés et exige une comptabilité plus détaillée, sans abattement forfaitaire, mais permettant la déduction des frais réels. 
+		Ce régime convient mieux aux structures ayant des charges importantes.
+		</li>
+		</ul>	
+		</Body>
+		
+	</Trans>
+)
 
 const InstitutionLogo = styled.a`
 	img {

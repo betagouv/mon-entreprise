@@ -1,13 +1,6 @@
 {
-	"spellright.language": [
-		"fr",
-		"en"
-	],
-	"spellright.documentTypes": [
-		"yaml",
-		"git-commit",
-		"markdown"
-	],
+	"spellright.language": ["fr", "en"],
+	"spellright.documentTypes": ["yaml", "git-commit", "markdown"],
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"editor.tabSize": 2,
 	"cSpell.words": ["mycompanyinfrance", "smarttag"],
@@ -18,6 +11,6 @@
 	"eslint.format.enable": true,
 	"editor.formatOnSave": true,
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
+		"source.fixAll.eslint": "explicit"
 	}
 }

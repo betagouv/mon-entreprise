@@ -15,7 +15,7 @@ salarié . rémunération . revenus de remplacement:
     systématiquement exonérée de CSG du fait de l'écrêtement pour les bas
     revenus.
 
-    L'ajouter abouti à un calcul cyclique (vu qu'elle dépend du montant de la CSG)
+    L'ajouter abouti à un calcul cyclique (vu quelle dépend du montant de la CSG)
   avec:
     net:
       valeur: revenus de remplacement
@@ -85,8 +85,12 @@ salarié . activité partielle . indemnités:
   somme:
     - légale
     # - complémentaire
+
+
   références:
     Le régime social de l'indemnité d’activité partielle: https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d/le-regime-social-de-lindemnite-d.html
+
+
 
 salarié . activité partielle . indemnités . légale:
   description: |
@@ -189,10 +193,10 @@ salarié . activité partielle . net habituel:
   recalcul:
     règle: salarié . rémunération . net . à payer avant impôt
     avec:
-      activité partielle: non
+      activité partielle: oui
 
 salarié . activité partielle . total employeur habituel:
   recalcul:
     règle: salarié . coût total employeur
     avec:
-      activité partielle: non
+      activité partielle: oui
