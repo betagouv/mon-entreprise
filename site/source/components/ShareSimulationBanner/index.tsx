@@ -35,8 +35,26 @@ export function useUrl() {
 			: import.meta.env.VITE_EN_BASE_URL
 
 	searchParams.set('utm_source', 'sharing')
+	const linkRootFR = 'https://mon-entreprise.urssaf.fr'
+	const linkRootEN = 'https://mycompanyinfrance.urssaf.fr'
 
-	return siteUrl + path + '?' + searchParams.toString()
+	if (language == 'fr') {
+		if (siteUrl != linkRootFR) {
+			return linkRootFR + path + '?' + searchParams.toString()
+		}
+		else {
+			return siteUrl + path + '?' + searchParams.toString()
+		}
+	}
+	else {
+		if (siteUrl != linkRootEN) {
+			return linkRootEN + path + '?' + searchParams.toString()
+		}
+		else {
+			return siteUrl + path + '?' + searchParams.toString()
+		}
+	}
+
 }
 
 const ButtonLabel = styled.span`
