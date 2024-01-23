@@ -15,7 +15,7 @@ Si vous voulez participer au développement de nouvelles fonctionnalités, vous 
 ### Descriptions des packages
 - [mon-entreprise](./site/README.md) : le site mon-entreprise.urssaf.fr
 - [modele-social](./modele-social/README.md) : les règles de calculs des cotisations sociales, des impôts et des droits sociaux
-- [api](./api/README.md) : l'API qui expose les caluls des simulateurs de mon-entreprise
+- [api](./api/README.md) : l'API qui expose les calculs des simulateurs de mon-entreprise
 - [exoneration-covid](./exoneration-covid/README.md) (archivé) : les règles de calculs de l'exonérations de cotisations sociales liées à la crise sanitaire (2021) 
 - [server](./server/README.md) : un petit serveur qui gère un proxy pour les retours utilisateurs ainsi qu'un bot mattermost pour les standups de l'équipe (plus utilisé)
 
@@ -29,7 +29,7 @@ Nous utilisons :
 -   [Redux](https://redux.js.org) pour gérer le “state” de l'application côté client
 -   [TypeScript](https://www.typescriptlang.org) pour ajouter un système de typage à notre code JavaScript. Le typage n'est pas utilisé partout et il n'est pas obligatoire de le prendre en compte pour contribuer.
 -   [ViteJS](https://vitejs.dev) pour le “bundling” et le serveur de développement
--   [Vitest](https://vitest.dev) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
+-   [Vitest](https://vitest.dev) et [Cypress](https://www.cypress.io) pour l'execution des tests. Plus d'informations dans la section consacrée aux tests.
 -   [Yarn](https://yarnpkg.com) pour la gestion des dépendances (à la place de NPM qui est souvent utilisé dans les applications JavaScript)
 
 ### Tests
@@ -69,14 +69,14 @@ yarn test
 
 -   Nous utilisons des [Github actions](https://github.com/features/actions) pour faire tourner les builds et les tests.
 -   [Netlify](https://www.netlify.com/), s'occupe de l’hébergement du site sur Internet avec gestion des DNS.
--   L'API est quand à elle hebergée sur [Scalingo](https://scalingo.com/)
+-   L'API est quand à elle hébergée sur [Scalingo](https://scalingo.com/)
 
 
 ## Retours utilisateurs
 
 Nous gérons les retours utilisateurs avec plusieurs outils :
 
--   [Crisp](https://crisp.chat/fr) pour reçevoir et répondre aux messages
+-   [Crisp](https://crisp.chat/fr) pour recevoir et répondre aux messages
 -   Github pour suivre le développement des demandes
 -   et ATInternet, notre outil de statistiques, pour suivre la notation des pages
 
