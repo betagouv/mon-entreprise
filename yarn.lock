@@ -7608,6 +7608,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@publicodes/tools@npm:^0.4.6":
+  version: 0.4.6
+  resolution: "@publicodes/tools@npm:0.4.6"
+  dependencies:
+    "@types/node": ^18.11.18
+    publicodes: ^1.0.0-beta.77
+  checksum: cb131f4fe8b18550538c7f395763f547118f9a3d9e13b71f86f1940db8c1921312777c3dbbc432f12f1fa8e1ac9999df845ffc195a6b849d043c0130be3dfcd0
+  languageName: node
+  linkType: hard
+
 "@radix-ui/number@npm:1.0.1":
   version: 1.0.1
   resolution: "@radix-ui/number@npm:1.0.1"
@@ -12567,6 +12577,15 @@ __metadata:
   version: 16.18.52
   resolution: "@types/node@npm:16.18.52"
   checksum: 6b1f27a848a69a70039cb27c2583317b5d051990933955c42bc2a2f299266ffa360f7cc3c7089d04fdf39144c476d475931900f00dabbc4f933eeb2d664f9778
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^18.11.18":
+  version: 18.19.9
+  resolution: "@types/node@npm:18.19.9"
+  dependencies:
+    undici-types: ~5.26.4
+  checksum: 8ffd4043ada193cf32d4c13eb850e8c510d4c96504c62fdc5326b3bb2c7ddc2c81892c351b2c0c403c29df3ab13c864a370f0282daf6d3380ba3c2001728a643
   languageName: node
   linkType: hard
 
@@ -26633,6 +26652,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"publicodes@npm:^1.0.0-beta.77":
+  version: 1.0.0-rfc.2
+  resolution: "publicodes@npm:1.0.0-rfc.2"
+  peerDependencies:
+    "@types/mocha": ^9.0.0
+  checksum: 67c677154b1942257cb329294ca52e94a0cb961bcc64ab4aa5c9530e14687cae066cab8a612c05b758a6d29f603aba7846094c01d12d520f87106ccc3e843fc4
+  languageName: node
+  linkType: hard
+
 "pump@npm:3.0.0, pump@npm:^3.0.0":
   version: 3.0.0
   resolution: "pump@npm:3.0.0"
@@ -28312,6 +28340,7 @@ __metadata:
     "@actions/github": ^5.1.1
     "@ianvs/prettier-plugin-sort-imports": ^4.1.0
     "@publicodes/codemod": ^1.1.0
+    "@publicodes/tools": ^0.4.6
     "@types/got": ^9.6.12
     "@typescript-eslint/eslint-plugin": ^6.7.2
     "@typescript-eslint/parser": ^6.7.2
@@ -30942,6 +30971,13 @@ __metadata:
     sprintf-js: ^1.1.1
     util-deprecate: ^1.0.2
   checksum: b7719c30e5d1fdda4ee9379e8d80dca2b0668942420ba365ae3410120e08225fe36707a7981ce0f921812dee6a2290b713cdce1e75e770b98e67a45d8a378d35
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 3192ef6f3fd5df652f2dc1cd782b49d6ff14dc98e5dced492aa8a8c65425227da5da6aafe22523c67f035a272c599bb89cfe803c1db6311e44bed3042fc25487
   languageName: node
   linkType: hard
 
