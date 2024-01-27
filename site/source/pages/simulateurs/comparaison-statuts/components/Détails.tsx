@@ -660,6 +660,10 @@ const Détails = ({
 
 const StyledH4 = styled(H4)`
 	color: ${({ theme }) => theme.colors.bases.primary[600]};
+	@media print {
+		margin: 0 0 1rem 0;
+	}
+	
 `
 // TODO : décommenter une fois l'implémentation du calcul des coûts de créations
 // ajouté à modèle-social
@@ -707,13 +711,14 @@ const BlackColoredLink = styled(StyledLink)`
 
 const OuterOuterContainer = styled.div`
 	@media print {
-		page-break-inside: avoid;
+		page-break-inside: avoid !important;
 	}
 `
 
 const StyledAccordion = styled(Accordion)`
 @media print {
-	page-break-after: avoid;
+	page-break-after: avoid !important;
+	border: none !important;
 }
 `
 

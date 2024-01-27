@@ -87,7 +87,7 @@ const DetailsRowCards = ({
 		.filter((arrayOfStatus) => arrayOfStatus.length > 0)
 
 	return (
-		<Grid container spacing={4}>
+		<StyledGridContainer container spacing={4}>
 			{groupedOptions.map((sameValueOptions) => {
 				const statusObject = sameValueOptions[0]
 				return (
@@ -191,7 +191,7 @@ const DetailsRowCards = ({
 					</StyledGrid>
 				)
 			})}
-		</Grid>
+		</StyledGridContainer>
 	)
 }
 const StyledSmall = styled.small`
@@ -234,6 +234,13 @@ const StyledDiv = styled.div`
 const StyledGrid = styled(Grid)`
 	@media print {
 		width: 33%;
+  	padding: 5px;
+}
+`
+
+const StyledGridContainer = styled(Grid)`
+	@media print {
+		margin-left: -5px;
 }
 `
 
@@ -246,4 +253,7 @@ const StyledBody = styled(Body)`
 	font-weight: 700;
 	margin: 0;
 	margin-top: 0.75rem;
+	@media print {
+		font-size: 18px;
+}
 `

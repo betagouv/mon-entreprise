@@ -204,10 +204,17 @@ const StyledTitle = styled.h3`
 const StyledAccordionItem = styled.div`
 	&:not(:first-child) {
 		border-top: 1px solid ${({ theme }) => theme.colors.bases.primary[400]};
+		@media print {
+			border-top: none;
+		}
 	}
 `
 
 const StyledButton = styled.button<{ $variant?: 'light' }>`
+@media print {
+	margin: 0;
+	padding: 0;
+}
 	display: flex;
 	width: 100%;
 	background: none;
@@ -265,6 +272,7 @@ const StyledContent = styled(animated.div)<{
 	@media print {
 		overflow: visible;
 		display: table;
+		> div {margin: 1rem 0 !important;} 
 	}
 	> div {
 		margin: ${({ theme, $variant }) =>
