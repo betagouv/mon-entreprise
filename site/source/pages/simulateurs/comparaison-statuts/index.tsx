@@ -14,6 +14,7 @@ import {
 	CasParticuliersProvider,
 	useCasParticuliers,
 } from './contexts/CasParticuliers'
+import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 
 function ComparateurStatutsUI() {
 	const engine = useEngine()
@@ -100,6 +101,7 @@ export default function ComparateurStatuts() {
 	return (
 		<CasParticuliersProvider>
 			<ComparateurStatutsUI />
+			<ShareOrSaveSimulationBanner print />
 		</CasParticuliersProvider>
 	)
 }

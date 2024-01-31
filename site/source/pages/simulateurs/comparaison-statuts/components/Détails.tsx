@@ -37,7 +37,7 @@ const Détails = ({
 					: theme.colors.bases.primary[200]
 			}
 		>
-			<Accordion
+			<StyledAccordion
 				$variant="light"
 				defaultExpandedKeys={expandRevenuSection ? ['revenus'] : []}
 				title={
@@ -47,7 +47,8 @@ const Détails = ({
 				}
 				isFoldable
 			>
-				<Item
+				
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>Vos revenus</Trans>&nbsp;
@@ -57,6 +58,7 @@ const Détails = ({
 					key="revenus"
 					hasChildItems={false}
 				>
+				<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Revenu net mensuel après impôts</Trans>
 
@@ -157,9 +159,9 @@ const Détails = ({
 							</Condition>
 						)}
 					/>
-				</Item>
-
-				<Item
+				</OuterOuterContainer>
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>Vos droits pour la retraite</Trans>&nbsp;
@@ -169,6 +171,7 @@ const Détails = ({
 					key="retraite"
 					hasChildItems={false}
 				>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Le montant de votre retraite est constitué de{' '}
@@ -197,7 +200,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/mois"
 					/>
-
+				</OuterOuterContainer>
+				<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Retraite complémentaire</Trans>
 						<ExplicableRule dottedName="protection sociale . retraite . complémentaire" />
@@ -224,8 +228,9 @@ const Détails = ({
 						unit="€/mois"
 						evolutionLabel={<Trans>au bout de 10 ans</Trans>}
 					/>
-				</Item>
-				<Item
+				</OuterOuterContainer>
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>Vos prestations santé</Trans>&nbsp;
@@ -235,6 +240,7 @@ const Détails = ({
 					key="santé"
 					hasChildItems={false}
 				>
+					<OuterOuterContainer>
 					<Body
 						style={{
 							marginBottom: '0',
@@ -320,7 +326,8 @@ const Détails = ({
 							</Condition>
 						)}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Accident du travail et maladie professionnelle</Trans>
 						<ExplicableRule dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités" />
@@ -340,8 +347,9 @@ const Détails = ({
 						evolutionDottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
 						evolutionLabel={<Trans>à partir du 29ème jour</Trans>}
 					/>
-				</Item>
-				<Item
+					</OuterOuterContainer>
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>La maternité, paternité et adoption</Trans>&nbsp;
@@ -351,6 +359,7 @@ const Détails = ({
 					key="enfants"
 					hasChildItems={false}
 				>
+					<OuterOuterContainer>
 					<Body
 						style={{
 							marginBottom: '0',
@@ -378,7 +387,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/jour"
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Maternité</Trans>
 						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel" />
@@ -398,7 +408,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						label={<Trans>versés en deux fois</Trans>}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Adoption</Trans>
 						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption" />
@@ -418,8 +429,9 @@ const Détails = ({
 						namedEngines={namedEngines}
 						label={<Trans>versés en une fois</Trans>}
 					/>
-				</Item>
-				<Item
+					</OuterOuterContainer>
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>Votre couverture invalidité et décès</Trans>&nbsp;
@@ -429,6 +441,7 @@ const Détails = ({
 					key="maladie"
 					hasChildItems={false}
 				>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Tous les statuts cotisent pour une{' '}
@@ -485,6 +498,8 @@ const Détails = ({
 							</span>
 						}
 					/>
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Pour une invalidité causée par un{' '}
@@ -497,7 +512,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/mois"
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Décès</Trans>
 						<ExplicableRule dottedName="protection sociale . invalidité et décès . capital décès" />
@@ -514,7 +530,8 @@ const Détails = ({
 						label="pour vos proches"
 						namedEngines={namedEngines}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							En plus du capital décès, une{' '}
@@ -529,7 +546,8 @@ const Détails = ({
 						label={'maximum'}
 						namedEngines={namedEngines}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Pour un décès survenu dans le cadre d’un{' '}
@@ -544,7 +562,8 @@ const Détails = ({
 						unit="€/mois"
 						label={t("en cas d'accident pro")}
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<Body>
 						<Trans>
 							Un <Strong>capital « orphelin »</Strong> est versé aux{' '}
@@ -558,8 +577,9 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/enfant"
 					/>
-				</Item>
-				<Item
+					</OuterOuterContainer>
+				</StyledItem>
+				<StyledItem
 					title={
 						<ItemTitle>
 							<Trans>
@@ -570,6 +590,7 @@ const Détails = ({
 					key="administratif"
 					hasChildItems={false}
 				>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Coût de création</Trans>
 						<ExplicableRule dottedName="entreprise . coût formalités . création" />
@@ -588,7 +609,8 @@ const Détails = ({
 						namedEngines={namedEngines}
 						leastIsBest
 					/>
-
+					</OuterOuterContainer>
+					<OuterOuterContainer>
 					<StyledH4>
 						<Trans>Statut du conjoint</Trans>
 					</StyledH4>
@@ -629,14 +651,19 @@ const Détails = ({
 						}}
 						namedEngines={namedEngines}
 					/>
-				</Item>
-			</Accordion>
+				</OuterOuterContainer>
+				</StyledItem>
+			</StyledAccordion>
 		</Container>
 	)
 }
 
 const StyledH4 = styled(H4)`
 	color: ${({ theme }) => theme.colors.bases.primary[600]};
+	@media print {
+		margin: 0 0 1rem 0;
+	}
+	
 `
 // TODO : décommenter une fois l'implémentation du calcul des coûts de créations
 // ajouté à modèle-social
@@ -662,7 +689,7 @@ const Precisions = styled.span`
 
 const StyledDiv = styled.div`
 	display: flex;
-
+	
 	svg {
 		width: 2.5rem;
 		margin-right: 1rem;
@@ -680,6 +707,25 @@ const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
 
 const BlackColoredLink = styled(StyledLink)`
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
+`
+
+const OuterOuterContainer = styled.div`
+	@media print {
+		page-break-inside: avoid !important;
+	}
+`
+
+const StyledAccordion = styled(Accordion)`
+@media print {
+	page-break-after: avoid !important;
+	border: none !important;
+}
+`
+
+const StyledItem = styled(Item)`
+@media print {
+	page-break-inside: avoid;
+}
 `
 
 export default Détails
