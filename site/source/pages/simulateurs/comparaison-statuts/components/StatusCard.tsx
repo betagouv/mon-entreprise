@@ -72,7 +72,4 @@ const CardFooter = styled.div`
 	width: 100%;
 	border-top: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
 	padding: 1.5rem;
-	@media print {
-		>ul >li {font-size: 14px !important;}
-	}
 `
