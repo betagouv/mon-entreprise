@@ -39,6 +39,7 @@ salarié . cotisations:
         - maladie . salarié
         - retraite complémentaire . salarié
         - CEG . salarié
+        - CET . salarié
         - chômage . salarié
         - CSG-CRDS
         - APEC . salarié

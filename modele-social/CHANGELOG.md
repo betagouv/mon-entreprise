@@ -1,5 +1,8 @@
 
 # Journal des modifications
+## 2.0.0-rc.5
+- Ajoute la CET salarié manquante.
+
 ## 2.0.0-rc.4
 - Mise à jour du taux neutre pour 2024
 - Plafond retraite complémentaire CIPAV modifié
