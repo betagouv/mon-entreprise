@@ -38,6 +38,7 @@ export type FabriqueSocialEntreprise = {
 		address?: string
 		siret: string
 		is_siege: boolean
+		etablissementSiege: boolean
 	}>
 }
 

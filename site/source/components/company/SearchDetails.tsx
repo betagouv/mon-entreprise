@@ -14,8 +14,13 @@ export default function CompanySearchDetails({
 }) {
 	const { i18n } = useTranslation()
 
-	const { siren, label, dateCreationUniteLegale, firstMatchingEtablissement } =
-		entreprise
+	const {
+		siren,
+		label,
+		dateCreationUniteLegale,
+		firstMatchingEtablissement,
+		allMatchingEtablissements,
+	} = entreprise
 
 	const DateFormatter = useMemo(
 		() =>
@@ -26,6 +31,8 @@ export default function CompanySearchDetails({
 			}),
 		[i18n.language]
 	)
+
+	const siege = allMatchingEtablissements.find((x) => x.etablissementSiege)
 
 	return (
 		<CompanyContainer>
@@ -47,7 +54,9 @@ export default function CompanySearchDetails({
 			<Strong>{DateFormatter.format(new Date(dateCreationUniteLegale))}</Strong>
 			<br />
 			<Trans>Domiciliée à l'adresse :</Trans>{' '}
-			<Strong>{firstMatchingEtablissement.address}</Strong>
+			<Strong>
+				{siege ? siege.address : firstMatchingEtablissement.address}
+			</Strong>
 		</CompanyContainer>
 	)
 }
