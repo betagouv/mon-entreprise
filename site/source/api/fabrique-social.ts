@@ -25,21 +25,18 @@ export type FabriqueSocialEntreprise = {
 	label: string
 	simpleLabel: string
 	siren: string
-	firstMatchingEtablissement: {
-		address?: string
-		siret: string
-		etatAdministratifEtablissement?: 'F' | 'A' // Fermé ou Actif
-		codeCommuneEtablissement: string
-		codePostalEtablissement: string
-		is_siege: boolean
-		activitePrincipaleEtablissement: string
-	}
-	allMatchingEtablissements: Array<{
-		address?: string
-		siret: string
-		is_siege: boolean
-		etablissementSiege: boolean
-	}>
+	firstMatchingEtablissement: FabriqueSocialEtablissement
+	allMatchingEtablissements: Array<FabriqueSocialEtablissement>
+}
+
+export type FabriqueSocialEtablissement = {
+	address?: string
+	siret: string
+	etatAdministratifEtablissement?: 'F' | 'A' // Fermé ou Actif
+	codeCommuneEtablissement: string
+	codePostalEtablissement: string
+	etablissementSiege: boolean
+	activitePrincipaleEtablissement: string
 }
 
 type FabriqueSocialSearchPayload = {
