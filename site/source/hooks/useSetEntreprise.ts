@@ -25,15 +25,14 @@ export function useSetEntreprise() {
 		const siegeOrFirstEtablissement = getSiegeOrFirstEtablissement(entreprise)
 
 		void fetchCommuneDetails(
-			siegeOrFirstEtablissement.codeCommuneEtablissement,
-			siegeOrFirstEtablissement.codePostalEtablissement
+			siegeOrFirstEtablissement.codeCommuneEtablissement
 		).then(
 			(communeDetails) =>
 				communeDetails && dispatch(addCommuneDetails(communeDetails))
 		)
 
 		void fetchBénéfice(
-			entreprise.firstMatchingEtablissement.activitePrincipaleEtablissement
+			siegeOrFirstEtablissement.activitePrincipaleEtablissement
 		).then((bénéfice) => bénéfice && dispatch(setBénéficeType(bénéfice)))
 	}
 }

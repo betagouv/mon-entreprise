@@ -1,3 +1,5 @@
+import { Company } from '@/store/reducers/companySituationReducer'
+
 export async function searchDenominationOrSiren(value: string) {
 	return searchFullText(value)
 }
@@ -66,7 +68,7 @@ async function searchFullText(
 }
 
 export function getSiegeOrFirstEtablissement(
-	entreprise: FabriqueSocialEntreprise
+	entreprise: FabriqueSocialEntreprise | Company
 ): FabriqueSocialEtablissement {
 	return (entreprise.allMatchingEtablissements.find(
 		(etablissement) => etablissement.etablissementSiege
