@@ -2,7 +2,10 @@ import { Fragment, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import {
+	FabriqueSocialEntreprise,
+	getSiegeOrFirstEtablissement,
+} from '@/api/fabrique-social'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
@@ -14,13 +17,7 @@ export default function CompanySearchDetails({
 }) {
 	const { i18n } = useTranslation()
 
-	const {
-		siren,
-		label,
-		dateCreationUniteLegale,
-		firstMatchingEtablissement,
-		allMatchingEtablissements,
-	} = entreprise
+	const { siren, label, dateCreationUniteLegale } = entreprise
 
 	const DateFormatter = useMemo(
 		() =>
@@ -32,7 +29,7 @@ export default function CompanySearchDetails({
 		[i18n.language]
 	)
 
-	const siege = allMatchingEtablissements.find((x) => x.etablissementSiege)
+	const siegeOrFirstEtablissement = getSiegeOrFirstEtablissement(entreprise)
 
 	return (
 		<CompanyContainer>
@@ -54,9 +51,7 @@ export default function CompanySearchDetails({
 			<Strong>{DateFormatter.format(new Date(dateCreationUniteLegale))}</Strong>
 			<br />
 			<Trans>Domiciliée à l'adresse :</Trans>{' '}
-			<Strong>
-				{siege ? siege.address : firstMatchingEtablissement.address}
-			</Strong>
+			<Strong>{siegeOrFirstEtablissement.address}</Strong>
 		</CompanyContainer>
 	)
 }

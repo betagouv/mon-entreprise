@@ -64,3 +64,11 @@ async function searchFullText(
 
 	return json.entreprises
 }
+
+export function getSiegeOrFirstEtablissement(
+	entreprise: FabriqueSocialEntreprise
+): FabriqueSocialEtablissement {
+	return (entreprise.allMatchingEtablissements.find(
+		(etablissement) => etablissement.etablissementSiege
+	) || entreprise.firstMatchingEtablissement)!
+}

@@ -2,7 +2,10 @@ import { useDispatch } from 'react-redux'
 
 import fetchBénéfice from '@/api/activité-vers-bénéfice'
 import { fetchCommuneDetails } from '@/api/commune'
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import {
+	FabriqueSocialEntreprise,
+	getSiegeOrFirstEtablissement,
+} from '@/api/fabrique-social'
 import {
 	addCommuneDetails,
 	setBénéficeType,
@@ -19,9 +22,11 @@ export function useSetEntreprise() {
 
 		dispatch(setCompany(entreprise))
 
+		const siegeOrFirstEtablissement = getSiegeOrFirstEtablissement(entreprise)
+
 		void fetchCommuneDetails(
-			entreprise.firstMatchingEtablissement.codeCommuneEtablissement,
-			entreprise.firstMatchingEtablissement.codePostalEtablissement
+			siegeOrFirstEtablissement.codeCommuneEtablissement,
+			siegeOrFirstEtablissement.codePostalEtablissement
 		).then(
 			(communeDetails) =>
 				communeDetails && dispatch(addCommuneDetails(communeDetails))
