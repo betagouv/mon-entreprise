@@ -1,18 +1,12 @@
 import { ComponentType, createContext, useContext } from 'react'
 import { css, styled } from 'styled-components'
 
-import { Merge } from '@/types/utils'
-
 import { SpacingKey } from '../theme'
 
 const breakPoints = ['$sm', '$md', '$lg', '$xl'] as const
 
-type Distribute<T extends string, U> = T extends unknown
-	? { [K in T]: U }
-	: never
-
 type BreakPoint = '$xs' | (typeof breakPoints)[number]
-type BreakPoints = Distribute<BreakPoint, number>
+type BreakPoints = Record<BreakPoint, BreakpointConfig>
 
 type ContainerContext = {
 	$nbColumns: number
@@ -87,7 +81,7 @@ const StyledGridContainer = styled.div<Omit<ContainerContext, '$nbColumns'>>`
 	);
 `
 
-const StyledGridItem = styled.div<ContainerContext & Merge<BreakPoints>>`
+const StyledGridItem = styled.div<ContainerContext & BreakPoints>`
 	padding-left: ${({ theme, $columnSpacing }) =>
 		theme.spacing[$columnSpacing ?? 0]};
 	padding-top: ${({ theme, $rowSpacing }) => theme.spacing[$rowSpacing ?? 0]};
@@ -111,8 +105,7 @@ type GridContainerProps = {
 	columnSpacing?: number
 	rowSpacing?: number
 	children: React.ReactNode
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	as?: string | ComponentType<any> | undefined
+	as?: string | ComponentType | undefined
 } & React.ComponentPropsWithoutRef<'div'>
 
 function GridContainer({
@@ -145,8 +138,7 @@ function GridContainer({
 type GridItemProps = {
 	children?: React.ReactNode
 	className?: string
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	as?: string | ComponentType<any> | undefined
+	as?: string | ComponentType | undefined
 } & Partial<Record<SpacingKey | 'xs', BreakpointConfig>> &
 	React.ComponentPropsWithoutRef<'div'>
 

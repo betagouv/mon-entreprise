@@ -1,7 +1,7 @@
 import { useRadio } from '@react-aria/radio'
 import { RadioGroupState } from '@react-stately/radio'
 import { AriaRadioProps } from '@react-types/radio'
-import { createContext, useContext, useRef } from 'react'
+import React, { createContext, useContext, useRef } from 'react'
 import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '@/design-system/global-style'
@@ -12,8 +12,7 @@ export const RadioContext = createContext<RadioGroupState | null>(null)
 type RadioProps = AriaRadioProps & {
 	className?: string
 	role?: string
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	visibleRadioAs?: string | React.ComponentType<any>
+	visibleRadioAs?: string | React.ComponentType
 }
 
 // TDOO: isDisabled style
@@ -137,7 +136,7 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 						? theme.colors.bases.primary[500]
 						: theme.colors.bases.primary[700]
 				};
-			} : 
+			} :
 		`
 			: css`
 					&:hover {

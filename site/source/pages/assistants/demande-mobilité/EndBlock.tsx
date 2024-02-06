@@ -21,10 +21,6 @@ import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import PDFDocument from './PDFDocument'
 
 const IS_TOUCH_DEVICE = isOnTouchDevice()
-type SignaturePadInstance = {
-	clear: () => void
-	toDataURL: () => string
-}
 
 type EndBlockProps = {
 	fields: Array<RuleNode>
@@ -35,7 +31,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 	const [isCertified, setCertified] = useState(false)
 	const [place, setPlace] = useState<string>()
 	const engine = useContext(EngineContext)
-	const signatureRef = useRef<SignaturePadInstance>()
+	const signatureRef = useRef<SignaturePad | null>(null)
 	const tracker = useContext(TrackingContext)
 	const { colors } = useTheme()
 	if (missingValues.length) {
