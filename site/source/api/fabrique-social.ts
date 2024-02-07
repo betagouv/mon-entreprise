@@ -1,3 +1,5 @@
+import { Company } from '@/store/reducers/companySituationReducer'
+
 export async function searchDenominationOrSiren(value: string) {
 	return searchFullText(value)
 }
@@ -25,20 +27,18 @@ export type FabriqueSocialEntreprise = {
 	label: string
 	simpleLabel: string
 	siren: string
-	firstMatchingEtablissement: {
-		address?: string
-		siret: string
-		etatAdministratifEtablissement?: 'F' | 'A' // Fermé ou Actif
-		codeCommuneEtablissement: string
-		codePostalEtablissement: string
-		is_siege: boolean
-		activitePrincipaleEtablissement: string
-	}
-	allMatchingEtablissements: Array<{
-		address?: string
-		siret: string
-		is_siege: boolean
-	}>
+	firstMatchingEtablissement: FabriqueSocialEtablissement
+	allMatchingEtablissements: Array<FabriqueSocialEtablissement>
+}
+
+export type FabriqueSocialEtablissement = {
+	address?: string
+	siret: string
+	etatAdministratifEtablissement?: 'F' | 'A' // Fermé ou Actif
+	codeCommuneEtablissement: string
+	codePostalEtablissement: string
+	etablissementSiege: boolean
+	activitePrincipaleEtablissement: string
 }
 
 type FabriqueSocialSearchPayload = {
@@ -65,4 +65,12 @@ async function searchFullText(
 	const json = (await response.json()) as FabriqueSocialSearchPayload
 
 	return json.entreprises
+}
+
+export function getSiegeOrFirstEtablissement(
+	entreprise: FabriqueSocialEntreprise | Company
+): FabriqueSocialEtablissement {
+	return (entreprise.allMatchingEtablissements.find(
+		(etablissement) => etablissement.etablissementSiege
+	) || entreprise.firstMatchingEtablissement)!
 }
