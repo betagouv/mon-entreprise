@@ -58,7 +58,7 @@ export async function searchCommunes(
 
 export async function fetchCommuneDetails(
 	codeCommune: string,
-	codePostal: string
+	codePostal?: string
 ): Promise<Commune | null> {
 	const response = await fetch(
 		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=nom,code,departement,region,codesPostaux`
@@ -67,6 +67,9 @@ export async function fetchCommuneDetails(
 		return null
 	}
 	const apiCommune = (await response.json()) as ApiCommuneJson
+
+	if (!codePostal) codePostal = apiCommune.codesPostaux[0]
+
 	if (!apiCommune.codesPostaux.includes(codePostal)) {
 		throw new Error(
 			'Le code postal et le code commune fournis sont incompatibles'
