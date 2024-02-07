@@ -8,6 +8,7 @@ import {
 import { CSSProperties, ReactNode, useId, useState } from 'react'
 import { styled } from 'styled-components'
 
+import { useDelayedExit } from '@/hooks/useDelayedExit'
 import { useOnKeyDown } from '@/hooks/useOnKeyDown'
 
 export const Tooltip = ({
@@ -44,6 +45,12 @@ export const Tooltip = ({
 		setIsFocused(false)
 	})
 
+	const { handleExit, handleEnter } = useDelayedExit({
+		onEnter: () => setIsFocused(true),
+		onExit: () => setIsFocused(false),
+		delay: 1000,
+	})
+
 	const id = useId()
 
 	return (
@@ -52,8 +59,8 @@ export const Tooltip = ({
 				className={className}
 				style={style}
 				ref={refs.setReference}
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
+				onMouseEnter={handleEnter}
+				onMouseLeave={handleExit}
 				onFocus={() => setIsFocused(true)}
 				onBlur={() => setIsFocused(false)}
 				aria-describedby={id}
@@ -66,6 +73,8 @@ export const Tooltip = ({
 					id={id}
 					ref={refs.setFloating}
 					role="tooltip"
+					onMouseEnter={handleEnter}
+					onMouseLeave={handleExit}
 					style={{
 						position: strategy,
 						top: y ?? 0,
