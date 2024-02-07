@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
+import { MemoryRouter } from 'react-router-dom'
 
 import { Drawer } from '@/design-system/drawer'
 
@@ -7,6 +8,11 @@ import { DrawerButtonProps } from './Drawer'
 
 const meta: Meta<typeof Drawer> = {
 	component: Drawer,
+	render: (args) => (
+		<MemoryRouter initialEntries={['/some/route']}>
+			<Drawer {...args}>{args.children}</Drawer>
+		</MemoryRouter>
+	),
 	argTypes: {
 		children: {
 			type: 'string',
