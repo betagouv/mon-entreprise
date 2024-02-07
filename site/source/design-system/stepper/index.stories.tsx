@@ -15,17 +15,20 @@ export const Basic: Story = {
 	render: (args) => (
 		<MemoryRouter initialEntries={['/step-2']}>
 			<Stepper {...args}>
-				<Step to={'/'} progress={1}>
+				<Step to={'/'} progress={0}>
+					Pas commencé
+				</Step>
+				<Step to={'/'} progress={0.2}>
 					Première étape
 				</Step>
-				<Step to={'/step-2'} progress={0.2}>
-					Deuxième étape
+				<Step to={'/step-2'} progress={0.4} isDisabled>
+					Deuxième étape (désactivé)
 				</Step>
-				<Step to={'/step-3'} progress={0}>
+				<Step to={'/step-3'} progress={0.6}>
 					Troisième étape
 				</Step>
-				<Step to={'/step-4'} progress={0} isDisabled>
-					Dernière étape
+				<Step to={'/step-4'} progress={1} isDisabled>
+					Dernière étape (désactivé)
 				</Step>
 			</Stepper>
 		</MemoryRouter>

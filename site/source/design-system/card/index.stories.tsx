@@ -6,10 +6,10 @@ const meta: Meta<typeof Card> = {
 	component: Card,
 	args: {
 		icon: '👋',
-		ctaLabel: 'Click me',
+		ctaLabel: 'Cliquez-moi',
 		compact: false,
-		title: 'Hello world',
-		children: 'This is a card',
+		title: 'Titre',
+		children: 'Ceci est une carte',
 	},
 	decorators: [
 		(Story) => (
