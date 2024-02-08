@@ -29,6 +29,7 @@ it('calculate simulations-professions-libérales', () => {
 		)
 	).toMatchInlineSnapshot(`
 		[
+		  "date",
 		  "dirigeant . indépendant . IJSS",
 		  "dirigeant . indépendant . PL . CNAVPL . exonération incapacité",
 		  "dirigeant . indépendant . PL . métier",
