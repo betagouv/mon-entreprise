@@ -59,7 +59,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
               taux: 9%
             - plafond:
                 variations:
-                  - si: date < 2024
+                  - si: date < 01/2024
                     alors: 3
                   - sinon: 3.5
               taux: 22%

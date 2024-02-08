@@ -208,7 +208,7 @@ protection sociale . retraite . trimestres: 4"
 
 exports[`calculate comparateur-statuts > profession libérale non reglementée 2`] = `
 "dirigeant . rémunération . net: 30852
-dirigeant . rémunération . net . après impôt: 27945
+dirigeant . rémunération . net . après impôt: 27944
 entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null

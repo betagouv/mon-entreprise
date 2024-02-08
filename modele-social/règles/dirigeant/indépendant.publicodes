@@ -137,9 +137,13 @@ dirigeant . indépendant . assiette minimale . maladie:
 dirigeant . indépendant . assiette minimale . retraite:
   description: La cotisation minimale de retraite de base permet de valider 3
     trimestres de retraite, quel que soit le revenu.
-  produit:
-    - plafond sécurité sociale
-    - 11.5%
+  variations:
+    - si: date < 01/2023
+      alors:
+        produit:
+          - plafond sécurité sociale
+          - 11.5 %
+    - sinon: 450 heure/an * SMIC . horaire . début d'année  
   unité: €/an
   arrondi: oui
   références:
@@ -413,14 +417,15 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
 
   arrondi: oui
   plafond:
+    applicable si: date >= 01/2022
+    non applicable si: date > 01/2024
     # Le taux indemnité est de 0.5%, dans la loi.
     # Mais parce que l'Urssaf regorge d'inventivité et qu'ils n'ont pas envie de se baser
     # sur la loi - non, non, ça sera trop simple - ils ont choisi de continuer d'appliquer
-    # le taux de 0.85% tout en abaissant la cotisation maladie 1.
+    # le taux de 0.85% tout en abaissant la cotisation maladie 1 en 2022 et 2023
     #
     # Pour les revenu ou le taux de la cotisation total (maladie 1 + 2) est inférieur à 0.85, on
     # plafonne donc la cotis maladie 2 à ce total
-    applicable si: date >= 01/2022
     valeur: maladie . total
   unité: €/an
   références:
@@ -434,8 +439,11 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
       plafond: 5 * plafond sécurité sociale
 
     taux:
-      déprécié: oui
-      valeur: 0.85%
+      valeur: 
+        variations: 
+          - si: date >= 01/2024
+            alors: 0.5%
+          - sinon: 0.85%
 
 dirigeant . indépendant . cotisations et contributions . maladie:
   description: |
@@ -450,7 +458,6 @@ dirigeant . indépendant . cotisations et contributions . maladie:
   abattement:
     applicable si: date >= 01/2022
     valeur: indemnités journalières maladie
-
   unité: €/an
   références:
     Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747
@@ -458,26 +465,24 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     Liste des cotisations: https://www.urssaf.fr/portail/home/artisan-commercant/comment-sont-calculees-les-cotis/liste-des-cotisations.html
 
   avec:
-    réduction supplémentaire:
-      applicable si:
-        toutes ces conditions:
-          - date < 01/2022
-          - assiette minimale
-      titre: réduction supplémentaire (avant 2022)
-      déprécié: oui
+    total:
       description: |
-        La réduction supplémentaire du taux maladie pour les revenu inférieurs à 40% du plafond de la sécurité sociale
-      taux progressif:
-        assiette: taux progressif . assiette
+        Le montant de la cotisation pour la couverture des risques d'assurance maladie et maternité. Contient deux composantes : 
+        - la cotisation maladie 1 (assurance maladie et maternité)
+        - la cotisation maladie 2 (indemnités journalières maladie)
+      note: 
+        Pour calculer le montant de la cotisation maladie 1, on soustrait le montant de la cotisation maladie 2 du montant total de la cotisation maladie.
+      barème:
+        assiette:
+          valeur: assiette des cotisations
+          plancher: assiette minimale . maladie
         multiplicateur: plafond sécurité sociale
         tranches:
-          - plafond: 0%
-            taux: 1.35%
-          - plafond: 40%
-            taux: 0%
-
-    références:
-      Article D621-2 du Code de la sécurité sociale au 01/12/2022: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747/2022-12-01/
+          - taux: taux progressif
+            plafond: 5
+          - taux: 6.50 %
+      références:
+        Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714760
 
     taux progressif:
       arrondi: 2 décimales
@@ -491,8 +496,12 @@ dirigeant . indépendant . cotisations et contributions . maladie:
             plafond: 60%
           - taux: 7.20%
             plafond: 110%
+      références:
+        Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747/
+
     taux progressif . assiette: assiette des cotisations
 
+    # Règles avant 2022 :  
     taux progressif avant 2022:
       privé: oui
       applicable si: date < 01/2022
@@ -508,16 +517,24 @@ dirigeant . indépendant . cotisations et contributions . maladie:
       abattement: réduction supplémentaire
       arrondi: 2 décimales
 
-    total:
-      barème:
-        assiette:
-          valeur: assiette des cotisations
-          plancher: assiette minimale . maladie
+    réduction supplémentaire:
+      titre: réduction supplémentaire (avant 2022)
+      applicable si:
+        toutes ces conditions:
+          - date < 01/2022
+          - assiette minimale
+      déprécié: oui
+      description: |
+        La réduction supplémentaire du taux maladie pour les revenu inférieurs à 40% du plafond de la sécurité sociale
+      taux progressif:
+        assiette: taux progressif . assiette
         multiplicateur: plafond sécurité sociale
         tranches:
-          - taux: taux progressif
-            plafond: 5
-          - taux: 6.50 %
+          - plafond: 0%
+            taux: 1.35%
+          - plafond: 40%
+            taux: 0%
+
 
 dirigeant . indépendant . cotisations et contributions . retraite de base:
   description: |
