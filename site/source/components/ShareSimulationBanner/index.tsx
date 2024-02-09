@@ -37,8 +37,6 @@ export function useUrl() {
 			? import.meta.env.VITE_FR_BASE_URL
 			: import.meta.env.VITE_EN_BASE_URL
 
-	searchParams.set('utm_source', 'sharing')
-
 	return siteUrl + path + '?' + searchParams.toString()
 }
 
