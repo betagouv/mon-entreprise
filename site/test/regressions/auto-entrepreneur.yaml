@@ -67,5 +67,12 @@ activité mixte:
     entreprise . activité . nature: "'commerciale'"
 
 DROM:
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    établissement . commune . département . outre-mer: oui
+  - établissement . commune . département . outre-mer: oui
+    dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
+    entreprise . activités . revenus mixtes: oui
+    entreprise . chiffre d'affaires . service BIC: 12000 €/an
+    entreprise . chiffre d'affaires . service BNC: 3000 €/an
+    entreprise . chiffre d'affaires . vente restauration hébergement: 5000 €/an
+  - établissement . commune . département . outre-mer: oui
+    dirigeant . auto-entrepreneur . chiffre d'affaires: 45000 €/an
+ 
