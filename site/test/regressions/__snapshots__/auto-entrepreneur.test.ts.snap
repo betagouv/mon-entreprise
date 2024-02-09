@@ -22,12 +22,18 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate simulations-auto-entrepreneur > DROM 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 207
-dirigeant . auto-entrepreneur . revenu net: 17520
-dirigeant . auto-entrepreneur . revenu net . après impôt: 17520
-dirigeant . rémunération . impôt: 0
+dirigeant . auto-entrepreneur . cotisations et contributions: 213
+dirigeant . auto-entrepreneur . revenu net: 17440
+dirigeant . auto-entrepreneur . revenu net . après impôt: 17440
+dirigeant . rémunération . impôt: 0"
+`;
 
-Notifications affichées : dirigeant . auto-entrepreneur . exonération DROM"
+exports[`calculate simulations-auto-entrepreneur > DROM 2`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 45000
+dirigeant . auto-entrepreneur . cotisations et contributions: 312
+dirigeant . auto-entrepreneur . revenu net: 41253
+dirigeant . auto-entrepreneur . revenu net . après impôt: 41253
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `
