@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { batchUpdateSituation, setActiveTarget } from '@/store/actions/actions'
+import {
+	batchUpdateSituation,
+	setActiveTarget,
+	updateUnit,
+} from '@/store/actions/actions'
 import { Situation } from '@/store/reducers/rootReducer'
 import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
 
@@ -13,8 +17,9 @@ type ShortName = string
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 type ParamName = DottedName | ShortName
 
+export const TARGET_UNIT_PARAM = 'unite'
+
 export default function useSearchParamsSimulationSharing() {
-	const [urlSituationIsExtracted, setUrlSituationIsExtracted] = useState(false)
 	const [searchParams, setSearchParams] = useSearchParams()
 	// saves params for development, as strict mode is running twice
 	const [initialSearchParams] = useState(new URLSearchParams(searchParams))
@@ -29,50 +34,48 @@ export default function useSearchParamsSimulationSharing() {
 
 	useEffect(() => {
 		// On load:
-		if (!urlSituationIsExtracted) {
-			const newSituation = getSituationFromSearchParams(
-				initialSearchParams,
-				dottedNameParamName
-			)
-			if (Object.keys(newSituation).length > 0) {
-				dispatch(batchUpdateSituation(newSituation as Situation))
-			}
-
-			const newActiveTarget = Object.keys(newSituation).filter((dottedName) =>
-				objectifs.includes(dottedName as DottedName)
-			)[0]
-			if (newActiveTarget) {
-				dispatch(setActiveTarget(newActiveTarget as DottedName))
-			}
-
-			cleanSearchParams(
-				searchParams,
-				setSearchParams,
-				dottedNameParamName,
-				Object.keys(newSituation) as DottedName[]
-			)
-
-			setUrlSituationIsExtracted(true)
+		const newTargetUnit = getTargetUnitFromSearchParams(initialSearchParams)
+		if (newTargetUnit) {
+			dispatch(updateUnit(newTargetUnit))
 		}
+
+		const newSituation = getSituationFromSearchParams(
+			initialSearchParams,
+			dottedNameParamName
+		)
+		if (Object.keys(newSituation).length > 0) {
+			dispatch(batchUpdateSituation(newSituation as Situation))
+		}
+
+		const newActiveTarget = Object.keys(newSituation).filter((dottedName) =>
+			objectifs.includes(dottedName as DottedName)
+		)[0]
+		if (newActiveTarget) {
+			dispatch(setActiveTarget(newActiveTarget as DottedName))
+		}
+
+		cleanSearchParams(
+			searchParams,
+			setSearchParams,
+			dottedNameParamName,
+			Object.keys(newSituation) as DottedName[]
+		)
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
-	// Cleanup:
-	useEffect(() => {
-		return () => {
-			setUrlSituationIsExtracted(false)
-		}
 	}, [])
 }
 
-export const useParamsFromSituation = (situation: Situation) => {
+export const useParamsFromSituation = (
+	situation: Situation,
+	targetUnit: string
+) => {
 	const engine = useEngine()
 	const dottedNameParamName = useMemo(
 		() => getRulesParamNames(engine.getParsedRules()),
 		[engine]
 	)
 
-	return getSearchParamsFromSituation(engine, situation, dottedNameParamName)
+	return getSearchParams(engine, situation, dottedNameParamName, targetUnit)
 }
 
 export const cleanSearchParams = (
@@ -85,6 +88,7 @@ export const cleanSearchParams = (
 	dottedNames.forEach((dottedName) =>
 		searchParams.delete(dottedNameParamNameMapping[dottedName])
 	)
+	searchParams.delete(TARGET_UNIT_PARAM)
 	setSearchParams(searchParams.toString(), { replace: true })
 }
 
@@ -101,10 +105,11 @@ export const getRulesParamNames = (
 		ruleNode.rawNode['identifiant court'] || dottedName,
 	])
 
-export function getSearchParamsFromSituation(
+export function getSearchParams(
 	engine: Engine,
 	situation: Situation,
-	dottedNameParamName: [DottedName, ParamName][]
+	dottedNameParamName: [DottedName, ParamName][],
+	targetUnit: string
 ): URLSearchParams {
 	const searchParams = new URLSearchParams()
 	const dottedNameParamNameMapping = Object.fromEntries(dottedNameParamName)
@@ -124,6 +129,8 @@ export function getSearchParamsFromSituation(
 			console.error(error)
 		}
 	})
+
+	searchParams.set(TARGET_UNIT_PARAM, targetUnit)
 
 	searchParams.sort()
 
@@ -165,4 +172,14 @@ export function getSituationFromSearchParams(
 	})
 
 	return situation
+}
+
+export function getTargetUnitFromSearchParams(
+	searchParams: URLSearchParams
+): string | null {
+	if (searchParams.has(TARGET_UNIT_PARAM)) {
+		return searchParams.get(TARGET_UNIT_PARAM)
+	}
+
+	return null
 }
