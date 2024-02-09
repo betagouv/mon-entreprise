@@ -192,11 +192,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         - entreprise . chiffre d'affaires
         - taux
 
-    cotisations CIPAV . taux:
-      variations:
-        - si: établissement . commune . département . outre-mer
-          alors: 14.2%
-        - sinon: 21.2%
+    cotisations CIPAV . taux:  21.2%
 
     taux prestation de service:
       déprécié: oui
@@ -205,27 +201,20 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         BNC.
       valeur: taux service BIC
 
-    # Les taux DOM sont définis comme un pourcentage des taux métropole, mais les règles d'arrondi ne sont pas claires :
     taux service BIC:
       variations:
-        - si: établissement . commune . département . outre-mer
-          alors: 14.2%
         - si: date >= 10/2022
           alors: 21.2%
         - sinon: 22%
 
     taux service BNC:
       variations:
-        - si: établissement . commune . département . outre-mer
-          alors: 14.1%
         - si: date >= 10/2022
           alors: 21.1%
         - sinon: 22%
 
     taux vente restauration hébergement:
       variations:
-        - si: établissement . commune . département . outre-mer
-          alors: 8.2%
         - si: date >= 10/2022
           alors: 12.3%
         - sinon: 12.8%
@@ -379,25 +368,50 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
     - revenu net
     - revenu net . après impôt
 
-dirigeant . auto-entrepreneur . exonération DROM:
+dirigeant . auto-entrepreneur . DROM:
   experimental: oui
-  applicable si:
-    toutes ces conditions:
-    - établissement . commune . département . outre-mer
-    - entreprise . durée d'activité . en fin d'année < 4 ans
+  applicable si: établissement . commune . département . outre-mer
   valeur: oui
   rend non applicable: exonérations . ACRE
-  type: notification
-  sévérité: avertissement
-  résumé: |
-    Ce simulateur ne prend pas en compte les taux réduits DROM de début d’activité.
-  description: |
-    En tant qu’auto-entrepreneur en début d’activité, vous bénéficiez d’une exonération qui se traduit par l’application de taux réduits de cotisations sur trois ans, correspondant à :
-
-    - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
-    - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
-
-    Ce simulateur ne prend pas en compte ces taux pour le moment. En revanche, les taux spécifiques DROM de régime de croisière sont implémentés.
-
   références:
     'Vous êtes auto-entrepreneur dans les DROM ?': https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#vous-etes-auto-entrepreneur-dans
+
+  avec:
+
+    taux cotisations régime de croisière:
+      note : Les taux DOM sont définis comme un pourcentage des taux métropole, mais les règles d'arrondi ne sont pas claires
+      references:
+        Taux auto-entrepreneur dans les Drom (PDF): https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Urssaf-AutoEntrepreneur-Drom.pdf#page=13
+      avec:
+        service BIC:
+          remplace: cotisations et contributions . cotisations . taux service BIC
+          valeur: 14.2%
+
+        taux service BNC:
+          remplace: cotisations et contributions . cotisations . taux service BNC
+          valeur: 14.1%
+
+        taux vente restauration hébergement:
+          remplace: cotisations et contributions . cotisations . taux vente restauration hébergement
+          valeur: 8.2%
+
+        taux CIPAV:
+          remplace: cotisations et contributions . cotisations . cotisations CIPAV . taux
+          valeur: 14.2%
+
+
+    notification début activité:
+      applicable si: entreprise . durée d'activité . en fin d'année < 4 ans
+      valeur: oui
+      type: notification
+      sévérité: avertissement
+      résumé: |
+        Ce simulateur ne prend pas en compte les taux réduits DROM de début d’activité.
+      description: |
+        En tant qu’auto-entrepreneur en début d’activité, vous bénéficiez d’une exonération qui se traduit par l’application de taux réduits de cotisations sur trois ans, correspondant à :
+
+        - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
+        - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
+
+        Ce simulateur ne prend pas en compte ces taux pour le moment. En revanche, les taux spécifiques DROM de régime de croisière sont implémentés.
+
