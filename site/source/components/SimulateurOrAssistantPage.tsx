@@ -23,9 +23,9 @@ import { TrackChapter } from './ATInternetTracking'
 
 export default function SimulateurOrAssistantPage() {
 	const { currentSimulatorData } = useCurrentSimulatorData()
-	const { pathname, search } = useLocation()
+	const { pathname } = useLocation()
 	if (!currentSimulatorData) {
-		throw new Error(`No simulator found with url: ${pathname}?${search}`)
+		throw new Error(`No simulator found with url: ${pathname}`)
 	}
 	const {
 		meta,
