@@ -6,8 +6,8 @@ describe('Partage (simulateur salarié)', function () {
 	const searchParams = new URLSearchParams({
 		'salaire-brut': '1539€/mois',
 		'salarié . contrat': "'CDD'",
+		unite: '€/mois',
 	})
-	searchParams.set('utm_source', 'sharing')
 
 	const urlWithState = `${simulatorUrl}?${searchParams.toString()}`
 	if (!fr) {
