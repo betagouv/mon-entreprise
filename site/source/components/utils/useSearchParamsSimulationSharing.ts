@@ -16,6 +16,8 @@ type ParamName = DottedName | ShortName
 export default function useSearchParamsSimulationSharing() {
 	const [urlSituationIsExtracted, setUrlSituationIsExtracted] = useState(false)
 	const [searchParams, setSearchParams] = useSearchParams()
+	// saves params for development, as strict mode is running twice
+	const [initialSearchParams] = useState(new URLSearchParams(searchParams))
 	const objectifs = useSelector(configObjectifsSelector)
 	const dispatch = useDispatch()
 	const engine = useEngine()
@@ -29,7 +31,7 @@ export default function useSearchParamsSimulationSharing() {
 		// On load:
 		if (!urlSituationIsExtracted) {
 			const newSituation = getSituationFromSearchParams(
-				searchParams,
+				initialSearchParams,
 				dottedNameParamName
 			)
 			if (Object.keys(newSituation).length > 0) {
