@@ -12,6 +12,22 @@ base:
     entreprise . catégorie juridique: "'SAS'"
     entreprise . associés: "'unique'"
 
+bas revenus:
+  - entreprise . chiffre d'affaires: 2000 €/an
+    entreprise . charges: 0
+    entreprise . catégorie juridique: "'EI'"
+    entreprise . catégorie juridique . EI . auto-entrepreneur: oui
+
+  - entreprise . chiffre d'affaires: 2000 €/an
+    entreprise . charges: 0
+    entreprise . catégorie juridique: "'EI'"
+    entreprise . catégorie juridique . EI . auto-entrepreneur: non
+
+  - entreprise . chiffre d'affaires: 2000 €/an
+    entreprise . charges: 0
+    entreprise . catégorie juridique: "'SAS'"
+    entreprise . associés: "'unique'"
+
 ACRE:
   - <<:
       - *AE
