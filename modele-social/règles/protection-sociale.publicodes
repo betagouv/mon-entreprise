@@ -830,17 +830,20 @@ protection sociale . invalidité et décès:
 
         minimum salarié:
           remplace: minimum
-          applicable si: salarié
+          applicable si: condition revenu salarié
           valeur: 309.09 €/mois
           références:
             "Montant minimal de la pension d'invalidité de travailleur salarié": https://www.legislation.cnav.fr/Lists/ArticlesBareme/DispForm.aspx?ID=4266&ContentTypeId=0x01007CF8FA8574A1B64CA3888B8B205B3F58
             'Le montant de votre pension d’invalidité ': https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
 
+        condition revenu salarié: salarié . cotisations . assiette >= 2030 heure/an * SMIC . horaire
+
         revenu annuel moyen des 10 meilleures années:
           description: |
             Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule pension d’invalidité : soit au titre de votre activité salariée, soit au titre de votre activité d’artisan/commerçant. Toutefois, le montant de la pension tient compte de tous vos revenus perçus qu’ils proviennent de votre activité salariée ou de votre activité comme indépendant.
           somme:
-            - salarié . cotisations . assiette
+            - applicable si: condition revenu salarié
+              valeur: salarié . cotisations . assiette
             - applicable si: maladie . arrêt maladie . indépendant . conditions . revenu
               variations:
                 - si: dirigeant . indépendant
