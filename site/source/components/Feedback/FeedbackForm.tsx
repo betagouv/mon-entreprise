@@ -103,9 +103,7 @@ export default function FeedbackForm({
 	additionalData?: string
 }) {
 	const url = useUrl()
-	const urlParams = Array.from(new URL(url).searchParams.entries()).filter(
-		([key]) => key !== 'utm_source'
-	)
+	const urlParams = Array.from(new URL(url).searchParams.entries())
 	const [share, setShare] = useState(false)
 	const [requestStatusCode, setRequestStatusCode] = useState<null | number>(
 		null
