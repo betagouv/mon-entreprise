@@ -11,6 +11,7 @@ import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import {
 	companySituationSelector,
 	situationSelector,
+	targetUnitSelector,
 } from '@/store/selectors/simulationSelectors'
 
 import { TrackingContext } from '../ATInternetTracking'
@@ -25,7 +26,9 @@ export function useUrl() {
 		...useSelector(companySituationSelector),
 	}
 
-	const searchParams = useParamsFromSituation(situation)
+	const targetUnit = useSelector(targetUnitSelector)
+
+	const searchParams = useParamsFromSituation(situation, targetUnit)
 	const { currentSimulatorData } = useCurrentSimulatorData()
 
 	const { path = '' } = currentSimulatorData ?? {}

@@ -6,7 +6,7 @@ import yaml from 'yaml'
 import {
 	cleanSearchParams,
 	getRulesParamNames,
-	getSearchParamsFromSituation,
+	getSearchParams,
 	getSituationFromSearchParams,
 } from '../source/components/utils/useSearchParamsSimulationSharing'
 
@@ -41,32 +41,35 @@ rule without:
 	describe('getSearchParamsFromSituation', () => {
 		it('builds search params with and without identifiant court', () => {
 			expect(
-				getSearchParamsFromSituation(
+				getSearchParams(
 					engine,
 					{ 'rule with': '2000€/mois', 'rule without': '1000€/mois' },
-					dottedNameParamName
+					dottedNameParamName,
+					'€/an'
 				).toString()
 			).to.equal(
 				new URLSearchParams(
-					'panta=2000€/mois&rule without=1000€/mois'
+					'panta=2000€/mois&rule without=1000€/mois&unite=€/an'
 				).toString()
 			)
 		})
 		it('builds search params with object', () => {
 			expect(
-				getSearchParamsFromSituation(
+				getSearchParams(
 					engine,
 					{ 'rule without': { 1: 2, 3: { 4: '5' } } },
-					dottedNameParamName
+					dottedNameParamName,
+					'€/an'
 				).toString()
 			).to.equal(
-				new URLSearchParams('rule without={"1":2,"3":{"4":"5"}}').toString()
+				new URLSearchParams('rule without={"1":2,"3":{"4":"5"}}').toString() +
+					'&unite=%E2%82%AC%2Fan'
 			)
 		})
 		it('handles empty situation with proper defaults', () => {
 			expect(
-				getSearchParamsFromSituation(engine, {}, dottedNameParamName).toString()
-			).to.equal('')
+				getSearchParams(engine, {}, dottedNameParamName, '€/mois').toString()
+			).to.equal('unite=%E2%82%AC%2Fmois')
 		})
 	})
 
@@ -113,7 +116,9 @@ rule without:
 		setSearchParams = vi.fn()
 	})
 	it('removes searchParams that are in situation', () => {
-		const searchParams = new URLSearchParams('panta=123&rule without=333')
+		const searchParams = new URLSearchParams(
+			'panta=123&rule without=333&unite=€/mois'
+		)
 		const newSituation = getSituationFromSearchParams(
 			searchParams,
 			dottedNameParamName
