@@ -14,10 +14,7 @@ import {
 } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import {
-	FabriqueSocialEntreprise,
-	searchDenominationOrSiren,
-} from '@/api/fabrique-social'
+import { searchDenominationOrSiren } from '@/api/fabrique-social'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
@@ -36,6 +33,7 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Entreprise } from '@/domain/Entreprise'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
@@ -399,9 +397,7 @@ const usePourMonEntreprisePath = () => {
 
 const useSirenFromParams = (overwrite: boolean) => {
 	const { entreprise: param } = useParams<{ entreprise?: string }>()
-	const [entreprise, setEntreprise] = useState<FabriqueSocialEntreprise | null>(
-		null
-	)
+	const [entreprise, setEntreprise] = useState<Entreprise | null>(null)
 
 	const [entreprisePending, setEntreprisePending] = useState(false)
 	const [entrepriseNotFound, setEntrepriseNotFound] = useState(false)

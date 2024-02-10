@@ -1,8 +1,48 @@
-import { Company } from '@/store/reducers/companySituationReducer'
+import { codeActivité } from '@/domain/CodeActivite'
+import { codeCatégorieJuridique } from '@/domain/CodeCatégorieJuridique'
+import { Entreprise } from '@/domain/Entreprise'
+import { Établissement } from '@/domain/Établissement'
+import { siren, siret } from '@/domain/Siren'
 
-export async function searchDenominationOrSiren(value: string) {
-	return searchFullText(value)
+export async function searchDenominationOrSiren(
+	searchTerm: string
+): Promise<Array<Entreprise> | null> {
+	return searchFullText(searchTerm).then(
+		(entreprises) => entreprises?.map(fabriqueSocialEntrepriseAdapter) || null
+	)
 }
+
+export const fabriqueSocialEntrepriseAdapter = (
+	entreprise: FabriqueSocialEntreprise
+): Entreprise => {
+	const siège = entreprise && getSiege(entreprise)
+
+	return {
+		nom: entreprise.label,
+		siren: siren(entreprise.siren),
+		dateDeCréation: new Date(entreprise.dateCreationUniteLegale),
+		codeCatégorieJuridique: codeCatégorieJuridique(
+			entreprise.categorieJuridiqueUniteLegale
+		),
+		activitéPrincipale: codeActivité(entreprise.activitePrincipale),
+		siège: siège && établissementAdapter(siège),
+		établissement: établissementAdapter(entreprise.firstMatchingEtablissement),
+	}
+}
+
+const établissementAdapter = (
+	fabriqueSocialEtablissement: FabriqueSocialEtablissement
+): Établissement => ({
+	siret: siret(fabriqueSocialEtablissement.siret),
+	activitéPrincipale: codeActivité(
+		fabriqueSocialEtablissement.activitePrincipaleEtablissement
+	),
+	adresse: {
+		complète: fabriqueSocialEtablissement.address,
+		codePostal: fabriqueSocialEtablissement.codePostalEtablissement,
+		codeCommune: fabriqueSocialEtablissement.codeCommuneEtablissement,
+	},
+})
 
 /*
  * Fields are documented in https://www.sirene.fr/static-resources/doc/Description%20fichier%20StockUniteLegaleHistorique.pdf?version=1.33.1
@@ -67,10 +107,10 @@ async function searchFullText(
 	return json.entreprises
 }
 
-export function getSiegeOrFirstEtablissement(
-	entreprise: FabriqueSocialEntreprise | Company
-): FabriqueSocialEtablissement {
-	return (entreprise.allMatchingEtablissements.find(
+function getSiege(
+	entreprise: FabriqueSocialEntreprise
+): FabriqueSocialEtablissement | undefined {
+	return entreprise.allMatchingEtablissements.find(
 		(etablissement) => etablissement.etablissementSiege
-	) || entreprise.firstMatchingEtablissement)!
+	)
 }

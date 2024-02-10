@@ -1,22 +1,19 @@
 import { useEffect, useState } from 'react'
 
-import {
-	FabriqueSocialEntreprise,
-	searchDenominationOrSiren,
-} from '@/api/fabrique-social'
+import { searchDenominationOrSiren } from '@/api/fabrique-social'
+import { Entreprise } from '@/domain/Entreprise'
 
 import { useDebounce } from './useDebounce'
 
 export default function useSearchCompany(
 	value: string
-): [boolean, Array<FabriqueSocialEntreprise>] {
-	const [result, setResult] = useState<Array<FabriqueSocialEntreprise>>([])
+): [boolean, Array<Entreprise>] {
+	const [result, setResult] = useState<Array<Entreprise>>([])
 	const [searchPending, setSearchPending] = useState(Boolean(value))
 	const debouncedValue = useDebounce(value, 300)
 
 	useEffect(() => {
 		setSearchPending(Boolean(value))
-
 		if (!value) {
 			setResult([])
 		}
@@ -28,7 +25,7 @@ export default function useSearchCompany(
 		}
 
 		searchDenominationOrSiren(debouncedValue)
-			.then((entreprise: Array<FabriqueSocialEntreprise> | null) => {
+			.then((entreprise: Array<Entreprise> | null) => {
 				setResult(entreprise || [])
 				setSearchPending(false)
 			})
