@@ -2,10 +2,7 @@ import { useDispatch } from 'react-redux'
 
 import fetchBénéfice from '@/api/activité-vers-bénéfice'
 import { fetchCommuneDetails } from '@/api/commune'
-import {
-	FabriqueSocialEntreprise,
-	getSiegeOrFirstEtablissement,
-} from '@/api/fabrique-social'
+import { Entreprise } from '@/domain/Entreprise'
 import {
 	addCommuneDetails,
 	setBénéficeType,
@@ -15,24 +12,20 @@ import {
 export function useSetEntreprise() {
 	const dispatch = useDispatch()
 
-	return (entreprise: FabriqueSocialEntreprise | null) => {
-		if (entreprise === null) {
+	return (entreprise: Entreprise | null) => {
+		if (entreprise === null || !entreprise.établissement.adresse) {
 			return
 		}
 
 		dispatch(setCompany(entreprise))
 
-		const siegeOrFirstEtablissement = getSiegeOrFirstEtablissement(entreprise)
-
-		void fetchCommuneDetails(
-			siegeOrFirstEtablissement.codeCommuneEtablissement
-		).then(
+		void fetchCommuneDetails(entreprise.établissement.adresse.codeCommune).then(
 			(communeDetails) =>
 				communeDetails && dispatch(addCommuneDetails(communeDetails))
 		)
 
-		void fetchBénéfice(
-			siegeOrFirstEtablissement.activitePrincipaleEtablissement
-		).then((bénéfice) => bénéfice && dispatch(setBénéficeType(bénéfice)))
+		void fetchBénéfice(entreprise.établissement.activitéPrincipale).then(
+			(bénéfice) => bénéfice && dispatch(setBénéficeType(bénéfice))
+		)
 	}
 }
