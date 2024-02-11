@@ -67,7 +67,7 @@ export const PlaceDesEntreprisesButton = ({
 						<Body>
 							<Trans>
 								Décrivez votre projet ou votre problème en donnant quelques
-								éléments de contexte. Notre partenaire Place des Entrprises
+								éléments de contexte. Notre partenaire Place des Entreprises
 								identifiera, parmi l’ensemble des partenaires publics et
 								parapublics, le conseiller compétent pour votre demande.
 								Celui-ci vous contactera par téléphone sous 5 jours et vous
