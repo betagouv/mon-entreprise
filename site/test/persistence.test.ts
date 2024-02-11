@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createMemoryHistory } from 'history'
 import { DottedName } from 'modele-social'
-import { createStore } from 'redux'
+import { createStore, Store, StoreEnhancer } from 'redux'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { setupSimulationPersistence } from '@/storage/persistSimulation'
@@ -38,14 +37,14 @@ const initialSimulation: Simulation = {
 }
 
 describe('[persistence] When simulation persistence is setup', () => {
-	let store: any
+	let store: Store
 	const setItemSpy = vi.spyOn(safeLocalStorage, 'setItem')
 
 	beforeEach(() => {
 		store = createStore(reducers, {
 			simulation: initialSimulation,
 			activeTargetInput: 'sometargetinput',
-		} as any)
+		} as unknown as StoreEnhancer)
 
 		setupSimulationPersistence(store, 0)
 	})
@@ -72,7 +71,7 @@ describe('[persistence] When simulation config is set', () => {
 	const serializedPreviousSimulation =
 		'{"situation":{"dotted name . other":"42"},"activeTargetInput":"someothertargetinput","foldedSteps":["someotherstep"]}'
 
-	let store: any
+	let store: Store
 
 	vi.spyOn(safeLocalStorage, 'getItem').mockReturnValue(
 		serializedPreviousSimulation

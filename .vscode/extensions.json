@@ -2,9 +2,8 @@
 	"recommendations": [
 		"esbenp.prettier-vscode",
 		"dbaeumer.vscode-eslint",
-		"ban.spellright",
 		"styled-components.vscode-styled-components",
-		"tamasfe.even-better-toml",
-		"mikestead.dotenv"
+		"mikestead.dotenv",
+		"emilerolley.publicodes-language-server"
 	]
 }

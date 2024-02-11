@@ -1,6 +1,9 @@
 import { DottedName } from 'modele-social'
 
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import {
+	FabriqueSocialEntreprise,
+	getSiegeOrFirstEtablissement,
+} from '@/api/fabrique-social'
 import { Action } from '@/store/actions/actions'
 import { buildSituationFromObject, omit } from '@/utils'
 
@@ -84,6 +87,8 @@ export function companySituation(state: Situation = {}, action: Action) {
 }
 
 export function getCompanySituation(company: Company): Situation {
+	const siegeOrFirstEtablissement = getSiegeOrFirstEtablissement(company)
+
 	return {
 		'entreprise . date de création': company.dateCreationUniteLegale.replace(
 			/(.*)-(.*)-(.*)/,
@@ -94,7 +99,7 @@ export function getCompanySituation(company: Company): Situation {
 		)}'`,
 		'entreprise . SIREN': `'${company.siren}'`,
 		'entreprise . nom': `'${company.label}'`,
-		'établissement . SIRET': `'${company.firstMatchingEtablissement.siret}'`,
+		'établissement . SIRET': `'${siegeOrFirstEtablissement.siret}'`,
 		'entreprise . activité': `'${company.activitePrincipale}'`,
 	}
 }

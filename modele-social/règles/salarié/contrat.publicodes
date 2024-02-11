@@ -464,7 +464,7 @@ salarié . contrat . salaire brut:
     Il ne comprend pas les indemnités, avantages en nature et primes...
   unité: €/mois
   suggestions:
-    salaire médian: 2500 €/mois
+    salaire médian: 2600 €/mois
     SMIC: temps de travail . SMIC
   inversion numérique:
     - coût total employeur

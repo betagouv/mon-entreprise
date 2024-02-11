@@ -143,11 +143,11 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
 "dirigeant . rémunération . totale: 100000
-impôt . montant: 9333
-salarié . cotisations: 3630
+impôt . montant: 9306
+salarié . cotisations: 3639
 salarié . rémunération . brut: 5945
-salarié . rémunération . net . payé après impôt: 3925
-salarié . rémunération . net . à payer avant impôt: 4703
+salarié . rémunération . net . payé après impôt: 3919
+salarié . rémunération . net . à payer avant impôt: 4695
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;

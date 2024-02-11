@@ -251,11 +251,17 @@ function formatMonth(date: string | Date) {
 	})
 }
 
+interface PayloadData {
+	payload: {
+		info: ReactNode
+		date: string | Date
+	} & Record<string, Parameters<typeof formatValue>[0]>
+}
+
 type CustomTooltipProps = {
 	active?: boolean
 	period: Period
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	payload?: any
+	payload?: [PayloadData]
 	dataKeys: string[]
 }
 
