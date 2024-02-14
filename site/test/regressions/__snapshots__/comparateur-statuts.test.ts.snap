@@ -111,8 +111,8 @@ entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
-protection sociale . invalidité et décès . capital décès: 9274
-protection sociale . invalidité et décès . capital décès . orphelin: 193
+protection sociale . invalidité et décès . capital décès: null
+protection sociale . invalidité et décès . capital décès . orphelin: null
 protection sociale . invalidité et décès . pension de reversion: 306
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 0
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 0
@@ -166,8 +166,8 @@ protection sociale . invalidité et décès . accidents du travail et maladies p
 protection sociale . invalidité et décès . capital décès: 3681
 protection sociale . invalidité et décès . capital décès . orphelin: null
 protection sociale . invalidité et décès . pension de reversion: 306
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 0
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 0
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 31
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 52
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: 2
 protection sociale . maladie . arrêt maladie: 0
 protection sociale . maladie . arrêt maladie . délai d'attente: null

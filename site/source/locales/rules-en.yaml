@@ -3302,9 +3302,6 @@ dirigeant . indépendant . cotisations et contributions . maladie:
         40% du plafond de la sécurité sociale
       titre.en: '[automatic] additional reduction (before 2022)'
       titre.fr: réduction supplémentaire (avant 2022)
-    références:
-      titre.en: '[automatic] references'
-      titre.fr: références
     taux progressif:
       titre.en: '[automatic] progressive rate'
       titre.fr: taux progressif
@@ -3315,6 +3312,27 @@ dirigeant . indépendant . cotisations et contributions . maladie:
       titre.en: '[automatic] progressive rate before 2022'
       titre.fr: taux progressif avant 2022
     total:
+      description.en: >
+        [automatic] The amount of the contribution for health and maternity
+        insurance coverage. Contains two components: 
+
+        - sickness contribution 1 (sickness and maternity insurance)
+
+        - sickness contribution 2 (daily sickness benefits)
+      description.fr: >
+        Le montant de la cotisation pour la couverture des risques d'assurance
+        maladie et maternité. Contient deux composantes : 
+
+        - la cotisation maladie 1 (assurance maladie et maternité)
+
+        - la cotisation maladie 2 (indemnités journalières maladie)
+      note.en: '[automatic] To calculate the amount of health contribution 1, we
+        subtract the amount of health contribution 2 from the total amount of
+        health contribution.'
+      note.fr:
+        Pour calculer le montant de la cotisation maladie 1, on soustrait le
+        montant de la cotisation maladie 2 du montant total de la cotisation
+        maladie.
       titre.en: '[automatic] total'
       titre.fr: total
   description.en: >
@@ -6343,6 +6361,9 @@ protection sociale . invalidité et décès:
               titre.fr: minimum invalidité totale
           titre.en: '[automatic] [private] minimum independent'
           titre.fr: '[privé] minimum indépendant'
+        condition revenu salarié:
+          titre.en: '[automatic] condition salaried income'
+          titre.fr: condition revenu salarié
         invalidité partielle:
           description.en:
             '[automatic] If you are able to engage in gainful employment,
@@ -6382,6 +6403,9 @@ protection sociale . invalidité et décès:
           titre.fr: revenu annuel moyen des 10 meilleures années
       titre.en: '[automatic] disability pension'
       titre.fr: pension invalidité
+    revenu annuel moyen:
+      titre.en: '[automatic] average annual income'
+      titre.fr: revenu annuel moyen
   description.en: >
     [automatic] You may be recognised as disabled if your capacity for work and
     earning is reduced by at least 2/3 as a result of an accident or illness of
@@ -10119,21 +10143,6 @@ salarié . rémunération . frais professionnels . titres-restaurant:
       titre.en: '[automatic] number'
       titre.fr: nombre
     taux employeur:
-      avec:
-        contrôle max:
-          description.en:
-            "[automatic] The employer's share of the meal voucher must be
-            60% maximum"
-          description.fr: La part employeur du titre-restaurant doit être de 60% au maximum
-          titre.en: '[automatic] max control'
-          titre.fr: contrôle max
-        contrôle min:
-          description.en:
-            "[automatic] The employer's share of the meal voucher must be at
-            least 50%."
-          description.fr: La part employeur du titre-restaurant doit être de 50% au minimum
-          titre.en: '[automatic] minimum control'
-          titre.fr: contrôle min
       description.en:
         '[automatic] Portion of the meal voucher paid by the employer.
         Must be a minimum of 50% and a maximum of 60%.'
@@ -11094,11 +11103,6 @@ situation personnelle . domiciliation fiscale à l'étranger:
   titre.fr: commune
 établissement . taux ATMP:
   avec:
-    avertissement taux minimum:
-      description.en: '[automatic] The rate entered is lower than the minimum legal rate'
-      description.fr: Le taux renseigné est inférieur au taux minimum légal
-      titre.en: '[automatic] warning minimum rate'
-      titre.fr: avertissement taux minimum
     taux collectif:
       note.en:
         '[automatic] The specific collective rates of the Alsace-Moselle scheme
