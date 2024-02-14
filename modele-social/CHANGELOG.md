@@ -1,4 +1,8 @@
 # Journal des modifications
+## next
+
+-   Renomme la règle `protection sociale . invalidité et décès . pension invalidité . revenu annuel moyen des 10 meilleures années` vers `protection sociale . invalidité et décès . revenu annuel moyen`
+-   Ajout d'une condition sur le revenu annuel moyen des indépendants pour l'obtention d'un capital décès 
 
 ## 2.0.1
 

@@ -1,6 +1,14 @@
 {
-	"spellright.language": ["fr", "en"],
-	"spellright.documentTypes": ["yaml", "git-commit", "markdown"],
+	"spellright.language": [
+		"fr",
+		"en"
+	],
+	"spellright.documentTypes": [
+		"yaml",
+		"git-commit",
+		"markdown",
+		"publicodes"
+	],
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"editor.tabSize": 2,
 	"cSpell.words": ["mycompanyinfrance", "smarttag"],
@@ -13,5 +21,12 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit"
 	},
-	"githubPullRequests.ignoredPullRequestBranches": ["master"]
+	"githubPullRequests.ignoredPullRequestBranches": [
+		"master"
+	],
+	"spellright.parserByClass": {
+		"publicodes": {
+			"parser": "plain"
+		}
+	}
 }
