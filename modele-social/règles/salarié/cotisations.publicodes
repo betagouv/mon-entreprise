@@ -1119,6 +1119,7 @@ salarié . cotisations . prévoyances . santé:
       question: Quel est le montant mensuel total (salarié et employeur) de la
         complémentaire santé de l'entreprise (mutuelle) ?
       par défaut: 40 €/mois
+      plancher: 0 €/mois
       suggestions:
         basique: 40 €/mois
         élevé: 100 €/mois

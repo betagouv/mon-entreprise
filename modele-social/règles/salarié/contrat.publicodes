@@ -456,13 +456,14 @@ salarié . contrat . ancienneté:
 salarié . contrat . salaire brut:
   identifiant court: salaire-brut
   résumé: Brut de référence (sans les primes, indemnités ni majorations)
-  type: salaire
+  
   question: Quel est votre salaire brut ?
   description: |
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
 
     Il ne comprend pas les indemnités, avantages en nature et primes...
   unité: €/mois
+  plancher: 0 €/mois
   suggestions:
     salaire médian: 2600 €/mois
     SMIC: temps de travail . SMIC

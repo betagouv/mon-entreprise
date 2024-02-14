@@ -11,7 +11,7 @@ salarié . rémunération . net . à payer avant impôt: 1561"
 exports[`calculate simulations-salarié > ATMP 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2240
+salarié . coût total employeur: 2248
 salarié . rémunération . net . payé après impôt: 1553
 salarié . rémunération . net . à payer avant impôt: 1561"
 `;
