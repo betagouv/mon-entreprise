@@ -27,7 +27,7 @@
 	},
 	"scripts": {
 		"build": "node ../scripts/build-rules.js",
-		"start": "yarn run build && onchange 'règles/**/*.yaml' -- yarn run build",
+		"start": "yarn run build && onchange 'règles/**/*.publicodes' -- yarn run build",
 		"clean": "rimraf dist node_modules",
 		"prepack": "yarn run build",
 		"up": "yarn version --minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",

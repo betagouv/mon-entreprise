@@ -684,6 +684,19 @@ protection sociale . invalidité et décès:
     pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
 
   avec:
+    revenu annuel moyen:
+      somme:
+        - salarié . cotisations . assiette
+        - applicable si: maladie . arrêt maladie . indépendant . conditions . revenu
+          variations:
+            - si: dirigeant . indépendant
+              alors:
+                dirigeant . indépendant . cotisations et contributions . invalidité et
+                décès . assiette
+            - si: dirigeant . auto-entrepreneur
+              alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
+      plafond: plafond sécurité sociale
+
     accidents du travail et maladies professionnelles:
       applicable si: salarié
       références:
@@ -732,21 +745,21 @@ protection sociale . invalidité et décès:
       par défaut: 50%
 
     capital décès:
+      non applicable si:
+        toutes ces conditions: 
+          - revenu annuel moyen < 10% * plafond sécurité sociale
+          - une de ces conditions:
+            - dirigeant . indépendant
+            - dirigeant . auto-entrepreneur
       unité: €
       variations:
         - si: salarié
           alors: 3681 €
-        - si:
-            une de ces conditions:
-              - dirigeant . indépendant
-              - dirigeant . auto-entrepreneur
-          alors: 20% * plafond sécurité sociale * 1 an
-
+        - sinon:  #indépendant ou auto-entrepreneur
+            20% * plafond sécurité sociale * 1 an
+        
     capital décès . orphelin:
-      applicable si:
-        une de ces conditions:
-          - dirigeant . indépendant
-          - dirigeant . auto-entrepreneur
+      non applicable si: salarié
       description: |
         Un capital « orphelin » est versé aux enfants des travailleurs indépendants décédés. Il concerne :
 
@@ -811,7 +824,7 @@ protection sociale . invalidité et décès:
             rémunérée, vous êtes classé en 1re catégorie.
           plancher: minimum
           produit:
-            - revenu annuel moyen des 10 meilleures années
+            - revenu annuel moyen
             - 30%
           références:
             'Le montant de votre pension d’invalidité': https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
@@ -823,7 +836,7 @@ protection sociale . invalidité et décès:
             Si vous ne pouvez plus exercer d'activité professionnelle, vous
             êtes classé en 2e catégorie.
           produit:
-            - revenu annuel moyen des 10 meilleures années
+            - revenu annuel moyen
             - 50%
           références:
             'Le montant de votre pension d’invalidité': https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
@@ -835,21 +848,6 @@ protection sociale . invalidité et décès:
           références:
             "Montant minimal de la pension d'invalidité de travailleur salarié": https://www.legislation.cnav.fr/Lists/ArticlesBareme/DispForm.aspx?ID=4266&ContentTypeId=0x01007CF8FA8574A1B64CA3888B8B205B3F58
             'Le montant de votre pension d’invalidité ': https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
-
-        revenu annuel moyen des 10 meilleures années:
-          description: |
-            Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule pension d’invalidité : soit au titre de votre activité salariée, soit au titre de votre activité d’artisan/commerçant. Toutefois, le montant de la pension tient compte de tous vos revenus perçus qu’ils proviennent de votre activité salariée ou de votre activité comme indépendant.
-          somme:
-            - salarié . cotisations . assiette
-            - applicable si: maladie . arrêt maladie . indépendant . conditions . revenu
-              variations:
-                - si: dirigeant . indépendant
-                  alors:
-                    dirigeant . indépendant . cotisations et contributions . invalidité et
-                    décès . assiette
-                - si: dirigeant . auto-entrepreneur
-                  alors: dirigeant . auto-entrepreneur . impôt . revenu imposable
-          plafond: plafond sécurité sociale
 
 protection sociale . assurance chômage:
   icônes: 💸
