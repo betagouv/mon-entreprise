@@ -8,6 +8,7 @@ artiste-auteur . revenus . traitements et salaires:
   titre: Revenu en traitements et salaires
   par défaut: 0 €/an
   résumé: Le montant brut hors TVA de vos droits d'auteur (recettes précomptées)
+  plancher: 0€/an
 
 artiste-auteur . revenus . BNC:
   unité: €/an
@@ -37,6 +38,7 @@ artiste-auteur . revenus . BNC . recettes:
   titre: Revenu en BNC
   par défaut: 0 €/an
   résumé: Le montant de vos recettes brutes hors TVA
+  plancher: 0€/an
 
 artiste-auteur . revenus . BNC . frais réels:
   par défaut: 0 €/an
@@ -45,6 +47,7 @@ artiste-auteur . revenus . BNC . frais réels:
     seront imputés à vos recettes afin d’établir vos bénéfices ou déficits
   applicable si: recettes > 0 €/an
   non applicable si: micro-bnc
+  plancher: 0€/an
 
 artiste-auteur . revenus . BNC . charges forfaitaires:
   formule: 34% * recettes
@@ -58,6 +61,7 @@ artiste-auteur . cotisations:
     arrondi: oui
   références:
     Urssaf.fr: https://www.urssaf.fr/portail/home/espaces-dedies/artistes-auteurs-diffuseurs-comm/vous-etes-artiste-auteur/vos-cotisations-et-contributions.html
+
 artiste-auteur . cotisations . assiette:
   description: Les revenus des artistes-auteurs peuvent être catégorisés soit
     comme des traitements et salaires, soit comme des bénéfices non commerciaux.
