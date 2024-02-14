@@ -278,3 +278,4 @@ salarié . coût total employeur:
     - régimes spécifiques . taxe sur les salaires
   abattement: aides
   unité: €/mois
+  plancher: 0€/an

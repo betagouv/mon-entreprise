@@ -469,6 +469,15 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
       "message": "
 [ Avertissement ]
 ➡️  Dans la règle \\"salarié . contrat . salaire brut\\"
+⚠️  Dans l'expression '<', la partie gauche (unité: €) n'est pas compatible avec la partie droite (unité: €/mois)
+ℹ️  
+[ EngineError ]
+✖️  Impossible de convertir l'unité '€/mois' en '€'",
+    },
+    {
+      "message": "
+[ Avertissement ]
+➡️  Dans la règle \\"salarié . contrat . salaire brut\\"
 ⚠️  Erreur lors de la conversion d'unité explicite
 ℹ️  
 [ EngineError ]

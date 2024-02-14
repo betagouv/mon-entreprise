@@ -60,14 +60,8 @@
   références:
     Connaître le taux AT/MP de votre entreprise sur votre compte AT/MP: https://www.net-entreprises.fr/declaration/compte-atmp/#lessentiel
     Comment calculer les cotisations accidents du travail et maladies professionnelles (AT/MP) ?: https://entreprendre.service-public.fr/vosdroits/F33665
-
+  plancher: salarié . cotisations . ATMP . taux minimum
   avec:
-    avertissement taux minimum:
-      type: notification
-      si: taux ATMP < salarié . cotisations . ATMP . taux minimum
-      sévérité: avertissement
-      description: Le taux renseigné est inférieur au taux minimum légal
-
     taux collectif:
       question: De quel domaine d'activité dépend votre entreprise ?
       par défaut: salarié . cotisations . ATMP . taux moyen

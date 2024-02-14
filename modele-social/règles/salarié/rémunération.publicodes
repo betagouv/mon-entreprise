@@ -192,6 +192,8 @@ salarié . rémunération . primes:
       titre: primes d'activité
       question: Quel est le montant des primes liées à l'activité du salarié ?
       par défaut: 0 €/mois
+      plancher: 0 €/mois
+
     activité . conventionnelles: 0 €/mois
     ancienneté: 0 €/mois
 
@@ -481,22 +483,11 @@ salarié . rémunération . frais professionnels . titres-restaurant:
         et de 60% maximum.
       question: Quelle est la participation de l'employeur ?
       par défaut: 50 %
+      plancher: 50%
+      plafond: 60%
       suggestions:
         50%: 50 %
         60%: 60 %
-
-      avec:
-        contrôle max:
-          type: notification
-          sévérité: avertissement
-          applicable si: taux employeur > 60%
-          description: La part employeur du titre-restaurant doit être de 60% au maximum
-
-        contrôle min:
-          type: notification
-          sévérité: avertissement
-          applicable si: taux employeur < 50%
-          description: La part employeur du titre-restaurant doit être de 50% au minimum
 
 salarié . rémunération . frais professionnels . trajets domicile travail:
   références:
@@ -592,6 +583,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . tr
         publics pour se rendre sur son lieu de travail ?
       unité: €/mois
       par défaut: 0 €/mois
+      plancher: 0 €/mois
       description: |
         La participation de l’employeur aux frais de transports publics est obligatoire.
 
@@ -651,6 +643,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
         l'employeur ?
       unité: €/an
       par défaut: 0 €/an
+      plancher: 0 €/an
       description: |
         Une prise en charge par l’employeur, sous forme de « prime de transport », des frais de carburant et d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène engagés par les salariés pour leurs déplacements entre leur résidence habituelle et leur lieu de travail est possible sous certaines conditions.
 
@@ -693,6 +686,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . fo
         covoiturage, mobilité partagée) est pris en charge par l'employeur ?
       unité: €/an
       par défaut: 0 €/an
+      plancher: 0 €/an
       description: |
         Afin de promouvoir des moyens de transport plus écologiques, le forfait mobilités durables offre aux employeurs la possibilité d’attribuer une indemnité exonérée de cotisations aux salariés privilégiant les modes de transport dits « à mobilité douce » pour effectuer leurs trajets entre leur résidence habituelle et leur lieu de travail.
 
