@@ -54,7 +54,6 @@ export const runSimulations = (
 			// Display result in a single line in the snapshot,
 			// which reduce the number of lines of this snapshot
 			// and improve its readability.
-			// eslint-disable-next-line jest/no-standalone-expect
 			expect(res + snapshotedDisplayedNotifications).toMatchSnapshot(name)
 		})
 	)

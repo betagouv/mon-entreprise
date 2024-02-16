@@ -38,6 +38,7 @@
 		"vite-iframe-script.config.ts",
 		"build/vite-build-simulation-data.config.ts",
 		"build/prerender.ts",
-		"vite-pwa-options.ts"
+		"vite-pwa-options.ts",
+		"vitest-setup.ts"
 	]
 }

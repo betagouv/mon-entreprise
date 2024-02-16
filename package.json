@@ -50,6 +50,7 @@
 		"eslint-plugin-promise": "^6.1.1",
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-vitest": "^0.3.22",
 		"prettier": "^3.0.3",
 		"publicodes": "1.0.1",
 		"rimraf": "^5.0.1"
