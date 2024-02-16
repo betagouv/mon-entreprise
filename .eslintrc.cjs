@@ -115,17 +115,20 @@ module.exports = {
 						prev: ['export', 'cjs-export'],
 						next: ['export', 'cjs-export'],
 					},
-
-
 				],
-				"no-restricted-imports": ["error", {
-					"paths": [{
-						"name": "styled-components",
-						"importNames": ["default"],
-						"message": 'Please use named import : `import { styled } from "styled-component"` instead.'
-					}]
-				}]
-
+				'no-restricted-imports': [
+					'error',
+					{
+						paths: [
+							{
+								name: 'styled-components',
+								importNames: ['default'],
+								message:
+									'Please use named import : `import { styled } from "styled-component"` instead.',
+							},
+						],
+					},
+				],
 			},
 		},
 		// Cypress rules
@@ -148,17 +151,14 @@ module.exports = {
 		},
 		// Jest rules (for Vitest)
 		{
-			files: ['site/test/**/*.{js,ts}'],
-			settings: { jest: { version: 28 } },
-			extends: ['eslint:recommended', 'plugin:jest/recommended', 'prettier'],
-			plugins: ['@typescript-eslint', 'jest'],
-			rules: {
-				'jest/valid-expect': 'off',
-				'jest/no-standalone-expect': [
-					'error',
-					{ additionalTestBlockFunctions: ['it', 'it.skip'] },
-				],
-			},
+			files: ['site/**/*.test.{js,ts,tsx,jsx}'],
+			extends: [
+				'eslint:recommended',
+				'plugin:vitest/recommended',
+				'plugin:testing-library/react',
+				'prettier',
+			],
+			plugins: ['@typescript-eslint', 'vitest', 'testing-library'],
 		},
 		// Accessibility rules on /site
 		{

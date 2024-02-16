@@ -160,6 +160,13 @@ export default defineConfig(({ command, mode }) => ({
 		 */
 		noExternal: [/tslib/],
 	},
+	test: {
+		environmentMatchGlobs: [
+			// all tests in source with tsx will run in happy-dom (component tests)
+			['source/**/*.test.tsx', 'happy-dom'],
+		],
+		setupFiles: ['./vitest-setup.ts'],
+	},
 }))
 
 /**
