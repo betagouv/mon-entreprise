@@ -1,10 +1,9 @@
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import Value, {
-	WhenAlreadyDefined,
-	WhenNotAlreadyDefined,
-} from '@/components/EngineValue'
+import Value from '@/components/EngineValue/Value'
+import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
+import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import { CardContainer } from '@/design-system/card/Card'
 import { EditIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'

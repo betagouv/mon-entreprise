@@ -5,7 +5,7 @@ import SignaturePad from 'react-signature-pad-wrapper'
 import { useTheme } from 'styled-components'
 
 import { TrackingContext, TrackPage } from '@/components/ATInternetTracking'
-import { Condition } from '@/components/EngineValue'
+import { Condition } from '@/components/EngineValue/Condition'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
 import { Message, PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'

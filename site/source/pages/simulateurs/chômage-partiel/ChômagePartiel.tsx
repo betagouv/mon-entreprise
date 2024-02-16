@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import Value from '@/components/EngineValue'
+import Value from '@/components/EngineValue/Value'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
 import Simulation, {

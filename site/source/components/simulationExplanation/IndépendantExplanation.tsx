@@ -7,11 +7,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useTheme } from 'styled-components'
 
-import Value, {
-	Condition,
-	WhenApplicable,
-	WhenNotApplicable,
-} from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import StackedBarChart from '@/components/StackedBarChart'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -23,6 +18,10 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
+import { Condition } from '../EngineValue/Condition'
+import Value from '../EngineValue/Value'
+import { WhenApplicable } from '../EngineValue/WhenApplicable'
+import { WhenNotApplicable } from '../EngineValue/WhenNotApplicable'
 import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'
 import CotisationsRégularisation from './IndépendantCotisationsRégularisation'
 import InstitutionsPartenaires from './InstitutionsPartenaires'

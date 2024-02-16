@@ -6,7 +6,7 @@ import { Strong } from '@/design-system/typography'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
-import Value from '../EngineValue'
+import Value from '../EngineValue/Value'
 import { Appear } from '../ui/animate'
 import { useEngine } from '../utils/EngineContext'
 

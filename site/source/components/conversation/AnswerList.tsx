@@ -27,7 +27,7 @@ import {
 } from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
-import Value from '../EngineValue'
+import Value from '../EngineValue/Value'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { ExplicableRule } from './Explicable'
 import RuleInput from './RuleInput'

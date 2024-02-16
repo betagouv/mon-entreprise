@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
-import { Condition } from '@/components/EngineValue'
+import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import Simulation, {
 	SimulationGoal,

@@ -5,10 +5,9 @@ import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
 import Banner from '@/components/Banner'
-import Value, {
-	Condition,
-	WhenNotAlreadyDefined,
-} from '@/components/EngineValue'
+import { Condition } from '@/components/EngineValue/Condition'
+import Value from '@/components/EngineValue/Value'
+import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'

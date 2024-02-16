@@ -6,11 +6,6 @@ import { styled } from 'styled-components'
 import assuranceMaladieSrc from '@/assets/images/assurance-maladie.svg'
 import dgfipSrc from '@/assets/images/logo-dgfip.svg'
 import urssafSrc from '@/assets/images/Urssaf.svg'
-import Value, {
-	Condition,
-	WhenApplicable,
-	WhenNotApplicable,
-} from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -21,6 +16,10 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
+import { Condition } from '../EngineValue/Condition'
+import Value from '../EngineValue/Value'
+import { WhenApplicable } from '../EngineValue/WhenApplicable'
+import { WhenNotApplicable } from '../EngineValue/WhenNotApplicable'
 import * as logosSrc from './logos'
 
 export default function InstitutionsPartenaires() {

@@ -1,4 +1,4 @@
-import { Condition } from '@/components/EngineValue'
+import { Condition } from '@/components/EngineValue/Condition'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
