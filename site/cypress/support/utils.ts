@@ -7,14 +7,7 @@ type ViolationType = {
 
 export const checkA11Y = () => {
 	cy.injectAxe()
-	cy.configureAxe({
-		rules: [
-			{
-				id: 'color-contrast',
-				enabled: false,
-			},
-		],
-	})
+	cy.configureAxe({})
 	cy.checkA11y(
 		null,
 		null,

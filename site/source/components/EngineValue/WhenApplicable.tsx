@@ -16,10 +16,11 @@ export function WhenApplicable({
 	const defaultEngine = useEngine()
 
 	const engineValue = engine ?? defaultEngine
-
-	if (
-		engineValue.evaluate({ 'est applicable': dottedName }).nodeValue !== true
-	) {
+	const applicable = engineValue.evaluate({
+		'est applicable': dottedName,
+	}).nodeValue
+	console.log(dottedName, applicable)
+	if (applicable !== true) {
 		return null
 	}
 

@@ -131,7 +131,6 @@ export default function RuleInput<Names extends string = DottedName>({
 			['radio', 'card', 'toggle', 'select'].includes(meta.affichage)
 				? (meta.affichage as 'radio' | 'card' | 'toggle' | 'select')
 				: 'radio')
-		console.log(value, missing, dottedName)
 
 		return (
 			<>
