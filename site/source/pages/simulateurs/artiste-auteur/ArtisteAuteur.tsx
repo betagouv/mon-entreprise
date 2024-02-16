@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 
 import { DistributionBranch } from '@/components/Distribution'
-import { Condition } from '@/components/EngineValue'
+import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {

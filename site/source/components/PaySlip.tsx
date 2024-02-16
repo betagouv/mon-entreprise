@@ -10,7 +10,6 @@ import {
 import { Fragment, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import Value from '@/components/EngineValue'
 import RuleLink from '@/components/RuleLink'
 import { EngineContext, useEngine } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system/typography'
@@ -18,6 +17,7 @@ import { H4, H5 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import { ExplicableRule } from './conversation/Explicable'
+import Value from './EngineValue/Value'
 
 import './PaySlip.css'
 

@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Condition, WhenAlreadyDefined } from '@/components/EngineValue'
+import { Condition } from '@/components/EngineValue/Condition'
+import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { useEngine } from '@/components/utils/EngineContext'
 // import { Article } from '@/design-system/card'
 // import { Emoji } from '@/design-system/emoji'

@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import Value from '@/components/EngineValue'
+import Value from '@/components/EngineValue/Value'
 import { StatutTag } from '@/components/StatutTag'
 import { Tag } from '@/design-system/tag'
 import { Strong } from '@/design-system/typography'

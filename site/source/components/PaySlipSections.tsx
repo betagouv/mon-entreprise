@@ -1,14 +1,14 @@
 import { DottedName } from 'modele-social'
 import { Trans, useTranslation } from 'react-i18next'
 
-import Value, {
-	Condition,
-	ValueProps,
-	WhenAlreadyDefined,
-	WhenApplicable,
-} from '@/components/EngineValue'
+import { ValueProps } from '@/components/EngineValue/types'
 import RuleLink from '@/components/RuleLink'
 import { H4 } from '@/design-system/typography/heading'
+
+import { Condition } from './EngineValue/Condition'
+import Value from './EngineValue/Value'
+import { WhenAlreadyDefined } from './EngineValue/WhenAlreadyDefined'
+import { WhenApplicable } from './EngineValue/WhenApplicable'
 
 export const SalaireBrutSection = () => {
 	return (

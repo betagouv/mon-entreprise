@@ -2,7 +2,7 @@ import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { ComponentProps } from 'react'
 
-import Value from '@/components/EngineValue'
+import Value from '@/components/EngineValue/Value'
 import { H3 } from '@/design-system/typography/heading'
 
 function TableRow({

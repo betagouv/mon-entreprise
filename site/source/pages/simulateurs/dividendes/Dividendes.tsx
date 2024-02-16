@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useTheme } from 'styled-components'
 
-import { Condition } from '@/components/EngineValue'
+import { Condition } from '@/components/EngineValue/Condition'
 import Notifications from '@/components/Notifications'
 import Simulation, {
 	SimulationGoal,

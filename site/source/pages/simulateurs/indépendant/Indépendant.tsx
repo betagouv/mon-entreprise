@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import RuleInput from '@/components/conversation/RuleInput'
-import { Condition } from '@/components/EngineValue'
+import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import RuleLink from '@/components/RuleLink'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'

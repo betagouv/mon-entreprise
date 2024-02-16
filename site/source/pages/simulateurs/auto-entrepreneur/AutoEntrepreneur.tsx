@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useTheme } from 'styled-components'
 
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
-import { WhenAlreadyDefined } from '@/components/EngineValue'
+import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import RuleLink from '@/components/RuleLink'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'

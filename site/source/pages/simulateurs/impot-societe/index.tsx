@@ -5,7 +5,7 @@ import { styled } from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { StyledInputSuggestion } from '@/components/conversation/InputSuggestions'
 import RuleInput from '@/components/conversation/RuleInput'
-import Value from '@/components/EngineValue'
+import Value from '@/components/EngineValue/Value'
 import Notifications from '@/components/Notifications'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import {
