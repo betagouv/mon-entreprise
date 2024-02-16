@@ -7,6 +7,9 @@ export const configIndépendant: SimulationConfig = {
 		'dirigeant . rémunération . net',
 		'dirigeant . rémunération . net . après impôt',
 	],
+	objectifs: [
+		'dirigeant . indépendant . cotisations et contributions . début activité',
+	],
 	questions: {
 		"à l'affiche": [
 			{

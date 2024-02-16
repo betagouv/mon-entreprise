@@ -258,6 +258,20 @@ entreprise . chiffre d'affaires: 300000
 impôt . montant: 77265"
 `;
 
+exports[`calculate simulations-indépendant > cotisations forfaitaires début d'activité 1`] = `
+"dirigeant . indépendant . cotisations et contributions . début activité: NaN
+dirigeant . indépendant . revenu professionnel: 35533
+dirigeant . rémunération . cotisations: 15822
+dirigeant . rémunération . net: 34178
+dirigeant . rémunération . net . après impôt: 30232
+dirigeant . rémunération . totale: 50000
+entreprise . charges: 0
+entreprise . chiffre d'affaires: 50000
+impôt . montant: 3946
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
 exports[`calculate simulations-indépendant > cotisations minimales 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 136

@@ -142,3 +142,8 @@ exonération âge:
 DROM:
   - dirigeant . rémunération . totale: 20000 €/an
     établissement . commune . département . outre-mer: oui
+
+cotisations forfaitaires début d'activité:
+  - dirigeant . rémunération . totale: 50000 €/an
+    entreprise . date de création: période . début d'année
+    dirigeant . exonérations . ACRE: non
