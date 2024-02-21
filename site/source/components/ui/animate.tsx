@@ -145,7 +145,6 @@ function AppearAnim({
 			style={{
 				...style,
 				...(animate ? animatedStyle : {}),
-				overflow: 'hidden',
 				display: 'flex',
 				flexDirection: 'column',
 			}}
