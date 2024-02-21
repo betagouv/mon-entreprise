@@ -23,11 +23,11 @@
 		"onchange": "^7.1.0"
 	},
 	"peerDependencies": {
-		"publicodes": "^1.0.2"
+		"publicodes": "^1.0.3"
 	},
 	"scripts": {
-		"build": "node ../scripts/build-rules.js",
-		"start": "yarn run build && onchange 'règles/**/*.yaml' -- yarn run build",
+		"build": "node ../scripts/build-rules.js && echo 'ℹ️  Compilation effectuée'",
+		"start": "yarn run build && onchange 'règles/**/*.publicodes' -- yarn run build && echo 'ℹ️  Compilation effectuée'",
 		"clean": "rimraf dist node_modules",
 		"prepack": "yarn run build",
 		"up": "yarn version --minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",

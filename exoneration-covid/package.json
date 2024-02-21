@@ -21,7 +21,7 @@
 		"onchange": "^7.1.0"
 	},
 	"peerDependencies": {
-		"publicodes": "^1.0.2"
+		"publicodes": "^1.0.3"
 	},
 	"scripts": {
 		"build": "node ../scripts/build-rules.js",
