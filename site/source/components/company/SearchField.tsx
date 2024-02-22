@@ -3,7 +3,6 @@ import { ReactNode, useEffect, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
@@ -15,10 +14,11 @@ import { Strong } from '@/design-system/typography'
 import { StyledLink } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { Entreprise } from '@/domain/Entreprise'
 import useSearchCompany from '@/hooks/useSearchCompany'
 
 import { Appear, FromTop } from '../ui/animate'
-import CompanySearchDetails from './SearchDetails'
+import EntrepriseSearchDetails from './SearchDetails'
 
 const StyledCard = styled(Card)`
 	flex-direction: row; // for Safari <= 13
@@ -28,14 +28,14 @@ const StyledCard = styled(Card)`
 	}
 `
 
-export function CompanySearchField(props: {
+export function EntrepriseSearchField(props: {
 	label?: ReactNode
 	onValue?: () => void
 	onClear?: () => void
-	onSubmit?: (search: FabriqueSocialEntreprise | null) => void
+	onSubmit?: (search: Entreprise | null) => void
 }) {
 	const { t } = useTranslation()
-	const refResults = useRef<FabriqueSocialEntreprise[] | null>(null)
+	const refResults = useRef<Entreprise[] | null>(null)
 
 	const searchFieldProps = {
 		...props,
@@ -102,8 +102,8 @@ function Results({
 	results,
 	onSubmit,
 }: {
-	results: Array<FabriqueSocialEntreprise>
-	onSubmit?: (établissement: FabriqueSocialEntreprise) => void
+	results: Array<Entreprise>
+	onSubmit?: (entreprise: Entreprise) => void
 }) {
 	const { t } = useTranslation()
 
@@ -152,14 +152,14 @@ function Results({
 		<FromTop>
 			<ForceThemeProvider>
 				<Ul noMarker data-test-id="company-search-results">
-					{results.map((etablissement) => (
-						<Li key={etablissement.siren}>
+					{results.map((entreprise) => (
+						<Li key={entreprise.siren}>
 							<StyledCard
-								onPress={() => onSubmit?.(etablissement)}
-								onClick={() => onSubmit?.(etablissement)}
+								onPress={() => onSubmit?.(entreprise)}
+								onClick={() => onSubmit?.(entreprise)}
 								compact
 								bodyAs="div"
-								aria-label={`${etablissement.label}, Selectionner cette entreprise`}
+								aria-label={`${entreprise.nom}, Selectionner cette entreprise`}
 								ctaLabel={
 									<ChevronIcon
 										style={{
@@ -170,7 +170,7 @@ function Results({
 									/>
 								}
 							>
-								<CompanySearchDetails entreprise={etablissement} />
+								<EntrepriseSearchDetails entreprise={entreprise} />
 							</StyledCard>
 						</Li>
 					))}

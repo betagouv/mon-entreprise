@@ -1,6 +1,6 @@
 import { Bénéfice } from '@/api/activité-vers-bénéfice'
 import { Commune } from '@/api/commune'
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import { Entreprise } from '@/domain/Entreprise'
 
 export type CompanyActions = ReturnType<
 	| typeof resetCompany
@@ -26,7 +26,7 @@ export const setBénéficeType = (bénéfice: NonNullable<Bénéfice>) =>
 		bénéfice,
 	}) as const
 
-export const setCompany = (entreprise: FabriqueSocialEntreprise) => {
+export const setCompany = (entreprise: Entreprise) => {
 	return {
 		type: 'COMPANY::SET_EXISTING_COMPANY',
 		entreprise,

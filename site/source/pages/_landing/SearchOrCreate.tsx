@@ -3,12 +3,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
 
-import {
-	FabriqueSocialEntreprise,
-	searchDenominationOrSiren,
-} from '@/api/fabrique-social'
+import { searchDenominationOrSiren } from '@/api/fabrique-social'
 import { CompanyDetails } from '@/components/company/Details'
-import { CompanySearchField } from '@/components/company/SearchField'
+import { EntrepriseSearchField } from '@/components/company/SearchField'
 import { useEngine } from '@/components/utils/EngineContext'
 import AnswerGroup from '@/design-system/answer-group'
 import { Button } from '@/design-system/buttons'
@@ -16,6 +13,7 @@ import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+import { Entreprise } from '@/domain/Entreprise'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
@@ -85,7 +83,7 @@ export default function SearchOrCreate() {
 								activité
 							</Body>
 						</Trans>
-						<CompanySearchField onSubmit={handleCompanySubmit} />
+						<EntrepriseSearchField onSubmit={handleCompanySubmit} />
 						<Spacing md />
 					</>
 				)}
@@ -100,7 +98,7 @@ function useHandleCompanySubmit() {
 	const setEntreprise = useSetEntreprise()
 
 	const handleCompanySubmit = useCallback(
-		(établissement: FabriqueSocialEntreprise | null) => {
+		(établissement: Entreprise | null) => {
 			if (!établissement) {
 				return
 			}

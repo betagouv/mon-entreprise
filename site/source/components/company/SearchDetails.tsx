@@ -1,23 +1,23 @@
-import { Fragment, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import {
-	FabriqueSocialEntreprise,
-	getSiegeOrFirstEtablissement,
-} from '@/api/fabrique-social'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
+import {
+	Entreprise,
+	établissementEstDifférentDuSiège,
+} from '@/domain/Entreprise'
 
-export default function CompanySearchDetails({
+export default function EntrepriseSearchDetails({
 	entreprise,
 }: {
-	entreprise: FabriqueSocialEntreprise
+	entreprise: Entreprise
 }) {
 	const { i18n } = useTranslation()
 
-	const { siren, label, dateCreationUniteLegale } = entreprise
+	const { nom, siren, siège, établissement, dateDeCréation } = entreprise
 
 	const DateFormatter = useMemo(
 		() =>
@@ -29,8 +29,6 @@ export default function CompanySearchDetails({
 		[i18n.language]
 	)
 
-	const siegeOrFirstEtablissement = getSiegeOrFirstEtablissement(entreprise)
-
 	return (
 		<CompanyContainer>
 			<H4
@@ -40,48 +38,24 @@ export default function CompanySearchDetails({
 				}}
 			>
 				<>
-					{'highlightLabel' in entreprise
-						? highlightLabelToJSX(entreprise.highlightLabel)
-						: label}{' '}
-					<small>({siren})</small>
+					{nom} <small>({siren})</small>
 				</>
 			</H4>
 			<Spacing sm />
 			<Trans>Crée le :</Trans>{' '}
-			<Strong>{DateFormatter.format(new Date(dateCreationUniteLegale))}</Strong>
+			<Strong>{DateFormatter.format(dateDeCréation)}</Strong>
+			{établissementEstDifférentDuSiège(entreprise) && (
+				<>
+					<br />
+					<Trans>Siège :</Trans> <Strong>{siège?.adresse.complète}</Strong>
+				</>
+			)}
 			<br />
-			<Trans>Domiciliée à l'adresse :</Trans>{' '}
-			<Strong>{siegeOrFirstEtablissement.address}</Strong>
+			<Trans>Établissement recherché:</Trans>{' '}
+			<Strong>{établissement?.adresse.complète}</Strong>
 		</CompanyContainer>
 	)
 }
-
-function highlightLabelToJSX(highlightLabel: string) {
-	const highlightRE = /(.*?)<b><u>(.+?)<\/u><\/b>/gm
-	let parsedLength = 0
-	const result = []
-	let matches: RegExpExecArray | null = null
-	while ((matches = highlightRE.exec(highlightLabel)) !== null) {
-		parsedLength += matches[0].length
-		result.push(
-			<Fragment key={matches[2]}>
-				{matches[1]}
-				<Highlight>{matches[2]}</Highlight>
-			</Fragment>
-		)
-	}
-	result.push(highlightLabel.slice(parsedLength))
-
-	return result
-}
-
-const Highlight = styled.strong`
-	background-color: ${({ theme }) =>
-		theme.darkMode
-			? theme.colors.bases.secondary[600]
-			: theme.colors.bases.secondary[100]};
-	color: inherit;
-`
 
 const CompanyContainer = styled.div`
 	text-align: left;

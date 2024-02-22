@@ -1,9 +1,8 @@
 import { DottedName } from 'modele-social'
 
-import {
-	FabriqueSocialEntreprise,
-	getSiegeOrFirstEtablissement,
-} from '@/api/fabrique-social'
+import { CodeCatégorieJuridique } from '@/domain/CodeCatégorieJuridique'
+import { formatDate } from '@/domain/Date'
+import { Entreprise } from '@/domain/Entreprise'
 import { Action } from '@/store/actions/actions'
 import { buildSituationFromObject, omit } from '@/utils'
 
@@ -37,8 +36,6 @@ const SAVED_NAMESPACES = [
 export function isCompanyDottedName(dottedName: DottedName) {
 	return SAVED_NAMESPACES.some((namespace) => dottedName.startsWith(namespace))
 }
-
-export type Company = Omit<FabriqueSocialEntreprise, 'highlightLabel'>
 
 export function companySituation(state: Situation = {}, action: Action) {
 	switch (action.type) {
@@ -86,27 +83,24 @@ export function companySituation(state: Situation = {}, action: Action) {
 	return state
 }
 
-export function getCompanySituation(company: Company): Situation {
-	const siegeOrFirstEtablissement = getSiegeOrFirstEtablissement(company)
-
+export function getCompanySituation(entreprise: Entreprise): Situation {
 	return {
-		'entreprise . date de création': company.dateCreationUniteLegale.replace(
-			/(.*)-(.*)-(.*)/,
-			'$3/$2/$1'
-		),
+		'entreprise . date de création': formatDate(entreprise.dateDeCréation),
 		'entreprise . catégorie juridique': `'${getCatégorieFromCode(
-			company.categorieJuridiqueUniteLegale
+			entreprise.codeCatégorieJuridique
 		)}'`,
-		'entreprise . SIREN': `'${company.siren}'`,
-		'entreprise . nom': `'${company.label}'`,
-		'établissement . SIRET': `'${siegeOrFirstEtablissement.siret}'`,
-		'entreprise . activité': `'${company.activitePrincipale}'`,
+		'entreprise . SIREN': `'${entreprise.siren}'`,
+		'entreprise . nom': `'${entreprise.nom}'`,
+		'établissement . SIRET': `'${entreprise.établissement.siret}'`,
+		'entreprise . activité': `'${entreprise.activitéPrincipale}'`,
 	}
 }
 
 type CatégorieJuridique = 'EI' | 'SARL' | 'SAS' | 'SELARL' | 'SELAS' | 'autre'
 
-const getCatégorieFromCode = (code: string): CatégorieJuridique => {
+const getCatégorieFromCode = (
+	code: CodeCatégorieJuridique
+): CatégorieJuridique => {
 	/*
 	Nous utilisons le code entreprise pour connaitre le statut juridique
 	(voir https://www.insee.fr/fr/information/2028129)
