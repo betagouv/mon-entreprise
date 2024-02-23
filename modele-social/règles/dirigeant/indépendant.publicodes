@@ -172,7 +172,7 @@ dirigeant . indépendant . cotisations et contributions . contributions spécial
 dirigeant . indépendant . cotisations et contributions . PCV:
   titre: Prestations complémentaires vieillesse
   acronyme: PCV
-  formule: non
+  non applicable si: oui
   description: |
     Certaines catégories professionnelles bénéficient de
     prestations complémentaires vieillesse (PCV), auparavant nommées « avantage

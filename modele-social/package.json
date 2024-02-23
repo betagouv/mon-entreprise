@@ -23,7 +23,7 @@
 		"onchange": "^7.1.0"
 	},
 	"peerDependencies": {
-		"publicodes": "^1.0.3"
+		"publicodes": "^1.0.4"
 	},
 	"scripts": {
 		"build": "node ../scripts/build-rules.js && echo 'ℹ️  Compilation effectuée'",

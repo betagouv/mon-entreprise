@@ -157,7 +157,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
 
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
   applicable si: dirigeant . exonérations . ACRE
-  valeur: non
+  valeur: oui
   références:
     'L’Acre pour les indépendants: quel avantages ?': https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/quels-avantages/travailleurs-independants-ne-rel.html
 
