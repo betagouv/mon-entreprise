@@ -159,6 +159,15 @@ module.exports = {
 				'prettier',
 			],
 			plugins: ['@typescript-eslint', 'vitest', 'testing-library'],
+			rules: {
+				'vitest/expect-expect': [
+					'error',
+					{
+						assertFunctionNames: ['expect', 'runSimulations'],
+						additionalTestBlockFunctions: [],
+					},
+				],
+			},
 		},
 		// Accessibility rules on /site
 		{

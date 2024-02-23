@@ -25,6 +25,6 @@ describe('Tests units', function () {
 		const missingTranslations = units.filter(
 			(unit) => ![...translatedKeys, ...blackList].includes(unit)
 		)
-		expect(missingTranslations).to.be.empty
+		expect(missingTranslations).toHaveLength(0)
 	})
 })

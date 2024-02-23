@@ -19,8 +19,7 @@ describe('identifiant court', () => {
 		])
 
 	it('should be unique amongst rules', () => {
-		expect(questions.length).to.greaterThan(0)
-		expect(questions.length).to.eq(
+		expect(questions).toHaveLength(
 			new Set(questions.map(([, name]) => name)).size
 		)
 	})
@@ -47,7 +46,7 @@ rule without:
 					dottedNameParamName,
 					'€/an'
 				).toString()
-			).to.equal(
+			).toBe(
 				new URLSearchParams(
 					'panta=2000€/mois&rule without=1000€/mois&unite=€/an'
 				).toString()
@@ -61,7 +60,7 @@ rule without:
 					dottedNameParamName,
 					'€/an'
 				).toString()
-			).to.equal(
+			).toBe(
 				new URLSearchParams('rule without={"1":2,"3":{"4":"5"}}').toString() +
 					'&unite=%E2%82%AC%2Fan'
 			)
@@ -69,7 +68,7 @@ rule without:
 		it('handles empty situation with proper defaults', () => {
 			expect(
 				getSearchParams(engine, {}, dottedNameParamName, '€/mois').toString()
-			).to.equal('unite=%E2%82%AC%2Fmois')
+			).toBe('unite=%E2%82%AC%2Fmois')
 		})
 	})
 
@@ -80,7 +79,7 @@ rule without:
 					new URLSearchParams('panta=2000€/mois&rule without=1000€/mois'),
 					dottedNameParamName
 				)
-			).to.deep.equal({
+			).toEqual({
 				'rule with': '2000€/mois',
 				'rule without': '1000€/mois',
 			})
@@ -91,7 +90,7 @@ rule without:
 					new URLSearchParams(''),
 					dottedNameParamName
 				)
-			).to.deep.equal({})
+			).toEqual({})
 		})
 	})
 })

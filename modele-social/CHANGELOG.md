@@ -3,7 +3,8 @@
 ## 2.0.1
 
 - [protection sociale] Ajoute une condition de revenu pour bénéficier de la pension d'invalité pour les salariés
-- publicodes : update to 1.0.2 (fix a bug with non applicable & contexte)
+- Répare le calcul des cotisations forfaitaires de début d'activité
+- publicodes : update to 1.0.4 
 
 ## 2.0.0
 

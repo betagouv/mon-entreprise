@@ -13,7 +13,7 @@ describe('conversation', function () {
 			'top . a': { question: '?', titre: 'a', unité: '€' },
 			'top . b': { question: '?', titre: 'b', unité: '€' },
 		}).evaluate('top . startHere').missingVariables
-		expect(getNextQuestions(missingVariables)[0]).to.equal('top . a')
+		expect(getNextQuestions(missingVariables)[0]).toBe('top . a')
 	})
 	it('should first ask for questions without defaults, then those with defaults', function () {
 		const engine = new Engine({
@@ -45,17 +45,17 @@ describe('conversation', function () {
 			},
 		})
 
-		expect(
-			getNextQuestions(engine.evaluate('net').missingVariables)[0]
-		).to.equal('brut')
+		expect(getNextQuestions(engine.evaluate('net').missingVariables)[0]).toBe(
+			'brut'
+		)
 
 		engine.setSituation({
 			brut: 2300,
 		})
 
-		expect(
-			getNextQuestions(engine.evaluate('net').missingVariables)[0]
-		).to.equal('cadre')
+		expect(getNextQuestions(engine.evaluate('net').missingVariables)[0]).toBe(
+			'cadre'
+		)
 	})
 
 	it('should ask "motif CDD" if "CDD" applies', function () {
@@ -70,6 +70,6 @@ describe('conversation', function () {
 				.missingVariables
 		)
 
-		expect(result).to.include('salarié . contrat . CDD . motif')
+		expect(result).toContain('salarié . contrat . CDD . motif')
 	})
 })

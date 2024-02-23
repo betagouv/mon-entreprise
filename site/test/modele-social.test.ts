@@ -7,7 +7,7 @@ describe('modele-social', function () {
 	beforeAll(() => {
 		engine = new Engine(rules)
 	})
-	it("ne change pas le montant de l'IR ni des cotisations lorsqu'on verse un forfait mobilités durables ", function () {
+	it("ne change pas le montant de l'IR ni des cotisations lorsqu'on verse un forfait mobilités durables", function () {
 		expect(
 			engine
 				.setSituation({ 'salarié . contrat . salaire brut': 2300 })
