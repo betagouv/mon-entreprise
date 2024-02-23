@@ -204,6 +204,8 @@ export function useInversionFail(engines?: Array<Engine<DottedName>>) {
 	const inversionFail =
 		engine.inversionFail() && objectifs.some((o) => o === undefined)
 
+	return false
+
 	return inversionFail
 }
 
