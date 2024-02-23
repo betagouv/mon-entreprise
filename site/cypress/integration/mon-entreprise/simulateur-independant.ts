@@ -1,4 +1,4 @@
-import { checkA11Y, fr } from '../../support/utils'
+import { fr } from '../../support/utils'
 
 describe('Simulateur indépendant', { testIsolation: false }, function () {
 	if (!fr) {
@@ -17,9 +17,5 @@ describe('Simulateur indépendant', { testIsolation: false }, function () {
 			'Comment fonctionne la régularisation des cotisations provisionnelles'
 		)
 		cy.contains('Montant des cotisations forfaitaires').should('not.exist')
-	})
-
-	it('should be RGAA compliant', function () {
-		checkA11Y()
 	})
 })

@@ -11,11 +11,11 @@ describe('Fabrique Social', () => {
 	describe('getSiegeOrFirstEtablissement Function', () => {
 		it('should return siege', () => {
 			const siege = getSiegeOrFirstEtablissement(fabriqueSocialWithSiege)
-			expect(siege.address).to.equal('23 RUE DE MOGADOR 75009 PARIS 9')
+			expect(siege.address).toBe('23 RUE DE MOGADOR 75009 PARIS 9')
 		})
 		it('should return FirstEtablissement', () => {
 			const siege = getSiegeOrFirstEtablissement(fabriqueSocialWithoutSiege)
-			expect(siege.address).to.equal('4 RUE VOLTAIRE 44000 NANTES')
+			expect(siege.address).toBe('4 RUE VOLTAIRE 44000 NANTES')
 		})
 	})
 })

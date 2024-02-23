@@ -56,13 +56,13 @@ describe('[persistence] When simulation persistence is setup', () => {
 		})
 		it('saves state in localStorage with all fields', () => {
 			expect(setItemSpy).toHaveBeenCalled()
-			expect(setItemSpy.mock.calls[0]![1]).to.equal(
+			expect(setItemSpy.mock.calls[0]![1]).toBe(
 				'{"situation":{"dotted name":"42"},"activeTargetInput":"sometargetinput","foldedSteps":["somestep"]}'
 			)
 		})
 		it('saves state in localStorage with a key dependent on the simulation url', () => {
 			expect(setItemSpy).toHaveBeenCalled()
-			expect(setItemSpy.mock.calls[0]![0]).to.contain('someurl')
+			expect(setItemSpy.mock.calls[0]![0]).toContain('someurl')
 		})
 	})
 })
@@ -91,20 +91,18 @@ describe('[persistence] When simulation config is set', () => {
 			store.dispatch(loadPreviousSimulation())
 		})
 		it('loads url in state', () => {
-			expect(store.getState().simulation.url).to.eq('/someotherurl')
+			expect(store.getState().simulation.url).toBe('/someotherurl')
 		})
 		it('loads situation in state', () => {
-			expect(store.getState().simulation.situation).to.deep.eq({
+			expect(store.getState().simulation.situation).toEqual({
 				'dotted name . other': '42',
 			})
 		})
 		it('loads activeTargetInput in state', () => {
-			expect(store.getState().activeTargetInput).to.eq('someothertargetinput')
+			expect(store.getState().activeTargetInput).toBe('someothertargetinput')
 		})
 		it('loads foldedSteps in state', () => {
-			expect(store.getState().simulation.foldedSteps).to.deep.eq([
-				'someotherstep',
-			])
+			expect(store.getState().simulation.foldedSteps).toEqual(['someotherstep'])
 		})
 	})
 })
