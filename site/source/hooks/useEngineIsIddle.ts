@@ -8,6 +8,15 @@ export const useEngineIsIdle = () => {
 	const [isIdle, setIsIdle] = useState(false)
 
 	useEffect(() => {
+		if (window.requestIdleCallback === undefined) {
+			const timeoutId = setTimeout(() => {
+				setIsIdle(true)
+			}, 0)
+
+			return () => {
+				clearTimeout(timeoutId)
+			}
+		}
 		const idleCallback = window.requestIdleCallback(() => {
 			setIsIdle(true)
 		})
