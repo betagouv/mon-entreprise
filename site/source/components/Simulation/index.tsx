@@ -3,12 +3,13 @@ import Engine from 'publicodes'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { ConversationProps } from '@/components/conversation/Conversation'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { PopoverWithTrigger } from '@/design-system'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import {
 	companySituationSelector,
@@ -18,6 +19,7 @@ import {
 import { TrackPage } from '../ATInternetTracking'
 import Banner from '../Banner'
 import AnswerList from '../conversation/AnswerList'
+import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import PreviousSimulationBanner from './../PreviousSimulationBanner'
 import { FromTop } from './../ui/animate'
@@ -66,6 +68,7 @@ export default function Simulation({
 	const existingCompany = !!useSelector(companySituationSelector)[
 		'entreprise . SIREN'
 	]
+	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
 
 	const { t } = useTranslation()
 
@@ -125,6 +128,19 @@ export default function Simulation({
 					)}
 				</FromTop>
 			</SimulationContainer>
+			{firstStepCompleted && !hideDetails && shouldShowFeedback && (
+				<Container
+					backgroundColor={(theme) => theme.colors.bases.primary[700]}
+					forceTheme="dark"
+					style={{
+						textAlign: 'center',
+						padding: '1rem',
+						paddingBottom: '2rem',
+					}}
+				>
+					<Feedback />
+				</Container>
+			)}
 			{firstStepCompleted && !hideDetails && explanations}
 		</>
 	)

@@ -9,13 +9,11 @@ import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
-import { StyledLink } from '@/design-system/typography/link'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
-import { INSCRIPTION_LINK } from '../layout/Footer/InscriptionBetaTesteur'
 import FeedbackForm from './FeedbackForm'
 import FeedbackRating, { FeedbackT } from './FeedbackRating'
 import { useFeedback } from './useFeedback'
@@ -29,7 +27,7 @@ const setFeedbackGivenForUrl = (url: string) => {
 }
 
 // Ask for feedback again after 4 months
-const getShouldAskFeedback = (url: string) => {
+export const getShouldAskFeedback = (url: string) => {
 	const previousFeedbackDate = safeLocalStorage.getItem(localStorageKey(url))
 	if (!previousFeedbackDate) {
 		return true
@@ -96,6 +94,7 @@ export function Feedback({
 							<Emoji emoji="🙌" />
 						</Strong>
 					</Body>
+					{/* TODO : reactivate when we need new beta-testeurs
 					<SmallBody>
 						<Trans i18nKey="feedback.beta-testeur">
 							Pour continuer à donner votre avis et accéder aux nouveautés en
@@ -107,7 +106,7 @@ export function Feedback({
 								inscrivez-vous sur la liste des beta-testeur
 							</StyledLink>
 						</Trans>
-					</SmallBody>
+					</SmallBody> */}
 				</>
 			) : (
 				<>
@@ -122,18 +121,20 @@ export function Feedback({
 			{isSimulateurSalaire ? (
 				<JeDonneMonAvis light />
 			) : (
-				<Button
-					color="tertiary"
-					size="XXS"
-					light
-					aria-haspopup="dialog"
-					onPress={() => {
-						setIsShowingSuggestionForm(true)
-						onFeedbackFormOpen?.()
-					}}
-				>
-					<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
-				</Button>
+				<div style={{ textAlign: 'center' }}>
+					<Button
+						color="tertiary"
+						size="XXS"
+						light
+						aria-haspopup="dialog"
+						onPress={() => {
+							setIsShowingSuggestionForm(true)
+							onFeedbackFormOpen?.()
+						}}
+					>
+						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
+					</Button>
+				</div>
 			)}
 			{isShowingSuggestionForm && (
 				<Popover
