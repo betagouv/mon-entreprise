@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next'
 import {
 	Area,
 	Bar,
-	Brush,
-	BrushProps,
 	CartesianGrid,
 	ComposedChart,
 	Legend,
@@ -18,33 +16,31 @@ import {
 } from 'recharts'
 import { styled, useTheme } from 'styled-components'
 
-import { StyledLegend } from '@/components/charts/PagesCharts'
 import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { StyledLegend } from '@/pages/statistiques/_components/PagesCharts'
+
+import { formatIndicator } from './utils'
 
 type Period = 'mois' | 'jours'
 
-export type Data<T = number | Record<string, number>> = {
+export type Data = {
 	date: string
-	nombre: T
+	nombre: Record<string, number>
 	info?: ReactNode
 }[]
 
-export type DataStacked = Data<Record<string, number>>
-
-export const isDataStacked = (data: Data): data is DataStacked =>
-	typeof data[0]?.nombre !== 'number'
+export const isDataStacked = (data: Data): boolean =>
+	Object.keys(data[0].nombre).length > 1
 
 export interface VisitsChartProps {
 	period: Period
-	sync?: boolean
 	stack?: boolean
 	grid?: boolean
 	colored?: boolean
 	layout?: 'horizontal' | 'vertical'
-	onDateChange: BrushProps['onChange']
 	startIndex?: number
 	endIndex?: number
 	data: Data
@@ -66,28 +62,21 @@ const Palette = [
 export default function VisitsChart({
 	period,
 	data,
-	onDateChange,
-	sync = true,
 	layout = 'horizontal',
 	grid = true,
 	stack = false,
 	colored = false,
-	startIndex,
-	endIndex,
 }: VisitsChartProps) {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 	const [darkMode] = useDarkMode()
 	const { colors } = useTheme()
 	if (!data.length) {
 		return null
 	}
 	const isBarChart = data.length <= 3
-	const dataKeys = isDataStacked(data)
-		? Object.keys(data[0].nombre)
-		: ['nombre']
-	const flattenData = isDataStacked(data)
-		? data.map((d) => ({ ...d, ...d.nombre }))
-		: data
+	const dataKeys = Object.keys(data[0].nombre)
+
+	const flattenData = data.map((d) => ({ ...d, ...d.nombre }))
 
 	function getColor(i: number): string {
 		if (!colored) {
@@ -111,21 +100,11 @@ export default function VisitsChart({
 				<ComposedChartWithRole
 					layout={layout}
 					data={flattenData}
-					syncId={sync ? '1' : undefined}
 					aria-label={t(
 						'Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image'
 					)}
 					role="img"
 				>
-					{data.length > 1 && onDateChange && (
-						<Brush
-							startIndex={startIndex}
-							endIndex={endIndex}
-							dataKey="date"
-							onChange={onDateChange}
-							tickFormatter={period === 'jours' ? formatDay : formatMonth}
-						/>
-					)}
 					{grid && <CartesianGrid />}
 					<Legend />
 
@@ -141,7 +120,7 @@ export default function VisitsChart({
 					/>
 
 					<YAxis
-						tickFormatter={(val: number) => formatValue(val) as string}
+						tickFormatter={(val: number) => formatIndicator(val, i18n.language)}
 						type="number"
 						stroke={darkMode ? 'lightGrey' : 'gray'}
 					/>
@@ -271,6 +250,7 @@ const CustomTooltip = ({
 	payload,
 	dataKeys,
 }: CustomTooltipProps) => {
+	const language = useTranslation().i18n.language
 	if (!active || !payload) {
 		return null
 	}
@@ -286,7 +266,7 @@ const CustomTooltip = ({
 			<Ul size="XS">
 				{dataKeys.map((key: string) => (
 					<Li key={key}>
-						<Strong>{formatValue(data[key])}</Strong>{' '}
+						<Strong>{formatIndicator(data[key] as number, language)}</Strong>{' '}
 						{dataKeys.length > 1 && formatLegend(key)}
 					</Li>
 				))}

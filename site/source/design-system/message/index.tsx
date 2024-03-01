@@ -101,6 +101,9 @@ const StyledMessage = styled.div<StyledMessageProps>`
 	display: flex;
 	position: relative;
 	align-items: baseline;
+	transition:
+		color 0.3s ease,
+		background-color 0.3s ease;
 	${({ theme, $messageType, $border, $light, $mini }) => {
 		const colorSpace: Palette | SmallPalette =
 			$messageType === 'secondary' || $messageType === 'primary'

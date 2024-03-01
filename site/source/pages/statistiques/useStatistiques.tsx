@@ -2,43 +2,25 @@ import { useMemo } from 'react'
 
 import { groupBy } from '@/utils'
 
-import { Page, PageChapter2, PageSatisfaction, StatsStruct } from './types'
+import {
+	Filter,
+	PageChapter2,
+	Pageish,
+	QuestionRépondues,
+	Satisfaction,
+	SatisfactionLevel,
+	StatsStruct,
+	Visites,
+} from './types'
 
-type Pageish = Page | PageSatisfaction
+export function useStatistiques(stats: StatsStruct, filter: Filter | '') {
+	const visitesJours = useMemo(() => {
+		return computeVisits(stats.visitesJours, filter)
+	}, [filter])
 
-export type Filter =
-	| { chapter2: PageChapter2; chapter3?: string }
-	| 'PAM'
-	| 'api-rest'
-
-export function useStatistiques({
-	period,
-	stats,
-	filter,
-}: {
-	period: 'mois' | 'jours'
-	stats: StatsStruct
-	filter: Filter | ''
-}) {
-	const visites = useMemo(() => {
-		const rawData = period === 'jours' ? stats.visitesJours : stats.visitesMois
-		if (!filter) {
-			return rawData.site
-		}
-		if (filter === 'api-rest') {
-			return rawData.api
-		}
-		if (
-			typeof filter !== 'string' &&
-			filter.chapter2 === PageChapter2.ChoixDuStatut
-		) {
-			const pages = rawData.pages as Pageish[]
-
-			return statsChoixStatut(pages)
-		}
-
-		return filterPage(rawData.pages as Pageish[], filter)
-	}, [period, filter])
+	const visitesMois = useMemo(() => {
+		return computeVisits(stats.visitesMois, filter)
+	}, [filter])
 
 	const repartition = useMemo(() => {
 		const rawData = stats.visitesMois
@@ -51,18 +33,101 @@ export function useStatistiques({
 			return []
 		}
 
-		return filterPage(stats.satisfaction as Pageish[], filter)
-	}, [filter]) as Array<{
-		date: string
-		nombre: Record<string, number>
-		percent: Record<string, number>
-	}>
+		return addSatisfactionScore(
+			filterPage(stats.satisfaction as Pageish[], filter) as Satisfaction
+		)
+	}, [filter])
+
+	const questionsRépondues = useMemo(() => {
+		return computeQuestionRépondues(satisfaction, visitesMois)
+	}, [satisfaction, visitesMois])
 
 	return {
-		visites,
+		visitesJours,
+		visitesMois,
 		repartition,
 		satisfaction,
+		questionsRépondues,
 	}
+}
+
+function computeVisits(
+	rawData: StatsStruct['visitesJours'],
+	filter: Filter | ''
+) {
+	let apiRestVisits: Visites = []
+	let statsChoixStatut: Visites = []
+
+	if (filter === 'api-rest' || filter === '') {
+		// API rest : we consider that every calls are
+		apiRestVisits = rawData.api.map((d) => ({
+			date: d.date,
+			nombre: {
+				accueil: d.nombre,
+				simulation_commencee: d.nombre,
+			},
+		}))
+	}
+
+	if (filterIs(PageChapter2.ChoixDuStatut, filter) || filter === '') {
+		const pages = rawData.pages as Pageish[]
+		statsChoixStatut = computeStatsChoixStatut(pages)
+	}
+
+	if (filter === 'api-rest') {
+		return apiRestVisits
+	}
+
+	if (filterIs(PageChapter2.ChoixDuStatut, filter)) {
+		return statsChoixStatut
+	}
+	const visites = filterPage(rawData.pages as Pageish[], filter).map((p) => ({
+		date: p.date,
+		nombre: {
+			accueil: p.nombre.accueil,
+			simulation_commencee:
+				// In the case of Recherche APE, we need to post-process the data
+				(p.nombre.simulation_commencee ?? 0) + (p.nombre.recherche ?? 0) ||
+				// If the value is zero, we use simulation terminee instead
+				p.nombre.simulation_terminee,
+			simulation_terminee: p.nombre.simulation_terminee,
+		},
+	})) as Visites
+
+	if (filter !== '') {
+		return visites
+	}
+
+	return mergeVisites(visites, apiRestVisits, statsChoixStatut)
+}
+
+function filterIs(value: string, filter: Filter | ''): boolean {
+	return typeof filter !== 'string' && filter.chapter2 === value
+}
+
+function mergeVisites(...visites: Visites[]) {
+	const visitesObjects = visites.map((v) =>
+		Object.fromEntries(v.map((v) => [v.date, v.nombre]))
+	)
+	const dates = new Set(visites.flatMap((v) => v.map((v) => v.date)))
+
+	return Array.from(dates).map((date) => ({
+		date,
+		nombre: {
+			accueil: visitesObjects.reduce(
+				(acc, v) => acc + (v[date]?.accueil || 0),
+				0
+			),
+			simulation_commencee: visitesObjects.reduce(
+				(acc, v) => acc + (v[date]?.simulation_commencee || 0),
+				0
+			),
+			simulation_terminee: visitesObjects.reduce(
+				(acc, v) => acc + (v[date]?.simulation_terminee || 0),
+				0
+			),
+		},
+	}))
 }
 
 const isPAM = (name: string | undefined) =>
@@ -90,7 +155,7 @@ function filterPage(
 						: filter.chapter2 === p.page_chapter2 &&
 						  (!filter.chapter3 || filter.chapter3 === p.page_chapter3))
 			),
-			(p) => ('date' in p ? p.date : p.month)
+			(p) => ('date' in p ? p.date : p.month.slice(0, 10))
 		)
 	).map(([date, values]) => ({
 		date,
@@ -105,8 +170,9 @@ function filterPage(
 	}))
 }
 
-const statsChoixStatut = (pages: Pageish[]) => {
+const computeStatsChoixStatut = (pages: Pageish[]) => {
 	const choixStatutPage = pages.filter(
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
 		(p) => p.page_chapter2 === PageChapter2.ChoixDuStatut
 	)
 	const accueil = groupBy(
@@ -118,7 +184,7 @@ const statsChoixStatut = (pages: Pageish[]) => {
 			(p) =>
 				p.page_chapter3 === 'pas_a_pas' &&
 				'page' in p &&
-				p.page === 'recherche_activite'
+				p.page === 'comparateur'
 		),
 		(p) => ('date' in p ? p.date : p.month)
 	)
@@ -139,8 +205,6 @@ const statsChoixStatut = (pages: Pageish[]) => {
 		},
 	}))
 }
-
-export type Visites = ReturnType<typeof useStatistiques>['visites']
 
 function groupByDate(data: Pageish[]) {
 	const topTenPageByMonth = Object.entries(
@@ -185,4 +249,77 @@ function groupByDate(data: Pageish[]) {
 			)
 		),
 	}))
+}
+
+/**
+ * Return the mean of the current month or the one of the closest next hundred reviews for each month.
+ *
+ * @param data
+ */
+function addSatisfactionScore(data: Satisfaction) {
+	const satisfactionWithTotal = data.map((d) => {
+		const total = Object.values(d.nombre).reduce((a, b) => a + b, 0)
+		const positif =
+			(d.nombre[SatisfactionLevel.Bien] ?? 0) +
+			(d.nombre[SatisfactionLevel.TrèsBien] ?? 0)
+
+		return {
+			...d,
+			total,
+			positif,
+		}
+	})
+
+	return satisfactionWithTotal.map((d, i) => {
+		let total = d.total
+		let positif = d.positif
+		let level = 1
+		while (
+			total < 100 &&
+			(i - level >= 0 || i + level < satisfactionWithTotal.length)
+		) {
+			if (i - level >= 0) {
+				total += satisfactionWithTotal[i - level].total
+				positif += satisfactionWithTotal[i - level].positif
+			}
+			if (i + level < satisfactionWithTotal.length) {
+				total += satisfactionWithTotal[i + level].total
+				positif += satisfactionWithTotal[i + level].positif
+			}
+			level++
+		}
+
+		const moyenne = positif / total
+
+		return {
+			...d,
+			nbMoisMoyenne: level,
+			nbAvisMoyenne: total,
+			moyenne,
+		}
+	})
+}
+
+function computeQuestionRépondues(
+	satisfaction: Satisfaction,
+	visites: Visites
+): QuestionRépondues {
+	const satisfactionByDate = Object.fromEntries(
+		satisfaction.map((s) => [s.date, s])
+	)
+
+	return visites.map((visite) => {
+		const date = visite.date
+		const simulationCommencée = visite.nombre.simulation_commencee ?? 0
+		const satisfaction = satisfactionByDate[date]?.moyenne ?? 1
+
+		return {
+			date,
+			nombre: {
+				questions_répondues: Math.round(satisfaction * simulationCommencée),
+			},
+			satisfaction,
+			simulationCommencée,
+		}
+	})
 }

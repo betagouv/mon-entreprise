@@ -1,8 +1,8 @@
 // Generated using app.quicktype.io
 
 export interface StatsStruct {
-	visitesJours: Visites
-	visitesMois: Visites
+	visitesJours: RawVisites
+	visitesMois: RawVisites
 	satisfaction: PageSatisfaction[]
 	retoursUtilisateurs: RetoursUtilisateurs
 	nbAnswersLast30days: number
@@ -23,7 +23,7 @@ export interface Closed {
 export interface BasePage {
 	nombre: number
 	page_chapter1: string
-	page_chapter2: PageChapter2
+	page_chapter2: string
 	page_chapter3: string
 }
 export type Page = BasePage & { page: string; date: string }
@@ -39,7 +39,7 @@ export enum SatisfactionLevel {
 	TrèsBien = 'très bien',
 }
 
-interface Visites {
+interface RawVisites {
 	creer: Page[]
 	pages: Page[]
 	site: Site[]
@@ -52,17 +52,43 @@ interface Site {
 }
 
 export enum PageChapter2 {
-	AideDeclarationIndependant = 'aide_declaration_independant',
-	ArtisteAuteur = 'artiste_auteur',
-	AutoEntrepreneur = 'auto_entrepreneur',
-	ChomagePartiel = 'chomage_partiel',
-	ComparaisonStatut = 'comparaison_statut',
-	DirigeantSasu = 'dirigeant_sasu',
-	EconomieCollaborative = 'economie_collaborative',
-	Guide = 'guide',
-	ImpotSociete = 'impot_societe',
-	Independant = 'independant',
-	ProfessionLiberale = 'profession_liberale',
-	Salarie = 'salarie',
 	ChoixDuStatut = 'choix_du_statut',
+	CodeAPE = 'recherche_code_ape',
 }
+
+export type Satisfaction = Array<{
+	date: string
+	nombre: Record<SatisfactionLevel, number>
+	percent?: Record<SatisfactionLevel, number>
+	moyenne?: number
+	total?: number
+	positif?: number
+	/** Number of months used to compute the average */
+	nbMoisMoyenne?: number
+	/** Number of reviews used to compute the average */
+	nbAvisMoyenne?: number
+}>
+export type Visites = Array<{
+	date: string
+	nombre: {
+		accueil: number
+		simulation_commencee: number
+		simulation_terminee?: number
+	}
+}>
+
+export type QuestionRépondues = Array<{
+	date: string
+	nombre: {
+		questions_répondues: number
+	}
+	satisfaction: number
+	simulationCommencée: number
+}>
+
+export type Filter =
+	| { chapter2: string; chapter3?: string }
+	| 'PAM'
+	| 'api-rest'
+
+export type Pageish = Page | PageSatisfaction

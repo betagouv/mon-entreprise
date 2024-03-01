@@ -3,9 +3,9 @@ import { Emoji } from '@/design-system/emoji'
 import { Select } from '@/design-system/field/Select'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 
-import { SimulateurCard } from '../../components/SimulateurCard'
-import { getFilter } from './StatsDetail'
-import { Filter } from './useStatistiques'
+import { SimulateurCard } from '../../../components/SimulateurCard'
+import { getFilter } from '../StatsPage'
+import { Filter } from '../types'
 
 export function SelectedSimulator(props: { filter: Filter | '' }) {
 	const simulateur = Object.values(useSimulatorsData()).find(
@@ -25,6 +25,13 @@ export function SimulateursChoice(props: {
 	const choices = Object.values(simulateurs)
 		.filter((s) => getFilter(s))
 		.sort((a, b) => (a.shortName < b.shortName ? -1 : 1))
+	const defaultSelectedKey = !props.value
+		? ''
+		: props.value === 'api-rest'
+		? 'api-rest'
+		: Object.entries(simulateurs).find(
+				([, s]) => JSON.stringify(getFilter(s)) === JSON.stringify(props.value)
+		  )?.[0] ?? ''
 
 	return (
 		<Select
@@ -37,18 +44,14 @@ export function SimulateursChoice(props: {
 				}
 				props.onChange(getFilter(simulateurs[val as keyof typeof simulateurs]))
 			}}
-			defaultSelectedKey={
-				typeof props.value === 'string'
-					? props.value
-					: JSON.stringify(props.value)
-			}
+			defaultSelectedKey={defaultSelectedKey}
 			label={'Voir les statistiques pour :'}
 			id="simulator-choice-input"
 		>
 			{[
-				<Item key="" textValue="Tout le site">
+				<Item key="" textValue="Tout les simulateurs et assistants">
 					<Emoji emoji="🌍" />
-					&nbsp;Tout le site
+					&nbsp;Tout les simulateurs et assistants
 				</Item>,
 				<Item key="api-rest" textValue="API REST">
 					<Emoji emoji="👩‍💻" />
