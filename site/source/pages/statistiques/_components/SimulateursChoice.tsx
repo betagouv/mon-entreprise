@@ -15,7 +15,7 @@ export function SelectedSimulator(props: { filter: Filter | '' }) {
 		return null
 	}
 
-	return <SimulateurCard small {...simulateur} />
+	return <SimulateurCard {...simulateur} />
 }
 export function SimulateursChoice(props: {
 	onChange: (ch: Filter | '') => void
