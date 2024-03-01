@@ -16,6 +16,13 @@
   les informations et les calculs.</0><1>Pour retrouver les informations à
   jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités
   relevant de l’économie collaborative</2></0>
+<0><0>Les simulateurs et assistants de ce site ont pour but de <2>répondre à une question</2> (par exemple « combien mon entreprise doit-elle payer pour embaucher une personne ? » ou « Quel est le meilleur statut juridique pour débuter mon activité ? »</0><1>Pour calculer le nombre de questions répondues, nous multiplions le <1>nombre de simulations</1> par le <4>taux de satisfaction</4> moyen du simulateur.</1> </0>:
+  <0><0>Les simulateurs et assistants de ce site ont pour but de <2>répondre à
+  une question</2> (par exemple « combien mon entreprise doit-elle payer pour
+  embaucher une personne ? » ou « Quel est le meilleur statut juridique pour
+  débuter mon activité ? »</0><1>Pour calculer le nombre de questions répondues,
+  nous multiplions le <1>nombre de simulations</1> par le <4>taux de
+  satisfaction</4> moyen du simulateur.</1> </0>
 <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
   <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
   l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>
@@ -198,7 +205,6 @@ Montant annuel: Montant annuel
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
 Montant mensuel: Montant mensuel
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
-Nombre de visites: Nombre de visites
 Nombres: Nombres
 Non: Non
 Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons pas trouvé de résultat pour cette entreprise.
@@ -304,14 +310,8 @@ Switch to the english version of the website: Switch to the english version of t
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur
   le site mon-entreprise par mois.
-Tableau indiquant le nombre de visites sur le site mon-entreprise par {{period}}.:
-  Tableau indiquant le nombre de visites sur le site mon-entreprise par
-  {{period}}.
+Tableau indiquant le nombre de visites par {{period}}.: Tableau indiquant le nombre de visites par {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
-Taux d'utilisateurs ayant un avis neutre: Taux d'utilisateurs ayant un avis neutre
-Taux d'utilisateurs mécontents: Taux d'utilisateurs mécontents
-Taux d'utilisateurs satisfaits: Taux d'utilisateurs satisfaits
-Taux d'utilisateurs très satisfaits: Taux d'utilisateurs très satisfaits
 Total des retenues: Total des retenues
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
   "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui

@@ -14,6 +14,12 @@
   to remove it from the site. It was too difficult to keep the information and
   calculations up to date.</0><1>To find up-to-date information, please visit
   the Urssaf website:</1><2>Collaborative economy activities</2></0>
+<0><0>Les simulateurs et assistants de ce site ont pour but de <2>répondre à une question</2> (par exemple « combien mon entreprise doit-elle payer pour embaucher une personne ? » ou « Quel est le meilleur statut juridique pour débuter mon activité ? »</0><1>Pour calculer le nombre de questions répondues, nous multiplions le <1>nombre de simulations</1> par le <4>taux de satisfaction</4> moyen du simulateur.</1> </0>:
+  <0><0>The simulators and wizards on this site are designed to <2>answer a
+  question</2> (e.g. "How much should my company pay to hire someone?" or "What
+  is the best legal status for starting my business?").</0><1>To calculate the
+  number of questions answered, we multiply the <1>number of simulations</1> by
+  the simulator's average <4>satisfaction rate</4>.</1> </0>
 <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
   <0><0>We've detected an old situation. Are you sure you want to overwrite
   it?</0></0><1><0><0>Overwrite</0></0><1><0>Cancel</0></1></1>
@@ -189,7 +195,6 @@ Montant annuel: Annual amount
 Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant mensuel: Monthly amount
 Mots-clés définissants l'activité: Keywords defining the activity
-Nombre de visites: Number of visits
 Nombres: Numbers
 Non: No
 Nous n’avons pas trouvé de résultat pour cette entreprise.: No results were found for this company.
@@ -291,12 +296,8 @@ Switch to the english version of the website: Switch to the english version of t
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Table showing user satisfaction with {{percentOrVotes}} on the mon-entreprise
   site, by month.
-Tableau indiquant le nombre de visites sur le site mon-entreprise par {{period}}.: Table showing the number of visits to the mon-entreprise website by {{period}}.
+Tableau indiquant le nombre de visites par {{period}}.: Table showing the number of visits per {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator per month.
-Taux d'utilisateurs ayant un avis neutre: Percentage of users with a neutral opinion
-Taux d'utilisateurs mécontents: Rate of dissatisfied users
-Taux d'utilisateurs satisfaits: Rate of satisfied users
-Taux d'utilisateurs très satisfaits: Rate of very satisfied users
 Total des retenues: Total deductions
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
   "Every year, depending on how much you earn, <2>you earn points that make up
