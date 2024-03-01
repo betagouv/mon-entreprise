@@ -1,16 +1,18 @@
+import { formatValue } from 'publicodes'
 import { ComponentProps, ReactElement, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import {
-	Bar,
+	Area,
 	BarChart,
+	ComposedChart,
 	LabelList,
 	ReferenceLine,
 	Tooltip,
 	XAxis,
+	YAxis,
 } from 'recharts'
 import { styled } from 'styled-components'
 
-import { StyledLegend } from '@/components/charts/PagesCharts'
 import { Radio, ToggleGroup } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
@@ -18,20 +20,18 @@ import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { StyledLegend } from '@/pages/statistiques/_components/PagesCharts'
 
+import { Satisfaction, SatisfactionLevel } from '../types'
 import { AccessibleTable } from './AccessibleTable'
 import { RealResponsiveContainer } from './Chart'
-import { SatisfactionLevel } from './types'
 
-export const SatisfactionStyle: [
-	SatisfactionLevel,
-	{ emoji: string; color: string },
-][] = [
+export const SatisfactionStyle = [
 	[SatisfactionLevel.Mauvais, { emoji: '🙁', color: '#D3675F' }],
 	[SatisfactionLevel.Moyen, { emoji: '😐', color: '#9C860D' }],
 	[SatisfactionLevel.Bien, { emoji: '🙂', color: '#289D20' }],
 	[SatisfactionLevel.TrèsBien, { emoji: '😀', color: '#149474' }],
-]
+].reverse() as [SatisfactionLevel, { emoji: string; color: string }][]
 
 function toPercentage(data: Record<string, number>) {
 	const total = Object.values(data).reduce((a, b: number) => a + b, 0)
@@ -39,18 +39,14 @@ function toPercentage(data: Record<string, number>) {
 	return {
 		percent: Object.fromEntries(
 			Object.entries(data).map(([key, value]) => [key, (100 * value) / total])
-		),
+		) as Record<SatisfactionLevel, number>,
 		total,
 	}
 }
 
 type SatisfactionChartProps = {
 	accessibleMode: boolean
-	data: Array<{
-		date: string
-		nombre: Record<string, number>
-		percent: Record<string, number>
-	}>
+	data: Satisfaction
 }
 
 type DataType = 'nombres' | 'pourcentage'
@@ -60,7 +56,7 @@ export default function SatisfactionChart({
 	accessibleMode,
 }: SatisfactionChartProps) {
 	const [darkMode] = useDarkMode()
-	const [dataType, setDataType] = useState<DataType>('nombres')
+	const [dataType, setDataType] = useState<DataType>('pourcentage')
 	const { t } = useTranslation()
 	if (!data.length) {
 		return null
@@ -81,10 +77,10 @@ export default function SatisfactionChart({
 
 	const BarChartWithRole = (
 		props: ComponentProps<typeof BarChart> | { role: string }
-	): ReactElement => <BarChart {...props} />
+	): ReactElement => <ComposedChart {...props} />
 
 	return (
-		<Body as="div">
+		<Body as="div" style={{ textAlign: 'right', marginTop: '-2rem' }}>
 			<StyledBody id="mode-affichage-satisfaction-label">
 				<Trans>Afficher les données par :</Trans>
 			</StyledBody>
@@ -94,11 +90,11 @@ export default function SatisfactionChart({
 				defaultValue={dataType}
 				aria-labelledby="mode-affichage-satisfaction-label"
 			>
-				<Radio value="nombres">
-					<Trans>Nombres</Trans>
-				</Radio>
 				<Radio value="pourcentage">
 					<Trans>Pourcentage</Trans>
+				</Radio>
+				<Radio value="nombres">
+					<Trans>Nombres</Trans>
 				</Radio>
 			</ToggleGroup>
 
@@ -128,17 +124,28 @@ export default function SatisfactionChart({
 							minTickGap={-8}
 							stroke={darkMode ? 'lightGrey' : 'gray'}
 						/>
+
+						<YAxis
+							domain={dataType !== 'nombres' ? [0, 100] : undefined}
+							tickFormatter={(val: number) => formatValue(val) as string}
+							type="number"
+							stroke={darkMode ? 'lightGrey' : 'gray'}
+						/>
 						<Tooltip content={<CustomTooltip dataType={dataType} />} />
 
 						{SatisfactionStyle.map(([level, { emoji, color }]) => (
-							<Bar
+							<Area
 								key={level}
 								dataKey={`${
 									dataType === 'nombres' ? 'nombre' : 'percent'
 								}.${level}`}
 								stackId="1"
+								type="monotone"
+								fillOpacity={1}
+								stroke={'white'}
+								strokeWidth={2}
 								fill={color}
-								maxBarSize={50}
+								max={100}
 								style={{
 									borderTop: 'solid 1px white',
 								}}
@@ -148,7 +155,7 @@ export default function SatisfactionChart({
 									content={() => emoji}
 									position="left"
 								/>
-							</Bar>
+							</Area>
 						))}
 
 						{flattenData
@@ -186,10 +193,10 @@ const AccessibleVersion = ({
 				date,
 				nombre: {
 					// order is important
-					'très bien': rest[dataKey]['très bien'],
-					bien: rest[dataKey].bien,
-					moyen: rest[dataKey].moyen,
-					mauvais: rest[dataKey].mauvais,
+					'très bien': rest[dataKey]?.['très bien'] ?? 0,
+					bien: rest[dataKey]?.bien ?? 0,
+					moyen: rest[dataKey]?.moyen ?? 0,
+					mauvais: rest[dataKey]?.mauvais ?? 0,
 				},
 			}))}
 			formatValue={({ value }) =>

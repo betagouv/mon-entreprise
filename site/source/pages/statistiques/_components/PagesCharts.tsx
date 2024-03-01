@@ -1,4 +1,3 @@
-import { formatValue } from 'publicodes'
 import { ComponentProps, ReactElement } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import {
@@ -16,8 +15,10 @@ import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
-import { AccessibleTable } from '@/pages/statistiques/AccessibleTable'
-import { RealResponsiveContainer } from '@/pages/statistiques/Chart'
+import { AccessibleTable } from '@/pages/statistiques/_components/AccessibleTable'
+import { RealResponsiveContainer } from '@/pages/statistiques/_components/Chart'
+
+import { formatIndicator } from './utils'
 
 type Data =
 	| Array<{ date: string; nombre: number }>
@@ -50,7 +51,7 @@ export default function PagesChart({
 }: PagesChartProps) {
 	const [darkMode] = useDarkMode()
 
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 
 	if (!data.length) {
 		return null
@@ -109,7 +110,9 @@ export default function PagesChart({
 						/>
 
 						<YAxis
-							tickFormatter={(x) => formatValue(x)}
+							tickFormatter={(val: number) =>
+								formatIndicator(val, i18n.language)
+							}
 							domain={['0', 'auto']}
 							type="number"
 							stroke={darkMode ? 'lightGrey' : 'gray'}
@@ -144,6 +147,7 @@ const CustomTooltip = ({
 	active,
 	payload,
 }: TooltipProps<string | number, string>) => {
+	const language = useTranslation().i18n.language
 	if (!active || !payload) {
 		return null
 	}
@@ -158,7 +162,9 @@ const CustomTooltip = ({
 					.map(({ color, value, name }) => (
 						<ColoredLi key={name} color={color}>
 							<Strong>
-								{typeof value === 'number' ? formatValue(value) : value}
+								{typeof value === 'number'
+									? formatIndicator(value, language)
+									: value}
 							</Strong>{' '}
 							{name && formatLegend(name)}
 						</ColoredLi>

@@ -3,15 +3,10 @@ import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 
 import DemandeUtilisateurs from './DemandesUtilisateurs'
-import { StatsDetail } from './StatsDetail'
-import StatsGlobal from './StatsGlobal'
+import StatPage from './StatsPage'
 import { StatsStruct } from './types'
 
-interface StatsProps {
-	accessibleMode: boolean
-}
-
-export default function Stats({ accessibleMode }: StatsProps) {
+export default function Stats() {
 	const { data: stats, loading } = useFetchData<StatsStruct>('/data/stats.json')
 
 	const statsAvailable = stats?.visitesMois != null
@@ -20,9 +15,7 @@ export default function Stats({ accessibleMode }: StatsProps) {
 		<>
 			{statsAvailable ? (
 				<>
-					<StatsDetail stats={stats} accessibleMode={accessibleMode} />
-
-					<StatsGlobal stats={stats} />
+					<StatPage stats={stats} />
 				</>
 			) : loading ? (
 				<Intro>Chargement des statistiques...</Intro>

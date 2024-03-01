@@ -34,7 +34,7 @@ import { CatchOffline } from '@/pages/Offline'
 import Plan from '@/pages/Plan'
 import Simulateurs from '@/pages/simulateurs'
 import SimulateursEtAssistants from '@/pages/simulateurs-et-assistants'
-import Stats from '@/pages/statistiques/LazyStats'
+import Stats from '@/pages/statistiques'
 import { useSitePaths } from '@/sitePaths'
 
 import Provider, { ProviderProps } from './Provider'
