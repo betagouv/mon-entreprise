@@ -27,7 +27,10 @@ export const AccessibleTable = ({
 	formatValue,
 	caption,
 }: AccessibleTableProps) => {
-	const { t } = useTranslation()
+	const {
+		t,
+		i18n: { language },
+	} = useTranslation()
 
 	return (
 		<StyledTable as="div">
@@ -54,8 +57,8 @@ export const AccessibleTable = ({
 								<tr key={visite.date}>
 									<td>
 										{period === 'mois'
-											? formatMonth(visite.date)
-											: formatDay(visite.date)}
+											? formatMonth(visite.date, language)
+											: formatDay(visite.date, language)}
 									</td>
 
 									<td>{visite.nombre}</td>
@@ -74,8 +77,8 @@ export const AccessibleTable = ({
 								{visite.date && (
 									<td>
 										{period === 'mois'
-											? formatMonth(visite.date)
-											: formatDay(visite.date)}
+											? formatMonth(visite.date, language)
+											: formatDay(visite.date, language)}
 									</td>
 								)}
 

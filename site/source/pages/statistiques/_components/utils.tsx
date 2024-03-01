@@ -1,12 +1,12 @@
-export function formatDay(date: string | Date) {
-	return new Date(date).toLocaleString('default', {
+export function formatDay(date: string | Date, language: string) {
+	return new Date(date).toLocaleString(language, {
 		weekday: 'long',
 		day: 'numeric',
 		month: 'long',
 	})
 }
-export function formatMonth(date: string | Date) {
-	return new Date(date).toLocaleString('default', {
+export function formatMonth(date: string | Date, language: string) {
+	return new Date(date).toLocaleString(language, {
 		month: 'long',
 		year: 'numeric',
 	})
