@@ -3,13 +3,16 @@ import { Trans } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 
 import { toAtString } from '@/components/ATInternetTracking'
+import Privacy from '@/components/layout/Footer/Privacy'
+import { FromTop } from '@/components/ui/animate'
 import { useScrollToHash } from '@/components/utils/markdown'
+import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Switch } from '@/design-system/switch'
 import { Strong } from '@/design-system/typography'
-import { H2, H3 } from '@/design-system/typography/heading'
+import { H1, H2, H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Intro } from '@/design-system/typography/paragraphs'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import PagesChart from '@/pages/statistiques/_components/PagesCharts'
 
@@ -42,23 +45,36 @@ export default function StatPage({ stats }: StatsDetailProps) {
 
 	return (
 		<>
-			<Spacing sm />
-			<Grid container>
+			<Spacing md />
+			<Grid container spacing={4} style={{ alignItems: 'flex-end' }}>
 				<Grid item xs={12} md={7}>
+					<Spacing xl />
+
+					<H1>
+						Statistiques <Emoji emoji="📊" />
+					</H1>
+
+					<Intro>
+						Découvrez nos statistiques d'utilisation mises à jour
+						quotidiennement.
+					</Intro>
+					<Body>
+						Les données recueillies sont anonymisées.{' '}
+						<Privacy label="En savoir plus." />
+					</Body>
 					<SimulateursChoice
 						onChange={setFilter}
 						value={filter}
 						key={JSON.stringify(filter)}
 					/>
 				</Grid>
-				<Grid item md={1} />
-				<Grid item xs={12} md={4}>
+				<Grid item xs={12} md={5}>
 					{filter && (
-						<>
-							<Grid container columns={4}>
+						<Grid container columns={4}>
+							<FromTop key={JSON.stringify(filter)}>
 								<SelectedSimulator filter={filter} />
-							</Grid>
-						</>
+							</FromTop>
+						</Grid>
 					)}
 				</Grid>
 			</Grid>
