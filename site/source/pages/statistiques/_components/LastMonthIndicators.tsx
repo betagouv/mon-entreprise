@@ -42,7 +42,7 @@ export function MainIndicators({
 
 	return (
 		<>
-			<H2>Notre impact en {formatMonth(lastMonth.date)}</H2>
+			<H2>Notre impact en {formatMonth(lastMonth.date, language)}</H2>
 			<Grid container spacing={4}>
 				<Grid item xs={12} md={6}>
 					<Message border={false} icon={<Emoji emoji="🛎️" />}>
@@ -86,7 +86,7 @@ export function MainIndicators({
 								<Strong>{satisfactionLastMonth?.nbAvisMoyenne}</Strong> avis
 								reçus
 								{satisfactionLastMonth?.nbMoisMoyenne === 1
-									? ` en ${formatMonth(lastMonth.date)}`
+									? ` en ${formatMonth(lastMonth.date, language)}`
 									: ` sur les ${satisfactionLastMonth?.nbMoisMoyenne} derniers mois`}
 							</Body>
 						</Message>
