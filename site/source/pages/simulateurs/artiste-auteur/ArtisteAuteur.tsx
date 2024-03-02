@@ -96,11 +96,6 @@ function RepartitionCotisations() {
 
 					
 			</div>
-			<div>
-				<H2>
-						
-				</H2>
-			</div>
 			
 		</section>
 	)

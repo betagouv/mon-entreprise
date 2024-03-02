@@ -73,21 +73,10 @@ export default function ChômagePartiel() {
 			>
 				<SimulationGoals legend="Salaire brut avant chômage partiel">
 					<SimulationGoal
-						label={t('Salaire brut mensuelle')}
+						label={t('Salaire brut mensuel')}
 						dottedName="salarié . contrat . salaire brut"
 					/>
-
-				<SimulationGoal
-						label={t('Salaire brut mensuelle')}
-						dottedName="salarié . contrat . salaire brut"
-					/> 
-
-					
-
-				
-				
 				</SimulationGoals>
-
 			</Simulation>
 		</>
 	)
