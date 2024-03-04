@@ -5,6 +5,7 @@ import { TrackPage } from '@/components/ATInternetTracking'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
+import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 
 const Stats = lazy(() => import('./Stats'))
@@ -24,7 +25,14 @@ export default function StatsPage() {
 			/>
 			<ScrollToTop />
 
-			<Suspense fallback={<Intro>Chargement des statistiques...</Intro>}>
+			<Suspense
+				fallback={
+					<>
+						<H1>Statistiques 📊</H1>
+						<Intro>Chargement des statistiques...</Intro>
+					</>
+				}
+			>
 				<Stats />
 			</Suspense>
 			<MoreInfosOnUs />

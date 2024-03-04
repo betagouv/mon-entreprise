@@ -1,8 +1,9 @@
 import { Message } from '@/design-system'
+import { Loader } from '@/design-system/icons/Loader'
+import { H1 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 
-import DemandeUtilisateurs from './DemandesUtilisateurs'
 import StatPage from './StatsPage'
 import { StatsStruct } from './types'
 
@@ -18,14 +19,20 @@ export default function Stats() {
 					<StatPage stats={stats} />
 				</>
 			) : loading ? (
-				<Intro>Chargement des statistiques...</Intro>
+				<>
+					<H1>Statistiques 📊</H1>
+					<Intro>
+						Chargement des statistiques <Loader />{' '}
+					</Intro>
+				</>
 			) : (
-				<Message type="error" icon mini>
-					<Body>Statistiques indisponibles.</Body>
-				</Message>
+				<>
+					<H1>Statistiques 📊</H1>
+					<Message type="error" icon mini>
+						<Body>Statistiques indisponibles.</Body>
+					</Message>
+				</>
 			)}
-
-			<DemandeUtilisateurs />
 		</>
 	)
 }
