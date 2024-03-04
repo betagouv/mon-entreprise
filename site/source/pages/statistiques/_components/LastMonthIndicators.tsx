@@ -38,7 +38,7 @@ export function MainIndicators({
 			lastMonth.nombre.questions_répondues,
 			language
 		)
-	const satisfactionLastMonth = satisfaction.at(-1)
+	const satisfactionLastMonth = satisfaction.at(-2) || satisfaction.at(-1)
 
 	return (
 		<>

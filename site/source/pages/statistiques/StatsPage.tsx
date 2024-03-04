@@ -118,7 +118,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 
 				{!!satisfaction.length &&
 					// We only display the satisfaction chart if the last month's number of reviews is greater than 100
-					(satisfaction.at(-1)?.total ?? 0) >= 100 && (
+					(satisfaction.at(-2)?.total ?? 0) >= 100 && (
 						<>
 							<Spacing md />
 							<H3>Satisfaction</H3>
