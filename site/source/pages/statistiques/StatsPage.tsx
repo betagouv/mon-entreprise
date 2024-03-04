@@ -62,6 +62,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 						Les données recueillies sont anonymisées.{' '}
 						<Privacy label="En savoir plus." />
 					</Body>
+					<h2 className="sr-only">Selection du simulateur</h2>
 					<SimulateursChoice
 						onChange={setFilter}
 						value={filter}

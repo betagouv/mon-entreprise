@@ -33,7 +33,7 @@ export const AccessibleTable = ({
 	} = useTranslation()
 
 	return (
-		<StyledTable as="div">
+		<StyledTable as="div" tabIndex={0}>
 			<table role="table" style={{ textAlign: 'center', width: '100%' }}>
 				{caption && <caption className="sr-only">{caption}</caption>}
 				<thead>

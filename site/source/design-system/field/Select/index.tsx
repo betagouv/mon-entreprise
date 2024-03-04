@@ -1,6 +1,6 @@
 import { useButton } from '@react-aria/button'
 import { useFocusRing } from '@react-aria/focus'
-import { HiddenSelect, useSelect } from '@react-aria/select'
+import { useSelect } from '@react-aria/select'
 import { mergeProps } from '@react-aria/utils'
 import { useSelectState } from '@react-stately/select'
 import type { AriaSelectProps } from '@react-types/select'
@@ -186,12 +186,15 @@ export function Select<T extends Record<string, unknown>>(
 	return (
 		<Container>
 			<Wrapper ref={wrapperRef} isOpen={state.isOpen}>
-				<HiddenSelect
+				{/* 
+				// React aria throws an arror if we let this here
+					<HiddenSelect
 					state={state}
 					triggerRef={ref}
 					label={props.label}
+					
 					name={props.name}
-				/>
+				/> */}
 				{props.label && (
 					<Label className={props.small ? 'sr-only' : ''} {...labelProps}>
 						{props.label}
