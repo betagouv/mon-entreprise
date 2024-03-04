@@ -30,7 +30,7 @@ export function formatProgression(
 export function emojiSatisfaction(satisfaction: number) {
 	return satisfaction > 0.85
 		? '😀'
-		: satisfaction > 0.65
+		: satisfaction > 0.7
 		? '🙂'
 		: satisfaction > 0.5
 		? '😐'
@@ -40,7 +40,7 @@ export function emojiSatisfaction(satisfaction: number) {
 export function messageTypeSatisfaction(satisfaction: number) {
 	return satisfaction > 0.85
 		? 'success'
-		: satisfaction > 0.65
+		: satisfaction > 0.7
 		? 'primary'
 		: satisfaction > 0.5
 		? 'info'
