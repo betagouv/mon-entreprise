@@ -8,6 +8,8 @@ import { ScrollToTop } from '@/components/utils/Scroll'
 import { H1 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 
+import DemandeUtilisateurs from './DemandesUtilisateurs'
+
 const Stats = lazy(() => import('./Stats'))
 
 export default function StatsPage() {
@@ -35,6 +37,7 @@ export default function StatsPage() {
 			>
 				<Stats />
 			</Suspense>
+			<DemandeUtilisateurs />
 			<MoreInfosOnUs />
 		</>
 	)
