@@ -10,7 +10,7 @@ describe('Secondary pages', function () {
 		cy.contains('Statistiques')
 	})
 
-	it.only('Statistics page should be RGAA compliant', function () {
+	it('Statistics page should be RGAA compliant', function () {
 		cy.visit('/stats')
 		cy.contains('Activer le mode accessibilité').click()
 		cy.get('table').should('be.visible')
