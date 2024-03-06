@@ -18,7 +18,7 @@ export function SASUSimulation() {
 				<SimulateurWarning simulateur="sasu" />
 				<SimulationGoals
 					toggles={<PeriodSwitch />}
-					legend="Vos revenus de dirigeant de SASU"
+					legend="Vos revenus de dirigeant de SAS(U)"
 				>
 					<SimulationGoal dottedName="dirigeant . rémunération . totale" />
 					<SimulationGoal
@@ -42,9 +42,9 @@ export function SASUSimulation() {
 
 export const SeoExplanations = () => (
 	<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
-		<H2>Comment calculer le salaire d'un dirigeant de SASU ? </H2>
+		<H2>Comment calculer le salaire d'un dirigeant de SAS ou SASU ? </H2>
 		<Body>
-			Comme pour un salarié classique, le <strong>dirigeant de sasu</strong>{' '}
+			Comme pour un salarié classique, le <strong>dirigeant de SAS(U)</strong>{' '}
 			paye des cotisations sociales sur la rémunération qu'il se verse. Les
 			cotisations sont calculées de la même manière que pour le salarié : elles
 			sont décomposées en partie employeur et partie salarié et sont exprimées

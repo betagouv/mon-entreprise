@@ -948,7 +948,7 @@ dirigeant . indépendant . IJSS . imposable:
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
 
     - indemnité de remplacement pour maternité, paternité ou adoption
-    
+
     - allocation journalière du proche aidant (AJPA, versée par la CAF)
   question.en: '[automatic] What is the gross taxable amount of your social
     security benefits and daily allowances?'
@@ -3325,14 +3325,14 @@ dirigeant . indépendant . cotisations et contributions . maladie:
     total:
       description.en: >
         [automatic] The amount of the contribution for health and maternity
-        insurance coverage. Contains two components: 
+        insurance coverage. Contains two components:
 
         - sickness contribution 1 (sickness and maternity insurance)
 
         - sickness contribution 2 (daily sickness benefits)
       description.fr: >
         Le montant de la cotisation pour la couverture des risques d'assurance
-        maladie et maternité. Contient deux composantes : 
+        maladie et maternité. Contient deux composantes :
 
         - la cotisation maladie 1 (assurance maladie et maternité)
 
@@ -3876,11 +3876,11 @@ déclaration charge sociales . cotisations payées:
   titre.fr: cotisations payées
 déclaration charge sociales . cotisations payées . CSG déductible et CFP:
   description.en: >
-    [automatic] Enter the amount of deductible CSG and PSC you paid in 2021
+    [automatic] Enter the amount of deductible CSG and CFP you paid in 2023
     (regardless of the year to which these contributions relate).
   description.fr: >
     Indiquez le montant de la part de CSG déductible et de CFP que vous avez
-    payé en 2021 (peu importe l’année à laquelle ces contributions se
+    payé en 2023 (peu importe l’année à laquelle ces contributions se
     rapportent).
   question.en: '[automatic] What is the total amount of deductible CSG and CFP
     paid this year?'
@@ -3889,13 +3889,13 @@ déclaration charge sociales . cotisations payées . CSG déductible et CFP:
   titre.fr: CSG déductible et CFP
 déclaration charge sociales . cotisations payées . cotisations sociales:
   description.en: >
-    [automatic] Indicate the amount of social contributions to the compulsory
-    schemes (sickness-maternity, old age, disability-death, family) that you
-    paid in 2021 (regardless of the year to which these contributions relate).
+    [automatic] Indicate the amount of social contributions to compulsory
+    schemes (sickness-maternity, old age, invalidity-death, family) that you
+    paid in 2023 (regardless of the year to which these contributions relate).
   description.fr: >
     Indiquez le montant des cotisations sociales aux régimes obligatoires
     (maladie-maternité, vieillesse, invalidité-décès, famille) que vous avez
-    payées en 2021 (peu importe l’année à laquelle ces cotisations se
+    payées en 2023 (peu importe l’année à laquelle ces cotisations se
     rapportent).
   question.en: '[automatic] How much social security contribution did you pay this year?'
   question.fr: Quel est le montant de vos cotisations sociales payées cette année ?

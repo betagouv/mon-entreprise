@@ -24,7 +24,7 @@ export function sasuConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 			ogTitle: t(
 				'pages.simulateurs.sasu.meta.ogTitle',
-				'Rémunération du dirigeant de SASU : un simulateur pour connaître votre salaire net'
+				'Rémunération du dirigeant de SAS(U) : un simulateur pour connaître votre salaire net'
 			),
 			title: t(
 				'pages.simulateurs.sasu.meta.titre',
@@ -36,7 +36,7 @@ export function sasuConfig({ t, sitePaths }: SimulatorsDataParams) {
 		shortName: t('pages.simulateurs.sasu.shortname', 'SAS(U)'),
 		title: t(
 			'pages.simulateurs.sasu.title',
-			'Simulateur de revenus pour dirigeant de SASU'
+			'Simulateur de revenus pour dirigeant de SAS(U)'
 		),
 		nextSteps: ['is', 'comparaison-statuts'],
 		path: sitePaths.simulateurs.sasu,

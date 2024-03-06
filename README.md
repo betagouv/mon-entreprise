@@ -12,7 +12,7 @@ Ce dépôt contient :
 
 Site développé en partenariat avec l’Urssaf, qui a pour mission d’accompagner des créateurs d’entreprise dans le développement de leur activité.
 
-Il propose notamment des simulateurs de cotisations sociales très complets, basés sur le language déclaratif [publicodes](https://publi.codes). On peut ainsi calculer le coût d’une embauche, un salaire net après impôt, ses revenus d’auto-entrepreneur ou encore ceux d’un dirigeant de SASU ou d’indépendant
+Il propose notamment des simulateurs de cotisations sociales très complets, basés sur le language déclaratif [publicodes](https://publi.codes). On peut ainsi calculer le coût d’une embauche, un salaire net après impôt, ses revenus d’auto-entrepreneur ou encore ceux d’un dirigeant de SAS(U) ou d’indépendant
 
 > 🧮 [Voir la liste des simulateurs](https://mon-entreprise.urssaf.fr/simulateurs)
 
