@@ -1544,7 +1544,7 @@ pages:
         the total amount allocated in the \"total charged\" box. The simulation
         can then be refined by answering the various questions.</4>"
       shortname: SAS(U)
-      title: Income simulator for SASU managers
+      title: Income simulator for SAS(U) managers
     select-year:
       access: Access the simulator {{year}}
       back: Back to simulator {{year}}
