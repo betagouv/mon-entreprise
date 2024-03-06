@@ -105,29 +105,30 @@ function filterIs(value: string, filter: Filter | ''): boolean {
 	return typeof filter !== 'string' && filter.chapter2 === value
 }
 
-function mergeVisites(...visites: Visites[]) {
-	const visitesObjects = visites.map((v) =>
-		Object.fromEntries(v.map((v) => [v.date, v.nombre]))
-	)
-	const dates = new Set(visites.flatMap((v) => v.map((v) => v.date)))
+function mergeVisites(...listesDeVisites: Visites[]): Visites {
+	return Object.values(
+		listesDeVisites
+			.flat()
+			.reduce<Record<string, Visites[number]>>((acc, visite) => {
+				const date = visite.date
+				acc[date] ??= {
+					date,
+					nombre: {
+						accueil: 0,
+						simulation_commencee: 0,
+						simulation_terminee: 0,
+					},
+				}
+				acc[date].nombre.accueil += visite.nombre.accueil
+				acc[date].nombre.simulation_commencee +=
+					visite.nombre.simulation_commencee
+				acc[date].nombre.simulation_terminee ??=
+					(acc[date].nombre.simulation_terminee || 0) +
+					(visite.nombre.simulation_terminee || 0)
 
-	return Array.from(dates).map((date) => ({
-		date,
-		nombre: {
-			accueil: visitesObjects.reduce(
-				(acc, v) => acc + (v[date]?.accueil || 0),
-				0
-			),
-			simulation_commencee: visitesObjects.reduce(
-				(acc, v) => acc + (v[date]?.simulation_commencee || 0),
-				0
-			),
-			simulation_terminee: visitesObjects.reduce(
-				(acc, v) => acc + (v[date]?.simulation_terminee || 0),
-				0
-			),
-		},
-	}))
+				return acc
+			}, {})
+	).sort((a, b) => (a.date < b.date ? -1 : 1))
 }
 
 const isPAM = (name: string | undefined) =>
