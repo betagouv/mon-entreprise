@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 
 import { CodeCatégorieJuridique } from '@/domain/CodeCatégorieJuridique'
-import { formatDate } from '@/domain/Date'
+import { toPublicodeDate } from '@/domain/Date'
 import { Entreprise } from '@/domain/Entreprise'
 import { Action } from '@/store/actions/actions'
 import { buildSituationFromObject, omit } from '@/utils'
@@ -85,7 +85,7 @@ export function companySituation(state: Situation = {}, action: Action) {
 
 export function getCompanySituation(entreprise: Entreprise): Situation {
 	return {
-		'entreprise . date de création': formatDate(entreprise.dateDeCréation),
+		'entreprise . date de création': toPublicodeDate(entreprise.dateDeCréation),
 		'entreprise . catégorie juridique': `'${getCatégorieFromCode(
 			entreprise.codeCatégorieJuridique
 		)}'`,
