@@ -1525,23 +1525,24 @@ pages:
           income after tax from the total allocated to your remuneration.
         ogTitle: "SASU manager's remuneration: a simulator to find out your net salary"
         titre: "SASU: income simulator for managers"
-      seo-explanation: "<0>How do you calculate the salary of a SASU director?
-        </0><1>As with a traditional employee, the <1>SASU director</1> pays
-        social security contributions on the remuneration he or she receives.
-        Contributions are calculated in the same way as for an employee: they
-        are broken down into employer and employee portions, and are expressed
-        as a percentage of gross salary.</1><2>Managers treated as employees do
-        not pay <2>unemployment contributions</2>. In addition, they do not
-        benefit from the <5>general reduction in contributions</5>, nor from
-        schemes governed by the French Labor Code, such as <9>overtime</9> or
-        bonuses.</2><3>They may, however, qualify for the <2>ACRE reduction</2>
-        at the start of their activity, subject to certain conditions.</3><4>You
-        can use our simulator to calculate <2>net remuneration</2> based on a
-        super-gross amount allocated to the manager's remuneration. Simply enter
-        the total amount allocated in the \"total charged\" box. The simulation
-        can then be refined by answering the various questions.</4>"
+      seo-explanation: "<0>How do you calculate the salary of a SAS or SASU director?
+        </0><1>As with a conventional employee, the <1>director of an SAS(U)</1>
+        pays social security contributions on the remuneration he or she
+        receives. Contributions are calculated in the same way as for an
+        employee: they are broken down into employer and employee portions, and
+        are expressed as a percentage of gross salary.</1><2>Managers treated as
+        employees do not pay <2>unemployment contributions</2>. In addition,
+        they do not benefit from the <5>general reduction in contributions</5>,
+        nor from schemes governed by the French Labor Code, such as
+        <9>overtime</9> or bonuses.</2><3>They may, however, qualify for the
+        <2>ACRE reduction</2> at the start of their activity, subject to certain
+        conditions.</3><4>You can use our simulator to calculate <2>net
+        remuneration</2> based on a super-gross amount allocated to the
+        manager's remuneration. Simply enter the total amount allocated in the
+        \"total charged\" box. The simulation can then be refined by answering
+        the various questions.</4>"
       shortname: SAS(U)
-      title: Income simulator for SASU managers
+      title: Income simulator for SAS(U) managers
     select-year:
       access: Access the simulator {{year}}
       back: Back to simulator {{year}}
