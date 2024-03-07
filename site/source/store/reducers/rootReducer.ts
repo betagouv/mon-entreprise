@@ -1,9 +1,13 @@
 import { DottedName } from 'modele-social'
+import { PublicodesExpression } from 'publicodes'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 
 import { SimulationConfig, Situation } from '@/pages/simulateurs/_configs/types'
-import { Action, updateSituation } from '@/store/actions/actions'
+import {
+	Action,
+	updateSituation as updateSituationAction,
+} from '@/store/actions/actions'
 import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
 import { ImmutableType } from '@/types/utils'
 import { objectTransform, omit } from '@/utils'
@@ -46,7 +50,6 @@ export type Simulation = {
 	situation: Situation
 	targetUnit: string
 	foldedSteps: Array<DottedName>
-	answeredSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
 	shouldFocusField: boolean
 }
@@ -89,32 +92,21 @@ function simulation(
 				unfoldedStep: null,
 			}
 
+		case 'ANSWER_QUESTION': {
+			// const newSituation =
+			return state
+		}
+
 		case 'UPDATE_SITUATION': {
-			const situation = state.situation
-			const { fieldName: dottedName, value } = action
-
-			if (value === undefined) {
-				return { ...state, situation: omit(situation, dottedName) }
+			return {
+				...state,
+				situation: updateSituation(
+					state.config,
+					state.situation,
+					action.fieldName,
+					action.value
+				),
 			}
-
-			const objectifsExclusifs = state.config['objectifs exclusifs'] ?? []
-
-			if (objectifsExclusifs.includes(dottedName)) {
-				const objectifsToReset = objectifsExclusifs.filter(
-					(name) => name !== dottedName
-				)
-
-				const newSituation = objectTransform(situation, (entries) =>
-					entries.filter(
-						([dottedName]) =>
-							!objectifsToReset.includes(dottedName as DottedName)
-					)
-				)
-
-				return { ...state, situation: { ...newSituation, [dottedName]: value } }
-			}
-
-			return { ...state, situation: { ...situation, [dottedName]: value } }
 		}
 		case 'DELETE_FROM_SITUATION': {
 			const newState = {
@@ -133,6 +125,7 @@ function simulation(
 				const foldedSteps = state.foldedSteps.includes(step)
 					? state.foldedSteps
 					: [...state.foldedSteps, step]
+
 				return {
 					...state,
 					foldedSteps,
@@ -174,7 +167,7 @@ function batchUpdateSituationReducer(state: RootState, action: Action) {
 		(newState, [fieldName, value]) =>
 			mainReducer(
 				newState ?? undefined,
-				updateSituation(fieldName as DottedName, value)
+				updateSituationAction(fieldName as DottedName, value)
 			),
 		state
 	)
@@ -196,3 +189,32 @@ export default reduceReducers<RootState>(
 ) as Reducer<RootState>
 
 export type RootState = ReturnType<typeof mainReducer>
+
+function updateSituation(
+	config: ImmutableType<SimulationConfig>,
+	currentSituation: Situation,
+	dottedName: DottedName,
+	value: PublicodesExpression
+): Situation {
+	if (value === undefined) {
+		return omit(currentSituation, dottedName)
+	}
+
+	const objectifsExclusifs = config['objectifs exclusifs'] ?? []
+
+	if (!objectifsExclusifs.includes(dottedName)) {
+		return { ...currentSituation, [dottedName]: value }
+	}
+
+	const objectifsToReset = objectifsExclusifs.filter(
+		(name) => name !== dottedName
+	)
+
+	const clearedSituation = objectTransform(currentSituation, (entries) =>
+		entries.filter(
+			([dottedName]) => !objectifsToReset.includes(dottedName as DottedName)
+		)
+	)
+
+	return { ...clearedSituation, [dottedName]: value }
+}

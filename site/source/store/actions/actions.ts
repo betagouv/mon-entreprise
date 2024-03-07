@@ -18,6 +18,7 @@ export type Action =
 			| typeof setActiveTarget
 			| typeof setSimulationConfig
 			| typeof stepAction
+			| typeof answerQuestion
 			| typeof updateSituation
 			| typeof deleteFromSituation
 			| typeof updateUnit
@@ -62,7 +63,10 @@ export const setActiveTarget = (targetName: DottedName) =>
 		name: targetName,
 	}) as const
 
-export const updateSituation = (fieldName: DottedName, value: unknown) =>
+export const updateSituation = (
+	fieldName: DottedName,
+	value: PublicodesExpression | undefined
+) =>
 	value === undefined
 		? deleteFromSituation(fieldName)
 		: ({
@@ -113,24 +117,22 @@ export const updateShouldFocusField = (shouldFocusField: boolean) =>
 		shouldFocusField,
 	}) as const
 
+export const answerQuestion_obsolete = (
+	dottedName: DottedName,
+	value: PublicodesExpression | undefined
+) => (value == null ? deleteFromSituation : updateSituation)(dottedName, value)
+
 export const answerQuestion = (
 	dottedName: DottedName,
-	value:
-		| PublicodesExpression
-		| undefined
-		| { batchUpdate: Record<string, PublicodesExpression> }
-) => {
-	if (value && typeof value === 'object' && 'batchUpdate' in value) {
-		return batchUpdateSituation(
-			buildSituationFromObject(
-				dottedName,
-				value.batchUpdate as Record<string, PublicodesExpression>
-			)
-		)
-	}
-
-	return (value == null ? deleteFromSituation : updateSituation)(
+	value: PublicodesExpression
+) =>
+	({
+		type: 'ANSWER_QUESTION',
 		dottedName,
-		value
-	)
-}
+		value,
+	}) as const
+
+export const answerBatchQuestion = (
+	dottedName: DottedName,
+	value: Record<string, PublicodesExpression>
+) => batchUpdateSituation(buildSituationFromObject(dottedName, value))

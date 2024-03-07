@@ -14,7 +14,7 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
-import { answerQuestion } from '@/store/actions/actions'
+import { answerQuestion_obsolete } from '@/store/actions/actions'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -61,7 +61,7 @@ export default function Conversation({
 		value: PublicodesExpression | undefined,
 		dottedName: DottedName
 	) => {
-		dispatch(answerQuestion(dottedName, value))
+		dispatch(answerQuestion_obsolete(dottedName, value))
 	}
 
 	const [firstRenderDone, setFirstRenderDone] = useState(false)
