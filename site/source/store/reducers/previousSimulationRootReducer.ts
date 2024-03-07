@@ -1,6 +1,6 @@
 import { retrievePersistedSimulation } from '@/storage/persistSimulation'
 import { Action } from '@/store/actions/actions'
-import { Simulation } from '@/store/reducers/rootReducer'
+import { Simulation } from '@/store/reducers/simulation.reducer'
 
 import { RootState } from './rootReducer'
 
@@ -13,7 +13,7 @@ export const createStateFromPreviousSimulation = (
 				simulation: {
 					...state.simulation,
 					situation: state.previousSimulation.situation || {},
-					foldedSteps: state.previousSimulation.foldedSteps,
+					answeredQuestions: state.previousSimulation.foldedSteps,
 				} as Simulation,
 				previousSimulation: null,
 		  }

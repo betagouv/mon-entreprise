@@ -9,9 +9,9 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H4 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
+import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 
-import { EngineComparison } from './Comparateur'
 import { getGridSizes } from './DetailsRowCards'
 import StatusCard from './StatusCard'
 

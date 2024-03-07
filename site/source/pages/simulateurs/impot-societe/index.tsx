@@ -18,7 +18,10 @@ import Warning from '@/components/ui/WarningBlock'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
-import { batchUpdateSituation, updateSituation } from '@/store/actions/actions'
+import {
+	batchUpdateSituation,
+	enregistreLaRéponse,
+} from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 export default function ISSimulation() {
@@ -105,13 +108,13 @@ function ExerciceDate() {
 				<RuleInput
 					dottedName={'entreprise . exercice . début'}
 					onChange={(x) =>
-						dispatch(updateSituation('entreprise . exercice . début', x))
+						dispatch(enregistreLaRéponse('entreprise . exercice . début', x))
 					}
 				/>{' '}
 				<RuleInput
 					dottedName={'entreprise . exercice . fin'}
 					onChange={(x) =>
-						dispatch(updateSituation('entreprise . exercice . fin', x))
+						dispatch(enregistreLaRéponse('entreprise . exercice . fin', x))
 					}
 				/>
 			</ExerciceDateContainer>

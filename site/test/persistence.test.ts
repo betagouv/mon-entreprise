@@ -6,14 +6,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { setupSimulationPersistence } from '@/storage/persistSimulation'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 import {
+	enregistreLaRéponse,
 	loadPreviousSimulation,
 	setSimulationConfig,
-	updateSituation,
 } from '@/store/actions/actions'
-import reducers, {
-	Simulation,
-	SimulationConfig,
-} from '@/store/reducers/rootReducer'
+import reducers, { SimulationConfig } from '@/store/reducers/rootReducer'
+import { Simulation } from '@/store/reducers/simulation.reducer'
 
 function delay(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms))
@@ -31,9 +29,8 @@ const initialSimulation: Simulation = {
 	hiddenNotifications: [],
 	situation: {},
 	targetUnit: '€/mois',
-	foldedSteps: ['somestep' as DottedName],
-	unfoldedStep: null,
-	shouldFocusField: false,
+	answeredQuestions: ['somestep' as DottedName],
+	currentQuestion: null,
 }
 
 describe('[persistence] When simulation persistence is setup', () => {
@@ -51,7 +48,7 @@ describe('[persistence] When simulation persistence is setup', () => {
 
 	describe('when the state is changed with some data that is persistable', () => {
 		beforeEach(async () => {
-			store.dispatch(updateSituation('dotted name' as DottedName, '42'))
+			store.dispatch(enregistreLaRéponse('dotted name' as DottedName, '42'))
 			await delay(0)
 		})
 		it('saves state in localStorage with all fields', () => {

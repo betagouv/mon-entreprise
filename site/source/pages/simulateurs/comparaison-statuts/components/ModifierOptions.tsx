@@ -1,7 +1,7 @@
 import { PublicodesExpression } from 'publicodes'
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { SwitchInput } from '@/components/conversation/ChoicesInput'
@@ -16,10 +16,9 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { answerQuestion } from '@/store/actions/actions'
-
-import { useCasParticuliers } from '../contexts/CasParticuliers'
-import { EngineComparison } from './Comparateur'
+import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
+import { enregistreLaRéponse, setACRE } from '@/store/actions/actions'
+import { acreActivéSelector } from '@/store/selectors/acreActivé.selector'
 
 const DOTTEDNAME_SOCIETE_IMPOT = 'entreprise . imposition'
 const DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE =
@@ -55,14 +54,15 @@ const ModifierOptions = ({
 		defaultValueVersementLiberatoire
 	)
 	const [acreValue, setAcreValue] = useState(defaultValueACRE)
-	const { isAutoEntrepreneurACREEnabled, setIsAutoEntrepreneurACREEnabled } =
-		useCasParticuliers()
+
+	const isAutoEntrepreneurACREEnabled = useSelector(acreActivéSelector)
+	const dispatch = useDispatch()
+	const setIsAutoEntrepreneurACREEnabled = (activé: boolean) =>
+		dispatch(setACRE(activé))
 
 	const [AEAcreValue, setAEAcreValue] = useState<boolean | null>(null)
 
 	const { t } = useTranslation()
-
-	const dispatch = useDispatch()
 
 	const onCancel = useCallback(() => {
 		setAcreValue(null)
@@ -82,19 +82,14 @@ const ModifierOptions = ({
 			)}
 			confirmLabel="Enregistrer les options"
 			onConfirm={() => {
-				dispatch(
-					answerQuestion(
-						DOTTEDNAME_SOCIETE_IMPOT,
-						impotValue as PublicodesExpression
-					)
-				)
+				dispatch(enregistreLaRéponse(DOTTEDNAME_SOCIETE_IMPOT, impotValue))
 
 				const versementLibératoireValuePassed =
 					versementLiberatoireValue === null
 						? defaultValueVersementLiberatoire
 						: versementLiberatoireValue
 				dispatch(
-					answerQuestion(
+					enregistreLaRéponse(
 						DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE,
 						versementLibératoireValuePassed ? 'oui' : 'non'
 					)
@@ -103,7 +98,7 @@ const ModifierOptions = ({
 				const acreValuePassed =
 					acreValue === null ? defaultValueACRE : acreValue
 				dispatch(
-					answerQuestion(DOTTEDNAME_ACRE, acreValuePassed ? 'oui' : 'non')
+					enregistreLaRéponse(DOTTEDNAME_ACRE, acreValuePassed ? 'oui' : 'non')
 				)
 
 				if (!acreValuePassed) {

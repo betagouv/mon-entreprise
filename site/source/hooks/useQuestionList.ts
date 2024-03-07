@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { stepAction, updateSituation } from '@/store/actions/actions'
+import { enregistreLaRéponse } from '@/store/actions/actions'
 import { answeredQuestionsSelector } from '@/store/selectors/simulationSelectors'
 
 export function useQuestionList(): [
@@ -25,10 +25,10 @@ export function useQuestionList(): [
 
 	const onQuestionAnswered =
 		(dottedName: DottedName) => (value?: PublicodesExpression) => {
-			if (!answeredQuestions.includes(dottedName)) {
-				dispatch(stepAction(dottedName))
-			}
-			dispatch(updateSituation(dottedName, value))
+			// if (!answeredQuestions.includes(dottedName)) {
+			// 	dispatch(vaÀLaQuestionSuivante())
+			// }
+			dispatch(enregistreLaRéponse(dottedName, value))
 		}
 
 	return [questions, onQuestionAnswered]

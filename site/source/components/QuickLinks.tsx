@@ -6,12 +6,10 @@ import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { goToQuestion } from '@/store/actions/actions'
+import { vaÀLaQuestion } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
-import {
-	answeredQuestionsSelector,
-	currentQuestionSelector,
-} from '@/store/selectors/simulationSelectors'
+import { currentQuestionSelector } from '@/store/selectors/currentQuestion.selector'
+import { answeredQuestionsSelector } from '@/store/selectors/simulationSelectors'
 
 export default function QuickLinks() {
 	const currentQuestion = useSelector(currentQuestionSelector)
@@ -43,7 +41,7 @@ export default function QuickLinks() {
 				<StyledLink
 					key={dottedName}
 					$underline={dottedName === currentQuestion}
-					onPress={() => dispatch(goToQuestion(dottedName))}
+					onPress={() => dispatch(vaÀLaQuestion(dottedName))}
 					aria-label={t('{{question}}, aller à la question : {{question}}', {
 						question: label,
 					})}
