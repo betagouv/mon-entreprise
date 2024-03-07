@@ -19,6 +19,8 @@ export type Action =
 			| typeof setSimulationConfig
 			| typeof stepAction
 			| typeof answerQuestion
+			| typeof previousQuestion
+			| typeof nextQuestion
 			| typeof updateSituation
 			| typeof deleteFromSituation
 			| typeof updateUnit
@@ -124,12 +126,22 @@ export const answerQuestion_obsolete = (
 
 export const answerQuestion = (
 	dottedName: DottedName,
-	value: PublicodesExpression
+	value: PublicodesExpression | undefined
 ) =>
 	({
 		type: 'ANSWER_QUESTION',
 		dottedName,
 		value,
+	}) as const
+
+export const previousQuestion = () =>
+	({
+		type: 'PREVIOUS_QUESTION',
+	}) as const
+
+export const nextQuestion = () =>
+	({
+		type: 'NEXT_QUESTION',
 	}) as const
 
 export const answerBatchQuestion = (

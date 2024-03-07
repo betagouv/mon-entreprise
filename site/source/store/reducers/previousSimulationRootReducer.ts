@@ -13,7 +13,7 @@ export const createStateFromPreviousSimulation = (
 				simulation: {
 					...state.simulation,
 					situation: state.previousSimulation.situation || {},
-					foldedSteps: state.previousSimulation.foldedSteps,
+					answeredQuestions: state.previousSimulation.foldedSteps,
 				} as Simulation,
 				previousSimulation: null,
 		  }

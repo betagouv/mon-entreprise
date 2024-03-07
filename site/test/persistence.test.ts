@@ -31,8 +31,8 @@ const initialSimulation: Simulation = {
 	hiddenNotifications: [],
 	situation: {},
 	targetUnit: '€/mois',
-	foldedSteps: ['somestep' as DottedName],
-	unfoldedStep: null,
+	answeredQuestions: ['somestep' as DottedName],
+	currentQuestion: null,
 	shouldFocusField: false,
 }
 

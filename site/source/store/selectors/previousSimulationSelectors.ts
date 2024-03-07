@@ -14,6 +14,6 @@ export const currentSimulationSelector = (
 	return {
 		situation: state.simulation?.situation ?? {},
 		activeTargetInput: state.activeTargetInput,
-		foldedSteps: state.simulation?.foldedSteps,
+		foldedSteps: state.simulation?.answeredQuestions,
 	}
 }

@@ -49,12 +49,12 @@ export type Simulation = {
 	hiddenNotifications: Array<string>
 	situation: Situation
 	targetUnit: string
-	foldedSteps: Array<DottedName>
-	unfoldedStep?: DottedName | null
+	answeredQuestions: Array<DottedName>
+	currentQuestion?: DottedName | null
 	shouldFocusField: boolean
 }
 
-function simulation(
+export function simulation(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation | null {
@@ -67,8 +67,8 @@ function simulation(
 			hiddenNotifications: [],
 			situation: {},
 			targetUnit: config['unité par défaut'] || '€/mois',
-			foldedSteps: [],
-			unfoldedStep: null,
+			answeredQuestions: [],
+			currentQuestion: null,
 			shouldFocusField: false,
 		}
 	}
@@ -88,13 +88,25 @@ function simulation(
 				...state,
 				hiddenNotifications: [],
 				situation: {},
-				foldedSteps: [],
-				unfoldedStep: null,
+				answeredQuestions: [],
+				currentQuestion: null,
 			}
 
 		case 'ANSWER_QUESTION': {
-			// const newSituation =
-			return state
+			const foldedSteps = state.answeredQuestions.includes(action.dottedName)
+				? state.answeredQuestions
+				: [...state.answeredQuestions, action.dottedName]
+
+			return {
+				...state,
+				answeredQuestions: foldedSteps,
+				situation: updateSituation(
+					state.config,
+					state.situation,
+					action.dottedName,
+					action.value
+				),
+			}
 		}
 
 		case 'UPDATE_SITUATION': {
@@ -119,24 +131,54 @@ function simulation(
 
 			return newState
 		}
+		case 'PREVIOUS_QUESTION': {
+			if (state.answeredQuestions.length === 0) {
+				return state
+			}
+
+			const currentIndex = state.currentQuestion
+				? state.answeredQuestions.indexOf(state.currentQuestion)
+				: -1
+
+			if (currentIndex === -1) {
+				return {
+					...state,
+					currentQuestion: state.answeredQuestions.at(-1),
+				}
+			}
+
+			const previousQuestion = state.answeredQuestions[currentIndex - 1]
+			if (previousQuestion === undefined) {
+				return state
+			}
+
+			return {
+				...state,
+				currentQuestion: previousQuestion,
+			}
+		}
+
+		case 'NEXT_QUESTION': {
+			return state
+		}
 		case 'STEP_ACTION': {
 			const { name, step } = action
 			if (name === 'fold') {
-				const foldedSteps = state.foldedSteps.includes(step)
-					? state.foldedSteps
-					: [...state.foldedSteps, step]
+				const foldedSteps = state.answeredQuestions.includes(step)
+					? state.answeredQuestions
+					: [...state.answeredQuestions, step]
 
 				return {
 					...state,
-					foldedSteps,
-					unfoldedStep: null,
+					answeredQuestions: foldedSteps,
+					currentQuestion: null,
 				}
 			}
 			if (name === 'unfold') {
 				return {
 					...state,
-					foldedSteps: state.foldedSteps,
-					unfoldedStep: step,
+					answeredQuestions: state.answeredQuestions,
+					currentQuestion: step,
 				}
 			}
 
@@ -194,7 +236,7 @@ function updateSituation(
 	config: ImmutableType<SimulationConfig>,
 	currentSituation: Situation,
 	dottedName: DottedName,
-	value: PublicodesExpression
+	value: PublicodesExpression | undefined
 ): Situation {
 	if (value === undefined) {
 		return omit(currentSituation, dottedName)

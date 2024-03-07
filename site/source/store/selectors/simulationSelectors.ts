@@ -62,10 +62,10 @@ export const targetUnitSelector = (state: RootState) =>
 	state.simulation?.targetUnit ?? '€/mois'
 
 export const currentQuestionSelector = (state: RootState) =>
-	state.simulation?.unfoldedStep ?? null
+	state.simulation?.currentQuestion ?? null
 
 export const answeredQuestionsSelector = (state: RootState) =>
-	state.simulation?.foldedSteps ?? []
+	state.simulation?.answeredQuestions ?? []
 
 export const shouldFocusFieldSelector = (state: RootState) =>
 	state.simulation?.shouldFocusField ?? false
