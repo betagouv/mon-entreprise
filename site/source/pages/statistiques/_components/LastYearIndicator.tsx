@@ -64,7 +64,7 @@ export function LastYearIndicator({
 	return (
 		<>
 			<H2>Retour sur l'année {lastYear.date.slice(0, 4)}</H2>
-			<Grid container columnSpacing={4} rowSpacing>
+			<Grid container columnSpacing={4}>
 				<Grid item xs={12} sm={6} md={4}>
 					<Message border={false} icon={<Emoji emoji="🛎️" />}>
 						<Intro>
