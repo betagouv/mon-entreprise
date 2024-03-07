@@ -1,4 +1,4 @@
-import { SimulationConfig } from '../_configs/types'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configSalarié: SimulationConfig = {
 	'objectifs exclusifs': [

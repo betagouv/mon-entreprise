@@ -121,6 +121,17 @@ export function omit<T extends object, K extends keyof T>(
 }
 
 /**
+ * Filters out elements from the given array that satisfy the provided predicate.
+ *
+ * @param {Array} array - The array to filter.
+ * @param {Function} predicate - The function used to test each element.
+ * @returns {Array} - An array containing the elements that do not satisfy the predicate.
+ */
+export function reject<T>(array: T[], predicate: (value: T) => boolean): T[] {
+	return array.filter((value) => !predicate(value))
+}
+
+/**
  * Transforms an object into entries which is then passed to the transform function to be
  * modified as desired with map, filter, etc., then transformed back into an object
  */

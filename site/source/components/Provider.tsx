@@ -1,6 +1,7 @@
 import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import i18next from 'i18next'
+import Engine from 'publicodes'
 import { createContext, ReactNode } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
@@ -13,7 +14,7 @@ import DesignSystemThemeProvider from '@/design-system/root'
 import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
 
 import * as safeLocalStorage from '../storage/safeLocalStorage'
-import { store } from '../store/store'
+import { makeStore } from '../store/store'
 import { TrackingContext } from './ATInternetTracking'
 import { createTracker } from './ATInternetTracking/Tracker'
 import { ErrorFallback } from './ErrorPage'
@@ -29,12 +30,16 @@ export const SiteNameContext = createContext<SiteName | null>(null)
 export type ProviderProps = {
 	basename: SiteName
 	children: ReactNode
+	engine: Engine
 }
 
 export default function Provider({
 	basename,
 	children,
+	engine,
 }: ProviderProps): JSX.Element {
+	const store = makeStore(engine)
+
 	return (
 		<EmbededContextProvider>
 			<DarkModeProvider>

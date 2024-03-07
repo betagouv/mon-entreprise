@@ -2,7 +2,6 @@ import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 
 import { SimulationConfig } from '@/store/reducers/rootReducer'
-import { ImmutableType } from '@/types/utils'
 import { buildSituationFromObject } from '@/utils'
 
 import { CompanyActions } from './companyActions'
@@ -11,18 +10,19 @@ import { HiringChecklistAction } from './hiringChecklistAction'
 export type Action =
 	| ReturnType<
 			| typeof explainVariable
-			| typeof goToQuestion
+			| typeof vaÀLaQuestion
 			| typeof hideNotification
 			| typeof loadPreviousSimulation
 			| typeof resetSimulation
 			| typeof setActiveTarget
 			| typeof setSimulationConfig
-			| typeof stepAction
-			| typeof updateSituation
+			| typeof retourneÀLaQuestionPrécédente
+			| typeof vaÀLaQuestionSuivante
+			| typeof enregistreLaRéponse
 			| typeof deleteFromSituation
 			| typeof updateUnit
 			| typeof batchUpdateSituation
-			| typeof updateShouldFocusField
+			| typeof questionsSuivantes
 	  >
 	| CompanyActions
 	| HiringChecklistAction
@@ -32,24 +32,19 @@ export const resetSimulation = () =>
 		type: 'RESET_SIMULATION',
 	}) as const
 
-export const goToQuestion = (question: DottedName) =>
+export const vaÀLaQuestion = (question: DottedName) =>
 	({
-		type: 'STEP_ACTION',
-		name: 'unfold',
-		step: question,
+		type: 'VA_À_LA_QUESTION',
+		question,
 	}) as const
 
-export const stepAction = (step: DottedName) =>
+export const questionsSuivantes = (questionsSuivantes: Array<DottedName>) =>
 	({
-		type: 'STEP_ACTION',
-		name: 'fold',
-		step,
+		type: 'QUESTIONS_SUIVANTES',
+		questionsSuivantes,
 	}) as const
 
-export const setSimulationConfig = (
-	config: ImmutableType<SimulationConfig>,
-	url: string
-) =>
+export const setSimulationConfig = (config: SimulationConfig, url: string) =>
 	({
 		type: 'SET_SIMULATION',
 		url,
@@ -62,11 +57,14 @@ export const setActiveTarget = (targetName: DottedName) =>
 		name: targetName,
 	}) as const
 
-export const updateSituation = (fieldName: DottedName, value: unknown) =>
+export const enregistreLaRéponse = (
+	fieldName: DottedName,
+	value: PublicodesExpression | undefined
+) =>
 	value === undefined
 		? deleteFromSituation(fieldName)
 		: ({
-				type: 'UPDATE_SITUATION',
+				type: 'ENREGISTRE_LA_RÉPONSE',
 				fieldName,
 				value,
 		  } as const)
@@ -107,30 +105,23 @@ export const explainVariable = (variableName: DottedName | null = null) =>
 		variableName,
 	}) as const
 
-export const updateShouldFocusField = (shouldFocusField: boolean) =>
+export const retourneÀLaQuestionPrécédente = () =>
 	({
-		type: 'UPDATE_SHOULD_FOCUS_FIELD',
-		shouldFocusField,
+		type: 'RETOURNE_À_LA_QUESTION_PRÉCÉDENTE',
 	}) as const
 
-export const answerQuestion = (
-	dottedName: DottedName,
-	value:
-		| PublicodesExpression
-		| undefined
-		| { batchUpdate: Record<string, PublicodesExpression> }
-) => {
-	if (value && typeof value === 'object' && 'batchUpdate' in value) {
-		return batchUpdateSituation(
-			buildSituationFromObject(
-				dottedName,
-				value.batchUpdate as Record<string, PublicodesExpression>
-			)
-		)
-	}
+export const vaÀLaQuestionSuivante = () =>
+	({
+		type: 'VA_À_LA_QUESTION_SUIVANTE',
+	}) as const
 
-	return (value == null ? deleteFromSituation : updateSituation)(
-		dottedName,
-		value
+export const setACRE = (activé: boolean) =>
+	enregistreLaRéponse(
+		'dirigeant . exonérations . ACRE',
+		activé ? "'oui'" : "'non'"
 	)
-}
+
+export const answerBatchQuestion = (
+	dottedName: DottedName,
+	value: Record<string, PublicodesExpression>
+) => batchUpdateSituation(buildSituationFromObject(dottedName, value))

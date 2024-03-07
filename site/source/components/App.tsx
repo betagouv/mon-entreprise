@@ -63,7 +63,7 @@ export default function Root({
 	return (
 		<StrictMode>
 			<EngineProvider value={engine}>
-				<Provider basename={basename}>
+				<Provider engine={engine} basename={basename}>
 					<Redirections>
 						<ErrorBoundary fallback={CatchOffline}>
 							<Router />

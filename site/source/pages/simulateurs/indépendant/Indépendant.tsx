@@ -17,7 +17,7 @@ import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { updateSituation } from '@/store/actions/actions'
+import { enregistreLaRéponse } from '@/store/actions/actions'
 
 export function IndépendantPLSimulation() {
 	return (
@@ -135,7 +135,7 @@ export default function IndépendantSimulation() {
 								dottedName="entreprise . imposition"
 								onChange={(imposition) => {
 									dispatch(
-										updateSituation('entreprise . imposition', imposition)
+										enregistreLaRéponse('entreprise . imposition', imposition)
 									)
 								}}
 							/>

@@ -19,7 +19,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { useSitePaths } from '@/sitePaths'
-import { updateSituation } from '@/store/actions/actions'
+import { enregistreLaRéponse } from '@/store/actions/actions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
@@ -195,7 +195,7 @@ function ImpositionSection() {
 
 	const setSituation = useCallback(
 		(value: PublicodesExpression | undefined, dottedName: DottedName) => {
-			dispatch(updateSituation(dottedName, value))
+			dispatch(enregistreLaRéponse(dottedName, value))
 		},
 		[dispatch]
 	)

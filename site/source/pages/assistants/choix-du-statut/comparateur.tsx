@@ -9,12 +9,11 @@ import { Button } from '@/design-system/buttons'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Intro } from '@/design-system/typography/paragraphs'
-import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/components/Comparateur'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
 import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'
 import StatutChoice from '@/pages/simulateurs/comparaison-statuts/components/StatutChoice'
-import { useCasParticuliers } from '@/pages/simulateurs/comparaison-statuts/contexts/CasParticuliers'
+import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 import { Situation } from '@/store/reducers/rootReducer'
 
@@ -83,7 +82,6 @@ export default function Comparateur() {
  * @param statut
  */
 function useStatutComparaison(): EngineComparison {
-	const { isAutoEntrepreneurACREEnabled } = useCasParticuliers()
 	const possibleStatuts = usePossibleStatuts()
 	const situation = useRawSituation()
 	const engine = useEngine()
@@ -100,7 +98,7 @@ function useStatutComparaison(): EngineComparison {
 	for (const { name, engine } of namedEngines) {
 		engine.setSituation({
 			...situation,
-			...getSituationFromStatut(name, isAutoEntrepreneurACREEnabled),
+			...getSituationFromStatut(name),
 		})
 	}
 
@@ -129,10 +127,7 @@ function usePossibleStatuts(): Array<StatutType> {
 	}
 }
 
-function getSituationFromStatut(
-	statut: StatutType,
-	AEAcre: boolean
-): Situation {
+function getSituationFromStatut(statut: StatutType): Situation {
 	return {
 		'entreprise . catégorie juridique . remplacements': 'oui',
 		'entreprise . catégorie juridique':
@@ -152,8 +147,5 @@ function getSituationFromStatut(
 		'entreprise . associés': ['SARL', 'SAS', 'SELAS', 'SELARL'].includes(statut)
 			? "'multiple'"
 			: "'unique'",
-		...(statut === 'AE'
-			? { 'dirigeant . exonérations . ACRE': AEAcre ? 'oui' : 'non' }
-			: {}),
 	}
 }

@@ -1,5 +1,3 @@
-import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -31,7 +29,6 @@ export { SimulationGoals } from './SimulationGoals'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
-	engines?: Array<Engine<DottedName>>
 	results?: React.ReactNode
 	children?: React.ReactNode
 	afterQuestionsSlot?: React.ReactNode
@@ -59,7 +56,6 @@ export default function Simulation({
 	afterQuestionsSlot,
 	customEndMessages,
 	showQuestionsFromBeginning,
-	engines,
 	hideDetails = false,
 	fullWidth,
 	id,
@@ -85,10 +81,7 @@ export default function Simulation({
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
 							</div>
-							<Questions
-								engines={engines}
-								customEndMessages={customEndMessages}
-							/>
+							<Questions customEndMessages={customEndMessages} />
 						</>
 					)}
 					<Spacing md />
