@@ -1,6 +1,14 @@
-import { SimulationConfig } from '../_configs/types'
+import { AssimiléSalariéContexte } from '@/domain/AssimiléSalariéContexte'
+import { AutoentrepreneurContexte } from '@/domain/AutoentrepreneurContexte'
+import { IndépendantContexte } from '@/domain/IndépendantContexte'
+import { ComparateurConfig } from '@/domaine/ComparateurConfig'
 
-export const configComparateurStatuts: SimulationConfig = {
+export const configComparateurStatuts: ComparateurConfig = {
+	contextes: [
+		AssimiléSalariéContexte,
+		AutoentrepreneurContexte,
+		IndépendantContexte,
+	],
 	'objectifs exclusifs': [],
 	objectifs: [
 		'dirigeant . rémunération . net',

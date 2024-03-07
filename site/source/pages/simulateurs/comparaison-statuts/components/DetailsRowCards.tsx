@@ -12,9 +12,9 @@ import { HelpIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Body } from '@/design-system/typography/paragraphs'
+import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 import { getBestOption, OptionType } from '../utils'
-import { EngineComparison } from './Comparateur'
 import StatusCard from './StatusCard'
 
 export const getGridSizes = (numberOptions: number, total: number) => {

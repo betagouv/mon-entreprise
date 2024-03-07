@@ -10,8 +10,7 @@ import {
 	setSimulationConfig,
 } from '@/store/actions/actions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
-import { configSelector } from '@/store/selectors/simulationSelectors'
-import { ImmutableType } from '@/types/utils'
+import { configSelector } from '@/store/selectors/config.selector'
 
 export default function useSimulationConfig({
 	key,
@@ -19,7 +18,7 @@ export default function useSimulationConfig({
 	autoloadLastSimulation = false,
 }: {
 	key: string
-	config?: ImmutableType<SimulationConfig>
+	config?: SimulationConfig
 	autoloadLastSimulation?: boolean
 }) {
 	const dispatch = useDispatch()

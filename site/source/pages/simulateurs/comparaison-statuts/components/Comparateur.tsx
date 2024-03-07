@@ -1,5 +1,3 @@
-import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
@@ -9,42 +7,26 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import { StatutType } from '@/components/StatutTag'
 import { Message } from '@/design-system'
 import { Container, Spacing } from '@/design-system/layout'
 import { H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 
 import Détails from './Détails'
 import ModifierOptions from './ModifierOptions'
 import StatutChoice from './StatutChoice'
 
-type NamedEngine = {
-	engine: Engine<DottedName>
-	name: StatutType
-}
-
-export type EngineComparison =
-	| [NamedEngine, NamedEngine, NamedEngine]
-	| [NamedEngine, NamedEngine]
-
 function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 	const { t } = useTranslation()
-
-	const engines = namedEngines.map(({ engine }) => engine) as [
-		Engine<DottedName>,
-		Engine<DottedName>,
-		Engine<DottedName>,
-	]
 
 	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<>
 			<Simulation
-				engines={engines}
 				hideDetails
 				showQuestionsFromBeginning
 				fullWidth

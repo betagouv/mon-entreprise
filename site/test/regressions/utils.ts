@@ -9,7 +9,7 @@ import { EvaluatedNode, Evaluation } from 'publicodes'
 import { expect } from 'vitest'
 
 import { engineFactory } from '@/components/utils/EngineContext'
-import { Simulation } from '@/store/reducers/rootReducer'
+import { Simulation } from '@/store/reducers/simulation.reducer'
 
 type SituationsSpecs = Record<string, Simulation['situation'][]>
 

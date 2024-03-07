@@ -15,6 +15,7 @@ import {
 } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
+import { Simulation } from '@/store/reducers/simulation.reducer'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { Merge } from '@/types/utils'
 
@@ -51,7 +52,7 @@ export default function SimulateurOrAssistantPage() {
 	const inIframe = useIsEmbedded()
 	useSimulationConfig({
 		key: path,
-		config: simulation,
+		config: simulation as Simulation,
 		autoloadLastSimulation,
 	})
 	useSearchParamsSimulationSharing()

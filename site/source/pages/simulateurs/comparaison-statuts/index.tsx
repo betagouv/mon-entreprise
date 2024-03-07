@@ -7,56 +7,43 @@ import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { AssimiléSalariéContexte } from '@/domain/AssimiléSalariéContexte'
+import { AutoentrepreneurContexte } from '@/domain/AutoentrepreneurContexte'
+import { IndépendantContexte } from '@/domain/IndépendantContexte'
 import { useSitePaths } from '@/sitePaths'
 
-import Comparateur, { EngineComparison } from './components/Comparateur'
-import {
-	CasParticuliersProvider,
-	useCasParticuliers,
-} from './contexts/CasParticuliers'
+import Comparateur from './components/Comparateur'
+import { EngineComparison } from './EngineComparison'
 
 function ComparateurStatutsUI() {
 	const engine = useEngine()
 	const situation = useRawSituation()
 	const { absoluteSitePaths } = useSitePaths()
-	const { isAutoEntrepreneurACREEnabled } = useCasParticuliers()
 
 	const assimiléEngine = useMemo(
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				'entreprise . imposition': "'IS'",
-				'entreprise . catégorie juridique': "'SAS'",
-				'entreprise . associés': "'unique'",
+				...AssimiléSalariéContexte,
 			}),
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[situation]
+		[situation, engine]
 	)
 	const autoEntrepreneurEngine = useMemo(
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				'entreprise . catégorie juridique': "'EI'",
-				'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
-				...(isAutoEntrepreneurACREEnabled
-					? { 'dirigeant . exonérations . ACRE': 'oui' }
-					: { 'dirigeant . exonérations . ACRE': 'non' }),
+				...AutoentrepreneurContexte,
 			}),
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[situation, isAutoEntrepreneurACREEnabled]
+		[situation, engine]
 	)
 
 	const indépendantEngine = useMemo(
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				'entreprise . imposition':
-					situation['entreprise . imposition'] ?? "'IS'",
-				'entreprise . catégorie juridique': "'EI'",
-				'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
+				...IndépendantContexte,
 			}),
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[situation]
+		[situation, engine]
 	)
 
 	const engines = [
@@ -97,9 +84,5 @@ function ComparateurStatutsUI() {
 }
 
 export default function ComparateurStatuts() {
-	return (
-		<CasParticuliersProvider>
-			<ComparateurStatutsUI />
-		</CasParticuliersProvider>
-	)
+	return <ComparateurStatutsUI />
 }

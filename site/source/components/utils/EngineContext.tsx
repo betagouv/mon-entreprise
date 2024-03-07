@@ -6,7 +6,7 @@ import Engine, {
 	Rule,
 	RuleNode,
 } from 'publicodes'
-import { createContext, useContext, useMemo } from 'react'
+import { createContext, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { deleteFromSituation } from '@/store/actions/actions'
@@ -14,6 +14,7 @@ import {
 	companySituationSelector,
 	configObjectifsSelector,
 	configSituationSelector,
+	rawSituationSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
 import { omit } from '@/utils'
@@ -79,22 +80,7 @@ export function useEngine() {
 	return useContext(EngineContext) as Engine<DottedName>
 }
 
-export const useRawSituation = () => {
-	const simulatorSituation = useSelector(situationSelector)
-	const configSituation = useSelector(configSituationSelector)
-	const companySituation = useSelector(companySituationSelector)
-
-	const situation: Partial<Record<DottedName, PublicodesExpression>> = useMemo(
-		() => ({
-			...companySituation,
-			...configSituation,
-			...simulatorSituation,
-		}),
-		[configSituation, simulatorSituation, companySituation]
-	)
-
-	return situation
-}
+export const useRawSituation = () => useSelector(rawSituationSelector)
 
 /**
  * Try to set situation and delete all rules with syntax/evaluation error
@@ -194,11 +180,10 @@ export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
 	}
 }
 
-export function useInversionFail(engines?: Array<Engine<DottedName>>) {
+export function useInversionFail() {
 	const engine = useEngine()
-	const enginesToUse = engines ?? [engine]
-	const objectifs = useSelector(configObjectifsSelector).flatMap((objectif) =>
-		enginesToUse.map((e) => e.evaluate(objectif).nodeValue)
+	const objectifs = useSelector(configObjectifsSelector).map(
+		(objectif) => engine.evaluate(objectif).nodeValue
 	)
 
 	const inversionFail =
