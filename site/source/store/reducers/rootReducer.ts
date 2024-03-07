@@ -46,6 +46,7 @@ export type Simulation = {
 	situation: Situation
 	targetUnit: string
 	foldedSteps: Array<DottedName>
+	answeredSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
 	shouldFocusField: boolean
 }
@@ -129,16 +130,19 @@ function simulation(
 		case 'STEP_ACTION': {
 			const { name, step } = action
 			if (name === 'fold') {
+				const foldedSteps = state.foldedSteps.includes(step)
+					? state.foldedSteps
+					: [...state.foldedSteps, step]
 				return {
 					...state,
-					foldedSteps: [...state.foldedSteps, step],
+					foldedSteps,
 					unfoldedStep: null,
 				}
 			}
 			if (name === 'unfold') {
 				return {
 					...state,
-					foldedSteps: state.foldedSteps.filter((name) => name !== step),
+					foldedSteps: state.foldedSteps,
 					unfoldedStep: step,
 				}
 			}
