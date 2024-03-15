@@ -13,6 +13,7 @@ import { resetSimulation, updateSituation } from '@/store/actions/actions'
 import SearchCodeAPE from '../recherche-code-ape/SearchCodeAPE'
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
+import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
 
 export default function RechercheActivité() {
 	const [codeApe, setCodeApe] = useState('')
@@ -22,6 +23,8 @@ export default function RechercheActivité() {
 	useEffect(() => {
 		dispatch(resetSimulation())
 	}, [])
+
+	const isBpi = useIsEmbededOnBPISite()
 
 	const NavigationComponent = (
 		<Navigation
@@ -63,7 +66,13 @@ export default function RechercheActivité() {
 									Votre entreprise doit tout de même déclarer une activité
 									principale à l'administration. Pour savoir comment la
 									déterminer,{' '}
-									<Link href="https://entreprendre.service-public.fr/vosdroits/F33050">
+									<Link
+										href={
+											isBpi
+												? 'https://bpifrance-creation.fr/encyclopedie/statut-du-dirigeant-son-conjoint/situation-pluriactifs/cumul-dactivites-independantes#:~:text=Il%20est%20en%20g%C3%A9n%C3%A9ral%20possible,d%27entre%20elles%20est%20agricole.'
+												: 'https://entreprendre.service-public.fr/vosdroits/F33050'
+										}
+									>
 										voir ce guide
 									</Link>
 									.

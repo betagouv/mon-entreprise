@@ -20,6 +20,8 @@ entreprise . imposition:
     Quelle imposition selon mon statut ?: https://www.economie.gouv.fr/entreprises/impot-revenu-impot-societe-statut
     Guide complet sur les types de résultats d'une entreprise: https://www.impots.gouv.fr/professionnel/resultat-imposable-limpot-sur-le-revenu-ir-ou-limpot-sur-les-societes
 
+    # BPI ONLY
+    Imposition des bénéfices: https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/imposition-benefices
 entreprise . imposition . IR:
   valeur: imposition = 'IR'
   titre: Impôt sur le revenu
@@ -109,6 +111,10 @@ entreprise . imposition . IS:
   références:
     "Impôt sur les sociétés : entreprises concernées et taux d'imposition": https://entreprendre.service-public.fr/vosdroits/F23575
     Comment choisir l'imposition sur le revenu ?: https://entreprendre.service-public.fr/vosdroits/F31265
+
+    # BPI Only
+    "Quelles sont les entreprises soumises à l'impôt sur les sociétés (IS) ?": "https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/is-impot-societes"
+    Comparaison IR/IS: "https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/imposition-benefices#:~:text=Principe%20de%20l%27imp%C3%B4t%20sur%20les%20soci%C3%A9t%C3%A9s,-Une%20distinction%20est&text=Les%20entreprises%20dont%20le%20chiffre,%2C%20et%2025%20%25%20au%20del%C3%A0."
 
 entreprise . imposition . IS . montant:
   unité: €/an
