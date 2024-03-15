@@ -16,7 +16,7 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { answerQuestion_obsolete } from '@/store/actions/actions'
+import { enregistreLaRéponse } from '@/store/actions/actions'
 
 import { useCasParticuliers } from '../contexts/CasParticuliers'
 import { EngineComparison } from './Comparateur'
@@ -82,19 +82,14 @@ const ModifierOptions = ({
 			)}
 			confirmLabel="Enregistrer les options"
 			onConfirm={() => {
-				dispatch(
-					answerQuestion_obsolete(
-						DOTTEDNAME_SOCIETE_IMPOT,
-						impotValue as PublicodesExpression
-					)
-				)
+				dispatch(enregistreLaRéponse(DOTTEDNAME_SOCIETE_IMPOT, impotValue))
 
 				const versementLibératoireValuePassed =
 					versementLiberatoireValue === null
 						? defaultValueVersementLiberatoire
 						: versementLiberatoireValue
 				dispatch(
-					answerQuestion_obsolete(
+					enregistreLaRéponse(
 						DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE,
 						versementLibératoireValuePassed ? 'oui' : 'non'
 					)
@@ -103,10 +98,7 @@ const ModifierOptions = ({
 				const acreValuePassed =
 					acreValue === null ? defaultValueACRE : acreValue
 				dispatch(
-					answerQuestion_obsolete(
-						DOTTEDNAME_ACRE,
-						acreValuePassed ? 'oui' : 'non'
-					)
+					enregistreLaRéponse(DOTTEDNAME_ACRE, acreValuePassed ? 'oui' : 'non')
 				)
 
 				if (!acreValuePassed) {

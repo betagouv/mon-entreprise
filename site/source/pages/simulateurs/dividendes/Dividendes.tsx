@@ -16,7 +16,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { updateSituation } from '@/store/actions/actions'
+import { enregistreLaRéponse } from '@/store/actions/actions'
 
 export default function DividendesSimulation() {
 	return (
@@ -63,7 +63,7 @@ function OptionBarèmeSwitch() {
 			value={currentOptionPFU}
 			onChange={(value) => {
 				setCurrentOptionPFU(value)
-				dispatch(updateSituation(dottedName, `'${value}'`))
+				dispatch(enregistreLaRéponse(dottedName, `'${value}'`))
 			}}
 			aria-label={t("Régime d'imposition")}
 		>

@@ -42,7 +42,7 @@ export type Company = Omit<FabriqueSocialEntreprise, 'highlightLabel'>
 
 export function companySituation(state: Situation = {}, action: Action) {
 	switch (action.type) {
-		case 'UPDATE_SITUATION':
+		case 'ENREGISTRE_LA_RÉPONSE':
 			if (isCompanyDottedName(action.fieldName)) {
 				return {
 					...state,

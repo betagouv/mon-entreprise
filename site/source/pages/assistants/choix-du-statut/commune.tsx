@@ -10,7 +10,6 @@ import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { Body } from '@/design-system/typography/paragraphs'
 import {
 	answerBatchQuestion,
-	answerQuestion_obsolete,
 	batchUpdateSituation,
 } from '@/store/actions/actions'
 

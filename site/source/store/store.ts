@@ -2,6 +2,7 @@ import { composeWithDevToolsDevelopmentOnly } from '@redux-devtools/extension'
 import { createReduxEnhancer } from '@sentry/react'
 import { applyMiddleware, createStore, StoreEnhancer } from 'redux'
 
+import { prendLaProchaineQuestionMiddleware } from '@/store/middlewares/prendLaProchaineQuestion.middleware'
 import reducers from '@/store/reducers/rootReducer'
 
 import {
@@ -25,7 +26,10 @@ const composeEnhancers = composeWithDevToolsDevelopmentOnly(
 
 const sentryReduxEnhancer = createReduxEnhancer({}) as StoreEnhancer
 
-const storeEnhancer = composeEnhancers(applyMiddleware(), sentryReduxEnhancer)
+const storeEnhancer = composeEnhancers(
+	applyMiddleware(prendLaProchaineQuestionMiddleware(engine)),
+	sentryReduxEnhancer
+)
 
 export const store = createStore(reducers, initialStore, storeEnhancer)
 

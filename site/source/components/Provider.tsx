@@ -1,6 +1,7 @@
 import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import i18next from 'i18next'
+import Engine from 'publicodes'
 import { createContext, ReactNode } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
@@ -29,11 +30,13 @@ export const SiteNameContext = createContext<SiteName | null>(null)
 export type ProviderProps = {
 	basename: SiteName
 	children: ReactNode
+	engine: Engine
 }
 
 export default function Provider({
 	basename,
 	children,
+	engine,
 }: ProviderProps): JSX.Element {
 	return (
 		<EmbededContextProvider>

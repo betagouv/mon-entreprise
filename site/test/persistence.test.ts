@@ -6,9 +6,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { setupSimulationPersistence } from '@/storage/persistSimulation'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 import {
+	enregistreLaRéponse,
 	loadPreviousSimulation,
 	setSimulationConfig,
-	updateSituation,
 } from '@/store/actions/actions'
 import reducers, {
 	Simulation,
@@ -51,7 +51,7 @@ describe('[persistence] When simulation persistence is setup', () => {
 
 	describe('when the state is changed with some data that is persistable', () => {
 		beforeEach(async () => {
-			store.dispatch(updateSituation('dotted name' as DottedName, '42'))
+			store.dispatch(enregistreLaRéponse('dotted name' as DottedName, '42'))
 			await delay(0)
 		})
 		it('saves state in localStorage with all fields', () => {

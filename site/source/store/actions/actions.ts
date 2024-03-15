@@ -11,17 +11,15 @@ import { HiringChecklistAction } from './hiringChecklistAction'
 export type Action =
 	| ReturnType<
 			| typeof explainVariable
-			| typeof goToQuestion
+			| typeof vaÀLaQuestion
 			| typeof hideNotification
 			| typeof loadPreviousSimulation
 			| typeof resetSimulation
 			| typeof setActiveTarget
 			| typeof setSimulationConfig
-			| typeof stepAction
-			| typeof answerQuestion
-			| typeof previousQuestion
-			| typeof nextQuestion
-			| typeof updateSituation
+			| typeof retourneÀLaQuestionPrécédente
+			| typeof vaÀLaQuestionSuivante
+			| typeof enregistreLaRéponse
 			| typeof deleteFromSituation
 			| typeof updateUnit
 			| typeof batchUpdateSituation
@@ -35,18 +33,10 @@ export const resetSimulation = () =>
 		type: 'RESET_SIMULATION',
 	}) as const
 
-export const goToQuestion = (question: DottedName) =>
+export const vaÀLaQuestion = (question: DottedName) =>
 	({
-		type: 'STEP_ACTION',
-		name: 'unfold',
-		step: question,
-	}) as const
-
-export const stepAction = (step: DottedName) =>
-	({
-		type: 'STEP_ACTION',
-		name: 'fold',
-		step,
+		type: 'VA_À_LA_QUESTION',
+		question,
 	}) as const
 
 export const setSimulationConfig = (
@@ -65,14 +55,14 @@ export const setActiveTarget = (targetName: DottedName) =>
 		name: targetName,
 	}) as const
 
-export const updateSituation = (
+export const enregistreLaRéponse = (
 	fieldName: DottedName,
 	value: PublicodesExpression | undefined
 ) =>
 	value === undefined
 		? deleteFromSituation(fieldName)
 		: ({
-				type: 'UPDATE_SITUATION',
+				type: 'ENREGISTRE_LA_RÉPONSE',
 				fieldName,
 				value,
 		  } as const)
@@ -119,29 +109,14 @@ export const updateShouldFocusField = (shouldFocusField: boolean) =>
 		shouldFocusField,
 	}) as const
 
-export const answerQuestion_obsolete = (
-	dottedName: DottedName,
-	value: PublicodesExpression | undefined
-) => (value == null ? deleteFromSituation : updateSituation)(dottedName, value)
-
-export const answerQuestion = (
-	dottedName: DottedName,
-	value: PublicodesExpression | undefined
-) =>
+export const retourneÀLaQuestionPrécédente = () =>
 	({
-		type: 'ANSWER_QUESTION',
-		dottedName,
-		value,
+		type: 'RETOURNE_À_LA_QUESTION_PRÉCÉDENTE',
 	}) as const
 
-export const previousQuestion = () =>
+export const vaÀLaQuestionSuivante = () =>
 	({
-		type: 'PREVIOUS_QUESTION',
-	}) as const
-
-export const nextQuestion = () =>
-	({
-		type: 'NEXT_QUESTION',
+		type: 'VA_À_LA_QUESTION_SUIVANTE',
 	}) as const
 
 export const answerBatchQuestion = (

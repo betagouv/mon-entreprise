@@ -6,12 +6,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import {
-	goToQuestion,
-	stepAction,
+	retourneÀLaQuestionPrécédente,
 	updateShouldFocusField,
+	vaÀLaQuestionSuivante,
 } from '@/store/actions/actions'
 import {
-	answeredQuestionsSelector,
 	currentQuestionSelector,
 	urlSelector,
 	useMissingVariables,
@@ -28,31 +27,24 @@ export function useNavigateQuestions(engines?: Array<Engine<DottedName>>) {
 	const currentQuestionIsAnswered =
 		currentQuestion && !(currentQuestion in missingVariables)
 
-	const previousAnswers = useSelector(answeredQuestionsSelector)
-
 	const goToPrevious = () => {
 		dispatch(updateShouldFocusField(true))
-		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
+		dispatch(retourneÀLaQuestionPrécédente())
 	}
 	const goToNext = () => {
 		dispatch(updateShouldFocusField(true))
-		if (currentQuestion) {
-			dispatch(stepAction(currentQuestion))
-		}
+		dispatch(vaÀLaQuestionSuivante())
 	}
 
+	// TODO Est-ce toujours utile ?
+	// Vérifier en changeant de simulateur
 	useEffect(() => {
-		if (!currentQuestion && nextQuestion) {
-			dispatch(goToQuestion(nextQuestion))
-		}
-	}, [nextQuestion, currentQuestion])
-
-	useEffect(() => {
-		dispatch(goToQuestion(nextQuestion))
+		dispatch(vaÀLaQuestionSuivante())
 	}, [url])
 
 	return {
-		currentQuestion: currentQuestion ?? nextQuestion,
+		currentQuestion,
+		nextQuestion,
 		currentQuestionIsAnswered,
 		goToPrevious,
 		goToNext,

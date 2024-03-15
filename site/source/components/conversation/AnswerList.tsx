@@ -17,10 +17,7 @@ import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import {
-	answerQuestion_obsolete,
-	resetSimulation,
-} from '@/store/actions/actions'
+import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
 import {
@@ -288,7 +285,7 @@ function AnswerElement(rule: RuleNode) {
 	const handleChange = useCallback(
 		(value: PublicodesExpression | undefined) => {
 			questionDottedName &&
-				dispatch(answerQuestion_obsolete(questionDottedName, value))
+				dispatch(enregistreLaRéponse(questionDottedName, value))
 		},
 		[dispatch, questionDottedName]
 	)
