@@ -168,7 +168,7 @@ function useSetStatutInSituation(dottedName: DottedName) {
 // They paid the extra development cost for this feature.
 const BPIWhiteList = ['bpifrance-creation.fr', 'associations.gouv.fr']
 
-function useReferences(rule: RuleNode) {
+export function useReferences(rule: RuleNode) {
 	const onBPISite = useIsEmbededOnBPISite()
 	if (!rule.rawNode.références) {
 		return {}

@@ -6,6 +6,7 @@ import { Markdown } from '@/components/utils/markdown'
 import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
+import { useReferences } from '@/pages/assistants/choix-du-statut/résultat'
 
 import { References } from '../References'
 import RuleLink from '../RuleLink'
@@ -23,12 +24,8 @@ export function ExplicableRule<Names extends string = DottedName>({
 	title?: string
 }) {
 	const engine = useContext(EngineContext)
-
-	// Rien à expliquer ici, ce n'est pas une règle
-	if (dottedName == null) {
-		return null
-	}
 	const rule = engine.getRule(dottedName)
+	const références = useReferences(rule)
 
 	if (rule.rawNode.description == null) {
 		return null
@@ -54,10 +51,10 @@ export function ExplicableRule<Names extends string = DottedName>({
 				Lire la documentation
 			</RuleLink>
 
-			{rule.rawNode.références && (
+			{références && (
 				<>
 					<H3>Liens utiles</H3>
-					<References references={rule.rawNode.références} />
+					<References references={références} />
 				</>
 			)}
 			<Spacing xxl />

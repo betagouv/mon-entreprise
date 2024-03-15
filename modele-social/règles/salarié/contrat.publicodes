@@ -171,7 +171,7 @@ salarié . contrat . apprentissage . ancienneté:
 
 salarié . contrat . apprentissage . ancienneté . moins d'un an:
   formule: ancienneté = 'moins d'un an'
-
+  
 salarié . contrat . apprentissage . ancienneté . moins de deux ans:
   formule: ancienneté = 'moins de deux ans'
 
@@ -543,6 +543,7 @@ salarié . contrat . temps de travail . temps partiel:
       suggestions:
         4 jours / semaine: durée légale du travail * 4 / 5
         mi-temps: durée légale du travail / 2
+
 
 salarié . contrat . statut cadre:
   question: Le salarié a-t-il le statut cadre ?

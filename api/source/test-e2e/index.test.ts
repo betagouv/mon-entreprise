@@ -68,7 +68,7 @@ describe('e2e test mon-entreprise api', () => {
 						{
 							valeur:
 								'dirigeant . auto-entrepreneur . cotisations et contributions',
-							unité: '€ / an',
+							unité: '€/an',
 						},
 						'dirigeant . rémunération . impôt',
 						'dirigeant . auto-entrepreneur . revenu net . après impôt',
