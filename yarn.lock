@@ -7587,22 +7587,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/react-ui@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@publicodes/react-ui@npm:1.0.4"
+"@publicodes/react-ui@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@publicodes/react-ui@npm:1.2.0"
   dependencies:
+    fuse.js: ^7.0.0
     styled-components: ^6.1.1
   peerDependencies:
     publicodes: ^1.0.1
     react: ^18
     react-dom: ^18
-  checksum: 12f41b33f7a26d6d83f5c909cb81dde465389193cfddcfe1ced7f6b11ff811426ba1726b34d3e7c4f8b0fbc424a3aef1a17ad816a9ed82fd12c9d1023c4a884f
+  checksum: 4f786c7e98e90e7b73672ab40852c93bf33e439e58a30df21953ed5027a0cdd1c26864f7cdb04afb2ec45a31e802604034b76a88e3c5a3955ec854e803e0cfeb
   languageName: node
   linkType: hard
 
-"@publicodes/rest-api@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@publicodes/rest-api@npm:1.0.4"
+"@publicodes/rest-api@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@publicodes/rest-api@npm:1.2.0"
   dependencies:
     "@koa/cors": ^3.4.3
     "@koa/router": ^10.1.1
@@ -7611,17 +7612,17 @@ __metadata:
     openapi-validator-middleware: ^3.2.6
   peerDependencies:
     publicodes: ^1.0.1
-  checksum: 50acd90c3c314dcae44b3d5ecdb5080f5d1f834136918260b20e4d12521627b6207ca1b6c470463fa8523fa64613d31776aa2326fe8a2fd7017786e319d24f24
+  checksum: d7e54fe075489b9d1afe176ec1aa75f659bd0aa97823fb231d7a0313c5063087e8a2c64a23df00d5b7c2f751ce4ccaac6f4380a4f88556412fe5effdefd3529c
   languageName: node
   linkType: hard
 
-"@publicodes/tools@npm:^0.4.6":
-  version: 0.4.6
-  resolution: "@publicodes/tools@npm:0.4.6"
+"@publicodes/tools@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "@publicodes/tools@npm:1.0.6"
   dependencies:
     "@types/node": ^18.11.18
-    publicodes: ^1.0.0-beta.77
-  checksum: cb131f4fe8b18550538c7f395763f547118f9a3d9e13b71f86f1940db8c1921312777c3dbbc432f12f1fa8e1ac9999df845ffc195a6b849d043c0130be3dfcd0
+    publicodes: ^1.1.0
+  checksum: 2d0327de67d59f8b2667dfdf9ba0eb8733b804413da6b4f70253620d7d16b21b0aca101b5cbdae53d5923a1b56f689746770aefe8a1fc12ebc2855f0f70c4be6
   languageName: node
   linkType: hard
 
@@ -14015,7 +14016,7 @@ __metadata:
     "@apidevtools/swagger-cli": ^4.0.4
     "@koa/cors": ^4.0.0
     "@koa/router": ^12.0.0
-    "@publicodes/rest-api": ^1.0.4
+    "@publicodes/rest-api": ^1.2.0
     "@sentry/node": ^7.70.0
     "@sentry/utils": ^7.70.0
     "@types/ioredis-mock": ^8.2.2
@@ -14035,7 +14036,7 @@ __metadata:
     modele-social: "workspace:^"
     nodemon: ^3.0.1
     piano-analytics-js: ^6.13.0
-    publicodes: ^1.0.4
+    publicodes: ^1.2.0
     rate-limiter-flexible: ^2.4.2
     swagger-ui-dist: ^5.7.2
     ts-node: ^10.9.1
@@ -20292,6 +20293,13 @@ __metadata:
   version: 6.6.2
   resolution: "fuse.js@npm:6.6.2"
   checksum: 17ae758ce205276ebd88bd9c9f088a100be0b4896abac9f6b09847151269d1690f41d7f98ff5813d4a58973162dbd99d0072ce807020fee6f9de60170f6b08eb
+  languageName: node
+  linkType: hard
+
+"fuse.js@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "fuse.js@npm:7.0.0"
+  checksum: d15750efec1808370c0cae92ec9473aa7261c59bca1f15f1cf60039ba6f804b8f95340b5cabd83a4ef55839c1034764856e0128e443921f072aa0d8a20e4cacf
   languageName: node
   linkType: hard
 
@@ -26622,21 +26630,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:3.0.3":
+  version: 3.0.3
+  resolution: "prettier@npm:3.0.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: e10b9af02b281f6c617362ebd2571b1d7fc9fb8a3bd17e371754428cda992e5e8d8b7a046e8f7d3e2da1dcd21aa001e2e3c797402ebb6111b5cd19609dd228e0
+  languageName: node
+  linkType: hard
+
 "prettier@npm:^2.8.0":
   version: 2.8.7
   resolution: "prettier@npm:2.8.7"
   bin:
     prettier: bin-prettier.js
   checksum: fdc8f2616f099f5f0d685907f4449a70595a0fc1d081a88919604375989e0d5e9168d6121d8cc6861f21990b31665828e00472544d785d5940ea08a17660c3a6
-  languageName: node
-  linkType: hard
-
-"prettier@npm:^3.0.3":
-  version: 3.0.3
-  resolution: "prettier@npm:3.0.3"
-  bin:
-    prettier: bin/prettier.cjs
-  checksum: e10b9af02b281f6c617362ebd2571b1d7fc9fb8a3bd17e371754428cda992e5e8d8b7a046e8f7d3e2da1dcd21aa001e2e3c797402ebb6111b5cd19609dd228e0
   languageName: node
   linkType: hard
 
@@ -26892,21 +26900,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"publicodes@npm:^1.0.0-beta.77":
-  version: 1.0.3
-  resolution: "publicodes@npm:1.0.3"
+"publicodes@npm:^1.1.0, publicodes@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "publicodes@npm:1.2.0"
   peerDependencies:
     "@types/mocha": ^9.0.0
-  checksum: c98becd43b8ce009688494b407587fee9382c207734dd6996ab327c9a0f0626cd8439480ec37fc38985d2ee01c769318029a13148e9a89e5b5b16ae5d6194dcc
-  languageName: node
-  linkType: hard
-
-"publicodes@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "publicodes@npm:1.0.4"
-  peerDependencies:
-    "@types/mocha": ^9.0.0
-  checksum: 35849efe6400833cbee9c249f907c824e0eb44965f93f8275713c05ebe863ef67588d57bab5a844f0a5b2cb9924b4602243b65a02f0839480de1ffeb92fbc6a2
+  checksum: 071e586104e4d9ecfb2b7267f34d3307599ddc478e3ec7f3f7d2f6822dcd49ffdc28fcd541c339b437e8ae6966c8707434f9f2e44f78760d17da925e53c3ad80
   languageName: node
   linkType: hard
 
@@ -28599,7 +28598,7 @@ __metadata:
     "@actions/github": ^5.1.1
     "@ianvs/prettier-plugin-sort-imports": ^4.1.0
     "@publicodes/codemod": ^1.1.0
-    "@publicodes/tools": ^0.4.6
+    "@publicodes/tools": ^1.0.6
     "@types/got": ^9.6.12
     "@typescript-eslint/eslint-plugin": ^6.7.2
     "@typescript-eslint/parser": ^6.7.2
@@ -28615,8 +28614,8 @@ __metadata:
     eslint-plugin-react: ^7.33.2
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-vitest: ^0.3.22
-    prettier: ^3.0.3
-    publicodes: ^1.0.4
+    prettier: 3.0.3
+    publicodes: ^1.2.0
     rimraf: ^5.0.1
   languageName: unknown
   linkType: soft
@@ -29192,7 +29191,7 @@ __metadata:
     "@internationalized/number": ^3.2.1
     "@juggle/resize-observer": ^3.4.0
     "@leeoniya/ufuzzy": ^1.0.10
-    "@publicodes/react-ui": ^1.0.4
+    "@publicodes/react-ui": ^1.2.0
     "@react-aria/accordion": ^3.0.0-alpha.17
     "@react-pdf/renderer": ^3.1.12
     "@react-types/accordion": ^3.0.0-alpha.16
@@ -29243,7 +29242,7 @@ __metadata:
     modele-social: "workspace:^"
     netlify-cli: ^17.10.1
     piano-analytics-js: ^6.13.0
-    publicodes: ^1.0.4
+    publicodes: ^1.2.0
     react: ^18.2.0
     react-aria: ^3.24.0
     react-day-picker: ^8.8.2
