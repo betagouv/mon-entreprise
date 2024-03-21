@@ -36,6 +36,22 @@ dirigeant . auto-entrepreneur . revenu net . après impôt: 41253
 dirigeant . rémunération . impôt: 0"
 `;
 
+exports[`calculate simulations-auto-entrepreneur > DROM 3`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 56
+dirigeant . auto-entrepreneur . revenu net: 19332
+dirigeant . auto-entrepreneur . revenu net . après impôt: 19332
+dirigeant . rémunération . impôt: 0"
+`;
+
+exports[`calculate simulations-auto-entrepreneur > DROM 4`] = `
+"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
+dirigeant . auto-entrepreneur . cotisations et contributions: 160
+dirigeant . auto-entrepreneur . revenu net: 18077
+dirigeant . auto-entrepreneur . revenu net . après impôt: 18077
+dirigeant . rémunération . impôt: 0"
+`;
+
 exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 281
