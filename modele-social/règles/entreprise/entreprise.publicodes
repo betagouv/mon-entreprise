@@ -55,6 +55,18 @@ entreprise . durée d'activité . en début d'année:
     depuis: date de création
     jusqu'à: période . début d'année
 
+entreprise . durée d'activité . trimestres civils:
+    titre: Nombre de trimestres civils couverts
+    durée:
+        depuis: date de création
+        unité: trimestre civil
+
+entreprise . durée d'activité . années civiles:
+    titre: Nombre d’années civiles couvertes
+    durée:
+        depuis: date de création
+        unité: année civile
+
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
   identifiant court: CA
@@ -62,8 +74,8 @@ entreprise . chiffre d'affaires:
   unité: €/an
   description: |
     ### Chiffre d'affaires estimé
-    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées 
-    pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités 
+    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées
+    pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités
     vendues.
   variations:
     - si: dirigeant . auto-entrepreneur
