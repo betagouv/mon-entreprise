@@ -654,8 +654,6 @@ explications:
     liasse fiscale ou ajouter vos exonérations et ce pour chaque type
     d'activité.
 feedback:
-  beta-testeur: Pour continuer à donner votre avis et accéder aux nouveautés en
-    avant-première, <2>inscrivez-vous sur la liste des beta-testeur</2>
   disabled:
     body: <0>Suite à l'arrêt de l'équipe Mon-Entreprise, nous ne sommes plus en
       mesure de traiter vos retours, le formulaire est donc désactivé pour le
@@ -665,7 +663,6 @@ feedback:
       Veuillez réessayer ou nous contacter par mail à l’adresse
       <4>contact@mon-entreprise.beta.gouv.fr</4>.
     title: <0>Une erreur est survenue pendant l’envoi du message</0>
-  reportError: Faire une suggestion
   success:
     body1: Notre équipe prend en charge votre retour.
     body2: Nous avons à cœur d'améliorer en continu notre site, vos remarques nous

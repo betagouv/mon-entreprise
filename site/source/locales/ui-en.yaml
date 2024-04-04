@@ -624,8 +624,6 @@ explications:
     as well as the lines in your tax return where you can add your exemptions,
     for each type of activity.
 feedback:
-  beta-testeur: To continue giving your opinion and previewing new products,
-    <2>sign up for the beta tester list</2>
   disabled:
     body: <0>Due to the discontinuation of the Mon-Entreprise team, we are no longer
       able to process your feedback, so the form is deactivated for the time
@@ -635,7 +633,6 @@ feedback:
       try again or contact us by e-mail at
       <4>contact@mon-entreprise.beta.gouv.fr</4>.
     title: <0>An error has occurred while sending the message</0>
-  reportError: Make a suggestion
   success:
     body1: Our team will take care of your return.
     body2: We're constantly striving to improve our site, so your feedback is very

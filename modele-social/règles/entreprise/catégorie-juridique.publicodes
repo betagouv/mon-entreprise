@@ -184,6 +184,7 @@ entreprise . catégorie juridique . SAS:
         La SAS en détails: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-a-plusieurs/sas-societe-actions-simplifiee
         Fiscalité de la SAS: https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/regimes-fiscaux/regimes-du-benefice-reel-bic-is
         Formalités de création d'une SAS: https://bpifrance-creation.fr/encyclopedie/formalites-creation-dune-entreprise/formalites-specifiques-a-creation-societes-0
+        Protection sociale du président de SAS: https://bpifrance-creation.fr/encyclopedie/statut-du-dirigeant-son-conjoint/regime-social-du-dirigeant/dirigeant-assimile-salarie
 
     SASU:
       résumé: Société par actions simplifiée unipersonnelle
@@ -197,7 +198,7 @@ entreprise . catégorie juridique . SAS:
         La SASU en détails: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/sasu-societe-actions-simplifiee-unipersonnelle
         Formalités de création d'une SASU: https://bpifrance-creation.fr/encyclopedie/formalites-creation-dune-entreprise/formalites-specifiques-a-creation-societes-0
         Fiscalité de la SASU: https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/regimes-fiscaux/regimes-du-benefice-reel-bic-is
-
+        Protection sociale du président de SASU: https://bpifrance-creation.fr/encyclopedie/statut-du-dirigeant-son-conjoint/regime-social-du-dirigeant/dirigeant-assimile-salarie
     unipersonnelle:
       déprécié: oui
       valeur: SASU
