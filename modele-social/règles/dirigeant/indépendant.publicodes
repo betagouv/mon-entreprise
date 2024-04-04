@@ -143,7 +143,7 @@ dirigeant . indépendant . assiette minimale . retraite:
         produit:
           - plafond sécurité sociale
           - 11.5 %
-    - sinon: 450 heure/an * SMIC . horaire . début d'année  
+    - sinon: 450 heure/an * SMIC . horaire . début d'année
   unité: €/an
   arrondi: oui
   références:
@@ -439,8 +439,8 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
       plafond: 5 * plafond sécurité sociale
 
     taux:
-      valeur: 
-        variations: 
+      valeur:
+        variations:
           - si: date >= 01/2024
             alors: 0.5%
           - sinon: 0.85%
@@ -467,10 +467,10 @@ dirigeant . indépendant . cotisations et contributions . maladie:
   avec:
     total:
       description: |
-        Le montant de la cotisation pour la couverture des risques d'assurance maladie et maternité. Contient deux composantes : 
+        Le montant de la cotisation pour la couverture des risques d'assurance maladie et maternité. Contient deux composantes :
         - la cotisation maladie 1 (assurance maladie et maternité)
         - la cotisation maladie 2 (indemnités journalières maladie)
-      note: 
+      note:
         Pour calculer le montant de la cotisation maladie 1, on soustrait le montant de la cotisation maladie 2 du montant total de la cotisation maladie.
       barème:
         assiette:
@@ -501,7 +501,7 @@ dirigeant . indépendant . cotisations et contributions . maladie:
 
     taux progressif . assiette: assiette des cotisations
 
-    # Règles avant 2022 :  
+    # Règles avant 2022 :
     taux progressif avant 2022:
       privé: oui
       applicable si: date < 01/2022
@@ -807,4 +807,5 @@ dirigeant . indépendant . IJSS . imposable:
     - allocation forfaitaire de repos maternel
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
     - indemnité de remplacement pour maternité, paternité ou adoption
+    - allocation journalière du proche aidant (AJPA, versée par la CAF)
   par défaut: 0 €/an
