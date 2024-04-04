@@ -939,6 +939,8 @@ dirigeant . indépendant . IJSS . imposable:
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
 
     - indemnité de remplacement pour maternité, paternité ou adoption
+    
+    - allocation journalière du proche aidant (AJPA, versée par la CAF)
   question.en: '[automatic] What is the gross taxable amount of your social
     security benefits and daily allowances?'
   question.fr:

@@ -38,7 +38,7 @@ const config: SimulationConfig = {
 	situation: {
 		'déclaration charge sociales': 'oui',
 		'dirigeant . régime social': "'indépendant'",
-		date: '01/01/2022',
+		date: '01/01/2023',
 		'dirigeant . indépendant . PL . CIPAV': 'non',
 		'entreprise . catégorie juridique': "''",
 		impôt: 'non',
@@ -127,7 +127,7 @@ export default function AideDéclarationIndépendant() {
 									}}
 								>
 									Cette aide à la déclaration concerne uniquement les
-									entreprises déjà en activité en 2022
+									entreprises déjà en activité en 2023
 								</SmallBody>
 							</Condition>
 
@@ -173,7 +173,7 @@ export default function AideDéclarationIndépendant() {
 						</Condition>
 
 						<Condition expression="déclaration charge sociales . cotisations payées">
-							<H2>Cotisations et contributions sociales en 2022</H2>
+							<H2>Cotisations et contributions sociales en 2023</H2>
 							<SimpleField dottedName="déclaration charge sociales . cotisations payées . cotisations sociales" />
 							<SimpleField dottedName="déclaration charge sociales . cotisations payées . CSG déductible et CFP" />
 						</Condition>
@@ -217,7 +217,7 @@ function ImpositionSection() {
 						<Condition expression="entreprise . imposition . IR">
 							<SimpleField dottedName="entreprise . imposition . régime . micro-entreprise" />
 							<Condition expression="entreprise . imposition . régime . micro-entreprise">
-								<H2>Quel est votre chiffre d'affaires hors taxes en 2022 ?</H2>
+								<H2>Quel est votre chiffre d'affaires hors taxes en 2023 ?</H2>
 								<SmallBody>
 									Indiquez le montant hors taxes de votre chiffre d’affaires ou
 									de vos recettes bruts (avant déduction de l’abattement
@@ -230,7 +230,7 @@ function ImpositionSection() {
 							</Condition>
 							<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
 								<H2>
-									Quel est votre résultat fiscal au titre de l'année 2022 ?
+									Quel est votre résultat fiscal au titre de l'année 2023 ?
 									<br />
 									<small>
 										Charges sociales et exonérations fiscales non incluses{' '}
@@ -254,7 +254,7 @@ function ImpositionSection() {
 						</Condition>
 						<Condition expression="entreprise . imposition . IS">
 							<H2>
-								Quel est le montant net de votre rémunération en 2022 ?
+								Quel est le montant net de votre rémunération en 2023 ?
 								<br />
 								<small>Sans tenir compte des charges sociales</small>
 							</H2>

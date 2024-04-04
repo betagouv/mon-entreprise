@@ -55,13 +55,13 @@ déclaration charge sociales . cotisations payées . CSG déductible et CFP:
   unité: €/an
   plancher: 0 €/an
   description: |
-    Indiquez le montant de la part de CSG déductible et de CFP que vous avez payé en 2021 (peu importe l’année à laquelle ces contributions se rapportent).
+    Indiquez le montant de la part de CSG déductible et de CFP que vous avez payé en 2023 (peu importe l’année à laquelle ces contributions se rapportent).
 déclaration charge sociales . cotisations payées . cotisations sociales:
   question: Quel est le montant de vos cotisations sociales payées cette année ?
   plancher: 0 €/an
   unité: €/an
   description: |
-    Indiquez le montant des cotisations sociales aux régimes obligatoires (maladie-maternité, vieillesse, invalidité-décès, famille) que vous avez payées en 2021 (peu importe l’année à laquelle ces cotisations se rapportent).
+    Indiquez le montant des cotisations sociales aux régimes obligatoires (maladie-maternité, vieillesse, invalidité-décès, famille) que vous avez payées en 2023 (peu importe l’année à laquelle ces cotisations se rapportent).
 
 déclaration charge sociales . nature de l'activité:
   remplace:

@@ -142,7 +142,7 @@ export default function SimulateursEtAssistants() {
 
 				<H3 id="assistants">
 					<Trans>
-						Assistants à la déclaration de revenu 2022 des indépendants
+						Assistants à la déclaration de revenu 2023 des indépendants
 					</Trans>
 				</H3>
 				<Grid container spacing={3} role="list" aria-labelledby="assistants">
