@@ -28,7 +28,6 @@ it('calculate simulations-indépendant', () => {
 		)
 	).toMatchInlineSnapshot(`
 		[
-		  "date",
 		  "dirigeant . indépendant . IJSS",
 		  "dirigeant . indépendant . conjoint collaborateur",
 		  "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",

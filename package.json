@@ -35,7 +35,7 @@
 		"@actions/github": "^5.1.1",
 		"@ianvs/prettier-plugin-sort-imports": "^4.1.0",
 		"@publicodes/codemod": "^1.1.0",
-		"@publicodes/tools": "^0.4.6",
+		"@publicodes/tools": "^1.0.7",
 		"@types/got": "^9.6.12",
 		"@typescript-eslint/eslint-plugin": "^6.7.2",
 		"@typescript-eslint/parser": "^6.7.2",
@@ -52,7 +52,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-vitest": "^0.3.22",
 		"prettier": "^3.0.3",
-		"publicodes": "^1.0.4",
+		"publicodes": "^1.2.0",
 		"rimraf": "^5.0.1"
 	},
 	"resolutions": {
