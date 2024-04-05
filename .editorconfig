@@ -13,7 +13,7 @@ max_line_length = 80
 [**.{js,jsx,ts,tsx}]
 indent_size = 2
 
-[**.{yml,yaml}]
+[**.{yml,yaml,publicodes}]
 # Spaces are mandatory for yaml files:
 indent_style = space
 indent_size = 2
