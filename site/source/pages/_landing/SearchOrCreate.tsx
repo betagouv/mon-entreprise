@@ -3,7 +3,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
 
-import { searchDenominationOrSiren } from '@/api/fabrique-social'
 import { CompanyDetails } from '@/components/company/Details'
 import { EntrepriseSearchField } from '@/components/company/SearchField'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -14,6 +13,7 @@ import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Entreprise } from '@/domain/Entreprise'
+import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
@@ -120,9 +120,12 @@ function useSetEntrepriseFromUrssafConnection() {
 	const setEntreprise = useSetEntreprise()
 	const siret = siretFromUrssafFrConnection()
 	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
+	const entreprisesRepository = useEntreprisesRepository()
+
 	useEffect(() => {
 		if (siret && !companySIREN) {
-			searchDenominationOrSiren(siret)
+			entreprisesRepository
+				.rechercheTexteLibre(siret)
 				.then((results) => {
 					if (results?.length !== 1) {
 						return
