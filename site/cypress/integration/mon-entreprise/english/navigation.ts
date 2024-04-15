@@ -36,6 +36,7 @@ describe(`Navigation to income simulator using company name (${
 	let pendingRequests = new Set()
 	let responses = {}
 	const hostnamesToRecord = [
+		'recherche-entreprises.api.gouv.fr',
 		'api.recherche-entreprises.fabrique.social.gouv.fr',
 		'geo.api.gouv.fr',
 	]
@@ -64,8 +65,8 @@ describe(`Navigation to income simulator using company name (${
 	it('should allow to retrieve company and show link corresponding to the legal status', function () {
 		cy.intercept({
 			method: 'GET',
-			hostname: 'api.recherche-entreprises.fabrique.social.gouv.fr',
-			url: '/api/v1/search*',
+			hostname: 'recherche-entreprises.api.gouv.fr',
+			url: '/search?q=*',
 		}).as('search')
 
 		cy.get('input[data-test-id="company-search-input"]').first().type('menoz')
@@ -93,8 +94,8 @@ describe(`Navigation to income simulator using company name (${
 	it('should allow auto entrepreneur to access the corresponding income simulator', function () {
 		cy.intercept({
 			method: 'GET',
-			hostname: 'api.recherche-entreprises.fabrique.social.gouv.fr',
-			url: '/api/v1/search*',
+			hostname: 'recherche-entreprises.api.gouv.fr',
+			url: '/search?q=*',
 		}).as('search')
 
 		cy.get('input[data-test-id="company-search-input"]').type('jeremy rialland')

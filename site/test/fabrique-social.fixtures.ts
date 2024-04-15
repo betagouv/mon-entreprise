@@ -1,4 +1,4 @@
-import { FabriqueSocialEntreprise } from '@/api/fabrique-social'
+import { FabriqueSocialEntreprise } from '@/api/RechercheEntreprise/fabrique-social'
 
 export const fabriqueSocialWithSiege: FabriqueSocialEntreprise = {
 	activitePrincipale: 'Agences immobilières',

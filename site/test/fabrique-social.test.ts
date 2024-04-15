@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { fabriqueSocialEntrepriseAdapter } from '@/api/fabrique-social'
+import { fabriqueSocialEntrepriseAdapter } from '@/api/RechercheEntreprise/fabrique-social'
 
 import {
 	fabriqueSocialWithoutSiege,
@@ -15,16 +15,16 @@ describe('Fabrique Social', () => {
 			)
 
 			it('retourne le siren', () => {
-				expect(entreprise.siren).to.equal('849074190')
+				expect(entreprise.siren).toBe('849074190')
 			})
 
 			it("a l'établissement demandé dans 'établissement'", () => {
-				expect(entreprise.siège?.adresse.complète).to.equal(
+				expect(entreprise.siège?.adresse.complète).toBe(
 					'23 RUE DE MOGADOR 75009 PARIS 9'
 				)
 			})
 			it("a le siège dans 'siège'", () => {
-				expect(entreprise.établissement.adresse.complète).to.equal(
+				expect(entreprise.établissement.adresse.complète).toBe(
 					'4 RUE VOLTAIRE 44000 NANTES'
 				)
 			})
@@ -35,10 +35,10 @@ describe('Fabrique Social', () => {
 			)
 
 			it("n'a pas de siège", () => {
-				expect(entreprise.siège?.adresse.complète).to.equal(undefined)
+				expect(entreprise.siège?.adresse.complète).toBe(undefined)
 			})
 			it('a l’établissement demandé', () => {
-				expect(entreprise.établissement.adresse.complète).to.equal(
+				expect(entreprise.établissement.adresse.complète).toBe(
 					'4 RUE VOLTAIRE 44000 NANTES'
 				)
 			})

@@ -91,7 +91,6 @@ Coût de création: Coût de création
 Dividendes nets: Dividendes nets
 Documentation: Documentation
 Documentation des simulateurs: Documentation des simulateurs
-"Domiciliée à l'adresse :": "Domiciliée à l'adresse :"
 Donner votre avis: Donner votre avis
 Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Notre partenaire Place des Entreprises identifiera, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.:
   Décrivez votre projet ou votre problème en donnant quelques éléments de
@@ -299,6 +298,7 @@ Simulateurs: Simulateurs
 Simulateurs et Assistants: Simulateurs et Assistants
 Simulation en cours: Simulation en cours
 Situation personnelle: Situation personnelle
+"Siège :": "Siège :"
 Soit <2><0></0></2> avant impôts: Soit <2><0></0></2> avant impôts
 Statistiques: Statistiques
 Statut du conjoint: Statut du conjoint
@@ -1827,6 +1827,7 @@ warning:
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
 Échanger avec un conseiller: Échanger avec un conseiller
 Échec: Échec
+"Établissement recherché :": "Établissement recherché :"
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
 Étape {{ total }} sur {{ maxValue }}: Étape {{ total }} sur {{ maxValue }}

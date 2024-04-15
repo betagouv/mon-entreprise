@@ -86,7 +86,6 @@ Coût de création: Cost of creation
 Dividendes nets: Net dividends
 Documentation: Documentation
 Documentation des simulateurs: Simulator documentation
-"Domiciliée à l'adresse :": "Domiciled at address :"
 Donner votre avis: Give your opinion
 Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Notre partenaire Place des Entreprises identifiera, parmi l’ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.:
   Describe your project or problem and provide some background information. Our
@@ -285,6 +284,7 @@ Simulateurs: Simulators
 Simulateurs et Assistants: Simulators and Assistants
 Simulation en cours: Simulation in progress
 Situation personnelle: Personal situation
+"Siège :": "Headquarters:"
 Soit <2><0></0></2> avant impôts: Or <2><0></0></2> before tax
 Statistiques: Statistics
 Statut du conjoint: Spouse's status
@@ -1721,6 +1721,7 @@ warning:
 À quoi servent mes cotisations ?: What are my contributions used for?
 Échanger avec un conseiller: Talk to an advisor
 Échec: Failure
+"Établissement recherché :": "Establishment sought :"
 Étape complétée: Step completed
 Étape non complétée: Step not completed
 Étape {{ total }} sur {{ maxValue }}: Step {{ total }} on {{ maxValue }}
