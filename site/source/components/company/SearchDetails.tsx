@@ -51,7 +51,7 @@ export default function EntrepriseSearchDetails({
 				</>
 			)}
 			<br />
-			<Trans>Établissement recherché:</Trans>{' '}
+			<Trans>Établissement recherché :</Trans>{' '}
 			<Strong>{établissement?.adresse.complète}</Strong>
 		</CompanyContainer>
 	)

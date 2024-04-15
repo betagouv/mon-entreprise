@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import { FabriqueSocialEntreprisesRepository } from '@/api/RechercheEntreprise/fabrique-social'
+import { RechercheEntreprisesGouvFr } from '@/api/RechercheEntreprise/RechercheEntreprisesGouvFr'
 import { EntreprisesRepository } from '@/domain/EntreprisesRepository'
 
 interface Repositories {
@@ -8,5 +8,5 @@ interface Repositories {
 }
 
 export const RepositoriesContext = createContext<Repositories>({
-	entreprises: FabriqueSocialEntreprisesRepository,
+	entreprises: RechercheEntreprisesGouvFr,
 })

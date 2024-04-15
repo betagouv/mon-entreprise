@@ -21,6 +21,7 @@ describe('Landing page', function () {
 		let pendingRequests = new Set()
 		let responses = {}
 		const hostnamesToRecord = [
+			'recherche-entreprises.api.gouv.fr',
 			'api.recherche-entreprises.fabrique.social.gouv.fr',
 			'geo.api.gouv.fr',
 		]
@@ -41,13 +42,13 @@ describe('Landing page', function () {
 
 		cy.get(searchInputPath).should('have.attr', 'placeholder')
 		cy.get(searchInputPath).invoke('attr', 'type').should('equal', 'search')
-		cy.get(searchInputPath).first().type('noima')
+		cy.get(searchInputPath).first().type('menoz')
 
 		cy.intercept(
 			{
 				method: 'GET',
-				hostname: 'api.recherche-entreprises.fabrique.social.gouv.fr',
-				url: '/api/v1/search?*',
+				hostname: 'recherche-entreprises.api.gouv.fr',
+				url: '/search?q=*',
 			},
 			(req) => {
 				req.responseTimeout = 10 * 1000
@@ -57,7 +58,7 @@ describe('Landing page', function () {
 
 		cy.wait('@search')
 
-		cy.get(searchResultsPath).children().should('have.length', 6)
+		cy.get(searchResultsPath).children().should('have.length.at.least', 4)
 		cy.get(searchResultsPath).children().first().click()
 
 		cy.url().should('include', '/pour-mon-entreprise')

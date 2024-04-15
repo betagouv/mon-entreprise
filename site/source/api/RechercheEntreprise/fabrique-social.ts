@@ -44,7 +44,6 @@ const établissementAdapter = (
 	),
 	adresse: {
 		complète: fabriqueSocialEtablissement.address,
-		codePostal: fabriqueSocialEtablissement.codePostalEtablissement,
 		codeCommune: fabriqueSocialEtablissement.codeCommuneEtablissement,
 	},
 })
