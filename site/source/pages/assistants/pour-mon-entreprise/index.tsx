@@ -14,7 +14,6 @@ import {
 } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { searchDenominationOrSiren } from '@/api/fabrique-social'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CompanyDetails } from '@/components/company/Details'
 import RuleInput from '@/components/conversation/RuleInput'
@@ -35,6 +34,7 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { Entreprise } from '@/domain/Entreprise'
 import { useQuestionList } from '@/hooks/useQuestionList'
+import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
@@ -401,13 +401,15 @@ const useSirenFromParams = (overwrite: boolean) => {
 
 	const [entreprisePending, setEntreprisePending] = useState(false)
 	const [entrepriseNotFound, setEntrepriseNotFound] = useState(false)
+	const entreprisesRepository = useEntreprisesRepository()
 
 	useEffect(() => {
 		if (!param || !overwrite) {
 			return
 		}
 		setEntreprisePending(true)
-		searchDenominationOrSiren(param)
+		entreprisesRepository
+			.rechercheTexteLibre(param)
 			.then((entreprises) => {
 				setEntreprisePending(false)
 				if (!entreprises || !entreprises.length) {

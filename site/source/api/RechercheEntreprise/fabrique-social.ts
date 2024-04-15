@@ -1,10 +1,15 @@
 import { codeActivité } from '@/domain/CodeActivite'
 import { codeCatégorieJuridique } from '@/domain/CodeCatégorieJuridique'
 import { Entreprise } from '@/domain/Entreprise'
+import { EntreprisesRepository } from '@/domain/EntreprisesRepository'
 import { Établissement } from '@/domain/Établissement'
 import { siren, siret } from '@/domain/Siren'
 
-export async function searchDenominationOrSiren(
+export const FabriqueSocialEntreprisesRepository: EntreprisesRepository = {
+	rechercheTexteLibre: searchDenominationOrSiren,
+}
+
+async function searchDenominationOrSiren(
 	searchTerm: string
 ): Promise<Array<Entreprise> | null> {
 	return searchFullText(searchTerm).then(
