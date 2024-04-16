@@ -20,7 +20,8 @@ const branch = (mode: string) => getBranch(mode)
 
 const sentryReleaseName = (mode: string) =>
 	env(mode).VITE_GITHUB_SHA
-		? `${branch(mode)}-` + env(mode).VITE_GITHUB_SHA?.substring(0, 7)
+		? `${branch(mode).split('/').at(-1)}-` +
+		  env(mode).VITE_GITHUB_SHA?.substring(0, 7)
 		: undefined
 
 export default defineConfig(({ command, mode }) => ({
