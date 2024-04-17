@@ -62,7 +62,7 @@
 		"@sentry/integrations": "^7.70.0",
 		"@sentry/react": "^7.70.0",
 		"algoliasearch": "^4.20.0",
-		"date-fns": "^2.30.0",
+		"date-fns": "^3.6.0",
 		"exoneration-covid": "workspace:^",
 		"focus-trap-react": "^10.2.1",
 		"fuse.js": "^6.6.2",
