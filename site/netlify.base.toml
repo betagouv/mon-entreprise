@@ -7,36 +7,35 @@ Content-Security-Policy = """\
   connect-src 'self' *.incubateur.net raw.githubusercontent.com tm.urssaf.fr mon-entreprise.zammad.com recherche-entreprises.api.gouv.fr api.recherche-entreprises.fabrique.social.gouv.fr geo.api.gouv.fr *.algolia.net *.algolianet.com polyfill.io jedonnemonavis.numerique.gouv.fr user-images.githubusercontent.com; \
   form-action 'self' *.sibforms.com *.incubateur.net mon-entreprise.zammad.com; \
   script-src 'self' 'unsafe-inline' 'unsafe-eval' tm.urssaf.fr *.incubateur.net stonly.com code.jquery.com mon-entreprise.zammad.com polyfill.io; \
-  img-src 'self' data: mon-entreprise.urssaf.fr tm.urssaf.fr user-images.githubusercontent.com jedonnemonavis.numerique.gouv.fr; \
+  img-src 'self' data: mon-entreprise.urssaf.fr tm.urssaf.fr user-images.githubusercontent.com github.com *.s3.amazonaws.com jedonnemonavis.numerique.gouv.fr; \
   frame-src 'self' https://www.youtube-nocookie.com https://codesandbox.io https://place-des-entreprises.beta.gouv.fr https://reso-staging.osc-fr1.scalingo.io https://stackblitz.com \
   """
 
 [dev]
-  autoLaunch = false
+autoLaunch = false
 
 [[headers]]
-  for = "/manifest.webmanifest"
-  [headers.values]
-    Content-Type = "application/manifest+json"
+for = "/manifest.webmanifest"
+[headers.values]
+Content-Type = "application/manifest+json"
 
 ## Scalingo proxy for server
 [[redirects]]
-  from = "/server/*"
-  to = ":SERVER_URL/:splat"
-  status = 200
+from = "/server/*"
+to = ":SERVER_URL/:splat"
+status = 200
 
 ## Scalingo proxy for API
 [[redirects]]
-  from = "/api/*"
-  to = ":API_URL/api/:splat"
-  status = 200
+from = "/api/*"
+to = ":API_URL/api/:splat"
+status = 200
 
 ## Twemoji proxy for client privacy #1219
 [[redirects]]
-  from = "/twemoji/*"
-  to = "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/:splat"
-  status = 200
-
+from = "/twemoji/*"
+to = "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/:splat"
+status = 200
 
 
 ############
@@ -49,124 +48,124 @@ Content-Security-Policy = """\
 
 # FR | stats -> statistiques
 [[redirects]]
-  from=":SITE_FR/stats"
-  to=":SITE_FR/statistiques"
-  status = 301
+from = ":SITE_FR/stats"
+to = ":SITE_FR/statistiques"
+status = 301
 
 # FR | plan-de-site -> plan-du-site
 [[redirects]]
-  from=":SITE_FR/plan-de-site"
-  to=":SITE_FR/plan-du-site"
-  status = 301
+from = ":SITE_FR/plan-de-site"
+to = ":SITE_FR/plan-du-site"
+status = 301
 
 # FR | /gérer/aide-declaration-independants/beta -> /assistants/aide-declaration-independants-v2
 [[redirects]]
-  from=":SITE_FR/g%C3%A9rer/aide-declaration-independants/beta/*"
-  to=":SITE_FR/assistants/aide-declaration-independants-v2/:splat"
-  status = 301
+from = ":SITE_FR/g%C3%A9rer/aide-declaration-independants/beta/*"
+to = ":SITE_FR/assistants/aide-declaration-independants-v2/:splat"
+status = 301
 
 # FR | /gérer/aide-declaration-independants -> /assistants/declaration-charges-sociales-independant
 [[redirects]]
-  from=":SITE_FR/g%C3%A9rer/aide-declaration-independants"
-  to=":SITE_FR/assistants/declaration-charges-sociales-independant"
-  status = 301
+from = ":SITE_FR/g%C3%A9rer/aide-declaration-independants"
+to = ":SITE_FR/assistants/declaration-charges-sociales-independant"
+status = 301
 
 # FR | /gérer -> /assistants
 [[redirects]]
-  from=":SITE_FR/g%C3%A9rer/*"
-  to=":SITE_FR/assistants/:splat"
-  status = 301
+from = ":SITE_FR/g%C3%A9rer/*"
+to = ":SITE_FR/assistants/:splat"
+status = 301
 
 # FR | /créer/* -> /assistants/choix-du-statut
 [[redirects]]
-  from=":SITE_FR/cr%C3%A9er/*"
-  to=":SITE_FR/assistants/choix-du-statut/:splat"
-  status = 301
+from = ":SITE_FR/cr%C3%A9er/*"
+to = ":SITE_FR/assistants/choix-du-statut/:splat"
+status = 301
 
 # FR | /simulateurs/économie-collaborative -> /assistants/économie-collaborative
 [[redirects]]
-  from=":SITE_FR/simulateurs/%C3%A9conomie-collaborative/*"
-  to=":SITE_FR/assistants/%C3%A9conomie-collaborative/:splat"
-  status = 301
+from = ":SITE_FR/simulateurs/%C3%A9conomie-collaborative/*"
+to = ":SITE_FR/assistants/%C3%A9conomie-collaborative/:splat"
+status = 301
 
 ## Older changes
 
 # FR | coronavirus -> simulateurs/chômage-partiel
 [[redirects]]
-  from=":SITE_FR/coronavirus"
-  to=":SITE_FR/simulateurs/ch%C3%B4mage-partiel"
-  status = 301
+from = ":SITE_FR/coronavirus"
+to = ":SITE_FR/simulateurs/ch%C3%B4mage-partiel"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/%C3%A9conomie-collaborative"
-  to=":SITE_FR/simulateurs/%C3%A9conomie-collaborative"
-  status = 301
+from = ":SITE_FR/%C3%A9conomie-collaborative"
+to = ":SITE_FR/simulateurs/%C3%A9conomie-collaborative"
+status = 301
 
 # FR | salarié -> salaire-brut-net
 [[redirects]]
-  from=":SITE_FR/simulateurs/salari%C3%A9"
-  to=":SITE_FR/simulateurs/salaire-brut-net"
-  status = 301
+from = ":SITE_FR/simulateurs/salari%C3%A9"
+to = ":SITE_FR/simulateurs/salaire-brut-net"
+status = 301
 
 # FR | assimilé-salarié -> sasu
 [[redirects]]
-  from=":SITE_FR/simulateurs/assimil%C3%A9-salari%C3%A9"
-  to=":SITE_FR/simulateurs/sasu"
-  status = 301
+from = ":SITE_FR/simulateurs/assimil%C3%A9-salari%C3%A9"
+to = ":SITE_FR/simulateurs/sasu"
+status = 301
 
 # FR | dirigeant-sasu -> sasu
 [[redirects]]
-  from=":SITE_FR/simulateurs/dirigeant-sasu"
-  to=":SITE_FR/simulateurs/sasu"
-  status = 301
+from = ":SITE_FR/simulateurs/dirigeant-sasu"
+to = ":SITE_FR/simulateurs/sasu"
+status = 301
 
 # FR | sécurité-sociale/auto-entrepreneur -> simulateurs/auto-entrepreneur
 [[redirects]]
-  from=":SITE_FR/s%C3%A9curit%C3%A9-sociale/auto-entrepreneur"
-  to=":SITE_FR/simulateurs/auto-entrepreneur"
-  status = 301
+from = ":SITE_FR/s%C3%A9curit%C3%A9-sociale/auto-entrepreneur"
+to = ":SITE_FR/simulateurs/auto-entrepreneur"
+status = 301
 
 # FR | sécurité-social/salarié -> simulateurs/salaire-brut-net
 [[redirects]]
-  from=":SITE_FR/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
-  to=":SITE_FR/simulateurs/salaire-brut-net"
-  statys = 301
+from = ":SITE_FR/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+to = ":SITE_FR/simulateurs/salaire-brut-net"
+statys = 301
 
 # FR | sécurité-social/salarié -> simulateurs/salaire-brut-net
 [[redirects]]
-  from=":SITE_FR/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
-  to=":SITE_FR/simulateurs/salaire-brut-net"
-  status = 301
+from = ":SITE_FR/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
+to = ":SITE_FR/simulateurs/salaire-brut-net"
+status = 301
 
 # FR | iframes/médecin -> iframes/medecin
 [[redirects]]
-  from=":SITE_FR/iframes/m%C3%A9decin"
-  to=":SITE_FR/iframes/medecin"
-  status=301
+from = ":SITE_FR/iframes/m%C3%A9decin"
+to = ":SITE_FR/iframes/medecin"
+status = 301
 
 # SEO redirect
 [[redirects]]
-  from = ":SITE_FR/documentation/contrat-salari%C3%A9/salaire/*"
-  to = ":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/:splat"
-  status = 301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/salaire/*"
+to = ":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/:splat"
+status = 301
 
 # EN | sasu-chairman -> sasu
 [[redirects]]
-  from=":SITE_EN/simulateurs/sasu-chairman"
-  to=":SITE_EN/simulateurs/sasu"
-  status = 301
+from = ":SITE_EN/simulateurs/sasu-chairman"
+to = ":SITE_EN/simulateurs/sasu"
+status = 301
 
 # FR | intégration -> développeur
 [[redirects]]
-  from=":SITE_FR/int%C3%A9gration/*"
-  to=":SITE_FR/d%C3%A9veloppeur/:splat"
-  status = 301
+from = ":SITE_FR/int%C3%A9gration/*"
+to = ":SITE_FR/d%C3%A9veloppeur/:splat"
+status = 301
 
 # EN | integration -> developer
 [[redirects]]
-  from=":SITE_EN/integration/*"
-  to=":SITE_EN/developer/:splat"
-  status = 301
+from = ":SITE_EN/integration/*"
+to = ":SITE_EN/developer/:splat"
+status = 301
 
 
 ####################
@@ -179,80 +178,79 @@ Content-Security-Policy = """\
 # to prevent negative impact on referencement
 
 [[redirects]]
-  from=":SITE_FR/documentation/SMIC-temps-plein/net-imposable"
-  to=":SITE_FR/documentation/SMIC/net-imposable"
-  status=301
+from = ":SITE_FR/documentation/SMIC-temps-plein/net-imposable"
+to = ":SITE_FR/documentation/SMIC/net-imposable"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/net-apr%C3%A8s-imp%C3%B4t"
-  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/pay%C3%A9-apr%C3%A8s-imp%C3%B4t"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/net-apr%C3%A8s-imp%C3%B4t"
+to = ":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/pay%C3%A9-apr%C3%A8s-imp%C3%B4t"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/frais-professionnels/transports-personnels/carburant-faible-%C3%A9mission/montant"
-  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/frais-professionnels/trajets-domicile-travail/forfait-mobilit%C3%A9s-durables/montant"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/frais-professionnels/transports-personnels/carburant-faible-%C3%A9mission/montant"
+to = ":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/frais-professionnels/trajets-domicile-travail/forfait-mobilit%C3%A9s-durables/montant"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/contribution-d'%C3%A9quilibre-g%C3%A9n%C3%A9ral"
-  to=":SITE_FR/documentation/salari%C3%A9/cotisations/CEG"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/contribution-d'%C3%A9quilibre-g%C3%A9n%C3%A9ral"
+to = ":SITE_FR/documentation/salari%C3%A9/cotisations/CEG"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/contribution-d'%C3%A9quilibre-technique"
-  to=":SITE_FR/documentation/contrat/cotisations/CET"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/contribution-d'%C3%A9quilibre-technique"
+to = ":SITE_FR/documentation/contrat/cotisations/CET"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/prime-d'impatriation"
-  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/imposable/exon%C3%A9ration-prime-d'impatriation"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/prime-d'impatriation"
+to = ":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/imposable/exon%C3%A9ration-prime-d'impatriation"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/net-imposable"
-  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/imposable"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/net-imposable"
+to = ":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/imposable"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/formation-professionnelle"
-  to=":SITE_FR/documentation/salari%C3%A9/cotisations/formation-professionnelle"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/formation-professionnelle"
+to = ":SITE_FR/documentation/salari%C3%A9/cotisations/formation-professionnelle"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/participation-effort-de-construction"
-  to=":SITE_FR/documentation/salari%C3%A9/cotisations/PEEC"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/participation-effort-de-construction"
+to = ":SITE_FR/documentation/salari%C3%A9/cotisations/PEEC"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/brut-de-base"
-  to=":SITE_FR/documentation/salari%C3%A9/contrat/salaire-brut"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/brut-de-base"
+to = ":SITE_FR/documentation/salari%C3%A9/contrat/salaire-brut"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/CDD/indemnit%C3%A9-compensatrice-de-cong%C3%A9s-pay%C3%A9s"
-  to=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/ind%C3%A9mnit%C3%A9s-CDD/cong%C3%A9s-pay%C3%A9s"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/CDD/indemnit%C3%A9-compensatrice-de-cong%C3%A9s-pay%C3%A9s"
+to = ":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/ind%C3%A9mnit%C3%A9s-CDD/cong%C3%A9s-pay%C3%A9s"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/net"
-  to=":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/à-payer-avant-imp%C3%B4t"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/r%C3%A9mun%C3%A9ration/net"
+to = ":SITE_FR/documentation/salari%C3%A9/r%C3%A9mun%C3%A9ration/net/à-payer-avant-imp%C3%B4t"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/CDD/*"
-  to=":SITE_FR/documentation/salari%C3%A9/contrat/CDD/:splat"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/CDD/*"
+to = ":SITE_FR/documentation/salari%C3%A9/contrat/CDD/:splat"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/apprentissage/*"
-  to=":SITE_FR/documentation/salari%C3%A9/contrat/apprentissage/:splat"
-  status=301
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/apprentissage/*"
+to = ":SITE_FR/documentation/salari%C3%A9/contrat/apprentissage/:splat"
+status = 301
 
 [[redirects]]
-  from=":SITE_FR/documentation/contrat-salari%C3%A9/*"
-  to=":SITE_FR/documentation/salari%C3%A9/:splat"
-  status=301
-
+from = ":SITE_FR/documentation/contrat-salari%C3%A9/*"
+to = ":SITE_FR/documentation/salari%C3%A9/:splat"
+status = 301
 
 
 ############
@@ -265,48 +263,47 @@ Content-Security-Policy = """\
 
 # Mon-entreprise.fr
 [[redirects]]
-  from = ":SITE_FR/robots.txt"
-  to = "/robots.fr.txt"
-  status = 200
+from = ":SITE_FR/robots.txt"
+to = "/robots.fr.txt"
+status = 200
 
 [[redirects]]
-  from = ":SITE_FR/sitemap.txt"
-  to = "/sitemap.fr.txt"
-  status = 200
+from = ":SITE_FR/sitemap.txt"
+to = "/sitemap.fr.txt"
+status = 200
 
 [[redirects]]
-  from = ":SITE_FR/dev/storybook"
-  to = ":SITE_FR/dev/storybook/index.html"
-  status = 301
-  force = true
+from = ":SITE_FR/dev/storybook"
+to = ":SITE_FR/dev/storybook/index.html"
+status = 301
+force = true
 
 [[redirects]]
-  from = ":SITE_FR/*"
-  to = "/mon-entreprise.html"
-  status = 200
+from = ":SITE_FR/*"
+to = "/mon-entreprise.html"
+status = 200
 
 
 # Mycompanyinfrance
 
 
 [[redirects]]
-  from = ":SITE_EN/robots.txt"
-  to = "/robots.en.txt"
-  status = 200
+from = ":SITE_EN/robots.txt"
+to = "/robots.en.txt"
+status = 200
 
 [[redirects]]
-  from = ":SITE_EN/sitemap.txt"
-  to = "/sitemap.en.txt"
-  status = 200
+from = ":SITE_EN/sitemap.txt"
+to = "/sitemap.en.txt"
+status = 200
 
 [[redirects]]
-  from = ":SITE_EN/dev/storybook"
-  to = ":SITE_EN/dev/storybook/index.html"
-  status = 301
-  force = true
+from = ":SITE_EN/dev/storybook"
+to = ":SITE_EN/dev/storybook/index.html"
+status = 301
+force = true
 
 [[redirects]]
-  from = ":SITE_EN/*"
-  to = "/infrance.html"
-  status = 200
-
+from = ":SITE_EN/*"
+to = "/infrance.html"
+status = 200

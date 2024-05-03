@@ -118,6 +118,7 @@ const networkFirstAPI = new Route(
 			(!sameOrigin &&
 				[
 					'api.recherche-entreprises.fabrique.social.gouv.fr',
+					'recherche-entreprises.api.gouv.fr',
 					'geo.api.gouv.fr',
 				].includes(url.hostname)) ||
 			(sameOrigin && /data\/.*\.json$/.test(url.pathname))
