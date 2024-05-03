@@ -246,7 +246,7 @@ function FormulairePublicodes() {
 			{!Object.keys(situation).length ? (
 				<TrackPage name="accueil" />
 			) : missingValues.length ? (
-				<TrackPage name="commence" />
+				<TrackPage name="simulation commencée" />
 			) : null}
 		</>
 	)

@@ -33,7 +33,8 @@ export function pourMonEntrepriseConfig({
 			),
 		},
 		tracking: {
-			chapter1: 'gerer',
+			chapter1: 'assistant',
+			chapter2: 'pour_mon_entreprise',
 		},
 		component: PourMonEntreprise as () => JSX.Element, // avoid types loop error
 	} as const)

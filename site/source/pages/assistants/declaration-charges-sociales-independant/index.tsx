@@ -101,7 +101,7 @@ export default function AideDéclarationIndépendant() {
 				</Body>
 			</Trans>
 			{Object.keys(situation).length ? (
-				<TrackPage name="commence" />
+				<TrackPage name="simulation commencée" />
 			) : (
 				<TrackPage name="accueil" />
 			)}
