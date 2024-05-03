@@ -14,7 +14,7 @@ export const RechercheEntreprisesGouvFr: EntreprisesRepository = {
 }
 
 const makeSearchUrl = (q: string, limit: number) =>
-	`https://recherche-entreprises.api.gouv.fr/search?q=${q}&etat_administratif=A&per_page=${limit}`
+	`https://recherche-entreprises.api.gouv.fr/search?q=${q}&etat_administratif=A&per_page=${limit}&mtm_campaign=mon-entreprise`
 
 async function rechercheTexteLibre(text: string, limit = 10) {
 	const response = await fetch(makeSearchUrl(text, limit))
