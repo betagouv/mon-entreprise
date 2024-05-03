@@ -87,10 +87,12 @@ function computeVisits(
 			accueil: p.nombre.accueil,
 			simulation_commencee:
 				// In the case of Recherche APE, we need to post-process the data
-				(p.nombre.simulation_commencee ?? 0) + (p.nombre.recherche ?? 0) ||
+				(p.nombre.simulation_commencee ?? 0) +
+					(p.nombre.recherche ?? 0) +
+					(p.nombre.commence ?? 0) ||
 				// If the value is zero, we use simulation terminee instead
 				p.nombre.simulation_terminee,
-			simulation_terminee: p.nombre.simulation_terminee,
+			simulation_terminee: p.nombre.simulation_terminee ?? 0,
 		},
 	})) as Visites
 

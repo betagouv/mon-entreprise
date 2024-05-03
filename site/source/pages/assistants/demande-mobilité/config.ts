@@ -11,7 +11,7 @@ export function demandeMobilitéConfig({ t, sitePaths }: SimulatorsDataParams) {
 		path: sitePaths.assistants.formulaireMobilité,
 		icône: '🧳',
 		tracking: {
-			chapter1: 'gerer',
+			chapter1: 'assistant',
 			chapter2: 'demande_mobilite',
 		},
 		meta: {
