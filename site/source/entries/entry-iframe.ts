@@ -102,6 +102,10 @@ links.innerHTML = `
 	</div>
 `
 
+if (script.parentElement?.tagName === 'HEAD') {
+	document.body.appendChild(iframe)
+	document.body.appendChild(links)
+}
 script.before(iframe)
 script.before(links)
 
