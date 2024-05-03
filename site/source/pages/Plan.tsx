@@ -87,18 +87,6 @@ export const PlanContent = () => {
 							)
 						})
 						.reverse()}
-
-					{/* <Li>
-						<Link to={absoluteSitePaths.assistants.embaucher}>
-							<Trans>Les formalités pour embaucher</Trans>
-						</Link>
-					</Li> */}
-
-					<Li>
-						<Link to={absoluteSitePaths.assistants.sécuritéSociale}>
-							<Trans>Protection sociale</Trans>
-						</Link>
-					</Li>
 				</StyledUl>
 			</Li>
 

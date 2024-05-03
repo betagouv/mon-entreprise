@@ -6,7 +6,6 @@ const rawSitePathsFr = {
 	index: '',
 	assistants: {
 		index: 'assistants',
-		sécuritéSociale: 'sécurité-sociale',
 		formulaireMobilité: 'demande-mobilité',
 		'recherche-code-ape': 'recherche-code-ape',
 		'déclaration-charges-sociales-indépendant':
@@ -99,7 +98,6 @@ const rawSitePathsEn = {
 	...rawSitePathsFr,
 	assistants: {
 		index: 'assistants',
-		sécuritéSociale: 'social-security',
 		formulaireMobilité: 'posting-demand',
 		'recherche-code-ape': 'search-code-ape',
 		'déclaration-charges-sociales-indépendant':
