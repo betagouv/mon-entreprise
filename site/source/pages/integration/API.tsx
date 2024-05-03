@@ -51,7 +51,7 @@ export default function API() {
 					</Li>
 				</Ul>
 				<Body>
-					<Link to="/api/v1/doc/#/publicodes-api/evaluate">
+					<Link href="/api/v1/doc/#/publicodes-api/evaluate">
 						Voir l'exemple dans le Swagger
 					</Link>
 				</Body>
