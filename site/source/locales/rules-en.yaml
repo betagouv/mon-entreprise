@@ -488,50 +488,6 @@ dirigeant . auto-entrepreneur:
     cotisations sociales par un prélèvement unique mensuel.
   titre.en: '[automatic] auto-entrepreneur'
   titre.fr: auto-entrepreneur
-dirigeant . auto-entrepreneur . DROM:
-  avec:
-    première période:
-      titre.en: '[automatic] Up to the end of the 8th quarter of activity'
-      titre.fr: Jusqu'à la fin du 8ème trimestre d'activité
-    seconde période:
-      titre.en:
-        '[automatic] Between the 9th calendar quarter and the end of the 3rd
-        calendar year of activity'
-      titre.fr: Entre le 9ème trimestre civil et la fin de la 3ème année civile
-        d'activité
-    service BIC:
-      titre.en: '[automatic] BIC service'
-      titre.fr: service BIC
-    taux CIPAV:
-      titre.en: '[automatic] CIPAV rate'
-      titre.fr: taux CIPAV
-    taux service BNC:
-      titre.en: '[automatic] BNC service rate'
-      titre.fr: taux service BNC
-    taux vente restauration hébergement:
-      titre.en: '[automatic] sales rate catering accommodation'
-      titre.fr: taux vente restauration hébergement
-  description.en: >
-    [automatic] As an auto-entrepreneur starting out in business, you benefit
-    from an exemption that translates into the application of reduced
-    contribution rates over three years, corresponding to :
-
-     - 1/6 of the full rate for mainland France if you are a craftsman, shopkeeper or unregulated liberal professional, 1/3 if you are a regulated liberal professional, until the end of the 7th quarter following the quarter in which you started your business,
-     - ½ of the full metropolitan rates if you are a craftsman, tradesman or self-employed professional, for the period between the end of the 8th quarter of activity and the end of the 3rd calendar year of activity,
-  description.fr: >
-    En tant qu’auto-entrepreneur en début d’activité, vous bénéficiez d’une
-    exonération qui se traduit par l’application de taux réduits de cotisations
-    sur trois ans, correspondant à :
-
-     - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
-     - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
-  note.en: '[automatic] DOM rates are defined as a percentage of metropolitan
-    France rates, but the rounding rules are unclear.'
-  note.fr:
-    Les taux DOM sont définis comme un pourcentage des taux métropole, mais
-    les règles d'arrondi ne sont pas claires
-  titre.en: '[automatic] DROM'
-  titre.fr: DROM
 dirigeant . auto-entrepreneur . affiliation CIPAV:
   titre.en: '[automatic] CIPAV affiliation'
   titre.fr: affiliation CIPAV
@@ -721,6 +677,27 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
     d'acre sur une meme année.
   titre.en: '[automatic] notification calculation ACRE annual'
   titre.fr: notification calcul ACRE annuel
+dirigeant . auto-entrepreneur . exonération DROM:
+  description.en: '[automatic] '
+  description.fr: >
+    En tant qu’auto-entrepreneur en début d’activité, vous bénéficiez d’une
+    exonération qui se traduit par l’application de taux réduits de cotisations
+    sur trois ans, correspondant à :
+
+
+    - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
+
+    - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
+
+    - 2/3 des taux pleins de métropole à compter de la 4ème année d’activité.
+
+
+    Ce simulateur ne prend pas en compte ces taux pour le moment.
+  résumé.en: '[automatic] '
+  résumé.fr: |
+    Ce simulateur ne prend pas en compte les taux réduit DROM.
+  titre.en: '[automatic] '
+  titre.fr: exonération DROM
 dirigeant . auto-entrepreneur . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
@@ -912,24 +889,7 @@ dirigeant . indépendant . IJSS:
   titre.en: '[automatic] Social security allowances and per diems'
   titre.fr: Allocations et indemnités journalières de sécurité sociale
 dirigeant . indépendant . IJSS . imposable:
-  description.en: >
-    [automatic] Indicate only the amount of taxable daily allowances and
-    indemnities received, i.e. all allowances and indemnities, except those
-    related to a long-term illness.
-
-
-    These allowances will be deducted from your income from work in order to be subject to the reduced rate of CSG-CRDS.
-
-
-    <p><u>The replacement income concerned is :</u></p>
-
-    - daily sickness benefit
-
-    - lump-sum maternal rest allowance
-
-    - fixed daily allowance for interruption of activity (maternity)
-
-    - replacement allowance for maternity, paternity or adoption
+  description.en: '[automatic] '
   description.fr: >
     Indiquez uniquement le montant des allocations et indemnités journalières
     imposables perçues, c’est-à-dire l’ensemble des allocations et indemnités, à
@@ -948,8 +908,6 @@ dirigeant . indépendant . IJSS . imposable:
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
 
     - indemnité de remplacement pour maternité, paternité ou adoption
-
-    - allocation journalière du proche aidant (AJPA, versée par la CAF)
   question.en: '[automatic] What is the gross taxable amount of your social
     security benefits and daily allowances?'
   question.fr:
@@ -3323,16 +3281,10 @@ dirigeant . indépendant . cotisations et contributions . maladie:
       titre.en: '[automatic] progressive rate before 2022'
       titre.fr: taux progressif avant 2022
     total:
-      description.en: >
-        [automatic] The amount of the contribution for health and maternity
-        insurance coverage. Contains two components:
-
-        - sickness contribution 1 (sickness and maternity insurance)
-
-        - sickness contribution 2 (daily sickness benefits)
+      description.en: '[automatic] '
       description.fr: >
         Le montant de la cotisation pour la couverture des risques d'assurance
-        maladie et maternité. Contient deux composantes :
+        maladie et maternité. Contient deux composantes : 
 
         - la cotisation maladie 1 (assurance maladie et maternité)
 
@@ -3875,12 +3827,10 @@ déclaration charge sociales . cotisations payées:
   titre.en: '[automatic] contributions paid'
   titre.fr: cotisations payées
 déclaration charge sociales . cotisations payées . CSG déductible et CFP:
-  description.en: >
-    [automatic] Enter the amount of deductible CSG and CFP you paid in 2023
-    (regardless of the year to which these contributions relate).
+  description.en: '[automatic] '
   description.fr: >
     Indiquez le montant de la part de CSG déductible et de CFP que vous avez
-    payé en 2023 (peu importe l’année à laquelle ces contributions se
+    payé en 2021 (peu importe l’année à laquelle ces contributions se
     rapportent).
   question.en: '[automatic] What is the total amount of deductible CSG and CFP
     paid this year?'
@@ -3888,14 +3838,11 @@ déclaration charge sociales . cotisations payées . CSG déductible et CFP:
   titre.en: '[automatic] Deductible CSG and PSC'
   titre.fr: CSG déductible et CFP
 déclaration charge sociales . cotisations payées . cotisations sociales:
-  description.en: >
-    [automatic] Indicate the amount of social contributions to compulsory
-    schemes (sickness-maternity, old age, invalidity-death, family) that you
-    paid in 2023 (regardless of the year to which these contributions relate).
+  description.en: '[automatic] '
   description.fr: >
     Indiquez le montant des cotisations sociales aux régimes obligatoires
     (maladie-maternité, vieillesse, invalidité-décès, famille) que vous avez
-    payées en 2023 (peu importe l’année à laquelle ces cotisations se
+    payées en 2021 (peu importe l’année à laquelle ces cotisations se
     rapportent).
   question.en: '[automatic] How much social security contribution did you pay this year?'
   question.fr: Quel est le montant de vos cotisations sociales payées cette année ?
@@ -4976,18 +4923,13 @@ entreprise . charges:
   titre.en: '[automatic] expenses (excluding management remuneration)'
   titre.fr: charges (hors rémunération dirigeant)
 entreprise . chiffre d'affaires:
-  description.en: >
-    [automatic] ### Estimated sales
-
-    Sales are the <strong>sum of all sales made</strong> during your accounting period (one year)
-     <strong>during your accounting period</strong> (one year): Sales = selling price x quantities sold.
-    quantities sold.
+  description.en: '[automatic] '
   description.fr: >
     ### Chiffre d'affaires estimé
 
-    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées
+    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées 
 
-    pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités
+    pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités 
 
     vendues.
   question.en: What is your expected turnover ?
@@ -5407,18 +5349,12 @@ entreprise . dividendes:
 entreprise . durée d'activité:
   titre.en: length of service
   titre.fr: durée d'activité
-entreprise . durée d'activité . années civiles:
-  titre.en: '[automatic] Number of calendar years covered'
-  titre.fr: Nombre d’années civiles couvertes
 entreprise . durée d'activité . en début d'année:
   titre.en: '[automatic] at the beginning of the year'
   titre.fr: en début d'année
 entreprise . durée d'activité . en fin d'année:
   titre.en: '[automatic] at the end of the year'
   titre.fr: en fin d'année
-entreprise . durée d'activité . trimestres civils:
-  titre.en: '[automatic] Number of calendar quarters covered'
-  titre.fr: Nombre de trimestres civils couverts
 entreprise . exercice:
   avec:
     date trop ancienne:
