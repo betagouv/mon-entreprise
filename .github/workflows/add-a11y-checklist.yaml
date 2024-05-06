@@ -40,5 +40,3 @@ jobs:
             - [ ] les couleurs du texte est suffisamment constratée par rapport à la couleur de background
             - [ ] la fonctionnalité ajoutée est utilisable en navigant au clavier et avec un lecteur d'écran
             - [ ] les changements de contexte sont évités ou au minimum annoncés
-
-            Plus de détails sur chaque point dans le [guide Notion](https://www.notion.so/mon-entreprise/Checklist-du-d-veloppeur-M-E-9822f6c477414a7c975b2394a6db16cd).
