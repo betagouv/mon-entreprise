@@ -4,8 +4,8 @@ import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import Value from '@/components/EngineValue/Value'
-import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
 import Simulation, {
 	SimulationGoal,
@@ -158,7 +158,7 @@ export const SeoExplanations = () => {
 					conseiller qui peut vous aider. Partenaires mobilisés : les directions
 					départementales de l'emploi, du travail et des solidarités.
 				</Body>
-				<PlaceDesEntreprisesButton pathname="/aide-entreprise/activite-partielle-mon-entreprise-urssaf-fr/demande/activite-partielle" />
+				<ConseillersEntreprisesButton variant="activite_partielle" />
 			</Body>
 
 			<H2>

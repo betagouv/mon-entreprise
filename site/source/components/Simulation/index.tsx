@@ -122,7 +122,7 @@ export default function Simulation({
 					)}
 					{firstStepCompleted && !hideDetails && (
 						<>
-							<ShareOrSaveSimulationBanner share print placeDesEntreprises />
+							<ShareOrSaveSimulationBanner share print conseillersEntreprises />
 							<Spacing lg />
 						</>
 					)}

@@ -13,7 +13,7 @@ const IframeContainer = styled.div`
 	margin: 0 -3rem;
 `
 
-export const PlaceDesEntreprisesIframe = ({
+export const ConseillersEntreprisesIframe = ({
 	src,
 	onLoad,
 }: {

@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
 import Banner from '@/components/Banner'
+import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import PeriodSwitch from '@/components/PeriodSwitch'
-import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import RuleLink from '@/components/RuleLink'
 import Simulation, {
 	SimulationGoal,
@@ -194,7 +194,7 @@ export const SeoExplanations = () => {
 					Partenaires mobilisés : Pôle emploi, APEC, Cap Emploi, missions
 					locales...
 				</Body>
-				<PlaceDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+				<ConseillersEntreprisesButton variant="recrutement" />
 			</div>
 		</Trans>
 	)

@@ -16,11 +16,11 @@ import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CompanyDetails } from '@/components/company/Details'
+import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
 import PageHeader from '@/components/PageHeader'
-import { PlaceDesEntreprisesButton } from '@/components/PlaceDesEntreprises'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
@@ -231,8 +231,7 @@ function PourMonEntreprise() {
 				</Body>
 			</Trans>
 
-			<PlaceDesEntreprisesButton
-				pathname="/aide-entreprise/mon-entreprise-urssaf-fr"
+			<ConseillersEntreprisesButton
 				siret={
 					engine.evaluate('établissement . SIRET')
 						.nodeValue as Evaluation<string>

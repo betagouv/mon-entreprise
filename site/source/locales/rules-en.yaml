@@ -913,23 +913,25 @@ dirigeant . indépendant . IJSS:
   titre.fr: Allocations et indemnités journalières de sécurité sociale
 dirigeant . indépendant . IJSS . imposable:
   description.en: >
-    [automatic] Indicate only the amount of taxable daily allowances and
-    indemnities received, i.e. all allowances and indemnities, except those
-    related to a long-term illness.
+    [automatic] Indicate only the amount of taxable daily allowances received,
+    i.e. all allowances with the exception of those related to a long-term
+    illness.
 
 
-    These allowances will be deducted from your income from work in order to be subject to the reduced rate of CSG-CRDS.
+    These allowances will be deducted from your earned income, in order to be subject to the reduced CSG-CRDS rate.
 
 
-    <p><u>The replacement income concerned is :</u></p>
+    <p><u>The replacement incomes concerned are :</u></p>
 
     - daily sickness benefit
 
     - lump-sum maternal rest allowance
 
-    - fixed daily allowance for interruption of activity (maternity)
+    - lump-sum daily allowance for interruption of activity (maternity)
 
-    - replacement allowance for maternity, paternity or adoption
+    - maternity, paternity or adoption replacement allowance
+
+    - daily caregiver's allowance (AJPA, paid by the CAF)
   description.fr: >
     Indiquez uniquement le montant des allocations et indemnités journalières
     imposables perçues, c’est-à-dire l’ensemble des allocations et indemnités, à
@@ -6344,16 +6346,16 @@ protection sociale . invalidité et décès:
       titre.fr: orphelin
     pension de reversion:
       description.en: >
-        [automatic] When your spouse or ex-spouse dies, you can receive a
-        reversionary pension. 
+        [automatic] When your spouse or ex-spouse dies, you may be entitled to a
+        survivor's pension.
 
-        The payment of the pension is possible, under certain conditions, when the deceased exercised an employed or self-employed activity (self-employed, liberal professional, farmer).
+        Payment of the pension is possible, under certain conditions, when the deceased exercised a salaried or self-employed activity (self-employed worker, liberal professional, farmer).
 
 
-        The pension is equal to 54% of the pension that your spouse or ex-spouse was receiving or could have received (not including increases).
+        The pension is equal to 54% of the pension that your spouse or ex-spouse was receiving or could have received (excluding increases).
       description.fr: >
         Au décès de votre époux(se) ou ex-époux(se), vous pouvez percevoir une
-        pension de réversion. 
+        pension de réversion.
 
         Le versement de la pension est possible, sous certaines conditions, lorsque le défunt exerçait une activité salariée ou non salariée (travailleur indépendant, professionnel libéral, agriculteur).
 
@@ -6505,22 +6507,22 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
       titre.fr: salaire journalier de référence
   description.en: >
     [automatic] Have you suffered an accident at work or an occupational
-    disease? 
+    disease?
 
-    Your medical expenses are covered at 100%. 
+    Your medical expenses are covered at 100%.
 
 
-    To compensate for your loss of salary, you can receive a daily allowance. 
+    To compensate for your loss of earnings, you may receive a daily allowance.
 
-    If you are declared unfit as a result of your accident/illness, you may receive a temporary incapacity benefit.
+    If you are declared unfit as a result of your accident/illness, you may receive a temporary incapacity allowance.
   description.fr: >
     Vous avez subi un accident du travail ou êtes atteint d’une maladie
-    professionnelle ? 
+    professionnelle ?
 
-    Vos frais médicaux sont pris en charge à 100 %. 
+    Vos frais médicaux sont pris en charge à 100 %.
 
 
-    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités journalières. 
+    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités journalières.
 
     Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez recevoir une indemnité temporaire d'inaptitude.
   résumé.en:
@@ -6656,17 +6658,17 @@ protection sociale . maladie . maternité paternité adoption:
       titre.fr: allocation forfaitaire de repos maternel
     délai d'attente:
       description.en: >
-        [automatic] ## Maternity 
+        [automatic] ## Maternity
 
-        You must have 10 months of affiliation on the expected date of delivery,
+        You must have 10 months' membership at the expected date of delivery,
 
-        and cease all professional activity during the collection period and for at least 8 weeks, including 6 weeks after delivery
+        and cease all professional activity during the collection period and for at least 8 weeks, 6 of which must be post-delivery.
 
         ## Paternity / Adoption
 
-        To benefit from this benefit, you must have 10 months of affiliation at the time of the birth/adoption.
+        To benefit from this benefit, you must provide proof of 10 months' affiliation at the time of birth/adoption.
       description.fr: >
-        ## Maternité 
+        ## Maternité
 
         Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre accouchement,
 
@@ -6995,10 +6997,10 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         #### What is the points calculation rate?
 
 
-        This is the percentage applied to the contribution base to calculate points. 
+        This is the percentage applied to the contribution base to calculate points.
 
 
-        Note: it also serves as the basis for calculating the contributions paid by the employer and the employee: it is then multiplied by 1.27 to determine the contributions payable. 
+        Note: it also serves as the basis for calculating the contributions paid by the employer and the employee: it is then multiplied by 1.27 to determine the contributions payable.
 
 
         The rate that appears on the pay slip and is split between the employee and employer is therefore higher than the points acquisition rate. The additional contribution thus determined is not used to acquire points.
@@ -7021,10 +7023,10 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         #### Le taux de calcul des points, c’est quoi ?
 
 
-        C’est le pourcentage appliqué sur l’assiette des cotisations pour calculer les points. 
+        C’est le pourcentage appliqué sur l’assiette des cotisations pour calculer les points.
 
 
-        A noter : il sert aussi de base au calcul des cotisations payées par l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer les cotisations à payer. 
+        A noter : il sert aussi de base au calcul des cotisations payées par l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer les cotisations à payer.
 
 
         Le taux qui apparait sur le bulletin de salaire et qui est réparti entre le salarié et l’employeur est donc supérieur au taux d’acquisition des points. Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des points.
