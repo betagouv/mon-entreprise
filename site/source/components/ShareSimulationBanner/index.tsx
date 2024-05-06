@@ -15,7 +15,7 @@ import {
 } from '@/store/selectors/simulationSelectors'
 
 import { TrackingContext } from '../ATInternetTracking'
-import { PlaceDesEntreprisesButton } from '../PlaceDesEntreprises'
+import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
 import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
@@ -47,11 +47,11 @@ const ButtonLabel = styled.span`
 export default function ShareOrSaveSimulationBanner({
 	share,
 	print,
-	placeDesEntreprises,
+	conseillersEntreprises,
 }: {
 	share?: boolean
 	print?: boolean
-	placeDesEntreprises?: boolean
+	conseillersEntreprises?: boolean
 }) {
 	const { t } = useTranslation()
 	const tracker = useContext(TrackingContext)
@@ -148,9 +148,9 @@ export default function ShareOrSaveSimulationBanner({
 					</Grid>
 				)}
 
-				{placeDesEntreprises && (
+				{conseillersEntreprises && (
 					<Grid item xs={12} sm="auto">
-						<PlaceDesEntreprisesButton pathname="/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation#section-breadcrumbs" />
+						<ConseillersEntreprisesButton variant="recrutement" />
 					</Grid>
 				)}
 			</Grid>

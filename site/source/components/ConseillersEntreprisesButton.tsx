@@ -1,5 +1,5 @@
-import { lazy, Suspense, useRef } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { ComponentType, lazy, Suspense, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { PopoverWithTrigger } from '@/design-system'
@@ -8,13 +8,15 @@ import { Emoji } from '@/design-system/emoji'
 import { Loader } from '@/design-system/icons/Loader'
 import { Body } from '@/design-system/typography/paragraphs'
 
-const LazyIframe = lazy(async () => {
-	return import('./PlaceDesEntreprisesIframe').then(
-		({ PlaceDesEntreprisesIframe }) => ({
-			default: PlaceDesEntreprisesIframe,
-		})
-	)
-})
+const LazyIframe = lazy<ComponentType<{ src: string; onLoad: () => void }>>(
+	async () => {
+		return import('./ConseillersEntreprisesIframe').then(
+			({ ConseillersEntreprisesIframe }) => ({
+				default: ConseillersEntreprisesIframe,
+			})
+		)
+	}
+)
 
 const Container = styled.div`
 	display: flex;
@@ -25,20 +27,35 @@ const ButtonLabel = styled.span`
 	margin-left: 1rem;
 `
 
-export const PlaceDesEntreprisesButton = ({
-	pathname,
+type ConseillersEntreprisesVariant =
+	| 'generic'
+	| 'activite_partielle'
+	| 'recrutement'
+
+export const ConseillersEntreprisesButton = ({
+	variant = 'generic',
 	siret,
 }: {
-	pathname: string
+	variant?: ConseillersEntreprisesVariant
 	siret?: string | null
 }) => {
 	const { t } = useTranslation()
+
+	const paths: Record<ConseillersEntreprisesVariant, string> = {
+		generic: '/aide-entreprise/mon-entreprise-urssaf-fr',
+		recrutement:
+			'/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation',
+		activite_partielle:
+			'/aide-entreprise/activite-partielle-mon-entreprise-urssaf-fr/theme/droit-du-travail',
+	}
+
 	const baseURL =
 		'https://' +
 		(IS_PRODUCTION
-			? 'place-des-entreprises.beta.gouv.fr'
+			? 'conseillers-entreprises.service-public.fr'
 			: 'reso-staging.osc-fr1.scalingo.io')
-	const url = new URL(baseURL + pathname)
+
+	const url = new URL(baseURL + paths[variant])
 
 	const contentRef = useRef<HTMLDivElement>(null)
 
@@ -65,14 +82,13 @@ export const PlaceDesEntreprisesButton = ({
 				{(close) => (
 					<>
 						<Body>
-							<Trans>
-								Décrivez votre projet ou votre problème en donnant quelques
-								éléments de contexte. Notre partenaire Place des Entreprises
-								identifiera, parmi l’ensemble des partenaires publics et
-								parapublics, le conseiller compétent pour votre demande.
-								Celui-ci vous contactera par téléphone sous 5 jours et vous
-								accompagnera en fonction de votre situation.
-							</Trans>
+							{t(
+								'Décrivez votre projet ou votre problème en donnant quelques éléments de contexte',
+								`Décrivez votre projet ou votre problème en donnant quelques éléments de contexte.
+  Notre partenaire Conseillers-Entreprises.Service-Public.fr identifiera, parmi l’ensemble des partenaires publics et parapublics,
+  le conseiller compétent pour votre demande.
+  Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.`
+							)}
 						</Body>
 
 						<Suspense
