@@ -7,7 +7,7 @@ import { ScrollToElement } from '@/components/utils/Scroll'
 import { Checkbox, Message, TextAreaField, TextField } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H1, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -162,21 +162,6 @@ export default function FeedbackForm({
 					setSubmitError((previousValue) => ({ ...previousValue, [field]: '' }))
 			: undefined
 
-	// Remove this to activate the feedback form
-	return (
-		<Grid item xs={12} md={8}>
-			<Message type="info">
-				<Trans i18nKey="feedback.disabled.body">
-					<Body>
-						Suite à l'arrêt de l'équipe Mon-Entreprise, nous ne sommes plus en
-						mesure de traiter vos retours, le formulaire est donc désactivé pour
-						le moment.
-					</Body>
-				</Trans>
-			</Message>
-		</Grid>
-	)
-
 	return (
 		<ScrollToElement onlyIfNotVisible>
 			{requestStatusCode === 200 ? (
@@ -184,7 +169,6 @@ export default function FeedbackForm({
 			) : (
 				<>
 					{requestStatusCode !== null && (
-						// @ts-ignore Remove this comment when activate the feedback form
 						<FeedbackRequestErrorContent statusCode={requestStatusCode} />
 					)}
 					<StyledFeedback>
