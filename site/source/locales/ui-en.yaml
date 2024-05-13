@@ -113,7 +113,6 @@ En savoir plus sur impots:
   gouv:
     fr, nouvelle fenêtre: More information on impots.gouv.fr, new window
 En savoir plus, nouvelle fenêtre: Find out more, new window
-En savoir plus.: Find out more.
 English version of the website enabled.: English version of the website enabled.
 Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
@@ -382,13 +381,6 @@ assistants:
       cta: Visit the site
       title: View your public data
 au bout de 10 ans: after 10 years
-badnews:
-  body: <0>Announcement:</0> Simulator updates and user support are no longer
-    available. <3><0>The team operating the simulators and wizards on
-    mon-entreprise.urssaf.fr is no longer able to continue developing the
-    site.</0><1>This situation is <1>temporary</1>, and should <4>return to
-    normal</4> in the coming months. We apologize for any inconvenience
-    caused.</1><2></2></3>
 betawarning: "<0><0>This tool is in beta version</0>: we are working on
   <3>validating the information and calculations</3>, but <6>errors may</6>
   still occur.</0>"
@@ -622,15 +614,12 @@ explications:
     as well as the lines in your tax return where you can add your exemptions,
     for each type of activity.
 feedback:
-  disabled:
-    body: <0>Due to the discontinuation of the Mon-Entreprise team, we are no longer
-      able to process your feedback, so the form is deactivated for the time
-      being.</0>
   error:
     description: The message could not be sent (status code {{statusCode}}). Please
       try again or contact us by e-mail at
       <4>contact@mon-entreprise.beta.gouv.fr</4>.
     title: <0>An error has occurred while sending the message</0>
+  reportError: Make a suggestion
   success:
     body1: Our team will take care of your return.
     body2: We're constantly striving to improve our site, so your feedback is very

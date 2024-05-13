@@ -14,7 +14,7 @@ import {
 	useEngine,
 	useSetupSafeSituation,
 } from '@/components/utils/EngineContext'
-import { Container, Spacing } from '@/design-system/layout'
+import { Container } from '@/design-system/layout'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'

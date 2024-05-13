@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 
 import { TrackingContext } from '@/components/ATInternetTracking'
 import { Popover } from '@/design-system'
+import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
@@ -123,7 +124,6 @@ export function Feedback({
 				<JeDonneMonAvis light />
 			) : (
 				<div style={{ textAlign: 'center' }}>
-					{/* TODO : reactivate when we have a support team 
 					<Button
 						color="tertiary"
 						size="XXS"
@@ -135,7 +135,7 @@ export function Feedback({
 						}}
 					>
 						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
-					</Button> */}
+					</Button>
 				</div>
 			)}
 			{isShowingSuggestionForm && (

@@ -119,7 +119,6 @@ En savoir plus sur impots:
   gouv:
     fr, nouvelle fenêtre: En savoir plus sur impots.gouv.fr, nouvelle fenêtre
 En savoir plus, nouvelle fenêtre: En savoir plus, nouvelle fenêtre
-En savoir plus.: En savoir plus.
 English version of the website enabled.: English version of the website enabled.
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
@@ -404,13 +403,6 @@ assistants:
       cta: Visiter le site
       title: Voir vos données publiques
 au bout de 10 ans: au bout de 10 ans
-badnews:
-  body: <0>Annonce :</0> La mise à jour des simulateurs et le support utilisateur
-    ne sont plus assurés. <3><0>L'équipe qui opérait les simulateurs et les
-    assistants de mon-entreprise.urssaf.fr n'est plus en mesure de continuer à
-    développer le site.</0><1>Cette situation est <1>temporaire</1>, et devrait
-    <4>revenir à la normale</4> dans les prochains mois. Veuillez nous excuser
-    pour la gêne occasionnée.</1><2></2></3>
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
   être présentes.</6></0>"
@@ -653,15 +645,12 @@ explications:
     liasse fiscale ou ajouter vos exonérations et ce pour chaque type
     d'activité.
 feedback:
-  disabled:
-    body: <0>Suite à l'arrêt de l'équipe Mon-Entreprise, nous ne sommes plus en
-      mesure de traiter vos retours, le formulaire est donc désactivé pour le
-      moment.</0>
   error:
     description: Le message n’a pas pu être envoyé (status code {{statusCode}}).
       Veuillez réessayer ou nous contacter par mail à l’adresse
       <4>contact@mon-entreprise.beta.gouv.fr</4>.
     title: <0>Une erreur est survenue pendant l’envoi du message</0>
+  reportError: Faire une suggestion
   success:
     body1: Notre équipe prend en charge votre retour.
     body2: Nous avons à cœur d'améliorer en continu notre site, vos remarques nous
