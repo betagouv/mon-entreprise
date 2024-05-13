@@ -82,16 +82,7 @@ const Router = () => {
 
 	return (
 		<Routes>
-			<Route
-				path="/iframes/*"
-				element={
-					<>
-						{/* Spacing added for BadNews */}
-						<Spacing xs />
-						<Iframes />
-					</>
-				}
-			/>
+			<Route path="/iframes/*" element={<Iframes />} />
 			<Route path="*" element={<App />} />
 		</Routes>
 	)
