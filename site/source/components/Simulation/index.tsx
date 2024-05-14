@@ -9,7 +9,7 @@ import { styled } from 'styled-components'
 import { ConversationProps } from '@/components/conversation/Conversation'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { PopoverWithTrigger } from '@/design-system'
-import { Container, Grid, Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import {
 	companySituationSelector,
@@ -129,9 +129,7 @@ export default function Simulation({
 				</FromTop>
 			</SimulationContainer>
 			{firstStepCompleted && !hideDetails && shouldShowFeedback && (
-				<Container
-					backgroundColor={(theme) => theme.colors.bases.primary[700]}
-					forceTheme="dark"
+				<div
 					style={{
 						textAlign: 'center',
 						padding: '1rem',
@@ -139,7 +137,7 @@ export default function Simulation({
 					}}
 				>
 					<Feedback />
-				</Container>
+				</div>
 			)}
 			{firstStepCompleted && !hideDetails && explanations}
 		</>
