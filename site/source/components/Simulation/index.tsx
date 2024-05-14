@@ -128,6 +128,7 @@ export default function Simulation({
 					)}
 				</FromTop>
 			</SimulationContainer>
+			{firstStepCompleted && !hideDetails && explanations}
 			{firstStepCompleted && !hideDetails && shouldShowFeedback && (
 				<div
 					style={{
@@ -139,7 +140,6 @@ export default function Simulation({
 					<Feedback />
 				</div>
 			)}
-			{firstStepCompleted && !hideDetails && explanations}
 		</>
 	)
 }
