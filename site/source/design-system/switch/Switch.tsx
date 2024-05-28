@@ -141,6 +141,7 @@ export const Switch = (props: SwitchProps) => {
 				$size={size}
 				checked={isSelected}
 				disabled={isDisabled}
+				aria-label={props['aria-label']}
 			>
 				<HiddenInput
 					// eslint-disable-next-line react/jsx-props-no-spreading
