@@ -1,5 +1,4 @@
 import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
 import React from 'react'
 import { Trans } from 'react-i18next'
 

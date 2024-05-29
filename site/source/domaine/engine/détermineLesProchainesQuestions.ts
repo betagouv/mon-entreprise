@@ -1,5 +1,5 @@
 import { Order, pipe } from 'effect'
-import { filter, map, sort } from 'effect/Array'
+import { filter, map, NonEmptyArray, sort } from 'effect/Array'
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 
@@ -8,14 +8,13 @@ import { listeLesVariablesManquantes } from '@/domaine/engine/listeLesVariablesM
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const détermineLesProchainesQuestions = (
-	engine: Engine,
+	engines: NonEmptyArray<Engine>,
 	config: SimulationConfig | ComparateurConfig,
 	answeredQuestions: Array<DottedName> = []
 ): Array<DottedName> => {
 	const variablesManquantes = listeLesVariablesManquantes(
-		engine,
-		config.objectifs || [],
-		'contextes' in config ? config.contextes : undefined
+		engines,
+		config.objectifs || []
 	)
 
 	const {
@@ -49,7 +48,7 @@ export const détermineLesProchainesQuestions = (
 		),
 		sort((a: DottedName, b: DottedName) => Order.number(score(a), score(b))),
 		filter(
-			(question) => engine.getRule(question).rawNode.question !== undefined
+			(question) => engines[0].getRule(question).rawNode.question !== undefined
 		)
 	)
 
