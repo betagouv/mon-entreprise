@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 
 import { RechercheEntreprisesGouvFr } from '@/api/RechercheEntreprise/RechercheEntreprisesGouvFr'
-import { EntreprisesRepository } from '@/domain/EntreprisesRepository'
+import { EntreprisesRepository } from '@/domaine/EntreprisesRepository'
 
 interface Repositories {
 	entreprises: EntreprisesRepository

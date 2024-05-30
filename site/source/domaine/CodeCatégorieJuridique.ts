@@ -1,4 +1,4 @@
-import { Brand } from '@/domain/Brand'
+import { Brand } from '@/domaine/Brand'
 
 export type CodeCatégorieJuridique = Brand<string, 'CodeCatégorieJuridique'>
 

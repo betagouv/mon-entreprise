@@ -1,4 +1,4 @@
-import { Brand } from '@/domain/Brand'
+import { Brand } from '@/domaine/Brand'
 
 export type Siren = Brand<string, 'Siren'>
 export const siren = (value: string): Siren => value as Siren

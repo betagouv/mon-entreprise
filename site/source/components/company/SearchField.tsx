@@ -14,7 +14,7 @@ import { Strong } from '@/design-system/typography'
 import { StyledLink } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Entreprise } from '@/domain/Entreprise'
+import { Entreprise } from '@/domaine/Entreprise'
 import useSearchCompany from '@/hooks/useSearchCompany'
 
 import { Appear, FromTop } from '../ui/animate'

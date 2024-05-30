@@ -1,9 +1,9 @@
-import { codeActivité } from '@/domain/CodeActivite'
-import { codeCatégorieJuridique } from '@/domain/CodeCatégorieJuridique'
-import { Entreprise } from '@/domain/Entreprise'
-import { EntreprisesRepository } from '@/domain/EntreprisesRepository'
-import { Établissement } from '@/domain/Établissement'
-import { siren, siret } from '@/domain/Siren'
+import { codeActivité } from '@/domaine/CodeActivite'
+import { codeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
+import { Entreprise } from '@/domaine/Entreprise'
+import { EntreprisesRepository } from '@/domaine/EntreprisesRepository'
+import { Établissement } from '@/domaine/Établissement'
+import { siren, siret } from '@/domaine/Siren'
 
 export const FabriqueSocialEntreprisesRepository: EntreprisesRepository = {
 	rechercheTexteLibre: searchDenominationOrSiren,

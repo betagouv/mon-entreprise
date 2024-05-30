@@ -1,6 +1,6 @@
 import { Bénéfice } from '@/api/activité-vers-bénéfice'
 import { Commune } from '@/api/commune'
-import { Entreprise } from '@/domain/Entreprise'
+import { Entreprise } from '@/domaine/Entreprise'
 
 export type CompanyActions = ReturnType<
 	| typeof resetCompany

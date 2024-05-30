@@ -1,4 +1,4 @@
-import { Brand } from '@/domain/Brand'
+import { Brand } from '@/domaine/Brand'
 
 export type CodeActivite = Brand<string, 'CodeActivite'>
 // Pourrait être inféré des données de fetchBénéfice
