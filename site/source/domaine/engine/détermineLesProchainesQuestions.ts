@@ -12,11 +12,6 @@ export const détermineLesProchainesQuestions = (
 	config: SimulationConfig | ComparateurConfig,
 	answeredQuestions: Array<DottedName> = []
 ): Array<DottedName> => {
-	const variablesManquantes = listeLesVariablesManquantes(
-		engines,
-		config.objectifs || []
-	)
-
 	const {
 		liste = [],
 		'liste noire': listeNoire = [],
@@ -35,8 +30,11 @@ export const détermineLesProchainesQuestions = (
 		return indexList + indexNonPrioritaire + différenceCoeff
 	}
 
-	const nextSteps = pipe(
-		variablesManquantes,
+	return pipe(
+		listeLesVariablesManquantes(engines, [
+			...(config['objectifs exclusifs'] ?? []),
+			...(config.objectifs ?? []),
+		]),
 		Object.entries,
 		sort(([, a], [, b]) => Order.number(b, a)),
 		map(([name]) => name as DottedName),
@@ -51,8 +49,6 @@ export const détermineLesProchainesQuestions = (
 			(question) => engines[0].getRule(question).rawNode.question !== undefined
 		)
 	)
-
-	return nextSteps
 }
 
 // Max : 1
