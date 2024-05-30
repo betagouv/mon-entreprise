@@ -42,7 +42,9 @@ export const détermineLesProchainesQuestions = (
 		filter(
 			(step) =>
 				(!liste.length || liste.some((name) => step.startsWith(name))) &&
-				(!listeNoire.length || !listeNoire.some((name) => step === name))
+				(!listeNoire.length || !listeNoire.some((name) => step === name)) &&
+				(!config['objectifs exclusifs']?.length ||
+					!config['objectifs exclusifs'].includes(step))
 		),
 		sort((a: DottedName, b: DottedName) => Order.number(score(a), score(b))),
 		filter(
