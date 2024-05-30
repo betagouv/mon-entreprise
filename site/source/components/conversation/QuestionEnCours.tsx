@@ -17,6 +17,7 @@ import { Button } from '@/design-system/buttons'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { enregistreLaRéponse } from '@/store/actions/actions'
+import { estSurLaPremièreQuestionRépondueSelector } from '@/store/selectors/estSurLaPremièreQuestionRépondue.selector'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
 
@@ -60,6 +61,10 @@ export function QuestionEnCours({
 		goToNext()
 		focusFirstElemInForm()
 	}, [focusFirstElemInForm, goToNext])
+
+	const estSurLaPremièreQuestion = useSelector(
+		estSurLaPremièreQuestionRépondueSelector
+	)
 
 	if (!currentQuestion) return null
 
@@ -112,7 +117,7 @@ export function QuestionEnCours({
 					/>
 				</fieldset>
 				<Grid container spacing={2}>
-					{previousAnswers.length > 0 && (
+					{previousAnswers.length > 0 && !estSurLaPremièreQuestion && (
 						<Grid item xs={6} sm="auto">
 							<Button
 								color="primary"
