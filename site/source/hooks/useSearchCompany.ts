@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { Entreprise } from '@/domain/Entreprise'
+import { Entreprise } from '@/domaine/Entreprise'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 
 import { useDebounce } from './useDebounce'
