@@ -1,7 +1,7 @@
-import { AssimiléSalariéContexte } from '@/domain/AssimiléSalariéContexte'
-import { AutoentrepreneurContexte } from '@/domain/AutoentrepreneurContexte'
-import { IndépendantContexte } from '@/domain/IndépendantContexte'
+import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
+import { AutoentrepreneurContexte } from '@/domaine/AutoentrepreneurContexte'
 import { ComparateurConfig } from '@/domaine/ComparateurConfig'
+import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 
 export const configComparateurStatuts: ComparateurConfig = {
 	contextes: [

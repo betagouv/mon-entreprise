@@ -1,7 +1,7 @@
-import { CodeActivite } from '@/domain/CodeActivite'
-import { CodeCatégorieJuridique } from '@/domain/CodeCatégorieJuridique'
-import { Établissement } from '@/domain/Établissement'
-import { Siren } from '@/domain/Siren'
+import { CodeActivite } from '@/domaine/CodeActivite'
+import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
+import { Établissement } from '@/domaine/Établissement'
+import { Siren } from '@/domaine/Siren'
 
 export interface Entreprise {
 	nom: string
