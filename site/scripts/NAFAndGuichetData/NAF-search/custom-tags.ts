@@ -166,6 +166,7 @@ export const customTags: CustomTags = {
 			'hypnothérapie',
 			'réflexologue',
 			'thérapeute',
+			'praticien de shiatsu',
 		],
 		contenuExclu: [],
 		contenuAnnexe: [],
