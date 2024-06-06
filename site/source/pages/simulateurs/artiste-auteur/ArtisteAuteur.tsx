@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -17,10 +18,8 @@ import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { configArtisteAuteur } from './simulationConfig'
 
 export default function ArtisteAuteur() {
-	useSimulationConfig({
-		key: '/simulateurs/artiste-auteur',
-		config: configArtisteAuteur,
-	})
+	const { pathname } = useLocation()
+	useSimulationConfig({ key: pathname, config: configArtisteAuteur })
 
 	return (
 		<>
