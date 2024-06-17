@@ -681,6 +681,7 @@ dirigeant . indépendant . revenus étrangers . montant:
   titre: revenus perçu à l'étranger
   question: Quel est leur montant ?
   par défaut: 0 €/an
+  unité: €/an
 
 dirigeant . indépendant . cotisations et contributions . CSG-CRDS . assiette:
   note: >-
@@ -791,6 +792,7 @@ dirigeant . indépendant . IJSS . montant:
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
     - indemnité de remplacement pour maternité, paternité ou adoption
   par défaut: 0 €/an
+  unité: €/an
 
 dirigeant . indépendant . IJSS . imposable:
   titre: part imposable
@@ -809,3 +811,4 @@ dirigeant . indépendant . IJSS . imposable:
     - indemnité de remplacement pour maternité, paternité ou adoption
     - allocation journalière du proche aidant (AJPA, versée par la CAF)
   par défaut: 0 €/an
+  unité: €/an
