@@ -2,11 +2,11 @@ import { useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useTheme } from 'styled-components'
 
-import Distribution from '@/components/Distribution'
-import PaySlip from '@/components/PaySlip'
+import PaySlip, { getCotisationsBySection } from '@/components/PaySlip'
+import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
 import StackedBarChart from '@/components/StackedBarChart'
 import { FromTop } from '@/components/ui/animate'
-import { useInversionFail } from '@/components/utils/EngineContext'
+import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
 import { Emoji } from '@/design-system/emoji'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
@@ -16,6 +16,10 @@ import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
+
+	const regroupement = Object.fromEntries(
+		getCotisationsBySection(useEngine().getParsedRules())
+	)
 
 	if (useInversionFail()) {
 		return null
@@ -33,7 +37,7 @@ export default function SalaryExplanation() {
 			/>
 			<Spacing lg />
 
-			<DistributionSection />
+			<ÀQuoiServentMesCotisationsSection regroupement={regroupement} />
 
 			<Container
 				backgroundColor={(theme) =>
@@ -154,27 +158,3 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 		</section>
 	)
 }
-
-export const DistributionSection = ({
-	children = <Distribution />,
-}: {
-	children?: React.ReactNode
-}) => (
-	<section className="print-no-break-inside">
-		<H2>
-			<Trans>À quoi servent mes cotisations ?</Trans>
-		</H2>
-		{children}
-		<SmallBody>
-			<Trans>
-				Pour en savoir plus, rendez-vous sur le site{' '}
-				<Link
-					href="https://www.aquoiserventlescotisations.urssaf.fr/"
-					aria-label="aquoiserventlescotisations.urssaf.fr, nouvelle fenêtre"
-				>
-					aquoiserventlescotisations.urssaf.fr
-				</Link>
-			</Trans>
-		</SmallBody>
-	</section>
-)

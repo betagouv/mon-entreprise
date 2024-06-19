@@ -171,17 +171,157 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
     'Cotisations et contributions sociales : montant et déclaration': https://entreprendre.service-public.fr/vosdroits/F36232#fiche-item-aria-2
   somme:
-    - produit:
-        - entreprise . chiffre d'affaires . vente restauration hébergement
-        - taux vente restauration hébergement
-    - produit:
-        - entreprise . chiffre d'affaires . service BIC
-        - taux service BIC
-    - produit:
-        - entreprise . chiffre d'affaires . service BNC
-        - taux service BNC
+    - service BIC
+    - service BNC
+    - vente restauration hébergement
 
   avec:
+    répartition:
+      avec:
+        maladie-maternité:
+          description: Part des cotisations autoentrepreneurs qui alimentent l'assurance maladie-maternité
+          somme:
+            - vente restauration hébergement . répartition . maladie-maternité
+            - service BIC . répartition . maladie-maternité
+            - service BNC . répartition . maladie-maternité
+        invalidité-décès:
+          description: Part des cotisations autoentrepreneurs qui alimentent l'assurance invalidité-décès
+          somme:
+            - vente restauration hébergement . répartition . invalidité-décès
+            - service BIC . répartition . invalidité-décès
+            - service BNC . répartition . invalidité-décès
+        retraite de base:
+          description: Part des cotisations autoentrepreneurs qui alimentent la retraite de base
+          somme:
+            - vente restauration hébergement . répartition . retraite de base
+            - service BIC . répartition . retraite de base
+            - service BNC . répartition . retraite de base
+        retraite complémentaire:
+          description: Part des cotisations autoentrepreneurs qui alimentent la retraite complémentaire
+          somme:
+            - vente restauration hébergement . répartition . retraite complémentaire
+            - service BIC . répartition . retraite complémentaire
+            - service BNC . répartition . retraite complémentaire
+        autres contributions:
+          description: |
+            Part des cotisations autoentrepreneurs qui alimentent la contribution sociale généralisée
+            et la cotisation pour le remboursement de la dette sociale
+          somme:
+            - vente restauration hébergement . répartition . autres contributions
+            - service BIC . répartition . autres contributions
+            - service BNC . répartition . autres contributions
+
+    service BIC:
+      description: Cotisations pour la part du chiffre d'affaires en prestation de service BIC
+      produit:
+        - entreprise . chiffre d'affaires . service BIC
+        - taux
+      unité: €/mois
+
+      avec:
+        taux:
+          variations:
+            - si: date >= 10/2022
+              alors: 21.2%
+            - sinon: 22%
+
+        répartition:
+          avec:
+            maladie-maternité:
+              valeur: service BIC * taux de répartition
+              avec:
+                taux de répartition: 8.90%
+            invalidité-décès:
+              valeur: service BIC * taux de répartition
+              avec:
+                taux de répartition: 3.10%
+            retraite de base:
+              valeur: service BIC * taux de répartition
+              avec:
+                taux de répartition: 41.80%
+            retraite complémentaire:
+              valeur: service BIC * taux de répartition
+              avec:
+                taux de répartition: 16.50%
+            autres contributions:
+              valeur: service BIC * taux de répartition
+              avec:
+                taux de répartition: 29.70%
+
+    service BNC:
+      description: Cotisations pour la part du chiffre d'affaires en prestation de service BNC
+      produit:
+        - entreprise . chiffre d'affaires . service BNC
+        - taux
+      unité: €/mois
+
+      avec:
+        taux:
+          variations:
+            - si: date >= 10/2022
+              alors: 21.1%
+            - sinon: 22%
+
+        répartition:
+          avec:
+            maladie-maternité:
+              valeur: service BNC * taux de répartition
+              avec:
+                taux de répartition: 3.90%
+            invalidité-décès:
+              valeur: service BNC * taux de répartition
+              avec:
+                taux de répartition: 4.10%
+            retraite de base:
+              valeur: service BNC * taux de répartition
+              avec:
+                taux de répartition: 55.50%
+            retraite complémentaire:
+              valeur: service BNC * taux de répartition
+              avec:
+                taux de répartition: 0%
+            autres contributions:
+              valeur: service BNC * taux de répartition
+              avec:
+                taux de répartition: 36.50%
+
+    vente restauration hébergement:
+      description: Cotisations pour la part du chiffre d'affaires en vente, restauration et hébergement
+      produit:
+        - entreprise . chiffre d'affaires . vente restauration hébergement
+        - taux
+      unité: €/mois
+
+      avec:
+        taux:
+          variations:
+            - si: date >= 10/2022
+              alors: 12.3%
+            - sinon: 12.8%
+
+        répartition:
+          avec:
+            maladie-maternité:
+              valeur: vente restauration hébergement * taux de répartition
+              avec:
+                taux de répartition: 8.90%
+            invalidité-décès:
+              valeur: vente restauration hébergement * taux de répartition
+              avec:
+                taux de répartition: 3.10%
+            retraite de base:
+              valeur: vente restauration hébergement * taux de répartition
+              avec:
+                taux de répartition: 41.80%
+            retraite complémentaire:
+              valeur: vente restauration hébergement * taux de répartition
+              avec:
+                taux de répartition: 16.50%
+            autres contributions:
+              valeur: vente restauration hébergement * taux de répartition
+              avec:
+                taux de répartition: 29.70%
+
     cotisations CIPAV:
       remplace: cotisations
       description: |
@@ -199,25 +339,20 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       note:
         Il y a maintenant un taux différent pour les prestations de service BIC ou
         BNC.
-      valeur: taux service BIC
+      valeur: service BIC . taux
 
     taux service BIC:
-      variations:
-        - si: date >= 10/2022
-          alors: 21.2%
-        - sinon: 22%
+      déprécié: oui
+      valeur: service BIC . taux
 
     taux service BNC:
-      variations:
-        - si: date >= 10/2022
-          alors: 21.1%
-        - sinon: 22%
+      déprécié: oui
+      valeur: service BNC . taux
 
     taux vente restauration hébergement:
-      variations:
-        - si: date >= 10/2022
-          alors: 12.3%
-        - sinon: 12.8%
+      déprécié: oui
+      valeur: vente restauration hébergement . taux
+
 
 dirigeant . auto-entrepreneur . impôt: oui
 dirigeant . auto-entrepreneur . impôt . revenu imposable: entreprise . imposition . régime . micro-entreprise . revenu abattu

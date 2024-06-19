@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 
-import { DistributionBranch } from '@/components/Distribution'
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
@@ -9,6 +8,7 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import { DistributionBranch } from '@/components/simulationExplanation/DistributionDesCotisations'
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { H2 } from '@/design-system/typography/heading'
