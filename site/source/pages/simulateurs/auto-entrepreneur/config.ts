@@ -1,7 +1,9 @@
+import { SeoExplanations } from '@/pages/simulateurs/auto-entrepreneur/SeoExplanations'
+
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import AutoEntrepreneurPreview from '../_images/AutoEntrepreneurPreview.png'
-import AutoEntrepreneur, { SeoExplanations } from './AutoEntrepreneur'
+import AutoEntrepreneur from './AutoEntrepreneur'
 import { configAutoEntrepreneur } from './simulationConfig'
 
 export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {

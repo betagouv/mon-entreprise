@@ -25,7 +25,7 @@ dirigeant . auto-entrepreneur . DROM:
             valeur: entreprise . durée d'activité . années civiles <= 3
 
         service BIC:
-            remplace: cotisations et contributions . cotisations . taux service BIC
+            remplace: cotisations et contributions . cotisations . service BIC . taux
             variations:
                 - si: première période
                   alors: 3.60%
@@ -34,7 +34,7 @@ dirigeant . auto-entrepreneur . DROM:
                 - sinon: 14.20%
 
         taux service BNC:
-            remplace: cotisations et contributions . cotisations . taux service BNC
+            remplace: cotisations et contributions . cotisations . service BNC . taux
             variations:
                 - si: première période
                   alors: 3.60%
@@ -44,7 +44,7 @@ dirigeant . auto-entrepreneur . DROM:
 
 
         taux vente restauration hébergement:
-            remplace: cotisations et contributions . cotisations . taux vente restauration hébergement
+            remplace: cotisations et contributions . cotisations . vente restauration hébergement . taux
             variations:
                 - si: première période
                   alors: 2.10%
@@ -119,18 +119,18 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
             valeur: service BIC
 
         service BIC:
-            remplace: taux service BIC
-            valeur: taux ACRE * taux service BIC
+            remplace: cotisations . service BIC . taux
+            valeur: cotisations . service BIC . taux
             arrondi: 1 décimale
 
         service BNC:
-            remplace: taux service BNC
-            valeur: taux ACRE * taux service BNC
+            remplace: cotisations . service BNC . taux
+            valeur: taux ACRE * cotisations . service BNC . taux
             arrondi: 1 décimale
 
         vente restauration hébergement:
-            remplace: taux vente restauration hébergement
-            valeur: taux ACRE * taux vente restauration hébergement
+            remplace: cotisations . vente restauration hébergement . taux
+            valeur: taux ACRE * cotisations . vente restauration hébergement . taux
             arrondi: 1 décimale
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel:

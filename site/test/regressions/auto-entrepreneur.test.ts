@@ -11,6 +11,18 @@ it('calculate simulations-auto-entrepreneur', () => {
 		[
 			...(configAutoEntrepreneur['objectifs exclusifs'] ?? []),
 			...(configAutoEntrepreneur.objectifs ?? []),
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions',
 		],
 		configAutoEntrepreneur.situation
 	)
