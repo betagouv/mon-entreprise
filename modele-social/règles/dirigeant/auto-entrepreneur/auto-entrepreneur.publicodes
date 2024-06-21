@@ -179,13 +179,30 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     répartition:
       avec:
         maladie-maternité:
-          description: Part des cotisations autoentrepreneurs qui alimentent l'assurance maladie-maternité
+          icônes: 🏥
+          description: |
+            Part des cotisations autoentrepreneurs qui alimentent l'assurance maladie-maternité
+
+            L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
+
+            Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
+
+            Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+            ## L'assurance maladie en France en quelques chiffres
+              - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
+              - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
+              - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
           somme:
             - vente restauration hébergement . répartition . maladie-maternité
             - service BIC . répartition . maladie-maternité
             - service BNC . répartition . maladie-maternité
         invalidité-décès:
-          description: Part des cotisations autoentrepreneurs qui alimentent l'assurance invalidité-décès
+          icônes: 🦽
+          description: |
+            Part des cotisations autoentrepreneurs qui alimentent l'assurance invalidité-décès
+
+            Garantit le versement d'une pension en cas d'invalidité et un capital à vos proches en cas de décès.
           somme:
             - vente restauration hébergement . répartition . invalidité-décès
             - service BIC . répartition . invalidité-décès
@@ -202,10 +219,29 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             - vente restauration hébergement . répartition . retraite complémentaire
             - service BIC . répartition . retraite complémentaire
             - service BNC . répartition . retraite complémentaire
-        autres contributions:
+        retraite:
+          icônes: 👵
           description: |
-            Part des cotisations autoentrepreneurs qui alimentent la contribution sociale généralisée
-            et la cotisation pour le remboursement de la dette sociale
+            Part des cotisations autoentrepreneurs qui alimentent la retraite
+            ### Un système obligatoire …
+            Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
+
+            ###… par répartition
+            Le montant total des cotisations que vous versez chaque année sert à payer les pensions des retraités pour cette même année. Le système organise ainsi un transfert direct des générations en activité vers les générations à la retraite.
+
+            ###… principalement contributif
+            Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu » à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à la retraite et du nombre d’années passées à travailler.
+
+            **Notre système de retraite est également solidaire**: les chômeurs, les personnes en arrêt maladie, les personnes en situation de handicap, les travailleurs touchant de faibles revenus, les femmes en congé maternité acquièrent également des droits. Aucune personne à la retraite n’est laissée sans ressources.
+
+            Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+          somme:
+            - répartition . retraite de base
+            - répartition . retraite complémentaire
+        autres contributions:
+          icônes: 🔧
+          description: |
+            Part des cotisations autoentrepreneurs qui alimentent la contribution sociale généralisée et la cotisation pour le remboursement de la dette sociale
           somme:
             - vente restauration hébergement . répartition . autres contributions
             - service BIC . répartition . autres contributions

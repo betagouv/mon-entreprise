@@ -43,20 +43,21 @@ export const AutoEntrepreneurDétails = () => {
 }
 
 const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
-	'protection sociale . retraite': [
-		'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base',
-		'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire',
-	],
-	'protection sociale . maladie': [
-		'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité',
-	],
-	'protection sociale . invalidité et décès': [
-		'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès',
-	],
-	'protection sociale . autres': [
-		'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions',
-	],
-	'protection sociale . formation': [
-		'dirigeant . indépendant . cotisations et contributions . formation professionnelle',
-	],
+	'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite':
+		[
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire',
+		],
+	'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité':
+		[
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité',
+		],
+	'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès':
+		[
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès',
+		],
+	'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions':
+		[
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions',
+		],
 }
