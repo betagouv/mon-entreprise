@@ -3,6 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useTheme } from 'styled-components'
 
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
+import { DroitsRetraite } from '@/components/simulationExplanation/DroitsRetraite'
 import { InstitutionsPartenairesAutoEntrepreneur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import StackedBarChart from '@/components/StackedBarChart'
 import { H2 } from '@/design-system/typography/heading'
@@ -37,6 +38,7 @@ export const AutoEntrepreneurDétails = () => {
 				]}
 			/>
 			<InstitutionsPartenairesAutoEntrepreneur />
+			<DroitsRetraite />
 			<ÀQuoiServentMesCotisationsSection regroupement={CotisationsSection} />
 		</section>
 	)
