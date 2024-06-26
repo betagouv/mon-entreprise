@@ -64,7 +64,7 @@ export default function Comparateur() {
 						</Button>
 					</Grid>
 					<Grid item xs={12} sm="auto">
-						<ModifierOptions namedEngines={namedEngines} />
+						<ModifierOptions />
 					</Grid>
 				</Grid>
 			</Container>

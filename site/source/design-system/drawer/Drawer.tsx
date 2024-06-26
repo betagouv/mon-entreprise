@@ -74,23 +74,26 @@ export const Drawer = ({
 		}
 	}, [isMounted])
 
-	const closeDrawer = useCallback(() => {
-		setIsOpen(false)
-		disablePageScrolling(false)
+	const closeDrawer = useCallback(
+		(cancel: boolean) => {
+			setIsOpen(false)
+			disablePageScrolling(false)
 
-		setTimeout(() => {
-			setIsMounted(false)
-			if (onCancel) {
-				onCancel()
-			}
-		}, 500)
-	}, [onCancel])
+			setTimeout(() => {
+				setIsMounted(false)
+				if (cancel && onCancel) {
+					onCancel()
+				}
+			}, 500)
+		},
+		[onCancel]
+	)
 
 	useOnClickOutside(panel, () => {
-		closeDrawer()
+		closeDrawer(true)
 	})
 	useOnKeyDown('Escape', () => {
-		closeDrawer()
+		closeDrawer(true)
 	})
 
 	const location = useLocation()
@@ -98,7 +101,7 @@ export const Drawer = ({
 	// close the drawer when the route change
 	useEffect(() => {
 		// if the drawer close unexpectedly cause of this effect, be sure to use useCallback for the onCancel prop
-		closeDrawer()
+		closeDrawer(true)
 	}, [location])
 
 	return (
@@ -122,7 +125,7 @@ export const Drawer = ({
 								{isDismissable && (
 									<StyledCloseButtonContainer>
 										{/* TODO : replace with Link when in design system */}
-										<CloseButton onClick={() => closeDrawer()}>
+										<CloseButton onClick={() => closeDrawer(true)}>
 											Fermer
 											<svg
 												aria-hidden
@@ -153,7 +156,7 @@ export const Drawer = ({
 									<DrawerFooter>
 										<StyledGrid container>
 											<Grid item>
-												<Button light onPress={() => closeDrawer()}>
+												<Button light onPress={() => closeDrawer(true)}>
 													{cancelLabel ?? <Trans>Annuler</Trans>}
 												</Button>
 											</Grid>
@@ -161,7 +164,7 @@ export const Drawer = ({
 												<Button
 													onPress={() => {
 														onConfirm()
-														setTimeout(() => closeDrawer(), 200)
+														setTimeout(() => closeDrawer(false), 200)
 													}}
 												>
 													{confirmLabel ?? <Trans>Confirmer</Trans>}

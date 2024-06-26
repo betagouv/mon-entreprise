@@ -84,7 +84,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 							paddingTop: '1rem',
 						}}
 					>
-						<ModifierOptions namedEngines={namedEngines} />
+						<ModifierOptions />
 					</div>
 				</Container>
 				<Détails namedEngines={namedEngines} expandRevenuSection />

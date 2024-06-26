@@ -5,6 +5,7 @@ import { estQuestionEnListeNoire } from '@/domaine/estQuestionEnListeNoire'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { Situation } from '@/domaine/Situation'
 import { updateSituation } from '@/domaine/updateSituation'
+import { updateSituationMulti } from '@/domaine/updateSituationMulti'
 import { Action } from '@/store/actions/actions'
 import { omit, reject } from '@/utils'
 
@@ -55,6 +56,17 @@ export function simulationReducer(
 				answeredQuestions: [],
 				currentQuestion: null,
 			}
+
+		case 'AJUSTE_LA_SITUATION': {
+			return {
+				...state,
+				situation: updateSituationMulti(
+					state.config,
+					state.situation,
+					action.amendement
+				),
+			}
+		}
 
 		case 'ENREGISTRE_LA_RÉPONSE': {
 			const déjàDansLesQuestionsRépondues = state.answeredQuestions.includes(

@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 
+import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { buildSituationFromObject } from '@/utils'
 
@@ -18,6 +19,7 @@ export type Action =
 			| typeof setSimulationConfig
 			| typeof retourneÀLaQuestionPrécédente
 			| typeof vaÀLaQuestionSuivante
+			| typeof ajusteLaSituation
 			| typeof enregistreLaRéponse
 			| typeof deleteFromSituation
 			| typeof updateUnit
@@ -55,6 +57,14 @@ export const setActiveTarget = (targetName: DottedName) =>
 	({
 		type: 'SET_ACTIVE_TARGET_INPUT',
 		name: targetName,
+	}) as const
+
+export const ajusteLaSituation = <T extends DottedName>(
+	amendement: Record<T, SimpleRuleEvaluation | undefined>
+) =>
+	({
+		type: 'AJUSTE_LA_SITUATION',
+		amendement,
 	}) as const
 
 export const enregistreLaRéponse = (
@@ -114,12 +124,6 @@ export const vaÀLaQuestionSuivante = () =>
 	({
 		type: 'VA_À_LA_QUESTION_SUIVANTE',
 	}) as const
-
-export const setACRE = (activé: boolean) =>
-	enregistreLaRéponse(
-		'dirigeant . exonérations . ACRE',
-		activé ? "'oui'" : "'non'"
-	)
 
 export const answerBatchQuestion = (
 	dottedName: DottedName,
