@@ -39,7 +39,7 @@ export default function ResultatsSimples() {
 					intégrée à la déclaration fiscale des revenus (déclaration 2042) sur
 					impots.gouv.fr.{' '}
 					<Link
-						href="https://www.impots.gouv.fr/portail/www2/minisite/declaration/independants.html?11"
+						href="https://www.impots.gouv.fr/www2/minisite/declaration/rub_1/independants.html"
 						target="_blank"
 						rel="noreferrer"
 						aria-label={t(
