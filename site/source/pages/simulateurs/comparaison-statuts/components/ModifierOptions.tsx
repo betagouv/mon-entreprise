@@ -1,7 +1,5 @@
 import { PublicodesExpression } from 'publicodes'
-import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { SwitchInput } from '@/components/conversation/ChoicesInput'
@@ -16,58 +14,26 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
-import { enregistreLaRéponse, setACRE } from '@/store/actions/actions'
-import { acreActivéSelector } from '@/store/selectors/acreActivé.selector'
+import { useStatefulRulesEdit } from '@/hooks/useStatefulRulesEdit'
 
-const DOTTEDNAME_SOCIETE_IMPOT = 'entreprise . imposition'
-const DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE =
+const DOTTEDNAME_ENTREPRISE_IMPOSITION = 'entreprise . imposition'
+const DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE =
 	'dirigeant . auto-entrepreneur . impôt . versement libératoire'
 const DOTTEDNAME_ACRE = 'dirigeant . exonérations . ACRE'
+const DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE =
+	"dirigeant . exonérations . ACRE . auto-entrepreneur éligible à l'ACRE"
 
-const ModifierOptions = ({
-	namedEngines,
-}: {
-	namedEngines: EngineComparison
-}) => {
-	const notAutoEntrepreneur = namedEngines.find(({ name }) =>
-		['EI', 'EURL', 'SARL', 'SELARL', 'SELARLU'].includes(name)
-	)
+type IRouIS = "'IR'" | "'IS'"
 
-	const defaultValueImpot = notAutoEntrepreneur?.engine.evaluate(
-		DOTTEDNAME_SOCIETE_IMPOT
-	).nodeValue
-
-	const autoEntrepreneurEngine = namedEngines.find(({ name }) => name === 'AE')
-		?.engine
-	const defaultValueVersementLiberatoire = autoEntrepreneurEngine?.evaluate(
-		DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE
-	).nodeValue
-
-	const defaultValueACRE =
-		notAutoEntrepreneur?.engine.evaluate(DOTTEDNAME_ACRE).nodeValue
-
-	const [impotValue, setImpotValue] = useState(
-		`'${String(defaultValueImpot)}'` || "'IS'"
-	)
-	const [versementLiberatoireValue, setVersementLiberatoireValue] = useState(
-		defaultValueVersementLiberatoire
-	)
-	const [acreValue, setAcreValue] = useState(defaultValueACRE)
-
-	const isAutoEntrepreneurACREEnabled = useSelector(acreActivéSelector)
-	const dispatch = useDispatch()
-	const setIsAutoEntrepreneurACREEnabled = (activé: boolean) =>
-		dispatch(setACRE(activé))
-
-	const [AEAcreValue, setAEAcreValue] = useState<boolean | null>(null)
+const ModifierOptions = () => {
+	const { set, cancel, confirm, values } = useStatefulRulesEdit([
+		DOTTEDNAME_ACRE,
+		DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE,
+		DOTTEDNAME_ENTREPRISE_IMPOSITION,
+		DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE,
+	] as const)
 
 	const { t } = useTranslation()
-
-	const onCancel = useCallback(() => {
-		setAcreValue(null)
-		setVersementLiberatoireValue(null)
-	}, [])
 
 	return (
 		<Drawer
@@ -81,33 +47,8 @@ const ModifierOptions = ({
 				</Button>
 			)}
 			confirmLabel="Enregistrer les options"
-			onConfirm={() => {
-				dispatch(enregistreLaRéponse(DOTTEDNAME_SOCIETE_IMPOT, impotValue))
-
-				const versementLibératoireValuePassed =
-					versementLiberatoireValue === null
-						? defaultValueVersementLiberatoire
-						: versementLiberatoireValue
-				dispatch(
-					enregistreLaRéponse(
-						DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE,
-						versementLibératoireValuePassed ? 'oui' : 'non'
-					)
-				)
-
-				const acreValuePassed =
-					acreValue === null ? defaultValueACRE : acreValue
-				dispatch(
-					enregistreLaRéponse(DOTTEDNAME_ACRE, acreValuePassed ? 'oui' : 'non')
-				)
-
-				if (!acreValuePassed) {
-					setIsAutoEntrepreneurACREEnabled(false)
-				} else if (AEAcreValue !== null) {
-					setIsAutoEntrepreneurACREEnabled(AEAcreValue)
-				}
-			}}
-			onCancel={onCancel}
+			onConfirm={confirm}
+			onCancel={cancel}
 		>
 			<>
 				<H2>
@@ -144,14 +85,14 @@ const ModifierOptions = ({
 					<FlexCentered>
 						<SwitchInput
 							id="activation-acre"
-							onChange={(value: boolean) => setAcreValue(value)}
-							defaultSelected={defaultValueACRE as boolean}
+							onChange={(value: boolean) => set[DOTTEDNAME_ACRE](value)}
+							defaultSelected={values[DOTTEDNAME_ACRE] as boolean}
 							label="Activer l'ACRE dans la simulation"
 							invertLabel
 						/>
 					</FlexCentered>
 
-					{autoEntrepreneurEngine && (acreValue || defaultValueACRE) && (
+					{values[DOTTEDNAME_ACRE] && (
 						<>
 							<Body>
 								Les{' '}
@@ -163,8 +104,12 @@ const ModifierOptions = ({
 							<FlexCentered>
 								<SwitchInput
 									id="activation-acre-ae"
-									onChange={(value: boolean) => setAEAcreValue(value)}
-									defaultSelected={isAutoEntrepreneurACREEnabled}
+									onChange={(value: boolean) =>
+										set[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE](value)
+									}
+									defaultSelected={
+										values[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE] as boolean
+									}
 									label="Je suis éligible à l'ACRE pour mon auto-entreprise"
 									invertLabel
 								/>
@@ -180,25 +125,17 @@ const ModifierOptions = ({
 					<Strong>
 						choisir entre l’imposition sur les sociétés et sur le revenu
 					</Strong>{' '}
-					durant les 5 premières années.
-					{autoEntrepreneurEngine && (
-						<>
-							En auto-entreprise (AE), c’est l’
-							<Strong>impôt sur le revenu</Strong> qui est appliqué
-							automatiquement ; dans certaines situations, vous pouvez aussi
-							opter pour le{' '}
-							<Strong>
-								<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
-									versement libératoire
-								</Link>
-							</Strong>
-							.
-						</>
-					)}
+					durant les 5 premières années. En auto-entreprise (AE), c’est l’
+					<Strong>impôt sur le revenu</Strong> qui est appliqué automatiquement
+					; dans certaines situations, vous pouvez aussi opter pour le{' '}
+					<Strong>
+						<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
+							versement libératoire
+						</Link>
+					</Strong>
+					.
 				</Body>
-				<H5 as="h4">
-					Choisir mon option de simulation (pour {notAutoEntrepreneur?.name})
-				</H5>
+				<H5 as="h4">Choisir mon option de simulation (pour AE)</H5>
 				<Message type="secondary">
 					<Grid
 						container
@@ -232,33 +169,32 @@ const ModifierOptions = ({
 					</Grid>
 				</Message>
 				<RuleInput
-					dottedName={DOTTEDNAME_SOCIETE_IMPOT}
+					dottedName={DOTTEDNAME_ENTREPRISE_IMPOSITION}
 					onChange={(value: PublicodesExpression | undefined) => {
-						setImpotValue(String(value))
+						set[DOTTEDNAME_ENTREPRISE_IMPOSITION](value as undefined | IRouIS)
 					}}
 					key="imposition"
 					aria-labelledby="questionHeader"
-					engine={namedEngines[1].engine}
 				/>
-				{autoEntrepreneurEngine && (
-					<>
-						<H5 as="h3">
-							Choisir mon option de versement libératoire (pour AE){' '}
-							<ExplicableRule
-								dottedName={DOTTEDNAME_SOCIETE_VERSEMENT_LIBERATOIRE}
-							/>
-						</H5>
-						<FlexCentered>
-							<SwitchInput
-								id="versement-liberatoire"
-								onChange={setVersementLiberatoireValue}
-								defaultSelected={defaultValueVersementLiberatoire as boolean}
-								label="Activer le versement libératoire dans la simulation."
-								invertLabel
-							/>
-						</FlexCentered>
-					</>
-				)}
+				<H5 as="h3">
+					Choisir mon option de versement libératoire (pour AE){' '}
+					<ExplicableRule
+						dottedName={DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE}
+					/>
+				</H5>
+				<FlexCentered>
+					<SwitchInput
+						id="versement-liberatoire"
+						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}
+						defaultSelected={
+							values[
+								DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE
+							] as boolean
+						}
+						label="Activer le versement libératoire dans la simulation."
+						invertLabel
+					/>
+				</FlexCentered>
 			</>
 		</Drawer>
 	)
