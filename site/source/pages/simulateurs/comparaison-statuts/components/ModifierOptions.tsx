@@ -17,7 +17,7 @@ import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
-import { enregistreLaRéponse, setACRE } from '@/store/actions/actions'
+import { enregistreLaRéponse } from '@/store/actions/actions'
 import { acreActivéSelector } from '@/store/selectors/acreActivé.selector'
 
 const DOTTEDNAME_SOCIETE_IMPOT = 'entreprise . imposition'
@@ -58,7 +58,12 @@ const ModifierOptions = ({
 	const isAutoEntrepreneurACREEnabled = useSelector(acreActivéSelector)
 	const dispatch = useDispatch()
 	const setIsAutoEntrepreneurACREEnabled = (activé: boolean) =>
-		dispatch(setACRE(activé))
+		dispatch(
+			enregistreLaRéponse(
+				'dirigeant . exonérations . ACRE',
+				activé ? "'oui'" : "'non'"
+			)
+		)
 
 	const [AEAcreValue, setAEAcreValue] = useState<boolean | null>(null)
 

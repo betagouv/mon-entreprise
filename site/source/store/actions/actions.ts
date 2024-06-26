@@ -115,12 +115,6 @@ export const vaÀLaQuestionSuivante = () =>
 		type: 'VA_À_LA_QUESTION_SUIVANTE',
 	}) as const
 
-export const setACRE = (activé: boolean) =>
-	enregistreLaRéponse(
-		'dirigeant . exonérations . ACRE',
-		activé ? "'oui'" : "'non'"
-	)
-
 export const answerBatchQuestion = (
 	dottedName: DottedName,
 	value: Record<string, PublicodesExpression>
