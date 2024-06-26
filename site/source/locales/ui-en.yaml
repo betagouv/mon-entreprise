@@ -1023,8 +1023,8 @@ pages:
       CasParticuliers: "<0>Find out more about...</0><1><0>How do I run a simulation
         in the past?</0><1>Since the end of 2021, simulator calculation rules
         have been historicized. This means that you can run a simulation using
-        the legislation in force at an earlier date. To do so, simply enter the
-        parameter <2><0>date</0></2> parameter in the
+        the legislation in force at an earlier date. To do this, simply enter
+        the parameter <2><0>date</0></2> parameter in the
         situation.</1></1><2><0><1>MissingVariables</1></0><1>In return for your
         call to <1>evaluate</1>, you'll get a <3>missingVariables</3> object.
         This contains a list of all the rules used in the calculation whose
@@ -1060,9 +1060,9 @@ pages:
         <2>dedicated service on urssaf.fr</2></1></1></5><6>The collective AT/MP
         rate</6><7><0><0>establishment . rate ATMP . collective
         rate</0></0></7><8>This collective rate must be found manually. You can
-        use :<1><0><0>A csv export</0> of the table of collective net rates
-        published in the Journal Officiel.</0><1>net-entreprise's <2>Compte
-        AT/MP</2> service</1></1></8></4>"
+        use :<1><0><0>a csv export</0> of the table of collective net rates
+        published in the Journal Officiel</0><1>The Assurance Maladie's \"
+        <2>Cotisations AT/MP\"</2> documentation</1></1></8></4>"
       StepByStep: <0><0>Choose the simulator according to the calculation you're
         interested in</0><1></1>For example, the <4>employee simulator</4> to
         calculate net income from gross income.</0><1><0>Run a simulation with

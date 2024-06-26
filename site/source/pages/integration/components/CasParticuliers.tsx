@@ -165,14 +165,14 @@ export function CasParticuliers() {
 							du tableau des taux nets collectifs paru au Journal Officiel
 						</Li>
 						<Li>
-							Le service{' '}
+							La documentation{' '}
 							<Link
-								href="https://www.net-entreprises.fr/declaration/compte-atmp/"
-								aria-label="Compte AT/MP, voir le service en ligne de déclaration pour ATMP, nouvelle fenêtre"
+								href="https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp"
+								aria-label="Trouver son taux de cotisation AT/MP"
 							>
-								Compte AT/MP
+								Cotisations AT/MP
 							</Link>{' '}
-							de net-entreprise
+							de l’Assurance Maladie
 						</Li>
 					</Ul>
 				</Body>

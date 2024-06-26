@@ -58,7 +58,7 @@
   unité: '%'
   par défaut: taux collectif
   références:
-    Connaître le taux AT/MP de votre entreprise sur votre compte AT/MP: https://www.net-entreprises.fr/declaration/compte-atmp/#lessentiel
+    Connaître le taux AT/MP de votre entreprise sur votre compte AT/MP: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
     Comment calculer les cotisations accidents du travail et maladies professionnelles (AT/MP) ?: https://entreprendre.service-public.fr/vosdroits/F33665
   plancher: salarié . cotisations . ATMP . taux minimum
   avec:
