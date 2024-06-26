@@ -159,6 +159,10 @@
 		<script>
 			const isIframe = document.location.pathname.startsWith('/iframes/')
 
+			if (isIframe) {
+				document.documentElement.style.overflow = 'hidden'
+			}
+
 			function getItem(key) {
 				try {
 					return window.localStorage.getItem(key)

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 
-import { DistributionBranch } from '@/components/Distribution'
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
@@ -9,6 +9,7 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import { DistributionBranch } from '@/components/simulationExplanation/DistributionDesCotisations'
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { H2 } from '@/design-system/typography/heading'
@@ -17,7 +18,8 @@ import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { configArtisteAuteur } from './simulationConfig'
 
 export default function ArtisteAuteur() {
-	useSimulationConfig({ key: 'artiste-auteur', config: configArtisteAuteur })
+	const { pathname } = useLocation()
+	useSimulationConfig({ key: pathname, config: configArtisteAuteur })
 
 	return (
 		<>
