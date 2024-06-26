@@ -167,7 +167,7 @@ export function CasParticuliers() {
 						<Li>
 							Le service{' '}
 							<Link
-								href="https://www.net-entreprises.fr/declaration/compte-atmp/"
+								href="https://www.net-entreprises.fr/obligation-legale-dinscription-au-compte-at-mp-quel-que-soit-leffectif-de-lentreprise/"
 								aria-label="Compte AT/MP, voir le service en ligne de déclaration pour ATMP, nouvelle fenêtre"
 							>
 								Compte AT/MP
