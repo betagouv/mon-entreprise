@@ -8,7 +8,7 @@ import { H4 } from '@/design-system/typography/heading'
 import {
 	Entreprise,
 	établissementEstDifférentDuSiège,
-} from '@/domain/Entreprise'
+} from '@/domaine/Entreprise'
 
 export default function EntrepriseSearchDetails({
 	entreprise,

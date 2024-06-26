@@ -6,7 +6,7 @@ import { styled } from 'styled-components'
 import Banner from '@/components/Banner'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Link as DesignSystemLink } from '@/design-system/typography/link'
-import { updateSituation } from '@/store/actions/actions'
+import { enregistreLaRéponse } from '@/store/actions/actions'
 
 const Bold = styled.span<{ $bold: boolean }>`
 	${({ $bold }) => ($bold ? 'font-weight: bold;' : '')}
@@ -36,7 +36,7 @@ export const SelectSimulationYear = () => {
 						<span key={year}>
 							<DesignSystemLink
 								onPress={() =>
-									dispatch(updateSituation('date', `01/01/${year}`))
+									dispatch(enregistreLaRéponse('date', `01/01/${year}`))
 								}
 							>
 								{actualYear === 2024 ? (

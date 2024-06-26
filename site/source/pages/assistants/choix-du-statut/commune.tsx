@@ -8,7 +8,10 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
 import { HelpButtonWithPopover } from '@/design-system/buttons'
 import { Body } from '@/design-system/typography/paragraphs'
-import { answerQuestion, batchUpdateSituation } from '@/store/actions/actions'
+import {
+	answerBatchQuestion,
+	batchUpdateSituation,
+} from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
@@ -68,18 +71,12 @@ function useCommuneSelection(): [
 
 	const handleChange = (commune: CommuneType) => {
 		setState({ commune })
-		dispatch(
-			answerQuestion('établissement . commune', { batchUpdate: commune })
-		)
+		dispatch(answerBatchQuestion('établissement . commune', commune))
 	}
 
 	useEffect(() => {
 		state.commune &&
-			dispatch(
-				answerQuestion('établissement . commune', {
-					batchUpdate: state.commune,
-				})
-			)
+			dispatch(answerBatchQuestion('établissement . commune', state.commune))
 	}, [])
 
 	const reset = () => {
