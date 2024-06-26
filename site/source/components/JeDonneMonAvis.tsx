@@ -21,7 +21,7 @@ export const JeDonneMonAvis = ({ light }: { light?: boolean }) => {
 						? donnerVotreAvisSvg
 						: 'https://jedonnemonavis.numerique.gouv.fr/static/bouton-blanc.svg'
 				}
-				alt="Je donne mon avis"
+				alt=""
 			/>
 		</Link>
 	)

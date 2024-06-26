@@ -121,7 +121,6 @@ export default function Popover(
 												<CloseButton {...closeButtonProps} ref={closeButtonRef}>
 													Fermer
 													<svg
-														role="img"
 														aria-hidden
 														viewBox="0 0 24 24"
 														fill="none"

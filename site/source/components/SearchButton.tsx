@@ -33,7 +33,6 @@ export default function SearchButton() {
 						viewBox="0 0 24 24"
 						stroke="currentColor"
 						aria-hidden
-						role="img"
 					>
 						<path
 							strokeLinecap="square"

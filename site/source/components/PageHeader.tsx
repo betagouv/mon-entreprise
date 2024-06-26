@@ -48,8 +48,7 @@ export default function PageHeader({
 						className="hide-mobile"
 						titre={titre}
 						src={picture}
-						alt="illustration"
-						aria-hidden
+						alt=""
 					/>
 				</InnerGrid>
 			)}
