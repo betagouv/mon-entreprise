@@ -12,9 +12,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { deleteFromSituation } from '@/store/actions/actions'
 import {
 	companySituationSelector,
+	completeSituationSelector,
 	configObjectifsSelector,
 	configSituationSelector,
-	rawSituationSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
 import { omit } from '@/utils'
@@ -80,7 +80,7 @@ export function useEngine() {
 	return useContext(EngineContext) as Engine<DottedName>
 }
 
-export const useRawSituation = () => useSelector(rawSituationSelector)
+export const useRawSituation = () => useSelector(completeSituationSelector)
 
 /**
  * Try to set situation and delete all rules with syntax/evaluation error

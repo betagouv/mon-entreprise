@@ -17,7 +17,7 @@ import {
 } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
 import {
-	rawSituationSelector,
+	completeSituationSelector,
 	rawSituationsSelonContextesSelector,
 } from '@/store/selectors/simulationSelectors'
 import { complement } from '@/utils/complement'
@@ -38,7 +38,7 @@ export const prendLaProchaineQuestionMiddleware =
 
 		const simulation = newState.simulation
 		const config = simulation?.config
-		const situation = rawSituationSelector(newState)
+		const situation = completeSituationSelector(newState)
 		const questionsRépondues = simulation?.answeredQuestions
 		const questionsSuivantesActuelles = simulation?.questionsSuivantes || []
 

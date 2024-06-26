@@ -1,9 +1,9 @@
+import { NonEmptyArray } from 'effect/Array'
 import { createSelector } from 'reselect'
 
 import { isComparateurConfig } from '@/domaine/ComparateurConfig'
 import { RootState, Situation } from '@/store/reducers/rootReducer'
 import { configSelector } from '@/store/selectors/config.selector'
-import { NonEmptyArray } from 'effect/Array'
 
 export const configObjectifsSelector = createSelector(
 	[
@@ -32,7 +32,7 @@ export const configContextesSelector = createSelector(
 export const companySituationSelector = (state: RootState) =>
 	state.companySituation
 
-export const rawSituationSelector = createSelector(
+export const completeSituationSelector = createSelector(
 	[situationSelector, configSituationSelector, companySituationSelector],
 	(simulatorSituation, configSituation, companySituation) => ({
 		...companySituation,
@@ -42,7 +42,7 @@ export const rawSituationSelector = createSelector(
 )
 
 export const rawSituationsSelonContextesSelector = createSelector(
-	[rawSituationSelector, configContextesSelector],
+	[completeSituationSelector, configContextesSelector],
 	(rawSituation, contextes) =>
 		(contextes
 			? contextes.map((contexte) => ({
