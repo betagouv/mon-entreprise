@@ -121,8 +121,7 @@ export default function Landing() {
 								paddingRight: '2rem',
 								paddingBottom: '1rem',
 							}}
-							alt="illustration"
-							aria-hidden
+							alt=""
 						/>
 					</HideOnMobile>
 					<Grid item md={10}>

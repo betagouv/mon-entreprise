@@ -125,7 +125,6 @@ export const Drawer = ({
 										<CloseButton onClick={() => closeDrawer()}>
 											Fermer
 											<svg
-												role="img"
 												aria-hidden
 												viewBox="0 0 24 24"
 												fill="none"

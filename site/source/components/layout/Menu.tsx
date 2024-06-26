@@ -35,7 +35,6 @@ export const Menu = () => {
 							height="25"
 							width="25"
 							aria-hidden
-							role="img"
 						>
 							<path d="M120 816v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z" />
 						</StyledSVG>{' '}
