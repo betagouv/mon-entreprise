@@ -368,25 +368,9 @@ async function fetchCrispAnsweredConversationsLastMonth() {
 	return conversations?.length ?? 0
 }
 
-async function fetchZammadUserAnswersStats() {
-	const ticketLists = await fetch(
-		'https://mon-entreprise.zammad.com/api/v1/ticket_overviews?view=tickets_repondus_le_mois_dernier',
-		{
-			headers: new Headers({
-				Authorization: `Token token=${process.env.ZAMMAD_API_SECRET_KEY}`,
-			}),
-		}
-	)
-	const answer = await ticketLists.json()
-	return answer.index.count
-}
-
 // eslint-disable-next-line no-unused-vars
 async function fetchAllUserAnswerStats() {
-	const zammadAnswersCount = await fetchZammadUserAnswersStats()
-	const cripsAnswersCount = await fetchCrispAnsweredConversationsLastMonth()
-
-	return zammadAnswersCount + cripsAnswersCount
+	return await fetchCrispAnsweredConversationsLastMonth()
 }
 
 async function fetchGithubIssuesFromTags(tags) {
@@ -456,34 +440,11 @@ async function fetchCrispUserFeedbackIssues() {
 	return issueCount
 }
 
-async function fetchZammadUserFeedbackIssues() {
-	const tags = await fetch(
-		'https://mon-entreprise.zammad.com/api/v1/tag_list',
-		{
-			headers: new Headers({
-				Authorization: `Token token=${process.env.ZAMMAD_API_SECRET_KEY}`,
-			}),
-		}
-	).then((r) => r.json())
-
-	if (tags.error) {
-		console.error('Zammad error: ' + JSON.stringify(tags))
-	}
-
-	const issues = tags.filter(({ name }) => /#[\d]+/.exec(name))
-
-	return issues.reduce(
-		(acc, { name, count }) => ({ ...acc, [name]: count }),
-		{}
-	)
-}
-
 // eslint-disable-next-line no-unused-vars
 async function fetchAllUserFeedbackIssues() {
 	const crispFeedbackIssues = await fetchCrispUserFeedbackIssues()
-	const zammadFeedbackIssues = await fetchZammadUserFeedbackIssues()
 
-	const allIssues = [crispFeedbackIssues, zammadFeedbackIssues]
+	const allIssues = crispFeedbackIssues
 		.flatMap((issues) => Object.entries(issues))
 		.reduce(
 			(acc, [issue, count]) => ({
@@ -540,7 +501,6 @@ writeInDataDir('stats.json', baseData)
 if (
 	!process.env.ATINTERNET_API_ACCESS_KEY ||
 	!process.env.ATINTERNET_API_SECRET_KEY ||
-	!process.env.ZAMMAD_API_SECRET_KEY ||
 	!process.env.CRISP_API_IDENTIFIER ||
 	!process.env.CRISP_API_KEY ||
 	!process.env.GITHUB_API_SECRET
@@ -550,7 +510,6 @@ if (
 		`Variables d'environnement manquantes : ${[
 			missingEnvVar('ATINTERNET_API_ACCESS_KEY'),
 			missingEnvVar('ATINTERNET_API_SECRET_KEY'),
-			missingEnvVar('ZAMMAD_API_SECRET_KEY'),
 			missingEnvVar('CRISP_API_IDENTIFIER'),
 			missingEnvVar('CRISP_API_KEY'),
 			missingEnvVar('GITHUB_API_SECRET'),
