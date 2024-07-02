@@ -145,7 +145,7 @@ function PourMonEntreprise() {
 
 			<Container backgroundColor={(theme) => theme.colors.bases.primary[600]}>
 				<FromTop>
-					<FormsImage src={forms} alt="image" aria-hidden />
+					<FormsImage src={forms} alt="" />
 					<Spacing xs />
 					<ForceThemeProvider forceTheme="dark">
 						<H2>Simulateurs pour votre entreprise</H2>

@@ -99,12 +99,12 @@ export default function Accessibilité() {
 			<H3>Résultats des tests</H3>
 			<Body>L’audit de conformité réalisé par URBILOG révèle que :</Body>
 			<Ul>
-				<Li>79% des critères du RGAA version 4.1 sont respectés.</Li>
+				<Li>81% des critères du RGAA version 4.1 sont respectés.</Li>
 				<Li>Le taux moyen de conformité du service en ligne est de 93%.</Li>
 			</Ul>
 			<Body>
-				Nombre de critères applicables : 63 ; Nombre de critères conformes : 50
-				; Nombre de critères non conformes : 13
+				Nombre de critères applicables : 63 ; Nombre de critères conformes : 51
+				; Nombre de critères non conformes : 12
 			</Body>
 			<H3>Contenus non accessibles</H3>
 			<Body>
@@ -113,10 +113,7 @@ export default function Accessibilité() {
 			</Body>
 			<H4>Non conformité</H4>
 			<H5>1. Images</H5>
-			<Body>
-				Chaque image de décoration est-elle correctement ignorée par les
-				technologies d’assistance ?
-			</Body>
+			<Body>Néant</Body>
 			<H5>2. Cadres</H5>
 			<Body>Néant</Body>
 			<H5>3. Couleurs</H5>

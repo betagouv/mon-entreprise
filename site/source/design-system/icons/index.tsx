@@ -18,7 +18,6 @@ export const ChevronIcon = (props: HTMLAttributes<SVGElement>) => (
 		height={24}
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -35,7 +34,7 @@ export const InfoIcon = (props: HTMLAttributes<SVGElement>) => (
 		width={20}
 		height={20}
 		xmlns="http://www.w3.org/2000/svg"
-		role="img"
+		aria-hidden
 	>
 		<path
 			fillRule="evenodd"
@@ -54,7 +53,7 @@ export const SuccessIcon = (props: HTMLAttributes<SVGElement>) => (
 		width={20}
 		height={20}
 		xmlns="http://www.w3.org/2000/svg"
-		role="img"
+		aria-hidden
 	>
 		<path
 			fillRule="evenodd"
@@ -77,7 +76,6 @@ export const CarretDownIcon = (props: HTMLAttributes<SVGElement>) => (
 		viewBox="0 0 14 8"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path d="M7.70701 7.29289L13.2928 1.70711C13.9228 1.07714 13.4766 0 12.5857 0H1.41412C0.523211 0 0.0770421 1.07714 0.707007 1.70711L6.2928 7.29289C6.68332 7.68342 7.31648 7.68342 7.70701 7.29289Z" />
 	</SvgIcon>
@@ -91,7 +89,6 @@ export function SearchIcon({ ...props }) {
 			height={24}
 			xmlns="http://www.w3.org/2000/svg"
 			aria-hidden
-			role="img"
 		>
 			<path
 				fillRule="evenodd"
@@ -114,7 +111,7 @@ export const ErrorIcon = (props: HTMLAttributes<SVGElement>) => (
 		height="19"
 		viewBox="0 0 20 19"
 		xmlns="http://www.w3.org/2000/svg"
-		role="img"
+		aria-hidden
 	>
 		<path
 			fillRule="evenodd"
@@ -134,7 +131,6 @@ export const ReturnIcon = (props: HTMLAttributes<SVGElement>) => (
 		viewBox="0 0 16 13"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -158,7 +154,6 @@ export const EditIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -177,7 +172,6 @@ export const TriangleIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path d="M8 3L13.1962 12H2.80385L8 3Z" />
 	</svg>
@@ -192,7 +186,6 @@ export const SquareIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 		className={'square-icon' + (props.className ? ' ' + props.className : '')}
 	>
 		<path d="M3 3H13V13H3V3Z" />
@@ -212,7 +205,6 @@ export const HexagonIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path d="M8 3L12.3301 5.5V10.5L8 13L3.66987 10.5V5.5L8 3Z" />
 	</svg>
@@ -227,7 +219,6 @@ export const CircleIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path d="M8 3L8.52264 3.02739L9.03956 3.10926L9.54508 3.24472L10.0337 3.43227L10.5 3.66987L10.9389 3.95492L11.3457 4.28428L11.7157 4.65435L12.0451 5.06107L12.3301 5.5L12.5677 5.96632L12.7553 6.45492L12.8907 6.96044L12.9726 7.47736L13 8L12.9726 8.52264L12.8907 9.03956L12.7553 9.54508L12.5677 10.0337L12.3301 10.5L12.0451 10.9389L11.7157 11.3457L11.3457 11.7157L10.9389 12.0451L10.5 12.3301L10.0337 12.5677L9.54508 12.7553L9.03956 12.8907L8.52264 12.9726L8 13L7.47736 12.9726L6.96044 12.8907L6.45492 12.7553L5.96632 12.5677L5.5 12.3301L5.06107 12.0451L4.65435 11.7157L4.28428 11.3457L3.95492 10.9389L3.66987 10.5L3.43227 10.0337L3.24472 9.54508L3.10926 9.03956L3.02739 8.52264L3 8L3.02739 7.47736L3.10926 6.96044L3.24472 6.45492L3.43227 5.96632L3.66987 5.5L3.95492 5.06107L4.28428 4.65435L4.65435 4.28428L5.06107 3.95492L5.5 3.66987L5.96632 3.43227L6.45492 3.24472L6.96044 3.10926L7.47736 3.02739L8 3Z" />
 	</svg>
@@ -242,7 +233,6 @@ export const HelpIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -261,7 +251,6 @@ export const CheckmarkIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#3CB053"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -280,7 +269,6 @@ export const CrossIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#6C757D"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -304,7 +292,6 @@ export const ExternalLinkIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#6C757D"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -329,7 +316,6 @@ export const CircledArrowIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -360,7 +346,6 @@ export const PlusCircleIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#2E5FB6"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -389,7 +374,6 @@ export const ArrowRightIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#212529"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -413,7 +397,6 @@ export const WarningIcon = (props: HTMLAttributes<SVGElement>) => (
 		fill="#FFBB0C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -431,7 +414,6 @@ export const GithubIcon = (props: HTMLAttributes<SVGElement>) => (
 		viewBox="15 15 34 34"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
@@ -450,7 +432,6 @@ export const ClockIcon = (props: HTMLAttributes<SVGElement>) => (
 		// fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
-		role="img"
 	>
 		<path
 			fillRule="evenodd"
