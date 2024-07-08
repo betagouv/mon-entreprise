@@ -249,7 +249,7 @@ salarié . coût total employeur: 3618
 salarié . rémunération . net . payé après impôt: 1815
 salarié . rémunération . net . à payer avant impôt: 1871
 
-Notifications affichées : salarié . contrat . CDD . information, salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . contrat . CDD . information, salarié . convention collective . avertissement convention collective"
 `;
 
 exports[`calculate simulations-salarié > contrat pro 1`] = `
@@ -533,7 +533,7 @@ salarié . coût total employeur: 2380
 salarié . rémunération . net . payé après impôt: 1607
 salarié . rémunération . net . à payer avant impôt: 1616
 
-Notifications affichées : salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . avertissement convention collective"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 5`] = `
@@ -543,7 +543,7 @@ salarié . coût total employeur: 2349
 salarié . rémunération . net . payé après impôt: 1581
 salarié . rémunération . net . à payer avant impôt: 1589
 
-Notifications affichées : salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . avertissement convention collective"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 6`] = `
@@ -553,7 +553,7 @@ salarié . coût total employeur: 2331
 salarié . rémunération . net . payé après impôt: 1592
 salarié . rémunération . net . à payer avant impôt: 1601
 
-Notifications affichées : salarié . convention collective . contrôle décharge"
+Notifications affichées : salarié . convention collective . avertissement convention collective"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 7`] = `
