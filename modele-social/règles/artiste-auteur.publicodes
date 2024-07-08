@@ -204,8 +204,7 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP:
             - 4%
       - sinon:
           barème:
-            assiette: 
-              valeur: assiette
+            assiette: assiette
             tranches:
               - taux: 4%
                 plafond:
@@ -220,8 +219,12 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP:
   références:
     Guide de la retraite des artistes-auteurs 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
       
-# Avant 2024, le seuil d'affiliation était de 9135 €/an
-artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation: 10143 €/an
+artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation:
+  valeur:
+    variations:
+      - si: date >= 01/2024
+        alors: 10143 €/an
+      - sinon: 9135 €/an
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
   applicable si: assiette < 3 * seuil d'affiliation
