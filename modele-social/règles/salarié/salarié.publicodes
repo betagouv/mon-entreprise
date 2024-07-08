@@ -14,25 +14,36 @@ salarié . convention collective:
     une possibilité:
       choix obligatoire: oui
       possibilités:
-        - droit commun
         - HCR
         - BTP
         - sport
         - SVP
         - compta
         - optique
+        - autre
+        - droit commun
 
   avec:
-    contrôle décharge:
+    avertissement convention collective:
       type: notification
       sévérité: avertissement
-      valeur: convention collective != 'droit commun'
+      valeur:
+        toutes ces conditions:
+          - convention collective != 'droit commun'
+          - convention collective != 'autre'
       description: >-
-        Attention : l'implémentation des conventions collective est encore
+        Attention : la prise en charge des conventions collectives est encore
         partielle et non vérifiée. Néanmoins, cela permet d'obtenir une première
         estimation, plus précise que le régime général.
-    droit commun: convention collective = 'droit commun'
-
+    avertissement autre convention collective:
+      type: notification
+      sévérité: avertissement
+      valeur:
+        convention collective = 'autre'
+      description: >-
+        Attention : votre convention collective n'est pas prise en charge, 
+        la simulation se basera sur le droit commun.
+  
 salarié . régimes spécifiques:
 salarié . régimes spécifiques . alsace moselle:
   titre: Régime Alsace-Moselle
