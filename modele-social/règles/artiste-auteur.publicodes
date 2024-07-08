@@ -189,7 +189,7 @@ artiste-auteur . cotisations . IRCEC:
     Guide IRCEC 2021: http://www.ircec.fr/wp-content/uploads/2021/02/guide-ircec-2021.pdf
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP:
-  applicable si: assiette > seuil d'affiliation
+  applicable si: assiette >= seuil d'affiliation
   description: |
     Vous pouvez bénéficier d'un taux réduit à votre demande si vos revenus
     n'atteignent pas à seuil minimal pour une année donnée. Ce taux réduit
@@ -204,7 +204,9 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP:
             - 4%
       - sinon:
           barème:
-            assiette: assiette
+            assiette: 
+              valeur: assiette
+              plafond: 139104 €
             tranches:
               - taux: 4%
                 plafond:
@@ -215,8 +217,11 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP:
                       alors: cotisation RACL . plafond
               - taux: 8%
     arrondi: oui
+  références:
+    Guide de la retraite des artistes-auteurs 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
+      
 
-artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation: 9135 €/an
+artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation: 10143 €/an
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
   applicable si: assiette < 3 * seuil d'affiliation
@@ -231,7 +236,7 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
     cotisé. En réduisant votre cotisation vous réduisez donc le nombre de points
     acquis.
   références:
-    Guide IRCEC 2021: http://www.ircec.fr/wp-content/uploads/2021/02/guide-ircec-2021.pdf#page=5
+    Guide IRCEC 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
 
 artiste-auteur . cotisations . IRCEC . profession:
   question: Exercez-vous l'une de professions suivantes ?

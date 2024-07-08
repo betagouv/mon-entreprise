@@ -1,7 +1,9 @@
 salarié:
   - artiste-auteur . revenus . traitements et salaires: 1000 €/an
-  - artiste-auteur . revenus . traitements et salaires: 10000 €/an
+  - artiste-auteur . revenus . traitements et salaires: 9500 €/an
+  - artiste-auteur . revenus . traitements et salaires: 10500 €/an
   - artiste-auteur . revenus . traitements et salaires: 100000 €/an
+  - artiste-auteur . revenus . traitements et salaires: 140000 €/an
 
 bnc:
   - artiste-auteur . revenus . BNC . recettes: 10000 €/an
