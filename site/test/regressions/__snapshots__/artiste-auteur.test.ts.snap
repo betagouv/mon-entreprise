@@ -36,15 +36,29 @@ Notifications affichées : artiste-auteur . cotisations . avertissement trimestr
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 2`] = `
-"artiste-auteur . cotisations: 1603
-artiste-auteur . cotisations . IRCEC: 800
+"artiste-auteur . cotisations: 1523
+artiste-auteur . cotisations . IRCEC: 0
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 3`] = `
+"artiste-auteur . cotisations: 1683
+artiste-auteur . cotisations . IRCEC: 840
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-artiste-auteur > salarié 4`] = `
 "artiste-auteur . cotisations: 1061
 artiste-auteur . cotisations . IRCEC: 8000
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-artiste-auteur > salarié 5`] = `
+"artiste-auteur . cotisations: 1390
+artiste-auteur . cotisations . IRCEC: 11128
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
