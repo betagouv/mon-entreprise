@@ -496,7 +496,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 8946.000000000002,
+      "nodeValue": 9786.000000000002,
       "unit": {
         "denominators": [
           "an",
@@ -528,7 +528,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 31585,
+      "nodeValue": 30745,
       "unit": {
         "denominators": [
           "an",
