@@ -294,6 +294,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       avec:
         taux:
           variations:
+            - si: date >= 07/2024
+              alors: 23.1%
             - si: date >= 10/2022
               alors: 21.1%
             - sinon: 22%
@@ -368,7 +370,11 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         - entreprise . chiffre d'affaires
         - taux
 
-    cotisations CIPAV . taux:  21.2%
+    cotisations CIPAV . taux:
+      variations:
+        - si: date >= 07/2024
+          alors: 23.2%
+        - sinon: 21.2%
 
     taux prestation de service:
       déprécié: oui

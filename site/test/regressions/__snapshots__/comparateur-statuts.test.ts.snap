@@ -261,8 +261,8 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate comparateur-statuts > profession libérale non reglementée 1`] = `
-"dirigeant . rémunération . net: 32220
-dirigeant . rémunération . net . après impôt: 27054
+"dirigeant . rémunération . net: 31020
+dirigeant . rémunération . net . après impôt: 25854
 entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
