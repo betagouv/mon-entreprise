@@ -1,6 +1,9 @@
 # Journal des modifications
 ## next
 
+## 2.2.0
+- Distribution des cotisations auto-entrepreneurs
+- Corrections de liens morts dans les références
 
 ## 2.1.0
 - Renomme la règle `protection sociale . invalidité et décès . pension invalidité . revenu annuel moyen des 10 meilleures années` vers `protection sociale . invalidité et décès . revenu annuel moyen`
