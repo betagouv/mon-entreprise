@@ -13,7 +13,7 @@ import Value from '../EngineValue/Value'
 
 export function CompanyDetails({
 	showSituation = false,
-	headingTag = 'h2',
+	headingTag = 'h3',
 }: {
 	showSituation?: boolean
 	headingTag?: string | ComponentType | undefined
