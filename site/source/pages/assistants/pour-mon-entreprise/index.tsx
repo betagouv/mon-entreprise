@@ -277,7 +277,7 @@ const AskCompanyMissingDetails = () => {
 
 	return (
 		<>
-			<CompanyDetails showSituation />
+			<CompanyDetails showSituation headingTag="h2" />
 			{!!questions.length && (
 				<>
 					<Body
