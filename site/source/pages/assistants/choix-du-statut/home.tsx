@@ -79,7 +79,7 @@ export default function AccueilChoixStatut() {
 								</Body>
 							</Trans>
 						</Message>
-						<CompanyDetails headingTag="h3" />
+						<CompanyDetails />
 						<PopoverConfirm
 							trigger={(buttonProps) => (
 								<Button
