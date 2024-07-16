@@ -11,6 +11,14 @@ import { Body } from '@/design-system/typography/paragraphs'
 import SeeAnswersButton from '../conversation/SeeAnswersButton'
 import Value from '../EngineValue/Value'
 
+const StyledCompanyContainer = styled(Message).attrs({ border: false })``
+
+const StyledH4 = styled(H4)`
+	& span {
+		color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
+`
+
 export function CompanyDetails({
 	showSituation = false,
 	headingTag = 'h3',
@@ -62,11 +70,3 @@ export function CompanyDetails({
 		</StyledCompanyContainer>
 	)
 }
-
-const StyledCompanyContainer = styled(Message).attrs({ border: false })``
-
-const StyledH4 = styled(H4)`
-	& span {
-		color: ${({ theme }) => theme.colors.bases.primary[700]};
-	}
-`

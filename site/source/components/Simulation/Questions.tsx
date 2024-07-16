@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import { Trans } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import Conversation, {
@@ -33,6 +33,7 @@ export function Questions({
 	engines?: Array<Engine<DottedName>>
 }) {
 	const { numberCurrentStep, numberSteps } = useSimulationProgress()
+	const { t } = useTranslation()
 
 	return (
 		<>
@@ -41,9 +42,15 @@ export function Questions({
 				<div className="print-hidden">
 					{numberCurrentStep < numberSteps && (
 						<Notice>
-							<Trans i18nKey="simulateurs.précision.défaut">
-								Améliorez votre simulation en répondant aux questions :
-							</Trans>
+							{numberCurrentStep === 0
+								? t(
+										'simulateurs.précision.company',
+										'Améliorez votre simulation en sélectionnant votre entreprise :'
+								  )
+								: t(
+										'simulateurs.précision.défaut',
+										'Améliorez votre simulation en répondant aux questions :'
+								  )}
 						</Notice>
 					)}
 				</div>

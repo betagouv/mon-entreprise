@@ -285,6 +285,7 @@ Salaire brut mensuel: Salaire brut mensuel
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Salariés et employeurs: Salariés et employeurs
+Sélectionnez votre entreprise afin de préciser votre résultat.: Sélectionnez votre entreprise afin de préciser votre résultat.
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut
   que vous ayez opté pour que <2>les informations de votre entreprise ne soient
@@ -1730,6 +1731,7 @@ simulateurs:
         retraite <3> de base</3></1>).
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
+    company: "Améliorez votre simulation en sélectionnant votre entreprise :"  
   warning:
     artiste-auteur:
       "1": Cette estimation est proposée à titre indicatif. Elle est faite à partir

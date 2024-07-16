@@ -14,6 +14,7 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import { useSimulationProgress } from '@/hooks/useNextQuestion'
 import { answerQuestion } from '@/store/actions/actions'
 import {
 	answeredQuestionsSelector,
@@ -25,6 +26,7 @@ import { TrackPage } from '../ATInternetTracking'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { FromTop } from '../ui/animate'
 import AnswerList from './AnswerList'
+import EntrepriseInput from './EntrepriseInput'
 import { ExplicableRule } from './Explicable'
 import SeeAnswersButton from './SeeAnswersButton'
 import { useNavigateQuestions } from './useNavigateQuestions'
@@ -49,6 +51,8 @@ export default function Conversation({
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 
 	const { t } = useTranslation()
+
+	const { numberCurrentStep } = useSimulationProgress()
 
 	const {
 		currentQuestion,
@@ -122,24 +126,46 @@ export default function Conversation({
 								}}
 							>
 								<H3 id="questionHeader" as="h2">
-									{evaluateQuestion(engine, engine.getRule(currentQuestion))}
-									<ExplicableRule light dottedName={currentQuestion} />
+									{numberCurrentStep === 0 ? (
+										t('Votre entreprise')
+									) : (
+										<>
+											{evaluateQuestion(
+												engine,
+												engine.getRule(currentQuestion)
+											)}
+											<ExplicableRule light dottedName={currentQuestion} />
+										</>
+									)}
 								</H3>
 							</div>
 							<fieldset>
-								<legend className="sr-only">
-									{t(
-										'Répondez à quelques questions additionnelles afin de préciser votre résultat.'
-									)}
-								</legend>
-								<RuleInput
-									dottedName={currentQuestion}
-									onChange={onChange}
-									key={currentQuestion}
-									onSubmit={goToNext}
-									aria-labelledby="questionHeader"
-									hideDefaultValue={isDateQuestion}
-								/>
+								{numberCurrentStep === 0 ? (
+									<>
+										<legend className="sr-only">
+											{t(
+												'Sélectionnez votre entreprise afin de préciser votre résultat.'
+											)}
+										</legend>
+										<EntrepriseInput aria-labelledby="questionHeader" />
+									</>
+								) : (
+									<>
+										<legend className="sr-only">
+											{t(
+												'Répondez à quelques questions additionnelles afin de préciser votre résultat.'
+											)}
+										</legend>
+										<RuleInput
+											dottedName={currentQuestion}
+											onChange={onChange}
+											key={currentQuestion}
+											onSubmit={goToNext}
+											aria-labelledby="questionHeader"
+											hideDefaultValue={isDateQuestion}
+										/>
+									</>
+								)}
 							</fieldset>
 							<Grid container spacing={2}>
 								{previousAnswers.length > 0 && (

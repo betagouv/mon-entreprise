@@ -271,6 +271,7 @@ Salaire brut mensuel: Gross monthly salary
 Salaire net: Net salary
 Salariés et embauche: Employees and hiring
 Salariés et employeurs: Employees and employers
+Sélectionnez votre entreprise afin de préciser votre résultat.: Select your company to clarify your result.
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   If your company does not appear using your SIREN/SIRET, it may be that you
   have opted not to have <2>your company information made public</2>, in which
@@ -1626,6 +1627,7 @@ simulateurs:
         basic</3> pensions</1>).
   précision:
     défaut: "Improve your simulation by answering the questions below:"
+    company: "Improve your simulation by selecting your company:"  
   warning:
     artiste-auteur:
       "1": This estimate is provided for information only. It is based on the
