@@ -762,27 +762,26 @@ pages:
     partially compliant with the <5>RGAA (référentiel général d'amélioration de
     l'accessibilité)</5>, version 4.1, due to the non-conformities and
     derogations listed below.</13><14>Test results</14><15>The compliance audit
-    carried out by URBILOG revealed that :</15><16><0>79% of RGAA version 4.1
+    carried out by URBILOG revealed that :</15><16><0>81% of RGAA version 4.1
     criteria are met.</0><1>The average compliance rate for the online service
     is 93%.</1></16><17>Number of applicable criteria: 63; Number of compliant
-    criteria: 50; Number of non-compliant criteria: 13</17><18>Content not
+    criteria: 51; Number of non-compliant criteria: 12</17><18>Content not
     accessible</18><19>The content listed below is not accessible for the
-    following reasons:</19><20>Non-compliance</20><21>1. Images</21><22>Is each
-    decorative image correctly ignored by assistive technologies?</22><23>2.
-    Frames</23><24>None</24><25>3. Colors</25><26><0>On every web page,
-    information should not be conveyed by color alone. Is this rule respected?
-    </0><1>In each web page, are the colors used in interface components or
-    graphic elements carrying information sufficiently contrasting (excluding
-    special cases)?</1></26><27>4. Multimedia</27><28>None</28><29>5.
-    Tables</29><30>For each data table, are each column header and each row
-    header correctly declared?</30><31>6. Links</31><32>Are all links explicit
-    (excluding special cases)?</32><33>7. Scripts</33><34><0>Is every script
-    compatible with assistive technologies, if necessary?</0><1>Can each script
-    be controlled via the keyboard or any other pointing device (excluding
-    special cases)?</1><2>For each script that initiates a context switch, is
-    the user warned or does he/she have control over it?</2></34><35>8.
-    Mandatory elements</35><36>None</36><37>9. Information
-    structuring</37><38>Is every list on every web page correctly
+    following reasons:</19><20>Non-compliance</20><21>1.
+    Images</21><22>None</22><23>2. Frames</23><24>None</24><25>3.
+    Colors</25><26><0>On every web page, information should not be conveyed by
+    color alone. Is this rule respected? </0><1>In each web page, are the colors
+    used in interface components or graphic elements carrying information
+    sufficiently contrasting (excluding special cases)?</1></26><27>4.
+    Multimedia</27><28>None</28><29>5. Tables</29><30>For each data table, are
+    each column header and each row header correctly declared?</30><31>6.
+    Links</31><32>Are all links explicit (except in special cases)?</32><33>7.
+    Scripts</33><34><0>Is every script compatible with assistive technologies,
+    if necessary?</0><1>Can each script be controlled via the keyboard or any
+    other pointing device (excluding special cases)?</1><2>For each script that
+    initiates a context switch, is the user warned or does he/she have control
+    over it?</2></34><35>8. Mandatory elements</35><36>None</36><37>9.
+    Information structuring</37><38>Is every list on every web page correctly
     structured?</38><39>10. Presentation of information</39><40>Does the
     information on each web page remain comprehensible when style sheets are
     deactivated?</40><41>11. Forms</41><42><0>In each form, is there a caption
@@ -818,8 +817,8 @@ pages:
     <2>accessibilite@acoss.fr</2>, indicating the name of the document concerned
     and/or the information you would like to obtain. The requested information
     will be sent to you as soon as possible.</65><66>Improvement and
-    contact</66><67>You can help us improve the accessibility of the site by
-    reporting any problems you encounter. To do so, send us an e-mail to
+    contact</66><67>You can help us to improve the accessibility of the site by
+    notifying us of any problems you encounter. To do so, send us an e-mail to
     <2>accessibilite@acoss.fr.</2></67><68>Rights Defender</68><69>This
     procedure should be used in the following cases.</69><70>You have notified
     the website manager of an accessibility problem that is preventing you from

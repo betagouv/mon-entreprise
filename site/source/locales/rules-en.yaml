@@ -631,6 +631,241 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     cotisations CIPAV . taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
+    répartition:
+      avec:
+        autres contributions:
+          description.en: >
+            [automatic] Share of auto-entrepreneurs' contributions to the
+            general social contribution and the contribution for the repayment
+            of the social debt
+          description.fr: >
+            Part des cotisations autoentrepreneurs qui alimentent la
+            contribution sociale généralisée et la cotisation pour le
+            remboursement de la dette sociale
+          titre.en: '[automatic] other contributions'
+          titre.fr: autres contributions
+        invalidité-décès:
+          description.en: >
+            [automatic] Share of auto-entrepreneurs' contributions to disability
+            and death insurance
+
+
+            Guarantees payment of a pension in the event of disability and a lump sum to your loved ones in the event of death.
+          description.fr: >
+            Part des cotisations autoentrepreneurs qui alimentent l'assurance
+            invalidité-décès
+
+
+            Garantit le versement d'une pension en cas d'invalidité et un capital à vos proches en cas de décès.
+          titre.en: '[automatic] disability and death'
+          titre.fr: invalidité-décès
+        maladie-maternité:
+          description.en: >
+            [automatic] Share of auto-entrepreneurs' contributions to health and
+            maternity insurance
+
+
+            Assurance Maladie provides long-term protection for the health of everyone in their personal and professional lives.
+
+
+            In concrete terms, it supports 60 million insured people throughout their lives, covering their care regardless of their resources, situation or state of health. In this way, it guarantees universal access to rights and enables access to healthcare.
+
+
+            You are covered for most healthcare services. In the event of serious or long-term illness, 100% of treatment is reimbursed.
+
+
+            ## Health insurance in France in figures
+              - 92%** of healthcare costs reimbursed on average by health insurance and complementary health insurance.
+              - 30,000/year/patient**: example of full coverage for a person with cystic fibrosis
+              - 82.4 years** average life expectancy in France (in the top 10 worldwide 🏅)
+          description.fr: >
+            Part des cotisations autoentrepreneurs qui alimentent l'assurance
+            maladie-maternité
+
+
+            L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
+
+
+            Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
+
+
+            Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+
+            ## L'assurance maladie en France en quelques chiffres
+              - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
+              - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
+              - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+          titre.en: '[automatic] illness-maternity'
+          titre.fr: maladie-maternité
+        retraite:
+          description.en: >
+            [automatic] Percentage of autoentrepreneurs' contributions that go
+            to pensions
+
+            ### A compulsory system ...
+
+            As soon as you start working, you and your employer contribute to your pension. This contribution is based on the salary you receive.
+
+
+            ###Pay-as-you-go
+
+            The total amount of contributions you pay each year is used to pay the pensions of retirees for that same year. The system thus organizes a direct transfer from working generations to retired generations.
+
+
+            ###Mainly contributory
+
+            When you retire, your pension (i.e. your retirement "income") is calculated on the basis of your income, your retirement age and the number of years you have worked.
+
+
+            **Our pension system is also based on solidarity**: the unemployed, people on sick leave, people with disabilities, low-income workers and women on maternity leave also acquire rights. No retired person is left destitute.
+
+
+            Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+          description.fr: >
+            Part des cotisations autoentrepreneurs qui alimentent la retraite
+
+            ### Un système obligatoire …
+
+            Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
+
+
+            ###… par répartition
+
+            Le montant total des cotisations que vous versez chaque année sert à payer les pensions des retraités pour cette même année. Le système organise ainsi un transfert direct des générations en activité vers les générations à la retraite.
+
+
+            ###… principalement contributif
+
+            Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu » à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à la retraite et du nombre d’années passées à travailler.
+
+
+            **Notre système de retraite est également solidaire**: les chômeurs, les personnes en arrêt maladie, les personnes en situation de handicap, les travailleurs touchant de faibles revenus, les femmes en congé maternité acquièrent également des droits. Aucune personne à la retraite n’est laissée sans ressources.
+
+
+            Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+          titre.en: '[automatic] retirement'
+          titre.fr: retraite
+        retraite complémentaire:
+          description.en:
+            "[automatic] Share of auto-entrepreneurs' contributions to
+            supplementary pension schemes"
+          description.fr:
+            Part des cotisations autoentrepreneurs qui alimentent la
+            retraite complémentaire
+          titre.en: '[automatic] supplementary pension'
+          titre.fr: retraite complémentaire
+        retraite de base:
+          description.en:
+            "[automatic] Percentage of auto-entrepreneurs' contributions
+            that go towards basic retirement pensions"
+          description.fr:
+            Part des cotisations autoentrepreneurs qui alimentent la
+            retraite de base
+          titre.en: '[automatic] basic retirement'
+          titre.fr: retraite de base
+      titre.en: '[automatic] distribution'
+      titre.fr: répartition
+    service BIC:
+      avec:
+        répartition:
+          avec:
+            autres contributions:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] other contributions'
+              titre.fr: autres contributions
+            invalidité-décès:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] disability and death'
+              titre.fr: invalidité-décès
+            maladie-maternité:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] illness-maternity'
+              titre.fr: maladie-maternité
+            retraite complémentaire:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] supplementary pension'
+              titre.fr: retraite complémentaire
+            retraite de base:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] basic retirement'
+              titre.fr: retraite de base
+          titre.en: '[automatic] distribution'
+          titre.fr: répartition
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      description.en: '[automatic] Contributions for the portion of sales from BIC services'
+      description.fr:
+        Cotisations pour la part du chiffre d'affaires en prestation de
+        service BIC
+      titre.en: '[automatic] BIC service'
+      titre.fr: service BIC
+    service BNC:
+      avec:
+        répartition:
+          avec:
+            autres contributions:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] other contributions'
+              titre.fr: autres contributions
+            invalidité-décès:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] disability and death'
+              titre.fr: invalidité-décès
+            maladie-maternité:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] illness-maternity'
+              titre.fr: maladie-maternité
+            retraite complémentaire:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] supplementary pension'
+              titre.fr: retraite complémentaire
+            retraite de base:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] basic retirement'
+              titre.fr: retraite de base
+          titre.en: '[automatic] distribution'
+          titre.fr: répartition
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      description.en: '[automatic] Contributions for the portion of sales from BNC services'
+      description.fr:
+        Cotisations pour la part du chiffre d'affaires en prestation de
+        service BNC
+      titre.en: '[automatic] BNC service'
+      titre.fr: service BNC
     taux prestation de service:
       note.en: '[automatic] There is now a different rate for BIC or BNC services.'
       note.fr:
@@ -647,6 +882,55 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     taux vente restauration hébergement:
       titre.en: '[automatic] sales rate catering accommodation'
       titre.fr: taux vente restauration hébergement
+    vente restauration hébergement:
+      avec:
+        répartition:
+          avec:
+            autres contributions:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] other contributions'
+              titre.fr: autres contributions
+            invalidité-décès:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] disability and death'
+              titre.fr: invalidité-décès
+            maladie-maternité:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] illness-maternity'
+              titre.fr: maladie-maternité
+            retraite complémentaire:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] supplementary pension'
+              titre.fr: retraite complémentaire
+            retraite de base:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] basic retirement'
+              titre.fr: retraite de base
+          titre.en: '[automatic] distribution'
+          titre.fr: répartition
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      description.en: '[automatic] Contributions on sales, catering and accommodation sales'
+      description.fr: Cotisations pour la part du chiffre d'affaires en vente,
+        restauration et hébergement
+      titre.en: '[automatic] sales catering accommodation'
+      titre.fr: vente restauration hébergement
   description.en: >
     [automatic] The social contributions give the auto-entrepreneur access to a
 

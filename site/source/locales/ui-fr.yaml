@@ -801,30 +801,30 @@ pages:
     l’accessibilité (RGAA)</5>, version 4.1 en raison des non-conformités et des
     dérogations énumérées ci-dessous.</13><14>Résultats des
     tests</14><15>L’audit de conformité réalisé par URBILOG révèle que
-    :</15><16><0>79% des critères du RGAA version 4.1 sont respectés.</0><1>Le
+    :</15><16><0>81% des critères du RGAA version 4.1 sont respectés.</0><1>Le
     taux moyen de conformité du service en ligne est de 93%.</1></16><17>Nombre
-    de critères applicables : 63 ; Nombre de critères conformes : 50 ; Nombre de
-    critères non conformes : 13</17><18>Contenus non accessibles</18><19>Les
+    de critères applicables : 63 ; Nombre de critères conformes : 51 ; Nombre de
+    critères non conformes : 12</17><18>Contenus non accessibles</18><19>Les
     contenus listés ci-dessous ne sont pas accessibles pour les raisons
-    suivantes :</19><20>Non conformité</20><21>1. Images</21><22>Chaque image de
-    décoration est-elle correctement ignorée par les technologies d’assistance
-    ?</22><23>2. Cadres</23><24>Néant</24><25>3. Couleurs</25><26><0>Dans chaque
-    page web, l’information ne doit pas être donnée uniquement par la couleur.
-    Cette règle est-elle respectée ? </0><1>Dans chaque page web, les couleurs
-    utilisées dans les composants d’interface ou les éléments graphiques
-    porteurs d’informations sont-elles suffisamment contrastées (hors cas
-    particuliers) ?</1></26><27>4. Multimédia</27><28>Néant</28><29>5.
-    Tableaux</29><30>Pour chaque tableau de données, chaque en-tête de colonne
-    et chaque en-tête de ligne sont-ils correctement déclarés ?</30><31>6.
-    Liens</31><32>Chaque lien est-il explicite (hors cas particuliers)
-    ?</32><33>7. Scripts</33><34><0>Chaque script est-il, si nécessaire,
-    compatible avec les technologies d’assistance ?</0><1>Chaque script est-il
-    contrôlable par le clavier et par tout dispositif de pointage (hors cas
-    particuliers) ?</1><2>Pour chaque script qui initie un changement de
-    contexte, l’utilisateur est-il averti ou en a-t-il le contrôle
-    ?</2></34><35>8. Éléments obligatoires</35><36>Néant</36><37>9.
-    Structuration de l'information</37><38>Dans chaque page web, chaque liste
-    est-elle correctement structurée ?</38><39>10. Présentation de
+    suivantes :</19><20>Non conformité</20><21>1.
+    Images</21><22>Néant</22><23>2. Cadres</23><24>Néant</24><25>3.
+    Couleurs</25><26><0>Dans chaque page web, l’information ne doit pas être
+    donnée uniquement par la couleur. Cette règle est-elle respectée ?
+    </0><1>Dans chaque page web, les couleurs utilisées dans les composants
+    d’interface ou les éléments graphiques porteurs d’informations sont-elles
+    suffisamment contrastées (hors cas particuliers) ?</1></26><27>4.
+    Multimédia</27><28>Néant</28><29>5. Tableaux</29><30>Pour chaque tableau de
+    données, chaque en-tête de colonne et chaque en-tête de ligne sont-ils
+    correctement déclarés ?</30><31>6. Liens</31><32>Chaque lien est-il
+    explicite (hors cas particuliers) ?</32><33>7. Scripts</33><34><0>Chaque
+    script est-il, si nécessaire, compatible avec les technologies d’assistance
+    ?</0><1>Chaque script est-il contrôlable par le clavier et par tout
+    dispositif de pointage (hors cas particuliers) ?</1><2>Pour chaque script
+    qui initie un changement de contexte, l’utilisateur est-il averti ou en
+    a-t-il le contrôle ?</2></34><35>8. Éléments
+    obligatoires</35><36>Néant</36><37>9. Structuration de
+    l'information</37><38>Dans chaque page web, chaque liste est-elle
+    correctement structurée ?</38><39>10. Présentation de
     l'information</39><40>Dans chaque page web, l’information reste-t-elle
     compréhensible lorsque les feuilles de styles sont désactivées ?</40><41>11.
     Formulaires</41><42><0>Dans chaque formulaire, chaque regroupement de champs
