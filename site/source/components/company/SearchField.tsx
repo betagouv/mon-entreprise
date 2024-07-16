@@ -6,7 +6,7 @@ import { styled } from 'styled-components'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
-import { SearchField } from '@/design-system/field'
+import { SearchableSelectField } from '@/design-system/field/SearchableSelectField/SearchableSelectField'
 import { FocusStyle } from '@/design-system/global-style'
 import { ChevronIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
@@ -30,6 +30,7 @@ const StyledCard = styled(Card)`
 
 export function EntrepriseSearchField(props: {
 	label?: ReactNode
+	selectedValue?: ReactNode | null
 	onValue?: () => void
 	onClear?: () => void
 	onSubmit?: (search: Entreprise | null) => void
@@ -39,14 +40,21 @@ export function EntrepriseSearchField(props: {
 
 	const searchFieldProps = {
 		...props,
-		label: t('CompanySearchField.label', "Nom de l'entreprise, SIREN ou SIRET"),
-		description: t(
-			'CompanySearchField.description',
-			'Le numéro Siret est un numéro de 14 chiffres unique pour chaque entreprise. Exemple : 40123778000127'
-		),
+		label:
+			!props.selectedValue &&
+			t('CompanySearchField.label', "Nom de l'entreprise, SIREN ou SIRET"),
+		description:
+			!props.selectedValue &&
+			t(
+				'CompanySearchField.description',
+				'Le numéro Siret est un numéro de 14 chiffres unique pour chaque entreprise. Exemple : 40123778000127'
+			),
 		onSubmit() {
 			const results = refResults.current
 			props.onSubmit?.(results?.[0] ?? null)
+		},
+		onClear() {
+			props.onClear?.()
 		},
 		placeholder: t(
 			'CompanySearchField.placeholder',
@@ -56,11 +64,7 @@ export function EntrepriseSearchField(props: {
 
 	const state = useSearchFieldState(searchFieldProps)
 
-	const { onValue, onClear, onSubmit } = props
-	useEffect(
-		() => (!state.value ? onClear?.() : onValue?.()),
-		[state.value, onValue, onClear]
-	)
+	const { onSubmit } = props
 
 	const [searchPending, results] = useSearchCompany(state.value)
 
@@ -71,11 +75,10 @@ export function EntrepriseSearchField(props: {
 	return (
 		<Grid container>
 			<Grid item xs={12}>
-				<SearchField
+				<SearchableSelectField
 					data-test-id="company-search-input"
 					state={state}
 					isSearchStalled={searchPending}
-					onClear={onClear}
 					aria-label={
 						searchFieldProps.label +
 						', ' +
@@ -89,7 +92,7 @@ export function EntrepriseSearchField(props: {
 
 			<Grid item xs={12}>
 				<Appear unless={searchPending || !state.value}>
-					{state.value && !searchPending && (
+					{state.value && !searchPending && !props.selectedValue && (
 						<Results results={results} onSubmit={onSubmit} />
 					)}
 				</Appear>
