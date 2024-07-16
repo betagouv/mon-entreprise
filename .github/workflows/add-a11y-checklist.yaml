@@ -25,7 +25,7 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: accessibilité
       - name: Create comment
-        if: steps.changed-files-specific.outputs.any_changed == 'true' && steps.find-comment.outputs.comment-id == ''
+        if: github.event.pull_request.head.repo.full_name == github.repository && steps.changed-files-specific.outputs.any_changed == 'true' && steps.find-comment.outputs.comment-id == ''
         uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number: ${{ github.event.pull_request.number }}
