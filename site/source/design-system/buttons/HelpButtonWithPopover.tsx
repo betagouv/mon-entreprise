@@ -34,12 +34,7 @@ export default function HelpButtonWithPopover({
 					{...buttonProps}
 					{...props}
 				>
-					<CircleIcon
-						aria-hidden
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-					>
+					<CircleIcon aria-hidden width="24" height="24" viewBox="0 0 24 24">
 						{type === 'info' ? (
 							<path
 								fillRule="evenodd"
