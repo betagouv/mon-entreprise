@@ -11,11 +11,13 @@ import { useNavigateQuestions } from './useNavigateQuestions'
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
 	customSituationVisualisation?: React.ReactNode
+	setCompanySelectionStep?: (isCompanySelectionStep: boolean) => void
 }
 
 export default function Conversation({
 	customEndMessages,
 	customSituationVisualisation,
+	setCompanySelectionStep,
 }: ConversationProps) {
 	const previousAnswers = useSelector(
 		questionsRéponduesEncoreApplicablesNomsSelector
@@ -42,6 +44,7 @@ export default function Conversation({
 					<QuestionEnCours
 						previousAnswers={previousAnswers}
 						customSituationVisualisation={customSituationVisualisation}
+						setCompanySelectionStep={setCompanySelectionStep}
 					/>
 				) : (
 					<VousAvezComplétéCetteSimulation

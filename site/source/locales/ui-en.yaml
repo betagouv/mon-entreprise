@@ -221,6 +221,7 @@ Page d'accueil: Home page
 Passer: Pass
 Passer le contenu principal et aller directement au pied de page: Skip the main content and go directly to the footer
 Passer à la version française du site: Switch to the French version of the site
+Passer, passer aux questions sans sélectionner d'entreprise: Skip, skip to questions without selecting a company
 Passer, passer la question sans répondre: Pass, pass the question without answering
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
@@ -304,9 +305,11 @@ Statistiques: Statistics
 Statut du conjoint: Spouse's status
 Suivant: Next
 Suivant, enregistrer et passer à l'étape suivante: Next, save and go to the next step
+Suivant, passer aux questions avec l'entreprise sélectionnée: Next, questions with the selected company
 Suivant, passer à la question suivante: Next, move on to the next question
 Suivant, voir le résultat: Next, see the result
 Switch to the english version of the website: Switch to the english version of the website
+Sélectionnez votre entreprise afin de préciser votre résultat.: Select your company to clarify your result.
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Table showing user satisfaction with {{percentOrVotes}} on the mon-entreprise
   site, by month.
@@ -365,6 +368,7 @@ Votre avis nous intéresse: We value your opinion
 Votre chiffre d'affaires estimé: Your estimated sales
 Votre couverture invalidité et décès: Your disability and death coverage
 Votre domaine d'activité: Your field of activity
+Votre entreprise: Your company
 Votre message (requis): Your message (required)
 Votre rémunération totale estimée: Your estimated total remuneration
 Vous allez dépasser le plafond de la micro-entreprise: You will exceed the micro-business limit
@@ -1709,6 +1713,7 @@ simulateurs:
         (health insurance, family allowances, long-term care<1> and <3>
         basic</3> pensions</1>).
   précision:
+    company: "Improve your simulation by selecting your company:"
     défaut: "Improve your simulation by answering the questions below:"
   warning:
     artiste-auteur: This simulator allows you to estimate the amount of your

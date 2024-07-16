@@ -28,11 +28,13 @@ import { evaluateQuestion } from '@/utils/publicodes'
 interface Props {
 	previousAnswers: DottedName[]
 	customSituationVisualisation?: React.ReactNode
+	setCompanySelectionStep?: (isCompanySelectionStep: boolean) => void
 }
 
 export function QuestionEnCours({
 	previousAnswers,
 	customSituationVisualisation,
+	setCompanySelectionStep,
 }: Props) {
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
@@ -55,6 +57,10 @@ export function QuestionEnCours({
 				?.focus()
 		}, 5)
 	}, [])
+
+	const handleGoToCompanySelection = useCallback(() => {
+		setCompanySelectionStep?.(true)
+	}, [setCompanySelectionStep])
 
 	const handleGoToPrevious = useCallback(() => {
 		goToPrevious()
@@ -130,12 +136,23 @@ export function QuestionEnCours({
 					/>
 				</fieldset>
 				<Grid container spacing={2}>
-					{previousAnswers.length > 0 && !estSurLaPremièreQuestion && (
+					{previousAnswers.length > 0 && !estSurLaPremièreQuestion ? (
 						<Grid item xs={6} sm="auto">
 							<Button
 								color="primary"
 								light
 								onPress={handleGoToPrevious}
+								size="XS"
+							>
+								<span aria-hidden>←</span> <Trans>Précédent</Trans>
+							</Button>
+						</Grid>
+					) : (
+						<Grid item xs={6} sm="auto">
+							<Button
+								color="primary"
+								light
+								onPress={handleGoToCompanySelection}
 								size="XS"
 							>
 								<span aria-hidden>←</span> <Trans>Précédent</Trans>
