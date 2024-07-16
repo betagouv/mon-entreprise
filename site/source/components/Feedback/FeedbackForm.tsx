@@ -213,7 +213,7 @@ export default function FeedbackForm({
 								label={t('Votre message (requis)')}
 								onChange={resetSubmitErrorField('message')}
 								description={t(
-									'Éviter de communiquer des informations personnelles'
+									'Évitez de communiquer des informations personnelles'
 								)}
 								id="message"
 								rows={7}
@@ -244,7 +244,7 @@ export default function FeedbackForm({
 									type="email"
 									label={t('Votre adresse e-mail (requise)')}
 									description={t(
-										'Renseigner une adresse e-mail (au format nom@domaine.com) pour recevoir une réponse'
+										'Renseignez une adresse e-mail (au format nom@domaine.com) pour recevoir une réponse'
 									)}
 									isDisabled={isLoading}
 									maxLength={SHORT_MAX_LENGTH}

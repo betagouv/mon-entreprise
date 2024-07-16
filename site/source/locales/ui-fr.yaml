@@ -256,8 +256,8 @@ Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.: Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.
-Renseigner une adresse e-mail (au format nom@domaine:
-  com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
+Renseignez une adresse e-mail (au format nom@domaine:
+  com) pour recevoir une réponse: Renseignez une adresse e-mail (au format
     nom@domaine.com) pour recevoir une réponse
 Replier: Replier
 Retour à la création: Retour à la création
@@ -365,6 +365,7 @@ Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
 Votre couverture invalidité et décès: Votre couverture invalidité et décès
 Votre domaine d'activité: Votre domaine d'activité
+Votre entreprise : Votre entreprise
 Votre message (requis): Votre message (requis)
 Votre rémunération totale estimée: Votre rémunération totale estimée
 Vous allez dépasser le plafond de la micro-entreprise: Vous allez dépasser le plafond de la micro-entreprise
@@ -1824,7 +1825,7 @@ warning:
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
 Étape {{ total }} sur {{ maxValue }}: Étape {{ total }} sur {{ maxValue }}
-Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
+Évitez de communiquer des informations personnelles: Évitez de communiquer des informations personnelles
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
 à partir du 29ème jour: à partir du 29ème jour

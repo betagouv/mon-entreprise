@@ -38,7 +38,7 @@ export default function SearchOrCreate() {
 			<Grid item xl={8} lg={10} md={12}>
 				{companySIREN ? (
 					<>
-						<H3 as="h2">Votre entreprise</H3>
+						<H3 as="h2">{t('Votre entreprise')}</H3>
 						<CompanyDetails />
 						<Spacing md />
 						<AnswerGroup role="list">

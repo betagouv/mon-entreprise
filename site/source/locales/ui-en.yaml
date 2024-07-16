@@ -243,7 +243,7 @@ Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
 Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.: Search, open the dialog box to enter your search terms.
-Renseigner une adresse e-mail (au format nom@domaine:
+Renseignez une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Enter an e-mail address (in nom@domaine.com format) to receive a reply.
 Replier: Fold
 Retour à la création: Back to creation
@@ -347,6 +347,7 @@ Votre avis nous intéresse: We value your opinion
 Votre chiffre d'affaires estimé: Your estimated sales
 Votre couverture invalidité et décès: Your disability and death coverage
 Votre domaine d'activité: Your field of activity
+Votre entreprise : Your company
 Votre message (requis): Your message (required)
 Votre rémunération totale estimée: Your estimated total remuneration
 Vous allez dépasser le plafond de la micro-entreprise: You will exceed the micro-business limit
@@ -1715,7 +1716,7 @@ warning:
 Étape complétée: Step completed
 Étape non complétée: Step not completed
 Étape {{ total }} sur {{ maxValue }}: Step {{ total }} on {{ maxValue }}
-Éviter de communiquer des informations personnelles: Avoid giving out personal information
+Évitez de communiquer des informations personnelles: Avoid giving out personal information
 Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Are you sure you want to reset the registered situation?
 à partir du 29ème jour: from day 29
