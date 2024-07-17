@@ -259,21 +259,10 @@ protection sociale . retraite . complémentaire . RCI:
         références à:
           dirigeant . indépendant . cotisations et contributions . retraite complémentaire
         dans: points acquis
-      somme:
-        - produit:
-            - entreprise . chiffre d'affaires . vente restauration hébergement
-            - variations:
-                - si: date >= 10/2022
-                  alors: 2.03%
-                - sinon: 2.04%
-        - produit:
-            - entreprise . chiffre d'affaires . service BIC
-            - 3.50%
-        - produit:
-            - entreprise . chiffre d'affaires . service BIC
-            - 0%
+      valeur: dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire
       références:
-        Article D613-6 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714699/2022-12-10/
+        Décret n° 2024-484 du 30 mai 2024 modifiant les taux globaux de cotisations et contributions de certains travailleurs indépendants exerçant dans le cadre de la microentreprise: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049620955
+        Cotisations sociales, quels changements au 1er juillet 2024 ?: https://entreprendre.service-public.fr/actualites/A17464
 
     valeur d'acquisition:
       variations:
