@@ -8266,19 +8266,26 @@ salarié . contrat . temps de travail . temps partiel:
   titre.fr: temps partiel
 salarié . convention collective:
   avec:
-    contrôle décharge:
-      description.en: '[automatic] Attention: the implementation of collective
-        agreements is still partial and not verified. Nevertheless, it allows us
-        to obtain a first estimate, more precise than the general scheme.'
+    avertissement autre convention collective:
+      description.en:
+        '[automatic] Please note: your collective bargaining agreement
+        is not taken into account; the simulation will be based on common law.'
       description.fr:
-        "Attention : l'implémentation des conventions collective est
+        "Attention : votre convention collective n'est pas prise en
+        charge,  la simulation se basera sur le droit commun."
+      titre.en: '[automatic] warning other collective bargaining agreement'
+      titre.fr: avertissement autre convention collective
+    avertissement convention collective:
+      description.en:
+        '[automatic] Please note: the coverage of collective bargaining
+        agreements is still partial and unverified. Nonetheless, it provides an
+        initial estimate that is more accurate than that of the general scheme.'
+      description.fr:
+        "Attention : la prise en charge des conventions collectives est
         encore partielle et non vérifiée. Néanmoins, cela permet d'obtenir une
         première estimation, plus précise que le régime général."
-      titre.en: '[automatic] control discharge'
-      titre.fr: contrôle décharge
-    droit commun:
-      titre.en: '[automatic] common law'
-      titre.fr: droit commun
+      titre.en: '[automatic] warning collective bargaining agreement'
+      titre.fr: avertissement convention collective
   question.en: '[automatic] Which collective agreement is applicable to the company?'
   question.fr: Quelle convention collective est applicable à l'entreprise ?
   titre.en: convention collective
@@ -8484,6 +8491,9 @@ salarié . convention collective . SVP . prévoyance:
     avantageuse, c'est donc cette dernière qui est prise en compte
   titre.en: '[automatic] providence'
   titre.fr: prévoyance
+salarié . convention collective . autre:
+  titre.en: '[automatic] Other collective bargaining agreement'
+  titre.fr: Autre convention collective
 salarié . convention collective . compta:
   description.en: '[automatic] This collective agreement concerns chartered
     accountants registered with the Order, statutory auditors registered with
@@ -8497,6 +8507,9 @@ salarié . convention collective . compta:
 salarié . convention collective . compta . majoration heures supplémentaires:
   titre.en: '[automatic] overtime pay'
   titre.fr: majoration heures supplémentaires
+salarié . convention collective . droit commun:
+  titre.en: '[automatic] No collective bargaining agreement'
+  titre.fr: Pas de convention collective
 salarié . convention collective . optique:
   titre.en: '[automatic] Optics'
   titre.fr: Optique
