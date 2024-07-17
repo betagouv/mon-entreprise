@@ -26,6 +26,19 @@ export function DroitsRetraite() {
 	return (
 		<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
 			<H3 as="h2">Retraite : droits acquis sur l'année</H3>
+			<WhenApplicable dottedName="dirigeant . auto-entrepreneur . DROM">
+				<Message type="info" border>
+					Les exonérations DROM n'ont aucune incidence sur la détermination des
+					droits à la retraite de base et complémentaire des auto-entrepreneurs
+				</Message>
+			</WhenApplicable>
+			<WhenApplicable dottedName="dirigeant . exonérations . ACRE">
+				<Message type="info" border>
+					L’exonération ACRE n'a aucune incidence sur la détermination des
+					droits à la retraite de base et complémentaire des auto-entrepreneurs
+				</Message>
+			</WhenApplicable>
+
 			<Condition expression={exonérationRetraiteActive}>
 				<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
 					Le calcul des droits ouverts à la retraite n'est pas encore implémenté
