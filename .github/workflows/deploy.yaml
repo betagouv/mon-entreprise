@@ -18,7 +18,7 @@ on:
 
 jobs:
   deploy-context:
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-22.04
     outputs:
       env-name: ${{ steps.deploy-env.outputs.name }}
@@ -38,7 +38,7 @@ jobs:
 
   build:
     needs: deploy-context
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     env:
       API_BASE_URL: ${{ needs.deploy-context.outputs.api_url }}
       SERVER_BASE_URL: ${{ needs.deploy-context.outputs.server_url }}
@@ -138,7 +138,7 @@ jobs:
   deploy-preview:
     needs: [build, build-storybook, deploy-context]
     runs-on: ubuntu-22.04
-    if: github.event.pull_request.head.repo.full_name == github.repository && needs.deploy-context.outputs.env-name != 'master'
+    if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && needs.deploy-context.outputs.env-name != 'master'
     strategy:
       matrix:
         site: ['', 'en']
@@ -175,7 +175,7 @@ jobs:
   deploy-prod:
     needs: [build, build-storybook, deploy-context]
     runs-on: ubuntu-22.04
-    if: github.event.pull_request.head.repo.full_name == github.repository && needs.deploy-context.outputs.env-name == 'master'
+    if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && needs.deploy-context.outputs.env-name == 'master'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/download-artifact@v3
@@ -235,7 +235,7 @@ jobs:
     runs-on: ubuntu-22.04
     container: cypress/browsers:latest
     # We need to specify always() https://github.com/actions/runner/issues/491
-    if: always() && github.event.pull_request.head.repo.full_name == github.repository && needs.deploy-preview.result == 'success'
+    if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && needs.deploy-preview.result == 'success'
     needs: [deploy-context, deploy-preview]
 
     strategy:
@@ -306,7 +306,7 @@ jobs:
     runs-on: ubuntu-22.04
     container: cypress/browsers:latest
     # We need to specify always() https://github.com/actions/runner/issues/491
-    if: always() && github.event.pull_request.head.repo.full_name == github.repository && needs.deploy-prod.result == 'success'
+    if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && needs.deploy-prod.result == 'success'
     needs: [deploy-context, deploy-prod]
 
     strategy:
