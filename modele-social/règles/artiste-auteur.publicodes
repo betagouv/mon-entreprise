@@ -186,7 +186,7 @@ artiste-auteur . cotisations . IRCEC:
       - cotisation RACD
       - cotisation RACL
   références:
-    Guide IRCEC 2021: http://www.ircec.fr/wp-content/uploads/2021/02/guide-ircec-2021.pdf
+    Guide de la retraite des artistes-auteurs 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP:
   applicable si: assiette >= seuil d'affiliation
@@ -218,7 +218,7 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP:
     arrondi: oui
   références:
     Guide de la retraite des artistes-auteurs 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
-      
+
 artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation:
   valeur:
     variations:
