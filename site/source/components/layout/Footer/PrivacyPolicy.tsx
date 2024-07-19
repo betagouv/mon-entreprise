@@ -9,7 +9,7 @@ import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import * as safeLocalStorage from '../../../storage/safeLocalStorage'
 import { TrackingContext, TrackPage } from '../../ATInternetTracking'
 
-export default function Privacy({
+export default function PrivacyPolicy({
 	label,
 	noUnderline = true,
 }: {
