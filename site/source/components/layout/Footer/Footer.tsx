@@ -5,7 +5,6 @@ import { css, styled } from 'styled-components'
 
 import Contact from '@/components/Contact'
 import FeedbackButton from '@/components/Feedback'
-import LegalNotice from '@/components/LegalNotice'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
@@ -19,6 +18,7 @@ import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
+import LegalNotice from './LegalNotice'
 import Privacy from './Privacy'
 
 const altPathname = alternatePathname()
