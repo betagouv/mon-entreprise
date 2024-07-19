@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 
 import { toAtString } from '@/components/ATInternetTracking'
-import Privacy from '@/components/layout/Footer/Privacy'
+import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
 import { FromTop } from '@/components/ui/animate'
 import { useScrollToHash } from '@/components/utils/markdown'
 import { Emoji } from '@/design-system/emoji'
@@ -60,7 +60,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 					</Intro>
 					<Body>
 						Les données recueillies sont anonymisées.{' '}
-						<Privacy label="En savoir plus." />
+						<PrivacyPolicy label="En savoir plus." />
 					</Body>
 					<h2 className="sr-only">Selection du simulateur</h2>
 					<SimulateursChoice
