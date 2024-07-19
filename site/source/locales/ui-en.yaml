@@ -701,19 +701,32 @@ le portail officiel, accéder à aides-entreprises:
   fr, nouvelle fenêtre: the official portal, access to aides-entreprises.fr, new window
 le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre: Urssaf website, access to Urssaf website, new window
 legalNotice:
+  accessibility:
+    content: The platform is <2>partially compliant</2> with digital accessibility
+      standards. We strive to make this platform accessible to all.
+    label: Go to https://mon-entreprise.urssaf.fr/accessibilit%C3%A9, new tab
+    title: Accessibility
   contact:
     content: <0>contact@mon-entreprise.beta.gouv.fr</0>
+    label: Send an e-mail to contact@mon-entreprise.beta.gouv.fr
     title: Contact
   editeur:
-    title: Publisher
+    content: 'The mon-entreprise.urssaf.fr platform is published by the Agence
+      Centrale des Organismes de Sécurité Sociale (also known as “ACOSS” or
+      “Urssaf Caisse nationale”) located at: <1></1>36 rue de Valmy <3></3>93108
+      Montreuil Cedex <5></5>01 77 93 65 00
+      <7></7><8>webmaster.general@acoss.fr</8>'
+    label: Send an e-mail to webmaster.general@acoss.fr
+    title: Platform Editor
   hosting:
-    content: "Netlify<1></1>610 22nd Street, Suite 315,<3></3>San Francisco, CA
-      94107 <5></5>Website: https: <7>//www.netlify.com</7>"
+    content: "This site is hosted by Netlify: <1></1>610 22nd Street, Suite 315
+      <3></3>San Francisco, CA 94107 <5></5>United States of America <7></7>+1
+      844-899-7312"
     title: Hosting provider
   publication:
-    content: Mr Yann-Gaël Amghar, Director, Acoss
+    content: Mr Damien IENTILE, Director, Urssaf Caisse nationale
     title: Publishing Director
-  title: Terms of use
+  title: Legal notice
 library:
   description: Tools for developers
   title: Calculation library

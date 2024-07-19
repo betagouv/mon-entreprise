@@ -737,17 +737,32 @@ le portail officiel, accéder à aides-entreprises:
   fr, nouvelle fenêtre: le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre
 le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre: le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre
 legalNotice:
+  accessibility:
+    content: La plateforme est <2>partiellement conforme</2> aux normes
+      d’accessibilité numérique. Nous tâchons de rendre cette plateforme
+      accessible à toutes et à tous.
+    label: Aller à la page https://mon-entreprise.urssaf.fr/accessibilit%C3%A9,
+      nouvel onglet
+    title: Accessibilité
   contact:
     content: <0>contact@mon-entreprise.beta.gouv.fr</0>
+    label: Envoyer un mail à contact@mon-entreprise.beta.gouv.fr
     title: Contact
   editeur:
-    title: Editeur
+    content: "La plateforme mon-entreprise.urssaf.fr est éditée par l'Agence
+      Centrale des Organismes de Sécurité Sociale (également appelée « ACOSS »
+      ou « Urssaf Caisse nationale ») située : <1></1>36 rue de Valmy
+      <3></3>93108 Montreuil Cedex <5></5>01 77 93 65 00
+      <7></7><8>webmaster.general@acoss.fr</8>"
+    label: Envoyer un mail à webmaster.general@acoss.fr
+    title: Éditeur de la Plateforme
   hosting:
-    content: "Netlify<1></1>610 22nd Street, Suite 315,<3></3>San Francisco, CA
-      94107 <5></5>Site web : <7>https://www.netlify.com</7>"
+    content: "Ce site est hébergé par Netlify : <1></1>610 22nd Street, Suite 315
+      <3></3>San Francisco, CA 94107 <5></5>États-Unis d'Amérique <7></7>+1
+      844-899-7312"
     title: Prestataire d'hébergement
   publication:
-    content: M. Yann-Gaël Amghar, Directeur de l'Acoss
+    content: M. Damien IENTILE, Directeur de l'Urssaf Caisse nationale
     title: Directeur de la publication
   title: Mentions légales
 library:
