@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSearchParams } from 'react-router-dom'
 
 import { toAtString } from '@/components/ATInternetTracking'
@@ -42,6 +42,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 		questionsRépondues,
 		satisfaction,
 	} = useStatistiques(stats, filter)
+	const { t } = useTranslation()
 
 	return (
 		<>
@@ -60,7 +61,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 					</Intro>
 					<Body>
 						Les données recueillies sont anonymisées.{' '}
-						<PrivacyPolicy label="En savoir plus." />
+						<PrivacyPolicy label={t('En savoir plus')} />
 					</Body>
 					<h2 className="sr-only">Selection du simulateur</h2>
 					<SimulateursChoice
