@@ -113,7 +113,7 @@ export default function Popover(
 										}}
 										ref={ref}
 										aria-label={title || t('Boite de dialogue')}
-										title="modal"
+										data-cy="modal"
 									>
 										{props.isDismissable && (
 											<CloseButtonContainer>
