@@ -8272,7 +8272,7 @@ salarié . convention collective:
         is not taken into account; the simulation will be based on common law.'
       description.fr:
         "Attention : votre convention collective n'est pas prise en
-        charge,  la simulation se basera sur le droit commun."
+        charge, la simulation se basera sur le droit commun."
       titre.en: '[automatic] warning other collective bargaining agreement'
       titre.fr: avertissement autre convention collective
     avertissement convention collective:
@@ -8508,8 +8508,8 @@ salarié . convention collective . compta . majoration heures supplémentaires:
   titre.en: '[automatic] overtime pay'
   titre.fr: majoration heures supplémentaires
 salarié . convention collective . droit commun:
-  titre.en: '[automatic] No collective bargaining agreement'
-  titre.fr: Pas de convention collective
+  titre.en: '[automatic] No collective bargaining agreement (common law)'
+  titre.fr: Pas de convention collective (droit commun)
 salarié . convention collective . optique:
   titre.en: '[automatic] Optics'
   titre.fr: Optique
