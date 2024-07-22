@@ -19,7 +19,7 @@ const StyledH4 = styled(H4)`
 	}
 `
 
-export function CompanyDetails({
+export function EntrepriseDetails({
 	showSituation = false,
 	headingTag = 'h3',
 }: {

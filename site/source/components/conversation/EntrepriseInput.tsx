@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { EntrepriseSearchField } from '@/components/company/SearchField'
+import { EntrepriseSearchField } from '@/components/entreprise/EntrepriseSearchField'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Spacing } from '@/design-system/layout'
 import { Entreprise } from '@/domain/Entreprise'
@@ -10,7 +10,7 @@ import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { getCookieValue } from '@/storage/readCookie'
 import { resetCompany } from '@/store/actions/companyActions'
 
-import SelectedEntrepriseDetails from '../company/SelectedEntrepriseDetails'
+import SelectedEntrepriseDetails from '../entreprise/SelectedEntrepriseDetails'
 
 export default function EntrepriseInput() {
 	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue

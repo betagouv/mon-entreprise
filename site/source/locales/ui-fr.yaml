@@ -77,7 +77,7 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
 Commune ou code postal: Commune ou code postal
-CompanySearchField:
+EntrepriseSearchField:
   description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
     entreprise. Exemple : 40123778000127"
   label: Nom de l'entreprise, SIREN ou SIRET

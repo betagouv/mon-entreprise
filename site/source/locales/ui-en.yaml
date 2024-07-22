@@ -72,7 +72,7 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
   How does it work? See the explanatory page on the github repository page, new
   window
 Commune ou code postal: Town or zip code
-CompanySearchField:
+EntrepriseSearchField:
   description: "The Siret number is a 14-digit number unique to each company.
     Example: 40123778000127"
   label: Company name, SIREN or SIRET

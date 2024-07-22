@@ -13,7 +13,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { Entreprise } from '@/domain/Entreprise'
 
 import { FromTop } from '../ui/animate'
-import EntrepriseSearchDetails from './SearchDetails'
+import EntrepriseSearchDetails from './EntrepriseSearchDetails'
 
 const StyledCard = styled(Card)`
 	flex-direction: row; // for Safari <= 13
