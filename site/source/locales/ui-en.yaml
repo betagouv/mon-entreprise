@@ -126,7 +126,6 @@ Fermer: Close
 Fermer le module "Donner son avis": Close the "Give your opinion" module
 Fiche de paie: Pay slip
 Fond de la boite de dialogue: Dialog box background
-Gestion des données personnelles: Personal data management
 Graphique des principaux simulateurs, présence d’une alternative accessible après l’image: Graphics of the main simulators, with an alternative available after the image.
 Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image:
   Detailed statistical graph of satisfaction, presence of an accessible
@@ -711,11 +710,11 @@ legalNotice:
     label: Send an e-mail to contact@mon-entreprise.beta.gouv.fr
     title: Contact
   editeur:
-    content: 'The mon-entreprise.urssaf.fr platform is published by the Agence
-      Centrale des Organismes de Sécurité Sociale (also known as “ACOSS” or
+    content: "The mon-entreprise.urssaf.fr platform is published by the Agence
+      Centrale des Organismes de Sécurité Sociale (also known as “Acoss” or
       “Urssaf Caisse nationale”) located at: <1></1>36 rue de Valmy <3></3>93108
       Montreuil Cedex <5></5>01 77 93 65 00
-      <7></7><8>webmaster.general@acoss.fr</8>'
+      <7></7><8>webmaster.general@acoss.fr</8>"
     label: Send an e-mail to webmaster.general@acoss.fr
     title: Platform Editor
   hosting:
@@ -1563,22 +1562,88 @@ pourcentage: percentage
 previousSimulationBanner:
   info: "Your previous simulation has been saved:"
   retrieveButton: Find my simulation
-privacyContent:
-  localStorageTexte: <0>In addition, the information entered during simulations is
-    automatically saved in your browser (local storage) so that you can easily
-    retrieve it the next time you visit the site. If you do not wish this to be
-    the case, we advise you to use <2>private browsing</2>.</0>
-  ok: Your preferences have been saved
-  privateNavAriaLabel: private browsing, see more information on this subject on
-    the CNIL website, new window
-  recommandationsAriaLabel: CNIL recommendations, see more information on the CNIL website, new window
-  texte: <0></0><1>We collect anonymous statistics on site usage, which we use for
-    the sole purpose of improving the service, in accordance with <2>CNIL
-    recommendations</2> and RGPD regulations. This is the only data that leaves
-    your browser.</1><2>You can opt out of this site usage measure
-    below:</2><3><0>I do not want to send anonymous data about my use of the
-    site for audience measurement purposes</0></3>
-  title: Personal data
+privacyPolicy:
+  data:
+    content: "mon-entreprise.urssaf.fr does not process any personal data via the
+      simulators or by depositing cookies or tracers. There is no account; only
+      the anonymous information entered during the simulations is automatically
+      saved in your browser. <1></1><2></2>However, if a user wishes to become a
+      “beta tester” in order to receive information on new products, give his or
+      her opinion and take part in workshops to improve our services, he or she
+      can register via the link in the footer of the “Become a beta tester”
+      page. The following data is then processed: e-mail address, type of
+      company, type of activity, type of taxation, postal code, age group, etc.
+      This data is kept for a maximum of 2 years.<4></4><5></5>The Urssaf Caisse
+      Nationale is committed to ensuring that the collection and processing of
+      your data complies with regulations on the protection of personal data. In
+      this respect, Urssaf Caisse Nationale informs you of:<7><0>The legal basis
+      for this processing, i.e. your consent for us to store the above-mentioned
+      data;</0><1>The identity and contact details of the party responsible for
+      processing your data: Urssaf Caisse Nationale, domiciled at 36 rue de
+      Valmy - 93108 Montreuil Cedex, represented by its director, Mr Damien
+      IENTILE;</1><2>Contact details for the Data Protection Officer: Mme la
+      Déléguée à la Protection des données de l'Urssaf Caisse nationale, 36 rue
+      de Valmy - 93108 Montreuil Cedex -
+      informatiqueetlibertes.acoss@acoss.fr.</2></7>"
+    title: What personal data is collected?
+  liability:
+    content: The mon-entreprise.urssaf.fr platform is under the responsibility of
+      the Agence centrale des organismes de sécurité sociale, also known as
+      “Acoss” or “Urssaf Caisse nationale”. <1></1>The platform offers
+      simulators to help entrepreneurs develop their business.
+    title: Who is responsible for my-company?
+  recipients:
+    table:
+      country: Destination country
+      mailer: Sending e-mails
+      processing: Treatment performed
+      provider: Subcontractor
+      security: Warranties
+      support: Support tool
+    title: Who will receive your data?
+  rights:
+    content: "In accordance with the French Data Protection Act, you have the
+      following rights:<1><0>The right to ask whether the Urssaf Caisse
+      Nationale holds any information about you, and to request that the Urssaf
+      Caisse Nationale communicate all such data to you (right of
+      access);</0><1>The right to restrict the processing of your personal data
+      if you agree that the processing is unlawful or excessive (right to
+      restrict processing);</1><2>The right to request the rectification of
+      inaccurate information concerning you (right of rectification);</2><3>the
+      right to object, where appropriate and for legitimate reasons (right to
+      object);</3><4>The possibility of requesting, where appropriate and if
+      there are no legal obligations to the contrary, that your data be deleted
+      by the Urssaf Caisse Nationale (right to be forgotten);</4><5>the
+      possibility of defining what happens to your data after your
+      death.</5></1>All these rights may be exercised by contacting the Data
+      Protection Officer of the Urssaf Caisse Nationale, by e-mail at
+      <4>informatiqueetlibertes.acoss@acoss.fr</4> or by post at the following
+      address: Urssaf Caisse nationale, Informatique et Libertés, 36 rue de
+      Valmy, 93108 Montreuil Cedex; in both cases providing proof of identity in
+      accordance with article 77 of decree no. 2019-536 of May 29,
+      2019.<7></7>For further information or to make a complaint, please contact
+      the Commission Nationale de l'Informatique et des Libertés (CNIL)."
+    title: What rights to information and freedom do you have?
+  security:
+    content: Your personal data collected as part of the services offered on
+      mon-entreprise.urssaf.fr are processed using secure computer and physical
+      protocols.
+    title: How is the security of your data ensured?
+  title: Privacy policy
+  tracking:
+    ariaLabel: CNIL recommendations, see more information on the CNIL website, new window
+    content: mon-entreprise.urssaf.fr does not use cookies or other tracking
+      devices. However, the platform uses Matomo, an audience measurement
+      solution, configured in “exempted” mode and not requiring the consent of
+      the persons concerned in accordance with the <2>recommendations of the
+      CNIL</2>.
+    optOut:
+      checkboxLabel: I do not want to send anonymous data about my use of the platform
+        for audience measurement purposes.
+      confirmation: Your preferences have been saved
+      content: "You can opt out of this platform usage measure by unchecking the
+        corresponding box below:"
+    title: Cookies and trackers
 recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.:
   search launched automatically after entering characters, results will be
   displayed after this element.
