@@ -16,15 +16,15 @@ dont nous rappelons les principes ici&nbsp;:
 En 2019, le projet dispose d’un budget de **250 000 € HT** pris en charge :
 
 -   Par la DINSIC (ancien nom de la [DINUM](https://www.numerique.gouv.fr/dinum/)) à hauteur de 150 000 € HT
--   Par l’[ACOSS](https://www.acoss.fr) à hauteur de 100 000 € HT
+-   Par l’[Acoss](https://www.acoss.fr) à hauteur de 100 000 € HT
 
 [➡ Voir la convention](https://static.data.gouv.fr/resources/conventions-de-partenariat/20190423-181035/convention-du-15-avril-2019.pdf)
 
 |                            |                   |
 | -------------------------- | ----------------: |
 | Financement DINSIC         |      150 000 € HT |
-| Financement ACOSS initial  |      100 000 € HT |
-| Rallonge ACOSS fin d’année |       12 500 € HT |
+| Financement Acoss initial  |      100 000 € HT |
+| Rallonge Acoss fin d’année |       12 500 € HT |
 | **Total HT**               |  **262 500 € HT** |
 | **Total TTC**              | **315 000 € TTC** |
 
@@ -34,7 +34,7 @@ simulateur et une expérimentation sur la paie.
 ---
 
 En 2020, le budget est désormais pris en charge à 100% par
-l’[ACOSS](https://www.acoss.fr). En plus de sa contribution financière, l’ACOSS
+l’[Acoss](https://www.acoss.fr). En plus de sa contribution financière, l’Acoss
 fournit des ressources métier expertes provenant du réseau des Urssaf.
 
 Une enveloppe est allouée pour expérimenter la transformation du moteur de
