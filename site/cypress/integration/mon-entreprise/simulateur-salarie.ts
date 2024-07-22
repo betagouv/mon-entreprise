@@ -9,17 +9,17 @@ describe('Simulateur salarié : part time contract', function () {
 		cy.visit(encodeURI('/simulateurs/salaire-brut-net'))
 		cy.get('button').contains('SMIC').click()
 		cy.contains('Modifier mes réponses').click()
-		cy.get('div[title="modal"]')
+		cy.get('div[data-cy="modal"]')
 			.eq(0)
 			.contains('Temps partiel')
 			.next()
 			.find('button')
 			.click()
 
-		cy.get('div[title="modal"]').eq(1).contains('Fermer')
-		cy.get('div[title="modal"]').eq(1).contains('Oui').click()
-		cy.get('div[title="modal"]').eq(1).contains('Continuer').click()
-		cy.get('div[title="modal"]').eq(0).contains('Fermer').click()
+		cy.get('div[data-cy="modal"]').eq(1).contains('Fermer')
+		cy.get('div[data-cy="modal"]').eq(1).contains('Oui').click()
+		cy.get('div[data-cy="modal"]').eq(1).contains('Continuer').click()
+		cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
 	})
 
 	it('should permit selecting the smic before part-time contrat', function () {
