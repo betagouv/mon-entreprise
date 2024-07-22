@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import { CompanyDetails } from '@/components/company/Details'
+import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
 import PageHeader from '@/components/PageHeader'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
@@ -79,7 +79,7 @@ export default function AccueilChoixStatut() {
 								</Body>
 							</Trans>
 						</Message>
-						<CompanyDetails />
+						<EntrepriseDetails />
 						<PopoverConfirm
 							trigger={(buttonProps) => (
 								<Button

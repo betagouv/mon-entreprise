@@ -1,24 +1,19 @@
-import { useSearchFieldState } from '@react-stately/searchfield'
-import { ReactNode, useEffect, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Message } from '@/design-system'
 import { Card } from '@/design-system/card'
-import { SearchableSelectField } from '@/design-system/field/SearchableSelectField/SearchableSelectField'
 import { FocusStyle } from '@/design-system/global-style'
 import { ChevronIcon } from '@/design-system/icons'
-import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { StyledLink } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Entreprise } from '@/domaine/Entreprise'
-import useSearchCompany from '@/hooks/useSearchCompany'
 
-import { Appear, FromTop } from '../ui/animate'
-import EntrepriseSearchDetails from './SearchDetails'
+import { FromTop } from '../ui/animate'
+import EntrepriseSearchDetails from './EntrepriseSearchDetails'
 
 const StyledCard = styled(Card)`
 	flex-direction: row; // for Safari <= 13
@@ -28,80 +23,7 @@ const StyledCard = styled(Card)`
 	}
 `
 
-export function EntrepriseSearchField(props: {
-	label?: ReactNode
-	selectedValue?: ReactNode | null
-	onValue?: () => void
-	onClear?: () => void
-	onSubmit?: (search: Entreprise | null) => void
-}) {
-	const { t } = useTranslation()
-	const refResults = useRef<Entreprise[] | null>(null)
-
-	const searchFieldProps = {
-		...props,
-		label:
-			!props.selectedValue &&
-			t('CompanySearchField.label', "Nom de l'entreprise, SIREN ou SIRET"),
-		description:
-			!props.selectedValue &&
-			t(
-				'CompanySearchField.description',
-				'Le numéro Siret est un numéro de 14 chiffres unique pour chaque entreprise. Exemple : 40123778000127'
-			),
-		onSubmit() {
-			const results = refResults.current
-			props.onSubmit?.(results?.[0] ?? null)
-		},
-		onClear() {
-			props.onClear?.()
-		},
-		placeholder: t(
-			'CompanySearchField.placeholder',
-			'Exemple : Café de la gare ou 40123778000127'
-		),
-	}
-
-	const state = useSearchFieldState(searchFieldProps)
-
-	const { onSubmit } = props
-
-	const [searchPending, results] = useSearchCompany(state.value)
-
-	useEffect(() => {
-		refResults.current = results ?? null
-	}, [results])
-
-	return (
-		<Grid container>
-			<Grid item xs={12}>
-				<SearchableSelectField
-					data-test-id="company-search-input"
-					state={state}
-					isSearchStalled={searchPending}
-					aria-label={
-						searchFieldProps.label +
-						', ' +
-						t(
-							"recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément."
-						)
-					}
-					{...searchFieldProps}
-				/>
-			</Grid>
-
-			<Grid item xs={12}>
-				<Appear unless={searchPending || !state.value}>
-					{state.value && !searchPending && !props.selectedValue && (
-						<Results results={results} onSubmit={onSubmit} />
-					)}
-				</Appear>
-			</Grid>
-		</Grid>
-	)
-}
-
-function Results({
+export default function EntrepriseSearchResults({
 	results,
 	onSubmit,
 }: {

@@ -77,11 +77,6 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
 Commune ou code postal: Commune ou code postal
-CompanySearchField:
-  description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
-    entreprise. Exemple : 40123778000127"
-  label: Nom de l'entreprise, SIREN ou SIRET
-  placeholder: "Exemple : Café de la gare ou 40123778000127"
 Comparer...: Comparer...
 Confirmer: Confirmer
 Cotisations: Cotisations
@@ -124,6 +119,11 @@ English version of the website enabled.: English version of the website enabled.
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
+EntrepriseSearchField:
+  description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
+    entreprise. Exemple : 40123778000127"
+  label: Nom de l'entreprise, SIREN ou SIRET
+  placeholder: "Exemple : Café de la gare ou 40123778000127"
 Envoyer: Envoyer
 "Exemple : Des informations plus claires, un calcul détaillé...": "Exemple : Des informations plus claires, un calcul détaillé..."
 Exonérations: Exonérations

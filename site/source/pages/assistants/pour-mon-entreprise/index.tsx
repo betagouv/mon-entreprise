@@ -15,11 +15,11 @@ import {
 import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import { CompanyDetails } from '@/components/company/Details'
 import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
+import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
 import PageHeader from '@/components/PageHeader'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
@@ -242,7 +242,7 @@ function PourMonEntreprise() {
 	)
 }
 
-const configCompanyDetails: SimulationConfig = {
+const configEntrepriseDetails: SimulationConfig = {
 	questions: {
 		'liste noire': ['entreprise . imposition . régime'] as DottedName[],
 	},
@@ -269,7 +269,7 @@ const AskCompanyMissingDetails = () => {
 	const { absoluteSitePaths } = useSitePaths()
 	useSimulationConfig({
 		key: absoluteSitePaths.assistants.index,
-		config: configCompanyDetails,
+		config: configEntrepriseDetails,
 	})
 
 	const [questions, onQuestionAnswered] = useQuestionList()
@@ -277,7 +277,7 @@ const AskCompanyMissingDetails = () => {
 
 	return (
 		<>
-			<CompanyDetails showSituation headingTag="h2" />
+			<EntrepriseDetails showSituation headingTag="h2" />
 			{!!questions.length && (
 				<>
 					<Body

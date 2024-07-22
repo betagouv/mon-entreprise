@@ -72,11 +72,6 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
   How does it work? See the explanatory page on the github repository page, new
   window
 Commune ou code postal: Town or zip code
-CompanySearchField:
-  description: "The Siret number is a 14-digit number unique to each company.
-    Example: 40123778000127"
-  label: Company name, SIREN or SIRET
-  placeholder: "Example: Café de la gare or 40123778000127"
 Comparer...: Compare...
 Confirmer: Confirm
 Cotisations: Contributions
@@ -117,6 +112,11 @@ English version of the website enabled.: English version of the website enabled.
 Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company founded on <2><0></0></2> and domiciled at <6><0></0></6>
+EntrepriseSearchField:
+  description: "The Siret number is a 14-digit number unique to each company.
+    Example: 40123778000127"
+  label: Company name, SIREN or SIRET
+  placeholder: "Example: Café de la gare or 40123778000127"
 Envoyer: Send
 "Exemple : Des informations plus claires, un calcul détaillé...": "Example: clearer information, detailed calculation..."
 Exonérations: Exemptions
