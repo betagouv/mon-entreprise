@@ -18,6 +18,21 @@ describe('Footer', function () {
 			.and('include.text', 'Mentions légales')
 	})
 
+	it('should contain a terms of use link', function () {
+		cy.visit('/')
+		cy.contains('footer button', "Conditions générales d'utilisation").should(
+			'be.visible'
+		)
+	})
+
+	it('should display the terms of use on click', function () {
+		cy.visit('/')
+		cy.contains('footer button', "Conditions générales d'utilisation").click()
+		cy.get('div[data-cy="modal"]')
+			.should('be.visible')
+			.and('include.text', "Conditions générales d'utilisation")
+	})
+
 	it('should contain a privacy policy link', function () {
 		cy.visit('/')
 		cy.contains('footer button', 'Politique de confidentialité').should(
