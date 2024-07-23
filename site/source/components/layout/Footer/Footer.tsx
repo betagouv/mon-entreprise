@@ -20,6 +20,7 @@ import { isNotNull } from '@/utils'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import LegalNotice from './LegalNotice'
 import PrivacyPolicy from './PrivacyPolicy'
+import TermsOfUse from './TermsOfUse'
 
 const altPathname = alternatePathname()
 
@@ -234,6 +235,9 @@ export default function Footer() {
 										</StyledLi>
 										<StyledLi>
 											<LegalNotice />
+										</StyledLi>
+										<StyledLi>
+											<TermsOfUse />
 										</StyledLi>
 										<StyledLi>
 											<PrivacyPolicy />
