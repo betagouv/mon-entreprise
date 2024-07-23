@@ -40,7 +40,7 @@ Accéder au site mon-entreprise, nouvelle fenêtre: Go to mon-entreprise, new wi
 Activités relevant de l’économie collaborative, voir la page: Collaborative economy activities, see page
 Adoption: Adoption
 Afficher le détail: Show details
-"Afficher les données par :": "Display data by :"
+"Afficher les données par :": "Display data by:"
 Aller au contenu principal: Go to main content
 Aller directement au pied de page: Go directly to footer
 Annuler: Cancel
@@ -82,7 +82,7 @@ Confirmer: Confirm
 Cotisations: Contributions
 Cotisations sociales: Social security contributions
 Coût de création: Cost of creation
-"Crée le :": "Created on :"
+"Crée le :": "Created on:"
 Dividendes nets: Net dividends
 Documentation: Documentation
 Documentation des simulateurs: Simulator documentation
@@ -96,8 +96,7 @@ Décès: Deaths
 Effacer mes réponses: Delete my answers
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "In the event of an<1>accident at work</1>, <4>occupational illness</4> or an
-  <7>accident on the way to or from work</7>, you will receive compensation of
-  :"
+  <7>accident on the way to or from work</7>, you will receive compensation of:"
 En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos maternel supplémentaire</2>.:
   In addition to your daily allowance, you may also be entitled to an
   <2>additional lump-sum maternal rest allowance</2>.
@@ -219,7 +218,7 @@ Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance comp
   insurance policy (mutuelle)</2> to improve reimbursement of healthcare costs.
 "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En cas d’arrêt maladie, l’assurance maladie vous versera :":
   "For all statuses, there is a <2>3-day waiting period</2>. In the event of
-  sick leave, the health insurance will pay you :"
+  sick leave, the health insurance will pay you:"
 Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le conjoint survivant peut bénéficier d’une <4>rente de décès</4>.:
   In the event of death resulting from an <2>accident at work</2>, the surviving
   spouse may be entitled to a <4>death pension</4>.
@@ -300,7 +299,7 @@ Total des retenues: Total deductions
   your supplementary pension</2>. At the end of your career, your points are
   converted into <5>an amount which is added to your basic pension every
   month</5>. This value is calculated over the long term. For example, after 10
-  years, you would be entitled to :"
+  years, you would be entitled to:"
 Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les <5>protège en cas d’invalidité</5> et assure à leurs proches une <8>pension de réversion et un capital en cas de décès</8>.:
   All status employees contribute to an <2>invalidity-death pension</2>, which
   <5>protects</5> them in the <5>event of invalidity</5> and provides their next
@@ -759,7 +758,7 @@ pages:
     is digital accessibility?</4><5>An accessible website is one that enables
     all Internet users to access its content without difficulty, including
     people with disabilities who use specialized software or hardware.</5><6>For
-    example, an accessible site enables :</6><7><0>Navigate with voice
+    example, an accessible site enables:</6><7><0>Navigate with voice
     synthesizers or Braille displays (used in particular by blind or
     partially-sighted Internet users).</0><1>Customize the site's display
     according to your needs (enlarging characters, changing colors,
@@ -774,7 +773,7 @@ pages:
     partially compliant with the <5>RGAA (référentiel général d'amélioration de
     l'accessibilité)</5>, version 4.1, due to the non-conformities and
     derogations listed below.</13><14>Test results</14><15>The compliance audit
-    carried out by URBILOG revealed that :</15><16><0>81% of RGAA version 4.1
+    carried out by URBILOG revealed that:</15><16><0>81% of RGAA version 4.1
     criteria are met.</0><1>The average compliance rate for the online service
     is 93%.</1></16><17>Number of applicable criteria: 63; Number of compliant
     criteria: 51; Number of non-compliant criteria: 12</17><18>Content not
@@ -895,7 +894,7 @@ pages:
         have to pay.
       info:
         PdE: "<0>Talk to an advisor who can help you with your specific
-          needs</0><1><0>You want to :</0><1><0>recruit or train
+          needs</0><1><0>You want to:</0><1><0>recruit or train
           employees</0><1>finance your investment projects</1><2>solve a
           cash-flow problem</2><3>receive advice on employment law</3><4>develop
           your commercial activity</4><5>sell on the internet</5><6>selling or
@@ -936,9 +935,9 @@ pages:
       status?</2><3>Our status selection wizard is designed to simplify this
       complex process. It will ask you simple questions about your business,
       your objectives and your personal situation. It will help you select the
-      status best suited to your situation.</3><4>The benefits of our assistant
-      :</4><5><0><0>Personalized:</0> Our recommendations are tailored to your
-      specific situation.</0><1><0>Informed:</0> We regularly update our
+      status best suited to your situation.</3><4>The benefits of our
+      assistant:</4> <5><0><0>Personalized:</0> Our recommendations are tailored
+      to your specific situation.</0><1><0>Informed:</0> We regularly update our
       information to reflect the latest regulations and tax
       laws.</1><2><0>Simple:</0> You don't need to be a legal expert. Our
       assistant makes the process as simple as
@@ -1066,13 +1065,13 @@ pages:
         <2>employee</2> simulator, all you have to do is enter the commune and
         the corresponding mobility payment rate is automatically
         determined.</4><5>You will need to specify the rate yourself to
-        recalculate. You can find it :<1><0>By entering your commune in a
+        recalculate. You can find it:<1><0>By entering your commune in a
         simulator, then searching for the \"mobility payment\" rule using the
         \"search\" button in the top right-hand corner.</0><1>Using the
         <2>dedicated service on urssaf.fr</2></1></1></5><6>The collective AT/MP
         rate</6><7><0><0>establishment . rate ATMP . collective
         rate</0></0></7><8>This collective rate must be found manually. You can
-        use :<1><0><0>a csv export</0> of the table of collective net rates
+        use:<1><0><0>a csv export</0> of the table of collective net rates
         published in the Journal Officiel</0><1>The Assurance Maladie's \"
         <2>Cotisations AT/MP\"</2> documentation</1></1></8></4>"
       StepByStep: <0><0>Choose the simulator according to the calculation you're
@@ -1142,7 +1141,7 @@ pages:
         with the latest legislative developments.
       header: All the simulators on this site are kept up to date with the latest
         legislative developments.
-      section: <0>All simulators on this site are :</0><1><0><0>kept up to date</0>
+      section: <0>All simulators on this site are:</0><1><0><0>kept up to date</0>
         with the latest legislative
         developments</0><1>Continuously<0>improved</0> to increase the number of
         devices taken into account</1><2><0>Easily integrated into</0> any
@@ -1252,8 +1251,8 @@ pages:
         indemnity for wages up to <1>4.5 SMIC</1>, with a minimum of<3> <1></1>
         </3>per hour not worked.</5><6>👉 S <2>ee the detailed calculation of
         the indemnity reimbursement</2></6><7>Talk to an advisor about partial
-        activity</7><8>You would like to :<1><0>check the allowance received,
-        and the amount still to be paid</0><1>find out about the procedure for
+        activity</7><8>You would like to:<1><0>check the allowance received, and
+        the amount still to be paid</0><1>find out about the procedure for
         consulting the <2>Works Council</2> and requesting prior
         authorization</1><2>find out about long-term partial
         activity</2><3>train your part-time employees in new skills (educational
@@ -1387,7 +1386,7 @@ pages:
         assistant: Launch wizard
         simulateur: Launch simulator
     indépendant:
-      cotisations-forfaitaires: "Flat-rate contributions : "
+      cotisations-forfaitaires: "Flat-rate contributions: "
       meta:
         description: Calculating net income after tax and contributions from sales and
           vice versa
@@ -1399,13 +1398,12 @@ pages:
         supplementary pension rights for auto-entrepreneurs.</0></2><3><0>The
         calculation of open pension rights has not yet been implemented for
         cases involving contribution exemptions (ACRE, disability pension,
-        etc.).</0></3><4><0><0>Basic pension : <2></2></0><1><0>Basic pension
-        points acquired (CNAVPL) : <2></2></0></1><2><0>Contribution income
-        taken into account for basic retirement :
-        <2></2></0></2><3>Supplementary pension points acquired: <2><0></0>
-        points acquired</2><3><0>not known</0><1><0>This simulator does not
-        manage acquired supplementary pension rights for the liberal
-        professions.</0></1></3></3></0></4>"
+        etc.).</0></3><4><0><0>Basic pension: <2></2></0><1><0>Basic pension
+        points acquired (CNAVPL): <2></2></0></1><2><0>Contribution income taken
+        into account for basic retirement: <2></2></0></2><3>Supplementary
+        pension points acquired: <2><0></0> points acquired</2><3><0>not
+        known</0><1><0>This simulator does not manage acquired supplementary
+        pension rights for the liberal professions.</0></1></3></3></0></4>"
       shortname: Independent
       title: Income simulator for the self-employed
     is:
@@ -1509,7 +1507,7 @@ pages:
         <2>deferred</2> hiring <2>subsidies</2> which are not all taken into
         account by our simulator. You can find them on <6>the official
         portal</6>.</8><9><0>Talk to an advisor about your recruitment
-        project</0><1>You would like to :<1><0>be advised on the hiring aids
+        project</0><1>You would like to:<1><0>be advised on the hiring aids
         available for your recruitment project</0><1>Find out about
         apprenticeships, professionalization contracts, \"emplois francs\" in
         priority neighborhoods, <2>VTE</2>, etc.</1><2>Find
@@ -1855,7 +1853,7 @@ warning:
 À quoi servent mes cotisations ?: What are my contributions used for?
 Échanger avec un conseiller: Talk to an advisor
 Échec: Failure
-"Établissement recherché :": "Establishment sought :"
+"Établissement recherché :": "Establishment sought:"
 Étape complétée: Step completed
 Étape non complétée: Step not completed
 Étape {{ total }} sur {{ maxValue }}: Step {{ total }} on {{ maxValue }}
