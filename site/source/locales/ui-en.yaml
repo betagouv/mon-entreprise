@@ -1774,6 +1774,72 @@ stats:
   title: Statistics
 statutchoice:
   regime: Social security {{regime}}s
+termsOfUse:
+  article:
+    "1":
+      content: The purpose of this document is to govern the use of the Services,
+        which are freely available to all Users. Any use of the Services is
+        subject to full compliance with these general terms of use.
+      title: Article 1 - Scope of application
+    "2":
+      content:
+        "1": “Publisher” refers to the Agence Centrale des Organismes de Sécurité
+          Sociale (Acoss), which is the initiator of the Platform.
+        "2": “Platform” refers to the “my-company” digital service.
+        "3": “Services” refers to the functionalities offered by the Platform to meet
+          its purposes.
+        "4": “User” means any natural person who uses the Platform Services.
+      title: Article 2 - Definitions
+    "3":
+      content: The aim of the Platform is to offer simulators to help entrepreneurs
+        develop their business. These simulators display personalized, reliable
+        results, covering a wide range of specific cases.
+      title: Article 3 - Purpose
+    "4":
+      content:
+        "1": There is no account on the Platform. Each User can use the simulators
+          freely and free of charge, without registering or logging in, to
+          obtain information on setting up and running a business.
+        "2": The User can discover the list of all simulators currently available on the
+          Platform. In particular, they can use a search bar to enter the
+          company name, SIREN or SIRET number, keywords or acronyms to find the
+          simulator best suited to their situation.
+        "3": The User may also:<1><0>Integrate one of the Platform's simulators into
+          their own website;</0><1>Use the simulators via the REST API in their
+          own services;</1><2>Use the simulators in Excel/Sheets
+          files;</2><3>Reuse the Platform's calculations on your own site using
+          a calculation library;</3><4>Discover the “Publicodes” declarative
+          language;</4><5>Contribute on GitHub, as the Platform's source code is
+          open.</5></1>
+      title: Article 4 - Features
+    "5":
+      content:
+        "1": The sources of the information published on the Platform are deemed
+          reliable, but the Publisher does not guarantee that it is free from
+          defects, errors or omissions.
+        "2": The Publisher undertakes to ensure the security of the Service, in
+          particular by taking all necessary measures to guarantee the security
+          and confidentiality of the information provided. In particular, the
+          Publisher provides all necessary and reasonable means to ensure
+          uninterrupted access to the Service, without financial compensation.
+        "3": The Publisher shall not be held liable for any loss and/or damage of any
+          nature whatsoever that may be caused as a result of malfunction or
+          unavailability of the Service. Such situations shall not give rise to
+          any right to compensation or indemnity of any kind, including
+          financial.
+        "4": The Publisher constantly updates the simulators. The Editor cannot be held
+          responsible for the deletion or unavailability of simulators or any
+          other data source.
+      title: Article 5 - Responsibilities
+    "6":
+      content: The terms of these general conditions of use may be amended at any
+        time, without prior notice, to reflect changes to the Platform, changes
+        in legislation or for any other reason deemed necessary.
+      title: Article 6 - Updating the general conditions of use
+  intro: These general terms and conditions of use set out the legal framework for
+    the “mon-entreprise” digital platform and define the conditions of access
+    and use of the services offered to users.
+  title: Terms and conditions of use
 trimestres acquis: quarters acquired
 versés en deux fois: paid in two instalments
 versés en une fois: one-off payments
