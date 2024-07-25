@@ -178,6 +178,7 @@ dirigeant . indépendant . PL . PAMC . allocations familiales:
 
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
+
 dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM:
   formule:
     produit:

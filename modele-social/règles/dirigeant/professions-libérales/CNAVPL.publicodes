@@ -28,7 +28,7 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
     valeur: 100%
 
   références:
-    cnavpl.fr: https://www.cnavpl.fr/preparer-sa-retraite/
+    Site CNAVPL: https://www.cnavpl.fr/preparer-sa-retraite/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=24
 
   avec:
@@ -196,4 +196,5 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités jo
   unité: €/an
   arrondi: oui
   références:
+    Travailler avec votre conjoint: https://www.urssaf.fr/accueil/independant/gerer-developper-activite/travailler-avec-conjoint.html
     Article D621-6 du Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038789007

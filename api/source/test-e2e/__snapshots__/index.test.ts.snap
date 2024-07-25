@@ -24,7 +24,7 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 2782.954156622193,
+      "nodeValue": 2702.448901248871,
       "unit": {
         "denominators": [
           "an",
