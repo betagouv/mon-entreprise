@@ -72,7 +72,7 @@ protection sociale . maladie . maternité paternité adoption: 86
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
 protection sociale . retraite . base: 1652
-protection sociale . retraite . complémentaire: 159
+protection sociale . retraite . complémentaire: 148
 protection sociale . retraite . trimestres: 4
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
@@ -254,7 +254,7 @@ protection sociale . maladie . maternité paternité adoption: 74
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
 protection sociale . retraite . base: 1434
-protection sociale . retraite . complémentaire: 138
+protection sociale . retraite . complémentaire: 128
 protection sociale . retraite . trimestres: 4
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
@@ -328,6 +328,6 @@ protection sociale . maladie . maternité paternité adoption: 70
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
 protection sociale . retraite . base: 1344
-protection sociale . retraite . complémentaire: 129
+protection sociale . retraite . complémentaire: 120
 protection sociale . retraite . trimestres: 4"
 `;

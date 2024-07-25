@@ -200,6 +200,10 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
     valeur d'acquisition:
       variations:
         - si: date >= 01/2022
+          alors: 19.6321 €/point
+        - si: date >= 01/2023
+          alors: 18.7669 €/point
+        - si: date >= 01/2022
           alors: 17.4316 €/point
         - si: date >= 01/2021
           alors: 17.3982 €/point
@@ -208,10 +212,12 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         - si: date >= 01/01/2019
           alors: 17.0571 €/point
       références:
-        'Agirc-Arrco : Paramètres et données statistiques': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
+        'Agirc-Arrco : Paramètres du régime': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
 
     valeur du point:
       variations:
+        - si: date >= 11/2023
+          alors: 1.4159 €/an/point
         - si: date >= 11/2022
           alors: 1.3498 €/an/point
         - si: date >= 11/2021
@@ -220,6 +226,8 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
           alors: 1.2714 €/an/point
         - si: date >= 01/2019
           alors: 1.2588 €/an/point
+      références:
+        'Agirc-Arrco : Paramètres du régime': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
 
 protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
@@ -229,7 +237,7 @@ protection sociale . retraite . complémentaire . RCI:
     - points acquis
     - valeur du point
   références:
-    'Fonctionnement de la retraite complémentaire des indépendants': https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
+    'Retraite complémentaire des indépendants': https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/travailleurs-independants/retraite-complementaire.html
     'Valeur de service du point de retraite complémentaire': https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
 
   avec:
@@ -374,10 +382,14 @@ protection sociale . retraite . base . CNAVPL:
 
     valeur du point:
       variations:
+        - si: date >= 01/2024
+          alors: 0.6399 €/an/point
         - si: date >= 01/2023
           alors: 0.6076 €/an/point
         - si: date >= 01/2022
           alors: 0.5795 €/an/point
+    références:
+      'CIPAV: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
 
 protection sociale . retraite . complémentaire . CIPAV:
   applicable si: dirigeant . indépendant . PL . CIPAV
@@ -385,18 +397,28 @@ protection sociale . retraite . complémentaire . CIPAV:
     - points acquis
     - unité: €/an/point
       variations:
+        - si: date >= 01/2024
+          alors: 2.89 €/an/point
         - si: date >= 01/2023
           alors: 2.77 €/an/point
         - si: date >= 01/2022
           alors: 2.63 €/an/point
   références:
+    'CIPAV: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
     Évolutions relatives aux droits et aux prestations de la CIPAV: https://www.lacipav.fr/evolutiondroitsetprestationsCipav
 
   avec:
     points acquis:
       dirigeant . indépendant . PL . CIPAV . retraite complémentaire /
       valeur d'acquisition
-    valeur d'acquisition: 45.30 €/point
+    valeur d'acquisition: 
+      variations:
+        - si: date >= 01/2024
+          alors: 47.40 €/point
+        - si: date >= 01/2023
+          alors: 45.30 €/point
+    références:
+      'CIPAV : Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
 
 protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
   applicable si:
@@ -406,7 +428,11 @@ protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
   remplace: retraite . trimestres
   grille:
     assiette: entreprise . chiffre d'affaires
-    multiplicateur: 2421 €/an
+    multiplicateur: 
+      variations:
+        - si: date >= 01/2023
+          alors: 2571 €/an
+        - sinon: 2421 €/an
     tranches:
       - montant: 0 trimestres validés/an
         plafond: 1
@@ -419,6 +445,7 @@ protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
       - montant: 4 trimestres validés/an
   références:
     Le régime retraite de base des auto-entrepreneur: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Auto-entrepreneurs%20-%20La%20Cipav_0.pdf?page=10
+    Régime de retraite du micro-entrepreneur: https://entreprendre.service-public.fr/vosdroits/F23369
 
 protection sociale . maladie:
   icônes: 🏥
