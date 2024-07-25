@@ -21,6 +21,8 @@ export default function Cotisation({ dottedName }: { dottedName: DottedName }) {
 			engine.getRule('salarié . cotisations . employeur')
 		) ?? '0'
 	)
+	// Ajoute le signe moins "-" devant le montant des exonérations
+	const sign = dottedName === 'salarié . cotisations . exonérations' ? '-' : ''
 
 	if (!partPatronale.nodeValue && !partSalariale.nodeValue) {
 		return null
@@ -31,12 +33,12 @@ export default function Cotisation({ dottedName }: { dottedName: DottedName }) {
 			<RuleLink dottedName={dottedName} />
 			<span>
 				{partPatronale?.nodeValue
-					? formatValue(partPatronale, { displayedUnit: '€', language })
+					? sign + formatValue(partPatronale, { displayedUnit: '€', language })
 					: '–'}
 			</span>
 			<span>
 				{partSalariale?.nodeValue
-					? formatValue(partSalariale, { displayedUnit: '€', language })
+					? sign + formatValue(partSalariale, { displayedUnit: '€', language })
 					: '–'}
 			</span>
 		</>
