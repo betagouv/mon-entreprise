@@ -21,6 +21,7 @@ export default function Cotisation({ dottedName }: { dottedName: DottedName }) {
 			engine.getRule('salarié . cotisations . employeur')
 		) ?? '0'
 	)
+	const signePlusOuMoins = isExoneration(dottedName) ? '-' : ''
 
 	if (!partPatronale.nodeValue && !partSalariale.nodeValue) {
 		return null
@@ -31,16 +32,22 @@ export default function Cotisation({ dottedName }: { dottedName: DottedName }) {
 			<RuleLink dottedName={dottedName} />
 			<span>
 				{partPatronale?.nodeValue
-					? formatValue(partPatronale, { displayedUnit: '€', language })
+					? signePlusOuMoins +
+					  formatValue(partPatronale, { displayedUnit: '€', language })
 					: '–'}
 			</span>
 			<span>
 				{partSalariale?.nodeValue
-					? formatValue(partSalariale, { displayedUnit: '€', language })
+					? signePlusOuMoins +
+					  formatValue(partSalariale, { displayedUnit: '€', language })
 					: '–'}
 			</span>
 		</>
 	)
+}
+
+function isExoneration(dottedName: DottedName): boolean {
+	return dottedName === 'salarié . cotisations . exonérations'
 }
 
 function findReferenceInNode(
