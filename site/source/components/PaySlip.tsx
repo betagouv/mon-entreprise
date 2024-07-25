@@ -1,17 +1,10 @@
 import { DottedName } from 'modele-social'
-import {
-	ASTNode,
-	formatValue,
-	ParsedRules,
-	reduceAST,
-	Rule,
-	RuleNode,
-} from 'publicodes'
-import { Fragment, useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { ASTNode, ParsedRules, reduceAST, Rule, RuleNode } from 'publicodes'
+import { Fragment } from 'react'
+import { Trans } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
-import { EngineContext, useEngine } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system/typography'
 import { H4, H5 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -23,6 +16,7 @@ import './PaySlip.css'
 
 import { styled } from 'styled-components'
 
+import Cotisation from './PaySlipCotisation'
 import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
 
 export const SECTION_ORDER = [
@@ -192,63 +186,6 @@ export default function PaySlip() {
 			{/* Section salaire net */}
 			<SalaireNetSection />
 		</StyledContainer>
-	)
-}
-
-function findReferenceInNode(
-	dottedName: DottedName,
-	node: ASTNode
-): string | undefined {
-	return reduceAST<string | undefined>(
-		(acc, node) => {
-			if (
-				node.nodeKind === 'reference' &&
-				node.dottedName?.startsWith(dottedName) &&
-				!node.dottedName.endsWith('$SITUATION')
-			) {
-				return node.dottedName
-			} else if (node.nodeKind === 'reference') {
-				return acc
-			}
-		},
-		undefined,
-		node
-	)
-}
-function Cotisation({ dottedName }: { dottedName: DottedName }) {
-	const language = useTranslation().i18n.language
-	const engine = useContext(EngineContext)
-	const partSalariale = engine.evaluate(
-		findReferenceInNode(
-			dottedName,
-			engine.getRule('salarié . cotisations . salarié')
-		) ?? '0'
-	)
-	const partPatronale = engine.evaluate(
-		findReferenceInNode(
-			dottedName,
-			engine.getRule('salarié . cotisations . employeur')
-		) ?? '0'
-	)
-
-	if (!partPatronale.nodeValue && !partSalariale.nodeValue) {
-		return null
-	}
-
-	return (
-		<>
-			<RuleLink dottedName={dottedName} />
-			<span>
-				{partPatronale?.nodeValue
-					? formatValue(partPatronale, { displayedUnit: '€', language })
-					: '–'}
-			</span>
-			<span>
-				{partSalariale?.nodeValue
-					? formatValue(partSalariale, { displayedUnit: '€', language })
-					: '–'}
-			</span>
-		</>
 	)
 }
 
