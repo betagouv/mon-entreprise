@@ -3,7 +3,6 @@ import { ASTNode, ParsedRules, reduceAST, Rule, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
 import { Trans } from 'react-i18next'
 
-import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system/typography'
 import { H4, H5 } from '@/design-system/typography/heading'
@@ -145,20 +144,6 @@ export default function PaySlip() {
 						</Fragment>
 					)
 				})}
-				{/* Réductions */}
-
-				<RuleLink dottedName={'salarié . cotisations . exonérations'} />
-
-				<Value
-					expression="- salarié . cotisations . exonérations . employeur"
-					unit="€/mois"
-					displayedUnit="€"
-				/>
-				<Value
-					expression="- salarié . cotisations . exonérations . salarié"
-					unit="€/mois"
-					displayedUnit="€"
-				/>
 				{/* Total cotisation */}
 				<Body className="payslip__total">
 					<Strong>
