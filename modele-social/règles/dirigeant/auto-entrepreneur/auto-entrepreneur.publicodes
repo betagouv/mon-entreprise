@@ -246,6 +246,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             - vente restauration hébergement . répartition . autres contributions
             - service BIC . répartition . autres contributions
             - service BNC . répartition . autres contributions
+        formation professionnelle: 
+          icônes: 👩‍🎓
+          valeur: dirigeant . auto-entrepreneur . cotisations et contributions . CFP
 
     service BIC:
       description: Cotisations pour la part du chiffre d'affaires en prestation de service BIC

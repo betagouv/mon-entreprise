@@ -62,4 +62,8 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 		[
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions',
 		],
+	'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . formation professionnelle':
+		[
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . formation professionnelle',
+		],
 }
