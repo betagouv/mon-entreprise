@@ -23,10 +23,13 @@ it('calculate simulations-artiste-auteur', () => {
 		)
 	).toMatchInlineSnapshot(`
 		[
+		  "artiste-auteur . cotisations . option surcotisation",
 		  "artiste-auteur . revenus . BNC . recettes",
 		  "artiste-auteur . revenus . traitements et salaires",
 		  "salarié . contrat",
 		  "salarié . régimes spécifiques . DFS",
+		  "établissement . commune . département",
+		  "établissement . commune . département . outre-mer",
 		]
 	`)
 })

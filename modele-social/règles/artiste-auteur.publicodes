@@ -75,7 +75,6 @@ artiste-auteur . cotisations . assiette:
 artiste-auteur . cotisations . option surcotisation:
   applicable si:
     toutes ces conditions:
-      - assiette > 0
       - assiette < assiette surcotisation
   question: Souhaitez-vous surcotiser pour augmenter vos droits à retraite ?
   description: |
