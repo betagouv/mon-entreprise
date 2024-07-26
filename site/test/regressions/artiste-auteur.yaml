@@ -17,3 +17,12 @@ option surcotisation:
   - artiste-auteur . revenus . BNC . recettes: 100 €/an
     artiste-auteur . revenus . traitements et salaires: 500 €/an
     artiste-auteur . cotisations . option surcotisation: oui
+  - artiste-auteur . revenus . BNC . recettes: 0 €/an
+    artiste-auteur . revenus . traitements et salaires: 500 €/an
+    artiste-auteur . cotisations . option surcotisation: oui
+  - artiste-auteur . revenus . BNC . recettes: 100 €/an
+    artiste-auteur . revenus . traitements et salaires: 0 €/an
+    artiste-auteur . cotisations . option surcotisation: oui
+  - artiste-auteur . revenus . BNC . recettes: 0 €/an
+    artiste-auteur . revenus . traitements et salaires: 0 €/an
+    artiste-auteur . cotisations . option surcotisation: oui
