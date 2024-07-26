@@ -2,7 +2,6 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { Message, PopoverWithTrigger } from '@/design-system'
 import { Link, StyledLink } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 
 export default function Contact() {
@@ -12,7 +11,7 @@ export default function Contact() {
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
 				<Link {...buttonProps} aria-haspopup="dialog" noUnderline>
-					<Trans i18nKey="contact.title">Nous contacter</Trans>
+					{t('contact.title', 'Nous contacter')}
 				</Link>
 			)}
 			title={t('contact.title', 'Nous contacter')}
@@ -33,38 +32,29 @@ export default function Contact() {
 				</Body>
 			</Trans>
 			<Message type="info" icon>
-				<Trans i18nKey="contact.info">
-					<Body>
-						Nous sommes une petite équipe uniquement affectée au développement
-						du site mon-entreprise.urssaf.fr et des simulateurs associés.
-						<br />
-						Par conséquent, nous n'avons pas accès à la situation personnelle
-						des cotisants (pour des raisons de confidentialité), et nous ne
-						pouvons légalement pas donner de conseil sur une situation
-						spécifique.
-					</Body>
-				</Trans>
-			</Message>
-			<Trans i18nKey="contact.urssaf">
 				<Body>
-					Si vous souhaitez contacter votre Urssaf, vous pouvez utiliser les
-					canaux habituels :
+					{t(
+						'contact.info',
+						"Nous n'avons pas accès à la situation personnelle des cotisants (pour des raisons de confidentialité), et nous ne pouvons légalement pas donner de conseil sur une situation spécifique."
+					)}
 				</Body>
-				<Ul>
-					<Li>
-						par téléphone :{' '}
-						<Link href="https://www.urssaf.fr/portail/home/votre-urssaf/contacts-telephoniques.html">
-							www.urssaf.fr/portail/home/votre-urssaf/contacts-telephoniques.html
-						</Link>
-					</Li>
-					<Li>
-						par message :{' '}
-						<Link href="https://www.contact.urssaf.fr">
-							www.contact.urssaf.fr
-						</Link>
-					</Li>
-				</Ul>
-			</Trans>
+			</Message>
+			<Body>
+				<Trans i18nKey="contact.urssaf">
+					Pour une question sur votre situation ou une démarche à effectuer,
+					nous vous invitons à contacter directement un conseiller de l'Urssaf
+					qui pourra vous renseigner :
+					<br />
+					<Link
+						href="https://www.urssaf.fr/accueil/contacter-urssaf.html"
+						aria-label="Ouvrir le lien dans une nouvelle fenêtre"
+						target="_blank"
+						rel="noreferrer"
+					>
+						https://www.urssaf.fr/accueil/contacter-urssaf.html
+					</Link>
+				</Trans>
+			</Body>
 		</PopoverWithTrigger>
 	)
 }
