@@ -28,6 +28,27 @@ artiste-auteur . cotisations . IRCEC: 0
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
+exports[`calculate simulations-artiste-auteur > option surcotisation 2`] = `
+"artiste-auteur . cotisations: 479
+artiste-auteur . cotisations . IRCEC: 0
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-artiste-auteur > option surcotisation 3`] = `
+"artiste-auteur . cotisations: 438
+artiste-auteur . cotisations . IRCEC: 0
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
+exports[`calculate simulations-artiste-auteur > option surcotisation 4`] = `
+"artiste-auteur . cotisations: 430
+artiste-auteur . cotisations . IRCEC: 0
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+`;
+
 exports[`calculate simulations-artiste-auteur > salarié 1`] = `
 "artiste-auteur . cotisations: 160
 artiste-auteur . cotisations . IRCEC: 0
