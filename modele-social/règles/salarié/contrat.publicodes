@@ -122,6 +122,7 @@ salarié . contrat:
 
 salarié . contrat . apprentissage . diplôme:
   titre: Diplôme préparé
+
 salarié . contrat . apprentissage . diplôme . niveau 8:
   par défaut: non
   question: L'apprenti prépare-t-il un diplôme de niveau 8 (doctorat ou HDR) ?
@@ -456,7 +457,6 @@ salarié . contrat . ancienneté:
 salarié . contrat . salaire brut:
   identifiant court: salaire-brut
   résumé: Brut de référence (sans les primes, indemnités ni majorations)
-  
   question: Quel est votre salaire brut ?
   description: |
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.

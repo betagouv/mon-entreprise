@@ -28,7 +28,7 @@ salarié . temps de travail:
 
     quotité:
       description: Temps de travail en proportion du temps complet légal.
-      valeur: temps de travail / durée légale . mensuelle
+      valeur: temps de travail / durée légale du travail . mensuelle
       plafond: 100%
       unité: '%'
 
@@ -52,7 +52,7 @@ salarié . temps de travail . effectif:
       description: >-
         Le plafond de la sécurité sociale doit être pro-ratisé en retirant les
         absences ainsi que les jours passés au chômage partiel.
-      valeur: temps de travail . effectif / durée légale . mensuelle
+      valeur: temps de travail . effectif / durée légale du travail . mensuelle
       unité: '%'
 
 salarié . temps de travail . heures supplémentaires:
@@ -136,8 +136,7 @@ salarié . temps de travail . heures complémentaires:
       type: notification
       sévérité: avertissement
       valeur:
-        contrat . temps de travail + heures complémentaires >= durée légale .
-        mensuelle
+        contrat . temps de travail + heures complémentaires >= durée légale du travail . mensuelle
       description: Les heures complémentaires ne doivent pas amener le salarié à
         travailler pour une durée supérieure ou égale à la durée légale du
         travail (35h)
