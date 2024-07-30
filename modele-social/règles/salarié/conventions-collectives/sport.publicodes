@@ -71,7 +71,7 @@ salarié . convention collective . sport . cotisations . régime frais de santé
             alors: 1.17%
           - si: option . R3
             alors: 1.32%
-  référence:
+  références:
     unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport
     unamens (notice pdf): https://www.umanens.fr/documents/doc-offres-2018/sport/juin-2019/CCN_SPORT_PLAQ_EMPLOYEUR_2019.pdf
 
