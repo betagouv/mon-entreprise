@@ -3,6 +3,55 @@ salarié . rémunération:
   description: |
     Ce sont tous les éléments qui composent la rémunération du salarié. Ils ne sont pas forcément inscrits dans le contrat de travail et peuvent varier d'un mois à l'autre ou en fonction de la législation.
 
+salarié . rémunération . brut:
+  description: Toutes les sommes versées au salarié en échange de son travail.
+  titre: Rémunération brute
+
+  somme:
+    - contrat . salaire brut
+    - avantages en nature . montant
+    - primes
+    - indemnités CDD
+    - heures supplémentaires
+    - heures complémentaires
+    - frais professionnels
+
+  abattement: activité partielle . retrait absence
+
+salarié . rémunération . net:
+  description:
+    C'est la rémunération nette de cotisations. Elle inclut le salaire
+    net, mais également des éléments de rémunération en nature comme les
+    avantages en nature, les titres restaurants ou les prévoyances payées par
+    employeur.
+  somme:
+    - sans revenus de remplacement
+    - revenus de remplacement . net
+
+  avec:
+    sans revenus de remplacement:
+      valeur: brut
+      abattement: cotisations . salarié
+
+salarié . rémunération . net . à payer avant impôt:
+  titre: Salaire net
+  identifiant court: salaire-net
+  unité: €/mois
+  question: Quel est votre salaire net ?
+  résumé: Salaire net avant impôt
+  description: >-
+    C'est le montant que le salarié touche à la fin du mois avant de payer
+    l'impôt sur le revenu.
+
+    Aussi appelé salaire net à payer avant impôt.
+
+    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
+
+  somme:
+    - net
+    - (- avantages en nature . montant)
+    - (- frais professionnels . titres-restaurant . montant)
+
 salarié . rémunération . net . imposable:
   titre: Salaire net imposable
   description: |
@@ -68,40 +117,6 @@ salarié . rémunération . net . imposable:
         - cotisations . prévoyances . employeur
         - cotisations . prévoyances . salarié . non déductible
 
-salarié . rémunération . net . à payer avant impôt:
-  titre: Salaire net
-  identifiant court: salaire-net
-  unité: €/mois
-  question: Quel est votre salaire net ?
-  résumé: Salaire net avant impôt
-  description: >-
-    C'est le montant que le salarié touche à la fin du mois avant de payer
-    l'impôt sur le revenu.
-
-    Aussi appelé salaire net à payer avant impôt.
-
-    Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
-
-  somme:
-    - net
-    - (- avantages en nature . montant)
-    - (- frais professionnels . titres-restaurant . montant)
-
-salarié . rémunération . net:
-  description:
-    C'est la rémunération nette de cotisations. Elle inclut le salaire
-    net, mais également des éléments de rémunération en nature comme les
-    avantages en nature, les titres restaurants ou les prévoyances payées par
-    employeur.
-  somme:
-    - sans revenus de remplacement
-    - revenus de remplacement . net
-
-  avec:
-    sans revenus de remplacement:
-      valeur: brut
-      abattement: cotisations . salarié
-
 salarié . rémunération . net . payé après impôt:
   titre: Salaire net après impôt
   identifiant court: salaire-net-apres-impot
@@ -110,7 +125,7 @@ salarié . rémunération . net . payé après impôt:
   type: salaire
   unité: €/mois
   description: |
-    C'est le salaire versé sur le compte bancaire du salarié, une fois les cotisations et l'impôt prélevées.
+    C'est le salaire versé sur le compte bancaire du salarié, une fois les cotisations et l'impôt prélevés.
   références:
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
   somme:
@@ -121,19 +136,20 @@ salarié . rémunération . taux horaire:
   unité: €/heures
   formule: assiette de vérification du SMIC / temps de travail
 
-salarié . rémunération . taux horaire . heures supplémentaires:
-  titre: taux horaire (heure supplémentaire)
-  description: >
-    Le taux horaire utilisé pour calculer la rémunération liée au heures
-    supplémentaires. Il intègre les avantages en nature et les primes
-    constituant la contrepartie d'un travail fourni.
-  unité: €/heures
-  formule: (assiette de vérification du SMIC + primes . fin d'année) / contrat .
-    temps de travail
-  références:
-    e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
-    rfPaye (privé): https://rfpaye.grouperf.com/article/0168/ms/rfpayems0168_2027146.html
-    legisocial: https://www.legisocial.fr/actualites-sociales/1074-avantage-en-nature-et-heures-supplementaires-les-consequences-sur-le-bulletin-de-paie.html
+  avec:
+    heures supplémentaires:
+      titre: taux horaire (heure supplémentaire)
+      description: >
+        Le taux horaire utilisé pour calculer la rémunération liée au heures
+        supplémentaires. Il intègre les avantages en nature et les primes
+        constituant la contrepartie d'un travail fourni.
+      unité: €/heures
+      formule: (assiette de vérification du SMIC + primes . fin d'année) / contrat .
+        temps de travail
+      références:
+        e-Paye (privé): https://e-paye.com/faq/les-heures-supplementaires-quelles-primes-inclure-dans-la-base-de-calcul-de-la-majoration-pour-heure-supplementaire/
+        rfPaye (privé): https://rfpaye.grouperf.com/article/0168/ms/rfpayems0168_2027146.html
+        legisocial: https://www.legisocial.fr/actualites-sociales/1074-avantage-en-nature-et-heures-supplementaires-les-consequences-sur-le-bulletin-de-paie.html
 
 salarié . rémunération . assiette de vérification du SMIC:
   description: >
@@ -332,21 +348,6 @@ salarié . rémunération . indemnités CDD:
         Code du travail - Article L1243-8: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006189459
         service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F40
 
-salarié . rémunération . brut:
-  description: Toutes les sommes versées au salarié en échange de son travail.
-  titre: Rémunération brute
-
-  somme:
-    - contrat . salaire brut
-    - avantages en nature . montant
-    - primes
-    - indemnités CDD
-    - heures supplémentaires
-    - heures complémentaires
-    - frais professionnels
-
-  abattement: activité partielle . retrait absence
-
 salarié . rémunération . heures supplémentaires:
   description: La rémunération relative aux heures supplémentaires
   produit:
@@ -387,328 +388,329 @@ salarié . rémunération . frais professionnels:
     - titres-restaurant . employeur
     - trajets domicile travail . employeur
 
-salarié . rémunération . frais professionnels . déductible:
-  titre: Part déductibles
-  description: >-
-    Part des frais déduite de l'assiette de cotisation sociale et pour le calcul
-    de l'impôt sur le revenu.
-  somme:
-    - titres-restaurant . déductible
-    - trajets domicile travail . déductible
-
-salarié . rémunération . frais professionnels . titres-restaurant:
-  icônes: 🍽️
-  description: >-
-    Le titre-restaurant est un titre spécial de paiement « des repas » remis par
-    l’employeur au salarié.
-
-
-    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour régler la consommation :
-
-      - d’un repas,
-
-      - de préparations alimentaires directement consommables,
-
-      - de fruits et légumes.
-
-    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
-
-  question: Le salarié reçoit-il des titres-restaurant ?
-  par défaut: non
-
   avec:
     déductible:
-      titre: Titre restaurant déductibles
-      valeur: employeur
-      plafond:
-        produit:
-          - nombre
-          - plafond unitaire
-      références:
-        urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
-
-    déductible . plafond unitaire:
-      variations:
-        - si: date >= 01/2024
-          alors: 7.18 €/titres-restaurant
-        - si: date >= 01/2023
-          alors: 6.91 €/titres-restaurant
-        # En 2022, la participation de l’employeur au financement
-        # d'un titre restaurant exonérée de cotisations sociales est
-        # fixée de façon rétroactive à 6,50 €
-        # (article 4 de la loi de Finances pour 2023)
-        - si: date >= 01/2022
-          alors: 6.50€/titres-restaurant
-        # - si: date >= 09/2022
-        #   alors: 5.92 €/titres-restaurant
-        # - si: date >= 01/2022
-        #   alors: 5.69 €/titres-restaurant
-        - si: date >= 01/2021
-          alors: 5.55 €/titres-restaurant
-    employeur: montant * taux employeur
-
-    montant:
-      produit:
-        - montant unitaire
-        - nombre
-
-    montant unitaire:
-      question: Quelle est la valeur unitaire du titre-restaurant ?
+      titre: Part déductibles
       description: >-
-        Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant.
-        En revanche, pour bénéficier de l'exonération de cotisation, il ne faut
-        pas dépasser 11,38€ par titre en 2021.
-      par défaut: 8 €/titre-restaurant
-      suggestions:
-        faible: 6 €/titre-restaurant
-        moyenne: 8 €/titre-restaurant
-        max exonéré:
-          valeur: déductible . plafond unitaire / taux employeur
-          unité: €/titre-restaurant
-
-    nombre:
-      question: Combien de titres-restaurant sont distribués au salarié ?
-      arrondi: oui
-      par défaut:
-        produit:
-          - 19 titres-restaurant/mois
-          - temps de travail . quotité
-      suggestions:
-        5 repas/semaine: 5 titres-restaurant/semaine * période . semaines par mois
-        3 repas/semaine: 3 titres-restaurant/semaine * période . semaines par mois
-
-    taux employeur:
-      description: >-
-        Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum
-        et de 60% maximum.
-      question: Quelle est la participation de l'employeur ?
-      par défaut: 50 %
-      plancher: 50%
-      plafond: 60%
-      suggestions:
-        50%: 50 %
-        60%: 60 %
-
-salarié . rémunération . frais professionnels . trajets domicile travail:
-  références:
-    Frais de transport du trajets domicile travail: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail.html
-
-  avec:
-    abattement temps partiel:
-      privé: oui
-      applicable si: contrat . temps de travail . quotité < 50%
-      valeur: 100% - (contrat . temps de travail . quotité / 50%)
-      références:
-        Article R3261-14 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000041865023/2020-05-11/
-
-    cumul forfait mobilité durable et transports publics:
-      privé: oui
-      toutes ces conditions:
-        - transports publics . montant > 0
-        - forfait mobilités durables . montant > 0
-
-    déductible:
-      titre: Part déductible
-      valeur:
-        somme:
-          - transports publics . déductible
-          - forfait mobilités durables . montant
-          - valeur: prime de transport . déductible
-            plafond: plafond hors cumul
-        plafond:
-          variations:
-            - si:
-                toutes ces conditions:
-                  - date >= 01/2021
-                  - établissement . commune . département . outre-mer
-              alors: 900 €/an
-            - si: cumul forfait mobilité durable et transports publics
-              alors:
-                variations:
-                  - si: date < 01/2022
-                    alors: 600€/an
-                  - sinon: 800€/an
-            - sinon: plafond hors cumul
-        plancher: transports publics . déductible
-      abattement: abattement temps partiel
-
-    déductible . plafond hors cumul:
-      privé: oui
-      variations:
-        - si: date < 01/2022
-          alors: 500€/an
-        - sinon: 700€/an
-
-    employeur:
+        Part des frais déduite de l'assiette de cotisation sociale et pour le calcul
+        de l'impôt sur le revenu.
       somme:
-        - transports publics . employeur
-        - forfait mobilités durables . montant
-        - prime de transport . montant
-        # TODO : [Indemnités kilométriques](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-dindemnites-kilometriq.html)
-        # TODO : [Prime de 4€](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-de-la-prime-de-transpo.html)
-      abattement: abattement temps partiel
+        - titres-restaurant . déductible
+        - trajets domicile travail . déductible
 
-salarié . rémunération . frais professionnels . trajets domicile travail . transports publics:
-  icônes: 🚍
+    titres-restaurant:
+      icônes: 🍽️
+      description: >-
+        Le titre-restaurant est un titre spécial de paiement « des repas » remis par
+        l’employeur au salarié.
 
-  avec:
-    déductible:
-      description:
-        Montant de l'abonnement aux transports publics prise en charge par
-        l'employeur et déductible de cotisations et d'impôts.
-      produit:
-        - montant
-        - valeur: taux employeur
-          plafond:
-            variations:
-              - si: date < 01/2022
-                alors: 50%
-              - sinon: 75%
 
-    employeur:
-      applicable si: montant > 0
-      titre: Part employeur
-      description:
-        Montant de l'abonnement aux transports publics prise en charge par
-        l'employeur.
-      unité: €/mois
-      produit:
-        - montant
-        - taux employeur
+        Le salarié ne peut utiliser les titres-restaurant en sa possession que pour régler la consommation :
 
-    montant:
-      titre: Montant abonnement
-      question:
-        Quel montant le salarié dépense-t-il en abonnement aux transports
-        publics pour se rendre sur son lieu de travail ?
-      unité: €/mois
-      par défaut: 0 €/mois
-      plancher: 0 €/mois
-      description: |
-        La participation de l’employeur aux frais de transports publics est obligatoire.
+          - d’un repas,
 
-        L’employeur (de droit privé ou public) doit prendre en charge 50 % du prix des titres d’abonnements souscrits par ses salariés pour l’intégralité du trajet entre leur résidence habituelle et leur lieu de travail accompli au moyen de services de transports publics même si plusieurs abonnements sont nécessaires à la réalisation de ce trajet (train + bus par exemple).
-        Sont également concernés les services publics de location de vélos.
+          - de préparations alimentaires directement consommables,
 
-        L’employeur peut prendre en charge un part plus importante que les 50% obligatoires. La prise en charge des frais de transports par l’employeur est exonérée de cotisations sociales et d’impôt sur le revenu jusqu'à 75% de participation.
+          - de fruits et légumes.
 
-        Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
-      références:
-        Articles R3261-1 à -10 du code du travail, version 01/01/2009: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272/2009-01-01
-        Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
-        Remboursement des frais de transport: https://www.service-public.fr/particuliers/vosdroits/F19846/personnalisation/resultat?lang=&quest0=0
-        Prise en charge obligatoire des frais de transport public: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-obligatoire-des.html#FilAriane
-      suggestions:
-        Navigo: 84.10 €/mois
-        Técély: 65 €/mois
-        RTM: 40 €/mois
-        Tisséo: 42.50 €/mois
-        TBM: 42.20 €/mois
+        Ce titre peut être émis sur support papier ou sous forme dématérialisée.
 
-    taux employeur:
-      question: Quel est le taux de prise en charge par l’employeur aux frais de
-        transports du salarié ?
-      par défaut: 50%
-      plancher: 50%
-      suggestions:
-        Minimum (50%): 50%
-        Maximum déductible (75%): 75%
-        Totale (100%): 100%
-
-salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport:
-  icônes: 🚗
-
-  avec:
-    déductible:
-      applicable si: montant > 0
-      titre: Part déductible
-      description: Part déductible de la prise en charge du carburant
-      valeur: montant
-      plafond:
-        non applicable si: véhicule electrique hybride hydrogène
-        variations:
-          - si: date < 01/2022
-            alors: 200 €/an
-          - si: établissement . commune . département . outre-mer
-            alors: 600 €/an
-          - sinon: 400 €/an
-
-    montant:
-      titre: Prime de transport
-      non applicable si:
-        applicable si: date < 01/2022
-        valeur: transports publics . montant > 0
-      question: Quel montant des frais de carburants / alimentation du véhicule
-        dépensés par le salarié pour se rendre au travail est pris en charge par
-        l'employeur ?
-      unité: €/an
-      par défaut: 0 €/an
-      plancher: 0 €/an
-      description: |
-        Une prise en charge par l’employeur, sous forme de « prime de transport », des frais de carburant et d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène engagés par les salariés pour leurs déplacements entre leur résidence habituelle et leur lieu de travail est possible sous certaines conditions.
-
-        Si l’employeur (de droit privé ou de droit public) la met en place, elle doit profiter à l’ensemble des salariés selon les mêmes modalités et en fonction de la distance entre le domicile et le lieu de travail.
-
-        Le montant, les modalités ainsi que les critères d’attribution de la prime de transport doivent être prévus par accord d’entreprise ou par accord interentreprises, et à défaut, par accord de branche.
-        En l’absence d’accord, l’employeur peut prévoir le versement de la prime de transport par décision unilatérale, après consultation du comité social et économique (CSE), s’il existe.
-
-        Le salarié peut prétendre à la prime de transport si :
-
-        - sa résidence habituelle ou son lieu de travail est situé en dehors de la région Ile-de-France et d’un périmètre de transports urbains ;
-        - l'utilisation d'un véhicule personnel est rendue indispensable par des conditions d'horaires de travail particuliers ne permettant pas d'emprunter un mode collectif de transport.
-
-        La prise en charge n’est pas prévue si :
-
-        - le salarié bénéficie d’un véhicule mis à disposition permanente par l’employeur avec prise en charge des dépenses de carburant ou d’alimentation électrique (voiture de fonction ou de service) ;
-        - le salarié est logé dans des conditions excluant tous frais de transport pour se rendre au travail (logement de fonction) ;
-        - l’employeur assure gratuitement le transport du salarié.
-
-        > **Bon à savoir**
-        > Aucun justificatif de dépenses de carburant n’est exigé lorsque la prise en charge par l’employeur n’excède pas 200 € pour les frais de carburant, ou 500 € pour les frais d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène.
-
-      références:
-        Fiche Urssaf sur la prime de transport: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/prime-de-transport.html
-        Articles R3261-11 à -13 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
-        Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
-
-    véhicule electrique hybride hydrogène:
-      question: Le salarié utilise-t-il un véhicules électriques, hybrides
-        rechargeables ou à hydrogène ?
+      question: Le salarié reçoit-il des titres-restaurant ?
       par défaut: non
 
-salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables:
-  non applicable si: régimes spécifiques . DFS
-  icônes: 🚲️
+      avec:
+        déductible:
+          titre: Titre restaurant déductibles
+          valeur: employeur
+          plafond:
+            produit:
+              - nombre
+              - plafond unitaire
+          références:
+            urssaf.fr: https://www.urssaf.fr/portail/home/taux-et-baremes/frais-professionnels/les-titres-restaurant.html
 
-  avec:
-    montant:
-      question: Quel montant des frais de transports de mobilité durable (vélo,
-        covoiturage, mobilité partagée) est pris en charge par l'employeur ?
-      unité: €/an
-      par défaut: 0 €/an
-      plancher: 0 €/an
-      description: |
-        Afin de promouvoir des moyens de transport plus écologiques, le forfait mobilités durables offre aux employeurs la possibilité d’attribuer une indemnité exonérée de cotisations aux salariés privilégiant les modes de transport dits « à mobilité douce » pour effectuer leurs trajets entre leur résidence habituelle et leur lieu de travail.
+        déductible . plafond unitaire:
+          variations:
+            - si: date >= 01/2024
+              alors: 7.18 €/titres-restaurant
+            - si: date >= 01/2023
+              alors: 6.91 €/titres-restaurant
+            # En 2022, la participation de l’employeur au financement
+            # d'un titre restaurant exonérée de cotisations sociales est
+            # fixée de façon rétroactive à 6,50 €
+            # (article 4 de la loi de Finances pour 2023)
+            - si: date >= 01/2022
+              alors: 6.50€/titres-restaurant
+            # - si: date >= 09/2022
+            #   alors: 5.92 €/titres-restaurant
+            # - si: date >= 01/2022
+            #   alors: 5.69 €/titres-restaurant
+            - si: date >= 01/2021
+              alors: 5.55 €/titres-restaurant
+        employeur: montant * taux employeur
 
-        Le forfait mobilités durables se substitue aux indemnités kilométriques vélo et aux indemnités forfaitaires de covoiturage.
+        montant:
+          produit:
+            - montant unitaire
+            - nombre
 
-        Les conditions et les modalités d’application du forfait mobilités durables diffèrent selon les secteurs visés. Pour connaître les modalités d’application dans le secteur public, consultez la page dédiée.
+        montant unitaire:
+          question: Quelle est la valeur unitaire du titre-restaurant ?
+          description: >-
+            Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant.
+            En revanche, pour bénéficier de l'exonération de cotisation, il ne faut
+            pas dépasser 11,38€ par titre en 2021.
+          par défaut: 8 €/titre-restaurant
+          suggestions:
+            faible: 6 €/titre-restaurant
+            moyenne: 8 €/titre-restaurant
+            max exonéré:
+              valeur: déductible . plafond unitaire / taux employeur
+              unité: €/titre-restaurant
 
-        ### Conditions d'application
+        nombre:
+          question: Combien de titres-restaurant sont distribués au salarié ?
+          arrondi: oui
+          par défaut:
+            produit:
+              - 19 titres-restaurant/mois
+              - temps de travail . quotité
+          suggestions:
+            5 repas/semaine: 5 titres-restaurant/semaine * période . semaines par mois
+            3 repas/semaine: 3 titres-restaurant/semaine * période . semaines par mois
 
-        Pour favoriser les transports dits « à mobilité douce », les employeurs ont la possibilité de prendre en charge les frais de trajets des salariés qui se rendent au travail en utilisant les modes de déplacement suivants :
+        taux employeur:
+          description: >-
+            Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum
+            et de 60% maximum.
+          question: Quelle est la participation de l'employeur ?
+          par défaut: 50 %
+          plancher: 50%
+          plafond: 60%
+          suggestions:
+            50%: 50 %
+            60%: 60 %
 
-        - le vélo, avec ou sans assistance électrique ;
-        - le covoiturage en tant que conducteur ou passager ;
-        - les transports publics de personnes (autres que ceux concernés par la prise en charge obligatoire des frais d’abonnement) ;
-        - les autres services de mobilité partagée.
-
+    trajets domicile travail:
       références:
-        Forfait mobilité durable: https://entreprendre.service-public.fr/vosdroits/F33808
-        'FAQ : le forfait mobilités durables': https://www.ecologie.gouv.fr/faq-forfait-mobilites-durables-fmd
-        'Forfait mobilité durable : Comment ça marche ? (pdf)': https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/FMD-Comment-ca-marche.pdf
-        Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
-        Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+        Frais de transport du trajets domicile travail: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail.html
+
+      avec:
+        abattement temps partiel:
+          privé: oui
+          applicable si: contrat . temps de travail . quotité < 50%
+          valeur: 100% - (contrat . temps de travail . quotité / 50%)
+          références:
+            Article R3261-14 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000041865023/2020-05-11/
+
+        cumul forfait mobilité durable et transports publics:
+          privé: oui
+          toutes ces conditions:
+            - transports publics . montant > 0
+            - forfait mobilités durables . montant > 0
+
+        déductible:
+          titre: Part déductible
+          valeur:
+            somme:
+              - transports publics . déductible
+              - forfait mobilités durables . montant
+              - valeur: prime de transport . déductible
+                plafond: plafond hors cumul
+            plafond:
+              variations:
+                - si:
+                    toutes ces conditions:
+                      - date >= 01/2021
+                      - établissement . commune . département . outre-mer
+                  alors: 900 €/an
+                - si: cumul forfait mobilité durable et transports publics
+                  alors:
+                    variations:
+                      - si: date < 01/2022
+                        alors: 600€/an
+                      - sinon: 800€/an
+                - sinon: plafond hors cumul
+            plancher: transports publics . déductible
+          abattement: abattement temps partiel
+
+        déductible . plafond hors cumul:
+          privé: oui
+          variations:
+            - si: date < 01/2022
+              alors: 500€/an
+            - sinon: 700€/an
+
+        employeur:
+          somme:
+            - transports publics . employeur
+            - forfait mobilités durables . montant
+            - prime de transport . montant
+            # TODO : [Indemnités kilométriques](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-dindemnites-kilometriq.html)
+            # TODO : [Prime de 4€](https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/versement-de-la-prime-de-transpo.html)
+          abattement: abattement temps partiel
+
+        transports publics:
+          icônes: 🚍
+
+          avec:
+            déductible:
+              description:
+                Montant de l'abonnement aux transports publics prise en charge par
+                l'employeur et déductible de cotisations et d'impôts.
+              produit:
+                - montant
+                - valeur: taux employeur
+                  plafond:
+                    variations:
+                      - si: date < 01/2022
+                        alors: 50%
+                      - sinon: 75%
+
+            employeur:
+              applicable si: montant > 0
+              titre: Part employeur
+              description:
+                Montant de l'abonnement aux transports publics prise en charge par
+                l'employeur.
+              unité: €/mois
+              produit:
+                - montant
+                - taux employeur
+
+            montant:
+              titre: Montant abonnement
+              question:
+                Quel montant le salarié dépense-t-il en abonnement aux transports
+                publics pour se rendre sur son lieu de travail ?
+              unité: €/mois
+              par défaut: 0 €/mois
+              plancher: 0 €/mois
+              description: |
+                La participation de l’employeur aux frais de transports publics est obligatoire.
+
+                L’employeur (de droit privé ou public) doit prendre en charge 50 % du prix des titres d’abonnements souscrits par ses salariés pour l’intégralité du trajet entre leur résidence habituelle et leur lieu de travail accompli au moyen de services de transports publics même si plusieurs abonnements sont nécessaires à la réalisation de ce trajet (train + bus par exemple).
+                Sont également concernés les services publics de location de vélos.
+
+                L’employeur peut prendre en charge un part plus importante que les 50% obligatoires. La prise en charge des frais de transports par l’employeur est exonérée de cotisations sociales et d’impôt sur le revenu jusqu'à 75% de participation.
+
+                Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
+              références:
+                Articles R3261-1 à -10 du code du travail, version 01/01/2009: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272/2009-01-01
+                Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+                Remboursement des frais de transport: https://www.service-public.fr/particuliers/vosdroits/F19846/personnalisation/resultat?lang=&quest0=0
+                Prise en charge obligatoire des frais de transport public: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-obligatoire-des.html#FilAriane
+              suggestions:
+                Navigo: 84.10 €/mois
+                Técély: 65 €/mois
+                RTM: 40 €/mois
+                Tisséo: 42.50 €/mois
+                TBM: 42.20 €/mois
+
+            taux employeur:
+              question: Quel est le taux de prise en charge par l’employeur aux frais de
+                transports du salarié ?
+              par défaut: 50%
+              plancher: 50%
+              suggestions:
+                Minimum (50%): 50%
+                Maximum déductible (75%): 75%
+                Totale (100%): 100%
+
+        prime de transport:
+          icônes: 🚗
+
+          avec:
+            déductible:
+              applicable si: montant > 0
+              titre: Part déductible
+              description: Part déductible de la prise en charge du carburant
+              valeur: montant
+              plafond:
+                non applicable si: véhicule electrique hybride hydrogène
+                variations:
+                  - si: date < 01/2022
+                    alors: 200 €/an
+                  - si: établissement . commune . département . outre-mer
+                    alors: 600 €/an
+                  - sinon: 400 €/an
+
+            montant:
+              titre: Prime de transport
+              non applicable si:
+                applicable si: date < 01/2022
+                valeur: transports publics . montant > 0
+              question: Quel montant des frais de carburants / alimentation du véhicule
+                dépensés par le salarié pour se rendre au travail est pris en charge par
+                l'employeur ?
+              unité: €/an
+              par défaut: 0 €/an
+              plancher: 0 €/an
+              description: |
+                Une prise en charge par l’employeur, sous forme de « prime de transport », des frais de carburant et d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène engagés par les salariés pour leurs déplacements entre leur résidence habituelle et leur lieu de travail est possible sous certaines conditions.
+
+                Si l’employeur (de droit privé ou de droit public) la met en place, elle doit profiter à l’ensemble des salariés selon les mêmes modalités et en fonction de la distance entre le domicile et le lieu de travail.
+
+                Le montant, les modalités ainsi que les critères d’attribution de la prime de transport doivent être prévus par accord d’entreprise ou par accord interentreprises, et à défaut, par accord de branche.
+                En l’absence d’accord, l’employeur peut prévoir le versement de la prime de transport par décision unilatérale, après consultation du comité social et économique (CSE), s’il existe.
+
+                Le salarié peut prétendre à la prime de transport si :
+
+                - sa résidence habituelle ou son lieu de travail est situé en dehors de la région Ile-de-France et d’un périmètre de transports urbains ;
+                - l'utilisation d'un véhicule personnel est rendue indispensable par des conditions d'horaires de travail particuliers ne permettant pas d'emprunter un mode collectif de transport.
+
+                La prise en charge n’est pas prévue si :
+
+                - le salarié bénéficie d’un véhicule mis à disposition permanente par l’employeur avec prise en charge des dépenses de carburant ou d’alimentation électrique (voiture de fonction ou de service) ;
+                - le salarié est logé dans des conditions excluant tous frais de transport pour se rendre au travail (logement de fonction) ;
+                - l’employeur assure gratuitement le transport du salarié.
+
+                > **Bon à savoir**
+                > Aucun justificatif de dépenses de carburant n’est exigé lorsque la prise en charge par l’employeur n’excède pas 200 € pour les frais de carburant, ou 500 € pour les frais d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène.
+
+              références:
+                Fiche Urssaf sur la prime de transport: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/prime-de-transport.html
+                Articles R3261-11 à -13 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
+                Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+
+            véhicule electrique hybride hydrogène:
+              question: Le salarié utilise-t-il un véhicules électriques, hybrides
+                rechargeables ou à hydrogène ?
+              par défaut: non
+
+        forfait mobilités durables:
+          non applicable si: régimes spécifiques . DFS
+          icônes: 🚲️
+
+          avec:
+            montant:
+              question: Quel montant des frais de transports de mobilité durable (vélo,
+                covoiturage, mobilité partagée) est pris en charge par l'employeur ?
+              unité: €/an
+              par défaut: 0 €/an
+              plancher: 0 €/an
+              description: |
+                Afin de promouvoir des moyens de transport plus écologiques, le forfait mobilités durables offre aux employeurs la possibilité d’attribuer une indemnité exonérée de cotisations aux salariés privilégiant les modes de transport dits « à mobilité douce » pour effectuer leurs trajets entre leur résidence habituelle et leur lieu de travail.
+
+                Le forfait mobilités durables se substitue aux indemnités kilométriques vélo et aux indemnités forfaitaires de covoiturage.
+
+                Les conditions et les modalités d’application du forfait mobilités durables diffèrent selon les secteurs visés. Pour connaître les modalités d’application dans le secteur public, consultez la page dédiée.
+
+                ### Conditions d'application
+
+                Pour favoriser les transports dits « à mobilité douce », les employeurs ont la possibilité de prendre en charge les frais de trajets des salariés qui se rendent au travail en utilisant les modes de déplacement suivants :
+
+                - le vélo, avec ou sans assistance électrique ;
+                - le covoiturage en tant que conducteur ou passager ;
+                - les transports publics de personnes (autres que ceux concernés par la prise en charge obligatoire des frais d’abonnement) ;
+                - les autres services de mobilité partagée.
+
+              références:
+                Forfait mobilité durable: https://entreprendre.service-public.fr/vosdroits/F33808
+                'FAQ : le forfait mobilités durables': https://www.ecologie.gouv.fr/faq-forfait-mobilites-durables-fmd
+                'Forfait mobilité durable : Comment ça marche ? (pdf)': https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/FMD-Comment-ca-marche.pdf
+                Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
+                Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
 salarié . rémunération . avantages en nature:
   icônes: 🛏️🚗🥗📱
