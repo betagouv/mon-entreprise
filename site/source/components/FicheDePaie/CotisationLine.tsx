@@ -6,7 +6,11 @@ import { useTranslation } from 'react-i18next'
 import RuleLink from '@/components/RuleLink'
 import { EngineContext } from '@/components/utils/EngineContext'
 
-export default function Cotisation({ dottedName }: { dottedName: DottedName }) {
+export default function CotisationLine({
+	dottedName,
+}: {
+	dottedName: DottedName
+}) {
 	const language = useTranslation().i18n.language
 	const engine = useContext(EngineContext)
 	const partSalariale = engine.evaluate(
