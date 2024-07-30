@@ -201,7 +201,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     produit:
       - revenus activité conventionnée
       - 1 - taux Urssaf / (1 + taux Urssaf)
-  référence:
+  références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-chirurgien-dentiste/assiette-de-participation-de-la.html
     Texte de loi: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020429271&categorieLien=id
 

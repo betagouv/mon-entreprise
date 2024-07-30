@@ -64,7 +64,7 @@ salarié . régimes spécifiques . alsace moselle . ATMP:
       valeur: 50 employés
 
     taux fonctions support:
-      référence:
+      références:
         Annexe de l'Arrêté du 24 décembre 2021 Relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2022: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044616039
       remplace: cotisations . ATMP . taux fonctions support . montant
       valeur: 0.86%

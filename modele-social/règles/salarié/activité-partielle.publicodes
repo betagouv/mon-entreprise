@@ -111,7 +111,7 @@ salarié . activité partielle . indemnités . légale:
   somme:
     - base
     - allocation complémentaire
-  référence:
+  références:
     Article L3232-6 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006902850/2020-03-02
 
   avec:
