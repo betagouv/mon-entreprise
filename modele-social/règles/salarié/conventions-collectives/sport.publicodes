@@ -170,7 +170,7 @@ salarié . convention collective . sport . exonération cotisation AT:
 
 salarié . convention collective . sport . refus exonération cotisation AT:
   titre: refus exonération AT
-  question: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
+  question: L'employeur a-t-il refusé d'être exonéré de cotisations AT ?
   par défaut: non
 
 salarié . convention collective . sport . cotisations . assiette forfaitaire:
@@ -195,7 +195,7 @@ salarié . convention collective . sport . cotisations . assiette forfaitaire:
     Barème assiette forfaitaire convention sport: https://www.urssaf.fr/portail/home/taux-et-baremes/assiettes-forfaitaires-et-franch/le-sportif-entraineur-personne-q.html
 
 salarié . convention collective . sport . primes . nombre de manifestations:
-  question: Combien de manifestations rémunérées le joueur a-t'il effectué ?
+  question: Combien de manifestations rémunérées le joueur a-t-il effectué ?
   #TODO : gérer la période
   par défaut: 0 manifestations
 

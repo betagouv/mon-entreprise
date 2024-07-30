@@ -809,7 +809,7 @@ détachement . formulaire pays hors UE: &convention-bilatérale-formulaire
         variations:
           - si: situation . TNS
             alors: "'Serez-vous accompagnés d'ayants droits ?'"
-          - sinon: "'Le salarié sera-t'il accompagné d'ayants droits ?'"
+          - sinon: "'Le salarié sera-t-il accompagné d'ayants droits ?'"
       description: Indiquez si des membres de la famille (y compris éloignée) partiront à l’étranger pour la durée de la mission.
       par défaut: non
     nombre ayants droits:
