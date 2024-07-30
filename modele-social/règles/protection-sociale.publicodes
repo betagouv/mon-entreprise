@@ -669,6 +669,51 @@ protection sociale . maladie . maternité paternité adoption:
           références:
             'Congé maternité : les indemnités journalières pour les salariées ': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-maternite-salariee
 
+protection sociale . maladie . accidents du travail et maladies professionnelles:
+  icônes: ☣️
+  résumé: Offre une couverture complète des maladies ou accidents du travail.
+  description: |
+    Vous avez subi un accident du travail ou êtes atteint d’une maladie professionnelle ?
+    Vos frais médicaux sont pris en charge à 100 %.
+
+    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités journalières.
+    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez recevoir une indemnité temporaire d'inaptitude.
+  unité: €/jour
+  applicable si: salarié
+
+  références:
+    "Comprendre l'assurance AT/MP": https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
+    'Maladie professionnelle : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/maladie-professionnelle
+    'Accident du travail : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/accident-travail
+    "Qu'est-ce qu'un accident de trajet ?": https://www.service-public.fr/particuliers/vosdroits/F31881
+    "Qu'est-ce qu'une maladie professionnelle ?": https://www.service-public.fr/particuliers/vosdroits/F31880
+    "Accident du travail : indemnités journalières pendant l'arrêt de travail": https://www.service-public.fr/particuliers/vosdroits/F175
+    "Maladie professionnelle : indemnités journalières pendant l'arrêt de travail": https://www.service-public.fr/particuliers/vosdroits/F32148
+    Articles R433-1 à R433-17 du Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156659/2020-12-10/
+
+  avec:
+    indemmnités:
+      produit:
+        - salaire journalier de référence
+        - 60%
+
+      avec:
+        à partir du 29ème jour:
+          produit:
+            - salaire journalier de référence
+            - 80%
+
+    indemmnités . salaire journalier de référence:
+      privé: oui
+      valeur: salarié . cotisations . assiette
+      unité: €/jour
+      plafond:
+        arrondi: 2 décimales
+        unité: €/jour
+        le minimum de:
+          - 0.834% * (plafond sécurité sociale * 1 an) / 1 jour
+          - salarié . cotisations . assiette - abattement forfaitaire salarié
+
 protection sociale . invalidité et décès:
   icônes: 🦽
   type: branche
@@ -911,51 +956,6 @@ protection sociale . famille:
     Allocations destinées aux familles: https://www.service-public.fr/particuliers/vosdroits/N156
     Tout savoir sur les Allocations familiales: https://www.caf.fr/nous-connaitre/qui-sommes-nous
 
-protection sociale . maladie . accidents du travail et maladies professionnelles:
-  icônes: ☣️
-  résumé: Offre une couverture complète des maladies ou accidents du travail.
-  description: |
-    Vous avez subi un accident du travail ou êtes atteint d’une maladie professionnelle ?
-    Vos frais médicaux sont pris en charge à 100 %.
-
-    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités journalières.
-    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez recevoir une indemnité temporaire d'inaptitude.
-  unité: €/jour
-  applicable si: salarié
-
-  références:
-    "Comprendre l'assurance AT/MP": https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
-    'Maladie professionnelle : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/maladie-professionnelle
-    'Accident du travail : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/accident-travail
-    "Qu'est-ce qu'un accident de trajet ?": https://www.service-public.fr/particuliers/vosdroits/F31881
-    "Qu'est-ce qu'une maladie professionnelle ?": https://www.service-public.fr/particuliers/vosdroits/F31880
-    "Accident du travail : indemnités journalières pendant l'arrêt de travail": https://www.service-public.fr/particuliers/vosdroits/F175
-    "Maladie professionnelle : indemnités journalières pendant l'arrêt de travail": https://www.service-public.fr/particuliers/vosdroits/F32148
-    Articles R433-1 à R433-17 du Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156659/2020-12-10/
-
-  avec:
-    indemmnités:
-      produit:
-        - salaire journalier de référence
-        - 60%
-
-      avec:
-        à partir du 29ème jour:
-          produit:
-            - salaire journalier de référence
-            - 80%
-
-    indemmnités . salaire journalier de référence:
-      privé: oui
-      valeur: salarié . cotisations . assiette
-      unité: €/jour
-      plafond:
-        arrondi: 2 décimales
-        unité: €/jour
-        le minimum de:
-          - 0.834% * (plafond sécurité sociale * 1 an) / 1 jour
-          - salarié . cotisations . assiette - abattement forfaitaire salarié
-
 protection sociale . formation:
   icônes: 👩‍🎓
   résumé: Finance la possibilité de suivre des formations professionnelles.
@@ -963,14 +963,6 @@ protection sociale . formation:
     La formation professionnelle permet à chaque personne, indépendamment de son statut, d’acquérir et d’actualiser ses connaissances et ses compétences, d’accroître son niveau de qualification et de favoriser son évolution professionnelle.
 
     Pour avoir un compte-rendu personnalisé de vos droits à la formation, rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
-
-protection sociale . autres:
-  icônes: 🔧
-  résumé: Autres contributions au système social.
-  description: |
-    Toutes les contributions transverses au système social.
-
-    On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette sociale) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants et petits enfants.
 
 protection sociale . transport:
   icônes: 🚌
@@ -983,3 +975,11 @@ protection sociale . transport:
     - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
   références:
     wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
+
+protection sociale . autres:
+  icônes: 🔧
+  résumé: Autres contributions au système social.
+  description: |
+    Toutes les contributions transverses au système social.
+
+    On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette sociale) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants et petits enfants.
