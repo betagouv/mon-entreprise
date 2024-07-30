@@ -1960,7 +1960,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
     variations:
       - alors:
           texte:
-            À quelle proportion le conjoint cotise-t'il pour la retraite de base, la
+            À quelle proportion le conjoint cotise-t-il pour la retraite de base, la
             retraite complémentaire et l'invalidité-décès ?
         si:
           toutes ces conditions:
@@ -1968,7 +1968,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
             - dirigeant . indépendant . PL . CIPAV
       - sinon:
           texte:
-            À quelle proportion du revenu le conjoint cotise-t'il pour le régime de
+            À quelle proportion du revenu le conjoint cotise-t-il pour le régime de
             base ?
   titre.en: '[automatic] proportion'
   titre.fr: proportion
@@ -2975,7 +2975,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
           titre.en: '[automatic] 1/3'
           titre.fr: 1/3
       question.en: '[automatic] What proportion of income does the spouse contribute?'
-      question.fr: À quelle proportion du revenu le conjoint cotise-t'il ?
+      question.fr: À quelle proportion du revenu le conjoint cotise-t-il ?
       titre.en: '[automatic] Proportion of income'
       titre.fr: Proportion revenu
     revenu avec partage:
@@ -3024,7 +3024,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
 
     - Le conjoint cotise sur une fraction du revenu du professionnel. Le revenu est partagé entre les deux conjoints.
   question.en: '[automatic] On what basis does the spouse contribute?'
-  question.fr: Sur quelle base le conjoint cotise-t'il ?
+  question.fr: Sur quelle base le conjoint cotise-t-il ?
   titre.en: '[automatic] Choice of plate'
   titre.fr: Choix assiette
 dirigeant . indépendant . conjoint collaborateur . cotisations:
@@ -8167,12 +8167,12 @@ salarié . contrat . date d'embauche:
   titre.fr: date d'embauche
 salarié . contrat . professionnalisation . jeune de moins de 30 ans:
   question.en: '[automatic] Is the hired employee under 30 years old?'
-  question.fr: Le salarié embauché a-t'il moins de 30 ans ?
+  question.fr: Le salarié embauché a-t-il moins de 30 ans ?
   titre.en: '[automatic] young person under 30 years old'
   titre.fr: jeune de moins de 30 ans
 salarié . contrat . professionnalisation . salarié de 45 ans et plus:
   question.en: '[automatic] Is the hired employee 45 years old or older?'
-  question.fr: Le salarié embauché a-t'il 45 ans ou plus ?
+  question.fr: Le salarié embauché a-t-il 45 ans ou plus ?
   titre.en: '[automatic] employee aged 45 and over'
   titre.fr: salarié de 45 ans et plus
 salarié . contrat . salaire brut:
@@ -8367,7 +8367,7 @@ salarié . convention collective . BTP . OPPBTP:
   titre.fr: OPPBTP
 salarié . convention collective . BTP . catégorie:
   question.en: '[automatic] To which category does the employee belong?'
-  question.fr: À quelle catégorie la salarié appartient-t'il ?
+  question.fr: À quelle catégorie le salarié appartient-t-il ?
   titre.en: '[automatic] category'
   titre.fr: catégorie
 salarié . convention collective . BTP . catégorie . cadre:
@@ -8742,12 +8742,12 @@ salarié . convention collective . sport . primes . manifestation 5 . franchise:
   titre.fr: franchise manifestation 5
 salarié . convention collective . sport . primes . nombre de manifestations:
   question.en: '[automatic] How many paid events has the player performed?'
-  question.fr: Combien de manifestations rémunérées le joueur a-t'il effectué ?
+  question.fr: Combien de manifestations rémunérées le joueur a-t-il effectué ?
   titre.en: '[automatic] number of events'
   titre.fr: nombre de manifestations
 salarié . convention collective . sport . refus exonération cotisation AT:
   question.en: '[automatic] Did the employer refuse to be exempted from WC contributions?'
-  question.fr: L'employeur a-t'il refusé d'être exonéré de cotisations AT ?
+  question.fr: L'employeur a-t-il refusé d'être exonéré de cotisations AT ?
   titre.en: '[automatic] AT exemption refusal'
   titre.fr: refus exonération AT
 salarié . cotisations:
@@ -10745,7 +10745,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
       question.en:
         '[automatic] Does the employee use an electric, plug-in hybrid or
         hydrogen vehicle?'
-      question.fr: Le salarié utilise-t'il un véhicules électriques, hybrides
+      question.fr: Le salarié utilise-t-il un véhicules électriques, hybrides
         rechargeables ou à hydrogène ?
       titre.en: '[automatic] electric vehicle hybrid hydrogen'
       titre.fr: véhicule electrique hybride hydrogène

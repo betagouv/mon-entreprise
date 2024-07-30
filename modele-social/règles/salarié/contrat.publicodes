@@ -202,12 +202,12 @@ salarié . contrat . apprentissage . assiette réduite apprentissage:
   abattement: 79% * SMIC
 
 salarié . contrat . professionnalisation . jeune de moins de 30 ans:
-  question: Le salarié embauché a-t'il moins de 30 ans ?
+  question: Le salarié embauché a-t-il moins de 30 ans ?
   par défaut: oui
 
 salarié . contrat . professionnalisation . salarié de 45 ans et plus:
   non applicable si: jeune de moins de 30 ans
-  question: Le salarié embauché a-t'il 45 ans ou plus ?
+  question: Le salarié embauché a-t-il 45 ans ou plus ?
   par défaut: non
 
 salarié . contrat . CDD . motif:
