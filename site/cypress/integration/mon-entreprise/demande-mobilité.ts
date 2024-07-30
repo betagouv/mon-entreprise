@@ -126,7 +126,7 @@ describe(
 			cy.tab()
 			cy.focused().type('{downarrow}{enter}')
 
-			cy.contains("Le salarié sera-t'il accompagné d'ayants droits")
+			cy.contains("Le salarié sera-t-il accompagné d'ayants droits")
 				.parent()
 				.next()
 				.contains('Oui')
