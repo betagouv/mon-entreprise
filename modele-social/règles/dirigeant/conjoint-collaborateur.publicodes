@@ -23,7 +23,7 @@ dirigeant . indépendant . conjoint collaborateur:
 
 dirigeant . indépendant . conjoint collaborateur . assiette:
   titre: Choix assiette
-  question: Sur quelle base le conjoint cotise-t'il ?
+  question: Sur quelle base le conjoint cotise-t-il ?
   description: |
     Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul de ces cotisations :
     - Le conjoint cotise sur un revenu forfaitaire
@@ -50,7 +50,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
 
     pourcentage:
       titre: Proportion revenu
-      question: À quelle proportion du revenu le conjoint cotise-t'il ?
+      question: À quelle proportion du revenu le conjoint cotise-t-il ?
       par défaut: "'tiers'"
       formule:
         une possibilité:

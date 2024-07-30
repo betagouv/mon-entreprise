@@ -672,7 +672,7 @@ salarié . rémunération . frais professionnels . trajets domicile travail . pr
         Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
 
     véhicule electrique hybride hydrogène:
-      question: Le salarié utilise-t'il un véhicules électriques, hybrides
+      question: Le salarié utilise-t-il un véhicules électriques, hybrides
         rechargeables ou à hydrogène ?
       par défaut: non
 

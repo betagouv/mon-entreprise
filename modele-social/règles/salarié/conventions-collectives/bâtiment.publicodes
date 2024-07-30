@@ -9,7 +9,7 @@ salarié . convention collective . BTP:
   rend non applicable: rémunération . indemnités CDD . congés payés
 
 salarié . convention collective . BTP . catégorie:
-  question: À quelle catégorie la salarié appartient-t'il ?
+  question: À quelle catégorie le salarié appartient-t-il ?
   par défaut: "'ouvrier'"
   formule:
     une possibilité:
