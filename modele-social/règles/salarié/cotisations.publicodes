@@ -274,9 +274,9 @@ salarié . cotisations . exonérations . JEI . montant:
   description: |
     Exonération pour les jeunes entreprises innovantes (JEI).
   références:
-    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31188
-    calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/quelle-exoneration.html
-    cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F31188
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-secteur-activite/jeunes-entreprises-innovantes.html
+    Cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
   unité: €/mois
   somme:
     - allocations familiales
@@ -291,10 +291,10 @@ salarié . cotisations . exonérations . réduction générale:
   description: |
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
   références:
-    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale.html
-    calcul: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction.html
-    cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F24542
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
+    Simulateur: https://www.declaration.urssaf.fr/calcul/
+    Cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
   produit:
     - cotisations . assiette
     - coefficient
@@ -311,8 +311,7 @@ salarié . cotisations . exonérations . réduction générale:
       plafond: T
       arrondi: 4 décimales
       références:
-        urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/le-calcul-de-la-reduction/etape-1--determination-du-coeffi.html
-        Code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025103779&cidTexte=LEGITEXT000006073189
+        Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
 
     imputation retraite complémentaire:
       privé: oui
@@ -542,7 +541,8 @@ salarié . cotisations . AGS:
   cotisation:
     branche: assurance chômage
   références:
-    calcul: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31409
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F31409
   produit:
     - valeur: cotisations . assiette
       plafond: 4 * temps de travail . plafond sécurité sociale
@@ -559,7 +559,8 @@ salarié . cotisations . allocations familiales:
     - cotisations . assiette
     - taux
   références:
-    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-dallocations-famil.html
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/cotisation-allocation-familiale.html
+    Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
 
   avec:
     taux:
@@ -614,7 +615,7 @@ salarié . cotisations . chômage:
     branche: assurance chômage
   description: Cotisation d’assurance chômage
   références:
-    Taux de l'assurance chômage et de l'AGS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/lassurance-chomage-et-lags/les-taux.html
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
   somme:
     - salarié
     - employeur
@@ -645,7 +646,9 @@ salarié . cotisations . ATMP:
     - cotisations . assiette
     - taux
   références:
-    Comment calculer les cotisations accidents du travail et maladies professionnelles (AT/MP) ?: https://entreprendre.service-public.fr/vosdroits/F33665#:~:text=La%20cotisation%20AT%2FMP%20couvre,Activit%C3%A9%20principale
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/at-vieillesse-csa-dialoguesocial.html#ancre-cotisation-d-at-mp
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F33665
+    Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
 
   avec:
     seuil taux mixte ou individuel: 20 employés
@@ -707,8 +710,8 @@ salarié . cotisations . contribution au dialogue social:
     Anciennement 'contribution patronale au financement des organisations syndicales'
 
   références:
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-patronale-au-dia.html
-    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33308
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/at-vieillesse-csa-dialoguesocial.html#ancre-contribution-patronale-au-dialog
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F33308
   produit:
     - cotisations . assiette
     - 0.016%
@@ -724,12 +727,14 @@ salarié . cotisations . CSG-CRDS:
   somme:
     - CSG
     - CRDS
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/csg-crds.html
 
 salarié . cotisations . CSG-CRDS . assiette de base:
   références:
-    Les revenus salariaux soumis à la CSG et à la CRDS: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/les-revenus-salariaux-soumis-a-l.html
-    Les revenus exclus de l’abattement d’assiette: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/abattement-et-deductions/les-revenus-exclus-de-labattemen.html
-    heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+    Revenus d'activité concernés: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/csg-crds.html#ancre-revenus-d-activite-concernes
+    Revenus d'activité non concernés: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/csg-crds.html#ancre-revenus-d-activite-non-concernes
+    Heures supplémentaires: https://net-entreprises.custhelp.com/app/answers/detail/a_id/2110
   somme:
     - assiette abattue
     - prévoyances . employeur
@@ -762,7 +767,7 @@ salarié . cotisations . CSG-CRDS . assiette heures supplémentaires et complém
       défiscalisées
     - 98.25%
   références:
-    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+    Net-entreprises: https://net-entreprises.custhelp.com/app/answers/detail/a_id/2110
 
 salarié . cotisations . CSG-CRDS . non déductible:
   titre: CSG non déductible et CRDS
@@ -785,8 +790,8 @@ salarié . cotisations . CSG-CRDS . CSG:
 
     Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance également le fonds de solidarité vieillesse
   références:
-    urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/assiette-csg-crds.html
-    heures supplémentaires: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/csg-crds.html
+    Heures supplémentaires: https://net-entreprises.custhelp.com/app/answers/detail/a_id/2110
   somme:
     - déductible
     - non déductible
@@ -819,6 +824,8 @@ salarié . cotisations . CSG-CRDS . CRDS:
         - assiette de base
         - assiette heures supplémentaires et complémentaires défiscalisées
     - taux
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/csg-crds.html
 
   avec:
     taux: 0.5%
@@ -873,7 +880,8 @@ salarié . cotisations . FNAL:
   cotisation:
     branche: famille
   références:
-    calcul: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-au-fonds-nationa.html
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/fonds-national-aide-logement.html
+    Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
   produit:
     - valeur: cotisations . assiette
       plafond:
@@ -923,9 +931,10 @@ salarié . cotisations . formation professionnelle:
           alors: 0.55%
         - sinon: 1%
   références:
-    fiche Ministère du travail: https://travail-emploi.gouv.fr/formation-professionnelle/entreprises-et-formation/article/participation-financiere-des-entreprises-au-developpement-de-la-formation
-    Bercy infos: https://www.economie.gouv.fr/entreprises/contribution-formation-professionnelle
-    Taux réduit: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000037387044&cidTexte=LEGITEXT000006072050&dateTexte=20190101
+    Fiche Ministère du travail: https://travail-emploi.gouv.fr/formation-professionnelle/entreprises-et-formation/article/participation-financiere-des-entreprises-au-developpement-de-la-formation
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/formation-professionnelle.html
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F22570
+    Taux réduit: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037387044
 
 salarié . cotisations . maladie:
   description:
@@ -937,10 +946,10 @@ salarié . cotisations . maladie:
     branche: maladie
   synonymes: [Cotisation maladie - maternité - invalidité - décès]
   références:
-    Fiche Urssaf sur la cotisation maladie: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit.html
-    Cas particuliers: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-cotisation-maladie---maternit/cas-particuliers.html
-    Le régime local Alsace-Moselle: https://regime-local.fr
-    Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/eli/decret/2017/12/30/CPAS1732212D/jo/texte
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/maladie-maternite-invalidite.html
+    Décret n° 2017-1891 relatif au taux des cotisations d'assurance maladie: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000036342284
+    Régime local Alsace-Moselle: https://regime-local.fr
+    Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
   somme:
     - employeur
     - salarié
@@ -984,7 +993,7 @@ salarié . cotisations . maladie:
         - si: régimes spécifiques . alsace moselle
           alors:
             variations:
-              - si: date >= 01/04/2022
+              - si: date >= 04/2022
                 alors: 1.3%
               - sinon: 1.5%
 
@@ -1000,8 +1009,8 @@ salarié . cotisations . CSA:
     - cotisations . assiette
     - taux
   références:
-    Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-contribution-solidarite-auton.html
-    Fiche service-public: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32872
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/at-vieillesse-csa-dialoguesocial.html#ancre-contribution-solidarite-autonomi
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F32872
 
   avec:
     taux: 0.3%
@@ -1014,7 +1023,7 @@ salarié . cotisations . PEEC:
   cotisation:
     branche: logement
   références:
-    fiche: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22583
+    fiche: https://entreprendre.service-public.fr/vosdroits/F22583
   note: |
     L'employeur a le choix entre verser cet impôt à un "organisme du 1% patronal" agréé, investir la somme dans le logement de ses salariés, ou accorder à eux et leur famille des prêts de construction à taux réduit.
 
@@ -1026,6 +1035,8 @@ salarié . cotisations . PEEC:
 salarié . cotisations . prévoyances:
   titre: prévoyances complémentaires
   possiblement non applicable: oui
+  références:
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries/embaucher/prevoyance-complementaire.html
   cotisation:
     branche: maladie
   somme:
@@ -1069,8 +1080,6 @@ salarié . cotisations . prévoyances:
               - 6% * plafond sécurité sociale
               - 1.5% * rémunération . brut
             plafond: 12% * plafond sécurité sociale
-          références:
-            La limite de l'exonération sociale: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/la-prevoyance-complementaire/la-limite-de-lexoneration-social.html
         # TODO: autre
 
     employeur . cadres:
@@ -1155,6 +1164,8 @@ salarié . cotisations . vieillesse:
     branche: retraite
   description: Cotisation vieillesse pour le régime de retraite de base des salariés.
   références:
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/at-vieillesse-csa-dialoguesocial.html#ancre-cotisation-d-assurance-vieilless
+    Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
     Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000038510929
   somme:
     - salarié
@@ -1219,7 +1230,8 @@ salarié . cotisations . taxe d'apprentissage:
       - entreprise . salariés . effectif > 10
       - contrat . apprentissage = non
   références:
-    description: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22574
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taxe-apprentissage-csa.html
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F22574
 
   note:
     Taxe complexe, comportant notamment des exonérations non prises en compte
@@ -1299,9 +1311,11 @@ salarié . cotisations . versement mobilité:
     - établissement . commune . taux versement mobilité
 
   références:
-    Recherchez le taux de versement mobilité applicable dans votre ville: https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html
-    Le versement mobilité, ça vous concerne ?: https://www.economie.gouv.fr/entreprises/versement-mobilite-transport
-    Article wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
+    Moteur de recherche versement mobilité: https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/versement-mobilite.html
+    Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
+    'Versement mobilité : êtes-vous concerné ?': https://www.economie.gouv.fr/entreprises/versement-mobilite-transport
+    Article wikipedia: https://fr.wikipedia.org/wiki/Versement_mobilit%C3%A9
 
 salarié . cotisations . forfait social:
   titre: Forfait social
@@ -1311,8 +1325,8 @@ salarié . cotisations . forfait social:
   cotisation:
     branche: retraite
   références:
-    Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/le-forfait-social.html
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31532
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/forfait-social.html
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F31532
     Code du travail - Article L137-15: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000019950196
   produit:
     - prévoyances . employeur
