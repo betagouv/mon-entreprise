@@ -1,4 +1,3 @@
-import algoliasearch from 'algoliasearch/lite'
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Configure, Index } from 'react-instantsearch-dom'
@@ -7,16 +6,11 @@ import { styled } from 'styled-components'
 
 import { Spacing } from '@/design-system/layout'
 
+import { algoliaIndexPrefix, searchClient } from './Algolia'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
 import { SearchBox } from './SearchBox'
 import { SearchRoot } from './SearchRoot'
 import { SimulatorHits } from './SimulatorHits'
-
-const ALGOLIA_APP_ID = import.meta.env.VITE_ALGOLIA_APP_ID || ''
-const ALGOLIA_SEARCH_KEY = import.meta.env.VITE_ALGOLIA_SEARCH_KEY || ''
-const ALGOLIA_INDEX_PREFIX = import.meta.env.VITE_ALGOLIA_INDEX_PREFIX || ''
-
-const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY)
 
 interface Props {
 	closePopover: () => void
@@ -36,7 +30,7 @@ export default function SearchRulesAndSimulators({ closePopover }: Props) {
 	return (
 		<StyledContainer>
 			<SearchRoot
-				indexName={`${ALGOLIA_INDEX_PREFIX}rules`}
+				indexName={`${algoliaIndexPrefix}rules`}
 				searchClient={searchClient}
 				role="search"
 			>
@@ -45,12 +39,12 @@ export default function SearchRulesAndSimulators({ closePopover }: Props) {
 					aria-label={t('Rechercher un simulateur ou une règle')}
 				/>
 
-				<Index indexName={`${ALGOLIA_INDEX_PREFIX}simulateurs`}>
+				<Index indexName={`${algoliaIndexPrefix}simulateurs`}>
 					<Configure hitsPerPage={6} />
 					<SimulatorHits />
 				</Index>
 
-				<Index indexName={`${ALGOLIA_INDEX_PREFIX}rules`}>
+				<Index indexName={`${algoliaIndexPrefix}rules`}>
 					<RulesInfiniteHits />
 				</Index>
 				<Spacing lg />
