@@ -126,7 +126,11 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
         service BNC:
             remplace: cotisations . service BNC . taux
             valeur: taux ACRE * cotisations . service BNC . taux
-            arrondi: 1 décimale
+            arrondi: 
+              variations:
+                - si: date >= 01/2026
+                  alors: 2 décimales
+                - sinon: 1 décimale
 
         vente restauration hébergement:
             remplace: cotisations . vente restauration hébergement . taux

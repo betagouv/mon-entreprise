@@ -297,6 +297,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       avec:
         taux:
           variations:
+            - si: date >= 01/2026
+              alors: 26.1%
+            - si: date >= 01/2025
+              alors: 24.6%
             - si: date >= 07/2024
               alors: 23.1%
             - si: date >= 10/2022
@@ -308,23 +312,63 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             maladie-maternité:
               valeur: service BNC * taux de répartition
               avec:
-                taux de répartition: 3.90%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 3%
+                    - si: date >= 01/2025
+                      alors: 3.40%
+                    - si: date >= 07/2024
+                      alors: 3.60%
+                    - sinon: 3.90%
             invalidité-décès:
               valeur: service BNC * taux de répartition
               avec:
-                taux de répartition: 4.10%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 3.25%
+                    - si: date >= 01/2025
+                      alors: 3.50%
+                    - si: date >= 07/2024
+                      alors: 3.70%
+                    - sinon: 4.10%
             retraite de base:
               valeur: service BNC * taux de répartition
               avec:
-                taux de répartition: 55.50%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 44.85%
+                    - si: date >= 01/2025
+                      alors: 47.60%
+                    - si: date >= 07/2024
+                      alors: 50.75%
+                    - sinon: 55.50%
             retraite complémentaire:
               valeur: service BNC * taux de répartition
               avec:
-                taux de répartition: 0%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 17.7%
+                    - si: date >= 01/2025
+                      alors: 13%
+                    - si: date >= 07/2024
+                      alors: 7.85%
+                    - sinon: 0%
             autres contributions:
               valeur: service BNC * taux de répartition
               avec:
-                taux de répartition: 36.50%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 31.20%
+                    - si: date >= 01/2025
+                      alors: 32.50%
+                    - si: date >= 07/2024
+                      alors: 34.10%
+                    - sinon: 36.50%
 
     vente restauration hébergement:
       description: Cotisations pour la part du chiffre d'affaires en vente, restauration et hébergement
