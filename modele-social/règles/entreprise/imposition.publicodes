@@ -22,6 +22,7 @@ entreprise . imposition:
 
     # BPI ONLY
     Imposition des bénéfices: https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/imposition-benefices
+
 entreprise . imposition . IR:
   valeur: imposition = 'IR'
   titre: Impôt sur le revenu

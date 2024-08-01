@@ -296,6 +296,7 @@ dirigeant . indépendant . cotisations facultatives . plafond prévoyance:
     Réassurez-moi: https://reassurez-moi.fr/guide/pro/tns/plafond#le_plafond_de_deduction_madelin_pour_une_mutuelle_santenbsp
   note: |
     Normalement c'est le résultat fiscal qui devrait être utilisé pour l'assiette du plafond, mais on utilise le revenu professionnel pour éviter un cycle.
+
 dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite:
   question: Quel est le montant que vous versez pour votre contrat Madelin
     retraite complémentaire ?
