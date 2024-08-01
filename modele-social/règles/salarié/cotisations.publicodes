@@ -638,6 +638,8 @@ salarié . cotisations . chômage:
 
 salarié . cotisations . ATMP:
   experimental: oui
+  cotisation:
+    branche: maladie . accidents du travail et maladies professionnelles
   titre: Accidents du Travail et Maladies Professionnelles
   description: Cotisation due au titre des Accidents du Travail et Maladies
     Professionnelles.
@@ -1023,8 +1025,162 @@ salarié . cotisations . PEEC:
     - cotisations . assiette
     - 0.45%
 
+# salarié . cotisations . prévoyances:
+#   titre: prévoyances complémentaires
+#   possiblement non applicable: oui
+#   cotisation:
+#     branche: maladie
+#   somme:
+#     - employeur
+#     - salarié
+
+#   avec:
+#     conventionnelle:
+#       somme:
+#         - employeur
+#         - salarié
+
+#     conventionnelle . employeur:
+#       titre: part employeur
+#       non applicable si: oui
+
+#     conventionnelle . salarié:
+#       titre: part salarié
+#       non applicable si: oui
+
+#     employeur:
+#       titre: part employeur
+#       somme:
+#         - santé . employeur
+#         - conventionnelle . employeur
+#         - cadres
+
+#       avec:
+#         non déductible socialement:
+#           titre: Prévoyance employeur non déductible
+#           description:
+#             Montant de la part employeur des prévoyances à réintégrer pour le
+#             calcul de l'assiette des cotisations
+#           valeur:
+#             valeur: employeur
+#             contexte:
+#               non déductible socialement: 0€
+
+#           abattement:
+#             somme:
+#               - 6% * plafond sécurité sociale
+#               - 1.5% * rémunération . brut
+#             plafond: 12% * plafond sécurité sociale
+#           références:
+#             La limite de l'exonération sociale: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/la-prevoyance-complementaire/la-limite-de-lexoneration-social.html
+#         # TODO: autre
+
+#     employeur . cadres:
+#       applicable si: contrat . statut cadre
+#       description: prévoyance obligatoire pour les cadres
+#       privé: oui
+#       produit:
+#         - valeur: cotisations . assiette . sans prévoyance
+#           plafond: plafond sécurité sociale
+#         - 1.5%
+
+#     salarié:
+#       titre: part salarié
+#       somme:
+#         - santé . salarié
+#         - conventionnelle . salarié
+#         # TODO: autre
+
+#       avec:
+#         non déductible:
+#           titre: Prévoyance salarié non déductible
+#           valeur: salarié
+#           abattement:
+#             somme:
+#               - 5% * plafond sécurité sociale
+#               - 2% * rémunération . brut
+#             plafond: 2% * 8 * plafond sécurité sociale
+
+#         références:
+#           Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
+
 salarié . cotisations . prévoyances:
-  titre: prévoyances complémentaires
+  possiblement non applicable: oui
+  avec:
+    employeur:
+      somme:
+        - santé . employeur
+        - complémentaire incapacité invalidité décès . employeur
+      avec:
+        non déductible socialement: complémentaire incapacité invalidité décès . employeur . non déductible socialement
+    salarié:
+      somme:
+        - santé . salarié
+        - complémentaire incapacité invalidité décès . salarié
+      avec:
+        non déductible: complémentaire incapacité invalidité décès . salarié . non déductible
+
+salarié . cotisations . prévoyances . santé:
+  cotisation:
+    branche: maladie
+  somme:
+    - employeur
+    - salarié
+
+  avec:
+    employeur: 
+      titre: part employeur
+      valeur: montant * taux employeur
+
+    montant:
+      titre: prévoyance complémentaire santé (mutuelle)
+      synonymes:
+        - mutuelle
+        - prévoyance . santé
+      cotisation:
+        branche: maladie
+      description: |
+        En complément des garanties de base de la Sécurité sociale, un salarié peut bénéficier de prestations de la complémentaire santé de son entreprise (ou de l'association qui l'emploie). C'est l'employeur qui négocie le contrat et assure son suivi auprès de l'organisme assureur. La complémentaire santé d'entreprise doit prendre en charge un minimum de garanties.
+
+      question: Quel est le montant mensuel total (salarié et employeur) de la
+        complémentaire santé de l'entreprise (mutuelle) ?
+      par défaut: 40 €/mois
+      plancher: 0 €/mois
+      suggestions:
+        basique: 40 €/mois
+        élevé: 100 €/mois
+        alsace moselle basique: 30 €/mois
+      références:
+        Complémentaire santé d'entreprise: https://www.service-public.fr/particuliers/vosdroits/F20739
+        les obligations de l'employeur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754
+      # TODO : ajouter le cas des dispenses https://www.service-public.fr/particuliers/vosdroits/F20740
+
+    salarié:
+      titre: part salarié
+      valeur: montant - taux employeur
+
+    taux employeur:
+      description:
+        Part de la complémentaire santé payée par l'employeur. Doit être de
+        50% minimum
+      question: Quelle est la part de la complémentaire santé payée par l'employeur ?
+      suggestions:
+        50%: 50%
+        100%: 100%
+      par défaut: 50%
+
+      avec:
+        contrôle min:
+          type: notification
+          sévérité: avertissement
+          valeur: taux employeur < 50%
+          description:
+            La part employeur de la complémentaire santé doit être de 50% au
+            minimum
+
+
+salarié . cotisations . complémentaire incapacité invalidité décès:
+  titre: Coucou
   possiblement non applicable: oui
   cotisation:
     branche: maladie
@@ -1033,26 +1189,12 @@ salarié . cotisations . prévoyances:
     - salarié
 
   avec:
-    conventionnelle:
-      somme:
-        - employeur
-        - salarié
-
-    conventionnelle . employeur:
-      titre: part employeur
-      non applicable si: oui
-
-    conventionnelle . salarié:
-      titre: part salarié
-      non applicable si: oui
-
     employeur:
       titre: part employeur
       somme:
-        - santé . employeur
         - conventionnelle . employeur
         - cadres
-
+      
       avec:
         non déductible socialement:
           titre: Prévoyance employeur non déductible
@@ -1082,12 +1224,23 @@ salarié . cotisations . prévoyances:
           plafond: plafond sécurité sociale
         - 1.5%
 
+    conventionnelle:
+      somme:
+        - employeur
+        - salarié
+
+    conventionnelle . employeur:
+      titre: part employeur
+      non applicable si: oui
+
+    conventionnelle . salarié:
+      titre: part salarié
+      non applicable si: oui
+    
     salarié:
       titre: part salarié
-      somme:
-        - santé . salarié
-        - conventionnelle . salarié
-        # TODO: autre
+      valeur: conventionnelle . salarié
+              # TODO: autre
 
       avec:
         non déductible:
@@ -1101,54 +1254,6 @@ salarié . cotisations . prévoyances:
 
         références:
           Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
-
-salarié . cotisations . prévoyances . santé:
-  avec:
-    employeur: montant * taux employeur
-
-    montant:
-      titre: prévoyance complémentaire santé (mutuelle)
-      synonymes:
-        - mutuelle
-        - prévoyance . santé
-      cotisation:
-        branche: maladie
-      description: |
-        En complément des garanties de base de la Sécurité sociale, un salarié peut bénéficier de prestations de la complémentaire santé de son entreprise (ou de l'association qui l'emploie). C'est l'employeur qui négocie le contrat et assure son suivi auprès de l'organisme assureur. La complémentaire santé d'entreprise doit prendre en charge un minimum de garanties.
-
-      question: Quel est le montant mensuel total (salarié et employeur) de la
-        complémentaire santé de l'entreprise (mutuelle) ?
-      par défaut: 40 €/mois
-      plancher: 0 €/mois
-      suggestions:
-        basique: 40 €/mois
-        élevé: 100 €/mois
-        alsace moselle basique: 30 €/mois
-      références:
-        Complémentaire santé d'entreprise: https://www.service-public.fr/particuliers/vosdroits/F20739
-        les obligations de l'employeur: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33754
-      # TODO : ajouter le cas des dispenses https://www.service-public.fr/particuliers/vosdroits/F20740
-
-    salarié: montant - taux employeur
-
-    taux employeur:
-      description:
-        Part de la complémentaire santé payée par l'employeur. Doit être de
-        50% minimum
-      question: Quelle est la part de la complémentaire santé payée par l'employeur ?
-      suggestions:
-        50%: 50%
-        100%: 100%
-      par défaut: 50%
-
-      avec:
-        contrôle min:
-          type: notification
-          sévérité: avertissement
-          valeur: taux employeur < 50%
-          description:
-            La part employeur de la complémentaire santé doit être de 50% au
-            minimum
 
 salarié . cotisations . vieillesse:
   cotisation:

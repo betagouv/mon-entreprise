@@ -18,6 +18,7 @@ import Line from './Line'
 export function Cotisations() {
 	const parsedRules = useEngine().getParsedRules()
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
+	console.log(cotisationsBySection)
 
 	return (
 		<>
@@ -78,7 +79,7 @@ export function Cotisations() {
 
 export const SECTION_ORDER = [
 	'protection sociale . maladie',
-	'protection sociale . accidents du travail et maladies professionnelles',
+	'protection sociale . maladie . accidents du travail et maladies professionnelles',
 	'protection sociale . retraite',
 	'protection sociale . famille',
 	'protection sociale . assurance chômage',

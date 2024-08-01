@@ -79,9 +79,9 @@ salarié . convention collective . optique . prévoyance:
 
   avec:
     employeur:
-      remplace: cotisations . prévoyances . conventionnelle . employeur
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . employeur
       valeur: 60% * prévoyance
 
     salarié:
-      remplace: cotisations . prévoyances . conventionnelle . salarié
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . salarié
       valeur: 40% * prévoyance

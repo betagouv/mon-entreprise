@@ -671,6 +671,7 @@ protection sociale . maladie . maternité paternité adoption:
 
 protection sociale . maladie . accidents du travail et maladies professionnelles:
   icônes: ☣️
+  type: branche
   résumé: Offre une couverture complète des maladies ou accidents du travail.
   description: |
     Vous avez subi un accident du travail ou êtes atteint d’une maladie professionnelle ?
