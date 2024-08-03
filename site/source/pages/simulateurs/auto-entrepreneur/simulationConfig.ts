@@ -1,4 +1,4 @@
-import { SimulationConfig } from '../_configs/types'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configAutoEntrepreneur: SimulationConfig = {
 	'objectifs exclusifs': [
@@ -39,7 +39,6 @@ export const configAutoEntrepreneur: SimulationConfig = {
 		],
 		'non prioritaires': ['établissement . commune'],
 		'liste noire': [
-			'entreprise . activités',
 			'entreprise . activités . revenus mixtes',
 			'entreprise . charges',
 			"entreprise . chiffre d'affaires",

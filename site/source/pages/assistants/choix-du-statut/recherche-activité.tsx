@@ -8,7 +8,7 @@ import { H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { resetSimulation, updateSituation } from '@/store/actions/actions'
+import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 
 import SearchCodeAPE from '../recherche-code-ape/SearchCodeAPE'
 import Layout from './_components/Layout'
@@ -32,7 +32,7 @@ export default function RechercheActivité() {
 			currentStepIsComplete={!!codeApe}
 			onNextStep={() => {
 				dispatch(
-					updateSituation(
+					enregistreLaRéponse(
 						'entreprise . activités . principale . code APE',
 						`'${codeApe}'`
 					)

@@ -14,7 +14,7 @@ import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { updateSituation } from '@/store/actions/actions'
+import { enregistreLaRéponse } from '@/store/actions/actions'
 import {
 	situationSelector,
 	targetUnitSelector,
@@ -90,7 +90,7 @@ export function SimpleField(props: SimpleFieldProps) {
 	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
 	const dispatchValue = useCallback(
 		(value: PublicodesExpression | undefined, dottedName: DottedName) => {
-			dispatch(updateSituation(dottedName, value))
+			dispatch(enregistreLaRéponse(dottedName, value))
 		},
 		[dispatch]
 	)

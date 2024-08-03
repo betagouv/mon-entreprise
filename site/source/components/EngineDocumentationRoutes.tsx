@@ -2,7 +2,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import Popover from '@/design-system/popover/Popover'
 import Documentation from '@/pages/Documentation'
-import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/components/Comparateur'
+import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 export function EngineDocumentationRoutes({
 	namedEngines,

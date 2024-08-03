@@ -1,58 +1,27 @@
-import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useEngine } from '@/components/utils/EngineContext'
-import { useNextQuestions } from '@/hooks/useNextQuestion'
 import {
-	goToQuestion,
-	stepAction,
-	updateShouldFocusField,
+	retourneÀLaQuestionPrécédente,
+	vaÀLaQuestionSuivante,
 } from '@/store/actions/actions'
-import {
-	answeredQuestionsSelector,
-	currentQuestionSelector,
-	urlSelector,
-	useMissingVariables,
-} from '@/store/selectors/simulationSelectors'
+import { currentQuestionSelector } from '@/store/selectors/currentQuestion.selector'
+import { questionEnCoursRépondueSelector } from '@/store/selectors/questionEnCoursRépondue.selector'
 
-export function useNavigateQuestions(engines?: Array<Engine<DottedName>>) {
+export function useNavigateQuestions() {
 	const dispatch = useDispatch()
-	const engine = useEngine()
-	const nextQuestion = useNextQuestions(engines)[0]
 	const currentQuestion = useSelector(currentQuestionSelector)
-	const url = useSelector(urlSelector)
 
-	const missingVariables = useMissingVariables({ engines: engines ?? [engine] })
-	const currentQuestionIsAnswered =
-		currentQuestion && !(currentQuestion in missingVariables)
-
-	const previousAnswers = useSelector(answeredQuestionsSelector)
+	const currentQuestionIsAnswered = useSelector(questionEnCoursRépondueSelector)
 
 	const goToPrevious = () => {
-		dispatch(updateShouldFocusField(true))
-		dispatch(goToQuestion(previousAnswers.slice(-1)[0]))
+		dispatch(retourneÀLaQuestionPrécédente())
 	}
 	const goToNext = () => {
-		dispatch(updateShouldFocusField(true))
-		if (currentQuestion) {
-			dispatch(stepAction(currentQuestion))
-		}
+		dispatch(vaÀLaQuestionSuivante())
 	}
 
-	useEffect(() => {
-		if (!currentQuestion && nextQuestion) {
-			dispatch(goToQuestion(nextQuestion))
-		}
-	}, [nextQuestion, currentQuestion])
-
-	useEffect(() => {
-		dispatch(goToQuestion(nextQuestion))
-	}, [url])
-
 	return {
-		currentQuestion: currentQuestion ?? nextQuestion,
+		currentQuestion,
 		currentQuestionIsAnswered,
 		goToPrevious,
 		goToNext,

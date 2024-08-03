@@ -4,7 +4,7 @@ import {
 	parsePublicodesDateString,
 	PublicodeDate,
 	toPublicodeDate,
-} from '@/domain/Date'
+} from '@/domaine/Date'
 
 describe('parsePublicodesDateString', () => {
 	it('comprend 24-12-2024 comme le 24 décembre 2024', () => {

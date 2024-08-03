@@ -1,8 +1,8 @@
 import { DottedName } from 'modele-social'
 
-import { CodeCatégorieJuridique } from '@/domain/CodeCatégorieJuridique'
-import { toPublicodeDate } from '@/domain/Date'
-import { Entreprise } from '@/domain/Entreprise'
+import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
+import { toPublicodeDate } from '@/domaine/Date'
+import { Entreprise } from '@/domaine/Entreprise'
 import { Action } from '@/store/actions/actions'
 import { buildSituationFromObject, omit } from '@/utils'
 
@@ -39,7 +39,7 @@ export function isCompanyDottedName(dottedName: DottedName) {
 
 export function companySituation(state: Situation = {}, action: Action) {
 	switch (action.type) {
-		case 'UPDATE_SITUATION':
+		case 'ENREGISTRE_LA_RÉPONSE':
 			if (isCompanyDottedName(action.fieldName)) {
 				return {
 					...state,

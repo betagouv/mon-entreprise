@@ -5,8 +5,7 @@ import Value from '@/components/EngineValue/Value'
 import { StatutTag } from '@/components/StatutTag'
 import { Tag } from '@/design-system/tag'
 import { Strong } from '@/design-system/typography'
-
-import { EngineComparison } from './Comparateur'
+import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 export default function RevenuTable({
 	namedEngines,

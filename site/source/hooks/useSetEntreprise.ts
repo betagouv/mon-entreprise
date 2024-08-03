@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 
 import fetchBénéfice from '@/api/activité-vers-bénéfice'
 import { fetchCommuneDetails } from '@/api/commune'
-import { Entreprise } from '@/domain/Entreprise'
+import { Entreprise } from '@/domaine/Entreprise'
 import {
 	addCommuneDetails,
 	setBénéficeType,
