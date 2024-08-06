@@ -4125,14 +4125,14 @@ dirigeant . indépendant . cotisations facultatives . plafond retraite compléme
 dirigeant . indépendant . revenu professionnel:
   description.en: >-
     [automatic] Professional income is the manager's remuneration under the
-    self-employment scheme.
+    self-employed workers' scheme.
 
     For companies that have opted for the **income tax**, this is the **taxable income**.
 
     For companies that have opted for the **taxe sur les sociétés**, this is the manager's remuneration, plus non-deductible contributions.
   description.fr: >-
     Le revenu professionnel est la rémunération du dirigeant au régime des
-    indépendant.
+    indépendants.
 
     Pour les entreprises qui ont opté pour l'**impôt sur le revenu**, il s'agit du **résultat fiscal**.
 
@@ -4174,7 +4174,7 @@ dirigeant . indépendant . revenu professionnel:
 
     Dans la réalité, comme les cotisations sont régularisées d'une année sur l'autre, ce calcul n'est jamais à faire (sauf exceptions). Mais nous avons choisi de l'implémenter pour fournir le résultat le plus proche sans avoir à demander le montant des cotisations provisionnelles payées l'année N-1.
   résumé.en: "[automatic] executive compensation under the self-employed workers' scheme"
-  résumé.fr: rémunération du dirigeant au régime des indépendant
+  résumé.fr: rémunération du dirigeant au régime des indépendants
   titre.en: '[automatic] professional income'
   titre.fr: revenu professionnel
 dirigeant . indépendant . revenus étrangers:
@@ -4618,47 +4618,6 @@ entreprise . TVA:
 entreprise . TVA . franchise de TVA:
   titre.en: '[automatic] VAT exemption'
   titre.fr: franchise de TVA
-entreprise . TVA . franchise de TVA . notification:
-  description.en: >
-    [automatic] The VAT exemption is a device that exempts companies from the
-    declaration and payment of
-
-    declaration and payment of VAT. It applies below a threshold of
-
-    annual turnover depending on the activity.
-
-
-    The professional who falls under this system invoices his services or sales without tax, and cannot
-
-    and cannot deduct VAT from their purchases.
-  description.fr: |
-    La franchise de TVA est un dispositif qui exonère les entreprises de la
-    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
-    chiffre d'affaire annuel dépendant de l'activité.
-
-    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
-    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
-  note.en: >
-    [automatic] We take into account here the increased thresholds (which apply
-    if the "reduced" threshold has not been exceeded in year `n - 2`)
-  note.fr: >
-    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
-    "minoré" n'a pas été dépassé en année `n - 2`)
-  résumé.en: |
-    [automatic] You are below the VAT declaration threshold.
-  résumé.fr: |
-    Vous êtes en dessous du seuil de déclaration de TVA.
-  titre.en: '[automatic] notification'
-  titre.fr: notification
-entreprise . TVA . franchise de TVA . seuil service:
-  titre.en: '[automatic] threshold service'
-  titre.fr: seuil service
-entreprise . TVA . franchise de TVA . seuil vente:
-  titre.en: '[automatic] sales threshold'
-  titre.fr: seuil vente
-entreprise . TVA . franchise de TVA . seuils dépassés:
-  titre.en: '[automatic] thresholds exceeded'
-  titre.fr: seuils dépassés
 entreprise . activité:
   titre.en: '[automatic] activity'
   titre.fr: activité
@@ -5875,6 +5834,22 @@ entreprise . coût formalités . création:
   résumé.fr: Tous les frais liés à l'enregistrement (greffe, annonces, chambres)
   titre.en: '[automatic] Total creation costs'
   titre.fr: Total des coûts de création
+entreprise . créée cette année:
+  description.en: '[automatic] Was the company created in the year of the simulation?'
+  description.fr: L'entreprise a-t-elle été créée l'année de la simulation ?
+  titre.en: '[automatic] Company created this year'
+  titre.fr: Entreprise créée cette année
+entreprise . date de cessation:
+  description.en:
+    '[automatic] The cessation date is the date on which the company
+    will cease trading.'
+  description.fr:
+    La date de cessation est la date à laquelle l’entreprise cessera
+    son activité.
+  question.en: '[automatic] When do you plan to declare your cessation of activity?'
+  question.fr: À quelle date comptez-vous déclarer la cessation d’activité ?
+  titre.en: '[automatic] termination date'
+  titre.fr: date de cessation
 entreprise . date de création:
   description.en: >
     [automatic] The date of commencement of activity (or date of creation) is
@@ -5941,6 +5916,9 @@ entreprise . durée d'activité . en fin d'année:
 entreprise . durée d'activité . trimestres civils:
   titre.en: '[automatic] Number of calendar quarters covered'
   titre.fr: Nombre de trimestres civils couverts
+entreprise . durée d'activité cette année:
+  titre.en: '[automatic] duration of activity this year'
+  titre.fr: durée d'activité cette année
 entreprise . exercice:
   avec:
     date trop ancienne:
@@ -6220,6 +6198,23 @@ entreprise . imposition . régime . réel simplifié:
 entreprise . nom:
   titre.en: '[automatic] name'
   titre.fr: nom
+entreprise . prorata temporis:
+  description.en: |
+    [automatic] Percentage of the company's fiscal year in progress
+  description.fr: |
+    Pourcentage d'exercice de l'entreprise sur l'année en cours
+  titre.en: '[automatic] prorata temporis'
+  titre.fr: prorata temporis
+entreprise . radiée:
+  description.en: '[automatic] Will the company be deregistered in the year of the simulation?'
+  description.fr: L'entreprise sera-t-elle radiée l'année de la simulation ?
+  titre.en: '[automatic] Delisted company'
+  titre.fr: Entreprise radiée
+entreprise . radiée cette année:
+  description.en: '[automatic] Will the company be deregistered in the year of the simulation?'
+  description.fr: L'entreprise sera-t-elle radiée l'année de la simulation ?
+  titre.en: '[automatic] Company written off this year'
+  titre.fr: Entreprise radiée cette année
 entreprise . résultat fiscal:
   titre.en: '[automatic] tax result'
   titre.fr: résultat fiscal
@@ -7660,6 +7655,9 @@ protection sociale . transport:
 période:
   titre.en: period
   titre.fr: période
+période . durée depuis le début d'année:
+  titre.en: '[automatic] year-to-date'
+  titre.fr: durée depuis le début d'année
 période . début d'année:
   titre.en: start of year
   titre.fr: début d'année
