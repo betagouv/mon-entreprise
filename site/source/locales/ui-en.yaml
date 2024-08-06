@@ -70,6 +70,7 @@ Charger plus de résultats: Load more results
 Charges: Charges
 Chiffre d'affaires: Sales figures
 Chiffre d'affaires estimé: Estimated sales
+Chiffre d'affaires pour l'année de cessation: Sales for the year of cessation
 Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   How does it work? See the explanatory page on the github repository page, new
   window
@@ -265,7 +266,7 @@ Retour à la création: Back to creation
 Retour à mon activité: Back to my activity
 Retraite complémentaire: Supplementary pension
 Retraite de base: Basic pension
-Retrouver ma simulation, charger les données de ma précédente simulation.: Retrieve my simulation, load data from my previous simulation.
+Retrouver ma précédente simulation, charger les données de ma précédente simulation.: Find my previous simulation, load data from my previous simulation.
 Revenu (incluant les dépenses liées à l'activité): Income (including activity-related expenses)
 Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
@@ -277,6 +278,7 @@ Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
 Rémunération brute: Gross remuneration
+Rémunération totale pour l'année de cessation: Total compensation for the year of termination
 Répartition du chiffre d'affaires: Sales breakdown
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Answer a few additional questions to clarify your result.
 Résultat fiscal: Taxable income
@@ -313,6 +315,7 @@ Tableau indiquant le nombre de visites par {{period}}.: Table showing the number
 Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator per month.
 Titres-restaurant: Meal vouchers
 Total des cotisations et contributions: Total contributions
+Total des cotisations à devoir pour l'année de cessation d'activité: Total contributions due for the year of cessation of activity
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
   "Every year, depending on how much you earn, <2>you earn points that make up
   your supplementary pension</2>. At the end of your career, your points are
@@ -354,6 +357,7 @@ Voir les simulateurs personnalisés: See customized simulators
 Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise: See customized simulators, access my company management page
 Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
+Vos cotisations pour l’année précédente: Your contributions for the previous year
 Vos droits pour la retraite: Your pension rights
 Vos prestations santé: Your health benefits
 Vos revenus: Your income
@@ -1237,6 +1241,16 @@ pages:
         title: "Lawyer: income simulator"
       shortname: Lawyer
       title: Income simulator for self-employed lawyers
+    cessation-activité:
+      meta:
+        description: Estimate your contributions for the year in which you cease
+          self-employed activity.
+        ogDescription: Estimate your contributions for the year in which you cease
+          self-employed activity.
+        ogTitle: "Self-employed : Estimated contributions for the year of cessation"
+        titre: "Self-employed : Estimated contributions for the year of cessation"
+      shortname: Cessation of activity
+      title: "Self-employed : Estimated contributions for the year of cessation"
     chirurgien-dentiste:
       meta:
         description: Calculation of net income after contributions based on total income.

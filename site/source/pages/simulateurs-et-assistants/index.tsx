@@ -160,7 +160,6 @@ export default function SimulateursEtAssistants() {
 					<SimulateurCard {...simulators.is} role="listitem" />
 					<SimulateurCard {...simulators.dividendes} role="listitem" />
 
-					<SimulateurCard {...simulators['demande-mobilité']} role="listitem" />
 					<SimulateurCard
 						{...simulators['coût-création-entreprise']}
 						role="listitem"
@@ -169,6 +168,12 @@ export default function SimulateursEtAssistants() {
 						{...simulators['recherche-code-ape']}
 						role="listitem"
 					/>
+					<SimulateurCard
+						{...simulators['cessation-activité']}
+						role="listitem"
+					/>
+
+					<SimulateurCard {...simulators['demande-mobilité']} role="listitem" />
 				</Grid>
 			</section>
 			<section>

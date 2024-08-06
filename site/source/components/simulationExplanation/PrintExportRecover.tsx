@@ -1,9 +1,9 @@
 import { Trans } from 'react-i18next'
 
-import { useUrl } from '@/components/ShareSimulationBanner'
 import { Message } from '@/design-system'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { useUrl } from '@/hooks/useUrl'
 
 export default function PrintExportRecover() {
 	return (

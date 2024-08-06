@@ -12,8 +12,7 @@ import { Strong } from '@/design-system/typography'
 import { H1, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-
-import { useUrl } from '../ShareSimulationBanner'
+import { useUrl } from '@/hooks/useUrl'
 
 type SubmitError = {
 	message?: string

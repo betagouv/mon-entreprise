@@ -1,6 +1,7 @@
+import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
+
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import { IndépendantPLSimulation } from '../indépendant/Indépendant'
 import { configExpertComptable } from '../profession-libérale/simulationConfig'
 
 export function expertComptableConfig({ t, sitePaths }: SimulatorsDataParams) {

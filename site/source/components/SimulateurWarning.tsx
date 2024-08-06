@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import React, { ReactNode, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -14,10 +14,12 @@ import { EngineContext } from './utils/EngineContext'
 
 type SimulateurWarningProps = {
 	simulateur: Exclude<keyof AbsoluteSitePaths['simulateurs'], 'index'>
+	informationsComplémentaires?: ReactNode
 }
 
 export default function SimulateurWarning({
 	simulateur,
+	informationsComplémentaires,
 }: SimulateurWarningProps) {
 	const year = useContext(EngineContext)
 		.evaluate('date')
@@ -56,6 +58,11 @@ export default function SimulateurWarning({
 							</Link>
 						</Trans>
 					</StyledLi>
+				</Ul>
+			)}
+			{informationsComplémentaires && (
+				<Ul>
+					<StyledLi>{informationsComplémentaires}</StyledLi>
 				</Ul>
 			)}
 			{simulateur === 'profession-libérale' && (
