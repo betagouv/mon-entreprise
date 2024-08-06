@@ -72,6 +72,7 @@ const rawSitePathsFr = {
 		'chômage-partiel': 'chômage-partiel',
 		is: 'impot-societe',
 		dividendes: 'dividendes',
+		'cessation-activité': 'cessation-activité',
 	},
 	nouveautés: {
 		index: 'nouveautés',
@@ -170,6 +171,7 @@ const rawSitePathsEn = {
 		},
 		is: 'corporate-tax',
 		dividendes: 'dividends',
+		'cessation-activité': 'cessation-of-activity',
 	},
 	nouveautés: {
 		index: 'news',
