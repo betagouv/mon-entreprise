@@ -74,6 +74,7 @@ const rawSitePathsFr = {
 		dividendes: 'dividendes',
 		'réduction-générale': 'réduction-générale',
 		lodeom: 'lodeom',
+		'cessation-activité': 'cessation-activité',
 	},
 	nouveautés: {
 		index: 'nouveautés',
@@ -174,6 +175,7 @@ const rawSitePathsEn = {
 		dividendes: 'dividends',
 		'réduction-générale': 'réduction-générale',
 		lodeom: 'lodeom',
+		'cessation-activité': 'cessation-of-activity',
 	},
 	nouveautés: {
 		index: 'news',

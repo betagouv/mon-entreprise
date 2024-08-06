@@ -1,57 +1,36 @@
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
-import {
-	companySituationSelector,
-	situationSelector,
-	targetUnitSelector,
-} from '@/store/selectors/simulationSelectors'
+import { useUrl } from '@/hooks/useUrl'
 
 import { TrackingContext } from '../ATInternetTracking'
 import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
-import { useParamsFromSituation } from '../utils/useSearchParamsSimulationSharing'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
-
-export function useUrl() {
-	const language = useTranslation().i18n.language
-	const situation = {
-		...useSelector(situationSelector),
-		...useSelector(companySituationSelector),
-	}
-
-	const targetUnit = useSelector(targetUnitSelector)
-
-	const searchParams = useParamsFromSituation(situation, targetUnit)
-	const { currentSimulatorData } = useCurrentSimulatorData()
-
-	const { path = '' } = currentSimulatorData ?? {}
-	const siteUrl =
-		language === 'fr'
-			? import.meta.env.VITE_FR_BASE_URL
-			: import.meta.env.VITE_EN_BASE_URL
-
-	return siteUrl + path + '?' + searchParams.toString()
-}
 
 const ButtonLabel = styled.span`
 	margin-left: 1rem;
 `
 
+export interface CustomSimulationButton {
+	href: string
+	title: string
+}
+
 export default function ShareOrSaveSimulationBanner({
 	share,
 	print,
 	conseillersEntreprises,
+	customSimulationbutton,
 }: {
 	share?: boolean
 	print?: boolean
 	conseillersEntreprises?: boolean
+	customSimulationbutton?: CustomSimulationButton
 }) {
 	const { t } = useTranslation()
 	const tracker = useContext(TrackingContext)
@@ -92,6 +71,14 @@ export default function ShareOrSaveSimulationBanner({
 					justifyContent: 'center',
 				}}
 			>
+				{customSimulationbutton && (
+					<Grid item xs={12} sm="auto">
+						<Button light size="XS" href={customSimulationbutton.href}>
+							{customSimulationbutton.title}
+						</Button>
+					</Grid>
+				)}
+
 				{share && (
 					<Grid item xs={12} sm="auto">
 						<PopoverWithTrigger
