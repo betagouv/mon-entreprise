@@ -1,6 +1,13 @@
 # Journal des modifications
 ## next
 
+## 2.3.0
+- Taux de cotisations auto-entrepreneurs pour 2024, 2025, 2026
+- Ajout de la formation professionnelle dans la répartition des cotisations auto-entrepreneurs
+- Seuil et plafond de cotisation de retraite complémentaire pour les artistes-auteurs
+- Différenciation droit commun vs autre convention collective
+- Mise à jour de liens de références
+
 ## 2.2.0
 - Distribution des cotisations auto-entrepreneurs
 - Corrections de liens morts dans les références
