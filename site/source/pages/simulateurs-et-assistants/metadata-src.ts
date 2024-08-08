@@ -1,3 +1,4 @@
+import { cessationActivitéConfig } from '@/pages/simulateurs/cessation-activité/config'
 import { ImmutableType } from '@/types/utils'
 
 import { choixStatutJuridiqueConfig } from '../assistants/choix-du-statut/config'
@@ -61,6 +62,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...coûtCréationEntrepriseConfig(params),
 		...impôtSociétéConfig(params),
 		...cipavConfig(params),
+		...cessationActivitéConfig(params),
 
 		// assistants:
 		...choixStatutJuridiqueConfig(params),

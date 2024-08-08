@@ -67,6 +67,17 @@ entreprise . durée d'activité . années civiles:
         depuis: date de création
         unité: année civile
 
+entreprise . date de radiation:
+  question: À quelle date comptez-vous déclarer la cessation d’activité ?
+  par défaut:
+    somme:
+      - date
+      - 1 mois
+  description: La date de radiation est la date à laquelle l’entreprise cessera son activité.
+  suggestions:
+    Fin de cette année: période . fin d'année
+  type: date
+
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
   identifiant court: CA

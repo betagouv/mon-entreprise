@@ -65,6 +65,7 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
   "viennoiserie".
 Budget: Budget
+Calculer vos cotisations pour l’année précédente: Calculer vos cotisations pour l’année précédente
 Calculer vos revenus: Calculer vos revenus
 Ce simulateur a été prérempli avec la situation de votre entreprise.: Ce simulateur a été prérempli avec la situation de votre entreprise.
 Cette commune n'existe pas: Cette commune n'existe pas
@@ -1293,6 +1294,17 @@ pages:
         title: "Avocat : simulateur de revenus"
       shortname: Avocat
       title: Simulateur de revenus pour avocat en libéral
+    cessation-activité:
+      meta:
+        description: Calculez vos cotisations à payer lors de la cessation de votre
+          activité en tant qu’indépendant
+        ogDescription: Calculez vos cotisations à payer lors de la cessation de votre
+          activité en tant qu’indépendant
+        ogTitle: Calculez vos cotisations à payer lors de la cessation de votre activité
+          en tant qu’indépendant
+        titre: "Indépendants : Estimations de cotisations à devoir après cessation"
+      shortname: Cessation d’activité
+      title: Estimations de cotisations à devoir après cessation
     chirurgien-dentiste:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
