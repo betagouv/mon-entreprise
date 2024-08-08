@@ -44,5 +44,5 @@ export function cessationActivitéConfig({
 		path: sitePaths.simulateurs['cessation-activité'],
 		simulation: configCessationActivité,
 		component: CessationActivitéSimulation,
-	})
+	} as const)
 }

@@ -16,14 +16,21 @@ const ButtonLabel = styled.span`
 	margin-left: 1rem;
 `
 
+export interface CustomSimulationButton {
+	href: string
+	title: string
+}
+
 export default function ShareOrSaveSimulationBanner({
 	share,
 	print,
 	conseillersEntreprises,
+	customSimulationbutton,
 }: {
 	share?: boolean
 	print?: boolean
 	conseillersEntreprises?: boolean
+	customSimulationbutton?: CustomSimulationButton
 }) {
 	const { t } = useTranslation()
 	const tracker = useContext(TrackingContext)
@@ -64,6 +71,14 @@ export default function ShareOrSaveSimulationBanner({
 					justifyContent: 'center',
 				}}
 			>
+				{customSimulationbutton && (
+					<Grid item xs={12} sm="auto">
+						<Button light size="XS" href={customSimulationbutton.href}>
+							{customSimulationbutton.title}
+						</Button>
+					</Grid>
+				)}
+
 				{share && (
 					<Grid item xs={12} sm="auto">
 						<PopoverWithTrigger

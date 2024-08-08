@@ -7,7 +7,9 @@ import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { ConversationProps } from '@/components/conversation/Conversation'
-import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
+import ShareOrSaveSimulationBanner, {
+	CustomSimulationButton,
+} from '@/components/ShareSimulationBanner'
 import { PopoverWithTrigger } from '@/design-system'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
@@ -29,6 +31,16 @@ export { Questions } from './Questions'
 export { SimulationGoal } from './SimulationGoal'
 export { SimulationGoals } from './SimulationGoals'
 
+const StyledGrid = styled(Grid)`
+	width: 100%;
+	@media print {
+		max-width: initial;
+		flex-basis: initial;
+		flex-grow: 1;
+		margin: 0 1rem;
+	}
+`
+
 type SimulationProps = {
 	explanations?: React.ReactNode
 	engines?: Array<Engine<DottedName>>
@@ -40,17 +52,8 @@ type SimulationProps = {
 	customEndMessages?: ConversationProps['customEndMessages']
 	fullWidth?: boolean
 	id?: string
+	customSimulationbutton?: CustomSimulationButton
 }
-
-const StyledGrid = styled(Grid)`
-	width: 100%;
-	@media print {
-		max-width: initial;
-		flex-basis: initial;
-		flex-grow: 1;
-		margin: 0 1rem;
-	}
-`
 
 export default function Simulation({
 	explanations,
@@ -63,6 +66,7 @@ export default function Simulation({
 	hideDetails = false,
 	fullWidth,
 	id,
+	customSimulationbutton,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const existingCompany = !!useSelector(companySituationSelector)[
@@ -122,7 +126,12 @@ export default function Simulation({
 					)}
 					{firstStepCompleted && !hideDetails && (
 						<>
-							<ShareOrSaveSimulationBanner share print conseillersEntreprises />
+							<ShareOrSaveSimulationBanner
+								share
+								print
+								conseillersEntreprises
+								customSimulationbutton={customSimulationbutton}
+							/>
 							<Spacing lg />
 						</>
 					)}
