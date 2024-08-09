@@ -9,7 +9,7 @@ salarié . convention collective . BTP:
   rend non applicable: rémunération . indemnités CDD . congés payés
 
 salarié . convention collective . BTP . catégorie:
-  question: À quelle catégorie la salarié appartient-t'il ?
+  question: À quelle catégorie le salarié appartient-t-il ?
   par défaut: "'ouvrier'"
   formule:
     une possibilité:
@@ -35,14 +35,14 @@ salarié . convention collective . BTP . catégorie . ouvrier . prévoyance comp
         - valeur: contrat . salaire brut
           plafond: 3 * temps de travail . plafond sécurité sociale
         - 1.72%
-      remplace: cotisations . prévoyances . conventionnelle . employeur
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . employeur
 
     salarié:
       produit:
         - valeur: contrat . salaire brut
           plafond: 3 * temps de travail . plafond sécurité sociale
         - 0.87%
-      remplace: cotisations . prévoyances . conventionnelle . salarié
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . salarié
 
 salarié . convention collective . BTP . catégorie . etam:
   titre: ETAM
@@ -81,14 +81,14 @@ salarié . convention collective . BTP . catégorie . etam . prévoyance complé
         - valeur: contrat . salaire brut
           plafond: 3 * temps de travail . plafond sécurité sociale
         - 1.25%
-      remplace: cotisations . prévoyances . conventionnelle . employeur
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . employeur
 
     salarié:
       produit:
         - valeur: contrat . salaire brut
           plafond: 3 * temps de travail . plafond sécurité sociale
         - 0.60%
-      remplace: cotisations . prévoyances . conventionnelle . salarié
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . salarié
 
 salarié . convention collective . BTP . catégorie . cadre:
   formule: catégorie = 'cadre'
@@ -117,7 +117,7 @@ salarié . convention collective . BTP . catégorie . cadre . prévoyance compl�
             plafond: 4
           - taux: 50% * 3.60%
             plafond: 8
-      remplace: cotisations . prévoyances . conventionnelle . employeur
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . employeur
 
     salarié:
       barème:
@@ -130,7 +130,7 @@ salarié . convention collective . BTP . catégorie . cadre . prévoyance compl�
             plafond: 4
           - taux: 50% * 3.60%
             plafond: 8
-      remplace: cotisations . prévoyances . conventionnelle . salarié
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . salarié
 
 salarié . convention collective . BTP . cotisations employeur:
   remplace: cotisations . employeur

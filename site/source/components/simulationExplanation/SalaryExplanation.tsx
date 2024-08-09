@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useTheme } from 'styled-components'
 
-import PaySlip, { getCotisationsBySection } from '@/components/PaySlip'
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
 import StackedBarChart from '@/components/StackedBarChart'
 import { FromTop } from '@/components/ui/animate'
@@ -13,6 +12,9 @@ import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+
+import { getCotisationsBySection } from '../FicheDePaie/Cotisations'
+import PaySlip from '../FicheDePaie/PaySlip'
 
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)

@@ -39,11 +39,11 @@ salarié . convention collective . HCR . prévoyance conventionnelle:
         - valeur: contrat . salaire brut
           plafond: plafond sécurité sociale
         - 0.90%
-      remplace: cotisations . prévoyances . conventionnelle . employeur
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . employeur
 
     salarié:
       produit:
         - valeur: contrat . salaire brut
           plafond: plafond sécurité sociale
         - 0.47%
-      remplace: cotisations . prévoyances . conventionnelle . salarié
+      remplace: cotisations . complémentaire incapacité invalidité décès . conventionnelle . salarié

@@ -132,11 +132,11 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
             - dirigeant . indépendant . PL . CIPAV
         alors:
           texte:
-            À quelle proportion le conjoint cotise-t'il pour la retraite de base, la
+            À quelle proportion le conjoint cotise-t-il pour la retraite de base, la
             retraite complémentaire et l'invalidité-décès ?
       - sinon:
           texte:
-            À quelle proportion du revenu le conjoint cotise-t'il pour le régime de
+            À quelle proportion du revenu le conjoint cotise-t-il pour le régime de
             base ?
   par défaut: "'quart'"
   formule:
