@@ -236,14 +236,14 @@ exports[`calculate simulations-auto-entrepreneur > activités 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 390
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 4640
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 131
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 132
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 30
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 195
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 196
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 385
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 387
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 23
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
