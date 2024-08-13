@@ -32,6 +32,7 @@ protection sociale . retraite:
     Panorama des régimes de retraites: https://travail-emploi.gouv.fr/IMG/pdf/panorama_regimes_retraites_janvier-2024.pdf
     'Retraites de base et complémentaire dans le privé : quelles différences ?': https://www.service-public.fr/particuliers/vosdroits/F12389
     'Régime de retraite des travailleurs indépendants': 'https://entreprendre.service-public.fr/vosdroits/F33841'
+
 protection sociale . retraite . trimestres:
   titre: trimestres validés
   somme:
@@ -52,7 +53,8 @@ protection sociale . retraite . trimestres:
   plafond: 4 trimestres validés/an
   références:
     "Durée d'assurance retraite du salarié du secteur privé": https://www.service-public.fr/particuliers/vosdroits/F1761
-    'Salaire validant un trimestre': https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=salaire_validant_un_trimestre_montant_bar.aspx
+    # Lien mort :
+    # 'Salaire validant un trimestre': https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=salaire_validant_un_trimestre_montant_bar.aspx
     Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
 
   avec:
@@ -74,7 +76,7 @@ protection sociale . retraite . base:
 
     Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants :
     - La rémunération calculée correspond à celle de vos 25 meilleures années
-    - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
   arrondi: oui
   unité: €/mois
   produit:
@@ -238,7 +240,8 @@ protection sociale . retraite . complémentaire . RCI:
     - valeur du point
   références:
     'Retraite complémentaire des indépendants': https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/travailleurs-independants/retraite-complementaire.html
-    'Valeur de service du point de retraite complémentaire': https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
+    # Lien mort :
+    # 'Valeur de service du point de retraite complémentaire': https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
 
   avec:
     points acquis:
@@ -246,8 +249,7 @@ protection sociale . retraite . complémentaire . RCI:
         dirigeant . indépendant . cotisations et contributions .
         exonérations . pension invalidité # Non implémenté (cf règle)
       arrondi: oui
-      valeur: dirigeant . indépendant . cotisations et contributions . retraite
-        complémentaire / valeur d'acquisition
+      valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / valeur d'acquisition
       références:
         cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
 
@@ -255,8 +257,7 @@ protection sociale . retraite . complémentaire . RCI:
       applicable si: dirigeant . auto-entrepreneur
       remplace:
         références à:
-          dirigeant . indépendant . cotisations et contributions . retraite
-          complémentaire
+          dirigeant . indépendant . cotisations et contributions . retraite complémentaire
         dans: points acquis
       somme:
         - produit:
