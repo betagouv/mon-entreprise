@@ -263,6 +263,7 @@ protection sociale . retraite . complémentaire . RCI:
       références:
         Décret n° 2024-484 du 30 mai 2024 modifiant les taux globaux de cotisations et contributions de certains travailleurs indépendants exerçant dans le cadre de la microentreprise: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049620955
         Cotisations sociales, quels changements au 1er juillet 2024 ?: https://entreprendre.service-public.fr/actualites/A17464
+        Circulaire de la Caisse Nationale d’Assurance Vieillesse: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2024_23_16072024.pdf
 
     valeur d'acquisition:
       variations:
@@ -401,7 +402,7 @@ protection sociale . retraite . complémentaire . CIPAV:
     points acquis:
       dirigeant . indépendant . PL . CIPAV . retraite complémentaire /
       valeur d'acquisition
-    valeur d'acquisition: 
+    valeur d'acquisition:
       variations:
         - si: date >= 01/2024
           alors: 47.40 €/point
@@ -418,7 +419,7 @@ protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
   remplace: retraite . trimestres
   grille:
     assiette: entreprise . chiffre d'affaires
-    multiplicateur: 
+    multiplicateur:
       variations:
         - si: date >= 01/2023
           alors: 2571 €/an
