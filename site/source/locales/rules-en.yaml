@@ -10299,11 +10299,41 @@ salarié . rémunération . avantages en nature:
           titre.en: '[automatic] meals per month'
           titre.fr: repas par mois
       description.en: >
-        [automatic] Meal vouchers are not considered as a benefit in kind but as
-        a reimbursement of expenses.
+        [automatic] Luncheon vouchers are not considered as a benefit in kind
+
+        but a reimbursement of expenses.
+
+
+        A meal in a company restaurant or canteen, which you manage or subsidize
+
+        subsidized by you, in return for a contribution from the employee, constitutes a
+
+        a benefit in kind.
+
+
+        When the company gives an allowance for meals during business trips
+
+        business travel, this is not a benefit in kind, but a business expense.
+
+        expenses.
       description.fr: >
         Les titres-restaurant ne sont pas considérés comme un avantage en nature
+
         mais comme un remboursement de frais.
+
+
+        Le repas d’un restaurant d’entreprise ou une cantine, que vous gérez ou
+
+        subventionnez moyennant une participation du salarié, constitue selon les
+
+        cas un avantage en nature.
+
+
+        Lorsque l'entreprise donne une allocation pour les repas pendant les
+
+        déplacements professionnels ce n'est pas un avantage en nature, mais un
+
+        frais professionnels.
       question.en: |
         [automatic] Does the company provide free meals?
       question.fr: |
@@ -10461,13 +10491,9 @@ salarié . rémunération . frais professionnels:
           titre.en: '[automatic] amount'
           titre.fr: montant
         montant unitaire:
-          description.en:
-            '[automatic] There is no maximum or minimum value for meal
-            vouchers. However, to benefit from the contribution exemption, you
-            must not exceed €11.38 per voucher in 2021.'
+          description.en: '[automatic] There is no maximum or minimum value for meal vouchers.'
           description.fr: Il n'y a pas de valeur maximale ou minimale pour les
-            titres-restaurant. En revanche, pour bénéficier de l'exonération de
-            cotisation, il ne faut pas dépasser 11,38€ par titre en 2021.
+            titres-restaurant.
           question.en: '[automatic] What is the unit value of a meal voucher?'
           question.fr: Quelle est la valeur unitaire du titre-restaurant ?
           suggestions.faible.en: '[automatic] low'
@@ -10780,6 +10806,8 @@ salarié . rémunération . frais professionnels:
               question.fr:
                 Quel montant le salarié dépense-t-il en abonnement aux transports
                 publics pour se rendre sur son lieu de travail ?
+              suggestions.Ilévia.en: '[automatic] Ilevia'
+              suggestions.Ilévia.fr: Ilévia
               suggestions.Navigo.en: '[automatic] Navigo'
               suggestions.Navigo.fr: Navigo
               suggestions.RTM.en: '[automatic] RTM'
