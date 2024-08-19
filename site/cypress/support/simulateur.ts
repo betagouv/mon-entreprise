@@ -18,9 +18,15 @@ export const runSimulateurTest = (simulateur) => {
 
 		it('should display a result when entering a value in any of the currency input', function () {
 			cy.contains(fr ? 'Montant annuel' : 'Annual amount').click()
+
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type('1000')
 			}
+
+			const exceptions = [
+				'salarié___rémunération___MNS',
+				'salarié___rémunération___net___à_payer_avant_impôt',
+			]
 			cy.get(inputSelector).each(($testedInput) => {
 				// eslint-disable-next-line cypress/unsafe-to-chain-command
 				cy.wrap($testedInput)
@@ -30,14 +36,30 @@ export const runSimulateurTest = (simulateur) => {
 							/[1-9][\d]{3,6}$/
 						)
 					)
-				cy.get(inputSelector).each(($input) => {
-					if ($testedInput.get(0) === $input.get(0)) return
-					cy.wrap($input).and(($i) => {
-						const val = ($i.val() as string).replace(/[\s,.€]/g, '')
-						expect(val).not.to.be.eq('60111')
-						expect(val).to.match(/[1-9][\d]{3,6}$/)
+
+				cy.wrap($testedInput)
+					.invoke('attr', 'id')
+					.then(($testedInputId) => {
+						cy.get(inputSelector).each(($input) => {
+							if ($testedInput.get(0) === $input.get(0)) return
+
+							cy.wrap($input)
+								.invoke('attr', 'id')
+								.then(($inputId) => {
+									cy.wrap($input).and(($i) => {
+										const val = ($i.val() as string).replace(/[\s,.€]/g, '')
+										expect(val).to.match(/[1-9][\d]{3,6}$/)
+										if (
+											!exceptions.includes($testedInputId) ||
+											!exceptions.includes($inputId)
+										) {
+											expect(val).not.to.be.eq('60111')
+										}
+									})
+								})
+						})
 					})
-				})
+
 				cy.contains(fr ? 'Cotisations' : 'contributions')
 			})
 		})
