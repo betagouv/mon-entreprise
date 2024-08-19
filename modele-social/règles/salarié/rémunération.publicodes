@@ -458,8 +458,6 @@ salarié . rémunération . frais professionnels:
           question: Quelle est la valeur unitaire du titre-restaurant ?
           description: >-
             Il n'y a pas de valeur maximale ou minimale pour les titres-restaurant.
-            En revanche, pour bénéficier de l'exonération de cotisation, il ne faut
-            pas dépasser 11,38€ par titre en 2021.
           par défaut: 8 €/titre-restaurant
           suggestions:
             faible: 6 €/titre-restaurant
@@ -493,7 +491,7 @@ salarié . rémunération . frais professionnels:
 
     trajets domicile travail:
       références:
-        Frais de transport du trajets domicile travail: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail.html
+        Les frais professionnels - Frais de transport: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html#ancre-frais-de-transport
 
       avec:
         abattement temps partiel:
@@ -501,7 +499,7 @@ salarié . rémunération . frais professionnels:
           applicable si: contrat . temps de travail . quotité < 50%
           valeur: 100% - (contrat . temps de travail . quotité / 50%)
           références:
-            Article R3261-14 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000041865023/2020-05-11/
+            Article R3261-14 du code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041865023
 
         cumul forfait mobilité durable et transports publics:
           privé: oui
@@ -563,9 +561,9 @@ salarié . rémunération . frais professionnels:
                 - valeur: taux employeur
                   plafond:
                     variations:
-                      - si: date < 01/2022
-                        alors: 50%
-                      - sinon: 75%
+                      - si: date > 01/2022
+                        alors: 75%
+                      - sinon: 50%
 
             employeur:
               applicable si: montant > 0
@@ -596,16 +594,17 @@ salarié . rémunération . frais professionnels:
 
                 Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
               références:
-                Articles R3261-1 à -10 du code du travail, version 01/01/2009: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272/2009-01-01
-                Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+                Articles R3261-1 à -10 du code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020080272
+                Article 81 du code des impôts (19° ter a.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042910732
                 Remboursement des frais de transport: https://www.service-public.fr/particuliers/vosdroits/F19846/personnalisation/resultat?lang=&quest0=0
-                Prise en charge obligatoire des frais de transport public: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-obligatoire-des.html#FilAriane
+                "Transports en commun : prise en charge obligatoire des abonnements": https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html#ancre-frais-de-transport
               suggestions:
-                Navigo: 84.10 €/mois
-                Técély: 65 €/mois
+                Navigo: 86.40 €/mois
+                Técély: 72.60 €/mois
                 RTM: 40 €/mois
-                Tisséo: 42.50 €/mois
-                TBM: 42.20 €/mois
+                Tisséo: 48.90 €/mois
+                Ilévia: 55 €/mois
+                TBM: 44.40 €/mois
 
             taux employeur:
               question: Quel est le taux de prise en charge par l’employeur aux frais de
@@ -670,8 +669,8 @@ salarié . rémunération . frais professionnels:
 
               références:
                 Fiche Urssaf sur la prime de transport: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/les-frais-de-transport/trajet-domicilelieu-de-travail/prise-en-charge-facultative-des/prime-de-transport.html
-                Articles R3261-11 à -13 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
-                Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+                Articles R3261-11 à -13 du code du travail: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000041862994/#LEGISCTA000041862997
+                Article 81 du code des impôts (19° ter b.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042910732
 
             véhicule electrique hybride hydrogène:
               question: Le salarié utilise-t-il un véhicules électriques, hybrides
@@ -708,9 +707,8 @@ salarié . rémunération . frais professionnels:
               références:
                 Forfait mobilité durable: https://entreprendre.service-public.fr/vosdroits/F33808
                 'FAQ : le forfait mobilités durables': https://www.ecologie.gouv.fr/faq-forfait-mobilites-durables-fmd
-                'Forfait mobilité durable : Comment ça marche ? (pdf)': https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/FMD-Comment-ca-marche.pdf
-                Articles R3261-13-1 à -13-2 du code du travail, version 11/05/2020: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000018487476/2020-05-11
-                Article 81 du code des impôts, version en vigueur au 31/12/2020: https://www.legifrance.gouv.fr/codes/id/LEGIARTI000042910732/2020-12-31/
+                Articles R3261-13-1 à -13-2 du code du travail: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072050/LEGISCTA000041862962/#LEGISCTA000041862965
+                Article 81 du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042910732
 
 salarié . rémunération . avantages en nature:
   icônes: 🛏️🚗🥗📱
@@ -755,10 +753,17 @@ salarié . rémunération . avantages en nature:
       question: >
         L'entreprise fournit-elle gratuitement des repas ?
       par défaut: non
-      description: >
+      description: |
         Les titres-restaurant ne sont pas considérés comme un avantage en nature
         mais comme un remboursement de frais.
 
+        Le repas d’un restaurant d’entreprise ou une cantine, que vous gérez ou
+        subventionnez moyennant une participation du salarié, constitue selon les
+        cas un avantage en nature.
+
+        Lorsque l'entreprise donne une allocation pour les repas pendant les
+        déplacements professionnels ce n'est pas un avantage en nature, mais un
+        frais professionnels.
       avec:
         montant:
           titre: nourriture
