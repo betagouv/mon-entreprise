@@ -14,7 +14,7 @@ import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 import { getCotisationsBySection } from '../FicheDePaie/Cotisations'
-import PaySlip from '../FicheDePaie/PaySlip'
+import FicheDePaie from '../FicheDePaie/FicheDePaie'
 
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
@@ -66,7 +66,7 @@ export default function SalaryExplanation() {
 						<H2>
 							<Trans>Fiche de paie</Trans>
 						</H2>
-						<PaySlip />
+						<FicheDePaie />
 						<SmallBody>
 							<Trans i18nKey="payslip.notice">
 								Le simulateur vous aide à comprendre votre bulletin de paie,
