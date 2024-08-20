@@ -5,7 +5,7 @@ import { H4 } from '@/design-system/typography/heading'
 import { Condition } from '../EngineValue/Condition'
 import Line from './Line'
 
-import './PaySlip.css'
+import './FicheDePaie.css'
 
 export default function SalaireBrut() {
 	return (
