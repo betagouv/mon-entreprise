@@ -3,7 +3,7 @@ import { ASTNode, ParsedRules, reduceAST, Rule, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
 import { Trans } from 'react-i18next'
 
-import './PaySlip.css'
+import './FicheDePaie'
 
 import { Strong } from '@/design-system/typography'
 import { H4, H5 } from '@/design-system/typography/heading'
