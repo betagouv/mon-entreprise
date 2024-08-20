@@ -8774,8 +8774,8 @@ salarié . cotisations . APEC:
   description.fr: |
     Cotisation spécifique aux cadre pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
-  titre.en: '[automatic] Association for the employment of executives'
-  titre.fr: Association pour l’emploi des cadres
+  titre.en: '[automatic] Apec'
+  titre.fr: Apec
 salarié . cotisations . ATMP:
   avec:
     seuil taux mixte ou individuel:
@@ -8831,8 +8831,8 @@ salarié . cotisations . ATMP:
     and occupational diseases.'
   description.fr: Cotisation due au titre des Accidents du Travail et Maladies
     Professionnelles.
-  titre.en: '[automatic] Workplace accidents and occupational diseases'
-  titre.fr: Accidents du Travail et Maladies Professionnelles
+  titre.en: '[automatic] accidents at work &amp; occupational diseases'
+  titre.fr: accidents du travail & maladies professionnelles
 salarié . cotisations . CEG:
   avec:
     employeur:
@@ -8911,8 +8911,8 @@ salarié . cotisations . CSG-CRDS . CRDS:
 salarié . cotisations . CSG-CRDS . CSG:
   avec:
     déductible:
-      titre.en: '[automatic] deductible'
-      titre.fr: déductible
+      titre.en: '[automatic] CSG deductible from income tax'
+      titre.fr: CSG déductible de l'impôt sur le revenu
     déductible . taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
@@ -8922,6 +8922,9 @@ salarié . cotisations . CSG-CRDS . CSG:
     non déductible . heures supplémentaires et complémentaires défiscalisées:
       titre.en: '[automatic] tax-free overtime and complementary hours'
       titre.fr: heures supplémentaires et complémentaires défiscalisées
+    non déductible . revenus imposables:
+      titre.en: '[automatic] taxable income'
+      titre.fr: revenus imposables
     non déductible . taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
@@ -8989,6 +8992,12 @@ salarié . cotisations . CSG-CRDS . revenus de remplacement:
     chômage à un seuil inférieur au Smic brut.
   titre.en: '[automatic] CSG-CRDS replacement income'
   titre.fr: CSG-CRDS revenus de remplacement
+salarié . cotisations . CSG-CRDS . sur revenus imposables non déductible:
+  titre.en: '[automatic] CSG / CRDS not deductible from income tax'
+  titre.fr: CSG / CRDS non déductible de l'impôt sur le revenu
+salarié . cotisations . CSG-CRDS . sur revenus non imposables:
+  titre.en: '[automatic] CSG / CRDS on non-taxable income'
+  titre.fr: CSG / CRDS sur les revenus non imposables
 salarié . cotisations . FNAL:
   avec:
     privé:
@@ -9034,8 +9043,8 @@ salarié . cotisations . allocations familiales:
           titre.fr: plafond
       titre.en: '[automatic] reduced rate'
       titre.fr: taux réduit
-  titre.en: Family allowances
-  titre.fr: allocations familiales
+  titre.en: '[automatic] family'
+  titre.fr: famille
 salarié . cotisations . assiette:
   avec:
     sans prévoyance:
@@ -9086,6 +9095,40 @@ salarié . cotisations . assiette forfaitaire:
       titre.fr: rémunération réelle
   titre.en: '[automatic] lump-sum basis'
   titre.fr: assiette forfaitaire
+salarié . cotisations . assurance chômage:
+  titre.en: '[automatic] unemployment insurance'
+  titre.fr: assurance chômage
+salarié . cotisations . autres employeur:
+  titre.en: '[automatic] Other employer charges'
+  titre.fr: Autres charges dues par l'employeur
+salarié . cotisations . catégories:
+  avec:
+    CSG-CRDS:
+      titre.en: '[automatic] CSG / CRDS'
+      titre.fr: CSG / CRDS
+    atmp:
+      titre.en: '[automatic] accidents at work &amp; occupational diseases'
+      titre.fr: accidents du travail & maladies professionnelles
+    convention collective:
+      titre.en: '[automatic] statutory or collective agreement contributions'
+      titre.fr: cotisations statutaires ou prévues par la convention collective
+    divers:
+      titre.en: '[automatic] employer contributions'
+      titre.fr: cotisations employeur
+    exonérations:
+      titre.en: '[automatic] contribution exemptions and reductions'
+      titre.fr: exonérations et allègements de cotisations
+    facultatives:
+      titre.en: '[automatic] optional social security contributions'
+      titre.fr: cotisations et contributions sociales facultatives
+    maladie:
+      titre.en: '[automatic] health'
+      titre.fr: santé
+    retraite:
+      titre.en: '[automatic] retirement'
+      titre.fr: retraite
+  titre.en: '[automatic] categories'
+  titre.fr: catégories
 salarié . cotisations . chômage:
   avec:
     employeur:
@@ -9133,8 +9176,8 @@ salarié . cotisations . exonérations:
     salarié:
       titre.en: '[automatic] employee share'
       titre.fr: part salarié
-  titre.en: '[automatic] Reductions and exemptions'
-  titre.fr: Réductions et exonérations
+  titre.en: '[automatic] contribution exemptions and reductions'
+  titre.fr: exonérations et allègements de cotisations
 salarié . cotisations . exonérations . JEI:
   description.en: >-
     [automatic] The Young Innovative Company (JEI) status was created by the
@@ -9462,8 +9505,8 @@ salarié . cotisations . maladie:
     les prestations versées par le régime général de Sécurité sociale en cas
     d’incapacité de travail. Elle permet le versement des prestations en nature
     et en espèces.
-  titre.en: health insurance
-  titre.fr: maladie
+  titre.en: '[automatic] Social Security Sickness Maternity Disability Death'
+  titre.fr: Sécurité Sociale Maladie Maternité Invalidité Décès
 salarié . cotisations . prévoyances:
   avec:
     conventionnelle:
@@ -9494,6 +9537,16 @@ salarié . cotisations . prévoyances:
       description.fr: prévoyance obligatoire pour les cadres
       titre.en: '[automatic] frames'
       titre.fr: cadres
+    incapacité invalidité décès:
+      avec:
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+      titre.en: '[automatic] Pensions, Incapacity, Disability, Death, Other'
+      titre.fr: Prévoyance, Incapacité, Invalidité, Décès, Autres
     salarié:
       avec:
         non déductible:
@@ -9568,8 +9621,8 @@ salarié . cotisations . prévoyances . santé:
       suggestions.50%.fr: 50%
       titre.en: '[automatic] employer rate'
       titre.fr: taux employeur
-  titre.en: '[automatic] health'
-  titre.fr: santé
+  titre.en: '[automatic] complementary compulsory health insurance'
+  titre.fr: complémentaire garanties frais de santé obligatoire
 salarié . cotisations . retraite complémentaire:
   avec:
     employeur:
@@ -9597,6 +9650,16 @@ salarié . cotisations . retraite complémentaire:
     Cotisations de retraite complémentaire.
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
+salarié . cotisations . retraite complémentaire-CEG-CET:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
+  titre.en: '[automatic] supplementary pension, CEG and CET'
+  titre.fr: retraite complémentaire, CEG et CET
 salarié . cotisations . taxe d'apprentissage:
   avec:
     assiette:
@@ -9636,6 +9699,16 @@ salarié . cotisations . versement mobilité:
   titre.fr: versement mobilité
 salarié . cotisations . vieillesse:
   avec:
+    déplafonnée:
+      avec:
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+      titre.en: '[automatic] Social Security Unfunded old-age pension'
+      titre.fr: Sécurité Sociale Vieillesse déplafonnée
     employeur:
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
@@ -9653,6 +9726,16 @@ salarié . cotisations . vieillesse:
           titre.fr: taux
       titre.en: '[automatic] capped'
       titre.fr: plafonnée
+    plafonnée:
+      avec:
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+      titre.en: '[automatic] Social Security Old-age ceiling'
+      titre.fr: Sécurité Sociale Vieillesse plafonnée
     salarié:
       titre.en: '[automatic] employee share'
       titre.fr: part salarié
@@ -10441,12 +10524,15 @@ salarié . rémunération . frais professionnels:
         Part des frais déduite de l'assiette de cotisation sociale et
         pour le calcul de l'impôt sur le revenu.
       titre.en: '[automatic] Deductible portion'
-      titre.fr: Part déductibles
+      titre.fr: Part déductible
+    non déductible:
+      titre.en: '[automatic] Non-deductible portion'
+      titre.fr: Part non déductible
     titres-restaurant:
       avec:
         déductible:
-          titre.en: '[automatic] Deductible luncheon vouchers'
-          titre.fr: Titre restaurant déductibles
+          titre.en: '[automatic] Deductible portion'
+          titre.fr: Part déductible
         déductible . plafond unitaire:
           titre.en: '[automatic] unit ceiling'
           titre.fr: plafond unitaire
@@ -10479,6 +10565,9 @@ salarié . rémunération . frais professionnels:
           suggestions.5 repas/semaine.fr: 5 repas/semaine
           titre.en: '[automatic] number'
           titre.fr: nombre
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
         taux employeur:
           description.en:
             '[automatic] Portion of meal voucher paid by the employer. Must
