@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import './PaySlip.css'
+import './FicheDePaie.css'
 
 import { H4 } from '@/design-system/typography/heading'
 

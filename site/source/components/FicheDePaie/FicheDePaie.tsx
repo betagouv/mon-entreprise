@@ -1,4 +1,4 @@
-import './PaySlip.css'
+import './FicheDePaie.css'
 
 import { styled } from 'styled-components'
 
@@ -7,7 +7,7 @@ import Line from './Line'
 import SalaireBrut from './SalaireBrut'
 import SalaireNet from './SalaireNet'
 
-export default function PaySlip() {
+export default function FicheDePaie() {
 	return (
 		<StyledContainer className="payslip__container">
 			<div className="payslip__salarySection">
@@ -25,6 +25,10 @@ export default function PaySlip() {
 
 			<SalaireBrut />
 			<Cotisations />
+			{/* <MontantNetSocial />
+      <Remboursements />
+      <SalaireNetAvantImpot />
+      <ImpotSurLeRevenu /> */}
 			<SalaireNet />
 		</StyledContainer>
 	)
