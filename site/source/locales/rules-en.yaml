@@ -618,19 +618,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   avec:
     cotisations CIPAV:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
       description.en: >
-        [automatic] For the liberal professions under the CIPAV, the rate is the
-        same regardless of the category of taxation/activity (BIC or BNC,
-        service or sales).
-      description.fr: >
-        Pour les professions libérales relevant de la CIPAV, le taux est le même
-        quelle que soit la catégorie d’imposition/activité (BIC ou BNC, service
-        ou vente).
+        [automatic] Contributions for self-employed workers under the CIPAV
+        scheme
+      description.fr: |
+        Cotisations pour les professions libérales dépendant de la CIPAV
       titre.en: '[automatic] CIPAV contributions'
       titre.fr: cotisations CIPAV
-    cotisations CIPAV . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
     répartition:
       avec:
         autres contributions:
@@ -644,6 +642,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             remboursement de la dette sociale
           titre.en: '[automatic] other contributions'
           titre.fr: autres contributions
+        formation professionnelle:
+          titre.en: '[automatic] professional training'
+          titre.fr: formation professionnelle
         invalidité-décès:
           description.en: >
             [automatic] Share of auto-entrepreneurs' contributions to disability
@@ -1301,41 +1302,40 @@ dirigeant . indépendant . PL . CARCDSF:
   titre.en: '[automatic] CARCDSF'
   titre.fr: CARCDSF
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
-  avec:
-    PCV:
-      avec:
-        forfaitaire:
-          titre.en: '[automatic] lump sum'
-          titre.fr: forfaitaire
-        proportionnelle:
-          titre.en: '[automatic] proportional'
-          titre.fr: proportionnelle
-      note.en: >-
-        [automatic] A waiver may be granted when the 2019 professional income is
-        less than or equal to 500 C (value as of January 1 of the year in
-        question), or €11,500.
-
-        The request must be accompanied by a photocopy of the tax return No. 2042 C or 2035 or 2065 and their appendices (2033 B and D or 2053 and 2058 A) of the year 2019.
-
-        This exemption results in the cancellation of rights for the year and the non-contributed points are not redeemable.
-      note.fr: >-
-        Une dispense peut être accordée lorsque les revenus professionnels 2019
-        sont inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année
-        considérée), soit 11 500 €.
-
-        La demande doit être accompagnée d’une photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
-
-        Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
-      titre.en: '[automatic] Supplementary old-age benefit'
-      titre.fr: Prestation complémentaire vieillesse
-    RID:
-      titre.en: '[automatic] disability and death'
-      titre.fr: invalidité et décès
   titre.en: '[automatic] dental surgeon'
   titre.fr: chirurgien-dentiste
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
-  titre.en: '[automatic] CPAM participation'
-  titre.fr: participation CPAM
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
+  avec:
+    forfaitaire:
+      titre.en: '[automatic] lump-sum'
+      titre.fr: forfaitaire
+    participation CPAM:
+      titre.en: '[automatic] CPAM contribution'
+      titre.fr: participation CPAM
+    proportionnelle:
+      titre.en: '[automatic] proportional'
+      titre.fr: proportionnelle
+  note.en: >-
+    [automatic] A waiver may be granted when 2019 professional income is less
+    than or equal to 500 C (value at January 1 of the year in question), i.e.
+    €11,500.
+
+    The request must be accompanied by a photocopy of tax return no. 2042 C or 2035 or 2065 and their appendices (2033 B and D or 2053 and 2058 A) for 2019.
+
+    This exemption results in the cancellation of rights for the year, and non-contributed points are not redeemable.
+  note.fr: >-
+    Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
+    inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année considérée),
+    soit 11 500 €.
+
+    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
+
+    Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
+  titre.en: '[automatic] Supplementary old-age benefit'
+  titre.fr: Prestation complémentaire vieillesse
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
   description.en: "[automatic] You have the possibility to benefit from a total
     exemption of contribution for the complementary old age benefit (PCV) if you
@@ -1420,46 +1420,6 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
   titre.en: '[automatic] discount rate'
   titre.fr: taux réduction
 dirigeant . indépendant . PL . CARCDSF . sage-femme:
-  avec:
-    RID:
-      description.en: >
-        [automatic] There are different contribution classes to choose from,
-        corresponding to different contributions
-
-        and different levels of compensation.
-
-
-        A change to a higher class must be requested before July 1 of the current year to be effective
-
-        July 1 of the current year, to take effect on January 1 of the following year.
-
-        the following year.
-
-
-        No change in grade is permitted after July 1 of the 56th birthday.
-      description.fr: >
-        Il existe classes de cotisations aux choix, correspondant à des
-        cotisations
-
-        et des degrés d'indemnisations différents.
-
-
-        Le changement d'option pour une classe supérieure doit être demandé avant le
-
-        1er juillet de l'année en cours, pour prendre effet au 1er janvier de
-
-        l'année suivante.
-
-
-        Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
-      note.en:
-        '[automatic] Starting in 2023, there is no longer an option to elect
-        for a specific contribution class.'
-      note.fr:
-        À partir de 2023, il n'y a plus de possibilité de choisir pour une
-        classe de cotisation spécifique.
-      titre.en: '[automatic] disability and death'
-      titre.fr: invalidité et décès
   titre.en: '[automatic] midwife'
   titre.fr: sage-femme
 dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
@@ -1506,31 +1466,72 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
     non cotisés ne sont pas rachetables.
   titre.en: '[automatic] PCV'
   titre.fr: PCV
-dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe:
+dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
+  avec:
+    classe:
+      avec:
+        A:
+          titre.en: '[automatic] Class A'
+          titre.fr: classe A
+        B:
+          titre.en: '[automatic] class B'
+          titre.fr: classe B
+        C:
+          titre.en: '[automatic] class C'
+          titre.fr: classe C
+      description.en: >
+        [automatic] A choice of contribution classes, corresponding to different
+        contributions
+
+        and compensation levels.
+      description.fr: >
+        Il existe classes de cotisations aux choix, correspondant à des
+        cotisations
+
+        et des degrés d'indemnisations différents.
+      question.en: '[automatic] In which class do you contribute to the CARCDSF
+        disability-death plan?'
+      question.fr:
+        Dans quelle classe cotisez-vous pour le régime invalidité-décès de
+        la CARCDSF ?
+      titre.en: '[automatic] Contribution class'
+      titre.fr: Classe de cotisation
   description.en: >
-    [automatic] There are contribution classes to choose from, corresponding to
+    [automatic] A choice of contribution classes, corresponding to different
     contributions
 
-    and different levels of compensation.
-  description.fr: |
+    and compensation levels.
+
+
+    A change of option to a higher class must be requested before the
+
+    July 1 of the current year, to take effect on January 1 of the following year.
+
+    the following year.
+
+
+    No change of class is permitted after July 1 of the 56th birthday.
+  description.fr: >
     Il existe classes de cotisations aux choix, correspondant à des cotisations
+
     et des degrés d'indemnisations différents.
-  question.en: '[automatic] In which class do you contribute to the DCFDC
-    Disability Death Plan?'
-  question.fr:
-    Dans quelle classe cotisez-vous pour le régime invalidité-décès de
-    la CARCDSF ?
-  titre.en: '[automatic] Contribution class'
-  titre.fr: Classe de cotisation
-dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . A:
-  titre.en: '[automatic] class A'
-  titre.fr: classe A
-dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . B:
-  titre.en: '[automatic] class B'
-  titre.fr: classe B
-dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . C:
-  titre.en: '[automatic] class C'
-  titre.fr: classe C
+
+
+    Le changement d'option pour une classe supérieure doit être demandé avant le
+
+    1er juillet de l'année en cours, pour prendre effet au 1er janvier de
+
+    l'année suivante.
+
+
+    Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
+  note.en:
+    '[automatic] From 2023, there will no longer be the option of choosing
+    a specific contribution class.'
+  note.fr: À partir de 2023, il n'y a plus de possibilité de choisir pour une
+    classe de cotisation spécifique.
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
   description.en: "[automatic] You have the possibility to benefit from a total
     exemption of contribution for the complementary old age benefit (PCV) if you
@@ -1710,43 +1711,44 @@ dirigeant . indépendant . PL . CAVP . PCV:
   titre.en: '[automatic] Old-age benefit (CAVP)'
   titre.fr: Prestation complémentaire de vieillesse (CAVP)
 dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
+  avec:
+    aide CPAM forfaitaire:
+      titre.en: '[automatic] flat-rate CPAM assistance'
+      titre.fr: aide CPAM forfaitaire
+    aide CPAM proportionnelle:
+      titre.en: '[automatic] proportional CPAM assistance'
+      titre.fr: aide CPAM proportionnelle
   titre.en: '[automatic] CPAM assistance'
   titre.fr: aide CPAM
-dirigeant . indépendant . PL . CAVP . PCV . aide CPAM forfaitaire:
-  titre.en: '[automatic] flat-rate CPAM aid'
-  titre.fr: aide CPAM forfaitaire
-dirigeant . indépendant . PL . CAVP . PCV . aide CPAM proportionnelle:
-  titre.en: '[automatic] proportional CPAM assistance'
-  titre.fr: aide CPAM proportionnelle
 dirigeant . indépendant . PL . CAVP . cotisation de référence:
   titre.en: '[automatic] benchmark contribution'
   titre.fr: cotisation de référence
 dirigeant . indépendant . PL . CAVP . demande reduction:
   résumé.en: >
-    [automatic] A reduction in contributions can be requested for the first 2
+    [automatic] A reduction in contributions may be requested for the first 2
     years, or
 
-    in case of low income. Thus, if your income for the year before last
+    in the case of low income. Thus, if your income for the penultimate year,
 
-    or the previous year if known (i.e. 2018 or 2019 for 2020 contributions)
+    or the previous year if known (i.e. 2022 or 2023 for contributions
 
-    2020), were :
-      - less than 1/3 of the PASS (€13,712 in 2020), you can claim a 75% reduction;
-      - between 1/3 and 2/3 of the PASS (between €13,712 and €27,423 in 2020), you can apply for a 50% reduction;
-      - between 2/3 of the PASS and the PASS (between €27,424 and €41,135 in 2020), you can apply for a 25% reduction.
+    2024 contributions), were :
+      - less than 1/3 of PASS (€15,456 in 2024), you can apply for a 75% reduction;
+      - between 1/3 and 2/3 of the PASS (between €15,456 and €30,911 in 2024), you can claim a 50% reduction;
+      - between 2/3 of the PASS and the PASS (between €30,911 and €46,367 in 2024), you can apply for a 25% reduction.
 
-    This possibility is reserved for pharmacists who contribute in class 3 (the lowest).
+    This option is reserved for pharmacists paying class 3 contributions (the lowest).
   résumé.fr: >
     Une réduction de cotisations peut être demandée les 2 premières années, ou
 
     en cas de revenus faibles. Ainsi, si vos revenus de l'avant-dernière année,
 
-    ou de l'année précédente s'ils sont connus (soit 2018 ou 2019 pour les cotisations
+    ou de l'année précédente s'ils sont connus (soit 2022 ou 2023 pour les cotisations
 
-    2020), étaient :
-      - inférieurs à 1/3 du PASS (13 712 € en 2020), vous pouvez demander une réduction de 75 % ;
-      - entre 1/3 et 2/3 du PASS (entre 13 712 et 27 423 € en 2020), vous pouvez demander une réduction de 50 % ;
-      - entre 2/3 du PASS et le PASS (entre 27 424 € et 41 135 € en 2020), vous pouvez demander une réduction de 25 %.
+    2024), étaient :
+      - inférieurs à 1/3 du PASS (15 456 € en 2024), vous pouvez demander une réduction de 75 % ;
+      - entre 1/3 et 2/3 du PASS (entre 15 456  et 30 911 € en 2024), vous pouvez demander une réduction de 50 % ;
+      - entre 2/3 du PASS et le PASS (entre 30 911 € et 46 367 € en 2024), vous pouvez demander une réduction de 25 %.
 
     Cette possibilité est réservée aux pharmaciens qui cotisent en classe 3 (la plus basse).
   titre.en: '[automatic] reduction request'
@@ -1760,14 +1762,15 @@ dirigeant . indépendant . PL . CAVP . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CAVP . retraite complémentaire:
+  avec:
+    part géré par capitalisation:
+      titre.en: '[automatic] share managed by capitalization'
+      titre.fr: part géré par capitalisation
+    part géré par répartition:
+      titre.en: '[automatic] pay-as-you-go'
+      titre.fr: part géré par répartition
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré par capitalisation:
-  titre.en: '[automatic] share managed by capitalisation'
-  titre.fr: part géré par capitalisation
-dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré par répartition:
-  titre.en: '[automatic] pay-as-you-go portion'
-  titre.fr: part géré par répartition
 dirigeant . indépendant . PL . CIPAV:
   avec:
     cotisations et contributions retraite complémentaire:
@@ -3725,31 +3728,31 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
   description.en: >
     [automatic] Contributions are calculated on a provisional basis
 
-    on the basis of the last declared income
+    on the basis of the last income declared
 
-    (or the lump sum, if no income is declared yet).
+    (or the lump-sum amount, if no income has yet been declared).
 
-    Once the year is over and the professional income is known
+    Once the year is over and the professional income is known,
 
-    the contributions are adjusted.
+    contributions are adjusted.
 
 
 
-    This simulator calculates the contributions **after regularization**.
+    This simulator calculates contributions **after regularization**.
 
-    It therefore allows you to anticipate the amount of this regularization and to plan your
+    It therefore enables you to anticipate the amount of this regularization and plan your cash flow
 
     your cash flow accordingly.
 
 
 
-    If your activity income changes significantly compared to the previous year
+    If your business income changes significantly from the previous year,
 
-    you have the possibility to communicate to URSSAF a
+    you have the option of providing Urssaf with a
 
-    **forecasted amount for the current year, which will be used as a basis for calculation** (be careful, however, you will be required to make an accurate estimate).
+    **forecast amount for the current year, which will be used as the basis for calculation**.
 
-    (be careful however, you will be required to make an accurate estimate).
+    (please note, however, that you will be required to provide a precise estimate).
   description.fr: >
     Les cotisations et contributions sont calculées à titre provisionnel
 
@@ -3773,7 +3776,7 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
 
     Si vos revenus d'activité changent beaucoup par rapport à l'année précédente,
 
-    vous avez la possibilité de communiquer à l'URSSAF un
+    vous avez la possibilité de communiquer à l'Urssaf un
 
     **montant prévisionnel pour l'année en cours, qui sera pris comme base de calcul**
 
@@ -7061,15 +7064,15 @@ protection sociale . retraite:
   titre.fr: retraite
 protection sociale . retraite . base:
   description.en: >
-    [automatic] The amount of your basic retirement pension is calculated from
-    the average of your earnings over the best 25 years.
+    [automatic] The amount of your basic retirement pension is calculated on the
+    basis of your average income over the best 25 years.
 
 
-    This estimate of your retirement pension is calculated based on the following principles:
+    This estimate of your retirement pension is calculated on the basis of the following principles:
 
-    - Your earnings are calculated on the basis of your best 25 years
+    - Your earnings correspond to your best 25 years.
 
-    - You have contributed enough quarters and you leave at the age required to benefit from the full rate
+    - You have contributed enough quarters and are retiring at the age required to benefit from the full rate.
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé à partir la
     moyenne de vos revenus des 25 meilleures années.
@@ -7079,7 +7082,7 @@ protection sociale . retraite . base:
 
     - La rémunération calculée correspond à celle de vos 25 meilleures années
 
-    - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
   résumé.en: '[automatic] Full basic retirement pension assuming your earnings
     have remained the same throughout your working life.'
   résumé.fr: Pension de retraite de base à taux plein en partant du principe que
@@ -7135,6 +7138,9 @@ protection sociale . retraite . base . CNAVPL:
     points acquis . points incapacité:
       titre.en: '[automatic] disability points'
       titre.fr: points incapacité
+    références:
+      titre.en: '[automatic] references'
+      titre.fr: références
     valeur du point:
       titre.en: '[automatic] point value'
       titre.fr: valeur du point
@@ -7345,6 +7351,9 @@ protection sociale . retraite . complémentaire . CIPAV:
     points acquis:
       titre.en: '[automatic] points acquired'
       titre.fr: points acquis
+    références:
+      titre.en: '[automatic] references'
+      titre.fr: références
     valeur d'acquisition:
       titre.en: '[automatic] acquisition value'
       titre.fr: valeur d'acquisition
@@ -8272,7 +8281,7 @@ salarié . convention collective:
         is not taken into account; the simulation will be based on common law.'
       description.fr:
         "Attention : votre convention collective n'est pas prise en
-        charge, la simulation se basera sur le droit commun."
+        charge,  la simulation se basera sur le droit commun."
       titre.en: '[automatic] warning other collective bargaining agreement'
       titre.fr: avertissement autre convention collective
     avertissement convention collective:
@@ -8306,7 +8315,7 @@ salarié . convention collective . BTP . OPPBTP:
   titre.fr: OPPBTP
 salarié . convention collective . BTP . catégorie:
   question.en: '[automatic] To which category does the employee belong?'
-  question.fr: À quelle catégorie la salarié appartient-t-il ?
+  question.fr: À quelle catégorie le salarié appartient-t-il ?
   titre.en: '[automatic] category'
   titre.fr: catégorie
 salarié . convention collective . BTP . catégorie . cadre:
@@ -8729,8 +8738,8 @@ salarié . cotisations . APEC:
   description.fr: |
     Cotisation spécifique aux cadre pour le fonctionnement de l'APEC
     (Association Pour l’Emploi des Cadres)
-  titre.en: '[automatic] Association for the employment of executives'
-  titre.fr: Association pour l’emploi des cadres
+  titre.en: '[automatic] Apec'
+  titre.fr: Apec
 salarié . cotisations . ATMP:
   avec:
     seuil taux mixte ou individuel:
@@ -8786,8 +8795,8 @@ salarié . cotisations . ATMP:
     and occupational diseases.'
   description.fr: Cotisation due au titre des Accidents du Travail et Maladies
     Professionnelles.
-  titre.en: '[automatic] Workplace accidents and occupational diseases'
-  titre.fr: Accidents du Travail et Maladies Professionnelles
+  titre.en: '[automatic] accidents at work &amp; occupational diseases'
+  titre.fr: accidents du travail & maladies professionnelles
 salarié . cotisations . CEG:
   avec:
     employeur:
@@ -8866,8 +8875,8 @@ salarié . cotisations . CSG-CRDS . CRDS:
 salarié . cotisations . CSG-CRDS . CSG:
   avec:
     déductible:
-      titre.en: '[automatic] deductible'
-      titre.fr: déductible
+      titre.en: '[automatic] CSG deductible from income tax'
+      titre.fr: CSG déductible de l'impôt sur le revenu
     déductible . taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
@@ -8877,6 +8886,9 @@ salarié . cotisations . CSG-CRDS . CSG:
     non déductible . heures supplémentaires et complémentaires défiscalisées:
       titre.en: '[automatic] tax-free overtime and complementary hours'
       titre.fr: heures supplémentaires et complémentaires défiscalisées
+    non déductible . revenus imposables:
+      titre.en: '[automatic] taxable income'
+      titre.fr: revenus imposables
     non déductible . taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
@@ -8944,6 +8956,12 @@ salarié . cotisations . CSG-CRDS . revenus de remplacement:
     chômage à un seuil inférieur au Smic brut.
   titre.en: '[automatic] CSG-CRDS replacement income'
   titre.fr: CSG-CRDS revenus de remplacement
+salarié . cotisations . CSG-CRDS . sur revenus imposables non déductible:
+  titre.en: '[automatic] CSG / CRDS not deductible from income tax'
+  titre.fr: CSG / CRDS non déductible de l'impôt sur le revenu
+salarié . cotisations . CSG-CRDS . sur revenus non imposables:
+  titre.en: '[automatic] CSG / CRDS on non-taxable income'
+  titre.fr: CSG / CRDS sur les revenus non imposables
 salarié . cotisations . FNAL:
   avec:
     privé:
@@ -8989,8 +9007,8 @@ salarié . cotisations . allocations familiales:
           titre.fr: plafond
       titre.en: '[automatic] reduced rate'
       titre.fr: taux réduit
-  titre.en: Family allowances
-  titre.fr: allocations familiales
+  titre.en: '[automatic] family'
+  titre.fr: famille
 salarié . cotisations . assiette:
   avec:
     sans prévoyance:
@@ -9041,6 +9059,40 @@ salarié . cotisations . assiette forfaitaire:
       titre.fr: rémunération réelle
   titre.en: '[automatic] lump-sum basis'
   titre.fr: assiette forfaitaire
+salarié . cotisations . assurance chômage:
+  titre.en: '[automatic] unemployment insurance'
+  titre.fr: assurance chômage
+salarié . cotisations . autres employeur:
+  titre.en: '[automatic] Other employer charges'
+  titre.fr: Autres charges dues par l'employeur
+salarié . cotisations . catégories:
+  avec:
+    CSG-CRDS:
+      titre.en: '[automatic] CSG / CRDS'
+      titre.fr: CSG / CRDS
+    atmp:
+      titre.en: '[automatic] accidents at work &amp; occupational diseases'
+      titre.fr: accidents du travail & maladies professionnelles
+    convention collective:
+      titre.en: '[automatic] statutory or collective agreement contributions'
+      titre.fr: cotisations statutaires ou prévues par la convention collective
+    divers:
+      titre.en: '[automatic] various'
+      titre.fr: divers
+    exonérations:
+      titre.en: '[automatic] contribution exemptions and reductions'
+      titre.fr: exonérations et allègements de cotisations
+    facultatives:
+      titre.en: '[automatic] optional social security contributions'
+      titre.fr: cotisations et contributions sociales facultatives
+    maladie:
+      titre.en: '[automatic] health'
+      titre.fr: santé
+    retraite:
+      titre.en: '[automatic] retirement'
+      titre.fr: retraite
+  titre.en: '[automatic] categories'
+  titre.fr: catégories
 salarié . cotisations . chômage:
   avec:
     employeur:
@@ -9088,8 +9140,8 @@ salarié . cotisations . exonérations:
     salarié:
       titre.en: '[automatic] employee share'
       titre.fr: part salarié
-  titre.en: '[automatic] Reductions and exemptions'
-  titre.fr: Réductions et exonérations
+  titre.en: '[automatic] contribution exemptions and reductions'
+  titre.fr: exonérations et allègements de cotisations
 salarié . cotisations . exonérations . JEI:
   description.en: >-
     [automatic] The Young Innovative Company (JEI) status was created by the
@@ -9417,8 +9469,8 @@ salarié . cotisations . maladie:
     les prestations versées par le régime général de Sécurité sociale en cas
     d’incapacité de travail. Elle permet le versement des prestations en nature
     et en espèces.
-  titre.en: health insurance
-  titre.fr: maladie
+  titre.en: '[automatic] Social Security Sickness Maternity Disability Death'
+  titre.fr: Sécurité Sociale Maladie Maternité Invalidité Décès
 salarié . cotisations . prévoyances:
   avec:
     conventionnelle:
@@ -9449,6 +9501,16 @@ salarié . cotisations . prévoyances:
       description.fr: prévoyance obligatoire pour les cadres
       titre.en: '[automatic] frames'
       titre.fr: cadres
+    incapacité invalidité décès:
+      avec:
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+      titre.en: '[automatic] Pensions, Incapacity, Disability, Death, Other'
+      titre.fr: Prévoyance, Incapacité, Invalidité, Décès, Autres
     salarié:
       avec:
         non déductible:
@@ -9459,8 +9521,8 @@ salarié . cotisations . prévoyances:
           titre.fr: références
       titre.en: '[automatic] employee share'
       titre.fr: part salarié
-  titre.en: '[automatic] supplementary benefits'
-  titre.fr: prévoyances complémentaires
+  titre.en: '[automatic] benefits'
+  titre.fr: prévoyances
 salarié . cotisations . prévoyances . santé:
   avec:
     employeur:
@@ -9523,8 +9585,8 @@ salarié . cotisations . prévoyances . santé:
       suggestions.50%.fr: 50%
       titre.en: '[automatic] employer rate'
       titre.fr: taux employeur
-  titre.en: '[automatic] health'
-  titre.fr: santé
+  titre.en: '[automatic] complementary compulsory health insurance'
+  titre.fr: complémentaire garanties frais de santé obligatoire
 salarié . cotisations . retraite complémentaire:
   avec:
     employeur:
@@ -9552,6 +9614,16 @@ salarié . cotisations . retraite complémentaire:
     Cotisations de retraite complémentaire.
   titre.en: supplementary pension
   titre.fr: retraite complémentaire
+salarié . cotisations . retraite complémentaire-CEG-CET:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
+  titre.en: '[automatic] supplementary pension, CEG and CET'
+  titre.fr: retraite complémentaire, CEG et CET
 salarié . cotisations . taxe d'apprentissage:
   avec:
     assiette:
@@ -9591,6 +9663,16 @@ salarié . cotisations . versement mobilité:
   titre.fr: versement mobilité
 salarié . cotisations . vieillesse:
   avec:
+    déplafonnée:
+      avec:
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+      titre.en: '[automatic] Social Security Unfunded old-age pension'
+      titre.fr: Sécurité Sociale Vieillesse déplafonnée
     employeur:
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
@@ -9608,6 +9690,16 @@ salarié . cotisations . vieillesse:
           titre.fr: taux
       titre.en: '[automatic] capped'
       titre.fr: plafonnée
+    plafonnée:
+      avec:
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+      titre.en: '[automatic] Social Security Old-age ceiling'
+      titre.fr: Sécurité Sociale Vieillesse plafonnée
     salarié:
       titre.en: '[automatic] employee share'
       titre.fr: part salarié
@@ -10163,6 +10255,33 @@ salarié . rémunération:
     d'un mois à l'autre ou en fonction de la législation.
   titre.en: '[automatic] compensation'
   titre.fr: rémunération
+salarié . rémunération . MNS:
+  description.en: >
+    [automatic] The net social security amount, or NSS, is shown on pay slips
+    and benefit statements.
+
+    statements. It corresponds to the reference amount to be declared by benefit recipients
+
+    as of February 1, 2024 to receive the Prime d'Activité and the revenu de
+
+    revenu de solidarité active (RSA). It simplifies administrative procedures, reduces the risk
+
+    and reduces the rate of non-use of entitlements.
+  description.fr: >
+    Le montant net social, ou MNS, est affiché sur les bulletins de paie et les
+    relevés
+
+    de prestations. Il correspond au montant de référence à déclarer par les allocataires
+
+    depuis le 1er février 2024 pour bénéficier de la Prime d’activité et du revenu de
+
+    solidarité active (RSA). Il facilite les démarches administratives, limite les
+
+    risques d’erreur de déclaration et réduit le taux de non-recours aux droits.
+  résumé.en: "[automatic] Amount to declare for Prime d'activité and RSA applications"
+  résumé.fr: Montant à déclarer pour les demandes de Prime d'activité et de RSA
+  titre.en: '[automatic] Net corporate amount'
+  titre.fr: Montant net social
 salarié . rémunération . assiette de vérification du SMIC:
   avec:
     contrôle:
@@ -10375,6 +10494,385 @@ salarié . rémunération . brut:
   titre.en: '[automatic] Gross remuneration'
   titre.fr: Rémunération brute
 salarié . rémunération . frais professionnels:
+  avec:
+    déductible:
+      description.en:
+        '[automatic] Share of expenses deducted from social security
+        contributions and income tax.'
+      description.fr:
+        Part des frais déduite de l'assiette de cotisation sociale et
+        pour le calcul de l'impôt sur le revenu.
+      titre.en: '[automatic] Deductible portion'
+      titre.fr: Part déductibles
+    non déductible:
+      titre.en: '[automatic] Non-deductible portion'
+      titre.fr: Part non déductible
+    titres-restaurant:
+      avec:
+        déductible:
+          titre.en: '[automatic] Deductible luncheon vouchers'
+          titre.fr: Titre restaurant déductibles
+        déductible . plafond unitaire:
+          titre.en: '[automatic] unit ceiling'
+          titre.fr: plafond unitaire
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        montant:
+          titre.en: '[automatic] amount'
+          titre.fr: montant
+        montant unitaire:
+          description.en: '[automatic] There is no maximum or minimum value for meal vouchers.'
+          description.fr: Il n'y a pas de valeur maximale ou minimale pour les
+            titres-restaurant.
+          question.en: '[automatic] What is the unit value of a meal voucher?'
+          question.fr: Quelle est la valeur unitaire du titre-restaurant ?
+          suggestions.faible.en: '[automatic] low'
+          suggestions.faible.fr: faible
+          suggestions.max exonéré.en: '[automatic] max exempt'
+          suggestions.max exonéré.fr: max exonéré
+          suggestions.moyenne.en: '[automatic] average'
+          suggestions.moyenne.fr: moyenne
+          titre.en: '[automatic] unit amount'
+          titre.fr: montant unitaire
+        nombre:
+          question.en: '[automatic] How many meal vouchers are distributed to employees?'
+          question.fr: Combien de titres-restaurant sont distribués au salarié ?
+          suggestions.3 repas/semaine.en: '[automatic] 3 meals/week'
+          suggestions.3 repas/semaine.fr: 3 repas/semaine
+          suggestions.5 repas/semaine.en: '[automatic] 5 meals/week'
+          suggestions.5 repas/semaine.fr: 5 repas/semaine
+          titre.en: '[automatic] number'
+          titre.fr: nombre
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+        taux employeur:
+          description.en:
+            '[automatic] Portion of meal voucher paid by the employer. Must
+            be a minimum of 50% and a maximum of 60%.'
+          description.fr:
+            Part du titre-restaurant payée par l'employeur. Doit être de 50%
+            minimum et de 60% maximum.
+          question.en: "[automatic] What is the employer's contribution?"
+          question.fr: Quelle est la participation de l'employeur ?
+          suggestions.50%.en: '[automatic] 50%'
+          suggestions.50%.fr: 50%
+          suggestions.60%.en: '[automatic] 60%'
+          suggestions.60%.fr: 60%
+          titre.en: '[automatic] employer rate'
+          titre.fr: taux employeur
+      description.en: >-
+        [automatic] The meal voucher is a special "meal" payment voucher issued
+        by the employer to the employee.
+
+
+        Employees may only use the meal vouchers in their possession to pay for meals:
+
+          - a meal,
+
+          - directly consumable food preparations,
+
+          - fruit and vegetables.
+
+        This certificate can be issued on paper or in electronic form.
+      description.fr: >-
+        Le titre-restaurant est un titre spécial de paiement « des repas » remis
+        par l’employeur au salarié.
+
+
+        Le salarié ne peut utiliser les titres-restaurant en sa possession que pour régler la consommation :
+
+          - d’un repas,
+
+          - de préparations alimentaires directement consommables,
+
+          - de fruits et légumes.
+
+        Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+      question.en: '[automatic] Does the employee receive meal vouchers?'
+      question.fr: Le salarié reçoit-il des titres-restaurant ?
+      titre.en: '[automatic] meal vouchers'
+      titre.fr: titres-restaurant
+    trajets domicile travail:
+      avec:
+        abattement temps partiel:
+          titre.en: '[automatic] part-time allowance'
+          titre.fr: abattement temps partiel
+        cumul forfait mobilité durable et transports publics:
+          titre.en:
+            '[automatic] combined sustainable mobility and public transport
+            package'
+          titre.fr: cumul forfait mobilité durable et transports publics
+        déductible:
+          titre.en: '[automatic] Deductible portion'
+          titre.fr: Part déductible
+        déductible . plafond hors cumul:
+          titre.en: '[automatic] non-cumulative ceiling'
+          titre.fr: plafond hors cumul
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        forfait mobilités durables:
+          avec:
+            montant:
+              description.en: >
+                [automatic] In order to promote more environmentally-friendly
+                means of transport, the sustainable mobility package offers
+                employers the possibility of granting a contribution-exempt
+                allowance to employees who use "soft mobility" modes of
+                transport to commute between their usual place of residence and
+                their place of work.
+
+
+                The sustainable mobility package replaces the bicycle mileage allowance and the carpooling allowance.
+
+
+                The terms and conditions of application of the sustainable mobility package differ according to the sectors concerned. To find out how the scheme applies to the public sector, visit the dedicated page.
+
+
+                ### Conditions of application
+
+
+                To encourage the use of "soft mobility" means of transport, employers can cover the travel costs of employees who use the following modes of transport to get to work:
+
+
+                - cycling, with or without electric assistance ;
+
+                - carpooling as driver or passenger;
+
+                - public transport (other than those covered by the compulsory payment of season ticket costs);
+
+                - other shared mobility services.
+              description.fr: >
+                Afin de promouvoir des moyens de transport plus écologiques, le
+                forfait mobilités durables offre aux employeurs la possibilité
+                d’attribuer une indemnité exonérée de cotisations aux salariés
+                privilégiant les modes de transport dits « à mobilité douce »
+                pour effectuer leurs trajets entre leur résidence habituelle et
+                leur lieu de travail.
+
+
+                Le forfait mobilités durables se substitue aux indemnités kilométriques vélo et aux indemnités forfaitaires de covoiturage.
+
+
+                Les conditions et les modalités d’application du forfait mobilités durables diffèrent selon les secteurs visés. Pour connaître les modalités d’application dans le secteur public, consultez la page dédiée.
+
+
+                ### Conditions d'application
+
+
+                Pour favoriser les transports dits « à mobilité douce », les employeurs ont la possibilité de prendre en charge les frais de trajets des salariés qui se rendent au travail en utilisant les modes de déplacement suivants :
+
+
+                - le vélo, avec ou sans assistance électrique ;
+
+                - le covoiturage en tant que conducteur ou passager ;
+
+                - les transports publics de personnes (autres que ceux concernés par la prise en charge obligatoire des frais d’abonnement) ;
+
+                - les autres services de mobilité partagée.
+              question.en:
+                '[automatic] How much of the cost of sustainable mobility transport
+                (bicycle, carpooling, shared mobility) is covered by the
+                employer?'
+              question.fr:
+                Quel montant des frais de transports de mobilité durable (vélo,
+                covoiturage, mobilité partagée) est pris en charge par
+                l'employeur ?
+              titre.en: '[automatic] amount'
+              titre.fr: montant
+          titre.en: '[automatic] sustainable mobility package'
+          titre.fr: forfait mobilités durables
+        prime de transport:
+          avec:
+            déductible:
+              description.en: '[automatic] Deductible portion of fuel costs'
+              description.fr: Part déductible de la prise en charge du carburant
+              titre.en: '[automatic] Deductible portion'
+              titre.fr: Part déductible
+            montant:
+              description.en: >
+                [automatic] Under certain conditions, employers can pay for the
+                fuel and power costs of electric, plug-in hybrid or
+                hydrogen-powered vehicles incurred by employees travelling
+                between their usual place of residence and their place of work,
+                in the form of a "transport bonus".
+
+
+                If the employer (private or public) sets it up, it must benefit all employees under the same terms and conditions, depending on the distance between home and work.
+
+
+                The amount, terms and conditions and criteria for awarding the transport bonus must be laid down in a company or inter-company agreement, or failing that, in a branch agreement.
+
+                In the absence of an agreement, the employer may pay the transportation allowance by unilateral decision, after consulting the social and economic committee (CSE), if one exists.
+
+
+                An employee is entitled to a transportation allowance if :
+
+
+                - his or her usual place of residence or workplace is located outside the Ile-de-France region and an urban transport perimeter ;
+
+                - the use of a private vehicle is made essential by specific working hours that prevent the use of public transport.
+
+
+                Coverage is not provided if :
+
+
+                - the employee benefits from a vehicle made available on a permanent basis by the employer, with the cost of fuel or electricity covered (company or service car);
+
+                - the employee is housed in conditions that exclude all transport costs to get to work (company housing);
+
+                - the employer provides free transport for the employee.
+
+
+                &gt; Good to know
+
+                &gt; No proof of fuel costs is required when the employer's contribution does not exceed €200 for fuel costs, or €500 for fuel costs for electric, plug-in hybrid or hydrogen vehicles.
+              description.fr: >
+                Une prise en charge par l’employeur, sous forme de « prime de
+                transport », des frais de carburant et d’alimentation des
+                véhicules électriques, hybrides rechargeables ou à hydrogène
+                engagés par les salariés pour leurs déplacements entre leur
+                résidence habituelle et leur lieu de travail est possible sous
+                certaines conditions.
+
+
+                Si l’employeur (de droit privé ou de droit public) la met en place, elle doit profiter à l’ensemble des salariés selon les mêmes modalités et en fonction de la distance entre le domicile et le lieu de travail.
+
+
+                Le montant, les modalités ainsi que les critères d’attribution de la prime de transport doivent être prévus par accord d’entreprise ou par accord interentreprises, et à défaut, par accord de branche.
+
+                En l’absence d’accord, l’employeur peut prévoir le versement de la prime de transport par décision unilatérale, après consultation du comité social et économique (CSE), s’il existe.
+
+
+                Le salarié peut prétendre à la prime de transport si :
+
+
+                - sa résidence habituelle ou son lieu de travail est situé en dehors de la région Ile-de-France et d’un périmètre de transports urbains ;
+
+                - l'utilisation d'un véhicule personnel est rendue indispensable par des conditions d'horaires de travail particuliers ne permettant pas d'emprunter un mode collectif de transport.
+
+
+                La prise en charge n’est pas prévue si :
+
+
+                - le salarié bénéficie d’un véhicule mis à disposition permanente par l’employeur avec prise en charge des dépenses de carburant ou d’alimentation électrique (voiture de fonction ou de service) ;
+
+                - le salarié est logé dans des conditions excluant tous frais de transport pour se rendre au travail (logement de fonction) ;
+
+                - l’employeur assure gratuitement le transport du salarié.
+
+
+                > **Bon à savoir**
+
+                > Aucun justificatif de dépenses de carburant n’est exigé lorsque la prise en charge par l’employeur n’excède pas 200 € pour les frais de carburant, ou 500 € pour les frais d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène.
+              question.en:
+                '[automatic] How much of the fuel/vehicle fuel costs incurred by
+                the employee to get to work are covered by the employer?'
+              question.fr:
+                Quel montant des frais de carburants / alimentation du véhicule
+                dépensés par le salarié pour se rendre au travail est pris en
+                charge par l'employeur ?
+              titre.en: '[automatic] Transport allowance'
+              titre.fr: Prime de transport
+            véhicule electrique hybride hydrogène:
+              question.en:
+                '[automatic] Does the employee use electric, plug-in hybrid or
+                hydrogen-powered vehicles?'
+              question.fr:
+                Le salarié utilise-t-il un véhicules électriques, hybrides
+                rechargeables ou à hydrogène ?
+              titre.en: '[automatic] hydrogen hybrid electric vehicle'
+              titre.fr: véhicule electrique hybride hydrogène
+          titre.en: '[automatic] transportation allowance'
+          titre.fr: prime de transport
+        transports publics:
+          avec:
+            déductible:
+              description.en:
+                '[automatic] Public transport season ticket paid for by the
+                employer and deductible from contributions and taxes.'
+              description.fr:
+                Montant de l'abonnement aux transports publics prise en charge
+                par l'employeur et déductible de cotisations et d'impôts.
+              titre.en: '[automatic] deductible'
+              titre.fr: déductible
+            employeur:
+              description.en: '[automatic] Employer-paid public transport pass.'
+              description.fr:
+                Montant de l'abonnement aux transports publics prise en charge
+                par l'employeur.
+              titre.en: "[automatic] Employer's share"
+              titre.fr: Part employeur
+            montant:
+              description.en: >
+                [automatic] The employer's contribution to the cost of public
+                transport is compulsory.
+
+
+                Employers (private or public) must pay 50% of the cost of subscriptions taken out by their employees for the entire journey between their usual place of residence and their place of work, using public transport services, even if several subscriptions are needed to make the journey (train + bus, for example).
+
+                This also applies to public bicycle rental services.
+
+
+                The employer may pay more than the mandatory 50%. Up to 75% of the employer's contribution is exempt from social security contributions and income tax.
+
+
+                In the case of part-time work, the rate of reimbursement is the same for half-time or more. For less than half-time, the rate will be proportional.
+              description.fr: >
+                La participation de l’employeur aux frais de transports publics
+                est obligatoire.
+
+
+                L’employeur (de droit privé ou public) doit prendre en charge 50 % du prix des titres d’abonnements souscrits par ses salariés pour l’intégralité du trajet entre leur résidence habituelle et leur lieu de travail accompli au moyen de services de transports publics même si plusieurs abonnements sont nécessaires à la réalisation de ce trajet (train + bus par exemple).
+
+                Sont également concernés les services publics de location de vélos.
+
+
+                L’employeur peut prendre en charge un part plus importante que les 50% obligatoires. La prise en charge des frais de transports par l’employeur est exonérée de cotisations sociales et d’impôt sur le revenu jusqu'à 75% de participation.
+
+
+                Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
+              question.en:
+                '[automatic] How much does the employee spend on public transport
+                passes to get to work?'
+              question.fr:
+                Quel montant le salarié dépense-t-il en abonnement aux transports
+                publics pour se rendre sur son lieu de travail ?
+              suggestions.Ilévia.en: '[automatic] Ilevia'
+              suggestions.Ilévia.fr: Ilévia
+              suggestions.Navigo.en: '[automatic] Navigo'
+              suggestions.Navigo.fr: Navigo
+              suggestions.RTM.en: '[automatic] RTM'
+              suggestions.RTM.fr: RTM
+              suggestions.TBM.en: '[automatic] TBM'
+              suggestions.TBM.fr: TBM
+              suggestions.Tisséo.en: '[automatic] Tisséo'
+              suggestions.Tisséo.fr: Tisséo
+              suggestions.Técély.en: '[automatic] Técély'
+              suggestions.Técély.fr: Técély
+              titre.en: '[automatic] Subscription amount'
+              titre.fr: Montant abonnement
+            taux employeur:
+              question.en:
+                "[automatic] How much of the employee's transportation costs are
+                covered by the employer?"
+              question.fr:
+                Quel est le taux de prise en charge par l’employeur aux frais de
+                transports du salarié ?
+              suggestions.Maximum déductible (75%).en: '[automatic] Maximum deductible (75%)'
+              suggestions.Maximum déductible (75%).fr: Maximum déductible (75%)
+              suggestions.Minimum (50%).en: '[automatic] Minimum (50%)'
+              suggestions.Minimum (50%).fr: Minimum (50%)
+              suggestions.Totale (100%).en: '[automatic] Total (100%)'
+              suggestions.Totale (100%).fr: Totale (100%)
+              titre.en: '[automatic] employer rate'
+              titre.fr: taux employeur
+          titre.en: '[automatic] public transport'
+          titre.fr: transports publics
+      titre.en: '[automatic] commuting'
+      titre.fr: trajets domicile travail
   description.en: >-
     [automatic] Professional expenses are expenses incurred by the employee for
     the needs of his professional activity. These expenses are then reimbursed
@@ -10409,369 +10907,6 @@ salarié . rémunération . frais professionnels:
     Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursements forfaitaires ( frais de panier, titres-restaurant, forfait mobilités durables...).
   titre.en: '[automatic] reimbursement of expenses'
   titre.fr: remboursement de frais
-salarié . rémunération . frais professionnels . déductible:
-  description.en: '[automatic] Share of expenses deducted from the social
-    contribution base and for income tax calculation.'
-  description.fr: Part des frais déduite de l'assiette de cotisation sociale et
-    pour le calcul de l'impôt sur le revenu.
-  titre.en: '[automatic] Deductible portion'
-  titre.fr: Part déductibles
-salarié . rémunération . frais professionnels . titres-restaurant:
-  avec:
-    déductible:
-      titre.en: '[automatic] Deductible restaurant vouchers'
-      titre.fr: Titre restaurant déductibles
-    déductible . plafond unitaire:
-      titre.en: '[automatic] unit ceiling'
-      titre.fr: plafond unitaire
-    employeur:
-      titre.en: '[automatic] employer'
-      titre.fr: employeur
-    montant:
-      titre.en: '[automatic] amount'
-      titre.fr: montant
-    montant unitaire:
-      description.en: '[automatic] There is no maximum or minimum value for meal
-        vouchers. However, in order to benefit from the contribution exemption,
-        the value of the voucher must not exceed €11.38 in 2021.'
-      description.fr: Il n'y a pas de valeur maximale ou minimale pour les
-        titres-restaurant. En revanche, pour bénéficier de l'exonération de
-        cotisation, il ne faut pas dépasser 11,38€ par titre en 2021.
-      question.en: '[automatic] What is the unit value of the meal voucher?'
-      question.fr: Quelle est la valeur unitaire du titre-restaurant ?
-      suggestions.faible.en: '[automatic] low'
-      suggestions.faible.fr: faible
-      suggestions.max exonéré.en: '[automatic] max exempt'
-      suggestions.max exonéré.fr: max exonéré
-      suggestions.moyenne.en: '[automatic] average'
-      suggestions.moyenne.fr: moyenne
-      titre.en: '[automatic] unit amount'
-      titre.fr: montant unitaire
-    nombre:
-      question.en: '[automatic] How many meal vouchers are distributed to the employee?'
-      question.fr: Combien de titres-restaurant sont distribués au salarié ?
-      suggestions.3 repas/semaine.en: '[automatic] 3 meals/week'
-      suggestions.3 repas/semaine.fr: 3 repas/semaine
-      suggestions.5 repas/semaine.en: '[automatic] 5 meals/week'
-      suggestions.5 repas/semaine.fr: 5 repas/semaine
-      titre.en: '[automatic] number'
-      titre.fr: nombre
-    taux employeur:
-      description.en:
-        '[automatic] Portion of the meal voucher paid by the employer.
-        Must be a minimum of 50% and a maximum of 60%.'
-      description.fr:
-        Part du titre-restaurant payée par l'employeur. Doit être de 50%
-        minimum et de 60% maximum.
-      question.en: "[automatic] What is the employer's participation?"
-      question.fr: Quelle est la participation de l'employeur ?
-      suggestions.50%.en: '[automatic] 50%'
-      suggestions.50%.fr: 50%
-      suggestions.60%.en: '[automatic] 60%'
-      suggestions.60%.fr: 60%
-      titre.en: '[automatic] employer rate'
-      titre.fr: taux employeur
-  description.en: >-
-    [automatic] The meal voucher is a special payment voucher for "meals" given
-    by the employer to the employee.
-
-
-    The employee can only use the meal vouchers in his possession to pay for consumption:
-
-      - a meal,
-
-      - directly consumable food preparations,
-
-      - fruits and vegetables.
-
-    This title can be issued on paper or in dematerialized form.
-  description.fr: >-
-    Le titre-restaurant est un titre spécial de paiement « des repas » remis par
-    l’employeur au salarié.
-
-
-    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour régler la consommation :
-
-      - d’un repas,
-
-      - de préparations alimentaires directement consommables,
-
-      - de fruits et légumes.
-
-    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
-  question.en: '[automatic] Does the employee receive meal vouchers?'
-  question.fr: Le salarié reçoit-il des titres-restaurant ?
-  titre.en: '[automatic] meal vouchers'
-  titre.fr: titres-restaurant
-salarié . rémunération . frais professionnels . trajets domicile travail:
-  avec:
-    abattement temps partiel:
-      titre.en: '[automatic] part-time abatement'
-      titre.fr: abattement temps partiel
-    cumul forfait mobilité durable et transports publics:
-      titre.en: '[automatic] combination of sustainable mobility and public transport'
-      titre.fr: cumul forfait mobilité durable et transports publics
-    déductible:
-      titre.en: '[automatic] Deductible portion'
-      titre.fr: Part déductible
-    déductible . plafond hors cumul:
-      titre.en: '[automatic] non-cumulative ceiling'
-      titre.fr: plafond hors cumul
-    employeur:
-      titre.en: '[automatic] employer'
-      titre.fr: employeur
-  titre.en: '[automatic] commuting to work'
-  titre.fr: trajets domicile travail
-salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables:
-  avec:
-    montant:
-      description.en: >
-        [automatic] In order to promote more environmentally friendly means of
-        transportation, the sustainable mobility package offers employers the
-        possibility of granting a contribution-exempt allowance to employees who
-        use so-called "soft mobility" modes of transportation to commute between
-        their usual residence and their place of work.
-
-
-        The sustainable mobility package replaces the bicycle mileage allowance and the carpooling allowance.
-
-
-        The conditions and terms of application of the sustainable mobility package differ according to the sectors concerned. To find out how it applies in the public sector, please consult the dedicated page.
-
-
-        ### Conditions of application
-
-
-        In order to encourage "soft mobility" transportation, employers can cover the travel expenses of employees who use the following modes of transportation to get to work:
-
-
-        - cycling, with or without electric assistance ;
-
-        - carpooling as a driver or passenger
-
-        - public transport (other than those covered by the compulsory payment of season tickets);
-
-        - other shared mobility services.
-      description.fr: >
-        Afin de promouvoir des moyens de transport plus écologiques, le forfait
-        mobilités durables offre aux employeurs la possibilité d’attribuer une
-        indemnité exonérée de cotisations aux salariés privilégiant les modes de
-        transport dits « à mobilité douce » pour effectuer leurs trajets entre
-        leur résidence habituelle et leur lieu de travail.
-
-
-        Le forfait mobilités durables se substitue aux indemnités kilométriques vélo et aux indemnités forfaitaires de covoiturage.
-
-
-        Les conditions et les modalités d’application du forfait mobilités durables diffèrent selon les secteurs visés. Pour connaître les modalités d’application dans le secteur public, consultez la page dédiée.
-
-
-        ### Conditions d'application
-
-
-        Pour favoriser les transports dits « à mobilité douce », les employeurs ont la possibilité de prendre en charge les frais de trajets des salariés qui se rendent au travail en utilisant les modes de déplacement suivants :
-
-
-        - le vélo, avec ou sans assistance électrique ;
-
-        - le covoiturage en tant que conducteur ou passager ;
-
-        - les transports publics de personnes (autres que ceux concernés par la prise en charge obligatoire des frais d’abonnement) ;
-
-        - les autres services de mobilité partagée.
-      question.en:
-        '[automatic] How much of the cost of sustainable mobility (bicycle,
-        carpooling, shared mobility) is covered by the employer?'
-      question.fr:
-        Quel montant des frais de transports de mobilité durable (vélo,
-        covoiturage, mobilité partagée) est pris en charge par l'employeur ?
-      titre.en: '[automatic] amount'
-      titre.fr: montant
-  titre.en: '[automatic] sustainable mobility package'
-  titre.fr: forfait mobilités durables
-salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport:
-  avec:
-    déductible:
-      description.en: '[automatic] Deductible portion of fuel costs'
-      description.fr: Part déductible de la prise en charge du carburant
-      titre.en: '[automatic] Deductible portion'
-      titre.fr: Part déductible
-    montant:
-      description.en: >
-        [automatic] Under certain conditions, the employer can pay for the fuel
-        and power costs of electric, plug-in hybrid or hydrogen vehicles
-        incurred by employees when traveling between their usual place of
-        residence and their place of work, in the form of a "transportation
-        bonus".
-
-
-        If the employer (private or public) sets it up, it must benefit all employees according to the same terms and conditions and depending on the distance between home and work.
-
-
-        The amount, terms and conditions as well as the criteria for awarding the transport bonus must be provided for by a company agreement or an inter-company agreement, or failing that, by an industry agreement.
-
-        In the absence of an agreement, the employer may provide for the payment of the transport bonus by unilateral decision, after consulting the social and economic committee (CSE), if it exists.
-
-
-        The employee is entitled to the transport bonus if:
-
-
-        - his or her usual residence or workplace is located outside the Ile-de-France region and an urban transport perimeter ;
-
-        - the use of a personal vehicle is made essential by specific working hours that do not allow the use of a public transport system.
-
-
-        Coverage is not provided if:
-
-
-        - the employee has a vehicle permanently made available by the employer and the cost of fuel or electricity is covered (company or service car);
-
-        - the employee is housed in conditions that exclude all transportation costs to get to work (company housing);
-
-        - the employer provides the employee with free transportation.
-
-
-        &gt; Good to know
-
-        &gt; No proof of fuel expenses is required when the employer's contribution does not exceed €200 for fuel expenses, or €500 for the cost of powering electric, rechargeable hybrid or hydrogen vehicles.
-      description.fr: >
-        Une prise en charge par l’employeur, sous forme de « prime de transport
-        », des frais de carburant et d’alimentation des véhicules électriques,
-        hybrides rechargeables ou à hydrogène engagés par les salariés pour
-        leurs déplacements entre leur résidence habituelle et leur lieu de
-        travail est possible sous certaines conditions.
-
-
-        Si l’employeur (de droit privé ou de droit public) la met en place, elle doit profiter à l’ensemble des salariés selon les mêmes modalités et en fonction de la distance entre le domicile et le lieu de travail.
-
-
-        Le montant, les modalités ainsi que les critères d’attribution de la prime de transport doivent être prévus par accord d’entreprise ou par accord interentreprises, et à défaut, par accord de branche.
-
-        En l’absence d’accord, l’employeur peut prévoir le versement de la prime de transport par décision unilatérale, après consultation du comité social et économique (CSE), s’il existe.
-
-
-        Le salarié peut prétendre à la prime de transport si :
-
-
-        - sa résidence habituelle ou son lieu de travail est situé en dehors de la région Ile-de-France et d’un périmètre de transports urbains ;
-
-        - l'utilisation d'un véhicule personnel est rendue indispensable par des conditions d'horaires de travail particuliers ne permettant pas d'emprunter un mode collectif de transport.
-
-
-        La prise en charge n’est pas prévue si :
-
-
-        - le salarié bénéficie d’un véhicule mis à disposition permanente par l’employeur avec prise en charge des dépenses de carburant ou d’alimentation électrique (voiture de fonction ou de service) ;
-
-        - le salarié est logé dans des conditions excluant tous frais de transport pour se rendre au travail (logement de fonction) ;
-
-        - l’employeur assure gratuitement le transport du salarié.
-
-
-        > **Bon à savoir**
-
-        > Aucun justificatif de dépenses de carburant n’est exigé lorsque la prise en charge par l’employeur n’excède pas 200 € pour les frais de carburant, ou 500 € pour les frais d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène.
-      question.en:
-        '[automatic] How much of the cost of fuel/vehicle power spent by
-        the employee to get to work is covered by the employer?'
-      question.fr:
-        Quel montant des frais de carburants / alimentation du véhicule
-        dépensés par le salarié pour se rendre au travail est pris en charge par
-        l'employeur ?
-      titre.en: '[automatic] Transport premium'
-      titre.fr: Prime de transport
-    véhicule electrique hybride hydrogène:
-      question.en:
-        '[automatic] Does the employee use an electric, plug-in hybrid or
-        hydrogen vehicle?'
-      question.fr: Le salarié utilise-t-il un véhicules électriques, hybrides
-        rechargeables ou à hydrogène ?
-      titre.en: '[automatic] electric vehicle hybrid hydrogen'
-      titre.fr: véhicule electrique hybride hydrogène
-  titre.en: '[automatic] transportation premium'
-  titre.fr: prime de transport
-salarié . rémunération . frais professionnels . trajets domicile travail . transports publics:
-  avec:
-    déductible:
-      description.en:
-        '[automatic] The amount of the public transport pass paid by the
-        employer and deductible from contributions and taxes.'
-      description.fr:
-        Montant de l'abonnement aux transports publics prise en charge
-        par l'employeur et déductible de cotisations et d'impôts.
-      titre.en: '[automatic] deductible'
-      titre.fr: déductible
-    employeur:
-      description.en: '[automatic] Amount of the public transport pass paid by the employer.'
-      description.fr:
-        Montant de l'abonnement aux transports publics prise en charge
-        par l'employeur.
-      titre.en: "[automatic] Employer's share"
-      titre.fr: Part employeur
-    montant:
-      description.en: >
-        [automatic] Employer participation in public transportation costs is
-        mandatory.
-
-
-        Employers (private or public) must pay 50% of the cost of subscriptions taken out by their employees for the entire journey between their usual place of residence and their place of work using public transport services, even if more than one subscription is required to make this journey (e.g. train + bus).
-
-        This also applies to public bicycle rental services.
-
-
-        The employer may pay more than the mandatory 50%. The payment of transport costs by the employer is exempt from social security contributions and income tax up to 75% of participation.
-
-
-        In the case of part-time work, the rate of coverage will be the same for half-time work or more. Below that, the rate of coverage will be proportional.
-      description.fr: >
-        La participation de l’employeur aux frais de transports publics est
-        obligatoire.
-
-
-        L’employeur (de droit privé ou public) doit prendre en charge 50 % du prix des titres d’abonnements souscrits par ses salariés pour l’intégralité du trajet entre leur résidence habituelle et leur lieu de travail accompli au moyen de services de transports publics même si plusieurs abonnements sont nécessaires à la réalisation de ce trajet (train + bus par exemple).
-
-        Sont également concernés les services publics de location de vélos.
-
-
-        L’employeur peut prendre en charge un part plus importante que les 50% obligatoires. La prise en charge des frais de transports par l’employeur est exonérée de cotisations sociales et d’impôt sur le revenu jusqu'à 75% de participation.
-
-
-        Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
-      question.en:
-        '[automatic] How much does the employee spend on public transport
-        passes to get to work?'
-      question.fr:
-        Quel montant le salarié dépense-t-il en abonnement aux transports
-        publics pour se rendre sur son lieu de travail ?
-      suggestions.Navigo.en: '[automatic] Navigo'
-      suggestions.Navigo.fr: Navigo
-      suggestions.RTM.en: '[automatic] GTR'
-      suggestions.RTM.fr: RTM
-      suggestions.TBM.en: '[automatic] TBM'
-      suggestions.TBM.fr: TBM
-      suggestions.Tisséo.en: '[automatic] Tisséo'
-      suggestions.Tisséo.fr: Tisséo
-      suggestions.Técély.en: '[automatic] Técély'
-      suggestions.Técély.fr: Técély
-      titre.en: '[automatic] Subscription amount'
-      titre.fr: Montant abonnement
-    taux employeur:
-      question.en:
-        "[automatic] What is the employer's contribution to the employee's
-        transportation costs?"
-      question.fr:
-        Quel est le taux de prise en charge par l’employeur aux frais de
-        transports du salarié ?
-      suggestions.Maximum déductible (75%).en: '[automatic] Maximum deductible (75%)'
-      suggestions.Maximum déductible (75%).fr: Maximum déductible (75%)
-      suggestions.Minimum (50%).en: '[automatic] Minimum (50%)'
-      suggestions.Minimum (50%).fr: Minimum (50%)
-      suggestions.Totale (100%).en: '[automatic] Total (100%)'
-      suggestions.Totale (100%).fr: Totale (100%)
-      titre.en: '[automatic] employer rate'
-      titre.fr: taux employeur
-  titre.en: '[automatic] public transport'
-  titre.fr: transports publics
 salarié . rémunération . heures complémentaires:
   description.en: '[automatic] Remuneration for overtime work'
   description.fr: La rémunération relative aux heures complémentaires
@@ -10973,11 +11108,11 @@ salarié . rémunération . net . imposable:
   titre.fr: Salaire net imposable
 salarié . rémunération . net . payé après impôt:
   description.en: >
-    [automatic] This is the salary paid into the employee's bank account, after
+    [automatic] This is the salary paid into the employee's bank account, once
     contributions and taxes have been deducted.
   description.fr: >
     C'est le salaire versé sur le compte bancaire du salarié, une fois les
-    cotisations et l'impôt prélevées.
+    cotisations et l'impôt prélevés.
   question.en: What is the net income of the employee after income tax?
   question.fr: Quel est le revenu net du salarié après impôt ?
   résumé.en: '[automatic] The net salary paid'
@@ -11132,18 +11267,19 @@ salarié . rémunération . revenus de remplacement:
   titre.en: '[automatic] replacement income'
   titre.fr: revenus de remplacement
 salarié . rémunération . taux horaire:
+  avec:
+    heures supplémentaires:
+      description.en: >
+        [automatic] The hourly rate used to calculate overtime pay. It includes
+        benefits in kind and bonuses in return for work done.
+      description.fr: >
+        Le taux horaire utilisé pour calculer la rémunération liée au heures
+        supplémentaires. Il intègre les avantages en nature et les primes
+        constituant la contrepartie d'un travail fourni.
+      titre.en: '[automatic] hourly rate (overtime)'
+      titre.fr: taux horaire (heure supplémentaire)
   titre.en: '[automatic] hourly rate'
   titre.fr: taux horaire
-salarié . rémunération . taux horaire . heures supplémentaires:
-  description.en: >
-    [automatic] The hourly rate used to calculate overtime pay. It includes
-    benefits in kind and bonuses that are compensation for work performed.
-  description.fr: >
-    Le taux horaire utilisé pour calculer la rémunération liée au heures
-    supplémentaires. Il intègre les avantages en nature et les primes
-    constituant la contrepartie d'un travail fourni.
-  titre.en: '[automatic] hourly rate (overtime)'
-  titre.fr: taux horaire (heure supplémentaire)
 salarié . temps de travail:
   avec:
     SMIC:
