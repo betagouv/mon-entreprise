@@ -1,3 +1,4 @@
+import { DottedName } from 'modele-social'
 import { useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useTheme } from 'styled-components'
@@ -5,7 +6,7 @@ import { useTheme } from 'styled-components'
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
 import StackedBarChart from '@/components/StackedBarChart'
 import { FromTop } from '@/components/ui/animate'
-import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
+import { useInversionFail } from '@/components/utils/EngineContext'
 import { Emoji } from '@/design-system/emoji'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
@@ -13,15 +14,10 @@ import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
-import { getCotisationsBySection } from '../FicheDePaie/Cotisations'
 import FicheDePaie from '../FicheDePaie/FicheDePaie'
 
 export default function SalaryExplanation() {
 	const payslipRef = useRef<HTMLDivElement>(null)
-
-	const regroupement = Object.fromEntries(
-		getCotisationsBySection(useEngine().getParsedRules())
-	)
 
 	if (useInversionFail()) {
 		return null
@@ -39,7 +35,7 @@ export default function SalaryExplanation() {
 			/>
 			<Spacing lg />
 
-			<ÀQuoiServentMesCotisationsSection regroupement={regroupement} />
+			<ÀQuoiServentMesCotisationsSection regroupement={CotisationsSection} />
 
 			<Container
 				backgroundColor={(theme) =>
@@ -159,4 +155,44 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 			/>
 		</section>
 	)
+}
+
+const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
+	'protection sociale . maladie': [
+		'salarié . cotisations . maladie',
+		'salarié . cotisations . prévoyances',
+		'salarié . cotisations . prévoyances . santé',
+		'salarié . cotisations . ATMP',
+	],
+	'protection sociale . retraite': [
+		'salarié . cotisations . vieillesse',
+		'salarié . cotisations . retraite complémentaire',
+		'salarié . cotisations . CEG',
+		'salarié . cotisations . CET',
+		// 'salarié . cotisations . retraite supplémentaire',
+	],
+	'protection sociale . famille': [
+		'salarié . cotisations . allocations familiales',
+	],
+	'protection sociale . assurance chômage': [
+		'salarié . cotisations . AGS',
+		'salarié . cotisations . chômage',
+	],
+	'protection sociale . formation': [
+		"salarié . cotisations . taxe d'apprentissage",
+		'salarié . cotisations . formation professionnelle',
+		'salarié . cotisations . CPF CDD',
+	],
+	'protection sociale . transport': [
+		'salarié . cotisations . versement mobilité',
+	],
+	'protection sociale . autres': [
+		'salarié . cotisations . CSG-CRDS',
+		'salarié . cotisations . APEC',
+		'salarié . cotisations . FNAL',
+		'salarié . cotisations . CSA',
+		'salarié . cotisations . forfait social',
+		'salarié . cotisations . PEEC',
+		'salarié . cotisations . contribution au dialogue social',
+	],
 }
