@@ -3,94 +3,95 @@ import { ASTNode, ParsedRules, reduceAST, Rule, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
 import { Trans } from 'react-i18next'
 
-import './FicheDePaie'
+import './FicheDePaie.css'
 
-import { Strong } from '@/design-system/typography'
-import { H4, H5 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import { styled } from 'styled-components'
+
+import { H3, H4 } from '@/design-system/typography/heading'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
 import { useEngine } from '../utils/EngineContext'
 import CotisationLine from './CotisationLine'
-import Line from './Line'
+
+const StyledH3 = styled(H3)`
+	text-align: right;
+`
+
+function CotisationLines({ cotisations }: { cotisations: Array<DottedName> }) {
+	return cotisations.map((cotisation: DottedName) => (
+		<CotisationLine key={cotisation} dottedName={cotisation} />
+	))
+}
 
 export function Cotisations() {
 	const parsedRules = useEngine().getParsedRules()
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
 	return (
-		<>
-			<div className="payslip__cotisationsSection">
-				<H4>
-					<Trans>Cotisations sociales</Trans>
-				</H4>
-				<H4>
-					<Trans>employeur</Trans>
-				</H4>
-				<H4>
-					<Trans>salarié</Trans>
-				</H4>
-				{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
-					const section = parsedRules[sectionDottedName]
+		<div className="payslip__cotisationsSection">
+			<H3>
+				<Trans>Cotisations sociales</Trans>
+			</H3>
+			<StyledH3>
+				<Trans>employeur</Trans>
+			</StyledH3>
+			<StyledH3>
+				<Trans>salarié</Trans>
+			</StyledH3>
 
-					return (
-						<Fragment key={section.dottedName}>
-							<H5 className="payslip__cotisationTitle">
-								{section.title}
-								<ExplicableRule light dottedName={section.dottedName} />
-							</H5>
-							{cotisations.map((cotisation) => (
-								<CotisationLine key={cotisation} dottedName={cotisation} />
-							))}
-						</Fragment>
-					)
-				})}
+			{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
+				const section = parsedRules[sectionDottedName]
 
-				{/* Total cotisation */}
-				<Body className="payslip__total">
-					<Strong>
-						<Trans>Total des retenues</Trans>
-					</Strong>
-				</Body>
-				<div>
-					<Value
-						expression="salarié . cotisations . employeur"
-						displayedUnit="€"
-						className="payslip__total"
-					/>
-				</div>
-				<div>
-					<Value
-						expression="salarié . cotisations . salarié"
-						displayedUnit="€"
-						className="payslip__total"
-					/>
-				</div>
+				return (
+					<Fragment key={section.dottedName}>
+						<H4 className="payslip__cotisationTitle">
+							{section.title}
+							<ExplicableRule light dottedName={section.dottedName} />
+						</H4>
+						<CotisationLines cotisations={cotisations} />
+					</Fragment>
+				)
+			})}
 
-				{/* Salaire chargé */}
-				<Line rule="salarié . coût total employeur" />
-				<span />
+			{/* Total cotisation */}
+			<H4 className="payslip__total">
+				<Trans>Total des cotisations et contributions</Trans>
+				<ExplicableRule light dottedName="salarié . cotisations" />
+			</H4>
+			<div>
+				<Value
+					expression="salarié . cotisations . employeur"
+					displayedUnit="€"
+					className="payslip__total"
+				/>
 			</div>
-		</>
+			<div>
+				<Value
+					expression="salarié . cotisations . salarié"
+					displayedUnit="€"
+					className="payslip__total"
+				/>
+			</div>
+		</div>
 	)
 }
 
 export const SECTION_ORDER = [
-	'protection sociale . maladie',
-	'protection sociale . accidents du travail et maladies professionnelles',
-	'protection sociale . retraite',
-	'protection sociale . famille',
-	'protection sociale . assurance chômage',
-	'protection sociale . formation',
-	'protection sociale . transport',
-	'protection sociale . autres',
+	'salarié . cotisations . catégories . maladie',
+	'salarié . cotisations . catégories . atmp',
+	'salarié . cotisations . catégories . retraite',
+	'salarié . cotisations . catégories . divers',
+	'salarié . cotisations . catégories . convention collective',
+	'salarié . cotisations . catégories . CSG-CRDS',
+	'salarié . cotisations . catégories . exonérations',
+	'salarié . cotisations . catégories . facultatives',
 ] as Array<DottedName>
 
 type Section = (typeof SECTION_ORDER)[number]
 
 function getSection(rule: RuleNode): Section {
-	const section = `protection sociale . ${
+	const section = `salarié . cotisations . catégories . ${
 		(rule.rawNode as Rule & { cotisation?: { branche?: string } })?.cotisation
 			?.branche ?? ''
 	}` as Section
@@ -98,7 +99,7 @@ function getSection(rule: RuleNode): Section {
 		return section
 	}
 
-	return 'protection sociale . autres'
+	return 'salarié . cotisations . catégories . divers'
 }
 
 export function getCotisationsBySection(

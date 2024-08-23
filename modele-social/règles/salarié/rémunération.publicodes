@@ -394,13 +394,20 @@ salarié . rémunération . frais professionnels:
 
   avec:
     déductible:
-      titre: Part déductibles
+      titre: Part déductible
       description: >-
         Part des frais déduite de l'assiette de cotisation sociale et pour le calcul
         de l'impôt sur le revenu.
       somme:
         - titres-restaurant . déductible
         - trajets domicile travail . déductible
+
+    non déductible:
+      titre: Part non déductible
+      somme:
+        - titres-restaurant . employeur
+        - trajets domicile travail . employeur
+      abattement: déductible
 
     titres-restaurant:
       icônes: 🍽️
@@ -424,7 +431,7 @@ salarié . rémunération . frais professionnels:
 
       avec:
         déductible:
-          titre: Titre restaurant déductibles
+          titre: Part déductible
           valeur: employeur
           plafond:
             produit:
@@ -480,6 +487,10 @@ salarié . rémunération . frais professionnels:
           suggestions:
             5 repas/semaine: 5 titres-restaurant/semaine * période . semaines par mois
             3 repas/semaine: 3 titres-restaurant/semaine * période . semaines par mois
+
+        salarié:
+          valeur: montant
+          abattement: employeur
 
         taux employeur:
           description: >-

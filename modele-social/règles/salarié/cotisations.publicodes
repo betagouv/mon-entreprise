@@ -11,44 +11,68 @@ salarié . cotisations:
       titre: part employeur
       somme:
         - maladie . employeur
-        - CSA
+        - prévoyances . santé . employeur
         - ATMP
-        - vieillesse . employeur
-        - retraite complémentaire . employeur
-        - CEG . employeur
-        - CET . employeur
+        - vieillesse . plafonnée . employeur
+        - vieillesse . déplafonnée . employeur
+        # TODO: séparer T1 et T2
+        - retraite complémentaire-CEG-CET . employeur
         - allocations familiales
-        - chômage . employeur
+        - assurance chômage
         - APEC . employeur
-        - AGS
-        - FNAL
-        - PEEC
-        - contribution au dialogue social
-        - formation professionnelle
-        - versement mobilité
-        - taxe d'apprentissage
-        - CPF CDD
-        - forfait social
-        - prévoyances . employeur
+        - autres employeur
+        - prévoyances . incapacité invalidité décès . employeur
+        # - retraite supplémentaire . employeur
       abattement: exonérations . employeur
 
     salarié:
       titre: part salarié
       somme:
-        - vieillesse . salarié
         - maladie . salarié
-        - retraite complémentaire . salarié
-        - CEG . salarié
-        - CET . salarié
-        - chômage . salarié
-        - CSG-CRDS
+        - prévoyances . santé . salarié
+        - vieillesse . plafonnée . salarié
+        - vieillesse . déplafonnée . salarié
+        # TODO: séparer T1 et T2
+        - retraite complémentaire-CEG-CET . salarié
         - APEC . salarié
-        - prévoyances . salarié
+        - CSG-CRDS . CSG . déductible
+        - CSG-CRDS . sur revenus imposables non déductible
+        - CSG-CRDS . sur revenus non imposables
+        - prévoyances . incapacité invalidité décès . salarié
         # - retraite supplémentaire . salarié
       abattement: exonérations . salarié
 
+salarié . cotisations . catégories:
+  avec:
+    maladie:
+      titre: santé
+      type: branche
+    atmp:
+      titre: accidents du travail & maladies professionnelles
+      type: branche
+    retraite:
+      titre: retraite
+      type: branche
+    divers:
+      titre: cotisations employeur
+      type: branche
+    convention collective:
+      titre: cotisations statutaires ou prévues par la convention collective
+      type: branche
+    CSG-CRDS:
+      titre: CSG / CRDS
+      type: branche
+    exonérations:
+      titre: exonérations et allègements de cotisations
+      type: branche
+    facultatives:
+      titre: cotisations et contributions sociales facultatives
+      type: branche
+
 salarié . cotisations . exonérations:
-  titre: Réductions et exonérations
+  cotisation:
+    branche: exonérations
+  titre: exonérations et allègements de cotisations
   formule:
     somme:
       - employeur
@@ -394,6 +418,26 @@ salarié . cotisations . CPF CDD:
   références:
     Code du travail - Article L6322-37: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000022234996&cidTexte=LEGITEXT000006072050
 
+salarié . cotisations . retraite complémentaire-CEG-CET:
+  titre: retraite complémentaire, CEG et CET
+  cotisation:
+    branche: retraite
+  somme:
+    - employeur
+    - salarié
+
+  avec:
+    employeur:
+      somme:
+        - retraite complémentaire . employeur
+        - CEG . employeur
+        - CET . employeur
+    salarié:
+      somme:
+        - retraite complémentaire . salarié
+        - CEG . salarié
+        - CET . salarié
+
 salarié . cotisations . CEG:
   titre: contribution d'équilibre général
   description: >-
@@ -552,9 +596,10 @@ salarié . cotisations . AGS:
         - sinon: 0.15%
 
 salarié . cotisations . allocations familiales:
+  titre: famille
   cotisation:
     dû par: employeur
-    branche: famille
+    branche: divers
   produit:
     - cotisations . assiette
     - taux
@@ -583,7 +628,9 @@ salarié . cotisations . allocations familiales:
         Code de la sécurité sociale - Article D241-3-2: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030067277/
 
 salarié . cotisations . APEC:
-  titre: Association pour l’emploi des cadres
+  cotisation:
+    branche: divers
+  titre: Apec
   acronymes: APEC
   description: |
     Cotisation spécifique aux cadre pour le fonctionnement de l'APEC
@@ -610,36 +657,55 @@ salarié . cotisations . APEC:
         - 0.024%
       titre: part salarié
 
+salarié . cotisations . assurance chômage:
+  cotisation:
+    dû par: employeur
+    branche: divers
+  somme:
+    - AGS
+    - chômage
+
 salarié . cotisations . chômage:
   cotisation:
+    dû par: employeur
     branche: assurance chômage
   description: Cotisation d’assurance chômage
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
-  somme:
-    - salarié
-    - employeur
+  produit:
+    - valeur: cotisations . assiette
+      plafond: 4 * temps de travail . plafond sécurité sociale
+    - 4.05%
 
   avec:
     employeur:
+      déprécié: oui
       produit:
         - valeur: cotisations . assiette
           plafond: 4 * temps de travail . plafond sécurité sociale
         - taux
       titre: part employeur
-    employeur . taux: 4.05%
+    employeur . taux:
+      déprécié: oui
+      valeur: 4.05%
 
     salarié:
+      déprécié: oui
       produit:
         - valeur: cotisations . assiette
           plafond: 4 * temps de travail . plafond sécurité sociale
         - taux
       titre: part salarié
-    salarié . taux: 0%
+    salarié . taux:
+      déprécié: oui
+      valeur: 0%
 
 salarié . cotisations . ATMP:
+  cotisation:
+    dû par: employeur
+    branche: atmp
   experimental: oui
-  titre: Accidents du Travail et Maladies Professionnelles
+  titre: accidents du travail & maladies professionnelles
   description: Cotisation due au titre des Accidents du Travail et Maladies
     Professionnelles.
   produit:
@@ -778,6 +844,22 @@ salarié . cotisations . CSG-CRDS . non déductible:
       - revenus de remplacement . CSG non déductible
       - revenus de remplacement . CRDS
 
+salarié . cotisations . CSG-CRDS . sur revenus imposables non déductible:
+  titre: CSG / CRDS non déductible de l'impôt sur le revenu
+  cotisation:
+    branche: CSG-CRDS
+  somme:
+    - CSG . non déductible . revenus imposables
+    - CRDS
+
+salarié . cotisations . CSG-CRDS . sur revenus non imposables:
+  titre: CSG / CRDS sur les revenus non imposables
+  cotisation:
+    branche: CSG-CRDS
+  valeur: CSG . non déductible . heures supplémentaires et complémentaires défiscalisées
+  références:
+    BOSS: https://boss.gouv.fr/portail/accueil/bulletin-de-paie/regles-generales-relatives-au-bu.html#titre-iiiprecisions-sur-la-definition-17quels-sont-les-montants-devant
+
 salarié . cotisations . CSG-CRDS . CSG:
   non applicable si: établissement . commune . département . outre-mer . Mayotte
   description: >-
@@ -798,6 +880,9 @@ salarié . cotisations . CSG-CRDS . CSG:
 
   avec:
     déductible:
+      titre: CSG déductible de l'impôt sur le revenu
+      cotisation:
+        branche: CSG-CRDS
       produit:
         - assiette de base
         - taux
@@ -805,16 +890,19 @@ salarié . cotisations . CSG-CRDS . CSG:
 
     non déductible:
       somme:
-        - produit:
-            - assiette de base
-            - taux
+        - revenus imposables
         - heures supplémentaires et complémentaires défiscalisées
+
+    non déductible . revenus imposables:
+      produit:
+        - assiette de base
+        - taux
 
     non déductible . heures supplémentaires et complémentaires défiscalisées:
       produit:
         - assiette heures supplémentaires et complémentaires défiscalisées
         - déductible . taux + non déductible . taux
-      privé: oui
+
     non déductible . taux: 2.4%
 
 salarié . cotisations . CSG-CRDS . CRDS:
@@ -877,8 +965,6 @@ salarié . cotisations . FNAL:
   titre: Contribution au Fonds National d’Aide au Logement
   description: |
     Le fonds national d’aide au logement (Fnal) est une contribution qui assure le financement de l’allocation logement.
-  cotisation:
-    branche: famille
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/fonds-national-aide-logement.html
     Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
@@ -900,10 +986,7 @@ salarié . cotisations . FNAL:
         - sinon: 0.5%
 
 salarié . cotisations . formation professionnelle:
-  cotisation:
-    branche: formation
-    # TODO majoration pour les entreprises de travail temporaire
-    #
+  # TODO majoration pour les entreprises de travail temporaire
   description:
     Cette contribution obligatoire est collectée par l'OPCO (opérateurs
     de compétences) désigné par la branche conventionnelle de l'entreprise, ou à
@@ -937,6 +1020,7 @@ salarié . cotisations . formation professionnelle:
     Taux réduit: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037387044
 
 salarié . cotisations . maladie:
+  titre: Sécurité Sociale Maladie Maternité Invalidité Décès
   description:
     La cotisation d’assurance maladie-maternité-invalidité finance les
     prestations versées par le régime général de Sécurité sociale en cas
@@ -1002,8 +1086,6 @@ salarié . cotisations . maladie:
 
 salarié . cotisations . CSA:
   titre: Contribution solidarité autonomie
-  cotisation:
-    branche: maladie
   acronyme: CSA
   produit:
     - cotisations . assiette
@@ -1020,8 +1102,6 @@ salarié . cotisations . PEEC:
   alias: Dispositif du 1% logement
   acronyme: PEEC
   description: Participation des employeurs à l'effort de construction
-  cotisation:
-    branche: logement
   références:
     fiche: https://entreprendre.service-public.fr/vosdroits/F22583
   note: |
@@ -1037,13 +1117,26 @@ salarié . cotisations . prévoyances:
   possiblement non applicable: oui
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries/embaucher/prevoyance-complementaire.html
-  cotisation:
-    branche: maladie
   somme:
     - employeur
     - salarié
 
   avec:
+    incapacité invalidité décès:
+      cotisation:
+        branche: facultatives
+      titre: Prévoyance, Incapacité, Invalidité, Décès, Autres
+      somme:
+        - employeur
+        - salarié
+      avec:
+        employeur:
+          somme:
+            - conventionnelle . employeur
+            - employeur . cadres
+        salarié:
+          valeur: conventionnelle . salarié
+
     conventionnelle:
       somme:
         - employeur
@@ -1085,7 +1178,6 @@ salarié . cotisations . prévoyances:
     employeur . cadres:
       applicable si: contrat . statut cadre
       description: prévoyance obligatoire pour les cadres
-      privé: oui
       produit:
         - valeur: cotisations . assiette . sans prévoyance
           plafond: plafond sécurité sociale
@@ -1112,6 +1204,9 @@ salarié . cotisations . prévoyances:
           Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
 
 salarié . cotisations . prévoyances . santé:
+  titre: complémentaire garanties frais de santé obligatoire
+  cotisation:
+    branche: maladie
   avec:
     employeur: montant * taux employeur
 
@@ -1160,8 +1255,6 @@ salarié . cotisations . prévoyances . santé:
             minimum
 
 salarié . cotisations . vieillesse:
-  cotisation:
-    branche: retraite
   description: Cotisation vieillesse pour le régime de retraite de base des salariés.
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/at-vieillesse-csa-dialoguesocial.html#ancre-cotisation-d-assurance-vieilless
@@ -1172,6 +1265,30 @@ salarié . cotisations . vieillesse:
     - employeur
 
   avec:
+    déplafonnée:
+      cotisation:
+        branche: retraite
+      titre: Sécurité Sociale Vieillesse déplafonnée
+      somme:
+        - employeur
+        - salarié
+
+      avec:
+        employeur: employeur . déplafonnée
+        salarié: salarié . déplafonnée
+
+    plafonnée:
+      cotisation:
+        branche: retraite
+      titre: Sécurité Sociale Vieillesse plafonnée
+      somme:
+        - employeur
+        - salarié
+
+      avec:
+        employeur: employeur . plafonnée
+        salarié: salarié . plafonnée
+
     employeur:
       titre: part employeur
       somme:
@@ -1219,8 +1336,6 @@ salarié . cotisations . vieillesse:
         taux: 6.90%
 
 salarié . cotisations . taxe d'apprentissage:
-  cotisation:
-    branche: formation
   description:
     La taxe d'apprentissage permet de financer par les entreprises les
     dépenses de l'apprentissage et des formations technologiques et
@@ -1304,8 +1419,6 @@ salarié . cotisations . taxe d'apprentissage:
 salarié . cotisations . versement mobilité:
   description: Contribution sur les salaires destinée au financement des transports publics.
   applicable si: entreprise . salariés . effectif > 10
-  cotisation:
-    branche: transport
   produit:
     - cotisations . assiette
     - établissement . commune . taux versement mobilité
@@ -1331,7 +1444,24 @@ salarié . cotisations . forfait social:
   produit:
     - prévoyances . employeur
     - 8%
-  # TODO Les cotisations au taux de 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles...)
+  # TODO Les cotisations au taux de 10, 16 et 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles...)
+
+salarié . cotisations . autres employeur:
+  titre: Autres charges dues par l'employeur
+  cotisation:
+    branche: divers
+  somme:
+    - versement mobilité
+    - FNAL
+    - CSA
+    - forfait social
+    - taxe d'apprentissage
+    - formation professionnelle
+    - CPF CDD
+    - PEEC
+    - contribution au dialogue social
+  références:
+    Arrêté du 25 février 2016 fixant les libellés, l'ordre et le regroupement des informations figurant sur le bulletin de paie mentionnées à l'article R. 3243-2 du code du travail: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000047098507
 
 salarié . cotisations . assiette forfaitaire:
   applicable si: non
@@ -1385,3 +1515,23 @@ salarié . cotisations . assiette forfaitaire:
         Voulez-vous calculer les cotisations sur la rémunération réelle (au
         lieu de la base forfaitaire) ?
       par défaut: non
+
+# TODO: ajouter les cotisations sur la retraite supplémentaire
+
+# salarié . cotisations . retraite supplémentaire :
+#   titre: retraite supplémentaire
+#   cotisation:
+#     branche: facultatives
+#   somme:
+#     - employeur
+#     - salarié
+
+#   avec:
+#     employeur:
+#       produit:
+#         - cotisations . assiette
+#         - 0 %
+#     salarié :
+#       produit:
+#         - cotisations . assiette
+#         - 0 %

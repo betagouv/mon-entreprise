@@ -125,6 +125,7 @@ Fermer: Close
 Fermer le module "Donner son avis": Close the "Give your opinion" module
 Fiche de paie: Pay slip
 Fond de la boite de dialogue: Dialog box background
+Frais de transport: Transport costs
 Graphique des principaux simulateurs, présence d’une alternative accessible après l’image: Graphics of the main simulators, with an alternative available after the image.
 Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image:
   Detailed statistical graph of satisfaction, presence of an accessible
@@ -135,6 +136,7 @@ Graphique statistiques détaillés du nombre visites par jour, présence d’une
 Habituellement: Usually
 Impôt: Tax
 Impôt au barème: Tax scale
+Impôt sur le revenu: Income tax
 Impôts: Taxes
 Information: Information
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
@@ -189,6 +191,11 @@ Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
 Montant annuel: Annual amount
 Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant mensuel: Monthly amount
+Montant net des HC/HS exonérées: Net amount of exempt HC/HS
+Montant net imposable: Net taxable amount
+Montant net social: Net corporate amount
+Montant net à payer: Net amount payable
+Montant net à payer avant impôt sur le revenu: Net amount payable before income tax
 Mots-clés définissants l'activité: Keywords defining the activity
 Nombres: Numbers
 Non: No
@@ -241,6 +248,7 @@ Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
 Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.: Search, open the dialog box to enter your search terms.
+Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Enter an e-mail address (in nom@domaine.com format) to receive a reply.
 Replier: Fold
@@ -264,7 +272,7 @@ Répondez à quelques questions additionnelles afin de préciser votre résultat
 Résultat fiscal: Taxable income
 Réussite: Success
 Saisissez votre domaine d'activité: Enter your field of activity
-Salaire: Salary
+Salaire brut: Gross salary
 Salaire brut mensuel: Gross monthly salary
 Salaire net: Net salary
 Salariés et embauche: Employees and hiring
@@ -293,7 +301,8 @@ Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le 
   site, by month.
 Tableau indiquant le nombre de visites par {{period}}.: Table showing the number of visits per {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator per month.
-Total des retenues: Total deductions
+Titres-restaurant: Meal vouchers
+Total des cotisations et contributions: Total contributions
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
   "Every year, depending on how much you earn, <2>you earn points that make up
   your supplementary pension</2>. At the end of your career, your points are
@@ -666,6 +675,7 @@ impotSociété:
     into account reduced corporate tax rates."
 impôt: tax
 impôt sur le revenu: income tax
+impôt sur le revenu prélevé à la source: income tax deducted at source
 info: info
 intégration:
   description: Tools for developers
