@@ -284,6 +284,7 @@ salarié . coût total employeur:
 
   somme:
     - rémunération . brut
+    - rémunération . frais professionnels . déductible
     - cotisations . employeur
     - activité partielle . indemnités
     - régimes spécifiques . taxe sur les salaires

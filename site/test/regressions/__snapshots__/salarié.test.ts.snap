@@ -262,10 +262,10 @@ Notifications affichées : salarié . contrat . CDD . information"
 exports[`calculate simulations-salarié > cdd 4`] = `
 "salarié . contrat . salaire brut: 2200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4412
-salarié . rémunération . MNS: 2508
-salarié . rémunération . net . payé après impôt: 2241
-salarié . rémunération . net . à payer avant impôt: 2375
+salarié . coût total employeur: 4388
+salarié . rémunération . MNS: 2522
+salarié . rémunération . net . payé après impôt: 2258
+salarié . rémunération . net . à payer avant impôt: 2389
 
 Notifications affichées : salarié . contrat . CDD . information"
 `;
@@ -403,163 +403,163 @@ salarié . rémunération . net . à payer avant impôt: 2125"
 exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4387
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 2414
-salarié . rémunération . net . à payer avant impôt: 2553"
+salarié . coût total employeur: 4372
+salarié . rémunération . MNS: 2520
+salarié . rémunération . net . payé après impôt: 2424
+salarié . rémunération . net . à payer avant impôt: 2562"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 5002
-salarié . rémunération . MNS: 2857
-salarié . rémunération . net . payé après impôt: 2700
-salarié . rémunération . net . à payer avant impôt: 2924"
+salarié . coût total employeur: 4978
+salarié . rémunération . MNS: 2871
+salarié . rémunération . net . payé après impôt: 2718
+salarié . rémunération . net . à payer avant impôt: 2937"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 3`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4693
-salarié . rémunération . MNS: 2544
-salarié . rémunération . net . payé après impôt: 2695
-salarié . rémunération . net . à payer avant impôt: 2836"
+salarié . coût total employeur: 4590
+salarié . rémunération . MNS: 2605
+salarié . rémunération . net . payé après impôt: 2768
+salarié . rémunération . net . à payer avant impôt: 2897"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4385
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 2412
-salarié . rémunération . net . à payer avant impôt: 2551"
+salarié . coût total employeur: 4371
+salarié . rémunération . MNS: 2520
+salarié . rémunération . net . payé après impôt: 2422
+salarié . rémunération . net . à payer avant impôt: 2560"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 5095
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 3122
-salarié . rémunération . net . à payer avant impôt: 3261"
+salarié . coût total employeur: 4631
+salarié . rémunération . MNS: 2667
+salarié . rémunération . net . payé après impôt: 3347
+salarié . rémunération . net . à payer avant impôt: 3417"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 3`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4385
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 2412
-salarié . rémunération . net . à payer avant impôt: 2551"
+salarié . coût total employeur: 4371
+salarié . rémunération . MNS: 2520
+salarié . rémunération . net . payé après impôt: 2422
+salarié . rémunération . net . à payer avant impôt: 2560"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abonnement transports publics 4`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4361
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 2388
-salarié . rémunération . net . à payer avant impôt: 2527"
+salarié . coût total employeur: 4355
+salarié . rémunération . MNS: 2515
+salarié . rémunération . net . payé après impôt: 2392
+salarié . rémunération . net . à payer avant impôt: 2531"
 `;
 
 exports[`calculate simulations-salarié > frais pro - outre-mer 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4103
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 2531
-salarié . rémunération . net . à payer avant impôt: 2586"
+salarié . coût total employeur: 4042
+salarié . rémunération . MNS: 2527
+salarié . rémunération . net . payé après impôt: 2548
+salarié . rémunération . net . à payer avant impôt: 2602"
 `;
 
 exports[`calculate simulations-salarié > frais pro - outre-mer 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4116
-salarié . rémunération . MNS: 2524
-salarié . rémunération . net . payé après impôt: 2527
-salarié . rémunération . net . à payer avant impôt: 2583"
+salarié . coût total employeur: 4069
+salarié . rémunération . MNS: 2537
+salarié . rémunération . net . payé après impôt: 2541
+salarié . rémunération . net . à payer avant impôt: 2595"
 `;
 
 exports[`calculate simulations-salarié > frais pro - titres restaurant 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2323
-salarié . rémunération . MNS: 1561
-salarié . rémunération . net . payé après impôt: 1513
-salarié . rémunération . net . à payer avant impôt: 1521"
+salarié . coût total employeur: 2287
+salarié . rémunération . MNS: 1570
+salarié . rémunération . net . payé après impôt: 1558
+salarié . rémunération . net . à payer avant impôt: 1566"
 `;
 
 exports[`calculate simulations-salarié > frais pro - titres restaurant 2`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4295
-salarié . rémunération . MNS: 2397
-salarié . rémunération . net . payé après impôt: 2008
-salarié . rémunération . net . à payer avant impôt: 2141"
+salarié . coût total employeur: 4244
+salarié . rémunération . MNS: 2427
+salarié . rémunération . net . payé après impôt: 2284
+salarié . rémunération . net . à payer avant impôt: 2411"
 `;
 
 exports[`calculate simulations-salarié > frais pro - titres restaurant 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2367
-salarié . rémunération . MNS: 1561
-salarié . rémunération . net . payé après impôt: 1485
-salarié . rémunération . net . à payer avant impôt: 1493"
+salarié . coût total employeur: 2292
+salarié . rémunération . MNS: 1579
+salarié . rémunération . net . payé après impôt: 1510
+salarié . rémunération . net . à payer avant impôt: 1510"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4387
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 2414
-salarié . rémunération . net . à payer avant impôt: 2553"
+salarié . coût total employeur: 4372
+salarié . rémunération . MNS: 2520
+salarié . rémunération . net . payé après impôt: 2424
+salarié . rémunération . net . à payer avant impôt: 2562"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4387
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 2414
-salarié . rémunération . net . à payer avant impôt: 2553"
+salarié . coût total employeur: 4372
+salarié . rémunération . MNS: 2520
+salarié . rémunération . net . payé après impôt: 2424
+salarié . rémunération . net . à payer avant impôt: 2562"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 3`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 5000
-salarié . rémunération . MNS: 2861
-salarié . rémunération . net . payé après impôt: 2695
-salarié . rémunération . net . à payer avant impôt: 2919"
+salarié . coût total employeur: 4980
+salarié . rémunération . MNS: 2873
+salarié . rémunération . net . payé après impôt: 2711
+salarié . rémunération . net . à payer avant impôt: 2931"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 4`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4387
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 2414
-salarié . rémunération . net . à payer avant impôt: 2553"
+salarié . coût total employeur: 4372
+salarié . rémunération . MNS: 2520
+salarié . rémunération . net . payé après impôt: 2424
+salarié . rémunération . net . à payer avant impôt: 2562"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 5`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4362
-salarié . rémunération . MNS: 2511
-salarié . rémunération . net . payé après impôt: 2389
-salarié . rémunération . net . à payer avant impôt: 2528"
+salarié . coût total employeur: 4356
+salarié . rémunération . MNS: 2515
+salarié . rémunération . net . payé après impôt: 2393
+salarié . rémunération . net . à payer avant impôt: 2531"
 `;
 
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 6`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4156
-salarié . rémunération . MNS: 2589
-salarié . rémunération . net . payé après impôt: 2534
-salarié . rémunération . net . à payer avant impôt: 2606"
+salarié . coût total employeur: 4151
+salarié . rémunération . MNS: 2592
+salarié . rémunération . net . payé après impôt: 2537
+salarié . rémunération . net . à payer avant impôt: 2609"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 1`] = `

@@ -16,7 +16,10 @@ salarié . rémunération . brut:
     - heures complémentaires
     - frais professionnels
 
-  abattement: activité partielle . retrait absence
+  abattement:
+    somme:
+      - activité partielle . retrait absence
+      - frais professionnels . déductible
 
 salarié . rémunération . net:
   description:
@@ -49,8 +52,9 @@ salarié . rémunération . net . à payer avant impôt:
 
   somme:
     - net
+    - frais professionnels . trajets domicile travail . déductible
+    - (- frais professionnels . titres-restaurant . salarié)
     - (- avantages en nature . montant)
-    - (- frais professionnels . titres-restaurant . montant)
 
 salarié . rémunération . net . imposable:
   titre: Salaire net imposable
@@ -390,7 +394,7 @@ salarié . rémunération . frais professionnels:
 
   avec:
     déductible:
-      titre: Part déductibles
+      titre: Part déductible
       description: >-
         Part des frais déduite de l'assiette de cotisation sociale et pour le calcul
         de l'impôt sur le revenu.
@@ -427,7 +431,7 @@ salarié . rémunération . frais professionnels:
 
       avec:
         déductible:
-          titre: Titre restaurant déductibles
+          titre: Part déductible
           valeur: employeur
           plafond:
             produit:
@@ -454,6 +458,7 @@ salarié . rémunération . frais professionnels:
             #   alors: 5.69 €/titres-restaurant
             - si: date >= 01/2021
               alors: 5.55 €/titres-restaurant
+
         employeur: montant * taux employeur
 
         montant:

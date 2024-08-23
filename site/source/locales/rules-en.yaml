@@ -10503,15 +10503,15 @@ salarié . rémunération . frais professionnels:
         Part des frais déduite de l'assiette de cotisation sociale et
         pour le calcul de l'impôt sur le revenu.
       titre.en: '[automatic] Deductible portion'
-      titre.fr: Part déductibles
+      titre.fr: Part déductible
     non déductible:
       titre.en: '[automatic] Non-deductible portion'
       titre.fr: Part non déductible
     titres-restaurant:
       avec:
         déductible:
-          titre.en: '[automatic] Deductible luncheon vouchers'
-          titre.fr: Titre restaurant déductibles
+          titre.en: '[automatic] Deductible portion'
+          titre.fr: Part déductible
         déductible . plafond unitaire:
           titre.en: '[automatic] unit ceiling'
           titre.fr: plafond unitaire
