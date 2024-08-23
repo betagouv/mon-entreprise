@@ -27,15 +27,16 @@
 	padding-bottom: 0.5rem;
 	padding-left: 0.5rem;
 	align-self: flex-end;
+	width: 100%;
 }
-.payslip__container h3:first-child {
+.payslip__container h3 {
 	padding-left: 0;
 	font-size: 1.125rem;
 }
 
 .payslip__total {
 	font-weight: bold;
-	margin-top: 1em;
+	margin-top: 1.5rem;
 	background-color: transparent !important;
 	color: inherit;
 }
