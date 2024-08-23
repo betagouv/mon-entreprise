@@ -2,48 +2,96 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import './FicheDePaie.css'
 
-import { H4 } from '@/design-system/typography/heading'
+import { DottedName } from 'modele-social'
 
+import { H3, H4 } from '@/design-system/typography/heading'
+
+import { ExplicableRule } from '../conversation/Explicable'
 import { Condition } from '../EngineValue/Condition'
+import Value from '../EngineValue/Value'
 import Line from './Line'
+
+function SalaireLine({ rule, title }: { rule: DottedName; title?: string }) {
+	return (
+		<>
+			<H4>
+				{title}
+				<ExplicableRule light dottedName={rule} />
+			</H4>
+			<Value linkToRule={false} expression={rule} unit="€" displayedUnit="€" />
+		</>
+	)
+}
 
 export default function SalaireNet() {
 	const { t } = useTranslation()
 
 	return (
 		<div className="payslip__salarySection">
-			<H4 className="payslip__salaryTitle" as="h3">
+			<H3 className="payslip__salaryTitle">
 				<Trans>Salaire net</Trans>
-			</H4>
-			<Line rule="salarié . rémunération . net . imposable" />
+			</H3>
+
+			<SalaireLine
+				rule="salarié . rémunération . montant net social"
+				title={t('Montant net social')}
+			/>
+
 			<Condition
 				expression={{
-					'toutes ces conditions': [
-						'salarié . rémunération . avantages en nature', // bool
+					'une de ces conditions': [
+						'salarié . rémunération . frais professionnels . trajets domicile travail . déductible > 0',
 						'salarié . rémunération . frais professionnels . titres-restaurant', // bool
+						'salarié . rémunération . avantages en nature', // bool
 					],
 				}}
 			>
-				<Line rule="salarié . rémunération . net . à payer avant impôt" />
+				<H4>
+					<Trans>Remboursements et déductions diverses</Trans>
+				</H4>
+				<span />
 			</Condition>
+			<Line
+				rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
+				title={t('Frais de transport')}
+			/>
+			<Line
+				negative
+				rule="salarié . rémunération . frais professionnels . titres-restaurant . salarié"
+				title={t('Titres-restaurant')}
+			/>
 			<Line
 				negative
 				rule="salarié . rémunération . avantages en nature . montant"
 			/>
+
+			<SalaireLine
+				rule="salarié . rémunération . net . à payer avant impôt"
+				title={t('Montant net à payer avant impôt sur le revenu')}
+			/>
+
+			<H4>
+				<Trans>Impôt sur le revenu</Trans>
+			</H4>
+			<span />
+			<Line
+				rule="salarié . rémunération . net . imposable"
+				title={t('Montant net imposable')}
+			/>
+			<Line
+				rule="salarié . rémunération . net . imposable . heures supplémentaires et complémentaires défiscalisées"
+				title={t('Montant net des HC/HS exonérées')}
+			/>
 			<Line
 				negative
-				rule="salarié . rémunération . frais professionnels . titres-restaurant . montant"
+				rule="impôt . montant"
+				title={t('impôt sur le revenu prélevé à la source')}
 			/>
-			<Line rule="salarié . rémunération . net . à payer avant impôt" />
-			<Condition expression="impôt . montant > 0">
-				<Line
-					negative
-					rule="impôt . montant"
-					title={t('impôt sur le revenu')}
-					unit="€/mois"
-				/>
-				<Line rule="salarié . rémunération . net . payé après impôt" />
-			</Condition>
+
+			<SalaireLine
+				rule="salarié . rémunération . net . payé après impôt"
+				title={t('Montant net à payer')}
+			/>
 		</div>
 	)
 }

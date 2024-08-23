@@ -25,10 +25,6 @@ export default function FicheDePaie() {
 
 			<SalaireBrut />
 			<Cotisations />
-			{/* <MontantNetSocial />
-      <Remboursements />
-      <SalaireNetAvantImpot />
-      <ImpotSurLeRevenu /> */}
 			<SalaireNet />
 		</StyledContainer>
 	)
