@@ -132,6 +132,7 @@ Fermer: Fermer
 Fermer le module "Donner son avis": Fermer le module "Donner son avis"
 Fiche de paie: Fiche de paie
 Fond de la boite de dialogue: Fond de la boite de dialogue
+Frais de transport: Frais de transport
 Graphique des principaux simulateurs, présence d’une alternative accessible après l’image:
   Graphique des principaux simulateurs, présence d’une alternative accessible
   après l’image
@@ -144,6 +145,7 @@ Graphique statistiques détaillés du nombre visites par jour, présence d’une
 Habituellement: Habituellement
 Impôt: Impôt
 Impôt au barème: Impôt au barème
+Impôt sur le revenu: Impôt sur le revenu
 Impôts: Impôts
 Information: Information
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
@@ -201,6 +203,11 @@ Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
 Montant annuel: Montant annuel
 Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
 Montant mensuel: Montant mensuel
+Montant net des HC/HS exonérées: Montant net des HC/HS exonérées
+Montant net imposable: Montant net imposable
+Montant net social: Montant net social
+Montant net à payer: Montant net à payer
+Montant net à payer avant impôt sur le revenu: Montant net à payer avant impôt sur le revenu
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
 Nombres: Nombres
 Non: Non
@@ -255,6 +262,7 @@ Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.: Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.
+Remboursements et déductions diverses: Remboursements et déductions diverses
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
     nom@domaine.com) pour recevoir une réponse
@@ -279,7 +287,7 @@ Répondez à quelques questions additionnelles afin de préciser votre résultat
 Résultat fiscal: Résultat fiscal
 Réussite: Réussite
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
-Salaire: Salaire
+Salaire brut: Salaire brut
 Salaire brut mensuel: Salaire brut mensuel
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
@@ -309,7 +317,8 @@ Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le 
   le site mon-entreprise par mois.
 Tableau indiquant le nombre de visites par {{period}}.: Tableau indiquant le nombre de visites par {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
-Total des retenues: Total des retenues
+Titres-restaurant: Titres-restaurant
+Total des cotisations et contributions: Total des cotisations et contributions
 "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
   "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui
   constituent votre pension de retraite complémentaire</2>. En fin de carrière,
@@ -693,6 +702,7 @@ impotSociété:
     réduits de l’impôt sur les sociétés."
 impôt: impôt
 impôt sur le revenu: impôt sur le revenu
+impôt sur le revenu prélevé à la source: impôt sur le revenu prélevé à la source
 info: info
 intégration:
   description: Outils pour les développeurs
