@@ -122,6 +122,8 @@ artiste-auteur . cotisations . vieillesse:
     somme:
       - plafonnée
       - déplafonnée
+  références:
+    Guide de la retraite des artistes-auteurs 2024: https://www.secu-artistes-auteurs.fr/sites/default/files/2024-03/GUIDE_RETRAITE_01_24.pdf
 
   avec:
     déplafonnée:
@@ -185,7 +187,7 @@ artiste-auteur . cotisations . IRCEC:
       - cotisation RACD
       - cotisation RACL
   références:
-    Guide de la retraite des artistes-auteurs 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
+    Guide de la retraite complémentaire des artistes-auteurs 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP:
   applicable si: assiette >= seuil d'affiliation
