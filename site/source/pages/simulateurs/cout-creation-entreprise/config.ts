@@ -52,6 +52,7 @@ export function coûtCréationEntrepriseConfig({
 			},
 		},
 		component: CoutCreationEntreprise,
+		nextSteps: ['choix-statut'],
 
 		// Remove this "as const" when we upgrade to typescript v5:
 	} as const)
