@@ -359,6 +359,7 @@ export const SwitchInput = (props: {
 			id={id}
 			key={key}
 			invertLabel={invertLabel}
+			aria-label={label}
 		>
 			{label}
 		</Switch>
