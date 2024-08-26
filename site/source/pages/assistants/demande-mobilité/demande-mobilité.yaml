@@ -99,9 +99,24 @@ situation . notification . TI:
   valeur: oui
   type: groupe
   titre: ''
-  non applicable si: situation . auto-entrepreneur
+  non applicable si:
+    une de ces conditions:
+      - situation . auto-entrepreneur
+      - situation . PL
+      - situation . AC
   description: >-
     [Plus d'informations](https://www.urssaf.fr/portail/home/independant/ma-situation-ou-mes-coordonnees/je-souhaite-travailler-hors-de-f.html)
+
+situation . notification . PL:
+  valeur: oui
+  type: groupe
+  titre: ''
+  applicable si:
+    une de ces conditions:
+      - situation . PL
+      - situation . AC
+  description: >-
+    [Plus d'informations](https://www.urssaf.fr/accueil/services/travail-etranger-mobilite.html)
 
 situation . notification . auto-entrepreneur:
   valeur: oui
