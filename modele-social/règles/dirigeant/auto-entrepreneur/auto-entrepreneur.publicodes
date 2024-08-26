@@ -454,9 +454,11 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description: >
     Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé
     en même temps que vos cotisations (par mois ou par trimestre) avec
-    application d’un taux spécifique en fonction de votre activité. Pour en
-    bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en
-    2018
+    application d’un taux spécifique en fonction de votre activité.
+    Pour en bénéficier en 2024, votre revenu fiscal de référence pour l'année
+    2022 ne doit pas excéder 27 478 € pour une part de quotient familial.
+  références:
+    En tant que micro-entrepreneur, sous quelles conditions puis-je opter pour le versement libératoire de l'impôt ?: https://www.impots.gouv.fr/professionnel/questions/en-tant-que-micro-entrepreneur-sous-quelles-conditions-puis-je-opter-pour-l
   question: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
   par défaut: non
 
