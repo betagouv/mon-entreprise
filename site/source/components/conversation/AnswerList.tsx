@@ -20,8 +20,8 @@ import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
+import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
 import {
-	answeredQuestionsSelector,
 	companySituationSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
@@ -44,7 +44,7 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
 	const companySituation = useSelector(companySituationSelector)
-	const passedQuestions = useSelector(answeredQuestionsSelector)
+	const passedQuestions = useSelector(questionsRéponduesSelector)
 	const answeredAndPassedQuestions = useMemo(
 		() =>
 			(Object.keys(situation) as DottedName[])

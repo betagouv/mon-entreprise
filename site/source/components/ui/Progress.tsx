@@ -15,7 +15,6 @@ export default function Progress({
 	progress,
 	minValue = 0,
 	maxValue = 1,
-	step = 1,
 }: ProgressProps) {
 	const { t } = useTranslation()
 	const propsBar = {
@@ -27,7 +26,7 @@ export default function Progress({
 	}
 
 	const { progressBarProps, labelProps } = useProgressBar(propsBar)
-	const total = Math.min(progress + step, maxValue).toString()
+	const total = Math.min(progress, maxValue).toString()
 
 	return (
 		<div

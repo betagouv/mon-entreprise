@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse } from '@/store/actions/actions'
-import { answeredQuestionsSelector } from '@/store/selectors/simulationSelectors'
+import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
 
 export function useQuestionList(): [
 	questions: Array<RuleNode & { dottedName: DottedName }>,
@@ -13,7 +13,7 @@ export function useQuestionList(): [
 		dottedName: DottedName
 	) => (value?: PublicodesExpression) => void,
 ] {
-	const answeredQuestions = useSelector(answeredQuestionsSelector)
+	const answeredQuestions = useSelector(questionsRéponduesSelector)
 	const nextQuestions = useNextQuestions()
 	const engine = useEngine()
 

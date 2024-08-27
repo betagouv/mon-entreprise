@@ -66,7 +66,4 @@ export const firstStepCompletedSelector = (state: RootState) => {
 export const targetUnitSelector = (state: RootState) =>
 	state.simulation?.targetUnit ?? '€/mois'
 
-export const answeredQuestionsSelector = (state: RootState) =>
-	state.simulation?.answeredQuestions ?? []
-
 export const urlSelector = (state: RootState) => state.simulation?.url
