@@ -174,6 +174,48 @@ describe('simulationReducer', () => {
 				answeredQuestions: ['a', 'b', 'c'],
 			})
 		})
+		it('enregistre la réponse dans la situation', () => {
+			const state = {
+				answeredQuestions: ['a', 'b'],
+				config: {
+					'objectifs exclusifs': [],
+				},
+			}
+
+			expect(
+				simulationReducer(
+					state as unknown as Simulation,
+					enregistreLaRéponse('c' as DottedName, 42)
+				)
+			).toMatchObject({
+				situation: {
+					c: 42,
+				},
+			})
+		})
+		it('enregistre correctement les réponses multiples', () => {
+			const state = {
+				answeredQuestions: ['a', 'b'],
+				config: {
+					'objectifs exclusifs': [],
+				},
+			}
+
+			expect(
+				simulationReducer(
+					state as unknown as Simulation,
+					enregistreLaRéponse('c' as DottedName, {
+						sub1: 42,
+						['sub2 . subC']: 'hello',
+					})
+				)
+			).toMatchObject({
+				situation: {
+					'c . sub1': 42,
+					'c . sub2 . subC': `'hello'`,
+				},
+			})
+		})
 	})
 	describe('DELETE_FROM_SITUATION', () => {
 		it('supprime la question des questions répondues si réponse effacée', () => {
