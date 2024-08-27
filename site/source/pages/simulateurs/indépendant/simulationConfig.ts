@@ -47,6 +47,7 @@ export const configIndépendant: SimulationConfig = {
 			'entreprise . exercice . début',
 			'entreprise . exercice . fin',
 			'entreprise . imposition . régime',
+			'entreprise . imposition',
 			'entreprise . activités',
 			'entreprise . activités . revenus mixtes',
 		],
