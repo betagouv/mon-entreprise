@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import { QuestionEnCours } from '@/components/conversation/QuestionEnCours'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
-import { answeredQuestionsSelector } from '@/store/selectors/simulationSelectors'
+import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
 
 import AnswerList from './AnswerList'
 import { useNavigateQuestions } from './useNavigateQuestions'
@@ -17,7 +17,7 @@ export default function Conversation({
 	customEndMessages,
 	customSituationVisualisation,
 }: ConversationProps) {
-	const previousAnswers = useSelector(answeredQuestionsSelector)
+	const previousAnswers = useSelector(questionsRéponduesSelector)
 
 	const { currentQuestion } = useNavigateQuestions()
 
