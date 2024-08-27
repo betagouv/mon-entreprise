@@ -139,13 +139,23 @@ export function simulationReducer(
 				? state.answeredQuestions.indexOf(state.currentQuestion)
 				: -1
 
-			// La question en cours n'est pas répondue
-			if (currentIndex === -1) {
-				console.log(
-					'Passer à la question suivante ne devrait pas être autorisé'
+			// La question en cours n'est pas répondue, l’usager veut passer la question
+			if (currentIndex === -1 && state.currentQuestion) {
+				const answeredQuestions = [
+					...state.answeredQuestions,
+					state.currentQuestion,
+				]
+
+				const questionsSuivantes = state.questionsSuivantes?.filter(
+					(question) => question !== state.currentQuestion
 				)
 
-				return state
+				return {
+					...state,
+					answeredQuestions,
+					currentQuestion: questionsSuivantes?.[0] || null,
+					questionsSuivantes,
+				}
 			}
 
 			// On était sur la dernière question posée, on en prend une nouvelle
