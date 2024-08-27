@@ -127,14 +127,17 @@ describe('simulationReducer', () => {
 				answeredQuestions: ['a', 'b'],
 			})
 		})
-		it('ne fait rien si la question actuelle n’a pas été répondue', () => {
+		it('passe à la question suivante si la question actuelle n’a pas été répondue', () => {
 			const state = {
 				currentQuestion: 'c',
 				answeredQuestions: ['a', 'b'],
 			}
 			expect(
 				simulationReducer(state as unknown as Simulation, nextQuestionAction)
-			).toEqual(state)
+			).toEqual({
+				currentQuestion: null,
+				answeredQuestions: ['a', 'b', 'c'],
+			})
 		})
 	})
 	describe('VA_À_LA_QUESTION', () => {
