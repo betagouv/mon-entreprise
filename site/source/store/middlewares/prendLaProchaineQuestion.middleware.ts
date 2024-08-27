@@ -73,9 +73,9 @@ export const prendLaProchaineQuestionMiddleware =
 			if (!lastSituationsAvecContextes || situationAChangé) {
 				lastSituationsAvecContextes = situationsAvecContextes
 
-				engines.forEach((engine, index) =>
+				engines.forEach((engine, index) => {
 					engine.setSituation(situationsAvecContextes[index])
-				)
+				})
 
 				lastSimulation = simulation
 				lastConfig = config

@@ -1,3 +1,6 @@
+import { pipe } from 'effect'
+import { isNumber, isString } from 'effect/Predicate'
+import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
 
@@ -19,8 +22,17 @@ export function updateSituation(
 
 	const objectifsExclusifs = config['objectifs exclusifs'] ?? []
 
+	const nouvellesValeurs =
+		isString(value) || isNumber(value)
+			? { [dottedName]: value }
+			: pipe(
+					value,
+					R.mapKeys((suffixe) => `${dottedName} . ${suffixe}`),
+					R.map((valeur) => (isString(valeur) ? `'${valeur}'` : valeur)) // 😭
+			  )
+
 	if (!objectifsExclusifs.includes(dottedName)) {
-		return { ...currentSituation, [dottedName]: value }
+		return { ...currentSituation, ...nouvellesValeurs }
 	}
 
 	const objectifsToReset = objectifsExclusifs.filter(
