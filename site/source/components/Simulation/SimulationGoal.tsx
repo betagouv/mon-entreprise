@@ -8,7 +8,8 @@ import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { ajusteLaSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import { ExplicableRule } from '../conversation/Explicable'
@@ -60,7 +61,12 @@ export function SimulationGoal({
 	const [isFocused, setFocused] = useState(false)
 	const onChange = useCallback(
 		(x?: PublicodesExpression) => {
-			dispatch(enregistreLaRéponse(dottedName, x))
+			dispatch(
+				ajusteLaSituation({ [dottedName]: x } as Record<
+					DottedName,
+					SimpleRuleEvaluation
+				>)
+			)
 			onUpdateSituation?.(dottedName, x)
 		},
 		[dispatch, onUpdateSituation, dottedName]

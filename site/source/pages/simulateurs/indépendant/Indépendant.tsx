@@ -1,3 +1,4 @@
+import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
@@ -17,7 +18,8 @@ import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { ajusteLaSituation } from '@/store/actions/actions'
 
 export function IndépendantPLSimulation() {
 	return (
@@ -135,7 +137,9 @@ export default function IndépendantSimulation() {
 								dottedName="entreprise . imposition"
 								onChange={(imposition) => {
 									dispatch(
-										enregistreLaRéponse('entreprise . imposition', imposition)
+										ajusteLaSituation({
+											'entreprise . imposition': imposition,
+										} as Record<DottedName, SimpleRuleEvaluation>)
 									)
 								}}
 							/>
