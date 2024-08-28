@@ -21,6 +21,7 @@ export type Action =
 			| typeof vaÀLaQuestionSuivante
 			| typeof ajusteLaSituation
 			| typeof enregistreLaRéponse
+			| typeof enregistreLesRéponses
 			| typeof deleteFromSituation
 			| typeof updateUnit
 			| typeof batchUpdateSituation
@@ -78,6 +79,16 @@ export const enregistreLaRéponse = (
 				fieldName,
 				value,
 		  } as const)
+
+export const enregistreLesRéponses = (
+	règle: DottedName,
+	valeurs: Record<string, PublicodesExpression>
+) =>
+	({
+		type: 'ENREGISTRE_LES_RÉPONSES',
+		règle,
+		valeurs,
+	}) as const
 
 export const deleteFromSituation = (fieldName: DottedName) =>
 	({

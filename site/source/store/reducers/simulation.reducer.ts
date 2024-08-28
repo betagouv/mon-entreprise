@@ -4,6 +4,7 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { Situation } from '@/domaine/Situation'
 import { updateSituation } from '@/domaine/updateSituation'
 import { updateSituationMulti } from '@/domaine/updateSituationMulti'
+import { updateSituationMultiple } from '@/domaine/updateSituationMultiple'
 import { Action } from '@/store/actions/actions'
 import { omit, reject } from '@/utils'
 
@@ -83,6 +84,27 @@ export function simulationReducer(
 					state.situation,
 					action.fieldName,
 					action.value
+				),
+			}
+		}
+
+		case 'ENREGISTRE_LES_RÉPONSES': {
+			const déjàDansLesQuestionsRépondues = state.answeredQuestions.includes(
+				action.règle
+			)
+
+			const answeredQuestions = déjàDansLesQuestionsRépondues
+				? state.answeredQuestions
+				: [...state.answeredQuestions, action.règle]
+
+			return {
+				...state,
+				answeredQuestions,
+				situation: updateSituationMultiple(
+					state.config,
+					state.situation,
+					action.règle,
+					action.valeurs
 				),
 			}
 		}
