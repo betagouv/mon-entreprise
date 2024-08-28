@@ -1,7 +1,5 @@
 import { DottedName } from 'modele-social'
 
-import { estObjectifExclusifDeLaSimulation } from '@/domaine/estObjectifExclusifDeLaSimulation'
-import { estQuestionEnListeNoire } from '@/domaine/estQuestionEnListeNoire'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { Situation } from '@/domaine/Situation'
 import { updateSituation } from '@/domaine/updateSituation'
@@ -73,12 +71,9 @@ export function simulationReducer(
 				action.fieldName
 			)
 
-			const answeredQuestions =
-				déjàDansLesQuestionsRépondues ||
-				estQuestionEnListeNoire(state.config)(action.fieldName) ||
-				estObjectifExclusifDeLaSimulation(state.config)(action.fieldName)
-					? state.answeredQuestions
-					: [...state.answeredQuestions, action.fieldName]
+			const answeredQuestions = déjàDansLesQuestionsRépondues
+				? state.answeredQuestions
+				: [...state.answeredQuestions, action.fieldName]
 
 			return {
 				...state,
