@@ -151,7 +151,7 @@ export default function RuleInput<Names extends string = DottedName>({
 			<>
 				<SelectCommune
 					{...commonProps}
-					onChange={(c) => commonProps.onChange(c)}
+					onChange={(c) => commonProps.onChange({ batchUpdate: c })} // 😭
 					value={value as Evaluation<string>}
 				/>
 				<Spacing md />

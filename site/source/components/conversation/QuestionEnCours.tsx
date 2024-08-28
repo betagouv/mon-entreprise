@@ -1,5 +1,6 @@
+import { isObject } from 'effect/Predicate'
 import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression } from 'publicodes'
+import { PublicodesExpression } from 'publicodes'
 import React, { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,7 +17,10 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Button } from '@/design-system/buttons'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import {
+	enregistreLaRéponse,
+	enregistreLesRéponses,
+} from '@/store/actions/actions'
 import { estSurLaPremièreQuestionRépondueSelector } from '@/store/selectors/estSurLaPremièreQuestionRépondue.selector'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { evaluateQuestion } from '@/utils'
@@ -72,7 +76,16 @@ export function QuestionEnCours({
 		value: PublicodesExpression | undefined,
 		dottedName: DottedName
 	) => {
-		dispatch(enregistreLaRéponse(dottedName, value))
+		if (value && isObject(value) && 'batchUpdate' in value) {
+			dispatch(
+				enregistreLesRéponses(
+					dottedName,
+					value.batchUpdate as Record<string, PublicodesExpression>
+				)
+			)
+		} else {
+			dispatch(enregistreLaRéponse(dottedName, value))
+		}
 	}
 
 	const isDateQuestion =
