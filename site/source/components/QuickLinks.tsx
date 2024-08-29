@@ -9,7 +9,7 @@ import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { vaÀLaQuestion } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { currentQuestionSelector } from '@/store/selectors/currentQuestion.selector'
-import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
+import { questionsRéponduesNomSelector } from '@/store/selectors/questionsRéponduesNom.selector'
 
 export default function QuickLinks() {
 	const currentQuestion = useSelector(currentQuestionSelector)
@@ -17,7 +17,7 @@ export default function QuickLinks() {
 	const quickLinks = useSelector(
 		(state: RootState) => state.simulation?.config.questions?.["à l'affiche"]
 	)
-	const quickLinksToHide = useSelector(questionsRéponduesSelector)
+	const quickLinksToHide = useSelector(questionsRéponduesNomSelector)
 	const dispatch = useDispatch()
 
 	const { t } = useTranslation()

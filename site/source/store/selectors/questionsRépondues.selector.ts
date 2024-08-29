@@ -1,4 +1,8 @@
-import { RootState } from '@/store/reducers/rootReducer'
+import { createSelector } from 'reselect'
 
-export const questionsRéponduesSelector = (state: RootState) =>
-	state.simulation?.answeredQuestions ?? []
+import { simulationSelector } from '@/store/selectors/simulation.selector'
+
+export const questionsRéponduesSelector = createSelector(
+	[simulationSelector],
+	(simulation) => simulation?.questionsRépondues ?? []
+)

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { numéroDeLaQuestionEnCoursSelector } from '@/store/selectors/numéroDeLaQuestionEnCours.selector'
-import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
+import { questionsRéponduesEncoreApplicablesSelector } from '@/store/selectors/questionsRéponduesEncoreApplicables.selector'
 
 export function useSimulationProgress(): {
 	progressRatio: number
@@ -10,7 +10,9 @@ export function useSimulationProgress(): {
 	numberSteps: number
 	nombreDeQuestionsRépondues: number
 } {
-	const numberQuestionAnswered = useSelector(questionsRéponduesSelector).length
+	const numberQuestionAnswered = useSelector(
+		questionsRéponduesEncoreApplicablesSelector
+	).length
 	const numéroDeLaQuestionEnCours = useSelector(
 		numéroDeLaQuestionEnCoursSelector
 	)

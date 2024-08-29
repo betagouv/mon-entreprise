@@ -3,6 +3,7 @@ import Engine, { PublicodesExpression } from 'publicodes'
 
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
+import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 import { buildSituationFromObject } from '@/utils'
 
 import { CompanyActions } from './companyActions'
@@ -26,6 +27,7 @@ export type Action =
 			| typeof updateUnit
 			| typeof batchUpdateSituation
 			| typeof questionsSuivantes
+			| typeof applicabilitéDesQuestionsRépondues
 	  >
 	| CompanyActions
 	| HiringChecklistAction
@@ -134,6 +136,14 @@ export const retourneÀLaQuestionPrécédente = () =>
 export const vaÀLaQuestionSuivante = () =>
 	({
 		type: 'VA_À_LA_QUESTION_SUIVANTE',
+	}) as const
+
+export const applicabilitéDesQuestionsRépondues = (
+	questionsRépondues: Array<QuestionRépondue>
+) =>
+	({
+		type: 'APPLICABILITÉ_DES_QUESTIONS_RÉPONDUES',
+		questionsRépondues,
 	}) as const
 
 export const answerBatchQuestion = (

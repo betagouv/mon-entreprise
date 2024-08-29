@@ -1,4 +1,6 @@
+import * as A from 'effect/Array'
 import { DottedName } from 'modele-social'
+import * as Optics from 'optics-ts'
 
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { Situation } from '@/domaine/Situation'
@@ -8,13 +10,18 @@ import { updateSituationMultiple } from '@/domaine/updateSituationMultiple'
 import { Action } from '@/store/actions/actions'
 import { omit, reject } from '@/utils'
 
+export type QuestionRépondue = {
+	règle: DottedName
+	applicable: boolean
+}
+
 export type Simulation = {
 	config: SimulationConfig
 	url: string
 	hiddenNotifications: Array<string>
 	situation: Situation
 	targetUnit: string
-	answeredQuestions: Array<DottedName>
+	questionsRépondues: Array<QuestionRépondue>
 	questionsSuivantes?: Array<DottedName>
 	currentQuestion?: DottedName | null
 }
@@ -32,7 +39,7 @@ export function simulationReducer(
 			hiddenNotifications: [],
 			situation: {},
 			targetUnit: config['unité par défaut'] || '€/mois',
-			answeredQuestions: [],
+			questionsRépondues: [],
 			currentQuestion: null,
 		}
 	}
@@ -52,7 +59,7 @@ export function simulationReducer(
 				...state,
 				hiddenNotifications: [],
 				situation: {},
-				answeredQuestions: [],
+				questionsRépondues: [],
 				currentQuestion: null,
 			}
 
@@ -68,17 +75,20 @@ export function simulationReducer(
 		}
 
 		case 'ENREGISTRE_LA_RÉPONSE': {
-			const déjàDansLesQuestionsRépondues = state.answeredQuestions.includes(
-				action.fieldName
+			const déjàDansLesQuestionsRépondues = state.questionsRépondues.some(
+				(question) => question.règle === action.fieldName
 			)
 
 			const answeredQuestions = déjàDansLesQuestionsRépondues
-				? state.answeredQuestions
-				: [...state.answeredQuestions, action.fieldName]
+				? state.questionsRépondues
+				: [
+						...state.questionsRépondues,
+						{ règle: action.fieldName, applicable: true },
+				  ]
 
 			return {
 				...state,
-				answeredQuestions,
+				questionsRépondues: answeredQuestions,
 				situation: updateSituation(
 					state.config,
 					state.situation,
@@ -89,17 +99,20 @@ export function simulationReducer(
 		}
 
 		case 'ENREGISTRE_LES_RÉPONSES': {
-			const déjàDansLesQuestionsRépondues = state.answeredQuestions.includes(
-				action.règle
+			const déjàDansLesQuestionsRépondues = state.questionsRépondues.some(
+				(question) => question.règle === action.règle
 			)
 
 			const answeredQuestions = déjàDansLesQuestionsRépondues
-				? state.answeredQuestions
-				: [...state.answeredQuestions, action.règle]
+				? state.questionsRépondues
+				: [
+						...state.questionsRépondues,
+						{ règle: action.règle, applicable: true },
+				  ]
 
 			return {
 				...state,
-				answeredQuestions,
+				questionsRépondues: answeredQuestions,
 				situation: updateSituationMultiple(
 					state.config,
 					state.situation,
@@ -112,9 +125,9 @@ export function simulationReducer(
 		case 'DELETE_FROM_SITUATION': {
 			const newState = {
 				...state,
-				answeredQuestions: reject(
-					state.answeredQuestions,
-					(q) => q === action.fieldName
+				questionsRépondues: reject(
+					state.questionsRépondues,
+					(q) => q.règle === action.fieldName
 				),
 				situation: omit(
 					state.situation,
@@ -125,42 +138,51 @@ export function simulationReducer(
 			return newState
 		}
 		case 'RETOURNE_À_LA_QUESTION_PRÉCÉDENTE': {
-			if (state.answeredQuestions.length === 0) {
+			if (state.questionsRépondues.length === 0) {
 				return state
 			}
 
 			const currentIndex = state.currentQuestion
-				? state.answeredQuestions.indexOf(state.currentQuestion)
+				? state.questionsRépondues.findIndex(
+						(question) => question.règle === state.currentQuestion
+				  )
 				: -1
 
 			if (currentIndex === -1) {
 				return {
 					...state,
-					currentQuestion: state.answeredQuestions.at(-1),
+					currentQuestion: state.questionsRépondues
+						.filter((q) => q.applicable)
+						.at(-1)?.règle,
 				}
 			}
 
-			const previousQuestion = state.answeredQuestions[currentIndex - 1]
-			if (previousQuestion === undefined) {
+			const destination = state.questionsRépondues.findLastIndex(
+				(q, index) => index < currentIndex && q.applicable
+			)
+
+			if (destination === -1) {
 				return state
 			}
 
 			return {
 				...state,
-				currentQuestion: previousQuestion,
+				currentQuestion: state.questionsRépondues[destination]?.règle,
 			}
 		}
 
 		case 'VA_À_LA_QUESTION_SUIVANTE': {
 			const currentIndex = state.currentQuestion
-				? state.answeredQuestions.indexOf(state.currentQuestion)
+				? state.questionsRépondues.findIndex(
+						(question) => question.règle === state.currentQuestion
+				  )
 				: -1
 
 			// La question en cours n'est pas répondue, l’usager veut passer la question
 			if (currentIndex === -1 && state.currentQuestion) {
 				const answeredQuestions = [
-					...state.answeredQuestions,
-					state.currentQuestion,
+					...state.questionsRépondues,
+					{ règle: state.currentQuestion, applicable: true },
 				]
 
 				const questionsSuivantes = state.questionsSuivantes?.filter(
@@ -169,28 +191,39 @@ export function simulationReducer(
 
 				return {
 					...state,
-					answeredQuestions,
+					questionsRépondues: answeredQuestions,
 					currentQuestion: questionsSuivantes?.[0] || null,
 					questionsSuivantes,
 				}
 			}
 
 			// On était sur la dernière question posée, on en prend une nouvelle
-			if (currentIndex === state.answeredQuestions.length - 1) {
-				const questionEnCours = state.questionsSuivantes?.length
-					? state.questionsSuivantes[0]
-					: null
-
+			if (currentIndex === state.questionsRépondues.length - 1) {
 				return {
 					...state,
-					currentQuestion: questionEnCours,
+					currentQuestion: state.questionsSuivantes?.length
+						? state.questionsSuivantes[0]
+						: null,
 				}
 			}
 
 			// Sinon, on navigue simplement à la questions déjà répondue suivante
+			const destination = state.questionsRépondues.findIndex(
+				(q, index) => index > currentIndex && q.applicable
+			)
+			if (destination > -1) {
+				return {
+					...state,
+					currentQuestion: state.questionsRépondues[destination].règle,
+				}
+			}
+
+			// On est sur la dernière question posée applicable, on en prend une nouvelle
 			return {
 				...state,
-				currentQuestion: state.answeredQuestions[currentIndex + 1],
+				currentQuestion: state.questionsSuivantes?.length
+					? state.questionsSuivantes[0]
+					: null,
 			}
 		}
 
@@ -208,7 +241,9 @@ export function simulationReducer(
 				? !action.questionsSuivantes.includes(currentQuestion)
 				: false
 			const questionEnCoursNEstPasRépondue = currentQuestion
-				? !state.answeredQuestions?.includes(currentQuestion)
+				? !state.questionsRépondues?.some(
+						(question) => question.règle === currentQuestion
+				  )
 				: false
 			const questionEnCoursPlusNécessaire =
 				questionEnCoursNEstPasÀRépondre && questionEnCoursNEstPasRépondue
@@ -223,6 +258,28 @@ export function simulationReducer(
 				...state,
 				questionsSuivantes: action.questionsSuivantes,
 				currentQuestion: nouvelleQuestionEnCours,
+			}
+		}
+
+		case 'APPLICABILITÉ_DES_QUESTIONS_RÉPONDUES': {
+			const questionFocuser = Optics.optic<Array<QuestionRépondue>>().elems()
+
+			return {
+				...state,
+				questionsRépondues: A.reduce(
+					action.questionsRépondues,
+					state.questionsRépondues,
+					(acc: Array<QuestionRépondue>, questionÀJour: QuestionRépondue) => {
+						const focus = questionFocuser.when(
+							(question) => question.règle === questionÀJour.règle
+						)
+
+						return Optics.modify(focus)((q) => ({
+							...q,
+							applicable: questionÀJour.applicable,
+						}))(acc)
+					}
+				),
 			}
 		}
 

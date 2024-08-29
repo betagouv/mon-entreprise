@@ -6,11 +6,12 @@ import Engine from 'publicodes'
 import { ComparateurConfig } from '@/domaine/ComparateurConfig'
 import { listeLesVariablesManquantes } from '@/domaine/engine/listeLesVariablesManquantes'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 
 export const détermineLesProchainesQuestions = (
 	engines: NonEmptyArray<Engine>,
 	config: SimulationConfig | ComparateurConfig,
-	answeredQuestions: Array<DottedName> = []
+	answeredQuestions: Array<QuestionRépondue> = []
 ): Array<DottedName> => {
 	const {
 		liste = [],
@@ -24,7 +25,7 @@ export const détermineLesProchainesQuestions = (
 			nonPrioritaires.findIndex((name) => question.startsWith(name)) + 1
 		const différenceCoeff = questionDifference(
 			question,
-			answeredQuestions.slice(-1)[0]
+			answeredQuestions.slice(-1)[0]?.règle
 		)
 
 		return indexList + indexNonPrioritaire + différenceCoeff
@@ -38,7 +39,10 @@ export const détermineLesProchainesQuestions = (
 		Object.entries,
 		sort(([, a], [, b]) => Order.number(b, a)),
 		map(([name]) => name as DottedName),
-		filter((name) => !answeredQuestions.includes(name)),
+		filter(
+			(name: DottedName) =>
+				!answeredQuestions.some((question) => question.règle === name)
+		),
 		filter(
 			(step) =>
 				(!liste.length || liste.some((name) => step.startsWith(name))) &&
@@ -48,7 +52,8 @@ export const détermineLesProchainesQuestions = (
 		),
 		sort((a: DottedName, b: DottedName) => Order.number(score(a), score(b))),
 		filter(
-			(question) => engines[0].getRule(question).rawNode.question !== undefined
+			(question: DottedName) =>
+				engines[0].getRule(question).rawNode.question !== undefined
 		)
 	)
 }

@@ -25768,6 +25768,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"optics-ts@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "optics-ts@npm:2.4.1"
+  checksum: 6c2289aa54521617b79e314b4bd97d7ad03838a2b27662a93b76d1d48814a8ae6d1ae547d7f167d5093f8acba4630eadadaeb32a8d2b35ba1a78284760088435
+  languageName: node
+  linkType: hard
+
 "optionator@npm:^0.9.3":
   version: 0.9.3
   resolution: "optionator@npm:0.9.3"
@@ -28633,6 +28640,7 @@ __metadata:
     eslint-plugin-react: ^7.33.2
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-vitest: ^0.3.22
+    optics-ts: ^2.4.1
     prettier: ^3.0.3
     publicodes: ^1.2.0
     rimraf: ^5.0.1

@@ -69,5 +69,8 @@
 	"packageManager": "yarn@3.5.0",
 	"engines": {
 		"node": "^18"
+	},
+	"dependencies": {
+		"optics-ts": "^2.4.1"
 	}
 }

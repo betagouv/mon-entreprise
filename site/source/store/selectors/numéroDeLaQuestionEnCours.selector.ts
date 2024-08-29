@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect'
 
 import { currentQuestionSelector } from '@/store/selectors/currentQuestion.selector'
-import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
+import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
 
 export const numéroDeLaQuestionEnCoursSelector = createSelector(
-	[questionsRéponduesSelector, currentQuestionSelector],
+	[questionsRéponduesEncoreApplicablesNomsSelector, currentQuestionSelector],
 	(questionsRépondues, questionEnCours) => {
 		const index = questionsRépondues.findIndex(
 			(question) => question === questionEnCours

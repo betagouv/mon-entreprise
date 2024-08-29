@@ -9,7 +9,11 @@ import { Dispatch, Middleware } from 'redux'
 
 import { isComparateurConfig } from '@/domaine/ComparateurConfig'
 import { détermineLesProchainesQuestions } from '@/domaine/engine/détermineLesProchainesQuestions'
-import { Action, questionsSuivantes } from '@/store/actions/actions'
+import {
+	Action,
+	applicabilitéDesQuestionsRépondues,
+	questionsSuivantes,
+} from '@/store/actions/actions'
 import {
 	RootState,
 	SimulationConfig,
@@ -39,7 +43,7 @@ export const prendLaProchaineQuestionMiddleware =
 		const simulation = newState.simulation
 		const config = simulation?.config
 		const situation = completeSituationSelector(newState)
-		const questionsRépondues = simulation?.answeredQuestions
+		const questionsRépondues = simulation?.questionsRépondues
 		const questionsSuivantesActuelles = simulation?.questionsSuivantes || []
 
 		const configHasChanged = lastConfig !== config
@@ -90,6 +94,25 @@ export const prendLaProchaineQuestionMiddleware =
 					arraysAreDifferent(prochainesQuestions, questionsSuivantesActuelles)
 				) {
 					store.dispatch(questionsSuivantes(prochainesQuestions))
+
+					store.dispatch(
+						applicabilitéDesQuestionsRépondues(
+							(questionsRépondues || []).map((question) => {
+								console.log('est applicable', question.règle)
+								console.log(
+									engine.evaluate({ 'est applicable': question.règle })
+										.nodeValue === true
+								)
+
+								return {
+									...question,
+									applicable:
+										engine.evaluate({ 'est applicable': question.règle })
+											.nodeValue === true,
+								}
+							})
+						)
+					)
 				}
 			}
 		}
