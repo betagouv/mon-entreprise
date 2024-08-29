@@ -1,12 +1,15 @@
 import { DottedName } from 'modele-social'
 
 import { RootState } from '@/store/reducers/rootReducer'
-import { Simulation } from '@/store/reducers/simulation.reducer'
+import {
+	QuestionRépondue,
+	Simulation,
+} from '@/store/reducers/simulation.reducer'
 
 export type PreviousSimulation = {
 	situation: Simulation['situation']
 	activeTargetInput: DottedName | null
-	foldedSteps: Array<DottedName> | undefined
+	questionsRépondues: Array<QuestionRépondue> | undefined
 }
 
 export const currentSimulationSelector = (
@@ -15,6 +18,6 @@ export const currentSimulationSelector = (
 	return {
 		situation: state.simulation?.situation ?? {},
 		activeTargetInput: state.activeTargetInput,
-		foldedSteps: state.simulation?.answeredQuestions,
+		questionsRépondues: state.simulation?.questionsRépondues,
 	}
 }

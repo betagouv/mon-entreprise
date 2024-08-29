@@ -20,7 +20,7 @@ import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
-import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
+import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
 import {
 	companySituationSelector,
 	situationSelector,
@@ -44,14 +44,13 @@ export default function AnswerList({ onClose, children }: AnswerListProps) {
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
 	const companySituation = useSelector(companySituationSelector)
-	const passedQuestions = useSelector(questionsRéponduesSelector)
+	const passedQuestions = useSelector(
+		questionsRéponduesEncoreApplicablesNomsSelector
+	)
+
 	const answeredAndPassedQuestions = useMemo(
 		() =>
-			(Object.keys(situation) as DottedName[])
-				.filter(
-					(answered) => !passedQuestions.some((passed) => answered === passed)
-				)
-				.concat(passedQuestions)
+			passedQuestions
 				.filter(
 					(dottedName) =>
 						engine.getRule(dottedName).rawNode.question !== undefined

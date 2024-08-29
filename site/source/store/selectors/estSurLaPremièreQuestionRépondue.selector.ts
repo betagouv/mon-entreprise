@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect'
 
 import { currentQuestionSelector } from '@/store/selectors/currentQuestion.selector'
-import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
+import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
 
 export const estSurLaPremièreQuestionRépondueSelector = createSelector(
-	[currentQuestionSelector, questionsRéponduesSelector],
+	[currentQuestionSelector, questionsRéponduesEncoreApplicablesNomsSelector],
 	(questionEnCours, questionsRépondues) =>
 		!!questionEnCours &&
 		!!questionsRépondues &&
