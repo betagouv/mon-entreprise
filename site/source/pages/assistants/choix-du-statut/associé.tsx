@@ -246,10 +246,6 @@ function useAssociésSelection(): [
 					newState.question2 === 'oui' || newState.question3 === 'oui'
 						? 'non'
 						: undefined,
-				'entreprise . catégorie juridique . SARL . EURL':
-					newState.question2 === 'non' && newState.question3 === 'non'
-						? 'non'
-						: undefined,
 			})
 		)
 	}

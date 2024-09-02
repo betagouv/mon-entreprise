@@ -107,7 +107,7 @@ function useStatutComparaison(): EngineComparison {
 	return namedEngines
 }
 
-const SASUEIAE: StatutType[] = ['SASU', 'EI', 'AE']
+const SASUEIAE: StatutType[] = ['SASU', 'EURL', 'EI', 'AE']
 const SASUEURL: StatutType[] = ['SASU', 'EURL']
 const SASSARL: StatutType[] = ['SAS', 'SARL']
 function usePossibleStatuts(): Array<StatutType> {
