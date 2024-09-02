@@ -49,5 +49,6 @@ export const configAutoEntrepreneur: SimulationConfig = {
 		salarié: 'non',
 		'entreprise . catégorie juridique': "'EI'",
 		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
+		'dirigeant . auto-entrepreneur': 'oui',
 	},
 }

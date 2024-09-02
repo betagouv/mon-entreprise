@@ -492,6 +492,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
   "evaluate": [
     {
       "missingVariables": [
+        "dirigeant . exonérations . ACRE",
         "entreprise . activités . revenus mixtes",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
@@ -524,6 +525,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     },
     {
       "missingVariables": [
+        "dirigeant . exonérations . ACRE",
         "entreprise . activités . revenus mixtes",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",

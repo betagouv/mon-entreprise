@@ -21,7 +21,7 @@ const DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE =
 	'dirigeant . auto-entrepreneur . impôt . versement libératoire'
 const DOTTEDNAME_ACRE = 'dirigeant . exonérations . ACRE'
 const DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE =
-	"dirigeant . exonérations . ACRE . auto-entrepreneur éligible à l'ACRE"
+	"dirigeant . auto-entrepreneur . éligible à l'ACRE"
 
 type IRouIS = "'IR'" | "'IS'"
 

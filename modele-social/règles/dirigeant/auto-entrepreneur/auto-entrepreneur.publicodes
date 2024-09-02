@@ -247,7 +247,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             - vente restauration hébergement . répartition . autres contributions
             - service BIC . répartition . autres contributions
             - service BNC . répartition . autres contributions
-        formation professionnelle: 
+        formation professionnelle:
           icônes: 👩‍🎓
           valeur: dirigeant . auto-entrepreneur . cotisations et contributions . CFP
 
@@ -521,3 +521,16 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
   inversion numérique:
     - revenu net
     - revenu net . après impôt
+
+dirigeant . auto-entrepreneur . éligible à l'ACRE:
+      par défaut: non
+      question: Êtes-vous éligible à l'ACRE pour votre auto-entreprise ?
+      description: |
+        L'ACRE est réservée aux auto-entrepreneurs suivants:
+        - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
+        - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
+        - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
+        - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
+      références:
+        Les conditions d'accès à l'ACRE sont plus restrictives pour les auto-entrepreneurs: https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html
+
