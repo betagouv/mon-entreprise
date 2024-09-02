@@ -445,7 +445,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       déprécié: oui
       valeur: vente restauration hébergement . taux
 
-
 dirigeant . auto-entrepreneur . impôt: oui
 dirigeant . auto-entrepreneur . impôt . revenu imposable: entreprise . imposition . régime . micro-entreprise . revenu abattu
 
