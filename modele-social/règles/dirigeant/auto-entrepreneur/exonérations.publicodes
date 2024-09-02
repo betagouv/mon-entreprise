@@ -62,7 +62,6 @@ dirigeant . auto-entrepreneur . DROM:
           - sinon: 14.20%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
-  privé: oui
   applicable si: dirigeant . exonérations . ACRE
   description: |
     Ce taux correspond à la réduction de cotisations qui s'applique pour
