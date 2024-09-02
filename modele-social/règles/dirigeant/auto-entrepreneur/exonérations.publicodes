@@ -119,7 +119,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
 
     service BIC:
       remplace: cotisations . service BIC . taux
-      valeur: cotisations . service BIC . taux
+      valeur: taux ACRE * cotisations . service BIC . taux
       arrondi: 1 décimale
 
     service BNC:
