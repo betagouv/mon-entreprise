@@ -116,7 +116,7 @@ export function SimulationGoal({
 									id={`${dottedName.replace(/\s|\./g, '_')}-label`}
 									dottedName={dottedName}
 								>
-									{label}
+									{label || rule.title}
 								</RuleLink>
 							)}
 
