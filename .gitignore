@@ -12,8 +12,9 @@ storybook-static/
 # Local Netlify folder
 .netlify
 
-# Webstorm (and other Jetbrains IDE)
+# IDE
 .idea/
+.vscode/
 
 # Yarn https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
 **/.pnp.*
