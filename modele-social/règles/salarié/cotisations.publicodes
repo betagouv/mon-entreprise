@@ -328,13 +328,13 @@ salarié . cotisations . exonérations . réduction générale:
 
   avec:
     coefficient:
-      privé: oui
       produit:
         - temps de travail . SMIC / cotisations . assiette * 1.6 - 1
         - T / 0.6
       plancher: 0%
       plafond: T
-      arrondi: 4 décimales
+      unité: '%'
+      arrondi: 2 décimales
       références:
         Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
         Urssaf.fr: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
