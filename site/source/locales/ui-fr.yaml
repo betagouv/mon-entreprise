@@ -77,7 +77,7 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
 Commune ou code postal: Commune ou code postal
-CompanySearchField:
+EntrepriseSearchField:
   description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
     entreprise. Exemple : 40123778000127"
   label: Nom de l'entreprise, SIREN ou SIRET
@@ -255,8 +255,8 @@ Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.: Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.
-Renseigner une adresse e-mail (au format nom@domaine:
-  com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
+Renseignez une adresse e-mail (au format nom@domaine:
+  com) pour recevoir une réponse: Renseignez une adresse e-mail (au format
     nom@domaine.com) pour recevoir une réponse
 Replier: Replier
 Retour à la création: Retour à la création
@@ -284,6 +284,7 @@ Salaire brut mensuel: Salaire brut mensuel
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Salariés et employeurs: Salariés et employeurs
+Sélectionnez votre entreprise afin de préciser votre résultat.: Sélectionnez votre entreprise afin de préciser votre résultat.
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut
   que vous ayez opté pour que <2>les informations de votre entreprise ne soient
@@ -364,6 +365,7 @@ Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
 Votre couverture invalidité et décès: Votre couverture invalidité et décès
 Votre domaine d'activité: Votre domaine d'activité
+Votre entreprise : Votre entreprise
 Votre message (requis): Votre message (requis)
 Votre rémunération totale estimée: Votre rémunération totale estimée
 Vous allez dépasser le plafond de la micro-entreprise: Vous allez dépasser le plafond de la micro-entreprise
@@ -1809,6 +1811,7 @@ simulateurs:
         retraite <3> de base</3></1>).
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
+    company: "Améliorez votre simulation en sélectionnant votre entreprise :"  
   warning:
     artiste-auteur:
       "1": Cette estimation est proposée à titre indicatif. Elle est faite à partir
@@ -1979,7 +1982,7 @@ warning:
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
 Étape {{ total }} sur {{ maxValue }}: Étape {{ total }} sur {{ maxValue }}
-Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
+Évitez de communiquer des informations personnelles: Évitez de communiquer des informations personnelles
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
 à partir du 29ème jour: à partir du 29ème jour
