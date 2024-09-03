@@ -26,6 +26,7 @@ import { médecinConfig } from '../simulateurs/médecin/config'
 import { pamcConfig } from '../simulateurs/pamc/config'
 import { pharmacienConfig } from '../simulateurs/pharmacien/config'
 import { professionLibéraleConfig } from '../simulateurs/profession-libérale/config'
+import { réductionGénéraleConfig } from '../simulateurs/reduction-generale/config'
 import { sageFemmeConfig } from '../simulateurs/sage-femme/config'
 import { salariéConfig } from '../simulateurs/salarié/config'
 import { sasuConfig } from '../simulateurs/sasu/config'
@@ -61,6 +62,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...coûtCréationEntrepriseConfig(params),
 		...impôtSociétéConfig(params),
 		...cipavConfig(params),
+		...réductionGénéraleConfig(params),
 
 		// assistants:
 		...choixStatutJuridiqueConfig(params),

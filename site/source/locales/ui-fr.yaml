@@ -100,6 +100,7 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.
 Décès: Décès
 Effacer mes réponses: Effacer mes réponses
+Effectif de l'entreprise: Effectif de l'entreprise
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
   d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à
@@ -161,6 +162,10 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
       fr, nouvelle fenêtre: Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
 Jours: Jours
+La RGCP concerne uniquement les salaires inférieurs à 1,6 SMIC. C'est-à-dire, pour 2024, une rémunération totale qui ne dépasse pas <1>2 827,07 €</1> bruts par mois.:
+  La RGCP concerne uniquement les salaires inférieurs à 1,6 SMIC. C'est-à-dire,
+  pour 2024, une rémunération totale qui ne dépasse pas <1>2 827,07 €</1> bruts
+  par mois.
 La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
   La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
   (personnes qui sont à votre charge) sous certaines conditions.
@@ -194,6 +199,7 @@ Message à caractère informatif: Message à caractère informatif
 Mode d'affichage: Mode d'affichage
 Modifier mes options: Modifier mes options
 Modifier mes réponses: Modifier mes réponses
+Moins de 50 salariés: Moins de 50 salariés
 Mois: Mois
 Mon entreprise: Mon entreprise
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
@@ -229,6 +235,7 @@ Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
 Plus d'info sur, {{ title }}: Plus d'info sur, {{ title }}
 Plus d'infos sur, {{ title }}: Plus d'infos sur, {{ title }}
+Plus de 50 salariés: Plus de 50 salariés
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
     fr</2>: Pour en savoir plus, rendez-vous sur le site
@@ -282,6 +289,7 @@ Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
+Rémunération brute: Rémunération brute
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Répondez à quelques questions additionnelles afin de préciser votre résultat.
 Résultat fiscal: Résultat fiscal
@@ -614,6 +622,7 @@ dividendes:
     concerne pas les travailleurs indépendants non salariés.</0><1>Le montant de
     l'impôt sur les dividendes est calculé en sus de l’impôt sur les autres
     revenus imposables.</1>
+dont chômage: dont chômage
 employeur: employeur
 en cas d'accident pro: en cas d'accident pro
 en incluant: en incluant
@@ -1555,6 +1564,14 @@ pages:
         title: "Professions libérale : le simulateur Urssaf"
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
+    réduction-générale:
+      meta:
+        description: Estimation du montant de la réduction générale des cotisations
+          patronales (RGCP). Cette réduction est applicable pour les salaires
+          inférieurs à 1,6 fois le SMIC.
+        title: Réduction générale
+      shortname: Réduction générale
+      title: Simulateur de réduction générale des cotisations
     sage-femme:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.

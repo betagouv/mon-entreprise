@@ -1,0 +1,177 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`calculate simulations-dividendes > DFS 1`] = `
+"salarié . cotisations . assiette: 1767
+salarié . cotisations . exonérations . réduction générale: 513
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 407
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 72
+salarié . cotisations . exonérations . réduction générale . part retraite: 106"
+`;
+
+exports[`calculate simulations-dividendes > DFS 2`] = `
+"salarié . cotisations . assiette: 1767
+salarié . cotisations . exonérations . réduction générale: 513
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 407
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 72
+salarié . cotisations . exonérations . réduction générale . part retraite: 106"
+`;
+
+exports[`calculate simulations-dividendes > DFS 3`] = `
+"salarié . cotisations . assiette: 1767
+salarié . cotisations . exonérations . réduction générale: 564
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 458
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 72
+salarié . cotisations . exonérations . réduction générale . part retraite: 106"
+`;
+
+exports[`calculate simulations-dividendes > DFS 4`] = `
+"salarié . cotisations . assiette: 1767
+salarié . cotisations . exonérations . réduction générale: 564
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 458
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 72
+salarié . cotisations . exonérations . réduction générale . part retraite: 106"
+`;
+
+exports[`calculate simulations-dividendes > DFS 5`] = `
+"salarié . cotisations . assiette: 1767
+salarié . cotisations . exonérations . réduction générale: 564
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 458
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 72
+salarié . cotisations . exonérations . réduction générale . part retraite: 106"
+`;
+
+exports[`calculate simulations-dividendes > JEI 1`] = `
+"salarié . cotisations . assiette: 1900
+salarié . cotisations . exonérations . réduction générale: null
+salarié . cotisations . exonérations . réduction générale . part Urssaf: null
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: null
+salarié . cotisations . exonérations . réduction générale . part retraite: null"
+`;
+
+exports[`calculate simulations-dividendes > effectif 1`] = `
+"salarié . cotisations . assiette: 1900
+salarié . cotisations . exonérations . réduction générale: 493
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 401
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 63
+salarié . cotisations . exonérations . réduction générale . part retraite: 93"
+`;
+
+exports[`calculate simulations-dividendes > effectif 2`] = `
+"salarié . cotisations . assiette: 1900
+salarié . cotisations . exonérations . réduction générale: 500
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 407
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 63
+salarié . cotisations . exonérations . réduction générale . part retraite: 93"
+`;
+
+exports[`calculate simulations-dividendes > heures complémentaires 1`] = `
+"salarié . cotisations . assiette: 1900
+salarié . cotisations . exonérations . réduction générale: 454
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 368
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 58
+salarié . cotisations . exonérations . réduction générale . part retraite: 85"
+`;
+
+exports[`calculate simulations-dividendes > heures supplémentaires 1`] = `
+"salarié . cotisations . assiette: 1900
+salarié . cotisations . exonérations . réduction générale: 607
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 493
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 77
+salarié . cotisations . exonérations . réduction générale . part retraite: 114"
+`;
+
+exports[`calculate simulations-dividendes > salaire 1`] = `
+"salarié . cotisations . assiette: 100
+salarié . cotisations . exonérations . réduction générale: 32
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 26
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 4
+salarié . cotisations . exonérations . réduction générale . part retraite: 6"
+`;
+
+exports[`calculate simulations-dividendes > salaire 2`] = `
+"salarié . cotisations . assiette: 250
+salarié . cotisations . exonérations . réduction générale: 80
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 65
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 10
+salarié . cotisations . exonérations . réduction générale . part retraite: 15"
+`;
+
+exports[`calculate simulations-dividendes > salaire 3`] = `
+"salarié . cotisations . assiette: 500
+salarié . cotisations . exonérations . réduction générale: 160
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 130
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 20
+salarié . cotisations . exonérations . réduction générale . part retraite: 30"
+`;
+
+exports[`calculate simulations-dividendes > salaire 4`] = `
+"salarié . cotisations . assiette: 750
+salarié . cotisations . exonérations . réduction générale: 240
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 194
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 30
+salarié . cotisations . exonérations . réduction générale . part retraite: 45"
+`;
+
+exports[`calculate simulations-dividendes > salaire 5`] = `
+"salarié . cotisations . assiette: 1000
+salarié . cotisations . exonérations . réduction générale: 319
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 259
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 40
+salarié . cotisations . exonérations . réduction générale . part retraite: 60"
+`;
+
+exports[`calculate simulations-dividendes > salaire 6`] = `
+"salarié . cotisations . assiette: 1250
+salarié . cotisations . exonérations . réduction générale: 399
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 324
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 51
+salarié . cotisations . exonérations . réduction générale . part retraite: 75"
+`;
+
+exports[`calculate simulations-dividendes > salaire 7`] = `
+"salarié . cotisations . assiette: 1500
+salarié . cotisations . exonérations . réduction générale: 479
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 389
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 61
+salarié . cotisations . exonérations . réduction générale . part retraite: 90"
+`;
+
+exports[`calculate simulations-dividendes > salaire 8`] = `
+"salarié . cotisations . assiette: 2000
+salarié . cotisations . exonérations . réduction générale: 440
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 357
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 56
+salarié . cotisations . exonérations . réduction générale . part retraite: 83"
+`;
+
+exports[`calculate simulations-dividendes > salaire 9`] = `
+"salarié . cotisations . assiette: 2500
+salarié . cotisations . exonérations . réduction générale: 174
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 141
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 22
+salarié . cotisations . exonérations . réduction générale . part retraite: 33"
+`;
+
+exports[`calculate simulations-dividendes > salaire 10`] = `
+"salarié . cotisations . assiette: 3000
+salarié . cotisations . exonérations . réduction générale: 0
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 0
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 0
+salarié . cotisations . exonérations . réduction générale . part retraite: 0"
+`;
+
+exports[`calculate simulations-dividendes > stage 1`] = `
+"salarié . cotisations . assiette: 1900
+salarié . cotisations . exonérations . réduction générale: 493
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 401
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 63
+salarié . cotisations . exonérations . réduction générale . part retraite: 93"
+`;
+
+exports[`calculate simulations-dividendes > temps partiel 1`] = `
+"salarié . cotisations . assiette: 1900
+salarié . cotisations . exonérations . réduction générale: 364
+salarié . cotisations . exonérations . réduction générale . part Urssaf: 296
+salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage: 46
+salarié . cotisations . exonérations . réduction générale . part retraite: 69"
+`;
