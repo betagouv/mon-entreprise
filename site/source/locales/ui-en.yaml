@@ -94,6 +94,7 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     He or she will contact you by telephone within 5 days, and will provide you with assistance tailored to your situation.
 Décès: Deaths
 Effacer mes réponses: Delete my answers
+Effectif de l'entreprise: Number of employees
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "In the event of an<1>accident at work</1>, <4>occupational illness</4> or an
   <7>accident on the way to or from work</7>, you will receive compensation of:"
@@ -152,6 +153,9 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
       fr, nouvelle fenêtre: I give my opinion, give my opinion on
         jedonnemonavis.numerique.gouv.fr, new window
 Jours: Days
+La RGCP concerne uniquement les salaires inférieurs à 1,6 SMIC. C'est-à-dire, pour 2024, une rémunération totale qui ne dépasse pas <1>2 827,07 €</1> bruts par mois.:
+  The RGCP only applies to salaries below 1.6 SMIC. This means, for 2024, a
+  total remuneration not exceeding <1>€2,827.07</1> gross per month.
 La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
   Under certain conditions, Social Security guarantees a <2>lump-sum death
   benefit for your dependants</2>.
@@ -183,6 +187,7 @@ Message à caractère informatif: Informative message
 Mode d'affichage: Display mode
 Modifier mes options: Modify my options
 Modifier mes réponses: Modify my answers
+Moins de 50 salariés: Less than 50 employees
 Mois: Month
 Mon entreprise: My company
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
@@ -217,6 +222,7 @@ Personnalisez l'intégration: Customize integration
 Plan du site: Site map
 Plus d'info sur, {{ title }}: More info on, {{ title }}
 Plus d'infos sur, {{ title }}: More info on, {{ title }}
+Plus de 50 salariés: More than 50 employees
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
     fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
@@ -267,6 +273,7 @@ Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
+Rémunération brute: Gross remuneration
 Répartition du chiffre d'affaires: Sales breakdown
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Answer a few additional questions to clarify your result.
 Résultat fiscal: Taxable income
@@ -583,6 +590,7 @@ dividendes:
     French companies subject to corporation tax (IS), and does not concern
     self-employed workers.</0><1>Tax on dividends is calculated in addition to
     tax on other taxable income.</1>
+dont chômage: of which unemployment
 employeur: employer
 en cas d'accident pro: in the event of a professional accident
 en incluant: including
@@ -1460,6 +1468,14 @@ pages:
         title: "Liberal professions: the Urssaf simulator"
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
+    réduction-générale:
+      meta:
+        description: Estimate of the amount of the general reduction in employer
+          contributions (RGCP). This reduction applies to salaries below 1.6
+          times the SMIC.
+        title: General reduction
+      shortname: General reduction
+      title: General contribution reduction simulator
     sage-femme:
       meta:
         description: Calculation of net income after contributions based on total income.

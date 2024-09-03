@@ -67,7 +67,6 @@ export default function SimulateurWarning({
 					</Trans>
 				</Body>
 			)}
-
 			{simulateur === 'profession-libérale' && (
 				<Ul>
 					<StyledLi>
