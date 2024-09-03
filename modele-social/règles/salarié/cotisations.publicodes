@@ -329,7 +329,7 @@ salarié . cotisations . exonérations . réduction générale:
   avec:
     coefficient:
       produit:
-        - temps de travail . SMIC / cotisations . assiette * 1.6 - 1
+        - 1.6 * temps de travail . SMIC / cotisations . assiette - 1
         - T / 0.6
       plancher: 0%
       plafond: T
