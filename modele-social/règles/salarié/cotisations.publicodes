@@ -360,6 +360,23 @@ salarié . cotisations . exonérations . réduction générale:
             régimes spécifiques . DFS: non
         - 130%
 
+    part Urssaf:
+      produit:
+        - réduction générale
+        - T . sécurité sociale et chômage
+        - 1 / T
+
+      avec:
+        part chômage:
+          produit:
+            - réduction générale
+            - chômage . employeur . taux
+            - 1 / T
+
+    part retraite:
+      valeur: réduction générale
+      abattement: part Urssaf
+
 salarié . cotisations . exonérations . T:
   privé: oui
   titre: Coefficient T
