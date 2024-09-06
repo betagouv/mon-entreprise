@@ -4,7 +4,7 @@ import Engine, { PublicodesExpression } from 'publicodes'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
-import { buildSituationFromObject } from '@/utils'
+import { buildSituationFromObject } from '@/utils/publicodes'
 
 import { CompanyActions } from './companyActions'
 import { HiringChecklistAction } from './hiringChecklistAction'

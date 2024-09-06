@@ -19,13 +19,12 @@ import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
+import { hash, omit } from '@/utils'
 import {
 	buildSituationFromObject,
 	evaluateQuestion,
 	getMeta,
-	hash,
-	omit,
-} from '@/utils'
+} from '@/utils/publicodes'
 
 import formulaire from './demande-mobilité.yaml'
 

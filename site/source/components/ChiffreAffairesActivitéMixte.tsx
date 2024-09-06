@@ -8,7 +8,7 @@ import { styled } from 'styled-components'
 import { Switch } from '@/design-system/switch'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
-import { catchDivideByZeroError } from '@/utils'
+import { catchDivideByZeroError } from '@/utils/publicodes'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Condition } from './EngineValue/Condition'

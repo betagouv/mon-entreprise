@@ -14,7 +14,7 @@ import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
-import { getMeta } from '@/utils'
+import { getMeta } from '@/utils/publicodes'
 
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
