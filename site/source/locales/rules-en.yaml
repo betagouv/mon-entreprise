@@ -5917,29 +5917,28 @@ entreprise . imposition . régime . déclaration contrôlée:
   titre.fr: déclaration contrôlée
 entreprise . imposition . régime . micro-entreprise:
   description.en: >
-    [automatic] With the micro tax system, the deductible expenses are estimated
-    on a flat rate basis, according to a percentage of the turnover. This
-    percentage depends on the type of activity: 71% for sales, catering and
-    accommodation (rental of classified furnished tourist accommodation and
-    guest rooms), 50% for commercial or craft services, 34% for liberal
-    activities.
+    [automatic] Under the micro-tax system, deductible expenses are estimated on
+    a flat-rate basis, based on a percentage of sales. This percentage depends
+    on the type of activity: 71% for sales, catering and accommodation (rental
+    of classified furnished tourist accommodation and bed and breakfast), 50%
+    for commercial or craft services, 34% for liberal professions.
 
 
-    This option allows you to simplify your accounting and can be advantageous in terms of taxable income and subject to social security contributions if your operating expenses are low.
+    This option simplifies your accounting and can be advantageous in terms of taxable income if your operating costs are low.
   description.fr: >
-    Avec le régime micro fiscal, les charges déductibles sont estimées
-    forfaitairement,en fonction d’un pourcentage du chiffre d’affaires. Ce
+    Avec le régime micro-fiscal, les charges déductibles sont estimées
+    forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
     pourcentage dépend du type d’activité : 71% pour les activités de vente,
     restauration et hébergement (location de meublé de tourisme classé et
     chambre d’hôte), 50% pour les prestations de service commerciales ou
     artisanales, 34% pour les activités libérales.
 
 
-    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable et soumis à cotisations et contributions sociales dans le cas où vos charges de fonctionnement sont faibles.
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de fonctionnement sont faibles.
   question.en: '[automatic] Have you opted for the micro-tax system?'
   question.fr: Avez-vous opté pour le régime micro-fiscal ?
-  titre.en: '[automatic] micro-business'
-  titre.fr: micro-entreprise
+  titre.en: '[automatic] micro-tax'
+  titre.fr: micro-fiscal
 entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   description.en: '[automatic] The annual turnover threshold for the micro-tax
     system is exceeded. [Read
