@@ -499,32 +499,20 @@ dirigeant . auto-entrepreneur . DROM:
         calendar year of activity'
       titre.fr: Entre le 9ème trimestre civil et la fin de la 3ème année civile
         d'activité
-    service BIC:
-      titre.en: '[automatic] BIC service'
-      titre.fr: service BIC
-    taux CIPAV:
-      titre.en: '[automatic] CIPAV rate'
-      titre.fr: taux CIPAV
-    taux service BNC:
-      titre.en: '[automatic] BNC service rate'
-      titre.fr: taux service BNC
-    taux vente restauration hébergement:
-      titre.en: '[automatic] sales rate catering accommodation'
-      titre.fr: taux vente restauration hébergement
   description.en: >
     [automatic] As an auto-entrepreneur starting out in business, you benefit
     from an exemption that translates into the application of reduced
     contribution rates over three years, corresponding to :
 
-     - 1/6 of the full rate for mainland France if you are a craftsman, shopkeeper or unregulated liberal professional, 1/3 if you are a regulated liberal professional, until the end of the 7th quarter following the quarter in which you started your business,
-     - ½ of the full metropolitan rates if you are a craftsman, tradesman or self-employed professional, for the period between the end of the 8th quarter of activity and the end of the 3rd calendar year of activity,
+      - 1/6 of the full rate for mainland France if you are a craftsman, shopkeeper or unregulated liberal professional, 1/3 if you are a regulated liberal professional, until the end of the 7th quarter following the quarter in which you started your business,
+      - ½ of the full metropolitan rates if you are a craftsman, tradesman or self-employed professional, for the period between the end of the 8th quarter of activity and the end of the 3rd calendar year of activity,
   description.fr: >
     En tant qu’auto-entrepreneur en début d’activité, vous bénéficiez d’une
     exonération qui se traduit par l’application de taux réduits de cotisations
     sur trois ans, correspondant à :
 
-     - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
-     - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
+      - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
+      - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
   note.en: '[automatic] DOM rates are defined as a percentage of metropolitan
     France rates, but the rounding rules are unclear.'
   note.fr:
@@ -618,19 +606,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   avec:
     cotisations CIPAV:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
       description.en: >
-        [automatic] For the liberal professions under the CIPAV, the rate is the
-        same regardless of the category of taxation/activity (BIC or BNC,
-        service or sales).
-      description.fr: >
-        Pour les professions libérales relevant de la CIPAV, le taux est le même
-        quelle que soit la catégorie d’imposition/activité (BIC ou BNC, service
-        ou vente).
+        [automatic] Contributions for self-employed workers under the CIPAV
+        scheme
+      description.fr: |
+        Cotisations pour les professions libérales dépendant de la CIPAV
       titre.en: '[automatic] CIPAV contributions'
       titre.fr: cotisations CIPAV
-    cotisations CIPAV . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
     répartition:
       avec:
         autres contributions:
@@ -644,6 +630,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             remboursement de la dette sociale
           titre.en: '[automatic] other contributions'
           titre.fr: autres contributions
+        formation professionnelle:
+          titre.en: '[automatic] professional training'
+          titre.fr: formation professionnelle
         invalidité-décès:
           description.en: >
             [automatic] Share of auto-entrepreneurs' contributions to disability
@@ -1013,16 +1002,17 @@ dirigeant . auto-entrepreneur . impôt . revenu imposable:
   titre.fr: revenu imposable
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description.en: >
-    [automatic] With the option for the payment in full discharge, income tax is
-    paid at the same time as your contributions (per month or per quarter) with
-    the application of a specific rate according to your activity. To benefit
-    from this option, your reference tax income must not exceed €27,086 in 2018
+    [automatic] With the option for payment in full discharge, income tax is
+    paid at the same time as your contributions (monthly or quarterly), with a
+    specific rate applied according to your activity. To benefit from this
+    option in 2024, your reference tax income for 2022 must not exceed €27,478
+    for one family share.
   description.fr: >
     Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé
     en même temps que vos cotisations (par mois ou par trimestre) avec
     application d’un taux spécifique en fonction de votre activité. Pour en
-    bénéficier, votre revenu fiscal de référence ne doit pas excéder 27 086 € en
-    2018
+    bénéficier en 2024, votre revenu fiscal de référence pour l'année 2022 ne
+    doit pas excéder 27 478 € pour une part de quotient familial.
   question.en: '[automatic] Do you benefit from the payment in full of income tax?'
   question.fr: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
   titre.en: '[automatic] payment in full discharge'
@@ -1301,41 +1291,40 @@ dirigeant . indépendant . PL . CARCDSF:
   titre.en: '[automatic] CARCDSF'
   titre.fr: CARCDSF
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste:
-  avec:
-    PCV:
-      avec:
-        forfaitaire:
-          titre.en: '[automatic] lump sum'
-          titre.fr: forfaitaire
-        proportionnelle:
-          titre.en: '[automatic] proportional'
-          titre.fr: proportionnelle
-      note.en: >-
-        [automatic] A waiver may be granted when the 2019 professional income is
-        less than or equal to 500 C (value as of January 1 of the year in
-        question), or €11,500.
-
-        The request must be accompanied by a photocopy of the tax return No. 2042 C or 2035 or 2065 and their appendices (2033 B and D or 2053 and 2058 A) of the year 2019.
-
-        This exemption results in the cancellation of rights for the year and the non-contributed points are not redeemable.
-      note.fr: >-
-        Une dispense peut être accordée lorsque les revenus professionnels 2019
-        sont inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année
-        considérée), soit 11 500 €.
-
-        La demande doit être accompagnée d’une photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
-
-        Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
-      titre.en: '[automatic] Supplementary old-age benefit'
-      titre.fr: Prestation complémentaire vieillesse
-    RID:
-      titre.en: '[automatic] disability and death'
-      titre.fr: invalidité et décès
   titre.en: '[automatic] dental surgeon'
   titre.fr: chirurgien-dentiste
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV . participation CPAM:
-  titre.en: '[automatic] CPAM participation'
-  titre.fr: participation CPAM
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
+  avec:
+    forfaitaire:
+      titre.en: '[automatic] lump-sum'
+      titre.fr: forfaitaire
+    participation CPAM:
+      titre.en: '[automatic] CPAM contribution'
+      titre.fr: participation CPAM
+    proportionnelle:
+      titre.en: '[automatic] proportional'
+      titre.fr: proportionnelle
+  note.en: >-
+    [automatic] A waiver may be granted when 2019 professional income is less
+    than or equal to 500 C (value at January 1 of the year in question), i.e.
+    €11,500.
+
+    The request must be accompanied by a photocopy of tax return no. 2042 C or 2035 or 2065 and their appendices (2033 B and D or 2053 and 2058 A) for 2019.
+
+    This exemption results in the cancellation of rights for the year, and non-contributed points are not redeemable.
+  note.fr: >-
+    Une dispense peut être accordée lorsque les revenus professionnels 2019 sont
+    inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année considérée),
+    soit 11 500 €.
+
+    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
+
+    Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
+  titre.en: '[automatic] Supplementary old-age benefit'
+  titre.fr: Prestation complémentaire vieillesse
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
   description.en: "[automatic] You have the possibility to benefit from a total
     exemption of contribution for the complementary old age benefit (PCV) if you
@@ -1420,46 +1409,6 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
   titre.en: '[automatic] discount rate'
   titre.fr: taux réduction
 dirigeant . indépendant . PL . CARCDSF . sage-femme:
-  avec:
-    RID:
-      description.en: >
-        [automatic] There are different contribution classes to choose from,
-        corresponding to different contributions
-
-        and different levels of compensation.
-
-
-        A change to a higher class must be requested before July 1 of the current year to be effective
-
-        July 1 of the current year, to take effect on January 1 of the following year.
-
-        the following year.
-
-
-        No change in grade is permitted after July 1 of the 56th birthday.
-      description.fr: >
-        Il existe classes de cotisations aux choix, correspondant à des
-        cotisations
-
-        et des degrés d'indemnisations différents.
-
-
-        Le changement d'option pour une classe supérieure doit être demandé avant le
-
-        1er juillet de l'année en cours, pour prendre effet au 1er janvier de
-
-        l'année suivante.
-
-
-        Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
-      note.en:
-        '[automatic] Starting in 2023, there is no longer an option to elect
-        for a specific contribution class.'
-      note.fr:
-        À partir de 2023, il n'y a plus de possibilité de choisir pour une
-        classe de cotisation spécifique.
-      titre.en: '[automatic] disability and death'
-      titre.fr: invalidité et décès
   titre.en: '[automatic] midwife'
   titre.fr: sage-femme
 dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
@@ -1506,31 +1455,72 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
     non cotisés ne sont pas rachetables.
   titre.en: '[automatic] PCV'
   titre.fr: PCV
-dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe:
+dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
+  avec:
+    classe:
+      avec:
+        A:
+          titre.en: '[automatic] Class A'
+          titre.fr: classe A
+        B:
+          titre.en: '[automatic] class B'
+          titre.fr: classe B
+        C:
+          titre.en: '[automatic] class C'
+          titre.fr: classe C
+      description.en: >
+        [automatic] A choice of contribution classes, corresponding to different
+        contributions
+
+        and compensation levels.
+      description.fr: >
+        Il existe classes de cotisations aux choix, correspondant à des
+        cotisations
+
+        et des degrés d'indemnisations différents.
+      question.en: '[automatic] In which class do you contribute to the CARCDSF
+        disability-death plan?'
+      question.fr:
+        Dans quelle classe cotisez-vous pour le régime invalidité-décès de
+        la CARCDSF ?
+      titre.en: '[automatic] Contribution class'
+      titre.fr: Classe de cotisation
   description.en: >
-    [automatic] There are contribution classes to choose from, corresponding to
+    [automatic] A choice of contribution classes, corresponding to different
     contributions
 
-    and different levels of compensation.
-  description.fr: |
+    and compensation levels.
+
+
+    A change to a higher class must be requested before the
+
+    July 1 of the current year, to take effect on January 1 of the following year.
+
+    the following year.
+
+
+    No change of class is permitted after July 1 of the 56th birthday.
+  description.fr: >
     Il existe classes de cotisations aux choix, correspondant à des cotisations
+
     et des degrés d'indemnisations différents.
-  question.en: '[automatic] In which class do you contribute to the DCFDC
-    Disability Death Plan?'
-  question.fr:
-    Dans quelle classe cotisez-vous pour le régime invalidité-décès de
-    la CARCDSF ?
-  titre.en: '[automatic] Contribution class'
-  titre.fr: Classe de cotisation
-dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . A:
-  titre.en: '[automatic] class A'
-  titre.fr: classe A
-dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . B:
-  titre.en: '[automatic] class B'
-  titre.fr: classe B
-dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe . C:
-  titre.en: '[automatic] class C'
-  titre.fr: classe C
+
+
+    Le changement d'option pour une classe supérieure doit être demandé avant le
+
+    1er juillet de l'année en cours, pour prendre effet au 1er janvier de
+
+    l'année suivante.
+
+
+    Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
+  note.en:
+    '[automatic] From 2023, there will no longer be the option of choosing
+    a specific contribution class.'
+  note.fr: À partir de 2023, il n'y a plus de possibilité de choisir pour une
+    classe de cotisation spécifique.
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
   description.en: "[automatic] You have the possibility to benefit from a total
     exemption of contribution for the complementary old age benefit (PCV) if you
@@ -1710,43 +1700,44 @@ dirigeant . indépendant . PL . CAVP . PCV:
   titre.en: '[automatic] Old-age benefit (CAVP)'
   titre.fr: Prestation complémentaire de vieillesse (CAVP)
 dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
+  avec:
+    aide CPAM forfaitaire:
+      titre.en: '[automatic] flat-rate CPAM assistance'
+      titre.fr: aide CPAM forfaitaire
+    aide CPAM proportionnelle:
+      titre.en: '[automatic] proportional CPAM assistance'
+      titre.fr: aide CPAM proportionnelle
   titre.en: '[automatic] CPAM assistance'
   titre.fr: aide CPAM
-dirigeant . indépendant . PL . CAVP . PCV . aide CPAM forfaitaire:
-  titre.en: '[automatic] flat-rate CPAM aid'
-  titre.fr: aide CPAM forfaitaire
-dirigeant . indépendant . PL . CAVP . PCV . aide CPAM proportionnelle:
-  titre.en: '[automatic] proportional CPAM assistance'
-  titre.fr: aide CPAM proportionnelle
 dirigeant . indépendant . PL . CAVP . cotisation de référence:
   titre.en: '[automatic] benchmark contribution'
   titre.fr: cotisation de référence
 dirigeant . indépendant . PL . CAVP . demande reduction:
   résumé.en: >
-    [automatic] A reduction in contributions can be requested for the first 2
+    [automatic] A reduction in contributions may be requested for the first 2
     years, or
 
-    in case of low income. Thus, if your income for the year before last
+    in the case of low income. Thus, if your income for the penultimate year,
 
-    or the previous year if known (i.e. 2018 or 2019 for 2020 contributions)
+    or the previous year if known (i.e. 2022 or 2023 for contributions
 
-    2020), were :
-      - less than 1/3 of the PASS (€13,712 in 2020), you can claim a 75% reduction;
-      - between 1/3 and 2/3 of the PASS (between €13,712 and €27,423 in 2020), you can apply for a 50% reduction;
-      - between 2/3 of the PASS and the PASS (between €27,424 and €41,135 in 2020), you can apply for a 25% reduction.
+    2024 contributions), were :
+      - less than 1/3 of PASS (€15,456 in 2024), you can apply for a 75% reduction;
+      - between 1/3 and 2/3 of the PASS (between €15,456 and €30,911 in 2024), you can claim a 50% reduction;
+      - between 2/3 of the PASS and the PASS (between €30,911 and €46,367 in 2024), you can apply for a 25% reduction.
 
-    This possibility is reserved for pharmacists who contribute in class 3 (the lowest).
+    This option is reserved for pharmacists paying class 3 contributions (the lowest).
   résumé.fr: >
     Une réduction de cotisations peut être demandée les 2 premières années, ou
 
     en cas de revenus faibles. Ainsi, si vos revenus de l'avant-dernière année,
 
-    ou de l'année précédente s'ils sont connus (soit 2018 ou 2019 pour les cotisations
+    ou de l'année précédente s'ils sont connus (soit 2022 ou 2023 pour les cotisations
 
-    2020), étaient :
-      - inférieurs à 1/3 du PASS (13 712 € en 2020), vous pouvez demander une réduction de 75 % ;
-      - entre 1/3 et 2/3 du PASS (entre 13 712 et 27 423 € en 2020), vous pouvez demander une réduction de 50 % ;
-      - entre 2/3 du PASS et le PASS (entre 27 424 € et 41 135 € en 2020), vous pouvez demander une réduction de 25 %.
+    2024), étaient :
+      - inférieurs à 1/3 du PASS (15 456 € en 2024), vous pouvez demander une réduction de 75 % ;
+      - entre 1/3 et 2/3 du PASS (entre 15 456  et 30 911 € en 2024), vous pouvez demander une réduction de 50 % ;
+      - entre 2/3 du PASS et le PASS (entre 30 911 € et 46 367 € en 2024), vous pouvez demander une réduction de 25 %.
 
     Cette possibilité est réservée aux pharmaciens qui cotisent en classe 3 (la plus basse).
   titre.en: '[automatic] reduction request'
@@ -1760,14 +1751,15 @@ dirigeant . indépendant . PL . CAVP . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CAVP . retraite complémentaire:
+  avec:
+    part géré par capitalisation:
+      titre.en: '[automatic] share managed by capitalization'
+      titre.fr: part géré par capitalisation
+    part géré par répartition:
+      titre.en: '[automatic] pay-as-you-go'
+      titre.fr: part géré par répartition
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré par capitalisation:
-  titre.en: '[automatic] share managed by capitalisation'
-  titre.fr: part géré par capitalisation
-dirigeant . indépendant . PL . CAVP . retraite complémentaire . part géré par répartition:
-  titre.en: '[automatic] pay-as-you-go portion'
-  titre.fr: part géré par répartition
 dirigeant . indépendant . PL . CIPAV:
   avec:
     cotisations et contributions retraite complémentaire:
@@ -3725,31 +3717,31 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
   description.en: >
     [automatic] Contributions are calculated on a provisional basis
 
-    on the basis of the last declared income
+    on the basis of the last income declared
 
-    (or the lump sum, if no income is declared yet).
+    (or the lump-sum amount, if no income has yet been declared).
 
-    Once the year is over and the professional income is known
+    Once the year is over and the professional income is known,
 
-    the contributions are adjusted.
+    contributions are adjusted.
 
 
 
-    This simulator calculates the contributions **after regularization**.
+    This simulator calculates contributions **after regularization**.
 
-    It therefore allows you to anticipate the amount of this regularization and to plan your
+    It therefore enables you to anticipate the amount of this regularization and plan your cash flow
 
     your cash flow accordingly.
 
 
 
-    If your activity income changes significantly compared to the previous year
+    If your business income changes significantly from the previous year,
 
-    you have the possibility to communicate to URSSAF a
+    you have the option of providing Urssaf with a
 
-    **forecasted amount for the current year, which will be used as a basis for calculation** (be careful, however, you will be required to make an accurate estimate).
+    **forecast amount for the current year, which will be used as the basis for calculation**.
 
-    (be careful however, you will be required to make an accurate estimate).
+    (please note, however, that you will be required to make a precise estimate).
   description.fr: >
     Les cotisations et contributions sont calculées à titre provisionnel
 
@@ -3773,7 +3765,7 @@ dirigeant . indépendant . cotisations et contributions . régularisation:
 
     Si vos revenus d'activité changent beaucoup par rapport à l'année précédente,
 
-    vous avez la possibilité de communiquer à l'URSSAF un
+    vous avez la possibilité de communiquer à l'Urssaf un
 
     **montant prévisionnel pour l'année en cours, qui sera pris comme base de calcul**
 
@@ -7061,15 +7053,15 @@ protection sociale . retraite:
   titre.fr: retraite
 protection sociale . retraite . base:
   description.en: >
-    [automatic] The amount of your basic retirement pension is calculated from
-    the average of your earnings over the best 25 years.
+    [automatic] The amount of your basic retirement pension is calculated on the
+    basis of your average income over the best 25 years.
 
 
-    This estimate of your retirement pension is calculated based on the following principles:
+    This estimate of your retirement pension is calculated on the basis of the following principles:
 
-    - Your earnings are calculated on the basis of your best 25 years
+    - Your earnings correspond to your best 25 years.
 
-    - You have contributed enough quarters and you leave at the age required to benefit from the full rate
+    - You have contributed enough quarters and are retiring at the age required to benefit from the full rate.
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé à partir la
     moyenne de vos revenus des 25 meilleures années.
@@ -7079,7 +7071,7 @@ protection sociale . retraite . base:
 
     - La rémunération calculée correspond à celle de vos 25 meilleures années
 
-    - Vous avez cotisé suffisement de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
   résumé.en: '[automatic] Full basic retirement pension assuming your earnings
     have remained the same throughout your working life.'
   résumé.fr: Pension de retraite de base à taux plein en partant du principe que
@@ -7135,6 +7127,9 @@ protection sociale . retraite . base . CNAVPL:
     points acquis . points incapacité:
       titre.en: '[automatic] disability points'
       titre.fr: points incapacité
+    références:
+      titre.en: '[automatic] references'
+      titre.fr: références
     valeur du point:
       titre.en: '[automatic] point value'
       titre.fr: valeur du point
@@ -7345,6 +7340,9 @@ protection sociale . retraite . complémentaire . CIPAV:
     points acquis:
       titre.en: '[automatic] points acquired'
       titre.fr: points acquis
+    références:
+      titre.en: '[automatic] references'
+      titre.fr: références
     valeur d'acquisition:
       titre.en: '[automatic] acquisition value'
       titre.fr: valeur d'acquisition
@@ -8272,7 +8270,7 @@ salarié . convention collective:
         is not taken into account; the simulation will be based on common law.'
       description.fr:
         "Attention : votre convention collective n'est pas prise en
-        charge, la simulation se basera sur le droit commun."
+        charge,  la simulation se basera sur le droit commun."
       titre.en: '[automatic] warning other collective bargaining agreement'
       titre.fr: avertissement autre convention collective
     avertissement convention collective:
