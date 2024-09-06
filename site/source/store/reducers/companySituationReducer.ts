@@ -4,7 +4,8 @@ import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
 import { toPublicodeDate } from '@/domaine/Date'
 import { Entreprise } from '@/domaine/Entreprise'
 import { Action } from '@/store/actions/actions'
-import { buildSituationFromObject, omit } from '@/utils'
+import { omit } from '@/utils'
+import { buildSituationFromObject } from '@/utils/publicodes'
 
 import { Situation } from './rootReducer'
 

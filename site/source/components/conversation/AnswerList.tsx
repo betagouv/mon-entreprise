@@ -25,7 +25,7 @@ import {
 	companySituationSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils'
+import { evaluateQuestion } from '@/utils/publicodes'
 
 import Value from '../EngineValue/Value'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'

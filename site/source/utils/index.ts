@@ -1,13 +1,4 @@
-import { DottedName } from 'modele-social'
-import Engine, {
-	formatValue,
-	isPublicodesError,
-	PublicodesExpression,
-	Rule,
-	RuleNode,
-} from 'publicodes'
-
-import { Situation } from '@/store/reducers/rootReducer'
+import { formatValue } from 'publicodes'
 
 /** The `capitalise0` function is a utility function that capitalizes the first letter of a string. The
 function takes an optional `name` parameter, which is a string that needs to be capitalized. */
@@ -180,17 +171,6 @@ export const getValueFrom = <
 ): Extract<T, { [k in K]?: unknown }>[K] | undefined =>
 	key in obj ? obj[key] : undefined
 
-const isMeta = <T>(rule: Rule): rule is Rule & { meta?: T } => 'meta' in rule
-
-/**
- * Return typed meta property from a rule
- * @param rule
- * @param defaultValue
- * @returns
- */
-export const getMeta = <T>(rule: Rule, defaultValue: T) =>
-	(isMeta<T>(rule) ? getValueFrom(rule, 'meta') : null) ?? defaultValue
-
 /**
  * Wraps each event function specified in eventsToWrap (default onPress) with an
  * asynchronous function that waits x ms before executing the original function
@@ -243,50 +223,6 @@ export async function getIframeOffset(): Promise<number> {
 		window.parent?.postMessage({ kind: 'get-offset' }, '*')
 		window.addEventListener('message', returnOffset)
 	})
-}
-
-export function evaluateQuestion(
-	engine: Engine,
-	rule: RuleNode
-): string | undefined {
-	const question = rule.rawNode.question as Exclude<
-		number,
-		PublicodesExpression
-	>
-	if (question && typeof question === 'object') {
-		return engine.evaluate(question as PublicodesExpression).nodeValue as string
-	}
-
-	return question
-}
-
-export function buildSituationFromObject<Names extends string = DottedName>(
-	contextDottedName: Names,
-	situationObject: Record<string, PublicodesExpression>
-): Situation {
-	return Object.fromEntries(
-		Object.entries(situationObject).map(
-			([key, value]: [string, PublicodesExpression]) => [
-				`${contextDottedName} . ${key}` as Names,
-				typeof value === 'string' ? `'${value}'` : value,
-			]
-		)
-	)
-}
-
-export const catchDivideByZeroError = <T>(func: () => T) => {
-	try {
-		return func()
-	} catch (err) {
-		if (
-			isPublicodesError(err, 'EvaluationError') &&
-			err.message === 'Division by zero'
-		) {
-			// eslint-disable-next-line no-console
-			console.error(err)
-		}
-		throw err
-	}
 }
 
 export const generateUuid = () => {
