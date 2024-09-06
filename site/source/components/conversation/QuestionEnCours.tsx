@@ -23,7 +23,7 @@ import {
 } from '@/store/actions/actions'
 import { estSurLaPremièreQuestionRépondueSelector } from '@/store/selectors/estSurLaPremièreQuestionRépondue.selector'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils'
+import { evaluateQuestion } from '@/utils/publicodes'
 
 interface Props {
 	previousAnswers: DottedName[]

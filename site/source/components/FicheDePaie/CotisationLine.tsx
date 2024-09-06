@@ -1,10 +1,11 @@
 import { DottedName } from 'modele-social'
-import { ASTNode, formatValue, reduceAST } from 'publicodes'
+import { formatValue } from 'publicodes'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
 import { EngineContext } from '@/components/utils/EngineContext'
+import { findReferenceInNode } from '@/utils/publicodes'
 
 export default function CotisationLine({
 	dottedName,
@@ -52,25 +53,4 @@ export default function CotisationLine({
 
 function isExoneration(dottedName: DottedName): boolean {
 	return dottedName === 'salarié . cotisations . exonérations'
-}
-
-function findReferenceInNode(
-	dottedName: DottedName,
-	node: ASTNode
-): string | undefined {
-	return reduceAST<string | undefined>(
-		(acc, node) => {
-			if (
-				node.nodeKind === 'reference' &&
-				node.dottedName?.startsWith(dottedName) &&
-				!node.dottedName.endsWith('$SITUATION')
-			) {
-				return node.dottedName
-			} else if (node.nodeKind === 'reference') {
-				return acc
-			}
-		},
-		undefined,
-		node
-	)
 }
