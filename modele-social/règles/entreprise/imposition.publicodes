@@ -263,6 +263,7 @@ entreprise . imposition . régime:
     Les différents régimes d'imposition: https://www.economie.gouv.fr/entreprises/les-differents-regimes-dimposition
 
 entreprise . imposition . régime . micro-entreprise:
+  titre: micro-fiscal
   non applicable si: entreprise . imposition . IS
   valeur: régime = 'micro-entreprise'
   par défaut: non
@@ -270,12 +271,12 @@ entreprise . imposition . régime . micro-entreprise:
   rend non applicable: dirigeant . indépendant . cotisations facultatives
   question: Avez-vous opté pour le régime micro-fiscal ?
   description: |
-    Avec le régime micro fiscal, les charges déductibles sont estimées forfaitairement,en fonction d’un pourcentage du chiffre d’affaires. Ce pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
+    Avec le régime micro-fiscal, les charges déductibles sont estimées forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
 
-    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable et soumis à cotisations et contributions sociales dans le cas où vos charges de fonctionnement sont faibles.
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de fonctionnement sont faibles.
   références:
-    Imposition du micro-entrepreneur: https://entreprendre.service-public.fr/vosdroits/F23267
-    "Changement de régime d'imposition: comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition
+    Régime micro-fiscal: https://entreprendre.service-public.fr/vosdroits/F23267
+    "Changement de régime d'imposition : comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition
 
 entreprise . imposition . régime . micro-entreprise . revenu abattu:
   remplace: résultat fiscal
