@@ -42,7 +42,7 @@ import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { companySituationSelector } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils'
+import { evaluateQuestion } from '@/utils/publicodes'
 
 import forms from './forms.svg'
 import growth from './growth.svg'
