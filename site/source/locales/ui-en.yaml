@@ -60,6 +60,7 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   Hello, I'm a baker and I couldn't find "bread" or "viennoiserie" when I
   searched.
 Budget: Budget
+Calculer vos cotisations pour l’année précédente: Calculate your contributions for the previous year
 Calculer vos revenus: Calculate your income
 Ce simulateur a été prérempli avec la situation de votre entreprise.: This simulator has been pre-filled with your company's situation.
 Cette commune n'existe pas: This commune does not exist
@@ -1215,6 +1216,17 @@ pages:
         title: "Lawyer: income simulator"
       shortname: Lawyer
       title: Income simulator for self-employed lawyers
+    cessation-activité:
+      meta:
+        description: Calculate your contributions to be paid when you cease
+          self-employed activity
+        ogDescription: Calculate your contributions to be paid when you cease
+          self-employed activity
+        ogTitle: Calculate your contributions to be paid when you cease self-employed
+          activity
+        titre: "Self-employed : Estimates of contributions payable after termination"
+      shortname: Cessation of activity
+      title: Estimated contributions payable after termination
     chirurgien-dentiste:
       meta:
         description: Calculation of net income after contributions based on total income.

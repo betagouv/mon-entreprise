@@ -5682,6 +5682,18 @@ entreprise . date de création . contrôle date passée:
     pas vous être trompé dans la saisie ?
   titre.en: '[automatic] past date check'
   titre.fr: contrôle date passée
+entreprise . date de radiation:
+  description.en: '[automatic] The deregistration date is the date on which the
+    company ceases trading.'
+  description.fr:
+    La date de radiation est la date à laquelle l’entreprise cessera
+    son activité.
+  question.en: '[automatic] When do you plan to declare your cessation of activity?'
+  question.fr: À quelle date comptez-vous déclarer la cessation d’activité ?
+  suggestions.Fin de cette année.en: '[automatic] End of this year'
+  suggestions.Fin de cette année.fr: Fin de cette année
+  titre.en: '[automatic] deregistration date'
+  titre.fr: date de radiation
 entreprise . dividendes:
   titre.en: '[automatic] dividends'
   titre.fr: dividendes

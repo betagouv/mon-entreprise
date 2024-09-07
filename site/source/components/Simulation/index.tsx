@@ -7,9 +7,13 @@ import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { ConversationProps } from '@/components/conversation/Conversation'
-import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
+import ShareOrSaveSimulationBanner, {
+	CustomSimulationButton,
+} from '@/components/ShareSimulationBanner'
 import { PopoverWithTrigger } from '@/design-system'
+import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
+import { H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import {
 	companySituationSelector,
@@ -29,6 +33,16 @@ export { Questions } from './Questions'
 export { SimulationGoal } from './SimulationGoal'
 export { SimulationGoals } from './SimulationGoals'
 
+const StyledGrid = styled(Grid)`
+	width: 100%;
+	@media print {
+		max-width: initial;
+		flex-basis: initial;
+		flex-grow: 1;
+		margin: 0 1rem;
+	}
+`
+
 type SimulationProps = {
 	explanations?: React.ReactNode
 	engines?: Array<Engine<DottedName>>
@@ -40,17 +54,8 @@ type SimulationProps = {
 	customEndMessages?: ConversationProps['customEndMessages']
 	fullWidth?: boolean
 	id?: string
+	customSimulationbutton?: CustomSimulationButton
 }
-
-const StyledGrid = styled(Grid)`
-	width: 100%;
-	@media print {
-		max-width: initial;
-		flex-basis: initial;
-		flex-grow: 1;
-		margin: 0 1rem;
-	}
-`
 
 export default function Simulation({
 	explanations,
@@ -63,6 +68,7 @@ export default function Simulation({
 	hideDetails = false,
 	fullWidth,
 	id,
+	customSimulationbutton,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const existingCompany = !!useSelector(companySituationSelector)[
@@ -122,6 +128,21 @@ export default function Simulation({
 					)}
 					{firstStepCompleted && !hideDetails && (
 						<>
+							{customSimulationbutton && (
+								<>
+									<div>
+										<H3>
+											Avez-vous besoin de calculer les cotisations de l'année
+											précédente ?
+										</H3>
+										<Button size="MD" href={customSimulationbutton.href}>
+											{customSimulationbutton.title}
+										</Button>
+									</div>
+									<Spacing lg />
+								</>
+							)}
+
 							<ShareOrSaveSimulationBanner share print conseillersEntreprises />
 							<Spacing lg />
 						</>
