@@ -207,7 +207,7 @@ export function simulationReducer(
 				}
 			}
 
-			// Sinon, on navigue simplement à la questions déjà répondue suivante
+			// Sinon, on navigue simplement à la question déjà répondue suivante
 			const destination = state.questionsRépondues.findIndex(
 				(q, index) => index > currentIndex && q.applicable
 			)
