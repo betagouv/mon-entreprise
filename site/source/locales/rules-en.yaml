@@ -1096,6 +1096,31 @@ dirigeant . auto-entrepreneur . revenu net . après impôt:
   résumé.fr: Avant déduction des dépenses liées à l'activité
   titre.en: '[automatic] after tax'
   titre.fr: après impôt
+dirigeant . auto-entrepreneur . éligible à l'ACRE:
+  description.en: >
+    [automatic] ACRE is reserved for the following self-entrepreneurs:
+
+    - Jobseekers (with or without benefits, but registered with Pôle Emploi for at least 6 months in the last 18 months).
+
+    - Recipients of social assistance (RSA, ASS, ATA).
+
+    - Young people aged between 18 and 25 (up to 29 for people recognized as disabled).
+
+    - People setting up a micro-business in a priority urban district (QPPV).
+  description.fr: >
+    L'ACRE est réservée aux auto-entrepreneurs suivants:
+
+    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
+
+    - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
+
+    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
+
+    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
+  question.en: '[automatic] Are you eligible for ACRE for your auto-entreprise?'
+  question.fr: Êtes-vous éligible à l'ACRE pour votre auto-entreprise ?
+  titre.en: '[automatic] eligible for ACRE'
+  titre.fr: éligible à l'ACRE
 dirigeant . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
@@ -3448,15 +3473,15 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
       titre.en: '[automatic] basic retirement'
       titre.fr: retraite de base
   description.en: >-
-    [automatic] If you are the holder of a disability pension paid by a
-    non-agricultural non-salaried worker's scheme, you are exempt from
+    [automatic] If you receive a disability pension from a non-agricultural
+    non-salaried worker scheme
 
-    agricultural workers, you benefit from an exemption from basic pension, supplementary pension and
+    non-agricultural non-salaried workers, you benefit from an exemption from basic, supplementary and
 
-    supplementary pension and sickness contributions. 
+    and sickness contributions.
 
 
-    This exemption is prorated to the number of months your disability was recognized. 
+    This exemption is proportional to the number of months your disability has been recognized.
 
     If you have received a disability pension for the whole year, then the exemption is total.
   description.fr: >-
@@ -3465,10 +3490,10 @@ dirigeant . indépendant . cotisations et contributions . exonérations . pensio
 
     non agricoles, vous bénéficiez d’une exonération des cotisations de retraite de base, de
 
-    retraite complémentaire et maladie. 
+    retraite complémentaire et maladie.
 
 
-    Cette exonération est au prorata du nombre de mois où votre invalidité a été reconnue. 
+    Cette exonération est au prorata du nombre de mois où votre invalidité a été reconnue.
 
     Si vous avez reçu une pension d'invalidité sur l'année complète, alors l'exonération est totale.
   question.fr:
