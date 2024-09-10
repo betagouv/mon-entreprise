@@ -55,3 +55,4 @@ dirigeant . exonérations . ACRE:
         - une de ces conditions:
             - entreprise . date de création < 01/01/2019
             - entreprise . date de création > 31/12/2019
+            - dirigeant . auto-entrepreneur . éligible à l'ACRE
