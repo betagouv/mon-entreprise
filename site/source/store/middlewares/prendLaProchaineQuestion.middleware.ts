@@ -84,6 +84,17 @@ export const prendLaProchaineQuestionMiddleware =
 				lastSimulation = simulation
 				lastConfig = config
 
+				store.dispatch(
+					applicabilitéDesQuestionsRépondues(
+						(questionsRépondues || []).map((question) => ({
+							...question,
+							applicable:
+								engine.evaluate({ 'est applicable': question.règle })
+									.nodeValue === true,
+						}))
+					)
+				)
+
 				const prochainesQuestions = détermineLesProchainesQuestions(
 					engines,
 					config,
@@ -94,25 +105,6 @@ export const prendLaProchaineQuestionMiddleware =
 					arraysAreDifferent(prochainesQuestions, questionsSuivantesActuelles)
 				) {
 					store.dispatch(questionsSuivantes(prochainesQuestions))
-
-					store.dispatch(
-						applicabilitéDesQuestionsRépondues(
-							(questionsRépondues || []).map((question) => {
-								console.log('est applicable', question.règle)
-								console.log(
-									engine.evaluate({ 'est applicable': question.règle })
-										.nodeValue === true
-								)
-
-								return {
-									...question,
-									applicable:
-										engine.evaluate({ 'est applicable': question.règle })
-											.nodeValue === true,
-								}
-							})
-						)
-					)
 				}
 			}
 		}
