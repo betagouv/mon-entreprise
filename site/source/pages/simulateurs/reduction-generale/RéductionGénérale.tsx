@@ -1,9 +1,11 @@
 import { DottedName } from 'modele-social'
+import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
+import PeriodSwitch from '@/components/PeriodSwitch'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
@@ -12,38 +14,17 @@ import Simulation, {
 } from '@/components/Simulation'
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Message, Radio, ToggleGroup } from '@/design-system'
+import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { enregistreLaRéponse, updateUnit } from '@/store/actions/actions'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { enregistreLaRéponse } from '@/store/actions/actions'
 
 import EffectifSwitch from './components/EffectifSwitch'
 import RéductionGénéraleMensuelle from './RéductionGénéraleMensuelle'
 
 export default function RéductionGénéraleSimulation() {
-	return (
-		<>
-			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
-				<SimulateurWarning simulateur="réduction-générale" />
-				<RéductionGénéraleSimulationGoals
-					legend="Salaire brut du salarié et réduction générale applicable"
-					toggles={
-						<>
-							<EffectifSwitch />
-							<PeriodSwitch />
-						</>
-					}
-				/>
-			</Simulation>
-		</>
-	)
-}
-
-function PeriodSwitch() {
 	const dispatch = useDispatch()
-	const currentUnit = useSelector(targetUnitSelector)
 	const { t } = useTranslation()
 	const periods = [
 		{
@@ -59,40 +40,34 @@ function PeriodSwitch() {
 			unit: '€',
 		},
 	]
-	const onChange = (unit: string) => {
-		const updatedUnit = unit
-		let optionMoisParMois = 'non'
-		if (unit === '€') {
-			optionMoisParMois = 'oui'
-		}
-		dispatch(updateUnit(updatedUnit))
-		dispatch(
-			enregistreLaRéponse(
-				'salarié . contrat . salaire brut . mois par mois' as DottedName,
-				optionMoisParMois
+	const onPeriodSwitch = useCallback(
+		(unit: string) => {
+			const optionMoisParMois = unit === '€' ? 'oui' : 'non'
+			dispatch(
+				enregistreLaRéponse(
+					'salarié . contrat . salaire brut . mois par mois' as DottedName,
+					optionMoisParMois
+				)
 			)
-		)
-	}
+		},
+		[dispatch]
+	)
 
 	return (
-		<div>
-			<ToggleGroup
-				value={currentUnit}
-				onChange={onChange}
-				mode="tab"
-				hideRadio
-				aria-label={t("Mode d'affichage")}
-			>
-				{periods.map(({ label, unit }) => (
-					<span
-						key={unit}
-						className={currentUnit !== unit ? 'print-hidden' : ''}
-					>
-						<Radio value={unit}>{label}</Radio>
-					</span>
-				))}
-			</ToggleGroup>
-		</div>
+		<>
+			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
+				<SimulateurWarning simulateur="réduction-générale" />
+				<RéductionGénéraleSimulationGoals
+					legend="Salaire brut du salarié et réduction générale applicable"
+					toggles={
+						<>
+							<EffectifSwitch />
+							<PeriodSwitch periods={periods} onPeriodSwitch={onPeriodSwitch} />
+						</>
+					}
+				/>
+			</Simulation>
+		</>
 	)
 }
 
