@@ -496,6 +496,9 @@ salarié . contrat . salaire brut:
       unité: €/mois
       valeur: salaire brut / temps de travail . quotité
 
+    mois par mois:
+      par défaut: non
+
 salarié . contrat . temps de travail:
   unité: heures/mois
   produit:
