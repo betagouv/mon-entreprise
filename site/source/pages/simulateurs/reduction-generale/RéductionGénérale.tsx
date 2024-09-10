@@ -1,8 +1,9 @@
+import { DottedName } from 'modele-social'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import PeriodSwitch from '@/components/PeriodSwitch'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
@@ -10,12 +11,16 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
-import { Message } from '@/design-system'
+import { useEngine } from '@/components/utils/EngineContext'
+import { Message, Radio, ToggleGroup } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { enregistreLaRéponse, updateUnit } from '@/store/actions/actions'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import EffectifSwitch from './components/EffectifSwitch'
+import RéductionGénéraleMensuelle from './RéductionGénéraleMensuelle'
 
 export default function RéductionGénéraleSimulation() {
 	return (
@@ -36,6 +41,61 @@ export default function RéductionGénéraleSimulation() {
 	)
 }
 
+function PeriodSwitch() {
+	const dispatch = useDispatch()
+	const currentUnit = useSelector(targetUnitSelector)
+	const { t } = useTranslation()
+	const periods = [
+		{
+			label: t('Réduction mensuelle'),
+			unit: '€/mois',
+		},
+		{
+			label: t('Réduction annuelle'),
+			unit: '€/an',
+		},
+		{
+			label: t('Réduction mois par mois'),
+			unit: '€',
+		},
+	]
+	const onChange = (unit: string) => {
+		const updatedUnit = unit
+		let optionMoisParMois = 'non'
+		if (unit === '€') {
+			optionMoisParMois = 'oui'
+		}
+		dispatch(updateUnit(updatedUnit))
+		dispatch(
+			enregistreLaRéponse(
+				'salarié . contrat . salaire brut . mois par mois' as DottedName,
+				optionMoisParMois
+			)
+		)
+	}
+
+	return (
+		<div>
+			<ToggleGroup
+				value={currentUnit}
+				onChange={onChange}
+				mode="tab"
+				hideRadio
+				aria-label={t("Mode d'affichage")}
+			>
+				{periods.map(({ label, unit }) => (
+					<span
+						key={unit}
+						className={currentUnit !== unit ? 'print-hidden' : ''}
+					>
+						<Radio value={unit}>{label}</Radio>
+					</span>
+				))}
+			</ToggleGroup>
+		</div>
+	)
+}
+
 const StyledUl = styled(Ul)`
 	margin-top: 0;
 `
@@ -44,6 +104,7 @@ const StyledLi = styled(Li)`
 		margin-top: ${({ theme }) => theme.spacings.sm};
 	}
 `
+
 function RéductionGénéraleSimulationGoals({
 	toggles = (
 		<>
@@ -56,85 +117,95 @@ function RéductionGénéraleSimulationGoals({
 	toggles?: React.ReactNode
 	legend: string
 }) {
+	const monthByMonth =
+		useEngine().evaluate('salarié . contrat . salaire brut . mois par mois')
+			.nodeValue === true
+
 	const { t } = useTranslation()
 
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
-			{/* TODO: remplacer "salarié . cotisations . assiette" par "salarié . rémunération . brut"
+			{monthByMonth ? (
+				<RéductionGénéraleMensuelle />
+			) : (
+				<>
+					{/* TODO: remplacer "salarié . cotisations . assiette" par "salarié . rémunération . brut"
 					lorsqu'elle n'incluera plus les frais professionnels. */}
-			<SimulationGoal
-				dottedName="salarié . cotisations . assiette"
-				round={false}
-				label={t('Rémunération brute', 'Rémunération brute')}
-			/>
+					<SimulationGoal
+						dottedName="salarié . cotisations . assiette"
+						round={false}
+						label={t('Rémunération brute', 'Rémunération brute')}
+					/>
 
-			<Condition expression="salarié . cotisations . exonérations . JEI = oui">
-				<Message type="info">
-					<Body>
-						<Trans>
-							La réduction générale n'est pas cumulable avec l'exonération Jeune
-							Entreprise Innovante (JEI).
-						</Trans>
-					</Body>
-				</Message>
-			</Condition>
+					<Condition expression="salarié . cotisations . exonérations . JEI = oui">
+						<Message type="info">
+							<Body>
+								<Trans>
+									La réduction générale n'est pas cumulable avec l'exonération Jeune
+									Entreprise Innovante (JEI).
+								</Trans>
+							</Body>
+						</Message>
+					</Condition>
 
-			<Condition expression="salarié . contrat = 'stage'">
-				<Message type="info">
-					<Body>
-						<Trans>
-							La réduction générale ne s'applique pas sur les gratifications de
-							stage.
-						</Trans>
-					</Body>
-				</Message>
-			</Condition>
+					<Condition expression="salarié . contrat = 'stage'">
+						<Message type="info">
+							<Body>
+								<Trans>
+									La réduction générale ne s'applique pas sur les gratifications de
+									stage.
+								</Trans>
+							</Body>
+						</Message>
+					</Condition>
 
-			<Condition expression="salarié . cotisations . exonérations . réduction générale = 0">
-				<Message type="info">
-					<Body>
-						<Trans>
-							La RGCP concerne uniquement les salaires inférieurs à 1,6 SMIC.
-							C'est-à-dire, pour 2024, une rémunération totale qui ne dépasse
-							pas <strong>2 827,07 €</strong> bruts par mois.
-						</Trans>
-					</Body>
-				</Message>
-			</Condition>
+					<Condition expression="salarié . contrat . salaire brut > 1.6 * SMIC">
+						<Message type="info">
+							<Body>
+								<Trans>
+									La RGCP concerne uniquement les salaires inférieurs à 1,6
+									SMIC. C'est-à-dire, pour 2024, une rémunération totale qui ne
+									dépasse pas <strong>2 827,07 €</strong> bruts par mois.
+								</Trans>
+							</Body>
+						</Message>
+					</Condition>
 
-			<Condition expression="salarié . cotisations . exonérations . réduction générale >= 0">
-				<SimulationValue
-					dottedName="salarié . cotisations . exonérations . réduction générale"
-					isInfoMode={true}
-					round={false}
-				/>
-				<Spacing md />
-				<StyledUl>
-					<StyledLi>
+					<Condition expression="salarié . cotisations . exonérations . réduction générale >= 0">
 						<SimulationValue
-							dottedName={
-								'salarié . cotisations . exonérations . réduction générale . part retraite'
-							}
+							dottedName="salarié . cotisations . exonérations . réduction générale"
+							isInfoMode={true}
 							round={false}
 						/>
-					</StyledLi>
-					<StyledLi>
-						<SimulationValue
-							dottedName={
-								'salarié . cotisations . exonérations . réduction générale . part Urssaf'
-							}
-							round={false}
-						/>
-						<SimulationValue
-							dottedName={
-								'salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage'
-							}
-							round={false}
-							label={t('dont chômage', 'dont chômage')}
-						/>
-					</StyledLi>
-				</StyledUl>
-			</Condition>
+						<Spacing md />
+						<StyledUl>
+							<StyledLi>
+								<SimulationValue
+									dottedName={
+										'salarié . cotisations . exonérations . réduction générale . part retraite'
+									}
+									round={false}
+								/>
+							</StyledLi>
+							<StyledLi>
+								<SimulationValue
+									dottedName={
+										'salarié . cotisations . exonérations . réduction générale . part Urssaf'
+									}
+									round={false}
+								/>
+								<SimulationValue
+									dottedName={
+										'salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage'
+									}
+									round={false}
+									label={t('dont chômage', 'dont chômage')}
+								/>
+							</StyledLi>
+						</StyledUl>
+					</Condition>
+				</>
+			)}
 		</SimulationGoals>
 	)
 }

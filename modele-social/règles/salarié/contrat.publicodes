@@ -496,6 +496,9 @@ salarié . contrat . salaire brut:
       unité: €/mois
       valeur: salaire brut / temps de travail . quotité
 
+    mois par mois:
+      par défaut: non
+
 salarié . contrat . temps de travail:
   unité: heures/mois
   produit:
@@ -543,7 +546,6 @@ salarié . contrat . temps de travail . temps partiel:
       suggestions:
         4 jours / semaine: durée légale du travail * 4 / 5
         mi-temps: durée légale du travail / 2
-
 
 salarié . contrat . statut cadre:
   question: Le salarié a-t-il le statut cadre ?
