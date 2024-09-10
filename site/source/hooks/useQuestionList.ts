@@ -25,9 +25,6 @@ export function useQuestionList(): [
 
 	const onQuestionAnswered =
 		(dottedName: DottedName) => (value?: PublicodesExpression) => {
-			// if (!answeredQuestions.includes(dottedName)) {
-			// 	dispatch(vaÀLaQuestionSuivante())
-			// }
 			dispatch(enregistreLaRéponse(dottedName, value))
 		}
 
