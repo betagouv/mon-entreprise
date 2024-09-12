@@ -1,7 +1,5 @@
-import { DottedName } from 'modele-social'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
@@ -13,19 +11,18 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { enregistreLaRéponse } from '@/store/actions/actions'
 
 import EffectifSwitch from './components/EffectifSwitch'
 import RéductionGénéraleMensuelle from './RéductionGénéraleMensuelle'
 
 export default function RéductionGénéraleSimulation() {
-	const dispatch = useDispatch()
 	const { t } = useTranslation()
+	const [monthByMonth, setMonthByMonth] = useState(false)
+
 	const periods = [
 		{
 			label: t('Réduction mensuelle'),
@@ -40,24 +37,16 @@ export default function RéductionGénéraleSimulation() {
 			unit: '€',
 		},
 	]
-	const onPeriodSwitch = useCallback(
-		(unit: string) => {
-			const optionMoisParMois = unit === '€' ? 'oui' : 'non'
-			dispatch(
-				enregistreLaRéponse(
-					'salarié . contrat . salaire brut . mois par mois' as DottedName,
-					optionMoisParMois
-				)
-			)
-		},
-		[dispatch]
-	)
+	const onPeriodSwitch = useCallback((unit: string) => {
+		setMonthByMonth(unit === '€')
+	}, [])
 
 	return (
 		<>
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
 				<SimulateurWarning simulateur="réduction-générale" />
 				<RéductionGénéraleSimulationGoals
+					monthByMonth={monthByMonth}
 					legend="Salaire brut du salarié et réduction générale applicable"
 					toggles={
 						<>
@@ -71,16 +60,8 @@ export default function RéductionGénéraleSimulation() {
 	)
 }
 
-const StyledUl = styled(Ul)`
-	margin-top: 0;
-`
-const StyledLi = styled(Li)`
-	&::before {
-		margin-top: ${({ theme }) => theme.spacings.sm};
-	}
-`
-
 function RéductionGénéraleSimulationGoals({
+	monthByMonth,
 	toggles = (
 		<>
 			<EffectifSwitch />
@@ -89,13 +70,10 @@ function RéductionGénéraleSimulationGoals({
 	),
 	legend,
 }: {
+	monthByMonth: boolean
 	toggles?: React.ReactNode
 	legend: string
 }) {
-	const monthByMonth =
-		useEngine().evaluate('salarié . contrat . salaire brut . mois par mois')
-			.nodeValue === true
-
 	const { t } = useTranslation()
 
 	return (
@@ -184,3 +162,12 @@ function RéductionGénéraleSimulationGoals({
 		</SimulationGoals>
 	)
 }
+
+const StyledUl = styled(Ul)`
+	margin-top: 0;
+`
+const StyledLi = styled(Li)`
+	&::before {
+		margin-top: ${({ theme }) => theme.spacings.sm};
+	}
+`
