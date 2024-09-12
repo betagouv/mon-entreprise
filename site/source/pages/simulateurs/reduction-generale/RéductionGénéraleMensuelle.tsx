@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import { Evaluation, formatValue, PublicodesExpression } from 'publicodes'
-import { useCallback, useReducer } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -14,8 +14,8 @@ type State = {
 type MonthState = {
 	month: Month
 	nbMoisCumulé: number
-	salaireBrut: undefined | PublicodesExpression
-	réductionGénérale: undefined | Evaluation
+	salaireBrut: number
+	réductionGénérale: number
 }
 type Month =
 	| 'janvier'
@@ -30,31 +30,12 @@ type Month =
 	| 'octobre'
 	| 'novembre'
 	| 'décembre'
+type SalaireBrutInput = {
+	unité: string
+	valeur: number
+}
 
 export default function RéductionGénéraleMensuelle() {
-	function reducer(
-		state: State,
-		action: {
-			type: string
-			month: Month
-			salaireBrut: PublicodesExpression | undefined
-			réductionGénérale: Evaluation | undefined
-		}
-	) {
-		switch (action.type) {
-			case 'MODIFIE_SALAIRE_BRUT':
-				return {
-					...state,
-					[action.month]: {
-						...state[action.month],
-						salaireBrut: action.salaireBrut,
-						réductionGénérale: action.réductionGénérale,
-					},
-				}
-			default:
-				throw new Error()
-		}
-	}
 	const months: Month[] = [
 		'janvier',
 		'février',
@@ -69,59 +50,77 @@ export default function RéductionGénéraleMensuelle() {
 		'novembre',
 		'décembre',
 	]
-
 	const engine = useEngine()
 	const unit = '€/mois'
 	const displayedUnit = '€'
 	const réductionGénéraleDottedName =
 		'salarié . cotisations . exonérations . réduction générale' as DottedName
 	const salaireBrutDottedName = 'salarié . contrat . salaire brut' as DottedName
-	const initialSalaireBrutEvaluation = engine.evaluate({
-		valeur: salaireBrutDottedName,
-		arrondi: 'oui',
-		unité: unit,
-	})
+	const { t } = useTranslation()
+
 	const getRéductionGénérale = useCallback(
-		(salaireBrut?: PublicodesExpression) => {
-			return engine.evaluate({
-				valeur: réductionGénéraleDottedName,
-				unité: unit,
-				contexte: {
-					[salaireBrutDottedName]: salaireBrut,
-				},
-			})
+		(salaireBrut?: number) => {
+			return salaireBrut
+				? engine.evaluate({
+						valeur: réductionGénéraleDottedName,
+						unité: unit,
+						contexte: {
+							[salaireBrutDottedName]: salaireBrut,
+						},
+				  })
+				: undefined
 		},
 		[engine]
 	)
-	const initialRéductionGénérale = getRéductionGénérale(initialSalaireBrutEvaluation)
-	const initialState = months.reduce(function (acc, month: Month, key: number) {
-		return {
+
+	const initialSalaireBrutEvaluation = useMemo(
+		() =>
+			engine.evaluate({
+				valeur: salaireBrutDottedName,
+				arrondi: 'oui',
+				unité: unit,
+			}),
+		[engine]
+	)
+	const initialRéductionGénérale = getRéductionGénérale(
+		initialSalaireBrutEvaluation?.nodeValue as number
+	)
+	const initialState = months.reduce(
+		(acc, month, key) => ({
 			...acc,
 			[month]: {
 				month,
-				nbMoisCumulé: ++key,
-				salaireBrut: initialSalaireBrutEvaluation,
-				réductionGénérale: initialRéductionGénérale.nodeValue,
+				nbMoisCumulé: key + 1,
+				salaireBrut: initialSalaireBrutEvaluation?.nodeValue,
+				réductionGénérale: initialRéductionGénérale?.nodeValue,
 			},
-		}
-	}, {}) as State
+		}),
+		{}
+	) as State
 
-	const [state, dispatch] = useReducer(reducer, initialState)
+	const [state, setState] = useState(initialState)
 
-	const { t } = useTranslation()
+	const updateSalaireBrut = (
+		month: Month,
+		salaireBrut: Evaluation,
+		réductionGénérale: Evaluation
+	) => {
+		setState((prevState) => ({
+			...prevState,
+			[month]: {
+				...prevState[month],
+				salaireBrut,
+				réductionGénérale,
+			},
+		}))
+	}
 
 	const onSalaireBrutChange = useCallback(
-		(month: Month, salaireBrut?: PublicodesExpression) => {
-			const réductionGénérale = getRéductionGénérale(salaireBrut)
-
-			dispatch({
-				type: 'MODIFIE_SALAIRE_BRUT',
-				month,
-				salaireBrut,
-				réductionGénérale: réductionGénérale.nodeValue,
-			})
+		(month: Month, salaireBrut: SalaireBrutInput) => {
+			const réductionGénérale = getRéductionGénérale(salaireBrut.valeur)
+			updateSalaireBrut(month, salaireBrut.valeur, réductionGénérale?.nodeValue)
 		},
-		[getRéductionGénérale, dispatch]
+		[getRéductionGénérale]
 	)
 
 	const ruleInputProps = {
@@ -137,7 +136,9 @@ export default function RéductionGénéraleMensuelle() {
 		'aria-labelledby': 'simu-update-explaining',
 		showSuggestions: false,
 		dottedName: salaireBrutDottedName,
-		missing: salaireBrutDottedName in initialSalaireBrutEvaluation.missingVariables,
+		missing:
+			initialSalaireBrutEvaluation &&
+			salaireBrutDottedName in initialSalaireBrutEvaluation.missingVariables,
 		formatOptions: {
 			maximumFractionDigits: 0,
 		},
@@ -169,7 +170,7 @@ export default function RéductionGénéraleMensuelle() {
 								<RuleInput
 									{...ruleInputProps}
 									onChange={(salaireBrut?: PublicodesExpression) =>
-										onSalaireBrutChange(month, salaireBrut)
+										onSalaireBrutChange(month, salaireBrut as SalaireBrutInput)
 									}
 								/>
 							</td>
