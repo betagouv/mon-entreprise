@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -35,6 +36,7 @@ export function SimulationValue({
 }: SimulationValueProps) {
 	const engine = useEngine()
 	const currentUnit = useSelector(targetUnitSelector)
+	const language = useTranslation().i18n.language
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
 		arrondi: round ? 'oui' : 'non',
@@ -83,6 +85,7 @@ export function SimulationValue({
 							{formatValue(evaluation, {
 								displayedUnit,
 								precision: round ? 0 : 2,
+								language,
 							})}
 						</StyledBody>
 					</Grid>

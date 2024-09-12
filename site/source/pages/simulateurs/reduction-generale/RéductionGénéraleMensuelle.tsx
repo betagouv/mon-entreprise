@@ -51,12 +51,13 @@ export default function RéductionGénéraleMensuelle() {
 		'décembre',
 	]
 	const engine = useEngine()
+	const { t, i18n } = useTranslation()
+	const language = i18n.language
 	const unit = '€/mois'
 	const displayedUnit = '€'
 	const réductionGénéraleDottedName =
 		'salarié . cotisations . exonérations . réduction générale' as DottedName
 	const salaireBrutDottedName = 'salarié . contrat . salaire brut' as DottedName
-	const { t } = useTranslation()
 
 	const getRéductionGénérale = useCallback(
 		(salaireBrut?: number) => {
@@ -145,55 +146,51 @@ export default function RéductionGénéraleMensuelle() {
 	}
 
 	return (
-		<>
-			<StyledTable style={{ width: '100%' }}>
-				<caption>{t('Réduction générale mois par mois :')}</caption>
-				<thead>
-					<tr>
-						<th scope="col">{t('Mois')}</th>
-						<th scope="col">
-							{t('Salaire brut')}
-							<ExplicableRule dottedName={salaireBrutDottedName} />
-						</th>
-						<th scope="col">
-							{t('Réduction générale')}
-							<ExplicableRule dottedName={réductionGénéraleDottedName} light />
-						</th>
+		<StyledTable style={{ width: '100%' }}>
+			<caption>{t('Réduction générale mois par mois :')}</caption>
+			<thead>
+				<tr>
+					<th scope="col">{t('Mois')}</th>
+					<th scope="col">
+						{t('Salaire brut')}
+						<ExplicableRule dottedName={salaireBrutDottedName} />
+					</th>
+					<th scope="col">
+						{t('Réduction générale')}
+						<ExplicableRule dottedName={réductionGénéraleDottedName} light />
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{months.map((month) => (
+					<tr key={month}>
+						<th scope="row">{month}</th>
+						<td>
+							<RuleInput
+								{...ruleInputProps}
+								id={`${salaireBrutDottedName.replace(/\s|\./g, '_')}-${month}`}
+								aria-label={`${engine.getRule(salaireBrutDottedName)
+									?.title} (${month})`}
+								onChange={(salaireBrut?: PublicodesExpression) =>
+									onSalaireBrutChange(month, salaireBrut as SalaireBrutInput)
+								}
+							/>
+						</td>
+						<td>
+							{state[month].réductionGénérale
+								? formatValue(
+										{ nodeValue: state[month].réductionGénérale },
+										{
+											displayedUnit,
+											language,
+										}
+								  )
+								: formatValue(0, { displayedUnit, language })}
+						</td>
 					</tr>
-				</thead>
-				<tbody>
-					{months.map((month) => (
-						<tr key={month}>
-							<th scope="row">{month}</th>
-							<td>
-								<RuleInput
-									{...ruleInputProps}
-									id={`${salaireBrutDottedName.replace(
-										/\s|\./g,
-										'_'
-									)}-${month}`}
-									aria-label={`${engine.getRule(salaireBrutDottedName)
-										?.title} (${month})`}
-									onChange={(salaireBrut?: PublicodesExpression) =>
-										onSalaireBrutChange(month, salaireBrut as SalaireBrutInput)
-									}
-								/>
-							</td>
-							<td>
-								{state[month].réductionGénérale
-									? formatValue(
-											{ nodeValue: state[month].réductionGénérale },
-											{
-												displayedUnit,
-											}
-									  )
-									: formatValue(0, { displayedUnit })}
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</StyledTable>
-		</>
+				))}
+			</tbody>
+		</StyledTable>
 	)
 }
 
