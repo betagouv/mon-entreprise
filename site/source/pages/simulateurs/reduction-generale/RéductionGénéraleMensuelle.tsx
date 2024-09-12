@@ -69,19 +69,6 @@ export default function RéductionGénéraleMensuelle() {
 		'novembre',
 		'décembre',
 	]
-	const initialState = months.reduce(function (acc, month: Month, key: number) {
-		return {
-			...acc,
-			[month]: {
-				month,
-				nbMoisCumulé: ++key,
-				salaireBrut: undefined,
-				réductionGénérale: undefined,
-			},
-		}
-	}, {}) as State
-
-	const [state, dispatch] = useReducer(reducer, initialState)
 
 	const engine = useEngine()
 	const unit = '€/mois'
@@ -89,22 +76,43 @@ export default function RéductionGénéraleMensuelle() {
 	const réductionGénéraleDottedName =
 		'salarié . cotisations . exonérations . réduction générale' as DottedName
 	const salaireBrutDottedName = 'salarié . contrat . salaire brut' as DottedName
-	const salaireBrutEvaluation = engine.evaluate({
+	const initialSalaireBrutEvaluation = engine.evaluate({
 		valeur: salaireBrutDottedName,
 		arrondi: 'oui',
 		unité: unit,
 	})
-	const { t } = useTranslation()
-
-	const onSalaireBrutChange = useCallback(
-		(month: Month, salaireBrut?: PublicodesExpression) => {
-			const réductionGénérale = engine.evaluate({
+	const getRéductionGénérale = useCallback(
+		(salaireBrut?: PublicodesExpression) => {
+			return engine.evaluate({
 				valeur: réductionGénéraleDottedName,
 				unité: unit,
 				contexte: {
 					[salaireBrutDottedName]: salaireBrut,
 				},
 			})
+		},
+		[engine]
+	)
+	const initialRéductionGénérale = getRéductionGénérale(initialSalaireBrutEvaluation)
+	const initialState = months.reduce(function (acc, month: Month, key: number) {
+		return {
+			...acc,
+			[month]: {
+				month,
+				nbMoisCumulé: ++key,
+				salaireBrut: initialSalaireBrutEvaluation,
+				réductionGénérale: initialRéductionGénérale.nodeValue,
+			},
+		}
+	}, {}) as State
+
+	const [state, dispatch] = useReducer(reducer, initialState)
+
+	const { t } = useTranslation()
+
+	const onSalaireBrutChange = useCallback(
+		(month: Month, salaireBrut?: PublicodesExpression) => {
+			const réductionGénérale = getRéductionGénérale(salaireBrut)
 
 			dispatch({
 				type: 'MODIFIE_SALAIRE_BRUT',
@@ -113,7 +121,7 @@ export default function RéductionGénéraleMensuelle() {
 				réductionGénérale: réductionGénérale.nodeValue,
 			})
 		},
-		[engine, dispatch]
+		[getRéductionGénérale, dispatch]
 	)
 
 	const ruleInputProps = {
@@ -129,7 +137,7 @@ export default function RéductionGénéraleMensuelle() {
 		'aria-labelledby': 'simu-update-explaining',
 		showSuggestions: false,
 		dottedName: salaireBrutDottedName,
-		missing: salaireBrutDottedName in salaireBrutEvaluation.missingVariables,
+		missing: salaireBrutDottedName in initialSalaireBrutEvaluation.missingVariables,
 		formatOptions: {
 			maximumFractionDigits: 0,
 		},
