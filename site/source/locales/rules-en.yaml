@@ -8232,9 +8232,6 @@ salarié . contrat . salaire brut:
         de période de calcul ?
       titre.en: '[automatic] high salary control'
       titre.fr: contrôle salaire élevé
-    mois par mois:
-      titre.en: '[automatic] month by month'
-      titre.fr: mois par mois
     équivalent temps plein:
       question.en: '[automatic] What is the full-time equivalent salary?'
       question.fr: Quel est le salaire en équivalent temps plein ?
