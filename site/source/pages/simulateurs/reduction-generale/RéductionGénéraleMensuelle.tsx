@@ -128,7 +128,6 @@ export default function RéductionGénéraleMensuelle() {
 		modifiers: {
 			unité: unit,
 		},
-		'aria-label': engine.getRule(salaireBrutDottedName)?.title,
 		'aria-describedby': `${salaireBrutDottedName.replace(
 			/\s|\./g,
 			'_'
@@ -169,6 +168,12 @@ export default function RéductionGénéraleMensuelle() {
 							<td>
 								<RuleInput
 									{...ruleInputProps}
+									id={`${salaireBrutDottedName.replace(
+										/\s|\./g,
+										'_'
+									)}-${month}`}
+									aria-label={`${engine.getRule(salaireBrutDottedName)
+										?.title} (${month})`}
 									onChange={(salaireBrut?: PublicodesExpression) =>
 										onSalaireBrutChange(month, salaireBrut as SalaireBrutInput)
 									}
