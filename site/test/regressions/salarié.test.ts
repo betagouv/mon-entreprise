@@ -26,6 +26,14 @@ it('calculate simulations-salarié', () => {
 		)
 	).toMatchInlineSnapshot(`
 		[
+		  "entreprise . associés . unique",
+		  "entreprise . catégorie juridique",
+		  "entreprise . catégorie juridique . EI",
+		  "entreprise . catégorie juridique . EI . auto-entrepreneur",
+		  "entreprise . catégorie juridique . SAS",
+		  "entreprise . catégorie juridique . SELARL",
+		  "entreprise . catégorie juridique . SELAS",
+		  "entreprise . catégorie juridique . remplacements . profession libérale reglementée",
 		  "impôt . méthode de calcul",
 		  "salarié . contrat",
 		  "salarié . contrat . statut cadre",

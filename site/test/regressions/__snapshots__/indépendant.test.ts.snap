@@ -114,70 +114,70 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 52124
-dirigeant . rémunération . cotisations: 28372
+dirigeant . indépendant . revenu professionnel: 52018
+dirigeant . rémunération . cotisations: 28319
 dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: 41077
-dirigeant . rémunération . totale: 78372
+dirigeant . rémunération . net . après impôt: 41108
+dirigeant . rémunération . totale: 78319
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 78372
-impôt . montant: 8923
+entreprise . chiffre d'affaires: 78319
+impôt . montant: 8892
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 3`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 52192
-dirigeant . rémunération . cotisations: 30891
+dirigeant . indépendant . revenu professionnel: 52018
+dirigeant . rémunération . cotisations: 30797
 dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: 41056
-dirigeant . rémunération . totale: 80891
+dirigeant . rémunération . net . après impôt: 41108
+dirigeant . rémunération . totale: 80797
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 80891
-impôt . montant: 8944
+entreprise . chiffre d'affaires: 80797
+impôt . montant: 8892
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 4`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 52016
-dirigeant . rémunération . cotisations: 24406
+dirigeant . indépendant . revenu professionnel: 51910
+dirigeant . rémunération . cotisations: 24345
 dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: 41109
-dirigeant . rémunération . totale: 74406
+dirigeant . rémunération . net . après impôt: 41141
+dirigeant . rémunération . totale: 74345
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 74406
-impôt . montant: 8891
+entreprise . chiffre d'affaires: 74345
+impôt . montant: 8859
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 5`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 52016
-dirigeant . rémunération . cotisations: 24406
+dirigeant . indépendant . revenu professionnel: 51842
+dirigeant . rémunération . cotisations: 24304
 dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: 41109
-dirigeant . rémunération . totale: 74406
+dirigeant . rémunération . net . après impôt: 41161
+dirigeant . rémunération . totale: 74304
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 74406
-impôt . montant: 8891
+entreprise . chiffre d'affaires: 74304
+impôt . montant: 8839
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 6`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 517934
-dirigeant . rémunération . cotisations: 160626
+dirigeant . indépendant . revenu professionnel: 517276
+dirigeant . rémunération . cotisations: 160470
 dirigeant . rémunération . net: 500000
-dirigeant . rémunération . net . après impôt: 281568
-dirigeant . rémunération . totale: 660626
+dirigeant . rémunération . net . après impôt: 281890
+dirigeant . rémunération . totale: 660470
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 660626
-impôt . montant: 218432"
+entreprise . chiffre d'affaires: 660470
+impôt . montant: 218110"
 `;
 
 exports[`calculate simulations-indépendant > cotisations facultatives 1`] = `

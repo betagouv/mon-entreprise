@@ -82,46 +82,46 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 30891
+"dirigeant . indépendant . cotisations et contributions: 30869
 dirigeant . rémunération . net: 60000
-dirigeant . rémunération . net . après impôt: 47975
-entreprise . chiffre d'affaires: 90891
-impôt . montant: 12025
+dirigeant . rémunération . net . après impôt: 47984
+entreprise . chiffre d'affaires: 90869
+impôt . montant: 12016
 protection sociale . retraite . base: 340
 protection sociale . retraite . complémentaire: 392
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 30565
+"dirigeant . indépendant . cotisations et contributions: 30540
 dirigeant . rémunération . net: 60000
-dirigeant . rémunération . net . après impôt: 47977
-entreprise . chiffre d'affaires: 90565
-impôt . montant: 12023
+dirigeant . rémunération . net . après impôt: 47987
+entreprise . chiffre d'affaires: 90540
+impôt . montant: 12013
 protection sociale . retraite . base: 452
-protection sociale . retraite . complémentaire: 392
+protection sociale . retraite . complémentaire: 391
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
-"dirigeant . indépendant . cotisations et contributions: 34911
+"dirigeant . indépendant . cotisations et contributions: 34847
 dirigeant . rémunération . net: 60000
-dirigeant . rémunération . net . après impôt: 47942
-entreprise . chiffre d'affaires: 94911
-impôt . montant: 12058
+dirigeant . rémunération . net . après impôt: 47966
+entreprise . chiffre d'affaires: 94847
+impôt . montant: 12034
 protection sociale . retraite . base: 340
-protection sociale . retraite . complémentaire: 393
+protection sociale . retraite . complémentaire: 392
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 5`] = `
-"dirigeant . indépendant . cotisations et contributions: 32865
+"dirigeant . indépendant . cotisations et contributions: 32792
 dirigeant . rémunération . net: 60000
-dirigeant . rémunération . net . après impôt: 47959
-entreprise . chiffre d'affaires: 92865
-impôt . montant: 12041
+dirigeant . rémunération . net . après impôt: 47983
+entreprise . chiffre d'affaires: 92792
+impôt . montant: 12017
 protection sociale . retraite . base: 457
-protection sociale . retraite . complémentaire: 393
+protection sociale . retraite . complémentaire: 392
 protection sociale . retraite . trimestres: 4"
 `;
 

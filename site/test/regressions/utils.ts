@@ -49,7 +49,9 @@ export const runSimulations = (
 				.map((node) => node.dottedName)
 
 			const snapshotedDisplayedNotifications = evaluatedNotifications.length
-				? `\n\nNotifications affichées : ${evaluatedNotifications.join(', ')}`
+				? `\n\nNotifications affichées : ${evaluatedNotifications
+						.sort()
+						.join(', ')}`
 				: ''
 			// Display result in a single line in the snapshot,
 			// which reduce the number of lines of this snapshot
