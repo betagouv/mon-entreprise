@@ -4,6 +4,7 @@ import { useCallback, useReducer } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { useEngine } from '@/components/utils/EngineContext'
 
@@ -85,6 +86,8 @@ export default function RéductionGénéraleMensuelle() {
 	const engine = useEngine()
 	const unit = '€/mois'
 	const displayedUnit = '€'
+	const réductionGénéraleDottedName =
+		'salarié . cotisations . exonérations . réduction générale' as DottedName
 	const salaireBrutDottedName = 'salarié . contrat . salaire brut' as DottedName
 	const salaireBrutEvaluation = engine.evaluate({
 		valeur: salaireBrutDottedName,
@@ -96,7 +99,7 @@ export default function RéductionGénéraleMensuelle() {
 	const onSalaireBrutChange = useCallback(
 		(month: Month, salaireBrut?: PublicodesExpression) => {
 			const réductionGénérale = engine.evaluate({
-				valeur: 'salarié . cotisations . exonérations . réduction générale',
+				valeur: réductionGénéraleDottedName,
 				unité: unit,
 				contexte: {
 					[salaireBrutDottedName]: salaireBrut,
@@ -140,8 +143,14 @@ export default function RéductionGénéraleMensuelle() {
 				<thead>
 					<tr>
 						<th scope="col">{t('Mois')}</th>
-						<th scope="col">{t('Salaire brut')}</th>
-						<th scope="col">{t('RGCP')}</th>
+						<th scope="col">
+							{t('Salaire brut')}
+							<ExplicableRule dottedName={salaireBrutDottedName} />
+						</th>
+						<th scope="col">
+							{t('Réduction générale')}
+							<ExplicableRule dottedName={réductionGénéraleDottedName} light />
+						</th>
 					</tr>
 				</thead>
 				<tbody>
