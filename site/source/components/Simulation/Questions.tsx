@@ -32,7 +32,7 @@ export function Questions({
 
 	return (
 		<>
-			<Progress progress={numberCurrentStep} maxValue={numberSteps} />
+			<Progress progress={numberCurrentStep} maxValue={numberSteps + 1} />
 			<QuestionsContainer>
 				<div className="print-hidden">
 					{numberCurrentStep < numberSteps && (
