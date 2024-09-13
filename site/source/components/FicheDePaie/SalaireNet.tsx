@@ -34,7 +34,7 @@ export default function SalaireNet() {
 				negative
 				rule="salarié . rémunération . frais professionnels . titres-restaurant . montant"
 			/>
-			<Line rule="salarié . rémunération . MNS" />
+			<Line rule="salarié . rémunération . montant net social" />
 			<Line rule="salarié . rémunération . net . à payer avant impôt" />
 			<Condition expression="impôt . montant > 0">
 				<Line

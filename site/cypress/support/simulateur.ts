@@ -24,7 +24,7 @@ export const runSimulateurTest = (simulateur) => {
 			}
 
 			const exceptions = [
-				'salarié___rémunération___MNS',
+				'salarié___rémunération___montant_net_social',
 				'salarié___rémunération___net___à_payer_avant_impôt',
 			]
 			cy.get(inputSelector).each(($testedInput) => {

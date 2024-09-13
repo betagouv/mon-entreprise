@@ -845,7 +845,7 @@ salarié . rémunération . avantages en nature:
           références:
             urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html
 
-salarié . rémunération . MNS:
+salarié . rémunération . montant net social:
   titre: Montant net social
   résumé : Montant à déclarer pour les demandes de Prime d'activité et de RSA
   description: |
