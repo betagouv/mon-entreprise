@@ -787,15 +787,6 @@ salarié . rémunération . avantages en nature:
               alors: 5.35 €/repas
             - sinon: 5 €/repas
 
-        # participation:
-        #   question: >
-        #     De quel montant le salarié participe-t-il au repas ?
-        #   par défaut: 0 €/repas
-        #   description: >
-        #     Si la participation financière du salarié est inférieure à 50 % du montant forfaitaire pour un repas,
-        #     la différence est soumise à cotisations. Si la participation est supérieure à 50 % du montant forfaitaire,
-        #     l'avantage en nature est négligé et ne sera pas intégré dans l’assiette des cotisations.
-
     ntic:
       icônes: 💻📱
       description: |
