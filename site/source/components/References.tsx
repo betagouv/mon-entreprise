@@ -110,9 +110,9 @@ const referencesImages = {
 	'entreprendre.service-public.fr':
 		'/références-images/entreprendre.service-public.png',
 	'legifrance.gouv.fr': '/références-images/marianne.png',
-	'urssaf.fr': '/références-images/Urssaf.svg',
-	'autoentrepreneur.urssaf.fr': '/références-images/Urssaf.svg',
-	'secu-independants.fr': '/références-images/Urssaf.svg',
+	'urssaf.fr': '/références-images/urssaf.svg',
+	'autoentrepreneur.urssaf.fr': '/références-images/urssaf.svg',
+	'secu-independants.fr': '/références-images/urssaf.svg',
 	'gouv.fr': '/références-images/marianne.png',
 	'agirc-arrco.fr': '/références-images/agirc-arrco.png',
 	'pole-emploi.fr': '/références-images/pole-emploi.png',
