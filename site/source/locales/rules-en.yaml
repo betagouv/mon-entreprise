@@ -1002,20 +1002,40 @@ dirigeant . auto-entrepreneur . impôt . revenu imposable:
   titre.fr: revenu imposable
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description.en: >
-    [automatic] If you opt for payment in full discharge, your income tax is
-    paid at the same time as your contributions (monthly or quarterly), with a
-    specific rate applied according to your activity. To qualify in 2025, your
-    reference tax income for 2023 must not exceed €28,797 for one family share.
-    To benefit from the scheme the following year, you must submit a request to
-    Urssaf no later than September 30.
-  description.fr: >
+    [automatic] If you opt for the "versement libératoire" system, income tax is
+    paid
+
+    at the same time as your contributions (monthly or quarterly), with a specific
+
+    application of a specific rate according to your activity.
+
+
+    To qualify in 2025, your reference tax income for the year
+
+    2023 must not exceed €28,797 for one family share.
+
+
+    To take advantage of the scheme the following year, you need to
+
+    Urssaf by September 30 at the latest.
+
+
+    To check whether this option is suitable for your personal situation,
+
+    you can run simulations on the French tax site.
+  description.fr: |
     Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé
     en même temps que vos cotisations (par mois ou par trimestre) avec
-    application d’un taux spécifique en fonction de votre activité. Pour en
-    bénéficier en 2025, votre revenu fiscal de référence pour l'année 2023 ne
-    doit pas excéder 28 797 € pour une part de quotient familial. Pour
-    bénéficier ou sortir du dispositif l'année suivante, il faut en faire la
-    demande à l'Urssaf au plus tard le 30 septembre.
+    application d’un taux spécifique en fonction de votre activité.
+
+    Pour en bénéficier en 2025, votre revenu fiscal de référence pour l'année
+    2023 ne doit pas excéder 28 797 € pour une part de quotient familial.
+
+    Pour bénéficier ou sortir du dispositif l'année suivante, il faut en faire
+    la demande à l'Urssaf au plus tard le 30 septembre.
+
+    Pour vérifier si cette option est adaptée à votre situation personnelle,
+    vous devez effectuer des simulations sur le site des impôts.
   question.en: '[automatic] Do you benefit from the payment in full of income tax?'
   question.fr: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
   titre.en: '[automatic] payment in full discharge'
