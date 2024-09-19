@@ -8351,7 +8351,7 @@ salarié . convention collective . BTP . OPPBTP:
   titre.fr: OPPBTP
 salarié . convention collective . BTP . catégorie:
   question.en: '[automatic] To which category does the employee belong?'
-  question.fr: À quelle catégorie la salarié appartient-t-il ?
+  question.fr: À quelle catégorie le salarié appartient-t-il ?
   titre.en: '[automatic] category'
   titre.fr: catégorie
 salarié . convention collective . BTP . catégorie . cadre:
@@ -10415,11 +10415,396 @@ salarié . rémunération . avantages en nature:
   titre.en: '[automatic] Benefits in kind'
   titre.fr: Avantages en nature
 salarié . rémunération . brut:
-  description.en: '[automatic] All sums paid to the employee in exchange for his work.'
-  description.fr: Toutes les sommes versées au salarié en échange de son travail.
+  description.en: >
+    [automatic] Gross salary corresponds to the total amount received by the
+    employee
+
+    before deduction of social security contributions payable by the employee,
+
+    contribution sociale généralisée (CSG) and contribution au remboursement
+
+    contribution au remboursement de la dette sociale (CRDS).
+  description.fr: |
+    Le salaire brut correspond à l'intégralité des sommes perçues par le
+    salarié avant déduction des cotisations de sécurité sociale à sa charge,
+    de la contribution sociale généralisée (CSG) et de la contribution au
+    remboursement de la dette sociale (CRDS).
   titre.en: '[automatic] Gross remuneration'
   titre.fr: Rémunération brute
 salarié . rémunération . frais professionnels:
+  avec:
+    déductible:
+      description.en:
+        '[automatic] Share of expenses deducted from social security
+        contributions and income tax.'
+      description.fr:
+        Part des frais déduite de l'assiette de cotisation sociale et
+        pour le calcul de l'impôt sur le revenu.
+      titre.en: '[automatic] Deductible portion'
+      titre.fr: Part déductibles
+    titres-restaurant:
+      avec:
+        déductible:
+          titre.en: '[automatic] Deductible luncheon vouchers'
+          titre.fr: Titre restaurant déductibles
+        déductible . plafond unitaire:
+          titre.en: '[automatic] unit ceiling'
+          titre.fr: plafond unitaire
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        montant:
+          titre.en: '[automatic] amount'
+          titre.fr: montant
+        montant unitaire:
+          description.en: '[automatic] There is no maximum or minimum value for meal vouchers.'
+          description.fr: Il n'y a pas de valeur maximale ou minimale pour les
+            titres-restaurant.
+          question.en: '[automatic] What is the unit value of a meal voucher?'
+          question.fr: Quelle est la valeur unitaire du titre-restaurant ?
+          suggestions.faible.en: '[automatic] low'
+          suggestions.faible.fr: faible
+          suggestions.max exonéré.en: '[automatic] max exempt'
+          suggestions.max exonéré.fr: max exonéré
+          suggestions.moyenne.en: '[automatic] average'
+          suggestions.moyenne.fr: moyenne
+          titre.en: '[automatic] unit amount'
+          titre.fr: montant unitaire
+        nombre:
+          question.en: '[automatic] How many meal vouchers are distributed to employees?'
+          question.fr: Combien de titres-restaurant sont distribués au salarié ?
+          suggestions.3 repas/semaine.en: '[automatic] 3 meals/week'
+          suggestions.3 repas/semaine.fr: 3 repas/semaine
+          suggestions.5 repas/semaine.en: '[automatic] 5 meals/week'
+          suggestions.5 repas/semaine.fr: 5 repas/semaine
+          titre.en: '[automatic] number'
+          titre.fr: nombre
+        taux employeur:
+          description.en:
+            '[automatic] Portion of meal voucher paid by the employer. Must
+            be a minimum of 50% and a maximum of 60%.'
+          description.fr:
+            Part du titre-restaurant payée par l'employeur. Doit être de 50%
+            minimum et de 60% maximum.
+          question.en: "[automatic] What is the employer's contribution?"
+          question.fr: Quelle est la participation de l'employeur ?
+          suggestions.50%.en: '[automatic] 50%'
+          suggestions.50%.fr: 50%
+          suggestions.60%.en: '[automatic] 60%'
+          suggestions.60%.fr: 60%
+          titre.en: '[automatic] employer rate'
+          titre.fr: taux employeur
+      description.en: >-
+        [automatic] The meal voucher is a special "meal" payment voucher issued
+        by the employer to the employee.
+
+
+        Employees may only use the meal vouchers in their possession to pay for meals:
+
+          - a meal,
+
+          - directly consumable food preparations,
+
+          - fruit and vegetables.
+
+        This certificate can be issued on paper or in electronic form.
+      description.fr: >-
+        Le titre-restaurant est un titre spécial de paiement « des repas » remis
+        par l’employeur au salarié.
+
+
+        Le salarié ne peut utiliser les titres-restaurant en sa possession que pour régler la consommation :
+
+          - d’un repas,
+
+          - de préparations alimentaires directement consommables,
+
+          - de fruits et légumes.
+
+        Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+      question.en: '[automatic] Does the employee receive meal vouchers?'
+      question.fr: Le salarié reçoit-il des titres-restaurant ?
+      titre.en: '[automatic] meal vouchers'
+      titre.fr: titres-restaurant
+    trajets domicile travail:
+      avec:
+        abattement temps partiel:
+          titre.en: '[automatic] part-time allowance'
+          titre.fr: abattement temps partiel
+        cumul forfait mobilité durable et transports publics:
+          titre.en:
+            '[automatic] combined sustainable mobility and public transport
+            package'
+          titre.fr: cumul forfait mobilité durable et transports publics
+        déductible:
+          titre.en: '[automatic] Deductible portion'
+          titre.fr: Part déductible
+        déductible . plafond hors cumul:
+          titre.en: '[automatic] non-cumulative ceiling'
+          titre.fr: plafond hors cumul
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        forfait mobilités durables:
+          avec:
+            montant:
+              description.en: >
+                [automatic] In order to promote more environmentally-friendly
+                means of transport, the sustainable mobility package offers
+                employers the possibility of granting a contribution-exempt
+                allowance to employees who use "soft mobility" modes of
+                transport to commute between their usual place of residence and
+                their place of work.
+
+
+                The sustainable mobility package replaces the bicycle mileage allowance and the carpooling allowance.
+
+
+                The terms and conditions of application of the sustainable mobility package differ according to the sectors concerned. To find out how the scheme applies to the public sector, visit the dedicated page.
+
+
+                ### Conditions of application
+
+
+                To encourage the use of "soft mobility" means of transport, employers can cover the travel costs of employees who use the following modes of transport to get to work:
+
+
+                - cycling, with or without electric assistance ;
+
+                - carpooling as driver or passenger;
+
+                - public transport (other than those covered by the compulsory payment of season ticket costs);
+
+                - other shared mobility services.
+              description.fr: >
+                Afin de promouvoir des moyens de transport plus écologiques, le
+                forfait mobilités durables offre aux employeurs la possibilité
+                d’attribuer une indemnité exonérée de cotisations aux salariés
+                privilégiant les modes de transport dits « à mobilité douce »
+                pour effectuer leurs trajets entre leur résidence habituelle et
+                leur lieu de travail.
+
+
+                Le forfait mobilités durables se substitue aux indemnités kilométriques vélo et aux indemnités forfaitaires de covoiturage.
+
+
+                Les conditions et les modalités d’application du forfait mobilités durables diffèrent selon les secteurs visés. Pour connaître les modalités d’application dans le secteur public, consultez la page dédiée.
+
+
+                ### Conditions d'application
+
+
+                Pour favoriser les transports dits « à mobilité douce », les employeurs ont la possibilité de prendre en charge les frais de trajets des salariés qui se rendent au travail en utilisant les modes de déplacement suivants :
+
+
+                - le vélo, avec ou sans assistance électrique ;
+
+                - le covoiturage en tant que conducteur ou passager ;
+
+                - les transports publics de personnes (autres que ceux concernés par la prise en charge obligatoire des frais d’abonnement) ;
+
+                - les autres services de mobilité partagée.
+              question.en:
+                '[automatic] How much of the cost of sustainable mobility transport
+                (bicycle, carpooling, shared mobility) is covered by the
+                employer?'
+              question.fr:
+                Quel montant des frais de transports de mobilité durable (vélo,
+                covoiturage, mobilité partagée) est pris en charge par
+                l'employeur ?
+              titre.en: '[automatic] amount'
+              titre.fr: montant
+          titre.en: '[automatic] sustainable mobility package'
+          titre.fr: forfait mobilités durables
+        prime de transport:
+          avec:
+            déductible:
+              description.en: '[automatic] Deductible portion of fuel costs'
+              description.fr: Part déductible de la prise en charge du carburant
+              titre.en: '[automatic] Deductible portion'
+              titre.fr: Part déductible
+            montant:
+              description.en: >
+                [automatic] Under certain conditions, employers can pay for the
+                fuel and power costs of electric, plug-in hybrid or
+                hydrogen-powered vehicles incurred by employees travelling
+                between their usual place of residence and their place of work,
+                in the form of a "transport bonus".
+
+
+                If the employer (private or public) sets it up, it must benefit all employees under the same terms and conditions, depending on the distance between home and work.
+
+
+                The amount, terms and conditions and criteria for awarding the transport bonus must be laid down in a company or inter-company agreement, or failing that, in a branch agreement.
+
+                In the absence of an agreement, the employer may pay the transportation allowance by unilateral decision, after consulting the social and economic committee (CSE), if one exists.
+
+
+                An employee is entitled to a transportation allowance if :
+
+
+                - his or her usual place of residence or workplace is located outside the Ile-de-France region and an urban transport perimeter ;
+
+                - the use of a private vehicle is made essential by specific working hours that prevent the use of public transport.
+
+
+                Coverage is not provided if :
+
+
+                - the employee benefits from a vehicle made available on a permanent basis by the employer, with the cost of fuel or electricity covered (company or service car);
+
+                - the employee is housed in conditions that exclude all transport costs to get to work (company housing);
+
+                - the employer provides free transport for the employee.
+
+
+                &gt; Good to know
+
+                &gt; No proof of fuel costs is required when the employer's contribution does not exceed €200 for fuel costs, or €500 for fuel costs for electric, plug-in hybrid or hydrogen vehicles.
+              description.fr: >
+                Une prise en charge par l’employeur, sous forme de « prime de
+                transport », des frais de carburant et d’alimentation des
+                véhicules électriques, hybrides rechargeables ou à hydrogène
+                engagés par les salariés pour leurs déplacements entre leur
+                résidence habituelle et leur lieu de travail est possible sous
+                certaines conditions.
+
+
+                Si l’employeur (de droit privé ou de droit public) la met en place, elle doit profiter à l’ensemble des salariés selon les mêmes modalités et en fonction de la distance entre le domicile et le lieu de travail.
+
+
+                Le montant, les modalités ainsi que les critères d’attribution de la prime de transport doivent être prévus par accord d’entreprise ou par accord interentreprises, et à défaut, par accord de branche.
+
+                En l’absence d’accord, l’employeur peut prévoir le versement de la prime de transport par décision unilatérale, après consultation du comité social et économique (CSE), s’il existe.
+
+
+                Le salarié peut prétendre à la prime de transport si :
+
+
+                - sa résidence habituelle ou son lieu de travail est situé en dehors de la région Ile-de-France et d’un périmètre de transports urbains ;
+
+                - l'utilisation d'un véhicule personnel est rendue indispensable par des conditions d'horaires de travail particuliers ne permettant pas d'emprunter un mode collectif de transport.
+
+
+                La prise en charge n’est pas prévue si :
+
+
+                - le salarié bénéficie d’un véhicule mis à disposition permanente par l’employeur avec prise en charge des dépenses de carburant ou d’alimentation électrique (voiture de fonction ou de service) ;
+
+                - le salarié est logé dans des conditions excluant tous frais de transport pour se rendre au travail (logement de fonction) ;
+
+                - l’employeur assure gratuitement le transport du salarié.
+
+
+                > **Bon à savoir**
+
+                > Aucun justificatif de dépenses de carburant n’est exigé lorsque la prise en charge par l’employeur n’excède pas 200 € pour les frais de carburant, ou 500 € pour les frais d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène.
+              question.en:
+                '[automatic] How much of the fuel/vehicle fuel costs incurred by
+                the employee to get to work are covered by the employer?'
+              question.fr:
+                Quel montant des frais de carburants / alimentation du véhicule
+                dépensés par le salarié pour se rendre au travail est pris en
+                charge par l'employeur ?
+              titre.en: '[automatic] Transport allowance'
+              titre.fr: Prime de transport
+            véhicule electrique hybride hydrogène:
+              question.en:
+                '[automatic] Does the employee use electric, plug-in hybrid or
+                hydrogen-powered vehicles?'
+              question.fr:
+                Le salarié utilise-t-il un véhicules électriques, hybrides
+                rechargeables ou à hydrogène ?
+              titre.en: '[automatic] hydrogen hybrid electric vehicle'
+              titre.fr: véhicule electrique hybride hydrogène
+          titre.en: '[automatic] transportation allowance'
+          titre.fr: prime de transport
+        transports publics:
+          avec:
+            déductible:
+              description.en:
+                '[automatic] Public transport season ticket paid for by the
+                employer and deductible from contributions and taxes.'
+              description.fr:
+                Montant de l'abonnement aux transports publics prise en charge
+                par l'employeur et déductible de cotisations et d'impôts.
+              titre.en: '[automatic] deductible'
+              titre.fr: déductible
+            employeur:
+              description.en: '[automatic] Employer-paid public transport pass.'
+              description.fr:
+                Montant de l'abonnement aux transports publics prise en charge
+                par l'employeur.
+              titre.en: "[automatic] Employer's share"
+              titre.fr: Part employeur
+            montant:
+              description.en: >
+                [automatic] The employer's contribution to the cost of public
+                transport is compulsory.
+
+
+                Employers (private or public) must pay 50% of the cost of subscriptions taken out by their employees for the entire journey between their usual place of residence and their place of work, using public transport services, even if several subscriptions are needed to make the journey (train + bus, for example).
+
+                This also applies to public bicycle rental services.
+
+
+                The employer may pay more than the mandatory 50%. Up to 75% of the employer's contribution is exempt from social security contributions and income tax.
+
+
+                In the case of part-time work, the rate of reimbursement is the same for half-time or more. For less than half-time, the rate will be proportional.
+              description.fr: >
+                La participation de l’employeur aux frais de transports publics
+                est obligatoire.
+
+
+                L’employeur (de droit privé ou public) doit prendre en charge 50 % du prix des titres d’abonnements souscrits par ses salariés pour l’intégralité du trajet entre leur résidence habituelle et leur lieu de travail accompli au moyen de services de transports publics même si plusieurs abonnements sont nécessaires à la réalisation de ce trajet (train + bus par exemple).
+
+                Sont également concernés les services publics de location de vélos.
+
+
+                L’employeur peut prendre en charge un part plus importante que les 50% obligatoires. La prise en charge des frais de transports par l’employeur est exonérée de cotisations sociales et d’impôt sur le revenu jusqu'à 75% de participation.
+
+
+                Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
+              question.en:
+                '[automatic] How much does the employee spend on public transport
+                passes to get to work?'
+              question.fr:
+                Quel montant le salarié dépense-t-il en abonnement aux transports
+                publics pour se rendre sur son lieu de travail ?
+              suggestions.Ilévia.en: '[automatic] Ilevia'
+              suggestions.Ilévia.fr: Ilévia
+              suggestions.Navigo.en: '[automatic] Navigo'
+              suggestions.Navigo.fr: Navigo
+              suggestions.RTM.en: '[automatic] RTM'
+              suggestions.RTM.fr: RTM
+              suggestions.TBM.en: '[automatic] TBM'
+              suggestions.TBM.fr: TBM
+              suggestions.Tisséo.en: '[automatic] Tisséo'
+              suggestions.Tisséo.fr: Tisséo
+              suggestions.Técély.en: '[automatic] Técély'
+              suggestions.Técély.fr: Técély
+              titre.en: '[automatic] Subscription amount'
+              titre.fr: Montant abonnement
+            taux employeur:
+              question.en:
+                "[automatic] How much of the employee's transportation costs are
+                covered by the employer?"
+              question.fr:
+                Quel est le taux de prise en charge par l’employeur aux frais de
+                transports du salarié ?
+              suggestions.Maximum déductible (75%).en: '[automatic] Maximum deductible (75%)'
+              suggestions.Maximum déductible (75%).fr: Maximum déductible (75%)
+              suggestions.Minimum (50%).en: '[automatic] Minimum (50%)'
+              suggestions.Minimum (50%).fr: Minimum (50%)
+              suggestions.Totale (100%).en: '[automatic] Total (100%)'
+              suggestions.Totale (100%).fr: Totale (100%)
+              titre.en: '[automatic] employer rate'
+              titre.fr: taux employeur
+          titre.en: '[automatic] public transport'
+          titre.fr: transports publics
+      titre.en: '[automatic] commuting'
+      titre.fr: trajets domicile travail
   description.en: >-
     [automatic] Professional expenses are expenses incurred by the employee for
     the needs of his professional activity. These expenses are then reimbursed
@@ -10454,369 +10839,6 @@ salarié . rémunération . frais professionnels:
     Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursements forfaitaires ( frais de panier, titres-restaurant, forfait mobilités durables...).
   titre.en: '[automatic] reimbursement of expenses'
   titre.fr: remboursement de frais
-salarié . rémunération . frais professionnels . déductible:
-  description.en: '[automatic] Share of expenses deducted from the social
-    contribution base and for income tax calculation.'
-  description.fr: Part des frais déduite de l'assiette de cotisation sociale et
-    pour le calcul de l'impôt sur le revenu.
-  titre.en: '[automatic] Deductible portion'
-  titre.fr: Part déductibles
-salarié . rémunération . frais professionnels . titres-restaurant:
-  avec:
-    déductible:
-      titre.en: '[automatic] Deductible restaurant vouchers'
-      titre.fr: Titre restaurant déductibles
-    déductible . plafond unitaire:
-      titre.en: '[automatic] unit ceiling'
-      titre.fr: plafond unitaire
-    employeur:
-      titre.en: '[automatic] employer'
-      titre.fr: employeur
-    montant:
-      titre.en: '[automatic] amount'
-      titre.fr: montant
-    montant unitaire:
-      description.en: '[automatic] There is no maximum or minimum value for meal
-        vouchers. However, in order to benefit from the contribution exemption,
-        the value of the voucher must not exceed €11.38 in 2021.'
-      description.fr: Il n'y a pas de valeur maximale ou minimale pour les
-        titres-restaurant. En revanche, pour bénéficier de l'exonération de
-        cotisation, il ne faut pas dépasser 11,38€ par titre en 2021.
-      question.en: '[automatic] What is the unit value of the meal voucher?'
-      question.fr: Quelle est la valeur unitaire du titre-restaurant ?
-      suggestions.faible.en: '[automatic] low'
-      suggestions.faible.fr: faible
-      suggestions.max exonéré.en: '[automatic] max exempt'
-      suggestions.max exonéré.fr: max exonéré
-      suggestions.moyenne.en: '[automatic] average'
-      suggestions.moyenne.fr: moyenne
-      titre.en: '[automatic] unit amount'
-      titre.fr: montant unitaire
-    nombre:
-      question.en: '[automatic] How many meal vouchers are distributed to the employee?'
-      question.fr: Combien de titres-restaurant sont distribués au salarié ?
-      suggestions.3 repas/semaine.en: '[automatic] 3 meals/week'
-      suggestions.3 repas/semaine.fr: 3 repas/semaine
-      suggestions.5 repas/semaine.en: '[automatic] 5 meals/week'
-      suggestions.5 repas/semaine.fr: 5 repas/semaine
-      titre.en: '[automatic] number'
-      titre.fr: nombre
-    taux employeur:
-      description.en:
-        '[automatic] Portion of the meal voucher paid by the employer.
-        Must be a minimum of 50% and a maximum of 60%.'
-      description.fr:
-        Part du titre-restaurant payée par l'employeur. Doit être de 50%
-        minimum et de 60% maximum.
-      question.en: "[automatic] What is the employer's participation?"
-      question.fr: Quelle est la participation de l'employeur ?
-      suggestions.50%.en: '[automatic] 50%'
-      suggestions.50%.fr: 50%
-      suggestions.60%.en: '[automatic] 60%'
-      suggestions.60%.fr: 60%
-      titre.en: '[automatic] employer rate'
-      titre.fr: taux employeur
-  description.en: >-
-    [automatic] The meal voucher is a special payment voucher for "meals" given
-    by the employer to the employee.
-
-
-    The employee can only use the meal vouchers in his possession to pay for consumption:
-
-      - a meal,
-
-      - directly consumable food preparations,
-
-      - fruits and vegetables.
-
-    This title can be issued on paper or in dematerialized form.
-  description.fr: >-
-    Le titre-restaurant est un titre spécial de paiement « des repas » remis par
-    l’employeur au salarié.
-
-
-    Le salarié ne peut utiliser les titres-restaurant en sa possession que pour régler la consommation :
-
-      - d’un repas,
-
-      - de préparations alimentaires directement consommables,
-
-      - de fruits et légumes.
-
-    Ce titre peut être émis sur support papier ou sous forme dématérialisée.
-  question.en: '[automatic] Does the employee receive meal vouchers?'
-  question.fr: Le salarié reçoit-il des titres-restaurant ?
-  titre.en: '[automatic] meal vouchers'
-  titre.fr: titres-restaurant
-salarié . rémunération . frais professionnels . trajets domicile travail:
-  avec:
-    abattement temps partiel:
-      titre.en: '[automatic] part-time abatement'
-      titre.fr: abattement temps partiel
-    cumul forfait mobilité durable et transports publics:
-      titre.en: '[automatic] combination of sustainable mobility and public transport'
-      titre.fr: cumul forfait mobilité durable et transports publics
-    déductible:
-      titre.en: '[automatic] Deductible portion'
-      titre.fr: Part déductible
-    déductible . plafond hors cumul:
-      titre.en: '[automatic] non-cumulative ceiling'
-      titre.fr: plafond hors cumul
-    employeur:
-      titre.en: '[automatic] employer'
-      titre.fr: employeur
-  titre.en: '[automatic] commuting to work'
-  titre.fr: trajets domicile travail
-salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables:
-  avec:
-    montant:
-      description.en: >
-        [automatic] In order to promote more environmentally friendly means of
-        transportation, the sustainable mobility package offers employers the
-        possibility of granting a contribution-exempt allowance to employees who
-        use so-called "soft mobility" modes of transportation to commute between
-        their usual residence and their place of work.
-
-
-        The sustainable mobility package replaces the bicycle mileage allowance and the carpooling allowance.
-
-
-        The conditions and terms of application of the sustainable mobility package differ according to the sectors concerned. To find out how it applies in the public sector, please consult the dedicated page.
-
-
-        ### Conditions of application
-
-
-        In order to encourage "soft mobility" transportation, employers can cover the travel expenses of employees who use the following modes of transportation to get to work:
-
-
-        - cycling, with or without electric assistance ;
-
-        - carpooling as a driver or passenger
-
-        - public transport (other than those covered by the compulsory payment of season tickets);
-
-        - other shared mobility services.
-      description.fr: >
-        Afin de promouvoir des moyens de transport plus écologiques, le forfait
-        mobilités durables offre aux employeurs la possibilité d’attribuer une
-        indemnité exonérée de cotisations aux salariés privilégiant les modes de
-        transport dits « à mobilité douce » pour effectuer leurs trajets entre
-        leur résidence habituelle et leur lieu de travail.
-
-
-        Le forfait mobilités durables se substitue aux indemnités kilométriques vélo et aux indemnités forfaitaires de covoiturage.
-
-
-        Les conditions et les modalités d’application du forfait mobilités durables diffèrent selon les secteurs visés. Pour connaître les modalités d’application dans le secteur public, consultez la page dédiée.
-
-
-        ### Conditions d'application
-
-
-        Pour favoriser les transports dits « à mobilité douce », les employeurs ont la possibilité de prendre en charge les frais de trajets des salariés qui se rendent au travail en utilisant les modes de déplacement suivants :
-
-
-        - le vélo, avec ou sans assistance électrique ;
-
-        - le covoiturage en tant que conducteur ou passager ;
-
-        - les transports publics de personnes (autres que ceux concernés par la prise en charge obligatoire des frais d’abonnement) ;
-
-        - les autres services de mobilité partagée.
-      question.en:
-        '[automatic] How much of the cost of sustainable mobility (bicycle,
-        carpooling, shared mobility) is covered by the employer?'
-      question.fr:
-        Quel montant des frais de transports de mobilité durable (vélo,
-        covoiturage, mobilité partagée) est pris en charge par l'employeur ?
-      titre.en: '[automatic] amount'
-      titre.fr: montant
-  titre.en: '[automatic] sustainable mobility package'
-  titre.fr: forfait mobilités durables
-salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport:
-  avec:
-    déductible:
-      description.en: '[automatic] Deductible portion of fuel costs'
-      description.fr: Part déductible de la prise en charge du carburant
-      titre.en: '[automatic] Deductible portion'
-      titre.fr: Part déductible
-    montant:
-      description.en: >
-        [automatic] Under certain conditions, the employer can pay for the fuel
-        and power costs of electric, plug-in hybrid or hydrogen vehicles
-        incurred by employees when traveling between their usual place of
-        residence and their place of work, in the form of a "transportation
-        bonus".
-
-
-        If the employer (private or public) sets it up, it must benefit all employees according to the same terms and conditions and depending on the distance between home and work.
-
-
-        The amount, terms and conditions as well as the criteria for awarding the transport bonus must be provided for by a company agreement or an inter-company agreement, or failing that, by an industry agreement.
-
-        In the absence of an agreement, the employer may provide for the payment of the transport bonus by unilateral decision, after consulting the social and economic committee (CSE), if it exists.
-
-
-        The employee is entitled to the transport bonus if:
-
-
-        - his or her usual residence or workplace is located outside the Ile-de-France region and an urban transport perimeter ;
-
-        - the use of a personal vehicle is made essential by specific working hours that do not allow the use of a public transport system.
-
-
-        Coverage is not provided if:
-
-
-        - the employee has a vehicle permanently made available by the employer and the cost of fuel or electricity is covered (company or service car);
-
-        - the employee is housed in conditions that exclude all transportation costs to get to work (company housing);
-
-        - the employer provides the employee with free transportation.
-
-
-        &gt; Good to know
-
-        &gt; No proof of fuel expenses is required when the employer's contribution does not exceed €200 for fuel expenses, or €500 for the cost of powering electric, rechargeable hybrid or hydrogen vehicles.
-      description.fr: >
-        Une prise en charge par l’employeur, sous forme de « prime de transport
-        », des frais de carburant et d’alimentation des véhicules électriques,
-        hybrides rechargeables ou à hydrogène engagés par les salariés pour
-        leurs déplacements entre leur résidence habituelle et leur lieu de
-        travail est possible sous certaines conditions.
-
-
-        Si l’employeur (de droit privé ou de droit public) la met en place, elle doit profiter à l’ensemble des salariés selon les mêmes modalités et en fonction de la distance entre le domicile et le lieu de travail.
-
-
-        Le montant, les modalités ainsi que les critères d’attribution de la prime de transport doivent être prévus par accord d’entreprise ou par accord interentreprises, et à défaut, par accord de branche.
-
-        En l’absence d’accord, l’employeur peut prévoir le versement de la prime de transport par décision unilatérale, après consultation du comité social et économique (CSE), s’il existe.
-
-
-        Le salarié peut prétendre à la prime de transport si :
-
-
-        - sa résidence habituelle ou son lieu de travail est situé en dehors de la région Ile-de-France et d’un périmètre de transports urbains ;
-
-        - l'utilisation d'un véhicule personnel est rendue indispensable par des conditions d'horaires de travail particuliers ne permettant pas d'emprunter un mode collectif de transport.
-
-
-        La prise en charge n’est pas prévue si :
-
-
-        - le salarié bénéficie d’un véhicule mis à disposition permanente par l’employeur avec prise en charge des dépenses de carburant ou d’alimentation électrique (voiture de fonction ou de service) ;
-
-        - le salarié est logé dans des conditions excluant tous frais de transport pour se rendre au travail (logement de fonction) ;
-
-        - l’employeur assure gratuitement le transport du salarié.
-
-
-        > **Bon à savoir**
-
-        > Aucun justificatif de dépenses de carburant n’est exigé lorsque la prise en charge par l’employeur n’excède pas 200 € pour les frais de carburant, ou 500 € pour les frais d’alimentation des véhicules électriques, hybrides rechargeables ou à hydrogène.
-      question.en:
-        '[automatic] How much of the cost of fuel/vehicle power spent by
-        the employee to get to work is covered by the employer?'
-      question.fr:
-        Quel montant des frais de carburants / alimentation du véhicule
-        dépensés par le salarié pour se rendre au travail est pris en charge par
-        l'employeur ?
-      titre.en: '[automatic] Transport premium'
-      titre.fr: Prime de transport
-    véhicule electrique hybride hydrogène:
-      question.en:
-        '[automatic] Does the employee use an electric, plug-in hybrid or
-        hydrogen vehicle?'
-      question.fr: Le salarié utilise-t-il un véhicules électriques, hybrides
-        rechargeables ou à hydrogène ?
-      titre.en: '[automatic] electric vehicle hybrid hydrogen'
-      titre.fr: véhicule electrique hybride hydrogène
-  titre.en: '[automatic] transportation premium'
-  titre.fr: prime de transport
-salarié . rémunération . frais professionnels . trajets domicile travail . transports publics:
-  avec:
-    déductible:
-      description.en:
-        '[automatic] The amount of the public transport pass paid by the
-        employer and deductible from contributions and taxes.'
-      description.fr:
-        Montant de l'abonnement aux transports publics prise en charge
-        par l'employeur et déductible de cotisations et d'impôts.
-      titre.en: '[automatic] deductible'
-      titre.fr: déductible
-    employeur:
-      description.en: '[automatic] Amount of the public transport pass paid by the employer.'
-      description.fr:
-        Montant de l'abonnement aux transports publics prise en charge
-        par l'employeur.
-      titre.en: "[automatic] Employer's share"
-      titre.fr: Part employeur
-    montant:
-      description.en: >
-        [automatic] Employer participation in public transportation costs is
-        mandatory.
-
-
-        Employers (private or public) must pay 50% of the cost of subscriptions taken out by their employees for the entire journey between their usual place of residence and their place of work using public transport services, even if more than one subscription is required to make this journey (e.g. train + bus).
-
-        This also applies to public bicycle rental services.
-
-
-        The employer may pay more than the mandatory 50%. The payment of transport costs by the employer is exempt from social security contributions and income tax up to 75% of participation.
-
-
-        In the case of part-time work, the rate of coverage will be the same for half-time work or more. Below that, the rate of coverage will be proportional.
-      description.fr: >
-        La participation de l’employeur aux frais de transports publics est
-        obligatoire.
-
-
-        L’employeur (de droit privé ou public) doit prendre en charge 50 % du prix des titres d’abonnements souscrits par ses salariés pour l’intégralité du trajet entre leur résidence habituelle et leur lieu de travail accompli au moyen de services de transports publics même si plusieurs abonnements sont nécessaires à la réalisation de ce trajet (train + bus par exemple).
-
-        Sont également concernés les services publics de location de vélos.
-
-
-        L’employeur peut prendre en charge un part plus importante que les 50% obligatoires. La prise en charge des frais de transports par l’employeur est exonérée de cotisations sociales et d’impôt sur le revenu jusqu'à 75% de participation.
-
-
-        Dans le cas d'un temps partiel, le taux de prise en charge sera le même pour un mi-temps ou plus. En dessous, le taux de prise en charge sera proportionnel.
-      question.en:
-        '[automatic] How much does the employee spend on public transport
-        passes to get to work?'
-      question.fr:
-        Quel montant le salarié dépense-t-il en abonnement aux transports
-        publics pour se rendre sur son lieu de travail ?
-      suggestions.Navigo.en: '[automatic] Navigo'
-      suggestions.Navigo.fr: Navigo
-      suggestions.RTM.en: '[automatic] GTR'
-      suggestions.RTM.fr: RTM
-      suggestions.TBM.en: '[automatic] TBM'
-      suggestions.TBM.fr: TBM
-      suggestions.Tisséo.en: '[automatic] Tisséo'
-      suggestions.Tisséo.fr: Tisséo
-      suggestions.Técély.en: '[automatic] Técély'
-      suggestions.Técély.fr: Técély
-      titre.en: '[automatic] Subscription amount'
-      titre.fr: Montant abonnement
-    taux employeur:
-      question.en:
-        "[automatic] What is the employer's contribution to the employee's
-        transportation costs?"
-      question.fr:
-        Quel est le taux de prise en charge par l’employeur aux frais de
-        transports du salarié ?
-      suggestions.Maximum déductible (75%).en: '[automatic] Maximum deductible (75%)'
-      suggestions.Maximum déductible (75%).fr: Maximum déductible (75%)
-      suggestions.Minimum (50%).en: '[automatic] Minimum (50%)'
-      suggestions.Minimum (50%).fr: Minimum (50%)
-      suggestions.Totale (100%).en: '[automatic] Total (100%)'
-      suggestions.Totale (100%).fr: Totale (100%)
-      titre.en: '[automatic] employer rate'
-      titre.fr: taux employeur
-  titre.en: '[automatic] public transport'
-  titre.fr: transports publics
 salarié . rémunération . heures complémentaires:
   description.en: '[automatic] Remuneration for overtime work'
   description.fr: La rémunération relative aux heures complémentaires
@@ -10972,6 +10994,33 @@ salarié . rémunération . indemnités CDD:
     encore la temporalité.
   titre.en: '[automatic] CDD indemnities'
   titre.fr: indemnités CDD
+salarié . rémunération . montant net social:
+  description.en: >
+    [automatic] The net social security amount, or NSS, is shown on pay slips
+    and benefit statements.
+
+    statements. It corresponds to the reference amount to be declared by benefit recipients
+
+    as of February 1, 2024 to receive the Prime d'Activité and the revenu de
+
+    revenu de solidarité active (RSA). It simplifies administrative procedures, reduces the risk
+
+    and reduces the rate of non-use of entitlements.
+  description.fr: >
+    Le montant net social, ou MNS, est affiché sur les bulletins de paie et les
+    relevés
+
+    de prestations. Il correspond au montant de référence à déclarer par les allocataires
+
+    depuis le 1er février 2024 pour bénéficier de la Prime d’activité et du revenu de
+
+    solidarité active (RSA). Il facilite les démarches administratives, limite les
+
+    risques d’erreur de déclaration et réduit le taux de non-recours aux droits.
+  résumé.en: "[automatic] Amount to declare for Prime d'activité and RSA applications"
+  résumé.fr: Montant à déclarer pour les demandes de Prime d'activité et de RSA
+  titre.en: '[automatic] Net corporate amount'
+  titre.fr: Montant net social
 salarié . rémunération . net:
   avec:
     sans revenus de remplacement:
@@ -11018,11 +11067,11 @@ salarié . rémunération . net . imposable:
   titre.fr: Salaire net imposable
 salarié . rémunération . net . payé après impôt:
   description.en: >
-    [automatic] This is the salary paid into the employee's bank account, after
+    [automatic] This is the salary paid into the employee's bank account, once
     contributions and taxes have been deducted.
   description.fr: >
     C'est le salaire versé sur le compte bancaire du salarié, une fois les
-    cotisations et l'impôt prélevées.
+    cotisations et l'impôt prélevés.
   question.en: What is the net income of the employee after income tax?
   question.fr: Quel est le revenu net du salarié après impôt ?
   résumé.en: '[automatic] The net salary paid'
@@ -11177,18 +11226,19 @@ salarié . rémunération . revenus de remplacement:
   titre.en: '[automatic] replacement income'
   titre.fr: revenus de remplacement
 salarié . rémunération . taux horaire:
+  avec:
+    heures supplémentaires:
+      description.en: >
+        [automatic] The hourly rate used to calculate overtime pay. It includes
+        benefits in kind and bonuses in return for work done.
+      description.fr: >
+        Le taux horaire utilisé pour calculer la rémunération liée au heures
+        supplémentaires. Il intègre les avantages en nature et les primes
+        constituant la contrepartie d'un travail fourni.
+      titre.en: '[automatic] hourly rate (overtime)'
+      titre.fr: taux horaire (heure supplémentaire)
   titre.en: '[automatic] hourly rate'
   titre.fr: taux horaire
-salarié . rémunération . taux horaire . heures supplémentaires:
-  description.en: >
-    [automatic] The hourly rate used to calculate overtime pay. It includes
-    benefits in kind and bonuses that are compensation for work performed.
-  description.fr: >
-    Le taux horaire utilisé pour calculer la rémunération liée au heures
-    supplémentaires. Il intègre les avantages en nature et les primes
-    constituant la contrepartie d'un travail fourni.
-  titre.en: '[automatic] hourly rate (overtime)'
-  titre.fr: taux horaire (heure supplémentaire)
 salarié . temps de travail:
   avec:
     SMIC:
