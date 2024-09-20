@@ -1,6 +1,18 @@
 # Journal des modifications
 ## next
 
+## 2.4.0
+- Mise à jour des valeurs des caisses de retraite des professions libérales
+- Correction du taux de cotisation BIC avec ACRE
+- Correction de l'activation de l'ACRE pour les auto-entrepreneurs éligibles
+- Correction du calcul de la retraite complémentaire des auto-entrepreneurs
+- Correction de l'assiette de calcul des professions libérales réglementées
+- Correction de l'applicabilité de l'option de surcotisation forfaitaire pour les revenus artistiques à 0
+- Publie la règle du taux ACRE des auto-entrepreneurs
+- Correction de l'utilisation des termes micro-entreprise et micro-fiscal
+- Mise à jour de la documentation et des liens de références (versement libératoire, cotisations employeur, retraite)
+- Suppression des liens morts dans la documentation
+
 ## 2.3.0
 - Taux de cotisations auto-entrepreneurs pour 2024, 2025, 2026
 - Ajout de la formation professionnelle dans la répartition des cotisations auto-entrepreneurs
