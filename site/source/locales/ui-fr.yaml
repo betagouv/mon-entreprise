@@ -1861,6 +1861,15 @@ simulateurs:
     plus: Lire les précisions
     profession-libérale: Ce simulateur est à destination des professions libérales
       en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.
+    salarié:
+      "1": <0>Cette estimation est proposée à titre indicatif</0>. Elle est faite à
+        partir des éléments que vous avez saisis et des éléments  réglementaires
+        applicables, mais elle ne tient pas compte de  l'ensemble de votre
+        situation. <2>Les montants réels peuvent donc être différents</2>.
+      "2": Le simulateur ne prend pour l'instant pas en compte les accords et
+        conventions collectives, ni la myriade d'aides aux entreprises. Trouvez
+        votre convention collective <2>ici</2>, et explorez les aides sur
+        <4>aides-entreprises.fr</4>.
     sasu: Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu (IR).
       Seule l'option pour l'impôt sur les sociétés est implémentée (IS).
     titre: Avant de commencer...
