@@ -11000,6 +11000,29 @@ salarié . rémunération . indemnités CDD:
     encore la temporalité.
   titre.en: '[automatic] CDD indemnities'
   titre.fr: indemnités CDD
+salarié . rémunération . montant net social:
+  description.en: >
+    [automatic] The net social amount, or MNS, corresponds to the reference
+    amount to be declared by
+
+    as of February 1, 2024 to qualify for the Prime d'Activité (activity allowance)
+
+    and the revenu de solidarité active (RSA). It simplifies administrative procedures, reduces the risk of
+
+    and reduces the rate of non-use of entitlements.
+  description.fr: >
+    Le montant net social, ou MNS, correspond au montant de référence à déclarer
+    par
+
+    les allocataires depuis le 1er février 2024 pour bénéficier de la Prime d’activité
+
+    et du revenu de solidarité active (RSA). Il facilite les démarches administratives, limite les
+
+    risques d’erreur de déclaration et réduit le taux de non-recours aux droits.
+  résumé.en: "[automatic] Amount to declare for Prime d'activité and RSA applications"
+  résumé.fr: Montant à déclarer pour les demandes de Prime d'activité et de RSA
+  titre.en: '[automatic] Net corporate amount'
+  titre.fr: Montant net social
 salarié . rémunération . net:
   avec:
     sans revenus de remplacement:
