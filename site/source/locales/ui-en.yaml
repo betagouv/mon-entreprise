@@ -1738,6 +1738,15 @@ simulateurs:
     plus: Read more
     profession-libérale: This simulator is intended for self-employed professionals
       who earn a BNC. It does not take into account self-employed companies.
+    salarié:
+      "1": <0>This estimate is provided for information only</0>. It is based on the
+        information you have entered and the applicable regulations, but it does
+        not take into account your entire situation. <2>Actual amounts may
+        therefore differ</2>.
+      "2": The simulator does not currently take into account collective agreements,
+        nor the myriad of company subsidies. Find your collective bargaining
+        agreement <2>here</2>, and explore the range of assistance available on
+        <4>aides-entreprises.fr</4>.
     sasu: This simulator does not handle the case of SAS(U) taxable on income (IR).
       Only the corporate income tax (IS) option is implemented.
     titre: Before we begin...
