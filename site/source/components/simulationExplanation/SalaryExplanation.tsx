@@ -7,11 +7,12 @@ import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExpla
 import StackedBarChart from '@/components/StackedBarChart'
 import { FromTop } from '@/components/ui/animate'
 import { useInversionFail } from '@/components/utils/EngineContext'
+import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 import FicheDePaie from '../FicheDePaie/FicheDePaie'
@@ -62,42 +63,28 @@ export default function SalaryExplanation() {
 						<H2>
 							<Trans>Fiche de paie</Trans>
 						</H2>
+
+						<Message type="info" icon>
+							<Body>
+								<Trans i18nKey="payslip.disclaimer">
+									Cette fiche de paie est issue de la simulation que vous avez
+									faite. Elle vous aide à comprendre votre bulletin de paie :
+									vous pouvez cliquer sur les liens pour comprendre le calcul de
+									chaque montant. Cette fiche de paie ne peut pas de substituer
+									à une fiche de paie réelle. Pour plus d'informations,
+									rendez-vous sur{' '}
+									<Link
+										href="https://www.service-public.fr/particuliers/vosdroits/F559"
+										aria-label="service-public.fr, nouvelle fenêtre"
+									>
+										service-public.fr
+									</Link>
+									.
+								</Trans>
+							</Body>
+						</Message>
+
 						<FicheDePaie />
-						<SmallBody>
-							<Trans i18nKey="payslip.notice">
-								Le simulateur vous aide à comprendre votre bulletin de paie,
-								sans lui être opposable. Pour plus d&apos;informations, rendez
-								vous sur&nbsp;
-								<Link
-									href="https://www.service-public.fr/particuliers/vosdroits/F559"
-									aria-label="service-public.fr, nouvelle fenêtre"
-								>
-									service-public.fr
-								</Link>
-								.
-							</Trans>
-						</SmallBody>
-						<SmallBody>
-							<Trans i18nKey="payslip.disclaimer">
-								Il ne prend pour l'instant pas en compte les accords et
-								conventions collectives, ni la myriade d'aides aux entreprises.
-								Trouvez votre convention collective{' '}
-								<Link
-									href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
-									aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
-								>
-									ici
-								</Link>
-								, et explorez les aides sur&nbsp;
-								<Link
-									href="https://www.aides-entreprises.fr"
-									aria-label="aides-entreprises.fr, nouvelle fenêtre"
-								>
-									aides-entreprises.fr
-								</Link>
-								.
-							</Trans>
-						</SmallBody>
 					</Grid>
 				</Grid>
 			</Container>
