@@ -10461,8 +10461,20 @@ salarié . rémunération . avantages en nature:
   titre.en: '[automatic] Benefits in kind'
   titre.fr: Avantages en nature
 salarié . rémunération . brut:
-  description.en: '[automatic] All sums paid to the employee in exchange for his work.'
-  description.fr: Toutes les sommes versées au salarié en échange de son travail.
+  description.en: >
+    [automatic] Gross salary corresponds to the total amount received by the
+    employee
+
+    before deduction of social security contributions payable by the employee,
+
+    contribution sociale généralisée (CSG) and contribution au remboursement
+
+    contribution au remboursement de la dette sociale (CRDS).
+  description.fr: |
+    Le salaire brut correspond à l'intégralité des sommes perçues par le
+    salarié avant déduction des cotisations de sécurité sociale à sa charge,
+    de la contribution sociale généralisée (CSG) et de la contribution au
+    remboursement de la dette sociale (CRDS).
   titre.en: '[automatic] Gross remuneration'
   titre.fr: Rémunération brute
 salarié . rémunération . frais professionnels:

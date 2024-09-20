@@ -4,7 +4,11 @@ salarié . rémunération:
     Ce sont tous les éléments qui composent la rémunération du salarié. Ils ne sont pas forcément inscrits dans le contrat de travail et peuvent varier d'un mois à l'autre ou en fonction de la législation.
 
 salarié . rémunération . brut:
-  description: Toutes les sommes versées au salarié en échange de son travail.
+  description: |
+    Le salaire brut correspond à l'intégralité des sommes perçues par le
+    salarié avant déduction des cotisations de sécurité sociale à sa charge,
+    de la contribution sociale généralisée (CSG) et de la contribution au
+    remboursement de la dette sociale (CRDS).
   titre: Rémunération brute
 
   somme:
