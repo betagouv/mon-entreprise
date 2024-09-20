@@ -1657,13 +1657,11 @@ pages:
       back: Retourner au simulateur {{year}}
       info: "Cette simulation concerne l'année <2>{{actualYear}}</2>. "
 payslip:
-  disclaimer: Il ne prend pour l'instant pas en compte les accords et conventions
-    collectives, ni la myriade d'aides aux entreprises. Trouvez votre convention
-    collective <2>ici</2>, et explorez les aides sur
-    <4>aides-entreprises.fr</4>.
-  notice: Le simulateur vous aide à comprendre votre bulletin de paie, sans lui
-    être opposable. Pour plus d'informations, rendez vous sur
-    <1>service-public.fr</1>.
+  disclaimer: "Cette fiche de paie est issue de la simulation que vous avez faite.
+    Elle vous aide à comprendre votre bulletin de paie : vous pouvez cliquer sur
+    les liens pour comprendre le calcul de chaque montant. Cette fiche de paie
+    ne peut pas de substituer à une fiche de paie réelle. Pour plus
+    d'informations, rendez-vous sur <2>service-public.fr</2>."
   repartition: Répartition du total chargé
 points: points
 pourcentage: pourcentage
@@ -1863,9 +1861,9 @@ simulateurs:
       en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.
     salarié:
       "1": <0>Cette estimation est proposée à titre indicatif</0>. Elle est faite à
-        partir des éléments que vous avez saisis et des éléments  réglementaires
-        applicables, mais elle ne tient pas compte de  l'ensemble de votre
-        situation. <2>Les montants réels peuvent donc être différents</2>.
+        partir des éléments que vous avez saisis et des éléments réglementaires
+        applicables, mais elle ne tient pas compte de l'ensemble de votre
+        situation. <3>Les montants réels peuvent donc être différents</3>.
       "2": Le simulateur ne prend pour l'instant pas en compte les accords et
         conventions collectives, ni la myriade d'aides aux entreprises. Trouvez
         votre convention collective <2>ici</2>, et explorez les aides sur

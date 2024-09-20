@@ -1555,12 +1555,10 @@ pages:
       back: Back to simulator {{year}}
       info: "This simulation concerns the year <2>{{actualYear}}</2>. "
 payslip:
-  disclaimer: For the moment, it does not take into account collective bargaining
-    agreements, nor the myriad forms of assistance available to companies. Find
-    your collective bargaining agreement <2>here</2>, and find out more about
-    <4>company aid on aides-entreprises.fr</4>.
-  notice: The simulator helps you to understand your pay slip, but is not binding
-    on you. For more information, visit <1>service-public.fr</1>.
+  disclaimer: "This payslip is the result of the simulation you made. It helps you
+    to understand your pay slip: you can click on the links to understand how
+    each amount is calculated. This payslip is not a substitute for a real
+    payslip. For more information, visit <2>service-public.fr</2>."
   repartition: Breakdown of total expenses
 points: points
 pourcentage: percentage
@@ -1749,8 +1747,8 @@ simulateurs:
     salarié:
       "1": <0>This estimate is provided for information only</0>. It is based on the
         information you have entered and the applicable regulations, but it does
-        not take into account your entire situation. <2>Actual amounts may
-        therefore differ</2>.
+        not take into account your entire situation. <3>Actual amounts may
+        therefore differ</3>.
       "2": The simulator does not currently take into account collective agreements,
         nor the myriad of company subsidies. Find your collective bargaining
         agreement <2>here</2>, and explore the range of assistance available on
