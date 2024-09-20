@@ -3,20 +3,78 @@ import { ASTNode, ParsedRules, reduceAST, Rule, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
 import { Trans } from 'react-i18next'
 
-import { useEngine } from '@/components/utils/EngineContext'
+import './PaySlip.css'
+
 import { Strong } from '@/design-system/typography'
 import { H4, H5 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 
-import { ExplicableRule } from './conversation/Explicable'
-import Value from './EngineValue/Value'
+import { ExplicableRule } from '../conversation/Explicable'
+import Value from '../EngineValue/Value'
+import { useEngine } from '../utils/EngineContext'
+import CotisationLine from './CotisationLine'
+import Line from './Line'
 
-import './PaySlip.css'
+export function Cotisations() {
+	const parsedRules = useEngine().getParsedRules()
+	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
-import { styled } from 'styled-components'
+	return (
+		<>
+			<div className="payslip__cotisationsSection">
+				<H4>
+					<Trans>Cotisations sociales</Trans>
+				</H4>
+				<H4>
+					<Trans>employeur</Trans>
+				</H4>
+				<H4>
+					<Trans>salarié</Trans>
+				</H4>
+				{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
+					const section = parsedRules[sectionDottedName]
 
-import Cotisation from './PaySlipCotisation'
-import { Line, SalaireBrutSection, SalaireNetSection } from './PaySlipSections'
+					return (
+						<Fragment key={section.dottedName}>
+							<H5 className="payslip__cotisationTitle">
+								{section.title}
+								<ExplicableRule light dottedName={section.dottedName} />
+							</H5>
+							{cotisations.map((cotisation) => (
+								<CotisationLine key={cotisation} dottedName={cotisation} />
+							))}
+						</Fragment>
+					)
+				})}
+
+				{/* Total cotisation */}
+				<Body className="payslip__total">
+					<Strong>
+						<Trans>Total des retenues</Trans>
+					</Strong>
+				</Body>
+				<div>
+					<Value
+						expression="salarié . cotisations . employeur"
+						displayedUnit="€"
+						className="payslip__total"
+					/>
+				</div>
+				<div>
+					<Value
+						expression="salarié . cotisations . salarié"
+						displayedUnit="€"
+						className="payslip__total"
+					/>
+				</div>
+
+				{/* Salaire chargé */}
+				<Line rule="salarié . coût total employeur" />
+				<span />
+			</div>
+		</>
+	)
+}
 
 export const SECTION_ORDER = [
 	'protection sociale . maladie',
@@ -97,88 +155,3 @@ export function getCotisationsBySection(
 				SECTION_ORDER.indexOf(b as Section)
 		) as Array<[Section, DottedName[]]>
 }
-
-export default function PaySlip() {
-	const parsedRules = useEngine().getParsedRules()
-	const cotisationsBySection = getCotisationsBySection(parsedRules)
-
-	return (
-		<StyledContainer className="payslip__container">
-			<div className="payslip__salarySection">
-				<Line
-					rule="salarié . temps de travail"
-					displayedUnit="heures/mois"
-					precision={1}
-				/>
-				<Line
-					rule="salarié . temps de travail . heures supplémentaires"
-					displayedUnit="heures/mois"
-					precision={1}
-				/>
-			</div>
-
-			<SalaireBrutSection />
-			{/* Section cotisations */}
-			<div className="payslip__cotisationsSection">
-				<H4>
-					<Trans>Cotisations sociales</Trans>
-				</H4>
-				<H4>
-					<Trans>employeur</Trans>
-				</H4>
-				<H4>
-					<Trans>salarié</Trans>
-				</H4>
-				{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
-					const section = parsedRules[sectionDottedName]
-
-					return (
-						<Fragment key={section.dottedName}>
-							<H5 className="payslip__cotisationTitle">
-								{section.title}
-								<ExplicableRule light dottedName={section.dottedName} />
-							</H5>
-							{cotisations.map((cotisation) => (
-								<Cotisation key={cotisation} dottedName={cotisation} />
-							))}
-						</Fragment>
-					)
-				})}
-				{/* Total cotisation */}
-				<Body className="payslip__total">
-					<Strong>
-						<Trans>Total des retenues</Trans>
-					</Strong>
-				</Body>
-				<div>
-					<Value
-						expression="salarié . cotisations . employeur"
-						displayedUnit="€"
-						className="payslip__total"
-					/>
-				</div>
-				<div>
-					<Value
-						expression="salarié . cotisations . salarié"
-						displayedUnit="€"
-						className="payslip__total"
-					/>
-				</div>
-				{/* Salaire chargé */}
-				<Line rule="salarié . coût total employeur" />
-				<span />
-			</div>
-			{/* Section salaire net */}
-			<SalaireNetSection />
-		</StyledContainer>
-	)
-}
-
-const StyledContainer = styled.div`
-	.value {
-		display: flex;
-		align-items: flex-end;
-		justify-content: flex-end;
-		padding-right: 0.2em;
-	}
-`
