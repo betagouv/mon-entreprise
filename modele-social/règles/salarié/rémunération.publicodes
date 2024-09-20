@@ -836,3 +836,30 @@ salarié . rémunération . avantages en nature:
             - 10% /an
           références:
             urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html
+
+salarié . rémunération . montant net social:
+  experimental: oui
+  titre: Montant net social
+  résumé : Montant à déclarer pour les demandes de Prime d'activité et de RSA
+  description: |
+    Le montant net social, ou MNS, correspond au montant de référence à déclarer par
+    les allocataires depuis le 1er février 2024 pour bénéficier de la Prime d’activité
+    et du revenu de solidarité active (RSA). Il facilite les démarches administratives, limite les
+    risques d’erreur de déclaration et réduit le taux de non-recours aux droits.
+  unité: €/mois
+  somme:
+    - contrat . salaire brut
+    - avantages en nature . montant
+    - primes
+    - indemnités CDD
+    - heures supplémentaires
+    - heures complémentaires
+    - frais professionnels
+  abattement:
+      somme:
+        - frais professionnels . déductible
+        - activité partielle . retrait absence
+        - salarié . cotisations . salarié
+  références :
+    Le montant net social: https://solidarites.gouv.fr/le-montant-net-social
+    Calcul du montant net social: https://boss.gouv.fr/portail/accueil/bulletin-de-paie/montant-net-social.html#titre-iicalcul-du-montant-net-social
