@@ -11,6 +11,7 @@ import Value from '@/components/EngineValue/Value'
 import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import RuleLink from '@/components/RuleLink'
+import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
@@ -74,6 +75,7 @@ export default function SalariéSimulation() {
 					</BrowserOnly>
 				}
 			>
+				<SimulateurWarning simulateur="salarié" />
 				<SalariéSimulationGoals />
 			</Simulation>
 		</>

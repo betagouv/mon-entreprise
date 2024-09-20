@@ -3,6 +3,8 @@ import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import Warning from '@/components/ui/WarningBlock'
+import { Spacing } from '@/design-system/layout'
+import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -56,7 +58,7 @@ export default function SimulateurWarning({
 					</StyledLi>
 				</Ul>
 			)}
-			{simulateur !== 'artiste-auteur' && (
+			{simulateur !== 'artiste-auteur' && simulateur !== 'salarié' && (
 				<Body>
 					<Trans i18nKey="simulateurs.warning.urssaf">
 						Les calculs sont indicatifs. Ils ne se substituent pas aux décomptes
@@ -148,6 +150,37 @@ export default function SimulateurWarning({
 						Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu
 						(IR). Seule l'option pour l'impôt sur les sociétés est implémentée
 						(IS).
+					</Trans>
+				</Body>
+			)}
+			{simulateur === 'salarié' && (
+				<Body>
+					<Trans i18nKey="simulateurs.warning.salarié.1">
+						<Strong>Cette estimation est proposée à titre indicatif</Strong>.
+						Elle est faite à partir des éléments que vous avez saisis et des
+						éléments réglementaires applicables, mais elle ne tient pas compte
+						de l'ensemble de votre situation.{' '}
+						<Strong>Les montants réels peuvent donc être différents</Strong>.
+					</Trans>
+					<Spacing md />
+					<Trans i18nKey="simulateurs.warning.salarié.2">
+						Le simulateur ne prend pour l'instant pas en compte les accords et
+						conventions collectives, ni la myriade d'aides aux entreprises.
+						Trouvez votre convention collective{' '}
+						<Link
+							href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
+							aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
+						>
+							ici
+						</Link>
+						, et explorez les aides sur&nbsp;
+						<Link
+							href="https://www.aides-entreprises.fr"
+							aria-label="aides-entreprises.fr, nouvelle fenêtre"
+						>
+							aides-entreprises.fr
+						</Link>
+						.
 					</Trans>
 				</Body>
 			)}
