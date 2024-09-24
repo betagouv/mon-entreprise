@@ -1867,6 +1867,18 @@ simulateurs:
     plus: Lire les précisions
     profession-libérale: Ce simulateur est à destination des professions libérales
       en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.
+    réduction-générale:
+      "1": "La rémunération brute inclue : le paiement des heures supplémentaires et
+        complémentaires, les primes et les indemnités de CDD."
+      "2": Ce simulateur n'intègre pas toutes les règles de calcul spécifiques
+        (Entreprises de Travail Temporaire, salariés des transports routiers
+        soumis à un horaire d'équivalence). Il ne tient pas non plus compte des
+        taux et/ou répartition particuliers de la cotisation de retraite
+        complémentaire appliqués dans certaines entreprises.
+      beta: <0>Ce simulateur est en cours de développement.</0> Il propose uniquement
+        le calcul de la <3>RGCP</3> à partir d'une rémunération mensuelle ou
+        annuelle. Pour une version complète, utilisez <7>le simulateur
+        d'urssaf.fr.</7>
     salarié:
       "1": <0>Cette estimation est proposée à titre indicatif</0>. Elle est faite à
         partir des éléments que vous avez saisis et des éléments réglementaires
