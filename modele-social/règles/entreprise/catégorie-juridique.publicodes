@@ -55,6 +55,7 @@ entreprise . catégorie juridique . EI:
       question: Êtes-vous auto-entrepreneur ?
       acronyme: AE
       par défaut: par défaut
+      non applicable si: salarié
       références:
         S'informer sur le statut: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html
         Les étapes de la création d'une auto-entreprise: https://www.autoentrepreneur.urssaf.fr/portail/accueil/creer-mon-auto-entreprise.html
