@@ -620,12 +620,6 @@ design-system:
     open-selector: Ouvrir le sélecteur de date
     prev-month: Mois précédent
     year: Année
-dividendes:
-  warning: <0>Cette simulation est uniquement donnée à titre indicatif. Elle ne
-    concerne que les sociétés françaises à l’impôt sur les sociétés (IS), et ne
-    concerne pas les travailleurs indépendants non salariés.</0><1>Le montant de
-    l'impôt sur les dividendes est calculé en sus de l’impôt sur les autres
-    revenus imposables.</1>
 dont chômage: dont chômage
 employeur: employeur
 en cas d'accident pro: en cas d'accident pro
@@ -710,9 +704,6 @@ impot-société:
     exercice-2022: Utiliser les dates de l'exercice 2022, préremplir
     exercice-2023: Utiliser les dates de l'exercice 2023, préremplir
   préremplir-exercice: "<0>Exercice 2022</0> <2>Exercice 2023</2> "
-impotSociété:
-  warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
-    réduits de l’impôt sur les sociétés."
 impôt: impôt
 impôt sur le revenu: impôt sur le revenu
 impôt sur le revenu prélevé à la source: impôt sur le revenu prélevé à la source
@@ -1830,13 +1821,8 @@ simulateurs:
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
-    artiste-auteur:
-      "1": Cette estimation est proposée à titre indicatif. Elle est faite à partir
-        des éléments réglementaires applicables et des éléments que vous avez
-        saisis, mais elle ne tient pas compte de l'ensemble de votre situation.
-        Le montant réel de vos cotisations peut donc être différent.
-      "2": Ce simulateur permet d'estimer le montant de vos cotisations à partir de
-        votre revenu projeté
+    artiste-auteur: Ce simulateur permet d'estimer le montant de vos cotisations à
+      partir de votre revenu projeté.
     auto-entrepreneur: Les auto-entrepreneurs bénéficient d’un régime très simplifié
       avec un taux forfaitaire pour le calcul des cotisations et contributions
       sociales appliqué sur le chiffre d’affaires. Selon le choix de la modalité
@@ -1848,6 +1834,12 @@ simulateurs:
       est dûe dès la deuxième année d'exercice. Son montant varie fortement en
       fonction du chiffre d'affaires et de la domiciliation de l'entreprise.
       <2>Plus d'infos.</2>
+    chômage-partiel:
+      "1": Ce simulateur ne prend pas en compte les rémunérations brutes définies sur
+        39h hebdomadaires.
+      "2": De même, il ne prend pas en compte les indemnités complémentaire d'activité
+        partielle prévue par une convention/accord collectif ou une décision
+        unilatérale de l'employeur.
     cotisations-ordinales: Pour les professions réglementées, le simulateur ne
       calcule pas le montant des cotisations à l'ordre. Elles doivent être
       ajoutées manuellement dans la case « charges de fonctionnement ».
@@ -1862,9 +1854,22 @@ simulateurs:
       pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
         entreprises. Il ne prend pas en compte le cas des reprises d'entreprises
         existantes.
+    dividendes:
+      "1": Cette simulation ne concerne que les sociétés françaises à l’impôt sur les
+        sociétés (IS), et ne concerne pas les travailleurs indépendants non
+        salariés.
+      "2": Le montant de l'impôt sur les dividendes est calculé en plus de l’impôt sur
+        les autres revenus imposables.
+    general: <0>Les calculs sont indicatifs.</0> Ils sont faits à partir des
+      éléments que vous avez saisis et des éléments réglementaires applicables,
+      mais ils ne tiennent pas compte de l'ensemble de votre situation. Ils ne
+      se substituent pas aux décomptes réels de l’Urssaf, de l'administration
+      fiscale ou de toute autre organisme.
     indépendant:
       année-courante: Le montant calculé correspond aux cotisations de l’année
         {{year}} (pour un revenu {{year}}).
+    is: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
+      réduits de l’impôt sur les sociétés."
     libérale:
       année-courante: Le montant calculé correspond aux cotisations de l’année
         {{year}} (pour un revenu {{year}}).
@@ -1883,21 +1888,13 @@ simulateurs:
         le calcul de la <3>RGCP</3> à partir d'une rémunération mensuelle ou
         annuelle. Pour une version complète, utilisez <7>le simulateur
         d'urssaf.fr.</7>
-    salarié:
-      "1": <0>Cette estimation est proposée à titre indicatif</0>. Elle est faite à
-        partir des éléments que vous avez saisis et des éléments réglementaires
-        applicables, mais elle ne tient pas compte de l'ensemble de votre
-        situation. <3>Les montants réels peuvent donc être différents</3>.
-      "2": Le simulateur ne prend pour l'instant pas en compte les accords et
-        conventions collectives, ni la myriade d'aides aux entreprises. Trouvez
-        votre convention collective <2>ici</2>, et explorez les aides sur
-        <4>aides-entreprises.fr</4>.
+    salarié: Le simulateur ne prend pour l'instant pas en compte les accords et
+      conventions collectives, ni la myriade d'aides aux entreprises. Trouvez
+      votre convention collective <2>ici</2>, et explorez les aides sur
+      <4>aides-entreprises.fr</4>.
     sasu: Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu (IR).
       Seule l'option pour l'impôt sur les sociétés est implémentée (IS).
     titre: Avant de commencer...
-    urssaf: Les calculs sont indicatifs. Ils ne se substituent pas aux décomptes
-      réels de l’Urssaf, de l’administration fiscale ou de toute autre
-      organisme.
 simulation-end:
   hiring:
     text: Vous pouvez maintenant concrétiser votre projet d'embauche.

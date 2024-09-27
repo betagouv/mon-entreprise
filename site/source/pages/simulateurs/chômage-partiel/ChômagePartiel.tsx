@@ -7,14 +7,13 @@ import { styled } from 'styled-components'
 import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import Value from '@/components/EngineValue/Value'
 import RuleLink from '@/components/RuleLink'
+import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
-import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
@@ -41,44 +40,18 @@ export default function ChômagePartiel() {
 	const { t } = useTranslation()
 
 	return (
-		<>
-			<Grid
-				container
-				spacing={2}
-				style={{
-					justifyContent: 'center',
-				}}
-			>
-				<Grid item xl={9} lg={10} md={11} sm={12}>
-					{' '}
-					<Warning localStorageKey="covid19">
-						<Ul>
-							<Li>
-								Ce simulateur ne prend pas en compte les rémunérations brut
-								définies sur 39h hebdomadaires.
-							</Li>
-							<Li>
-								De même, il ne prend pas en compte les indemnités complémentaire
-								d'activité partielle prévue par une convention/accord collectif
-								ou une décision unilatérale de l'employeur.
-							</Li>
-						</Ul>
-					</Warning>
-				</Grid>
-			</Grid>
-
-			<Simulation
-				results={<ExplanationSection />}
-				customEndMessages={<span>Voir les résultats au-dessus</span>}
-			>
-				<SimulationGoals legend="Salaire brut avant chômage partiel">
-					<SimulationGoal
-						label={t('Salaire brut mensuel')}
-						dottedName="salarié . contrat . salaire brut"
-					/>
-				</SimulationGoals>
-			</Simulation>
-		</>
+		<Simulation
+			results={<ExplanationSection />}
+			customEndMessages={<span>Voir les résultats au-dessus</span>}
+		>
+			<SimulateurWarning simulateur="chômage-partiel" />
+			<SimulationGoals legend="Salaire brut avant chômage partiel">
+				<SimulationGoal
+					label={t('Salaire brut mensuel')}
+					dottedName="salarié . contrat . salaire brut"
+				/>
+			</SimulationGoals>
+		</Simulation>
 	)
 }
 

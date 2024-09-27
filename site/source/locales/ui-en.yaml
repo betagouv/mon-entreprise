@@ -589,11 +589,6 @@ design-system:
     open-selector: Open date selector
     prev-month: Previous month
     year: Year
-dividendes:
-  warning: <0>This simulation is for information purposes only. It applies only to
-    French companies subject to corporation tax (IS), and does not concern
-    self-employed workers.</0><1>Tax on dividends is calculated in addition to
-    tax on other taxable income.</1>
 dont chômage: of which unemployment
 employeur: employer
 en cas d'accident pro: in the event of a professional accident
@@ -674,9 +669,6 @@ impot-société:
     exercice-2022: Use dates for fiscal year 2022, pre-fill
     exercice-2023: Use dates for fiscal year 2023, pre-fill
   préremplir-exercice: "<0>Fiscal 2022</0> <2>Fiscal 2023</2> "
-impotSociété:
-  warning: "This simulator is designed for <2>very small businesses</2>: it takes
-    into account reduced corporate tax rates."
 impôt: tax
 impôt sur le revenu: income tax
 impôt sur le revenu prélevé à la source: income tax deducted at source
@@ -1719,13 +1711,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    artiste-auteur:
-      "1": This estimate is provided for information only. It is based on the
-        applicable regulations and the information you have entered, but it does
-        not take into account your entire situation. The actual amount of your
-        contributions may therefore differ.
-      "2": This simulator allows you to estimate the amount of your contributions
-        based on your projected income.
+    artiste-auteur: This simulator allows you to estimate the amount of your
+      contributions based on your projected income.
     auto-entrepreneur: Auto-entrepreneurs benefit from a highly simplified system,
       with a flat rate for calculating social security contributions applied to
       sales. Depending on the tax payment method chosen, a flat-rate deduction
@@ -1736,6 +1723,12 @@ simulateurs:
       foncière des entreprises - CFE), which is due from the second year of
       business. Its amount varies greatly depending on sales and the company's
       location. <2>For further information.</2>
+    chômage-partiel:
+      "1": This simulator does not take into account gross earnings based on a 39-hour
+        week.
+      "2": Similarly, it does not take into account any additional partial activity
+        indemnities provided for by a collective agreement or unilateral
+        decision by the employer.
     cotisations-ordinales: For regulated professions, the simulator does not
       calculate the amount of membership fees. They must be added manually in
       the "operating expenses" box.
@@ -1747,9 +1740,19 @@ simulateurs:
         documents. In addition, the registry charges postage for mailings.
       pas-reprise: This simulator calculates start-up costs for new businesses. It
         does not take into account takeovers of existing companies.
+    dividendes:
+      "1": This simulation applies only to French companies subject to corporation tax
+        (IS), and does not concern self-employed workers.
+      "2": Tax on dividends is calculated in addition to tax on other taxable income.
+    general: <0>The calculations are indicative.</0> They are based on the
+      information you have entered and the applicable regulations, but they do
+      not take into account your entire situation. They do not replace actual
+      statements from Urssaf, the tax authorities or any other organization.
     indépendant:
       année-courante: The amount calculated corresponds to the contributions for the
         year {{year}} (for an income {{year}}).
+    is: "This simulator is designed for <2>very small businesses</2>: it takes into
+      account reduced corporate tax rates."
     libérale:
       année-courante: The amount calculated corresponds to the contributions for the
         year {{year}} (for an income {{year}}).
@@ -1767,20 +1770,13 @@ simulateurs:
       beta: <0>This simulator is currently under development.</0> It only calculates
         <3>RGCP</3> on the basis of monthly or annual remuneration. For a full
         version, use <7>the urssaf.fr simulator.</7>
-    salarié:
-      "1": <0>This estimate is provided for information only</0>. It is based on the
-        information you have entered and the applicable regulations, but it does
-        not take into account your entire situation. <3>Actual amounts may
-        therefore differ</3>.
-      "2": The simulator does not currently take into account collective agreements,
-        nor the myriad of company subsidies. Find your collective bargaining
-        agreement <2>here</2>, and explore the range of assistance available on
-        <4>aides-entreprises.fr</4>.
+    salarié: The simulator does not currently take into account collective
+      agreements, nor the myriad of company subsidies. Find your collective
+      bargaining agreement <2>here</2>, and explore the range of assistance
+      available on <4>aides-entreprises.fr</4>.
     sasu: This simulator does not handle the case of SAS(U) taxable on income (IR).
       Only the corporate income tax (IS) option is implemented.
     titre: Before we begin...
-    urssaf: Calculations are indicative. They are not a substitute for actual
-      statements from Urssaf, the tax authorities or any other organization.
 simulation-end:
   hiring:
     text: Now you can make your hiring plans a reality.
