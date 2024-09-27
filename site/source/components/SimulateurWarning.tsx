@@ -57,15 +57,6 @@ export default function SimulateurWarning({
 					</StyledLi>
 				</Ul>
 			)}
-			{simulateur !== 'artiste-auteur' && (
-				<Body>
-					<Trans i18nKey="simulateurs.warning.urssaf">
-						Les calculs sont indicatifs. Ils ne se substituent pas aux décomptes
-						réels de l’Urssaf, de l’administration fiscale ou de toute autre
-						organisme.
-					</Trans>
-				</Body>
-			)}
 			{simulateur === 'profession-libérale' && (
 				<Ul>
 					<StyledLi>
@@ -90,23 +81,12 @@ export default function SimulateurWarning({
 				</Ul>
 			)}
 			{simulateur === 'artiste-auteur' && (
-				<Ul>
-					<StyledLi>
-						<Trans i18nKey="simulateurs.warning.artiste-auteur.1">
-							Cette estimation est proposée à titre indicatif. Elle est faite à
-							partir des éléments réglementaires applicables et des éléments que
-							vous avez saisis, mais elle ne tient pas compte de l'ensemble de
-							votre situation. Le montant réel de vos cotisations peut donc être
-							différent.
-						</Trans>
-					</StyledLi>
-					<StyledLi>
-						<Trans i18nKey="simulateurs.warning.artiste-auteur.2">
-							Ce simulateur permet d'estimer le montant de vos cotisations à
-							partir de votre revenu projeté
-						</Trans>
-					</StyledLi>
-				</Ul>
+				<Body>
+					<Trans i18nKey="simulateurs.warning.artiste-auteur">
+						Ce simulateur permet d'estimer le montant de vos cotisations à
+						partir de votre revenu projeté.
+					</Trans>
+				</Body>
 			)}
 			{simulateur === 'coût-création-entreprise' && (
 				<Ul>
@@ -151,6 +131,49 @@ export default function SimulateurWarning({
 					</Trans>
 				</Body>
 			)}
+			{simulateur === 'chômage-partiel' && (
+				<Ul>
+					<StyledLi>
+						<Trans i18nKey="simulateurs.warning.chômage-partiel.1">
+							Ce simulateur ne prend pas en compte les rémunérations brutes
+							définies sur 39h hebdomadaires.
+						</Trans>
+					</StyledLi>
+					<StyledLi>
+						<Trans i18nKey="simulateurs.warning.chômage-partiel.2">
+							De même, il ne prend pas en compte les indemnités complémentaire
+							d'activité partielle prévue par une convention/accord collectif ou
+							une décision unilatérale de l'employeur.
+						</Trans>
+					</StyledLi>
+				</Ul>
+			)}
+			{simulateur === 'is' && (
+				<Body>
+					<Trans i18nKey="simulateurs.warning.s">
+						Ce simulateur s’adresse aux{' '}
+						<abbr title="Très Petites Entreprises">TPE</abbr> : il prend en
+						compte les taux réduits de l’impôt sur les sociétés.
+					</Trans>
+				</Body>
+			)}
+			{simulateur === 'dividendes' && (
+				<Ul>
+					<StyledLi>
+						<Trans i18nKey="simulateurs.warning.dividendes.1">
+							Cette simulation ne concerne que les sociétés françaises à l’impôt
+							sur les sociétés (IS), et ne concerne pas les travailleurs
+							indépendants non salariés.
+						</Trans>
+					</StyledLi>
+					<StyledLi>
+						<Trans i18nKey="simulateurs.warning.dividendes.2">
+							Le montant de l'impôt sur les dividendes est calculé en plus de
+							l’impôt sur les autres revenus imposables.
+						</Trans>
+					</StyledLi>
+				</Ul>
+			)}
 			{simulateur === 'réduction-générale' && (
 				<>
 					<Body>
@@ -191,6 +214,15 @@ export default function SimulateurWarning({
 					</Ul>
 				</>
 			)}
+			<Body>
+				<Trans i18nKey="simulateurs.warning.general">
+					<Strong>Les calculs sont indicatifs.</Strong> Ils sont faits à partir
+					des éléments que vous avez saisis et des éléments réglementaires
+					applicables, mais ils ne tiennent pas compte de l'ensemble de votre
+					situation. Ils ne se substituent pas aux décomptes réels de l’Urssaf,
+					de l'administration fiscale ou de toute autre organisme.
+				</Trans>
+			</Body>
 		</Warning>
 	)
 }
