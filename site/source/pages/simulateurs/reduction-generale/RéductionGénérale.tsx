@@ -68,6 +68,17 @@ function RéductionGénéraleSimulationGoals({
 				label={t('Rémunération brute', 'Rémunération brute')}
 			/>
 
+			<Condition expression="salarié . cotisations . exonérations . JEI = oui">
+				<Message type="info">
+					<Body>
+						<Trans>
+							La réduction générale n'est pas cumulable avec l'exonération Jeune
+							Entreprise Innovante (JEI).
+						</Trans>
+					</Body>
+				</Message>
+			</Condition>
+
 			<Condition expression="salarié . cotisations . exonérations . réduction générale = 0">
 				<Message type="info">
 					<Body>
