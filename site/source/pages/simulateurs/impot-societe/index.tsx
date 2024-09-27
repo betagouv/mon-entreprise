@@ -8,13 +8,13 @@ import RuleInput from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue/Value'
 import Notifications from '@/components/Notifications'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
+import SimulateurWarning from '@/components/SimulateurWarning'
 import {
 	SimulationContainer,
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
-import Warning from '@/components/ui/WarningBlock'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
@@ -27,17 +27,7 @@ import { situationSelector } from '@/store/selectors/simulationSelectors'
 export default function ISSimulation() {
 	return (
 		<SimulationContainer>
-			<Warning
-				localStorageKey={'app::simulateurs:warning-folded:v1:impôt-societé'}
-			>
-				<Body>
-					<Trans i18nKey="impotSociété.warning">
-						Ce simulateur s’adresse aux{' '}
-						<abbr title="Très Petites Entreprises">TPE</abbr> : il prend en
-						compte les taux réduits de l’impôt sur les sociétés.
-					</Trans>
-				</Body>
-			</Warning>
+			<SimulateurWarning simulateur="is" />
 			<Notifications />
 
 			<SimulationGoals

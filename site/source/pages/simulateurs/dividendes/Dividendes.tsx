@@ -6,12 +6,12 @@ import { useTheme } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Notifications from '@/components/Notifications'
+import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
 import StackedBarChart from '@/components/StackedBarChart'
-import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { H2 } from '@/design-system/typography/heading'
@@ -21,23 +21,9 @@ import { enregistreLaRéponse } from '@/store/actions/actions'
 export default function DividendesSimulation() {
 	return (
 		<>
-			<Warning
-				localStorageKey={'app::simulateurs:warning-folded:v1:dividendes'}
-			>
-				<Trans i18nKey="dividendes.warning">
-					<Body>
-						Cette simulation est uniquement donnée à titre indicatif. Elle ne
-						concerne que les sociétés françaises à l’impôt sur les sociétés
-						(IS), et ne concerne pas les travailleurs indépendants non salariés.
-					</Body>
-					<Body>
-						Le montant de l'impôt sur les dividendes est calculé en sus de
-						l’impôt sur les autres revenus imposables.
-					</Body>
-				</Trans>
-			</Warning>
 			<Notifications />
 			<Simulation explanations={<DividendesExplanation />}>
+				<SimulateurWarning simulateur="dividendes" />
 				<DividendesSimulationGoals />
 			</Simulation>
 		</>
