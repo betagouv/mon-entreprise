@@ -79,6 +79,17 @@ function RéductionGénéraleSimulationGoals({
 				</Message>
 			</Condition>
 
+			<Condition expression="salarié . contrat = 'stage'">
+				<Message type="info">
+					<Body>
+						<Trans>
+							La réduction générale ne s'applique pas sur les gratifications de
+							stage.
+						</Trans>
+					</Body>
+				</Message>
+			</Condition>
+
 			<Condition expression="salarié . cotisations . exonérations . réduction générale = 0">
 				<Message type="info">
 					<Body>
