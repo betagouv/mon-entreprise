@@ -285,26 +285,26 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > profession libérale non reglementée 2`] = `
-"dirigeant . rémunération . net: 30852
-dirigeant . rémunération . net . après impôt: 27944
+"dirigeant . rémunération . net: 32846
+dirigeant . rémunération . net . après impôt: 29341
 entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . capital décès: 9274
 protection sociale . invalidité et décès . capital décès . orphelin: 193
-protection sociale . invalidité et décès . pension de reversion: 721
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 802
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1336
+protection sociale . invalidité et décès . pension de reversion: 306
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 852
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1419
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: null
-protection sociale . maladie . arrêt maladie: 44
+protection sociale . maladie . arrêt maladie: 47
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 64
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1932
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3864
-protection sociale . retraite . base: 1336
-protection sociale . retraite . complémentaire: 119
+protection sociale . retraite . base: 249
+protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
 

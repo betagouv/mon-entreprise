@@ -168,6 +168,7 @@ dirigeant . indépendant . PL . régime général:
   toutes ces conditions:
     - CIPAV = non
     - entreprise . activité . nature . libérale . réglementée = non
+    - entreprise . date de création < 01/01/2024
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite
@@ -176,9 +177,13 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
   description: |
     Les professions libérales non règlementées qui ont débuté leur activité à
     compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la
-    date du 1er janvier 2019  et ont opté pour le régime général des
-    travailleurs indépendants  ont la possibilité d’opter pour des taux
+    date du 1er janvier 2019 et ont opté pour le régime général des
+    travailleurs indépendants ont la possibilité d’opter pour des taux
     spécifique de la cotisation retraite complémentaire.
+
+    Depuis le 1er janvier 2024, il n'est plus possible de bénéficier d’un taux
+    spécifique de retraite complémentaire pour les professions libérales non
+    réglementées.
   références:
     Guide PL urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf
 
