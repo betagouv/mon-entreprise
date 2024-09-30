@@ -50,10 +50,6 @@ acre:
 
 impôt sur le revenu:
   - dirigeant . rémunération . net: 20000 €/an
-    impôt . méthode de calcul: "'taux neutre'"
-  - dirigeant . rémunération . net: 50000 €/an
-    impôt . méthode de calcul: "'taux neutre'"
-  - dirigeant . rémunération . net: 20000 €/an
     impôt . méthode de calcul: "'taux personnalisé'"
     impôt . taux personnalisé: 10%
 

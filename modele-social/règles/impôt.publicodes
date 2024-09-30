@@ -53,6 +53,7 @@ impôt . méthode de calcul:
     par défaut: "'barème standard'"
 
 impôt . méthode de calcul . taux neutre:
+  non applicable si: dirigeant
   titre: avec le taux neutre
   description: Si vous ne connaissez pas votre taux personnalisé, ou si vous
     voulez connaître votre impôt à la source dans le cas où vous avez choisi de
