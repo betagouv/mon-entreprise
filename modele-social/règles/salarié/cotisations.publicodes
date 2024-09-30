@@ -384,6 +384,7 @@ salarié . cotisations . assiette:
   somme:
     - sans prévoyance
     - prévoyances . employeur . non déductible socialement
+  unité: €/mois
 
   avec:
     sans prévoyance:
