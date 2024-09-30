@@ -864,8 +864,10 @@ salarié . rémunération . montant net social:
   description: |
     Le montant net social, ou MNS, correspond au montant de référence à déclarer par
     les allocataires depuis le 1er février 2024 pour bénéficier de la Prime d’activité
-    et du revenu de solidarité active (RSA). Il facilite les démarches administratives, limite les
-    risques d’erreur de déclaration et réduit le taux de non-recours aux droits.
+    et du revenu de solidarité active (RSA).
+
+    Le résultat affiché est une estimation qui ne tient pas compte de tous les éléments
+    de votre situation.
   unité: €/mois
   somme:
     - contrat . salaire brut

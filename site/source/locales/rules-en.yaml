@@ -11136,18 +11136,24 @@ salarié . rémunération . montant net social:
 
     as of February 1, 2024 to qualify for the Prime d'Activité (activity allowance)
 
-    and the revenu de solidarité active (RSA). It simplifies administrative procedures, reduces the risk of
+    and the revenu de solidarité active (RSA).
 
-    and reduces the rate of non-use of entitlements.
+
+    The result displayed is an estimate that does not take into account all the elements
+
+    of your situation.
   description.fr: >
     Le montant net social, ou MNS, correspond au montant de référence à déclarer
     par
 
     les allocataires depuis le 1er février 2024 pour bénéficier de la Prime d’activité
 
-    et du revenu de solidarité active (RSA). Il facilite les démarches administratives, limite les
+    et du revenu de solidarité active (RSA).
 
-    risques d’erreur de déclaration et réduit le taux de non-recours aux droits.
+
+    Le résultat affiché est une estimation qui ne tient pas compte de tous les éléments
+
+    de votre situation.
   résumé.en: "[automatic] Amount to declare for Prime d'activité and RSA applications"
   résumé.fr: Montant à déclarer pour les demandes de Prime d'activité et de RSA
   titre.en: '[automatic] Net corporate amount'
