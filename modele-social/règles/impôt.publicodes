@@ -29,7 +29,7 @@ impôt . méthode de calcul:
   description: |
     Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
     - *Le taux personnalisé* : indiqué sur votre avis d'imposition
-    - *Le taux neutre* : pour un célibataire sans enfants
+    - *Le taux neutre* : pour un célibataire sans enfant
     - *Le barème standard * : la formule "officielle" utilisée par l'administration fiscale pour obtenir le taux d'imposition
 
     En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
@@ -58,7 +58,7 @@ impôt . méthode de calcul . taux neutre:
   description: Si vous ne connaissez pas votre taux personnalisé, ou si vous
     voulez connaître votre impôt à la source dans le cas où vous avez choisi de
     ne pas communiquer à votre taux à l'employeur, le calcul au taux neutre
-    correspond à une imposition pour un célibataire sans enfants et sans autres
+    correspond à une imposition pour un célibataire sans enfant et sans autres
     revenus / charges.
   valeur: impôt . méthode de calcul = 'taux neutre'
 

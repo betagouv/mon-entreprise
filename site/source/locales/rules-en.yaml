@@ -6403,21 +6403,22 @@ impôt . méthode de calcul:
       titre.en: '[automatic] by default'
       titre.fr: par défaut
   description.en: >
-    We have implemented three ways to calculate income tax:
+    [automatic] We've implemented three ways of calculating income tax:
 
-    - *The personalized rate*: indicated on your tax notice
+    - the personalized rate*: indicated on your tax notice
 
-    - *The neutral rate*: for a single person without children
+    - the neutral rate*: for a single person with no children
 
-    - *The standard scale * : the "official" formula used by tax authorities to obtain the tax rate
+    - The standard scale*: the "official" formula used by the tax authorities to calculate the tax rate.
 
-    By filling in your personalized rate, you will be as close as possible to your real situation. The neutral rate can be interesting if you have not sent your personalized rate to the employer and you want to compare the results of the simulator with your pay slip. The standard scale gives you a more accurate result than the neutral rate for a single man without children.
+
+    By filling in your personalized rate, you'll be as close as possible to your actual situation. The neutral rate can be useful if you haven't sent your personalized rate to your employer and want to compare the simulator's results with your payslip. The standard scale gives a more accurate result than the neutral rate for a single person without children.
   description.fr: >
     Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
 
     - *Le taux personnalisé* : indiqué sur votre avis d'imposition
 
-    - *Le taux neutre* : pour un célibataire sans enfants
+    - *Le taux neutre* : pour un célibataire sans enfant
 
     - *Le barème standard * : la formule "officielle" utilisée par l'administration fiscale pour obtenir le taux d'imposition
 
@@ -6442,14 +6443,15 @@ impôt . méthode de calcul . barème standard:
   titre.en: with the standard scale
   titre.fr: avec le barème standard
 impôt . méthode de calcul . taux neutre:
-  description.en: If you do not know your personalized rate, or if you want to
-    know your withholding tax if you have chosen not to communicate at your rate
-    to the employer, the calculation at the neutral rate corresponds to a tax
-    for a single person without children and without other income/charges.
+  description.en:
+    "[automatic] If you don't know your personalized tax rate, or if
+    you want to know your tax at source if you have chosen not to inform your
+    employer of your rate, the neutral rate calculation corresponds to taxation
+    for a single person with no children and no other income or expenses."
   description.fr: Si vous ne connaissez pas votre taux personnalisé, ou si vous
     voulez connaître votre impôt à la source dans le cas où vous avez choisi de
     ne pas communiquer à votre taux à l'employeur, le calcul au taux neutre
-    correspond à une imposition pour un célibataire sans enfants et sans autres
+    correspond à une imposition pour un célibataire sans enfant et sans autres
     revenus / charges.
   titre.en: with the neutral rate
   titre.fr: avec le taux neutre
