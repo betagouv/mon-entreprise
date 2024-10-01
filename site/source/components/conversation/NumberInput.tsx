@@ -8,6 +8,7 @@ import { EngineContext } from '@/components/utils/EngineContext'
 import { NumberField } from '@/design-system/field'
 import { debounce } from '@/utils'
 
+import localI18n from '../../locales/i18n'
 import InputSuggestions from './InputSuggestions'
 import { InputProps } from './RuleInput'
 
@@ -28,7 +29,7 @@ export default function NumberInput({
 	const [currentValue, setCurrentValue] = useState<number | undefined>(
 		!missing && value != null && typeof value === 'number' ? value : undefined
 	)
-	const { i18n, t } = useTranslation()
+	const { i18n } = useTranslation()
 	const parsedDisplayedUnit = displayedUnit ? parseUnit(displayedUnit) : unit
 	const engine = useContext(EngineContext)
 	useEffect(() => {
@@ -70,8 +71,7 @@ export default function NumberInput({
 					getSerializedUnit(
 						currentValue ?? 0,
 						parsedDisplayedUnit,
-						i18n.language,
-						t
+						i18n.language
 					)
 				}
 				onChange={(valeur) => {
@@ -108,12 +108,7 @@ export default function NumberInput({
 }
 
 // TODO : put this inside publicodes
-function getSerializedUnit(
-	value: number,
-	unit: Unit,
-	locale: string,
-	translate: (s?: string) => string | undefined
-): string {
+function getSerializedUnit(value: number, unit: Unit, locale: string): string {
 	// removing euro, which is a currency not a unit
 	unit = {
 		...unit,
@@ -127,12 +122,17 @@ function getSerializedUnit(
 	const formatUnit = getFormatUnit(unit)
 
 	if (!formatUnit) {
+		const { translatedUnit, translatedPer } = getTranslatedUnit(
+			unit,
+			locale,
+			value > 2
+		)
+
 		return (
-			translate(
-				serializeUnit(unit)
-					?.replace(/\/([^\s])/, '/ $1')
-					.replace('/', 'par')
-			) ?? ''
+			serializeUnit(translatedUnit)
+				?.replace(/\/([^\s])/, ' / $1')
+				.replace('/', translatedPer)
+				.trim() ?? ''
 		)
 	}
 
@@ -181,6 +181,33 @@ function getFormatUnit(unit: Unit): Intl.NumberFormatOptions['unit'] | null {
 	}
 
 	return formatUnit
+}
+
+function getTranslatedUnit(unit: Unit, locale: string, plural: boolean) {
+	const unitsTranslations = Object.entries(
+		localI18n.getResourceBundle(locale, 'units') as Record<string, string>
+	)
+	const getTranslatedUnit = (unit: string, plural: boolean): string => {
+		const pluralizedUnit = unit + (plural ? '_plural' : '')
+		const key = unitsTranslations
+			.find(([unitKey]) => unitKey === pluralizedUnit)?.[1]
+			.replace(/_plural$/, '')
+
+		return key || unit
+	}
+
+	const translatedUnit = {
+		numerators: unit.numerators[0]
+			? [getTranslatedUnit(unit.numerators[0], plural)]
+			: [],
+		denominators: unit.denominators[0]
+			? [getTranslatedUnit(unit.denominators[0], false)]
+			: [],
+	}
+	const translatedPer =
+		unitsTranslations.find(([key]) => key === 'par')?.[1] || 'par'
+
+	return { translatedUnit, translatedPer }
 }
 
 const StyledNumberInput = styled.div`
