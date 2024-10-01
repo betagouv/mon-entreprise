@@ -2784,18 +2784,34 @@ dirigeant . indépendant . PL . régime général:
   titre.en: '[automatic] overall regime'
   titre.fr: régime général
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
-  description.en: |
-    [automatic] The unregulated professions that started their activity at
-    As of January 1, 2019 or those who started their activity before the
-    date of 1 January 2019 and have opted for the general regime for the
-    self-employed have the possibility of opting for rates that are
-    specific of the supplementary pension contribution.
+  description.en: >
+    [automatic] Non-regulated self-employed professionals who began their
+    activity
+
+    on or after January 1, 2019, or those who began their activity before
+
+    January 1, 2019 and opted for the general scheme for self-employed
+
+    self-employed workers have the option of opting for specific rates
+
+    for supplementary pension contributions.
+
+
+    As of January 1, 2024, it is no longer possible to benefit from a specific
+
+    specific supplementary pension rate for unregulated liberal professions.
+
+    regulated professions.
   description.fr: |
     Les professions libérales non règlementées qui ont débuté leur activité à
     compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la
-    date du 1er janvier 2019  et ont opté pour le régime général des
-    travailleurs indépendants  ont la possibilité d’opter pour des taux
+    date du 1er janvier 2019 et ont opté pour le régime général des
+    travailleurs indépendants ont la possibilité d’opter pour des taux
     spécifique de la cotisation retraite complémentaire.
+
+    Depuis le 1er janvier 2024, il n'est plus possible de bénéficier d’un taux
+    spécifique de retraite complémentaire pour les professions libérales non
+    réglementées.
   question.en: '[automatic] Have you opted for specific supplementary pension
     contribution rates?'
   question.fr: Avez-vous opté pour des taux spécifiques de cotisation retraite
