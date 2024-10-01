@@ -122,6 +122,8 @@ salarié . temps de travail . heures complémentaires:
   applicable si: contrat . temps de travail . temps partiel
   question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées ?
   par défaut: 0 heures/mois
+  unité: heures/mois
+  plancher: 0 heures/mois
 
   avec:
     contrôle heures complémentaires 10 pourcents:
