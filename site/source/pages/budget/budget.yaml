@@ -1,19 +1,9 @@
-# Ces données sont optenues avec la commande suivante depuis le repo privé
-# `mon-entreprise/compta` :
-#
-# $ hledger is -p 2021 -Q -B --depth 2
-#
-# La partie « marge du porteur » est amortie par trimestre en prenant 13,31% du
-# total du trimestre.
-# markup : 11,75% (montant HT - markup = montant dispo)
-# markup inverse : (1 / (1 - markup)) - 1 = 13,31% (pour passer du dispo au HT)
-
 2020:
   T1:
     Développement: 73500
     Logiciels et hébergement: 456
-    Déplacements: 742
     Portage: 10337
+    Déplacements: 742
   T2:
     Développement: 56100
     Logiciels et hébergement: 338
@@ -30,8 +20,8 @@
   T1:
     Développement: 44850
     Logiciels et hébergement: 454
-    Déplacements: 114
     Portage: 6045
+    Déplacements: 114
   T2:
     Développement: 57750
     Logiciels et hébergement: 212
@@ -53,36 +43,56 @@
     Portage: 7849
   T3:
     Développement: 53800
-    Design: 4250
     Déploiement: 19000
+    Design: 4250
     Portage: 10259
   T4:
-    Design: 28750
     Développement: 74555
-    Déploiement: 22900
-    Portage: 10046
     Logiciels et hébergement: 17098
+    Déploiement: 22900
+    Design: 28750
+    Portage: 10046
 
 2023:
   T1:
     Développement: 47500
+    Logiciels et hébergement: 7203
     Déploiement: 10100
     Design: 4000
-    Logiciels et hébergement: 7203
     Portage: 24921
     # Envoyé à l'Urssaf: 82712.80
   T2:
     Développement: 30325
-    Portage: 7885
     Logiciels et hébergement: 563
+    Portage: 7885
     # Envoyé à l'Urssaf: 34218
   T3:
     Développement: 36600
-    Portage: 7520
     Logiciels et hébergement: 465
+    Portage: 7520
     # Envoyé à l'Urssaf: 39681
   T4:
     Développement: 10400
-    Portage: 2086
     Logiciels et hébergement: 686
+    Portage: 2086
     # Envoyé à l'Urssaf: 11723
+
+2024:
+  T1:
+    Développement: 24091
+    Logiciels et hébergement: 1069
+    Portage: 2650
+  T2:
+    Développement: 37033
+    Logiciels et hébergement: 2140
+    Portage: 4073
+    Déplacements: 564
+  T3:
+    Développement: 53450
+    Logiciels et hébergement: 1950
+    Portage: 5879
+  T4:
+    Développement: 60300
+    Logiciels et hébergement: 1950
+    Portage: 6633
+    Déplacements: 750
