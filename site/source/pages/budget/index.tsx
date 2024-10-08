@@ -108,6 +108,7 @@ export default function Budget() {
 						onSelectionChange={(year) => {
 							setSelectedYear(year as (typeof years)[number])
 						}}
+						data-cy="year-selector"
 					>
 						{years
 							.filter((year) => !!year)

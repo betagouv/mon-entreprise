@@ -5,7 +5,7 @@ describe('Secondary pages', function () {
 		return
 	}
 
-	it("page stats doesn't crash", function () {
+	it('Statistics page should not crash', function () {
 		cy.visit('/stats')
 		cy.contains('Statistiques')
 	})
@@ -17,7 +17,7 @@ describe('Secondary pages', function () {
 		checkA11Y()
 	})
 
-	it('navigate in the news section', function () {
+	it('News page should not crash', function () {
 		cy.visit('/nouveautés')
 		cy.contains('←').click()
 		cy.url({ decode: true }).should('match', /\/nouveautés\/[^/]*$/)
@@ -30,5 +30,17 @@ describe('Secondary pages', function () {
 		checkA11Y()
 		cy.contains('←').click()
 		cy.url({ decode: true }).should('match', /\/nouveautés\/[^/]*$/)
+	})
+
+	it('Budget page should not crash', function () {
+		cy.visit('/budget')
+		cy.contains('Budget')
+		cy.get('button[data-cy="year-selector"]').click()
+		cy.contains('2021').click()
+	})
+
+	it('Budget page should be RGAA compliant', function () {
+		cy.visit('/budget')
+		checkA11Y()
 	})
 })
