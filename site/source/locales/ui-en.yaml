@@ -382,14 +382,6 @@ au bout de 10 ans: after 10 years
 betawarning: "<0><0>This tool is in beta version</0>: we are working on
   <3>validating the information and calculations</3>, but <6>errors may</6>
   still occur.</0>"
-budget:
-  description: My-company budget
-  tableCaption: Table showing the budget for the year {{year}} by expense item.
-    The first column shows the current year ({{year}}) on the first line, then
-    the expenditure items, and finally the total before and after tax. The other
-    columns show expenses for each quarter. The last column shows the totals for
-    each expense item, as well as the aggregated totals before and after tax.
-  title: Budget
 cards:
   simulator-resource:
     cta: Access the simulator

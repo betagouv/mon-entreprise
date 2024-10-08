@@ -405,15 +405,6 @@ au bout de 10 ans: au bout de 10 ans
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
   être présentes.</6></0>"
-budget:
-  description: Le budget de mon-entreprise
-  tableCaption: Tableau affichant le bugdet de l'année {{year}} par poste de
-    dépenses. La première colonne affiche l'année en cours ({{year}}) sur la
-    première ligne puis les postes de dépenses et pour finir le total HT et
-    total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre.
-    La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi
-    que les totaux HT et TTC agrégés.
-  title: Budget
 cards:
   simulator-resource:
     cta: Accéder au simulateur
