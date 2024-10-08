@@ -1,5 +1,8 @@
-import { useCallback, useState } from 'react'
+import { DottedName } from 'modele-social'
+import { PublicodesExpression } from 'publicodes'
+import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
@@ -11,75 +14,145 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { ajusteLaSituation } from '@/store/actions/actions'
 
 import EffectifSwitch from './components/EffectifSwitch'
 import RéductionGénéraleMensuelle from './RéductionGénéraleMensuelle'
+import {
+	getInitialRéductionGénéraleMensuelle,
+	getRéductionGénéraleFromRémunération,
+} from './utils'
 
 export default function RéductionGénéraleSimulation() {
-	const { t } = useTranslation()
-	const [monthByMonth, setMonthByMonth] = useState(false)
-
-	const periods = [
-		{
-			label: t('Réduction mensuelle'),
-			unit: '€/mois',
-		},
-		{
-			label: t('Réduction annuelle'),
-			unit: '€/an',
-		},
-		{
-			label: t('Réduction mois par mois'),
-			unit: '€',
-		},
-	]
-	const onPeriodSwitch = useCallback((unit: string) => {
-		setMonthByMonth(unit === '€')
-	}, [])
-
 	return (
 		<>
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
 				<SimulateurWarning simulateur="réduction-générale" />
-				<RéductionGénéraleSimulationGoals
-					monthByMonth={monthByMonth}
-					legend="Salaire brut du salarié et réduction générale applicable"
-					toggles={
-						<>
-							<EffectifSwitch />
-							<PeriodSwitch periods={periods} onPeriodSwitch={onPeriodSwitch} />
-						</>
-					}
-				/>
+				<RéductionGénéraleSimulationGoals />
 			</Simulation>
 		</>
 	)
 }
 
-function RéductionGénéraleSimulationGoals({
-	monthByMonth,
-	toggles = (
-		<>
-			<EffectifSwitch />
-			<PeriodSwitch />
-		</>
-	),
-	legend,
-}: {
-	monthByMonth: boolean
-	toggles?: React.ReactNode
-	legend: string
-}) {
+export type MonthState = {
+	rémunérationBrute: number
+	réductionGénérale: number
+}
+
+function RéductionGénéraleSimulationGoals() {
+	const engine = useEngine()
+	const dispatch = useDispatch()
 	const { t } = useTranslation()
+	// TODO: remplacer "salarié . cotisations . assiette" par "salarié . rémunération . brut"
+	// lorsqu'elle n'incluera plus les frais professionnels.
+	const rémunérationBruteDottedName =
+		'salarié . cotisations . assiette' as DottedName
+	const [monthByMonth, setMonthByMonth] = useState(false)
+	const [réductionGénéraleMensuelleData, setData] = useState<MonthState[]>([])
+
+	const initializeRéductionGénéraleMensuelleData = useCallback(() => {
+		const initialData = getInitialRéductionGénéraleMensuelle(engine)
+		setData(initialData)
+	}, [engine, setData])
+
+	useEffect(() => {
+		if (réductionGénéraleMensuelleData.length === 0) {
+			initializeRéductionGénéraleMensuelleData()
+		}
+	}, [initializeRéductionGénéraleMensuelleData, réductionGénéraleMensuelleData])
+
+	const updateRémunérationBruteAnnuelle = (data: MonthState[]): void => {
+		const rémunérationBruteAnnuelle = data.reduce(
+			(total: number, monthState: MonthState) =>
+				total + monthState.rémunérationBrute,
+			0
+		)
+		dispatch(
+			ajusteLaSituation({
+				[rémunérationBruteDottedName]: {
+					valeur: rémunérationBruteAnnuelle,
+					unité: '€/an',
+				} as PublicodesExpression,
+			} as Record<DottedName, SimpleRuleEvaluation>)
+		)
+	}
+
+	const onRémunérationChange = (
+		monthIndex: number,
+		rémunérationBrute: number
+	) => {
+		setData((previousData) => {
+			const updatedData = [...previousData]
+			updatedData[monthIndex] = {
+				rémunérationBrute,
+				réductionGénérale: getRéductionGénéraleFromRémunération(
+					engine,
+					rémunérationBrute
+				),
+			}
+
+			updateRémunérationBruteAnnuelle(updatedData)
+
+			return updatedData
+		})
+	}
+
+	const onEffectifSwitch = useCallback(() => {
+		setData((previousData) =>
+			previousData.map((item) => ({
+				...item,
+				réductionGénérale: getRéductionGénéraleFromRémunération(
+					engine,
+					item.rémunérationBrute
+				),
+			}))
+		)
+	}, [engine])
+
+	const onPeriodSwitch = useCallback((unit: string) => {
+		setMonthByMonth(unit === '€')
+	}, [])
 
 	return (
-		<SimulationGoals toggles={toggles} legend={legend}>
+		<SimulationGoals
+			toggles={
+				<>
+					<EffectifSwitch onSwitch={onEffectifSwitch} />
+					<PeriodSwitch
+						periods={[
+							{
+								label: t('Réduction mensuelle'),
+								unit: '€/mois',
+							},
+							{
+								label: t('Réduction annuelle'),
+								unit: '€/an',
+							},
+							{
+								label: t('Réduction mois par mois'),
+								unit: '€',
+							},
+						]}
+						onSwitch={onPeriodSwitch}
+					/>
+				</>
+			}
+			legend={t(
+				'pages.simulateurs.réduction-générale.legend',
+				'Rémunération brute du salarié et réduction générale applicable'
+			)}
+		>
 			{monthByMonth ? (
-				<RéductionGénéraleMensuelle />
+				<RéductionGénéraleMensuelle
+					data={réductionGénéraleMensuelleData}
+					onChange={onRémunérationChange}
+				/>
 			) : (
 				<>
 					{/* TODO: remplacer "salarié . cotisations . assiette" par "salarié . rémunération . brut"
@@ -88,14 +161,15 @@ function RéductionGénéraleSimulationGoals({
 						dottedName="salarié . cotisations . assiette"
 						round={false}
 						label={t('Rémunération brute', 'Rémunération brute')}
+						onUpdateSituation={initializeRéductionGénéraleMensuelleData}
 					/>
 
 					<Condition expression="salarié . cotisations . exonérations . JEI = oui">
 						<Message type="info">
 							<Body>
 								<Trans>
-									La réduction générale n'est pas cumulable avec l'exonération Jeune
-									Entreprise Innovante (JEI).
+									La réduction générale n'est pas cumulable avec l'exonération
+									Jeune Entreprise Innovante (JEI).
 								</Trans>
 							</Body>
 						</Message>
@@ -105,8 +179,8 @@ function RéductionGénéraleSimulationGoals({
 						<Message type="info">
 							<Body>
 								<Trans>
-									La réduction générale ne s'applique pas sur les gratifications de
-									stage.
+									La réduction générale ne s'applique pas sur les gratifications
+									de stage.
 								</Trans>
 							</Body>
 						</Message>

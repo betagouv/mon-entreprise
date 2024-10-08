@@ -393,6 +393,7 @@ aide-déclaration-indépendant:
   results:
     title: Amounts to report on your tax return
 aides différées, voir le détail du calcul pour aides différées: deferred aid, see detailed calculation for deferred aid
+août: August
 api:
   description: Tools for developers
   title: Use our REST API
@@ -404,6 +405,7 @@ assistants:
       cta: Visit the site
       title: View your public data
 au bout de 10 ans: after 10 years
+avril: April
 betawarning: "<0><0>This tool is in beta version</0>: we are working on
   <3>validating the information and calculations</3>, but <6>errors may</6>
   still occur.</0>"
@@ -595,6 +597,7 @@ design-system:
     prev-month: Previous month
     year: Year
 dont chômage: of which unemployment
+décembre: December
 employeur: employer
 en cas d'accident pro: in the event of a professional accident
 en incluant: including
@@ -639,6 +642,7 @@ footer:
   accessibilitéAriaLabel: "Accessibility: partially compliant, find out more"
   github:
     text: View source code on Github
+février: February
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
 gérer:
   choix:
@@ -681,7 +685,10 @@ info: info
 intégration:
   description: Tools for developers
   title: Integration
+janvier: January
 jours: days
+juillet: July
+juin: June
 l'annuaire des entreprises, nouvelle fenêtre: business directory, new window
 landing:
   aboutUs: "<0>Who are we?</0><1>We're a small, independent, multi-disciplinary
@@ -737,6 +744,8 @@ library:
   description: Tools for developers
   title: Calculation library
 loading: Loading in progress...
+mai: May
+mars: March
 moins: less
 mois: month
 navbar:
@@ -755,6 +764,8 @@ nextSteps:
     cta: See the documentation
     title: Integrate the web module
 nombres de votes: number of votes
+novembre: November
+octobre: October
 pages:
   "404":
     description: The page you are looking for does not exist or no longer exists
@@ -1470,6 +1481,7 @@ pages:
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
     réduction-générale:
+      legend: Gross employee remuneration and applicable general reduction
       meta:
         description: Estimate of the amount of the general reduction in employer
           contributions (RGCP). This reduction applies to salaries below 1.6
@@ -1676,6 +1688,7 @@ search-code-ape:
 select:
   value:
     default: Choose an option
+septembre: September
 shareSimulation:
   banner: Generate a share link
   button:

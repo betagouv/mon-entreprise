@@ -416,6 +416,7 @@ aide-déclaration-indépendant:
   results:
     title: Montants à reporter dans votre déclaration de revenus
 aides différées, voir le détail du calcul pour aides différées: aides différées, voir le détail du calcul pour aides différées
+août: août
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
@@ -428,6 +429,7 @@ assistants:
       cta: Visiter le site
       title: Voir vos données publiques
 au bout de 10 ans: au bout de 10 ans
+avril: avril
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
   être présentes.</6></0>"
@@ -626,6 +628,7 @@ design-system:
     prev-month: Mois précédent
     year: Année
 dont chômage: dont chômage
+décembre: décembre
 employeur: employeur
 en cas d'accident pro: en cas d'accident pro
 en incluant: en incluant
@@ -671,6 +674,7 @@ footer:
   accessibilitéAriaLabel: "Accessibilité : partiellement conforme, en savoir plus"
   github:
     text: Voir le code source sur Github
+février: février
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 gérer:
   choix:
@@ -716,7 +720,10 @@ info: info
 intégration:
   description: Outils pour les développeurs
   title: Intégration
+janvier: janvier
 jours: jours
+juillet: juillet
+juin: juin
 l'annuaire des entreprises, nouvelle fenêtre: l'annuaire des entreprises, nouvelle fenêtre
 landing:
   aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
@@ -776,6 +783,8 @@ library:
   description: Outils pour les développeurs
   title: Librairie de calcul
 loading: Chargement en cours...
+mai: mai
+mars: mars
 moins: moins
 mois: mois
 navbar:
@@ -794,6 +803,8 @@ nextSteps:
     cta: Voir la documentation
     title: Intégrer le module web
 nombres de votes: nombres de votes
+novembre: novembre
+octobre: octobre
 pages:
   "404":
     description: La page que vous cherchez n'existe pas ou n'existe plus
@@ -1565,6 +1576,7 @@ pages:
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
     réduction-générale:
+      legend: Rémunération brute du salarié et réduction générale applicable
       meta:
         description: Estimation du montant de la réduction générale des cotisations
           patronales (RGCP). Cette réduction est applicable pour les salaires
@@ -1784,6 +1796,7 @@ search-code-ape:
 select:
   value:
     default: Choisissez une option
+septembre: septembre
 shareSimulation:
   banner: Générer un lien de partage
   button:
