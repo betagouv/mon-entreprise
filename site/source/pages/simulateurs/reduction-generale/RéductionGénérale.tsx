@@ -112,7 +112,7 @@ function RéductionGénéraleSimulationGoals({
 						</Message>
 					</Condition>
 
-					<Condition expression="salarié . contrat . salaire brut > 1.6 * SMIC">
+					<Condition expression="salarié . cotisations . assiette > 1.6 * SMIC">
 						<Message type="info">
 							<Body>
 								<Trans>

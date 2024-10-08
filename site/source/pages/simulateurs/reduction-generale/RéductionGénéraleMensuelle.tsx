@@ -14,10 +14,10 @@ import { ajusteLaSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 type MonthState = {
-	salaireBrut: number
+	rémunérationBrute: number
 	réductionGénérale: number
 }
-type SalaireBrutInput = {
+type RémunérationBruteInput = {
 	unité: string
 	valeur: number
 }
@@ -33,17 +33,19 @@ export default function RéductionGénéraleMensuelle() {
 	const displayedUnit = '€'
 	const réductionGénéraleDottedName =
 		'salarié . cotisations . exonérations . réduction générale' as DottedName
-	const salaireBrutDottedName = 'salarié . contrat . salaire brut' as DottedName
+	// TODO: remplacer "salarié . cotisations . assiette" par "salarié . rémunération . brut"
+	// lorsqu'elle n'incluera plus les frais professionnels.
+	const rémunérationBruteDottedName = 'salarié . cotisations . assiette' as DottedName
 
 	const [data, setData] = useState<MonthState[]>([])
 
 	const evaluateRéductionGénérale = useCallback(
-		(salaireBrut: number) => {
+		(rémunérationBrute: number) => {
 			const réductionGénérale = engine.evaluate({
 				valeur: réductionGénéraleDottedName,
 				unité: unit,
 				contexte: {
-					[salaireBrutDottedName]: salaireBrut,
+					[rémunérationBruteDottedName]: rémunérationBrute,
 				},
 			})
 
@@ -53,16 +55,16 @@ export default function RéductionGénéraleMensuelle() {
 	)
 
 	const initializeData = useCallback(() => {
-		const salaireBrut =
+		const rémunérationBrute =
 			(engine.evaluate({
-				valeur: salaireBrutDottedName,
+				valeur: rémunérationBruteDottedName,
 				arrondi: 'oui',
 				unité: unit,
 			})?.nodeValue as number) || 0
-		const réductionGénérale = evaluateRéductionGénérale(salaireBrut)
+		const réductionGénérale = evaluateRéductionGénérale(rémunérationBrute)
 
 		const initialData = Array(12).fill({
-			salaireBrut,
+			rémunérationBrute,
 			réductionGénérale,
 		})
 
@@ -81,10 +83,10 @@ export default function RéductionGénéraleMensuelle() {
 			newSituation: Situation
 		) => {
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			const { [salaireBrutDottedName]: _, ...newSituationSansSalaire } =
+			const { [rémunérationBruteDottedName]: _, ...newSituationSansSalaire } =
 				newSituation
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
-			const { [salaireBrutDottedName]: __, ...currentSituationSansSalaire } =
+			const { [rémunérationBruteDottedName]: __, ...currentSituationSansSalaire } =
 				currentSituation
 
 			return (
@@ -97,7 +99,7 @@ export default function RéductionGénéraleMensuelle() {
 			setData((previousData) =>
 				previousData.map((item) => ({
 					...item,
-					réductionGénérale: evaluateRéductionGénérale(item.salaireBrut),
+					réductionGénérale: evaluateRéductionGénérale(item.rémunérationBrute),
 				}))
 			)
 		}
@@ -105,24 +107,24 @@ export default function RéductionGénéraleMensuelle() {
 		situationRef.current = situation
 	}, [situation, evaluateRéductionGénérale])
 
-	const onSalaireChange = (month: number, salaireBrut: SalaireBrutInput) => {
+	const onSalaireChange = (month: number, rémunérationBrute: RémunérationBruteInput) => {
 		setData((previousData) => {
 			const updatedData = [...previousData]
 			updatedData[month] = {
 				...updatedData[month],
-				salaireBrut: salaireBrut.valeur,
-				réductionGénérale: evaluateRéductionGénérale(salaireBrut.valeur),
+				rémunérationBrute: rémunérationBrute.valeur,
+				réductionGénérale: evaluateRéductionGénérale(rémunérationBrute.valeur),
 			}
-			const salaireBrutAnnuel = updatedData.reduce(
+			const rémunérationBruteAnnuel = updatedData.reduce(
 				(total: number, monthState: MonthState) =>
-					total + monthState.salaireBrut,
+					total + monthState.rémunérationBrute,
 				0
 			)
 
 			dispatch(
 				ajusteLaSituation({
-					[salaireBrutDottedName]: {
-						valeur: salaireBrutAnnuel,
+					[rémunérationBruteDottedName]: {
+						valeur: rémunérationBruteAnnuel,
 						unité: '€/an',
 					} as PublicodesExpression,
 				} as Record<DottedName, SimpleRuleEvaluation>)
@@ -134,7 +136,7 @@ export default function RéductionGénéraleMensuelle() {
 
 	// TODO: enlever les 4 premières props après résolution de #3123
 	const ruleInputProps = {
-		dottedName: salaireBrutDottedName,
+		dottedName: rémunérationBruteDottedName,
 		suggestions: {},
 		description: undefined,
 		question: undefined,
@@ -157,8 +159,8 @@ export default function RéductionGénéraleMensuelle() {
 				<tr>
 					<th scope="col">{t('Mois')}</th>
 					<th scope="col">
-						{t('Salaire brut')}
-						<ExplicableRule dottedName={salaireBrutDottedName} />
+						{t('Rémunération brute', 'Rémunération brute')}
+						<ExplicableRule dottedName="salarié . rémunération . brut" />
 					</th>
 					<th scope="col">
 						{t('Réduction générale')}
@@ -187,16 +189,16 @@ export default function RéductionGénéraleMensuelle() {
 							<td>
 								<NumberInput
 									{...ruleInputProps}
-									id={`${salaireBrutDottedName.replace(
+									id={`${rémunérationBruteDottedName.replace(
 										/\s|\./g,
 										'_'
 									)}-${monthName}`}
-									aria-label={`${engine.getRule(salaireBrutDottedName)
+									aria-label={`${engine.getRule(rémunérationBruteDottedName)
 										?.title} (${monthName})`}
-									onChange={(salaireBrut?: PublicodesExpression) =>
-										onSalaireChange(month, salaireBrut as SalaireBrutInput)
+									onChange={(rémunérationBrute?: PublicodesExpression) =>
+										onSalaireChange(month, rémunérationBrute as RémunérationBruteInput)
 									}
-									value={data[month].salaireBrut}
+									value={data[month].rémunérationBrute}
 								/>
 							</td>
 							<td>
