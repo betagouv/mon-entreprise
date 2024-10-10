@@ -1,3 +1,4 @@
+import * as R from 'effect/Record'
 import { useState } from 'react'
 
 import { TrackPage } from '@/components/ATInternetTracking'
@@ -26,16 +27,7 @@ export default function Budget() {
 	const years = Object.keys(budget)
 	type yearType = (typeof years)[number]
 
-	const budgetDescriptions = years.reduce((budgetDescriptions, year) => {
-		if (!budget[year].description) {
-			return budgetDescriptions
-		}
-
-		return {
-			...budgetDescriptions,
-			[year]: budget[year].description,
-		}
-	}, {}) as Record<yearType, string>
+	const budgetDescriptions = R.map(budget, (year) => year.description)
 
 	const budgetValues = years.reduce((budgetValues, year) => {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
