@@ -544,7 +544,6 @@ salarié . contrat . temps de travail . temps partiel:
         4 jours / semaine: durée légale du travail * 4 / 5
         mi-temps: durée légale du travail / 2
 
-
 salarié . contrat . statut cadre:
   question: Le salarié a-t-il le statut cadre ?
   description: |
