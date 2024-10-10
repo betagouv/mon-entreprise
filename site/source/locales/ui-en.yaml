@@ -94,6 +94,7 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     He or she will contact you by telephone within 5 days, and will provide you with assistance tailored to your situation.
 Décès: Deaths
 Effacer mes réponses: Delete my answers
+Effectif de l'entreprise: Number of employees
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "In the event of an<1>accident at work</1>, <4>occupational illness</4> or an
   <7>accident on the way to or from work</7>, you will receive compensation of:"
@@ -150,6 +151,9 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
       fr, nouvelle fenêtre: I give my opinion, give my opinion on
         jedonnemonavis.numerique.gouv.fr, new window
 Jours: Days
+La RGCP concerne uniquement les salaires inférieurs à 1,6 SMIC. C'est-à-dire, pour 2024, une rémunération totale qui ne dépasse pas <1>2 827,07 €</1> bruts par mois.:
+  The RGCP only applies to salaries below 1.6 SMIC. This means, for 2024, a
+  total remuneration not exceeding <1>€2,827.07</1> gross per month.
 La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
   Under certain conditions, Social Security guarantees a <2>lump-sum death
   benefit for your dependants</2>.
@@ -159,6 +163,10 @@ La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en
   The pension calculated corresponds to <2>your best 25 years</2>, assuming that
   you have contributed enough quarters (4 quarters per year) and that you retire
   at the age required to obtain a full pension.
+La réduction générale n'est pas cumulable avec l'exonération Jeune Entreprise Innovante (JEI).:
+  The general reduction cannot be combined with the Young Innovative Company
+  (JEI) exemption.
+La réduction générale ne s'applique pas sur les gratifications de stage.: The general reduction does not apply to internship bonuses.
 Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
   The amount of your pension is made up of <2>your basic pension + your
   supplementary pension</2>.
@@ -181,6 +189,7 @@ Message à caractère informatif: Informative message
 Mode d'affichage: Display mode
 Modifier mes options: Modify my options
 Modifier mes réponses: Modify my answers
+Moins de 50 salariés: Less than 50 employees
 Mois: Month
 Mon entreprise: My company
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
@@ -210,6 +219,7 @@ Personnalisez l'intégration: Customize integration
 Plan du site: Site map
 Plus d'info sur, {{ title }}: More info on, {{ title }}
 Plus d'infos sur, {{ title }}: More info on, {{ title }}
+Plus de 50 salariés: More than 50 employees
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
     fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
@@ -259,6 +269,7 @@ Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
+Rémunération brute: Gross remuneration
 Répartition du chiffre d'affaires: Sales breakdown
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Answer a few additional questions to clarify your result.
 Résultat fiscal: Taxable income
@@ -569,11 +580,7 @@ design-system:
     open-selector: Open date selector
     prev-month: Previous month
     year: Year
-dividendes:
-  warning: <0>This simulation is for information purposes only. It applies only to
-    French companies subject to corporation tax (IS), and does not concern
-    self-employed workers.</0><1>Tax on dividends is calculated in addition to
-    tax on other taxable income.</1>
+dont chômage: of which unemployment
 employeur: employer
 en cas d'accident pro: in the event of a professional accident
 en incluant: including
@@ -653,9 +660,6 @@ impot-société:
     exercice-2022: Use dates for fiscal year 2022, pre-fill
     exercice-2023: Use dates for fiscal year 2023, pre-fill
   préremplir-exercice: "<0>Fiscal 2022</0> <2>Fiscal 2023</2> "
-impotSociété:
-  warning: "This simulator is designed for <2>very small businesses</2>: it takes
-    into account reduced corporate tax rates."
 impôt: tax
 impôt sur le revenu: income tax
 info: info
@@ -1450,6 +1454,14 @@ pages:
         title: "Liberal professions: the Urssaf simulator"
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
+    réduction-générale:
+      meta:
+        description: Estimate of the amount of the general reduction in employer
+          contributions (RGCP). This reduction applies to salaries below 1.6
+          times the SMIC.
+        title: General reduction
+      shortname: General reduction
+      title: General contribution reduction simulator
     sage-femme:
       meta:
         description: Calculation of net income after contributions based on total income.
@@ -1691,13 +1703,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    artiste-auteur:
-      "1": This estimate is provided for information only. It is based on the
-        applicable regulations and the information you have entered, but it does
-        not take into account your entire situation. The actual amount of your
-        contributions may therefore differ.
-      "2": This simulator allows you to estimate the amount of your contributions
-        based on your projected income.
+    artiste-auteur: This simulator allows you to estimate the amount of your
+      contributions based on your projected income.
     auto-entrepreneur: Auto-entrepreneurs benefit from a highly simplified system,
       with a flat rate for calculating social security contributions applied to
       sales. Depending on the tax payment method chosen, a flat-rate deduction
@@ -1708,6 +1715,12 @@ simulateurs:
       foncière des entreprises - CFE), which is due from the second year of
       business. Its amount varies greatly depending on sales and the company's
       location. <2>For further information.</2>
+    chômage-partiel:
+      "1": This simulator does not take into account gross earnings based on a 39-hour
+        week.
+      "2": Similarly, it does not take into account any additional partial activity
+        indemnities provided for by a collective agreement or unilateral
+        decision by the employer.
     cotisations-ordinales: For regulated professions, the simulator does not
       calculate the amount of membership fees. They must be added manually in
       the "operating expenses" box.
@@ -1719,6 +1732,14 @@ simulateurs:
         documents. In addition, the registry charges postage for mailings.
       pas-reprise: This simulator calculates start-up costs for new businesses. It
         does not take into account takeovers of existing companies.
+    dividendes:
+      "1": This simulation applies only to French companies subject to corporation tax
+        (IS), and does not concern self-employed workers.
+      "2": Tax on dividends is calculated in addition to tax on other taxable income.
+    general: <0>The calculations are indicative.</0> They are based on the
+      information you have entered and the applicable regulations, but they do
+      not take into account your entire situation. They do not replace actual
+      statements from Urssaf, the tax authorities or any other organization.
     indépendant:
       année-courante: The amount calculated corresponds to the contributions for the
         year {{year}} (for an income {{year}}).
@@ -1728,11 +1749,22 @@ simulateurs:
     plus: Read more
     profession-libérale: This simulator is intended for self-employed professionals
       who earn a BNC. It does not take into account self-employed companies.
+    réduction-générale:
+      "1": "Gross remuneration includes: overtime and additional hours, bonuses and
+        fixed-term contract allowances."
+      "2": This simulator does not take into account all specific calculation rules
+        (temporary employment agencies, road haulage employees subject to
+        equivalent working hours). Nor does it take into account the specific
+        rates and/or distribution of supplementary pension contributions applied
+        in certain companies.
+      beta: <0>This simulator is currently under development.</0> It only calculates
+        <3>RGCP</3> on the basis of monthly or annual remuneration. For a full
+        version, use <7>the urssaf.fr simulator.</7>
+    s: "This simulator is designed for <2>very small businesses</2>: it takes into
+      account reduced corporate tax rates."
     sasu: This simulator does not handle the case of SAS(U) taxable on income (IR).
       Only the corporate income tax (IS) option is implemented.
     titre: Before we begin...
-    urssaf: Calculations are indicative. They are not a substitute for actual
-      statements from Urssaf, the tax authorities or any other organization.
 simulation-end:
   hiring:
     text: Now you can make your hiring plans a reality.

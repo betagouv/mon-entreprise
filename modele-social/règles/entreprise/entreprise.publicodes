@@ -370,6 +370,7 @@ entreprise . capital social:
   unité: €
 
 entreprise . salariés:
+
 entreprise . salariés . effectif:
   unité: employés
   variations:

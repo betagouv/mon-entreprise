@@ -100,6 +100,7 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.
 Décès: Décès
 Effacer mes réponses: Effacer mes réponses
+Effectif de l'entreprise: Effectif de l'entreprise
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
   d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à
@@ -159,6 +160,10 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
       fr, nouvelle fenêtre: Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
 Jours: Jours
+La RGCP concerne uniquement les salaires inférieurs à 1,6 SMIC. C'est-à-dire, pour 2024, une rémunération totale qui ne dépasse pas <1>2 827,07 €</1> bruts par mois.:
+  La RGCP concerne uniquement les salaires inférieurs à 1,6 SMIC. C'est-à-dire,
+  pour 2024, une rémunération totale qui ne dépasse pas <1>2 827,07 €</1> bruts
+  par mois.
 La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
   La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
   (personnes qui sont à votre charge) sous certaines conditions.
@@ -168,6 +173,10 @@ La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en
   La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en
   considérant que vous avez cotisé suffisamment de trimestres (4 trimestres par
   an) et que vous partez en retraite à l’âge requis pour obtenir un taux plein.
+La réduction générale n'est pas cumulable avec l'exonération Jeune Entreprise Innovante (JEI).:
+  La réduction générale n'est pas cumulable avec l'exonération Jeune Entreprise
+  Innovante (JEI).
+La réduction générale ne s'applique pas sur les gratifications de stage.: La réduction générale ne s'applique pas sur les gratifications de stage.
 Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
   Le montant de votre retraite est constitué de <2>votre retraite de base +
   votre retraite complémentaire</2>.
@@ -192,6 +201,7 @@ Message à caractère informatif: Message à caractère informatif
 Mode d'affichage: Mode d'affichage
 Modifier mes options: Modifier mes options
 Modifier mes réponses: Modifier mes réponses
+Moins de 50 salariés: Moins de 50 salariés
 Mois: Mois
 Mon entreprise: Mon entreprise
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
@@ -222,6 +232,7 @@ Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
 Plus d'info sur, {{ title }}: Plus d'info sur, {{ title }}
 Plus d'infos sur, {{ title }}: Plus d'infos sur, {{ title }}
+Plus de 50 salariés: Plus de 50 salariés
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
     fr</2>: Pour en savoir plus, rendez-vous sur le site
@@ -274,6 +285,7 @@ Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
+Rémunération brute: Rémunération brute
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Répondez à quelques questions additionnelles afin de préciser votre résultat.
 Résultat fiscal: Résultat fiscal
@@ -599,12 +611,7 @@ design-system:
     open-selector: Ouvrir le sélecteur de date
     prev-month: Mois précédent
     year: Année
-dividendes:
-  warning: <0>Cette simulation est uniquement donnée à titre indicatif. Elle ne
-    concerne que les sociétés françaises à l’impôt sur les sociétés (IS), et ne
-    concerne pas les travailleurs indépendants non salariés.</0><1>Le montant de
-    l'impôt sur les dividendes est calculé en sus de l’impôt sur les autres
-    revenus imposables.</1>
+dont chômage: dont chômage
 employeur: employeur
 en cas d'accident pro: en cas d'accident pro
 en incluant: en incluant
@@ -688,9 +695,6 @@ impot-société:
     exercice-2022: Utiliser les dates de l'exercice 2022, préremplir
     exercice-2023: Utiliser les dates de l'exercice 2023, préremplir
   préremplir-exercice: "<0>Exercice 2022</0> <2>Exercice 2023</2> "
-impotSociété:
-  warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
-    réduits de l’impôt sur les sociétés."
 impôt: impôt
 impôt sur le revenu: impôt sur le revenu
 info: info
@@ -1545,6 +1549,14 @@ pages:
         title: "Professions libérale : le simulateur Urssaf"
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
+    réduction-générale:
+      meta:
+        description: Estimation du montant de la réduction générale des cotisations
+          patronales (RGCP). Cette réduction est applicable pour les salaires
+          inférieurs à 1,6 fois le SMIC.
+        title: Réduction générale
+      shortname: Réduction générale
+      title: Simulateur de réduction générale des cotisations
     sage-femme:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
@@ -1801,13 +1813,8 @@ simulateurs:
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
-    artiste-auteur:
-      "1": Cette estimation est proposée à titre indicatif. Elle est faite à partir
-        des éléments réglementaires applicables et des éléments que vous avez
-        saisis, mais elle ne tient pas compte de l'ensemble de votre situation.
-        Le montant réel de vos cotisations peut donc être différent.
-      "2": Ce simulateur permet d'estimer le montant de vos cotisations à partir de
-        votre revenu projeté
+    artiste-auteur: Ce simulateur permet d'estimer le montant de vos cotisations à
+      partir de votre revenu projeté.
     auto-entrepreneur: Les auto-entrepreneurs bénéficient d’un régime très simplifié
       avec un taux forfaitaire pour le calcul des cotisations et contributions
       sociales appliqué sur le chiffre d’affaires. Selon le choix de la modalité
@@ -1819,6 +1826,12 @@ simulateurs:
       est dûe dès la deuxième année d'exercice. Son montant varie fortement en
       fonction du chiffre d'affaires et de la domiciliation de l'entreprise.
       <2>Plus d'infos.</2>
+    chômage-partiel:
+      "1": Ce simulateur ne prend pas en compte les rémunérations brutes définies sur
+        39h hebdomadaires.
+      "2": De même, il ne prend pas en compte les indemnités complémentaire d'activité
+        partielle prévue par une convention/accord collectif ou une décision
+        unilatérale de l'employeur.
     cotisations-ordinales: Pour les professions réglementées, le simulateur ne
       calcule pas le montant des cotisations à l'ordre. Elles doivent être
       ajoutées manuellement dans la case « charges de fonctionnement ».
@@ -1833,6 +1846,17 @@ simulateurs:
       pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
         entreprises. Il ne prend pas en compte le cas des reprises d'entreprises
         existantes.
+    dividendes:
+      "1": Cette simulation ne concerne que les sociétés françaises à l’impôt sur les
+        sociétés (IS), et ne concerne pas les travailleurs indépendants non
+        salariés.
+      "2": Le montant de l'impôt sur les dividendes est calculé en plus de l’impôt sur
+        les autres revenus imposables.
+    general: <0>Les calculs sont indicatifs.</0> Ils sont faits à partir des
+      éléments que vous avez saisis et des éléments réglementaires applicables,
+      mais ils ne tiennent pas compte de l'ensemble de votre situation. Ils ne
+      se substituent pas aux décomptes réels de l’Urssaf, de l'administration
+      fiscale ou de toute autre organisme.
     indépendant:
       année-courante: Le montant calculé correspond aux cotisations de l’année
         {{year}} (pour un revenu {{year}}).
@@ -1842,12 +1866,23 @@ simulateurs:
     plus: Lire les précisions
     profession-libérale: Ce simulateur est à destination des professions libérales
       en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.
+    réduction-générale:
+      "1": "La rémunération brute inclue : le paiement des heures supplémentaires et
+        complémentaires, les primes et les indemnités de CDD."
+      "2": Ce simulateur n'intègre pas toutes les règles de calcul spécifiques
+        (Entreprises de Travail Temporaire, salariés des transports routiers
+        soumis à un horaire d'équivalence). Il ne tient pas non plus compte des
+        taux et/ou répartition particuliers de la cotisation de retraite
+        complémentaire appliqués dans certaines entreprises.
+      beta: <0>Ce simulateur est en cours de développement.</0> Il propose uniquement
+        le calcul de la <3>RGCP</3> à partir d'une rémunération mensuelle ou
+        annuelle. Pour une version complète, utilisez <7>le simulateur
+        d'urssaf.fr.</7>
+    s: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux réduits
+      de l’impôt sur les sociétés."
     sasu: Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu (IR).
       Seule l'option pour l'impôt sur les sociétés est implémentée (IS).
     titre: Avant de commencer...
-    urssaf: Les calculs sont indicatifs. Ils ne se substituent pas aux décomptes
-      réels de l’Urssaf, de l’administration fiscale ou de toute autre
-      organisme.
 simulation-end:
   hiring:
     text: Vous pouvez maintenant concrétiser votre projet d'embauche.

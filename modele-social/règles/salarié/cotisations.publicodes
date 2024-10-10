@@ -291,10 +291,11 @@ salarié . cotisations . exonérations . réduction générale:
   description: |
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
   références:
+    Simulateur actuel: https://www.declaration.urssaf.fr/calcul/
     Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F24542
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
-    Simulateur: https://www.declaration.urssaf.fr/calcul/
     Cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
+    Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general
   produit:
     - cotisations . assiette
     - coefficient
@@ -303,15 +304,17 @@ salarié . cotisations . exonérations . réduction générale:
 
   avec:
     coefficient:
-      privé: oui
       produit:
-        - temps de travail . SMIC / cotisations . assiette * 1.6 - 1
+        - 1.6 * temps de travail . SMIC / cotisations . assiette - 1
         - T / 0.6
       plancher: 0%
       plafond: T
-      arrondi: 4 décimales
+      unité: '%'
+      arrondi: 2 décimales
       références:
         Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
+        Urssaf.fr: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
+        Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-a-formule-de-calcul-de-la-reduct
 
     imputation retraite complémentaire:
       privé: oui
@@ -332,6 +335,23 @@ salarié . cotisations . exonérations . réduction générale:
           contexte:
             régimes spécifiques . DFS: non
         - 130%
+
+    part Urssaf:
+      produit:
+        - réduction générale
+        - T . sécurité sociale et chômage
+        - 1 / T
+
+      avec:
+        part chômage:
+          produit:
+            - réduction générale
+            - chômage . employeur . taux
+            - 1 / T
+
+    part retraite:
+      valeur: réduction générale
+      abattement: part Urssaf
 
 salarié . cotisations . exonérations . T:
   privé: oui
@@ -364,6 +384,7 @@ salarié . cotisations . assiette:
   somme:
     - sans prévoyance
     - prévoyances . employeur . non déductible socialement
+  unité: €/mois
 
   avec:
     sans prévoyance:
