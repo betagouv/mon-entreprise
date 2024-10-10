@@ -17,14 +17,18 @@ import { Body } from '@/design-system/typography/paragraphs'
 
 import Meta from '../../components/utils/Meta'
 import rawBudget from './budget.yaml'
-import ResourcesAllocation from './ResourcesAllocation'
+import ResourcesAllocation, {
+	Quarter,
+	QuarterBudget,
+} from './ResourcesAllocation'
 
 export default function Budget() {
 	const budget = rawBudget as Record<
 		string,
-		Record<string, string | Record<string, number>>
+		{ description: string } & Record<Quarter, QuarterBudget>
 	>
 	const years = Object.keys(budget)
+
 	type yearType = (typeof years)[number]
 
 	const budgetDescriptions = R.map(budget, (year) => year.description)

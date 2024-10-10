@@ -2,7 +2,19 @@ import { sumAll } from 'effect/Number'
 import { formatValue } from 'publicodes'
 import { styled } from 'styled-components'
 
-type Budget = Record<string, Record<string, number>>
+const quarters = [
+	{ label: 'T1', 'aria-label': 'Trimestre 1' },
+	{ label: 'T2', 'aria-label': 'Trimestre 2' },
+	{ label: 'T3', 'aria-label': 'Trimestre 3' },
+	{ label: 'T4', 'aria-label': 'Trimestre 4' },
+]
+
+const totalsLabels = ['Total HT', 'Total TTC']
+
+export type Quarter = (typeof quarters)[number]['label']
+export type QuarterBudget = Record<string, number>
+type Budget = Record<Quarter, QuarterBudget>
+type Total = (typeof totalsLabels)[number]
 
 type Props = {
 	selectedYear: string
@@ -10,13 +22,6 @@ type Props = {
 }
 
 export default function ResourcesAllocation({ selectedYear, budget }: Props) {
-	const quarters = [
-		{ label: 'T1', 'aria-label': 'Trimestre 1' },
-		{ label: 'T2', 'aria-label': 'Trimestre 2' },
-		{ label: 'T3', 'aria-label': 'Trimestre 3' },
-		{ label: 'T4', 'aria-label': 'Trimestre 4' },
-	]
-
 	const categories = [
 		...new Set(
 			quarters
@@ -35,7 +40,7 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 				'Total TTC': Math.round(quarterTotal * 1.2),
 			},
 		}
-	}, {} as Budget)
+	}, {}) as Record<Quarter, Record<Total, number>>
 
 	return (
 		<div
