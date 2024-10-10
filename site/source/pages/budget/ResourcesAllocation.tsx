@@ -1,7 +1,6 @@
+import { sumAll } from 'effect/Number'
 import { formatValue } from 'publicodes'
 import { styled } from 'styled-components'
-
-import { arraySum } from '@/utils'
 
 type Budget = Record<string, Record<string, number>>
 
@@ -27,7 +26,7 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 	]
 
 	const totals = quarters.reduce((total, quarter) => {
-		const quarterTotal = arraySum(Object.values(budget[quarter.label]))
+		const quarterTotal = sumAll(Object.values(budget[quarter.label]))
 
 		return {
 			...total,
@@ -85,7 +84,7 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 							<td>
 								{/* Total de ligne */}
 								{formatValue(
-									arraySum(
+									sumAll(
 										quarters.map((quarter) => budget[quarter.label][label] ?? 0)
 									),
 									{
@@ -114,7 +113,7 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 							<td>
 								{/* Total du total */}
 								{formatValue(
-									arraySum(
+									sumAll(
 										quarters.map((quarter) => totals[quarter.label][total])
 									),
 									{
