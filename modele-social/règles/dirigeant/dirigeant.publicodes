@@ -1,4 +1,5 @@
 dirigeant: oui
+
 dirigeant . gérant minoritaire:
   experimental: oui
   titre: Gérant minoritaire ou égalitaire
@@ -29,6 +30,7 @@ dirigeant . régime social:
       alors: "'indépendant'"
 
 dirigeant . rémunération: oui
+
 dirigeant . rémunération . totale:
   titre: Rémunération totale
   question: Quel montant total pensez-vous dégager pour votre rémunération ?
@@ -97,8 +99,6 @@ dirigeant . rémunération . net . après impôt:
     sociales.
   valeur: rémunération . net - impôt . montant
   résumé: Ce que vous rapporte cette activité
-
-
 
 dirigeant . assimilé salarié:
   description: |

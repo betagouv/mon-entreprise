@@ -1,4 +1,3 @@
-
 dirigeant . auto-entrepreneur . DROM:
   experimental: oui
   description: |
@@ -12,7 +11,6 @@ dirigeant . auto-entrepreneur . DROM:
   rend non applicable: exonérations . ACRE
   références:
     'Vous êtes auto-entrepreneur dans les DROM ?': https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#vous-etes-auto-entrepreneur-dans
-  references:
     Taux auto-entrepreneur dans les Drom (PDF): https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Urssaf-AutoEntrepreneur-Drom.pdf#page=13
   avec:
     première période:
@@ -24,42 +22,42 @@ dirigeant . auto-entrepreneur . DROM:
       privé: oui
       valeur: entreprise . durée d'activité . années civiles <= 3
 
-      service BIC:
-        remplace: cotisations et contributions . cotisations . service BIC . taux
-        variations:
-          - si: première période
-            alors: 3.60%
-          - si: seconde période
-            alors: 10.60%
-          - sinon: 14.20%
+    taux service BIC:
+      remplace: cotisations et contributions . cotisations . service BIC . taux
+      variations:
+        - si: première période
+          alors: 3.60%
+        - si: seconde période
+          alors: 10.60%
+        - sinon: 14.20%
 
-      taux service BNC:
-        remplace: cotisations et contributions . cotisations . service BNC . taux
-        variations:
-          - si: première période
-            alors: 3.60%
-          - si: seconde période
-            alors: 10.60%
-          - sinon: 14.10%
+    taux service BNC:
+      remplace: cotisations et contributions . cotisations . service BNC . taux
+      variations:
+        - si: première période
+          alors: 3.60%
+        - si: seconde période
+          alors: 10.60%
+        - sinon: 14.10%
 
 
-      taux vente restauration hébergement:
-        remplace: cotisations et contributions . cotisations . vente restauration hébergement . taux
-        variations:
-          - si: première période
-            alors: 2.10%
-          - si: seconde période
-            alors: 6.20%
-          - sinon: 8.20%
+    taux vente restauration hébergement:
+      remplace: cotisations et contributions . cotisations . vente restauration hébergement . taux
+      variations:
+        - si: première période
+          alors: 2.10%
+        - si: seconde période
+          alors: 6.20%
+        - sinon: 8.20%
 
-      taux CIPAV:
-        remplace: cotisations et contributions . cotisations . cotisations CIPAV . taux
-        variations:
-          - si: première période
-            alors: 7.10%
-          - si: seconde période
-            alors: 10.60%
-          - sinon: 14.20%
+    taux CIPAV:
+      remplace: cotisations et contributions . cotisations . cotisations CIPAV . taux
+      variations:
+        - si: première période
+          alors: 7.10%
+        - si: seconde période
+          alors: 10.60%
+        - sinon: 14.20%
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
   applicable si: dirigeant . exonérations . ACRE
