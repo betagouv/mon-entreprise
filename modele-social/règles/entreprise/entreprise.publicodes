@@ -1,5 +1,6 @@
 entreprise:
   icônes: 🏢🧑‍💼👷‍♂️🧑‍🏭
+
 entreprise . SIREN:
   description: |
     Le numéro Siren est un numéro de 9 chiffres unique pour chaque entreprise. Exemple : 401237780
@@ -56,16 +57,16 @@ entreprise . durée d'activité . en début d'année:
     jusqu'à: période . début d'année
 
 entreprise . durée d'activité . trimestres civils:
-    titre: Nombre de trimestres civils couverts
-    durée:
-        depuis: date de création
-        unité: trimestre civil
+  titre: Nombre de trimestres civils couverts
+  durée:
+    depuis: date de création
+    unité: trimestre civil
 
 entreprise . durée d'activité . années civiles:
-    titre: Nombre d’années civiles couvertes
-    durée:
-        depuis: date de création
-        unité: année civile
+  titre: Nombre d’années civiles couvertes
+  durée:
+    depuis: date de création
+    unité: année civile
 
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
@@ -370,6 +371,7 @@ entreprise . capital social:
   unité: €
 
 entreprise . salariés:
+
 entreprise . salariés . effectif:
   unité: employés
   variations:
