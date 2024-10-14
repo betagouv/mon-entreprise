@@ -40,9 +40,8 @@ dirigeant . exonérations . ACRE:
         - entreprise . date de création < 04/2020
   par défaut: ACRE par défaut
   références:
+    "L’Acre : une aide pour favoriser les créations et reprises d’entreprises": https://www.urssaf.fr/accueil/exoneration-acre-createur.html
     Aide à la création ou à la reprise d'une entreprise: https://www.service-public.fr/particuliers/vosdroits/F11677
-    "Indépendants : qui peut bénéficier de l'ACRE ?": https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html
-
     # BPI ONLY
     "Acre : aide aux créateurs et repreneurs d'entreprise": https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
 
