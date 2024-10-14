@@ -108,11 +108,25 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
       valeur: 0.37%
 
 dirigeant . auto-entrepreneur . affiliation CIPAV:
+  rend non applicable: entreprise . activités . revenus mixtes
   une de ces conditions:
     - entreprise . activité . nature . libérale . réglementée
     - toutes ces conditions:
         - entreprise . activité . nature = 'libérale'
         - entreprise . date de création < 01/2018
+        - adhérent = oui
+  avec:
+    adhérent:
+      question: Êtes-vous adhérent à la Cipav ?
+      par défaut: non
+      description: |
+        Depuis le 1er janvier 2018, les auto-entreprises d'activité libérale non réglementée sont affiliées à la Sécurité sociale pour les indépendants (SSI).
+
+        Les auto-entreprises d'activité libérale non réglementée créées avant le 1er janvier 2018, qui étaient adhérentes à la Cipav, demeurent à la Cipav.
+
+        Les auto-entrepreneurs concernés disposent toutefois d’un droit d'option durant cinq ans afin de rejoindre la Sécurité sociale pour les indépendants (SSI).
+      références:
+        Qui est assuré à la Cipav ?: https://www.lacipav.fr/qui-est-assure-cipav
 
 dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
   titre: Contribution à la formation professionnelle

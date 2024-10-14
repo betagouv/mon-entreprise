@@ -521,6 +521,32 @@ dirigeant . auto-entrepreneur . DROM:
   titre.en: '[automatic] DROM'
   titre.fr: DROM
 dirigeant . auto-entrepreneur . affiliation CIPAV:
+  avec:
+    adhérent:
+      description.en: >
+        [automatic] Since January 1, 2018, auto-entrepreneurs in unregulated
+        liberal professions have been affiliated to the Social Security for the
+        Self-Employed (SSI).
+
+
+        Non-regulated self-employed liberal professionals created before January 1, 2018, who were members of Cipav, remain members of Cipav.
+
+
+        The auto-entrepreneurs concerned do, however, have a five-year right of option to join Sécurité sociale pour les indépendants (SSI).
+      description.fr: >
+        Depuis le 1er janvier 2018, les auto-entreprises d'activité libérale non
+        réglementée sont affiliées à la Sécurité sociale pour les indépendants
+        (SSI).
+
+
+        Les auto-entreprises d'activité libérale non réglementée créées avant le 1er janvier 2018, qui étaient adhérentes à la Cipav, demeurent à la Cipav.
+
+
+        Les auto-entrepreneurs concernés disposent toutefois d’un droit d'option durant cinq ans afin de rejoindre la Sécurité sociale pour les indépendants (SSI).
+      question.en: '[automatic] Are you a Cipav member?'
+      question.fr: Êtes-vous adhérent à la Cipav ?
+      titre.en: '[automatic] member'
+      titre.fr: adhérent
   titre.en: '[automatic] CIPAV affiliation'
   titre.fr: affiliation CIPAV
 dirigeant . auto-entrepreneur . chiffre d'affaires:
@@ -4611,15 +4637,15 @@ entreprise . activité . nature:
       titre.fr: réglementée
   description.en: >
     [automatic] Your type of activity will determine a large part of the
-    calculations of contributions and taxes.
+    calculation of contributions and taxes.
 
 
     ### Multiple activities
 
-    In the case of multiple activities, the main activity is deemed to be the oldest activity.
+    In the case of multiple activities, the main activity is deemed to be the oldest.
 
 
-    However, as of the third calendar year following the year in which the pluriactivity situation began, the persons concerned may request that the activity that provided the highest amount of turnover or revenue excluding taxes over the last three years be considered their main activity.
+    However, from the third calendar year following that in which the pluriactivity situation began, interested parties may request that the activity that generated the highest amount of sales or revenue excluding taxes over the last three years be considered their main activity.
   description.fr: >
     Votre type d'activité va déterminer une grande partie des calculs de
     cotisations, contributions et impôt.
@@ -4627,7 +4653,7 @@ entreprise . activité . nature:
 
     ### Pluri-activité
 
-    En cas d'activité multiples, m'activité principale est réputée être l'activité la plus ancienne.
+    En cas d'activité multiples, l'activité principale est réputée être l'activité la plus ancienne.
 
 
     Toutefois, à partir de la troisième année civile suivant celle au cours de laquelle la situation de pluriactivité a débuté, les personnes intéressées peuvent demander que l'activité qui a procuré le montant de chiffre d'affaires ou de recettes hors taxes le plus élevé sur les trois dernières années soit considérée comme leur activité principale.
