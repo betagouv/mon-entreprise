@@ -85,15 +85,17 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-indépendant > années précédentes 3`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: undefined
-dirigeant . indépendant . revenu professionnel: undefined
-dirigeant . rémunération . cotisations: undefined
+"dirigeant . indépendant . cotisations et contributions . début activité: 3559
+dirigeant . indépendant . revenu professionnel: 31191
+dirigeant . rémunération . cotisations: 13973
 dirigeant . rémunération . net: 30000
-dirigeant . rémunération . net . après impôt: undefined
-dirigeant . rémunération . totale: undefined
+dirigeant . rémunération . net . après impôt: 26637
+dirigeant . rémunération . totale: 43973
 entreprise . charges: 0
-entreprise . chiffre d'affaires: undefined
-impôt . montant: undefined"
+entreprise . chiffre d'affaires: 43973
+impôt . montant: 3363
+
+Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 1`] = `

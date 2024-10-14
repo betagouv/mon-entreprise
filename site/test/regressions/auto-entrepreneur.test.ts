@@ -39,7 +39,6 @@ it('calculate simulations-auto-entrepreneur', () => {
 	).toMatchInlineSnapshot(`
 		[
 		  "dirigeant . auto-entrepreneur . impôt . versement libératoire",
-		  "dirigeant . auto-entrepreneur . éligible à l'ACRE",
 		  "entreprise . activité . nature",
 		  "entreprise . activités . revenus mixtes",
 		  "entreprise . activités . service ou vente",
