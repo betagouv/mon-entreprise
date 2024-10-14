@@ -532,6 +532,7 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
 dirigeant . auto-entrepreneur . éligible à l'ACRE:
   par défaut: non
   question: Êtes-vous éligible à l'ACRE pour votre auto-entreprise ?
+  applicable si: entreprise . durée d'activité . en début d'année < 1 an
   description: |
     L'ACRE est réservée aux auto-entrepreneurs suivants:
     - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
