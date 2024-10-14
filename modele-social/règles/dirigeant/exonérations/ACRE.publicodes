@@ -35,23 +35,9 @@ dirigeant . exonérations . ACRE:
         - auto-entrepreneur = oui
         - dirigeant . auto-entrepreneur . éligible à l'ACRE = oui
         - entreprise . durée d'activité . en début d'année < 1 an
-      - toutes ces conditions:
-        - auto-entrepreneur = oui
-        - entreprise . date de création < 04/2020
-  par défaut: ACRE par défaut
+  par défaut: non
   références:
     "L’Acre : une aide pour favoriser les créations et reprises d’entreprises": https://www.urssaf.fr/accueil/exoneration-acre-createur.html
     Aide à la création ou à la reprise d'une entreprise: https://www.service-public.fr/particuliers/vosdroits/F11677
     # BPI ONLY
     "Acre : aide aux créateurs et repreneurs d'entreprise": https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
-
-  avec:
-    ACRE par défaut:
-      privé: oui
-      une de ces conditions:
-        - auto-entrepreneur = non
-        # Pour l'année 2019, l'acre était automatiquement accordée aux auto-entrepreneur
-        - une de ces conditions:
-            - entreprise . date de création < 01/01/2019
-            - entreprise . date de création > 31/12/2019
-            - dirigeant . auto-entrepreneur . éligible à l'ACRE
