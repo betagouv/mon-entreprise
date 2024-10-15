@@ -8,6 +8,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Tooltip } from '@/design-system/tooltip'
 
 import Répartition from './components/Répartition'
+import Warnings from './components/Warnings'
 import { MonthState, rémunérationBruteDottedName } from './utils'
 
 type RémunérationBruteInput = {
@@ -141,6 +142,8 @@ export default function RéductionGénéraleMoisParMois({
 						})}
 				</tbody>
 			</StyledTable>
+
+			<Warnings />
 		</>
 	)
 }
