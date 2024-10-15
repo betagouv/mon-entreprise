@@ -1,5 +1,6 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
@@ -11,12 +12,19 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import EffectifSwitch from './components/EffectifSwitch'
+import RéductionGénéraleMoisParMois from './RéductionGénéraleMoisParMois'
+import {
+	getInitialRéductionGénéraleMoisParMois,
+	MonthState,
+	rémunérationBruteDottedName,
+} from './utils'
 
 export default function RéductionGénéraleSimulation() {
 	const { t } = useTranslation()
@@ -80,22 +88,34 @@ function RéductionGénéraleSimulationGoals({
 	toggles?: React.ReactNode
 	legend: string
 }) {
+	const engine = useEngine()
 	const { t } = useTranslation()
+	const [réductionGénéraleMoisParMoisData, setData] = useState<MonthState[]>([])
+
+	const initializeRéductionGénéraleMoisParMoisData = useCallback(() => {
+		setData(getInitialRéductionGénéraleMoisParMois(engine))
+	}, [engine, setData])
+
+	useEffect(() => {
+		if (réductionGénéraleMoisParMoisData.length === 0) {
+			initializeRéductionGénéraleMoisParMoisData()
+		}
+	}, [
+		initializeRéductionGénéraleMoisParMoisData,
+		réductionGénéraleMoisParMoisData,
+	])
 
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
 			{monthByMonth ? (
-				<div>
-					Réduction générale mensuelle
-				</div>
+				<RéductionGénéraleMoisParMois data={réductionGénéraleMoisParMoisData} />
 			) : (
 				<>
-					{/* TODO: remplacer "salarié . cotisations . assiette" par "salarié . rémunération . brut"
-							lorsqu'elle n'incluera plus les frais professionnels. */}
 					<SimulationGoal
-						dottedName="salarié . cotisations . assiette"
+						dottedName={rémunérationBruteDottedName}
 						round={false}
 						label={t('Rémunération brute', 'Rémunération brute')}
+						onUpdateSituation={initializeRéductionGénéraleMoisParMoisData}
 					/>
 
 					<Condition expression="salarié . cotisations . exonérations . JEI = oui">
