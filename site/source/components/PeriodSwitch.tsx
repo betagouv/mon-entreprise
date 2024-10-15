@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -5,12 +6,20 @@ import { Radio, ToggleGroup } from '@/design-system/field'
 import { updateUnit } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
-export default function PeriodSwitch() {
+type Props = {
+	periods?: Array<{
+		label: string
+		unit: string
+	}>
+	onSwitch?: (unit: string) => void
+}
+
+export default function PeriodSwitch({ periods, onSwitch }: Props) {
 	const dispatch = useDispatch()
 
 	const currentUnit = useSelector(targetUnitSelector)
 	const { t } = useTranslation()
-	const periods = [
+	const defaultPeriods = [
 		{
 			label: t('Montant mensuel'),
 			unit: '€/mois',
@@ -20,17 +29,26 @@ export default function PeriodSwitch() {
 			unit: '€/an',
 		},
 	]
+	const periodsValue = periods || defaultPeriods
+
+	const onChange = useCallback(
+		(unit: string) => {
+			dispatch(updateUnit(unit))
+			onSwitch?.(unit)
+		},
+		[dispatch, onSwitch]
+	)
 
 	return (
 		<div>
 			<ToggleGroup
 				value={currentUnit}
-				onChange={(unit: string) => dispatch(updateUnit(unit))}
+				onChange={onChange}
 				mode="tab"
 				hideRadio
 				aria-label={t("Mode d'affichage")}
 			>
-				{periods.map(({ label, unit }) => (
+				{periodsValue.map(({ label, unit }) => (
 					<span
 						key={unit}
 						className={currentUnit !== unit ? 'print-hidden' : ''}
