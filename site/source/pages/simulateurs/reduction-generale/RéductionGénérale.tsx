@@ -3,7 +3,6 @@ import { PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -17,13 +16,13 @@ import { SimulationValue } from '@/components/Simulation/SimulationValue'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
-import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 import EffectifSwitch from './components/EffectifSwitch'
+import Répartition from './components/Répartition'
 import RéductionGénéraleMoisParMois from './RéductionGénéraleMoisParMois'
 import {
 	getInitialRéductionGénéraleMoisParMois,
@@ -73,14 +72,6 @@ export default function RéductionGénéraleSimulation() {
 	)
 }
 
-const StyledUl = styled(Ul)`
-	margin-top: 0;
-`
-const StyledLi = styled(Li)`
-	&::before {
-		margin-top: ${({ theme }) => theme.spacings.sm};
-	}
-`
 function RéductionGénéraleSimulationGoals({
 	monthByMonth,
 	toggles = (
@@ -213,31 +204,7 @@ function RéductionGénéraleSimulationGoals({
 							round={false}
 						/>
 						<Spacing md />
-						<StyledUl>
-							<StyledLi>
-								<SimulationValue
-									dottedName={
-										'salarié . cotisations . exonérations . réduction générale . part retraite'
-									}
-									round={false}
-								/>
-							</StyledLi>
-							<StyledLi>
-								<SimulationValue
-									dottedName={
-										'salarié . cotisations . exonérations . réduction générale . part Urssaf'
-									}
-									round={false}
-								/>
-								<SimulationValue
-									dottedName={
-										'salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage'
-									}
-									round={false}
-									label={t('dont chômage', 'dont chômage')}
-								/>
-							</StyledLi>
-						</StyledUl>
+						<Répartition />
 					</Condition>
 				</>
 			)}
