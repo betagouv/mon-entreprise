@@ -28,6 +28,18 @@ export default function Warnings() {
 					</Body>
 				</Message>
 			</Condition>
+
+			<Condition expression="salarié . cotisations . assiette > 1.6 * SMIC">
+				<Message type="info">
+					<Body>
+						<Trans>
+							La RGCP concerne uniquement les salaires inférieurs à 1,6
+							SMIC. C'est-à-dire, pour 2024, une rémunération totale qui ne
+							dépasse pas <strong>2 827,07 €</strong> bruts par mois.
+						</Trans>
+					</Body>
+				</Message>
+			</Condition>
 		</>
 	)
 }
