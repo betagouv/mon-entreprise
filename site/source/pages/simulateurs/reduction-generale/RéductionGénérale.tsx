@@ -1,6 +1,8 @@
+import { DottedName } from 'modele-social'
+import { PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
@@ -17,6 +19,8 @@ import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { ajusteLaSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 import EffectifSwitch from './components/EffectifSwitch'
@@ -92,6 +96,7 @@ function RéductionGénéraleSimulationGoals({
 	legend: string
 }) {
 	const engine = useEngine()
+	const dispatch = useDispatch()
 	const { t } = useTranslation()
 	const [réductionGénéraleMoisParMoisData, setData] = useState<MonthState[]>([])
 
@@ -115,6 +120,22 @@ function RéductionGénéraleSimulationGoals({
 		)
 	}, [engine, situation])
 
+	const updateRémunérationBruteAnnuelle = (data: MonthState[]): void => {
+		const rémunérationBruteAnnuelle = data.reduce(
+			(total: number, monthState: MonthState) =>
+				total + monthState.rémunérationBrute,
+			0
+		)
+		dispatch(
+			ajusteLaSituation({
+				[rémunérationBruteDottedName]: {
+					valeur: rémunérationBruteAnnuelle,
+					unité: '€/an',
+				} as PublicodesExpression,
+			} as Record<DottedName, SimpleRuleEvaluation>)
+		)
+	}
+
 	const onRémunérationChange = (
 		monthIndex: number,
 		rémunérationBrute: number
@@ -128,6 +149,8 @@ function RéductionGénéraleSimulationGoals({
 					rémunérationBrute
 				),
 			}
+
+			updateRémunérationBruteAnnuelle(updatedData)
 
 			return updatedData
 		})
