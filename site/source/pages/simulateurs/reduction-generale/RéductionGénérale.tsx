@@ -23,6 +23,7 @@ import EffectifSwitch from './components/EffectifSwitch'
 import RéductionGénéraleMoisParMois from './RéductionGénéraleMoisParMois'
 import {
 	getInitialRéductionGénéraleMoisParMois,
+	getRéductionGénéraleFromRémunération,
 	MonthState,
 	reevaluateRéductionGénéraleMoisParMois,
 	rémunérationBruteDottedName,
@@ -114,10 +115,31 @@ function RéductionGénéraleSimulationGoals({
 		)
 	}, [engine, situation])
 
+	const onRémunérationChange = (
+		monthIndex: number,
+		rémunérationBrute: number
+	) => {
+		setData((previousData) => {
+			const updatedData = [...previousData]
+			updatedData[monthIndex] = {
+				rémunérationBrute,
+				réductionGénérale: getRéductionGénéraleFromRémunération(
+					engine,
+					rémunérationBrute
+				),
+			}
+
+			return updatedData
+		})
+	}
+
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
 			{monthByMonth ? (
-				<RéductionGénéraleMoisParMois data={réductionGénéraleMoisParMoisData} />
+				<RéductionGénéraleMoisParMois
+					data={réductionGénéraleMoisParMoisData}
+					onChange={onRémunérationChange}
+				/>
 			) : (
 				<>
 					<SimulationGoal

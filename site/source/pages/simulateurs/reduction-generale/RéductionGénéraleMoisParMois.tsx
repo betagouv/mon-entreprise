@@ -1,4 +1,4 @@
-import { formatValue } from 'publicodes'
+import { formatValue, PublicodesExpression } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -8,10 +8,17 @@ import { useEngine } from '@/components/utils/EngineContext'
 
 import { MonthState, rémunérationBruteDottedName } from './utils'
 
+type RémunérationBruteInput = {
+	unité: string
+	valeur: number
+}
+
 export default function RéductionGénéraleMoisParMois({
 	data,
+	onChange,
 }: {
 	data: MonthState[]
+	onChange: (monthIndex: number, rémunérationBrute: number) => void
 }) {
 	const engine = useEngine()
 	const { t, i18n } = useTranslation()
@@ -33,7 +40,12 @@ export default function RéductionGénéraleMoisParMois({
 		t('décembre'),
 	]
 
-	const onRémunérationChange = () => {}
+	const onRémunérationChange = (
+		monthIndex: number,
+		rémunérationBrute: RémunérationBruteInput
+	) => {
+		onChange(monthIndex, rémunérationBrute.valeur)
+	}
 
 	// TODO: enlever les 4 premières props après résolution de #3123
 	const ruleInputProps = {
@@ -87,7 +99,12 @@ export default function RéductionGénéraleMoisParMois({
 										)}-${monthIndex}`}
 										aria-label={`${engine.getRule(rémunérationBruteDottedName)
 											?.title} (${monthName})`}
-										onChange={onRémunérationChange}
+										onChange={(rémunérationBrute?: PublicodesExpression) =>
+											onRémunérationChange(
+												monthIndex,
+												rémunérationBrute as RémunérationBruteInput
+											)
+										}
 										value={data[monthIndex].rémunérationBrute}
 									/>
 								</td>
