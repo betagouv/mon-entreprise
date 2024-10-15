@@ -1,11 +1,13 @@
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
+import { Contexte } from '@/domaine/Contexte'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import RuleLink from '../RuleLink'
@@ -22,6 +24,7 @@ type SimulationValueProps = {
 	isInfoMode?: boolean
 	displayedUnit?: string
 	round?: boolean
+	contexte?: Contexte
 }
 
 export function SimulationValue({
@@ -32,13 +35,16 @@ export function SimulationValue({
 	appear = true,
 	isTypeBoolean = false, // TODO : remove when type inference works in publicodes
 	isInfoMode = false,
+	contexte = {},
 }: SimulationValueProps) {
 	const engine = useEngine()
 	const currentUnit = useSelector(targetUnitSelector)
+	const language = useTranslation().i18n.language
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
 		arrondi: round ? 'oui' : 'non',
 		...(!isTypeBoolean ? { unité: currentUnit } : {}),
+		contexte,
 	})
 	const initialRender = useInitialRender()
 	if (evaluation.nodeValue === null) {
@@ -83,6 +89,7 @@ export function SimulationValue({
 							{formatValue(evaluation, {
 								displayedUnit,
 								precision: round ? 0 : 2,
+								language,
 							})}
 						</StyledBody>
 					</Grid>
