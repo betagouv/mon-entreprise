@@ -6,8 +6,10 @@ import { styled } from 'styled-components'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import NumberInput from '@/components/conversation/NumberInput'
 import { useEngine } from '@/components/utils/EngineContext'
+import { Tooltip } from '@/design-system/tooltip'
 
 import { MonthState } from './RéductionGénérale'
+import RéductionGénéraleRépartition from './RéductionGénéraleRépartition'
 
 type RémunérationBruteInput = {
 	unité: string
@@ -91,40 +93,56 @@ export default function RéductionGénéraleMensuelle({
 			</thead>
 			<tbody>
 				{data.length &&
-					months.map((monthName, monthIndex) => (
-						<tr key={`month-${monthIndex}`}>
-							<th scope="row">{monthName}</th>
-							<td>
-								<NumberInput
-									{...ruleInputProps}
-									id={`${rémunérationBruteDottedName.replace(
-										/\s|\./g,
-										'_'
-									)}-${monthIndex}`}
-									aria-label={`${engine.getRule(rémunérationBruteDottedName)
-										?.title} (${monthName})`}
-									onChange={(rémunérationBrute?: PublicodesExpression) =>
-										onRémunérationChange(
-											monthIndex,
-											rémunérationBrute as RémunérationBruteInput
-										)
-									}
-									value={data[monthIndex].rémunérationBrute}
-								/>
-							</td>
-							<td>
-								{data[monthIndex].réductionGénérale
-									? formatValue(
-											{ nodeValue: data[monthIndex].réductionGénérale },
-											{
-												displayedUnit,
-												language,
-											}
-									  )
-									: formatValue(0, { displayedUnit, language })}
-							</td>
-						</tr>
-					))}
+					months.map((monthName, monthIndex) => {
+						const tooltip = (
+							<RéductionGénéraleRépartition
+								contexte={{
+									'salarié . cotisations . assiette':
+										data[monthIndex].rémunérationBrute,
+								}}
+								round={false}
+							/>
+						)
+
+						return (
+							<tr key={`month-${monthIndex}`}>
+								<th scope="row">{monthName}</th>
+								<td>
+									<NumberInput
+										{...ruleInputProps}
+										id={`${rémunérationBruteDottedName.replace(
+											/\s|\./g,
+											'_'
+										)}-${monthIndex}`}
+										aria-label={`${engine.getRule(rémunérationBruteDottedName)
+											?.title} (${monthName})`}
+										onChange={(rémunérationBrute?: PublicodesExpression) =>
+											onRémunérationChange(
+												monthIndex,
+												rémunérationBrute as RémunérationBruteInput
+											)
+										}
+										value={data[monthIndex].rémunérationBrute}
+									/>
+								</td>
+								<td>
+									{data[monthIndex].réductionGénérale ? (
+										<Tooltip tooltip={tooltip}>
+											{formatValue(
+												{ nodeValue: data[monthIndex].réductionGénérale },
+												{
+													displayedUnit,
+													language,
+												}
+											)}
+										</Tooltip>
+									) : (
+										formatValue(0, { displayedUnit, language })
+									)}
+								</td>
+							</tr>
+						)
+					})}
 			</tbody>
 		</StyledTable>
 	)
