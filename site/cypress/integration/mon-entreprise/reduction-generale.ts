@@ -38,15 +38,15 @@ describe('Réduction générale', { testIsolation: false }, function () {
 	})
 
 	it('should allow to change time period', function () {
-		cy.contains('Montant mensuel').click()
+		cy.contains('Réduction mensuelle').click()
 		cy.get(inputSelector).first().type('{selectall}2000')
 
-		cy.contains('Montant annuel').click()
+		cy.contains('Réduction annuelle').click()
 		cy.get(inputSelector).first().should('have.value', '24 000 €')
 	})
 
 	it('should display values for the réduction générale', function () {
-		cy.contains('Montant mensuel').click()
+		cy.contains('Réduction mensuelle').click()
 		cy.get(inputSelector).first().type('{selectall}1900')
 
 		cy.get(
@@ -64,7 +64,7 @@ describe('Réduction générale', { testIsolation: false }, function () {
 	})
 
 	it('should display a warning for a salary too high', function () {
-		cy.contains('Montant mensuel').click()
+		cy.contains('Réduction mensuelle').click()
 		cy.get(inputSelector).first().type('{selectall}3000')
 
 		cy.get('div[id="simulator-legend"]').should(
