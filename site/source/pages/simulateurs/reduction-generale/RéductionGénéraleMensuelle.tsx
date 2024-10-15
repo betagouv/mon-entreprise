@@ -8,8 +8,9 @@ import NumberInput from '@/components/conversation/NumberInput'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Tooltip } from '@/design-system/tooltip'
 
+import Répartition from './components/Répartition'
+import Warnings from './components/Warnings'
 import { MonthState } from './RéductionGénérale'
-import RéductionGénéraleRépartition from './RéductionGénéraleRépartition'
 
 type RémunérationBruteInput = {
 	unité: string
@@ -73,78 +74,82 @@ export default function RéductionGénéraleMensuelle({
 	}
 
 	return (
-		<StyledTable style={{ width: '100%' }}>
-			<caption>{t('Réduction générale mois par mois :')}</caption>
-			<thead>
-				<tr>
-					<th scope="col">{t('Mois')}</th>
-					<th scope="col">
-						{t('Rémunération brute', 'Rémunération brute')}
-						<ExplicableRule dottedName="salarié . rémunération . brut" />
-					</th>
-					<th scope="col">
-						{t('Réduction générale')}
-						<ExplicableRule
-							dottedName="salarié . cotisations . exonérations . réduction générale"
-							light
-						/>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{data.length &&
-					months.map((monthName, monthIndex) => {
-						const tooltip = (
-							<RéductionGénéraleRépartition
-								contexte={{
-									'salarié . cotisations . assiette':
-										data[monthIndex].rémunérationBrute,
-								}}
-								round={false}
+		<>
+			<StyledTable style={{ width: '100%' }}>
+				<caption>{t('Réduction générale mois par mois :')}</caption>
+				<thead>
+					<tr>
+						<th scope="col">{t('Mois')}</th>
+						<th scope="col">
+							{t('Rémunération brute', 'Rémunération brute')}
+							<ExplicableRule dottedName="salarié . rémunération . brut" />
+						</th>
+						<th scope="col">
+							{t('Réduction générale')}
+							<ExplicableRule
+								dottedName="salarié . cotisations . exonérations . réduction générale"
+								light
 							/>
-						)
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{data.length &&
+						months.map((monthName, monthIndex) => {
+							const tooltip = (
+								<Répartition
+									contexte={{
+										'salarié . cotisations . assiette':
+											data[monthIndex].rémunérationBrute,
+									}}
+									round={false}
+								/>
+							)
 
-						return (
-							<tr key={`month-${monthIndex}`}>
-								<th scope="row">{monthName}</th>
-								<td>
-									<NumberInput
-										{...ruleInputProps}
-										id={`${rémunérationBruteDottedName.replace(
-											/\s|\./g,
-											'_'
-										)}-${monthIndex}`}
-										aria-label={`${engine.getRule(rémunérationBruteDottedName)
-											?.title} (${monthName})`}
-										onChange={(rémunérationBrute?: PublicodesExpression) =>
-											onRémunérationChange(
-												monthIndex,
-												rémunérationBrute as RémunérationBruteInput
-											)
-										}
-										value={data[monthIndex].rémunérationBrute}
-									/>
-								</td>
-								<td>
-									{data[monthIndex].réductionGénérale ? (
-										<Tooltip tooltip={tooltip}>
-											{formatValue(
-												{ nodeValue: data[monthIndex].réductionGénérale },
-												{
-													displayedUnit,
-													language,
-												}
-											)}
-										</Tooltip>
-									) : (
-										formatValue(0, { displayedUnit, language })
-									)}
-								</td>
-							</tr>
-						)
-					})}
-			</tbody>
-		</StyledTable>
+							return (
+								<tr key={`month-${monthIndex}`}>
+									<th scope="row">{monthName}</th>
+									<td>
+										<NumberInput
+											{...ruleInputProps}
+											id={`${rémunérationBruteDottedName.replace(
+												/\s|\./g,
+												'_'
+											)}-${monthIndex}`}
+											aria-label={`${engine.getRule(rémunérationBruteDottedName)
+												?.title} (${monthName})`}
+											onChange={(rémunérationBrute?: PublicodesExpression) =>
+												onRémunérationChange(
+													monthIndex,
+													rémunérationBrute as RémunérationBruteInput
+												)
+											}
+											value={data[monthIndex].rémunérationBrute}
+										/>
+									</td>
+									<td>
+										{data[monthIndex].réductionGénérale ? (
+											<Tooltip tooltip={tooltip}>
+												{formatValue(
+													{ nodeValue: data[monthIndex].réductionGénérale },
+													{
+														displayedUnit,
+														language,
+													}
+												)}
+											</Tooltip>
+										) : (
+											formatValue(0, { displayedUnit, language })
+										)}
+									</td>
+								</tr>
+							)
+						})}
+				</tbody>
+			</StyledTable>
+
+			<Warnings />
+		</>
 	)
 }
 

@@ -9,10 +9,7 @@ type Props = {
 	round?: boolean
 }
 
-export default function RéductionGénéraleRépartition({
-	contexte = {},
-	round = true,
-}: Props) {
+export default function Répartition({ contexte = {}, round = true }: Props) {
 	return (
 		<StyledUl>
 			<StyledLi>

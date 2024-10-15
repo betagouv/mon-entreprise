@@ -21,8 +21,9 @@ import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
 import EffectifSwitch from './components/EffectifSwitch'
+import Répartition from './components/Répartition'
+import Warnings from './components/Warnings'
 import RéductionGénéraleMensuelle from './RéductionGénéraleMensuelle'
-import RéductionGénéraleRépartition from './RéductionGénéraleRépartition'
 import {
 	getInitialRéductionGénéraleMensuelle,
 	getRéductionGénéraleFromRémunération,
@@ -163,27 +164,7 @@ function RéductionGénéraleSimulationGoals() {
 						onUpdateSituation={initializeRéductionGénéraleMensuelleData}
 					/>
 
-					<Condition expression="salarié . cotisations . exonérations . JEI = oui">
-						<Message type="info">
-							<Body>
-								<Trans>
-									La réduction générale n'est pas cumulable avec l'exonération
-									Jeune Entreprise Innovante (JEI).
-								</Trans>
-							</Body>
-						</Message>
-					</Condition>
-
-					<Condition expression="salarié . contrat = 'stage'">
-						<Message type="info">
-							<Body>
-								<Trans>
-									La réduction générale ne s'applique pas sur les gratifications
-									de stage.
-								</Trans>
-							</Body>
-						</Message>
-					</Condition>
+					<Warnings />
 
 					<Condition expression="salarié . cotisations . assiette > 1.6 * SMIC">
 						<Message type="info">
@@ -204,7 +185,7 @@ function RéductionGénéraleSimulationGoals() {
 							round={false}
 						/>
 						<Spacing md />
-						<RéductionGénéraleRépartition />
+						<Répartition />
 					</Condition>
 				</>
 			)}
