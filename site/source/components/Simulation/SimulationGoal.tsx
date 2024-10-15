@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import { formatValue, PublicodesExpression } from 'publicodes'
 import React, { useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -51,6 +52,7 @@ export function SimulationGoal({
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const currentUnit = useSelector(targetUnitSelector)
+	const language = useTranslation().i18n.language
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
 		arrondi: round ? 'oui' : 'non',
@@ -171,6 +173,7 @@ export function SimulationGoal({
 								{formatValue(evaluation, {
 									displayedUnit,
 									precision: round ? 0 : 2,
+									language,
 								})}
 							</Body>
 						</Grid>
