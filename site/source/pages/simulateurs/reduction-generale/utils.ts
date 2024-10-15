@@ -41,3 +41,16 @@ export const getInitialRéductionGénéraleMensuelle = (
 		réductionGénérale,
 	}) as MonthState[]
 }
+
+export const reevaluateRéductionGénéraleMensuelle = (
+	data: MonthState[],
+	engine: Engine<DottedName>
+): MonthState[] => {
+	return data.map((item) => ({
+		...item,
+		réductionGénérale: getRéductionGénéraleFromRémunération(
+			engine,
+			item.rémunérationBrute
+		),
+	}))
+}

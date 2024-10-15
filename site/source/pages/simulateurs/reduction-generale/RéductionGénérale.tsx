@@ -2,7 +2,7 @@ import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -19,6 +19,7 @@ import { Spacing } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { ajusteLaSituation } from '@/store/actions/actions'
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 import EffectifSwitch from './components/EffectifSwitch'
 import Répartition from './components/Répartition'
@@ -27,14 +28,44 @@ import RéductionGénéraleMensuelle from './RéductionGénéraleMensuelle'
 import {
 	getInitialRéductionGénéraleMensuelle,
 	getRéductionGénéraleFromRémunération,
+	reevaluateRéductionGénéraleMensuelle,
 } from './utils'
 
 export default function RéductionGénéraleSimulation() {
+	const { t } = useTranslation()
+	const [monthByMonth, setMonthByMonth] = useState(false)
+	const periods = [
+		{
+			label: t('Réduction mensuelle'),
+			unit: '€/mois',
+		},
+		{
+			label: t('Réduction annuelle'),
+			unit: '€/an',
+		},
+		{
+			label: t('Réduction mois par mois'),
+			unit: '€',
+		},
+	]
+	const onPeriodSwitch = useCallback((unit: string) => {
+		setMonthByMonth(unit === '€')
+	}, [])
+
 	return (
 		<>
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
 				<SimulateurWarning simulateur="réduction-générale" />
-				<RéductionGénéraleSimulationGoals />
+				<RéductionGénéraleSimulationGoals
+					monthByMonth={monthByMonth}
+					legend="Salaire brut du salarié et réduction générale applicable"
+					toggles={
+						<>
+							<EffectifSwitch />
+							<PeriodSwitch periods={periods} onSwitch={onPeriodSwitch} />
+						</>
+					}
+				/>
 			</Simulation>
 		</>
 	)
@@ -45,7 +76,20 @@ export type MonthState = {
 	réductionGénérale: number
 }
 
-function RéductionGénéraleSimulationGoals() {
+function RéductionGénéraleSimulationGoals({
+	monthByMonth,
+	toggles = (
+		<>
+			<EffectifSwitch />
+			<PeriodSwitch />
+		</>
+	),
+	legend,
+}: {
+	monthByMonth: boolean
+	toggles?: React.ReactNode
+	legend: string
+}) {
 	const engine = useEngine()
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
@@ -53,7 +97,6 @@ function RéductionGénéraleSimulationGoals() {
 	// lorsqu'elle n'incluera plus les frais professionnels.
 	const rémunérationBruteDottedName =
 		'salarié . cotisations . assiette' as DottedName
-	const [monthByMonth, setMonthByMonth] = useState(false)
 	const [réductionGénéraleMensuelleData, setData] = useState<MonthState[]>([])
 
 	const initializeRéductionGénéraleMensuelleData = useCallback(() => {
@@ -66,6 +109,13 @@ function RéductionGénéraleSimulationGoals() {
 			initializeRéductionGénéraleMensuelleData()
 		}
 	}, [initializeRéductionGénéraleMensuelleData, réductionGénéraleMensuelleData])
+
+	const situation = useSelector(situationSelector)
+	useEffect(() => {
+		setData((previousData) =>
+			reevaluateRéductionGénéraleMensuelle(previousData, engine)
+		)
+	}, [engine, situation])
 
 	const updateRémunérationBruteAnnuelle = (data: MonthState[]): void => {
 		const rémunérationBruteAnnuelle = data.reduce(
@@ -103,51 +153,8 @@ function RéductionGénéraleSimulationGoals() {
 		})
 	}
 
-	const onEffectifSwitch = useCallback(() => {
-		setData((previousData) =>
-			previousData.map((item) => ({
-				...item,
-				réductionGénérale: getRéductionGénéraleFromRémunération(
-					engine,
-					item.rémunérationBrute
-				),
-			}))
-		)
-	}, [engine])
-
-	const onPeriodSwitch = useCallback((unit: string) => {
-		setMonthByMonth(unit === '€')
-	}, [])
-
 	return (
-		<SimulationGoals
-			toggles={
-				<>
-					<EffectifSwitch onSwitch={onEffectifSwitch} />
-					<PeriodSwitch
-						periods={[
-							{
-								label: t('Réduction mensuelle'),
-								unit: '€/mois',
-							},
-							{
-								label: t('Réduction annuelle'),
-								unit: '€/an',
-							},
-							{
-								label: t('Réduction mois par mois'),
-								unit: '€',
-							},
-						]}
-						onSwitch={onPeriodSwitch}
-					/>
-				</>
-			}
-			legend={t(
-				'pages.simulateurs.réduction-générale.legend',
-				'Rémunération brute du salarié et réduction générale applicable'
-			)}
-		>
+		<SimulationGoals toggles={toggles} legend={legend}>
 			{monthByMonth ? (
 				<RéductionGénéraleMensuelle
 					data={réductionGénéraleMensuelleData}
