@@ -3,7 +3,6 @@ import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import Warning from '@/components/ui/WarningBlock'
-import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -58,16 +57,6 @@ export default function SimulateurWarning({
 					</StyledLi>
 				</Ul>
 			)}
-			{simulateur !== 'artiste-auteur' && simulateur !== 'salarié' && (
-				<Body>
-					<Trans i18nKey="simulateurs.warning.urssaf">
-						Les calculs sont indicatifs. Ils ne se substituent pas aux décomptes
-						réels de l’Urssaf, de l’administration fiscale ou de toute autre
-						organisme.
-					</Trans>
-				</Body>
-			)}
-
 			{simulateur === 'profession-libérale' && (
 				<Ul>
 					<StyledLi>
@@ -92,23 +81,12 @@ export default function SimulateurWarning({
 				</Ul>
 			)}
 			{simulateur === 'artiste-auteur' && (
-				<Ul>
-					<StyledLi>
-						<Trans i18nKey="simulateurs.warning.artiste-auteur.1">
-							Cette estimation est proposée à titre indicatif. Elle est faite à
-							partir des éléments réglementaires applicables et des éléments que
-							vous avez saisis, mais elle ne tient pas compte de l'ensemble de
-							votre situation. Le montant réel de vos cotisations peut donc être
-							différent.
-						</Trans>
-					</StyledLi>
-					<StyledLi>
-						<Trans i18nKey="simulateurs.warning.artiste-auteur.2">
-							Ce simulateur permet d'estimer le montant de vos cotisations à
-							partir de votre revenu projeté
-						</Trans>
-					</StyledLi>
-				</Ul>
+				<Body>
+					<Trans i18nKey="simulateurs.warning.artiste-auteur">
+						Ce simulateur permet d'estimer le montant de vos cotisations à
+						partir de votre revenu projeté.
+					</Trans>
+				</Body>
 			)}
 			{simulateur === 'coût-création-entreprise' && (
 				<Ul>
@@ -155,15 +133,7 @@ export default function SimulateurWarning({
 			)}
 			{simulateur === 'salarié' && (
 				<Body>
-					<Trans i18nKey="simulateurs.warning.salarié.1">
-						<Strong>Cette estimation est proposée à titre indicatif</Strong>.
-						Elle est faite à partir des éléments que vous avez saisis et des
-						éléments réglementaires applicables, mais elle ne tient pas compte
-						de l'ensemble de votre situation.{' '}
-						<Strong>Les montants réels peuvent donc être différents</Strong>.
-					</Trans>
-					<Spacing md />
-					<Trans i18nKey="simulateurs.warning.salarié.2">
+					<Trans i18nKey="simulateurs.warning.salarié">
 						Le simulateur ne prend pour l'instant pas en compte les accords et
 						conventions collectives, ni la myriade d'aides aux entreprises.
 						Trouvez votre convention collective{' '}
@@ -184,6 +154,98 @@ export default function SimulateurWarning({
 					</Trans>
 				</Body>
 			)}
+			{simulateur === 'chômage-partiel' && (
+				<Ul>
+					<StyledLi>
+						<Trans i18nKey="simulateurs.warning.chômage-partiel.1">
+							Ce simulateur ne prend pas en compte les rémunérations brutes
+							définies sur 39h hebdomadaires.
+						</Trans>
+					</StyledLi>
+					<StyledLi>
+						<Trans i18nKey="simulateurs.warning.chômage-partiel.2">
+							De même, il ne prend pas en compte les indemnités complémentaire
+							d'activité partielle prévue par une convention/accord collectif ou
+							une décision unilatérale de l'employeur.
+						</Trans>
+					</StyledLi>
+				</Ul>
+			)}
+			{simulateur === 'is' && (
+				<Body>
+					<Trans i18nKey="simulateurs.warning.is">
+						Ce simulateur s’adresse aux{' '}
+						<abbr title="Très Petites Entreprises">TPE</abbr> : il prend en
+						compte les taux réduits de l’impôt sur les sociétés.
+					</Trans>
+				</Body>
+			)}
+			{simulateur === 'dividendes' && (
+				<Ul>
+					<StyledLi>
+						<Trans i18nKey="simulateurs.warning.dividendes.1">
+							Cette simulation ne concerne que les sociétés françaises à l’impôt
+							sur les sociétés (IS), et ne concerne pas les travailleurs
+							indépendants non salariés.
+						</Trans>
+					</StyledLi>
+					<StyledLi>
+						<Trans i18nKey="simulateurs.warning.dividendes.2">
+							Le montant de l'impôt sur les dividendes est calculé en plus de
+							l’impôt sur les autres revenus imposables.
+						</Trans>
+					</StyledLi>
+				</Ul>
+			)}
+			{simulateur === 'réduction-générale' && (
+				<>
+					<Body>
+						<Trans i18nKey="simulateurs.warning.réduction-générale.beta">
+							<Strong>Ce simulateur est en cours de développement.</Strong> Il
+							propose uniquement le calcul de la{' '}
+							<abbr title="Réduction Générale des Cotisations Patronales">
+								RGCP
+							</abbr>{' '}
+							à partir d'une rémunération mensuelle ou annuelle. Pour une
+							version complète, utilisez{' '}
+							<Link
+								aria-label="Simulateur de calcul de la réduction générale des cotisations sur urssaf.fr, nouvelle fenêtre"
+								href="https://www.declaration.urssaf.fr/calcul/"
+							>
+								le simulateur d'urssaf.fr.
+							</Link>
+						</Trans>
+					</Body>
+					<Ul>
+						<StyledLi>
+							<Trans i18nKey="simulateurs.warning.réduction-générale.1">
+								La rémunération brute inclue : le paiement des heures
+								supplémentaires et complémentaires, les primes et les indemnités
+								de CDD.
+							</Trans>
+						</StyledLi>
+						<StyledLi>
+							<Trans i18nKey="simulateurs.warning.réduction-générale.2">
+								Ce simulateur n'intègre pas toutes les règles de calcul
+								spécifiques (Entreprises de Travail Temporaire, salariés des
+								transports routiers soumis à un horaire d'équivalence). Il ne
+								tient pas non plus compte des taux et/ou répartition
+								particuliers de la cotisation de retraite complémentaire
+								appliqués dans certaines entreprises.
+							</Trans>
+						</StyledLi>
+					</Ul>
+				</>
+			)}
+			<Body>
+				<Trans i18nKey="simulateurs.warning.general">
+					<Strong>Les calculs sont indicatifs.</Strong> Ils sont faits à partir
+					des éléments que vous avez saisis et des éléments réglementaires
+					applicables, mais ils ne tiennent pas compte de l'ensemble de votre
+					situation. Ils ne se substituent pas aux décomptes réels de l’Urssaf,
+					de l'administration fiscale ou de toute autre organisme.
+				</Trans>
+			</Body>
 		</Warning>
 	)
 }

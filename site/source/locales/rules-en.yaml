@@ -9464,6 +9464,16 @@ salarié . cotisations . exonérations . réduction générale:
     imputation sécurité sociale:
       titre.en: '[automatic] social security charge'
       titre.fr: imputation sécurité sociale
+    part Urssaf:
+      avec:
+        part chômage:
+          titre.en: '[automatic] unemployment share'
+          titre.fr: part chômage
+      titre.en: '[automatic] Urssaf share'
+      titre.fr: part Urssaf
+    part retraite:
+      titre.en: '[automatic] pension portion'
+      titre.fr: part retraite
     plafond avec application de la DFS:
       titre.en: '[automatic] ceiling with application of the DFS'
       titre.fr: plafond avec application de la DFS

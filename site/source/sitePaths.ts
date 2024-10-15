@@ -72,6 +72,7 @@ const rawSitePathsFr = {
 		'chômage-partiel': 'chômage-partiel',
 		is: 'impot-societe',
 		dividendes: 'dividendes',
+		'réduction-générale': 'réduction-générale',
 	},
 	nouveautés: {
 		index: 'nouveautés',
@@ -170,6 +171,7 @@ const rawSitePathsEn = {
 		},
 		is: 'corporate-tax',
 		dividendes: 'dividends',
+		'réduction-générale': 'réduction-générale',
 	},
 	nouveautés: {
 		index: 'news',

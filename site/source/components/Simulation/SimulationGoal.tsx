@@ -116,7 +116,7 @@ export function SimulationGoal({
 									id={`${dottedName.replace(/\s|\./g, '_')}-label`}
 									dottedName={dottedName}
 								>
-									{label}
+									{label || rule.title}
 								</RuleLink>
 							)}
 
@@ -167,7 +167,7 @@ export function SimulationGoal({
 						</Grid>
 					) : (
 						<Grid item>
-							<Body>
+							<Body id={`${dottedName.replace(/\s|\./g, '_')}-value`}>
 								{formatValue(evaluation, {
 									displayedUnit,
 									precision: round ? 0 : 2,
