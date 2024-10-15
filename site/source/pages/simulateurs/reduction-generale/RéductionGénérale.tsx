@@ -17,12 +17,14 @@ import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 import EffectifSwitch from './components/EffectifSwitch'
 import RéductionGénéraleMoisParMois from './RéductionGénéraleMoisParMois'
 import {
 	getInitialRéductionGénéraleMoisParMois,
 	MonthState,
+	reevaluateRéductionGénéraleMoisParMois,
 	rémunérationBruteDottedName,
 } from './utils'
 
@@ -104,6 +106,13 @@ function RéductionGénéraleSimulationGoals({
 		initializeRéductionGénéraleMoisParMoisData,
 		réductionGénéraleMoisParMoisData,
 	])
+
+	const situation = useSelector(situationSelector)
+	useEffect(() => {
+		setData((previousData) =>
+			reevaluateRéductionGénéraleMoisParMois(previousData, engine)
+		)
+	}, [engine, situation])
 
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
