@@ -120,6 +120,9 @@ export default function RéductionGénéraleMoisParMois({
 												)
 											}
 											value={data[monthIndex].rémunérationBrute}
+											formatOptions={{
+												maximumFractionDigits: 2,
+											}}
 										/>
 									</td>
 									<td>
