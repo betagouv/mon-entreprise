@@ -124,7 +124,7 @@ export default function RéductionGénéraleMoisParMois({
 									</td>
 									<td>
 										{data[monthIndex].réductionGénérale ? (
-											<Tooltip tooltip={tooltip}>
+											<Tooltip tooltip={tooltip} hasArrow={true}>
 												<StyledDiv>
 													{formatValue(
 														{ nodeValue: data[monthIndex].réductionGénérale },
