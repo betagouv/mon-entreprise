@@ -29299,8 +29299,8 @@ __metadata:
     storybook: ^7.4.3
     styled-components: ^6.0.8
     stylis: ^4.3.0
-    ts-node: ^10.9.1
-    typescript: ^5.2.2
+    ts-node: ^10.9.2
+    typescript: ^5.6.3
     vite: ^4.4.9
     vite-plugin-pwa: ^0.16.5
     vitest: ^0.34.4
