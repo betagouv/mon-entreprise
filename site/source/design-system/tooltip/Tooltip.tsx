@@ -94,6 +94,7 @@ const StyledTooltip = styled.span`
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	z-index: 100;
+	pointer-events: none;
 	* {
 		color: ${({ theme }) => theme.colors.extended.grey[100]};
 	}
