@@ -68,7 +68,7 @@ export const SimulationGoalsContainer = styled.div<{
 	$isFirstStepCompleted: boolean
 	$isEmbeded: boolean
 }>`
-	z-index: 1;
+	z-index: 2;
 	position: relative;
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
 	border-start-end-radius: ${({ theme, $isEmbeded }) =>
