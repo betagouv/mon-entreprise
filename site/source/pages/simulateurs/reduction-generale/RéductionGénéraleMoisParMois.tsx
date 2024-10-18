@@ -5,6 +5,7 @@ import { styled } from 'styled-components'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import NumberInput from '@/components/conversation/NumberInput'
 import { useEngine } from '@/components/utils/EngineContext'
+import { SearchIcon } from '@/design-system/icons'
 import { Tooltip } from '@/design-system/tooltip'
 
 import Répartition from './components/Répartition'
@@ -124,13 +125,16 @@ export default function RéductionGénéraleMoisParMois({
 									<td>
 										{data[monthIndex].réductionGénérale ? (
 											<Tooltip tooltip={tooltip}>
-												{formatValue(
-													{ nodeValue: data[monthIndex].réductionGénérale },
-													{
-														displayedUnit,
-														language,
-													}
-												)}
+												<StyledDiv>
+													{formatValue(
+														{ nodeValue: data[monthIndex].réductionGénérale },
+														{
+															displayedUnit,
+															language,
+														}
+													)}
+													<SearchIcon />
+												</StyledDiv>
 											</Tooltip>
 										) : (
 											formatValue(0, { displayedUnit, language })
@@ -167,4 +171,10 @@ const StyledTable = styled.table`
 		text-transform: capitalize;
 		font-weight: normal;
 	}
+`
+
+const StyledDiv = styled.div`
+	display: flex;
+	align-items: center;
+	gap: ${({ theme }) => theme.spacings.sm};
 `
