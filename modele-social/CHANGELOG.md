@@ -1,6 +1,33 @@
 # Journal des modifications
 ## next
 
+## 3.0.0
+### Breaking changes
+- Suppression des règles d'Acre obsolètes
+- Réorganisation des règles sur les cotisations salariés
+- Changement de la nature par défaut de l'activité artisanale
+- Suppression de la question sur le taux personnalisé de retraite pour les PLNR
+- Suppression de l'option 'taux neutre' pour l'impôt sur le revenu des indépendants
+
+### Nouveautés
+- Ajout de la répartition de la réduction générale
+- Ajout d'une condition de durée d'activité à la question sur l'éligibilité à l'Acre
+- Ajout du calcul du Montant Net Social
+
+### Corrections
+- Réécriture de la formule du coefficient de réduction générale comme documentée
+- Correction de l'arrondi du coefficient de la réduction générale
+- Correction de l'affiliation Cipav des PLNR créées avant 2018
+- Correction des taux auto-entrepreneur DROM
+- Correction du calcul du taux réduit de cotisation maladie et familiale avec heures supplémentaires
+- Correction de la valeur d'acquisition du point Agirc-Arrco pour 2023
+
+### Documentation
+- Ajout de documentation sur la réduction générale
+- Mises à jour des références sur l'Acre
+- Changement de la définition du salaire brut pour celle de l'INSEE
+- Mise à jour des références sur les frais professionnels
+
 ## 2.4.0
 - Mise à jour des valeurs des caisses de retraite des professions libérales
 - Correction du taux de cotisation BIC avec ACRE
