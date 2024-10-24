@@ -1,9 +1,20 @@
+import { sumAll } from 'effect/Number'
 import { formatValue } from 'publicodes'
 import { styled } from 'styled-components'
 
-import { arraySum } from '@/utils'
+const quarters = [
+	{ label: 'T1', 'aria-label': 'Trimestre 1' },
+	{ label: 'T2', 'aria-label': 'Trimestre 2' },
+	{ label: 'T3', 'aria-label': 'Trimestre 3' },
+	{ label: 'T4', 'aria-label': 'Trimestre 4' },
+]
 
-type Budget = Record<string, Record<string, number>>
+const totalsLabels = ['Total HT', 'Total TTC']
+
+export type Quarter = (typeof quarters)[number]['label']
+export type QuarterBudget = Record<string, number>
+type Budget = Record<Quarter, QuarterBudget>
+type Total = (typeof totalsLabels)[number]
 
 type Props = {
 	selectedYear: string
@@ -11,13 +22,6 @@ type Props = {
 }
 
 export default function ResourcesAllocation({ selectedYear, budget }: Props) {
-	const quarters = [
-		{ label: 'T1', 'aria-label': 'Trimestre 1' },
-		{ label: 'T2', 'aria-label': 'Trimestre 2' },
-		{ label: 'T3', 'aria-label': 'Trimestre 3' },
-		{ label: 'T4', 'aria-label': 'Trimestre 4' },
-	]
-
 	const categories = [
 		...new Set(
 			quarters
@@ -27,7 +31,7 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 	]
 
 	const totals = quarters.reduce((total, quarter) => {
-		const quarterTotal = arraySum(Object.values(budget[quarter.label]))
+		const quarterTotal = sumAll(Object.values(budget[quarter.label]))
 
 		return {
 			...total,
@@ -36,7 +40,7 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 				'Total TTC': Math.round(quarterTotal * 1.2),
 			},
 		}
-	}, {} as Budget)
+	}, {}) as Record<Quarter, Record<Total, number>>
 
 	return (
 		<div
@@ -85,7 +89,7 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 							<td>
 								{/* Total de ligne */}
 								{formatValue(
-									arraySum(
+									sumAll(
 										quarters.map((quarter) => budget[quarter.label][label] ?? 0)
 									),
 									{
@@ -114,7 +118,7 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 							<td>
 								{/* Total du total */}
 								{formatValue(
-									arraySum(
+									sumAll(
 										quarters.map((quarter) => totals[quarter.label][total])
 									),
 									{

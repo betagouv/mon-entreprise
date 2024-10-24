@@ -235,5 +235,3 @@ export const generateUuid = () => {
  * @param x
  */
 export const isNotNull = <T>(x: T | null): x is T => x !== null
-
-export const arraySum = (arr: number[]) => arr.reduce((a, b) => a + b, 0)
