@@ -10,7 +10,7 @@ export default function Warnings() {
 			<Condition expression="salarié . cotisations . exonérations . JEI = oui">
 				<Message type="info">
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.réduction-générale.warnings.JEI">
 							La réduction générale n'est pas cumulable avec l'exonération Jeune
 							Entreprise Innovante (JEI).
 						</Trans>
@@ -21,21 +21,9 @@ export default function Warnings() {
 			<Condition expression="salarié . contrat = 'stage'">
 				<Message type="info">
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.réduction-générale.warnings.stage">
 							La réduction générale ne s'applique pas sur les gratifications de
 							stage.
-						</Trans>
-					</Body>
-				</Message>
-			</Condition>
-
-			<Condition expression="salarié . cotisations . exonérations . réduction générale = 0">
-				<Message type="info">
-					<Body>
-						<Trans>
-							La RGCP concerne uniquement les salaires inférieurs à 1,6 SMIC.
-							C'est-à-dire, pour 2024, une rémunération totale qui ne dépasse
-							pas <strong>2 827,07 €</strong> bruts par mois.
 						</Trans>
 					</Body>
 				</Message>
