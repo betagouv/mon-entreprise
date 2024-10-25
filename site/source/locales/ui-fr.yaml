@@ -1895,15 +1895,17 @@ simulateurs:
     réduction-générale:
       "1": "La rémunération brute inclue : le paiement des heures supplémentaires et
         complémentaires, les primes et les indemnités de CDD."
-      "2": Ce simulateur n'intègre pas toutes les règles de calcul spécifiques
+      "2": Ce simulateur ne gère pas les mois incomplets (embauche, absence,
+        départ...).
+      "3": Ce simulateur n'intègre pas toutes les règles de calcul spécifiques
         (Entreprises de Travail Temporaire, salariés des transports routiers
-        soumis à un horaire d'équivalence). Il ne tient pas non plus compte des
-        taux et/ou répartition particuliers de la cotisation de retraite
+        soumis à un horaire d'équivalence...). Il ne tient pas non plus compte
+        des taux et/ou répartition particuliers de la cotisation de retraite
         complémentaire appliqués dans certaines entreprises.
       beta: <0>Ce simulateur est en cours de développement.</0> Il propose uniquement
         le calcul de la <3>RGCP</3> à partir d'une rémunération mensuelle ou
-        annuelle. Pour une version complète, utilisez <7>le simulateur
-        d'urssaf.fr.</7>
+        annuelle, sans intégrer la régularisation. Pour une version complète,
+        utilisez <7>le simulateur d'urssaf.fr.</7>
     salarié: Le simulateur ne prend pour l'instant pas en compte les accords et
       conventions collectives, ni la myriade d'aides aux entreprises. Trouvez
       votre convention collective <2>ici</2>, et explorez les aides sur

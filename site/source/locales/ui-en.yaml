@@ -1778,14 +1778,17 @@ simulateurs:
     réduction-générale:
       "1": "Gross remuneration includes: overtime and additional hours, bonuses and
         fixed-term contract allowances."
-      "2": This simulator does not take into account all specific calculation rules
+      "2": This simulator does not handle incomplete months (hiring, absence,
+        departure, etc.).
+      "3": This simulator does not take into account all specific calculation rules
         (temporary employment agencies, road haulage employees subject to
-        equivalent working hours). Nor does it take into account the specific
-        rates and/or distribution of supplementary pension contributions applied
-        in certain companies.
+        equivalent working hours, etc.). Nor does it take into account the
+        specific rates and/or distribution of supplementary pension
+        contributions applied in certain companies.
       beta: <0>This simulator is currently under development.</0> It only calculates
-        <3>RGCP</3> on the basis of monthly or annual remuneration. For a full
-        version, use <7>the urssaf.fr simulator.</7>
+        the <3>RGCP</3> on the basis of monthly or annual remuneration, without
+        including regularization. For a full version, use <7>the urssaf.fr
+        simulator.</7>
     salarié: The simulator does not currently take into account collective
       agreements, nor the myriad of company subsidies. Find your collective
       bargaining agreement <2>here</2>, and explore the range of assistance
