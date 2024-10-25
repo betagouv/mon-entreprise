@@ -4,6 +4,8 @@ import Engine from 'publicodes'
 // TODO: remplacer "salarié . cotisations . assiette" par "salarié . rémunération . brut"
 // lorsqu'elle n'incluera plus les frais professionnels.
 export const rémunérationBruteDottedName = 'salarié . cotisations . assiette'
+export const réductionGénéraleDottedName =
+	'salarié . cotisations . exonérations . réduction générale'
 
 export type MonthState = {
 	rémunérationBrute: number
@@ -15,7 +17,7 @@ export const getRéductionGénéraleFromRémunération = (
 	rémunérationBrute: number
 ): number => {
 	const réductionGénérale = engine.evaluate({
-		valeur: 'salarié . cotisations . exonérations . réduction générale',
+		valeur: réductionGénéraleDottedName,
 		unité: '€/mois',
 		contexte: {
 			[rémunérationBruteDottedName]: rémunérationBrute,

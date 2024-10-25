@@ -7,6 +7,8 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Contexte } from '@/domaine/Contexte'
 
+import { réductionGénéraleDottedName } from '../utils'
+
 type Props = {
 	contexte?: Contexte
 }
@@ -22,19 +24,19 @@ export default function Répartition({ contexte = {} }: Props) {
 			<StyledUl>
 				<StyledLi>
 					<SimulationValue
-						dottedName="salarié . cotisations . exonérations . réduction générale . part retraite"
+						dottedName={`${réductionGénéraleDottedName} . part retraite`}
 						contexte={contexte}
 						round={false}
 					/>
 				</StyledLi>
 				<StyledLi>
 					<SimulationValue
-						dottedName="salarié . cotisations . exonérations . réduction générale . part Urssaf"
+						dottedName={`${réductionGénéraleDottedName} . part Urssaf`}
 						contexte={contexte}
 						round={false}
 					/>
 					<SimulationValue
-						dottedName="salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage"
+						dottedName={`${réductionGénéraleDottedName} . part Urssaf . part chômage`}
 						label="dont chômage"
 						contexte={contexte}
 						round={false}
