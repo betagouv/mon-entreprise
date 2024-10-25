@@ -4,12 +4,15 @@ import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import NumberInput from '@/components/conversation/NumberInput'
+import { Condition } from '@/components/EngineValue/Condition'
 import { useEngine } from '@/components/utils/EngineContext'
-import { SearchIcon } from '@/design-system/icons'
+import { SearchIcon, WarningIcon } from '@/design-system/icons'
+import { Spacing } from '@/design-system/layout'
 import { Tooltip } from '@/design-system/tooltip'
 
 import Répartition from './components/Répartition'
 import Warnings from './components/Warnings'
+import WarningSalaireTrans from './components/WarningSalaireTrans'
 import { MonthState, rémunérationBruteDottedName } from './utils'
 
 type RémunérationBruteInput = {
@@ -140,7 +143,25 @@ export default function RéductionGénéraleMoisParMois({
 												</StyledDiv>
 											</Tooltip>
 										) : (
-											formatValue(0, { displayedUnit, language })
+											<StyledDiv>
+												{formatValue(0, { displayedUnit, language })}
+
+												<Condition
+													expression={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
+													contexte={{
+														[rémunérationBruteDottedName]:
+															data[monthIndex].rémunérationBrute,
+													}}
+												>
+													<Tooltip
+														tooltip={<WarningSalaireTrans />}
+														hasArrow={true}
+													>
+														<Spacing xxs />
+														<WarningIcon />
+													</Tooltip>
+												</Condition>
+											</StyledDiv>
 										)}
 									</td>
 								</tr>
