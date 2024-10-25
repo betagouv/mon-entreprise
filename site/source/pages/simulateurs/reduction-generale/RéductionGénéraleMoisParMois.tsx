@@ -13,7 +13,11 @@ import { Tooltip } from '@/design-system/tooltip'
 import Répartition from './components/Répartition'
 import Warnings from './components/Warnings'
 import WarningSalaireTrans from './components/WarningSalaireTrans'
-import { MonthState, rémunérationBruteDottedName } from './utils'
+import {
+	MonthState,
+	réductionGénéraleDottedName,
+	rémunérationBruteDottedName,
+} from './utils'
 
 type RémunérationBruteInput = {
 	unité: string
@@ -85,10 +89,7 @@ export default function RéductionGénéraleMoisParMois({
 						</th>
 						<th scope="col">
 							{t('Réduction générale')}
-							<ExplicableRule
-								dottedName="salarié . cotisations . exonérations . réduction générale"
-								light
-							/>
+							<ExplicableRule dottedName={réductionGénéraleDottedName} light />
 						</th>
 					</tr>
 				</thead>
@@ -113,7 +114,7 @@ export default function RéductionGénéraleMoisParMois({
 											id={`${rémunérationBruteDottedName.replace(
 												/\s|\./g,
 												'_'
-											)}-${monthIndex}`}
+											)}-${monthName}`}
 											aria-label={`${engine.getRule(rémunérationBruteDottedName)
 												?.title} (${monthName})`}
 											onChange={(rémunérationBrute?: PublicodesExpression) =>
@@ -128,7 +129,12 @@ export default function RéductionGénéraleMoisParMois({
 											}}
 										/>
 									</td>
-									<td>
+									<td
+										id={`${réductionGénéraleDottedName.replace(
+											/\s|\./g,
+											'_'
+										)}-${monthName}`}
+									>
 										{data[monthIndex].réductionGénérale ? (
 											<Tooltip tooltip={tooltip} hasArrow={true}>
 												<StyledDiv>

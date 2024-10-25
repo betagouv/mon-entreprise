@@ -30,6 +30,7 @@ import {
 	getInitialRéductionGénéraleMoisParMois,
 	getRéductionGénéraleFromRémunération,
 	MonthState,
+	réductionGénéraleDottedName,
 	reevaluateRéductionGénéraleMoisParMois,
 	rémunérationBruteDottedName,
 } from './utils'
@@ -174,9 +175,9 @@ function RéductionGénéraleSimulationGoals({
 						</Message>
 					</Condition>
 
-					<Condition expression="salarié . cotisations . exonérations . réduction générale >= 0">
+					<Condition expression={`${réductionGénéraleDottedName} >= 0`}>
 						<SimulationValue
-							dottedName="salarié . cotisations . exonérations . réduction générale"
+							dottedName={réductionGénéraleDottedName}
 							isInfoMode={true}
 							round={false}
 						/>
