@@ -206,8 +206,8 @@ export default function SimulateurWarning({
 							<abbr title="Réduction Générale des Cotisations Patronales">
 								RGCP
 							</abbr>{' '}
-							à partir d'une rémunération mensuelle ou annuelle. Pour une
-							version complète, utilisez{' '}
+							à partir d'une rémunération mensuelle ou annuelle, sans intégrer
+							la régularisation. Pour une version complète, utilisez{' '}
 							<Link
 								aria-label="Simulateur de calcul de la réduction générale des cotisations sur urssaf.fr, nouvelle fenêtre"
 								href="https://www.declaration.urssaf.fr/calcul/"
@@ -226,9 +226,15 @@ export default function SimulateurWarning({
 						</StyledLi>
 						<StyledLi>
 							<Trans i18nKey="simulateurs.warning.réduction-générale.2">
+								Ce simulateur ne gère pas les mois incomplets (embauche,
+								absence, départ...).
+							</Trans>
+						</StyledLi>
+						<StyledLi>
+							<Trans i18nKey="simulateurs.warning.réduction-générale.3">
 								Ce simulateur n'intègre pas toutes les règles de calcul
 								spécifiques (Entreprises de Travail Temporaire, salariés des
-								transports routiers soumis à un horaire d'équivalence). Il ne
+								transports routiers soumis à un horaire d'équivalence...). Il ne
 								tient pas non plus compte des taux et/ou répartition
 								particuliers de la cotisation de retraite complémentaire
 								appliqués dans certaines entreprises.
