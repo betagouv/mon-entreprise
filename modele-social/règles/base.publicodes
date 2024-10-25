@@ -56,6 +56,8 @@ SMIC . horaire:
     - si: établissement . commune . département . outre-mer . Mayotte
       alors:
         variations:
+          - si: date >= 11/2024
+            alors: 8.98 €/heures
           - si: date >= 01/2024
             alors: 8.80 €/heures
           - si: date >= 05/2023
@@ -74,6 +76,8 @@ SMIC . horaire:
             alors: 7.74 €/heures
     - sinon:
         variations:
+          - si: date >= 11/2024
+            alors: 11.88 €/heures
           - si: date >= 01/2024
             alors: 11.65 €/heures
           - si: date >= 05/2023
