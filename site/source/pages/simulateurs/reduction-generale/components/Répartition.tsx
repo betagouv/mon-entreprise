@@ -24,19 +24,21 @@ export default function Répartition({ contexte = {} }: Props) {
 			<StyledUl>
 				<StyledLi>
 					<SimulationValue
-						dottedName={`${réductionGénéraleDottedName} . part retraite`}
+						dottedName={`${réductionGénéraleDottedName} . imputation retraite complémentaire`}
+						label="IRC"
 						contexte={contexte}
 						round={false}
 					/>
 				</StyledLi>
 				<StyledLi>
 					<SimulationValue
-						dottedName={`${réductionGénéraleDottedName} . part Urssaf`}
+						dottedName={`${réductionGénéraleDottedName} . imputation sécurité sociale`}
+						label="URSSAF"
 						contexte={contexte}
 						round={false}
 					/>
 					<SimulationValue
-						dottedName={`${réductionGénéraleDottedName} . part Urssaf . part chômage`}
+						dottedName={`${réductionGénéraleDottedName} . imputation chômage`}
 						label="dont chômage"
 						contexte={contexte}
 						round={false}
