@@ -11,9 +11,9 @@ it('calculate simulations-dividendes', () => {
 		[
 			...(configRéductionGénérale['objectifs exclusifs'] ?? []),
 			...(configRéductionGénérale.objectifs ?? []),
-			'salarié . cotisations . exonérations . réduction générale . part retraite',
-			'salarié . cotisations . exonérations . réduction générale . part Urssaf',
-			'salarié . cotisations . exonérations . réduction générale . part Urssaf . part chômage',
+			'salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire',
+			'salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale',
+			'salarié . cotisations . exonérations . réduction générale . imputation chômage',
 		],
 		configRéductionGénérale.situation
 	)

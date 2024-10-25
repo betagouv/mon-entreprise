@@ -57,13 +57,13 @@ describe(
 				'p[id="salarié___cotisations___exonérations___réduction_générale-value"]'
 			).should('include.text', '493,43 €')
 			cy.get(
-				'p[id="salarié___cotisations___exonérations___réduction_générale___part_retraite-value"]'
+				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_retraite_complémentaire-value"]'
 			).should('include.text', '92,85 €')
 			cy.get(
-				'p[id="salarié___cotisations___exonérations___réduction_générale___part_Urssaf-value"]'
+				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_sécurité_sociale-value"]'
 			).should('include.text', '400,58 €')
 			cy.get(
-				'p[id="salarié___cotisations___exonérations___réduction_générale___part_Urssaf___part_chômage-value"]'
+				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_chômage-value"]'
 			).should('include.text', '62,57 €')
 		})
 
@@ -77,13 +77,13 @@ describe(
 			)
 
 			cy.get(
-				'p[id="salarié___cotisations___exonérations___réduction_générale___part_retraite-value"]'
+				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_retraite_complémentaire-value"]'
 			).should('include.text', '0 €')
 			cy.get(
-				'p[id="salarié___cotisations___exonérations___réduction_générale___part_Urssaf-value"]'
+				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_sécurité_sociale-value"]'
 			).should('include.text', '0 €')
 			cy.get(
-				'p[id="salarié___cotisations___exonérations___réduction_générale___part_Urssaf___part_chômage-value"]'
+				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_chômage-value"]'
 			).should('include.text', '0 €')
 		})
 

@@ -341,14 +341,19 @@ salarié . cotisations . exonérations . réduction générale:
         Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-a-formule-de-calcul-de-la-reduct
 
     imputation retraite complémentaire:
-      privé: oui
       valeur: réduction générale - imputation sécurité sociale
 
     imputation sécurité sociale:
-      privé: oui
       produit:
         - réduction générale
-        - T . sécurité sociale et chômage / T
+        - T . sécurité sociale et chômage
+        - 1 / T
+
+    imputation chômage:
+      produit:
+        - réduction générale
+        - chômage . employeur . taux
+        - 1 / T
 
     plafond avec application de la DFS:
       privé: oui
@@ -359,23 +364,6 @@ salarié . cotisations . exonérations . réduction générale:
           contexte:
             régimes spécifiques . DFS: non
         - 130%
-
-    part Urssaf:
-      produit:
-        - réduction générale
-        - T . sécurité sociale et chômage
-        - 1 / T
-
-      avec:
-        part chômage:
-          produit:
-            - réduction générale
-            - chômage . employeur . taux
-            - 1 / T
-
-    part retraite:
-      valeur: réduction générale
-      abattement: part Urssaf
 
 salarié . cotisations . exonérations . T:
   privé: oui
