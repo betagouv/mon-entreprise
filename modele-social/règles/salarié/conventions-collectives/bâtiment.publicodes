@@ -136,39 +136,39 @@ salarié . convention collective . BTP . cotisations employeur:
   remplace: cotisations . employeur
   somme:
     - cotisations . employeur
-    - congés intempéries
+    - congés payés
     - OPPBTP
 
-salarié . convention collective . BTP . congés intempéries:
+salarié . convention collective . BTP . congés payés:
   formule:
     produit:
       - cotisations . assiette
       - variations:
           - si: caisse de rattachement = 'idf'
-            alors: 19.80%
+            alors: 19.70%
           - si: caisse de rattachement = 'nord ouest'
-            alors: 19.95%
+            alors: 19.70%
           - si: caisse de rattachement = 'grand ouest'
-            alors: 19.95%
-          - si: caisse de rattachement = 'centre ouest'
-            alors: 20.30%
+            alors: 19.70%
+        # - si: caisse de rattachement = 'centre ouest'
+          # alors: 20.30%
           - si: caisse de rattachement = 'centre'
-            alors: 20.40%
+            alors: 20.20%
           - si: caisse de rattachement = 'grand est'
-            alors: 20.00%
+            alors: 19.85%
           - si: caisse de rattachement = 'rhône alpes auvergne'
             alors: 19.80%
           - si: caisse de rattachement = 'méditerranée'
             alors: 19.60%
           - si: caisse de rattachement = 'sud ouest'
-            alors: 19.90%
+            alors: 19.70%
   références:
     CIBTP: https://www.cibtp.fr/
     Article L3141-30 du Code du Travail: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DF6E6424807679A6EDC2915496BEA32D.tplgfr22s_2?idArticle=LEGIARTI000033020675&cidTexte=LEGITEXT000006072050&dateTexte=20200320
 
-salarié . convention collective . BTP . congés intempéries . caisse de rattachement:
+salarié . convention collective . BTP . congés payés . caisse de rattachement:
   question: À quelle caisse l'entreprise est-elle rattachée pour le versement de
-    la cotisation congés intempéries ?
+    la cotisation congés payés ?
   formule:
     une possibilité:
       choix obligatoire: oui
