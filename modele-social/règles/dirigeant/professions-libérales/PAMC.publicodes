@@ -163,8 +163,18 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   formule:
     produit:
       - (assiette des cotisations - assiette participation CPAM)
-      - 3.25%
+      - taux
     arrondi: oui
+    avec:
+      taux:
+        taux progressif:
+          assiette: assiette des cotisations
+          multiplicateur: plafond sécurité sociale
+          tranches:
+            - plafond: 40%
+              taux: 3.25%
+            - plafond: 110%
+              taux: 9.75%
 
 dirigeant . indépendant . PL . PAMC . allocations familiales:
   applicable si: métier . santé . médecin . secteur = 'S1'
