@@ -206,8 +206,8 @@ export default function SimulateurWarning({
 							<abbr title="Réduction Générale des Cotisations Patronales">
 								RGCP
 							</abbr>{' '}
-							à partir d'une rémunération mensuelle ou annuelle, sans intégrer
-							la régularisation. Pour une version complète, utilisez{' '}
+							à partir d'une rémunération mensuelle ou annuelle. Pour une
+							version complète, utilisez{' '}
 							<Link
 								aria-label="Simulateur de calcul de la réduction générale des cotisations sur urssaf.fr, nouvelle fenêtre"
 								href="https://www.declaration.urssaf.fr/calcul/"

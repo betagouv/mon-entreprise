@@ -49,6 +49,7 @@ Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
 Arrêt maladie: Arrêt maladie
 Assistants à la déclaration de revenu 2023 des indépendants: Assistants à la déclaration de revenu 2023 des indépendants
+Attention: Attention
 Attention, information importante: Attention, information importante
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Attention, vos données sauvegardées seront supprimées de manière définitive.
 Aucun: Aucun
@@ -1904,8 +1905,8 @@ simulateurs:
         complémentaire appliqués dans certaines entreprises.
       beta: <0>Ce simulateur est en cours de développement.</0> Il propose uniquement
         le calcul de la <3>RGCP</3> à partir d'une rémunération mensuelle ou
-        annuelle, sans intégrer la régularisation. Pour une version complète,
-        utilisez <7>le simulateur d'urssaf.fr.</7>
+        annuelle. Pour une version complète, utilisez <7>le simulateur
+        d'urssaf.fr.</7>
     salarié: Le simulateur ne prend pour l'instant pas en compte les accords et
       conventions collectives, ni la myriade d'aides aux entreprises. Trouvez
       votre convention collective <2>ici</2>, et explorez les aides sur

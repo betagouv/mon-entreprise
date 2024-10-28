@@ -1,13 +1,17 @@
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { WarningIcon } from '@/design-system/icons'
 import { Tooltip } from '@/design-system/tooltip'
 
 const WarningTooltip = ({ tooltip }: { tooltip: ReactNode }) => {
+	const { t } = useTranslation()
+
 	return (
 		<Tooltip tooltip={tooltip}>
-			<StyledWarningIcon aria-label="Attention" />
+			<span className="sr-only">{t('Attention')}</span>
+			<StyledWarningIcon aria-label={t('Attention')} />
 		</Tooltip>
 	)
 }
