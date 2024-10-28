@@ -7,7 +7,6 @@ import NumberInput from '@/components/conversation/NumberInput'
 import { Condition } from '@/components/EngineValue/Condition'
 import { useEngine } from '@/components/utils/EngineContext'
 import { SearchIcon, WarningIcon } from '@/design-system/icons'
-import { Spacing } from '@/design-system/layout'
 import { Tooltip } from '@/design-system/tooltip'
 
 import Répartition from './components/Répartition'
@@ -101,6 +100,9 @@ export default function RéductionGénéraleMoisParMois({
 									contexte={{
 										[rémunérationBruteDottedName]:
 											data[monthIndex].rémunérationBrute,
+										[réductionGénéraleDottedName]:
+											data[monthIndex].réductionGénérale +
+											data[monthIndex].régularisation,
 									}}
 								/>
 							)
@@ -135,11 +137,16 @@ export default function RéductionGénéraleMoisParMois({
 											'_'
 										)}-${monthName}`}
 									>
-										{data[monthIndex].réductionGénérale ? (
+										{data[monthIndex].réductionGénérale ||
+										data[monthIndex].régularisation ? (
 											<Tooltip tooltip={tooltip} hasArrow={true}>
 												<StyledDiv>
 													{formatValue(
-														{ nodeValue: data[monthIndex].réductionGénérale },
+														{
+															nodeValue:
+																data[monthIndex].réductionGénérale +
+																data[monthIndex].régularisation,
+														},
 														{
 															displayedUnit,
 															language,
@@ -163,8 +170,8 @@ export default function RéductionGénéraleMoisParMois({
 														tooltip={<WarningSalaireTrans />}
 														hasArrow={true}
 													>
-														<Spacing xxs />
-														<WarningIcon />
+														<span className="sr-only">{t('Attention')}</span>
+														<StyledWarningIcon aria-label={t('Attention')} />
 													</Tooltip>
 												</Condition>
 											</StyledDiv>
@@ -207,4 +214,8 @@ const StyledDiv = styled.div`
 	display: flex;
 	align-items: center;
 	gap: ${({ theme }) => theme.spacings.sm};
+`
+
+const StyledWarningIcon = styled(WarningIcon)`
+	margin-top: ${({ theme }) => theme.spacings.xxs};
 `

@@ -1,3 +1,4 @@
+import { sumAll } from 'effect/Number'
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 
@@ -10,6 +11,7 @@ export const réductionGénéraleDottedName =
 export type MonthState = {
 	rémunérationBrute: number
 	réductionGénérale: number
+	régularisation: number
 }
 
 export const getRéductionGénéraleFromRémunération = (
@@ -44,6 +46,7 @@ export const getInitialRéductionGénéraleMoisParMois = (
 	return Array(12).fill({
 		rémunérationBrute,
 		réductionGénérale,
+		régularisation: 0,
 	}) as MonthState[]
 }
 
@@ -51,11 +54,33 @@ export const reevaluateRéductionGénéraleMoisParMois = (
 	data: MonthState[],
 	engine: Engine<DottedName>
 ): MonthState[] => {
-	return data.map((item) => ({
+	const reevaluatedData = data.map((item) => ({
 		...item,
 		réductionGénérale: getRéductionGénéraleFromRémunération(
 			engine,
 			item.rémunérationBrute
 		),
+		régularisation: 0,
 	}))
+
+	reevaluatedData[reevaluatedData.length - 1].régularisation =
+		getRégularisationAnnuelle(data, engine)
+
+	return reevaluatedData
+}
+
+const getRégularisationAnnuelle = (
+	data: MonthState[],
+	engine: Engine<DottedName>
+): number => {
+	const currentRéductionGénéraleAnnuelle = sumAll(
+		data.map((monthData) => monthData.réductionGénérale)
+	)
+	const realRéductionGénéraleAnnuelle = engine.evaluate({
+		valeur: réductionGénéraleDottedName,
+		arrondi: 'non',
+		unité: '€/an',
+	}).nodeValue as number
+
+	return realRéductionGénéraleAnnuelle - currentRéductionGénéraleAnnuelle
 }

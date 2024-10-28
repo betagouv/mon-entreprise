@@ -142,6 +142,7 @@ function RéductionGénéraleSimulationGoals({
 					engine,
 					rémunérationBrute
 				),
+				régularisation: 0,
 			}
 
 			updateRémunérationBruteAnnuelle(updatedData)

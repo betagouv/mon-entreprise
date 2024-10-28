@@ -46,6 +46,7 @@ Aller directement au pied de page: Go directly to footer
 Annuler: Cancel
 Arrêt maladie: Sick leave
 Assistants à la déclaration de revenu 2023 des indépendants: Assistants for the 2023 self-employed tax return
+Attention: Warning
 Attention, information importante: Important information
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Please note that your saved data will be permanently deleted.
 Aucun: No
@@ -1786,9 +1787,8 @@ simulateurs:
         specific rates and/or distribution of supplementary pension
         contributions applied in certain companies.
       beta: <0>This simulator is currently under development.</0> It only calculates
-        the <3>RGCP</3> on the basis of monthly or annual remuneration, without
-        including regularization. For a full version, use <7>the urssaf.fr
-        simulator.</7>
+        <3>RGCP</3> on the basis of monthly or annual remuneration. For a full
+        version, use <7>the urssaf.fr simulator.</7>
     salarié: The simulator does not currently take into account collective
       agreements, nor the myriad of company subsidies. Find your collective
       bargaining agreement <2>here</2>, and explore the range of assistance

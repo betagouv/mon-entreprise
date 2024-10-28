@@ -112,12 +112,12 @@ describe(
 			cy.contains('Réduction mois par mois').click()
 
 			cy.get(inputSelector).first().type('{selectall}1900')
-			cy.get(inputSelector).last().type('{selectall}2000')
+			cy.get(inputSelector).eq(1).type('{selectall}2000')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-janvier"]'
 			).should('include.text', '523,26 €')
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale-décembre"]'
+				'td[id="salarié___cotisations___exonérations___réduction_générale-février"]'
 			).should('include.text', '470 €')
 		})
 
@@ -127,7 +127,7 @@ describe(
 			cy.get(inputSelector).first().type('{selectall}1900')
 			cy.contains('Réduction mois par mois').click()
 			cy.get(inputSelector).first().type('{selectall}2000')
-			cy.get(inputSelector).last().type('{selectall}2000')
+			cy.get(inputSelector).eq(1).type('{selectall}2000')
 
 			cy.contains('Réduction mensuelle').click()
 			cy.get(inputSelector).first().should('have.value', '1 916,67 €')
@@ -136,11 +136,23 @@ describe(
 			cy.contains('Réduction mois par mois').click()
 			cy.get(inputSelector).each(($input, index) => {
 				let expectedValue = '1 900 €'
-				if (index === 0 || index === 11) {
+				if (index < 2) {
 					expectedValue = '2 000 €'
 				}
 				cy.wrap($input).should('have.value', expectedValue)
 			})
+		})
+
+		it('should include annual regularisation', function () {
+			cy.contains('Moins de 50 salariés').click()
+			cy.contains('Réduction mensuelle').click()
+			cy.get(inputSelector).first().type('{selectall}1900')
+			cy.contains('Réduction mois par mois').click()
+			cy.get(inputSelector).eq(1).type('{selectall}3000')
+
+			cy.get(
+				'td[id="salarié___cotisations___exonérations___réduction_générale-décembre"]'
+			).should('include.text', '460,38 €')
 		})
 
 		it('should be RGAA compliant', function () {
