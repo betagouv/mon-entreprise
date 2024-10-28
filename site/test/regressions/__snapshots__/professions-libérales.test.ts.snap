@@ -307,22 +307,22 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 8779
-dirigeant . rémunération . net: 21221
-dirigeant . rémunération . net . après impôt: 20378
+"dirigeant . indépendant . cotisations et contributions: 8803
+dirigeant . rémunération . net: 21197
+dirigeant . rémunération . net . après impôt: 20358
 entreprise . chiffre d'affaires: 30000
-impôt . montant: 843
+impôt . montant: 839
 protection sociale . retraite . base: 161
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > auxiliaire médical 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 65221
-dirigeant . rémunération . net: 234779
-dirigeant . rémunération . net . après impôt: 148322
+"dirigeant . indépendant . cotisations et contributions: 72312
+dirigeant . rémunération . net: 227688
+dirigeant . rémunération . net . après impôt: 144422
 entreprise . chiffre d'affaires: 300000
-impôt . montant: 86457
+impôt . montant: 83266
 protection sociale . retraite . base: 352
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
@@ -390,33 +390,33 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 20025
-dirigeant . rémunération . net: 29975
-dirigeant . rémunération . net . après impôt: 27291
+"dirigeant . indépendant . cotisations et contributions: 20125
+dirigeant . rémunération . net: 29875
+dirigeant . rémunération . net . après impôt: 27221
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 2684
-protection sociale . retraite . base: 229
+impôt . montant: 2654
+protection sociale . retraite . base: 228
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 90234
-dirigeant . rémunération . net: 209766
-dirigeant . rémunération . net . après impôt: 134565
+"dirigeant . indépendant . cotisations et contributions: 94217
+dirigeant . rémunération . net: 205783
+dirigeant . rémunération . net . après impôt: 132374
 entreprise . chiffre d'affaires: 300000
-impôt . montant: 75201
+impôt . montant: 73409
 protection sociale . retraite . base: 351
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 4`] = `
-"dirigeant . indépendant . cotisations et contributions: 109670
-dirigeant . rémunération . net: 290330
-dirigeant . rémunération . net . après impôt: 176118
+"dirigeant . indépendant . cotisations et contributions: 119646
+dirigeant . rémunération . net: 280354
+dirigeant . rémunération . net . après impôt: 170931
 entreprise . chiffre d'affaires: 400000
-impôt . montant: 114212
+impôt . montant: 109423
 protection sociale . retraite . base: 352
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
