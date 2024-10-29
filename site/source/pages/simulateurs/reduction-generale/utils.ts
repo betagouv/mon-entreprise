@@ -84,3 +84,44 @@ const getRégularisationAnnuelle = (
 
 	return realRéductionGénéraleAnnuelle - currentRéductionGénéraleAnnuelle
 }
+
+export const getRégularisationProgressive = (
+	monthIndex: number,
+	data: MonthState[],
+	engine: Engine<DottedName>
+): number => {
+	if (monthIndex > data.length - 1) {
+		return 0
+	}
+
+	const nbOfMonths = monthIndex + 1
+	const partialData = data.slice(0, nbOfMonths)
+	const currentRéductionGénéraleTotale = sumAll(
+		partialData.map((monthData) => monthData.réductionGénérale)
+	)
+	const rémunérationBruteTotale = sumAll(
+		partialData.map((monthData) => monthData.rémunérationBrute)
+	)
+	const SMICMensuel = engine.evaluate({
+		valeur: 'salarié . temps de travail . SMIC',
+		unité: 'heures/mois',
+	}).nodeValue as number
+
+	// Si on laisse l'engine calculer T dans le calcul de la réduction générale,
+	// le résultat ne sera pas bon à cause de l'assiette de cotisations du contexte
+	const coefT = engine.evaluate({
+		valeur: 'salarié . cotisations . exonérations . T' ,
+	}).nodeValue as number
+
+	const realRéductionGénéraleTotale = engine.evaluate({
+		valeur: réductionGénéraleDottedName,
+		arrondi: 'non',
+		contexte: {
+			[rémunérationBruteDottedName]: rémunérationBruteTotale,
+			'salarié . temps de travail . SMIC': nbOfMonths * SMICMensuel,
+			'salarié . cotisations . exonérations . T': coefT,
+		}
+	}).nodeValue as number
+
+	return realRéductionGénéraleTotale - currentRéductionGénéraleTotale
+}
