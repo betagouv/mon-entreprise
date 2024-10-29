@@ -125,7 +125,7 @@ function getSerializedUnit(value: number, unit: Unit, locale: string): string {
 		const { translatedUnit, translatedPer } = getTranslatedUnit(
 			unit,
 			locale,
-			value > 2
+			value >= 2
 		)
 
 		return (
