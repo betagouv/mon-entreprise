@@ -58,7 +58,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers:
   applicable si: entreprise . activité . nature = 'artisanale'
 
   références:
-    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+    service-public.fr: https://entreprendre.service-public.fr/vosdroits/F37483
   somme:
     - produit:
         - entreprise . chiffre d'affaires . service BIC
