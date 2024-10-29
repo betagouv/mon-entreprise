@@ -331,10 +331,10 @@ salarié . cotisations . exonérations . réduction générale:
       produit:
         - 1.6 * temps de travail . SMIC / cotisations . assiette - 1
         - T / 0.6
-      plancher: 0%
+      plancher: 0
       plafond: T
-      unité: '%'
-      arrondi: 2 décimales
+      unité: ''
+      arrondi: 4 décimales
       références:
         Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
         Urssaf.fr: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
@@ -366,9 +366,9 @@ salarié . cotisations . exonérations . réduction générale:
         - 130%
 
 salarié . cotisations . exonérations . T:
-  privé: oui
   titre: Coefficient T
-  unité: '%'
+  unité: ''
+  arrondi: 4 décimales
   somme:
     - sécurité sociale et chômage
     - valeur: retraite complémentaire . employeur . taux T1
