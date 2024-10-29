@@ -38,7 +38,7 @@ export function updateSituationMulti(
 	const clearedSituation = size(règlesExclusives)
 		? filter(
 				currentSituation as Record<DottedName, PublicodesExpression>,
-				(_, règle) => règle in règlesExclusives
+				(_, règle) => !estUnObjectifExclusif(règle) || règle in règlesExclusives
 		  )
 		: currentSituation
 
