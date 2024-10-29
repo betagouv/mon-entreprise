@@ -2,6 +2,8 @@ import { sumAll } from 'effect/Number'
 import { formatValue } from 'publicodes'
 import { styled } from 'styled-components'
 
+import { Body } from '@/design-system/typography/paragraphs'
+
 const quarters = [
 	{ label: 'T1', 'aria-label': 'Trimestre 1' },
 	{ label: 'T2', 'aria-label': 'Trimestre 2' },
@@ -43,18 +45,14 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 	}, {}) as Record<Quarter, Record<Total, number>>
 
 	return (
-		<div
-			style={{
-				overflowX: 'auto',
-			}}
-		>
-			<StyledTable role="table">
+		<StyledTable as="div" tabIndex={0}>
+			<table role="table">
 				<caption className="sr-only">
 					{`Tableau affichant le bugdet de l'année ${selectedYear} par poste de dépenses. La première colonne affiche l'année en cours (${selectedYear}) sur la première ligne puis les postes de dépenses et pour finir le total HT et total TTC. Les autres colonnes affichent les dépenses pour chaque trimestre. La dernière colonne affiche les totaux pour chaque poste de dépenses ainsi que les totaux HT et TTC agrégés.`}
 				</caption>
 				<thead>
 					<tr>
-						<th>{selectedYear}</th>
+						<th scope="col">{selectedYear}</th>
 						{quarters.map((quarter) => (
 							<th
 								scope="col"
@@ -129,45 +127,49 @@ export default function ResourcesAllocation({ selectedYear, budget }: Props) {
 						</tr>
 					))}
 				</tfoot>
-			</StyledTable>
-		</div>
+			</table>
+		</StyledTable>
 	)
 }
 
-const StyledTable = styled.table`
-	text-align: left;
-	width: 100%;
-	td,
-	th {
-		padding: 6px;
-		font-family: ${({ theme }) => theme.fonts.main};
-	}
+const StyledTable = styled(Body)`
+	overflow: auto;
 
-	td:not(:first-child),
-	th:not(:first-child) {
-		width: 100px;
-		text-align: right;
-	}
+	table {
+		text-align: left;
+		width: 100%;
+		td,
+		th {
+			padding: 6px;
+			font-family: ${({ theme }) => theme.fonts.main};
+		}
 
-	tbody tr:nth-child(odd),
-	tfoot tr:nth-child(odd) {
-		background: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.extended.dark[700]
-				: theme.colors.bases.primary[100]};
-		color: inherit;
-	}
+		td:not(:first-child),
+		th:not(:first-child) {
+			width: 100px;
+			text-align: right;
+		}
 
-	thead,
-	tfoot {
-		font-weight: bold;
-	}
+		tbody tr:nth-child(odd),
+		tfoot tr:nth-child(odd) {
+			background: ${({ theme }) =>
+				theme.darkMode
+					? theme.colors.extended.dark[700]
+					: theme.colors.bases.primary[100]};
+			color: inherit;
+		}
 
-	tfoot tr:last-child {
-		color: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.bases.primary[300]
-				: theme.colors.bases.primary[700]};
-		background-color: inherit;
+		thead,
+		tfoot {
+			font-weight: bold;
+		}
+
+		tfoot tr:last-child {
+			color: ${({ theme }) =>
+				theme.darkMode
+					? theme.colors.bases.primary[300]
+					: theme.colors.bases.primary[700]};
+			background-color: inherit;
+		}
 	}
 `
