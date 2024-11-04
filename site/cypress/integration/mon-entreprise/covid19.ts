@@ -24,7 +24,7 @@ describe('Page covid-19', { testIsolation: false }, function () {
 		)
 
 		cy.get('[data-test-id=comparaison-total]').contains(
-			/Soit \d % du coût habituel/
+			/Soit [\d]{2} % du coût habituel/
 		)
 	})
 
