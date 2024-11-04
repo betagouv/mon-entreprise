@@ -11,7 +11,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import SeeAnswersButton from '../conversation/SeeAnswersButton'
 import Value from '../EngineValue/Value'
 
-export function CompanyDetails({
+export function EntrepriseDetails({
 	showSituation = false,
 	headingTag = 'h3',
 }: {
