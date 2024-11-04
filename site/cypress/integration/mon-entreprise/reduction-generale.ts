@@ -55,16 +55,16 @@ describe(
 
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale-value"]'
-			).should('include.text', '493,43 €')
+			).should('include.text', '523,26 €')
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_retraite_complémentaire-value"]'
-			).should('include.text', '92,85 €')
+			).should('include.text', '98,46 €')
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_sécurité_sociale-value"]'
-			).should('include.text', '400,58 €')
+			).should('include.text', '424,80 €')
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_chômage-value"]'
-			).should('include.text', '62,57 €')
+			).should('include.text', '66,35 €')
 		})
 
 		it('should display a warning for a remuneration too high', function () {
@@ -103,7 +103,7 @@ describe(
 			)
 				.should('have.length', 12)
 				.each(($td) => {
-					cy.wrap($td).should('include.text', '174 €')
+					cy.wrap($td).should('include.text', '203,75 €')
 				})
 		})
 
@@ -115,10 +115,10 @@ describe(
 			cy.get(inputSelector).last().type('{selectall}2000')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-janvier"]'
-			).should('include.text', '493,43 €')
+			).should('include.text', '523,26 €')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-décembre"]'
-			).should('include.text', '440,20 €')
+			).should('include.text', '470 €')
 		})
 
 		it('should save remuneration between tabs', function () {
