@@ -1,6 +1,11 @@
 # Journal des modifications
 ## next
 
+## 3.1.0
+- Mise à jour du SMIC horaire à partir du 01/11/2024
+- Correction du lien pour les TFC auto-entrepreneurs
+- Correction du taux de cotisation maladie pour les PAMC
+
 ## 3.0.0
 ### Breaking changes
 - Suppression des règles d'Acre obsolètes
