@@ -368,7 +368,6 @@ async function fetchCrispAnsweredConversationsLastMonth() {
 	return conversations?.length ?? 0
 }
 
-// eslint-disable-next-line no-unused-vars
 async function fetchAllUserAnswerStats() {
 	return await fetchCrispAnsweredConversationsLastMonth()
 }
@@ -428,31 +427,28 @@ async function fetchCrispUserFeedbackIssues() {
 	})
 	const issueCount = conversation?.reduce((acc, conversation) => {
 		conversation.meta.segments
-
 			.filter((segment) => /#[\d]+/.exec(segment))
 			.forEach((issue) => {
 				acc[issue] ??= 0
 				acc[issue] += 1
 			})
+
 		return acc
 	}, {})
 
 	return issueCount
 }
 
-// eslint-disable-next-line no-unused-vars
 async function fetchAllUserFeedbackIssues() {
 	const crispFeedbackIssues = await fetchCrispUserFeedbackIssues()
 
-	const allIssues = crispFeedbackIssues
-		.flatMap((issues) => Object.entries(issues))
-		.reduce(
-			(acc, [issue, count]) => ({
-				...acc,
-				[issue]: (acc[issue] ?? 0) + count,
-			}),
-			{}
-		)
+	const allIssues = Object.entries(crispFeedbackIssues).reduce(
+		(acc, [issue, count]) => ({
+			...acc,
+			[issue]: (acc[issue] ?? 0) + count,
+		}),
+		{}
+	)
 
 	const sortedIssues = await fetchGithubIssuesFromTags(
 		Object.entries(allIssues)
@@ -524,14 +520,14 @@ if (
 		visitesJours,
 		visitesMois,
 		rawSatisfaction,
-		// retoursUtilisateurs,
-		// nbAnswersLast30days,
+		retoursUtilisateurs,
+		nbAnswersLast30days,
 	] = await Promise.all([
 		fetchDailyVisits(),
 		fetchMonthlyVisits(),
 		fetchApi(buildSatisfactionQuery),
-		// fetchAllUserFeedbackIssues(),
-		// fetchAllUserAnswerStats(),
+		fetchAllUserFeedbackIssues(),
+		fetchAllUserAnswerStats(),
 	])
 	const satisfaction = uniformiseData(flattenPage(rawSatisfaction)).map(
 		(page) => {
@@ -552,8 +548,7 @@ if (
 			])
 		),
 		satisfaction: mergePreviousData(baseData.satisfaction, satisfaction),
-		// We use old data because we don't have account on Zammad and Crisp anymore
-		retoursUtilisateurs: baseData.retoursUtilisateurs,
-		nbAnswersLast30days: baseData.nbAnswersLast30days,
+		retoursUtilisateurs,
+		nbAnswersLast30days,
 	})
 }
