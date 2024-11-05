@@ -9,16 +9,26 @@ const meta: Meta<typeof SvgIcon> = {
 export default meta
 
 export {
+	ArrowRightIcon,
 	CarretDownIcon,
+	CheckmarkIcon,
 	ChevronIcon,
+	CircledArrowIcon,
 	CircleIcon,
 	ClockIcon,
+	CrossIcon,
 	EditIcon,
 	ErrorIcon,
+	ExternalLinkIcon,
+	GithubIcon,
+	HelpIcon,
 	HexagonIcon,
 	InfoIcon,
+	PlusCircleIcon,
 	ReturnIcon,
 	SearchIcon,
+	SquareIcon,
 	SuccessIcon,
 	TriangleIcon,
+	WarningIcon,
 } from '@/design-system/icons'
