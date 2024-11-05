@@ -15,6 +15,7 @@ import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
 import { useInitialRender } from '../utils/useInitialRender'
+import LectureGuide from './LectureGuide'
 
 type SimulationValueProps = {
 	dottedName: DottedName
@@ -79,9 +80,7 @@ export function SimulationValue({
 						)}
 					</Grid>
 
-					<StyledGuideLectureContainer item md>
-						<StyledGuideLecture />
-					</StyledGuideLectureContainer>
+					<LectureGuide />
 
 					<Grid item>
 						<AnimatedTargetValue value={evaluation.nodeValue as number} />
@@ -98,25 +97,6 @@ export function SimulationValue({
 		</Appear>
 	)
 }
-
-const StyledGuideLectureContainer = styled(Grid)`
-	display: none;
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		display: block;
-	}
-`
-
-const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })`
-	border-bottom: 1px dashed
-		${({ theme }) =>
-			theme.darkMode
-				? theme.colors.extended.grey[100]
-				: theme.colors.extended.grey[700]};
-	align-self: baseline;
-	opacity: 50%;
-	flex: 1;
-`
 
 const StyledValue = styled.div`
 	position: relative;
