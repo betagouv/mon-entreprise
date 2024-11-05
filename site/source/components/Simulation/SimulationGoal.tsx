@@ -20,6 +20,7 @@ import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
 import { useInitialRender } from '../utils/useInitialRender'
+import LectureGuide from './LectureGuide'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -92,7 +93,7 @@ export function SimulationGoal({
 					spacing={2}
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
-						<StyledGoalHeader>
+						<div>
 							{isInfoMode ? (
 								<Grid
 									container
@@ -130,11 +131,9 @@ export function SimulationGoal({
 									{rule.rawNode.résumé}
 								</StyledSmallBody>
 							)}
-						</StyledGoalHeader>
+						</div>
 					</Grid>
-					<StyledGuideLectureContainer item md>
-						<StyledGuideLecture />
-					</StyledGuideLectureContainer>
+					<LectureGuide />
 					{editable ? (
 						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
 							{!isFocused && !small && (
@@ -183,26 +182,6 @@ export function SimulationGoal({
 		</Appear>
 	)
 }
-
-const StyledGuideLectureContainer = styled(Grid)`
-	display: none;
-
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		display: block;
-	}
-`
-
-const StyledGuideLecture = styled.div.attrs({ 'aria-hidden': true })`
-	border-bottom: 1px dashed
-		${({ theme }) =>
-			theme.darkMode
-				? theme.colors.extended.grey[100]
-				: theme.colors.extended.grey[700]};
-	align-self: baseline;
-	opacity: 50%;
-	flex: 1;
-`
-const StyledGoalHeader = styled.div``
 
 const StyledGoal = styled.div<{ $small: boolean }>`
 	position: relative;
