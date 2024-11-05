@@ -140,6 +140,7 @@ export const baseTheme = {
 	},
 	darkMode: false,
 	spacings: {
+		xxxs: '.125rem',
 		xxs: '.25rem',
 		xs: '.5rem',
 		sm: '0.75rem',
