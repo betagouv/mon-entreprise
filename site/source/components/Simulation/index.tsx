@@ -21,6 +21,7 @@ import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import PreviousSimulationBanner from './../PreviousSimulationBanner'
 import { FromTop } from './../ui/animate'
+import EntrepriseSelection from './EntrepriseSelection'
 import { Questions } from './Questions'
 
 export { Questions } from './Questions'
@@ -78,6 +79,7 @@ export default function Simulation({
 				<FromTop>
 					{(firstStepCompleted || showQuestionsFromBeginning) && (
 						<>
+							<EntrepriseSelection />
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
 							</div>
