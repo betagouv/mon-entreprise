@@ -12,13 +12,18 @@ import { resetCompany } from '@/store/actions/companyActions'
 
 import SelectedEntrepriseDetails from '../entreprise/SelectedEntrepriseDetails'
 
-export default function EntrepriseInput() {
+type Props = {
+	onSubmit?: (établissement: Entreprise | null) => void
+}
+
+export default function EntrepriseInput({ onSubmit }: Props) {
 	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
 	useSetEntrepriseFromUrssafConnection()
 	const setEntreprise = useSetEntreprise()
 	const dispatch = useDispatch()
 	const handleCompanySubmit = (établissement: Entreprise | null) => {
 		setEntreprise(établissement)
+		onSubmit?.(établissement)
 	}
 	const handleCompanyClear = () => {
 		dispatch(resetCompany())
