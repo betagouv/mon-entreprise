@@ -52,10 +52,15 @@ entreprise . catégorie juridique . EI:
 
   avec:
     auto-entrepreneur:
-      question: Êtes-vous auto-entrepreneur ?
-      acronyme: AE
-      par défaut: par défaut
-      non applicable si: salarié
+      par défaut: non
+      non applicable si:
+        par défaut: non
+        une de ces conditions:
+          - salarié = oui
+          - entreprise . imposition . IR . type de bénéfices = 'BA'
+          - toutes ces conditions:
+              - activité . nature . libérale . réglementée
+              - dirigeant . indépendant . PL . métier . rattaché CIPAV = non
       références:
         S'informer sur le statut: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html
         Les étapes de la création d'une auto-entreprise: https://www.autoentrepreneur.urssaf.fr/portail/accueil/creer-mon-auto-entreprise.html
@@ -65,15 +70,6 @@ entreprise . catégorie juridique . EI:
         Le micro-entrepreneur ou auto-entrepreneur: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/micro-entrepreneur-ou-auto-entrepreneur
         Où et comment s'inscrire pour devenir micro-entrepreneur (ex auto-entrepreneur)?: https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/lessentiel-ce-regime/ou-comment-sinscrire
         La comptabilité du micro-entrepreneur (auto-entrepreneur): https://bpifrance-creation.fr/encyclopedie/micro-entreprise-regime-auto-entrepreneur/fiscal-social-comptable/comptabilite-du
-
-    auto-entrepreneur . par défaut:
-      non applicable si:
-        une de ces conditions:
-          - entreprise . imposition . IR . type de bénéfices = 'BA'
-          - toutes ces conditions:
-              - activité . nature . libérale . réglementée
-              - dirigeant . indépendant . PL . métier . rattaché CIPAV = non
-      experimental: oui
 
     EI:
       titre: entreprise individuelle

@@ -40,7 +40,6 @@ export const configRéductionGénérale: SimulationConfig = {
 	'unité par défaut': '€/an',
 	situation: {
 		dirigeant: 'non',
-		'entreprise . catégorie juridique': "''",
 		'entreprise . imposition': 'non',
 	},
 }

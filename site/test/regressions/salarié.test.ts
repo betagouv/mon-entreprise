@@ -29,7 +29,6 @@ it('calculate simulations-salarié', () => {
 		  "entreprise . associés . unique",
 		  "entreprise . catégorie juridique",
 		  "entreprise . catégorie juridique . EI",
-		  "entreprise . catégorie juridique . EI . auto-entrepreneur",
 		  "entreprise . catégorie juridique . SAS",
 		  "entreprise . catégorie juridique . SELARL",
 		  "entreprise . catégorie juridique . SELAS",

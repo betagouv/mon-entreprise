@@ -10,7 +10,10 @@ dirigeant . gérant minoritaire:
 dirigeant . régime social:
   experimental: oui
   variations:
-    - si: entreprise . catégorie juridique . EI . auto-entrepreneur
+    - si:
+        toutes ces conditions:
+          - est applicable: entreprise . catégorie juridique . EI . auto-entrepreneur
+          - entreprise . catégorie juridique . EI . auto-entrepreneur
       alors: "'auto-entrepreneur'"
     - si:
         une de ces conditions:

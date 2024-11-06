@@ -56,7 +56,7 @@
 		"@internationalized/number": "^3.2.1",
 		"@juggle/resize-observer": "^3.4.0",
 		"@leeoniya/ufuzzy": "^1.0.10",
-		"@publicodes/react-ui": "^1.5.2",
+		"@publicodes/react-ui": "^1.5.4",
 		"@react-aria/accordion": "^3.0.0-alpha.17",
 		"@react-pdf/renderer": "^3.1.12",
 		"@sentry/integrations": "^7.70.0",

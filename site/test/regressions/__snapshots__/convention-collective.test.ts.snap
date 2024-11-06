@@ -87,5 +87,5 @@ salarié . coût total employeur: 1801
 salarié . rémunération . net . payé après impôt: 1400
 salarié . rémunération . net . à payer avant impôt: 1400
 
-Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle, salarié . convention collective . avertissement convention collective"
+Notifications affichées : salarié . convention collective . avertissement convention collective, salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;

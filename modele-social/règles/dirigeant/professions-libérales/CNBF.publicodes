@@ -49,7 +49,7 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
                   alors: 608 €/an
                 - si: date >= 01/2021
                   alors: 581 €/an
-            plafond: 2 ans
+            plafond: 2 an
           - montant:
               variations:
                 - si: date >= 01/2024
@@ -60,7 +60,7 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
                   alors: 954 €/an
                 - si: date >= 01/2021
                   alors: 912 €/an
-            plafond: 3 ans
+            plafond: 3 an
           - montant:
               variations:
                 - si: date >= 01/2024
@@ -71,7 +71,7 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
                   alors: 1299 €/an
                 - si: date >= 01/2021
                   alors: 1242 €/an
-            plafond: 5 ans
+            plafond: 5 an
           - montant:
               variations:
                 - si: date >= 01/2024

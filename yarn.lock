@@ -7587,17 +7587,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/react-ui@npm:^1.5.2":
-  version: 1.5.2
-  resolution: "@publicodes/react-ui@npm:1.5.2"
+"@publicodes/react-ui@npm:^1.5.4":
+  version: 1.5.4
+  resolution: "@publicodes/react-ui@npm:1.5.4"
   dependencies:
     fuse.js: ^7.0.0
     styled-components: ^6.1.1
   peerDependencies:
-    publicodes: ^1.5.1
+    publicodes: ^1.5.3
     react: ^18
     react-dom: ^18
-  checksum: c1395c5c30fdc5d5e82134ed3f8ea75cc5682329dc714441921d2f7d4d29920fc1a1cfbeee2e645f845030c8f587e5b109c7cf60e4d3f930f2ed3ae69ff012fa
+  checksum: b10c32c3fa3537c0a9d9b9e0a8f1f09e347bd3804faaf687542208f41fd1b4405a18f2130028d0cfdc750d4ca4a2f115cb8972554def884fbe7be809761e6150
   languageName: node
   linkType: hard
 
@@ -27010,6 +27010,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"publicodes@npm:^1.5.4":
+  version: 1.5.4
+  resolution: "publicodes@npm:1.5.4"
+  peerDependencies:
+    "@types/mocha": ^9.0.0
+  checksum: bdb4f6df3f88713a7ac42ff27a48d1b5bb68ee2ca7e09f41d33f89eac888d137b49cc1826f10e6ee8826e26b0fa90ecdec988d1099e28a2770749b7f0a0591a0
+  languageName: node
+  linkType: hard
+
 "pump@npm:3.0.0, pump@npm:^3.0.0":
   version: 3.0.0
   resolution: "pump@npm:3.0.0"
@@ -28717,7 +28726,7 @@ __metadata:
     eslint-plugin-vitest: ^0.3.22
     optics-ts: ^2.4.1
     prettier: ^3.0.3
-    publicodes: ^1.5.1
+    publicodes: ^1.5.4
     rimraf: ^5.0.1
   languageName: unknown
   linkType: soft
@@ -29293,7 +29302,7 @@ __metadata:
     "@internationalized/number": ^3.2.1
     "@juggle/resize-observer": ^3.4.0
     "@leeoniya/ufuzzy": ^1.0.10
-    "@publicodes/react-ui": ^1.5.2
+    "@publicodes/react-ui": ^1.5.4
     "@react-aria/accordion": ^3.0.0-alpha.17
     "@react-pdf/renderer": ^3.1.12
     "@react-types/accordion": ^3.0.0-alpha.16

@@ -40,7 +40,6 @@ const config: SimulationConfig = {
 		'dirigeant . régime social': "'indépendant'",
 		date: '01/01/2023',
 		'dirigeant . indépendant . PL . CIPAV': 'non',
-		'entreprise . catégorie juridique': "''",
 		impôt: 'non',
 	},
 	'unité par défaut': '€',

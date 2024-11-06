@@ -29,9 +29,11 @@ it('calculate simulations-professions-libérales', () => {
 		)
 	).toMatchInlineSnapshot(`
 		[
+		  "dirigeant . assimilé salarié",
 		  "dirigeant . indépendant . IJSS",
 		  "dirigeant . indépendant . PL . CNAVPL . exonération incapacité",
 		  "dirigeant . indépendant . PL . métier",
+		  "dirigeant . indépendant . PL . métier . rattaché CIPAV",
 		  "dirigeant . indépendant . conjoint collaborateur",
 		  "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
 		  "dirigeant . indépendant . cotisations et contributions . exonérations . âge",

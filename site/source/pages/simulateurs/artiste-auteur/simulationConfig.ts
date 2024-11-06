@@ -7,6 +7,7 @@ export const configArtisteAuteur: SimulationConfig = {
 	],
 	situation: {
 		'artiste-auteur': 'oui',
+		salarié: 'oui',
 		dirigeant: {
 			'applicable si': 'non',
 		},

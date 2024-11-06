@@ -18,6 +18,7 @@ dirigeant . indépendant . PL . métier:
 
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   titre: Autre métier rattaché à la CIPAV
+  par défaut: non
   description: |
     Vous exercez un métier réglementé rattaché à la CIPAV. La liste de ces métiers est :
 
@@ -125,7 +126,7 @@ dirigeant . indépendant . PL . métier . juridique:
       description: |
         Les officiers ministériels, les officiers publics et les compagnies judiciaires sont affiliées à la Cavom pour leur retraite et de prévoyance.
 
-        Liste des métiers concernés : 
+        Liste des métiers concernés :
 
         - Huissiers de justice ;
         - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
