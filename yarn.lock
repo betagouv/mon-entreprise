@@ -29271,7 +29271,6 @@ __metadata:
     markdown-to-jsx: ^7.3.2
     modele-social: "workspace:^"
     netlify-cli: ^17.10.1
-    piano-analytics-js: ^6.13.0
     publicodes: ^1.2.0
     react: ^18.2.0
     react-aria: ^3.24.0
