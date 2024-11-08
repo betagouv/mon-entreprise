@@ -42,15 +42,15 @@ export default function PrivacyPolicy({
 	const handleChange = useCallback(
 		(checked: boolean) => {
 			if (checked) {
-				tracker.privacy.setVisitorOptout()
+				tracker?.consent.setMode('optout')
 				safeLocalStorage.setItem('tracking:do_not_track', '1')
 			} else {
-				tracker.privacy.setVisitorMode('cnil', 'exempt')
+				tracker?.consent.setMode('exempt')
 				safeLocalStorage.setItem('tracking:do_not_track', '0')
 			}
 			setValueChanged(true)
 		},
-		[setValueChanged, tracker.privacy]
+		[setValueChanged, tracker?.consent]
 	)
 
 	return (
@@ -273,9 +273,10 @@ export default function PrivacyPolicy({
 			<Body>
 				<Trans i18nKey="privacyPolicy.tracking.content">
 					mon-entreprise.urssaf.fr ne dépose pas de cookies ou de traceurs.
-					Cependant, la plateforme utilise Matomo, une solution de mesure
-					d'audience, configurée en mode « exempté » et ne nécessitant pas le
-					recueil du consentement des personnes concernées conformément aux{' '}
+					Cependant, la plateforme utilise Piano Analytics, une solution de
+					mesure d'audience, configurée en mode « exempté » et ne nécessitant
+					pas le recueil du consentement des personnes concernées conformément
+					aux{' '}
 					<StyledLink
 						href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience"
 						aria-label={t(
@@ -301,7 +302,7 @@ export default function PrivacyPolicy({
 				<Checkbox
 					name="opt-out mesure audience"
 					onChange={handleChange}
-					defaultSelected={tracker.privacy.getVisitorMode().name === 'optout'}
+					defaultSelected={tracker?.consent.getMode().name === 'optout'}
 				>
 					{t(
 						'privacyPolicy.tracking.optOut.checkboxLabel',
