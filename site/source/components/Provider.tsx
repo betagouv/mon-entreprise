@@ -2,7 +2,7 @@ import { OverlayProvider } from '@react-aria/overlays'
 import { ErrorBoundary } from '@sentry/react'
 import i18next from 'i18next'
 import Engine from 'publicodes'
-import { createContext, ReactNode } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -16,7 +16,7 @@ import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
 import * as safeLocalStorage from '../storage/safeLocalStorage'
 import { makeStore } from '../store/store'
 import { TrackingContext } from './ATInternetTracking'
-import { createTracker } from './ATInternetTracking/Tracker'
+import { ATTracker, createTracker } from './ATInternetTracking/Tracker'
 import { ErrorFallback } from './ErrorPage'
 import { IframeResizer } from './IframeResizer'
 import { ServiceWorker } from './ServiceWorker'
@@ -92,28 +92,69 @@ function BrowserRouterProvider({
 		return <>{children}</>
 	}
 
-	const ATTracker = createTracker(
-		import.meta.env.VITE_AT_INTERNET_SITE_ID,
-		safeLocalStorage.getItem('tracking:do_not_track') === '1' ||
-			navigator.doNotTrack === '1'
-	)
-
 	return (
 		<HelmetProvider>
-			<TrackingContext.Provider
-				value={
-					new ATTracker({
-						language: i18next.language as 'fr' | 'en',
-					})
-				}
-			>
+			<TrackingProvider>
 				<BrowserRouter
 					basename={import.meta.env.MODE === 'production' ? '' : basename}
 					future={{ v7_startTransition: true }}
 				>
 					{children}
 				</BrowserRouter>
-			</TrackingContext.Provider>
+			</TrackingProvider>
 		</HelmetProvider>
+	)
+}
+
+function TrackingProvider({ children }: { children: React.ReactNode }) {
+	const [tracker, setTracker] = useState<ATTracker | null>(null)
+
+	useEffect(() => {
+		const script = document.createElement('script')
+		script.src = 'https://tag.aticdn.net/piano-analytics.js'
+		script.type = 'text/javascript'
+		script.crossOrigin = 'anonymous'
+		script.async = true
+
+		script.onload = () => {
+			const siteId = (
+				!import.meta.env.SSR
+					? import.meta.env.VITE_AT_INTERNET_SITE_ID
+					: import.meta.env.VITE_AT_INTERNET_DEV_SITE_ID
+			) as string
+
+			const ATTrackerClass = createTracker(
+				siteId,
+				safeLocalStorage.getItem('tracking:do_not_track') === '1' ||
+					navigator.doNotTrack === '1'
+			)
+
+			const instance = new ATTrackerClass({
+				language: i18next.language as 'fr' | 'en',
+			})
+
+			setTracker(instance)
+		}
+
+		script.onerror = () => {
+			// eslint-disable-next-line no-console
+			console.error('Failed to load Piano Analytics script')
+		}
+
+		document.body.appendChild(script)
+
+		return () => {
+			document.body.removeChild(script)
+		}
+	}, [])
+
+	if (!tracker) {
+		return <>{children}</>
+	}
+
+	return (
+		<TrackingContext.Provider value={tracker}>
+			{children}
+		</TrackingContext.Provider>
 	)
 }
