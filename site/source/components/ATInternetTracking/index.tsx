@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useEffect } from 'react'
 
-import { ATTracker, Log } from './Tracker'
+import { ATTracker } from './Tracker'
 
-export const TrackingContext = createContext<ATTracker>(new Log())
+export const TrackingContext = createContext<ATTracker | null>(null)
 
 // From https://github.com/nclsmitchell/at-internet
 export function toAtString(string: string): string {
@@ -80,7 +80,7 @@ export function TrackPage({
 	const { chapter1, chapter2, chapter3 } = useChapters(chapters)
 	const tag = useContext(TrackingContext)
 	useEffect(() => {
-		tag.events.send(
+		tag?.sendEvent(
 			'page.display',
 			Object.fromEntries(
 				Object.entries({

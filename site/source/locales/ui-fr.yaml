@@ -1794,7 +1794,7 @@ privacyPolicy:
     ariaLabel: recommandations de la CNIL, voir plus d'informations à ce sujet sur
       le site de la CNIL, nouvelle fenêtre
     content: mon-entreprise.urssaf.fr ne dépose pas de cookies ou de traceurs.
-      Cependant, la plateforme utilise Matomo, une solution de mesure
+      Cependant, la plateforme utilise Piano Analytics, une solution de mesure
       d'audience, configurée en mode « exempté » et ne nécessitant pas le
       recueil du consentement des personnes concernées conformément aux
       <2>recommandations de la CNIL</2>.
