@@ -10,6 +10,7 @@ interface CustomMatchers<R = unknown> {
 		rule: DottedName,
 		value: Evaluation<T>
 	) => R
+	toBeApplicable: (rule: DottedName) => R
 }
 
 declare module 'vitest' {

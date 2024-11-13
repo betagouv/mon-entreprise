@@ -35,7 +35,7 @@ describe('Auto-entrepreneur', function () {
 
 			expect(engine).toEvaluate(
 				'dirigeant . auto-entrepreneur . revenu net',
-				16125
+				17440
 			)
 		})
 	})

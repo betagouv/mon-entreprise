@@ -42,6 +42,25 @@ const toEvaluate = function <T extends PublicodesTypes>(
 	}
 }
 
+const toBeApplicable = function (engine: Engine, rule: DottedName) {
+	const pass = engine.evaluate({
+		'est applicable': rule,
+	}).nodeValue
+
+	if (pass) {
+		return {
+			message: () => `La règle ${rule} ne devrait pas être applicable`,
+			pass: true,
+		}
+	} else {
+		return {
+			message: () => `La règle ${rule} devrait être applicable`,
+			pass: false,
+		}
+	}
+}
+
 expect.extend({
 	toEvaluate,
+	toBeApplicable,
 })
