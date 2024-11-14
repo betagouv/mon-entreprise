@@ -32,7 +32,13 @@ artiste-auteur . revenus . BNC . contrôle micro-bnc:
   formule:
     toutes ces conditions:
       - recettes != 0
-      - recettes > 72600 €/an
+      - recettes > plafond
+  avec:
+    plafond:
+      variations:
+        - si: date >= 01/2023
+          alors: 77700 €/an
+        - sinon: 72600 €/an
 
 artiste-auteur . revenus . BNC . recettes:
   titre: Revenu en BNC
