@@ -22,6 +22,7 @@ import { ajusteLaSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 import EffectifSwitch from './components/EffectifSwitch'
+import RégularisationSwitch from './components/RégularisationSwitch'
 import Répartition from './components/Répartition'
 import Warnings from './components/Warnings'
 import WarningSalaireTrans from './components/WarningSalaireTrans'
@@ -32,6 +33,7 @@ import {
 	MonthState,
 	réductionGénéraleDottedName,
 	reevaluateRéductionGénéraleMoisParMois,
+	RégularisationMethod,
 	rémunérationBruteDottedName,
 } from './utils'
 
@@ -56,6 +58,9 @@ export default function RéductionGénéraleSimulation() {
 		setMonthByMonth(unit === '€')
 	}, [])
 
+	const [régularisationMethod, setRégularisationMethod] =
+		useState<RégularisationMethod>('progressive')
+
 	return (
 		<>
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
@@ -65,10 +70,15 @@ export default function RéductionGénéraleSimulation() {
 					legend="Salaire brut du salarié et réduction générale applicable"
 					toggles={
 						<>
+							<RégularisationSwitch
+								régularisationMethod={régularisationMethod}
+								setRégularisationMethod={setRégularisationMethod}
+							/>
 							<EffectifSwitch />
 							<PeriodSwitch periods={periods} onSwitch={onPeriodSwitch} />
 						</>
 					}
+					régularisationMethod={régularisationMethod}
 				/>
 			</Simulation>
 		</>
@@ -77,17 +87,14 @@ export default function RéductionGénéraleSimulation() {
 
 function RéductionGénéraleSimulationGoals({
 	monthByMonth,
-	toggles = (
-		<>
-			<EffectifSwitch />
-			<PeriodSwitch />
-		</>
-	),
+	toggles,
 	legend,
+	régularisationMethod,
 }: {
 	monthByMonth: boolean
 	toggles?: React.ReactNode
 	legend: string
+	régularisationMethod: RégularisationMethod
 }) {
 	const engine = useEngine()
 	const dispatch = useDispatch()
@@ -109,10 +116,14 @@ function RéductionGénéraleSimulationGoals({
 
 	const situation = useSelector(situationSelector)
 	useEffect(() => {
-		setData((previousData) =>
-			reevaluateRéductionGénéraleMoisParMois(previousData, engine)
-		)
-	}, [engine, situation])
+		setData((previousData) => {
+			return reevaluateRéductionGénéraleMoisParMois(
+				previousData,
+				engine,
+				régularisationMethod
+			)
+		})
+	}, [engine, situation, régularisationMethod])
 
 	const updateRémunérationBruteAnnuelle = (data: MonthState[]): void => {
 		const rémunérationBruteAnnuelle = data.reduce(
