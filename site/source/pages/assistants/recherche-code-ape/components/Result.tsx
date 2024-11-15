@@ -34,13 +34,13 @@ export const Result = ({ item, disabled, hideGuichetUnique }: ResultProps) => {
 	const { t } = useTranslation()
 
 	return (
-		<RadioCardSkeleton
+		<StyledRadioCardSkeleton
 			isDisabled={disabled}
 			value={item.codeApe}
 			key={item.codeApe}
 			visibleRadioAs="div"
 		>
-			<H5 as="h3">{title}</H5>
+			<StyledH5 as="h3">{title}</StyledH5>
 			<SmallBody>
 				<Grid
 					container
@@ -53,7 +53,7 @@ export const Result = ({ item, disabled, hideGuichetUnique }: ResultProps) => {
 						<Chip>Code : {codeApe}</Chip>
 					</Grid>
 					<Grid item>
-						<Button
+						<StyledButton
 							size="XXS"
 							light
 							color="secondary"
@@ -64,7 +64,7 @@ export const Result = ({ item, disabled, hideGuichetUnique }: ResultProps) => {
 						>
 							{!open ? t('En savoir plus') : t('Replier')}&nbsp;
 							<StyledChevron aria-hidden $isOpen={open} />
-						</Button>
+						</StyledButton>
 					</Grid>
 				</Grid>
 			</SmallBody>
@@ -116,10 +116,31 @@ export const Result = ({ item, disabled, hideGuichetUnique }: ResultProps) => {
 					)}
 				</Appear>
 			)}
-		</RadioCardSkeleton>
+		</StyledRadioCardSkeleton>
 	)
 }
 
+const StyledRadioCardSkeleton = styled(RadioCardSkeleton)``
+
+const StyledH5 = styled(H5)`
+	${StyledRadioCardSkeleton}:hover & {
+		${({ theme }) =>
+			theme.darkMode &&
+			css`
+				color: ${({ theme }) => theme.colors.bases.primary[700]};
+			`}
+	}
+`
+const StyledButton = styled(Button)`
+	${({ theme }) =>
+		theme.darkMode &&
+		css`
+			${StyledRadioCardSkeleton}:hover & {
+				color: ${theme.colors.bases.secondary[700]};
+				border-color: ${theme.colors.bases.secondary[500]};
+			}
+		`}
+`
 const StyledChevron = styled(ChevronIcon)<{ $isOpen: boolean }>`
 	vertical-align: middle;
 	transform: rotate(-90deg);
@@ -128,5 +149,12 @@ const StyledChevron = styled(ChevronIcon)<{ $isOpen: boolean }>`
 		!$isOpen &&
 		css`
 			transform: rotate(90deg);
+		`}
+	${({ theme }) =>
+		theme.darkMode &&
+		css`
+			${StyledRadioCardSkeleton}:hover & {
+				fill: ${theme.colors.bases.primary[800]} !important;
+			}
 		`}
 `
