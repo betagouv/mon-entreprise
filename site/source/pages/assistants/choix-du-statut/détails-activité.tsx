@@ -3,6 +3,12 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
+import {
+	getGuichetTitle,
+	GuichetDescription,
+	GuichetEntry,
+	useGuichetInfo,
+} from '@/components/GuichetInfo'
 import Skeleton from '@/components/ui/Skeleton'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message, RadioCardGroup } from '@/design-system'
@@ -18,12 +24,6 @@ import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { guichetToPLMétier } from '@/utils/guichetToPLMétier'
 
-import {
-	getGuichetTitle,
-	GuichetDescription,
-	GuichetEntry,
-	useGuichetInfo,
-} from '../recherche-code-ape/GuichetInfo'
 import {
 	AvertissementActivitéNonDisponible,
 	estNonDisponible,

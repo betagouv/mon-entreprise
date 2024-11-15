@@ -2,17 +2,18 @@ import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
+import GuichetInfo from '@/components/GuichetInfo'
 import { Appear } from '@/components/ui/animate'
 import { Chip } from '@/design-system'
-import { Button, HelpButtonWithPopover } from '@/design-system/buttons'
+import { Button } from '@/design-system/buttons'
+import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { ChevronIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { H4, H5, H6 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 
-import GuichetInfo from './GuichetInfo'
+import { HelpGuichetUnique } from './HelpGuichetUnique'
 
 interface ResultProps {
 	debug: string | null
@@ -23,16 +24,22 @@ interface ResultProps {
 		contenuAnnexe: string[]
 		contenuExclu: string[]
 	}
+	disabled?: boolean
 	hideGuichetUnique: boolean
 }
 
-export const Result = ({ item, hideGuichetUnique }: ResultProps) => {
+export const Result = ({ item, disabled, hideGuichetUnique }: ResultProps) => {
 	const { title, codeApe, contenuCentral, contenuAnnexe, contenuExclu } = item
 	const [open, setOpen] = useState(false)
 	const { t } = useTranslation()
 
 	return (
-		<>
+		<RadioCardSkeleton
+			isDisabled={disabled}
+			value={item.codeApe}
+			key={item.codeApe}
+			visibleRadioAs="div"
+		>
 			<H5 as="h3">{title}</H5>
 			<SmallBody>
 				<Grid
@@ -109,7 +116,7 @@ export const Result = ({ item, hideGuichetUnique }: ResultProps) => {
 					)}
 				</Appear>
 			)}
-		</>
+		</RadioCardSkeleton>
 	)
 }
 
@@ -123,26 +130,3 @@ const StyledChevron = styled(ChevronIcon)<{ $isOpen: boolean }>`
 			transform: rotate(90deg);
 		`}
 `
-
-export function HelpGuichetUnique() {
-	return (
-		<HelpButtonWithPopover
-			type="info"
-			title="Qu'est-ce que le guichet unique ?"
-		>
-			<Body>
-				Le{' '}
-				<Link href="https://procedures.inpi.fr/">
-					Guichet électronique des formalités d’entreprises
-				</Link>{' '}
-				(Guichet unique) est un portail internet sécurisé, auprès duquel toute
-				entreprise est tenue de déclarer sa création, depuis le 1er janvier
-				2023.
-			</Body>
-			<Body>
-				Il utilise une classification des activités différente de celle utilisée
-				par l'INSEE pour code APE.
-			</Body>
-		</HelpButtonWithPopover>
-	)
-}

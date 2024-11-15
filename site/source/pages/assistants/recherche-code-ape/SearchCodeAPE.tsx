@@ -8,12 +8,11 @@ import { FromTop } from '@/components/ui/animate'
 import { usePersistingState } from '@/components/utils/persistState'
 import { Message, RadioCardGroup, SearchField } from '@/design-system'
 import { VisibleRadio } from '@/design-system/field/Radio/Radio'
-import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Spacing } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { usePromise } from '@/hooks/usePromise'
 
-import { Result } from './Result'
+import { Result } from './components/Result'
 
 type Data = typeof import('@/public/data/ape-search.json')
 
@@ -268,18 +267,12 @@ export default function SearchCodeAPE({
 						{list.slice(0, 25).map(({ item, debug }) => {
 							return (
 								<>
-									<RadioCardSkeleton
-										isDisabled={disabled}
-										value={item.codeApe}
-										key={item.codeApe}
-										visibleRadioAs="div"
-									>
-										<Result
-											item={item}
-											debug={debug}
-											hideGuichetUnique={hideGuichetUnique}
-										/>
-									</RadioCardSkeleton>
+									<Result
+										item={item}
+										disabled={disabled}
+										hideGuichetUnique={hideGuichetUnique}
+										debug={debug}
+									/>
 									{underSelection && selected === item.codeApe && (
 										<FromTop>{underSelection}</FromTop>
 									)}
