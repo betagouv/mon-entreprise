@@ -6,6 +6,7 @@ import { useTheme } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Notifications from '@/components/Notifications'
+import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
@@ -22,7 +23,10 @@ export default function DividendesSimulation() {
 	return (
 		<>
 			<Notifications />
-			<Simulation explanations={<DividendesExplanation />}>
+			<Simulation
+				explanations={<DividendesExplanation />}
+				afterQuestionsSlot={<SelectSimulationYear />}
+			>
 				<SimulateurWarning simulateur="dividendes" />
 				<DividendesSimulationGoals />
 			</Simulation>
