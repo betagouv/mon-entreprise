@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
+import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
@@ -23,7 +24,10 @@ export default function ArtisteAuteur() {
 
 	return (
 		<>
-			<Simulation explanations={<CotisationsResult />}>
+			<Simulation
+				explanations={<CotisationsResult />}
+				afterQuestionsSlot={<SelectSimulationYear />}
+			>
 				<SimulateurWarning simulateur="artiste-auteur" />
 				<SimulationGoals
 					legend="Vos revenus d'artiste auteur"
