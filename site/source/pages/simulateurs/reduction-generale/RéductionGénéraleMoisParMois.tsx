@@ -139,7 +139,7 @@ export default function RéductionGénéraleMoisParMois({
 										)}-${monthName}`}
 									>
 										{data[monthIndex].réductionGénérale ? (
-											<Tooltip tooltip={tooltip} hasArrow={true}>
+											<Tooltip tooltip={tooltip}>
 												<StyledDiv>
 													{formatValue(
 														{
@@ -164,10 +164,7 @@ export default function RéductionGénéraleMoisParMois({
 															data[monthIndex].rémunérationBrute,
 													}}
 												>
-													<Tooltip
-														tooltip={<WarningSalaireTrans />}
-														hasArrow={true}
-													>
+													<Tooltip tooltip={<WarningSalaireTrans />}>
 														<span className="sr-only">{t('Attention')}</span>
 														<StyledWarningIcon aria-label={t('Attention')} />
 													</Tooltip>
