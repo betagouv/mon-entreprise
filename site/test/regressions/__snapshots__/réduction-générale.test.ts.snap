@@ -115,7 +115,7 @@ salarié . cotisations . exonérations . réduction générale . imputation séc
 exports[`calculate simulations-dividendes > salaire 5`] = `
 "salarié . cotisations . assiette: 1000
 salarié . cotisations . exonérations . réduction générale: 319
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 40
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 41
 salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 60
 salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 259"
 `;

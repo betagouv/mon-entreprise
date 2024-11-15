@@ -89,21 +89,21 @@ describe(
 
 		it('should display remuneration and RGCP month by month', function () {
 			cy.contains('Réduction annuelle').click()
-			cy.get(inputSelector).first().type('{selectall}30000')
+			cy.get(inputSelector).first().type('{selectall}22800')
 
 			cy.contains('Réduction mois par mois').click()
 			cy.contains('Réduction générale mois par mois :')
 			cy.get(inputSelector)
 				.should('have.length', 12)
 				.each(($input) => {
-					cy.wrap($input).should('have.value', '2 500 €')
+					cy.wrap($input).should('have.value', '1 900 €')
 				})
 			cy.get(
 				'td[id^="salarié___cotisations___exonérations___réduction_générale-"]'
 			)
 				.should('have.length', 12)
 				.each(($td) => {
-					cy.wrap($td).should('include.text', '203,75 €')
+					cy.wrap($td).should('include.text', '523,26 €')
 				})
 		})
 
@@ -118,7 +118,7 @@ describe(
 			).should('include.text', '523,26 €')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-février"]'
-			).should('include.text', '470 €')
+			).should('include.text', '470,07 €')
 		})
 
 		it('should save remuneration between tabs', function () {
@@ -144,6 +144,7 @@ describe(
 		})
 
 		it('should include annual regularisation', function () {
+			cy.contains('Régularisation annuelle').click()
 			cy.contains('Moins de 50 salariés').click()
 			cy.contains('Réduction mensuelle').click()
 			cy.get(inputSelector).first().type('{selectall}1900')
@@ -151,8 +152,39 @@ describe(
 			cy.get(inputSelector).eq(1).type('{selectall}3000')
 
 			cy.get(
+				'td[id="salarié___cotisations___exonérations___réduction_générale-février"]'
+			).should('include.text', '0 €')
+			cy.get(
+				'td[id="salarié___cotisations___exonérations___réduction_générale__régularisation-février"]'
+			).should('include.text', '0 €')
+			cy.get(
+				'td[id="salarié___cotisations___exonérations___réduction_générale-mars"]'
+			).should('include.text', '523,26 €')
+			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-décembre"]'
 			).should('include.text', '460,38 €')
+		})
+
+		it('should include progressive regularisation', function () {
+			cy.contains('Régularisation progressive').click()
+			cy.contains('Moins de 50 salariés').click()
+			cy.contains('Réduction mensuelle').click()
+			cy.get(inputSelector).first().type('{selectall}1900')
+			cy.contains('Réduction mois par mois').click()
+			cy.get(inputSelector).eq(1).type('{selectall}3000')
+
+			cy.get(
+				'td[id="salarié___cotisations___exonérations___réduction_générale-février"]'
+			).should('include.text', '0 €')
+			cy.get(
+				'td[id="salarié___cotisations___exonérations___réduction_générale__régularisation-février"]'
+			).should('include.text', '-62,17 €')
+			cy.get(
+				'td[id="salarié___cotisations___exonérations___réduction_générale-mars"]'
+			).should('include.text', '522,87 €')
+			cy.get(
+				'td[id="salarié___cotisations___exonérations___réduction_générale-décembre"]'
+			).should('include.text', '522,98 €')
 		})
 
 		it('should be RGAA compliant', function () {
