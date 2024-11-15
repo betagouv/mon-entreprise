@@ -172,7 +172,12 @@ export default function RéductionGénéraleMoisParMois({
 											</StyledDiv>
 										)}
 									</td>
-									<td>
+									<td
+										id={`${réductionGénéraleDottedName.replace(
+											/\s|\./g,
+											'_'
+										)}__régularisation-${monthName}`}
+									>
 										{formatValue(
 											{
 												nodeValue: data[monthIndex].régularisation,
