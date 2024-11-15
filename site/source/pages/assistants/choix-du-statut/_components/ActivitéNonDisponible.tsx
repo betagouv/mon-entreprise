@@ -1,8 +1,7 @@
+import { GuichetEntry } from '@/components/GuichetInfo'
 import { Message } from '@/design-system'
 import { H3 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
-
-import { GuichetEntry } from '../../recherche-code-ape/GuichetInfo'
 
 export function estNonDisponible(guichet: GuichetEntry): boolean {
 	return (

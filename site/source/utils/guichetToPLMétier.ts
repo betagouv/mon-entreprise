@@ -1,4 +1,4 @@
-import { GuichetEntry } from '@/pages/assistants/recherche-code-ape/GuichetInfo'
+import { GuichetEntry } from '@/components/GuichetInfo'
 
 type PLRMétier =
 	| "'rattaché CIPAV'"
