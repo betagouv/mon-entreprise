@@ -90,6 +90,7 @@ export default function RéductionGénéraleMoisParMois({
 							{t('Réduction générale')}
 							<ExplicableRule dottedName={réductionGénéraleDottedName} light />
 						</th>
+						<th scope="col">{t('Régularisaton')}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -137,15 +138,12 @@ export default function RéductionGénéraleMoisParMois({
 											'_'
 										)}-${monthName}`}
 									>
-										{data[monthIndex].réductionGénérale ||
-										data[monthIndex].régularisation ? (
+										{data[monthIndex].réductionGénérale ? (
 											<Tooltip tooltip={tooltip} hasArrow={true}>
 												<StyledDiv>
 													{formatValue(
 														{
-															nodeValue:
-																data[monthIndex].réductionGénérale +
-																data[monthIndex].régularisation,
+															nodeValue: data[monthIndex].réductionGénérale,
 														},
 														{
 															displayedUnit,
@@ -175,6 +173,17 @@ export default function RéductionGénéraleMoisParMois({
 													</Tooltip>
 												</Condition>
 											</StyledDiv>
+										)}
+									</td>
+									<td>
+										{formatValue(
+											{
+												nodeValue: data[monthIndex].régularisation,
+											},
+											{
+												displayedUnit,
+												language,
+											}
 										)}
 									</td>
 								</tr>
