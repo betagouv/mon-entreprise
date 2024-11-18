@@ -33,8 +33,8 @@ export function IframeIntegrationCard({
 			}}
 		>
 			<Trans i18nKey="nextSteps.integration-iframe.body">
-				Decouvrez comment ajouter ce simulateur sur votre site internet en un
-				clic via un script clé en main.
+				Découvrez comment ajouter ce simulateur sur votre site internet en un
+				clic, via un script clé en main.
 			</Trans>
 		</Article>
 	)

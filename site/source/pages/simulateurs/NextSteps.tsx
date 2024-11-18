@@ -3,8 +3,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Condition } from '@/components/EngineValue/Condition'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { useEngine } from '@/components/utils/EngineContext'
-// import { Article } from '@/design-system/card'
-// import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import {
@@ -31,11 +29,11 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	const engine = useEngine()
 
 	const { key } = useCurrentSimulatorData()
-	const guideUrssaf = guidesUrssaf.find(
+	const guidesUrssaf = guidesUrssafList.filter(
 		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
 	)
 
-	if (!iframePath && !guideUrssaf) {
+	if (!iframePath && !guidesUrssaf.length && !nextSteps) {
 		return null
 	}
 
@@ -56,12 +54,27 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						<AnnuaireEntreprises />
 					</Grid>
 				</WhenAlreadyDefined>
+
 				{nextSteps &&
 					nextSteps.map((simulatorId) => (
 						<Grid item xs={12} sm={6} lg={4} key={simulatorId} role="listitem">
 							<SimulatorRessourceCard simulatorId={simulatorId} />
 						</Grid>
 					))}
+
+				{guidesUrssaf &&
+					language === 'fr' &&
+					guidesUrssaf.map((guideUrssaf, index) => (
+						<Grid item xs={12} sm={6} lg={4} role="listitem" key={index}>
+							<GuideURSSAFCard guideUrssaf={guideUrssaf} />
+						</Grid>
+					))}
+
+				{key === 'salarié' && (
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
+						<CodeDuTravailNumeriqueCard />
+					</Grid>
+				)}
 
 				{iframePath && (
 					<Grid item xs={12} sm={6} lg={4} role="listitem">
@@ -71,16 +84,6 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						/>
 					</Grid>
 				)}
-				{key === 'salarié' && (
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
-						<CodeDuTravailNumeriqueCard />
-					</Grid>
-				)}
-				{guideUrssaf && language === 'fr' && (
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
-						<GuideURSSAFCard guideUrssaf={guideUrssaf} />
-					</Grid>
-				)}
 			</Grid>
 
 			<Spacing lg />
@@ -88,7 +91,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 	)
 }
 
-const guidesUrssaf = [
+const guidesUrssafList = [
 	/* On désactive tous les guides Urssaf qui sont des documents non accessibles. */
 	// {
 	// 	url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/PAM/Diaporama_Medecins.pdf',
@@ -110,18 +113,87 @@ const guidesUrssaf = [
 	// 	associatedRule: 'dirigeant',
 	// 	title: 'Guide Urssaf pour les indépendants',
 	// },
+
 	{
-		url: 'https://www.urssaf.fr/portail/home/employeur/employer-du-personnel/nouvel-employeur.html',
-		title: "Nouvel employeur : l'Urssaf vous accompagne",
+		url: 'https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries.html',
+		title: 'Embaucher et gérer les salariés',
 		description:
-			'Vous créez votre premier emploi ? Découvrez le service Urssaf Première Embauche, un accompagnement personnalisé et entièrement gratuit pendant un an.',
+			'De l’embauche d’un salarié jusqu’à la fin de la relation de travail, l’Urssaf vous accompagne dans vos démarches et formalités à accomplir.',
 		associatedRule: {
 			'toutes ces conditions': [
 				'dirigeant = non',
 				{ 'est non défini': 'artiste-auteur' },
 			],
 		},
-		ctaLabel: 'En savoir plus',
+	},
+	{
+		url: 'https://www.urssaf.fr/accueil/services/services-employeurs/premiere-embauche.html',
+		title: "Nouvel employeur : l'Urssaf vous accompagne",
+		description:
+			'Première embauche, un service de l’Urssaf pour guider les nouveaux employeurs dans leurs démarches.',
+		associatedRule: {
+			'toutes ces conditions': [
+				'dirigeant = non',
+				{ 'est non défini': 'artiste-auteur' },
+			],
+		},
+	},
+
+	{
+		url: 'https://www.urssaf.fr/accueil/services/services-tiers-declarants/service-expert-comptable.html',
+		title: 'Le service en ligne Expert-comptable',
+		description:
+			"L'Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.",
+		associatedRule:
+			"dirigeant . indépendant . PL . métier = 'expert-comptable'",
+	},
+
+	{
+		url: 'https://www.urssaf.fr/accueil/services/services-independants/service-pam.html',
+		title: 'Le service en ligne Praticien ou auxiliaire médical',
+		description:
+			"L'Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.",
+		associatedRule: 'dirigeant . indépendant . PL . PAMC',
+	},
+	{
+		url: 'https://www.urssaf.fr/accueil/services/services-independants/service-plr.html',
+		title: 'Le service en ligne Profession libérale réglementée',
+		description:
+			"L'Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.",
+		associatedRule: {
+			'toutes ces conditions': [
+				'dirigeant . indépendant . PL',
+				"dirigeant . indépendant . PL . métier != 'expert-comptable'",
+				'dirigeant . indépendant . PL . PAMC = non',
+			],
+		},
+	},
+	{
+		url: 'https://www.urssaf.fr/accueil/services/services-independants/service-autoentrepreneur.html',
+		title: 'Le service en ligne Auto-entrepreneur',
+		description:
+			"L'Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.",
+		associatedRule: 'dirigeant . auto-entrepreneur',
+	},
+	{
+		url: 'https://www.urssaf.fr/accueil/services/services-independants/mespremiersmois.html',
+		title: 'Mes premiers mois avec l’Urssaf',
+		description:
+			'Un accompagnement tout au long des étapes clés de votre première année d’entrepreneuriat, pour réussir le lancement de votre entreprise.',
+		associatedRule: {
+			'une de ces conditions': [
+				'dirigeant . auto-entrepreneur',
+				'dirigeant . indépendant . PL',
+			],
+		},
+	},
+
+	{
+		url: 'https://www.urssaf.fr/accueil/services/services-artisteauteur-diffuseur/service-artiste-auteur.html',
+		title: 'Le service en ligne Artiste-auteur',
+		description:
+			"L'Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.",
+		associatedRule: 'artiste-auteur',
 	},
 ]
 

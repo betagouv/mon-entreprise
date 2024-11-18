@@ -26,10 +26,10 @@ export function GuideURSSAFCard({ guideUrssaf }: GuideURSSAFCardProps) {
 	return (
 		<Article
 			title={guideUrssaf.title}
-			icon={<Emoji emoji="📖" />}
-			ctaLabel={guideUrssaf.ctaLabel ?? 'Voir le guide'}
+			icon={<Emoji emoji="👥" />}
+			ctaLabel={guideUrssaf.ctaLabel ?? 'En savoir plus'}
 			aria-label={
-				guideUrssaf.title + ', ' + (guideUrssaf.ctaLabel ?? 'Voir le guide')
+				guideUrssaf.title + ', ' + (guideUrssaf.ctaLabel ?? 'En savoir plus')
 			}
 			href={guideUrssaf.url}
 		>
