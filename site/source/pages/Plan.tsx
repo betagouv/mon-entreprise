@@ -62,8 +62,15 @@ export const PlanContent = () => {
 						.filter(
 							([, { pathId }]) =>
 								pathId.startsWith('simulateurs') &&
-								(!pathId.startsWith('simulateurs.profession-libérale.') ||
-									pathId === 'simulateurs.profession-libérale.index')
+								!pathId.startsWith('simulateurs.profession-libérale.cipav') &&
+								!pathId.startsWith(
+									'simulateurs.profession-libérale.auxiliaire'
+								) &&
+								!pathId.startsWith(
+									'simulateurs.profession-libérale.chirurgien-dentiste'
+								) &&
+								!pathId.startsWith('simulateurs.profession-libérale.médecin') &&
+								!pathId.startsWith('simulateurs.profession-libérale.sage-femme')
 						)
 						.map(([simulateurKey, { path, title }]) => {
 							return (
