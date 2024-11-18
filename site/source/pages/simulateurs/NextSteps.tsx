@@ -17,6 +17,7 @@ import { useSitePaths } from '@/sitePaths'
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { AutoEntrepreneurCard } from '../assistants/pour-mon-entreprise/AutoEntrepeneurCard'
 import { CodeDuTravailNumeriqueCard } from '../assistants/pour-mon-entreprise/CodeDuTravailNumeriqueCard'
+import { ReductionGeneraleCard } from '../assistants/pour-mon-entreprise/ReductionGeneraleCard'
 
 interface NextStepsProps {
 	iframePath?: MergedSimulatorDataValues['iframePath']
@@ -61,6 +62,12 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 							<SimulatorRessourceCard simulatorId={simulatorId} />
 						</Grid>
 					))}
+
+				{key === 'réduction-générale' && (
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
+						<ReductionGeneraleCard />
+					</Grid>
+				)}
 
 				{guidesUrssaf &&
 					language === 'fr' &&
