@@ -18,7 +18,6 @@ import { Grid, Spacing } from '@/design-system/layout'
 import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { headings } from '@/design-system/typography'
 import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { hash, omit } from '@/utils'
 import {
 	buildSituationFromObject,
@@ -32,11 +31,7 @@ const LazyEndBlock = import.meta.env.SSR
 	? () => null
 	: lazy(() => import('./EndBlock'))
 
-// Remove Guide urssaf from Ressource utiles section
-const config = { situation: { dirigeant: 'non' } }
-
 export default function PageMobilité() {
-	useSimulationConfig({ key: 'page-mobilité', config })
 	const engine = new Engine(formulaire)
 
 	return (

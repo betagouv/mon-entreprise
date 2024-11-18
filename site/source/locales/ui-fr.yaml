@@ -792,8 +792,8 @@ news:
 nextSteps:
   integration-iframe:
     aria-label: Intégrer le module web, Voir la documentation
-    body: Decouvrez comment ajouter ce simulateur sur votre site internet en un clic
-      via un script clé en main.
+    body: Découvrez comment ajouter ce simulateur sur votre site internet en un
+      clic, via un script clé en main.
     cta: Voir la documentation
     title: Intégrer le module web
 nombres de votes: nombres de votes
