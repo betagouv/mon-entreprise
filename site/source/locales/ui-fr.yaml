@@ -699,6 +699,12 @@ gérer:
         au statut d'auto-entrepreneur
       cta: Visiter le site
       title: Site officiel des auto-entrepreneurs
+    réductionGénérale:
+      aria-label: Consulter le guide sur urssaf.fr, nouvelle fenêtre
+      body: Calcul, déclaration, règles... Consultez le guide de l'Urssaf sur la
+        réduction générale des cotisations.
+      cta: Consulter le guide
+      title: La réduction générale des cotisations
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur

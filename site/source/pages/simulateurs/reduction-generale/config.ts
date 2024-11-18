@@ -32,6 +32,7 @@ export function réductionGénéraleConfig({
 				'Estimation du montant de la réduction générale des cotisations patronales (RGCP). Cette réduction est applicable pour les salaires inférieurs à 1,6 fois le SMIC.'
 			),
 		},
+		nextSteps: ['salarié'],
 		path: sitePaths.simulateurs['réduction-générale'],
 		simulation: configRéductionGénérale,
 		component: RéductionGénéraleSimulation,

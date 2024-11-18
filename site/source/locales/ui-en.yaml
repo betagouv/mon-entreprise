@@ -665,6 +665,12 @@ gérer:
         the information you need about auto-entrepreneur status.
       cta: Visit the site
       title: Official website for auto-entrepreneurs
+    réductionGénérale:
+      aria-label: Consult the guide on urssaf.fr, new window
+      body: Calculation, declaration, rules... Consult the Urssaf guide to the general
+        reduction in contributions.
+      cta: Consult the guide
+      title: General reduction in contributions
 iframe:
   description: Tools for developers
   title: Integrate a simulator
