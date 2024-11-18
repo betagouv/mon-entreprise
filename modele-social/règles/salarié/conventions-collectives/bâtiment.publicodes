@@ -153,7 +153,7 @@ salarié . convention collective . BTP . congés payés:
         # - si: caisse de rattachement = 'centre ouest'
           # alors: 20.30%
           - si: caisse de rattachement = 'centre'
-           alors: 20.20%
+            alors: 20.20%
           - si: caisse de rattachement = 'grand est'
             alors: 19.85%
           - si: caisse de rattachement = 'rhône alpes auvergne'
