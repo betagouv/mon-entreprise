@@ -31,6 +31,7 @@ import {
 	getInitialRéductionGénéraleMoisParMois,
 	getRéductionGénéraleFromRémunération,
 	MonthState,
+	Options,
 	réductionGénéraleDottedName,
 	reevaluateRéductionGénéraleMoisParMois,
 	RégularisationMethod,
@@ -42,15 +43,24 @@ export default function RéductionGénéraleSimulation() {
 	const [monthByMonth, setMonthByMonth] = useState(false)
 	const periods = [
 		{
-			label: t('Réduction mensuelle'),
+			label: t(
+				'pages.simulateurs.réduction-générale.tab.month',
+				'Réduction mensuelle'
+			),
 			unit: '€/mois',
 		},
 		{
-			label: t('Réduction annuelle'),
+			label: t(
+				'pages.simulateurs.réduction-générale.tab.year',
+				'Réduction annuelle'
+			),
 			unit: '€/an',
 		},
 		{
-			label: t('Réduction mois par mois'),
+			label: t(
+				'pages.simulateurs.réduction-générale.tab.month-by-month',
+				'Réduction mois par mois'
+			),
 			unit: '€',
 		},
 	]
@@ -67,7 +77,10 @@ export default function RéductionGénéraleSimulation() {
 				<SimulateurWarning simulateur="réduction-générale" />
 				<RéductionGénéraleSimulationGoals
 					monthByMonth={monthByMonth}
-					legend="Salaire brut du salarié et réduction générale applicable"
+					legend={t(
+						'pages.simulateurs.réduction-générale.legend',
+						'Salaire brut du salarié et réduction générale applicable'
+					)}
 					toggles={
 						<>
 							<RégularisationSwitch
@@ -148,10 +161,12 @@ function RéductionGénéraleSimulationGoals({
 		setData((previousData) => {
 			const updatedData = [...previousData]
 			updatedData[monthIndex] = {
+				...updatedData[monthIndex],
 				rémunérationBrute,
 				réductionGénérale: getRéductionGénéraleFromRémunération(
 					engine,
-					rémunérationBrute
+					rémunérationBrute,
+					updatedData[monthIndex].options
 				),
 				régularisation: 0,
 			}
@@ -162,19 +177,40 @@ function RéductionGénéraleSimulationGoals({
 		})
 	}
 
+	const onOptionChange = (monthIndex: number, options: Options) => {
+		setData((previousData) => {
+			const updatedData = [...previousData]
+			const réductionGénérale = getRéductionGénéraleFromRémunération(
+				engine,
+				updatedData[monthIndex].rémunérationBrute,
+				options
+			)
+
+			updatedData[monthIndex] = {
+				...updatedData[monthIndex],
+				options,
+				réductionGénérale,
+				régularisation: 0,
+			}
+
+			return updatedData
+		})
+	}
+
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
 			{monthByMonth ? (
 				<RéductionGénéraleMoisParMois
 					data={réductionGénéraleMoisParMoisData}
-					onChange={onRémunérationChange}
+					onRémunérationChange={onRémunérationChange}
+					onOptionChange={onOptionChange}
 				/>
 			) : (
 				<>
 					<SimulationGoal
 						dottedName={rémunérationBruteDottedName}
 						round={false}
-						label={t('Rémunération brute', 'Rémunération brute')}
+						label={t('Rémunération brute')}
 						onUpdateSituation={initializeRéductionGénéraleMoisParMoisData}
 					/>
 

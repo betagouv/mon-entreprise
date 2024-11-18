@@ -284,14 +284,8 @@ Revenu disponible: Revenu disponible
 Revenu du dirigeant par statut: Revenu du dirigeant par statut
 Revenu net mensuel après impôts: Revenu net mensuel après impôts
 Règles de calculs: Règles de calculs
-Réduction annuelle: Réduction annuelle
 Réduction générale: Réduction générale
-"Réduction générale mois par mois :": "Réduction générale mois par mois :"
-Réduction mensuelle: Réduction mensuelle
-Réduction mois par mois: Réduction mois par mois
 Régime d'imposition: Régime d'imposition
-Régularisation annuelle: Régularisation annuelle
-Régularisation progressive: Régularisation progressive
 Régularisaton: Régularisaton
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
@@ -352,7 +346,6 @@ Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
 Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
 Type: Type
-Type de régularisation: Type de régularisation
 URSSAF Mon entreprise, accéder à la page d'accueil: URSSAF Mon entreprise, accéder à la page d'accueil
 Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs indépendants</4> décédés, sous certaines conditions.:
   Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs
@@ -1574,12 +1567,39 @@ pages:
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
     réduction-générale:
+      legend: Salaire brut du salarié et réduction générale applicable
       meta:
         description: Estimation du montant de la réduction générale des cotisations
           patronales (RGCP). Cette réduction est applicable pour les salaires
           inférieurs à 1,6 fois le SMIC.
         title: Réduction générale
+      month-by-month:
+        caption: "Réduction générale mois par mois :"
+      option:
+        aria-label: Ajoute des champs pour ajuster la rémunération (heures supplémentaires)
+        label:
+          heures-complémentaires: Heures complémentaires
+          heures-supplémentaires: Heures supplémentaires
+        popover: "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
+          dans le calcul de la réduction générale : la rémunération brute est
+          comparée au montant du SMIC majoré de ce nombre d'heures
+          supplémentaires ou complémentaires.</0><1>Si vous avez répondu à la
+          question sur les heures supplémentaires ou complémentaires, la valeur
+          sera écrasée par celle que vous saisissez mois par mois.</1>"
+        title: Plus d'options (heures supplémentaires)
+      régularisation:
+        annuelle: Régularisation annuelle
+        progressive: Régularisation progressive
+        type: Type de régularisation
+      répartition:
+        chômage: dont chômage
+        retraite: IRC
+        urssaf: URSSAF
       shortname: Réduction générale
+      tab:
+        month: Réduction mensuelle
+        month-by-month: Réduction mois par mois
+        year: Réduction annuelle
       title: Simulateur de réduction générale des cotisations
       warnings:
         JEI: La réduction générale n'est pas cumulable avec l'exonération Jeune

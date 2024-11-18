@@ -269,14 +269,8 @@ Revenu disponible: Disposable income
 Revenu du dirigeant par statut: Executive income by status
 Revenu net mensuel après impôts: Net monthly income after tax
 Règles de calculs: Calculation rules
-Réduction annuelle: Annual discount
 Réduction générale: General reduction
-"Réduction générale mois par mois :": "General discount month by month :"
-Réduction mensuelle: Monthly discount
-Réduction mois par mois: Monthly discount
 Régime d'imposition: Taxation system
-Régularisation annuelle: Annual adjustment
-Régularisation progressive: Progressive regularization
 Régularisaton: Regularization
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
@@ -337,7 +331,6 @@ Tout plier: Fold everything
 Tout réinitialiser: Reset all
 Travailleurs Non Salariés (TNS): Self-employed workers (TNS)
 Type: Type
-Type de régularisation: Type of adjustment
 URSSAF Mon entreprise, accéder à la page d'accueil: URSSAF Mon entreprise, go to home page
 Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs indépendants</4> décédés, sous certaines conditions.:
   An <1>"orphan" capital</1> is paid to the <4>children</4> of deceased
@@ -1480,12 +1473,39 @@ pages:
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
     réduction-générale:
+      legend: Employee's gross salary and applicable general reduction
       meta:
         description: Estimate of the amount of the general reduction in employer
           contributions (RGCP). This reduction applies to salaries below 1.6
           times the SMIC.
         title: General reduction
+      month-by-month:
+        caption: "General discount month by month :"
+      option:
+        aria-label: Adds fields for adjusting remuneration (overtime)
+        label:
+          heures-complémentaires: Overtime
+          heures-supplémentaires: Overtime
+        popover: "<0>The number of hours of overtime or complementary work is used to
+          calculate the general reduction: the gross remuneration is compared
+          with the SMIC increased by the number of hours of overtime or
+          complementary work.</0><1>If you have answered the question on
+          overtime or complementary hours, the value will be overwritten by the
+          value you enter month by month.</1>"
+        title: More options (overtime)
+      régularisation:
+        annuelle: Annual adjustment
+        progressive: Progressive regularization
+        type: Type of adjustment
+      répartition:
+        chômage: of which unemployment
+        retraite: IRC
+        urssaf: URSSAF
       shortname: General reduction
+      tab:
+        month: Monthly discount
+        month-by-month: Monthly discount
+        year: Annual discount
       title: General contribution reduction simulator
       warnings:
         JEI: The general reduction cannot be combined with the Young Innovative Company

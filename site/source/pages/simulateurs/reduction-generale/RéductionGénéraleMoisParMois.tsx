@@ -5,16 +5,18 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 
 import RéductionGénéraleMoisParMoisRow from './components/RéductionGénéraleMoisParMoisRow'
 import Warnings from './components/Warnings'
-import { MonthState, réductionGénéraleDottedName } from './utils'
+import { MonthState, Options, réductionGénéraleDottedName } from './utils'
 
 type Props = {
 	data: MonthState[]
-	onChange: (monthIndex: number, rémunérationBrute: number) => void
+	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
+	onOptionChange: (monthIndex: number, options: Options) => void
 }
 
 export default function RéductionGénéraleMoisParMois({
 	data,
-	onChange,
+	onRémunérationChange,
+	onOptionChange,
 }: Props) {
 	const { t } = useTranslation()
 
@@ -36,14 +38,20 @@ export default function RéductionGénéraleMoisParMois({
 	return (
 		<>
 			<StyledTable style={{ width: '100%' }}>
-				<caption>{t('Réduction générale mois par mois :')}</caption>
+				<caption>
+					{t(
+						'pages.simulateurs.réduction-générale.month-by-month.caption',
+						'Réduction générale mois par mois :'
+					)}
+				</caption>
 				<thead>
 					<tr>
 						<th scope="col">{t('Mois')}</th>
 						<th scope="col">
-							{t('Rémunération brute', 'Rémunération brute')}
+							{t('Rémunération brute')}
 							<ExplicableRule dottedName="salarié . rémunération . brut" />
 						</th>
+						<th />
 						<th scope="col">
 							{t('Réduction générale')}
 							<ExplicableRule dottedName={réductionGénéraleDottedName} light />
@@ -59,8 +67,14 @@ export default function RéductionGénéraleMoisParMois({
 								monthName={monthName}
 								data={data[monthIndex]}
 								index={monthIndex}
-								onChange={(monthIndex: number, rémunérationBrute: number) => {
-									onChange(monthIndex, rémunérationBrute)
+								onRémunérationChange={(
+									monthIndex: number,
+									rémunérationBrute: number
+								) => {
+									onRémunérationChange(monthIndex, rémunérationBrute)
+								}}
+								onOptionChange={(monthIndex: number, options: Options) => {
+									onOptionChange(monthIndex, options)
 								}}
 							/>
 						))}
