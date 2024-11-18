@@ -172,8 +172,14 @@ salarié . convention collective . BTP . congés payés:
     CIBTP: https://www.cibtp.fr/
     Article L3141-30 du Code du Travail: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DF6E6424807679A6EDC2915496BEA32D.tplgfr22s_2?idArticle=LEGIARTI000033020675&cidTexte=LEGITEXT000006072050&dateTexte=20200320
 
-
-
+# catégorie parente chômage intempéries
+salarié . convention collective . BTP . chômage intempéries:
+  formule:
+      une possibilité:
+        choix obligatoire: oui
+        possibilités:
+          - gros oeuvre
+          - second oeuvre
 
 # nouvelle catégorie de salarié gros oeuvre
 salarié . convention collective . BTP . chômage intempéries . gros oeuvre:
