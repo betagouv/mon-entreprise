@@ -1101,7 +1101,7 @@ pages:
         body: L'intégralité du moteur de calcul socio-fiscal développé par l'Urssaf, mis
           à disposition librement sous forme de bibliothèque NPM.
         cta: Commencer
-        title: Libraire de calcul
+        title: Librairie de calcul
       publicodes:
         body: Nos outils sont propulsés par Publicodes, un nouveau langage pour encoder
           des algorithmes “explicables”.
