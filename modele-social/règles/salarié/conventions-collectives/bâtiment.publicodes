@@ -138,7 +138,6 @@ salarié . convention collective . BTP . cotisations employeur:
   remplace: cotisations . employeur
   somme:
     - cotisations . employeur
-    - congés payés
     - OPPBTP
     - chômage intempéries
 
@@ -180,6 +179,8 @@ salarié . convention collective . BTP . chômage intempéries:
         possibilités:
           - gros oeuvre
           - second oeuvre
+          
+
 
 # nouvelle catégorie de salarié gros oeuvre
 salarié . convention collective . BTP . chômage intempéries . gros oeuvre:
@@ -243,6 +244,69 @@ salarié . convention collective . BTP . chômage intempéries . second oeuvre:
 
 
 
+salarié . convention collective . BTP . chômage intempéries . gros oeuvre . caisse de rattachement:
+  question: "Caisse liée au salarié pour les opérations d'intempéries"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - idf
+        - nord ouest
+        - grand ouest
+        - centre ouest
+        - centre
+        - grand est
+        - rhône alpes auvergne
+        - méditerranée
+        - sud ouest
+  par défaut: "'idf'"
+
+  avec:
+    centre:
+    centre ouest:
+    grand est:
+    grand ouest:
+
+    idf:
+      titre: Île-de-France
+    méditerranée:
+    nord ouest:
+    rhône alpes auvergne:
+    sud ouest:
+
+
+
+salarié . convention collective . BTP . chômage intempéries . second oeuvre . caisse de rattachement:
+  question: "Caisse liée au salarié pour les opérations d'intempéries"
+  formule: 
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - idf
+        - nord ouest
+        - grand ouest
+        - centre ouest
+        - centre
+        - grand est
+        - rhône alpes auvergne
+        - méditerranée
+        - sud ouest
+  par défaut: "'idf'"
+
+  avec:
+    centre:
+    centre ouest:
+    grand est:
+    grand ouest:
+
+    idf:
+      titre: Île-de-France
+    méditerranée:
+    nord ouest:
+    rhône alpes auvergne:
+    sud ouest:
+
+
 salarié . convention collective . BTP . congés payés . caisse de rattachement:
   question: À quelle caisse l'entreprise est-elle rattachée pour le versement de
     la cotisation congés payés ?
@@ -260,6 +324,7 @@ salarié . convention collective . BTP . congés payés . caisse de rattachement
         - méditerranée
         - sud ouest
   par défaut: "'idf'"
+
 
   avec:
     centre:
