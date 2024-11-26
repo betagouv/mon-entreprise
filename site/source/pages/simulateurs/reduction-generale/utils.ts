@@ -7,24 +7,64 @@ import Engine from 'publicodes'
 export const rémunérationBruteDottedName = 'salarié . cotisations . assiette'
 export const réductionGénéraleDottedName =
 	'salarié . cotisations . exonérations . réduction générale'
+export const heuresSupplémentairesDottedName =
+	'salarié . temps de travail . heures supplémentaires'
+export const heuresComplémentairesDottedName =
+	'salarié . temps de travail . heures complémentaires'
 
 export type MonthState = {
 	rémunérationBrute: number
+	options: Options
 	réductionGénérale: number
 	régularisation: number
 }
 
+export type Options = {
+	heuresSupplémentaires?: number
+	heuresComplémentaires?: number
+}
+
 export type RégularisationMethod = 'annuelle' | 'progressive'
 
-export const getRéductionGénéraleFromRémunération = (
-	engine: Engine<DottedName>,
-	rémunérationBrute: number
+const getDateForContexte = (monthIndex: number, year: number): string => {
+	const date = new Date(year, monthIndex)
+
+	return date.toLocaleDateString('fr')
+}
+
+const getMonthlyRéductionGénérale = (
+	date: string,
+	rémunérationBrute: number,
+	options: Options,
+	engine: Engine<DottedName>
 ): number => {
 	const réductionGénérale = engine.evaluate({
 		valeur: réductionGénéraleDottedName,
 		unité: '€/mois',
 		contexte: {
+			date,
 			[rémunérationBruteDottedName]: rémunérationBrute,
+			[heuresSupplémentairesDottedName]: options.heuresSupplémentaires ?? 0,
+			[heuresComplémentairesDottedName]: options.heuresComplémentaires ?? 0,
+		},
+	})
+
+	return réductionGénérale.nodeValue as number
+}
+
+const getTotalRéductionGénérale = (
+	rémunérationBrute: number,
+	SMIC: number,
+	coefT: number,
+	engine: Engine<DottedName>
+): number => {
+	const réductionGénérale = engine.evaluate({
+		valeur: réductionGénéraleDottedName,
+		arrondi: 'non',
+		contexte: {
+			[rémunérationBruteDottedName]: rémunérationBrute,
+			'salarié . temps de travail . SMIC': SMIC,
+			'salarié . cotisations . exonérations . T': coefT,
 		},
 	})
 
@@ -32,6 +72,7 @@ export const getRéductionGénéraleFromRémunération = (
 }
 
 export const getInitialRéductionGénéraleMoisParMois = (
+	year: number,
 	engine: Engine<DottedName>
 ): MonthState[] => {
 	const rémunérationBrute =
@@ -40,26 +81,76 @@ export const getInitialRéductionGénéraleMoisParMois = (
 			arrondi: 'oui',
 			unité: '€/mois',
 		})?.nodeValue as number) || 0
-	const réductionGénérale = rémunérationBrute
-		? getRéductionGénéraleFromRémunération(engine, rémunérationBrute)
-		: 0
+	const heuresSupplémentaires =
+		(engine.evaluate({
+			valeur: heuresSupplémentairesDottedName,
+			unité: 'heures/mois',
+		})?.nodeValue as number) || 0
+	const heuresComplémentaires =
+		(engine.evaluate({
+			valeur: heuresComplémentairesDottedName,
+			unité: 'heures/mois',
+		})?.nodeValue as number) || 0
 
-	return Array(12).fill({
-		rémunérationBrute,
-		réductionGénérale,
-		régularisation: 0,
-	}) as MonthState[]
+	if (!rémunérationBrute) {
+		return Array(12).fill({
+			rémunérationBrute,
+			options: {
+				heuresSupplémentaires,
+				heuresComplémentaires,
+			},
+			réductionGénérale: 0,
+			régularisation: 0,
+		}) as MonthState[]
+	}
+
+	return Array.from({ length: 12 }, (_item, monthIndex) => {
+		const date = getDateForContexte(monthIndex, year)
+
+		const réductionGénérale = getMonthlyRéductionGénérale(
+			date,
+			rémunérationBrute,
+			{
+				heuresSupplémentaires,
+				heuresComplémentaires,
+			},
+			engine
+		)
+
+		return {
+			rémunérationBrute,
+			options: {
+				heuresSupplémentaires,
+				heuresComplémentaires,
+			},
+			réductionGénérale,
+			régularisation: 0,
+		}
+	})
 }
 
 export const reevaluateRéductionGénéraleMoisParMois = (
 	data: MonthState[],
 	engine: Engine<DottedName>,
+	year: number,
 	régularisationMethod: RégularisationMethod
 ): MonthState[] => {
-	const SMICMensuel = engine.evaluate({
-		valeur: 'salarié . temps de travail . SMIC',
-		unité: 'heures/mois',
-	}).nodeValue as number
+	const totalRémunérationBrute = sumAll(
+		data.map((monthData) => monthData.rémunérationBrute)
+	)
+
+	if (!totalRémunérationBrute) {
+		return data.map((monthData) => {
+			return {
+				...monthData,
+				réductionGénérale: 0,
+				régularisation: 0,
+			}
+		})
+	}
+
+	const rémunérationBruteCumulées = getRémunérationBruteCumulées(data)
+	const SMICCumulés = getSMICCumulés(data, year, engine)
 	// Si on laisse l'engine calculer T dans le calcul de la réduction générale,
 	// le résultat ne sera pas bon à cause de l'assiette de cotisations du contexte
 	const coefT = engine.evaluate({
@@ -67,43 +158,73 @@ export const reevaluateRéductionGénéraleMoisParMois = (
 	}).nodeValue as number
 
 	const reevaluatedData = data.reduce(
-		(reevaluatedData: MonthState[], monthState: MonthState, index) => {
+		(reevaluatedData: MonthState[], monthState, monthIndex) => {
 			const rémunérationBrute = monthState.rémunérationBrute
+			const options = monthState.options
 			let réductionGénérale = 0
 			let régularisation = 0
 
-			const partialData = [
-				...reevaluatedData,
-				{
-					rémunérationBrute,
-					réductionGénérale,
-					régularisation,
-				},
-			]
+			if (!rémunérationBrute) {
+				return [
+					...reevaluatedData,
+					{
+						rémunérationBrute,
+						options,
+						réductionGénérale,
+						régularisation,
+					},
+				]
+			}
 
 			if (régularisationMethod === 'progressive') {
-				régularisation = getRégularisationProgressive(
-					index,
-					partialData,
-					SMICMensuel,
+				// La régularisation progressive du mois N est la différence entre la réduction générale
+				// calculée pour la rémunération totale jusqu'à N (comparée au SMIC équivalent pour ces N mois)
+				// et la somme des N-1 réductions générales déjà accordées (en incluant les régularisations).
+				const réductionGénéraleTotale = getTotalRéductionGénérale(
+					rémunérationBruteCumulées[monthIndex],
+					SMICCumulés[monthIndex],
 					coefT,
 					engine
 				)
+				const réductionGénéraleCumulée = sumAll(
+					reevaluatedData.map(
+						(monthData) =>
+							monthData.réductionGénérale + monthData.régularisation
+					)
+				)
+				régularisation = réductionGénéraleTotale - réductionGénéraleCumulée
+
 				if (régularisation > 0) {
-					réductionGénérale += régularisation
+					réductionGénérale = régularisation
 					régularisation = 0
 				}
 			} else if (régularisationMethod === 'annuelle') {
-				réductionGénérale = getRéductionGénéraleFromRémunération(
-					engine,
-					rémunérationBrute
+				const date = getDateForContexte(monthIndex, year)
+				réductionGénérale = getMonthlyRéductionGénérale(
+					date,
+					rémunérationBrute,
+					options,
+					engine
 				)
-				if (index === data.length - 1) {
-					régularisation = getRégularisationAnnuelle(
-						partialData,
-						réductionGénérale,
+
+				if (monthIndex === data.length - 1) {
+					// La régularisation annuelle est la différence entre la réduction générale calculée
+					// pour la rémunération annuelle (comparée au SMIC annuel) et la somme des réductions
+					// générales déjà accordées.
+					const réductionGénéraleTotale = getTotalRéductionGénérale(
+						rémunérationBruteCumulées[monthIndex],
+						SMICCumulés[monthIndex],
+						coefT,
 						engine
 					)
+					const currentRéductionGénéraleCumulée =
+						réductionGénérale +
+						sumAll(
+							reevaluatedData.map((monthData) => monthData.réductionGénérale)
+						)
+					régularisation =
+						réductionGénéraleTotale - currentRéductionGénéraleCumulée
+
 					if (réductionGénérale + régularisation > 0) {
 						réductionGénérale += régularisation
 						régularisation = 0
@@ -115,6 +236,7 @@ export const reevaluateRéductionGénéraleMoisParMois = (
 				...reevaluatedData,
 				{
 					rémunérationBrute,
+					options,
 					réductionGénérale,
 					régularisation,
 				},
@@ -126,67 +248,72 @@ export const reevaluateRéductionGénéraleMoisParMois = (
 	return reevaluatedData
 }
 
-// La régularisation annuelle est la différence entre la réduction générale calculée
-// pour la rémunération annuelle (comparée au SMIC annuel) et la somme des réductions
-// générales déjà accordées.
-const getRégularisationAnnuelle = (
+const getSMICCumulés = (
 	data: MonthState[],
-	réductionGénéraleDernierMois: number,
+	year: number,
 	engine: Engine<DottedName>
-): number => {
-	const currentRéductionGénéraleAnnuelle =
-		réductionGénéraleDernierMois +
-		sumAll(data.map((monthData) => monthData.réductionGénérale))
-	const realRéductionGénéraleAnnuelle = engine.evaluate({
-		valeur: réductionGénéraleDottedName,
-		arrondi: 'non',
-		unité: '€/an',
-	}).nodeValue as number
+): number[] => {
+	return data.reduce((SMICCumulés: number[], monthData, monthIndex) => {
+		const SMIC = engine.evaluate({
+			valeur: 'salarié . temps de travail . SMIC',
+			unité: '€/mois',
+			contexte: {
+				date: getDateForContexte(monthIndex, year),
+				[heuresSupplémentairesDottedName]:
+					monthData.options.heuresSupplémentaires,
+				[heuresComplémentairesDottedName]:
+					monthData.options.heuresComplémentaires,
+			},
+		}).nodeValue as number
 
-	return realRéductionGénéraleAnnuelle - currentRéductionGénéraleAnnuelle
+		if (monthIndex < 1) {
+			return [SMIC]
+		}
+
+		// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction générale
+		// et il ne faut pas compter le SMIC de ce mois-ci dans le SMIC cumulé.
+		let SMICCumulé = 0
+		// S'il y a une rémunération ce mois-ci, il faut aller chercher la dernière valeur
+		// positive du SMIC cumulé.
+		if (monthData.rémunérationBrute > 0) {
+			const previousSMICCumulé =
+				SMICCumulés.findLast((SMICCumulé) => SMICCumulé > 0) || 0
+			SMICCumulé = previousSMICCumulé + SMIC
+		}
+
+		SMICCumulés.push(SMICCumulé)
+
+		return SMICCumulés
+	}, [])
 }
 
-// La régularisation progressive du mois N est la différence entre la réduction générale
-// calculée pour la rémunération totale jusqu'à N (comparée au SMIC mensuel * N) et la
-// somme des N-1 réductions générales déjà accordées (en incluant les régularisations).
-const getRégularisationProgressive = (
-	monthIndex: number,
-	data: MonthState[],
-	SMICMensuel: number,
-	coefT: number,
-	engine: Engine<DottedName>
-): number => {
-	if (monthIndex > data.length - 1) {
-		return 0
-	}
-	const nbOfMonths = monthIndex + 1
-	const partialData = data.slice(0, nbOfMonths)
+const getRémunérationBruteCumulées = (data: MonthState[]) => {
+	return data.reduce(
+		(rémunérationBruteCumulées: number[], monthData, monthIndex) => {
+			const rémunérationBrute = monthData.rémunérationBrute
 
-	const rémunérationBruteCumulée = sumAll(
-		partialData.map((monthData) => monthData.rémunérationBrute)
-	)
+			if (monthIndex < 1) {
+				return [rémunérationBrute]
+			}
 
-	if (!rémunérationBruteCumulée) {
-		return 0
-	}
+			// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction générale
+			// et elle ne compte pas non plus pour la régularisation des mois à venir.
+			let rémunérationBruteCumulée = 0
+			// S'il y a une rémunération ce mois-ci, il faut aller chercher la dernière valeur
+			// positive de la rémunération cumulée.
+			if (rémunérationBrute > 0) {
+				const previousRémunérationBruteCumulée =
+					rémunérationBruteCumulées.findLast(
+						(rémunérationBruteCumulée) => rémunérationBruteCumulée > 0
+					) || 0
+				rémunérationBruteCumulée =
+					previousRémunérationBruteCumulée + rémunérationBrute
+			}
 
-	const SMICCumulé = nbOfMonths * SMICMensuel
+			rémunérationBruteCumulées.push(rémunérationBruteCumulée)
 
-	const réductionGénéraleTotale = engine.evaluate({
-		valeur: réductionGénéraleDottedName,
-		arrondi: 'non',
-		contexte: {
-			[rémunérationBruteDottedName]: rémunérationBruteCumulée,
-			'salarié . temps de travail . SMIC': SMICCumulé,
-			'salarié . cotisations . exonérations . T': coefT,
+			return rémunérationBruteCumulées
 		},
-	}).nodeValue as number
-
-	const currentRéductionGénéraleCumulée = sumAll(
-		partialData.map(
-			(monthData) => monthData.réductionGénérale + monthData.régularisation
-		)
+		[]
 	)
-
-	return réductionGénéraleTotale - currentRéductionGénéraleCumulée
 }
