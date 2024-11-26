@@ -21,10 +21,23 @@ export default function RégularisationSwitch({
 			onChange={(value) => {
 				setRégularisationMethod(value as RégularisationMethod)
 			}}
-			aria-label={t('Type de régularisation')}
+			aria-label={t(
+				'pages.simulateurs.réduction-générale.régularisation.type',
+				'Type de régularisation'
+			)}
 		>
-			<Radio value="annuelle">{t('Régularisation annuelle')}</Radio>
-			<Radio value="progressive">{t('Régularisation progressive')}</Radio>
+			<Radio value="annuelle">
+				{t(
+					'pages.simulateurs.réduction-générale.régularisation.annuelle',
+					'Régularisation annuelle'
+				)}
+			</Radio>
+			<Radio value="progressive">
+				{t(
+					'pages.simulateurs.réduction-générale.régularisation.progressive',
+					'Régularisation progressive'
+				)}
+			</Radio>
 		</ToggleGroup>
 	)
 }
