@@ -36,12 +36,17 @@ export default function RéductionGénéraleMoisParMois({
 	return (
 		<>
 			<StyledTable style={{ width: '100%' }}>
-				<caption>{t('Réduction générale mois par mois :')}</caption>
+				<caption>
+					{t(
+						'pages.simulateurs.réduction-générale.month-by-month.caption',
+						'Réduction générale mois par mois :'
+					)}
+				</caption>
 				<thead>
 					<tr>
 						<th scope="col">{t('Mois')}</th>
 						<th scope="col">
-							{t('Rémunération brute', 'Rémunération brute')}
+							{t('Rémunération brute')}
 							<ExplicableRule dottedName="salarié . rémunération . brut" />
 						</th>
 						<th scope="col">

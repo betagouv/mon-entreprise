@@ -42,15 +42,24 @@ export default function RéductionGénéraleSimulation() {
 	const [monthByMonth, setMonthByMonth] = useState(false)
 	const periods = [
 		{
-			label: t('Réduction mensuelle'),
+			label: t(
+				'pages.simulateurs.réduction-générale.tab.month',
+				'Réduction mensuelle'
+			),
 			unit: '€/mois',
 		},
 		{
-			label: t('Réduction annuelle'),
+			label: t(
+				'pages.simulateurs.réduction-générale.tab.year',
+				'Réduction annuelle'
+			),
 			unit: '€/an',
 		},
 		{
-			label: t('Réduction mois par mois'),
+			label: t(
+				'pages.simulateurs.réduction-générale.tab.month-by-month',
+				'Réduction mois par mois'
+			),
 			unit: '€',
 		},
 	]
@@ -67,7 +76,10 @@ export default function RéductionGénéraleSimulation() {
 				<SimulateurWarning simulateur="réduction-générale" />
 				<RéductionGénéraleSimulationGoals
 					monthByMonth={monthByMonth}
-					legend="Salaire brut du salarié et réduction générale applicable"
+					legend={t(
+						'pages.simulateurs.réduction-générale.legend',
+						'Salaire brut du salarié et réduction générale applicable'
+					)}
 					toggles={
 						<>
 							<RégularisationSwitch
@@ -174,7 +186,7 @@ function RéductionGénéraleSimulationGoals({
 					<SimulationGoal
 						dottedName={rémunérationBruteDottedName}
 						round={false}
-						label={t('Rémunération brute', 'Rémunération brute')}
+						label={t('Rémunération brute')}
 						onUpdateSituation={initializeRéductionGénéraleMoisParMoisData}
 					/>
 
