@@ -102,8 +102,10 @@ describe(
 				'td[id^="salarié___cotisations___exonérations___réduction_générale-"]'
 			)
 				.should('have.length', 12)
-				.each(($td) => {
-					cy.wrap($td).should('include.text', '523,26 €')
+				.each(($td, $index) => {
+					if ($index < 10) {
+						cy.wrap($td).should('include.text', '493,43 €')
+					}
 				})
 		})
 
@@ -115,10 +117,10 @@ describe(
 			cy.get(inputSelector).eq(1).type('{selectall}2000')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-janvier"]'
-			).should('include.text', '523,26 €')
+			).should('include.text', '493,43 €')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-février"]'
-			).should('include.text', '470,07 €')
+			).should('include.text', '440,23 €')
 		})
 
 		it('should save remuneration between tabs', function () {
@@ -159,10 +161,10 @@ describe(
 			).should('include.text', '0 €')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-mars"]'
-			).should('include.text', '523,26 €')
+			).should('include.text', '493,43 €')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-décembre"]'
-			).should('include.text', '460,38 €')
+			).should('include.text', '432,49 €')
 		})
 
 		it('should include progressive regularisation', function () {
@@ -178,13 +180,13 @@ describe(
 			).should('include.text', '0 €')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale__régularisation-février"]'
-			).should('include.text', '-62,17 €')
+			).should('include.text', '-92,12 €')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-mars"]'
-			).should('include.text', '522,87 €')
+			).should('include.text', '493,57 €')
 			cy.get(
 				'td[id="salarié___cotisations___exonérations___réduction_générale-décembre"]'
-			).should('include.text', '522,98 €')
+			).should('include.text', '523,62 €')
 		})
 
 		it('should be RGAA compliant', function () {

@@ -14,6 +14,7 @@ import Simulation, {
 } from '@/components/Simulation'
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
 import { useEngine } from '@/components/utils/EngineContext'
+import useYear from '@/components/utils/useYear'
 import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -29,7 +30,6 @@ import WarningSalaireTrans from './components/WarningSalaireTrans'
 import RéductionGénéraleMoisParMois from './RéductionGénéraleMoisParMois'
 import {
 	getInitialRéductionGénéraleMoisParMois,
-	getRéductionGénéraleFromRémunération,
 	MonthState,
 	réductionGénéraleDottedName,
 	reevaluateRéductionGénéraleMoisParMois,
@@ -112,10 +112,12 @@ function RéductionGénéraleSimulationGoals({
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
 	const [réductionGénéraleMoisParMoisData, setData] = useState<MonthState[]>([])
+	const year = useYear()
 
 	const initializeRéductionGénéraleMoisParMoisData = useCallback(() => {
-		setData(getInitialRéductionGénéraleMoisParMois(engine))
-	}, [engine, setData])
+		const data = getInitialRéductionGénéraleMoisParMois(year, engine)
+		setData(data)
+	}, [engine, year])
 
 	useEffect(() => {
 		if (réductionGénéraleMoisParMoisData.length === 0) {
@@ -132,10 +134,11 @@ function RéductionGénéraleSimulationGoals({
 			return reevaluateRéductionGénéraleMoisParMois(
 				previousData,
 				engine,
+				year,
 				régularisationMethod
 			)
 		})
-	}, [engine, situation, régularisationMethod])
+	}, [engine, situation, régularisationMethod, year])
 
 	const updateRémunérationBruteAnnuelle = (data: MonthState[]): void => {
 		const rémunérationBruteAnnuelle = data.reduce(
@@ -160,17 +163,18 @@ function RéductionGénéraleSimulationGoals({
 		setData((previousData) => {
 			const updatedData = [...previousData]
 			updatedData[monthIndex] = {
+				...updatedData[monthIndex],
 				rémunérationBrute,
-				réductionGénérale: getRéductionGénéraleFromRémunération(
-					engine,
-					rémunérationBrute
-				),
-				régularisation: 0,
 			}
 
 			updateRémunérationBruteAnnuelle(updatedData)
 
-			return updatedData
+			return reevaluateRéductionGénéraleMoisParMois(
+				updatedData,
+				engine,
+				year,
+				régularisationMethod
+			)
 		})
 	}
 
