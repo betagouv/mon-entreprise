@@ -3,10 +3,10 @@ dirigeant . indépendant:
   par défaut: non
 
 dirigeant . indépendant . revenu professionnel:
-  résumé: rémunération du dirigeant au régime des indépendant
+  résumé: rémunération du dirigeant au régime des indépendants
   description:
     Le revenu professionnel est la rémunération du dirigeant au régime
-    des indépendant.
+    des indépendants.
 
     Pour les entreprises qui ont opté pour l'**impôt sur le revenu**, il
     s'agit du **résultat fiscal**.
