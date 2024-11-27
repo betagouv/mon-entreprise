@@ -40,10 +40,65 @@ entreprise . date de création . contrôle date passée:
   description: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas
     vous être trompé dans la saisie ?
 
+
+entreprise . date de radiation:
+  question: À quelle date comptez-vous déclarer la cessation d’activité ?
+  description: La date de radiation est la date à laquelle l’entreprise cessera son activité.
+  type: date
+
+
+entreprise . créée cette année:
+  titre: Entreprise créée cette année
+  formule: période . début d'année <= entreprise . date de création
+  description: L'entreprise a-t-elle été créée l'année de la simulation ?
+
+entreprise . radiée:
+  titre: Entreprise radiée
+  formule:
+    est défini: date de radiation
+  description: L'entreprise sera-t-elle radiée l'année de la simulation ?
+
+entreprise . radiée cette année:
+  titre: Entreprise radiée cette année
+  formule:
+    toutes ces conditions:
+      - est défini: date de radiation
+      - période . début d'année <= entreprise . date de radiation
+  description: L'entreprise sera-t-elle radiée l'année de la simulation ?
+
 entreprise . durée d'activité:
   durée:
     depuis: date de création
     jusqu'à: date
+
+entreprise . durée d'activité cette année:
+  variations:
+    - si:
+        toutes ces conditions:
+          - créée cette année
+          - radiée cette année
+      alors:
+        durée:
+          depuis: date de création
+          jusqu'à: date de radiation
+    - si: radiée cette année
+      alors:
+        durée:
+          depuis: période . début d'année
+          jusqu'à: date de radiation
+    - si: créée cette année
+      alors:
+        durée:
+          depuis: date de création
+          jusqu'à: période . fin d'année
+    - sinon: 1 an
+  unité: jours
+
+entreprise . prorata temporis:
+  description: |
+    Pourcentage d'exercice de l'entreprise sur l'année en cours
+  unité: '%'
+  formule: entreprise . durée d'activité cette année / 1 an
 
 entreprise . durée d'activité . en fin d'année:
   somme:
@@ -70,12 +125,6 @@ entreprise . durée d'activité . années civiles:
     depuis: date de création
     jusqu'à: date
     unité: année civile
-
-entreprise . date de radiation:
-  question: À quelle date comptez-vous déclarer la cessation d’activité ?
-  par défaut: période . fin d'année
-  description: La date de radiation est la date à laquelle l’entreprise cessera son activité.
-  type: date
 
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d'affaires envisagé ?
