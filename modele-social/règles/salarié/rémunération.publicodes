@@ -879,7 +879,8 @@ salarié . rémunération . montant net social:
     - frais professionnels
   abattement:
       somme:
-        - frais professionnels . déductible
+        - valeur: frais professionnels . déductible
+          unité: €/mois
         - activité partielle . retrait absence
         - salarié . cotisations . salarié
   références :
