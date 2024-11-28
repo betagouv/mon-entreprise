@@ -1,6 +1,6 @@
 salarié:
+  par défaut: non
   icônes: 🤝
-  valeur: oui
 
 salarié . ancienneté:
   durée:
@@ -41,9 +41,9 @@ salarié . convention collective:
       valeur:
         convention collective = 'autre'
       description: >-
-        Attention : votre convention collective n'est pas prise en charge, 
+        Attention : votre convention collective n'est pas prise en charge,
         la simulation se basera sur le droit commun.
-  
+
 salarié . régimes spécifiques:
 salarié . régimes spécifiques . alsace moselle:
   titre: Régime Alsace-Moselle

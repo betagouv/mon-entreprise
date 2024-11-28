@@ -52,11 +52,12 @@ export const configSalarié: SimulationConfig = {
 			"situation personnelle . domiciliation fiscale à l'étranger",
 			'salarié . régimes spécifiques . impatriés',
 		],
+		'liste noire': ['entreprise . catégorie juridique'],
 	},
 	'unité par défaut': '€/mois',
 	situation: {
+		salarié: 'oui',
 		dirigeant: 'non',
-		'entreprise . catégorie juridique': "''",
 		'entreprise . imposition': 'non',
 		'salarié . activité partielle': 'non',
 		'impôt . méthode de calcul . par défaut': {

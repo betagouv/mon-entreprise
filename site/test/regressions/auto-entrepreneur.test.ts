@@ -38,11 +38,15 @@ it('calculate simulations-auto-entrepreneur', () => {
 		)
 	).toMatchInlineSnapshot(`
 		[
+		  "dirigeant . assimilé salarié",
 		  "dirigeant . auto-entrepreneur . impôt . versement libératoire",
+		  "dirigeant . régime social",
 		  "entreprise . activité . nature",
 		  "entreprise . activités . revenus mixtes",
 		  "entreprise . activités . service ou vente",
+		  "entreprise . catégorie juridique . EI . auto-entrepreneur",
 		  "entreprise . date de création",
+		  "entreprise . imposition . IR . type de bénéfices",
 		  "impôt . foyer fiscal . enfants à charge",
 		  "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
 		  "impôt . foyer fiscal . situation de famille",

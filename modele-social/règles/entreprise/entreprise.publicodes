@@ -253,6 +253,7 @@ entreprise . TVA . franchise de TVA . notification:
   type: notification
   experimental: oui
   toutes ces conditions:
+    - dirigeant
     - seuils dépassés = non
     - chiffre d'affaires != 0
   résumé: |

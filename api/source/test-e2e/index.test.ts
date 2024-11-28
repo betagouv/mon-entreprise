@@ -96,11 +96,18 @@ describe('e2e test mon-entreprise api', () => {
 						'dirigeant . indépendant . PL . métier': "'avocat'",
 						'entreprise . activité . nature': "'libérale'",
 						'entreprise . date de création': '01/01/2013',
-						"entreprise . chiffre d'affaires": 6264,
+						"entreprise . chiffre d'affaires": '6264 €/an',
 						'entreprise . catégorie juridique': "'EI'",
 						'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
 					},
-					expressions: ['dirigeant . rémunération . net . après impôt'],
+					expressions: [
+						// 'dirigeant . régime social',
+						// 'dirigeant . indépendant',
+						// 'dirigeant . rémunération . totale',
+						// 'dirigeant . rémunération . cotisations',
+						// 'dirigeant . rémunération . net',
+						'dirigeant . rémunération . net . après impôt',
+					],
 				})
 				.then((res) => {
 					expect(res.status).toMatchInlineSnapshot('200')

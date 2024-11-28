@@ -29,6 +29,7 @@ it('calculate simulations-professions-libérales', () => {
 		)
 	).toMatchInlineSnapshot(`
 		[
+		  "dirigeant . assimilé salarié",
 		  "dirigeant . indépendant . IJSS",
 		  "dirigeant . indépendant . PL . CNAVPL . exonération incapacité",
 		  "dirigeant . indépendant . PL . métier",
@@ -44,6 +45,7 @@ it('calculate simulations-professions-libérales', () => {
 		  "entreprise . charges",
 		  "entreprise . chiffre d'affaires",
 		  "entreprise . date de création",
+		  "entreprise . imposition . IR . type de bénéfices",
 		  "entreprise . imposition . régime",
 		  "entreprise . imposition . régime . micro-entreprise",
 		  "impôt . foyer fiscal . enfants à charge",

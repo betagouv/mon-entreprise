@@ -170,8 +170,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 34
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 8
 dirigeant . auto-entrepreneur . revenu net: 17440
-dirigeant . auto-entrepreneur . revenu net . après impôt: 17440
-dirigeant . rémunération . impôt: 0"
+dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
+dirigeant . rémunération . impôt: undefined
+
+Notifications affichées : dirigeant . indépendant . cotisations et contributions . exonérations . DROM"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 2`] = `
@@ -210,8 +212,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 9
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 2
 dirigeant . auto-entrepreneur . revenu net: 19332
-dirigeant . auto-entrepreneur . revenu net . après impôt: 19332
-dirigeant . rémunération . impôt: 0"
+dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
+dirigeant . rémunération . impôt: undefined
+
+Notifications affichées : dirigeant . indépendant . cotisations et contributions . exonérations . DROM"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 4`] = `
@@ -230,8 +234,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 26
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
 dirigeant . auto-entrepreneur . revenu net: 18077
-dirigeant . auto-entrepreneur . revenu net . après impôt: 18077
-dirigeant . rémunération . impôt: 0"
+dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
+dirigeant . rémunération . impôt: undefined
+
+Notifications affichées : dirigeant . indépendant . cotisations et contributions . exonérations . DROM"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `
@@ -317,7 +323,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: undefined
 dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
-dirigeant . rémunération . impôt: 670"
+dirigeant . rémunération . impôt: undefined"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 1`] = `
