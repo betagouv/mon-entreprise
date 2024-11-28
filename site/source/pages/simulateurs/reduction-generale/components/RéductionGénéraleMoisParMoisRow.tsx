@@ -1,7 +1,7 @@
 import { formatValue, PublicodesExpression } from 'publicodes'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 import NumberInput from '@/components/conversation/NumberInput'
 import { Condition } from '@/components/EngineValue/Condition'
@@ -10,7 +10,11 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Message, NumberField } from '@/design-system'
 import { Button, HelpButtonWithPopover } from '@/design-system/buttons'
 import { FlexCenter } from '@/design-system/global-style'
-import { ChevronIcon, SearchIcon, WarningIcon } from '@/design-system/icons'
+import {
+	RotatingChevronIcon,
+	SearchIcon,
+	WarningIcon,
+} from '@/design-system/icons'
 import { Tooltip } from '@/design-system/tooltip'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
@@ -128,7 +132,7 @@ export default function RéductionGénéraleMoisParMoisRow({
 						aria-label={!isOptionVisible ? t('Déplier') : t('Replier')}
 					>
 						{t('Options')}&nbsp;
-						<StyledChevron aria-hidden $isOpen={isOptionVisible} />
+						<RotatingChevronIcon aria-hidden $isOpen={isOptionVisible} />
 					</Button>
 				</td>
 				<td
@@ -263,15 +267,4 @@ const OptionContainer = styled.div`
 
 const StyledSmallBody = styled(SmallBody)`
 	margin: 0;
-`
-
-const StyledChevron = styled(ChevronIcon)<{ $isOpen: boolean }>`
-	vertical-align: middle;
-	transform: rotate(-90deg);
-	transition: transform 0.3s;
-	${({ $isOpen }) =>
-		!$isOpen &&
-		css`
-			transform: rotate(90deg);
-		`}
 `
