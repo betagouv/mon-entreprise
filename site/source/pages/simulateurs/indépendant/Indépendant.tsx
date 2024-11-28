@@ -1,6 +1,5 @@
-import { useDispatch } from 'react-redux'
 import { DottedName } from 'modele-social'
-import { Trans } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
 import RuleInput from '@/components/conversation/RuleInput'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -8,12 +7,8 @@ import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
-import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { H2 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
 export default function IndépendantSimulation() {
