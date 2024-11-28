@@ -41,10 +41,13 @@ entreprise . date de création . contrôle date passée:
     vous être trompé dans la saisie ?
 
 
-entreprise . date de radiation:
+entreprise . date de cessation:
   question: À quelle date comptez-vous déclarer la cessation d’activité ?
-  description: La date de radiation est la date à laquelle l’entreprise cessera son activité.
+  par défaut: période . fin d'année
+  description: La date de cessation est la date à laquelle l’entreprise cessera son activité.
   type: date
+  références:
+    Urssaf: https://www.urssaf.fr/accueil/services/services-independants/realiser-cessation-activite.html
 
 
 entreprise . créée cette année:
@@ -55,15 +58,15 @@ entreprise . créée cette année:
 entreprise . radiée:
   titre: Entreprise radiée
   formule:
-    est défini: date de radiation
+    est défini: date de cessation
   description: L'entreprise sera-t-elle radiée l'année de la simulation ?
 
 entreprise . radiée cette année:
   titre: Entreprise radiée cette année
   formule:
     toutes ces conditions:
-      - est défini: date de radiation
-      - période . début d'année <= entreprise . date de radiation
+      - est défini: date de cessation
+      - période . début d'année <= entreprise . date de cessation
   description: L'entreprise sera-t-elle radiée l'année de la simulation ?
 
 entreprise . durée d'activité:
@@ -80,12 +83,12 @@ entreprise . durée d'activité cette année:
       alors:
         durée:
           depuis: date de création
-          jusqu'à: date de radiation
+          jusqu'à: date de cessation
     - si: radiée cette année
       alors:
         durée:
           depuis: période . début d'année
-          jusqu'à: date de radiation
+          jusqu'à: date de cessation
     - si: créée cette année
       alors:
         durée:
@@ -266,67 +269,6 @@ entreprise . chiffre d'affaires . BIC:
     - vente restauration hébergement
 
 entreprise . TVA . franchise de TVA: oui
-
-entreprise . TVA . franchise de TVA . seuil vente:
-  variations:
-    - si: établissement . commune . département . outre-mer . Guadeloupe Réunion
-        Martinique
-      alors: 110000 €/an
-    - sinon:
-        variations:
-          - si: date >= 01/2023
-            alors: 101000 €/an
-          - sinon: 94300 €/an
-
-  références:
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
-
-entreprise . TVA . franchise de TVA . seuil service:
-  variations:
-    - si: établissement . commune . département . outre-mer . Guadeloupe Réunion
-        Martinique
-      alors: 60000 €/an
-    - si: dirigeant . indépendant . PL . métier = 'avocat'
-      alors:
-        variations:
-          - si: date >= 01/2023
-            alors: 58600 €/an
-          - sinon: 54700 €/an
-    - sinon:
-        variations:
-          - si: date >= 01/2023
-            alors: 39100 €/an
-          - sinon: 36500 €/an
-  références:
-    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
-
-entreprise . TVA . franchise de TVA . seuils dépassés:
-  déprécié: oui
-  une de ces conditions:
-    - chiffre d'affaires > seuil vente + seuil service
-    - chiffre d'affaires . vente restauration hébergement > seuil vente
-    - chiffre d'affaires . service > seuil service
-
-entreprise . TVA . franchise de TVA . notification:
-  type: notification
-  experimental: oui
-  toutes ces conditions:
-    - seuils dépassés = non
-    - chiffre d'affaires != 0
-  résumé: |
-    Vous êtes en dessous du seuil de déclaration de TVA.
-  description: |
-    La franchise de TVA est un dispositif qui exonère les entreprises de la
-    déclaration et du paiement de la TVA. Il s'applique en dessous d'un seuil de
-    chiffre d'affaire annuel dépendant de l'activité.
-
-    Le professionnel qui relève de ce dispositif facture ses prestations ou ses
-    ventes en hors taxe, et ne peut pas déduire la TVA de ses achats.
-  note: >
-    On prend compte ici des seuils majorés (qui s'appliquent si le seuil
-    "minoré" n'a pas été dépassé en année `n - 2`)
-  références:
-    Franchise en base de TVA: https://www.service-public.fr/professionnels-entreprises/vosdroits/F21746
 
 entreprise . résultat fiscal:
   unité: €/an

@@ -35,21 +35,22 @@ export const CessationActivitéToggles = () => {
 				<H3 id="questionHeader" as="h2">
 					{evaluateQuestion(
 						engine,
-						engine.getRule('entreprise . date de radiation')
+						engine.getRule('entreprise . date de cessation')
 					)}
-					<ExplicableRule light dottedName={'entreprise . date de radiation'} />
+					<ExplicableRule light dottedName={'entreprise . date de cessation'} />
 				</H3>
 				<RuleInput
-					dottedName="entreprise . date de radiation"
+					dottedName="entreprise . date de cessation"
 					onChange={(date) => {
 						dispatch(
 							ajusteLaSituation({
-								'entreprise . date de radiation': date,
+								'entreprise . date de cessation': date,
 							} as Record<DottedName, SimpleRuleEvaluation>)
 						)
 					}}
+					hideDefaultValue
 				/>
-				<DefaultValue dottedName={'entreprise . date de radiation'} />
+				<DefaultValue dottedName={'entreprise . date de cessation'} />
 			</div>
 
 			<RuleInput
