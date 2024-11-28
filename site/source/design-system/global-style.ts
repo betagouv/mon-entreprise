@@ -22,6 +22,11 @@ export const FocusStyle = css`
 	box-shadow: 0 0 0 2px #ffffff;
 `
 
+export const FlexCenter = css`
+	display: flex;
+	align-items: center;
+`
+
 export const GlobalStyle = createGlobalStyle`
 html {
 	transition: none !important;
