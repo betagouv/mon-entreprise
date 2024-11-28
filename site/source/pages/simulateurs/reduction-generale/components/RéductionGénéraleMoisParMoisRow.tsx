@@ -1,21 +1,15 @@
-import { formatValue, PublicodesExpression } from 'publicodes'
+import { PublicodesExpression } from 'publicodes'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import NumberInput from '@/components/conversation/NumberInput'
-import { Condition } from '@/components/EngineValue/Condition'
 import { Appear } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message, NumberField } from '@/design-system'
 import { Button, HelpButtonWithPopover } from '@/design-system/buttons'
 import { FlexCenter } from '@/design-system/global-style'
-import {
-	RotatingChevronIcon,
-	SearchIcon,
-	WarningIcon,
-} from '@/design-system/icons'
-import { Tooltip } from '@/design-system/tooltip'
+import { RotatingChevronIcon } from '@/design-system/icons'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
 import {
@@ -24,8 +18,7 @@ import {
 	réductionGénéraleDottedName,
 	rémunérationBruteDottedName,
 } from '../utils'
-import Répartition from './Répartition'
-import WarningSalaireTrans from './WarningSalaireTrans'
+import MontantRéduction from './MontantRéduction'
 
 type Props = {
 	monthName: string
@@ -86,16 +79,6 @@ export default function RéductionGénéraleMoisParMoisRow({
 		),
 	}
 
-	const tooltip = (
-		<Répartition
-			contexte={{
-				[rémunérationBruteDottedName]: data.rémunérationBrute,
-				[réductionGénéraleDottedName]:
-					data.réductionGénérale + data.régularisation,
-			}}
-		/>
-	)
-
 	return (
 		<>
 			<tr>
@@ -141,38 +124,13 @@ export default function RéductionGénéraleMoisParMoisRow({
 						'_'
 					)}-${monthName}`}
 				>
-					{data.réductionGénérale ? (
-						<StyledTooltip tooltip={tooltip}>
-							<FlexDiv>
-								{formatValue(
-									{
-										nodeValue: data.réductionGénérale,
-									},
-									{
-										displayedUnit,
-										language,
-									}
-								)}
-								<StyledSearchIcon />
-							</FlexDiv>
-						</StyledTooltip>
-					) : (
-						<FlexDiv>
-							{formatValue(0, { displayedUnit, language })}
-
-							<Condition
-								expression={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
-								contexte={{
-									[rémunérationBruteDottedName]: data.rémunérationBrute,
-								}}
-							>
-								<Tooltip tooltip={<WarningSalaireTrans />}>
-									<span className="sr-only">{t('Attention')}</span>
-									<StyledWarningIcon aria-label={t('Attention')} />
-								</Tooltip>
-							</Condition>
-						</FlexDiv>
-					)}
+					<MontantRéduction
+						rémunérationBrute={data.rémunérationBrute}
+						réductionGénérale={data.réductionGénérale}
+						displayedUnit={displayedUnit}
+						language={language}
+						warning={true}
+					/>
 				</td>
 				<td
 					id={`${réductionGénéraleDottedName.replace(
@@ -180,17 +138,12 @@ export default function RéductionGénéraleMoisParMoisRow({
 						'_'
 					)}__régularisation-${monthName}`}
 				>
-					<FlexDiv>
-						{formatValue(
-							{
-								nodeValue: data.régularisation,
-							},
-							{
-								displayedUnit,
-								language,
-							}
-						)}
-					</FlexDiv>
+					<MontantRéduction
+						rémunérationBrute={data.rémunérationBrute}
+						réductionGénérale={data.régularisation}
+						displayedUnit={displayedUnit}
+						language={language}
+					/>
 				</td>
 			</tr>
 			{isOptionVisible && (
@@ -232,47 +185,30 @@ export default function RéductionGénéraleMoisParMoisRow({
 	)
 }
 
-function HeuresSupplémentairesPopoverContent() {
-	return (
-		<Trans i18nKey="pages.simulateurs.réduction-générale.options.popover">
-			<Body>
-				Le nombre d'heures supplémentaires et complémentaires est utilisé dans
-				le calcul de la réduction générale : la rémunération brute est comparée
-				au montant du SMIC majoré de ce nombre d'heures.
-			</Body>
-			<Message type="info">
-				Si vous avez répondu à la question sur les heures supplémentaires ou
-				complémentaires, la valeur sera écrasée par celle que vous saisissez
-				mois par mois.
-			</Message>
-		</Trans>
-	)
-}
+const HeuresSupplémentairesPopoverContent = () => (
+	<Trans i18nKey="pages.simulateurs.réduction-générale.options.popover">
+		<Body>
+			Le nombre d'heures supplémentaires et complémentaires est utilisé dans le
+			calcul de la réduction générale : la rémunération brute est comparée au
+			montant du SMIC majoré de ce nombre d'heures.
+		</Body>
+		<Message type="info">
+			Si vous avez répondu à la question sur les heures supplémentaires ou
+			complémentaires, la valeur sera écrasée par celle que vous saisissez mois
+			par mois.
+		</Message>
+	</Trans>
+)
 
 const FlexDiv = styled.div`
 	${FlexCenter}
 	justify-content: end;
 `
-
-const StyledTooltip = styled(Tooltip)`
-	width: 100%;
-`
-
-const StyledSearchIcon = styled(SearchIcon)`
-	margin-left: ${({ theme }) => theme.spacings.sm};
-`
-
-const StyledWarningIcon = styled(WarningIcon)`
-	margin-top: ${({ theme }) => theme.spacings.xxs};
-	margin-left: ${({ theme }) => theme.spacings.sm};
-`
-
 const OptionContainer = styled.div`
 	${FlexCenter}
 	gap: ${({ theme }) => theme.spacings.lg};
 	margin-top: -${({ theme }) => theme.spacings.md};
 `
-
 const StyledSmallBody = styled(SmallBody)`
 	margin: 0;
 `
