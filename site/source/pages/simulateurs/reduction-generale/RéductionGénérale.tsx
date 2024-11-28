@@ -31,6 +31,7 @@ import RéductionGénéraleMoisParMois from './RéductionGénéraleMoisParMois'
 import {
 	getInitialRéductionGénéraleMoisParMois,
 	MonthState,
+	Options,
 	réductionGénéraleDottedName,
 	reevaluateRéductionGénéraleMoisParMois,
 	RégularisationMethod,
@@ -125,7 +126,7 @@ function RéductionGénéraleSimulationGoals({
 		}
 	}, [
 		initializeRéductionGénéraleMoisParMoisData,
-		réductionGénéraleMoisParMoisData,
+		réductionGénéraleMoisParMoisData.length,
 	])
 
 	const situation = useSelector(situationSelector)
@@ -178,12 +179,30 @@ function RéductionGénéraleSimulationGoals({
 		})
 	}
 
+	const onOptionsChange = (monthIndex: number, options: Options) => {
+		setData((previousData) => {
+			const updatedData = [...previousData]
+			updatedData[monthIndex] = {
+				...updatedData[monthIndex],
+				options,
+			}
+
+			return reevaluateRéductionGénéraleMoisParMois(
+				updatedData,
+				engine,
+				year,
+				régularisationMethod
+			)
+		})
+	}
+
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
 			{monthByMonth ? (
 				<RéductionGénéraleMoisParMois
 					data={réductionGénéraleMoisParMoisData}
-					onChange={onRémunérationChange}
+					onRémunérationChange={onRémunérationChange}
+					onOptionsChange={onOptionsChange}
 				/>
 			) : (
 				<>

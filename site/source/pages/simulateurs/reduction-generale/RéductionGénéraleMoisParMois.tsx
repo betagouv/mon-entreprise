@@ -5,16 +5,18 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 
 import RéductionGénéraleMoisParMoisRow from './components/RéductionGénéraleMoisParMoisRow'
 import Warnings from './components/Warnings'
-import { MonthState, réductionGénéraleDottedName } from './utils'
+import { MonthState, Options, réductionGénéraleDottedName } from './utils'
 
 type Props = {
 	data: MonthState[]
-	onChange: (monthIndex: number, rémunérationBrute: number) => void
+	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
+	onOptionsChange: (monthIndex: number, options: Options) => void
 }
 
 export default function RéductionGénéraleMoisParMois({
 	data,
-	onChange,
+	onRémunérationChange,
+	onOptionsChange,
 }: Props) {
 	const { t } = useTranslation()
 
@@ -49,6 +51,7 @@ export default function RéductionGénéraleMoisParMois({
 							{t('Rémunération brute')}
 							<ExplicableRule dottedName="salarié . rémunération . brut" />
 						</th>
+						<th />
 						<th scope="col">
 							{t('Réduction générale')}
 							<ExplicableRule dottedName={réductionGénéraleDottedName} light />
@@ -64,13 +67,26 @@ export default function RéductionGénéraleMoisParMois({
 								monthName={monthName}
 								data={data[monthIndex]}
 								index={monthIndex}
-								onChange={(monthIndex: number, rémunérationBrute: number) => {
-									onChange(monthIndex, rémunérationBrute)
+								onRémunérationChange={(
+									monthIndex: number,
+									rémunérationBrute: number
+								) => {
+									onRémunérationChange(monthIndex, rémunérationBrute)
+								}}
+								onOptionsChange={(monthIndex: number, options: Options) => {
+									onOptionsChange(monthIndex, options)
 								}}
 							/>
 						))}
 				</tbody>
 			</StyledTable>
+
+			<span id="options-description" className="sr-only">
+				{t(
+					'pages.simulateurs.réduction-générale.options.description',
+					"Ajoute des champs pour moduler l'activité du salarié"
+				)}
+			</span>
 
 			<Warnings />
 		</>

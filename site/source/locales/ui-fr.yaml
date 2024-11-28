@@ -95,6 +95,7 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     le conseiller compétent pour votre demande.
     Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.
 Décès: Décès
+Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
 Effectif de l'entreprise: Effectif de l'entreprise
@@ -220,6 +221,7 @@ Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: 
 Nouveautés: Nouveautés
 Option ACRE non activée: Option ACRE non activée
 Option la plus avantageuse.: Option la plus avantageuse.
+Options: Options
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
@@ -1581,6 +1583,17 @@ pages:
         title: Réduction générale
       month-by-month:
         caption: "Réduction générale mois par mois :"
+      options:
+        description: Ajoute des champs pour moduler l'activité du salarié
+        label:
+          heures-complémentaires: Heures complémentaires
+          heures-supplémentaires: Heures supplémentaires
+        popover: "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
+          dans le calcul de la réduction générale : la rémunération brute est
+          comparée au montant du SMIC majoré de ce nombre d'heures.</0><1>Si
+          vous avez répondu à la question sur les heures supplémentaires ou
+          complémentaires, la valeur sera écrasée par celle que vous saisissez
+          mois par mois.</1>"
       régularisation:
         annuelle: Régularisation annuelle
         progressive: Régularisation progressive
