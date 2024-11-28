@@ -142,7 +142,7 @@ export default function RéductionGénéraleMoisParMoisRow({
 					)}-${monthName}`}
 				>
 					{data.réductionGénérale ? (
-						<Tooltip tooltip={tooltip}>
+						<StyledTooltip tooltip={tooltip}>
 							<FlexDiv>
 								{formatValue(
 									{
@@ -155,7 +155,7 @@ export default function RéductionGénéraleMoisParMoisRow({
 								)}
 								<StyledSearchIcon />
 							</FlexDiv>
-						</Tooltip>
+						</StyledTooltip>
 					) : (
 						<FlexDiv>
 							{formatValue(0, { displayedUnit, language })}
@@ -180,15 +180,17 @@ export default function RéductionGénéraleMoisParMoisRow({
 						'_'
 					)}__régularisation-${monthName}`}
 				>
-					{formatValue(
-						{
-							nodeValue: data.régularisation,
-						},
-						{
-							displayedUnit,
-							language,
-						}
-					)}
+					<FlexDiv>
+						{formatValue(
+							{
+								nodeValue: data.régularisation,
+							},
+							{
+								displayedUnit,
+								language,
+							}
+						)}
+					</FlexDiv>
 				</td>
 			</tr>
 			{isOptionVisible && (
@@ -249,6 +251,11 @@ function HeuresSupplémentairesPopoverContent() {
 
 const FlexDiv = styled.div`
 	${FlexCenter}
+	justify-content: end;
+`
+
+const StyledTooltip = styled(Tooltip)`
+	width: 100%;
 `
 
 const StyledSearchIcon = styled(SearchIcon)`
@@ -257,6 +264,7 @@ const StyledSearchIcon = styled(SearchIcon)`
 
 const StyledWarningIcon = styled(WarningIcon)`
 	margin-top: ${({ theme }) => theme.spacings.xxs};
+	margin-left: ${({ theme }) => theme.spacings.sm};
 `
 
 const OptionContainer = styled.div`
