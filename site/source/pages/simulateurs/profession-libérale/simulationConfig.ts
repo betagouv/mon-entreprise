@@ -21,6 +21,7 @@ export const configProfessionLibérale: SimulationConfig = {
 			'entreprise . imposition . régime',
 			'entreprise . activités',
 			'entreprise . activités . revenus mixtes',
+			'entreprise . date de radiation',
 		],
 		liste: [
 			'entreprise . activité . nature',
