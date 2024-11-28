@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from 'react'
+import { ReactNode, useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -60,11 +60,7 @@ export default function SimulateurWarning({
 					</StyledLi>
 				</Ul>
 			)}
-			{informationsComplémentaires && (
-				<Ul>
-					<StyledLi>{informationsComplémentaires}</StyledLi>
-				</Ul>
-			)}
+			{informationsComplémentaires && <>{informationsComplémentaires}</>}
 			{simulateur === 'profession-libérale' && (
 				<Ul>
 					<StyledLi>

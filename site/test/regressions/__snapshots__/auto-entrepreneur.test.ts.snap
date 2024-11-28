@@ -19,7 +19,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `
@@ -41,7 +41,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `
@@ -63,7 +63,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `
@@ -85,7 +85,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `
@@ -107,7 +107,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 6`] = `
@@ -129,7 +129,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 7`] = `
@@ -151,7 +151,7 @@ dirigeant . auto-entrepreneur . revenu net: 30000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 30000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 1`] = `
@@ -251,9 +251,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 16630
 dirigeant . auto-entrepreneur . revenu net . après impôt: 16630
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `
@@ -273,9 +271,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 15867
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15867
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `
@@ -295,9 +291,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 16518
 dirigeant . auto-entrepreneur . revenu net . après impôt: 16518
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `
@@ -337,9 +331,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15040
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15040
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 2`] = `
@@ -359,9 +351,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 17540
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17540
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 3`] = `
@@ -381,9 +371,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 17432
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17432
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 4`] = `
@@ -403,9 +391,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15604
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15604
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 5`] = `
@@ -425,9 +411,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 17520
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17520
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 6`] = `
@@ -447,9 +431,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15728
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15728
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > aides 1`] = `
@@ -469,9 +451,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 5000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > aides 2`] = `
@@ -491,9 +471,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 50000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 50000
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > impôt sur le revenu 1`] = `
@@ -513,9 +491,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 25000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 24269
-dirigeant . rémunération . impôt: 731
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 731"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 1`] = `
@@ -535,9 +511,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 500
 dirigeant . auto-entrepreneur . revenu net . après impôt: 500
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 2`] = `
@@ -557,9 +531,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 1000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 1000
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 3`] = `
@@ -579,9 +551,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 2000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 2000
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 4`] = `
@@ -601,9 +571,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 5000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 5`] = `
@@ -623,9 +591,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 10000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 10000
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 6`] = `
@@ -645,9 +611,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 7`] = `
@@ -667,9 +631,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 50000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 50000
-dirigeant . rémunération . impôt: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 0"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 8`] = `
@@ -689,9 +651,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 70000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 68974
-dirigeant . rémunération . impôt: 1026
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+dirigeant . rémunération . impôt: 1026"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 9`] = `

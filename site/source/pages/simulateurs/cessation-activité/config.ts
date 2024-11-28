@@ -20,7 +20,7 @@ export function cessationActivitéConfig({
 		),
 		title: t(
 			'pages.simulateurs.cessation-activité.title',
-			"Indépendants : Cotisations pour l'année de cessation"
+			"Indépendants : Estimation des cotisations pour l'année de cessation"
 		),
 		meta: {
 			description: t(
@@ -33,11 +33,11 @@ export function cessationActivitéConfig({
 			),
 			ogTitle: t(
 				'pages.simulateurs.cessation-activité.meta.ogTitle',
-				"Indépendants : Cotisations pour l'année de cessation"
+				"Indépendants : Estimation des cotisations pour l'année de cessation"
 			),
 			title: t(
 				'pages.simulateurs.cessation-activité.meta.titre',
-				"Indépendants : Cotisations pour l'année de cessation"
+				"Indépendants : Estimation des cotisations pour l'année de cessation"
 			),
 		},
 		nextSteps: ['indépendant'],

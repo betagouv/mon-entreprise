@@ -40,6 +40,7 @@ it('calculate simulations-indépendant', () => {
 		  "entreprise . activités . saisonnière",
 		  "entreprise . charges",
 		  "entreprise . chiffre d'affaires",
+		  "entreprise . date de cessation",
 		  "entreprise . date de création",
 		  "entreprise . imposition . régime",
 		  "entreprise . imposition . régime . micro-entreprise",
