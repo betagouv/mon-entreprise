@@ -94,6 +94,7 @@ export default function RéductionGénéraleMoisParMois({
 }
 
 const StyledTable = styled.table`
+	border-collapse: collapse;
 	text-align: left;
 	width: 100%;
 	color: ${({ theme }) => theme.colors.bases.primary[100]};
@@ -102,12 +103,9 @@ const StyledTable = styled.table`
 		text-align: left;
 		margin: ${({ theme }) => `${theme.spacings.sm} 0 `};
 	}
-	th {
-		padding: ${({ theme }) => `${theme.spacings.xs} 0 ${theme.spacings.lg} 0`};
-	}
-	tbody tr td:not(:first-of-type) {
-		padding: ${({ theme }) =>
-			`${theme.spacings.xs} ${theme.spacings.xxs} ${theme.spacings.lg} ${theme.spacings.xxs}`};
+	th,
+	td {
+		padding: ${({ theme }) => theme.spacings.xs};
 	}
 	tbody tr th {
 		text-transform: capitalize;
