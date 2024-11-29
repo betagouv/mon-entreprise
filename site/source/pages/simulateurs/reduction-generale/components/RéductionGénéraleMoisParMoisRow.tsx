@@ -89,40 +89,40 @@ export default function RéductionGénéraleMoisParMoisRow({
 			<tr>
 				<th scope="row">{monthName}</th>
 				<td>
-					<NumberInput
-						{...ruleInputProps}
-						id={`${rémunérationBruteDottedName.replace(
-							/\s|\./g,
-							'_'
-						)}-${monthName}`}
-						aria-label={`${engine.getRule(rémunérationBruteDottedName)
-							?.title} (${monthName})`}
-						onChange={(rémunérationBrute?: PublicodesExpression) =>
-							onRémunérationChange(
-								index,
-								(rémunérationBrute as RémunérationBruteInput).valeur
-							)
-						}
-						value={data.rémunérationBrute}
-						formatOptions={{
-							maximumFractionDigits: 2,
-						}}
-						displaySuggestions={false}
-					/>
-				</td>
-				<td>
-					<Button
-						size="XXS"
-						light
-						onPress={() => setOptionVisible(!isOptionVisible)}
-						aria-describedby="options-description"
-						aria-expanded={isOptionVisible}
-						aria-controls={`options-${monthName}`}
-						aria-label={!isOptionVisible ? t('Déplier') : t('Replier')}
-					>
-						{t('Options')}&nbsp;
-						<RotatingChevronIcon aria-hidden $isOpen={isOptionVisible} />
-					</Button>
+					<InputContainer>
+						<NumberInput
+							{...ruleInputProps}
+							id={`${rémunérationBruteDottedName.replace(
+								/\s|\./g,
+								'_'
+							)}-${monthName}`}
+							aria-label={`${engine.getRule(rémunérationBruteDottedName)
+								?.title} (${monthName})`}
+							onChange={(rémunérationBrute?: PublicodesExpression) =>
+								onRémunérationChange(
+									index,
+									(rémunérationBrute as RémunérationBruteInput).valeur
+								)
+							}
+							value={data.rémunérationBrute}
+							formatOptions={{
+								maximumFractionDigits: 2,
+							}}
+							displaySuggestions={false}
+						/>
+						<Button
+							size="XXS"
+							light
+							onPress={() => setOptionVisible(!isOptionVisible)}
+							aria-describedby="options-description"
+							aria-expanded={isOptionVisible}
+							aria-controls={`options-${monthName}`}
+							aria-label={!isOptionVisible ? t('Déplier') : t('Replier')}
+						>
+							{t('Options')}&nbsp;
+							<RotatingChevronIcon aria-hidden $isOpen={isOptionVisible} />
+						</Button>
+					</InputContainer>
 				</td>
 				<td
 					id={`${réductionGénéraleDottedName.replace(
@@ -157,7 +157,7 @@ export default function RéductionGénéraleMoisParMoisRow({
 					<td />
 					<td colSpan={4}>
 						<Appear id={`options-${monthName}`}>
-							<OptionContainer>
+							<InputContainer>
 								<FlexDiv>
 									<StyledSmallBody id={`heures-${additionalHours}-label`}>
 										{additionalHoursLabels[additionalHours]}
@@ -184,7 +184,7 @@ export default function RéductionGénéraleMoisParMoisRow({
 										displayedUnit="heures"
 									/>
 								</NumberFieldContainer>
-							</OptionContainer>
+							</InputContainer>
 						</Appear>
 					</td>
 				</StyledTableRow>
@@ -219,9 +219,9 @@ const FlexDiv = styled.div`
 	${FlexCenter}
 	justify-content: end;
 `
-const OptionContainer = styled.div`
+const InputContainer = styled.div`
 	${FlexCenter}
-	gap: ${({ theme }) => theme.spacings.lg};
+	gap: ${({ theme }) => theme.spacings.md};
 `
 const NumberFieldContainer = styled.div`
 	max-width: 120px;
