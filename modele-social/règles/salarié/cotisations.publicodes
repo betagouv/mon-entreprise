@@ -365,6 +365,26 @@ salarié . cotisations . exonérations . réduction générale:
             régimes spécifiques . DFS: non
         - 130%
 
+salarié . cotisations . exonérations . réduction générale . régularisation:
+  description: |
+    ### Régularisation progressive
+
+    À chaque échéance, vous cumulez :
+    - les rémunérations brutes du salarié perçues depuis le début de l’année ou depuis son embauche ;
+    - et vous calculez le montant du Smic brut sur cette même période.
+
+    La régularisation correspond à la différence entre le montant ainsi calculé et le montant cumulé
+    des réductions appliquées sur les mois ou trimestres précédents de l'année.
+
+    ### Régularisation annuelle
+
+    Elle correspond à la différence entre le montant de la réduction calculée selon la formule annuelle
+    et le montant des réductions appliquées par anticipation sur les périodes précédentes de l’année.
+
+    Elle intervient :
+    - sur les cotisations dues au titre du mois de décembre, pour les employeurs « mensuels » ;
+    - ou au titre du dernier trimestre de l’année pour les employeurs « trimestriels ».
+
 salarié . cotisations . exonérations . T:
   titre: Coefficient T
   unité: ''

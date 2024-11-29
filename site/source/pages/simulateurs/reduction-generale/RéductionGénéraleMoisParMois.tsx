@@ -55,7 +55,13 @@ export default function RéductionGénéraleMoisParMois({
 							{t('Réduction générale')}
 							<ExplicableRule dottedName={réductionGénéraleDottedName} light />
 						</th>
-						<th scope="col">{t('Régularisaton')}</th>
+						<th scope="col">
+							{t('Régularisaton')}
+							<ExplicableRule
+								dottedName="salarié . cotisations . exonérations . réduction générale . régularisation"
+								light
+							/>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
