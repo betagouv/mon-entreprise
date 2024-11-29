@@ -51,7 +51,6 @@ export default function RéductionGénéraleMoisParMois({
 							{t('Rémunération brute')}
 							<ExplicableRule dottedName="salarié . rémunération . brut" />
 						</th>
-						<th />
 						<th scope="col">
 							{t('Réduction générale')}
 							<ExplicableRule dottedName={réductionGénéraleDottedName} light />
