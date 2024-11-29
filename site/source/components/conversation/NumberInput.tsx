@@ -21,9 +21,11 @@ export default function NumberInput({
 	unit,
 	formatOptions,
 	displayedUnit,
+	displaySuggestions = true,
 	...fieldProps
 }: InputProps & {
 	unit?: Unit
+	displaySuggestions?: boolean
 }) {
 	const unité = serializeUnit(unit)
 	const [currentValue, setCurrentValue] = useState<number | undefined>(
@@ -91,18 +93,20 @@ export default function NumberInput({
 				}
 				value={currentValue}
 			/>
-			<InputSuggestions
-				className="print-hidden"
-				suggestions={suggestions}
-				onFirstClick={(node: ASTNode) => {
-					const evaluatedNode = engine.evaluate(node)
-					if (serializeUnit(evaluatedNode.unit) === serializeUnit(unit)) {
-						setCurrentValue(evaluatedNode.nodeValue as number)
-					}
-					onChange(node)
-				}}
-				onSecondClick={() => onSubmit?.('suggestion')}
-			/>
+			{displaySuggestions && (
+				<InputSuggestions
+					className="print-hidden"
+					suggestions={suggestions}
+					onFirstClick={(node: ASTNode) => {
+						const evaluatedNode = engine.evaluate(node)
+						if (serializeUnit(evaluatedNode.unit) === serializeUnit(unit)) {
+							setCurrentValue(evaluatedNode.nodeValue as number)
+						}
+						onChange(node)
+					}}
+					onSecondClick={() => onSubmit?.('suggestion')}
+				/>
+			)}
 		</StyledNumberInput>
 	)
 }

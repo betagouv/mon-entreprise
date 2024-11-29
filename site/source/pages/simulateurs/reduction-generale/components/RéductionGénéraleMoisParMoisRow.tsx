@@ -8,6 +8,11 @@ import { Appear } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message, NumberField } from '@/design-system'
 import { Button, HelpButtonWithPopover } from '@/design-system/buttons'
+import {
+	StyledInput,
+	StyledInputContainer,
+	StyledSuffix,
+} from '@/design-system/field/TextField'
 import { FlexCenter } from '@/design-system/global-style'
 import { RotatingChevronIcon } from '@/design-system/icons'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
@@ -102,6 +107,7 @@ export default function RéductionGénéraleMoisParMoisRow({
 						formatOptions={{
 							maximumFractionDigits: 2,
 						}}
+						displaySuggestions={false}
 					/>
 				</td>
 				<td>
@@ -147,7 +153,7 @@ export default function RéductionGénéraleMoisParMoisRow({
 				</td>
 			</tr>
 			{isOptionVisible && (
-				<tr>
+				<StyledTableRow>
 					<td />
 					<td colSpan={4}>
 						<Appear id={`options-${monthName}`}>
@@ -164,22 +170,24 @@ export default function RéductionGénéraleMoisParMoisRow({
 									</HelpButtonWithPopover>
 								</FlexDiv>
 
-								<NumberField
-									small={true}
-									value={data.options.heuresSupplémentaires}
-									onChange={(value?: number) =>
-										onOptionsChange(index, {
-											heuresSupplémentaires: value,
-											heuresComplémentaires: 0,
-										})
-									}
-									aria-labelledby={`heures-${additionalHours}-label`}
-									displayedUnit="heures"
-								/>
+								<NumberFieldContainer>
+									<NumberField
+										small={true}
+										value={data.options.heuresSupplémentaires}
+										onChange={(value?: number) =>
+											onOptionsChange(index, {
+												heuresSupplémentaires: value,
+												heuresComplémentaires: 0,
+											})
+										}
+										aria-labelledby={`heures-${additionalHours}-label`}
+										displayedUnit="heures"
+									/>
+								</NumberFieldContainer>
 							</OptionContainer>
 						</Appear>
 					</td>
-				</tr>
+				</StyledTableRow>
 			)}
 		</>
 	)
@@ -200,6 +208,13 @@ const HeuresSupplémentairesPopoverContent = () => (
 	</Trans>
 )
 
+const StyledTableRow = styled.tr`
+	background-color: ${({ theme }) => theme.colors.bases.primary[200]};
+	td {
+		padding-top: ${({ theme }) => theme.spacings.sm};
+		padding-bottom: ${({ theme }) => theme.spacings.sm};
+	}
+`
 const FlexDiv = styled.div`
 	${FlexCenter}
 	justify-content: end;
@@ -207,8 +222,21 @@ const FlexDiv = styled.div`
 const OptionContainer = styled.div`
 	${FlexCenter}
 	gap: ${({ theme }) => theme.spacings.lg};
-	margin-top: -${({ theme }) => theme.spacings.md};
+`
+const NumberFieldContainer = styled.div`
+	max-width: 120px;
+	${StyledInputContainer} {
+		border-color: ${({ theme }) => theme.colors.bases.primary[800]};
+		background-color: 'rgba(255, 255, 255, 10%)';
+		&:focus-within {
+			outline-color: ${({ theme }) => theme.colors.bases.primary[700]};
+		}
+		${StyledInput}, ${StyledSuffix} {
+			color: ${({ theme }) => theme.colors.bases.primary[800]}!important;
+		}
+	}
 `
 const StyledSmallBody = styled(SmallBody)`
 	margin: 0;
+	color: ${({ theme }) => theme.colors.bases.primary[800]};
 `
