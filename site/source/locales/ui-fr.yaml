@@ -1804,7 +1804,7 @@ points: points
 pourcentage: pourcentage
 previousSimulationBanner:
   info: "Votre précédente simulation a été sauvegardée :"
-  retrieveButton: Retrouver ma simulation
+  retrieveButton: Retrouver ma précédente simulation
 privacyPolicy:
   data:
     content: "mon-entreprise.urssaf.fr ne traite aucune donnée à caractère personnel
