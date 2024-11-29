@@ -2,84 +2,64 @@
 
 exports[`calculate simulations-artiste-auteur > bnc 1`] = `
 "artiste-auteur . cotisations: 1230
-artiste-auteur . cotisations . IRCEC: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > bnc 2`] = `
 "artiste-auteur . cotisations: 1863
-artiste-auteur . cotisations . IRCEC: 920
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 920"
 `;
 
 exports[`calculate simulations-artiste-auteur > bnc 3`] = `
 "artiste-auteur . cotisations: 931
 artiste-auteur . cotisations . IRCEC: 0
 
-Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 1`] = `
 "artiste-auteur . cotisations: 487
-artiste-auteur . cotisations . IRCEC: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 2`] = `
 "artiste-auteur . cotisations: 479
-artiste-auteur . cotisations . IRCEC: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 3`] = `
 "artiste-auteur . cotisations: 438
-artiste-auteur . cotisations . IRCEC: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 4`] = `
 "artiste-auteur . cotisations: 430
-artiste-auteur . cotisations . IRCEC: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 1`] = `
 "artiste-auteur . cotisations: 160
 artiste-auteur . cotisations . IRCEC: 0
 
-Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 2`] = `
 "artiste-auteur . cotisations: 1523
-artiste-auteur . cotisations . IRCEC: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 3`] = `
 "artiste-auteur . cotisations: 1683
-artiste-auteur . cotisations . IRCEC: 840
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 840"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 4`] = `
 "artiste-auteur . cotisations: 1061
-artiste-auteur . cotisations . IRCEC: 8000
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 8000"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 5`] = `
 "artiste-auteur . cotisations: 1390
-artiste-auteur . cotisations . IRCEC: 11128
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+artiste-auteur . cotisations . IRCEC: 11128"
 `;

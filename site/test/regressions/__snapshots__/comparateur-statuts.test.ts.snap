@@ -23,7 +23,7 @@ protection sociale . retraite . base: 725
 protection sociale . retraite . complémentaire: 33
 protection sociale . retraite . trimestres: 4
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel, entreprise . TVA . franchise de TVA . notification"
+Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
 `;
 
 exports[`calculate comparateur-statuts > ACRE 2`] = `
@@ -47,9 +47,7 @@ protection sociale . maladie . maternité paternité adoption . allocation forfa
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3864
 protection sociale . retraite . base: 1618
 protection sociale . retraite . complémentaire: 145
-protection sociale . retraite . trimestres: 4
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > ACRE 3`] = `
@@ -73,9 +71,7 @@ protection sociale . maladie . maternité paternité adoption . allocation forfa
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
 protection sociale . retraite . base: 1652
 protection sociale . retraite . complémentaire: 148
-protection sociale . retraite . trimestres: 4
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > EI à l'IS 1`] = `
@@ -99,9 +95,7 @@ protection sociale . maladie . maternité paternité adoption . allocation forfa
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3864
 protection sociale . retraite . base: 1196
 protection sociale . retraite . complémentaire: 107
-protection sociale . retraite . trimestres: 4
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > bas revenus 1`] = `
@@ -125,9 +119,7 @@ protection sociale . maladie . maternité paternité adoption . allocation forfa
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 386
 protection sociale . retraite . base: 24
 protection sociale . retraite . complémentaire: 2
-protection sociale . retraite . trimestres: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+protection sociale . retraite . trimestres: 0"
 `;
 
 exports[`calculate comparateur-statuts > bas revenus 2`] = `
@@ -151,9 +143,7 @@ protection sociale . maladie . maternité paternité adoption . allocation forfa
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3864
 protection sociale . retraite . base: 219
 protection sociale . retraite . complémentaire: 2
-protection sociale . retraite . trimestres: 3
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate comparateur-statuts > bas revenus 3`] = `
@@ -177,9 +167,7 @@ protection sociale . maladie . maternité paternité adoption . allocation forfa
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
 protection sociale . retraite . base: 53
 protection sociale . retraite . complémentaire: 5
-protection sociale . retraite . trimestres: 0
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+protection sociale . retraite . trimestres: 0"
 `;
 
 exports[`calculate comparateur-statuts > base 1`] = `
@@ -203,9 +191,7 @@ protection sociale . maladie . maternité paternité adoption . allocation forfa
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3864
 protection sociale . retraite . base: 725
 protection sociale . retraite . complémentaire: 65
-protection sociale . retraite . trimestres: 4
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > base 2`] = `
@@ -229,9 +215,7 @@ protection sociale . maladie . maternité paternité adoption . allocation forfa
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3864
 protection sociale . retraite . base: 1428
 protection sociale . retraite . complémentaire: 128
-protection sociale . retraite . trimestres: 4
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > base 3`] = `
@@ -255,9 +239,7 @@ protection sociale . maladie . maternité paternité adoption . allocation forfa
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
 protection sociale . retraite . base: 1434
 protection sociale . retraite . complémentaire: 128
-protection sociale . retraite . trimestres: 4
-
-Notifications affichées : entreprise . TVA . franchise de TVA . notification"
+protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > profession libérale non reglementée 1`] = `

@@ -1,4 +1,4 @@
-import { SimulationConfig } from '@/pages/simulateurs/_configs/types'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { configIndépendant } from '@/pages/simulateurs/indépendant/simulationConfig'
 
 export const configCessationActivité: SimulationConfig = {
@@ -13,7 +13,6 @@ export const configCessationActivité: SimulationConfig = {
 		...configIndépendant.questions,
 		'liste noire': [
 			...(configIndépendant.questions?.['liste noire'] || []),
-			'entreprise . TVA . franchise de TVA . notification',
 			'entreprise . date de cessation',
 		],
 	},
