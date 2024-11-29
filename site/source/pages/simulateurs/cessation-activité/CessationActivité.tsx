@@ -21,7 +21,7 @@ export const CessationActivitéSimulation = () => {
 		...useSelector(companySituationSelector),
 	}
 	const targetUnit = useSelector(targetUnitSelector)
-	const filteredSituation = omit(situation, 'entreprise . date de radiation')
+	const filteredSituation = omit(situation, 'entreprise . date de cessation')
 
 	const searchParams = useParamsFromSituation(filteredSituation, targetUnit)
 

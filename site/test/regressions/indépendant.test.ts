@@ -41,7 +41,7 @@ it('calculate simulations-indépendant', () => {
 		  "entreprise . charges",
 		  "entreprise . chiffre d'affaires",
 		  "entreprise . date de création",
-		  "entreprise . date de radiation",
+		  "entreprise . date de cessation",
 		  "entreprise . imposition . régime",
 		  "entreprise . imposition . régime . micro-entreprise",
 		  "impôt . foyer fiscal . enfants à charge",
