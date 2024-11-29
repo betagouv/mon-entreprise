@@ -45,6 +45,8 @@ entreprise . date de radiation:
   question: À quelle date comptez-vous déclarer la cessation d’activité ?
   description: La date de radiation est la date à laquelle l’entreprise cessera son activité.
   type: date
+  références:
+    Urssaf: https://www.urssaf.fr/accueil/services/services-independants/realiser-cessation-activite.html
 
 
 entreprise . créée cette année:
