@@ -9486,6 +9486,67 @@ salarié . cotisations . exonérations . réduction générale:
     particulière à effectuer.
   titre.en: '[automatic] overall reduction'
   titre.fr: réduction générale
+salarié . cotisations . exonérations . réduction générale . régularisation:
+  description.en: >
+    [automatic] ### Progressive regularization
+
+
+    At each due date, you accumulate :
+
+    - the employee's gross earnings since the beginning of the year or since being hired ;
+
+    - and calculate the amount of the gross Smic over the same period.
+
+
+    The adjustment corresponds to the difference between the amount calculated in this way and the cumulative amount of
+
+    reductions applied over the previous months or quarters of the year.
+
+
+    ### Annual regularization
+
+
+    This corresponds to the difference between the amount of the reduction calculated according to the annual formula
+
+    and the amount of reductions applied in advance to previous periods of the year.
+
+
+    It is applied :
+
+    - on contributions due for the month of December, for "monthly" employers ;
+
+    - or for the last quarter of the year for "quarterly" employers.
+  description.fr: >
+    ### Régularisation progressive
+
+
+    À chaque échéance, vous cumulez :
+
+    - les rémunérations brutes du salarié perçues depuis le début de l’année ou depuis son embauche ;
+
+    - et vous calculez le montant du Smic brut sur cette même période.
+
+
+    La régularisation correspond à la différence entre le montant ainsi calculé et le montant cumulé
+
+    des réductions appliquées sur les mois ou trimestres précédents de l'année.
+
+
+    ### Régularisation annuelle
+
+
+    Elle correspond à la différence entre le montant de la réduction calculée selon la formule annuelle
+
+    et le montant des réductions appliquées par anticipation sur les périodes précédentes de l’année.
+
+
+    Elle intervient :
+
+    - sur les cotisations dues au titre du mois de décembre, pour les employeurs « mensuels » ;
+
+    - ou au titre du dernier trimestre de l’année pour les employeurs « trimestriels ».
+  titre.en: '[automatic] regularization'
+  titre.fr: régularisation
 salarié . cotisations . forfait social:
   description.en: >
     [automatic] The social security contribution is a contribution paid by the
