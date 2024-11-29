@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
+import RuleLink from '@/components/RuleLink'
 
 import RéductionGénéraleMoisParMoisRow from './components/RéductionGénéraleMoisParMoisRow'
 import Warnings from './components/Warnings'
@@ -48,19 +48,13 @@ export default function RéductionGénéraleMoisParMois({
 					<tr>
 						<th scope="col">{t('Mois')}</th>
 						<th scope="col">
-							{t('Rémunération brute')}
-							<ExplicableRule dottedName="salarié . rémunération . brut" />
+							<RuleLink dottedName="salarié . rémunération . brut" />
 						</th>
 						<th scope="col">
-							{t('Réduction générale')}
-							<ExplicableRule dottedName={réductionGénéraleDottedName} light />
+							<RuleLink dottedName={réductionGénéraleDottedName} />
 						</th>
 						<th scope="col">
-							{t('Régularisaton')}
-							<ExplicableRule
-								dottedName="salarié . cotisations . exonérations . réduction générale . régularisation"
-								light
-							/>
+							<RuleLink dottedName="salarié . cotisations . exonérations . réduction générale . régularisation" />
 						</th>
 					</tr>
 				</thead>
