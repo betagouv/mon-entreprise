@@ -43,6 +43,7 @@ entreprise . date de création . contrôle date passée:
 
 entreprise . date de cessation:
   question: À quelle date comptez-vous déclarer la cessation d’activité ?
+  par défaut: période . fin d'année
   description: La date de cessation est la date à laquelle l’entreprise cessera son activité.
   type: date
   références:
