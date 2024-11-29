@@ -29,12 +29,12 @@ export default function PreviousSimulationBanner() {
 			<Link
 				onPress={() => dispatch(loadPreviousSimulation())}
 				aria-label={t(
-					'Retrouver ma simulation, charger les données de ma précédente simulation.'
+					'Retrouver ma précédente simulation, charger les données de ma précédente simulation.'
 				)}
 				role="button"
 			>
 				<Trans i18nKey="previousSimulationBanner.retrieveButton">
-					Retrouver ma simulation
+					Retrouver ma précédente simulation
 				</Trans>
 			</Link>
 		</Banner>
