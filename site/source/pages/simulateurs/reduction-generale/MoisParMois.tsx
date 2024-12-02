@@ -6,7 +6,7 @@ import { baseTheme } from '@/design-system/theme'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
-import RéductionGénéraleMois from './components/MoisParMois'
+import RéductionGénéraleMois from './components/Mois'
 import Warnings from './components/Warnings'
 import { MonthState, Options, réductionGénéraleDottedName } from './utils'
 
