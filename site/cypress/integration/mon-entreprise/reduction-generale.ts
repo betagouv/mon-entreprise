@@ -20,8 +20,6 @@ describe(
 		})
 
 		it('should allow to select a company size', function () {
-			cy.get(inputSelector).first().type('{selectall}2000')
-
 			cy.contains('Plus de 50 salariés').click()
 			cy.contains('Modifier mes réponses').click()
 			cy.get('div[data-cy="modal"]')
@@ -43,15 +41,14 @@ describe(
 
 		it('should allow to change time period', function () {
 			cy.contains('Réduction mensuelle').click()
-			cy.get(inputSelector).first().type('{selectall}2000')
+			cy.get(inputSelector).first().type('{selectall}1900')
 
 			cy.contains('Réduction annuelle').click()
-			cy.get(inputSelector).first().should('have.value', '24 000 €')
+			cy.get(inputSelector).first().should('have.value', '22 800 €')
 		})
 
 		it('should display values for the réduction générale', function () {
 			cy.contains('Réduction mensuelle').click()
-			cy.get(inputSelector).first().type('{selectall}1900')
 
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale-value"]'
@@ -93,18 +90,21 @@ describe(
 
 			cy.contains('Réduction mois par mois').click()
 			cy.contains('Réduction générale mois par mois :')
+			// Wait for 1 ms in order for values to update
+			// eslint-disable-next-line cypress/no-unnecessary-waiting
+			cy.wait(1)
 			cy.get(inputSelector)
 				.should('have.length', 12)
 				.each(($input) => {
 					cy.wrap($input).should('have.value', '1 900 €')
 				})
 			cy.get(
-				'td[id^="salarié___cotisations___exonérations___réduction_générale-"]'
+				'[id^="salarié___cotisations___exonérations___réduction_générale-"]'
 			)
 				.should('have.length', 12)
-				.each(($td, $index) => {
+				.each(($input, $index) => {
 					if ($index < 10) {
-						cy.wrap($td).should('include.text', '493,43 €')
+						cy.wrap($input).should('include.text', '493,43 €')
 					}
 				})
 		})
@@ -116,10 +116,10 @@ describe(
 			cy.get(inputSelector).first().type('{selectall}1900')
 			cy.get(inputSelector).eq(1).type('{selectall}2000')
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale-janvier"]'
+				'#salarié___cotisations___exonérations___réduction_générale-janvier'
 			).should('include.text', '493,43 €')
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale-février"]'
+				'#salarié___cotisations___exonérations___réduction_générale-février'
 			).should('include.text', '440,23 €')
 		})
 
@@ -154,16 +154,16 @@ describe(
 			cy.get(inputSelector).eq(1).type('{selectall}3000')
 
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale-février"]'
+				'#salarié___cotisations___exonérations___réduction_générale-février'
 			).should('include.text', '0 €')
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale__régularisation-février"]'
+				'#salarié___cotisations___exonérations___réduction_générale__régularisation-février'
 			).should('include.text', '0 €')
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale-mars"]'
+				'#salarié___cotisations___exonérations___réduction_générale-mars'
 			).should('include.text', '493,43 €')
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale-décembre"]'
+				'#salarié___cotisations___exonérations___réduction_générale-décembre'
 			).should('include.text', '432,49 €')
 		})
 
@@ -176,16 +176,16 @@ describe(
 			cy.get(inputSelector).eq(1).type('{selectall}3000')
 
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale-février"]'
+				'#salarié___cotisations___exonérations___réduction_générale-février'
 			).should('include.text', '0 €')
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale__régularisation-février"]'
+				'#salarié___cotisations___exonérations___réduction_générale__régularisation-février'
 			).should('include.text', '-92,12 €')
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale-mars"]'
+				'#salarié___cotisations___exonérations___réduction_générale-mars'
 			).should('include.text', '493,57 €')
 			cy.get(
-				'td[id="salarié___cotisations___exonérations___réduction_générale-décembre"]'
+				'#salarié___cotisations___exonérations___réduction_générale-décembre'
 			).should('include.text', '523,62 €')
 		})
 

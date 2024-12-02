@@ -15,6 +15,7 @@ import Répartition from './Répartition'
 import WarningSalaireTrans from './WarningSalaireTrans'
 
 type Props = {
+	id?: string
 	rémunérationBrute: number
 	réductionGénérale: number
 	displayedUnit: string
@@ -23,6 +24,7 @@ type Props = {
 }
 
 export default function MontantRéduction({
+	id,
 	rémunérationBrute,
 	réductionGénérale,
 	displayedUnit,
@@ -42,7 +44,7 @@ export default function MontantRéduction({
 
 	return réductionGénérale ? (
 		<StyledTooltip tooltip={tooltip}>
-			<FlexDiv>
+			<FlexDiv id={id}>
 				{formatValue(
 					{
 						nodeValue: réductionGénérale,
@@ -56,7 +58,7 @@ export default function MontantRéduction({
 			</FlexDiv>
 		</StyledTooltip>
 	) : (
-		<FlexDiv>
+		<FlexDiv id={id}>
 			{formatValue(0, { displayedUnit, language })}
 
 			{warning && (
