@@ -19,7 +19,7 @@ import { situationSelector } from '@/store/selectors/simulationSelectors'
 import Répartition from './components/Répartition'
 import Warnings from './components/Warnings'
 import WarningSalaireTrans from './components/WarningSalaireTrans'
-import RéductionGénéraleMoisParMois from './RéductionGénéraleMoisParMois'
+import RéductionGénéraleMoisParMois from './MoisParMois'
 import {
 	getInitialRéductionGénéraleMoisParMois,
 	MonthState,
