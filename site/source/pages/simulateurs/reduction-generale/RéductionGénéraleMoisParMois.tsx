@@ -2,8 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
+import { baseTheme } from '@/design-system/theme'
+import { Body } from '@/design-system/typography/paragraphs'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
-import RéductionGénéraleMoisParMoisRow from './components/RéductionGénéraleMoisParMoisRow'
+import RéductionGénéraleMois from './components/MoisParMois'
 import Warnings from './components/Warnings'
 import { MonthState, Options, réductionGénéraleDottedName } from './utils'
 
@@ -19,6 +22,9 @@ export default function RéductionGénéraleMoisParMois({
 	onOptionsChange,
 }: Props) {
 	const { t } = useTranslation()
+	const isDesktop = useMediaQuery(
+		`(min-width: ${baseTheme.breakpointsWidth.md})`
+	)
 
 	const months = [
 		t('janvier'),
@@ -37,31 +43,61 @@ export default function RéductionGénéraleMoisParMois({
 
 	return (
 		<>
-			<StyledTable style={{ width: '100%' }}>
-				<caption>
-					{t(
-						'pages.simulateurs.réduction-générale.month-by-month.caption',
-						'Réduction générale mois par mois :'
-					)}
-				</caption>
-				<thead>
-					<tr>
-						<th scope="col">{t('Mois')}</th>
-						<th scope="col">
-							<RuleLink dottedName="salarié . rémunération . brut" />
-						</th>
-						<th scope="col">
-							<RuleLink dottedName={réductionGénéraleDottedName} />
-						</th>
-						<th scope="col">
-							<RuleLink dottedName="salarié . cotisations . exonérations . réduction générale . régularisation" />
-						</th>
-					</tr>
-				</thead>
-				<tbody>
+			{isDesktop ? (
+				<StyledTable>
+					<caption>
+						{t(
+							'pages.simulateurs.réduction-générale.month-by-month.caption',
+							'Réduction générale mois par mois :'
+						)}
+					</caption>
+					<thead>
+						<tr>
+							<th scope="col">{t('Mois')}</th>
+							<th scope="col">
+								{/* TODO: remplacer par rémunérationBruteDottedName lorsque ... */}
+								<RuleLink dottedName="salarié . rémunération . brut" />
+							</th>
+							<th scope="col">
+								<RuleLink dottedName={réductionGénéraleDottedName} />
+							</th>
+							<th scope="col">
+								<RuleLink dottedName="salarié . cotisations . exonérations . réduction générale . régularisation" />
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{data.length > 0 &&
+							months.map((monthName, monthIndex) => (
+								<RéductionGénéraleMois
+									key={`month-${monthIndex}`}
+									monthName={monthName}
+									data={data[monthIndex]}
+									index={monthIndex}
+									onRémunérationChange={(
+										monthIndex: number,
+										rémunérationBrute: number
+									) => {
+										onRémunérationChange(monthIndex, rémunérationBrute)
+									}}
+									onOptionsChange={(monthIndex: number, options: Options) => {
+										onOptionsChange(monthIndex, options)
+									}}
+								/>
+							))}
+					</tbody>
+				</StyledTable>
+			) : (
+				<>
+					<Body>
+						{t(
+							'pages.simulateurs.réduction-générale.month-by-month.caption',
+							'Réduction générale mois par mois :'
+						)}
+					</Body>
 					{data.length > 0 &&
 						months.map((monthName, monthIndex) => (
-							<RéductionGénéraleMoisParMoisRow
+							<RéductionGénéraleMois
 								key={`month-${monthIndex}`}
 								monthName={monthName}
 								data={data[monthIndex]}
@@ -75,10 +111,11 @@ export default function RéductionGénéraleMoisParMois({
 								onOptionsChange={(monthIndex: number, options: Options) => {
 									onOptionsChange(monthIndex, options)
 								}}
+								mobileVersion={true}
 							/>
 						))}
-				</tbody>
-			</StyledTable>
+				</>
+			)}
 
 			<span id="options-description" className="sr-only">
 				{t(
