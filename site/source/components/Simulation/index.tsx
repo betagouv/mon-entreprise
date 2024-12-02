@@ -88,10 +88,6 @@ export default function Simulation({
 					)}
 					<Spacing md />
 
-					{!showQuestionsFromBeginning && !firstStepCompleted && (
-						<PreviousSimulationBanner />
-					)}
-					{afterQuestionsSlot}
 					{existingCompany && (
 						<Banner icon="✏">
 							<Trans>
@@ -115,6 +111,13 @@ export default function Simulation({
 							</PopoverWithTrigger>
 						</Banner>
 					)}
+
+					{!showQuestionsFromBeginning && !firstStepCompleted && (
+						<PreviousSimulationBanner />
+					)}
+
+					{afterQuestionsSlot}
+
 					{firstStepCompleted && !hideDetails && (
 						<>
 							<ShareOrSaveSimulationBanner share print conseillersEntreprises />
