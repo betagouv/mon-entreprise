@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -13,6 +13,7 @@ import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { Situation } from '@/domaine/Situation'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
@@ -22,6 +23,8 @@ import WarningSalaireTrans from './components/WarningSalaireTrans'
 import RéductionGénéraleMoisParMois from './MoisParMois'
 import {
 	getInitialRéductionGénéraleMoisParMois,
+	heuresComplémentairesDottedName,
+	heuresSupplémentairesDottedName,
 	MonthState,
 	Options,
 	réductionGénéraleDottedName,
@@ -29,6 +32,19 @@ import {
 	RégularisationMethod,
 	rémunérationBruteDottedName,
 } from './utils'
+
+type SituationType = Situation & {
+	[heuresSupplémentairesDottedName]?: {
+		explanation: {
+			nodeValue: number
+		}
+	}
+	[heuresComplémentairesDottedName]?: {
+		explanation: {
+			nodeValue: number
+		}
+	}
+}
 
 export default function RéductionGénéraleSimulationGoals({
 	monthByMonth,
@@ -46,6 +62,8 @@ export default function RéductionGénéraleSimulationGoals({
 	const { t } = useTranslation()
 	const [réductionGénéraleMoisParMoisData, setData] = useState<MonthState[]>([])
 	const year = useYear()
+	const situation = useSelector(situationSelector) as SituationType
+	const previousSituation = useRef(situation)
 
 	const initializeRéductionGénéraleMoisParMoisData = useCallback(() => {
 		const data = getInitialRéductionGénéraleMoisParMois(year, engine)
@@ -61,16 +79,57 @@ export default function RéductionGénéraleSimulationGoals({
 		réductionGénéraleMoisParMoisData.length,
 	])
 
-	const situation = useSelector(situationSelector)
+	const getOptionsFromSituations = (
+		previousSituation: SituationType,
+		newSituation: SituationType
+	): Partial<Options> => {
+		const options = {} as Partial<Options>
+
+		const previousHeuresSupplémentaires =
+			previousSituation[heuresSupplémentairesDottedName]?.explanation.nodeValue
+		const newHeuresSupplémentaires =
+			newSituation[heuresSupplémentairesDottedName]?.explanation.nodeValue
+		if (newHeuresSupplémentaires !== previousHeuresSupplémentaires) {
+			options.heuresSupplémentaires = newHeuresSupplémentaires || 0
+		}
+
+		const previousHeuresComplémentaires =
+			previousSituation[heuresComplémentairesDottedName]?.explanation.nodeValue
+		const newHeuresComplémentaires =
+			newSituation[heuresComplémentairesDottedName]?.explanation.nodeValue
+		if (newHeuresComplémentaires !== previousHeuresComplémentaires) {
+			options.heuresComplémentaires = newHeuresComplémentaires || 0
+		}
+
+		return options
+	}
+
 	useEffect(() => {
+		const newOptions = getOptionsFromSituations(
+			previousSituation.current,
+			situation
+		)
+
 		setData((previousData) => {
+			const updatedData = previousData.map((data) => {
+				return {
+					...data,
+					options: {
+						...data.options,
+						...newOptions,
+					},
+				}
+			}, [])
+
 			return reevaluateRéductionGénéraleMoisParMois(
-				previousData,
+				updatedData,
 				engine,
 				year,
 				régularisationMethod
 			)
 		})
+
+		previousSituation.current = situation
 	}, [engine, situation, régularisationMethod, year])
 
 	const updateRémunérationBruteAnnuelle = (data: MonthState[]): void => {
