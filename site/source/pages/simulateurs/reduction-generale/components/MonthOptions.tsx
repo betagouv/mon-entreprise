@@ -59,8 +59,8 @@ export default function MonthOptions({
 	}
 
 	return (
-		<Appear id={`options-${month}`}>
-			<InputContainer>
+		<Appear>
+			<InputContainer id={`options-${month}`}>
 				<FlexDiv>
 					<StyledSmallBody id={`heures-${additionalHours}-label`}>
 						{additionalHoursLabels[additionalHours]}

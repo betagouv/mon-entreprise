@@ -145,31 +145,7 @@ describe(
 			})
 		})
 
-		it('should include annual regularisation', function () {
-			cy.contains('Régularisation annuelle').click()
-			cy.contains('Moins de 50 salariés').click()
-			cy.contains('Réduction mensuelle').click()
-			cy.get(inputSelector).first().type('{selectall}1900')
-			cy.contains('Réduction mois par mois').click()
-			cy.get(inputSelector).eq(1).type('{selectall}3000')
-
-			cy.get(
-				'#salarié___cotisations___exonérations___réduction_générale-février'
-			).should('include.text', '0 €')
-			cy.get(
-				'#salarié___cotisations___exonérations___réduction_générale__régularisation-février'
-			).should('include.text', '0 €')
-			cy.get(
-				'#salarié___cotisations___exonérations___réduction_générale-mars'
-			).should('include.text', '493,43 €')
-			cy.get(
-				'#salarié___cotisations___exonérations___réduction_générale-décembre'
-			).should('include.text', '432,49 €')
-		})
-
 		it('should include progressive regularisation', function () {
-			cy.contains('Régularisation progressive').click()
-			cy.contains('Moins de 50 salariés').click()
 			cy.contains('Réduction mensuelle').click()
 			cy.get(inputSelector).first().type('{selectall}1900')
 			cy.contains('Réduction mois par mois').click()
@@ -187,6 +163,39 @@ describe(
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-décembre'
 			).should('include.text', '523,62 €')
+		})
+
+		it('should include annual regularisation', function () {
+			cy.contains('Régularisation annuelle').click()
+
+			cy.get(
+				'#salarié___cotisations___exonérations___réduction_générale-février'
+			).should('include.text', '0 €')
+			cy.get(
+				'#salarié___cotisations___exonérations___réduction_générale__régularisation-février'
+			).should('include.text', '0 €')
+			cy.get(
+				'#salarié___cotisations___exonérations___réduction_générale-mars'
+			).should('include.text', '493,43 €')
+			cy.get(
+				'#salarié___cotisations___exonérations___réduction_générale-décembre'
+			).should('include.text', '432,49 €')
+		})
+
+		it('should include monthly options', function () {
+			cy.get(inputSelector).first().type('{selectall}2100')
+			cy.get(
+				'div[id="simulator-legend"] button[aria-describedby="options-description"]'
+			)
+				.should('have.length', 12)
+				.first()
+				.click()
+			cy.get('div[id="options-janvier"]').should('be.visible')
+			cy.get('div[id="options-janvier"] input').type('{selectall}28,15')
+
+			cy.get(
+				'#salarié___cotisations___exonérations___réduction_générale-janvier'
+			).should('include.text', '666,33 €')
 		})
 
 		it('should be RGAA compliant', function () {
