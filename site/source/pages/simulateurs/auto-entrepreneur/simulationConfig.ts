@@ -37,8 +37,12 @@ export const configAutoEntrepreneur: SimulationConfig = {
 			'établissement',
 			'situation personnelle',
 		],
-		'non prioritaires': ['établissement . commune'],
+		'non prioritaires': [
+			'établissement . commune',
+			'entreprise . imposition . IR . type de bénéfices',
+		],
 		'liste noire': [
+			'entreprise . catégorie juridique . EI . auto-entrepreneur',
 			'entreprise . activités . revenus mixtes',
 			'entreprise . charges',
 			"entreprise . chiffre d'affaires",
