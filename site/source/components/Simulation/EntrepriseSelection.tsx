@@ -10,6 +10,7 @@ import EntrepriseInput from '../conversation/EntrepriseInput'
 import Value from '../EngineValue/Value'
 import { Appear } from '../ui/animate'
 import { useEngine } from '../utils/EngineContext'
+import WrongSimulateurWarning from '../WrongSimulateurWarning'
 import LectureGuide from './LectureGuide'
 
 export default function EntrepriseSelection() {
@@ -57,6 +58,7 @@ export default function EntrepriseSelection() {
 						</ValueBody>
 					</Grid>
 				</Grid>
+				<WrongSimulateurWarning />
 			</EntrepriseRecap>
 			{isSearchVisible && (
 				<Appear>
