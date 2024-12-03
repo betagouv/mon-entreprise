@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { DottedName } from 'modele-social'
-import Engine, { Evaluation } from 'publicodes'
+import Engine, { Evaluation, PublicodesExpression } from 'publicodes'
 import { expect } from 'vitest'
 
 import { PublicodesTypes } from '../helpers/PublicodesTypes'
 
 const toEvaluate = function <T extends PublicodesTypes>(
 	engine: Engine,
-	rule: DottedName,
+	rule: PublicodesExpression,
 	value: Evaluation<T>
 ) {
 	const evaluated = engine.evaluate(rule).nodeValue
