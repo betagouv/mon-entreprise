@@ -20,8 +20,8 @@ export type MonthState = {
 }
 
 export type Options = {
-	heuresSupplémentaires?: number
-	heuresComplémentaires?: number
+	heuresSupplémentaires: number
+	heuresComplémentaires: number
 }
 
 export type RégularisationMethod = 'annuelle' | 'progressive'
@@ -44,8 +44,8 @@ const getMonthlyRéductionGénérale = (
 		contexte: {
 			date,
 			[rémunérationBruteDottedName]: rémunérationBrute,
-			[heuresSupplémentairesDottedName]: options.heuresSupplémentaires ?? 0,
-			[heuresComplémentairesDottedName]: options.heuresComplémentaires ?? 0,
+			[heuresSupplémentairesDottedName]: options.heuresSupplémentaires,
+			[heuresComplémentairesDottedName]: options.heuresComplémentaires,
 		},
 	})
 
@@ -80,17 +80,17 @@ export const getInitialRéductionGénéraleMoisParMois = (
 			valeur: rémunérationBruteDottedName,
 			arrondi: 'oui',
 			unité: '€/mois',
-		})?.nodeValue as number) || 0
+		})?.nodeValue as number) ?? 0
 	const heuresSupplémentaires =
 		(engine.evaluate({
 			valeur: heuresSupplémentairesDottedName,
 			unité: 'heures/mois',
-		})?.nodeValue as number) || 0
+		})?.nodeValue as number) ?? 0
 	const heuresComplémentaires =
 		(engine.evaluate({
 			valeur: heuresComplémentairesDottedName,
 			unité: 'heures/mois',
-		})?.nodeValue as number) || 0
+		})?.nodeValue as number) ?? 0
 
 	if (!rémunérationBrute) {
 		return Array(12).fill({
@@ -277,7 +277,7 @@ const getSMICCumulés = (
 		// positive du SMIC cumulé.
 		if (monthData.rémunérationBrute > 0) {
 			const previousSMICCumulé =
-				SMICCumulés.findLast((SMICCumulé) => SMICCumulé > 0) || 0
+				SMICCumulés.findLast((SMICCumulé) => SMICCumulé > 0) ?? 0
 			SMICCumulé = previousSMICCumulé + SMIC
 		}
 
@@ -305,7 +305,7 @@ const getRémunérationBruteCumulées = (data: MonthState[]) => {
 				const previousRémunérationBruteCumulée =
 					rémunérationBruteCumulées.findLast(
 						(rémunérationBruteCumulée) => rémunérationBruteCumulée > 0
-					) || 0
+					) ?? 0
 				rémunérationBruteCumulée =
 					previousRémunérationBruteCumulée + rémunérationBrute
 			}

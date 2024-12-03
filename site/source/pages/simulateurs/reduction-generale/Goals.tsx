@@ -105,12 +105,16 @@ export default function RéductionGénéraleSimulationGoals({
 	}
 
 	useEffect(() => {
-		const newOptions = getOptionsFromSituations(
-			previousSituation.current,
-			situation
-		)
-
 		setData((previousData) => {
+			if (!Object.keys(situation).length) {
+				return getInitialRéductionGénéraleMoisParMois(year, engine)
+			}
+
+			const newOptions = getOptionsFromSituations(
+				previousSituation.current,
+				situation
+			)
+
 			const updatedData = previousData.map((data) => {
 				return {
 					...data,
