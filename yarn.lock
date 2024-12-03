@@ -7587,9 +7587,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@publicodes/react-ui@npm:^1.2.0":
+"@publicodes/react-ui@file:../publicodes-react-ui::locator=site%40workspace%3Asite":
   version: 1.2.0
-  resolution: "@publicodes/react-ui@npm:1.2.0"
+  resolution: "@publicodes/react-ui@file:../publicodes-react-ui#../publicodes-react-ui::hash=d72776&locator=site%40workspace%3Asite"
   dependencies:
     fuse.js: ^7.0.0
     styled-components: ^6.1.1
@@ -7597,7 +7597,7 @@ __metadata:
     publicodes: ^1.0.1
     react: ^18
     react-dom: ^18
-  checksum: 4f786c7e98e90e7b73672ab40852c93bf33e439e58a30df21953ed5027a0cdd1c26864f7cdb04afb2ec45a31e802604034b76a88e3c5a3955ec854e803e0cfeb
+  checksum: 30958b1fa7f9c5dd71ec915e4a5c2e1af70156ef41fcc6ce7be57f0d2e8013af69a40d88fa3dee96383be2ce26aae6e877a1eb2b7aa9da008a12bca83ae7c3a2
   languageName: node
   linkType: hard
 
@@ -26926,6 +26926,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"publicodes@file:../publicodes::locator=site%40workspace%3Asite":
+  version: 1.2.1
+  resolution: "publicodes@file:../publicodes#../publicodes::hash=7d6a6c&locator=site%40workspace%3Asite"
+  peerDependencies:
+    "@types/mocha": ^9.0.0
+  checksum: 3785b3864b10ef292c3a23d7b1a8358a73dd3b423e8e96c3d357e8e99a0a674ca634c34a606eec3ed252a1ebc82d61d08fa51c876527a91f6beb6bc71f2ede80
+  languageName: node
+  linkType: hard
+
+"publicodes@file:./publicodes::locator=root%40workspace%3A.":
+  version: 1.2.1
+  resolution: "publicodes@file:./publicodes#./publicodes::hash=7d6a6c&locator=root%40workspace%3A."
+  peerDependencies:
+    "@types/mocha": ^9.0.0
+  checksum: 3785b3864b10ef292c3a23d7b1a8358a73dd3b423e8e96c3d357e8e99a0a674ca634c34a606eec3ed252a1ebc82d61d08fa51c876527a91f6beb6bc71f2ede80
+  languageName: node
+  linkType: hard
+
 "publicodes@npm:^1.1.1, publicodes@npm:^1.2.0":
   version: 1.2.0
   resolution: "publicodes@npm:1.2.0"
@@ -28642,7 +28660,7 @@ __metadata:
     eslint-plugin-vitest: ^0.3.22
     optics-ts: ^2.4.1
     prettier: ^3.0.3
-    publicodes: ^1.2.0
+    publicodes: "file:./publicodes"
     rimraf: ^5.0.1
   languageName: unknown
   linkType: soft
@@ -29218,7 +29236,7 @@ __metadata:
     "@internationalized/number": ^3.2.1
     "@juggle/resize-observer": ^3.4.0
     "@leeoniya/ufuzzy": ^1.0.10
-    "@publicodes/react-ui": ^1.2.0
+    "@publicodes/react-ui": "file:../publicodes-react-ui"
     "@react-aria/accordion": ^3.0.0-alpha.17
     "@react-pdf/renderer": ^3.1.12
     "@react-types/accordion": ^3.0.0-alpha.16
@@ -29271,7 +29289,7 @@ __metadata:
     markdown-to-jsx: ^7.3.2
     modele-social: "workspace:^"
     netlify-cli: ^17.10.1
-    publicodes: ^1.2.0
+    publicodes: "file:../publicodes"
     react: ^18.2.0
     react-aria: ^3.24.0
     react-day-picker: ^8.8.2

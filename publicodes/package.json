@@ -1,0 +1,58 @@
+{
+	"name": "publicodes",
+	"version": "1.2.1",
+	"description": "A declarative language for encoding public algorithm",
+	"types": "dist/index.d.ts",
+	"type": "module",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
+	"exports": {
+		".": {
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/publicodes/publicodes.git",
+		"directory": "packages/core"
+	},
+	"bugs": "https://github.com/publicodes/publicodes/issues",
+	"homepage": "https://publi.codes/",
+	"license": "MIT",
+	"files": [
+		"dist/"
+	],
+	"devDependencies": {
+		"@rushstack/package-deps-hash": "^3.2.67",
+		"@types/chai": "^4.3.6",
+		"@types/mocha": "^9.1.1",
+		"@types/sinon-chai": "^3.2.10",
+		"chai": "^4.3.8",
+		"dedent-js": "1.0.1",
+		"intl": "^1.2.5",
+		"mitata": "^0.1.6",
+		"mocha": "^9.2.2",
+		"modele-social": "^2.0.0",
+		"moo": "^0.5.2",
+		"nearley": "^2.20.1",
+		"sinon": "^12.0.1",
+		"sinon-chai": "^3.7.0",
+		"ts-node": "^10.9.1",
+		"tsup": "^7.2.0",
+		"typescript": "^5.2.2",
+		"yaml": "^2.3.2"
+	},
+	"scripts": {
+		"codegen": "nearleyc ./src/grammar.ne -o ./src/grammar.codegen.js",
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"test:type": "tsc --noEmit",
+		"test": "mocha \"./test/**/*.test.{js,ts}\"",
+		"bench": "tsup --entry.bench ./bench/index.ts && node ./dist/bench.js"
+	},
+	"peerDependencies": {
+		"@types/mocha": "^9.0.0"
+	}
+}
