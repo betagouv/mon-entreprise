@@ -46,17 +46,14 @@ export default function MonthOptions({
 	}
 
 	const onChange = (value?: number) => {
-		let options = {}
+		const options = {
+			heuresSupplémentaires: 0,
+			heuresComplémentaires: 0,
+		}
 		if (isTempsPartiel) {
-			options = {
-				heuresSupplémentaires: 0,
-				heuresComplémentaires: value,
-			}
+			options.heuresComplémentaires = value ?? 0
 		} else {
-			options = {
-				heuresSupplémentaires: value,
-				heuresComplémentaires: 0,
-			}
+			options.heuresSupplémentaires = value ?? 0
 		}
 		onOptionsChange(index, options)
 	}
