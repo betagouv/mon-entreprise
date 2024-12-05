@@ -1,5 +1,6 @@
 import { DottedName } from 'modele-social'
 import { Trans, useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
@@ -7,10 +8,13 @@ import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
+import { FlexCenter } from '@/design-system/global-style'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
 import { SmallBody } from '@/design-system/typography/paragraphs'
+
+import { ExplicableRule } from '../conversation/Explicable'
 
 export function DroitsRetraite() {
 	const { t } = useTranslation()
@@ -67,13 +71,24 @@ export function DroitsRetraite() {
 					</WhenApplicable>
 					<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
 						<Li>
-							Revenu cotisé pris en compte pour la retraite de base :{' '}
+							Revenu cotisé pour la retraite de base :{' '}
+							<Value
+								linkToRule
+								unit="€/an"
+								expression="protection sociale . retraite . base . cotisée"
+							/>
+						</Li>
+					</WhenNotApplicable>
+					<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
+						<StyledLi>
+							Projection du montant de votre retraite :&nbsp;
 							<Value
 								linkToRule
 								unit="€/an"
 								expression="protection sociale . retraite . base"
 							/>
-						</Li>
+							<ExplicableRule dottedName="protection sociale . retraite . base" />
+						</StyledLi>
 					</WhenNotApplicable>
 					<Li>
 						Points de retraite complémentaire acquis :{' '}
@@ -99,3 +114,7 @@ export function DroitsRetraite() {
 		</Trans>
 	)
 }
+
+const StyledLi = styled(Li)`
+	${FlexCenter}
+`
