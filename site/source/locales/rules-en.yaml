@@ -7170,9 +7170,9 @@ protection sociale . retraite . base:
 
     This estimate of your retirement pension is calculated on the basis of the following principles:
 
-    - Your earnings correspond to your best 25 years.
+    - Your earnings correspond to your <strong>best 25 years</strong>;
 
-    - You have contributed enough quarters and are retiring at the age required to benefit from the full rate.
+    - You have contributed enough quarters and are retiring at the age required to benefit from the <strong>full rate</strong>.
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé à partir la
     moyenne de vos revenus des 25 meilleures années.
@@ -7180,9 +7180,9 @@ protection sociale . retraite . base:
 
     Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants :
 
-    - La rémunération calculée correspond à celle de vos 25 meilleures années
+    - La rémunération calculée correspond à celle de vos <strong>25 meilleures années</strong> ;
 
-    - Vous avez cotisé suffisamment de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l'âge requis pour bénéficier du <strong>taux plein</strong>.
   résumé.en: '[automatic] Full basic retirement pension assuming your earnings
     have remained the same throughout your working life.'
   résumé.fr: Pension de retraite de base à taux plein en partant du principe que
