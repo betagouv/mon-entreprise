@@ -145,7 +145,12 @@ const Détails = ({
 														String(
 															engine.evaluate('entreprise . activité . nature')
 																.nodeValue
-														) === 'libérale'
+														) === 'libérale' ||
+														String(
+															engine.evaluate(
+																'entreprise . activités . service ou vente'
+															).nodeValue
+														) === 'service'
 															? "entreprise . chiffre d'affaires . seuil micro . libérale"
 															: "entreprise . chiffre d'affaires . seuil micro . total"
 													}
