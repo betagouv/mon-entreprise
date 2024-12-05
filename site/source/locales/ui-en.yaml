@@ -63,7 +63,6 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   searched.
 Budget: Budget
 Calculer vos revenus: Calculate your income
-Ce simulateur a été prérempli avec la situation de votre entreprise.: This simulator has been pre-filled with your company's situation.
 Cette commune n'existe pas: This commune does not exist
 Cette opération n'est pas réversible.: This operation is not reversible.
 Charger plus de résultats: Load more results
@@ -353,8 +352,6 @@ Voir les autres simulateurs: See other simulators
 Voir les nouveautés apportées par la version {{release}}: See what's new in this version {{release}}
 Voir les simulateurs personnalisés: See customized simulators
 Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise: See customized simulators, access my company management page
-Voir ma situation: See my situation
-Voir ma situation, accéder à la page de gestion de mon entreprise: View my situation, access my company management page
 Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
 Vos droits pour la retraite: Your pension rights
@@ -1852,6 +1849,13 @@ simulation-end:
     text: Now you can make your hiring plans a reality.
   text: You now have access to the most accurate estimate possible.
   title: You have completed this simulation
+simulationPréremplieBanner:
+  aria-label: View my situation, access my company management page
+  button: See my situation
+  info: This simulator has been pre-filled with your company's situation.
+  warning:
+    "1": Your legal category is
+    "2": "but you are on the simulator for "
 site:
   defaultTitle: My company
   meta:

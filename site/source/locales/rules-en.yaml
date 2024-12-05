@@ -5652,6 +5652,14 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   résumé.fr: Chiffre d'affaires hors taxe
   titre.en: '[automatic] Sale of goods, catering, accommodation (BIC)'
   titre.fr: Vente de biens, restauration, hébergement (BIC)
+entreprise . code catégorie juridique:
+  description.en:
+    "[automatic] Code representing the company's legal category, as
+    defined by INSEE."
+  description.fr: Code représentant la catégorie juridique de l'entreprise, tel
+    que défini par l'INSEE.
+  titre.en: '[automatic] legal category code'
+  titre.fr: code catégorie juridique
 entreprise . coût formalités:
   titre.en: '[automatic] cost formalities'
   titre.fr: coût formalités

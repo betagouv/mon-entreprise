@@ -30,6 +30,7 @@ export function médecinConfig({ t, sitePaths }: SimulatorsDataParams) {
 		),
 		path: sitePaths.simulateurs['profession-libérale'].médecin,
 		simulation: configMédecin,
+		codesCatégorieJuridique: ['1000', '5410'],
 		component: IndépendantPLSimulation,
 	} as const)
 }

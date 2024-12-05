@@ -78,6 +78,11 @@ export interface PageConfig {
 	 */
 	autoloadLastSimulation?: boolean
 
+	/** Indique les catégories d'entreprise concernées par le simulateur.
+	 * Un tableau vide indique que le simulateur concerne toutes les catégories d'entreprise.
+	 */
+	codesCatégorieJuridique?: string[]
+
 	/** Composant React de la page
 	 *
 	 * Note : Le nom du composant doit être en un seul mot pour que le script `yarn build:simulator-data` marche

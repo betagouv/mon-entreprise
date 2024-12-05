@@ -31,6 +31,7 @@ export function artisteAuteurConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.artiste-auteur.shortname',
 			'Artiste-auteur'
 		),
+		codesCatégorieJuridique: ['1000'],
 		component: ArtisteAuteur,
 	} as const)
 }

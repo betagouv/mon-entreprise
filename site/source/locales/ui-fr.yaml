@@ -68,7 +68,6 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   "viennoiserie".
 Budget: Budget
 Calculer vos revenus: Calculer vos revenus
-Ce simulateur a été prérempli avec la situation de votre entreprise.: Ce simulateur a été prérempli avec la situation de votre entreprise.
 Cette commune n'existe pas: Cette commune n'existe pas
 Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
 Charger plus de résultats: Charger plus de résultats
@@ -370,8 +369,6 @@ Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
 Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise:
   Voir les simulateurs personnalisés, accéder à la page de gestion de mon
   entreprise
-Voir ma situation: Voir ma situation
-Voir ma situation, accéder à la page de gestion de mon entreprise: Voir ma situation, accéder à la page de gestion de mon entreprise
 Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Vos droits pour la retraite: Vos droits pour la retraite
@@ -1969,6 +1966,13 @@ simulation-end:
     text: Vous pouvez maintenant concrétiser votre projet d'embauche.
   text: Vous avez maintenant accès à l'estimation la plus précise possible.
   title: Vous avez complété cette simulation
+simulationPréremplieBanner:
+  aria-label: Voir ma situation, accéder à la page de gestion de mon entreprise
+  button: Voir ma situation
+  info: Ce simulateur a été prérempli avec la situation de votre entreprise.
+  warning:
+    "1": Votre catégorie juridique est
+    "2": "mais vous êtes sur le simulateur pour "
 site:
   defaultTitle: Mon-entreprise
   meta:
