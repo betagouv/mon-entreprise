@@ -118,7 +118,7 @@ export default function Options() {
 						icon={<Emoji emoji="🧰" />}
 						title={t(
 							'pages.développeur.choice.library.title',
-							'Libraire de calcul'
+							'Librairie de calcul'
 						)}
 						to={absoluteSitePaths.développeur.library}
 						ctaLabel={t('pages.développeur.choice.library.cta', 'Commencer')}
