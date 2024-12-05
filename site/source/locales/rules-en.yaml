@@ -1657,6 +1657,25 @@ dirigeant . indépendant . PL . CARMF . ASV:
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
   titre.en: '[automatic] CPAM participation'
   titre.fr: participation CPAM
+dirigeant . indépendant . PL . CARMF . en retraite:
+  description.en: >
+    [automatic] If you combine retirement and self-employment, you no longer
+    contribute to the disability-death scheme.
+
+    You and your family are no longer entitled to certain benefits under the disability-death scheme:
+
+    daily allowances, disability pension, lump-sum death benefit.
+  description.fr: >
+    Si vous cumulez retraite et activité libérale, vous ne cotisez plus au
+    régime invalidité-décès.
+
+    Votre famille et vous-même ne bénéficiez plus de certaines prestations du régime invalidité-décès :
+
+    indemnités journalières, rente invalidité, capital décès.
+  question.en: '[automatic] Are you retired?'
+  question.fr: Êtes-vous à la retraite ?
+  titre.en: '[automatic] retired'
+  titre.fr: en retraite
 dirigeant . indépendant . PL . CARMF . invalidité décès:
   description.en: >-
     [automatic] The CARMF manages a provident scheme paying a pension in the

@@ -73,6 +73,7 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
     Taux (2024): https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
 
 dirigeant . indépendant . PL . CARMF . invalidité décès:
+  non applicable si: CARMF . en retraite
   remplace: cotisations et contributions . invalidité et décès
   description: >-
     La CARMF gère un régime de prévoyance versant une pension en cas
@@ -104,6 +105,16 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
     Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
     Taux (2024): https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+
+dirigeant . indépendant . PL . CARMF . en retraite:
+  description: |
+    Si vous cumulez retraite et activité libérale, vous ne cotisez plus au régime invalidité-décès.
+    Votre famille et vous-même ne bénéficiez plus de certaines prestations du régime invalidité-décès :
+    indemnités journalières, rente invalidité, capital décès.
+  question: Êtes-vous à la retraite ?
+  par défaut: non
+  références:
+    Régime invalidité-décès en cas de cumul retraite et activité libérale: https://www.carmf.fr/page.php?page=cdrom/retr/retr-continuer.htm#:~:text=Si%20vous%20cumulez%20retraite%20et,%2C%20rente%20invalidit%C3%A9%2C%20capital%20d%C3%A9c%C3%A8s.
 
 dirigeant . indépendant . PL . CARMF . ASV:
   titre: Allocations supplémentaires de vieillesse
