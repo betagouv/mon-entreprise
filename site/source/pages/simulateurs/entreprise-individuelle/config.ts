@@ -47,6 +47,7 @@ export function entrepriseIndividuelleConfig({
 		nextSteps: ['comparaison-statuts'],
 		path: sitePaths.simulateurs['entreprise-individuelle'],
 		simulation: configEntrepriseIndividuelle,
+		codesCatégorieJuridique: ['1000'],
 		component: EntrepriseIndividuelle,
 		seoExplanations: SeoExplanationsEI,
 	} as const)

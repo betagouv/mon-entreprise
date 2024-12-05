@@ -40,6 +40,7 @@ export function auxiliaireMédicalConfig({
 		},
 		path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
 		simulation: configAuxiliaire,
+		codesCatégorieJuridique: ['1000', '5410'],
 		component: IndépendantPLSimulation,
 	} as const)
 }

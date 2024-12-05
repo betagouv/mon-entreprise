@@ -41,6 +41,7 @@ export function sasuConfig({ t, sitePaths }: SimulatorsDataParams) {
 		nextSteps: ['is', 'comparaison-statuts'],
 		path: sitePaths.simulateurs.sasu,
 		simulation: configSASU,
+		codesCatégorieJuridique: ['5710'],
 		component: SASUSimulation,
 		seoExplanations: SeoExplanations,
 	} as const)

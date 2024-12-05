@@ -33,6 +33,7 @@ export function expertComptableConfig({ t, sitePaths }: SimulatorsDataParams) {
 		},
 		path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
 		simulation: configExpertComptable,
+		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: IndépendantPLSimulation,
 	} as const)
 }
