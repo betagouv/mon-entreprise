@@ -36,6 +36,7 @@ export function chirurgienDentisteConfig({
 		),
 		path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
 		simulation: configDentiste,
+		codesCatégorieJuridique: ['1000', '5410'],
 		component: IndépendantPLSimulation,
 	} as const)
 }

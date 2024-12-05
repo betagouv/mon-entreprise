@@ -21,6 +21,11 @@ entreprise . associés:
 ### ()	La nomenclature des catégories juridiques retenue est celle du niveau III du répertoire Sirene géré par l'Insee ###
 ### https://www.insee.fr/fr/information/2028129
 
+entreprise . code catégorie juridique:
+  description: Code représentant la catégorie juridique de l'entreprise, tel que défini par l'INSEE.
+  références:
+    Liste des catégories juridique de l'INSEE: https://www.insee.fr/fr/information/2028129
+
 entreprise . catégorie juridique:
   question: Quelle est la catégorie juridique de l'entreprise ?
   note: On se base ici sur les catégories juridiques définies par l'INSEE
