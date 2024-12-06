@@ -208,8 +208,9 @@ describe(
 				.should('have.length', 12)
 				.first()
 				.click()
-			cy.get('div[id="options-janvier"]').should('be.visible')
-			cy.get('div[id="options-janvier"] input').type('{selectall}28,15')
+			cy.get('input[id="option-heures-sup-janvier"]')
+				.should('be.visible')
+				.type('{selectall}28,15')
 
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-janvier'
