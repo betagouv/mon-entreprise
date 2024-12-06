@@ -2,6 +2,8 @@ import { sumAll } from 'effect/Number'
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 
+import { Situation } from '@/domaine/Situation'
+
 // TODO: remplacer "salarié . cotisations . assiette" par "salarié . rémunération . brut"
 // lorsqu'elle n'incluera plus les frais professionnels.
 export const rémunérationBruteDottedName = 'salarié . cotisations . assiette'
@@ -22,6 +24,9 @@ export type MonthState = {
 export type Options = {
 	heuresSupplémentaires: number
 	heuresComplémentaires: number
+	rémunérationETP: number
+	rémunérationPrimes: number
+	rémunérationHeuresSup: number
 }
 
 export type RégularisationMethod = 'annuelle' | 'progressive'
@@ -91,6 +96,9 @@ export const getInitialRéductionGénéraleMoisParMois = (
 			valeur: heuresComplémentairesDottedName,
 			unité: 'heures/mois',
 		})?.nodeValue as number) ?? 0
+	const rémunérationETP = 0
+	const rémunérationPrimes = 0
+	const rémunérationHeuresSup = 0
 
 	if (!rémunérationBrute) {
 		return Array(12).fill({
@@ -98,6 +106,9 @@ export const getInitialRéductionGénéraleMoisParMois = (
 			options: {
 				heuresSupplémentaires,
 				heuresComplémentaires,
+				rémunérationETP,
+				rémunérationPrimes,
+				rémunérationHeuresSup,
 			},
 			réductionGénérale: 0,
 			régularisation: 0,
@@ -113,6 +124,9 @@ export const getInitialRéductionGénéraleMoisParMois = (
 			{
 				heuresSupplémentaires,
 				heuresComplémentaires,
+				rémunérationETP,
+				rémunérationPrimes,
+				rémunérationHeuresSup,
 			},
 			engine
 		)
@@ -122,6 +136,9 @@ export const getInitialRéductionGénéraleMoisParMois = (
 			options: {
 				heuresSupplémentaires,
 				heuresComplémentaires,
+				rémunérationETP,
+				rémunérationPrimes,
+				rémunérationHeuresSup,
 			},
 			réductionGénérale,
 			régularisation: 0,
@@ -254,28 +271,54 @@ const getSMICCumulés = (
 	engine: Engine<DottedName>
 ): number[] => {
 	return data.reduce((SMICCumulés: number[], monthData, monthIndex) => {
-		const SMIC = engine.evaluate({
-			valeur: 'salarié . temps de travail . SMIC',
-			unité: '€/mois',
-			contexte: {
-				date: getDateForContexte(monthIndex, year),
-				[heuresSupplémentairesDottedName]:
-					monthData.options.heuresSupplémentaires,
-				[heuresComplémentairesDottedName]:
-					monthData.options.heuresComplémentaires,
-			},
-		}).nodeValue as number
-
-		if (monthIndex < 1) {
-			return [SMIC]
-		}
-
 		// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction générale
 		// et il ne faut pas compter le SMIC de ce mois-ci dans le SMIC cumulé.
-		let SMICCumulé = 0
-		// S'il y a une rémunération ce mois-ci, il faut aller chercher la dernière valeur
-		// positive du SMIC cumulé.
-		if (monthData.rémunérationBrute > 0) {
+		if (!monthData.rémunérationBrute) {
+			SMICCumulés.push(0)
+
+			return SMICCumulés
+		}
+
+		const contexte = {
+			date: getDateForContexte(monthIndex, year),
+		} as Situation
+
+		if (!monthData.options.rémunérationETP) {
+			contexte[heuresSupplémentairesDottedName] =
+				monthData.options.heuresSupplémentaires
+			contexte[heuresComplémentairesDottedName] =
+				monthData.options.heuresComplémentaires
+		}
+
+		let SMIC = engine.evaluate({
+			valeur: 'salarié . temps de travail . SMIC',
+			unité: '€/mois',
+			contexte,
+		}).nodeValue as number
+
+		if (monthData.options.rémunérationETP) {
+			const SMICHoraire = engine.evaluate({
+				valeur: 'SMIC . horaire',
+				contexte,
+			}).nodeValue as number
+			// On retranche les primes et le paiements des heures supplémentaires à la rémunération versée
+			// et on la compare à la rémunération équivalente "mois complet" sans les primes
+			const prorata =
+				(monthData.rémunérationBrute -
+					monthData.options.rémunérationPrimes -
+					monthData.options.rémunérationHeuresSup) /
+				monthData.options.rémunérationETP
+			// On applique ce prorata au SMIC mensuel et on y ajoute les heures supplémentaires et complémentaires
+			SMIC =
+				SMIC * prorata +
+				SMICHoraire *
+					(monthData.options.heuresSupplémentaires +
+						monthData.options.heuresComplémentaires)
+		}
+
+		let SMICCumulé = SMIC
+		if (monthIndex > 0) {
+			// Il faut aller chercher la dernière valeur positive du SMIC cumulé.
 			const previousSMICCumulé =
 				SMICCumulés.findLast((SMICCumulé) => SMICCumulé > 0) ?? 0
 			SMICCumulé = previousSMICCumulé + SMIC
@@ -290,24 +333,23 @@ const getSMICCumulés = (
 const getRémunérationBruteCumulées = (data: MonthState[]) => {
 	return data.reduce(
 		(rémunérationBruteCumulées: number[], monthData, monthIndex) => {
-			const rémunérationBrute = monthData.rémunérationBrute
-
-			if (monthIndex < 1) {
-				return [rémunérationBrute]
-			}
-
 			// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction générale
 			// et elle ne compte pas non plus pour la régularisation des mois à venir.
-			let rémunérationBruteCumulée = 0
-			// S'il y a une rémunération ce mois-ci, il faut aller chercher la dernière valeur
-			// positive de la rémunération cumulée.
-			if (rémunérationBrute > 0) {
+			if (!monthData.rémunérationBrute) {
+				rémunérationBruteCumulées.push(0)
+
+				return rémunérationBruteCumulées
+			}
+
+			let rémunérationBruteCumulée = monthData.rémunérationBrute
+			if (monthIndex > 0) {
+				// Il faut aller chercher la dernière valeur positive de la rémunération cumulée.
 				const previousRémunérationBruteCumulée =
 					rémunérationBruteCumulées.findLast(
 						(rémunérationBruteCumulée) => rémunérationBruteCumulée > 0
 					) ?? 0
 				rémunérationBruteCumulée =
-					previousRémunérationBruteCumulée + rémunérationBrute
+					previousRémunérationBruteCumulée + monthData.rémunérationBrute
 			}
 
 			rémunérationBruteCumulées.push(rémunérationBruteCumulée)
