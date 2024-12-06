@@ -40,9 +40,7 @@ type SituationType = Situation & {
 		}
 	}
 	[heuresComplémentairesDottedName]?: {
-		explanation: {
-			nodeValue: number
-		}
+		valeur: number
 	}
 }
 
@@ -94,9 +92,9 @@ export default function RéductionGénéraleSimulationGoals({
 		}
 
 		const previousHeuresComplémentaires =
-			previousSituation[heuresComplémentairesDottedName]?.explanation.nodeValue
+			previousSituation[heuresComplémentairesDottedName]?.valeur
 		const newHeuresComplémentaires =
-			newSituation[heuresComplémentairesDottedName]?.explanation.nodeValue
+			newSituation[heuresComplémentairesDottedName]?.valeur
 		if (newHeuresComplémentaires !== previousHeuresComplémentaires) {
 			options.heuresComplémentaires = newHeuresComplémentaires || 0
 		}
@@ -132,8 +130,6 @@ export default function RéductionGénéraleSimulationGoals({
 				régularisationMethod
 			)
 		})
-
-		previousSituation.current = situation
 	}, [engine, situation, régularisationMethod, year])
 
 	const updateRémunérationBruteAnnuelle = (data: MonthState[]): void => {
