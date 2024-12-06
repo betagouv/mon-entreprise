@@ -256,6 +256,10 @@ artiste-auteur . revenus . BNC . charges forfaitaires:
   titre.en: fixed expenses
   titre.fr: charges forfaitaires
 artiste-auteur . revenus . BNC . contrôle micro-bnc:
+  avec:
+    plafond:
+      titre.en: '[automatic] ceiling'
+      titre.fr: plafond
   description.en: '[automatic] Your income does not allow you to opt for the micro-BNC plan.'
   description.fr: Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
   titre.en: '[automatic] micro-bnc control'
@@ -499,6 +503,18 @@ dirigeant . auto-entrepreneur . DROM:
         calendar year of activity'
       titre.fr: Entre le 9ème trimestre civil et la fin de la 3ème année civile
         d'activité
+    taux CIPAV:
+      titre.en: '[automatic] CIPAV rate'
+      titre.fr: taux CIPAV
+    taux service BIC:
+      titre.en: '[automatic] BIC service rate'
+      titre.fr: taux service BIC
+    taux service BNC:
+      titre.en: '[automatic] BNC service rate'
+      titre.fr: taux service BNC
+    taux vente restauration hébergement:
+      titre.en: '[automatic] sales rate catering accommodation'
+      titre.fr: taux vente restauration hébergement
   description.en: >
     [automatic] As an auto-entrepreneur starting out in business, you benefit
     from an exemption that translates into the application of reduced
