@@ -6,6 +6,7 @@ import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 
+import CongésPayésSwitch from './components/CongésPayésSwitch'
 import EffectifSwitch from './components/EffectifSwitch'
 import RégularisationSwitch from './components/RégularisationSwitch'
 import RéductionGénéraleSimulationGoals from './Goals'
@@ -61,6 +62,7 @@ export default function RéductionGénéraleSimulation() {
 								setRégularisationMethod={setRégularisationMethod}
 							/>
 							<EffectifSwitch />
+							<CongésPayésSwitch />
 							<PeriodSwitch periods={periods} onSwitch={onPeriodSwitch} />
 						</>
 					}
