@@ -9,7 +9,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Button } from '@/design-system/buttons'
 import { FlexCenter } from '@/design-system/global-style'
 import { RotatingChevronIcon } from '@/design-system/icons'
-import { Grid } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import {
@@ -157,13 +157,17 @@ export default function RéductionGénéraleMois({
 			</GridContainer>
 
 			{isOptionVisible && (
-				<MonthOptions
-					month={monthName}
-					index={index}
-					options={data.options}
-					onOptionsChange={onOptionsChange}
-				/>
+				<OptionsContainer>
+					<MonthOptions
+						month={monthName}
+						index={index}
+						options={data.options}
+						onOptionsChange={onOptionsChange}
+					/>
+				</OptionsContainer>
 			)}
+
+			<Spacing xs />
 
 			<GridContainer container spacing={2}>
 				<Grid item>
@@ -207,7 +211,7 @@ export default function RéductionGénéraleMois({
 			{isOptionVisible && (
 				<StyledTableRow>
 					<td />
-					<td colSpan={4}>
+					<td colSpan={3}>
 						<MonthOptions
 							month={monthName}
 							index={index}
@@ -232,6 +236,11 @@ const GridContainer = styled(Grid)`
 `
 const StyledBody = styled(Body)`
 	margin-top: 0;
+`
+const OptionsContainer = styled.div`
+	margin-top: ${({ theme }) => theme.spacings.xs};
+	background-color: ${({ theme }) => theme.colors.bases.primary[200]};
+	padding: ${({ theme }) => theme.spacings.sm};
 `
 
 const StyledTableRow = styled.tr`
