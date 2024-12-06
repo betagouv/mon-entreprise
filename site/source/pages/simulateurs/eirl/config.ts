@@ -38,6 +38,7 @@ export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 		nextSteps: ['comparaison-statuts'],
 		path: sitePaths.simulateurs.eirl,
 		simulation: configEirl,
+		codesCatégorieJuridique: ['1000'],
 		component: IndépendantSimulation,
 	} as const)
 }
