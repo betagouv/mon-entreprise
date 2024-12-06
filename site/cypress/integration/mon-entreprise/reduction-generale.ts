@@ -217,6 +217,23 @@ describe(
 			).should('include.text', '666,33 €')
 		})
 
+		it('should handle incomplete months', function () {
+			cy.get(inputSelector).first().type('{selectall}1500')
+			cy.get('input[id="option-heures-sup-janvier"]').type('{selectall}5')
+			cy.get(
+				'div[id="simulator-legend"] p[aria-describedby="options-mois-incomplet-description"]'
+			)
+				.should('be.visible')
+				.click()
+			cy.get('input[id="option-rémunération-etp-janvier"]').should('be.visible')
+			cy.get('input[id="option-rémunération-primes-janvier"]').should(
+				'be.visible'
+			)
+			cy.get('input[id="option-rémunération-heures-sup-janvier"]').should(
+				'be.visible'
+			)
+		})
+
 		it('should be RGAA compliant', function () {
 			cy.contains('Réduction mensuelle').click()
 			checkA11Y()
