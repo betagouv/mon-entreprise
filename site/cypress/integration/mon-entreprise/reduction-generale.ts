@@ -19,26 +19,6 @@ describe(
 			cy.contains('Salaire brut')
 		})
 
-		it('should allow to select a company size', function () {
-			cy.contains('Plus de 50 salariés').click()
-			cy.contains('Modifier mes réponses').click()
-			cy.get('div[data-cy="modal"]')
-				.eq(0)
-				.contains('Effectif')
-				.next()
-				.contains('100')
-			cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
-
-			cy.contains('Moins de 50 salariés').click()
-			cy.contains('Modifier mes réponses').click()
-			cy.get('div[data-cy="modal"]')
-				.eq(0)
-				.contains('Effectif')
-				.next()
-				.contains('10')
-			cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
-		})
-
 		it('should allow to change time period', function () {
 			cy.contains('Réduction mensuelle').click()
 			cy.get(inputSelector).first().type('{selectall}1900')
@@ -62,6 +42,44 @@ describe(
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_chômage-value"]'
 			).should('include.text', '66,35 €')
+		})
+
+		it('should allow to select a company size', function () {
+			cy.contains('Plus de 50 salariés').click()
+			cy.contains('Modifier mes réponses').click()
+			cy.get('div[data-cy="modal"]')
+				.eq(0)
+				.contains('Effectif')
+				.next()
+				.contains('100')
+			cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
+
+			cy.get(
+				'p[id="salarié___cotisations___exonérations___réduction_générale-value"]'
+			).should('include.text', '529,72 €')
+
+			cy.contains('Moins de 50 salariés').click()
+			cy.contains('Modifier mes réponses').click()
+			cy.get('div[data-cy="modal"]')
+				.eq(0)
+				.contains('Effectif')
+				.next()
+				.contains('10')
+			cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
+		})
+
+		it('should allow to select an option for caisse de congés payés', function () {
+			cy.get('div[aria-labelledby="caisse-congés-payés-label"]')
+				.contains('Oui')
+				.click()
+
+			cy.get(
+				'p[id="salarié___cotisations___exonérations___réduction_générale-value"]'
+			).should('include.text', '581,40 €')
+
+			cy.get('div[aria-labelledby="caisse-congés-payés-label"]')
+				.contains('Non')
+				.click()
 		})
 
 		it('should display a warning for a remuneration too high', function () {
