@@ -331,6 +331,7 @@ salarié . cotisations . exonérations . réduction générale:
       produit:
         - 1.6 * temps de travail . SMIC / cotisations . assiette - 1
         - T / 0.6
+        - coefficient de majoration
       plancher: 0
       plafond: T
       unité: ''
@@ -339,6 +340,12 @@ salarié . cotisations . exonérations . réduction générale:
         Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
         Urssaf.fr: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
         Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-a-formule-de-calcul-de-la-reduct
+
+    coefficient de majoration:
+      variations:
+        - si: caisse de congés payés
+          alors: 100 / 90
+        - sinon: 1
 
     imputation retraite complémentaire:
       valeur: réduction générale - imputation sécurité sociale
@@ -364,6 +371,10 @@ salarié . cotisations . exonérations . réduction générale:
           contexte:
             régimes spécifiques . DFS: non
         - 130%
+
+    caisse de congés payés:
+      titre: Obligation de recourir à une caisse de congés payés
+      par défaut: non
 
 salarié . cotisations . exonérations . réduction générale . régularisation:
   description: |
