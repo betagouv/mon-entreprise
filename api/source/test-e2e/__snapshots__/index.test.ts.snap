@@ -434,6 +434,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . allocations familiales . taux réduit",
         "salarié . cotisations . exonérations . JEI",
         "salarié . cotisations . exonérations . lodeom . zone un",
+        "salarié . cotisations . exonérations . réduction générale . caisse de congés payés",
         "salarié . cotisations . maladie . employeur . taux réduit",
         "salarié . cotisations . prévoyances . santé . montant",
         "salarié . cotisations . prévoyances . santé . taux employeur",
