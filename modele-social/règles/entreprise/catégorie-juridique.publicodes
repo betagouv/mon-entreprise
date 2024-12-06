@@ -266,7 +266,7 @@ entreprise . catégorie juridique . autre:
     Ce simulateur ne gère pas encore tout les types d'entreprises, le montant affiché pourrait être incorrect.
 
 entreprise . catégorie juridique . remplacements:
-  # Ces remplacements mette à jour les régimes d'imposition et la nature d'activité en fonctions de ceux compatibles avec le statut juridique connu.
+  # Ces remplacements mettent à jour les régimes d'imposition et la nature d'activité en fonctions de ceux compatibles avec le statut juridique connu.
   experimental: oui
   valeur: oui
 

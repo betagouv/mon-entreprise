@@ -2842,33 +2842,32 @@ dirigeant . indépendant . PL . régime général:
   titre.fr: régime général
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   description.en: >
-    [automatic] Non-regulated self-employed professionals who began their
-    activity
+    [automatic] Non-regulated self-employed professionals covered by the general
 
-    on or after January 1, 2019, or those who began their activity before
+    (or Sécurité Sociale des Indépendants) have the option of opting for specific
 
-    January 1, 2019 and opted for the general scheme for self-employed
+    to opt for specific rates of supplementary pension contribution.
 
-    self-employed workers have the option of opting for specific rates
-
-    for supplementary pension contributions.
+    contribution rates.
 
 
     As of January 1, 2024, it is no longer possible to benefit from a specific
 
-    specific supplementary pension rate for unregulated liberal professions.
+    for non-regulated liberal professions.
 
-    regulated professions.
+    regulated professions. However, this specific rate will continue to apply if
+
+    you applied for it before that date.
   description.fr: |
-    Les professions libérales non règlementées qui ont débuté leur activité à
-    compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la
-    date du 1er janvier 2019 et ont opté pour le régime général des
-    travailleurs indépendants ont la possibilité d’opter pour des taux
-    spécifique de la cotisation retraite complémentaire.
+    Les professions libérales non règlementées dépendant du régime général des
+    travailleurs indépendants (ou Sécurité Sociale des Indépendants) ont la
+    possibilité d’opter pour des taux spécifiques de cotisation retraite
+    complémentaire.
 
     Depuis le 1er janvier 2024, il n'est plus possible de bénéficier d’un taux
     spécifique de retraite complémentaire pour les professions libérales non
-    réglementées.
+    réglementées. En revanche, ce taux spécifique continuera de s'appliquer si
+    vous en avez fait la demande avant cette date.
   question.en: '[automatic] Have you opted for specific supplementary pension
     contribution rates?'
   question.fr: Avez-vous opté pour des taux spécifiques de cotisation retraite
