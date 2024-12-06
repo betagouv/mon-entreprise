@@ -74,7 +74,7 @@
 		"markdown-to-jsx": "^7.3.2",
 		"modele-social": "workspace:^",
 		"piano-analytics-js": "^6.13.0",
-		"publicodes": "^1.2.0",
+		"publicodes": "file:../publicodes",
 		"react": "^18.2.0",
 		"react-aria": "^3.24.0",
 		"react-day-picker": "^8.8.2",
