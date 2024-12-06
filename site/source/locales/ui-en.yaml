@@ -1490,14 +1490,30 @@ pages:
         caption: "General discount month by month :"
       options:
         description: Adds fields to modulate employee activity
+        heures-sup:
+          popover: "<0>The number of hours of overtime and complementary work is used to
+            calculate the general reduction: gross remuneration is compared with
+            the SMIC increased by this number of hours.</0>"
         label:
-          heures-complémentaires: Overtime
-          heures-supplémentaires: Overtime
-        popover: "<0>The number of hours of overtime or complementary work is used to
-          calculate the general reduction: gross remuneration is compared with
-          the SMIC increased by this number of hours.</0><1>If you have answered
-          the question on overtime or complementary hours, the value will be
-          overwritten by the value you enter month by month.</1>"
+          heures-complémentaires: Number of overtime hours
+          heures-supplémentaires: Number of overtime hours
+          rémunération-etp: Basic remuneration for a full month
+          rémunération-heures-complémentaires: Overtime pay
+          rémunération-heures-supplémentaires: Overtime pay
+          rémunération-primes: Remuneration not affected by the incomplete month
+        mois-incomplet:
+          description: Adds fields to handle incomplete months
+        rémunération-etp:
+          popover: <0>Indicate here the remuneration that would have been paid for a full
+            month, <2>excluding</2>:<4><0>bonuses and other remuneration not
+            affected by the absence ;</0><1>remuneration for overtime or
+            additional hours worked.</1></4></0>
+        rémunération-heures-sup:
+          popover: <0>Indicate here the remuneration relating to the payment of overtime
+            or complementary hours.</0>
+        rémunération-primes:
+          popover: <0>Indicate here any elements of remuneration not affected by the
+            absence, such as bonuses.</0>
       régularisation:
         annuelle: Annual adjustment
         progressive: Progressive regularization
