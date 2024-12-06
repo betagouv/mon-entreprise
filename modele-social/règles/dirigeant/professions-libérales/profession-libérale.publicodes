@@ -168,7 +168,6 @@ dirigeant . indépendant . PL . régime général:
   toutes ces conditions:
     - CIPAV = non
     - entreprise . activité . nature . libérale . réglementée = non
-    - entreprise . date de création < 01/01/2024
 
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite
