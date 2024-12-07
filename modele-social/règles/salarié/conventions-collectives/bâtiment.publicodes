@@ -138,6 +138,7 @@ salarié . convention collective . BTP . cotisations employeur:
   remplace: cotisations . employeur
   somme:
     - cotisations . employeur
+    - congés payés
     - OPPBTP
     - chômage intempéries
 
