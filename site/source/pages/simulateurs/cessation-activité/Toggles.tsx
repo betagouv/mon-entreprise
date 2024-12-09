@@ -1,5 +1,6 @@
 import { DottedName } from 'modele-social'
 import { useDispatch } from 'react-redux'
+import { styled } from 'styled-components'
 
 import { DefaultValue } from '@/components/conversation/DefaultValue'
 import { ExplicableRule } from '@/components/conversation/Explicable'
@@ -10,28 +11,27 @@ import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
+const Wrapper = styled.div`
+	flex-shrink: 0;
+	flex-basis: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+`
+
+const CessationBlock = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+`
+
 export const CessationActivitéToggles = () => {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
 	return (
-		<div
-			style={{
-				flexShrink: 0,
-				flexBasis: '100%',
-
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'space-between',
-			}}
-		>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'start',
-				}}
-			>
+		<Wrapper>
+			<CessationBlock>
 				<H3 id="questionHeader" as="h2">
 					{evaluateQuestion(
 						engine,
@@ -51,7 +51,7 @@ export const CessationActivitéToggles = () => {
 					hideDefaultValue
 				/>
 				<DefaultValue dottedName={'entreprise . date de cessation'} />
-			</div>
+			</CessationBlock>
 
 			<RuleInput
 				inputType="toggle"
@@ -66,6 +66,6 @@ export const CessationActivitéToggles = () => {
 					)
 				}}
 			/>
-		</div>
+		</Wrapper>
 	)
 }
