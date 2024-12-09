@@ -35,10 +35,34 @@ dirigeant . auto-entrepreneur . DROM:
       remplace: cotisations et contributions . cotisations . service BNC . taux
       variations:
         - si: première période
-          alors: 3.60%
+          alors:
+            variations:
+              - si: date > 01/2026
+                alors: 4.4%
+              - si: date > 01/2025
+                alors: 4.1%
+              - si: date > 07/2024
+                alors: 3.9%
+              - sinon: 3.60%
         - si: seconde période
-          alors: 10.60%
-        - sinon: 14.10%
+          alors:
+            variations:
+              - si: date > 01/2026
+                alors: 13.1%
+              - si: date > 01/2025
+                alors: 12.3%
+              - si: date > 07/2024
+                alors: 11.6%
+              - sinon: 10.60%
+        - sinon:
+            variations:
+              - si: date > 01/2026
+                alors: 17.4%
+              - si: date > 01/2025
+                alors: 16.4%
+              - si: date > 07/2024
+                alors: 15.4%
+              - sinon: 14.10%
 
     taux vente restauration hébergement:
       remplace: cotisations et contributions . cotisations . vente restauration hébergement . taux
