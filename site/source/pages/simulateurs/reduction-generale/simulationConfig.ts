@@ -30,7 +30,7 @@ export const configRéductionGénérale: SimulationConfig = {
 		],
 		'liste noire': [
 			'entreprise . salariés . effectif . seuil',
-			'établissement . commune',
+			'salarié . cotisations . exonérations . réduction générale . caisse de congés payés',
 			'salarié . contrat . CDD . motif',
 			'salarié . rémunération . primes . activité . base',
 			'salarié . rémunération . avantages en nature',
