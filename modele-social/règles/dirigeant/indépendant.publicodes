@@ -3,10 +3,10 @@ dirigeant . indépendant:
   par défaut: non
 
 dirigeant . indépendant . revenu professionnel:
-  résumé: rémunération du dirigeant au régime des indépendant
+  résumé: rémunération du dirigeant au régime des indépendants
   description:
     Le revenu professionnel est la rémunération du dirigeant au régime
-    des indépendant.
+    des indépendants.
 
     Pour les entreprises qui ont opté pour l'**impôt sur le revenu**, il
     s'agit du **résultat fiscal**.
@@ -64,8 +64,7 @@ dirigeant . indépendant . cotisations et contributions . PSS proratisé:
   unité: €/an
   produit:
     - plafond sécurité sociale
-    - valeur: entreprise . durée d'activité . en fin d'année / 1 an
-      plafond: 100%
+    - entreprise . prorata temporis
   arrondi: oui
 
 dirigeant . indépendant . cotisations et contributions . cotisations:
@@ -143,6 +142,8 @@ dirigeant . indépendant . assiette minimale . retraite:
         produit:
           - plafond sécurité sociale
           - 11.5 %
+    - si: entreprise . durée d'activité cette année < 90 jour
+      alors: 0
     - sinon: 450 heure/an * SMIC . horaire . début d'année
   unité: €/an
   arrondi: oui
@@ -477,7 +478,10 @@ dirigeant . indépendant . cotisations et contributions . maladie:
         assiette:
           valeur: assiette des cotisations
           plancher: assiette minimale . maladie
-        multiplicateur: plafond sécurité sociale
+        multiplicateur:
+          produit:
+            - plafond sécurité sociale
+            - entreprise . prorata temporis
         tranches:
           - taux: taux progressif
             plafond: 5
@@ -489,14 +493,19 @@ dirigeant . indépendant . cotisations et contributions . maladie:
       arrondi: 2 décimales
       taux progressif:
         assiette: assiette
-        multiplicateur: plafond sécurité sociale
+        multiplicateur:
+          produit:
+            - plafond sécurité sociale
+            - entreprise . prorata temporis
         tranches:
-          - taux: 0.5%
+          - taux: 0%
             plafond: 40%
-          - taux: 4.5%
+          - taux: 4%
             plafond: 60%
-          - taux: 7.20%
+          - taux: 6.70%
             plafond: 110%
+          - taux: 6.70%
+            plafond: 500%
       références:
         Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747/
 
@@ -550,7 +559,7 @@ dirigeant . indépendant . cotisations et contributions . retraite de base:
       plancher: assiette minimale . retraite
     tranches:
       - taux: taux
-        plafond: plafond sécurité sociale
+        plafond: plafond sécurité sociale * entreprise . prorata temporis
       - taux: 0.6%
   arrondi: oui
   références:
@@ -584,15 +593,17 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
       acronyme: PRCI
       titre global: plafond retraite complémentaire des indépendants
       valeur:
-        variations:
-          - si: date >= 01/2024
-            alors: 42946 €/an
-          - si: date >= 01/2023
-            alors: 40784 €/an
-          - si: date >= 01/2022
-            alors: 38916 €/an
-          - si: date >= 01/2021
-            alors: 38493 €/an
+        produit:
+          - entreprise . prorata temporis
+          - variations:
+              - si: date >= 01/2024
+                alors: 42946 €/an
+              - si: date >= 01/2023
+                alors: 40784 €/an
+              - si: date >= 01/2022
+                alors: 38916 €/an
+              - si: date >= 01/2021
+                alors: 38493 €/an
     références:
       Plafond de cotisations - Régime complémentaire des indépendants: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=ti_cotisation_plafond_cotisation_rci.aspx
 
@@ -614,8 +625,14 @@ dirigeant . indépendant . cotisations et contributions . invalidité et décès
     assiette:
       experimental: oui
       valeur: assiette des cotisations
-      plancher: assiette minimale . retraite
-      plafond: plafond sécurité sociale
+      plancher:
+        produit:
+          - assiette minimale . retraite
+          - entreprise . prorata temporis
+      plafond:
+        produit:
+          - plafond sécurité sociale
+          - entreprise . prorata temporis
 
 dirigeant . indépendant . cotisations et contributions . CSG-CRDS:
   formule:
@@ -624,7 +641,7 @@ dirigeant . indépendant . cotisations et contributions . CSG-CRDS:
       - déductible
 
   références:
-    fiche Urssaf: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/les-contributions-csg-crds/taux-de-la-csg-crds.html
+    fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/csg-crds.html
     IJSS (amelie.fr): https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie
     IJSS (service-public.fr): https://www.service-public.fr/particuliers/vosdroits/F2971
     Article 154 quiquies du Code Général des Impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038836652/
@@ -739,7 +756,10 @@ dirigeant . indépendant . cotisations et contributions . allocations familiales
     taux:
       taux progressif:
         assiette: assiette des cotisations
-        multiplicateur: plafond sécurité sociale
+        multiplicateur:
+          produit:
+            - plafond sécurité sociale
+            - entreprise . prorata temporis
         tranches:
           - plafond: 110%
             taux: 0%
