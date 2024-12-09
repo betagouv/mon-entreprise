@@ -7,7 +7,7 @@ import { Appear } from '@/components/ui/animate'
 import { Chip } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
-import { ChevronIcon } from '@/design-system/icons'
+import { RotatingChevronIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { H4, H5, H6 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -141,15 +141,7 @@ const StyledButton = styled(Button)`
 			}
 		`}
 `
-const StyledChevron = styled(ChevronIcon)<{ $isOpen: boolean }>`
-	vertical-align: middle;
-	transform: rotate(-90deg);
-	transition: transform 0.3s;
-	${({ $isOpen }) =>
-		!$isOpen &&
-		css`
-			transform: rotate(90deg);
-		`}
+const StyledChevron = styled(RotatingChevronIcon)`
 	${({ theme }) =>
 		theme.darkMode &&
 		css`

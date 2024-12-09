@@ -256,6 +256,10 @@ artiste-auteur . revenus . BNC . charges forfaitaires:
   titre.en: fixed expenses
   titre.fr: charges forfaitaires
 artiste-auteur . revenus . BNC . contrôle micro-bnc:
+  avec:
+    plafond:
+      titre.en: '[automatic] ceiling'
+      titre.fr: plafond
   description.en: '[automatic] Your income does not allow you to opt for the micro-BNC plan.'
   description.fr: Vos revenus ne vous permettent pas d'opter pour le régime micro-BNC.
   titre.en: '[automatic] micro-bnc control'
@@ -499,6 +503,18 @@ dirigeant . auto-entrepreneur . DROM:
         calendar year of activity'
       titre.fr: Entre le 9ème trimestre civil et la fin de la 3ème année civile
         d'activité
+    taux CIPAV:
+      titre.en: '[automatic] CIPAV rate'
+      titre.fr: taux CIPAV
+    taux service BIC:
+      titre.en: '[automatic] BIC service rate'
+      titre.fr: taux service BIC
+    taux service BNC:
+      titre.en: '[automatic] BNC service rate'
+      titre.fr: taux service BNC
+    taux vente restauration hébergement:
+      titre.en: '[automatic] sales rate catering accommodation'
+      titre.fr: taux vente restauration hébergement
   description.en: >
     [automatic] As an auto-entrepreneur starting out in business, you benefit
     from an exemption that translates into the application of reduced
@@ -1657,6 +1673,25 @@ dirigeant . indépendant . PL . CARMF . ASV:
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
   titre.en: '[automatic] CPAM participation'
   titre.fr: participation CPAM
+dirigeant . indépendant . PL . CARMF . en retraite:
+  description.en: >
+    [automatic] If you combine retirement and self-employment, you no longer
+    contribute to the disability-death scheme.
+
+    You and your family are no longer entitled to certain benefits under the disability-death scheme:
+
+    daily allowances, disability pension, lump-sum death benefit.
+  description.fr: >
+    Si vous cumulez retraite et activité libérale, vous ne cotisez plus au
+    régime invalidité-décès.
+
+    Votre famille et vous-même ne bénéficiez plus de certaines prestations du régime invalidité-décès :
+
+    indemnités journalières, rente invalidité, capital décès.
+  question.en: '[automatic] Are you retired?'
+  question.fr: Êtes-vous à la retraite ?
+  titre.en: '[automatic] retired'
+  titre.fr: en retraite
 dirigeant . indépendant . PL . CARMF . invalidité décès:
   description.en: >-
     [automatic] The CARMF manages a provident scheme paying a pension in the
@@ -2807,33 +2842,32 @@ dirigeant . indépendant . PL . régime général:
   titre.fr: régime général
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
   description.en: >
-    [automatic] Non-regulated self-employed professionals who began their
-    activity
+    [automatic] Non-regulated self-employed professionals covered by the general
 
-    on or after January 1, 2019, or those who began their activity before
+    (or Sécurité Sociale des Indépendants) have the option of opting for specific
 
-    January 1, 2019 and opted for the general scheme for self-employed
+    to opt for specific rates of supplementary pension contribution.
 
-    self-employed workers have the option of opting for specific rates
-
-    for supplementary pension contributions.
+    contribution rates.
 
 
     As of January 1, 2024, it is no longer possible to benefit from a specific
 
-    specific supplementary pension rate for unregulated liberal professions.
+    for non-regulated liberal professions.
 
-    regulated professions.
+    regulated professions. However, this specific rate will continue to apply if
+
+    you applied for it before that date.
   description.fr: |
-    Les professions libérales non règlementées qui ont débuté leur activité à
-    compter du 1er janvier 2019 ou ceux qui ont débuté leur activité avant la
-    date du 1er janvier 2019 et ont opté pour le régime général des
-    travailleurs indépendants ont la possibilité d’opter pour des taux
-    spécifique de la cotisation retraite complémentaire.
+    Les professions libérales non règlementées dépendant du régime général des
+    travailleurs indépendants (ou Sécurité Sociale des Indépendants) ont la
+    possibilité d’opter pour des taux spécifiques de cotisation retraite
+    complémentaire.
 
     Depuis le 1er janvier 2024, il n'est plus possible de bénéficier d’un taux
     spécifique de retraite complémentaire pour les professions libérales non
-    réglementées.
+    réglementées. En revanche, ce taux spécifique continuera de s'appliquer si
+    vous en avez fait la demande avant cette date.
   question.en: '[automatic] Have you opted for specific supplementary pension
     contribution rates?'
   question.fr: Avez-vous opté pour des taux spécifiques de cotisation retraite
@@ -7170,9 +7204,9 @@ protection sociale . retraite . base:
 
     This estimate of your retirement pension is calculated on the basis of the following principles:
 
-    - Your earnings correspond to your best 25 years.
+    - Your earnings correspond to your <strong>best 25 years</strong>;
 
-    - You have contributed enough quarters and are retiring at the age required to benefit from the full rate.
+    - You have contributed enough quarters and are retiring at the age required to benefit from the <strong>full rate</strong>.
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé à partir la
     moyenne de vos revenus des 25 meilleures années.
@@ -7180,9 +7214,9 @@ protection sociale . retraite . base:
 
     Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants :
 
-    - La rémunération calculée correspond à celle de vos 25 meilleures années
+    - La rémunération calculée correspond à celle de vos <strong>25 meilleures années</strong> ;
 
-    - Vous avez cotisé suffisamment de trimestres et vous partez à l'âge requis pour bénéficier du taux plein
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l'âge requis pour bénéficier du <strong>taux plein</strong>.
   résumé.en: '[automatic] Full basic retirement pension assuming your earnings
     have remained the same throughout your working life.'
   résumé.fr: Pension de retraite de base à taux plein en partant du principe que
@@ -9486,6 +9520,67 @@ salarié . cotisations . exonérations . réduction générale:
     particulière à effectuer.
   titre.en: '[automatic] overall reduction'
   titre.fr: réduction générale
+salarié . cotisations . exonérations . réduction générale . régularisation:
+  description.en: >
+    [automatic] ### Progressive regularization
+
+
+    At each due date, you accumulate :
+
+    - the employee's gross earnings since the beginning of the year or since being hired ;
+
+    - and calculate the amount of the gross Smic over the same period.
+
+
+    The adjustment corresponds to the difference between the amount calculated in this way and the cumulative amount of
+
+    reductions applied over the previous months or quarters of the year.
+
+
+    ### Annual regularization
+
+
+    This corresponds to the difference between the amount of the reduction calculated according to the annual formula
+
+    and the amount of reductions applied in advance to previous periods of the year.
+
+
+    It is applied :
+
+    - on contributions due for the month of December, for "monthly" employers ;
+
+    - or for the last quarter of the year for "quarterly" employers.
+  description.fr: >
+    ### Régularisation progressive
+
+
+    À chaque échéance, vous cumulez :
+
+    - les rémunérations brutes du salarié perçues depuis le début de l’année ou depuis son embauche ;
+
+    - et vous calculez le montant du Smic brut sur cette même période.
+
+
+    La régularisation correspond à la différence entre le montant ainsi calculé et le montant cumulé
+
+    des réductions appliquées sur les mois ou trimestres précédents de l'année.
+
+
+    ### Régularisation annuelle
+
+
+    Elle correspond à la différence entre le montant de la réduction calculée selon la formule annuelle
+
+    et le montant des réductions appliquées par anticipation sur les périodes précédentes de l’année.
+
+
+    Elle intervient :
+
+    - sur les cotisations dues au titre du mois de décembre, pour les employeurs « mensuels » ;
+
+    - ou au titre du dernier trimestre de l’année pour les employeurs « trimestriels ».
+  titre.en: '[automatic] regularization'
+  titre.fr: régularisation
 salarié . cotisations . forfait social:
   description.en: >
     [automatic] The social security contribution is a contribution paid by the

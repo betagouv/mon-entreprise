@@ -89,6 +89,7 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     the right advisor for your request.
     He or she will contact you by telephone within 5 days, and will provide you with assistance tailored to your situation.
 Décès: Deaths
+Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
 Effectif de l'entreprise: Number of employees
@@ -208,6 +209,7 @@ Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: 
 Nouveautés: News
 Option ACRE non activée: ACRE option not activated
 Option la plus avantageuse.: Most advantageous option.
+Options: Options
 Oui: Yes
 Outils pour les développeurs: Tools for developers
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
@@ -269,11 +271,6 @@ Revenu disponible: Disposable income
 Revenu du dirigeant par statut: Executive income by status
 Revenu net mensuel après impôts: Net monthly income after tax
 Règles de calculs: Calculation rules
-Réduction annuelle: Annual discount
-Réduction générale: General reduction
-"Réduction générale mois par mois :": "General discount month by month :"
-Réduction mensuelle: Monthly discount
-Réduction mois par mois: Monthly discount
 Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
@@ -1418,12 +1415,13 @@ pages:
         supplementary pension rights for auto-entrepreneurs.</0></2><3><0>The
         calculation of open pension rights has not yet been implemented for
         cases involving contribution exemptions (ACRE, disability pension,
-        etc.).</0></3><4><0><0>Basic pension: <2></2></0><1><0>Basic pension
-        points acquired (CNAVPL): <2></2></0></1><2><0>Contribution income taken
-        into account for basic retirement: <2></2></0></2><3>Supplementary
-        pension points acquired: <2><0></0> points acquired</2><3><0>not
-        known</0><1><0>This simulator does not manage acquired supplementary
-        pension rights for the liberal professions.</0></1></3></3></0></4>"
+        etc.).</0></3><4><0><0>Basic pension : <2></2></0><1><0>Basic pension
+        points acquired (CNAVPL) : <2></2></0></1><2><0>Income contributed to
+        basic pension : <2></2></0></2><3><0>Projected pension amount :
+        <1></1><2></2></0></3><4>Supplementary pension points acquired:
+        <2><0></0> points acquired</2><3><0>not known</0><1><0>This simulator
+        does not manage acquired supplementary pension rights for the liberal
+        professions.</0></1></3></4></0></4>"
       shortname: Independent
       title: Income simulator for the self-employed
     is:
@@ -1482,12 +1480,37 @@ pages:
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
     réduction-générale:
+      legend: Employee's gross salary and applicable general reduction
       meta:
         description: Estimate of the amount of the general reduction in employer
           contributions (RGCP). This reduction applies to salaries below 1.6
           times the SMIC.
         title: General reduction
+      month-by-month:
+        caption: "General discount month by month :"
+      options:
+        description: Adds fields to modulate employee activity
+        label:
+          heures-complémentaires: Overtime
+          heures-supplémentaires: Overtime
+        popover: "<0>The number of hours of overtime or complementary work is used to
+          calculate the general reduction: gross remuneration is compared with
+          the SMIC increased by this number of hours.</0><1>If you have answered
+          the question on overtime or complementary hours, the value will be
+          overwritten by the value you enter month by month.</1>"
+      régularisation:
+        annuelle: Annual adjustment
+        progressive: Progressive regularization
+        type: Type of adjustment
+      répartition:
+        chômage: of which unemployment
+        retraite: IRC
+        urssaf: URSSAF
       shortname: General reduction
+      tab:
+        month: Monthly discount
+        month-by-month: Monthly discount
+        year: Annual discount
       title: General contribution reduction simulator
       warnings:
         JEI: The general reduction cannot be combined with the Young Innovative Company

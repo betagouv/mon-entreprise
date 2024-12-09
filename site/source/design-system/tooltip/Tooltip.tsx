@@ -15,13 +15,11 @@ export const Tooltip = ({
 	tooltip,
 	className,
 	style,
-	hasArrow = false,
 }: {
 	children: ReactNode
 	tooltip: ReactNode
 	className?: string
 	style?: CSSProperties
-	hasArrow?: boolean
 }) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const [isFocused, setIsFocused] = useState(false)
@@ -74,7 +72,6 @@ export const Tooltip = ({
 						left: x ?? 0,
 						width: 'max-content',
 					}}
-					$hasArrow={hasArrow}
 				>
 					{tooltip}
 				</StyledTooltip>
@@ -83,7 +80,7 @@ export const Tooltip = ({
 	)
 }
 
-const StyledTooltip = styled.span<{ $hasArrow: boolean }>`
+const StyledTooltip = styled.span`
 	max-width: 20rem;
 
 	opacity: 1 !important;
@@ -100,21 +97,6 @@ const StyledTooltip = styled.span<{ $hasArrow: boolean }>`
 	pointer-events: none;
 	* {
 		color: ${({ theme }) => theme.colors.extended.grey[100]};
-	}
-	/* Flèche (https://coderpad.io/blog/development/react-tooltip-a-how-to-guide/) : */
-	&::after {
-		${({ $hasArrow, theme }) =>
-			$hasArrow &&
-			`
-			content: " ";
-			position: absolute;
-			top: 100%;
-			left: 50%;
-			margin-left: -${theme.spacings.xs};
-			border-width: ${theme.spacings.xs};
-			border-style: solid;
-			border-color: ${theme.colors.extended.grey[800]} transparent transparent transparent;
-		`}
 	}
 `
 

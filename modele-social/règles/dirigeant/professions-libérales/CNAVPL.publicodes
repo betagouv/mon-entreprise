@@ -44,6 +44,7 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
       valeur: assiette des cotisations
       plancher: assiette minimale . retraite
       unité: €/an
+
     tranche T1 . taux: 8.23%
 
     tranche T2:

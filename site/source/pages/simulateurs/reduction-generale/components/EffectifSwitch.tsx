@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import { useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
@@ -29,12 +29,8 @@ export default function EffectifSwitch() {
 			}}
 			aria-label={t("Effectif de l'entreprise")}
 		>
-			<Radio value="10">
-				<Trans>Moins de 50 salariés</Trans>
-			</Radio>
-			<Radio value="100">
-				<Trans>Plus de 50 salariés</Trans>
-			</Radio>
+			<Radio value="10">{t('Moins de 50 salariés')}</Radio>
+			<Radio value="100">{t('Plus de 50 salariés')}</Radio>
 		</ToggleGroup>
 	)
 }

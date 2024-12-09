@@ -142,7 +142,7 @@ export default function NumberField(props: NumberFieldProps) {
 					</StyledUnit>
 				)}
 
-				{props.label && (
+				{props.label && !props.small && (
 					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
 				)}
 			</StyledInputContainer>

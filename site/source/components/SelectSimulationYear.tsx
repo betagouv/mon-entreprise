@@ -1,12 +1,12 @@
-import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import Banner from '@/components/Banner'
-import { EngineContext } from '@/components/utils/EngineContext'
 import { Link as DesignSystemLink } from '@/design-system/typography/link'
 import { enregistreLaRéponse } from '@/store/actions/actions'
+
+import useYear from './utils/useYear'
 
 const Bold = styled.span<{ $bold: boolean }>`
 	${({ $bold }) => ($bold ? 'font-weight: bold;' : '')}
@@ -14,12 +14,9 @@ const Bold = styled.span<{ $bold: boolean }>`
 
 export const SelectSimulationYear = () => {
 	const dispatch = useDispatch()
-	const year = useContext(EngineContext).evaluate('date')
 	const choices = [2023, 2024]
 
-	const actualYear = Number(
-		year.nodeValue?.toString().slice(-4) || new Date().getFullYear()
-	)
+	const actualYear = useYear()
 
 	// return null // Waiting for next year.
 

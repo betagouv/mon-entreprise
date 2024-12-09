@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
@@ -14,6 +14,8 @@ type Props = {
 }
 
 export default function Répartition({ contexte = {} }: Props) {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<Body>
@@ -25,7 +27,10 @@ export default function Répartition({ contexte = {} }: Props) {
 				<StyledLi>
 					<SimulationValue
 						dottedName={`${réductionGénéraleDottedName} . imputation retraite complémentaire`}
-						label="IRC"
+						label={t(
+							'pages.simulateurs.réduction-générale.répartition.retraite',
+							'IRC'
+						)}
 						contexte={contexte}
 						round={false}
 					/>
@@ -33,13 +38,19 @@ export default function Répartition({ contexte = {} }: Props) {
 				<StyledLi>
 					<SimulationValue
 						dottedName={`${réductionGénéraleDottedName} . imputation sécurité sociale`}
-						label="URSSAF"
+						label={t(
+							'pages.simulateurs.réduction-générale.répartition.urssaf',
+							'URSSAF'
+						)}
 						contexte={contexte}
 						round={false}
 					/>
 					<SimulationValue
 						dottedName={`${réductionGénéraleDottedName} . imputation chômage`}
-						label="dont chômage"
+						label={t(
+							'pages.simulateurs.réduction-générale.répartition.chômage',
+							'dont chômage'
+						)}
 						contexte={contexte}
 						round={false}
 					/>

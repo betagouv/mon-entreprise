@@ -95,6 +95,7 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     le conseiller compétent pour votre demande.
     Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.
 Décès: Décès
+Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
 Effectif de l'entreprise: Effectif de l'entreprise
@@ -220,6 +221,7 @@ Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: 
 Nouveautés: Nouveautés
 Option ACRE non activée: Option ACRE non activée
 Option la plus avantageuse.: Option la plus avantageuse.
+Options: Options
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
@@ -284,11 +286,6 @@ Revenu disponible: Revenu disponible
 Revenu du dirigeant par statut: Revenu du dirigeant par statut
 Revenu net mensuel après impôts: Revenu net mensuel après impôts
 Règles de calculs: Règles de calculs
-Réduction annuelle: Réduction annuelle
-Réduction générale: Réduction générale
-"Réduction générale mois par mois :": "Réduction générale mois par mois :"
-Réduction mensuelle: Réduction mensuelle
-Réduction mois par mois: Réduction mois par mois
 Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
@@ -1511,10 +1508,11 @@ pages:
         d'exonérations de cotisations (ACRE, pension invalidité,
         etc).</0></3><4><0><0>Retraite de base : <2></2></0><1><0>Points de
         retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
-        pris en compte pour la retraite de base : <2></2></0></2><3>Points de
-        retraite complémentaire acquis : <2><0></0> points acquis</2><3><0>non
+        pour la retraite de base : <2></2></0></2><3><0>Projection du montant de
+        votre retraite : <1></1><2></2></0></3><4>Points de retraite
+        complémentaire acquis : <2><0></0> points acquis</2><3><0>non
         connue</0><1><0>Ce simulateur ne gère pas les droits acquis de retraite
-        complémentaire pour les professions libérales</0></1></3></3></0></4>"
+        complémentaire pour les professions libérales</0></1></3></4></0></4>"
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
     is:
@@ -1576,12 +1574,38 @@ pages:
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
     réduction-générale:
+      legend: Salaire brut du salarié et réduction générale applicable
       meta:
         description: Estimation du montant de la réduction générale des cotisations
           patronales (RGCP). Cette réduction est applicable pour les salaires
           inférieurs à 1,6 fois le SMIC.
         title: Réduction générale
+      month-by-month:
+        caption: "Réduction générale mois par mois :"
+      options:
+        description: Ajoute des champs pour moduler l'activité du salarié
+        label:
+          heures-complémentaires: Heures complémentaires
+          heures-supplémentaires: Heures supplémentaires
+        popover: "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
+          dans le calcul de la réduction générale : la rémunération brute est
+          comparée au montant du SMIC majoré de ce nombre d'heures.</0><1>Si
+          vous avez répondu à la question sur les heures supplémentaires ou
+          complémentaires, la valeur sera écrasée par celle que vous saisissez
+          mois par mois.</1>"
+      régularisation:
+        annuelle: Régularisation annuelle
+        progressive: Régularisation progressive
+        type: Type de régularisation
+      répartition:
+        chômage: dont chômage
+        retraite: IRC
+        urssaf: URSSAF
       shortname: Réduction générale
+      tab:
+        month: Réduction mensuelle
+        month-by-month: Réduction mois par mois
+        year: Réduction annuelle
       title: Simulateur de réduction générale des cotisations
       warnings:
         JEI: La réduction générale n'est pas cumulable avec l'exonération Jeune
