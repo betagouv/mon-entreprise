@@ -23,6 +23,17 @@ const CessationBlock = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: start;
+	margin-bottom: -1rem;
+	margin-top: -3rem;
+`
+
+const ImpositionBlock = styled.div`
+	margin-bottom: 0.5rem;
+`
+
+const CessationDateWrapper = styled.div`
+	margin-top: -1.5rem;
+	margin-bottom: -1.5rem;
 `
 
 export const CessationActivitéToggles = () => {
@@ -39,33 +50,37 @@ export const CessationActivitéToggles = () => {
 					)}
 					<ExplicableRule light dottedName={'entreprise . date de cessation'} />
 				</H3>
-				<RuleInput
-					dottedName="entreprise . date de cessation"
-					onChange={(date) => {
-						dispatch(
-							ajusteLaSituation({
-								'entreprise . date de cessation': date,
-							} as Record<DottedName, SimpleRuleEvaluation>)
-						)
-					}}
-					hideDefaultValue
-				/>
+				<CessationDateWrapper>
+					<RuleInput
+						dottedName="entreprise . date de cessation"
+						onChange={(date) => {
+							dispatch(
+								ajusteLaSituation({
+									'entreprise . date de cessation': date,
+								} as Record<DottedName, SimpleRuleEvaluation>)
+							)
+						}}
+						hideDefaultValue
+					/>
+				</CessationDateWrapper>
 				<DefaultValue dottedName={'entreprise . date de cessation'} />
 			</CessationBlock>
 
-			<RuleInput
-				inputType="toggle"
-				hideDefaultValue
-				missing={false}
-				dottedName="entreprise . imposition"
-				onChange={(imposition) => {
-					dispatch(
-						ajusteLaSituation({
-							'entreprise . imposition': imposition,
-						} as Record<DottedName, SimpleRuleEvaluation>)
-					)
-				}}
-			/>
+			<ImpositionBlock>
+				<RuleInput
+					inputType="toggle"
+					hideDefaultValue
+					missing={false}
+					dottedName="entreprise . imposition"
+					onChange={(imposition) => {
+						dispatch(
+							ajusteLaSituation({
+								'entreprise . imposition': imposition,
+							} as Record<DottedName, SimpleRuleEvaluation>)
+						)
+					}}
+				/>
+			</ImpositionBlock>
 		</Wrapper>
 	)
 }
