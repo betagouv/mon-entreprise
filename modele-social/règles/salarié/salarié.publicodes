@@ -45,6 +45,7 @@ salarié . convention collective:
         la simulation se basera sur le droit commun.
   
 salarié . régimes spécifiques:
+
 salarié . régimes spécifiques . alsace moselle:
   titre: Régime Alsace-Moselle
   description: |
@@ -107,15 +108,16 @@ salarié . régimes spécifiques . DFS:
   description: >-
     Pour une liste précise de professions, l'employeur peut pratiquer une
     déduction forfaitaire spécifique (DFS) pour frais professionnels sur la base
-    de calcul des cotisations sociales. spécifique consiste en un abattement sur
+    de calcul des cotisations sociales. La DFS consiste en un abattement sur
     l'assiette des cotisations sociales. Elle peut s'appliquer si le salarié
     supporte effectivement des frais lors de son activité professionnelle.
 
-    En l’absence de frais effectivement engagés, ou si l’employeur prend en charge ou rembourse la totalité des frais professionnels, il est impossible d’appliquer la DFS.
+    En l’absence de frais effectivement engagés, ou si l’employeur prend en charge
+    ou rembourse la totalité des frais professionnels, il est impossible d’appliquer la DFS.
   question: Le salarié bénéficie-t-il d'une déduction forfaitaire spécifique ?
   par défaut: non
   références:
-    Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
+    Fiche Urssaf.fr: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html#ancre-deduction-forfaitaire-specifique
 
   avec:
     assiette minimale:
@@ -135,18 +137,115 @@ salarié . régimes spécifiques . DFS:
 
     taux:
       variations:
-        - si: profession = 'journaliste'
-          alors: 20%
+        - si:
+            une de ces conditions:
+              - profession = 'journaliste'
+              - profession = 'pilote de ligne ou personnel navigant'
+              - profession = 'voyageur, représentant et placier'
+          alors:
+            variations:
+              - si: date > 01/2038
+                alors: 0%
+              - si: date > 01/2037
+                alors: 2%
+              - si: date > 01/2036
+                alors: 4%
+              - si: date > 01/2035
+                alors: 6%
+              - si: date > 01/2034
+                alors: 8%
+              - si: date > 01/2033
+                alors: 10%
+              - si: date > 01/2032
+                alors: 12%
+              - si: date > 01/2031
+                alors: 14%
+              - si: date > 01/2030
+                alors: 16%
+              - si: date > 01/2029
+                alors: 18%
+              - si: date > 01/2028
+                alors: 20%
+              - si: date > 01/2027
+                alors: 22%
+              - si: date > 01/2026
+                alors: 24%
+              - si: date > 01/2025
+                alors: 26%
+              - si: date > 01/2024
+                alors: 28%
+              - sinon: 30%
         - si: profession = 'ouvrier du bâtiment'
-          alors: 10%
+          alors:
+            variations:
+              - si: date > 01/2032
+                alors: 0%
+              - si: date > 01/2031
+                alors: 1.5%
+              - si: date > 01/2030
+                alors: 3%
+              - si: date > 01/2029
+                alors: 4%
+              - si: date > 01/2028
+                alors: 5%
+              - si: date > 01/2027
+                alors: 6%
+              - si: date > 01/2026
+                alors: 7%
+              - si: date > 01/2025
+                alors: 8%
+              - si: date > 01/2024
+                alors: 9%
+              - sinon: 10%
         - si: profession = 'artiste musicien'
-          alors: 20%
-        - si: profession = 'pilote de ligne ou personnel navigant'
-          alors: 30%
+          alors:
+            variations:
+              - si: date > 01/2032
+                alors: 0%
+              - si: date > 01/2031
+                alors: 3%
+              - si: date > 01/2030
+                alors: 6%
+              - si: date > 01/2029
+                alors: 9%
+              - si: date > 01/2028
+                alors: 12%
+              - si: date > 01/2027
+                alors: 14%
+              - si: date > 01/2026
+                alors: 16%
+              - si: date > 01/2025
+                alors: 18%
+              - si: date > 01/2024
+                alors: 19%
+              - sinon: 20%
+        - si: profession = 'artiste dramatique'
+          alors:
+            variations:
+            - si: date > 01/2032
+              alors: 0%
+            - si: date > 01/2031
+              alors: 3%
+            - si: date > 01/2030
+              alors: 6%
+            - si: date > 01/2029
+              alors: 9%
+            - si: date > 01/2028
+              alors: 12%
+            - si: date > 01/2027
+              alors: 15%
+            - si: date > 01/2026
+              alors: 18%
+            - si: date > 01/2025
+              alors: 21%
+            - si: date > 01/2024
+              alors: 23%
+            - sinon: 25%
         - sinon: 0%
       par défaut: 10%
       références:
-        Circulaire DSS: https://solidarites-sante.gouv.fr/fichiers/bo/2005/05-09/a0090046.htm
+        Liste des professions bénéficiaires de la DFS: https://boss.gouv.fr/portail/accueil/autres-elements-de-remuneration/frais-professionnels.html#titre-annexe--liste-des-professions-be
+        Modalités de réduction progressive du taux d'abattement de DFS: https://boss.gouv.fr/portail/accueil/autres-elements-de-remuneration/frais-professionnels.html#titre-chapitre-9---deduction-forfaitai-section-3--regles-specifiques-au-a-modalites-de-reduction-progres
 
 salarié . régimes spécifiques . DFS . profession:
   question:
@@ -158,22 +257,29 @@ salarié . régimes spécifiques . DFS . profession:
         - journaliste
         - ouvrier du bâtiment
         - artiste musicien
+        - artiste dramatique
         - pilote de ligne ou personnel navigant
+        - voyageur, représentant et placier
       choix obligatoire: oui
 
   avec:
+    artiste dramatique:
+      icônes: 🎭
+      description: >-
+        Concerne les artistes dramatiques, lyriques, cinématographiques ou
+        chorégraphiques.
+
     artiste musicien:
       icônes: 🎼
       description: >-
-        Concerne les artistes musiciens, choristes, chefs d’orchestre,
-        régisseurs de théâtre
+        Concerne les artistes musiciens, les choristes, les chefs d’orchestre et
+        les régisseurs de théâtre.
 
     journaliste:
-      valeur: profession = 'journaliste'
       icônes: ✒
       description: >-
         Concerne les journalistes, rédacteurs, photographes, directeurs de
-        journaux Critiques dramatiques et musicaux.
+        journaux, critiques dramatiques et musicaux.
 
     ouvrier du bâtiment:
       icônes: 👷‍♂️
@@ -188,7 +294,12 @@ salarié . régimes spécifiques . DFS . profession:
         Concerne les pilotes, radios, mécaniciens navigants des compagnies de
         transports aériens ; pilotes et mécaniciens employés par les maisons de
         construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
-        moniteurs d’aéro-clubs et des écoles d’aviation civile
+        moniteurs d’aéro-clubs et des écoles d’aviation civile.
+
+    voyageur, représentant et placier:
+      icônes: 💼
+      description: >-
+        Concerne les voyageurs, représentants et placiers de commerce ou d'industrie.
 
 salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux:
   valeur: 80%

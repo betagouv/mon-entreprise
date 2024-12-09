@@ -18,26 +18,26 @@ salarié . cotisations . exonérations . réduction générale . imputation séc
 
 exports[`calculate simulations-dividendes > DFS 3`] = `
 "salarié . cotisations . assiette: 1802
-salarié . cotisations . exonérations . réduction générale: 575
+salarié . cotisations . exonérations . réduction générale: 523
 salarié . cotisations . exonérations . réduction générale . imputation chômage: 73
 salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 108
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 467"
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 415"
 `;
 
 exports[`calculate simulations-dividendes > DFS 4`] = `
 "salarié . cotisations . assiette: 1802
-salarié . cotisations . exonérations . réduction générale: 575
+salarié . cotisations . exonérations . réduction générale: 523
 salarié . cotisations . exonérations . réduction générale . imputation chômage: 73
 salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 108
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 467"
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 415"
 `;
 
 exports[`calculate simulations-dividendes > DFS 5`] = `
 "salarié . cotisations . assiette: 1802
-salarié . cotisations . exonérations . réduction générale: 575
+salarié . cotisations . exonérations . réduction générale: 523
 salarié . cotisations . exonérations . réduction générale . imputation chômage: 73
 salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 108
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 467"
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 415"
 `;
 
 exports[`calculate simulations-dividendes > JEI 1`] = `
