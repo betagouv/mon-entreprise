@@ -92,6 +92,22 @@ export const CarretDownIcon = (props: HTMLAttributes<SVGElement>) => (
 	</SvgIcon>
 )
 
+export const CarretUpIcon = (props: HTMLAttributes<SVGElement>) => (
+	<SvgIcon
+		{...props}
+		width="14"
+		height="8"
+		viewBox="0 0 14 8"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden
+	>
+		<path
+			d="M7.70701 7.29289L13.2928 1.70711C13.9228 1.07714 13.4766 0 12.5857 0H1.41412C0.523211 0 0.0770421 1.07714 0.707007 1.70711L6.2928 7.29289C6.68332 7.68342 7.31648 7.68342 7.70701 7.29289Z"
+			transform="scale(1,-1) translate(0,-8)"
+		/>
+	</SvgIcon>
+)
+
 export function SearchIcon({ ...props }) {
 	return (
 		<SvgIcon

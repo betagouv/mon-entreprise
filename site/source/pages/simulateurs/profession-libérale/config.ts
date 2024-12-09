@@ -35,6 +35,16 @@ export function professionLibéraleConfig({
 		),
 		path: sitePaths.simulateurs['profession-libérale'].index,
 		simulation: configProfessionLibérale,
+		codesCatégorieJuridique: [
+			'1000',
+			'5410',
+			'5415',
+			'5422',
+			'5458',
+			'5459',
+			'5460',
+			'5499',
+		],
 		component: IndépendantPLSimulation,
 	} as const)
 }
