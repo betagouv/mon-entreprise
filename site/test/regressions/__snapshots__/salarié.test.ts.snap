@@ -303,33 +303,33 @@ salarié . rémunération . net . à payer avant impôt: 1561"
 exports[`calculate simulations-salarié > frais pro - DFS 1`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2072
-salarié . rémunération . net . payé après impôt: 1610
-salarié . rémunération . net . à payer avant impôt: 1610"
+salarié . coût total employeur: 2078
+salarié . rémunération . net . payé après impôt: 1584
+salarié . rémunération . net . à payer avant impôt: 1584"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2086
-salarié . rémunération . net . payé après impôt: 1608
-salarié . rémunération . net . à payer avant impôt: 1608"
+salarié . coût total employeur: 2094
+salarié . rémunération . net . payé après impôt: 1582
+salarié . rémunération . net . à payer avant impôt: 1582"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2072
-salarié . rémunération . net . payé après impôt: 1610
-salarié . rémunération . net . à payer avant impôt: 1610"
+salarié . coût total employeur: 2078
+salarié . rémunération . net . payé après impôt: 1584
+salarié . rémunération . net . à payer avant impôt: 1584"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 4`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2072
-salarié . rémunération . net . payé après impôt: 1610
-salarié . rémunération . net . à payer avant impôt: 1610"
+salarié . coût total employeur: 2078
+salarié . rémunération . net . payé après impôt: 1584
+salarié . rémunération . net . à payer avant impôt: 1584"
 `;
 
 exports[`calculate simulations-salarié > frais pro - DFS 5`] = `
@@ -343,9 +343,9 @@ salarié . rémunération . net . à payer avant impôt: 1561"
 exports[`calculate simulations-salarié > frais pro - DFS 6`] = `
 "salarié . contrat . salaire brut: 1700
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 1772
-salarié . rémunération . net . payé après impôt: 1339
-salarié . rémunération . net . à payer avant impôt: 1339
+salarié . coût total employeur: 1778
+salarié . rémunération . net . payé après impôt: 1312
+salarié . rémunération . net . à payer avant impôt: 1312
 
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
@@ -353,9 +353,9 @@ Notifications affichées : salarié . rémunération . assiette de vérification
 exports[`calculate simulations-salarié > frais pro - DFS 7`] = `
 "salarié . contrat . salaire brut: 2600
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3052
-salarié . rémunération . net . payé après impôt: 2129
-salarié . rémunération . net . à payer avant impôt: 2137"
+salarié . coût total employeur: 3116
+salarié . rémunération . net . payé après impôt: 2108
+salarié . rémunération . net . à payer avant impôt: 2108"
 `;
 
 exports[`calculate simulations-salarié > frais pro - abo transports + transports personnels 1`] = `
@@ -497,9 +497,9 @@ salarié . rémunération . net . à payer avant impôt: 2528"
 exports[`calculate simulations-salarié > frais pro - transports personnels seul 6`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4156
-salarié . rémunération . net . payé après impôt: 2534
-salarié . rémunération . net . à payer avant impôt: 2606"
+salarié . coût total employeur: 4249
+salarié . rémunération . net . payé après impôt: 2493
+salarié . rémunération . net . à payer avant impôt: 2564"
 `;
 
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 1`] = `

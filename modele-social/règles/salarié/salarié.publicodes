@@ -301,54 +301,24 @@ salarié . régimes spécifiques . DFS . profession:
       description: >-
         Concerne les voyageurs, représentants et placiers de commerce ou d'industrie.
 
-salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux:
-  valeur: 80%
-
-  avec:
-    cotisations allocations familiales taux:
-      remplace: cotisations . allocations familiales . taux
-      valeur: cotisations . allocations familiales . taux * réduction de taux
-
-    cotisations ATMP taux:
-      remplace: cotisations . ATMP . taux
-      valeur: cotisations . ATMP . taux * réduction de taux
-
-    cotisations ATMP taux minimum:
-      remplace: cotisations . ATMP . taux minimum
-      valeur: cotisations . ATMP . taux minimum * réduction de taux
-
-    cotisations versement mobilité:
-      remplace: cotisations . versement mobilité
-      valeur: cotisations . versement mobilité * réduction de taux
-
-    cotisations vieillesse employeur déplafonnée taux:
-      remplace: cotisations . vieillesse . employeur . déplafonnée . taux
-      valeur:
-        cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
-        taux
-
-    cotisations vieillesse employeur plafonnée taux:
-      remplace: cotisations . vieillesse . employeur . plafonnée . taux
-      valeur:
-        cotisations . vieillesse . employeur . plafonnée . taux * réduction de
-        taux
-
-    cotisations vieillesse salarié déplafonnée taux:
-      remplace: cotisations . vieillesse . salarié . déplafonnée . taux
-      valeur:
-        cotisations . vieillesse . salarié . déplafonnée . taux * réduction de
-        taux
-
-    cotisations vieillesse salarié plafonnée taux:
-      remplace: cotisations . vieillesse . salarié . plafonnée . taux
-      valeur: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
-
 salarié . régimes spécifiques . DFS . profession . journaliste . abattement fiscal:
   remplace: rémunération . net . imposable
   titre: net imposable journaliste
+  références:
+    Rémunération imposable des journalistes: https://bofip.impots.gouv.fr/bofip/1324-PGP.html/identifiant%3DBOI-RSA-CHAMP-20-50-10-30-20200728#Assimilation_partielle_de_l_33
   formule:
     valeur: rémunération . net . imposable
-    abattement: 7650€/an
+    abattement:
+      variations:
+        # TODO: appliquer un prorata pour les années incomplètes :
+        # https://bofip.impots.gouv.fr/bofip/1324-PGP.html/identifiant%3DBOI-RSA-CHAMP-20-50-10-30-20200728#2%C2%B0_Condition_de_revenu_a_re_53
+        # En cas d'année d'activité incomplète (début ou fin d'activité en cours d'année),
+        # le seuil de 93 510 € est ajusté prorata temporis en fonction du nombre de mois travaillés,
+        # chaque mois au cours duquel l'activité a été pratiquée étant compté pour un.
+        - si: rémunération . brut < 93510 €/an
+          alors: 7650 €/an
+        - sinon: 0 €/an
+    plancher: 0 €/an
 
 salarié . régimes spécifiques . taxe sur les salaires:
   applicable si: entreprise . TVA = non
