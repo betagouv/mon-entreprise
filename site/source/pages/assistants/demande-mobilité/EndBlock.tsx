@@ -214,9 +214,13 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 											href={url}
 											size="XL"
 											onPress={() => {
-												tracker?.sendEvent('demarche.document', {
+												tracker.setProp(
+													'evenement_type',
+													'telechargement',
+													false
+												)
+												tracker.events.send('demarche.document', {
 													click: 'demande_formulaire_a1',
-													evenement_type: 'telechargement',
 												})
 											}}
 											download="demande-mobilité-internationale.pdf"

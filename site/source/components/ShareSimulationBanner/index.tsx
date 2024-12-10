@@ -102,7 +102,7 @@ export default function ShareOrSaveSimulationBanner({
 									light
 									size="XS"
 									onPress={(e) => {
-										tracker?.sendEvent('click.action', {
+										tracker.events.send('click.action', {
 											click_chapter1: 'feature:partage',
 											click: 'démarré',
 										})
