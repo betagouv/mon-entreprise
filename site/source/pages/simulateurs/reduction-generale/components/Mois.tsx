@@ -117,10 +117,10 @@ export default function RéductionGénéraleMois({
 					'_'
 				)}-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
-				réductionGénérale={data.réductionGénérale}
+				réductionGénérale={data.réductionGénérale.value}
+				répartition={data.réductionGénérale.répartition}
 				displayedUnit={displayedUnit}
 				language={language}
-				warning={true}
 			/>
 		)
 	}
@@ -133,10 +133,11 @@ export default function RéductionGénéraleMois({
 					'_'
 				)}__régularisation-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
-				réductionGénérale={data.régularisation}
+				réductionGénérale={data.régularisation.value}
+				répartition={data.régularisation.répartition}
 				displayedUnit={displayedUnit}
 				language={language}
-				warning={false}
+				displayNull={false}
 			/>
 		)
 	}

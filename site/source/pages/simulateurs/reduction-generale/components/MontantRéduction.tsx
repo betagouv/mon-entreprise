@@ -8,8 +8,8 @@ import { SearchIcon, WarningIcon } from '@/design-system/icons'
 import { Tooltip } from '@/design-system/tooltip'
 
 import {
-	réductionGénéraleDottedName,
 	rémunérationBruteDottedName,
+	Répartition as RépartitionType,
 } from '../utils'
 import Répartition from './Répartition'
 import WarningSalaireTrans from './WarningSalaireTrans'
@@ -18,29 +18,24 @@ type Props = {
 	id?: string
 	rémunérationBrute: number
 	réductionGénérale: number
+	répartition: RépartitionType
 	displayedUnit: string
 	language: string
-	warning?: boolean
+	displayNull?: boolean
 }
 
 export default function MontantRéduction({
 	id,
 	rémunérationBrute,
 	réductionGénérale,
+	répartition,
 	displayedUnit,
 	language,
-	warning = false,
+	displayNull = true,
 }: Props) {
 	const { t } = useTranslation()
 
-	const tooltip = (
-		<Répartition
-			contexte={{
-				[rémunérationBruteDottedName]: rémunérationBrute,
-				[réductionGénéraleDottedName]: réductionGénérale,
-			}}
-		/>
-	)
+	const tooltip = <Répartition répartition={répartition} />
 
 	return réductionGénérale ? (
 		<StyledTooltip tooltip={tooltip}>
@@ -58,10 +53,10 @@ export default function MontantRéduction({
 			</FlexDiv>
 		</StyledTooltip>
 	) : (
-		<FlexDiv id={id}>
-			{formatValue(0, { displayedUnit, language })}
+		displayNull && (
+			<FlexDiv id={id}>
+				{formatValue(0, { displayedUnit, language })}
 
-			{warning && (
 				<Condition
 					expression={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
 					contexte={{
@@ -73,8 +68,8 @@ export default function MontantRéduction({
 						<StyledWarningIcon aria-label={t('Attention')} />
 					</Tooltip>
 				</Condition>
-			)}
-		</FlexDiv>
+			</FlexDiv>
+		)
 	)
 }
 
