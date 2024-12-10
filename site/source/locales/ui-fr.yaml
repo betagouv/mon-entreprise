@@ -1584,15 +1584,30 @@ pages:
         caption: "Réduction générale mois par mois :"
       options:
         description: Ajoute des champs pour moduler l'activité du salarié
+        heures-sup:
+          popover: "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
+            dans le calcul de la réduction générale : la rémunération brute est
+            comparée au montant du SMIC majoré de ce nombre d'heures.</0>"
         label:
-          heures-complémentaires: Heures complémentaires
-          heures-supplémentaires: Heures supplémentaires
-        popover: "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
-          dans le calcul de la réduction générale : la rémunération brute est
-          comparée au montant du SMIC majoré de ce nombre d'heures.</0><1>Si
-          vous avez répondu à la question sur les heures supplémentaires ou
-          complémentaires, la valeur sera écrasée par celle que vous saisissez
-          mois par mois.</1>"
+          heures-complémentaires: Nombre d'heures complémentaires
+          heures-supplémentaires: Nombre d'heures supplémentaires
+          rémunération-etp: Rémunération de base mois complet
+          rémunération-heures-complémentaires: Rémunération des heures complémentaires
+          rémunération-heures-supplémentaires: Rémunération des heures supplémentaires
+          rémunération-primes: Rémunération non affectée par le mois incomplet
+        mois-incomplet:
+          description: Ajoute des champs pour gérer le cas d'un mois incomplet
+        rémunération-etp:
+          popover: <0>Indiquez ici la rémunération qui aurait été versée pour un mois
+            complet, <2>en excluant</2> :<4><0>les primes et autres éléments de
+            rémunération non affectés par l'absence ;</0><1>la rémunération des
+            heures supplémentaires ou complémentaires.</1></4></0>
+        rémunération-heures-sup:
+          popover: <0>Indiquez ici la rémunération afférente au paiement des heures
+            supplémentaires ou complémentaires.</0>
+        rémunération-primes:
+          popover: <0>Indiquez ici les éléments de rémunération non affectés par
+            l'absence, comme les primes.</0>
       régularisation:
         annuelle: Régularisation annuelle
         progressive: Régularisation progressive
@@ -1924,20 +1939,11 @@ simulateurs:
     plus: Lire les précisions
     profession-libérale: Ce simulateur est à destination des professions libérales
       en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.
-    réduction-générale:
-      "1": "La rémunération brute inclue : le paiement des heures supplémentaires et
-        complémentaires, les primes et les indemnités de CDD."
-      "2": Ce simulateur ne gère pas les mois incomplets (embauche, absence,
-        départ...).
-      "3": Ce simulateur n'intègre pas toutes les règles de calcul spécifiques
-        (Entreprises de Travail Temporaire, salariés des transports routiers
-        soumis à un horaire d'équivalence...). Il ne tient pas non plus compte
-        des taux et/ou répartition particuliers de la cotisation de retraite
-        complémentaire appliqués dans certaines entreprises.
-      beta: <0>Ce simulateur est en cours de développement.</0> Il propose uniquement
-        le calcul de la <3>RGCP</3> à partir d'une rémunération mensuelle ou
-        annuelle. Pour une version complète, utilisez <7>le simulateur
-        d'urssaf.fr.</7>
+    réduction-générale: Ce simulateur n'intègre <1>pas toutes les règles de
+      calcul</1> spécifiques (Entreprises de Travail Temporaire, salariés des
+      transports routiers soumis à un horaire d'équivalence...). Il ne tient pas
+      non plus compte des taux et/ou répartition particuliers de la cotisation
+      de retraite complémentaire appliqués dans certaines entreprises.
     salarié: Le simulateur ne prend pour l'instant pas en compte les accords et
       conventions collectives, ni la myriade d'aides aux entreprises. Trouvez
       votre convention collective <2>ici</2>, et explorez les aides sur

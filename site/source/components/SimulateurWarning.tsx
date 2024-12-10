@@ -200,47 +200,16 @@ export default function SimulateurWarning({
 			{simulateur === 'réduction-générale' && (
 				<>
 					<Body>
-						<Trans i18nKey="simulateurs.warning.réduction-générale.beta">
-							<Strong>Ce simulateur est en cours de développement.</Strong> Il
-							propose uniquement le calcul de la{' '}
-							<abbr title="Réduction Générale des Cotisations Patronales">
-								RGCP
-							</abbr>{' '}
-							à partir d'une rémunération mensuelle ou annuelle. Pour une
-							version complète, utilisez{' '}
-							<Link
-								aria-label="Simulateur de calcul de la réduction générale des cotisations sur urssaf.fr, nouvelle fenêtre"
-								href="https://www.declaration.urssaf.fr/calcul/"
-							>
-								le simulateur d'urssaf.fr.
-							</Link>
+						<Trans i18nKey="simulateurs.warning.réduction-générale">
+							Ce simulateur n'intègre{' '}
+							<Strong>pas toutes les règles de calcul</Strong> spécifiques
+							(Entreprises de Travail Temporaire, salariés des transports
+							routiers soumis à un horaire d'équivalence...). Il ne tient pas
+							non plus compte des taux et/ou répartition particuliers de la
+							cotisation de retraite complémentaire appliqués dans certaines
+							entreprises.
 						</Trans>
 					</Body>
-					<Ul>
-						<StyledLi>
-							<Trans i18nKey="simulateurs.warning.réduction-générale.1">
-								La rémunération brute inclue : le paiement des heures
-								supplémentaires et complémentaires, les primes et les indemnités
-								de CDD.
-							</Trans>
-						</StyledLi>
-						<StyledLi>
-							<Trans i18nKey="simulateurs.warning.réduction-générale.2">
-								Ce simulateur ne gère pas les mois incomplets (embauche,
-								absence, départ...).
-							</Trans>
-						</StyledLi>
-						<StyledLi>
-							<Trans i18nKey="simulateurs.warning.réduction-générale.3">
-								Ce simulateur n'intègre pas toutes les règles de calcul
-								spécifiques (Entreprises de Travail Temporaire, salariés des
-								transports routiers soumis à un horaire d'équivalence...). Il ne
-								tient pas non plus compte des taux et/ou répartition
-								particuliers de la cotisation de retraite complémentaire
-								appliqués dans certaines entreprises.
-							</Trans>
-						</StyledLi>
-					</Ul>
 				</>
 			)}
 			<Body>

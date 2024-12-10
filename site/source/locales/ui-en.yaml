@@ -1490,14 +1490,30 @@ pages:
         caption: "General discount month by month :"
       options:
         description: Adds fields to modulate employee activity
+        heures-sup:
+          popover: "<0>The number of hours of overtime and complementary work is used to
+            calculate the general reduction: gross remuneration is compared with
+            the SMIC increased by this number of hours.</0>"
         label:
-          heures-complémentaires: Overtime
-          heures-supplémentaires: Overtime
-        popover: "<0>The number of hours of overtime or complementary work is used to
-          calculate the general reduction: gross remuneration is compared with
-          the SMIC increased by this number of hours.</0><1>If you have answered
-          the question on overtime or complementary hours, the value will be
-          overwritten by the value you enter month by month.</1>"
+          heures-complémentaires: Number of overtime hours
+          heures-supplémentaires: Number of overtime hours
+          rémunération-etp: Basic remuneration for a full month
+          rémunération-heures-complémentaires: Overtime pay
+          rémunération-heures-supplémentaires: Overtime pay
+          rémunération-primes: Remuneration not affected by the incomplete month
+        mois-incomplet:
+          description: Adds fields to handle incomplete months
+        rémunération-etp:
+          popover: <0>Indicate here the remuneration that would have been paid for a full
+            month, <2>excluding</2>:<4><0>bonuses and other remuneration not
+            affected by the absence ;</0><1>remuneration for overtime or
+            additional hours worked.</1></4></0>
+        rémunération-heures-sup:
+          popover: <0>Indicate here the remuneration relating to the payment of overtime
+            or complementary hours.</0>
+        rémunération-primes:
+          popover: <0>Indicate here any elements of remuneration not affected by the
+            absence, such as bonuses.</0>
       régularisation:
         annuelle: Annual adjustment
         progressive: Progressive regularization
@@ -1806,19 +1822,11 @@ simulateurs:
     plus: Read more
     profession-libérale: This simulator is intended for self-employed professionals
       who earn a BNC. It does not take into account self-employed companies.
-    réduction-générale:
-      "1": "Gross remuneration includes: overtime and additional hours, bonuses and
-        fixed-term contract allowances."
-      "2": This simulator does not handle incomplete months (hiring, absence,
-        departure, etc.).
-      "3": This simulator does not take into account all specific calculation rules
-        (temporary employment agencies, road haulage employees subject to
-        equivalent working hours, etc.). Nor does it take into account the
-        specific rates and/or distribution of supplementary pension
-        contributions applied in certain companies.
-      beta: <0>This simulator is currently under development.</0> It only calculates
-        <3>RGCP</3> on the basis of monthly or annual remuneration. For a full
-        version, use <7>the urssaf.fr simulator.</7>
+    réduction-générale: This simulator does not take into account <1>all</1>
+      specific <1>calculation rules</1> (temporary employment agencies, road
+      haulage employees subject to equivalent working hours, etc.). Nor does it
+      take into account the specific rates and/or distribution of supplementary
+      pension contributions applied in certain companies.
     salarié: The simulator does not currently take into account collective
       agreements, nor the myriad of company subsidies. Find your collective
       bargaining agreement <2>here</2>, and explore the range of assistance
