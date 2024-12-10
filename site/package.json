@@ -73,6 +73,7 @@
 		"isbot": "^3.7.0",
 		"markdown-to-jsx": "^7.3.2",
 		"modele-social": "workspace:^",
+		"piano-analytics-js": "^6.13.0",
 		"publicodes": "^1.2.0",
 		"react": "^18.2.0",
 		"react-aria": "^3.24.0",
