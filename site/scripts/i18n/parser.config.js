@@ -79,7 +79,6 @@ export default {
 	input: [
 		'../../source/**/*.{jsx,tsx,js,ts}',
 		'!../../source/components/ATInternetTracking/smarttag.js',
-		'!../../source/components/ATInternetTracking/piano-analytics.js',
 	],
 	// An array of globs that describe where to look for source files
 	// relative to the location of the configuration file

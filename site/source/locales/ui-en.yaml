@@ -1686,10 +1686,10 @@ privacyPolicy:
   tracking:
     ariaLabel: CNIL recommendations, see more information on the CNIL website, new window
     content: mon-entreprise.urssaf.fr does not use cookies or other tracking
-      devices. However, the platform uses Piano Analytics, an audience
-      measurement solution configured in "exempted" mode, which does not require
-      the consent of the persons concerned, in accordance with the
-      <2>recommendations of the CNIL</2>.
+      devices. However, the platform uses Matomo, an audience measurement
+      solution, configured in “exempted” mode and not requiring the consent of
+      the persons concerned in accordance with the <2>recommendations of the
+      CNIL</2>.
     optOut:
       checkboxLabel: I do not want to send anonymous data about my use of the platform
         for audience measurement purposes.

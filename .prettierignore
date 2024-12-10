@@ -3,6 +3,5 @@ dist
 storybook-static
 site/source/locales/*.yaml
 site/source/components/ATInternetTracking/smarttag.js
-site/source/components/ATInternetTracking/piano-analytics.js
 *.yaml.d.ts
 .yarnrc.yml

@@ -52,7 +52,7 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 						<Button
 							size="XS"
 							onPress={() => {
-								tracker?.sendEvent('click.action', {
+								tracker.events.send('click.action', {
 									click_chapter1: 'feature:partage',
 									click: 'lien copié',
 								})
