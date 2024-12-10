@@ -1,2 +1,3 @@
 ignorePatterns:
+  - smarttag.js
   - piano-analytics.js
