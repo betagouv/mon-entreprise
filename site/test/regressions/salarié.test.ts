@@ -36,6 +36,7 @@ it('calculate simulations-salarié', () => {
 		  "salarié . régimes spécifiques . DFS",
 		  "salarié . régimes spécifiques . alsace moselle",
 		  "salarié . régimes spécifiques . impatriés",
+		  "salarié . régimes spécifiques . taux réduits",
 		  "salarié . rémunération . avantages en nature",
 		  "salarié . rémunération . frais professionnels . titres-restaurant",
 		  "salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant",

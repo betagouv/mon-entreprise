@@ -45,6 +45,7 @@ salarié . convention collective:
         la simulation se basera sur le droit commun.
   
 salarié . régimes spécifiques:
+
 salarié . régimes spécifiques . alsace moselle:
   titre: Régime Alsace-Moselle
   description: |
@@ -107,15 +108,16 @@ salarié . régimes spécifiques . DFS:
   description: >-
     Pour une liste précise de professions, l'employeur peut pratiquer une
     déduction forfaitaire spécifique (DFS) pour frais professionnels sur la base
-    de calcul des cotisations sociales. spécifique consiste en un abattement sur
+    de calcul des cotisations sociales. La DFS consiste en un abattement sur
     l'assiette des cotisations sociales. Elle peut s'appliquer si le salarié
     supporte effectivement des frais lors de son activité professionnelle.
 
-    En l’absence de frais effectivement engagés, ou si l’employeur prend en charge ou rembourse la totalité des frais professionnels, il est impossible d’appliquer la DFS.
+    En l’absence de frais effectivement engagés, ou si l’employeur prend en charge
+    ou rembourse la totalité des frais professionnels, il est impossible d’appliquer la DFS.
   question: Le salarié bénéficie-t-il d'une déduction forfaitaire spécifique ?
   par défaut: non
   références:
-    Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-frais-professionnels/la-deduction-forfaitaire-specifi.html
+    Fiche Urssaf.fr: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html#ancre-deduction-forfaitaire-specifique
 
   avec:
     assiette minimale:
@@ -135,18 +137,115 @@ salarié . régimes spécifiques . DFS:
 
     taux:
       variations:
-        - si: profession = 'journaliste'
-          alors: 20%
+        - si:
+            une de ces conditions:
+              - profession = 'journaliste'
+              - profession = 'pilote de ligne ou personnel navigant'
+              - profession = 'voyageur, représentant et placier'
+          alors:
+            variations:
+              - si: date > 01/2038
+                alors: 0%
+              - si: date > 01/2037
+                alors: 2%
+              - si: date > 01/2036
+                alors: 4%
+              - si: date > 01/2035
+                alors: 6%
+              - si: date > 01/2034
+                alors: 8%
+              - si: date > 01/2033
+                alors: 10%
+              - si: date > 01/2032
+                alors: 12%
+              - si: date > 01/2031
+                alors: 14%
+              - si: date > 01/2030
+                alors: 16%
+              - si: date > 01/2029
+                alors: 18%
+              - si: date > 01/2028
+                alors: 20%
+              - si: date > 01/2027
+                alors: 22%
+              - si: date > 01/2026
+                alors: 24%
+              - si: date > 01/2025
+                alors: 26%
+              - si: date > 01/2024
+                alors: 28%
+              - sinon: 30%
         - si: profession = 'ouvrier du bâtiment'
-          alors: 10%
+          alors:
+            variations:
+              - si: date > 01/2032
+                alors: 0%
+              - si: date > 01/2031
+                alors: 1.5%
+              - si: date > 01/2030
+                alors: 3%
+              - si: date > 01/2029
+                alors: 4%
+              - si: date > 01/2028
+                alors: 5%
+              - si: date > 01/2027
+                alors: 6%
+              - si: date > 01/2026
+                alors: 7%
+              - si: date > 01/2025
+                alors: 8%
+              - si: date > 01/2024
+                alors: 9%
+              - sinon: 10%
         - si: profession = 'artiste musicien'
-          alors: 20%
-        - si: profession = 'pilote de ligne ou personnel navigant'
-          alors: 30%
+          alors:
+            variations:
+              - si: date > 01/2032
+                alors: 0%
+              - si: date > 01/2031
+                alors: 3%
+              - si: date > 01/2030
+                alors: 6%
+              - si: date > 01/2029
+                alors: 9%
+              - si: date > 01/2028
+                alors: 12%
+              - si: date > 01/2027
+                alors: 14%
+              - si: date > 01/2026
+                alors: 16%
+              - si: date > 01/2025
+                alors: 18%
+              - si: date > 01/2024
+                alors: 19%
+              - sinon: 20%
+        - si: profession = 'artiste dramatique'
+          alors:
+            variations:
+            - si: date > 01/2032
+              alors: 0%
+            - si: date > 01/2031
+              alors: 3%
+            - si: date > 01/2030
+              alors: 6%
+            - si: date > 01/2029
+              alors: 9%
+            - si: date > 01/2028
+              alors: 12%
+            - si: date > 01/2027
+              alors: 15%
+            - si: date > 01/2026
+              alors: 18%
+            - si: date > 01/2025
+              alors: 21%
+            - si: date > 01/2024
+              alors: 23%
+            - sinon: 25%
         - sinon: 0%
       par défaut: 10%
       références:
-        Circulaire DSS: https://solidarites-sante.gouv.fr/fichiers/bo/2005/05-09/a0090046.htm
+        Liste des professions bénéficiaires de la DFS: https://boss.gouv.fr/portail/accueil/autres-elements-de-remuneration/frais-professionnels.html#titre-annexe--liste-des-professions-be
+        Modalités de réduction progressive du taux d'abattement de DFS: https://boss.gouv.fr/portail/accueil/autres-elements-de-remuneration/frais-professionnels.html#titre-chapitre-9---deduction-forfaitai-section-3--regles-specifiques-au-a-modalites-de-reduction-progres
 
 salarié . régimes spécifiques . DFS . profession:
   question:
@@ -158,22 +257,29 @@ salarié . régimes spécifiques . DFS . profession:
         - journaliste
         - ouvrier du bâtiment
         - artiste musicien
+        - artiste dramatique
         - pilote de ligne ou personnel navigant
+        - voyageur, représentant et placier
       choix obligatoire: oui
 
   avec:
+    artiste dramatique:
+      icônes: 🎭
+      description: >-
+        Concerne les artistes dramatiques, lyriques, cinématographiques ou
+        chorégraphiques.
+
     artiste musicien:
       icônes: 🎼
       description: >-
-        Concerne les artistes musiciens, choristes, chefs d’orchestre,
-        régisseurs de théâtre
+        Concerne les artistes musiciens, les choristes, les chefs d’orchestre et
+        les régisseurs de théâtre.
 
     journaliste:
-      valeur: profession = 'journaliste'
       icônes: ✒
       description: >-
         Concerne les journalistes, rédacteurs, photographes, directeurs de
-        journaux Critiques dramatiques et musicaux.
+        journaux, critiques dramatiques et musicaux.
 
     ouvrier du bâtiment:
       icônes: 👷‍♂️
@@ -188,56 +294,214 @@ salarié . régimes spécifiques . DFS . profession:
         Concerne les pilotes, radios, mécaniciens navigants des compagnies de
         transports aériens ; pilotes et mécaniciens employés par les maisons de
         construction d’avions et de moteurs pour l’essai de prototypes ; pilotes
-        moniteurs d’aéro-clubs et des écoles d’aviation civile
+        moniteurs d’aéro-clubs et des écoles d’aviation civile.
 
-salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux:
-  valeur: 80%
-
-  avec:
-    cotisations allocations familiales taux:
-      remplace: cotisations . allocations familiales . taux
-      valeur: cotisations . allocations familiales . taux * réduction de taux
-
-    cotisations ATMP taux:
-      remplace: cotisations . ATMP . taux
-      valeur: cotisations . ATMP . taux * réduction de taux
-
-    cotisations ATMP taux minimum:
-      remplace: cotisations . ATMP . taux minimum
-      valeur: cotisations . ATMP . taux minimum * réduction de taux
-
-    cotisations versement mobilité:
-      remplace: cotisations . versement mobilité
-      valeur: cotisations . versement mobilité * réduction de taux
-
-    cotisations vieillesse employeur déplafonnée taux:
-      remplace: cotisations . vieillesse . employeur . déplafonnée . taux
-      valeur:
-        cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
-        taux
-
-    cotisations vieillesse employeur plafonnée taux:
-      remplace: cotisations . vieillesse . employeur . plafonnée . taux
-      valeur:
-        cotisations . vieillesse . employeur . plafonnée . taux * réduction de
-        taux
-
-    cotisations vieillesse salarié déplafonnée taux:
-      remplace: cotisations . vieillesse . salarié . déplafonnée . taux
-      valeur:
-        cotisations . vieillesse . salarié . déplafonnée . taux * réduction de
-        taux
-
-    cotisations vieillesse salarié plafonnée taux:
-      remplace: cotisations . vieillesse . salarié . plafonnée . taux
-      valeur: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
+    voyageur, représentant et placier:
+      icônes: 💼
+      description: >-
+        Concerne les voyageurs, représentants et placiers de commerce ou d'industrie.
 
 salarié . régimes spécifiques . DFS . profession . journaliste . abattement fiscal:
   remplace: rémunération . net . imposable
   titre: net imposable journaliste
+  références:
+    Rémunération imposable des journalistes: https://bofip.impots.gouv.fr/bofip/1324-PGP.html/identifiant%3DBOI-RSA-CHAMP-20-50-10-30-20200728#Assimilation_partielle_de_l_33
   formule:
     valeur: rémunération . net . imposable
-    abattement: 7650€/an
+    abattement:
+      variations:
+        # TODO: appliquer un prorata pour les années incomplètes :
+        # https://bofip.impots.gouv.fr/bofip/1324-PGP.html/identifiant%3DBOI-RSA-CHAMP-20-50-10-30-20200728#2%C2%B0_Condition_de_revenu_a_re_53
+        # En cas d'année d'activité incomplète (début ou fin d'activité en cours d'année),
+        # le seuil de 93 510 € est ajusté prorata temporis en fonction du nombre de mois travaillés,
+        # chaque mois au cours duquel l'activité a été pratiquée étant compté pour un.
+        - si: rémunération . brut < 93510 €/an
+          alors: 7650 €/an
+        - sinon: 0 €/an
+    plancher: 0 €/an
+
+salarié . régimes spécifiques . taux réduits:
+  titre: taux réduits cas particuliers
+  description: |
+    L’emploi de certaines professions donne lieu au paiement des cotisations de
+    Sécurité sociale à taux réduits. Sont notamment concernés :
+    - les artistes du spectacle,
+    - les mannequins,
+    - les journalistes professionnels et les pigistes,
+    - les professions médicales salariées.
+  question: Le salarié bénéficie-t-il de taux de cotisations réduits ?
+  par défaut: non
+  références:
+    Les taux réduits cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
+
+salarié . régimes spécifiques . taux réduits . profession:
+  question:
+    Quelle est la profession du salarié pour l'application de taux de cotisations
+    réduits ?
+  formule:
+    une possibilité:
+      possibilités:
+        - VRP multicarte
+        - journaliste
+        - profession médicale
+        - artiste du spectacle
+        - mannequin
+      choix obligatoire: oui
+
+  avec:
+    VRP multicarte:
+      icônes: 💼
+      description: |
+        Concerne les voyageurs, représentants et placiers (VRP) à cartes multiples.
+      références:
+        Taux de cotisations - VRP multicarte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-VRP-multicarte.html
+
+    journaliste:
+      icônes: ✒️
+      description: |
+        Concerne les salariés pigistes et journalistes et assimilés pour les employeurs suivants :
+        - journaux d’information
+        - agences de presse
+        - entreprises de radiodiffusion et de télévision
+      références:
+        Taux réduits pour les journalistes: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html#ancre-journalistes
+
+    profession médicale:
+      icônes: 🩺
+      description: |
+        Concerne les membres des professions médicales et les médecins salariés qui exercent
+        leur activité à <strong>temps partiel régulièrement et simultanément</strong> pour
+        plusieurs employeurs relevant du régime général.
+      références:
+        Taux réduits pour les professions médicales: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html#ancre-professions-medicales
+
+    artiste du spectacle:
+      icônes: 🎭
+      description: |
+        Concerne uniquement les artistes des employeurs du spectacle vivant.
+        Les techniciens ne sont pas concernés.
+      références:
+        Taux réduits pour les artistes du spectacle: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html#ancre-artistes-du-spectacle
+
+    mannequin:
+      icônes: ✨
+      description: |
+        Concerne tout mannequin percevant une rémunération.
+        mon-entreprise ne gère pas les cotisations sur les royalties.
+      références:
+        Taux réduits pour les mannequins: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html#ancre-mannequins
+
+salarié . régimes spécifiques . taux réduits . réduction de taux:
+  applicable si:
+    est défini: profession
+  variations:
+    - si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'profession médicale'
+      alors: 70%
+    - si: profession = 'journaliste'
+      alors: 80%
+
+  avec:
+    cotisations vieillesse employeur plafonnée taux:
+      remplace: cotisations . vieillesse . employeur . plafonnée . taux
+      valeur:
+        variations:
+          - si: profession = 'VRP multicarte'
+            alors: 6.9%   # Valeur en dur car pas exactement 80% du taux de base (cf référence)
+          - sinon: cotisations . vieillesse . employeur . plafonnée . taux * réduction de taux
+
+    cotisations vieillesse salarié plafonnée taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+          - profession = 'profession médicale'
+      remplace: cotisations . vieillesse . salarié . plafonnée . taux
+      valeur: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
+
+    cotisations vieillesse employeur déplafonnée taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+      remplace: cotisations . vieillesse . employeur . déplafonnée . taux
+      valeur:
+        cotisations . vieillesse . employeur . déplafonnée . taux * réduction de taux
+
+    cotisations ATMP taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+      remplace: cotisations . ATMP . taux
+      valeur: cotisations . ATMP . taux * réduction de taux
+      arrondi: 2 décimale
+
+    cotisations ATMP taux minimum:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+      remplace: cotisations . ATMP . taux minimum
+      valeur: cotisations . ATMP . taux minimum * réduction de taux
+      arrondi: 2 décimale
+
+    cotisations allocations familiales taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+      remplace: cotisations . allocations familiales . taux
+      valeur: cotisations . allocations familiales . taux * réduction de taux
+
+    cotisations versement mobilité:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+      remplace: cotisations . versement mobilité
+      valeur: cotisations . versement mobilité * réduction de taux
+
+    cotisations vieillesse salarié déplafonnée taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+      remplace: cotisations . vieillesse . salarié . déplafonnée . taux
+      valeur: cotisations . vieillesse . salarié . déplafonnée . taux * réduction de taux
+
+    cotisations maladie salarié taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+      remplace: cotisations . maladie . salarié . taux
+      valeur: cotisations . maladie . salarié . taux * réduction de taux
+
+    cotisations maladie employeur taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+      remplace: cotisations . maladie . employeur . taux
+      valeur: cotisations . maladie . employeur . taux * réduction de taux
+
+    cotisations FNAL taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+      remplace: cotisations . FNAL . taux
+      valeur: cotisations . FNAL . taux * réduction de taux
 
 salarié . régimes spécifiques . taxe sur les salaires:
   applicable si: entreprise . TVA = non
