@@ -14,11 +14,23 @@ export const heuresSupplémentairesDottedName =
 export const heuresComplémentairesDottedName =
 	'salarié . temps de travail . heures complémentaires'
 
+export type Répartition = {
+	IRC: number
+	Urssaf: number
+	chômage: number
+}
+
 export type MonthState = {
 	rémunérationBrute: number
 	options: Options
-	réductionGénérale: number
-	régularisation: number
+	réductionGénérale: {
+		value: number
+		répartition: Répartition
+	}
+	régularisation: {
+		value: number
+		répartition: Répartition
+	}
 }
 
 export type Options = {
@@ -76,6 +88,47 @@ const getTotalRéductionGénérale = (
 	return réductionGénérale.nodeValue as number
 }
 
+const emptyRépartition = {
+	IRC: 0,
+	Urssaf: 0,
+	chômage: 0,
+}
+
+const getRépartition = (
+	rémunération: number,
+	réduction: number,
+	engine: Engine<DottedName>
+): Répartition => {
+	const contexte = {
+		[rémunérationBruteDottedName]: rémunération,
+		[réductionGénéraleDottedName]: réduction,
+	}
+	const IRC =
+		(engine.evaluate({
+			valeur: `${réductionGénéraleDottedName} . imputation retraite complémentaire`,
+			unité: '€/mois',
+			contexte,
+		})?.nodeValue as number) ?? 0
+	const Urssaf =
+		(engine.evaluate({
+			valeur: `${réductionGénéraleDottedName} . imputation sécurité sociale`,
+			unité: '€/mois',
+			contexte,
+		})?.nodeValue as number) ?? 0
+	const chômage =
+		(engine.evaluate({
+			valeur: `${réductionGénéraleDottedName} . imputation chômage`,
+			unité: '€/mois',
+			contexte,
+		})?.nodeValue as number) ?? 0
+
+	return {
+		IRC,
+		Urssaf,
+		chômage,
+	}
+}
+
 export const getInitialRéductionGénéraleMoisParMois = (
 	year: number,
 	engine: Engine<DottedName>
@@ -110,8 +163,14 @@ export const getInitialRéductionGénéraleMoisParMois = (
 				rémunérationPrimes,
 				rémunérationHeuresSup,
 			},
-			réductionGénérale: 0,
-			régularisation: 0,
+			réductionGénérale: {
+				value: 0,
+				répartition: emptyRépartition,
+			},
+			régularisation: {
+				value: 0,
+				répartition: emptyRépartition,
+			},
 		}) as MonthState[]
 	}
 
@@ -130,6 +189,11 @@ export const getInitialRéductionGénéraleMoisParMois = (
 			},
 			engine
 		)
+		const répartition = getRépartition(
+			rémunérationBrute,
+			réductionGénérale,
+			engine
+		)
 
 		return {
 			rémunérationBrute,
@@ -140,8 +204,14 @@ export const getInitialRéductionGénéraleMoisParMois = (
 				rémunérationPrimes,
 				rémunérationHeuresSup,
 			},
-			réductionGénérale,
-			régularisation: 0,
+			réductionGénérale: {
+				value: réductionGénérale,
+				répartition,
+			},
+			régularisation: {
+				value: 0,
+				répartition: emptyRépartition,
+			},
 		}
 	})
 }
@@ -160,8 +230,14 @@ export const reevaluateRéductionGénéraleMoisParMois = (
 		return data.map((monthData) => {
 			return {
 				...monthData,
-				réductionGénérale: 0,
-				régularisation: 0,
+				réductionGénérale: {
+					value: 0,
+					répartition: emptyRépartition,
+				},
+				régularisation: {
+					value: 0,
+					répartition: emptyRépartition,
+				},
 			}
 		})
 	}
@@ -178,8 +254,14 @@ export const reevaluateRéductionGénéraleMoisParMois = (
 		(reevaluatedData: MonthState[], monthState, monthIndex) => {
 			const rémunérationBrute = monthState.rémunérationBrute
 			const options = monthState.options
-			let réductionGénérale = 0
-			let régularisation = 0
+			const réductionGénérale = {
+				value: 0,
+				répartition: emptyRépartition,
+			}
+			const régularisation = {
+				value: 0,
+				répartition: emptyRépartition,
+			}
 
 			if (!rémunérationBrute) {
 				return [
@@ -206,18 +288,30 @@ export const reevaluateRéductionGénéraleMoisParMois = (
 				const réductionGénéraleCumulée = sumAll(
 					reevaluatedData.map(
 						(monthData) =>
-							monthData.réductionGénérale + monthData.régularisation
+							monthData.réductionGénérale.value + monthData.régularisation.value
 					)
 				)
-				régularisation = réductionGénéraleTotale - réductionGénéraleCumulée
+				régularisation.value =
+					réductionGénéraleTotale - réductionGénéraleCumulée
 
-				if (régularisation > 0) {
-					réductionGénérale = régularisation
-					régularisation = 0
+				if (régularisation.value > 0) {
+					réductionGénérale.value = régularisation.value
+					réductionGénérale.répartition = getRépartition(
+						rémunérationBrute,
+						réductionGénérale.value,
+						engine
+					)
+					régularisation.value = 0
+				} else if (régularisation.value < 0) {
+					régularisation.répartition = getRépartition(
+						rémunérationBrute,
+						régularisation.value,
+						engine
+					)
 				}
 			} else if (régularisationMethod === 'annuelle') {
 				const date = getDateForContexte(monthIndex, year)
-				réductionGénérale = getMonthlyRéductionGénérale(
+				réductionGénérale.value = getMonthlyRéductionGénérale(
 					date,
 					rémunérationBrute,
 					options,
@@ -235,16 +329,29 @@ export const reevaluateRéductionGénéraleMoisParMois = (
 						engine
 					)
 					const currentRéductionGénéraleCumulée =
-						réductionGénérale +
+						réductionGénérale.value +
 						sumAll(
-							reevaluatedData.map((monthData) => monthData.réductionGénérale)
+							reevaluatedData.map(
+								(monthData) => monthData.réductionGénérale.value
+							)
 						)
-					régularisation =
+					régularisation.value =
 						réductionGénéraleTotale - currentRéductionGénéraleCumulée
 
-					if (réductionGénérale + régularisation > 0) {
-						réductionGénérale += régularisation
-						régularisation = 0
+					if (réductionGénérale.value + régularisation.value > 0) {
+						réductionGénérale.value += régularisation.value
+						réductionGénérale.répartition = getRépartition(
+							rémunérationBrute,
+							réductionGénérale.value,
+							engine
+						)
+						régularisation.value = 0
+					} else if (régularisation.value < 0) {
+						régularisation.répartition = getRépartition(
+							rémunérationBrute,
+							régularisation.value,
+							engine
+						)
 					}
 				}
 			}

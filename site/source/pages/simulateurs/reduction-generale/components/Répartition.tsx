@@ -1,19 +1,21 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { SimulationValue } from '@/components/Simulation/SimulationValue'
 import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Contexte } from '@/domaine/Contexte'
 
-import { réductionGénéraleDottedName } from '../utils'
+import {
+	réductionGénéraleDottedName,
+	Répartition as RépartitionType,
+} from '../utils'
+import RépartitionValue from './RépartitionValue'
 
 type Props = {
-	contexte?: Contexte
+	répartition: RépartitionType
 }
 
-export default function Répartition({ contexte = {} }: Props) {
+export default function Répartition({ répartition }: Props) {
 	const { t } = useTranslation()
 
 	return (
@@ -25,34 +27,40 @@ export default function Répartition({ contexte = {} }: Props) {
 			</Body>
 			<StyledUl>
 				<StyledLi>
-					<SimulationValue
-						dottedName={`${réductionGénéraleDottedName} . imputation retraite complémentaire`}
+					<RépartitionValue
+						value={répartition.IRC}
 						label={t(
 							'pages.simulateurs.réduction-générale.répartition.retraite',
 							'IRC'
 						)}
-						contexte={contexte}
-						round={false}
+						idPrefix={`${réductionGénéraleDottedName} . imputation retraite complémentaire`.replace(
+							/\s|\./g,
+							'_'
+						)}
 					/>
 				</StyledLi>
 				<StyledLi>
-					<SimulationValue
-						dottedName={`${réductionGénéraleDottedName} . imputation sécurité sociale`}
+					<RépartitionValue
+						value={répartition.Urssaf}
 						label={t(
 							'pages.simulateurs.réduction-générale.répartition.urssaf',
 							'URSSAF'
 						)}
-						contexte={contexte}
-						round={false}
+						idPrefix={`${réductionGénéraleDottedName} . imputation sécurité sociale`.replace(
+							/\s|\./g,
+							'_'
+						)}
 					/>
-					<SimulationValue
-						dottedName={`${réductionGénéraleDottedName} . imputation chômage`}
+					<RépartitionValue
+						value={répartition.chômage}
 						label={t(
 							'pages.simulateurs.réduction-générale.répartition.chômage',
 							'dont chômage'
 						)}
-						contexte={contexte}
-						round={false}
+						idPrefix={`${réductionGénéraleDottedName} . imputation chômage`.replace(
+							/\s|\./g,
+							'_'
+						)}
 					/>
 				</StyledLi>
 			</StyledUl>
