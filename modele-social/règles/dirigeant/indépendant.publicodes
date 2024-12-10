@@ -134,6 +134,19 @@ dirigeant . indépendant . assiette minimale . maladie:
   références:
     cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
 
+dirigeant . indépendant . assiette minimale . invalidité et décès:
+  description: |
+    Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de calcul, certaines cotisations seront portées à un montant minimum.
+  produit:
+    - plafond sécurité sociale
+    - 11.5%
+  unité: €/an
+  arrondi: oui
+  références:
+    cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
+    Article L632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951125
+    Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
+
 dirigeant . indépendant . assiette minimale . retraite:
   description: La cotisation minimale de retraite de base permet de valider 3
     trimestres de retraite, quel que soit le revenu.
@@ -611,12 +624,15 @@ dirigeant . indépendant . cotisations et contributions . invalidité et décès
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
     Liste des cotisations: https://www.urssaf.fr/portail/home/artisan-commercant/comment-sont-calculees-les-cotis/liste-des-cotisations.html
+    Article L632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951125
+    Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
+    Article D632-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036471466
 
   avec:
     assiette:
       experimental: oui
       valeur: assiette des cotisations
-      plancher: assiette minimale . retraite
+      plancher: assiette minimale . invalidité et décès
       plafond: plafond sécurité sociale
 
 dirigeant . indépendant . cotisations et contributions . CSG-CRDS:
