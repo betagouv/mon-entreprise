@@ -117,11 +117,7 @@ function TrackingProvider({ children }: { children: React.ReactNode }) {
 		script.async = true
 
 		script.onload = () => {
-			const siteId = (
-				!import.meta.env.SSR
-					? import.meta.env.VITE_AT_INTERNET_SITE_ID
-					: import.meta.env.VITE_AT_INTERNET_DEV_SITE_ID
-			) as string
+			const siteId = import.meta.env.VITE_AT_INTERNET_SITE_ID
 
 			const ATTrackerClass = createTracker(
 				siteId,
