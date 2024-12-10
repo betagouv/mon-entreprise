@@ -2908,6 +2908,16 @@ dirigeant . indépendant . assiette minimale:
     Les cotisations minimales ne s'appliquent pas si vous bénéficiez du RSA ou de la prime d’activité.
   titre.en: '[automatic] minimum base'
   titre.fr: assiette minimale
+dirigeant . indépendant . assiette minimale . invalidité et décès:
+  description.en: >
+    [automatic] If the entrepreneur's income is in deficit or below the
+    calculation bases, certain contributions will be increased to a minimum
+    amount.
+  description.fr: >
+    Si le revenu du chef d'entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
 dirigeant . indépendant . assiette minimale . maladie:
   description.en: >
     [automatic] If the business owner's income is less than or equal to the
