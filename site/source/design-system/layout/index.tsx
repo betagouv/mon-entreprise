@@ -6,7 +6,6 @@ export { default as Container } from './Container'
 export { default as Grid } from './Grid'
 
 type SpacingProps = (
-	| { xxxl: true }
 	| { xxl: true }
 	| { xl: true }
 	| { lg: true }
@@ -31,7 +30,6 @@ export function Spacing(props: SpacingProps) {
 	)
 }
 
-const SpacingStyled = styled.span<{ $size: keyof Theme['spacings'] }>`
-	display: block;
+const SpacingStyled = styled.div<{ $size: keyof Theme['spacings'] }>`
 	min-height: ${({ theme, $size }) => theme.spacings[$size]};
 `
