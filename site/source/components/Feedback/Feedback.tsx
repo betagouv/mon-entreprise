@@ -66,7 +66,7 @@ export function Feedback({
 	const submitFeedback = useCallback(
 		(rating: FeedbackT) => {
 			setFeedbackGivenForUrl(url)
-			tag.events.send('click.action', {
+			tag?.sendEvent('click.action', {
 				click_chapter1: 'satisfaction',
 				click: rating,
 			})
