@@ -26926,6 +26926,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"publicodes@file:../publicodes::locator=site%40workspace%3Asite":
+  version: 1.2.1
+  resolution: "publicodes@file:../publicodes#../publicodes::hash=7d6a6c&locator=site%40workspace%3Asite"
+  peerDependencies:
+    "@types/mocha": ^9.0.0
+  checksum: 3785b3864b10ef292c3a23d7b1a8358a73dd3b423e8e96c3d357e8e99a0a674ca634c34a606eec3ed252a1ebc82d61d08fa51c876527a91f6beb6bc71f2ede80
+  languageName: node
+  linkType: hard
+
+"publicodes@file:./publicodes::locator=root%40workspace%3A.":
+  version: 1.2.1
+  resolution: "publicodes@file:./publicodes#./publicodes::hash=7d6a6c&locator=root%40workspace%3A."
+  peerDependencies:
+    "@types/mocha": ^9.0.0
+  checksum: 3785b3864b10ef292c3a23d7b1a8358a73dd3b423e8e96c3d357e8e99a0a674ca634c34a606eec3ed252a1ebc82d61d08fa51c876527a91f6beb6bc71f2ede80
+  languageName: node
+  linkType: hard
+
 "publicodes@npm:^1.1.1, publicodes@npm:^1.2.0":
   version: 1.2.0
   resolution: "publicodes@npm:1.2.0"
@@ -28642,7 +28660,7 @@ __metadata:
     eslint-plugin-vitest: ^0.3.22
     optics-ts: ^2.4.1
     prettier: ^3.0.3
-    publicodes: ^1.2.0
+    publicodes: "file:./publicodes"
     rimraf: ^5.0.1
   languageName: unknown
   linkType: soft
@@ -29272,7 +29290,7 @@ __metadata:
     modele-social: "workspace:^"
     netlify-cli: ^17.10.1
     piano-analytics-js: ^6.13.0
-    publicodes: ^1.2.0
+    publicodes: "file:../publicodes"
     react: ^18.2.0
     react-aria: ^3.24.0
     react-day-picker: ^8.8.2
