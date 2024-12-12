@@ -45,6 +45,7 @@ jobs:
       VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
       VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
     runs-on: ubuntu-22.04
+    environment: ${{ needs.deploy-context.outputs.env-name }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install
