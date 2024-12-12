@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 import RuleLink from '@/components/RuleLink'
 import { Spacing } from '@/design-system/layout'
 import { baseTheme } from '@/design-system/theme'
-import { Body } from '@/design-system/typography/paragraphs'
+import { H3 } from '@/design-system/typography/heading'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 import RécapitulatifTrimestre from './components/RécapitulatifTrimestre'
@@ -58,8 +58,14 @@ export default function RéductionGénéraleMoisParMois({
 		<>
 			{isDesktop ? (
 				<>
+					<H3 as="h2">
+						{t(
+							'pages.simulateurs.réduction-générale.month-by-month.caption',
+							'Réduction générale mois par mois :'
+						)}
+					</H3>
 					<StyledTable>
-						<caption>
+						<caption className="sr-only">
 							{t(
 								'pages.simulateurs.réduction-générale.month-by-month.caption',
 								'Réduction générale mois par mois :'
@@ -102,10 +108,16 @@ export default function RéductionGénéraleMoisParMois({
 						</tbody>
 					</StyledTable>
 
-					<Spacing xxl />
+					<Spacing md />
 
+					<H3 as="h2">
+						{t(
+							'pages.simulateurs.réduction-générale.recap.caption',
+							'Récapitulatif trimestriel :'
+						)}
+					</H3>
 					<StyledRecapTable>
-						<caption>
+						<caption className="sr-only">
 							{t(
 								'pages.simulateurs.réduction-générale.recap.caption',
 								'Récapitulatif trimestriel :'
@@ -151,12 +163,12 @@ export default function RéductionGénéraleMoisParMois({
 				</>
 			) : (
 				<>
-					<Body>
+					<H3 as="h2">
 						{t(
 							'pages.simulateurs.réduction-générale.month-by-month.caption',
 							'Réduction générale mois par mois :'
 						)}
-					</Body>
+					</H3>
 					{data.length > 0 &&
 						months.map((monthName, monthIndex) => (
 							<RéductionGénéraleMois
@@ -179,12 +191,12 @@ export default function RéductionGénéraleMoisParMois({
 
 					<Spacing xxl />
 
-					<Body>
+					<H3 as="h2">
 						{t(
 							'pages.simulateurs.réduction-générale.recap.caption',
 							'Récapitulatif trimestriel :'
 						)}
-					</Body>
+					</H3>
 					{Object.keys(quarters).map((label, index) => (
 						<RécapitulatifTrimestre
 							key={index}
