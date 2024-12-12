@@ -109,8 +109,8 @@ export default function MonthOptions({
 
 	return (
 		<Appear>
-			<Grid container columnSpacing={4} style={{ alignItems: 'center' }}>
-				<Grid item>
+			<GridContainer container columnSpacing={4}>
+				<GridItemLabel item>
 					<FlexDiv>
 						<StyledLabel id={`heures-sup-label`}>
 							{additionalHoursLabels[additionalHours]}
@@ -122,8 +122,8 @@ export default function MonthOptions({
 							<HeuresSupplémentairesPopoverContent />
 						</HelpButtonWithPopover>
 					</FlexDiv>
-				</Grid>
-				<Grid item>
+				</GridItemLabel>
+				<GridItemInput item>
 					<NumberFieldContainer>
 						<NumberField
 							id={`option-heures-sup-${month}`}
@@ -134,8 +134,8 @@ export default function MonthOptions({
 							displayedUnit="heures"
 						/>
 					</NumberFieldContainer>
-				</Grid>
-			</Grid>
+				</GridItemInput>
+			</GridContainer>
 
 			<StyledButton
 				role="button"
@@ -156,102 +156,101 @@ export default function MonthOptions({
 			</span>
 
 			{isMoisIncompletVisible && (
-				<Grid
-					container
-					columnSpacing={4}
-					style={{ alignItems: 'center' }}
-					id={`options-mois-incomplet-${month}`}
-				>
-					<Grid item>
-						<FlexDiv>
-							<StyledLabel id={`rémunération-etp-label`}>
-								{t(
-									'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
-									'Rémunération de base mois complet'
-								)}
-							</StyledLabel>
-							<HelpButtonWithPopover
-								type="info"
-								title={t(
-									'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
-									'Rémunération de base mois complet'
-								)}
-							>
-								<RémunérationETPPopoverContent />
-							</HelpButtonWithPopover>
-						</FlexDiv>
-					</Grid>
-					<Grid item>
-						<NumberFieldContainer>
-							<NumberField
-								id={`option-rémunération-etp-${month}`}
-								small={true}
-								value={options.rémunérationETP}
-								onChange={onRémunérationETPChange}
-								aria-labelledby={`rémunération-etp-label`}
-								displayedUnit="€"
-							/>
-						</NumberFieldContainer>
-					</Grid>
-
-					<Grid item>
-						<FlexDiv>
-							<StyledLabel id={`rémunération-primes-label`}>
-								{t(
-									'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
-									'Rémunération non affectée par le mois incomplet'
-								)}
-							</StyledLabel>
-							<HelpButtonWithPopover
-								type="info"
-								title={t(
-									'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
-									'Rémunération non affectée par le mois incomplet'
-								)}
-							>
-								<RémunérationPrimesPopoverContent />
-							</HelpButtonWithPopover>
-						</FlexDiv>
-					</Grid>
-					<Grid item>
-						<NumberFieldContainer>
-							<NumberField
-								id={`option-rémunération-primes-${month}`}
-								small={true}
-								value={options.rémunérationPrimes}
-								onChange={onRémunérationPrimesChange}
-								aria-labelledby={`rémunération-primes-label`}
-								displayedUnit="€"
-							/>
-						</NumberFieldContainer>
-					</Grid>
-
-					<Grid item>
-						<FlexDiv>
-							<StyledLabel id={`rémunération-heures-sup-label`}>
-								{additionalHoursRémunérationLabels[additionalHours]}
-							</StyledLabel>
-							<HelpButtonWithPopover
-								type="info"
-								title={additionalHoursRémunérationLabels[additionalHours]}
-							>
-								<RémunérationHeuresSupPopoverContent />
-							</HelpButtonWithPopover>
-						</FlexDiv>
-					</Grid>
-					<Grid item>
-						<NumberFieldContainer>
-							<NumberField
-								id={`option-rémunération-heures-sup-${month}`}
-								small={true}
-								value={options.rémunérationHeuresSup}
-								onChange={onRémunérationHeuresSupChange}
-								aria-labelledby={`rémunération-heures-sup-label`}
-								displayedUnit="€"
-							/>
-						</NumberFieldContainer>
-					</Grid>
-				</Grid>
+				<>
+					<GridContainer container columnSpacing={4}>
+						<GridItemLabel item>
+							<FlexDiv>
+								<StyledLabel id={`rémunération-etp-label`}>
+									{t(
+										'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
+										'Rémunération de base mois complet'
+									)}
+								</StyledLabel>
+								<HelpButtonWithPopover
+									type="info"
+									title={t(
+										'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
+										'Rémunération de base mois complet'
+									)}
+								>
+									<RémunérationETPPopoverContent />
+								</HelpButtonWithPopover>
+							</FlexDiv>
+						</GridItemLabel>
+						<GridItemInput item>
+							<NumberFieldContainer>
+								<NumberField
+									id={`option-rémunération-etp-${month}`}
+									small={true}
+									value={options.rémunérationETP}
+									onChange={onRémunérationETPChange}
+									aria-labelledby={`rémunération-etp-label`}
+									displayedUnit="€"
+								/>
+							</NumberFieldContainer>
+						</GridItemInput>
+					</GridContainer>
+					<GridContainer container columnSpacing={4}>
+						<GridItemLabel item>
+							<FlexDiv>
+								<StyledLabel id={`rémunération-primes-label`}>
+									{t(
+										'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
+										'Rémunération non affectée par le mois incomplet'
+									)}
+								</StyledLabel>
+								<HelpButtonWithPopover
+									type="info"
+									title={t(
+										'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
+										'Rémunération non affectée par le mois incomplet'
+									)}
+								>
+									<RémunérationPrimesPopoverContent />
+								</HelpButtonWithPopover>
+							</FlexDiv>
+						</GridItemLabel>
+						<GridItemInput item>
+							<NumberFieldContainer>
+								<NumberField
+									id={`option-rémunération-primes-${month}`}
+									small={true}
+									value={options.rémunérationPrimes}
+									onChange={onRémunérationPrimesChange}
+									aria-labelledby={`rémunération-primes-label`}
+									displayedUnit="€"
+								/>
+							</NumberFieldContainer>
+						</GridItemInput>
+					</GridContainer>
+					<GridContainer container columnSpacing={4}>
+						<GridItemLabel item>
+							<FlexDiv>
+								<StyledLabel id={`rémunération-heures-sup-label`}>
+									{additionalHoursRémunérationLabels[additionalHours]}
+								</StyledLabel>
+								<HelpButtonWithPopover
+									type="info"
+									title={additionalHoursRémunérationLabels[additionalHours]}
+								>
+									<RémunérationHeuresSupPopoverContent />
+								</HelpButtonWithPopover>
+							</FlexDiv>
+						</GridItemLabel>
+						<GridItemInput item>
+							<NumberFieldContainer>
+								<NumberField
+									id={`option-rémunération-heures-sup-${month}`}
+									small={true}
+									value={options.rémunérationHeuresSup}
+									onChange={onRémunérationHeuresSupChange}
+									aria-labelledby={`rémunération-heures-sup-label`}
+									displayedUnit="€"
+								/>
+							</NumberFieldContainer>
+						</GridItemInput>
+					</GridContainer>
+				</>
 			)}
 		</Appear>
 	)
@@ -301,9 +300,22 @@ const RémunérationHeuresSupPopoverContent = () => (
 	</Trans>
 )
 
+const GridContainer = styled(Grid)`
+	align-items: center;
+	margin-bottom: ${({ theme }) => theme.spacings.xxs};
+`
+const GridItemLabel = styled(Grid)`
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		flex: 2;
+	}
+`
+const GridItemInput = styled(Grid)`
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		flex: 1;
+	}
+`
 const FlexDiv = styled.div`
 	${FlexCenter}
-	justify-content: end;
 `
 const StyledLabel = styled(SmallBody)`
 	margin: 0;
