@@ -71,6 +71,7 @@ export default function RécapitulatifTrimestre({
 	const Montant671 = () => {
 		return (
 			<MontantRéduction
+				id={`recap-${label.replace(/\s|\./g, '_')}-671`}
 				rémunérationBrute={rémunération}
 				réductionGénérale={réduction}
 				répartition={répartition}
@@ -85,6 +86,7 @@ export default function RécapitulatifTrimestre({
 	const Montant801 = () => {
 		return (
 			<MontantRéduction
+				id={`recap-${label.replace(/\s|\./g, '_')}-801`}
 				rémunérationBrute={rémunération}
 				réductionGénérale={régularisation}
 				répartition={répartition}
