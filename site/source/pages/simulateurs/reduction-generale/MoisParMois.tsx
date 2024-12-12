@@ -2,11 +2,13 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
+import { Spacing } from '@/design-system/layout'
 import { baseTheme } from '@/design-system/theme'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
-import RéductionGénéraleMois from './components/Mois'
+import RécapitulatifTrimestre from './components/RécapitulatifTrimestre'
+import RéductionGénéraleMois from './components/RéductionGénéraleMois'
 import Warnings from './components/Warnings'
 import { MonthState, Options, réductionGénéraleDottedName } from './utils'
 
@@ -41,52 +43,112 @@ export default function RéductionGénéraleMoisParMois({
 		t('décembre'),
 	]
 
+	const quarters = {
+		[t('pages.simulateurs.réduction-générale.recap.T1', '1er trimestre')]:
+			data.slice(0, 3),
+		[t('pages.simulateurs.réduction-générale.recap.T2', '2ème trimestre')]:
+			data.slice(3, 6),
+		[t('pages.simulateurs.réduction-générale.recap.T3', '3ème trimestre')]:
+			data.slice(6, 9),
+		[t('pages.simulateurs.réduction-générale.recap.T4', '4ème trimestre')]:
+			data.slice(9),
+	}
+
 	return (
 		<>
 			{isDesktop ? (
-				<StyledTable>
-					<caption>
-						{t(
-							'pages.simulateurs.réduction-générale.month-by-month.caption',
-							'Réduction générale mois par mois :'
-						)}
-					</caption>
-					<thead>
-						<tr>
-							<th scope="col">{t('Mois')}</th>
-							<th scope="col">
-								{/* TODO: remplacer par rémunérationBruteDottedName lorsque ... */}
-								<RuleLink dottedName="salarié . rémunération . brut" />
-							</th>
-							<th scope="col">
-								<RuleLink dottedName={réductionGénéraleDottedName} />
-							</th>
-							<th scope="col">
-								<RuleLink dottedName="salarié . cotisations . exonérations . réduction générale . régularisation" />
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						{data.length > 0 &&
-							months.map((monthName, monthIndex) => (
-								<RéductionGénéraleMois
-									key={`month-${monthIndex}`}
-									monthName={monthName}
-									data={data[monthIndex]}
-									index={monthIndex}
-									onRémunérationChange={(
-										monthIndex: number,
-										rémunérationBrute: number
-									) => {
-										onRémunérationChange(monthIndex, rémunérationBrute)
-									}}
-									onOptionsChange={(monthIndex: number, options: Options) => {
-										onOptionsChange(monthIndex, options)
-									}}
+				<>
+					<StyledTable>
+						<caption>
+							{t(
+								'pages.simulateurs.réduction-générale.month-by-month.caption',
+								'Réduction générale mois par mois :'
+							)}
+						</caption>
+						<thead>
+							<tr>
+								<th scope="col">{t('Mois')}</th>
+								<th scope="col">
+									{/* TODO: remplacer par rémunérationBruteDottedName lorsque ... */}
+									<RuleLink dottedName="salarié . rémunération . brut" />
+								</th>
+								<th scope="col">
+									<RuleLink dottedName={réductionGénéraleDottedName} />
+								</th>
+								<th scope="col">
+									<RuleLink dottedName="salarié . cotisations . exonérations . réduction générale . régularisation" />
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							{data.length > 0 &&
+								months.map((monthName, monthIndex) => (
+									<RéductionGénéraleMois
+										key={`month-${monthIndex}`}
+										monthName={monthName}
+										data={data[monthIndex]}
+										index={monthIndex}
+										onRémunérationChange={(
+											monthIndex: number,
+											rémunérationBrute: number
+										) => {
+											onRémunérationChange(monthIndex, rémunérationBrute)
+										}}
+										onOptionsChange={(monthIndex: number, options: Options) => {
+											onOptionsChange(monthIndex, options)
+										}}
+									/>
+								))}
+						</tbody>
+					</StyledTable>
+
+					<Spacing xxl />
+
+					<StyledRecapTable>
+						<caption>
+							{t(
+								'pages.simulateurs.réduction-générale.recap.caption',
+								'Récapitulatif trimestriel :'
+							)}
+						</caption>
+						<thead>
+							<tr>
+								<th scope="col">{t('Trimestre')}</th>
+								<th scope="col">
+									{t(
+										'pages.simulateurs.réduction-générale.recap.header',
+										'Réduction calculée'
+									)}
+									<br />
+									{t(
+										'pages.simulateurs.réduction-générale.recap.code671',
+										'code 671(€)'
+									)}
+								</th>
+								<th scope="col">
+									{t(
+										'pages.simulateurs.réduction-générale.recap.header',
+										'Réduction calculée'
+									)}
+									<br />
+									{t(
+										'pages.simulateurs.réduction-générale.recap.code801',
+										'code 801(€)'
+									)}
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							{Object.keys(quarters).map((label, index) => (
+								<RécapitulatifTrimestre
+									key={index}
+									label={label}
+									data={quarters[label]}
 								/>
 							))}
-					</tbody>
-				</StyledTable>
+						</tbody>
+					</StyledRecapTable>
+				</>
 			) : (
 				<>
 					<Body>
@@ -114,6 +176,23 @@ export default function RéductionGénéraleMoisParMois({
 								mobileVersion={true}
 							/>
 						))}
+
+					<Spacing xxl />
+
+					<Body>
+						{t(
+							'pages.simulateurs.réduction-générale.recap.caption',
+							'Récapitulatif trimestriel :'
+						)}
+					</Body>
+					{Object.keys(quarters).map((label, index) => (
+						<RécapitulatifTrimestre
+							key={index}
+							label={label}
+							data={quarters[label]}
+							mobileVersion={true}
+						/>
+					))}
 				</>
 			)}
 
@@ -146,5 +225,18 @@ const StyledTable = styled.table`
 	tbody tr th {
 		text-transform: capitalize;
 		font-weight: normal;
+	}
+`
+const StyledRecapTable = styled(StyledTable)`
+	thead {
+		border-bottom: solid 1px;
+	}
+	thead th:not(:last-of-type),
+	tbody th,
+	td:not(:last-of-type) {
+		border-right: solid 1px;
+	}
+	thead th:not(:first-of-type) {
+		text-align: center;
 	}
 `

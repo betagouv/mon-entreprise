@@ -345,6 +345,7 @@ Tout déplier: Tout déplier
 Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
 Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
+Trimestre: Trimestre
 Type: Type
 URSSAF Mon entreprise, accéder à la page d'accueil: URSSAF Mon entreprise, accéder à la page d'accueil
 Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs indépendants</4> décédés, sous certaines conditions.:
@@ -1608,6 +1609,15 @@ pages:
         rémunération-primes:
           popover: <0>Indiquez ici les éléments de rémunération non affectés par
             l'absence, comme les primes.</0>
+      recap:
+        T1: 1er trimestre
+        T2: 2ème trimestre
+        T3: 3ème trimestre
+        T4: 4ème trimestre
+        caption: "Récapitulatif trimestriel :"
+        code671: code 671(€)
+        code801: code 801(€)
+        header: Réduction calculée
       régularisation:
         annuelle: Régularisation annuelle
         progressive: Régularisation progressive
