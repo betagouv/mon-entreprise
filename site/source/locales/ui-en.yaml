@@ -330,6 +330,7 @@ Tout déplier: Unfold all
 Tout plier: Fold everything
 Tout réinitialiser: Reset all
 Travailleurs Non Salariés (TNS): Self-employed workers (TNS)
+Trimestre: Quarter
 Type: Type
 URSSAF Mon entreprise, accéder à la page d'accueil: URSSAF Mon entreprise, go to home page
 Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs indépendants</4> décédés, sous certaines conditions.:
@@ -1514,6 +1515,15 @@ pages:
         rémunération-primes:
           popover: <0>Indicate here any elements of remuneration not affected by the
             absence, such as bonuses.</0>
+      recap:
+        T1: 1st quarter
+        T2: 2nd quarter
+        T3: 3rd quarter
+        T4: 4th quarter
+        caption: "Quarterly summary :"
+        code671: code 671(€)
+        code801: code 801(€)
+        header: Calculated reduction
       régularisation:
         annuelle: Annual adjustment
         progressive: Progressive regularization

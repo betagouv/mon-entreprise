@@ -22,6 +22,7 @@ type Props = {
 	displayedUnit: string
 	language: string
 	displayNull?: boolean
+	alignment?: 'center' | 'end'
 }
 
 export default function MontantRéduction({
@@ -32,6 +33,7 @@ export default function MontantRéduction({
 	displayedUnit,
 	language,
 	displayNull = true,
+	alignment = 'end',
 }: Props) {
 	const { t } = useTranslation()
 
@@ -39,7 +41,7 @@ export default function MontantRéduction({
 
 	return réductionGénérale ? (
 		<StyledTooltip tooltip={tooltip}>
-			<FlexDiv id={id}>
+			<FlexDiv id={id} $alignment={alignment}>
 				{formatValue(
 					{
 						nodeValue: réductionGénérale,
@@ -54,7 +56,7 @@ export default function MontantRéduction({
 		</StyledTooltip>
 	) : (
 		displayNull && (
-			<FlexDiv id={id}>
+			<FlexDiv id={id} $alignment={alignment}>
 				{formatValue(0, { displayedUnit, language })}
 
 				<Condition
@@ -76,9 +78,9 @@ export default function MontantRéduction({
 const StyledTooltip = styled(Tooltip)`
 	width: 100%;
 `
-const FlexDiv = styled.div`
+const FlexDiv = styled.div<{ $alignment: 'end' | 'center' }>`
 	${FlexCenter}
-	justify-content: end;
+	justify-content: ${({ $alignment }) => $alignment};
 `
 const StyledSearchIcon = styled(SearchIcon)`
 	margin-left: ${({ theme }) => theme.spacings.sm};
