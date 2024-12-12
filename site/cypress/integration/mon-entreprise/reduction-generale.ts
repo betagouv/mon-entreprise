@@ -20,16 +20,16 @@ describe(
 		})
 
 		it('should allow to change time period', function () {
-			cy.contains('Réduction mensuelle').click()
-			cy.get(inputSelector).first().type('{selectall}1900')
+			cy.get(inputSelector).first().type('{selectall}22800')
 
-			cy.contains('Réduction annuelle').click()
-			cy.get(inputSelector).first().should('have.value', '22 800 €')
+			cy.contains('Réduction mensuelle').click()
+			// Wait for values to update
+			// eslint-disable-next-line cypress/no-unnecessary-waiting
+			cy.wait(750)
+			cy.get(inputSelector).first().should('have.value', '1 900 €')
 		})
 
 		it('should display values for the réduction générale', function () {
-			cy.contains('Réduction mensuelle').click()
-
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale-value"]'
 			).should('include.text', '523,26 €')
@@ -83,7 +83,6 @@ describe(
 		})
 
 		it('should display a warning for a remuneration too high', function () {
-			cy.contains('Réduction mensuelle').click()
 			cy.get(inputSelector).first().type('{selectall}3000')
 
 			cy.get('div[id="simulator-legend"]').should(
@@ -92,14 +91,17 @@ describe(
 			)
 
 			cy.get(
+				'p[id="salarié___cotisations___exonérations___réduction_générale-value"]'
+			).should('have.text', '0 €')
+			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_retraite_complémentaire-value"]'
-			).should('include.text', '0 €')
+			).should('have.text', '0 €')
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_sécurité_sociale-value"]'
-			).should('include.text', '0 €')
+			).should('have.text', '0 €')
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale___imputation_chômage-value"]'
-			).should('include.text', '0 €')
+			).should('have.text', '0 €')
 		})
 
 		it('should display remuneration and RGCP month by month', function () {
@@ -108,7 +110,7 @@ describe(
 
 			cy.contains('Réduction mois par mois').click()
 			cy.contains('Réduction générale mois par mois :')
-			// Wait for 1 ms in order for values to update
+			// Wait for values to update
 			// eslint-disable-next-line cypress/no-unnecessary-waiting
 			cy.wait(1)
 			cy.get(inputSelector)
@@ -128,11 +130,8 @@ describe(
 		})
 
 		it('should calculate RGCP month by month independently', function () {
-			cy.contains('Moins de 50 salariés').click()
-			cy.contains('Réduction mois par mois').click()
-
-			cy.get(inputSelector).first().type('{selectall}1900')
 			cy.get(inputSelector).eq(1).type('{selectall}2000')
+
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-janvier'
 			).should('include.text', '493,43 €')
@@ -142,21 +141,14 @@ describe(
 		})
 
 		it('should save remuneration between tabs', function () {
-			cy.contains('Moins de 50 salariés').click()
 			cy.contains('Réduction mensuelle').click()
-			cy.get(inputSelector).first().type('{selectall}1900')
-			cy.contains('Réduction mois par mois').click()
-			cy.get(inputSelector).first().type('{selectall}2000')
-			cy.get(inputSelector).eq(1).type('{selectall}2000')
-
-			cy.contains('Réduction mensuelle').click()
-			cy.get(inputSelector).first().should('have.value', '1 916,67 €')
+			cy.get(inputSelector).first().should('have.value', '1 908,33 €')
 			cy.contains('Réduction annuelle').click()
-			cy.get(inputSelector).first().should('have.value', '23 000 €')
+			cy.get(inputSelector).first().should('have.value', '22 900 €')
 			cy.contains('Réduction mois par mois').click()
 			cy.get(inputSelector).each(($input, index) => {
 				let expectedValue = '1 900 €'
-				if (index < 2) {
+				if (index === 1) {
 					expectedValue = '2 000 €'
 				}
 				cy.wrap($input).should('have.value', expectedValue)
@@ -164,9 +156,6 @@ describe(
 		})
 
 		it('should include progressive regularisation', function () {
-			cy.contains('Réduction mensuelle').click()
-			cy.get(inputSelector).first().type('{selectall}1900')
-			cy.contains('Réduction mois par mois').click()
 			cy.get(inputSelector).eq(1).type('{selectall}3000')
 
 			cy.get(
@@ -191,7 +180,7 @@ describe(
 			).should('include.text', '0 €')
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale__régularisation-février'
-			).should('include.text', '0 €')
+			).should('not.exist')
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-mars'
 			).should('include.text', '493,43 €')
@@ -225,13 +214,46 @@ describe(
 			)
 				.should('be.visible')
 				.click()
-			cy.get('input[id="option-rémunération-etp-janvier"]').should('be.visible')
-			cy.get('input[id="option-rémunération-primes-janvier"]').should(
-				'be.visible'
+			cy.get('input[id="option-rémunération-etp-janvier"]')
+				.should('be.visible')
+				.type('{selectall}1900')
+			cy.get('input[id="option-rémunération-primes-janvier"]')
+				.should('be.visible')
+				.type('{selectall}200')
+			cy.get('input[id="option-rémunération-heures-sup-janvier"]')
+				.should('be.visible')
+				.type('{selectall}100')
+
+			cy.get(
+				'#salarié___cotisations___exonérations___réduction_générale-janvier'
+			).should('include.text', '479,10 €')
+
+			cy.get(
+				'div[id="simulator-legend"] button[aria-describedby="options-description"]'
 			)
-			cy.get('input[id="option-rémunération-heures-sup-janvier"]').should(
-				'be.visible'
+				.first()
+				.click()
+		})
+
+		it('should include a recap table', function () {
+			cy.contains('Régularisation progressive').click()
+			cy.get('div[id="simulator-legend"]').should(
+				'include.text',
+				'Récapitulatif trimestriel'
 			)
+
+			cy.get(inputSelector).each(($input, index) => {
+				if (index > 2 && index < 6) {
+					cy.wrap($input).type('{selectall}3000')
+				}
+			})
+			// Wait for values to update
+			// eslint-disable-next-line cypress/no-unnecessary-waiting
+			cy.wait(500)
+			cy.get('#recap-1er_trimestre-671').should('include.text', '602,88 €')
+			cy.get('#recap-2ème_trimestre-801').should('include.text', '-276,40 €')
+			cy.get('#recap-3ème_trimestre-671').should('include.text', '1 481,79 €')
+			cy.get('#recap-4ème_trimestre-671').should('include.text', '1 539,05 €')
 		})
 
 		it('should be RGAA compliant', function () {
