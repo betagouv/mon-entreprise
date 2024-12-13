@@ -249,9 +249,10 @@ export function simulationReducer(
 				questionEnCoursNEstPasÀRépondre && questionEnCoursNEstPasRépondue
 
 			const nouvelleQuestionEnCours =
-				action.questionsSuivantes.length &&
-				(pasDeQuestionEnCours || questionEnCoursPlusNécessaire)
-					? action.questionsSuivantes[0]
+				pasDeQuestionEnCours || questionEnCoursPlusNécessaire
+					? action.questionsSuivantes.length
+						? action.questionsSuivantes[0]
+						: null
 					: currentQuestion
 
 			return {
