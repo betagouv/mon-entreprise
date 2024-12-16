@@ -30,6 +30,7 @@ export function sageFemmeConfig({ t, sitePaths }: SimulatorsDataParams) {
 		),
 		path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
 		simulation: configSageFemme,
+		codesCatégorieJuridique: ['1000', '5410'],
 		component: IndépendantPLSimulation,
 	} as const)
 }
