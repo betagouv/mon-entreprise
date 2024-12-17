@@ -131,8 +131,8 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate comparateur-statuts > bas revenus 2`] = `
-"dirigeant . rémunération . net: 577
-dirigeant . rémunération . net . après impôt: 577
+"dirigeant . rémunération . net: 576
+dirigeant . rémunération . net . après impôt: 576
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null

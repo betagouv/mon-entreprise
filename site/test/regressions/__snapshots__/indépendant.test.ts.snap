@@ -277,12 +277,12 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate simulations-indépendant > cotisations minimales 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 136
-dirigeant . rémunération . cotisations: 1338
+dirigeant . rémunération . cotisations: 1339
 dirigeant . rémunération . net: 100
 dirigeant . rémunération . net . après impôt: 100
-dirigeant . rémunération . totale: 1438
+dirigeant . rémunération . totale: 1439
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 1438
+entreprise . chiffre d'affaires: 1439
 impôt . montant: 0
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
@@ -430,10 +430,10 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate simulations-indépendant > inversions 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 628
-dirigeant . rémunération . cotisations: 1423
-dirigeant . rémunération . net: 577
-dirigeant . rémunération . net . après impôt: 577
+dirigeant . indépendant . revenu professionnel: 627
+dirigeant . rémunération . cotisations: 1424
+dirigeant . rémunération . net: 576
+dirigeant . rémunération . net . après impôt: 576
 dirigeant . rémunération . totale: 2000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 2000
@@ -529,12 +529,12 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate simulations-indépendant > échelle de revenus 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 549
-dirigeant . rémunération . cotisations: 1409
+dirigeant . rémunération . cotisations: 1410
 dirigeant . rémunération . net: 500
 dirigeant . rémunération . net . après impôt: 500
-dirigeant . rémunération . totale: 1909
+dirigeant . rémunération . totale: 1910
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 1909
+entreprise . chiffre d'affaires: 1910
 impôt . montant: 0
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
@@ -543,12 +543,12 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate simulations-indépendant > échelle de revenus 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 1065
-dirigeant . rémunération . cotisations: 1500
+dirigeant . rémunération . cotisations: 1501
 dirigeant . rémunération . net: 1000
 dirigeant . rémunération . net . après impôt: 1000
-dirigeant . rémunération . totale: 2500
+dirigeant . rémunération . totale: 2501
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 2500
+entreprise . chiffre d'affaires: 2501
 impôt . montant: 0
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
@@ -557,12 +557,12 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate simulations-indépendant > échelle de revenus 3`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 1581
-dirigeant . rémunération . cotisations: 1589
+dirigeant . rémunération . cotisations: 1590
 dirigeant . rémunération . net: 1500
 dirigeant . rémunération . net . après impôt: 1500
-dirigeant . rémunération . totale: 3089
+dirigeant . rémunération . totale: 3090
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 3089
+entreprise . chiffre d'affaires: 3090
 impôt . montant: 0
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
@@ -571,12 +571,12 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate simulations-indépendant > échelle de revenus 4`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 2097
-dirigeant . rémunération . cotisations: 1679
+dirigeant . rémunération . cotisations: 1680
 dirigeant . rémunération . net: 2000
 dirigeant . rémunération . net . après impôt: 2000
-dirigeant . rémunération . totale: 3679
+dirigeant . rémunération . totale: 3680
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 3679
+entreprise . chiffre d'affaires: 3680
 impôt . montant: 0
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
@@ -585,12 +585,12 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 exports[`calculate simulations-indépendant > échelle de revenus 5`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 5193
-dirigeant . rémunération . cotisations: 2217
+dirigeant . rémunération . cotisations: 2218
 dirigeant . rémunération . net: 5000
 dirigeant . rémunération . net . après impôt: 5000
-dirigeant . rémunération . totale: 7217
+dirigeant . rémunération . totale: 7218
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 7217
+entreprise . chiffre d'affaires: 7218
 impôt . montant: 0
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
