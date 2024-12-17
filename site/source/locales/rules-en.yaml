@@ -9491,9 +9491,15 @@ salarié . cotisations . exonérations . lodeom . montant:
   titre.fr: montant
 salarié . cotisations . exonérations . réduction générale:
   avec:
+    caisse de congés payés:
+      titre.en: '[automatic] Obligation to use a paid leave fund'
+      titre.fr: Obligation de recourir à une caisse de congés payés
     coefficient:
       titre.en: '[automatic] coefficient'
       titre.fr: coefficient
+    coefficient de majoration:
+      titre.en: '[automatic] add-on factor'
+      titre.fr: coefficient de majoration
     imputation chômage:
       titre.en: '[automatic] unemployment allocation'
       titre.fr: imputation chômage
@@ -10065,16 +10071,18 @@ salarié . régimes spécifiques . DFS:
       titre.en: '[automatic] rate'
       titre.fr: taux
   description.en: >-
-    [automatic] For a specific list of professions, the employer can apply a
-    specific fixed deduction (DFS) for professional expenses on the basis of
-    calculation of social contributions. It can be applied if the employee
-    actually incurs expenses during his professional activity.
+    [automatic] For a specific list of professions, employers can apply a
+    specific flat-rate deduction (DFS) for professional expenses to the basis
+    for calculating social security contributions. The DFS consists of a
+    deduction from the base for social security contributions. It may be applied
+    if the employee actually incurs expenses in the course of his or her
+    professional activity.
 
-    If no expenses are actually incurred, or if the employer pays or reimburses all of the professional expenses, the DFS cannot be applied.
+    If no expenses are actually incurred, or if the employer covers or reimburses all professional expenses, the DFS cannot be applied.
   description.fr: >-
     Pour une liste précise de professions, l'employeur peut pratiquer une
     déduction forfaitaire spécifique (DFS) pour frais professionnels sur la base
-    de calcul des cotisations sociales. spécifique consiste en un abattement sur
+    de calcul des cotisations sociales. La DFS consiste en un abattement sur
     l'assiette des cotisations sociales. Elle peut s'appliquer si le salarié
     supporte effectivement des frais lors de son activité professionnelle.
 
@@ -10085,21 +10093,29 @@ salarié . régimes spécifiques . DFS:
   titre.fr: déduction forfaitaire spécifique
 salarié . régimes spécifiques . DFS . profession:
   avec:
+    artiste dramatique:
+      description.en: '[automatic] For dramatic, lyrical, cinematographic and
+        choreographic artists.'
+      description.fr:
+        Concerne les artistes dramatiques, lyriques, cinématographiques
+        ou chorégraphiques.
+      titre.en: '[automatic] dramatic artist'
+      titre.fr: artiste dramatique
     artiste musicien:
       description.en:
-        '[automatic] Concerns musicians, chorus members, conductors,
-        theater managers'
-      description.fr:
-        Concerne les artistes musiciens, choristes, chefs d’orchestre,
-        régisseurs de théâtre
+        '[automatic] For musicians, chorus members, conductors and stage
+        managers.'
+      description.fr: Concerne les artistes musiciens, les choristes, les chefs
+        d’orchestre et les régisseurs de théâtre.
       titre.en: '[automatic] artist musician'
       titre.fr: artiste musicien
     journaliste:
-      description.en: '[automatic] Concerns journalists, editors, photographers,
-        newspaper editors Drama and music critics.'
+      description.en:
+        '[automatic] For journalists, editors, photographers, newspaper
+        editors, drama and music critics.'
       description.fr:
         Concerne les journalistes, rédacteurs, photographes, directeurs
-        de journaux Critiques dramatiques et musicaux.
+        de journaux, critiques dramatiques et musicaux.
       titre.en: '[automatic] journalist'
       titre.fr: journaliste
     ouvrier du bâtiment:
@@ -10113,14 +10129,24 @@ salarié . régimes spécifiques . DFS . profession:
       titre.en: '[automatic] construction worker'
       titre.fr: ouvrier du bâtiment
     pilote de ligne ou personnel navigant:
-      description.en: '[automatic] '
+      description.en: '[automatic] Pilots, radio operators and flight engineers
+        employed by air transport companies; pilots and engineers employed by
+        aircraft and engine manufacturers for prototype testing; pilot
+        instructors employed by flying clubs and civil aviation schools.'
       description.fr: Concerne les pilotes, radios, mécaniciens navigants des
         compagnies de transports aériens ; pilotes et mécaniciens employés par
         les maisons de construction d’avions et de moteurs pour l’essai de
         prototypes ; pilotes moniteurs d’aéro-clubs et des écoles d’aviation
-        civile
+        civile.
       titre.en: '[automatic] '
       titre.fr: pilote de ligne ou personnel navigant
+    voyageur, représentant et placier:
+      description.en: '[automatic] Concerns travelers, sales representatives and salesmen.'
+      description.fr:
+        Concerne les voyageurs, représentants et placiers de commerce ou
+        d'industrie.
+      titre.en: '[automatic] traveller, sales representative and sales agent'
+      titre.fr: voyageur, représentant et placier
   question.en:
     "[automatic] What is the employee's occupation for the application
     of the specific flat-rate deduction?"
@@ -10131,34 +10157,6 @@ salarié . régimes spécifiques . DFS . profession:
 salarié . régimes spécifiques . DFS . profession . journaliste . abattement fiscal:
   titre.en: '[automatic] net taxable journalist'
   titre.fr: net imposable journaliste
-salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux:
-  avec:
-    cotisations ATMP taux:
-      titre.en: '[automatic] ATMP contributions rates'
-      titre.fr: cotisations ATMP taux
-    cotisations ATMP taux minimum:
-      titre.en: '[automatic] ATMP contributions minimum rate'
-      titre.fr: cotisations ATMP taux minimum
-    cotisations allocations familiales taux:
-      titre.en: '[automatic] family allowance contributions rates'
-      titre.fr: cotisations allocations familiales taux
-    cotisations versement mobilité:
-      titre.en: '[automatic] contributions mobility payment'
-      titre.fr: cotisations versement mobilité
-    cotisations vieillesse employeur déplafonnée taux:
-      titre.en: '[automatic] unfunded old-age employer contributions rate'
-      titre.fr: cotisations vieillesse employeur déplafonnée taux
-    cotisations vieillesse employeur plafonnée taux:
-      titre.en: '[automatic] capped old-age employer contributions rate'
-      titre.fr: cotisations vieillesse employeur plafonnée taux
-    cotisations vieillesse salarié déplafonnée taux:
-      titre.en: '[automatic] unfunded employee old-age contributions rate'
-      titre.fr: cotisations vieillesse salarié déplafonnée taux
-    cotisations vieillesse salarié plafonnée taux:
-      titre.en: '[automatic] capped employee pension contributions rate'
-      titre.fr: cotisations vieillesse salarié plafonnée taux
-  titre.en: '[automatic] rate reduction'
-  titre.fr: réduction de taux
 salarié . régimes spécifiques . alsace moselle:
   description.en: >
     [automatic] We consider that an employee is affiliated to the Alsace-Moselle
@@ -10429,6 +10427,142 @@ salarié . régimes spécifiques . intermittents du spectacle . technicien . non
       titre.fr: plafond sécurité sociale
   titre.en: '[automatic] non-executive'
   titre.fr: non cadre
+salarié . régimes spécifiques . taux réduits:
+  description.en: >
+    [automatic] Employment in certain professions gives rise to the payment of
+    social security contributions at reduced rates.
+
+    Social Security contributions at reduced rates. These include
+
+    - performing artists,
+
+    - models,
+
+    - professional journalists and freelancers,
+
+    - salaried medical professionals.
+  description.fr: |
+    L’emploi de certaines professions donne lieu au paiement des cotisations de
+    Sécurité sociale à taux réduits. Sont notamment concernés :
+    - les artistes du spectacle,
+    - les mannequins,
+    - les journalistes professionnels et les pigistes,
+    - les professions médicales salariées.
+  question.en: '[automatic] Does the employee benefit from reduced contribution rates?'
+  question.fr: Le salarié bénéficie-t-il de taux de cotisations réduits ?
+  titre.en: '[automatic] reduced rates special cases'
+  titre.fr: taux réduits cas particuliers
+salarié . régimes spécifiques . taux réduits . profession:
+  avec:
+    VRP multicarte:
+      description.en: >
+        [automatic] Concerns travelers, sales representatives and salesmen (VRP)
+        with multiple cards.
+      description.fr: >
+        Concerne les voyageurs, représentants et placiers (VRP) à cartes
+        multiples.
+      titre.en: '[automatic] Multi-brand sales representative'
+      titre.fr: VRP multicarte
+    artiste du spectacle:
+      description.en: >
+        [automatic] Applies only to artists working for performing arts
+        employers.
+
+        Technicians are not concerned.
+      description.fr: |
+        Concerne uniquement les artistes des employeurs du spectacle vivant.
+        Les techniciens ne sont pas concernés.
+      titre.en: '[automatic] performance artist'
+      titre.fr: artiste du spectacle
+    journaliste:
+      description.en: >
+        [automatic] Concerns freelance employees and journalists and assimilated
+        for the following employers:
+
+        - newspapers
+
+        - press agencies
+
+        - radio and television broadcasting companies
+      description.fr: >
+        Concerne les salariés pigistes et journalistes et assimilés pour les
+        employeurs suivants :
+
+        - journaux d’information
+
+        - agences de presse
+
+        - entreprises de radiodiffusion et de télévision
+      titre.en: '[automatic] journalist'
+      titre.fr: journaliste
+    mannequin:
+      description.en: |
+        [automatic] Applies to all models receiving remuneration.
+        mon-entreprise does not manage contributions on royalties.
+      description.fr: |
+        Concerne tout mannequin percevant une rémunération.
+        mon-entreprise ne gère pas les cotisations sur les royalties.
+      titre.en: '[automatic] model'
+      titre.fr: mannequin
+    profession médicale:
+      description.en: >
+        [automatic] Concerns members of the medical professions and salaried
+        doctors who work
+         <strong>regularly and simultaneously</strong> for several employers
+        several employers under the general scheme.
+      description.fr: >
+        Concerne les membres des professions médicales et les médecins salariés
+        qui exercent
+
+        leur activité à <strong>temps partiel régulièrement et simultanément</strong> pour
+
+        plusieurs employeurs relevant du régime général.
+      titre.en: '[automatic] medical profession'
+      titre.fr: profession médicale
+  question.en:
+    "[automatic] What is the employee's occupation for the application
+    of reduced contribution rates?"
+  question.fr: Quelle est la profession du salarié pour l'application de taux de
+    cotisations réduits ?
+  titre.en: '[automatic] profession'
+  titre.fr: profession
+salarié . régimes spécifiques . taux réduits . réduction de taux:
+  avec:
+    cotisations ATMP taux:
+      titre.en: '[automatic] ATMP contributions rates'
+      titre.fr: cotisations ATMP taux
+    cotisations ATMP taux minimum:
+      titre.en: '[automatic] ATMP contributions minimum rate'
+      titre.fr: cotisations ATMP taux minimum
+    cotisations FNAL taux:
+      titre.en: '[automatic] FNAL contributions rate'
+      titre.fr: cotisations FNAL taux
+    cotisations allocations familiales taux:
+      titre.en: '[automatic] family allowance contributions rates'
+      titre.fr: cotisations allocations familiales taux
+    cotisations maladie employeur taux:
+      titre.en: '[automatic] employer health contribution rates'
+      titre.fr: cotisations maladie employeur taux
+    cotisations maladie salarié taux:
+      titre.en: '[automatic] employee health contribution rate'
+      titre.fr: cotisations maladie salarié taux
+    cotisations versement mobilité:
+      titre.en: '[automatic] contributions mobility payment'
+      titre.fr: cotisations versement mobilité
+    cotisations vieillesse employeur déplafonnée taux:
+      titre.en: '[automatic] unfunded old-age employer contributions rate'
+      titre.fr: cotisations vieillesse employeur déplafonnée taux
+    cotisations vieillesse employeur plafonnée taux:
+      titre.en: '[automatic] capped old-age employer contributions rate'
+      titre.fr: cotisations vieillesse employeur plafonnée taux
+    cotisations vieillesse salarié déplafonnée taux:
+      titre.en: '[automatic] unfunded employee old-age contributions rate'
+      titre.fr: cotisations vieillesse salarié déplafonnée taux
+    cotisations vieillesse salarié plafonnée taux:
+      titre.en: '[automatic] capped employee pension contributions rate'
+      titre.fr: cotisations vieillesse salarié plafonnée taux
+  titre.en: '[automatic] rate reduction'
+  titre.fr: réduction de taux
 salarié . régimes spécifiques . taxe sur les salaires:
   description.en: '[automatic] The payroll tax in France is a progressive tax
     created in 1948 that some employers must pay on the salaries they
