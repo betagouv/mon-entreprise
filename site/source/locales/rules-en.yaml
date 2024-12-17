@@ -9440,6 +9440,9 @@ salarié . cotisations . exonérations . JEI . montant:
   titre.fr: Exonération JEI
 salarié . cotisations . exonérations . T:
   avec:
+    retraite complémentaire:
+      titre.en: '[automatic] supplementary pension'
+      titre.fr: retraite complémentaire
     sécurité sociale et chômage:
       titre.en: '[automatic] social security and unemployment'
       titre.fr: sécurité sociale et chômage
@@ -9466,123 +9469,16 @@ salarié . cotisations . exonérations . heures supplémentaires:
   titre.en: '[automatic] overtime'
   titre.fr: heures supplémentaires
 salarié . cotisations . exonérations . lodeom:
-  avec:
-    barème compétitivité:
-      titre.en: '[automatic] Eligibility for the competitiveness scale'
-      titre.fr: Eligibilité au barème de compétitivité
-    barème compétitivité . secteurs d'activité éligible:
-      description.en: >
-        [automatic] To be eligible for the 1st LODEOM exemption scale, known as
-        the competitiveness scale, your company must belong to one of the
-        following sectors:
-
-
-        - ✈ air transport on routes between French overseas departments and regions and between mainland France and these territories, as well as domestic services
-
-        - ⛵ maritime and river services, or connections between French overseas departments and regions
-
-        - 🏗 construction and public works
-
-        - 📰 the press
-
-        - 🎥 audiovisual production
-
-        - sectors eligible for the enhanced competitiveness (scale 2) or innovation and growth (scale 3) schemes, which do not meet the conditions in terms of headcount (fewer than 250 employees) or annual sales (fewer than 50 million euros).
-      description.fr: >
-        Pour être éligible au 1er barème de l'exonération LODEOM, dit barème de
-        compétitivité, votre entreprise doit appartenir à l'un des secteurs
-        suivants :
-
-
-        - ✈ transport aérien assurant les liaisons entre les départements et régions d’Outre-mer et entre la métropole et ces territoires, ainsi que les dessertes intérieures
-
-        - ⛵ dessertes maritimes, fluviales ou les liaisons entre départements et régions d’Outre-mer
-
-        - 🏗 bâtiment et travaux publics
-
-        - 📰 la presse
-
-        - 🎥 la production audiovisuelle
-
-        - les secteurs éligibles aux régimes de compétitivité renforcée (barème 2) ou d’innovation et de croissance (barème 3), qui ne respectent pas les conditions d’effectifs (moins de 250 salariés) ou de chiffres d’affaires annuel (moins de 50 millions d’euros).
-      question.en:
-        '[automatic] Does your company belong to one of the LODEOM-eligible
-        sectors?'
-      question.fr: Votre entreprise appartient-elle à l'un des secteurs éligible LODEOM ?
-      titre.en: '[automatic] eligible business sectors'
-      titre.fr: secteurs d'activité éligible
-    barème compétitivité renforcée:
-      description.en: >
-        [automatic] - Turnover of less than 50 million euros
-
-        - Employers in the sectors of industry, catering, environment, agri-nutrition, renewable energies, new information and communication technologies and call centers, fisheries, marine cultures, aquaculture, agriculture, tourism including related leisure activities, boating, hotel business, research and development ;
-
-        - Companies benefiting from the inward processing regime defined in Article 256 of Regulation (EU) No 952/2013 of the European Parliament and of the Council of 9 October 2013 establishing the Customs Code of the Union
-
-        - In French Guiana, employers whose main activity falls within one of the sectors of activity eligible for the tax reduction provided for in Article 199 undecies B of the General Tax Code, or corresponding to one of the following activities: accounting, business consulting, engineering or technical studies.
-      description.fr: >
-        - Chiffre d'affaires de moins de 50 millions d'euros
-
-        - Les employeurs relevant des secteurs de l’industrie, de la restauration, de l’environnement, de l’agro nutrition, des énergies renouvelables, des nouvelles technologies de l’information et de la communication et des centres d’appel, de la pêche, des cultures marines, de l’aquaculture, de l’agriculture, du tourisme y compris les activités de loisirs s’y rapportant, du nautisme, de l’hôtellerie, de la recherche et du développement ;
-
-        - Les entreprises bénéficiaires du régime de perfectionnement actif défini à l’article 256 du règlement (UE) n° 952/2013 du parlement européen et du conseil du 9 octobre 2013 établissant le code des douanes de l’Union
-
-        - En Guyane, les employeurs ayant une activité principale relevant de l’un des secteurs d’activité éligibles à la réduction d’impôt prévue à l’article 199 undecies B du code général des impôts, ou correspondant à l’une des activités suivantes : comptabilité, conseil aux entreprises, ingénierie ou études techniques.
-      question.en: '[automatic] Are you eligible for the enhanced competitiveness scale?'
-      question.fr: Êtes-vous éligibles au barème compétitivité renforcée ?
-      titre.en: '[automatic] enhanced competitiveness scale'
-      titre.fr: barème compétitivité renforcée
-    barème innovation et croissance:
-      description.en: >
-        [automatic] - Employers with fewer than 250 employees and annual sales
-        of less than 50 million euros are eligible for this scale for the
-        remuneration of employees working mainly on innovative projects in the
-        field of information and communication technologies.
-
-        - Innovative projects are defined as projects whose purpose is to introduce a new or significantly improved good, service, production or distribution method in terms of its characteristics and intended use. These projects must be in the following areas:
-          - 📱 telecommunications ;
-          - computer science, including programming, systems and software consulting, third-party maintenance of systems and applications, facilities management, data processing, hosting and related activities ;
-          - publishing of internet portals and software;
-          - computer graphics, including visual and digital content design;
-          - design of connected objects.
-        - If these conditions are met, the exemption applies to remunerations paid to employees who are mainly involved in the realization of innovative projects.
-
-        - Support functions are therefore excluded: administrative, financial, logistical and human resources tasks.
-      description.fr: >
-        - Sont éligibles à ce barème les employeurs occupant moins de 250
-        salariés et ayant réalisé un chiffre d’affaires annuel inférieur à 50
-        millions d’euros, au titre de la rémunération des salariés concourant
-        essentiellement à la réalisation de projets innovants dans le domaine
-        des technologies de l’information et de la communication.
-
-        - Les projets innovants se définissent comme des projets ayant pour but l’introduction d’un bien, d’un service, d’une méthode de production ou de distribution nouveau ou sensiblement amélioré sur le plan des caractéristiques et de l’usage auquel il est destiné. Ces projets doivent être réalisés dans les domaines suivants :
-          - 📱 télécommunication ;
-          - informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance de systèmes et d’applications, gestion d‘installations, traitement des données, hébergement et activités connexes ;
-          - édition de portails internet et de logiciels;
-          - infographie, notamment conception de contenus visuels et numériques ;
-          - conception d’objets connectés.
-        - Si ces conditions sont réunies, l’exonération s’applique aux rémunérations versées aux salariés occupés principalement à la réalisation de projets innovants.
-
-        - Sont donc exclues les fonctions supports : tâches administratives financières, logistiques et de ressources humaines.
-      question.en: '[automatic] Are you eligible for the innovation and growth scale?'
-      question.fr: Êtes-vous éligibles au barème innovation et croissance ?
-      titre.en: '[automatic] innovation and growth scale'
-      titre.fr: barème innovation et croissance
-    zone un:
-      titre.en:
-        '[automatic] Geographical zone 1 (Guadeloupe, Martinique, Reunion
-        Island, French Guiana)'
-      titre.fr: Zone géographique 1 (Guadeloupe, Martinique, La Réunion, Guyane)
   description.en: >
     [automatic] A fairly complex set of contribution reductions is available for
-    overseas employees.
+    employees in the French overseas departments and territories.
 
-    They operate in a similar way to the general reduction on low wages: for a certain wage, 100% reduction.
+    Their operation is similar to that of the general reduction on low wages: for a given wage, 100% reduction.
 
-    For another, higher wage, 0% reduction. Between the two, a straight line is drawn.
+    For a higher salary, 0% reduction. Between the two, a straight line is drawn.
   description.fr: >
     Un ensemble assez complexe de réductions de cotisation est disponible pour
-    les salariés d'outre-mer.
+    les salariés d'Outre-mer.
 
     Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
 
@@ -9600,8 +9496,488 @@ salarié . cotisations . exonérations . lodeom . montant:
     imputation sécurité sociale:
       titre.en: '[automatic] social security charge'
       titre.fr: imputation sécurité sociale
+    seuil inflexion:
+      titre.en: '[automatic] inflection threshold'
+      titre.fr: seuil inflexion
+    seuil intermédiaire:
+      titre.en: '[automatic] intermediate threshold'
+      titre.fr: seuil intermédiaire
+    seuil sortie:
+      titre.en: '[automatic] output threshold'
+      titre.fr: seuil sortie
   titre.en: '[automatic] amount'
   titre.fr: montant
+salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles:
+  description.en: >
+    [automatic] The business sectors eligible for the "Lodeom" exemption scheme
+    are as follows:
+
+    - 🔬 research and development ;
+
+    - 📷 tourism, including related leisure activities;
+
+    - 🛏️ hotels;
+
+    - 🌱 agronutrition ;
+
+    - 🌳 environment ;
+
+    - 🔋 renewable energies;
+
+    - 🚜 agriculture (including agricultural cooperatives and sociétés d'intérêt collectif agricoles
+
+    and their unions as well as maritime cooperatives and their unions);
+
+    - 🎣 fishing, marine cultures and aquaculture;
+
+    - 🏗 construction and public works
+
+    - 🍴 catering ;
+
+    - 📰 press ;
+
+    - 🎥 audiovisual production.
+
+    - ⛵ river or sea transport for employers providing:
+      - sea or river services to several points in Guadeloupe, French Guiana, Martinique, Réunion, Saint-Barthélemy or Saint-Martin;
+      - connections between ports in these departments or communities;
+      - between the ports of Réunion and Mayotte.
+    - ✈️ air transport for employers providing :
+      - between mainland France and Guadeloupe, French Guiana, Martinique, Réunion, Saint-Martin or Saint-Barthélemy;
+      - between these departments or communities and between Réunion and Mayotte;
+      - domestic services within these departments or communities.
+  description.fr: >
+    Les secteurs d'activité éligibles au dispositif d'exonération « Lodeom »
+    sont les suivants :
+
+    - 🔬 recherche et développement ;
+
+    - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+
+    - 🛏️ hôtellerie ;
+
+    - 🌱 agronutrition ;
+
+    - 🌳 environnement ;
+
+    - 🔋 énergies renouvelables ;
+
+    - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
+
+    et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+
+    - 🎣 pêche, cultures marines et aquaculture ;
+
+    - 🏗 bâtiment et travaux publics
+
+    - 🍴 restauration ;
+
+    - 📰 presse ;
+
+    - 🎥 production audiovisuelle.
+
+    - ⛵ transport fluvial ou maritime pour les employeurs assurant :
+      - la desserte maritime ou fluviale de plusieurs points de la Guadeloupe, de la Guyane, de la Martinique, de La Réunion, de Saint-Barthélemy ou de Saint-Martin ;
+      - la liaison entre les ports de ces départements ou collectivités ;
+      - la liaison entre les ports de la Réunion et de Mayotte.
+    - ✈️ transport aérien pour les employeurs assurant :
+      - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
+      - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
+      - la desserte intérieure de ces départements ou collectivités.
+  question.en: '[automatic] Does your company belong to one of the Lodeom-eligible sectors?'
+  question.fr: Votre entreprise appartient-elle à l'un des secteurs éligibles Lodeom ?
+  titre.en: '[automatic] eligible business sectors'
+  titre.fr: secteurs d'activité éligibles
+salarié . cotisations . exonérations . lodeom . zone deux:
+  avec:
+    barème compétitivité:
+      description.en: >
+        [automatic] To qualify for the enhanced exemption scale, employers must
+        :
+
+        - have <strong>fewer than 250 employees</strong>,
+
+        - have annual sales <strong>of less than €50 million</strong>
+
+        - and, in the case of employers based in <strong>Saint-Martin</strong>, be subject to an automatic or optional
+
+        a <strong>real tax regime</strong>.
+
+
+        In addition, the employer must meet <strong>at least one of the</strong> following <strong>conditions</strong>:
+
+        - either fall within one of the business sectors eligible for the income tax reduction available to
+
+        taxpayers domiciled in France who have made new productive investments in overseas France
+
+        (provided for in article 199 undecies B of the French General Tax Code) ;
+
+        - carry out one of the following activities
+          - accounting ;
+          - business consulting ;
+          - engineering or technical studies for companies;
+          - research and development
+          - information and communication technologies.
+
+        The employer must <strong>also</strong> meet <strong>at least one of the</strong> following <strong>conditions</strong>:
+
+        - either belong to one of the following <strong>sectors</strong>:
+          - 🔬 research and development;
+          - 🖥️ information and communication technologies;
+          - 📷 tourism, including related leisure activities;
+          - 🌱 agronutrition;
+          - 🌳 environment ;
+          - 🔋 renewable energies;
+        - or benefit from the <strong>"inward processing" regime.</strong>
+      description.fr: >
+        Pour bénéficier du barème d'exonération renforcée, les employeurs
+        doivent :
+
+        - employer <strong>moins de 250 salariés</strong>,
+
+        - réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>
+
+        - et, pour ceux installés à <strong>Saint-Martin</strong>, être soumis de plein droit ou sur option à
+
+        un <strong>régime réel d’imposition</strong>.
+
+
+        Par ailleurs, l'employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
+
+        - soit relever de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
+
+        contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
+
+        (prévue à l’article 199 undecies B du code général des impôts) ;
+
+        - soit exercer une des activités suivantes :
+          - comptabilité ;
+          - conseil aux entreprises ;
+          - ingénierie ou études techniques à destination des entreprises ;
+          - recherche et développement
+          - technologies de l’information et de la communication.
+
+        L'employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
+
+        - soit relever d'un des <strong>secteurs</strong> suivants :
+          - 🔬 recherche et développement ;
+          - 🖥️ technologies de l’information et de la communication ;
+          - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+          - 🌱 agronutrition ;
+          - 🌳 environnement ;
+          - 🔋 énergies renouvelables ;
+        - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
+      question.en: '[automatic] Are you eligible for the enhanced exemption scale?'
+      question.fr: Êtes-vous éligible au barème d'exonération renforcée ?
+      titre.en: '[automatic] Reinforced exemption scale'
+      titre.fr: Barème d'exonération renforcée
+    barème moins de 11 salariés:
+      description.en: >
+        [automatic] The exemption applies to employers with <strong>fewer than
+        11 employees</strong>.
+
+
+        In addition, employers may also be eligible for this exemption if, although they meet the conditions
+
+        the conditions to benefit from the sectoral scale without headcount criteria, choose to opt for this
+
+        this more favorable exemption, because they have fewer than 11 employees.
+      description.fr: >
+        L’exonération est applicable aux employeurs occupant <strong>moins de 11
+        salariés</strong>.
+
+
+        Par ailleurs, peuvent également être éligibles à cette exonération les employeurs qui, bien que remplissant
+
+        les conditions pour bénéficier du barème sectoriel sans critère d’effectif, choisissent d’opter pour
+
+        cette exonération, plus favorable, car elles ont moins de 11 salariés.
+      titre.en: '[automatic] Scale for employers with fewer than 11 employees'
+      titre.fr: Barème pour les employeurs de moins de 11 salariés
+    barème sectoriel:
+      description.en: >
+        [automatic] The exemption applies to employers, regardless of their
+        workforce, in one of the following business sectors
+
+        eligible for the "Lodeom" exemption scheme:
+
+        - 🔬 research and development ;
+
+        - 📷 tourism, including related leisure activities;
+
+        - 🛏️ hotels;
+
+        - 🌱 agronutrition ;
+
+        - 🌳 environment ;
+
+        - 🔋 renewable energies;
+
+        - 🚜 agriculture (including agricultural cooperatives and sociétés d'intérêt collectif agricoles
+
+        and their unions as well as maritime cooperatives and their unions);
+
+        - 🎣 fishing, marine cultures and aquaculture;
+
+        - 🏗 construction and public works
+
+        - 🍴 catering ;
+
+        - 📰 press ;
+
+        - 🎥 audiovisual production.
+
+        - ⛵ river or sea transport for employers providing:
+          - sea or river services to several points in Guadeloupe, French Guiana, Martinique, Réunion, Saint-Barthélemy or Saint-Martin;
+          - connections between ports in these departments or communities;
+          - between the ports of Réunion and Mayotte.
+        - ✈️ air transport for employers providing :
+          - between mainland France and Guadeloupe, French Guiana, Martinique, Réunion, Saint-Martin or Saint-Barthélemy;
+          - between these departments or communities and between Réunion and Mayotte;
+          - domestic services within these departments or communities.
+      description.fr: >
+        L’exonération est applicable aux employeurs, quel que soit leur
+        effectif, relevant d’un des secteurs d’activité
+
+        éligibles au dispositif d’exonération « Lodeom » :
+
+        - 🔬 recherche et développement ;
+
+        - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+
+        - 🛏️ hôtellerie ;
+
+        - 🌱 agronutrition ;
+
+        - 🌳 environnement ;
+
+        - 🔋 énergies renouvelables ;
+
+        - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
+
+        et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+
+        - 🎣 pêche, cultures marines et aquaculture ;
+
+        - 🏗 bâtiment et travaux publics
+
+        - 🍴 restauration ;
+
+        - 📰 presse ;
+
+        - 🎥 production audiovisuelle.
+
+        - ⛵ transport fluvial ou maritime pour les employeurs assurant :
+          - la desserte maritime ou fluviale de plusieurs points de la Guadeloupe, de la Guyane, de la Martinique, de La Réunion, de Saint-Barthélemy ou de Saint-Martin ;
+          - la liaison entre les ports de ces départements ou collectivités ;
+          - la liaison entre les ports de la Réunion et de Mayotte.
+        - ✈️ transport aérien pour les employeurs assurant :
+          - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
+          - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
+          - la desserte intérieure de ces départements ou collectivités.
+      titre.en: '[automatic] Sector exemption scale'
+      titre.fr: Barème d'exonération sectorielle
+  titre.en: '[automatic] Saint-Barthélémy, Saint-Martin'
+  titre.fr: Saint-Barthélémy, Saint-Martin
+salarié . cotisations . exonérations . lodeom . zone un:
+  avec:
+    barème compétitivité:
+      description.en: >
+        [automatic] The competitiveness scale <strong>applies to</strong>:
+
+        - employers with fewer than 11 employees;
+
+        - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness or innovation and growth scales
+
+        or the innovation and growth scale;
+
+        - employers in sectors eligible for the enhanced competitiveness or innovation and growth
+
+        or innovation and growth schemes, who do not meet the conditions in terms of headcount (less than 250 employees)
+
+        or annual sales (less than 50 million euros);
+
+
+        The competitiveness scale does <strong>not apply to</strong>:
+
+        - employers benefiting from the enhanced competitiveness or innovation
+
+        and growth.
+      description.fr: >
+        Le barème de compétitivité <strong>est applicable</strong> :
+
+        - aux employeurs de moins de 11 salariés ;
+
+        - aux entreprises relevant des secteurs éligibles au Lodeom et qui ne bénéficient pas du barème de
+
+        compétitivité renforcée, ni du barème d’innovation et croissance ;
+
+        - aux employeurs des secteurs éligibles aux régimes de compétitivité renforcée ou d’innovation
+
+        et croissance, qui ne respectent pas les conditions d’effectifs (moins de 250 salariés)
+
+        ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
+
+
+        Le barème de compétitivité <strong>n'est pas applicable</strong> :
+
+        - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
+
+        et croissance.
+      titre.en: '[automatic] Competitiveness scale'
+      titre.fr: Barème de compétitivité
+    barème compétitivité renforcée:
+      description.en: >
+        [automatic] To qualify for the enhanced competitiveness scale, employers
+        must :
+
+        - have <strong>fewer than 250 employees</strong>
+
+        - and have annual sales <strong>of less than 50 million euros</strong>.
+
+
+        The employer must meet <strong>at least one of the</strong> following <strong>conditions</strong>:
+
+        - either fall within one of the following <strong>sectors</strong>:
+          - 🚜 agriculture (including agricultural cooperatives and agricultural community interest companies
+          and their unions, as well as maritime cooperatives and their unions);
+          - 🎣 fishing, marine farming and aquaculture;
+          - 🏭 industry ;
+          - 🌳 environment ;
+          - 🌱 agronutrition ;
+          - 🔋 renewable energies ;
+          - 🍴 catering ;
+          - 📷 tourism, including related leisure activities;
+          - ⛵ water sports;
+          - 🛏️ hotels;
+          - 🔬 research and development;
+          - 🖥️ new information and communication technologies and call centers;
+          - 📰 press;
+          - 🎥 audiovisual production.
+        - or benefit from the <strong>"inward processing" regime.</strong>
+
+
+        <strong>In French Guiana</strong>, the employer may be eligible:
+
+        - if it falls within one of the business sectors eligible for the income tax reduction open to
+
+        taxpayers domiciled in France who have made new productive investments in overseas France
+
+        (provided for in article 199 undecies B of the French General Tax Code)
+
+        - or if he/she carries out one of the following activities :
+          - accounting ;
+          - business consulting ;
+          - engineering or technical studies.
+      description.fr: >
+        Pour bénéficier du barème de compétitivité renforcée, les employeurs
+        doivent :
+
+        - employer <strong>moins de 250 salariés</strong>
+
+        - et réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>.
+
+
+        L’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
+
+        - soit relever d'un des <strong>secteurs</strong> suivants :
+          - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
+          et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+          - 🎣 pêche, cultures marines et aquaculture ;
+          - 🏭 industrie ;
+          - 🌳 environnement ;
+          - 🌱 agronutrition ;
+          - 🔋 énergies renouvelables ;
+          - 🍴 restauration ;
+          - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+          - ⛵ nautisme ;
+          - 🛏️ hôtellerie ;
+          - 🔬 recherche et développement ;
+          - 🖥️ nouvelles technologies de l’information et de la communication et centres d’appel ;
+          - 📰 presse ;
+          - 🎥 production audiovisuelle.
+        - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
+
+
+        <strong>En Guyane</strong>, l'employeur peut être éligible :
+
+        - s'il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
+
+        contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
+
+        (prévue à l’article 199 undecies B du code général des impôts)
+
+        - ou s'il exerce une des activités suivantes :
+          - comptabilité ;
+          - conseil aux entreprises ;
+          - ingénierie ou études techniques.
+      question.en: '[automatic] Are you eligible for the enhanced competitiveness scale?'
+      question.fr: Êtes-vous éligible au barème compétitivité renforcée ?
+      titre.en: '[automatic] Enhanced competitiveness scale'
+      titre.fr: Barème de compétitivité renforcée
+    barème innovation et croissance:
+      description.en: >
+        [automatic] To qualify for the innovation and growth scale, employers
+        must :
+
+        - have <strong>fewer than 250 employees</strong>,
+
+        - have annual sales <strong>of less than €50 million</strong>
+
+        - and carry out <strong>innovative projects</strong> in the information technology
+
+        and communication technologies.
+
+
+        These projects must be carried out in one of the following <strong>areas of activity</strong>:
+          - 📡 telecommunications ;
+          - 🖥️ IT, including programming, systems and software consulting, third-party maintenance
+          systems and applications, facilities management, data processing, hosting and related activities
+          related activities;
+          - 🌐 internet portal and software publishing;
+          - 🎴 computer graphics, including visual and digital content design;
+          - 🤖 design of connected objects.
+
+        If the conditions are met, the exemption applies to employees who participate primarily and
+
+        directly in the realization of innovative projects.
+
+
+        The exemption <strong>does not</strong> apply to support functions: administrative financial tasks, logistics, human resources.
+      description.fr: >
+        Pour bénéficier du barème d'innovation et croissance, les employeurs
+        doivent :
+
+        - employer <strong>moins de 250 salariés</strong>,
+
+        - réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>
+
+        - et réaliser des <strong>projets innovants</strong> dans le secteur des technologies de l’information
+
+        et de la communication.
+
+
+        Ces projets doivent être réalisés dans l'un des <strong>domaines d’activité</strong> suivants :
+          - 📡 télécommunication ;
+          - 🖥️ informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance
+          de systèmes et d’applications, gestion d'installations, traitement des données, hébergement et activités
+          connexes ;
+          - 🌐 édition de portails internet et de logiciels;
+          - 🎴 infographie, notamment conception de contenus visuels et numériques ;
+          - 🤖 conception d’objets connectés.
+
+        Si les conditions sont réunies, l’exonération s’applique aux salariés qui participent principalement et
+
+        directement à la réalisation de projets innovants.
+
+
+        L'exonération <strong>ne s'applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+      question.en: '[automatic] Are you eligible for the innovation and growth scale?'
+      question.fr: Êtes-vous éligible au barème d'innovation et croissance ?
+      titre.en: '[automatic] Innovation and growth scale'
+      titre.fr: Barème d'innovation et croissance
+  titre.en: '[automatic] Guadeloupe, Martinique, Reunion Island, French Guiana'
+  titre.fr: Guadeloupe, Martinique, La Réunion, Guyane
 salarié . cotisations . exonérations . réduction générale:
   avec:
     caisse de congés payés:
@@ -10690,9 +11066,9 @@ salarié . régimes spécifiques . taxe sur les salaires:
     La taxe sur les salaires en France est un impôt progressif créé
     en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils
     distribuent.
-  note.en: '[automatic] We do not implement the specific rates for overseas, nor
-    the discount'
-  note.fr: Nous n'implémentons pas les taux spécifiques pour l'outre-mer, ni la décôte
+  note.en: '[automatic] We do not implement the specific rates for overseas
+    territories, nor the discount.'
+  note.fr: Nous n'implémentons pas les taux spécifiques pour l'Outre-mer, ni la décôte
   titre.en: '[automatic] payroll tax'
   titre.fr: taxe sur les salaires
 salarié . rémunération:
@@ -11780,18 +12156,18 @@ salarié . temps de travail:
     SMIC:
       description.en: >
         [automatic] Several reductions in contributions ([general
-        reduction](/documentation/employee-contract/general-reduction), reduced
+        reduction](/documentation/contrat-salarié/réduction-générale), reduced
         rate of [family
-        allowances](/documentation/employee-contract/family-allowances/reduced-rate)
+        allowances](/documentation/contrat-salarié/allocations-familiales/taux-réduit)
         and
-        [sickness](/documentation/employee-contract/sickness/employer-reduced-rate),
-        overseas reduction) are based on a SMIC parameter that is subject to
-        several adjustments to take into account the actual working time.
+        [sickness](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit),
+        reduction Overseas) are based on a SMIC parameter which is subject to
+        several adjustments to take account of actual working time.
 
 
-        Overtime and complementary hours are taken into account without taking into account the
+        Overtime and complementary hours are taken into account without
 
-        overtime and overtime are taken into account without taking the increase into account.
+        overtime and overtime are taken into account.
       description.fr: >
         Plusieurs réductions de cotisations ([réduction
         générale](/documentation/contrat-salarié/réduction-générale), taux
@@ -11799,7 +12175,7 @@ salarié . temps de travail:
         familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit)
         et de
         [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit),
-        réduction outre-mer) reposent sur un paramètre SMIC faisant l'objet de
+        réduction Outre-mer) reposent sur un paramètre SMIC faisant l'objet de
         plusieurs ajustements pour prendre en compte le temps de travail
         effectif.
 
