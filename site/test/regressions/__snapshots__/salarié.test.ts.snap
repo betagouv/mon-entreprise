@@ -775,7 +775,7 @@ salarié . rémunération . net . à payer avant impôt: 2090"
 exports[`calculate simulations-salarié > lodeom 1`] = `
 "salarié . contrat . salaire brut: 1521
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 1521
+salarié . coût total employeur: 1591
 salarié . rémunération . net . payé après impôt: 1182
 salarié . rémunération . net . à payer avant impôt: 1182
 
@@ -785,7 +785,7 @@ Notifications affichées : salarié . rémunération . assiette de vérification
 exports[`calculate simulations-salarié > lodeom 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2000
+salarié . coût total employeur: 2085
 salarié . rémunération . net . payé après impôt: 1553
 salarié . rémunération . net . à payer avant impôt: 1561"
 `;
@@ -817,7 +817,7 @@ salarié . rémunération . net . à payer avant impôt: 4343"
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 1`] = `
 "salarié . contrat . salaire brut: 1521
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 1521
+salarié . coût total employeur: 1591
 salarié . rémunération . net . payé après impôt: 1182
 salarié . rémunération . net . à payer avant impôt: 1182
 
@@ -827,7 +827,7 @@ Notifications affichées : salarié . rémunération . assiette de vérification
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2000
+salarié . coût total employeur: 2085
 salarié . rémunération . net . payé après impôt: 1553
 salarié . rémunération . net . à payer avant impôt: 1561"
 `;
@@ -835,7 +835,7 @@ salarié . rémunération . net . à payer avant impôt: 1561"
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 3`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3000
+salarié . coût total employeur: 3118
 salarié . rémunération . net . payé après impôt: 2223
 salarié . rémunération . net . à payer avant impôt: 2353"
 `;
@@ -859,7 +859,7 @@ salarié . rémunération . net . à payer avant impôt: 4343"
 exports[`calculate simulations-salarié > lodeom innovation et croissance 1`] = `
 "salarié . contrat . salaire brut: 1521
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 1521
+salarié . coût total employeur: 1591
 salarié . rémunération . net . payé après impôt: 1182
 salarié . rémunération . net . à payer avant impôt: 1182
 
@@ -869,7 +869,7 @@ Notifications affichées : salarié . rémunération . assiette de vérification
 exports[`calculate simulations-salarié > lodeom innovation et croissance 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2000
+salarié . coût total employeur: 2085
 salarié . rémunération . net . payé après impôt: 1553
 salarié . rémunération . net . à payer avant impôt: 1561"
 `;
@@ -877,7 +877,7 @@ salarié . rémunération . net . à payer avant impôt: 1561"
 exports[`calculate simulations-salarié > lodeom innovation et croissance 3`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3000
+salarié . coût total employeur: 3118
 salarié . rémunération . net . payé après impôt: 2223
 salarié . rémunération . net . à payer avant impôt: 2353"
 `;
@@ -885,7 +885,7 @@ salarié . rémunération . net . à payer avant impôt: 2353"
 exports[`calculate simulations-salarié > lodeom innovation et croissance 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4184
+salarié . coût total employeur: 4458
 salarié . rémunération . net . payé après impôt: 2816
 salarié . rémunération . net . à payer avant impôt: 3140"
 `;

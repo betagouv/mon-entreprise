@@ -540,7 +540,7 @@ salarié . régimes spécifiques . taxe sur les salaires:
               alors: 17114 €/an
             - sinon: 15981 €/an
       - taux: 13.6%
-  note: Nous n'implémentons pas les taux spécifiques pour l'outre-mer, ni la décôte
+  note: Nous n'implémentons pas les taux spécifiques pour l'Outre-mer, ni la décôte
   références:
     Taxe sur les salaires: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
     Exonérations spécifiques à la taxe sur les salaires: http://bofip.impots.gouv.fr/bofip/6691-PGP.html
