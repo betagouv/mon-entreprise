@@ -10,6 +10,7 @@ import { artisteAuteurConfig } from '../simulateurs/artiste-auteur/config'
 import { autoEntrepreneurConfig } from '../simulateurs/auto-entrepreneur/config'
 import { auxiliaireMédicalConfig } from '../simulateurs/auxiliaire-médical/config'
 import { avocatConfig } from '../simulateurs/avocat/config'
+import { cessationActivitéConfig } from '../simulateurs/cessation-activité/config'
 import { chirurgienDentisteConfig } from '../simulateurs/chirurgien-dentiste/config'
 import { chômagePartielConfig } from '../simulateurs/chômage-partiel/config'
 import { cipavConfig } from '../simulateurs/cipav/config'
@@ -63,6 +64,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...impôtSociétéConfig(params),
 		...cipavConfig(params),
 		...réductionGénéraleConfig(params),
+		...cessationActivitéConfig(params),
 
 		// assistants:
 		...choixStatutJuridiqueConfig(params),
