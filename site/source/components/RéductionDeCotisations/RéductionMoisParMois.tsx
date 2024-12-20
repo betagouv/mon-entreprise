@@ -1,3 +1,5 @@
+import { PublicodesExpression } from 'publicodes'
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -6,22 +8,40 @@ import { Spacing } from '@/design-system/layout'
 import { baseTheme } from '@/design-system/theme'
 import { H3 } from '@/design-system/typography/heading'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import {
+	MonthState,
+	Options,
+	RéductionDottedName,
+	réductionGénéraleDottedName,
+} from '@/utils/réductionDeCotisations'
 
-import RécapitulatifTrimestre from './components/RécapitulatifTrimestre'
-import RéductionGénéraleMois from './components/RéductionGénéraleMois'
-import Warnings from './components/Warnings'
-import { MonthState, Options, réductionGénéraleDottedName } from './utils'
+import RécapitulatifTrimestre from './RécapitulatifTrimestre'
+import RéductionMois from './RéductionMois'
 
 type Props = {
+	dottedName: RéductionDottedName
 	data: MonthState[]
 	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
 	onOptionsChange: (monthIndex: number, options: Options) => void
+	caption: string
+	warnings: ReactNode
+	warningCondition: PublicodesExpression
+	warningTooltip: ReactNode
+	codeRéduction?: string
+	codeRégularisation?: string
 }
 
-export default function RéductionGénéraleMoisParMois({
+export default function RéductionMoisParMois({
+	dottedName,
 	data,
 	onRémunérationChange,
 	onOptionsChange,
+	caption,
+	warnings,
+	warningCondition,
+	warningTooltip,
+	codeRéduction,
+	codeRégularisation,
 }: Props) {
 	const { t } = useTranslation()
 	const isDesktop = useMediaQuery(
@@ -58,19 +78,9 @@ export default function RéductionGénéraleMoisParMois({
 		<>
 			{isDesktop ? (
 				<>
-					<H3 as="h2">
-						{t(
-							'pages.simulateurs.réduction-générale.month-by-month.caption',
-							'Réduction générale mois par mois :'
-						)}
-					</H3>
+					<H3 as="h2">{caption}</H3>
 					<StyledTable>
-						<caption className="sr-only">
-							{t(
-								'pages.simulateurs.réduction-générale.month-by-month.caption',
-								'Réduction générale mois par mois :'
-							)}
-						</caption>
+						<caption className="sr-only">{caption}</caption>
 						<thead>
 							<tr>
 								<th scope="col">{t('Mois')}</th>
@@ -79,18 +89,21 @@ export default function RéductionGénéraleMoisParMois({
 									<RuleLink dottedName="salarié . rémunération . brut" />
 								</th>
 								<th scope="col">
-									<RuleLink dottedName={réductionGénéraleDottedName} />
+									<RuleLink dottedName={dottedName} />
 								</th>
 								<th scope="col">
-									<RuleLink dottedName="salarié . cotisations . exonérations . réduction générale . régularisation" />
+									<RuleLink
+										dottedName={`${réductionGénéraleDottedName} . régularisation`}
+									/>
 								</th>
 							</tr>
 						</thead>
 						<tbody>
 							{data.length > 0 &&
 								months.map((monthName, monthIndex) => (
-									<RéductionGénéraleMois
+									<RéductionMois
 										key={`month-${monthIndex}`}
+										dottedName={dottedName}
 										monthName={monthName}
 										data={data[monthIndex]}
 										index={monthIndex}
@@ -103,6 +116,8 @@ export default function RéductionGénéraleMoisParMois({
 										onOptionsChange={(monthIndex: number, options: Options) => {
 											onOptionsChange(monthIndex, options)
 										}}
+										warningCondition={warningCondition}
+										warningTooltip={warningTooltip}
 									/>
 								))}
 						</tbody>
@@ -128,24 +143,26 @@ export default function RéductionGénéraleMoisParMois({
 								<th scope="col">{t('Trimestre')}</th>
 								<th scope="col">
 									{t(
-										'pages.simulateurs.réduction-générale.recap.header',
+										'pages.simulateurs.réduction-générale.recap.header-réduction',
 										'Réduction calculée'
 									)}
-									<br />
-									{t(
-										'pages.simulateurs.réduction-générale.recap.code671',
-										'code 671(€)'
+									{codeRéduction && (
+										<>
+											<br />
+											{codeRéduction}
+										</>
 									)}
 								</th>
 								<th scope="col">
 									{t(
-										'pages.simulateurs.réduction-générale.recap.header',
-										'Réduction calculée'
+										'pages.simulateurs.réduction-générale.recap.header-régularisation',
+										'Régularisation calculée'
 									)}
-									<br />
-									{t(
-										'pages.simulateurs.réduction-générale.recap.code801',
-										'code 801(€)'
+									{codeRégularisation && (
+										<>
+											<br />
+											{codeRégularisation}
+										</>
 									)}
 								</th>
 							</tr>
@@ -154,8 +171,11 @@ export default function RéductionGénéraleMoisParMois({
 							{Object.keys(quarters).map((label, index) => (
 								<RécapitulatifTrimestre
 									key={index}
+									dottedName={dottedName}
 									label={label}
 									data={quarters[label]}
+									codeRéduction={codeRéduction}
+									codeRégularisation={codeRégularisation}
 								/>
 							))}
 						</tbody>
@@ -163,16 +183,12 @@ export default function RéductionGénéraleMoisParMois({
 				</>
 			) : (
 				<>
-					<H3 as="h2">
-						{t(
-							'pages.simulateurs.réduction-générale.month-by-month.caption',
-							'Réduction générale mois par mois :'
-						)}
-					</H3>
+					<H3 as="h2">{caption}</H3>
 					{data.length > 0 &&
 						months.map((monthName, monthIndex) => (
-							<RéductionGénéraleMois
+							<RéductionMois
 								key={`month-${monthIndex}`}
+								dottedName={dottedName}
 								monthName={monthName}
 								data={data[monthIndex]}
 								index={monthIndex}
@@ -185,6 +201,8 @@ export default function RéductionGénéraleMoisParMois({
 								onOptionsChange={(monthIndex: number, options: Options) => {
 									onOptionsChange(monthIndex, options)
 								}}
+								warningCondition={warningCondition}
+								warningTooltip={warningTooltip}
 								mobileVersion={true}
 							/>
 						))}
@@ -200,8 +218,11 @@ export default function RéductionGénéraleMoisParMois({
 					{Object.keys(quarters).map((label, index) => (
 						<RécapitulatifTrimestre
 							key={index}
+							dottedName={dottedName}
 							label={label}
 							data={quarters[label]}
+							codeRéduction={codeRéduction}
+							codeRégularisation={codeRégularisation}
 							mobileVersion={true}
 						/>
 					))}
@@ -215,7 +236,7 @@ export default function RéductionGénéraleMoisParMois({
 				)}
 			</span>
 
-			<Warnings />
+			{warnings}
 		</>
 	)
 }

@@ -1548,20 +1548,10 @@ pages:
         title: Éxonération Lodeom
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
-      options:
-        description: Ajoute des champs pour moduler l'activité du salarié
       recap:
-        T1: 1er trimestre
-        T2: 2ème trimestre
-        T3: 3ème trimestre
-        T4: 4ème trimestre
-        caption: "Récapitulatif trimestriel :"
-        header:
-          réduction: Réduction calculée
-          régularisation: Régularisation calculée
-      répartition:
-        retraite: IRC
-        urssaf: URSSAF
+        code:
+          "462": code 462(€)
+          "684": code 684(€)
       shortname: Éxonération Lodeom
       tab:
         month: Exonération mensuelle
@@ -1653,9 +1643,11 @@ pages:
         T3: 3ème trimestre
         T4: 4ème trimestre
         caption: "Récapitulatif trimestriel :"
-        code671: code 671(€)
-        code801: code 801(€)
-        header: Réduction calculée
+        code:
+          "671": code 671(€)
+          "801": code 801(€)
+        header-réduction: Réduction calculée
+        header-régularisation: Régularisation calculée
       régularisation:
         annuelle: Régularisation annuelle
         progressive: Régularisation progressive

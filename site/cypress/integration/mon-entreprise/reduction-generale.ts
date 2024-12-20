@@ -1,7 +1,7 @@
 import { checkA11Y, fr } from '../../support/utils'
 
 // TODO Échoue parfois … à creuser
-describe.skip(
+describe(
 	'Simulateur réduction générale',
 	{ testIsolation: false },
 	function () {
@@ -206,6 +206,7 @@ describe.skip(
 		})
 
 		it('should handle incomplete months', function () {
+			cy.contains('Régularisation progressive').click()
 			cy.get(inputSelector).first().type('{selectall}1500')
 			cy.get('input[id="option-heures-sup-janvier"]').type('{selectall}5')
 			cy.get(
@@ -251,11 +252,23 @@ describe.skip(
 			})
 			// Wait for values to update
 			// eslint-disable-next-line cypress/no-unnecessary-waiting
-			cy.wait(500)
-			cy.get('#recap-1er_trimestre-671').should('include.text', '682,24 €')
-			cy.get('#recap-2ème_trimestre-801').should('include.text', '-186,36 €')
-			cy.get('#recap-3ème_trimestre-671').should('include.text', '1 569,81 €')
-			cy.get('#recap-4ème_trimestre-671').should('include.text', '1 568,39 €')
+			cy.wait(1000)
+			cy.get('#recap-1er_trimestre-réduction').should(
+				'include.text',
+				'682,24 €'
+			)
+			cy.get('#recap-2ème_trimestre-régularisation').should(
+				'include.text',
+				'-186,36 €'
+			)
+			cy.get('#recap-3ème_trimestre-réduction').should(
+				'include.text',
+				'1 569,81 €'
+			)
+			cy.get('#recap-4ème_trimestre-réduction').should(
+				'include.text',
+				'1 568,39 €'
+			)
 		})
 
 		it('should be RGAA compliant', function () {
