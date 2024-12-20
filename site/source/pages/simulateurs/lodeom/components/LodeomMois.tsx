@@ -14,9 +14,9 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 
 import {
+	lodeomDottedName,
 	MonthState,
 	Options,
-	réductionGénéraleDottedName,
 	rémunérationBruteDottedName,
 } from '../utils'
 import MontantRéduction from './MontantRéduction'
@@ -35,7 +35,7 @@ export type RémunérationBruteInput = {
 	valeur: number
 }
 
-export default function RéductionGénéraleMois({
+export default function LodeomMois({
 	monthName,
 	data,
 	index,
@@ -109,16 +109,13 @@ export default function RéductionGénéraleMois({
 		)
 	}
 
-	const MontantRéductionGénérale = () => {
+	const MontantLodeom = () => {
 		return (
 			<MontantRéduction
-				id={`${réductionGénéraleDottedName.replace(
-					/\s|\./g,
-					'_'
-				)}-${monthName}`}
+				id={`${lodeomDottedName.replace(/\s|\./g, '_')}-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
-				réductionGénérale={data.réductionGénérale.value}
-				répartition={data.réductionGénérale.répartition}
+				lodeom={data.lodeom.value}
+				répartition={data.lodeom.répartition}
 				displayedUnit={displayedUnit}
 				language={language}
 			/>
@@ -128,12 +125,12 @@ export default function RéductionGénéraleMois({
 	const MontantRégularisation = () => {
 		return (
 			<MontantRéduction
-				id={`${réductionGénéraleDottedName.replace(
+				id={`${lodeomDottedName.replace(
 					/\s|\./g,
 					'_'
 				)}__régularisation-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
-				réductionGénérale={data.régularisation.value}
+				lodeom={data.régularisation.value}
 				répartition={data.régularisation.répartition}
 				displayedUnit={displayedUnit}
 				language={language}
@@ -172,11 +169,11 @@ export default function RéductionGénéraleMois({
 
 			<GridContainer container spacing={2}>
 				<Grid item>
-					<RuleLink dottedName={réductionGénéraleDottedName} />
+					<RuleLink dottedName={lodeomDottedName} />
 				</Grid>
 				<Grid item>
 					<StyledBody>
-						<MontantRéductionGénérale />
+						<MontantLodeom />
 					</StyledBody>
 				</Grid>
 			</GridContainer>
@@ -203,7 +200,7 @@ export default function RéductionGénéraleMois({
 					</InputContainer>
 				</td>
 				<td>
-					<MontantRéductionGénérale />
+					<MontantLodeom />
 				</td>
 				<td>
 					<MontantRégularisation />

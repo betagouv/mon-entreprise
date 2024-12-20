@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Radio, ToggleGroup } from '@/design-system'
 
-import { RégularisationMethod } from '../utils'
+import { RégularisationMethod } from '../pages/simulateurs/reduction-generale/utils'
 
 type Props = {
 	régularisationMethod: RégularisationMethod

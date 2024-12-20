@@ -73,6 +73,7 @@ const rawSitePathsFr = {
 		is: 'impot-societe',
 		dividendes: 'dividendes',
 		'réduction-générale': 'réduction-générale',
+		lodeom: 'lodeom',
 	},
 	nouveautés: {
 		index: 'nouveautés',
@@ -172,6 +173,7 @@ const rawSitePathsEn = {
 		is: 'corporate-tax',
 		dividendes: 'dividends',
 		'réduction-générale': 'réduction-générale',
+		lodeom: 'lodeom',
 	},
 	nouveautés: {
 		index: 'news',
