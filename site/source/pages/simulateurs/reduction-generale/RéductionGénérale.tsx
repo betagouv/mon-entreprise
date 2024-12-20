@@ -1,16 +1,16 @@
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import EffectifSwitch from '@/components/EffectifSwitch'
 import PeriodSwitch from '@/components/PeriodSwitch'
-import RégularisationSwitch from '@/components/RégularisationSwitch'
+import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
 import CongésPayésSwitch from './components/CongésPayésSwitch'
-import EffectifSwitch from './components/EffectifSwitch'
 import RéductionGénéraleSimulationGoals from './Goals'
-import { RégularisationMethod } from './utils'
 
 export default function RéductionGénéraleSimulation() {
 	const { t } = useTranslation()
