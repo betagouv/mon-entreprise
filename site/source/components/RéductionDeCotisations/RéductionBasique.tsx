@@ -1,7 +1,10 @@
+import { PublicodesExpression } from 'publicodes'
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { Condition } from '@/components/EngineValue/Condition'
+import Répartition from '@/components/RéductionDeCotisations/Répartition'
 import { SimulationGoal } from '@/components/Simulation'
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -9,33 +12,32 @@ import { Message } from '@/design-system'
 import { Spacing } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
-
-import Répartition from './components/Répartition'
-import Warnings from './components/Warnings'
-import WarningSalaireTrans from './components/WarningSalaireTrans'
-import { lodeomDottedName, rémunérationBruteDottedName } from './utils'
+import {
+	getRépartitionBasique,
+	RéductionDottedName,
+	rémunérationBruteDottedName,
+} from '@/utils/réductionDeCotisations'
 
 type Props = {
+	dottedName: RéductionDottedName
 	onUpdate: () => void
+	warnings: ReactNode
+	warningCondition: PublicodesExpression
+	warningMessage: ReactNode
 }
 
-export default function LodeomBasique({ onUpdate }: Props) {
+export default function RéductionBasique({
+	dottedName,
+	onUpdate,
+	warnings,
+	warningCondition,
+	warningMessage,
+}: Props) {
 	const engine = useEngine()
 	const currentUnit = useSelector(targetUnitSelector)
 	const { t } = useTranslation()
 
-	const répartition = {
-		IRC:
-			(engine.evaluate({
-				valeur: `${lodeomDottedName} . imputation retraite complémentaire`,
-				unité: currentUnit,
-			})?.nodeValue as number) ?? 0,
-		Urssaf:
-			(engine.evaluate({
-				valeur: `${lodeomDottedName} . imputation sécurité sociale`,
-				unité: currentUnit,
-			})?.nodeValue as number) ?? 0,
-	}
+	const répartition = getRépartitionBasique(dottedName, currentUnit, engine)
 
 	return (
 		<>
@@ -46,23 +48,22 @@ export default function LodeomBasique({ onUpdate }: Props) {
 				onUpdateSituation={onUpdate}
 			/>
 
-			<Warnings />
-			<Condition expression="salarié . cotisations . exonérations . lodeom . montant = 0">
+			{warnings}
+
+			<Condition expression={warningCondition}>
 				<Message type="info">
-					<Body>
-						<WarningSalaireTrans />
-					</Body>
+					<Body>{warningMessage}</Body>
 				</Message>
 			</Condition>
 
-			<Condition expression={`${lodeomDottedName} >= 0`}>
+			<Condition expression={`${dottedName} >= 0`}>
 				<SimulationValue
-					dottedName={lodeomDottedName}
+					dottedName={dottedName}
 					isInfoMode={true}
 					round={false}
 				/>
 				<Spacing md />
-				<Répartition répartition={répartition} />
+				<Répartition dottedName={dottedName} répartition={répartition} />
 			</Condition>
 		</>
 	)

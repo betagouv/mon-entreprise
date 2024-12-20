@@ -1,21 +1,21 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import RépartitionValue from '@/components/RépartitionValue'
+import RépartitionValue from '@/components/RéductionDeCotisations/RépartitionValue'
 import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-
 import {
-	réductionGénéraleDottedName,
+	RéductionDottedName,
 	Répartition as RépartitionType,
-} from '../utils'
+} from '@/utils/réductionDeCotisations'
 
 type Props = {
+	dottedName: RéductionDottedName
 	répartition: RépartitionType
 }
 
-export default function Répartition({ répartition }: Props) {
+export default function Répartition({ dottedName, répartition }: Props) {
 	const { t } = useTranslation()
 
 	return (
@@ -33,7 +33,7 @@ export default function Répartition({ répartition }: Props) {
 							'pages.simulateurs.réduction-générale.répartition.retraite',
 							'IRC'
 						)}
-						idPrefix={`${réductionGénéraleDottedName} . imputation retraite complémentaire`.replace(
+						idPrefix={`${dottedName} . imputation retraite complémentaire`.replace(
 							/\s|\./g,
 							'_'
 						)}
@@ -46,7 +46,7 @@ export default function Répartition({ répartition }: Props) {
 							'pages.simulateurs.réduction-générale.répartition.urssaf',
 							'URSSAF'
 						)}
-						idPrefix={`${réductionGénéraleDottedName} . imputation sécurité sociale`.replace(
+						idPrefix={`${dottedName} . imputation sécurité sociale`.replace(
 							/\s|\./g,
 							'_'
 						)}
@@ -57,7 +57,7 @@ export default function Répartition({ répartition }: Props) {
 							'pages.simulateurs.réduction-générale.répartition.chômage',
 							'dont chômage'
 						)}
-						idPrefix={`${réductionGénéraleDottedName} . imputation chômage`.replace(
+						idPrefix={`${dottedName} . imputation chômage`.replace(
 							/\s|\./g,
 							'_'
 						)}

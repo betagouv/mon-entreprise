@@ -479,6 +479,12 @@ salarié . cotisations . exonérations . lodeom . montant:
         - lodeom . montant
         - T . sécurité sociale et chômage / T
 
+    imputation chômage:
+      non applicable si: lodeom . zone deux
+      produit:
+        - lodeom . montant
+        - chômage . employeur . taux / T
+
 salarié . cotisations . exonérations . JEI:
   question:
     variations:
