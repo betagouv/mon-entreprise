@@ -20,7 +20,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
-import { Options } from '../utils'
+import { Options } from '../pages/simulateurs/reduction-generale/utils'
 
 type Props = {
 	month: string
@@ -260,8 +260,8 @@ const HeuresSupplémentairesPopoverContent = () => (
 	<Trans i18nKey="pages.simulateurs.réduction-générale.options.heures-sup.popover">
 		<Body>
 			Le nombre d'heures supplémentaires et complémentaires est utilisé dans le
-			calcul de la réduction générale : la rémunération brute est comparée au
-			montant du SMIC majoré de ce nombre d'heures.
+			calcul de la réduction : la rémunération brute est comparée au montant du
+			SMIC majoré de ce nombre d'heures.
 		</Body>
 	</Trans>
 )
