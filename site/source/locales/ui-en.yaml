@@ -1455,20 +1455,10 @@ pages:
         title: Lodeom exemption
       month-by-month:
         caption: "Lodeom exemption month by month :"
-      options:
-        description: Adds fields to modulate employee activity
       recap:
-        T1: 1st quarter
-        T2: 2nd quarter
-        T3: 3rd quarter
-        T4: 4th quarter
-        caption: "Quarterly summary :"
-        header:
-          réduction: Calculated reduction
-          régularisation: Calculated regularization
-      répartition:
-        retraite: IRC
-        urssaf: URSSAF
+        code:
+          "462": code 462(€)
+          "684": code 684(€)
       shortname: Lodeom exemption
       tab:
         month: Monthly exemption
@@ -1558,9 +1548,11 @@ pages:
         T3: 3rd quarter
         T4: 4th quarter
         caption: "Quarterly summary :"
-        code671: code 671(€)
-        code801: code 801(€)
-        header: Calculated reduction
+        code:
+          "671": code 671(€)
+          "801": code 801(€)
+        header-réduction: Calculated reduction
+        header-régularisation: Calculated regularization
       régularisation:
         annuelle: Annual adjustment
         progressive: Progressive regularization

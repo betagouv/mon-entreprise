@@ -1,39 +1,28 @@
-import { DottedName } from 'modele-social'
-import { PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import RéductionBasique from '@/components/RéductionDeCotisations/RéductionBasique'
+import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import useYear from '@/components/utils/useYear'
-import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
-import { Situation } from '@/domaine/Situation'
-import { ajusteLaSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
-
-import RéductionGénéraleBasique from './Basique'
-import RéductionGénéraleMoisParMois from './MoisParMois'
 import {
-	getInitialRéductionGénéraleMoisParMois,
-	heuresComplémentairesDottedName,
-	heuresSupplémentairesDottedName,
+	getDataAfterOptionsChange,
+	getDataAfterRémunérationChange,
+	getDataAfterSituationChange,
+	getInitialRéductionMoisParMois,
 	MonthState,
 	Options,
-	reevaluateRéductionGénéraleMoisParMois,
+	réductionGénéraleDottedName,
 	RégularisationMethod,
 	rémunérationBruteDottedName,
-} from './utils'
+	SituationType,
+} from '@/utils/réductionDeCotisations'
 
-type SituationType = Situation & {
-	[heuresSupplémentairesDottedName]?: {
-		explanation: {
-			nodeValue: number
-		}
-	}
-	[heuresComplémentairesDottedName]?: {
-		valeur: number
-	}
-}
+import Warnings from './components/Warnings'
+import WarningSalaireTrans from './components/WarningSalaireTrans'
 
 export default function RéductionGénéraleSimulationGoals({
 	monthByMonth,
@@ -52,9 +41,14 @@ export default function RéductionGénéraleSimulationGoals({
 	const year = useYear()
 	const situation = useSelector(situationSelector) as SituationType
 	const previousSituation = useRef(situation)
+	const { t } = useTranslation()
 
 	const initializeRéductionGénéraleMoisParMoisData = useCallback(() => {
-		const data = getInitialRéductionGénéraleMoisParMois(year, engine)
+		const data = getInitialRéductionMoisParMois(
+			réductionGénéraleDottedName,
+			year,
+			engine
+		)
 		setData(data)
 	}, [engine, year])
 
@@ -67,112 +61,48 @@ export default function RéductionGénéraleSimulationGoals({
 		réductionGénéraleMoisParMoisData.length,
 	])
 
-	const getOptionsFromSituations = (
-		previousSituation: SituationType,
-		newSituation: SituationType
-	): Partial<Options> => {
-		const options = {} as Partial<Options>
-
-		const previousHeuresSupplémentaires =
-			previousSituation[heuresSupplémentairesDottedName]?.explanation.nodeValue
-		const newHeuresSupplémentaires =
-			newSituation[heuresSupplémentairesDottedName]?.explanation.nodeValue
-		if (newHeuresSupplémentaires !== previousHeuresSupplémentaires) {
-			options.heuresSupplémentaires = newHeuresSupplémentaires || 0
-		}
-
-		const previousHeuresComplémentaires =
-			previousSituation[heuresComplémentairesDottedName]?.valeur
-		const newHeuresComplémentaires =
-			newSituation[heuresComplémentairesDottedName]?.valeur
-		if (newHeuresComplémentaires !== previousHeuresComplémentaires) {
-			options.heuresComplémentaires = newHeuresComplémentaires || 0
-		}
-
-		return options
-	}
-
 	useEffect(() => {
 		setData((previousData) => {
-			if (!Object.keys(situation).length) {
-				return getInitialRéductionGénéraleMoisParMois(year, engine)
-			}
-
-			const newOptions = getOptionsFromSituations(
+			return getDataAfterSituationChange(
+				réductionGénéraleDottedName,
+				situation,
 				previousSituation.current,
-				situation
-			)
-
-			const updatedData = previousData.map((data) => {
-				return {
-					...data,
-					options: {
-						...data.options,
-						...newOptions,
-					},
-				}
-			}, [])
-
-			return reevaluateRéductionGénéraleMoisParMois(
-				updatedData,
-				engine,
+				previousData,
 				year,
-				régularisationMethod
+				régularisationMethod,
+				engine
 			)
 		})
 	}, [engine, situation, régularisationMethod, year])
-
-	const updateRémunérationBruteAnnuelle = (data: MonthState[]): void => {
-		const rémunérationBruteAnnuelle = data.reduce(
-			(total: number, monthState: MonthState) =>
-				total + monthState.rémunérationBrute,
-			0
-		)
-		dispatch(
-			ajusteLaSituation({
-				[rémunérationBruteDottedName]: {
-					valeur: rémunérationBruteAnnuelle,
-					unité: '€/an',
-				} as PublicodesExpression,
-			} as Record<DottedName, SimpleRuleEvaluation>)
-		)
-	}
 
 	const onRémunérationChange = (
 		monthIndex: number,
 		rémunérationBrute: number
 	) => {
 		setData((previousData) => {
-			const updatedData = [...previousData]
-			updatedData[monthIndex] = {
-				...updatedData[monthIndex],
+			return getDataAfterRémunérationChange(
+				réductionGénéraleDottedName,
+				monthIndex,
 				rémunérationBrute,
-			}
-
-			updateRémunérationBruteAnnuelle(updatedData)
-
-			return reevaluateRéductionGénéraleMoisParMois(
-				updatedData,
-				engine,
+				previousData,
 				year,
-				régularisationMethod
+				régularisationMethod,
+				engine,
+				dispatch
 			)
 		})
 	}
 
 	const onOptionsChange = (monthIndex: number, options: Options) => {
 		setData((previousData) => {
-			const updatedData = [...previousData]
-			updatedData[monthIndex] = {
-				...updatedData[monthIndex],
+			return getDataAfterOptionsChange(
+				réductionGénéraleDottedName,
+				monthIndex,
 				options,
-			}
-
-			return reevaluateRéductionGénéraleMoisParMois(
-				updatedData,
-				engine,
+				previousData,
 				year,
-				régularisationMethod
+				régularisationMethod,
+				engine
 			)
 		})
 	}
@@ -180,14 +110,34 @@ export default function RéductionGénéraleSimulationGoals({
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
 			{monthByMonth ? (
-				<RéductionGénéraleMoisParMois
+				<RéductionMoisParMois
+					dottedName={réductionGénéraleDottedName}
 					data={réductionGénéraleMoisParMoisData}
 					onRémunérationChange={onRémunérationChange}
 					onOptionsChange={onOptionsChange}
+					caption={t(
+						'pages.simulateurs.réduction-générale.month-by-month.caption',
+						'Réduction générale mois par mois :'
+					)}
+					warnings={<Warnings />}
+					warningCondition={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
+					warningTooltip={<WarningSalaireTrans />}
+					codeRéduction={t(
+						'pages.simulateurs.réduction-générale.recap.code.671',
+						'code 671(€)'
+					)}
+					codeRégularisation={t(
+						'pages.simulateurs.réduction-générale.recap.code.801',
+						'code 801(€)'
+					)}
 				/>
 			) : (
-				<RéductionGénéraleBasique
+				<RéductionBasique
+					dottedName={réductionGénéraleDottedName}
 					onUpdate={initializeRéductionGénéraleMoisParMoisData}
+					warnings={<Warnings />}
+					warningCondition={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
+					warningMessage={<WarningSalaireTrans />}
 				/>
 			)}
 		</SimulationGoals>

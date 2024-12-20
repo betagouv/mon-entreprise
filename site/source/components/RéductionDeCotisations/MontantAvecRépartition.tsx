@@ -1,50 +1,56 @@
-import { formatValue } from 'publicodes'
+import { formatValue, PublicodesExpression } from 'publicodes'
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
+import Répartition from '@/components/RéductionDeCotisations/Répartition'
 import { FlexCenter } from '@/design-system/global-style'
 import { SearchIcon, WarningIcon } from '@/design-system/icons'
 import { Tooltip } from '@/design-system/tooltip'
-
 import {
+	RéductionDottedName,
 	rémunérationBruteDottedName,
 	Répartition as RépartitionType,
-} from '../utils'
-import Répartition from './Répartition'
-import WarningSalaireTrans from './WarningSalaireTrans'
+} from '@/utils/réductionDeCotisations'
 
 type Props = {
 	id?: string
+	dottedName: RéductionDottedName
 	rémunérationBrute: number
-	lodeom: number
+	réduction: number
 	répartition: RépartitionType
 	displayedUnit: string
 	language: string
-	displayNull?: boolean
+	warningCondition?: PublicodesExpression
+	warningTooltip?: ReactNode
 	alignment?: 'center' | 'end'
 }
 
-export default function MontantRéduction({
+export default function MontantAvecRépartition({
 	id,
+	dottedName,
 	rémunérationBrute,
-	lodeom,
+	réduction,
 	répartition,
 	displayedUnit,
 	language,
-	displayNull = true,
+	warningCondition,
+	warningTooltip,
 	alignment = 'end',
 }: Props) {
 	const { t } = useTranslation()
 
-	const tooltip = <Répartition répartition={répartition} />
+	const tooltip = (
+		<Répartition dottedName={dottedName} répartition={répartition} />
+	)
 
-	return lodeom ? (
+	return réduction ? (
 		<StyledTooltip tooltip={tooltip}>
 			<FlexDiv id={id} $alignment={alignment}>
 				{formatValue(
 					{
-						nodeValue: lodeom,
+						nodeValue: réduction,
 					},
 					{
 						displayedUnit,
@@ -55,17 +61,17 @@ export default function MontantRéduction({
 			</FlexDiv>
 		</StyledTooltip>
 	) : (
-		displayNull && (
+		!!warningCondition && !!warningTooltip && (
 			<FlexDiv id={id} $alignment={alignment}>
 				{formatValue(0, { displayedUnit, language })}
 
 				<Condition
-					expression="salarié . cotisations . exonérations . lodeom . montant = 0"
+					expression={warningCondition}
 					contexte={{
 						[rémunérationBruteDottedName]: rémunérationBrute,
 					}}
 				>
-					<Tooltip tooltip={<WarningSalaireTrans />}>
+					<Tooltip tooltip={warningTooltip}>
 						<span className="sr-only">{t('Attention')}</span>
 						<StyledWarningIcon aria-label={t('Attention')} />
 					</Tooltip>
