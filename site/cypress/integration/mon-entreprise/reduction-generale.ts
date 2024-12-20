@@ -207,6 +207,7 @@ describe(
 		})
 
 		it('should handle incomplete months', function () {
+			cy.contains('Régularisation progressive').click()
 			cy.get(inputSelector).first().type('{selectall}1500')
 			cy.get('input[id="option-heures-sup-janvier"]').type('{selectall}5')
 			cy.get(
@@ -226,7 +227,7 @@ describe(
 
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-janvier'
-			).should('include.text', '479,10 €')
+			).should('include.text', '201,60 €')
 
 			cy.get(
 				'div[id="simulator-legend"] button[aria-describedby="options-description"]'
@@ -249,11 +250,23 @@ describe(
 			})
 			// Wait for values to update
 			// eslint-disable-next-line cypress/no-unnecessary-waiting
-			cy.wait(500)
-			cy.get('#recap-1er_trimestre-671').should('include.text', '602,88 €')
-			cy.get('#recap-2ème_trimestre-801').should('include.text', '-276,40 €')
-			cy.get('#recap-3ème_trimestre-671').should('include.text', '1 481,79 €')
-			cy.get('#recap-4ème_trimestre-671').should('include.text', '1 539,05 €')
+			cy.wait(1000)
+			cy.get('#recap-1er_trimestre-réduction').should(
+				'include.text',
+				'602,88 €'
+			)
+			cy.get('#recap-2ème_trimestre-régularisation').should(
+				'include.text',
+				'-276,40 €'
+			)
+			cy.get('#recap-3ème_trimestre-réduction').should(
+				'include.text',
+				'1 481,79 €'
+			)
+			cy.get('#recap-4ème_trimestre-réduction').should(
+				'include.text',
+				'1 539,05 €'
+			)
 		})
 
 		it('should be RGAA compliant', function () {

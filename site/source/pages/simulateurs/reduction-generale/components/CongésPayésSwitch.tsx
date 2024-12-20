@@ -9,12 +9,13 @@ import { Radio, ToggleGroup } from '@/design-system'
 import { FlexCenter } from '@/design-system/global-style'
 import { Body } from '@/design-system/typography/paragraphs'
 import { enregistreLaRéponse } from '@/store/actions/actions'
+import { réductionGénéraleDottedName } from '@/utils/réductionDeCotisations'
 
 export default function CongésPayésSwitch() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const dottedName =
-		'salarié . cotisations . exonérations . réduction générale . caisse de congés payés' as DottedName
+		`${réductionGénéraleDottedName} . caisse de congés payés` as DottedName
 	const engineCongésPayés = engine.evaluate(dottedName).nodeValue as boolean
 	const [currentCongésPayés, setCurrentCongésPayés] = useState(
 		engineCongésPayés ? 'oui' : 'non'

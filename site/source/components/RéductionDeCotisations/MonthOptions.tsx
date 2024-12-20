@@ -19,8 +19,7 @@ import { Strong } from '@/design-system/typography'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-
-import { Options } from '../pages/simulateurs/reduction-generale/utils'
+import { Options } from '@/utils/réductionDeCotisations'
 
 type Props = {
 	month: string
