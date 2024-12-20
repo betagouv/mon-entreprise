@@ -13,18 +13,17 @@ import {
 	getDataAfterRémunérationChange,
 	getDataAfterSituationChange,
 	getInitialRéductionMoisParMois,
+	lodeomDottedName,
 	MonthState,
 	Options,
-	réductionGénéraleDottedName,
 	RégularisationMethod,
-	rémunérationBruteDottedName,
 	SituationType,
 } from '@/utils/réductionDeCotisations'
 
 import Warnings from './components/Warnings'
 import WarningSalaireTrans from './components/WarningSalaireTrans'
 
-export default function RéductionGénéraleSimulationGoals({
+export default function LodeomSimulationGoals({
 	monthByMonth,
 	toggles,
 	legend,
@@ -37,34 +36,27 @@ export default function RéductionGénéraleSimulationGoals({
 }) {
 	const engine = useEngine()
 	const dispatch = useDispatch()
-	const [réductionGénéraleMoisParMoisData, setData] = useState<MonthState[]>([])
+	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>([])
 	const year = useYear()
 	const situation = useSelector(situationSelector) as SituationType
 	const previousSituation = useRef(situation)
 	const { t } = useTranslation()
 
-	const initializeRéductionGénéraleMoisParMoisData = useCallback(() => {
-		const data = getInitialRéductionMoisParMois(
-			réductionGénéraleDottedName,
-			year,
-			engine
-		)
+	const initializeLodeomMoisParMoisData = useCallback(() => {
+		const data = getInitialRéductionMoisParMois(lodeomDottedName, year, engine)
 		setData(data)
 	}, [engine, year])
 
 	useEffect(() => {
-		if (réductionGénéraleMoisParMoisData.length === 0) {
-			initializeRéductionGénéraleMoisParMoisData()
+		if (lodeomMoisParMoisData.length === 0) {
+			initializeLodeomMoisParMoisData()
 		}
-	}, [
-		initializeRéductionGénéraleMoisParMoisData,
-		réductionGénéraleMoisParMoisData.length,
-	])
+	}, [initializeLodeomMoisParMoisData, lodeomMoisParMoisData.length])
 
 	useEffect(() => {
 		setData((previousData) => {
 			return getDataAfterSituationChange(
-				réductionGénéraleDottedName,
+				lodeomDottedName,
 				situation,
 				previousSituation.current,
 				previousData,
@@ -81,7 +73,7 @@ export default function RéductionGénéraleSimulationGoals({
 	) => {
 		setData((previousData) => {
 			return getDataAfterRémunérationChange(
-				réductionGénéraleDottedName,
+				lodeomDottedName,
 				monthIndex,
 				rémunérationBrute,
 				previousData,
@@ -96,7 +88,7 @@ export default function RéductionGénéraleSimulationGoals({
 	const onOptionsChange = (monthIndex: number, options: Options) => {
 		setData((previousData) => {
 			return getDataAfterOptionsChange(
-				réductionGénéraleDottedName,
+				lodeomDottedName,
 				monthIndex,
 				options,
 				previousData,
@@ -111,32 +103,32 @@ export default function RéductionGénéraleSimulationGoals({
 		<SimulationGoals toggles={toggles} legend={legend}>
 			{monthByMonth ? (
 				<RéductionMoisParMois
-					dottedName={réductionGénéraleDottedName}
-					data={réductionGénéraleMoisParMoisData}
+					dottedName={lodeomDottedName}
+					data={lodeomMoisParMoisData}
 					onRémunérationChange={onRémunérationChange}
 					onOptionsChange={onOptionsChange}
 					caption={t(
-						'pages.simulateurs.réduction-générale.month-by-month.caption',
-						'Réduction générale mois par mois :'
+						'pages.simulateurs.lodeom.month-by-month.caption',
+						'Exonération Lodeom mois par mois :'
 					)}
 					warnings={<Warnings />}
-					warningCondition={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
+					warningCondition={`${lodeomDottedName} = 0`}
 					warningTooltip={<WarningSalaireTrans />}
 					codeRéduction={t(
-						'pages.simulateurs.réduction-générale.recap.code.671',
-						'code 671(€)'
+						'pages.simulateurs.lodeom.recap.code.462',
+						'code 462(€)'
 					)}
 					codeRégularisation={t(
-						'pages.simulateurs.réduction-générale.recap.code.801',
-						'code 801(€)'
+						'pages.simulateurs.lodeom.recap.code.684',
+						'code 684(€)'
 					)}
 				/>
 			) : (
 				<RéductionBasique
-					dottedName={réductionGénéraleDottedName}
-					onUpdate={initializeRéductionGénéraleMoisParMoisData}
+					dottedName={lodeomDottedName}
+					onUpdate={initializeLodeomMoisParMoisData}
 					warnings={<Warnings />}
-					warningCondition={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
+					warningCondition={`${lodeomDottedName} = 0`}
 					warningMessage={<WarningSalaireTrans />}
 				/>
 			)}
