@@ -1,9 +1,9 @@
+import { SimulateurCard } from '@/components/SimulateurCard'
 import { Item } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Select } from '@/design-system/field/Select'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 
-import { SimulateurCard } from '../../../components/SimulateurCard'
 import { getFilter } from '../StatsPage'
 import { Filter } from '../types'
 

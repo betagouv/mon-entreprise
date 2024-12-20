@@ -22,6 +22,7 @@ import { eurlConfig } from '../simulateurs/eurl/config'
 import { expertComptableConfig } from '../simulateurs/expert-comptable/config'
 import { impôtSociétéConfig } from '../simulateurs/impot-societe/config'
 import { indépendantConfig } from '../simulateurs/indépendant/config'
+import { lodeomConfig } from '../simulateurs/lodeom/config'
 import { médecinConfig } from '../simulateurs/médecin/config'
 import { pamcConfig } from '../simulateurs/pamc/config'
 import { pharmacienConfig } from '../simulateurs/pharmacien/config'
@@ -63,6 +64,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...impôtSociétéConfig(params),
 		...cipavConfig(params),
 		...réductionGénéraleConfig(params),
+		...lodeomConfig(params),
 
 		// assistants:
 		...choixStatutJuridiqueConfig(params),

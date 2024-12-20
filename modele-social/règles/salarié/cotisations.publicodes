@@ -408,7 +408,6 @@ salarié . cotisations . exonérations . lodeom . montant:
 
   avec:
     coefficient:
-      privé: oui
       variations:
         - si: cotisations . assiette <= seuil inflexion * temps de travail . SMIC
           alors: T
@@ -471,12 +470,10 @@ salarié . cotisations . exonérations . lodeom . montant:
           alors: 4.5
 
     imputation retraite complémentaire:
-      privé: oui
       non applicable si: lodeom . zone deux
       valeur: lodeom . montant - imputation sécurité sociale
 
     imputation sécurité sociale:
-      privé: oui
       non applicable si: lodeom . zone deux
       produit:
         - lodeom . montant

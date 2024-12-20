@@ -1447,6 +1447,43 @@ pages:
         gains (sale of securities, sale of patents). These regimes are not
         included in the simulator.</5>
       title: Corporate tax simulator
+    lodeom:
+      legend: Employee's gross salary and applicable Lodeom exemption
+      meta:
+        description: Estimated amount of Lodeom exemption. This exemption applies, under
+          certain conditions, to overseas employees.
+        title: Lodeom exemption
+      month-by-month:
+        caption: "Lodeom exemption month by month :"
+      options:
+        description: Adds fields to modulate employee activity
+      recap:
+        T1: 1st quarter
+        T2: 2nd quarter
+        T3: 3rd quarter
+        T4: 4th quarter
+        caption: "Quarterly summary :"
+        header:
+          réduction: Calculated reduction
+          régularisation: Calculated regularization
+      répartition:
+        retraite: IRC
+        urssaf: URSSAF
+      shortname: Lodeom exemption
+      tab:
+        month: Monthly exemption
+        month-by-month: Month-by-month exemption
+        year: Annual exemption
+      title: Lodeom exemption simulator
+      warnings:
+        JEI: The Lodeom exemption cannot be combined with the Young Innovative Company
+          (JEI) exemption.
+        salaire:
+          zone-un:
+            barème-compétitivité: The competitiveness scale only applies to salaries below
+              2.2 SMIC. This means, for 2024, a total remuneration not exceeding
+              <1>€3,964</1> gross per month.
+        stage: The Lodeom exemption does not apply to internship bonuses.
     médecin:
       meta:
         description: Calculation of net income after deduction of contributions, based
@@ -1493,8 +1530,8 @@ pages:
         description: Adds fields to modulate employee activity
         heures-sup:
           popover: "<0>The number of hours of overtime and complementary work is used to
-            calculate the general reduction: gross remuneration is compared with
-            the SMIC increased by this number of hours.</0>"
+            calculate the reduction: gross remuneration is compared with the
+            SMIC increased by this number of hours.</0>"
         label:
           heures-complémentaires: Number of overtime hours
           heures-supplémentaires: Number of overtime hours
