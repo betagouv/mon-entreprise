@@ -64,6 +64,10 @@ export const Ul = styled.ul<ListProps>`
 		background-color: inherit;
 		margin-bottom: ${({ theme }) => theme.spacings.xs};
 	}
+	> ${Li} ${Li}::before {
+		font-size: 60%;
+		color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
 `
 
 export const Ol = styled.ol<ListProps>`
