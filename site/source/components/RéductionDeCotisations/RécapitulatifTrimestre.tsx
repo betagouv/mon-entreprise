@@ -2,15 +2,17 @@ import { sumAll } from 'effect/Number'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import MontantAvecRépartition from '@/components/RéductionDeCotisations/MontantAvecRépartition'
 import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
-
-import { MonthState } from '../utils'
-import MontantRéduction from './MontantRéduction'
+import { MonthState, RéductionDottedName } from '@/utils/réductionDeCotisations'
 
 type Props = {
+	dottedName: RéductionDottedName
 	label: string
 	data: MonthState[]
+	codeRéduction?: string
+	codeRégularisation?: string
 	mobileVersion?: boolean
 }
 
@@ -20,8 +22,11 @@ export type RémunérationBruteInput = {
 }
 
 export default function RécapitulatifTrimestre({
+	dottedName,
 	label,
 	data,
+	codeRéduction,
+	codeRégularisation,
 	mobileVersion = false,
 }: Props) {
 	const { t, i18n } = useTranslation()
@@ -35,28 +40,26 @@ export default function RécapitulatifTrimestre({
 		IRC: sumAll(
 			data.map(
 				(monthData) =>
-					monthData.réductionGénérale.répartition.IRC +
+					monthData.réduction.répartition.IRC +
 					monthData.régularisation.répartition.IRC
 			)
 		),
 		Urssaf: sumAll(
 			data.map(
 				(monthData) =>
-					monthData.réductionGénérale.répartition.Urssaf +
+					monthData.réduction.répartition.Urssaf +
 					monthData.régularisation.répartition.Urssaf
 			)
 		),
 		chômage: sumAll(
 			data.map(
 				(monthData) =>
-					monthData.réductionGénérale.répartition.chômage +
+					monthData.réduction.répartition.chômage +
 					monthData.régularisation.répartition.chômage
 			)
 		),
 	}
-	let réduction = sumAll(
-		data.map((monthData) => monthData.réductionGénérale.value)
-	)
+	let réduction = sumAll(data.map((monthData) => monthData.réduction.value))
 	let régularisation = sumAll(
 		data.map((monthData) => monthData.régularisation.value)
 	)
@@ -68,31 +71,31 @@ export default function RécapitulatifTrimestre({
 		réduction = 0
 	}
 
-	const Montant671 = () => {
+	const MontantRéduction = () => {
 		return (
-			<MontantRéduction
-				id={`recap-${label.replace(/\s|\./g, '_')}-671`}
+			<MontantAvecRépartition
+				id={`recap-${label.replace(/\s|\./g, '_')}-réduction`}
+				dottedName={dottedName}
 				rémunérationBrute={rémunération}
-				réductionGénérale={réduction}
+				réduction={réduction}
 				répartition={répartition}
 				displayedUnit={displayedUnit}
 				language={language}
-				displayNull={false}
 				alignment="center"
 			/>
 		)
 	}
 
-	const Montant801 = () => {
+	const MontantRégularisation = () => {
 		return (
-			<MontantRéduction
-				id={`recap-${label.replace(/\s|\./g, '_')}-801`}
+			<MontantAvecRépartition
+				id={`recap-${label.replace(/\s|\./g, '_')}-régularisation`}
+				dottedName={dottedName}
 				rémunérationBrute={rémunération}
-				réductionGénérale={régularisation}
+				réduction={régularisation}
 				répartition={répartition}
 				displayedUnit={displayedUnit}
 				language={language}
-				displayNull={false}
 				alignment="center"
 			/>
 		)
@@ -105,19 +108,20 @@ export default function RécapitulatifTrimestre({
 				<Grid item>
 					<StyledBody>
 						{t(
-							'pages.simulateurs.réduction-générale.recap.header',
+							'pages.simulateurs.réduction-générale.recap.header-réduction',
 							'Réduction calculée'
 						)}
-						<br />
-						{t(
-							'pages.simulateurs.réduction-générale.recap.code671',
-							'code 671(€)'
+						{codeRéduction && (
+							<>
+								<br />
+								{codeRéduction}
+							</>
 						)}
 					</StyledBody>
 				</Grid>
 				<Grid item>
 					<StyledBody>
-						<Montant671 />
+						<MontantRéduction />
 					</StyledBody>
 				</Grid>
 			</GridContainer>
@@ -126,19 +130,20 @@ export default function RécapitulatifTrimestre({
 				<Grid item>
 					<StyledBody>
 						{t(
-							'pages.simulateurs.réduction-générale.recap.header',
-							'Réduction calculée'
+							'pages.simulateurs.réduction-générale.recap.header-régularisation',
+							'Régularisation calculée'
 						)}
-						<br />
-						{t(
-							'pages.simulateurs.réduction-générale.recap.code801',
-							'code 801(€)'
+						{codeRégularisation && (
+							<>
+								<br />
+								{codeRégularisation}
+							</>
 						)}
 					</StyledBody>
 				</Grid>
 				<Grid item>
 					<StyledBody>
-						<Montant801 />
+						<MontantRégularisation />
 					</StyledBody>
 				</Grid>
 			</GridContainer>
@@ -147,10 +152,10 @@ export default function RécapitulatifTrimestre({
 		<tr>
 			<th scope="row">{label}</th>
 			<td>
-				<Montant671 />
+				<MontantRéduction />
 			</td>
 			<td>
-				<Montant801 />
+				<MontantRégularisation />
 			</td>
 		</tr>
 	)

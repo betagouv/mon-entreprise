@@ -1,9 +1,11 @@
 import { PublicodesExpression } from 'publicodes'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import NumberInput from '@/components/conversation/NumberInput'
+import MontantAvecRépartition from '@/components/RéductionDeCotisations/MontantAvecRépartition'
+import MonthOptions from '@/components/RéductionDeCotisations/MonthOptions'
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Button } from '@/design-system/buttons'
@@ -11,36 +13,36 @@ import { FlexCenter } from '@/design-system/global-style'
 import { RotatingChevronIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
-
 import {
 	MonthState,
 	Options,
+	RéductionDottedName,
 	réductionGénéraleDottedName,
 	rémunérationBruteDottedName,
-} from '../utils'
-import MontantRéduction from './MontantRéduction'
-import MonthOptions from './MonthOptions'
+	RémunérationBruteInput,
+} from '@/utils/réductionDeCotisations'
 
 type Props = {
+	dottedName: RéductionDottedName
 	monthName: string
 	data: MonthState
 	index: number
 	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
 	onOptionsChange: (monthIndex: number, options: Options) => void
+	warningCondition: PublicodesExpression
+	warningTooltip: ReactNode
 	mobileVersion?: boolean
 }
 
-export type RémunérationBruteInput = {
-	unité: string
-	valeur: number
-}
-
-export default function RéductionGénéraleMois({
+export default function RéductionMois({
+	dottedName,
 	monthName,
 	data,
 	index,
 	onRémunérationChange,
 	onOptionsChange,
+	warningCondition,
+	warningTooltip,
 	mobileVersion = false,
 }: Props) {
 	const { t, i18n } = useTranslation()
@@ -52,7 +54,7 @@ export default function RéductionGénéraleMois({
 	const RémunérationInput = () => {
 		// TODO: enlever les 4 premières props après résolution de #3123
 		const ruleInputProps = {
-			dottedName: rémunérationBruteDottedName,
+			dottedName,
 			suggestions: {},
 			description: undefined,
 			question: undefined,
@@ -109,35 +111,32 @@ export default function RéductionGénéraleMois({
 		)
 	}
 
-	const MontantRéductionGénérale = () => {
+	const MontantRéduction = () => {
 		return (
-			<MontantRéduction
-				id={`${réductionGénéraleDottedName.replace(
-					/\s|\./g,
-					'_'
-				)}-${monthName}`}
+			<MontantAvecRépartition
+				id={`${dottedName.replace(/\s|\./g, '_')}-${monthName}`}
+				dottedName={dottedName}
 				rémunérationBrute={data.rémunérationBrute}
-				réductionGénérale={data.réductionGénérale.value}
-				répartition={data.réductionGénérale.répartition}
+				réduction={data.réduction.value}
+				répartition={data.réduction.répartition}
 				displayedUnit={displayedUnit}
 				language={language}
+				warningCondition={warningCondition}
+				warningTooltip={warningTooltip}
 			/>
 		)
 	}
 
 	const MontantRégularisation = () => {
 		return (
-			<MontantRéduction
-				id={`${réductionGénéraleDottedName.replace(
-					/\s|\./g,
-					'_'
-				)}__régularisation-${monthName}`}
+			<MontantAvecRépartition
+				id={`${dottedName.replace(/\s|\./g, '_')}__régularisation-${monthName}`}
+				dottedName={dottedName}
 				rémunérationBrute={data.rémunérationBrute}
-				réductionGénérale={data.régularisation.value}
+				réduction={data.régularisation.value}
 				répartition={data.régularisation.répartition}
 				displayedUnit={displayedUnit}
 				language={language}
-				displayNull={false}
 			/>
 		)
 	}
@@ -172,18 +171,20 @@ export default function RéductionGénéraleMois({
 
 			<GridContainer container spacing={2}>
 				<Grid item>
-					<RuleLink dottedName={réductionGénéraleDottedName} />
+					<RuleLink dottedName={dottedName} />
 				</Grid>
 				<Grid item>
 					<StyledBody>
-						<MontantRéductionGénérale />
+						<MontantRéduction />
 					</StyledBody>
 				</Grid>
 			</GridContainer>
 
 			<GridContainer container spacing={2}>
 				<Grid item>
-					<RuleLink dottedName="salarié . cotisations . exonérations . réduction générale . régularisation" />
+					<RuleLink
+						dottedName={`${réductionGénéraleDottedName} . régularisation`}
+					/>
 				</Grid>
 				<Grid item>
 					<StyledBody>
@@ -203,7 +204,7 @@ export default function RéductionGénéraleMois({
 					</InputContainer>
 				</td>
 				<td>
-					<MontantRéductionGénérale />
+					<MontantRéduction />
 				</td>
 				<td>
 					<MontantRégularisation />

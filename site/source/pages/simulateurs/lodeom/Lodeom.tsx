@@ -9,31 +9,24 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
-import CongésPayésSwitch from './components/CongésPayésSwitch'
-import RéductionGénéraleSimulationGoals from './Goals'
+import LodeomSimulationGoals from './Goals'
 
-export default function RéductionGénéraleSimulation() {
+export default function LodeomSimulation() {
 	const { t } = useTranslation()
 	const [monthByMonth, setMonthByMonth] = useState(false)
 	const periods = [
 		{
-			label: t(
-				'pages.simulateurs.réduction-générale.tab.month',
-				'Réduction mensuelle'
-			),
+			label: t('pages.simulateurs.lodeom.tab.month', 'Exonération mensuelle'),
 			unit: '€/mois',
 		},
 		{
-			label: t(
-				'pages.simulateurs.réduction-générale.tab.year',
-				'Réduction annuelle'
-			),
+			label: t('pages.simulateurs.lodeom.tab.year', 'Exonération annuelle'),
 			unit: '€/an',
 		},
 		{
 			label: t(
-				'pages.simulateurs.réduction-générale.tab.month-by-month',
-				'Réduction mois par mois'
+				'pages.simulateurs.lodeom.tab.month-by-month',
+				'Exonération mois par mois'
 			),
 			unit: '€',
 		},
@@ -48,12 +41,12 @@ export default function RéductionGénéraleSimulation() {
 	return (
 		<>
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
-				<SimulateurWarning simulateur="réduction-générale" />
-				<RéductionGénéraleSimulationGoals
+				<SimulateurWarning simulateur="lodeom" />
+				<LodeomSimulationGoals
 					monthByMonth={monthByMonth}
 					legend={t(
-						'pages.simulateurs.réduction-générale.legend',
-						'Salaire brut du salarié et réduction générale applicable'
+						'pages.simulateurs.lodeom.legend',
+						'Rémunération brute du salarié et exonération Lodeom applicable'
 					)}
 					toggles={
 						<>
@@ -62,7 +55,6 @@ export default function RéductionGénéraleSimulation() {
 								setRégularisationMethod={setRégularisationMethod}
 							/>
 							<EffectifSwitch />
-							<CongésPayésSwitch />
 							<PeriodSwitch periods={periods} onSwitch={onPeriodSwitch} />
 						</>
 					}

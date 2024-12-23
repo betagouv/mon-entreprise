@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 
 import LectureGuide from '@/components/Simulation/LectureGuide'
 import { Grid } from '@/design-system/layout'
-import { Body } from '@/design-system/typography/paragraphs'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 
 type Props = {
 	value: number
@@ -26,19 +26,19 @@ export default function RépartitionValue({ value, label, idPrefix }: Props) {
 				spacing={2}
 			>
 				<Grid item md="auto" sm={9} xs={8}>
-					<StyledBody id={`${idPrefix}-label`}>{label}</StyledBody>
+					<StyledSmallBody id={`${idPrefix}-label`}>{label}</StyledSmallBody>
 				</Grid>
 
 				<LectureGuide />
 
 				<Grid item>
-					<StyledBody id={`${idPrefix}-value`}>
+					<StyledSmallBody id={`${idPrefix}-value`}>
 						{formatValue(value, {
 							displayedUnit: '€',
 							precision: 2,
 							language,
 						})}
-					</StyledBody>
+					</StyledSmallBody>
 				</Grid>
 			</Grid>
 		</StyledValue>
@@ -55,7 +55,7 @@ const StyledValue = styled.div`
 	}
 `
 
-const StyledBody = styled(Body)`
+const StyledSmallBody = styled(SmallBody)`
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	margin: 0;
 	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm} 0 0`};

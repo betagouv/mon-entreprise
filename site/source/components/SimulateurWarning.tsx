@@ -3,6 +3,7 @@ import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import Warning from '@/components/ui/WarningBlock'
+import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -212,13 +213,44 @@ export default function SimulateurWarning({
 					</Body>
 				</>
 			)}
+			{simulateur === 'lodeom' && (
+				<Trans i18nKey="simulateurs.warning.lodeom">
+					<Body>
+						<Emoji emoji="🚧" />{' '}
+						<Strong>Ce simulateur est en cours de développement.</Strong>{' '}
+						<Emoji emoji="🚧" /> Pour une version complète, utilisez{' '}
+						<Link
+							aria-label="Estimateur d'exonération Lodeom sur urssaf.fr, nouvelle fenêtre"
+							href="https://www.urssaf.fr/accueil/outils-documentation/simulateurs/estimateur-exoneration-lodeom.html"
+						>
+							le simulateur d'urssaf.fr.
+						</Link>
+					</Body>
+					<Body>
+						Ce simulateur calcule l'exonération Lodeom uniquement pour :
+					</Body>
+					<Ul>
+						<StyledLi>
+							la <Strong>Guadeloupe</Strong>, la <Strong>Guyane</Strong>, la{' '}
+							<Strong>Martinique</Strong> et <Strong>la Réunion</Strong> ;
+						</StyledLi>
+						<StyledLi>
+							le <Strong>barème compétitivité</Strong>.
+						</StyledLi>
+					</Ul>
+					<Body>
+						<Emoji emoji="⚠️" /> Les taux et répartitions de cotisations
+						dérogatoires ne sont pas pris en compte.
+					</Body>
+				</Trans>
+			)}
 			<Body>
 				<Trans i18nKey="simulateurs.warning.general">
 					<Strong>Les calculs sont indicatifs.</Strong> Ils sont faits à partir
 					des éléments que vous avez saisis et des éléments réglementaires
 					applicables, mais ils ne tiennent pas compte de l'ensemble de votre
 					situation. Ils ne se substituent pas aux décomptes réels de l’Urssaf,
-					de l'administration fiscale ou de toute autre organisme.
+					de l'administration fiscale ou de tout autre organisme.
 				</Trans>
 			</Body>
 		</Warning>
