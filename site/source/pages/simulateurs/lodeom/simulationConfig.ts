@@ -29,6 +29,10 @@ export const configRéductionGénérale: SimulationConfig = {
 			},
 		],
 		'liste noire': [
+			'établissement . commune',
+			'salarié . cotisations . exonérations . lodeom . zone un . barème compétitivité renforcée',
+			'salarié . cotisations . exonérations . lodeom . zone un . barème innovation et croissance',
+			'salarié . cotisations . exonérations . lodeom . zone deux . barème compétitivité',
 			'entreprise . salariés . effectif . seuil',
 			'salarié . contrat . CDD . motif',
 			'salarié . rémunération . primes . activité . base',
@@ -41,8 +45,5 @@ export const configRéductionGénérale: SimulationConfig = {
 		dirigeant: 'non',
 		'entreprise . catégorie juridique': "''",
 		'entreprise . imposition': 'non',
-		'salarié . cotisations . exonérations . lodeom . zone un': "'oui'",
-		'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-			"'barème compétitivité'",
 	},
 }

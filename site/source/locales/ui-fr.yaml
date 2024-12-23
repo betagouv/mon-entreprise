@@ -146,6 +146,7 @@ Graphique statistiques détaillés de la satisfaction, présence d’une alterna
 Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image:
   Graphique statistiques détaillés du nombre visites par jour, présence d’une
   alternative accessible après l’image
+Guadeloupe, Guyane, Martinique, La Réunion: Guadeloupe, Guyane, Martinique, La Réunion
 Habituellement: Habituellement
 Impôt: Impôt
 Impôt au barème: Impôt au barème
@@ -295,6 +296,7 @@ Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Répondez à quelques questions additionnelles afin de préciser votre résultat.
 Résultat fiscal: Résultat fiscal
 Réussite: Réussite
+Saint-Barthélémy, Saint-Martin: Saint-Barthélémy, Saint-Martin
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
 Salaire brut mensuel: Salaire brut mensuel
@@ -400,6 +402,7 @@ Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié<
   "Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il
   existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>,
   <6>conjoint associé</6> ou <9>conjoint salarié</9>)."
+Zone de l'entreprise: Zone de l'entreprise
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité

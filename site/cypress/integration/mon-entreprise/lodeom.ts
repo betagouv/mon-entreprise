@@ -16,6 +16,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should allow to change time period', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
 		cy.contains('Barème de compétitivité').click()
 		cy.contains('Exonération annuelle').click()
 		cy.get(inputSelector).first().type('{selectall}42000')
@@ -79,7 +80,44 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	it('should allow to select a zone', function () {
+		cy.contains('Saint-Barthélémy, Saint-Martin').click()
+		cy.get(
+			'#salarié___cotisations___exonérations___lodeom___zone_deux___barèmes'
+		)
+			.contains('Barème pour les employeurs de moins de 11 salariés')
+			.click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '530,25 €')
+
+		cy.get(
+			'#salarié___cotisations___exonérations___lodeom___zone_deux___barèmes'
+		)
+			.contains("Barème d'exonération sectorielle")
+			.click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '350,35 €')
+
+		cy.get(
+			'#salarié___cotisations___exonérations___lodeom___zone_deux___barèmes'
+		)
+			.contains("Barème d'exonération renforcée")
+			.click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '644 €')
+	})
+
+>>>>>>> 85d9bc4b0 (feat(lodeom): ajout de la sélection de zone)
 	it('should display a custom warning for a remuneration too high', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
 		cy.get(inputSelector).first().type('{selectall}6500')
 
 		cy.get('div[id="simulator-legend"]').should(
@@ -282,6 +320,18 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 
 		cy.get('@recapTable').should('include.text', 'code 473')
 		cy.get('@recapTable').should('include.text', 'code 685')
+
+		cy.contains('Saint-Barthélémy, Saint-Martin').click()
+
+		cy.get('@recapTable').should('include.text', 'code 688')
+
+		cy.contains("Barème d'exonération sectorielle").click()
+
+		cy.get('@recapTable').should('include.text', 'code 686')
+
+		cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+
+		cy.get('@recapTable').should('include.text', 'code 687')
 	})
 
 	it('should be RGAA compliant', function () {

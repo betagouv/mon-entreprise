@@ -9806,6 +9806,197 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - la desserte intérieure de ces départements ou collectivités.
       titre.en: '[automatic] Sector exemption scale'
       titre.fr: Barème d'exonération sectorielle
+    barèmes:
+      avec:
+        barème moins de 11 salariés:
+          description.en: >
+            [automatic] The exemption applies to employers with <strong>fewer
+            than 11 employees</strong>.
+
+
+            In addition, employers may also be eligible for this exemption if, although they meet the conditions
+
+            the conditions to benefit from the sectoral scale without headcount criteria, choose to opt for this
+
+            this more favorable exemption, because they have fewer than 11 employees.
+          description.fr: >
+            L’exonération est applicable aux employeurs occupant <strong>moins
+            de 11 salariés</strong>.
+
+
+            Par ailleurs, peuvent également être éligibles à cette exonération les employeurs qui, bien que remplissant
+
+            les conditions pour bénéficier du barème sectoriel sans critère d’effectif, choisissent d’opter pour
+
+            cette exonération, plus favorable, car elles ont moins de 11 salariés.
+          titre.en: '[automatic] Scale for employers with fewer than 11 employees'
+          titre.fr: Barème pour les employeurs de moins de 11 salariés
+        barème renforcé:
+          description.en: >
+            [automatic] To qualify for the enhanced exemption scale, employers
+            must :
+
+            - have <strong>fewer than 250 employees</strong>,
+
+            - have annual sales <strong>of less than €50 million</strong>
+
+            - and, in the case of employers based in <strong>Saint-Martin</strong>, be subject to an automatic or optional
+
+            a <strong>real tax regime</strong>.
+
+
+            In addition, the employer must meet <strong>at least one of the</strong> following <strong>conditions</strong>:
+
+            - either fall within one of the business sectors eligible for the income tax reduction available to
+
+            taxpayers domiciled in France who have made new productive investments in overseas France
+
+            (provided for in article 199 undecies B of the French General Tax Code) ;
+
+            - carry out one of the following activities
+              - accounting ;
+              - business consulting ;
+              - engineering or technical studies for companies;
+              - research and development
+              - information and communication technologies.
+
+            The employer must <strong>also</strong> meet <strong>at least one of the</strong> following <strong>conditions</strong>:
+
+            - either belong to one of the following <strong>sectors</strong>:
+              - 🔬 research and development;
+              - 🖥️ information and communication technologies;
+              - 📷 tourism, including related leisure activities;
+              - 🌱 agronutrition;
+              - 🌳 environment ;
+              - 🔋 renewable energies;
+            - or benefit from the <strong>"inward processing" regime.</strong>
+          description.fr: >
+            Pour bénéficier du barème d'exonération renforcée, les employeurs
+            doivent :
+
+            - employer <strong>moins de 250 salariés</strong>,
+
+            - réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>
+
+            - et, pour ceux installés à <strong>Saint-Martin</strong>, être soumis de plein droit ou sur option à
+
+            un <strong>régime réel d’imposition</strong>.
+
+
+            Par ailleurs, l'employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
+
+            - soit relever de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
+
+            contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
+
+            (prévue à l’article 199 undecies B du code général des impôts) ;
+
+            - soit exercer une des activités suivantes :
+              - comptabilité ;
+              - conseil aux entreprises ;
+              - ingénierie ou études techniques à destination des entreprises ;
+              - recherche et développement
+              - technologies de l’information et de la communication.
+
+            L'employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
+
+            - soit relever d'un des <strong>secteurs</strong> suivants :
+              - 🔬 recherche et développement ;
+              - 🖥️ technologies de l’information et de la communication ;
+              - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+              - 🌱 agronutrition ;
+              - 🌳 environnement ;
+              - 🔋 énergies renouvelables ;
+            - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
+          titre.en: '[automatic] Reinforced exemption scale'
+          titre.fr: Barème d'exonération renforcée
+        barème sectoriel:
+          description.en: >
+            [automatic] The exemption applies to employers, regardless of their
+            workforce, in one of the following business sectors
+
+            eligible for the "Lodeom" exemption scheme:
+
+            - 🔬 research and development ;
+
+            - 📷 tourism, including related leisure activities;
+
+            - 🛏️ hotels;
+
+            - 🌱 agronutrition ;
+
+            - 🌳 environment ;
+
+            - 🔋 renewable energies;
+
+            - 🚜 agriculture (including agricultural cooperatives and sociétés d'intérêt collectif agricoles
+
+            and their unions as well as maritime cooperatives and their unions);
+
+            - 🎣 fishing, marine cultures and aquaculture;
+
+            - 🏗 construction and public works
+
+            - 🍴 catering ;
+
+            - 📰 press ;
+
+            - 🎥 audiovisual production.
+
+            - ⛵ river or sea transport for employers providing:
+              - sea or river services to several points in Guadeloupe, French Guiana, Martinique, Réunion, Saint-Barthélemy or Saint-Martin;
+              - connections between ports in these departments or communities;
+              - between the ports of Réunion and Mayotte.
+            - ✈️ air transport for employers providing :
+              - between mainland France and Guadeloupe, French Guiana, Martinique, Réunion, Saint-Martin or Saint-Barthélemy;
+              - between these departments or communities and between Réunion and Mayotte;
+              - domestic services within these departments or communities.
+          description.fr: >
+            L’exonération est applicable aux employeurs, quel que soit leur
+            effectif, relevant d’un des secteurs d’activité
+
+            éligibles au dispositif d’exonération « Lodeom » :
+
+            - 🔬 recherche et développement ;
+
+            - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+
+            - 🛏️ hôtellerie ;
+
+            - 🌱 agronutrition ;
+
+            - 🌳 environnement ;
+
+            - 🔋 énergies renouvelables ;
+
+            - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
+
+            et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+
+            - 🎣 pêche, cultures marines et aquaculture ;
+
+            - 🏗 bâtiment et travaux publics
+
+            - 🍴 restauration ;
+
+            - 📰 presse ;
+
+            - 🎥 production audiovisuelle.
+
+            - ⛵ transport fluvial ou maritime pour les employeurs assurant :
+              - la desserte maritime ou fluviale de plusieurs points de la Guadeloupe, de la Guyane, de la Martinique, de La Réunion, de Saint-Barthélemy ou de Saint-Martin ;
+              - la liaison entre les ports de ces départements ou collectivités ;
+              - la liaison entre les ports de la Réunion et de Mayotte.
+            - ✈️ transport aérien pour les employeurs assurant :
+              - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
+              - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
+              - la desserte intérieure de ces départements ou collectivités.
+          titre.en: '[automatic] Sector exemption scale'
+          titre.fr: Barème d'exonération sectorielle
+      question.en: '[automatic] What scale would you like to apply?'
+      question.fr: Quel barème souhaitez-vous appliquer ?
+      titre.en: '[automatic] scales'
+      titre.fr: barèmes
   titre.en: '[automatic] Saint-Barthélémy, Saint-Martin'
   titre.fr: Saint-Barthélémy, Saint-Martin
 salarié . cotisations . exonérations . lodeom . zone un:
