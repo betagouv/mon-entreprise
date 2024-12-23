@@ -254,6 +254,23 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		)
 	})
 
+	it('should display code in recap table based on scale', function () {
+		cy.contains('Récapitulatif trimestriel').next().as('recapTable')
+
+		cy.get('@recapTable').should('include.text', 'code 462')
+		cy.get('@recapTable').should('include.text', 'code 684')
+
+		cy.contains('Barème de compétitivité renforcée').click()
+
+		cy.get('@recapTable').should('include.text', 'code 463')
+		cy.get('@recapTable').should('include.text', 'code 538')
+
+		cy.contains("Barème d'innovation et croissance").click()
+
+		cy.get('@recapTable').should('include.text', 'code 473')
+		cy.get('@recapTable').should('include.text', 'code 685')
+	})
+
 	it('should be RGAA compliant', function () {
 		cy.contains('Exonération mensuelle').click()
 		checkA11Y()
