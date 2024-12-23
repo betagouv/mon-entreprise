@@ -43,6 +43,7 @@ export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {
 		nextSteps: ['indépendant', 'comparaison-statuts'],
 		path: sitePaths.simulateurs['auto-entrepreneur'],
 		simulation: configAutoEntrepreneur,
+		codesCatégorieJuridique: ['1000'],
 		component: AutoEntrepreneur,
 		seoExplanations: SeoExplanations,
 	} as const)

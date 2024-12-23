@@ -30,6 +30,7 @@ export function avocatConfig({ t, sitePaths }: SimulatorsDataParams) {
 		},
 		path: sitePaths.simulateurs['profession-libérale'].avocat,
 		simulation: configAvocat,
+		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: IndépendantPLSimulation,
 	} as const)
 }
