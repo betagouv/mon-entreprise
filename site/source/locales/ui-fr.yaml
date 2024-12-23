@@ -1545,15 +1545,15 @@ pages:
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
           est applicable, sous conditions, aux salariés d'Outre-mer.
-        title: Éxonération Lodeom
+        title: Exonération Lodeom
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
-      shortname: Éxonération Lodeom
+      shortname: Exonération Lodeom
       tab:
         month: Exonération mensuelle
         month-by-month: Exonération mois par mois
         year: Exonération annuelle
-      title: Simulateur d'éxonération Lodeom
+      title: Simulateur d'exonération Lodeom
       warnings:
         JEI: L'exonération Lodeom n'est pas cumulable avec l'exonération Jeune
           Entreprise Innovante (JEI).
