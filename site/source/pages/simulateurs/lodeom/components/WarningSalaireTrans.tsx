@@ -1,9 +1,9 @@
 import { Trans } from 'react-i18next'
 
-import { useBaremeLodeom } from '@/hooks/useBaremeLodeom'
+import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 
 export default function WarningSalaireTrans() {
-	const { currentBarème } = useBaremeLodeom()
+	const { currentBarème } = useBarèmeLodeom()
 
 	return (
 		<>

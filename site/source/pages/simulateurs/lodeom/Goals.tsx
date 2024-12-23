@@ -7,7 +7,7 @@ import RéductionMoisParMois from '@/components/RéductionDeCotisations/Réducti
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import useYear from '@/components/utils/useYear'
-import { Barème, useBaremeLodeom } from '@/hooks/useBaremeLodeom'
+import { Barème, useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import {
 	getDataAfterOptionsChange,
@@ -23,6 +23,7 @@ import {
 
 import Warnings from './components/Warnings'
 import WarningSalaireTrans from './components/WarningSalaireTrans'
+import { useZoneLodeom, ZoneLodeom } from '@/hooks/useZoneLodeom'
 
 export default function LodeomSimulationGoals({
 	monthByMonth,
@@ -41,7 +42,8 @@ export default function LodeomSimulationGoals({
 	const year = useYear()
 	const situation = useSelector(situationSelector) as SituationType
 	const previousSituation = useRef(situation)
-	const { currentBarème } = useBaremeLodeom()
+	const { currentZone } = useZoneLodeom()
+	const { currentBarème } = useBarèmeLodeom()
 	const { t } = useTranslation()
 
 	const initializeLodeomMoisParMoisData = useCallback(() => {
@@ -102,17 +104,33 @@ export default function LodeomSimulationGoals({
 	}
 
 	const codesByBareme = {
-		['barème compétitivité' as Barème]: {
-			réduction: t('pages.simulateurs.lodeom.recap.code.462', 'code 462'),
-			régularisation: t('pages.simulateurs.lodeom.recap.code.684', 'code 684'),
+		['zone un' as ZoneLodeom]: {
+			['barème compétitivité' as Barème]: {
+				réduction: t('pages.simulateurs.lodeom.recap.code.462', 'code 462'),
+				régularisation: t('pages.simulateurs.lodeom.recap.code.684', 'code 684'),
+			},
+			['barème compétitivité renforcée' as Barème]: {
+				réduction: t('pages.simulateurs.lodeom.recap.code.463', 'code 463'),
+				régularisation: t('pages.simulateurs.lodeom.recap.code.538', 'code 538'),
+			},
+			['barème innovation et croissance' as Barème]: {
+				réduction: t('pages.simulateurs.lodeom.recap.code.473', 'code 473'),
+				régularisation: t('pages.simulateurs.lodeom.recap.code.685', 'code 685'),
+			},
 		},
-		['barème compétitivité renforcée' as Barème]: {
-			réduction: t('pages.simulateurs.lodeom.recap.code.463', 'code 463'),
-			régularisation: t('pages.simulateurs.lodeom.recap.code.538', 'code 538'),
-		},
-		['barème innovation et croissance' as Barème]: {
-			réduction: t('pages.simulateurs.lodeom.recap.code.473', 'code 473'),
-			régularisation: t('pages.simulateurs.lodeom.recap.code.685', 'code 685'),
+		['zone deux' as ZoneLodeom]: {
+			['barème moins de 11 salariés' as Barème]: {
+				réduction: t('pages.simulateurs.lodeom.recap.code.463', 'code 463'),
+				régularisation: t('pages.simulateurs.lodeom.recap.code.538', 'code 538'),
+			},
+			['barème sectoriel' as Barème]: {
+				réduction: t('pages.simulateurs.lodeom.recap.code.473', 'code 473'),
+				régularisation: t('pages.simulateurs.lodeom.recap.code.685', 'code 685'),
+			},
+			['barème compétitivité' as Barème]: {
+				réduction: t('pages.simulateurs.lodeom.recap.code.462', 'code 462'),
+				régularisation: t('pages.simulateurs.lodeom.recap.code.684', 'code 684'),
+			},
 		},
 	}
 
@@ -132,10 +150,10 @@ export default function LodeomSimulationGoals({
 					warningCondition={`${lodeomDottedName} = 0`}
 					warningTooltip={<WarningSalaireTrans />}
 					codeRéduction={
-						currentBarème && codesByBareme[currentBarème].réduction
+						(currentZone && currentBarème) && codesByBareme[currentZone][currentBarème].réduction
 					}
 					codeRégularisation={
-						currentBarème && codesByBareme[currentBarème].régularisation
+						(currentZone && currentBarème) && codesByBareme[currentZone][currentBarème].régularisation
 					}
 				/>
 			) : (

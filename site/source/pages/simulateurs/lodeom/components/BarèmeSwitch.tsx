@@ -6,12 +6,14 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system'
 import { FlexCenter } from '@/design-system/global-style'
-import { useBaremeLodeom } from '@/hooks/useBaremeLodeom'
+import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 
 export default function BarèmeSwitch() {
 	const { t } = useTranslation()
 	const engine = useEngine()
-	const { barèmesPossibles, currentBarème, updateBarème } = useBaremeLodeom()
+	const { currentZone } = useZoneLodeom()
+	const { barèmes, currentBarème, updateBarème } = useBarèmeLodeom()
 
 	return (
 		<Container>
@@ -23,9 +25,9 @@ export default function BarèmeSwitch() {
 					'Barème à appliquer'
 				)}
 			>
-				{barèmesPossibles.map((barème, index) => {
+				{barèmes.map((barème, index) => {
 					const dottedName =
-						`salarié . cotisations . exonérations . lodeom . zone un . ${barème}` as DottedName
+						`salarié . cotisations . exonérations . lodeom . ${currentZone} . ${barème}` as DottedName
 					const rule = engine.getRule(dottedName)
 
 					return (
@@ -33,9 +35,7 @@ export default function BarèmeSwitch() {
 							{rule.title}
 							<ExplicableRule
 								light
-								dottedName={
-									`salarié . cotisations . exonérations . lodeom . zone un . ${barème}` as DottedName
-								}
+								dottedName={dottedName}
 								aria-label={t("Plus d'informations sur {{ title }}", {
 									title: barème,
 								})}
