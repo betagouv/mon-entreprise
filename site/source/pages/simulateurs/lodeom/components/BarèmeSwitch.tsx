@@ -5,27 +5,35 @@ import { styled } from 'styled-components'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system'
-import { FlexCenter } from '@/design-system/global-style'
-import { useBaremeLodeom } from '@/hooks/useBaremeLodeom'
+import { Strong } from '@/design-system/typography'
+import { Body } from '@/design-system/typography/paragraphs'
+import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 
 export default function BarèmeSwitch() {
 	const { t } = useTranslation()
 	const engine = useEngine()
-	const { barèmesPossibles, currentBarème, updateBarème } = useBaremeLodeom()
+	const { currentZone } = useZoneLodeom()
+	const { barèmes, currentBarème, updateBarème } = useBarèmeLodeom()
 
 	return (
 		<Container>
+			<StyledBody id="barème-switch-label">
+				<Strong>
+					{t(
+						'pages.simulateurs.lodeom.bareme-switch-label',
+						'Barème à appliquer :'
+					)}
+				</Strong>
+			</StyledBody>
 			<StyledToggleGroup
 				value={currentBarème}
 				onChange={updateBarème}
-				aria-label={t(
-					'pages.simulateurs.lodeom.bareme-label',
-					'Barème à appliquer'
-				)}
+				aria-labelledby="barème-switch-label"
 			>
-				{barèmesPossibles.map((barème, index) => {
+				{barèmes.map((barème, index) => {
 					const dottedName =
-						`salarié . cotisations . exonérations . lodeom . zone un . ${barème}` as DottedName
+						`salarié . cotisations . exonérations . lodeom . ${currentZone} . ${barème}` as DottedName
 					const rule = engine.getRule(dottedName)
 
 					return (
@@ -33,9 +41,7 @@ export default function BarèmeSwitch() {
 							{rule.title}
 							<ExplicableRule
 								light
-								dottedName={
-									`salarié . cotisations . exonérations . lodeom . zone un . ${barème}` as DottedName
-								}
+								dottedName={dottedName}
 								aria-label={t("Plus d'informations sur {{ title }}", {
 									title: barème,
 								})}
@@ -49,16 +55,21 @@ export default function BarèmeSwitch() {
 }
 
 const Container = styled.div`
-	${FlexCenter}
+	text-align: left;
+	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
-	justify-content: center;
 	column-gap: ${({ theme }) => theme.spacings.sm};
+	width: 100%;
+`
+const StyledBody = styled(Body)`
+	margin: ${({ theme }) => theme.spacings.xxs} 0;
 `
 const StyledToggleGroup = styled(ToggleGroup)`
+	display: flex;
 	> * {
 		display: flex;
 		flex-direction: column;
-		text-align: left;
 	}
 `
 const StyledRadio = styled(Radio)`

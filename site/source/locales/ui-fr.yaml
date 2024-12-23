@@ -98,7 +98,7 @@ Décès: Décès
 Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
-Effectif de l'entreprise: Effectif de l'entreprise
+"Effectif de l'entreprise :": "Effectif de l'entreprise :"
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
   d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à
@@ -146,6 +146,7 @@ Graphique statistiques détaillés de la satisfaction, présence d’une alterna
 Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image:
   Graphique statistiques détaillés du nombre visites par jour, présence d’une
   alternative accessible après l’image
+Guadeloupe, Guyane, Martinique, La Réunion: Guadeloupe, Guyane, Martinique, La Réunion
 Habituellement: Habituellement
 Impôt: Impôt
 Impôt au barème: Impôt au barème
@@ -293,6 +294,7 @@ Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Répondez à quelques questions additionnelles afin de préciser votre résultat.
 Résultat fiscal: Résultat fiscal
 Réussite: Réussite
+Saint-Barthélémy, Saint-Martin: Saint-Barthélémy, Saint-Martin
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
 Salaire brut mensuel: Salaire brut mensuel
@@ -1540,12 +1542,12 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d'impôt sur les sociétés
     lodeom:
-      bareme-label: Barème à appliquer
+      bareme-switch-label: "Barème à appliquer :"
       legend: Rémunération brute du salarié et exonération Lodeom applicable
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
           est applicable, sous conditions, aux salariés d'Outre-mer.
-        title: Éxonération Lodeom
+        title: Exonération Lodeom
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
       recap:
@@ -1556,12 +1558,12 @@ pages:
           "538": code 538
           "684": code 684
           "685": code 685
-      shortname: Éxonération Lodeom
+      shortname: Exonération Lodeom
       tab:
         month: Exonération mensuelle
         month-by-month: Exonération mois par mois
         year: Exonération annuelle
-      title: Simulateur d'éxonération Lodeom
+      title: Simulateur d'exonération Lodeom
       warnings:
         JEI: L'exonération Lodeom n'est pas cumulable avec l'exonération Jeune
           Entreprise Innovante (JEI).
@@ -1580,6 +1582,7 @@ pages:
               2024, une rémunération totale qui ne dépasse pas <1>6 306,30 €</1>
               bruts par mois.
         stage: L'exonération Lodeom ne s'applique pas sur les gratifications de stage.
+      zone-switch-label: "Localisation de l'entreprise :"
     médecin:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
@@ -1663,7 +1666,7 @@ pages:
       régularisation:
         annuelle: Régularisation annuelle
         progressive: Régularisation progressive
-        type: Type de régularisation
+        type: "Type de régularisation :"
       répartition:
         chômage: dont chômage
         retraite: IRC

@@ -11,13 +11,13 @@ export function lodeomConfig({ t, sitePaths }: SimulatorsDataParams) {
 		icône: '🏷️',
 		iframePath: 'simulateur-lodeom',
 		pathId: 'simulateurs.lodeom',
-		shortName: t('pages.simulateurs.lodeom.shortname', 'Éxonération Lodeom'),
+		shortName: t('pages.simulateurs.lodeom.shortname', 'Exonération Lodeom'),
 		title: t(
 			'pages.simulateurs.lodeom.title',
-			"Simulateur d'éxonération Lodeom"
+			"Simulateur d'exonération Lodeom"
 		),
 		meta: {
-			title: t('pages.simulateurs.lodeom.meta.title', 'Éxonération Lodeom'),
+			title: t('pages.simulateurs.lodeom.meta.title', 'Exonération Lodeom'),
 			description: t(
 				'pages.simulateurs.lodeom.meta.description',
 				"Estimation du montant de l'exonération Lodeom. Cette exonération est applicable, sous conditions, aux salariés d'Outre-mer."
