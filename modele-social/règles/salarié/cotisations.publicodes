@@ -187,7 +187,8 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
     Secteurs d'activité éligibles au Lodeom: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica-section-2--conditions-dapplicati-b-conditions-deligibilite-liees-1-secteurs-dactivites-eligibles
 
 salarié . cotisations . exonérations . lodeom . zone un:
-  titre: Guadeloupe, Martinique, La Réunion, Guyane
+  titre: Guadeloupe, Guyane, Martinique, La Réunion
+  non applicable si: zone deux
   par défaut: non
   une de ces conditions:
     - établissement . commune . département = 'Guadeloupe'
@@ -296,6 +297,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
 salarié . cotisations . exonérations . lodeom . zone deux:
   titre: Saint-Barthélémy, Saint-Martin
+  non applicable si: zone un
   par défaut: non
   une de ces conditions:
     - établissement . commune . département = 'Saint-Barthélemy'
