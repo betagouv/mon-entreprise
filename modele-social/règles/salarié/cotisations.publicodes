@@ -234,6 +234,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
       applicable si: entreprise . salariés . effectif < 250
       non applicable si: barème innovation et croissance
       question: Êtes-vous éligible au barème compétitivité renforcée ?
+      par défaut: non
       description: |
         Pour bénéficier du barème de compétitivité renforcée, les employeurs doivent :
         - employer <strong>moins de 250 salariés</strong>
@@ -266,7 +267,6 @@ salarié . cotisations . exonérations . lodeom . zone un:
           - comptabilité ;
           - conseil aux entreprises ;
           - ingénierie ou études techniques.
-      par défaut: non
       références:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
         Champ d'application du barème de renforcée: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1410
@@ -275,6 +275,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
       titre: Barème d'innovation et croissance
       applicable si: entreprise . salariés . effectif < 250
       question: Êtes-vous éligible au barème d'innovation et croissance ?
+      par défaut: non
       description: |
         Pour bénéficier du barème d'innovation et croissance, les employeurs doivent :
         - employer <strong>moins de 250 salariés</strong>,
@@ -295,7 +296,6 @@ salarié . cotisations . exonérations . lodeom . zone un:
         directement à la réalisation de projets innovants.
 
         L'exonération <strong>ne s'applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
-      par défaut: non
       références:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
         Champ d'application du barème d'innovation et croissance: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1430
