@@ -5,7 +5,8 @@ import { styled } from 'styled-components'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system'
-import { FlexCenter } from '@/design-system/global-style'
+import { Strong } from '@/design-system/typography'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 
@@ -17,13 +18,18 @@ export default function BarèmeSwitch() {
 
 	return (
 		<Container>
+			<StyledBody id="barème-switch-label">
+				<Strong>
+					{t(
+						'pages.simulateurs.lodeom.bareme-switch-label',
+						'Barème à appliquer :'
+					)}
+				</Strong>
+			</StyledBody>
 			<StyledToggleGroup
 				value={currentBarème}
 				onChange={updateBarème}
-				aria-label={t(
-					'pages.simulateurs.lodeom.bareme-label',
-					'Barème à appliquer'
-				)}
+				aria-labelledby="barème-switch-label"
 			>
 				{barèmes.map((barème, index) => {
 					const dottedName =
@@ -49,16 +55,21 @@ export default function BarèmeSwitch() {
 }
 
 const Container = styled.div`
-	${FlexCenter}
+	text-align: left;
+	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
-	justify-content: center;
 	column-gap: ${({ theme }) => theme.spacings.sm};
+	width: 100%;
+`
+const StyledBody = styled(Body)`
+	margin: ${({ theme }) => theme.spacings.xxs} 0;
 `
 const StyledToggleGroup = styled(ToggleGroup)`
+	display: flex;
 	> * {
 		display: flex;
 		flex-direction: column;
-		text-align: left;
 	}
 `
 const StyledRadio = styled(Radio)`

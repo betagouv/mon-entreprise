@@ -7,6 +7,7 @@ import RégularisationSwitch from '@/components/RéductionDeCotisations/Régular
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { Spacing } from '@/design-system/layout'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
@@ -47,8 +48,6 @@ export default function LodeomSimulation() {
 		<>
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
 				<SimulateurWarning simulateur="lodeom" />
-				<ZoneSwitch />
-				<BarèmeSwitch />
 				<LodeomSimulationGoals
 					monthByMonth={monthByMonth}
 					legend={t(
@@ -57,6 +56,8 @@ export default function LodeomSimulation() {
 					)}
 					toggles={
 						<>
+							<ZoneSwitch />
+							{currentZone && <BarèmeSwitch />}
 							{currentZone === 'zone un' && (
 								<>
 									<RégularisationSwitch
