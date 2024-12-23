@@ -101,9 +101,45 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 			.contains('oui')
 
 		cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
+	})
+
+	it('should display a custom warning for a remuneration too high', function () {
+		cy.get(inputSelector).first().type('{selectall}6500')
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			"Le barème d'innovation et croissance concerne uniquement les salaires inférieurs à 3,5 SMIC."
+		)
+
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains('Barème de compétitivité renforcée')
+			.click()
+		cy.get(inputSelector).first().type('{selectall}5000')
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			'Le barème de compétitivité renforcée concerne uniquement les salaires inférieurs à 2,7 SMIC.'
+		)
+
 		cy.get('div[aria-label="Barème à appliquer"]')
 			.contains('Barème de compétitivité')
 			.click()
+		cy.get(inputSelector).first().type('{selectall}4000')
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			'Le barème de compétitivité concerne uniquement les salaires inférieurs à 2,2 SMIC.'
+		)
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('have.text', '0 €')
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_retraite_complémentaire-value"]'
+		).should('have.text', '0 €')
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_sécurité_sociale-value"]'
+		).should('have.text', '0 €')
 	})
 
 	it('should display remuneration and Lodeom month by month', function () {
