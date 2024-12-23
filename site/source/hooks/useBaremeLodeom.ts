@@ -9,9 +9,16 @@ const barèmesPossibles = [
 	'barème compétitivité renforcée',
 	'barème innovation et croissance',
 ]
-type Barème = (typeof barèmesPossibles)[number]
 
-export const useBaremeLodeom = () => {
+export type Barème = (typeof barèmesPossibles)[number]
+
+type ReturnType = {
+	barèmesPossibles: Barème[]
+	currentBarème?: Barème
+	updateBarème: (barème: Barème) => void
+}
+
+export const useBaremeLodeom = (): ReturnType => {
 	const dottedName = 'salarié . cotisations . exonérations . lodeom . zone un'
 	const engine = useEngine()
 	const dispatch = useDispatch()

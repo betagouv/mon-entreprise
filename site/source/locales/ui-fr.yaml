@@ -1550,8 +1550,12 @@ pages:
         caption: "Exonération Lodeom mois par mois :"
       recap:
         code:
-          "462": code 462(€)
-          "684": code 684(€)
+          "462": code 462
+          "463": code 463
+          "473": code 473
+          "538": code 538
+          "684": code 684
+          "685": code 685
       shortname: Éxonération Lodeom
       tab:
         month: Exonération mensuelle
