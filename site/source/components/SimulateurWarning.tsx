@@ -227,17 +227,10 @@ export default function SimulateurWarning({
 						</Link>
 					</Body>
 					<Body>
-						Ce simulateur calcule l'exonération Lodeom uniquement pour :
+						Ce simulateur calcule l'exonération Lodeom uniquement pour la{' '}
+						<Strong>Guadeloupe</Strong>, la <Strong>Guyane</Strong>, la{' '}
+						<Strong>Martinique</Strong> et <Strong>la Réunion</Strong>.
 					</Body>
-					<Ul>
-						<StyledLi>
-							la <Strong>Guadeloupe</Strong>, la <Strong>Guyane</Strong>, la{' '}
-							<Strong>Martinique</Strong> et <Strong>la Réunion</Strong> ;
-						</StyledLi>
-						<StyledLi>
-							le <Strong>barème compétitivité</Strong>.
-						</StyledLi>
-					</Ul>
 					<Body>
 						<Emoji emoji="⚠️" /> Les taux et répartitions de cotisations
 						dérogatoires ne sont pas pris en compte.
