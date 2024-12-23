@@ -1980,10 +1980,9 @@ simulateurs:
     lodeom: <0><0></0> <2>Ce simulateur est en cours de développement.</2> <4></4>
       Pour une version complète, utilisez <7>le simulateur
       d'urssaf.fr.</7></0><1>Ce simulateur calcule l'exonération Lodeom
-      uniquement pour :</1><2><0>la <1>Guadeloupe</1>, la <3>Guyane</3>, la
-      <6>Martinique</6> et <8>la Réunion</8> ;</0><1>le <1>barème
-      compétitivité</1>.</1></2><3><0></0> Les taux et répartitions de
-      cotisations dérogatoires ne sont pas pris en compte.</3>
+      uniquement pour la <2>Guadeloupe</2>, la <4>Guyane</4>, la
+      <7>Martinique</7> et <9>la Réunion</9>.</1><2><0></0> Les taux et
+      répartitions de cotisations dérogatoires ne sont pas pris en compte.</2>
     plus: Lire les précisions
     profession-libérale: Ce simulateur est à destination des professions libérales
       en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.
