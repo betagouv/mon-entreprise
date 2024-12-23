@@ -1472,6 +1472,12 @@ pages:
             barème-compétitivité: The competitiveness scale only applies to salaries below
               2.2 SMIC. This means, for 2024, a total remuneration not exceeding
               <1>€3,964</1> gross per month.
+            barème-compétitivité-renforcée: The enhanced competitiveness scale only applies
+              to salaries below 2.7 SMIC. This means, for 2024, a total
+              remuneration not exceeding <2>€4,864.86</2> gross per month.
+            barème-innovation-croissance: The innovation and growth scale only applies to
+              salaries below 3.5 SMIC. This means, for 2024, a total
+              remuneration not exceeding <2>€6,306.30</2> gross per month.
         stage: The Lodeom exemption does not apply to internship bonuses.
     médecin:
       meta:
