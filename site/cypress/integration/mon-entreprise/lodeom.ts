@@ -107,7 +107,6 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 
 		cy.contains('Exonération mois par mois').click()
 		cy.contains('Exonération Lodeom mois par mois :')
-
 		cy.get(inputSelector)
 			.should('have.length', 12)
 			.each(($input) => {
