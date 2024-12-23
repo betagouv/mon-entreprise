@@ -592,6 +592,36 @@ salarié . cotisations . exonérations . lodeom . montant:
         - lodeom . montant
         - chômage . employeur . taux / T
 
+salarié . cotisations . exonérations . lodeom . code réduction:
+  variations:
+    - si: zone un . barème compétitivité
+      alors: '462'
+    - si: zone un . barème compétitivité renforcée
+      alors: '463'
+    - si: zone un . barème innovation et croissance
+      alors: '473'
+    - si: zone deux . barème moins de 11 salariés
+      alors: '687'
+    - si: zone deux . barème sectoriel
+      alors: '686'
+    - si: zone deux . barème compétitivité
+      alors: '688'
+  description: |
+    Code type de personnel (CTP) à utiliser dans votre déclaration sociale nominative (DSN)
+    pour déclarer l’exonération.
+
+salarié . cotisations . exonérations . lodeom . code régularisation:
+  variations:
+    - si: zone un . barème compétitivité
+      alors: '684'
+    - si: zone un . barème compétitivité renforcée
+      alors: '538'
+    - si: zone un . barème innovation et croissance
+      alors: '685'
+  description: |
+    Code type de personnel (CTP) à utiliser dans votre déclaration sociale nominative (DSN)
+    pour régulariser l’exonération.
+
 salarié . cotisations . exonérations . JEI:
   question:
     variations:

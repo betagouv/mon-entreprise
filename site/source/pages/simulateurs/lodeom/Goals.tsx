@@ -42,6 +42,13 @@ export default function LodeomSimulationGoals({
 	const previousSituation = useRef(situation)
 	const { t } = useTranslation()
 
+	const codeRéduction = engine.evaluate(
+		'salarié . cotisations . exonérations . lodeom . code réduction'
+	).nodeValue as string
+	const codeRégularisation = engine.evaluate(
+		'salarié . cotisations . exonérations . lodeom . code régularisation'
+	).nodeValue as string
+
 	const initializeLodeomMoisParMoisData = useCallback(() => {
 		const data = getInitialRéductionMoisParMois(lodeomDottedName, year, engine)
 		setData(data)
@@ -114,14 +121,18 @@ export default function LodeomSimulationGoals({
 					warnings={<Warnings />}
 					warningCondition={`${lodeomDottedName} = 0`}
 					warningTooltip={<WarningSalaireTrans />}
-					codeRéduction={t(
-						'pages.simulateurs.lodeom.recap.code.462',
-						'code 462(€)'
-					)}
-					codeRégularisation={t(
-						'pages.simulateurs.lodeom.recap.code.684',
-						'code 684(€)'
-					)}
+					codeRéduction={
+						codeRéduction &&
+						t(`code {{ code }}`, {
+							code: codeRéduction,
+						})
+					}
+					codeRégularisation={
+						codeRégularisation &&
+						t(`code {{ code }}`, {
+							code: codeRégularisation,
+						})
+					}
 				/>
 			) : (
 				<RéductionBasique

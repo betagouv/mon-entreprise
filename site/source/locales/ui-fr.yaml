@@ -544,6 +544,7 @@ choix-statut:
 chomagePartiel:
   tableCaption: Tableau indiquant le salaire net et le coût pour l'employeur avec
     ou sans chômage partiel.
+code {{ code }}: code {{ code }}
 codeApe:
   catégorie-guichet: <0>Catégories du Guichet unique<1></1></0>
 common:
@@ -1547,10 +1548,6 @@ pages:
         title: Éxonération Lodeom
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
-      recap:
-        code:
-          "462": code 462(€)
-          "684": code 684(€)
       shortname: Éxonération Lodeom
       tab:
         month: Exonération mensuelle
@@ -1650,9 +1647,6 @@ pages:
         T3: 3ème trimestre
         T4: 4ème trimestre
         caption: "Récapitulatif trimestriel :"
-        code:
-          "671": code 671(€)
-          "801": code 801(€)
         header-réduction: Réduction calculée
         header-régularisation: Régularisation calculée
       régularisation:

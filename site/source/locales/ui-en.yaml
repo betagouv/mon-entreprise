@@ -517,6 +517,7 @@ choix-statut:
 chomagePartiel:
   tableCaption: Table showing net salary and cost to the employer with or without
     short-time working.
+code {{ code }}: code {{ code }}
 codeApe:
   catégorie-guichet: <0>Guichet unique categories<1></1></0>
 common:
@@ -1454,10 +1455,6 @@ pages:
         title: Lodeom exemption
       month-by-month:
         caption: "Lodeom exemption month by month :"
-      recap:
-        code:
-          "462": code 462(€)
-          "684": code 684(€)
       shortname: Lodeom exemption
       tab:
         month: Monthly exemption
@@ -1553,9 +1550,6 @@ pages:
         T3: 3rd quarter
         T4: 4th quarter
         caption: "Quarterly summary :"
-        code:
-          "671": code 671(€)
-          "801": code 801(€)
         header-réduction: Calculated reduction
         header-régularisation: Calculated regularization
       régularisation:
