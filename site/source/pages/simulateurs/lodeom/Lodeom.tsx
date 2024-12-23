@@ -7,9 +7,11 @@ import RégularisationSwitch from '@/components/RéductionDeCotisations/Régular
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
 import BarèmeSwitch from './components/BarèmeSwitch'
+import ZoneSwitch from './components/ZoneSwitch'
 import LodeomSimulationGoals from './Goals'
 
 export default function LodeomSimulation() {
@@ -39,6 +41,8 @@ export default function LodeomSimulation() {
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<RégularisationMethod>('progressive')
 
+	const { currentZone } = useZoneLodeom()
+
 	return (
 		<>
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
@@ -51,12 +55,17 @@ export default function LodeomSimulation() {
 					)}
 					toggles={
 						<>
+							<ZoneSwitch />
 							<BarèmeSwitch />
-							<RégularisationSwitch
-								régularisationMethod={régularisationMethod}
-								setRégularisationMethod={setRégularisationMethod}
-							/>
-							<EffectifSwitch />
+							{currentZone === 'zone un' && (
+								<>
+									<RégularisationSwitch
+										régularisationMethod={régularisationMethod}
+										setRégularisationMethod={setRégularisationMethod}
+									/>
+									<EffectifSwitch />
+								</>
+							)}
 							<PeriodSwitch periods={periods} onSwitch={onPeriodSwitch} />
 						</>
 					}
