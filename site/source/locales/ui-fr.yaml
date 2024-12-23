@@ -1540,6 +1540,7 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d'impôt sur les sociétés
     lodeom:
+      bareme-label: Barème à appliquer
       legend: Rémunération brute du salarié et exonération Lodeom applicable
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération

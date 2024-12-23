@@ -80,6 +80,32 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		).should('have.text', '0 €')
 	})
 
+	it('should allow to select a scale', function () {
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains('Barème de compétitivité renforcée')
+			.click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '958,20 €')
+
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains("Barème d'innovation et croissance")
+			.click()
+
+		cy.contains('Modifier mes réponses').click()
+		cy.get('div[data-cy="modal"]')
+			.eq(0)
+			.contains("Barème d'innovation et croissance")
+			.next()
+			.contains('oui')
+
+		cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains('Barème de compétitivité')
+			.click()
+	})
+
 	it('should display remuneration and Lodeom month by month', function () {
 		cy.contains('Exonération annuelle').click()
 		cy.get(inputSelector).first().type('{selectall}36000')

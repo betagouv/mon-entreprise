@@ -1447,6 +1447,7 @@ pages:
         included in the simulator.</5>
       title: Corporate tax simulator
     lodeom:
+      bareme-label: Scale to be applied
       legend: Employee's gross salary and applicable Lodeom exemption
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
