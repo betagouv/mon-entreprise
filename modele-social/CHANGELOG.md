@@ -201,7 +201,7 @@ Exporte les règles au format json pour optimiser le chargement
 
 Corrige des bugs dans l’implémentation de la convention collective du sport :
 
-- Enlève la boucle du calcul de la limite d’éxonération de la prévoyance
+- Enlève la boucle du calcul de la limite d’exonération de la prévoyance
 - Renomme la règle `salarié . convention collective . sport . exonération cotisation AT . refus` en `salarié . convention collective . sport . refus exonération cotisation AT`
 - Correction d’unités
 - Correction du calcul de la retraite complémenaire AGIRC-ARRCO
