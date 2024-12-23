@@ -65,7 +65,7 @@ function CheckBoxRule({ node, engine, onChange }: CheckBoxRuleProps) {
 			<ExplicableRule
 				light
 				dottedName={node.dottedName as DottedName}
-				aria-label={t("Plus d'infos sur, {{ title }}", {
+				aria-label={t("Plus d'informations sur {{ title }}", {
 					title: node.title,
 				})}
 			/>
