@@ -1967,7 +1967,7 @@ simulateurs:
       éléments que vous avez saisis et des éléments réglementaires applicables,
       mais ils ne tiennent pas compte de l'ensemble de votre situation. Ils ne
       se substituent pas aux décomptes réels de l’Urssaf, de l'administration
-      fiscale ou de toute autre organisme.
+      fiscale ou de tout autre organisme.
     indépendant:
       année-courante: Le montant calculé correspond aux cotisations de l’année
         {{year}} (pour un revenu {{year}}).
