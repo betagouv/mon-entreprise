@@ -250,7 +250,7 @@ export default function SimulateurWarning({
 					des éléments que vous avez saisis et des éléments réglementaires
 					applicables, mais ils ne tiennent pas compte de l'ensemble de votre
 					situation. Ils ne se substituent pas aux décomptes réels de l’Urssaf,
-					de l'administration fiscale ou de toute autre organisme.
+					de l'administration fiscale ou de tout autre organisme.
 				</Trans>
 			</Body>
 		</Warning>
