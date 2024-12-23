@@ -16,7 +16,7 @@ describe(
 		})
 
 		it('should not crash', function () {
-			cy.contains('Salaire brut')
+			cy.contains('Rémunération brute')
 		})
 
 		it('should allow to change time period', function () {
