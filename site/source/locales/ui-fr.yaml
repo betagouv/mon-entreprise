@@ -234,8 +234,7 @@ Passer à la version française du site: Passer à la version française du site
 Passer, passer la question sans répondre: Passer, passer la question sans répondre
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
-Plus d'info sur, {{ title }}: Plus d'info sur, {{ title }}
-Plus d'infos sur, {{ title }}: Plus d'infos sur, {{ title }}
+Plus d'informations sur {{ title }}: Plus d'informations sur {{ title }}
 Plus de 50 salariés: Plus de 50 salariés
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
