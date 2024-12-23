@@ -7,6 +7,7 @@ import RéductionMoisParMois from '@/components/RéductionDeCotisations/Réducti
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import useYear from '@/components/utils/useYear'
+import { Barème, useBaremeLodeom } from '@/hooks/useBaremeLodeom'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import {
 	getDataAfterOptionsChange,
@@ -40,6 +41,7 @@ export default function LodeomSimulationGoals({
 	const year = useYear()
 	const situation = useSelector(situationSelector) as SituationType
 	const previousSituation = useRef(situation)
+	const { currentBarème } = useBaremeLodeom()
 	const { t } = useTranslation()
 
 	const initializeLodeomMoisParMoisData = useCallback(() => {
@@ -99,6 +101,21 @@ export default function LodeomSimulationGoals({
 		})
 	}
 
+	const codesByBareme = {
+		['barème compétitivité' as Barème]: {
+			réduction: t('pages.simulateurs.lodeom.recap.code.462', 'code 462'),
+			régularisation: t('pages.simulateurs.lodeom.recap.code.684', 'code 684'),
+		},
+		['barème compétitivité renforcée' as Barème]: {
+			réduction: t('pages.simulateurs.lodeom.recap.code.463', 'code 463'),
+			régularisation: t('pages.simulateurs.lodeom.recap.code.538', 'code 538'),
+		},
+		['barème innovation et croissance' as Barème]: {
+			réduction: t('pages.simulateurs.lodeom.recap.code.473', 'code 473'),
+			régularisation: t('pages.simulateurs.lodeom.recap.code.685', 'code 685'),
+		},
+	}
+
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
 			{monthByMonth ? (
@@ -114,14 +131,12 @@ export default function LodeomSimulationGoals({
 					warnings={<Warnings />}
 					warningCondition={`${lodeomDottedName} = 0`}
 					warningTooltip={<WarningSalaireTrans />}
-					codeRéduction={t(
-						'pages.simulateurs.lodeom.recap.code.462',
-						'code 462(€)'
-					)}
-					codeRégularisation={t(
-						'pages.simulateurs.lodeom.recap.code.684',
-						'code 684(€)'
-					)}
+					codeRéduction={
+						currentBarème && codesByBareme[currentBarème].réduction
+					}
+					codeRégularisation={
+						currentBarème && codesByBareme[currentBarème].régularisation
+					}
 				/>
 			) : (
 				<RéductionBasique

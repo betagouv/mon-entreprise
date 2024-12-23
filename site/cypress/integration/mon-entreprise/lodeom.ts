@@ -80,6 +80,68 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		).should('have.text', '0 €')
 	})
 
+	it('should allow to select a scale', function () {
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains('Barème de compétitivité renforcée')
+			.click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '958,20 €')
+
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains("Barème d'innovation et croissance")
+			.click()
+
+		cy.contains('Modifier mes réponses').click()
+		cy.get('div[data-cy="modal"]')
+			.eq(0)
+			.contains("Barème d'innovation et croissance")
+			.next()
+			.contains('oui')
+
+		cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
+	})
+
+	it('should display a custom warning for a remuneration too high', function () {
+		cy.get(inputSelector).first().type('{selectall}6500')
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			"Le barème d'innovation et croissance concerne uniquement les salaires inférieurs à 3,5 SMIC."
+		)
+
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains('Barème de compétitivité renforcée')
+			.click()
+		cy.get(inputSelector).first().type('{selectall}5000')
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			'Le barème de compétitivité renforcée concerne uniquement les salaires inférieurs à 2,7 SMIC.'
+		)
+
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains('Barème de compétitivité')
+			.click()
+		cy.get(inputSelector).first().type('{selectall}4000')
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			'Le barème de compétitivité concerne uniquement les salaires inférieurs à 2,2 SMIC.'
+		)
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('have.text', '0 €')
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_retraite_complémentaire-value"]'
+		).should('have.text', '0 €')
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_sécurité_sociale-value"]'
+		).should('have.text', '0 €')
+	})
+
 	it('should display remuneration and Lodeom month by month', function () {
 		cy.contains('Exonération annuelle').click()
 		cy.get(inputSelector).first().type('{selectall}36000')
@@ -237,6 +299,27 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 			'include.text',
 			'1 297,15 €'
 		)
+	})
+
+	it('should display code in recap table based on scale', function () {
+		cy.contains('Récapitulatif trimestriel').next().as('recapTable')
+
+		cy.get('@recapTable').should('include.text', 'code 462')
+		cy.get('@recapTable').should('include.text', 'code 684')
+
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains('Barème de compétitivité renforcée')
+			.click()
+
+		cy.get('@recapTable').should('include.text', 'code 463')
+		cy.get('@recapTable').should('include.text', 'code 538')
+
+		cy.get('div[aria-label="Barème à appliquer"]')
+			.contains("Barème d'innovation et croissance")
+			.click()
+
+		cy.get('@recapTable').should('include.text', 'code 473')
+		cy.get('@recapTable').should('include.text', 'code 685')
 	})
 
 	it('should be RGAA compliant', function () {
