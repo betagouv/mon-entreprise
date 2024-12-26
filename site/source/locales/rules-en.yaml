@@ -10202,8 +10202,8 @@ salarié . cotisations . exonérations . lodeom . zone un:
       question.fr: Quel barème souhaitez-vous appliquer ?
       titre.en: '[automatic] scales'
       titre.fr: barèmes
-  titre.en: '[automatic] Guadeloupe, Martinique, Reunion Island, French Guiana'
-  titre.fr: Guadeloupe, Martinique, La Réunion, Guyane
+  titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Reunion Island'
+  titre.fr: Guadeloupe, Guyane, Martinique, La Réunion
 salarié . cotisations . exonérations . réduction générale:
   avec:
     caisse de congés payés:
