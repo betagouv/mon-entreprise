@@ -32,7 +32,7 @@ export const configRéductionGénérale: SimulationConfig = {
 			'établissement . commune',
 			'salarié . cotisations . exonérations . lodeom . zone un . barème compétitivité renforcée',
 			'salarié . cotisations . exonérations . lodeom . zone un . barème innovation et croissance',
-			'salarié . cotisations . exonérations . lodeom . zone deux . barème compétitivité',
+			'salarié . cotisations . exonérations . lodeom . zone deux . barème renforcé',
 			'entreprise . salariés . effectif . seuil',
 			'salarié . contrat . CDD . motif',
 			'salarié . rémunération . primes . activité . base',

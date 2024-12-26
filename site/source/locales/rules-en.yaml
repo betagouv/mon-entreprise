@@ -9619,7 +9619,30 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
   titre.fr: secteurs d'activité éligibles
 salarié . cotisations . exonérations . lodeom . zone deux:
   avec:
-    barème compétitivité:
+    barème moins de 11 salariés:
+      description.en: >
+        [automatic] The exemption applies to employers with <strong>fewer than
+        11 employees</strong>.
+
+
+        In addition, employers may also be eligible for this exemption if, although they meet the conditions
+
+        the conditions to benefit from the sectoral scale without headcount criteria, choose to opt for this
+
+        this more favorable exemption, because they have fewer than 11 employees.
+      description.fr: >
+        L’exonération est applicable aux employeurs occupant <strong>moins de 11
+        salariés</strong>.
+
+
+        Par ailleurs, peuvent également être éligibles à cette exonération les employeurs qui, bien que remplissant
+
+        les conditions pour bénéficier du barème sectoriel sans critère d’effectif, choisissent d’opter pour
+
+        cette exonération, plus favorable, car elles ont moins de 11 salariés.
+      titre.en: '[automatic] Scale for employers with fewer than 11 employees'
+      titre.fr: Barème pour les employeurs de moins de 11 salariés
+    barème renforcé:
       description.en: >
         [automatic] To qualify for the enhanced exemption scale, employers must
         :
@@ -9700,29 +9723,6 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       question.fr: Êtes-vous éligible au barème d'exonération renforcée ?
       titre.en: '[automatic] Reinforced exemption scale'
       titre.fr: Barème d'exonération renforcée
-    barème moins de 11 salariés:
-      description.en: >
-        [automatic] The exemption applies to employers with <strong>fewer than
-        11 employees</strong>.
-
-
-        In addition, employers may also be eligible for this exemption if, although they meet the conditions
-
-        the conditions to benefit from the sectoral scale without headcount criteria, choose to opt for this
-
-        this more favorable exemption, because they have fewer than 11 employees.
-      description.fr: >
-        L’exonération est applicable aux employeurs occupant <strong>moins de 11
-        salariés</strong>.
-
-
-        Par ailleurs, peuvent également être éligibles à cette exonération les employeurs qui, bien que remplissant
-
-        les conditions pour bénéficier du barème sectoriel sans critère d’effectif, choisissent d’opter pour
-
-        cette exonération, plus favorable, car elles ont moins de 11 salariés.
-      titre.en: '[automatic] Scale for employers with fewer than 11 employees'
-      titre.fr: Barème pour les employeurs de moins de 11 salariés
     barème sectoriel:
       description.en: >
         [automatic] The exemption applies to employers, regardless of their
