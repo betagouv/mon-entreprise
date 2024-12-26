@@ -15,12 +15,12 @@ export default defineConfig({
 		experimentalStudio: true,
 	},
 	retries: {
-		// Configure retry attempts for `cypress run`
+		// Configure retry attempts for `cypress run` (Github Action)
 		// Default is 0
 		runMode: 3,
-		// Configure retry attempts for `cypress open`
+		// Configure retry attempts for `cypress open` (yarn test:cypress)
 		// Default is 0
-		openMode: 0,
+		openMode: 1,
 	},
 	videoCompression: 30,
 	videoUploadOnPasses: false,
