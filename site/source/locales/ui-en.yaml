@@ -1468,6 +1468,17 @@ pages:
         JEI: The Lodeom exemption cannot be combined with the Young Innovative Company
           (JEI) exemption.
         salaire:
+          zone-deux:
+            barème-moins-de-11-salariés: The scale for employers with fewer than 11
+              employees only applies to salaries below 3 SMIC. This means, for
+              2024, total remuneration not exceeding <2>€5,405.40</2> gross per
+              month.
+            barème-renforcé: The exemption scale only reinforces salaries below 4.5 SMIC.
+              This means, for 2024, a total remuneration not exceeding
+              <1>€8,108.10</1> gross per month.
+            barème-sectoriel: The sectoral exemption scale only applies to salaries below 3
+              SMIC. This means, for 2024, a total remuneration not exceeding
+              <1>€5,405.40</1> gross per month.
           zone-un:
             barème-compétitivité: The competitiveness scale only applies to salaries below
               2.2 SMIC. This means, for 2024, a total remuneration not exceeding

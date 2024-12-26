@@ -523,7 +523,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       non applicable si:
         une de ces conditions:
           - barème sectoriel
-          - barème compétitivité
+          - barème renforcé
       description: |
         L’exonération est applicable aux employeurs occupant <strong>moins de 11 salariés</strong>.
 
@@ -536,13 +536,13 @@ salarié . cotisations . exonérations . lodeom . zone deux:
 
     barème sectoriel:
       titre: Barème d'exonération sectorielle
-      non applicable si: barème compétitivité
+      non applicable si: barème renforcé
       formule:
         une de ces conditions:
           - barèmes . barème sectoriel
           - toutes ces conditions:
             - barème moins de 11 salariés = non
-            - barème compétitivité = non
+            - barème renforcé = non
             - secteurs d'activité éligibles = oui
       description: |
         L’exonération est applicable aux employeurs, quel que soit leur effectif, relevant d’un des secteurs d’activité
@@ -572,7 +572,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
         Champ d'application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1540
 
-    barème compétitivité:
+    barème renforcé:
       titre: Barème d'exonération renforcée
       applicable si: entreprise . salariés . effectif < 250
       question: Êtes-vous éligible au barème d'exonération renforcée ?
@@ -631,7 +631,7 @@ salarié . cotisations . exonérations . lodeom . montant:
             une de ces conditions:
               - zone un . barème innovation et croissance
               - zone deux . barème moins de 11 salariés
-              - zone deux . barème compétitivité
+              - zone deux . barème renforcé
           alors:
             variations:
               - si:
@@ -656,7 +656,7 @@ salarié . cotisations . exonérations . lodeom . montant:
           alors: 1.4
         - si: zone deux . barème sectoriel
           alors: 1.4
-        - si: zone deux . barème compétitivité
+        - si: zone deux . barème renforcé
           alors: 1.7
 
     seuil intermédiaire:
@@ -665,7 +665,7 @@ salarié . cotisations . exonérations . lodeom . montant:
           alors: 2.5
         - si: zone deux . barème moins de 11 salariés
           alors: 2
-        - si: zone deux . barème compétitivité
+        - si: zone deux . barème renforcé
           alors: 2.5
 
     seuil sortie:
@@ -680,7 +680,7 @@ salarié . cotisations . exonérations . lodeom . montant:
           alors: 3
         - si: zone deux . barème sectoriel
           alors: 3
-        - si: zone deux . barème compétitivité
+        - si: zone deux . barème renforcé
           alors: 4.5
 
     imputation retraite complémentaire:
@@ -711,7 +711,7 @@ salarié . cotisations . exonérations . lodeom . code réduction:
       alors: '687'
     - si: zone deux . barème sectoriel
       alors: '686'
-    - si: zone deux . barème compétitivité
+    - si: zone deux . barème renforcé
       alors: '688'
   description: |
     Code type de personnel (CTP) à utiliser dans votre déclaration sociale nominative (DSN)

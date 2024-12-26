@@ -117,8 +117,28 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 
 >>>>>>> 85d9bc4b0 (feat(lodeom): ajout de la sélection de zone)
 	it('should display a custom warning for a remuneration too high', function () {
+		cy.get(inputSelector).first().type('{selectall}8500')
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			"Le barème d'exonération renforcée uniquement les salaires inférieurs à 4,5 SMIC."
+		)
+
+		cy.contains("Barème d'exonération sectorielle").click()
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			"Le barème d'exonération sectorielle concerne uniquement les salaires inférieurs à 3 SMIC."
+		)
+
+		cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			'Le barème pour les employeurs de moins de 11 salariés concerne uniquement les salaires inférieurs à 3 SMIC.'
+		)
+
 		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
-		cy.get(inputSelector).first().type('{selectall}6500')
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
@@ -323,15 +343,15 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 
 		cy.contains('Saint-Barthélémy, Saint-Martin').click()
 
-		cy.get('@recapTable').should('include.text', 'code 688')
+		cy.get('@recapTable').should('include.text', 'code 687')
 
 		cy.contains("Barème d'exonération sectorielle").click()
 
 		cy.get('@recapTable').should('include.text', 'code 686')
 
-		cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+		cy.contains("Barème d'exonération renforcée").click()
 
-		cy.get('@recapTable').should('include.text', 'code 687')
+		cy.get('@recapTable').should('include.text', 'code 688')
 	})
 
 	it('should be RGAA compliant', function () {
