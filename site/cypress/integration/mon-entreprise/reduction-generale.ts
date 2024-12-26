@@ -20,12 +20,10 @@ describe(
 		})
 
 		it('should allow to change time period', function () {
+			cy.contains('Réduction annuelle').click()
 			cy.get(inputSelector).first().type('{selectall}22800')
 
 			cy.contains('Réduction mensuelle').click()
-			// Wait for values to update
-			// eslint-disable-next-line cypress/no-unnecessary-waiting
-			cy.wait(750)
 			cy.get(inputSelector).first().should('have.value', '1 900 €')
 		})
 
@@ -110,9 +108,6 @@ describe(
 
 			cy.contains('Réduction mois par mois').click()
 			cy.contains('Réduction générale mois par mois :')
-			// Wait for values to update
-			// eslint-disable-next-line cypress/no-unnecessary-waiting
-			cy.wait(1)
 			cy.get(inputSelector)
 				.should('have.length', 12)
 				.each(($input) => {
@@ -248,9 +243,6 @@ describe(
 					cy.wrap($input).type('{selectall}3000')
 				}
 			})
-			// Wait for values to update
-			// eslint-disable-next-line cypress/no-unnecessary-waiting
-			cy.wait(1000)
 			cy.get('#recap-1er_trimestre-réduction').should(
 				'include.text',
 				'602,88 €'
