@@ -193,7 +193,7 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
     Secteurs d'activité éligibles au Lodeom: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica-section-2--conditions-dapplicati-b-conditions-deligibilite-liees-1-secteurs-dactivites-eligibles
 
 salarié . cotisations . exonérations . lodeom . zone un:
-  titre: Guadeloupe, Martinique, La Réunion, Guyane
+  titre: Guadeloupe, Guyane, Martinique, La Réunion
   par défaut: non
   une de ces conditions:
     - établissement . commune . département = 'Guadeloupe'
