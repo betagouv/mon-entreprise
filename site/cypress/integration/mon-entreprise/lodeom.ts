@@ -16,25 +16,24 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should allow to change time period', function () {
-		cy.get(inputSelector).first().type('{selectall}36000')
+		cy.contains('Barème de compétitivité').click()
+		cy.contains('Exonération annuelle').click()
+		cy.get(inputSelector).first().type('{selectall}42000')
 
 		cy.contains('Exonération mensuelle').click()
-		// Wait for values to update
-		// eslint-disable-next-line cypress/no-unnecessary-waiting
-		cy.wait(750)
-		cy.get(inputSelector).first().should('have.value', '3 000 €')
+		cy.get(inputSelector).first().should('have.value', '3 500 €')
 	})
 
 	it('should display values for the lodeom', function () {
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
-		).should('include.text', '444,60 €')
+		).should('include.text', '214,20 €')
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_retraite_complémentaire-value"]'
-		).should('include.text', '83,66 €')
+		).should('include.text', '40,31')
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_sécurité_sociale-value"]'
-		).should('include.text', '360,94 €')
+		).should('include.text', '173,89 €')
 	})
 
 	it('should allow to select a company size', function () {
@@ -49,7 +48,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
-		).should('include.text', '450,30 €')
+		).should('include.text', '216,65 €')
 
 		cy.contains('Moins de 50 salariés').click()
 		cy.contains('Modifier mes réponses').click()
@@ -61,7 +60,26 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
 	})
 
+	it('should allow to select a scale', function () {
+		cy.get('#salarié___cotisations___exonérations___lodeom___zone_un___barèmes')
+			.contains('Barème de compétitivité renforcée')
+			.click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '1 117,90 €')
+
+		cy.get('#salarié___cotisations___exonérations___lodeom___zone_un___barèmes')
+			.contains("Barème d'innovation et croissance")
+			.click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '978,25 €')
+	})
+
 	it('should display a warning for a remuneration too high', function () {
+		cy.contains('Barème de compétitivité').click()
 		cy.get(inputSelector).first().type('{selectall}4000')
 
 		cy.get('div[id="simulator-legend"]').should(
@@ -86,9 +104,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 
 		cy.contains('Exonération mois par mois').click()
 		cy.contains('Exonération Lodeom mois par mois :')
-		// Wait for values to update
-		// eslint-disable-next-line cypress/no-unnecessary-waiting
-		cy.wait(1)
+
 		cy.get(inputSelector)
 			.should('have.length', 12)
 			.each(($input) => {
@@ -219,9 +235,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 				cy.wrap($input).type('{selectall}4000')
 			}
 		})
-		// Wait for values to update
-		// eslint-disable-next-line cypress/no-unnecessary-waiting
-		cy.wait(500)
+
 		cy.get('#recap-1er_trimestre-réduction').should('include.text', '297 €')
 		cy.get('#recap-2ème_trimestre-régularisation').should(
 			'include.text',
