@@ -78,6 +78,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		).should('include.text', '978,25 €')
 	})
 
+<<<<<<< HEAD
 	it('should display a custom warning for a remuneration too high', function () {
 		cy.get(inputSelector).first().type('{selectall}6500')
 
@@ -94,6 +95,11 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		)
 
 		cy.contains('Barème de compétitivité').click()
+=======
+	it('should display a warning for a remuneration too high', function () {
+		cy.contains('Barème de compétitivité').click()
+		cy.get(inputSelector).first().type('{selectall}4000')
+>>>>>>> 3ef89d199 (tests(lodeom): ajout de tests sur les barèmes)
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
@@ -107,6 +113,10 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 
 		cy.contains('Exonération mois par mois').click()
 		cy.contains('Exonération Lodeom mois par mois :')
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3ef89d199 (tests(lodeom): ajout de tests sur les barèmes)
 		cy.get(inputSelector)
 			.should('have.length', 12)
 			.each(($input) => {
@@ -238,7 +248,11 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 			}
 		})
 
+<<<<<<< HEAD
 		cy.get('#recap-1er_trimestre-réduction').should('include.text', '297 €')
+=======
+		cy.get('#recap-1er_trimestre-réduction').should('include.text', '442 €')
+>>>>>>> 3ef89d199 (tests(lodeom): ajout de tests sur les barèmes)
 		cy.get('#recap-2ème_trimestre-régularisation').should(
 			'include.text',
 			'-49,20 €'
