@@ -9,6 +9,7 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
+import BarèmeSwitch from './components/BarèmeSwitch'
 import LodeomSimulationGoals from './Goals'
 
 export default function LodeomSimulation() {
@@ -50,6 +51,7 @@ export default function LodeomSimulation() {
 					)}
 					toggles={
 						<>
+							<BarèmeSwitch />
 							<RégularisationSwitch
 								régularisationMethod={régularisationMethod}
 								setRégularisationMethod={setRégularisationMethod}
