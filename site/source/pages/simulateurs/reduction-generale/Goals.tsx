@@ -122,14 +122,12 @@ export default function RéductionGénéraleSimulationGoals({
 					warnings={<Warnings />}
 					warningCondition={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
 					warningTooltip={<WarningSalaireTrans />}
-					codeRéduction={t(
-						'pages.simulateurs.réduction-générale.recap.code.671',
-						'code 671(€)'
-					)}
-					codeRégularisation={t(
-						'pages.simulateurs.réduction-générale.recap.code.801',
-						'code 801(€)'
-					)}
+					codeRéduction={t(`code {{ code }}`, {
+						code: '671',
+					})}
+					codeRégularisation={t(`code {{ code }}`, {
+						code: '801',
+					})}
 				/>
 			) : (
 				<RéductionBasique

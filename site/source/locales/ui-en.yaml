@@ -221,8 +221,7 @@ Passer à la version française du site: Switch to the French version of the sit
 Passer, passer la question sans répondre: Pass, pass the question without answering
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
-Plus d'info sur, {{ title }}: More info on, {{ title }}
-Plus d'infos sur, {{ title }}: More info on, {{ title }}
+Plus d'informations sur {{ title }}: More information on {{ title }}
 Plus de 50 salariés: More than 50 employees
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
@@ -518,6 +517,7 @@ choix-statut:
 chomagePartiel:
   tableCaption: Table showing net salary and cost to the employer with or without
     short-time working.
+code {{ code }}: code {{ code }}
 codeApe:
   catégorie-guichet: <0>Guichet unique categories<1></1></0>
 common:
@@ -1455,10 +1455,6 @@ pages:
         title: Lodeom exemption
       month-by-month:
         caption: "Lodeom exemption month by month :"
-      recap:
-        code:
-          "462": code 462(€)
-          "684": code 684(€)
       shortname: Lodeom exemption
       tab:
         month: Monthly exemption
@@ -1473,6 +1469,12 @@ pages:
             barème-compétitivité: The competitiveness scale only applies to salaries below
               2.2 SMIC. This means, for 2024, a total remuneration not exceeding
               <1>€3,964</1> gross per month.
+            barème-compétitivité-renforcée: The enhanced competitiveness scale only applies
+              to salaries below 2.7 SMIC. This means, for 2024, a total
+              remuneration not exceeding <2>€4,864.86</2> gross per month.
+            barème-innovation-croissance: The innovation and growth scale only applies to
+              salaries below 3.5 SMIC. This means, for 2024, a total
+              remuneration not exceeding <2>€6,306.30</2> gross per month.
         stage: The Lodeom exemption does not apply to internship bonuses.
     médecin:
       meta:
@@ -1548,9 +1550,6 @@ pages:
         T3: 3rd quarter
         T4: 4th quarter
         caption: "Quarterly summary :"
-        code:
-          "671": code 671(€)
-          "801": code 801(€)
         header-réduction: Calculated reduction
         header-régularisation: Calculated regularization
       régularisation:
@@ -1860,11 +1859,10 @@ simulateurs:
         year {{year}} (for an income {{year}}).
     lodeom: <0><0></0> <2>This simulator is currently under development.</2> <4></4>
       For a full version, use <7>the urssaf.fr simulator.</7></0><1>This
-      simulator calculates the Lodeom exemption only for
-      :</1><2><0><1>Guadeloupe</1>, <3>French Guiana</3>, <6>Martinique</6> and
-      <8>Réunion</8>;</0><1>the <1>competitiveness scale</1>.</1></2><3><0></0>
+      simulator calculates the Lodeom exemption for <2>Guadeloupe</2>, <4>French
+      Guiana</4>, <7>Martinique</7> and <9>Reunion</9> only.</1><2><0></0>
       Exemption rates and contribution breakdowns are not taken into
-      account.</3>
+      account.</2>
     plus: Read more
     profession-libérale: This simulator is intended for self-employed professionals
       who earn a BNC. It does not take into account self-employed companies.
