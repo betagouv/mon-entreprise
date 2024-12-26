@@ -631,6 +631,8 @@ salarié . cotisations . AGS:
     - valeur: cotisations . assiette
       plafond: 4 * temps de travail . plafond sécurité sociale
     - variations:
+        - si: date >= 07/2024
+          alors: 0.25%
         - si: date >= 01/2024
           alors: 0.2%
         - sinon: 0.15%
