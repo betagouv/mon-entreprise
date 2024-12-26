@@ -204,6 +204,110 @@ salarié . cotisations . exonérations . lodeom . zone un:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
 
   avec:
+    # Impossible (ou trop compliqué) avec Publicodes de gérer dans la même règle :
+    # - une valeur calculée par l'engine (avec applicabilité et formule)
+    # - une valeur choisie par l'usager (depuis une QCM)
+    # On répète donc les barèmes afin de pouvoir dans certains cas demander à l'usager
+    # de choisir directement son barème (ex: simulateur Lodéom), et dans d'autres, de
+    # déduire le barème à partir d'autres paramètres (effectif, secteur éligible...)
+    # (ex: simulateur salarié)
+    # /!\ Attention /!\ Penser à modifier les titres, descriptions et références dans
+    # les 2 règles à chaque évolution
+    barèmes:
+      question: Quel barème souhaitez-vous appliquer ?
+      formule:
+        une possibilité:
+          choix obligatoire: oui
+          possibilités:
+            - barème compétitivité
+            - barème compétitivité renforcée
+            - barème innovation et croissance
+      avec:
+        barème compétitivité:
+          valeur: barèmes = 'barème compétitivité'
+          titre: Barème de compétitivité
+          description: |
+            Le barème de compétitivité <strong>est applicable</strong> :
+            - aux employeurs de moins de 11 salariés ;
+            - aux entreprises relevant des secteurs éligibles au Lodeom et qui ne bénéficient pas du barème de
+            compétitivité renforcée, ni du barème d’innovation et croissance ;
+            - aux employeurs des secteurs éligibles aux régimes de compétitivité renforcée ou d’innovation
+            et croissance, qui ne respectent pas les conditions d’effectifs (moins de 250 salariés)
+            ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
+
+            Le barème de compétitivité <strong>n'est pas applicable</strong> :
+            - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
+            et croissance.
+          références:
+            Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+            Champ d'application du barème de compétitivité: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1390
+
+        barème compétitivité renforcée:
+          valeur: barèmes = 'barème compétitivité renforcée'
+          titre: Barème de compétitivité renforcée
+          description: |
+            Pour bénéficier du barème de compétitivité renforcée, les employeurs doivent :
+            - employer <strong>moins de 250 salariés</strong>
+            - et réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>.
+
+            L’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
+            - soit relever d'un des <strong>secteurs</strong> suivants :
+              - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
+              et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+              - 🎣 pêche, cultures marines et aquaculture ;
+              - 🏭 industrie ;
+              - 🌳 environnement ;
+              - 🌱 agronutrition ;
+              - 🔋 énergies renouvelables ;
+              - 🍴 restauration ;
+              - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+              - ⛵ nautisme ;
+              - 🛏️ hôtellerie ;
+              - 🔬 recherche et développement ;
+              - 🖥️ nouvelles technologies de l’information et de la communication et centres d’appel ;
+              - 📰 presse ;
+              - 🎥 production audiovisuelle.
+            - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
+
+            <strong>En Guyane</strong>, l'employeur peut être éligible :
+            - s'il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
+            contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
+            (prévue à l’article 199 undecies B du code général des impôts)
+            - ou s'il exerce une des activités suivantes :
+              - comptabilité ;
+              - conseil aux entreprises ;
+              - ingénierie ou études techniques.
+          références:
+            Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+            Champ d'application du barème de renforcée: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1410
+
+        barème innovation et croissance:
+          valeur: barèmes = 'barème innovation et croissance'
+          titre: Barème d'innovation et croissance
+          description: |
+            Pour bénéficier du barème d'innovation et croissance, les employeurs doivent :
+            - employer <strong>moins de 250 salariés</strong>,
+            - réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>
+            - et réaliser des <strong>projets innovants</strong> dans le secteur des technologies de l’information
+            et de la communication.
+
+            Ces projets doivent être réalisés dans l'un des <strong>domaines d’activité</strong> suivants :
+              - 📡 télécommunication ;
+              - 🖥️ informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance
+              de systèmes et d’applications, gestion d'installations, traitement des données, hébergement et activités
+              connexes ;
+              - 🌐 édition de portails internet et de logiciels;
+              - 🎴 infographie, notamment conception de contenus visuels et numériques ;
+              - 🤖 conception d’objets connectés.
+
+            Si les conditions sont réunies, l’exonération s’applique aux salariés qui participent principalement et
+            directement à la réalisation de projets innovants.
+
+            L'exonération <strong>ne s'applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+          références:
+            Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+            Champ d'application du barème d'innovation et croissance: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1430
+
     barème compétitivité:
       titre: Barème de compétitivité
       non applicable si:
@@ -213,6 +317,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
       une de ces conditions:
         - entreprise . salariés . effectif < 11
         - secteurs d'activité éligibles
+        - barèmes . barème compétitivité
       description: |
         Le barème de compétitivité <strong>est applicable</strong> :
         - aux employeurs de moins de 11 salariés ;
@@ -235,6 +340,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
       non applicable si: barème innovation et croissance
       question: Êtes-vous éligible au barème compétitivité renforcée ?
       par défaut: non
+      formule: barèmes . barème compétitivité renforcée
       description: |
         Pour bénéficier du barème de compétitivité renforcée, les employeurs doivent :
         - employer <strong>moins de 250 salariés</strong>
@@ -276,6 +382,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
       applicable si: entreprise . salariés . effectif < 250
       question: Êtes-vous éligible au barème d'innovation et croissance ?
       par défaut: non
+      formule: barèmes . barème innovation et croissance
       description: |
         Pour bénéficier du barème d'innovation et croissance, les employeurs doivent :
         - employer <strong>moins de 250 salariés</strong>,
