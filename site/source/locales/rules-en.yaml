@@ -9866,6 +9866,203 @@ salarié . cotisations . exonérations . lodeom . zone un:
       question.fr: Êtes-vous éligible au barème d'innovation et croissance ?
       titre.en: '[automatic] Innovation and growth scale'
       titre.fr: Barème d'innovation et croissance
+    barèmes:
+      avec:
+        barème compétitivité:
+          description.en: >
+            [automatic] The competitiveness scale <strong>applies to</strong>:
+
+            - employers with fewer than 11 employees;
+
+            - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness or innovation and growth scales
+
+            or the innovation and growth scale;
+
+            - employers in sectors eligible for the enhanced competitiveness or innovation and growth
+
+            or innovation and growth schemes, who do not meet the conditions in terms of headcount (less than 250 employees)
+
+            or annual sales (less than 50 million euros);
+
+
+            The competitiveness scale does <strong>not apply to</strong>:
+
+            - employers benefiting from the enhanced competitiveness or innovation
+
+            and growth.
+          description.fr: >
+            Le barème de compétitivité <strong>est applicable</strong> :
+
+            - aux employeurs de moins de 11 salariés ;
+
+            - aux entreprises relevant des secteurs éligibles au Lodeom et qui ne bénéficient pas du barème de
+
+            compétitivité renforcée, ni du barème d’innovation et croissance ;
+
+            - aux employeurs des secteurs éligibles aux régimes de compétitivité renforcée ou d’innovation
+
+            et croissance, qui ne respectent pas les conditions d’effectifs (moins de 250 salariés)
+
+            ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
+
+
+            Le barème de compétitivité <strong>n'est pas applicable</strong> :
+
+            - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
+
+            et croissance.
+          titre.en: '[automatic] Competitiveness scale'
+          titre.fr: Barème de compétitivité
+        barème compétitivité renforcée:
+          description.en: >
+            [automatic] To qualify for the enhanced competitiveness scale,
+            employers must :
+
+            - have <strong>fewer than 250 employees</strong>
+
+            - and have annual sales <strong>of less than 50 million euros</strong>.
+
+
+            The employer must meet <strong>at least one of the</strong> following <strong>conditions</strong>:
+
+            - either fall within one of the following <strong>sectors</strong>:
+              - 🚜 agriculture (including agricultural cooperatives and agricultural collective interest companies
+              and their unions, as well as maritime cooperatives and their unions);
+              - 🎣 fishing, marine farming and aquaculture;
+              - 🏭 industry ;
+              - 🌳 environment ;
+              - 🌱 agronutrition ;
+              - 🔋 renewable energies ;
+              - 🍴 catering ;
+              - 📷 tourism, including related leisure activities;
+              - ⛵ water sports;
+              - 🛏️ hotels;
+              - 🔬 research and development;
+              - 🖥️ new information and communication technologies and call centers;
+              - 📰 press;
+              - 🎥 audiovisual production.
+            - or benefit from the <strong>"inward processing" regime.</strong>
+
+
+            <strong>In French Guiana</strong>, the employer may be eligible:
+
+            - if it falls within one of the business sectors eligible for the income tax reduction open to
+
+            taxpayers domiciled in France who have made new productive investments in overseas France
+
+            (provided for in article 199 undecies B of the French General Tax Code)
+
+            - or if he/she carries out one of the following activities :
+              - accounting ;
+              - business consulting ;
+              - engineering or technical studies.
+          description.fr: >
+            Pour bénéficier du barème de compétitivité renforcée, les employeurs
+            doivent :
+
+            - employer <strong>moins de 250 salariés</strong>
+
+            - et réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>.
+
+
+            L’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
+
+            - soit relever d'un des <strong>secteurs</strong> suivants :
+              - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
+              et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+              - 🎣 pêche, cultures marines et aquaculture ;
+              - 🏭 industrie ;
+              - 🌳 environnement ;
+              - 🌱 agronutrition ;
+              - 🔋 énergies renouvelables ;
+              - 🍴 restauration ;
+              - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+              - ⛵ nautisme ;
+              - 🛏️ hôtellerie ;
+              - 🔬 recherche et développement ;
+              - 🖥️ nouvelles technologies de l’information et de la communication et centres d’appel ;
+              - 📰 presse ;
+              - 🎥 production audiovisuelle.
+            - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
+
+
+            <strong>En Guyane</strong>, l'employeur peut être éligible :
+
+            - s'il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
+
+            contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
+
+            (prévue à l’article 199 undecies B du code général des impôts)
+
+            - ou s'il exerce une des activités suivantes :
+              - comptabilité ;
+              - conseil aux entreprises ;
+              - ingénierie ou études techniques.
+          titre.en: '[automatic] Enhanced competitiveness scale'
+          titre.fr: Barème de compétitivité renforcée
+        barème innovation et croissance:
+          description.en: >
+            [automatic] To qualify for the innovation and growth scale,
+            employers must :
+
+            - have <strong>fewer than 250 employees</strong>,
+
+            - have annual sales <strong>of less than 50 million euros</strong>
+
+            - and carry out <strong>innovative projects</strong> in the information technology
+
+            and communication technologies.
+
+
+            These projects must be carried out in one of the following <strong>areas of activity</strong>:
+              - 📡 telecommunications ;
+              - 🖥️ IT, including programming, systems and software consulting, third-party maintenance
+              systems and applications, facilities management, data processing, hosting and related activities
+              related activities;
+              - 🌐 internet portal and software publishing;
+              - 🎴 computer graphics, including visual and digital content design;
+              - 🤖 design of connected objects.
+
+            If the conditions are met, the exemption applies to employees who participate primarily and
+
+            directly in the realization of innovative projects.
+
+
+            The exemption <strong>does not</strong> apply to support functions: administrative financial tasks, logistics, human resources.
+          description.fr: >
+            Pour bénéficier du barème d'innovation et croissance, les employeurs
+            doivent :
+
+            - employer <strong>moins de 250 salariés</strong>,
+
+            - réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>
+
+            - et réaliser des <strong>projets innovants</strong> dans le secteur des technologies de l’information
+
+            et de la communication.
+
+
+            Ces projets doivent être réalisés dans l'un des <strong>domaines d’activité</strong> suivants :
+              - 📡 télécommunication ;
+              - 🖥️ informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance
+              de systèmes et d’applications, gestion d'installations, traitement des données, hébergement et activités
+              connexes ;
+              - 🌐 édition de portails internet et de logiciels;
+              - 🎴 infographie, notamment conception de contenus visuels et numériques ;
+              - 🤖 conception d’objets connectés.
+
+            Si les conditions sont réunies, l’exonération s’applique aux salariés qui participent principalement et
+
+            directement à la réalisation de projets innovants.
+
+
+            L'exonération <strong>ne s'applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+          titre.en: '[automatic] Innovation and growth scale'
+          titre.fr: Barème d'innovation et croissance
+      question.en: '[automatic] What scale would you like to apply?'
+      question.fr: Quel barème souhaitez-vous appliquer ?
+      titre.en: '[automatic] scales'
+      titre.fr: barèmes
   titre.en: '[automatic] Guadeloupe, Martinique, Reunion Island, French Guiana'
   titre.fr: Guadeloupe, Martinique, La Réunion, Guyane
 salarié . cotisations . exonérations . réduction générale:

@@ -42,7 +42,7 @@ export const configRéductionGénérale: SimulationConfig = {
 		'entreprise . catégorie juridique': "''",
 		'entreprise . imposition': 'non',
 		'salarié . cotisations . exonérations . lodeom . zone un': "'oui'",
-		'salarié . cotisations . exonérations . lodeom . zone un . barème compétitivité':
-			"'oui'",
+		'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
+			"'barème compétitivité'",
 	},
 }
