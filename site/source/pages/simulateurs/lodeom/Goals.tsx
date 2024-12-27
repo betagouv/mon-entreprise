@@ -7,6 +7,7 @@ import RéductionMoisParMois from '@/components/RéductionDeCotisations/Réducti
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import useYear from '@/components/utils/useYear'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import {
 	getDataAfterOptionsChange,
@@ -40,6 +41,7 @@ export default function LodeomSimulationGoals({
 	const year = useYear()
 	const situation = useSelector(situationSelector) as SituationType
 	const previousSituation = useRef(situation)
+	const currentZone = useZoneLodeom()
 	const { t } = useTranslation()
 
 	const codeRéduction = engine.evaluate(
@@ -133,6 +135,7 @@ export default function LodeomSimulationGoals({
 							code: codeRégularisation,
 						})
 					}
+					withRépartition={currentZone === 'zone un'}
 				/>
 			) : (
 				<RéductionBasique
@@ -141,6 +144,7 @@ export default function LodeomSimulationGoals({
 					warnings={<Warnings />}
 					warningCondition={`${lodeomDottedName} = 0`}
 					warningMessage={<WarningSalaireTrans />}
+					withRépartition={currentZone === 'zone un'}
 				/>
 			)}
 		</SimulationGoals>
