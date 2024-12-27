@@ -331,6 +331,10 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		cy.get('@recapTable').should('include.text', 'code 688')
 	})
 
+	it('should not include regularization for zone 2', function () {
+		cy.contains('régularisation', { matchCase: false }).should('not.exist')
+	})
+
 	it('should be RGAA compliant', function () {
 		cy.contains('Exonération mensuelle').click()
 		checkA11Y()

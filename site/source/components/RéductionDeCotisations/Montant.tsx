@@ -64,7 +64,7 @@ export default function Montant({
 				</FlexDiv>
 			</StyledTooltip>
 		) : (
-			<FlexDiv id={id} $alignment={alignment}>
+			<FlexDiv id={id} $alignment="center">
 				{formatValue(
 					{
 						nodeValue: réduction,
