@@ -149,6 +149,22 @@ salarié . cotisations . exonérations . heures supplémentaires:
         - 1 / assiette
       plafond: 11.31%
 
+salarié . cotisations . exonérations . zones lodeom:
+  question: Quelle est votre localisation ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - zone un
+        - zone deux
+  avec:
+    zone un:
+      valeur: zones lodeom = 'zone un'
+      titre: Guadeloupe, Guyane, Martinique, La Réunion
+    zone deux:
+      valeur: zones lodeom = 'zone deux'
+      titre: Saint-Barthélémy, Saint-Martin
+
 salarié . cotisations . exonérations . lodeom:
   experimental: oui
   applicable si:
@@ -196,6 +212,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
   titre: Guadeloupe, Guyane, Martinique, La Réunion
   par défaut: non
   une de ces conditions:
+    - zones lodeom = 'zone un'
     - établissement . commune . département = 'Guadeloupe'
     - établissement . commune . département = 'La Réunion'
     - établissement . commune . département = 'Martinique'
@@ -411,6 +428,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
   titre: Saint-Barthélémy, Saint-Martin
   par défaut: non
   une de ces conditions:
+    - zones lodeom = 'zone deux'
     - établissement . commune . département = 'Saint-Barthélemy'
     - établissement . commune . département = 'Saint-Martin'
   références:

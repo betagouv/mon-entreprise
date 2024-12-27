@@ -1,16 +1,9 @@
 import { Trans } from 'react-i18next'
 
-import { useEngine } from '@/components/utils/EngineContext'
-import { useZoneLodeom } from '@/hooks/useZoneLodeom'
+import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 
 export default function WarningSalaireTrans() {
-	const { currentZone } = useZoneLodeom()
-	const engine = useEngine()
-	const currentBarème =
-		currentZone &&
-		engine.evaluate(
-			`salarié . cotisations . exonérations . lodeom . ${currentZone} . barèmes`
-		).nodeValue
+	const currentBarème = useBarèmeLodeom()
 
 	return (
 		currentBarème && (
