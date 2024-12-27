@@ -87,6 +87,7 @@ export function companySituation(state: Situation = {}, action: Action) {
 export function getCompanySituation(entreprise: Entreprise): Situation {
 	return {
 		'entreprise . date de création': toPublicodeDate(entreprise.dateDeCréation),
+		'entreprise . code catégorie juridique': entreprise.codeCatégorieJuridique,
 		'entreprise . catégorie juridique': `'${getCatégorieFromCode(
 			entreprise.codeCatégorieJuridique
 		)}'`,

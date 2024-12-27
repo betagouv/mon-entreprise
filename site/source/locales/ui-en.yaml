@@ -41,6 +41,7 @@ Activités relevant de l’économie collaborative, voir la page: Collaborative 
 Adoption: Adoption
 Afficher le détail: Show details
 "Afficher les données par :": "Display data by:"
+Afficher les détails de l'entreprise, la modifier ou la supprimer.: View company details, modify or delete.
 Aller au contenu principal: Go to main content
 Aller directement au pied de page: Go directly to footer
 Annuler: Cancel
@@ -62,7 +63,6 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   searched.
 Budget: Budget
 Calculer vos revenus: Calculate your income
-Ce simulateur a été prérempli avec la situation de votre entreprise.: This simulator has been pre-filled with your company's situation.
 Cette commune n'existe pas: This commune does not exist
 Cette opération n'est pas réversible.: This operation is not reversible.
 Charger plus de résultats: Load more results
@@ -181,6 +181,7 @@ Les formalités de création d'une entreprise diffèrent selon les statuts et la
 Lire les précisions, ouvrir le message condensé.: Read the details, open the condensed message.
 Liste des intégrations: List of integrations
 Ma situation: My situation
+Masquer les détails de l'entreprise.: Hide company details.
 Maternité: Maternity ward
 Menu de navigation: Navigation menu
 Message à caractère informatif: Informative message
@@ -254,6 +255,7 @@ Recherche sur le site: Site search
 Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
+Rechercher, afficher le champ de recherche d'entreprise.: Search, display the company search field.
 Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.: Search, open the dialog box to enter your search terms.
 Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
 Renseigner une adresse e-mail (au format nom@domaine:
@@ -350,8 +352,6 @@ Voir les autres simulateurs: See other simulators
 Voir les nouveautés apportées par la version {{release}}: See what's new in this version {{release}}
 Voir les simulateurs personnalisés: See customized simulators
 Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise: See customized simulators, access my company management page
-Voir ma situation: See my situation
-Voir ma situation, accéder à la page de gestion de mon entreprise: View my situation, access my company management page
 Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
 Vos droits pour la retraite: Your pension rights
@@ -1849,6 +1849,13 @@ simulation-end:
     text: Now you can make your hiring plans a reality.
   text: You now have access to the most accurate estimate possible.
   title: You have completed this simulation
+simulationPréremplieBanner:
+  aria-label: View my situation, access my company management page
+  button: See my situation
+  info: This simulator has been pre-filled with your company's situation.
+  warning:
+    "1": Your legal category is
+    "2": "but you are on the simulator for "
 site:
   defaultTitle: My company
   meta:

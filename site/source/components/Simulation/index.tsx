@@ -1,26 +1,20 @@
 import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { ConversationProps } from '@/components/conversation/Conversation'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
-import { PopoverWithTrigger } from '@/design-system'
 import { Grid, Spacing } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import {
-	companySituationSelector,
-	firstStepCompletedSelector,
-} from '@/store/selectors/simulationSelectors'
+import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
 import { TrackPage } from '../ATInternetTracking'
-import Banner from '../Banner'
-import AnswerList from '../conversation/AnswerList'
 import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
+import SimulationPréremplieBanner from '../SimulationPréremplieBanner'
 import PreviousSimulationBanner from './../PreviousSimulationBanner'
 import { FromTop } from './../ui/animate'
+import EntrepriseSelection from './EntrepriseSelection'
 import { Questions } from './Questions'
 
 export { Questions } from './Questions'
@@ -61,12 +55,7 @@ export default function Simulation({
 	id,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
-	const existingCompany = !!useSelector(companySituationSelector)[
-		'entreprise . SIREN'
-	]
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
-
-	const { t } = useTranslation()
 
 	return (
 		<>
@@ -78,6 +67,7 @@ export default function Simulation({
 				<FromTop>
 					{(firstStepCompleted || showQuestionsFromBeginning) && (
 						<>
+							<EntrepriseSelection />
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
 							</div>
@@ -86,33 +76,14 @@ export default function Simulation({
 					)}
 					<Spacing md />
 
+					<SimulationPréremplieBanner />
+
 					{!showQuestionsFromBeginning && !firstStepCompleted && (
 						<PreviousSimulationBanner />
 					)}
+
 					{afterQuestionsSlot}
-					{existingCompany && (
-						<Banner icon="✏">
-							<Trans>
-								Ce simulateur a été prérempli avec la situation de votre
-								entreprise.
-							</Trans>{' '}
-							<PopoverWithTrigger
-								trigger={(buttonProps) => (
-									<Link
-										{...buttonProps}
-										aria-haspopup="dialog"
-										aria-label={t(
-											'Voir ma situation, accéder à la page de gestion de mon entreprise'
-										)}
-									>
-										<Trans>Voir ma situation</Trans>
-									</Link>
-								)}
-							>
-								{(close) => <AnswerList onClose={close} />}
-							</PopoverWithTrigger>
-						</Banner>
-					)}
+
 					{firstStepCompleted && !hideDetails && (
 						<>
 							<ShareOrSaveSimulationBanner share print conseillersEntreprises />
