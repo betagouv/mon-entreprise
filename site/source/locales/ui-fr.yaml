@@ -402,7 +402,6 @@ Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié<
   "Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il
   existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>,
   <6>conjoint associé</6> ou <9>conjoint salarié</9>)."
-Zone de l'entreprise: Zone de l'entreprise
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
@@ -1544,6 +1543,7 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d'impôt sur les sociétés
     lodeom:
+      barème-switch-label: "Barème à appliquer :"
       legend: Rémunération brute du salarié et exonération Lodeom applicable
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
@@ -1587,6 +1587,7 @@ pages:
               2024, une rémunération totale qui ne dépasse pas <2>6 306,30 €</2>
               bruts par mois.
         stage: L'exonération Lodeom ne s'applique pas sur les gratifications de stage.
+      zone-switch-label: Localisation de l'entreprise
     médecin:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du

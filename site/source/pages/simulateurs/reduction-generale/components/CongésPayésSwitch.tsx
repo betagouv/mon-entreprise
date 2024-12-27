@@ -6,7 +6,7 @@ import { styled } from 'styled-components'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system'
-import { FlexCenter } from '@/design-system/global-style'
+import { Strong } from '@/design-system/typography'
 import { Body } from '@/design-system/typography/paragraphs'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { réductionGénéraleDottedName } from '@/utils/réductionDeCotisations'
@@ -30,9 +30,9 @@ export default function CongésPayésSwitch() {
 	return (
 		<Container>
 			<StyledBody id="caisse-congés-payés-label">
-				{engine.getRule(dottedName).title}
+				<Strong>{engine.getRule(dottedName).title} :</Strong>
 			</StyledBody>
-			<ToggleGroup
+			<StyledToggleGroup
 				value={currentCongésPayés}
 				onChange={(value) => {
 					setCurrentCongésPayés(value)
@@ -40,19 +40,33 @@ export default function CongésPayésSwitch() {
 				}}
 				aria-labelledby="caisse-congés-payés-label"
 			>
-				<Radio value="oui">{t('Oui')}</Radio>
-				<Radio value="non">{t('Non')}</Radio>
-			</ToggleGroup>
+				<StyledRadio value="oui">{t('Oui')}</StyledRadio>
+				<StyledRadio value="non">{t('Non')}</StyledRadio>
+			</StyledToggleGroup>
 		</Container>
 	)
 }
 
 const Container = styled.div`
-	${FlexCenter}
+	text-align: left;
+	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
-	justify-content: center;
 	column-gap: ${({ theme }) => theme.spacings.sm};
+	width: 100%;
 `
 const StyledBody = styled(Body)`
 	margin: ${({ theme }) => theme.spacings.xxs} 0;
+`
+const StyledToggleGroup = styled(ToggleGroup)`
+	display: flex;
+	> * {
+		display: flex;
+	}
+`
+const StyledRadio = styled(Radio)`
+	white-space: nowrap;
+	> span {
+		width: 100%;
+	}
 `
