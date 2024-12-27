@@ -201,6 +201,8 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 
     valeur d'acquisition:
       variations:
+        - si: date >= 01/2025
+          alors: 20.1877 €/point
         - si: date >= 01/2024
           alors: 19.6321 €/point
         - si: date >= 01/2023
@@ -218,6 +220,8 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 
     valeur du point:
       variations:
+        - si: date >= 11/2024
+          alors: 1.4386 €/an/point
         - si: date >= 11/2023
           alors: 1.4159 €/an/point
         - si: date >= 11/2022

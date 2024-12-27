@@ -1,5 +1,7 @@
 # Journal des modifications
 ## next
+### Corrections
+- Mise à jour des valeurs Agirc-Arrco
 
 ## 4.0.0
 ### Breaking changes
