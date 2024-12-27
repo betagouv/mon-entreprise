@@ -99,7 +99,19 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		).should('include.text', '644 €')
 	})
 
+<<<<<<< HEAD
 >>>>>>> 85d9bc4b0 (feat(lodeom): ajout de la sélection de zone)
+=======
+	it('should not include repartition for zone 2', function () {
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_retraite_complémentaire-value"]'
+		).should('not.exist')
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_sécurité_sociale-value"]'
+		).should('not.exist')
+	})
+
+>>>>>>> 7294137b4 (feat(lodeom): suppression de la répartition pour la zone 2)
 	it('should display a custom warning for a remuneration too high', function () {
 		cy.get(inputSelector).first().type('{selectall}8500')
 

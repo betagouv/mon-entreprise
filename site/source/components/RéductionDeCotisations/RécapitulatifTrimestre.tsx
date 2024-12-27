@@ -2,7 +2,7 @@ import { sumAll } from 'effect/Number'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import MontantAvecRépartition from '@/components/RéductionDeCotisations/MontantAvecRépartition'
+import Montant from '@/components/RéductionDeCotisations/Montant'
 import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { MonthState, RéductionDottedName } from '@/utils/réductionDeCotisations'
@@ -13,6 +13,7 @@ type Props = {
 	data: MonthState[]
 	codeRéduction?: string
 	codeRégularisation?: string
+	withRépartition?: boolean
 	mobileVersion?: boolean
 }
 
@@ -27,6 +28,7 @@ export default function RécapitulatifTrimestre({
 	data,
 	codeRéduction,
 	codeRégularisation,
+	withRépartition = true,
 	mobileVersion = false,
 }: Props) {
 	const { t, i18n } = useTranslation()
@@ -73,7 +75,7 @@ export default function RécapitulatifTrimestre({
 
 	const MontantRéduction = () => {
 		return (
-			<MontantAvecRépartition
+			<Montant
 				id={`recap-${label.replace(/\s|\./g, '_')}-réduction`}
 				dottedName={dottedName}
 				rémunérationBrute={rémunération}
@@ -82,13 +84,14 @@ export default function RécapitulatifTrimestre({
 				displayedUnit={displayedUnit}
 				language={language}
 				alignment="center"
+				withRépartition={withRépartition}
 			/>
 		)
 	}
 
 	const MontantRégularisation = () => {
 		return (
-			<MontantAvecRépartition
+			<Montant
 				id={`recap-${label.replace(/\s|\./g, '_')}-régularisation`}
 				dottedName={dottedName}
 				rémunérationBrute={rémunération}
@@ -97,6 +100,7 @@ export default function RécapitulatifTrimestre({
 				displayedUnit={displayedUnit}
 				language={language}
 				alignment="center"
+				withRépartition={withRépartition}
 			/>
 		)
 	}
