@@ -62,17 +62,13 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should allow to select a scale', function () {
-		cy.get('#salarié___cotisations___exonérations___lodeom___zone_un___barèmes')
-			.contains('Barème de compétitivité renforcée')
-			.click()
+		cy.contains('Barème de compétitivité renforcée').click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
 		).should('include.text', '1 117,90 €')
 
-		cy.get('#salarié___cotisations___exonérations___lodeom___zone_un___barèmes')
-			.contains("Barème d'innovation et croissance")
-			.click()
+		cy.contains("Barème d'innovation et croissance").click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
@@ -84,31 +80,19 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 =======
 	it('should allow to select a zone', function () {
 		cy.contains('Saint-Barthélémy, Saint-Martin').click()
-		cy.get(
-			'#salarié___cotisations___exonérations___lodeom___zone_deux___barèmes'
-		)
-			.contains('Barème pour les employeurs de moins de 11 salariés')
-			.click()
+		cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
 		).should('include.text', '530,25 €')
 
-		cy.get(
-			'#salarié___cotisations___exonérations___lodeom___zone_deux___barèmes'
-		)
-			.contains("Barème d'exonération sectorielle")
-			.click()
+		cy.contains("Barème d'exonération sectorielle").click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
 		).should('include.text', '350,35 €')
 
-		cy.get(
-			'#salarié___cotisations___exonérations___lodeom___zone_deux___barèmes'
-		)
-			.contains("Barème d'exonération renforcée")
-			.click()
+		cy.contains("Barème d'exonération renforcée").click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'

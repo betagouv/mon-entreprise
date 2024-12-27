@@ -1,23 +1,21 @@
-import { DottedName } from 'modele-social'
 import { renderToString } from 'react-dom/server'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Body } from '@/design-system/typography/paragraphs'
+import { barèmeLodeomDottedName } from '@/hooks/useBarèmeLodeom'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { SimpleField } from '@/pages/assistants/components/Fields'
 
 export default function BarèmeSwitch() {
-	const { currentZone } = useZoneLodeom()
+	const currentZone = useZoneLodeom()
 	const { t } = useTranslation()
 
 	return (
 		currentZone && (
 			<Container>
 				<SimpleField
-					dottedName={
-						`salarié . cotisations . exonérations . lodeom . ${currentZone} . barèmes` as DottedName
-					}
+					dottedName={barèmeLodeomDottedName(currentZone)}
 					label={renderToString(
 						<p>
 							<strong>
@@ -42,8 +40,9 @@ const Container = styled.div`
 	flex-wrap: wrap;
 	column-gap: ${({ theme }) => theme.spacings.sm};
 	width: 100%;
-	margin-bottom: -${({ theme }) => theme.spacings.xl};
+	margin-bottom: -${({ theme }) => theme.spacings.lg};
 `
 const StyledBody = styled(Body)`
-	margin: ${({ theme }) => theme.spacings.xxs} 0;
+	margin: 0;
+	margin-bottom: ${({ theme }) => theme.spacings.md};
 `
