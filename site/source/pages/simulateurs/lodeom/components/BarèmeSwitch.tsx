@@ -1,8 +1,10 @@
 import { renderToString } from 'react-dom/server'
 import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
 
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	RuleSwitchLabel,
+	SwitchContainer,
+} from '@/design-system/réductionDeCotisations'
 import { barèmeLodeomDottedName } from '@/hooks/useBarèmeLodeom'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { SimpleField } from '@/pages/assistants/components/Fields'
@@ -13,7 +15,7 @@ export default function BarèmeSwitch() {
 
 	return (
 		currentZone && (
-			<Container>
+			<SwitchContainer $isRule>
 				<SimpleField
 					dottedName={barèmeLodeomDottedName(currentZone)}
 					label={renderToString(
@@ -26,23 +28,9 @@ export default function BarèmeSwitch() {
 							</strong>
 						</p>
 					)}
-					labelStyle={StyledBody}
+					labelStyle={RuleSwitchLabel}
 				/>
-			</Container>
+			</SwitchContainer>
 		)
 	)
 }
-
-const Container = styled.div`
-	text-align: left;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	column-gap: ${({ theme }) => theme.spacings.sm};
-	width: 100%;
-	margin-bottom: -${({ theme }) => theme.spacings.lg};
-`
-const StyledBody = styled(Body)`
-	margin: 0;
-	margin-bottom: ${({ theme }) => theme.spacings.md};
-`

@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import EffectifSwitch from '@/components/EffectifSwitch'
 import PeriodSwitch from '@/components/PeriodSwitch'
+import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
 import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
