@@ -1465,6 +1465,7 @@ pages:
       warnings:
         JEI: The Lodeom exemption cannot be combined with the Young Innovative Company
           (JEI) exemption.
+        barème: Please select a location and a scale to access the simulator.
         salaire:
           zone-deux:
             barème-moins-de-11-salariés: The scale for employers with fewer than 11
