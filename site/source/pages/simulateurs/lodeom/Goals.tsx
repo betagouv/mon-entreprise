@@ -33,7 +33,7 @@ export default function LodeomSimulationGoals({
 	monthByMonth: boolean
 	toggles?: React.ReactNode
 	legend: string
-	régularisationMethod: RégularisationMethod
+	régularisationMethod?: RégularisationMethod
 }) {
 	const engine = useEngine()
 	const dispatch = useDispatch()
@@ -70,8 +70,8 @@ export default function LodeomSimulationGoals({
 				previousSituation.current,
 				previousData,
 				year,
-				régularisationMethod,
-				engine
+				engine,
+				régularisationMethod
 			)
 		})
 	}, [engine, situation, régularisationMethod, year])
@@ -87,9 +87,9 @@ export default function LodeomSimulationGoals({
 				rémunérationBrute,
 				previousData,
 				year,
-				régularisationMethod,
 				engine,
-				dispatch
+				dispatch,
+				régularisationMethod
 			)
 		})
 	}
@@ -102,8 +102,8 @@ export default function LodeomSimulationGoals({
 				options,
 				previousData,
 				year,
-				régularisationMethod,
-				engine
+				engine,
+				régularisationMethod
 			)
 		})
 	}
@@ -135,7 +135,7 @@ export default function LodeomSimulationGoals({
 							code: codeRégularisation,
 						})
 					}
-					withRépartition={currentZone === 'zone un'}
+					withRépartitionAndRégularisation={currentZone === 'zone un'}
 				/>
 			) : (
 				<RéductionBasique

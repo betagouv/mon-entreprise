@@ -31,7 +31,7 @@ type Props = {
 	onOptionsChange: (monthIndex: number, options: Options) => void
 	warningCondition: PublicodesExpression
 	warningTooltip: ReactNode
-	withRépartition?: boolean
+	withRépartitionAndRégularisation?: boolean
 	mobileVersion?: boolean
 }
 
@@ -44,7 +44,7 @@ export default function RéductionMois({
 	onOptionsChange,
 	warningCondition,
 	warningTooltip,
-	withRépartition = true,
+	withRépartitionAndRégularisation = true,
 	mobileVersion = false,
 }: Props) {
 	const { t, i18n } = useTranslation()
@@ -125,7 +125,7 @@ export default function RéductionMois({
 				language={language}
 				warningCondition={warningCondition}
 				warningTooltip={warningTooltip}
-				withRépartition={withRépartition}
+				withRépartition={withRépartitionAndRégularisation}
 			/>
 		)
 	}
@@ -140,7 +140,7 @@ export default function RéductionMois({
 				répartition={data.régularisation.répartition}
 				displayedUnit={displayedUnit}
 				language={language}
-				withRépartition={withRépartition}
+				withRépartition={withRépartitionAndRégularisation}
 			/>
 		)
 	}
@@ -184,18 +184,20 @@ export default function RéductionMois({
 				</Grid>
 			</GridContainer>
 
-			<GridContainer container spacing={2}>
-				<Grid item>
-					<RuleLink
-						dottedName={`${réductionGénéraleDottedName} . régularisation`}
-					/>
-				</Grid>
-				<Grid item>
-					<StyledBody>
-						<MontantRégularisation />
-					</StyledBody>
-				</Grid>
-			</GridContainer>
+			{withRépartitionAndRégularisation && (
+				<GridContainer container spacing={2}>
+					<Grid item>
+						<RuleLink
+							dottedName={`${réductionGénéraleDottedName} . régularisation`}
+						/>
+					</Grid>
+					<Grid item>
+						<StyledBody>
+							<MontantRégularisation />
+						</StyledBody>
+					</Grid>
+				</GridContainer>
+			)}
 		</div>
 	) : (
 		<>
@@ -210,9 +212,11 @@ export default function RéductionMois({
 				<td>
 					<MontantRéduction />
 				</td>
-				<td>
-					<MontantRégularisation />
-				</td>
+				{withRépartitionAndRégularisation && (
+					<td>
+						<MontantRégularisation />
+					</td>
+				)}
 			</tr>
 			{isOptionVisible && (
 				<StyledTableRow>

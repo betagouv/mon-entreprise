@@ -29,7 +29,7 @@ type Props = {
 	warningTooltip: ReactNode
 	codeRéduction?: string
 	codeRégularisation?: string
-	withRépartition?: boolean
+	withRépartitionAndRégularisation?: boolean
 }
 
 export default function RéductionMoisParMois({
@@ -43,7 +43,7 @@ export default function RéductionMoisParMois({
 	warningTooltip,
 	codeRéduction,
 	codeRégularisation,
-	withRépartition = true,
+	withRépartitionAndRégularisation = true,
 }: Props) {
 	const { t } = useTranslation()
 	const isDesktop = useMediaQuery(
@@ -93,11 +93,13 @@ export default function RéductionMoisParMois({
 								<th scope="col">
 									<RuleLink dottedName={dottedName} />
 								</th>
-								<th scope="col">
-									<RuleLink
-										dottedName={`${réductionGénéraleDottedName} . régularisation`}
-									/>
-								</th>
+								{withRépartitionAndRégularisation && (
+									<th scope="col">
+										<RuleLink
+											dottedName={`${réductionGénéraleDottedName} . régularisation`}
+										/>
+									</th>
+								)}
 							</tr>
 						</thead>
 						<tbody>
@@ -120,7 +122,9 @@ export default function RéductionMoisParMois({
 										}}
 										warningCondition={warningCondition}
 										warningTooltip={warningTooltip}
-										withRépartition={withRépartition}
+										withRépartitionAndRégularisation={
+											withRépartitionAndRégularisation
+										}
 									/>
 								))}
 						</tbody>
@@ -156,18 +160,20 @@ export default function RéductionMoisParMois({
 										</>
 									)}
 								</th>
-								<th scope="col">
-									{t(
-										'pages.simulateurs.réduction-générale.recap.header-régularisation',
-										'Régularisation calculée'
-									)}
-									{codeRégularisation && (
-										<>
-											<br />
-											{codeRégularisation}
-										</>
-									)}
-								</th>
+								{withRépartitionAndRégularisation && (
+									<th scope="col">
+										{t(
+											'pages.simulateurs.réduction-générale.recap.header-régularisation',
+											'Régularisation calculée'
+										)}
+										{codeRégularisation && (
+											<>
+												<br />
+												{codeRégularisation}
+											</>
+										)}
+									</th>
+								)}
 							</tr>
 						</thead>
 						<tbody>
@@ -179,7 +185,9 @@ export default function RéductionMoisParMois({
 									data={quarters[label]}
 									codeRéduction={codeRéduction}
 									codeRégularisation={codeRégularisation}
-									withRépartition={withRépartition}
+									withRépartitionAndRégularisation={
+										withRépartitionAndRégularisation
+									}
 								/>
 							))}
 						</tbody>
@@ -207,7 +215,9 @@ export default function RéductionMoisParMois({
 								}}
 								warningCondition={warningCondition}
 								warningTooltip={warningTooltip}
-								withRépartition={withRépartition}
+								withRépartitionAndRégularisation={
+									withRépartitionAndRégularisation
+								}
 								mobileVersion={true}
 							/>
 						))}
@@ -228,7 +238,9 @@ export default function RéductionMoisParMois({
 							data={quarters[label]}
 							codeRéduction={codeRéduction}
 							codeRégularisation={codeRégularisation}
-							withRépartition={withRépartition}
+							withRépartitionAndRégularisation={
+								withRépartitionAndRégularisation
+							}
 							mobileVersion={true}
 						/>
 					))}
