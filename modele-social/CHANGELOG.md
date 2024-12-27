@@ -1,5 +1,7 @@
 # Journal des modifications
 ## next
+### Corrections
+- Mise à jour des valeurs de la Retraite Complémentaire des Indépendants
 
 ## 4.0.0
 ### Breaking changes
