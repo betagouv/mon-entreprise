@@ -379,7 +379,6 @@ Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié<
   with a company director, there are <1>3 possible statuses</1> for
   you<3>(collaborating spouse</3>, <6>associate spouse</6> or <9>salaried
   spouse</9>).
-Zone de l'entreprise: Company zone
 accessibility:
   description: Référentiel Général d'Amélioration de l'Accessibilité (General
     Accessibility Improvement Reference System)
@@ -1451,6 +1450,7 @@ pages:
         included in the simulator.</5>
       title: Corporate tax simulator
     lodeom:
+      barème-switch-label: "Scale to be applied :"
       legend: Employee's gross salary and applicable Lodeom exemption
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
@@ -1490,6 +1490,7 @@ pages:
               salaries below 3.5 SMIC. This means, for 2024, a total
               remuneration not exceeding <2>€6,306.30</2> gross per month.
         stage: The Lodeom exemption does not apply to internship bonuses.
+      zone-switch-label: Company location
     médecin:
       meta:
         description: Calculation of net income after deduction of contributions, based
