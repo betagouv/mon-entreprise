@@ -1,7 +1,33 @@
 # Journal des modifications
 ## next
 
+## 4.0.0
+### Breaking changes
+- Suppression de la règle `salarié . régimes spécifiques . DFS . profession . journaliste . réduction de taux`
+
+### Nouveautés
+- Ajout des taux réduits cas particuliers (dont journaliste)
+- Ajout du coefficient de majoration pour le calcul de la réduction générale avec caisses de congés payés
+- Ajout du cumul retraite et activité libérale (cotisations invalidité-décès)
+
+### Corrections
+- Mise à jour du montant forfaitaire d'un repas pour HCR
+- Mise à jour du taux de cotisation AGS
+- Mise à jour des professions et taux pour la DFS
+- Mise à jour des taux BNC pour les DROM
+- Mise à jour du montant du PASS pour 2025
+- Correction de la règle d'affiliation au régime général
+- Correction du plafond de revenus micro-BNC pour les artistes-auteurs
+- Correction de l'unité et de l'arrondi du coefficient T
+- Correction de l'unité et de l'arrondi du coefficient de réduction générale
+- Correction de l'unité des frais professionnels dans le calcul du montant net social
+
+### Documentation
+- Ajout de précisions sur le taux spécifique de cotisation retraite complémentaire
+- Ajout de documentation sur la régularisation de la réduction générale
+
 ## 3.1.0
+### Corrections
 - Mise à jour du SMIC horaire à partir du 01/11/2024
 - Correction du lien pour les TFC auto-entrepreneurs
 - Correction du taux de cotisation maladie pour les PAMC
