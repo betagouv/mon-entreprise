@@ -3,7 +3,7 @@ import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
 import { useCallback, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { styled } from 'styled-components'
+import { IStyledComponent, styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
@@ -73,6 +73,7 @@ type SimpleFieldProps = {
 	showSuggestions?: boolean
 	label?: string
 	['aria-label']?: string
+	labelStyle?: IStyledComponent<'web', object>
 }
 
 export function SimpleField(props: SimpleFieldProps) {
@@ -82,6 +83,7 @@ export function SimpleField(props: SimpleFieldProps) {
 		summary,
 		showSuggestions = false,
 		label,
+		labelStyle,
 	} = props
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
@@ -95,39 +97,38 @@ export function SimpleField(props: SimpleFieldProps) {
 		[dispatch]
 	)
 
-	let displayedQuestion =
-		question ?? evaluateQuestion(engine, engine.getRule(dottedName))
-
 	const labelId = useSSRSafeId()
 	const targetUnit = useSelector(targetUnitSelector)
 
 	if (evaluation.nodeValue === null) {
 		return null
 	}
-	let displayedLabel =
-		label ??
-		(!displayedQuestion
-			? rule.title + (rule.rawNode.résumé ? ` – ${rule.rawNode.résumé}` : '')
-			: undefined)
+	let displayedLabel = label
+	if (!displayedLabel) {
+		displayedLabel =
+			question ?? evaluateQuestion(engine, engine.getRule(dottedName))
+	}
+	if (!displayedLabel) {
+		displayedLabel =
+			rule.title + (rule.rawNode.résumé ? ` – ${rule.rawNode.résumé}` : '')
+	}
+
 	if (meta.requis === 'oui') {
 		if (displayedLabel) {
 			displayedLabel += ' *'
 		}
-		if (displayedQuestion) {
-			displayedQuestion += ' *'
-		}
+	}
+
+	const markdownComponents = {
+		p: labelStyle ?? Intro,
 	}
 
 	return (
 		<FadeIn>
-			{displayedQuestion ? (
-				<StyledQuestion id={labelId}>
-					<Markdown components={{ p: Intro }}>{displayedQuestion}</Markdown>
-					<ExplicableRule dottedName={dottedName} />
-				</StyledQuestion>
-			) : (
-				<Spacing sm />
-			)}
+			<StyledQuestion id={labelId}>
+				<Markdown components={markdownComponents}>{displayedLabel}</Markdown>
+				<ExplicableRule dottedName={dottedName} />
+			</StyledQuestion>
 			{summary && <SmallBody>{summary ?? rule.rawNode.résumé}</SmallBody>}
 			<RuleInput
 				dottedName={dottedName}
@@ -136,8 +137,7 @@ export function SimpleField(props: SimpleFieldProps) {
 						? targetUnit
 						: undefined
 				}
-				aria-labelledby={displayedQuestion ? labelId : undefined}
-				label={displayedLabel}
+				aria-labelledby={labelId}
 				required={meta.requis === 'oui'}
 				missing={
 					evaluation.nodeValue === undefined ||
