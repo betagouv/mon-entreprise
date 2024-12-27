@@ -1,9 +1,12 @@
 import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
 
-import { Radio, ToggleGroup } from '@/design-system'
+import {
+	SwitchContainer,
+	SwitchLabel,
+	SwitchRadio,
+	SwitchToggleGroup,
+} from '@/design-system/réductionDeCotisations'
 import { Strong } from '@/design-system/typography'
-import { Body } from '@/design-system/typography/paragraphs'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
 type Props = {
@@ -18,8 +21,8 @@ export default function RégularisationSwitch({
 	const { t } = useTranslation()
 
 	return (
-		<Container>
-			<StyledBody id="régularisation-switch-label">
+		<SwitchContainer>
+			<SwitchLabel id="régularisation-switch-label">
 				<Strong>
 					{t(
 						'pages.simulateurs.réduction-générale.régularisation.type',
@@ -27,55 +30,28 @@ export default function RégularisationSwitch({
 					)}{' '}
 					:
 				</Strong>
-			</StyledBody>
+			</SwitchLabel>
 
-			<StyledToggleGroup
+			<SwitchToggleGroup
 				value={régularisationMethod}
 				onChange={(value) => {
 					setRégularisationMethod(value as RégularisationMethod)
 				}}
 				aria-labelledby="régularisation-switch-label"
 			>
-				<StyledRadio value="annuelle">
+				<SwitchRadio value="annuelle">
 					{t(
 						'pages.simulateurs.réduction-générale.régularisation.annuelle',
 						'Régularisation annuelle'
 					)}
-				</StyledRadio>
-				<StyledRadio value="progressive">
+				</SwitchRadio>
+				<SwitchRadio value="progressive">
 					{t(
 						'pages.simulateurs.réduction-générale.régularisation.progressive',
 						'Régularisation progressive'
 					)}
-				</StyledRadio>
-			</StyledToggleGroup>
-		</Container>
+				</SwitchRadio>
+			</SwitchToggleGroup>
+		</SwitchContainer>
 	)
 }
-
-const Container = styled.div`
-	text-align: left;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	column-gap: ${({ theme }) => theme.spacings.sm};
-	width: 100%;
-	margin-bottom: ${({ theme }) => theme.spacings.sm};
-`
-const StyledBody = styled(Body)`
-	margin: 0;
-	margin-bottom: ${({ theme }) => theme.spacings.sm};
-`
-const StyledToggleGroup = styled(ToggleGroup)`
-	display: flex;
-	> * {
-		display: flex;
-		/* flex-direction: column; */
-	}
-`
-const StyledRadio = styled(Radio)`
-	white-space: nowrap;
-	> span {
-		width: 100%;
-	}
-`
