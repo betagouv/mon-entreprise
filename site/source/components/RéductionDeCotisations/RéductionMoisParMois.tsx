@@ -29,6 +29,7 @@ type Props = {
 	warningTooltip: ReactNode
 	codeRéduction?: string
 	codeRégularisation?: string
+	withRépartition?: boolean
 }
 
 export default function RéductionMoisParMois({
@@ -42,6 +43,7 @@ export default function RéductionMoisParMois({
 	warningTooltip,
 	codeRéduction,
 	codeRégularisation,
+	withRépartition = true,
 }: Props) {
 	const { t } = useTranslation()
 	const isDesktop = useMediaQuery(
@@ -118,6 +120,7 @@ export default function RéductionMoisParMois({
 										}}
 										warningCondition={warningCondition}
 										warningTooltip={warningTooltip}
+										withRépartition={withRépartition}
 									/>
 								))}
 						</tbody>
@@ -176,6 +179,7 @@ export default function RéductionMoisParMois({
 									data={quarters[label]}
 									codeRéduction={codeRéduction}
 									codeRégularisation={codeRégularisation}
+									withRépartition={withRépartition}
 								/>
 							))}
 						</tbody>
@@ -203,6 +207,7 @@ export default function RéductionMoisParMois({
 								}}
 								warningCondition={warningCondition}
 								warningTooltip={warningTooltip}
+								withRépartition={withRépartition}
 								mobileVersion={true}
 							/>
 						))}
@@ -223,6 +228,7 @@ export default function RéductionMoisParMois({
 							data={quarters[label]}
 							codeRéduction={codeRéduction}
 							codeRégularisation={codeRégularisation}
+							withRépartition={withRépartition}
 							mobileVersion={true}
 						/>
 					))}

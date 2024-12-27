@@ -24,6 +24,7 @@ type Props = {
 	warnings: ReactNode
 	warningCondition: PublicodesExpression
 	warningMessage: ReactNode
+	withRépartition?: boolean
 }
 
 export default function RéductionBasique({
@@ -32,6 +33,7 @@ export default function RéductionBasique({
 	warnings,
 	warningCondition,
 	warningMessage,
+	withRépartition = true,
 }: Props) {
 	const engine = useEngine()
 	const currentUnit = useSelector(targetUnitSelector)
@@ -63,7 +65,9 @@ export default function RéductionBasique({
 					round={false}
 				/>
 				<Spacing md />
-				<Répartition dottedName={dottedName} répartition={répartition} />
+				{withRépartition && (
+					<Répartition dottedName={dottedName} répartition={répartition} />
+				)}
 			</Condition>
 		</>
 	)
