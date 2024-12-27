@@ -12,6 +12,8 @@ période . semaines par mois:
 # calculating the beginning and the end of the year of a given date.
 période . début d'année:
   variations:
+    - si: date >= 01/2025
+      alors: 01/01/2025
     - si: date >= 01/2024
       alors: 01/01/2024
     - si: date >= 01/2023
@@ -23,6 +25,8 @@ période . début d'année:
 
 période . fin d'année:
   variations:
+    - si: date >= 01/2025
+      alors: 31/12/2025
     - si: date >= 01/2024
       alors: 31/12/2024
     - si: date >= 01/2023
@@ -31,3 +35,8 @@ période . fin d'année:
       alors: 31/12/2022
     - si: date >= 01/2021
       alors: 31/12/2021
+
+période . durée depuis le début d'année:
+  durée:
+    depuis: période . début d'année
+    jusqu'à: date
