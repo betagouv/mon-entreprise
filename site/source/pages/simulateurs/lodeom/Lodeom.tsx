@@ -15,8 +15,9 @@ import ZoneSwitch from './components/ZoneSwitch'
 import LodeomSimulationGoals from './Goals'
 
 export default function LodeomSimulation() {
-	const { t } = useTranslation()
+	const currentZone = useZoneLodeom()
 	const [monthByMonth, setMonthByMonth] = useState(false)
+	const { t } = useTranslation()
 	const periods = [
 		{
 			label: t('pages.simulateurs.lodeom.tab.month', 'Exonération mensuelle'),
@@ -40,8 +41,6 @@ export default function LodeomSimulation() {
 
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<RégularisationMethod>('progressive')
-
-	const { currentZone } = useZoneLodeom()
 
 	return (
 		<>

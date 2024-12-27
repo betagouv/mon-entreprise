@@ -92,7 +92,7 @@ Décès: Deaths
 Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
-Effectif de l'entreprise: Number of employees
+Effectif de l’entreprise: Number of employees
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "In the event of an<1>accident at work</1>, <4>occupational illness</4> or an
   <7>accident on the way to or from work</7>, you will receive compensation of:"
@@ -137,7 +137,6 @@ Graphique statistiques détaillés de la satisfaction, présence d’une alterna
 Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image:
   Graph showing detailed statistics on the number of visits per day, with an
   alternative accessible after the image
-Guadeloupe, Guyane, Martinique, La Réunion: Guadeloupe, French Guiana, Martinique, Reunion Island
 Habituellement: Usually
 Impôt: Tax
 Impôt au barème: Tax scale
@@ -281,7 +280,6 @@ Répartition du chiffre d'affaires: Sales breakdown
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Answer a few additional questions to clarify your result.
 Résultat fiscal: Taxable income
 Réussite: Success
-Saint-Barthélémy, Saint-Martin: Saint-Barthélémy, Saint-Martin
 Saisissez votre domaine d'activité: Enter your field of activity
 Salaire brut: Gross salary
 Salaire brut mensuel: Gross monthly salary
@@ -1490,7 +1488,7 @@ pages:
               salaries below 3.5 SMIC. This means, for 2024, a total
               remuneration not exceeding <2>€6,306.30</2> gross per month.
         stage: The Lodeom exemption does not apply to internship bonuses.
-      zone-switch-label: Company location
+      zone-switch-label: "Company location :"
     médecin:
       meta:
         description: Calculation of net income after deduction of contributions, based

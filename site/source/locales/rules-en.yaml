@@ -10493,6 +10493,18 @@ salarié . cotisations . exonérations . réduction générale . régularisation
     - ou au titre du dernier trimestre de l’année pour les employeurs « trimestriels ».
   titre.en: '[automatic] regularization'
   titre.fr: régularisation
+salarié . cotisations . exonérations . zones lodeom:
+  avec:
+    zone deux:
+      titre.en: '[automatic] Saint-Barthélémy, Saint-Martin'
+      titre.fr: Saint-Barthélémy, Saint-Martin
+    zone un:
+      titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Reunion Island'
+      titre.fr: Guadeloupe, Guyane, Martinique, La Réunion
+  question.en: '[automatic] Where are you located?'
+  question.fr: Quelle est votre localisation ?
+  titre.en: '[automatic] lodeom zones'
+  titre.fr: zones lodeom
 salarié . cotisations . forfait social:
   description.en: >
     [automatic] The social security contribution is a contribution paid by the
