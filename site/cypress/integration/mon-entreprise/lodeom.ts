@@ -15,8 +15,20 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		cy.contains('Rémunération brute')
 	})
 
-	it('should allow to change time period', function () {
+	it('should display a warning when no zone is selected', function () {
+		cy.contains(
+			'Veuillez sélectionner une localisation et un barème pour accéder au simulateur.'
+		)
+	})
+
+	it('should display a warning when no scale is selected', function () {
 		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains(
+			'Veuillez sélectionner une localisation et un barème pour accéder au simulateur.'
+		)
+	})
+
+	it('should allow to change time period', function () {
 		cy.contains('Barème de compétitivité').click()
 		cy.contains('Exonération annuelle').click()
 		cy.get(inputSelector).first().type('{selectall}42000')

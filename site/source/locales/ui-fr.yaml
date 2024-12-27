@@ -1558,6 +1558,8 @@ pages:
       warnings:
         JEI: L'exonération Lodeom n'est pas cumulable avec l'exonération Jeune
           Entreprise Innovante (JEI).
+        barème: Veuillez sélectionner une localisation et un barème pour accéder au
+          simulateur.
         salaire:
           zone-deux:
             barème-moins-de-11-salariés: Le barème pour les employeurs de moins de 11
