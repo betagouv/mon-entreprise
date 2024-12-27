@@ -25,9 +25,10 @@ type Props = {
 	warningCondition?: PublicodesExpression
 	warningTooltip?: ReactNode
 	alignment?: 'center' | 'end'
+	withRépartition?: boolean
 }
 
-export default function MontantAvecRépartition({
+export default function Montant({
 	id,
 	dottedName,
 	rémunérationBrute,
@@ -38,15 +39,31 @@ export default function MontantAvecRépartition({
 	warningCondition,
 	warningTooltip,
 	alignment = 'end',
+	withRépartition = true,
 }: Props) {
 	const { t } = useTranslation()
 
-	const tooltip = (
+	const tooltip = withRépartition && (
 		<Répartition dottedName={dottedName} répartition={répartition} />
 	)
 
 	return réduction ? (
-		<StyledTooltip tooltip={tooltip}>
+		tooltip ? (
+			<StyledTooltip tooltip={tooltip}>
+				<FlexDiv id={id} $alignment={alignment}>
+					{formatValue(
+						{
+							nodeValue: réduction,
+						},
+						{
+							displayedUnit,
+							language,
+						}
+					)}
+					<StyledSearchIcon />
+				</FlexDiv>
+			</StyledTooltip>
+		) : (
 			<FlexDiv id={id} $alignment={alignment}>
 				{formatValue(
 					{
@@ -57,9 +74,8 @@ export default function MontantAvecRépartition({
 						language,
 					}
 				)}
-				<StyledSearchIcon />
 			</FlexDiv>
-		</StyledTooltip>
+		)
 	) : (
 		!!warningCondition && !!warningTooltip && (
 			<FlexDiv id={id} $alignment={alignment}>
