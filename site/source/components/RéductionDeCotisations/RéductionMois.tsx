@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import NumberInput from '@/components/conversation/NumberInput'
-import MontantAvecRépartition from '@/components/RéductionDeCotisations/MontantAvecRépartition'
+import Montant from '@/components/RéductionDeCotisations/Montant'
 import MonthOptions from '@/components/RéductionDeCotisations/MonthOptions'
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -31,6 +31,7 @@ type Props = {
 	onOptionsChange: (monthIndex: number, options: Options) => void
 	warningCondition: PublicodesExpression
 	warningTooltip: ReactNode
+	withRépartitionAndRégularisation?: boolean
 	mobileVersion?: boolean
 }
 
@@ -43,6 +44,7 @@ export default function RéductionMois({
 	onOptionsChange,
 	warningCondition,
 	warningTooltip,
+	withRépartitionAndRégularisation = true,
 	mobileVersion = false,
 }: Props) {
 	const { t, i18n } = useTranslation()
@@ -113,7 +115,7 @@ export default function RéductionMois({
 
 	const MontantRéduction = () => {
 		return (
-			<MontantAvecRépartition
+			<Montant
 				id={`${dottedName.replace(/\s|\./g, '_')}-${monthName}`}
 				dottedName={dottedName}
 				rémunérationBrute={data.rémunérationBrute}
@@ -123,13 +125,14 @@ export default function RéductionMois({
 				language={language}
 				warningCondition={warningCondition}
 				warningTooltip={warningTooltip}
+				withRépartition={withRépartitionAndRégularisation}
 			/>
 		)
 	}
 
 	const MontantRégularisation = () => {
 		return (
-			<MontantAvecRépartition
+			<Montant
 				id={`${dottedName.replace(/\s|\./g, '_')}__régularisation-${monthName}`}
 				dottedName={dottedName}
 				rémunérationBrute={data.rémunérationBrute}
@@ -137,6 +140,7 @@ export default function RéductionMois({
 				répartition={data.régularisation.répartition}
 				displayedUnit={displayedUnit}
 				language={language}
+				withRépartition={withRépartitionAndRégularisation}
 			/>
 		)
 	}
@@ -180,18 +184,20 @@ export default function RéductionMois({
 				</Grid>
 			</GridContainer>
 
-			<GridContainer container spacing={2}>
-				<Grid item>
-					<RuleLink
-						dottedName={`${réductionGénéraleDottedName} . régularisation`}
-					/>
-				</Grid>
-				<Grid item>
-					<StyledBody>
-						<MontantRégularisation />
-					</StyledBody>
-				</Grid>
-			</GridContainer>
+			{withRépartitionAndRégularisation && (
+				<GridContainer container spacing={2}>
+					<Grid item>
+						<RuleLink
+							dottedName={`${réductionGénéraleDottedName} . régularisation`}
+						/>
+					</Grid>
+					<Grid item>
+						<StyledBody>
+							<MontantRégularisation />
+						</StyledBody>
+					</Grid>
+				</GridContainer>
+			)}
 		</div>
 	) : (
 		<>
@@ -206,9 +212,11 @@ export default function RéductionMois({
 				<td>
 					<MontantRéduction />
 				</td>
-				<td>
-					<MontantRégularisation />
-				</td>
+				{withRépartitionAndRégularisation && (
+					<td>
+						<MontantRégularisation />
+					</td>
+				)}
 			</tr>
 			{isOptionVisible && (
 				<StyledTableRow>

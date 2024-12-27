@@ -7,6 +7,10 @@ import RéductionMoisParMois from '@/components/RéductionDeCotisations/Réducti
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import useYear from '@/components/utils/useYear'
+import { Message } from '@/design-system'
+import { Body } from '@/design-system/typography/paragraphs'
+import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import {
 	getDataAfterOptionsChange,
@@ -32,7 +36,7 @@ export default function LodeomSimulationGoals({
 	monthByMonth: boolean
 	toggles?: React.ReactNode
 	legend: string
-	régularisationMethod: RégularisationMethod
+	régularisationMethod?: RégularisationMethod
 }) {
 	const engine = useEngine()
 	const dispatch = useDispatch()
@@ -40,6 +44,8 @@ export default function LodeomSimulationGoals({
 	const year = useYear()
 	const situation = useSelector(situationSelector) as SituationType
 	const previousSituation = useRef(situation)
+	const currentZone = useZoneLodeom()
+	const currentBarème = useBarèmeLodeom()
 	const { t } = useTranslation()
 
 	const codeRéduction = engine.evaluate(
@@ -68,8 +74,8 @@ export default function LodeomSimulationGoals({
 				previousSituation.current,
 				previousData,
 				year,
-				régularisationMethod,
-				engine
+				engine,
+				régularisationMethod
 			)
 		})
 	}, [engine, situation, régularisationMethod, year])
@@ -85,9 +91,9 @@ export default function LodeomSimulationGoals({
 				rémunérationBrute,
 				previousData,
 				year,
-				régularisationMethod,
 				engine,
-				dispatch
+				dispatch,
+				régularisationMethod
 			)
 		})
 	}
@@ -100,49 +106,62 @@ export default function LodeomSimulationGoals({
 				options,
 				previousData,
 				year,
-				régularisationMethod,
-				engine
+				engine,
+				régularisationMethod
 			)
 		})
 	}
 
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
-			{monthByMonth ? (
-				<RéductionMoisParMois
-					dottedName={lodeomDottedName}
-					data={lodeomMoisParMoisData}
-					onRémunérationChange={onRémunérationChange}
-					onOptionsChange={onOptionsChange}
-					caption={t(
-						'pages.simulateurs.lodeom.month-by-month.caption',
-						'Exonération Lodeom mois par mois :'
-					)}
-					warnings={<Warnings />}
-					warningCondition={`${lodeomDottedName} = 0`}
-					warningTooltip={<WarningSalaireTrans />}
-					codeRéduction={
-						codeRéduction &&
-						t(`code {{ code }}`, {
-							code: codeRéduction,
-						})
-					}
-					codeRégularisation={
-						codeRégularisation &&
-						t(`code {{ code }}`, {
-							code: codeRégularisation,
-						})
-					}
-				/>
-			) : (
-				<RéductionBasique
-					dottedName={lodeomDottedName}
-					onUpdate={initializeLodeomMoisParMoisData}
-					warnings={<Warnings />}
-					warningCondition={`${lodeomDottedName} = 0`}
-					warningMessage={<WarningSalaireTrans />}
-				/>
+			{!currentBarème && (
+				<Message type="info">
+					<Body>
+						{t(
+							'pages.simulateurs.lodeom.warnings.barème',
+							'Veuillez sélectionner une localisation et un barème pour accéder au simulateur.'
+						)}
+					</Body>
+				</Message>
 			)}
+			{currentBarème &&
+				(monthByMonth ? (
+					<RéductionMoisParMois
+						dottedName={lodeomDottedName}
+						data={lodeomMoisParMoisData}
+						onRémunérationChange={onRémunérationChange}
+						onOptionsChange={onOptionsChange}
+						caption={t(
+							'pages.simulateurs.lodeom.month-by-month.caption',
+							'Exonération Lodeom mois par mois :'
+						)}
+						warnings={<Warnings />}
+						warningCondition={`${lodeomDottedName} = 0`}
+						warningTooltip={<WarningSalaireTrans />}
+						codeRéduction={
+							codeRéduction &&
+							t(`code {{ code }}`, {
+								code: codeRéduction,
+							})
+						}
+						codeRégularisation={
+							codeRégularisation &&
+							t(`code {{ code }}`, {
+								code: codeRégularisation,
+							})
+						}
+						withRépartitionAndRégularisation={currentZone === 'zone un'}
+					/>
+				) : (
+					<RéductionBasique
+						dottedName={lodeomDottedName}
+						onUpdate={initializeLodeomMoisParMoisData}
+						warnings={<Warnings />}
+						warningCondition={`${lodeomDottedName} = 0`}
+						warningMessage={<WarningSalaireTrans />}
+						withRépartition={currentZone === 'zone un'}
+					/>
+				))}
 		</SimulationGoals>
 	)
 }

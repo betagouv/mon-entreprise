@@ -15,6 +15,19 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		cy.contains('Rémunération brute')
 	})
 
+	it('should display a warning when no zone is selected', function () {
+		cy.contains(
+			'Veuillez sélectionner une localisation et un barème pour accéder au simulateur.'
+		)
+	})
+
+	it('should display a warning when no scale is selected', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains(
+			'Veuillez sélectionner une localisation et un barème pour accéder au simulateur.'
+		)
+	})
+
 	it('should allow to change time period', function () {
 		cy.contains('Barème de compétitivité').click()
 		cy.contains('Exonération annuelle').click()
@@ -61,25 +74,72 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should allow to select a scale', function () {
-		cy.get('#salarié___cotisations___exonérations___lodeom___zone_un___barèmes')
-			.contains('Barème de compétitivité renforcée')
-			.click()
+		cy.contains('Barème de compétitivité renforcée').click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
 		).should('include.text', '1 117,90 €')
 
-		cy.get('#salarié___cotisations___exonérations___lodeom___zone_un___barèmes')
-			.contains("Barème d'innovation et croissance")
-			.click()
+		cy.contains("Barème d'innovation et croissance").click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
 		).should('include.text', '978,25 €')
 	})
 
+	it('should allow to select a zone', function () {
+		cy.contains('Saint-Barthélémy, Saint-Martin').click()
+		cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '530,25 €')
+
+		cy.contains("Barème d'exonération sectorielle").click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '350,35 €')
+
+		cy.contains("Barème d'exonération renforcée").click()
+
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
+		).should('include.text', '644 €')
+	})
+
+	it('should not include repartition for zone 2', function () {
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_retraite_complémentaire-value"]'
+		).should('not.exist')
+		cy.get(
+			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_sécurité_sociale-value"]'
+		).should('not.exist')
+	})
+
 	it('should display a custom warning for a remuneration too high', function () {
-		cy.get(inputSelector).first().type('{selectall}6500')
+		cy.get(inputSelector).first().type('{selectall}8500')
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			"Le barème d'exonération renforcée uniquement les salaires inférieurs à 4,5 SMIC."
+		)
+
+		cy.contains("Barème d'exonération sectorielle").click()
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			"Le barème d'exonération sectorielle concerne uniquement les salaires inférieurs à 3 SMIC."
+		)
+
+		cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+
+		cy.get('div[id="simulator-legend"]').should(
+			'include.text',
+			'Le barème pour les employeurs de moins de 11 salariés concerne uniquement les salaires inférieurs à 3 SMIC.'
+		)
+
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
@@ -271,6 +331,22 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 
 		cy.get('@recapTable').should('include.text', 'code 473')
 		cy.get('@recapTable').should('include.text', 'code 685')
+
+		cy.contains('Saint-Barthélémy, Saint-Martin').click()
+
+		cy.get('@recapTable').should('include.text', 'code 687')
+
+		cy.contains("Barème d'exonération sectorielle").click()
+
+		cy.get('@recapTable').should('include.text', 'code 686')
+
+		cy.contains("Barème d'exonération renforcée").click()
+
+		cy.get('@recapTable').should('include.text', 'code 688')
+	})
+
+	it('should not include regularization for zone 2', function () {
+		cy.contains('régularisation', { matchCase: false }).should('not.exist')
 	})
 
 	it('should be RGAA compliant', function () {

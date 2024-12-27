@@ -98,7 +98,7 @@ Décès: Décès
 Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
-Effectif de l'entreprise: Effectif de l'entreprise
+Effectif de l’entreprise: Effectif de l’entreprise
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
   d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à
@@ -1541,23 +1541,38 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d'impôt sur les sociétés
     lodeom:
+      barème-switch-label: "Barème à appliquer :"
       legend: Rémunération brute du salarié et exonération Lodeom applicable
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
           est applicable, sous conditions, aux salariés d'Outre-mer.
-        title: Éxonération Lodeom
+        title: Exonération Lodeom
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
-      shortname: Éxonération Lodeom
+      shortname: Exonération Lodeom
       tab:
         month: Exonération mensuelle
         month-by-month: Exonération mois par mois
         year: Exonération annuelle
-      title: Simulateur d'éxonération Lodeom
+      title: Simulateur d'exonération Lodeom
       warnings:
         JEI: L'exonération Lodeom n'est pas cumulable avec l'exonération Jeune
           Entreprise Innovante (JEI).
+        barème: Veuillez sélectionner une localisation et un barème pour accéder au
+          simulateur.
         salaire:
+          zone-deux:
+            barème-moins-de-11-salariés: Le barème pour les employeurs de moins de 11
+              salariés concerne uniquement les salaires inférieurs à 3 SMIC.
+              C'est-à-dire, pour 2024, une rémunération totale qui ne dépasse
+              pas <2>5 405,40 €</2> bruts par mois.
+            barème-renforcé: Le barème d'exonération renforcée uniquement les salaires
+              inférieurs à 4,5 SMIC. C'est-à-dire, pour 2024, une rémunération
+              totale qui ne dépasse pas <1>8 108,10 €</1> bruts par mois.
+            barème-sectoriel: Le barème d'exonération sectorielle concerne uniquement les
+              salaires inférieurs à 3 SMIC. C'est-à-dire, pour 2024, une
+              rémunération totale qui ne dépasse pas <1>5 405,40 €</1> bruts par
+              mois.
           zone-un:
             barème-compétitivité: Le barème de compétitivité concerne uniquement les
               salaires inférieurs à 2,2 SMIC. C'est-à-dire, pour 2024, une
@@ -1572,6 +1587,7 @@ pages:
               2024, une rémunération totale qui ne dépasse pas <2>6 306,30 €</2>
               bruts par mois.
         stage: L'exonération Lodeom ne s'applique pas sur les gratifications de stage.
+      zone-switch-label: "Localisation de l’entreprise :"
     médecin:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
@@ -1977,12 +1993,8 @@ simulateurs:
     libérale:
       année-courante: Le montant calculé correspond aux cotisations de l’année
         {{year}} (pour un revenu {{year}}).
-    lodeom: <0><0></0> <2>Ce simulateur est en cours de développement.</2> <4></4>
-      Pour une version complète, utilisez <7>le simulateur
-      d'urssaf.fr.</7></0><1>Ce simulateur calcule l'exonération Lodeom
-      uniquement pour la <2>Guadeloupe</2>, la <4>Guyane</4>, la
-      <7>Martinique</7> et <9>la Réunion</9>.</1><2><0></0> Les taux et
-      répartitions de cotisations dérogatoires ne sont pas pris en compte.</2>
+    lodeom: <0><0></0> Les taux et répartitions de cotisations dérogatoires ne sont
+      pas pris en compte.</0>
     plus: Lire les précisions
     profession-libérale: Ce simulateur est à destination des professions libérales
       en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.

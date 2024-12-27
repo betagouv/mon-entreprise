@@ -4,7 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { Radio, ToggleGroup } from '@/design-system'
+import {
+	SwitchContainer,
+	SwitchLabel,
+	SwitchRadio,
+	SwitchToggleGroup,
+} from '@/design-system/réductionDeCotisations'
+import { Strong } from '@/design-system/typography'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 
 export default function EffectifSwitch() {
@@ -21,16 +27,21 @@ export default function EffectifSwitch() {
 	}, [currentEffectif, engineEffectif])
 
 	return (
-		<ToggleGroup
-			value={currentEffectif}
-			onChange={(value) => {
-				setCurrentEffectif(value)
-				dispatch(enregistreLaRéponse(dottedName, `'${value}'`))
-			}}
-			aria-label={t("Effectif de l'entreprise")}
-		>
-			<Radio value="10">{t('Moins de 50 salariés')}</Radio>
-			<Radio value="100">{t('Plus de 50 salariés')}</Radio>
-		</ToggleGroup>
+		<SwitchContainer>
+			<SwitchLabel id="effectif-switch-label">
+				<Strong>{t('Effectif de l’entreprise')} :</Strong>
+			</SwitchLabel>
+			<SwitchToggleGroup
+				value={currentEffectif}
+				onChange={(value) => {
+					setCurrentEffectif(value)
+					dispatch(enregistreLaRéponse(dottedName, `'${value}'`))
+				}}
+				aria-labelledby="effectif-switch-label"
+			>
+				<SwitchRadio value="10">{t('Moins de 50 salariés')}</SwitchRadio>
+				<SwitchRadio value="100">{t('Plus de 50 salariés')}</SwitchRadio>
+			</SwitchToggleGroup>
+		</SwitchContainer>
 	)
 }

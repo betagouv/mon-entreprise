@@ -2,12 +2,15 @@ import { DottedName } from 'modele-social'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { styled } from 'styled-components'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { Radio, ToggleGroup } from '@/design-system'
-import { FlexCenter } from '@/design-system/global-style'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	SwitchContainer,
+	SwitchLabel,
+	SwitchRadio,
+	SwitchToggleGroup,
+} from '@/design-system/réductionDeCotisations'
+import { Strong } from '@/design-system/typography'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { réductionGénéraleDottedName } from '@/utils/réductionDeCotisations'
 
@@ -28,11 +31,11 @@ export default function CongésPayésSwitch() {
 	}, [currentCongésPayés, engineCongésPayés])
 
 	return (
-		<Container>
-			<StyledBody id="caisse-congés-payés-label">
-				{engine.getRule(dottedName).title}
-			</StyledBody>
-			<ToggleGroup
+		<SwitchContainer>
+			<SwitchLabel id="caisse-congés-payés-label">
+				<Strong>{engine.getRule(dottedName).title} :</Strong>
+			</SwitchLabel>
+			<SwitchToggleGroup
 				value={currentCongésPayés}
 				onChange={(value) => {
 					setCurrentCongésPayés(value)
@@ -40,19 +43,9 @@ export default function CongésPayésSwitch() {
 				}}
 				aria-labelledby="caisse-congés-payés-label"
 			>
-				<Radio value="oui">{t('Oui')}</Radio>
-				<Radio value="non">{t('Non')}</Radio>
-			</ToggleGroup>
-		</Container>
+				<SwitchRadio value="oui">{t('Oui')}</SwitchRadio>
+				<SwitchRadio value="non">{t('Non')}</SwitchRadio>
+			</SwitchToggleGroup>
+		</SwitchContainer>
 	)
 }
-
-const Container = styled.div`
-	${FlexCenter}
-	flex-wrap: wrap;
-	justify-content: center;
-	column-gap: ${({ theme }) => theme.spacings.sm};
-`
-const StyledBody = styled(Body)`
-	margin: ${({ theme }) => theme.spacings.xxs} 0;
-`

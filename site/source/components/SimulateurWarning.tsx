@@ -216,22 +216,6 @@ export default function SimulateurWarning({
 			{simulateur === 'lodeom' && (
 				<Trans i18nKey="simulateurs.warning.lodeom">
 					<Body>
-						<Emoji emoji="🚧" />{' '}
-						<Strong>Ce simulateur est en cours de développement.</Strong>{' '}
-						<Emoji emoji="🚧" /> Pour une version complète, utilisez{' '}
-						<Link
-							aria-label="Estimateur d'exonération Lodeom sur urssaf.fr, nouvelle fenêtre"
-							href="https://www.urssaf.fr/accueil/outils-documentation/simulateurs/estimateur-exoneration-lodeom.html"
-						>
-							le simulateur d'urssaf.fr.
-						</Link>
-					</Body>
-					<Body>
-						Ce simulateur calcule l'exonération Lodeom uniquement pour la{' '}
-						<Strong>Guadeloupe</Strong>, la <Strong>Guyane</Strong>, la{' '}
-						<Strong>Martinique</Strong> et <Strong>la Réunion</Strong>.
-					</Body>
-					<Body>
 						<Emoji emoji="⚠️" /> Les taux et répartitions de cotisations
 						dérogatoires ne sont pas pris en compte.
 					</Body>

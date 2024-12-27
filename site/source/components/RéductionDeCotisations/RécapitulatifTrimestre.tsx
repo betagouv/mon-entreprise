@@ -2,7 +2,7 @@ import { sumAll } from 'effect/Number'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import MontantAvecRépartition from '@/components/RéductionDeCotisations/MontantAvecRépartition'
+import Montant from '@/components/RéductionDeCotisations/Montant'
 import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { MonthState, RéductionDottedName } from '@/utils/réductionDeCotisations'
@@ -13,6 +13,7 @@ type Props = {
 	data: MonthState[]
 	codeRéduction?: string
 	codeRégularisation?: string
+	withRépartitionAndRégularisation?: boolean
 	mobileVersion?: boolean
 }
 
@@ -27,6 +28,7 @@ export default function RécapitulatifTrimestre({
 	data,
 	codeRéduction,
 	codeRégularisation,
+	withRépartitionAndRégularisation = true,
 	mobileVersion = false,
 }: Props) {
 	const { t, i18n } = useTranslation()
@@ -73,7 +75,7 @@ export default function RécapitulatifTrimestre({
 
 	const MontantRéduction = () => {
 		return (
-			<MontantAvecRépartition
+			<Montant
 				id={`recap-${label.replace(/\s|\./g, '_')}-réduction`}
 				dottedName={dottedName}
 				rémunérationBrute={rémunération}
@@ -82,13 +84,14 @@ export default function RécapitulatifTrimestre({
 				displayedUnit={displayedUnit}
 				language={language}
 				alignment="center"
+				withRépartition={withRépartitionAndRégularisation}
 			/>
 		)
 	}
 
 	const MontantRégularisation = () => {
 		return (
-			<MontantAvecRépartition
+			<Montant
 				id={`recap-${label.replace(/\s|\./g, '_')}-régularisation`}
 				dottedName={dottedName}
 				rémunérationBrute={rémunération}
@@ -97,6 +100,7 @@ export default function RécapitulatifTrimestre({
 				displayedUnit={displayedUnit}
 				language={language}
 				alignment="center"
+				withRépartition={withRépartitionAndRégularisation}
 			/>
 		)
 	}
@@ -126,27 +130,29 @@ export default function RécapitulatifTrimestre({
 				</Grid>
 			</GridContainer>
 
-			<GridContainer container spacing={2}>
-				<Grid item>
-					<StyledBody>
-						{t(
-							'pages.simulateurs.réduction-générale.recap.header-régularisation',
-							'Régularisation calculée'
-						)}
-						{codeRégularisation && (
-							<>
-								<br />
-								{codeRégularisation}
-							</>
-						)}
-					</StyledBody>
-				</Grid>
-				<Grid item>
-					<StyledBody>
-						<MontantRégularisation />
-					</StyledBody>
-				</Grid>
-			</GridContainer>
+			{withRépartitionAndRégularisation && (
+				<GridContainer container spacing={2}>
+					<Grid item>
+						<StyledBody>
+							{t(
+								'pages.simulateurs.réduction-générale.recap.header-régularisation',
+								'Régularisation calculée'
+							)}
+							{codeRégularisation && (
+								<>
+									<br />
+									{codeRégularisation}
+								</>
+							)}
+						</StyledBody>
+					</Grid>
+					<Grid item>
+						<StyledBody>
+							<MontantRégularisation />
+						</StyledBody>
+					</Grid>
+				</GridContainer>
+			)}
 		</div>
 	) : (
 		<tr>
@@ -154,9 +160,11 @@ export default function RécapitulatifTrimestre({
 			<td>
 				<MontantRéduction />
 			</td>
-			<td>
-				<MontantRégularisation />
-			</td>
+			{withRépartitionAndRégularisation && (
+				<td>
+					<MontantRégularisation />
+				</td>
+			)}
 		</tr>
 	)
 }

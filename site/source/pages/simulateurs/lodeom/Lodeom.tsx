@@ -1,20 +1,23 @@
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import EffectifSwitch from '@/components/EffectifSwitch'
 import PeriodSwitch from '@/components/PeriodSwitch'
+import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
 import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
 import BarèmeSwitch from './components/BarèmeSwitch'
+import ZoneSwitch from './components/ZoneSwitch'
 import LodeomSimulationGoals from './Goals'
 
 export default function LodeomSimulation() {
-	const { t } = useTranslation()
+	const currentZone = useZoneLodeom()
 	const [monthByMonth, setMonthByMonth] = useState(false)
+	const { t } = useTranslation()
 	const periods = [
 		{
 			label: t('pages.simulateurs.lodeom.tab.month', 'Exonération mensuelle'),
@@ -51,16 +54,23 @@ export default function LodeomSimulation() {
 					)}
 					toggles={
 						<>
+							<ZoneSwitch />
 							<BarèmeSwitch />
-							<RégularisationSwitch
-								régularisationMethod={régularisationMethod}
-								setRégularisationMethod={setRégularisationMethod}
-							/>
-							<EffectifSwitch />
+							{currentZone === 'zone un' && (
+								<>
+									<RégularisationSwitch
+										régularisationMethod={régularisationMethod}
+										setRégularisationMethod={setRégularisationMethod}
+									/>
+									<EffectifSwitch />
+								</>
+							)}
 							<PeriodSwitch periods={periods} onSwitch={onPeriodSwitch} />
 						</>
 					}
-					régularisationMethod={régularisationMethod}
+					régularisationMethod={
+						currentZone === 'zone un' ? régularisationMethod : undefined
+					}
 				/>
 			</Simulation>
 		</>
