@@ -60,9 +60,11 @@ const Container = styled.div`
 	flex-wrap: wrap;
 	column-gap: ${({ theme }) => theme.spacings.sm};
 	width: 100%;
+	margin-bottom: ${({ theme }) => theme.spacings.sm};
 `
 const StyledBody = styled(Body)`
-	margin: ${({ theme }) => theme.spacings.xxs} 0;
+	margin: 0;
+	margin-bottom: ${({ theme }) => theme.spacings.sm};
 `
 const StyledToggleGroup = styled(ToggleGroup)`
 	display: flex;

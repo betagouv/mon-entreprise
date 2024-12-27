@@ -1,38 +1,16 @@
-import { useDispatch } from 'react-redux'
+import { DottedName } from 'modele-social'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { toOuiNon } from '@/domaine/engine/toOuiNon'
-import { batchUpdateSituation } from '@/store/actions/actions'
 
 const zones = ['zone un', 'zone deux']
 
 export type ZoneLodeom = (typeof zones)[number]
 
-type ReturnType = {
-	currentZone?: ZoneLodeom
-	updateZone: (zone: ZoneLodeom) => void
-}
+export const zonesLodeomDottedName =
+	'salarié . cotisations . exonérations . zones lodeom' as DottedName
 
-export const useZoneLodeom = (): ReturnType => {
+export const useZoneLodeom = (): ZoneLodeom | undefined => {
 	const engine = useEngine()
-	const dispatch = useDispatch()
-	const dottedName = 'salarié . cotisations . exonérations . lodeom'
 
-	const currentZone = zones.find((zone) => {
-		const zoneValue = engine.evaluate(`${dottedName} . ${zone}`).nodeValue
-
-		return !!zoneValue
-	})
-
-	const updateZone = (newZone: ZoneLodeom): void => {
-		const newSituation = zones.reduce((situation, zone) => {
-			return {
-				...situation,
-				[`${dottedName} . ${zone}`]: toOuiNon(zone === newZone),
-			}
-		}, {})
-		dispatch(batchUpdateSituation(newSituation))
-	}
-
-	return { currentZone, updateZone }
+	return engine.evaluate(zonesLodeomDottedName).nodeValue as ZoneLodeom
 }
