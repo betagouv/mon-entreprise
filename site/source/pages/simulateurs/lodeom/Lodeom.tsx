@@ -68,7 +68,9 @@ export default function LodeomSimulation() {
 							<PeriodSwitch periods={periods} onSwitch={onPeriodSwitch} />
 						</>
 					}
-					régularisationMethod={régularisationMethod}
+					régularisationMethod={
+						currentZone === 'zone un' ? régularisationMethod : undefined
+					}
 				/>
 			</Simulation>
 		</>
