@@ -80,8 +80,8 @@ export const getDataAfterSituationChange = (
 	previousSituation: SituationType,
 	previousData: MonthState[],
 	year: number,
-	régularisationMethod: RégularisationMethod,
-	engine: Engine<DottedName>
+	engine: Engine<DottedName>,
+	régularisationMethod?: RégularisationMethod
 ): MonthState[] => {
 	if (!Object.keys(situation).length) {
 		return getInitialRéductionMoisParMois(dottedName, year, engine)
@@ -103,8 +103,8 @@ export const getDataAfterSituationChange = (
 		dottedName,
 		updatedData,
 		year,
-		régularisationMethod,
-		engine
+		engine,
+		régularisationMethod
 	)
 }
 
@@ -114,9 +114,9 @@ export const getDataAfterRémunérationChange = (
 	rémunérationBrute: number,
 	previousData: MonthState[],
 	year: number,
-	régularisationMethod: RégularisationMethod,
 	engine: Engine<DottedName>,
-	dispatch: Dispatch<AnyAction>
+	dispatch: Dispatch<AnyAction>,
+	régularisationMethod?: RégularisationMethod
 ): MonthState[] => {
 	const updatedData = [...previousData]
 	updatedData[monthIndex] = {
@@ -130,8 +130,8 @@ export const getDataAfterRémunérationChange = (
 		dottedName,
 		updatedData,
 		year,
-		régularisationMethod,
-		engine
+		engine,
+		régularisationMethod
 	)
 }
 
@@ -141,8 +141,8 @@ export const getDataAfterOptionsChange = (
 	options: Options,
 	previousData: MonthState[],
 	year: number,
-	régularisationMethod: RégularisationMethod,
-	engine: Engine<DottedName>
+	engine: Engine<DottedName>,
+	régularisationMethod?: RégularisationMethod
 ): MonthState[] => {
 	const updatedData = [...previousData]
 	updatedData[monthIndex] = {
@@ -154,8 +154,8 @@ export const getDataAfterOptionsChange = (
 		dottedName,
 		updatedData,
 		year,
-		régularisationMethod,
-		engine
+		engine,
+		régularisationMethod
 	)
 }
 
@@ -253,8 +253,8 @@ export const reevaluateRéductionMoisParMois = (
 	dottedName: RéductionDottedName,
 	data: MonthState[],
 	year: number,
-	régularisationMethod: RégularisationMethod,
-	engine: Engine<DottedName>
+	engine: Engine<DottedName>,
+	régularisationMethod?: RégularisationMethod
 ): MonthState[] => {
 	const totalRémunérationBrute = sumAll(
 		data.map((monthData) => monthData.rémunérationBrute)
@@ -345,7 +345,7 @@ export const reevaluateRéductionMoisParMois = (
 						engine
 					)
 				}
-			} else if (régularisationMethod === 'annuelle') {
+			} else {
 				const date = getDateForContexte(monthIndex, year)
 				réduction.value = getMonthlyRéduction(
 					dottedName,
@@ -355,7 +355,10 @@ export const reevaluateRéductionMoisParMois = (
 					engine
 				)
 
-				if (monthIndex === data.length - 1) {
+				if (
+					régularisationMethod === 'annuelle' &&
+					monthIndex === data.length - 1
+				) {
 					// La régularisation annuelle est la différence entre la réduction calculée
 					// pour la rémunération annuelle (comparée au SMIC annuel) et la somme des réductions
 					// déjà accordées.

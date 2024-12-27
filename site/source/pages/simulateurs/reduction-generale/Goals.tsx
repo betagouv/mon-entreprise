@@ -69,8 +69,8 @@ export default function RéductionGénéraleSimulationGoals({
 				previousSituation.current,
 				previousData,
 				year,
-				régularisationMethod,
-				engine
+				engine,
+				régularisationMethod
 			)
 		})
 	}, [engine, situation, régularisationMethod, year])
@@ -86,9 +86,9 @@ export default function RéductionGénéraleSimulationGoals({
 				rémunérationBrute,
 				previousData,
 				year,
-				régularisationMethod,
 				engine,
-				dispatch
+				dispatch,
+				régularisationMethod
 			)
 		})
 	}
@@ -101,8 +101,8 @@ export default function RéductionGénéraleSimulationGoals({
 				options,
 				previousData,
 				year,
-				régularisationMethod,
-				engine
+				engine,
+				régularisationMethod
 			)
 		})
 	}
