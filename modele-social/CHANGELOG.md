@@ -1,6 +1,7 @@
 # Journal des modifications
 ## next
 ### Corrections
+- Mise à jour des valeurs de la Retraite Complémentaire des Indépendants
 - Mise à jour des valeurs Agirc-Arrco
 
 ## 4.0.0

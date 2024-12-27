@@ -272,6 +272,8 @@ protection sociale . retraite . complémentaire . RCI:
 
     valeur d'acquisition:
       variations:
+        - si: date >= 01/2025
+          alors: 21.532 €/point
         - si: date >= 01/2024
           alors: 20.734 €/point
         - si: date >= 01/2023
@@ -289,6 +291,8 @@ protection sociale . retraite . complémentaire . RCI:
 
     valeur du point:
       variations:
+        - si: date >= 01/2025
+          alors: 1.335 €/an/point
         - si: date >= 01/2024
           alors: 1.327 €/an/point
         - si: date >= 01/2023
