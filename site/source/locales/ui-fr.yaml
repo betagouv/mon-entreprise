@@ -1993,12 +1993,8 @@ simulateurs:
     libérale:
       année-courante: Le montant calculé correspond aux cotisations de l’année
         {{year}} (pour un revenu {{year}}).
-    lodeom: <0><0></0> <2>Ce simulateur est en cours de développement.</2> <4></4>
-      Pour une version complète, utilisez <7>le simulateur
-      d'urssaf.fr.</7></0><1>Ce simulateur calcule l'exonération Lodeom
-      uniquement pour la <2>Guadeloupe</2>, la <4>Guyane</4>, la
-      <7>Martinique</7> et <9>la Réunion</9>.</1><2><0></0> Les taux et
-      répartitions de cotisations dérogatoires ne sont pas pris en compte.</2>
+    lodeom: <0><0></0> Les taux et répartitions de cotisations dérogatoires ne sont
+      pas pris en compte.</0>
     plus: Lire les précisions
     profession-libérale: Ce simulateur est à destination des professions libérales
       en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.

@@ -1871,12 +1871,8 @@ simulateurs:
     libérale:
       année-courante: The amount calculated corresponds to the contributions for the
         year {{year}} (for an income {{year}}).
-    lodeom: <0><0></0> <2>This simulator is currently under development.</2> <4></4>
-      For a full version, use <7>the urssaf.fr simulator.</7></0><1>This
-      simulator calculates the Lodeom exemption for <2>Guadeloupe</2>, <4>French
-      Guiana</4>, <7>Martinique</7> and <9>Reunion</9> only.</1><2><0></0>
-      Exemption rates and contribution breakdowns are not taken into
-      account.</2>
+    lodeom: <0><0></0> Derogatory contribution rates and breakdowns are not taken
+      into account.</0>
     plus: Read more
     profession-libérale: This simulator is intended for self-employed professionals
       who earn a BNC. It does not take into account self-employed companies.
