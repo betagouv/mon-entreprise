@@ -9534,8 +9534,8 @@ salarié . cotisations . exonérations . lodeom . montant:
     seuil sortie:
       titre.en: '[automatic] output threshold'
       titre.fr: seuil sortie
-  titre.en: '[automatic] amount'
-  titre.fr: montant
+  titre.en: '[automatic] Amount of exemption'
+  titre.fr: Montant de l'exonération
 salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles:
   description.en: >
     [automatic] The business sectors eligible for the "Lodeom" exemption scheme
