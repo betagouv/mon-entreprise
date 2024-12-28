@@ -375,7 +375,7 @@ const Détails = ({
 					>
 						<Trans>
 							Pour y prétendre, vous devez avoir cotisé{' '}
-							<Strong>au moins 10 mois</Strong>.
+							<Strong>au moins 6 mois</Strong>.
 						</Trans>
 					</Body>
 
