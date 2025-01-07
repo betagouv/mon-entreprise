@@ -8957,6 +8957,10 @@ salarié . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
 salarié . cotisations . AGS:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: '[automatic] This contribution guarantees the salaries of the
     employees in case of difficulties of the company (safeguard, recovery,
     liquidation). It pays salaries for the last 60 days of work. It allows the
