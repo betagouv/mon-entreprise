@@ -19,6 +19,7 @@
 - Montant déductible sur les titres-restaurant en 2025
 - Évaluation forfaitaire de l'avantage en nature repas en 2025
 - Part déductible de la participation employeur aux frais de transports en commun en 2025
+- Correction des conditions de non applicabilité des exonérations des heures supplémentaires
 
 ### Corrections
 - Correction de l'opérateur de comparaison de dates
