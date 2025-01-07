@@ -1,5 +1,8 @@
 # Journal des modifications
 ## next
+### Nouveautés
+- Ajout du taux AGS
+
 ### Corrections
 - Mise à jour des valeurs de la Retraite Complémentaire des Indépendants
 - Mise à jour des valeurs Agirc-Arrco
