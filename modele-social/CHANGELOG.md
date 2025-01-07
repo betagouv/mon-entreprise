@@ -6,6 +6,7 @@
 - Ajout de la date du 1er janvier de l'année précédente (période . début d'année . N-1)
 - Ajout du SMIC horaire au 1er janvier de l'année précédente (SMIC . horaire . début d'année N-1)
 - Ajout des classes de cotisation à la retraite complémentaire de la CNBF
+- Ajout du taux AGS
 
 ### Mises à jour
 - Mise à jour de la date au 1er janvier 2025
