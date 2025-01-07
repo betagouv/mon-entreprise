@@ -105,7 +105,10 @@ salarié . cotisations . exonérations . heures supplémentaires:
 
   avec:
     employeur:
-      applicable si: entreprise . salariés . effectif < 250
+      applicable si:
+        toutes ces conditions:
+          - entreprise . salariés . effectif < 250
+          - temps de travail . heures supplémentaires > 0
       titre: déduction forfaitaire pour heures supplémentaires
       produit:
         - temps de travail . heures supplémentaires
@@ -120,7 +123,10 @@ salarié . cotisations . exonérations . heures supplémentaires:
         La déduction forfaitaire patronale pour heures supplémentaires: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
 
     salarié:
-      non applicable si: assiette = 0
+      non applicable si:
+        une de ces conditions:
+          - assiette = 0
+          - rémunération . heures supplémentaires = 0
       titre: réduction de cotisations heures supplémentaires
       produit:
         - rémunération . heures supplémentaires

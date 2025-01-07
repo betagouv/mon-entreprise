@@ -3,6 +3,7 @@
 ### Corrections
 - Mise à jour des valeurs de la Retraite Complémentaire des Indépendants
 - Mise à jour des valeurs Agirc-Arrco
+- Mise à jour des conditions de non applicabilité des exonérations des heures supplémentaires
 
 ## 4.0.0
 ### Breaking changes
