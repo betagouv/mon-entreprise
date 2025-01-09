@@ -453,6 +453,7 @@ salarié . contrat . ancienneté:
     L'ancienneté est le nombre d'années de présence dans l'entreprise. Elle est calculée à partir de la date d'embauche.
   durée:
     depuis: date d'embauche
+    jusqu'à: date
 
 salarié . contrat . salaire brut:
   identifiant court: salaire-brut

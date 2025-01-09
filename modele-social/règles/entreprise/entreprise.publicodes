@@ -43,6 +43,7 @@ entreprise . date de création . contrôle date passée:
 entreprise . durée d'activité:
   durée:
     depuis: date de création
+    jusqu'à: date
 
 entreprise . durée d'activité . en fin d'année:
   somme:
@@ -60,12 +61,14 @@ entreprise . durée d'activité . trimestres civils:
   titre: Nombre de trimestres civils couverts
   durée:
     depuis: date de création
+    jusqu'à: date
     unité: trimestre civil
 
 entreprise . durée d'activité . années civiles:
   titre: Nombre d’années civiles couvertes
   durée:
     depuis: date de création
+    jusqu'à: date
     unité: année civile
 
 entreprise . chiffre d'affaires:

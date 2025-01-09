@@ -5,6 +5,7 @@ salarié:
 salarié . ancienneté:
   durée:
     depuis: contrat . date d'embauche
+    jusqu'à: date
 
 salarié . convention collective:
   experimental: oui
