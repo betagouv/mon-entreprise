@@ -76,9 +76,3 @@
   applicable si: entreprise . date de création < 01/2015
   question: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?
   par défaut: non
-
-établissement . ZFU . durée d'implantation en fin d'année:
-  formule:
-    durée:
-      depuis: entreprise . date de création
-      jusqu'à: 31/12/2019

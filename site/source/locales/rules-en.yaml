@@ -11895,9 +11895,6 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question.fr: Votre établissement bénéficie-t-il du dispositif zone franche urbaine (ZFU) ?
   titre.en: ZFU
   titre.fr: ZFU
-établissement . ZFU . durée d'implantation en fin d'année:
-  titre.en: '[automatic] duration of implementation at the end of the year'
-  titre.fr: durée d'implantation en fin d'année
 établissement . commune:
   avec:
     code postal:
