@@ -23,7 +23,7 @@ export interface ATTracker {
 	setConfigurations(options: {
 		site: number
 		collectDomain: string
-		privacyDefaultMode: 'optout' | 'exempt'
+		privacyDefaultMode: 'opt-out' | 'essential'
 	}): void
 
 	setProperties(
@@ -48,8 +48,8 @@ export interface ATTracker {
 	): void
 
 	consent: {
-		setMode(type: 'exempt' | 'optout'): void
-		getMode(): { name: 'exempt' | 'optout' }
+		setMode(type: 'essential' | 'opt-out'): void
+		getMode(): { name: 'essential' | 'opt-out' }
 	}
 }
 
@@ -68,7 +68,7 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 			window.pa.setConfigurations({
 				site,
 				collectDomain: 'https://tm.urssaf.fr',
-				privacyDefaultMode: doNotTrack ? 'optout' : 'exempt',
+				privacyDefaultMode: doNotTrack ? 'opt-out' : 'essential',
 			})
 
 			window.pa.setProperties(
@@ -87,7 +87,7 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 		setConfigurations(options: {
 			site: number
 			collectDomain: string
-			privacyDefaultMode: 'exempt'
+			privacyDefaultMode: 'essential'
 		}): void {
 			window.pa.setConfigurations(options)
 		}
@@ -120,10 +120,10 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 		}
 
 		consent = {
-			setMode(type: 'exempt' | 'optout'): void {
+			setMode(type: 'essential' | 'opt-out'): void {
 				window.pa.consent.setMode(type)
 			},
-			getMode(): { name: 'exempt' | 'optout' } {
+			getMode(): { name: 'essential' | 'opt-out' } {
 				return window.pa.consent.getMode()
 			},
 		}

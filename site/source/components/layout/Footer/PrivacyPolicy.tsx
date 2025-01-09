@@ -42,10 +42,10 @@ export default function PrivacyPolicy({
 	const handleChange = useCallback(
 		(checked: boolean) => {
 			if (checked) {
-				tracker?.consent.setMode('optout')
+				tracker?.consent.setMode('opt-out')
 				safeLocalStorage.setItem('tracking:do_not_track', '1')
 			} else {
-				tracker?.consent.setMode('exempt')
+				tracker?.consent.setMode('essential')
 				safeLocalStorage.setItem('tracking:do_not_track', '0')
 			}
 			setValueChanged(true)
@@ -302,7 +302,7 @@ export default function PrivacyPolicy({
 				<Checkbox
 					name="opt-out mesure audience"
 					onChange={handleChange}
-					defaultSelected={tracker?.consent.getMode().name === 'optout'}
+					defaultSelected={tracker?.consent.getMode().name === 'opt-out'}
 				>
 					{t(
 						'privacyPolicy.tracking.optOut.checkboxLabel',
