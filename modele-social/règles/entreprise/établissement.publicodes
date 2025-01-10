@@ -43,6 +43,10 @@
     taux versement mobilité:
       par défaut: 0
       unité: '%'
+      références:
+        Moteur de recherche versement mobilité: https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html
+        Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/versement-mobilite.html
+        'Versement mobilité : êtes-vous concerné ?': https://www.economie.gouv.fr/entreprises/versement-mobilite-tr
 
 établissement . taux ATMP:
   description: |
