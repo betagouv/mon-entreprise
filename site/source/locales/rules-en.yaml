@@ -6,6 +6,9 @@ SMIC . horaire:
     début d'année:
       titre.en: '[automatic] at the beginning of the year'
       titre.fr: en début d'année
+    début d'année N-1:
+      titre.en: '[automatic] at the beginning of the previous year'
+      titre.fr: en début d'année précédente
   note.en: >
     [automatic] In principle, and unless there is a "boost", the SMIC is
     revalued on January 1 each year.
@@ -1651,9 +1654,15 @@ dirigeant . indépendant . PL . CARMF:
   titre.fr: CARMF
 dirigeant . indépendant . PL . CARMF . ASV:
   avec:
+    ajustement:
+      titre.en: '[automatic] adjustment'
+      titre.fr: ajustement
     assiette:
       titre.en: '[automatic] plate'
       titre.fr: assiette
+    forfaitaire:
+      titre.en: '[automatic] lump-sum'
+      titre.fr: forfaitaire
   description.en: >-
     [automatic] The supplementary old-age allowance (ASV) scheme applies to
     contracted doctors.
@@ -1693,6 +1702,16 @@ dirigeant . indépendant . PL . CARMF . en retraite:
   titre.en: '[automatic] retired'
   titre.fr: en retraite
 dirigeant . indépendant . PL . CARMF . invalidité décès:
+  avec:
+    part forfaitaire:
+      titre.en: '[automatic] lump-sum portion'
+      titre.fr: part forfaitaire
+    part variable invalidité:
+      titre.en: '[automatic] variable disability component'
+      titre.fr: part variable invalidité
+    part variable maladie:
+      titre.en: '[automatic] variable sick pay'
+      titre.fr: part variable maladie
   description.en: >-
     [automatic] The CARMF manages a provident scheme paying a pension in the
     event of permanent disability and a capital sum in the event of death, as
@@ -1787,6 +1806,26 @@ dirigeant . indépendant . PL . CAVEC . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
+  description.en: >
+    [automatic] Your contribution for year N is set according to a scale based
+    on your net non-salaried professional income for year N-1.
+
+
+    To improve your rights, you can opt for the class immediately above the one corresponding to your income bracket.
+
+    income bracket. This option is tacitly renewed each year. On request, you can opt out before
+
+    February 28 of each year.
+  description.fr: >
+    Votre cotisation de l'année N est fixée selon un barème, en fonction des
+    revenus professionnels nets non salariés de l’année N-1.
+
+
+    Pour améliorer vos droits, vous pouvez opter pour la classe immédiatement supérieure à celle qui correspond à votre tranche
+
+    de revenus professionnels. Cette option est reconduite tacitement chaque année. Sur demande, vous pouvez y renoncer avant
+
+    le 28 février de chaque année.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . PL . CAVP:
@@ -1863,6 +1902,22 @@ dirigeant . indépendant . PL . CAVP . retraite complémentaire:
     part géré par répartition:
       titre.en: '[automatic] pay-as-you-go'
       titre.fr: part géré par répartition
+  description.en: >
+    [automatic] Contributions to the supplementary scheme comprise :
+
+    - a pay-as-you-go portion equal to 5 times the reference contribution,
+
+    - a funded portion, the amount of which varies from 2 to 12 times the reference contribution
+
+    depending on your reference income (self-employed income N-2).
+  description.fr: >
+    La cotisation au régime complémentaire comporte :
+
+    - une part gérée par répartition égale à 5 fois la cotisation de référence,
+
+    - une part gérée par capitalisation dont le montant varie de 2 à 12 fois la cotisation de référence
+
+    selon le montant de votre revenu de référence (revenu d’activité non salarié N-2).
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . PL . CIPAV:
@@ -6604,6 +6659,9 @@ plafond sécurité sociale:
     rapport à 2020.
   titre.en: '[automatic] social security ceiling'
   titre.fr: plafond sécurité sociale
+plafond sécurité sociale N-1:
+  titre.en: '[automatic] social security ceiling N-1'
+  titre.fr: plafond sécurité sociale N-1
 protection sociale:
   description.en: >
     Social protection in France is composed of 5 main branches: sickness,
@@ -7575,6 +7633,9 @@ période:
 période . début d'année:
   titre.en: start of year
   titre.fr: début d'année
+période . début d'année . N-1:
+  titre.en: '[automatic] N-1'
+  titre.fr: N-1
 période . fin d'année:
   titre.en: year-end
   titre.fr: fin d'année
@@ -9865,8 +9926,14 @@ salarié . cotisations . taxe d'apprentissage:
         CSA au taux majoré:
           titre.en: '[automatic] CSA at increased rate'
           titre.fr: CSA au taux majoré
-      titre.en: '[automatic] additional contribution'
-      titre.fr: contribution supplémentaire
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      titre.en: '[automatic] additional contribution to apprenticeship'
+      titre.fr: contribution supplémentaire à l'apprentissage
+    solde:
+      titre.en: '[automatic] balance'
+      titre.fr: solde
   description.en:
     '[automatic] The apprenticeship tax allows companies to finance
     the expenses of apprenticeship and technological and professional training'
@@ -9997,17 +10064,17 @@ salarié . coût total employeur . aides . embauche:
   titre.fr: aides à l'embauche
 salarié . coût total employeur . aides . embauche . apprentis:
   description.en: >
-    [automatic] This scheme provides financial support to employers recruiting
+    [automatic] This scheme provides financial support for employers recruiting
     apprentices.
 
 
-    This aid takes over from that applicable until December 31, 2022, and is available between January 1 and December 31, 2023.
+    This aid takes over from that applicable until December 31, 2022, and has been available since January 1, 2023.
   description.fr: >
     Il s'agit d'une aide pour accompagner financièrement les employeurs qui
     recrutent en contrats d'apprentissage.
 
 
-    Cette aide prend la suite de celle qui était applicable jusqu'au 31 décembre 2022, et est disponible entre le 1er janvier et 31 décembre 2023.
+    Cette aide prend la suite de celle qui était applicable jusqu'au 31 décembre 2022, et est disponible depuis le 1er janvier 2023.
   titre.en: '[automatic] Hiring aid for apprenticeship contracts'
   titre.fr: Aides à l'embauche pour un contrat d'apprentissage
 salarié . coût total employeur . aides . embauche . senior professionnalisation:
