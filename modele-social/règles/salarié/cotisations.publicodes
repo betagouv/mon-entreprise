@@ -1397,6 +1397,7 @@ salarié . cotisations . taxe d'apprentissage:
     ici.
   somme:
     - base
+    - solde
     - contribution supplémentaire
 
   avec:
@@ -1424,9 +1425,17 @@ salarié . cotisations . taxe d'apprentissage:
         - variations:
             - si: régimes spécifiques . alsace moselle
               alors: 0.44%
-            - sinon: 0.68%
+            - sinon: 0.59%
+
+    solde:
+      privé: oui
+      non applicable si: régimes spécifiques . alsace moselle
+      produit:
+        - assiette
+        - 0.09%
 
     contribution supplémentaire:
+      titre: contribution supplémentaire à l'apprentissage
       privé: oui
       applicable si:
         toutes ces conditions:
@@ -1434,19 +1443,37 @@ salarié . cotisations . taxe d'apprentissage:
           - entreprise . salariés . ratio alternants < 5%
       produit:
         - assiette
-        - variations:
-            - si: CSA au taux majoré
-              alors: 0.6%
-            - si: entreprise . salariés . ratio alternants < 1%
-              alors: 0.4%
-            - si: entreprise . salariés . ratio alternants < 2%
-              alors: 0.2%
-            - si: entreprise . salariés . ratio alternants < 3%
-              alors: 0.1%
-            - si: entreprise . salariés . ratio alternants < 5%
-              alors: 0.05%
+        - taux
 
       avec:
+        taux:
+          variations:
+            - si: régimes spécifiques . alsace moselle
+              alors:
+                variations:
+                  - si: CSA au taux majoré
+                    alors: 0.312%
+                  - si: entreprise . salariés . ratio alternants < 1%
+                    alors: 0.208%
+                  - si: entreprise . salariés . ratio alternants < 2%
+                    alors: 0.104%
+                  - si: entreprise . salariés . ratio alternants < 3%
+                    alors: 0.052%
+                  - si: entreprise . salariés . ratio alternants < 5%
+                    alors: 0.026%
+            - sinon:
+                variations:
+                  - si: CSA au taux majoré
+                    alors: 0.6%
+                  - si: entreprise . salariés . ratio alternants < 1%
+                    alors: 0.4%
+                  - si: entreprise . salariés . ratio alternants < 2%
+                    alors: 0.2%
+                  - si: entreprise . salariés . ratio alternants < 3%
+                    alors: 0.1%
+                  - si: entreprise . salariés . ratio alternants < 5%
+                    alors: 0.05%
+
         CSA au taux majoré:
           toutes ces conditions:
             - entreprise . salariés . effectif >= 2000
