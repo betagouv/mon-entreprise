@@ -527,13 +527,17 @@ salarié . régimes spécifiques . taxe sur les salaires:
         plafond:
           variations:
             - si: date >= 01/2024
-              alors: 8984 €/an
+              alors: 8985 €/an
+            - si: date >= 01/2023
+              alors: 8573 €/an
             - sinon: 8004 €/an
       - taux: 8.5%
         plafond:
           variations:
             - si: date >= 01/2024
               alors: 17936 €/an
+            - si: date >= 01/2023
+              alors: 17114 €/an
             - sinon: 15981 €/an
       - taux: 13.6%
   note: Nous n'implémentons pas les taux spécifiques pour l'outre-mer, ni la décôte
