@@ -576,7 +576,7 @@ salarié . rémunération . frais professionnels:
                 - valeur: taux employeur
                   plafond:
                     variations:
-                      - si: date > 01/2022
+                      - si: date >= 01/2022
                         alors: 75%
                       - sinon: 50%
 
