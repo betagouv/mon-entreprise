@@ -440,9 +440,14 @@ salarié . régimes spécifiques . taux réduits . réduction de taux:
           - profession = 'artiste du spectacle'
           - profession = 'mannequin'
           - profession = 'journaliste'
+          - profession = 'VRP multicarte'
       remplace: cotisations . ATMP . taux
-      valeur: cotisations . ATMP . taux * réduction de taux
-      arrondi: 2 décimale
+      variations:
+        - si: profession = 'VRP multicarte'
+          alors: 0.96%
+        - sinon:
+            valeur: cotisations . ATMP . taux * réduction de taux
+            arrondi: 2 décimale
 
     cotisations ATMP taux minimum:
       applicable si:
