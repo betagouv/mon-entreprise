@@ -23,7 +23,7 @@ salarié . coût total employeur . aides . embauche . apprentis:
   description: |
     Il s'agit d'une aide pour accompagner financièrement les employeurs qui recrutent en contrats d'apprentissage.
 
-    Cette aide prend la suite de celle qui était applicable jusqu'au 31 décembre 2022, et est disponible entre le 1er janvier et 31 décembre 2023.
+    Cette aide prend la suite de celle qui était applicable jusqu'au 31 décembre 2022, et est disponible depuis le 1er janvier 2023.
 
   applicable si:
     toutes ces conditions:
@@ -36,6 +36,7 @@ salarié . coût total employeur . aides . embauche . apprentis:
   références:
     Aides à l'embauche pour un contrat d'apprentissage: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
     "Embauche d'un(e) apprenti(e) : vous avez droit à des aides": https://www.economie.gouv.fr/entreprises/aides-embauche-apprenti
+    L'aide aux employeurs qui recrutent en apprentissage: https://travail-emploi.gouv.fr/laide-aux-employeurs-qui-recrutent-en-apprentissage
 
 salarié . coût total employeur . aides . embauche . senior professionnalisation:
   description: |
