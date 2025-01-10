@@ -112,6 +112,12 @@ SMIC . horaire:
       contexte:
         date: période . début d'année
 
+    début d'année N-1:
+      titre: en début d'année précédente
+      valeur: SMIC . horaire
+      contexte:
+        date: période . début d'année . N-1
+
 durée légale du travail:
   valeur: 35 heures/semaine
   références:
