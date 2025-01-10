@@ -41,7 +41,9 @@ dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
           - montant: 1.12%
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
-    Taux (2024): https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
+    Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
@@ -70,7 +72,9 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   unité: €/an
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
-    Taux (2024): https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
+    Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
 
 dirigeant . indépendant . PL . CARMF . invalidité décès:
   non applicable si: CARMF . en retraite
@@ -88,23 +92,47 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
       assiette: assiette des cotisations
       multiplicateur: plafond sécurité sociale
       tranches:
-        - montant: 631 €/an
+        - montant:
+            variations:
+              - si: date >= 01/2025
+                alors: 623 €/an
+              - sinon: 631 €/an
           plafond: 1
         - montant:
             variations:
+              - si: date >= 01/2025
+                alors:
+                  somme:
+                    - part forfaitaire
+                    - part variable maladie
+                    - part variable invalidité
               - si: date >= 01/2023
                 alors: 712 €/an
               - sinon: 738 €/an
           plafond: 3
         - montant:
             variations:
+              - si: date >= 01/2025
+                alors: 999 €/an
               - si: date >= 01/2023
                 alors: 828 €/an
               - sinon: 863 €/an
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
     Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
-    Taux (2024): https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
+    Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
+  avec:
+    part forfaitaire: 434 €/an
+    part variable maladie:
+      produit:
+        - assiette des cotisations
+        - 0.32%
+    part variable invalidité:
+      produit:
+        - assiette des cotisations
+        - 0.08%
 
 dirigeant . indépendant . PL . CARMF . en retraite:
   description: |
@@ -133,24 +161,32 @@ dirigeant . indépendant . PL . CARMF . ASV:
 
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
+    Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
     Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
-    Taux 2022: http://www.carmf.fr/page.php?page=chiffrescles/stats/2022/taux2022.htm
-    Taux 2021: http://www.carmf.fr/page.php?page=chiffrescles/stats/2021/taux2021.htm
 
   avec:
     assiette:
       somme:
-        - variations:
-          - si: date >= 01/2023
-            alors: 5421 €/an
-          - si: date >= 01/2023
-            alors: 5622 €/an
-          - sinon: 5136 €/an
-        - produit:
-          - valeur: PAMC . revenus activité conventionnée
-            plafond: 5 * plafond sécurité sociale
-          - 3.80%
+        - forfaitaire
+        - ajustement
+      unité: €/an
+
+    forfaitaire:
+      variations:
+        - si: date >= 01/2025
+          alors: 5556 €/an
+        - si: date >= 01/2024
+          alors: 5421 €/an
+        - si: date >= 01/2023
+          alors: 5622 €/an
+        - sinon: 5136 €/an
+
+    ajustement:
+      produit:
+        - valeur: PAMC . revenus activité conventionnée
+          plafond: 5 * plafond sécurité sociale
+        - 3.80%
       unité: €/an
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
