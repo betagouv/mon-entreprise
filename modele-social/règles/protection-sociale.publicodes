@@ -382,6 +382,8 @@ protection sociale . retraite . base . CNAVPL:
 
     valeur du point:
       variations:
+        - si: date >= 01/2025
+          alors: 0.6540 €/an/point
         - si: date >= 01/2024
           alors: 0.6399 €/an/point
         - si: date >= 01/2023
