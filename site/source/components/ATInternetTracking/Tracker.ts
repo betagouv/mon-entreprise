@@ -10,6 +10,7 @@ type PageHit = {
 	page_chapter1?: string
 	page_chapter2?: string
 	page_chapter3?: string
+	simulateur_origin?: string
 }
 type ClickHit = {
 	click?: string
@@ -30,6 +31,7 @@ export interface ATTracker {
 		propertiesObject: {
 			env_language: 'fr' | 'en'
 			'n:simulateur_embarque': 1 | 0
+			simulateur_origin?: string
 		},
 		options: {
 			persistent: true
@@ -71,14 +73,18 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 				privacyDefaultMode: doNotTrack ? 'optout' : 'exempt',
 			})
 
+			const isEmbedded = document.location.pathname.includes('/iframes/')
+			const integratorUrl = isEmbedded ? 
+				decodeURIComponent(new URL(window.location.href).searchParams.get('integratorUrl') || '') :
+				undefined
+
+			const cleanIntegratorUrl = integratorUrl?.split('?')[0]
+
 			window.pa.setProperties(
 				{
 					env_language: options.language,
-					'n:simulateur_embarque': document.location.pathname.includes(
-						'/iframes/'
-					)
-						? 1
-						: 0,
+					'n:simulateur_embarque': isEmbedded ? 1 : 0,
+					simulateur_origin: cleanIntegratorUrl,
 				},
 				{ persistent: true }
 			)
@@ -96,38 +102,39 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 			propertiesObject: {
 				env_language: 'fr' | 'en'
 				'n:simulateur_embarque': 1 | 0
+				simulateur_origin?: string
 			},
 			options: { persistent: true }
 		): void {
 			window.pa.setProperties(propertiesObject, options)
 		}
 
-		sendEvent(
-			type:
-				| 'page.display'
-				| 'demarche.document'
-				| 'click.action'
-				| 'click.navigation'
-				| 'click.download'
-				| 'click.exit',
-			data: PageHit | (ClickHit & PageHit)
-		): void {
-			if (type === 'page.display') {
-				window.pa.sendEvent(type, data as PageHit)
-			} else {
-				window.pa.sendEvent(type, data as ClickHit & PageHit)
+			sendEvent(
+				type:
+					| 'page.display'
+					| 'demarche.document'
+					| 'click.action'
+					| 'click.navigation'
+					| 'click.download'
+					| 'click.exit',
+				data: PageHit | (ClickHit & PageHit)
+			): void {
+				if (type === 'page.display') {
+					window.pa.sendEvent(type, data as PageHit)
+				} else {
+					window.pa.sendEvent(type, data as ClickHit & PageHit)
+				}
+			}
+
+			consent = {
+				setMode(type: 'exempt' | 'optout'): void {
+					window.pa.consent.setMode(type)
+				},
+				getMode(): { name: 'exempt' | 'optout' } {
+					return window.pa.consent.getMode()
+				},
 			}
 		}
 
-		consent = {
-			setMode(type: 'exempt' | 'optout'): void {
-				window.pa.consent.setMode(type)
-			},
-			getMode(): { name: 'exempt' | 'optout' } {
-				return window.pa.consent.getMode()
-			},
-		}
+		return PianoTracker
 	}
-
-	return PianoTracker
-}
