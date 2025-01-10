@@ -578,7 +578,10 @@ salarié . rémunération . frais professionnels:
                 - valeur: taux employeur
                   plafond:
                     variations:
-                      - si: date >= 01/2022
+                      - si:
+                          toutes ces conditions:
+                            - date >= 01/2022
+                            - date < 01/2025
                         alors: 75%
                       - sinon: 50%
 
@@ -616,8 +619,8 @@ salarié . rémunération . frais professionnels:
                 Remboursement des frais de transport: https://www.service-public.fr/particuliers/vosdroits/F19846/personnalisation/resultat?lang=&quest0=0
                 "Transports en commun : prise en charge obligatoire des abonnements": https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html#ancre-frais-de-transport
               suggestions:
-                Navigo: 86.40 €/mois
-                Técély: 72.60 €/mois
+                Navigo: 88.80 €/mois
+                Técély: 74.10 €/mois
                 RTM: 40 €/mois
                 Tisséo: 48.90 €/mois
                 Ilévia: 55 €/mois
