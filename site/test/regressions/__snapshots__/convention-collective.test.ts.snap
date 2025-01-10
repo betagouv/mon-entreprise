@@ -84,8 +84,8 @@ exports[`calculate simulations-salarié > CCN sport 2`] = `
 "salarié . contrat . salaire brut: 1800
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1801
-salarié . rémunération . net . payé après impôt: 1400
-salarié . rémunération . net . à payer avant impôt: 1400
+salarié . rémunération . net . payé après impôt: 1399
+salarié . rémunération . net . à payer avant impôt: 1399
 
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle, salarié . convention collective . avertissement convention collective"
 `;

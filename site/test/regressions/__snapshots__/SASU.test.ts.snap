@@ -24,11 +24,11 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate assimilé salarié > ACRE 3`] = `
 "dirigeant . rémunération . totale: 30000
-impôt . montant: 750
-salarié . cotisations: 1500
-salarié . rémunération . brut: 2383
-salarié . rémunération . net . payé après impôt: 1798
-salarié . rémunération . net . à payer avant impôt: 1861
+impôt . montant: 0
+salarié . cotisations: 1124
+salarié . rémunération . brut: 1769
+salarié . rémunération . net . payé après impôt: 1376
+salarié . rémunération . net . à payer avant impôt: 1376
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
@@ -143,11 +143,11 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 
 exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
 "dirigeant . rémunération . totale: 100000
-impôt . montant: 9306
-salarié . cotisations: 3639
-salarié . rémunération . brut: 5945
-salarié . rémunération . net . payé après impôt: 3919
-salarié . rémunération . net . à payer avant impôt: 4695
+impôt . montant: 9304
+salarié . cotisations: 3640
+salarié . rémunération . brut: 5944
+salarié . rémunération . net . payé après impôt: 3918
+salarié . rémunération . net . à payer avant impôt: 4693
 
 Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
