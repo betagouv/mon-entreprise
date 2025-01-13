@@ -432,7 +432,7 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
   arrondi: oui
   plafond:
     applicable si: date >= 01/2022
-    non applicable si: date > 01/2024
+    non applicable si: date >= 01/2024
     # Le taux indemnité est de 0.5%, dans la loi.
     # Mais parce que l'Urssaf regorge d'inventivité et qu'ils n'ont pas envie de se baser
     # sur la loi - non, non, ça sera trop simple - ils ont choisi de continuer d'appliquer
@@ -444,7 +444,7 @@ dirigeant . indépendant . cotisations et contributions . indemnités journaliè
   unité: €/an
   références:
     Cotisation minimale: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
-    Liste des cotisations: https://www.urssaf.fr/portail/home/artisan-commercant/comment-sont-calculees-les-cotis/liste-des-cotisations.html
+    Liste des cotisations: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html
 
   avec:
     assiette:

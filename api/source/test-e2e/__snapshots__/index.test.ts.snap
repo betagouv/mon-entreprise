@@ -24,7 +24,7 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 2702.448901248871,
+      "nodeValue": 2700.5092643445314,
       "unit": {
         "denominators": [
           "an",
@@ -499,7 +499,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 9786.000000000002,
+      "nodeValue": 10416.000000000002,
       "unit": {
         "denominators": [
           "an",
@@ -519,7 +519,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 32214,
+      "nodeValue": 31584,
       "unit": {
         "denominators": [
           "an",

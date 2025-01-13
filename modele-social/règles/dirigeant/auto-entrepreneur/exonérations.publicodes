@@ -37,30 +37,30 @@ dirigeant . auto-entrepreneur . DROM:
         - si: première période
           alors:
             variations:
-              - si: date > 01/2026
+              - si: date >= 01/2026
                 alors: 4.4%
-              - si: date > 01/2025
+              - si: date >= 01/2025
                 alors: 4.1%
-              - si: date > 07/2024
+              - si: date >= 07/2024
                 alors: 3.9%
               - sinon: 3.60%
         - si: seconde période
           alors:
             variations:
-              - si: date > 01/2026
+              - si: date >= 01/2026
                 alors: 13.1%
-              - si: date > 01/2025
+              - si: date >= 01/2025
                 alors: 12.3%
-              - si: date > 07/2024
+              - si: date >= 07/2024
                 alors: 11.6%
               - sinon: 10.60%
         - sinon:
             variations:
-              - si: date > 01/2026
+              - si: date >= 01/2026
                 alors: 17.4%
-              - si: date > 01/2025
+              - si: date >= 01/2025
                 alors: 16.4%
-              - si: date > 07/2024
+              - si: date >= 07/2024
                 alors: 15.4%
               - sinon: 14.10%
 

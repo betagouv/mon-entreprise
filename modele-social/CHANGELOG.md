@@ -1,12 +1,34 @@
 # Journal des modifications
 ## next
 ### Nouveautés
+- Ajout des taux de contribution supplémentaire à l'apprentissage pour l'Alsace-Moselle
+- Ajout du taux de cotisation ATMP pour les VRP multicartes
+- Ajout de la date du 1er janvier de l'année précédente (période . début d'année . N-1)
+- Ajout du SMIC horaire au 1er janvier de l'année précédente (SMIC . horaire . début d'année N-1)
 - Ajout du taux AGS
 
+### Mises à jour
+- Mise à jour de la date au 1er janvier 2025
+- Valeurs 2025 de la Retraite Complémentaire des Indépendants
+- Valeurs 2025 Agirc-Arrco
+- Montants 2025 des cotisations à la CARMF
+- Valeur du point 2025 de la CNAVPL
+- Montants 2025 des cotisations à la CAVEC
+- Montants 2025 des cotisations à la CAVP
+- Montant déductible sur les titres-restaurant en 2025
+- Évaluation forfaitaire de l'avantage en nature repas en 2025
+- Part déductible de la participation employeur aux frais de transports en commun en 2025
+
 ### Corrections
-- Mise à jour des valeurs de la Retraite Complémentaire des Indépendants
-- Mise à jour des valeurs Agirc-Arrco
-- Mise à jour des conditions de non applicabilité des exonérations des heures supplémentaires
+- Correction de l'opérateur de comparaison de dates
+- Remplacement de valeurs en dur pour les artistes-auteurs par des références à d'autres règles
+- Correction des seuils 2023 pour la taxe sur les salaires
+- Correction des conditions de non applicabilité des exonérations des heures supplémentaires
+
+### Documentation
+- Ajout de références sur le versement mobilité
+- Ajout de références sur l'aide au recrutement d'apprentis
+- Mise à jour du lien vers la liste des cotisations des indépendants (site Urssaf)
 
 ## 4.0.0
 ### Breaking changes

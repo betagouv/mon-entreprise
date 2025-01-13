@@ -122,10 +122,8 @@ describe(
 				'[id^="salarié___cotisations___exonérations___réduction_générale-"]'
 			)
 				.should('have.length', 12)
-				.each(($input, $index) => {
-					if ($index < 10) {
-						cy.wrap($input).should('include.text', '493,43 €')
-					}
+				.each(($input) => {
+					cy.wrap($input).should('include.text', '523,26 €')
 				})
 		})
 
@@ -134,10 +132,10 @@ describe(
 
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-janvier'
-			).should('include.text', '493,43 €')
+			).should('include.text', '523,26 €')
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-février'
-			).should('include.text', '440,23 €')
+			).should('include.text', '470,07 €')
 		})
 
 		it('should save remuneration between tabs', function () {
@@ -163,13 +161,13 @@ describe(
 			).should('include.text', '0 €')
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale__régularisation-février'
-			).should('include.text', '-92,12 €')
+			).should('include.text', '-62,17 €')
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-mars'
-			).should('include.text', '493,57 €')
+			).should('include.text', '522,87 €')
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-décembre'
-			).should('include.text', '523,62 €')
+			).should('include.text', '522,98 €')
 		})
 
 		it('should include annual regularisation', function () {
@@ -183,10 +181,10 @@ describe(
 			).should('not.exist')
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-mars'
-			).should('include.text', '493,43 €')
+			).should('include.text', '523,26 €')
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-décembre'
-			).should('include.text', '432,49 €')
+			).should('include.text', '460,38 €')
 		})
 
 		it('should include monthly options', function () {
@@ -199,7 +197,7 @@ describe(
 				.click()
 			cy.get('input[id="option-heures-sup-janvier"]')
 				.should('be.visible')
-				.type('{selectall}28,15')
+				.type('{selectall}24,66')
 
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-janvier'
@@ -214,6 +212,9 @@ describe(
 			)
 				.should('be.visible')
 				.click()
+			// Wait for fields to appear
+			// eslint-disable-next-line cypress/no-unnecessary-waiting
+			cy.wait(500)
 			cy.get('input[id="option-rémunération-etp-janvier"]')
 				.should('be.visible')
 				.type('{selectall}1900')
@@ -226,7 +227,7 @@ describe(
 
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-janvier'
-			).should('include.text', '479,10 €')
+			).should('include.text', '221,40 €')
 
 			cy.get(
 				'div[id="simulator-legend"] button[aria-describedby="options-description"]'
@@ -250,10 +251,10 @@ describe(
 			// Wait for values to update
 			// eslint-disable-next-line cypress/no-unnecessary-waiting
 			cy.wait(500)
-			cy.get('#recap-1er_trimestre-671').should('include.text', '602,88 €')
-			cy.get('#recap-2ème_trimestre-801').should('include.text', '-276,40 €')
-			cy.get('#recap-3ème_trimestre-671').should('include.text', '1 481,79 €')
-			cy.get('#recap-4ème_trimestre-671').should('include.text', '1 539,05 €')
+			cy.get('#recap-1er_trimestre-671').should('include.text', '682,24 €')
+			cy.get('#recap-2ème_trimestre-801').should('include.text', '-186,36 €')
+			cy.get('#recap-3ème_trimestre-671').should('include.text', '1 569,81 €')
+			cy.get('#recap-4ème_trimestre-671').should('include.text', '1 568,39 €')
 		})
 
 		it('should be RGAA compliant', function () {
