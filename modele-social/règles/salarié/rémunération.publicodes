@@ -633,7 +633,7 @@ salarié . rémunération . frais professionnels:
               plancher: 50%
               suggestions:
                 Minimum (50%): 50%
-                Maximum déductible (75%): 75%
+                Maximum déductible (50%): 50%
                 Totale (100%): 100%
 
         prime de transport:
