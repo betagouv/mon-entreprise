@@ -2179,17 +2179,44 @@ dirigeant . indépendant . PL . CNBF . RID:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 dirigeant . indépendant . PL . CNBF . retraite complémentaire:
-  note.en: >
-    [automatic] There are several classes of contributions, which allow you to
-    contribute to
+  avec:
+    classe:
+      avec:
+        C1:
+          titre.en: '[automatic] class 1'
+          titre.fr: classe 1
+        C2:
+          titre.en: '[automatic] class 2'
+          titre.fr: classe 2
+        C2P:
+          note.en: '[automatic] Corresponds to class C3 for 2024 and earlier.'
+          note.fr: Correspond à la classe C3 pour 2024 et avant.
+          titre.en: '[automatic] class 2+'
+          titre.fr: classe 2+
+      description.en: >
+        [automatic] A choice of contribution classes, corresponding to different
+        contributions
 
-    more to gain more points. Only the first class is
+        and compensation levels.
+      description.fr: >
+        Il existe classes de cotisations aux choix, correspondant à des
+        cotisations
 
-    implemented for the moment.
+        et des degrés d'indemnisations différents.
+      question.en: '[automatic] In which class do you contribute to the CNBF
+        supplementary pension scheme?'
+      question.fr: Dans quelle classe cotisez-vous pour le régime de retraite
+        complémentaire de la CNBF ?
+      titre.en: '[automatic] Contribution class'
+      titre.fr: Classe de cotisation
+  note.en: |
+    [automatic] Before 2025, class 3 and 3+ existed instead of class 2+.
+    Class 2+ corresponds to class 3 for 2024 and earlier.
+    Class 3+ is not implemented.
   note.fr: |
-    Il existe plusieurs classes de cotisations, qui permettent de cotiser
-    d'avantage pour acquérir d'avantages de points. Seule la première classe est
-    implémentée pour l'instant.
+    Avant 2025 il existait les classes 3 et 3+ à la place de la classe 2+.
+    La classe 2+ correspond à la classe 3 pour 2024 et les années précédentes.
+    La classe 3+ n'est pas implémentée.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . PL . CNBF . retraite de base:
@@ -7567,6 +7594,9 @@ protection sociale . retraite . complémentaire . CIPAV:
     valeur d'acquisition:
       titre.en: '[automatic] acquisition value'
       titre.fr: valeur d'acquisition
+    valeur de service du point:
+      titre.en: '[automatic] point service value'
+      titre.fr: valeur de service du point
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
 protection sociale . retraite . complémentaire . RCI:
@@ -11293,8 +11323,8 @@ salarié . rémunération . frais professionnels:
               question.fr:
                 Quel est le taux de prise en charge par l’employeur aux frais de
                 transports du salarié ?
-              suggestions.Maximum déductible (75%).en: '[automatic] Maximum deductible (75%)'
-              suggestions.Maximum déductible (75%).fr: Maximum déductible (75%)
+              suggestions.Maximum déductible (50%).en: '[automatic] Maximum deductible (50%)'
+              suggestions.Maximum déductible (50%).fr: Maximum déductible (50%)
               suggestions.Minimum (50%).en: '[automatic] Minimum (50%)'
               suggestions.Minimum (50%).fr: Minimum (50%)
               suggestions.Totale (100%).en: '[automatic] Total (100%)'

@@ -22,6 +22,9 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
       - cotisation proportionnelle
   références:
     Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+    Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
+    Barème 2024: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2024-01.20.pdf
+    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2023/01/Bareme-CNBF-2023-01.10.pdf
 
   avec:
     cotisation forfaitaire:
@@ -30,6 +33,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
         tranches:
           - montant:
               variations:
+                - si: date >= 01/2025
+                  alors: 351 €/an
                 - si: date >= 01/2024
                   alors: 337 €/an
                 - si: date >= 01/2023
@@ -41,6 +46,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
             plafond: 1 an
           - montant:
               variations:
+                - si: date >= 01/2025
+                  alors: 705 €/an
                 - si: date >= 01/2024
                   alors: 677 €/an
                 - si: date >= 01/2023
@@ -52,6 +59,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
             plafond: 2 ans
           - montant:
               variations:
+                - si: date >= 01/2025
+                  alors: 1106 €/an
                 - si: date >= 01/2024
                   alors: 1062 €/an
                 - si: date >= 01/2023
@@ -63,6 +72,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
             plafond: 3 ans
           - montant:
               variations:
+                - si: date >= 01/2025
+                  alors: 1505 €/an
                 - si: date >= 01/2024
                   alors: 1446 €/an
                 - si: date >= 01/2023
@@ -74,6 +85,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
             plafond: 5 ans
           - montant:
               variations:
+                - si: date >= 01/2025
+                  alors: 1921 €/an
                 - si: date >= 01/2024
                   alors: 1845 €/an
                 - si: date >= 01/2023
@@ -107,66 +120,179 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
     tranches:
       - taux:
           variations:
-            - si: date >= 01/2024
-              alors: 5%
-            - si: date >= 01/2023
-              alors: 4.80%
-            - si: date >= 01/2022
-              alors: 4.60%
-            - si: date >= 01/2021
-              alors: 4%
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 5.2%
+                  - si: date >= 01/2024
+                    alors: 5%
+                  - si: date >= 01/2023
+                    alors: 4.8%
+                  - si: date >= 01/2022
+                    alors: 4.6%
+                  - si: date >= 01/2021
+                    alors: 4%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 6%
+                  - si: date >= 01/2024
+                    alors: 5.5%
+                  - si: date >= 01/2023
+                    alors: 5.4%
+            - si: classe = 'C2P'
+              alors: 6%
         plafond: 1
       - taux:
           variations:
-            - si: date >= 01/2024
-              alors: 9.60%
-            - si: date >= 01/2023
-              alors: 9.20%
-            - si: date >= 01/2022
-              alors: 8.80%
-            - si: date >= 01/2021
-              alors: 8%
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 10%
+                  - si: date >= 01/2024
+                    alors: 9.6%
+                  - si: date >= 01/2023
+                    alors: 9.2%
+                  - si: date >= 01/2022
+                    alors: 8.8%
+                  - si: date >= 01/2021
+                    alors: 8%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 11.6%
+                  - si: date >= 01/2024
+                    alors: 10.6%
+                  - si: date >= 01/2023
+                    alors: 10.4%
+            - si: classe = 'C2P'
+              alors: 11.6%
         plafond: 2
       - taux:
           variations:
-            - si: date >= 01/2024
-              alors: 11.2%
-            - si: date >= 01/2023
-              alors: 10.70%
-            - si: date >= 01/2022
-              alors: 10.20%
-            - si: date >= 01/2021
-              alors: 9.2%
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 11.7%
+                  - si: date >= 01/2024
+                    alors: 11.2%
+                  - si: date >= 01/2023
+                    alors: 10.7%
+                  - si: date >= 01/2022
+                    alors: 10.2%
+                  - si: date >= 01/2021
+                    alors: 9.2%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 13.7%
+                  - si: date >= 01/2024
+                    alors: 12.45%
+                  - si: date >= 01/2023
+                    alors: 12.2%
+            - si: classe = 'C2P'
+              alors: 13.7%
         plafond: 3
       - taux:
           variations:
-            - si: date >= 01/2024
-              alors: 12.8%
-            - si: date >= 01/2023
-              alors: 12.20%
-            - si: date >= 01/2022
-              alors: 11.60%
-            - si: date >= 01/2021
-              alors: 10.4%
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 13.4%
+                  - si: date >= 01/2024
+                    alors: 12.8%
+                  - si: date >= 01/2023
+                    alors: 12.2%
+                  - si: date >= 01/2022
+                    alors: 11.6%
+                  - si: date >= 01/2021
+                    alors: 10.4%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 15.8%
+                  - si: date >= 01/2024
+                    alors: 14.3%
+                  - si: date >= 01/2023
+                    alors: 14%
+            - si: classe = 'C2P'
+              alors: 15.8%
         plafond: 4
       - taux:
           variations:
-            - si: date >= 01/2024
-              alors: 14.40%
-            - si: date >= 01/2023
-              alors: 13.70%
-            - si: date >= 01/2022
-              alors: 13%
-            - si: date >= 01/2021
-              alors: 11.6%
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 15.1%
+                  - si: date >= 01/2024
+                    alors: 14.4%
+                  - si: date >= 01/2023
+                    alors: 13.7%
+                  - si: date >= 01/2022
+                    alors: 13%
+                  - si: date >= 01/2021
+                    alors: 11.6%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 17.9%
+                  - si: date >= 01/2024
+                    alors: 16.15%
+                  - si: date >= 01/2023
+                    alors: 15.8%
+            - si: classe = 'C2P'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 20.4%
+                  - si: date >= 01/2023
+                    alors: 17.9%
         plafond: 5
   arrondi: oui
   note: |
-    Il existe plusieurs classes de cotisations, qui permettent de cotiser
-    d'avantage pour acquérir d'avantages de points. Seule la première classe est
-    implémentée pour l'instant.
+    Avant 2025 il existait les classes 3 et 3+ à la place de la classe 2+.
+    La classe 2+ correspond à la classe 3 pour 2024 et les années précédentes.
+    La classe 3+ n'est pas implémentée.
   références:
     Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+    Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
+    Barème 2024: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2024-01.20.pdf
+    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2023/01/Bareme-CNBF-2023-01.10.pdf
+  avec:
+    classe:
+      titre: Classe de cotisation
+      question:
+        Dans quelle classe cotisez-vous pour le régime de retraite complémentaire de la
+        CNBF ?
+      description: |
+        Il existe classes de cotisations aux choix, correspondant à des cotisations
+        et des degrés d'indemnisations différents.
+      par défaut: "'C1'"
+      formule:
+        une possibilité:
+          choix obligatoire: oui
+          possibilités:
+            - C1
+            - C2
+            - C2P
+      avec:
+        C1:
+          titre: classe 1
+        C2:
+          titre: classe 2
+        C2P:
+          titre: classe 2+
+          note: Correspond à la classe C3 pour 2024 et avant.
 
 dirigeant . indépendant . PL . CNBF . RID:
   titre: invalidité et décès
@@ -176,6 +302,8 @@ dirigeant . indépendant . PL . CNBF . RID:
       - si: entreprise . durée d'activité . en fin d'année < 5 ans
         alors:
           variations:
+            - si: date >= 01/2025
+              alors: 68 €/an
             - si: date >= 01/2024
               alors: 65 €/an
             - si: date >= 01/2023
@@ -186,6 +314,8 @@ dirigeant . indépendant . PL . CNBF . RID:
               alors: 55 €/an
       - sinon:
           variations:
+            - si: date >= 01/2025
+              alors: 170 €/an
             - si: date >= 01/2024
               alors: 162 €/an
             - si: date >= 01/2023
@@ -196,3 +326,6 @@ dirigeant . indépendant . PL . CNBF . RID:
               alors: 137 €/an
   références:
     Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+    Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
+    Barème 2024: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2024-01.20.pdf
+    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2023/01/Bareme-CNBF-2023-01.10.pdf

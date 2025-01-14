@@ -153,8 +153,8 @@ protection sociale . retraite . complémentaire:
   unité: €/mois
   produit:
     - somme:
-        - RCI
         - AGIRC ARRCO
+        - RCI
         - CIPAV
     - 10 ans
 
@@ -397,14 +397,7 @@ protection sociale . retraite . complémentaire . CIPAV:
   applicable si: dirigeant . indépendant . PL . CIPAV
   produit:
     - points acquis
-    - unité: €/an/point
-      variations:
-        - si: date >= 01/2024
-          alors: 2.89 €/an/point
-        - si: date >= 01/2023
-          alors: 2.77 €/an/point
-        - si: date >= 01/2022
-          alors: 2.63 €/an/point
+    - valeur de service du point
   références:
     'CIPAV: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
     Évolutions relatives aux droits et aux prestations de la CIPAV: https://www.lacipav.fr/evolutiondroitsetprestationsCipav
@@ -419,6 +412,15 @@ protection sociale . retraite . complémentaire . CIPAV:
           alors: 47.40 €/point
         - si: date >= 01/2023
           alors: 45.30 €/point
+    valeur de service du point:
+      unité: €/an/point
+      variations:
+        - si: date >= 01/2024
+          alors: 2.89 €/an/point
+        - si: date >= 01/2023
+          alors: 2.77 €/an/point
+        - si: date >= 01/2022
+          alors: 2.63 €/an/point
     références:
       'CIPAV : Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
 
@@ -432,6 +434,8 @@ protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
     assiette: entreprise . chiffre d'affaires
     multiplicateur:
       variations:
+        - si: date >= 01/2024
+          alors: 2660 €/an
         - si: date >= 01/2023
           alors: 2571 €/an
         - sinon: 2421 €/an

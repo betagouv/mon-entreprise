@@ -6,6 +6,7 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
     {
       "missingVariables": [
         "dirigeant . indépendant . IJSS",
+        "dirigeant . indépendant . PL . CNBF . retraite complémentaire . classe",
         "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
         "dirigeant . indépendant . cotisations facultatives . PER",
         "dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance",
@@ -24,7 +25,7 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 2700.5092643445314,
+      "nodeValue": 2616.122383079991,
       "unit": {
         "denominators": [
           "an",
