@@ -5338,6 +5338,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fp-ts/optic@npm:^0.25.0":
+  version: 0.25.0
+  resolution: "@fp-ts/optic@npm:0.25.0"
+  peerDependencies:
+    "@effect/typeclass": ^0.27.0
+    effect: ^3.8.0
+  checksum: 689c70c96a7e446cae083728deb03ac9b8b257793c7e328f6a51518763b4de9013876656e8bfc1e9cdd9fb7430165aeb008bf51353d287bc84a8d6c616cd5cca
+  languageName: node
+  linkType: hard
+
 "@gar/promisify@npm:^1.1.3":
   version: 1.1.3
   resolution: "@gar/promisify@npm:1.1.3"
@@ -24647,6 +24657,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"modele-social-ts@workspace:modele-social-ts":
+  version: 0.0.0-use.local
+  resolution: "modele-social-ts@workspace:modele-social-ts"
+  dependencies:
+    date-fns: ^3.6.0
+    effect: ^3.0.0
+    typescript: ^5.2.2
+    vite: ^4.4.9
+    vitest: ^0.34.4
+  languageName: unknown
+  linkType: soft
+
 "modele-social@workspace:^, modele-social@workspace:modele-social":
   version: 0.0.0-use.local
   resolution: "modele-social@workspace:modele-social"
@@ -28622,6 +28644,7 @@ __metadata:
   dependencies:
     "@actions/core": ^1.10.1
     "@actions/github": ^5.1.1
+    "@fp-ts/optic": ^0.25.0
     "@ianvs/prettier-plugin-sort-imports": ^4.1.0
     "@publicodes/codemod": ^1.1.0
     "@publicodes/tools": ^1.0.7

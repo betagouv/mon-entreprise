@@ -1,0 +1,13 @@
+{
+	"name": "modele-social-ts",
+	"packageManager": "yarn@3.5.0",
+	"dependencies": {
+		"date-fns": "^3.6.0",
+		"effect": "^3.0.0"
+	},
+	"devDependencies": {
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9",
+		"vitest": "^0.34.4"
+	}
+}

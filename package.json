@@ -8,6 +8,7 @@
 	"type": "module",
 	"workspaces": [
 		"modele-social",
+		"modele-social-ts",
 		"exoneration-covid",
 		"api",
 		"site",
@@ -71,6 +72,7 @@
 		"node": "^18"
 	},
 	"dependencies": {
+		"@fp-ts/optic": "^0.25.0",
 		"optics-ts": "^2.4.1"
 	}
 }

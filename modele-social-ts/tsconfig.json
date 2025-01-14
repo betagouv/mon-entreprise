@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"lib": ["ESNext"],
+		"baseUrl": "source",
+		"moduleResolution": "node",
+		"module": "esnext",
+		"target": "esnext",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"allowJs": false,
+		"isolatedModules": true,
+		"types": ["vite/client"],
+		"noEmit": true,
+		"strict": true
+	},
+	"ts-node": {
+		"transpileOnly": true
+	},
+	"include": [
+		"source",
+		"vite.config.ts",
+		"vitest-setup.ts"
+	]
+}
