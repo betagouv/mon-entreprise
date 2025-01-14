@@ -5,6 +5,7 @@
 - Ajout du taux de cotisation ATMP pour les VRP multicartes
 - Ajout de la date du 1er janvier de l'année précédente (période . début d'année . N-1)
 - Ajout du SMIC horaire au 1er janvier de l'année précédente (SMIC . horaire . début d'année N-1)
+- Ajout des classes de cotisation à la retraite complémentaire de la CNBF
 
 ### Mises à jour
 - Mise à jour de la date au 1er janvier 2025
@@ -14,6 +15,7 @@
 - Valeur du point 2025 de la CNAVPL
 - Montants 2025 des cotisations à la CAVEC
 - Montants 2025 des cotisations à la CAVP
+- Montants 2025 des cotisations à la CNBF
 - Montant déductible sur les titres-restaurant en 2025
 - Évaluation forfaitaire de l'avantage en nature repas en 2025
 - Part déductible de la participation employeur aux frais de transports en commun en 2025
