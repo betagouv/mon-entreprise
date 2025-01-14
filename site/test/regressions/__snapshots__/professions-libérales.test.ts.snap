@@ -329,12 +329,12 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > avocat 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 11898
-dirigeant . rémunération . net: 38102
-dirigeant . rémunération . net . après impôt: 32979
+"dirigeant . indépendant . cotisations et contributions: 12037
+dirigeant . rémunération . net: 37963
+dirigeant . rémunération . net . après impôt: 32881
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 5123
-protection sociale . retraite . base: 290
+impôt . montant: 5082
+protection sociale . retraite . base: 289
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 
@@ -342,12 +342,12 @@ Notifications affichées : entreprise . TVA . franchise de TVA . notification"
 `;
 
 exports[`calculate simulations-professions-libérales > avocat 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 11898
-dirigeant . rémunération . net: 38102
-dirigeant . rémunération . net . après impôt: 32979
+"dirigeant . indépendant . cotisations et contributions: 12037
+dirigeant . rémunération . net: 37963
+dirigeant . rémunération . net . après impôt: 32881
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 5123
-protection sociale . retraite . base: 290
+impôt . montant: 5082
+protection sociale . retraite . base: 289
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 
