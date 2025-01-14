@@ -72,6 +72,23 @@ const networkFirstJS = new Route(
 
 registerRoute(networkFirstJS)
 
+const networkFirstPiano = new Route(
+	({ url }) => {
+		return url.hostname === 'tag.aticdn.net'
+	},
+	new NetworkFirst({
+		cacheName: 'piano-cache',
+		plugins: [
+			new ExpirationPlugin({
+				maxAgeSeconds: 1 * MONTH,
+				maxEntries: 40,
+			}),
+		],
+	})
+)
+
+registerRoute(networkFirstPiano)
+
 const staleWhileRevalidate = new Route(
 	({ request, sameOrigin, url }) => {
 		return (
