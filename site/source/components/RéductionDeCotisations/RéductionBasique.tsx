@@ -21,18 +21,18 @@ import {
 type Props = {
 	dottedName: RéductionDottedName
 	onUpdate: () => void
-	warnings: ReactNode
 	warningCondition: PublicodesExpression
 	warningMessage: ReactNode
+	warnings?: ReactNode
 	withRépartition?: boolean
 }
 
 export default function RéductionBasique({
 	dottedName,
 	onUpdate,
-	warnings,
 	warningCondition,
 	warningMessage,
+	warnings,
 	withRépartition = true,
 }: Props) {
 	const engine = useEngine()

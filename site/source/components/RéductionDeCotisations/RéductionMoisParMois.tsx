@@ -24,9 +24,9 @@ type Props = {
 	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
 	onOptionsChange: (monthIndex: number, options: Options) => void
 	caption: string
-	warnings: ReactNode
 	warningCondition: PublicodesExpression
 	warningTooltip: ReactNode
+	warnings?: ReactNode
 	codeRéduction?: string
 	codeRégularisation?: string
 	withRépartitionAndRégularisation?: boolean
@@ -38,9 +38,9 @@ export default function RéductionMoisParMois({
 	onRémunérationChange,
 	onOptionsChange,
 	caption,
-	warnings,
 	warningCondition,
 	warningTooltip,
+	warnings,
 	codeRéduction,
 	codeRégularisation,
 	withRépartitionAndRégularisation = true,
