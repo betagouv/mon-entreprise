@@ -77,6 +77,10 @@ const networkFirstPiano = new Route(
 		return url.hostname === 'tag.aticdn.net'
 	},
 	new NetworkFirst({
+		fetchOptions: {
+			credentials: 'include',
+			mode: 'cors',
+		},
 		cacheName: 'piano-cache',
 		plugins: [
 			new ExpirationPlugin({
