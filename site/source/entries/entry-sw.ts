@@ -56,9 +56,7 @@ setDefaultHandler(
 )
 
 const networkFirstJS = new Route(
-	({ sameOrigin, url }) => {
-		return sameOrigin && /assets\/.*\.js$/.test(url.pathname)
-	},
+	({ sameOrigin, url }) => sameOrigin && /assets\/.*\.js$/.test(url.pathname),
 	new NetworkFirst({
 		cacheName: 'js-cache',
 		plugins: [
@@ -73,9 +71,7 @@ const networkFirstJS = new Route(
 registerRoute(networkFirstJS)
 
 const networkFirstPiano = new Route(
-	({ url }) => {
-		return url.hostname === 'tag.aticdn.net'
-	},
+	({ url }) => url.hostname === 'tag.aticdn.net',
 	new NetworkFirst({
 		fetchOptions: {
 			credentials: 'include',
