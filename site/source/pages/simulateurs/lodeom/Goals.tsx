@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import RéductionBasique from '@/components/RéductionDeCotisations/RéductionBasique'
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
@@ -114,16 +115,19 @@ export default function LodeomSimulationGoals({
 
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
-			{!currentBarème && (
-				<Message type="info">
-					<Body>
-						{t(
-							'pages.simulateurs.lodeom.warnings.barème',
-							'Veuillez sélectionner une localisation et un barème pour accéder au simulateur.'
-						)}
-					</Body>
-				</Message>
-			)}
+			<Warnings />
+			<WhenApplicable dottedName="salarié . cotisations . exonérations . zones lodeom">
+				{!currentBarème && (
+					<Message type="info">
+						<Body>
+							{t(
+								'pages.simulateurs.lodeom.warnings.barème',
+								'Veuillez sélectionner une localisation et un barème pour accéder au simulateur.'
+							)}
+						</Body>
+					</Message>
+				)}
+			</WhenApplicable>
 			{currentBarème &&
 				(monthByMonth ? (
 					<RéductionMoisParMois
@@ -135,7 +139,6 @@ export default function LodeomSimulationGoals({
 							'pages.simulateurs.lodeom.month-by-month.caption',
 							'Exonération Lodeom mois par mois :'
 						)}
-						warnings={<Warnings />}
 						warningCondition={`${lodeomDottedName} = 0`}
 						warningTooltip={<WarningSalaireTrans />}
 						codeRéduction={
@@ -156,7 +159,6 @@ export default function LodeomSimulationGoals({
 					<RéductionBasique
 						dottedName={lodeomDottedName}
 						onUpdate={initializeLodeomMoisParMoisData}
-						warnings={<Warnings />}
 						warningCondition={`${lodeomDottedName} = 0`}
 						warningMessage={<WarningSalaireTrans />}
 						withRépartition={currentZone === 'zone un'}

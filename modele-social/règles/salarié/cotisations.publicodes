@@ -781,6 +781,7 @@ salarié . cotisations . exonérations . JEI:
     - allocations familiales . taux réduit
     - maladie . employeur . taux réduit
     - lodeom
+    - zones lodeom
 
 salarié . cotisations . exonérations . JEI . montant:
   titre: Exonération JEI
