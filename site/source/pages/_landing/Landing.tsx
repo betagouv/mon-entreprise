@@ -74,7 +74,7 @@ export default function Landing() {
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
 				<Trans i18nKey="landing.outils">
-					<H2>Quelques simulateurs de référence</H2>
+					<H2>Le simulateur de référence</H2>
 				</Trans>
 				<Grid
 					container

@@ -1,6 +1,6 @@
 (invalidité partielle): (invalidité partielle)
 (invalidité totale): (invalidité totale)
-"404":
+'404':
   action: Revenir en lieu sûr
   message: Cette page n'existe pas ou n'existe plus
 <0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour les indépendants, vous pouvez calculer le montant de vos charges sociales déductibles grâce à notre assistant dédié :</1><2>Assistant déclaration charges sociales indépendant</2></0>:
@@ -43,7 +43,7 @@ Accéder au site mon-entreprise, nouvelle fenêtre: Accéder au site mon-entrepr
 Activités relevant de l’économie collaborative, voir la page: Activités relevant de l’économie collaborative, voir la page
 Adoption: Adoption
 Afficher le détail: Afficher le détail
-"Afficher les données par :": "Afficher les données par :"
+'Afficher les données par :': 'Afficher les données par :'
 Aller au contenu principal: Aller au contenu principal
 Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
@@ -83,12 +83,13 @@ Confirmer: Confirmer
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
 Coût de création: Coût de création
-"Crée le :": "Crée le :"
+'Crée le :': 'Crée le :'
 Dividendes nets: Dividendes nets
 Documentation: Documentation
 Documentation des simulateurs: Documentation des simulateurs
 Donner votre avis: Donner votre avis
-Décrivez votre projet ou votre problème en donnant quelques éléments de contexte: >-
+Décrivez votre projet ou votre problème en donnant quelques éléments de contexte:
+  >-
   Décrivez votre projet ou votre problème en donnant quelques éléments de
   contexte.
     Notre partenaire Conseillers-Entreprises.Service-Public.fr identifiera, parmi l’ensemble des partenaires publics et parapublics,
@@ -96,13 +97,13 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.
 Décès: Décès
 Déplier: Déplier
-"Détail du montant :": "Détail du montant :"
+'Détail du montant :': 'Détail du montant :'
 Effacer mes réponses: Effacer mes réponses
 Effectif de l'entreprise: Effectif de l'entreprise
-"En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
-  "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
+'En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :':
+  'En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
   d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à
-  hauteur de :"
+  hauteur de :'
 En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos maternel supplémentaire</2>.:
   En plus des indemnités journalières, vous pouvez aussi prétendre à une
   <2>allocation forfaitaire de repos maternel supplémentaire</2>.
@@ -123,12 +124,12 @@ Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
 EntrepriseSearchField:
-  description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
-    entreprise. Exemple : 40123778000127"
+  description: 'Le numéro Siret est un numéro de 14 chiffres unique pour chaque
+    entreprise. Exemple : 40123778000127'
   label: Nom de l'entreprise, SIREN ou SIRET
-  placeholder: "Exemple : Café de la gare ou 40123778000127"
+  placeholder: 'Exemple : Café de la gare ou 40123778000127'
 Envoyer: Envoyer
-"Exemple : Des informations plus claires, un calcul détaillé...": "Exemple : Des informations plus claires, un calcul détaillé..."
+'Exemple : Des informations plus claires, un calcul détaillé...': 'Exemple : Des informations plus claires, un calcul détaillé...'
 Exonérations: Exonérations
 ExportSimulation:
   Banner: Imprimer ou sauvegarder en PDF
@@ -226,7 +227,7 @@ Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Page d'accueil
-"Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
+'Par exemple : coiffure, boulangerie ou restauration': 'Par exemple : coiffure, boulangerie ou restauration'
 Passer: Passer
 Passer le contenu principal et aller directement au pied de page: Passer le contenu principal et aller directement au pied de page
 Passer à la version française du site: Passer à la version française du site
@@ -244,9 +245,9 @@ Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance comp
   Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance
   complémentaire (mutuelle)</2> pour améliorer le remboursement des frais de
   santé.
-"Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En cas d’arrêt maladie, l’assurance maladie vous versera :":
-  "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En
-  cas d’arrêt maladie, l’assurance maladie vous versera :"
+'Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En cas d’arrêt maladie, l’assurance maladie vous versera :':
+  'Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En
+  cas d’arrêt maladie, l’assurance maladie vous versera :'
 Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le conjoint survivant peut bénéficier d’une <4>rente de décès</4>.:
   Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le
   conjoint survivant peut bénéficier d’une <4>rente de décès</4>.
@@ -311,7 +312,7 @@ Simulateurs: Simulateurs
 Simulateurs et Assistants: Simulateurs et Assistants
 Simulation en cours: Simulation en cours
 Situation personnelle: Situation personnelle
-"Siège :": "Siège :"
+'Siège :': 'Siège :'
 Soit <2><0></0></2> avant impôts: Soit <2><0></0></2> avant impôts
 Statistiques: Statistiques
 Statut du conjoint: Statut du conjoint
@@ -327,12 +328,12 @@ Tableau indiquant le nombre de visites par {{period}}.: Tableau indiquant le nom
 Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
 Titres-restaurant: Titres-restaurant
 Total des cotisations et contributions: Total des cotisations et contributions
-"Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
-  "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui
+'Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :':
+  'Tous les ans, selon votre rémunération, <2>vous gagnez des points qui
   constituent votre pension de retraite complémentaire</2>. En fin de carrière,
   vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre
   retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple,
-  au bout de 10 ans, vous auriez droit à :"
+  au bout de 10 ans, vous auriez droit à :'
 Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les <5>protège en cas d’invalidité</5> et assure à leurs proches une <8>pension de réversion et un capital en cas de décès</8>.:
   Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les
   <5>protège en cas d’invalidité</5> et assure à leurs proches une <8>pension de
@@ -397,10 +398,10 @@ Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résulta
   Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
   résultat.
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>
-"Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>, <6>conjoint associé</6> ou <9>conjoint salarié</9>).":
-  "Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il
+'Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>, <6>conjoint associé</6> ou <9>conjoint salarié</9>).':
+  'Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il
   existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>,
-  <6>conjoint associé</6> ou <9>conjoint salarié</9>)."
+  <6>conjoint associé</6> ou <9>conjoint salarié</9>).'
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
@@ -417,15 +418,16 @@ assistants:
   pour-mon-entreprise:
     annuaire-entreprises:
       aria-label: Annuaire-entreprise, Visiter le site
-      body: Retrouvez toutes les informations publiques concernant votre entreprise
+      body:
+        Retrouvez toutes les informations publiques concernant votre entreprise
         sur
       cta: Visiter le site
       title: Voir vos données publiques
 au bout de 10 ans: au bout de 10 ans
 avril: avril
-betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
+betawarning: '<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
-  être présentes.</6></0>"
+  être présentes.</6></0>'
 cards:
   simulator-resource:
     cta: Accéder au simulateur
@@ -439,7 +441,8 @@ choix-statut:
   activité:
     help:
       title: Le choix du statut, un choix adapté à votre situation
-    title: Mon activité principale est...<1><0>Le choix du statut et les cotisations
+    title:
+      Mon activité principale est...<1><0>Le choix du statut et les cotisations
       diffèrent en fonction de l'activité professionnelle que vous exercez.
       Renseigner votre métier vous donnera de la visibilité sur les statuts
       possibles et permettra de simuler vos revenus de manière plus
@@ -456,7 +459,8 @@ choix-statut:
       label: Pourquoi créez vous cette entreprise ?
       non-lucratif:
         description:
-          disabled: Cette option n'est pas disponible car votre activité ne peut pas être
+          disabled:
+            Cette option n'est pas disponible car votre activité ne peut pas être
             exercée sous forme d’association
           label: Par exemple, en créant une association
         label: Dans un but <1>non lucratif</1>
@@ -479,7 +483,8 @@ choix-statut:
     question3:
       help:
         title: Choisir entre une entreprise individuelle et une société
-      label: Voulez-vous exercer votre activité sous la forme d'une société uniquement
+      label:
+        Voulez-vous exercer votre activité sous la forme d'une société uniquement
         ?<1><0>Entreprise individuelle</0><1><0>Vous êtes <2>responsable sur
         l'ensemble de vos biens utiles à votre activité</2> (matériel, locaux,
         outils, etc.). </0><1>Votre <2>patrimoine personnel peut être saisi</2>
@@ -491,26 +496,30 @@ choix-statut:
         <2>responsable sur le montant de votre apport au capital social</2> et
         des biens détenus par la société.</0><1>Les formalités de création et de
         gestion sont <2>plus complexes et plus coûteuses</2>.</1></3></1>
-    title: Je gère cette entreprise...<1><0>Vous <1>partagez la propriété de votre
+    title:
+      Je gère cette entreprise...<1><0>Vous <1>partagez la propriété de votre
       entreprise </1>avec d’autres personnes qui peuvent être <4>physiques</4>
       (individus) ou <7>morales</7> (sociétés).</0><1>Dans le cas des
       <1>sociétés par actions</1> (SASU, SAS), on parle
       d’<3>actionnaires</3>.</1></1>
   commune:
-    description: <0>Vous allez maintenant pouvoir entrer dans le détail et comparer
+    description:
+      <0>Vous allez maintenant pouvoir entrer dans le détail et comparer
       <2>les revenus</2>, la <4>couverture sociale</4> et la <7>gestion
       comptable et juridique</7> avant de faire votre choix.</0>
     help:
       title: Chaque territoire a ses spécificités
-    title: Dans quelle commune voulez-vous créer votre entreprise ?<1><0>Certains
+    title:
+      Dans quelle commune voulez-vous créer votre entreprise ?<1><0>Certains
       dispositifs législatifs sont spécifiques à des régions ou départements
       (Alsace-Moselle, exonération DOM, etc).</0><1>Par ailleurs, certaines
       communes ont des dispositifs d'aide à la création d'entreprise (ZRR, ZFU,
       etc).</1></1>
   home:
-    estimated-duration: "Durée estimée : 10 minutes."
+    estimated-duration: 'Durée estimée : 10 minutes.'
     find-statut: Trouver le bon statut
-    intro: La première étape pour créer votre entreprise consiste à <2>choisir un
+    intro:
+      La première étape pour créer votre entreprise consiste à <2>choisir un
       statut juridique adapté à votre activité</2>. Les démarches
       administratives changent en fonction de ce dernier.
     warning-entreprise-existante: <0>Une entreprise a déjà renseignée</0><1>Pour
@@ -520,7 +529,8 @@ choix-statut:
       help:
         title: Estimer mon chiffre d’affaire
       label: Montant du chiffre d'affaires HT
-      title: "La première année, j'estime mon chiffre d'affaires à...<1><0>Le chiffre
+      title:
+        "La première année, j'estime mon chiffre d'affaires à...<1><0>Le chiffre
         d’affaires est la <2>somme des montants des ventes réalisées pendant</2>
         votre exercice comptable (un an) : <6>CA = prix de vente × quantités
         vendues</6>.</0></1>"
@@ -528,7 +538,8 @@ choix-statut:
       help:
         title: Définir vos charges professionnelles
       label: Montant des charges HT
-      title: "<0>J'estime mes charges professionnelles à...<1><0>Ce sont <2>toutes les
+      title:
+        "<0>J'estime mes charges professionnelles à...<1><0>Ce sont <2>toutes les
         dépenses nécessaires au bon fonctionnement de votre entreprise</2> :
         expertise-comptable, abonnement téléphonique, abonnement internet,
         mutuelle, prévoyance, outils de travail, etc.</0></1></0>"
@@ -543,7 +554,8 @@ choix-statut:
         inclut toutes les cotisations sociales à payer. On peut aussi considérer
         que c'est la valeur monétaire du travail du dirigeant.</0></1>
 chomagePartiel:
-  tableCaption: Tableau indiquant le salaire net et le coût pour l'employeur avec
+  tableCaption:
+    Tableau indiquant le salaire net et le coût pour l'employeur avec
     ou sans chômage partiel.
 codeApe:
   catégorie-guichet: <0>Catégories du Guichet unique<1></1></0>
@@ -554,7 +566,8 @@ comparaisonRégimes:
     va <2>déterminer à quel régime social le dirigeant est affilié</2>. Il en
     existe <4>trois différents</4>, avec chacun ses avantages et inconvénients.
     Avec ce comparatif, trouvez celui qui vous correspond le mieux.
-  notif: <0><0>Découvrez quel statut est le <2>plus adapté pour votre activité</2>
+  notif:
+    <0><0>Découvrez quel statut est le <2>plus adapté pour votre activité</2>
     grâce au <5>nouvel assistant au choix du statut</5> !</0></0>
   warning-libéral-reglementé: "<0>Ce simulateur ne prend pas en compte les
     activités libérales réglementées. </0><1>En effet, ces dernières sont
@@ -564,17 +577,21 @@ components:
   feedback:
     form:
       share:
-        checkbox: Je souhaite partager ma dernière simulation pour vous aider à mieux me
+        checkbox:
+          Je souhaite partager ma dernière simulation pour vous aider à mieux me
           répondre.
 contact:
-  email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
+  email:
+    "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
     suivante : <2>contact@mon-entreprise.beta.gouv.fr</2></0>"
-  info: Nous n'avons pas accès à la situation personnelle des cotisants (pour des
+  info:
+    Nous n'avons pas accès à la situation personnelle des cotisants (pour des
     raisons de confidentialité), et nous ne pouvons légalement pas donner de
     conseil sur une situation spécifique.
   title: Nous contacter
-  urssaf: Pour une question sur votre situation ou une démarche à effectuer, nous
+  urssaf:
+    Pour une question sur votre situation ou une démarche à effectuer, nous
     vous invitons à contacter directement un conseiller de l'Urssaf qui pourra
     vous renseigner
     :<1></1><2>https://www.urssaf.fr/accueil/contacter-urssaf.html</2>
@@ -587,7 +604,8 @@ copied: Copié
 crée:
   choix-statut:
     détails-activité:
-      aide-bnc-bic: <0>Le choix entre exercer une activité à titre <2>commercial</2>
+      aide-bnc-bic:
+        <0>Le choix entre exercer une activité à titre <2>commercial</2>
         (avec des revenus de type BIC) ou à titre <4>indépendant</4> (avec des
         revenus de type BNC) dépend principalement de la nature de votre travail
         :</0><1><0>Si vous vendez des biens ou des services de manière régulière
@@ -602,7 +620,8 @@ créer:
     next1: Continuer avec cette activité
   choix-statut:
     détails-activité:
-      aide-cci-cma: Si vous hésitez entre une activité artisanale ou commerciale, vous
+      aide-cci-cma:
+        Si vous hésitez entre une activité artisanale ou commerciale, vous
         pouvez consulter les sites de la <2>CCI</2> ou de la <5>CMA</5>.
       title: Précisions sur votre activité
 d'aides: d'aides
@@ -612,7 +631,8 @@ design-system:
     close: Fermer
     close-selector: Fermer le sélecteur de date
     error:
-      invalid-date: Format de date invalide, le format attendu est JJ/MM/AAAA (par
+      invalid-date:
+        Format de date invalide, le format attendu est JJ/MM/AAAA (par
         exemple, 11/06/1991).
     label: Champ de date au format jours/mois/année
     month: Mois
@@ -634,13 +654,14 @@ error:
     décrire les actions ont conduit à cette erreur à l'adresse :
     <2>contact@mon-entreprise.beta.gouv.fr</2>.</0>"
   contact: Envoyer un courriel à contact@mon-entreprise.beta.gouv.fr, nouvelle fenêtre
-  description: "Décrivez les actions qui ont conduit à cette erreur :"
+  description: 'Décrivez les actions qui ont conduit à cette erreur :'
   intro: L'équipe technique mon-entreprise a été prévenue automatiquement,
     veuillez nous excuser pour la gêne occasionnée.
   placeholder: Bonjour, j'ai rencontré une erreur après avoir cliqué sur...
   title: Une erreur est survenue
 explications:
-  tableCaption: Tableau affichant les lignes de votre liasse fiscale associées aux
+  tableCaption:
+    Tableau affichant les lignes de votre liasse fiscale associées aux
     exonérations fiscales en place pour chaque type d'activité. La première
     colonne affiche les différents types d'activité (BIC, BNC). La deuxième
     colonne indique les lignes de votre liasse fiscale qui vous permettent de
@@ -657,13 +678,14 @@ feedback:
   reportError: Faire une suggestion
   success:
     body1: Notre équipe prend en charge votre retour.
-    body2: Nous avons à cœur d'améliorer en continu notre site, vos remarques nous
+    body2:
+      Nous avons à cœur d'améliorer en continu notre site, vos remarques nous
       sont donc très précieuses.
     title: Merci pour votre message !
   thanks: Merci de votre retour !
 footer:
-  accessibilité: "Accessibilité : partiellement conforme"
-  accessibilitéAriaLabel: "Accessibilité : partiellement conforme, en savoir plus"
+  accessibilité: 'Accessibilité : partiellement conforme'
+  accessibilitéAriaLabel: 'Accessibilité : partiellement conforme, en savoir plus'
   github:
     text: Voir le code source sur Github
 février: février
@@ -676,7 +698,8 @@ gérer:
       cta: Voir le simulateur
       title: Activité partielle
     déclaration:
-      body: Calculez facilement les montants des charges sociales à reporter dans
+      body:
+        Calculez facilement les montants des charges sociales à reporter dans
         votre déclaration de revenu au titre de 2020
       cta: Remplir ma déclaration
       title: Déclaration de revenus (indépendants)
@@ -688,11 +711,13 @@ gérer:
   ressources:
     annuaire-entreprises:
       aria-label: Annuaire des Entreprises, nouvelle fenêtre
-      body: Retrouvez toutes les informations publiques concernant votre entreprise
+      body:
+        Retrouvez toutes les informations publiques concernant votre entreprise
         sur
     autoEntrepreneur:
       aria-label: auto-entrepreneur.urssaf.fr, Visiter le site
-      body: Vous pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
+      body:
+        Vous pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
         cotisations, et plus largement trouver toutes les informations relatives
         au statut d'auto-entrepreneur
       cta: Visiter le site
@@ -710,7 +735,7 @@ impot-société:
   préremplir:
     exercice-2022: Utiliser les dates de l'exercice 2022, préremplir
     exercice-2023: Utiliser les dates de l'exercice 2023, préremplir
-  préremplir-exercice: "<0>Exercice 2022</0> <2>Exercice 2023</2> "
+  préremplir-exercice: '<0>Exercice 2022</0> <2>Exercice 2023</2> '
 impôt: impôt
 impôt sur le revenu: impôt sur le revenu
 impôt sur le revenu prélevé à la source: impôt sur le revenu prélevé à la source
@@ -738,7 +763,7 @@ landing:
   description: L'assistant officiel des entrepreneurs
   meta:
     title: Accueil
-  outils: <0>Quelques simulateurs de référence</0>
+  outils: <0>Le simulateur de référence</0>
   searchcompany: <0>Rechercher votre entreprise </0><1>Pour accéder à nos
     simulateurs les plus pertinents pour votre activité</1>
   subtitle: Des assistants et simulateurs pour obtenir des <2>réponses
@@ -769,7 +794,8 @@ legalNotice:
     label: Envoyer un mail à webmaster.general@acoss.fr
     title: Éditeur de la Plateforme
   hosting:
-    content: "Ce site est hébergé par Netlify : <1></1>610 22nd Street, Suite 315
+    content:
+      "Ce site est hébergé par Netlify : <1></1>610 22nd Street, Suite 315
       <3></3>San Francisco, CA 94107 <5></5>États-Unis d'Amérique <7></7>+1
       844-899-7312"
     title: Prestataire d'hébergement
@@ -804,7 +830,7 @@ nombres de votes: nombres de votes
 novembre: novembre
 octobre: octobre
 pages:
-  "404":
+  '404':
     description: La page que vous cherchez n'existe pas ou n'existe plus
     title: Page introuvable
   accessibilité: "<0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
@@ -914,7 +940,8 @@ pages:
     11 mai 2023</72>"
   assistant:
     recherche-code-ape:
-      seo explanation: "<0>Comment fonctionne la recherche de code APE ?</0><1>Pour
+      seo explanation:
+        "<0>Comment fonctionne la recherche de code APE ?</0><1>Pour
         retrouver le code APE de votre entreprise, saisissez un ou deux
         mots-clés qui décrivent l'activité exercée. Par exemple : « restauration
         » ou « coach sportif » La recherche utilise les bases de l'Insee et du
@@ -945,23 +972,27 @@ pages:
       entreprise:
         titre: <0>Entreprise et activité</0>
       meta:
-        description: Calculez le montant des cotisations et contributions sociales à
+        description:
+          Calculez le montant des cotisations et contributions sociales à
           reporter dans votre déclaration de revenu 2023
         title: Détermination des charges sociales déductibles
       shortname: Détermination des charges sociales déductibles
       title: Assistant à la détermination des charges sociales déductibles
     pour-mon-entreprise:
-      avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
+      avertissement-entreprise-non-traitée:
+        <0>Il n'existe pas encore de simulateur de
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
         que nous développions un nouveau simulateur, laissez-nous message en
         cliquant sur le bouton "<1></1>" à droite de votre écran.</1>
       codeDuTravailNumeriqueCard:
         aria-label: Code du travail numérique
-        body: Pour toutes vos questions en droit du travail, rendez-vous sur le site
+        body:
+          Pour toutes vos questions en droit du travail, rendez-vous sur le site
           Code du travail numérique
         cta: En savoir plus
         title: Code du travail numérique
-      description: Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
+      description:
+        Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
         payer des cotisations et des impôts. Anticipez leurs montants grâce aux
         simulateurs adaptés à votre situation.
       info:
@@ -982,7 +1013,8 @@ pages:
         description: Simulateurs et assistants adaptés à votre entreprise
       title: Assistants pour mon activité
     recherche-code-ape:
-      description: <0>Cet assistant vous permet de trouver rapidement le code APE
+      description:
+        <0>Cet assistant vous permet de trouver rapidement le code APE
         (activité principale exercée) qui correspond à votre activité. Ce code
         est attribué par l'INSEE à chaque entreprise en France afin de les
         catégoriser.</0><1><0>En cas d'activités multiples, l'activité
@@ -994,13 +1026,15 @@ pages:
         description: Assistant pour trouver le code APE qui correspond à votre activité.
         title: Recherche de code APE
       shortname: Recherche de code APE
-      title: "Quel code APE pour mon activité ? "
+      title: 'Quel code APE pour mon activité ? '
   choix-statut:
     meta:
-      description: SAS, EURL, EI, auto-entrepreneur...  Ce simulateur vous aide à
+      description:
+        SAS, EURL, EI, auto-entrepreneur...  Ce simulateur vous aide à
         choisir le statut juridique le plus adapté à votre projet d'entreprise.
       title: Aide au choix du statut juridique
-    seo explanation: <0>Pourquoi le choix du statut est-il essentiel ?</0><1>Votre
+    seo explanation:
+      <0>Pourquoi le choix du statut est-il essentiel ?</0><1>Votre
       statut juridique détermine la structure de votre entreprise, ses
       obligations fiscales et sociales, ainsi que votre responsabilité en tant
       que dirigeant. Il peut influencer directement votre rentabilité, votre
@@ -1027,7 +1061,8 @@ pages:
       title: Documentation
     title: Documentation
   développeur:
-    api: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur votre site
+    api:
+      "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur votre site
       ou service très facilement grâce à notre API REST ouverte et sans
       authentification.</0><1>Accéder au Swagger</1></0><1>Comment effectuer un
       calcul via l'API ?</1><2>Pour effectuer un calcul, il vous suffit de faire
@@ -1046,7 +1081,8 @@ pages:
       ».<7></7></1></7><8></8><9>Exemple</9><10>Voici un exemple d'utilisation
       des différentes routes, vous pouvez explorer leur code dans le dossier
       <1>example</1></10><11><0></0></11>"
-    bibliothèque: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur
+    bibliothèque:
+      "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur
       votre site ou service très facilement grâce à la bibliothèque JavaScript
       open-source disponible sur npm.</0></0><1>Comment utiliser cette librairie
       ?</1><2>Installation</2><3><0>npm install --save publicodes
@@ -1096,21 +1132,24 @@ pages:
         cta: Commencer
         title: Contribuer sur GitHub
       library:
-        body: L'intégralité du moteur de calcul socio-fiscal développé par l'Urssaf, mis
+        body:
+          L'intégralité du moteur de calcul socio-fiscal développé par l'Urssaf, mis
           à disposition librement sous forme de bibliothèque NPM.
         cta: Commencer
         title: Librairie de calcul
       publicodes:
-        body: Nos outils sont propulsés par Publicodes, un nouveau langage pour encoder
+        body:
+          Nos outils sont propulsés par Publicodes, un nouveau langage pour encoder
           des algorithmes “explicables”.
         cta: Découvrir
         title: Publicodes
     code:
       copy-code: Copier le code dans le presse-papier
-      description: "Voici le code à copier-coller sur votre site :"
+      description: 'Voici le code à copier-coller sur votre site :'
       titre: Code d'intégration
     components:
-      CasParticuliers: "<0>En savoir plus sur...</0><1><0>Comment faire une simulation
+      CasParticuliers:
+        "<0>En savoir plus sur...</0><1><0>Comment faire une simulation
         dans le passé ?</0><1>Depuis fin 2021, les règles de calculs des
         simulateurs sont historisées. Cela veut dire que l'on peut effectuer une
         simulation avec la législation effective à une date antérieure. Pour
@@ -1166,16 +1205,18 @@ pages:
         la page de documentation de la donnée à calculer</0><1></1>Par exemple
         en cliquant sur « Salaire net » dans le simulateur, ou en recherchant «
         Salaire net » dans la recherche en haut à droite.</2>
-    couleur: "Quelle couleur ? "
+    couleur: 'Quelle couleur ? '
     home:
       choice:
         api:
-          body: Utilisez nos simulateurs via notre API ouverte dans vos différents
+          body:
+            Utilisez nos simulateurs via notre API ouverte dans vos différents
             services.
           cta: Commencer
           title: Utiliser notre API REST
         iframe:
-          body: Intégrer l'un de nos simulateurs en un clic dans votre site Web, via un
+          body:
+            Intégrer l'un de nos simulateurs en un clic dans votre site Web, via un
             script clé en main.
           cta: Commencer
           title: Intégrer un simulateur
@@ -1191,9 +1232,10 @@ pages:
       csp-1: <0>L'erreur ci-dessous qui s'affiche dans la console est liée à la
         communication entre la page parente et l'iframe pour le
         redimensionnement automatique au contenu affiché.</0>
-      csp-2: "Vous pouvez la corriger avec la politique suivante :"
+      csp-2: 'Vous pouvez la corriger avec la politique suivante :'
       csp-title: Intégration iframe et politique de sécurité de contenu
-      intro: <0><0>Intégrez le module Web</0><1>Nos simulateurs sont intégrables de
+      intro:
+        <0><0>Intégrez le module Web</0><1>Nos simulateurs sont intégrables de
         manière transparente en ajoutant une simple ligne de code à votre page
         Web.</1><2>Vous pouvez choisir le simulateur à intégrer et
         <2>personnaliser la couleur principale du module</2> pour le fondre dans
@@ -1215,9 +1257,10 @@ pages:
   gérer:
     demande-mobilité:
       meta:
-        description: Formulaire interactif à compléter en cas d'exercice d'une activité
+        description:
+          Formulaire interactif à compléter en cas d'exercice d'une activité
           professionnelle à l'étranger
-        title: "Travailleur indépendant : demande de mobilité en Europe"
+        title: 'Travailleur indépendant : demande de mobilité en Europe'
       shortname: Demande de mobilité internationale
       title: Demande de mobilité internationale
   offline:
@@ -1225,11 +1268,13 @@ pages:
     title: Hors ligne
   simulateurs:
     accueil:
-      description: Tous les simulateurs et assistants sur ce site sont maintenus à
+      description:
+        Tous les simulateurs et assistants sur ce site sont maintenus à
         jour avec les dernières évolutions législatives.
       header: Tous les simulateurs sur ce site sont maintenus à jour avec les
         dernières évolutions législatives.
-      section: <0>Tous les simulateurs sur ce site sont :</0><1><0><0>Maintenus à
+      section:
+        <0>Tous les simulateurs sur ce site sont :</0><1><0><0>Maintenus à
         jour</0> avec les dernières évolutions législatives</0><1><0>Améliorés
         en continu</0> afin d'augmenter le nombre de dispositifs pris en
         compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
@@ -1237,25 +1282,29 @@ pages:
       titre: Simulateurs et Assistants
     artiste-auteur:
       meta:
-        description: Estimez les cotisations sociales sur les droits d'auteur et sur le
+        description:
+          Estimez les cotisations sociales sur les droits d'auteur et sur le
           revenu BNC
-        title: "Artiste-auteur: calcul des cotisations Urssaf"
+        title: 'Artiste-auteur: calcul des cotisations Urssaf'
       shortname: Artiste-auteur
       title: Simulateur de cotisations d’artiste-auteur
     auto-entrepreneur:
       meta:
-        description: Calculez votre revenu net après cotisations et impôts en tenant
+        description:
+          Calculez votre revenu net après cotisations et impôts en tenant
           compte de toutes les options, y compris ACRE et prélèvement
           libératoire.
-        ogDescription: Prenez le contrôle de vos finances en tant qu'auto-entrepreneur !
+        ogDescription:
+          Prenez le contrôle de vos finances en tant qu'auto-entrepreneur !
           Estimez instantanément votre revenu net après charges et découvrez
           comment gérer au mieux vos revenus. Notre simulateur, conçu avec
           l'expertise des professionnels, s'adapte à votre activité (secteur,
           chiffre d'affaires, exonération ACRE, etc.) pour vous aider à
           atteindre vos objectifs financiers.
-        ogTitle: "Auto-entrepreneur : calculez rapidement votre revenu net à partir du
-          CA et vice-versa"
-        titre: "Auto-entrepreneurs : simulateur de revenus"
+        ogTitle:
+          'Auto-entrepreneur : calculez rapidement votre revenu net à partir du
+          CA et vice-versa'
+        titre: 'Auto-entrepreneurs : simulateur de revenus'
       seo explanation: <0>Comment calculer le revenu net d'un auto-entrepreneur
         ?</0><1>Un auto-entrepreneur doit payer des cotisations et contributions
         sociales à l'administration. Ces cotisations servent au financement de
@@ -1303,31 +1352,35 @@ pages:
         orthophonistes et orthoptistes
     auxiliaire-medical:
       meta:
-        description: Calcul du revenu net après cotisations à partir du total des
+        description:
+          Calcul du revenu net après cotisations à partir du total des
           recettes. Prise en compte des revenus non conventionnés.
-        title: "Auxiliaire médical : simulateur de revenus"
+        title: 'Auxiliaire médical : simulateur de revenus'
     avocat:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
-        title: "Avocat : simulateur de revenus"
+        title: 'Avocat : simulateur de revenus'
       shortname: Avocat
       title: Simulateur de revenus pour avocat en libéral
     chirurgien-dentiste:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
-        title: "Chirurgien-dentiste : simulateur de revenus"
+        title: 'Chirurgien-dentiste : simulateur de revenus'
       shortname: Chirurgien-dentiste
       title: Simulateur de revenus pour chirurgien-dentiste en libéral
     chômage-partiel:
       meta:
-        description: Calcul du revenu net pour l'employé et du reste à charge pour
+        description:
+          Calcul du revenu net pour l'employé et du reste à charge pour
           l'employeur après remboursement de l'Etat, en prenant en compte toutes
           les cotisations sociales.
-        ogDescription: Accédez à une première estimation en saisissant à partir d'un
+        ogDescription:
+          Accédez à une première estimation en saisissant à partir d'un
           salaire brut. Vous pourrez ensuite personaliser votre situation (temps
           partiel, convention, etc). Prends en compte la totalité des
           cotisations, y compris celles spécifiques à l'indemnité (CSG-CRDS).
-        ogTitle: "Simulateur chômage partiel : découvrez l'impact sur le revenu net
+        ogTitle:
+          "Simulateur chômage partiel : découvrez l'impact sur le revenu net
           salarié et le coût total employeur."
         titre: "Calcul de l'indemnité chômage partiel : le simulateur Urssaf"
       seo: "<0>Comment calculer l'indemnité d'activité partielle légale
@@ -1363,14 +1416,16 @@ pages:
       title: Simulateur du calcul de l'indemnité chômage partiel
     cipav:
       meta:
-        description: Calcul du revenu net après déduction des cotisations à partir du
+        description:
+          Calcul du revenu net après déduction des cotisations à partir du
           total des recettes pour professions libérales rattaché à la CIPAV
-        title: "Professions libérales rattachées à la Cipav : simulateur de revenus"
+        title: 'Professions libérales rattachées à la Cipav : simulateur de revenus'
       shortname: Cipav
       title: Simulateur de revenus pour professions libérales Cipav
     comparaison:
       meta:
-        description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
+        description:
+          Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
         title: Comparateur de statut juridique
       shortname: Comparaison des statuts
@@ -1378,11 +1433,13 @@ pages:
     comparaison-statuts:
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
-        net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
+        net-après-impôt:
+          Tableau affichant le détail du calcul du revenu net après impôt
           pour chaque statut
     coût-création-entreprise:
       meta:
-        description: Estimez les coûts des formalités administratives obligatoires à la
+        description:
+          Estimez les coûts des formalités administratives obligatoires à la
           création d'une entreprise
         title: Coût de création d'une entreprise
       shortName: Coût de création
@@ -1416,17 +1473,21 @@ pages:
       title: Simulateur de versement de dividendes
     ei:
       meta:
-        description: Calcul du revenu à partir du chiffre d'affaires, après déduction
+        description:
+          Calcul du revenu à partir du chiffre d'affaires, après déduction
           des cotisations et des impôts
-        ogDescription: "Grâce au simulateur de revenu pour entreprise individuelle
+        ogDescription:
+          "Grâce au simulateur de revenu pour entreprise individuelle
           développé par l'Urssaf, vous pourrez estimer le montant de vos revenus
           en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux
           gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant
           facturer pour atteindre un certain revenu."
-        ogTitle: "Entreprise individuelle (EI) : calculez rapidement votre revenu net à
-          partir du CA et vice-versa"
-        titre: "Entreprise individuelle (EI) : simulateur de revenus"
-      seo explanation: <0>Comment calculer le revenu net d'un dirigeant d'entreprise
+        ogTitle:
+          'Entreprise individuelle (EI) : calculez rapidement votre revenu net à
+          partir du CA et vice-versa'
+        titre: 'Entreprise individuelle (EI) : simulateur de revenus'
+      seo explanation:
+        <0>Comment calculer le revenu net d'un dirigeant d'entreprise
         individuelle (EI) ?</0><1>Un dirigeant d'entreprise individuelle doit
         payer des cotisations et contributions sociales à l'administration. Ces
         cotisations servent au financement de la sécurité sociale, et ouvrent
@@ -1458,48 +1519,57 @@ pages:
       title: Simulateur pour entreprise individuelle (EI)
     eirl:
       meta:
-        description: Calcul du revenu à partir du chiffre d'affaires, après déduction
+        description:
+          Calcul du revenu à partir du chiffre d'affaires, après déduction
           des cotisations et des impôts
-        ogDescription: "Grâce au simulateur de revenu pour EIRL développé par l'Urssaf,
+        ogDescription:
+          "Grâce au simulateur de revenu pour EIRL développé par l'Urssaf,
           vous pourrez estimer le montant de vos revenus en fonction de votre
           chiffre d'affaires mensuel ou annuel pour mieux gérer votre
           trésorerie. Ou dans le sens inverse : savoir quel montant facturer
           pour atteindre un certain revenu."
-        ogTitle: "Dirigeant d'EIRL : calculez rapidement votre revenu net à partir du CA
+        ogTitle:
+          "Dirigeant d'EIRL : calculez rapidement votre revenu net à partir du CA
           et vice-versa"
-        titre: "EIRL : simulateur de revenus pour dirigeant"
+        titre: 'EIRL : simulateur de revenus pour dirigeant'
       shortname: EIRL
       title: Simulateur de revenus pour EIRL
     eurl:
       meta:
-        description: Calcul du salaire net à partir du total alloué à la rémunération et
+        description:
+          Calcul du salaire net à partir du total alloué à la rémunération et
           inversement
-        ogDescription: En tant que dirigeant assimilé-salarié, calculez immédiatement
+        ogDescription:
+          En tant que dirigeant assimilé-salarié, calculez immédiatement
           votre revenu net après impôt à partir du total alloué à votre
           rémunération.
-        ogTitle: "Rémunération du dirigeant d'EURL : un simulateur pour connaître votre
+        ogTitle:
+          "Rémunération du dirigeant d'EURL : un simulateur pour connaître votre
           salaire net"
-        titre: "EURL : simulateur de revenus pour dirigeant"
+        titre: 'EURL : simulateur de revenus pour dirigeant'
       shortname: EURL
       title: Simulateur de revenus pour dirigeant d'EURL
     expert-comptable:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
-        title: "Expert-comptable : simulateur de revenus"
+        title: 'Expert-comptable : simulateur de revenus'
       shortname: Expert-Comptable
-      title: Simulateur de revenus pour expert comptable et commissaire aux comptes en
+      title:
+        Simulateur de revenus pour expert comptable et commissaire aux comptes en
         libéral
     home:
       cta:
         assistant: Lancer l'assistant
         simulateur: Lancer le simulateur
     indépendant:
-      cotisations-forfaitaires: "Montant des cotisations forfaitaires : "
+      cotisations-forfaitaires: 'Montant des cotisations forfaitaires : '
       meta:
-        description: Calcul du revenu net après impôt et des cotisations à partir du
+        description:
+          Calcul du revenu net après impôt et des cotisations à partir du
           chiffre d'affaires et inversement
-        title: "Indépendant : simulateur de revenus"
-      retraite-droits-acquis: "<0>Retraite : droits acquis sur l'année</0><1><0>Les
+        title: 'Indépendant : simulateur de revenus'
+      retraite-droits-acquis:
+        "<0>Retraite : droits acquis sur l'année</0><1><0>Les
         exonérations DROM n'ont aucune incidence sur la détermination des droits
         à la retraite de base et complémentaire des
         auto-entrepreneurs</0></1><2><0>L’exonération ACRE n'a aucune incidence
@@ -1520,7 +1590,8 @@ pages:
       meta:
         description: Calculez votre impôt sur les sociétés
         title: Impôt sur les sociétés
-      seo: <0>Comment est calculé l’impôt sur les sociétés ?</0><1>L’impôt sur les
+      seo:
+        <0>Comment est calculé l’impôt sur les sociétés ?</0><1>L’impôt sur les
         sociétés s’applique aux bénéfices réalisés par les sociétés de capitaux
         (SA, SAS, SASU, SARL, etc.) et sur option facultative pour certaines
         autres sociétés (EIRL, EURL, SNC, etc.).</1><2>Il est calculé sur la
@@ -1542,24 +1613,27 @@ pages:
       title: Simulateur d'impôt sur les sociétés
     médecin:
       meta:
-        description: Calcul du revenu net après déduction des cotisations à partir du
+        description:
+          Calcul du revenu net après déduction des cotisations à partir du
           total des recettes. Secteur 1, secteur 2, et dépassement d’honoraire
           pris en compte
-        title: "Médecin : simulateur de revenus"
+        title: 'Médecin : simulateur de revenus'
       shortname: Médecin
       title: Simulateur de revenus pour médecin en libéral
     pamc:
       meta:
-        description: Calcul du revenu net pour les professions libérales du régime PAMC
+        description:
+          Calcul du revenu net pour les professions libérales du régime PAMC
           (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)
         title: Simulateurs régime PAMC
       shortname: PAMC
       title: Simulateur de cotisations et de revenu pour les PAMC
     pharmacien:
       meta:
-        description: Calcul du revenu net après déduction des cotisations à partir du
+        description:
+          Calcul du revenu net après déduction des cotisations à partir du
           total des recettes pour pharmacien en libéral
-        title: "Pharmacien : simulateur de revenus"
+        title: 'Pharmacien : simulateur de revenus'
       shortname: Pharmacien
       title: Simulateur de revenus pour pharmacien en libéral
     print-info:
@@ -1569,24 +1643,27 @@ pages:
         <2>mon-entreprise.urssaf.fr</2>.
     profession-libérale:
       meta:
-        description: Calcul du revenu net pour les indépendants en libéral à l'impôt sur
+        description:
+          Calcul du revenu net pour les indépendants en libéral à l'impôt sur
           le revenu (IR, BNC)
-        title: "Professions libérale : le simulateur Urssaf"
+        title: 'Professions libérale : le simulateur Urssaf'
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
     réduction-générale:
       legend: Salaire brut du salarié et réduction générale applicable
       meta:
-        description: Estimation du montant de la réduction générale des cotisations
+        description:
+          Estimation du montant de la réduction générale des cotisations
           patronales (RGCP). Cette réduction est applicable pour les salaires
           inférieurs à 1,6 fois le SMIC.
         title: Réduction générale
       month-by-month:
-        caption: "Réduction générale mois par mois :"
+        caption: 'Réduction générale mois par mois :'
       options:
         description: Ajoute des champs pour moduler l'activité du salarié
         heures-sup:
-          popover: "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
+          popover:
+            "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
             dans le calcul de la réduction générale : la rémunération brute est
             comparée au montant du SMIC majoré de ce nombre d'heures.</0>"
         label:
@@ -1599,12 +1676,14 @@ pages:
         mois-incomplet:
           description: Ajoute des champs pour gérer le cas d'un mois incomplet
         rémunération-etp:
-          popover: <0>Indiquez ici la rémunération qui aurait été versée pour un mois
+          popover:
+            <0>Indiquez ici la rémunération qui aurait été versée pour un mois
             complet, <2>en excluant</2> :<4><0>les primes et autres éléments de
             rémunération non affectés par l'absence ;</0><1>la rémunération des
             heures supplémentaires ou complémentaires.</1></4></0>
         rémunération-heures-sup:
-          popover: <0>Indiquez ici la rémunération afférente au paiement des heures
+          popover:
+            <0>Indiquez ici la rémunération afférente au paiement des heures
             supplémentaires ou complémentaires.</0>
         rémunération-primes:
           popover: <0>Indiquez ici les éléments de rémunération non affectés par
@@ -1614,7 +1693,7 @@ pages:
         T2: 2ème trimestre
         T3: 3ème trimestre
         T4: 4ème trimestre
-        caption: "Récapitulatif trimestriel :"
+        caption: 'Récapitulatif trimestriel :'
         code671: code 671(€)
         code801: code 801(€)
         header: Réduction calculée
@@ -1642,27 +1721,31 @@ pages:
     sage-femme:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
-        title: "Sage-femme : simulateur de revenus"
+        title: 'Sage-femme : simulateur de revenus'
       shortname: Sage-femme
       title: Simulateur de revenus pour sage-femme en libéral
     salarié:
-      alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
+      alt-image1:
+        Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
       meta:
-        description: "Calculez le coût total d'une embauche et explorez les différentes
+        description:
+          "Calculez le coût total d'une embauche et explorez les différentes
           options de rémunération : cadres, stages, apprentissages, heures
           supplémentaires, et bien plus !"
-        ogDescription: Optimisez vos finances en un clic ! Calculez instantanément votre
+        ogDescription:
+          Optimisez vos finances en un clic ! Calculez instantanément votre
           revenu net en tant que salarié et évaluez le coût total d'une embauche
           en tant qu'employeur. Notre simulateur, élaboré avec les experts de
           l'Urssaf, s'ajuste à votre situation (cadre, stage, apprentissage,
           heures supplémentaires, avantages, temps partiel, convention
           collective, etc.) pour des décisions éclairées
-        ogTitle: "Salaire brut, net, net après impôt, coût total : le simulateur
-          tout-en-un pour salariés et employeurs"
-        titre: "Salaire brut / net : le convertisseur Urssaf"
-      seo: "<0>Comment calculer le salaire net ?</0><1>Lors de l'entretien d'embauche
+        ogTitle: 'Salaire brut, net, net après impôt, coût total : le simulateur
+          tout-en-un pour salariés et employeurs'
+        titre: 'Salaire brut / net : le convertisseur Urssaf'
+      seo:
+        "<0>Comment calculer le salaire net ?</0><1>Lors de l'entretien d'embauche
         l'employeur propose en général une rémunération exprimée en « brut ». Le
         montant annoncé inclut ainsi les cotisations salariales, qui servent à
         financer la protection sociale du salarié et qui sont retranchées du
@@ -1701,17 +1784,21 @@ pages:
       title: Simulateur de revenus pour salarié
     sasu:
       meta:
-        description: Calcul du salaire net à partir du total alloué à la rémunération et
+        description:
+          Calcul du salaire net à partir du total alloué à la rémunération et
           inversement
-        ogDescription: En tant que dirigeant assimilé-salarié, calculez immédiatement
+        ogDescription:
+          En tant que dirigeant assimilé-salarié, calculez immédiatement
           votre revenu net après impôt à partir du total alloué à votre
           rémunération.
-        ogTitle: "Rémunération du dirigeant de SAS(U) : un simulateur pour connaître
-          votre salaire net"
-        titre: "SASU : simulateur de revenus pour dirigeant"
-      seo-explanation: "<0>Comment calculer le salaire d'un dirigeant de SAS ou SASU ?
+        ogTitle:
+          'Rémunération du dirigeant de SAS(U) : un simulateur pour connaître
+          votre salaire net'
+        titre: 'SASU : simulateur de revenus pour dirigeant'
+      seo-explanation:
+        '<0>Comment calculer le salaire d''un dirigeant de SAS ou SASU ?
         </0><1>Comme pour un salarié classique, le <1>dirigeant de SAS(U)</1>
-        paye des cotisations sociales sur la rémunération qu'il se verse. Les
+        paye des cotisations sociales sur la rémunération qu''il se verse. Les
         cotisations sont calculées de la même manière que pour le salarié :
         elles sont décomposées en partie employeur et partie salarié et sont
         exprimées comme un pourcentage du salaire brut.</1><2>Le dirigeant
@@ -1719,12 +1806,12 @@ pages:
         ailleurs, il ne bénéficie pas de la <5>réduction générale de
         cotisations</5> ni des dispositifs encadrés par le code du travail comme
         les <9>heures supplémentaires</9> ou les primes.</2><3>Il peut en
-        revanche prétendre à la <2>réduction ACRE</2> en debut d'activité, sous
+        revanche prétendre à la <2>réduction ACRE</2> en debut d''activité, sous
         certaines conditions.</3><4>Vous pouvez utiliser notre simulateur pour
-        calculer la <2>rémunération nette</2> à partir d'un montant superbrut
+        calculer la <2>rémunération nette</2> à partir d''un montant superbrut
         alloué à la rémunération du dirigeant. Il vous suffit pour cela saisir
-        le montant total alloué dans la case \"total chargé\". La simulation
-        peut ensuite être affinée en répondant aux différentes questions.</4>"
+        le montant total alloué dans la case "total chargé". La simulation
+        peut ensuite être affinée en répondant aux différentes questions.</4>'
       shortname: SAS(U)
       title: Simulateur de revenus pour dirigeant de SAS(U)
     select-year:
@@ -1732,7 +1819,8 @@ pages:
       back: Retourner au simulateur {{year}}
       info: "Cette simulation concerne l'année <2>{{actualYear}}</2>. "
 payslip:
-  disclaimer: "Cette fiche de paie est issue de la simulation que vous avez faite.
+  disclaimer:
+    "Cette fiche de paie est issue de la simulation que vous avez faite.
     Elle vous aide à comprendre votre bulletin de paie : vous pouvez cliquer sur
     les liens pour comprendre le calcul de chaque montant. Cette fiche de paie
     ne peut pas de substituer à une fiche de paie réelle. Pour plus
@@ -1741,11 +1829,12 @@ payslip:
 points: points
 pourcentage: pourcentage
 previousSimulationBanner:
-  info: "Votre précédente simulation a été sauvegardée :"
+  info: 'Votre précédente simulation a été sauvegardée :'
   retrieveButton: Retrouver ma simulation
 privacyPolicy:
   data:
-    content: "mon-entreprise.urssaf.fr ne traite aucune donnée à caractère personnel
+    content:
+      "mon-entreprise.urssaf.fr ne traite aucune donnée à caractère personnel
       par le biais des simulateurs ou via un dépôt de cookies ou traceurs. Il
       n'existe pas de compte, seules les informations anonymes renseignées lors
       des simulations sont automatiquement sauvegardées dans votre navigateur.
@@ -1770,7 +1859,8 @@ privacyPolicy:
       informatiqueetlibertes.acoss@acoss.fr.</2></7>"
     title: Quelles données à caractère personnel sont collectées ?
   liability:
-    content: La plateforme mon-entreprise.urssaf.fr est sous la responsabilité de
+    content:
+      La plateforme mon-entreprise.urssaf.fr est sous la responsabilité de
       l'Agence centrale des organismes de sécurité sociale, également appelée «
       Acoss » ou « Urssaf Caisse nationale ». <1></1>La plateforme propose des
       simulateurs pour accompagner les créateurs d'entreprise dans le
@@ -1816,7 +1906,8 @@ privacyPolicy:
     title: Comment la sécurité de vos données est-elle assurée ?
   title: Politique de confidentialité
   tracking:
-    ariaLabel: recommandations de la CNIL, voir plus d'informations à ce sujet sur
+    ariaLabel:
+      recommandations de la CNIL, voir plus d'informations à ce sujet sur
       le site de la CNIL, nouvelle fenêtre
     content: mon-entreprise.urssaf.fr ne dépose pas de cookies ou de traceurs.
       Cependant, la plateforme utilise Piano Analytics, une solution de mesure
@@ -1824,7 +1915,8 @@ privacyPolicy:
       recueil du consentement des personnes concernées conformément aux
       <2>recommandations de la CNIL</2>.
     optOut:
-      checkboxLabel: Je ne veux pas envoyer de données anonymes sur mon utilisation de
+      checkboxLabel:
+        Je ne veux pas envoyer de données anonymes sur mon utilisation de
         la plateforme à des fins de mesures d'audience.
       confirmation: Vos préférences ont bien été enregistrées
       content: "Vous pouvez vous soustraire de cette mesure d'utilisation de la
@@ -1834,17 +1926,19 @@ recherche lancée automatiquement après l'entrée de caractères, les résultat
   recherche lancée automatiquement après l'entrée de caractères, les résultats
   s'afficheront à la suite de cet élément.
 recherche-globale:
-  placeholder: "Mot-clé ou acronyme (exemple : CSG)"
+  placeholder: 'Mot-clé ou acronyme (exemple : CSG)'
 salarié: salarié
 salarié, accéder au simulateur salarié: salarié, accéder au simulateur salarié
 search-code-ape:
   alternative: Vous pouvez essayer "{{proposal}}" au lieu de "{{match}}"
   cant-find-my-activity: Je ne trouve pas mon activité
   feedback:
-    description: Décrivez-nous votre activité ainsi que les termes de recherche que
+    description:
+      Décrivez-nous votre activité ainsi que les termes de recherche que
       vous avez utilisés qui n'ont pas donné de bons résultats.<1></1>Nous
       utiliserons ces informations pour améliorer cet outil.
-    info: Nous ne sommes pas en mesure de répondre aux questions concernant le code
+    info:
+      Nous ne sommes pas en mesure de répondre aux questions concernant le code
       APE de votre entreprise.
   radio-card-group:
     aria-label: Liste des activités
@@ -1857,14 +1951,14 @@ shareSimulation:
   button:
     copied: Copié
     copy: Copier le lien
-  description: "<0>À quoi sert le lien de partage ?</0><1>Les simulateurs et
+  description: '<0>À quoi sert le lien de partage ?</0><1>Les simulateurs et
     assistants de mon-entreprise.urssaf.fr sont <2>100 % confidentiels</2> : les
     informations que vous renseignez ne quittent jamais votre
     navigateur.</1><2>Pour <1>envoyer une simulation</1> à une autre personne,
     ou <4>retrouver votre simulation sur un autre appareil</4> que celui-ci,
     vous pouvez utiliser un lien de partage.</2><3>Celui ci contient votre
     situation directement sous forme de texte. Comme ça, pas besoin de passer
-    par un fichier ou par une sauvegarde sur un serveur externe !</3>"
+    par un fichier ou par une sauvegarde sur un serveur externe !</3>'
   modal:
     helpText: Le lien est sélectionné, vous pouvez le copier/coller
     notice: Ce lien peut être utilisé pour accéder à votre simulation
@@ -1872,66 +1966,80 @@ shareSimulation:
   navigatorShare: Ma simulation Mon Entreprise
 simulateurs:
   explanation:
-    CIPAV: Depuis le 1er janvier 2023, l’Urssaf recouvre les cotisations de retraite
+    CIPAV:
+      Depuis le 1er janvier 2023, l’Urssaf recouvre les cotisations de retraite
       de base, de retraite complémentaire et d’invalidité-décès des
       professionnels libéraux relevant de la Cipav. La Cipav conserve la gestion
       du dossier de retraite ou de prévoyance.
     CNAPL: Elle recouvre les cotisations liées à votre retraite et au régime
       d'invalidité-décès.
     institutions:
-      cpam: En tant que professionnel de santé conventionné, vous bénéficiez d'une
+      cpam:
+        En tant que professionnel de santé conventionné, vous bénéficiez d'une
         prise en charge d'une partie de vos cotisations par l'Assurance Maladie.
-      dgfip: La direction générale des finances publiques (DGFiP) est l'organisme qui
+      dgfip:
+        La direction générale des finances publiques (DGFiP) est l'organisme qui
         collecte l'impôt sur le revenu. <2>Le montant calculé <2>prend en compte
         l'abattement du régime micro-fiscal</2>.</2>
       précompte-artiste-auteur: Pour vos revenus en traitement et salaires, ces
         cotisations sont « précomptées », c'est à dire payées à la source par le
         diffuseur.
       titre: Vos institutions partenaires
-      urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+      urssaf:
+        L’Urssaf recouvre les cotisations servant au financement de la sécurité
         sociale (assurance maladie, allocations familiales, dépendance<1> et
         retraite <3> de base</3></1>).
   précision:
-    défaut: "Améliorez votre simulation en répondant aux questions :"
+    défaut: 'Améliorez votre simulation en répondant aux questions :'
   warning:
-    artiste-auteur: Ce simulateur permet d'estimer le montant de vos cotisations à
+    artiste-auteur:
+      Ce simulateur permet d'estimer le montant de vos cotisations à
       partir de votre revenu projeté.
-    auto-entrepreneur: Les auto-entrepreneurs bénéficient d’un régime très simplifié
+    auto-entrepreneur:
+      Les auto-entrepreneurs bénéficient d’un régime très simplifié
       avec un taux forfaitaire pour le calcul des cotisations et contributions
       sociales appliqué sur le chiffre d’affaires. Selon le choix de la modalité
       de paiement des impôts il est appliqué un abattement forfaitaire au titre
       des frais professionnels. Il n’est pas possible de déduire des charges
       réelles en plus. Votre revenu net est donc le chiffre d’affaires moins
       toutes les charges engagées pour l’entreprise.
-    cfe: Le simulateur n'intègre pas la cotisation foncière des entreprise (CFE) qui
+    cfe:
+      Le simulateur n'intègre pas la cotisation foncière des entreprise (CFE) qui
       est dûe dès la deuxième année d'exercice. Son montant varie fortement en
       fonction du chiffre d'affaires et de la domiciliation de l'entreprise.
       <2>Plus d'infos.</2>
     chômage-partiel:
-      "1": Ce simulateur ne prend pas en compte les rémunérations brutes définies sur
+      '1':
+        Ce simulateur ne prend pas en compte les rémunérations brutes définies sur
         39h hebdomadaires.
-      "2": De même, il ne prend pas en compte les indemnités complémentaire d'activité
+      '2':
+        De même, il ne prend pas en compte les indemnités complémentaire d'activité
         partielle prévue par une convention/accord collectif ou une décision
         unilatérale de l'employeur.
     cotisations-ordinales: Pour les professions réglementées, le simulateur ne
       calcule pas le montant des cotisations à l'ordre. Elles doivent être
       ajoutées manuellement dans la case « charges de fonctionnement ».
     coût-création-entreprise:
-      JAL: Ce simulateur calcule les frais de créations uniquement pour les SARL,
+      JAL:
+        Ce simulateur calcule les frais de créations uniquement pour les SARL,
         EURL, SAS, SASU, EI et SEL. Il ne prend pas encore en compte les autres
         formes de société (SA, SCA, SCS, SCI, SCP, SNC, SCM, coopératives, GIE,
         GAEC, etc.)
-      greffe: Des frais de greffe peuvent être facturés en raison d'informations ou de
+      greffe:
+        Des frais de greffe peuvent être facturés en raison d'informations ou de
         documents manquants ou incorrects. Par ailleurs, en cas d'envoi de
         courrier, le greffe facture les frais postaux.
-      pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
+      pas-reprise:
+        Ce simulateur calcule les frais de création pour les nouvelles
         entreprises. Il ne prend pas en compte le cas des reprises d'entreprises
         existantes.
     dividendes:
-      "1": Cette simulation ne concerne que les sociétés françaises à l’impôt sur les
+      '1':
+        Cette simulation ne concerne que les sociétés françaises à l’impôt sur les
         sociétés (IS), et ne concerne pas les travailleurs indépendants non
         salariés.
-      "2": Le montant de l'impôt sur les dividendes est calculé en plus de l’impôt sur
+      '2':
+        Le montant de l'impôt sur les dividendes est calculé en plus de l’impôt sur
         les autres revenus imposables.
     general: <0>Les calculs sont indicatifs.</0> Ils sont faits à partir des
       éléments que vous avez saisis et des éléments réglementaires applicables,
@@ -1941,13 +2049,14 @@ simulateurs:
     indépendant:
       année-courante: Le montant calculé correspond aux cotisations de l’année
         {{year}} (pour un revenu {{year}}).
-    is: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
-      réduits de l’impôt sur les sociétés."
+    is: 'Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
+      réduits de l’impôt sur les sociétés.'
     libérale:
       année-courante: Le montant calculé correspond aux cotisations de l’année
         {{year}} (pour un revenu {{year}}).
     plus: Lire les précisions
-    profession-libérale: Ce simulateur est à destination des professions libérales
+    profession-libérale:
+      Ce simulateur est à destination des professions libérales
       en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.
     réduction-générale: Ce simulateur n'intègre <2>pas toutes les règles de
       calcul</2> spécifiques (Entreprises de Travail Temporaire, salariés des
@@ -1958,7 +2067,8 @@ simulateurs:
       conventions collectives, ni la myriade d'aides aux entreprises. Trouvez
       votre convention collective <2>ici</2>, et explorez les aides sur
       <4>aides-entreprises.fr</4>.
-    sasu: Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu (IR).
+    sasu:
+      Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu (IR).
       Seule l'option pour l'impôt sur les sociétés est implémentée (IS).
     titre: Avant de commencer...
 simulation-end:
@@ -1970,11 +2080,13 @@ site:
   defaultTitle: Mon-entreprise
   meta:
     description: Des simulateurs et assistants pour développer votre activité
-    og:description: Une collection d'assistants et de simulateurs crées par l'Urssaf
+    og:description:
+      Une collection d'assistants et de simulateurs crées par l'Urssaf
       pour vous accompagner dans le développement de votre activité
-    og:title: "mon-entreprise.urssaf.fr : Simulateurs et assistants pour développer
-      votre activité"
-  titleTemplate: "%s - Mon-entreprise"
+    og:title:
+      'mon-entreprise.urssaf.fr : Simulateurs et assistants pour développer
+      votre activité'
+  titleTemplate: '%s - Mon-entreprise'
 sitemap:
   description: Page détaillant l'arborescence du site Mon-Entreprise.
   title: Plan du site
@@ -1991,40 +2103,46 @@ statutchoice:
   regime: Régime social des {{regime}}s
 termsOfUse:
   article:
-    "1":
+    '1':
       content: Le présent document a pour objectif d'encadrer l'utilisation des
         Services, en accès libre et gratuit à tout Utilisateur. Toute
         utilisation des Services est subordonnée au respect intégral des
         présentes conditions générales d'utilisation.
       title: Article 1 - Champ d'application
-    "2":
+    '2':
       content:
-        "1": « Éditeur » désigne l'Agence centrale des organismes de sécurité sociale
+        '1':
+          « Éditeur » désigne l'Agence centrale des organismes de sécurité sociale
           (Acoss) qui est à l'initiative de la Plateforme.
-        "2": « Plateforme » désigne le service numérique « mon-entreprise ».
-        "3": « Services » désigne les fonctionnalités offertes par la Plateforme pour
+        '2': « Plateforme » désigne le service numérique « mon-entreprise ».
+        '3':
+          « Services » désigne les fonctionnalités offertes par la Plateforme pour
           répondre à ses finalités.
-        "4": « Utilisateur » désigne toute personne physique qui utilise les Services de
+        '4':
+          « Utilisateur » désigne toute personne physique qui utilise les Services de
           la Plateforme.
       title: Article 2 - Définitions
-    "3":
+    '3':
       content: La Plateforme a pour objectif de proposer des simulateurs pour
         accompagner les créateurs et créatrices d'entreprise dans le
         développement de leur activité. Ces simulateurs affichent des résultats
         personnalisés et fiables, couvrant un grand nombre de cas spécifiques.
       title: Article 3 - Objet
-    "4":
+    '4':
       content:
-        "1": Il n'existe pas de compte sur la Plateforme. Chaque Utilisateur peut
+        '1':
+          Il n'existe pas de compte sur la Plateforme. Chaque Utilisateur peut
           librement et gratuitement, sans s'inscrire ou se connecter, bénéficier
           des simulateurs pour obtenir des indications sur la création et la
           gestion d'entreprise.
-        "2": L'Utilisateur peut découvrir la liste de tous les simulateurs qui existent
+        '2':
+          L'Utilisateur peut découvrir la liste de tous les simulateurs qui existent
           à date sur la Plateforme. Il peut notamment, à l'aide d'une barre de
           recherche, renseigner le nom de l'entreprise, le SIREN ou SIRET, des
           mots clés ou acronymes pour trouver le simulateur le plus adapté à sa
           situation.
-        "3": L'Utilisateur peut également :<1><0>Intégrer l'un des simulateurs de la
+        '3':
+          L'Utilisateur peut également :<1><0>Intégrer l'un des simulateurs de la
           Plateforme sur son propre site ;</0><1>Utiliser les simulateurs via
           l'API REST dans ses propres services ;</1><2>Utiliser les simulateurs
           dans des fichiers Excel/Sheets ;</2><3>Réutiliser les calculs de la
@@ -2033,28 +2151,33 @@ termsOfUse:
           ;</4><5>Contribuer sur GitHub puisque le code source de la Plateforme
           est ouvert.</5></1>
       title: Article 4 - Fonctionnalités
-    "5":
+    '5':
       content:
-        "1": Les sources des informations diffusées sur la Plateforme sont réputées
+        '1':
+          Les sources des informations diffusées sur la Plateforme sont réputées
           fiables mais l'Éditeur ne garantit pas qu'elle soit exempte de
           défauts, d'erreurs ou d'omissions.
-        "2": L'Éditeur s'engage à la sécurisation du Service, notamment en prenant
+        '2':
+          L'Éditeur s'engage à la sécurisation du Service, notamment en prenant
           toutes les mesures nécessaires permettant de garantir la sécurité et
           la confidentialité des informations fournies. Il fournit notamment les
           moyens nécessaires et raisonnables pour assurer un accès continu, sans
           contrepartie financière, au Service.
-        "3": L'Éditeur ne peut être tenu responsable des pertes et/ou préjudices, de
+        '3':
+          L'Éditeur ne peut être tenu responsable des pertes et/ou préjudices, de
           quelque nature qu'ils soient, qui pourraient être causés à la suite
           d'un dysfonctionnement ou d'une indisponibilité du Service. De telles
           situations n'ouvriront droit à aucune compensation ou indemnité
           d'aucune nature dont financière.
-        "4": L'Éditeur enrichit au fur et à mesure les simulateurs. La responsabilité de
+        '4':
+          L'Éditeur enrichit au fur et à mesure les simulateurs. La responsabilité de
           l'Éditeur ne peut en aucun cas être recherchée en cas de suppression
           ou d'indisponibilité de simulateurs ou d'une quelconque source de
           données.
       title: Article 5 - Responsabilités
-    "6":
-      content: Les termes des présentes conditions générales d'utilisation peuvent
+    '6':
+      content:
+        Les termes des présentes conditions générales d'utilisation peuvent
         être amendés à tout moment, sans préavis, en fonction des modifications
         apportées à la Plateforme, de l'évolution de la législation ou pour tout
         autre motif jugé nécessaire.
@@ -2071,15 +2194,15 @@ vos retours, accéder aux statistiques d'utilisation: vos retours, accéder aux 
 warning:
   overwrite:
     situation: Voulez-vous écraser votre situation ?
-"{{title}}, voir la demande sur github":
-  com, nouvelle fenêtre: "{{title}}, voir la demande sur github.com, nouvelle fenêtre"
+'{{title}}, voir la demande sur github':
+  com, nouvelle fenêtre: '{{title}}, voir la demande sur github.com, nouvelle fenêtre'
 À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SAS(U).:
   À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le
   revenu pour les SAS(U).
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
 Échanger avec un conseiller: Échanger avec un conseiller
 Échec: Échec
-"Établissement recherché :": "Établissement recherché :"
+'Établissement recherché :': 'Établissement recherché :'
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
 Étape {{ total }} sur {{ maxValue }}: Étape {{ total }} sur {{ maxValue }}
