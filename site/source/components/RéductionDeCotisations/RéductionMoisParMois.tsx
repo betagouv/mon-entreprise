@@ -254,7 +254,12 @@ export default function RéductionMoisParMois({
 				)}
 			</span>
 
-			{warnings}
+			{warnings && (
+				<>
+					<Spacing xxl />
+					{warnings}
+				</>
+			)}
 		</>
 	)
 }
