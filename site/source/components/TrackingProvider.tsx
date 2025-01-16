@@ -10,11 +10,10 @@ import * as safeLocalStorage from '@/storage/safeLocalStorage'
 
 export function TrackingProvider({ children }: { children: React.ReactNode }) {
 	const [tracker, setTracker] = useState<ATTracker | null>(null)
+	const [script, setScript] = useState<HTMLScriptElement | null>(null)
 	const [injected, setInjected] = useState<boolean>(false)
 
 	useEffect(() => {
-		console.log('Initialisation du TrackingProvider')
-		console.log('Constitution du script')
 		const script = document.createElement('script')
 		script.src = 'https://tag.aticdn.net/piano-analytics.js'
 		script.type = 'text/javascript'
@@ -22,7 +21,6 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 		script.async = true
 
 		script.onload = () => {
-			console.log('Script Piano chargé')
 			const siteId = import.meta.env.VITE_AT_INTERNET_SITE_ID
 
 			const ATTrackerClass = createTracker(
@@ -36,7 +34,6 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 			})
 
 			setTracker(instance)
-			console.log('Tracker configuré')
 		}
 
 		script.onerror = () => {
@@ -44,35 +41,37 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 			console.error('Failed to load Piano Analytics script')
 		}
 
-		if ('serviceWorker' in navigator) {
-			console.log('En attente du service worker')
-			navigator.serviceWorker.ready
-				.then(() => {
-					console.log("Service worker is ready, let's add the script")
-					requestIdleCallback(() => {
-						document.body.appendChild(script)
-						setInjected(true)
-					})
-				})
-				.catch((error) => {
-					console.error(
-						'Impossible d’initialiser le suivi car le service worker n’a pas démarré',
-						error
-					)
-				})
-		} else {
-			console.log("No support for service worker, let's add the script")
-			document.body.appendChild(script)
-			setInjected(true)
-		}
+		setScript(script)
+	}, [])
 
-		return () => {
-			console.log('Démontage du composant')
+	useEffect(() => {
+		if (script) {
 			if (injected) {
-				document.body.removeChild(script)
+				return () => {
+					document.body.removeChild(script)
+				}
+			}
+
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.ready
+					.then(() => {
+						requestIdleCallback(() => {
+							document.body.appendChild(script)
+							setInjected(true)
+						})
+					})
+					.catch((error) => {
+						console.error(
+							'Impossible d’initialiser le suivi car le service worker n’a pas démarré',
+							error
+						)
+					})
+			} else {
+				document.body.appendChild(script)
+				setInjected(true)
 			}
 		}
-	}, [])
+	}, [script, injected])
 
 	if (!tracker) {
 		return <>{children}</>
