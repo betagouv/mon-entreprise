@@ -47,7 +47,7 @@ export default function Landing() {
 				>
 					<Intro $xxl>
 						<Trans i18nKey="landing.subtitle">
-							Des assistants et simulateurs pour peut-être obtenir des{' '}
+							Des assistants et simulateurs pour obtenir des{' '}
 							<Strong>réponses personnalisées</Strong> à vos questions sur la{' '}
 							<Strong>création et la gestion</Strong> de votre entreprise.
 						</Trans>
