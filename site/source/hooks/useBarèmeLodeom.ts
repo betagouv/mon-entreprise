@@ -5,12 +5,12 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { useZoneLodeom, ZoneLodeom } from './useZoneLodeom'
 
 const barèmes = [
-	'barème compétitivité',
-	'barème compétitivité renforcée',
-	'barème innovation et croissance',
-	'barème moins de 11 salariés',
-	'barème sectoriel',
-	'barème renforcé',
+	'compétitivité',
+	'compétitivité renforcée',
+	'innovation et croissance',
+	'moins de 11 salariés',
+	'sectoriel',
+	'renforcé',
 ]
 
 export type BarèmeLodeom = (typeof barèmes)[number]

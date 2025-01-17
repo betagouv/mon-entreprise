@@ -8,7 +8,7 @@ export default function WarningSalaireTrans() {
 	return (
 		currentBarème && (
 			<>
-				{currentBarème === 'barème compétitivité' && (
+				{currentBarème === 'compétitivité' && (
 					<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire.zone-un.barème-compétitivité">
 						Le barème de compétitivité concerne uniquement les salaires
 						inférieurs à 2,2 SMIC. C'est-à-dire, pour 2024, une rémunération
@@ -16,7 +16,7 @@ export default function WarningSalaireTrans() {
 						par mois.
 					</Trans>
 				)}
-				{currentBarème === 'barème compétitivité renforcée' && (
+				{currentBarème === 'compétitivité renforcée' && (
 					<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire.zone-un.barème-compétitivité-renforcée">
 						Le barème de compétitivité renforcée concerne uniquement les
 						salaires inférieurs à 2,7 SMIC. C'est-à-dire, pour 2024, une
@@ -24,7 +24,7 @@ export default function WarningSalaireTrans() {
 						<strong>4&nbsp;864,86&nbsp;€</strong> bruts par mois.
 					</Trans>
 				)}
-				{currentBarème === 'barème innovation et croissance' && (
+				{currentBarème === 'innovation et croissance' && (
 					<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire.zone-un.barème-innovation-croissance">
 						Le barème d'innovation et croissance concerne uniquement les
 						salaires inférieurs à 3,5 SMIC. C'est-à-dire, pour 2024, une
@@ -32,7 +32,7 @@ export default function WarningSalaireTrans() {
 						<strong>6&nbsp;306,30&nbsp;€</strong> bruts par mois.
 					</Trans>
 				)}
-				{currentBarème === 'barème moins de 11 salariés' && (
+				{currentBarème === 'moins de 11 salariés' && (
 					<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire.zone-deux.barème-moins-de-11-salariés">
 						Le barème pour les employeurs de moins de 11 salariés concerne
 						uniquement les salaires inférieurs à 3 SMIC. C'est-à-dire, pour
@@ -40,7 +40,7 @@ export default function WarningSalaireTrans() {
 						<strong>5&nbsp;405,40&nbsp;€</strong> bruts par mois.
 					</Trans>
 				)}
-				{currentBarème === 'barème sectoriel' && (
+				{currentBarème === 'sectoriel' && (
 					<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire.zone-deux.barème-sectoriel">
 						Le barème d'exonération sectorielle concerne uniquement les salaires
 						inférieurs à 3 SMIC. C'est-à-dire, pour 2024, une rémunération
@@ -48,7 +48,7 @@ export default function WarningSalaireTrans() {
 						bruts par mois.
 					</Trans>
 				)}
-				{currentBarème === 'barème renforcé' && (
+				{currentBarème === 'renforcé' && (
 					<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire.zone-deux.barème-renforcé">
 						Le barème d'exonération renforcée uniquement les salaires inférieurs
 						à 4,5 SMIC. C'est-à-dire, pour 2024, une rémunération totale qui ne

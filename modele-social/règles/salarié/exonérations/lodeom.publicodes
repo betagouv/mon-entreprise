@@ -84,12 +84,12 @@ salarié . cotisations . exonérations . lodeom . zone un:
       une possibilité:
         choix obligatoire: oui
         possibilités:
-          - barème compétitivité
-          - barème compétitivité renforcée
-          - barème innovation et croissance
+          - compétitivité
+          - compétitivité renforcée
+          - innovation et croissance
       avec:
-        barème compétitivité:
-          valeur: barèmes = 'barème compétitivité'
+        compétitivité:
+          valeur: barèmes = 'compétitivité'
           titre: Barème de compétitivité
           description: |
             Le barème de compétitivité <strong>est applicable</strong> :
@@ -107,9 +107,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
             Champ d'application du barème de compétitivité: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1390
 
-        barème compétitivité renforcée:
+        compétitivité renforcée:
           titre: Barème de compétitivité renforcée
-          valeur: barèmes = 'barème compétitivité renforcée'
+          valeur: barèmes = 'compétitivité renforcée'
           description: |
             Pour bénéficier du barème de compétitivité renforcée, les employeurs doivent :
             - employer <strong>moins de 250 salariés</strong>
@@ -146,9 +146,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
             Champ d'application du barème de renforcée: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1410
 
-        barème innovation et croissance:
+        innovation et croissance:
           titre: Barème d'innovation et croissance
-          valeur: barèmes = 'barème innovation et croissance'
+          valeur: barèmes = 'innovation et croissance'
           question: Êtes-vous éligible au barème d'innovation et croissance ?
           par défaut: non
           description: |
@@ -182,7 +182,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
           - barème compétitivité renforcée
           - barème innovation et croissance
       une de ces conditions:
-        - barèmes . barème compétitivité
+        - barèmes . compétitivité
         - entreprise . salariés . effectif < 11
         - secteurs d'activité éligibles
       description: |
@@ -208,7 +208,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
         toutes ces conditions:
           - entreprise . salariés . effectif < 250
           - entreprise . chiffre d'affaires < 50000000
-      formule: barèmes . barème compétitivité renforcée
+      formule: barèmes . compétitivité renforcée
       question: Êtes-vous éligible au barème compétitivité renforcée ?
       par défaut: non
       description: |
@@ -253,7 +253,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
         toutes ces conditions:
           - entreprise . salariés . effectif < 250
           - entreprise . chiffre d'affaires < 50000000
-      formule: barèmes . barème innovation et croissance
+      formule: barèmes . innovation et croissance
       question: Êtes-vous éligible au barème d'innovation et croissance ?
       par défaut: non
       description: |
@@ -308,12 +308,12 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       une possibilité:
         choix obligatoire: oui
         possibilités:
-          - barème moins de 11 salariés
-          - barème sectoriel
-          - barème renforcé
+          - moins de 11 salariés
+          - sectoriel
+          - renforcé
       avec:
-        barème moins de 11 salariés:
-          valeur: barèmes = 'barème moins de 11 salariés'
+        moins de 11 salariés:
+          valeur: barèmes = 'moins de 11 salariés'
           titre: Barème pour les employeurs de moins de 11 salariés
           description: |
             L’exonération est applicable aux employeurs occupant <strong>moins de 11 salariés</strong>.
@@ -325,8 +325,8 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
             Champ d'application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1520
 
-        barème sectoriel:
-          valeur: barèmes = 'barème sectoriel'
+        sectoriel:
+          valeur: barèmes = 'sectoriel'
           titre: Barème d'exonération sectorielle
           description: |
             L’exonération est applicable aux employeurs, quel que soit leur effectif, relevant d’un des secteurs d’activité
@@ -356,8 +356,8 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
             Champ d'application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1540
 
-        barème renforcé:
-          valeur: barèmes = 'barème renforcé'
+        renforcé:
+          valeur: barèmes = 'renforcé'
           titre: Barème d'exonération renforcée
           description: |
             Pour bénéficier du barème d'exonération renforcée, les employeurs doivent :
@@ -398,7 +398,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - barème renforcé
       formule:
         une de ces conditions:
-          - barèmes . barème moins de 11 salariés
+          - barèmes . moins de 11 salariés
           - entreprise . salariés . effectif < 11
       description: |
         L’exonération est applicable aux employeurs occupant <strong>moins de 11 salariés</strong>.
@@ -415,7 +415,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       non applicable si: barème renforcé
       formule:
         une de ces conditions:
-          - barèmes . barème sectoriel
+          - barèmes . sectoriel
           - toutes ces conditions:
             - barème moins de 11 salariés = non
             - barème renforcé = non
@@ -454,7 +454,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         toutes ces conditions:
           - entreprise . salariés . effectif < 250
           - entreprise . chiffre d'affaires < 50000000
-      formule: barèmes . barème renforcé
+      formule: barèmes . renforcé
       question: Êtes-vous éligible au barème d'exonération renforcée ?
       par défaut: non
       description: |

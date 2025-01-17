@@ -9808,7 +9808,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       titre.fr: Barème d'exonération sectorielle
     barèmes:
       avec:
-        barème moins de 11 salariés:
+        moins de 11 salariés:
           description.en: >
             [automatic] The exemption applies to employers with <strong>fewer
             than 11 employees</strong>.
@@ -9831,14 +9831,14 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             cette exonération, plus favorable, car elles ont moins de 11 salariés.
           titre.en: '[automatic] Scale for employers with fewer than 11 employees'
           titre.fr: Barème pour les employeurs de moins de 11 salariés
-        barème renforcé:
+        renforcé:
           description.en: >
             [automatic] To qualify for the enhanced exemption scale, employers
             must :
 
             - have <strong>fewer than 250 employees</strong>,
 
-            - have annual sales <strong>of less than €50 million</strong>
+            - have annual sales <strong>of less than 50 million euros</strong>
 
             - and, in the case of employers based in <strong>Saint-Martin</strong>, be subject to an automatic or optional
 
@@ -9910,7 +9910,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
           titre.en: '[automatic] Reinforced exemption scale'
           titre.fr: Barème d'exonération renforcée
-        barème sectoriel:
+        sectoriel:
           description.en: >
             [automatic] The exemption applies to employers, regardless of their
             workforce, in one of the following business sectors
@@ -10198,7 +10198,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
       titre.fr: Barème d'innovation et croissance
     barèmes:
       avec:
-        barème compétitivité:
+        compétitivité:
           description.en: >
             [automatic] The competitiveness scale <strong>applies to</strong>:
 
@@ -10243,7 +10243,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
             et croissance.
           titre.en: '[automatic] Competitiveness scale'
           titre.fr: Barème de compétitivité
-        barème compétitivité renforcée:
+        compétitivité renforcée:
           description.en: >
             [automatic] To qualify for the enhanced competitiveness scale,
             employers must :
@@ -10330,14 +10330,14 @@ salarié . cotisations . exonérations . lodeom . zone un:
               - ingénierie ou études techniques.
           titre.en: '[automatic] Enhanced competitiveness scale'
           titre.fr: Barème de compétitivité renforcée
-        barème innovation et croissance:
+        innovation et croissance:
           description.en: >
             [automatic] To qualify for the innovation and growth scale,
             employers must :
 
             - have <strong>fewer than 250 employees</strong>,
 
-            - have annual sales <strong>of less than 50 million euros</strong>
+            - have annual sales <strong>of less than €50 million</strong>
 
             - and carry out <strong>innovative projects</strong> in the information technology
 
@@ -10358,7 +10358,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
             directly in the realization of innovative projects.
 
 
-            The exemption <strong>does not</strong> apply to support functions: administrative financial tasks, logistics, human resources.
+            The exemption <strong>does not apply</strong> to support functions: administrative financial tasks, logistics, human resources.
           description.fr: >
             Pour bénéficier du barème d'innovation et croissance, les employeurs
             doivent :
@@ -10387,6 +10387,8 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
 
             L'exonération <strong>ne s'applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+          question.en: '[automatic] Are you eligible for the innovation and growth scale?'
+          question.fr: Êtes-vous éligible au barème d'innovation et croissance ?
           titre.en: '[automatic] Innovation and growth scale'
           titre.fr: Barème d'innovation et croissance
       question.en: '[automatic] What scale would you like to apply?'
