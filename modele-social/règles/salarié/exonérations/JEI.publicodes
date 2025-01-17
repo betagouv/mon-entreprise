@@ -1,0 +1,52 @@
+salarié . cotisations . exonérations . JEI:
+  question:
+    variations:
+      - si: dirigeant
+        alors:
+          texte: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
+      - sinon:
+          texte:
+            Le salarié bénéficie-t-il de l'exonération Jeune Entreprise Innovante
+            (JEI) ?
+
+  description: >-
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier
+    d'une exonération de cotisations sociales.
+
+
+    L’exonération peut s’appliquer sur les rémunérations versées :
+
+    - aux salariés pour lesquels l’employeur est soumis à l’obligation d’assurance chômage
+
+    - aux mandataires sociaux qui participent, à titre principal, au projet de recherche et de développement de l’entreprise
+
+
+    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera considéré comme acquis dès lors que la moitié de son temps de travail au moins est consacrée à un ou des projets de recherche et de développement et l’exonération ne pourra être remise en cause.
+
+  par défaut: non
+  rend non applicable:
+    - réduction générale
+    - allocations familiales . taux réduit
+    - maladie . employeur . taux réduit
+    - lodeom
+    - zones lodeom
+
+salarié . cotisations . exonérations . JEI . montant:
+  titre: Exonération JEI
+  description: |
+    Exonération pour les jeunes entreprises innovantes (JEI).
+  références:
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F31188
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-secteur-activite/jeunes-entreprises-innovantes.html
+    Cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
+  unité: €/mois
+  somme:
+    - allocations familiales
+    - maladie . employeur
+    - vieillesse . employeur
+  plafond:
+    valeur: JEI . montant
+    contexte:
+      contrat . salaire brut: 4.5 * temps de travail . SMIC
