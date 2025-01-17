@@ -1,5 +1,8 @@
 # Journal des modifications
+
 ## next
+
+## 4.1.0
 ### Nouveautés
 - Ajout des taux de contribution supplémentaire à l'apprentissage pour l'Alsace-Moselle
 - Ajout du taux de cotisation ATMP pour les VRP multicartes
