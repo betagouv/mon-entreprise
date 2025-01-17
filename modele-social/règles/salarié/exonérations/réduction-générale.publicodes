@@ -1,0 +1,82 @@
+salarié . cotisations . exonérations . réduction générale:
+  description: |
+    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
+  références:
+    Simulateur actuel: https://www.declaration.urssaf.fr/calcul/
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F24542
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
+    Cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
+    Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general
+  produit:
+    - cotisations . assiette
+    - coefficient
+  plafond: plafond avec application de la DFS
+  non applicable si: cotisations . assiette = 0
+
+  avec:
+    coefficient:
+      produit:
+        - 1.6 * temps de travail . SMIC / cotisations . assiette - 1
+        - T / 0.6
+        - coefficient de majoration
+      plancher: 0
+      plafond: T
+      unité: ''
+      arrondi: 4 décimales
+      références:
+        Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
+        Urssaf.fr: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
+        Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-a-formule-de-calcul-de-la-reduct
+
+    coefficient de majoration:
+      variations:
+        - si: caisse de congés payés
+          alors: 100 / 90
+        - sinon: 1
+
+    imputation retraite complémentaire:
+      valeur: réduction générale - imputation sécurité sociale
+
+    imputation sécurité sociale:
+      produit:
+        - réduction générale
+        - T . sécurité sociale et chômage / T
+
+    imputation chômage:
+      produit:
+        - réduction générale
+        - chômage . employeur . taux / T
+
+    plafond avec application de la DFS:
+      privé: oui
+      applicable si: régimes spécifiques . DFS
+      unité: €/mois
+      produit:
+        - valeur: réduction générale
+          contexte:
+            régimes spécifiques . DFS: non
+        - 130%
+
+    caisse de congés payés:
+      titre: Obligation de recourir à une caisse de congés payés
+      par défaut: non
+
+salarié . cotisations . exonérations . réduction générale . régularisation:
+  description: |
+    ### Régularisation progressive
+
+    À chaque échéance, vous cumulez :
+    - les rémunérations brutes du salarié perçues depuis le début de l’année ou depuis son embauche ;
+    - et vous calculez le montant du Smic brut sur cette même période.
+
+    La régularisation correspond à la différence entre le montant ainsi calculé et le montant cumulé
+    des réductions appliquées sur les mois ou trimestres précédents de l'année.
+
+    ### Régularisation annuelle
+
+    Elle correspond à la différence entre le montant de la réduction calculée selon la formule annuelle
+    et le montant des réductions appliquées par anticipation sur les périodes précédentes de l’année.
+
+    Elle intervient :
+    - sur les cotisations dues au titre du mois de décembre, pour les employeurs « mensuels » ;
+    - ou au titre du dernier trimestre de l’année pour les employeurs « trimestriels ».
