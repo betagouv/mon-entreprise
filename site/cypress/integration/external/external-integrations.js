@@ -11,7 +11,7 @@ describe('Pole emploi', function () {
 describe('Urssaf', function () {
 	it('should display an iframe of the simulateur', function () {
 		cy.visit(
-			'https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html'
+			'https://www.urssaf.fr/accueil/outils-documentation/simulateurs/cotisations-employeur.html'
 		)
 		cy.get('#simulateurEmbauche').iframe().contains('Salaire net')
 	})
