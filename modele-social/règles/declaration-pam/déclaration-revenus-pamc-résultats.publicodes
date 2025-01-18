@@ -1,0 +1,104 @@
+déclaration revenus PAMC . résultats:
+  toutes ces conditions:
+    - recettes brutes totales
+    - revenus imposables
+    - cotisations sociales obligatoires
+    - champs dentiste
+    - champs médecin
+    - champs autres professions
+  avec:
+    champs dentiste:
+      variations:
+        - si: profession . dentiste
+          alors: SNIR . taux urssaf
+        - sinon: oui
+    champs médecin:
+      variations:
+        - si: profession . médecin
+          alors:
+            toutes ces conditions:
+              - SNIR . honoraires remboursables
+              - SNIR . dépassements honoraires
+              - SNIR . honoraires tarifs opposables
+              - SNIR . honoraires hors forfaits
+        - sinon: oui
+    champs autres professions:
+      variations:
+        - si:
+            toutes ces conditions:
+              - profession . dentiste = non
+              - profession . médecin = non
+          alors:
+            toutes ces conditions:
+              - SNIR . honoraires remboursables
+              - SNIR . dépassements honoraires
+        - sinon: oui
+
+déclaration revenus PAMC . déductions et exonérations . total déductible:
+  somme:
+    - zone déficitaire en offre de soins
+    - revenus exonérés
+    - plus-values à court terme
+    - chèques vacances exonérés
+  avec:
+    chèques vacances exonérés:
+      valeur: déductions et exonérations . chèques vacances
+      abattement:
+        produit:
+          - 30%
+          - valeur: SMIC
+            contexte:
+              date: période . début d'année
+            unité: €/an
+      plancher: 0
+      unité: €/an
+
+déclaration revenus PAMC . revenus nets:
+
+déclaration revenus PAMC . revenus nets . revenus imposables:
+  produit:
+    - revenus imposables
+    - 66%
+  unité: €/an
+
+déclaration revenus PAMC . revenus nets . autres revenus non salariés:
+  somme:
+    - autres revenus non salariés . plus-values nettes à court terme
+    - 0.29 * autres revenus non salariés . vente de marchandises
+    - 0.50 * autres revenus non salariés . prestation de service
+    - 0.13 * autres revenus non salariés . agricole
+  unité: €/an
+
+déclaration revenus PAMC . revenus nets . assiette sociale:
+  somme:
+    - revenus imposables
+    - autres revenus non salariés
+    - déductions et exonérations . total déductible
+  unité: €/an
+
+déclaration revenus PAMC . revenus nets . revenus conventionnés:
+  variations:
+    - si: actes conventionnés uniquement
+      alors: assiette sociale
+    - sinon:
+        produit:
+          - assiette sociale
+          - SNIR . honoraires remboursables
+          - 1 / recettes brutes totales
+  unité: €/an
+
+déclaration revenus PAMC . revenus nets . revenus non conventionnés:
+  variations:
+    - si: actes conventionnés uniquement
+      alors: 0
+    - sinon:
+        valeur: assiette sociale
+        abattement: revenus conventionnés
+  unité: €/an
+
+déclaration revenus PAMC . revenus nets . revenus structures de soins:
+  produit:
+    - assiette sociale
+    - activité en structures de soins . recettes
+    - 1 / recettes brutes totales
+  unité: €/an

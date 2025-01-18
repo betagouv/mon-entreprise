@@ -4577,6 +4577,222 @@ déclaration charge sociales . résultat . total charges sociales déductible:
   résumé.fr: '[B + C + D]'
   titre.en: '[automatic] tax-deductible mandatory social security charges'
   titre.fr: charges sociales obligatoires déductibles fiscalement
+déclaration revenus PAMC:
+  titre.en: '[automatic] PAMC income tax return'
+  titre.fr: déclaration revenus PAMC
+déclaration revenus PAMC . SNIR:
+  titre.en: '[automatic] SNIR'
+  titre.fr: SNIR
+déclaration revenus PAMC . SNIR . dépassements honoraires:
+  question.en: '[automatic] excess fees'
+  question.fr: dépassements d’honoraires
+  titre.en: '[automatic] excess fees'
+  titre.fr: dépassements d’honoraires
+déclaration revenus PAMC . SNIR . honoraires hors forfaits:
+  titre.en: '[automatic] total fees excluding packages'
+  titre.fr: honoraires totaux hors forfaits
+déclaration revenus PAMC . SNIR . honoraires remboursables:
+  titre.en: '[automatic] fees from conventional procedures'
+  titre.fr: honoraires tirés d’actes conventionnés
+déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
+  titre.en:
+    '[automatic] fees charged at the "opposable" rate, excluding lump-sum
+    payments'
+  titre.fr: honoraires aux tarifs opposables hors forfaits
+déclaration revenus PAMC . SNIR . taux urssaf:
+  titre.en: '[automatic] Urssaf rate'
+  titre.fr: taux Urssaf
+déclaration revenus PAMC . actes conventionnés uniquement:
+  question.en: '[automatic] Did you perform only contract procedures?'
+  question.fr: Avez-vous effectué uniquement des actes conventionnés ?
+  titre.en: '[automatic] conventional procedures only'
+  titre.fr: actes conventionnés uniquement
+déclaration revenus PAMC . activité en structures de soins:
+  question.en: '[automatic] Do you generate any income from care facility activities?'
+  question.fr: Avez-vous des recettes issues d’une activité en structure de soins ?
+  titre.en: '[automatic] activity in care facilities'
+  titre.fr: activité en structures de soins
+déclaration revenus PAMC . activité en structures de soins . recettes:
+  titre.en: '[automatic] amount'
+  titre.fr: montant
+déclaration revenus PAMC . autres revenus non salariés:
+  question.en: '[automatic] Do you have self-employed income other than that
+    covered by the micro-BNC scheme?'
+  question.fr: Avez-vous des revenus non salariés autres que ceux relevant du
+    régime micro-BNC ?
+  titre.en: '[automatic] other self-employed income'
+  titre.fr: autres revenus non salariés
+déclaration revenus PAMC . autres revenus non salariés . agricole:
+  titre.en: '[automatic] micro-BA: farm sales'
+  titre.fr: 'micro-BA : chiffre d’affaires agricole'
+déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
+  titre.en: '[automatic] net short-term capital gains'
+  titre.fr: plus-values nettes à court terme
+déclaration revenus PAMC . autres revenus non salariés . prestation de service:
+  titre.en: '[automatic] micro-BIC: sales of services'
+  titre.fr: 'micro-BIC : chiffre d’affaires prestation de service'
+déclaration revenus PAMC . autres revenus non salariés . vente de marchandises:
+  titre.en: '[automatic] micro-BIC: sales of goods'
+  titre.fr: 'micro-BIC : chiffre d’affaires vente de marchandises'
+déclaration revenus PAMC . cotisations sociales obligatoires:
+  titre.en: '[automatic] compulsory social security contributions'
+  titre.fr: cotisations sociales obligatoires
+déclaration revenus PAMC . déductions et exonérations:
+  question.en: '[automatic] Do you benefit from deductions and/or tax-exempt income?'
+  question.fr: Bénéficiez-vous de déductions et/ou de revenus exonérés fiscalement ?
+  titre.en: '[automatic] deductions and exemptions'
+  titre.fr: déductions et exonérations
+déclaration revenus PAMC . déductions et exonérations . chèques vacances:
+  titre.en: '[automatic] amount of vacation vouchers deducted from taxable income'
+  titre.fr: montant des chèques vacances déduits du revenu imposable
+déclaration revenus PAMC . déductions et exonérations . plus-values à court terme:
+  titre.en: '[automatic] tax-exempt short-term capital gains'
+  titre.fr: plus-values à court terme exonérées
+déclaration revenus PAMC . déductions et exonérations . revenus exonérés:
+  titre.en: '[automatic] tax-exempt income'
+  titre.fr: revenus exonérés
+déclaration revenus PAMC . déductions et exonérations . total déductible:
+  avec:
+    chèques vacances exonérés:
+      titre.en: '[automatic] tax-exempt vacation vouchers'
+      titre.fr: chèques vacances exonérés
+  titre.en: '[automatic] total deductible'
+  titre.fr: total déductible
+déclaration revenus PAMC . déductions et exonérations . zone déficitaire en offre de soins:
+  titre.en: '[automatic] exemption for areas with a shortage of healthcare services'
+  titre.fr: exonération zone déficitaire en offre de soins
+déclaration revenus PAMC . profession:
+  avec:
+    dentiste:
+      titre.en: '[automatic] dental surgeon'
+      titre.fr: chirurgien/chirurgienne-dentiste
+    infirmier:
+      titre.en: '[automatic] nurse'
+      titre.fr: infirmier/infirmière
+    kinésithérapeute:
+      titre.en: '[automatic] masseur/physiotherapist'
+      titre.fr: masseure/masseuse-kinésithérapeute
+    médecin:
+      titre.en: '[automatic] doctor'
+      titre.fr: médecin
+    orthophoniste:
+      titre.en: '[automatic] speech therapist'
+      titre.fr: orthophoniste
+    orthoptiste:
+      titre.en: '[automatic] orthoptist'
+      titre.fr: orthoptiste
+    pédicure-podologue:
+      titre.en: '[automatic] chiropodist'
+      titre.fr: pédicure-podologue
+    sage-femme:
+      titre.en: '[automatic] midwife'
+      titre.fr: sage-femme
+  question.en: '[automatic] What do you do for a living?'
+  question.fr: Quelle est votre profession ?
+  titre.en: '[automatic] profession'
+  titre.fr: profession
+déclaration revenus PAMC . recettes brutes totales:
+  titre.en: '[automatic] total gross revenues'
+  titre.fr: recettes brutes totales
+déclaration revenus PAMC . revenus de remplacement:
+  question.en: '[automatic] Do you receive benefits from Caf, CPAM or your pension fund?'
+  question.fr:
+    Avez-vous perçues des indemnités de la Caf, de la CPAM ou de votre
+    caisse de retraite ?
+  titre.en: '[automatic] replacement income'
+  titre.fr: revenus de remplacement
+déclaration revenus PAMC . revenus de remplacement . AJPA:
+  titre.en: '[automatic] amount of AJPA paid by Caf'
+  titre.fr: montant perçu de l’AJPA versée par la Caf
+déclaration revenus PAMC . revenus de remplacement . total:
+  titre.en: '[automatic] total'
+  titre.fr: total
+déclaration revenus PAMC . revenus imposables:
+  titre.en: '[automatic] taxable income'
+  titre.fr: revenus imposables
+déclaration revenus PAMC . revenus nets:
+  titre.en: '[automatic] net income'
+  titre.fr: revenus nets
+déclaration revenus PAMC . revenus nets . assiette sociale:
+  titre.en: '[automatic] social base'
+  titre.fr: assiette sociale
+déclaration revenus PAMC . revenus nets . autres revenus non salariés:
+  titre.en: '[automatic] other self-employed income'
+  titre.fr: autres revenus non salariés
+déclaration revenus PAMC . revenus nets . revenus conventionnés:
+  titre.en: '[automatic] conventional incomes'
+  titre.fr: revenus conventionnés
+déclaration revenus PAMC . revenus nets . revenus imposables:
+  titre.en: '[automatic] taxable income'
+  titre.fr: revenus imposables
+déclaration revenus PAMC . revenus nets . revenus non conventionnés:
+  titre.en: '[automatic] non-conventional income'
+  titre.fr: revenus non conventionnés
+déclaration revenus PAMC . revenus nets . revenus structures de soins:
+  titre.en: '[automatic] income from care facilities'
+  titre.fr: revenus structures de soins
+déclaration revenus PAMC . résultats:
+  avec:
+    champs autres professions:
+      titre.en: '[automatic] other professions'
+      titre.fr: champs autres professions
+    champs dentiste:
+      titre.en: '[automatic] dentist fields'
+      titre.fr: champs dentiste
+    champs médecin:
+      titre.en: "[automatic] doctor's field"
+      titre.fr: champs médecin
+  titre.en: '[automatic] results'
+  titre.fr: résultats
+déclaration revenus PAMC . statut:
+  avec:
+    remplaçant:
+      titre.en: '[automatic] substitute'
+      titre.fr: remplaçant / remplaçante
+    titulaire:
+      titre.en: '[automatic] holder'
+      titre.fr: titulaire
+  description.en: >
+    [automatic] Indicate your status on January 1st of the year preceding the
+    reporting year.
+
+    <br />
+
+    For example, for the 2025 return on 2024 income, indicate your status on January 1
+
+    January 2024.
+
+
+    If you started during the year, enter your status on the date you began your activity.
+
+    <br />
+
+    For example, if you started work on March 1 as a locum and
+
+    and settled in on July 1, select "Substitute".
+  description.fr: >
+    Indiquez ici votre statut au 1er janvier de l’année précédant l’année de
+    déclaration.
+
+    <br />
+
+    Par exemple, pour la déclaration 2025 sur les revenus de 2024, indiquez votre situation au 1er
+
+    janvier 2024.
+
+
+    Si vous avez commencé en cours d’année, indiquez votre statut à la date de début de votre activité.
+
+    <br />
+
+    Par exemple, si vous avez débuté votre activité au 1er mars en tant que remplaçant/remplaçante et
+
+    que vous vous êtes installé/installée au 1er juillet, sélectionnez « Remplaçant / remplaçante »
+  question.en: '[automatic] What was your practice status on January 1 or when you started?'
+  question.fr: Quel était votre statut d’exercice au 1er janvier ou à votre date
+    de début d’activité ?
+  titre.en: '[automatic] status'
+  titre.fr: statut
 entreprise:
   titre.en: company
   titre.fr: entreprise
