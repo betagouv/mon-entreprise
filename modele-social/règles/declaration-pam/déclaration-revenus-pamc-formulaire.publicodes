@@ -1,0 +1,180 @@
+déclaration revenus PAMC:
+  experimental: oui
+  valeur: non
+
+déclaration revenus PAMC . profession:
+  question: Quelle est votre profession ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - dentiste
+      - infirmier
+      - kinésithérapeute
+      - médecin
+      - orthophoniste
+      - orthoptiste
+      - pédicure-podologue
+      - sage-femme
+  avec:
+    dentiste:
+      titre: chirurgien/chirurgienne-dentiste
+      valeur: profession = 'dentiste'
+    infirmier:
+      titre: infirmier/infirmière
+      valeur: profession = 'infirmier'
+    kinésithérapeute:
+      titre: masseure/masseuse-kinésithérapeute
+      valeur: profession = 'kinésithérapeute'
+    médecin:
+      valeur: profession = 'médecin'
+    orthophoniste:
+      valeur: profession = 'orthophoniste'
+    orthoptiste:
+      valeur: profession = 'orthoptiste'
+    pédicure-podologue:
+      valeur: profession = 'pédicure-podologue'
+    sage-femme:
+      valeur: profession = 'sage-femme'
+
+déclaration revenus PAMC . statut:
+  question: Quel était votre statut d’exercice au 1er janvier ou à votre date de début d’activité ?
+  description: |
+    Indiquez ici votre statut au 1er janvier de l’année précédant l’année de déclaration.
+    <br />
+    Par exemple, pour la déclaration 2025 sur les revenus de 2024, indiquez votre situation au 1er
+    janvier 2024.
+
+    Si vous avez commencé en cours d’année, indiquez votre statut à la date de début de votre activité.
+    <br />
+    Par exemple, si vous avez débuté votre activité au 1er mars en tant que remplaçant/remplaçante et
+    que vous vous êtes installé/installée au 1er juillet, sélectionnez « Remplaçant / remplaçante » 
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - titulaire
+      - remplaçant
+  avec:
+    titulaire:
+      valeur: statut = 'titulaire'
+    remplaçant:
+      titre: remplaçant / remplaçante
+      valeur: statut = 'remplaçant'
+
+déclaration revenus PAMC . recettes brutes totales:
+  unité: €/an
+
+déclaration revenus PAMC . revenus imposables:
+  unité: €/an
+
+déclaration revenus PAMC . cotisations sociales obligatoires:
+  unité: €/an
+
+déclaration revenus PAMC . SNIR:
+
+déclaration revenus PAMC . SNIR . honoraires remboursables:
+  non applicable si: profession . dentiste
+  titre: honoraires tirés d’actes conventionnés
+  unité: €/an
+
+déclaration revenus PAMC . SNIR . dépassements honoraires:
+  titre: dépassements d’honoraires
+  non applicable si: profession . dentiste
+  question: dépassements d’honoraires
+  unité: €/an
+
+déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
+  applicable si: profession . médecin
+  titre: honoraires aux tarifs opposables hors forfaits
+  unité: €/an
+
+déclaration revenus PAMC . SNIR . honoraires hors forfaits:
+  applicable si: profession . médecin
+  titre: honoraires totaux hors forfaits
+  unité: €/an
+
+déclaration revenus PAMC . SNIR . taux urssaf:
+  applicable si: profession . dentiste
+  titre: taux Urssaf
+  unité: '%'
+
+déclaration revenus PAMC . activité en structures de soins:
+  non applicable si: profession . dentiste
+  question: Avez-vous des recettes issues d’une activité en structure de soins ?
+  par défaut: non
+
+déclaration revenus PAMC . activité en structures de soins . recettes:
+  titre: montant
+  unité: €/an
+  par défaut: 0
+
+déclaration revenus PAMC . déductions et exonérations:
+  question: Bénéficiez-vous de déductions et/ou de revenus exonérés fiscalement ?
+  par défaut: non
+
+déclaration revenus PAMC . déductions et exonérations . zone déficitaire en offre de soins:
+  applicable si: profession . médecin
+  titre: exonération zone déficitaire en offre de soins
+  unité: €/an
+  par défaut: 0
+
+déclaration revenus PAMC . déductions et exonérations . revenus exonérés:
+  titre: revenus exonérés
+  unité: €/an
+  par défaut: 0
+
+déclaration revenus PAMC . déductions et exonérations . plus-values à court terme:
+  titre: plus-values à court terme exonérées
+  unité: €/an
+  par défaut: 0
+
+déclaration revenus PAMC . déductions et exonérations . chèques vacances:
+  titre: montant des chèques vacances déduits du revenu imposable
+  unité: €/an
+  par défaut: 0
+
+déclaration revenus PAMC . autres revenus non salariés:
+  question: Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?
+  par défaut: non
+
+déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
+  titre: plus-values nettes à court terme
+  unité: €/an
+  par défaut: 0
+
+déclaration revenus PAMC . autres revenus non salariés . vente de marchandises:
+  titre: 'micro-BIC : chiffre d’affaires vente de marchandises'
+  unité: €/an
+  par défaut: 0
+
+déclaration revenus PAMC . autres revenus non salariés . prestation de service:
+  titre: 'micro-BIC : chiffre d’affaires prestation de service'
+  unité: €/an
+  par défaut: 0
+
+déclaration revenus PAMC . autres revenus non salariés . agricole:
+  titre: 'micro-BA : chiffre d’affaires agricole'
+  unité: €/an
+  par défaut: 0
+
+déclaration revenus PAMC . actes conventionnés uniquement:
+  non applicable si: profession . pédicure-podologue
+  applicable si:
+    une de ces conditions:
+      - activité en structures de soins = non
+      - autres revenus non salariés = non
+  question: Avez-vous effectué uniquement des actes conventionnés ?
+  par défaut: non
+
+déclaration revenus PAMC . revenus de remplacement:
+  question: Avez-vous perçues des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?
+  par défaut: non
+
+déclaration revenus PAMC . revenus de remplacement . total:
+  somme:
+    - AJPA
+  unité: €/an
+
+déclaration revenus PAMC . revenus de remplacement . AJPA:
+  titre: montant perçu de l’AJPA versée par la Caf
+  unité: €/an
+  par défaut: 0
