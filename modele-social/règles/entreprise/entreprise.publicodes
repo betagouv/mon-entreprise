@@ -52,7 +52,10 @@ entreprise . date de cessation:
 
 entreprise . créée cette année:
   titre: Entreprise créée cette année
-  formule: période . début d'année <= entreprise . date de création
+  formule:
+    toutes ces conditions:
+      - période . début d'année <= entreprise . date de création
+      - entreprise . date de création <= période . fin d'année
   description: L'entreprise a-t-elle été créée l'année de la simulation ?
 
 entreprise . radiée:
