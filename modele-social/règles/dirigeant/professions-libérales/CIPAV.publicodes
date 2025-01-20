@@ -164,8 +164,8 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
         produit:
           - valeur: assiette des cotisations
             unité: €/an
-            plancher: 37% * plafond sécurité sociale
-            plafond: 1.85 * plafond sécurité sociale
+            plancher: 37% * dirigeant . indépendant . PSS proratisé
+            plafond: 1.85 * dirigeant . indépendant . PSS proratisé
           - 0.5%
   références:
     L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023: https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
