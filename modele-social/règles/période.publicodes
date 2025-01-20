@@ -44,3 +44,8 @@ période . fin d'année:
       alors: 31/12/2022
     - si: date >= 01/2021
       alors: 31/12/2021
+
+période . durée depuis le début d'année:
+  durée:
+    depuis: période . début d'année
+    jusqu'à: date
