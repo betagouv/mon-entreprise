@@ -56,9 +56,7 @@ setDefaultHandler(
 )
 
 const networkFirstJS = new Route(
-	({ sameOrigin, url }) => {
-		return sameOrigin && /assets\/.*\.js$/.test(url.pathname)
-	},
+	({ sameOrigin, url }) => sameOrigin && /assets\/.*\.js$/.test(url.pathname),
 	new NetworkFirst({
 		cacheName: 'js-cache',
 		plugins: [
@@ -71,6 +69,24 @@ const networkFirstJS = new Route(
 )
 
 registerRoute(networkFirstJS)
+
+const networkFirstPiano = new Route(
+	({ url }) => url.hostname === 'tag.aticdn.net',
+	new NetworkFirst({
+		fetchOptions: {
+			mode: 'cors',
+		},
+		cacheName: 'piano-cache',
+		plugins: [
+			new ExpirationPlugin({
+				maxAgeSeconds: 1 * MONTH,
+				maxEntries: 40,
+			}),
+		],
+	})
+)
+
+registerRoute(networkFirstPiano)
 
 const staleWhileRevalidate = new Route(
 	({ request, sameOrigin, url }) => {
