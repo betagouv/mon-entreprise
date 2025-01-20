@@ -133,3 +133,18 @@ CIPAV années précédentes:
     date: 01/2022
   - dirigeant . rémunération . net: 30000 €/an
     date: 01/2021
+
+CIPAV année incomplète:
+  - &AnnéeIncomplete
+    entreprise . date de création: 01/05/2024
+    entreprise . date de cessation: 31/08/2024
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 2000 €/an
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 5000 €/an
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 10000 €/an
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 100000 €/an
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 1000000 €/an

@@ -143,3 +143,18 @@ cotisations forfaitaires début d'activité:
   - dirigeant . rémunération . totale: 50000 €/an
     entreprise . date de création: période . début d'année
     dirigeant . exonérations . ACRE: non
+
+Année incomplète:
+  - &AnnéeIncomplete
+    entreprise . date de création: 01/05/2024
+    entreprise . date de cessation: 31/08/2024
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 2000 €/an
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 5000 €/an
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 10000 €/an
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 100000 €/an
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 1000000 €/an
