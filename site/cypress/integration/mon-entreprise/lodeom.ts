@@ -260,11 +260,6 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		cy.contains('Régularisation progressive').click()
 		cy.get(inputSelector).first().type('{selectall}1500')
 		cy.get('input[id="option-heures-sup-janvier"]').type('{selectall}5')
-		cy.get(
-			'div[id="simulator-legend"] p[aria-describedby="options-mois-incomplet-description"]'
-		)
-			.should('be.visible')
-			.click()
 		cy.get('input[id="option-rémunération-etp-janvier"]')
 			.should('be.visible')
 			.type('{selectall}3000')
