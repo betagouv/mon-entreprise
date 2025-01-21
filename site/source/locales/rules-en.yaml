@@ -10400,6 +10400,8 @@ salarié . cotisations . exonérations . lodeom . zone un:
 salarié . cotisations . exonérations . réduction générale:
   avec:
     caisse de congés payés:
+      question.en: '[automatic] Are you obliged to use a vacation pay fund?'
+      question.fr: Avez-vous l’obligation de recourir à une caisse de congés payés ?
       titre.en: '[automatic] Obligation to use a paid leave fund'
       titre.fr: Obligation de recourir à une caisse de congés payés
     coefficient:

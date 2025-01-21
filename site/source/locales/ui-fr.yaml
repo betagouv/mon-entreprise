@@ -98,7 +98,6 @@ Décès: Décès
 Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
-Effectif de l’entreprise: Effectif de l’entreprise
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
   d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à
@@ -262,6 +261,7 @@ Professions libérales: Professions libérales
 Précédent: Précédent
 Prévisualisation: Prévisualisation
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
+Quel est l’effectif de votre entreprise ?: Quel est l’effectif de votre entreprise ?
 Quelle est votre activité ?: Quelle est votre activité ?
 Recharger: Recharger
 Recherche sur le site: Recherche sur le site
@@ -1541,7 +1541,7 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d'impôt sur les sociétés
     lodeom:
-      barème-switch-label: "Barème à appliquer :"
+      barème-switch-label: Quel barème envisagez-vous ?
       legend: Rémunération brute du salarié et exonération Lodeom applicable
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
@@ -1587,7 +1587,7 @@ pages:
               2024, une rémunération totale qui ne dépasse pas <2>6 306,30 €</2>
               bruts par mois.
         stage: L'exonération Lodeom ne s'applique pas sur les gratifications de stage.
-      zone-switch-label: "Localisation de l’entreprise :"
+      zone-switch-label: Quelle est votre localisation ?
     médecin:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
@@ -1668,7 +1668,7 @@ pages:
       régularisation:
         annuelle: Régularisation annuelle
         progressive: Régularisation progressive
-        type: Type de régularisation
+        type: Quel type de régularisation souhaitez-vous ?
       répartition:
         chômage: dont chômage
         retraite: IRC

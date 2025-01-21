@@ -59,6 +59,7 @@ salarié . cotisations . exonérations . réduction générale:
 
     caisse de congés payés:
       titre: Obligation de recourir à une caisse de congés payés
+      question: Avez-vous l’obligation de recourir à une caisse de congés payés ?
       par défaut: non
 
 salarié . cotisations . exonérations . réduction générale . régularisation:

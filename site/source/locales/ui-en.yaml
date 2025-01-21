@@ -92,7 +92,6 @@ Décès: Deaths
 Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
-Effectif de l’entreprise: Number of employees
 "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
   "In the event of an<1>accident at work</1>, <4>occupational illness</4> or an
   <7>accident on the way to or from work</7>, you will receive compensation of:"
@@ -248,6 +247,7 @@ Professions libérales: Liberal professions
 Précédent: Previous
 Prévisualisation: Preview
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: What can we do better to meet your expectations?
+Quel est l’effectif de votre entreprise ?: How many employees does your company have?
 Quelle est votre activité ?: What's your business?
 Recharger: Reload
 Recherche sur le site: Site search
@@ -1448,7 +1448,7 @@ pages:
         included in the simulator.</5>
       title: Corporate tax simulator
     lodeom:
-      barème-switch-label: "Scale to be applied :"
+      barème-switch-label: What scale do you envisage?
       legend: Employee's gross salary and applicable Lodeom exemption
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
@@ -1489,7 +1489,7 @@ pages:
               salaries below 3.5 SMIC. This means, for 2024, a total
               remuneration not exceeding <2>€6,306.30</2> gross per month.
         stage: The Lodeom exemption does not apply to internship bonuses.
-      zone-switch-label: "Company location :"
+      zone-switch-label: Where are you located?
     médecin:
       meta:
         description: Calculation of net income after deduction of contributions, based
@@ -1569,7 +1569,7 @@ pages:
       régularisation:
         annuelle: Annual adjustment
         progressive: Progressive regularization
-        type: Type of adjustment
+        type: What type of regulation would you like?
       répartition:
         chômage: of which unemployment
         retraite: IRC

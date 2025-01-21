@@ -20,7 +20,7 @@ export default function ZoneSwitch() {
 						<strong>
 							{t(
 								'pages.simulateurs.lodeom.zone-switch-label',
-								'Localisation de l’entreprise :'
+								'Quelle est votre localisation ?'
 							)}
 						</strong>
 					</p>
