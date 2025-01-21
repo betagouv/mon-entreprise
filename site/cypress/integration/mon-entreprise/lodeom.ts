@@ -282,7 +282,6 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should include a recap table', function () {
-		cy.contains('Régularisation progressive').click()
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
 			'Récapitulatif trimestriel'
@@ -310,6 +309,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should display code in recap table based on scale', function () {
+		cy.contains('Régularisation progressive').click()
 		cy.contains('Récapitulatif trimestriel').next().as('recapTable')
 
 		cy.get('@recapTable').should('include.text', 'code 462')

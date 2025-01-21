@@ -375,7 +375,8 @@ export const reevaluateRéductionMoisParMois = (
 							reevaluatedData.map((monthData) => monthData.réduction.value)
 						)
 					régularisation.value =
-						réduction.value + (réductionTotale - currentRéductionGénéraleCumulée)
+						réduction.value +
+						(réductionTotale - currentRéductionGénéraleCumulée)
 
 					if (régularisation.value > 0) {
 						réduction.value = régularisation.value
@@ -505,14 +506,19 @@ const getMonthlyRéduction = (
 	options: Options,
 	engine: Engine<DottedName>
 ): number => {
+	const SMIC = getSMICMensuelAvecOptions(
+		date,
+		rémunérationBrute,
+		options,
+		engine
+	)
 	const réduction = engine.evaluate({
 		valeur: dottedName,
 		unité: '€/mois',
 		contexte: {
 			date,
 			[rémunérationBruteDottedName]: rémunérationBrute,
-			[heuresSupplémentairesDottedName]: options.heuresSupplémentaires,
-			[heuresComplémentairesDottedName]: options.heuresComplémentaires,
+			'salarié . temps de travail . SMIC': SMIC,
 		},
 	})
 
@@ -526,7 +532,7 @@ const getTotalRéduction = (
 	coefT: number,
 	engine: Engine<DottedName>
 ): number => {
-	const réductionGénérale = engine.evaluate({
+	const réduction = engine.evaluate({
 		valeur: dottedName,
 		arrondi: 'non',
 		contexte: {
@@ -536,7 +542,7 @@ const getTotalRéduction = (
 		},
 	})
 
-	return réductionGénérale.nodeValue as number
+	return réduction.nodeValue as number
 }
 
 const getRépartition = (
@@ -575,6 +581,51 @@ const getRépartition = (
 	}
 }
 
+const getSMICMensuelAvecOptions = (
+	date: string,
+	rémunérationBrute: number,
+	options: Options,
+	engine: Engine<DottedName>
+): number => {
+	const contexte = {
+		date,
+	} as Situation
+
+	if (!options.rémunérationETP) {
+		contexte[heuresSupplémentairesDottedName] = options.heuresSupplémentaires
+		contexte[heuresComplémentairesDottedName] = options.heuresComplémentaires
+	}
+
+	const SMICMensuel = engine.evaluate({
+		valeur: 'salarié . temps de travail . SMIC',
+		unité: '€/mois',
+		contexte,
+	}).nodeValue as number
+
+	if (!options.rémunérationETP) {
+		return SMICMensuel
+	}
+
+	const SMICHoraire = engine.evaluate({
+		valeur: 'SMIC . horaire',
+		contexte,
+	}).nodeValue as number
+	// On retranche les primes et le paiements des heures supplémentaires à la rémunération versée
+	// et on la compare à la rémunération équivalente "mois complet" sans les primes
+	const prorata =
+		(rémunérationBrute -
+			options.rémunérationPrimes -
+			options.rémunérationHeuresSup) /
+		options.rémunérationETP
+
+	// On applique ce prorata au SMIC mensuel et on y ajoute les heures supplémentaires et complémentaires
+	return (
+		SMICMensuel * prorata +
+		SMICHoraire *
+			(options.heuresSupplémentaires + options.heuresComplémentaires)
+	)
+}
+
 const getSMICCumulés = (
 	data: MonthState[],
 	year: number,
@@ -589,42 +640,13 @@ const getSMICCumulés = (
 			return SMICCumulés
 		}
 
-		const contexte = {
-			date: getDateForContexte(monthIndex, year),
-		} as Situation
-
-		if (!monthData.options.rémunérationETP) {
-			contexte[heuresSupplémentairesDottedName] =
-				monthData.options.heuresSupplémentaires
-			contexte[heuresComplémentairesDottedName] =
-				monthData.options.heuresComplémentaires
-		}
-
-		let SMIC = engine.evaluate({
-			valeur: 'salarié . temps de travail . SMIC',
-			unité: '€/mois',
-			contexte,
-		}).nodeValue as number
-
-		if (monthData.options.rémunérationETP) {
-			const SMICHoraire = engine.evaluate({
-				valeur: 'SMIC . horaire',
-				contexte,
-			}).nodeValue as number
-			// On retranche les primes et le paiements des heures supplémentaires à la rémunération versée
-			// et on la compare à la rémunération équivalente "mois complet" sans les primes
-			const prorata =
-				(monthData.rémunérationBrute -
-					monthData.options.rémunérationPrimes -
-					monthData.options.rémunérationHeuresSup) /
-				monthData.options.rémunérationETP
-			// On applique ce prorata au SMIC mensuel et on y ajoute les heures supplémentaires et complémentaires
-			SMIC =
-				SMIC * prorata +
-				SMICHoraire *
-					(monthData.options.heuresSupplémentaires +
-						monthData.options.heuresComplémentaires)
-		}
+		const date = getDateForContexte(monthIndex, year)
+		const SMIC = getSMICMensuelAvecOptions(
+			date,
+			monthData.rémunérationBrute,
+			monthData.options,
+			engine
+		)
 
 		let SMICCumulé = SMIC
 		if (monthIndex > 0) {

@@ -201,7 +201,6 @@ describe(
 		})
 
 		it('should handle incomplete months', function () {
-			cy.contains('Régularisation progressive').click()
 			cy.get(inputSelector).first().type('{selectall}1500')
 			cy.get('input[id="option-heures-sup-janvier"]').type('{selectall}5')
 			cy.get('input[id="option-rémunération-etp-janvier"]')
