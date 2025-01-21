@@ -396,6 +396,13 @@ export const reevaluateRéductionMoisParMois = (
 						)
 						réduction.value = 0
 					}
+				} else {
+					réduction.répartition = getRépartition(
+						dottedName,
+						rémunérationBrute,
+						réduction.value,
+						engine
+					)
 				}
 			}
 
