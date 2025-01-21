@@ -36,6 +36,7 @@
 		"@ianvs/prettier-plugin-sort-imports": "^4.1.0",
 		"@publicodes/codemod": "^1.1.0",
 		"@publicodes/tools": "^1.0.7",
+		"@rollup/plugin-replace": "^6.0.1",
 		"@types/got": "^9.6.12",
 		"@typescript-eslint/eslint-plugin": "^6.7.2",
 		"@typescript-eslint/parser": "^6.7.2",

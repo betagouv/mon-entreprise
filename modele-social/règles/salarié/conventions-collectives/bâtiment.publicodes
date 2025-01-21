@@ -250,8 +250,8 @@ salarié . convention collective . BTP . chômage intempéries . gros oeuvre . c
         - idf
         - nord ouest
         - grand ouest
-        - centre ouest
-        - centre
+        #- centre ouest
+        #- centre
         - grand est
         - rhône alpes auvergne
         - méditerranée
@@ -282,8 +282,8 @@ salarié . convention collective . BTP . chômage intempéries . second oeuvre .
         - idf
         - nord ouest
         - grand ouest
-        - centre ouest
-        - centre
+        #- centre ouest
+        #- centre
         - grand est
         - rhône alpes auvergne
         - méditerranée
@@ -314,7 +314,7 @@ salarié . convention collective . BTP . congés payés . caisse de rattachement
         - idf
         - nord ouest
         - grand ouest
-        - centre ouest
+        #- centre ouest
         - centre
         - grand est
         - rhône alpes auvergne
