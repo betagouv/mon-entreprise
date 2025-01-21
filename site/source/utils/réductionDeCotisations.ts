@@ -375,10 +375,10 @@ export const reevaluateRéductionMoisParMois = (
 							reevaluatedData.map((monthData) => monthData.réduction.value)
 						)
 					régularisation.value =
-						réductionTotale - currentRéductionGénéraleCumulée
+						réduction.value + (réductionTotale - currentRéductionGénéraleCumulée)
 
-					if (réduction.value + régularisation.value > 0) {
-						réduction.value += régularisation.value
+					if (régularisation.value > 0) {
+						réduction.value = régularisation.value
 						réduction.répartition = getRépartition(
 							dottedName,
 							rémunérationBrute,
@@ -393,6 +393,7 @@ export const reevaluateRéductionMoisParMois = (
 							régularisation.value,
 							engine
 						)
+						réduction.value = 0
 					}
 				}
 			}
