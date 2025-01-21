@@ -12,7 +12,10 @@ import { Message } from '@/design-system'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import {
+	situationSelector,
+	targetUnitSelector,
+} from '@/store/selectors/simulationSelectors'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
@@ -29,12 +32,10 @@ import Warnings from './components/Warnings'
 import WarningSalaireTrans from './components/WarningSalaireTrans'
 
 export default function LodeomSimulationGoals({
-	monthByMonth,
 	toggles,
 	legend,
 	régularisationMethod,
 }: {
-	monthByMonth: boolean
 	toggles?: React.ReactNode
 	legend: string
 	régularisationMethod?: RégularisationMethod
@@ -48,6 +49,9 @@ export default function LodeomSimulationGoals({
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
 	const { t } = useTranslation()
+
+	const currentUnit = useSelector(targetUnitSelector)
+	const monthByMonth = currentUnit === '€'
 
 	const codeRéduction = engine.evaluate(
 		'salarié . cotisations . exonérations . lodeom . code réduction'

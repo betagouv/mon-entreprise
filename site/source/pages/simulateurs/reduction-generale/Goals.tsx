@@ -7,7 +7,10 @@ import RéductionMoisParMois from '@/components/RéductionDeCotisations/Réducti
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import useYear from '@/components/utils/useYear'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import {
+	situationSelector,
+	targetUnitSelector,
+} from '@/store/selectors/simulationSelectors'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
@@ -25,12 +28,10 @@ import Warnings from './components/Warnings'
 import WarningSalaireTrans from './components/WarningSalaireTrans'
 
 export default function RéductionGénéraleSimulationGoals({
-	monthByMonth,
 	toggles,
 	legend,
 	régularisationMethod,
 }: {
-	monthByMonth: boolean
 	toggles?: React.ReactNode
 	legend: string
 	régularisationMethod: RégularisationMethod
@@ -42,6 +43,9 @@ export default function RéductionGénéraleSimulationGoals({
 	const situation = useSelector(situationSelector) as SituationType
 	const previousSituation = useRef(situation)
 	const { t } = useTranslation()
+
+	const currentUnit = useSelector(targetUnitSelector)
+	const monthByMonth = currentUnit === '€'
 
 	const initializeRéductionGénéraleMoisParMoisData = useCallback(() => {
 		const data = getInitialRéductionMoisParMois(
