@@ -1,3 +1,4 @@
+(embauche, absences, départ...): (hiring, absences, departures...)
 (invalidité partielle): (partial disability)
 (invalidité totale): (total disability)
 "404":
@@ -1545,8 +1546,6 @@ pages:
           rémunération-heures-complémentaires: Overtime pay
           rémunération-heures-supplémentaires: Overtime pay
           rémunération-primes: Remuneration not affected by the incomplete month
-        mois-incomplet:
-          description: Adds fields to handle incomplete months
         rémunération-etp:
           popover: <0>Indicate here the remuneration that would have been paid for a full
             month, <2>excluding</2>:<4><0>bonuses and other remuneration not

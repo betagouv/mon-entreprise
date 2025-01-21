@@ -1,3 +1,4 @@
+(embauche, absences, départ...): (embauche, absences, départ...)
 (invalidité partielle): (invalidité partielle)
 (invalidité totale): (invalidité totale)
 "404":
@@ -1644,8 +1645,6 @@ pages:
           rémunération-heures-complémentaires: Rémunération des heures complémentaires
           rémunération-heures-supplémentaires: Rémunération des heures supplémentaires
           rémunération-primes: Rémunération non affectée par le mois incomplet
-        mois-incomplet:
-          description: Ajoute des champs pour gérer le cas d'un mois incomplet
         rémunération-etp:
           popover: <0>Indiquez ici la rémunération qui aurait été versée pour un mois
             complet, <2>en excluant</2> :<4><0>les primes et autres éléments de

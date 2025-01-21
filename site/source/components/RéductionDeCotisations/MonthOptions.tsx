@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -12,7 +11,6 @@ import {
 	StyledSuffix,
 } from '@/design-system/field/TextField'
 import { FlexCenter } from '@/design-system/global-style'
-import { RotatingChevronIcon } from '@/design-system/icons'
 import { Grid } from '@/design-system/layout'
 import { baseTheme } from '@/design-system/theme'
 import { Strong } from '@/design-system/typography'
@@ -36,7 +34,6 @@ export default function MonthOptions({
 }: Props) {
 	const { t } = useTranslation()
 	const engine = useEngine()
-	const [isMoisIncompletVisible, setMoisIncompletVisible] = useState(false)
 	const isDesktop = useMediaQuery(
 		`(min-width: ${baseTheme.breakpointsWidth.md})`
 	)
@@ -136,121 +133,104 @@ export default function MonthOptions({
 				</GridItemInput>
 			</GridContainer>
 
-			<StyledButton
-				role="button"
-				onClick={() => setMoisIncompletVisible(!isMoisIncompletVisible)}
-				aria-describedby="options-mois-incomplet-description"
-				aria-expanded={isMoisIncompletVisible}
-				aria-controls={`options-mois-incomplet-${month}`}
-				aria-label={!isMoisIncompletVisible ? t('Déplier') : t('Replier')}
-			>
-				Mois incomplet {isDesktop && '(embauche, absences, départ...)'}{' '}
-				<RotatingChevronIcon aria-hidden $isOpen={isMoisIncompletVisible} />
-			</StyledButton>
-			<span id="options-mois-incomplet-description" className="sr-only">
-				{t(
-					'pages.simulateurs.réduction-générale.options.mois-incomplet.description',
-					"Ajoute des champs pour gérer le cas d'un mois incomplet"
-				)}
-			</span>
+			<StyledSmallBody>
+				Mois incomplet {isDesktop && t('(embauche, absences, départ...)')}
+				{' :'}
+			</StyledSmallBody>
 
-			{isMoisIncompletVisible && (
-				<>
-					<GridContainer container columnSpacing={4}>
-						<GridItemLabel item>
-							<FlexDiv>
-								<StyledLabel id={`rémunération-etp-label`}>
-									{t(
-										'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
-										'Rémunération de base mois complet'
-									)}
-								</StyledLabel>
-								<HelpButtonWithPopover
-									type="info"
-									title={t(
-										'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
-										'Rémunération de base mois complet'
-									)}
-								>
-									<RémunérationETPPopoverContent />
-								</HelpButtonWithPopover>
-							</FlexDiv>
-						</GridItemLabel>
-						<GridItemInput item>
-							<NumberFieldContainer>
-								<NumberField
-									id={`option-rémunération-etp-${month}`}
-									small={true}
-									value={options.rémunérationETP}
-									onChange={onRémunérationETPChange}
-									aria-labelledby={`rémunération-etp-label`}
-									displayedUnit="€"
-								/>
-							</NumberFieldContainer>
-						</GridItemInput>
-					</GridContainer>
-					<GridContainer container columnSpacing={4}>
-						<GridItemLabel item>
-							<FlexDiv>
-								<StyledLabel id={`rémunération-primes-label`}>
-									{t(
-										'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
-										'Rémunération non affectée par le mois incomplet'
-									)}
-								</StyledLabel>
-								<HelpButtonWithPopover
-									type="info"
-									title={t(
-										'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
-										'Rémunération non affectée par le mois incomplet'
-									)}
-								>
-									<RémunérationPrimesPopoverContent />
-								</HelpButtonWithPopover>
-							</FlexDiv>
-						</GridItemLabel>
-						<GridItemInput item>
-							<NumberFieldContainer>
-								<NumberField
-									id={`option-rémunération-primes-${month}`}
-									small={true}
-									value={options.rémunérationPrimes}
-									onChange={onRémunérationPrimesChange}
-									aria-labelledby={`rémunération-primes-label`}
-									displayedUnit="€"
-								/>
-							</NumberFieldContainer>
-						</GridItemInput>
-					</GridContainer>
-					<GridContainer container columnSpacing={4}>
-						<GridItemLabel item>
-							<FlexDiv>
-								<StyledLabel id={`rémunération-heures-sup-label`}>
-									{additionalHoursRémunérationLabels[additionalHours]}
-								</StyledLabel>
-								<HelpButtonWithPopover
-									type="info"
-									title={additionalHoursRémunérationLabels[additionalHours]}
-								>
-									<RémunérationHeuresSupPopoverContent />
-								</HelpButtonWithPopover>
-							</FlexDiv>
-						</GridItemLabel>
-						<GridItemInput item>
-							<NumberFieldContainer>
-								<NumberField
-									id={`option-rémunération-heures-sup-${month}`}
-									small={true}
-									value={options.rémunérationHeuresSup}
-									onChange={onRémunérationHeuresSupChange}
-									aria-labelledby={`rémunération-heures-sup-label`}
-									displayedUnit="€"
-								/>
-							</NumberFieldContainer>
-						</GridItemInput>
-					</GridContainer>
-				</>
-			)}
+			<GridContainer container columnSpacing={4}>
+				<GridItemLabel item>
+					<FlexDiv>
+						<StyledLabel id={`rémunération-etp-label`}>
+							{t(
+								'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
+								'Rémunération de base mois complet'
+							)}
+						</StyledLabel>
+						<HelpButtonWithPopover
+							type="info"
+							title={t(
+								'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
+								'Rémunération de base mois complet'
+							)}
+						>
+							<RémunérationETPPopoverContent />
+						</HelpButtonWithPopover>
+					</FlexDiv>
+				</GridItemLabel>
+				<GridItemInput item>
+					<NumberFieldContainer>
+						<NumberField
+							id={`option-rémunération-etp-${month}`}
+							small={true}
+							value={options.rémunérationETP}
+							onChange={onRémunérationETPChange}
+							aria-labelledby={`rémunération-etp-label`}
+							displayedUnit="€"
+						/>
+					</NumberFieldContainer>
+				</GridItemInput>
+			</GridContainer>
+			<GridContainer container columnSpacing={4}>
+				<GridItemLabel item>
+					<FlexDiv>
+						<StyledLabel id={`rémunération-primes-label`}>
+							{t(
+								'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
+								'Rémunération non affectée par le mois incomplet'
+							)}
+						</StyledLabel>
+						<HelpButtonWithPopover
+							type="info"
+							title={t(
+								'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
+								'Rémunération non affectée par le mois incomplet'
+							)}
+						>
+							<RémunérationPrimesPopoverContent />
+						</HelpButtonWithPopover>
+					</FlexDiv>
+				</GridItemLabel>
+				<GridItemInput item>
+					<NumberFieldContainer>
+						<NumberField
+							id={`option-rémunération-primes-${month}`}
+							small={true}
+							value={options.rémunérationPrimes}
+							onChange={onRémunérationPrimesChange}
+							aria-labelledby={`rémunération-primes-label`}
+							displayedUnit="€"
+						/>
+					</NumberFieldContainer>
+				</GridItemInput>
+			</GridContainer>
+			<GridContainer container columnSpacing={4}>
+				<GridItemLabel item>
+					<FlexDiv>
+						<StyledLabel id={`rémunération-heures-sup-label`}>
+							{additionalHoursRémunérationLabels[additionalHours]}
+						</StyledLabel>
+						<HelpButtonWithPopover
+							type="info"
+							title={additionalHoursRémunérationLabels[additionalHours]}
+						>
+							<RémunérationHeuresSupPopoverContent />
+						</HelpButtonWithPopover>
+					</FlexDiv>
+				</GridItemLabel>
+				<GridItemInput item>
+					<NumberFieldContainer>
+						<NumberField
+							id={`option-rémunération-heures-sup-${month}`}
+							small={true}
+							value={options.rémunérationHeuresSup}
+							onChange={onRémunérationHeuresSupChange}
+							aria-labelledby={`rémunération-heures-sup-label`}
+							displayedUnit="€"
+						/>
+					</NumberFieldContainer>
+				</GridItemInput>
+			</GridContainer>
 		</Appear>
 	)
 }
@@ -333,13 +313,8 @@ const NumberFieldContainer = styled.div`
 		}
 	}
 `
-const StyledButton = styled(SmallBody)`
-	cursor: pointer;
+const StyledSmallBody = styled(SmallBody)`
 	font-weight: bold;
 	color: ${({ theme }) => theme.colors.bases.primary[800]};
-	margin-top: ${({ theme }) => theme.spacings.xs};
-	margin-bottom: 0;
-	svg {
-		fill: ${({ theme }) => theme.colors.bases.primary[800]} !important;
-	}
+	margin: ${({ theme }) => theme.spacings.xs} 0;
 `
