@@ -29,7 +29,7 @@ export default function EffectifSwitch() {
 	return (
 		<SwitchContainer>
 			<SwitchLabel id="effectif-switch-label">
-				<Strong>{t('Effectif de l’entreprise')} :</Strong>
+				<Strong>{t('Quel est l’effectif de votre entreprise ?')}</Strong>
 			</SwitchLabel>
 			<SwitchToggleGroup
 				value={currentEffectif}

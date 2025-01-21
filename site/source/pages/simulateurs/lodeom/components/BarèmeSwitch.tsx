@@ -23,7 +23,7 @@ export default function BarèmeSwitch() {
 							<strong>
 								{t(
 									'pages.simulateurs.lodeom.barème-switch-label',
-									'Barème à appliquer :'
+									'Quel barème envisagez-vous ?'
 								)}
 							</strong>
 						</p>

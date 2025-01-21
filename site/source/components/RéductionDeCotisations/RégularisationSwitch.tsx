@@ -26,9 +26,8 @@ export default function RégularisationSwitch({
 				<Strong>
 					{t(
 						'pages.simulateurs.réduction-générale.régularisation.type',
-						'Type de régularisation'
-					)}{' '}
-					:
+						'Quel type de régularisation souhaitez-vous ?'
+					)}
 				</Strong>
 			</SwitchLabel>
 

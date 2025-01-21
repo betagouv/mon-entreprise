@@ -33,7 +33,7 @@ export default function CongésPayésSwitch() {
 	return (
 		<SwitchContainer>
 			<SwitchLabel id="caisse-congés-payés-label">
-				<Strong>{engine.getRule(dottedName).title} :</Strong>
+				<Strong>{engine.getRule(dottedName).rawNode.question}</Strong>
 			</SwitchLabel>
 			<SwitchToggleGroup
 				value={currentCongésPayés}
