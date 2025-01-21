@@ -9,7 +9,6 @@ import MonthOptions from '@/components/RéductionDeCotisations/MonthOptions'
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Button } from '@/design-system/buttons'
-import { FlexCenter } from '@/design-system/global-style'
 import { RotatingChevronIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -98,7 +97,7 @@ export default function RéductionMois({
 
 	const OptionsButton = () => {
 		return (
-			<Button
+			<StyledButton
 				size="XXS"
 				light
 				onPress={() => setOptionVisible(!isOptionVisible)}
@@ -109,7 +108,7 @@ export default function RéductionMois({
 			>
 				{t('Options')}&nbsp;
 				<RotatingChevronIcon aria-hidden $isOpen={isOptionVisible} />
-			</Button>
+			</StyledButton>
 		)
 	}
 
@@ -149,27 +148,13 @@ export default function RéductionMois({
 		<div>
 			<StyledMonth>{monthName}</StyledMonth>
 			<GridContainer container spacing={2}>
-				<Grid item xs={12} sm={4}>
+				<Grid item xs={7} sm={4}>
 					<RuleLink dottedName="salarié . rémunération . brut" />
 				</Grid>
-				<Grid item xs={7} sm={5}>
+				<Grid item xs={5} sm={5}>
 					<RémunérationInput />
 				</Grid>
-				<Grid item xs={5} sm={3}>
-					<OptionsButton />
-				</Grid>
 			</GridContainer>
-
-			{isOptionVisible && (
-				<OptionsContainer>
-					<MonthOptions
-						month={monthName}
-						index={index}
-						options={data.options}
-						onOptionsChange={onOptionsChange}
-					/>
-				</OptionsContainer>
-			)}
 
 			<Spacing xs />
 
@@ -186,11 +171,11 @@ export default function RéductionMois({
 
 			{withRépartitionAndRégularisation && (
 				<GridContainer container spacing={2}>
-					<Grid item>
+					<StyledGrid item>
 						<RuleLink
 							dottedName={`${réductionGénéraleDottedName} . régularisation`}
 						/>
-					</Grid>
+					</StyledGrid>
 					<Grid item>
 						<StyledBody>
 							<MontantRégularisation />
@@ -198,16 +183,30 @@ export default function RéductionMois({
 					</Grid>
 				</GridContainer>
 			)}
+
+			<GridContainer container>
+				<Grid item>
+					<OptionsButton />
+				</Grid>
+			</GridContainer>
+
+			{isOptionVisible && (
+				<OptionsContainer>
+					<MonthOptions
+						month={monthName}
+						index={index}
+						options={data.options}
+						onOptionsChange={onOptionsChange}
+					/>
+				</OptionsContainer>
+			)}
 		</div>
 	) : (
 		<>
 			<tr>
 				<th scope="row">{monthName}</th>
 				<td>
-					<InputContainer>
-						<RémunérationInput />
-						<OptionsButton />
-					</InputContainer>
+					<RémunérationInput />
 				</td>
 				<td>
 					<MontantRéduction />
@@ -217,11 +216,14 @@ export default function RéductionMois({
 						<MontantRégularisation />
 					</td>
 				)}
+				<td>
+					<OptionsButton />
+				</td>
 			</tr>
 			{isOptionVisible && (
 				<StyledTableRow>
 					<td />
-					<td colSpan={3}>
+					<td colSpan={withRépartitionAndRégularisation ? 4 : 3}>
 						<MonthOptions
 							month={monthName}
 							index={index}
@@ -244,8 +246,14 @@ const GridContainer = styled(Grid)`
 	align-items: baseline;
 	justify-content: space-between;
 `
+const StyledGrid = styled(Grid)`
+	margin-bottom: ${({ theme }) => theme.spacings.md};
+`
 const StyledBody = styled(Body)`
 	margin-top: 0;
+`
+const StyledButton = styled(Button)`
+	white-space: nowrap;
 `
 const OptionsContainer = styled.div`
 	margin-top: ${({ theme }) => theme.spacings.xs};
@@ -259,8 +267,4 @@ const StyledTableRow = styled.tr`
 		padding-top: ${({ theme }) => theme.spacings.sm};
 		padding-bottom: ${({ theme }) => theme.spacings.sm};
 	}
-`
-const InputContainer = styled.div`
-	${FlexCenter}
-	gap: ${({ theme }) => theme.spacings.md};
 `
