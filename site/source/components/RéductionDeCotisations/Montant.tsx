@@ -6,7 +6,7 @@ import { styled } from 'styled-components'
 import { Condition } from '@/components/EngineValue/Condition'
 import Répartition from '@/components/RéductionDeCotisations/Répartition'
 import { FlexCenter } from '@/design-system/global-style'
-import { SearchIcon, WarningIcon } from '@/design-system/icons'
+import { EyeIcon, WarningIcon } from '@/design-system/icons'
 import { Tooltip } from '@/design-system/tooltip'
 import {
 	RéductionDottedName,
@@ -60,7 +60,7 @@ export default function Montant({
 							language,
 						}
 					)}
-					<StyledSearchIcon />
+					<StyledEyeIcon />
 				</FlexDiv>
 			</StyledTooltip>
 		) : (
@@ -104,7 +104,8 @@ const FlexDiv = styled.div<{ $alignment: 'end' | 'center' }>`
 	${FlexCenter}
 	justify-content: ${({ $alignment }) => $alignment};
 `
-const StyledSearchIcon = styled(SearchIcon)`
+const StyledEyeIcon = styled(EyeIcon)`
+	fill: ${({ theme }) => theme.colors.extended.grey[100]};
 	margin-left: ${({ theme }) => theme.spacings.sm};
 `
 const StyledWarningIcon = styled(WarningIcon)`

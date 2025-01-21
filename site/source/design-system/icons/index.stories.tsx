@@ -22,6 +22,7 @@ export {
 	EditIcon,
 	ErrorIcon,
 	ExternalLinkIcon,
+	EyeIcon,
 	GithubIcon,
 	HelpIcon,
 	HexagonIcon,
