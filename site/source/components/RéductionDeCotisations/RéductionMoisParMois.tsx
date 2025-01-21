@@ -278,6 +278,9 @@ const StyledTable = styled.table`
 	td {
 		padding: ${({ theme }) => theme.spacings.xs};
 	}
+	th:not(:first-of-type) {
+		text-align: right;
+	}
 	tbody tr th {
 		text-transform: capitalize;
 		font-weight: normal;
