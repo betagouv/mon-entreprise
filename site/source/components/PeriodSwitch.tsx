@@ -11,10 +11,9 @@ type Props = {
 		label: string
 		unit: string
 	}>
-	onSwitch?: (unit: string) => void
 }
 
-export default function PeriodSwitch({ periods, onSwitch }: Props) {
+export default function PeriodSwitch({ periods }: Props) {
 	const dispatch = useDispatch()
 
 	const currentUnit = useSelector(targetUnitSelector)
@@ -34,9 +33,8 @@ export default function PeriodSwitch({ periods, onSwitch }: Props) {
 	const onChange = useCallback(
 		(unit: string) => {
 			dispatch(updateUnit(unit))
-			onSwitch?.(unit)
 		},
-		[dispatch, onSwitch]
+		[dispatch]
 	)
 
 	return (

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -16,7 +16,6 @@ import LodeomSimulationGoals from './Goals'
 
 export default function LodeomSimulation() {
 	const currentZone = useZoneLodeom()
-	const [monthByMonth, setMonthByMonth] = useState(false)
 	const { t } = useTranslation()
 	const periods = [
 		{
@@ -35,9 +34,6 @@ export default function LodeomSimulation() {
 			unit: '€',
 		},
 	]
-	const onPeriodSwitch = useCallback((unit: string) => {
-		setMonthByMonth(unit === '€')
-	}, [])
 
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<RégularisationMethod>('progressive')
@@ -47,7 +43,6 @@ export default function LodeomSimulation() {
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
 				<SimulateurWarning simulateur="lodeom" />
 				<LodeomSimulationGoals
-					monthByMonth={monthByMonth}
 					legend={t(
 						'pages.simulateurs.lodeom.legend',
 						'Rémunération brute du salarié et exonération Lodeom applicable'
@@ -65,7 +60,7 @@ export default function LodeomSimulation() {
 									<EffectifSwitch />
 								</>
 							)}
-							<PeriodSwitch periods={periods} onSwitch={onPeriodSwitch} />
+							<PeriodSwitch periods={periods} />
 						</>
 					}
 					régularisationMethod={
