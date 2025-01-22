@@ -12,7 +12,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should not crash', function () {
-		cy.contains('Rémunération brute')
+		cy.contains('Quelle est votre localisation ?')
 	})
 
 	it('should display a warning when no zone is selected', function () {
