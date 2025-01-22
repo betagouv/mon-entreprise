@@ -1,6 +1,9 @@
 # Journal des modifications
 
 ## next
+### Nouveautés
+- Ajout du calcul Lodeom pour toutes les zones et tous les barèmes
+- Ajout du calcul du SMIC équivalent pour un mois incomplet
 
 ## 4.1.0
 ### Nouveautés
