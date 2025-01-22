@@ -470,6 +470,7 @@ salarié . contrat . salaire brut:
     SMIC: temps de travail . SMIC
   inversion numérique:
     - coût total employeur
+    # - rémunération . brut
     - rémunération . net . à payer avant impôt
     - rémunération . net . payé après impôt
     - équivalent temps plein

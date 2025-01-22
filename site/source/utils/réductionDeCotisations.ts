@@ -596,12 +596,10 @@ const getSMICMensuelAvecOptions = (
 ): number => {
 	const contexte = {
 		date,
+		[rémunérationBruteDottedName]: rémunérationBrute,
+		[heuresSupplémentairesDottedName]: options.heuresSupplémentaires,
+		[heuresComplémentairesDottedName]: options.heuresComplémentaires,
 	} as Situation
-
-	if (!options.rémunérationETP) {
-		contexte[heuresSupplémentairesDottedName] = options.heuresSupplémentaires
-		contexte[heuresComplémentairesDottedName] = options.heuresComplémentaires
-	}
 
 	const SMICMensuel = engine.evaluate({
 		valeur: 'salarié . temps de travail . SMIC',
@@ -613,24 +611,27 @@ const getSMICMensuelAvecOptions = (
 		return SMICMensuel
 	}
 
-	const SMICHoraire = engine.evaluate({
-		valeur: 'SMIC . horaire',
+	// TODO: enlever 'salarié . mois incomplet . rémunération de base mois incomplet'
+	// du contexte une fois que la formule de cette règle sera décommentée
+	// (cf TODO dans `mois-incomplet.publicodes`)
+	// On pourra donc enlever le champ "rémunération des heures sup" du formulaire !
+	contexte['salarié . mois incomplet . rémunération de base mois incomplet'] =
+		rémunérationBrute -
+		options.rémunérationPrimes -
+		options.rémunérationHeuresSup
+	contexte['salarié . mois incomplet . rémunération équivalente mois complet'] =
+		options.rémunérationETP
+	if (options.rémunérationPrimes) {
+		contexte[
+			"salarié . mois incomplet . rémunération non impactée par l'absence"
+		] = options.rémunérationPrimes
+	}
+	const SMIC = engine.evaluate({
+		valeur: 'salarié . mois incomplet . SMIC équivalent',
 		contexte,
 	}).nodeValue as number
-	// On retranche les primes et le paiements des heures supplémentaires à la rémunération versée
-	// et on la compare à la rémunération équivalente "mois complet" sans les primes
-	const prorata =
-		(rémunérationBrute -
-			options.rémunérationPrimes -
-			options.rémunérationHeuresSup) /
-		options.rémunérationETP
 
-	// On applique ce prorata au SMIC mensuel et on y ajoute les heures supplémentaires et complémentaires
-	return (
-		SMICMensuel * prorata +
-		SMICHoraire *
-			(options.heuresSupplémentaires + options.heuresComplémentaires)
-	)
+	return SMIC
 }
 
 const getSMICCumulés = (

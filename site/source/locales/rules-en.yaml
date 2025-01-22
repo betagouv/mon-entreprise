@@ -10984,6 +10984,115 @@ salarié . coût total employeur . aides . emploi franc . éligible:
   question.fr: Cette embauche est-elle éligible à l'aide emploi-franc ?
   titre.en: '[automatic] eligible'
   titre.fr: éligible
+salarié . mois incomplet:
+  description.en: >
+    [automatic] Management of incomplete months (absence, hiring, departure,
+    etc.), in particular for calculating
+
+    calculating the general reduction in contributions or the Lodeom exemption.
+  description.fr: >
+    Gestion des mois incomplets (absence, embauche, départ, etc), notamment pour
+    le
+
+    calcul de la réduction générale des cotisations ou de l’exonération Lodeom.
+  titre.en: '[automatic] incomplete month'
+  titre.fr: mois incomplet
+salarié . mois incomplet . SMIC équivalent:
+  avec:
+    SMIC heures complémentaires:
+      titre.en: '[automatic] SMIC overtime'
+      titre.fr: SMIC heures complémentaires
+    SMIC heures supplémentaires:
+      titre.en: '[automatic] SMIC overtime'
+      titre.fr: SMIC heures supplémentaires
+    SMIC mensuel proratisé:
+      description.en: >
+        [automatic] This amount corresponds to the SMIC equivalent for an
+        incomplete month, i.e. taking
+
+        taking into account the pro rata of working time and overtime and
+
+        and overtime.
+
+
+        This prorata of working time is in fact calculated as a prorata of remuneration, between that of the incomplete month and that which would have been paid for the full month.
+
+        between the remuneration for the incomplete month and that which would have been paid for a full month.
+
+        for a full month.
+      description.fr: >
+        Ce montant correspond au SMIC équivalent au mois incomplet, c’est-à-dire
+        en
+
+        tenant compte du prorata du temps de travail et les heures supplémentaires et
+
+        complémentaires.
+
+
+        Ce prorata du temps de travail est en réalité calculé comme un prorata des
+
+        rémunérations, entre celle du mois incomplet et celle qui aurait été versée
+
+        pour un mois complet.
+      titre.en: '[automatic] Adjusted monthly minimum wage'
+      titre.fr: SMIC mensuel proratisé
+  titre.en: '[automatic] SMIC equivalent'
+  titre.fr: SMIC équivalent
+salarié . mois incomplet . prorata:
+  description.en: >
+    [automatic] The prorata corresponds to the ratio between the remuneration
+    for the incomplete month and the remuneration that would have been paid for
+    a full month.
+
+    the remuneration that would have been paid for a full month.
+
+
+    More precisely, the prorata is the ratio between :
+      - the gross remuneration paid for the incomplete month, excluding bonuses (and other
+    other items not affected by the absence) and overtime payments.
+
+    overtime
+      - and the equivalent "full month" remuneration without bonuses and other
+    not affected by the absence.
+  description.fr: |
+    Le prorata correspond au rapport entre la rémunération du mois incomplet et
+    la rémunération qui aurait été versée pour un mois complet.
+
+    Plus précisément, ce prorata est le rapport entre :
+      - la rémunération brute versée pour le mois incomplet, sans les primes (et
+    autres éléments non impactés par l’absence) ni le paiements des heures
+    supplémentaires
+      - et la rémunération équivalente "mois complet" sans les primes et autres
+    éléments non impactés par l’absence.
+  titre.en: '[automatic] prorata'
+  titre.fr: prorata
+salarié . mois incomplet . rémunération de base mois incomplet:
+  description.en: >
+    [automatic] Exclude from this remuneration :
+      - payment for overtime and complementary hours,
+      - bonuses, fixed-term contract allowances and other remuneration not affected by the absence.
+  description.fr: >
+    Exclure de cette rémunération :
+      - le paiement des heures supplémentaires et complémentaires,
+      - les primes, indemnités de CDD et autres éléments de rémunération non impactés par l'absence.
+  titre.en: '[automatic] basic remuneration incomplete month'
+  titre.fr: rémunération de base mois incomplet
+salarié . mois incomplet . rémunération non impactée par l'absence:
+  titre.en: '[automatic] compensation not affected by absence'
+  titre.fr: rémunération non impactée par l'absence
+salarié . mois incomplet . rémunération équivalente mois complet:
+  note.en: >
+    [automatic] Exclude from this remuneration :
+      - payment for overtime and complementary hours,
+      - bonuses, fixed-term contract allowances and other remuneration not affected by the absence.
+  note.fr: >
+    Exclure de cette rémunération :
+      - le paiement des heures supplémentaires et complémentaires,
+      - les primes, indemnités de CDD et autres éléments de rémunération non impactés par l'absence.
+  question.en: '[automatic] What gross salary would have been paid for a full month?'
+  question.fr: Quelle rémunération brute aurait été versée pour un mois complet ?
+  titre.en: '[automatic] equivalent remuneration for a full month'
+  titre.fr: rémunération équivalente mois complet
 salarié . régimes spécifiques:
   titre.en: '[automatic] specific regimes'
   titre.fr: régimes spécifiques
