@@ -56,10 +56,17 @@ export default function LodeomSimulationGoals({
 		'salarié . cotisations . exonérations . lodeom . code régularisation'
 	).nodeValue as string
 
+	const withRépartition = currentZone === 'zone un'
+
 	const initializeLodeomMoisParMoisData = useCallback(() => {
-		const data = getInitialRéductionMoisParMois(lodeomDottedName, year, engine)
+		const data = getInitialRéductionMoisParMois(
+			lodeomDottedName,
+			year,
+			engine,
+			withRépartition
+		)
 		setData(data)
-	}, [engine, year])
+	}, [engine, withRépartition, year])
 
 	useEffect(() => {
 		if (lodeomMoisParMoisData.length === 0) {
@@ -76,10 +83,11 @@ export default function LodeomSimulationGoals({
 				previousData,
 				year,
 				engine,
-				régularisationMethod
+				régularisationMethod,
+				withRépartition
 			)
 		})
-	}, [engine, situation, régularisationMethod, year])
+	}, [engine, situation, régularisationMethod, year, withRépartition])
 
 	const onRémunérationChange = (
 		monthIndex: number,
@@ -94,7 +102,8 @@ export default function LodeomSimulationGoals({
 				year,
 				engine,
 				dispatch,
-				régularisationMethod
+				régularisationMethod,
+				withRépartition
 			)
 		})
 	}
@@ -108,7 +117,8 @@ export default function LodeomSimulationGoals({
 				previousData,
 				year,
 				engine,
-				régularisationMethod
+				régularisationMethod,
+				withRépartition
 			)
 		})
 	}
@@ -153,7 +163,7 @@ export default function LodeomSimulationGoals({
 								code: codeRégularisation,
 							})
 						}
-						withRépartitionAndRégularisation={currentZone === 'zone un'}
+						withRépartitionAndRégularisation={withRépartition}
 					/>
 				) : (
 					<RéductionBasique
@@ -161,7 +171,7 @@ export default function LodeomSimulationGoals({
 						onUpdate={initializeLodeomMoisParMoisData}
 						warningCondition={`${lodeomDottedName} = 0`}
 						warningMessage={<WarningSalaireTrans />}
-						withRépartition={currentZone === 'zone un'}
+						withRépartition={withRépartition}
 					/>
 				))}
 		</SimulationGoals>

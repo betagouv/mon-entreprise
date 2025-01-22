@@ -74,6 +74,12 @@ export type Répartition = {
 	chômage: number
 }
 
+const defaultRépartition = {
+	IRC: 0,
+	Urssaf: 0,
+	chômage: 0,
+}
+
 export const getDataAfterSituationChange = (
 	dottedName: RéductionDottedName,
 	situation: SituationType,
@@ -81,10 +87,16 @@ export const getDataAfterSituationChange = (
 	previousData: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
-	régularisationMethod?: RégularisationMethod
+	régularisationMethod?: RégularisationMethod,
+	withRépartition: boolean = true
 ): MonthState[] => {
 	if (!Object.keys(situation).length) {
-		return getInitialRéductionMoisParMois(dottedName, year, engine)
+		return getInitialRéductionMoisParMois(
+			dottedName,
+			year,
+			engine,
+			withRépartition
+		)
 	}
 
 	const newOptions = getOptionsFromSituations(previousSituation, situation)
@@ -104,6 +116,7 @@ export const getDataAfterSituationChange = (
 		updatedData,
 		year,
 		engine,
+		withRépartition,
 		régularisationMethod
 	)
 }
@@ -116,7 +129,8 @@ export const getDataAfterRémunérationChange = (
 	year: number,
 	engine: Engine<DottedName>,
 	dispatch: Dispatch<AnyAction>,
-	régularisationMethod?: RégularisationMethod
+	régularisationMethod?: RégularisationMethod,
+	withRépartition: boolean = true
 ): MonthState[] => {
 	const updatedData = [...previousData]
 	updatedData[monthIndex] = {
@@ -131,6 +145,7 @@ export const getDataAfterRémunérationChange = (
 		updatedData,
 		year,
 		engine,
+		withRépartition,
 		régularisationMethod
 	)
 }
@@ -142,7 +157,8 @@ export const getDataAfterOptionsChange = (
 	previousData: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
-	régularisationMethod?: RégularisationMethod
+	régularisationMethod?: RégularisationMethod,
+	withRépartition: boolean = true
 ): MonthState[] => {
 	const updatedData = [...previousData]
 	updatedData[monthIndex] = {
@@ -155,6 +171,7 @@ export const getDataAfterOptionsChange = (
 		updatedData,
 		year,
 		engine,
+		withRépartition,
 		régularisationMethod
 	)
 }
@@ -162,7 +179,8 @@ export const getDataAfterOptionsChange = (
 export const getInitialRéductionMoisParMois = (
 	dottedName: RéductionDottedName,
 	year: number,
-	engine: Engine<DottedName>
+	engine: Engine<DottedName>,
+	withRépartition: boolean = true
 ): MonthState[] => {
 	const rémunérationBrute =
 		(engine.evaluate({
@@ -221,12 +239,9 @@ export const getInitialRéductionMoisParMois = (
 			},
 			engine
 		)
-		const répartition = getRépartition(
-			dottedName,
-			rémunérationBrute,
-			réduction,
-			engine
-		)
+		const répartition = withRépartition
+			? getRépartition(dottedName, rémunérationBrute, réduction, engine)
+			: defaultRépartition
 
 		return {
 			rémunérationBrute,
@@ -254,6 +269,7 @@ export const reevaluateRéductionMoisParMois = (
 	data: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
+	withRépartition: boolean,
 	régularisationMethod?: RégularisationMethod
 ): MonthState[] => {
 	const totalRémunérationBrute = sumAll(
@@ -330,20 +346,24 @@ export const reevaluateRéductionMoisParMois = (
 
 				if (régularisation.value > 0) {
 					réduction.value = régularisation.value
-					réduction.répartition = getRépartition(
-						dottedName,
-						rémunérationBrute,
-						réduction.value,
-						engine
-					)
+					réduction.répartition = withRépartition
+						? getRépartition(
+								dottedName,
+								rémunérationBrute,
+								réduction.value,
+								engine
+						  )
+						: defaultRépartition
 					régularisation.value = 0
 				} else if (régularisation.value < 0) {
-					régularisation.répartition = getRépartition(
-						dottedName,
-						rémunérationBrute,
-						régularisation.value,
-						engine
-					)
+					régularisation.répartition = withRépartition
+						? getRépartition(
+								dottedName,
+								rémunérationBrute,
+								régularisation.value,
+								engine
+						  )
+						: defaultRépartition
 				}
 			} else {
 				const date = getDateForContexte(monthIndex, year)
@@ -380,29 +400,35 @@ export const reevaluateRéductionMoisParMois = (
 
 					if (régularisation.value > 0) {
 						réduction.value = régularisation.value
-						réduction.répartition = getRépartition(
-							dottedName,
-							rémunérationBrute,
-							réduction.value,
-							engine
-						)
+						réduction.répartition = withRépartition
+							? getRépartition(
+									dottedName,
+									rémunérationBrute,
+									réduction.value,
+									engine
+							  )
+							: defaultRépartition
 						régularisation.value = 0
 					} else if (régularisation.value < 0) {
-						régularisation.répartition = getRépartition(
-							dottedName,
-							rémunérationBrute,
-							régularisation.value,
-							engine
-						)
+						régularisation.répartition = withRépartition
+							? getRépartition(
+									dottedName,
+									rémunérationBrute,
+									régularisation.value,
+									engine
+							  )
+							: defaultRépartition
 						réduction.value = 0
 					}
 				} else {
-					réduction.répartition = getRépartition(
-						dottedName,
-						rémunérationBrute,
-						réduction.value,
-						engine
-					)
+					réduction.répartition = withRépartition
+						? getRépartition(
+								dottedName,
+								rémunérationBrute,
+								réduction.value,
+								engine
+						  )
+						: defaultRépartition
 				}
 			}
 
