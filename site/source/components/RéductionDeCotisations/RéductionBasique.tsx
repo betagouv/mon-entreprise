@@ -39,7 +39,8 @@ export default function RéductionBasique({
 	const currentUnit = useSelector(targetUnitSelector)
 	const { t } = useTranslation()
 
-	const répartition = getRépartitionBasique(dottedName, currentUnit, engine)
+	const répartition =
+		withRépartition && getRépartitionBasique(dottedName, currentUnit, engine)
 
 	return (
 		<>
@@ -65,7 +66,7 @@ export default function RéductionBasique({
 					round={false}
 				/>
 				<Spacing md />
-				{withRépartition && (
+				{répartition && (
 					<Répartition dottedName={dottedName} répartition={répartition} />
 				)}
 			</Condition>
