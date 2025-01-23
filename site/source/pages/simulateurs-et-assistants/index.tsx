@@ -168,10 +168,6 @@ export default function SimulateursEtAssistants() {
 						{...simulators['recherche-code-ape']}
 						role="listitem"
 					/>
-					<SimulateurCard
-						{...simulators['cessation-activité']}
-						role="listitem"
-					/>
 
 					<SimulateurCard {...simulators['demande-mobilité']} role="listitem" />
 				</Grid>
