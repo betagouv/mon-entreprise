@@ -8,7 +8,6 @@ export function coûtCréationEntrepriseConfig({
 }: SimulatorsDataParams) {
 	return config({
 		id: 'coût-création-entreprise',
-		beta: true,
 		path: sitePaths.simulateurs['coût-création-entreprise'],
 		iframePath: 'cout-creation-entreprise',
 		icône: '✨',
