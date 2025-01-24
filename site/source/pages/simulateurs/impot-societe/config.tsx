@@ -6,7 +6,6 @@ import ISSimulationConfig from './simulationConfig'
 export function impôtSociétéConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'is',
-		beta: true,
 		icône: '🗓',
 		tracking: 'impot-societe',
 		pathId: 'simulateurs.is',
