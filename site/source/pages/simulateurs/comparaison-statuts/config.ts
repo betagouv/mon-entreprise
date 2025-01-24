@@ -17,7 +17,6 @@ export function comparaisonStatutsConfig({
 			'pages.simulateurs.comparaison.title',
 			'Comparateur de statut juridique'
 		),
-		beta: true,
 		meta: {
 			description: t(
 				'pages.simulateurs.comparaison.meta.description',
