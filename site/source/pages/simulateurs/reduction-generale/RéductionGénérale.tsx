@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import PeriodSwitch from '@/components/PeriodSwitch'
 import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
@@ -7,6 +7,8 @@ import RégularisationSwitch from '@/components/RéductionDeCotisations/Régular
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { Strong } from '@/design-system/typography'
+import { Body } from '@/design-system/typography/paragraphs'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
 import CongésPayésSwitch from './components/CongésPayésSwitch'
@@ -44,7 +46,22 @@ export default function RéductionGénéraleSimulation() {
 	return (
 		<>
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
-				<SimulateurWarning simulateur="réduction-générale" />
+				<SimulateurWarning
+					simulateur="réduction-générale"
+					informationsComplémentaires={
+						<Body>
+							<Trans i18nKey="simulateurs.warning.réduction-générale">
+								Ce simulateur n’intègre{' '}
+								<Strong>pas toutes les règles de calcul</Strong> spécifiques
+								(Entreprises de Travail Temporaire, salariés des transports
+								routiers soumis à un horaire d’équivalence...). Il ne tient pas
+								non plus compte des taux et/ou répartition particuliers de la
+								cotisation de retraite complémentaire appliqués dans certaines
+								entreprises.
+							</Trans>
+						</Body>
+					}
+				/>
 				<RéductionGénéraleSimulationGoals
 					legend={t(
 						'pages.simulateurs.réduction-générale.legend',

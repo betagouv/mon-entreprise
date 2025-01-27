@@ -2,7 +2,7 @@ import { DottedName } from 'modele-social'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { useTheme } from 'styled-components'
+import { styled, useTheme } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Notifications from '@/components/Notifications'
@@ -16,6 +16,7 @@ import StackedBarChart from '@/components/StackedBarChart'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
 import { H2 } from '@/design-system/typography/heading'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 
@@ -27,7 +28,26 @@ export default function DividendesSimulation() {
 				explanations={<DividendesExplanation />}
 				afterQuestionsSlot={<SelectSimulationYear />}
 			>
-				<SimulateurWarning simulateur="dividendes" />
+				<SimulateurWarning
+					simulateur="dividendes"
+					informationsComplémentaires={
+						<Ul>
+							<StyledLi>
+								<Trans i18nKey="simulateurs.warning.dividendes.1">
+									Cette simulation ne concerne que les sociétés françaises à
+									l’impôt sur les sociétés (IS), et ne concerne pas les
+									travailleurs indépendants non salariés.
+								</Trans>
+							</StyledLi>
+							<StyledLi>
+								<Trans i18nKey="simulateurs.warning.dividendes.2">
+									Le montant de l’impôt sur les dividendes est calculé en plus
+									de l’impôt sur les autres revenus imposables.
+								</Trans>
+							</StyledLi>
+						</Ul>
+					}
+				/>
 				<DividendesSimulationGoals />
 			</Simulation>
 		</>
@@ -192,3 +212,9 @@ export const SeoExplanations = () => {
 		</Trans>
 	)
 }
+
+const StyledLi = styled(Li)`
+	&::before {
+		color: ${({ theme }) => theme.colors.bases.tertiary[800]} !important;
+	}
+`

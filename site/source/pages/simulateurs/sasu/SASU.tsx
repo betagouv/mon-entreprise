@@ -19,7 +19,18 @@ export function SASUSimulation() {
 				explanations={<SalaryExplanation />}
 				afterQuestionsSlot={<SelectSimulationYear />}
 			>
-				<SimulateurWarning simulateur="sasu" />
+				<SimulateurWarning
+					simulateur="sasu"
+					informationsComplémentaires={
+						<Body>
+							<Trans i18nKey="simulateurs.warning.sasu">
+								Ce simulateur ne gère pas le cas des SAS(U) à l’impôt sur le
+								revenu (IR). Seule l’option pour l’impôt sur les sociétés est
+								implémentée (IS).
+							</Trans>
+						</Body>
+					}
+				/>
 				<SimulationGoals
 					toggles={<PeriodSwitch />}
 					legend="Vos revenus de dirigeant de SAS(U)"

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import PeriodSwitch from '@/components/PeriodSwitch'
 import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
@@ -7,6 +7,8 @@ import RégularisationSwitch from '@/components/RéductionDeCotisations/Régular
 import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { Emoji } from '@/design-system/emoji'
+import { Body } from '@/design-system/typography/paragraphs'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
@@ -41,7 +43,17 @@ export default function LodeomSimulation() {
 	return (
 		<>
 			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
-				<SimulateurWarning simulateur="lodeom" />
+				<SimulateurWarning
+					simulateur="lodeom"
+					informationsComplémentaires={
+						<Trans i18nKey="simulateurs.warning.lodeom">
+							<Body>
+								<Emoji emoji="⚠️" /> Les taux et répartitions de cotisations
+								dérogatoires ne sont pas pris en compte.
+							</Body>
+						</Trans>
+					}
+				/>
 				<LodeomSimulationGoals
 					legend={t(
 						'pages.simulateurs.lodeom.legend',

@@ -27,7 +27,18 @@ import { situationSelector } from '@/store/selectors/simulationSelectors'
 export default function ISSimulation() {
 	return (
 		<SimulationContainer>
-			<SimulateurWarning simulateur="is" />
+			<SimulateurWarning
+				simulateur="is"
+				informationsComplémentaires={
+					<Body>
+						<Trans i18nKey="simulateurs.warning.is">
+							Ce simulateur s’adresse aux{' '}
+							<abbr title="Très Petites Entreprises">TPE</abbr> : il prend en
+							compte les taux réduits de l’impôt sur les sociétés.
+						</Trans>
+					</Body>
+				}
+			/>
 			<Notifications />
 
 			<SimulationGoals

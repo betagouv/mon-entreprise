@@ -1,3 +1,6 @@
+import { Trans } from 'react-i18next'
+import { styled } from 'styled-components'
+
 import { Condition } from '@/components/EngineValue/Condition'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
@@ -6,6 +9,7 @@ import Simulation, {
 } from '@/components/Simulation'
 import { Grid } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
+import { Li, Ul } from '@/design-system/typography/list'
 
 export default function CoutCreationEntreprise() {
 	return (
@@ -62,7 +66,36 @@ export default function CoutCreationEntreprise() {
 					</Condition>
 				}
 			>
-				<SimulateurWarning simulateur="coût-création-entreprise" />
+				<SimulateurWarning
+					simulateur="coût-création-entreprise"
+					informationsComplémentaires={
+						<Ul>
+							<StyledLi>
+								<Trans i18nKey="simulateurs.warning.coût-création-entreprise.pas-reprise">
+									Ce simulateur calcule les frais de création pour les nouvelles
+									entreprises. Il ne prend pas en compte le cas des reprises
+									d’entreprises existantes.
+								</Trans>
+							</StyledLi>
+							<StyledLi>
+								<Trans i18nKey="simulateurs.warning.coût-création-entreprise.greffe">
+									Des frais de greffe peuvent être facturés en raison
+									d’informations ou de documents manquants ou incorrects. Par
+									ailleurs, en cas d’envoi de courrier, le greffe facture les
+									frais postaux.
+								</Trans>
+							</StyledLi>
+							<StyledLi>
+								<Trans i18nKey="simulateurs.warning.coût-création-entreprise.JAL">
+									Ce simulateur calcule les frais de créations uniquement pour
+									les SARL, EURL, SAS, SASU, EI et SEL. Il ne prend pas encore
+									en compte les autres formes de société (SA, SCA, SCS, SCI,
+									SCP, SNC, SCM, coopératives, GIE, GAEC, etc.)
+								</Trans>
+							</StyledLi>
+						</Ul>
+					}
+				/>
 				<SimulationGoals legend="Simulateur du coût de création d'une entreprise">
 					<SimulationGoal
 						displayedUnit="€ HT"
@@ -75,3 +108,9 @@ export default function CoutCreationEntreprise() {
 		</>
 	)
 }
+
+const StyledLi = styled(Li)`
+	&::before {
+		color: ${({ theme }) => theme.colors.bases.tertiary[800]} !important;
+	}
+`
