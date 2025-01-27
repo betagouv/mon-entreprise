@@ -1956,7 +1956,7 @@ simulateurs:
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
-    artiste-auteur: Ce simulateur permet d'estimer le montant de vos cotisations à
+    artiste-auteur: Ce simulateur permet d’estimer le montant de vos cotisations à
       partir de votre revenu projeté.
     auto-entrepreneur: Les auto-entrepreneurs bénéficient d’un régime très simplifié
       avec un taux forfaitaire pour le calcul des cotisations et contributions
@@ -1965,41 +1965,41 @@ simulateurs:
       des frais professionnels. Il n’est pas possible de déduire des charges
       réelles en plus. Votre revenu net est donc le chiffre d’affaires moins
       toutes les charges engagées pour l’entreprise.
-    cfe: Le simulateur n'intègre pas la cotisation foncière des entreprise (CFE) qui
-      est dûe dès la deuxième année d'exercice. Son montant varie fortement en
-      fonction du chiffre d'affaires et de la domiciliation de l'entreprise.
-      <2>Plus d'infos.</2>
+    cfe: Le simulateur n’intègre pas la cotisation foncière des entreprise (CFE) qui
+      est dûe dès la deuxième année d’exercice. Son montant varie fortement en
+      fonction du chiffre d’affaires et de la domiciliation de l’entreprise.
+      <2>Plus d’infos.</2>
     chômage-partiel:
       "1": Ce simulateur ne prend pas en compte les rémunérations brutes définies sur
         39h hebdomadaires.
-      "2": De même, il ne prend pas en compte les indemnités complémentaire d'activité
+      "2": De même, il ne prend pas en compte les indemnités complémentaire d’activité
         partielle prévue par une convention/accord collectif ou une décision
-        unilatérale de l'employeur.
+        unilatérale de l’employeur.
     cotisations-ordinales: Pour les professions réglementées, le simulateur ne
-      calcule pas le montant des cotisations à l'ordre. Elles doivent être
+      calcule pas le montant des cotisations à l’ordre. Elles doivent être
       ajoutées manuellement dans la case « charges de fonctionnement ».
     coût-création-entreprise:
       JAL: Ce simulateur calcule les frais de créations uniquement pour les SARL,
         EURL, SAS, SASU, EI et SEL. Il ne prend pas encore en compte les autres
         formes de société (SA, SCA, SCS, SCI, SCP, SNC, SCM, coopératives, GIE,
         GAEC, etc.)
-      greffe: Des frais de greffe peuvent être facturés en raison d'informations ou de
-        documents manquants ou incorrects. Par ailleurs, en cas d'envoi de
+      greffe: Des frais de greffe peuvent être facturés en raison d’informations ou de
+        documents manquants ou incorrects. Par ailleurs, en cas d’envoi de
         courrier, le greffe facture les frais postaux.
       pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
-        entreprises. Il ne prend pas en compte le cas des reprises d'entreprises
+        entreprises. Il ne prend pas en compte le cas des reprises d’entreprises
         existantes.
     dividendes:
       "1": Cette simulation ne concerne que les sociétés françaises à l’impôt sur les
         sociétés (IS), et ne concerne pas les travailleurs indépendants non
         salariés.
-      "2": Le montant de l'impôt sur les dividendes est calculé en plus de l’impôt sur
+      "2": Le montant de l’impôt sur les dividendes est calculé en plus de l’impôt sur
         les autres revenus imposables.
     general: <0>Les calculs sont indicatifs.</0> Ils sont faits à partir des
       éléments que vous avez saisis et des éléments réglementaires applicables,
-      mais ils ne tiennent pas compte de l'ensemble de votre situation. Ils ne
-      se substituent pas aux décomptes réels de l’Urssaf, de l'administration
-      fiscale ou de tout autre organisme.
+      mais ils ne tiennent pas compte de l’ensemble de votre situation. <3>Ils
+      ne se substituent pas aux décomptes réels</3> de l’Urssaf, de
+      l’administration fiscale ou de tout autre organisme.
     indépendant:
       année-courante: Le montant calculé correspond aux cotisations de l’année
         {{year}} (pour un revenu {{year}}).
@@ -2012,18 +2012,18 @@ simulateurs:
       pas pris en compte.</0>
     plus: Lire les précisions
     profession-libérale: Ce simulateur est à destination des professions libérales
-      en BNC. Il ne prend pas en compte les sociétés d'exercice libéral.
-    réduction-générale: Ce simulateur n'intègre <2>pas toutes les règles de
+      en BNC. Il ne prend pas en compte les sociétés d’exercice libéral.
+    réduction-générale: Ce simulateur n’intègre <2>pas toutes les règles de
       calcul</2> spécifiques (Entreprises de Travail Temporaire, salariés des
-      transports routiers soumis à un horaire d'équivalence...). Il ne tient pas
+      transports routiers soumis à un horaire d’équivalence...). Il ne tient pas
       non plus compte des taux et/ou répartition particuliers de la cotisation
       de retraite complémentaire appliqués dans certaines entreprises.
-    salarié: Le simulateur ne prend pour l'instant pas en compte les accords et
-      conventions collectives, ni la myriade d'aides aux entreprises. Trouvez
+    salarié: Le simulateur ne prend pour l’instant pas en compte les accords et
+      conventions collectives, ni la myriade d’aides aux entreprises. Trouvez
       votre convention collective <2>ici</2>, et explorez les aides sur
       <4>aides-entreprises.fr</4>.
-    sasu: Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu (IR).
-      Seule l'option pour l'impôt sur les sociétés est implémentée (IS).
+    sasu: Ce simulateur ne gère pas le cas des SAS(U) à l’impôt sur le revenu (IR).
+      Seule l’option pour l’impôt sur les sociétés est implémentée (IS).
     titre: Avant de commencer...
 simulation-end:
   hiring:
