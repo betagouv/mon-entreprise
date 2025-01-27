@@ -140,6 +140,7 @@ salarié . convention collective . BTP . cotisations employeur:
     - cotisations . employeur
     - congés payés
     - OPPBTP
+    - OPPBTP travailleur temporaire
     - chômage intempéries
 
     
@@ -340,6 +341,13 @@ salarié . convention collective . BTP . OPPBTP:
   formule:
     produit:
       - contrat . salaire brut * 1.1314
+      - 0.11%
+
+salarié . convention collective . BTP . OPPBTP travailleur temporaire:
+  formule:
+    produit:
+      #travailleur temporaire implique que c'est du temps partiel, or dans les tableaux de taux de cotisations, le calcul est trimestriel donc on multiplie par 3 
+      - contrat . temps de travail * 3 * 14.27 
       - 0.11%
 
 salarié . convention collective . BTP . taux ATMP fonctions support:
