@@ -8,10 +8,10 @@ import { Body } from '@/design-system/typography/paragraphs'
 
 import EntrepriseInput from '../conversation/EntrepriseInput'
 import Value from '../EngineValue/Value'
+import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
 import { useEngine } from '../utils/EngineContext'
 import WrongSimulateurWarning from '../WrongSimulateurWarning'
-import LectureGuide from './LectureGuide'
 
 export default function EntrepriseSelection() {
 	const { t } = useTranslation()
