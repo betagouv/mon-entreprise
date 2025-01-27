@@ -10,12 +10,12 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { Contexte } from '@/domaine/Contexte'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
+import LectureGuide from '../LectureGuide'
 import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
 import { useInitialRender } from '../utils/useInitialRender'
-import LectureGuide from './LectureGuide'
 
 type SimulationValueProps = {
 	dottedName: DottedName

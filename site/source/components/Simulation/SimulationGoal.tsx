@@ -15,12 +15,12 @@ import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput, { InputProps } from '../conversation/RuleInput'
+import LectureGuide from '../LectureGuide'
 import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
 import { useInitialRender } from '../utils/useInitialRender'
-import LectureGuide from './LectureGuide'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
