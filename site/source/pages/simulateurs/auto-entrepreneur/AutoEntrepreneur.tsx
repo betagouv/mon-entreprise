@@ -1,5 +1,4 @@
 import { Trans } from 'react-i18next'
-import { styled } from 'styled-components'
 
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
@@ -11,7 +10,7 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
+import { DarkLi, Ul } from '@/design-system/typography/list'
 import { AutoEntrepreneurDétails } from '@/pages/simulateurs/auto-entrepreneur/AutoEntrepreneurDétails'
 
 export default function AutoEntrepreneur() {
@@ -25,7 +24,7 @@ export default function AutoEntrepreneur() {
 					simulateur="auto-entrepreneur"
 					informationsComplémentaires={
 						<Ul>
-							<StyledLi>
+							<DarkLi>
 								<Trans i18nKey="pages.simulateurs.auto-entrepreneur.warning.general">
 									Les auto-entrepreneurs bénéficient d’un régime très simplifié
 									avec un taux forfaitaire pour le calcul des cotisations et
@@ -37,8 +36,8 @@ export default function AutoEntrepreneur() {
 									d’affaires moins toutes les charges engagées pour
 									l’entreprise.
 								</Trans>
-							</StyledLi>
-							<StyledLi>
+							</DarkLi>
+							<DarkLi>
 								<Trans i18nKey="pages.simulateurs.auto-entrepreneur.warning.cfe">
 									Le simulateur n’intègre pas la cotisation foncière des
 									entreprise (CFE) qui est dûe dès la deuxième année d’exercice.
@@ -51,7 +50,7 @@ export default function AutoEntrepreneur() {
 										Plus d’infos.
 									</Link>
 								</Trans>
-							</StyledLi>
+							</DarkLi>
 						</Ul>
 					}
 				/>
@@ -79,9 +78,3 @@ export default function AutoEntrepreneur() {
 		</>
 	)
 }
-
-const StyledLi = styled(Li)`
-	&::before {
-		color: ${({ theme }) => theme.colors.bases.tertiary[800]} !important;
-	}
-`

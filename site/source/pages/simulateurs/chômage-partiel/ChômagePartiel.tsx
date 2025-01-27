@@ -17,7 +17,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
+import { DarkLi, Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { catchDivideByZeroError } from '@/utils/publicodes'
 
@@ -48,19 +48,19 @@ export default function ChômagePartiel() {
 				simulateur="chômage-partiel"
 				informationsComplémentaires={
 					<Ul>
-						<StyledLi>
+						<DarkLi>
 							<Trans i18nKey="pages.simulateurs.chômage-partiel.warning.1">
 								Ce simulateur ne prend pas en compte les rémunérations brutes
 								définies sur 39h hebdomadaires.
 							</Trans>
-						</StyledLi>
-						<StyledLi>
+						</DarkLi>
+						<DarkLi>
 							<Trans i18nKey="pages.simulateurs.chômage-partiel.warning.2">
 								De même, il ne prend pas en compte les indemnités complémentaire
 								d’activité partielle prévue par une convention/accord collectif
 								ou une décision unilatérale de l’employeur.
 							</Trans>
-						</StyledLi>
+						</DarkLi>
 					</Ul>
 				}
 			/>
@@ -467,11 +467,5 @@ const ResultTable = styled.table`
 	th:last-child {
 		background: var(--lighterColor);
 		color: inherit;
-	}
-`
-
-const StyledLi = styled(Li)`
-	&::before {
-		color: ${({ theme }) => theme.colors.bases.tertiary[800]} !important;
 	}
 `

@@ -18,6 +18,12 @@ type ListProps = {
 
 export const Li = styled.li``
 
+export const DarkLi = styled.li`
+	&::before {
+		color: ${({ theme }) => theme.colors.bases.tertiary[800]} !important;
+	}
+`
+
 const BaseListStyle = css<ListProps>`
 	${baseParagraphStyle}
 	font-size: 1rem;
