@@ -1,9 +1,7 @@
-import { useEngine } from './EngineContext'
+import useDate from './useDate'
 
 export default function useYear() {
-	const year = useEngine().evaluate('date')
+	const date = useDate()
 
-	return Number(
-		year.nodeValue?.toString().slice(-4) || new Date().getFullYear()
-	)
+	return Number(date?.toString().slice(-4) || new Date().getFullYear())
 }

@@ -1684,7 +1684,7 @@ pages:
     select-year:
       access: Access the simulator {{year}}
       back: Back to simulator {{year}}
-      info: "This simulation concerns the year <2>{{actualYear}}</2>. "
+      info: "This simulation concerns the year <2>{{currentEngineYear}}</2>. "
 payslip:
   disclaimer: "This payslip is the result of the simulation you made. It helps you
     to understand your pay slip: you can click on the links to understand how
