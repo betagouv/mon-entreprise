@@ -6664,6 +6664,9 @@ impôt . taux personnalisé:
   titre.fr: taux personnalisé
 plafond sécurité sociale:
   avec:
+    N-1:
+      titre.en: '[automatic] N-1'
+      titre.fr: N-1
     horaire:
       titre.en: '[automatic] schedule'
       titre.fr: horaire
@@ -6681,9 +6684,6 @@ plafond sécurité sociale:
     rapport à 2020.
   titre.en: '[automatic] social security ceiling'
   titre.fr: plafond sécurité sociale
-plafond sécurité sociale N-1:
-  titre.en: '[automatic] social security ceiling N-1'
-  titre.fr: plafond sécurité sociale N-1
 protection sociale:
   description.en: >
     Social protection in France is composed of 5 main branches: sickness,

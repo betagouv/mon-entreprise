@@ -71,7 +71,7 @@ dirigeant . indépendant . PL . CAVP . retraite complémentaire:
       formule:
         grille:
           assiette: assiette des cotisations
-          multiplicateur: plafond sécurité sociale N-1
+          multiplicateur: plafond sécurité sociale . N-1
           tranches:
             - montant: 2 * cotisation de référence
               plafond: 1.8125
