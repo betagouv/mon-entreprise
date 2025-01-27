@@ -21,11 +21,10 @@ export default function NumberInput({
 	unit,
 	formatOptions,
 	displayedUnit,
-	displaySuggestions = true,
+	showSuggestions,
 	...fieldProps
 }: InputProps & {
 	unit?: Unit
-	displaySuggestions?: boolean
 }) {
 	const unité = serializeUnit(unit)
 	const [currentValue, setCurrentValue] = useState<number | undefined>(
@@ -93,7 +92,7 @@ export default function NumberInput({
 				}
 				value={currentValue}
 			/>
-			{displaySuggestions && (
+			{showSuggestions && (
 				<InputSuggestions
 					className="print-hidden"
 					suggestions={suggestions}

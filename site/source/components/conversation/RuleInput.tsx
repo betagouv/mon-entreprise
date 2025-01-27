@@ -103,6 +103,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		title: rule.title,
 		description: rule.rawNode.description,
 		question: rule.rawNode.question,
+		showSuggestions,
 		suggestions: showSuggestions ? rule.suggestions : {},
 		engine: engineValue,
 		...props,

@@ -90,7 +90,7 @@ export default function RéductionMois({
 				formatOptions={{
 					maximumFractionDigits: 2,
 				}}
-				displaySuggestions={false}
+				showSuggestions={false}
 			/>
 		)
 	}
