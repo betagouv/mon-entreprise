@@ -2959,6 +2959,22 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
 dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
   titre.en: '[automatic] amount'
   titre.fr: montant
+dirigeant . indépendant . PSS proratisé:
+  description.en: >
+    [automatic] The social security ceiling, prorated according to the duration
+    of activity during the year (in the case of activity created or ceased
+    during the year).
+
+
+    Useful for calculating lump-sum contributions at the start of the activity, or the amount of ACRE.
+  description.fr: >
+    Le plafond de la sécurité sociale, proratisé par la durée d'activité pendant
+    l'année (dans le cas d'activité crée ou cessée en cours d'année).
+
+
+    Utile pour calculer les cotisations forfaitaires de début d'activité ou le montant de l'ACRE
+  titre.en: '[automatic] prorated social security ceiling'
+  titre.fr: plafond de la sécurité sociale proratisé
 dirigeant . indépendant . assiette des cotisations:
   avec:
     sans plancher:
@@ -3291,22 +3307,6 @@ dirigeant . indépendant . cotisations et contributions . PCV:
     conventionnel.
   titre.en: '[automatic] Supplementary old-age benefits'
   titre.fr: Prestations complémentaires vieillesse
-dirigeant . indépendant . cotisations et contributions . PSS proratisé:
-  description.en: >
-    [automatic] The social security ceiling, prorated by the duration of
-    activity during the year (in the case of activity created or ceased during
-    the year).
-
-
-    Useful for calculating the lump sum contributions at the beginning of the activity or the amount of the ACRE
-  description.fr: >
-    Le plafond de la sécurité sociale, proratisé par la durée d'activité pendant
-    l'année (dans le cas d'activité crée ou cessée en cours d'année).
-
-
-    Utile pour calculer les cotisations forfaitaires de début d'activité ou le montant de l'ACRE
-  titre.en: '[automatic] prorated social security ceiling'
-  titre.fr: plafond de la sécurité sociale proratisé
 dirigeant . indépendant . cotisations et contributions . allocations familiales:
   avec:
     taux:
