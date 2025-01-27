@@ -28,7 +28,7 @@ export default function IndépendantSimulation() {
 					simulateur="indépendant"
 					informationsComplémentaires={
 						<Body>
-							<Trans i18nKey="simulateurs.warning.indépendant.année-courante">
+							<Trans i18nKey="pages.simulateurs.indépendant.warning">
 								Le montant calculé correspond aux cotisations de l’année{' '}
 								{{ year }} (pour un revenu {{ year }}).
 							</Trans>

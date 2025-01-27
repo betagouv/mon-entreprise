@@ -49,13 +49,13 @@ export default function ChômagePartiel() {
 				informationsComplémentaires={
 					<Ul>
 						<StyledLi>
-							<Trans i18nKey="simulateurs.warning.chômage-partiel.1">
+							<Trans i18nKey="pages.simulateurs.chômage-partiel.warning.1">
 								Ce simulateur ne prend pas en compte les rémunérations brutes
 								définies sur 39h hebdomadaires.
 							</Trans>
 						</StyledLi>
 						<StyledLi>
-							<Trans i18nKey="simulateurs.warning.chômage-partiel.2">
+							<Trans i18nKey="pages.simulateurs.chômage-partiel.warning.2">
 								De même, il ne prend pas en compte les indemnités complémentaire
 								d’activité partielle prévue par une convention/accord collectif
 								ou une décision unilatérale de l’employeur.

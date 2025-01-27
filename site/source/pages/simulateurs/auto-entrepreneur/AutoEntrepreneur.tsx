@@ -26,7 +26,7 @@ export default function AutoEntrepreneur() {
 					informationsComplémentaires={
 						<Ul>
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.auto-entrepreneur">
+								<Trans i18nKey="pages.simulateurs.auto-entrepreneur.warning.general">
 									Les auto-entrepreneurs bénéficient d’un régime très simplifié
 									avec un taux forfaitaire pour le calcul des cotisations et
 									contributions sociales appliqué sur le chiffre d’affaires.
@@ -39,7 +39,7 @@ export default function AutoEntrepreneur() {
 								</Trans>
 							</StyledLi>
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.cfe">
+								<Trans i18nKey="pages.simulateurs.auto-entrepreneur.warning.cfe">
 									Le simulateur n’intègre pas la cotisation foncière des
 									entreprise (CFE) qui est dûe dès la deuxième année d’exercice.
 									Son montant varie fortement en fonction du chiffre d’affaires

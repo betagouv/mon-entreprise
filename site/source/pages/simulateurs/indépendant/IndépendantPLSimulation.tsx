@@ -23,20 +23,20 @@ export default function IndépendantPLSimulation() {
 					informationsComplémentaires={
 						<Ul>
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.profession-libérale">
+								<Trans i18nKey="pages.simulateurs.profession-libérale.warning.général">
 									Ce simulateur est à destination des professions libérales en
 									BNC. Il ne prend pas en compte les sociétés d’exercice
 									libéral.
 								</Trans>
 							</StyledLi>
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.libérale.année-courante">
+								<Trans i18nKey="pages.simulateurs.profession-libérale.warning.année-courante">
 									Le montant calculé correspond aux cotisations de l’année{' '}
 									{{ year }} (pour un revenu {{ year }}).
 								</Trans>
 							</StyledLi>{' '}
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.cotisations-ordinales">
+								<Trans i18nKey="pages.simulateurs.profession-libérale.warning.cotisations-ordinales">
 									Pour les professions réglementées, le simulateur ne calcule
 									pas le montant des cotisations à l’ordre. Elles doivent être
 									ajoutées manuellement dans la case « charges de fonctionnement

@@ -33,14 +33,14 @@ export default function DividendesSimulation() {
 					informationsComplémentaires={
 						<Ul>
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.dividendes.1">
+								<Trans i18nKey="pages.simulateurs.dividendes.warning.1">
 									Cette simulation ne concerne que les sociétés françaises à
 									l’impôt sur les sociétés (IS), et ne concerne pas les
 									travailleurs indépendants non salariés.
 								</Trans>
 							</StyledLi>
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.dividendes.2">
+								<Trans i18nKey="pages.simulateurs.dividendes.warning.2">
 									Le montant de l’impôt sur les dividendes est calculé en plus
 									de l’impôt sur les autres revenus imposables.
 								</Trans>

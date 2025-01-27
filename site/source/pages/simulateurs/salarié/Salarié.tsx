@@ -79,7 +79,7 @@ export default function SalariéSimulation() {
 					simulateur="salarié"
 					informationsComplémentaires={
 						<Body>
-							<Trans i18nKey="simulateurs.warning.salarié">
+							<Trans i18nKey="pages.simulateurs.salarié.warning">
 								Le simulateur ne prend pour l’instant pas en compte les accords
 								et conventions collectives, ni la myriade d’aides aux
 								entreprises. Trouvez votre convention collective{' '}

@@ -1249,6 +1249,8 @@ pages:
         title: "Artiste-auteur: calcul des cotisations Urssaf"
       shortname: Artiste-auteur
       title: Simulateur de cotisations d’artiste-auteur
+      warning: Ce simulateur permet d’estimer le montant de vos cotisations à partir
+        de votre revenu projeté.
     auto-entrepreneur:
       meta:
         description: Calculez votre revenu net après cotisations et impôts en tenant
@@ -1303,6 +1305,19 @@ pages:
         le temps.</13>
       shortname: Auto-entrepreneur
       title: Simulateur de revenus auto-entrepreneur
+      warning:
+        cfe: Le simulateur n’intègre pas la cotisation foncière des entreprise (CFE) qui
+          est dûe dès la deuxième année d’exercice. Son montant varie fortement
+          en fonction du chiffre d’affaires et de la domiciliation de
+          l’entreprise. <2>Plus d’infos.</2>
+        general: Les auto-entrepreneurs bénéficient d’un régime très simplifié avec un
+          taux forfaitaire pour le calcul des cotisations et contributions
+          sociales appliqué sur le chiffre d’affaires. Selon le choix de la
+          modalité de paiement des impôts il est appliqué un abattement
+          forfaitaire au titre des frais professionnels. Il n’est pas possible
+          de déduire des charges réelles en plus. Votre revenu net est donc le
+          chiffre d’affaires moins toutes les charges engagées pour
+          l’entreprise.
     auxiliaire:
       shortname: Auxiliaire médical
       title: Simulateur de revenus pour auxiliaire médical en libéral
@@ -1378,6 +1393,12 @@ pages:
         sur <2>le site de l'Urssaf</2>.</10>"
       shortname: Chômage partiel
       title: Simulateur du calcul de l'indemnité chômage partiel
+      warning:
+        "1": Ce simulateur ne prend pas en compte les rémunérations brutes définies sur
+          39h hebdomadaires.
+        "2": De même, il ne prend pas en compte les indemnités complémentaire d’activité
+          partielle prévue par une convention/accord collectif ou une décision
+          unilatérale de l’employeur.
     cipav:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
@@ -1404,6 +1425,17 @@ pages:
         title: Coût de création d'une entreprise
       shortName: Coût de création
       title: Simulateur de coût de création d'une entreprise
+      warning:
+        JAL: Ce simulateur calcule les frais de créations uniquement pour les SARL,
+          EURL, SAS, SASU, EI et SEL. Il ne prend pas encore en compte les
+          autres formes de société (SA, SCA, SCS, SCI, SCP, SNC, SCM,
+          coopératives, GIE, GAEC, etc.)
+        greffe: Des frais de greffe peuvent être facturés en raison d’informations ou de
+          documents manquants ou incorrects. Par ailleurs, en cas d’envoi de
+          courrier, le greffe facture les frais postaux.
+        pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
+          entreprises. Il ne prend pas en compte le cas des reprises
+          d’entreprises existantes.
     dividendes:
       meta:
         description: Calculez le montant de l'impôt et des cotisations sur les
@@ -1431,6 +1463,12 @@ pages:
         simulateur.</8>
       shortName: Dividendes
       title: Simulateur de versement de dividendes
+      warning:
+        "1": Cette simulation ne concerne que les sociétés françaises à l’impôt sur les
+          sociétés (IS), et ne concerne pas les travailleurs indépendants non
+          salariés.
+        "2": Le montant de l’impôt sur les dividendes est calculé en plus de l’impôt sur
+          les autres revenus imposables.
     ei:
       meta:
         description: Calcul du revenu à partir du chiffre d'affaires, après déduction
@@ -1533,6 +1571,8 @@ pages:
         complémentaire pour les professions libérales</0></1></3></4></0></4>"
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
+      warning: Le montant calculé correspond aux cotisations de l’année {{year}} (pour
+        un revenu {{year}}).
     is:
       meta:
         description: Calculez votre impôt sur les sociétés
@@ -1557,6 +1597,8 @@ pages:
         plus-values (cession de titres, cession de brevets). Ces régimes ne sont
         pas intégrés dans le simulateur.</5>
       title: Simulateur d'impôt sur les sociétés
+      warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
+        réduits de l’impôt sur les sociétés."
     lodeom:
       barème-switch-label: Quel barème envisagez-vous ?
       legend: Rémunération brute du salarié et exonération Lodeom applicable
@@ -1572,6 +1614,8 @@ pages:
         month-by-month: Exonération mois par mois
         year: Exonération annuelle
       title: Simulateur d'exonération Lodeom
+      warning: <0></0> Les taux et répartitions de cotisations dérogatoires ne sont
+        pas pris en compte.
       warnings:
         JEI: L'exonération Lodeom n'est pas cumulable avec l'exonération Jeune
           Entreprise Innovante (JEI).
@@ -1639,6 +1683,14 @@ pages:
         title: "Professions libérale : le simulateur Urssaf"
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
+      warning:
+        année-courante: Le montant calculé correspond aux cotisations de l’année
+          {{year}} (pour un revenu {{year}}).
+        cotisations-ordinales: Pour les professions réglementées, le simulateur ne
+          calcule pas le montant des cotisations à l’ordre. Elles doivent être
+          ajoutées manuellement dans la case « charges de fonctionnement ».
+        général: Ce simulateur est à destination des professions libérales en BNC. Il ne
+          prend pas en compte les sociétés d’exercice libéral.
     réduction-générale:
       legend: Salaire brut du salarié et réduction générale applicable
       meta:
@@ -1694,6 +1746,11 @@ pages:
         month-by-month: Réduction mois par mois
         year: Réduction annuelle
       title: Simulateur de réduction générale des cotisations
+      warning: Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
+        spécifiques (Entreprises de Travail Temporaire, salariés des transports
+        routiers soumis à un horaire d’équivalence...). Il ne tient pas non plus
+        compte des taux et/ou répartition particuliers de la cotisation de
+        retraite complémentaire appliqués dans certaines entreprises.
       warnings:
         JEI: La réduction générale n'est pas cumulable avec l'exonération Jeune
           Entreprise Innovante (JEI).
@@ -1761,6 +1818,10 @@ pages:
         locales...</2><3></3></9>"
       shortname: Salarié
       title: Simulateur de revenus pour salarié
+      warning: Le simulateur ne prend pour l’instant pas en compte les accords et
+        conventions collectives, ni la myriade d’aides aux entreprises. Trouvez
+        votre convention collective <2>ici</2>, et explorez les aides sur
+        <4>aides-entreprises.fr</4>.
     sasu:
       meta:
         description: Calcul du salaire net à partir du total alloué à la rémunération et
@@ -1789,6 +1850,8 @@ pages:
         peut ensuite être affinée en répondant aux différentes questions.</4>"
       shortname: SAS(U)
       title: Simulateur de revenus pour dirigeant de SAS(U)
+      warning: Ce simulateur ne gère pas le cas des SAS(U) à l’impôt sur le revenu
+        (IR). Seule l’option pour l’impôt sur les sociétés est implémentée (IS).
     select-year:
       access: Accéder au simulateur {{year}}
       back: Retourner au simulateur {{year}}
@@ -1934,13 +1997,13 @@ shareSimulation:
   navigatorShare: Ma simulation Mon Entreprise
 simulateurs:
   explanation:
-    CIPAV: Depuis le 1er janvier 2023, l’Urssaf recouvre les cotisations de retraite
-      de base, de retraite complémentaire et d’invalidité-décès des
-      professionnels libéraux relevant de la Cipav. La Cipav conserve la gestion
-      du dossier de retraite ou de prévoyance.
-    CNAPL: Elle recouvre les cotisations liées à votre retraite et au régime
-      d'invalidité-décès.
     institutions:
+      CIPAV: Depuis le 1er janvier 2023, l’Urssaf recouvre les cotisations de retraite
+        de base, de retraite complémentaire et d’invalidité-décès des
+        professionnels libéraux relevant de la Cipav. La Cipav conserve la
+        gestion du dossier de retraite ou de prévoyance.
+      CNAPL: Elle recouvre les cotisations liées à votre retraite et au régime
+        d'invalidité-décès.
       cpam: En tant que professionnel de santé conventionné, vous bénéficiez d'une
         prise en charge d'une partie de vos cotisations par l'Assurance Maladie.
       dgfip: La direction générale des finances publiques (DGFiP) est l'organisme qui
@@ -1956,74 +2019,12 @@ simulateurs:
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
-    artiste-auteur: Ce simulateur permet d’estimer le montant de vos cotisations à
-      partir de votre revenu projeté.
-    auto-entrepreneur: Les auto-entrepreneurs bénéficient d’un régime très simplifié
-      avec un taux forfaitaire pour le calcul des cotisations et contributions
-      sociales appliqué sur le chiffre d’affaires. Selon le choix de la modalité
-      de paiement des impôts il est appliqué un abattement forfaitaire au titre
-      des frais professionnels. Il n’est pas possible de déduire des charges
-      réelles en plus. Votre revenu net est donc le chiffre d’affaires moins
-      toutes les charges engagées pour l’entreprise.
-    cfe: Le simulateur n’intègre pas la cotisation foncière des entreprise (CFE) qui
-      est dûe dès la deuxième année d’exercice. Son montant varie fortement en
-      fonction du chiffre d’affaires et de la domiciliation de l’entreprise.
-      <2>Plus d’infos.</2>
-    chômage-partiel:
-      "1": Ce simulateur ne prend pas en compte les rémunérations brutes définies sur
-        39h hebdomadaires.
-      "2": De même, il ne prend pas en compte les indemnités complémentaire d’activité
-        partielle prévue par une convention/accord collectif ou une décision
-        unilatérale de l’employeur.
-    cotisations-ordinales: Pour les professions réglementées, le simulateur ne
-      calcule pas le montant des cotisations à l’ordre. Elles doivent être
-      ajoutées manuellement dans la case « charges de fonctionnement ».
-    coût-création-entreprise:
-      JAL: Ce simulateur calcule les frais de créations uniquement pour les SARL,
-        EURL, SAS, SASU, EI et SEL. Il ne prend pas encore en compte les autres
-        formes de société (SA, SCA, SCS, SCI, SCP, SNC, SCM, coopératives, GIE,
-        GAEC, etc.)
-      greffe: Des frais de greffe peuvent être facturés en raison d’informations ou de
-        documents manquants ou incorrects. Par ailleurs, en cas d’envoi de
-        courrier, le greffe facture les frais postaux.
-      pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
-        entreprises. Il ne prend pas en compte le cas des reprises d’entreprises
-        existantes.
-    dividendes:
-      "1": Cette simulation ne concerne que les sociétés françaises à l’impôt sur les
-        sociétés (IS), et ne concerne pas les travailleurs indépendants non
-        salariés.
-      "2": Le montant de l’impôt sur les dividendes est calculé en plus de l’impôt sur
-        les autres revenus imposables.
     general: <0>Les calculs sont indicatifs.</0> Ils sont faits à partir des
       éléments que vous avez saisis et des éléments réglementaires applicables,
       mais ils ne tiennent pas compte de l’ensemble de votre situation. <3>Ils
       ne se substituent pas aux décomptes réels</3> de l’Urssaf, de
       l’administration fiscale ou de tout autre organisme.
-    indépendant:
-      année-courante: Le montant calculé correspond aux cotisations de l’année
-        {{year}} (pour un revenu {{year}}).
-    is: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
-      réduits de l’impôt sur les sociétés."
-    libérale:
-      année-courante: Le montant calculé correspond aux cotisations de l’année
-        {{year}} (pour un revenu {{year}}).
-    lodeom: <0><0></0> Les taux et répartitions de cotisations dérogatoires ne sont
-      pas pris en compte.</0>
     plus: Lire les précisions
-    profession-libérale: Ce simulateur est à destination des professions libérales
-      en BNC. Il ne prend pas en compte les sociétés d’exercice libéral.
-    réduction-générale: Ce simulateur n’intègre <2>pas toutes les règles de
-      calcul</2> spécifiques (Entreprises de Travail Temporaire, salariés des
-      transports routiers soumis à un horaire d’équivalence...). Il ne tient pas
-      non plus compte des taux et/ou répartition particuliers de la cotisation
-      de retraite complémentaire appliqués dans certaines entreprises.
-    salarié: Le simulateur ne prend pour l’instant pas en compte les accords et
-      conventions collectives, ni la myriade d’aides aux entreprises. Trouvez
-      votre convention collective <2>ici</2>, et explorez les aides sur
-      <4>aides-entreprises.fr</4>.
-    sasu: Ce simulateur ne gère pas le cas des SAS(U) à l’impôt sur le revenu (IR).
-      Seule l’option pour l’impôt sur les sociétés est implémentée (IS).
     titre: Avant de commencer...
 simulation-end:
   hiring:
