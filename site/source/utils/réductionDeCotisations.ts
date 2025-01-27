@@ -90,7 +90,8 @@ export const getDataAfterSituationChange = (
 	régularisationMethod?: RégularisationMethod,
 	withRépartition: boolean = true
 ): MonthState[] => {
-	if (!Object.keys(situation).length) {
+	const pasDeSituation = !Object.keys(situation).length
+	if (pasDeSituation) {
 		return getInitialRéductionMoisParMois(
 			dottedName,
 			year,
@@ -202,7 +203,8 @@ export const getInitialRéductionMoisParMois = (
 	const rémunérationPrimes = 0
 	const rémunérationHeuresSup = 0
 
-	if (!rémunérationBrute) {
+	const pasDeRémunération = !rémunérationBrute
+	if (pasDeRémunération) {
 		return Array(12).fill({
 			rémunérationBrute,
 			options: {
@@ -276,7 +278,8 @@ export const reevaluateRéductionMoisParMois = (
 		data.map((monthData) => monthData.rémunérationBrute)
 	)
 
-	if (!totalRémunérationBrute) {
+	const pasDeRémunération = !totalRémunérationBrute
+	if (pasDeRémunération) {
 		return data.map((monthData) => {
 			return {
 				...monthData,
@@ -313,7 +316,8 @@ export const reevaluateRéductionMoisParMois = (
 				répartition: emptyRépartition,
 			}
 
-			if (!rémunérationBrute) {
+			const pasDeRémunération = !rémunérationBrute
+			if (pasDeRémunération) {
 				return [
 					...reevaluatedData,
 					{
@@ -633,7 +637,8 @@ const getSMICMensuelAvecOptions = (
 		contexte,
 	}).nodeValue as number
 
-	if (!options.rémunérationETP) {
+	const moisComplet = !options.rémunérationETP
+	if (moisComplet) {
 		return SMICMensuel
 	}
 
@@ -666,9 +671,10 @@ const getSMICCumulés = (
 	engine: Engine<DottedName>
 ): number[] => {
 	return data.reduce((SMICCumulés: number[], monthData, monthIndex) => {
+		const pasDeRémunération = !monthData.rémunérationBrute
 		// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction
 		// et il ne faut pas compter le SMIC de ce mois-ci dans le SMIC cumulé.
-		if (!monthData.rémunérationBrute) {
+		if (pasDeRémunération) {
 			SMICCumulés.push(0)
 
 			return SMICCumulés
@@ -699,9 +705,10 @@ const getSMICCumulés = (
 const getRémunérationBruteCumulées = (data: MonthState[]): number[] => {
 	return data.reduce(
 		(rémunérationBruteCumulées: number[], monthData, monthIndex) => {
+			const pasDeRémunération = !monthData.rémunérationBrute
 			// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction
 			// et elle ne compte pas non plus pour la régularisation des mois à venir.
-			if (!monthData.rémunérationBrute) {
+			if (pasDeRémunération) {
 				rémunérationBruteCumulées.push(0)
 
 				return rémunérationBruteCumulées
