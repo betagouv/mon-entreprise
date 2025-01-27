@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react'
+import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -10,7 +10,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { AbsoluteSitePaths } from '@/sitePaths'
 
-import { EngineContext } from './utils/EngineContext'
+import useYear from './utils/useYear'
 
 type SimulateurWarningProps = {
 	simulateur: Exclude<keyof AbsoluteSitePaths['simulateurs'], 'index'>
@@ -21,10 +21,7 @@ export default function SimulateurWarning({
 	simulateur,
 	informationsComplémentaires,
 }: SimulateurWarningProps) {
-	const year = useContext(EngineContext)
-		.evaluate('date')
-		.nodeValue?.toString()
-		.slice(-4)
+	const year = useYear()
 
 	return (
 		<Warning
@@ -46,15 +43,15 @@ export default function SimulateurWarning({
 					</StyledLi>
 					<StyledLi>
 						<Trans i18nKey="simulateurs.warning.cfe">
-							Le simulateur n'intègre pas la cotisation foncière des entreprise
-							(CFE) qui est dûe dès la deuxième année d'exercice. Son montant
-							varie fortement en fonction du chiffre d'affaires et de la
-							domiciliation de l'entreprise.{' '}
+							Le simulateur n’intègre pas la cotisation foncière des entreprise
+							(CFE) qui est dûe dès la deuxième année d’exercice. Son montant
+							varie fortement en fonction du chiffre d’affaires et de la
+							domiciliation de l’entreprise.{' '}
 							<Link
-								aria-label="Plus d'infos, en savoir plus sur service-public.fr, nouvelle fenêtre"
+								aria-label="Plus d’infos, en savoir plus sur service-public.fr, nouvelle fenêtre"
 								href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F23547"
 							>
-								Plus d'infos.
+								Plus d’infos.
 							</Link>
 						</Trans>
 					</StyledLi>
@@ -66,7 +63,7 @@ export default function SimulateurWarning({
 					<StyledLi>
 						<Trans i18nKey="simulateurs.warning.profession-libérale">
 							Ce simulateur est à destination des professions libérales en BNC.
-							Il ne prend pas en compte les sociétés d'exercice libéral.
+							Il ne prend pas en compte les sociétés d’exercice libéral.
 						</Trans>
 					</StyledLi>
 					<StyledLi>
@@ -78,7 +75,7 @@ export default function SimulateurWarning({
 					<StyledLi>
 						<Trans i18nKey="simulateurs.warning.cotisations-ordinales">
 							Pour les professions réglementées, le simulateur ne calcule pas le
-							montant des cotisations à l'ordre. Elles doivent être ajoutées
+							montant des cotisations à l’ordre. Elles doivent être ajoutées
 							manuellement dans la case « charges de fonctionnement ».
 						</Trans>
 					</StyledLi>
@@ -87,7 +84,7 @@ export default function SimulateurWarning({
 			{simulateur === 'artiste-auteur' && (
 				<Body>
 					<Trans i18nKey="simulateurs.warning.artiste-auteur">
-						Ce simulateur permet d'estimer le montant de vos cotisations à
+						Ce simulateur permet d’estimer le montant de vos cotisations à
 						partir de votre revenu projeté.
 					</Trans>
 				</Body>
@@ -98,14 +95,14 @@ export default function SimulateurWarning({
 						<Trans i18nKey="simulateurs.warning.coût-création-entreprise.pas-reprise">
 							Ce simulateur calcule les frais de création pour les nouvelles
 							entreprises. Il ne prend pas en compte le cas des reprises
-							d'entreprises existantes.
+							d’entreprises existantes.
 						</Trans>
 					</StyledLi>
 					<StyledLi>
 						<Trans i18nKey="simulateurs.warning.coût-création-entreprise.greffe">
-							Des frais de greffe peuvent être facturés en raison d'informations
+							Des frais de greffe peuvent être facturés en raison d’informations
 							ou de documents manquants ou incorrects. Par ailleurs, en cas
-							d'envoi de courrier, le greffe facture les frais postaux.
+							d’envoi de courrier, le greffe facture les frais postaux.
 						</Trans>
 					</StyledLi>
 					<StyledLi>
@@ -129,8 +126,8 @@ export default function SimulateurWarning({
 			{simulateur === 'sasu' && (
 				<Body>
 					<Trans i18nKey="simulateurs.warning.sasu">
-						Ce simulateur ne gère pas le cas des SAS(U) à l'impôt sur le revenu
-						(IR). Seule l'option pour l'impôt sur les sociétés est implémentée
+						Ce simulateur ne gère pas le cas des SAS(U) à l’impôt sur le revenu
+						(IR). Seule l’option pour l’impôt sur les sociétés est implémentée
 						(IS).
 					</Trans>
 				</Body>
@@ -138,8 +135,8 @@ export default function SimulateurWarning({
 			{simulateur === 'salarié' && (
 				<Body>
 					<Trans i18nKey="simulateurs.warning.salarié">
-						Le simulateur ne prend pour l'instant pas en compte les accords et
-						conventions collectives, ni la myriade d'aides aux entreprises.
+						Le simulateur ne prend pour l’instant pas en compte les accords et
+						conventions collectives, ni la myriade d’aides aux entreprises.
 						Trouvez votre convention collective{' '}
 						<Link
 							href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
@@ -169,8 +166,8 @@ export default function SimulateurWarning({
 					<StyledLi>
 						<Trans i18nKey="simulateurs.warning.chômage-partiel.2">
 							De même, il ne prend pas en compte les indemnités complémentaire
-							d'activité partielle prévue par une convention/accord collectif ou
-							une décision unilatérale de l'employeur.
+							d’activité partielle prévue par une convention/accord collectif ou
+							une décision unilatérale de l’employeur.
 						</Trans>
 					</StyledLi>
 				</Ul>
@@ -195,7 +192,7 @@ export default function SimulateurWarning({
 					</StyledLi>
 					<StyledLi>
 						<Trans i18nKey="simulateurs.warning.dividendes.2">
-							Le montant de l'impôt sur les dividendes est calculé en plus de
+							Le montant de l’impôt sur les dividendes est calculé en plus de
 							l’impôt sur les autres revenus imposables.
 						</Trans>
 					</StyledLi>
@@ -205,10 +202,10 @@ export default function SimulateurWarning({
 				<>
 					<Body>
 						<Trans i18nKey="simulateurs.warning.réduction-générale">
-							Ce simulateur n'intègre{' '}
+							Ce simulateur n’intègre{' '}
 							<Strong>pas toutes les règles de calcul</Strong> spécifiques
 							(Entreprises de Travail Temporaire, salariés des transports
-							routiers soumis à un horaire d'équivalence...). Il ne tient pas
+							routiers soumis à un horaire d’équivalence...). Il ne tient pas
 							non plus compte des taux et/ou répartition particuliers de la
 							cotisation de retraite complémentaire appliqués dans certaines
 							entreprises.
@@ -228,9 +225,10 @@ export default function SimulateurWarning({
 				<Trans i18nKey="simulateurs.warning.general">
 					<Strong>Les calculs sont indicatifs.</Strong> Ils sont faits à partir
 					des éléments que vous avez saisis et des éléments réglementaires
-					applicables, mais ils ne tiennent pas compte de l'ensemble de votre
-					situation. Ils ne se substituent pas aux décomptes réels de l’Urssaf,
-					de l'administration fiscale ou de tout autre organisme.
+					applicables, mais ils ne tiennent pas compte de l’ensemble de votre
+					situation.{' '}
+					<Strong>Ils ne se substituent pas aux décomptes réels</Strong> de
+					l’Urssaf, de l’administration fiscale ou de tout autre organisme.
 				</Trans>
 			</Body>
 		</Warning>

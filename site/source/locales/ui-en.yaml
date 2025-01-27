@@ -1865,7 +1865,7 @@ simulateurs:
         and SEL. It does not yet take into account other forms of company (SA,
         SCA, SCS, SCI, SCP, SNC, SCM, cooperatives, GIE, GAEC, etc.).
       greffe: Clerk's fees may be charged for missing or incorrect information or
-        documents. In addition, the registry charges postage for mailings.
+        documents. In addition, the registry charges postage costs for mailings.
       pas-reprise: This simulator calculates start-up costs for new businesses. It
         does not take into account takeovers of existing companies.
     dividendes:
@@ -1874,8 +1874,9 @@ simulateurs:
       "2": Tax on dividends is calculated in addition to tax on other taxable income.
     general: <0>The calculations are indicative.</0> They are based on the
       information you have entered and the applicable regulations, but they do
-      not take into account your entire situation. They do not replace actual
-      statements from Urssaf, the tax authorities or any other organization.
+      not take into account your entire situation. <3>They are not a substitute
+      for actual statements</3> from Urssaf, the tax authorities or any other
+      organization.
     indépendant:
       année-courante: The amount calculated corresponds to the contributions for the
         year {{year}} (for an income {{year}}).
