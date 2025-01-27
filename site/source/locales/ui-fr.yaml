@@ -989,6 +989,13 @@ pages:
         title: Détermination des charges sociales déductibles
       shortname: Détermination des charges sociales déductibles
       title: Assistant à la détermination des charges sociales déductibles
+    declaration-revenus-pamc:
+      meta:
+        description: Calculez les montants de vos revenus à reporter dans votre
+          déclaration de revenus.
+        title: Déclaration de revenus des PAMC
+      shortname: Assistant à la déclaration de revenus des PAMC
+      title: Assistant à la déclaration de revenus pour les PAMC
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez

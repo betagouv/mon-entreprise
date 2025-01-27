@@ -10,6 +10,7 @@ const rawSitePathsFr = {
 		'recherche-code-ape': 'recherche-code-ape',
 		'déclaration-charges-sociales-indépendant':
 			'declaration-charges-sociales-independant',
+		'déclaration-revenus-pamc': 'declaration-revenus-pam',
 		économieCollaborative: {
 			index: 'économie-collaborative',
 		},
@@ -105,6 +106,7 @@ const rawSitePathsEn = {
 		'recherche-code-ape': 'search-code-ape',
 		'déclaration-charges-sociales-indépendant':
 			'declaration-social-charges-independent',
+		'déclaration-revenus-pamc': 'income-declaration-pam',
 		économieCollaborative: {
 			index: 'sharing-economy',
 			votreSituation: 'your-situation',
