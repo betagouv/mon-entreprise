@@ -2,6 +2,7 @@ import { ImmutableType } from '@/types/utils'
 
 import { choixStatutJuridiqueConfig } from '../assistants/choix-du-statut/config'
 import { déclarationChargesSocialesIndépendantConfig } from '../assistants/declaration-charges-sociales-independant/config'
+import { déclarationRevenusPAMCConfig } from '../assistants/declaration-revenus-pamc/config'
 import { demandeMobilitéConfig } from '../assistants/demande-mobilité/config'
 import { pourMonEntrepriseConfig } from '../assistants/pour-mon-entreprise/config'
 import { rechercheCodeApeConfig } from '../assistants/recherche-code-ape/config'
@@ -71,6 +72,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		// assistants:
 		...choixStatutJuridiqueConfig(params),
 		...déclarationChargesSocialesIndépendantConfig(params),
+		...déclarationRevenusPAMCConfig(params),
 		...demandeMobilitéConfig(params),
 		...pourMonEntrepriseConfig(params),
 		...rechercheCodeApeConfig(params),

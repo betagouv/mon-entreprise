@@ -931,6 +931,12 @@ pages:
         title: Determining deductible social security charges
       shortname: Determining deductible social security charges
       title: Assistance in determining deductible social charges
+    declaration-revenus-pamc:
+      meta:
+        description: Calculate the amounts of your income to report on your tax return.
+        title: PAMC tax return
+      shortname: PAMC tax return assistant
+      title: PAMC tax return assistant
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>There is no income simulator for your
         type of business on this site yet.</0><1>If you would like us to develop
