@@ -39,9 +39,7 @@ salarié . mois incomplet . rémunération équivalente mois complet:
       - les primes, indemnités de CDD et autres éléments de rémunération non impactés par l'absence.
 
 salarié . mois incomplet . prorata:
-  produit:
-    - rémunération de base mois incomplet
-    - 1 / rémunération équivalente mois complet
+  valeur: rémunération de base mois incomplet / rémunération équivalente mois complet
   unité: '%'
   description: |
     Le prorata correspond au rapport entre la rémunération du mois incomplet et
