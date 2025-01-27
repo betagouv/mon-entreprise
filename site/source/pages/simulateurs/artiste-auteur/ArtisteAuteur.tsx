@@ -14,6 +14,7 @@ import { DistributionBranch } from '@/components/simulationExplanation/Distribut
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { H2 } from '@/design-system/typography/heading'
+import { Body } from '@/design-system/typography/paragraphs'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 
 import { configArtisteAuteur } from './simulationConfig'
@@ -28,7 +29,17 @@ export default function ArtisteAuteur() {
 				explanations={<CotisationsResult />}
 				afterQuestionsSlot={<SelectSimulationYear />}
 			>
-				<SimulateurWarning simulateur="artiste-auteur" />
+				<SimulateurWarning
+					simulateur="artiste-auteur"
+					informationsComplémentaires={
+						<Body>
+							<Trans i18nKey="simulateurs.warning.artiste-auteur">
+								Ce simulateur permet d’estimer le montant de vos cotisations à
+								partir de votre revenu projeté.
+							</Trans>
+						</Body>
+					}
+				/>
 				<SimulationGoals
 					legend="Vos revenus d'artiste auteur"
 					toggles={<PeriodSwitch />}

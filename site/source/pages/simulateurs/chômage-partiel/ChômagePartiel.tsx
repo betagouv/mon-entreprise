@@ -44,7 +44,26 @@ export default function ChômagePartiel() {
 			results={<ExplanationSection />}
 			customEndMessages={<span>Voir les résultats au-dessus</span>}
 		>
-			<SimulateurWarning simulateur="chômage-partiel" />
+			<SimulateurWarning
+				simulateur="chômage-partiel"
+				informationsComplémentaires={
+					<Ul>
+						<StyledLi>
+							<Trans i18nKey="simulateurs.warning.chômage-partiel.1">
+								Ce simulateur ne prend pas en compte les rémunérations brutes
+								définies sur 39h hebdomadaires.
+							</Trans>
+						</StyledLi>
+						<StyledLi>
+							<Trans i18nKey="simulateurs.warning.chômage-partiel.2">
+								De même, il ne prend pas en compte les indemnités complémentaire
+								d’activité partielle prévue par une convention/accord collectif
+								ou une décision unilatérale de l’employeur.
+							</Trans>
+						</StyledLi>
+					</Ul>
+				}
+			/>
 			<SimulationGoals legend="Salaire brut avant chômage partiel">
 				<SimulationGoal
 					label={t('Salaire brut mensuel')}
@@ -448,5 +467,11 @@ const ResultTable = styled.table`
 	th:last-child {
 		background: var(--lighterColor);
 		color: inherit;
+	}
+`
+
+const StyledLi = styled(Li)`
+	&::before {
+		color: ${({ theme }) => theme.colors.bases.tertiary[800]} !important;
 	}
 `

@@ -75,7 +75,32 @@ export default function SalariéSimulation() {
 					</BrowserOnly>
 				}
 			>
-				<SimulateurWarning simulateur="salarié" />
+				<SimulateurWarning
+					simulateur="salarié"
+					informationsComplémentaires={
+						<Body>
+							<Trans i18nKey="simulateurs.warning.salarié">
+								Le simulateur ne prend pour l’instant pas en compte les accords
+								et conventions collectives, ni la myriade d’aides aux
+								entreprises. Trouvez votre convention collective{' '}
+								<Link
+									href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
+									aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
+								>
+									ici
+								</Link>
+								, et explorez les aides sur&nbsp;
+								<Link
+									href="https://www.aides-entreprises.fr"
+									aria-label="aides-entreprises.fr, nouvelle fenêtre"
+								>
+									aides-entreprises.fr
+								</Link>
+								.
+							</Trans>
+						</Body>
+					}
+				/>
 				<SalariéSimulationGoals />
 			</Simulation>
 		</>
