@@ -1792,7 +1792,7 @@ pages:
     select-year:
       access: Accéder au simulateur {{year}}
       back: Retourner au simulateur {{year}}
-      info: "Cette simulation concerne l'année <2>{{actualYear}}</2>. "
+      info: "Cette simulation concerne l'année <2>{{currentEngineYear}}</2>. "
 payslip:
   disclaimer: "Cette fiche de paie est issue de la simulation que vous avez faite.
     Elle vous aide à comprendre votre bulletin de paie : vous pouvez cliquer sur
