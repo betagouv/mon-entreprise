@@ -1,6 +1,9 @@
 # Journal des modifications
 
 ## next
+### Breaking changes
+- Déplacement de la règle `plafond sécurité sociale N-1` vers `plafond sécurité sociale . N-1`
+
 ### Nouveautés
 - Ajout du calcul Lodeom pour toutes les zones et tous les barèmes
 - Ajout du calcul du SMIC équivalent pour un mois incomplet
