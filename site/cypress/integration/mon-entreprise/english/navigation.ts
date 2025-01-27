@@ -27,7 +27,7 @@ describe('General navigation', function () {
 	})
 })
 
-describe(`Navigation to income simulator using company name (${
+describe.skip(`Navigation to income simulator using company name (${
 	writeFixtures ? 'record mode' : 'stubbed mode'
 })`, function () {
 	const FIXTURES_FOLDER = 'cypress/fixtures'

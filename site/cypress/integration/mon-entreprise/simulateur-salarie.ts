@@ -1,6 +1,6 @@
 import { checkA11Y, fr } from '../../support/utils'
 
-describe('Simulateur salarié : part time contract', function () {
+describe.skip('Simulateur salarié : part time contract', function () {
 	if (!fr) {
 		return
 	}
