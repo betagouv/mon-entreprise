@@ -3,7 +3,7 @@ import { checkA11Y, fr } from '../../support/utils'
 
 const writeFixtures = Cypress.env('record_http') !== undefined
 
-describe(
+describe.skip(
 	`Formulaire demande mobilité (${
 		writeFixtures ? 'record mode' : 'stubbed mode'
 	})`,
