@@ -7,6 +7,7 @@ describe('Simulateur salarié : part time contract', function () {
 
 	beforeEach(function () {
 		cy.visit(encodeURI('/simulateurs/salaire-brut-net'))
+
 		cy.get('button').contains('SMIC').click()
 		cy.contains('Modifier mes réponses').click()
 		cy.get('div[data-cy="modal"]')

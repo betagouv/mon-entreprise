@@ -3,21 +3,52 @@ import { checkA11Y } from './utils'
 const inputSelector =
 	'div[id="simulator-legend"] input[inputmode="numeric"]:not([id="entreprise___charges"])'
 const chargeInputSelector = 'input[id="entreprise___charges"]'
-const fr = Cypress.env('language') === 'fr'
+const lang = Cypress.env('language') as 'fr' | 'en'
 
-export const runSimulateurTest = (simulateur) => {
+type Simulateur =
+	| 'auto-entrepreneur'
+	| 'salaire-brut-net'
+	| 'salary'
+	| 'sasu'
+	| 'indépendant'
+	| 'profession-liberale'
+	| 'profession-liberale/auxiliaire-medical'
+	| 'profession-liberale/chirurgien-dentiste'
+	| 'profession-liberale/médecin'
+	| 'profession-liberale/sage-femme'
+
+const variableNames = {
+	url: {
+		fr: 'simulateurs',
+		en: 'calculators',
+	},
+	yearTab: {
+		fr: 'Montant annuel',
+		en: 'Annual amount',
+	},
+	monthTab: {
+		fr: 'Montant mensuel',
+		en: 'Monthly amount',
+	},
+	contributions: {
+		fr: 'Cotisations',
+		en: 'Contributions',
+	},
+}
+
+export const runSimulateurTest = (simulateur: Simulateur) => {
 	describe(`Simulateur ${simulateur}`, { testIsolation: false }, function () {
 		before(function () {
-			return cy.visit(
-				encodeURI(`/${fr ? 'simulateurs' : 'calculators'}/${simulateur}`)
-			)
+			return cy.visit(encodeURI(`/${variableNames.url[lang]}/${simulateur}`))
 		})
+
 		it('should not crash', function () {
 			cy.get(inputSelector)
 		})
 
 		it('should display a result when entering a value in any of the currency input', function () {
-			cy.contains(fr ? 'Montant annuel' : 'Annual amount').click()
+			cy.contains(variableNames.yearTab[lang]).click()
+
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type('1000')
 			}
@@ -38,18 +69,18 @@ export const runSimulateurTest = (simulateur) => {
 						expect(val).to.match(/[1-9][\d]{3,6}$/)
 					})
 				})
-				cy.contains(fr ? 'Cotisations' : 'contributions')
+				cy.contains(variableNames.contributions[lang])
 			})
 		})
 
 		it('should allow to change period', function () {
-			cy.contains(fr ? 'Montant annuel' : 'Annual amount').click()
+			cy.contains(variableNames.yearTab[lang]).click()
 			cy.get(inputSelector).first().type('{selectall}12000')
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).type('{selectall}6000')
 			}
 			cy.get(inputSelector).eq(1).invoke('val').should('not.be.empty')
-			cy.contains(fr ? 'Montant mensuel' : 'Monthly amount').click()
+			cy.contains(variableNames.monthTab[lang]).click()
 			cy.get(inputSelector)
 				.first()
 				.invoke('val')
@@ -57,19 +88,18 @@ export const runSimulateurTest = (simulateur) => {
 			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
 				cy.get(chargeInputSelector).first().invoke('val').should('match', /500/)
 			}
-			cy.contains(fr ? 'Montant annuel' : 'Annual amount').click()
 		})
 
-		it('should allow to navigate to a documentation page', function () {
+		it('should allow to navigate to a documentation page and back', function () {
+			cy.contains(variableNames.yearTab[lang]).click()
 			cy.get(inputSelector).first().type('{selectall}2000')
-			cy.contains(fr ? 'Cotisations' : 'Contributions').click()
+			cy.contains(variableNames.contributions[lang]).click()
 			cy.location().should((loc) => {
 				expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations.*/)
 			})
-		})
 
-		it('should allow to go back to the simulation', function () {
 			cy.contains('← ').click()
+
 			cy.get(inputSelector)
 				.first()
 				.invoke('val')
