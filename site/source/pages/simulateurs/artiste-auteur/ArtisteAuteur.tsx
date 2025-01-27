@@ -33,7 +33,7 @@ export default function ArtisteAuteur() {
 					simulateur="artiste-auteur"
 					informationsComplémentaires={
 						<Body>
-							<Trans i18nKey="simulateurs.warning.artiste-auteur">
+							<Trans i18nKey="pages.simulateurs.artiste-auteur.warning">
 								Ce simulateur permet d’estimer le montant de vos cotisations à
 								partir de votre revenu projeté.
 							</Trans>

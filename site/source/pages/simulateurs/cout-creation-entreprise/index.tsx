@@ -71,14 +71,14 @@ export default function CoutCreationEntreprise() {
 					informationsComplémentaires={
 						<Ul>
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.coût-création-entreprise.pas-reprise">
+								<Trans i18nKey="pages.simulateurs.coût-création-entreprise.warning.pas-reprise">
 									Ce simulateur calcule les frais de création pour les nouvelles
 									entreprises. Il ne prend pas en compte le cas des reprises
 									d’entreprises existantes.
 								</Trans>
 							</StyledLi>
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.coût-création-entreprise.greffe">
+								<Trans i18nKey="pages.simulateurs.coût-création-entreprise.warning.greffe">
 									Des frais de greffe peuvent être facturés en raison
 									d’informations ou de documents manquants ou incorrects. Par
 									ailleurs, en cas d’envoi de courrier, le greffe facture les
@@ -86,7 +86,7 @@ export default function CoutCreationEntreprise() {
 								</Trans>
 							</StyledLi>
 							<StyledLi>
-								<Trans i18nKey="simulateurs.warning.coût-création-entreprise.JAL">
+								<Trans i18nKey="pages.simulateurs.coût-création-entreprise.warning.JAL">
 									Ce simulateur calcule les frais de créations uniquement pour
 									les SARL, EURL, SAS, SASU, EI et SEL. Il ne prend pas encore
 									en compte les autres formes de société (SA, SCA, SCS, SCI,

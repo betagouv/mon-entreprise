@@ -1177,6 +1177,8 @@ pages:
         title: "Artiste-auteur: calculating Urssaf contributions"
       shortname: Artist-author
       title: Artist contribution simulator
+      warning: This simulator allows you to estimate the amount of your contributions
+        based on your projected income.
     auto-entrepreneur:
       meta:
         description: Calculate your net income after contributions and taxes, taking
@@ -1226,6 +1228,17 @@ pages:
         time.</13>
       shortname: Auto-entrepreneur
       title: auto-entrepreneur income simulator
+      warning:
+        cfe: The simulator does not include the business property tax (cotisation
+          foncière des entreprises - CFE), which is due from the second year of
+          business. Its amount varies greatly depending on sales and the
+          company's location. <2>For further information.</2>
+        general: Auto-entrepreneurs benefit from a highly simplified system, with a flat
+          rate for calculating social security contributions applied to sales.
+          Depending on the tax payment method chosen, a flat-rate deduction is
+          made for professional expenses. Actual expenses cannot be deducted in
+          addition. Your net income is therefore your sales minus all expenses
+          incurred for the company.
     auxiliaire:
       shortname: Medical Auxiliary
       title: Income simulator for self-employed medical assistants
@@ -1298,6 +1311,12 @@ pages:
         explanatory page on <2>the Urssaf website</2>.</10>"
       shortname: Short-time working
       title: Partial unemployment benefit calculation simulator
+      warning:
+        "1": This simulator does not take into account gross earnings based on a 39-hour
+          week.
+        "2": Similarly, it does not take into account any additional partial activity
+          indemnities provided for by a collective agreement or unilateral
+          decision by the employer.
     cipav:
       meta:
         description: Calculation of net income after deduction of contributions based on
@@ -1324,6 +1343,15 @@ pages:
         title: Cost of setting up a business
       shortName: Cost of creation
       title: Business start-up cost simulator
+      warning:
+        JAL: This simulator calculates start-up costs only for SARL, EURL, SAS, SASU, EI
+          and SEL. It does not yet take into account other forms of company (SA,
+          SCA, SCS, SCI, SCP, SNC, SCM, cooperatives, GIE, GAEC, etc.).
+        greffe: Clerk's fees may be charged for missing or incorrect information or
+          documents. In addition, the clerk's office charges for postage and
+          packing.
+        pas-reprise: This simulator calculates start-up costs for new businesses. It
+          does not take into account takeovers of existing companies.
     dividendes:
       meta:
         description: Calculate the amount of tax and contributions on dividends paid by
@@ -1348,6 +1376,10 @@ pages:
         situation has not yet been taken into account by this simulator.</8>
       shortName: Dividends
       title: Dividend payment simulator
+      warning:
+        "1": This simulation applies only to French companies subject to corporation tax
+          (IS), and does not concern self-employed workers.
+        "2": Tax on dividends is calculated in addition to tax on other taxable income.
     ei:
       meta:
         description: Income calculation based on sales, after deduction of contributions
@@ -1440,6 +1472,8 @@ pages:
         professions.</0></1></3></4></0></4>"
       shortname: Independent
       title: Income simulator for the self-employed
+      warning: The amount calculated corresponds to the contributions for the year
+        {{year}} (for an income {{year}}).
     is:
       meta:
         description: Calculate your corporate income tax
@@ -1462,6 +1496,8 @@ pages:
         gains (sale of securities, sale of patents). These regimes are not
         included in the simulator.</5>
       title: Corporate tax simulator
+      warning: "This simulator is designed for <2>very small businesses</2>: it takes
+        into account reduced corporate tax rates."
     lodeom:
       barème-switch-label: What scale do you envisage?
       legend: Employee's gross salary and applicable Lodeom exemption
@@ -1477,6 +1513,8 @@ pages:
         month-by-month: Month-by-month exemption
         year: Annual exemption
       title: Lodeom exemption simulator
+      warning: <0></0> Derogatory contribution rates and breakdowns are not taken into
+        account.
       warnings:
         JEI: The Lodeom exemption cannot be combined with the Young Innovative Company
           (JEI) exemption.
@@ -1538,6 +1576,14 @@ pages:
         title: "Liberal professions: the Urssaf simulator"
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
+      warning:
+        année-courante: The amount calculated corresponds to the contributions for the
+          year {{year}} (for an income {{year}}).
+        cotisations-ordinales: For regulated professions, the simulator does not
+          calculate the amount of membership fees. They must be added manually
+          in the "operating expenses" box.
+        général: This simulator is intended for self-employed professionals in the BNC
+          sector. It does not take into account self-employed companies.
     réduction-générale:
       legend: Employee's gross salary and applicable general reduction
       meta:
@@ -1593,6 +1639,11 @@ pages:
         month-by-month: Monthly discount
         year: Annual discount
       title: General contribution reduction simulator
+      warning: This simulator does not take into account <2>all</2> specific
+        <2>calculation rules</2> (temporary employment agencies, road haulage
+        employees subject to equivalent working hours, etc.). Nor does it take
+        into account the specific rates and/or distribution of supplementary
+        pension contributions applied in certain companies.
       warnings:
         JEI: The general reduction cannot be combined with the Young Innovative Company
           (JEI) exemption.
@@ -1655,6 +1706,10 @@ pages:
         missions...</2><3></3></9>"
       shortname: Employee
       title: Income simulator for employees
+      warning: The simulator does not currently take into account collective
+        agreements, nor the myriad of company subsidies. Find your collective
+        bargaining agreement <2>here</2>, and explore the range of assistance
+        available on <4>aides-entreprises.fr</4>.
     sasu:
       meta:
         description: Calculation of net salary from the total allocated to remuneration
@@ -1681,6 +1736,8 @@ pages:
         the various questions.</4>"
       shortname: SAS(U)
       title: Income simulator for SAS(U) managers
+      warning: This simulator does not handle the case of SAS(U) taxable on income
+        (IR). Only the corporate income tax (IS) option is implemented.
     select-year:
       access: Access the simulator {{year}}
       back: Back to simulator {{year}}
@@ -1818,13 +1875,13 @@ shareSimulation:
   navigatorShare: My simulation My Company
 simulateurs:
   explanation:
-    CIPAV: From January 1, 2023, Urssaf will collect basic and supplementary pension
-      and disability-death contributions from self-employed professionals
-      covered by Cipav. Cipav will continue to manage the pension and provident
-      fund file.
-    CNAPL: It collects contributions related to your pension and to the
-      disability-death scheme.
     institutions:
+      CIPAV: From January 1, 2023, Urssaf will collect basic and supplementary pension
+        and disability-death contributions from self-employed professionals
+        covered by Cipav. Cipav will continue to manage the pension and
+        provident fund file.
+      CNAPL: It collects contributions related to your pension and to the
+        disability-death scheme.
       cpam: As an approved healthcare professional, part of your contributions are
         reimbursed by the Assurance Maladie.
       dgfip: The Direction Générale des Finances Publiques (DGFiP) is the organization
@@ -1839,68 +1896,12 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    artiste-auteur: This simulator allows you to estimate the amount of your
-      contributions based on your projected income.
-    auto-entrepreneur: Auto-entrepreneurs benefit from a highly simplified system,
-      with a flat rate for calculating social security contributions applied to
-      sales. Depending on the tax payment method chosen, a flat-rate deduction
-      is made for professional expenses. Actual expenses cannot be deducted in
-      addition. Your net income is therefore your sales minus all expenses
-      incurred for the company.
-    cfe: The simulator does not include the business property tax (cotisation
-      foncière des entreprises - CFE), which is due from the second year of
-      business. Its amount varies greatly depending on sales and the company's
-      location. <2>For further information.</2>
-    chômage-partiel:
-      "1": This simulator does not take into account gross earnings based on a 39-hour
-        week.
-      "2": Similarly, it does not take into account any additional partial activity
-        indemnities provided for by a collective agreement or unilateral
-        decision by the employer.
-    cotisations-ordinales: For regulated professions, the simulator does not
-      calculate the amount of membership fees. They must be added manually in
-      the "operating expenses" box.
-    coût-création-entreprise:
-      JAL: This simulator calculates start-up costs only for SARL, EURL, SAS, SASU, EI
-        and SEL. It does not yet take into account other forms of company (SA,
-        SCA, SCS, SCI, SCP, SNC, SCM, cooperatives, GIE, GAEC, etc.).
-      greffe: Clerk's fees may be charged for missing or incorrect information or
-        documents. In addition, the registry charges postage costs for mailings.
-      pas-reprise: This simulator calculates start-up costs for new businesses. It
-        does not take into account takeovers of existing companies.
-    dividendes:
-      "1": This simulation applies only to French companies subject to corporation tax
-        (IS), and does not concern self-employed workers.
-      "2": Tax on dividends is calculated in addition to tax on other taxable income.
     general: <0>The calculations are indicative.</0> They are based on the
       information you have entered and the applicable regulations, but they do
       not take into account your entire situation. <3>They are not a substitute
       for actual statements</3> from Urssaf, the tax authorities or any other
       organization.
-    indépendant:
-      année-courante: The amount calculated corresponds to the contributions for the
-        year {{year}} (for an income {{year}}).
-    is: "This simulator is designed for <2>very small businesses</2>: it takes into
-      account reduced corporate tax rates."
-    libérale:
-      année-courante: The amount calculated corresponds to the contributions for the
-        year {{year}} (for an income {{year}}).
-    lodeom: <0><0></0> Derogatory contribution rates and breakdowns are not taken
-      into account.</0>
     plus: Read more
-    profession-libérale: This simulator is intended for self-employed professionals
-      who earn a BNC. It does not take into account self-employed companies.
-    réduction-générale: This simulator does not take into account <2>all</2>
-      specific <2>calculation rules</2> (temporary employment agencies, road
-      haulage employees subject to equivalent working hours, etc.). Nor does it
-      take into account the specific rates and/or distribution of supplementary
-      pension contributions applied in certain companies.
-    salarié: The simulator does not currently take into account collective
-      agreements, nor the myriad of company subsidies. Find your collective
-      bargaining agreement <2>here</2>, and explore the range of assistance
-      available on <4>aides-entreprises.fr</4>.
-    sasu: This simulator does not handle the case of SAS(U) taxable on income (IR).
-      Only the corporate income tax (IS) option is implemented.
     titre: Before we begin...
 simulation-end:
   hiring:

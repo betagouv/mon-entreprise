@@ -46,12 +46,12 @@ export default function LodeomSimulation() {
 				<SimulateurWarning
 					simulateur="lodeom"
 					informationsComplémentaires={
-						<Trans i18nKey="simulateurs.warning.lodeom">
-							<Body>
+						<Body>
+							<Trans i18nKey="pages.simulateurs.lodeom.warning">
 								<Emoji emoji="⚠️" /> Les taux et répartitions de cotisations
 								dérogatoires ne sont pas pris en compte.
-							</Body>
-						</Trans>
+							</Trans>
+						</Body>
 					}
 				/>
 				<LodeomSimulationGoals

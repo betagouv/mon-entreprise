@@ -50,7 +50,7 @@ export default function RéductionGénéraleSimulation() {
 					simulateur="réduction-générale"
 					informationsComplémentaires={
 						<Body>
-							<Trans i18nKey="simulateurs.warning.réduction-générale">
+							<Trans i18nKey="pages.simulateurs.réduction-générale.warning">
 								Ce simulateur n’intègre{' '}
 								<Strong>pas toutes les règles de calcul</Strong> spécifiques
 								(Entreprises de Travail Temporaire, salariés des transports
