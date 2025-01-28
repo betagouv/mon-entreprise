@@ -29,6 +29,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should allow to change time period', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
 		cy.contains('Barème de compétitivité').click()
 		cy.contains('Exonération annuelle').click()
 		cy.get(inputSelector).first().type('{selectall}42000')
@@ -38,6 +39,11 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should display values for the lodeom', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
+		cy.contains('Exonération mensuelle').click()
+		cy.get(inputSelector).first().type('{selectall}3500')
+
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
 		).should('include.text', '214,20 €')
@@ -50,6 +56,11 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should allow to select a company size', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
+		cy.contains('Exonération mensuelle').click()
+		cy.get(inputSelector).first().type('{selectall}3500')
+
 		cy.contains('Plus de 50 salariés').click()
 		cy.contains('Modifier mes réponses').click()
 		cy.get('div[data-cy="modal"]')
@@ -74,13 +85,16 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should allow to select a scale', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
 		cy.contains('Barème de compétitivité renforcée').click()
+		cy.contains('Exonération mensuelle').click()
+		cy.get(inputSelector).first().type('{selectall}3500')
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
 		).should('include.text', '1 117,90 €')
 
-		cy.contains("Barème d'innovation et croissance").click()
+		cy.contains('Barème d’innovation et croissance').click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
@@ -90,18 +104,19 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	it('should allow to select a zone', function () {
 		cy.contains('Saint-Barthélémy, Saint-Martin').click()
 		cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+		cy.get(inputSelector).first().type('{selectall}3500')
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
 		).should('include.text', '530,25 €')
 
-		cy.contains("Barème d'exonération sectorielle").click()
+		cy.contains('Barème d’exonération sectorielle').click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
 		).should('include.text', '350,35 €')
 
-		cy.contains("Barème d'exonération renforcée").click()
+		cy.contains('Barème d’exonération renforcée').click()
 
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant-value"]'
@@ -109,6 +124,10 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should not include repartition for zone 2', function () {
+		cy.contains('Saint-Barthélémy, Saint-Martin').click()
+		cy.contains('Barème d’exonération renforcée').click()
+		cy.get(inputSelector).first().type('{selectall}3500')
+
 		cy.get(
 			'p[id="salarié___cotisations___exonérations___lodeom___montant___imputation_retraite_complémentaire-value"]'
 		).should('not.exist')
@@ -118,50 +137,55 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should display a custom warning for a remuneration too high', function () {
+		cy.contains('Saint-Barthélémy, Saint-Martin').click()
+		cy.contains('Barème d’exonération renforcée').click()
 		cy.get(inputSelector).first().type('{selectall}8500')
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
-			"Le barème d'exonération renforcée uniquement les salaires inférieurs à 4,5 SMIC."
+			'Le barème d’exonération renforcée concerne uniquement les salaires inférieurs à 4,5 Smic.'
 		)
 
-		cy.contains("Barème d'exonération sectorielle").click()
+		cy.contains('Barème d’exonération sectorielle').click()
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
-			"Le barème d'exonération sectorielle concerne uniquement les salaires inférieurs à 3 SMIC."
+			'Le barème d’exonération sectorielle concerne uniquement les salaires inférieurs à 3 Smic.'
 		)
 
 		cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
-			'Le barème pour les employeurs de moins de 11 salariés concerne uniquement les salaires inférieurs à 3 SMIC.'
+			'Le barème pour les employeurs de moins de 11 salariés concerne uniquement les salaires inférieurs à 3 Smic.'
 		)
 
 		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème d’innovation et croissance').click()
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
-			"Le barème d'innovation et croissance concerne uniquement les salaires inférieurs à 3,5 SMIC."
+			"Le barème d’innovation et croissance concerne uniquement les salaires inférieurs à 3,5 Smic."
 		)
 
 		cy.contains('Barème de compétitivité renforcée').click()
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
-			'Le barème de compétitivité renforcée concerne uniquement les salaires inférieurs à 2,7 SMIC.'
+			'Le barème de compétitivité renforcée concerne uniquement les salaires inférieurs à 2,7 Smic.'
 		)
 
 		cy.contains('Barème de compétitivité').click()
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
-			'Le barème de compétitivité concerne uniquement les salaires inférieurs à 2,2 SMIC.'
+			'Le barème de compétitivité concerne uniquement les salaires inférieurs à 2,2 Smic.'
 		)
 	})
 
 	it('should display remuneration and Lodeom month by month', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
 		cy.contains('Exonération annuelle').click()
 		cy.get(inputSelector).first().type('{selectall}36000')
 
@@ -181,6 +205,9 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should calculate Lodeom month by month independently', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
+		cy.contains('Exonération mois par mois').click()
 		cy.get(inputSelector).eq(1).type('{selectall}3500')
 
 		cy.get(
@@ -207,6 +234,9 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should include progressive regularisation', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
+		cy.contains('Exonération mois par mois').click()
 		cy.get(inputSelector).eq(1).type('{selectall}4500')
 
 		cy.get(
@@ -224,6 +254,9 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should include annual regularisation', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
+		cy.contains('Exonération mois par mois').click()
 		cy.contains('Régularisation annuelle').click()
 
 		cy.get(
@@ -241,6 +274,10 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should include monthly options', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
+		cy.contains('Exonération mois par mois').click()
+
 		cy.get(
 			'div[id="simulator-legend"] button[aria-describedby="options-description"]'
 		)
@@ -257,6 +294,10 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should handle incomplete months', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
+		cy.contains('Exonération mois par mois').click()
+
 		cy.contains('Régularisation progressive').click()
 		cy.get(inputSelector).first().type('{selectall}1500')
 		cy.get('input[id="option-heures-sup-janvier"]').type('{selectall}5')
@@ -282,6 +323,10 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should include a recap table', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
+		cy.contains('Exonération mois par mois').click()
+
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
 			'Récapitulatif trimestriel'
@@ -309,7 +354,11 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should display code in recap table based on scale', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
 		cy.contains('Régularisation progressive').click()
+		cy.contains('Exonération mois par mois').click()
+
 		cy.contains('Récapitulatif trimestriel').next().as('recapTable')
 
 		cy.get('@recapTable').should('include.text', 'code 462')
@@ -320,20 +369,21 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		cy.get('@recapTable').should('include.text', 'code 463')
 		cy.get('@recapTable').should('include.text', 'code 538')
 
-		cy.contains("Barème d'innovation et croissance").click()
+		cy.contains("Barème d’innovation et croissance").click()
 
 		cy.get('@recapTable').should('include.text', 'code 473')
 		cy.get('@recapTable').should('include.text', 'code 685')
 
 		cy.contains('Saint-Barthélémy, Saint-Martin').click()
+		cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
 
 		cy.get('@recapTable').should('include.text', 'code 687')
 
-		cy.contains("Barème d'exonération sectorielle").click()
+		cy.contains('Barème d’exonération sectorielle').click()
 
 		cy.get('@recapTable').should('include.text', 'code 686')
 
-		cy.contains("Barème d'exonération renforcée").click()
+		cy.contains('Barème d’exonération renforcée').click()
 
 		cy.get('@recapTable').should('include.text', 'code 688')
 	})
@@ -343,6 +393,9 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 	})
 
 	it('should be RGAA compliant', function () {
+		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
+		cy.contains('Barème de compétitivité').click()
+
 		cy.contains('Exonération mensuelle').click()
 		checkA11Y()
 		cy.contains('Exonération annuelle').click()
