@@ -23,8 +23,8 @@ entreprise . date de création:
     approximation.
   suggestions:
     Début d'année: période . début d'année
-    Début 2022: 01/01/2022
-    Il y a plus de 10 ans: 01/01/2013
+    Début 2024: 01/01/2024
+    Il y a plus de 10 ans: 01/01/2015
   type: date
 
 entreprise . date de création . contrôle date future:

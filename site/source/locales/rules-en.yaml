@@ -3045,7 +3045,7 @@ dirigeant . indépendant . assiette minimale . retraite . en 2022:
   description.fr: >
     L’assiette minimale de 11,50% n’était pas suffisante pour valider 3
     trimestres. Par conséquent cette assiette minimale a été révisée en cours
-    d’année et sera appliquée de manière rétroactive à compté du 1er janvier
+    d’année et sera appliquée de manière rétroactive à compter du 1er janvier
     2022.
 
 
@@ -5877,8 +5877,8 @@ entreprise . date de création:
     approximation.
   question.en: '[automatic] What is your start date?'
   question.fr: Quelle est votre date de début d'activité ?
-  suggestions.Début 2022.en: '[automatic] Early 2022'
-  suggestions.Début 2022.fr: Début 2022
+  suggestions.Début 2024.en: '[automatic] Early 2024'
+  suggestions.Début 2024.fr: Début 2024
   suggestions.Début d'année.en: '[automatic] Beginning of the year'
   suggestions.Début d'année.fr: Début d'année
   suggestions.Il y a plus de 10 ans.en: '[automatic] More than 10 years ago'
