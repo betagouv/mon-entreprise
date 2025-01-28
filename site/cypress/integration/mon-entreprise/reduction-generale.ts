@@ -1,6 +1,5 @@
 import { checkA11Y, fr } from '../../support/utils'
 
-// TODO Échoue parfois … à creuser
 describe(
 	'Simulateur réduction générale',
 	{ testIsolation: false },
