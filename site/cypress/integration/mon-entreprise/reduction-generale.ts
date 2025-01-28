@@ -86,7 +86,7 @@ describe(
 
 			cy.get('div[id="simulator-legend"]').should(
 				'include.text',
-				'La RGCP concerne uniquement les salaires inférieurs à 1,6 SMIC.'
+				'La RGCP concerne uniquement les salaires inférieurs à 1,6 Smic.'
 			)
 
 			cy.get(

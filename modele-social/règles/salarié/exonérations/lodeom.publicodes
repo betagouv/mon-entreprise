@@ -21,7 +21,7 @@ salarié . cotisations . exonérations . lodeom:
       - zone un
       - zone deux
   description: |
-    Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d'Outre-mer.
+    Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d’Outre-mer.
     Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
     Pour un autre salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
   références:
@@ -29,10 +29,10 @@ salarié . cotisations . exonérations . lodeom:
     Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica
 
 salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles:
-  question: Votre entreprise appartient-elle à l'un des secteurs éligibles Lodeom ?
+  question: Votre entreprise appartient-elle à l’un des secteurs éligibles Lodeom ?
   par défaut: non
   description: |
-    Les secteurs d'activité éligibles au dispositif d'exonération « Lodeom » sont les suivants :
+    Les secteurs d’activité éligibles au dispositif d’exonération « Lodeom » sont les suivants :
     - 🔬 recherche et développement ;
     - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
     - 🛏️ hôtellerie ;
@@ -55,7 +55,7 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
       - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
       - la desserte intérieure de ces départements ou collectivités.
   références:
-    Secteurs d'activité éligibles au Lodeom: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica-section-2--conditions-dapplicati-b-conditions-deligibilite-liees-1-secteurs-dactivites-eligibles
+    Secteurs d’activité éligibles au Lodeom: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica-section-2--conditions-dapplicati-b-conditions-deligibilite-liees-1-secteurs-dactivites-eligibles
 
 salarié . cotisations . exonérations . lodeom . zone un:
   titre: Guadeloupe, Guyane, Martinique, La Réunion
@@ -90,7 +90,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
       avec:
         compétitivité:
           valeur: barèmes = 'compétitivité'
-          titre: Barème de compétitivité
+          titre: barème de compétitivité
           description: |
             Le barème de compétitivité <strong>est applicable</strong> :
             - aux employeurs de moins de 11 salariés ;
@@ -100,15 +100,15 @@ salarié . cotisations . exonérations . lodeom . zone un:
             et croissance, qui ne respectent pas les conditions d’effectifs (moins de 250 salariés)
             ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
 
-            Le barème de compétitivité <strong>n'est pas applicable</strong> :
+            Le barème de compétitivité <strong>n’est pas applicable</strong> :
             - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
             et croissance.
           références:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
-            Champ d'application du barème de compétitivité: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1390
+            Champ d’application du barème de compétitivité: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1390
 
         compétitivité renforcée:
-          titre: Barème de compétitivité renforcée
+          titre: barème de compétitivité renforcée
           valeur: barèmes = 'compétitivité renforcée'
           description: |
             Pour bénéficier du barème de compétitivité renforcée, les employeurs doivent :
@@ -116,7 +116,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
             - et réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>.
 
             L’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
-            - soit relever d'un des <strong>secteurs</strong> suivants :
+            - soit relever d’un des <strong>secteurs</strong> suivants :
               - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
               et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
               - 🎣 pêche, cultures marines et aquaculture ;
@@ -134,34 +134,34 @@ salarié . cotisations . exonérations . lodeom . zone un:
               - 🎥 production audiovisuelle.
             - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
 
-            <strong>En Guyane</strong>, l'employeur peut être éligible :
-            - s'il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
+            <strong>En Guyane</strong>, l’employeur peut être éligible :
+            - s’il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
             contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
             (prévue à l’article 199 undecies B du code général des impôts)
-            - ou s'il exerce une des activités suivantes :
+            - ou s’il exerce une des activités suivantes :
               - comptabilité ;
               - conseil aux entreprises ;
               - ingénierie ou études techniques.
           références:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
-            Champ d'application du barème de renforcée: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1410
+            Champ d’application du barème de renforcée: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1410
 
         innovation et croissance:
-          titre: Barème d'innovation et croissance
+          titre: barème d’innovation et croissance
           valeur: barèmes = 'innovation et croissance'
-          question: Êtes-vous éligible au barème d'innovation et croissance ?
+          question: Êtes-vous éligible au barème d’innovation et croissance ?
           par défaut: non
           description: |
-            Pour bénéficier du barème d'innovation et croissance, les employeurs doivent :
+            Pour bénéficier du barème d’innovation et croissance, les employeurs doivent :
             - employer <strong>moins de 250 salariés</strong>,
             - réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>
             - et réaliser des <strong>projets innovants</strong> dans le secteur des technologies de l’information
             et de la communication.
 
-            Ces projets doivent être réalisés dans l'un des <strong>domaines d’activité</strong> suivants :
+            Ces projets doivent être réalisés dans l’un des <strong>domaines d’activité</strong> suivants :
               - 📡 télécommunication ;
               - 🖥️ informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance
-              de systèmes et d’applications, gestion d'installations, traitement des données, hébergement et activités
+              de systèmes et d’applications, gestion d’installations, traitement des données, hébergement et activités
               connexes ;
               - 🌐 édition de portails internet et de logiciels;
               - 🎴 infographie, notamment conception de contenus visuels et numériques ;
@@ -170,13 +170,13 @@ salarié . cotisations . exonérations . lodeom . zone un:
             Si les conditions sont réunies, l’exonération s’applique aux salariés qui participent principalement et
             directement à la réalisation de projets innovants.
 
-            L'exonération <strong>ne s'applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+            L’exonération <strong>ne s’applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
           références:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
-            Champ d'application du barème d'innovation et croissance: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1430
+            Champ d’application du barème d’innovation et croissance: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1430
 
     barème compétitivité:
-      titre: Barème de compétitivité
+      titre: barème de compétitivité
       non applicable si:
         une de ces conditions:
           - barème compétitivité renforcée
@@ -194,15 +194,15 @@ salarié . cotisations . exonérations . lodeom . zone un:
         et croissance, qui ne respectent pas les conditions d’effectifs (moins de 250 salariés)
         ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
 
-        Le barème de compétitivité <strong>n'est pas applicable</strong> :
+        Le barème de compétitivité <strong>n’est pas applicable</strong> :
         - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
         et croissance.
       références:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
-        Champ d'application du barème de compétitivité: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1390
+        Champ d’application du barème de compétitivité: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1390
 
     barème compétitivité renforcée:
-      titre: Barème de compétitivité renforcée
+      titre: barème de compétitivité renforcée
       non applicable si: barème innovation et croissance
       applicable si:
         toutes ces conditions:
@@ -217,7 +217,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
         - et réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>.
 
         L’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
-        - soit relever d'un des <strong>secteurs</strong> suivants :
+        - soit relever d’un des <strong>secteurs</strong> suivants :
           - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
           et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
           - 🎣 pêche, cultures marines et aquaculture ;
@@ -235,38 +235,38 @@ salarié . cotisations . exonérations . lodeom . zone un:
           - 🎥 production audiovisuelle.
         - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
 
-        <strong>En Guyane</strong>, l'employeur peut être éligible :
-        - s'il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
+        <strong>En Guyane</strong>, l’employeur peut être éligible :
+        - s’il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
         contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
         (prévue à l’article 199 undecies B du code général des impôts)
-        - ou s'il exerce une des activités suivantes :
+        - ou s’il exerce une des activités suivantes :
           - comptabilité ;
           - conseil aux entreprises ;
           - ingénierie ou études techniques.
       références:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
-        Champ d'application du barème de renforcée: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1410
+        Champ d’application du barème de renforcée: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1410
 
     barème innovation et croissance:
-      titre: Barème d'innovation et croissance
+      titre: barème d’innovation et croissance
       applicable si:
         toutes ces conditions:
           - entreprise . salariés . effectif < 250
           - entreprise . chiffre d'affaires < 50000000
       formule: barèmes . innovation et croissance
-      question: Êtes-vous éligible au barème d'innovation et croissance ?
+      question: Êtes-vous éligible au barème d’innovation et croissance ?
       par défaut: non
       description: |
-        Pour bénéficier du barème d'innovation et croissance, les employeurs doivent :
+        Pour bénéficier du barème d’innovation et croissance, les employeurs doivent :
         - employer <strong>moins de 250 salariés</strong>,
         - réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>
         - et réaliser des <strong>projets innovants</strong> dans le secteur des technologies de l’information
         et de la communication.
 
-        Ces projets doivent être réalisés dans l'un des <strong>domaines d’activité</strong> suivants :
+        Ces projets doivent être réalisés dans l’un des <strong>domaines d’activité</strong> suivants :
           - 📡 télécommunication ;
           - 🖥️ informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance
-          de systèmes et d’applications, gestion d'installations, traitement des données, hébergement et activités
+          de systèmes et d’applications, gestion d’installations, traitement des données, hébergement et activités
           connexes ;
           - 🌐 édition de portails internet et de logiciels;
           - 🎴 infographie, notamment conception de contenus visuels et numériques ;
@@ -275,10 +275,10 @@ salarié . cotisations . exonérations . lodeom . zone un:
         Si les conditions sont réunies, l’exonération s’applique aux salariés qui participent principalement et
         directement à la réalisation de projets innovants.
 
-        L'exonération <strong>ne s'applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+        L’exonération <strong>ne s’applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
       références:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
-        Champ d'application du barème d'innovation et croissance: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1430
+        Champ d’application du barème d’innovation et croissance: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1430
 
 salarié . cotisations . exonérations . lodeom . zone deux:
   titre: Saint-Barthélémy, Saint-Martin
@@ -314,7 +314,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       avec:
         moins de 11 salariés:
           valeur: barèmes = 'moins de 11 salariés'
-          titre: Barème pour les employeurs de moins de 11 salariés
+          titre: barème pour les employeurs de moins de 11 salariés
           description: |
             L’exonération est applicable aux employeurs occupant <strong>moins de 11 salariés</strong>.
 
@@ -323,11 +323,11 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             cette exonération, plus favorable, car elles ont moins de 11 salariés.
           références:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
-            Champ d'application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1520
+            Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1520
 
         sectoriel:
           valeur: barèmes = 'sectoriel'
-          titre: Barème d'exonération sectorielle
+          titre: barème d’exonération sectorielle
           description: |
             L’exonération est applicable aux employeurs, quel que soit leur effectif, relevant d’un des secteurs d’activité
             éligibles au dispositif d’exonération « Lodeom » :
@@ -354,19 +354,19 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - la desserte intérieure de ces départements ou collectivités.
           références:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
-            Champ d'application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1540
+            Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1540
 
         renforcé:
           valeur: barèmes = 'renforcé'
-          titre: Barème d'exonération renforcée
+          titre: barème d’exonération renforcée
           description: |
-            Pour bénéficier du barème d'exonération renforcée, les employeurs doivent :
+            Pour bénéficier du barème d’exonération renforcée, les employeurs doivent :
             - employer <strong>moins de 250 salariés</strong>,
             - réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>
             - et, pour ceux installés à <strong>Saint-Martin</strong>, être soumis de plein droit ou sur option à
             un <strong>régime réel d’imposition</strong>.
 
-            Par ailleurs, l'employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
+            Par ailleurs, l’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
             - soit relever de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
             contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
             (prévue à l’article 199 undecies B du code général des impôts) ;
@@ -377,8 +377,8 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - recherche et développement
               - technologies de l’information et de la communication.
 
-            L'employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
-            - soit relever d'un des <strong>secteurs</strong> suivants :
+            L’employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
+            - soit relever d’un des <strong>secteurs</strong> suivants :
               - 🔬 recherche et développement ;
               - 🖥️ technologies de l’information et de la communication ;
               - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
@@ -388,10 +388,10 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
           références:
             Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
-            Champ d'application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1560
+            Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1560
 
     barème moins de 11 salariés:
-      titre: Barème pour les employeurs de moins de 11 salariés
+      titre: barème pour les employeurs de moins de 11 salariés
       non applicable si:
         une de ces conditions:
           - barème sectoriel
@@ -408,10 +408,10 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         cette exonération, plus favorable, car elles ont moins de 11 salariés.
       références:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
-        Champ d'application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1520
+        Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1520
 
     barème sectoriel:
-      titre: Barème d'exonération sectorielle
+      titre: barème d’exonération sectorielle
       non applicable si: barème renforcé
       formule:
         une de ces conditions:
@@ -446,25 +446,25 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - la desserte intérieure de ces départements ou collectivités.
       références:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
-        Champ d'application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1540
+        Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1540
 
     barème renforcé:
-      titre: Barème d'exonération renforcée
+      titre: barème d’exonération renforcée
       applicable si:
         toutes ces conditions:
           - entreprise . salariés . effectif < 250
           - entreprise . chiffre d'affaires < 50000000
       formule: barèmes . renforcé
-      question: Êtes-vous éligible au barème d'exonération renforcée ?
+      question: Êtes-vous éligible au barème d’exonération renforcée ?
       par défaut: non
       description: |
-        Pour bénéficier du barème d'exonération renforcée, les employeurs doivent :
+        Pour bénéficier du barème d’exonération renforcée, les employeurs doivent :
         - employer <strong>moins de 250 salariés</strong>,
         - réaliser un chiffre d’affaires annuel <strong>inférieur à 50 millions d’euros</strong>
         - et, pour ceux installés à <strong>Saint-Martin</strong>, être soumis de plein droit ou sur option à
         un <strong>régime réel d’imposition</strong>.
 
-        Par ailleurs, l'employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
+        Par ailleurs, l’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
         - soit relever de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
         contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
         (prévue à l’article 199 undecies B du code général des impôts) ;
@@ -475,8 +475,8 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - recherche et développement
           - technologies de l’information et de la communication.
 
-        L'employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
-        - soit relever d'un des <strong>secteurs</strong> suivants :
+        L’employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
+        - soit relever d’un des <strong>secteurs</strong> suivants :
           - 🔬 recherche et développement ;
           - 🖥️ technologies de l’information et de la communication ;
           - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
@@ -486,12 +486,12 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
       références:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
-        Champ d'application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1560
+        Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1560
 
 salarié . cotisations . exonérations . lodeom . montant:
   non applicable si: cotisations . assiette = 0
   rend non applicable: réduction générale
-  titre: Montant de l'exonération
+  titre: montant de l’exonération
   références:
     Estimateur Urssaf: https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html

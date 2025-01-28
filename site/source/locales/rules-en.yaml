@@ -9476,7 +9476,7 @@ salarié . cotisations . exonérations . lodeom:
     For a higher salary, 0% reduction. Between the two, a straight line is drawn.
   description.fr: >
     Un ensemble assez complexe de réductions de cotisation est disponible pour
-    les salariés d'Outre-mer.
+    les salariés d’Outre-mer.
 
     Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
 
@@ -9532,8 +9532,8 @@ salarié . cotisations . exonérations . lodeom . montant:
     seuil sortie:
       titre.en: '[automatic] output threshold'
       titre.fr: seuil sortie
-  titre.en: '[automatic] Amount of exemption'
-  titre.fr: Montant de l'exonération
+  titre.en: '[automatic] exemption amount'
+  titre.fr: montant de l’exonération
 salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles:
   description.en: >
     [automatic] The business sectors eligible for the "Lodeom" exemption scheme
@@ -9574,7 +9574,7 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
       - between these departments or communities and between Réunion and Mayotte;
       - domestic services within these departments or communities.
   description.fr: >
-    Les secteurs d'activité éligibles au dispositif d'exonération « Lodeom »
+    Les secteurs d’activité éligibles au dispositif d’exonération « Lodeom »
     sont les suivants :
 
     - 🔬 recherche et développement ;
@@ -9612,7 +9612,7 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
       - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
       - la desserte intérieure de ces départements ou collectivités.
   question.en: '[automatic] Does your company belong to one of the Lodeom-eligible sectors?'
-  question.fr: Votre entreprise appartient-elle à l'un des secteurs éligibles Lodeom ?
+  question.fr: Votre entreprise appartient-elle à l’un des secteurs éligibles Lodeom ?
   titre.en: '[automatic] eligible business sectors'
   titre.fr: secteurs d'activité éligibles
 salarié . cotisations . exonérations . lodeom . zone deux:
@@ -9638,8 +9638,8 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         les conditions pour bénéficier du barème sectoriel sans critère d’effectif, choisissent d’opter pour
 
         cette exonération, plus favorable, car elles ont moins de 11 salariés.
-      titre.en: '[automatic] Scale for employers with fewer than 11 employees'
-      titre.fr: Barème pour les employeurs de moins de 11 salariés
+      titre.en: '[automatic] scale for employers with fewer than 11 employees'
+      titre.fr: barème pour les employeurs de moins de 11 salariés
     barème renforcé:
       description.en: >
         [automatic] To qualify for the enhanced exemption scale, employers must
@@ -9680,7 +9680,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - 🔋 renewable energies;
         - or benefit from the <strong>"inward processing" regime.</strong>
       description.fr: >
-        Pour bénéficier du barème d'exonération renforcée, les employeurs
+        Pour bénéficier du barème d’exonération renforcée, les employeurs
         doivent :
 
         - employer <strong>moins de 250 salariés</strong>,
@@ -9692,7 +9692,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         un <strong>régime réel d’imposition</strong>.
 
 
-        Par ailleurs, l'employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
+        Par ailleurs, l’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
 
         - soit relever de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
 
@@ -9707,9 +9707,9 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - recherche et développement
           - technologies de l’information et de la communication.
 
-        L'employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
+        L’employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
 
-        - soit relever d'un des <strong>secteurs</strong> suivants :
+        - soit relever d’un des <strong>secteurs</strong> suivants :
           - 🔬 recherche et développement ;
           - 🖥️ technologies de l’information et de la communication ;
           - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
@@ -9718,9 +9718,9 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - 🔋 énergies renouvelables ;
         - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
       question.en: '[automatic] Are you eligible for the enhanced exemption scale?'
-      question.fr: Êtes-vous éligible au barème d'exonération renforcée ?
-      titre.en: '[automatic] Reinforced exemption scale'
-      titre.fr: Barème d'exonération renforcée
+      question.fr: Êtes-vous éligible au barème d’exonération renforcée ?
+      titre.en: '[automatic] enhanced exemption scale'
+      titre.fr: barème d’exonération renforcée
     barème sectoriel:
       description.en: >
         [automatic] The exemption applies to employers, regardless of their
@@ -9802,8 +9802,8 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
           - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
           - la desserte intérieure de ces départements ou collectivités.
-      titre.en: '[automatic] Sector exemption scale'
-      titre.fr: Barème d'exonération sectorielle
+      titre.en: '[automatic] sector exemption scale'
+      titre.fr: barème d’exonération sectorielle
     barèmes:
       avec:
         moins de 11 salariés:
@@ -9827,8 +9827,8 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             les conditions pour bénéficier du barème sectoriel sans critère d’effectif, choisissent d’opter pour
 
             cette exonération, plus favorable, car elles ont moins de 11 salariés.
-          titre.en: '[automatic] Scale for employers with fewer than 11 employees'
-          titre.fr: Barème pour les employeurs de moins de 11 salariés
+          titre.en: '[automatic] scale for employers with fewer than 11 employees'
+          titre.fr: barème pour les employeurs de moins de 11 salariés
         renforcé:
           description.en: >
             [automatic] To qualify for the enhanced exemption scale, employers
@@ -9836,7 +9836,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
 
             - have <strong>fewer than 250 employees</strong>,
 
-            - have annual sales <strong>of less than 50 million euros</strong>
+            - have annual sales <strong>of less than €50 million</strong>
 
             - and, in the case of employers based in <strong>Saint-Martin</strong>, be subject to an automatic or optional
 
@@ -9869,7 +9869,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - 🔋 renewable energies;
             - or benefit from the <strong>"inward processing" regime.</strong>
           description.fr: >
-            Pour bénéficier du barème d'exonération renforcée, les employeurs
+            Pour bénéficier du barème d’exonération renforcée, les employeurs
             doivent :
 
             - employer <strong>moins de 250 salariés</strong>,
@@ -9881,7 +9881,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             un <strong>régime réel d’imposition</strong>.
 
 
-            Par ailleurs, l'employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
+            Par ailleurs, l’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
 
             - soit relever de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
 
@@ -9896,9 +9896,9 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - recherche et développement
               - technologies de l’information et de la communication.
 
-            L'employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
+            L’employeur doit <strong>également</strong> remplir <strong>au moins l’une des conditions</strong> suivantes :
 
-            - soit relever d'un des <strong>secteurs</strong> suivants :
+            - soit relever d’un des <strong>secteurs</strong> suivants :
               - 🔬 recherche et développement ;
               - 🖥️ technologies de l’information et de la communication ;
               - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
@@ -9906,8 +9906,8 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - 🌳 environnement ;
               - 🔋 énergies renouvelables ;
             - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
-          titre.en: '[automatic] Reinforced exemption scale'
-          titre.fr: Barème d'exonération renforcée
+          titre.en: '[automatic] enhanced exemption scale'
+          titre.fr: barème d’exonération renforcée
         sectoriel:
           description.en: >
             [automatic] The exemption applies to employers, regardless of their
@@ -9989,8 +9989,8 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
               - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
               - la desserte intérieure de ces départements ou collectivités.
-          titre.en: '[automatic] Sector exemption scale'
-          titre.fr: Barème d'exonération sectorielle
+          titre.en: '[automatic] sector exemption scale'
+          titre.fr: barème d’exonération sectorielle
       question.en: '[automatic] What scale would you like to apply?'
       question.fr: Quel barème souhaitez-vous appliquer ?
       titre.en: '[automatic] scales'
@@ -10037,13 +10037,13 @@ salarié . cotisations . exonérations . lodeom . zone un:
         ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
 
 
-        Le barème de compétitivité <strong>n'est pas applicable</strong> :
+        Le barème de compétitivité <strong>n’est pas applicable</strong> :
 
         - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
 
         et croissance.
-      titre.en: '[automatic] Competitiveness scale'
-      titre.fr: Barème de compétitivité
+      titre.en: '[automatic] competitiveness scale'
+      titre.fr: barème de compétitivité
     barème compétitivité renforcée:
       description.en: >
         [automatic] To qualify for the enhanced competitiveness scale, employers
@@ -10098,7 +10098,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
         L’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
 
-        - soit relever d'un des <strong>secteurs</strong> suivants :
+        - soit relever d’un des <strong>secteurs</strong> suivants :
           - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
           et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
           - 🎣 pêche, cultures marines et aquaculture ;
@@ -10117,22 +10117,22 @@ salarié . cotisations . exonérations . lodeom . zone un:
         - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
 
 
-        <strong>En Guyane</strong>, l'employeur peut être éligible :
+        <strong>En Guyane</strong>, l’employeur peut être éligible :
 
-        - s'il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
+        - s’il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
 
         contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
 
         (prévue à l’article 199 undecies B du code général des impôts)
 
-        - ou s'il exerce une des activités suivantes :
+        - ou s’il exerce une des activités suivantes :
           - comptabilité ;
           - conseil aux entreprises ;
           - ingénierie ou études techniques.
       question.en: '[automatic] Are you eligible for the enhanced competitiveness scale?'
       question.fr: Êtes-vous éligible au barème compétitivité renforcée ?
-      titre.en: '[automatic] Enhanced competitiveness scale'
-      titre.fr: Barème de compétitivité renforcée
+      titre.en: '[automatic] enhanced competitiveness scale'
+      titre.fr: barème de compétitivité renforcée
     barème innovation et croissance:
       description.en: >
         [automatic] To qualify for the innovation and growth scale, employers
@@ -10140,7 +10140,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
         - have <strong>fewer than 250 employees</strong>,
 
-        - have annual sales <strong>of less than €50 million</strong>
+        - have annual sales <strong>of less than 50 million euros</strong>
 
         - and carry out <strong>innovative projects</strong> in the information technology
 
@@ -10152,7 +10152,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
           - 🖥️ IT, including programming, systems and software consulting, third-party maintenance
           systems and applications, facilities management, data processing, hosting and related activities
           related activities;
-          - 🌐 internet portal and software publishing;
+          - 🌐 Internet portal and software publishing;
           - 🎴 computer graphics, including visual and digital content design;
           - 🤖 design of connected objects.
 
@@ -10163,7 +10163,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
         The exemption <strong>does not</strong> apply to support functions: administrative financial tasks, logistics, human resources.
       description.fr: >
-        Pour bénéficier du barème d'innovation et croissance, les employeurs
+        Pour bénéficier du barème d’innovation et croissance, les employeurs
         doivent :
 
         - employer <strong>moins de 250 salariés</strong>,
@@ -10175,10 +10175,10 @@ salarié . cotisations . exonérations . lodeom . zone un:
         et de la communication.
 
 
-        Ces projets doivent être réalisés dans l'un des <strong>domaines d’activité</strong> suivants :
+        Ces projets doivent être réalisés dans l’un des <strong>domaines d’activité</strong> suivants :
           - 📡 télécommunication ;
           - 🖥️ informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance
-          de systèmes et d’applications, gestion d'installations, traitement des données, hébergement et activités
+          de systèmes et d’applications, gestion d’installations, traitement des données, hébergement et activités
           connexes ;
           - 🌐 édition de portails internet et de logiciels;
           - 🎴 infographie, notamment conception de contenus visuels et numériques ;
@@ -10189,11 +10189,11 @@ salarié . cotisations . exonérations . lodeom . zone un:
         directement à la réalisation de projets innovants.
 
 
-        L'exonération <strong>ne s'applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+        L’exonération <strong>ne s’applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
       question.en: '[automatic] Are you eligible for the innovation and growth scale?'
-      question.fr: Êtes-vous éligible au barème d'innovation et croissance ?
-      titre.en: '[automatic] Innovation and growth scale'
-      titre.fr: Barème d'innovation et croissance
+      question.fr: Êtes-vous éligible au barème d’innovation et croissance ?
+      titre.en: '[automatic] innovation and growth scale'
+      titre.fr: barème d’innovation et croissance
     barèmes:
       avec:
         compétitivité:
@@ -10234,13 +10234,13 @@ salarié . cotisations . exonérations . lodeom . zone un:
             ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
 
 
-            Le barème de compétitivité <strong>n'est pas applicable</strong> :
+            Le barème de compétitivité <strong>n’est pas applicable</strong> :
 
             - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
 
             et croissance.
-          titre.en: '[automatic] Competitiveness scale'
-          titre.fr: Barème de compétitivité
+          titre.en: '[automatic] competitiveness scale'
+          titre.fr: barème de compétitivité
         compétitivité renforcée:
           description.en: >
             [automatic] To qualify for the enhanced competitiveness scale,
@@ -10254,7 +10254,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
             The employer must meet <strong>at least one of the</strong> following <strong>conditions</strong>:
 
             - either fall within one of the following <strong>sectors</strong>:
-              - 🚜 agriculture (including agricultural cooperatives and agricultural collective interest companies
+              - 🚜 agriculture (including agricultural cooperatives and agricultural community interest companies
               and their unions, as well as maritime cooperatives and their unions);
               - 🎣 fishing, marine farming and aquaculture;
               - 🏭 industry ;
@@ -10295,7 +10295,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
             L’employeur doit remplir <strong>au moins l’une des conditions</strong> suivantes :
 
-            - soit relever d'un des <strong>secteurs</strong> suivants :
+            - soit relever d’un des <strong>secteurs</strong> suivants :
               - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
               et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
               - 🎣 pêche, cultures marines et aquaculture ;
@@ -10314,20 +10314,20 @@ salarié . cotisations . exonérations . lodeom . zone un:
             - soit bénéficier du <strong>régime de « perfectionnement actif »</strong>.
 
 
-            <strong>En Guyane</strong>, l'employeur peut être éligible :
+            <strong>En Guyane</strong>, l’employeur peut être éligible :
 
-            - s'il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
+            - s’il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
 
             contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
 
             (prévue à l’article 199 undecies B du code général des impôts)
 
-            - ou s'il exerce une des activités suivantes :
+            - ou s’il exerce une des activités suivantes :
               - comptabilité ;
               - conseil aux entreprises ;
               - ingénierie ou études techniques.
-          titre.en: '[automatic] Enhanced competitiveness scale'
-          titre.fr: Barème de compétitivité renforcée
+          titre.en: '[automatic] enhanced competitiveness scale'
+          titre.fr: barème de compétitivité renforcée
         innovation et croissance:
           description.en: >
             [automatic] To qualify for the innovation and growth scale,
@@ -10335,7 +10335,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
             - have <strong>fewer than 250 employees</strong>,
 
-            - have annual sales <strong>of less than €50 million</strong>
+            - have annual sales <strong>of less than 50 million euros</strong>
 
             - and carry out <strong>innovative projects</strong> in the information technology
 
@@ -10347,7 +10347,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
               - 🖥️ IT, including programming, systems and software consulting, third-party maintenance
               systems and applications, facilities management, data processing, hosting and related activities
               related activities;
-              - 🌐 internet portal and software publishing;
+              - 🌐 Internet portal and software publishing;
               - 🎴 computer graphics, including visual and digital content design;
               - 🤖 design of connected objects.
 
@@ -10356,9 +10356,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
             directly in the realization of innovative projects.
 
 
-            The exemption <strong>does not apply</strong> to support functions: administrative financial tasks, logistics, human resources.
+            The exemption <strong>does not</strong> apply to support functions: administrative financial tasks, logistics, human resources.
           description.fr: >
-            Pour bénéficier du barème d'innovation et croissance, les employeurs
+            Pour bénéficier du barème d’innovation et croissance, les employeurs
             doivent :
 
             - employer <strong>moins de 250 salariés</strong>,
@@ -10370,10 +10370,10 @@ salarié . cotisations . exonérations . lodeom . zone un:
             et de la communication.
 
 
-            Ces projets doivent être réalisés dans l'un des <strong>domaines d’activité</strong> suivants :
+            Ces projets doivent être réalisés dans l’un des <strong>domaines d’activité</strong> suivants :
               - 📡 télécommunication ;
               - 🖥️ informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance
-              de systèmes et d’applications, gestion d'installations, traitement des données, hébergement et activités
+              de systèmes et d’applications, gestion d’installations, traitement des données, hébergement et activités
               connexes ;
               - 🌐 édition de portails internet et de logiciels;
               - 🎴 infographie, notamment conception de contenus visuels et numériques ;
@@ -10384,11 +10384,11 @@ salarié . cotisations . exonérations . lodeom . zone un:
             directement à la réalisation de projets innovants.
 
 
-            L'exonération <strong>ne s'applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+            L’exonération <strong>ne s’applique pas</strong> aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
           question.en: '[automatic] Are you eligible for the innovation and growth scale?'
-          question.fr: Êtes-vous éligible au barème d'innovation et croissance ?
-          titre.en: '[automatic] Innovation and growth scale'
-          titre.fr: Barème d'innovation et croissance
+          question.fr: Êtes-vous éligible au barème d’innovation et croissance ?
+          titre.en: '[automatic] innovation and growth scale'
+          titre.fr: barème d’innovation et croissance
       question.en: '[automatic] What scale would you like to apply?'
       question.fr: Quel barème souhaitez-vous appliquer ?
       titre.en: '[automatic] scales'
