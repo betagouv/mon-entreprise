@@ -1,0 +1,8 @@
+importer!:
+  depuis:
+    nom: '@modele-social/legacy'
+    source: "../../legacy/legacy.model.json"
+  dans: legacy
+
+tata:
+  valeur: 2

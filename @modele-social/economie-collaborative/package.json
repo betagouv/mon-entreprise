@@ -1,0 +1,35 @@
+{
+	"name": "@modele-social/economie-collaborative",
+	"version": "0.0.1",
+	"description": "Les règles sociales pour les activités d’économie collaborative",
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "dist/index.js",
+	"types": "./index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/mon-entreprise.git"
+	},
+	"bugs": "https://github.com/betagouv/mon-entreprise/issues",
+	"homepage": "https://mon-entreprise.urssaf.fr",
+	"license": "MIT",
+	"files": [
+		"dist",
+		"index.d.ts"
+	],
+	"devDependencies": {
+		"js-yaml": "^4.1.0",
+		"onchange": "^7.1.0"
+	},
+	"peerDependencies": {
+		"publicodes": "^1.0.4"
+	},
+	"scripts": {
+		"build": "node ./build-rules.js && echo 'ℹ️  @modele-social/economie-collaborative compilé'",
+		"start": "yarn run build && onchange 'règles/**/*.publicodes' -- yarn run build && echo 'ℹ️  @modele-social/economie-collaborative compilé'",
+		"clean": "rimraf dist node_modules",
+		"prepack": "yarn run build",
+		"up": "yarn version --minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",
+		"test": "node ../scripts/check-changelog.js"
+	}
+}
