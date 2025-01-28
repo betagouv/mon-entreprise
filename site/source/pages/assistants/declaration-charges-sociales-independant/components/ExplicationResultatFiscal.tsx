@@ -34,54 +34,82 @@ export function ExplicationsResultatFiscal() {
 			type="aide"
 			bigPopover
 		>
-			<Body>
-				Pour calculer le montant du résultat fiscal avant déduction des
-				exonérations et des charges sociales à indiquer dans ce simulateur, vous
-				pouvez utiliser votre liasse fiscale, en reprenant les montants indiqués
-				dans les lignes fiscales du tableau ci-dessous, en fonction de votre
-				situation (imposition au réel normal ou au réel simplifié).
-			</Body>
-			<Body>L’opération à effectuer est la suivante :</Body>
-			<Ul>
-				<Li>
-					Déterminez le résultat fiscal dans votre liasse, sans déduire le
-					montant de vos cotisations et contributions sociales aux régimes
-					obligatoires de sécurité sociale. Prenez le résultat fiscal
-					correspondant <strong>(1)</strong>
-				</Li>
-				<Li>
-					Ajoutez les exonérations <strong>(2)</strong>
-				</Li>
-			</Ul>
+			<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.imposition.explications.intro">
+				<Body>
+					Pour calculer le montant du résultat fiscal avant déduction des
+					exonérations et des charges sociales à indiquer dans ce simulateur,
+					vous pouvez utiliser votre liasse fiscale, en reprenant les montants
+					indiqués dans les lignes fiscales du tableau ci-dessous, en fonction
+					de votre situation (imposition au réel normal ou au réel simplifié).
+				</Body>
+				<Body>L’opération à effectuer est la suivante :</Body>
+				<Ul>
+					<Li>
+						Déterminez le résultat fiscal dans votre liasse, sans déduire le
+						montant de vos cotisations et contributions sociales aux régimes
+						obligatoires de sécurité sociale. Prenez le résultat fiscal
+						correspondant <strong>(1)</strong>
+					</Li>
+					<Li>
+						Ajoutez les exonérations <strong>(2)</strong>
+					</Li>
+				</Ul>
+			</Trans>
 
 			<StyledTable role="table">
 				<caption className="sr-only">
-					<Trans i18nKey="explications.tableCaption">
+					<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.imposition.explications.tableCaption">
 						Tableau affichant les lignes de votre liasse fiscale associées aux
-						exonérations fiscales en place pour chaque type d'activité. La
-						première colonne affiche les différents types d'activité (BIC, BNC).
+						exonérations fiscales en place pour chaque type d’activité. La
+						première colonne affiche les différents types d’activité (BIC, BNC).
 						La deuxième colonne indique les lignes de votre liasse fiscale qui
 						vous permettent de déterminer votre résultat fiscal, et ce pour
-						chaque type d'activité. Les autres colonnes affichent les
+						chaque type d’activité. Les autres colonnes affichent les
 						exonérations en place ainsi que les lignes de liasse fiscale ou
-						ajouter vos exonérations et ce pour chaque type d'activité.
+						ajouter vos exonérations et ce pour chaque type d’activité.
 					</Trans>
 				</caption>
 				<thead>
 					<tr>
-						<th scope="col">Régime fiscal</th>
 						<th scope="col">
-							Résultat fiscal <strong>(1)</strong>
+							<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.imposition.explications.th.1">
+								Régime fiscal
+							</Trans>
 						</th>
-						<th scope="col">Exonérations liées aux zones / activités</th>
-						<th scope="col">Exonérations Madelin et plan d’épargne retraite</th>
-						<th scope="col">Exonérations de plus-values à court terme</th>
-						<th scope="col">Suramortissement productif</th>
+						<th scope="col">
+							<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.imposition.explications.th.2">
+								Résultat fiscal <strong>(1)</strong>
+							</Trans>
+						</th>
+						<th scope="col">
+							<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.imposition.explications.th.3">
+								Exonérations liées aux zones / activités
+							</Trans>
+						</th>
+						<th scope="col">
+							<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.imposition.explications.th.4">
+								Exonérations Madelin et plan d’épargne retraite
+							</Trans>
+						</th>
+						<th scope="col">
+							<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.imposition.explications.th.5">
+								Exonérations de plus-values à court terme
+							</Trans>
+						</th>
+						<th scope="col">
+							<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.imposition.explications.th.6">
+								Suramortissement productif
+							</Trans>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row">BIC réel normal</th>
+						<th scope="row">
+							<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.entreprise.imposition.explications.th.7">
+								BIC réel normal
+							</Trans>
+						</th>
 						<td>
 							<strong>2058-A-SD</strong>
 							<br />

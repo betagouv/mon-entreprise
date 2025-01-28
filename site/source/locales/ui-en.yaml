@@ -123,7 +123,6 @@ EntrepriseSearchField:
   placeholder: "Example: Café de la gare or 40123778000127"
 Envoyer: Send
 "Exemple : Des informations plus claires, un calcul détaillé...": "Example: clearer information, detailed calculation..."
-Exonérations: Exemptions
 ExportSimulation:
   Banner: Print or save as PDF
 Fermer: Close
@@ -145,7 +144,6 @@ Impôt sur le revenu: Income tax
 Impôts: Taxes
 Information: Information
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
-International: International
 Intégrer le module Web: Integrating the Web module
 Intégrer nos simulateurs: Integrate our simulators
 Invalidité: Disability
@@ -274,6 +272,7 @@ Revenu du dirigeant par statut: Executive income by status
 Revenu net mensuel après impôts: Net monthly income after tax
 Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
+Régime d’imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
 Rémunération brute: Gross remuneration
@@ -297,7 +296,6 @@ Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut qu
 Simulateurs: Simulators
 Simulateurs et Assistants: Simulators and Assistants
 Simulation en cours: Simulation in progress
-Situation personnelle: Personal situation
 "Siège :": "Headquarters:"
 Soit <2><0></0></2> avant impôts: Or <2><0></0></2> before tax
 Statistiques: Statistics
@@ -613,14 +611,6 @@ error:
     apologize for any inconvenience caused.
   placeholder: Hello, I encountered an error after clicking on...
   title: An error has occurred
-explications:
-  tableCaption: Table displaying the lines of your tax return associated with the
-    tax exemptions in place for each type of activity. The first column shows
-    the different types of activity (BIC, BNC). The second column shows the
-    lines in your tax return that enable you to determine your taxable income,
-    for each type of activity. The other columns show the exemptions in place,
-    as well as the lines in your tax return where you can add your exemptions,
-    for each type of activity.
 feedback:
   error:
     description: The message could not be sent (status code {{statusCode}}). Please
@@ -889,7 +879,52 @@ pages:
         you determine the type of declaration you need to complete, and how your
         social security contributions are calculated.</3>
       entreprise:
-        titre: <0>Company and activity</0>
+        formulaire:
+          "1": Company and activity
+          "2": This declaration aid is only available to companies already in business in
+            {{year}}
+          "3": Personal situation
+          "4": Exemptions
+          "5": International
+          "6": Social security contributions in {{year}}
+        imposition:
+          "1": What are your sales before tax at {{year}}?
+          "2": Indicate the amount of your gross sales or revenue (before deduction of the
+            fixed allowance for expenses and charges) and before deduction of
+            any tax exemptions from which you have benefited.
+          "3": What is your taxable income for the year {{year}}?<4></4><5>Social security
+            charges and tax exemptions not included</5>.<5> <2></2></5>
+          "4": Taxable income corresponds to income less expenses. It can be positive
+            (profit) or negative (deficit).
+          "5": What is your net remuneration at {{year}}?<3></3><4>Excluding social
+            security contributions</4>
+          explications:
+            intro: <0>To calculate the amount of taxable income before deduction of
+              exemptions and social security charges to be entered in this
+              simulator, you can use your tax return, taking the amounts shown
+              in the tax lines of the table below, depending on whether you are
+              subject to standard or simplified taxation.</0><1>To do this,
+              proceed as follows:</1><2><0>Determine the taxable income in your
+              tax return, without deducting your social security contributions.
+              Take the corresponding taxable income <1>(1)</1></0><1>Add
+              exemptions <1>(2)</1></1></2>
+            tableCaption: Table displaying the lines of your tax return associated with the
+              tax exemptions in place for each type of activity. The first
+              column shows the different types of activity (BIC, BNC). The
+              second column shows the lines in your tax return that enable you
+              to determine your taxable income, for each type of activity. The
+              other columns show the exemptions in place, as well as the lines
+              in your tax return where you can add your exemptions, for each
+              type of activity.
+            th:
+              "1": Tax system
+              "2": Taxable income <1>(1)</1>
+              "3": Zone/activity exemptions
+              "4": Madelin exemptions and retirement savings plans
+              "5": Short-term capital gains exemptions
+              "6": Suramortissement productif
+              "7": BIC réel normal
+        titre: <0><0>Company and activity</0></0>
       meta:
         description: Calculate the amount of social security contributions to be
           reported on your 2022 tax return

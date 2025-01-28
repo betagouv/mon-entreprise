@@ -14,7 +14,7 @@ import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 
-export default function ResultatsSimples() {
+export default function Résultats() {
 	const engine = useEngine()
 	const { t } = useTranslation()
 
