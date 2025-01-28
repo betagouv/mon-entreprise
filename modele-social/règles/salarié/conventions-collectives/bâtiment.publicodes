@@ -349,8 +349,7 @@ salarié . convention collective . BTP . OPPBTP:
 salarié . convention collective . BTP . OPPBTP travailleur temporaire:
   formule:
     produit:
-      #catégorie correspondant à du temps partiel, or dans les tableaux de taux de cotisations, le calcul est trimestriel donc on multiplie par 3 
-      - contrat . temps de travail * 3
+      - contrat . temps de travail 
       - 0.11%
       - variations:
           - si: caisse de rattachement = 'idf'
