@@ -3037,7 +3037,7 @@ dirigeant . indépendant . assiette minimale . retraite:
 dirigeant . indépendant . assiette minimale . retraite . en 2022:
   description.en: >
     [automatic] The minimum base of 11.50% was not sufficient to validate 3
-    quarters. Therefore, this minimum base has been revised during the year and
+    quarters. Consequently, this minimum base was revised during the year and
     will be applied retroactively from January 1, 2022.
 
 
@@ -3049,7 +3049,7 @@ dirigeant . indépendant . assiette minimale . retraite . en 2022:
     2022.
 
 
-    L’assiette minimale est de 4 758 €  pour 2022 uniquement. Pour 2023, on repasse à une assiette minimale de 11,5% du PASS.
+    L’assiette minimale est de 4 758 € pour 2022 uniquement. Pour 2023, on repasse à une assiette minimale de 11,5% du PASS.
   titre.en: '[automatic] in 2022'
   titre.fr: en 2022
 dirigeant . indépendant . conjoint collaborateur:

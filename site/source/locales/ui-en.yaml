@@ -196,7 +196,6 @@ Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
   urssaf:
     fr: My company is recruiting! See job offers on mon-entreprise.urssaf.fr
 Montant annuel: Annual amount
-Montant de l'impôt sur les sociétés: Amount of corporate income tax
 Montant mensuel: Monthly amount
 Montant net des HC/HS exonérées: Net amount of exempt HC/HS
 Montant net imposable: Net taxable amount
@@ -677,11 +676,6 @@ gérer:
 iframe:
   description: Tools for developers
   title: Integrate a simulator
-impot-société:
-  préremplir:
-    exercice-2022: Use dates for fiscal year 2022, pre-fill
-    exercice-2023: Use dates for fiscal year 2023, pre-fill
-  préremplir-exercice: "<0>Fiscal 2022</0> <2>Fiscal 2023</2> "
 impôt: tax
 impôt sur le revenu: income tax
 impôt sur le revenu prélevé à la source: income tax deducted at source
@@ -1450,6 +1444,32 @@ pages:
       cta:
         assistant: Launch wizard
         simulateur: Launch simulator
+    impot-société:
+      exercice: Exercise {{ year }}
+      légende: Company taxable income
+      meta:
+        description: Calculate your corporate income tax
+        title: Corporate income tax
+      montant: Amount of corporate income tax
+      préremplir: Pre-fill with exercise dates {{ year }}
+      seo: <0>How is corporate income tax calculated?</0><1>Corporate income tax
+        applies to the profits of limited companies (SA, SAS, SASU, SARL, etc.)
+        and, by option, to certain other companies (EIRL, EURL, SNC,
+        etc.).</1><2>It is calculated on the basis of profits made in France
+        during the financial year. Normally, a financial year lasts one year,
+        but it can be shorter or longer (particularly at the start of a business
+        or when the company is wound up). In this case, the tax scale is
+        pro-rated according to the length of the financial year, which is taken
+        into account in the simulator by modifying the start and end dates of
+        the financial year.</2><3>Reduced rate and special schemes</3><4>SMEs
+        with sales of less than €7.63 million, 75% of whose capital is held by
+        individuals, benefit from a reduced rate of corporation tax. This rate
+        is taken into account in the simulator, and it is not currently possible
+        to simulate ineligibility for reduced rates.</4><5>Finally, there are
+        specific tax regimes with dedicated rates for certain types of capital
+        gains (sale of securities, sale of patents). These regimes are not
+        included in the simulator.</5>
+      title: Corporate tax simulator
     indépendant:
       cotisations-forfaitaires: "Flat-rate contributions: "
       meta:
@@ -1475,27 +1495,6 @@ pages:
       warning: The amount calculated corresponds to the contributions for the year
         {{year}} (for an income {{year}}).
     is:
-      meta:
-        description: Calculate your corporate income tax
-        title: Corporate income tax
-      seo: <0>How is corporate income tax calculated?</0><1>Corporate income tax
-        applies to the profits of limited companies (SA, SAS, SASU, SARL, etc.)
-        and, by option, to certain other companies (EIRL, EURL, SNC,
-        etc.).</1><2>It is calculated on the basis of profits made in France
-        during the financial year. A financial year is normally one year, but it
-        can be shorter or longer (particularly at the start of a business or
-        when the company is wound up). In this case, the tax scale is pro-rated
-        according to the length of the financial year, which is taken into
-        account in the simulator by modifying the start and end dates of the
-        financial year.</2><3>Reduced rate and special schemes</3><4>SMEs with
-        sales of less than €7.63 million, 75% of whose capital is held by
-        individuals, benefit from a reduced rate of corporation tax. This rate
-        is taken into account in the simulator, and it is not currently possible
-        to simulate ineligibility for reduced rates.</4><5>Finally, there are
-        specific tax regimes with dedicated rates for certain types of capital
-        gains (sale of securities, sale of patents). These regimes are not
-        included in the simulator.</5>
-      title: Corporate tax simulator
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
     lodeom:

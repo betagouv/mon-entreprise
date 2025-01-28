@@ -15,6 +15,7 @@ import {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
+import useYear from '@/components/utils/useYear'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
@@ -25,6 +26,8 @@ import {
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 export default function ISSimulation() {
+	const { t } = useTranslation()
+
 	return (
 		<SimulationContainer>
 			<SimulateurWarning
@@ -43,7 +46,10 @@ export default function ISSimulation() {
 
 			<SimulationGoals
 				toggles={<ExerciceDate />}
-				legend="Résultat imposable de l'entreprise"
+				legend={t(
+					'pages.simulateurs.impot-société.légende',
+					'Résultat imposable de l’entreprise'
+				)}
 			>
 				<SimulationGoal dottedName="entreprise . imposition . IS . résultat imposable" />
 			</SimulationGoals>
@@ -63,45 +69,39 @@ const ExerciceDateContainer = styled.div`
 function ExerciceDate() {
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
+	const currentYear = useYear()
+	const yearN2 = currentYear - 2
+	const yearN1 = currentYear - 1
 
 	return (
 		<div>
 			<ExerciceDateContainer>
 				<StyledInputSuggestion>
-					<Trans i18nKey={'impot-société.préremplir-exercice'}>
-						<Link
-							aria-label={t(
-								'impot-société.préremplir.exercice-2022',
-								"Utiliser les dates de l'exercice 2022, préremplir"
-							)}
-							onPress={() => {
-								dispatch(
-									batchUpdateSituation({
-										'entreprise . exercice . début': '01/01/2022',
-										'entreprise . exercice . fin': '31/12/2022',
-									})
-								)
-							}}
-						>
-							Exercice 2022
-						</Link>{' '}
-						<Link
-							aria-label={t(
-								'impot-société.préremplir.exercice-2023',
-								"Utiliser les dates de l'exercice 2023, préremplir"
-							)}
-							onPress={() => {
-								dispatch(
-									batchUpdateSituation({
-										'entreprise . exercice . début': '01/01/2023',
-										'entreprise . exercice . fin': '31/12/2023',
-									})
-								)
-							}}
-						>
-							Exercice 2023
-						</Link>{' '}
-					</Trans>
+					{[yearN2, yearN1].map((year) => (
+						<>
+							<Link
+								aria-label={t(
+									'pages.simulateurs.impot-société.préremplir',
+									'Préremplir avec les dates de l’exercice {{ year }}',
+									{ year }
+								)}
+								onPress={() => {
+									dispatch(
+										batchUpdateSituation({
+											'entreprise . exercice . début': `01/01/${year}`,
+											'entreprise . exercice . fin': `31/12/${year}`,
+										})
+									)
+								}}
+							>
+								{t(
+									'pages.simulateurs.impot-société.exercice',
+									'Exercice {{ year }}',
+									{ year }
+								)}
+							</Link>{' '}
+						</>
+					))}
 				</StyledInputSuggestion>
 			</ExerciceDateContainer>
 
@@ -157,7 +157,9 @@ function Explanations() {
 						marginTop: '-1rem',
 					}}
 				>
-					<Trans>Montant de l'impôt sur les sociétés</Trans>
+					<Trans i18nKey="pages.simulateurs.impot-société.montant">
+						Montant de l’impôt sur les sociétés
+					</Trans>
 				</Body>
 				<ShareOrSaveSimulationBanner share />
 			</ExplanationsContainer>
@@ -166,7 +168,7 @@ function Explanations() {
 }
 
 export const SeoExplanations = () => (
-	<Trans i18nKey="pages.simulateurs.is.seo">
+	<Trans i18nKey="pages.simulateurs.impot-société.seo">
 		<H2>Comment est calculé l’impôt sur les sociétés ?</H2>
 		<Body>
 			L’impôt sur les sociétés s’applique aux bénéfices réalisés par les
