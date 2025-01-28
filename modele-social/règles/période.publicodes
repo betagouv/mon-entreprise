@@ -45,6 +45,15 @@ période . fin d'année:
     - si: date >= 01/2021
       alors: 31/12/2021
 
+période . fin d'année . N-1:
+  variations:
+    - si: date >= 01/2025
+      alors: 31/12/2024
+    - si: date >= 01/2024
+      alors: 31/12/2023
+    - si: date >= 01/2023
+      alors: 31/12/2022
+
 période . durée depuis le début d'année:
   durée:
     depuis: période . début d'année
