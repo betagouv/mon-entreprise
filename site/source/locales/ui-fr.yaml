@@ -208,7 +208,6 @@ Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
     fr: Mon entreprise recrute ! Voir les offres d'emplois de
       mon-entreprise.urssaf.fr
 Montant annuel: Montant annuel
-Montant de l'impôt sur les sociétés: Montant de l'impôt sur les sociétés
 Montant mensuel: Montant mensuel
 Montant net des HC/HS exonérées: Montant net des HC/HS exonérées
 Montant net imposable: Montant net imposable
@@ -713,11 +712,6 @@ gérer:
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
-impot-société:
-  préremplir:
-    exercice-2022: Utiliser les dates de l'exercice 2022, préremplir
-    exercice-2023: Utiliser les dates de l'exercice 2023, préremplir
-  préremplir-exercice: "<0>Exercice 2022</0> <2>Exercice 2023</2> "
 impôt: impôt
 impôt sur le revenu: impôt sur le revenu
 impôt sur le revenu prélevé à la source: impôt sur le revenu prélevé à la source
@@ -1548,6 +1542,34 @@ pages:
       cta:
         assistant: Lancer l'assistant
         simulateur: Lancer le simulateur
+    impot-société:
+      exercice: Exercice {{ year }}
+      légende: Résultat imposable de l’entreprise
+      meta:
+        description: Calculez votre impôt sur les sociétés
+        title: Impôt sur les sociétés
+      montant: Montant de l’impôt sur les sociétés
+      préremplir: Préremplir avec les dates de l’exercice {{ year }}
+      seo: <0>Comment est calculé l’impôt sur les sociétés ?</0><1>L’impôt sur les
+        sociétés s’applique aux bénéfices réalisés par les sociétés de capitaux
+        (SA, SAS, SASU, SARL, etc.) et sur option facultative pour certaines
+        autres sociétés (EIRL, EURL, SNC, etc.).</1><2>Il est calculé sur la
+        base des bénéfices réalisés en France au cours de l’exercice comptable.
+        La durée d’un exercice est normalement d’un an mais il peut être plus
+        court ou plus long (notamment en début d’activité ou à la dissolution de
+        l’entreprise). Dans ce cas le barème de l’impôt est pro-ratisé en
+        fonction de la durée de l’exercice, ce qui est pris en compte dans le
+        simulateur en modifiant les dates de début et de fin de
+        l’exercice.</2><3>Taux réduit et régimes spécifiques</3><4>Les PME
+        réalisant moins de 7,63 millions d’euros de chiffre d’affaires et dont
+        le capital est détenu à 75% par des personnes physiques bénéficient d’un
+        taux réduit d’impôt sur les sociétés. Ce taux est pris en compte sur le
+        simulateur et il n’est pour l’instant pas possible de simuler
+        l’inéligibilité aux taux réduits.</4><5>Enfin il existe des régimes
+        d’impositions spécifiques avec des taux dédiés pour certains types de
+        plus-values (cession de titres, cession de brevets). Ces régimes ne sont
+        pas intégrés dans le simulateur.</5>
+      title: Simulateur d’impôt sur les sociétés
     indépendant:
       cotisations-forfaitaires: "Montant des cotisations forfaitaires : "
       meta:
@@ -1574,29 +1596,6 @@ pages:
       warning: Le montant calculé correspond aux cotisations de l’année {{year}} (pour
         un revenu {{year}}).
     is:
-      meta:
-        description: Calculez votre impôt sur les sociétés
-        title: Impôt sur les sociétés
-      seo: <0>Comment est calculé l’impôt sur les sociétés ?</0><1>L’impôt sur les
-        sociétés s’applique aux bénéfices réalisés par les sociétés de capitaux
-        (SA, SAS, SASU, SARL, etc.) et sur option facultative pour certaines
-        autres sociétés (EIRL, EURL, SNC, etc.).</1><2>Il est calculé sur la
-        base des bénéfices réalisés en France au cours de l’exercice comptable.
-        La durée d’un exercice est normalement d’un an mais il peut être plus
-        court ou plus long (notamment en début d’activité ou à la dissolution de
-        l’entreprise). Dans ce cas le barème de l’impôt est pro-ratisé en
-        fonction de la durée de l’exercice, ce qui est pris en compte dans le
-        simulateur en modifiant les dates de début et de fin de
-        l’exercice.</2><3>Taux réduit et régimes spécifiques</3><4>Les PME
-        réalisant moins de 7,63 millions d’euros de chiffre d’affaires et dont
-        le capital est détenu à 75% par des personnes physiques bénéficient d’un
-        taux réduit d’impôt sur les sociétés. Ce taux est pris en compte sur le
-        simulateur et il n’est pour l’instant pas possible de simuler
-        l’inéligibilité aux taux réduits.</4><5>Enfin il existe des régimes
-        d’impositions spécifiques avec des taux dédiés pour certains types de
-        plus-values (cession de titres, cession de brevets). Ces régimes ne sont
-        pas intégrés dans le simulateur.</5>
-      title: Simulateur d'impôt sur les sociétés
       warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
         réduits de l’impôt sur les sociétés."
     lodeom:
