@@ -1,5 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine, {
+	EngineOptions,
 	EvaluatedNode,
 	isPublicodesError,
 	PublicodesExpression,
@@ -69,7 +70,7 @@ const logger = {
 	},
 }
 
-export function engineFactory(rules: Rules, options = {}) {
+export function engineFactory(rules: Rules, options: EngineOptions = {}) {
 	return new Engine(rules, { ...engineOptions, ...options, logger })
 }
 

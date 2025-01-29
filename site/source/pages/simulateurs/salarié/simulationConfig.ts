@@ -56,7 +56,6 @@ export const configSalarié: SimulationConfig = {
 	'unité par défaut': '€/mois',
 	situation: {
 		dirigeant: 'non',
-		'entreprise . catégorie juridique': "''",
 		'entreprise . imposition': 'non',
 		'salarié . activité partielle': 'non',
 		'impôt . méthode de calcul . par défaut': {

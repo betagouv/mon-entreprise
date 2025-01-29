@@ -26,6 +26,10 @@ it('calculate simulations-salarié', () => {
 		)
 	).toMatchInlineSnapshot(`
 		[
+		  "entreprise . associés",
+		  "entreprise . catégorie juridique",
+		  "entreprise . catégorie juridique . EI",
+		  "entreprise . catégorie juridique . EI . auto-entrepreneur",
 		  "impôt . méthode de calcul",
 		  "salarié . contrat",
 		  "salarié . contrat . statut cadre",

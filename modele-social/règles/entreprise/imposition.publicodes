@@ -6,21 +6,26 @@ entreprise . imposition:
       - IR
       - IS
 
-  par défaut:
-    variations:
-      - si:
-          une de ces conditions:
-            - catégorie juridique . SARL . EURL
-            - catégorie juridique . SELARL . SELARL
-            - catégorie juridique . EI
-        alors: "'IR'"
-      - sinon: "'IS'"
+  par défaut: imposition par défaut
+
   références:
     Comment seront imposés mes bénéfices ?: https://bpifrance-creation.fr/moment-de-vie/comment-seront-imposes-mes-benefices
     Quelle imposition selon mon statut ?: https://www.economie.gouv.fr/entreprises/impot-revenu-impot-societe-statut
     Guide complet sur les types de résultats d'une entreprise: https://www.impots.gouv.fr/professionnel/resultat-imposable-limpot-sur-le-revenu-ir-ou-limpot-sur-les-societes
     # BPI ONLY
     Imposition des bénéfices: https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/imposition-benefices
+
+  avec:
+    imposition par défaut:
+      variations:
+        - si:
+            une de ces conditions:
+              - est non défini: catégorie juridique
+              - catégorie juridique . SARL . EURL
+              - catégorie juridique . SELARL . SELARL
+              - catégorie juridique . EI
+          alors: "'IR'"
+        - sinon: "'IS'"
 
 entreprise . imposition . IR:
   valeur: imposition = 'IR'

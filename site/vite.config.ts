@@ -151,7 +151,6 @@ export default defineConfig(({ command, mode }) => ({
 	optimizeDeps: {
 		entries: ['./source/entries/entry-fr.tsx', './source/entries/entry-en.tsx'],
 		include: ['@publicodes\\/react-ui > react/jsx-runtime'],
-		exclude: ['@publicodes\\/react-ui', 'publicodes'],
 	},
 
 	ssr: {

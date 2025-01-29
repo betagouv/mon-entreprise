@@ -273,7 +273,9 @@ entreprise . catégorie juridique . autre:
 entreprise . catégorie juridique . remplacements:
   # Ces remplacements mettent à jour les régimes d'imposition et la nature d'activité en fonctions de ceux compatibles avec le statut juridique connu.
   experimental: oui
-  valeur: oui
+  privé: oui
+  applicable si:
+    est défini: entreprise . catégorie juridique
 
   avec:
     associé unique:
