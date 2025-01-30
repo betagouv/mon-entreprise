@@ -151,8 +151,8 @@ export const SeoExplanations = () => {
 				<RuleLink dottedName="impôt">impôt sur le revenu</RuleLink> est prélevé
 				à la source. Pour ce faire, la direction générale des finances publiques
 				(DGFiP) transmet à l'employeur le taux d'imposition calculé à partir de
-				la déclaration de revenus du salarié. Si ce taux est inconnu, par exemple
-				lors d'une première année d'activité, l'employeur utilise le{' '}
+				la déclaration de revenus du salarié. Si ce taux est inconnu, par
+				exemple lors d'une première année d'activité, l'employeur utilise le{' '}
 				<RuleLink dottedName="impôt . taux neutre d'impôt sur le revenu">
 					taux neutre
 				</RuleLink>
