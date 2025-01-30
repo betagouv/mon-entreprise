@@ -36,7 +36,12 @@ export function References({
 	if (!parentRule) {
 		return null
 	}
-	const parentRefences = engine.getRule(parentRule).rawNode.références
+	const parentRefences =
+		engine.baseContext.parsedRules[parentRule].rawNode.références
+	/* TODO à remplacer une fois que https://github.com/publicodes/publicodes/issues/613
+	 *  par un truc plus propre du genre const parentReferences = engine.dev.getRule(parentRule).références
+	 */
+
 	if (!parentRefences) {
 		return null
 	}
