@@ -133,23 +133,3 @@ const getDomain = (link: string) =>
 		'www.',
 		''
 	)
-
-export function RuleReferences({ dottedNames }: { dottedNames: DottedName[] }) {
-	const engine = useEngine()
-
-	return (
-		<Ul>
-			{dottedNames
-				.filter(
-					(dottedName) => engine.evaluate(`${dottedName} != non`).nodeValue
-				)
-				.map((dottedName) =>
-					Object.entries(
-						engine.getRule(dottedName).rawNode.références ?? {}
-					).map(([title, href]) => (
-						<Reference key={href} title={title} href={href} />
-					))
-				)}
-		</Ul>
-	)
-}
