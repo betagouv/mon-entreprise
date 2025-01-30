@@ -2,7 +2,7 @@ déclaration charge sociales:
   experimental: oui
   description: >-
     Ces règles calculent les montants des charges sociales à reporter dans la
-    déclaration de revenu des indépendants et dans les déclaration de résultats.
+    déclaration de revenus des indépendants et dans les déclaration de résultats.
   formule: non
   avec:
     dirigeant exonérations ACRE:

@@ -19,7 +19,7 @@ export function déclarationChargesSocialesIndépendantConfig({
 		meta: {
 			description: t(
 				'pages.assistants.declaration-charges-sociales-independant.meta.description',
-				'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenu 2023'
+				'Calculez le montant des cotisations et contributions sociales à reporter dans votre déclaration de revenus'
 			),
 			title: t(
 				'pages.assistants.declaration-charges-sociales-independant.meta.title',

@@ -141,7 +141,7 @@ export default function SimulateursEtAssistants() {
 				</>
 
 				<H3 id="assistants">
-					<Trans>Assistants à la déclaration de revenu des indépendants</Trans>
+					<Trans>Assistants à la déclaration de revenus des indépendants</Trans>
 				</H3>
 				<Grid container spacing={3} role="list" aria-labelledby="assistants">
 					<SimulateurCard

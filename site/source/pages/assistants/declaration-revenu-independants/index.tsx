@@ -13,7 +13,7 @@ export default function AideDéclarationIndépendant() {
 	return (
 		<Trans>
 			<PageHeader
-				titre="L'assistant à la déclaration de revenu, c'est terminé"
+				titre="L'assistant à la déclaration de revenus, c'est terminé"
 				picture={illustrationSrc}
 			>
 				<Body>

@@ -4294,12 +4294,11 @@ déclaration charge sociales:
     entreprise activités revenus mixtes:
       titre.en: '[automatic] business activities mixed income'
       titre.fr: entreprise activités revenus mixtes
-  description.en:
-    '[automatic] These rules calculate the amounts of social charges
-    to be reported in the income tax return of the self-employed and in the
-    income tax returns.'
+  description.en: "[automatic] These rules calculate the amounts of social
+    security charges to be reported on self-employed workers' tax returns and
+    income tax returns."
   description.fr: Ces règles calculent les montants des charges sociales à
-    reporter dans la déclaration de revenu des indépendants et dans les
+    reporter dans la déclaration de revenus des indépendants et dans les
     déclaration de résultats.
   titre.en: '[automatic] social security declaration'
   titre.fr: déclaration charge sociales
@@ -4523,7 +4522,7 @@ déclaration charge sociales . résultat . cotisations obligatoires:
   description.en: >
     [automatic] To be entered in :
 
-    - box DSCA/DSCB** on the supplementary data form for the self-employed person's income tax return (form 2042)
+    - box DSCA/DSCB** on the supplementary data form for the self-employed person's tax return (form 2042)
 
     - simplified actual system:** item 326 on form 2033-D-SD
 
@@ -4535,7 +4534,7 @@ déclaration charge sociales . résultat . cotisations obligatoires:
   description.fr: >
     À reporter dans :
 
-    - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenu des indépendant (formulaire 2042)
+    - **la case DSCA/DSCB** dans le formulaire de donnée complémentaire à la déclaration de revenus des indépendant (formulaire 2042)
 
     - **régime réel simplifié :** la rubrique 326 du formulaire 2033-D-SD
 
