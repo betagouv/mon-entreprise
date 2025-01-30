@@ -20,7 +20,7 @@ export function DeclarationIndedependantsCard() {
 		>
 			<Trans i18nKey="gérer.choix.déclaration.body">
 				Calculez facilement les montants des charges sociales à reporter dans
-				votre déclaration de revenu au titre de 2020
+				votre déclaration de revenus
 			</Trans>
 		</Card>
 	)

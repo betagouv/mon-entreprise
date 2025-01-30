@@ -50,7 +50,7 @@ Aller au contenu principal: Aller au contenu principal
 Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
 Arrêt maladie: Arrêt maladie
-Assistants à la déclaration de revenu des indépendants: Assistants à la déclaration de revenu des indépendants
+Assistants à la déclaration de revenus des indépendants: Assistants à la déclaration de revenus des indépendants
 Attention: Attention
 Attention, information importante: Attention, information importante
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Attention, vos données sauvegardées seront supprimées de manière définitive.
@@ -672,7 +672,7 @@ gérer:
       title: Activité partielle
     déclaration:
       body: Calculez facilement les montants des charges sociales à reporter dans
-        votre déclaration de revenu au titre de 2020
+        votre déclaration de revenus
       cta: Remplir ma déclaration
       title: Déclaration de revenus (indépendants)
     is:
@@ -985,7 +985,7 @@ pages:
         titre: <0><0>Entreprise et activité</0></0>
       meta:
         description: Calculez le montant des cotisations et contributions sociales à
-          reporter dans votre déclaration de revenu 2023
+          reporter dans votre déclaration de revenus
         title: Détermination des charges sociales déductibles
       shortname: Détermination des charges sociales déductibles
       title: Assistant à la détermination des charges sociales déductibles
@@ -1807,7 +1807,7 @@ pages:
         titre-restaurants, etc.).</2><3></3><4>Par ailleurs depuis 2019,
         l'<1>impôt sur le revenu</1> est prélevé à la source. Pour ce faire, la
         direction générale des finances publiques (DGFiP) transmet à l'employeur
-        le taux d'imposition calculé à partir de la déclaration de revenu du
+        le taux d'imposition calculé à partir de la déclaration de revenus du
         salarié. Si ce taux est inconnu, par exemple lors d'une première année
         d'activité, l'employeur utilise le <4>taux neutre</4>.</4><5>Comment
         calculer le coût d'embauche ?</5><6>Si vous cherchez à embaucher, vous

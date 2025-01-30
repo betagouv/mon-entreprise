@@ -47,7 +47,7 @@ Aller au contenu principal: Go to main content
 Aller directement au pied de page: Go directly to footer
 Annuler: Cancel
 Arrêt maladie: Sick leave
-Assistants à la déclaration de revenu des indépendants: Self-employed tax return assistants
+Assistants à la déclaration de revenus des indépendants: Self-employed tax return assistants
 Attention: Warning
 Attention, information importante: Important information
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Please note that your saved data will be permanently deleted.
@@ -640,7 +640,7 @@ gérer:
       title: Partial activity
     déclaration:
       body: Easily calculate the amount of social security contributions to include in
-        your income tax return for 2020
+        your tax return
       cta: Fill in my declaration
       title: Income tax return (self-employed)
     is:
@@ -926,8 +926,8 @@ pages:
               "7": BIC réel normal
         titre: <0><0>Company and activity</0></0>
       meta:
-        description: Calculate the amount of social security contributions to be
-          reported on your 2022 tax return
+        description: Calculate the amount of social security contributions to include in
+          your tax return
         title: Determining deductible social security charges
       shortname: Determining deductible social security charges
       title: Assistance in determining deductible social charges
@@ -1700,19 +1700,19 @@ pages:
         addition, since 2019,<1>income tax</1> has been deducted at source. To
         do this, the Direction Générale des Finances Publiques (DGFiP) sends the
         employer the tax rate calculated from the employee's tax return. If the
-        tax rate is unknown, for example in the first year of employment, the
-        employer uses the <4>neutral rate</4>.</4><5>How do I calculate the cost
-        of hiring?</5><6>If you're looking to hire, you can calculate the total
-        cost of remunerating your employee, as well as the corresponding
-        employer and employee contributions. This will enable you to define the
-        level of remuneration, knowing the overall cost to your
+        employee's tax rate is unknown, for example in the first year of
+        employment, the employer uses the <4>neutral rate</4>.</4><5>How do I
+        calculate the cost of hiring?</5><6>If you're looking to hire, you can
+        calculate the total cost of remunerating your employee, as well as the
+        corresponding employer and employee contributions. This will enable you
+        to define the level of remuneration, knowing the overall cost to your
         company.</6><7>In addition to salary, our simulator takes into account
         the calculation of benefits in kind (telephone, company car, etc.), as
-        well as compulsory health insurance.</7><8>There are also
-        <2>deferred</2> hiring <2>subsidies</2> which are not all taken into
-        account by our simulator. You can find them on <6>the official
+        well as compulsory health insurance.</7><8>There are also <2>deferred
+        recruitment subsidies</2> which are not all taken into account by our
+        simulator. You can find them on <6>the official
         portal</6>.</8><9><0>Talk to an advisor about your recruitment
-        project</0><1>You would like to:<1><0>be advised on the hiring aids
+        project</0><1>You would like to :<1><0>be advised on the hiring aids
         available for your recruitment project</0><1>Find out about
         apprenticeships, professionalization contracts, \"emplois francs\" in
         priority neighborhoods, <2>VTE</2>, etc.</1><2>Find
