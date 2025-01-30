@@ -165,7 +165,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 
 		cy.get('div[id="simulator-legend"]').should(
 			'include.text',
-			"Le barème d’innovation et croissance concerne uniquement les salaires inférieurs à 3,5 Smic."
+			'Le barème d’innovation et croissance concerne uniquement les salaires inférieurs à 3,5 Smic.'
 		)
 
 		cy.contains('Barème de compétitivité renforcée').click()
@@ -369,7 +369,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		cy.get('@recapTable').should('include.text', 'code 463')
 		cy.get('@recapTable').should('include.text', 'code 538')
 
-		cy.contains("Barème d’innovation et croissance").click()
+		cy.contains('Barème d’innovation et croissance').click()
 
 		cy.get('@recapTable').should('include.text', 'code 473')
 		cy.get('@recapTable').should('include.text', 'code 685')
