@@ -28,6 +28,14 @@ describe(
 			cy.contains('Quelle est votre profession ?').should('be.visible')
 		})
 
+		it('devrait effacer les réponses en cliquant sur réinitialiser', function () {
+			cy.contains('Sage-femme').click()
+
+			cy.contains('Réinitialiser').click()
+
+			cy.contains('Recettes brutes totales').should('not.exist')
+		})
+
 		it('devrait demander le statut', function () {
 			cy.contains(
 				'Quel était votre statut d’exercice au 1er janvier ou à votre date de début d’activité ?'

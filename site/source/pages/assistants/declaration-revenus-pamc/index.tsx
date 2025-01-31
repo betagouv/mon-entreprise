@@ -1,10 +1,11 @@
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import Warning from '@/components/ui/WarningBlock'
 import { Message } from '@/design-system'
+import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
@@ -12,6 +13,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { useSitePaths } from '@/sitePaths'
+import { resetSimulation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 import Formulaire from './components/Formulaire'
@@ -26,6 +28,7 @@ export default function DéclarationRevenusPAMC() {
 		autoloadLastSimulation: true,
 	})
 	const situation = useSelector(situationSelector)
+	const dispatch = useDispatch()
 
 	return (
 		<>
@@ -88,21 +91,27 @@ export default function DéclarationRevenusPAMC() {
 			</Warning>
 
 			<Message type="secondary" icon>
-				<Body>
-					Afin de faciliter le remplissage, préparez :
-					<Ul>
-						<Li>l’ensemble des recettes encaissées,</Li>
-						<Li>le détail des cotisations versées à l’Urssaf,</Li>
-						<Li>
-							le détail des cotisations versées à votre caisse de retraite.
-						</Li>
-					</Ul>
-				</Body>
+				<Body>Afin de faciliter le remplissage, préparez :</Body>
+				<Ul>
+					<Li>l’ensemble des recettes encaissées,</Li>
+					<Li>le détail des cotisations versées à l’Urssaf,</Li>
+					<Li>le détail des cotisations versées à votre caisse de retraite.</Li>
+				</Ul>
 			</Message>
 
 			<Formulaire />
 
-			<Spacing xxxl />
+			<Spacing lg />
+
+			<Button
+				onPress={() => {
+					dispatch(resetSimulation())
+				}}
+			>
+				Réinitialiser
+			</Button>
+
+			<Spacing xxl />
 
 			<Résultats />
 		</>
