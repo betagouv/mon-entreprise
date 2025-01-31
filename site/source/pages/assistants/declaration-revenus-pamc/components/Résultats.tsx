@@ -69,8 +69,10 @@ export default function Résultats() {
 				/>
 
 				<H3>Données transmises par l’Assurance Maladie</H3>
-				<SimulationValue dottedName="déclaration revenus PAMC . SNIR . honoraires remboursables" />
-				<SimulationValue dottedName="déclaration revenus PAMC . SNIR . dépassements honoraires" />
+				<Condition expression="déclaration revenus PAMC . profession != 'dentiste'">
+					<SimulationValue dottedName="déclaration revenus PAMC . SNIR . honoraires remboursables" />
+					<SimulationValue dottedName="déclaration revenus PAMC . SNIR . dépassements honoraires" />
+				</Condition>
 				<SimulationValue dottedName="déclaration revenus PAMC . SNIR . honoraires tarifs opposables" />
 				<SimulationValue dottedName="déclaration revenus PAMC . SNIR . honoraires hors forfaits" />
 				<SimulationValue
