@@ -1073,7 +1073,6 @@ salarié . cotisations . taxe d'apprentissage:
         - sinon: cotisations . assiette
 
     base:
-      privé: oui
       produit:
         - assiette
         - variations:
@@ -1082,7 +1081,6 @@ salarié . cotisations . taxe d'apprentissage:
             - sinon: 0.59%
 
     solde:
-      privé: oui
       non applicable si: régimes spécifiques . alsace moselle
       produit:
         - assiette
@@ -1090,7 +1088,6 @@ salarié . cotisations . taxe d'apprentissage:
 
     contribution supplémentaire:
       titre: contribution supplémentaire à l'apprentissage
-      privé: oui
       applicable si:
         toutes ces conditions:
           - entreprise . salariés . effectif >= 250
