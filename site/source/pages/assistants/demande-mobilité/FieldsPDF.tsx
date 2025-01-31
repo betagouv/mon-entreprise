@@ -1,8 +1,7 @@
 import PDFElement from '@react-pdf/renderer'
 import { formatValue, RuleNode } from 'publicodes'
-import { useContext } from 'react'
 
-import { EngineContext } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 
 const { StyleSheet, Text, View } = PDFElement
 type FieldsPDFProps = {
@@ -10,7 +9,7 @@ type FieldsPDFProps = {
 }
 
 export default function FieldsPDF({ fields }: FieldsPDFProps) {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 
 	return (
 		<>

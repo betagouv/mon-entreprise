@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
@@ -12,7 +11,7 @@ import Simulation, {
 } from '@/components/Simulation'
 import { DistributionBranch } from '@/components/simulationExplanation/DistributionDesCotisations'
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
-import { EngineContext } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
@@ -85,7 +84,7 @@ const branches = [
 ] as const
 
 function RepartitionCotisations() {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const cotisations = branches.map((branch) => ({
 		...branch,
 		value: engine.evaluate(branch.dottedName).nodeValue as number,

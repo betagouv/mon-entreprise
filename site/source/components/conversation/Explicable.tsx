@@ -1,7 +1,6 @@
 import { DottedName } from 'modele-social'
-import { useContext } from 'react'
 
-import { EngineContext } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover'
 import { Spacing } from '@/design-system/layout'
@@ -23,8 +22,8 @@ export function ExplicableRule<Names extends string = DottedName>({
 	bigPopover?: boolean
 	title?: string
 }) {
-	const engine = useContext(EngineContext)
-	const rule = engine.getRule(dottedName)
+	const engine = useEngine()
+	const rule = engine.getRule(dottedName as DottedName)
 	const références = useReferences(rule)
 
 	if (rule.rawNode.description == null) {

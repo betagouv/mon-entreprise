@@ -1,12 +1,12 @@
 import { RuleLink as EngineRuleLink } from '@publicodes/react-ui'
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import React, { ReactNode, useContext } from 'react'
+import React, { ReactNode } from 'react'
 
 import { Link } from '@/design-system/typography/link'
 import { useSitePaths } from '@/sitePaths'
 
-import { EngineContext } from './utils/EngineContext'
+import { useEngine } from './utils/EngineContext'
 
 // TODO : quicklink -> en cas de variations ou de somme avec un seul élément actif, faire un lien vers cet élément
 export default function RuleLink(
@@ -20,7 +20,7 @@ export default function RuleLink(
 	} & Omit<React.ComponentProps<typeof Link>, 'to' | 'children'>
 ) {
 	const { absoluteSitePaths } = useSitePaths()
-	const defaultEngine = useContext(EngineContext)
+	const defaultEngine = useEngine()
 
 	const engineUsed = props?.engine ?? defaultEngine
 

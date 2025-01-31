@@ -1,9 +1,8 @@
 import { DottedName } from 'modele-social'
 import { utils } from 'publicodes'
-import { useContext } from 'react'
 import { styled } from 'styled-components'
 
-import { EngineContext, useEngine } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -131,7 +130,7 @@ const getDomain = (link: string) =>
 	)
 
 export function RuleReferences({ dottedNames }: { dottedNames: DottedName[] }) {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 
 	return (
 		<Ul>

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 

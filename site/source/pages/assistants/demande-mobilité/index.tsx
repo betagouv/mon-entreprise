@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression } from 'publicodes'
-import { Fragment, lazy, Suspense, useCallback, useContext } from 'react'
+import { Names } from 'modele-social/dist/names'
+import Engine, { PublicodesExpression, Rule } from 'publicodes'
+import { Fragment, lazy, Suspense, useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
@@ -9,7 +10,7 @@ import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import { Appear } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
-import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
+import { EngineProvider, useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { usePersistingState } from '@/components/utils/persistState'
 import { Button } from '@/design-system/buttons'
@@ -32,7 +33,7 @@ const LazyEndBlock = import.meta.env.SSR
 	: lazy(() => import('./EndBlock'))
 
 export default function PageMobilité() {
-	const engine = new Engine(formulaire)
+	const engine = new Engine(formulaire as Record<Names, Rule>)
 
 	return (
 		<>
@@ -70,7 +71,7 @@ const useFields = (
 
 const VERSION = hash(JSON.stringify(formulaire))
 function FormulairePublicodes() {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const [situation, setSituation] = usePersistingState<
 		Record<string, PublicodesExpression>
 	>(`formulaire-détachement:${VERSION}`, {})
@@ -81,7 +82,9 @@ function FormulairePublicodes() {
 		(dottedName: string, value?: PublicodesExpression) => {
 			if (value === undefined) {
 				setSituation((situation) => omit(situation, dottedName))
-			} else if (engine.getRule(dottedName).rawNode.API === 'commune') {
+			} else if (
+				engine.getRule(dottedName as DottedName).rawNode.API === 'commune'
+			) {
 				type Value = {
 					batchUpdate: {
 						nom: PublicodesExpression
@@ -123,7 +126,7 @@ function FormulairePublicodes() {
 			}),
 			{}
 		)
-	).map((dottedName) => engine.getRule(dottedName))
+	).map((dottedName) => engine.getRule(dottedName as DottedName))
 
 	return (
 		<>
@@ -180,7 +183,7 @@ function FormulairePublicodes() {
 												<Markdown>
 													{evaluateQuestion(
 														engine,
-														engine.getRule(dottedName)
+														engine.getRule(dottedName as DottedName)
 													) ?? ''}
 												</Markdown>
 											</div>
@@ -193,7 +196,10 @@ function FormulairePublicodes() {
 											hideDefaultValue
 											aria-label={
 												question &&
-												evaluateQuestion(engine, engine.getRule(dottedName))
+												evaluateQuestion(
+													engine,
+													engine.getRule(dottedName as DottedName)
+												)
 											}
 										/>
 										{question && type === undefined && description && (
