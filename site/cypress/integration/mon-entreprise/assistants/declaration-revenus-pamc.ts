@@ -321,15 +321,6 @@ describe(
 
 			cy.contains('Chirurgien/chirurgienne-dentiste').click()
 
-			cy.get(`#${idPrefix}_SNIR___honoraires_remboursables-title`).should(
-				'not.exist'
-			)
-			cy.get(`#${idPrefix}_SNIR___honoraires_remboursables`).should('not.exist')
-			cy.get(`#${idPrefix}_SNIR___dépassements_honoraires-title`).should(
-				'not.exist'
-			)
-			cy.get(`#${idPrefix}_SNIR___dépassements_honoraires`).should('not.exist')
-
 			cy.get(`#${idPrefix}_SNIR___taux_urssaf-title`).should('be.visible')
 			cy.get(`#${idPrefix}_SNIR___taux_urssaf`).should('be.visible')
 
@@ -349,15 +340,26 @@ describe(
 			cy.get(`#${idPrefix}_SNIR___taux_urssaf-value`).should('not.exist')
 
 			cy.contains('Chirurgien/chirurgienne-dentiste').click()
-			cy.get('input[type="text"]').as('inputs').should('have.length', 4)
+			cy.get('input[type="text"]').as('inputs').should('have.length', 6)
 			cy.get('@inputs').each(($input) => {
 				cy.wrap($input).type('{selectall}100')
 			})
 
-			// TODO: à compléter une fois clarifié les résultats pour dentistes
-
 			cy.get(`#${idPrefix}_SNIR___taux_urssaf-label`).should('be.visible')
 			cy.get(`#${idPrefix}_SNIR___taux_urssaf-value`).should('be.visible')
+
+			cy.get(`#${idPrefix}_SNIR___honoraires_remboursables-label`).should(
+				'not.exist'
+			)
+			cy.get(`#${idPrefix}_SNIR___honoraires_remboursables-value`).should(
+				'not.exist'
+			)
+			cy.get(`#${idPrefix}_SNIR___dépassements_honoraires-label`).should(
+				'not.exist'
+			)
+			cy.get(`#${idPrefix}_SNIR___dépassements_honoraires-value`).should(
+				'not.exist'
+			)
 		})
 
 		it('devrait montrer des champs différents aux médecins', function () {

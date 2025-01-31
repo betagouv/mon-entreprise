@@ -72,13 +72,11 @@ déclaration revenus PAMC . cotisations sociales obligatoires:
 déclaration revenus PAMC . SNIR:
 
 déclaration revenus PAMC . SNIR . honoraires remboursables:
-  non applicable si: profession . dentiste
   titre: honoraires tirés d’actes conventionnés
   unité: €/an
 
 déclaration revenus PAMC . SNIR . dépassements honoraires:
   titre: dépassements d’honoraires
-  non applicable si: profession . dentiste
   question: dépassements d’honoraires
   unité: €/an
 
