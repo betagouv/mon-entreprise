@@ -4,6 +4,10 @@ import { ATTracker } from './Tracker'
 
 export const TrackingContext = createContext<ATTracker | null>(null)
 
+export function useTracking(): ATTracker | null {
+	return useContext(TrackingContext)
+}
+
 // From https://github.com/nclsmitchell/at-internet
 export function toAtString(string: string): string {
 	string = string.replace(/ /g, '_').toLowerCase()
@@ -78,7 +82,7 @@ export function TrackPage({
 	children?: React.ReactNode
 } & Chapters) {
 	const { chapter1, chapter2, chapter3 } = useChapters(chapters)
-	const tag = useContext(TrackingContext)
+	const tag = useTracking()
 	useEffect(() => {
 		tag?.sendEvent(
 			'page.display',

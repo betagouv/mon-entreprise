@@ -4,7 +4,7 @@ import { lazy, Suspense, useContext, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
 import { useTheme } from 'styled-components'
 
-import { TrackingContext, TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage, useTracking } from '@/components/ATInternetTracking'
 import { Condition } from '@/components/EngineValue/Condition'
 import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
 import { Message, PopoverWithTrigger } from '@/design-system'
@@ -32,7 +32,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 	const [place, setPlace] = useState<string>()
 	const engine = useContext(EngineContext)
 	const signatureRef = useRef<SignaturePad | null>(null)
-	const tracker = useContext(TrackingContext)
+	const tracker = useTracking()
 	const { colors } = useTheme()
 	if (missingValues.length) {
 		return (

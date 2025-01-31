@@ -1,8 +1,8 @@
-import { useCallback, useContext, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
-import { TrackingContext } from '@/components/ATInternetTracking'
+import { useTracking } from '@/components/ATInternetTracking'
 import { Popover } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
@@ -53,7 +53,7 @@ export function Feedback({
 	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
 	const url = useLocation().pathname
-	const tag = useContext(TrackingContext)
+	const tag = useTracking()
 
 	const { absoluteSitePaths } = useSitePaths()
 	const currentPath = useLocation().pathname
