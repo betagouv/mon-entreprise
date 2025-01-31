@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -8,7 +7,7 @@ import { Emoji } from '@/design-system/emoji'
 import { Grid, Spacing } from '@/design-system/layout'
 import { useUrl } from '@/hooks/useUrl'
 
-import { TrackingContext } from '../ATInternetTracking'
+import { useTracking } from '../ATInternetTracking'
 import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
@@ -33,7 +32,7 @@ export default function ShareOrSaveSimulationBanner({
 	customSimulationbutton?: CustomSimulationButton
 }) {
 	const { t } = useTranslation()
-	const tracker = useContext(TrackingContext)
+	const tracker = useTracking()
 	const shareAPIAvailable = !!window?.navigator?.share
 	const url = useUrl()
 	const startSharing = async () => {

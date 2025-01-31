@@ -10,7 +10,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
 import * as safeLocalStorage from '../../../storage/safeLocalStorage'
-import { TrackingContext, TrackPage } from '../../ATInternetTracking'
+import { TrackPage, useTracking } from '../../ATInternetTracking'
 
 const StyledTable = styled.table`
 	&,
@@ -35,7 +35,7 @@ export default function PrivacyPolicy({
 	label?: string
 	noUnderline?: boolean
 }) {
-	const tracker = useContext(TrackingContext)
+	const tracker = useTracking()
 	const [valueChanged, setValueChanged] = useState(false)
 	const { t } = useTranslation()
 

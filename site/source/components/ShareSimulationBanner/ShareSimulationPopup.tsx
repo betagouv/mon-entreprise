@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Button } from '@/design-system/buttons'
@@ -8,13 +8,13 @@ import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 
-import { TrackingContext } from '../ATInternetTracking'
+import { useTracking } from '../ATInternetTracking'
 
 export function ShareSimulationPopup({ url }: { url: string }) {
 	const inputRef = useRef<HTMLInputElement>(null)
 	const { t } = useTranslation()
 	const [linkCopied, setLinkCopied] = useState(false)
-	const tracker = useContext(TrackingContext)
+	const tracker = useTracking()
 
 	const selectInput = () => {
 		inputRef.current?.select()
