@@ -136,7 +136,7 @@ export default function RuleInput<Names extends string = DottedName>({
 			<>
 				<MultipleAnswerInput
 					{...commonProps}
-					choice={getOnePossibilityOptions(engineValue, dottedName)}
+					choices={getOnePossibilityOptions(engineValue, dottedName)}
 					type={type}
 				/>
 				{!hideDefaultValue && (

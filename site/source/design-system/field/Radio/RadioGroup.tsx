@@ -1,6 +1,7 @@
 import { useRadioGroup } from '@react-aria/radio'
 import { useRadioGroupState } from '@react-stately/radio'
 import { AriaRadioGroupProps } from '@react-types/radio'
+import { useEffect } from 'react'
 import { styled } from 'styled-components'
 
 import { RadioContext } from './Radio'
@@ -13,6 +14,12 @@ export function RadioGroup(props: RadioGroupProps) {
 	const { children, label } = props
 	const state = useRadioGroupState(props)
 	const { radioGroupProps, labelProps } = useRadioGroup(props, state)
+
+	useEffect(() => {
+		if (!props.value) {
+			state.setSelectedValue('')
+		}
+	}, [props.value, state])
 
 	return (
 		<div
