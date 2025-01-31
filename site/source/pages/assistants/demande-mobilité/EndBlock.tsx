@@ -1,12 +1,12 @@
 import { BlobProvider } from '@react-pdf/renderer'
 import { RuleNode, utils } from 'publicodes'
-import { lazy, Suspense, useContext, useRef, useState } from 'react'
+import { lazy, Suspense, useRef, useState } from 'react'
 import SignaturePad from 'react-signature-pad-wrapper'
 import { useTheme } from 'styled-components'
 
 import { TrackPage, useTracking } from '@/components/ATInternetTracking'
 import { Condition } from '@/components/EngineValue/Condition'
-import { EngineContext, EngineProvider } from '@/components/utils/EngineContext'
+import { EngineProvider, useEngine } from '@/components/utils/EngineContext'
 import { Message, PopoverWithTrigger } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
@@ -30,7 +30,7 @@ type EndBlockProps = {
 export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 	const [isCertified, setCertified] = useState(false)
 	const [place, setPlace] = useState<string>()
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const signatureRef = useRef<SignaturePad | null>(null)
 	const tracker = useTracking()
 	const { colors } = useTheme()

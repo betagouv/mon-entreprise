@@ -1,10 +1,10 @@
 import { NumberFieldProps } from '@react-types/numberfield'
 import { ASTNode, parseUnit, serializeUnit, Unit } from 'publicodes'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { EngineContext } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import { NumberField } from '@/design-system/field'
 import { debounce } from '@/utils'
 
@@ -33,7 +33,7 @@ export default function NumberInput({
 	)
 	const { i18n } = useTranslation()
 	const parsedDisplayedUnit = displayedUnit ? parseUnit(displayedUnit) : unit
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	useEffect(() => {
 		if (value !== currentValue) {
 			setCurrentValue(

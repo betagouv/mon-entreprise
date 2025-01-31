@@ -1,10 +1,9 @@
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
-import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
-import { EngineContext } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import { findReferenceInNode } from '@/utils/publicodes'
 
 export default function CotisationLine({
@@ -13,7 +12,7 @@ export default function CotisationLine({
 	dottedName: DottedName
 }) {
 	const language = useTranslation().i18n.language
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const partSalariale = engine.evaluate(
 		findReferenceInNode(
 			dottedName,

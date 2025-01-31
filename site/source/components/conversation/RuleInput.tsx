@@ -7,11 +7,11 @@ import Engine, {
 	reduceAST,
 	RuleNode,
 } from 'publicodes'
-import React, { useContext } from 'react'
+import React from 'react'
 
 import NumberInput from '@/components/conversation/NumberInput'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
-import { EngineContext } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
 import { getMeta } from '@/utils/publicodes'
@@ -84,7 +84,7 @@ export default function RuleInput<Names extends string = DottedName>({
 	engine,
 	...props
 }: Props<Names>) {
-	const defaultEngine = useContext(EngineContext)
+	const defaultEngine = useEngine() as Engine<string>
 
 	const engineValue = (engine ?? defaultEngine) as Engine<Names>
 

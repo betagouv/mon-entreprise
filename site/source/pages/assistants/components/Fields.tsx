@@ -1,14 +1,14 @@
 import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
-import { useCallback, useContext } from 'react'
+import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
-import { EngineContext } from '@/components/utils/EngineContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
@@ -32,7 +32,7 @@ export function SubSection({
 	hideTitle = false,
 	without = [],
 }: SubSectionProp) {
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const ruleTitle = engine.getRule(sectionDottedName)?.title
 	const nextSteps = useNextQuestions()
 	const situation = useSelector(situationSelector)
@@ -86,7 +86,7 @@ export function SimpleField(props: SimpleFieldProps) {
 		labelStyle,
 	} = props
 	const dispatch = useDispatch()
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const evaluation = engine.evaluate(dottedName)
 	const rule = engine.getRule(dottedName)
 	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
