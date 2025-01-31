@@ -51,11 +51,13 @@ export type Choice = ASTNode<'rule'> & {
 }
 
 export function MultipleAnswerInput<Names extends string = DottedName>({
-	choice,
+	choices,
 	type = 'radio',
+	autoFocus,
+	title,
 	...props
 }: {
-	choice: Choice
+	choices: Choice
 	type?: 'radio' | 'card' | 'toggle' | 'select'
 } & InputProps<Names>) {
 	const { t } = useTranslation()
@@ -68,14 +70,14 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 		return (
 			<Select
 				aria-labelledby={props['aria-labelledby'] || undefined}
-				label={props.title}
+				label={title}
 				onSelectionChange={handleChange}
 				defaultSelectedKey={defaultValue}
 				selectedKey={currentSelection}
 				// eslint-disable-next-line jsx-a11y/no-autofocus
-				autoFocus={props.autoFocus}
+				autoFocus={autoFocus}
 			>
-				{choice.children.map((node) => (
+				{choices.children.map((node) => (
 					<Item
 						key={`'${relativeDottedName(props.dottedName, node.dottedName)}'`}
 						textValue={node.title}
@@ -96,12 +98,12 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 				onChange={handleChange}
 				value={currentSelection ?? undefined}
 			>
-				{choice.children.map((node) => (
+				{choices.children.map((node) => (
 					<Fragment key={node.dottedName}>
 						<RadioCard
 							// eslint-disable-next-line jsx-a11y/no-autofocus
 							autoFocus={
-								props.autoFocus &&
+								autoFocus &&
 								defaultValue ===
 									`'${relativeDottedName(props.dottedName, node.dottedName)}'`
 							}
@@ -133,11 +135,11 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 			value={currentSelection ?? undefined}
 			aria-labelledby={props['aria-labelledby'] || undefined}
 		>
-			<RadioChoice
+			<RadioChoices
 				// eslint-disable-next-line jsx-a11y/no-autofocus
-				autoFocus={props.autoFocus}
+				autoFocus={autoFocus}
 				defaultValue={defaultValue}
-				choice={choice}
+				choices={choices}
 				rootDottedName={props.dottedName}
 				type={type}
 			/>
@@ -145,14 +147,14 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 	)
 }
 
-function RadioChoice<Names extends string = DottedName>({
-	choice,
+function RadioChoices<Names extends string = DottedName>({
+	choices,
 	defaultValue,
 	autoFocus,
 	rootDottedName,
 	type,
 }: {
-	choice: Choice
+	choices: Choice
 	defaultValue?: string
 	autoFocus?: boolean
 	rootDottedName: Names
@@ -162,7 +164,7 @@ function RadioChoice<Names extends string = DottedName>({
 
 	return (
 		<>
-			{choice.children.map((node) => (
+			{choices.children.map((node) => (
 				<Fragment key={node.dottedName}>
 					{' '}
 					{'children' in node ? (
@@ -184,11 +186,11 @@ function RadioChoice<Names extends string = DottedName>({
 							</H4>
 							<Spacing lg />
 							<StyledSubRadioGroup>
-								<RadioChoice
+								<RadioChoices
 									// eslint-disable-next-line jsx-a11y/no-autofocus
 									autoFocus={autoFocus}
 									defaultValue={defaultValue}
-									choice={node}
+									choices={node}
 									rootDottedName={rootDottedName}
 									type={type}
 								/>
@@ -238,7 +240,7 @@ function RadioChoice<Names extends string = DottedName>({
 					)}
 				</Fragment>
 			))}
-			{choice.canGiveUp && (
+			{choices.canGiveUp && (
 				<>
 					<Radio value={'non'}>{t('Aucun')}</Radio>
 				</>
@@ -331,12 +333,16 @@ export function useSelection<Names extends string = DottedName>({
 	useEffect(() => {
 		if (lastValue.current !== value) {
 			const newSelection = serializeValue(value)
-			if (newSelection && newSelection !== currentSelection && !missing) {
-				handleChange(newSelection)
+			if (currentSelection !== newSelection) {
+				setCurrentSelection(
+					!missing && newSelection != null && typeof newSelection === 'string'
+						? newSelection
+						: null
+				)
 			}
 			lastValue.current = value
 		}
-	}, [currentSelection, handleChange, value, missing])
+	}, [value, missing, currentSelection])
 
 	return { currentSelection, handleChange, defaultValue }
 }
