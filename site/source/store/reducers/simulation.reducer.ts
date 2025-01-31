@@ -54,6 +54,7 @@ export function simulationReducer(
 				...state,
 				hiddenNotifications: [...state.hiddenNotifications, action.id],
 			}
+
 		case 'RESET_SIMULATION':
 			return {
 				...state,
@@ -137,6 +138,7 @@ export function simulationReducer(
 
 			return newState
 		}
+
 		case 'RETOURNE_À_LA_QUESTION_PRÉCÉDENTE': {
 			if (state.questionsRépondues.length === 0) {
 				return state
