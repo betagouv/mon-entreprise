@@ -5,6 +5,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
+import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import RuleLink from '@/components/RuleLink'
 import SimulateurWarning from '@/components/SimulateurWarning'
@@ -41,7 +42,11 @@ export default function ChômagePartiel() {
 
 	return (
 		<Simulation
-			results={<ExplanationSection />}
+			results={
+				<Condition expression="salarié . contrat . salaire brut >= salarié . contrat . temps de travail . SMIC">
+					<ExplanationSection />
+				</Condition>
+			}
 			customEndMessages={<span>Voir les résultats au-dessus</span>}
 		>
 			<SimulateurWarning
