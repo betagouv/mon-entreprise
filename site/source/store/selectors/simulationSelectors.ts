@@ -1,4 +1,4 @@
-import { NonEmptyArray } from 'effect/Array'
+import { intersection, NonEmptyArray } from 'effect/Array'
 import { createSelector } from 'reselect'
 
 import { isComparateurConfig } from '@/domaine/ComparateurConfig'
@@ -54,13 +54,9 @@ export const rawSituationsSelonContextesSelector = createSelector(
 
 export const firstStepCompletedSelector = (state: RootState) => {
 	const situation = situationSelector(state)
+	const objectifs = configObjectifsSelector(state)
 
-	return (
-		Object.keys(situation).filter(
-			// Hack to prevent questions from showing after selection 'IR or IS' in the toggle above simulator
-			(dottedName) => dottedName !== 'entreprise . imposition'
-		).length > 0
-	)
+	return intersection(objectifs, Object.keys(situation)).length > 0
 }
 
 export const targetUnitSelector = (state: RootState) =>
