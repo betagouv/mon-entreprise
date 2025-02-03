@@ -46,6 +46,7 @@ type SimulationProps = {
 	fullWidth?: boolean
 	id?: string
 	customSimulationbutton?: CustomSimulationButton
+	entrepriseSelection?: boolean
 }
 
 export default function Simulation({
@@ -59,6 +60,7 @@ export default function Simulation({
 	fullWidth,
 	id,
 	customSimulationbutton,
+	entrepriseSelection = true,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
@@ -73,7 +75,7 @@ export default function Simulation({
 				<FromTop>
 					{(firstStepCompleted || showQuestionsFromBeginning) && (
 						<>
-							<EntrepriseSelection />
+							{entrepriseSelection && <EntrepriseSelection />}
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
 							</div>
