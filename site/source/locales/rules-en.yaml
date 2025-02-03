@@ -4807,27 +4807,27 @@ entreprise . SIREN:
   titre.fr: SIREN
 entreprise . TVA:
   description.en: >
-    [automatic] Certain types of businesses are not subject to VAT.
+    [automatic] Certain types of company are not subject to VAT.
 
     These companies pay payroll tax in return.
 
 
-    This is the case, for example, for banking, financial or insurance institutions. This is also the case for educational activities.
+    Examples include banking, financial and insurance establishments. This is also the case for teaching activities.
 
 
-    **Please note**: do not confuse the VAT exemption (which depends on your activity) and the basic exemption (which depends on your turnover).
+    **Note**: don't confuse VAT exemption (which depends on your activity) with the basic tax-free regime (which depends on your sales).
   description.fr: >
-    Certains types d'entreprises ne sont pas assujetties à la TVA.
+    Certains types d’entreprises ne sont pas assujetties à la TVA.
 
     Ces dernières payent la taxe sur les salaires en contrepartie.
 
 
-    C'est le cas par exemple des établissements bancaires, financiers ou d'assurance. C'est aussi le cas des activités d'enseignement.
+    C’est le cas par exemple des établissements bancaires, financiers ou d’assurance. C’est aussi le cas des activités d’enseignement.
 
 
-    **À noter** : il ne faut pas confondre l'exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d'affaires).
+    **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d’affaires).
   question.en: '[automatic] Is the company subject to VAT?'
-  question.fr: L'entreprise est-elle assujettie à la TVA ?
+  question.fr: L’entreprise est-elle assujettie à la TVA ?
   titre.en: '[automatic] VAT'
   titre.fr: TVA
 entreprise . TVA . franchise de TVA:
@@ -5337,10 +5337,10 @@ entreprise . activités . service ou vente:
   titre.en: '[automatic] service or sale'
   titre.fr: service ou vente
 entreprise . association non lucrative:
-  description.en: The company is a non-profit organisation
-  description.fr: L'entreprise est une association non lucrative
-  question.en: Is this a non-profit organisation?
-  question.fr: S'agit-il d'une association à but non lucratif ?
+  description.en: '[automatic] The company is a non-profit association'
+  description.fr: L’entreprise est une association non lucrative
+  question.en: '[automatic] Is it a non-profit association?'
+  question.fr: S’agit-il d’une association à but non lucratif ?
   titre.en: non-profit organisation
   titre.fr: association non lucrative
 entreprise . associés:
@@ -5369,9 +5369,9 @@ entreprise . associés:
   titre.fr: associés
 entreprise . capital social:
   description.en: |
-    [automatic] This value must include the value of the share premiums.
+    [automatic] This value must include the value of share premiums.
   description.fr: |
-    Cette valeur doit inclure la valeur des primes d'émission.
+    Cette valeur doit inclure la valeur des primes d’émission.
   question.en: '[automatic] What is the share capital of the company?'
   question.fr: Quele est le capital social de la société ?
   titre.en: '[automatic] Share capital'
@@ -5748,73 +5748,73 @@ entreprise . chiffre d'affaires:
   description.en: >
     [automatic] ### Estimated sales
 
-    Sales are the <strong>sum of all sales made</strong> during your accounting period (one year)
+    Sales are the <strong>sum of all sales made during</strong> your accounting period (one year)
      <strong>during your accounting period</strong> (one year): Sales = selling price x quantities sold.
     quantities sold.
   description.fr: >
-    ### Chiffre d'affaires estimé
+    ### Chiffre d’affaires estimé
 
-    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées
+    Le chiffre d’affaires est la <strong>somme des montants des ventes réalisées
 
     pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités
 
     vendues.
-  question.en: What is your expected turnover ?
-  question.fr: Quel est votre chiffre d'affaires envisagé ?
+  question.en: '[automatic] What are your sales forecasts?'
+  question.fr: Quel est votre chiffre d’affaires envisagé ?
   résumé.en: '[automatic] Total gross revenues (excluding tax)'
   résumé.fr: Montant total des recettes brutes (hors taxe)
   titre.en: '[automatic] revenues'
   titre.fr: chiffre d'affaires
 entreprise . chiffre d'affaires . BIC:
   description.en: >
-    [automatic] Sales corresponding to taxable income from industrial and
+    [automatic] Sales corresponding to income taxable as industrial and
     commercial profits (BIC or micro-BIC).
   description.fr: >
-    Le chiffre d'affaires correspondant au revenus imposable au titre des
+    Le chiffre d’affaires correspondant au revenus imposable au titre des
     bénéfice industriels et commerciaux (BIC ou micro-BIC).
   titre.en: '[automatic] BIC'
   titre.fr: BIC
 entreprise . chiffre d'affaires . service:
   description.en: >
-    [automatic] This is any transaction that does not involve a transfer of
-    ownership of
+    [automatic] This refers to any transaction that does not involve the
+    transfer of ownership of
 
-    tangible property (i.e. having a material existence)
+    tangible assets (i.e. having a material existence)
   description.fr: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
-    biens corporels (c'est-à-dire ayant une existence matérielle)
-  titre.en: '[automatic] Turnover from services'
-  titre.fr: Chiffre d'affaires de prestation de service
+    biens corporels (c’est-à-dire ayant une existence matérielle)
+  titre.en: '[automatic] Sales of services'
+  titre.fr: Chiffre d’affaires de prestation de service
 entreprise . chiffre d'affaires . service BIC:
   description.en: >
-    [automatic] This is any transaction that does not involve a transfer of
-    ownership of
+    [automatic] This refers to any transaction that does not involve the
+    transfer of ownership of tangible
 
-    tangible assets (i.e. having a material existence), of which
+    tangible goods (i.e. having a material existence), in which manual
 
     manual activity plays the main role.
 
 
-    To simplify, one could say that these are all the benefits of
+    To simplify matters, we could say that these are all services that
 
-    services that require more than a computer to be performed.
+    services that require more than a computer to perform.
 
 
-    **Examples**: transport, personal service, repairs etc.
+    **Examples**: transport, personal services, repairs, etc.
   description.fr: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
-    biens corporels (c'est-à-dire ayant une existence matérielle), dont
-    l'activité manuelle joue le principal rôle.
+    biens corporels (c’est-à-dire ayant une existence matérielle), dont
+    l’activité manuelle joue le principal rôle.
 
     Pour simplifier on pourrait dire que ce sont toutes les prestations de
-    services qui nécessite plus qu'un ordinateur pour être effectuées.
+    services qui nécessite plus qu’un ordinateur pour être effectuées.
 
     **Exemples** : transports, service à la personne, réparation etc.
-  question.en: '[automatic] What is the turnover from commercial or craft services?'
-  question.fr: Quel est le chiffre d'affaires issu de prestations de service
+  question.en: '[automatic] What is the sales figure for commercial or craft services?'
+  question.fr: Quel est le chiffre d’affaires issu de prestations de service
     commerciales ou artisanales ?
-  résumé.en: '[automatic] Turnover excluding tax'
-  résumé.fr: Chiffre d'affaires hors taxe
+  résumé.en: '[automatic] Sales excluding tax'
+  résumé.fr: Chiffre d’affaires hors taxe
   titre.en: '[automatic] Commercial or craft services (BIC)'
   titre.fr: Prestations de service commerciales ou artisanales (BIC)
 entreprise . chiffre d'affaires . service BNC:
@@ -5825,14 +5825,14 @@ entreprise . chiffre d'affaires . service BNC:
     an essential role.
 
 
-    Examples**: consulting, coaching, translation, development,
+    **Examples**: consulting, support, translation, development,
 
     training, teaching, sports
 
 
-    The income from this turnover is taxable under the BNC regime (non-commercial profits)
+    Income from these sales is taxed under the BNC (non-commercial profits) regime.
   description.fr: >
-    Ce sont toutes les opérations dont l'activité intellectuelle tient
+    Ce sont toutes les opérations dont l’activité intellectuelle tient
 
     un rôle essentiel.
 
@@ -5842,7 +5842,7 @@ entreprise . chiffre d'affaires . service BNC:
     formation, enseignement, sportif
 
 
-    Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
+    Les revenus tirés de ce chiffre d’affaires sont imposable au régime BNC (bénéfices non commerciaux)
   question.en: '[automatic] What are the revenues from the liberal activity?'
   question.fr: Quelles sont les recettes issues de l’activité libérale ?
   résumé.en: '[automatic] Revenue excluding taxes'
@@ -5939,39 +5939,39 @@ entreprise . chiffre d'affaires . seuil micro . total:
   titre.fr: total
 entreprise . chiffre d'affaires . vente restauration hébergement:
   description.en: >
-    [automatic] Sale of goods
+    [automatic] ### Sales of goods
 
-    This is the turnover of all transactions involving
+    Sales include all transactions involving
 
-    transfer of ownership of a tangible asset, i.e. an asset that has a physical
+    transfer of ownership of a tangible asset, i.e. an asset that has a material
 
     material existence.
 
 
-    Catering and accommodation
+    ### Catering and accommodation
 
-    This is the turnover of all catering and accommodation operations
+    Sales from all catering and accommodation operations.
 
     or accommodation
 
 
-    Note: for furnished rentals, only classified furnished tourist accommodation and guest rooms are included in this accommodation category; other furnished rentals are included in the "Provision of BIC services" category
+    &gt; Note: for furnished rentals, only classified furnished tourist accommodation and bed and breakfast are included in this category; other furnished rentals are included in the "BIC services" category.
 
 
-    This income is taxable in the BIC category
+    This income is taxable in the BIC category.
   description.fr: >
     ### Vente de biens
 
-    Il s’agit du chiffre d'affaires de toutes les opérations comportant
+    Il s’agit du chiffre d’affaires de toutes les opérations comportant
 
-    transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une
+    transfert de propriété d’un bien corporel, c’est-à-dire un bien ayant une
 
     existence matérielle.
 
 
     ### Restauration et hébergement
 
-    Il s’agit du chiffre d'affaires de toutes les opérations de restauration
+    Il s’agit du chiffre d’affaires de toutes les opérations de restauration
 
     ou hébergement
 
@@ -5981,12 +5981,12 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
 
     Ces revenus sont imposables dans la catégorie des BIC
   question.en:
-    '[automatic] What is the turnover from the sale of goods, catering
-    or accommodation?'
-  question.fr: Quel est le chiffre d'affaires issu de la vente de biens,
+    '[automatic] What is the turnover from sales of goods, catering or
+    accommodation?'
+  question.fr: Quel est le chiffre d’affaires issu de la vente de biens,
     restauration ou hébergement ?
-  résumé.en: '[automatic] Turnover excluding tax'
-  résumé.fr: Chiffre d'affaires hors taxe
+  résumé.en: '[automatic] Sales excluding tax'
+  résumé.fr: Chiffre d’affaires hors taxe
   titre.en: '[automatic] Sale of goods, catering, accommodation (BIC)'
   titre.fr: Vente de biens, restauration, hébergement (BIC)
 entreprise . code catégorie juridique:
@@ -6132,7 +6132,7 @@ entreprise . coût formalités . création:
   titre.fr: Total des coûts de création
 entreprise . créée cette année:
   description.en: '[automatic] Was the company created in the year of the simulation?'
-  description.fr: L'entreprise a-t-elle été créée l'année de la simulation ?
+  description.fr: L’entreprise a-t-elle été créée l’année de la simulation ?
   titre.en: '[automatic] Company created this year'
   titre.fr: Entreprise créée cette année
 entreprise . date de cessation:
@@ -6148,10 +6148,10 @@ entreprise . date de cessation:
   titre.fr: date de cessation
 entreprise . date de création:
   description.en: >
-    [automatic] The date of commencement of activity (or date of creation) is
-    determined when you declare your
+    [automatic] The start date (or date of creation) is set when you register
+    your business.
 
-    declaration of your company.
+    you register your company.
 
 
     You can [fill in your company](/), to pre-fill this information
@@ -6159,24 +6159,24 @@ entreprise . date de création:
     this information automatically.
 
 
-    If you do not have the exact day, the month is usually enough for a good
+    If you don't have the exact day, the month is usually enough for a good
 
     approximation.
   description.fr: |
-    La date de début d'activité (ou date de création) est fixée lors de la
+    La date de début d’activité (ou date de création) est fixée lors de la
     déclaration de votre entreprise.
 
     Vous pouvez [renseigner votre entreprise](/), pour préremplir
     automatiquement cette information.
 
-    Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
+    Si vous n’avez pas le jour exact, le mois suffit en général pour une bonne
     approximation.
-  question.en: '[automatic] What is your start date?'
-  question.fr: Quelle est votre date de début d'activité ?
+  question.en: '[automatic] When did you start?'
+  question.fr: Quelle est votre date de début d’activité ?
   suggestions.Début 2024.en: '[automatic] Early 2024'
   suggestions.Début 2024.fr: Début 2024
-  suggestions.Début d'année.en: '[automatic] Beginning of the year'
-  suggestions.Début d'année.fr: Début d'année
+  suggestions.Début d’année.en: '[automatic] Beginning of the year'
+  suggestions.Début d’année.fr: Début d’année
   suggestions.Il y a plus de 10 ans.en: '[automatic] More than 10 years ago'
   suggestions.Il y a plus de 10 ans.fr: Il y a plus de 10 ans
   titre.en: Creation date
@@ -6187,10 +6187,9 @@ entreprise . date de création . contrôle date future:
   titre.en: '[automatic] check future date'
   titre.fr: contrôle date future
 entreprise . date de création . contrôle date passée:
-  description.en:
-    "[automatic] This is a very old company! Are you sure you didn't
-    make a mistake in the seizure?"
-  description.fr: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne
+  description.en: "[automatic] It's a very old company! Are you sure you didn't
+    make a mistake when entering it?"
+  description.fr: Il s’agit d’une très vieille entreprise ! Êtes-vous sûr de ne
     pas vous être trompé dans la saisie ?
   titre.en: '[automatic] past date check'
   titre.fr: contrôle date passée
@@ -6220,18 +6219,18 @@ entreprise . exercice:
     date trop ancienne:
       description.en:
         '[automatic] The date entered is too old. The simulator does not
-        integrate the scales before 2018.'
+        include scales prior to 2018.'
       description.fr:
-        La date saisie est trop ancienne. Le simulateur n'intègre pas
+        La date saisie est trop ancienne. Le simulateur n’intègre pas
         les barèmes avant 2018.
       titre.en: '[automatic] date too old'
       titre.fr: date trop ancienne
     durée:
-      titre.en: '[automatic] duration of the exercise'
-      titre.fr: durée de l'exercice
+      titre.en: '[automatic] duration of financial year'
+      titre.fr: durée de l’exercice
     durée maximale:
       description.en: '[automatic] The maximum duration of an accounting period is 24 months.'
-      description.fr: La durée maximale d'un exercice comptable est de 24 mois.
+      description.fr: La durée maximale d’un exercice comptable est de 24 mois.
       titre.en: '[automatic] maximum duration'
       titre.fr: durée maximale
     début:
@@ -6241,7 +6240,7 @@ entreprise . exercice:
       description.en:
         '[automatic] The end of the fiscal year must be later than the
         beginning.'
-      description.fr: La fin de l'exercice doit être postérieure à son début.
+      description.fr: La fin de l’exercice doit être postérieure à son début.
       titre.en: '[automatic] beginning after the end'
       titre.fr: début après la fin
     fin:
@@ -6498,28 +6497,26 @@ entreprise . prorata temporis:
   description.en: |
     [automatic] Percentage of the company's fiscal year in progress
   description.fr: |
-    Pourcentage d'exercice de l'entreprise sur l'année en cours
+    Pourcentage d’exercice de l’entreprise sur l’année en cours
   titre.en: '[automatic] prorata temporis'
   titre.fr: prorata temporis
 entreprise . radiée:
   description.en: '[automatic] Will the company be deregistered in the year of the simulation?'
-  description.fr: L'entreprise sera-t-elle radiée l'année de la simulation ?
+  description.fr: L’entreprise sera-t-elle radiée l’année de la simulation ?
   titre.en: '[automatic] Delisted company'
   titre.fr: Entreprise radiée
 entreprise . radiée cette année:
   description.en: '[automatic] Will the company be deregistered in the year of the simulation?'
-  description.fr: L'entreprise sera-t-elle radiée l'année de la simulation ?
+  description.fr: L’entreprise sera-t-elle radiée l’année de la simulation ?
   titre.en: '[automatic] Company written off this year'
   titre.fr: Entreprise radiée cette année
 entreprise . résultat fiscal:
   titre.en: '[automatic] tax result'
   titre.fr: résultat fiscal
 entreprise . résultat fiscal . rémunération dirigeant déductible:
-  description.en:
-    '[automatic] Amounts related to executive compensation that are
-    tax deductible.'
+  description.en: '[automatic] Tax-deductible executive compensation.'
   description.fr: Les montants liés à la rémunération du dirigeant qui sont
-    déductibles d'impôt.
+    déductibles d’impôt.
   titre.en: '[automatic] deductible expenses manager'
   titre.fr: charges déductibles dirigeant
 entreprise . salariés:
@@ -6551,39 +6548,39 @@ entreprise . salariés . effectif:
           titre.en: '[automatic] 251 and more'
           titre.fr: 251 et plus
       description.en: >
-        [automatic] Many employer contributions vary depending on the size of
+        [automatic] Many employer contributions vary according to the size of
         the company's workforce.
 
-        The crossing of a threshold is only taken into account if it is reached or exceeded during 5 consecutive calendar years.
+        If a threshold is exceeded, it is only taken into account if it has been reached or exceeded for 5 consecutive calendar years.
       description.fr: >
-        De nombreuses cotisations patronales varient selon l'effectif de
-        l'entreprise.
+        De nombreuses cotisations patronales varient selon l’effectif de
+        l’entreprise.
 
-        Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est atteint ou dépassé pendant 5 années civiles consécutives.
+        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il est atteint ou dépassé pendant 5 années civiles consécutives.
       question.en: '[automatic] How many employees does the company have?'
-      question.fr: Quel est l'effectif de l'entreprise ?
-      titre.en: '[automatic] staffing threshold'
-      titre.fr: seuil d'effectif
+      question.fr: Quel est l’effectif de l’entreprise ?
+      titre.en: '[automatic] headcount threshold'
+      titre.fr: seuil d’effectif
   titre.en: '[automatic] workforce'
   titre.fr: effectif
 entreprise . salariés . ratio alternants:
   description.en: >
-    [automatic] This fraction determines the additional contribution for
-    apprenticeship for the companies concerned.
+    [automatic] This fraction determines the additional apprenticeship
+    contribution for the companies concerned.
   description.fr: >
-    Cette fraction détermine la contribution supplémentaire pour l'apprentissage
+    Cette fraction détermine la contribution supplémentaire pour l’apprentissage
     pour les entreprises concernées.
   question.en:
-    "[automatic] What is the percentage of work-study contracts in the
-    company's average workforce?"
-  question.fr: Quelle est la fraction de contrats d'alternance dans l'effectif
-    moyen de l'entreprise ?
+    "[automatic] What percentage of the company's average workforce is
+    made up of work-study contracts?"
+  question.fr: Quelle est la fraction de contrats d’alternance dans l’effectif
+    moyen de l’entreprise ?
   suggestions.1%.en: '[automatic] 1%'
   suggestions.1%.fr: 1%
   suggestions.5%.en: '[automatic] 5%'
   suggestions.5%.fr: 5%
-  titre.en: '[automatic] Fraction of alternates'
-  titre.fr: Fraction d'alternants
+  titre.en: '[automatic] Fraction of alternating workers'
+  titre.fr: Fraction d’alternants
 impôt:
   description.en: '[automatic] This set of formulas is a simplified income tax model.'
   description.fr: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.

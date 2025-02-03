@@ -10,19 +10,19 @@ entreprise . nom:
   type: texte
 
 entreprise . date de création:
-  question: Quelle est votre date de début d'activité ?
+  question: Quelle est votre date de début d’activité ?
   par défaut: 01/01/2021
   description: |
-    La date de début d'activité (ou date de création) est fixée lors de la
+    La date de début d’activité (ou date de création) est fixée lors de la
     déclaration de votre entreprise.
 
     Vous pouvez [renseigner votre entreprise](/), pour préremplir
     automatiquement cette information.
 
-    Si vous n'avez pas le jour exact, le mois suffit en général pour une bonne
+    Si vous n’avez pas le jour exact, le mois suffit en général pour une bonne
     approximation.
   suggestions:
-    Début d'année: période . début d'année
+    Début d’année: période . début d'année
     Début 2024: 01/01/2024
     Il y a plus de 10 ans: 01/01/2015
   type: date
@@ -37,7 +37,7 @@ entreprise . date de création . contrôle date passée:
   type: notification
   sévérité: avertissement
   formule: date de création < 01/1900
-  description: Il s'agit d'une très vieille entreprise ! Êtes-vous sûr de ne pas
+  description: Il s’agit d’une très vieille entreprise ! Êtes-vous sûr de ne pas
     vous être trompé dans la saisie ?
 
 
@@ -56,13 +56,13 @@ entreprise . créée cette année:
     toutes ces conditions:
       - période . début d'année <= entreprise . date de création
       - entreprise . date de création <= période . fin d'année
-  description: L'entreprise a-t-elle été créée l'année de la simulation ?
+  description: L’entreprise a-t-elle été créée l’année de la simulation ?
 
 entreprise . radiée:
   titre: Entreprise radiée
   formule:
     est défini: date de cessation
-  description: L'entreprise sera-t-elle radiée l'année de la simulation ?
+  description: L’entreprise sera-t-elle radiée l’année de la simulation ?
 
 entreprise . radiée cette année:
   titre: Entreprise radiée cette année
@@ -70,7 +70,7 @@ entreprise . radiée cette année:
     toutes ces conditions:
       - est défini: date de cessation
       - période . début d'année <= entreprise . date de cessation
-  description: L'entreprise sera-t-elle radiée l'année de la simulation ?
+  description: L’entreprise sera-t-elle radiée l’année de la simulation ?
 
 entreprise . durée d'activité:
   durée:
@@ -102,7 +102,7 @@ entreprise . durée d'activité cette année:
 
 entreprise . prorata temporis:
   description: |
-    Pourcentage d'exercice de l'entreprise sur l'année en cours
+    Pourcentage d’exercice de l’entreprise sur l’année en cours
   unité: '%'
   formule: entreprise . durée d'activité cette année / 1 an
 
@@ -133,13 +133,13 @@ entreprise . durée d'activité . années civiles:
     unité: année civile
 
 entreprise . chiffre d'affaires:
-  question: Quel est votre chiffre d'affaires envisagé ?
+  question: Quel est votre chiffre d’affaires envisagé ?
   identifiant court: CA
   résumé: Montant total des recettes brutes (hors taxe)
   unité: €/an
   description: |
-    ### Chiffre d'affaires estimé
-    Le chiffre d'affaires est la <strong>somme des montants des ventes réalisées
+    ### Chiffre d’affaires estimé
+    Le chiffre d’affaires est la <strong>somme des montants des ventes réalisées
     pendant votre exercice comptable</strong> (un an) : CA = prix de vente x quantités
     vendues.
   variations:
@@ -160,9 +160,9 @@ entreprise . chiffre d'affaires:
 
 entreprise . chiffre d'affaires . vente restauration hébergement:
   titre: Vente de biens, restauration, hébergement (BIC)
-  résumé: Chiffre d'affaires hors taxe
+  résumé: Chiffre d’affaires hors taxe
   question:
-    Quel est le chiffre d'affaires issu de la vente de biens, restauration
+    Quel est le chiffre d’affaires issu de la vente de biens, restauration
     ou hébergement ?
   unité: €/an
   variations:
@@ -180,12 +180,12 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   par défaut: 0€/an
   description: |
     ### Vente de biens
-    Il s’agit du chiffre d'affaires de toutes les opérations comportant
-    transfert de propriété d'un bien corporel, c'est-à-dire un bien ayant une
+    Il s’agit du chiffre d’affaires de toutes les opérations comportant
+    transfert de propriété d’un bien corporel, c’est-à-dire un bien ayant une
     existence matérielle.
 
     ### Restauration et hébergement
-    Il s’agit du chiffre d'affaires de toutes les opérations de restauration
+    Il s’agit du chiffre d’affaires de toutes les opérations de restauration
     ou hébergement
 
     > Note : pour les locations meublées, seules les locations de meublé de tourisme classé et de chambre d’hôte entrent dans cette catégorie hébergement ; les autres locations meublées relèvent de la catégorie « Prestations de service BIC »
@@ -199,17 +199,17 @@ entreprise . chiffre d'affaires . service BIC:
   unité: €/an
   plancher: 0€/an
   arrondi: oui
-  résumé: Chiffre d'affaires hors taxe
+  résumé: Chiffre d’affaires hors taxe
   titre: Prestations de service commerciales ou artisanales (BIC)
-  question: Quel est le chiffre d'affaires issu de prestations de service
+  question: Quel est le chiffre d’affaires issu de prestations de service
     commerciales ou artisanales ?
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
-    biens corporels (c'est-à-dire ayant une existence matérielle), dont
-    l'activité manuelle joue le principal rôle.
+    biens corporels (c’est-à-dire ayant une existence matérielle), dont
+    l’activité manuelle joue le principal rôle.
 
     Pour simplifier on pourrait dire que ce sont toutes les prestations de
-    services qui nécessite plus qu'un ordinateur pour être effectuées.
+    services qui nécessite plus qu’un ordinateur pour être effectuées.
 
     **Exemples** : transports, service à la personne, réparation etc.
   par défaut: 0€/an
@@ -233,13 +233,13 @@ entreprise . chiffre d'affaires . service BNC:
   par défaut: 0€/an
   plancher: 0€/an
   description: |
-    Ce sont toutes les opérations dont l'activité intellectuelle tient
+    Ce sont toutes les opérations dont l’activité intellectuelle tient
     un rôle essentiel.
 
     **Exemples** : conseil, accompagnement, traduction, développement,
     formation, enseignement, sportif
 
-    Les revenus tirés de ce chiffre d'affaires sont imposable au régime BNC (bénéfices non commerciaux)
+    Les revenus tirés de ce chiffre d’affaires sont imposable au régime BNC (bénéfices non commerciaux)
   variations:
     - si: activités . revenus mixtes
       alors:
@@ -254,10 +254,10 @@ entreprise . chiffre d'affaires . service BNC:
     liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 entreprise . chiffre d'affaires . service:
-  titre: Chiffre d'affaires de prestation de service
+  titre: Chiffre d’affaires de prestation de service
   description: |
     Il s’agit de toute opération ne comportant pas de transfert de propriété de
-    biens corporels (c'est-à-dire ayant une existence matérielle)
+    biens corporels (c’est-à-dire ayant une existence matérielle)
   unité: €/an
   somme:
     - service BIC
@@ -265,7 +265,7 @@ entreprise . chiffre d'affaires . service:
 
 entreprise . chiffre d'affaires . BIC:
   description: |
-    Le chiffre d'affaires correspondant au revenus imposable au titre des bénéfice industriels et commerciaux (BIC ou micro-BIC).
+    Le chiffre d’affaires correspondant au revenus imposable au titre des bénéfice industriels et commerciaux (BIC ou micro-BIC).
   unité: €/an
   somme:
     - service BIC
@@ -283,7 +283,7 @@ entreprise . résultat fiscal:
 entreprise . résultat fiscal . rémunération dirigeant déductible:
   titre: charges déductibles dirigeant
   description: Les montants liés à la rémunération du dirigeant qui sont
-    déductibles d'impôt.
+    déductibles d’impôt.
   variations:
     - si: imposition . IS
       alors: dirigeant . rémunération . totale
@@ -303,7 +303,7 @@ entreprise . exercice:
       sévérité: avertissement
       formule: début < 01/01/2018
       description:
-        La date saisie est trop ancienne. Le simulateur n'intègre pas les
+        La date saisie est trop ancienne. Le simulateur n’intègre pas les
         barèmes avant 2018.
 
     début:
@@ -314,10 +314,10 @@ entreprise . exercice:
       type: notification
       sévérité: avertissement
       formule: début >= fin
-      description: La fin de l'exercice doit être postérieure à son début.
+      description: La fin de l’exercice doit être postérieure à son début.
 
     durée:
-      titre: durée de l'exercice
+      titre: durée de l’exercice
       formule:
         durée:
           depuis: début
@@ -327,7 +327,7 @@ entreprise . exercice:
       type: notification
       sévérité: avertissement
       formule: durée >= 24 mois
-      description: La durée maximale d'un exercice comptable est de 24 mois.
+      description: La durée maximale d’un exercice comptable est de 24 mois.
 
     fin:
       type: date
@@ -387,7 +387,7 @@ entreprise . dividendes: bénéficiaire . dividendes . bruts
 entreprise . capital social:
   experimental: oui
   description: |
-    Cette valeur doit inclure la valeur des primes d'émission.
+    Cette valeur doit inclure la valeur des primes d’émission.
   titre: Capital social
   question: Quele est le capital social de la société ?
   unité: €
@@ -414,13 +414,13 @@ entreprise . salariés . effectif:
 
   avec:
     seuil:
-      titre: seuil d'effectif
-      question: Quel est l'effectif de l'entreprise ?
+      titre: seuil d’effectif
+      question: Quel est l’effectif de l’entreprise ?
       description: >
-        De nombreuses cotisations patronales varient selon l'effectif de
-        l'entreprise.
+        De nombreuses cotisations patronales varient selon l’effectif de
+        l’entreprise.
 
-        Le franchissement d'un seuil à la hausse n'est pris en compte que s'il est atteint ou dépassé pendant 5 années civiles consécutives.
+        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il est atteint ou dépassé pendant 5 années civiles consécutives.
       une possibilité:
         choix obligatoire: oui
         possibilités:
@@ -456,11 +456,11 @@ entreprise . salariés . effectif:
 
 entreprise . salariés . ratio alternants:
   question:
-    Quelle est la fraction de contrats d'alternance dans l'effectif moyen
-    de l'entreprise ?
-  titre: Fraction d'alternants
+    Quelle est la fraction de contrats d’alternance dans l’effectif moyen
+    de l’entreprise ?
+  titre: Fraction d’alternants
   description: |
-    Cette fraction détermine la contribution supplémentaire pour l'apprentissage pour les entreprises concernées.
+    Cette fraction détermine la contribution supplémentaire pour l’apprentissage pour les entreprises concernées.
   suggestions:
     1%: 1%
     5%: 5%
@@ -468,25 +468,25 @@ entreprise . salariés . ratio alternants:
 
 entreprise . association non lucrative:
   experimental: oui
-  description: L'entreprise est une association non lucrative
-  question: S'agit-il d'une association à but non lucratif ?
+  description: L’entreprise est une association non lucrative
+  question: S’agit-il d’une association à but non lucratif ?
   par défaut: non
   # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
   # -> pas de taxe ni contribution d'apprentissage
   rend non applicable: salarié . cotisations . taxe d'apprentissage
 
 entreprise . TVA:
-  question: L'entreprise est-elle assujettie à la TVA ?
+  question: L’entreprise est-elle assujettie à la TVA ?
   par défaut: oui
   description: |
-    Certains types d'entreprises ne sont pas assujetties à la TVA.
+    Certains types d’entreprises ne sont pas assujetties à la TVA.
     Ces dernières payent la taxe sur les salaires en contrepartie.
 
-    C'est le cas par exemple des établissements bancaires, financiers ou d'assurance. C'est aussi le cas des activités d'enseignement.
+    C’est le cas par exemple des établissements bancaires, financiers ou d’assurance. C’est aussi le cas des activités d’enseignement.
 
-    **À noter** : il ne faut pas confondre l'exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d'affaires).
+    **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d’affaires).
 
   références:
-    Les régimes d'imposition à la TVA: https://www.impots.gouv.fr/professionnel/les-regimes-dimposition-la-tva
+    Les régimes d’imposition à la TVA: https://www.impots.gouv.fr/professionnel/les-regimes-dimposition-la-tva
     Tout savoir sur la TVA: https://entreprendre.service-public.fr/vosdroits/N13445
     Liste des activités exonérées (Article 61 du Code général des impôts): https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179649/
