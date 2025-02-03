@@ -16,7 +16,7 @@ export default function LocationDeMeublé() {
 	const { t } = useTranslation()
 
 	return (
-		<Simulation>
+		<Simulation entrepriseSelection={false}>
 			<SimulateurWarning simulateur="location-de-logement-meublé" />
 			<SimulationGoals legend="Montant de votre loyer net">
 				<SimulationGoal
