@@ -44,8 +44,8 @@ html, body, #js, #js > *, [data-overlay-container] {
 			  `
 			: css``
 	}
-	
-} 
+
+}
 
 *,
 *:before,
@@ -73,6 +73,10 @@ button:enabled {
 }
 
 
+/*
+  Classe pour masquer complètement un contenu (Screen reader only)
+  Le contenu n’est jamais affiché à l’écran mais est disponible poul les lecteurs d’écran
+ */
 .sr-only {
 	${SROnly}
 }
