@@ -368,6 +368,10 @@ Votre entreprise: Your company
 Votre message (requis): Your message (required)
 Votre rémunération totale estimée: Your estimated total remuneration
 Vous allez dépasser le plafond de la micro-entreprise: You will exceed the micro-business limit
+Vous dépassez le plafond autorisé (<1></1>) pour déclarer vos revenus de l’économie collaborative avec un statut social au régime général. Vous devez vous orienter vers les statuts d’autoentrepreneur ou de travailleur indépendant.:
+  You exceed the authorized ceiling (<1></1>) for declaring your income from the
+  collaborative economy with a social status under the general regime. You
+  should consider the status of autoentrepreneur or self-employed worker.
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.: We're sorry you weren't satisfied with your experience.
 Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou d’accident conduisant à une incapacité à poursuivre votre activité professionnelle</2>.:
   You may be entitled to a disability pension in the event of <2>illness or
@@ -1538,6 +1542,14 @@ pages:
     is:
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
+    location-de-logement-meublé:
+      meta:
+        description: HERE SIMULATOR DESCRIPTION
+        ogDescription: HERE SIMULATOR DESCRIPTION
+        ogTitle: Income simulator for renting furnished accommodation
+        titre: Income simulator for renting furnished accommodation
+      shortname: Furnished apartment rental
+      title: Income simulator for renting furnished accommodation
     lodeom:
       barème-switch-label: What scale do you envisage?
       legend: Employee's gross salary and applicable Lodeom exemption

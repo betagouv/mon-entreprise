@@ -389,6 +389,11 @@ Votre entreprise: Votre entreprise
 Votre message (requis): Votre message (requis)
 Votre rémunération totale estimée: Votre rémunération totale estimée
 Vous allez dépasser le plafond de la micro-entreprise: Vous allez dépasser le plafond de la micro-entreprise
+Vous dépassez le plafond autorisé (<1></1>) pour déclarer vos revenus de l’économie collaborative avec un statut social au régime général. Vous devez vous orienter vers les statuts d’autoentrepreneur ou de travailleur indépendant.:
+  Vous dépassez le plafond autorisé (<1></1>) pour déclarer vos revenus de
+  l’économie collaborative avec un statut social au régime général. Vous devez
+  vous orienter vers les statuts d’autoentrepreneur ou de travailleur
+  indépendant.
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.:
   Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes
   désolé(e)s.
@@ -1643,6 +1648,14 @@ pages:
     is:
       warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
         réduits de l’impôt sur les sociétés."
+    location-de-logement-meublé:
+      meta:
+        description: ICI DESCRIPTION DU SIMULATEUR
+        ogDescription: ICI DESCRIPTION DU SIMULATEUR
+        ogTitle: Simulateur de revenu pour location de logement meublé
+        titre: Simulateur de revenu pour location de logement meublé
+      shortname: Location de logement meublé
+      title: Simulateur de revenu pour location de logement meublé
     lodeom:
       barème-switch-label: Quel barème envisagez-vous ?
       legend: Rémunération brute du salarié et exonération Lodeom applicable
