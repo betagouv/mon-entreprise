@@ -1,9 +1,13 @@
 location de logement:
 location de logement . meublé:
+  avec:
+    plafond de loyer autorisé pour le régime général: 77700 €/an
 
 location de logement . meublé . loyer:
 location de logement . meublé . loyer . net:
   titre: Loyer net
+  unité: €/an
+
 
 location de logement . meublé . cotisations:
   titre: Cotisations dues pour la location d’un logement meublé
@@ -11,7 +15,8 @@ location de logement . meublé . cotisations:
     produit:
       - assiette
       - taux de cotisation
-  non applicable si: loyer . net > 77700 €
+  unité: €/an
+  non applicable si: loyer . net > plafond de loyer autorisé pour le régime général
 
   avec:
     assiette:
