@@ -34,6 +34,10 @@ const variableNames = {
 		fr: 'Cotisations',
 		en: 'Contributions',
 	},
+	question: {
+		fr: 'Améliorez votre simulation en répondant aux questions',
+		en: 'Improve your simulation by answering the questions below',
+	},
 }
 
 export const runSimulateurTest = (simulateur: Simulateur) => {
@@ -44,6 +48,14 @@ export const runSimulateurTest = (simulateur: Simulateur) => {
 
 		it('should not crash', function () {
 			cy.get(inputSelector)
+		})
+
+		it('should display questions when entering a value in an input', function () {
+			cy.contains(variableNames.question[lang]).should('not.exist')
+
+			cy.get(inputSelector).first().type('{selectall}1000')
+
+			cy.contains(variableNames.question[lang]).should('be.visible')
 		})
 
 		it('should display a result when entering a value in any of the currency input', function () {
