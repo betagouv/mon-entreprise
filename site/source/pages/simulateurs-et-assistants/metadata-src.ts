@@ -1,3 +1,4 @@
+import { locationDeMeubleConfig } from '@/pages/simulateurs/location-de-meublé/config'
 import { ImmutableType } from '@/types/utils'
 
 import { choixStatutJuridiqueConfig } from '../assistants/choix-du-statut/config'
@@ -68,6 +69,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...réductionGénéraleConfig(params),
 		...lodeomConfig(params),
 		...cessationActivitéConfig(params),
+		...locationDeMeubleConfig(params),
 
 		// assistants:
 		...choixStatutJuridiqueConfig(params),

@@ -1,0 +1,22 @@
+location de logement:
+location de logement . meublé:
+
+location de logement . meublé . loyer:
+location de logement . meublé . loyer . net:
+  titre: Loyer net
+
+location de logement . meublé . cotisations:
+  titre: Cotisations dues pour la location d’un logement meublé
+  formule:
+    produit:
+      - assiette
+      - taux de cotisation
+
+  avec:
+    assiette:
+      valeur: loyer . net
+      abattement: 60%
+    taux de cotisation:
+      titre: Taux de cotisation au régime général
+      description: Taux de cotisation pour la location d’un logement meublé de courte durée au régime général
+      valeur: 47.42%

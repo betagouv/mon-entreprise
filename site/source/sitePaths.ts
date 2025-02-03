@@ -76,6 +76,7 @@ const rawSitePathsFr = {
 		'réduction-générale': 'réduction-générale',
 		lodeom: 'lodeom',
 		'cessation-activité': 'cessation-activité',
+		'location-de-logement-meublé': 'location-de-logement-meuble',
 	},
 	nouveautés: {
 		index: 'nouveautés',
@@ -178,6 +179,7 @@ const rawSitePathsEn = {
 		'réduction-générale': 'réduction-générale',
 		lodeom: 'lodeom',
 		'cessation-activité': 'cessation-of-activity',
+		'location-de-logement-meublé': 'furnished-accommodation',
 	},
 	nouveautés: {
 		index: 'news',
