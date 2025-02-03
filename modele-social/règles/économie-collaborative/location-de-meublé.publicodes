@@ -11,6 +11,7 @@ location de logement . meublé . cotisations:
     produit:
       - assiette
       - taux de cotisation
+  non applicable si: loyer . net > 77700 €
 
   avec:
     assiette:

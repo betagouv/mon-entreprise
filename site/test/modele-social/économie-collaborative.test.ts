@@ -19,6 +19,21 @@ describe('Économie collaborative', () => {
 					7587.2
 				)
 			})
+
+			it('applique le régime général jusqu’à 77 700 €', () => {
+				const e = engine.setSituation({
+					'location de logement . meublé . loyer . net': '77700 €',
+				})
+				expect(e).toBeApplicable('location de logement . meublé . cotisations')
+			})
+			it('n’applique pas le régime général si plus de 77 700 €', () => {
+				const e = engine.setSituation({
+					'location de logement . meublé . loyer . net': '77701 €',
+				})
+				expect(e).not.toBeApplicable(
+					'location de logement . meublé . cotisations'
+				)
+			})
 		})
 	})
 })
