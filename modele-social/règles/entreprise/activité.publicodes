@@ -219,7 +219,7 @@ entreprise . activités . service ou vente:
     une de ces conditions:
       - activité . nature . artisanale
       - activité . nature . commerciale
-  question: Quelle est le type d’activité principale de l’entreprise ?
+  question: Quel est le type d’activité principale de l’entreprise ?
   formule:
     une possibilité:
       choix obligatoire: oui
