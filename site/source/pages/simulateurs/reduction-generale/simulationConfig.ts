@@ -34,6 +34,7 @@ export const configRéductionGénérale: SimulationConfig = {
 			'salarié . contrat . CDD . motif',
 			'salarié . rémunération . primes . activité . base',
 			'salarié . rémunération . avantages en nature',
+			'établissement . commune',
 		],
 		'non prioritaires': ['salarié . convention collective'],
 	},
