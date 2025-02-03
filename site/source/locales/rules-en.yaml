@@ -7100,6 +7100,37 @@ impôt . taux personnalisé:
   question.fr: Quel est votre taux de prélèvement à la source ?
   titre.en: personalized rate
   titre.fr: taux personnalisé
+location de logement:
+  titre.en: '[automatic] housing rental'
+  titre.fr: location de logement
+location de logement . meublé:
+  avec:
+    plafond de loyer autorisé pour le régime général:
+      titre.en: '[automatic] authorized rent ceiling for the general scheme'
+      titre.fr: plafond de loyer autorisé pour le régime général
+  titre.en: '[automatic] furnished'
+  titre.fr: meublé
+location de logement . meublé . cotisations:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    taux de cotisation:
+      description.en: '[automatic] Contribution rates for short-term furnished
+        accommodation under the general scheme'
+      description.fr:
+        Taux de cotisation pour la location d’un logement meublé de
+        courte durée au régime général
+      titre.en: '[automatic] General scheme contribution rates'
+      titre.fr: Taux de cotisation au régime général
+  titre.en: '[automatic] Contributions payable for renting furnished accommodation'
+  titre.fr: Cotisations dues pour la location d’un logement meublé
+location de logement . meublé . loyer:
+  titre.en: '[automatic] rent'
+  titre.fr: loyer
+location de logement . meublé . loyer . net:
+  titre.en: '[automatic] Net rent'
+  titre.fr: Loyer net
 plafond sécurité sociale:
   avec:
     N-1:
