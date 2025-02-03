@@ -5614,34 +5614,87 @@ entreprise . catégorie juridique . remplacements:
   titre.fr: remplacements
 entreprise . charges:
   description.en: >
-    [automatic] 
+    [automatic] Social security contributions, CSG-CRDS and vocational training
+    contributions are not
 
-    These are the expenses of the company incurred in the interest of the company, excluding the remuneration of the director. For companies and businesses other than auto-entrepreneurs, these expenses are said to be deductible from the result: the company will not pay any contributions or taxes on them. For the auto-entrepreneur, they are not deductible from the turnover.
-
-
-    We do not yet deal with VAT: the expenses are to be entered without tax (except for self-employed entrepreneurs who are exempt from VAT)
+    contribution to professional training.
 
 
-    For example, the expenses can be :
+    The only expenses to be declared are those incurred in the interest of the company,
+
+    excluding management remuneration. For companies and businesses other than
+
+    auto-entrepreneurs, these expenses are said to be deductible from income: the company
+
+    will not pay any contributions or taxes on them. For auto-entrepreneurs, they are not
+
+    are not deductible from sales.
+
+
+    We do not yet deal with VAT: expenses are to be entered exclusive of tax
+
+    (except for auto-entrepreneurs exempt from VAT).
+
+
+    For example, expenses may be :
 
 
     - purchase of raw materials for a production activity
 
     - purchase of products for resale, for a commercial activity
 
-    - meal expenses: the extra cost of a meal at home
+    - meal expenses: the additional cost of a meal at home
 
 
-    Attention: the purchase of a computer at 1000€ is not an expense, but a fixed asset: it is an asset that will benefit the company for several years. Each year, a part of this fixed asset is depreciated, and this deductible depreciation can be integrated in this calculation, for example 200€ per year for 5 years.
+    Note: the purchase of a €1,000 computer is not an expense, but a capital asset.
+
+    an asset that will benefit the company for several years.
+
+    years. Each year, part of this fixed asset is depreciated, and this deductible
+
+    deductible depreciation can be included in this calculation, for example 200€ per year
+
+    year for 5 years.
 
 
-    On the other hand, a mobile phone costing less than €500 can be treated as an expense with no fixed asset.
+    On the other hand, a cell phone costing less than €500 can be treated as a non-capital expense.
+
+    expense with no fixed asset.
+
+
+    &gt; Note**: social contributions to the self-employed workers' scheme and the deductible
+
+    and the deductible portion of CSG are deductible from taxable income and income subject to
+
+    deductible from taxable income and income subject to contributions.
+
+    expenses" section.
+
+    The simulator calculates them on the basis of the sales and expenses
+
+    and deducts them from sales to estimate the amount of income net of expenses.
+
+    income net of charges.
   description.fr: >
+    Il ne faut pas déclarer ici de cotisations sociales, ni la CSG-CRDS, ni la
 
-    Ce sont les dépenses de l'entreprise engagées dans l'intérêt de celle-ci, hors rémunération du dirigeant. Pour les sociétés et entreprises hors auto-entrepreneur, ces charges sont dites déductibles du résultat : l'entreprise ne paiera pas de cotisations ou impôt dessus. Pour l'auto-entrepreneur, elles ne sont pas déductibles du chiffre d'affaires encaissé.
+    contribution à la formation professionnelle.
 
 
-    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe (excepté pour les auto-entrepreneurs en franchise de TVA)
+    Sont à déclarer, les dépenses de l’entreprise engagées dans l’intérêt de celle-ci,
+
+    hors rémunération du dirigeant. Pour les sociétés et entreprises hors
+
+    auto-entrepreneur, ces charges sont dites déductibles du résultat : l’entreprise
+
+    ne paiera pas de cotisations ou impôt dessus. Pour l’auto-entrepreneur, elles ne
+
+    sont pas déductibles du chiffre d’affaires encaissé.
+
+
+    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe
+
+    (excepté pour les auto-entrepreneurs en franchise de TVA)
 
 
     Par exemple, les charges peuvent être :
@@ -5651,17 +5704,44 @@ entreprise . charges:
 
     - achat de produits en vue de leur revente, pour une activité commerciale
 
-    - frais de repas : le supplément par rapport au coût d'un repas à domicile
+    - frais de repas : le supplément par rapport au coût d’un repas à domicile
 
 
-    Attention : l'achat d'un ordinateur à 1000€ n'est pas une charge, mais une immobilisation : c'est un bien qui va profiter à l'entreprise pendant plusieurs années. Chaque année, une partie de cette immobilisation est amortie, et cet amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par an pendant 5 ans.
+    Attention : l’achat d’un ordinateur à 1000€ n’est pas une charge, mais une
+
+    immobilisation : c’est un bien qui va profiter à l’entreprise pendant plusieurs
+
+    années. Chaque année, une partie de cette immobilisation est amortie, et cet
+
+    amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par
+
+    an pendant 5 ans.
 
 
-    A l'inverse, un téléphone portable à moins de 500€ peut être assimilé à une charge sans immobilisation.
-  question.en: What are the company's expenses before tax (excluding remuneration manager)?
-  question.fr: Quelles sont les charges de l'entreprise ?
-  résumé.en: All the expenses necessary for the company"
-  résumé.fr: Toutes les dépenses nécessaires à l'entreprise
+    A l’inverse, un téléphone portable à moins de 500€ peut être assimilé à une
+
+    charge sans immobilisation.
+
+
+    > **À noter** : les cotisations sociales au régime des travailleurs indépendants et la
+
+    part de CSG déductible font partie des charges déductibles du revenu imposable et
+
+    du revenu soumis à cotisations, mais elles ne sont pas à renseigner dans cette
+
+    rubrique « charges ».
+
+    Le simulateur les calcule à partir du chiffre d’affaires et des charges
+
+    renseignées, et les déduit de ce chiffre d’affaires pour estimer le montant du
+
+    revenu net de charges.
+  question.en: "[automatic] What are the company's expenses?"
+  question.fr: Quelles sont les charges de l’entreprise ?
+  résumé.en: '[automatic] Total expenditure required for the business, excluding
+    social security contributions'
+  résumé.fr: Montant total des dépenses nécessaires à l’entreprise, en excluant
+    les cotisations sociales
   titre.en: '[automatic] expenses (excluding management remuneration)'
   titre.fr: charges (hors rémunération dirigeant)
 entreprise . chiffre d'affaires:
