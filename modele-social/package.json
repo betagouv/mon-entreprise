@@ -1,6 +1,6 @@
 {
 	"name": "modele-social",
-	"version": "4.1.0",
+	"version": "5.0.0",
 	"description": "Les règles publicodes du système social français",
 	"type": "module",
 	"main": "./dist/index.js",

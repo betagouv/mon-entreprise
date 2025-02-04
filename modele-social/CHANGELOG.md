@@ -1,12 +1,20 @@
 # Journal des modifications
 
-## next
+## 5.0.0
 ### Breaking changes
 - Déplacement de la règle `plafond sécurité sociale N-1` vers `plafond sécurité sociale . N-1`
 
 ### Nouveautés
 - Ajout du calcul Lodeom pour toutes les zones et tous les barèmes
 - Ajout du calcul du SMIC équivalent pour un mois incomplet
+- Ajout des règles de radiation et d'année incomplète : `entreprise . date de radiation`, `entreprise . durée d'activité cette année`, `entreprise . prorata temporis`
+- Proratisation des assiettes et plafonds en cas d'année incomplète
+- Ajout des règles `déclaration revenus PAMC`
+
+## Mises à jour
+- Mises à jour des taux pour l'année 2025
+- Références de `dirigeant . indépendant . cotisations et contributions . CSG-CRDS`
+- Les sous-règles de `salarié . cotisations . taxe d'apprentissage` sont désormais publiques
 
 ## 4.1.0
 ### Nouveautés
