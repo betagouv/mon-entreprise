@@ -10,10 +10,14 @@ import { companySituationSelector } from '@/store/selectors/simulationSelectors'
 
 export default function WrongSimulateurWarning() {
 	const company = useSelector(companySituationSelector)
-
 	const simulatorData = useCurrentSimulatorData().currentSimulatorData as
 		| PageConfig
 		| undefined
+
+	if (!company['entreprise . catégorie juridique']) {
+		return null
+	}
+
 	const isWrongSimulateur =
 		simulatorData &&
 		simulatorData.codesCatégorieJuridique?.length &&
@@ -21,7 +25,7 @@ export default function WrongSimulateurWarning() {
 			company['entreprise . code catégorie juridique'] as string
 		) < 0
 
-	if (!Object.keys(company).length || !isWrongSimulateur) {
+	if (!isWrongSimulateur) {
 		return null
 	}
 
