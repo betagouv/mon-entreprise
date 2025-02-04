@@ -1,21 +1,27 @@
 import { checkA11Y, fr } from '../../support/utils'
 
-describe('Simulateur auto-entrepreneur', { testIsolation: false }, function () {
+describe('Simulateur auto-entrepreneur', function () {
 	if (!fr) {
 		return
 	}
 
 	const inputSelector = 'div[id="simulator-legend"] input[inputmode="numeric"]'
 
-	before(function () {
+	beforeEach(function () {
 		return cy.visit('/simulateurs/auto-entrepreneur')
 	})
 
 	it('should allow to enter the date of creation', function () {
 		cy.get(inputSelector).first().type('{selectall}50000')
-		cy.contains('button', 'Passer').click()
-		cy.contains('button', 'Passer').click()
+		cy.contains('Modifier mes réponses').click()
+		cy.get('div[data-cy="modal"]')
+			.first()
+			.contains('Date de création')
+			.next()
+			.click()
 		cy.contains("Début d'année").click()
+		cy.get('div[data-cy="modal"]').contains('Fermer').click()
+
 		cy.contains('ACRE')
 	})
 
@@ -44,6 +50,8 @@ describe('Simulateur auto-entrepreneur', { testIsolation: false }, function () {
 	})
 
 	it('should display the correct CA when changing the second "Activité mixte"', function () {
+		cy.get(inputSelector).first().type('{selectall}5000')
+		cy.contains('Activité mixte').click()
 		cy.get(inputSelector).eq(2).type('{selectall}5000')
 
 		cy.get(inputSelector).first().should('have.value', '10 000 €')
@@ -55,6 +63,12 @@ describe('Simulateur auto-entrepreneur', { testIsolation: false }, function () {
 			.map((elem) => parseInt(elem.value.replace(/[\s,.€]/g, '')))
 
 	it('should display the correct results of "Activité mixte" when changing CA', function () {
+		cy.contains('Activité mixte').click()
+		cy.get(inputSelector).eq(1).type('{selectall}2500')
+		cy.get(inputSelector).eq(2).type('{selectall}5000')
+		cy.get(inputSelector).eq(3).type('{selectall}2500')
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(500)
 		cy.get(inputSelector).first().type('{selectall}5000')
 
 		cy.get<HTMLInputElement>(inputSelector).should(($elem) => {
@@ -65,6 +79,9 @@ describe('Simulateur auto-entrepreneur', { testIsolation: false }, function () {
 	})
 
 	it('should display the correct results of "Activité mixte" when changing "Revenu net Après impôt"', function () {
+		cy.get(inputSelector).first().type('{selectall}2500')
+		cy.contains('Activité mixte').click()
+		cy.get(inputSelector).eq(2).type('{selectall}2500')
 		cy.get(inputSelector).last().type('{selectall}2500')
 
 		cy.get<HTMLInputElement>(inputSelector).should(($elem) => {

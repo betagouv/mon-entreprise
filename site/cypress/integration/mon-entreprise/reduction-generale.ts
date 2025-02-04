@@ -46,11 +46,11 @@ describe(
 			cy.contains('Plus de 50 salariés').click()
 			cy.contains('Modifier mes réponses').click()
 			cy.get('div[data-cy="modal"]')
-				.eq(0)
+				.first()
 				.contains('Effectif')
 				.next()
 				.contains('100')
-			cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
+			cy.get('div[data-cy="modal"]').first().contains('Fermer').click()
 
 			cy.get(
 				'p[id="salarié___cotisations___exonérations___réduction_générale-value"]'
@@ -59,11 +59,11 @@ describe(
 			cy.contains('Moins de 50 salariés').click()
 			cy.contains('Modifier mes réponses').click()
 			cy.get('div[data-cy="modal"]')
-				.eq(0)
+				.first()
 				.contains('Effectif')
 				.next()
 				.contains('10')
-			cy.get('div[data-cy="modal"]').eq(0).contains('Fermer').click()
+			cy.get('div[data-cy="modal"]').first().contains('Fermer').click()
 		})
 
 		it('should allow to select an option for caisse de congés payés', function () {

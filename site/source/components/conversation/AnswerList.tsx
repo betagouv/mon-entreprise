@@ -318,7 +318,7 @@ function AnswerElement(rule: RuleNode) {
 							dottedName={questionDottedName}
 							onChange={handleChange}
 							autoFocus
-							showSuggestions={false}
+							// showSuggestions={false}
 							onSubmit={onClose}
 						/>
 					</form>
