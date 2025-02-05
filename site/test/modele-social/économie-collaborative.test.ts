@@ -35,6 +35,13 @@ describe('Économie collaborative', () => {
 					'location de logement meublé . cotisations'
 				)
 			})
+			it('ne compte aucune cotisation en-dessous de 23 000 € de recettes', () => {
+				const e = engine.setSituation({
+					'location de logement meublé . courte durée . recettes': '22000 €/an',
+				})
+
+				expect(e).toEvaluate('location de logement meublé . cotisations', 0)
+			})
 		})
 	})
 })
