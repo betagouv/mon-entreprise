@@ -1,0 +1,7 @@
+location de logement meublé:
+  avec:
+    cotisations:
+      non applicable si:
+        est non applicable: location de logement meublé . courte durée . cotisations
+      somme:
+        - courte durée . cotisations

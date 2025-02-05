@@ -1,0 +1,25 @@
+location de logement meublé . courte durée:
+  avec:
+
+    plafond de loyer autorisé pour le régime général: 77700 €/an
+
+    recettes:
+      unité: €/an
+
+    cotisations:
+      titre: Cotisations dues pour la location d’un logement meublé de courte durée
+      formule:
+        produit:
+          - assiette
+          - taux de cotisation
+      unité: €/an
+      non applicable si: recettes > plafond de loyer autorisé pour le régime général
+
+      avec:
+        assiette:
+          valeur: recettes
+          abattement: 60%
+        taux de cotisation:
+          titre: Taux de cotisation au régime général
+          description: Taux de cotisation pour la location d’un logement meublé de courte durée au régime général
+          valeur: 47.42%
