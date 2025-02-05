@@ -10,6 +10,7 @@ import ShareOrSaveSimulationBanner, {
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
+import { ilYADesQuestionsSelector } from '@/store/selectors/ilYADesQuestions.selector'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
 import { TrackPage } from '../ATInternetTracking'
@@ -63,6 +64,7 @@ export default function Simulation({
 	entrepriseSelection = true,
 }: SimulationProps) {
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
+	const ilYADesQuestions = useSelector(ilYADesQuestionsSelector)
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
 
 	return (
@@ -79,7 +81,9 @@ export default function Simulation({
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
 							</div>
-							<Questions customEndMessages={customEndMessages} />
+							{ilYADesQuestions && (
+								<Questions customEndMessages={customEndMessages} />
+							)}
 						</>
 					)}
 					<Spacing md />
