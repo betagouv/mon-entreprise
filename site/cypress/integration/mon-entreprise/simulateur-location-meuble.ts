@@ -32,6 +32,21 @@ describe('Simulateur de location de meublé', () => {
 			.should('have.lengthOf.at.least', 1)
 	})
 
+	it('ne chiffre rien si on dépasse le plafond de recettes au régime général', () => {
+		cy.get('input#location_de_logement_meublé___courte_durée___recettes').type(
+			'78000'
+		)
+
+		cy.get('input#location_de_logement_meublé___cotisations').should(
+			'not.exist'
+		)
+
+		cy.get('main').should(
+			'contain',
+			'Vous devez vous orienter vers les statuts'
+		)
+	})
+
 	it('est accessible', function () {
 		checkA11Y()
 	})
