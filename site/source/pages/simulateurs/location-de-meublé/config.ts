@@ -34,11 +34,11 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 			description: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.description',
-				'ICI DESCRIPTION DU SIMULATEUR'
+				'Ce simulateur permet de calculer les revenus générés par la location de logements meublés. Il aide les propriétaires à anticiper leurs gains et optimiser leur fiscalité dans ce cadre spécifique.'
 			),
 			ogDescription: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.ogDescription',
-				'ICI DESCRIPTION DU SIMULATEUR'
+				'Ce simulateur permet de calculer les revenus générés par la location de logements meublés. Il aide les propriétaires à anticiper leurs gains et optimiser leur fiscalité dans ce cadre spécifique.'
 			),
 			ogImage: AutoEntrepreneurPreview,
 		},
