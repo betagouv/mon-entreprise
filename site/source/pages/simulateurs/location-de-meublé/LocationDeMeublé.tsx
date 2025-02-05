@@ -20,18 +20,18 @@ export default function LocationDeMeublé() {
 			<SimulateurWarning simulateur="location-de-logement-meublé" />
 			<SimulationGoals legend="Montant de votre loyer net">
 				<SimulationGoal
-					dottedName="location de logement . meublé . loyer . net"
+					dottedName="location de logement meublé . courte durée . recettes"
 					displayedUnit="€/an"
 				/>
 
 				<WhenNotApplicable
-					dottedName="location de logement . meublé . cotisations"
+					dottedName="location de logement meublé . cotisations"
 					engine={engine}
 				>
 					<AvertissementDansObjectifDeSimulateur>
 						<Trans>
 							Vous dépassez le plafond autorisé (
-							<Value expression="location de logement . meublé . plafond de loyer autorisé pour le régime général" />
+							<Value expression="location de logement meublé . courte durée . plafond de loyer autorisé pour le régime général" />
 							) pour déclarer vos revenus de l’économie collaborative avec un
 							statut social au régime général. Vous devez vous orienter vers les
 							statuts d’autoentrepreneur ou de travailleur indépendant.
@@ -40,11 +40,11 @@ export default function LocationDeMeublé() {
 					</AvertissementDansObjectifDeSimulateur>
 				</WhenNotApplicable>
 				<WhenApplicable
-					dottedName="location de logement . meublé . cotisations"
+					dottedName="location de logement meublé . cotisations"
 					engine={engine}
 				>
 					<SimulationGoal
-						dottedName="location de logement . meublé . cotisations"
+						dottedName="location de logement meublé . cotisations"
 						small
 					/>
 				</WhenApplicable>
