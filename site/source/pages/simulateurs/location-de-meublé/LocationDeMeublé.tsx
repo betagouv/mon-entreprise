@@ -34,7 +34,7 @@ export default function LocationDeMeublé() {
 							<Value expression="location de logement meublé . courte durée . plafond de loyer autorisé pour le régime général" />
 							) pour déclarer vos revenus de l’économie collaborative avec un
 							statut social au régime général. Vous devez vous orienter vers les
-							statuts d’autoentrepreneur ou de travailleur indépendant.
+							statuts d’auto-entrepreneur ou de travailleur indépendant.
 						</Trans>
 						{t('')}
 					</AvertissementDansObjectifDeSimulateur>
