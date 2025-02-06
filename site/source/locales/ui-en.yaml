@@ -550,7 +550,7 @@ gérer:
     annuaire-entreprises:
       aria-label: Company directory, new window
       body: Find all public information about your company at
-    autoEntrepreneur:
+    auto-entrepreneur:
       aria-label: auto-entrepreneur.urssaf.fr, Visit the site
       body: You'll be able to declare your sales, pay your contributions, and find all
         the information you need about auto-entrepreneur status.
