@@ -155,9 +155,12 @@ déclaration revenus PAMC . autres revenus non salariés . agricole:
   par défaut: 0
 
 déclaration revenus PAMC . actes conventionnés uniquement:
-  non applicable si: profession . pédicure-podologue
+  non applicable si:
+    toutes ces conditions:
+      - profession . pédicure-podologue
+      - statut . titulaire
   applicable si:
-    une de ces conditions:
+    toutes ces conditions:
       - activité en structures de soins = non
       - autres revenus non salariés = non
   question: Avez-vous effectué uniquement des actes conventionnés ?
