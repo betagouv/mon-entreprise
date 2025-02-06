@@ -1,5 +1,6 @@
 import { AssistantGoal } from '@/components/Assistant/AssistantGoal'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
+import { WhenAlreadyDefinedMulti } from '@/components/EngineValue/WhenAlreadyDefinedMulti'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { H2 } from '@/design-system/typography/heading'
 
@@ -10,9 +11,17 @@ export default function Formulaire() {
 		<>
 			<H2>Profession</H2>
 			<SimpleField dottedName="déclaration revenus PAMC . profession" />
-			<SimpleField dottedName="déclaration revenus PAMC . statut" />
 
 			<WhenAlreadyDefined dottedName="déclaration revenus PAMC . profession">
+				<SimpleField dottedName="déclaration revenus PAMC . statut" />
+			</WhenAlreadyDefined>
+
+			<WhenAlreadyDefinedMulti
+				dottedNames={[
+					'déclaration revenus PAMC . profession',
+					'déclaration revenus PAMC . statut',
+				]}
+			>
 				<H2>Recettes</H2>
 				<AssistantGoal dottedName="déclaration revenus PAMC . recettes brutes totales" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . revenus imposables" />
@@ -56,7 +65,7 @@ export default function Formulaire() {
 				<H2>Revenus de remplacement</H2>
 				<SimpleField dottedName="déclaration revenus PAMC . revenus de remplacement" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . revenus de remplacement . AJPA" />
-			</WhenAlreadyDefined>
+			</WhenAlreadyDefinedMulti>
 		</>
 	)
 }
