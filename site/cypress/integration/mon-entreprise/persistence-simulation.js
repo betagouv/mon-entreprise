@@ -1,6 +1,7 @@
 const inputSelector = 'div[id="simulator-legend"] input'
 const fr = Cypress.env('language') === 'fr'
 
+// TODO Échoue parfois … à creuser
 describe.skip('Persistence (simulateur salarié)', function () {
 	if (!fr) {
 		return

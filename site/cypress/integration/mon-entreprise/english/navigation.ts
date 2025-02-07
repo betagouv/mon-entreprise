@@ -27,6 +27,7 @@ describe('General navigation', function () {
 	})
 })
 
+// TODO Échoue parfois … à creuser
 describe.skip(`Navigation to income simulator using company name (${
 	writeFixtures ? 'record mode' : 'stubbed mode'
 })`, function () {
