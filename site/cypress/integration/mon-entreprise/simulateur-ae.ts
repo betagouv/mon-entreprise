@@ -8,7 +8,7 @@ describe('Simulateur auto-entrepreneur', function () {
 	const inputSelector = 'div[id="simulator-legend"] input[inputmode="numeric"]'
 
 	beforeEach(function () {
-		return cy.visit('/simulateurs/auto-entrepreneur')
+		cy.visit('/simulateurs/auto-entrepreneur')
 	})
 
 	it('should allow to enter the date of creation', function () {
@@ -18,8 +18,12 @@ describe('Simulateur auto-entrepreneur', function () {
 			.first()
 			.contains('Date de création')
 			.next()
+			.find('button')
 			.click()
-		cy.contains("Début d'année").click()
+		const year = new Date().getFullYear()
+		cy.get('input[aria-label="Champ de date au format jours/mois/année"]').type(
+			`{selectall}01/01/${year}`
+		)
 		cy.get('div[data-cy="modal"]').contains('Fermer').click()
 
 		cy.contains('ACRE')
