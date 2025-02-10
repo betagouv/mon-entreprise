@@ -4770,19 +4770,28 @@ déclaration revenus PAMC . profession:
       titre.fr: infirmier/infirmière
     kinésithérapeute:
       titre.en: '[automatic] masseur/physiotherapist'
-      titre.fr: masseure/masseuse-kinésithérapeute
+      titre.fr: masseure/masseuse kinésithérapeute
     médecin:
       titre.en: '[automatic] doctor'
       titre.fr: médecin
+    médecin secteur 1 généraliste:
+      titre.en: '[automatic] sector 1 general practitioner'
+      titre.fr: médecin secteur 1 généraliste
+    médecin secteur 1 spécialiste:
+      titre.en: '[automatic] sector 1 specialist'
+      titre.fr: médecin secteur 1 spécialiste
+    médecin secteur 2:
+      titre.en: '[automatic] sector 2 physician'
+      titre.fr: médecin secteur 2
     orthophoniste:
       titre.en: '[automatic] speech therapist'
       titre.fr: orthophoniste
     orthoptiste:
       titre.en: '[automatic] orthoptist'
       titre.fr: orthoptiste
-    pédicure-podologue:
+    pédicure podologue:
       titre.en: '[automatic] chiropodist'
-      titre.fr: pédicure-podologue
+      titre.fr: pédicure podologue
     sage-femme:
       titre.en: '[automatic] midwife'
       titre.fr: sage-femme
