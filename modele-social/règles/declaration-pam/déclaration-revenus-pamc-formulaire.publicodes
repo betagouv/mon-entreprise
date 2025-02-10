@@ -10,10 +10,12 @@ déclaration revenus PAMC . profession:
       - dentiste
       - infirmier
       - kinésithérapeute
-      - médecin
+      - médecin secteur 1 généraliste
+      - médecin secteur 1 spécialiste
+      - médecin secteur 2
       - orthophoniste
       - orthoptiste
-      - pédicure-podologue
+      - pédicure podologue
       - sage-femme
   avec:
     dentiste:
@@ -23,18 +25,27 @@ déclaration revenus PAMC . profession:
       titre: infirmier/infirmière
       valeur: profession = 'infirmier'
     kinésithérapeute:
-      titre: masseure/masseuse-kinésithérapeute
+      titre: masseure/masseuse kinésithérapeute
       valeur: profession = 'kinésithérapeute'
-    médecin:
-      valeur: profession = 'médecin'
+    médecin secteur 1 généraliste:
+      valeur: profession = 'médecin secteur 1 généraliste'
+    médecin secteur 1 spécialiste:
+      valeur: profession = 'médecin secteur 1 spécialiste'
+    médecin secteur 2:
+      valeur: profession = 'médecin secteur 2'
     orthophoniste:
       valeur: profession = 'orthophoniste'
     orthoptiste:
       valeur: profession = 'orthoptiste'
-    pédicure-podologue:
-      valeur: profession = 'pédicure-podologue'
+    pédicure podologue:
+      valeur: profession = 'pédicure podologue'
     sage-femme:
       valeur: profession = 'sage-femme'
+    médecin:
+      une de ces conditions:
+        - profession = 'médecin secteur 1 généraliste'
+        - profession = 'médecin secteur 1 spécialiste'
+        - profession = 'médecin secteur 2'
 
 déclaration revenus PAMC . statut:
   question: Quel était votre statut d’exercice au 1er janvier ou à votre date de début d’activité ?
@@ -209,7 +220,7 @@ déclaration revenus PAMC . autres revenus non salariés . agricole:
 déclaration revenus PAMC . actes conventionnés uniquement:
   non applicable si:
     toutes ces conditions:
-      - profession . pédicure-podologue
+      - profession . pédicure podologue
       - statut . titulaire
   applicable si:
     toutes ces conditions:
