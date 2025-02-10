@@ -24,10 +24,10 @@ describe('Simulateur de location de meublé', () => {
 
 	it('chiffre les cotisations quand on saisi des revenus', () => {
 		cy.get('input#location_de_logement_meublé___courte_durée___recettes').type(
-			'1000'
+			'25000'
 		)
 
-		cy.get('input#location_de_logement_meublé___cotisations')
+		cy.get('#location_de_logement_meublé___cotisations-value')
 			.should('be.visible')
 			.should('have.lengthOf.at.least', 1)
 	})
@@ -37,7 +37,7 @@ describe('Simulateur de location de meublé', () => {
 			'78000'
 		)
 
-		cy.get('input#location_de_logement_meublé___cotisations').should(
+		cy.get('#location_de_logement_meublé___cotisations-value').should(
 			'not.exist'
 		)
 

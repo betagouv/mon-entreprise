@@ -1,7 +1,21 @@
 location de logement meublé:
   avec:
+
+    date de début d'activité:
+      par défaut: 01/01/2024
+      question: Quand avez-vous commencé la location de meublé ?
+      type: date
+
+    première année:
+      formule: période . début d'année <= date de début d'activité
+
+    seuil de professionalisation: 23000 €/an
+
     cotisations:
       non applicable si:
         est non applicable: location de logement meublé . courte durée . cotisations
       somme:
         - courte durée . cotisations
+
+    revenu net:
+      formule: location de logement meublé . courte durée . recettes - cotisations

@@ -7100,37 +7100,66 @@ impôt . taux personnalisé:
   question.fr: Quel est votre taux de prélèvement à la source ?
   titre.en: personalized rate
   titre.fr: taux personnalisé
-location de logement:
-  titre.en: '[automatic] housing rental'
-  titre.fr: location de logement
-location de logement . meublé:
+location de logement meublé:
   avec:
+    cotisations:
+      titre.en: '[automatic] contributions'
+      titre.fr: cotisations
+    date de début d'activité:
+      question.en: '[automatic] When did you start renting out furnished accommodation?'
+      question.fr: Quand avez-vous commencé la location de meublé ?
+      titre.en: '[automatic] start date'
+      titre.fr: date de début d'activité
+    première année:
+      titre.en: '[automatic] first year'
+      titre.fr: première année
+    revenu net:
+      titre.en: '[automatic] net income'
+      titre.fr: revenu net
+    seuil de professionalisation:
+      titre.en: '[automatic] professionalization threshold'
+      titre.fr: seuil de professionalisation
+  titre.en: '[automatic] rental of furnished accommodation'
+  titre.fr: location de logement meublé
+location de logement meublé . courte durée:
+  avec:
+    cotisations:
+      avec:
+        assiette:
+          avec:
+            assiette normale:
+              titre.en: '[automatic] standard plate'
+              titre.fr: assiette normale
+            assiette première année:
+              titre.en: '[automatic] first-year base'
+              titre.fr: assiette première année
+          titre.en: '[automatic] plate'
+          titre.fr: assiette
+        taux de cotisation:
+          description.en:
+            '[automatic] Contribution rates for short-term furnished
+            accommodation under the general scheme'
+          description.fr:
+            Taux de cotisation pour la location d’un logement meublé de
+            courte durée au régime général
+          titre.en: '[automatic] General scheme contribution rates'
+          titre.fr: Taux de cotisation au régime général
+      titre.en:
+        '[automatic] Contributions payable for short-term furnished rental
+        accommodation'
+      titre.fr: Cotisations dues pour la location d’un logement meublé de courte durée
     plafond de loyer autorisé pour le régime général:
       titre.en: '[automatic] authorized rent ceiling for the general scheme'
       titre.fr: plafond de loyer autorisé pour le régime général
-  titre.en: '[automatic] furnished'
-  titre.fr: meublé
-location de logement . meublé . cotisations:
-  avec:
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    taux de cotisation:
-      description.en: '[automatic] Contribution rates for short-term furnished
-        accommodation under the general scheme'
-      description.fr:
-        Taux de cotisation pour la location d’un logement meublé de
-        courte durée au régime général
-      titre.en: '[automatic] General scheme contribution rates'
-      titre.fr: Taux de cotisation au régime général
-  titre.en: '[automatic] Contributions payable for renting furnished accommodation'
-  titre.fr: Cotisations dues pour la location d’un logement meublé
-location de logement . meublé . loyer:
-  titre.en: '[automatic] rent'
-  titre.fr: loyer
-location de logement . meublé . loyer . net:
-  titre.en: '[automatic] Net rent'
-  titre.fr: Loyer net
+    recettes:
+      résumé.en: '[automatic] Receipts for short-term furnished accommodation or
+        short-term classified tourist accommodation'
+      résumé.fr: Recettes pour un logement meublé de courte durée ou de tourisme
+        classé de courte durée
+      titre.en: '[automatic] revenues'
+      titre.fr: recettes
+  titre.en: '[automatic] short term'
+  titre.fr: courte durée
 plafond sécurité sociale:
   avec:
     N-1:

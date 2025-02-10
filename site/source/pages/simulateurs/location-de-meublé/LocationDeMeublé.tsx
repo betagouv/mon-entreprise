@@ -9,6 +9,7 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import { SimulationValue } from '@/components/Simulation/SimulationValue'
 import { useEngine } from '@/components/utils/EngineContext'
 
 export default function LocationDeMeublé() {
@@ -43,10 +44,8 @@ export default function LocationDeMeublé() {
 					dottedName="location de logement meublé . cotisations"
 					engine={engine}
 				>
-					<SimulationGoal
-						dottedName="location de logement meublé . cotisations"
-						small
-					/>
+					<SimulationValue dottedName="location de logement meublé . cotisations" />
+					<SimulationValue dottedName="location de logement meublé . revenu net" />
 				</WhenApplicable>
 			</SimulationGoals>
 		</Simulation>
