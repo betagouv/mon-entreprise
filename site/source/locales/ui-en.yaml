@@ -932,6 +932,15 @@ pages:
       shortname: Determining deductible social security charges
       title: Assistance in determining deductible social charges
     declaration-revenus-pamc:
+      formulaire:
+        "1": Profession
+        "2": Recipes
+        "3": SNIR survey data
+        "4": Care facilities
+        "5": Deductions and exemptions
+        "6": Other self-employed income
+        "7": Covered procedures
+        "8": Replacement income
       meta:
         description: Calculate the amounts of your income to report on your tax return.
         title: PAMC tax return
