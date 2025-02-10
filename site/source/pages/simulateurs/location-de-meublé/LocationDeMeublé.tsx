@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import AvertissementDansObjectifDeSimulateur from '@/components/AvertissementDansObjectifDeSimulateur'
+import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
@@ -11,6 +12,7 @@ import Simulation, {
 } from '@/components/Simulation'
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
 import { useEngine } from '@/components/utils/EngineContext'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 
 export default function LocationDeMeublé() {
 	const engine = useEngine()
@@ -44,8 +46,26 @@ export default function LocationDeMeublé() {
 					dottedName="location de logement meublé . cotisations"
 					engine={engine}
 				>
-					<SimulationValue dottedName="location de logement meublé . cotisations" />
-					<SimulationValue dottedName="location de logement meublé . revenu net" />
+					<Condition expression="location de logement meublé . cotisations = 0">
+						<SmallBody>
+							<Trans i18nKey="économie collaborative.avertissement.pas-de-cotisation">
+								Le montant de vos recettes est inférieur à 23 000 € et votre
+								activité n’est pas considérée comme professionnelle. Vous n’êtes
+								pas obligé de vous affilier à la sécurité sociale, vous pouvez
+								toutefois le faire si vous souhaitez bénéficier d'une protection
+								sociale (assurance maladie, retraite…) en contrepartie du
+								paiement des cotisations sociales.
+							</Trans>
+						</SmallBody>
+					</Condition>
+					<SimulationValue
+						isInfoMode
+						dottedName="location de logement meublé . cotisations"
+					/>
+					<SimulationValue
+						isInfoMode
+						dottedName="location de logement meublé . revenu net"
+					/>
 				</WhenApplicable>
 			</SimulationGoals>
 		</Simulation>
