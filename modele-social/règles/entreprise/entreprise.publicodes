@@ -30,7 +30,7 @@ entreprise . date de création:
 entreprise . date de création . contrôle date future:
   type: notification
   sévérité: avertissement
-  formule: date de création > 01/2025
+  formule: date de création > période . fin d'année
   description: Nous ne pouvons voir aussi loin dans le futur
 
 entreprise . date de création . contrôle date passée:
