@@ -371,7 +371,7 @@ salarié . régimes spécifiques . taux réduits . profession:
       icônes: 🩺
       description: |
         Concerne les membres des professions médicales et les médecins salariés qui exercent
-        leur activité à <strong>temps partiel régulièrement et simultanément</strong> pour
+        leur activité à **temps partiel régulièrement et simultanément** pour
         plusieurs employeurs relevant du régime général.
       références:
         Taux réduits pour les professions médicales: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html#ancre-professions-medicales
