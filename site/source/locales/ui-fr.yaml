@@ -994,6 +994,15 @@ pages:
         description: Calculez les montants de vos revenus à reporter dans votre
           déclaration de revenus.
         title: Déclaration de revenus des PAMC
+      resultats:
+        "1": Montants à reporter dans votre déclaration de revenus
+        "2": Montant des revenus de remplacement
+        "3": Déductions et exonérations
+        "4": Cotisations sociales obligatoires
+        "5": Répartition des revenus nets
+        "6": "Revenus nets de l’activité conventionnée :"
+        "7": "Revenus nets tirés des autres activités non salariées :"
+        "8": Données transmises par l’Assurance Maladie
       shortname: Assistant à la déclaration de revenus des PAMC
       title: Assistant à la déclaration de revenus pour les PAMC
     pour-mon-entreprise:
