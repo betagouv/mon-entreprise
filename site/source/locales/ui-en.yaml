@@ -935,6 +935,15 @@ pages:
       meta:
         description: Calculate the amounts of your income to report on your tax return.
         title: PAMC tax return
+      resultats:
+        "1": Amounts to report on your tax return
+        "2": Replacement income
+        "3": Deductions and exemptions
+        "4": Compulsory social security contributions
+        "5": Breakdown of net income
+        "6": "Net income from contract activity :"
+        "7": "Net income from other self-employed activities :"
+        "8": Data provided by Assurance Maladie
       shortname: PAMC tax return assistant
       title: PAMC tax return assistant
     pour-mon-entreprise:
