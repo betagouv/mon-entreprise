@@ -62,38 +62,80 @@ déclaration revenus PAMC . statut:
 
 déclaration revenus PAMC . recettes brutes totales:
   unité: €/an
+  description: |
+    Indiquez la totalité de votre chiffre d’affaires généré par vos activités non
+    salariées, sans application d’abattement. Dans la majorité des cas, les recettes
+    brutes sont équivalentes à la rubrique 5HQ de la déclaration des revenus
+    professionnelle n°2042-C-PRO.
 
 déclaration revenus PAMC . revenus imposables:
   unité: €/an
+  description: |
+    Indiquez le montant du chiffre d’affaires brut réalisé au régime micro-BNC,
+    sans appliquer d’abattement. Il s’agit du montant que vous avez indiqué dans la
+    case 5HQ de la déclaration des revenus professionnelle n°2042-C-PRO.
 
 déclaration revenus PAMC . cotisations sociales obligatoires:
   unité: €/an
+  description: |
+    Indiquez le montant des cotisations payées à l’Urssaf et à votre caisse de
+    retraite **à l’exception de** :
+      - la CSG-CRDS,
+      - la CFP
+      - la Curps
+
+    Déduisez vos éventuels remboursements de ce montant.
+
+    Ce montant doit correspondre à la somme de :
+      - la cotisation maladie
+      - la contribution additionnelle maladie
+      - la cotisation IJ (indemnités journalières)
+      - la cotisation allocations familiale
+      - les cotisations pour votre caisse de retraite
+      - la cotisation <abbr title="Accident du Travail et Maladie Professionnelle">
+      AT/MP</abbr>
+      - les cotisations <abbr title="indemnités journalières">IJ</abbr> et vieillesse
+      de votre conjoint collaborateur / conjointe collaboratrice
 
 déclaration revenus PAMC . SNIR:
 
 déclaration revenus PAMC . SNIR . honoraires remboursables:
   titre: honoraires tirés d’actes conventionnés
   unité: €/an
+  description: |
+    Reportez le montant indiqué sur votre relevé SNIR. Si vous êtes
+    remplaçant/remplaçante, renseignez la totalité des rétrocessions perçues.
+
+    Ajoutez à ce montant :
+      - le montant de vos indemnités journalières versées par la
+      <abbr title="Caisse Primaire d’Assurance Maladie">CPAM</abbr>
+      - vos cotisations facultatives « loi Madelin »
 
 déclaration revenus PAMC . SNIR . dépassements honoraires:
   titre: dépassements d’honoraires
   question: dépassements d’honoraires
   unité: €/an
+  description: |
+    Reportez le montant indiqué sur votre relevé SNIR. Si vous êtes
+    remplaçant/remplaçante, renseignez zéro.
 
 déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
   applicable si: profession . médecin
   titre: honoraires aux tarifs opposables hors forfaits
   unité: €/an
+  description: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
 
 déclaration revenus PAMC . SNIR . honoraires hors forfaits:
   applicable si: profession . médecin
   titre: honoraires totaux hors forfaits
   unité: €/an
+  description: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
 
 déclaration revenus PAMC . SNIR . taux urssaf:
   applicable si: profession . dentiste
   titre: taux Urssaf
   unité: '%'
+  description: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
 
 déclaration revenus PAMC . activité en structures de soins:
   non applicable si: profession . dentiste
@@ -104,6 +146,9 @@ déclaration revenus PAMC . activité en structures de soins . recettes:
   titre: montant
   unité: €/an
   par défaut: 0
+  description: |
+    Indiquez le montant des recettes brutes perçues au sein de certaines structures
+    de soins (EHPAD, ESPIC, HAD, SSIAD, CMPP…).
 
 déclaration revenus PAMC . déductions et exonérations:
   question: Bénéficiez-vous de déductions et/ou de revenus exonérés fiscalement ?
@@ -124,11 +169,15 @@ déclaration revenus PAMC . déductions et exonérations . plus-values à court 
   titre: plus-values à court terme exonérées
   unité: €/an
   par défaut: 0
+  description: |
+    Indiquez le montant net de la plus-value à court terme exonérée, sans appliquer
+    d’abattement ni de majoration.
 
 déclaration revenus PAMC . déductions et exonérations . chèques vacances:
   titre: montant des chèques vacances déduits du revenu imposable
   unité: €/an
   par défaut: 0
+  description: Indiquez le montant total des chèques vacances octroyés.
 
 déclaration revenus PAMC . autres revenus non salariés:
   question: Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?
@@ -143,16 +192,19 @@ déclaration revenus PAMC . autres revenus non salariés . vente de marchandises
   titre: 'micro-BIC : chiffre d’affaires vente de marchandises'
   unité: €/an
   par défaut: 0
+  description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
 
 déclaration revenus PAMC . autres revenus non salariés . prestation de service:
   titre: 'micro-BIC : chiffre d’affaires prestation de service'
   unité: €/an
   par défaut: 0
+  description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
 
 déclaration revenus PAMC . autres revenus non salariés . agricole:
   titre: 'micro-BA : chiffre d’affaires agricole'
   unité: €/an
   par défaut: 0
+  description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
 
 déclaration revenus PAMC . actes conventionnés uniquement:
   non applicable si:
@@ -179,3 +231,8 @@ déclaration revenus PAMC . revenus de remplacement . AJPA:
   titre: montant perçu de l’AJPA versée par la Caf
   unité: €/an
   par défaut: 0
+  description: |
+    Reportez les montants nets perçus au titre des allocations journalières de proche
+    aidant (AJPA) versées par la CAF.
+
+    Les allocations familiales versées par la CAF ne sont pas à renseigner.

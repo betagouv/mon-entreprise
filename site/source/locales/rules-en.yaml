@@ -4584,22 +4584,50 @@ déclaration revenus PAMC . SNIR:
   titre.en: '[automatic] SNIR'
   titre.fr: SNIR
 déclaration revenus PAMC . SNIR . dépassements honoraires:
+  description.en: |
+    [automatic] Enter the amount shown on your SNIR statement. If you are a
+    substitute, enter zero.
+  description.fr: |
+    Reportez le montant indiqué sur votre relevé SNIR. Si vous êtes
+    remplaçant/remplaçante, renseignez zéro.
   question.en: '[automatic] excess fees'
   question.fr: dépassements d’honoraires
   titre.en: '[automatic] excess fees'
   titre.fr: dépassements d’honoraires
 déclaration revenus PAMC . SNIR . honoraires hors forfaits:
+  description.en: '[automatic] Concerns you only if you are a member of Optam or Optam-ACO.'
+  description.fr: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
   titre.en: '[automatic] total fees excluding packages'
   titre.fr: honoraires totaux hors forfaits
 déclaration revenus PAMC . SNIR . honoraires remboursables:
+  description.en: |
+    [automatic] Enter the amount shown on your SNIR statement. If you are a
+    substitute, enter all retrocessions received.
+
+    Add to this amount :
+      - the amount of your daily allowance paid by the
+     <abbr title="Caisse Primaire d’Assurance Maladie">CPAM</abbr>
+      - your optional "Madelin law" contributions
+  description.fr: |
+    Reportez le montant indiqué sur votre relevé SNIR. Si vous êtes
+    remplaçant/remplaçante, renseignez la totalité des rétrocessions perçues.
+
+    Ajoutez à ce montant :
+      - le montant de vos indemnités journalières versées par la
+      <abbr title="Caisse Primaire d’Assurance Maladie">CPAM</abbr>
+      - vos cotisations facultatives « loi Madelin »
   titre.en: '[automatic] fees from conventional procedures'
   titre.fr: honoraires tirés d’actes conventionnés
 déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
+  description.en: '[automatic] Concerns you only if you are a member of Optam or Optam-ACO.'
+  description.fr: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
   titre.en:
     '[automatic] fees charged at the "opposable" rate, excluding lump-sum
     payments'
   titre.fr: honoraires aux tarifs opposables hors forfaits
 déclaration revenus PAMC . SNIR . taux urssaf:
+  description.en: '[automatic] Concerns you only if you are a member of Optam or Optam-ACO.'
+  description.fr: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
   titre.en: '[automatic] Urssaf rate'
   titre.fr: taux Urssaf
 déclaration revenus PAMC . actes conventionnés uniquement:
@@ -4613,6 +4641,16 @@ déclaration revenus PAMC . activité en structures de soins:
   titre.en: '[automatic] activity in care facilities'
   titre.fr: activité en structures de soins
 déclaration revenus PAMC . activité en structures de soins . recettes:
+  description.en: >
+    [automatic] Indicate the amount of gross revenue received by certain care
+    facilities
+
+    (EHPAD, ESPIC, HAD, SSIAD, CMPP...).
+  description.fr: >
+    Indiquez le montant des recettes brutes perçues au sein de certaines
+    structures
+
+    de soins (EHPAD, ESPIC, HAD, SSIAD, CMPP…).
   titre.en: '[automatic] amount'
   titre.fr: montant
 déclaration revenus PAMC . autres revenus non salariés:
@@ -4623,18 +4661,67 @@ déclaration revenus PAMC . autres revenus non salariés:
   titre.en: '[automatic] other self-employed income'
   titre.fr: autres revenus non salariés
 déclaration revenus PAMC . autres revenus non salariés . agricole:
+  description.en: '[automatic] Indicate your sales figures without applying an allowance.'
+  description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BA: farm sales'
   titre.fr: 'micro-BA : chiffre d’affaires agricole'
 déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
   titre.en: '[automatic] net short-term capital gains'
   titre.fr: plus-values nettes à court terme
 déclaration revenus PAMC . autres revenus non salariés . prestation de service:
+  description.en: '[automatic] Indicate your sales figures without applying an allowance.'
+  description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BIC: sales of services'
   titre.fr: 'micro-BIC : chiffre d’affaires prestation de service'
 déclaration revenus PAMC . autres revenus non salariés . vente de marchandises:
+  description.en: '[automatic] Indicate your sales figures without applying an allowance.'
+  description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BIC: sales of goods'
   titre.fr: 'micro-BIC : chiffre d’affaires vente de marchandises'
 déclaration revenus PAMC . cotisations sociales obligatoires:
+  description.en: >
+    [automatic] Indicate the amount of contributions paid to Urssaf and your
+    pension fund
+
+    with the exception of** :
+      - CSG-CRDS,
+      - CFP
+      - Curps
+
+    Deduct any reimbursements from this amount.
+
+
+    This amount must correspond to the sum of :
+      - the health contribution
+      - additional health contribution
+      - IJ (daily allowance) contribution
+      - family allowance contribution
+      - contributions to your pension fund
+      - contribution for <abbr title="Accident du Travail et Maladie Professionnelle">
+      AT/MP</abbr>
+      - <abbr title="indemnités journalières">IJ</abbr> and old-age pension contributions
+      for your collaborating spouse
+  description.fr: >
+    Indiquez le montant des cotisations payées à l’Urssaf et à votre caisse de
+
+    retraite **à l’exception de** :
+      - la CSG-CRDS,
+      - la CFP
+      - la Curps
+
+    Déduisez vos éventuels remboursements de ce montant.
+
+
+    Ce montant doit correspondre à la somme de :
+      - la cotisation maladie
+      - la contribution additionnelle maladie
+      - la cotisation IJ (indemnités journalières)
+      - la cotisation allocations familiale
+      - les cotisations pour votre caisse de retraite
+      - la cotisation <abbr title="Accident du Travail et Maladie Professionnelle">
+      AT/MP</abbr>
+      - les cotisations <abbr title="indemnités journalières">IJ</abbr> et vieillesse
+      de votre conjoint collaborateur / conjointe collaboratrice
   titre.en: '[automatic] compulsory social security contributions'
   titre.fr: cotisations sociales obligatoires
 déclaration revenus PAMC . déductions et exonérations:
@@ -4643,9 +4730,21 @@ déclaration revenus PAMC . déductions et exonérations:
   titre.en: '[automatic] deductions and exemptions'
   titre.fr: déductions et exonérations
 déclaration revenus PAMC . déductions et exonérations . chèques vacances:
+  description.en: '[automatic] Indicate the total amount of vacation vouchers granted.'
+  description.fr: Indiquez le montant total des chèques vacances octroyés.
   titre.en: '[automatic] amount of vacation vouchers deducted from taxable income'
   titre.fr: montant des chèques vacances déduits du revenu imposable
 déclaration revenus PAMC . déductions et exonérations . plus-values à court terme:
+  description.en: >
+    [automatic] Indicate the net amount of tax-exempt short-term capital gains,
+    without applying
+
+    any allowance or mark-up.
+  description.fr: >
+    Indiquez le montant net de la plus-value à court terme exonérée, sans
+    appliquer
+
+    d’abattement ni de majoration.
   titre.en: '[automatic] tax-exempt short-term capital gains'
   titre.fr: plus-values à court terme exonérées
 déclaration revenus PAMC . déductions et exonérations . revenus exonérés:
@@ -4692,6 +4791,24 @@ déclaration revenus PAMC . profession:
   titre.en: '[automatic] profession'
   titre.fr: profession
 déclaration revenus PAMC . recettes brutes totales:
+  description.en: >
+    [automatic] Indicate the total sales generated by your self-employed
+    activities, without
+
+    activities, without applying any deductions. In most cases, gross revenues are equivalent
+
+    equivalent to item 5HQ of the professional income tax return
+
+    n°2042-C-PRO.
+  description.fr: >
+    Indiquez la totalité de votre chiffre d’affaires généré par vos activités
+    non
+
+    salariées, sans application d’abattement. Dans la majorité des cas, les recettes
+
+    brutes sont équivalentes à la rubrique 5HQ de la déclaration des revenus
+
+    professionnelle n°2042-C-PRO.
   titre.en: '[automatic] total gross revenues'
   titre.fr: recettes brutes totales
 déclaration revenus PAMC . revenus de remplacement:
@@ -4702,12 +4819,41 @@ déclaration revenus PAMC . revenus de remplacement:
   titre.en: '[automatic] replacement income'
   titre.fr: revenus de remplacement
 déclaration revenus PAMC . revenus de remplacement . AJPA:
+  description.en: >
+    [automatic] Enter the net amounts received in respect of daily caregiver
+    allowances
+
+    caregiver (AJPA) paid by the CAF.
+
+
+    Family allowances paid by the CAF do not need to be entered.
+  description.fr: >
+    Reportez les montants nets perçus au titre des allocations journalières de
+    proche
+
+    aidant (AJPA) versées par la CAF.
+
+
+    Les allocations familiales versées par la CAF ne sont pas à renseigner.
   titre.en: '[automatic] amount of AJPA paid by Caf'
   titre.fr: montant perçu de l’AJPA versée par la Caf
 déclaration revenus PAMC . revenus de remplacement . total:
   titre.en: '[automatic] total'
   titre.fr: total
 déclaration revenus PAMC . revenus imposables:
+  description.en: >
+    [automatic] Indicate the amount of gross sales generated under the micro-BNC
+    scheme,
+
+    without applying an allowance. This is the amount you entered in
+
+    box 5HQ of professional tax return n°2042-C-PRO.
+  description.fr: >
+    Indiquez le montant du chiffre d’affaires brut réalisé au régime micro-BNC,
+
+    sans appliquer d’abattement. Il s’agit du montant que vous avez indiqué dans la
+
+    case 5HQ de la déclaration des revenus professionnelle n°2042-C-PRO.
   titre.en: '[automatic] taxable income'
   titre.fr: revenus imposables
 déclaration revenus PAMC . revenus nets:
