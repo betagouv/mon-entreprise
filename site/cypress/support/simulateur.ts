@@ -38,88 +38,99 @@ const variableNames = {
 		fr: 'Améliorez votre simulation en répondant aux questions',
 		en: 'Improve your simulation by answering the questions below',
 	},
+	amountWith4To7DigitsRegexp: {
+		fr: /^[1-9](?:\d{0,2}(?:\s\d{3})?|(?:\s\d{3}){1,2})\s€$/,
+		en: /^€[1-9](?:\d{0,2}(?:,\d{3})?|(?:,\d{3}){1,2})$/,
+	},
 }
 
 export const runSimulateurTest = (simulateur: Simulateur) => {
-	describe(`Simulateur ${simulateur}`, { testIsolation: false }, function () {
-		before(function () {
-			return cy.visit(encodeURI(`/${variableNames.url[lang]}/${simulateur}`))
-		})
+	describe(
+		`Le simulateur ${simulateur}`,
+		{ testIsolation: false },
+		function () {
+			before(function () {
+				cy.visit(encodeURI(`/${variableNames.url[lang]}/${simulateur}`))
+			})
 
-		it('should not crash', function () {
-			cy.get(inputSelector)
-		})
+			it("devrait s'afficher", function () {
+				cy.get(inputSelector)
+			})
 
-		it('should display questions when entering a value in an input', function () {
-			cy.contains(variableNames.question[lang]).should('not.exist')
+			it("devrait afficher les questions lorsqu'un champ est rempli", function () {
+				cy.contains(variableNames.question[lang]).should('not.exist')
 
-			cy.get(inputSelector).first().type('{selectall}1000')
+				cy.get(inputSelector).first().type('{selectall}1')
 
-			cy.contains(variableNames.question[lang]).should('be.visible')
-		})
+				cy.contains(variableNames.question[lang]).should('be.visible')
+			})
 
-		it('should display a result when entering a value in any of the currency input', function () {
-			cy.contains(variableNames.yearTab[lang]).click()
+			it('devrait afficher un résultat pour chaque champ rempli', function () {
+				cy.contains(variableNames.yearTab[lang]).click()
+				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
+					cy.get(chargeInputSelector).type('{selectall}1000')
+				}
+				cy.get(inputSelector).each(($testedInput) => {
+					cy.wrap($testedInput).type('{selectall}60111')
 
-			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
-				cy.get(chargeInputSelector).type('1000')
-			}
-			cy.get(inputSelector).each(($testedInput) => {
-				// eslint-disable-next-line cypress/unsafe-to-chain-command
-				cy.wrap($testedInput)
-					.type('{selectall}60111')
-					.and(($i) =>
-						expect(($i.val() as string).replace(/[\s,.€]/g, '')).to.match(
-							/[1-9][\d]{3,6}$/
-						)
-					)
-				cy.get(inputSelector).each(($input) => {
-					if ($testedInput.get(0) === $input.get(0)) return
-					cy.wrap($input).and(($i) => {
-						const val = ($i.val() as string).replace(/[\s,.€]/g, '')
-						expect(val).not.to.be.eq('60111')
-						expect(val).to.match(/[1-9][\d]{3,6}$/)
+					cy.get(inputSelector).each(($input) => {
+						if ($testedInput.get(0) !== $input.get(0)) {
+							cy.wrap($input).should(($input) => {
+								const inputValue = $input.val()
+								expect(inputValue).to.match(
+									variableNames.amountWith4To7DigitsRegexp[lang]
+								)
+								expect(inputValue).not.to.match(/^(?:60\s111\s€)|(€60,111)$/)
+							})
+						}
 					})
+					cy.contains(variableNames.contributions[lang])
 				})
-				cy.contains(variableNames.contributions[lang])
-			})
-		})
-
-		it('should allow to change period', function () {
-			cy.contains(variableNames.yearTab[lang]).click()
-			cy.get(inputSelector).first().type('{selectall}12000')
-			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
-				cy.get(chargeInputSelector).type('{selectall}6000')
-			}
-			cy.get(inputSelector).eq(1).invoke('val').should('not.be.empty')
-			cy.contains(variableNames.monthTab[lang]).click()
-			cy.get(inputSelector)
-				.first()
-				.invoke('val')
-				.should('match', /1[\s,]000/)
-			if (['indépendant', 'profession-liberale'].includes(simulateur)) {
-				cy.get(chargeInputSelector).first().invoke('val').should('match', /500/)
-			}
-		})
-
-		it('should allow to navigate to a documentation page and back', function () {
-			cy.contains(variableNames.yearTab[lang]).click()
-			cy.get(inputSelector).first().type('{selectall}2000')
-			cy.contains(variableNames.contributions[lang]).click()
-			cy.location().should((loc) => {
-				expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations.*/)
 			})
 
-			cy.contains('← ').click()
+			it("devrait permettre de changer d'échelle temporelle", function () {
+				cy.contains(variableNames.yearTab[lang]).click()
+				cy.get(inputSelector).first().type('{selectall}12000')
+				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
+					cy.get(chargeInputSelector).type('{selectall}6000')
+				}
 
-			cy.get(inputSelector)
-				.first()
-				.invoke('val')
-				.should('match', /2[\s,]000/)
-		})
+				cy.get(inputSelector).eq(1).invoke('val').should('not.be.empty')
 
-		it('should be RGAA compliant', function () {
-			checkA11Y()
-		})
-	})
+				cy.contains(variableNames.monthTab[lang]).click()
+				cy.get(inputSelector)
+					.first()
+					.invoke('val')
+					.should('match', /^€?1[\s,]000(?:\s€)?$/)
+
+				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
+					cy.get(chargeInputSelector)
+						.first()
+						.invoke('val')
+						.should('match', /^€?500(?:\s€)?$/)
+				}
+			})
+
+			it("devrait permettre d'accéder à la documentation et d'en revenir", function () {
+				cy.get(inputSelector).first().type('{selectall}2000')
+				cy.contains(variableNames.contributions[lang]).as('docButton')
+				cy.get('@docButton').click()
+				cy.location().should((loc) => {
+					expect(loc.pathname).to.match(/\/documentation\/.*\/cotisations.*/)
+				})
+
+				cy.contains('← ').as('backButton')
+				cy.get('@backButton').click()
+
+				cy.get(inputSelector)
+					.first()
+					.invoke('val')
+					.should('match', /^€?2[\s,]000(?:\s€)?$/)
+			})
+
+			it('devrait être accessible', function () {
+				checkA11Y()
+			})
+		}
+	)
 }
