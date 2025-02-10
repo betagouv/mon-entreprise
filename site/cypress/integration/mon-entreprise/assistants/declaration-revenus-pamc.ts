@@ -226,7 +226,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		)
 
 		cy.contains('Répartition des revenus nets').should('not.exist')
-		cy.contains('Revenu net de l’activité conventionnée').should('not.exist')
+		cy.contains('Revenus nets de l’activité conventionnée').should('not.exist')
 		cy.get(`#${idPrefix}_${revenusNets}_revenus_conventionnés-value`).should(
 			'not.exist'
 		)
@@ -298,7 +298,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		)
 
 		cy.contains('Répartition des revenus nets').should('be.visible')
-		cy.contains('Revenu net de l’activité conventionnée').should('be.visible')
+		cy.contains('Revenus nets de l’activité conventionnée').should('be.visible')
 		cy.get(`#${idPrefix}_${revenusNets}_revenus_conventionnés-value`).should(
 			'be.visible'
 		)
@@ -452,7 +452,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 
 	it('devrait montrer la question sur les actes conventionnés conditionnellement', function () {
 		cy.contains('Réinitialiser').click()
-		cy.contains('Pédicure-podologue').click()
+		cy.contains('Pédicure podologue').click()
 		cy.contains('Remplaçant').click()
 
 		cy.contains('Avez-vous effectué uniquement des actes conventionnés ?')
