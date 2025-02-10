@@ -19,3 +19,19 @@ location de logement meublé:
 
     revenu net:
       formule: location de logement meublé . courte durée . recettes - cotisations
+
+    zone géographique:
+      question: Quelle est votre zone géographique ?
+      une possibilité:
+        possibilités:
+          - Alsace-Moselle
+          - autre
+        choix obligatoire: oui
+      par défaut: "'autre'"
+      avec:
+        Alsace-Moselle:
+          titre: Bas-Rhin, Haut-Rhin ou Moselle
+          valeur: zone géographique = 'Alsace-Moselle'
+        autre:
+          titre: Autre département
+          valeur: zone géographique = 'autre'

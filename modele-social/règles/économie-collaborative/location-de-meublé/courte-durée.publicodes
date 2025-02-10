@@ -38,4 +38,7 @@ location de logement meublé . courte durée:
         taux de cotisation:
           titre: Taux de cotisation au régime général
           description: Taux de cotisation pour la location d’un logement meublé de courte durée au régime général
-          valeur: 47.42%
+          variations:
+            - si: zone géographique . Alsace-Moselle
+              alors: 48.72%
+            - sinon:  47.42%

@@ -7119,6 +7119,18 @@ location de logement meublé:
     seuil de professionalisation:
       titre.en: '[automatic] professionalization threshold'
       titre.fr: seuil de professionalisation
+    zone géographique:
+      avec:
+        Alsace-Moselle:
+          titre.en: '[automatic] Bas-Rhin, Haut-Rhin or Moselle'
+          titre.fr: Bas-Rhin, Haut-Rhin ou Moselle
+        autre:
+          titre.en: '[automatic] Other department'
+          titre.fr: Autre département
+      question.en: '[automatic] What is your geographical area?'
+      question.fr: Quelle est votre zone géographique ?
+      titre.en: '[automatic] geographical area'
+      titre.fr: zone géographique
   titre.en: '[automatic] rental of furnished accommodation'
   titre.fr: location de logement meublé
 location de logement meublé . courte durée:

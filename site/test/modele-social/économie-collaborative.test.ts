@@ -4,10 +4,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import { Situation } from '@/domaine/Situation'
 
-const situationParDéfaut = {
-	date: '01/01/2024à',
-	"location de logement meublé . date de début d'activité": '01/01/2022',
-} satisfies Situation
+const situationParDéfaut = {} satisfies Situation
 
 describe('Économie collaborative', () => {
 	describe('Location de meublé', () => {
@@ -22,10 +19,25 @@ describe('Économie collaborative', () => {
 					...situationParDéfaut,
 					'location de logement meublé . courte durée . recettes': '40000 €/an',
 				})
+
 				expect(e).toEvaluate(
 					'location de logement meublé . cotisations',
 					7587.2
 				)
+			})
+
+			it('prend en compte le taux de cotisation spécial pour le Bas-Rhin, le Haut-Rhin et la Moselle', () => {
+				const e = engine.setSituation({
+					...situationParDéfaut,
+					'location de logement meublé . courte durée . recettes': '40000 €/an',
+					'location de logement meublé . zone géographique': 'Alsace-Moselle',
+				})
+
+				const cotisations = e.evaluate(
+					'location de logement meublé . cotisations'
+				).nodeValue
+
+				expect(cotisations).toEqual(7_587.2)
 			})
 
 			it('applique le régime général jusqu’à 77 700 €', () => {
@@ -35,7 +47,7 @@ describe('Économie collaborative', () => {
 				})
 				expect(e).toBeApplicable('location de logement meublé . cotisations')
 			})
-			it('n’appliquelm leblance pas le régime général si plus de 77 700 €', () => {
+			it('n’applique pas le régime général si plus de 77 700 €', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
 					'location de logement meublé . courte durée . recettes': '77701 €/an',
