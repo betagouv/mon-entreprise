@@ -14,7 +14,7 @@ export const InnerBanner = styled.div`
 	margin: auto;
 	align-items: center;
 	justify-content: center;
-	padding: 0.5rem 1rem;
+	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.md}`};
 	background-color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.bases.primary[700]
