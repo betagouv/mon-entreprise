@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
@@ -12,6 +12,8 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { LigneImpôts } from './LigneImpôts'
 
 export default function Résultats() {
+	const { t } = useTranslation()
+
 	return (
 		<WhenAlreadyDefined dottedName="déclaration revenus PAMC . résultats">
 			<Container
@@ -20,9 +22,10 @@ export default function Résultats() {
 			>
 				<H2>
 					<Emoji emoji="📄" />{' '}
-					<Trans i18nKey="pages.assistants.declaration-revenus-pamc.resultats.1">
-						Montants à reporter dans votre déclaration de revenus
-					</Trans>
+					{t(
+						'pages.assistants.declaration-revenus-pamc.resultats.1',
+						'Montants à reporter dans votre déclaration de revenus'
+					)}
 				</H2>
 
 				<SimulationValue
@@ -38,9 +41,10 @@ export default function Résultats() {
 
 				<Condition expression="déclaration revenus PAMC . revenus de remplacement . total">
 					<H4 as="h3">
-						<Trans i18nKey="pages.assistants.declaration-revenus-pamc.resultats.2">
-							Montant des revenus de remplacement
-						</Trans>
+						{t(
+							'pages.assistants.declaration-revenus-pamc.resultats.2',
+							'Montant des revenus de remplacement'
+						)}
 					</H4>
 				</Condition>
 				<LigneImpôts
@@ -51,9 +55,10 @@ export default function Résultats() {
 
 				<Condition expression="déclaration revenus PAMC . déductions et exonérations . total déductible">
 					<H4 as="h3">
-						<Trans i18nKey="pages.assistants.declaration-revenus-pamc.resultats.3">
-							Déductions et exonérations
-						</Trans>
+						{t(
+							'pages.assistants.declaration-revenus-pamc.resultats.3',
+							'Déductions et exonérations'
+						)}
 					</H4>
 				</Condition>
 				<LigneImpôts
@@ -68,9 +73,10 @@ export default function Résultats() {
 				/>
 
 				<H4 as="h3">
-					<Trans i18nKey="pages.assistants.declaration-revenus-pamc.resultats.4">
-						Cotisations sociales obligatoires
-					</Trans>
+					{t(
+						'pages.assistants.declaration-revenus-pamc.resultats.4',
+						'Cotisations sociales obligatoires'
+					)}
 				</H4>
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . cotisations sociales obligatoires"
@@ -79,14 +85,16 @@ export default function Résultats() {
 				/>
 
 				<H4 as="h3">
-					<Trans i18nKey="pages.assistants.declaration-revenus-pamc.resultats.5">
-						Répartition des revenus nets
-					</Trans>
+					{t(
+						'pages.assistants.declaration-revenus-pamc.resultats.5',
+						'Répartition des revenus nets'
+					)}
 				</H4>
 				<StyledBody>
-					<Trans i18nKey="pages.assistants.declaration-revenus-pamc.resultats.6">
-						Revenus nets de l’activité conventionnée&nbsp;:
-					</Trans>
+					{t(
+						'pages.assistants.declaration-revenus-pamc.resultats.6',
+						'Revenus nets de l’activité conventionnée :'
+					)}
 				</StyledBody>
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . revenus nets . revenus conventionnés"
@@ -94,9 +102,10 @@ export default function Résultats() {
 					label="Bénéfice"
 				/>
 				<StyledBody>
-					<Trans i18nKey="pages.assistants.declaration-revenus-pamc.resultats.7">
-						Revenus nets tirés des autres activités non salariées&nbsp;:
-					</Trans>
+					{t(
+						'pages.assistants.declaration-revenus-pamc.resultats.7',
+						'Revenus nets tirés des autres activités non salariées :'
+					)}
 				</StyledBody>
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . revenus nets . revenus non conventionnés"
@@ -110,9 +119,10 @@ export default function Résultats() {
 				/>
 
 				<H4 as="h3">
-					<Trans i18nKey="pages.assistants.declaration-revenus-pamc.resultats.8">
-						Données transmises par l’Assurance Maladie
-					</Trans>
+					{t(
+						'pages.assistants.declaration-revenus-pamc.resultats.8',
+						'Données transmises par l’Assurance Maladie'
+					)}
 				</H4>
 				<Condition expression="déclaration revenus PAMC . profession != 'dentiste'">
 					<LigneImpôts

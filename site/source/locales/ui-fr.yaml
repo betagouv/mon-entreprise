@@ -990,6 +990,15 @@ pages:
       shortname: Détermination des charges sociales déductibles
       title: Assistant à la détermination des charges sociales déductibles
     declaration-revenus-pamc:
+      formulaire:
+        "1": Profession
+        "2": Recettes
+        "3": Données du relevé SNIR
+        "4": Structures de soins
+        "5": Déductions et exonérations
+        "6": Autres revenus non salariés
+        "7": Actes conventionnés
+        "8": Revenus de remplacement
       meta:
         description: Calculez les montants de vos revenus à reporter dans votre
           déclaration de revenus.
@@ -1000,8 +1009,8 @@ pages:
         "3": Déductions et exonérations
         "4": Cotisations sociales obligatoires
         "5": Répartition des revenus nets
-        "6": "Revenus nets de l’activité conventionnée :"
-        "7": "Revenus nets tirés des autres activités non salariées :"
+        "6": "Revenus nets de l’activité conventionnée :"
+        "7": "Revenus nets tirés des autres activités non salariées :"
         "8": Données transmises par l’Assurance Maladie
       shortname: Assistant à la déclaration de revenus des PAMC
       title: Assistant à la déclaration de revenus pour les PAMC
