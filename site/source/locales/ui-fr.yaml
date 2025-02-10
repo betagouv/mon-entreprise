@@ -389,10 +389,10 @@ Votre entreprise: Votre entreprise
 Votre message (requis): Votre message (requis)
 Votre rémunération totale estimée: Votre rémunération totale estimée
 Vous allez dépasser le plafond de la micro-entreprise: Vous allez dépasser le plafond de la micro-entreprise
-Vous dépassez le plafond autorisé (<1></1>) pour déclarer vos revenus de l’économie collaborative avec un statut social au régime général. Vous devez vous orienter vers les statuts d’autoentrepreneur ou de travailleur indépendant.:
+Vous dépassez le plafond autorisé (<1></1>) pour déclarer vos revenus de l’économie collaborative avec un statut social au régime général. Vous devez vous orienter vers les statuts d’auto-entrepreneur ou de travailleur indépendant.:
   Vous dépassez le plafond autorisé (<1></1>) pour déclarer vos revenus de
   l’économie collaborative avec un statut social au régime général. Vous devez
-  vous orienter vers les statuts d’autoentrepreneur ou de travailleur
+  vous orienter vers les statuts d’auto-entrepreneur ou de travailleur
   indépendant.
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.:
   Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes
@@ -1650,8 +1650,12 @@ pages:
         réduits de l’impôt sur les sociétés."
     location-de-logement-meublé:
       meta:
-        description: ICI DESCRIPTION DU SIMULATEUR
-        ogDescription: ICI DESCRIPTION DU SIMULATEUR
+        description: Ce simulateur permet de calculer les revenus générés par la
+          location de logements meublés. Il aide les propriétaires à anticiper
+          leurs gains et optimiser leur fiscalité dans ce cadre spécifique.
+        ogDescription: Ce simulateur permet de calculer les revenus générés par la
+          location de logements meublés. Il aide les propriétaires à anticiper
+          leurs gains et optimiser leur fiscalité dans ce cadre spécifique.
         ogTitle: Simulateur de revenu pour location de logement meublé
         titre: Simulateur de revenu pour location de logement meublé
       shortname: Location de logement meublé
@@ -2193,3 +2197,10 @@ warning:
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
 à partir du 29ème jour: à partir du 29ème jour
+économie collaborative:
+  avertissement:
+    pas-de-cotisation: Le montant de vos recettes est inférieur à 23 000 € et votre
+      activité n’est pas considérée comme professionnelle. Vous n’êtes pas
+      obligé de vous affilier à la sécurité sociale, vous pouvez toutefois le
+      faire si vous souhaitez bénéficier d'une protection sociale (assurance
+      maladie, retraite…) en contrepartie du paiement des cotisations sociales.
