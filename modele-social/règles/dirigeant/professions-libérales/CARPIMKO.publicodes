@@ -9,6 +9,8 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
   somme:
     - variations:
+        - si: date >= 01/2025
+          alors: 2312 €/an
         - si: date >= 01/2024
           alors: 2176 €/an
         - si: date >= 01/2023
@@ -25,6 +27,8 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
           - taux: 3%
             plafond:
               variations:
+                - si: date >= 01/2025
+                  alors: 237179 €/an
                 - si: date >= 01/2024
                   alors: 224713 €/an
                 - si: date >= 01/2023
@@ -70,6 +74,8 @@ dirigeant . indépendant . PL . CARPIMKO . ASV:
   avec:
     forfaitaire:
       variations:
+        - si: date >= 01/2025
+          alors: 665 €/an
         - si: date >= 01/2024
           alors: 657 €/an
         - si: date >= 01/2023
