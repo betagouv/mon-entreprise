@@ -342,33 +342,33 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > auxiliaire médical 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 8633
-dirigeant . rémunération . net: 21367
-dirigeant . rémunération . net . après impôt: 20501
+"dirigeant . indépendant . cotisations et contributions: 8758
+dirigeant . rémunération . net: 21242
+dirigeant . rémunération . net . après impôt: 20396
 entreprise . chiffre d'affaires: 30000
-impôt . montant: 866
-protection sociale . retraite . base: 163
-protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: 4"
-`;
-
-exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 8798
-dirigeant . rémunération . net: 21202
-dirigeant . rémunération . net . après impôt: 20362
-entreprise . chiffre d'affaires: 30000
-impôt . montant: 840
+impôt . montant: 846
 protection sociale . retraite . base: 162
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
 `;
 
+exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] = `
+"dirigeant . indépendant . cotisations et contributions: 8921
+dirigeant . rémunération . net: 21079
+dirigeant . rémunération . net . après impôt: 20259
+entreprise . chiffre d'affaires: 30000
+impôt . montant: 820
+protection sociale . retraite . base: 161
+protection sociale . retraite . complémentaire: 0
+protection sociale . retraite . trimestres: 4"
+`;
+
 exports[`calculate simulations-professions-libérales > auxiliaire médical 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 72438
-dirigeant . rémunération . net: 227562
-dirigeant . rémunération . net . après impôt: 144353
+"dirigeant . indépendant . cotisations et contributions: 72843
+dirigeant . rémunération . net: 227157
+dirigeant . rémunération . net . après impôt: 144131
 entreprise . chiffre d'affaires: 300000
-impôt . montant: 83209
+impôt . montant: 83026
 protection sociale . retraite . base: 360
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"

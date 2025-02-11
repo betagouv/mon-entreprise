@@ -1,5 +1,10 @@
 # Journal des modifications
 
+## next
+
+## Mises à jour
+- Mises à jour des valeurs CARPIMKO pour 2025
+
 ## 5.0.0
 ### Breaking changes
 - Déplacement de la règle `plafond sécurité sociale N-1` vers `plafond sécurité sociale . N-1`
