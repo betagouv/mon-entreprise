@@ -7110,6 +7110,9 @@ location de logement meublé:
       question.fr: Quand avez-vous commencé la location de meublé ?
       titre.en: '[automatic] start date'
       titre.fr: date de début d'activité
+    plafond régime général:
+      titre.en: '[automatic] Authorized revenue ceiling for the general scheme'
+      titre.fr: Plafond de recettes autorisé pour le régime général
     première année:
       titre.en: '[automatic] first year'
       titre.fr: première année
@@ -7117,6 +7120,20 @@ location de logement meublé:
       titre.en: '[automatic] net income'
       titre.fr: revenu net
     seuil de professionalisation:
+      description.en: >
+        [automatic] If you earn less than €23,000, your activity is not
+        considered professional.
+
+        You are not obliged to join the social security system, but you may do so if you wish to benefit from social protection (health insurance, retirement...) in return for payment of social security contributions.
+
+        (health insurance, pensions, etc.) in return for payment of social security contributions.
+      description.fr: >
+        En dessous de 23 000 € de recettes, votre activité n’est pas considérée
+        comme professionnelle.
+
+        Vous n’êtes pas obligé de vous affilier à la sécurité sociale, vous pouvez toutefois le faire si vous souhaitez bénéficier d'une protection
+
+        sociale (assurance maladie, retraite…) en contrepartie du paiement des cotisations sociales.
       titre.en: '[automatic] professionalization threshold'
       titre.fr: seuil de professionalisation
     zone géographique:
@@ -7160,9 +7177,6 @@ location de logement meublé . courte durée:
         '[automatic] Contributions payable for short-term furnished rental
         accommodation'
       titre.fr: Cotisations dues pour la location d’un logement meublé de courte durée
-    plafond de loyer autorisé pour le régime général:
-      titre.en: '[automatic] authorized rent ceiling for the general scheme'
-      titre.fr: plafond de loyer autorisé pour le régime général
     recettes:
       résumé.en: '[automatic] Receipts for short-term furnished accommodation or
         short-term classified tourist accommodation'

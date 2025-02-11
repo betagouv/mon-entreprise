@@ -34,7 +34,7 @@ export default function LocationDeMeublé() {
 					<AvertissementDansObjectifDeSimulateur>
 						<Trans>
 							Vous dépassez le plafond autorisé (
-							<Value expression="location de logement meublé . courte durée . plafond de loyer autorisé pour le régime général" />
+							<Value expression="location de logement meublé . plafond régime général" />
 							) pour déclarer vos revenus de l’économie collaborative avec un
 							statut social au régime général. Vous devez vous orienter vers les
 							statuts d’auto-entrepreneur ou de travailleur indépendant.
