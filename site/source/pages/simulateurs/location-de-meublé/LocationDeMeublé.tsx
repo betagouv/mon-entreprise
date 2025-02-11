@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
 import AvertissementDansObjectifDeSimulateur from '@/components/AvertissementDansObjectifDeSimulateur'
 import { Condition } from '@/components/EngineValue/Condition'
@@ -31,7 +31,7 @@ export default function LocationDeMeublé() {
 					engine={engine}
 				>
 					<AvertissementDansObjectifDeSimulateur>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.avertissement.dépassement-du-plafond">
 							Vous dépassez le plafond autorisé (
 							<Value expression="location de logement meublé . plafond régime général" />
 							) pour déclarer vos revenus de l’économie collaborative avec un
@@ -46,7 +46,7 @@ export default function LocationDeMeublé() {
 				>
 					<Condition expression="location de logement meublé . cotisations = 0">
 						<SmallBody>
-							<Trans i18nKey="économie collaborative.avertissement.pas-de-cotisation">
+							<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.avertissement.pas-de-cotisation">
 								Le montant de vos recettes est inférieur à{' '}
 								<Value expression="location de logement meublé . seuil de professionalisation" />{' '}
 								€ et votre activité n’est pas considérée comme professionnelle.
