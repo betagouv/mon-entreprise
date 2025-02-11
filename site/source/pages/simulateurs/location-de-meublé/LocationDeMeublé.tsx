@@ -16,7 +16,6 @@ import { SmallBody } from '@/design-system/typography/paragraphs'
 
 export default function LocationDeMeublé() {
 	const engine = useEngine()
-	const { t } = useTranslation()
 
 	return (
 		<Simulation entrepriseSelection={false}>
@@ -39,7 +38,6 @@ export default function LocationDeMeublé() {
 							statut social au régime général. Vous devez vous orienter vers les
 							statuts d’auto-entrepreneur ou de travailleur indépendant.
 						</Trans>
-						{t('')}
 					</AvertissementDansObjectifDeSimulateur>
 				</WhenNotApplicable>
 				<WhenApplicable
