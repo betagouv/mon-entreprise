@@ -9,7 +9,16 @@ location de logement meublé:
     première année:
       formule: période . début d'année <= date de début d'activité
 
-    seuil de professionalisation: 23000 €/an
+    seuil de professionalisation:
+      description: |
+        En dessous de 23 000 € de recettes, votre activité n’est pas considérée comme professionnelle.
+        Vous n’êtes pas obligé de vous affilier à la sécurité sociale, vous pouvez toutefois le faire si vous souhaitez bénéficier d'une protection
+        sociale (assurance maladie, retraite…) en contrepartie du paiement des cotisations sociales.
+      valeur: 23000 €/an
+
+    plafond régime général:
+      titre: Plafond de recettes autorisé pour le régime général
+      valeur: 77700 €/an
 
     cotisations:
       non applicable si:
