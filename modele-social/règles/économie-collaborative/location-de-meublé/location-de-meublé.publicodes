@@ -23,8 +23,7 @@ location de logement meublé:
     cotisations:
       non applicable si:
         est non applicable: location de logement meublé . courte durée . cotisations
-      somme:
-        - courte durée . cotisations
+      valeur: courte durée . cotisations
 
     revenu net:
       formule: location de logement meublé . courte durée . recettes - cotisations
