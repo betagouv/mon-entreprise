@@ -2,7 +2,7 @@ location de logement meublé:
   avec:
 
     date de début d'activité:
-      par défaut: 01/01/2024
+      par défaut: période . début d'année . N-1
       question: Quand avez-vous commencé la location de meublé ?
       type: date
 
