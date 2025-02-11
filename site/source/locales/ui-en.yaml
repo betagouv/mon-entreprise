@@ -2067,7 +2067,7 @@ warning:
 à partir du 29ème jour: from day 29
 économie collaborative:
   avertissement:
-    pas-de-cotisation: Your revenue is less than €23,000 and your activity is not
+    pas-de-cotisation: Your revenue is less than <2></2> € and your activity is not
       considered professional. You are not obliged to join the social security
       system, but you may do so if you wish to benefit from social protection
       (health insurance, retirement, etc.) in return for payment of social
