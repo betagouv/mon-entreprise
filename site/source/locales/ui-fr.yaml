@@ -2199,7 +2199,7 @@ warning:
 à partir du 29ème jour: à partir du 29ème jour
 économie collaborative:
   avertissement:
-    pas-de-cotisation: Le montant de vos recettes est inférieur à 23 000 € et votre
+    pas-de-cotisation: Le montant de vos recettes est inférieur à <2></2> € et votre
       activité n’est pas considérée comme professionnelle. Vous n’êtes pas
       obligé de vous affilier à la sécurité sociale, vous pouvez toutefois le
       faire si vous souhaitez bénéficier d'une protection sociale (assurance

@@ -47,12 +47,13 @@ export default function LocationDeMeublé() {
 					<Condition expression="location de logement meublé . cotisations = 0">
 						<SmallBody>
 							<Trans i18nKey="économie collaborative.avertissement.pas-de-cotisation">
-								Le montant de vos recettes est inférieur à 23 000 € et votre
-								activité n’est pas considérée comme professionnelle. Vous n’êtes
-								pas obligé de vous affilier à la sécurité sociale, vous pouvez
-								toutefois le faire si vous souhaitez bénéficier d'une protection
-								sociale (assurance maladie, retraite…) en contrepartie du
-								paiement des cotisations sociales.
+								Le montant de vos recettes est inférieur à{' '}
+								<Value expression="location de logement meublé . seuil de professionalisation" />{' '}
+								€ et votre activité n’est pas considérée comme professionnelle.
+								Vous n’êtes pas obligé de vous affilier à la sécurité sociale,
+								vous pouvez toutefois le faire si vous souhaitez bénéficier
+								d'une protection sociale (assurance maladie, retraite…) en
+								contrepartie du paiement des cotisations sociales.
 							</Trans>
 						</SmallBody>
 					</Condition>
