@@ -49,7 +49,7 @@ export default function LocationDeMeublé() {
 							<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.avertissement.pas-de-cotisation">
 								Le montant de vos recettes est inférieur à{' '}
 								<Value expression="location de logement meublé . seuil de professionalisation" />{' '}
-								€ et votre activité n’est pas considérée comme professionnelle.
+								et votre activité n’est pas considérée comme professionnelle.
 								Vous n’êtes pas obligé de vous affilier à la sécurité sociale.
 								Vous pouvez toutefois le faire si vous souhaitez bénéficier
 								d'une protection sociale (assurance maladie, retraite…) en
