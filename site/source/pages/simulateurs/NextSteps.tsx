@@ -77,6 +77,19 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 						</Grid>
 					))}
 
+				{key === 'location-de-logement-meublé' && (
+					<Grid item xs={12} sm={6} lg={4} role="listitem">
+						<GuideURSSAFCard
+							guideUrssaf={{
+								url: 'https://www.urssaf.fr/accueil/services/economie-collaborative.html',
+								title: 'Le guide Économie collaborative de l’Urssaf',
+								description:
+									'Retrouvez toutes les règles Urssaf pour l’économie collaborative.',
+							}}
+						/>
+					</Grid>
+				)}
+
 				{key === 'salarié' && (
 					<Grid item xs={12} sm={6} lg={4} role="listitem">
 						<CodeDuTravailNumeriqueCard />
