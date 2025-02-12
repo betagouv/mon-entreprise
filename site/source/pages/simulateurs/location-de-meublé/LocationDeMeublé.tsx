@@ -33,7 +33,10 @@ export default function LocationDeMeublé() {
 					<AvertissementDansObjectifDeSimulateur>
 						<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.avertissement.dépassement-du-plafond">
 							Vous dépassez le plafond autorisé (
-							<Value expression="location de logement meublé . plafond régime général" />
+							<Value
+								linkToRule={false}
+								expression="location de logement meublé . plafond régime général"
+							/>
 							) pour déclarer vos revenus de l’économie collaborative avec un
 							statut social au régime général. Vous devez vous orienter vers les
 							statuts d’auto-entrepreneur ou de travailleur indépendant.
