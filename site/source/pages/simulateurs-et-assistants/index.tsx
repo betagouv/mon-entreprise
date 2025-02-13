@@ -170,8 +170,6 @@ export default function SimulateursEtAssistants() {
 						{...simulators['cessation-activité']}
 						role="listitem"
 					/>
-
-					<SimulateurCard {...simulators['demande-mobilité']} role="listitem" />
 				</Grid>
 			</section>
 			<section>
