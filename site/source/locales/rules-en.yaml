@@ -4770,7 +4770,7 @@ déclaration revenus PAMC . profession:
       titre.fr: infirmier/infirmière
     kinésithérapeute:
       titre.en: '[automatic] masseur/physiotherapist'
-      titre.fr: masseure/masseuse kinésithérapeute
+      titre.fr: masseur/masseuse kinésithérapeute
     médecin:
       titre.en: '[automatic] doctor'
       titre.fr: médecin

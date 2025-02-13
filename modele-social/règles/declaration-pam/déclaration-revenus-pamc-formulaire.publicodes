@@ -25,7 +25,7 @@ déclaration revenus PAMC . profession:
       titre: infirmier/infirmière
       valeur: profession = 'infirmier'
     kinésithérapeute:
-      titre: masseure/masseuse kinésithérapeute
+      titre: masseur/masseuse kinésithérapeute
       valeur: profession = 'kinésithérapeute'
     médecin secteur 1 généraliste:
       valeur: profession = 'médecin secteur 1 généraliste'
