@@ -2,7 +2,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
-import Banner from '@/components/Banner'
+import SimulationBanner from '@/components/Simulation/Banner'
 import { Link } from '@/design-system/typography/link'
 import useYear from '@/hooks/useYear'
 import { enregistreLaRéponse } from '@/store/actions/actions'
@@ -12,14 +12,14 @@ const Bold = styled.span<{ $bold: boolean }>`
 	${({ $bold }) => ($bold ? 'font-weight: bold;' : '')}
 `
 
-export const SelectSimulationYear = () => {
+export const YearSelectionBanner = () => {
 	const dispatch = useDispatch()
 	const currentYear = getCurrentYear()
 	const choices = getYearsBetween(2023, currentYear)
 	const currentEngineYear = useYear()
 
 	return (
-		<Banner hideAfterFirstStep={false} icon={'📅'}>
+		<SimulationBanner hideAfterFirstStep={false} icon={'📅'}>
 			<Trans i18nKey="pages.simulateurs.select-year.info">
 				Cette simulation concerne l'année{' '}
 				<Bold $bold={currentEngineYear !== currentYear}>
@@ -51,7 +51,7 @@ export const SelectSimulationYear = () => {
 						</span>
 					))}
 			</>
-		</Banner>
+		</SimulationBanner>
 	)
 }
 

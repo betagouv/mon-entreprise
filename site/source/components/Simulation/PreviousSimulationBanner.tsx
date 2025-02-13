@@ -1,12 +1,11 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import SimulationBanner from '@/components/Simulation/Banner'
 import { Link } from '@/design-system/typography/link'
 import { loadPreviousSimulation } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
-
-import Banner from './Banner'
 
 export default function PreviousSimulationBanner() {
 	const previousSimulation = useSelector(
@@ -18,7 +17,7 @@ export default function PreviousSimulationBanner() {
 	const { t } = useTranslation()
 
 	return (
-		<Banner
+		<SimulationBanner
 			className="print-hidden"
 			hidden={!previousSimulation || newSimulationStarted}
 			icon="💾"
@@ -37,6 +36,6 @@ export default function PreviousSimulationBanner() {
 					Retrouver ma précédente simulation
 				</Trans>
 			</Link>
-		</Banner>
+		</SimulationBanner>
 	)
 }

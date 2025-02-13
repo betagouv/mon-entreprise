@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux'
 
 import RuleInput from '@/components/conversation/RuleInput'
 import PeriodSwitch from '@/components/PeriodSwitch'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
 import { Body } from '@/design-system/typography/paragraphs'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
@@ -22,7 +22,7 @@ export default function IndépendantSimulation() {
 		<>
 			<Simulation
 				explanations={<IndépendantExplanation />}
-				afterQuestionsSlot={<SelectSimulationYear />}
+				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
 					simulateur="indépendant"

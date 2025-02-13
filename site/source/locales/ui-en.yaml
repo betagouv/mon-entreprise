@@ -280,7 +280,6 @@ Votre message (requis): Your message (required)
 Votre rémunération totale estimée: Your estimated total remuneration
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.: We're sorry you weren't satisfied with your experience.
 Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.: You can try again with your SIREN or SIRET for a better result.
-Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Are you an SAS(U) director? <2>Go to the dedicated income simulator</2>
 accessibility:
   description: Référentiel Général d'Amélioration de l'Accessibilité (General
     Accessibility Improvement Reference System)
@@ -1773,6 +1772,7 @@ pages:
       shortname: Midwife
       title: Income simulator for self-employed midwives
     salarié:
+      SASU: Are you an SAS(U) director? <2>Access the dedicated income simulator</2>
       alt-image1: Net salary (received by the employee) is equal to Gross salary
         (stated in the employment contract) minus employee contributions
         (pension, social security contributions, etc.).

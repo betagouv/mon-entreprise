@@ -16,11 +16,11 @@ import { firstStepCompletedSelector } from '@/store/selectors/simulationSelector
 import { TrackPage } from '../ATInternetTracking'
 import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
-import SimulationPréremplieBanner from '../SimulationPréremplieBanner'
-import PreviousSimulationBanner from './../PreviousSimulationBanner'
 import { FromTop } from './../ui/animate'
 import EntrepriseSelection from './EntrepriseSelection'
+import PreviousSimulationBanner from './PreviousSimulationBanner'
 import { Questions } from './Questions'
+import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
 export { Questions } from './Questions'
 export { SimulationGoal } from './SimulationGoal'
