@@ -77,10 +77,10 @@ export default function Simulation({
 				<FromTop>
 					{(firstStepCompleted || showQuestionsFromBeginning) && (
 						<>
-							{entrepriseSelection && <EntrepriseSelection />}
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
 							</div>
+							{entrepriseSelection && <EntrepriseSelection />}
 							{ilYADesQuestions && (
 								<Questions customEndMessages={customEndMessages} />
 							)}
