@@ -19,7 +19,7 @@ export const YearSelectionBanner = () => {
 	const currentEngineYear = useYear()
 
 	return (
-		<SimulationBanner hideAfterFirstStep={false} icon={'📅'}>
+		<SimulationBanner icon={'📅'}>
 			<Trans i18nKey="pages.simulateurs.select-year.info">
 				Cette simulation concerne l'année{' '}
 				<Bold $bold={currentEngineYear !== currentYear}>

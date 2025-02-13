@@ -4,24 +4,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import SimulationBanner from '@/components/Simulation/Banner'
 import { Link } from '@/design-system/typography/link'
 import { loadPreviousSimulation } from '@/store/actions/actions'
-import { RootState } from '@/store/reducers/rootReducer'
-import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
+import { previousSimulationSelector } from '@/store/selectors/simulationSelectors'
 
 export default function PreviousSimulationBanner() {
-	const previousSimulation = useSelector(
-		(state: RootState) => state.previousSimulation
-	)
-	const newSimulationStarted = useSelector(firstStepCompletedSelector)
+	const previousSimulation = useSelector(previousSimulationSelector)
 	const dispatch = useDispatch()
-
 	const { t } = useTranslation()
 
+	if (!previousSimulation) {
+		return null
+	}
+
 	return (
-		<SimulationBanner
-			className="print-hidden"
-			hidden={!previousSimulation || newSimulationStarted}
-			icon="💾"
-		>
+		<SimulationBanner className="print-hidden" icon="💾">
 			<Trans i18nKey="previousSimulationBanner.info">
 				Votre précédente simulation a été sauvegardée :
 			</Trans>{' '}
