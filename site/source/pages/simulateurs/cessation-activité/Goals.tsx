@@ -25,7 +25,11 @@ export const CessationActivitéGoals = () => {
 					<ChiffreAffairesActivitéMixte dottedName="entreprise . chiffre d'affaires" />
 				</Condition>
 				<Condition expression="entreprise . imposition . régime . micro-entreprise != oui">
-					<SimulationGoal appear={false} dottedName="entreprise . charges" />
+					<SimulationGoal
+						appear={false}
+						résuméEnGras
+						dottedName="entreprise . charges"
+					/>
 				</Condition>
 			</Condition>
 			<Condition expression="entreprise . imposition = 'IS'">
