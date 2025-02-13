@@ -27,7 +27,7 @@ export default function Plan() {
 			/>
 			<TrackPage chapter1="navigation" name="plan-du-site" />
 
-			<Ul size="XL" noMarker>
+			<Ul size="XL" $noMarker>
 				<PlanContent />
 			</Ul>
 		</>

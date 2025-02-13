@@ -33,7 +33,7 @@ export default function StatutsPossibles() {
 		<StyledMessage>
 			<H5 as="h2"> Statuts disponibles</H5>
 
-			<StyledUl noMarker as={FlipMove} typeName="ul">
+			<StyledUl $noMarker as={FlipMove} typeName="ul">
 				{statuts.map((statut) => (
 					<Statut key={statut} statut={statut} />
 				))}
