@@ -1005,13 +1005,16 @@ pages:
         title: Déclaration de revenus des PAMC
       resultats:
         "1": Montants à reporter dans votre déclaration de revenus
-        "2": Montant des revenus de remplacement
-        "3": Déductions et exonérations
-        "4": Cotisations sociales obligatoires
-        "5": Répartition des revenus nets
-        "6": "Revenus nets de l’activité conventionnée :"
-        "7": "Revenus nets tirés des autres activités non salariées :"
-        "8": Données transmises par l’Assurance Maladie
+        "10": "Revenus nets tirés des autres activités non salariées :"
+        "11": Données transmises par l’Assurance Maladie
+        "2": Situation au 1er janvier ou à la date du début d’activité
+        "3": Vous êtes titulaire
+        "4": Vous êtes remplaçant
+        "5": Montant des revenus de remplacement
+        "6": Déductions et exonérations
+        "7": Cotisations sociales obligatoires
+        "8": Répartition des revenus nets
+        "9": "Revenus nets de l’activité conventionnée :"
       shortname: Assistant à la déclaration de revenus des PAMC
       title: Assistant à la déclaration de revenus pour les PAMC
     pour-mon-entreprise:
