@@ -5858,6 +5858,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@modele-social/economie-collaborative@workspace:@modele-social/economie-collaborative":
+  version: 0.0.0-use.local
+  resolution: "@modele-social/economie-collaborative@workspace:@modele-social/economie-collaborative"
+  dependencies:
+    js-yaml: ^4.1.0
+    onchange: ^7.1.0
+  peerDependencies:
+    publicodes: ^1.0.4
+  languageName: unknown
+  linkType: soft
+
+"@modele-social/legacy@workspace:@modele-social/legacy":
+  version: 0.0.0-use.local
+  resolution: "@modele-social/legacy@workspace:@modele-social/legacy"
+  dependencies:
+    js-yaml: ^4.1.0
+    onchange: ^7.1.0
+  peerDependencies:
+    publicodes: ^1.6.1
+  languageName: unknown
+  linkType: soft
+
 "@mongodb-js/saslprep@npm:^1.1.0":
   version: 1.1.0
   resolution: "@mongodb-js/saslprep@npm:1.1.0"
