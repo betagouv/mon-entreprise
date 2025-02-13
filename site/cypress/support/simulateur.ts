@@ -7,6 +7,9 @@ const lang = Cypress.env('language') as 'fr' | 'en'
 
 type Simulateur =
 	| 'auto-entrepreneur'
+	| 'eirl'
+	| 'eurl'
+	| 'entreprise-individuelle'
 	| 'salaire-brut-net'
 	| 'salary'
 	| 'sasu'
@@ -16,6 +19,9 @@ type Simulateur =
 	| 'profession-liberale/chirurgien-dentiste'
 	| 'profession-liberale/médecin'
 	| 'profession-liberale/sage-femme'
+	| 'profession-liberale/pharmacien'
+	| 'profession-liberale/avocat'
+	| 'profession-liberale/expert-comptable'
 
 const variableNames = {
 	url: {
@@ -44,13 +50,18 @@ const variableNames = {
 	},
 }
 
-export const runSimulateurTest = (simulateur: Simulateur) => {
+export const runSimulateurTest = (
+	simulateur: Simulateur,
+	avecCharges = false,
+	beforeAction = () => {}
+) => {
 	describe(
 		`Le simulateur ${simulateur}`,
 		{ testIsolation: false },
 		function () {
 			before(function () {
 				cy.visit(encodeURI(`/${variableNames.url[lang]}/${simulateur}`))
+				beforeAction?.()
 			})
 
 			it("devrait s'afficher", function () {
@@ -67,7 +78,7 @@ export const runSimulateurTest = (simulateur: Simulateur) => {
 
 			it('devrait afficher un résultat pour chaque champ rempli', function () {
 				cy.contains(variableNames.yearTab[lang]).click()
-				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
+				if (avecCharges) {
 					cy.get(chargeInputSelector).type('{selectall}1000')
 				}
 				cy.get(inputSelector).each(($testedInput) => {
@@ -91,7 +102,7 @@ export const runSimulateurTest = (simulateur: Simulateur) => {
 			it("devrait permettre de changer d'échelle temporelle", function () {
 				cy.contains(variableNames.yearTab[lang]).click()
 				cy.get(inputSelector).first().type('{selectall}12000')
-				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
+				if (avecCharges) {
 					cy.get(chargeInputSelector).type('{selectall}6000')
 				}
 
