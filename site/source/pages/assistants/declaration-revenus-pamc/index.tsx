@@ -40,43 +40,48 @@ export default function DéclarationRevenusPAMC() {
 
 			<Warning localStorageKey="pages.assistants.declaration-revenus-pamc.warning">
 				<Ul>
-					<StyledLi>
-						Cet assistant est à destination des{' '}
-						<Strong>
-							praticiens et auxiliaires médicaux conventionnés (PAMC)
-						</Strong>
-						.
-					</StyledLi>
-					<StyledLi>
-						Il a pour but de vous aider à remplir le{' '}
-						<Strong>volet social de votre déclaration de revenus</Strong> à
-						réaliser sur{' '}
-						<Link
-							href="https://www.impots.gouv.fr"
-							aria-label="impots.gouv.fr, nouvelle fenêtre"
-						>
-							impots.gouv.fr
-						</Link>
-						.
-					</StyledLi>
-					<StyledLi>
-						<Strong>En cas de déficit</Strong>, renseignez le signe « - » devant
-						le montant.
-					</StyledLi>
-					<StyledLi>
-						<Strong>
-							L’assistant ne prend pas en compte les situations suivantes :
-						</Strong>
-						<Ul>
-							<Li>revenus étrangers,</Li>
-							<Li>revenus non professionnels,</Li>
-							<Li>changement de régime en cours d’année,</Li>
-							<Li>comptabilités d’engagement,</Li>
-							<Li>médecins adhérents au dispositif RSPM.</Li>
-						</Ul>
-						Si vous êtes dans l’une de ces situations, nous vous invitons à
-						contacter votre Urssaf pour vous accompagner.
-					</StyledLi>
+					<Trans i18nKey="pages.assistants.declaration-revenus-pamc.warning">
+						<StyledLi>
+							Cet assistant est à destination des{' '}
+							<Strong>
+								praticiens et auxiliaires médicaux conventionnés (PAMC)
+							</Strong>
+							.
+						</StyledLi>
+						<StyledLi>
+							Il gère uniquement le <Strong>régime micro-fiscal</Strong>.
+						</StyledLi>
+						<StyledLi>
+							Il a pour but de vous aider à remplir le{' '}
+							<Strong>volet social de votre déclaration de revenus</Strong> à
+							réaliser sur{' '}
+							<Link
+								href="https://www.impots.gouv.fr"
+								aria-label="impots.gouv.fr, nouvelle fenêtre"
+							>
+								impots.gouv.fr
+							</Link>
+							.
+						</StyledLi>
+						<StyledLi>
+							<Strong>En cas de déficit</Strong>, renseignez le signe « - »
+							devant le montant.
+						</StyledLi>
+						<StyledLi>
+							<Strong>
+								L’assistant ne prend pas en compte les situations suivantes :
+							</Strong>
+							<Ul>
+								<Li>revenus étrangers,</Li>
+								<Li>revenus non professionnels,</Li>
+								<Li>changement de régime en cours d’année,</Li>
+								<Li>comptabilités d’engagement,</Li>
+								<Li>médecins adhérents au dispositif RSPM.</Li>
+							</Ul>
+							Si vous êtes dans l’une de ces situations, nous vous invitons à
+							contacter votre Urssaf pour vous accompagner.
+						</StyledLi>
+					</Trans>
 				</Ul>
 				<Body>
 					<Trans i18nKey="simulateurs.warning.general">
