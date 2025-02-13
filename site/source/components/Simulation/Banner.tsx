@@ -6,7 +6,7 @@ import { Emoji } from '@/design-system/emoji'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
-import { FadeIn } from './ui/animate'
+import { FadeIn } from '../ui/animate'
 
 type BannerProps = {
 	children: React.ReactNode
@@ -16,7 +16,7 @@ type BannerProps = {
 	className?: string
 }
 
-export default function Banner({
+export default function SimulationBanner({
 	children,
 	hidden: hiddenProp = false,
 	hideAfterFirstStep = true,
