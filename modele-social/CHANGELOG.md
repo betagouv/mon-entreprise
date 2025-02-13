@@ -1,9 +1,14 @@
 # Journal des modifications
 
 ## next
+### Breaking changes
+- Déplacement des règles sur l’Acre pour assimilé salarié de `dirigeant . assimilé salarié` vers `salarié . cotisations . exonérations`
 
 ## Mises à jour
 - Mises à jour des valeurs CARPIMKO pour 2025
+
+### Corrections
+- Correction du calcul de l’Acre pour assimilé salarié
 
 ## 5.0.0
 ### Breaking changes

@@ -13,7 +13,6 @@ import { Container, Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 import FicheDePaie from '../FicheDePaie/FicheDePaie'
 
@@ -95,7 +94,6 @@ export default function SalaryExplanation() {
 function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 	const { t } = useTranslation()
 	const { colors } = useTheme()
-	const { currentSimulatorData } = useCurrentSimulatorData()
 
 	return (
 		<section>
@@ -132,10 +130,7 @@ function RevenueRepartitionSection(props: { onSeePayslip: () => void }) {
 					},
 					{
 						title: t('Cotisations'),
-						dottedName:
-							currentSimulatorData?.pathId === 'simulateurs.sasu'
-								? 'dirigeant . assimilé salarié . cotisations'
-								: 'salarié . cotisations',
+						dottedName: 'salarié . cotisations',
 						color: colors.extended.grey[700],
 					},
 				]}

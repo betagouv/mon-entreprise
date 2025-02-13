@@ -440,46 +440,22 @@ dirigeant . assimilé salarié:
       titre.en: '[automatic] employee contract executive status'
       titre.fr: salarié contrat statut cadre
   description.en: >
-    [automatic] Some company directors (this is notably the case for SASU) are
-    considered by the social security system as being assimilated to employees.
-    They are then covered by the general social security system, but with some
-    constraints. For example, they do not contribute to the unemployment scheme,
-    and are therefore not entitled to it.
+    [automatic] Some company directors (notably SASU) are considered by the
+    social security system to be on the same footing as employees. They are
+    therefore covered by the general social security system, albeit with a few
+    constraints. For example, they are not entitled to unemployment benefits.
   description.fr: >
-    Certains dirigeants d'entreprise (c'est notamment le cas pour les SASU) sont
+    Certains dirigeants d’entreprise (c’est notamment le cas pour les SASU) sont
     considérés par la sécurité sociale comme assimilés aux salariés. Ils sont
     alors au régime général de la sécurité sociale, avec quelques contraintes
-    cependant. Par exemple, ils ne cotisent pas au chômage, et n'y ont donc pas
+    cependant. Par exemple, ils ne cotisent pas au chômage, et n’y ont donc pas
     droit.
-  note.en: '[automatic] We do not manage the case of SAS(U) with IR for the moment'
-  note.fr: Nous ne gérons pas le cas des SAS(U) à l'IR pour l'instant
+  note.en:
+    '[automatic] We do not currently handle the case of SAS(U) taxable for
+    income tax purposes.'
+  note.fr: Nous ne gérons pas le cas des SAS(U) à l’IR pour l’instant
   titre.en: '[automatic] assimilated employee'
   titre.fr: assimilé salarié
-dirigeant . assimilé salarié . cotisations:
-  titre.en: '[automatic] contributions'
-  titre.fr: cotisations
-dirigeant . assimilé salarié . réduction ACRE:
-  avec:
-    notification taux annuel:
-      description.en: >
-        [automatic] The ACRE rate used is an annual average. The
-
-        simulator does not yet take into account the calculation of the ACRE month by month.
-      description.fr: >
-        Le taux ACRE utilisé est une moyenne annuelle. Le
-
-        simulateur ne prend pas encore en compte le calcul de l'ACRE mois par mois.
-      titre.en: '[automatic] notification annual rate'
-      titre.fr: notification taux annuel
-  titre.en: '[automatic] ACRE reduction'
-  titre.fr: réduction ACRE
-dirigeant . assimilé salarié . réduction ACRE . montant:
-  avec:
-    cotisations exonérées:
-      titre.en: '[automatic] Exempt contributions'
-      titre.fr: cotisations exonérées
-  titre.en: '[automatic] amount'
-  titre.fr: montant
 dirigeant . auto-entrepreneur:
   description.en: >
     [automatic] The auto-entrepreneur is a simplified individual business.
@@ -4249,9 +4225,10 @@ dirigeant . rémunération . net:
   titre.en: '[automatic] Net remuneration'
   titre.fr: Rémunération nette
 dirigeant . rémunération . net . après impôt:
-  description.en: '[automatic] The net income after deduction of income tax and
-    social security contributions.'
-  description.fr: Le revenu net après déduction de l'impôt sur le revenu et des
+  description.en:
+    '[automatic] Net income after deduction of income tax and social
+    security contributions.'
+  description.fr: Le revenu net après déduction de l’impôt sur le revenu et des
     cotisations sociales.
   question.en: '[automatic] What is the desired net after-tax income?'
   question.fr: Quel est le revenu net après impôt souhaité ?
@@ -4264,19 +4241,19 @@ dirigeant . rémunération . net . imposable:
   titre.fr: revenu imposable
 dirigeant . rémunération . totale:
   description.en: >
-    [automatic] This is what the company spends in total for the remuneration of
-    the executive. This "super gross" remuneration includes all social security
-    contributions to be paid. It can also be considered as the monetary value of
-    the executive's work.
+    [automatic] This is how much the company spends on executive remuneration.
+    This "super-gross" remuneration includes all social security contributions
+    payable. It can also be considered as the monetary value of the executive's
+    work.
   description.fr: >
-    C'est ce que l'entreprise dépense en tout pour la rémunération du dirigeant.
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à
-    payer. On peut aussi considérer que c'est la valeur monétaire du travail du
+    payer. On peut aussi considérer que c’est la valeur monétaire du travail du
     dirigeant.
   question.en: '[automatic] What is the total amount you expect to earn in compensation?'
   question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
-  résumé.en: "[automatic] Total paid by the company for the executive's compensation"
-  résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant
+  résumé.en: '[automatic] Total paid by the company for executive compensation'
+  résumé.fr: Total payé par l’entreprise pour la rémunération du dirigeant
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale
 durée légale du travail:
@@ -9923,6 +9900,24 @@ salarié . cotisations . exonérations:
       titre.fr: part salarié
   titre.en: '[automatic] contribution exemptions and reductions'
   titre.fr: exonérations et allègements de cotisations
+salarié . cotisations . exonérations . Acre:
+  titre.en: '[automatic] Acre'
+  titre.fr: Acre
+salarié . cotisations . exonérations . Acre . coefficient dégressif:
+  titre.en: '[automatic] degressive coefficient'
+  titre.fr: coefficient dégressif
+salarié . cotisations . exonérations . Acre . cotisations patronales exonérées pour 75% du PSS:
+  titre.en: "[automatic] employer's contributions exempt for 75% of PSS"
+  titre.fr: cotisations patronales exonérées pour 75% du PSS
+salarié . cotisations . exonérations . Acre . cotisations salariales exonérées pour 75% du PSS:
+  titre.en: '[automatic] employee contributions exempt for 75% of the PSS'
+  titre.fr: cotisations salariales exonérées pour 75% du PSS
+salarié . cotisations . exonérations . Acre . employeur:
+  titre.en: '[automatic] employer'
+  titre.fr: employeur
+salarié . cotisations . exonérations . Acre . salarié:
+  titre.en: '[automatic] employee'
+  titre.fr: salarié
 salarié . cotisations . exonérations . JEI:
   description.en: >-
     [automatic] The Young Innovative Company (JEI) status was created by the
@@ -9982,6 +9977,12 @@ salarié . cotisations . exonérations . T:
       titre.fr: sécurité sociale et chômage
   titre.en: '[automatic] Coefficient T'
   titre.fr: Coefficient T
+salarié . cotisations . exonérations . cotisations patronales exonérées Acre:
+  titre.en: '[automatic] Exempt employer contributions Acre'
+  titre.fr: cotisations patronales exonérées Acre
+salarié . cotisations . exonérations . cotisations salariales exonérées Acre:
+  titre.en: '[automatic] Exempt employee contributions Acre'
+  titre.fr: cotisations salariales exonérées Acre
 salarié . cotisations . exonérations . heures supplémentaires:
   avec:
     employeur:

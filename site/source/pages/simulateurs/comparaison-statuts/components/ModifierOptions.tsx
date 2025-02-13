@@ -135,7 +135,7 @@ const ModifierOptions = () => {
 					</Strong>
 					.
 				</Body>
-				<H5 as="h4">Choisir mon option de simulation (pour AE)</H5>
+				<H5 as="h4">Choisir mon option de simulation (hors AE)</H5>
 				<Message type="secondary">
 					<Grid
 						container

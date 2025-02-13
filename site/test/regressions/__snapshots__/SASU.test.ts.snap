@@ -1,30 +1,48 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate assimilé salarié > ACRE 1`] = `
-"dirigeant . rémunération . totale: 10000
-impôt . montant: 0
-salarié . cotisations: 520
-salarié . rémunération . brut: 781
-salarié . rémunération . net . payé après impôt: 596
-salarié . rémunération . net . à payer avant impôt: 596"
+"dirigeant . rémunération . totale: 25000
+impôt . montant: 220
+salarié . cotisations: 506
+salarié . rémunération . brut: 1853
+salarié . rémunération . net . payé après impôt: 1559
+salarié . rémunération . net . à payer avant impôt: 1577"
 `;
 
 exports[`calculate assimilé salarié > ACRE 2`] = `
-"dirigeant . rémunération . totale: 20000
-impôt . montant: 0
-salarié . cotisations: 1010
-salarié . rémunération . brut: 1582
-salarié . rémunération . net . payé après impôt: 1228
-salarié . rémunération . net . à payer avant impôt: 1228"
+"dirigeant . rémunération . totale: 50000
+impôt . montant: 2697
+salarié . cotisations: 1429
+salarié . rémunération . brut: 3327
+salarié . rémunération . net . payé après impôt: 2513
+salarié . rémunération . net . à payer avant impôt: 2738"
 `;
 
 exports[`calculate assimilé salarié > ACRE 3`] = `
+"dirigeant . rémunération . totale: 100000
+impôt . montant: 9304
+salarié . cotisations: 3640
+salarié . rémunération . brut: 5944
+salarié . rémunération . net . payé après impôt: 3918
+salarié . rémunération . net . à payer avant impôt: 4693"
+`;
+
+exports[`calculate assimilé salarié > ACRE 4`] = `
 "dirigeant . rémunération . totale: 30000
 impôt . montant: 0
 salarié . cotisations: 1124
 salarié . rémunération . brut: 1769
 salarié . rémunération . net . payé après impôt: 1376
 salarié . rémunération . net . à payer avant impôt: 1376"
+`;
+
+exports[`calculate assimilé salarié > ACRE 5`] = `
+"dirigeant . rémunération . totale: 25000
+impôt . montant: 220
+salarié . cotisations: 506
+salarié . rémunération . brut: 1853
+salarié . rémunération . net . payé après impôt: 1559
+salarié . rémunération . net . à payer avant impôt: 1577"
 `;
 
 exports[`calculate assimilé salarié > JEI 1`] = `

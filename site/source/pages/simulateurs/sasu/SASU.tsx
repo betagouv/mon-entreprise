@@ -44,7 +44,7 @@ export function SASUSimulation() {
 					<SimulationGoal
 						editable={false}
 						small
-						dottedName="dirigeant . assimilé salarié . cotisations"
+						dottedName="salarié . cotisations"
 					/>
 					<SimulationGoal dottedName="salarié . rémunération . net . à payer avant impôt" />
 					<SimulationGoal small editable={false} dottedName="impôt . montant" />
@@ -80,7 +80,7 @@ export const SeoExplanations = () => (
 		</Body>
 		<Body>
 			Il peut en revanche prétendre à la{' '}
-			<RuleLink dottedName="dirigeant . assimilé salarié . réduction ACRE">
+			<RuleLink dottedName="salarié . cotisations . exonérations . Acre">
 				réduction ACRE
 			</RuleLink>{' '}
 			en debut d'activité, sous certaines conditions.
