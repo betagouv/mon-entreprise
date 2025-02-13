@@ -66,6 +66,7 @@ export default function Simulation({
 	const firstStepCompleted = useSelector(firstStepCompletedSelector)
 	const ilYADesQuestions = useSelector(ilYADesQuestionsSelector)
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
+	const showQuestions = showQuestionsFromBeginning || firstStepCompleted
 
 	return (
 		<>
@@ -75,7 +76,7 @@ export default function Simulation({
 				<PrintExportRecover />
 				{children}
 				<FromTop>
-					{(firstStepCompleted || showQuestionsFromBeginning) && (
+					{showQuestions && (
 						<>
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
@@ -88,11 +89,9 @@ export default function Simulation({
 					)}
 					<Spacing md />
 
-					<SimulationPréremplieBanner />
+					{!entrepriseSelection && <SimulationPréremplieBanner />}
 
-					{!showQuestionsFromBeginning && !firstStepCompleted && (
-						<PreviousSimulationBanner />
-					)}
+					{!showQuestions && <PreviousSimulationBanner />}
 
 					{afterQuestionsSlot}
 
