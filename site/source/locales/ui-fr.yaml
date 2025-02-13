@@ -1017,6 +1017,18 @@ pages:
         "9": "Revenus nets de l’activité conventionnée :"
       shortname: Assistant à la déclaration de revenus des PAMC
       title: Assistant à la déclaration de revenus pour les PAMC
+      warning: <0>Cet assistant est à destination des <2>praticiens et auxiliaires
+        médicaux conventionnés (PAMC)</2>.</0><1>Il gère uniquement le <1>régime
+        micro-fiscal</1>.</1><2>Il a pour but de vous aider à remplir le
+        <2>volet social de votre déclaration de revenus</2> à réaliser sur
+        <5>impots.gouv.fr</5>.</2><3><0>En cas de déficit</0>, renseignez le
+        signe « - » devant le montant.</3><4><0>L’assistant ne prend pas en
+        compte les situations suivantes :</0><1><0>revenus
+        étrangers,</0><1>revenus non professionnels,</1><2>changement de régime
+        en cours d’année,</2><3>comptabilités d’engagement,</3><4>médecins
+        adhérents au dispositif RSPM.</4></1>Si vous êtes dans l’une de ces
+        situations, nous vous invitons à contacter votre Urssaf pour vous
+        accompagner.</4>
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
