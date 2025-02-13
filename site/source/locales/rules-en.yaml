@@ -7164,10 +7164,8 @@ location de logement meublé . courte durée:
         accommodation'
       titre.fr: Cotisations dues pour la location d’un logement meublé de courte durée
     recettes:
-      résumé.en: '[automatic] Receipts for short-term furnished accommodation or
-        short-term classified tourist accommodation'
-      résumé.fr: Recettes pour un logement meublé de courte durée ou de tourisme
-        classé de courte durée
+      résumé.en: '[automatic] Revenue for short-term furnished accommodation'
+      résumé.fr: Recettes pour un logement meublé de courte durée
       titre.en: '[automatic] revenues'
       titre.fr: recettes
   titre.en: '[automatic] short term'
