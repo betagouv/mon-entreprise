@@ -28,6 +28,31 @@ export default function Résultats() {
 					)}
 				</H2>
 
+				<StyledBody>
+					{t(
+						'pages.assistants.declaration-revenus-pamc.resultats.2',
+						'Situation au 1er janvier ou à la date du début d’activité'
+					)}
+				</StyledBody>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . statut"
+					code="DSAP"
+					expression="déclaration revenus PAMC . statut = 'titulaire'"
+					label={t(
+						'pages.assistants.declaration-revenus-pamc.resultats.3',
+						'Vous êtes titulaire'
+					)}
+				/>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . statut"
+					code="DSAQ"
+					expression="déclaration revenus PAMC . statut = 'remplaçant'"
+					label={t(
+						'pages.assistants.declaration-revenus-pamc.resultats.4',
+						'Vous êtes remplaçant'
+					)}
+				/>
+
 				<SimulationValue
 					dottedName="déclaration revenus PAMC . statut"
 					label="Situation au 1er janvier ou à la date du début d’activité"
@@ -42,7 +67,7 @@ export default function Résultats() {
 				<Condition expression="déclaration revenus PAMC . revenus de remplacement . total">
 					<H4 as="h3">
 						{t(
-							'pages.assistants.declaration-revenus-pamc.resultats.2',
+							'pages.assistants.declaration-revenus-pamc.resultats.5',
 							'Montant des revenus de remplacement'
 						)}
 					</H4>
@@ -56,7 +81,7 @@ export default function Résultats() {
 				<Condition expression="déclaration revenus PAMC . déductions et exonérations . total déductible">
 					<H4 as="h3">
 						{t(
-							'pages.assistants.declaration-revenus-pamc.resultats.3',
+							'pages.assistants.declaration-revenus-pamc.resultats.6',
 							'Déductions et exonérations'
 						)}
 					</H4>
@@ -74,7 +99,7 @@ export default function Résultats() {
 
 				<H4 as="h3">
 					{t(
-						'pages.assistants.declaration-revenus-pamc.resultats.4',
+						'pages.assistants.declaration-revenus-pamc.resultats.7',
 						'Cotisations sociales obligatoires'
 					)}
 				</H4>
@@ -86,13 +111,13 @@ export default function Résultats() {
 
 				<H4 as="h3">
 					{t(
-						'pages.assistants.declaration-revenus-pamc.resultats.5',
+						'pages.assistants.declaration-revenus-pamc.resultats.8',
 						'Répartition des revenus nets'
 					)}
 				</H4>
 				<StyledBody>
 					{t(
-						'pages.assistants.declaration-revenus-pamc.resultats.6',
+						'pages.assistants.declaration-revenus-pamc.resultats.9',
 						'Revenus nets de l’activité conventionnée :'
 					)}
 				</StyledBody>
@@ -103,7 +128,7 @@ export default function Résultats() {
 				/>
 				<StyledBody>
 					{t(
-						'pages.assistants.declaration-revenus-pamc.resultats.7',
+						'pages.assistants.declaration-revenus-pamc.resultats.10',
 						'Revenus nets tirés des autres activités non salariées :'
 					)}
 				</StyledBody>
@@ -120,7 +145,7 @@ export default function Résultats() {
 
 				<H4 as="h3">
 					{t(
-						'pages.assistants.declaration-revenus-pamc.resultats.8',
+						'pages.assistants.declaration-revenus-pamc.resultats.11',
 						'Données transmises par l’Assurance Maladie'
 					)}
 				</H4>

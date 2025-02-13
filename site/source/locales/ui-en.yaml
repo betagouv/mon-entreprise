@@ -946,13 +946,16 @@ pages:
         title: PAMC tax return
       resultats:
         "1": Amounts to report on your tax return
-        "2": Replacement income
-        "3": Deductions and exemptions
-        "4": Compulsory social security contributions
-        "5": Breakdown of net income
-        "6": "Net income from contract activity :"
-        "7": "Net income from other self-employed activities :"
-        "8": Data provided by Assurance Maladie
+        "10": "Net income from other self-employed activities :"
+        "11": Data provided by Assurance Maladie
+        "2": Situation on January 1 or on the date of commencement of activity
+        "3": You are a holder
+        "4": You are a replacement
+        "5": Replacement income
+        "6": Deductions and exemptions
+        "7": Compulsory social security contributions
+        "8": Breakdown of net income
+        "9": "Net income from contract activity :"
       shortname: PAMC tax return assistant
       title: PAMC tax return assistant
     pour-mon-entreprise:
