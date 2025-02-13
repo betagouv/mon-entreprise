@@ -31,6 +31,7 @@ type SimulationGoalProps = {
 	isTypeBoolean?: boolean
 	displayedUnit?: string
 	isInfoMode?: boolean
+	résuméEnGras?: boolean
 	round?: boolean
 	onUpdateSituation?: (
 		name: DottedName,
@@ -47,6 +48,7 @@ export function SimulationGoal({
 	round = true,
 	appear = true,
 	editable = true,
+	résuméEnGras = false,
 	isTypeBoolean = false, // TODO : remove when type inference works in publicodes
 	isInfoMode = false,
 }: SimulationGoalProps) {
@@ -125,6 +127,7 @@ export function SimulationGoal({
 
 							{rule.rawNode.résumé && (
 								<StyledSmallBody
+									gras={résuméEnGras}
 									className={small ? 'sr-only' : ''}
 									id={`${dottedName.replace(/\s|\./g, '_')}-description`}
 								>
@@ -193,8 +196,9 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 	}
 `
 
-const StyledSmallBody = styled(SmallBody)`
+const StyledSmallBody = styled(SmallBody)<{ gras?: boolean }>`
 	margin-bottom: 0;
+	font-weight: ${(props) => (props.gras ? 'bold' : undefined)};
 `
 const StyledBody = styled(Body)`
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
