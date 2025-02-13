@@ -339,7 +339,7 @@ entreprise . charges:
     - charges de fonctionnement
   titre: charges (hors rémunération dirigeant)
   identifiant court: charges
-  résumé: Montant total des dépenses nécessaires à l’entreprise, en excluant les cotisations sociales
+  résumé: Total des dépenses nécessaires à l’entreprise, en excluant cotisations sociales, CSG-CRDS et contribution à la formation professionnelle qui sont automatiquement déduites par le simulateur.
   question: Quelles sont les charges de l’entreprise ?
   description: |
     Il ne faut pas déclarer ici de cotisations sociales, ni la CSG-CRDS, ni la

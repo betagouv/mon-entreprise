@@ -5870,10 +5870,12 @@ entreprise . charges:
     revenu net de charges.
   question.en: "[automatic] What are the company's expenses?"
   question.fr: Quelles sont les charges de l’entreprise ?
-  résumé.en: '[automatic] Total expenditure required for the business, excluding
-    social security contributions'
-  résumé.fr: Montant total des dépenses nécessaires à l’entreprise, en excluant
-    les cotisations sociales
+  résumé.en: '[automatic] Total expenditure required by the company, excluding
+    social security contributions, CSG-CRDS and vocational training
+    contributions, which are automatically deducted by the simulator.'
+  résumé.fr: Total des dépenses nécessaires à l’entreprise, en excluant
+    cotisations sociales, CSG-CRDS et contribution à la formation
+    professionnelle qui sont automatiquement déduites par le simulateur.
   titre.en: '[automatic] expenses (excluding management remuneration)'
   titre.fr: charges (hors rémunération dirigeant)
 entreprise . chiffre d'affaires:
