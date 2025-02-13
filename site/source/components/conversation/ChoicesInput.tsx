@@ -59,7 +59,7 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 }: {
 	choices: Choice
 	type?: 'radio' | 'card' | 'toggle' | 'select'
-} & InputProps<Names>) {
+} & InputProps) {
 	const { t } = useTranslation()
 
 	// seront stockées ainsi dans le state :
@@ -264,7 +264,7 @@ const StyledSubRadioGroup = styled.div`
 `
 
 export function OuiNonInput<Names extends string = DottedName>(
-	props: InputProps<Names>
+	props: InputProps
 ) {
 	const { t } = useTranslation()
 
@@ -303,7 +303,7 @@ export function useSelection<Names extends string = DottedName>({
 	value,
 	onChange,
 	missing,
-}: InputProps<Names>) {
+}: InputProps) {
 	const serializeValue = (nodeValue: Evaluation) =>
 		serializeEvaluation({ nodeValue } as EvaluatedNode)
 

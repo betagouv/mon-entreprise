@@ -231,6 +231,8 @@ export function useButtonOrLink(
 		ref,
 	}
 
+	console.log(props, initialProps, buttonProps, useExternalLinkProps(props))
+
 	return buttonOrLinkProps
 }
 

@@ -958,6 +958,17 @@ pages:
         "9": "Net income from contract activity :"
       shortname: PAMC tax return assistant
       title: PAMC tax return assistant
+      warning: <0>This assistant is designed for <2>practitioners and medical
+        auxiliaries under contract (PAMC).</2></0><1>It manages the <1>micro-tax
+        system</1> only.</1><2>Its purpose is to help you fill in the <2>social
+        section of your tax return</2> on <5>impots.gouv.fr</5>.</2><3><0>In the
+        event of a deficit</0>, enter a "-" in front of the amount.</3><4><0>The
+        wizard does not take into account the following
+        situations:</0><1><0>foreign income</0><1>non-professional
+        income,</1><2>change of tax regime during the year,</2><3>commitment
+        accounting,</3><4>doctors enrolled in the RSPM scheme.</4></1>If you
+        find yourself in one of these situations, we invite you to contact your
+        Urssaf office for assistance.</4>
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>There is no income simulator for your
         type of business on this site yet.</0><1>If you would like us to develop
