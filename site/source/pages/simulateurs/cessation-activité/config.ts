@@ -12,7 +12,6 @@ export function cessationActivitéConfig({
 		id: 'cessation-activité',
 		tracking: 'cessation_activité',
 		icône: '📦',
-		beta: true,
 		iframePath: 'simulateur-cessation-activité',
 		pathId: 'simulateurs.cessation-activité',
 		shortName: t(
