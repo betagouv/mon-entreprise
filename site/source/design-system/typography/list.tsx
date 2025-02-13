@@ -13,7 +13,7 @@ type ListProps = {
 	 * @property {boolean} - A boolean property that indicates whether or not to display markers
 	 * (such as bullets or numbers) for each item in the list.
 	 */
-	noMarker?: boolean
+	$noMarker?: boolean
 }
 
 export const Li = styled.li``
@@ -45,8 +45,8 @@ const BaseListStyle = css<ListProps>`
 
 	> ${Li} {
 		position: relative;
-		padding-left: ${({ theme, noMarker }) =>
-			noMarker ? 0 : theme.spacings.lg};
+		padding-left: ${({ theme, $noMarker }) =>
+			$noMarker ? 0 : theme.spacings.lg};
 		margin-bottom: ${({ theme }) => theme.spacings.xs};
 	}
 `
@@ -54,8 +54,8 @@ const BaseListStyle = css<ListProps>`
 export const Ul = styled.ul<ListProps>`
 	${BaseListStyle}
 	> ${Li}::before {
-		${({ noMarker }) =>
-			noMarker &&
+		${({ $noMarker }) =>
+			$noMarker &&
 			css`
 				display: none !important;
 			`}
