@@ -25,6 +25,7 @@ export default function ArtisteAuteur() {
 	return (
 		<>
 			<Simulation
+				results={<InstitutionsPartenairesArtisteAuteur />}
 				explanations={<CotisationsResult />}
 				afterQuestionsSlot={<SelectSimulationYear />}
 			>
@@ -47,8 +48,6 @@ export default function ArtisteAuteur() {
 					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . recettes" />
 					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . frais réels" />
 				</SimulationGoals>
-
-				<InstitutionsPartenairesArtisteAuteur />
 			</Simulation>
 		</>
 	)
