@@ -78,7 +78,7 @@ function ExerciceDate() {
 			<ExerciceDateContainer>
 				<StyledInputSuggestion>
 					{[yearN2, yearN1].map((year) => (
-						<>
+						<span key={year}>
 							<Link
 								aria-label={t(
 									'pages.simulateurs.impot-société.préremplir',
@@ -100,7 +100,7 @@ function ExerciceDate() {
 									{ year }
 								)}
 							</Link>{' '}
-						</>
+						</span>
 					))}
 				</StyledInputSuggestion>
 			</ExerciceDateContainer>
