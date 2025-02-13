@@ -3,12 +3,12 @@ import { Trans } from 'react-i18next'
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import PeriodSwitch from '@/components/PeriodSwitch'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { Link } from '@/design-system/typography/link'
 import { DarkLi, Ul } from '@/design-system/typography/list'
 import { AutoEntrepreneurDétails } from '@/pages/simulateurs/auto-entrepreneur/AutoEntrepreneurDétails'
@@ -18,7 +18,7 @@ export default function AutoEntrepreneur() {
 		<>
 			<Simulation
 				explanations={<AutoEntrepreneurDétails />}
-				afterQuestionsSlot={<SelectSimulationYear />}
+				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
 					simulateur="auto-entrepreneur"
