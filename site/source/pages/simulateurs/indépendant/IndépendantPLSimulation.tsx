@@ -1,8 +1,8 @@
 import { Trans } from 'react-i18next'
 
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
 import { DarkLi, Ul } from '@/design-system/typography/list'
 import useYear from '@/hooks/useYear'
@@ -15,7 +15,7 @@ export const IndépendantPLSimulation = () => {
 		<>
 			<Simulation
 				explanations={<IndépendantExplanation />}
-				afterQuestionsSlot={<SelectSimulationYear />}
+				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
 					simulateur="profession-libérale"

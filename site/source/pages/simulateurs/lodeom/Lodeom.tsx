@@ -4,9 +4,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
 import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { Emoji } from '@/design-system/emoji'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
@@ -42,7 +42,7 @@ export default function LodeomSimulation() {
 
 	return (
 		<>
-			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
+			<Simulation afterQuestionsSlot={<YearSelectionBanner />}>
 				<SimulateurWarning
 					simulateur="lodeom"
 					informationsComplémentaires={

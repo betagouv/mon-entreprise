@@ -302,7 +302,6 @@ Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désol
 Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.:
   Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
   résultat.
-Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
@@ -1884,6 +1883,8 @@ pages:
       shortname: Sage-femme
       title: Simulateur de revenus pour sage-femme en libéral
     salarié:
+      SASU: Vous êtes dirigeant d'une SAS(U) ? <2>Accédez au simulateur de revenu
+        dédié</2>
       alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)

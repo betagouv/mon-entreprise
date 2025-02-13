@@ -2,12 +2,12 @@ import { Trans } from 'react-i18next'
 
 import PeriodSwitch from '@/components/PeriodSwitch'
 import RuleLink from '@/components/RuleLink'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
 import { H2 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -17,7 +17,7 @@ export function SASUSimulation() {
 		<>
 			<Simulation
 				explanations={<SalaryExplanation />}
-				afterQuestionsSlot={<SelectSimulationYear />}
+				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
 					simulateur="sasu"

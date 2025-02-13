@@ -6,12 +6,12 @@ import { useTheme } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Notifications from '@/components/Notifications'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import StackedBarChart from '@/components/StackedBarChart'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
@@ -26,7 +26,7 @@ export default function DividendesSimulation() {
 			<Notifications />
 			<Simulation
 				explanations={<DividendesExplanation />}
-				afterQuestionsSlot={<SelectSimulationYear />}
+				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
 					simulateur="dividendes"
