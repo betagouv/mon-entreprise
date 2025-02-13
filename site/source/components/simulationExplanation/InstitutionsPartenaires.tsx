@@ -11,7 +11,7 @@ import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
-import { Grid } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
@@ -248,10 +248,11 @@ export function InstitutionsPartenairesArtisteAuteur() {
 
 	return (
 		<section>
-			<H3>Vos cotisations</H3>
+			<Spacing md />
 			<Grid container>
 				<Grid item lg={12}>
 					<Message border={false} role="list">
+						<H3>Vos cotisations</H3>
 						<CotisationsUrssaf
 							rule="artiste-auteur . cotisations"
 							extraNotice={
