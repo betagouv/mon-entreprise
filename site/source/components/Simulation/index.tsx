@@ -1,3 +1,4 @@
+import { DottedName } from 'modele-social'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -10,6 +11,7 @@ import ShareOrSaveSimulationBanner, {
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
+import { RootState } from '@/store/reducers/rootReducer'
 import { ilYADesQuestionsSelector } from '@/store/selectors/ilYADesQuestions.selector'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
@@ -48,6 +50,7 @@ type SimulationProps = {
 	id?: string
 	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
+	firstStepCompletedExceptions?: DottedName[]
 }
 
 export default function Simulation({
@@ -62,8 +65,11 @@ export default function Simulation({
 	id,
 	customSimulationbutton,
 	entrepriseSelection = true,
+	firstStepCompletedExceptions,
 }: SimulationProps) {
-	const firstStepCompleted = useSelector(firstStepCompletedSelector)
+	const firstStepCompleted = useSelector((state: RootState) =>
+		firstStepCompletedSelector(state, firstStepCompletedExceptions)
+	)
 	const ilYADesQuestions = useSelector(ilYADesQuestionsSelector)
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
 	const showQuestions = showQuestionsFromBeginning || firstStepCompleted
